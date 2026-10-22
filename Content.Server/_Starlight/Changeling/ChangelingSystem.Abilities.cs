@@ -10,6 +10,7 @@ using Content.Shared.Actions.Events;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Changeling;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Changeling.Systems;
 using Content.Shared.Chemistry.Components;
@@ -57,6 +58,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         SubscribeLocalEvent<ChangelingComponent, OpenEvolutionMenuEvent>(OnOpenEvolutionMenu);
         SubscribeLocalEvent<ChangelingComponent, AbsorbDNAEvent>(OnAbsorb);
+        SubscribeLocalEvent<ChangelingComponent, ChangelingDevourFinishedEvent>(OnDevourEvolutionReward);
         SubscribeLocalEvent<ChangelingComponent, OnLingDevour>(OnDevouredPerson);
         SubscribeLocalEvent<ChangelingComponent, StingExtractDNAEvent>(OnStingExtractDNA);
         SubscribeLocalEvent<ChangelingComponent, EnterStasisEvent>(OnEnterStasis);
@@ -140,6 +142,15 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
 
     public ProtoId<DamageGroupPrototype> AbsorbedDamageGroup = "Genetic";
+
+    private void OnDevourEvolutionReward(EntityUid uid, ChangelingComponent comp, ref ChangelingDevourFinishedEvent args)
+    {
+        if (!args.Completed || args.Handled || HasComp<ChangelingInfectionComponent>(uid)
+            || TryComp<ChangelingColonyMemberComponent>(uid, out var member) && member.IsFragment)
+            return;
+        AwardEvolutionPoints(uid, args.Target);
+    }
+
     private void OnDevouredPerson(EntityUid uid, ChangelingComponent comp, ref OnLingDevour args)
     {
         var target = args.Consumed;
@@ -171,18 +182,15 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var popup = Loc.GetString("changeling-absorb-end-self-ling");
         var bonusChemicals = 0f;
-        var bonusEvolutionPoints = 0f;
         if (TryComp<ChangelingComponent>(target, out var targetComp))
         {
             bonusChemicals += targetComp.MaxChemicals / 2;
-            bonusEvolutionPoints += 10;
             comp.MaxBiomass += targetComp.MaxBiomass / 2;
         }
         else if (HasComp<HumanoidAppearanceComponent>(target))  // Starlight edit
         {
             popup = Loc.GetString("changeling-absorb-end-self");
             bonusChemicals += 10;
-            bonusEvolutionPoints += 2;
         }
         // Starlight edit start
         else
@@ -197,17 +205,39 @@ public sealed partial class ChangelingSystem : EntitySystem
         _popup.PopupEntity(popup, uid, uid);
         comp.MaxChemicals += bonusChemicals;
 
-        if (TryComp<StoreComponent>(uid, out var store))
-        {
-            _store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "EvolutionPoint", bonusEvolutionPoints } }, uid, store);
-            _store.UpdateUserInterface(uid, uid, store);
-        }
-
         var owner = TryGetColony(uid, out var member, out _) ? member.Mind : _mind.GetMind(uid);
         if (owner is { } mindId && TryComp<Content.Shared.Mind.MindComponent>(mindId, out var mind))
             if (_mind.TryGetObjectiveComp<AbsorbConditionComponent>(mindId, out var objective, mind))
                 objective.Absorbed += 1;
         AbsorbHiveMind(uid, target);
+    }
+
+    private void AwardEvolutionPoints(EntityUid uid, EntityUid target)
+    {
+        if (HasComp<AbsorbedComponent>(target))
+            return;
+        var points = HasComp<ChangelingComponent>(target) ? 10 : HasComp<HumanoidAppearanceComponent>(target) ? 2 : 0;
+        if (points == 0)
+            return;
+        var owner = TryGetColony(uid, out _, out var colony) && colony.Core.IsValid() ? colony.Core : uid;
+        if (!TryComp<StoreComponent>(owner, out var store))
+        {
+            Log.Error($"Cannot award evolution points to {ToPrettyString(uid)}: missing store on {ToPrettyString(owner)}.");
+            return;
+        }
+        if (!_store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "EvolutionPoint", points } }, owner, store))
+        {
+            Log.Error($"Cannot award evolution points to {ToPrettyString(uid)}: store {ToPrettyString(owner)} rejected EvolutionPoint.");
+            return;
+        }
+        Log.Info($"Awarded {points} evolution points to {ToPrettyString(uid)} for {ToPrettyString(target)}; hive balance: {store.Balance["EvolutionPoint"]}.");
+
+        var stores = EntityQueryEnumerator<StoreComponent>();
+        while (stores.MoveNext(out var body, out var sharedStore))
+        {
+            if (ReferenceEquals(sharedStore.Balance, store.Balance) && _chemistryUi.IsUiOpen(body, StoreUiKey.Key))
+                _store.UpdateUserInterface(body, body, sharedStore);
+        }
     }
 
     private void OnStingExtractDNA(EntityUid uid, ChangelingComponent comp, ref StingExtractDNAEvent args)
@@ -606,14 +636,6 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (comp.Chemicals < chemicalCost)
         {
             _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
-            ev.Cancelled = true;
-            return;
-        }
-
-        if (lingAction.RequireAbsorbed > comp.TotalAbsorbedEntities)
-        {
-            var delta = lingAction.RequireAbsorbed - comp.TotalAbsorbedEntities;
-            _popup.PopupEntity(Loc.GetString("changeling-action-fail-absorbed", ("number", delta)), uid, uid);
             ev.Cancelled = true;
             return;
         }

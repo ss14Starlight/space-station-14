@@ -1,10 +1,12 @@
 using Content.Client.Alerts;
 using Content.Client.UserInterface.Systems.Alerts.Controls;
 using Content.Shared._Starlight.Changeling;
+using Content.Shared.Examine;
 using Content.Shared.StatusIcon.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 
 namespace Content.Client._Starlight.Changeling;
 
@@ -20,17 +22,28 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, UpdateAlertSpriteEvent>(OnUpdateAlert);
         SubscribeLocalEvent<ChangelingComponent, GetStatusIconsEvent>(GetChanglingIcon);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, AfterAutoHandleStateEvent>(OnColonyState);
+        SubscribeLocalEvent<ChangelingColonyMemberComponent, ComponentStartup>(OnColonyStartup);
+        SubscribeLocalEvent<ChangelingColonyMemberComponent, LocalPlayerAttachedEvent>(OnColonyPlayerAttached);
         InitializeMindspace();
     }
 
     private void OnColonyState(Entity<ChangelingColonyMemberComponent> ent, ref AfterAutoHandleStateEvent args)
+        => ConfigureColonyControls(ent);
+
+    private void OnColonyStartup(Entity<ChangelingColonyMemberComponent> ent, ref ComponentStartup args)
+        => ConfigureColonyControls(ent);
+
+    private void OnColonyPlayerAttached(Entity<ChangelingColonyMemberComponent> ent, ref LocalPlayerAttachedEvent args)
+        => ConfigureColonyControls(ent);
+
+    private void ConfigureColonyControls(Entity<ChangelingColonyMemberComponent> ent)
     {
         if (!ent.Comp.IsFragment || ent.Comp.IsBlood)
             return;
+        // These components are local, so adding the mob template on the server does not grant them here.
+        EnsureComp<ExaminerComponent>(ent);
         // Detached heads normally use the ghost input context; living parts need ordinary mob controls.
         var input = EnsureComp<InputComponent>(ent);
-        if (input.ContextName == "human")
-            return;
         input.ContextName = "human";
         if (_hivePlayer.LocalEntity == ent.Owner)
             _colonyInputChanged = true;

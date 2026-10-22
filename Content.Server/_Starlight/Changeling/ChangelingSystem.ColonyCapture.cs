@@ -137,6 +137,7 @@ public sealed partial class ChangelingSystem
         _damage.SetAllDamage(target, FixedPoint2.Zero);
         _blood.TryModifyBloodLevel(target, 1000);
         _mobState.ChangeMobState(target, MobState.Alive);
+        AwardEvolutionPoints(uid, target);
         AddColonyMember(target, member.Mind, colony);
         if (TransferColony(attackerMind, colony, target))
             QueueDel(uid);

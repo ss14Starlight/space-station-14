@@ -60,7 +60,6 @@
   components:
   - type: ChangelingAction
     chemicalCost: 20
-    requireAbsorbed: 0
     useInLesserForm: true
 
 - type: entity
@@ -69,7 +68,6 @@
   components:
   - type: ChangelingAction
     chemicalCost: 30
-    requireAbsorbed: 0
     useInLesserForm: true
 
 - type: entity

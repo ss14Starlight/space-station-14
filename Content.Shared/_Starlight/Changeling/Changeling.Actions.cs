@@ -16,8 +16,6 @@ public sealed partial class ChangelingActionComponent : Component
     [DataField] public float BiomassCost = 0;
 
     [DataField] public bool UseInLesserForm = false;
-
-    [DataField] public float RequireAbsorbed = 0;
 }
 
 #region Events - Basic

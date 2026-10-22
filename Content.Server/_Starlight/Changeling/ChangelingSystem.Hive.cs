@@ -95,7 +95,6 @@ public sealed partial class ChangelingSystem
             RemComp<HTNComponent>(body);
         if (TryComp<ChangelingColonyMemberComponent>(body, out var member) && member.SleepingWhileVacant)
         {
-            member.SleepingWhileVacant = false;
             _hiveSleeping.TryWaking((body, null), ignoreSsd: true);
         }
         var ling = EnsureComp<ChangelingComponent>(body);
@@ -230,8 +229,6 @@ public sealed partial class ChangelingSystem
             if (!HasComp<SleepingComponent>(body) && _hiveSleeping.TrySleeping((body, null)))
             {
                 member.SleepingWhileVacant = true;
-                if (TryComp<SleepingComponent>(body, out var sleeping) && sleeping.WakeAction is { } wake)
-                    _actions.SetTemporary((wake, null), true);
             }
             return;
         }
@@ -240,6 +237,14 @@ public sealed partial class ChangelingSystem
         _factionSystem.ClearFactions(body);
         _factionSystem.AddFaction(body, ColonyFaction);
         _hiveNpc.WakeNPC(body);
+    }
+
+    private void OnHiveSleepRemoved(Entity<SleepingComponent> ent, ref ComponentRemove args)
+    {
+        if (!TryComp<ChangelingColonyMemberComponent>(ent, out var member) || !member.SleepingWhileVacant)
+            return;
+        member.SleepingWhileVacant = false;
+        QueueDel(ent.Comp.WakeAction);
     }
 
     private void StopHiveBody(EntityUid body)

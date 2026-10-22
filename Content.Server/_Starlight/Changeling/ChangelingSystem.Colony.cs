@@ -8,6 +8,7 @@ using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Changeling;
@@ -65,6 +66,7 @@ public sealed partial class ChangelingSystem
         SubscribeLocalEvent<ChangelingColonyMemberComponent, EntityTerminatingEvent>(OnCarrierTerminating);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, BeforeChangelingTransformEvent>(OnColonyBeforeTransform);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, AfterChangelingTransformEvent>(OnColonyAfterTransform);
+        SubscribeLocalEvent<SleepingComponent, ComponentRemove>(OnHiveSleepRemoved);
         SubscribeLocalEvent<ActionComponent, ActionAttemptEvent>(OnColonyActionAttempt, before: [typeof(RetractableItemActionSystem)]);
         InitializeColonyCapture();
         InitializeHiveChat();
@@ -456,6 +458,7 @@ public sealed partial class ChangelingSystem
         if (!member.IsFragment)
             return true;
         return prototype is "ActionChangelingColony" or "ActionChangelingPossess" or "ActionChangelingNeurotoxin" or "VentCrawlExitAction"
+            or "ActionCombatModeToggle" or "ActionCombatModeToggleOff" or "ActionWake"
             || colony.Evolved && member.EvolvedAction is { } evolved && prototype == evolved.Id;
     }
 
