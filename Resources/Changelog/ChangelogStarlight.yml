@@ -1,13 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Changed walls occlusion power, now you'll hear less sounds through walls.
-    type: Tweak
-  id: 409285
-  time: '2026-10-08T10:37:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6554
-- author: Rinary
-  changes:
   - message: Added silent pickup ability, it takes 2.5seconds to pickup item but you won't make any sound.
     type: Add
   id: 409286
@@ -2883,4 +2876,11 @@ Entries:
   id: 409684
   time: '2026-10-22T15:20:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6772
+- author: Sparlight
+  changes:
+  - message: Fixed antag intro themes, geiger counter noises, and other noises playing globally in replays.
+    type: Fix
+  id: 409685
+  time: '2026-10-22T15:54:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6790
 Order: -1
