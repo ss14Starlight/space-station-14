@@ -23,12 +23,8 @@
 - type: !PartialOnly entity
   id: BaseWeaponCrusher
   components:
-  - type: Tool
-    qualities:
-    - Slicing
   - type: Execution
     doAfterDuration: !Remove
-  - type: !Remove Sharp
 
 - type: !PartialOnly entity
   id: WeaponCrusher

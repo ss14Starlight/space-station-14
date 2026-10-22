@@ -184,12 +184,7 @@
         Quantity: 32
       - ReagentId: Theobromine
         Quantity: 8
-  - type: ToolRefinable
-    refineResult:
-    - id: FoodBakedBrownie
-      amount: 8
   - type: !Remove SolutionContainerManager
-  - type: !Remove SliceableFood
 
 - type: !PartialOnly entity
   id: FoodBakedBrownie
@@ -219,12 +214,7 @@
         Quantity: 8
       - ReagentId: THC
         Quantity: 16
-  - type: ToolRefinable
-    refineResult:
-    - id: FoodBakedCannabisBrownie
-      amount: 8
   - type: !Remove SolutionContainerManager
-  - type: !Remove SliceableFood
 
 - type: !PartialOnly entity
   id: FoodBakedCannabisBrownie
