@@ -4,7 +4,6 @@ using Content.Server.Interaction;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Shared._Starlight.StationRadio.Components;
-using Content.Shared.Item.ItemToggle.Components; // Starlight - Portable radio power toggle
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -71,11 +70,6 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
     #region Component Init
     private void OnMicrophoneInit(EntityUid uid, RadioMicrophoneComponent component, ComponentInit args)
     {
-        if (TryComp<ItemToggleComponent>(uid, out var toggle)) { // Starlight - support item toggle component
-            component.Enabled = toggle.Activated;
-            Dirty(uid, component);
-        }
-
         if (component.Enabled)
             EnsureComp<ActiveListenerComponent>(uid).Range = component.ListenRange;
         else
@@ -85,11 +79,6 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
     private void OnSpeakerInit(EntityUid uid, RadioSpeakerComponent component, ComponentInit args)
     {
         //Starlight begin
-        if (TryComp<ItemToggleComponent>(uid, out var toggle)) {
-            component.Enabled = toggle.Activated;
-            Dirty(uid, component);
-        }
-
         if (component.Enabled)
         {
             var radio = EnsureComp<ActiveRadioComponent>(uid);
@@ -104,8 +93,6 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
     #region Toggling
     private void OnActivateMicrophone(EntityUid uid, RadioMicrophoneComponent component, ActivateInWorldEvent args)
     {
-        if (HasComp<ItemToggleComponent>(uid)) return; // TODO: Radio toggle logic should probably just be moved to this component
-
         if (!args.Complex)
             return;
 
@@ -118,8 +105,6 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnActivateSpeaker(EntityUid uid, RadioSpeakerComponent component, ActivateInWorldEvent args)
     {
-        if (HasComp<ItemToggleComponent>(uid)) return; // Starlight-edit
-
         if (!args.Complex)
             return;
 
@@ -261,8 +246,6 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnToggleIntercomMic(Entity<IntercomComponent> ent, ref ToggleIntercomMicMessage args)
     {
-        if (HasComp<ItemToggleComponent>(ent)) return; // Starlight-edit
-
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
 
@@ -273,8 +256,6 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnToggleIntercomSpeaker(Entity<IntercomComponent> ent, ref ToggleIntercomSpeakerMessage args)
     {
-        if (HasComp<ItemToggleComponent>(ent)) return; // Starlight-edit
-
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
 
