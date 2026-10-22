@@ -6,12 +6,6 @@
     delay: 1.0
   - type: MeleeWeapon
     attackRate: 1.0
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Fiber
-        Quantity: 30
-  - type: !Remove SolutionContainerManager
 
 - type: !PartialOnly entity
   id: PlushieThrongler
@@ -35,57 +29,6 @@
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.01
   categories: !Remove
-
-- type: !PartialOnly entity
-  id: PlushieBee
-  components:
-  - type: Extractable
-    grindableSolutionName: food
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Fiber
-        Quantity: 25
-      - ReagentId: GroundBee
-        Quantity: 5
-  - type: !Remove SolutionContainerManager
-
-- type: !PartialOnly entity
-  id: PlushieLizard
-  components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Fiber
-        Quantity: 20
-      - ReagentId: JuiceThatMakesYouWeh
-        Quantity: 10
-  - type: !Remove SolutionContainerManager
-
-- type: !PartialOnly entity
-  id: PlushieLizardInversed
-  components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Fiber
-        Quantity: 20
-      - ReagentId: JuiceThatMakesYouHew
-        Quantity: 10
-  - type: !Remove SolutionContainerManager
-
-- type: !PartialOnly entity
-  id: PlushieDiona
-  components:
-  - type: Reactive
-    reactions: !Clear
-    - reagents: [Water]
-      methods: [Touch]
-      effects:
-      - !type:AddReagentToSolution
-        reagent: Water
-        solution: food
-  - type: !Remove SolutionContainerManager
 
 - type: !PartialOnly entity
   id: PlushieCarp

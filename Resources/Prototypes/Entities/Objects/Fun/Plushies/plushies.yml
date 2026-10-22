@@ -39,13 +39,11 @@
     requiresSpecialDigestion: true
     useSound: *BasePlushieSound
     delay: 2
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 30
   - type: Tag
     tags:
     - Payload
@@ -148,20 +146,14 @@
     size: Normal
     sprite: Objects/Fun/Plushies/bee.rsi
   - type: Extractable
-    grindableSolutionName: bee
-  - type: SolutionContainerManager
-    solutions:
-      bee:
-        reagents:
-        - ReagentId: GroundBee
-          Quantity: 10
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: GroundBee
-          Quantity: 5
-        - ReagentId: Fiber
-          Quantity: 5
+    grindableSolutionName: food
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 25
+      - ReagentId: GroundBee
+        Quantity: 5
   - type: Clothing
     quickEquip: false
     sprite: Objects/Fun/Plushies/bee.rsi
@@ -362,15 +354,6 @@
       reagents:
       - ReagentId: JuiceThatMakesYouWeh
         Quantity: 30
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
-        - ReagentId: JuiceThatMakesYouWeh
-          Quantity: 10
   - type: Clothing
     quickEquip: false
     sprite: Objects/Fun/Plushies/lizard.rsi
@@ -386,6 +369,13 @@
     - Payload
     - ClothMade
     - PlushieLizard
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 20
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 10
 
 - type: entity
   parent: BasePlushie
@@ -549,15 +539,13 @@
       reagents:
       - ReagentId: JuiceThatMakesYouHew
         Quantity: 30
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
-        - ReagentId: JuiceThatMakesYouHew
-          Quantity: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 20
+      - ReagentId: JuiceThatMakesYouHew
+        Quantity: 10
   - type: Clothing
     quickEquip: false
     sprite: Objects/Fun/Plushies/lizard.rsi
@@ -599,13 +587,6 @@
     soundHit: *PlushieDionaSound
   - type: Edible
     useSound: *PlushieDionaSound
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 11
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
   - type: RefillableSolution
     solution: food
   - type: SolutionContainerVisuals
@@ -616,12 +597,12 @@
   - type: Appearance
   - type: Reactive
     reactions:
-    - reagents: [ Water ]
-      methods: [ Touch ]
+    - reagents: [Water]
+      methods: [Touch]
       effects:
       - !type:AddReagentToSolution
         reagent: Water
-        solution: plushie
+        solution: food
   - type: Fixtures
     fixtures:
       fix1:

@@ -1,12 +1,6 @@
 - type: !PartialOnly entity
   id: BasePaper
   components:
-  - type: Solution
-    solution:
-      maxVol: 2.5
-      reagents:
-      - ReagentId: Fiber
-        Quantity: 1.25
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -17,7 +11,6 @@
   - type: EmitSoundOnPickup
     sound:
       path: /Audio/_Starlight/Items/Handling/paper_pickup.ogg
-  - type: !Remove SolutionContainerManager
 
 - type: !PartialOnly entity
   id: PaperArtifactAnalyzer

@@ -109,11 +109,6 @@
   - type: PDTarget
 
 - type: !PartialOnly entity
-  id: BulletWaterShot
-  components:
-  - type: !Remove SolutionContainerManager
-
-- type: !PartialOnly entity
   id: BulletDisablerSmg
   components:
   - type: CyberneticDisruptionOnCollide
@@ -138,10 +133,8 @@
   - type: Solution
     solution:
       maxVol: 4
-      reagents:
+      reagents: !Clear
       - ReagentId: Impedrezene
         Quantity: 4
   - type: SolutionInjectOnProjectileHit
     transferAmount: 4
-    solution: ammo
-  - type: !Remove SolutionContainerManager
