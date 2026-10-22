@@ -5,6 +5,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Silicons.Borgs;
 using Content.Shared._Afterlight.Silicons.Borgs;
 using Content.Shared._Starlight.Computers.RemoteControl;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -15,6 +16,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Power.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.Borgs;
+using Content.Shared.Throwing;
 using Content.Shared.UserInterface;
 using Robust.Server.Player;
 using Robust.Shared.Containers;
@@ -200,6 +202,40 @@ public sealed class RemoteControlConsoleTest : GameTest
             Assert.That(hands.EnumerateHeld(remoteEntity).Contains(item), Is.EqualTo(expectedPickup));
             if (holder is { } holderEntity)
                 Assert.That(hands.EnumerateHeld(holderEntity).Contains(item), Is.EqualTo(!expectedPickup));
+        });
+    }
+
+    [Test]
+    public async Task RemoteThrowThrowsHeldItemAtCursor()
+    {
+        var testMap = await Pair.CreateTestMap();
+
+        await Server.WaitAssertion(() =>
+        {
+            var remoteEntity = SEntMan.SpawnEntity("MobHuman", testMap.GridCoords);
+            var item = SEntMan.SpawnEntity("Wrench", testMap.GridCoords);
+            var hands = Server.System<SharedHandsSystem>();
+            Assert.That(hands.TryPickupAnyHand(remoteEntity, item), Is.True);
+
+            var controllerCoordinates = new EntityCoordinates(testMap.Grid.Owner, 100, 0);
+            var controller = SEntMan.SpawnEntity(null, controllerCoordinates);
+            var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", controllerCoordinates);
+            var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+            console.RemoteBrain = remoteEntity;
+            SetTestController(consoleUid, console, controller);
+            console.Users.Add(controller);
+
+            SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInteractionMessage
+            {
+                Actor = controller,
+                Entity = SEntMan.GetNetEntity(consoleUid),
+                UiKey = RemoteControlUIKey.Key,
+                Coordinates = SEntMan.GetNetCoordinates(new EntityCoordinates(testMap.Grid.Owner, 5, 0)),
+                Action = RemoteControlInteractionAction.Throw,
+            });
+
+            Assert.That(hands.EnumerateHeld(remoteEntity).Contains(item), Is.False);
+            Assert.That(SEntMan.HasComponent<ThrownItemComponent>(item), Is.True);
         });
     }
 
@@ -641,8 +677,7 @@ public sealed class RemoteControlConsoleTest : GameTest
     }
 
     [Test]
-    public async Task ForcedRemoteControlTakeoverPreservesBorgActivationAndOldUiClose()
-    {
+    public async Task ForcedRemoteControlTakeoverPreservesBorgActivationAndOldUiClose() =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -679,19 +714,39 @@ public sealed class RemoteControlConsoleTest : GameTest
                 Assert.That(takeoverConsole.Controller, Is.EqualTo(takeoverController));
                 Assert.That(takeoverConsole.BorgActivatedByRemote, Is.True);
                 Assert.That(chassis.Active, Is.True);
+                var appearance = Server.System<SharedAppearanceSystem>();
+                Assert.That(appearance.TryGetData<bool>(
+                    chassisUid,
+                    BorgVisualsStarlight.RemoteControlled,
+                    out var remoteControlled), Is.True);
+                Assert.That(remoteControlled, Is.True);
 
                 SEntMan.EventBus.RaiseLocalEvent(currentConsoleUid,
                     new BoundUIClosedEvent(RemoteControlUIKey.Key, currentConsoleUid, currentController));
 
                 Assert.That(takeoverConsole.Controller, Is.EqualTo(takeoverController));
                 Assert.That(chassis.Active, Is.True);
+                Assert.That(appearance.TryGetData<bool>(
+                    chassisUid,
+                    BorgVisualsStarlight.RemoteControlled,
+                    out remoteControlled), Is.True);
+                Assert.That(remoteControlled, Is.True);
+
+                SEntMan.EventBus.RaiseLocalEvent(takeoverConsoleUid,
+                    new BoundUIClosedEvent(RemoteControlUIKey.Key, takeoverConsoleUid, takeoverController));
+
+                Assert.That(takeoverConsole.Controller, Is.Null);
+                Assert.That(appearance.TryGetData<bool>(
+                    chassisUid,
+                    BorgVisualsStarlight.RemoteControlled,
+                    out remoteControlled), Is.True);
+                Assert.That(remoteControlled, Is.False);
             }
             finally
             {
                 SEntMan.DeleteEntity(map);
             }
         });
-    }
 
     [Test]
     public async Task RemoteControlMirrorsSingleUserActivatableUi()
