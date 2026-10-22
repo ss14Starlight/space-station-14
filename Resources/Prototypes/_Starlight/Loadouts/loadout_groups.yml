@@ -256,7 +256,6 @@
   loadouts:
   - RoboticistScarf
   - ScientistTie
-  - RetroTie
 
 # IAA
 - type: loadoutGroup
