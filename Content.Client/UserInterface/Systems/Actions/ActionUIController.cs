@@ -789,7 +789,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             return;
 
         var actions = _actionsSystem.GetClientActions().Where(action => action.Comp.AutoPopulate).ToList();
-        actions.Sort(_actionsSystem.ActionComparer);
+        actions.Sort(_actionsSystem.ActionComparer); // Starlight edit
 
         _actions.Clear();
         foreach (var (action, _) in actions)

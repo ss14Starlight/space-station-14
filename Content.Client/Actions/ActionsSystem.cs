@@ -137,12 +137,12 @@ namespace Content.Client.Actions
 
             priorityA = a.Comp?.Container?.Id ?? 0;
             priorityB = b.Comp?.Container?.Id ?? 0;
+            // Starlight begin
             if (priorityA != priorityB)
                 return priorityA - priorityB;
 
-            // Starlight - List.Sort is unstable, so break ties with the server-assigned id.
-            // Unlike client EntityUids this doesn't depend on the order the client received the actions in.
             return GetNetEntity(a.Owner).Id.CompareTo(GetNetEntity(b.Owner).Id);
+            // Starlight end
         }
 
         protected override void ActionAdded(Entity<ActionsComponent> performer, Entity<ActionComponent> action)

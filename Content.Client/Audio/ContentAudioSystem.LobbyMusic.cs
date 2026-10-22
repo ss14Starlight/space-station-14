@@ -91,9 +91,10 @@ public sealed partial class ContentAudioSystem
                 StartLobbyMusic();
                 break;
             default:
-                // Starlight - keep the round-end music going when (re)joining the game after the round ended.
+                // Starlight begin
                 if (!_postRoundMusic)
                     EndLobbyMusic();
+                // Starlight end
                 break;
         }
     }
@@ -165,9 +166,10 @@ public sealed partial class ContentAudioSystem
     /// <param name="playlist">Array of soundtrack filenames for lobby playlist.</param>
     private void StartLobbyMusic(string[] playlist)
     {
-        // Starlight - a stream that died on us shouldn't block starting the music again.
+        // Starlight begin
         if (_lobbySoundtrackInfo != null && IsLobbyMusicExisting(_lobbySoundtrackInfo))
             EndLobbyMusic();
+        // Starlight end
 
         if (_lobbySoundtrackInfo != null || !_configManager.GetCVar(CCVars.LobbyMusicEnabled))
             return;

@@ -90,14 +90,15 @@ public sealed partial class EncryptionKeySystem : EntitySystem
 
     private void OnContainerModified(EntityUid uid, EncryptionKeyHolderComponent component, ContainerModifiedMessage args)
     {
+        // Starlight begin
         if (args.Container.ID != EncryptionKeyHolderComponent.KeyContainerName)
             return;
 
-        // Starlight - don't carry mutes over to the next headset. Not while applying server state, the server does this.
         if (args is EntRemovedFromContainerMessage && !_timing.ApplyingState)
             UnmuteKey(args.Entity);
 
         UpdateChannels(uid, component);
+        // Starlight end
     }
 
     private void OnInteractUsing(EntityUid uid, EncryptionKeyHolderComponent component, InteractUsingEvent args)
