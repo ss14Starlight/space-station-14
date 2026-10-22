@@ -285,7 +285,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     #region Combat Abilities
     private void OnCreateBoneShard(EntityUid uid, ChangelingComponent comp, ref CreateBoneShardEvent args)
     {
-        var star = Spawn(BoneShardPrototype, Transform(uid).Coordinates);
+        var star = Spawn(comp.Evolved ? EvolvedBoneShardPrototype : BoneShardPrototype, Transform(uid).Coordinates);
         _hands.TryPickupAnyHand(uid, star);
 
         PlayMeatySound(uid, comp);

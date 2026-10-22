@@ -17,7 +17,7 @@
 - type: listing
   id: EvolutionMenuCombatBoneShard
   name: evolutionmenu-combat-boneshard-name
-  description: evolutionmenu-combat-boneshard-desc
+  description: evolutionmenu-evolving-boneshard-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: bone_shard }
   productAction: ActionCreateBoneShard
   cost:

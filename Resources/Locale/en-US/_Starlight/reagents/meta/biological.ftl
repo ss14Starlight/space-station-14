@@ -16,6 +16,10 @@ reagent-desc-cyclorite-blood = Feels slightly acidic.
 reagent-name-amalgam = amalgamation blood
 reagent-desc-amalgam = Reminds you of human blood, slime, ammonia, nitric acid... A lot, really.
 
+reagent-name-changeling-cytotoxin = changeling cytotoxin
+reagent-name-changeling-cytotoxin-evolved = evolved changeling cytotoxin
+reagent-desc-changeling-cytotoxin = An organic toxin that rapidly damages cells and destabilizes genetic material.
+
 reagent-name-mortucussus = mortucussus
 reagent-desc-mortucussus = Would not advise eating. Can be used to synthesize ambuzol.
 

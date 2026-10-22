@@ -1,4 +1,6 @@
 # Combat
+evolutionmenu-evolving-boneshard-desc = Form a throwing shard that embeds in its victim, immediately slowing them by 40% for 6 seconds and injecting a toxin that deals 60 genetic damage over 6 seconds. Evolution increases the slowdown to 60% and genetic damage to 90. Works on arachnids. Costs 15 chemicals per shard.
+
 evolutionmenu-combat-armblade-plus-name = True Arm Blade
 evolutionmenu-combat-armblade-plus-desc =
     Reform one of your arms into a truly beautiful blade, composed of bone and flesh, and tear the flesh off of your victims.

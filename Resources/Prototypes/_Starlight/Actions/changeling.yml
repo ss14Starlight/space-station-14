@@ -115,7 +115,7 @@
 - type: entity
   id: ActionCreateBoneShard
   name: Form Bone Shard
-  description: Break off shards of your bone and shape them into a throwing star, laced with a disorienting neurotoxin. Costs 15 chemicals.
+  description: Form a throwing shard that immediately slows its victim by 40% for 6 seconds and injects 60 genetic damage over 6 seconds. Evolution increases this to 60% slowdown and 90 genetic damage. Costs 15 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action

@@ -102,6 +102,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private GameTicker _gameTicker = default!; // Starlight
 
     public static readonly EntProtoId BoneShardPrototype = "ThrowingStarChangeling";
+    public static readonly EntProtoId EvolvedBoneShardPrototype = "ThrowingStarChangelingEvolved";
 
     public static readonly EntProtoId ArmorPrototype = "ChangelingClothingOuterArmor";
     public static readonly EntProtoId ArmorHelmetPrototype = "ChangelingClothingHeadHelmet";
