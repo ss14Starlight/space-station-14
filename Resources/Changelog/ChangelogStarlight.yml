@@ -1,13 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Add unique ambience sounds for working emitter and medical scanner.
-    type: Add
-  id: 409292
-  time: '2026-10-08T10:37:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6554
-- author: Rinary
-  changes:
   - message: Added unique weather sounds for space wind(6 different sounds) and for both ashstorms, weak and strong.
     type: Add
   id: 409293
@@ -2883,4 +2876,11 @@ Entries:
   id: 409691
   time: '2026-10-22T17:03:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6783
+- author: Rinary
+  changes:
+  - message: Fixed and returned changeling devour damage to previous state(i.e. before upstream).
+    type: Fix
+  id: 409692
+  time: '2026-10-22T17:24:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6806
 Order: -1
