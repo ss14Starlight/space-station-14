@@ -953,7 +953,7 @@
     - !type:JobRequirementLoadoutEffect
       requirement:
         !type:RoleTimeRequirement
-        role: RadioHost
+        role: JobRadioHost
         time: 1h
   storage:
     pocket1:
