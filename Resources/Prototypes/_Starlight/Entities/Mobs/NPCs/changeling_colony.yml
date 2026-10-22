@@ -27,7 +27,7 @@
   - type: StandingState
 
 - type: entity
-  abstract: true
+  categories: [HideSpawnMenu]
   id: ChangelingFragmentLimb
   parent: [ChangelingFragmentBase, MobBloodstream]
   components:
@@ -44,7 +44,7 @@
         Slash: 8
 
 - type: entity
-  abstract: true
+  categories: [HideSpawnMenu]
   id: ChangelingFragmentSmall
   parent: ChangelingFragmentLimb
   components:
@@ -68,7 +68,7 @@
   - type: CanEscapeInventory
 
 - type: entity
-  abstract: true
+  categories: [HideSpawnMenu]
   id: ChangelingFragmentHead
   parent: ChangelingFragmentLimb
   components:
@@ -90,7 +90,7 @@
     baseSprintSpeed: 3
 
 - type: entity
-  abstract: true
+  categories: [HideSpawnMenu]
   id: ChangelingFragmentTorso
   parent: ChangelingFragmentLimb
   components:
