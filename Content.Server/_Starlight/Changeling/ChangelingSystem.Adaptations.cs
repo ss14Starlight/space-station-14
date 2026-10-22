@@ -36,17 +36,18 @@ public sealed partial class ChangelingSystem
             return;
         if (!comp.Evolved && (!Transform(uid).Coordinates.TryDistance(EntityManager, Transform(args.Target).Coordinates, out var distance)
             || distance > 1.5f))
-        {
-            UpdateChemicals(uid, comp, ChemicalCost(comp, Comp<ChangelingActionComponent>(args.Action)));
             return;
-        }
+
+        var cost = ChemicalCost(comp, Comp<ChangelingActionComponent>(args.Action));
+        if (comp.Chemicals < cost)
+            return;
 
         // Use the ordinary emag prototype so its access flags and target restrictions stay identical.
         var tool = Spawn("EmagUnlimited", Transform(uid).Coordinates);
         var success = _emag.TryEmagEffect((tool, Comp<EmagComponent>(tool)), uid, args.Target);
         QueueDel(tool);
-        if (!success)
-            UpdateChemicals(uid, comp, ChemicalCost(comp, Comp<ChangelingActionComponent>(args.Action)));
+        if (success)
+            UpdateChemicals(uid, comp, -cost);
         args.Handled = success;
     }
 

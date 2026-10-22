@@ -8,6 +8,7 @@ using Content.Shared.Changeling.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
+using Content.Shared.RetractableItemAction;
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Prototypes;
@@ -22,6 +23,7 @@ public sealed partial class ChangelingSystem
     {
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ArmChangelingNeurotoxinEvent>(OnArmNeurotoxin);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, MeleeHitEvent>(OnNeurotoxinHit);
+        SubscribeLocalEvent<ActionRetractableItemComponent, MeleeHitEvent>(OnNeurotoxinWeaponHit);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingDevourAttemptEvent>(OnPossessionAttempt);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingDevourStartedEvent>(OnPossessionStarted);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingDevourFinishedEvent>(OnPossessionFinished);
@@ -45,6 +47,12 @@ public sealed partial class ChangelingSystem
         _actions.SetToggled(member.NeuroAction, member.NeuroArmed);
     }
 
+    private void OnNeurotoxinWeaponHit(EntityUid uid, ActionRetractableItemComponent component, MeleeHitEvent args)
+    {
+        if (args.User != uid && TryComp<ChangelingColonyMemberComponent>(args.User, out var member))
+            OnNeurotoxinHit(args.User, member, args);
+    }
+
     private void OnNeurotoxinHit(EntityUid uid, ChangelingColonyMemberComponent member, MeleeHitEvent args)
     {
         if (!args.IsHit || args.User != uid || !member.NeuroArmed || _timing.CurTime < member.NeuroReady
@@ -55,14 +63,16 @@ public sealed partial class ChangelingSystem
         {
             if (!IsPossessable(target))
                 continue;
+            member.EmpoweredCapture = true;
+            if (!_devour.StartDevour((uid, devour), target))
+            {
+                member.EmpoweredCapture = false;
+                continue;
+            }
             member.NeuroArmed = false;
             member.NeuroReady = _timing.CurTime + TimeSpan.FromMinutes(5);
             _actions.SetToggled(member.NeuroAction, false);
             _actions.SetCooldown(member.NeuroAction, _timing.CurTime, member.NeuroReady);
-            member.EmpoweredCapture = true;
-            _devour.StartDevour((uid, devour), target);
-            if (member.CaptureTarget == null)
-                member.EmpoweredCapture = false;
             break;
         }
     }

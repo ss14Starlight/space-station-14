@@ -16,6 +16,9 @@ public sealed class ChangelingColonyBoundUserInterface(EntityUid owner, Enum uiK
     {
         base.Open();
         _window = this.CreateWindow<ChangelingColonyWindow>();
+        // Mind transfers change the actor; let the server confirm closing this UI.
+        _window.OnClose -= Close;
+        _window.OnClose += () => SendMessage(new CloseBoundInterfaceMessage());
         _window.OnDetach += part => SendMessage(new ChangelingDetachMessage(part));
         _window.OnSwitch += carrier => SendMessage(new ChangelingSwitchMessage(carrier));
         _window.OnAnimate += enabled => SendMessage(new ChangelingAnimateBloodMessage(enabled));
@@ -49,6 +52,8 @@ public sealed class ChangelingColonyWindow : FancyWindow
     private bool _animating;
     private List<ChangelingColonyEntry> _lastParts = new();
     private List<ChangelingColonyEntry> _lastCarriers = new();
+    private bool? _lastMindspace;
+    private bool? _lastMaster;
 
     public ChangelingColonyWindow()
     {
@@ -73,15 +78,18 @@ public sealed class ChangelingColonyWindow : FancyWindow
         _animate.Visible = state.Master && state.Learned && state.Evolved;
         _leave.Visible = !state.Mindspace;
         _partsLabel.Visible = state.CanDetach;
+        _parts.Visible = state.CanDetach;
         _animate.Text = Loc.GetString(_animating ? "changeling-colony-animation-on" : "changeling-colony-animation-off");
         if (!_lastParts.SequenceEqual(state.Parts))
         {
             _lastParts = state.Parts;
             Fill(_parts, state.Parts, "changeling-colony-detach", part => OnDetach?.Invoke(part));
         }
-        if (!_lastCarriers.SequenceEqual(state.Carriers))
+        if (!_lastCarriers.SequenceEqual(state.Carriers) || _lastMindspace != state.Mindspace || _lastMaster != state.Master)
         {
             _lastCarriers = state.Carriers;
+            _lastMindspace = state.Mindspace;
+            _lastMaster = state.Master;
             _carriers.RemoveAllChildren();
             foreach (var carrier in state.Carriers)
             {

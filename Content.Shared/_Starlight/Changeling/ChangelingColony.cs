@@ -21,6 +21,7 @@ public sealed partial class ChangelingColonyMemberComponent : Component
     public TimeSpan CaptureStarted;
     public bool EmpoweredCapture;
     public TimeSpan NextBlood;
+    public bool SleepingWhileVacant;
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -28,6 +29,7 @@ public sealed partial class ChangelingMindspaceComponent : Component
 {
     public EntityUid Colony;
     public EntityUid? Listening;
+    public TimeSpan OpenUiAt;
     [AutoNetworkedField] public EntityUid? Viewing;
     [AutoNetworkedField] public List<EntityUid> Bodies = new();
     public override bool SendOnlyToOwner => true;

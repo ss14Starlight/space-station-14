@@ -97,11 +97,11 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         if (TryGetColony(uid, out var member, out _) && !IsHiveMaster(uid, member))
             return;
-        var owner = TryGetColony(uid, out _, out var colony) && colony.Core.IsValid() ? colony.Core : uid;
-        if (!TryComp<StoreComponent>(owner, out var store))
+        if (!TryComp<StoreComponent>(uid, out var store))
             return;
 
-        _store.ToggleUi(uid, owner, store);
+        _store.ToggleUi(uid, uid, store);
+        args.Handled = true;
     }
 
     private void OnAbsorb(EntityUid uid, ChangelingComponent comp, ref AbsorbDNAEvent args)
@@ -136,7 +136,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             BreakOnWeightlessMove = true,
             AttemptFrequency = AttemptFrequency.StartAndEnd
         };
-        _doAfter.TryStartDoAfter(dargs);
+        args.Handled = _doAfter.TryStartDoAfter(dargs);
     }
 
     public ProtoId<DamageGroupPrototype> AbsorbedDamageGroup = "Genetic";
@@ -219,7 +219,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (TryComp<ChangelingIdentityComponent>(uid, out var identityStorage))
             _changelingIdentitySystem.CloneToPausedMap((uid, identityStorage), target);
         _popup.PopupEntity(Loc.GetString("changeling-sting", ("target", Identity.Entity(target, EntityManager))), uid, uid);
-
+        args.Handled = true;
     }
 
     private void OnEnterStasis(EntityUid uid, ChangelingComponent comp, ref EnterStasisEvent args)
@@ -289,6 +289,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         _hands.TryPickupAnyHand(uid, star);
 
         PlayMeatySound(uid, comp);
+        args.Handled = true;
     }
     private void OnToggleArmor(EntityUid uid, ChangelingComponent comp, ref ToggleChitinousArmorEvent args)
     {
@@ -301,6 +302,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
 
         PlayMeatySound(uid, comp);
+        args.Handled = true;
     }
     private void OnShriekDissonant(EntityUid uid, ChangelingComponent comp, ref ShriekDissonantEvent args)
     {
@@ -311,11 +313,13 @@ public sealed partial class ChangelingSystem : EntitySystem
         _emp.EmpPulse(pos, power, 5000f, power * TimeSpan.FromSeconds(2));
         if (comp.Evolved)
             ApplyResonantShriek(uid, comp);
+        args.Handled = true;
     }
     private void OnShriekResonant(EntityUid uid, ChangelingComponent comp, ref ShriekResonantEvent args)
     {
         DoScreech(uid, comp);
         ApplyResonantShriek(uid, comp);
+        args.Handled = true;
     }
 
     private void ApplyResonantShriek(EntityUid uid, ChangelingComponent comp)
@@ -331,7 +335,11 @@ public sealed partial class ChangelingSystem : EntitySystem
             if (lights.HasComponent(ent))
                 _light.TryDestroyBulb(ent);
     }
-    private void OnToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp, ref ToggleStrainedMusclesEvent args) => ToggleStrainedMuscles(uid, comp);
+    private void OnToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp, ref ToggleStrainedMusclesEvent args)
+    {
+        ToggleStrainedMuscles(uid, comp);
+        args.Handled = true;
+    }
 
     private void ToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp)
     {
@@ -351,7 +359,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
     private void OnRefreshSpeed(Entity<ChangelingComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
-        if (ent.Comp.StrainedMusclesActive)
+        if (ent.Comp.StrainedMusclesActive && ent.Comp.Biomass >= 1)
             args.ModifySpeed(ent.Comp.Evolved ? 1.5f : 1.25f, ent.Comp.Evolved ? 1.75f : 1.5f);
         else
             args.ModifySpeed(1f, 1f);
@@ -385,6 +393,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-panacea"), uid, uid);
         else return;
         PlayMeatySound(uid, comp);
+        args.Handled = true;
     }
 
     private void OnAugmentedEyesight(EntityUid uid, ChangelingComponent comp, ref ActionAugmentedEyesightEvent args)
@@ -396,11 +405,13 @@ public sealed partial class ChangelingSystem : EntitySystem
         {
             RemComp<NightVisionComponent>(uid);
             _popup.PopupEntity(Loc.GetString("changeling-passive-disable"), uid, uid);
+            args.Handled = true;
             return;
         }
 
         EnsureComp<NightVisionComponent>(uid);
         _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
+        args.Handled = true;
     }
     private void OnThermalEyesight(EntityUid uid, ChangelingComponent comp, ref ActionThermalEyesightEvent args)
     {
@@ -412,6 +423,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         EnsureComp<ThermalVisionComponent>(uid);
         _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
+        args.Handled = true;
     }
     #endregion
     private void OnChameleonSkin(EntityUid uid, ChangelingComponent comp, ref ActionChameleonSkinEvent args)
@@ -420,6 +432,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             ToggleChameleonSkin(uid, comp, false);
         else
             ToggleChameleonSkin(uid, comp, true);
+        args.Handled = true;
     }
 
     public void ToggleChameleonSkin(EntityUid uid, ChangelingComponent comp, bool toState)
@@ -456,6 +469,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-inject-fail"), uid, uid);
             return;
         }
+        args.Handled = true;
     }
     #region Starlight
     private void OnDesoxyephedrineOverdose(EntityUid uid, ChangelingComponent comp, ref ActionDesoxyephedrineOverdoseEvent args)
@@ -474,6 +488,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-inject-fail"), uid, uid);
             return;
         }
+        args.Handled = true;
     }
 
     private void OnAmalgamOverdose(EntityUid uid, ChangelingComponent comp, ref ActionAmalgamOverdoseEvent args)
@@ -492,6 +507,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-inject-fail"), uid, uid);
             return;
         }
+        args.Handled = true;
     }
     #endregion
 
@@ -507,6 +523,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-fleshmend"), uid, uid);
         else return;
         PlayMeatySound(uid, comp);
+        args.Handled = true;
     }
     public void OnSpacesuit(EntityUid uid, ChangelingComponent comp, ref ActionSpacesuitEvent args)
     {
@@ -519,6 +536,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
 
         PlayMeatySound(uid, comp);
+        args.Handled = true;
     }
     #region Starlight
     public void OnNeocyteDisguise(EntityUid uid, ChangelingComponent comp, ref ActionNeocyteDisguiseEvent args)
@@ -531,6 +549,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
 
         PlayMeatySound(uid, comp);
+        args.Handled = true;
     }
     #endregion
     public void OnHivemindAccess(EntityUid uid, ChangelingComponent comp, ref ActionHivemindAccessEvent args)
@@ -546,6 +565,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         _language.AddLanguage(uid, "Changeling");
 
         _popup.PopupEntity(Loc.GetString("changeling-hivemind-start"), uid, uid);
+        args.Handled = true;
     }
 
     public void OnFakeMindShieldToggle(EntityUid uid, ChangelingComponent comp, FakeMindShieldToggleEvent toggleEvent) => EnsureComp<FakeMindShieldComponent>(uid);
@@ -598,7 +618,8 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
-        UpdateChemicals(uid, comp, -chemicalCost);
+        if (_actions.GetEvent(ent.Owner) is not ChangelingEmagEvent)
+            UpdateChemicals(uid, comp, -chemicalCost);
         UpdateBiomass(uid, comp, -lingAction.BiomassCost);
     }
 }

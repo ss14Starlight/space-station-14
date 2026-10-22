@@ -231,7 +231,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (comp.StrainedMusclesActive)
         {
             _stamina.TakeStaminaDamage(uid, 7.5f, visual: false);
-            if (stamina.StaminaDamage >= stamina.CritThreshold || _gravity.IsWeightless(uid))
+            if (comp.Biomass < 1 || stamina.StaminaDamage >= stamina.CritThreshold || _gravity.IsWeightless(uid))
                 ToggleStrainedMuscles(uid, comp);
         }
 
@@ -561,13 +561,12 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     public void RemoveAllChangelingEquipment(EntityUid target, ChangelingComponent comp)
     {
-        // check if there's no entities or all entities are null
-        if (comp.Equipment.Values.Count == 0
-        || comp.Equipment.Values.All(ent => ent == null))
+        if (comp.Equipment.Count == 0)
             return;
 
         foreach (var equip in comp.Equipment.Values)
             QueueDel(equip);
+        comp.Equipment.Clear();
 
         PlayMeatySound(target, comp);
     }

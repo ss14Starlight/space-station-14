@@ -43,7 +43,9 @@ public sealed partial class ChangelingSystem
         for (var i = 0; i < (comp.Evolved ? 2 : 1); i++)
         {
             var blade = Spawn(FakeArmbladePrototype, Transform(target).Coordinates);
-            if (comp.Evolved ? _hands.TryForcePickupAnyHand(target, blade) : _hands.TryPickupAnyHand(target, blade))
+            if (comp.Evolved
+                ? _hands.TryForcePickupAnyHand(target, blade, checkActionBlocker: false)
+                : _hands.TryPickupAnyHand(target, blade, checkActionBlocker: false))
                 given++;
             else
                 QueueDel(blade);

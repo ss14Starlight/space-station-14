@@ -1,15 +1,18 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.NPC.HTN;
+using Content.Server.NPC.Systems;
 using Content.Shared._Starlight.Changeling;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Mind;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.NPC.Components;
 using Content.Shared.Store.Components;
+using Content.Shared.Store;
 using Content.Shared.RetractableItemAction;
 using Content.Shared.UserInterface;
 using Content.Shared._Starlight.Store.Events;
@@ -27,6 +30,8 @@ public sealed partial class ChangelingSystem
     [Dependency] private SharedViewSubscriberSystem _hiveViews = default!;
     [Dependency] private BlindableSystem _hiveBlindness = default!;
     [Dependency] private FlashImmunitySystem _hiveVision = default!;
+    [Dependency] private SleepingSystem _hiveSleeping = default!;
+    [Dependency] private NPCSystem _hiveNpc = default!;
 
     public void EnsureHive(EntityUid body)
     {
@@ -66,7 +71,7 @@ public sealed partial class ChangelingSystem
     {
         EnsureComp<UserInterfaceComponent>(body);
         _chemistryUi.SetUi(body, ChangelingColonyUiKey.Key,
-            new InterfaceData("ChangelingColonyBoundUserInterface", requireInputValidation: false));
+            new InterfaceData("ChangelingColonyBoundUserInterface", interactionRange: 0, requireInputValidation: false));
     }
 
     private void ShareHiveStore(EntityUid source, EntityUid target)
@@ -86,6 +91,13 @@ public sealed partial class ChangelingSystem
 
     private void PrepareHiveBody(EntityUid body, ChangelingColonyComponent colony)
     {
+        if (TryComp<ChangelingColonyMemberComponent>(body, out var carrier) && !carrier.IsFragment)
+            RemComp<HTNComponent>(body);
+        if (TryComp<ChangelingColonyMemberComponent>(body, out var member) && member.SleepingWhileVacant)
+        {
+            member.SleepingWhileVacant = false;
+            _hiveSleeping.TryWaking((body, null), ignoreSsd: true);
+        }
         var ling = EnsureComp<ChangelingComponent>(body);
         ling.Resources.Genetics = Comp<ChangelingComponent>(colony.Core).Resources.Genetics;
         ShareHiveStore(colony.Core, body);
@@ -126,21 +138,36 @@ public sealed partial class ChangelingSystem
         foreach (var objective in victimMind.Objectives.ToArray())
             _mind.TryRemoveObjective(mind, victimMind, objective);
         _changelingRoles.MindAddRole(mind, "MindRoleChangelingHive", victimMind, silent: true);
-        _mind.TransferTo(mind, anchor, createGhost: false);
+        _mind.TransferTo(mind, anchor, ghostCheckOverride: true, createGhost: false);
         SyncHiveActions(member.Mind, mind);
         RefreshFragmentActions(anchor, colony);
         UpdateHiveObserver(anchor, Comp<ChangelingMindspaceComponent>(anchor), colony);
         _popup.PopupEntity(Loc.GetString("changeling-hive-absorbed"), anchor, anchor);
         UpdateColonyUi(anchor, colony);
-        _chemistryUi.OpenUi(anchor, ChangelingColonyUiKey.Key, anchor);
+        Comp<ChangelingMindspaceComponent>(anchor).OpenUiAt = _timing.CurTime + TimeSpan.FromMilliseconds(100);
     }
 
     private void EnsureHiveAction(EntityUid mind, string prototype)
     {
-        if (TryComp<ActionsContainerComponent>(mind, out var actions)
-            && actions.Container.ContainedEntities.Any(a => MetaData(a).EntityPrototype?.ID == prototype))
+        EntityUid? action = null;
+        if (TryComp<ActionsContainerComponent>(mind, out var actions))
+        {
+            var existing = actions.Container.ContainedEntities.FirstOrDefault(a => !TerminatingOrDeleted(a)
+                && MetaData(a).EntityPrototype?.ID == prototype);
+            if (existing.IsValid())
+                action = existing;
+        }
+        action ??= _actionContainers.AddAction(mind, prototype);
+        if (action is not { } actionUid || !TryComp<MindComponent>(mind, out var consciousness)
+            || consciousness.OwnedEntity is not { } body || TerminatingOrDeleted(body))
             return;
-        _actionContainers.AddAction(mind, prototype);
+        // A transferred mind can arrive before its actions are linked to the new carrier.
+        if (_actions.GetAction(actionUid) is not { } current)
+            return;
+        if (current.Comp.AttachedEntity != body || !_actions.GetActions(body).Any(a => a.Owner == actionUid))
+            _actions.GrantContainedAction(body, mind, actionUid);
+        if (prototype == "ActionChangelingColony")
+            _actions.SetEnabled(current.AsNullable(), true);
     }
 
     private void SyncHiveActions(EntityUid master, EntityUid mind)
@@ -179,7 +206,8 @@ public sealed partial class ChangelingSystem
             EndCapture(old, member);
             StopHiveBody(old);
         }
-        _mind.TransferTo(mind, anchor, createGhost: false);
+        _mind.TransferTo(mind, anchor, ghostCheckOverride: true, createGhost: false);
+        SyncHiveActions(Comp<ChangelingMindspaceComponent>(anchor).Colony, mind);
         if (body is { } vacant && colony.Members.Contains(vacant) && !TerminatingOrDeleted(vacant))
             ActivateVacantCarrier(vacant);
         var observer = Comp<ChangelingMindspaceComponent>(anchor);
@@ -188,22 +216,39 @@ public sealed partial class ChangelingSystem
         UpdateHiveObserver(anchor, observer, colony);
         RefreshFragmentActions(anchor, colony);
         UpdateColonyUi(anchor, colony);
-        _chemistryUi.OpenUi(anchor, ChangelingColonyUiKey.Key, anchor);
+        observer.OpenUiAt = _timing.CurTime + TimeSpan.FromMilliseconds(100);
         return true;
     }
 
     private void ActivateVacantCarrier(EntityUid body)
     {
+        if (!TryComp<ChangelingColonyMemberComponent>(body, out var member) || !_mobState.IsAlive(body))
+            return;
+        if (!member.IsFragment)
+        {
+            RemComp<HTNComponent>(body);
+            if (!HasComp<SleepingComponent>(body) && _hiveSleeping.TrySleeping((body, null)))
+            {
+                member.SleepingWhileVacant = true;
+                if (TryComp<SleepingComponent>(body, out var sleeping) && sleeping.WakeAction is { } wake)
+                    _actions.SetTemporary((wake, null), true);
+            }
+            return;
+        }
         if (!HasComp<HTNComponent>(body))
             AddComp(body, new HTNComponent { RootTask = new HTNCompoundTask { Task = "SimpleHostileCompound" } });
         _factionSystem.ClearFactions(body);
         _factionSystem.AddFaction(body, ColonyFaction);
+        _hiveNpc.WakeNPC(body);
     }
 
     private void StopHiveBody(EntityUid body)
     {
+        if (TryComp<ChangelingMindspaceComponent>(body, out var observer))
+            observer.OpenUiAt = TimeSpan.Zero;
         _chemistryUi.CloseUi(body, ChangelingColonyUiKey.Key);
         _chemistryUi.CloseUi(body, ChangelingChemistryUiKey.Key);
+        _chemistryUi.CloseUi(body, StoreUiKey.Key);
         if (!TryComp<ChangelingComponent>(body, out var ling))
             return;
         if (ling.StrainedMusclesActive)
@@ -217,7 +262,6 @@ public sealed partial class ChangelingSystem
                 _retractable.Retract((action.Owner, retractable), body);
         }
         RemoveAllChangelingEquipment(body, ling);
-        ling.Equipment.Clear();
     }
 
     private void OnObserveHive(EntityUid uid, ChangelingColonyMemberComponent member, ChangelingObserveMessage args)

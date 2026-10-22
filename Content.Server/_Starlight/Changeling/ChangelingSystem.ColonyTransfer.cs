@@ -30,7 +30,7 @@ public sealed partial class ChangelingSystem
                 StopHiveBody(old);
             }
             PrepareHiveBody(target, colony);
-            _mind.TransferTo(mind, target, createGhost: false);
+            _mind.TransferTo(mind, target, ghostCheckOverride: true, createGhost: false);
             if (mind == master)
             {
                 colony.Active = target;
@@ -40,7 +40,8 @@ public sealed partial class ChangelingSystem
             {
                 if (occupied && CanEnterHiveCarrier(previous))
                 {
-                    _mind.TransferTo(otherMind, previous, createGhost: false);
+                    PrepareHiveBody(previous, colony);
+                    _mind.TransferTo(otherMind, previous, ghostCheckOverride: true, createGhost: false);
                     SyncHiveActions(master, otherMind);
                     RefreshFragmentActions(previous, colony);
                 }

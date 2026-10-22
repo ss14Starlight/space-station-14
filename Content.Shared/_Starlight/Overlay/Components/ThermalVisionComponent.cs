@@ -5,7 +5,7 @@ namespace Content.Shared._Starlight.Overlay.Components;
 
 [RegisterComponent]
 [NetworkedComponent]
-[AutoGenerateComponentState]
+[AutoGenerateComponentState(true)]
 public sealed partial class ThermalVisionComponent : Component
 {
     [DataField, AutoNetworkedField]

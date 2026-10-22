@@ -12,6 +12,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 {
 
     [Dependency] private IPrototypeManager _prototype = default!;
+    private bool _colonyInputChanged;
     public override void Initialize()
     {
         base.Initialize();
@@ -27,8 +28,12 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (!ent.Comp.IsFragment || ent.Comp.IsBlood)
             return;
         // Detached heads normally use the ghost input context; living parts need ordinary mob controls.
-        EnsureComp<InputComponent>(ent).ContextName = "human";
-        EntityManager.System<InputSystem>().SetEntityContextActive();
+        var input = EnsureComp<InputComponent>(ent);
+        if (input.ContextName == "human")
+            return;
+        input.ContextName = "human";
+        if (_hivePlayer.LocalEntity == ent.Owner)
+            _colonyInputChanged = true;
     }
 
     private void OnUpdateAlert(EntityUid uid, ChangelingComponent comp, ref UpdateAlertSpriteEvent args)

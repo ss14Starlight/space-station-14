@@ -37,6 +37,11 @@ public sealed partial class ChangelingSystem
     public override void FrameUpdate(float frameTime)
     {
         base.FrameUpdate(frameTime);
+        if (_colonyInputChanged)
+        {
+            _colonyInputChanged = false;
+            EntityManager.System<InputSystem>().SetEntityContextActive();
+        }
         var listening = TryComp<ChangelingMindspaceComponent>(_hivePlayer.LocalEntity, out var observer);
         if (listening != _hiveListening)
         {
@@ -49,6 +54,13 @@ public sealed partial class ChangelingSystem
         if (!listening)
         {
             _hiveListeners = [];
+            if (ReferenceEquals(_hiveEyeManager.CurrentEye, _hiveCamera))
+            {
+                if (TryComp<EyeComponent>(_hivePlayer.LocalEntity, out var ownEye))
+                    _hiveEyeManager.CurrentEye = ownEye.Eye;
+                else
+                    _hiveEyeManager.ClearCurrentEye();
+            }
             return;
         }
         var positions = new List<MapCoordinates>();

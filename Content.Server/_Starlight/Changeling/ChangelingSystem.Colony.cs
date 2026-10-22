@@ -4,6 +4,7 @@ using Content.Server.NPC.HTN;
 using Content.Shared._Starlight.Changeling;
 using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared._Starlight.Medical.Body.Part;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
@@ -141,7 +142,7 @@ public sealed partial class ChangelingSystem
         {
             foreach (var (part, data) in _body.GetBodyChildren(uid))
             {
-                if (data.PartType is BodyPartType.Torso or BodyPartType.Other)
+                if (data.PartType is BodyPartType.Torso or BodyPartType.Other || !IsRealColonyPart(part))
                     continue;
                 parts.Add(new(GetNetEntity(part), Name(part)));
             }
@@ -185,7 +186,7 @@ public sealed partial class ChangelingSystem
             || !TryComp<ChangelingComponent>(uid, out var ling))
             return;
         var part = GetEntity(args.Part);
-        if (!TryComp<BodyPartComponent>(part, out var data) || data.Body != uid
+        if (!TryComp<BodyPartComponent>(part, out var data) || data.Body != uid || !IsRealColonyPart(part)
             || data.PartType is BodyPartType.Torso or BodyPartType.Other || CountCarriers(colony) >= CarrierLimit)
             return;
         var cost = data.PartType is BodyPartType.Hand or BodyPartType.Foot ? 3 : data.PartType == BodyPartType.Head ? 8 : 5;
@@ -194,11 +195,10 @@ public sealed partial class ChangelingSystem
         colony.SuppressAnimation = true;
         try
         {
-            if (!DetachColonyPart(uid, part))
+            if (!DetachColonyPart(uid, part) || !AnimatePart(part, member.Mind, colony))
                 return;
             UpdateChemicals(uid, ling, -15);
             UpdateBiomass(uid, ling, -cost);
-            AnimatePart(part, member.Mind, colony);
             PlayMeatySound(uid, ling);
         }
         finally
@@ -229,7 +229,8 @@ public sealed partial class ChangelingSystem
         var pieces = _body.GetBodyChildren(uid)
             .Where(part => part.Id == root.Entity || _body.GetParentPartOrNull(part.Id) == root.Entity)
             .Select(part => part.Id).ToList();
-        if (pieces.Count == 0 || CountCarriers(colony) + pieces.Count - (_mobState.IsAlive(uid) ? 1 : 0) > CarrierLimit)
+        var realParts = pieces.Count(IsRealColonyPart);
+        if (realParts == 0 || CountCarriers(colony) + realParts - (_mobState.IsAlive(uid) ? 1 : 0) > CarrierLimit)
             return;
         args.Handled = true;
         colony.SuppressAnimation = true;
@@ -265,9 +266,13 @@ public sealed partial class ChangelingSystem
         => !TerminatingOrDeleted(uid) && _mobState.IsAlive(uid)
            && TryComp<ChangelingColonyMemberComponent>(uid, out var member) && !member.IsBlood;
 
+    private bool IsRealColonyPart(EntityUid uid)
+        => !TerminatingOrDeleted(uid) && !EntityManager.IsQueuedForDeletion(uid)
+           && !HasComp<CustomLimbComponent>(uid) && MetaData(uid).EntityPrototype?.ID != "PartVirtual";
+
     private bool AnimatePart(EntityUid uid, EntityUid mind, ChangelingColonyComponent colony)
     {
-        if (TerminatingOrDeleted(uid) || !TryComp<BodyPartComponent>(uid, out var part) || part.Body != null
+        if (!IsRealColonyPart(uid) || !TryComp<BodyPartComponent>(uid, out var part) || part.Body != null
             || HasComp<ChangelingColonyMemberComponent>(uid) || CountCarriers(colony) >= CarrierLimit
             || _body.GetParentPartOrNull(uid) != null)
             return false;
@@ -415,7 +420,16 @@ public sealed partial class ChangelingSystem
                 if (consciousness.OwnedEntity is not { } body || TerminatingOrDeleted(body))
                     continue;
                 if (body == anchor)
-                    UpdateHiveObserver(anchor, Comp<ChangelingMindspaceComponent>(anchor), colony);
+                {
+                    var observer = Comp<ChangelingMindspaceComponent>(anchor);
+                    UpdateHiveObserver(anchor, observer, colony);
+                    if (observer.OpenUiAt != TimeSpan.Zero && _timing.CurTime >= observer.OpenUiAt)
+                    {
+                        observer.OpenUiAt = TimeSpan.Zero;
+                        UpdateColonyUi(anchor, colony);
+                        _chemistryUi.OpenUi(anchor, ChangelingColonyUiKey.Key, anchor);
+                    }
+                }
                 if (_chemistryUi.IsUiOpen(body, ChangelingColonyUiKey.Key))
                     UpdateColonyUi(body, colony);
                 RefreshFragmentActions(body, colony);

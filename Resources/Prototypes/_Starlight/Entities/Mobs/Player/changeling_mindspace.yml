@@ -5,6 +5,7 @@
   components:
   - type: ChangelingMindspace
   - type: Eye
+  - type: Examiner
   - type: Input
     context: human
   - type: MindContainer

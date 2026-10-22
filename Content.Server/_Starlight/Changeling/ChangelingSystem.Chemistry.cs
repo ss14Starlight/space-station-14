@@ -62,13 +62,22 @@ public sealed partial class ChangelingSystem
         _solution.EnsureSolution(uid, ChangelingChemistry.Solution, out var solution);
         _solution.SetCapacity(solution, ChangelingChemistry.Capacity);
         EnsureComp<UserInterfaceComponent>(uid);
-        _chemistryUi.SetUi(uid, ChangelingChemistryUiKey.Key, new InterfaceData("ChangelingChemistryBoundUserInterface"));
+        _chemistryUi.SetUi(uid, ChangelingChemistryUiKey.Key,
+            new InterfaceData("ChangelingChemistryBoundUserInterface", requireInputValidation: false));
         return solution;
+    }
+
+    private bool CanManageStingChemistry(EntityUid uid, ChangelingComponent comp, EntityUid actor)
+    {
+        if (actor != uid || !comp.HasChemicalSting || HasComp<ChangelingMindspaceComponent>(uid))
+            return false;
+        return !TryComp<ChangelingColonyMemberComponent>(uid, out var member)
+            || !member.IsFragment && TryComp<ChangelingColonyComponent>(member.Mind, out var colony) && IsHivePlayer(uid, colony);
     }
 
     private void OnOpenChemistry(EntityUid uid, ChangelingComponent comp, ref OpenChangelingChemistryEvent args)
     {
-        if (args.Handled || !comp.HasChemicalSting)
+        if (args.Handled || !CanManageStingChemistry(uid, comp, uid))
             return;
 
         InitializeStingChemistry(uid);
@@ -111,7 +120,7 @@ public sealed partial class ChangelingSystem
 
     private void OnAddStingReagent(EntityUid uid, ChangelingComponent comp, ChangelingAddReagentMessage args)
     {
-        if (args.Actor != uid || !comp.HasChemicalSting || comp.Biomass < 1
+        if (!CanManageStingChemistry(uid, comp, args.Actor) || comp.Biomass < 1
             || args.Amount is < 1 or > ChangelingChemistry.Capacity
             || !comp.StingReagents.TryGetValue(args.Reagent, out var stock)
             || !_solution.TryGetSolution(uid, ChangelingChemistry.Solution, out var solution, out var mixture))
@@ -129,14 +138,14 @@ public sealed partial class ChangelingSystem
 
     private void OnClearStingMixture(EntityUid uid, ChangelingComponent comp, ChangelingClearMixtureMessage args)
     {
-        if (args.Actor == uid && comp.HasChemicalSting
+        if (CanManageStingChemistry(uid, comp, args.Actor)
             && _solution.TryGetSolution(uid, ChangelingChemistry.Solution, out var solution))
             _solution.RemoveAllSolution(solution.Value);
     }
 
     private void OnSetStingTemperature(EntityUid uid, ChangelingComponent comp, ChangelingSetTemperatureMessage args)
     {
-        if (args.Actor != uid || !comp.HasChemicalSting || !float.IsFinite(args.Temperature))
+        if (!CanManageStingChemistry(uid, comp, args.Actor) || !float.IsFinite(args.Temperature))
             return;
 
         comp.StingTargetTemperature = Math.Clamp(args.Temperature, ChangelingChemistry.MinTemperature, ChangelingChemistry.MaxTemperature);
@@ -145,7 +154,7 @@ public sealed partial class ChangelingSystem
 
     private void OnSetStingRegeneration(EntityUid uid, ChangelingComponent comp, ChangelingSetRegenerationMessage args)
     {
-        if (args.Actor != uid || !comp.HasChemicalSting)
+        if (!CanManageStingChemistry(uid, comp, args.Actor))
             return;
         comp.StingRegenerationEnabled = args.Enabled;
         UpdateStingUi(uid, comp);
@@ -153,7 +162,7 @@ public sealed partial class ChangelingSystem
 
     private void OnSetStingDose(EntityUid uid, ChangelingComponent comp, ChangelingSetStingDoseMessage args)
     {
-        if (args.Actor != uid || !comp.HasChemicalSting || args.Dose is not (1 or 5 or 10 or 15 or 20 or 30))
+        if (!CanManageStingChemistry(uid, comp, args.Actor) || args.Dose is not (1 or 5 or 10 or 15 or 20 or 30))
             return;
         comp.StingDose = args.Dose;
         UpdateStingUi(uid, comp);
@@ -179,7 +188,7 @@ public sealed partial class ChangelingSystem
         if (_timing.CurTime >= comp.NextStingRegeneration)
         {
             comp.NextStingRegeneration = _timing.CurTime + TimeSpan.FromSeconds(ChangelingChemistry.RegenerationInterval);
-            if (comp.StingRegenerationEnabled && comp.Biomass >= 1)
+            if (comp.StingRegenerationEnabled && !comp.IsInStasis && comp.Biomass >= 1)
             {
                 var needed = comp.StingReagents.Sum(r => (float) FixedPoint2.Min(1, ChangelingChemistry.ReagentCapacity - r.Value));
                 var scale = needed <= 0 ? 0 : Math.Min(1, comp.Chemicals / (needed * ChangelingChemistry.RegenerationCost));
