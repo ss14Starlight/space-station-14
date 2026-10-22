@@ -270,6 +270,40 @@
   - type: ChangelingAction
     useInLesserForm: true
 
+- type: entity
+  id: ActionStingFakeArmblade
+  name: Fake Armblade Sting
+  description: Silently sting your target, making them grow a dull armblade for a short time. Costs 50 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
+      state: sting_armblade
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    event: !type:StingFakeArmbladeEvent {}
+  - type: ChangelingAction
+    chemicalCost: 50
+  - type: EorgPreventAction
+
+- type: entity
+  parent: ActionChangelingDevour
+  id: ActionStingInfect
+  name: Infection Sting
+  description: Transform an organic victim into a changeling through the devour process. Costs 2 evolution points only on success. The victim enters regenerative stasis and starts with half the normal evolution points.
+  components:
+  - type: EntityTargetAction
+    canTargetSelf: false
+    event: !type:StingInfectEvent {}
+  - type: ChangelingAction
+
 # utility
 - type: entity
   id: ActionAnatomicPanacea

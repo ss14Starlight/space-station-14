@@ -130,8 +130,36 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-# utility
+- type: listing
+  id: EvolutionMenuStingFakeArmblade
+  name: evolutionmenu-sting-armblade-name
+  description: evolutionmenu-sting-armblade-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_armblade }
+  productAction: ActionStingFakeArmblade
+  cost:
+    EvolutionPoint: 5
+  categories:
+  - ChangelingAbilitySting
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
+- type: listing
+  id: EvolutionMenuStingInfect
+  name: evolutionmenu-sting-infect-name
+  description: evolutionmenu-sting-infect-desc
+  icon: { sprite: Interface/Actions/changeling.rsi, state: devour }
+  productAction: ActionStingInfect
+  cost:
+    EvolutionPoint: 0
+  categories:
+  - ChangelingAbilitySting
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+
+# utility
 - type: listing
   id: EvolutionMenuUtilityBreathing
   name: evolutionmenu-utility-breathing-name

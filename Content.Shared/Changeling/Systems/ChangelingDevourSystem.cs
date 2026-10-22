@@ -62,6 +62,8 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
     private void OnShutdown(Entity<ChangelingDevourComponent> ent, ref ComponentShutdown args)
     {
+        FinishDevour(ent, ent.Comp.CurrentTarget, false);
+        ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
         if (ent.Comp.ChangelingDevourActionEntity != null)
         {
             _actionsSystem.RemoveAction(ent.Owner, ent.Comp.ChangelingDevourActionEntity);
@@ -93,15 +95,17 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
     // The action was used.
     // Start the first doafter for the windup.
-    public void StartDevour(Entity<ChangelingDevourComponent> ent, EntityUid target)
+    public bool StartDevour(Entity<ChangelingDevourComponent> ent, EntityUid target)
     {
         var action = new ChangelingDevourActionEvent { Performer = ent.Owner, Target = target };
         OnDevourAction(ent, ref action);
+        return ent.Comp.CurrentTarget == target;
     }
 
     private void OnDevourAction(Entity<ChangelingDevourComponent> ent, ref ChangelingDevourActionEvent args)
     {
         if (args.Handled
+            || ent.Comp.CurrentTarget != null
             || _whitelistSystem.IsWhitelistFailOrNull(ent.Comp.Whitelist, args.Target)
             || !HasComp<ChangelingIdentityComponent>(ent))
             return;
@@ -129,6 +133,8 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         if (attempt.Cancelled)
             return;
 
+        ent.Comp.CurrentTarget = target;
+        Dirty(ent);
         var started = new ChangelingDevourStartedEvent(target);
         RaiseLocalEvent(ent, ref started);
 
@@ -316,6 +322,11 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
     {
         if (target is not { } victim)
             return false;
+        if (TryComp<ChangelingDevourComponent>(user, out var devour) && devour.CurrentTarget == victim)
+        {
+            devour.CurrentTarget = null;
+            Dirty(user, devour);
+        }
         var finished = new ChangelingDevourFinishedEvent(victim, completed);
         RaiseLocalEvent(user, ref finished);
         return finished.Handled;

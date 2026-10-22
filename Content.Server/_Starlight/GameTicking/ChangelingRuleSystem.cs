@@ -5,6 +5,7 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Shared._Starlight.Changeling;
+using Content.Shared.Changeling.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Roles;
@@ -19,6 +20,9 @@ namespace Content.Server._Starlight.GameTicking;
 
 public sealed partial class ChangelingRuleSystem : GameRuleSystem<SLChangelingRuleComponent>
 {
+    public const int StartingEvolutionPoints = 16;
+    private static readonly EntProtoId ChangelingMindRoleId = "MindRoleChangeling";
+
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private AntagSelectionSystem _antag = default!;
     [Dependency] private SharedRoleSystem _role = default!;
@@ -47,10 +51,16 @@ public sealed partial class ChangelingRuleSystem : GameRuleSystem<SLChangelingRu
     {
         MakeChangeling(args.EntityUid, comp);
     }
-    public bool MakeChangeling(EntityUid target, SLChangelingRuleComponent rule)
+    public bool MakeChangeling(EntityUid target, SLChangelingRuleComponent rule, int startingEvolutionPoints = StartingEvolutionPoints)
     {
         if (!_mind.TryGetMind(target, out var mindId, out var mind))
             return false;
+
+        if (!_role.MindHasRole<SLChangelingRoleComponent>(mindId))
+            _role.MindAddRole(mindId, ChangelingMindRoleId, mind, silent: true);
+        EnsureComp<ChangelingDevourComponent>(target);
+        EnsureComp<ChangelingIdentityComponent>(target);
+        EnsureComp<ChangelingTransformComponent>(target);
 
         // briefing
         var metaData = MetaData(target);
@@ -70,7 +80,7 @@ public sealed partial class ChangelingRuleSystem : GameRuleSystem<SLChangelingRu
         foreach (var category in rule.StoreCategories)
             store.Categories.Add(category);
         store.CurrencyWhitelist.Add(Currency);
-        store.Balance.Add(Currency, 16);
+        store.Balance[Currency] = startingEvolutionPoints;
 
         rule.ChangelingMinds.Add(mindId);
 

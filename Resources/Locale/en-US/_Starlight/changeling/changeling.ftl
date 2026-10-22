@@ -16,3 +16,8 @@ changeling-chemistry-target-temperature = Target (100–1000 K):
 changeling-chemistry-set-temperature = Set
 changeling-chemistry-sting-dose = Sting dose (u):
 changeling-chemistry-sting-cost = Each successful sting costs 10 chemicals. Unused mixture is retained.
+
+changeling-infect-no-points = We need 2 evolution points to create another changeling!
+changeling-infect-invalid = We cannot turn this target into a changeling.
+changeling-infect-success = We have awakened a changeling in { $target }.
+changeling-infect-target = You have become a changeling! You are in regenerative stasis. Once you have regenerated 60 chemicals, use Exit stasis to revive. Your starting evolution points are half the usual amount.

@@ -88,6 +88,9 @@ public sealed partial class ChangelingDevourComponent : Component
     [DataField]
     public EntityUid? CurrentDevourSound;
 
+    [AutoNetworkedField]
+    public EntityUid? CurrentTarget;
+
     /// <summary>
     /// Fraction of the second do-after's damage already applied on the server.
     /// </summary>

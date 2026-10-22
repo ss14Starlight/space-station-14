@@ -47,6 +47,8 @@ public sealed partial class ToggleStrainedMusclesEvent : InstantActionEvent { }
 public sealed partial class LearnChemicalStingEvent : EntityEventArgs { }
 public sealed partial class OpenChangelingChemistryEvent : InstantActionEvent { }
 public sealed partial class ChemicalStingEvent : EntityTargetActionEvent { }
+public sealed partial class StingFakeArmbladeEvent : EntityTargetActionEvent { }
+public sealed partial class StingInfectEvent : EntityTargetActionEvent { }
 
 #endregion
 
