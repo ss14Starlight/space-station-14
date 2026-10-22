@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Content.Shared._Starlight.Light;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._ST.Interaction;
 using Content.Shared._FarHorizons.Util;
@@ -31,7 +32,7 @@ using Content.Shared.Timing;
 using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Content.Shared.Wall;
-using Content.Shared.Inventory.VirtualItem; // Stellar - interaction particles
+using Content.Shared.Inventory.VirtualItem;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Input;
@@ -1346,6 +1347,12 @@ namespace Content.Shared.Interaction
             {
                 rotation = mover.TargetRelativeRotation;
             }
+
+            // Starlight-start
+            var rotationEv = new DropRotationEvent(user, rotation);
+            RaiseLocalEvent(item, ref rotationEv);
+            rotation = rotationEv.Rotation;
+            // Starlight-end
 
             Transform(item).LocalRotation = rotation;
         }

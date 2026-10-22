@@ -3,6 +3,7 @@
   startingInventory: !Clear
     AssistantPDA: 5
     ClearPDA: 5
+    DogCollarPDA: 4
     AssistantIDCard: 5
     ClothingHeadsetAssistant: 5
     RubberStampApproved: 1
