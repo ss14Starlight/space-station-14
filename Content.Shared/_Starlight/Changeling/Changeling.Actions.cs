@@ -67,5 +67,9 @@ public sealed partial class ActionSpacesuitEvent : InstantActionEvent { }
 public sealed partial class ActionNeocyteDisguiseEvent : InstantActionEvent { } // Starlight
 public sealed partial class ActionHivemindAccessEvent : InstantActionEvent { }
 public sealed partial class ActionContortBodyEvent : InstantActionEvent { }
+public sealed partial class ChangelingEmagEvent : EntityTargetActionEvent { }
+public sealed partial class ToggleChangelingRegenerationEvent : InstantActionEvent { }
+public sealed partial class ToggleChangelingPainSuppressionEvent : InstantActionEvent { }
+public sealed partial class ToggleChangelingShockHandEvent : InstantActionEvent { }
 
 #endregion

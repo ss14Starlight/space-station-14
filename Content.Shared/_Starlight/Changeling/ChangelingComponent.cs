@@ -50,6 +50,10 @@ public sealed partial class ChangelingComponent : Component
 
     public bool StealthEnabled = false;
 
+    public EntityUid? RegenerationAction;
+    public EntityUid? PainSuppressionAction;
+    public EntityUid? ShockHandAction;
+
     [DataField, AutoNetworkedField]
     public bool BreathingEnabled = true;
 

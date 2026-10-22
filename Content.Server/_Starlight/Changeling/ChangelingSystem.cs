@@ -124,6 +124,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, ComponentRemove>(OnComponentRemove);
 
         SubscribeAbilities();
+        InitializeAdaptations();
         InitializeColony();
     }
 
@@ -151,7 +152,10 @@ public sealed partial class ChangelingSystem : EntitySystem
                 if (comp.IsInStasis)
                     comp.Biomass = Math.Max(0, comp.Biomass - comp.StasisDrain * (float) comp.ChemicalUpdateCooldown.TotalSeconds);
                 if (!mindspace)
+                {
                     UpdateAbilities(uid, comp);
+                    UpdateAdaptations(uid, comp);
+                }
                 if (!shared || mindspace)
                     UpdateStingChemistry(uid, comp);
             }
@@ -613,7 +617,10 @@ public sealed partial class ChangelingSystem : EntitySystem
     private void OnMobStateChange(EntityUid uid, ChangelingComponent comp, ref MobStateChangedEvent args)
     {
         if (args.NewMobState == MobState.Dead)
+        {
+            StopAdaptations(uid, comp);
             RemoveAllChangelingEquipment(uid, comp);
+        }
     }
 
     private void OnDamageChange(Entity<ChangelingComponent> ent, ref DamageChangedEvent args)
@@ -634,6 +641,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private void OnComponentRemove(Entity<ChangelingComponent> ent, ref ComponentRemove args)
     {
+        StopAdaptations(ent, ent.Comp);
         RemoveAllChangelingEquipment(ent, ent.Comp);
         _respirator.SetEnabled(ent.Owner, true);
         RemoveStingChemistry(ent.Owner);

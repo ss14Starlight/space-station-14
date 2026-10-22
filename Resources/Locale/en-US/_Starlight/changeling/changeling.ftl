@@ -21,3 +21,12 @@ changeling-infect-no-points = We need 2 evolution points to create another chang
 changeling-infect-invalid = We cannot turn this target into a changeling.
 changeling-infect-success = We have awakened a changeling in { $target }.
 changeling-infect-target = You have become a changeling! You are in regenerative stasis. Once you have regenerated 60 chemicals, use Exit stasis to revive. Your starting evolution points are half the usual amount.
+
+evolutionmenu-organic-sequencer-name = Organic sequencer
+evolutionmenu-organic-sequencer-desc = Subvert anything an ordinary emag can hack. Each successful hack costs 30 chemicals.
+evolutionmenu-adaptive-regeneration-name = Adaptive regeneration
+evolutionmenu-adaptive-regeneration-desc = Toggle healing of 4 damage of every type per second, enough to overcome vacuum pressure. Drains 5 chemicals per second, including at full health.
+evolutionmenu-pain-suppression-name = Suppress pain
+evolutionmenu-pain-suppression-desc = Toggle pain perception. Ignore damage slowdown, shock damage, stamina damage and stuns while active. Physical injuries still harm you.
+evolutionmenu-shock-hand-name = Concealed shock hand
+evolutionmenu-shock-hand-desc = Form an invisible organic stun baton in a hand, hidden from examination. Each hit costs 10 chemicals.

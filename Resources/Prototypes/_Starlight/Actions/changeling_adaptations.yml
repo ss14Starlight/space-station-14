@@ -1,0 +1,72 @@
+- type: entity
+  id: ActionChangelingEmag
+  name: Organic sequencer
+  description: Subvert electronics like an emag. Costs 30 chemicals per successful hack.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 5
+    itemIconStyle: NoItem
+    icon: { sprite: Objects/Tools/emag.rsi, state: icon }
+  - type: TargetAction
+    range: 1.5
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: false
+    event: !type:ChangelingEmagEvent {}
+  - type: ChangelingAction
+    chemicalCost: 30
+  - type: EorgPreventAction
+
+- type: entity
+  id: ActionChangelingRegeneration
+  name: Adaptive regeneration
+  description: Toggle regeneration of 4 damage of every type per second. Drains 5 chemicals per second, even at full health.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: fleshmend }
+  - type: InstantAction
+    event: !type:ToggleChangelingRegenerationEvent {}
+  - type: ChangelingAction
+    requireBiomass: false
+  - type: ChangelingRegenerationAction
+    healingPerSecond: 4
+    chemicalCostPerSecond: 5
+
+- type: entity
+  id: ActionChangelingPainSuppression
+  name: Suppress pain
+  description: Toggle pain perception. Suppresses damage slowdown, shock damage, stamina damage and stuns. Physical injuries still harm you.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: anatomic_panacea }
+  - type: InstantAction
+    event: !type:ToggleChangelingPainSuppressionEvent {}
+  - type: ChangelingAction
+    requireBiomass: false
+
+- type: entity
+  id: ActionChangelingShockHand
+  name: Concealed shock hand
+  description: Form or retract an invisible organic stun baton in a hand. Each hit costs 10 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    checkCanInteract: false
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: shriek_dissonant }
+  - type: InstantAction
+    event: !type:ToggleChangelingShockHandEvent {}
+  - type: ChangelingAction
+    requireBiomass: false

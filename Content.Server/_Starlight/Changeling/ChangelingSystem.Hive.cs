@@ -215,6 +215,7 @@ public sealed partial class ChangelingSystem
             ToggleStrainedMuscles(body, ling);
         if (ling.StealthEnabled)
             ToggleChameleonSkin(body, ling, false);
+        StopAdaptations(body, ling);
         RemoveAllChangelingEquipment(body, ling);
         ling.Equipment.Clear();
     }

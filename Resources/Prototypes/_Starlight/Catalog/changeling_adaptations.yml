@@ -1,0 +1,51 @@
+- type: listing
+  id: EvolutionMenuOrganicSequencer
+  name: evolutionmenu-organic-sequencer-name
+  description: evolutionmenu-organic-sequencer-desc
+  icon: { sprite: Objects/Tools/emag.rsi, state: icon }
+  productAction: ActionChangelingEmag
+  cost:
+    EvolutionPoint: 4
+  categories: [ ChangelingAbilityUtility ]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuAdaptiveRegeneration
+  name: evolutionmenu-adaptive-regeneration-name
+  description: evolutionmenu-adaptive-regeneration-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: fleshmend }
+  productAction: ActionChangelingRegeneration
+  cost:
+    EvolutionPoint: 8
+  categories: [ ChangelingAbilityUtility ]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuPainSuppression
+  name: evolutionmenu-pain-suppression-name
+  description: evolutionmenu-pain-suppression-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: anatomic_panacea }
+  productAction: ActionChangelingPainSuppression
+  cost:
+    EvolutionPoint: 5
+  categories: [ ChangelingAbilityUtility ]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuShockHand
+  name: evolutionmenu-shock-hand-name
+  description: evolutionmenu-shock-hand-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: shriek_dissonant }
+  productAction: ActionChangelingShockHand
+  cost:
+    EvolutionPoint: 5
+  categories: [ ChangelingAbilityCombat ]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
