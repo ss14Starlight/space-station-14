@@ -4,7 +4,6 @@ using Content.Shared._Starlight.StationRadio.Components;
 using Content.Shared._Starlight.StationRadio.Events;
 using Content.Shared._Starlight.StationRadio.Systems;
 using Content.Shared.DeviceLinking;
-using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
@@ -24,12 +23,6 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
     /// </summary>
     protected override void OnReceiverMapInit(EntityUid uid, StationRadioReceiverComponent comp, MapInitEvent args)
     {
-        if (TryComp<ItemToggleComponent>(uid, out var toggle))
-        {
-            comp.Active = toggle.Activated;
-            Dirty(uid, comp);
-        }
-        
         if (!TryGetPoweredGridServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
 

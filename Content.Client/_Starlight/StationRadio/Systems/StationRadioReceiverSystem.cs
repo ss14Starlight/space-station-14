@@ -1,7 +1,6 @@
 ﻿using Content.Shared._Starlight.StationRadio.Components;
 using Content.Shared._Starlight.StationRadio.Systems;
 using Content.Shared._Starlight.CCVar;
-using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Robust.Client.Audio;
@@ -127,20 +126,6 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
         if (!TryComp<AudioComponent>(comp.SoundEntity, out var audio))
             return;
         _audio.SetGain(comp.SoundEntity, GetGain(comp, _power.IsPowered(uid)) * (comp.ClientVolume ?? 0), audio);
-    }
-    
-    
-    /// <summary>
-    /// Keeps a portable radio's volume in sync with its ItemToggle state, so it mutes when switched off/when the power cell dies
-    /// (Uses ToggleCellDrawSystem to force-deactivate ItemToggle on an empty cell)
-    /// </summary>
-    [SubscribeLocalEvent]
-    private void OnItemToggled(EntityUid uid, StationRadioReceiverComponent comp, ref ItemToggledEvent args)
-    {
-        comp.Active = args.Activated;
-        Dirty(uid, comp);
-        if (comp.SoundEntity != null)
-            _audio.SetGain(comp.SoundEntity, GetGain(comp, _power.IsPowered(uid)));
     }
 }
 
