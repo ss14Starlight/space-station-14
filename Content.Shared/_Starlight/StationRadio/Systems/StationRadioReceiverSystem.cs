@@ -13,7 +13,12 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnRadioToggle(EntityUid uid, StationRadioReceiverComponent comp, ActivateInWorldEvent args)
     {
-        if (HasComp<ItemToggleComponent>(uid)) return;
+        if (TryComp(uid, out ItemToggleComponent? icomp))
+        {
+            comp.Active = icomp.Activated;
+            Dirty(uid, comp);
+            return;
+        }
         
         comp.Active = !comp.Active;
         Dirty(uid, comp);
