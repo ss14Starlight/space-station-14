@@ -1,8 +1,6 @@
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Light;
 using Content.Shared._Starlight.Light;
-using Robust.Shared;
-using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.ContentPack;
@@ -57,13 +55,13 @@ public sealed class IlluminationSystemTests : GameTest
 
             transform.SetMapCoordinates(holder, new MapCoordinates(150, 100, map.MapId));
 
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope())
             {
                 Assert.That(illumination.GetLightLevel(new MapCoordinates(102, 100, map.MapId), query), Is.Zero,
                     "The light should have left with its holder.");
                 Assert.That(illumination.GetLightLevel(new MapCoordinates(152, 100, map.MapId), query), Is.GreaterThan(0f),
                     "The light should shine where its holder went.");
-            });
+            }
 
             var hand = containers.GetContainer(holder, "hand");
             hand.OccludesLight = true;
@@ -110,13 +108,13 @@ public sealed class IlluminationSystemTests : GameTest
             transform.Unanchor(light);
             transform.SetMapCoordinates(light, new MapCoordinates(200, 200, map.MapId));
 
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope())
             {
                 Assert.That(illumination.GetLightLevel(transform.ToMapCoordinates(near), query), Is.Zero,
                     "An unanchored light shouldn't stay stuck where it was anchored.");
                 Assert.That(illumination.GetLightLevel(new MapCoordinates(201, 200, map.MapId), query), Is.GreaterThan(0f),
                     "An unanchored light should shine where it went.");
-            });
+            }
 
             server.EntMan.DeleteEntity(light);
         });
@@ -153,12 +151,12 @@ public sealed class IlluminationSystemTests : GameTest
 
         await server.WaitAssertion(() =>
         {
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope())
             {
                 Assert.That(illumination.GetLightLevel(target, query), Is.Zero, "The wall should shade us.");
                 Assert.That(illumination.GetLightLevel(new MapCoordinates(300, 302, map.MapId), query), Is.GreaterThan(0f),
                     "Nothing stands between the light and this side.");
-            });
+            }
 
             pointLight.SetCastShadows(light, false);
             Assert.That(illumination.GetLightLevel(target, query), Is.GreaterThan(0f),
@@ -179,7 +177,7 @@ public sealed class IlluminationSystemTests : GameTest
             var resources = server.ResolveDependency<IResourceManager>();
             var protos = server.ResolveDependency<IPrototypeManager>();
 
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope())
             {
                 foreach (var mask in protos.EnumeratePrototypes<LightMaskPrototype>())
                 {
@@ -195,11 +193,11 @@ public sealed class IlluminationSystemTests : GameTest
                         continue;
 
                     // Sampled with PIL from cone_curve.png.
-                    Assert.That(values[128 * width + 256], Is.EqualTo(255), "Middle of the beam.");
-                    Assert.That(values[243 * width + 256], Is.EqualTo(132), "Right at the bulb.");
-                    Assert.That(values[256 * width + 384], Is.Zero, "Beside the bulb.");
+                    Assert.That(values[(128 * width) + 256], Is.EqualTo(255), "Middle of the beam.");
+                    Assert.That(values[(243 * width) + 256], Is.EqualTo(132), "Right at the bulb.");
+                    Assert.That(values[(256 * width) + 384], Is.Zero, "Beside the bulb.");
                 }
-            });
+            }
         });
     }
 
@@ -225,7 +223,7 @@ public sealed class IlluminationSystemTests : GameTest
 
         await server.WaitAssertion(() =>
         {
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope())
             {
                 Assert.That(illumination.GetLightLevel(new MapCoordinates(500, 497, map.MapId), query), Is.GreaterThan(0f),
                     "The beam should go south.");
@@ -233,7 +231,7 @@ public sealed class IlluminationSystemTests : GameTest
                     "Nothing should come out the back.");
                 Assert.That(illumination.GetLightLevel(new MapCoordinates(503, 500, map.MapId), query), Is.Zero,
                     "Nothing should come out the side.");
-            });
+            }
 
             server.EntMan.DeleteEntity(light);
         });
@@ -271,13 +269,13 @@ public sealed class IlluminationSystemTests : GameTest
 
         await server.WaitAssertion(() =>
         {
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope())
             {
                 Assert.That(illumination.GetLightLevel(new MapCoordinates(400, 397, map.MapId), query), Is.GreaterThan(0f),
                     "The wall the light is mounted in shouldn't shade the room.");
                 Assert.That(illumination.GetLightLevel(new MapCoordinates(400, 402, map.MapId), query), Is.Zero,
                     "The light shouldn't leak through its own wall to the other side.");
-            });
+            }
 
             server.EntMan.DeleteEntity(light);
             server.EntMan.DeleteEntity(wall);

@@ -44,33 +44,33 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
 
     private float _maxLightRadius;
 
-    private readonly Dictionary<(EntityUid Grid, Vector2i Chunk), List<Entity<SharedPointLightComponent, TransformComponent>>> _anchored = new();
-    private readonly Dictionary<EntityUid, (EntityUid Grid, Vector2i Chunk)> _anchoredIndex = new();
+    private readonly Dictionary<(EntityUid Grid, Vector2i Chunk), List<Entity<SharedPointLightComponent, TransformComponent>>> _anchored = [];
+    private readonly Dictionary<EntityUid, (EntityUid Grid, Vector2i Chunk)> _anchoredIndex = [];
 
-    private readonly List<Entity<SharedPointLightComponent, TransformComponent>> _loose = new();
-    private readonly Dictionary<EntityUid, int> _looseIndex = new();
-    private readonly HashSet<EntityUid> _dormant = new();
+    private readonly List<Entity<SharedPointLightComponent, TransformComponent>> _loose = [];
+    private readonly Dictionary<EntityUid, int> _looseIndex = [];
+    private readonly HashSet<EntityUid> _dormant = [];
 
     private float _maxReach;
     private TimeSpan _nextReachUpdate;
-    private static readonly TimeSpan ReachUpdateInterval = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan _reachUpdateInterval = TimeSpan.FromSeconds(2);
 
-    private readonly List<Candidate> _candidates = new();
-    private readonly List<Entity<SharedPointLightComponent, TransformComponent>> _misplaced = new();
-    private readonly List<LightContribution> _sources = new();
-    private readonly List<OccluderTree> _occluderTrees = new();
-    private List<Entity<MapGridComponent>> _grids = new();
+    private readonly List<Candidate> _candidates = [];
+    private readonly List<Entity<SharedPointLightComponent, TransformComponent>> _misplaced = [];
+    private readonly List<LightContribution> _sources = [];
+    private readonly List<OccluderTree> _occluderTrees = [];
+    private List<Entity<MapGridComponent>> _grids = [];
 
-    private readonly Dictionary<string, MaskImage?> _masks = new();
+    private readonly Dictionary<string, MaskImage?> _masks = [];
 
     public override void Initialize()
     {
         base.Initialize();
 
         Subs.CVar(_cfg, CVars.MaxLightRadius, value => _maxLightRadius = value, true);
-        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
     }
 
+    [SubscribeLocalEvent]
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
     {
         if (args.WasModified<LightMaskPrototype>())
@@ -95,7 +95,7 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
         if (_timing.CurTime < _nextReachUpdate)
             return;
 
-        _nextReachUpdate = _timing.CurTime + ReachUpdateInterval;
+        _nextReachUpdate = _timing.CurTime + _reachUpdateInterval;
 
         var reach = 0f;
         foreach (var bucket in _anchored.Values)
@@ -155,7 +155,7 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
             var key = (grid, ChunkOf(light.Comp2.LocalPosition));
             if (!_anchored.TryGetValue(key, out var bucket))
             {
-                bucket = new();
+                bucket = [];
                 _anchored[key] = bucket;
             }
 
@@ -358,7 +358,7 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
                         }
 
                         var distanceSquared = (xform.LocalPosition - local).LengthSquared();
-                        if (distanceSquared > rangeSquared || byReach && distanceSquared > ReachSquared(light.Comp1))
+                        if (distanceSquared > rangeSquared || (byReach && distanceSquared > ReachSquared(light.Comp1)))
                             continue;
 
                         _candidates.Add(new(light, Vector2.Transform(xform.LocalPosition, gridMatrix), gridRot + xform.LocalRotation));
@@ -388,7 +388,7 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
 
         var (position, rotation) = _transform.GetWorldPositionRotation(light.Comp2);
         var distanceSquared = (position - point.Position).LengthSquared();
-        if (distanceSquared > rangeSquared || byReach && distanceSquared > ReachSquared(light.Comp1))
+        if (distanceSquared > rangeSquared || (byReach && distanceSquared > ReachSquared(light.Comp1)))
             return;
 
         if (IsHiddenInContainer(light))
@@ -456,10 +456,9 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
             var local = (-maskRotation).RotateVec(delta) / light.Radius;
             var u = (local.X + 1f) * 0.5f;
             var v = (local.Y + 1f) * 0.5f;
-            if (u < 0f || u >= 1f || v < 0f || v >= 1f)
-                return 0f;
-
-            return image.Values[((int) (v * image.Height) * image.Width) + (int) (u * image.Width)] / 255f;
+            return u < 0f || u >= 1f || v < 0f || v >= 1f
+                ? 0f
+                : image.Values[((int) (v * image.Height) * image.Width) + (int) (u * image.Width)] / 255f;
         }
 
         var relativeAngle = MathHelper.CloseTo(delta.LengthSquared(), 0f)
