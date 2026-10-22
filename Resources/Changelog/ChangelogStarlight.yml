@@ -1,39 +1,4 @@
 Entries:
-- author: Yosif
-  changes:
-  - message: PlantTray no longer shows ReadyToHarvest indicator if plant died.
-    type: Fix
-  id: 409280
-  time: '2026-10-08T06:07:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6561
-- author: Xale
-  changes:
-  - message: Examining living catatonic characters under NPC control will now display them as "acting without reason" instead of catatonic.
-    type: Add
-  id: 409281
-  time: '2026-10-08T06:26:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6556
-- author: SevenShades
-  changes:
-  - message: Added a drying rack for drinking glasses, to store and drain after washing.
-    type: Add
-  id: 409282
-  time: '2026-10-08T10:21:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6568
-- author: Rinary
-  changes:
-  - message: 'Added reverb based on room size and zones, now you will hear reverb in maints, in chaplain, hallway and big rooms NOTE: THIS CHANGE HAS VOLUME SLIDER - YOU CAN DISABLE IT.'
-    type: Add
-  id: 409283
-  time: '2026-10-08T10:37:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6554
-- author: Rinary
-  changes:
-  - message: Added sounds occlusion in Vacuum, now you won't hear anything in space or rooms without atmosphere.
-    type: Add
-  id: 409284
-  time: '2026-10-08T10:37:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6554
 - author: Rinary
   changes:
   - message: Changed walls occlusion power, now you'll hear less sounds through walls.
@@ -2883,4 +2848,39 @@ Entries:
   id: 409679
   time: '2026-10-22T14:25:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6780
+- author: xxhotgirl69, Sparlight, SevenShades, huaqas
+  changes:
+  - message: Collars; PDA variants for animals. They have suit coordinate trackers.
+    type: Add
+  id: 409680
+  time: '2026-10-22T15:20:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6772
+- author: xxhotgirl69, Sparlight, SevenShades, huaqas
+  changes:
+  - message: The P-Tech now stocks replacement collars.
+    type: Add
+  id: 409681
+  time: '2026-10-22T15:20:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6772
+- author: xxhotgirl69, Sparlight, SevenShades, huaqas
+  changes:
+  - message: The K9 job icon can now be assigned to IDs.
+    type: Add
+  id: 409682
+  time: '2026-10-22T15:20:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6772
+- author: xxhotgirl69, Sparlight, SevenShades, huaqas
+  changes:
+  - message: Removed the tracking implant from K9s.
+    type: Remove
+  id: 409683
+  time: '2026-10-22T15:20:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6772
+- author: xxhotgirl69, Sparlight, SevenShades, huaqas
+  changes:
+  - message: 'Changed K9 role access:  now granted by collar rather than an inherent access list.'
+    type: Tweak
+  id: 409684
+  time: '2026-10-22T15:20:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6772
 Order: -1
