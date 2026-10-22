@@ -46,3 +46,6 @@
         maxDistance: 2
       boostedParams: !type:AudioParams
         maxDistance: 3
+    - type: Construction
+      graph: HandheldStationRadio
+      node: done

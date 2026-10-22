@@ -5,6 +5,6 @@
   name: construction-recipe-handheld-station-radio
   graph: HandheldStationRadio
   startNode: start
-  targetNode: HandheldStationRadio
+  targetNode: done
   category: construction-category-misc
   objectType: Item

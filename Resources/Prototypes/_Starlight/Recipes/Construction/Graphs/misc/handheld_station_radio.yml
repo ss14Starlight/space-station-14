@@ -4,7 +4,7 @@
   graph:
     - node: start
       edges:
-        - to: HandheldStationRadio
+        - to: done
           steps:
             - material: Steel
               amount: 2
@@ -16,5 +16,5 @@
                 sprite: Objects/Misc/module.rsi
                 state: service
               doAfter: 3
-    - node: HandheldStationRadio
+    - node: done
       entity: RadioHandheldStation
