@@ -10,6 +10,6 @@ public sealed partial class AliveHumansPool : MindPool
     public override void FindMinds(HashSet<Entity<MindComponent>> minds, EntityUid? exclude, IEntityManager entMan, TargetSystem targetSystem)
     {
         targetSystem.AddAliveHumans(minds, exclude);
-        //TODO - AddObjectiveTargetNonHumanoids - Hook into new targetSystem
+        targetSystem.AddObjectiveTargetNonHumanoids(minds, exclude);
     }
 }
