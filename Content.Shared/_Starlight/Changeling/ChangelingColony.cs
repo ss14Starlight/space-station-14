@@ -57,7 +57,8 @@ public sealed class ChangelingColonyUiState(
     bool master = true,
     bool mindspace = false,
     bool canDetach = true,
-    bool learned = true) : BoundUserInterfaceState
+    bool learned = true,
+    bool evolved = false) : BoundUserInterfaceState
 {
     public readonly List<ChangelingColonyEntry> Parts = parts;
     public readonly List<ChangelingColonyEntry> Carriers = carriers;
@@ -66,6 +67,7 @@ public sealed class ChangelingColonyUiState(
     public readonly bool Mindspace = mindspace;
     public readonly bool CanDetach = canDetach;
     public readonly bool Learned = learned;
+    public readonly bool Evolved = evolved;
 }
 
 [Serializable, NetSerializable]

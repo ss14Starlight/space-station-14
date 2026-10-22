@@ -13,3 +13,4 @@
         Structural: 1
   - type: TimedDespawn
     lifetime: 30
+  - type: Unremoveable

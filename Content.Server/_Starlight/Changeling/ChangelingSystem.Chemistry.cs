@@ -54,6 +54,9 @@ public sealed partial class ChangelingSystem
         var ling = Comp<ChangelingComponent>(uid);
         foreach (var reagent in ChangelingChemistry.BasicReagents)
             ling.StingReagents.TryAdd(reagent, FixedPoint2.Zero);
+        if (ling.Evolved)
+            foreach (var reagent in ChangelingChemistry.EvolvedReagents)
+                ling.StingReagents.TryAdd(reagent, FixedPoint2.Zero);
         if (ling.NextStingRegeneration == TimeSpan.Zero)
             ling.NextStingRegeneration = _timing.CurTime + TimeSpan.FromSeconds(ChangelingChemistry.RegenerationInterval);
         _solution.EnsureSolution(uid, ChangelingChemistry.Solution, out var solution);
@@ -182,7 +185,7 @@ public sealed partial class ChangelingSystem
                 var scale = needed <= 0 ? 0 : Math.Min(1, comp.Chemicals / (needed * ChangelingChemistry.RegenerationCost));
                 var spent = FixedPoint2.Zero;
                 // Share a limited chemical budget evenly, rather than starving the last reagents.
-                foreach (var reagent in ChangelingChemistry.BasicReagents)
+                foreach (var reagent in comp.StingReagents.Keys.ToArray())
                 {
                     var amount = FixedPoint2.New((float) FixedPoint2.Min(1, ChangelingChemistry.ReagentCapacity - comp.StingReagents[reagent]) * scale);
                     comp.StingReagents[reagent] += amount;

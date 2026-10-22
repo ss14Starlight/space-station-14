@@ -150,7 +150,7 @@ public sealed partial class ChangelingSystem : EntitySystem
                 UpdateChemicals(uid, comp);
                 // Stasis drains once per chemical tick, not again on biomass updates.
                 if (comp.IsInStasis)
-                    comp.Biomass = Math.Max(0, comp.Biomass - comp.StasisDrain * (float) comp.ChemicalUpdateCooldown.TotalSeconds);
+                    comp.Biomass = Math.Max(0, comp.Biomass - comp.StasisDrain * (comp.Evolved ? 0.5f : 1) * (float) comp.ChemicalUpdateCooldown.TotalSeconds);
                 UpdateAbilities(uid, comp);
                 UpdateAdaptations(uid, comp);
                 UpdateStingChemistry(uid, comp);
@@ -163,7 +163,6 @@ public sealed partial class ChangelingSystem : EntitySystem
                 if (_gameTicker.RunLevel < GameRunLevel.PostRound)
                     comp.Biomass -= comp.BiomassDrain;
                 UpdateBiomass(uid, comp);
-                UpdateAbilities(uid, comp);
             }
         }
     }
@@ -237,8 +236,11 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         if (comp.StealthEnabled)
         {
-            if (comp.Chemicals > comp.StealthDrain)
-                comp.Chemicals -= comp.StealthDrain;
+            var drain = comp.Evolved ? 0.5f : comp.StealthDrain;
+            if (comp.Biomass < 1)
+                ToggleChameleonSkin(uid, comp, false);
+            else if (comp.Chemicals >= drain)
+                UpdateChemicals(uid, comp, -drain);
             else
             {
                 _stamina.TakeStaminaDamage(uid, 35f, visual: false);
@@ -299,6 +301,8 @@ public sealed partial class ChangelingSystem : EntitySystem
     public bool TrySting(EntityUid uid, EntityTargetActionEvent action, bool overrideMessage = false)
     {
         var target = action.Target;
+        if (target == uid)
+            return false;
 
         // can't get his dna if he doesn't have it!
         if (!HasComp<AbsorbableComponent>(target) || HasComp<AbsorbedComponent>(target))

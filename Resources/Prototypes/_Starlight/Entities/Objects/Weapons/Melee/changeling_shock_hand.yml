@@ -18,6 +18,8 @@
     sound: /Audio/Weapons/egloves.ogg
   - type: ChangelingShockHand
     chemicalCost: 10
+    dischargeCooldown: 30
+    dischargeDuration: 3
 
 - type: entity
   parent: PainNumbnessTraitStatusEffect

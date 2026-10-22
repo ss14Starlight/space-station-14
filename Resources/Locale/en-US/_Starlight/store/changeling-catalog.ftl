@@ -53,9 +53,10 @@ evolutionmenu-sting-chemical-desc =
     Gain two abilities: prepare a chemical mixture and silently inject a chosen dose into an organic target.
     Store up to 30u of each basic reagent and prepare up to 30u of mixture, using normal chemical reactions with heating and cooling.
     Reagents start empty and regenerate up to 1u per 10 seconds, consuming 0.5 chemicals per unit. Regeneration can be paused.
+    Evolution adds Nocturine, Lexorin, Mute Toxin, Chloral Hydrate, Pax and Unstable Mutagen to the reagent stocks.
     Each successful sting costs another 10 chemicals. Works in Lesser Form.
 
 evolutionmenu-sting-armblade-name = Fake Arm Blade Sting
-evolutionmenu-sting-armblade-desc = Force an organic target to grow a dull armblade for 30 seconds. Costs 50 chemicals.
+evolutionmenu-sting-armblade-desc = Grow an unremovable dull armblade in an organic target's hand for 30 seconds. Evolution fills both hands. Costs 50 chemicals.
 evolutionmenu-sting-infect-name = Infection Sting
 evolutionmenu-sting-infect-desc = Transform an organic victim into a changeling using the devour process, without absorbing them or gaining any rewards. Costs 2 evolution points only after success. They retain their mind, enter regenerative stasis and receive half the normal starting evolution points.

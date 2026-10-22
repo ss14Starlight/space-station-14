@@ -91,7 +91,15 @@ public sealed partial class ChangelingSystem
         // The flag belongs to the mind and can also be used by other changeling abilities.
         var colony = EnsureComp<ChangelingColonyComponent>(mind);
         colony.Evolved = true;
-        RefreshFragmentActions(uid, colony);
+        comp.Evolved = true;
+        Dirty(colony.Core, Comp<ChangelingComponent>(colony.Core));
+        foreach (var body in colony.Members.ToArray())
+        {
+            if (!TryComp<ChangelingComponent>(body, out var ling))
+                continue;
+            ApplyBodyEvolution(body, ling);
+            RefreshFragmentActions(body, colony);
+        }
     }
 
     private void AddColonyMember(EntityUid uid, EntityUid mind, ChangelingColonyComponent colony)
@@ -147,13 +155,13 @@ public sealed partial class ChangelingSystem
                 return new ChangelingColonyEntry(GetNetEntity(carrier), Name(carrier), occupant, enter);
             }).ToList();
         _chemistryUi.SetUiState(uid, ChangelingColonyUiKey.Key,
-            new ChangelingColonyUiState(parts, carriers, colony.AnimateBlood, master, mindspace, canDetach, colony.Learned));
+            new ChangelingColonyUiState(parts, carriers, colony.AnimateBlood, master, mindspace, canDetach, colony.Learned, colony.Evolved));
     }
 
     private void OnAnimateMessage(EntityUid uid, ChangelingColonyMemberComponent member, ChangelingAnimateBloodMessage args)
     {
         if (args.Actor != uid || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony)
-            || !colony.Learned || !IsHiveMaster(uid, member))
+            || !colony.Learned || !colony.Evolved || !IsHiveMaster(uid, member))
             return;
         colony.AnimateBlood = args.Enabled;
         UpdateColonyUi(uid, colony);

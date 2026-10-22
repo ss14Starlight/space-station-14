@@ -39,10 +39,17 @@ public sealed partial class ChangelingSystem
         if (args.Handled || !TrySting(uid, args))
             return;
         var target = args.Target;
-        var blade = Spawn(FakeArmbladePrototype, Transform(target).Coordinates);
-        if (!_hands.TryPickupAnyHand(target, blade))
+        var given = 0;
+        for (var i = 0; i < (comp.Evolved ? 2 : 1); i++)
         {
-            QueueDel(blade);
+            var blade = Spawn(FakeArmbladePrototype, Transform(target).Coordinates);
+            if (comp.Evolved ? _hands.TryForcePickupAnyHand(target, blade) : _hands.TryPickupAnyHand(target, blade))
+                given++;
+            else
+                QueueDel(blade);
+        }
+        if (given == 0)
+        {
             UpdateChemicals(uid, comp, Comp<ChangelingActionComponent>(args.Action).ChemicalCost);
             _popup.PopupEntity(Loc.GetString("changeling-sting-fail-simplemob"), uid, uid);
             return;

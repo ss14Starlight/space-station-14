@@ -1,7 +1,7 @@
 - type: entity
   id: ActionChangelingEmag
   name: Organic sequencer
-  description: Subvert electronics like an emag. Costs 30 chemicals per successful hack.
+  description: Subvert electronics like an emag. Costs 30 chemicals per successful hack. Evolution reduces the cost to 5 and allows hacking within 7 meters in sight.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -9,19 +9,20 @@
     itemIconStyle: NoItem
     icon: { sprite: Objects/Tools/emag.rsi, state: icon }
   - type: TargetAction
-    range: 1.5
+    range: 7
     interactOnMiss: false
   - type: EntityTargetAction
     canTargetSelf: false
     event: !type:ChangelingEmagEvent {}
   - type: ChangelingAction
     chemicalCost: 30
+    evolvedChemicalCost: 5
   - type: EorgPreventAction
 
 - type: entity
   id: ActionChangelingRegeneration
   name: Adaptive regeneration
-  description: Toggle regeneration of 4 damage of every type per second. Drains 5 chemicals per second, even at full health.
+  description: Heal 4 damage of every type per second for 5 chemicals/second. Evolution heals 8 for 3 chemicals/second. Drains chemicals even at full health.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -37,11 +38,13 @@
   - type: ChangelingRegenerationAction
     healingPerSecond: 4
     chemicalCostPerSecond: 5
+    evolvedHealingPerSecond: 8
+    evolvedChemicalCostPerSecond: 3
 
 - type: entity
   id: ActionChangelingPainSuppression
   name: Suppress pain
-  description: Toggle pain perception. Suppresses damage slowdown, shock damage, stamina damage and stuns. Physical injuries still harm you.
+  description: Suppress damage slowdown, shock damage, stamina damage and stuns for 2 chemicals/second. Evolution removes the upkeep. Physical injuries still harm you.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -58,7 +61,7 @@
 - type: entity
   id: ActionChangelingShockHand
   name: Concealed shock hand
-  description: Form or retract an invisible organic stun baton in a hand. Each hit costs 10 chemicals.
+  description: Form an invisible organic stun baton. Each hit costs 10 chemicals. Evolution adds an electrical knockdown once every 30 seconds; other hits work normally.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action

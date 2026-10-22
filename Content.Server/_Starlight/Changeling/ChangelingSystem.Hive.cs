@@ -10,6 +10,7 @@ using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.NPC.Components;
 using Content.Shared.Store.Components;
+using Content.Shared.RetractableItemAction;
 using Content.Shared.UserInterface;
 using Content.Shared._Starlight.Store.Events;
 using Content.Shared._Starlight.Overlay.Components;
@@ -101,6 +102,7 @@ public sealed partial class ChangelingSystem
             EnsureComp<ChangelingTransformComponent>(body);
         if (ling.HasChemicalSting)
             InitializeStingChemistry(body);
+        ApplyBodyEvolution(body, ling);
         Dirty(body, ling);
         Dirty(body, identity);
     }
@@ -209,6 +211,11 @@ public sealed partial class ChangelingSystem
         if (ling.StealthEnabled)
             ToggleChameleonSkin(body, ling, false);
         StopAdaptations(body, ling);
+        foreach (var action in _actions.GetActions(body).ToArray())
+        {
+            if (TryComp<RetractableItemActionComponent>(action.Owner, out var retractable))
+                _retractable.Retract((action.Owner, retractable), body);
+        }
         RemoveAllChangelingEquipment(body, ling);
         ling.Equipment.Clear();
     }
@@ -246,7 +253,7 @@ public sealed partial class ChangelingSystem
                 || mirrored.UseAlternativeShader != thermal.UseAlternativeShader)
             {
                 RemComp<ThermalVisionComponent>(anchor);
-                AddComp(anchor, new ThermalVisionComponent { Active = true, UseAlternativeShader = thermal.UseAlternativeShader });
+                AddComp(anchor, new ThermalVisionComponent { Active = true, UseAlternativeShader = thermal.UseAlternativeShader, GrantToggleAction = false });
             }
         }
         else

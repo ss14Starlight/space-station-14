@@ -9,6 +9,7 @@ using Content.Shared._Starlight.Cybernetics; // Starlight
 using Content.Shared._Starlight.Cybernetics.Components; // Starlight
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.RetractableItemAction;
 
@@ -156,6 +157,34 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
         Dirty(summoned.Value, summonedComp);
 
         Dirty(ent);
+    }
+
+    public void SetPrototype(Entity<RetractableItemActionComponent> ent, EntProtoId prototype)
+    {
+        if (ent.Comp.SpawnedPrototype == prototype)
+            return;
+        ent.Comp.SpawnedPrototype = prototype;
+        var holder = _actions.GetAction(ent.Owner)?.Comp.AttachedEntity;
+        var old = ent.Comp.ActionItemUid;
+        var held = holder != null && old != null && _hands.IsHolding(holder.Value, old.Value);
+        ent.Comp.ActionItemUid = null;
+        if (old is { } item && !TerminatingOrDeleted(item))
+        {
+            RemComp<ActionRetractableItemComponent>(item);
+            if (_containers.TryGetContainingContainer((item, null, null), out var container))
+                _containers.Remove(item, container, force: true);
+            QueueDel(item);
+        }
+        PopulateActionItem(ent.Owner);
+        if (held && ent.Comp.ActionItemUid is { } replacement && _hands.TryForcePickupAnyHand(holder!.Value, replacement))
+            EnsureComp<UnremoveableComponent>(replacement);
+        Dirty(ent);
+    }
+
+    public void Retract(Entity<RetractableItemActionComponent> ent, EntityUid holder)
+    {
+        if (ent.Comp.ActionItemUid is { } item && _hands.IsHolding(holder, item))
+            RetractRetractableItem(holder, item, ent.Owner);
     }
 
     private void RetractRetractableItem(EntityUid holder, EntityUid item, Entity<RetractableItemActionComponent?> action)

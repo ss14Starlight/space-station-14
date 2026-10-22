@@ -24,6 +24,11 @@ public static class ChangelingChemistry
         "Hydrogen", "Iodine", "Iron", "Lithium", "Mercury", "Nitrogen", "Oxygen",
         "Phosphorus", "Potassium", "Radium", "Silicon", "Sodium", "Sugar", "Sulfur", "Water",
     ];
+
+    public static readonly ProtoId<ReagentPrototype>[] EvolvedReagents =
+    [
+        "Nocturine", "Lexorin", "MuteToxin", "ChloralHydrate", "Pax", "UnstableMutagen",
+    ];
 }
 
 [Serializable, NetSerializable]

@@ -44,6 +44,7 @@ public sealed partial class ChangelingComponent : Component
 
     public bool IsInStasis = false;
 
+    [DataField, AutoNetworkedField]
     public bool StrainedMusclesActive = false;
 
     public bool IsInLesserForm = false;
@@ -53,6 +54,11 @@ public sealed partial class ChangelingComponent : Component
     public EntityUid? RegenerationAction;
     public EntityUid? PainSuppressionAction;
     public EntityUid? ShockHandAction;
+    public TimeSpan ShockReady;
+    public EntityUid? EyesAction;
+
+    [DataField, AutoNetworkedField]
+    public bool Evolved { get => Resources.Genetics.Evolved; set => Resources.Genetics.Evolved = value; }
 
     [DataField, AutoNetworkedField]
     public bool BreathingEnabled = true;
@@ -188,6 +194,7 @@ public sealed class ChangelingResources
 
 public sealed class ChangelingGenetics
 {
+    public bool Evolved;
     public int TotalAbsorbedEntities;
     public int TotalStolenDNA;
     public List<TransformData> AbsorbedDNA = new();

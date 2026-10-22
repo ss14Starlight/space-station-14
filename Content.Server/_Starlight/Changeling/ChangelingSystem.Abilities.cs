@@ -46,7 +46,6 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private StatusEffectsSystem _statusEffect = default!;
     [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private LanguageSystem _language = default!;
-    [Dependency] private SharedFlashSystem _flashSystem = default!;
     [Dependency] private SharedRottingSystem _rotting = default!;
     [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private StomachSystem _stomach = default!;
@@ -73,6 +72,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         SubscribeChemistry();
         SubscribeStings();
+        InitializeEvolution();
 
         SubscribeLocalEvent<ChangelingComponent, ActionAnatomicPanaceaEvent>(OnAnatomicPanacea);
         SubscribeLocalEvent<ChangelingComponent, ActionAugmentedEyesightEvent>(OnAugmentedEyesight);
@@ -309,11 +309,17 @@ public sealed partial class ChangelingSystem : EntitySystem
         var pos = _transform.GetMapCoordinates(uid);
         var power = comp.ShriekPower;
         _emp.EmpPulse(pos, power, 5000f, power * TimeSpan.FromSeconds(2));
+        if (comp.Evolved)
+            ApplyResonantShriek(uid, comp);
     }
     private void OnShriekResonant(EntityUid uid, ChangelingComponent comp, ref ShriekResonantEvent args)
     {
         DoScreech(uid, comp);
+        ApplyResonantShriek(uid, comp);
+    }
 
+    private void ApplyResonantShriek(EntityUid uid, ChangelingComponent comp)
+    {
         var power = comp.ShriekPower;
         List<EntityUid> ignoreList = new() { uid };
         _flash.FlashArea(uid, uid, power, TimeSpan.FromMilliseconds(power * 2f * 1000f), 0.8f, false, 1f, null, ignoreList);
@@ -346,7 +352,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     private void OnRefreshSpeed(Entity<ChangelingComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
         if (ent.Comp.StrainedMusclesActive)
-            args.ModifySpeed(1.25f, 1.5f);
+            args.ModifySpeed(ent.Comp.Evolved ? 1.5f : 1.25f, ent.Comp.Evolved ? 1.75f : 1.5f);
         else
             args.ModifySpeed(1f, 1f);
     }
@@ -382,20 +388,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
 
     private void OnAugmentedEyesight(EntityUid uid, ChangelingComponent comp, ref ActionAugmentedEyesightEvent args)
-    {
-        if (HasComp<FlashImmunityComponent>(uid))
-        {
-            RemComp<FlashImmunityComponent>(uid); // Starlight, they need to be able to disable it to use the other visions due to how flash protection is written.
-            _popup.PopupEntity(Loc.GetString("changeling-passive-disable"), uid, uid); // Starlight
-            return;
-        }
-        // Starlight START
-        var flashImmunity = EnsureComp<FlashImmunityComponent>(uid);
-        _flashSystem.SetShowInExamine(uid, false, flashImmunity);
-        // Starlight END
-
-        _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
-    }
+        => ToggleEnhancedEyes(uid, comp, ref args);
     #region Starlight
     private void OnNightEyesight(EntityUid uid, ChangelingComponent comp, ref ActionNightEyesightEvent args)
     {
@@ -441,8 +434,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         else
         {
             EnsureComp<StealthComponent>(uid);
-            var stealthonmove = EnsureComp<StealthOnMoveComponent>(uid);
-            stealthonmove.PassiveVisibilityRate = -0.37f;
+            ConfigureChameleon(uid, comp);
             _popup.PopupEntity(Loc.GetString("changeling-chameleon-start"), uid, uid);
             comp.StealthEnabled = true;
         }
@@ -574,6 +566,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
 
         var lingAction = ent.Comp;
+        ApplyActionEvolution(comp, ent.Owner);
+        var chemicalCost = ChemicalCost(comp, lingAction);
 
         if (comp.Biomass < 1 && lingAction.RequireBiomass)
         {
@@ -589,7 +583,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
-        if (comp.Chemicals < lingAction.ChemicalCost)
+        if (comp.Chemicals < chemicalCost)
         {
             _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
             ev.Cancelled = true;
@@ -604,7 +598,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
-        UpdateChemicals(uid, comp, -lingAction.ChemicalCost);
+        UpdateChemicals(uid, comp, -chemicalCost);
         UpdateBiomass(uid, comp, -lingAction.BiomassCost);
     }
 }

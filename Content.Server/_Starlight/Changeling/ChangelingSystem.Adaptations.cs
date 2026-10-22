@@ -7,6 +7,7 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Stunnable;
 using Content.Shared.Damage.Systems;
+using Content.Server.Electrocution;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Changeling;
@@ -14,6 +15,7 @@ namespace Content.Server._Starlight.Changeling;
 public sealed partial class ChangelingSystem
 {
     [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private ElectrocutionSystem _shock = default!;
 
     private static readonly EntProtoId ShockHandPrototype = "ChangelingShockHand";
     private static readonly EntProtoId PainSuppressionEffect = "ChangelingPainSuppression";
@@ -25,19 +27,26 @@ public sealed partial class ChangelingSystem
         SubscribeLocalEvent<ChangelingComponent, ToggleChangelingPainSuppressionEvent>(OnTogglePainSuppression);
         SubscribeLocalEvent<ChangelingComponent, ToggleChangelingShockHandEvent>(OnToggleShockHand);
         SubscribeLocalEvent<ChangelingShockHandComponent, StaminaDamageOnHitAttemptEvent>(OnShockHandHit);
+        SubscribeLocalEvent<ChangelingShockHandComponent, StaminaMeleeHitEvent>(OnShockDischarge);
     }
 
     private void OnEmag(EntityUid uid, ChangelingComponent comp, ref ChangelingEmagEvent args)
     {
         if (args.Handled)
             return;
+        if (!comp.Evolved && (!Transform(uid).Coordinates.TryDistance(EntityManager, Transform(args.Target).Coordinates, out var distance)
+            || distance > 1.5f))
+        {
+            UpdateChemicals(uid, comp, ChemicalCost(comp, Comp<ChangelingActionComponent>(args.Action)));
+            return;
+        }
 
         // Use the ordinary emag prototype so its access flags and target restrictions stay identical.
         var tool = Spawn("EmagUnlimited", Transform(uid).Coordinates);
         var success = _emag.TryEmagEffect((tool, Comp<EmagComponent>(tool)), uid, args.Target);
         QueueDel(tool);
         if (!success)
-            UpdateChemicals(uid, comp, Comp<ChangelingActionComponent>(args.Action).ChemicalCost);
+            UpdateChemicals(uid, comp, ChemicalCost(comp, Comp<ChangelingActionComponent>(args.Action)));
         args.Handled = success;
     }
 
@@ -62,7 +71,8 @@ public sealed partial class ChangelingSystem
             if (!CanActivateAdaptation(uid, comp))
                 return;
             var regeneration = Comp<ChangelingRegenerationActionComponent>(args.Action);
-            if (comp.Chemicals < regeneration.ChemicalCostPerSecond * (float) comp.ChemicalUpdateCooldown.TotalSeconds)
+            var drain = comp.Evolved ? regeneration.EvolvedChemicalCostPerSecond : regeneration.ChemicalCostPerSecond;
+            if (comp.Chemicals < drain * (float) comp.ChemicalUpdateCooldown.TotalSeconds)
             {
                 _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
                 return;
@@ -80,6 +90,11 @@ public sealed partial class ChangelingSystem
             StopPainSuppression(uid, comp);
         else
         {
+            if (!comp.Evolved && comp.Chemicals < 2)
+            {
+                _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
+                return;
+            }
             if (!CanActivateAdaptation(uid, comp)
                 || !_statusEffect.TryUpdateStatusEffectDuration(uid, PainSuppressionEffect, null))
                 return;
@@ -120,6 +135,21 @@ public sealed partial class ChangelingSystem
         UpdateChemicals(user, ling, -ent.Comp.ChemicalCost);
     }
 
+    private void OnShockDischarge(Entity<ChangelingShockHandComponent> ent, ref StaminaMeleeHitEvent args)
+    {
+        var user = Transform(ent).ParentUid;
+        if (args.Handled || !TryComp<ChangelingComponent>(user, out var ling) || !ling.Evolved
+            || ling.Biomass < 1 || _timing.CurTime < ling.ShockReady)
+            return;
+        foreach (var (target, _) in args.HitList)
+        {
+            if (!_shock.TryDoElectrocution(target, user, 5, ent.Comp.DischargeDuration, false))
+                continue;
+            ling.ShockReady = _timing.CurTime + ent.Comp.DischargeCooldown;
+            break;
+        }
+    }
+
     private void UpdateAdaptations(EntityUid uid, ChangelingComponent comp)
     {
         if (comp.Biomass < 1 || comp.IsInStasis || _mobState.IsDead(uid))
@@ -129,6 +159,15 @@ public sealed partial class ChangelingSystem
         }
         if (comp.PainSuppressionAction != null && !_statusEffect.HasStatusEffect(uid, PainSuppressionEffect))
             StopPainSuppression(uid, comp);
+        if (comp.PainSuppressionAction != null && !comp.Evolved
+            && TryComp<ChangelingPainSuppressionComponent>(uid, out var pain))
+        {
+            var drain = pain.ChemicalCostPerSecond * (float) comp.ChemicalUpdateCooldown.TotalSeconds;
+            if (comp.Chemicals < drain)
+                StopPainSuppression(uid, comp);
+            else
+                UpdateChemicals(uid, comp, -drain);
+        }
         if (comp.ShockHandAction != null
             && (!comp.Equipment.TryGetValue(ShockHandPrototype, out var item) || item == null
                 || TerminatingOrDeleted(item.Value) || !_hands.IsHolding(uid, item.Value)))
@@ -136,23 +175,23 @@ public sealed partial class ChangelingSystem
 
         if (comp.RegenerationAction is not { } action)
             return;
+        var seconds = (float) comp.ChemicalUpdateCooldown.TotalSeconds;
         if (!TryComp<ChangelingRegenerationActionComponent>(action, out var regeneration)
-            || comp.Chemicals < regeneration.ChemicalCostPerSecond * (float) comp.ChemicalUpdateCooldown.TotalSeconds)
+            || comp.Chemicals < (comp.Evolved ? regeneration.EvolvedChemicalCostPerSecond : regeneration.ChemicalCostPerSecond) * seconds)
         {
             SetAdaptationAction(ref comp.RegenerationAction, null);
             _popup.PopupEntity(Loc.GetString("changeling-passive-disable"), uid, uid);
             return;
         }
 
-        var seconds = (float) comp.ChemicalUpdateCooldown.TotalSeconds;
-        UpdateChemicals(uid, comp, -regeneration.ChemicalCostPerSecond * seconds);
+        UpdateChemicals(uid, comp, -(comp.Evolved ? regeneration.EvolvedChemicalCostPerSecond : regeneration.ChemicalCostPerSecond) * seconds);
         if (!HasComp<DamageableComponent>(uid))
             return;
         var healing = new DamageSpecifier();
         foreach (var (type, damage) in _damage.GetAllDamage(uid).DamageDict)
         {
             if (damage > 0)
-                healing.DamageDict[type] = -FixedPoint2.Min(damage, FixedPoint2.New(regeneration.HealingPerSecond * seconds));
+                healing.DamageDict[type] = -FixedPoint2.Min(damage, FixedPoint2.New((comp.Evolved ? regeneration.EvolvedHealingPerSecond : regeneration.HealingPerSecond) * seconds));
         }
         _damage.TryChangeDamage(uid, healing, ignoreResistances: true, interruptsDoAfters: false);
     }
@@ -190,5 +229,6 @@ public sealed partial class ChangelingSystem
         SetAdaptationAction(ref comp.RegenerationAction, null);
         StopPainSuppression(uid, comp);
         StopShockHand(comp);
+        StopEnhancedEyes(uid, comp);
     }
 }

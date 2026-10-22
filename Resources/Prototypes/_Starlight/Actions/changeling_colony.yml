@@ -1,7 +1,7 @@
 - type: entity
   id: ActionChangelingColony
   name: Colony
-  description: Tear off a limb, switch carriers or toggle the animation of shed blood and severed parts.
+  description: Tear off a limb or switch carriers. Evolution unlocks free control over the animation of shed blood and severed parts.
   categories: [HideSpawnMenu]
   components:
   - type: Action
@@ -31,7 +31,7 @@
   parent: ActionChangelingDevour
   id: ActionChangelingPossess
   name: Possess body
-  description: Take over an organic body. Ten seconds of preparation, then ten seconds of feeding. Movement interrupts the process.
+  description: Take over an organic body in two ten-second stages, or five seconds each after Evolution. Movement interrupts the process.
 
 - type: entity
   id: ActionChangelingNeurotoxin
@@ -53,6 +53,24 @@
   components:
   - type: StatusEffect
     blacklist: null
+
+- type: entity
+  parent: ActionRetractableItemArmBlade
+  id: ActionChangelingFragmentArmblade
+  components:
+  - type: ChangelingAction
+    chemicalCost: 20
+    requireAbsorbed: 0
+    useInLesserForm: true
+
+- type: entity
+  parent: ActionShriekDissonant
+  id: ActionChangelingFragmentShriek
+  components:
+  - type: ChangelingAction
+    chemicalCost: 30
+    requireAbsorbed: 0
+    useInLesserForm: true
 
 - type: entity
   parent: StatusEffectStunned

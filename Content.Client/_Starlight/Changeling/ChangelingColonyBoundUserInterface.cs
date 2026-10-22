@@ -70,7 +70,7 @@ public sealed class ChangelingColonyWindow : FancyWindow
     public void UpdateState(ChangelingColonyUiState state)
     {
         _animating = state.AnimateBlood;
-        _animate.Visible = state.Master && state.Learned;
+        _animate.Visible = state.Master && state.Learned && state.Evolved;
         _leave.Visible = !state.Mindspace;
         _partsLabel.Visible = state.CanDetach;
         _animate.Text = Loc.GetString(_animating ? "changeling-colony-animation-on" : "changeling-colony-animation-off");

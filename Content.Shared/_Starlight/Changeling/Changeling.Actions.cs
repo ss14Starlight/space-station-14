@@ -11,6 +11,8 @@ public sealed partial class ChangelingActionComponent : Component
 
     [DataField] public float ChemicalCost = 0;
 
+    [DataField] public float? EvolvedChemicalCost;
+
     [DataField] public float BiomassCost = 0;
 
     [DataField] public bool UseInLesserForm = false;

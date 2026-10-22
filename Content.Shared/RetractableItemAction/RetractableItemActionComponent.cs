@@ -14,7 +14,7 @@ public sealed partial class RetractableItemActionComponent : Component
     /// <summary>
     /// The item that will appear be spawned by the action.
     /// </summary>
-    [DataField(required: true)]
+    [DataField(required: true), AutoNetworkedField]
     public EntProtoId SpawnedPrototype;
 
     /// <summary>

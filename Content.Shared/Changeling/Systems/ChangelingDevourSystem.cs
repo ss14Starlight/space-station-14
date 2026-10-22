@@ -55,6 +55,13 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         SubscribeLocalEvent<ChangelingDevourComponent, ComponentShutdown>(OnShutdown);
     }
 
+    public void SetEvolved(Entity<ChangelingDevourComponent> ent)
+    {
+        ent.Comp.DevourWindupTime = TimeSpan.FromSeconds(5);
+        ent.Comp.DevourConsumeTime = TimeSpan.FromSeconds(5);
+        Dirty(ent);
+    }
+
     private void OnMapInit(Entity<ChangelingDevourComponent> ent, ref MapInitEvent args)
     {
         _actionsSystem.AddAction(ent, ref ent.Comp.ChangelingDevourActionEntity, ent.Comp.ChangelingDevourAction);

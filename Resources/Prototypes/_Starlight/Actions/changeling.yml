@@ -68,7 +68,7 @@
 - type: entity
   id: ActionExitStasis
   name: Exit stasis
-  description: Rise from the dead with full health. Costs 60 chemicals.
+  description: Rise from the dead with full health. Costs 60 chemicals, or 30 after Evolution.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -83,6 +83,7 @@
     event: !type:ExitStasisEvent {}
   - type: ChangelingAction
     chemicalCost: 60
+    evolvedChemicalCost: 30
     useInLesserForm: true
 
 # combat
@@ -175,7 +176,7 @@
 - type: entity
   id: ActionShriekDissonant
   name: Dissonant Shriek
-  description: Emit an EMP blast, with just your voice. Costs 30 chemicals.
+  description: Emit an EMP blast. Evolution adds a disorienting shriek against organic creatures. Costs 30 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -212,7 +213,7 @@
 - type: entity
   id: ActionToggleStrainedMuscles
   name: Strain Muscles
-  description: Move at extremely fast speeds. Deals stamina damage.
+  description: Move at extremely fast speeds. Deals stamina damage. Evolution increases speed, melee damage by 25%, and adds 20% resistance to every damage type while active.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -273,7 +274,7 @@
 - type: entity
   id: ActionStingFakeArmblade
   name: Fake Armblade Sting
-  description: Silently sting your target, making them grow a dull armblade for a short time. Costs 50 chemicals.
+  description: Grow an unremovable dull armblade in your target's hand for 30 seconds. Evolution fills both hands. Costs 50 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -346,7 +347,7 @@
 - type: entity
   id: ActionAugmentedEyesight
   name: Augmented Eyesight
-  description: Toggle flash protection. Must be disabled in order to use other eye augments. # Starlight
+  description: Toggle flash protection and night vision together. Evolution adds thermal vision.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -359,6 +360,7 @@
     event: !type:ActionAugmentedEyesightEvent {}
   - type: ChangelingAction
     chemicalCost: 0
+    requireBiomass: false
 
 - type: entity
   id: ActionNightEyesight
@@ -401,7 +403,7 @@
 - type: entity
   id: ActionChameleonSkin
   name: Chameleon Skin
-  description: Slowly blend in with the environment. Costs 15 chemicals.
+  description: Blend in with the environment for 15 chemicals and 1.25 chemicals/second. Evolution prevents movement from revealing you and reduces upkeep to 0.5 chemicals/second.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
