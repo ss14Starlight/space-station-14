@@ -68,9 +68,6 @@
   name: station radio machine board
   description: A machine printed circuit board for a station radio receiver.
   components:
-  - type: Tag
-    tags:
-      - StationRadioCircuitboard
   - type: Sprite
     state: service
   - type: MachineBoard
