@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Lowered servant of narsie health and damage.
-    type: Tweak
-  id: 409278
-  time: '2026-10-08T06:06:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6562
-- author: wonderfulnewworld
-  changes:
   - message: The servant of narsie is now in the same faction as the other hellportal mobs.
     type: Fix
   id: 409279
@@ -2883,4 +2876,11 @@ Entries:
   id: 409677
   time: '2026-10-22T13:45:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6777
+- author: Rescue
+  changes:
+  - message: integration test bug squashing.
+    type: Fix
+  id: 409678
+  time: '2026-10-22T14:25:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6791
 Order: -1
