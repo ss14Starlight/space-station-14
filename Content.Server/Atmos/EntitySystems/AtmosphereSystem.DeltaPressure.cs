@@ -43,12 +43,12 @@ public sealed partial class AtmosphereSystem
     private void ProcessDeltaPressureEntityBulk(GridAtmosphereComponent gridAtmosComp, int start, int end)
     {
         /*
-         To make our comparisons a little bit faster, we take advantage of SIMD-accelerated methods.
-         This requires that we load our data into spans to process them in bulk.
+        To make our comparisons a little bit faster, we take advantage of SIMD-accelerated methods.
+        This requires that we load our data into spans to process them in bulk.
 
-         This code takes advantage of ArrayPool so we can super easily reuse memory per tick
-         in threading contexts, otherwise this will literally obliterate GC with a nuclear bomb.
-         */
+        This code takes advantage of ArrayPool so we can super easily reuse memory per tick
+        in threading contexts, otherwise this will literally obliterate GC with a nuclear bomb.
+        */
 
         var entList = gridAtmosComp.DeltaPressureEntities;
         var len = end - start;
@@ -113,10 +113,10 @@ public sealed partial class AtmosphereSystem
             GetBulkTileAtmospherePressures(tiles, pressures);
 
             /*
-             This entity could be airtight but still be able to contain air on the tile it's on (ex. directional windows).
-             As such, substitute the pressure of the pressure on top of the entity for the directions that it can accept air from.
-             (Or rather, don't do so for directions that it blocks air from.)
-             */
+            This entity could be airtight but still be able to contain air on the tile it's on (ex. directional windows).
+            As such, substitute the pressure of the pressure on top of the entity for the directions that it can accept air from.
+            (Or rather, don't do so for directions that it blocks air from.)
+            */
             for (var i = 0; i < len; i++)
             {
                 var airtight = airtightCompsArr[i];
@@ -140,11 +140,11 @@ public sealed partial class AtmosphereSystem
             }
 
             /*
-             In order to perform SIMD ops we load the values into opposing pairs, where:
-             groupA: North, East, South, West
-             groupB: South, West, North, East
-             That way NumericsHelpers can just do vectorized operations on them super easily.
-             */
+            In order to perform SIMD ops we load the values into opposing pairs, where:
+            groupA: North, East, South, West
+            groupB: South, West, North, East
+            That way NumericsHelpers can just do vectorized operations on them super easily.
+            */
             for (var i = 0; i < len; i++)
             {
                 var presBase = i * dirs;
