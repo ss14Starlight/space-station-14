@@ -6,4 +6,3 @@
     sourceNode: input
     sprite: _Funkystation/Structures/Machines/electrolyzer.rsi
     state: electrolyzerOn
-...
