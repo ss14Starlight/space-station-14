@@ -1,20 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Added silent pickup ability, it takes 2.5seconds to pickup item but you won't make any sound.
-    type: Add
-  id: 409286
-  time: '2026-10-08T10:37:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6554
-- author: Rinary
-  changes:
-  - message: Fixed loud sounds when swapping modules when playing borgs.
-    type: Fix
-  id: 409287
-  time: '2026-10-08T10:37:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6554
-- author: Rinary
-  changes:
   - message: Added slight sounds occlusion while wearing hardsuit helmet(not all).
     type: Add
   id: 409288
@@ -2883,4 +2869,18 @@ Entries:
   id: 409685
   time: '2026-10-22T15:54:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6790
+- author: Talirson
+  changes:
+  - message: Fixed Electrolyzers incorrectly being flagged as powersinks by the power monitoring console.
+    type: Fix
+  id: 409686
+  time: '2026-10-22T15:54:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6779
+- author: Talirson
+  changes:
+  - message: 'Added UI elements to the power monitor to show both: electrolyzers connected to the grid, and their power draw.'
+    type: Add
+  id: 409687
+  time: '2026-10-22T15:54:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6779
 Order: -1
