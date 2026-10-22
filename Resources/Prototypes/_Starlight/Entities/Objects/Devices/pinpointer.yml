@@ -9,10 +9,10 @@
       targetName: The Station.
 
 - type: entity
-  parent: [ PinpointerBase ]
+  parent: [ PinpointerBase, BaseSovietContraband ]
   id: PinpointerUSSPTracker
   name: glorious pinpointer
-  description: A handheld tracking device that leads to the direction of the nearest mind controlled capitalist. Be aware that it cant differentiate between dead or alive!
+  description: A handheld tracking device that leads to the direction of the nearest mind controlled capitalist. Be aware that it can't differentiate between dead or alive!
   components:
   - type: Pinpointer
     component: CommandStaff
