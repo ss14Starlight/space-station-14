@@ -23,6 +23,16 @@ public sealed partial class ChangelingColonyMemberComponent : Component
     public TimeSpan NextBlood;
 }
 
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class ChangelingMindspaceComponent : Component
+{
+    public EntityUid Colony;
+    public EntityUid? Listening;
+    [AutoNetworkedField] public EntityUid? Viewing;
+    [AutoNetworkedField] public List<EntityUid> Bodies = new();
+    public override bool SendOnlyToOwner => true;
+}
+
 [DataDefinition, Serializable, NetSerializable]
 public sealed partial class LearnChangelingColonyEvent : EntityEventArgs;
 
@@ -37,18 +47,41 @@ public sealed partial class ArmChangelingNeurotoxinEvent : InstantActionEvent;
 public enum ChangelingColonyUiKey : byte { Key }
 
 [Serializable, NetSerializable]
-public sealed record ChangelingColonyEntry(NetEntity Entity, string Name);
+public sealed record ChangelingColonyEntry(NetEntity Entity, string Name, string? Occupant = null, bool CanEnter = true);
 
 [Serializable, NetSerializable]
 public sealed class ChangelingColonyUiState(
     List<ChangelingColonyEntry> parts,
     List<ChangelingColonyEntry> carriers,
-    bool animateBlood) : BoundUserInterfaceState
+    bool animateBlood,
+    bool master = true,
+    bool mindspace = false,
+    bool canDetach = true,
+    bool learned = true) : BoundUserInterfaceState
 {
     public readonly List<ChangelingColonyEntry> Parts = parts;
     public readonly List<ChangelingColonyEntry> Carriers = carriers;
     public readonly bool AnimateBlood = animateBlood;
+    public readonly bool Master = master;
+    public readonly bool Mindspace = mindspace;
+    public readonly bool CanDetach = canDetach;
+    public readonly bool Learned = learned;
 }
+
+[Serializable, NetSerializable]
+public sealed class ChangelingObserveMessage(NetEntity carrier) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity Carrier = carrier;
+}
+
+[Serializable, NetSerializable]
+public sealed class ChangelingRecallMessage(NetEntity carrier) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity Carrier = carrier;
+}
+
+[Serializable, NetSerializable]
+public sealed class ChangelingLeaveBodyMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
 public sealed class ChangelingDetachMessage(NetEntity part) : BoundUserInterfaceMessage

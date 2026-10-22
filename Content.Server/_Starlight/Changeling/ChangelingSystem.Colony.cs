@@ -17,6 +17,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Gibbing;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs;
+using Content.Shared.Mind;
 using Content.Shared.NPC.Components;
 using Content.Shared.Physics;
 using Content.Shared.UserInterface;
@@ -25,6 +26,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Changeling;
 
@@ -51,6 +53,10 @@ public sealed partial class ChangelingSystem
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingDetachMessage>(OnDetachMessage);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingSwitchMessage>(OnSwitchMessage);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingAnimateBloodMessage>(OnAnimateMessage);
+        SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingObserveMessage>(OnObserveHive);
+        SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingRecallMessage>(OnRecallHiveMind);
+        SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingLeaveBodyMessage>(OnLeaveHiveBody);
+        SubscribeLocalEvent<ChangelingMindspaceComponent, PlayerDetachedEvent>(RemoveHiveViews);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, BodyPartRemovedEvent>(OnColonyPartRemoved);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, BleedModifierEvent>(OnColonyBleed);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, MobStateChangedEvent>(OnCarrierState);
@@ -59,10 +65,13 @@ public sealed partial class ChangelingSystem
         SubscribeLocalEvent<ChangelingColonyMemberComponent, AfterChangelingTransformEvent>(OnColonyAfterTransform);
         SubscribeLocalEvent<ActionComponent, ActionAttemptEvent>(OnColonyActionAttempt);
         InitializeColonyCapture();
+        InitializeHiveChat();
+        SubscribeLocalEvent<Content.Shared._Starlight.Store.Events.StorePurchaseAttemptEvent>(OnHivePurchase);
     }
 
     private void OnLearnColony(EntityUid uid, ChangelingComponent comp, LearnChangelingColonyEvent args)
     {
+        EnsureHive(uid);
         if (!_mind.TryGetMind(uid, out var mind, out _))
             return;
         var colony = EnsureComp<ChangelingColonyComponent>(mind);
@@ -71,7 +80,7 @@ public sealed partial class ChangelingSystem
         colony.Learned = true;
         colony.Active = uid;
         AddColonyMember(uid, mind, colony);
-        _actionContainers.AddAction(mind, "ActionChangelingColony");
+        EnsureHiveAction(mind, "ActionChangelingColony");
         _actionContainers.AddAction(mind, "ActionChangelingRupture");
     }
 
@@ -91,8 +100,10 @@ public sealed partial class ChangelingSystem
         member.Mind = mind;
         Dirty(uid, member);
         colony.Members.Add(uid);
-        EnsureComp<UserInterfaceComponent>(uid);
-        _chemistryUi.SetUi(uid, ChangelingColonyUiKey.Key, new InterfaceData("ChangelingColonyBoundUserInterface", requireInputValidation: false));
+        SetHiveUi(uid);
+        if (!member.IsBlood && colony.Core.IsValid())
+            PrepareHiveBody(uid, colony);
+        _language.AddLanguage(uid, "ChangelingHive");
         RefreshColonyFriends(uid);
     }
 
@@ -104,7 +115,7 @@ public sealed partial class ChangelingSystem
 
     private void OnOpenColony(EntityUid uid, ChangelingColonyMemberComponent member, ref OpenChangelingColonyEvent args)
     {
-        if (args.Handled || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || colony.Active != uid)
+        if (args.Handled || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || !IsHivePlayer(uid, colony))
             return;
         args.Handled = true;
         UpdateColonyUi(uid, colony);
@@ -114,7 +125,10 @@ public sealed partial class ChangelingSystem
     private void UpdateColonyUi(EntityUid uid, ChangelingColonyComponent colony)
     {
         var parts = new List<ChangelingColonyEntry>();
-        if (!Comp<ChangelingColonyMemberComponent>(uid).IsFragment && _mobState.IsAlive(uid))
+        var master = IsHiveMaster(uid, Comp<ChangelingColonyMemberComponent>(uid));
+        var mindspace = HasComp<ChangelingMindspaceComponent>(uid);
+        var canDetach = colony.Learned && !mindspace && !Comp<ChangelingColonyMemberComponent>(uid).IsFragment && _mobState.IsAlive(uid);
+        if (canDetach)
         {
             foreach (var (part, data) in _body.GetBodyChildren(uid))
             {
@@ -124,14 +138,22 @@ public sealed partial class ChangelingSystem
             }
         }
         var carriers = colony.Members
-            .Where(carrier => carrier != uid && IsLivingCarrier(carrier))
-            .Select(carrier => new ChangelingColonyEntry(GetNetEntity(carrier), Name(carrier))).ToList();
-        _chemistryUi.SetUiState(uid, ChangelingColonyUiKey.Key, new ChangelingColonyUiState(parts, carriers, colony.AnimateBlood));
+            .Where(carrier => carrier != uid && !TerminatingOrDeleted(carrier))
+            .Select(carrier =>
+            {
+                var occupied = _mind.TryGetMind(carrier, out var mind, out var consciousness);
+                var occupant = occupied ? consciousness!.CharacterName ?? Name(carrier) : null;
+                var enter = CanEnterHiveCarrier(carrier) && (!occupied || master && mind != Comp<ChangelingColonyMemberComponent>(uid).Mind);
+                return new ChangelingColonyEntry(GetNetEntity(carrier), Name(carrier), occupant, enter);
+            }).ToList();
+        _chemistryUi.SetUiState(uid, ChangelingColonyUiKey.Key,
+            new ChangelingColonyUiState(parts, carriers, colony.AnimateBlood, master, mindspace, canDetach, colony.Learned));
     }
 
     private void OnAnimateMessage(EntityUid uid, ChangelingColonyMemberComponent member, ChangelingAnimateBloodMessage args)
     {
-        if (args.Actor != uid || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || colony.Active != uid)
+        if (args.Actor != uid || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony)
+            || !colony.Learned || !IsHiveMaster(uid, member))
             return;
         colony.AnimateBlood = args.Enabled;
         UpdateColonyUi(uid, colony);
@@ -139,17 +161,18 @@ public sealed partial class ChangelingSystem
 
     private void OnSwitchMessage(EntityUid uid, ChangelingColonyMemberComponent member, ChangelingSwitchMessage args)
     {
-        if (args.Actor != uid || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || colony.Active != uid)
+        if (args.Actor != uid || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony)
+            || !_mind.TryGetMind(uid, out var mind, out _) || !colony.Minds.ContainsKey(mind))
             return;
         var target = GetEntity(args.Carrier);
-        if (colony.Members.Contains(target) && IsLivingCarrier(target))
-            TransferColony(member.Mind, colony, target);
+        if (colony.Members.Contains(target))
+            TransferColony(mind, colony, target);
     }
 
     private void OnDetachMessage(EntityUid uid, ChangelingColonyMemberComponent member, ChangelingDetachMessage args)
     {
         if (args.Actor != uid || member.IsFragment || !_mobState.IsAlive(uid)
-            || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || colony.Active != uid
+            || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || !colony.Learned || !IsHivePlayer(uid, colony)
             || !TryComp<ChangelingComponent>(uid, out var ling))
             return;
         var part = GetEntity(args.Part);
@@ -190,7 +213,8 @@ public sealed partial class ChangelingSystem
     private void OnRupture(EntityUid uid, ChangelingColonyMemberComponent member, ref RuptureChangelingEvent args)
     {
         if (args.Handled || member.IsFragment || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony)
-            || colony.Active != uid || !TryComp<ChangelingComponent>(uid, out var ling) || ling.Biomass < 20
+            || !colony.Learned || !_mind.TryGetMind(uid, out var mind, out _) || !colony.Minds.ContainsKey(mind)
+            || !TryComp<ChangelingComponent>(uid, out var ling) || ling.Biomass < 20
             || _body.GetRootPartOrNull(uid) is not { } root)
             return;
         var pieces = _body.GetBodyChildren(uid)
@@ -214,13 +238,13 @@ public sealed partial class ChangelingSystem
                 return;
             UpdateBiomass(uid, ling, -20);
             PlayMeatySound(uid, ling);
-            if (TransferColony(member.Mind, colony, animated[0]))
+            if (TransferColony(mind, colony, animated[0]))
                 _gibbing.Gib(uid);
         }
         finally
         {
             colony.SuppressAnimation = false;
-            if (colony.Active == uid)
+            if (_mind.TryGetMind(uid, out _, out _))
                 colony.Members.Add(uid);
         }
     }
@@ -306,13 +330,27 @@ public sealed partial class ChangelingSystem
         {
             EndCapture(uid, member);
             if (member.IsFragment)
+            {
                 TryFallbackCarrier(uid, member);
+                if (TryComp<ChangelingColonyComponent>(member.Mind, out var colony))
+                    colony.Members.Remove(uid);
+            }
         }
     }
 
     private void OnCarrierTerminating(EntityUid uid, ChangelingColonyMemberComponent member, ref EntityTerminatingEvent args)
     {
         EndCapture(uid, member);
+        if (HasComp<ChangelingMindspaceComponent>(uid))
+            return;
+        if (TryComp<ChangelingColonyComponent>(member.Mind, out var hive))
+        {
+            foreach (var anchor in hive.Minds.Values)
+            {
+                if (!TerminatingOrDeleted(anchor) && Comp<ChangelingMindspaceComponent>(anchor).Viewing == uid)
+                    _transform.SetCoordinates(anchor, Transform(uid).Coordinates);
+            }
+        }
         TryFallbackCarrier(uid, member);
         if (TryComp<ChangelingColonyComponent>(member.Mind, out var colony))
             colony.Members.Remove(uid);
@@ -320,13 +358,10 @@ public sealed partial class ChangelingSystem
 
     private void TryFallbackCarrier(EntityUid uid, ChangelingColonyMemberComponent member)
     {
-        if (!TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || colony.Moving || colony.Active != uid)
+        if (!TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || colony.Moving
+            || !_mind.TryGetMind(uid, out var mind, out _) || !colony.Minds.ContainsKey(mind))
             return;
-        foreach (var other in colony.Members.ToArray())
-        {
-            if (other != uid && IsLivingCarrier(other) && TransferColony(member.Mind, colony, other))
-                break;
-        }
+        ReturnToHive(mind, colony);
     }
 
     private void OnColonyBeforeTransform(EntityUid uid, ChangelingColonyMemberComponent member, BeforeChangelingTransformEvent args)
@@ -351,22 +386,52 @@ public sealed partial class ChangelingSystem
         _detachedParts.Clear();
         UpdateColonyCaptures();
         var query = EntityQueryEnumerator<ChangelingColonyComponent>();
-        while (query.MoveNext(out _, out var colony))
+        while (query.MoveNext(out var master, out var colony))
         {
-            if (_timing.CurTime < colony.NextUpdate || TerminatingOrDeleted(colony.Active))
+            if (_timing.CurTime < colony.NextUpdate || !colony.Core.IsValid() || TerminatingOrDeleted(colony.Core))
                 continue;
             colony.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
-            if (_chemistryUi.IsUiOpen(colony.Active, ChangelingColonyUiKey.Key))
-                UpdateColonyUi(colony.Active, colony);
-            RefreshFragmentActions(colony.Active, colony);
+            colony.Members.RemoveWhere(body => TerminatingOrDeleted(body));
+            if (!colony.Members.Any(CanEnterHiveCarrier))
+            {
+                ReleaseHive(colony);
+                RemCompDeferred<ChangelingColonyComponent>(master);
+                continue;
+            }
+            foreach (var (mind, anchor) in colony.Minds.ToArray())
+            {
+                if (TerminatingOrDeleted(anchor) || !TryComp<MindComponent>(mind, out var consciousness))
+                    continue;
+                SyncHiveActions(master, mind);
+                if (consciousness.OwnedEntity is not { } body || TerminatingOrDeleted(body))
+                    continue;
+                if (body == anchor)
+                    UpdateHiveObserver(anchor, Comp<ChangelingMindspaceComponent>(anchor), colony);
+                if (_chemistryUi.IsUiOpen(body, ChangelingColonyUiKey.Key))
+                    UpdateColonyUi(body, colony);
+                RefreshFragmentActions(body, colony);
+                if (TryComp<ChangelingComponent>(body, out var ling))
+                {
+                    Dirty(body, ling);
+                    UpdateStingUi(body, ling);
+                }
+                if (TryComp<ChangelingIdentityComponent>(body, out var identity))
+                    Dirty(body, identity);
+            }
         }
     }
 
     private bool IsFragmentActionAllowed(EntityUid user, EntityUid action)
     {
-        if (!TryGetColony(user, out var member, out var colony) || !member.IsFragment)
+        if (!TryGetColony(user, out var member, out var colony))
             return true;
         var prototype = MetaData(action).EntityPrototype?.ID;
+        if (HasComp<ChangelingMindspaceComponent>(user))
+            return prototype == "ActionChangelingColony";
+        if (prototype == "ActionEvolutionMenu" && !IsHiveMaster(user, member))
+            return false;
+        if (!member.IsFragment)
+            return true;
         return prototype is "ActionChangelingColony" or "ActionChangelingPossess" or "ActionChangelingNeurotoxin" or "VentCrawlExitAction"
             || colony.Evolved && member.EvolvedAction is { } evolved && prototype == evolved.Id;
     }

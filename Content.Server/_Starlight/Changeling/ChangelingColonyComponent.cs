@@ -1,10 +1,13 @@
 namespace Content.Server._Starlight.Changeling;
 
-/// <summary>The colony belongs to the mind; only its active carrier owns changeling resources.</summary>
+/// <summary>The original mind owns the colony, its shared resources and its absorbed minds.</summary>
 [RegisterComponent]
 public sealed partial class ChangelingColonyComponent : Component
 {
     public EntityUid Active;
+    public EntityUid Core;
+    public Dictionary<EntityUid, EntityUid> Minds = new();
+    public List<EntityUid> Identities = new();
     public bool Learned;
     public HashSet<EntityUid> Members = new();
     public bool AnimateBlood;

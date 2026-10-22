@@ -95,10 +95,13 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private void OnOpenEvolutionMenu(EntityUid uid, ChangelingComponent comp, ref OpenEvolutionMenuEvent args)
     {
-        if (!TryComp<StoreComponent>(uid, out var store))
+        if (TryGetColony(uid, out var member, out _) && !IsHiveMaster(uid, member))
+            return;
+        var owner = StingContainer(uid);
+        if (!TryComp<StoreComponent>(owner, out var store))
             return;
 
-        _store.ToggleUi(uid, uid, store);
+        _store.ToggleUi(owner, uid, store);
     }
 
     private void OnAbsorb(EntityUid uid, ChangelingComponent comp, ref AbsorbDNAEvent args)
@@ -200,9 +203,11 @@ public sealed partial class ChangelingSystem : EntitySystem
             _store.UpdateUserInterface(uid, uid, store);
         }
 
-        if (_mind.TryGetMind(uid, out var mindId, out var mind))
+        var owner = TryGetColony(uid, out var member, out _) ? member.Mind : _mind.GetMind(uid);
+        if (owner is { } mindId && TryComp<Content.Shared.Mind.MindComponent>(mindId, out var mind))
             if (_mind.TryGetObjectiveComp<AbsorbConditionComponent>(mindId, out var objective, mind))
                 objective.Absorbed += 1;
+        AbsorbHiveMind(uid, target);
     }
 
     private void OnStingExtractDNA(EntityUid uid, ChangelingComponent comp, ref StingExtractDNAEvent args)

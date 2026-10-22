@@ -11,6 +11,7 @@ namespace Content.Shared.Changeling.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class ChangelingIdentityComponent : Component
 {
+    public bool SharedStorage;
     /// <summary>
     /// The list of entities that exist on a paused map. They are paused clones of the victims that the ling has consumed, with all relevant components copied from the original.
     /// </summary>

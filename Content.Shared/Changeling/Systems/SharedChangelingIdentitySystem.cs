@@ -72,7 +72,7 @@ public abstract partial class SharedChangelingIdentitySystem : EntitySystem
     /// <param name="ent">the changeling</param>
     public void CleanupChangelingNullspaceIdentities(Entity<ChangelingIdentityComponent> ent)
     {
-        if (_net.IsClient)
+        if (_net.IsClient || ent.Comp.SharedStorage)
             return;
 
         foreach (var consumedIdentity in ent.Comp.ConsumedIdentities)

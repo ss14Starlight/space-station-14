@@ -140,25 +140,35 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var comp))
         {
+            var mindspace = HasComp<ChangelingMindspaceComponent>(uid);
+            var shared = HasComp<ChangelingColonyMemberComponent>(uid);
             if (_timing.CurTime >= comp.ChemicalNextUpdateTime)
             {
                 comp.ChemicalNextUpdateTime = _timing.CurTime + comp.ChemicalUpdateCooldown;
-                UpdateChemicals(uid, comp);
+                if (!shared || mindspace)
+                    UpdateChemicals(uid, comp);
                 // Stasis drains once per chemical tick, not again on biomass updates.
                 if (comp.IsInStasis)
                     comp.Biomass = Math.Max(0, comp.Biomass - comp.StasisDrain * (float) comp.ChemicalUpdateCooldown.TotalSeconds);
-                UpdateAbilities(uid, comp);
-                UpdateStingChemistry(uid, comp);
+                if (!mindspace)
+                    UpdateAbilities(uid, comp);
+                if (!shared || mindspace)
+                    UpdateStingChemistry(uid, comp);
             }
 
             if (_timing.CurTime >= comp.BiomassNextUpdateTime)
             {
                 comp.BiomassNextUpdateTime = _timing.CurTime + comp.BiomassUpdateCooldown;
                 //subtract biomass
-                if (_gameTicker.RunLevel < GameRunLevel.PostRound) // Starlight: Only get hungrier when not EOR
+                if ((!shared || mindspace) && _gameTicker.RunLevel < GameRunLevel.PostRound)
                     comp.Biomass -= comp.BiomassDrain;
-                UpdateBiomass(uid, comp);
-                UpdateAbilities(uid, comp);
+                if (mindspace)
+                    comp.Biomass = Math.Max(0, comp.Biomass);
+                else
+                {
+                    UpdateBiomass(uid, comp);
+                    UpdateAbilities(uid, comp);
+                }
             }
         }
     }
@@ -388,8 +398,8 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-sting-extract-max"), uid, uid);
         else comp.AbsorbedDNA.Add(data);
 
-        if (countObjective
-        && _mind.TryGetMind(uid, out var mindId, out var mind)
+        var owner = TryGetColony(uid, out var member, out _) ? member.Mind : _mind.GetMind(uid);
+        if (countObjective && owner is { } mindId && TryComp<MindComponent>(mindId, out var mind)
         && _mind.TryGetObjectiveComp<StealDNAConditionComponent>(mindId, out var objective, mind))
         {
             objective.DNAStolen += 1;
@@ -567,6 +577,8 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ChangelingComponent comp, ref ComponentStartup args)
     {
+        if (HasComp<ChangelingMindspaceComponent>(uid))
+            return;
         var members = EntityQueryEnumerator<ChangelingColonyMemberComponent>();
         while (members.MoveNext(out var member, out _))
             _factionSystem.IgnoreEntity(member, uid);

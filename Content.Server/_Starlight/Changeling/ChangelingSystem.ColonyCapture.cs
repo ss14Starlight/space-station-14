@@ -38,7 +38,7 @@ public sealed partial class ChangelingSystem
     private void OnArmNeurotoxin(EntityUid uid, ChangelingColonyMemberComponent member, ref ArmChangelingNeurotoxinEvent args)
     {
         if (args.Handled || !member.IsFragment || member.IsBlood || _timing.CurTime < member.NeuroReady
-            || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || colony.Active != uid)
+            || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || !IsHivePlayer(uid, colony))
             return;
         args.Handled = true;
         member.NeuroArmed = !member.NeuroArmed;
@@ -49,7 +49,7 @@ public sealed partial class ChangelingSystem
     {
         if (!args.IsHit || args.User != uid || !member.NeuroArmed || _timing.CurTime < member.NeuroReady
             || member.CaptureTarget != null || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony)
-            || colony.Active != uid || !TryComp<ChangelingDevourComponent>(uid, out var devour))
+            || !IsHivePlayer(uid, colony) || !TryComp<ChangelingDevourComponent>(uid, out var devour))
             return;
         foreach (var target in args.HitEntities)
         {
@@ -69,11 +69,16 @@ public sealed partial class ChangelingSystem
 
     private void OnPossessionAttempt(EntityUid uid, ChangelingColonyMemberComponent member, ref ChangelingDevourAttemptEvent args)
     {
+        if (TryComp<ChangelingColonyMemberComponent>(args.Target, out var target) && target.Mind == member.Mind)
+        {
+            args.Cancelled = true;
+            return;
+        }
         if (!member.IsFragment)
             return;
         args.Cancelled |= !IsPossessable(args.Target) || member.CaptureTarget != null
             || HasComp<ChangelingCaptureComponent>(args.Target)
-            || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || colony.Active != uid;
+            || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || !IsHivePlayer(uid, colony);
     }
 
     private void OnPossessionStarted(EntityUid uid, ChangelingColonyMemberComponent member, ref ChangelingDevourStartedEvent args)
@@ -103,7 +108,7 @@ public sealed partial class ChangelingSystem
 
     private bool CanContinuePossession(EntityUid uid, ChangelingColonyMemberComponent member, EntityUid? target)
         => !member.IsFragment || target is { } victim && member.CaptureTarget == victim && IsPossessable(victim)
-           && _mobState.IsAlive(uid) && TryComp<ChangelingColonyComponent>(member.Mind, out var colony) && colony.Active == uid;
+           && _mobState.IsAlive(uid) && TryComp<ChangelingColonyComponent>(member.Mind, out var colony) && IsHivePlayer(uid, colony);
 
     private void OnPossessionFinished(EntityUid uid, ChangelingColonyMemberComponent member, ref ChangelingDevourFinishedEvent args)
     {
@@ -116,14 +121,14 @@ public sealed partial class ChangelingSystem
             return;
 
         var target = args.Target;
-        // The victim has died in the ordinary devour flow. Their mind must leave before ours takes the body.
-        if (_mind.TryGetMind(target, out var victimMind, out _))
-            _mind.TransferTo(victimMind, null);
+        if (!_mind.TryGetMind(uid, out var attackerMind, out _))
+            return;
+        AbsorbHiveMind(uid, target);
         _damage.SetAllDamage(target, FixedPoint2.Zero);
         _blood.TryModifyBloodLevel(target, 1000);
         _mobState.ChangeMobState(target, MobState.Alive);
         AddColonyMember(target, member.Mind, colony);
-        if (TransferColony(member.Mind, colony, target))
+        if (TransferColony(attackerMind, colony, target))
             QueueDel(uid);
     }
 

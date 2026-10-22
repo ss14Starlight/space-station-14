@@ -19,6 +19,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, UpdateAlertSpriteEvent>(OnUpdateAlert);
         SubscribeLocalEvent<ChangelingComponent, GetStatusIconsEvent>(GetChanglingIcon);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, AfterAutoHandleStateEvent>(OnColonyState);
+        InitializeMindspace();
     }
 
     private void OnColonyState(Entity<ChangelingColonyMemberComponent> ent, ref AfterAutoHandleStateEvent args)

@@ -53,12 +53,13 @@ public sealed partial class ChangelingComponent : Component
     [DataField, AutoNetworkedField]
     public bool BreathingEnabled = true;
 
-    public bool HasChemicalSting;
-    public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> StingReagents = new();
-    public TimeSpan NextStingRegeneration;
-    public bool StingRegenerationEnabled = true;
-    public float StingTargetTemperature = 293.15f;
-    public int StingDose = ChangelingChemistry.Capacity;
+    public ChangelingResources Resources = new();
+    public bool HasChemicalSting { get => Resources.HasChemicalSting; set => Resources.HasChemicalSting = value; }
+    public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> StingReagents { get => Resources.StingReagents; set => Resources.StingReagents = value; }
+    public TimeSpan NextStingRegeneration { get => Resources.NextStingRegeneration; set => Resources.NextStingRegeneration = value; }
+    public bool StingRegenerationEnabled { get => Resources.StingRegenerationEnabled; set => Resources.StingRegenerationEnabled = value; }
+    public float StingTargetTemperature { get => Resources.StingTargetTemperature; set => Resources.StingTargetTemperature = value; }
+    public int StingDose { get => Resources.StingDose; set => Resources.StingDose = value; }
 
     [DataField]
     public float StealthDrain = 1.25f; // 6.6 minutes to fully drain 100 chemicals
@@ -73,13 +74,13 @@ public sealed partial class ChangelingComponent : Component
     ///     Amount of biomass changeling currently has.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float Biomass = 40f;
+    public float Biomass { get => Resources.Biomass; set => Resources.Biomass = value; }
 
     /// <summary>
     ///     Maximum amount of biomass a changeling can have.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float MaxBiomass = 60f;
+    public float MaxBiomass { get => Resources.MaxBiomass; set => Resources.MaxBiomass = value; }
 
     [DataField, AutoNetworkedField]
     public float BiomassDeficitWarningPercent = 0.5f;
@@ -98,19 +99,19 @@ public sealed partial class ChangelingComponent : Component
     ///     Current amount of chemicals changeling currently has.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float Chemicals = 100f;
+    public float Chemicals { get => Resources.Chemicals; set => Resources.Chemicals = value; }
 
     /// <summary>
     ///     Maximum amount of chemicals changeling can have.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float MaxChemicals = 100f;
+    public float MaxChemicals { get => Resources.MaxChemicals; set => Resources.MaxChemicals = value; }
 
     /// <summary>
     ///     Bonus chemicals regeneration. In case
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float BonusChemicalRegen = 0f;
+    public float BonusChemicalRegen { get => Resources.BonusChemicalRegen; set => Resources.BonusChemicalRegen = value; }
 
     /// <summary>
     ///     Cooldown between chem regen events.
@@ -130,7 +131,7 @@ public sealed partial class ChangelingComponent : Component
     public TimeSpan BiomassUpdateCooldown = TimeSpan.FromSeconds(60f);
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public List<TransformData> AbsorbedDNA = new();
+    public List<TransformData> AbsorbedDNA { get => Resources.AbsorbedDNA; set => Resources.AbsorbedDNA = value; }
     /// <summary>
     ///     Index of <see cref="AbsorbedDNA"/>. Used for switching forms.
     /// </summary>
@@ -146,19 +147,37 @@ public sealed partial class ChangelingComponent : Component
     ///     Total absorbed DNA. Counts towards objectives.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public int TotalAbsorbedEntities = 0;
+    public int TotalAbsorbedEntities { get => Resources.TotalAbsorbedEntities; set => Resources.TotalAbsorbedEntities = value; }
 
     /// <summary>
     ///     Total stolen DNA. Counts towards objectives.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public int TotalStolenDNA = 0;
+    public int TotalStolenDNA { get => Resources.TotalStolenDNA; set => Resources.TotalStolenDNA = value; }
 
     [ViewVariables(VVAccess.ReadOnly)]
     public TransformData? CurrentForm;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public TransformData? SelectedForm;
+}
+
+public sealed class ChangelingResources
+{
+    public float Biomass = 40f;
+    public float MaxBiomass = 60f;
+    public float Chemicals = 100f;
+    public float MaxChemicals = 100f;
+    public float BonusChemicalRegen;
+    public int TotalAbsorbedEntities;
+    public int TotalStolenDNA;
+    public List<TransformData> AbsorbedDNA = new();
+    public bool HasChemicalSting;
+    public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> StingReagents = new();
+    public TimeSpan NextStingRegeneration;
+    public bool StingRegenerationEnabled = true;
+    public float StingTargetTemperature = 293.15f;
+    public int StingDose = ChangelingChemistry.Capacity;
 }
 
 [DataDefinition]

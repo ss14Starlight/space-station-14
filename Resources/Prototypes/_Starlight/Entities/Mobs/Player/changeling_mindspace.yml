@@ -1,0 +1,27 @@
+- type: entity
+  id: ChangelingMindspace
+  name: absorbed consciousness
+  categories: [HideSpawnMenu]
+  components:
+  - type: ChangelingMindspace
+  - type: Eye
+  - type: Input
+    context: human
+  - type: MindContainer
+  - type: Actions
+  - type: ActionsContainer
+  - type: UserInterface
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks: [ChangelingHive]
+    understands: [ChangelingHive]
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleChangelingHive
+  name: Absorbed consciousness
+  components:
+  - type: MindRole
+    antagPrototype: Changeling
+  - type: RoleBriefing
+    briefing: changeling-hive-briefing
