@@ -12,11 +12,11 @@
   parent: [ PinpointerBase, BaseSovietContraband ]
   id: PinpointerUSSPTracker
   name: glorious pinpointer
-  description: A handheld tracking device that leads to the direction of the nearest mind controlled capitalist. Be aware that it can't differentiate between dead or alive!
+  description: A handheld tracking device that leads to the direction of the nearest command staff. Be aware that it can't differentiate between dead or alive!
   components:
   - type: Pinpointer
     component: CommandStaff
-    targetName: Any capitalist leaders in nearby vicinity.
+    targetName: The closest command staff.
   - type: Sprite
     layers:
     - state: pinpointer-way
