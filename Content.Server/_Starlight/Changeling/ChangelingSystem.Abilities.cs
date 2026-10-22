@@ -101,7 +101,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (!TryComp<StoreComponent>(owner, out var store))
             return;
 
-        _store.ToggleUi(owner, uid, store);
+        _store.ToggleUi(uid, owner, store);
     }
 
     private void OnAbsorb(EntityUid uid, ChangelingComponent comp, ref AbsorbDNAEvent args)
