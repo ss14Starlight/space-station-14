@@ -168,20 +168,30 @@ public sealed partial class ChangelingComponent : Component
 
 public sealed class ChangelingResources
 {
+    public ChangelingGenetics Genetics = new();
+    public int TotalAbsorbedEntities { get => Genetics.TotalAbsorbedEntities; set => Genetics.TotalAbsorbedEntities = value; }
+    public int TotalStolenDNA { get => Genetics.TotalStolenDNA; set => Genetics.TotalStolenDNA = value; }
+    public List<TransformData> AbsorbedDNA { get => Genetics.AbsorbedDNA; set => Genetics.AbsorbedDNA = value; }
+    public bool HasChemicalSting { get => Genetics.HasChemicalSting; set => Genetics.HasChemicalSting = value; }
+
     public float Biomass = 40f;
     public float MaxBiomass = 60f;
     public float Chemicals = 100f;
     public float MaxChemicals = 100f;
     public float BonusChemicalRegen;
-    public int TotalAbsorbedEntities;
-    public int TotalStolenDNA;
-    public List<TransformData> AbsorbedDNA = new();
-    public bool HasChemicalSting;
     public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> StingReagents = new();
     public TimeSpan NextStingRegeneration;
     public bool StingRegenerationEnabled = true;
     public float StingTargetTemperature = 293.15f;
     public int StingDose = ChangelingChemistry.Capacity;
+}
+
+public sealed class ChangelingGenetics
+{
+    public int TotalAbsorbedEntities;
+    public int TotalStolenDNA;
+    public List<TransformData> AbsorbedDNA = new();
+    public bool HasChemicalSting;
 }
 
 [DataDefinition]

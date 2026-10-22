@@ -97,7 +97,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         if (TryGetColony(uid, out var member, out _) && !IsHiveMaster(uid, member))
             return;
-        var owner = StingContainer(uid);
+        var owner = TryGetColony(uid, out _, out var colony) && colony.Core.IsValid() ? colony.Core : uid;
         if (!TryComp<StoreComponent>(owner, out var store))
             return;
 

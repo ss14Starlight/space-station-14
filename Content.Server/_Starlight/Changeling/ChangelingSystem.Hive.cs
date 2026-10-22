@@ -36,20 +36,13 @@ public sealed partial class ChangelingSystem
         colony.Active = body;
         colony.Core = CreateMindspace(mind, mind, body, colony);
         var core = EnsureComp<ChangelingComponent>(colony.Core);
-        core.Resources = ling.Resources;
-        core.ChemicalUpdateCooldown = ling.ChemicalUpdateCooldown;
-        core.ChemicalNextUpdateTime = ling.ChemicalNextUpdateTime;
-        core.BiomassUpdateCooldown = ling.BiomassUpdateCooldown;
-        core.BiomassNextUpdateTime = ling.BiomassNextUpdateTime;
-        core.BiomassDrain = ling.BiomassDrain;
+        core.Resources.Genetics = ling.Resources.Genetics;
         if (TryComp<ChangelingIdentityComponent>(body, out var identity))
             colony.Identities = identity.ConsumedIdentities;
         ShareHiveStore(body, colony.Core);
         EnsureComp<StoreComponent>(colony.Core).AccountOwner = mind;
         AddColonyMember(body, mind, colony);
         EnsureHiveAction(mind, "ActionChangelingColony");
-        if (ling.HasChemicalSting)
-            CopyStingChemistry(body, colony.Core, ling, core);
     }
 
     private EntityUid CreateMindspace(EntityUid mind, EntityUid master, EntityUid body, ChangelingColonyComponent colony)
@@ -93,7 +86,7 @@ public sealed partial class ChangelingSystem
     private void PrepareHiveBody(EntityUid body, ChangelingColonyComponent colony)
     {
         var ling = EnsureComp<ChangelingComponent>(body);
-        ling.Resources = Comp<ChangelingComponent>(colony.Core).Resources;
+        ling.Resources.Genetics = Comp<ChangelingComponent>(colony.Core).Resources.Genetics;
         ShareHiveStore(colony.Core, body);
         var identity = EnsureComp<ChangelingIdentityComponent>(body);
         foreach (var saved in identity.ConsumedIdentities)
@@ -349,6 +342,4 @@ public sealed partial class ChangelingSystem
             RemCompDeferred<ChangelingColonyComponent>(owner);
     }
 
-    private EntityUid StingContainer(EntityUid body)
-        => TryGetColony(body, out _, out var colony) && colony.Core.IsValid() ? colony.Core : body;
 }

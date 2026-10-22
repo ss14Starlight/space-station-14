@@ -141,38 +141,29 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var comp))
         {
-            var mindspace = HasComp<ChangelingMindspaceComponent>(uid);
-            var shared = HasComp<ChangelingColonyMemberComponent>(uid);
+            // Only genetics belong to the hive. Each physical carrier maintains its own reserves.
+            if (HasComp<ChangelingMindspaceComponent>(uid))
+                continue;
             if (_timing.CurTime >= comp.ChemicalNextUpdateTime)
             {
                 comp.ChemicalNextUpdateTime = _timing.CurTime + comp.ChemicalUpdateCooldown;
-                if (!shared || mindspace)
-                    UpdateChemicals(uid, comp);
+                UpdateChemicals(uid, comp);
                 // Stasis drains once per chemical tick, not again on biomass updates.
                 if (comp.IsInStasis)
                     comp.Biomass = Math.Max(0, comp.Biomass - comp.StasisDrain * (float) comp.ChemicalUpdateCooldown.TotalSeconds);
-                if (!mindspace)
-                {
-                    UpdateAbilities(uid, comp);
-                    UpdateAdaptations(uid, comp);
-                }
-                if (!shared || mindspace)
-                    UpdateStingChemistry(uid, comp);
+                UpdateAbilities(uid, comp);
+                UpdateAdaptations(uid, comp);
+                UpdateStingChemistry(uid, comp);
             }
 
             if (_timing.CurTime >= comp.BiomassNextUpdateTime)
             {
                 comp.BiomassNextUpdateTime = _timing.CurTime + comp.BiomassUpdateCooldown;
                 //subtract biomass
-                if ((!shared || mindspace) && _gameTicker.RunLevel < GameRunLevel.PostRound)
+                if (_gameTicker.RunLevel < GameRunLevel.PostRound)
                     comp.Biomass -= comp.BiomassDrain;
-                if (mindspace)
-                    comp.Biomass = Math.Max(0, comp.Biomass);
-                else
-                {
-                    UpdateBiomass(uid, comp);
-                    UpdateAbilities(uid, comp);
-                }
+                UpdateBiomass(uid, comp);
+                UpdateAbilities(uid, comp);
             }
         }
     }
@@ -417,6 +408,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     private ChangelingComponent? CopyChangelingComponent(EntityUid source, EntityUid target, ChangelingComponent comp)
     {
         var newComp = EnsureComp<ChangelingComponent>(target);
+        newComp.Resources.Genetics = comp.Resources.Genetics;
         newComp.AbsorbedDNA = comp.AbsorbedDNA;
         newComp.AbsorbedDNAIndex = comp.AbsorbedDNAIndex;
         newComp.MaxAbsorbedDNA = comp.MaxAbsorbedDNA;

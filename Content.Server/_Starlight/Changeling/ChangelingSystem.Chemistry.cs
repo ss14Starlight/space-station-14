@@ -38,8 +38,6 @@ public sealed partial class ChangelingSystem
 
         comp.HasChemicalSting = true;
         comp.NextStingRegeneration = _timing.CurTime + TimeSpan.FromSeconds(ChangelingChemistry.RegenerationInterval);
-        foreach (var reagent in ChangelingChemistry.BasicReagents)
-            comp.StingReagents.Add(reagent, FixedPoint2.Zero);
         InitializeStingChemistry(uid);
 
         foreach (var action in ChemicalStingActions)
@@ -53,7 +51,12 @@ public sealed partial class ChangelingSystem
 
     private Entity<SolutionComponent> InitializeStingChemistry(EntityUid uid)
     {
-        _solution.EnsureSolution(StingContainer(uid), ChangelingChemistry.Solution, out var solution);
+        var ling = Comp<ChangelingComponent>(uid);
+        foreach (var reagent in ChangelingChemistry.BasicReagents)
+            ling.StingReagents.TryAdd(reagent, FixedPoint2.Zero);
+        if (ling.NextStingRegeneration == TimeSpan.Zero)
+            ling.NextStingRegeneration = _timing.CurTime + TimeSpan.FromSeconds(ChangelingChemistry.RegenerationInterval);
+        _solution.EnsureSolution(uid, ChangelingChemistry.Solution, out var solution);
         _solution.SetCapacity(solution, ChangelingChemistry.Capacity);
         EnsureComp<UserInterfaceComponent>(uid);
         _chemistryUi.SetUi(uid, ChangelingChemistryUiKey.Key, new InterfaceData("ChangelingChemistryBoundUserInterface"));
@@ -74,7 +77,7 @@ public sealed partial class ChangelingSystem
     private void OnChemicalSting(EntityUid uid, ChangelingComponent comp, ref ChemicalStingEvent args)
     {
         if (args.Handled || !comp.HasChemicalSting
-            || !_solution.TryGetSolution(StingContainer(uid), ChangelingChemistry.Solution, out var source, out var mixture))
+            || !_solution.TryGetSolution(uid, ChangelingChemistry.Solution, out var source, out var mixture))
             return;
 
         if (mixture.Volume <= FixedPoint2.Zero)
@@ -108,7 +111,7 @@ public sealed partial class ChangelingSystem
         if (args.Actor != uid || !comp.HasChemicalSting || comp.Biomass < 1
             || args.Amount is < 1 or > ChangelingChemistry.Capacity
             || !comp.StingReagents.TryGetValue(args.Reagent, out var stock)
-            || !_solution.TryGetSolution(StingContainer(uid), ChangelingChemistry.Solution, out var solution, out var mixture))
+            || !_solution.TryGetSolution(uid, ChangelingChemistry.Solution, out var solution, out var mixture))
             return;
 
         var amount = FixedPoint2.Min(args.Amount, stock, mixture.AvailableVolume);
@@ -124,7 +127,7 @@ public sealed partial class ChangelingSystem
     private void OnClearStingMixture(EntityUid uid, ChangelingComponent comp, ChangelingClearMixtureMessage args)
     {
         if (args.Actor == uid && comp.HasChemicalSting
-            && _solution.TryGetSolution(StingContainer(uid), ChangelingChemistry.Solution, out var solution))
+            && _solution.TryGetSolution(uid, ChangelingChemistry.Solution, out var solution))
             _solution.RemoveAllSolution(solution.Value);
     }
 
@@ -157,9 +160,11 @@ public sealed partial class ChangelingSystem
     {
         if (!comp.HasChemicalSting)
             return;
+        if (comp.StingReagents.Count == 0)
+            InitializeStingChemistry(uid);
 
         if (comp.Biomass >= 1
-            && _solution.TryGetSolution(StingContainer(uid), ChangelingChemistry.Solution, out var solution, out var mixture)
+            && _solution.TryGetSolution(uid, ChangelingChemistry.Solution, out var solution, out var mixture)
             && mixture.Volume > FixedPoint2.Zero)
         {
             var step = ChangelingChemistry.TemperatureRate * (float) comp.ChemicalUpdateCooldown.TotalSeconds;
@@ -199,7 +204,7 @@ public sealed partial class ChangelingSystem
     private void UpdateStingUi(EntityUid uid, ChangelingComponent comp, bool force = false)
     {
         if (!comp.HasChemicalSting || (!force && !_chemistryUi.IsUiOpen(uid, ChangelingChemistryUiKey.Key))
-            || !_solution.TryGetSolution(StingContainer(uid), ChangelingChemistry.Solution, out _, out var mixture))
+            || !_solution.TryGetSolution(uid, ChangelingChemistry.Solution, out _, out var mixture))
             return;
 
         _chemistryUi.SetUiState(uid, ChangelingChemistryUiKey.Key, new ChangelingChemistryUiState(
@@ -209,7 +214,7 @@ public sealed partial class ChangelingSystem
 
     private void CopyStingChemistry(EntityUid oldBody, EntityUid target, ChangelingComponent source, ChangelingComponent destination)
     {
-        if (!source.HasChemicalSting || StingContainer(oldBody) == StingContainer(target))
+        if (!source.HasChemicalSting || oldBody == target)
             return;
 
         destination.HasChemicalSting = true;
@@ -220,16 +225,16 @@ public sealed partial class ChangelingSystem
         destination.StingDose = source.StingDose;
         var solution = InitializeStingChemistry(target);
         // The old body owns its solution entity; copy its contents before that body is deleted.
-        if (_solution.TryGetSolution(StingContainer(oldBody), ChangelingChemistry.Solution, out _, out var mixture))
+        if (_solution.TryGetSolution(oldBody, ChangelingChemistry.Solution, out _, out var mixture))
             _solution.TryAddSolution(solution, mixture);
     }
 
     private void RemoveStingChemistry(EntityUid uid)
     {
-        if (TerminatingOrDeleted(uid) || StingContainer(uid) != uid)
+        if (TerminatingOrDeleted(uid))
             return;
         _chemistryUi.CloseUi(uid, ChangelingChemistryUiKey.Key);
-        if (_solution.TryGetSolution(StingContainer(uid), ChangelingChemistry.Solution, out var solution))
+        if (_solution.TryGetSolution(uid, ChangelingChemistry.Solution, out var solution))
             QueueDel(solution.Value.Owner);
     }
 }
