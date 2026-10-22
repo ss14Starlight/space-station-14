@@ -567,8 +567,8 @@
   name: Syndicate Recruitment Offer
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-syndicate-recruitment-offer
+    - type: TextFilePaperContent
+      fileName: syndicate-recruitment-offer.txt
 
 - type: entity
   parent: [ Paper, BaseSyndicateContraband ]
@@ -576,8 +576,8 @@
   name: Syndicate Operation - Takeover
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-syndicate-operation-takeover
+    - type: TextFilePaperContent
+      fileName: operation-takeover.txt
 
 - type: entity
   parent: [ Paper, BaseSyndicateContraband ]
@@ -585,8 +585,8 @@
   name: Syndicate Operation - Borgification
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-syndicate-operation-borgification
+    - type: TextFilePaperContent
+      fileName: operation-borgification.txt
 
 - type: entity
   parent: [ Paper, BaseSyndicateContraband ]
@@ -594,8 +594,8 @@
   name: Official Syndicate Communication
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-official-syndicate-communication
+    - type: TextFilePaperContent
+      fileName: syndicate-communication.txt
 
 - type: entity
   parent: [ Paper, BaseSyndicateContraband ]
@@ -603,7 +603,7 @@
   name: Did You Know?
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-syndicate-did-you-know
+    - type: TextFilePaperContent
+      fileName: did-you-know.txt
     - type: Contraband
       tier: Tier1
