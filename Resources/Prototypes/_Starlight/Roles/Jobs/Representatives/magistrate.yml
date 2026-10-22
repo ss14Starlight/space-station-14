@@ -1,5 +1,6 @@
 - type: job
   id: Magistrate
+  roleType: CorporateAligned
   name: job-name-magistrate
   description: job-description-magistrate
   playTimeTracker: JobMagistrate
