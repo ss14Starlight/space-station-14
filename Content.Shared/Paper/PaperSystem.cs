@@ -349,7 +349,7 @@ public sealed partial class PaperSystem : EntitySystem
     // Starlight start: Track pen used to sign
     public bool TrySign(Entity<PaperComponent> paper, EntityUid signer, EntityUid? pen = null)
     {
-        // Starlight 
+        // Starlight
         // Get entity's font, or fallback if there's not a custom one
         // We prioritize the pen, then the signer, then the paper
         SignatureConfig baseConfig = new();
