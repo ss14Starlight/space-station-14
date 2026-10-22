@@ -1,4 +1,4 @@
-role-type-crew-aligned-name = NanoTrasen
+# role-type-crew-aligned-name = NanoTrasen # Starlight: No
 role-type-free-agent-name = Unaligned
 
 role-subtype-faction-infected = Zombie Horde
