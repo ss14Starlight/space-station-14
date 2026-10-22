@@ -337,7 +337,7 @@ public sealed partial class PaperSystem : EntitySystem
         {
             Act = () =>
             {
-                TrySign(uid, user, pen);
+                TrySign(uid, user, pen); // Starlight - add pen argument
             },
             Text = Loc.GetString("paper-component-verb-sign"),
             Priority = 4
@@ -346,12 +346,10 @@ public sealed partial class PaperSystem : EntitySystem
         args.Verbs.Add(verb);
     }
 
-    // Umbra: Actual signature code.
-    // Starlight: Track pen used to sign
+    // Starlight start: Track pen used to sign
     public bool TrySign(Entity<PaperComponent> paper, EntityUid signer, EntityUid? pen = null)
     {
-        // Starlight start
-
+        // Starlight 
         // Get entity's font, or fallback if there's not a custom one
         // We prioritize the pen, then the signer, then the paper
         SignatureConfig baseConfig = new();
