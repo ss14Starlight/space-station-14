@@ -1,27 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Reworked audio tab in settings, now it has vertical tabs, so it's will be categorized and you will see only 2-3 sliders at one time rather then wall of sliders.
-    type: Tweak
-  id: 409289
-  time: '2026-10-08T10:37:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6554
-- author: Rinary
-  changes:
-  - message: Changed pickup sounds volume, now they're quiter.
-    type: Tweak
-  id: 409290
-  time: '2026-10-08T10:37:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6554
-- author: Rinary
-  changes:
-  - message: Changed glass/dring glass pickup sounds to be more soft.
-    type: Tweak
-  id: 409291
-  time: '2026-10-08T10:37:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6554
-- author: Rinary
-  changes:
   - message: Add unique ambience sounds for working emitter and medical scanner.
     type: Add
   id: 409292
@@ -2883,4 +2862,25 @@ Entries:
   id: 409688
   time: '2026-10-22T16:41:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6804
+- author: Rinary
+  changes:
+  - message: Fixed physics performance issues based on old Lights system from RT, now shadekins use our system which fixes performance.
+    type: Fix
+  id: 409689
+  time: '2026-10-22T17:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6783
+- author: Rinary
+  changes:
+  - message: Adjusted shadekins light thresholds, now they may get damage with smaller amount of exposure then before(7 flashlights that point in one place instead of 15).
+    type: Tweak
+  id: 409690
+  time: '2026-10-22T17:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6783
+- author: Rinary
+  changes:
+  - message: Adjusted flashlights placement, now they'll rotate on same angle as your character after placement so it will light in same dir as you looked at when placed it.
+    type: Tweak
+  id: 409691
+  time: '2026-10-22T17:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6783
 Order: -1
