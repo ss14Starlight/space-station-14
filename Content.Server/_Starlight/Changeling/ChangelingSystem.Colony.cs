@@ -20,6 +20,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mind;
 using Content.Shared.NPC.Components;
 using Content.Shared.Physics;
+using Content.Shared.RetractableItemAction;
 using Content.Shared.UserInterface;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics;
@@ -63,7 +64,7 @@ public sealed partial class ChangelingSystem
         SubscribeLocalEvent<ChangelingColonyMemberComponent, EntityTerminatingEvent>(OnCarrierTerminating);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, BeforeChangelingTransformEvent>(OnColonyBeforeTransform);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, AfterChangelingTransformEvent>(OnColonyAfterTransform);
-        SubscribeLocalEvent<ActionComponent, ActionAttemptEvent>(OnColonyActionAttempt);
+        SubscribeLocalEvent<ActionComponent, ActionAttemptEvent>(OnColonyActionAttempt, before: [typeof(RetractableItemActionSystem)]);
         InitializeColonyCapture();
         InitializeHiveChat();
         SubscribeLocalEvent<Content.Shared._Starlight.Store.Events.StorePurchaseAttemptEvent>(OnHivePurchase);
