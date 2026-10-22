@@ -95,8 +95,8 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
 
         if (args is PrivateStorageDoAfterEvent { FromStrippingView: true } &&
             (!TryGetStrippableOwner(uid, args.Args.User, out var currentOwner) ||
-             args.Args.Target != currentOwner ||
-             !_implantedStorage.IsPublicStorage(uid)))
+            args.Args.Target != currentOwner ||
+            !_implantedStorage.IsPublicStorage(uid)))
             return;
 
         if (TryComp<StorageComponent>(uid, out var storageComp))
