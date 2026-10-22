@@ -44,4 +44,5 @@
       active: false
       defaultParams: !type:AudioParams
         maxDistance: 2
-        volume: 1.5
+      boostedParams: !type:AudioParams
+        maxDistance: 3

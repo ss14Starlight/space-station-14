@@ -950,10 +950,11 @@
 - type: loadout
   id: RadioHandheldStation
   effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:OverallPlaytimeRequirement
-      time: 30m
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: RadioHost
+        time: 1h
   storage:
     pocket1:
       - RadioHandheldStation
