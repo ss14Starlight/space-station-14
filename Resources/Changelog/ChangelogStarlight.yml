@@ -1,11 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Added unique weather sounds for space wind(6 different sounds) and for both ashstorms, weak and strong.
-    type: Add
-  id: 409293
-  time: '2026-10-08T10:37:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6554
 - author: Xale
   changes:
   - message: Vape now works properly with activation hotkeys such as "Activate item in hand".
@@ -2883,4 +2876,11 @@ Entries:
   id: 409692
   time: '2026-10-22T17:24:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6806
+- author: redmushie
+  changes:
+  - message: Fixed chat hotkeys not working properly.
+    type: Fix
+  id: 409693
+  time: '2026-10-22T22:39:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6811
 Order: -1
