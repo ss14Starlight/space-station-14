@@ -48,7 +48,6 @@ public sealed partial class PollenShopSystem : EntitySystem
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private TriggerSystem _trigger = default!;
-    //[Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private NavMapSystem _navMap = default!;
@@ -84,7 +83,6 @@ public sealed partial class PollenShopSystem : EntitySystem
         SubscribeLocalEvent<StorePurchaseCompletedEvent>(OnPurchaseCompleted);
         SubscribeLocalEvent<PollenCollectorComponent, PollenMakeWoodEffectEvent>(OnMakeWoodEffect);
         SubscribeLocalEvent<PollenCollectorComponent, PollenSporeCloudEffectEvent>(OnSporeCloudEffect);
-        //SubscribeLocalEvent<PollenCollectorComponent, PollenInjectPhytovitalinEvent>(OnInjectPhytovitalin);
         SubscribeLocalEvent<PollenCollectorComponent, PollenInjectPhytovitalinDoAfterEvent>(OnInjectPhytovitalinDoAfter);
         SubscribeLocalEvent<PollenAlertPollenComponent, MobStateChangedEvent>(OnAlertPollenMobStateChanged);
     }
@@ -216,26 +214,6 @@ public sealed partial class PollenShopSystem : EntitySystem
 
 #region Mushroom
     // T1
-    /*
-    private void OnInjectPhytovitalin(Entity<PollenCollectorComponent> ent, ref PollenInjectPhytovitalinEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        var netAction = GetNetEntity(args.Action);
-
-        var doAfterArgs = new DoAfterArgs(EntityManager, ent.Owner, TimeSpan.FromSeconds(10),
-            new PollenInjectPhytovitalinDoAfterEvent(netAction), ent.Owner, target: args.Target)
-        {
-            BreakOnMove = true,
-            BreakOnDamage = true,
-            NeedHand = false,
-        };
-
-        _doAfter.TryStartDoAfter(doAfterArgs);
-        args.Handled = true;
-    }
-    */
     private void OnInjectPhytovitalinDoAfter(Entity<PollenCollectorComponent> ent, ref PollenInjectPhytovitalinDoAfterEvent args)
     {
         if (args.Handled)

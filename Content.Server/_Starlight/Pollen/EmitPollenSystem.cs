@@ -91,7 +91,7 @@ public sealed partial class EmitPollenSystem : EntitySystem
         {
             var prototype = _prototypeManager.Index(productId);
 
-            if (!prototype.TryGetComponent<ProduceComponent>(out var product, _componentFactory) ||
+            if (!prototype.TryComp<ProduceComponent>(out var product, _componentFactory) ||
                 product.PlantProtoId is not { } productPlantId)
                 continue;
 

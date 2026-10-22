@@ -70,6 +70,7 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
                 if (!TryComp<ScentMarkerComponent>(candidate, out var pollen) || !pollen.IsPollen)
                     continue;
 
+                // Only interact with pollen in the same airtight container.
                 if (pollen.ContainedIn != containerHere)
                     continue;
 
