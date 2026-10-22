@@ -72,7 +72,6 @@ public sealed partial class AddUplinkCommand : LocalizedEntityCommands
             }
         }
 
-        // Finally add uplink
         var result = _uplinkSystem.AddUplink(user, 20, out var code, uplinkEntity: uplinkEntity, giveDiscounts: isDiscounted);
 
         if (code != null && result == AddUplinkResult.Pda)

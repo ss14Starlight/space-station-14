@@ -18,7 +18,7 @@ using Robust.Shared.Random;
 using System.Linq;
 using System.Text;
 using Content.Server.Codewords;
-using Content.Shared._Starlight.Antags.Traitor;
+using Content.Shared._Starlight.Antags.Traitor; //Starlight
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -157,8 +157,6 @@ public sealed partial class TraitorRuleSystem : GameRuleSystem<TraitorRuleCompon
         if (code != null && uplinked == AddUplinkResult.Pda)
         {
             Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Uplink is PDA");
-
-            // If giveUplink is false the uplink code part is omitted
             briefing = string.Format("{0}\n{1}",
                 briefing,
                 Loc.GetString("traitor-role-uplink-code-short", ("code", string.Join("-", code).Replace("sharp", "#"))));
@@ -174,7 +172,6 @@ public sealed partial class TraitorRuleSystem : GameRuleSystem<TraitorRuleCompon
         {
             Log.Error($"MakeTraitor failed on {ToPrettyString(traitor)} - No uplink could be added");
         }
-
 
         return (null, briefing);
     }

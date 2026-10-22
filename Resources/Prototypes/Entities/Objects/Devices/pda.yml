@@ -109,7 +109,7 @@
         type: InstrumentBoundUserInterface
       enum.HealthAnalyzerUiKey.Key:
         type: HealthAnalyzerBoundUserInterface
-  - type: RemoteStore # PDAs can access uplinks so they need this component.
+  - type: RemoteStore
   - type: Tag
     tags:
     - DoorBumpOpener

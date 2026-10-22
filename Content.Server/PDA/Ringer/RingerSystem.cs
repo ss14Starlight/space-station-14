@@ -1,10 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server.Store.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.PDA;
 using Content.Shared.PDA.Ringer;
-using Content.Shared.Store.Components;
+using Content.Shared.Store;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -219,11 +218,13 @@ public sealed partial class RingerSystem : SharedRingerSystem
             var pow = Math.Pow(noteLength, RingtoneLength - 1 - i);
             var powInt = Convert.ToInt32(pow);
             var val = serializedRingtone / powInt;
-            if (!AllowedNotes.TryGetValue(val, out var note))
+            if ((uint)val >= allowedNotes.Length)
             {
                 ringtone = null;
                 return false;
             }
+
+            var note = allowedNotes[val];
 
             ringtone[RingtoneLength - 1 - i] = note;
             serializedRingtone -= val * powInt;

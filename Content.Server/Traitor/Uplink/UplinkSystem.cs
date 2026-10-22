@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Objectives.Components;
 using Content.Server.PDA.Ringer;
+using Content.Shared._Starlight.Implants.Components;
 using Content.Server.Store.Systems;
 using Content.Server.StoreDiscount.Systems;
 using Content.Shared.FixedPoint;
@@ -40,7 +41,10 @@ public sealed partial class UplinkSystem : EntitySystem
 
     private void OnRemoteStoreImplanted(Entity<RemoteStoreComponent> entity, ref ImplantImplantedEvent args)
     {
-        if (_mind.GetMind(args.Implanted) is not { } mind )
+        if (!HasComp<UplinkImplantComponent>(entity))
+            return;
+
+        if (_mind.GetMind(args.Implanted) is not { } mind)
             return;
 
         var storeEnumerator = EntityQueryEnumerator<RingerAccessUplinkComponent, StoreComponent>();
@@ -53,21 +57,15 @@ public sealed partial class UplinkSystem : EntitySystem
             return;
         }
 
-        // If we didn't have an uplink, make an empty one.
-        SetUplink(args.Implanted, Spawn(TraitorUplinkStore, MapCoordinates.Nullspace), 0, false);
+        entity.Comp.Store = Spawn(TraitorUplinkStore, MapCoordinates.Nullspace);
+        SetUplink(args.Implanted, entity.Comp.Store.Value, 0, true);
         Log.Error($"{ToPrettyString(args.Implanted)} did not have an uplink when they were implanted.");
     }
 
     /// <summary>
-    /// Adds an uplink to the target
+    /// Adds an uplink to the target.
+    /// The store lives in nullspace. A PDA or implant only holds a <see cref="RemoteStoreComponent"/> pointed at it.
     /// </summary>
-    /// <param name="user">The person who is getting the uplink</param>
-    /// <param name="balance">The amount of currency on the uplink. If null, will just use the amount specified in the preset.</param>
-    /// <param name="code">The code which was generated, if any.</param>
-    /// <param name="uplinkEntity">The entity that will actually have the uplink functionality. Defaults to the PDA if null.</param>
-    /// <param name="giveDiscounts">Marker that enables discounts for uplink items.</param>
-    /// <param name="bindToPda">Binds the uplink to the specific uplink entity.</param>
-    /// <returns>Whether the uplink was added successfully to a PDA, implant or not at all.</returns>
     public AddUplinkResult AddUplink(
         EntityUid user,
         FixedPoint2 balance,
@@ -86,9 +84,7 @@ public sealed partial class UplinkSystem : EntitySystem
         }
 
         if (TryImplantUplink(user, storeEntity, balance, giveDiscounts))
-        {
             return AddUplinkResult.Implant;
-        }
 
         Del(storeEntity);
         return AddUplinkResult.Failure;
@@ -126,113 +122,98 @@ public sealed partial class UplinkSystem : EntitySystem
             _ringer.SetBoundUplinkEntity((storeEntity, accessComp), uplinkEntity.Value);
         }
 
+        EnsureComp<RemoteStoreComponent>(uplinkEntity.Value);
         SetUplink(user, storeEntity, balance, giveDiscounts);
-
         return true;
     }
 
     /// <summary>
-    /// Configure TC for the uplink
+    /// Configure TC for a nullspace uplink store.
     /// </summary>
-    public void SetUplink(EntityUid user, EntityUid store, FixedPoint2 balance, bool giveDiscounts) // Starlight - make it public for UplinkImplant
+    public void SetUplink(EntityUid user, EntityUid store, FixedPoint2 balance, bool giveDiscounts)
     {
-        if (!_mind.TryGetMind(user, out var mind, out _))
+        if (!_mind.TryGetMind(user, out var mind, out var mindUser))
             return;
 
         var storeComp = EnsureComp<StoreComponent>(store);
-
         storeComp.AccountOwner = mind;
-
         storeComp.Balance.Clear();
         _store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { TelecrystalCurrencyPrototype, balance } },
             store,
             storeComp);
-        // funkystation start
-        if (!_mind.TryGetMind(user, out var mindId, out var mindUser))
-            return;
-
 
         foreach (var objective in mindUser.Objectives)
         {
-                if (HasComp<DieConditionComponent>(objective))
-                {
-                    DAGDUplinkExpansion(store); // Starlight, actually only need to pass uplink.
-                    break;
-                }
+            if (!HasComp<DieConditionComponent>(objective))
+                continue;
 
+            DAGDUplinkExpansion(store);
+            break;
         }
-        // funkystation end
+
         var uplinkInitializedEvent = new StoreInitializedEvent(
             TargetUser: mind,
             Store: store,
             UseDiscounts: giveDiscounts,
             UseSecondHand: true,
-            Listings: _store.GetAvailableListings(mind, store, storeComp)
-                .ToArray());
+            Listings: _store.GetAvailableListings(mind, store, storeComp).ToArray());
         RaiseLocalEvent(ref uplinkInitializedEvent);
     }
 
     /// <summary>
-    /// Implant an uplink as a fallback measure if the traitor had no PDA
+    /// Implant an uplink as a fallback measure if the traitor had no PDA.
     /// </summary>
     public bool TryImplantUplink(EntityUid user, EntityUid storeEntity, FixedPoint2 balance, bool giveDiscounts)
     {
-        if (!_proto.Resolve(FallbackUplinkCatalog, out var catalog))
+        if (!_proto.Resolve<ListingPrototype>(FallbackUplinkCatalog, out var catalog))
             return false;
 
         if (!catalog.Cost.TryGetValue(TelecrystalCurrencyPrototype, out var cost))
             return false;
 
-        if (balance < cost) // Can't use Math functions on FixedPoint2
+        if (balance < cost)
             balance = 0;
         else
-            balance = balance - cost;
+            balance -= cost;
 
         SetUplink(user, storeEntity, balance, giveDiscounts);
         var implant = _subdermalImplant.AddImplant(user, FallbackUplinkImplant);
 
-        if (!HasComp<RemoteStoreComponent>(implant))
+        if (!TryComp<RemoteStoreComponent>(implant, out var remote) || remote.Store == null)
         {
-            Log.Error($"Implant does not have the store component {implant}");
+            Log.Error($"Implant does not have a remote store {implant}");
             return false;
         }
 
         return true;
     }
-    // funkystation start
-    public bool DAGDUplinkExpansion(EntityUid? uplinkEntity = null) // Starlight, actually only need uplinkEntity, All uplink changes for people that roll DAGD go here
+
+    public bool DAGDUplinkExpansion(EntityUid? uplinkEntity = null)
     {
         if (uplinkEntity == null)
             return false;
 
         var store = EnsureComp<StoreComponent>(uplinkEntity.Value);
-
-        //EnsureComp<TagComponent>(uplinkEntity.Value);
-        //_tagSystem.AddTag(uplinkEntity.Value, "DAGDUplink"); // Starlight, unneeded, since we'll be using Wizden's way of adding objectives.
-        _store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { TelecrystalCurrencyPrototype, 15 } }, uplinkEntity.Value, store); // Adds 15 TC - Starlight 50 -> 15
+        _store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { TelecrystalCurrencyPrototype, 15 } }, uplinkEntity.Value, store);
         return true;
     }
-    // funkystation end
 
     /// <summary>
-    /// Finds the entity that can hold an uplink for a user.
-    /// Usually this is a pda in their pda slot, but can also be in their hands. (but not pockets or inside bag, etc.)
+    /// Finds a PDA that can open a remote uplink for a user.
     /// </summary>
     public EntityUid? FindUplinkTarget(EntityUid user)
     {
-        // Try to find PDA in inventory
         if (_inventorySystem.TryGetContainerSlotEnumerator(user, out var containerSlotEnumerator))
         {
             while (containerSlotEnumerator.MoveNext(out var containerSlot))
             {
                 var pdaUid = containerSlot.ContainedEntity;
 
-                if (HasComp<PdaComponent>(pdaUid) && HasComp<RemoteStoreComponent>(pdaUid))
-                    return pdaUid.Value;
+                if (pdaUid is { } pda && HasComp<PdaComponent>(pda) && HasComp<RemoteStoreComponent>(pda))
+                    return pda;
             }
         }
 
-        // Also check hands
         foreach (var item in _handsSystem.EnumerateHeld(user))
         {
             if (HasComp<PdaComponent>(item) && HasComp<RemoteStoreComponent>(item))
