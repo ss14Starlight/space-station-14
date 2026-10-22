@@ -108,8 +108,8 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
     private bool CanShowImplantedStorage(EntityUid uid, StorageComponent storage, bool bodyPart) =>
         IsPublicStorage(uid) &&
         (storage.ShowVerb ||
-         HasComp<PrivateStorageComponent>(uid) ||
-         (bodyPart && HasComp<StorageOrganComponent>(uid)));
+            HasComp<PrivateStorageComponent>(uid) ||
+            (bodyPart && HasComp<StorageOrganComponent>(uid)));
 
     public bool IsPublicStorage(EntityUid storage) =>
         !HasComp<SubdermalImplantComponent>(storage) &&

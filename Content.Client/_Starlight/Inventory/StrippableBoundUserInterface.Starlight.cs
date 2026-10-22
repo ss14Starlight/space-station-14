@@ -10,11 +10,14 @@ using Content.Shared._Starlight.Storage;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Inventory;
 
 public sealed partial class StrippableBoundUserInterface
 {
+    private static readonly EntProtoId InternalStoragePrototype = "MobAdultSlimesGreen";
+
     // In replays, left-click or E opens a bag instead of stripping, and right-click opens the item's verbs.
     private bool TryReplaySlotPressed(GUIBoundKeyEventArgs ev, SlotControl slot)
     {
@@ -50,7 +53,6 @@ public sealed partial class StrippableBoundUserInterface
         }
 
         AddStrippableStorageHandButtons(ent.Owner);
-        AddStrippableStorageButtons(ent.Owner);
     }
 
     private void AddStrippableStorageHandButtons(EntityUid owner)
@@ -81,14 +83,16 @@ public sealed partial class StrippableBoundUserInterface
 
         foreach (var storage in storageAccess.GetStrippableStorageEntities(owner))
         {
-            var button = new SlotButton();
-            button.ButtonTexturePath = "Slots/hand_m";
-            button.Name = $"Storage_{storage}";
+            var button = new SlotButton
+            {
+                ButtonTexturePath = "Slots/hand_m",
+                Name = $"Storage_{storage}"
+            };
             if (storage == owner)
             {
                 button.Pressed += InternalStorageSlotPressed;
                 button.SetEntity(storage);
-                button.SetPrototype("MobAdultSlimesGreen", false);
+                button.SetPrototype(InternalStoragePrototype, false);
             }
             else
             {

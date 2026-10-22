@@ -45,8 +45,8 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
         var uid = storage.Owner;
         if (fromStrippingView &&
             (!TryGetStrippableOwner(uid, user, out var currentOwner) ||
-             currentOwner != owner ||
-             !_implantedStorage.IsPublicStorage(uid)))
+                currentOwner != owner ||
+                !_implantedStorage.IsPublicStorage(uid)))
             return;
 
         if (!fromStrippingView && owner != uid)
@@ -65,14 +65,16 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
         {
             if (TryComp<PrivateStorageComponent>(uid, out var privateStorage))
             {
-                StartStorageAccess(uid, owner, user, privateStorage.AccessDelay, privateStorage.AccessPopup);
+                StartStorageAccess(uid, owner, user, privateStorage.AccessDelay, privateStorage.AccessPopup,
+                    fromStrippingView);
                 return;
             }
 
             if (fromStrippingView)
             {
                 StartStorageAccess(uid, owner, user,
-                    PrivateStorageComponent.DefaultAccessDelay, PrivateStorageComponent.DefaultAccessPopup);
+                    PrivateStorageComponent.DefaultAccessDelay, PrivateStorageComponent.DefaultAccessPopup,
+                    fromStrippingView);
                 return;
             }
         }
@@ -89,6 +91,12 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
             return;
 
         if (!Exists(args.Args.User))
+            return;
+
+        if (args is PrivateStorageDoAfterEvent { FromStrippingView: true } &&
+            (!TryGetStrippableOwner(uid, args.Args.User, out var currentOwner) ||
+             args.Args.Target != currentOwner ||
+             !_implantedStorage.IsPublicStorage(uid)))
             return;
 
         if (TryComp<StorageComponent>(uid, out var storageComp))
@@ -232,7 +240,8 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
         }
         else
         {
-            StartStorageAccess(uid, uid, args.User, storageComp.AccessDelay, storageComp.AccessPopup);
+            StartStorageAccess(uid, uid, args.User, storageComp.AccessDelay, storageComp.AccessPopup,
+                fromStrippingView: false);
         }
 
         args.Handled = true;
@@ -297,7 +306,7 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
     /// If the user is the owner of the storage, access is granted immediately without delay.
     /// </summary>
     private void StartStorageAccess(EntityUid uid, EntityUid owner, EntityUid user,
-        TimeSpan accessDelay, LocId accessPopup)
+        TimeSpan accessDelay, LocId accessPopup, bool fromStrippingView)
     {
         // If the user is the owner of the storage, grant immediate access
         if (owner == user)
@@ -312,7 +321,7 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
 
         // For other users, require DoAfter with delay
         var doAfterArgs = new DoAfterArgs(EntityManager, user, accessDelay,
-            new PrivateStorageDoAfterEvent(), uid, target: owner)
+            new PrivateStorageDoAfterEvent(fromStrippingView), uid, target: owner)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
