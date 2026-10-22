@@ -1,13 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Added slight sounds occlusion while wearing hardsuit helmet(not all).
-    type: Add
-  id: 409288
-  time: '2026-10-08T10:37:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6554
-- author: Rinary
-  changes:
   - message: Reworked audio tab in settings, now it has vertical tabs, so it's will be categorized and you will see only 2-3 sliders at one time rather then wall of sliders.
     type: Tweak
   id: 409289
@@ -2883,4 +2876,11 @@ Entries:
   id: 409687
   time: '2026-10-22T15:54:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6779
+- author: Way
+  changes:
+  - message: '"Viva" Achievement Icon Sprite.'
+    type: Add
+  id: 409688
+  time: '2026-10-22T16:41:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6804
 Order: -1
