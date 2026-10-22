@@ -12,7 +12,7 @@
 - type: weightedRandom
   id: TraitorObjectiveGroupSteal
   weights:
-    CaptainIDStealObjective: 1
+    CaptainIDStealObjective: 0.5  # Moffstation - Objective picker adjustments
     CMOHyposprayStealObjective: 1
 #    CMOCrewMonitorStealObjective: 1 # Starlight, disabled in favor of collection objective
     RDHardsuitStealObjective: 0.75  #Starlight edit

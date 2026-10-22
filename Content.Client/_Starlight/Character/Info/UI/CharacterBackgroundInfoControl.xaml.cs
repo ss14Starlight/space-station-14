@@ -72,5 +72,8 @@ public sealed partial class CharacterBackgroundInfoControl : Control
     }
 
     public void ClearCharacter()
-        => Background.Text = null;
+    {
+        BackgroundLabel.Text = Loc.GetString("character-info-background-none");
+        Background.Text = null;
+    }
 }
