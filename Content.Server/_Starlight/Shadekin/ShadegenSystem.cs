@@ -1,9 +1,9 @@
+using Content.Shared._Starlight.Light;
 using Content.Shared._Starlight.Railroading.Components.Tasks;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Light;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
-using Robust.Shared.ComponentTrees;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
@@ -14,7 +14,7 @@ public sealed partial class ShadegenSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedPoweredLightSystem _light = default!;
     [Dependency] private SharedHandheldLightSystem _handheldLight = default!;
-    [Dependency] private SharedLightTreeSystem _lightTree = default!;
+    [Dependency] private SharedIlluminationSystem _illumination = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
     [Dependency] private EntityQuery<DarkLightComponent> _darkLightQuery = default!;
@@ -74,18 +74,12 @@ public sealed partial class ShadegenSystem : EntitySystem
             if (coords.MapId == MapId.Nullspace)
                 continue;
 
-            var bounds = new Box2(coords.Position, coords.Position).Enlarged(shadegen.Range);
-
             _lightsInRange.Clear();
-            _lightTree.QueryAabb(_lightsInRange, coords.MapId, bounds);
+            _illumination.GetLightsInRange(coords, shadegen.Range, _lightsInRange);
 
             foreach (var light in _lightsInRange)
             {
                 if (_darkLightQuery.HasComp(light.Owner) || TerminatingOrDeleted(light.Owner))
-                    continue;
-
-                // Tree bounds are enlarged by each light's own radius, so drop the ones really out of range.
-                if ((_transform.GetWorldPosition(light.Comp2) - coords.Position).LengthSquared() > shadegen.Range * shadegen.Range)
                     continue;
 
                 _affected.Add(light.Owner);
