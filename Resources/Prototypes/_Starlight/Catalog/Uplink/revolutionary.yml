@@ -64,6 +64,17 @@
   - !type:StockLimitedListingCondition
     stockLimit: 1
 
+- type: listing
+  id: UplinkPinpointerConversion
+  productEntity: PinpointerUSSPTracker
+  cost:
+    Conversion: 60
+  categories:
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 2
+
 ### Armaments Category
 
 - type: listing
