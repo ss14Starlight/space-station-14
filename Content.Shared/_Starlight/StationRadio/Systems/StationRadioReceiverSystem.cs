@@ -19,7 +19,7 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
         UpdateVisuals(new(uid, comp));
         Dirty(uid, comp);
     }
-    
+
     private void UpdateVisuals(Entity<StationRadioReceiverComponent> ent)
     {
         if (TryComp(ent, out AppearanceComponent? appearance))
