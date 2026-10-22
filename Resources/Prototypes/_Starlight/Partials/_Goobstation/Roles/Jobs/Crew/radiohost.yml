@@ -1,0 +1,6 @@
+- type: !PartialOnly startingGear
+  id: RadioHostGear
+  storage:
+    belt:
+      - NetworkConfigurator # Starlight
+      - RadioHandheldStation # Starlight

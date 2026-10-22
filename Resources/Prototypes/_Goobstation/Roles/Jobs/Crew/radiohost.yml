@@ -19,10 +19,6 @@
     id: RadioHostPDA
     ears: ClothingHeadsetAltRadioHost
     belt: ClothingBeltStorageWaistbag
-  storage:
-    belt:
-      - NetworkConfigurator # Starlight
-      - RadioHandheldStation # Starlight
 
 - type: chameleonOutfit
   id: RadioHostChameleonOutfit

@@ -3,6 +3,7 @@ using Content.Shared._Starlight.StationRadio.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Examine;
+using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Verbs;
 
 namespace Content.Shared._Starlight.StationRadio.Systems;
@@ -12,6 +13,8 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnRadioToggle(EntityUid uid, StationRadioReceiverComponent comp, ActivateInWorldEvent args)
     {
+        if (HasComp<ItemToggleComponent>(uid)) return;
+        
         comp.Active = !comp.Active;
         Dirty(uid, comp);
     }

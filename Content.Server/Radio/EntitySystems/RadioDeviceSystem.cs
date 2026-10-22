@@ -50,12 +50,10 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
         SubscribeLocalEvent<RadioMicrophoneComponent, ListenEvent>(OnListen);
         SubscribeLocalEvent<RadioMicrophoneComponent, ListenAttemptEvent>(OnAttemptListen);
         SubscribeLocalEvent<RadioMicrophoneComponent, PowerChangedEvent>(OnPowerChanged);
-        SubscribeLocalEvent<RadioMicrophoneComponent, ItemToggledEvent>(OnItemToggled); // Starlight - Mutes microphone when item generically toggled off
 
         SubscribeLocalEvent<RadioSpeakerComponent, ComponentInit>(OnSpeakerInit);
         SubscribeLocalEvent<RadioSpeakerComponent, ActivateInWorldEvent>(OnActivateSpeaker);
         SubscribeLocalEvent<RadioSpeakerComponent, RadioReceiveEvent>(OnReceiveRadio);
-        SubscribeLocalEvent<RadioSpeakerComponent, ItemToggledEvent>(OnItemToggled); // Starlight - Mutes radio when item generically toggled off
 
         SubscribeLocalEvent<IntercomComponent, EncryptionChannelsChangedEvent>(OnIntercomEncryptionChannelsChanged);
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomMicMessage>(OnToggleIntercomMic);
@@ -322,13 +320,4 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
             speaker.Channels = new() { channel }; // Starlight edit
         Dirty(ent);
     }
-
-    #region Starlight
-
-    private void OnItemToggled(EntityUid uid, RadioMicrophoneComponent comp, ref ItemToggledEvent args)
-        => SetMicrophoneEnabled(uid, null, args.Activated && !(comp.PowerRequired && !this.IsPowered(uid, EntityManager)));
-    private void OnItemToggled(EntityUid uid, RadioSpeakerComponent comp, ref ItemToggledEvent args)
-        => SetSpeakerEnabled(uid, null, args.Activated);
-    
-    #endregion
 }
