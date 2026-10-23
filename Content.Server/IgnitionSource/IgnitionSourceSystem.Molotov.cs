@@ -10,10 +10,8 @@ public sealed partial class IgnitionSourceSystem
 {
     [Dependency] private ConstructionSystem _construction = default!;
 
-    private void InitializeMolotovBurnout()
-    {
+    private void InitializeMolotovBurnout() =>
         SubscribeLocalEvent<TriggerOnHotItemComponent, HotItemTriggerSucceededEvent>(OnHotItemTriggerSucceeded);
-    }
 
     private void OnHotItemTriggerSucceeded(Entity<TriggerOnHotItemComponent> ent, ref HotItemTriggerSucceededEvent args)
     {

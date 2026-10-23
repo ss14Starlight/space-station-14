@@ -10,10 +10,8 @@ public abstract partial class SharedIgnitionSourceSystem : EntitySystem
 {
     [Dependency] private TriggerSystem _trigger = default!;
 
-    private void InitializeMolotovIgnition()
-    {
+    private void InitializeMolotovIgnition() =>
         SubscribeLocalEvent<TriggerOnHotItemComponent, InteractUsingEvent>(OnInteractUsingHotItem);
-    }
 
     private void OnInteractUsingHotItem(Entity<TriggerOnHotItemComponent> ent, ref InteractUsingEvent args)
     {
