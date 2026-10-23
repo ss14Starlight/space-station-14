@@ -1228,7 +1228,7 @@
   - EngineeringWinterBoots
   - Heels # 🌟Starlight🌟
 
-- type: loadoutGroup 
+- type: loadoutGroup
   id: AtmosphericTechnicianID
   minLimit: 1
   defaultSelected: 1
