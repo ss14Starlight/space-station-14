@@ -1,11 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: Emitter and StationAI power alerts are now more reliable.
-    type: Fix
-  id: 409319
-  time: '2026-10-10T09:02:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6600
 - author: SirLutz
   changes:
   - message: Colossus healing ability works again.
@@ -2861,4 +2854,11 @@ Entries:
   id: 409718
   time: '2026-10-23T17:24:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6752
+- author: Floximo
+  changes:
+  - message: Expedition maps should no longer randomly appear frozen on arriving there.
+    type: Fix
+  id: 409719
+  time: '2026-10-23T18:02:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6825
 Order: -1
