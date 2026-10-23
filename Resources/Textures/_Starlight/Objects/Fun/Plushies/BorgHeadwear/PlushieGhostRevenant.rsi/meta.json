@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taked from Paradise Station(SS13); headwear derivative of Mobs/Ghosts/revenant.rsi/idle.png.",
+  "states": [
+    {
+      "name": "equipped-HELMET",
+      "directions": 4
+    }
+  ]
+}

@@ -1,0 +1,754 @@
+- type: inventoryTemplate
+  id: borgHeadStandard
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, -0.03125
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: standard
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.03, -0.15
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadGenericTall
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0, 0.03125
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: generic
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.01, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadAntiqueTall
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0, 0.03125
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: antique
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.01, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadNobleForwardDutch
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, 0.1875
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: nobleForward
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.02, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadCricketDutch
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, 0.15625
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: cricket
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.02, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadMezoEngineering
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, -0.46875
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: mezoEngineering
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.03, -0.15
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadDroidGeneric
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0, -0.03125
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: droidGeneric
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.03, -0.15
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadMezoGeneric
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, 0.125
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: mezoGeneric
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.03, -0.15
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadNobleDutch
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, 0.1875
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: noble
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.02, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadMezoJanitor
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, 0.03125
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: mezoJanitor
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.03, -0.15
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadNeedlesTall
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0, 0.09375
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: needles
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.01, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadDroidMedicalDutch
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0, 0.09375
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: droidMedical
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.02, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadMezoMedical
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, 0.125
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: mezoMedical
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.03, -0.15
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadDroidMiningDutch
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0, 0.09375
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: droidMining
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.02, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadBeetle
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0, 0.03125
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: beetle
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.03, -0.15
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadMezoMining
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, -0.34375
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: mezoMining
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.03, -0.15
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadMaximillionTall
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0, 0
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: maximillion
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.01, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadNobleServiceDutch
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, 0.1875
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: nobleService
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.02, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadMezoService
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, 0.15625
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: mezoService
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.03, -0.15
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadRedKnightTall
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0, 0
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: redKnight
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.01, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadKnightTall
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0, 0
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: knight
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.01, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadNobleSecurityDutch
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, 0.1875
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: nobleSecurity
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.02, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadSecurityCricketDutch
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, 0.15625
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: securityCricket
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.02, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadHeavy
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, -0.0625
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: heavy
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.03, -0.15
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadNobleShort
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, 0.1875
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: noble
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.075, -0.22
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadRealTechTall
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0, 0.0625
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: realTech
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.01, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadMezoCargo
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: -0.015625, -0.03125
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: mezoCargo
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.03, -0.15
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadPurrfusTall
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0, 0.03125
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: purrfus
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.01, -0.125
+    whitelist:
+      tags:
+      - Medal
+- type: inventoryTemplate
+  id: borgHeadEngineeringDefaultShort
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    offset: 0.015625, -0.09375
+    displacement:
+      shaderOverride: BorgHeadwearDisplacedDraw
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
+          state: engineeringDefault
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.075, -0.22
+    whitelist:
+      tags:
+      - Medal

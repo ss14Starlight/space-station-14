@@ -1,0 +1,91 @@
+- type: !PartialOnly entity
+  id: PlushieBorg
+  components:
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+    netsync: false
+  - type: Clothing
+    slots: [HEAD]
+    clothingVisuals:
+      head:
+      - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieBorg.rsi
+        state: equipped-HELMET
+        offset: 0, 0.1875
+
+- type: !PartialOnly entity
+  id: PlushieGhost
+  components:
+  - type: Clothing
+    slots: [HEAD]
+    clothingVisuals:
+      head:
+      - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieGhost.rsi
+        state: equipped-HELMET
+        offset: 0, 0.1875
+
+- type: !PartialOnly entity
+  id: PlushieGhostRevenant
+  components:
+  - type: Clothing
+    slots: [HEAD]
+    clothingVisuals:
+      head:
+      - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieGhostRevenant.rsi
+        state: equipped-HELMET
+        offset: 0, 0.1875
+
+- type: !PartialOnly entity
+  id: PlushieGnome
+  components:
+  - type: Clothing
+    slots: [HEAD]
+    clothingVisuals:
+      head:
+      - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieGnome.rsi
+        state: equipped-HELMET
+        offset: 0, 0.1875
+
+- type: !PartialOnly entity
+  id: PlushieHolocarp
+  components:
+  - type: Clothing
+    slots: [HEAD]
+    clothingVisuals:
+      head:
+      - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieHolocarp.rsi
+        state: equipped-HELMET
+        offset: 0, 0.1875
+
+- type: !PartialOnly entity
+  id: PlushieLamp
+  components:
+  - type: Clothing
+    slots: [HEAD]
+    clothingVisuals:
+      head:
+      - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieLamp.rsi
+        state: equipped-HELMET
+        offset: 0, 0.1875
+
+- type: !PartialOnly entity
+  id: PlushieSaltLampLarge
+  components:
+  - type: Clothing
+    slots: [HEAD]
+    clothingVisuals:
+      head:
+      - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieSaltLampLarge.rsi
+        state: equipped-HELMET
+        offset: 0, 0.1875
+
+- type: !PartialOnly entity
+  id: PlushieSaltLampSmall
+  components:
+  - type: Clothing
+    slots: [HEAD]
+    clothingVisuals:
+      head:
+      - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieSaltLampSmall.rsi
+        state: equipped-HELMET
+        offset: 0, 0.1875
