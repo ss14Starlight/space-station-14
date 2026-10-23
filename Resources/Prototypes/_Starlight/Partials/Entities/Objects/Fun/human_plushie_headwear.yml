@@ -141,7 +141,7 @@
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGhostRevenant.rsi
         state: equipped-HELMET
         scale: 0.5, 0.5
-        offset: 0, 0.40625
+        offset: 0, 0.65625
       head-Doll: *GhostRevenantHumanoidHeadwear
       head-arachnid: *GhostRevenantHumanoidHeadwear
       head-avali: *GhostRevenantHumanoidHeadwear
@@ -202,6 +202,7 @@
       head-human: &HolocarpHumanoidHeadwear
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieHolocarp.rsi
         state: equipped-HELMET
+        shader: unshaded
         scale: 0.5, 0.5
         offset: 0, 0.40625
       head-Doll: *HolocarpHumanoidHeadwear

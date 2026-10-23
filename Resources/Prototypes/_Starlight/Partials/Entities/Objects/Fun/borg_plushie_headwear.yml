@@ -33,7 +33,7 @@
       head:
       - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieGhostRevenant.rsi
         state: equipped-HELMET
-        offset: 0, 0.40625
+        offset: 0, 0.65625
 
 - type: !PartialOnly entity
   id: PlushieGnome
@@ -49,12 +49,30 @@
 - type: !PartialOnly entity
   id: PlushieHolocarp
   components:
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+    color: "#66BFFF"
+    netsync: false
+  - type: Sprite
+    layers:
+    - state: holoplush
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: holocarpplush-inhand-left
+        shader: unshaded
+      right:
+      - state: holocarpplush-inhand-right
+        shader: unshaded
   - type: Clothing
     slots: [HEAD]
     clothingVisuals:
       head:
       - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieHolocarp.rsi
         state: equipped-HELMET
+        shader: unshaded
         offset: 0, 0.40625
 
 - type: !PartialOnly entity
