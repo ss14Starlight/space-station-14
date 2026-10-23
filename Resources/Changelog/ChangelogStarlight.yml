@@ -1,11 +1,4 @@
 Entries:
-- author: Maxim
-  changes:
-  - message: Mailboxes will now send a Nanochat message when you have mail awaiting pickup.
-    type: Add
-  id: 409309
-  time: '2026-10-09T13:37:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6566
 - author: Xale
   changes:
   - message: Possession by the golden mask will no longer cryo the player after 7 minutes.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409708
   time: '2026-10-23T09:05:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6817
+- author: IdioticTrashPanda
+  changes:
+  - message: Added high heels to NCT loadout, Mentoria rejoice!
+    type: Add
+  id: 409709
+  time: '2026-10-23T09:33:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6821
 Order: -1
