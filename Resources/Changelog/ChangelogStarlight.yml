@@ -1,18 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed a pipe that ran under a solid wall by Supermatter.
-    type: Fix
-  id: 409299
-  time: '2026-10-09T11:27:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6581
-- author: Johnny
-  changes:
-  - message: Changed carp to ignore gravity.
-    type: Tweak
-  id: 409300
-  time: '2026-10-09T12:04:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6569
 - author: Johnny
   changes:
   - message: Partialed carp.
@@ -2883,4 +2869,18 @@ Entries:
   id: 409698
   time: '2026-10-23T07:58:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6808
+- author: Caws
+  changes:
+  - message: (NukeOps Planet) Syndicate tactical planning console added to planning area.
+    type: Add
+  id: 409699
+  time: '2026-10-23T07:58:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6809
+- author: Caws
+  changes:
+  - message: (NukeOps Planet) Redspace beaker added to Medbay.
+    type: Add
+  id: 409700
+  time: '2026-10-23T07:58:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6809
 Order: -1
