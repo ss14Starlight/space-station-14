@@ -122,12 +122,13 @@
       gun_magazine: !type:ContainerSlot
   - type: Gun
     fireRate: 5
-    shotsPerBurst: 2
+    shotsPerBurst: 3
     burstCooldown: 0.6
     selectedMode: Burst
     availableModes:
       - SemiAuto
       - Burst
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: MagazineVisuals

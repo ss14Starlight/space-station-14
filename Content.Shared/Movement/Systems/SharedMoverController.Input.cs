@@ -147,18 +147,21 @@ namespace Content.Shared.Movement.Systems
             }
         }
 
-        private void OnMoverGetState(Entity<InputMoverComponent> entity, ref ComponentGetState args)
-        {
+        private void OnMoverGetState(Entity<InputMoverComponent> entity, ref ComponentGetState args) =>
             args.State = new InputMoverComponentState()
             {
                 CanMove = entity.Comp.CanMove,
-                RelativeEntity = GetNetEntity(entity.Comp.RelativeEntity),
+                // Starlight - start
+                // The referenced grid can be deleted before the next movement update clears this value.
+                RelativeEntity = TryGetNetEntity(entity.Comp.RelativeEntity, out var relativeEntity)
+                    ? relativeEntity
+                    : NetEntity.Invalid,
+                // Starlight - end
                 LerpTarget = entity.Comp.LerpTarget,
                 HeldMoveButtons = entity.Comp.HeldMoveButtons,
                 RelativeRotation = entity.Comp.RelativeRotation,
                 TargetRelativeRotation = entity.Comp.TargetRelativeRotation,
             };
-        }
 
         private void ShutdownInput()
         {
