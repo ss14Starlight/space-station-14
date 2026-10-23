@@ -1,25 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Partialed carp.
-    type: Tweak
-  id: 409301
-  time: '2026-10-09T12:04:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6569
-- author: Swonki
-  changes:
-  - message: Scrappers should no longer need to recharge batteries.
-    type: Tweak
-  id: 409302
-  time: '2026-10-09T12:04:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6579
-- author: Swonki
-  changes:
-  - message: Drones can no longer become communist or join the syndicate.
-    type: Fix
-  id: 409303
-  time: '2026-10-09T12:04:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6579
 - author: rhithebirdthing
   changes:
   - message: Added a butcher module for service borgs.
@@ -2883,4 +2862,25 @@ Entries:
   id: 409700
   time: '2026-10-23T07:58:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6809
+- author: wonderfulnewworld
+  changes:
+  - message: The character menu no longer implies every non-antag works for NanoTrasen.
+    type: Fix
+  id: 409701
+  time: '2026-10-23T07:59:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6815
+- author: wonderfulnewworld
+  changes:
+  - message: Syndicate reinforcements now have the correct title in their character menus.
+    type: Fix
+  id: 409702
+  time: '2026-10-23T07:59:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6815
+- author: wonderfulnewworld
+  changes:
+  - message: Wizards now have their briefings.
+    type: Fix
+  id: 409703
+  time: '2026-10-23T07:59:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6815
 Order: -1
