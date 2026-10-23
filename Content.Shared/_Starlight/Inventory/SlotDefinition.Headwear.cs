@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 using Content.Shared.DisplacementMap;
 
 namespace Content.Shared.Inventory;
