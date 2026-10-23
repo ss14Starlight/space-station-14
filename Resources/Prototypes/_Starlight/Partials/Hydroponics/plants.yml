@@ -10,3 +10,9 @@
     understands:
     - Sylvan
     - GalacticCommon
+
+- type: entity
+  id: CannabisPlants
+  components:
+  - type: Plant
+    growthStages: 3
