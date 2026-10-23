@@ -20,7 +20,7 @@ public sealed partial class IgnitionSourceSystem : SharedIgnitionSourceSystem
 
         SubscribeLocalEvent<IgnitionSourceComponent, ComponentStartup>(OnSourceStartup);
         SubscribeLocalEvent<IgnitionSourceComponent, ComponentShutdown>(OnSourceShutdown);
-        InitializeMolotovIgnition(); // Starlight-edit: register molotov heat ignition and burnout.
+        InitializeMolotovBurnout(); // Starlight-edit: register molotov burnout.
     }
 
     private void OnSourceStartup(Entity<IgnitionSourceComponent> ent, ref ComponentStartup args)

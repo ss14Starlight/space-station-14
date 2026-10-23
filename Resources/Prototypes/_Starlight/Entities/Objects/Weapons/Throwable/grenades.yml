@@ -201,7 +201,7 @@
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
-      - !type:SpillBehavior { }
+      - !type:SpillBehavior { solution: solution }
       - !type:SpawnEntitiesBehavior
         spawn:
           BrokenBottle:
@@ -216,8 +216,6 @@
       reagents:
       - ReagentId: WeldingFuel
         Quantity: 200
-  - type: Spillable
-    solution: solution
   - type: TriggerOnHotItem
   - type: AddComponentsOnTrigger
     targetUser: false
@@ -239,7 +237,7 @@
           - !type:PlaySoundBehavior
             sound:
               collection: GlassBreak
-          - !type:SpillBehavior { }
+          - !type:SpillBehavior { solution: solution }
           - !type:SpawnEntitiesBehavior
             spawn:
               BrokenBottle:
