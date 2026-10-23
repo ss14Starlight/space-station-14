@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Fixed a few air vents and scrubbers that were not the 'cold weather' variants (with larger temperature thresholds before firelocks and what not close).
-    type: Fix
-  id: 409297
-  time: '2026-10-09T11:27:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6581
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed some labels around the Supermatter.
-    type: Fix
-  id: 409298
-  time: '2026-10-09T11:27:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6581
-- author: Caws
-  changes:
   - message: (Novo Lobster) Fixed a pipe that ran under a solid wall by Supermatter.
     type: Fix
   id: 409299
@@ -2883,4 +2869,18 @@ Entries:
   id: 409696
   time: '2026-10-23T07:22:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6810
+- author: Caws
+  changes:
+  - message: (NukeOps Geiger Complex) Syndicate tactical planning console added to planning area.
+    type: Add
+  id: 409697
+  time: '2026-10-23T07:58:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6808
+- author: Caws
+  changes:
+  - message: (NukeOps Geiger Complex) Redspace beaker added to Medbay.
+    type: Add
+  id: 409698
+  time: '2026-10-23T07:58:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6808
 Order: -1
