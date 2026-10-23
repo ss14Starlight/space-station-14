@@ -22,7 +22,7 @@ stack-bones = {$amount ->
 }
 stack-cloth = {$amount ->
     [1] cloth
-    *[other] cloths
+    *[other] cloth
 }
 stack-lv-cable = {$amount ->
     [1] lv cable
