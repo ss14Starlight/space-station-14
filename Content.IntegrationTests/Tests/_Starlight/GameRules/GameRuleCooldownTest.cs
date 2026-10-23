@@ -113,7 +113,7 @@ public sealed class GameRuleCooldownTest : GameTest
     [TestCase("SubXenoborgs", "Xenoborgs", false)]
     [TestCase("DynamicSurvivalEventScheduler", "KesslerSyndrome", true)]
     [TestCase("DynamicKesslerSyndromeEventScheduler", "Survival", true)]
-    public async Task GameruleCooldownProductionPresetTest(string source, string target, bool sourceIsRule)
+    public async Task GameruleCooldownPresetBlockAndExpireTest(string source, string target, bool sourceIsRule)
     {
         var cooldowns = Server.System<DynamicRuleCooldownSystem>();
         await Server.WaitAssertion(() =>

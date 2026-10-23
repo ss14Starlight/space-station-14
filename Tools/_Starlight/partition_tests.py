@@ -111,7 +111,7 @@ WEIGHT_OVERRIDES = {
     "ForceUnbuckleBuckleTest": 0.5,
     "GameruleCooldownAddedRuleTest": 0.2,
     "GameruleCooldownAllAtOnceTest": 0.2,
-    "GameruleCooldownProductionPresetTest": 0.2,
+    "GameruleCooldownPresetBlockAndExpireTest": 0.2,
     "GameruleCooldownSecretBypassTest": 0.2,
     "GameruleCooldownSecretPresetTest": 0.2,
     "GasSpecificHeats_Agree": 0.5,
