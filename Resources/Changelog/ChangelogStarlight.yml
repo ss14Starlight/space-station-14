@@ -1,25 +1,4 @@
 Entries:
-- author: rhithebirdthing
-  changes:
-  - message: Added a butcher module for service borgs.
-    type: Add
-  id: 409304
-  time: '2026-10-09T12:04:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6567
-- author: Caws
-  changes:
-  - message: Fixed wrong air vents / scrubbers being picked when using the 'P' picker tool.
-    type: Fix
-  id: 409305
-  time: '2026-10-09T12:34:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6580
-- author: VictoriaActual
-  changes:
-  - message: Added five new ties to the game.
-    type: Add
-  id: 409306
-  time: '2026-10-09T12:34:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6559
 - author: VictoriaActual
   changes:
   - message: Adjusted role loadouts to include ties for everyone!
@@ -2883,4 +2862,25 @@ Entries:
   id: 409703
   time: '2026-10-23T07:59:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6815
+- author: Floximo & Quietly12(Disco)
+  changes:
+  - message: Any worn or attached storage can now be accessed by others, with considerable time delay and warning.
+    type: Add
+  id: 409704
+  time: '2026-10-23T08:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6796
+- author: Floximo & Quietly12(Disco)
+  changes:
+  - message: Laspi storage and cargo legs work now by using the new "attached private storage" system.
+    type: Tweak
+  id: 409705
+  time: '2026-10-23T08:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6796
+- author: Floximo & Quietly12(Disco)
+  changes:
+  - message: Storages attached by surgery are no longer inaccessible to others.
+    type: Fix
+  id: 409706
+  time: '2026-10-23T08:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6796
 Order: -1
