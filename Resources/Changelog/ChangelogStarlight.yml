@@ -1,25 +1,4 @@
 Entries:
-- author: Xale
-  changes:
-  - message: Possession by the golden mask will no longer cryo the player after 7 minutes.
-    type: Fix
-  id: 409310
-  time: '2026-10-09T13:37:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6558
-- author: Romero/Littlemen
-  changes:
-  - message: Nerfed the Athena and Ares.
-    type: Tweak
-  id: 409311
-  time: '2026-10-09T13:57:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6536
-- author: Romero/Littlemen
-  changes:
-  - message: Dragon slash vulnerability lowered, from 200% to 120%.
-    type: Tweak
-  id: 409312
-  time: '2026-10-09T13:57:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6536
 - author: Caws
   changes:
   - message: The new maintenance door sprites (with Departmental colours) will now actually show up in game.
@@ -2883,4 +2862,25 @@ Entries:
   id: 409709
   time: '2026-10-23T09:33:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6821
+- author: HartLys
+  changes:
+  - message: Added retro tie.
+    type: Add
+  id: 409710
+  time: '2026-10-23T10:00:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6787
+- author: HartLys
+  changes:
+  - message: Changed existing ties can be worn by hamlet.
+    type: Tweak
+  id: 409711
+  time: '2026-10-23T10:00:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6787
+- author: HartLys
+  changes:
+  - message: Added retro tie in scientist and roboticist loadouts.
+    type: Add
+  id: 409712
+  time: '2026-10-23T10:00:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6787
 Order: -1
