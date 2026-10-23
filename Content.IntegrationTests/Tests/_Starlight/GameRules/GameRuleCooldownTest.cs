@@ -95,17 +95,6 @@ public sealed class GameRuleCooldownTest : GameTest
         id: TestSharedCooldownBypassWeights
         weights:
             TestSharedCooldownBypass: 1
-
-    -   type: weightedRandom
-        id: {ZombieSourceWeights}
-        weights:
-            Zombieteors: 1
-
-    -   type: weightedRandom
-        id: {ZombieNextWeights}
-        weights:
-            Zombie: 1
-            TestSharedCooldownFallback: 1
     """;
 
     public override PoolSettings PoolSettings => new()
