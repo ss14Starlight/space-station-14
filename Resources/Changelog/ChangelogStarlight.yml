@@ -1,11 +1,4 @@
 Entries:
-- author: VictoriaActual
-  changes:
-  - message: Adjusted role loadouts to include ties for everyone!
-    type: Tweak
-  id: 409307
-  time: '2026-10-09T12:34:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6559
 - author: Mack, SevenShades
   changes:
   - message: Thrusters and Gyroscope can have their max thrust adjusted.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409706
   time: '2026-10-23T08:36:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6796
+- author: wonderfulnewworld
+  changes:
+  - message: Selecting cards will no longer prevent you from taking antag objectives.
+    type: Fix
+  id: 409707
+  time: '2026-10-23T08:36:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6819
 Order: -1
