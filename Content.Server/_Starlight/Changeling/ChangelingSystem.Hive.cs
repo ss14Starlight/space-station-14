@@ -239,12 +239,18 @@ public sealed partial class ChangelingSystem
         _hiveNpc.WakeNPC(body);
     }
 
-    private void OnHiveSleepRemoved(Entity<SleepingComponent> ent, ref ComponentRemove args)
+    private void OnHiveSleepChanged(Entity<ChangelingColonyMemberComponent> ent, ref SleepStateChangedEvent args)
     {
-        if (!TryComp<ChangelingColonyMemberComponent>(ent, out var member) || !member.SleepingWhileVacant)
+        if (args.FellAsleep || !ent.Comp.SleepingWhileVacant)
             return;
-        member.SleepingWhileVacant = false;
-        QueueDel(ent.Comp.WakeAction);
+        ent.Comp.SleepingWhileVacant = false;
+        if (!TryComp<ActionsContainerComponent>(ent, out var actions))
+            return;
+        foreach (var action in actions.Container.ContainedEntities)
+        {
+            if (!TerminatingOrDeleted(action) && MetaData(action).EntityPrototype?.ID == "ActionWake")
+                QueueDel(action);
+        }
     }
 
     private void StopHiveBody(EntityUid body)

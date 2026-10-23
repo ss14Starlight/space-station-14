@@ -66,7 +66,7 @@ public sealed partial class ChangelingSystem
         SubscribeLocalEvent<ChangelingColonyMemberComponent, EntityTerminatingEvent>(OnCarrierTerminating);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, BeforeChangelingTransformEvent>(OnColonyBeforeTransform);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, AfterChangelingTransformEvent>(OnColonyAfterTransform);
-        SubscribeLocalEvent<SleepingComponent, ComponentRemove>(OnHiveSleepRemoved);
+        SubscribeLocalEvent<ChangelingColonyMemberComponent, SleepStateChangedEvent>(OnHiveSleepChanged);
         SubscribeLocalEvent<ActionComponent, ActionAttemptEvent>(OnColonyActionAttempt, before: [typeof(RetractableItemActionSystem)]);
         InitializeColonyCapture();
         InitializeHiveChat();
