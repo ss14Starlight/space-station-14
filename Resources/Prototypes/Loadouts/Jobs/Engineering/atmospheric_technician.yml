@@ -41,3 +41,14 @@
   id: WhiteShoes
   equipment:
     shoes: ClothingShoesColorWhite
+
+# PDA
+- type: loadout
+  id: AtmosPDA
+  equipment:
+    id: AtmosPDA
+
+- type: loadout
+  id: SeniorAtmosPDA
+  equipment:
+    id: SeniorAtmosPDA
