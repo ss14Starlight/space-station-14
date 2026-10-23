@@ -10,6 +10,7 @@ public abstract partial class SharedIgnitionSourceSystem : EntitySystem
 {
     [Dependency] private TriggerSystem _trigger = default!;
 
+    #region Starlight
     private void InitializeMolotovIgnition() =>
         SubscribeLocalEvent<TriggerOnHotItemComponent, InteractUsingEvent>(OnInteractUsingHotItem);
 
@@ -30,6 +31,7 @@ public abstract partial class SharedIgnitionSourceSystem : EntitySystem
         var ev = new HotItemTriggerSucceededEvent();
         RaiseLocalEvent(ent.Owner, ref ev);
     }
+    #endregion
 
     /// <summary>
     /// Allows the server to maintain an active set without polling every ignition source.
