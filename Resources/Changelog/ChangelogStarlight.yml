@@ -1,13 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Colossus healing ability works again.
-    type: Fix
-  - message: Colossus had an illegal gamestate which caused it to be stuck when reviving, also fixed.
-    type: Fix
-  id: 409320
-  time: '2026-10-10T09:15:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6597
 - author: rhithebirdthing
   changes:
   - message: Added slice turns to the twisty cube.
@@ -2861,4 +2852,11 @@ Entries:
   id: 409719
   time: '2026-10-23T18:02:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6825
+- author: redmushie
+  changes:
+  - message: Mass scanners / shuttle consoles now show correct distances to other grids.
+    type: Fix
+  id: 409720
+  time: '2026-10-23T18:22:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6828
 Order: -1
