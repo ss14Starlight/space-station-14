@@ -1159,7 +1159,6 @@
     production: 12
     yield: 2
     potency: 20
-    growthStages: 3
   - type: PlantHarvest
     harvestRepeat: Repeat
   - type: PlantGrowth
