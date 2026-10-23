@@ -1,3 +1,13 @@
+# Senior times for Atmos Techs (hint hint maybe more in the future)
+- type: loadoutEffectGroup
+  id: SeniorAtmos
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobAtmosphericTechnician
+      time: 60h
+
 # Jumpsuit
 - type: loadout
   id: AtmosphericTechnicianJumpsuit
@@ -50,5 +60,8 @@
 
 - type: loadout
   id: SeniorAtmosPDA
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorAtmos
   equipment:
     id: SeniorAtmosPDA
