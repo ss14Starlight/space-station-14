@@ -12,7 +12,7 @@
     - GalacticCommon
 
 - type: !PartialOnly entity
-  id: CannabisPlants
+  id: RainbowCannabisPlants
   components:
   - type: Plant
     growthStages: 3
