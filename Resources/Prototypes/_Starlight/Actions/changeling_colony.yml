@@ -71,6 +71,13 @@
     useInLesserForm: true
 
 - type: entity
+  parent: ActionChameleonSkin
+  id: ActionChangelingFragmentChameleon
+  components:
+  - type: ChangelingAction
+    useInLesserForm: true
+
+- type: entity
   parent: StatusEffectStunned
   id: ChangelingCaptureParalysis
   name: neurotoxic paralysis

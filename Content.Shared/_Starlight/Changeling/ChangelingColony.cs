@@ -22,6 +22,8 @@ public sealed partial class ChangelingColonyMemberComponent : Component
     public bool EmpoweredCapture;
     public TimeSpan NextBlood;
     public bool SleepingWhileVacant;
+    public bool ConfirmRupture;
+    public uint RuptureRequest;
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -60,7 +62,9 @@ public sealed class ChangelingColonyUiState(
     bool mindspace = false,
     bool canDetach = true,
     bool learned = true,
-    bool evolved = false) : BoundUserInterfaceState
+    bool evolved = false,
+    bool confirmRupture = false,
+    uint ruptureRequest = 0) : BoundUserInterfaceState
 {
     public readonly List<ChangelingColonyEntry> Parts = parts;
     public readonly List<ChangelingColonyEntry> Carriers = carriers;
@@ -70,6 +74,8 @@ public sealed class ChangelingColonyUiState(
     public readonly bool CanDetach = canDetach;
     public readonly bool Learned = learned;
     public readonly bool Evolved = evolved;
+    public readonly bool ConfirmRupture = confirmRupture;
+    public readonly uint RuptureRequest = ruptureRequest;
 }
 
 [Serializable, NetSerializable]
@@ -86,6 +92,13 @@ public sealed class ChangelingRecallMessage(NetEntity carrier) : BoundUserInterf
 
 [Serializable, NetSerializable]
 public sealed class ChangelingLeaveBodyMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class ChangelingRuptureMessage(uint request, bool confirmed) : BoundUserInterfaceMessage
+{
+    public readonly uint Request = request;
+    public readonly bool Confirmed = confirmed;
+}
 
 [Serializable, NetSerializable]
 public sealed class ChangelingDetachMessage(NetEntity part) : BoundUserInterfaceMessage

@@ -24,6 +24,7 @@ public sealed partial class ChangelingSystem
             SetAdaptationAction(ref ling.EyesAction, args.Action);
             UpdateEnhancedEyes(uid, ling);
         }
+        ShowAbilityFeedback(uid, args.Action, ling.EyesAction != null);
         args.Handled = true;
     }
 

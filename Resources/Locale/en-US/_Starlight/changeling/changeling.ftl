@@ -1,4 +1,7 @@
 changeling-passive-disable = Ability disabled!
+changeling-ability-activated = { $ability } activated.
+changeling-ability-enabled = { $ability } enabled.
+changeling-ability-disabled = { $ability } disabled.
 changeling-breathing-enabled = We resume breathing.
 changeling-breathing-disabled = We no longer need to breathe.
 changeling-equip-neocyte-fail = Need to be a neocyte, and must not be wearing a neocyte frame.
@@ -25,14 +28,15 @@ changeling-infect-target = You have become a changeling! You are in regenerative
 evolutionmenu-organic-sequencer-name = Organic sequencer
 evolutionmenu-organic-sequencer-desc = Subvert anything an ordinary emag can hack for 30 chemicals. Evolution reduces the cost to 5 and extends the range to 7 meters in sight.
 evolutionmenu-adaptive-regeneration-name = Adaptive regeneration
-evolutionmenu-adaptive-regeneration-desc = Heal 4 damage of every type per second for 5 chemicals/second. Evolution increases healing to 8 and reduces upkeep to 3. Drains chemicals even at full health.
+evolutionmenu-adaptive-regeneration-desc = Heal 4 damage of every type per second, stop bleeding and rapidly replenish blood for 5 chemicals/second. Evolution heals 8 damage for 3 chemicals/second and regrows one missing body part or organ every 10 seconds for an extra 10 chemicals, replacing prostheses. Drains chemicals even at full health.
 evolutionmenu-pain-suppression-name = Suppress pain
 evolutionmenu-pain-suppression-desc = Suppress damage slowdown, shock damage, stamina damage and stuns for 2 chemicals/second. Evolution removes the upkeep. Physical injuries still harm you.
 evolutionmenu-shock-hand-name = Concealed shock hand
 evolutionmenu-shock-hand-desc = Form an invisible organic stun baton for 10 chemicals per hit. Evolution adds an electrical knockdown once every 30 seconds; other hits work normally.
 
-evolutionmenu-evolving-armblade-desc = Form an armblade for 20 chemicals. Requires two absorbed organics. Evolution upgrades the same ability to a true armblade, including blades already extended.
-evolutionmenu-evolving-shriek-desc = Emit an EMP blast for 30 chemicals. Requires two absorbed organics. Evolution adds the resonant shriek against organic creatures to the same use.
+evolutionmenu-evolving-armblade-desc = Form an armblade for 20 chemicals. Evolution upgrades the same ability to a true armblade, including blades already extended.
+evolutionmenu-evolving-shriek-desc = Emit an EMP blast for 30 chemicals. Evolution adds the resonant shriek against organic creatures to the same use.
 evolutionmenu-evolving-muscles-desc = Strain your muscles for increased speed at the cost of stamina. Evolution further improves speed, adds 25% melee damage and 20% resistance to every damage type while active.
 evolutionmenu-evolving-eyes-desc = Toggle flash protection and night vision together. Evolution adds thermal vision to the same ability.
 evolutionmenu-evolving-chameleon-desc = Blend into the environment for 15 chemicals and 1.25 chemicals/second. Evolution prevents movement from revealing you and reduces upkeep to 0.5 chemicals/second.
+changeling-regrown = Your { $part } has regenerated.

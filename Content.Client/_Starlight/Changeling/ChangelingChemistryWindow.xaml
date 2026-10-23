@@ -9,6 +9,7 @@
             <Button Name="RegenerationButton" />
             <Label Text="{Loc 'changeling-chemistry-regeneration-cost'}" />
         </BoxContainer>
+        <Label Name="RegenerationStatus" />
         <BoxContainer Orientation="Horizontal" SeparationOverride="8">
             <Label Text="{Loc 'changeling-chemistry-add-amount'}" VerticalAlignment="Center" />
             <chem:ButtonGrid Name="AmountGrid" Columns="6" ButtonList="1,5,10,15,20,30" RadioGroup="True" Selected="1" />

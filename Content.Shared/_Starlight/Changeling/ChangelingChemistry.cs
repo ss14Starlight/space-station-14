@@ -10,7 +10,7 @@ public static class ChangelingChemistry
 {
     public const string Solution = "changeling-sting";
     public const int Capacity = 30;
-    public const int ReagentCapacity = 30;
+    public const int ReagentCapacity = 15;
     public const float RegenerationInterval = 10;
     public const float RegenerationCost = 0.5f;
     public const float StingCost = 10;
@@ -42,7 +42,8 @@ public sealed class ChangelingChemistryUiState(
     float chemicals,
     float targetTemperature,
     bool regenerating,
-    int dose) : BoundUserInterfaceState
+    int dose,
+    bool canRegenerate) : BoundUserInterfaceState
 {
     public readonly Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> Reagents = reagents;
     public readonly Solution Mixture = mixture;
@@ -50,6 +51,7 @@ public sealed class ChangelingChemistryUiState(
     public readonly float TargetTemperature = targetTemperature;
     public readonly bool Regenerating = regenerating;
     public readonly int Dose = dose;
+    public readonly bool CanRegenerate = canRegenerate;
 }
 
 [Serializable, NetSerializable]

@@ -6,6 +6,7 @@ using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Changeling;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared.Actions;
 using Content.Shared.Actions.Events;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body.Components;
@@ -91,6 +92,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, FakeMindShieldToggleEvent>(OnFakeMindShieldToggle);
 
         SubscribeLocalEvent<ChangelingActionComponent, ActionAttemptEvent>(OnAttemptLingAction, before: [typeof(RetractableItemActionSystem)]);
+        SubscribeLocalEvent<ChangelingActionComponent, ActionPerformedEvent>(OnLingActionPerformed);
     }
 
     #region Basic Abilities
@@ -246,8 +248,9 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
 
         var target = args.Target;
-        if (TryComp<ChangelingIdentityComponent>(uid, out var identityStorage))
-            _changelingIdentitySystem.CloneToPausedMap((uid, identityStorage), target);
+        if (!TryComp<ChangelingIdentityComponent>(uid, out var identityStorage)
+            || _changelingIdentitySystem.CloneToPausedMap((uid, identityStorage), target) == null)
+            return;
         _popup.PopupEntity(Loc.GetString("changeling-sting", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         args.Handled = true;
     }
@@ -316,22 +319,27 @@ public sealed partial class ChangelingSystem : EntitySystem
     private void OnCreateBoneShard(EntityUid uid, ChangelingComponent comp, ref CreateBoneShardEvent args)
     {
         var star = Spawn(comp.Evolved ? EvolvedBoneShardPrototype : BoneShardPrototype, Transform(uid).Coordinates);
-        _hands.TryPickupAnyHand(uid, star);
-
-        PlayMeatySound(uid, comp);
-        args.Handled = true;
-    }
-    private void OnToggleArmor(EntityUid uid, ChangelingComponent comp, ref ToggleChitinousArmorEvent args)
-    {
-        if (!TryToggleItem(uid, ArmorPrototype, comp, "outerClothing")
-        || !TryToggleItem(uid, ArmorHelmetPrototype, comp, "head"))
+        if (!_hands.TryPickupAnyHand(uid, star))
         {
-            _popup.PopupEntity(Loc.GetString("changeling-equip-armor-fail"), uid, uid);
-            comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;
+            QueueDel(star);
+            _popup.PopupEntity(Loc.GetString("changeling-fail-hands"), uid, uid);
             return;
         }
 
         PlayMeatySound(uid, comp);
+        ShowAbilityFeedback(uid, args.Action);
+        args.Handled = true;
+    }
+    private void OnToggleArmor(EntityUid uid, ChangelingComponent comp, ref ToggleChitinousArmorEvent args)
+    {
+        if (!TryToggleArmorSet(uid, comp, ArmorPrototype, ArmorHelmetPrototype))
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-equip-armor-fail"), uid, uid);
+            return;
+        }
+
+        PlayMeatySound(uid, comp);
+        ShowAbilityFeedback(uid, args.Action, comp.Equipment.ContainsKey(ArmorPrototype.Id));
         args.Handled = true;
     }
     private void OnShriekDissonant(EntityUid uid, ChangelingComponent comp, ref ShriekDissonantEvent args)
@@ -343,12 +351,14 @@ public sealed partial class ChangelingSystem : EntitySystem
         _emp.EmpPulse(pos, power, 5000f, power * TimeSpan.FromSeconds(2));
         if (comp.Evolved)
             ApplyResonantShriek(uid, comp);
+        ShowAbilityFeedback(uid, args.Action);
         args.Handled = true;
     }
     private void OnShriekResonant(EntityUid uid, ChangelingComponent comp, ref ShriekResonantEvent args)
     {
         DoScreech(uid, comp);
         ApplyResonantShriek(uid, comp);
+        ShowAbilityFeedback(uid, args.Action);
         args.Handled = true;
     }
 
@@ -385,6 +395,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
 
         _speed.RefreshMovementSpeedModifiers(uid);
+        SetAbilityToggled<ToggleStrainedMusclesEvent>(uid, comp.StrainedMusclesActive);
         PlayMeatySound(uid, comp);
     }
     private void OnRefreshSpeed(Entity<ChangelingComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
@@ -481,6 +492,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-chameleon-start"), uid, uid);
             comp.StealthEnabled = true;
         }
+        SetAbilityToggled<ActionChameleonSkinEvent>(uid, comp.StealthEnabled);
     }
 
     private void OnEphedrineOverdose(EntityUid uid, ChangelingComponent comp, ref ActionEphedrineOverdoseEvent args)
@@ -557,15 +569,16 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
     public void OnSpacesuit(EntityUid uid, ChangelingComponent comp, ref ActionSpacesuitEvent args)
     {
-        if (!TryToggleItem(uid, comp.Evolved ? ArmorPrototype : SpacesuitPrototype, comp, "outerClothing")
-        || !TryToggleItem(uid, comp.Evolved ? ArmorHelmetPrototype : SpacesuitHelmetPrototype, comp, "head"))
+        var armor = comp.Evolved ? ArmorPrototype : SpacesuitPrototype;
+        var helmet = comp.Evolved ? ArmorHelmetPrototype : SpacesuitHelmetPrototype;
+        if (!TryToggleArmorSet(uid, comp, armor, helmet))
         {
             _popup.PopupEntity(Loc.GetString("changeling-equip-armor-fail"), uid, uid);
-            comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;
             return;
         }
 
         PlayMeatySound(uid, comp);
+        ShowAbilityFeedback(uid, args.Action, comp.Equipment.ContainsKey(armor.Id));
         args.Handled = true;
     }
     #region Starlight
@@ -574,11 +587,11 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (!TryToggleItem(uid, NeocyteDisguisePrototype, comp, "outerClothing2"))
         {
             _popup.PopupEntity(Loc.GetString("changeling-equip-neocyte-fail"), uid, uid);
-            comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;
             return;
         }
 
         PlayMeatySound(uid, comp);
+        ShowAbilityFeedback(uid, args.Action, comp.Equipment.ContainsKey(NeocyteDisguisePrototype.Id));
         args.Handled = true;
     }
     #endregion
@@ -639,9 +652,61 @@ public sealed partial class ChangelingSystem : EntitySystem
             ev.Cancelled = true;
             return;
         }
+    }
 
-        if (_actions.GetEvent(ent.Owner) is not ChangelingEmagEvent)
-            UpdateChemicals(uid, comp, -chemicalCost);
-        UpdateBiomass(uid, comp, -lingAction.BiomassCost);
+    private void OnLingActionPerformed(Entity<ChangelingActionComponent> ent, ref ActionPerformedEvent args)
+    {
+        if (!TryComp<ChangelingComponent>(args.Performer, out var comp))
+            return;
+
+        var chemicalCost = ChemicalCost(comp, ent.Comp);
+        if (chemicalCost != 0)
+            UpdateChemicals(args.Performer, comp, -chemicalCost);
+        if (ent.Comp.BiomassCost != 0)
+            UpdateBiomass(args.Performer, comp, -ent.Comp.BiomassCost);
+
+        if (_actions.GetEvent(ent.Owner) is OnRetractableItemActionEvent
+            && TryComp<RetractableItemActionComponent>(ent.Owner, out var retractable))
+            ShowAbilityFeedback(args.Performer, ent.Owner, _hands.IsHolding(args.Performer, retractable.ActionItemUid));
+    }
+
+    private bool TryToggleArmorSet(EntityUid uid, ChangelingComponent comp, EntProtoId armor, EntProtoId helmet)
+    {
+        if (comp.Equipment.ContainsKey(armor.Id) || comp.Equipment.ContainsKey(helmet.Id))
+        {
+            if (comp.Equipment.ContainsKey(armor.Id))
+                TryToggleItem(uid, armor, comp, "outerClothing");
+            if (comp.Equipment.ContainsKey(helmet.Id))
+                TryToggleItem(uid, helmet, comp, "head");
+            return true;
+        }
+
+        if (!TryToggleItem(uid, armor, comp, "outerClothing"))
+            return false;
+        if (TryToggleItem(uid, helmet, comp, "head"))
+            return true;
+
+        TryToggleItem(uid, armor, comp, "outerClothing");
+        return false;
+    }
+
+    private void SetAbilityToggled<TEvent>(EntityUid uid, bool toggled) where TEvent : BaseActionEvent
+    {
+        foreach (var action in _actions.GetActions(uid))
+            if (_actions.GetEvent(action.Owner) is TEvent)
+                _actions.SetToggled(action.Owner, toggled);
+    }
+
+    private void ShowAbilityFeedback(EntityUid uid, EntityUid action, bool? enabled = null)
+    {
+        if (enabled is { } toggled)
+            _actions.SetToggled(action, toggled);
+        var message = enabled switch
+        {
+            true => "changeling-ability-enabled",
+            false => "changeling-ability-disabled",
+            null => "changeling-ability-activated",
+        };
+        _popup.PopupEntity(Loc.GetString(message, ("ability", Name(action))), uid, uid);
     }
 }

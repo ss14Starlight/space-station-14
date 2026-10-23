@@ -153,7 +153,8 @@ public partial class SharedBodySystem
         RaiseLocalEvent(bodyEnt, ref ev);
 
         RemoveLeg(partEnt, bodyEnt);
-        PartRemoveDamage(bodyEnt, partEnt);
+        if (!ev.PreventVitalDamage)
+            PartRemoveDamage(bodyEnt, partEnt);
     }
 
     private void AddLeg(Entity<BodyPartComponent> legEnt, Entity<BodyComponent?> bodyEnt)

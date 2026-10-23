@@ -45,6 +45,11 @@ public sealed partial class ChangelingChemistryWindow : FancyWindow
         _regenerating = state.Regenerating;
         ChemicalReserve.Text = Loc.GetString("changeling-chemistry-reserve", ("amount", MathF.Round(state.Chemicals, 1)));
         RegenerationButton.Text = Loc.GetString(_regenerating ? "changeling-chemistry-regeneration-on" : "changeling-chemistry-regeneration-off");
+        var full = state.Reagents.Count > 0 && state.Reagents.Values.All(amount => amount >= ChangelingChemistry.ReagentCapacity);
+        var regenerationStatus = !_regenerating ? "changeling-chemistry-status-off"
+            : full ? "changeling-chemistry-status-full"
+            : state.CanRegenerate ? "changeling-chemistry-status-active" : "changeling-chemistry-status-paused";
+        RegenerationStatus.Text = Loc.GetString(regenerationStatus, ("capacity", ChangelingChemistry.ReagentCapacity));
         MixtureVolume.Text = Loc.GetString("changeling-chemistry-mixture-volume", ("volume", state.Mixture.Volume), ("capacity", state.Mixture.MaxVolume));
         CurrentTemperature.Text = Loc.GetString("changeling-chemistry-temperature", ("temperature", MathF.Round(state.Mixture.Temperature, 1)));
         if (!TemperatureInput.HasKeyboardFocus())

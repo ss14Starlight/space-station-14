@@ -47,6 +47,9 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
 
     private void OnRetractableItemAction(Entity<RetractableItemActionComponent> ent, ref OnRetractableItemActionEvent args)
     {
+        if (args.Handled)
+            return;
+
         /*  🌟Starlight🌟 Start
          *  if (_hands.GetActiveHand(args.Performer) is not { } activeHand) // Moved
          *      return;
@@ -69,7 +72,7 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
                 return;
 
             // Don't allow to summon an item if holding an unremoveable item unless that item is summoned by the action.
-            if (_hands.GetActiveItem(ent.Owner) != null
+            if (_hands.GetActiveItem(args.Performer) != null
                 && !_hands.IsHolding(args.Performer, ent.Comp.ActionItemUid)
                 && !_hands.CanDropHeld(args.Performer, activeHand, false))
             {
@@ -79,7 +82,7 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
 
             if (_hands.IsHolding(args.Performer, ent.Comp.ActionItemUid))
             {
-                RetractRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, ent.Owner);
+                args.Handled = RetractRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, ent.Owner);
             }
             else
             {
@@ -90,14 +93,14 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
                     return;
                 }
 
-                SummonRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, activeHand, ent.Owner);
+                args.Handled = SummonRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, activeHand, ent.Owner);
             }
         }
         else
         {
             if (_inventory.InSlotWithFlags(ent.Comp.ActionItemUid.Value, ent.Comp.RequiredSlots))
             {
-                RetractRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, ent.Owner);
+                args.Handled = RetractRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, ent.Owner);
             }
             else
             {
@@ -107,12 +110,10 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
                     _popups.PopupClient(Loc.GetString("retractable-item-cybernetics-disrupted"), args.Performer, args.Performer);
                     return;
                 }
-                SummonRetractableItemInInventory(args.Performer, ent.Comp.ActionItemUid.Value, ent.Comp.Slot, ent.Owner);
+                args.Handled = SummonRetractableItemInInventory(args.Performer, ent.Comp.ActionItemUid.Value, ent.Comp.Slot, ent.Owner);
             }
         }
         // 🌟Starlight🌟 end
-
-        args.Handled = true;
     }
 
     private void OnActionSummonedShutdown(Entity<ActionRetractableItemComponent> ent, ref ComponentShutdown args)
@@ -187,37 +188,45 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
             RetractRetractableItem(holder, item, ent.Owner);
     }
 
-    private void RetractRetractableItem(EntityUid holder, EntityUid item, Entity<RetractableItemActionComponent?> action)
+    private bool RetractRetractableItem(EntityUid holder, EntityUid item, Entity<RetractableItemActionComponent?> action)
     {
         if (!Resolve(action, ref action.Comp, false))
-            return;
+            return false;
 
+        var unremoveable = HasComp<UnremoveableComponent>(item);
         RemComp<UnremoveableComponent>(item);
         var container = _containers.GetContainer(action, RetractableItemActionComponent.ContainerId);
-        _containers.Insert(item, container);
+        if (!_containers.Insert(item, container))
+        {
+            if (unremoveable)
+                EnsureComp<UnremoveableComponent>(item);
+            return false;
+        }
         _audio.PlayPredicted(action.Comp.RetractSounds, holder, holder);
+        return true;
     }
 
-    private void SummonRetractableItem(EntityUid holder, EntityUid item, string hand, Entity<RetractableItemActionComponent?> action)
+    private bool SummonRetractableItem(EntityUid holder, EntityUid item, string hand, Entity<RetractableItemActionComponent?> action)
     {
-        if (!Resolve(action, ref action.Comp, false))
-            return;
+        if (!Resolve(action, ref action.Comp, false) || !_hands.TryForcePickupAnyHand(holder, item))
+            return false;
 
-        _hands.TryForcePickupAnyHand(holder, item); //Starlight
         _audio.PlayPredicted(action.Comp.SummonSounds, holder, holder);
         EnsureComp<UnremoveableComponent>(item);
+        return true;
     }
 
     #region Starlight
-    private void SummonRetractableItemInInventory(EntityUid holder, EntityUid item, string slot, Entity<RetractableItemActionComponent?> action)
+    private bool SummonRetractableItemInInventory(EntityUid holder, EntityUid item, string slot, Entity<RetractableItemActionComponent?> action)
     {
         if (!Resolve(action, ref action.Comp, false))
-            return;
+            return false;
 
         if (!_inventory.TryEquip(holder, item, slot, silent: true, force: true))
-            return;
+            return false;
         _audio.PlayPredicted(action.Comp.SummonSounds, holder, holder);
         EnsureComp<UnremoveableComponent>(item);
+        return true;
     }
 
     private void OnCyberneticsDisrupted(Entity<RetractableItemActionComponent> ent, ref CyberneticDisruptionEvent args)

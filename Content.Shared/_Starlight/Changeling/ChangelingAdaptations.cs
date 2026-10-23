@@ -9,6 +9,10 @@ public sealed partial class ChangelingRegenerationActionComponent : Component
     [DataField] public float ChemicalCostPerSecond = 5;
     [DataField] public float EvolvedHealingPerSecond = 8;
     [DataField] public float EvolvedChemicalCostPerSecond = 3;
+    [DataField] public float BloodRestoreFractionPerSecond = 0.1f;
+    [DataField] public float EvolvedBloodRestoreFractionPerSecond = 0.2f;
+    [DataField] public TimeSpan RegrowthInterval = TimeSpan.FromSeconds(10);
+    [DataField] public float RegrowthChemicalCost = 10;
 }
 
 [RegisterComponent]

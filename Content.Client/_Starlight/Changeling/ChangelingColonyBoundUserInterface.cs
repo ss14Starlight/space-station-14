@@ -1,9 +1,11 @@
 using System.Linq;
+using System.Numerics;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Starlight.Changeling;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.Changeling;
 
@@ -25,6 +27,7 @@ public sealed class ChangelingColonyBoundUserInterface(EntityUid owner, Enum uiK
         _window.OnObserve += carrier => SendMessage(new ChangelingObserveMessage(carrier));
         _window.OnRecall += carrier => SendMessage(new ChangelingRecallMessage(carrier));
         _window.OnLeave += () => SendMessage(new ChangelingLeaveBodyMessage());
+        _window.OnRupture += (request, confirmed) => SendMessage(new ChangelingRuptureMessage(request, confirmed));
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -43,13 +46,16 @@ public sealed class ChangelingColonyWindow : FancyWindow
     public event Action<NetEntity>? OnObserve;
     public event Action<NetEntity>? OnRecall;
     public event Action? OnLeave;
+    public event Action<uint, bool>? OnRupture;
 
-    private readonly BoxContainer _parts = new() { Orientation = BoxContainer.LayoutOrientation.Vertical };
-    private readonly BoxContainer _carriers = new() { Orientation = BoxContainer.LayoutOrientation.Vertical };
-    private readonly Button _animate = new();
-    private readonly Button _leave = new() { Text = Loc.GetString("changeling-hive-leave") };
-    private readonly Label _partsLabel = new() { Text = Loc.GetString("changeling-colony-parts") };
+    private readonly BoxContainer _parts = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 4 };
+    private readonly BoxContainer _carriers = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 6 };
+    private readonly TabContainer _tabs = new() { VerticalExpand = true, HorizontalExpand = true };
+    private readonly Button _animate = new() { ToggleMode = true, ClipText = true, MinHeight = 32 };
+    private readonly Button _leave = new() { Text = Loc.GetString("changeling-hive-leave"), MinHeight = 32 };
+    private FancyWindow? _confirmation;
     private bool _animating;
+    private uint _ruptureRequest;
     private List<ChangelingColonyEntry> _lastParts = new();
     private List<ChangelingColonyEntry> _lastCarriers = new();
     private bool? _lastMindspace;
@@ -58,18 +64,24 @@ public sealed class ChangelingColonyWindow : FancyWindow
     public ChangelingColonyWindow()
     {
         Title = Loc.GetString("changeling-colony-title");
-        MinSize = new(370, 300);
+        MinSize = new(350, 320);
+        SetSize = Vector2.Max(MinSize, Vector2.Min(new(520, 540), UserInterfaceManager.WindowRoot.Size - new Vector2(24)));
         var content = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 8 };
         content.AddChild(_animate);
         content.AddChild(_leave);
-        content.AddChild(new Label { Text = Loc.GetString("changeling-hive-chat-hint") });
-        content.AddChild(_partsLabel);
-        content.AddChild(_parts);
-        content.AddChild(new Label { Text = Loc.GetString("changeling-colony-carriers") });
-        content.AddChild(_carriers);
-        ContentsContainer.AddChild(new ScrollContainer { Children = { content } });
+        content.AddChild(Text(Loc.GetString("changeling-hive-chat-hint")));
+        _tabs.AddChild(new ScrollContainer { HScrollEnabled = false, Children = { _carriers } });
+        var parts = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 8 };
+        parts.AddChild(Text(Loc.GetString("changeling-colony-parts")));
+        parts.AddChild(_parts);
+        _tabs.AddChild(new ScrollContainer { HScrollEnabled = false, Children = { parts } });
+        _tabs.SetTabTitle(0, Loc.GetString("changeling-colony-bodies-tab"));
+        _tabs.SetTabTitle(1, Loc.GetString("changeling-colony-parts-tab"));
+        content.AddChild(_tabs);
+        ContentsContainer.AddChild(content);
         _animate.OnPressed += _ => OnAnimate?.Invoke(!_animating);
         _leave.OnPressed += _ => OnLeave?.Invoke();
+        OnClose += CloseConfirmation;
     }
 
     public void UpdateState(ChangelingColonyUiState state)
@@ -77,13 +89,24 @@ public sealed class ChangelingColonyWindow : FancyWindow
         _animating = state.AnimateBlood;
         _animate.Visible = state.Master && state.Learned && state.Evolved;
         _leave.Visible = !state.Mindspace;
-        _partsLabel.Visible = state.CanDetach;
-        _parts.Visible = state.CanDetach;
+        if (!state.CanDetach && _tabs.CurrentTab == 1)
+            _tabs.CurrentTab = 0;
+        _tabs.SetTabVisible(1, state.CanDetach);
         _animate.Text = Loc.GetString(_animating ? "changeling-colony-animation-on" : "changeling-colony-animation-off");
+        _animate.ToolTip = _animate.Text;
+        _animate.Pressed = _animating;
         if (!_lastParts.SequenceEqual(state.Parts))
         {
             _lastParts = state.Parts;
-            Fill(_parts, state.Parts, "changeling-colony-detach", part => OnDetach?.Invoke(part));
+            _parts.RemoveAllChildren();
+            foreach (var part in state.Parts)
+            {
+                var button = Button(Loc.GetString("changeling-colony-detach", ("part", part.Name)));
+                button.OnPressed += _ => ShowConfirmation(
+                    Loc.GetString("changeling-colony-confirm-detach", ("part", part.Name)),
+                    () => OnDetach?.Invoke(part.Entity));
+                _parts.AddChild(button);
+            }
         }
         if (!_lastCarriers.SequenceEqual(state.Carriers) || _lastMindspace != state.Mindspace || _lastMaster != state.Master)
         {
@@ -93,41 +116,102 @@ public sealed class ChangelingColonyWindow : FancyWindow
             _carriers.RemoveAllChildren();
             foreach (var carrier in state.Carriers)
             {
-                var row = new BoxContainer();
-                row.AddChild(new Label
-                {
-                    Text = Loc.GetString("changeling-hive-body", ("body", carrier.Name),
-                        ("occupant", carrier.Occupant ?? Loc.GetString("changeling-hive-vacant"))),
-                    HorizontalExpand = true
-                });
+                var row = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 4, Margin = new(6) };
+                row.AddChild(Text(Loc.GetString("changeling-hive-body", ("body", carrier.Name),
+                    ("occupant", carrier.Occupant ?? Loc.GetString("changeling-hive-vacant")))));
+                var buttons = new BoxContainer { SeparationOverride = 4 };
                 if (state.Mindspace)
                 {
-                    var observe = new Button { Text = Loc.GetString("changeling-hive-observe") };
+                    var observe = Button(Loc.GetString("changeling-hive-observe"));
                     observe.OnPressed += _ => OnObserve?.Invoke(carrier.Entity);
-                    row.AddChild(observe);
+                    buttons.AddChild(observe);
                 }
-                var enter = new Button { Text = Loc.GetString("changeling-hive-enter"), Disabled = !carrier.CanEnter };
+                var enter = Button(Loc.GetString("changeling-hive-enter"));
+                enter.Disabled = !carrier.CanEnter;
                 enter.OnPressed += _ => OnSwitch?.Invoke(carrier.Entity);
-                row.AddChild(enter);
+                buttons.AddChild(enter);
                 if (state.Master && carrier.Occupant != null)
                 {
-                    var recall = new Button { Text = Loc.GetString("changeling-hive-recall") };
+                    var recall = Button(Loc.GetString("changeling-hive-recall"));
                     recall.OnPressed += _ => OnRecall?.Invoke(carrier.Entity);
-                    row.AddChild(recall);
+                    buttons.AddChild(recall);
                 }
-                _carriers.AddChild(row);
+                row.AddChild(buttons);
+                _carriers.AddChild(new PanelContainer { StyleClasses = { "BorderedWindowPanel" }, Children = { row } });
             }
+        }
+        if (state.ConfirmRupture && state.RuptureRequest != _ruptureRequest)
+        {
+            _ruptureRequest = state.RuptureRequest;
+            ShowConfirmation(Loc.GetString("changeling-colony-confirm-rupture"),
+                () => OnRupture?.Invoke(state.RuptureRequest, true), () => OnRupture?.Invoke(state.RuptureRequest, false));
         }
     }
 
-    private static void Fill(BoxContainer container, List<ChangelingColonyEntry> entries, string label, Action<NetEntity> pressed)
+    private void ShowConfirmation(string warning, Action confirmed, Action? cancelled = null)
     {
-        container.RemoveAllChildren();
-        foreach (var entry in entries)
+        CloseConfirmation();
+        var dialog = new FancyWindow
         {
-            var button = new Button { Text = Loc.GetString(label, ("part", entry.Name)) };
-            button.OnPressed += _ => pressed(entry.Entity);
-            container.AddChild(button);
-        }
+            Title = Loc.GetString("changeling-colony-confirm-title"),
+            MinSize = new(320, 160),
+            SetSize = Vector2.Max(new(320, 160), Vector2.Min(new(420, 210), UserInterfaceManager.WindowRoot.Size - new Vector2(24)))
+        };
+        _confirmation = dialog;
+        var content = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 12 };
+        var text = Text(warning);
+        text.VerticalExpand = true;
+        content.AddChild(text);
+        var buttons = new BoxContainer { SeparationOverride = 8 };
+        var yes = Button(Loc.GetString("changeling-colony-confirm-yes"));
+        var no = Button(Loc.GetString("changeling-colony-confirm-no"));
+        var accepted = false;
+        yes.OnPressed += _ =>
+        {
+            accepted = true;
+            dialog.Close();
+            confirmed();
+        };
+        no.OnPressed += _ => dialog.Close();
+        buttons.AddChild(yes);
+        buttons.AddChild(no);
+        content.AddChild(buttons);
+        dialog.ContentsContainer.AddChild(content);
+        dialog.OnClose += () =>
+        {
+            _confirmation = null;
+            if (!accepted)
+                cancelled?.Invoke();
+            dialog.Dispose();
+        };
+        dialog.OpenCentered();
+    }
+
+    private void CloseConfirmation()
+    {
+        _confirmation?.Close();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+            CloseConfirmation();
+        base.Dispose(disposing);
+    }
+
+    private static Button Button(string text) => new()
+    {
+        Text = text,
+        ToolTip = text,
+        ClipText = true,
+        HorizontalExpand = true,
+        MinHeight = 32
+    };
+
+    private static RichTextLabel Text(string text)
+    {
+        var label = new RichTextLabel { HorizontalExpand = true };
+        label.SetMessage(FormattedMessage.FromUnformatted(text));
+        return label;
     }
 }

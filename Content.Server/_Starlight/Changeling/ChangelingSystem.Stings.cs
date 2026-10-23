@@ -36,7 +36,7 @@ public sealed partial class ChangelingSystem
 
     private void OnStingFakeArmblade(EntityUid uid, ChangelingComponent comp, ref StingFakeArmbladeEvent args)
     {
-        if (args.Handled || !TrySting(uid, args))
+        if (args.Handled || !TrySting(uid, args, true))
             return;
         var target = args.Target;
         var given = 0;
@@ -52,11 +52,11 @@ public sealed partial class ChangelingSystem
         }
         if (given == 0)
         {
-            UpdateChemicals(uid, comp, Comp<ChangelingActionComponent>(args.Action).ChemicalCost);
             _popup.PopupEntity(Loc.GetString("changeling-sting-fail-simplemob"), uid, uid);
             return;
         }
         PlayMeatySound(target, comp);
+        _popup.PopupEntity(Loc.GetString("changeling-sting", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         args.Handled = true;
     }
 

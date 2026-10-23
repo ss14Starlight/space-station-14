@@ -50,10 +50,15 @@ evolutionmenu-utility-neocyte-desc =
 evolutionmenu-sting-chemical-name = Chemical Synthesis and Sting
 evolutionmenu-sting-chemical-desc =
     Gain two abilities: prepare a chemical mixture and silently inject a chosen dose into an organic target.
-    Store up to 30u of each basic reagent and prepare up to 30u of mixture, using normal chemical reactions with heating and cooling.
-    Reagents start empty and regenerate up to 1u per 10 seconds, consuming 0.5 chemicals per unit. Regeneration can be paused.
+    Start with 15u of each basic reagent and prepare up to 30u of mixture, using normal chemical reactions with heating and cooling.
+    Reagent stocks regenerate up to 15u each at 1u per 10 seconds, consuming 0.5 chemicals per unit. Full stocks cost nothing. The regeneration toggle is shared by all your bodies.
     Evolution adds Nocturine, Lexorin, Mute Toxin, Chloral Hydrate, Pax, Unstable Mutagen, Ephedrine, Desoxyephedrine and Amalgam to the reagent stocks and allows self-injection.
-    Each successful sting costs another 10 chemicals. Works in Lesser Form.
+    Each successful sting costs another 10 chemicals.
+
+changeling-chemistry-status-off = Synthesis off. Reagent capacity: {$capacity}u each.
+changeling-chemistry-status-full = Stocks full ({$capacity}u each); no chemicals consumed.
+changeling-chemistry-status-active = Replenishing stocks up to {$capacity}u each.
+changeling-chemistry-status-paused = Synthesis paused: insufficient chemicals or biomass, or in stasis. Capacity: {$capacity}u each.
 
 evolutionmenu-sting-armblade-name = Fake Arm Blade Sting
 evolutionmenu-sting-armblade-desc = Grow an unremovable dull armblade in an organic target's hand for 30 seconds. Evolution fills both hands. Costs 50 chemicals.

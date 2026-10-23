@@ -4,8 +4,6 @@ using Content.Shared.Actions;
 using Content.Shared.Body.Part;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Changeling.Components;
-using Content.Shared.Hands;
-using Content.Shared.Hands.Components;
 using Content.Shared.Mind;
 using Content.Shared.RetractableItemAction;
 using Content.Shared.Stealth.Components;
@@ -68,14 +66,10 @@ public sealed partial class ChangelingSystem
             {
                 BodyPartType.Arm or BodyPartType.Hand => "ActionChangelingFragmentArmblade",
                 BodyPartType.Head => "ActionChangelingFragmentShriek",
-                BodyPartType.Leg or BodyPartType.Foot => "ActionChameleonSkin",
+                BodyPartType.Leg or BodyPartType.Foot => "ActionChangelingFragmentChameleon",
                 _ => null,
             };
-            if (part.PartType is BodyPartType.Arm or BodyPartType.Hand && !HasComp<HandsComponent>(uid))
-            {
-                var hands = EnsureComp<HandsComponent>(uid);
-                _hands.AddHand((uid, hands), "armblade", HandLocation.Middle);
-            }
+            EnsureFragmentHands(uid, part);
         }
         _speed.RefreshMovementSpeedModifiers(uid);
         Dirty(uid, ling);

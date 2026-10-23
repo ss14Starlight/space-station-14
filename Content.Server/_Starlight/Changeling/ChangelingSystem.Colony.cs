@@ -17,6 +17,8 @@ using Content.Shared.Changeling.Systems;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Gibbing;
+using Content.Shared.Hands;
+using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs;
 using Content.Shared.Mind;
@@ -54,6 +56,7 @@ public sealed partial class ChangelingSystem
         SubscribeLocalEvent<ChangelingColonyMemberComponent, OpenChangelingColonyEvent>(OnOpenColony);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, RuptureChangelingEvent>(OnRupture);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingDetachMessage>(OnDetachMessage);
+        SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingRuptureMessage>(OnRuptureConfirmed);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingSwitchMessage>(OnSwitchMessage);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingAnimateBloodMessage>(OnAnimateMessage);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingObserveMessage>(OnObserveHive);
@@ -159,7 +162,8 @@ public sealed partial class ChangelingSystem
                 return new ChangelingColonyEntry(GetNetEntity(carrier), Name(carrier), occupant, enter);
             }).ToList();
         _chemistryUi.SetUiState(uid, ChangelingColonyUiKey.Key,
-            new ChangelingColonyUiState(parts, carriers, colony.AnimateBlood, master, mindspace, canDetach, colony.Learned, colony.Evolved));
+            new ChangelingColonyUiState(parts, carriers, colony.AnimateBlood, master, mindspace, canDetach, colony.Learned, colony.Evolved,
+                Comp<ChangelingColonyMemberComponent>(uid).ConfirmRupture, Comp<ChangelingColonyMemberComponent>(uid).RuptureRequest));
     }
 
     private void OnAnimateMessage(EntityUid uid, ChangelingColonyMemberComponent member, ChangelingAnimateBloodMessage args)
@@ -224,9 +228,33 @@ public sealed partial class ChangelingSystem
     private void OnRupture(EntityUid uid, ChangelingColonyMemberComponent member, ref RuptureChangelingEvent args)
     {
         if (args.Handled || member.IsFragment || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony)
-            || !colony.Learned || !_mind.TryGetMind(uid, out var mind, out _) || !colony.Minds.ContainsKey(mind)
+            || !colony.Learned || !IsHivePlayer(uid, colony))
+            return;
+        args.Handled = true;
+        member.ConfirmRupture = true;
+        member.RuptureRequest++;
+        UpdateColonyUi(uid, colony);
+        _chemistryUi.OpenUi(uid, ChangelingColonyUiKey.Key, uid);
+    }
+
+    private void OnRuptureConfirmed(EntityUid uid, ChangelingColonyMemberComponent member, ChangelingRuptureMessage args)
+    {
+        if (args.Actor != uid || !member.ConfirmRupture || args.Request != member.RuptureRequest
+            || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony))
+            return;
+        member.ConfirmRupture = false;
+        UpdateColonyUi(uid, colony);
+        if (!args.Confirmed || member.IsFragment || !colony.Learned
+            || !_mind.TryGetMind(uid, out var mind, out _) || !colony.Minds.ContainsKey(mind)
             || !TryComp<ChangelingComponent>(uid, out var ling) || ling.Biomass < 20
             || _body.GetRootPartOrNull(uid) is not { } root)
+            return;
+        var action = _actions.GetActions(uid).FirstOrDefault(action => MetaData(action).EntityPrototype?.ID == "ActionChangelingRupture");
+        if (!action.Owner.IsValid())
+            return;
+        var validate = new ActionValidateEvent { User = uid, Provider = action.Comp.Container ?? uid };
+        RaiseLocalEvent(action.Owner, ref validate);
+        if (validate.Invalid)
             return;
         var pieces = _body.GetBodyChildren(uid)
             .Where(part => part.Id == root.Entity || _body.GetParentPartOrNull(part.Id) == root.Entity)
@@ -234,7 +262,6 @@ public sealed partial class ChangelingSystem
         var realParts = pieces.Count(IsRealColonyPart);
         if (realParts == 0 || CountCarriers(colony) + realParts - (_mobState.IsAlive(uid) ? 1 : 0) > CarrierLimit)
             return;
-        args.Handled = true;
         colony.SuppressAnimation = true;
         colony.Members.Remove(uid);
         try
@@ -289,6 +316,7 @@ public sealed partial class ChangelingSystem
         EntityManager.AddComponents(uid, _proto.Index(prototype), removeExisting: false);
         var member = Comp<ChangelingColonyMemberComponent>(uid);
         member.IsFragment = true;
+        EnsureFragmentHands(uid, part);
         _colonyPhysics.SetBodyType(uid, BodyType.KinematicController);
         if (TryComp<FixturesComponent>(uid, out var fixtures))
         {
@@ -304,6 +332,17 @@ public sealed partial class ChangelingSystem
         AddColonyMember(uid, mind, colony);
         _actions.AddAction(uid, ref member.NeuroAction, NeurotoxinAction);
         return true;
+    }
+
+    private void EnsureFragmentHands(EntityUid uid, BodyPartComponent part)
+    {
+        if (part.PartType is not (BodyPartType.Arm or BodyPartType.Hand))
+            return;
+        var hands = EnsureComp<HandsComponent>(uid);
+        if (hands.Count == 0)
+            _hands.AddHand((uid, hands), "armblade", HandLocation.Middle);
+        else if (hands.ActiveHandId == null)
+            _hands.SetActiveHand((uid, hands), hands.SortedHands.FirstOrDefault());
     }
 
     private void OnColonyPartRemoved(EntityUid uid, ChangelingColonyMemberComponent member, ref BodyPartRemovedEvent args)
@@ -472,6 +511,8 @@ public sealed partial class ChangelingSystem
     {
         if (!TryComp<ChangelingColonyMemberComponent>(uid, out var member))
             return;
+        if (member.IsFragment && !member.IsBlood && TryComp<BodyPartComponent>(uid, out var part))
+            EnsureFragmentHands(uid, part);
         if (member.IsFragment && colony.Evolved && member.EvolvedAction is { } evolved && member.EvolvedActionEntity == null)
             _actions.AddAction(uid, ref member.EvolvedActionEntity, evolved);
         foreach (var action in _actions.GetActions(uid).ToArray())

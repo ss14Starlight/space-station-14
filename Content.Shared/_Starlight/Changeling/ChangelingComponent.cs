@@ -52,6 +52,7 @@ public sealed partial class ChangelingComponent : Component
     public bool StealthEnabled = false;
 
     public EntityUid? RegenerationAction;
+    public TimeSpan NextRegrowth;
     public EntityUid? PainSuppressionAction;
     public EntityUid? ShockHandAction;
     public TimeSpan ShockReady;
@@ -179,6 +180,7 @@ public sealed class ChangelingResources
     public int TotalStolenDNA { get => Genetics.TotalStolenDNA; set => Genetics.TotalStolenDNA = value; }
     public List<TransformData> AbsorbedDNA { get => Genetics.AbsorbedDNA; set => Genetics.AbsorbedDNA = value; }
     public bool HasChemicalSting { get => Genetics.HasChemicalSting; set => Genetics.HasChemicalSting = value; }
+    public bool StingRegenerationEnabled { get => Genetics.StingRegenerationEnabled; set => Genetics.StingRegenerationEnabled = value; }
 
     public float Biomass = 40f;
     public float MaxBiomass = 60f;
@@ -187,7 +189,6 @@ public sealed class ChangelingResources
     public float BonusChemicalRegen;
     public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> StingReagents = new();
     public TimeSpan NextStingRegeneration;
-    public bool StingRegenerationEnabled = true;
     public float StingTargetTemperature = 293.15f;
     public int StingDose = ChangelingChemistry.Capacity;
 }
@@ -199,6 +200,7 @@ public sealed class ChangelingGenetics
     public int TotalStolenDNA;
     public List<TransformData> AbsorbedDNA = new();
     public bool HasChemicalSting;
+    public bool StingRegenerationEnabled = true;
 }
 
 [DataDefinition]

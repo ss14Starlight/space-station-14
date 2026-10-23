@@ -28,6 +28,7 @@ public sealed partial class ChangelingSystem
         SubscribeLocalEvent<ChangelingComponent, ToggleChangelingShockHandEvent>(OnToggleShockHand);
         SubscribeLocalEvent<ChangelingShockHandComponent, StaminaDamageOnHitAttemptEvent>(OnShockHandHit);
         SubscribeLocalEvent<ChangelingShockHandComponent, StaminaMeleeHitEvent>(OnShockDischarge);
+        InitializeRegeneration();
     }
 
     private void OnEmag(EntityUid uid, ChangelingComponent comp, ref ChangelingEmagEvent args)
@@ -46,8 +47,6 @@ public sealed partial class ChangelingSystem
         var tool = Spawn("EmagUnlimited", Transform(uid).Coordinates);
         var success = _emag.TryEmagEffect((tool, Comp<EmagComponent>(tool)), uid, args.Target);
         QueueDel(tool);
-        if (success)
-            UpdateChemicals(uid, comp, -cost);
         args.Handled = success;
     }
 
@@ -79,7 +78,9 @@ public sealed partial class ChangelingSystem
                 return;
             }
             SetAdaptationAction(ref comp.RegenerationAction, args.Action);
+            comp.NextRegrowth = _timing.CurTime + regeneration.RegrowthInterval;
         }
+        ShowAbilityFeedback(uid, args.Action, comp.RegenerationAction != null);
         args.Handled = true;
     }
 
@@ -106,6 +107,7 @@ public sealed partial class ChangelingSystem
             _statusEffect.TryRemoveStatusEffect(uid, SharedStaminaSystem.StaminaLow);
             _speed.RefreshMovementSpeedModifiers(uid);
         }
+        ShowAbilityFeedback(uid, args.Action, comp.PainSuppressionAction != null);
         args.Handled = true;
     }
 
@@ -119,6 +121,7 @@ public sealed partial class ChangelingSystem
         if (!TryToggleItem(uid, ShockHandPrototype, comp))
             return;
         SetAdaptationAction(ref comp.ShockHandAction, active ? null : args.Action);
+        ShowAbilityFeedback(uid, args.Action, !active);
         args.Handled = true;
     }
 
@@ -133,14 +136,15 @@ public sealed partial class ChangelingSystem
             args.Cancelled = true;
             return;
         }
-        UpdateChemicals(user, ling, -ent.Comp.ChemicalCost);
     }
 
     private void OnShockDischarge(Entity<ChangelingShockHandComponent> ent, ref StaminaMeleeHitEvent args)
     {
         var user = Transform(ent).ParentUid;
-        if (args.Handled || !TryComp<ChangelingComponent>(user, out var ling) || !ling.Evolved
-            || ling.Biomass < 1 || _timing.CurTime < ling.ShockReady)
+        if (args.Handled || args.HitList.Count == 0 || !TryComp<ChangelingComponent>(user, out var ling))
+            return;
+        UpdateChemicals(user, ling, -ent.Comp.ChemicalCost);
+        if (!ling.Evolved || ling.Biomass < 1 || _timing.CurTime < ling.ShockReady)
             return;
         foreach (var (target, _) in args.HitList)
         {
@@ -186,15 +190,7 @@ public sealed partial class ChangelingSystem
         }
 
         UpdateChemicals(uid, comp, -(comp.Evolved ? regeneration.EvolvedChemicalCostPerSecond : regeneration.ChemicalCostPerSecond) * seconds);
-        if (!HasComp<DamageableComponent>(uid))
-            return;
-        var healing = new DamageSpecifier();
-        foreach (var (type, damage) in _damage.GetAllDamage(uid).DamageDict)
-        {
-            if (damage > 0)
-                healing.DamageDict[type] = -FixedPoint2.Min(damage, FixedPoint2.New((comp.Evolved ? regeneration.EvolvedHealingPerSecond : regeneration.HealingPerSecond) * seconds));
-        }
-        _damage.TryChangeDamage(uid, healing, ignoreResistances: true, interruptsDoAfters: false);
+        UpdateRegeneration(uid, comp, regeneration, seconds);
     }
 
     private void SetAdaptationAction(ref EntityUid? current, EntityUid? next)

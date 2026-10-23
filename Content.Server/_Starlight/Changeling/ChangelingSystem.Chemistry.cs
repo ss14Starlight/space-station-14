@@ -53,10 +53,10 @@ public sealed partial class ChangelingSystem
     {
         var ling = Comp<ChangelingComponent>(uid);
         foreach (var reagent in ChangelingChemistry.BasicReagents)
-            ling.StingReagents.TryAdd(reagent, FixedPoint2.Zero);
+            ling.StingReagents.TryAdd(reagent, ChangelingChemistry.ReagentCapacity);
         if (ling.Evolved)
             foreach (var reagent in ChangelingChemistry.EvolvedReagents)
-                ling.StingReagents.TryAdd(reagent, FixedPoint2.Zero);
+                ling.StingReagents.TryAdd(reagent, ChangelingChemistry.ReagentCapacity);
         if (ling.NextStingRegeneration == TimeSpan.Zero)
             ling.NextStingRegeneration = _timing.CurTime + TimeSpan.FromSeconds(ChangelingChemistry.RegenerationInterval);
         _solution.EnsureSolution(uid, ChangelingChemistry.Solution, out var solution);
@@ -221,7 +221,7 @@ public sealed partial class ChangelingSystem
 
         _chemistryUi.SetUiState(uid, ChangelingChemistryUiKey.Key, new ChangelingChemistryUiState(
             new(comp.StingReagents), mixture.Clone(), comp.Chemicals, comp.StingTargetTemperature,
-            comp.StingRegenerationEnabled, comp.StingDose));
+            comp.StingRegenerationEnabled, comp.StingDose, !comp.IsInStasis && comp.Biomass >= 1 && comp.Chemicals > 0));
     }
 
     private void CopyStingChemistry(EntityUid oldBody, EntityUid target, ChangelingComponent source, ChangelingComponent destination)
