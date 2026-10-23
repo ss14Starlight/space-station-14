@@ -1,61 +1,4 @@
 Entries:
-- author: Vincolan
-  changes:
-  - message: Added Nar'sie Cultists Admeme Antag with a custom Debrief and Conversion sound.
-    type: Add
-  - message: Nar'sie Cultists are not attacked by Hellportal mobs.
-    type: Add
-  - message: Added Admeme Consumed Nar'sie tome, that can convert people to Nar'sie cultists.
-    type: Add
-  id: 409314
-  time: '2026-10-09T16:44:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6582
-- author: Alloy-Inc, Swonkus
-  changes:
-  - message: The ITG has made new items available in the salvage ticket vendor.
-    type: Add
-  - message: Bolt Rifle and Bolt Pistol firearms. For the Emp- I mean ITG !
-    type: Add
-  - message: Impact Bolt ammunition and matching magazines / ammo-box.
-    type: Add
-  - message: Impact Bolt recipes to the ammofab and secfab.
-    type: Add
-  - message: current bolt_rifle.yml (the sniper rifle) has been renamed to bolt_rifle_.48 to make it easier to know what you're looking at and avoid confusion with the new weapons, nothing else was made to it.
-    type: Tweak
-  id: 409315
-  time: '2026-10-09T17:41:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6446
-- author: Swonki
-  changes:
-  - message: Scrapper guidebook entry.
-    type: Add
-  id: 409316
-  time: '2026-10-09T20:23:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6557
-- author: Johnny
-  changes:
-  - message: Changed EventHumanoid to restrict a few more species.
-    type: Tweak
-  id: 409317
-  time: '2026-10-10T08:48:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6601
-- author: wonderfulnewworld
-  changes:
-  - message: Medibots only inject 5u of Tricordrazine (Alive) now. Use them to stabilize critical patients with Inaprovaline (unchanged, 15u Critical) instead of relying on them to do your alive treatments.
-    type: Tweak
-  - message: Tricordrazine now has an OD effect (Slowdown) at 20u, and stops working entirely above 40u. Don't overrely on it!!!
-    type: Tweak
-  - message: Tricordrazine no longer works on digestion. No more drinking a ton of it to get prolonged healing.
-    type: Tweak
-  - message: The Doctor's Delight now has an OD effect (Slowdown) at 35u (so you can still drink a full glass), and stops working entirely at 40u.
-    type: Tweak
-  - message: Real Doctor injects Tricordrazine (Alive) instead of Omnizine (Alive), and Epinephrine (Critical) instead of Omnizine (Critical).
-    type: Tweak
-  - message: Real Doctor only costs 500 credits now.
-    type: Tweak
-  id: 409318
-  time: '2026-10-10T08:48:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6604
 - author: Floximo
   changes:
   - message: Emitter and StationAI power alerts are now more reliable.
@@ -2883,4 +2826,39 @@ Entries:
   id: 409713
   time: '2026-10-23T13:33:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6813
+- author: neomoth
+  changes:
+  - message: Lobby music no longer cuts out when entering game during end of round.
+    type: Fix
+  id: 409714
+  time: '2026-10-23T17:24:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6752
+- author: neomoth
+  changes:
+  - message: Wires panel visuals for some structures (e.g. holopads, computers...) no longer get inverted upon disconnecting and reconnecting.
+    type: Fix
+  id: 409715
+  time: '2026-10-23T17:24:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6752
+- author: neomoth
+  changes:
+  - message: Radio channels should hopefully resync properly when inserting an encryption key into a headset you're currently wearing without you needing to take it off and put it back on again.
+    type: Fix
+  id: 409716
+  time: '2026-10-23T17:24:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6752
+- author: neomoth
+  changes:
+  - message: Actions should now (hopefully) never be incorrectly sorted upon spawning in for the first time in a round.
+    type: Fix
+  id: 409717
+  time: '2026-10-23T17:24:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6752
+- author: neomoth
+  changes:
+  - message: Fixed an issue involving MovementModStatusSystem in which a component update was not being dirtied on client, leading to a mispredict, as well as a call to ModifySpeed() incorrectly using the walk speed modifier for the sprint speed value.
+    type: Fix
+  id: 409718
+  time: '2026-10-23T17:24:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6752
 Order: -1
