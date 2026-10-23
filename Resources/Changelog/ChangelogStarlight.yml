@@ -1,11 +1,4 @@
 Entries:
-- author: Mack, SevenShades
-  changes:
-  - message: Thrusters and Gyroscope can have their max thrust adjusted.
-    type: Tweak
-  id: 409308
-  time: '2026-10-09T13:07:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5846
 - author: Maxim
   changes:
   - message: Mailboxes will now send a Nanochat message when you have mail awaiting pickup.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409707
   time: '2026-10-23T08:36:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6819
+- author: HartLys
+  changes:
+  - message: Added hand labeler to Cargo and Command Techfabs.
+    type: Add
+  id: 409708
+  time: '2026-10-23T09:05:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6817
 Order: -1
