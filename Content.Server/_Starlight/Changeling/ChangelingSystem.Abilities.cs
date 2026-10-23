@@ -75,6 +75,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         SubscribeChemistry();
         SubscribeStings();
+        SubscribeLegacyAbilities();
         InitializeEvolution();
 
         SubscribeLocalEvent<ChangelingComponent, ActionAnatomicPanaceaEvent>(OnAnatomicPanacea);

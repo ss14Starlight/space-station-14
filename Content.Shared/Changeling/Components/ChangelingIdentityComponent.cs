@@ -11,7 +11,13 @@ namespace Content.Shared.Changeling.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class ChangelingIdentityComponent : Component
 {
+    #region Starlight
+    /// <summary>
+    /// Whether the stored identities belong to a hive and must survive this carrier's cleanup.
+    /// </summary>
     public bool SharedStorage;
+    #endregion Starlight
+
     /// <summary>
     /// The list of entities that exist on a paused map. They are paused clones of the victims that the ling has consumed, with all relevant components copied from the original.
     /// </summary>

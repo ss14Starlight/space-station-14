@@ -549,12 +549,12 @@ public sealed partial class ChangelingSystem : EntitySystem
             newUid = TransformEntity(target, data: data, persistentDna: persistentDna);
         else newUid = TransformEntity(target, data: data, comp: comp, persistentDna: persistentDna);
 
-        if (newUid != null)
-        {
-            PlayMeatySound((EntityUid) newUid, comp);
-            var loc = Loc.GetString("changeling-transform-others", ("user", locName));
-            _popup.PopupEntity(loc, (EntityUid) newUid, PopupType.LargeCaution);
-        }
+        if (newUid == null)
+            return false;
+
+        PlayMeatySound(newUid.Value, comp);
+        var loc = Loc.GetString("changeling-transform-others", ("user", locName));
+        _popup.PopupEntity(loc, newUid.Value, PopupType.LargeCaution);
 
         return true;
     }

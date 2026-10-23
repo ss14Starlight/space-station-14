@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
@@ -50,6 +51,17 @@ public sealed partial class ChemicalStingEvent : EntityTargetActionEvent { }
 public sealed partial class StingFakeArmbladeEvent : EntityTargetActionEvent { }
 public sealed partial class StingInfectEvent : EntityTargetActionEvent { }
 
+public sealed partial class StingBlindEvent : EntityTargetActionEvent { }
+public sealed partial class StingChemEvent : EntityTargetActionEvent
+{
+    /// <summary>
+    /// Reagents and amounts delivered by a legacy reagent sting.
+    /// </summary>
+    [DataField(required: true)]
+    public Dictionary<string, FixedPoint2> Chems = new();
+}
+public sealed partial class StingTransformEvent : EntityTargetActionEvent { }
+
 #endregion
 
 #region Events - Utility
@@ -58,11 +70,14 @@ public sealed partial class ActionAnatomicPanaceaEvent : InstantActionEvent { }
 public sealed partial class ActionAugmentedEyesightEvent : InstantActionEvent { }
 public sealed partial class ActionNightEyesightEvent : InstantActionEvent { }
 public sealed partial class ActionThermalEyesightEvent : InstantActionEvent { } // Starlight
+public sealed partial class ActionBiodegradeEvent : InstantActionEvent { }
 public sealed partial class ActionChameleonSkinEvent : InstantActionEvent { }
 public sealed partial class ActionEphedrineOverdoseEvent : InstantActionEvent { }
 public sealed partial class ActionDesoxyephedrineOverdoseEvent : InstantActionEvent { } // Starlight
 public sealed partial class ActionAmalgamOverdoseEvent : InstantActionEvent { } // Starlight
 public sealed partial class ActionFleshmendEvent : InstantActionEvent { }
+public sealed partial class ActionLastResortEvent : InstantActionEvent { }
+public sealed partial class ActionLesserFormEvent : InstantActionEvent { }
 public sealed partial class ActionSpacesuitEvent : InstantActionEvent { }
 public sealed partial class ActionNeocyteDisguiseEvent : InstantActionEvent { } // Starlight
 public sealed partial class ActionHivemindAccessEvent : InstantActionEvent { }

@@ -83,7 +83,7 @@ namespace Content.Server.Pointing.EntitySystems
             string selfMessage,
             string viewerMessage,
             string? viewerPointedAtMessage = null,
-            bool privatePointing = false)
+            bool privatePointing = false) // Starlight
         {
             var netSource = GetNetEntity(source);
 
@@ -103,12 +103,16 @@ namespace Content.Server.Pointing.EntitySystems
                 // Someone pointing at YOU is slightly more important
                 var popupType = viewerEntity == pointed ? PopupType.Medium : PopupType.Small;
 
+                // Starlight start
                 var popupSource = privatePointing ? GetNetEntity(viewerEntity) : netSource;
                 RaiseNetworkEvent(new PopupEntityEvent(message, popupType, popupSource), viewerEntity);
+                // Starlight end
             }
 
+            // Starlight start
             if (!privatePointing)
                 _replay.RecordServerMessage(new PopupEntityEvent(viewerMessage, PopupType.Small, netSource));
+            // Starlight end
         }
 
         public bool InRange(EntityUid pointer, EntityCoordinates coordinates)
@@ -160,6 +164,7 @@ namespace Content.Server.Pointing.EntitySystems
                 return false;
             }
             var mapCoordsPointed = _transform.ToMapCoordinates(coordsPointed);
+            // Starlight start - Keep mindspace pointing private; ordinary arrows use the existing path.
             var privateViewers = GetMindspacePointingViewers(player);
             var layer = (int) VisibilityFlags.Normal;
             if (privateViewers != null)
@@ -195,6 +200,7 @@ namespace Content.Server.Pointing.EntitySystems
                     _visibilitySystem.SetLayer((arrow, arrowVisibility), (ushort) layer);
                 }
             }
+            // Starlight end
 
             // Get players that are in range and whose visibility layer matches the arrow's.
             bool ViewerPredicate(ICommonSession playerSession)
@@ -208,7 +214,7 @@ namespace Content.Server.Pointing.EntitySystems
                 return _transform.GetMapCoordinates(ent).InRange(_transform.GetMapCoordinates(player), PointingRange);
             }
 
-            var viewers = privateViewers ?? Filter.Empty()
+            var viewers = privateViewers ?? Filter.Empty() // Starlight
                 .AddWhere(session1 => ViewerPredicate(session1))
                 .Recipients;
 
@@ -282,6 +288,7 @@ namespace Content.Server.Pointing.EntitySystems
                     viewerPointedAtMessage = Loc.GetString("pointing-system-point-at-you-other", ("otherName", playerName));
                 }
 
+                // Starlight start
                 if (privateViewers == null)
                 {
                     var ev = new AfterPointedAtEvent(pointed);
@@ -289,6 +296,7 @@ namespace Content.Server.Pointing.EntitySystems
                     var gotev = new AfterGotPointedAtEvent(player);
                     RaiseLocalEvent(pointed, ref gotev);
                 }
+                // Starlight end
 
                 _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(player):user} pointed at {ToPrettyString(pointed):target} {Transform(pointed).Coordinates}");
             }
@@ -315,7 +323,7 @@ namespace Content.Server.Pointing.EntitySystems
 
             _pointers[session] = _gameTiming.CurTime;
 
-            SendMessage(player, viewers, pointed, selfMessage, viewerMessage, viewerPointedAtMessage, privateViewers != null);
+            SendMessage(player, viewers, pointed, selfMessage, viewerMessage, viewerPointedAtMessage, privateViewers != null); // Starlight
 
             return true;
         }

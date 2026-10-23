@@ -14,7 +14,7 @@ public sealed partial class RetractableItemActionComponent : Component
     /// <summary>
     /// The item that will appear be spawned by the action.
     /// </summary>
-    [DataField(required: true), AutoNetworkedField]
+    [DataField(required: true), AutoNetworkedField] // Starlight: synchronize prototype changes after evolution.
     public EntProtoId SpawnedPrototype;
 
     /// <summary>

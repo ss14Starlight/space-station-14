@@ -104,3 +104,39 @@ evolutionmenu-utility-fakemindshield-desc =
 # Starlight
 changeling-arm-blade-name = Retractable Arm Blade
 changeling-arm-blade-desc = Transform your arm into a terrifying flesh blade. Can be toggled.
+
+# Starlight - legacy changeling actions.
+evolutionmenu-sting-blind-name = Blind Sting
+
+evolutionmenu-sting-blind-desc =
+    Silently sting an organic target, completely blinding them for a short time, and rendering them near-sighted until oculine is applied.
+    May be used while under the effects of Lesser Form.
+    Costs 35 chemicals.
+
+evolutionmenu-sting-cryo-name = Cryogenic Sting
+
+evolutionmenu-sting-cryo-desc =
+    Inject an organic target with a cocktail of chemicals that chills the blood.
+    May be used while under the effects of Lesser Form.
+    Costs 30 chemicals.
+
+evolutionmenu-sting-lethargic-name = Lethargic Sting
+
+evolutionmenu-sting-lethargic-desc =
+    Inject an organic target with a cocktail of anesthetics, slowing the victim down for a decent amount of time.
+    May be used while under the effects of Lesser Form.
+    Costs 25 chemicals.
+
+evolutionmenu-sting-mute-name = Mute Sting
+
+evolutionmenu-sting-mute-desc =
+    Inject mute toxin into an organic target, completely silencing them for a while.
+    May be used while under the effects of Lesser Form.
+    Costs 35 chemicals.
+
+evolutionmenu-sting-transform-name = Transformation Sting
+
+evolutionmenu-sting-transform-desc =
+    Inject some of your genome into an organic target, forcing their body to shapeshift into whoever you've chosen using the Cycle DNA ability.
+    May be used while under the effects of Lesser Form.
+    Costs 75 chemicals.

@@ -5,8 +5,14 @@ namespace Content.Shared._Starlight.Changeling;
 [RegisterComponent]
 public sealed partial class ChangelingRegenerationActionComponent : Component
 {
+    /// <summary>
+    /// Damage healed from each damaged type per second, independently of other types.
+    /// </summary>
     [DataField] public float HealingPerSecond = 4;
     [DataField] public float ChemicalCostPerSecond = 5;
+    /// <summary>
+    /// Evolved healing per damaged type per second.
+    /// </summary>
     [DataField] public float EvolvedHealingPerSecond = 8;
     [DataField] public float EvolvedChemicalCostPerSecond = 3;
     [DataField] public float BloodRestoreFractionPerSecond = 0.1f;

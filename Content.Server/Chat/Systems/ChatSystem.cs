@@ -190,10 +190,12 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!CanSendInGame(message.Text, shell, player)) // Starlight
             return;
 
+        // Starlight start
         var intercept = new BeforeInGameICMessageEvent(source, message.Text);
         RaiseLocalEvent(intercept);
         if (intercept.Handled)
             return;
+        // Starlight end
 
         ignoreActionBlocker = CheckIgnoreSpeechBlocker(source, ignoreActionBlocker);
 
@@ -1206,12 +1208,14 @@ public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Di
 {
 }
 
+#region Starlight
 public sealed class BeforeInGameICMessageEvent(EntityUid source, string message) : EntityEventArgs
 {
     public readonly EntityUid Source = source;
     public readonly string Message = message;
     public bool Handled;
 }
+#endregion Starlight
 
 // Starlight Start
 /// <summary>

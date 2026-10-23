@@ -67,7 +67,7 @@ public sealed partial class ChangelingDevourComponent : Component
     /// The windup time before the changeling begins to engage in devouring the identity of a target.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public TimeSpan DevourWindupTime = TimeSpan.FromSeconds(10);
+    public TimeSpan DevourWindupTime = TimeSpan.FromSeconds(10); // Starlight
 
     /// <summary>
     /// The time it takes to consume someones identity.
@@ -88,6 +88,10 @@ public sealed partial class ChangelingDevourComponent : Component
     [DataField]
     public EntityUid? CurrentDevourSound;
 
+    #region Starlight
+    /// <summary>
+    /// Target of the active sequence, retained until completion or cancellation.
+    /// </summary>
     [AutoNetworkedField]
     public EntityUid? CurrentTarget;
 
@@ -95,6 +99,7 @@ public sealed partial class ChangelingDevourComponent : Component
     /// Fraction of the second do-after's damage already applied on the server.
     /// </summary>
     public float DevourDamageProgress;
+    #endregion
 
     /// <summary>
     /// The damage dealt after the windup finished and devouring started.

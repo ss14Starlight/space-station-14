@@ -64,3 +64,20 @@ evolutionmenu-sting-armblade-name = Fake Arm Blade Sting
 evolutionmenu-sting-armblade-desc = Grow an unremovable dull armblade in an organic target's hand for 30 seconds. Evolution fills both hands. Costs 50 chemicals.
 evolutionmenu-sting-infect-name = Infection Sting
 evolutionmenu-sting-infect-desc = Transform an organic victim into a changeling using the devour process, without absorbing them or gaining any rewards. Costs 2 evolution points only after success. They retain their mind, enter regenerative stasis and receive half the normal starting evolution points.
+
+# Legacy changeling actions.
+evolutionmenu-sting-burn-name = Bloodburn Sting
+
+evolutionmenu-sting-burn-desc =
+    Inject an organic target with a cocktail of chemicals that burns their blood and disorients them.
+    May be used while under the effects of Lesser Form.
+    WARNING: Requires you to absorb at least 2 organics to use the ability.
+    Costs 35 chemicals.
+
+evolutionmenu-sting-drain-name = Draining Sting
+
+evolutionmenu-sting-drain-desc =
+    Inject an organic target with a cocktail of chemicals that quickly erode their hunger and thirst.
+    May be used while under the effects of Lesser Form.
+    WARNING: Requires you to absorb at least 2 organics to use the ability.
+    Costs 35 chemicals.

@@ -9,7 +9,7 @@ using Content.Shared._Starlight.Cybernetics; // Starlight
 using Content.Shared._Starlight.Cybernetics.Components; // Starlight
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes; // Starlight
 
 namespace Content.Shared.RetractableItemAction;
 
@@ -47,8 +47,10 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
 
     private void OnRetractableItemAction(Entity<RetractableItemActionComponent> ent, ref OnRetractableItemActionEvent args)
     {
+        // Starlight start
         if (args.Handled)
             return;
+        // Starlight end
 
         /*  🌟Starlight🌟 Start
          *  if (_hands.GetActiveHand(args.Performer) is not { } activeHand) // Moved
@@ -160,9 +162,13 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
         Dirty(ent);
     }
 
-    public void SetPrototype(Entity<RetractableItemActionComponent> ent, EntProtoId prototype)
+    #region Starlight
+    /// <summary>
+    /// Replaces the action's retractable item, preserving whether it was held.
+    /// </summary>
+    public void SetPrototype(Entity<RetractableItemActionComponent?> ent, EntProtoId prototype)
     {
-        if (ent.Comp.SpawnedPrototype == prototype)
+        if (!Resolve(ent, ref ent.Comp, false) || ent.Comp.SpawnedPrototype == prototype)
             return;
         ent.Comp.SpawnedPrototype = prototype;
         var holder = _actions.GetAction(ent.Owner)?.Comp.AttachedEntity;
@@ -182,14 +188,22 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
         Dirty(ent);
     }
 
-    public void Retract(Entity<RetractableItemActionComponent> ent, EntityUid holder)
+    /// <summary>
+    /// Retracts the action's item if it is currently held by the given entity.
+    /// </summary>
+    public void Retract(Entity<RetractableItemActionComponent?> ent, EntityUid holder)
     {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
         if (ent.Comp.ActionItemUid is { } item && _hands.IsHolding(holder, item))
             RetractRetractableItem(holder, item, ent.Owner);
     }
+    #endregion Starlight
 
-    private bool RetractRetractableItem(EntityUid holder, EntityUid item, Entity<RetractableItemActionComponent?> action)
+    private bool RetractRetractableItem(EntityUid holder, EntityUid item, Entity<RetractableItemActionComponent?> action) // Starlight
     {
+        // Starlight-start
         if (!Resolve(action, ref action.Comp, false))
             return false;
 
@@ -204,16 +218,19 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
         }
         _audio.PlayPredicted(action.Comp.RetractSounds, holder, holder);
         return true;
+        // Starlight-end
     }
 
-    private bool SummonRetractableItem(EntityUid holder, EntityUid item, string hand, Entity<RetractableItemActionComponent?> action)
+    private bool SummonRetractableItem(EntityUid holder, EntityUid item, string hand, Entity<RetractableItemActionComponent?> action) // Starlight
     {
+        // Starlight-start
         if (!Resolve(action, ref action.Comp, false) || !_hands.TryForcePickupAnyHand(holder, item))
             return false;
 
         _audio.PlayPredicted(action.Comp.SummonSounds, holder, holder);
         EnsureComp<UnremoveableComponent>(item);
         return true;
+        // Starlight-end
     }
 
     #region Starlight

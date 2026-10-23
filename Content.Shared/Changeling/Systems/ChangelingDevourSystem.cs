@@ -11,7 +11,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
-using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Components; // Starlight
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
@@ -36,7 +36,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private MobStateSystem _mobState = default!;
-    [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!; // Starlight
     [Dependency] private SharedChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
@@ -51,16 +51,24 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         SubscribeLocalEvent<ChangelingDevourComponent, ChangelingDevourActionEvent>(OnDevourAction);
         SubscribeLocalEvent<ChangelingDevourComponent, ChangelingDevourWindupDoAfterEvent>(OnDevourWindup);
         SubscribeLocalEvent<ChangelingDevourComponent, ChangelingDevourConsumeDoAfterEvent>(OnDevourConsume);
-        SubscribeLocalEvent<ChangelingDevourComponent, DoAfterAttemptEvent<ChangelingDevourConsumeDoAfterEvent>>(OnDevourConsumeAttempt);
+        SubscribeLocalEvent<ChangelingDevourComponent, DoAfterAttemptEvent<ChangelingDevourConsumeDoAfterEvent>>(OnDevourConsumeAttempt); // Starlight
         SubscribeLocalEvent<ChangelingDevourComponent, ComponentShutdown>(OnShutdown);
     }
 
-    public void SetEvolved(Entity<ChangelingDevourComponent> ent)
+    #region Starlight
+    /// <summary>
+    /// Reduces both devour stages to their evolved duration.
+    /// </summary>
+    public void SetEvolved(Entity<ChangelingDevourComponent?> ent)
     {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
         ent.Comp.DevourWindupTime = TimeSpan.FromSeconds(5);
         ent.Comp.DevourConsumeTime = TimeSpan.FromSeconds(5);
         Dirty(ent);
     }
+    #endregion
 
     private void OnMapInit(Entity<ChangelingDevourComponent> ent, ref MapInitEvent args)
     {
@@ -69,8 +77,10 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
     private void OnShutdown(Entity<ChangelingDevourComponent> ent, ref ComponentShutdown args)
     {
+        // Starlight-start
         FinishDevour(ent, ent.Comp.CurrentTarget, false);
         ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
+        // Starlight-end
         if (ent.Comp.ChangelingDevourActionEntity != null)
         {
             _actionsSystem.RemoveAction(ent.Owner, ent.Comp.ChangelingDevourActionEntity);
@@ -100,19 +110,27 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         return false;
     }
 
-    // The action was used.
-    // Start the first doafter for the windup.
-    public bool StartDevour(Entity<ChangelingDevourComponent> ent, EntityUid target)
+    #region Starlight
+    /// <summary>
+    /// Starts the ordinary devour sequence for an ability that reuses its two stages.
+    /// </summary>
+    public bool StartDevour(Entity<ChangelingDevourComponent?> ent, EntityUid target)
     {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
         var action = new ChangelingDevourActionEvent { Performer = ent.Owner, Target = target };
-        OnDevourAction(ent, ref action);
+        OnDevourAction((ent.Owner, ent.Comp), ref action);
         return ent.Comp.CurrentTarget == target;
     }
+    #endregion
 
+    // The action was used.
+    // Start the first doafter for the windup.
     private void OnDevourAction(Entity<ChangelingDevourComponent> ent, ref ChangelingDevourActionEvent args)
     {
         if (args.Handled
-            || ent.Comp.CurrentTarget != null
+            || ent.Comp.CurrentTarget != null // Starlight
             || _whitelistSystem.IsWhitelistFailOrNull(ent.Comp.Whitelist, args.Target)
             || !HasComp<ChangelingIdentityComponent>(ent))
             return;
@@ -120,7 +138,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         args.Handled = true;
         var target = args.Target;
 
-        if (target == ent.Owner || !HasComp<MobStateComponent>(target))
+        if (target == ent.Owner || !HasComp<MobStateComponent>(target)) // Starlight: living targets are also valid.
             return;
 
         if (HasComp<RottingComponent>(target))
@@ -135,6 +153,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             return;
         }
 
+        // Starlight-start
         var attempt = new ChangelingDevourAttemptEvent(target);
         RaiseLocalEvent(ent, ref attempt);
         if (attempt.Cancelled)
@@ -144,6 +163,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         Dirty(ent);
         var started = new ChangelingDevourStartedEvent(target);
         RaiseLocalEvent(ent, ref started);
+        // Starlight-end
 
         if (_net.IsServer)
         {
@@ -155,6 +175,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ent:player} started changeling devour windup against {target:player}");
 
+        // Starlight-start
         if (!_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.DevourWindupTime, new ChangelingDevourWindupDoAfterEvent(), ent, target: target, used: ent)
         {
             BreakOnMove = true,
@@ -166,6 +187,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             FinishDevour(ent, target, false);
             return;
         }
+        // Starlight-end
 
         var selfMessage = Loc.GetString("changeling-devour-begin-windup-self", ("user", Identity.Entity(ent.Owner, EntityManager)));
         var othersMessage = Loc.GetString("changeling-devour-begin-windup-others", ("user", Identity.Entity(ent.Owner, EntityManager)));
@@ -184,6 +206,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         args.Handled = true;
         ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
 
+        // Starlight-start
         if (args.Cancelled)
         {
             FinishDevour(ent, args.Target, false);
@@ -191,7 +214,11 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         }
 
         if (args.Target is not { } target)
+        {
+            FinishDevour(ent, null, false);
             return;
+        }
+        // Starlight-end
 
         _damageable.ChangeDamage(target, ent.Comp.WindupDamage, true, true, ent.Owner);
 
@@ -214,6 +241,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} began to devour {ToPrettyString(target):player}'s identity");
 
+        // Starlight-start
         ent.Comp.DevourDamageProgress = 0f;
         if (!_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager,
             ent,
@@ -229,8 +257,10 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             DuplicateCondition = DuplicateConditions.None,
         }))
             FinishDevour(ent, target, false);
+        // Starlight-end
     }
 
+    #region Starlight
     private void OnDevourConsumeAttempt(Entity<ChangelingDevourComponent> ent,
         ref DoAfterAttemptEvent<ChangelingDevourConsumeDoAfterEvent> args)
     {
@@ -257,6 +287,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         ent.Comp.DevourDamageProgress = progress;
         _damageable.ChangeDamage(target, damage, true, true, ent.Owner);
     }
+    #endregion
 
     // Second doafter finished.
     // Finish the damage, kill a living victim and save its identity.
@@ -265,6 +296,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         args.Handled = true;
         ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
 
+        // Starlight-start
         if (args.Cancelled)
         {
             FinishDevour(ent, args.Target, false);
@@ -272,7 +304,10 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         }
 
         if (args.Target is not { } target)
+        {
+            FinishDevour(ent, null, false);
             return;
+        }
 
         ApplyDevourDamage(ent, target, 1f);
 
@@ -295,6 +330,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
         if (FinishDevour(ent, target, true))
             return;
+        // Starlight-end
 
         var selfMessage = Loc.GetString("changeling-devour-consume-complete-self", ("user", Identity.Entity(args.User, EntityManager)));
         var othersMessage = Loc.GetString("changeling-devour-consume-complete-others", ("user", Identity.Entity(args.User, EntityManager)));
@@ -325,11 +361,14 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         Dirty(ent);
     }
 
+    #region Starlight
     private bool FinishDevour(EntityUid user, EntityUid? target, bool completed)
     {
+        TryComp<ChangelingDevourComponent>(user, out var devour);
+        target ??= devour?.CurrentTarget;
         if (target is not { } victim)
             return false;
-        if (TryComp<ChangelingDevourComponent>(user, out var devour) && devour.CurrentTarget == victim)
+        if (devour != null && devour.CurrentTarget == victim)
         {
             devour.CurrentTarget = null;
             Dirty(user, devour);
@@ -338,6 +377,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         RaiseLocalEvent(user, ref finished);
         return finished.Handled;
     }
+    #endregion
 
     // TODO: This should just be an API method in the butcher system
     private void RipClothing(EntityUid victim, Entity<ToolRefinableComponent> item) // Starlight

@@ -21,6 +21,7 @@ public sealed partial class ChangelingDevourWindupDoAfterEvent : SimpleDoAfterEv
 [Serializable, NetSerializable]
 public sealed partial class ChangelingDevourConsumeDoAfterEvent : SimpleDoAfterEvent;
 
+#region Starlight
 [ByRefEvent]
 public record struct ChangelingDevourAttemptEvent(EntityUid Target, bool Cancelled = false);
 
@@ -29,3 +30,4 @@ public readonly record struct ChangelingDevourStartedEvent(EntityUid Target);
 
 [ByRefEvent]
 public record struct ChangelingDevourFinishedEvent(EntityUid Target, bool Completed, bool Handled = false);
+#endregion Starlight

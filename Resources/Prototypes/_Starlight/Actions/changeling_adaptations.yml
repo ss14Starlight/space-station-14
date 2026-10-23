@@ -22,7 +22,7 @@
 - type: entity
   id: ActionChangelingRegeneration
   name: Adaptive regeneration
-  description: Heal all damage, stop bleeding and rapidly replenish blood. Evolution also regrows one missing part or organ every 10 seconds for an extra 10 chemicals, replacing prostheses. Upkeep is 5 chemicals/second, or 3 after Evolution, even at full health.
+  description: Heal 4 damage of every type per second, stop bleeding and rapidly replenish blood. Evolution heals 8 damage of every type per second and regrows one missing part or organ every 10 seconds for an extra 10 chemicals, replacing prostheses. Upkeep is 5 chemicals/second, or 3 after Evolution, even at full health.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
