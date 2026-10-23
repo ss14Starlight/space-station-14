@@ -9,6 +9,7 @@ using Content.Shared.CCVar;
 using Content.Shared.GameTicking.Rules;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 
 namespace Content.IntegrationTests.Tests._Starlight.GameRules;
 
@@ -162,6 +163,7 @@ public sealed class GameRuleCooldownTest : GameTest
             Assert.That(cooldowns.TryGetPresetCooldown(new ProtoId<GamePresetPrototype>(OtherPreset), out _), Is.True);
 
             configuration.SetCVar(CCVars.SecretWeightPrototype, "TestSharedCooldownSecondWeights");
+            Server.ResolveDependency<IRobustRandom>().SetSeed(1);
             var secret = ticker.AddGameRule(SecretRule);
             Assert.That(Server.EntMan.GetComponent<SecretRuleComponent>(secret).AdditionalGameRules, Is.Empty,
                 "Secret must select the fallback instead of a different preset containing the cooled-down rule.");

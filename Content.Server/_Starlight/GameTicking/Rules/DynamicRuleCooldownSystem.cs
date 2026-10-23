@@ -50,6 +50,7 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
         SubscribeLocalEvent<DynamicRuleCooldownRoundStartedEvent>(OnRoundStarted);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
         SubscribeLocalEvent<GameRuleComponent, GameRuleAddedEvent>(OnRuleAdded);
+        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
     }
 
     private void OnRoundInitializing(DynamicRuleCooldownRoundInitializingEvent ev) => BeginRound(ev.Preset);
@@ -57,6 +58,12 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
     private void OnRoundStarted(DynamicRuleCooldownRoundStartedEvent ev) => ApplyPresetCooldown(ev.Preset);
 
     private void OnRuleAdded(EntityUid uid, GameRuleComponent component, ref GameRuleAddedEvent args) => ApplyRuleCooldown(args.RuleId);
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        if (args.WasModified<EntityPrototype>())
+            _cooldownDefinitions = null;
+    }
 
     /// <summary>
     /// Initializes the cooldown snapshot for the current round.
