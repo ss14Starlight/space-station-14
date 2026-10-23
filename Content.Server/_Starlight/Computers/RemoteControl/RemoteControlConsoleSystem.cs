@@ -1026,8 +1026,10 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             || interfaceData.InteractionRange != 0f)
             return;
 
-        var restoredData = new InterfaceData(interfaceData);
-        restoredData.InteractionRange = rangeOverride.OriginalData.InteractionRange;
+        var restoredData = new InterfaceData(interfaceData)
+        {
+            InteractionRange = rangeOverride.OriginalData.InteractionRange
+        };
         _ui.SetUi((uiEntity, null), uiKey, restoredData);
     }
 
