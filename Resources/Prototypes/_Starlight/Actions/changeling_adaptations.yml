@@ -7,7 +7,7 @@
   - type: Action
     useDelay: 5
     itemIconStyle: NoItem
-    icon: { sprite: Objects/Tools/emag.rsi, state: icon }
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: organic-emag }
   - type: TargetAction
     range: 7
     interactOnMiss: false
@@ -52,7 +52,7 @@
     checkCanInteract: false
     checkConsciousness: false
     itemIconStyle: NoItem
-    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: anatomic_panacea }
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: pain-suppression }
   - type: InstantAction
     event: !type:ToggleChangelingPainSuppressionEvent {}
   - type: ChangelingAction
@@ -68,7 +68,7 @@
     useDelay: 1
     checkCanInteract: false
     itemIconStyle: NoItem
-    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: shriek_dissonant }
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: shock-hand }
   - type: InstantAction
     event: !type:ToggleChangelingShockHandEvent {}
   - type: ChangelingAction

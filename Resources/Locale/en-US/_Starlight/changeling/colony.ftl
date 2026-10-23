@@ -14,8 +14,6 @@ changeling-colony-parts = Tear off a part (15 chemicals; 3–8 biomass):
 changeling-colony-carriers = Bodies of the hive:
 changeling-colony-detach = Tear off: {$part}
 changeling-colony-switch = Control: {$part}
-changeling-colony-animation-on = Animate shed blood and severed parts: ON
-changeling-colony-animation-off = Animate shed blood and severed parts: OFF
 
 changeling-hive-leave = Return to mindspace
 changeling-hive-observe = Observe

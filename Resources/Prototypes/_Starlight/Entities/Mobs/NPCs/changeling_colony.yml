@@ -1,4 +1,4 @@
-# Applied to the real detached part with AddComponents, preserving its sprite and anatomy.
+# Applied to the real detached part with AddComponents, preserving its anatomy.
 - type: entity
   abstract: true
   id: ChangelingFragmentBase
@@ -120,9 +120,9 @@
   - type: ChangelingColonyMember
     isBlood: true
   - type: Sprite
-    sprite: _Starlight/Effects/blood.rsi
-    state: splatter1
-    scale: 0.4, 0.4
+    sprite: _Starlight/Mobs/Changeling/fragments/blood.rsi
+    state: alive
+    scale: 0.27, 0.27
   - type: MobThresholds
     thresholds:
       0: Alive

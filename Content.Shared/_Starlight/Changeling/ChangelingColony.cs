@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -11,6 +12,7 @@ public sealed partial class ChangelingColonyMemberComponent : Component
     public EntityUid Mind;
     [DataField, AutoNetworkedField] public bool IsFragment;
     [DataField, AutoNetworkedField] public bool IsBlood;
+    [DataField, AutoNetworkedField] public BodyPartType FragmentType;
     // Deliberately unassigned until the abilities for each body part are chosen.
     [DataField] public EntProtoId? EvolvedAction;
     public EntityUid? EvolvedActionEntity;
@@ -46,6 +48,7 @@ public sealed partial class EvolveChangelingEvent : EntityEventArgs;
 public sealed partial class OpenChangelingColonyEvent : InstantActionEvent;
 public sealed partial class RuptureChangelingEvent : InstantActionEvent;
 public sealed partial class ArmChangelingNeurotoxinEvent : InstantActionEvent;
+public sealed partial class ToggleChangelingLivingBloodEvent : InstantActionEvent;
 
 [Serializable, NetSerializable]
 public enum ChangelingColonyUiKey : byte { Key }
@@ -110,10 +113,4 @@ public sealed class ChangelingDetachMessage(NetEntity part) : BoundUserInterface
 public sealed class ChangelingSwitchMessage(NetEntity carrier) : BoundUserInterfaceMessage
 {
     public readonly NetEntity Carrier = carrier;
-}
-
-[Serializable, NetSerializable]
-public sealed class ChangelingAnimateBloodMessage(bool enabled) : BoundUserInterfaceMessage
-{
-    public readonly bool Enabled = enabled;
 }

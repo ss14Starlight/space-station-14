@@ -46,6 +46,7 @@ public sealed partial class ChangelingSystem
     private const int CarrierLimit = 8;
     private const int BloodLimit = 10;
     private const string ColonyFaction = "AllHostile";
+    private const string LivingBloodAction = "ActionChangelingLivingBlood";
     private static readonly EntProtoId NeurotoxinAction = "ActionChangelingNeurotoxin";
     private readonly List<(EntityUid Mind, EntityUid Part)> _detachedParts = new();
 
@@ -58,7 +59,7 @@ public sealed partial class ChangelingSystem
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingDetachMessage>(OnDetachMessage);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingRuptureMessage>(OnRuptureConfirmed);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingSwitchMessage>(OnSwitchMessage);
-        SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingAnimateBloodMessage>(OnAnimateMessage);
+        SubscribeLocalEvent<ChangelingColonyMemberComponent, ToggleChangelingLivingBloodEvent>(OnToggleLivingBlood);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingObserveMessage>(OnObserveHive);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingRecallMessage>(OnRecallHiveMind);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ChangelingLeaveBodyMessage>(OnLeaveHiveBody);
@@ -85,20 +86,24 @@ public sealed partial class ChangelingSystem
         if (colony.Learned)
             return;
         colony.Learned = true;
+        colony.Evolved = comp.Evolved;
         colony.Active = uid;
         AddColonyMember(uid, mind, colony);
         EnsureHiveAction(mind, "ActionChangelingColony");
         _actionContainers.AddAction(mind, "ActionChangelingRupture");
+        EnsureLivingBloodAction(mind, colony);
     }
 
     private void OnEvolveColony(EntityUid uid, ChangelingComponent comp, EvolveChangelingEvent args)
     {
+        EnsureHive(uid);
         if (!_mind.TryGetMind(uid, out var mind, out _))
             return;
         // The flag belongs to the mind and can also be used by other changeling abilities.
         var colony = EnsureComp<ChangelingColonyComponent>(mind);
         colony.Evolved = true;
         comp.Evolved = true;
+        EnsureLivingBloodAction(mind, colony);
         Dirty(colony.Core, Comp<ChangelingComponent>(colony.Core));
         foreach (var body in colony.Members.ToArray())
         {
@@ -166,13 +171,20 @@ public sealed partial class ChangelingSystem
                 Comp<ChangelingColonyMemberComponent>(uid).ConfirmRupture, Comp<ChangelingColonyMemberComponent>(uid).RuptureRequest));
     }
 
-    private void OnAnimateMessage(EntityUid uid, ChangelingColonyMemberComponent member, ChangelingAnimateBloodMessage args)
+    private void EnsureLivingBloodAction(EntityUid mind, ChangelingColonyComponent colony)
     {
-        if (args.Actor != uid || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony)
+        if (colony.Learned && colony.Evolved)
+            EnsureHiveAction(mind, LivingBloodAction);
+    }
+
+    private void OnToggleLivingBlood(EntityUid uid, ChangelingColonyMemberComponent member, ref ToggleChangelingLivingBloodEvent args)
+    {
+        if (args.Handled || args.Performer != uid || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony)
             || !colony.Learned || !colony.Evolved || !IsHiveMaster(uid, member))
             return;
-        colony.AnimateBlood = args.Enabled;
-        UpdateColonyUi(uid, colony);
+        args.Handled = true;
+        colony.AnimateBlood = !colony.AnimateBlood;
+        _actions.SetToggled(args.Action.AsNullable(), colony.AnimateBlood);
     }
 
     private void OnSwitchMessage(EntityUid uid, ChangelingColonyMemberComponent member, ChangelingSwitchMessage args)
@@ -312,10 +324,11 @@ public sealed partial class ChangelingSystem
             BodyPartType.Torso => "ChangelingFragmentTorso",
             _ => "ChangelingFragmentLimb",
         };
-        // Keep the actual part, its sprite, organs and child parts. Add only missing mob components.
+        // Keep the actual part, its organs and child parts. The client replaces only its visual layers.
         EntityManager.AddComponents(uid, _proto.Index(prototype), removeExisting: false);
         var member = Comp<ChangelingColonyMemberComponent>(uid);
         member.IsFragment = true;
+        member.FragmentType = part.PartType;
         EnsureFragmentHands(uid, part);
         _colonyPhysics.SetBodyType(uid, BodyType.KinematicController);
         if (TryComp<FixturesComponent>(uid, out var fixtures))
@@ -348,14 +361,14 @@ public sealed partial class ChangelingSystem
     private void OnColonyPartRemoved(EntityUid uid, ChangelingColonyMemberComponent member, ref BodyPartRemovedEvent args)
     {
         if (!member.IsBlood && TryComp<ChangelingColonyComponent>(member.Mind, out var colony)
-            && colony.AnimateBlood && !colony.SuppressAnimation && !colony.Moving)
+            && colony.Learned && colony.Evolved && colony.AnimateBlood && !colony.SuppressAnimation && !colony.Moving)
             _detachedParts.Add((member.Mind, args.Part.Owner));
     }
 
     private void OnColonyBleed(EntityUid uid, ChangelingColonyMemberComponent member, ref BleedModifierEvent args)
     {
         if (member.IsBlood || args.BleedAmount <= 0 || _timing.CurTime < member.NextBlood
-            || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || !colony.AnimateBlood
+            || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony) || !colony.Learned || !colony.Evolved || !colony.AnimateBlood
             || colony.SuppressAnimation || !TryComp<BloodstreamComponent>(uid, out var blood)
             || blood.BloodSolution is not { } solution || solution.Comp.Solution.Volume <= 0
             || colony.Members.Count(e => !TerminatingOrDeleted(e) && HasComp<ChangelingColonyMemberComponent>(e)
@@ -435,7 +448,7 @@ public sealed partial class ChangelingSystem
     {
         foreach (var (mind, part) in _detachedParts.ToArray())
         {
-            if (TryComp<ChangelingColonyComponent>(mind, out var colony))
+            if (TryComp<ChangelingColonyComponent>(mind, out var colony) && colony.Learned && colony.Evolved && colony.AnimateBlood)
                 AnimatePart(part, mind, colony);
         }
         _detachedParts.Clear();
@@ -490,6 +503,8 @@ public sealed partial class ChangelingSystem
         if (!TryGetColony(user, out var member, out var colony))
             return true;
         var prototype = MetaData(action).EntityPrototype?.ID;
+        if (prototype == LivingBloodAction)
+            return colony.Learned && colony.Evolved && IsHiveMaster(user, member);
         if (HasComp<ChangelingMindspaceComponent>(user))
             return prototype == "ActionChangelingColony";
         if (prototype == "ActionEvolutionMenu" && !IsHiveMaster(user, member))
@@ -498,7 +513,24 @@ public sealed partial class ChangelingSystem
             return true;
         return prototype is "ActionChangelingColony" or "ActionChangelingPossess" or "ActionChangelingNeurotoxin" or "VentCrawlExitAction"
             or "ActionCombatModeToggle" or "ActionCombatModeToggleOff" or "ActionWake"
-            || colony.Evolved && member.EvolvedAction is { } evolved && prototype == evolved.Id;
+            || HasLearnedFragmentAbility(member, colony) && prototype == member.EvolvedAction?.Id;
+    }
+
+    private bool HasLearnedFragmentAbility(ChangelingColonyMemberComponent member, ChangelingColonyComponent colony)
+    {
+        if (!colony.Learned || !colony.Evolved || !member.IsFragment || member.IsBlood)
+            return false;
+        var learned = member.EvolvedAction?.Id switch
+        {
+            "ActionChangelingFragmentArmblade" => "ActionRetractableItemArmBlade",
+            "ActionChangelingFragmentShriek" => "ActionShriekDissonant",
+            "ActionChangelingFragmentChameleon" => "ActionChameleonSkin",
+            _ => null,
+        };
+        // Purchased actions stay in the master's mind while their attached body and enabled state change.
+        return learned != null && TryComp<ActionsContainerComponent>(member.Mind, out var actions)
+            && actions.Container.ContainedEntities.Any(action => !TerminatingOrDeleted(action)
+                && !EntityManager.IsQueuedForDeletion(action) && MetaData(action).EntityPrototype?.ID == learned);
     }
 
     private void OnColonyActionAttempt(Entity<ActionComponent> ent, ref ActionAttemptEvent args)
@@ -513,7 +545,25 @@ public sealed partial class ChangelingSystem
             return;
         if (member.IsFragment && !member.IsBlood && TryComp<BodyPartComponent>(uid, out var part))
             EnsureFragmentHands(uid, part);
-        if (member.IsFragment && colony.Evolved && member.EvolvedAction is { } evolved && member.EvolvedActionEntity == null)
+        var learned = HasLearnedFragmentAbility(member, colony);
+        if (member.EvolvedActionEntity is { } previous
+            && (!learned || TerminatingOrDeleted(previous) || EntityManager.IsQueuedForDeletion(previous)
+                || MetaData(previous).EntityPrototype?.ID != member.EvolvedAction?.Id))
+        {
+            if (!TerminatingOrDeleted(previous))
+            {
+                if (TryComp<RetractableItemActionComponent>(previous, out var retractable))
+                    _retractable.Retract((previous, retractable), uid);
+                if (MetaData(previous).EntityPrototype?.ID == "ActionChangelingFragmentChameleon"
+                    && TryComp<ChangelingComponent>(uid, out var ling) && ling.StealthEnabled)
+                    ToggleChameleonSkin(uid, ling, false);
+                _actions.RemoveAction(previous);
+                QueueDel(previous);
+            }
+            colony.DisabledActions.Remove(previous);
+            member.EvolvedActionEntity = null;
+        }
+        if (learned && member.EvolvedAction is { } evolved && member.EvolvedActionEntity == null)
             _actions.AddAction(uid, ref member.EvolvedActionEntity, evolved);
         foreach (var action in _actions.GetActions(uid).ToArray())
         {

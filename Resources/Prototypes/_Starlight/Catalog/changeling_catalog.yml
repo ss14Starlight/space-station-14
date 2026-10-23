@@ -62,7 +62,7 @@
   id: EvolutionMenuChemicalSting
   name: evolutionmenu-sting-chemical-name
   description: evolutionmenu-sting-chemical-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_lethargic }
+  icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: chemical-synthesis }
   productEvent: !type:LearnChemicalStingEvent {}
   raiseProductEventOnUser: true
   disableRefund: true
@@ -92,7 +92,7 @@
   id: EvolutionMenuStingInfect
   name: evolutionmenu-sting-infect-name
   description: evolutionmenu-sting-infect-desc
-  icon: { sprite: Interface/Actions/changeling.rsi, state: devour }
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_transform }
   productAction: ActionStingInfect
   cost:
     EvolutionPoint: 0
@@ -108,7 +108,7 @@
   id: EvolutionMenuUtilityBreathing
   name: evolutionmenu-utility-breathing-name
   description: evolutionmenu-utility-breathing-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: space_adaptation }
+  icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: breathing }
   productAction: ActionToggleChangelingBreathing
   cost:
     EvolutionPoint: 0
@@ -193,6 +193,7 @@
   id: EvolutionMenuUtilityFakeMindshield
   name: evolutionmenu-utility-fakemindshield-name
   description: evolutionmenu-utility-fakemindshield-desc
+  icon: { sprite: Interface/Actions/actions_fakemindshield.rsi, state: icon }
   productAction: FakeMindShieldToggleAction
   cost:
     EvolutionPoint: 4

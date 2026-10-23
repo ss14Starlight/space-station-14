@@ -233,9 +233,7 @@
   components:
   - type: Action
     itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: sting_cryo
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: chemical-synthesis }
     checkCanInteract: false
     checkConsciousness: false
   - type: InstantAction
@@ -253,9 +251,7 @@
   - type: Action
     itemIconStyle: NoItem
     useDelay: 1
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: sting_lethargic
+    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: epinephrine_overdose }
   - type: TargetAction
     interactOnMiss: false
   - type: EntityTargetAction
@@ -296,6 +292,10 @@
   name: Infection Sting
   description: Transform an organic victim into a changeling through the devour process. Costs 2 evolution points only on success. The victim enters regenerative stasis and starts with half the normal evolution points.
   components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_transform }
+    iconOn: null
   - type: EntityTargetAction
     canTargetSelf: false
     event: !type:StingInfectEvent {}
@@ -331,9 +331,7 @@
   - type: Action
     itemIconStyle: NoItem
     useDelay: 1
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: space_adaptation
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: breathing }
     checkCanInteract: false
     checkConsciousness: false
   - type: InstantAction

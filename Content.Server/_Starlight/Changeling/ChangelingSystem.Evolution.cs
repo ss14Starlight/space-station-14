@@ -7,6 +7,7 @@ using Content.Shared.Changeling.Components;
 using Content.Shared.Mind;
 using Content.Shared.RetractableItemAction;
 using Content.Shared.Stealth.Components;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Changeling;
 
@@ -17,6 +18,7 @@ public sealed partial class ChangelingSystem
     private void InitializeEvolution()
     {
         SubscribeLocalEvent<MindComponent, ActionAddedEvent>(OnEvolutionMindActionAdded);
+        SubscribeLocalEvent<MindComponent, ActionRemovedEvent>(OnEvolutionMindActionRemoved);
         SubscribeLocalEvent<ChangelingComponent, ActionAddedEvent>(OnEvolutionBodyActionAdded);
     }
 
@@ -27,6 +29,21 @@ public sealed partial class ChangelingSystem
     {
         if (mind.OwnedEntity is { } body && TryComp<ChangelingComponent>(body, out var ling))
             ApplyActionEvolution(ling, args.Action);
+        RefreshHiveFragmentActions(uid);
+    }
+
+    private void OnEvolutionMindActionRemoved(EntityUid uid, MindComponent mind, ref ActionRemovedEvent args)
+        => RefreshHiveFragmentActions(uid);
+
+    private void RefreshHiveFragmentActions(EntityUid mind)
+    {
+        if (!TryComp<ChangelingColonyComponent>(mind, out var colony))
+            return;
+        foreach (var body in colony.Members.ToArray())
+        {
+            if (!TerminatingOrDeleted(body))
+                RefreshFragmentActions(body, colony);
+        }
     }
 
     private void OnEvolutionBodyActionAdded(EntityUid uid, ChangelingComponent ling, ref ActionAddedEvent args)
@@ -36,6 +53,16 @@ public sealed partial class ChangelingSystem
     {
         if (!ling.Evolved)
             return;
+        var iconState = MetaData(action).EntityPrototype?.ID switch
+        {
+            "ActionRetractableItemArmBlade" or "ActionChangelingFragmentArmblade" => "armblade-plus",
+            "ActionShriekDissonant" or "ActionChangelingFragmentShriek" => "shriek_resonant",
+            "ActionToggleSpacesuit" => "chitinous_armor",
+            _ => null,
+        };
+        if (iconState != null)
+            _actions.SetIcon(action, new SpriteSpecifier.Rsi(
+                new ResPath("/Textures/_Starlight/Interface/Actions/actions_changeling.rsi"), iconState));
         if (MetaData(action).EntityPrototype?.ID == "ActionChemicalSting")
             _actions.SetCanTargetSelf(action, true);
         if (!TryComp<RetractableItemActionComponent>(action, out var retractable))

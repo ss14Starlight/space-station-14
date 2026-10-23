@@ -15,7 +15,7 @@ public sealed partial class ChangelingRegenerationActionComponent : Component
     [DataField] public float RegrowthChemicalCost = 10;
 }
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class ChangelingShockHandComponent : Component
 {
     [DataField] public float ChemicalCost = 10;

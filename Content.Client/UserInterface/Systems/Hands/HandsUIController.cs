@@ -389,7 +389,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
         {
             foreach (var hand in container.GetButtons())
             {
-
+                UpdateChangelingHandIcon(hand);
                 if (!_entities.TryGetComponent(hand.Entity, out UseDelayComponent? useDelay))
                 {
                     hand.CooldownDisplay.Visible = false;

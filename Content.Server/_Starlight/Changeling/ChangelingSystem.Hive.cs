@@ -165,18 +165,22 @@ public sealed partial class ChangelingSystem
             return;
         if (current.Comp.AttachedEntity != body || !_actions.GetActions(body).Any(a => a.Owner == actionUid))
             _actions.GrantContainedAction(body, mind, actionUid);
-        if (prototype == "ActionChangelingColony")
+        if (prototype is "ActionChangelingColony" or LivingBloodAction)
             _actions.SetEnabled(current.AsNullable(), true);
+        if (prototype == LivingBloodAction && TryComp<ChangelingColonyComponent>(mind, out var colony))
+            _actions.SetToggled(current.AsNullable(), colony.AnimateBlood);
     }
 
     private void SyncHiveActions(EntityUid master, EntityUid mind)
     {
         EnsureHiveAction(mind, "ActionChangelingColony");
+        if (mind == master && TryComp<ChangelingColonyComponent>(master, out var colony))
+            EnsureLivingBloodAction(master, colony);
         if (mind == master || !TryComp<ActionsContainerComponent>(master, out var actions))
             return;
         foreach (var action in actions.Container.ContainedEntities.ToArray())
         {
-            if (!TerminatingOrDeleted(action) && MetaData(action).EntityPrototype is { } prototype)
+            if (!TerminatingOrDeleted(action) && MetaData(action).EntityPrototype is { } prototype && prototype.ID != LivingBloodAction)
                 EnsureHiveAction(mind, prototype.ID);
         }
     }
@@ -190,7 +194,7 @@ public sealed partial class ChangelingSystem
     private void OnHivePurchase(ref StorePurchaseAttemptEvent args)
     {
         if (HasComp<ChangelingMindspaceComponent>(args.Buyer)
-            || TryGetColony(args.Buyer, out var member, out _) && !IsHiveMaster(args.Buyer, member))
+            || TryGetColony(args.Buyer, out var member, out _) && (member.IsFragment || !IsHiveMaster(args.Buyer, member)))
             args.Cancel = true;
     }
 

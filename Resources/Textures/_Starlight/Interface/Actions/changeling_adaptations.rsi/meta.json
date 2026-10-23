@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Generated with built-in OpenAI image_gen in the style of the existing Paradise Station changeling action icons.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "chemical-synthesis"
+    },
+    {
+      "name": "shock-hand"
+    },
+    {
+      "name": "collective"
+    },
+    {
+      "name": "pain-suppression"
+    },
+    {
+      "name": "rupture"
+    },
+    {
+      "name": "organic-emag"
+    },
+    {
+      "name": "possession"
+    },
+    {
+      "name": "evolution-upgrade"
+    },
+    {
+      "name": "breathing"
+    },
+    {
+      "name": "neuro-bite"
+    }
+  ]
+}

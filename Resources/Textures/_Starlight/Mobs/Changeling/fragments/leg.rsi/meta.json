@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Generated with built-in OpenAI image_gen from approved concepts. Mechanically packed from 2x2 directional source grids; live West mirrors East. Five previously approved body RSI and all action icons retained byte for byte.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "alive",
+      "directions": 4,
+      "delays": [
+        [
+          0.18,
+          0.18,
+          0.18,
+          0.18
+        ],
+        [
+          0.18,
+          0.18,
+          0.18,
+          0.18
+        ],
+        [
+          0.18,
+          0.18,
+          0.18,
+          0.18
+        ],
+        [
+          0.18,
+          0.18,
+          0.18,
+          0.18
+        ]
+      ]
+    },
+    {
+      "name": "dead",
+      "directions": 4
+    }
+  ]
+}

@@ -22,6 +22,7 @@ public sealed partial class PointingSystem : SharedPointingSystem
         SubscribeLocalEvent<PointingArrowComponent, ComponentHandleState>(HandleCompState);
 
         InitializeVisualizer();
+        InitializeChangelingPointing();
     }
 
     private void AddPointingVerb(GetVerbsEvent<Verb> args)

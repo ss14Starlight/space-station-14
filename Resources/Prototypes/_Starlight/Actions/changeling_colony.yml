@@ -8,9 +8,23 @@
     checkCanInteract: false
     checkConsciousness: false
     itemIconStyle: NoItem
-    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: evolution_menu }
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: collective }
   - type: InstantAction
     event: !type:OpenChangelingColonyEvent {}
+
+- type: entity
+  id: ActionChangelingLivingBlood
+  name: Living blood
+  description: Toggle the animation of shed blood and accidentally severed parts for your hive. Free. Existing creatures remain alive when disabled.
+  categories: [HideSpawnMenu]
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/actions_vampire.rsi, state: blood_pool }
+  - type: InstantAction
+    event: !type:ToggleChangelingLivingBloodEvent {}
 
 - type: entity
   id: ActionChangelingRupture
@@ -22,7 +36,7 @@
     checkCanInteract: false
     checkConsciousness: false
     itemIconStyle: NoItem
-    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: biodegrade }
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: rupture }
   - type: InstantAction
     event: !type:RuptureChangelingEvent {}
   - type: EorgPreventAction
@@ -32,6 +46,11 @@
   id: ActionChangelingPossess
   name: Possess body
   description: Take over an organic body in two ten-second stages, or five seconds each after Evolution. Movement interrupts the process.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: possession }
+    iconOn: null
 
 - type: entity
   id: ActionChangelingNeurotoxin
@@ -41,7 +60,7 @@
   components:
   - type: Action
     itemIconStyle: NoItem
-    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_lethargic }
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: neuro-bite }
   - type: InstantAction
     event: !type:ArmChangelingNeurotoxinEvent {}
   - type: EorgPreventAction

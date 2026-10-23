@@ -23,7 +23,6 @@ public sealed class ChangelingColonyBoundUserInterface(EntityUid owner, Enum uiK
         _window.OnClose += () => SendMessage(new CloseBoundInterfaceMessage());
         _window.OnDetach += part => SendMessage(new ChangelingDetachMessage(part));
         _window.OnSwitch += carrier => SendMessage(new ChangelingSwitchMessage(carrier));
-        _window.OnAnimate += enabled => SendMessage(new ChangelingAnimateBloodMessage(enabled));
         _window.OnObserve += carrier => SendMessage(new ChangelingObserveMessage(carrier));
         _window.OnRecall += carrier => SendMessage(new ChangelingRecallMessage(carrier));
         _window.OnLeave += () => SendMessage(new ChangelingLeaveBodyMessage());
@@ -42,7 +41,6 @@ public sealed class ChangelingColonyWindow : FancyWindow
 {
     public event Action<NetEntity>? OnDetach;
     public event Action<NetEntity>? OnSwitch;
-    public event Action<bool>? OnAnimate;
     public event Action<NetEntity>? OnObserve;
     public event Action<NetEntity>? OnRecall;
     public event Action? OnLeave;
@@ -51,10 +49,8 @@ public sealed class ChangelingColonyWindow : FancyWindow
     private readonly BoxContainer _parts = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 4 };
     private readonly BoxContainer _carriers = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 6 };
     private readonly TabContainer _tabs = new() { VerticalExpand = true, HorizontalExpand = true };
-    private readonly Button _animate = new() { ToggleMode = true, ClipText = true, MinHeight = 32 };
     private readonly Button _leave = new() { Text = Loc.GetString("changeling-hive-leave"), MinHeight = 32 };
     private FancyWindow? _confirmation;
-    private bool _animating;
     private uint _ruptureRequest;
     private List<ChangelingColonyEntry> _lastParts = new();
     private List<ChangelingColonyEntry> _lastCarriers = new();
@@ -67,7 +63,6 @@ public sealed class ChangelingColonyWindow : FancyWindow
         MinSize = new(350, 320);
         SetSize = Vector2.Max(MinSize, Vector2.Min(new(520, 540), UserInterfaceManager.WindowRoot.Size - new Vector2(24)));
         var content = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 8 };
-        content.AddChild(_animate);
         content.AddChild(_leave);
         content.AddChild(Text(Loc.GetString("changeling-hive-chat-hint")));
         _tabs.AddChild(new ScrollContainer { HScrollEnabled = false, Children = { _carriers } });
@@ -79,22 +74,16 @@ public sealed class ChangelingColonyWindow : FancyWindow
         _tabs.SetTabTitle(1, Loc.GetString("changeling-colony-parts-tab"));
         content.AddChild(_tabs);
         ContentsContainer.AddChild(content);
-        _animate.OnPressed += _ => OnAnimate?.Invoke(!_animating);
         _leave.OnPressed += _ => OnLeave?.Invoke();
         OnClose += CloseConfirmation;
     }
 
     public void UpdateState(ChangelingColonyUiState state)
     {
-        _animating = state.AnimateBlood;
-        _animate.Visible = state.Master && state.Learned && state.Evolved;
         _leave.Visible = !state.Mindspace;
         if (!state.CanDetach && _tabs.CurrentTab == 1)
             _tabs.CurrentTab = 0;
         _tabs.SetTabVisible(1, state.CanDetach);
-        _animate.Text = Loc.GetString(_animating ? "changeling-colony-animation-on" : "changeling-colony-animation-off");
-        _animate.ToolTip = _animate.Text;
-        _animate.Pressed = _animating;
         if (!_lastParts.SequenceEqual(state.Parts))
         {
             _lastParts = state.Parts;

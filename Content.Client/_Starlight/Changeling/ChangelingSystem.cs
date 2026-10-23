@@ -25,13 +25,20 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingColonyMemberComponent, ComponentStartup>(OnColonyStartup);
         SubscribeLocalEvent<ChangelingColonyMemberComponent, LocalPlayerAttachedEvent>(OnColonyPlayerAttached);
         InitializeMindspace();
+        InitializeColonyVisuals();
     }
 
     private void OnColonyState(Entity<ChangelingColonyMemberComponent> ent, ref AfterAutoHandleStateEvent args)
-        => ConfigureColonyControls(ent);
+    {
+        ConfigureColonyControls(ent);
+        UpdateSprite(ent);
+    }
 
     private void OnColonyStartup(Entity<ChangelingColonyMemberComponent> ent, ref ComponentStartup args)
-        => ConfigureColonyControls(ent);
+    {
+        ConfigureColonyControls(ent);
+        UpdateSprite(ent);
+    }
 
     private void OnColonyPlayerAttached(Entity<ChangelingColonyMemberComponent> ent, ref LocalPlayerAttachedEvent args)
         => ConfigureColonyControls(ent);

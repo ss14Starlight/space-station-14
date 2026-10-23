@@ -232,8 +232,6 @@ public sealed partial class ChangelingSystem : EntitySystem
             Log.Error($"Cannot award evolution points to {ToPrettyString(uid)}: store {ToPrettyString(owner)} rejected EvolutionPoint.");
             return;
         }
-        Log.Info($"Awarded {points} evolution points to {ToPrettyString(uid)} for {ToPrettyString(target)}; hive balance: {store.Balance["EvolutionPoint"]}.");
-
         var stores = EntityQueryEnumerator<StoreComponent>();
         while (stores.MoveNext(out var body, out var sharedStore))
         {

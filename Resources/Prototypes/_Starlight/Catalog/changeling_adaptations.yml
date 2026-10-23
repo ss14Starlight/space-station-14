@@ -2,7 +2,7 @@
   id: EvolutionMenuOrganicSequencer
   name: evolutionmenu-organic-sequencer-name
   description: evolutionmenu-organic-sequencer-desc
-  icon: { sprite: Objects/Tools/emag.rsi, state: icon }
+  icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: organic-emag }
   productAction: ActionChangelingEmag
   cost:
     EvolutionPoint: 4
@@ -28,7 +28,7 @@
   id: EvolutionMenuPainSuppression
   name: evolutionmenu-pain-suppression-name
   description: evolutionmenu-pain-suppression-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: anatomic_panacea }
+  icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: pain-suppression }
   productAction: ActionChangelingPainSuppression
   cost:
     EvolutionPoint: 5
@@ -41,7 +41,7 @@
   id: EvolutionMenuShockHand
   name: evolutionmenu-shock-hand-name
   description: evolutionmenu-shock-hand-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: shriek_dissonant }
+  icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: shock-hand }
   productAction: ActionChangelingShockHand
   cost:
     EvolutionPoint: 5
