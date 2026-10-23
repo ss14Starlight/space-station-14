@@ -1,3 +1,4 @@
+# Starlight Start
 # Senior times for Atmos Techs (hint hint maybe more in the future)
 - type: loadoutEffectGroup
   id: SeniorAtmos
@@ -7,6 +8,7 @@
       !type:RoleTimeRequirement
       role: JobAtmosphericTechnician
       time: 60h
+# Starlight End
 
 # Jumpsuit
 - type: loadout
@@ -58,6 +60,8 @@
   equipment:
     id: AtmosPDA
 
+# Starlight Start
+# Senior Atmos PDA
 - type: loadout
   id: SeniorAtmosPDA
   effects:
@@ -65,3 +69,4 @@
     proto: SeniorAtmos
   equipment:
     id: SeniorAtmosPDA
+# Starlight End

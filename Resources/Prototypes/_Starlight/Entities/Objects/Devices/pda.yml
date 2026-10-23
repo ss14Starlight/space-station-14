@@ -1091,6 +1091,7 @@
     accentHColor: "#447987"
     accentVColor: "#447987"
   - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-senioratmos
   - type: CartridgeLoader #SL
     uiKey: enum.PdaUiKey.Key
