@@ -7,3 +7,37 @@
     - type: Pinpointer
       component: ResearchServer
       targetName: The Station.
+
+- type: entity
+  parent: [ PinpointerBase, BaseSovietContraband ]
+  id: PinpointerUSSPTracker
+  name: glorious pinpointer
+  description: A handheld tracking device that leads to the direction of the nearest command staff. Be aware that it can't differentiate between dead or alive!
+  components:
+  - type: Pinpointer
+    component: CommandStaff
+    targetName: The closest command staff.
+  - type: Sprite
+    layers:
+    - state: pinpointer-way
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#606060"
+      - state: inhand-left-stripe
+        color: "#606060"
+      - state: inhand-left-top
+      right:
+      - state: inhand-right-base
+        color: "#606060"
+      - state: inhand-right-stripe
+        color: "#606060"
+      - state: inhand-right-top
+  - type: Icon
+    state: pinpointer-way
