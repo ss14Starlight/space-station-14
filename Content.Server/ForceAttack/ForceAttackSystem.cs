@@ -59,17 +59,17 @@ public sealed partial class ForceAttackSystem : EntitySystem
                 continue;
             }
 
-            // Starlight - start
-            if (!forceComp.NextAttack.HasValue || forceComp.NextAttack.Value > curTime)
-                continue;
-            // Starlight - end
-
             if (!forceComp.InRange) // Just entered range
             {
                 forceComp.InRange = true;
                 forceComp.NextAttack = curTime + forceComp.PassiveTime;
                 continue;
             }
+
+            // Starlight - start
+            if (!forceComp.NextAttack.HasValue || forceComp.NextAttack.Value > curTime)
+                continue;
+            // Starlight - end
 
             // Force mob to enter combat mode (necessary for AttemptAttack to succeed).
             _mode.SetInCombatMode(uid, true, modeComp);
