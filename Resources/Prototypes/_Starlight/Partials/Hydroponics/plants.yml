@@ -11,7 +11,7 @@
     - Sylvan
     - GalacticCommon
 
-- type: entity
+- type: !PartialOnly entity
   id: CannabisPlants
   components:
   - type: Plant
