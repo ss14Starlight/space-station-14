@@ -22,7 +22,7 @@
       head:
       - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieGhost.rsi
         state: equipped-HELMET
-        offset: 0, 0.1875
+        offset: 0, 0.40625
 
 - type: !PartialOnly entity
   id: PlushieGhostRevenant
@@ -33,7 +33,7 @@
       head:
       - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieGhostRevenant.rsi
         state: equipped-HELMET
-        offset: 0, 0.1875
+        offset: 0, 0.40625
 
 - type: !PartialOnly entity
   id: PlushieGnome
@@ -55,7 +55,7 @@
       head:
       - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieHolocarp.rsi
         state: equipped-HELMET
-        offset: 0, 0.1875
+        offset: 0, 0.40625
 
 - type: !PartialOnly entity
   id: PlushieLamp

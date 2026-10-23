@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "license": "CC-BY-NC-SA-3.0",
+  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432, inhand sprites by TiniestShark (github); headwear derivative of Objects/Fun/Plushies/lamp.rsi/icon.png.; human headwear adapted from _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieLamp.rsi.",
+  "states": [
+    {
+      "name": "equipped-HELMET",
+      "directions": 4
+    }
+  ]
+}

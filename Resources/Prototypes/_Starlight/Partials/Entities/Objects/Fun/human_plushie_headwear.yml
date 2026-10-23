@@ -1,0 +1,319 @@
+- type: !PartialOnly entity
+  id: BaseMobHuman
+  components:
+  - type: Inventory
+    speciesId: human
+
+- type: !PartialOnly entity
+  id: AppearanceHuman
+  components:
+  - type: Inventory
+    speciesId: human
+
+- type: !PartialOnly entity
+  id: MobElf
+  components:
+  - type: Inventory
+    speciesId: elf
+
+- type: !PartialOnly entity
+  id: AppearanceElf
+  components:
+  - type: Inventory
+    speciesId: elf
+
+- type: !PartialOnly entity
+  id: MobThaven
+  components:
+  - type: Inventory
+    speciesId: thaven
+
+- type: !PartialOnly entity
+  id: AppearanceThaven
+  components:
+  - type: Inventory
+    speciesId: thaven
+
+- type: !PartialOnly entity
+  id: MobDiona
+  components:
+  - type: Inventory
+    speciesId: diona
+
+- type: !PartialOnly entity
+  id: AppearanceDiona
+  components:
+  - type: Inventory
+    speciesId: diona
+
+- type: !PartialOnly entity
+  id: MobDwarf
+  components:
+  - type: Inventory
+    speciesId: dwarf
+
+- type: !PartialOnly entity
+  id: AppearanceDwarf
+  components:
+  - type: Inventory
+    speciesId: dwarf
+
+- type: !PartialOnly entity
+  id: MobSlimePerson
+  components:
+  - type: Inventory
+    speciesId: slimeperson
+
+- type: !PartialOnly entity
+  id: AppearanceSlimePerson
+  components:
+  - type: Inventory
+    speciesId: slimeperson
+
+- type: !PartialOnly entity
+  id: PlushieBorg
+  components:
+  - type: Clothing
+    clothingVisuals:
+      head-human: &BorgHumanoidHeadwear
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieBorg.rsi
+        state: equipped-HELMET
+        scale: 0.5, 0.5
+        offset: 0, 0.1875
+      head-Doll: *BorgHumanoidHeadwear
+      head-arachnid: *BorgHumanoidHeadwear
+      head-avali: *BorgHumanoidHeadwear
+      head-cyclorite: *BorgHumanoidHeadwear
+      head-diona: *BorgHumanoidHeadwear
+      head-dwarf: *BorgHumanoidHeadwear
+      head-elf: *BorgHumanoidHeadwear
+      head-experiment: *BorgHumanoidHeadwear
+      head-felionoid: *BorgHumanoidHeadwear
+      head-lagomorph: *BorgHumanoidHeadwear
+      head-moth: *BorgHumanoidHeadwear
+      head-neocyte: *BorgHumanoidHeadwear
+      head-reptilian: *BorgHumanoidHeadwear
+      head-resomi: *BorgHumanoidHeadwear
+      head-rodentia: *BorgHumanoidHeadwear
+      head-shadekin: *BorgHumanoidHeadwear
+      head-slimeperson: *BorgHumanoidHeadwear
+      head-thaven: *BorgHumanoidHeadwear
+      head-vox: *BorgHumanoidHeadwear
+      head-vulpkanin: *BorgHumanoidHeadwear
+
+- type: !PartialOnly entity
+  id: PlushieGhost
+  components:
+  - type: Clothing
+    clothingVisuals:
+      head-human: &GhostHumanoidHeadwear
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGhost.rsi
+        state: equipped-HELMET
+        scale: 0.5, 0.5
+        offset: 0, 0.40625
+      head-Doll: *GhostHumanoidHeadwear
+      head-arachnid: *GhostHumanoidHeadwear
+      head-avali: *GhostHumanoidHeadwear
+      head-cyclorite: *GhostHumanoidHeadwear
+      head-diona: *GhostHumanoidHeadwear
+      head-dwarf: *GhostHumanoidHeadwear
+      head-elf: *GhostHumanoidHeadwear
+      head-experiment: *GhostHumanoidHeadwear
+      head-felionoid: *GhostHumanoidHeadwear
+      head-lagomorph: *GhostHumanoidHeadwear
+      head-moth: *GhostHumanoidHeadwear
+      head-neocyte: *GhostHumanoidHeadwear
+      head-reptilian: *GhostHumanoidHeadwear
+      head-resomi: *GhostHumanoidHeadwear
+      head-rodentia: *GhostHumanoidHeadwear
+      head-shadekin: *GhostHumanoidHeadwear
+      head-slimeperson: *GhostHumanoidHeadwear
+      head-thaven: *GhostHumanoidHeadwear
+      head-vox: *GhostHumanoidHeadwear
+      head-vulpkanin: *GhostHumanoidHeadwear
+
+- type: !PartialOnly entity
+  id: PlushieGhostRevenant
+  components:
+  - type: Clothing
+    clothingVisuals:
+      head-human: &GhostRevenantHumanoidHeadwear
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGhostRevenant.rsi
+        state: equipped-HELMET
+        scale: 0.5, 0.5
+        offset: 0, 0.40625
+      head-Doll: *GhostRevenantHumanoidHeadwear
+      head-arachnid: *GhostRevenantHumanoidHeadwear
+      head-avali: *GhostRevenantHumanoidHeadwear
+      head-cyclorite: *GhostRevenantHumanoidHeadwear
+      head-diona: *GhostRevenantHumanoidHeadwear
+      head-dwarf: *GhostRevenantHumanoidHeadwear
+      head-elf: *GhostRevenantHumanoidHeadwear
+      head-experiment: *GhostRevenantHumanoidHeadwear
+      head-felionoid: *GhostRevenantHumanoidHeadwear
+      head-lagomorph: *GhostRevenantHumanoidHeadwear
+      head-moth: *GhostRevenantHumanoidHeadwear
+      head-neocyte: *GhostRevenantHumanoidHeadwear
+      head-reptilian: *GhostRevenantHumanoidHeadwear
+      head-resomi: *GhostRevenantHumanoidHeadwear
+      head-rodentia: *GhostRevenantHumanoidHeadwear
+      head-shadekin: *GhostRevenantHumanoidHeadwear
+      head-slimeperson: *GhostRevenantHumanoidHeadwear
+      head-thaven: *GhostRevenantHumanoidHeadwear
+      head-vox: *GhostRevenantHumanoidHeadwear
+      head-vulpkanin: *GhostRevenantHumanoidHeadwear
+
+- type: !PartialOnly entity
+  id: PlushieGnome
+  components:
+  - type: Clothing
+    clothingVisuals:
+      head-human: &GnomeHumanoidHeadwear
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGnome.rsi
+        state: equipped-HELMET
+        scale: 0.5, 0.5
+        offset: 0, 0.28125
+      head-Doll: *GnomeHumanoidHeadwear
+      head-arachnid: *GnomeHumanoidHeadwear
+      head-avali: *GnomeHumanoidHeadwear
+      head-cyclorite: *GnomeHumanoidHeadwear
+      head-diona: *GnomeHumanoidHeadwear
+      head-dwarf: *GnomeHumanoidHeadwear
+      head-elf: *GnomeHumanoidHeadwear
+      head-experiment: *GnomeHumanoidHeadwear
+      head-felionoid: *GnomeHumanoidHeadwear
+      head-lagomorph: *GnomeHumanoidHeadwear
+      head-moth: *GnomeHumanoidHeadwear
+      head-neocyte: *GnomeHumanoidHeadwear
+      head-reptilian: *GnomeHumanoidHeadwear
+      head-resomi: *GnomeHumanoidHeadwear
+      head-rodentia: *GnomeHumanoidHeadwear
+      head-shadekin: *GnomeHumanoidHeadwear
+      head-slimeperson: *GnomeHumanoidHeadwear
+      head-thaven: *GnomeHumanoidHeadwear
+      head-vox: *GnomeHumanoidHeadwear
+      head-vulpkanin: *GnomeHumanoidHeadwear
+
+- type: !PartialOnly entity
+  id: PlushieHolocarp
+  components:
+  - type: Clothing
+    clothingVisuals:
+      head-human: &HolocarpHumanoidHeadwear
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieHolocarp.rsi
+        state: equipped-HELMET
+        scale: 0.5, 0.5
+        offset: 0, 0.40625
+      head-Doll: *HolocarpHumanoidHeadwear
+      head-arachnid: *HolocarpHumanoidHeadwear
+      head-avali: *HolocarpHumanoidHeadwear
+      head-cyclorite: *HolocarpHumanoidHeadwear
+      head-diona: *HolocarpHumanoidHeadwear
+      head-dwarf: *HolocarpHumanoidHeadwear
+      head-elf: *HolocarpHumanoidHeadwear
+      head-experiment: *HolocarpHumanoidHeadwear
+      head-felionoid: *HolocarpHumanoidHeadwear
+      head-lagomorph: *HolocarpHumanoidHeadwear
+      head-moth: *HolocarpHumanoidHeadwear
+      head-neocyte: *HolocarpHumanoidHeadwear
+      head-reptilian: *HolocarpHumanoidHeadwear
+      head-resomi: *HolocarpHumanoidHeadwear
+      head-rodentia: *HolocarpHumanoidHeadwear
+      head-shadekin: *HolocarpHumanoidHeadwear
+      head-slimeperson: *HolocarpHumanoidHeadwear
+      head-thaven: *HolocarpHumanoidHeadwear
+      head-vox: *HolocarpHumanoidHeadwear
+      head-vulpkanin: *HolocarpHumanoidHeadwear
+
+- type: !PartialOnly entity
+  id: PlushieLamp
+  components:
+  - type: Clothing
+    clothingVisuals:
+      head-human: &LampHumanoidHeadwear
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieLamp.rsi
+        state: equipped-HELMET
+        scale: 0.5, 0.5
+        offset: 0, 0.28125
+      head-Doll: *LampHumanoidHeadwear
+      head-arachnid: *LampHumanoidHeadwear
+      head-avali: *LampHumanoidHeadwear
+      head-cyclorite: *LampHumanoidHeadwear
+      head-diona: *LampHumanoidHeadwear
+      head-dwarf: *LampHumanoidHeadwear
+      head-elf: *LampHumanoidHeadwear
+      head-experiment: *LampHumanoidHeadwear
+      head-felionoid: *LampHumanoidHeadwear
+      head-lagomorph: *LampHumanoidHeadwear
+      head-moth: *LampHumanoidHeadwear
+      head-neocyte: *LampHumanoidHeadwear
+      head-reptilian: *LampHumanoidHeadwear
+      head-resomi: *LampHumanoidHeadwear
+      head-rodentia: *LampHumanoidHeadwear
+      head-shadekin: *LampHumanoidHeadwear
+      head-slimeperson: *LampHumanoidHeadwear
+      head-thaven: *LampHumanoidHeadwear
+      head-vox: *LampHumanoidHeadwear
+      head-vulpkanin: *LampHumanoidHeadwear
+
+- type: !PartialOnly entity
+  id: PlushieSaltLampLarge
+  components:
+  - type: Clothing
+    clothingVisuals:
+      head-human: &SaltLampLargeHumanoidHeadwear
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieSaltLampLarge.rsi
+        state: equipped-HELMET
+        scale: 0.5, 0.5
+        offset: 0, 0.21875
+      head-Doll: *SaltLampLargeHumanoidHeadwear
+      head-arachnid: *SaltLampLargeHumanoidHeadwear
+      head-avali: *SaltLampLargeHumanoidHeadwear
+      head-cyclorite: *SaltLampLargeHumanoidHeadwear
+      head-diona: *SaltLampLargeHumanoidHeadwear
+      head-dwarf: *SaltLampLargeHumanoidHeadwear
+      head-elf: *SaltLampLargeHumanoidHeadwear
+      head-experiment: *SaltLampLargeHumanoidHeadwear
+      head-felionoid: *SaltLampLargeHumanoidHeadwear
+      head-lagomorph: *SaltLampLargeHumanoidHeadwear
+      head-moth: *SaltLampLargeHumanoidHeadwear
+      head-neocyte: *SaltLampLargeHumanoidHeadwear
+      head-reptilian: *SaltLampLargeHumanoidHeadwear
+      head-resomi: *SaltLampLargeHumanoidHeadwear
+      head-rodentia: *SaltLampLargeHumanoidHeadwear
+      head-shadekin: *SaltLampLargeHumanoidHeadwear
+      head-slimeperson: *SaltLampLargeHumanoidHeadwear
+      head-thaven: *SaltLampLargeHumanoidHeadwear
+      head-vox: *SaltLampLargeHumanoidHeadwear
+      head-vulpkanin: *SaltLampLargeHumanoidHeadwear
+
+- type: !PartialOnly entity
+  id: PlushieSaltLampSmall
+  components:
+  - type: Clothing
+    clothingVisuals:
+      head-human: &SaltLampSmallHumanoidHeadwear
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieSaltLampSmall.rsi
+        state: equipped-HELMET
+        scale: 0.5, 0.5
+        offset: 0, 0.21875
+      head-Doll: *SaltLampSmallHumanoidHeadwear
+      head-arachnid: *SaltLampSmallHumanoidHeadwear
+      head-avali: *SaltLampSmallHumanoidHeadwear
+      head-cyclorite: *SaltLampSmallHumanoidHeadwear
+      head-diona: *SaltLampSmallHumanoidHeadwear
+      head-dwarf: *SaltLampSmallHumanoidHeadwear
+      head-elf: *SaltLampSmallHumanoidHeadwear
+      head-experiment: *SaltLampSmallHumanoidHeadwear
+      head-felionoid: *SaltLampSmallHumanoidHeadwear
+      head-lagomorph: *SaltLampSmallHumanoidHeadwear
+      head-moth: *SaltLampSmallHumanoidHeadwear
+      head-neocyte: *SaltLampSmallHumanoidHeadwear
+      head-reptilian: *SaltLampSmallHumanoidHeadwear
+      head-resomi: *SaltLampSmallHumanoidHeadwear
+      head-rodentia: *SaltLampSmallHumanoidHeadwear
+      head-shadekin: *SaltLampSmallHumanoidHeadwear
+      head-slimeperson: *SaltLampSmallHumanoidHeadwear
+      head-thaven: *SaltLampSmallHumanoidHeadwear
+      head-vox: *SaltLampSmallHumanoidHeadwear
+      head-vulpkanin: *SaltLampSmallHumanoidHeadwear
