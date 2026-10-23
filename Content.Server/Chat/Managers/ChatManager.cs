@@ -502,5 +502,5 @@ public enum OOCChatType : byte
 {
     OOC,
     Admin,
-    Mentor
+    Mentor //Starlight-edit: Mentor chat
 }

@@ -55,7 +55,7 @@ namespace Content.Client.UserInterface.Systems.Chat;
 public sealed partial class ChatUIController : UIController
 {
     [Dependency] private IClientAdminManager _admin = default!;
-    [Dependency] private ISharedNullLinkPlayerRolesReqManager _reqManager = default!;
+    [Dependency] private ISharedNullLinkPlayerRolesReqManager _reqManager = default!; //Starlight
     [Dependency] private IChatManager _manager = default!;
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private IEyeManager _eye = default!;
@@ -95,7 +95,7 @@ public sealed partial class ChatUIController : UIController
         {SharedChatSystem.EmotesPrefix, ChatSelectChannel.Emotes},
         {SharedChatSystem.EmotesAltPrefix, ChatSelectChannel.Emotes},
         {SharedChatSystem.AdminPrefix, ChatSelectChannel.Admin},
-        {SharedChatSystem.MentorPrefix, ChatSelectChannel.Mentor},
+        {SharedChatSystem.MentorPrefix, ChatSelectChannel.Mentor}, //Starlight-edit: Mentor chat
         {SharedChatSystem.RadioCommonPrefix, ChatSelectChannel.Radio},
         {SharedChatSystem.DeadPrefix, ChatSelectChannel.Dead}
     };
@@ -109,7 +109,7 @@ public sealed partial class ChatUIController : UIController
         {ChatSelectChannel.OOC, SharedChatSystem.OOCPrefix},
         {ChatSelectChannel.Emotes, SharedChatSystem.EmotesPrefix},
         {ChatSelectChannel.Admin, SharedChatSystem.AdminPrefix},
-        {ChatSelectChannel.Mentor, SharedChatSystem.MentorPrefix},
+        {ChatSelectChannel.Mentor, SharedChatSystem.MentorPrefix}, //Starlight-edit: Mentor chat
         {ChatSelectChannel.Radio, SharedChatSystem.RadioCommonPrefix},
         {ChatSelectChannel.Dead, SharedChatSystem.DeadPrefix}
     };
