@@ -38,18 +38,12 @@ public sealed partial class GuidebookWindow
     /// <summary>
     ///     Connects the category search field to entry filtering.
     /// </summary>
-    private void InitializeGuidebookSearch()
-    {
-        CategorySearchBar.OnTextChanged += _ => HandleCategorySearch();
-    }
+    private void InitializeGuidebookSearch() => CategorySearchBar.OnTextChanged += _ => HandleCategorySearch();
 
     /// <summary>
     ///     Clears the query and restores hidden entries before navigation or a guidebook refresh.
     /// </summary>
-    private void ClearCategorySearch()
-    {
-        CategorySearchBar.SetText("", invokeEvent: true);
-    }
+    private void ClearCategorySearch() => CategorySearchBar.SetText("", invokeEvent: true);
 
     /// <summary>
     ///     Discards cached search terms, expansion states, and colors when the entry tree is rebuilt.

@@ -17,10 +17,8 @@ internal sealed class GuidebookSearchEntry
     /// <summary>
     ///     Caches the localized title and alternative search phrases without case or separators.
     /// </summary>
-    public GuidebookSearchEntry(string name, IEnumerable<string> keywords)
-    {
+    public GuidebookSearchEntry(string name, IEnumerable<string> keywords) =>
         _terms = keywords.Prepend(name).Select(Normalize).Where(term => term.Length > 0).ToArray();
-    }
 
     /// <summary>
     ///     Combines an entry's localized title, shared keyword catalog, and additional prototype keywords.
