@@ -1,18 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Broadened the activators for "floppy storage", "citrus", "magnetic waves", and "dairy" artifact triggers. There's now new, creative ways to trigger these nodes.
-    type: Tweak
-  id: 409295
-  time: '2026-10-08T11:17:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6542
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Changed the "bluespace disturbance" artifact effect variant that swaps the artifact and a random person. This effect will no longer teleport SSD or dead people, and is half as likely to appear.
-    type: Tweak
-  id: 409296
-  time: '2026-10-08T11:17:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6542
 - author: Caws
   changes:
   - message: (Novo Lobster) Fixed a few air vents and scrubbers that were not the 'cold weather' variants (with larger temperature thresholds before firelocks and what not close).
@@ -2883,4 +2869,18 @@ Entries:
   id: 409694
   time: '2026-10-23T07:22:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6800
+- author: Caws
+  changes:
+  - message: (NukeOps Western) Syndicate tactical planning console added to planning area.
+    type: Add
+  id: 409695
+  time: '2026-10-23T07:22:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6810
+- author: Caws
+  changes:
+  - message: (NukeOps Western) Redspace beaker added to Medbay.
+    type: Add
+  id: 409696
+  time: '2026-10-23T07:22:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6810
 Order: -1
