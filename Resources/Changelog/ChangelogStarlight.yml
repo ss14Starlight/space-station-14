@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: The new maintenance door sprites (with Departmental colours) will now actually show up in game.
-    type: Fix
-  id: 409313
-  time: '2026-10-09T14:21:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6587
 - author: Vincolan
   changes:
   - message: Added Nar'sie Cultists Admeme Antag with a custom Debrief and Conversion sound.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409712
   time: '2026-10-23T10:00:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6787
+- author: WNP78
+  changes:
+  - message: Fixed ChemMaster buffer view not updating instantly when sort mode changes.
+    type: Fix
+  id: 409713
+  time: '2026-10-23T13:33:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6813
 Order: -1
