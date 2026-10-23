@@ -70,12 +70,14 @@ public sealed partial class LobbyGui : UIScreen
         base.EnteredTree();
         _changelog.NewChangelogEntriesChanged += UpdateLinksHighlight;
         UpdateLinksHighlight();
+        Chat.Main = true;
     }
 
     protected override void ExitedTree()
     {
         base.ExitedTree();
         _changelog.NewChangelogEntriesChanged -= UpdateLinksHighlight;
+        Chat.Main = false;
     }
 
     private void UpdateLinksHighlight()

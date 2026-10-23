@@ -23,10 +23,10 @@
     speciesId: shadekin
   - type: Shadekin
     thresholds:
-      0.8: Low
-      5: Annoying
-      10: High
-      15: Extreme
+      0.5: Low
+      2: Annoying
+      3.5: High
+      5: Extreme
   - type: Absorbable
   - type: Hunger
   - type: Thirst

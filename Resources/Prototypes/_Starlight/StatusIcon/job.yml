@@ -126,6 +126,8 @@
     sprite: *starlight-job-icon-rsi
     state: K9
   jobName: job-name-k9
+  tags:
+  - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
