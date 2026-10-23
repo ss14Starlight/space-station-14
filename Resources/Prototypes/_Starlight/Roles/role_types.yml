@@ -9,7 +9,7 @@
 - type: roleType
   id: CorporateAligned
   name: role-type-corporate-aligned-name
-  faction: role-type-crew-aligned-name
+  faction: role-subtype-nanotrasen
   color: '#134975'
   symbol: "🗡" # Should never be antag, but just in case.
 
