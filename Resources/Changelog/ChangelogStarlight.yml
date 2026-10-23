@@ -1,11 +1,4 @@
 Entries:
-- author: Xale
-  changes:
-  - message: Vape now works properly with activation hotkeys such as "Activate item in hand".
-    type: Fix
-  id: 409294
-  time: '2026-10-08T11:17:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6572
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Broadened the activators for "floppy storage", "citrus", "magnetic waves", and "dairy" artifact triggers. There's now new, creative ways to trigger these nodes.
@@ -2883,4 +2876,11 @@ Entries:
   id: 409693
   time: '2026-10-22T22:39:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6811
+- author: Johnny
+  changes:
+  - message: Added a command tracker that revolutionaries are rewarded at a certain stage of the revolution to combat stalling.
+    type: Add
+  id: 409694
+  time: '2026-10-23T07:22:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6800
 Order: -1
