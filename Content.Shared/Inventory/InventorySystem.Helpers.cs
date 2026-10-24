@@ -67,7 +67,7 @@ public partial class InventorySystem
                && (slot.SlotFlags & flags) != 0;
     }
 
-    public bool SpawnItemInSlot(EntityUid uid, string slot, string prototype, bool silent = false, bool force = false, InventoryComponent? inventory = null)
+    public bool SpawnItemInSlot(EntityUid uid, string slot, string? prototype, bool silent = false, bool force = false, InventoryComponent? inventory = null, ComponentRegistry? overrides = null) // Starlight edit
     {
         if (!Resolve(uid, ref inventory, false))
             return false;
@@ -81,11 +81,21 @@ public partial class InventorySystem
             return false;
 
         // If the prototype in question doesn't exist, we do nothing.
-        if (!_prototypeManager.HasIndex<EntityPrototype>(prototype))
+        // Starlight begin - Alternatively, if it is null but overrides exist, allow it.
+        if (prototype is null)
+        {
+            if (overrides is null)
+                return false;
+        }
+        else if (!_prototypeManager.HasIndex<EntityPrototype>(prototype))
             return false;
+        // Starlight end
 
         // Let's spawn this first...
-        var item = Spawn(prototype, Transform(uid).Coordinates);
+        // Starlight begin - Genuinely why do we not have a Spawn() method for using entity coordinates?????
+        var item = Spawn(prototype, overrides);
+        _transform.SetCoordinates(item, Transform(uid).Coordinates);
+        // Starlight end
 
         // Helper method that deletes the item and returns false.
         bool DeleteItem()

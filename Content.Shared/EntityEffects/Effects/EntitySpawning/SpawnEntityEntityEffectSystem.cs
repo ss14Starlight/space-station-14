@@ -9,7 +9,7 @@ namespace Content.Shared.EntityEffects.Effects.EntitySpawning;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class SpawnEntityEntityEffectSystem : EntityEffectSystem<TransformComponent, SpawnEntity>
 {
-    [Dependency] private INetManager _net = default!;
+    [Dependency] private INetManager _net = null!;
 
     protected override void Effect(Entity<TransformComponent> entity, ref EntityEffectEvent<SpawnEntity> args)
     {
@@ -20,14 +20,14 @@ public sealed partial class SpawnEntityEntityEffectSystem : EntityEffectSystem<T
         {
             for (var i = 0; i < quantity; i++)
             {
-                PredictedSpawnNextToOrDrop(proto, entity, entity.Comp);
+                PredictedSpawnNextToOrDrop(proto, entity, entity.Comp, args.Effect.Overrides); // Starlight edit
             }
         }
         else if (_net.IsServer)
         {
             for (var i = 0; i < quantity; i++)
             {
-                SpawnNextToOrDrop(proto, entity, entity.Comp);
+                SpawnNextToOrDrop(proto, entity, entity.Comp, args.Effect.Overrides); // Starlight edit
             }
         }
     }

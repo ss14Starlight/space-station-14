@@ -110,12 +110,25 @@ namespace Content.Server.Tabletop
             if (args.SenderSession is not { } playerSession)
                 return;
 
+            // Starlight begin
+            if (!msg.TableUid.IsValid())
+            {
+                base.OnTabletopMove(msg, args);
+                return;
+            }
+            // Starlight end
+
             if (!TryComp(GetEntity(msg.TableUid), out TabletopGameComponent? tabletop) || tabletop.Session is not { } session)
                 return;
 
             // Check if player is actually playing at this table
             if (!session.Players.ContainsKey(playerSession))
                 return;
+
+            // Starlight begin
+            if (Transform(GetEntity(msg.MovedEntityUid)).MapID != session.Position.MapId)
+                return;
+            // Starlight end
 
             base.OnTabletopMove(msg, args);
         }

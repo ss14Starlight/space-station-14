@@ -1,3 +1,5 @@
+using Content.Shared._Starlight.DestinyDice;
+using Content.Shared._Starlight.Dice;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
@@ -76,7 +78,18 @@ public abstract partial class SharedDiceSystem : EntitySystem
         var rand = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(entity));
 
         var roll = rand.Next(1, entity.Comp.Sides + 1);
+        var noRoll = false;
+        if (TryComp<DestinyDiceComponent>(entity, out var dd))
+            if (_timing.CurTime < dd.NextAllowedRollTime || dd.IsActive)
+                noRoll = true;
+        if (noRoll) roll = entity.Comp.CurrentValue;
+        if (entity.Comp.RiggedValue.HasValue) roll = entity.Comp.RiggedValue.Value;
+        // Starlight end
         SetCurrentSide(entity, roll);
+        // Starlight begin
+        RaiseLocalEvent(entity, new DiceRolledEvent(entity.Comp.CurrentValue));
+        if (noRoll) return; // don't play the roll sound because magic.
+        // Starlight end
 
         var popupString = Loc.GetString("dice-component-on-roll-land",
             ("die", entity),

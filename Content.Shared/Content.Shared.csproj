@@ -17,6 +17,7 @@
     <ProjectReference Include="..\Content.Starlight.Codegen\Content.Starlight.Codegen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="_Starlight\ClientComponents\" />
     <Folder Include="_Starlight\Movement\" />
     <Folder Include="Power\Components\" />
     <Folder Include="_Starlight\Spells\" />
