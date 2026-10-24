@@ -1,3 +1,5 @@
+# Generic head visuals use humanoid artwork; borg and dog retain their fitted variants.
+# Keep the experiment state suffix: it bypasses Experiment displacement via the existing clothing renderer.
 - type: !PartialOnly entity
   id: PlushieBorg
   components:
@@ -9,9 +11,14 @@
     slots: [HEAD]
     clothingVisuals:
       head:
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieBorg.rsi
+        state: equipped-HELMET-experiment
+        offset: 0, 0.1875
+      head-borg: &PlushieBorgBorgHeadwear
       - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieBorg.rsi
         state: equipped-HELMET
         offset: 0, 0.1875
+      head-dog: *PlushieBorgBorgHeadwear
 
 - type: !PartialOnly entity
   id: PlushieGhost
@@ -20,9 +27,14 @@
     slots: [HEAD]
     clothingVisuals:
       head:
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGhost.rsi
+        state: equipped-HELMET-experiment
+        offset: 0, 0.40625
+      head-borg: &PlushieGhostBorgHeadwear
       - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieGhost.rsi
         state: equipped-HELMET
         offset: 0, 0.40625
+      head-dog: *PlushieGhostBorgHeadwear
 
 - type: !PartialOnly entity
   id: PlushieGhostRevenant
@@ -31,9 +43,14 @@
     slots: [HEAD]
     clothingVisuals:
       head:
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGhostRevenant.rsi
+        state: equipped-HELMET-experiment
+        offset: 0, 0.65625
+      head-borg: &PlushieGhostRevenantBorgHeadwear
       - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieGhostRevenant.rsi
         state: equipped-HELMET
         offset: 0, 0.65625
+      head-dog: *PlushieGhostRevenantBorgHeadwear
 
 - type: !PartialOnly entity
   id: PlushieGnome
@@ -42,9 +59,14 @@
     slots: [HEAD]
     clothingVisuals:
       head:
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGnome.rsi
+        state: equipped-HELMET-experiment
+        offset: 0, 0.265625
+      head-borg: &PlushieGnomeBorgHeadwear
       - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieGnome.rsi
         state: equipped-HELMET
         offset: 0, 0.1875
+      head-dog: *PlushieGnomeBorgHeadwear
 
 - type: !PartialOnly entity
   id: PlushieHolocarp
@@ -70,10 +92,16 @@
     slots: [HEAD]
     clothingVisuals:
       head:
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieHolocarp.rsi
+        state: equipped-HELMET-experiment
+        offset: 0, 0.40625
+        shader: unshaded
+      head-borg: &PlushieHolocarpBorgHeadwear
       - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieHolocarp.rsi
         state: equipped-HELMET
         shader: unshaded
         offset: 0, 0.40625
+      head-dog: *PlushieHolocarpBorgHeadwear
 
 - type: !PartialOnly entity
   id: PlushieLamp
@@ -82,6 +110,11 @@
     slots: [HEAD]
     clothingVisuals:
       head:
+      - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieLamp.rsi
+        state: equipped-HELMET-experiment
+        offset: 0, 0.25
+      head-borg: &PlushieLampBorgHeadwear
       - sprite: _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieLamp.rsi
         state: equipped-HELMET
         offset: 0, 0.1875
+      head-dog: *PlushieLampBorgHeadwear

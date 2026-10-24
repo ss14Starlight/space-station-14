@@ -1,4 +1,10 @@
 - type: !PartialOnly entity
+  id: BaseBorgChassisNotIonStormable
+  components:
+  - type: Inventory
+    speciesId: borg
+
+- type: !PartialOnly entity
   id: BorgEngineerSubtypeStandard
   components:
   - type: BorgSubtypeDefinition
