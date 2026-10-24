@@ -1,7 +1,7 @@
 - type: entity
   id: ActionChangelingEmag
   name: Organic sequencer
-  description: Subvert electronics like an emag. Costs 30 chemicals per successful hack. Evolution reduces the cost to 5 and allows hacking within 7 meters in sight.
+  description: Sabotage electronics with a touch, like an emag. Costs 30 chemicals per hack. Evolution lets you hack visible devices up to 7 meters away for 5 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -22,7 +22,7 @@
 - type: entity
   id: ActionChangelingRegeneration
   name: Adaptive regeneration
-  description: Heal 4 damage of every type per second, stop bleeding and rapidly replenish blood. Evolution heals 8 damage of every type per second and regrows one missing part or organ every 10 seconds for an extra 10 chemicals, replacing prostheses. Upkeep is 5 chemicals/second, or 3 after Evolution, even at full health.
+  description: Regenerate 4 damage of each type per second, stop bleeding and rapidly restore lost blood. Costs 5 chemicals per second, even at full health. Evolution doubles healing and lowers upkeep to 3 chemicals per second. It also regrows a missing body part or organ every 10 seconds for 10 extra chemicals, replacing prostheses.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -44,7 +44,7 @@
 - type: entity
   id: ActionChangelingPainSuppression
   name: Suppress pain
-  description: Suppress damage slowdown, shock damage, stamina damage and stuns for 2 chemicals/second. Evolution removes the upkeep. Physical injuries still harm you.
+  description: Deaden your pain to prevent injury slowdown, shock damage, stamina damage and stuns. Costs 2 chemicals per second, or nothing after Evolution. Physical injuries still harm you.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -61,7 +61,7 @@
 - type: entity
   id: ActionChangelingShockHand
   name: Concealed shock hand
-  description: Form an invisible organic stun baton. Each hit costs 10 chemicals. Evolution adds an electrical knockdown once every 30 seconds; other hits work normally.
+  description: Deliver concealed electrical strikes that stun your target. Each hit costs 10 chemicals. Evolution unleashes a stronger shock that instantly knocks your target down, once every 30 seconds.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action

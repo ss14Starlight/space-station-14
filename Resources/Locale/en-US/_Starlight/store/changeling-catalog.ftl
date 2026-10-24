@@ -1,5 +1,5 @@
 # Combat
-evolutionmenu-evolving-boneshard-desc = Form a throwing shard that embeds in its victim, immediately slowing them by 40% for 6 seconds and injecting a toxin that deals 60 genetic damage over 6 seconds. Evolution increases the slowdown to 60% and genetic damage to 90. Works on arachnids. Costs 15 chemicals per shard.
+evolutionmenu-evolving-boneshard-desc = Grow a barbed shard to throw at your prey. A hit slows movement by 40% for 6 seconds and deals 60 genetic damage over that time. Evolution raises these to 60% and 90 damage. Costs 15 chemicals.
 
 evolutionmenu-combat-armblade-plus-name = True Arm Blade
 evolutionmenu-combat-armblade-plus-desc =
@@ -10,10 +10,10 @@ evolutionmenu-combat-armblade-plus-desc =
 # Utility
 evolutionmenu-utility-breathing-name = Respiratory Control
 evolutionmenu-utility-breathing-desc =
-    Toggle breathing at will. While disabled, you do not inhale gases or suffocate.
-    Breathing is enabled by default. Costs no chemicals or biomass and works in Lesser Form.
+    Choose whether your body needs to breathe. While breathing is stopped, you cannot inhale gases or suffocate.
+    You start out breathing normally. Costs no chemicals or biomass.
 
-evolutionmenu-evolving-spacesuit-desc = Grow an organic space suit and helmet. Evolution replaces the set with heavily reinforced chitinous armor that retains pressure and temperature protection. Costs 20 chemicals.
+evolutionmenu-evolving-spacesuit-desc = Grow an organic suit and helmet that protect you from space. Evolution hardens them into heavily reinforced chitinous armor. Costs 20 chemicals.
 
 evolutionmenu-utility-night-eyesight-name = Night Vision Eyesight
 evolutionmenu-utility-night-eyesight-desc =
@@ -41,19 +41,18 @@ evolutionmenu-utility-hyper-stims-desc =
 
 evolutionmenu-utility-neocyte-name = Neocyte Disguise
 evolutionmenu-utility-neocyte-desc =
-    Hardens your skin into a metal-like appearance, allowing it to pass as a Neocyte frame. Only usable if you are currently
-    disguised as a Neocyte.
-    Costs 0 chemicals.
+    Shape your outer tissue to resemble a Neocyte's cybernetic frame.
+    Requires a Neocyte disguise. Costs no chemicals.
 
 # Sting
 
 evolutionmenu-sting-chemical-name = Chemical Synthesis and Sting
 evolutionmenu-sting-chemical-desc =
-    Gain two abilities: prepare a chemical mixture and silently inject a chosen dose into an organic target.
-    Start with 15u of each basic reagent and prepare up to 30u of mixture, using normal chemical reactions with heating and cooling.
-    Reagent stocks regenerate up to 15u each at 1u per 10 seconds, consuming 0.5 chemicals per unit. Full stocks cost nothing. The regeneration toggle is shared by all your bodies.
-    Evolution adds Nocturine, Lexorin, Mute Toxin, Chloral Hydrate, Pax, Unstable Mutagen, Ephedrine, Desoxyephedrine and Amalgam to the reagent stocks and allows self-injection.
-    Each successful sting costs another 10 chemicals.
+    Mix, heat or cool a chemical cocktail, then silently inject a chosen dose into an organic target.
+    Your stocks start full and hold 15u of each basic reagent. Prepare up to 30u of mixture at a time.
+    Replenish up to 1u of each depleted reagent every 10 seconds, spending 0.5 chemicals per unit. Synthesis can be paused and costs nothing while your stocks are full.
+    Evolution unlocks Nocturine, Lexorin, Mute Toxin, Chloral Hydrate, Pax, Unstable Mutagen, Ephedrine, Desoxyephedrine and Amalgam, and lets you inject yourself.
+    Each sting costs another 10 chemicals.
 
 changeling-chemistry-status-off = Synthesis off. Reagent capacity: {$capacity}u each.
 changeling-chemistry-status-full = Stocks full ({$capacity}u each); no chemicals consumed.
@@ -61,9 +60,9 @@ changeling-chemistry-status-active = Replenishing stocks up to {$capacity}u each
 changeling-chemistry-status-paused = Synthesis paused: insufficient chemicals or biomass, or in stasis. Capacity: {$capacity}u each.
 
 evolutionmenu-sting-armblade-name = Fake Arm Blade Sting
-evolutionmenu-sting-armblade-desc = Grow an unremovable dull armblade in an organic target's hand for 30 seconds. Evolution fills both hands. Costs 50 chemicals.
+evolutionmenu-sting-armblade-desc = Grow a dull armblade in your target's hand. It cannot be dropped and lasts 30 seconds. Evolution grows a blade in each hand. Costs 50 chemicals.
 evolutionmenu-sting-infect-name = Infection Sting
-evolutionmenu-sting-infect-desc = Transform an organic victim into a changeling using the devour process, without absorbing them or gaining any rewards. Costs 2 evolution points only after success. They retain their mind, enter regenerative stasis and receive half the normal starting evolution points.
+evolutionmenu-sting-infect-desc = Awaken an independent changeling in an organic victim. They retain their mind and enter regenerative stasis with half the usual starting evolution points. Costs 2 evolution points once the transformation is complete.
 
 # Legacy changeling actions.
 evolutionmenu-sting-burn-name = Bloodburn Sting
@@ -71,7 +70,6 @@ evolutionmenu-sting-burn-name = Bloodburn Sting
 evolutionmenu-sting-burn-desc =
     Inject an organic target with a cocktail of chemicals that burns their blood and disorients them.
     May be used while under the effects of Lesser Form.
-    WARNING: Requires you to absorb at least 2 organics to use the ability.
     Costs 35 chemicals.
 
 evolutionmenu-sting-drain-name = Draining Sting
@@ -79,5 +77,4 @@ evolutionmenu-sting-drain-name = Draining Sting
 evolutionmenu-sting-drain-desc =
     Inject an organic target with a cocktail of chemicals that quickly erode their hunger and thirst.
     May be used while under the effects of Lesser Form.
-    WARNING: Requires you to absorb at least 2 organics to use the ability.
     Costs 35 chemicals.

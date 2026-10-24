@@ -48,7 +48,7 @@
 - type: entity
   id: ActionEnterStasis
   name: Enter regenerative stasis
-  description: Fake your death and start regenerating. Drains all your chemicals. Consumes biomass.
+  description: Feign death and regenerate your body. Empties your chemical reserves and consumes biomass until you awaken.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -114,7 +114,7 @@
 - type: entity
   id: ActionCreateBoneShard
   name: Form Bone Shard
-  description: Form a throwing shard that immediately slows its victim by 40% for 6 seconds and injects 60 genetic damage over 6 seconds. Evolution increases this to 60% slowdown and 90 genetic damage. Costs 15 chemicals.
+  description: Grow a barbed shard to throw at your prey. A hit slows movement by 40% for 6 seconds and deals 60 genetic damage over that time. Evolution raises these to 60% and 90 damage. Costs 15 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -173,7 +173,7 @@
 - type: entity
   id: ActionShriekDissonant
   name: Dissonant Shriek
-  description: Emit an EMP blast. Evolution adds a disorienting shriek against organic creatures. Costs 30 chemicals.
+  description: Unleash an electromagnetic shriek that disrupts nearby electronics. Evolution also disorients living creatures and shatters lights. Costs 30 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -209,7 +209,7 @@
 - type: entity
   id: ActionToggleStrainedMuscles
   name: Strain Muscles
-  description: Move at extremely fast speeds. Deals stamina damage. Evolution increases speed, melee damage by 25%, and adds 20% resistance to every damage type while active.
+  description: Push your muscles past their limits to run faster at the cost of stamina. Costs 30 chemicals to toggle. Evolution further increases speed, boosts melee damage by 25%, and reduces all damage taken by 20% while active.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -228,7 +228,7 @@
 - type: entity
   id: ActionChangelingChemistry
   name: Chemical Synthesis
-  description: Prepare and heat a chemical mixture for your sting. Reagent regeneration consumes chemicals.
+  description: Mix, heat or cool up to 30u of chemicals for your sting. Replenishing your reagent stocks consumes chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -245,7 +245,7 @@
 - type: entity
   id: ActionChemicalSting
   name: Chemical Sting
-  description: Silently inject the selected dose of your prepared mixture into a target. Evolution allows self-injection. Costs 10 chemicals on success.
+  description: Silently inject a chosen dose of your prepared mixture. Evolution lets you inject yourself. Costs 10 chemicals per sting.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -266,7 +266,7 @@
 - type: entity
   id: ActionStingFakeArmblade
   name: Fake Armblade Sting
-  description: Grow an unremovable dull armblade in your target's hand for 30 seconds. Evolution fills both hands. Costs 50 chemicals.
+  description: Grow a dull armblade in your target's hand. It cannot be dropped and lasts 30 seconds. Evolution grows a blade in each hand. Costs 50 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -290,7 +290,7 @@
   parent: ActionChangelingDevour
   id: ActionStingInfect
   name: Infection Sting
-  description: Transform an organic victim into a changeling through the devour process. Costs 2 evolution points only on success. The victim enters regenerative stasis and starts with half the normal evolution points.
+  description: Awaken an independent changeling in an organic victim. They retain their mind and enter regenerative stasis with half the usual starting evolution points. Costs 2 evolution points once the transformation is complete.
   components:
   - type: Action
     itemIconStyle: NoItem
@@ -325,7 +325,7 @@
 - type: entity
   id: ActionToggleChangelingBreathing
   name: Respiratory Control
-  description: Toggle breathing. While disabled, you do not inhale gases or suffocate. Costs no chemicals or biomass.
+  description: Choose whether your body needs to breathe. While breathing is stopped, you cannot inhale gases or suffocate. Costs no chemicals or biomass.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -341,7 +341,7 @@
 - type: entity
   id: ActionAugmentedEyesight
   name: Augmented Eyesight
-  description: Toggle flash protection and night vision together. Evolution adds thermal vision.
+  description: Protect your eyes from flashes and see in darkness. Evolution also reveals heat signatures through walls. Toggle at will.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -395,7 +395,7 @@
 - type: entity
   id: ActionChameleonSkin
   name: Chameleon Skin
-  description: Blend in with the environment for 15 chemicals and 1.25 chemicals/second. Evolution prevents movement from revealing you and reduces upkeep to 0.5 chemicals/second.
+  description: Cloak your body to blend into your surroundings. Costs 15 chemicals to toggle and 1.25 per second while active. Evolution lets you move without revealing yourself and reduces upkeep to 0.5 chemicals per second.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -490,7 +490,7 @@
 - type: entity
   id: ActionToggleSpacesuit
   name: Toggle Space Suit
-  description: Grow an organic space suit. Evolution replaces it with reinforced, spaceworthy chitinous armor. Costs 20 chemicals.
+  description: Grow an organic suit and helmet that protect you from space. Evolution hardens them into heavily reinforced chitinous armor. Costs 20 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -507,7 +507,7 @@
 - type: entity
   id: ActionToggleNeocyteDisguise
   name: Toggle Neocyte Disguise
-  description: Form a fake neocyte cybernetic frame. Costs 0 chemicals.
+  description: Shape your outer tissue to resemble a Neocyte's cybernetic frame. Requires a Neocyte disguise. Costs no chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action

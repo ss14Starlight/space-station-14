@@ -90,6 +90,7 @@ public sealed partial class ChangelingSystem
         colony.Active = uid;
         AddColonyMember(uid, mind, colony);
         EnsureHiveAction(mind, "ActionChangelingColony");
+        EnsureHiveAction(mind, "ActionStingAssimilate");
         _actionContainers.AddAction(mind, "ActionChangelingRupture");
         EnsureLivingBloodAction(mind, colony);
     }

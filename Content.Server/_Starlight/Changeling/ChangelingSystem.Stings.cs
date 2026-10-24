@@ -2,11 +2,14 @@ using Content.Server._Starlight.GameTicking;
 using Content.Server._Starlight.Roles;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Shared._Starlight.Changeling;
+using Content.Shared.Body.Components;
 using Content.Shared.Changeling;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Changeling.Systems;
 using Content.Shared.DoAfter;
+using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Mobs;
 using Content.Shared.Roles;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
@@ -27,6 +30,7 @@ public sealed partial class ChangelingSystem
     {
         SubscribeLocalEvent<ChangelingComponent, StingFakeArmbladeEvent>(OnStingFakeArmblade);
         SubscribeLocalEvent<ChangelingComponent, StingInfectEvent>(OnStingInfect);
+        SubscribeLocalEvent<ChangelingComponent, StingAssimilateEvent>(OnStingAssimilate);
         SubscribeLocalEvent<ChangelingInfectionComponent, ChangelingDevourAttemptEvent>(OnInfectionAttempt);
         SubscribeLocalEvent<ChangelingInfectionComponent, ChangelingDevourFinishedEvent>(OnInfectionFinished);
         SubscribeLocalEvent<ChangelingInfectionComponent, DoAfterAttemptEvent<ChangelingDevourWindupDoAfterEvent>>(OnInfectionWindupAttempt);
@@ -91,6 +95,50 @@ public sealed partial class ChangelingSystem
         => IsPossessable(target) && _mind.TryGetMind(target, out var mind, out _)
            && !_changelingRoles.MindHasRole<SLChangelingRoleComponent>(mind);
 
+    private void OnStingAssimilate(EntityUid uid, ChangelingComponent comp, ref StingAssimilateEvent args)
+    {
+        if (args.Handled || HasComp<ChangelingInfectionComponent>(uid)
+            || !TryComp<ChangelingDevourComponent>(uid, out var devour) || devour.CurrentTarget != null
+            || !TryGetColony(uid, out var member, out var colony) || !colony.Learned
+            || member.IsFragment || !IsHivePlayer(uid, colony))
+            return;
+        if (comp.Biomass < comp.MaxBiomass / 4)
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-assimilate-no-biomass"), uid, uid);
+            return;
+        }
+        if (CountCarriers(colony) >= CarrierLimit)
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-assimilate-limit"), uid, uid);
+            return;
+        }
+        if (!CanInfect(args.Target) || !_mind.TryGetMind(uid, out var mind, out _)
+            || !_mind.TryGetMind(args.Target, out var victimMind, out _))
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-assimilate-invalid"), uid, uid);
+            return;
+        }
+
+        AddComp(uid, new ChangelingInfectionComponent
+        {
+            Target = args.Target,
+            Mind = mind,
+            VictimMind = victimMind,
+            Assimilating = true,
+        });
+        if (!_devour.StartDevour((uid, devour), args.Target))
+        {
+            RemComp<ChangelingInfectionComponent>(uid);
+            return;
+        }
+        args.Handled = true;
+    }
+
+    private bool CanContinueAssimilation(EntityUid uid, ChangelingComponent comp)
+        => TryGetColony(uid, out var member, out var colony) && colony.Learned && !member.IsFragment
+           && IsHivePlayer(uid, colony) && CountCarriers(colony) < CarrierLimit
+           && comp.Biomass >= comp.MaxBiomass / 4;
+
     private bool HasInfectionPoints(EntityUid uid)
         => TryComp<StoreComponent>(uid, out var store)
            && store.Balance.TryGetValue(InfectionCurrency, out var points) && points >= InfectionCost;
@@ -102,8 +150,9 @@ public sealed partial class ChangelingSystem
     }
 
     private bool CanContinueInfection(EntityUid uid, ChangelingInfectionComponent infection, EntityUid? target)
-        => target == infection.Target && HasComp<ChangelingComponent>(uid) && _mobState.IsAlive(uid)
-           && CanInfect(infection.Target) && HasInfectionPoints(uid)
+        => target == infection.Target && TryComp<ChangelingComponent>(uid, out var comp) && _mobState.IsAlive(uid)
+           && CanInfect(infection.Target)
+           && (infection.Assimilating ? CanContinueAssimilation(uid, comp) : HasInfectionPoints(uid))
            && _mind.TryGetMind(uid, out var mind, out _) && mind == infection.Mind
            && _mind.TryGetMind(infection.Target, out var victimMind, out _) && victimMind == infection.VictimMind;
 
@@ -132,7 +181,14 @@ public sealed partial class ChangelingSystem
         args.Handled = true;
         var valid = args.Completed && CanContinueInfection(uid, infection, args.Target);
         RemComp<ChangelingInfectionComponent>(uid);
-        if (!valid || !TryGetInfectionRule(out var rule))
+        if (!valid)
+            return;
+        if (infection.Assimilating)
+        {
+            AssimilateHiveBody(uid, Comp<ChangelingComponent>(uid), args.Target, infection.VictimMind);
+            return;
+        }
+        if (!TryGetInfectionRule(out var rule))
             return;
 
         var target = args.Target;
@@ -147,6 +203,27 @@ public sealed partial class ChangelingSystem
         _popup.PopupEntity(Loc.GetString("changeling-infect-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         _popup.PopupEntity(Loc.GetString("changeling-infect-target"), target, target);
     }
+
+    private void AssimilateHiveBody(EntityUid uid, ChangelingComponent comp, EntityUid target, EntityUid victimMind)
+    {
+        if (!TryGetColony(uid, out var member, out var colony))
+            return;
+        AbsorbHiveMind(uid, target);
+        if (!colony.Minds.TryGetValue(victimMind, out var anchor)
+            || !_mind.TryGetMind(anchor, out var transferredMind, out _) || transferredMind != victimMind)
+            return;
+
+        _damage.SetAllDamage(target, FixedPoint2.Zero);
+        var blood = Comp<BloodstreamComponent>(target);
+        _blood.TryModifyBleedAmount((target, blood), -blood.BleedAmount);
+        _blood.TryModifyBloodLevel((target, blood), blood.BloodReferenceSolution.Volume);
+        _mobState.ChangeMobState(target, MobState.Alive);
+        AddColonyMember(target, member.Mind, colony);
+        ActivateVacantCarrier(target);
+        UpdateBiomass(uid, comp, -comp.MaxBiomass / 4);
+        UpdateColonyUi(uid, colony);
+        _popup.PopupEntity(Loc.GetString("changeling-assimilate-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
+    }
 }
 
 [RegisterComponent]
@@ -155,4 +232,5 @@ public sealed partial class ChangelingInfectionComponent : Component
     public EntityUid Target;
     public EntityUid Mind;
     public EntityUid VictimMind;
+    public bool Assimilating;
 }

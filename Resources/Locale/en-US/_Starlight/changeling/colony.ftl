@@ -1,5 +1,5 @@
 evolutionmenu-colony-name = Colony
-evolutionmenu-colony-desc = Tear off a limb or rupture your whole body, even after death. Freely move between your living parts and possess organic bodies. Evolution grants parts specialized abilities and unlocks optional animation of shed blood and severed parts. Costs 10 evolution points.
+evolutionmenu-colony-desc = Detach living limbs, rupture your body even after death, switch carriers and possess organic bodies. Includes Assimilation Sting to bring a victim's mind and restored body into your hive. The sting costs biomass equal to 25% of your body's maximum only on success. Evolution unlocks specialized fragment abilities and living blood. Costs 10 evolution points.
 evolutionmenu-evolution-name = Evolution
 evolutionmenu-evolution-desc = Permanently evolve your hive's abilities, including future purchases. Strengthen armblades, chemistry, shock hands, regeneration, pain suppression, hacking, camouflage, muscles, eyes and stasis. Halve devour and possession stages. Unlock specialized abilities for fragments and optional living blood. Costs 10 evolution points, once.
 changeling-colony-title = Hive
@@ -24,6 +24,10 @@ changeling-hive-body = {$body} — {$occupant}
 changeling-hive-chat-hint = Hive chat: +r message. In mindspace, ordinary speech stays within the hive.
 changeling-hive-chat = [color=#c77dff]Hive — {$name}: {$message}[/color]
 changeling-hive-absorbed = Your consciousness has been absorbed into the hive. Help your host; you can inhabit its vacant bodies.
+changeling-assimilate-no-biomass = You need biomass equal to 25% of your body's maximum to assimilate this victim.
+changeling-assimilate-invalid = You cannot assimilate this target into your hive.
+changeling-assimilate-limit = Your hive cannot support another carrier.
+changeling-assimilate-success = {$target} has joined your hive.
 changeling-hive-briefing = You are an absorbed consciousness. Help your hive and its original host. Speak through the hive channel (+r). From mindspace you can observe the hive's bodies and inhabit vacant ones. The host can exchange bodies with you or recall you to mindspace.
 language-ChangelingHive-name = Hive
 language-ChangelingHive-description = A private connection between the minds of your own hive.

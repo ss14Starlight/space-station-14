@@ -51,6 +51,11 @@ public sealed partial class ChemicalStingEvent : EntityTargetActionEvent { }
 public sealed partial class StingFakeArmbladeEvent : EntityTargetActionEvent { }
 public sealed partial class StingInfectEvent : EntityTargetActionEvent { }
 
+/// <summary>
+/// Starts assimilation of an organic target into the performer's existing hive.
+/// </summary>
+public sealed partial class StingAssimilateEvent : EntityTargetActionEvent { }
+
 public sealed partial class StingBlindEvent : EntityTargetActionEvent { }
 public sealed partial class StingChemEvent : EntityTargetActionEvent
 {
