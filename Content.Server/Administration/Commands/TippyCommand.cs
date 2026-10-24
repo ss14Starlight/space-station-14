@@ -9,7 +9,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Administration.Commands;
 
-[AdminCommand(AdminFlags.Fun)]
+[AdminCommand(AdminFlags.Broadcast)] // Starlight-edit: was Fun
 public sealed partial class TippyCommand : LocalizedEntityCommands
 {
     [Dependency] private SharedTipsSystem _tips = default!;
@@ -17,6 +17,8 @@ public sealed partial class TippyCommand : LocalizedEntityCommands
     [Dependency] private IPlayerManager _player = default!;
     #region Starlight
     [Dependency] private IEntitySystemManager _entSysMan = default!;
+
+    [Dependency] private AdminLimitSystem _limits = default!;
 
     private AutoDiscordLogSystem _autoLog = default!;
     #endregion
@@ -76,6 +78,14 @@ public sealed partial class TippyCommand : LocalizedEntityCommands
         if (args.Length > 5 && float.TryParse(args[5], out var parsedWaddleInterval))
             waddleInterval = parsedWaddleInterval;
 
+        // Starlight-start
+        if (!_limits.TryUseTippy(shell.Player, out var remaining))
+        {
+            shell.WriteError(Loc.GetString("cmd-admin-limit-cooldown", ("seconds", MathF.Ceiling(remaining))));
+            return;
+        }
+        // Starlight-end
+
         _autoLog?.LogToDiscord(Loc.GetString("autolog-tippy", ("message", msg), ("prototype", prototype ?? "unknown")), shell.Player?.Name ?? "unknown"); //Starlight
 
         if (targetSession != null) // send to specified player
@@ -103,7 +113,7 @@ public sealed partial class TippyCommand : LocalizedEntityCommands
     }
 }
 
-[AdminCommand(AdminFlags.Fun)]
+[AdminCommand(AdminFlags.Broadcast)] // Starlight-edit: was Fun
 public sealed partial class TipCommand : LocalizedEntityCommands
 {
     [Dependency] private SharedTipsSystem _tips = default!;

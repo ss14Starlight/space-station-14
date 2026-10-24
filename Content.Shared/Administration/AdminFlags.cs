@@ -124,10 +124,28 @@
         /// </summary>
         NameColor = 1 << 21,
 
+        #region Starlight
+        /// <summary>
+        ///     Things that reach every player at once: tippy, admin global sounds.
+        ///     Split off <see cref="Fun"/> so event admins don't get them by default.
+        /// </summary>
+        Broadcast = 1 << 22,
+
+        /// <summary>
+        ///     Smite verbs.
+        /// </summary>
+        Smite = 1 << 23,
+
+        /// <summary>
+        ///     Spawning explosions with the explosion command and panel.
+        /// </summary>
+        Explosion = 1 << 24,
+
         /// <summary>
         ///     Dangerous permissions like loading prototypes.
         /// </summary>
         Danger = 1u << 30,
+        #endregion
 
         /// <summary>
         ///     Dangerous host permissions like scsi.

@@ -45,8 +45,14 @@ public sealed partial class TippyUIController : UIController
     // Starlight begin - Why the fuck are we even subscribing to an event in here that should be a crime, moved to system.
     }
 
-    public void AddTippyToQueue(TippyEvent msg) =>
-        _queuedMessages.Enqueue(msg);
+    private const int MaxQueuedMessages = 3;
+
+    public void AddTippyToQueue(TippyEvent msg)
+    {
+        // A burst of tippies would otherwise play out one after another for minutes.
+        if (_queuedMessages.Count < MaxQueuedMessages)
+            _queuedMessages.Enqueue(msg);
+    }
     // Starlight end
 
     public override void FrameUpdate(FrameEventArgs args)

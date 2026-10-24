@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Administration.Systems;
 using Content.Server.EUI;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Administration;
@@ -30,6 +31,14 @@ public sealed class SpawnExplosionEui : BaseEui
 
         if (request.TotalIntensity <= 0 || request.IntensitySlope <= 0)
             return;
+
+        // Starlight-start: the preview runs the same tile fill as a real explosion, so it gets the same caps.
+        var total = request.TotalIntensity;
+        var slope = request.IntensitySlope;
+        var maxTile = request.MaxIntensity;
+        if (IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<AdminLimitSystem>().ClampExplosion(Player, ref total, ref slope, ref maxTile))
+            request = new SpawnExplosionEuiMsg.PreviewRequest(request.Epicenter, request.TypeId, total, slope, maxTile);
+        // Starlight-end
 
         var explosion = _explosionSystem.GenerateExplosionPreview(request);
 
