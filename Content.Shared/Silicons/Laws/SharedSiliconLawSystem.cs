@@ -8,7 +8,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Wires;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes; // Starlight
-using Content.Shared.Emag.Components; // Starlight
+using Content.Shared.Emag.Components; //Starlight
 using Content.Shared.Mindshield.Components;
 
 namespace Content.Shared.Silicons.Laws;
