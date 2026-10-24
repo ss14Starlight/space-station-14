@@ -27,6 +27,7 @@ public abstract partial class SharedRingerSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedPdaSystem _pda = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] protected SharedStoreSystem Store = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] protected SharedUserInterfaceSystem UI = default!;
 
@@ -150,7 +151,7 @@ public abstract partial class SharedRingerSystem : EntitySystem
     /// <param name="user">The entity attempting to toggle the uplink.</param>
     /// <returns>True if the uplink state was toggled, false otherwise.</returns>
     [PublicAPI]
-    public virtual bool TryToggleUplink(EntityUid uid, Note[] ringtone, EntityUid? user = null)
+    public virtual bool TryToggleUplink(Entity<RingerUplinkComponent?> entity, Note[] ringtone, EntityUid? user = null)
     {
         return false;
     }
@@ -177,7 +178,7 @@ public abstract partial class SharedRingerSystem : EntitySystem
             return;
 
         // Try to toggle the uplink first
-        if (TryToggleUplink(ent, args.Ringtone))
+        if (TryToggleUplink(ent.Owner, args.Ringtone))
             return; // Don't save the uplink code as the ringtone
 
         UpdateRingerRingtone(ent, args.Ringtone);
