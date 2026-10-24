@@ -103,7 +103,7 @@
       effects:
       - !type:ModifyStatusEffect
         effectProto: StatusEffectAnxietySuppression
-        time: 30
+        time: 60
         type: Add
 
 - type: !PartialOnly reagent

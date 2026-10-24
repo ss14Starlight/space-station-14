@@ -80,4 +80,4 @@
     whitelist:
       components:
       - MobState
-    maximumDuration: 30m
+    maximumDuration: 40m
