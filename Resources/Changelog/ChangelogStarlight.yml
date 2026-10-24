@@ -1,32 +1,4 @@
 Entries:
-- author: FoxStellar
-  changes:
-  - message: Also added a fully complete Jug Locker that can optionally be mapped instead of the Jug Shelf.
-    type: Add
-  id: 409340
-  time: '2026-10-10T16:56:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6583
-- author: FoxStellar
-  changes:
-  - message: Changed jug box (small box) to once again have 4 jugs (instead of 2).
-    type: Tweak
-  id: 409341
-  time: '2026-10-10T16:56:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6583
-- author: FoxStellar
-  changes:
-  - message: Temporarily removed the jug box (small box) from the Chem Lockers, they'll return once the big boxes leave.
-    type: Remove
-  id: 409342
-  time: '2026-10-10T16:56:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6583
-- author: Rinary
-  changes:
-  - message: Changed and modernized admin help UI, now it won't have a lot of buttons in row, added job icon of player, added typing indicator, added search.
-    type: Tweak
-  id: 409343
-  time: '2026-10-10T17:16:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6609
 - author: Rinary
   changes:
   - message: Changed and modernized mentor help.
@@ -2799,4 +2771,32 @@ Entries:
   id: 409739
   time: '2026-10-24T15:25:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6831
+- author: Rinary
+  changes:
+  - message: Removed certain Lobby arts for various reasons, such as AI generated, low quality, arts that had copyright issues and too personal lobby arts(removed 5 arts).
+    type: Remove
+  id: 409740
+  time: '2026-10-24T19:10:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6838
+- author: Rinary
+  changes:
+  - message: Added a bunch of new arts in replacement of removed once(added 13 arts).
+    type: Add
+  id: 409741
+  time: '2026-10-24T19:10:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6838
+- author: Rinary
+  changes:
+  - message: Added ability to hide chat on lobby screen.
+    type: Add
+  id: 409742
+  time: '2026-10-24T19:10:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6838
+- author: Rinary
+  changes:
+  - message: Added ability to move ready/observe buttons at the top of chat box.
+    type: Add
+  id: 409743
+  time: '2026-10-24T19:10:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6838
 Order: -1
