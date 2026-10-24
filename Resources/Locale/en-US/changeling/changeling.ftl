@@ -1,7 +1,7 @@
 ﻿roles-antag-changeling-name = Changeling
 roles-antag-changeling-objective = A intelligent predator that assumes the identities of its victims.
 
-changeling-devour-attempt-failed-not-dead = This body yet lives! We cannot consume it alive!
+changeling-devour-attempt-failed-not-dead = We failed to finish consuming this body!
 changeling-devour-attempt-failed-rotting = This corpse has only rotted biomass.
 changeling-devour-attempt-failed-protected = This victim's biomass is protected by armor!
 

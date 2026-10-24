@@ -109,7 +109,6 @@
       collection: gib # Placeholder
   - type: ChangelingAction
     chemicalCost: 30 # It's *very* strong. This is your *final* upgrade.
-    requireAbsorbed: 6
 
 - type: entity
   id: ActionCreateBoneShard
@@ -144,7 +143,6 @@
     event: !type:ToggleChitinousArmorEvent {}
   - type: ChangelingAction
     chemicalCost: 25
-    requireAbsorbed: 2
 
 - type: entity
   parent: BaseAction
@@ -170,7 +168,6 @@
       collection: gib # Placeholder
   - type: ChangelingAction
     chemicalCost: 20
-    requireAbsorbed: 2
 
 - type: entity
   id: ActionShriekDissonant
@@ -189,7 +186,6 @@
   - type: ChangelingAction
     chemicalCost: 30
     useInLesserForm: true
-    requireAbsorbed: 2
 
 - type: entity
   id: ActionShriekResonant
@@ -299,7 +295,6 @@
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
-    requireAbsorbed: 2
 
 - type: entity
   id: ActionStingLethargic
@@ -346,7 +341,6 @@
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
-    requireAbsorbed: 2
 
 - type: entity
   id: ActionStingMute
@@ -472,7 +466,6 @@
     event: !type:ActionNightEyesightEvent {}
   - type: ChangelingAction
     chemicalCost: 15
-    requireAbsorbed: 2
     useInLesserForm: true
 
 - type: entity
@@ -491,7 +484,6 @@
     event: !type:ActionThermalEyesightEvent {}
   - type: ChangelingAction
     chemicalCost: 30 # Should have some cost associated with it.
-    requireAbsorbed: 4 # Tier 3 Ability.
     useInLesserForm: true
 
 - type: entity
@@ -569,7 +561,6 @@
     event: !type:ActionDesoxyephedrineOverdoseEvent {}
   - type: ChangelingAction
     chemicalCost: 30 # It injects enough Desoxy to hurt you, so it doesn't need to be that more expensive.
-    requireAbsorbed: 2 # It's not that great... but it's a faster stimulant than Ephedrine, so it requires you to have absorbed a bit more.
     useInLesserForm: true
 
 - type: entity
@@ -589,7 +580,6 @@
     event: !type:ActionAmalgamOverdoseEvent {}
   - type: ChangelingAction
     chemicalCost: 40
-    requireAbsorbed: 4 # It's strong. Tier 3 Ability.
     useInLesserForm: true
 
 - type: entity
@@ -609,7 +599,6 @@
     event: !type:ActionFleshmendEvent {}
   - type: ChangelingAction
     chemicalCost: 35
-    requireAbsorbed: 2 # easily one of the strongest combat abilities. Shouldn't be available round start
     useInLesserForm: true
 
 - type: entity
@@ -682,3 +671,19 @@
   - type: ChangelingAction
     chemicalCost: 0
     useInLesserForm: true
+
+- type: entity
+  id: ActionToggleChangelingBreathing
+  name: Respiratory Control
+  description: Choose whether your body needs to breathe. While breathing is stopped, you cannot inhale gases or suffocate. Costs no chemicals or biomass.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    useDelay: 1
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: breathing }
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:ToggleChangelingBreathingEvent {}
+  # No ChangelingAction: respiration is independent of biomass, chemicals and form.
