@@ -1,24 +1,4 @@
 Entries:
-- author: Scarlet.
-  changes:
-  - message: Added the assault suit for blackstar!.
-    type: Add
-  - message: Removed warlord combat suit.
-    type: Remove
-  - message: Added the MG42 and the STG44(not usable yet) for blackstar.
-    type: Add
-  - message: 'added the: radiopack blackstar varient, blackstar gas mask, blackstar helmet and fatiuges.'
-    type: Add
-  id: 409323
-  time: '2026-10-10T09:37:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6592
-- author: Xale
-  changes:
-  - message: Trash bags, pills, pill canisters, books, guidebooks, magazines, and newspapers can now be recycled by the disposals recycler.
-    type: Add
-  id: 409324
-  time: '2026-10-10T09:40:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6593
 - author: baltdev
   changes:
   - message: Added a snout marking option to Laspi.
@@ -2857,4 +2837,18 @@ Entries:
   id: 409722
   time: '2026-10-24T14:05:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6760
+- author: Floximo
+  changes:
+  - message: 'Remote Control: Incapacitated, prone and cross-map interactions are now correctly handled.'
+    type: Add
+  id: 409723
+  time: '2026-10-24T14:31:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6785
+- author: Floximo
+  changes:
+  - message: movePulledObject's frequency limitation (1 second per command) was removed again.
+    type: Fix
+  id: 409724
+  time: '2026-10-24T14:31:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6785
 Order: -1
