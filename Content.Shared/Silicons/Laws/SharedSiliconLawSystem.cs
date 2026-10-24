@@ -37,8 +37,8 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
 
         if (_emag.CheckFlag(uid, EmagType.Interaction, args.EmagComponent)) // Starlight edit | allow bypass if differing factions
             return;
-
-        if (HasComp<MindShieldComponent>(uid)) // Starlight start - no go if they're mindshielded
+        // Starlight start - no go if they're mindshielded
+        if (HasComp<MindShieldComponent>(uid))
         { 
             _popup.PopupClient(Loc.GetString("law-emag-mindshielded"), uid, args.UserUid);
             return;
