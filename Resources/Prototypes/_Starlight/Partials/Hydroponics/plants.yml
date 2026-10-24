@@ -11,3 +11,9 @@
     - Sylvan
     - GalacticCommon
   - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: RainbowCannabisPlants
+  components:
+  - type: Plant
+    growthStages: 3
