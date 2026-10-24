@@ -1,9 +1,7 @@
-# combat
-
 - type: listing
   id: EvolutionMenuCombatArmblade
   name: evolutionmenu-combat-armblade-name
-  description: evolutionmenu-combat-armblade-desc
+  description: evolutionmenu-evolving-armblade-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: armblade }
   productAction: ActionRetractableItemArmBlade
   cost:
@@ -22,8 +20,7 @@
   productAction: ActionRetractableItemArmBladePlus
   cost:
     EvolutionPoint: 5
-  categories:
-  - ChangelingAbilityCombat
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -31,7 +28,7 @@
 - type: listing
   id: EvolutionMenuCombatBoneShard
   name: evolutionmenu-combat-boneshard-name
-  description: evolutionmenu-combat-boneshard-desc
+  description: evolutionmenu-evolving-boneshard-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: bone_shard }
   productAction: ActionCreateBoneShard
   cost:
@@ -50,8 +47,7 @@
   productAction: ActionToggleChitinousArmor
   cost:
     EvolutionPoint: 4
-  categories:
-  - ChangelingAbilityCombat
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -64,8 +60,7 @@
   productAction: ActionToggleOrganicShield
   cost:
     EvolutionPoint: 2
-  categories:
-  - ChangelingAbilityCombat
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -73,7 +68,7 @@
 - type: listing
   id: EvolutionMenuCombatShriekDissonant
   name: evolutionmenu-combat-shriek-dissonant-name
-  description: evolutionmenu-combat-shriek-dissonant-desc
+  description: evolutionmenu-evolving-shriek-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: shriek_dissonant }
   productAction: ActionShriekDissonant
   cost:
@@ -92,16 +87,15 @@
   productAction: ActionShriekResonant
   cost:
     EvolutionPoint: 2
-  categories:
-  - ChangelingAbilityCombat
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
   id: EvolutionMenuCombatMuscles
-  name: evolutionmenu-combat-strainedmuscles-name
-  description: evolutionmenu-combat-strainedmuscles-desc
+  name: evolutionmenu-enhanced-strength-name
+  description: evolutionmenu-evolving-muscles-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: strained_muscles }
   productAction: ActionToggleStrainedMuscles
   cost:
@@ -222,8 +216,7 @@
   productAction: ActionAnatomicPanacea
   cost:
     EvolutionPoint: 2
-  categories:
-  - ChangelingAbilityUtility
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -231,7 +224,7 @@
 - type: listing
   id: EvolutionMenuUtilityEyesight
   name: evolutionmenu-utility-eyesight-name
-  description: evolutionmenu-utility-eyesight-desc
+  description: evolutionmenu-evolving-eyes-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: augmented_eyesight }
   productAction: ActionAugmentedEyesight
   cost:
@@ -243,6 +236,7 @@
     stock: 1
 
 # Starlight start
+
 - type: listing
   id: EvolutionMenuUtilityNightEyesight
   name: evolutionmenu-utility-night-eyesight-name
@@ -251,8 +245,7 @@
   productAction: ActionNightEyesight
   cost:
     EvolutionPoint: 3
-  categories:
-  - ChangelingAbilityUtility
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -265,8 +258,7 @@
   productAction: ActionThermalEyesight
   cost:
     EvolutionPoint: 4
-  categories:
-  - ChangelingAbilityUtility
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -288,7 +280,7 @@
 - type: listing
   id: EvolutionMenuUtilityChameleon
   name: evolutionmenu-utility-chameleon-name
-  description: evolutionmenu-utility-chameleon-desc
+  description: evolutionmenu-evolving-chameleon-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: chameleon_skin }
   productAction: ActionChameleonSkin
   cost:
@@ -307,8 +299,7 @@
   productAction: ActionEphedrineOverdose
   cost:
     EvolutionPoint: 3
-  categories:
-  - ChangelingAbilityUtility
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -321,8 +312,7 @@
   productAction: ActionDesoxyephedrineOverdose
   cost:
     EvolutionPoint: 4
-  categories:
-  - ChangelingAbilityUtility
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -335,8 +325,7 @@
   productAction: ActionAmalgamOverdose
   cost:
     EvolutionPoint: 5
-  categories:
-  - ChangelingAbilityUtility
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -349,8 +338,7 @@
   productAction: ActionFleshmend
   cost:
     EvolutionPoint: 5
-  categories:
-  - ChangelingAbilityUtility
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -372,7 +360,7 @@
 - type: listing
   id: EvolutionMenuUtilitySpacesuit
   name: evolutionmenu-utility-spacesuit-name
-  description: evolutionmenu-utility-spacesuit-desc
+  description: evolutionmenu-evolving-spacesuit-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: space_adaptation }
   productAction: ActionToggleSpacesuit
   cost:
@@ -415,6 +403,7 @@
   id: EvolutionMenuUtilityFakeMindshield
   name: evolutionmenu-utility-fakemindshield-name
   description: evolutionmenu-utility-fakemindshield-desc
+  icon: { sprite: Interface/Actions/actions_fakemindshield.rsi, state: icon }
   productAction: FakeMindShieldToggleAction
   cost:
     EvolutionPoint: 4
@@ -424,16 +413,4 @@
     - !type:ListingLimitedStockCondition
       stock: 1
 
-- type: listing
-  id: EvolutionMenuUtilityBreathing
-  name: evolutionmenu-utility-breathing-name
-  description: evolutionmenu-utility-breathing-desc
-  icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: breathing }
-  productAction: ActionToggleChangelingBreathing
-  cost:
-    EvolutionPoint: 0
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
+# Legacy listings stay registered, with no categories so stores cannot offer or purchase them.

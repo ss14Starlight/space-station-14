@@ -1,0 +1,75 @@
+- type: entity
+  id: ActionChangelingEmag
+  name: Organic sequencer
+  description: Sabotage electronics with a touch, like an emag. Costs 30 chemicals per hack. Evolution lets you hack visible devices up to 7 meters away for 5 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 5
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: organic-emag }
+  - type: TargetAction
+    range: 7
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: false
+    event: !type:ChangelingEmagEvent {}
+  - type: ChangelingAction
+    chemicalCost: 30
+    evolvedChemicalCost: 5
+  - type: EorgPreventAction
+
+- type: entity
+  id: ActionChangelingRegeneration
+  name: Adaptive regeneration
+  description: Regenerate 4 damage of each type per second, stop bleeding and rapidly restore lost blood. Costs 5 chemicals per second, even at full health. Evolution doubles healing and lowers upkeep to 3 chemicals per second. It also regrows a missing body part or organ every 10 seconds for 10 extra chemicals, replacing prostheses.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: fleshmend }
+  - type: InstantAction
+    event: !type:ToggleChangelingRegenerationEvent {}
+  - type: ChangelingAction
+    requireBiomass: false
+  - type: ChangelingRegenerationAction
+    healingPerSecond: 4
+    chemicalCostPerSecond: 5
+    evolvedHealingPerSecond: 8
+    evolvedChemicalCostPerSecond: 3
+
+- type: entity
+  id: ActionChangelingPainSuppression
+  name: Suppress pain
+  description: Deaden your pain to prevent injury slowdown, shock damage, stamina damage and stuns. Costs 2 chemicals per second, or nothing after Evolution. Physical injuries still harm you.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: pain-suppression }
+  - type: InstantAction
+    event: !type:ToggleChangelingPainSuppressionEvent {}
+  - type: ChangelingAction
+    requireBiomass: false
+
+- type: entity
+  id: ActionChangelingShockHand
+  name: Concealed shock hand
+  description: Deliver concealed electrical strikes that stun your target. Each hit costs 10 chemicals. Evolution unleashes a stronger shock that instantly knocks your target down, once every 30 seconds.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    checkCanInteract: false
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: shock-hand }
+  - type: InstantAction
+    event: !type:ToggleChangelingShockHandEvent {}
+  - type: ChangelingAction
+    requireBiomass: false

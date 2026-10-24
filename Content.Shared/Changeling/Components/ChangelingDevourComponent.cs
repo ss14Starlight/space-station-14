@@ -89,10 +89,17 @@ public sealed partial class ChangelingDevourComponent : Component
     public EntityUid? CurrentDevourSound;
 
     #region Starlight
+    /// <summary>
+    /// Target of the active sequence, retained until completion or cancellation.
+    /// </summary>
     [AutoNetworkedField]
     public EntityUid? CurrentTarget;
+
+    /// <summary>
+    /// Fraction of the second do-after's damage already applied on the server.
+    /// </summary>
     public float DevourDamageProgress;
-    #endregion Starlight
+    #endregion
 
     /// <summary>
     /// The damage dealt after the windup finished and devouring started.

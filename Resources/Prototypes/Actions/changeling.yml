@@ -26,7 +26,7 @@
 - type: entity
   id: ActionChangelingDevour
   name: "[color=red]Devour[/color]"
-  description: Consume an organic victim and steal their identity. Takes 10 seconds to prepare and another 10 seconds to feed. Movement interrupts the process.
+  description: Consume the essence of your victims and subsume their identity and mind into your own.
   components:
   - type: Action
     icon: { sprite : Interface/Actions/changeling.rsi, state: "devour" }

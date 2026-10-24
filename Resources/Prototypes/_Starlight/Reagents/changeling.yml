@@ -1,0 +1,44 @@
+- type: reagent
+  id: ChangelingCytotoxin
+  name: reagent-name-changeling-cytotoxin
+  desc: reagent-desc-changeling-cytotoxin
+  group: Toxins
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: bitter
+  color: "#8b2f5c"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 1
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChangelingCytotoxin
+          min: 0.001
+        - !type:ReagentCondition
+          reagent: ChangelingCytotoxinEvolved
+          max: 0
+        damage:
+          types:
+            Cellular: 10
+
+- type: reagent
+  id: ChangelingCytotoxinEvolved
+  name: reagent-name-changeling-cytotoxin-evolved
+  desc: reagent-desc-changeling-cytotoxin
+  group: Toxins
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: bitter
+  color: "#b52f5c"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 1
+      effects:
+      - !type:AdjustReagent
+        # Replace the weaker variant instead of applying both damage effects.
+        reagent: ChangelingCytotoxin
+        amount: -1000
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 15

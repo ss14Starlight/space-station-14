@@ -21,6 +21,8 @@ public abstract partial class SharedThermalVisionSystem : EntitySystem
 
     private void OnVisionInit(Entity<ThermalVisionComponent> ent, ref MapInitEvent args)
     {
+        if (!ent.Comp.GrantToggleAction)
+            return;
         _actionsSystem.AddAction(ent.Owner, ref ent.Comp.ActionEntity, Action);
     }
 
@@ -52,4 +54,3 @@ public abstract partial class SharedThermalVisionSystem : EntitySystem
 
     }
 }
-

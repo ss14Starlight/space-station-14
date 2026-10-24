@@ -321,7 +321,7 @@
   parent: ClothingHeadBase
   id: ChangelingClothingHeadHelmet
   name: chitinous helmet
-  description: An all-consuming chitinous mass of armor.
+  description: A pressure and temperature resistant chitinous helmet.
   suffix: Unremoveable
   components:
   - type: Sprite
@@ -333,8 +333,16 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8 # Starlight start
-        Slash: 0.8 # It makes you instantly a target, so it should provide some actual defense.
-        Piercing: 0.85
-        Heat: 0.8 # Starlight end
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+        Radiation: 0.75
+        Caustic: 0.75
+  - type: PressureProtection
+    highPressureMultiplier: 0.225
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
   - type: Unremoveable

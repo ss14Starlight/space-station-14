@@ -18,7 +18,6 @@ public sealed partial class ChangelingIdentityComponent : Component
     [DataField, AutoNetworkedField]
     public List<EntityUid> ConsumedIdentities = new();
 
-
     /// <summary>
     /// The currently assumed identity.
     /// </summary>

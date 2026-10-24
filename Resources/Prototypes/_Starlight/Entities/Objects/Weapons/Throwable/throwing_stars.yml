@@ -19,3 +19,44 @@
     damage: 35
   - type: StaminaDamageOnEmbed
     damage: 10
+  - type: SolutionContainerManager
+    solutions:
+      toxin:
+        maxVol: 6
+        reagents:
+        - ReagentId: ChangelingCytotoxin
+          Quantity: 6
+  - type: SolutionInjectOnEmbed
+    solution: toxin
+    transferAmount: 6
+  - type: TriggerOnEmbed
+    userIsEmbeddedInto: true
+  - type: EntityEffectOnTrigger
+    targetUser: true
+    effects:
+    - !type:MovementSpeedModifier
+      effectProto: ChangelingBoneShardSlowdown
+      time: 6
+      walkSpeedModifier: 0.6
+      sprintSpeedModifier: 0.6
+
+- type: entity
+  parent: ThrowingStarChangeling
+  id: ThrowingStarChangelingEvolved
+  suffix: Evolved
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      toxin:
+        maxVol: 6
+        reagents:
+        - ReagentId: ChangelingCytotoxinEvolved
+          Quantity: 6
+  - type: EntityEffectOnTrigger
+    targetUser: true
+    effects:
+    - !type:MovementSpeedModifier
+      effectProto: ChangelingBoneShardSlowdown
+      time: 6
+      walkSpeedModifier: 0.4
+      sprintSpeedModifier: 0.4

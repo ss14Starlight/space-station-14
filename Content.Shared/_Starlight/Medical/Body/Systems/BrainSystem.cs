@@ -5,6 +5,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Pointing;
+using Content.Shared._Starlight.Changeling;
 
 namespace Content.Shared._Starlight.Medical.Body.Systems;
 
@@ -23,7 +24,8 @@ public sealed partial class BrainSystem : EntitySystem
 
     private void HandleMind(EntityUid newEntity, EntityUid oldEntity)
     {
-        if (TerminatingOrDeleted(newEntity) || TerminatingOrDeleted(oldEntity))
+        if (TerminatingOrDeleted(newEntity) || TerminatingOrDeleted(oldEntity)
+            || HasComp<ChangelingComponent>(newEntity) || HasComp<ChangelingComponent>(oldEntity))
             return;
 
         EnsureComp<MindContainerComponent>(newEntity);

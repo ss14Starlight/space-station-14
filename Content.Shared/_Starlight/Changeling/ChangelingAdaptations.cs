@@ -1,0 +1,51 @@
+using Content.Shared.Actions;
+using Robust.Shared.Serialization;
+using Robust.Shared.GameStates;
+
+namespace Content.Shared._Starlight.Changeling;
+
+[RegisterComponent]
+public sealed partial class ChangelingRegenerationActionComponent : Component
+{
+    /// <summary>
+    /// Damage healed from each damaged type per second, independently of other types.
+    /// </summary>
+    [DataField] public float HealingPerSecond = 4;
+    [DataField] public float ChemicalCostPerSecond = 5;
+    /// <summary>
+    /// Evolved healing per damaged type per second.
+    /// </summary>
+    [DataField] public float EvolvedHealingPerSecond = 8;
+    [DataField] public float EvolvedChemicalCostPerSecond = 3;
+    [DataField] public float BloodRestoreFractionPerSecond = 0.1f;
+    [DataField] public float EvolvedBloodRestoreFractionPerSecond = 0.2f;
+    [DataField] public TimeSpan RegrowthInterval = TimeSpan.FromSeconds(10);
+    [DataField] public float RegrowthChemicalCost = 10;
+}
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class ChangelingShockHandComponent : Component
+{
+    [DataField] public float ChemicalCost = 10;
+    [DataField] public TimeSpan DischargeCooldown = TimeSpan.FromSeconds(30);
+    [DataField] public TimeSpan DischargeDuration = TimeSpan.FromSeconds(3);
+}
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class ChangelingPainSuppressionComponent : Component
+{
+    [DataField] public float ChemicalCostPerSecond = 2;
+}
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class ChangelingEyesComponent : Component
+{
+    public bool AddedNight;
+    public bool AddedThermal;
+    public bool ThermalConfigured;
+    public bool NightWasActive;
+    public bool ThermalWasActive;
+}
+
+[DataDefinition, Serializable, NetSerializable]
+public sealed partial class EvolveChangelingEvent : EntityEventArgs;

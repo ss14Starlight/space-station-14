@@ -1,6 +1,3 @@
-# abilities
-
-# starting
 - type: entity
   id: ActionEvolutionMenu
   name: Open evolution menu
@@ -44,11 +41,10 @@
     useInLesserForm: true
   - type: EorgPreventAction
 
-
 - type: entity
   id: ActionEnterStasis
   name: Enter regenerative stasis
-  description: Fake your death and start regenerating. Drains all your chemicals. Consumes biomass.
+  description: Feign death and regenerate your body. Empties your chemical reserves and consumes biomass until you awaken.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -68,7 +64,7 @@
 - type: entity
   id: ActionExitStasis
   name: Exit stasis
-  description: Rise from the dead with full health. Costs 60 chemicals.
+  description: Rise from the dead with full health. Costs 60 chemicals, or 30 after Evolution.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -83,9 +79,11 @@
     event: !type:ExitStasisEvent {}
   - type: ChangelingAction
     chemicalCost: 60
+    evolvedChemicalCost: 30
     useInLesserForm: true
 
 # combat
+
 - type: entity
   parent: BaseAction
   id: ActionRetractableItemArmBladePlus
@@ -113,7 +111,7 @@
 - type: entity
   id: ActionCreateBoneShard
   name: Form Bone Shard
-  description: Break off shards of your bone and shape them into a throwing star, laced with a disorienting neurotoxin. Costs 15 chemicals.
+  description: Grow a barbed shard to throw at your prey. A hit slows movement by 40% for 6 seconds and deals 60 genetic damage over that time. Evolution raises these to 60% and 90 damage. Costs 15 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -172,7 +170,7 @@
 - type: entity
   id: ActionShriekDissonant
   name: Dissonant Shriek
-  description: Emit an EMP blast, with just your voice. Costs 30 chemicals.
+  description: Unleash an electromagnetic shriek that disrupts nearby electronics. Evolution also disorients living creatures and shatters lights. Costs 30 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -207,8 +205,8 @@
 
 - type: entity
   id: ActionToggleStrainedMuscles
-  name: Strain Muscles
-  description: Move at extremely fast speeds. Deals stamina damage.
+  name: Enhanced Strength
+  description: Double your melee damage, move faster and force open powered or bolted airlocks. Welded doors remain sealed. Costs 3 chemicals per second while active. Evolution raises melee damage to three times normal, increases speed further and reduces all damage taken by 20%.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -220,10 +218,12 @@
   - type: InstantAction
     event: !type:ToggleStrainedMusclesEvent {}
   - type: ChangelingAction
-    chemicalCost: 30
+    chemicalCost: 0
+    requireBiomass: false
     useInLesserForm: true
 
 # stings
+
 - type: entity
   id: ActionStingBlind
   name: Blind Sting
@@ -413,6 +413,7 @@
   - type: EorgPreventAction
 
 # utility
+
 - type: entity
   id: ActionAnatomicPanacea
   name: Anatomic Panacea
@@ -436,7 +437,7 @@
 - type: entity
   id: ActionAugmentedEyesight
   name: Augmented Eyesight
-  description: Toggle flash protection. Must be disabled in order to use other eye augments. # Starlight
+  description: Protect your eyes from flashes and see in darkness. Evolution also reveals heat signatures through walls. Toggle at will.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -449,6 +450,7 @@
     event: !type:ActionAugmentedEyesightEvent {}
   - type: ChangelingAction
     chemicalCost: 0
+    requireBiomass: false
 
 - type: entity
   id: ActionNightEyesight
@@ -509,7 +511,7 @@
 - type: entity
   id: ActionChameleonSkin
   name: Chameleon Skin
-  description: Slowly blend in with the environment. Costs 15 chemicals.
+  description: Cloak your body to blend into your surroundings. Costs 15 chemicals to toggle and 1.25 per second while active. Evolution lets you move without revealing yourself and reduces upkeep to 0.5 chemicals per second.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -622,7 +624,7 @@
 - type: entity
   id: ActionToggleSpacesuit
   name: Toggle Space Suit
-  description: Make your body space proof. Costs 20 chemicals.
+  description: Grow an organic suit and helmet that protect you from space. Evolution hardens them into heavily reinforced chitinous armor. Costs 20 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -639,7 +641,7 @@
 - type: entity
   id: ActionToggleNeocyteDisguise
   name: Toggle Neocyte Disguise
-  description: Form a fake neocyte cybernetic frame. Costs 0 chemicals.
+  description: Shape your outer tissue to resemble a Neocyte's cybernetic frame. Requires a Neocyte disguise. Costs no chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -671,6 +673,8 @@
   - type: ChangelingAction
     chemicalCost: 0
     useInLesserForm: true
+
+# Legacy actions are available for compatibility/admin grants; normal changelings do not receive them.
 
 - type: entity
   id: ActionToggleChangelingBreathing

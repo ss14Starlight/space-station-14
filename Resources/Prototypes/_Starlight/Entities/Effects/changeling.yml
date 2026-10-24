@@ -7,3 +7,8 @@
     - type: Sprite
       sprite: _Starlight/Effects/changeling_transform.rsi
       state: icon
+
+- type: entity
+  parent: StatusEffectSlowdown
+  id: ChangelingBoneShardSlowdown
+  name: cytotoxic slowdown

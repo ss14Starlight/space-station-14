@@ -8,6 +8,18 @@
   },
   "states": [
     {
+      "name": "shock-hand"
+    },
+    {
+      "name": "pain-suppression"
+    },
+    {
+      "name": "organic-emag"
+    },
+    {
+      "name": "evolution-upgrade"
+    },
+    {
       "name": "breathing"
     }
   ]

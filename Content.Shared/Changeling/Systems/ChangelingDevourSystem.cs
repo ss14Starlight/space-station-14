@@ -54,6 +54,21 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         SubscribeLocalEvent<ChangelingDevourComponent, ComponentShutdown>(OnShutdown);
     }
 
+    #region Starlight
+    /// <summary>
+    /// Reduces both devour stages to their evolved duration.
+    /// </summary>
+    public void SetEvolved(Entity<ChangelingDevourComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        ent.Comp.DevourWindupTime = TimeSpan.FromSeconds(5);
+        ent.Comp.DevourConsumeTime = TimeSpan.FromSeconds(5);
+        Dirty(ent);
+    }
+    #endregion
+
     private void OnMapInit(Entity<ChangelingDevourComponent> ent, ref MapInitEvent args)
     {
         _actionsSystem.AddAction(ent, ref ent.Comp.ChangelingDevourActionEntity, ent.Comp.ChangelingDevourAction);
@@ -93,6 +108,21 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
         return false;
     }
+
+    #region Starlight
+    /// <summary>
+    /// Starts the ordinary devour sequence for an ability that reuses its two stages.
+    /// </summary>
+    public bool StartDevour(Entity<ChangelingDevourComponent?> ent, EntityUid target)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        var action = new ChangelingDevourActionEvent { Performer = ent.Owner, Target = target };
+        OnDevourAction((ent.Owner, ent.Comp), ref action);
+        return ent.Comp.CurrentTarget == target;
+    }
+    #endregion
 
     // The action was used.
     // Start the first doafter for the windup.

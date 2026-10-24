@@ -5,7 +5,7 @@ namespace Content.Shared._Starlight.Overlay.Components;
 
 [RegisterComponent]
 [NetworkedComponent]
-[AutoGenerateComponentState]
+[AutoGenerateComponentState(true)]
 public sealed partial class ThermalVisionComponent : Component
 {
     [DataField, AutoNetworkedField]
@@ -14,10 +14,12 @@ public sealed partial class ThermalVisionComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid? ActionEntity;
 
+    [DataField, AutoNetworkedField]
+    public bool GrantToggleAction = true;
+
     [DataField]
     public EntProtoId EffectPrototype = "EffectThermalVision";
 
     [DataField, AutoNetworkedField]
     public bool UseAlternativeShader = false;
 }
-

@@ -64,6 +64,12 @@ public sealed partial class ItemComponent : Component
     //starlight start
     [DataField, AutoNetworkedField]
     public bool AllowDirectHandPickup = true;
+
+    /// <summary>
+    /// Hides this item from the list of held items when its holder is examined.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool HideFromHandsExamine;
     //starlight end
 }
 

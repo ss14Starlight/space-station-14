@@ -1071,6 +1071,20 @@ public abstract partial class SharedActionsSystem : EntitySystem
         return ev.Event;
     }
 
+    #region Starlight
+    /// <summary>
+    /// Sets whether an entity-target action can target its own performer.
+    /// </summary>
+    public void SetCanTargetSelf(Entity<EntityTargetActionComponent?> ent, bool canTargetSelf)
+    {
+        if (!Resolve(ent, ref ent.Comp, false) || ent.Comp.CanTargetSelf == canTargetSelf)
+            return;
+
+        ent.Comp.CanTargetSelf = canTargetSelf;
+        Dirty(ent);
+    }
+    #endregion Starlight
+
     public bool SetEventTarget(EntityUid uid, EntityUid target)
     {
         DebugTools.Assert(_actionQuery.HasComp(uid), $"Entity {ToPrettyString(uid)} is missing ActionComponent");

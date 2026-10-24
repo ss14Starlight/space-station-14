@@ -1,0 +1,27 @@
+- type: entity
+  id: ChangelingShockHand
+  name: hand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Item
+    hideFromHandsExamine: true
+  - type: Unremoveable
+  - type: MeleeWeapon
+    hidden: true
+    animation: WeaponArcFist
+    wideAnimation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 0
+  - type: StaminaDamageOnHit
+    damage: 35
+    sound: /Audio/Weapons/egloves.ogg
+  - type: ChangelingShockHand
+    chemicalCost: 10
+    dischargeCooldown: 30
+    dischargeDuration: 3
+
+- type: entity
+  parent: PainNumbnessTraitStatusEffect
+  id: ChangelingPainSuppression
+  name: suppressed pain

@@ -1,4 +1,5 @@
 using Content.Shared.Humanoid;
+using Content.Shared.Prying.Components;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -7,7 +8,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Changeling;
 
 [RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState]
+[AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class ChangelingComponent : Component
 {
     #region Prototypes
@@ -43,22 +44,35 @@ public sealed partial class ChangelingComponent : Component
     public bool IsInStasis = false;
 
     [DataField, AutoNetworkedField]
-    public bool BreathingEnabled = true;
-
-    public ChangelingResources Resources = new();
-
     public bool StrainedMusclesActive = false;
+
+    public PryingComponent? StrengthPrying;
+    public (bool Enabled, bool PryPowered, bool Force, float SpeedModifier)? OriginalStrengthPrying;
 
     public bool IsInLesserForm = false;
 
     public bool StealthEnabled = false;
+
+    public EntityUid? RegenerationAction;
+    public TimeSpan NextRegrowth;
+    public EntityUid? PainSuppressionAction;
+    public EntityUid? ShockHandAction;
+    public TimeSpan ShockReady;
+    public EntityUid? EyesAction;
+
+    [DataField, AutoNetworkedField]
+    public bool Evolved { get => Resources.Genetics.Evolved; set => Resources.Genetics.Evolved = value; }
+
+    [DataField, AutoNetworkedField]
+    public bool BreathingEnabled = true;
+
+    public ChangelingResources Resources = new();
 
     [DataField]
     public float StealthDrain = 1.25f; // 6.6 minutes to fully drain 100 chemicals
 
     [DataField]
     public float StasisDrain = 10f / 60f;
-
 
     public Dictionary<string, EntityUid?> Equipment = new();
 
@@ -123,7 +137,7 @@ public sealed partial class ChangelingComponent : Component
     public TimeSpan BiomassUpdateCooldown = TimeSpan.FromSeconds(60f);
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public List<TransformData> AbsorbedDNA = new();
+    public List<TransformData> AbsorbedDNA { get => Resources.AbsorbedDNA; set => Resources.AbsorbedDNA = value; }
     /// <summary>
     ///     Index of <see cref="AbsorbedDNA"/>. Used for switching forms.
     /// </summary>
@@ -139,13 +153,13 @@ public sealed partial class ChangelingComponent : Component
     ///     Total absorbed DNA. Counts towards objectives.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public int TotalAbsorbedEntities = 0;
+    public int TotalAbsorbedEntities { get => Resources.TotalAbsorbedEntities; set => Resources.TotalAbsorbedEntities = value; }
 
     /// <summary>
     ///     Total stolen DNA. Counts towards objectives.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public int TotalStolenDNA = 0;
+    public int TotalStolenDNA { get => Resources.TotalStolenDNA; set => Resources.TotalStolenDNA = value; }
 
     [ViewVariables(VVAccess.ReadOnly)]
     public TransformData? CurrentForm;
@@ -156,11 +170,24 @@ public sealed partial class ChangelingComponent : Component
 
 public sealed class ChangelingResources
 {
+    public ChangelingGenetics Genetics = new();
+    public int TotalAbsorbedEntities { get => Genetics.TotalAbsorbedEntities; set => Genetics.TotalAbsorbedEntities = value; }
+    public int TotalStolenDNA { get => Genetics.TotalStolenDNA; set => Genetics.TotalStolenDNA = value; }
+    public List<TransformData> AbsorbedDNA { get => Genetics.AbsorbedDNA; set => Genetics.AbsorbedDNA = value; }
+
     public float Biomass = 40f;
     public float MaxBiomass = 60f;
     public float Chemicals = 100f;
     public float MaxChemicals = 100f;
     public float BonusChemicalRegen;
+}
+
+public sealed class ChangelingGenetics
+{
+    public bool Evolved;
+    public int TotalAbsorbedEntities;
+    public int TotalStolenDNA;
+    public List<TransformData> AbsorbedDNA = new();
 }
 
 [DataDefinition]

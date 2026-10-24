@@ -1,6 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Changeling;
 
@@ -11,10 +12,11 @@ public sealed partial class ChangelingActionComponent : Component
 
     [DataField] public float ChemicalCost = 0;
 
+    [DataField] public float? EvolvedChemicalCost;
+
     [DataField] public float BiomassCost = 0;
 
     [DataField] public bool UseInLesserForm = false;
-
 }
 
 #region Events - Basic
@@ -43,13 +45,14 @@ public sealed partial class ToggleStrainedMusclesEvent : InstantActionEvent { }
 #region Events - Sting
 
 public sealed partial class StingBlindEvent : EntityTargetActionEvent { }
-
 public sealed partial class StingChemEvent : EntityTargetActionEvent
 {
+    /// <summary>
+    /// Reagents and amounts delivered by a legacy reagent sting.
+    /// </summary>
     [DataField(required: true)]
-    public Dictionary<string, FixedPoint2> Chems;
+    public Dictionary<string, FixedPoint2> Chems = new();
 }
-public sealed partial class StingFakeArmbladeEvent : EntityTargetActionEvent { }
 public sealed partial class StingTransformEvent : EntityTargetActionEvent { }
 
 #endregion
@@ -72,5 +75,9 @@ public sealed partial class ActionSpacesuitEvent : InstantActionEvent { }
 public sealed partial class ActionNeocyteDisguiseEvent : InstantActionEvent { } // Starlight
 public sealed partial class ActionHivemindAccessEvent : InstantActionEvent { }
 public sealed partial class ActionContortBodyEvent : InstantActionEvent { }
+public sealed partial class ChangelingEmagEvent : EntityTargetActionEvent { }
+public sealed partial class ToggleChangelingRegenerationEvent : InstantActionEvent { }
+public sealed partial class ToggleChangelingPainSuppressionEvent : InstantActionEvent { }
+public sealed partial class ToggleChangelingShockHandEvent : InstantActionEvent { }
 
 #endregion

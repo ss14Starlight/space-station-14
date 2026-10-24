@@ -1,0 +1,228 @@
+using Content.Shared._Starlight.Changeling;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Events;
+using Content.Shared.Emag.Components;
+using Content.Shared.Emag.Systems;
+using Content.Shared.FixedPoint;
+using Content.Shared.Stunnable;
+using Content.Shared.Damage.Systems;
+using Content.Server.Electrocution;
+using Robust.Shared.Prototypes;
+
+namespace Content.Server._Starlight.Changeling;
+
+public sealed partial class ChangelingSystem
+{
+    [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private ElectrocutionSystem _shock = default!;
+
+    private static readonly EntProtoId ShockHandPrototype = "ChangelingShockHand";
+    private static readonly EntProtoId PainSuppressionEffect = "ChangelingPainSuppression";
+
+    [SubscribeLocalEvent]
+    private void OnEmag(EntityUid uid, ChangelingComponent comp, ref ChangelingEmagEvent args)
+    {
+        if (args.Handled)
+            return;
+        if (!comp.Evolved && (!Transform(uid).Coordinates.TryDistance(EntityManager, Transform(args.Target).Coordinates, out var distance)
+            || distance > 1.5f))
+            return;
+
+        var cost = ChemicalCost(comp, Comp<ChangelingActionComponent>(args.Action));
+        if (comp.Chemicals < cost)
+            return;
+
+        // Use the ordinary emag prototype so its access flags and target restrictions stay identical.
+        var tool = Spawn("EmagUnlimited", Transform(uid).Coordinates);
+        var success = _emag.TryEmagEffect((tool, Comp<EmagComponent>(tool)), uid, args.Target);
+        QueueDel(tool);
+        args.Handled = success;
+    }
+
+    private bool CanActivateAdaptation(EntityUid uid, ChangelingComponent comp)
+    {
+        if (comp.IsInStasis || _mobState.IsDead(uid))
+            return false;
+        if (comp.Biomass >= 1)
+            return true;
+        _popup.PopupEntity(Loc.GetString("changeling-biomass-deficit"), uid, uid);
+        return false;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnToggleRegeneration(EntityUid uid, ChangelingComponent comp, ref ToggleChangelingRegenerationEvent args)
+    {
+        if (args.Handled)
+            return;
+        if (comp.RegenerationAction != null)
+            SetAdaptationAction(ref comp.RegenerationAction, null);
+        else
+        {
+            if (!CanActivateAdaptation(uid, comp))
+                return;
+            var regeneration = Comp<ChangelingRegenerationActionComponent>(args.Action);
+            var drain = comp.Evolved ? regeneration.EvolvedChemicalCostPerSecond : regeneration.ChemicalCostPerSecond;
+            if (comp.Chemicals < drain * (float) comp.ChemicalUpdateCooldown.TotalSeconds)
+            {
+                _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
+                return;
+            }
+            SetAdaptationAction(ref comp.RegenerationAction, args.Action);
+            comp.NextRegrowth = _timing.CurTime + regeneration.RegrowthInterval;
+        }
+        ShowAbilityFeedback(uid, args.Action, comp.RegenerationAction != null);
+        args.Handled = true;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnTogglePainSuppression(EntityUid uid, ChangelingComponent comp, ref ToggleChangelingPainSuppressionEvent args)
+    {
+        if (args.Handled)
+            return;
+        if (comp.PainSuppressionAction != null)
+            StopPainSuppression(uid, comp);
+        else
+        {
+            if (!comp.Evolved && comp.Chemicals < 2)
+            {
+                _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
+                return;
+            }
+            if (!CanActivateAdaptation(uid, comp)
+                || !_statusEffect.TryUpdateStatusEffectDuration(uid, PainSuppressionEffect, null))
+                return;
+            EnsureComp<ChangelingPainSuppressionComponent>(uid);
+            SetAdaptationAction(ref comp.PainSuppressionAction, args.Action);
+            _stamina.TakeStaminaDamage(uid, -_stamina.GetStaminaDamage(uid));
+            _statusEffect.TryRemoveStatusEffect(uid, SharedStunSystem.StunId);
+            _statusEffect.TryRemoveStatusEffect(uid, SharedStaminaSystem.StaminaLow);
+            _speed.RefreshMovementSpeedModifiers(uid);
+        }
+        ShowAbilityFeedback(uid, args.Action, comp.PainSuppressionAction != null);
+        args.Handled = true;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnToggleShockHand(EntityUid uid, ChangelingComponent comp, ref ToggleChangelingShockHandEvent args)
+    {
+        if (args.Handled)
+            return;
+        var active = comp.ShockHandAction != null;
+        if (!active && !CanActivateAdaptation(uid, comp))
+            return;
+        if (!TryToggleItem(uid, ShockHandPrototype, comp))
+            return;
+        SetAdaptationAction(ref comp.ShockHandAction, active ? null : args.Action);
+        ShowAbilityFeedback(uid, args.Action, !active);
+        args.Handled = true;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnShockHandHit(Entity<ChangelingShockHandComponent> ent, ref StaminaDamageOnHitAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+        var user = Transform(ent).ParentUid;
+        if (!TryComp<ChangelingComponent>(user, out var ling) || ling.Biomass < 1
+            || ling.IsInStasis || ling.Chemicals < ent.Comp.ChemicalCost)
+        {
+            args.Cancelled = true;
+            return;
+        }
+    }
+
+    [SubscribeLocalEvent]
+    private void OnShockDischarge(Entity<ChangelingShockHandComponent> ent, ref StaminaMeleeHitEvent args)
+    {
+        var user = Transform(ent).ParentUid;
+        if (args.Handled || args.HitList.Count == 0 || !TryComp<ChangelingComponent>(user, out var ling))
+            return;
+        UpdateChemicals(user, ling, -ent.Comp.ChemicalCost);
+        if (!ling.Evolved || ling.Biomass < 1 || _timing.CurTime < ling.ShockReady)
+            return;
+        foreach (var (target, _) in args.HitList)
+        {
+            if (!_shock.TryDoElectrocution(target, user, 5, ent.Comp.DischargeDuration, false))
+                continue;
+            ling.ShockReady = _timing.CurTime + ent.Comp.DischargeCooldown;
+            break;
+        }
+    }
+
+    private void UpdateAdaptations(EntityUid uid, ChangelingComponent comp)
+    {
+        if (comp.Biomass < 1 || comp.IsInStasis || _mobState.IsDead(uid))
+        {
+            StopAdaptations(uid, comp);
+            return;
+        }
+        if (comp.PainSuppressionAction != null && !_statusEffect.HasStatusEffect(uid, PainSuppressionEffect))
+            StopPainSuppression(uid, comp);
+        if (comp.PainSuppressionAction != null && !comp.Evolved
+            && TryComp<ChangelingPainSuppressionComponent>(uid, out var pain))
+        {
+            var drain = pain.ChemicalCostPerSecond * (float) comp.ChemicalUpdateCooldown.TotalSeconds;
+            if (comp.Chemicals < drain)
+                StopPainSuppression(uid, comp);
+            else
+                UpdateChemicals(uid, comp, -drain);
+        }
+        if (comp.ShockHandAction != null
+            && (!comp.Equipment.TryGetValue(ShockHandPrototype, out var item) || item == null
+                || TerminatingOrDeleted(item.Value) || !_hands.IsHolding(uid, item.Value)))
+            StopShockHand(comp);
+
+        if (comp.RegenerationAction is not { } action)
+            return;
+        var seconds = (float) comp.ChemicalUpdateCooldown.TotalSeconds;
+        if (!TryComp<ChangelingRegenerationActionComponent>(action, out var regeneration)
+            || comp.Chemicals < (comp.Evolved ? regeneration.EvolvedChemicalCostPerSecond : regeneration.ChemicalCostPerSecond) * seconds)
+        {
+            SetAdaptationAction(ref comp.RegenerationAction, null);
+            _popup.PopupEntity(Loc.GetString("changeling-passive-disable"), uid, uid);
+            return;
+        }
+
+        UpdateChemicals(uid, comp, -(comp.Evolved ? regeneration.EvolvedChemicalCostPerSecond : regeneration.ChemicalCostPerSecond) * seconds);
+        UpdateRegeneration(uid, comp, regeneration, seconds);
+    }
+
+    private void SetAdaptationAction(ref EntityUid? current, EntityUid? next)
+    {
+        if (current != null)
+            _actions.SetToggled(current, false);
+        current = next;
+        if (next != null)
+            _actions.SetToggled(next, true);
+    }
+
+    private void StopPainSuppression(EntityUid uid, ChangelingComponent comp)
+    {
+        if (comp.PainSuppressionAction == null)
+            return;
+        SetAdaptationAction(ref comp.PainSuppressionAction, null);
+        RemComp<ChangelingPainSuppressionComponent>(uid);
+        _statusEffect.TryRemoveStatusEffect(uid, PainSuppressionEffect);
+        _speed.RefreshMovementSpeedModifiers(uid);
+    }
+
+    private void StopShockHand(ChangelingComponent comp)
+    {
+        if (comp.ShockHandAction == null)
+            return;
+        SetAdaptationAction(ref comp.ShockHandAction, null);
+        if (comp.Equipment.Remove(ShockHandPrototype, out var item))
+            QueueDel(item);
+    }
+
+    private void StopAdaptations(EntityUid uid, ChangelingComponent comp)
+    {
+        if (comp.StrainedMusclesActive)
+            ToggleStrainedMuscles(uid, comp);
+        SetAdaptationAction(ref comp.RegenerationAction, null);
+        StopPainSuppression(uid, comp);
+        StopShockHand(comp);
+        StopEnhancedEyes(uid, comp);
+    }
+}
