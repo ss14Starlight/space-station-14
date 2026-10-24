@@ -36,14 +36,17 @@
   suffix: AI
   description: A prominent representative of kobolds with unlimited access to that which she doesn't want to eat.
   components:
+  - type: AntagTarget
   - type: LanguageKnowledge
     speaks:
     - Ancestor
     - Draconic
+    - Sign
     understands:
     - Ancestor
     - GalacticCommon
     - Draconic
+    - Sign
   - type: RandomSprite # Using random sprite since we need to overwrite the parent's random sprite, even if we're actually giving her a fixed appearance.
     getAllGroups: true
     available:
@@ -59,9 +62,8 @@
     rules: ghost-role-information-nonantagonist-rules
     job: Botanist
   - type: GhostTakeoverAvailable
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeat
       amount: 3
     - id: ChemistryBottleUnstableMutagen
@@ -73,7 +75,7 @@
     - VimPilot
     - AnomalyHost
   - type: Loadout
-    prototypes: [ MobKoboldGear ]
+    prototypes: [ MobKikiGear ]
   - type: Vocal
     sounds:
       Male: MaleReptilian
@@ -93,12 +95,15 @@
   suffix: AI
   description: A disreputable monkey who should not be trusted. A real cell stuffer.
   components:
+  - type: AntagTarget
   - type: LanguageKnowledge
     speaks:
     - Ancestor
+    - Sign
     understands:
     - Ancestor
     - GalacticCommon
+    - Sign
   - type: GhostRole
     prob: 1
     makeSentient: true
@@ -109,9 +114,8 @@
     rules: ghost-role-information-nonantagonist-rules
     job: StirStir
   - type: GhostTakeoverAvailable
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeat
       amount: 3
   - type: Tag
@@ -126,6 +130,9 @@
     attributes:
       proper: true
       gender: male
+  - type: GuideHelp
+    guides:
+    - StirStir
 
 ## ADMIN MICE
 
@@ -233,9 +240,6 @@
     equippedPrefix: 1
     slots:
     - HEAD
-  - type: NpcFactionMember
-    factions:
-      - Mouse
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -348,6 +352,29 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/penguin_squawk.ogg
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+
+- type: entity
+  name: Cecil
+  parent: MobLizard
+  id: MobLizardCecil
+  description: A lounge lizard kept by Central Command to add ambiance to their conference rooms. Do not confuse for sea salt, his name is Cecil. Cecil. Cecil. Cecil command. Cecil. Sea salt command.
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Draconic
+    understands:
+    - Ancestor
+    - GalacticCommon
+    - Draconic
+    - Sign
   - type: Grammar
     attributes:
       proper: true

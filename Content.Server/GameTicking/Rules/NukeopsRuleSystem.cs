@@ -25,12 +25,10 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Station.Components;
 using Content.Shared.Store.Components;
-// Starlight Start
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Cuffs;
-using Prometheus;
 using Robust.Shared.Prototypes;
 using Content.Server.AlertLevel;
 using Content.Server._NullLink.Helpers;
@@ -39,7 +37,7 @@ using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Server.Player;
 using Content.Server._Starlight.Achievement;
-// Starlight End
+using Content.Server._Starlight.Statistics;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -54,14 +52,8 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
         (200, "john_syndicate")
     ];
     // Starlight end: Achievements
-    #region Starlight data collection
-    private static readonly Counter _nukeopsCount = Metrics.CreateCounter(
-        "nukie_count",
-        "Number of all nukies Win/Loses Count.",
-        ["results"]);
-    #endregion
-
     [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!; // Starlight
     [Dependency] private EmergencyShuttleSystem _emergency = default!;
     [Dependency] private NpcFactionSystem _npcFaction = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
@@ -480,8 +472,8 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
     private void SetWinType(Entity<NukeopsRuleComponent> ent, WinType type, bool endRound = true)
     {
         ent.Comp.WinType = type;
+        _roundStatistics.RecordAntagOutcome(ent.Owner, "Nukeops", type.ToString()); // Starlight
 
-        _nukeopsCount.WithLabels(type.ToString()).Inc(1); // Starlight
         // Starlight start: Achievements
         if (type is WinType.OpsMajor or WinType.OpsMinor)
             TryAwardLoneOperativeAchievements(ent);

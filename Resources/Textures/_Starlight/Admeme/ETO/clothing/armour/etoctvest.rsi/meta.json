@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Made by The Purple Screen",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING",
+      "directions": 4,
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-vox",
+      "directions": 4,
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+      "copyright": "The Purple Screen"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+      "copyright": "The Purple Screen"
+    }
+  ]
+}

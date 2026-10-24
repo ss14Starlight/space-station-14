@@ -18,3 +18,22 @@
     color: orange
     castShadows: false
   - type: Clickable
+
+- type: entity
+  id: HolosignFalseShutter
+  parent: HolosignWetFloor
+  name: shutter?
+  description: A shutter, you think?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Holo/shutter.rsi
+    state: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+  - type: TimedDespawn
+    lifetime: 180
+  - type: Occluder

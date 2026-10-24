@@ -101,7 +101,8 @@ namespace Content.Server.Construction
             ConstructionGraphNode targetNode,
             ConstructionPrototype constructionPrototype, // Starlight edit
             EntityCoordinates coords,
-            Angle angle = default)
+            Angle angle = default,
+            Direction? checkDirection = null) // Starlight edit
         {
             // We need a place to hold our construction items!
             var container = _container.EnsureContainer<Container>(user, materialContainer, out var existed);
@@ -273,7 +274,9 @@ namespace Content.Server.Construction
             // Starlight edit start
             foreach (var condition in constructionPrototype.Conditions)
             {
-                if (!condition.Condition(user, coords, angle.GetCardinalDir()))
+                // Use the direction the placement was actually validated with; `angle` is forced
+                // to zero for recipes with canRotate: false, which would re-check a different facing.
+                if (!condition.Condition(user, coords, checkDirection ?? angle.GetCardinalDir()))
                 {
                     var message = condition.GenerateGuideEntry()?.Localization
                                   ?? "construction-system-construct-conditions-not-met";
@@ -426,23 +429,48 @@ namespace Content.Server.Construction
         // LEGACY CODE. See warning at the top of the file!
         private async void HandleStartStructureConstruction(TryStartStructureConstructionMessage ev, EntitySessionEventArgs args)
         {
+            // Starlight - start
+            if (args.SenderSession.AttachedEntity is not {Valid: true} user)
+            {
+                Log.Error($"Client sent {nameof(TryStartStructureConstructionMessage)} with no attached entity!");
+                return;
+            }
+            // Starlight - end
+
+            await TryStartStructureConstruction(ev, user, args.SenderSession); // Starlight
+        }
+
+        #region Starlight
+        /// <summary>
+        ///     Starts the requested structure construction for the given user.
+        /// </summary>
+        /// <param name="ev">The structure-construction request.</param>
+        /// <param name="user">The entity performing the construction.</param>
+        /// <param name="session">The requesting session used to track progress and send acknowledgements.</param>
+        /// <returns>A task representing the asynchronous construction operation.</returns>
+        public Task TryStartStructureConstruction(
+            TryStartStructureConstructionMessage ev,
+            EntityUid user,
+            ICommonSession session)
+            => TryStartStructureConstructionForUser(ev, user, session);
+        #endregion
+
+        private async Task TryStartStructureConstructionForUser(
+            TryStartStructureConstructionMessage ev,
+            EntityUid user,
+            ICommonSession session) // Starlight: shared implementation for the legacy handler and remote callers.
+        {
             if (!PrototypeManager.TryIndex(ev.PrototypeName, out ConstructionPrototype? constructionPrototype))
             {
                 Log.Error($"Tried to start construction of invalid recipe '{ev.PrototypeName}'!");
-                RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack));
+                RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack), session); // Starlight
                 return;
             }
 
             if (!PrototypeManager.TryIndex(constructionPrototype.Graph, out ConstructionGraphPrototype? constructionGraph))
             {
                 Log.Error($"Invalid construction graph '{constructionPrototype.Graph}' in recipe '{ev.PrototypeName}'!");
-                RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack));
-                return;
-            }
-
-            if (args.SenderSession.AttachedEntity is not {Valid: true} user)
-            {
-                Log.Error($"Client sent {nameof(TryStartStructureConstructionMessage)} with no attached entity!");
+                RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack), session); // Starlight
                 return;
             }
 
@@ -461,9 +489,7 @@ namespace Content.Server.Construction
             var startNode = constructionGraph.Nodes[constructionPrototype.StartNode];
             var targetNode = constructionGraph.Nodes[constructionPrototype.TargetNode];
             var pathFind = constructionGraph.Path(startNode.Name, targetNode.Name);
-
-
-            if (_beingBuilt.TryGetValue(args.SenderSession, out var set))
+            if (_beingBuilt.TryGetValue(session, out var set)) // Starlight
             {
                 if (!set.Add(ev.Ack))
                 {
@@ -474,7 +500,7 @@ namespace Content.Server.Construction
             else
             {
                 var newSet = new HashSet<int> {ev.Ack};
-                _beingBuilt[args.SenderSession] = newSet;
+                _beingBuilt[session] = newSet; // Starlight
             }
 
             var location = GetCoordinates(ev.Location);
@@ -493,10 +519,7 @@ namespace Content.Server.Construction
                 }
             }
 
-            void Cleanup()
-            {
-                _beingBuilt[args.SenderSession].Remove(ev.Ack);
-            }
+            void Cleanup() => _beingBuilt[session].Remove(ev.Ack); // Starlight
 
             if (!_actionBlocker.CanInteract(user, null)
                 || !TryComp(user, out HandsComponent? hands) || _handsSystem.GetActiveItem((user, hands)) == null)
@@ -561,13 +584,14 @@ namespace Content.Server.Construction
                     targetNode,
                     constructionPrototype, // Starlight edit
                     GetCoordinates(ev.Location),
-                    constructionPrototype.CanRotate ? ev.Angle : Angle.Zero) is not {Valid: true} structure)
+                    constructionPrototype.CanRotate ? ev.Angle : Angle.Zero,
+                    ev.Angle.GetCardinalDir()) is not {Valid: true} structure) // Starlight edit
             {
                 Cleanup();
                 return;
             }
 
-            RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack, GetNetEntity(structure)));
+            RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack, GetNetEntity(structure)), session); // Starlight
             _adminLogger.Add(LogType.Construction, LogImpact.Low, $"{ToPrettyString(user):player} has turned a {ev.PrototypeName} construction ghost into {ToPrettyString(structure)} at {Transform(structure).Coordinates}");
             Cleanup();
         }

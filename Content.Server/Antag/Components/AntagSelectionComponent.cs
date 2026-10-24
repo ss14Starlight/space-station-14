@@ -3,13 +3,9 @@ using Content.Server.Antag.Selectors;
 using Content.Server.GameTicking;
 using Content.Shared.Antag;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Tag;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-
-// Starlight-start
-using Content.Shared.Tag;
-// Starlight-end
-
 namespace Content.Server.Antag.Components;
 
 [RegisterComponent, Access(typeof(AntagSelectionSystem), typeof(AdminVerbSystem))]
@@ -62,6 +58,26 @@ public sealed partial class AntagSelectionComponent : Component
     /// </summary>
     [ViewVariables]
     public Dictionary<ProtoId<AntagSpecifierPrototype>, int> SelectionTargets = new();
+
+    /// <summary>
+    /// When this active rule should next verify that its calculated antagonist targets were
+    /// actually assigned. Null when no useful retry remains.
+    /// </summary>
+    [ViewVariables]
+    public TimeSpan? NextSelectionAudit;
+
+    /// <summary>
+    /// Maximum number of one-minute repair attempts after the initial timed selection audit.
+    /// Set to 0 to keep the initial audit but disable timed retries.
+    /// </summary>
+    [DataField]
+    public int MaxSelectionAuditRetries = 3;
+
+    /// <summary>
+    /// Number of timed repair retries scheduled for this rule after its initial audit.
+    /// </summary>
+    [ViewVariables]
+    public int SelectionAuditRetries;
     #endregion
 
     /// <summary>

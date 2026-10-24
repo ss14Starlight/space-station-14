@@ -74,10 +74,10 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     /// <param name="component">the Vending Machine component of the vending machine</param>
     public void RestockRandom(EntityUid uid, VendingMachineComponent component)
     {
-        string? item = null;
+        EntProtoId? item = null;
         if (component.RandomRestockTarget != null)
         {
-            item = component.RandomRestockTarget.ToString();
+            item = component.RandomRestockTarget;
         }
         else
         {
@@ -91,8 +91,8 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
         if (item == null)
             return;
-        var theItem = new Dictionary<string, uint>();
-        theItem.Add(item, 1);
+        var theItem = new Dictionary<EntProtoId, uint>();
+        theItem.Add(item.Value, 1);
 
         AddInventoryFromPrototype(uid, theItem, InventoryType.Regular, component);
         Dirty(uid, component);
@@ -465,7 +465,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         return GetAllInventory(uid, component).Where(_ => _.Amount > 0).ToList();
     }
 
-    private void AddInventoryFromPrototype(EntityUid uid, Dictionary<string, uint>? entries,
+    private void AddInventoryFromPrototype(EntityUid uid, Dictionary<EntProtoId, uint>? entries,
         InventoryType type,
         VendingMachineComponent? component = null, float restockQuality = 1.0f)
     {

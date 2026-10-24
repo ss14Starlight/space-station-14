@@ -424,6 +424,7 @@
         "!type:RevenantChillActionEvent mapping",
         "!type:RevenantDefileActionEvent mapping",
         "!type:RevenantMalfunctionActionEvent mapping",
+        "!type:RevenantMisfireActionEvent mapping",
         "!type:RevenantOverloadLightsActionEvent mapping",
         "!type:RevenantShopActionEvent mapping",
         "!type:RevertPolymorphActionEvent mapping",

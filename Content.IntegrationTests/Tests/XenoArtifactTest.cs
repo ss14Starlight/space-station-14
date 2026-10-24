@@ -20,80 +20,80 @@ public sealed class XenoArtifactTest : GameTest
     [SidedDependency(Side.Server)] private SharedXenoArtifactSystem _sArtifactSystem = null!;
 
     [TestPrototypes]
-    private const string Prototypes = $@"
-- type: entity
-  id: {TestArtifact}
-  parent: BaseXenoArtifact
-  name: artifact
-  components:
-  - type: XenoArtifact
-    isGenerationRequired: false
-    effectsTable: !type:NestedSelector
-      tableId: XenoArtifactEffectsDefaultTable
+    private const string Prototypes = $"""
+    -   type: entity
+        id: {TestArtifact}
+        parent: BaseXenoArtifact
+        name: artifact
+        components:
+        -   type: XenoArtifact
+            isGenerationRequired: false
+            effectsTable: !type:NestedSelector
+                tableId: SLXenoArtifactEffectsDefaultTable
 
-- type: entity
-  id: {TestGenArtifactFlat}
-  parent: BaseXenoArtifact
-  name: artifact
-  components:
-  - type: XenoArtifact
-    isGenerationRequired: true
-    nodeCount:
-      min: 2
-      max: 2
-    segmentSize:
-      min: 1
-      max: 1
-    nodesPerSegmentLayer:
-      min: 1
-      max: 1
-    effectsTable: !type:NestedSelector
-      tableId: XenoArtifactEffectsDefaultTable
+    -   type: entity
+        id: {TestGenArtifactFlat}
+        parent: BaseXenoArtifact
+        name: artifact
+        components:
+        -   type: XenoArtifact
+            isGenerationRequired: true
+            nodeCount:
+                min: 2
+                max: 2
+            segmentSize:
+                min: 1
+                max: 1
+            nodesPerSegmentLayer:
+                min: 1
+                max: 1
+            effectsTable: !type:NestedSelector
+                tableId: SLXenoArtifactEffectsDefaultTable
 
-- type: entity
-  id: {TestGenArtifactTall}
-  parent: BaseXenoArtifact
-  name: artifact
-  components:
-  - type: XenoArtifact
-    isGenerationRequired: true
-    nodeCount:
-      min: 2
-      max: 2
-    segmentSize:
-      min: 2
-      max: 2
-    nodesPerSegmentLayer:
-      min: 1
-      max: 1
-    effectsTable: !type:NestedSelector
-      tableId: XenoArtifactEffectsDefaultTable
+    -   type: entity
+        id: {TestGenArtifactTall}
+        parent: BaseXenoArtifact
+        name: artifact
+        components:
+        -   type: XenoArtifact
+            isGenerationRequired: true
+            nodeCount:
+                min: 2
+                max: 2
+            segmentSize:
+                min: 2
+                max: 2
+            nodesPerSegmentLayer:
+                min: 1
+                max: 1
+            effectsTable: !type:NestedSelector
+                tableId: SLXenoArtifactEffectsDefaultTable
 
-- type: entity
-  id: {TestGenArtifactFull}
-  name: artifact
-  components:
-  - type: XenoArtifact
-    isGenerationRequired: true
-    nodeCount:
-      min: 6
-      max: 6
-    segmentSize:
-      min: 6
-      max: 6
-    nodesPerSegmentLayer:
-      min: 2
-      max: 2
-    effectsTable: !type:NestedSelector
-      tableId: XenoArtifactEffectsDefaultTable
+    -   type: entity
+        id: {TestGenArtifactFull}
+        name: artifact
+        components:
+        -   type: XenoArtifact
+            isGenerationRequired: true
+            nodeCount:
+                min: 6
+                max: 6
+            segmentSize:
+                min: 6
+                max: 6
+            nodesPerSegmentLayer:
+                min: 2
+                max: 2
+            effectsTable: !type:NestedSelector
+                tableId: SLXenoArtifactEffectsDefaultTable
 
-- type: entity
-  id: {TestArtifactNode}
-  name: artifact node
-  components:
-  - type: XenoArtifactNode
-    maxDurability: 3
-";
+    -   type: entity
+        id: {TestArtifactNode}
+        name: artifact node
+        components:
+        -   type: XenoArtifactNode
+            maxDurability: 3
+    """;
 
     /// <summary>
     /// Checks that adding nodes and edges properly adds them into the adjacency matrix

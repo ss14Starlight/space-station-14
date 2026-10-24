@@ -68,7 +68,7 @@
         Blunt: 1
   - type: DamageOtherOnHit
     damage:
-      types:
+      types: {}
 
 - type: entity
   id: BookSpaceEncyclopedia
@@ -363,7 +363,7 @@
       color: "#f7d61a"
   - type: GuideHelp
     guides:
-    - SpaceLaw
+    - CorporateLaw # Starlight
 
 - type: entity
   parent: BookBase

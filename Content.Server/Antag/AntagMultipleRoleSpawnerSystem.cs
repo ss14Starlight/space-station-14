@@ -5,7 +5,7 @@ namespace Content.Server.Antag;
 
 public sealed partial class AntagMultipleRoleSpawnerSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

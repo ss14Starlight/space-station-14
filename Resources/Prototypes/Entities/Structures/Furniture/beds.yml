@@ -97,6 +97,7 @@
   - type: Strap
     position: Stand
     rotation: 0
+    needsHands: false # Starlight
   - type: Construction
     graph: bed
     node: dogbed

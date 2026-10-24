@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
-using Content.Server.Database;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 

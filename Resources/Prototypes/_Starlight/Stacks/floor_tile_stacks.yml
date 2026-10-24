@@ -5,6 +5,12 @@
   maxCount: 30
 
 - type: stack
+  id: FloorTileCarpetArt
+  name: stack-carpet-art-tile
+  spawn: FloorTileItemCarpetArt
+  maxCount: 30
+
+- type: stack
   id: FloorTileDarkBitile
   name: stack-dark-bitile-tile
   spawn: FloorTileItemDarkBitile

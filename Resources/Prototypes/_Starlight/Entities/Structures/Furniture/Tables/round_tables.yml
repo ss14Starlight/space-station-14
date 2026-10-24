@@ -1,0 +1,298 @@
+- type: entity
+  id: RoundTableBase
+  parent: BaseStructure
+  name: round table
+  description: A smaller, round table.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_frame
+    snapCardinals: true
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_frame
+  - type: Anchorable
+  - type: Transform
+  - type: PlaceableSurface
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask: #mouse can pass under, but I think this is can understandable by logic
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Climbable
+  - type: Clickable
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+    whitelist:
+      components:
+        - KnockedDown
+  - type: Bonkable
+    bonkDamage:
+      types:
+        Blunt: 3
+
+- type: entity
+  id: RoundTableSteel
+  parent: RoundTableBase
+  name: round table
+  description: A smaller, round table.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_generic
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_generic
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 35
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: RoundTableSteel
+    node: RoundTableSteel
+
+- type: entity
+  id: RoundTableWood
+  parent: RoundTableBase
+  name: round table
+  description: A smaller, round table.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_wood
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_wood
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: RoundTableWood
+    node: RoundTableWood
+
+- type: entity
+  id: RoundTableCarpet
+  parent: RoundTableBase
+  name: round table
+  description: A smaller, round table.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_carpet
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_carpet
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: RoundTableCarpet
+    node: RoundTableCarpet
+
+- type: entity
+  id: RoundTablePlastic
+  parent: RoundTableBase
+  name: round table
+  description: A smaller, round table.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_plastic
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_plastic
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlastic1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: RoundTablePlastic
+    node: RoundTablePlastic
+
+- type: entity
+  id: RoundTableGlass
+  parent: RoundTableBase
+  name: round table
+  description: A smaller, round table.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_glass
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_glass
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: RoundTableGlass
+    node: RoundTableGlass
+
+- type: entity
+  id: RoundTablePlasma
+  parent: RoundTableBase
+  name: round table
+  description: A smaller, round table.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_plasma
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Tables/roundtable.rsi
+    state: round_plasma
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 35
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassPlasma:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: RoundTablePlasma
+    node: RoundTablePlasma

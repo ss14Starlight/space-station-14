@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "boxshelf",
+	  "copyright": "Sprite by mkanke for Funkystation, edited by Conflee for Starlight",
+      "directions": 4
+    },
+    {
+      "name": "fill1",
+	  "copyright": "Sprite by mkanke for Funkystation, edited by Conflee for Starlight",
+      "directions": 4
+    },
+    {
+      "name": "fill2",
+	  "copyright": "Sprite by mkanke for Funkystation, edited by Conflee for Starlight",
+      "directions": 4
+    },
+    {
+      "name": "fill3",
+	  "copyright": "Sprite by mkanke for Funkystation, edited by Conflee for Starlight",
+      "directions": 4
+    },
+    {
+      "name": "fill4",
+	  "copyright": "Sprite by mkanke for Funkystation, edited by Conflee for Starlight",
+      "directions": 4
+    }
+  ]
+}

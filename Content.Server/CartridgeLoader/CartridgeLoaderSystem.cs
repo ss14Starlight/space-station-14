@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server.DeviceNetwork.Systems;
 using Content.Server.PDA;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.DeviceNetwork.Events;

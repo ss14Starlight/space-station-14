@@ -5,9 +5,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Shadekin;
 
-public sealed class TheDarkImmuneSystem : EntitySystem
+public sealed partial class TheDarkImmuneSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

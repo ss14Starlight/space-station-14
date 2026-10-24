@@ -15,10 +15,12 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 using System.Numerics;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Prototypes;
+#if DEBUG
+using Robust.Shared.Utility;
+#endif
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 
 namespace Content.Server.Explosion.EntitySystems;
@@ -206,7 +208,8 @@ public sealed partial class ExplosionSystem
         float? fireStacks,
         float? temperature,
         float currentIntensity,
-        EntityUid? cause)
+        EntityUid? cause, // Starlight
+        HashSet<EntityUid> internalBodies) // Starlight
     {
         var size = grid.Comp.TileSize;
         var gridBox = new Box2(tile * size, (tile + 1) * size);
@@ -225,7 +228,8 @@ public sealed partial class ExplosionSystem
         // process those entities
         foreach (var (uid, xform) in list)
         {
-            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause);
+            // Starlight: internalBodies
+            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause, internalBodies);
         }
 
         // process anchored entities
@@ -235,7 +239,8 @@ public sealed partial class ExplosionSystem
         foreach (var entity in _anchored)
         {
             processed.Add(entity);
-            ProcessEntity(entity, epicenter, damage, throwForce, id, null, fireStacks, cause);
+            // Starlight: internalBodies
+            ProcessEntity(entity, epicenter, damage, throwForce, id, null, fireStacks, cause, internalBodies);
         }
 
         // heat the atmosphere
@@ -277,7 +282,8 @@ public sealed partial class ExplosionSystem
         {
             // Here we only throw, no dealing damage. Containers n such might drop their entities after being destroyed, but
             // they should handle their own damage pass-through, with their own damage reduction calculation.
-            ProcessEntity(uid, epicenter, null, throwForce, id, xform, null, cause);
+            // Starlight: internalBodies
+            ProcessEntity(uid, epicenter, null, throwForce, id, xform, null, cause, internalBodies);
         }
 
         return !tileBlocked;
@@ -314,7 +320,8 @@ public sealed partial class ExplosionSystem
         HashSet<EntityUid> processed,
         string id,
         float? fireStacks,
-        EntityUid? cause)
+        EntityUid? cause, // Starlight
+        HashSet<EntityUid> internalBodies) // Starlight
     {
         var gridBox = Box2.FromDimensions(tile * DefaultTileSize, new Vector2(DefaultTileSize, DefaultTileSize));
         var worldBox = spaceMatrix.TransformBox(gridBox);
@@ -330,7 +337,8 @@ public sealed partial class ExplosionSystem
         foreach (var (uid, xform) in state.Item1)
         {
             processed.Add(uid);
-            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause);
+            // Starlight: internalBodies
+            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause, internalBodies);
         }
 
         if (throwForce <= 0)
@@ -344,7 +352,8 @@ public sealed partial class ExplosionSystem
 
         foreach (var (uid, xform) in list)
         {
-            ProcessEntity(uid, epicenter, null, throwForce, id, xform, fireStacks, cause);
+            // Starlight: internalBodies
+            ProcessEntity(uid, epicenter, null, throwForce, id, xform, fireStacks, cause, internalBodies);
         }
     }
 
@@ -443,7 +452,8 @@ public sealed partial class ExplosionSystem
         string id,
         TransformComponent? xform,
         float? fireStacksOnIgnite,
-        EntityUid? cause)
+        EntityUid? cause, // Starlight
+        HashSet<EntityUid> internalBodies) // Starlight
     {
         if (originalDamage is not null)
         {
@@ -454,15 +464,20 @@ public sealed partial class ExplosionSystem
                     continue;
 
                 // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
-                _damageableSystem.TryChangeDamage((entity, damageable), damage, ignoreResistances: true, ignoreGlobalModifiers: true);
+                // Starlight - start
+                var damageToApply = internalBodies.Contains(entity) ? damage * 4 : damage;
+                _damageableSystem.TryChangeDamage((entity, damageable), damageToApply, ignoreResistances: true, ignoreGlobalModifiers: true);
+                // Starlight - end
 
                 if (_actorQuery.HasComp(entity))
                 {
                     // Log damage to player entities only; this will create a massive amount of log spam otherwise.
+                    // Starlight - start
                     if (cause is not null)
-                        _adminLogger.Add(LogType.ExplosionHit, LogImpact.Medium, $"Explosion of {ToPrettyString(cause):actor} dealt {damage.GetTotal()} damage to {ToPrettyString(entity):subject}");
+                        _adminLogger.Add(LogType.ExplosionHit, LogImpact.Medium, $"Explosion of {ToPrettyString(cause):actor} dealt {damageToApply.GetTotal()} damage to {ToPrettyString(entity):subject}");
                     else
-                        _adminLogger.Add(LogType.ExplosionHit, LogImpact.Medium, $"Explosion at {epicenter:epicenter} dealt {damage.GetTotal()} damage to {ToPrettyString(entity):subject}");
+                        _adminLogger.Add(LogType.ExplosionHit, LogImpact.Medium, $"Explosion at {epicenter:epicenter} dealt {damageToApply.GetTotal()} damage to {ToPrettyString(entity):subject}");
+                    // Starlight - end
                 }
             }
         }
@@ -536,6 +551,9 @@ public sealed partial class ExplosionSystem
                 break;
 
             tileDef = newDef;
+
+            if (newDef.Indestructible)
+                break;
         }
 
         if (tileDef.TileId == tileRef.Tile.TypeId)
@@ -714,6 +732,9 @@ sealed class Explosion
     public readonly EntityUid VisualEnt;
 
     public readonly EntityUid? Cause;
+    #region Starlight
+    public readonly HashSet<EntityUid> InternalBodies;
+    #endregion
 
     /// <summary>
     ///     Initialize a new instance for processing
@@ -732,12 +753,14 @@ sealed class Explosion
         IEntityManager entMan,
         EntityUid visualEnt,
         EntityUid? cause,
+        HashSet<EntityUid> internalBodies, // Starlight
         SharedMapSystem mapSystem,
         DamageableSystem damageable,
         EntityQuery<TileHistoryComponent> historyQuery)
     {
         VisualEnt = visualEnt;
         Cause = cause;
+        InternalBodies = internalBodies; // Starlight
         _system = system;
         _mapSystem = mapSystem;
         ExplosionType = explosionType;
@@ -910,7 +933,8 @@ sealed class Explosion
                     ExplosionType.FireStacks,
                     ExplosionType.Temperature,
                     _currentIntensity,
-                    Cause);
+                    Cause,
+                    InternalBodies); // Starlight: internalBodies
 
                 // If the floor is not blocked by some dense object, damage the floor tiles.
                 if (canDamageFloor)
@@ -946,7 +970,8 @@ sealed class Explosion
                     ProcessedEntities,
                     ExplosionType.ID,
                     ExplosionType.FireStacks,
-                    Cause);
+                    Cause,
+                    InternalBodies); // Starlight: internalBodies
             }
 
             if (!MoveNext())
@@ -990,4 +1015,6 @@ public sealed class QueuedExplosion(ExplosionPrototype proto)
     public int MaxTileBreak;
     public bool CanCreateVacuum;
     public EntityUid? Cause; // The entity that exploded, for logging purposes.
+    public List<EntityUid> Causes = []; // Starlight
+    public HashSet<EntityUid> InternalBodies = []; // Starlight
 }

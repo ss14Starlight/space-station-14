@@ -192,6 +192,7 @@
   flavorMinimum: 0.05
   recognizable: true
   color: "#b67823"
+  flammability: 1 # Funky change
   boilingPoint: 300.0
   meltingPoint: -16.0
   tileReactions:

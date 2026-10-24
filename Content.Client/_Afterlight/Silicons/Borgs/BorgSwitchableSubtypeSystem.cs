@@ -15,6 +15,7 @@ public sealed partial class BorgSwitchableSubtypeSystem : SharedBorgSwitchableSu
 {
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private BorgSystem _borg = default!;
+    [Dependency] private BorgSwitchableTypeSystem _borgType = default!; // Starlight
     [Dependency] private AppearanceSystem _appearance = default!;
 
     public override void Initialize()
@@ -27,6 +28,14 @@ public sealed partial class BorgSwitchableSubtypeSystem : SharedBorgSwitchableSu
 
     private void OnAutoHandleEvent(Entity<BorgSwitchableSubtypeComponent> ent, ref AfterAutoHandleStateEvent args)
     {
+        // Starlight Begin
+        if (ent.Comp.BorgSubtype == null)
+        {
+            if (TryComp<BorgSwitchableTypeComponent>(ent, out var borgType))
+                _borgType.UpdateEntityAppearance((ent.Owner, borgType));
+            return;
+        }
+        // Starlight End
         SelectBorgSubtype(ent);
     }
 

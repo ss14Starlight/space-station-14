@@ -1,0 +1,9 @@
+- type: entity
+  parent: BasePlushieLizardJob
+  id: PlushieLizardJobRoboticist
+  name: roboticist lizard plushie
+  description: An adorable stuffed toy that resembles a lizardperson as a roboticist. Stained with welding fuel.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/plushielizard_jobs.rsi
+    state: roboticist

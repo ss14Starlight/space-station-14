@@ -8,3 +8,34 @@
   id: ReporterJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtReporter
+
+# Starlight start, we already have this in our files as a senior outfit
+#- type: loadout
+#  id: JournalistJumpsuit
+#  equipment:
+#    jumpsuit: ClothingUniformJumpsuitJournalist
+# Starlight end
+
+# Head
+- type: loadout
+  id: ReporterPressFedora
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobReporter
+      time: 10h
+  equipment:
+    head: ClothingHeadHatFedoraPress
+
+# Outerclothing
+- type: loadout
+  id: ReporterPressVest
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobReporter
+      time: 35h
+  equipment:
+    outerClothing: ClothingOuterVestPress

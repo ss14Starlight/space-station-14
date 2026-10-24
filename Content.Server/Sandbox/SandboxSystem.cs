@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.GameTicking;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
@@ -7,14 +6,17 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
+using Content.Shared.Overlays;
 using Content.Shared.PDA;
 using Content.Shared.Sandbox;
 using Robust.Server.Console;
 using Robust.Server.Placement;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
+using Robust.Shared.Network.Messages;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Server.Sandbox
 {
@@ -50,6 +52,7 @@ namespace Content.Server.Sandbox
             SubscribeNetworkEvent<MsgSandboxGiveAccess>(SandboxGiveAccessReceived);
             SubscribeNetworkEvent<MsgSandboxGiveAghost>(SandboxGiveAghostReceived);
             SubscribeNetworkEvent<MsgSandboxSuicide>(SandboxSuicideReceived);
+            SubscribeNetworkEvent<MsgSandboxThermalVision>(UpdateSandboxThermalVision);
 
             SubscribeLocalEvent<GameRunLevelChangedEvent>(GameTickerOnOnRunLevelChanged);
 
@@ -57,20 +60,13 @@ namespace Content.Server.Sandbox
 
             _placementManager.AllowPlacementFunc = placement =>
             {
-                if (IsSandboxEnabled)
-                {
-                    return true;
-                }
+                // Starlight start - attach tiles placed in space to adjacent grids
+                if (!CanPlace(placement))
+                    return false;
 
-                var channel = placement.MsgChannel;
-                var player = _playerManager.GetSessionByChannel(channel);
-
-                if (_conGroupController.CanAdminPlace(player))
-                {
-                    return true;
-                }
-
-                return false;
+                TryRedirectToAdjacentGrid(placement);
+                return true;
+                // Starlight end
             };
         }
 
@@ -192,6 +188,19 @@ namespace Content.Server.Sandbox
         private void UpdateSandboxStatusForAll()
         {
             RaiseNetworkEvent(new MsgSandboxStatus { SandboxAllowed = IsSandboxEnabled });
+        }
+
+        private void UpdateSandboxThermalVision(MsgSandboxThermalVision message, EntitySessionEventArgs args)
+        {
+            if (!IsSandboxEnabled)
+                return;
+
+            var ent = args.SenderSession.AttachedEntity;
+            if (ent == null) return;
+            if (HasComp<ThermalSightComponent>(ent))
+                RemComp<ThermalSightComponent>(ent.Value);
+            else
+                EnsureComp<ThermalSightComponent>(ent.Value);
         }
     }
 }

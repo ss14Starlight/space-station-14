@@ -20,12 +20,12 @@
       RawAbyssium: 100
   - type: Extractable
     grindableSolutionName: abyssiumore
-  - type: SolutionContainerManager
-    solutions:
-      abyssiumore:
-        reagents:
-        - ReagentId: Iron
-          Quantity: 10
+  - type: Solution
+    id: abyssiumore
+    solution:
+      reagents:
+      - ReagentId: Iron
+        Quantity: 10
   - type: PointLight
     radius: 1.2
     energy: 0.8

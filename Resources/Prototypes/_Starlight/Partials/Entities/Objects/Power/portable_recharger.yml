@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: PortableRecharger
+  components:
+  - type: Clothing
+    equippedPrefix: charging
+    quickEquip: false
+    slots:
+    - back
+    - suitstorage

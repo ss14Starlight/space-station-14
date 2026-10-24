@@ -1,8 +1,10 @@
+#region Moffstation
+// Starlight: Reworked system now lives in Content.Server._Starlight.Objectives.ObjectivePicker.
+/*
 using Content.Server.Antag.Components;
 using Content.Server.Objectives;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
-using Content.Shared.Objectives.Systems;
 using Robust.Shared.Random;
 
 namespace Content.Server.Antag;
@@ -51,3 +53,5 @@ public sealed partial class AntagRandomObjectivesSystem : EntitySystem
         }
     }
 }
+*/
+#endregion

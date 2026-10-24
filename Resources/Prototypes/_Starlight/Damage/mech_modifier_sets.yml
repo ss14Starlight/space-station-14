@@ -14,6 +14,19 @@
     Heat: 3
 
 - type: damageModifierSet
+  id: DarkGygaxArmor
+  coefficients:
+    Blunt: 0.65
+    Slash: 0.65
+    Piercing: 0.6
+    Shock: 1.4
+    Heat: 0.65
+    Structural: 0.7
+  flatReductions:
+    Blunt: 8
+    Heat: 5
+
+- type: damageModifierSet
   id: DurandArmor
   coefficients:
     Blunt: 0.4

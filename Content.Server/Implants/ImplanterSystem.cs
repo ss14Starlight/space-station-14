@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Popups;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;

@@ -1,0 +1,1496 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "description": "Round context, antagonist assignments, outcomes and objective completion for the selected rounds.",
+  "editable": true,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [
+    {
+      "title": "Round Job Statistics",
+      "type": "link",
+      "url": "/d/round-job-statistics/round-job-statistics",
+      "keepTime": true,
+      "includeVars": true,
+      "targetBlank": false
+    }
+  ],
+  "panels": [
+    {
+      "id": 15,
+      "type": "text",
+      "title": "Reading guide",
+      "gridPos": {
+        "h": 3,
+        "w": 14,
+        "x": 0,
+        "y": 0
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "Counts add across completed rounds. Zero antags means empty detail tables. Enter a round number to inspect one round."
+      }
+    },
+    {
+      "id": 16,
+      "type": "stat",
+      "title": "Rounds",
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 14,
+        "y": 0
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum(count_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"round_summary\" | round_id=~`${Round:raw}` [$__range]))",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "type": "stat",
+      "title": "Antags",
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 19,
+        "y": 0
+      },
+      "fieldConfig": {
+        "defaults": {
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum(max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"round_summary\" | round_id=~`${Round:raw}` | unwrap antags [$__range]))",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "description": "Antagonists assigned across the selected completed rounds."
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Round preset, map, player counts and duration for each completed round in the selected range.",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Round"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Preset"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 180
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Map"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 190
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Start players"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 120
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Peak players"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 120
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Duration"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 110
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Duration"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      },
+      "id": 1,
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Round"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"round_summary\" | round_id=~`${Round:raw}` | unwrap duration_seconds [$__range])",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Completed rounds",
+      "type": "table",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "App": true,
+              "Sawmill": true,
+              "Server": true,
+              "antags": true,
+              "detected_level": true,
+              "fork": true,
+              "kind": true,
+              "level": true,
+              "observers": true,
+              "players_connected": true,
+              "players_end": true,
+              "players_latejoin": true,
+              "preset_id": true,
+              "schema": true,
+              "service_name": true
+            },
+            "renameByName": {
+              "round_id": "Round",
+              "resolved_preset_id": "Preset",
+              "map_id": "Map",
+              "players_roundstart": "Start players",
+              "players_peak": "Peak players",
+              "Value #A": "Duration"
+            },
+            "indexByName": {
+              "round_id": 0,
+              "resolved_preset_id": 1,
+              "map_id": 2,
+              "players_roundstart": 3,
+              "players_peak": 4,
+              "Value #A": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Antagonists successfully assigned to a player, by type.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Type"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 260
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Assigned"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 2,
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Assigned"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "topk(15, sum by (type_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"antag_spawn\" | round_id=~`${Round:raw}` | unwrap count [$__range])))",
+          "legendFormat": "{{type_id}}",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Antagonists assigned by type",
+      "type": "table",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "renameByName": {
+              "type_id": "Type",
+              "Value #A": "Assigned"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Final result recorded by each antagonist rule that has a win condition.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Type"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Result"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Count"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 3,
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Count"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "topk(15, sum by (type_id, result) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"antag_outcome\" | round_id=~`${Round:raw}` | unwrap count [$__range])))",
+          "legendFormat": "{{type_id}} / {{result}}",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Rule outcomes by type",
+      "type": "table",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "renameByName": {
+              "type_id": "Type",
+              "result": "Result",
+              "Value #A": "Count"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Uncovered slots, available fallback ghost roles and late-join assignments by antagonist type.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Type"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 230
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Uncovered"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 130
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ghost roles"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 130
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Late joins"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 130
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 4,
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Uncovered"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum by (type_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"antag_selection\" | round_id=~`${Round:raw}` | unwrap uncovered [$__range]))",
+          "legendFormat": "{{type_id}}",
+          "queryType": "instant",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum by (type_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"antag_selection\" | round_id=~`${Round:raw}` | unwrap ghost_roles [$__range]))",
+          "legendFormat": "{{type_id}}",
+          "queryType": "instant",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum by (type_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"antag_selection\" | round_id=~`${Round:raw}` | unwrap latejoin_assignments [$__range]))",
+          "legendFormat": "{{type_id}}",
+          "queryType": "instant",
+          "refId": "C"
+        }
+      ],
+      "title": "Selection gaps and fallback roles",
+      "type": "table",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "type_id",
+            "mode": "outer"
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "type": "include",
+            "match": "any",
+            "filters": [
+              {
+                "fieldName": "Value #A",
+                "config": {
+                  "id": "greater",
+                  "options": {
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "fieldName": "Value #B",
+                "config": {
+                  "id": "greater",
+                  "options": {
+                    "value": 0
+                  }
+                }
+              },
+              {
+                "fieldName": "Value #C",
+                "config": {
+                  "id": "greater",
+                  "options": {
+                    "value": 0
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "renameByName": {
+              "type_id": "Type",
+              "Value #A": "Uncovered",
+              "Value #B": "Ghost roles",
+              "Value #C": "Late joins"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Assigned, completed, failed, completion rate and average final progress for the 15 most assigned objective types across the selected rounds. Average progress separates a near miss from an objective nobody worked on.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 1,
+          "min": 0,
+          "max": 1
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Objective"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 350
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Assigned"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 130
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Completed"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 130
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Failed"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 130
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Completion rate"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Completion rate"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Avg progress"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              },
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 7,
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Assigned"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "topk(15, sum by (objective_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"objective\" | round_id=~`${Round:raw}` | unwrap assigned [$__range])))",
+          "legendFormat": "{{objective_id}}",
+          "queryType": "instant",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum by (objective_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"objective\" | round_id=~`${Round:raw}` | unwrap completed [$__range]))",
+          "legendFormat": "{{objective_id}}",
+          "queryType": "instant",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum by (objective_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"objective\" | round_id=~`${Round:raw}` | unwrap completed [$__range])) / topk(15, sum by (objective_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"objective\" | round_id=~`${Round:raw}` | unwrap assigned [$__range])))",
+          "legendFormat": "{{objective_id}}",
+          "queryType": "instant",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum by (objective_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"objective\" | round_id=~`${Round:raw}` | unwrap assigned [$__range])) - sum by (objective_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"objective\" | round_id=~`${Round:raw}` | unwrap completed [$__range]))",
+          "legendFormat": "{{objective_id}}",
+          "queryType": "instant",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "sum by (objective_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"objective\" | round_id=~`${Round:raw}` | unwrap progress_sum [$__range])) / sum by (objective_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"objective\" | round_id=~`${Round:raw}` | unwrap assigned [$__range]))",
+          "legendFormat": "{{objective_id}}",
+          "queryType": "instant",
+          "refId": "E"
+        }
+      ],
+      "title": "Objective completion",
+      "type": "table",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "objective_id",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "renameByName": {
+              "objective_id": "Objective",
+              "Value #A": "Assigned",
+              "Value #B": "Completed",
+              "Value #C": "Completion rate",
+              "Value #D": "Failed",
+              "Value #E": "Avg progress"
+            },
+            "indexByName": {
+              "objective_id": 0,
+              "Value #A": 1,
+              "Value #B": 2,
+              "Value #D": 3,
+              "Value #C": 4,
+              "Value #E": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "In-round choices made by antagonists, such as vampire classes.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Type"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 180
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Category"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 170
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Choice"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 350
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Selected"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 27
+      },
+      "id": 9,
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Selected"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "topk(15, sum by (type_id, choice_type, choice_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"antag_choice\" | round_id=~`${Round:raw}` | unwrap count [$__range])))",
+          "legendFormat": "{{type_id}} / {{choice_id}}",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Antag choices",
+      "type": "table",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "renameByName": {
+              "type_id": "Type",
+              "choice_type": "Category",
+              "choice_id": "Choice",
+              "Value #A": "Selected"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Currency actually paid out of every store, by store and currency.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Store"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Currency"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Spent"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 33
+      },
+      "id": 10,
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Spent"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "topk(15, sum by (store_id, currency_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"store_currency\" | round_id=~`${Round:raw}` | unwrap spent [$__range])))",
+          "legendFormat": "{{store_id}} / {{currency_id}}",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Currency spent",
+      "type": "table",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "renameByName": {
+              "store_id": "Store",
+              "currency_id": "Currency",
+              "Value #A": "Spent"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Number of times each rule was started by the dynamic scheduler across the selected rounds.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Rule"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 260
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Runs"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 33
+      },
+      "id": 11,
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Runs"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "topk(15, sum by (rule_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"dynamic_rule\" | round_id=~`${Round:raw}` | unwrap count [$__range])))",
+          "legendFormat": "{{rule_id}}",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Dynamic rules run",
+      "type": "table",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "renameByName": {
+              "rule_id": "Rule",
+              "Value #A": "Runs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Individual listings bought, across every store type.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "decimals": 0,
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Item"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 260
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Purchases"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 39
+      },
+      "id": 13,
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Purchases"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "topk(15, sum by (item_id) (max_over_time({App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=\"store_purchase\" | round_id=~`${Round:raw}` | unwrap count [$__range])))",
+          "legendFormat": "{{item_id}}",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Store purchases",
+      "type": "table",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "renameByName": {
+              "item_id": "Item",
+              "Value #A": "Purchases"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Per-round budget and rule records from the dynamic scheduler. budget_remaining is what the scheduler never got round to spending.",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 39
+      },
+      "id": 12,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": true,
+        "sortOrder": "Descending",
+        "wrapLogMessage": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "{App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=~\"dynamic_summary|dynamic_rule\" | round_id=~`${Round:raw}`",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Dynamic scheduler records",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "loki"
+      },
+      "description": "Raw antagonist selection, outcome and objective records for the selected round.",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 45
+      },
+      "id": 14,
+      "options": {
+        "dedupStrategy": "none",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": true,
+        "sortOrder": "Descending",
+        "wrapLogMessage": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "loki"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "{App=\"Robust.Server\", Server=~`${Server:raw}`} |= \"sl_round_stat\" | logfmt | kind=~\"antag_.*|objective\" | round_id=~`${Round:raw}`",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Raw antagonist records",
+      "type": "logs"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [
+    "starlight",
+    "development",
+    "gameplay analytics",
+    "loki"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "local",
+          "value": "local"
+        },
+        "description": "Value configured by loki.name; regular expressions are accepted.",
+        "hide": 0,
+        "label": "Server",
+        "name": "Server",
+        "options": [],
+        "query": "local",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": ".*",
+          "value": ".*"
+        },
+        "description": "Enter an exact round number or .* for all rounds in the selected time range.",
+        "hide": 0,
+        "label": "Round",
+        "name": "Round",
+        "options": [],
+        "query": ".*",
+        "skipUrlSync": false,
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Round Antag Statistics",
+  "uid": "round-antag-statistics",
+  "version": 1
+}

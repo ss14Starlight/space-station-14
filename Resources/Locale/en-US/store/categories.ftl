@@ -12,6 +12,7 @@ store-category-allies = Allies
 store-category-job = Job
 store-category-wearables = Wearables
 store-category-pointless = Pointless
+store-category-objective = Objective
 store-discounted-items = Discounts
 store-second-hand-items = Second Hand
 
@@ -24,7 +25,8 @@ store-caregory-spellbook-defensive = Defensive Spells
 store-caregory-spellbook-utility = Utility Spells
 store-caregory-spellbook-equipment = Wizard Equipment
 store-caregory-spellbook-events = Event Spells
-store-caregory-spellbook-war = War (ask an admin)
+# STARLIGHT
+store-caregory-spellbook-war = War
 
 # Nukie Delivery
 store-category-nukie-delivery = Offers

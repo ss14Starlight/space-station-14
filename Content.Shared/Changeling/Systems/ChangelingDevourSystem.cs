@@ -2,9 +2,8 @@ using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Armor;
 using Content.Shared.Atmos.Rotting;
-using Content.Shared.Body;
+using Content.Shared.Body.Components;
 using Content.Shared.Changeling.Components;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -17,14 +16,12 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Storage;
 using Content.Shared.Store.Components;
+using Content.Shared.Tools.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-#region Starlight
-using Content.Shared.Body.Components;
-#endregion
 
 namespace Content.Shared.Changeling.Systems;
 
@@ -52,7 +49,6 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         SubscribeLocalEvent<ChangelingDevourComponent, ChangelingDevourActionEvent>(OnDevourAction);
         SubscribeLocalEvent<ChangelingDevourComponent, ChangelingDevourWindupDoAfterEvent>(OnDevourWindup);
         SubscribeLocalEvent<ChangelingDevourComponent, ChangelingDevourConsumeDoAfterEvent>(OnDevourConsume);
-        SubscribeLocalEvent<ChangelingDevourComponent, DoAfterAttemptEvent<ChangelingDevourConsumeDoAfterEvent>>(OnConsumeAttemptTick);
         SubscribeLocalEvent<ChangelingDevourComponent, ComponentShutdown>(OnShutdown);
     }
 
@@ -67,38 +63,6 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         {
             _actionsSystem.RemoveAction(ent.Owner, ent.Comp.ChangelingDevourActionEntity);
         }
-    }
-
-    //TODO: Allow doafters to have proper update loop support. Attempt events should not be doing state changes.
-    private void OnConsumeAttemptTick(Entity<ChangelingDevourComponent> ent,
-       ref DoAfterAttemptEvent<ChangelingDevourConsumeDoAfterEvent> eventData)
-    {
-
-        var curTime = _timing.CurTime;
-
-        if (curTime < ent.Comp.NextTick)
-            return;
-
-        ConsumeDamageTick(eventData.Event.Target, ent.Comp, eventData.Event.User);
-        ent.Comp.NextTick += ent.Comp.DamageTimeBetweenTicks;
-        Dirty(ent, ent.Comp);
-    }
-
-    private void ConsumeDamageTick(EntityUid? target, ChangelingDevourComponent comp, EntityUid? user)
-    {
-        if (target == null)
-            return;
-
-        if (!TryComp<DamageableComponent>(target, out var damage))
-            return;
-
-        foreach (var damagePoints in comp.DamagePerTick.DamageDict)
-        {
-
-            if (damage.Damage.DamageDict.TryGetValue(damagePoints.Key, out var val) && val >= comp.DevourConsumeDamageCap) // Starlight edit
-                return;
-        }
-        _damageable.ChangeDamage((target.Value, damage), comp.DamagePerTick, true, true, user);
     }
 
     /// <summary>
@@ -124,10 +88,13 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         return false;
     }
 
+    // The action was used.
+    // Start the first doafter for the windup.
     private void OnDevourAction(Entity<ChangelingDevourComponent> ent, ref ChangelingDevourActionEvent args)
     {
-        if (args.Handled || _whitelistSystem.IsWhitelistFailOrNull(ent.Comp.Whitelist, args.Target)
-                         || !HasComp<ChangelingIdentityComponent>(ent))
+        if (args.Handled
+            || _whitelistSystem.IsWhitelistFailOrNull(ent.Comp.Whitelist, args.Target)
+            || !HasComp<ChangelingIdentityComponent>(ent))
             return;
 
         args.Handled = true;
@@ -135,6 +102,12 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
         if (target == ent.Owner)
             return; // don't eat yourself
+
+        if (!_mobState.IsDead(target))
+        {
+            _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-not-dead"), args.Performer, args.Performer, PopupType.Medium);
+            return;
+        }
 
         if (HasComp<RottingComponent>(target))
         {
@@ -150,6 +123,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
         if (_net.IsServer)
         {
+            ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
             var pvsSound = _audio.PlayPvs(ent.Comp.DevourWindupNoise, ent);
             if (pvsSound != null)
                 ent.Comp.CurrentDevourSound = pvsSound.Value.Entity;
@@ -160,7 +134,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.DevourWindupTime, new ChangelingDevourWindupDoAfterEvent(), ent, target: target, used: ent)
         {
             BreakOnMove = true,
-            BlockDuplicate = true,
+            CancelDuplicate = true,
             DuplicateCondition = DuplicateConditions.None,
         });
 
@@ -174,16 +148,20 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             PopupType.MediumCaution);
     }
 
+    // First doafter finished.
+    // Start the second doafter for the actual consumption and deal a small amount of damage.
     private void OnDevourWindup(Entity<ChangelingDevourComponent> ent, ref ChangelingDevourWindupDoAfterEvent args)
     {
-        var curTime = _timing.CurTime;
         args.Handled = true;
-
-        if (!EntityManager.EntityExists(ent.Comp.CurrentDevourSound))
-            _audio.Stop(ent.Comp.CurrentDevourSound!);
+        ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
 
         if (args.Cancelled)
             return;
+
+        if (args.Target is not { } target)
+            return;
+
+        _damageable.ChangeDamage(target, ent.Comp.WindupDamage, true, true, ent.Owner);
 
         var selfMessage = Loc.GetString("changeling-devour-begin-consume-self", ("user", Identity.Entity(ent.Owner, EntityManager)));
         var othersMessage = Loc.GetString("changeling-devour-begin-consume-others", ("user", Identity.Entity(ent.Owner, EntityManager)));
@@ -202,44 +180,41 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
                 ent.Comp.CurrentDevourSound = pvsSound.Value.Entity;
         }
 
-
-        ent.Comp.NextTick = curTime + ent.Comp.DamageTimeBetweenTicks;
-
-        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} began to devour {ToPrettyString(args.Target):player} identity");
+        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} began to devour {ToPrettyString(target):player}'s identity");
 
         _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager,
             ent,
             ent.Comp.DevourConsumeTime,
             new ChangelingDevourConsumeDoAfterEvent(),
             ent,
-            target: args.Target,
+            target: target,
             used: ent)
         {
-            AttemptFrequency = AttemptFrequency.EveryTick,
             BreakOnMove = true,
-            BlockDuplicate = true,
+            CancelDuplicate = true,
             DuplicateCondition = DuplicateConditions.None,
         });
     }
 
+    // Second doafter finished.
+    // Save the identity and deal more damage.
     private void OnDevourConsume(Entity<ChangelingDevourComponent> ent, ref ChangelingDevourConsumeDoAfterEvent args)
     {
         args.Handled = true;
-        var target = args.Target;
-
-        if (target == null)
-            return;
-
-        if (EntityManager.EntityExists(ent.Comp.CurrentDevourSound))
-            _audio.Stop(ent.Comp.CurrentDevourSound!);
+        ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
 
         if (args.Cancelled)
             return;
 
-        if (!_mobState.IsDead((EntityUid)target))
+        if (args.Target is not { } target)
+            return;
+
+        _damageable.ChangeDamage(target, ent.Comp.DevourDamage, true, true, ent.Owner);
+
+        if (!_mobState.IsDead(target))
         {
-            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player}  unsuccessfully devoured {ToPrettyString(args.Target):player}'s identity");
-            _popupSystem.PopupClient(Loc.GetString("changeling-devour-consume-failed-not-dead"), args.User, args.User, PopupType.Medium);
+            _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-not-dead"), args.User, args.User, PopupType.Medium);
+            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} unsuccessfully devoured {ToPrettyString(args.Target):player}'s identity");
             return;
         }
 
@@ -252,30 +227,30 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             args.User,
             PopupType.LargeCaution);
 
-        if (_mobState.IsDead(target.Value)
-            && TryComp<BodyComponent>(target, out var body)
+        if (_mobState.IsDead(target)
             && HasComp<HumanoidAppearanceComponent>(target)
             && TryComp<ChangelingIdentityComponent>(args.User, out var identityStorage))
         {
-            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player}  successfully devoured {ToPrettyString(args.Target):player}'s identity");
-            _changelingIdentitySystem.CloneToPausedMap((ent, identityStorage), target.Value);
+            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} successfully devoured {ToPrettyString(target):player}'s identity");
+            _changelingIdentitySystem.CloneToPausedMap((ent, identityStorage), target);
 
-            if (_inventorySystem.TryGetSlotEntity(target.Value, "jumpsuit", out var item)
-                && TryComp<ButcherableComponent>(item, out var butcherable))
-                RipClothing(target.Value, (item.Value, butcherable));
+            if (_inventorySystem.TryGetSlotEntity(target, "jumpsuit", out var item)
+                && TryComp<ToolRefinableComponent>(item, out var refinable)) // Starlight
+                RipClothing(target, (item.Value, refinable)); // Starlight
         }
 
         #region Starlight ling devour.
-        var consumeEv = new OnLingDevour(target.Value);
+        var consumeEv = new OnLingDevour(target);
         RaiseLocalEvent(ent, ref consumeEv);
         #endregion
 
         Dirty(ent);
     }
 
-    private void RipClothing(EntityUid victim, Entity<ButcherableComponent> item)
+    // TODO: This should just be an API method in the butcher system
+    private void RipClothing(EntityUid victim, Entity<ToolRefinableComponent> item) // Starlight
     {
-        var spawnEntities = EntitySpawnCollection.GetSpawns(item.Comp.SpawnedEntities, _robustRandom);
+        var spawnEntities = EntitySpawnCollection.GetSpawns(item.Comp.RefineResult, _robustRandom); // Starlight
 
         foreach (var proto in spawnEntities)
         {

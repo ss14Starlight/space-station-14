@@ -2,7 +2,7 @@
   name: neural link disruptor
   parent: BaseItem
   id: NeuralLinkDisruptor
-  description: Used to temporarily disrupt cyberware. Implants with passive effects are unaffected.
+  description: A device that can be used on a person to disrupt their cybernetics from functioning for a long duration, most useful for prisoners who have dangerous cybernetic limbs. It has no effect on passive implants.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Security/neural_link_disruptor.rsi

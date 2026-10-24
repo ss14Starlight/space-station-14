@@ -10,8 +10,11 @@
   - type: Gun
     fireRate: 6
   - type: GunWieldBonus
-    minAngle: -12
-    maxAngle: -12
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 4.8
+    maxAngleDivider: 2.1
+    angleIncreaseDivider: 3
   - type: GunJamDefect
     prob: 0.40
     jamChance: 0.12

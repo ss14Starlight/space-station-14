@@ -49,7 +49,7 @@ public sealed partial class ChangelingComponent : Component
     public bool StealthEnabled = false;
 
     [DataField]
-    public float StealthDrain = 1.5f;
+    public float StealthDrain = 1.25f; // 6.6 minutes to fully drain 100 chemicals
 
     [DataField]
     public float StasisDrain = 0.2f;

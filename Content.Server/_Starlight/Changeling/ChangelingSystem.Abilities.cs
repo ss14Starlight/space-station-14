@@ -1,39 +1,44 @@
+using Content.Server._Starlight.Language;
+using Content.Server._Starlight.Objectives.Components;
+using Content.Server.Changeling.Systems;
+using Content.Server.Ensnaring;
+using Content.Shared._Starlight.Actions.Components;
+using Content.Shared._Starlight.Changeling;
+using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared.Actions.Events;
+using Content.Shared.Atmos.Rotting;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
+using Content.Shared.Changeling.Components;
+using Content.Shared.Changeling.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cuffs.Components;
-using Content.Shared.DoAfter;
-using Content.Shared.FixedPoint;
-using Content.Shared.IdentityManagement;
-using Content.Shared.Mobs;
-using Content.Shared.Store.Components;
-using Content.Shared.Popups;
-using Robust.Shared.Prototypes;
-using Content.Shared.Damage.Prototypes;
-using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.Stealth.Components;
 using Content.Shared.Damage.Components;
-using Content.Shared.Movement.Systems;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.DoAfter;
+using Content.Shared.Ensnaring.Components;
+using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.FixedPoint;
+using Content.Shared.Flash;
 using Content.Shared.Flash.Components;
+using Content.Shared.Humanoid;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Light.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mindshield.FakeMindShield;
-using Content.Shared.StatusEffect;
-using Content.Shared.Light.Components;
-using Content.Shared.Actions.Events;
+using Content.Shared.Mobs;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
 using Content.Shared.RetractableItemAction;
-using Content.Shared.Changeling.Systems;
-using Content.Shared.Changeling.Components;
-using Content.Server.Changeling.Systems;
-// Starlight edit start
-using Content.Shared.Humanoid;
-using Content.Shared.Body.Components;
-using Content.Server._Starlight.Language;
-using Content.Shared._Starlight.Overlay.Components;
-using Content.Shared._Starlight.Changeling;
-using Content.Server._Starlight.Objectives.Components;
-using Content.Shared.Flash;
-// Starlight edit end
+using Content.Shared.StatusEffectNew;
+using Content.Shared.Stealth.Components;
+using Content.Shared.Store;
+using Content.Shared.Store.Components;
+using Content.Shared.Tag;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Changeling;
 
@@ -43,9 +48,15 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private LanguageSystem _language = default!;
     [Dependency] private SharedFlashSystem _flashSystem = default!;
+    [Dependency] private SharedRottingSystem _rotting = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private StomachSystem _stomach = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private EnsnareableSystem _ensnareable = default!;
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
+    private static readonly ProtoId<TagPrototype> BolaTag = "Bola";
 
     public void SubscribeAbilities()
     {
@@ -132,6 +143,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         };
         _doAfter.TryStartDoAfter(dargs);
     }
+
     public ProtoId<DamageGroupPrototype> AbsorbedDamageGroup = "Genetic";
     private void OnDevouredPerson(EntityUid uid, ChangelingComponent comp, ref OnLingDevour args)
     {
@@ -159,6 +171,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         // Starlight edit end
 
         EnsureComp<AbsorbedComponent>(target);
+        if (TryComp<PerishableComponent>(target, out var perishable))
+            _rotting.SetRotAfter(target, TimeSpan.FromMinutes(20), perishable);
 
         var popup = Loc.GetString("changeling-absorb-end-self-ling");
         var bonusChemicals = 0f;
@@ -190,7 +204,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         if (TryComp<StoreComponent>(uid, out var store))
         {
-            _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { "EvolutionPoint", bonusEvolutionPoints } }, uid, store);
+            _store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "EvolutionPoint", bonusEvolutionPoints } }, uid, store);
             _store.UpdateUserInterface(uid, uid, store);
         }
 
@@ -304,16 +318,16 @@ public sealed partial class ChangelingSystem : EntitySystem
         DoScreech(uid, comp);
 
         var power = comp.ShriekPower;
-        _flash.FlashArea(uid, uid, power, TimeSpan.FromMilliseconds(power * 2f * 1000f));
+        List<EntityUid> ignoreList = new() { uid };
+        _flash.FlashArea(uid, uid, power, TimeSpan.FromMilliseconds(power * 2f * 1000f), 0.8f, false, 1f, null, ignoreList);
 
         var lookup = _lookup.GetEntitiesInRange(uid, power);
         var lights = GetEntityQuery<PoweredLightComponent>();
-
         foreach (var ent in lookup)
+            // breaks lights
             if (lights.HasComponent(ent))
                 _light.TryDestroyBulb(ent);
     }
-
     private void OnToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp, ref ToggleStrainedMusclesEvent args) => ToggleStrainedMuscles(uid, comp);
 
     private void ToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp)
@@ -355,7 +369,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         _blindable.AdjustEyeDamage((target, blindable), 2);
         var timeSpan = TimeSpan.FromSeconds(5f);
-        _statusEffect.TryAddStatusEffect(target, TemporaryBlindnessSystem.BlindingStatusEffect, timeSpan, false, TemporaryBlindnessSystem.BlindingStatusEffect);
+        _statusEffect.TryAddStatusEffectDuration(target, "StatusEffectTemporaryBlindness", timeSpan);
     }
 
     private void OnStingChem(Entity<ChangelingComponent> ent, ref StingChemEvent ev) => TryReagentSting(ent.Owner, ent.Comp, ev, ev.Chems);
@@ -375,7 +389,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
 
         var target = args.Target;
-        var fakeArmblade = EntityManager.SpawnEntity(FakeArmbladePrototype, Transform(target).Coordinates);
+        var fakeArmblade = Spawn(FakeArmbladePrototype, Transform(target).Coordinates);
         if (!_hands.TryPickupAnyHand(target, fakeArmblade))
         {
             QueueDel(fakeArmblade);
@@ -445,6 +459,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
     }
     #endregion
+    /// <summary>
+    /// Dissolves cuffs and bolas, frees the changeling from a latch, and splashes
+    /// acid on whoever is holding it (latcher, then puller, else its own tile).
+    /// </summary>
     private void OnBiodegrade(EntityUid uid, ChangelingComponent comp, ref ActionBiodegradeEvent args)
     {
         if (TryComp<CuffableComponent>(uid, out var cuffs) && cuffs.Container.ContainedEntities.Count > 0)
@@ -460,8 +478,31 @@ public sealed partial class ChangelingSystem : EntitySystem
             QueueDel(cuff);
         }
 
+        // Remove bolas
+        if (TryComp<EnsnareableComponent>(uid, out var ensnareable))
+        {
+            foreach (var ensnaring in ensnareable.Container.ContainedEntities)
+            {
+                if (!TryComp<EnsnaringComponent>(ensnaring, out var ensnaringComponent) || !_tag.HasTag(ensnaring, BolaTag))
+                    continue;
+
+                _ensnareable.ForceFree(ensnaring, ensnaringComponent);
+                QueueDel(ensnaring);
+                break;
+            }
+        }
+
         var soln = new Solution();
         soln.AddReagent(PolytrinicAcidPrototype, 10f);
+
+        // Latched: free ourselves and splash whoever had their teeth in us, same as a puller.
+        if (TryComp<LatchedComponent>(uid, out var latched) && Exists(latched.Latcher))
+        {
+            var latcher = latched.Latcher;
+            _latch.TryBreakLatch((uid, latched));
+            _puddle.TrySplashSpillAt(latcher, Transform(latcher).Coordinates, soln, out _);
+            return;
+        }
 
         if (_pull.IsPulled(uid))
         {

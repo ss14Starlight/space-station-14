@@ -18,7 +18,7 @@
     tip: true
 
 - type: entity
-  parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
+  parent: [ BaseContrabandTier2, BaseShellShotgun, BaseSecurityContraband, BaseBartenderContraband ] # Blimpuf
   id: ShellShotgunBeanbag
   name: 12 gauge beanbag slug # Starlight change: .50 -> 12 gauge
   description: The standard cartridge used by most modern shotguns. Beanbag ammunition contains a single less-than-lethal projectile that can stun targets.
@@ -43,7 +43,7 @@
     proto: PelletShotgunBeanbagTrace
 
 - type: entity
-  parent: [ BaseShellShotgun, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseShellShotgun, BaseSecurityContraband ] # Blimpuf
   id: ShellShotgunSlug
   name: 12 gauge slug # Starlight change: .50 -> 12 gauge
   description: The standard cartridge used by most modern shotguns. Slug ammunition contains a single high-density projectile effective at longer ranges than pellet ammunition.
@@ -90,7 +90,7 @@
       collection: ShellEject
 
 - type: entity
-  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseShellShotgun, BaseSecurityContraband ] # Blimpuf
   id: ShellShotgun
   name: 12 gauge buckshot # Starlight change: .50 -> 12 gauge
   description: The standard cartridge used by most modern shotguns. Standard kinetic ammunition is common and useful in most situations.
@@ -111,7 +111,7 @@
     proto: PelletShotgunSpreadTrace
 
 - type: entity
-  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseShellShotgun, BaseSecurityContraband ] # Blimpuf
   id: ShellShotgunIncendiary
   name: 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
   description: The standard cartridge used by most modern shotguns. Incendiary ammunition contains a self-igniting compound that sets targets ablaze.
@@ -154,7 +154,7 @@
     proto: PelletShotgunPracticeSpreadTrace
 
 - type: entity
-  parent: [ BaseShellShotgun, BaseSecurityZookeeperContraband ]
+  parent: [ SolutionAmmo, SolutionToolVeryTiny, BaseShellShotgun  ]
   id: ShellTranquilizer
   name: 12 gauge tranquilizer slug # Starlight change: .50 -> 12 gauge
   description: The standard cartridge used by most modern shotguns. Tranquilizer ammunition contains a single ballistic syringe loaded with a strong sedative that harmlessly puts targets to sleep.
@@ -176,17 +176,16 @@
   - type: CartridgeAmmo
     proto: PelletShotgunTranquilizer
   - type: ChemicalAmmo
-  - type: SolutionContainerManager
-    solutions:
-      ammo:
-        reagents:
-        - ReagentId: Nocturine #🌟Starlight🌟
-          Quantity: 5
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nocturine #🌟Starlight🌟
+        Quantity: 7.5
   - type: SolutionTransfer
     maxTransferAmount: 3.5
 
 - type: entity
-  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseShellShotgun, BaseSecurityContraband ] # Blimpuf
   id: ShellShotgunImprovised
   name: improvised 12 gauge shell # Starlight change: .50 -> 12 gauge
   description: A homemade shotgun shell loaded with chunks of glass shrapnel. Surprisingly effective, but the spread is so wide that you couldn't hit the broad side of a barn.
@@ -214,7 +213,7 @@
     proto: PelletShotgunImprovisedSpreadTrace
 
 - type: entity
-  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseShellShotgun, BaseSecurityContraband ] # Blimpuf
   id: ShellShotgunUranium
   name: 12 gauge uranium buckshot shell # Starlight change: .50 -> 12 gauge
   description: The standard cartridge used by most modern shotguns. Uranium ammunition replaces the lead core of the pellets with fissile material, irradiating targets from the inside.

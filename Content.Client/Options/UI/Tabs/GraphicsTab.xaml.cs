@@ -7,6 +7,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared;
 using Robust.Shared.Configuration;
+using Content.Client._Starlight.Options.UI;
 
 namespace Content.Client.Options.UI.Tabs;
 
@@ -27,6 +28,8 @@ public sealed partial class GraphicsTab : Control
         Control.AddOption(new OptionLightingQuality(Control, _cfg, DropDownLightingQuality));
         Control.AddOption(new OptionParticleQuality(Control, _cfg, DropDownParticleQuality)); // _Starfall: Particle quality.
         #region Starlight
+        Control.AddOption(new OptionSpriteQuality(Control, _cfg, DropDownSpriteQuality));
+
         Control.AddOptionDropDown(
             StarlightCCVars.InteractionParticlesMode,
             DropDownInteractionParticles,
@@ -45,20 +48,7 @@ public sealed partial class GraphicsTab : Control
             ]);
         #endregion
 
-        Control.AddOptionDropDown(
-            CVars.DisplayUIScale,
-            DropDownUIScale,
-            [
-                new OptionDropDownCVar<float>.ValueOption(
-                    0f,
-                    Loc.GetString("ui-options-scale-auto", ("scale", UserInterfaceManager.DefaultUIScale))),
-                new OptionDropDownCVar<float>.ValueOption(0.75f, Loc.GetString("ui-options-scale-75")),
-                new OptionDropDownCVar<float>.ValueOption(1.00f, Loc.GetString("ui-options-scale-100")),
-                new OptionDropDownCVar<float>.ValueOption(1.25f, Loc.GetString("ui-options-scale-125")),
-                new OptionDropDownCVar<float>.ValueOption(1.50f, Loc.GetString("ui-options-scale-150")),
-                new OptionDropDownCVar<float>.ValueOption(1.75f, Loc.GetString("ui-options-scale-175")),
-                new OptionDropDownCVar<float>.ValueOption(2.00f, Loc.GetString("ui-options-scale-200")),
-            ]);
+        // Starlight: UI scale moved to the interface tab (UITab).
 
         Control.AddOptionDropDown(
             CCVars.ViewportScalingFilterMode,
@@ -90,7 +80,13 @@ public sealed partial class GraphicsTab : Control
         Control.AddOption(new OptionIntegerScaling(Control, _cfg, IntegerScalingCheckBox));
         Control.AddOptionCheckBox(CCVars.ViewportScaleRender, ViewportLowResCheckBox, invert: true);
         Control.AddOptionCheckBox(CCVars.ParallaxLowQuality, ParallaxLowQualityCheckBox);
+        // Starlight-start
         Control.AddOptionCheckBox(StarlightCCVars.TracesEnabled, TracesCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.ShowClothingStains, ClothingStainsCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.HolesEnabled, HolesCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.SparksEnabled, SparksCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.HitscanPrediction, HitscanPredictionCheckBox);
+        // Starlight-end
         Control.AddOptionCheckBox(CCVars.HudFpsCounterVisible, FpsCounterCheckBox);
 
         Control.Initialize();
@@ -213,6 +209,37 @@ public sealed partial class GraphicsTab : Control
             return QualityHigh;
         }
     }
+
+    #region Starlight
+    private sealed class OptionSpriteQuality : BaseOptionCVar<int>
+    {
+        private readonly OptionDropDown _dropDown;
+
+        protected override int Value
+        {
+            get => _dropDown.Button.SelectedId;
+            set => _dropDown.Button.SelectId(value);
+        }
+
+        public OptionSpriteQuality(
+            OptionsTabControlRow controller,
+            IConfigurationManager cfg,
+            OptionDropDown dropDown)
+            : base(controller, cfg, StarlightCCVars.SpriteQuality)
+        {
+            _dropDown = dropDown;
+            var button = dropDown.Button;
+            button.AddItem(Loc.GetString("ui-options-sprite-quality-low"), (int) SpriteQualityLevel.Low);
+            button.AddItem(Loc.GetString("ui-options-sprite-quality-medium"), (int) SpriteQualityLevel.Medium);
+            button.AddItem(Loc.GetString("ui-options-sprite-quality-high"), (int) SpriteQualityLevel.High);
+            button.OnItemSelected += args =>
+            {
+                button.SelectId(args.Id);
+                ValueChanged();
+            };
+        }
+    }
+    #endregion
 
     private sealed class OptionFullscreen : BaseOptionCVar<int>
     {

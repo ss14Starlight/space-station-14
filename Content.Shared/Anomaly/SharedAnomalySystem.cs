@@ -168,7 +168,7 @@ public abstract partial class SharedAnomalySystem : EntitySystem
     /// <param name="component"></param>
     public void DoAnomalySupercriticalEvent(EntityUid uid, AnomalyComponent? component = null)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(uid, ref component) || component.Ending) // Starlight
             return;
 
         if (!Timing.IsFirstTimePredicted)
@@ -230,15 +230,18 @@ public abstract partial class SharedAnomalySystem : EntitySystem
         if (Terminating(uid) || _net.IsClient)
             return;
 
-        if (spawnCore)
+        #region Starlight
+        // Coreless anomalies must not spawn an empty entity.
+        var corePrototype = supercritical ? component.CorePrototype : component.CoreInertPrototype;
+        if (spawnCore && corePrototype != null)
         {
-            var core = Spawn(supercritical ? component.CorePrototype : component.CoreInertPrototype, Transform(uid).Coordinates);
+            var core = Spawn(corePrototype, Transform(uid).Coordinates);
             _transform.PlaceNextTo(core, uid);
         }
-        // Starlight Start
+
         if (!removeComponent)
             return;
-        // Starlight End
+        #endregion
 
         if (component.DeleteEntity)
             QueueDel(uid);
@@ -469,6 +472,9 @@ public abstract partial class SharedAnomalySystem : EntitySystem
 
             if (!settings.CanSpawnOnEntities)
             {
+                // If it can't spawn on entities, ensure that maximum one entity will be spawned here this pulse.
+                tilerefs.Remove(tileref);
+
                 var valid = true;
                 foreach (var ent in _map.GetAnchoredEntities(xform.GridUid.Value, grid, tileref.GridIndices))
                 {
@@ -485,7 +491,6 @@ public abstract partial class SharedAnomalySystem : EntitySystem
                 }
                 if (!valid)
                 {
-                    tilerefs.Remove(tileref);
                     continue;
                 }
             }

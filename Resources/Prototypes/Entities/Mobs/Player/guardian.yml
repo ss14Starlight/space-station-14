@@ -111,6 +111,8 @@
     - type: Tag
       tags:
         - CannotSuicide
+        - StunImmune
+        - SlowImmune
 
 # From the uplink injector
 - type: entity
@@ -126,7 +128,6 @@
       name: ghost-role-information-holoparasite-name
       description: ghost-role-information-holoparasite-description
       rules: ghost-role-information-familiar-rules
-      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
@@ -160,7 +161,6 @@
       name: ghost-role-information-ifrit-name
       description: ghost-role-information-ifrit-description
       rules: ghost-role-information-familiar-rules
-      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
@@ -180,7 +180,7 @@
 - type: entity
   name: HoloClown
   id: MobHoloClownGuardian
-  parent: [MobGuardianBase, InventoryBase] #starlight Nubody will not pass.
+  parent: [MobGuardianBase, InventoryBase]
   description: A mesmerising whirl of hard-light patterns weaves a blue colored clown of dubious origin.
   components:
     - type: GhostRole
@@ -190,7 +190,6 @@
       name: ghost-role-information-holoclown-name
       description: ghost-role-information-holoclown-description
       rules: ghost-role-information-familiar-rules
-      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
@@ -225,10 +224,6 @@
           map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
           color: "#8adaff"
           shader: unshaded
-    # Starlight - start
-    - type: Body
-      prototype: Primate
-    # Starlight - end
     - type: Tag
       tags:
         - CannotSuicide
@@ -236,22 +231,11 @@
     - type: Inventory
       templateId: holoclown
     - type: Hands
-      # Starlight edit Start: Reverted NuBody
-      # activeHandId: Hand
-      # hands:
-      #   Hand:
-      #     location: Left
-      # Starlight edit End: Reverted NuBody
+      activeHandId: Hand
+      hands:
+         Hand:
+           location: Left
     - type: ComplexInteraction
-    - type: Clumsy
-      gunShootFailDamage:
-        types:
-          Blunt: 5
-          Piercing: 4
-          Heat: 3
-      catchingFailDamage:
-        types:
-          Blunt: 1
     - type: MeleeWeapon
       angle: 30
       animation: WeaponArcFist
@@ -266,9 +250,6 @@
     - type: RandomMetadata
       nameSegments:
       - NamesClown
-    # - type: NpcFactionMember Starlight-edit
-    #  factions:
-    #     - Syndicate
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound

@@ -12,9 +12,9 @@ namespace Content.Server._Starlight.Arcade.Lancer;
 /// Targets (at Hull 2 / 0 Agility / 0 Engineering, best loadout): ridge-pass ~75%, deep-range ~50%, crown-signal ~25%.
 /// </summary>
 [AdminCommand(AdminFlags.Debug)]
-public sealed class LancerBalanceCommand : IConsoleCommand
+public sealed partial class LancerBalanceCommand : IConsoleCommand
 {
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     public string Command => "lancer_balance";
     public string Description => "Monte Carlo Lancer arcade mission win-rate evaluator (eliminate-all, ignore objectives).";

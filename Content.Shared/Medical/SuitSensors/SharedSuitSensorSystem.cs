@@ -1,9 +1,11 @@
 using System.Numerics;
 using Robust.Shared.GameObjects; // Starlight
+using Content.Shared._Starlight.StatusIcon;
 using Content.Shared.Access.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Clothing;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DoAfter;
 using Content.Shared.Emp;
@@ -16,6 +18,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Roles;
 using Content.Shared.Station;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
@@ -41,6 +44,7 @@ public abstract partial class SharedSuitSensorSystem : EntitySystem
     [Dependency] private SharedIdCardSystem _idCardSystem = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     private EntityQuery<SuitSensorComponent> _sensorQuery;
     public override void Initialize()
@@ -374,6 +378,20 @@ public abstract partial class SharedSuitSensorSystem : EntitySystem
             foreach (var department in card.Comp.JobDepartments)
                 userJobDepartments.Add(Loc.GetString(_proto.Index(department).Name));
         }
+        // Starlight Start
+        else if (TryComp<FixedJobIconComponent>(sensor.User.Value, out var fixedJob) && _proto.Resolve(fixedJob.Job, out var job))
+        {
+            userName = MetaData(sensor.User.Value).EntityName;
+            userJob = job.LocalizedName;
+            userJobIcon = job.Icon;
+
+            foreach (var department in _proto.EnumeratePrototypes<DepartmentPrototype>())
+            {
+                if (department.Roles.Contains(fixedJob.Job))
+                    userJobDepartments.Add(Loc.GetString(department.Name));
+            }
+        }
+        // Starlight End
 
         // get health mob state
         var isAlive = false;
@@ -381,9 +399,7 @@ public abstract partial class SharedSuitSensorSystem : EntitySystem
             isAlive = !_mobStateSystem.IsDead(sensor.User.Value, mobState);
 
         // get mob total damage
-        var totalDamage = 0;
-        if (TryComp<DamageableComponent>(sensor.User.Value, out var damageable))
-            totalDamage = damageable.TotalDamage.Int();
+        var totalDamage = _damageable.GetTotalDamage(sensor.User.Value).Int();
 
         // Get mob total damage crit threshold
         int? totalDamageThreshold = null;

@@ -136,6 +136,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
 
     private IEnumerable<RadialMenuOptionBase> ConvertToButtons(IEnumerable<EmotePrototype> emotePrototypes)
     {
+        emotePrototypes = SortEmotePrototypes(emotePrototypes); // Starlight: wheel ordering, see EmotesUIController.Starlight.cs
         var whitelistSystem = EntitySystemManager.GetEntitySystem<EntityWhitelistSystem>();
         var player = _playerManager.LocalSession?.AttachedEntity;
 
@@ -151,6 +152,15 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
                 || !(player.HasValue && whitelistSystem.IsWhitelistPassOrNull(emote.Whitelist, player.Value))
                 || whitelistSystem.IsWhitelistPass(emote.Blacklist, player.Value))
                 continue;
+
+            // Starlight - start
+            if (emote.Category == EmoteCategory.Vocal
+                && player.HasValue
+                && EntityManager.TryGetComponent<SpeechComponent>(player.Value, out var restrictedSpeech)
+                && restrictedSpeech.RestrictVocalEmotesToAllowed
+                && !restrictedSpeech.AllowedEmotes.Contains(emote.ID))
+                continue;
+            // Starlight - end
 
             if (!emote.Available
                 && EntityManager.TryGetComponent<SpeechComponent>(player.Value, out var speech)
@@ -172,7 +182,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
         }
 
         // Starlight - Start
-        var cloudprototypes = _prototypeManager.EnumeratePrototypes<CloudEmotePrototype>();
+        var cloudprototypes = SortCloudEmotePrototypes(_prototypeManager.EnumeratePrototypes<CloudEmotePrototype>());
         foreach (var emote in cloudprototypes)
         {
             if (!emotesByCategory.TryGetValue(EmoteCategory.Cloud, out var list))
@@ -184,7 +194,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
             var actionOption = new RadialMenuActionOption<CloudEmotePrototype>(HandleCloudRadialButtonClick, emote)
             {
                 IconSpecifier = RadialMenuIconSpecifier.With(emote.Icon),
-                ToolTip = Loc.GetString(emote.ID)
+                ToolTip = Loc.GetString(emote.Name)
             };
             list.Add(actionOption);
         }

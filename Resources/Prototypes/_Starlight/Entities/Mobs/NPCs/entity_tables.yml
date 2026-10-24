@@ -89,6 +89,8 @@
       - id: ReagentSlimeNorepinephricAcid
       - id: ReagentSlimeEphedrine
       - id: ReagentSlimeRobustHarvest
+      - id: ReagentSlimeGlubotoxin
+      - id: ReagentSlimeWehJuice
       conditions:
       - !type:PlayerCountCondition
         min: 35

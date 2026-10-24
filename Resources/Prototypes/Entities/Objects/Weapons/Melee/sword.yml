@@ -6,7 +6,6 @@
   id: BaseSword
   abstract: true
   components:
-  - type: Sharp
   - type: MeleeWeapon
     wideAnimationRotation: -135
   - type: Sprite
@@ -19,8 +18,6 @@
   - type: Tool
     qualities:
     - Slicing
-  - type: Engraveable # Starlight
-    engraveVerb: "engraving-verb-engrave"
 
 #Shortswords
 - type: entity
@@ -70,7 +67,7 @@
 #Longswords
 - type: entity
   name: captain's sabre
-  parent: [ BaseSword, BaseCommandContraband ]
+  parent: [ BaseContrabandTier3, BaseSword, BaseCommandContraband ] # Blimpuf
   id: CaptainSabre
   description: A ceremonial weapon belonging to the captain of the station.
   components:

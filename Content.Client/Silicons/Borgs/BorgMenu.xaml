@@ -34,6 +34,8 @@
             <Button HorizontalExpand="True" Name="BrainButton" ToggleMode="False" Margin="0" MinHeight="40" StyleClasses="OpenLeft">
                 <SpriteView Name="BrainView" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </Button>
+            <Button HorizontalExpand="True" Name="LockdownButton" Margin="0 10 0 0"/> <!-- Starlight -->
+            <Button HorizontalExpand="True" Name="ResetChassisButton" Margin="0 5 0 0" Text="{Loc 'borg-ui-reset-chassis'}" Visible="False"/> <!-- Starlight -->
         </BoxContainer>
         <customControls:VSeparator/>
         <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="15 10 15 15">

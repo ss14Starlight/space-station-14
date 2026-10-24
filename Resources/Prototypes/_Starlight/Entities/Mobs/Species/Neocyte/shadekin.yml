@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urist McDuskin #pronounced Dusk-Kin
+  name: Urist McShadowster
   parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies, BaseSpeciesPickupableHuge]
   id: BaseMobNeoKin
   abstract: true
@@ -24,14 +24,16 @@
       allowSelfRepair: true
       fuelCost: 7.5 # Little cheaper on Neocytes, since they're not fully cybernetic.
       damage:
-        groups:
-          Brute: -24 # 4 for each type with reduction applied
+        types:
+          Blunt: -8 # 4 for each type with reduction applied
+          Piercing: -8
+          Slash: -8
     - type: Shadekin
       thresholds:
-        0.8: Low
-        5: Annoying
-        10: High
-        15: Extreme
+        0.5: Low
+        2: Annoying
+        3.5: High
+        5: Extreme
     - type: Absorbable
     - type: Hunger
     - type: Thirst
@@ -64,11 +66,11 @@
     - type: GlitchOnIonStorm
       duration: 25
       ramp: 3
+    - type: HumanoidEMPComposite # HumanoidEMPComposite is used to gather EMP effects from HumanoidEMPCompositeElement components on all limbs and organs. These effects added in addition to effects in HumanoidEMP and won't work without it
     - type: HumanoidEMP # HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
       effectCooldown: 2
       effect:
-        stunAmount: 5.0
-        knockdownAmount: 2.0
+        knockdownAmount: 1.0
         slowdownAmount: 15.0
         walkSpeedModifier: 0.5
         sprintSpeedModifier: 0.5
@@ -86,12 +88,7 @@
     - type: Speech
       speechVerb: Robotic
       speechSounds: Borg
-      allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore']
     - type: Vocal
-      sounds:
-        Male: NeoKinMSounds
-        Female: NeoKinFSounds
-        Unsexed: NeoKinMSounds
     - type: MeleeWeapon
       soundHit:
         collection: AlienClaw
@@ -128,7 +125,7 @@
       bloodReferenceSolution:
         reagents:
           - ReagentId: DarkBlood
-            Quantity: 300
+            Quantity: 600
     - type: Flammable
       damage:
         types:
@@ -136,11 +133,12 @@
     - type: PassiveDamage
       allowedStates:
         - Alive
-      damageCap: 20
       damage:
-        groups:
-          Brute: -0.07
-          Burn: -0.07
+        types:
+          Blunt: -0.05
+          Piercing: -0.05
+          Slash: -0.05
+          Heat: -0.07
     - type: Destructible
       thresholds:
         - trigger: !type:DamageTypeTrigger
@@ -208,7 +206,6 @@
       thermalRegulationTemperatureThreshold: 2
     - type: Perishable
     - type: Butcherable
-      butcheringType: Spike
       spawned:
         - id: FoodMeat
           amount: 5
@@ -261,10 +258,6 @@
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi
         state: body-overlay-2
-        visible: false
-      - map: [ "clownedon" ] # Dynamically generated
-        sprite: "Effects/creampie.rsi"
-        state: "creampie_human"
         visible: false
     - type: Tag
       tags:

@@ -1,0 +1,4 @@
+- type: !PartialOnly tile
+  id: FloorFlesh
+  deconstructTools: [ Prying ]
+  itemDrop: FleshTileMeatSpawner

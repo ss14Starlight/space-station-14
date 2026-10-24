@@ -1,5 +1,5 @@
-using Content.Server.Botany.Components; // Starlight Edit
-using Content.Server.Botany.Systems;   // Starlight Edit
+using Content.Shared.Botany.Components;
+using Content.Shared.Botany.Items.Components;
 using Content.Server.Light.Components;
 using Content.Server.Stack;
 using Content.Shared.Clothing.Components;
@@ -31,9 +31,14 @@ namespace Content.Server.Light.EntitySystems
         [Dependency] private SharedAppearanceSystem _appearance = default!;
         [Dependency] private StackSystem _stackSystem = default!;
         [Dependency] private NameModifierSystem _nameModifier = default!;
-        [Dependency] private BotanySystem _botanySystem = default!; // Starlight Edit
+        [Dependency] private SharedPointLightSystem _pointLight = default!; // Starlight
 
         private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
+
+        #region Starlight
+        private float _updateAccumulator;
+        private const float UpdateInterval = 0.25f;
+        #endregion
 
         public override void Initialize()
         {
@@ -48,10 +53,22 @@ namespace Content.Server.Light.EntitySystems
 
         public override void Update(float frameTime)
         {
+            #region Starlight
+            _updateAccumulator += frameTime;
+            if (_updateAccumulator < UpdateInterval)
+                return;
+
+            var elapsed = _updateAccumulator;
+            _updateAccumulator = 0f;
+            #endregion
+
             var query = EntityQueryEnumerator<ExpendableLightComponent>();
             while (query.MoveNext(out var uid, out var light))
             {
-                UpdateLight((uid, light), frameTime);
+                if (!light.Activated) // Starlight
+                    continue;
+
+                UpdateLight((uid, light), elapsed); // Starlight-edit: was frameTime
             }
         }
 
@@ -111,9 +128,9 @@ namespace Content.Server.Light.EntitySystems
                 // Starlight Edit Start
                 // For botany grown cinnaflares, add the to the burn time by adding modifier * plant potency.
                 if (TryComp<ProduceComponent>(ent, out var produceComp) &&
-                    _botanySystem.TryGetSeed(produceComp, out var seedData))
+                    produceComp.PlantData != null && TryComp<PlantComponent>(produceComp.PlantData, out var plantData))
                     {
-                        ent.Comp.StateExpiryTime +=  ent.Comp.PlantBurnTimeModifier * seedData.Potency;
+                        ent.Comp.StateExpiryTime += ent.Comp.PlantBurnTimeModifier * plantData.Potency;
                     }
                 // Starlight Edit Stop
 
@@ -171,6 +188,8 @@ namespace Content.Server.Light.EntitySystems
                 return;
 
             _appearance.SetData(ent, ExpendableLightVisuals.State, component.CurrentState, appearance);
+
+            _pointLight.SetEnabled(ent, component.CurrentState is ExpendableLightState.Lit or ExpendableLightState.Fading); // Starlight-edit
 
             switch (component.CurrentState)
             {

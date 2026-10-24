@@ -84,3 +84,14 @@
   - type: IsDeadIC
   - type: Body
     prototype: AnimalProtoNymphLungs
+
+- type: entity
+  id: OrganNeoDionaTongue
+  parent: OrganNeocyteTongue
+  suffix: Neo-Diona
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: NeoDionaMSounds
+      Female: NeoDionaFSounds
+      Unsexed: NeoDionaMSounds

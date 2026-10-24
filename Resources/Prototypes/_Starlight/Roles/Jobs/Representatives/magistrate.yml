@@ -1,5 +1,6 @@
 - type: job
   id: Magistrate
+  roleType: CorporateAligned
   name: job-name-magistrate
   description: job-description-magistrate
   playTimeTracker: JobMagistrate
@@ -34,6 +35,7 @@
   - GenpopEnter
   - GenpopLeave
   - Debrief
+  - NTPersonnel
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

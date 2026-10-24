@@ -1,0 +1,31 @@
+- type: !PartialOnly randomHumanoidSettings
+  id: EventHumanoid
+  speciesBlacklist:
+    - IPC
+    - Diona
+    - Vox
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDwarf
+    - NeoDiona
+    - NeoFelionoid
+    - NeoHuman
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoVox
+    - NeoVulpkanin
+    - NeoKin
+    - NeoElf
+    - NeoLagomorph
+
+- type: !PartialOnly randomHumanoidSettings
+  id: SyndicateAgent
+  parent: NeocyteVariantBlacklist
+
+- type: !PartialOnly randomHumanoidSettings
+  id: NukeOp
+  parent: NeocyteVariantBlacklist

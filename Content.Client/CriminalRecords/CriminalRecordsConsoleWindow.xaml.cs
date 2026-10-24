@@ -276,7 +276,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
     private void SetStatus(SecurityStatus status)
     {
-        if (status == SecurityStatus.Wanted || status == SecurityStatus.Suspected || status == SecurityStatus.Hostile)
+        if (status == SecurityStatus.Wanted || status == SecurityStatus.Suspected || status == SecurityStatus.Hostile || status == SecurityStatus.Arrestonsight) // Starlight Edit
         {
             GetReason(status);
             return;
@@ -324,6 +324,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             SecurityStatus.Suspected => "hud_suspected",
             SecurityStatus.Hostile => "hud_hostile",
             SecurityStatus.Eliminated => "hud_eliminated",
+            SecurityStatus.Arrestonsight => "hud_aos", //Starlight
             _ => "SecurityIconNone"
         };
     }

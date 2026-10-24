@@ -11,3 +11,14 @@
       disabilityBlockable: true
     - type: FlashModifier
       modifier: 2
+
+- type: entity
+  id: OrganNeoKinTongue
+  parent: OrganNeocyteTongueForked
+  suffix: NeoKin
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: NeoKinMSounds
+      Female: NeoKinFSounds
+      Unsexed: NeoKinMSounds

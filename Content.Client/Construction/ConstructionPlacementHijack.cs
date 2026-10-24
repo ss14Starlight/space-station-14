@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Construction
 {
-    public sealed class ConstructionPlacementHijack : PlacementHijack
+    public sealed partial class ConstructionPlacementHijack : PlacementHijack
     {
         [Dependency] private IEntityManager _entityManager = default!; // Starlight
         private readonly SpriteSystem _spriteSystem; // Starlight
@@ -84,6 +84,11 @@ namespace Content.Client.Construction
                 {
                     if (layer.ActualRsi?.Path == null || layer.RsiState.Name == null)
                         continue;
+
+                    // Starlight start
+                    if (!_spriteSystem.TryGetLayer((overlay, overlaySprite), i, out _, false))
+                        break;
+                    // Starlight end
 
                     _spriteSystem.LayerSetOffset((overlay, overlaySprite), i, sprite.Offset + ((SpriteComponent.Layer)layer).Offset);
                     i++;

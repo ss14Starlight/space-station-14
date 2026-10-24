@@ -1,0 +1,46 @@
+﻿- type: entity
+  abstract: true
+  parent: [SolutionCryo, SolutionCompositeNormalStackable, BaseItem]
+  id: MaterialBase
+  description: A raw material.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: Objects/Materials/materials.rsi
+  - type: Item
+    sprite: Objects/Materials/materials.rsi
+    size: Normal
+  - type: Material
+  - type: Tag
+    tags:
+    - RawMaterial
+  - type: Damageable
+  #- type: Injurable # Starlight
+    damageContainer: Inorganic # Starlight, no injurable/damageable split yet
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Extractable
+    grindableSolutionName: composite
+  - type: UserInterface # Starlight start - custom stack splitting
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface # Starlight end
+
+
+- type: entity
+  abstract: true
+  parent: MaterialBase
+  id: BaseSheet
+  components:
+  - type: Tag
+    tags:
+    - Sheet
+    - ConstructionMaterial
+  - type: StaticPrice
+    price: 0

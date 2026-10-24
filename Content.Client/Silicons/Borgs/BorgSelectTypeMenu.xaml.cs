@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using Content.Client._Afterlight.Silicons.Borgs.UI; // Afterlight
+// Afterlight
 using Content.Client.UserInterface.Controls;
-using Content.Client.UserInterface.Systems.Guidebook;
-using Content.Shared._Afterlight.Prototypes; // Afterlight
-using Content.Shared._Afterlight.Silicons; // Afterlight
-using Content.Shared._Afterlight.Silicons.Borgs; // Afterlight
+// Afterlight
+using Content.Shared._Starlight.Silicons.Borgs; // Starlight
+// Afterlight
+// Afterlight
 using Content.Shared.Guidebook;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
@@ -32,8 +32,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
 
     private BorgTypePrototype? _selectedBorgType;
 
-    public event Action<ProtoId<BorgTypePrototype>>? ConfirmedBorgType;
-    public event Action<EntityPrototype?>? ConfirmBorgSubtype; // Starlight event - borg subtypes
+    public event Action<ProtoId<BorgTypePrototype>, EntityPrototype?>? ConfirmedBorgType; // Starlight - carries the subtype
 
     private static readonly List<ProtoId<GuideEntryPrototype>> GuidebookEntries = new() { "Cyborgs", "Robotics" };
 
@@ -42,7 +41,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
-        // Starlight: All logic moved to method
+#region Starlight
 
         ConfirmTypeButton.OnPressed += ConfirmButtonPressed;
         HelpGuidebookIds = GuidebookEntries;
@@ -52,16 +51,15 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         // Afterlight end
     }
 
-    // Starlight-start: Move from BorgSelectTypeMenu to method
+    // Move from BorgSelectTypeMenu to method
     public void SetupMenu(EntityUid owner)
     {
-        // Starlight-start: Available types
+        // Available types
         if (!_entManager.TryGetComponent<BorgSwitchableTypeComponent>(owner, out var switchableType))
             return;
-        // Starlight-end
 
         var group = new ButtonGroup();
-        // Starlight-start: Available types
+        // Available types
         if (switchableType.AvailableTypes.Any())
             foreach (var borgTypeId in switchableType.AvailableTypes)
             {
@@ -82,8 +80,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
                 SelectionsContainer.AddChild(button);
             }
         else
-            // Starlight-end
-            foreach (var borgType in _prototypeManager.EnumeratePrototypes<BorgTypePrototype>().OrderBy(PrototypeName))
+            foreach (var borgType in _prototypeManager.EnumeratePrototypes<BorgTypePrototype>().Where(p => p.ID != BorgChassisResetSystem.UnselectedType).OrderBy(PrototypeName)) // Starlight - the blank chassis type is not selectable
             {
                 var button = new Button
                 {
@@ -100,7 +97,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
             }
 
     }
-    // Starlight-end
+#endregion
 
     private void UpdateInformation(BorgTypePrototype prototype)
     {
@@ -114,7 +111,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         if (_selectedBorgType != null)
         {
             ChassisSpriteSelection.Update(_selectedBorgType);
-            ConfirmTypeButton.Disabled = ChassisSpriteSelection.SubtypePrototype == null;
+            ConfirmTypeButton.Disabled = !ChassisSpriteSelection.HasSelection; // Starlight
         }
         // Afterlight end
 
@@ -128,8 +125,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         if (_selectedBorgType == null)
             return;
 
-        ConfirmBorgSubtype?.Invoke(ChassisSpriteSelection.SubtypePrototype); // Afterlight
-        ConfirmedBorgType?.Invoke(_selectedBorgType);
+        ConfirmedBorgType?.Invoke(_selectedBorgType, ChassisSpriteSelection.SubtypePrototype); // Afterlight
     }
 
     private static string PrototypeName(BorgTypePrototype prototype)

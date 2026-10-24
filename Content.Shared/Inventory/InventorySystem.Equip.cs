@@ -82,6 +82,11 @@ public abstract partial class InventorySystem
         if (eventArgs.SenderSession.AttachedEntity is not { Valid: true } actor)
             return;
 
+        // Starlight start
+        if (TryActivateSlotWithoutHands(actor, ev.Slot))
+            return;
+        // Starlight end
+
         if (!TryComp(actor, out InventoryComponent? inventory) || !TryComp<HandsComponent>(actor, out var hands))
             return;
 
@@ -662,7 +667,10 @@ public abstract partial class InventorySystem
     {
         foreach (var item in GetHandOrInventoryEntities((ent, null, ent)))
         {
-            args.Giblets.Add(item);
+            // Give me liberty, give me death
+            // TODO: Give me an API that can tell the difference between a virtual item and an electropak being removed.
+            if (!HasComp<AttachedClothingComponent>(item))
+                args.Giblets.Add(item);
         }
     }
 }

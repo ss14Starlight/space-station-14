@@ -1,0 +1,135 @@
+- type: entity
+  parent: MobCorgiBase
+  id: MobK9
+  name: security K9
+  description: A dog trained for station security work.
+  components:
+  - type: AntagTarget
+  - type: RemoveFlavorText
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Pets/k9.rsi
+    layers:
+    - map: ["enum.SpriteVariantLayers.Base"]
+      state: k9-brown
+  - type: LanguageKnowledge
+    speaks:
+    - DogFeral # This language grant is intentional; K9s are meant to have communication challenges
+    understands:
+    - GalacticCommon
+    - Dog
+    - DogFeral
+    - Canilunzt
+  - type: LanguageGrantImmune
+  - type: Inventory
+    forceDisplacements: true
+    speciesId: dog
+    templateId: K9
+    displacements:
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: outerClothing
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: suitstorage
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: mask
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: eyes
+      id:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: id
+  - type: Stripping
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 180
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCorgi
+  - type: Grammar
+    attributes:
+      gender: epicene
+      proper: true
+  - type: Vocal
+    screamAction: null
+  - type: StatusIcon
+  - type: JobStatus
+  - type: SpriteVariant
+    availableVariants:
+    - k9-brown
+    - k9-black
+    - k9-tan
+    - k9-grey
+    variantAlerts:
+      k9-brown:
+        alive: K9BrownHealth
+        critical: K9BrownCrit
+        dead: K9BrownDead
+      k9-black:
+        alive: K9BlackHealth
+        critical: K9BlackCrit
+        dead: K9BlackDead
+      k9-tan:
+        alive: K9TanHealth
+        critical: K9TanCrit
+        dead: K9TanDead
+      k9-grey:
+        alive: K9GreyHealth
+        critical: K9GreyCrit
+        dead: K9GreyDead
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4
+  - type: Tag
+    tags:
+    - DogEmotes
+    - DoorBumpOpener
+    - VimPilot
+  - type: AlwaysRevolutionaryConvertible
+  - type: CanEnterCryostorage
+  - type: Zoomies
+    action: K9Sprint
+    speedModifier: 1.8
+    thirstDrain: null
+    hungerDrain: null
+    duration: 3
+    zoomiesAlert: K9Sprint
+  - type: Latch
+    struggleWhitelist:
+      components:
+      - Pacified
+    # DESIGN DECISION - READ BEFORE EDITING THIS LIST.
+    # K9s pin everything they latch onto. This list is the one exception: the
+    # creatures below (and every prototype inheriting from them) are slowed
+    # instead of pinned. It is intentionally tiny, and keeping it tiny is a
+    # conscious decision, not an oversight.
+    #
+    # These two are here only because they are huge creatures that can already
+    # knock a K9 off in a couple of hits; being pinned by a dog looked wrong,
+    # rather than being a balance problem.
+    #
+    # Do NOT add to this list to make an antagonist, creature, species, or
+    # piece of equipment "latch resistant". Growing it would erode what K9s are
+    # for, one reasonable-sounding exception at a time. Any addition is a
+    # balance change to the K9 itself and needs explicit maintainer sign-off.
+    slowPrototypes:
+    - BaseMobDragon          # space, expedition, and clown dragons
+    - MobCosmicColossusBase  # both colossus variants
+    damagePerTick:
+      types:
+        Piercing: 1.5

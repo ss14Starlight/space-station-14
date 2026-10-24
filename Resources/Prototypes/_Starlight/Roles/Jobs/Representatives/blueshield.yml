@@ -1,5 +1,6 @@
 - type: job
   id: BlueShield
+  roleType: CorporateAligned
   name: job-name-blueshield
   description: job-description-blueshield
   playTimeTracker: JobBlueShield
@@ -18,6 +19,7 @@
     - !type:TraitsRequirement
       traits:
         - Iterator
+        - Pacifist
       inverted: true
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
@@ -40,7 +42,6 @@
     - Research
     - Robotics
     - Detective
-    - Salvage
     - Security
     - Brigmedic
     - Brig
@@ -54,11 +55,11 @@
     - Surgery
     - Paramedic
     - Mining
-    - SalvageLead
     - Debrief
     - Journalism
     - Clown
     - Mime
+    - NTPersonnel
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

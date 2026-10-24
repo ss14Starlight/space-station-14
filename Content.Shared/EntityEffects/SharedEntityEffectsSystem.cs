@@ -1,11 +1,9 @@
-using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.EntityConditions;
 using Content.Shared.FixedPoint;
 using Content.Shared.Random.Helpers;
-using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.EntityEffects;
@@ -20,7 +18,6 @@ public sealed partial class SharedEntityEffectsSystem : EntitySystem, IEntityEff
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ISharedAdminLogManager _adminLog = default!;
     [Dependency] private SharedEntityConditionsSystem _condition = default!;
-    [Dependency] private IRobustRandom _rand = default!; // Starlight
 
     public override void Initialize()
     {
@@ -97,11 +94,8 @@ public sealed partial class SharedEntityEffectsSystem : EntitySystem, IEntityEff
             return false;
 
         // TODO: Replace with proper random prediciton when it exists.
-        if (effect.Probability <= 1f)
-        // Starlight begin
-            if (!_rand.ProbPredicted(_timing, effect.Probability))
+        if (effect.Probability <= 1f && !SharedRandomExtensions.PredictedProb(_timing, effect.Probability, GetNetEntity(target), GetNetEntity(user)))
                 return false;
-        // Starlight end
 
         // See if conditions apply
         if (!_condition.TryConditions(target, effect.Conditions))

@@ -25,6 +25,7 @@
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeEyewear
   - CommonBackpack
+  - PaperworkGloves
   - NanotrasenRepresentativeShoes
   - Trinkets
   - Scarves
@@ -40,12 +41,13 @@
   - IAANeck
   - IAAJumpsuit
   - CommonBackpack
+  - PaperworkGloves
   - IAAShoes
   - Trinkets
   - Scarves
   - Pins
   - LuxuryPens
-  - LawyerJobTrinkets
+  #- LawyerJobTrinkets
   - Survival
   - GroupSpeciesBreathTool
 
@@ -84,7 +86,7 @@
   - Scarves
   - Pins
   - Pens
-  - AssistantJobTrinkets
+  #- AssistantJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -212,6 +214,7 @@
   groups:
   - GroupTankHarness # for Vox
   - RoboticistHead
+  - RoboticistNeck
   - RoboticistGoggles
   - RoboticistJumpsuit
   - RoboticistGloves
@@ -261,25 +264,10 @@
   - Scarves
   - Pins
   - Pens
-  - PerformerJobTrinkets
+  #- PerformerJobTrinkets
   - GroupSpeciesBreathTool
 
 # Wildcards
-- type: roleLoadout
-  id: JobZookeeper
-  groups:
-  - GroupTankHarness # for Vox
-  - CommonBackpack
-  - CivilianShoes
-  - Glasses
-  - Survival
-  - Trinkets
-  - Scarves
-  - Pins
-  - Pens
-  - ZookeeperJobTrinkets
-  - GroupSpeciesBreathTool
-
 - type: roleLoadout
   id: JobBoxer
   groups:
@@ -293,7 +281,7 @@
   - Scarves
   - Pins
   - Pens
-  - BoxerJobTrinkets
+  #- BoxerJobTrinkets
   - GroupSpeciesBreathTool
 
 # Antagonist Loadouts
@@ -373,3 +361,21 @@
   - SurvivalExtended
   - GroupSpeciesBreathTool
   - GroupTankHarness
+
+- type: roleLoadout
+  id: JobSalvageMedic
+  groups:
+  - GroupTankHarness
+  - SalvageMedicJumpsuit
+  - SalvageMedicPDA
+  - SalvageMedicNeck
+  - SalvageSpecialistBackpack
+  - SalvageSpecialistOuterClothing
+  - SalvageSpecialistShoes
+  - MedicalEyewear
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathTool

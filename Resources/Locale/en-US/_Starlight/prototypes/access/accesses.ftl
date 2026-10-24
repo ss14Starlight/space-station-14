@@ -2,6 +2,7 @@
 id-card-access-level-debrief = Debrief
 
 # NT
+id-card-access-level-ntpersonnel = NT Personnel
 id-card-access-level-magistrate = Magistrate
 id-card-access-level-ntrep = NanoTrasen Representative
 id-card-access-level-blueshield = BlueShield
@@ -55,3 +56,5 @@ id-card-access-level-pirate = Pirate
 id-card-access-level-blackstar = Blackstar
 id-card-access-level-medtak = MedTak
 id-card-access-level-visitor = Visitor
+
+id-card-access-level-itg = Interstellar Trade Guild

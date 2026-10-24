@@ -1,4 +1,5 @@
 stack-carpet-deco-tile = deco carpet tile
+stack-carpet-art-tile = artsy carpet tile
 stack-dark-bitile-tile = dark bi tile
 stack-steel-bitile-tile = steel bi tile
 stack-white-bitile-tile = white bi tile
@@ -59,6 +60,7 @@ stack-adamantine = {$amount ->
 
 stack-bluespace-tile = bluespace tile
 stack-sepia-xenobiology-tile = sepia tile
+stack-light-tile = light floor tile
 
 stack-brutepack = {$amount ->
     [1] brutepack
@@ -145,4 +147,8 @@ stack-abyssium-ore = {$amount ->
 stack-abyssium-bar = {$amount ->
     [1] abyssium bar
     *[other] abyssium bars
+}
+stack-sandbag = {$amount ->
+    [1] sandbag
+    *[other] sandbags
 }

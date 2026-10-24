@@ -1,4 +1,3 @@
-using Content.Shared.Shuttles.Components;
 using Content.Shared.Procedural;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Dataset;
@@ -13,7 +12,7 @@ public sealed partial class SalvageSystem
 
     private void OnSalvageClaimMessage(EntityUid uid, SalvageExpeditionConsoleComponent component, ClaimSalvageMessage args)
     {
-        var station = _station.GetOwningStation(uid);
+        var station = _station.GetItgStation(uid); // Starlight
 
         if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed)
             return;
@@ -51,7 +50,7 @@ public sealed partial class SalvageSystem
         var query = AllEntityQuery<SalvageExpeditionConsoleComponent, UserInterfaceComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var uiComp, out var xform))
         {
-            var station = _station.GetOwningStation(uid, xform);
+            var station = _station.GetItgStation((uid, xform)); // Starlight
 
             if (station != component.Owner)
                 continue;
@@ -62,7 +61,7 @@ public sealed partial class SalvageSystem
 
     private void UpdateConsole(Entity<SalvageExpeditionConsoleComponent> component)
     {
-        var station = _station.GetOwningStation(component);
+        var station = _station.GetItgStation(component.Owner); // Starlight
         SalvageExpeditionConsoleState state;
 
         if (TryComp<SalvageExpeditionDataComponent>(station, out var dataComponent))

@@ -8,6 +8,10 @@
   - type: CookingDevice
     capacity: 10
     deviceType: Oven
+    beginCookingSound:
+      path: /Audio/_Starlight/Ambience/Objects/oven_start.ogg
+    loopingSound:
+      path: /Audio/_Starlight/Ambience/Objects/oven_loop.ogg
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -82,7 +86,10 @@
     canCreateVacuum: false
     deleteAfterExplosion: false
   - type: ApcPowerReceiver
-    powerLoad: 400
+    powerLoad: 5
+  - type: PowerState
+    idlePowerDraw: 5
+    workingPowerDraw: 1000
   - type: Machine
     board: OvenMachineCircuitboard
   - type: ContainerContainer

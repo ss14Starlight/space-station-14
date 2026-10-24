@@ -21,7 +21,8 @@ namespace Content.Shared.Atmos.Piping.Binary.Components
     public enum GasCanisterVisuals
     {
         PressureState,
-        TankInserted
+        TankInserted,
+        HoseAttached // Starlight: indicates that a gas canister hose is attached.
     }
 
     #endregion

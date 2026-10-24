@@ -514,7 +514,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: -0.5
+    armorPenetration: -0.13
     damage:
       types:
         Piercing: 20
@@ -1011,6 +1011,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
+    armorPenetration: 0.2
     damage:
       types:
         Piercing: 40
@@ -1046,6 +1047,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
+    armorPenetration: -0.4
     damage:
       types:
         Piercing: 5
@@ -1057,6 +1059,12 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: buckshot
+  - type: HitscanBasicRaycast
+    maxDistance: 9
+  - type: HitscanDamageFalloff
+    fullDamageDistance: 2
+    minDamageDistance: 8
+    minMultiplier: 0.25
 
 - type: entity
   id: PelletShotgunSpreadTrace
@@ -1077,6 +1085,7 @@
     damage:
       types:
         Piercing: 0.9
+    armorPenetration: -0.6
   - type: HitscanPierce
     chance: 0
   - type: HitscanBasicVisuals
@@ -1084,6 +1093,12 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: buckshot
+  - type: HitscanBasicRaycast
+    maxDistance: 9
+  - type: HitscanDamageFalloff
+    fullDamageDistance: 2
+    minDamageDistance: 8
+    minMultiplier: 0.25
 
 - type: entity
   id: PelletShotgunBirdshotSpreadTrace
@@ -1105,14 +1120,22 @@
       types:
         Blunt: 2
         Heat: 3
+    armorPenetration: -0.4
   - type: HitscanPierce
     chance: 0.02
   - type: HitscanIgniteEffect
+    fireStacks: 0.125 # half the typical number, as our shotguns fire 12 pellets instead of 6 like upstream
   - type: HitscanBasicVisuals
     bullet:
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: buckshot-flare
+  - type: HitscanBasicRaycast
+    maxDistance: 9
+  - type: HitscanDamageFalloff
+    fullDamageDistance: 2
+    minDamageDistance: 8
+    minMultiplier: 0.25
 
 - type: entity
   id: PelletShotgunIncendiarySpreadTrace
@@ -1140,6 +1163,12 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: buckshot
+  - type: HitscanBasicRaycast
+    maxDistance: 9
+  - type: HitscanDamageFalloff
+    fullDamageDistance: 2
+    minDamageDistance: 8
+    minMultiplier: 0.25
 
 - type: entity
   id: PelletShotgunPracticeSpreadTrace
@@ -1161,6 +1190,7 @@
       types:
         Piercing: 2
         Slash: 2
+    armorPenetration: -0.5
   - type: HitscanPierce
     chance: 0
   - type: HitscanBasicVisuals
@@ -1168,6 +1198,12 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: shard
+  - type: HitscanBasicRaycast
+    maxDistance: 9
+  - type: HitscanDamageFalloff
+    fullDamageDistance: 2
+    minDamageDistance: 8
+    minMultiplier: 0.25
 
 - type: entity
   id: PelletShotgunImprovisedSpreadTrace
@@ -1189,6 +1225,7 @@
       types:
         Radiation: 2
         Piercing: 3
+    armorPenetration: -0.3
   - type: HitscanPierce
     chance: 0.05
     pierceLevel: HardenedMetal
@@ -1197,6 +1234,12 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: depleted-uranium
+  - type: HitscanBasicRaycast
+    maxDistance: 9
+  - type: HitscanDamageFalloff
+    fullDamageDistance: 2
+    minDamageDistance: 8
+    minMultiplier: 0.25
 
 - type: entity
   id: PelletShotgunUraniumSpreadTrace
@@ -1218,6 +1261,7 @@
       types:
         Piercing: 5
         Structural: 20
+    armorPenetration: -0.4
   - type: HitscanPierce
     chance: 0.03
   - type: HitscanBasicVisuals
@@ -1225,6 +1269,12 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: piercing
+  - type: HitscanBasicRaycast
+    maxDistance: 9
+  - type: HitscanDamageFalloff
+    fullDamageDistance: 2
+    minDamageDistance: 8
+    minMultiplier: 0.25
 
 - type: entity
   id: PelletShotgunBreachSpreadTrace
@@ -1250,6 +1300,22 @@
 - type: entity
   id: EnergyTrace
   parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+  - type: HitscanBasicRaycast
+    collisionMask: BulletImpassable
+  - type: HitscanReflect
+    reflectiveType: Energy
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+        state: heavylaser
+
+- type: entity
+  id: EnergyTraceNoBeam
+  parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   abstract: true
   components:
@@ -1418,7 +1484,7 @@
 - type: entity
   id: AdvancedTaserBolt
   name: taser bolt
-  parent: EnergyTrace
+  parent: EnergyTraceNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -1441,7 +1507,7 @@
 - type: entity
   id: EmpPulse
   name: EMP impulse
-  parent: EnergyTrace
+  parent: EnergyTraceNoBeam
   components:
   - type: HitscanEmpEffect
     emp:
@@ -1457,7 +1523,7 @@
 - type: entity
   id: DecloneBolt
   name: declone bolt
-  parent: EnergyTrace
+  parent: EnergyTraceNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -1474,17 +1540,17 @@
 - type: entity
   id: SniperBolt
   name: sniper bolt
-  parent: EnergyTrace
+  parent: EnergyTraceNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 60
+        Heat: 80
   - type: HitscanCrawlerTargetEffects
     knockdownDuration: 3
   - type: HitscanStaminaDamage
-    staminaDamage: 40
+    staminaDamage: 50
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1591,6 +1657,7 @@
       types:
         Piercing: 5
         Structural: 5
+    armorPenetration: -0.4
   - type: HitscanPierce
     chance: 0.03
   - type: HitscanBasicVisuals
@@ -1598,6 +1665,12 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: buckshot
+  - type: HitscanBasicRaycast
+    maxDistance: 9
+  - type: HitscanDamageFalloff
+    fullDamageDistance: 2
+    minDamageDistance: 8
+    minMultiplier: 0.25
 
 - type: entity
   id: PelletShotgunTozSpreadTrace

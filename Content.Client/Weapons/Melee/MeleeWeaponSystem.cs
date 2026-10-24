@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Client.Gameplay;
+using Content.Shared.CCVar;
 using Content.Shared.Effects;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
@@ -10,6 +11,7 @@ using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.State;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -41,6 +43,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     #region Starlight
     [Dependency] private SharedPhysicsSystem _physics = default!;
     #endregion
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -96,7 +99,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         var useDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.Use);
         var altDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.UseSecondary);
 
-        if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down)
+        if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down || _cfg.GetCVar(CCVars.ControlHoldToAttackMelee))
         {
             if (weapon.Attacking)
             {
@@ -223,10 +226,10 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         return targetTile == hitTile; // Starlight-edit-end™
     }
 
-    protected override void DoDamageEffect(List<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
+    protected override void DoDamageEffect(HashSet<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
     {
         // Server never sends the event to us for predictiveeevent.
-        _color.RaiseEffect(Color.Red, targets, Filter.Local());
+        _color.RaiseEffect(Color.Red, targets.ToList(), Filter.Local());
         DoHitRecoilEffect(targets, user); // Starlight-edit
     }
 
@@ -235,7 +238,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     /// <summary>
     /// Plays recoil animation for targets.
     /// </summary>
-    private void DoHitRecoilEffect(List<EntityUid> targets, EntityUid? user)
+    private void DoHitRecoilEffect(HashSet<EntityUid> targets, EntityUid? user)
     {
         foreach (var target in targets)
         {
@@ -301,27 +304,29 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     private void ClientHeavyAttack(EntityUid user, EntityCoordinates coordinates, EntityUid meleeUid, MeleeWeaponComponent component)
     {
         // Only run on first prediction to avoid the potential raycast entities changing.
-        if (!_xformQuery.TryGetComponent(user, out var userXform) ||
-            !Timing.IsFirstTimePredicted)
-        {
+        if (!Timing.IsFirstTimePredicted) // Starlight edit
             return;
-        }
+
+        // Starlight - Mech wideswing handling
+        var originUid = GetOriginEntity(user);
+        if (!TryComp(originUid, out TransformComponent? originXform))
+            return;
 
         var targetMap = TransformSystem.ToMapCoordinates(coordinates);
 
-        if (targetMap.MapId != userXform.MapID)
+        if (targetMap.MapId != originXform.MapID) // Starlight edit
             return;
 
-        var userPos = TransformSystem.GetWorldPosition(userXform);
-        var direction = targetMap.Position - userPos;
+        var originPos = TransformSystem.GetWorldPosition(originXform); // Starlight edit
+        var direction = targetMap.Position - originPos; // Starlight edit
         var distance = MathF.Min(component.Range, direction.Length());
-
-        var ignoreUid = GetOriginEntity(user); // Starlight - Mech wideswing handling
 
         // This should really be improved. GetEntitiesInArc uses pos instead of bounding boxes.
         // Server will validate it with InRangeUnobstructed.
-        var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, ignoreUid).ToList()); // Starlight
-        RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities.GetRange(0, Math.Min(MaxTargets, entities.Count)), GetNetCoordinates(coordinates)));
+        var entities = GetNetEntitySet(ArcRayCast(originPos, direction.ToWorldAngle(), component.Angle, distance, originXform.MapID, originUid)); // Starlight edit
+        entities.Remove(GetNetEntity(user)); // Starlight edit
+        entities = entities.Take(Math.Min(MaxTargets, entities.Count)).ToHashSet();
+        RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities, GetNetCoordinates(coordinates)));
     }
 
     private void ClientDisarm(EntityUid attacker, MapCoordinates mousePos, EntityCoordinates coordinates)

@@ -12,7 +12,13 @@
     },
     {
       "name": "equipped-HELMET",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Romero/Littlemen"
+    },
+    {
+      "name": "equipped-HELMET-avali",
+      "directions": 4,
+      "copyright": "Modified by DocMoth"
     }
   ]
 }

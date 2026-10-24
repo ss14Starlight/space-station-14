@@ -1,8 +1,10 @@
+using Content.Shared._Starlight.IdentityManagement.Components;
+using Content.Shared._Starlight.StatusIcon;
 using Content.Shared.Access.Components;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
-using Content.Shared.PDA;
 using Content.Shared.Verbs;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Access.Systems;
@@ -11,6 +13,9 @@ public sealed partial class IdExaminableSystem : EntitySystem
 {
     [Dependency] private ExamineSystemShared _examineSystem = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
+    #region Starlight
+    [Dependency] private IPrototypeManager _proto = default!; // Starlight
+    #endregion
 
     public override void Initialize()
     {
@@ -20,8 +25,15 @@ public sealed partial class IdExaminableSystem : EntitySystem
 
     private void OnGetExamineVerbs(EntityUid uid, IdExaminableComponent component, GetVerbsEvent<ExamineVerb> args)
     {
+        var rawInfo = GetInfo(uid); // Starlight
+
+        // Starlight Begin - animals with no ID slot and no fixed job get no verb at all
+        if (rawInfo is null && HasComp<AnimalIdentityComponent>(uid))
+            return;
+        // Starlight End
+
         var detailsRange = _examineSystem.IsInDetailsRange(args.User, uid);
-        var info = GetMessage(uid);
+        var info = rawInfo ?? Loc.GetString("id-examinable-component-verb-no-id"); // Starlight
 
         var verb = new ExamineVerb()
         {
@@ -48,20 +60,26 @@ public sealed partial class IdExaminableSystem : EntitySystem
 
     public string? GetInfo(EntityUid uid)
     {
-        if (_inventorySystem.TryGetSlotEntity(uid, "id", out var idUid))
+        // Starlight Begin - check ID in id slot and belt slot
+        if (TryGetIdFromSlot(uid, "id", out var id))
         {
-            // PDA
-            if (TryComp(idUid, out PdaComponent? pda) &&
-                TryComp<IdCardComponent>(pda.ContainedId, out var id))
-            {
-                return GetNameAndJob(id);
-            }
-            // ID Card
-            if (TryComp(idUid, out id))
-            {
-                return GetNameAndJob(id);
-            }
+            return GetNameAndJob(id);
         }
+        if (TryGetIdFromSlot(uid, "belt", out id))
+        {
+            return GetNameAndJob(id);
+        }
+        // Starlight End
+
+        // Starlight Begin - no ID card slot (K9, Borg, etc); fall back to their fixed job
+        if (TryComp<FixedJobIconComponent>(uid, out var fixedJob) && _proto.Resolve(fixedJob.Job, out var job))
+        {
+            return Loc.GetString("id-examinable-component-verb-fixed-job",
+                ("name", MetaData(uid).EntityName),
+                ("job", job.LocalizedName));
+        }
+        // Starlight End
+
         return null;
     }
 

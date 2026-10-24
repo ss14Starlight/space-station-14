@@ -20,6 +20,11 @@
       "name": "equipped-OUTERCLOTHING-dog",
       "directions": 4,
       "copyright": "SevenShades"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-avali",
+      "directions": 4,
+      "copyright": "Modified by DocMoth"
     }
   ]
 }

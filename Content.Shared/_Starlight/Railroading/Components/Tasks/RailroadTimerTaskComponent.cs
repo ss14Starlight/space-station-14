@@ -11,10 +11,10 @@ public sealed partial class RailroadTimerTaskComponent : Component
     [DataField]
     public TimeSpan Duration = TimeSpan.FromMinutes(1);
 
-    [DataField]
+    [DataField, AutoPausedField]
     public TimeSpan Started = TimeSpan.Zero;
 
-    [DataField]
+    [DataField, AutoPausedField]
     public TimeSpan EndTime = TimeSpan.Zero;
 
     [DataField]

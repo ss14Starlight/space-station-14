@@ -1,6 +1,6 @@
 ﻿using Content.Client.NetworkConfigurator.Systems;
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared.DeviceNetwork;
-using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 
@@ -37,11 +37,13 @@ public sealed class NetworkConfiguratorBoundUserInterface : BoundUserInterface
         {
             case NetworkConfiguratorUiKey.List:
                 _listMenu = this.CreateWindow<NetworkConfiguratorListMenu>();
+                EntMan.System<RemoteControlInterface>().TryEmbedWindow(_listMenu); // Starlight
                 _listMenu.ClearButton.OnPressed += _ => OnClearButtonPressed();
                 _listMenu.OnRemoveAddress += OnRemoveButtonPressed;
                 break;
             case NetworkConfiguratorUiKey.Configure:
                 _configurationMenu = this.CreateWindow<NetworkConfiguratorConfigurationMenu>();
+                EntMan.System<RemoteControlInterface>().TryEmbedWindow(_configurationMenu); // Starlight
                 _configurationMenu.Set.OnPressed += _ => OnConfigButtonPressed(NetworkConfiguratorButtonKey.Set);
                 _configurationMenu.Add.OnPressed += _ => OnConfigButtonPressed(NetworkConfiguratorButtonKey.Add);
                 //_configurationMenu.Edit.OnPressed += _ => OnConfigButtonPressed(NetworkConfiguratorButtonKey.Edit);
@@ -53,6 +55,7 @@ public sealed class NetworkConfiguratorBoundUserInterface : BoundUserInterface
                 break;
             case NetworkConfiguratorUiKey.Link:
                 _linkMenu = this.CreateWindow<NetworkConfiguratorLinkMenu>();
+                EntMan.System<RemoteControlInterface>().TryEmbedWindow(_linkMenu); // Starlight
                 _linkMenu.OnLinkDefaults += args =>
                 {
                     SendMessage(new NetworkConfiguratorLinksSaveMessage(args));

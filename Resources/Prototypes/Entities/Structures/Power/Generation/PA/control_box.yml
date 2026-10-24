@@ -5,7 +5,7 @@
   description: This controls the density of the particles.
   components:
   - type: Sprite
-    sprite: Structures/Power/Generation/PA/control_box.rsi
+    sprite: _Starlight/Structures/Power/Generation/PA/control_box.rsi # SL Edit
   - type: ParticleAcceleratorControlBox
   - type: ApcPowerReceiver
     powerLoad: 250
@@ -82,6 +82,6 @@
   description: This controls the density of the particles. It looks unfinished.
   components:
     - type: Sprite
-      sprite: Structures/Power/Generation/PA/control_box.rsi
+      sprite: _Starlight/Structures/Power/Generation/PA/control_box.rsi # SL Edit
     - type: Construction
       graph: ParticleAcceleratorControlBox

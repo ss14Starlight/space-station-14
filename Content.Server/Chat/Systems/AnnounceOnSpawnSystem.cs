@@ -1,4 +1,3 @@
-using Content.Server.Chat;
 using Robust.Shared.Player;
 
 namespace Content.Server.Chat.Systems;

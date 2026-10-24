@@ -1,13 +1,11 @@
 using Content.Shared.Medical.CrewMonitoring;
-using Robust.Client.UserInterface;
+
 #region Starlight
-using Content.Shared.Implants.Components;
+
 using Content.Shared.Silicons.StationAi;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
-using System.Linq;
 using Robust.Shared.Timing;
-using Content.Shared.Medical.SuitSensors;
 using Content.Client._Starlight.UserInterface;
 #endregion
 
@@ -36,20 +34,14 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
         // Starlight-end
 
         EntityUid? gridUid = null;
-        var stationName = string.Empty;
 
         if (EntMan.TryGetComponent<TransformComponent>(Owner, out var xform))
         {
             gridUid = xform.GridUid;
-
-            if (EntMan.TryGetComponent<MetaDataComponent>(gridUid, out var metaData))
-            {
-                stationName = metaData.EntityName;
-            }
         }
 
         _menu = this.CreatePopOutableWindow<CrewMonitoringWindow>(EntMan); // Starlight
-        _menu.Set(stationName, gridUid);
+        _menu.Set(gridUid, Owner); // Starlight
         _menu.MapClicked += OnMapClicked; // Starlight
     }
 

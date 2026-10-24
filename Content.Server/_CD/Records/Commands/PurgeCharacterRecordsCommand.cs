@@ -1,4 +1,3 @@
-using System;
 using Content.Server.Administration;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;

@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared.Disposal.Components;
 using Content.Shared.Disposal.Holder;
 using Content.Shared.Disposal.Tube;
 using Content.Shared.Disposal.Unit;

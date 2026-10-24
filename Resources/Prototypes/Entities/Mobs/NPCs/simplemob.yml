@@ -13,7 +13,6 @@
       Flammable: [Touch]
       Extinguish: [Touch]
       Acidic: [Touch, Ingestion]
-  - type: Internals
   - type: MovementSpeedModifier
     baseWalkSpeed : 4
     baseSprintSpeed : 4
@@ -73,7 +72,7 @@
   parent:
   - MobRespirator
   - MobAtmosStandard
-  - SimpleSpaceMobBase
+  - SimpleSpaceMobBaseTemplate # Starlight
   id: SimpleMobBaseTemplate # Starlight, changed so we can inherit this among antag-rolling and non-antag rolling animals
   suffix: AI
   abstract: true
@@ -110,5 +109,3 @@
   - type: MobPrice
     price: 150
   - type: FloatingVisuals
-  - type: GhostOnMove
-    mustBeDead: true

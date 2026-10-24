@@ -1,0 +1,39 @@
+- type: !PartialOnly reagent
+  id: Coffee
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:ReduceSleepiness
+        time: 0.35
+
+- type: !PartialOnly reagent
+  id: CafeLatte
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:ReduceSleepiness
+        time: 0.25
+
+- type: !PartialOnly reagent
+  id: IcedCoffee
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:ReduceSleepiness
+        time: 0.25
+
+- type: !PartialOnly reagent
+  id: NuclearCola
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:ReduceSleepiness
+        time: 0.6
+
+- type: !PartialOnly reagent
+  id: SoyLatte
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:ReduceSleepiness
+        time: 0.2

@@ -90,3 +90,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "Base plating taken from CEV-Eris commit 8e74e4370f4d5885f15c3f834973b1223ddb8b1b, modified by github user @Flareguy, and diagonalized by SevenShades"
   source: "https://github.com/SevenShadesofStarlight"
+
+- files: ["artcarpet.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Aurora Station"
+  source: "https://github.com/Aurorastation/Aurora.3/blob/HEAD/icons/turf/flooring/carpet.dmi"

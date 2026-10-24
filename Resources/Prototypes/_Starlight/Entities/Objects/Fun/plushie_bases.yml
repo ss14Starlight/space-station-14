@@ -222,6 +222,53 @@
     entries:
       CottonBurger: PlushieShadekin
 
+# Vox
+- type: entity
+  parent: BasePlushie
+  id: BaseVoxPlushie
+  abstract: true
+  components:
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Voice/Vox/shriek1.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Voice/Vox/shriek1.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Voice/Vox/shriek1.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Voice/Vox/shriek1.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Voice/Vox/shriek1.ogg
+      params:
+        volume: -5
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Voice/Vox/shriek1.ogg
+      params:
+        volume: -5
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Vox/shriek1.ogg
+      params:
+        volume: -5
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: VoxPlushie
+
 # Vulpkanin
 - type: entity
   parent: BasePlushie

@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: AllowSuitStorageClothingGasTanks
+  components:
+  - type: AllowSuitStorage
+    whitelist:
+      components:
+      - CoolingUnit # anywhere a Gas Tank should be allowed, a CoolingUnit should be allowed

@@ -1,6 +1,6 @@
 - type: entity
   name: fancy cane
-  parent: [ BaseItem, BaseCommandContraband ]
+  parent: [ BaseItem, BaseNanoTrasenContraband ]
   id: CaneNT
   description: A cane with special engraving on it. It seems well suited for fending off assailants...
   components:
@@ -85,7 +85,9 @@
     malus: 0.300
   - type: MobilityAid
   - type: Prying
-    speedModifier: 0.25
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
+    playSoundOnDoafter: true
+    speedModifier: 0.5
   - type: ESSparkOnItemToggle
     count: 1
     sparkPrototype: SLEffectSparksBaton

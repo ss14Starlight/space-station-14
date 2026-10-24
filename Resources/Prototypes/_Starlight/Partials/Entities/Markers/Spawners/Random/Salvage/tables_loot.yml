@@ -1,0 +1,5 @@
+- type: !PartialOnly entityTable
+  id: SalvageTreasureCommon
+  table: !type:GroupSelector
+    children:
+    - id: ClothingHeadHatWhiteCatEars

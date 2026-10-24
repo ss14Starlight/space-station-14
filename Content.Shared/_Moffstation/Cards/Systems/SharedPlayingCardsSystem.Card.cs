@@ -50,7 +50,7 @@ public abstract partial class SharedPlayingCardsSystem
         if (!args.IsInDetailsRange || entity.Comp.FaceDown)
             return;
 
-        args.PushMarkup(Loc.GetString(ExamineText, ("target", entity.Comp.ObverseName)));
+        args.PushMarkup(Loc.GetString(ExamineText, ("target", Localize(entity.Comp.ObverseName)))); // Starlight edit
     }
 
     private void OnActivateInWorld(Entity<PlayingCardComponent> entity, ref ActivateInWorldEvent args)
@@ -67,7 +67,7 @@ public abstract partial class SharedPlayingCardsSystem
         _metadata.SetEntityName(entity, entity.Comp.Name());
         _metadata.SetEntityDescription(
             entity,
-            entity.Comp.FaceDown ? entity.Comp.ReverseDescription ?? "" : entity.Comp.Description
+            Localize(entity.Comp.FaceDown ? entity.Comp.ReverseDescription ?? "" : entity.Comp.Description) // Starlight edit
         );
         _appearance.SetData(entity, PlayingCardVisuals.IsFaceDown, entity.Comp.FaceDown);
         Dirty(entity);

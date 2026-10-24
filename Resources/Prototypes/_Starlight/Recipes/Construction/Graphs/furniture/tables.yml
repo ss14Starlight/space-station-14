@@ -228,3 +228,203 @@
           steps:
             - tool: Prying
               doAfter: 3
+
+# Round Tables
+
+- type: constructionGraph
+  id: RoundTableSteel
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: RoundTableSteel
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 2
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: RoundTableSteel
+      entity: RoundTableSteel
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
+
+- type: constructionGraph
+  id: RoundTableWood
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: RoundTableWood
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 2
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: RoundTableWood
+      entity: RoundTableWood
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
+
+- type: constructionGraph
+  id: RoundTableCarpet
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: RoundTableCarpet
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 2
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: RoundTableCarpet
+      entity: RoundTableCarpet
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
+
+- type: constructionGraph
+  id: RoundTablePlastic
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: RoundTablePlastic
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Plastic
+              amount: 2
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: RoundTablePlastic
+      entity: RoundTablePlastic
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
+
+- type: constructionGraph
+  id: RoundTableGlass
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: RoundTableGlass
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Glass
+              amount: 2
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: RoundTableGlass
+      entity: RoundTableGlass
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetGlass1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
+
+- type: constructionGraph
+  id: RoundTablePlasma
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: RoundTablePlasma
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: PlasmaGlass
+              amount: 2
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+    - node: RoundTablePlasma
+      entity: RoundTablePlasma
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetPGlass1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: PartRodMetal
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3

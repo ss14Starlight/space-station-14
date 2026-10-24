@@ -42,10 +42,42 @@
     - purr
     - mrow
 
+# Feral dialect of Cat, only understood by cats. Not intended to be understood by non-cats.
+- type: language
+  id: CatFeral
+  icon: LanguageIconAnimal
+  chatPrefix: catf
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+    - murr
+    - meow
+    - purr
+    - mrow
+
 - type: language
   id: Dog
   icon: LanguageIconAnimal
   chatPrefix: dog
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+    - woof
+    - bark
+    - ruff
+    - bork
+    - raff
+    - garr
+
+# Feral dialect of Dog, only understood by dogs. Not intended to be understood by non-dogs.
+- type: language
+  id: DogFeral
+  icon: LanguageIconAnimal
+  chatPrefix: dogf
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1

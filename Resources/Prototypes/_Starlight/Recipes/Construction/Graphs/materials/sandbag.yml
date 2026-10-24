@@ -1,0 +1,13 @@
+- type: constructionGraph
+  id: MaterialSandbag
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: sandbag
+      steps:
+      - material: Cloth
+        amount: 2
+        doAfter: 2
+  - node: sandbag
+    entity: MaterialSandbag1

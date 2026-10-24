@@ -17,11 +17,14 @@
     - UplinkJob
     - UplinkCybernetics
     - UplinkPointless
+    - UplinkObjective
     - UplinkDAGD # funkystation
     currencyWhitelist:
     - Telecrystal
     balance:
       Telecrystal: 0
+    expectedFaction:
+    - Syndicate
 
 - type: entity
   id: StorePresetSpellbook
@@ -38,6 +41,8 @@
     - SpellbookWar          #War presets
     currencyWhitelist:
     - WizCoin
+    expectedFaction:
+    - Wizard
 
 - type: entity
   id: StorePresetChangeling

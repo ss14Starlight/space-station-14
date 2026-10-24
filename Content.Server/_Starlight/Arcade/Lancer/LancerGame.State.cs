@@ -17,8 +17,8 @@ public sealed partial class LancerGame
         public bool Fleeing;
         public bool Hunkered;
         public bool LockedOn;
-        public bool Shredded;
-        public bool Impaired;
+        public bool Shredded = false;
+        public bool Impaired = false;
         /// <summary>Catalytic Hammer crit: skip the next enemy activation, then clear.</summary>
         public bool Stunned;
         /// <summary>Hyper-Reflex Overwatch hit: cannot move on next activation.</summary>

@@ -1,0 +1,142 @@
+- type: constructionGraph
+  id: CellBarsBroken
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CellBarsBroken
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Plasteel
+              amount: 2
+              doAfter: 3
+    - node: CellBarsBroken
+      entity: CellBarsBroken
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 2
+          steps:
+            - tool: Prying
+              doAfter: 3
+
+- type: constructionGraph
+  id: CellBarsStraight
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CellBarsStraight
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Plasteel
+              amount: 4
+              doAfter: 3
+    - node: CellBarsStraight
+      entity: CellBarsStraight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 4
+          steps:
+            - tool: Welding
+              doAfter: 6
+            - tool: Prying
+              doAfter: 10
+
+- type: constructionGraph
+  id: CellBarsCorner
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CellBarsCorner
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Plasteel
+              amount: 4
+              doAfter: 3
+    - node: CellBarsCorner
+      entity: CellBarsCorner
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 4
+          steps:
+            - tool: Welding
+              doAfter: 6
+            - tool: Prying
+              doAfter: 10
+
+- type: constructionGraph
+  id: CellBarsEnd
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CellBarsEnd
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Plasteel
+              amount: 4
+              doAfter: 3
+    - node: CellBarsEnd
+      entity: CellBarsEnd
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 4
+          steps:
+            - tool: Welding
+              doAfter: 6
+            - tool: Prying
+              doAfter: 10
+
+- type: constructionGraph
+  id: CellBarsGate
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: CellBarsGate
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Plasteel
+              amount: 4
+              doAfter: 3
+    - node: CellBarsGate
+      entity: CellBarsGate
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 4
+          steps:
+            - tool: Welding
+              doAfter: 6
+            - tool: Prying
+              doAfter: 10

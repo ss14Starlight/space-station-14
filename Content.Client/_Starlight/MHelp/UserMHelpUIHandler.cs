@@ -8,6 +8,7 @@ namespace Content.Client._Starlight.MHelp;
 
 public sealed class UserMHelpUIHandler(NetUserId owner) : IMHelpUIHandler
 {
+    private readonly NetUserId _owner = owner;
     public bool IsMentor => false;
     public bool IsOpen => _window is { Disposed: false, IsOpen: true };
     private DefaultWindow? _window;
@@ -71,8 +72,6 @@ public sealed class UserMHelpUIHandler(NetUserId owner) : IMHelpUIHandler
         };
         _window = new DefaultWindow()
         {
-            TitleClass = "windowTitleAlert",
-            HeaderClass = "windowHeaderCyanAlert",
             Title = Loc.GetString("mentor-user-title"),
             MinSize = new Vector2(500, 300),
         };

@@ -19,9 +19,9 @@
       affectAirborne: true
 
 - type: entity
+  parent: [ BaseKudzu, SolutionFood ]
   id: Kudzu
   name: kudzu
-  parent: BaseKudzu
   description: A rapidly growing, dangerous plant. WHY ARE YOU STOPPING TO LOOK AT IT?!
   components:
     - type: MeleeSound
@@ -30,17 +30,8 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      sprite: _Starlight/Objects/Misc/kudzu.rsi ### SL Start
-      layers:
-      - state: kudzu_11
-      - map: [ "enum.EdgeLayer.South" ]
-        state: kudzu_south
-      - map: [ "enum.EdgeLayer.East" ]
-        state: kudzu_east
-      - map: [ "enum.EdgeLayer.North" ]
-        state: kudzu_north
-      - map: [ "enum.EdgeLayer.West" ]
-        state: kudzu_west ### SL End
+      sprite: Objects/Misc/kudzu.rsi
+      state: kudzu_11
       drawdepth: Overdoors
     - type: KudzuVisuals
     - type: Clickable
@@ -104,21 +95,14 @@
     - type: FlavorProfile
       flavors:
       - fiber
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          reagents:
-          - ReagentId: Nutriment
-            Quantity: 0.1
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 0.1
     - type: Tag
       tags:
       - Ruminant
-    #SL Start
-    - type: IconSmooth
-      key: walls
-      mode: NoSprite
-    - type: SmoothEdge
-    #SL End
 
 - type: entity
   id: WeakKudzu
@@ -137,17 +121,8 @@
   components:
     - type: Sprite
       drawdepth: HighFloorObjects
-      sprite: _Starlight/Objects/Misc/kudzuflower.rsi ### SL Start
-      layers:
-      - state: kudzu_11
-      - map: [ "enum.EdgeLayer.South" ]
-        state: kudzu_south
-      - map: [ "enum.EdgeLayer.East" ]
-        state: kudzu_east
-      - map: [ "enum.EdgeLayer.North" ]
-        state: kudzu_north
-      - map: [ "enum.EdgeLayer.West" ]
-        state: kudzu_west ### SL End
+      sprite: Objects/Misc/kudzuflower.rsi
+      state: kudzu_11
     - type: Kudzu
       spriteVariants: 5
       spreadChance: 0.01
@@ -175,12 +150,6 @@
     - type: Tag
       tags:
       - Ruminant
-    #SL Start
-    - type: IconSmooth
-      key: walls
-      mode: NoSprite
-    - type: SmoothEdge
-    #SL End
 
 - type: entity
   id: KudzuFlowerAngry
@@ -199,9 +168,9 @@
       - MobLuminousPerson
 
 - type: entity
+  parent: [BaseKudzu, SolutionFood]
   id: FleshKudzu
   name: tendons
-  parent: BaseKudzu
   description: A rapidly growing cluster of meaty tendons. WHY ARE YOU STOPPING TO LOOK AT IT?!
   placement:
     mode: SnapgridCenter
@@ -214,17 +183,8 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      sprite: _Starlight/Objects/Misc/fleshkudzu.rsi ### SL Start
-      layers:
-      - state: kudzu_11
-      - map: [ "enum.EdgeLayer.South" ]
-        state: kudzu_south
-      - map: [ "enum.EdgeLayer.East" ]
-        state: kudzu_east
-      - map: [ "enum.EdgeLayer.North" ]
-        state: kudzu_north
-      - map: [ "enum.EdgeLayer.West" ]
-        state: kudzu_west ### SL End
+      sprite: Objects/Misc/fleshkudzu.rsi
+      state: kudzu_11
       drawdepth: Overdoors
     - type: KudzuVisuals
     - type: Clickable
@@ -291,14 +251,13 @@
       blacklist:
         tags:
         - Flesh
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          reagents:
-          - ReagentId: Razorium
-            Quantity: 2
-          - ReagentId: Protein
-            Quantity: 1
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: Razorium
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 1
     - type: AutoEmote # Meat Kudzu used to have respirator, but couldn't breathe so all it would do is gasp.
       emotes:
       - MeatGasp
@@ -306,12 +265,6 @@
       tags:
       - Meat
       - Ruminant
-    #SL Start
-    - type: IconSmooth
-      key: walls
-      mode: NoSprite
-    - type: SmoothEdge
-    #SL End
 
 - type: entity
   name: dark haze

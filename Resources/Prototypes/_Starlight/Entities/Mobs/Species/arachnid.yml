@@ -35,7 +35,6 @@
     - Arachnid
     - NotLabelable # Starlight
   - type: Butcherable
-    butcheringType: Spike
     spawned:
       - id: FoodMeatSpider
         amount: 5
@@ -56,7 +55,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 300
+        Quantity: 600
   # Damage (Others)
   - type: MeleeWeapon
     animation: WeaponArcBite
@@ -76,14 +75,13 @@
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
-    allowedEmotes: ['Click', 'Chitter']
   - type: Vocal
-    sounds:
-      Male: UnisexArachnid
-      Female: UnisexArachnid
-      Unsexed: UnisexArachnid
   - type: TypingIndicator
     proto: spider
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_arachnid
   - type: Sprite # I'd prefer if these maps were better. Insert map pun here.
     layers:
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -125,9 +123,5 @@
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi
         state: body-overlay-2
-        visible: false
-      - map: [ "clownedon" ] # Dynamically generated
-        sprite: "Effects/creampie.rsi"
-        state: "creampie_arachnid"
         visible: false
 #>88w88<

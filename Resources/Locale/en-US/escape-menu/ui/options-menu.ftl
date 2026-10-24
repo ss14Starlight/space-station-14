@@ -49,7 +49,7 @@ ui-options-misc-label = Misc
 ui-options-interface-label = Interface
 
 
-ui-options-auto-fill-highlights = Auto-fill the highlights with the character's information
+ui-options-auto-fill-highlights = Automatically set the highlights list based on your character's name and job
 ui-options-highlights-color = Highlights color:
 ui-options-highlights-color-example = This is highlighted text.
 ui-options-show-held-item = Show held item next to cursor
@@ -95,9 +95,6 @@ ui-options-vp-integer-scaling-tooltip = If this option is enabled, the viewport 
 ui-options-filter-label = Scaling filter:
 ui-options-filter-nearest = Nearest (no smoothing)
 ui-options-filter-bilinear = Bilinear (smoothed)
-ui-options-trace = Display the bullet's trace
-ui-options-trace-tooltip = If you're lagging while shooting, uncheck this box,
-                           and the hitscan won't display the texture of the smoke behind the flying bullet.
 ui-options-vp-vertical-fit = Vertical viewport fitting
 ui-options-vp-vertical-fit-tooltip = When enabled, the main viewport will ignore the horizontal axis entirely when
                                      fitting to your screen. If your screen is smaller than the viewport, then this
@@ -110,6 +107,9 @@ ui-options-vp-width = Viewport width:
 ui-options-hud-layout = HUD layout:
 
 ## Controls menu
+
+ui-options-hold-to-attack-melee = Hold to attack (melee)
+ui-options-hold-to-attack-ranged = Hold to attack (ranged)
 
 ui-options-binds-reset-all = Reset ALL keybinds
 ui-options-binds-explanation = Click to change binding, right-click to clear

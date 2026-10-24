@@ -1,8 +1,12 @@
-﻿using Content.Server.Administration;
+﻿using System.Linq;
+using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Server.Administration;
 using Content.Server.Cargo.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Administration;
+using Content.Shared.Body.Components;
 using Content.Shared.Cargo;
+using Content.Shared.Cargo.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Materials;
@@ -15,13 +19,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Research.Prototypes;
-using Content.Server._Starlight.Medical.Body.Systems;
-using Content.Shared.Cargo.Components;
-
-#region Starlight
-using System.Linq;
-using Content.Shared.Body.Components;
-#endregion
+using Robust.Shared.Random;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -31,6 +29,7 @@ namespace Content.Server.Cargo.Systems;
 public sealed partial class PricingSystem : EntitySystem
 {
     [Dependency] private IConsoleHost _consoleHost = default!;
+    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
@@ -40,6 +39,8 @@ public sealed partial class PricingSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<MobPriceComponent, PriceCalculationEvent>(CalculateMobPrice);
+        SubscribeLocalEvent<RandomPriceComponent, MapInitEvent>(SetRandomPrice);
+        SubscribeLocalEvent<RandomPriceComponent, PriceCalculationEvent>(CalculateRandomPrice);
 
         _consoleHost.RegisterCommand("appraisegrid",
             "Calculates the total value of the given grids.",
@@ -99,6 +100,7 @@ public sealed partial class PricingSystem : EntitySystem
             Log.Error($"Tried to get the mob price of {ToPrettyString(uid)}, which has no {nameof(MobStateComponent)}.");
             return;
         }
+
         // Starlight edit Start: Reverted NuBody
         var partPenalty = 0.0;
         if (TryComp<BodyComponent>(uid, out var body))
@@ -115,36 +117,45 @@ public sealed partial class PricingSystem : EntitySystem
         // Starlight edit End: Reverted NuBody
     }
 
-    private double GetSolutionPrice(Entity<SolutionContainerManagerComponent> entity)
+    private void SetRandomPrice(Entity<RandomPriceComponent> entity, ref MapInitEvent args)
     {
-        if (Comp<MetaDataComponent>(entity).EntityLifeStage < EntityLifeStage.MapInitialized)
-            return GetSolutionPrice(entity.Comp);
+        if (entity.Comp.RandomPrice == null)
+        {
+            var modifier = _random.NextDouble();
+            switch (entity.Comp.PricingCurve)
+            {
+                default:
+                case RandomPricingCurve.Linear:
+                    break;
+                case RandomPricingCurve.Squared:
+                    modifier = modifier * modifier;
+                    break;
+                case RandomPricingCurve.Cubed:
+                    modifier = modifier * modifier * modifier;
+                    break;
+            }
 
+            entity.Comp.RandomPrice = modifier * entity.Comp.MaxRandomPrice;
+        }
+    }
+
+    private void CalculateRandomPrice(Entity<RandomPriceComponent> entity, ref PriceCalculationEvent args)
+    {
+        // TODO: Estimated pricing.
+        if (args.Handled)
+            return;
+
+        args.Price += entity.Comp.RandomPrice ?? 0;
+    }
+
+    private double GetSolutionPrice(EntityUid entity)
+    {
         var price = 0.0;
 
-        foreach (var (_, soln) in _solutionContainerSystem.EnumerateSolutions((entity.Owner, entity.Comp)))
+        foreach (var (_, soln) in _solutionContainerSystem.EnumerateSolutions(entity))
         {
             var solution = soln.Comp.Solution;
             foreach (var (reagent, quantity) in solution.Contents)
-            {
-                if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto))
-                    continue;
-
-                // TODO check ReagentData for price information?
-                price += (float) quantity * reagentProto.PricePerUnit;
-            }
-        }
-
-        return price;
-    }
-
-    private double GetSolutionPrice(SolutionContainerManagerComponent component)
-    {
-        var price = 0.0;
-
-        foreach (var (_, prototype) in _solutionContainerSystem.EnumerateSolutions(component))
-        {
-            foreach (var (reagent, quantity) in prototype.Contents)
             {
                 if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto))
                     continue;
@@ -304,22 +315,43 @@ public sealed partial class PricingSystem : EntitySystem
     {
         var price = 0.0;
 
-        if (TryComp<SolutionContainerManagerComponent>(uid, out var solComp))
+        var meta = MetaData(uid);
+        if (meta.EntityLifeStage < EntityLifeStage.MapInitialized)
+            return GetSolutionsPrice(meta.EntityPrototype);
+
+        foreach (var (_, soln) in _solutionContainerSystem.EnumerateSolutions(uid))
         {
-            price += GetSolutionPrice((uid, solComp));
+            var solution = soln.Comp.Solution;
+            foreach (var (reagent, quantity) in solution.Contents)
+            {
+                if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto))
+                    continue;
+
+                // TODO check ReagentData for price information?
+                price += (float) quantity * reagentProto.PricePerUnit;
+            }
         }
 
         return price;
     }
 
-    private double GetSolutionsPrice(EntityPrototype prototype)
+    private double GetSolutionsPrice(EntityPrototype? prototype)
     {
         var price = 0.0;
 
-        if (prototype.Components.TryGetValue(Factory.GetComponentName<SolutionContainerManagerComponent>(), out var solManager))
+        if (prototype == null)
+            return price;
+
+        foreach (var (_, solution) in _solutionContainerSystem.EnumerateSolutions(prototype))
         {
-            var solComp = (SolutionContainerManagerComponent) solManager.Component;
-            price += GetSolutionPrice(solComp);
+            foreach (var (reagent, quantity) in solution.Contents)
+            {
+                if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var reagentProto))
+                    continue;
+
+                // TODO check ReagentData for price information?
+                price += (float) quantity * reagentProto.PricePerUnit;
+            }
         }
 
         return price;

@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Server.Salvage.Expeditions;
-using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Chat;
 using Content.Shared.Humanoid;
@@ -13,7 +12,6 @@ using Content.Shared.Station.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Content.Server.NPC.HTN;
-using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server.Salvage;
 
@@ -31,6 +29,7 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<FTLStartedEvent>(OnFTLStarted);
         SubscribeLocalEvent<FTLCompletedEvent>(OnFTLCompleted);
         SubscribeLocalEvent<ConsoleFTLAttemptEvent>(OnConsoleFTLAttempt);
+        InitializeSurfaceReturn(); // Starlight
     }
 
     private void OnConsoleFTLAttempt(ref ConsoleFTLAttemptEvent ev)
@@ -94,6 +93,14 @@ public sealed partial class SalvageSystem
         {
             return;
         }
+
+        // Starlight - start
+        if (!PlaceSalvageShuttleAtClearLanding(ev.ShuttleUid, ev.MapUid))
+        {
+            _shuttle.CancelFTL(ev.ShuttleUid);
+            return;
+        }
+        // Starlight - end
 
         // Only one shuttle can occupy an expedition.
         dest.Enabled = false;
@@ -187,21 +194,15 @@ public sealed partial class SalvageSystem
                 ftlTime = MathF.Min(ftlTime, _shuttle.DefaultStartupTime);
                 var shuttleQuery = AllEntityQuery<ShuttleComponent, TransformComponent>();
 
-                if (TryComp<StationDataComponent>(comp.Station, out var data))
+                // Starlight - start
+                while (shuttleQuery.MoveNext(out var shuttleUid, out var shuttle, out var shuttleXform))
                 {
-                    foreach (var member in data.Grids)
-                    {
-                        while (shuttleQuery.MoveNext(out var shuttleUid, out var shuttle, out var shuttleXform))
-                        {
-                            if (shuttleXform.MapUid != uid || HasComp<FTLComponent>(shuttleUid))
-                                continue;
+                    if (shuttleXform.MapUid != uid || HasComp<FTLComponent>(shuttleUid))
+                        continue;
 
-                            _shuttle.FTLToDock(shuttleUid, shuttle, member, ftlTime);
-                        }
-
-                        break;
-                    }
+                    ReturnShuttleToStation(shuttleUid, shuttle, comp.Station, ftlTime);
                 }
+                // Starlight - end
             }
 
             if (remaining < TimeSpan.Zero)

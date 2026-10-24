@@ -11,6 +11,7 @@ using Robust.Shared.Timing;
 
 #region Starlight
 using Content.Client._Starlight.Alert;
+using Content.Shared._Starlight.Silicons.Borgs;
 #endregion
 
 namespace Content.Client.Silicons.Borgs;
@@ -36,7 +37,11 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
         SubscribeLocalEvent<BorgChassisComponent, AppearanceChangeEvent>(OnBorgAppearanceChanged);
         SubscribeLocalEvent<MMIComponent, AppearanceChangeEvent>(OnMMIAppearanceChanged);
+        SubscribeLocalEvent<BorgLockdownComponent, ComponentStartup>(OnLockdownUiRelevantChange); // Starlight
+        SubscribeLocalEvent<BorgLockdownComponent, ComponentRemove>(OnLockdownUiRelevantChange); // Starlight
     }
+
+    private void OnLockdownUiRelevantChange<T>(EntityUid uid, BorgLockdownComponent component, T args) => UpdateUI((uid, null)); // Starlight
 
     public override void UpdateUI(Entity<BorgChassisComponent?> chassis)
     {
@@ -91,8 +96,18 @@ public sealed partial class BorgSystem : SharedBorgSystem
         if (!_appearance.TryGetData<bool>(ent.Owner, BorgVisuals.HasPlayer, out var hasPlayer, ent.Comp2))
             hasPlayer = false;
 
-        _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, ent.Comp1.BrainEntity != null || hasPlayer);
-        _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light, hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
+        // Starlight - start
+        var isRemoteControlled = _appearance.TryGetData<bool>(
+            ent.Owner,
+            BorgVisualsStarlight.RemoteControlled,
+            out var remoteControlled,
+            ent.Comp2) && remoteControlled;
+        var hasPlayerOrRemoteControl = hasPlayer || isRemoteControlled;
+        _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light,
+            ent.Comp1.BrainEntity != null || hasPlayerOrRemoteControl);
+        _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light,
+            hasPlayerOrRemoteControl ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
+        // Starlight - end
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)

@@ -1,6 +1,5 @@
 using Content.Shared._CD.Records;
 using Content.Shared.StationRecords;
-using Robust.Shared.GameObjects;
 
 namespace Content.Server._CD.Records.Consoles;
 

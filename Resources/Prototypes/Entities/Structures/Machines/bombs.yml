@@ -126,7 +126,7 @@
     - type: Explosive
       explosionType: HardBomb
       totalIntensity: 4000.0
-      intensitySlope: 10
+      intensitySlope: 1 # Starlight: Changed from 10 to 1 to make the explosion more spread out
       maxIntensity: 75
     - type: StaticPrice
       price: 10000 # Good luck!

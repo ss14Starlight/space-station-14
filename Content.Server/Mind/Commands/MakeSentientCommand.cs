@@ -1,9 +1,10 @@
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
-using Content.Server._Starlight.Language; // Starlight
-using Content.Shared._Starlight.Language.Components; // Starlight
-using Content.Shared._Starlight.Language.Systems; // Starlight
+// Starlight
+// Starlight
+
+// Starlight
 
 namespace Content.Server.Mind.Commands;
 

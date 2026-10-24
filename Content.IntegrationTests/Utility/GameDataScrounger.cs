@@ -236,7 +236,8 @@ public static partial class GameDataScrounger
                 }
 
                 if (!@abstract)
-                    yield return (((YamlScalarNode)type).Value!, ((YamlScalarNode)id).Value!);
+                    foreach (string variantId in GetPrototypeIds(id)) //Starlight: TryFix GameDataScrounger dying on Variant protos
+                        yield return (((YamlScalarNode)type).Value!, variantId);
 
                 // If we're an entity prototype..
                 if (type is not YamlScalarNode { Value: "entity" })

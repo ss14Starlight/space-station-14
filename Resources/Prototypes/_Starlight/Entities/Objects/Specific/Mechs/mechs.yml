@@ -84,7 +84,7 @@
 # Ripley MK-II
 - type: entity
   id: MechRipley2
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ BaseContrabandTier2, BaseMech, IndustrialMech, BaseCargoContraband ] # Blimpuf
   name: Ripley APLU MK-II
   description: The "MK-II" has a pressurized cabin for space operations, and stronger clamps are able to force doors open, but the added weight has slowed it down. # 🌟Starlight-Change
   components:
@@ -151,7 +151,7 @@
 # Paddy
 - type: entity
   id: MechPaddy
-  parent: [ BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ] # Blimpuf
   name: Paddy
   description: Autonomous Power Loader Unit Subtype Paddy. A Modified MK-II Ripley design intended for light security use.
   components:
@@ -229,7 +229,7 @@
 # Clarke
 - type: entity
   id: MechClarke
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ BaseContrabandTier2, BaseMech, IndustrialMech, BaseCargoContraband, BaseSalvageContraband ] # Blimpuf
   name: Clarke
   description: A special-purpose mech for heavy-duty mining operations. Outfitted with treads for stable locomotion in hazardous terrain.
   components:
@@ -286,7 +286,7 @@
 # Gygax
 - type: entity
   id: MechGygax
-  parent: [ BaseMech, CombatMech, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseMech, CombatMech, BaseSecurityContraband ] # Blimpuf
   name: Gygax
   description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
   components:
@@ -350,7 +350,7 @@
 # Durand
 - type: entity
   id: MechDurand
-  parent: [ BaseMech, CombatMech, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier3, BaseMech, CombatMech, BaseSecurityContraband ] # Blimpuf
   name: Durand
   description: A slow but beefy combat exosuit that is extra scary in confined spaces due to its punches. Xenos hate it!
   components:
@@ -600,7 +600,7 @@
       baseWalkSpeed: 2
       baseSprintSpeed: 4.5
     - type: Damageable
-      damageModifierSet: MediumArmorSyndi
+      damageModifierSet: DarkGygaxArmor
     - type: MechThrusters
     - type: PointLight
       lightMask: ConeSingle
@@ -858,3 +858,92 @@
     - type: Mech
       startingEquipment:
         - WeaponMechSniperMime
+
+- type: entity
+  parent: MechZleeb
+  id: MechZleebBattery
+  suffix: Battery
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorHigh
+        mech-gas-tank-slot:
+          - MechAirTankFilled
+
+# Other faction mechs
+
+# USSP
+- type: entity
+  id: MechPobeda
+  parent: [ BaseMech, CombatMech, SpecialMech, BaseSovietContraband ]
+  name: Pobeda
+  description: A Soviet combat mech. It is slower and older than other mechs, but makes up for it with sheer durability and strength.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      noRot: true
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/pobeda.rsi
+      layers:
+        - map: [ "enum.MechVisualLayers.Base" ]
+          state: base
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/_Starlight/Effects/mass_driver_launching.ogg
+    - type: Mech
+      baseState: base
+      openState: base-open
+      brokenState: base-broken
+      mechToPilotDamageMultiplier: 0.0
+      airtight: true
+      maxIntegrity: 650
+      pilotWhitelist:
+        components:
+          - HumanoidAppearance
+    - type: MeleeWeapon
+      hidden: true
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 30 #THWACK
+          Structural: 180
+    - type: MeleeThrowOnHit
+      speed: 15
+      distance: 6
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2 #All mechs walk at the same speed
+      baseSprintSpeed: 2
+    - type: Damageable
+      damageModifierSet: DarkGygaxArmor
+    - type: MechThrusters
+    - type: PointLight
+      lightMask: ConeSingle
+      autoRot: true
+      radius: 6
+      energy: 5
+      enabled: false
+    - type: Prying
+      pryPowered: true
+
+- type: entity
+  id: MechPobedaBattery
+  parent: MechPobeda
+  suffix: Battery, Air
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorBurnout
+        mech-gas-tank-slot:
+          - MechAirTankFilled
+
+- type: entity
+  id: MechPobedaFilled
+  parent: MechPobedaBattery
+  suffix: Battery, Filled
+  components:
+    - type: Mech
+      startingEquipment:
+        - WeaponMechCombatSolarisLaser
+        - WeaponMechCombatShotgun
+        - MechEquipmentSovietHorn

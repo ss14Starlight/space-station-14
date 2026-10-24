@@ -125,8 +125,8 @@ public sealed partial class HumanoidAppearanceComponent : Component
         {Sex.Female, "Amina"},
         {Sex.Unsexed, "Charlotte"}
     };
-    [DataField("voice", customTypeSerializer: typeof(PrototypeIdSerializer<VoicePrototype>))]
-    public string? Voice { get; set; }
+    [DataField("voice")]
+    public ProtoId<VoicePrototype>? Voice { get; set; }
 
     /// <summary>
     ///     The displacement maps that will be applied to specific layers of the humanoid.

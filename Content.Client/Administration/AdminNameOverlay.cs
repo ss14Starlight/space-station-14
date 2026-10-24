@@ -200,7 +200,7 @@ internal sealed class AdminNameOverlay : Overlay
             currentOffset += lineoffset;
 
             // Playtime
-            if (!string.IsNullOrEmpty(playerInfo.PlaytimeString) && _overlayPlaytime)
+            if (!_system.HideOverlayPlaytime && !string.IsNullOrEmpty(playerInfo.PlaytimeString) && _overlayPlaytime) // Starlight
             {
                 color = Color.Orange;
                 color.A = alpha;

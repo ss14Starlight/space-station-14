@@ -21,7 +21,10 @@ using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee.Events;
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.Disposal.Components;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
@@ -35,6 +38,7 @@ public sealed partial class InjectorSystem : EntitySystem
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private INetManager _net = default!; // Starlight
     [Dependency] private SharedForensicsSystem _forensics = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private OpenableSystem _openable = default!;
@@ -78,6 +82,10 @@ public sealed partial class InjectorSystem : EntitySystem
         if (args.Handled || !args.CanReach || args.Target is not { Valid: true } target)
             return;
 
+        // Starlight: Don't process disposal units, fixes not being able to trash medipens
+        if (HasComp<DisposalUnitComponent>(target))
+            return;
+
         // Is the target a mob? If yes, use a do-after to give them time to respond.
         if (HasComp<BloodstreamComponent>(target))
         {
@@ -106,10 +114,10 @@ public sealed partial class InjectorSystem : EntitySystem
 
     private void OnAttack(Entity<InjectorComponent> injector, ref MeleeHitEvent args)
     {
-        if (args.HitEntities is [])
+        if (args.HitEntities.Count == 0)
             return;
 
-        TryMobsDoAfter(injector, args.User, args.HitEntities[0]);
+        TryMobsDoAfter(injector, args.User, args.HitEntities.First());
     }
 
     /// <summary>
@@ -171,6 +179,7 @@ public sealed partial class InjectorSystem : EntitySystem
                     // we want to sort by size, not alphabetically by the verb text.
                     Priority = priority
                 };
+                priority -= 1; // Starlight: Sort unit selection properly
                 args.Verbs.Add(verb);
             }
         }
@@ -535,11 +544,22 @@ public sealed partial class InjectorSystem : EntitySystem
 
         // it is IMPERATIVE that when an injector is instant, that it has a pop-up.
         if (activeMode.InjectPopupTarget != null && target != user)
-            _popup.PopupClient(Loc.GetString(activeMode.InjectPopupTarget), target, target);
+            _popup.PopupEntity(Loc.GetString(activeMode.InjectPopupTarget), target, target); // Starlight: Send the popup to the recipient from the server.
 
         // Some injectors like hyposprays have sound, some like syringes have not.
+        // Starlight-start: Exclude other injection targets while keeping self-injection audible.
         if (activeMode.InjectSound != null)
-            _audio.PlayPredicted(activeMode.InjectSound, injector, user);
+        {
+            if (injector.Comp.MuteInjectSoundForTarget && target != user)
+            {
+                if (_net.IsServer)
+                    _audio.PlayEntity(activeMode.InjectSound,
+                        Filter.Pvs(injector).RemovePlayerByAttachedEntity(target), injector, true);
+            }
+            else
+                _audio.PlayPredicted(activeMode.InjectSound, injector, user);
+        }
+        // Starlight-end
 
         // Log what happened.
         _adminLogger.Add(LogType.ForceFeed, $"{ToPrettyString(user):user} injected {ToPrettyString(target):target} with a solution {SharedSolutionContainerSystem.ToPrettyString(removedSolution):removedSolution} using a {ToPrettyString(injector):using}");
@@ -683,7 +703,7 @@ public sealed partial class InjectorSystem : EntitySystem
                 || !proto.Behavior.HasFlag(InjectorBehavior.Draw))
                 continue;
 
-            ToggleMode(injector, user, proto);
+            ToggleMode(injector, user, proto, false);
             return;
         }
     }
@@ -714,22 +734,24 @@ public sealed partial class InjectorSystem : EntitySystem
                 || !proto.Behavior.HasFlag(InjectorBehavior.Inject))
                 continue;
 
-            ToggleMode(injector, user, proto);
+            ToggleMode(injector, user, proto, false);
             return;
         }
     }
     #endregion Injecting/Drawing
 
     #region Mode Toggling
+
     /// <summary>
     /// Toggle modes of the injector if possible.
     /// </summary>
     /// <param name="injector">The injector whose mode is to be toggled.</param>
     /// <param name="user">The user toggling the mode.</param>
     /// <param name="mode">The desired mode.</param>
+    /// <param name="popup">Whether we should show popup text for the mode being changed.</param>
     /// <remarks>This will still check if the injector can use that mode.</remarks>
     [PublicAPI]
-    public void ToggleMode(Entity<InjectorComponent> injector, EntityUid user, InjectorModePrototype mode)
+    public void ToggleMode(Entity<InjectorComponent> injector, EntityUid user, InjectorModePrototype mode, bool popup = true)
     {
         var index = injector.Comp.AllowedModes.FindIndex(nextMode => mode == nextMode);
 
@@ -738,10 +760,14 @@ public sealed partial class InjectorSystem : EntitySystem
         if (!_prototypeManager.Resolve(injector.Comp.ActiveModeProtoId, out var newMode))
             return;
 
+        Dirty(injector);
+
+        if (!popup)
+            return;
+
         var modeName = Loc.GetString(newMode.Name);
         var message = Loc.GetString("injector-component-mode-changed-text", ("mode", modeName));
         _popup.PopupClient(message, user, user);
-        Dirty(injector);
     }
 
     /// <summary>

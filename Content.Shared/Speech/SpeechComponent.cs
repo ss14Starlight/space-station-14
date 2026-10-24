@@ -9,7 +9,7 @@ namespace Content.Shared.Speech
     ///     Component required for entities to be able to speak. (TODO: Entities can speak fine without this, this only forbids them speak if they have it and enabled is false.)
     ///     Contains the option to let entities make noise when speaking, change speech verbs, datafields for the sounds in question, and relevant AudioParams.
     /// </summary>
-    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)] // Starlight-edit
     public sealed partial class SpeechComponent : Component
     {
         [DataField, AutoNetworkedField]
@@ -31,6 +31,14 @@ namespace Content.Shared.Speech
         [DataField, AutoNetworkedField]
         public List<ProtoId<EmotePrototype>> AllowedEmotes = new();
 
+        // Starlight - start
+        /// <summary>
+        ///     If true, only emotes in <see cref="AllowedEmotes"/> may be used in the Vocal category.
+        /// </summary>
+        [DataField, AutoNetworkedField]
+        public bool RestrictVocalEmotesToAllowed;
+        // Starlight - end
+
         /// <summary>
         ///     A mapping from chat suffixes loc strings to speech verb prototypes that should be conditionally used.
         ///     For things like '?' changing to 'asks' or '!!' making text bold and changing to 'yells'. Can be overridden if necessary.
@@ -43,6 +51,7 @@ namespace Content.Shared.Speech
             { "chat-speech-verb-suffix-question", "DefaultQuestion" },
             { "chat-speech-verb-suffix-stutter", "DefaultStutter" },
             { "chat-speech-verb-suffix-mumble", "DefaultMumble" },
+            { "chat-speech-verb-suffix-pause", "DefaultPause" } //Starlight
         };
 
         [DataField]

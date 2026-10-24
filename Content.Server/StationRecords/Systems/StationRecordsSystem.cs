@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Access.Systems;
-using Content.Server.Forensics;
 using Content.Shared.Access.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
@@ -103,7 +102,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             specie = profile.CustomSpecieName + " (" + profile.Species + ")";
         /// Starlight - End
 
-        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, specie, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Starlight Edited (profile.Species -> specie)
+        CreateGeneralRecord(station, idUid.Value, Name(player), profile.Age, specie, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Starlight Edited (profile.Species -> specie, profile.Name -> Name(player) so the record matches the ID card's name)
     }
 
 

@@ -41,7 +41,7 @@ accent-polite-replaced-14 = dick
 accent-polite-replacement-14 = dork
 
 accent-polite-replaced-15 = bitch
-accent-polite-replacement-15 = cool lady
+accent-polite-replacement-15 = nice person
 
 accent-polite-replaced-16 = cunt
 accent-polite-replacement-16 = cool

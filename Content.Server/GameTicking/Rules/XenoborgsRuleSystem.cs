@@ -3,7 +3,6 @@ using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
-using Content.Shared.Destructible;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
@@ -109,7 +108,7 @@ public sealed partial class XenoborgsRuleSystem : GameRuleSystem<XenoborgsRuleCo
         {
             _chatSystem.DispatchStationAnnouncement(station, Loc.GetString("xenoborg-shuttle-call"), colorOverride: Color.BlueViolet);
         }
-        _roundEnd.RequestRoundEnd(null, false, cantRecall: true);
+        _roundEnd.RequestRoundEnd(null, null, false, cantRecall: true);
         xenoborgsRuleComponent.XenoborgShuttleCalled = true;
     }
 

@@ -10,7 +10,7 @@
   <Import Project="../MSBuild/Content.props" />
   <ItemGroup>
     <PackageReference Include="NUnit" />
-    <PackageReference Include="NUnit3TestAdapter" VersionOverride="6.2.0" />
+    <PackageReference Include="NUnit3TestAdapter" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <!-- Starlight Begin-->
     <PackageReference Include="Microsoft.Testing.Extensions.HangDump" />

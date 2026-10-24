@@ -39,8 +39,8 @@
       delay: 1
     - type: PointLight
       enabled: false
-      radius: 4 #SL Edit 3 -> 4
-      energy: 1.5 #SL Edit 2.5 -> 1.5
+      radius: 3
+      energy: 2.5
       color: "#FFC458"
       netsync: false
     - type: Appearance
@@ -54,11 +54,6 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellMedium
-          #Starlight Start
-          blacklist:
-            tags:
-            - MechReactor
-          #Starlight End
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot {}

@@ -5,9 +5,9 @@ using Content.Shared.Chemistry.Components;
 namespace Content.Server._Starlight.Scent.Systems;
 
 // Forces a sneeze on smoke contact, regardless of what the smoke contains.
-public sealed class ScentSmokeCounterSystem : EntitySystem
+public sealed partial class ScentSmokeCounterSystem : EntitySystem
 {
-    [Dependency] private readonly SharedScentSystem _scent = default!;
+    [Dependency] private SharedScentSystem _scent = default!;
 
     public override void Initialize()
     {

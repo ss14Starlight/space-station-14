@@ -4,7 +4,6 @@ using Content.Shared.Atmos.Prototypes;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Kitchen.Components;
@@ -115,10 +114,8 @@ public sealed partial class ChemistryGuideDataSystem : SharedChemistryGuideDataS
                 usedNames.Add(entProto.Name);
             }
 
-
-            if (extractableComponent.GrindableSolution is { } grindableSolutionId &&
-                entProto.TryGetComponent<SolutionContainerManagerComponent>(out var manager, EntityManager.ComponentFactory) &&
-                _solutionContainer.TryGetSolution(manager, grindableSolutionId, out var grindableSolution))
+            if (extractableComponent.GrindableSolutionName is { } grindableSolutionId &&
+                _solutionContainer.TryGetSolution(entProto, grindableSolutionId, out var grindableSolution)) // Starlight, solution refactor so we can do this ahead of time
             {
                 var data = new ReagentEntitySourceData(
                     new() { DefaultGrindCategory },
@@ -226,4 +223,3 @@ public sealed class ReagentGasSourceData : ReagentSourceData
         GasPrototype = gasPrototype;
     }
 }
-

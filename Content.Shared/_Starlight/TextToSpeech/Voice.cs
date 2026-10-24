@@ -6,7 +6,7 @@ namespace Content.Shared._Starlight.TextToSpeech;
 /// <summary>
 /// Prototype represent TTS voices
 /// </summary>
-[Prototype("voice")]
+[Prototype]
 public sealed partial class VoicePrototype : IPrototype
 {
     [IdDataField]

@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Server.Objectives.Components; // funkystation
-using Content.Server._Starlight.Objectives.Components; // Starlight
+// Starlight
 using Content.Server.Store.Systems;
 using Content.Server.StoreDiscount.Systems;
 using Content.Shared.FixedPoint;
@@ -72,7 +72,7 @@ public sealed partial class UplinkSystem : EntitySystem
         store.AccountOwner = mind;
 
         store.Balance.Clear();
-        _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, balance } },
+        _store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { TelecrystalCurrencyPrototype, balance } },
             uplink,
             store);
         // funkystation start
@@ -136,7 +136,7 @@ public sealed partial class UplinkSystem : EntitySystem
 
         //EnsureComp<TagComponent>(uplinkEntity.Value);
         //_tagSystem.AddTag(uplinkEntity.Value, "DAGDUplink"); // Starlight, unneeded, since we'll be using Wizden's way of adding objectives.
-        _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, 15 } }, uplinkEntity.Value, store); // Adds 15 TC - Starlight 50 -> 15
+        _store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { TelecrystalCurrencyPrototype, 15 } }, uplinkEntity.Value, store); // Adds 15 TC - Starlight 50 -> 15
         return true;
     }
     // funkystation end

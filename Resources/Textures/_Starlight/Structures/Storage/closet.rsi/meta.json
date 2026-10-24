@@ -210,6 +210,18 @@
         {
             "name": "roboticist_door",
             "copyright": "Taken from tgstation, resprited into Roboticist by wonderfulnewworld (GitHub)"
+        },
+        {
+            "name": "salvagemedic",
+            "copyright": "Taken from tgstation, resprited into SalvageMedic by mikeysaurus"
+        },
+        {
+            "name": "salvagemedic_door",
+            "copyright": "Taken from tgstation, resprited into SalvageMedic by mikeysaurus"
+        },
+        {
+            "name": "salvagemedic_open",
+            "copyright": "Taken from tgstation, resprited into SalvageMedic by mikeysaurus"
         }
     ]
 }

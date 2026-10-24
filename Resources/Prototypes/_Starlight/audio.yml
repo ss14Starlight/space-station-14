@@ -1,14 +1,4 @@
 - type: ambientMusic
-  id: GridNoise
-  sound:
-    params:
-      volume: -12
-    collection: AmbienceStation
-  rules: OnGrid
-  priority: 3
-
-
-- type: ambientMusic
   id: NearTheDark
   sound:
     params:
@@ -38,7 +28,6 @@
   interruptable: true
   rules: InNukiePlanetMap
   priority: 1
-
 
 - type: soundCollection
   id: AmbienceTheDark
@@ -78,3 +67,221 @@
   id: OnGrid
   rules:
     - !type:OnGridRule
+
+# Continuous background loops, played under the ambient music. Only the highest priority match plays.
+- type: ambientLoop
+  id: MaintenanceHum
+  sound:
+    path: /Audio/_Starlight/Ambience/Loops/maint_hum.ogg
+    params:
+      volume: -12
+  rules: InMaintenanceZoneOnStation
+  priority: 2
+
+- type: ambientLoop
+  id: StationHum
+  sound:
+    collection: AmbienceStation
+    params:
+      volume: -10
+  rules: OnStationGrid
+  priority: 1
+
+# Area ambience
+- type: ambientMusic
+  id: Detective
+  sound:
+    params:
+      volume: -12
+    collection: AmbienceDetective
+  rules: InDetectiveZone
+  priority: 4
+
+- type: ambientMusic
+  id: Atmospherics
+  sound:
+    params:
+      volume: -12
+    collection: AmbienceAtmospherics
+  rules: InAtmosphericsZone
+  priority: 4
+
+- type: ambientMusic
+  id: Telecomms
+  sound:
+    params:
+      volume: -12
+    collection: AmbienceTelecomms
+  rules: NearTelecomms
+  priority: 4
+
+- type: ambientMusic
+  id: Science
+  sound:
+    params:
+      volume: -12
+    collection: AmbienceScience
+  rules: InScienceZone
+  priority: 3
+
+- type: soundCollection
+  id: AmbienceDetective
+  files:
+    - /Audio/_Starlight/Ambience/Music/ambidet1.ogg
+    - /Audio/_Starlight/Ambience/Music/ambidet2.ogg
+
+- type: soundCollection
+  id: AmbienceAtmospherics
+  files:
+    - /Audio/Ambience/ambiatmos.ogg
+    - /Audio/Ambience/ambiatmos2.ogg
+    - /Audio/Ambience/ambisin2.ogg
+    - /Audio/Ambience/ambitech2.ogg
+    - /Audio/_Starlight/Ambience/Music/ambivapor1.ogg
+
+- type: soundCollection
+  id: AmbienceTelecomms
+  files:
+    - /Audio/_Starlight/Ambience/Music/ambimalf.ogg
+    - /Audio/_Starlight/Ambience/Music/signal.ogg
+    - /Audio/Ambience/ambitech.ogg
+    - /Audio/Ambience/ambitech3.ogg
+
+- type: soundCollection
+  id: AmbienceScience
+  files:
+    - /Audio/_Starlight/Ambience/Music/ambiexp.ogg
+    - /Audio/Ambience/ambitech.ogg
+    - /Audio/Ambience/ambitech2.ogg
+    - /Audio/Ambience/ambitech3.ogg
+    - /Audio/Ambience/ambisin4.ogg
+
+- type: rules
+  id: OnStationGrid
+  rules:
+    - !type:OnGridRule
+    - !type:OnMapGridRule
+      inverted: true
+
+- type: rules
+  id: InMaintenanceZoneOnStation
+  rules:
+    - !type:OnMapGridRule
+      inverted: true
+    - !type:InZoneRule
+      zones:
+        - Maintenance
+
+- type: rules
+  id: InAtmosphericsZone
+  rules:
+    - !type:InZoneRule
+      zones:
+        - Atmospherics
+
+- type: rules
+  id: InScienceZone
+  rules:
+    - !type:InZoneRule
+      zones:
+        - Science
+
+- type: rules
+  id: InMedicalZone
+  rules:
+    - !type:InZoneRule
+      zones:
+        - Medical
+
+- type: rules
+  id: InEngineeringZone
+  rules:
+    - !type:InZoneRule
+      zones:
+        - Engineering
+        - Solars
+
+- type: rules
+  id: InDetectiveZone
+  rules:
+    - !type:InZoneRule
+      zones:
+        - Detective
+
+- type: rules
+  id: NearTelecomms
+  rules:
+    - !type:NearbyComponentsRule
+      anchored: true
+      components:
+        - type: TelecomServer
+      range: 4
+
+# Random one-shot sounds around the player, each on its own timer.
+- type: ambientOneShot
+  id: MaintenanceNoises
+  sound:
+    collection: MaintenanceOneShots
+    params:
+      volume: -3
+      variation: 0.15
+  rules: InMaintenanceZoneOnStation
+  interval: 20, 60
+  distance: 3, 7
+
+- type: ambientOneShot
+  id: HullStress
+  sound:
+    collection: HullStressOneShots
+    params:
+      volume: -9
+      variation: 0.1
+  rules: OnStationGrid
+  interval: 120, 300
+  distance: 4, 9
+
+- type: soundCollection
+  id: MaintenanceOneShots
+  files:
+    - /Audio/_Starlight/Ambience/OneShots/creak1.ogg
+    - /Audio/_Starlight/Ambience/OneShots/creak2.ogg
+    - /Audio/_Starlight/Ambience/OneShots/creak3.ogg
+    - /Audio/_Starlight/Ambience/OneShots/pop1.ogg
+    - /Audio/_Starlight/Ambience/OneShots/pop2.ogg
+    - /Audio/_Starlight/Ambience/OneShots/pop3.ogg
+    - /Audio/_Starlight/Ambience/OneShots/bang.ogg
+    - /Audio/_Starlight/Ambience/OneShots/gas_hissing.ogg
+    - /Audio/_Starlight/Ambience/OneShots/doorcreaky.ogg
+    - /Audio/Voice/Misc/lowHiss1.ogg
+    - /Audio/Voice/Misc/lowHiss2.ogg
+
+- type: soundCollection
+  id: HullStressOneShots
+  files:
+    - /Audio/_Starlight/Ambience/OneShots/pop1.ogg
+    - /Audio/_Starlight/Ambience/OneShots/pop2.ogg
+    - /Audio/_Starlight/Ambience/OneShots/pop3.ogg
+    - /Audio/_Starlight/Ambience/OneShots/creak3.ogg
+
+- type: ambientMusic
+  id: Virology
+  sound:
+    params:
+      volume: -12
+    collection: AmbienceVirology
+  rules: InVirologyZone
+  priority: 4
+
+- type: soundCollection
+  id: AmbienceVirology
+  files:
+    - /Audio/_Starlight/Ambience/Music/ambiviro.ogg
+    - /Audio/_Starlight/Ambience/Music/ambiviro1.ogg
+    - /Audio/_Starlight/Ambience/Music/ambiviro2.ogg
+
+- type: rules
+  id: InVirologyZone
+  rules:
+    - !type:InZoneRule
+      zones:
+        - Virology

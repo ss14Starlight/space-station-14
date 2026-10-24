@@ -12,7 +12,6 @@ using Robust.Client.UserInterface;
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
-using Robust.Shared.Timing;
 
 namespace Content.Client.Inventory
 {

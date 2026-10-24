@@ -27,10 +27,12 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private TurfSystem _turf = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private readonly EntProtoId _shadekinShadow = "ShadekinShadow";
     private readonly EntProtoId _shadekinPhaseInEffect = "ShadekinPhaseInEffect";
     private readonly EntProtoId _shadekinPhaseOutEffect = "ShadekinPhaseOutEffect";
+    private readonly EntProtoId _nullPhaseAction = "NullPhaseAction";
 
     public override void Initialize()
     {
@@ -82,7 +84,7 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
     private void Toggle(EntityUid uid, NullPhaseComponent component, bool toggle)
     {
         if (toggle)
-            _actionsSystem.AddAction(uid, ref component.PhaseAction, "NullPhaseAction", uid);
+            _actionsSystem.AddAction(uid, ref component.PhaseAction, _nullPhaseAction, uid);
         else
             _actionsSystem.RemoveAction(uid, component.PhaseAction);
     }
@@ -158,7 +160,7 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
                 }
 
                 var effect = SpawnAtPosition(_shadekinPhaseInEffect, Transform(uid).Coordinates);
-                Transform(effect).LocalRotation = Transform(uid).LocalRotation;
+                _transform.SetLocalRotation(effect, Transform(uid).LocalRotation);
             }
             else
                 SpawnAtPosition(_shadekinShadow, Transform(uid).Coordinates);
@@ -180,7 +182,7 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
                 }
 
                 var effect = SpawnAtPosition(_shadekinPhaseOutEffect, Transform(uid).Coordinates);
-                Transform(effect).LocalRotation = Transform(uid).LocalRotation;
+                _transform.SetLocalRotation(effect, Transform(uid).LocalRotation);
             }
             else
                 SpawnAtPosition(_shadekinShadow, Transform(uid).Coordinates);

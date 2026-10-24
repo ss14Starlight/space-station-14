@@ -7,7 +7,6 @@ using JetBrains.Annotations;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server._Starlight.Construction.Completions;
 
@@ -22,8 +21,8 @@ public sealed partial class TransformMech : IGraphAction
 
     private ISawmill _log { get => field ??= _logManager.GetSawmill("construction.mech"); } = default!;
 
-    [DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string MechPrototype = string.Empty;
+    [DataField(required: true)]
+    public EntProtoId MechPrototype = string.Empty;
 
     [DataField]
     public string BatteryContainer = "mech-battery-slot";

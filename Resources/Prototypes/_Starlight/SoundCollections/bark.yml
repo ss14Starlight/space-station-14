@@ -4,3 +4,11 @@
   - /Audio/_Starlight/Effects/Bark/dog_bark1.ogg
   - /Audio/_Starlight/Effects/Bark/dog_bark2.ogg
   - /Audio/_Starlight/Effects/Bark/dog_bark3.ogg
+
+- type: soundCollection
+  id: DogBark
+  files:
+  - /Audio/Animals/dog_bark1.ogg
+  - /Audio/Animals/dog_bark2.ogg
+  - /Audio/Animals/dog_bark3.ogg
+  - /Audio/Animals/small_dog_bark_happy.ogg

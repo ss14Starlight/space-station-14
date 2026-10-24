@@ -75,5 +75,15 @@ namespace Content.Server.Voting
                 InitiatorText = Loc.GetString("vote-options-server-initiator-text");
             }
         }
+
+        #region Starlight
+
+        /// <summary>
+        /// A list of <see cref="ICommonSession"/>s that is used whenever <see cref="VoterEligibility"/>
+        /// is set to <see cref="VoteManager.VoterEligibility.Filter"/>.
+        /// </summary>
+        public List<ICommonSession>? PlayerFilter;
+
+        #endregion
     }
 }

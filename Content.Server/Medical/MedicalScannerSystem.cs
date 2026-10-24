@@ -10,7 +10,6 @@ using Content.Server.Cloning.Components;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared.DeviceLinking.Events;
 using Content.Server.Power.EntitySystems;
-using Content.Shared.Body;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -199,10 +198,13 @@ namespace Content.Server.Medical
 
         private void UpdateAppearance(EntityUid uid, MedicalScannerComponent scannerComponent)
         {
+            // Starlight-start
+            var status = GetStatus(uid, scannerComponent);
+            UpdateAmbience(uid, status);
+
             if (TryComp<AppearanceComponent>(uid, out var appearance))
-            {
-                _appearance.SetData(uid, MedicalScannerVisuals.Status, GetStatus(uid, scannerComponent), appearance);
-            }
+                _appearance.SetData(uid, MedicalScannerVisuals.Status, status, appearance);
+            // Starlight-end
         }
 
         public override void Update(float frameTime)

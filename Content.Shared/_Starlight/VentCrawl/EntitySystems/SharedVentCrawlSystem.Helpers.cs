@@ -60,11 +60,14 @@ public sealed partial class SharedVentCrawlSystem
 
     private void UpdateExitAction(VentCrawlHolderComponent holder, EntityUid? tubeUid = null)
     {
+        if (!Exists(holder.ProvidedAction))
+            holder.ProvidedAction = null;
+
         var welded = false;
         if (TryComp<WeldableComponent>(tubeUid, out var weldableComponent))
             welded = weldableComponent.IsWelded;
 
-        if (!welded && HasComp<VentCrawlEntryComponent>(tubeUid))
+        if (!welded && HasComp<VentCrawlEntryComponent>(tubeUid) && Exists(holder.ContainedEntity))
         {
             if (holder.ProvidedAction == null)
                 holder.ProvidedAction = _actionsSystem.AddAction(holder.ContainedEntity, holder.ActionProto);
@@ -145,9 +148,7 @@ public sealed partial class SharedVentCrawlSystem
         if (offsetIndex == 0)
             return Vector2.Zero;
 
-        var xform = Transform(pipeUid);
-
-        var right = xform.WorldRotation.RotateVec(Vector2.UnitX);
+        var right = _xformSystem.GetWorldRotation(pipeUid).RotateVec(Vector2.UnitX);
 
         var spacing = 0.15f;
 

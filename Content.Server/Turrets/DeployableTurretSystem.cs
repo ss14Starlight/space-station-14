@@ -2,7 +2,6 @@ using Content.Server.Destructible;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.HTN.PrimitiveTasks.Operators.Combat.Ranged;
-using Content.Server.Power.Components;
 using Content.Server.TurretController;
 using Content.Shared.Access;
 using Content.Shared.Destructible;

@@ -4,8 +4,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
-using Content.Server.Players;
-using Content.Shared._Starlight;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
@@ -321,6 +319,11 @@ namespace Content.Server.Administration.Managers
             {
                 _toolshedCommandPermissions.LoadPermissionsFromStream(toolshedPerms);
             }
+
+            // Starlight begin
+            if (_res.TryContentFileRead(new ResPath("/_Starlight/toolshedEngineCommandPerms.yml"), out var slToolshedPerms))
+                _toolshedCommandPermissions.LoadPermissionsFromStream(slToolshedPerms);
+            // Starlight end
 
             _toolshed.ActivePermissionController = this;
 

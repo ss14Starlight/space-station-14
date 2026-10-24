@@ -12,9 +12,9 @@ namespace Content.Client._Starfall.Particles;
 /// although you should put this on the projectile entity itself as an emitter ideally.
 /// All other event particle needs should use <see cref="SpawnParticleEffect"/> in <c>EntityEffectOnTrigger</c> component instead of dedicated components here.
 /// </summary>
-public sealed class ParticleOnEventSystem : EntitySystem
+public sealed partial class ParticleOnEventSystem : EntitySystem
 {
-    [Dependency] private readonly ParticleSystem _particles = default!;
+    [Dependency] private ParticleSystem _particles = default!;
 
     // Track emitters spawned by OnThrown so we can stop them when the entity lands
     private readonly Dictionary<EntityUid, ActiveEmitter> _thrownEmitters = new();

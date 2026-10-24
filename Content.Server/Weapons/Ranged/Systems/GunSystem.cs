@@ -3,7 +3,6 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Weapons.Ranged.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged;
@@ -17,12 +16,11 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Shared.Mech.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
-#endregion Starlight
+using Content.Shared._Starlight.CCVar;
+using Robust.Shared.Configuration;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -33,17 +31,15 @@ public sealed partial class GunSystem : SharedGunSystem
 
 #region Starlight
     [Dependency] private TransformSystem _transform = default!;
-    [Dependency] private IRobustRandom _rand = default!;
+    [Dependency] private INetConfigurationManager _netConfig = default!;
+
+    private bool PredictsHitscans(ICommonSession session)
+        => _netConfig.GetClientCVar(session.Channel, StarlightCCVars.HitscanPrediction);
 #endregion Starlight
 
-    private const float DamagePitchVariation = 0.05f;
+    // Starlight-edit: DamagePitchVariation moved to SharedGunSystem
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<BallisticAmmoProviderComponent, PriceCalculationEvent>(OnBallisticPrice);
-    }
-
+    [SubscribeLocalEvent] // Starlight-edit: attribute
     private void OnBallisticPrice(Entity<BallisticAmmoProviderComponent> ent, ref PriceCalculationEvent args)
     {
         if (string.IsNullOrEmpty(ent.Comp.Proto) || ent.Comp.UnspawnedCount == 0)
@@ -79,26 +75,24 @@ public sealed partial class GunSystem : SharedGunSystem
 
         var fromMap = TransformSystem.ToMapCoordinates(fromCoordinates);
         var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
-        var mapDirection = toMap - fromMap.Position;
-        var mapAngle = mapDirection.ToAngle();
-        var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle());
+        var mapDirection = GetShotMapDirection(gun, fromMap.Position, toMap); // Starlight-edit
+        var angle = mapDirection.ToAngle(); // Starlight-edit
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
         var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out _)
             ? TransformSystem.WithEntityId(fromCoordinates, gridUid)
             : new EntityCoordinates(_map.GetMapOrInvalid(fromMap.MapId), fromMap.Position);
 
-        // Update shot based on the recoil
-        toMap = fromMap.Position + angle.ToVec() * mapDirection.Length();
-        mapDirection = toMap - fromMap.Position;
         var gunVelocity = Physics.GetMapLinearVelocity(fromEnt);
 
         // I must be high because this was getting tripped even when true.
         // DebugTools.Assert(direction != Vector2.Zero);
         var shotProjectiles = new List<EntityUid>(ammo.Count);
+        var ammoIndex = -1; // Starlight
 
         foreach (var (ent, shootable) in ammo)
         {
+            ammoIndex++; // Starlight
             // pneumatic cannon doesn't shoot bullets it just throws them, ignore ammo handling
             if (throwItems && ent != null)
             {
@@ -136,7 +130,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     // Something like ballistic might want to leave it in the container still
                     if (!cartridge.DeleteOnSpawn && !Containers.IsEntityInContainer(ent!.Value) && !gun.Comp.Pump)
-                        EjectCartridge(ent!.Value, angle);
+                        EjectCartridge(ent!.Value, angle, user: user); // Starlight-edit: predicted sound
 
                     Dirty(ent!.Value, cartridge);
                     break;
@@ -160,6 +154,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         Gun = gun,
                         Shooter = user,
                         Target = gun.Comp.Target,
+                        PredictionSeed = GetHitscanSeed(gun, ammoIndex, 0), // Starlight
                     };
                     RaiseLocalEvent(ent.Value, ref hitscanEv);
 
@@ -169,7 +164,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     fired = true; // Starlight
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException($"This type of ammo is unsupported! {shootable}"); // Starlight-edit: exception message
             }
         }
 
@@ -203,11 +198,8 @@ public sealed partial class GunSystem : SharedGunSystem
             // Startlight-edit: end
             if (TryComp<ProjectileSpreadComponent>(ammoEnt, out var ammoSpreadComp))
             {
-                var spreadEvent = new GunGetAmmoSpreadEvent(ammoSpreadComp.Spread);
-                RaiseLocalEvent(gun, ref spreadEvent);
-
-                var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
-                    mapAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count);
+                // Starlight-edit: the pattern follows recoil/movement spread and every pellet deviates randomly
+                var angles = GetPelletAngles(gun, ammoSpreadComp, mapDirection.ToAngle(), ammoIndex);
                 // Startlight-edit: start
                 if (isMechShooter)
                 {
@@ -215,7 +207,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     _transform.SetCoordinates(ammoEnt, Transform(ammoEnt), spawn);
                 }
                 // Startlight-edit: end
-                ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, user);
+                ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, user, GetHitscanSeed(gun, ammoIndex, 0)); // Starlight-edit
                 shotProjectiles.Add(ammoEnt);
 
                 for (var i = 1; i < ammoSpreadComp.Count; i++)
@@ -224,7 +216,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     var spawn = isMechShooter ? SpawnFrom(angles[i]) : fromEnt;
                     var newuid = Spawn(ammoSpreadComp.Proto, spawn);
                     // Startlight-edit: end
-                    ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, user);
+                    ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, user, GetHitscanSeed(gun, ammoIndex, i)); // Starlight-edit
                     shotProjectiles.Add(newuid);
                 }
             }
@@ -237,7 +229,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     _transform.SetCoordinates(ammoEnt, Transform(ammoEnt), spawn);
                 }
                 // Startlight-edit: end
-                ShootOrThrow(ammoEnt, mapDirection, gunVelocity, gun, user);
+                ShootOrThrow(ammoEnt, mapDirection, gunVelocity, gun, user, GetHitscanSeed(gun, ammoIndex, 0)); // Starlight-edit
                 shotProjectiles.Add(ammoEnt);
             }
 
@@ -246,7 +238,7 @@ public sealed partial class GunSystem : SharedGunSystem
         }
     }
 
-    private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, Entity<GunComponent> gun, EntityUid? user)
+    private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, Entity<GunComponent> gun, EntityUid? user, int? predictionSeed = null) // Starlight-edit
     {
         if (gun.Comp.Target is { } target && !TerminatingOrDeleted(target))
         {
@@ -258,15 +250,16 @@ public sealed partial class GunSystem : SharedGunSystem
         // Starlight start - cartridges can hold hitscans
         if (HasComp<HitscanAmmoComponent>(uid))
         {
-            var coordinates = EntityManager.GetComponent<TransformComponent>(uid).Coordinates; // Starlight-edit
+            var coordinates = Comp<TransformComponent>(uid).Coordinates;
             var hitscanEv = new HitscanTraceEvent
             {
                 FromCoordinates = coordinates,
-                ToCoordinates = coordinates.Offset(mapDirection), // Starlight-edit
+                ToCoordinates = coordinates.Offset(mapDirection),
                 ShotDirection = mapDirection.Normalized(),
                 Gun = gun,
                 Shooter = user,
                 Target = gun.Comp.Target,
+                PredictionSeed = predictionSeed,
             };
             RaiseLocalEvent(uid, ref hitscanEv);
 
@@ -287,60 +280,9 @@ public sealed partial class GunSystem : SharedGunSystem
         ShootProjectile(uid, mapDirection, gunVelocity, gun, user, gun.Comp.ProjectileSpeedModified);
     }
 
-    /// <summary>
-    /// Gets a linear spread of angles between start and end.
-    /// </summary>
-    /// <param name="start">Start angle in degrees</param>
-    /// <param name="end">End angle in degrees</param>
-    /// <param name="intervals">How many shots there are</param>
-    private Angle[] LinearSpread(Angle start, Angle end, int intervals)
-    {
-        var angles = new Angle[intervals];
-        DebugTools.Assert(intervals > 1);
-
-        for (var i = 0; i <= intervals - 1; i++)
-        {
-            angles[i] = new Angle(start + (end - start) * i / (intervals - 1));
-        }
-
-        return angles;
-    }
-
-    // 🌟Starlight🌟
-    private Angle[] LinearSpreadWithRandom(Angle start, Angle end, int intervals, float randomSpread)
-    {
-        var angles = new Angle[intervals];
-        DebugTools.Assert(intervals > 1);
-
-        for (var i = 0; i < intervals; i++)
-        {
-            var t = (float)i / (intervals - 1);
-            var baseAngle = start + (end - start) * t;
-
-            var randomFactor = _rand.NextFloat() - 0.5f;
-
-            var randomOffset = Angle.FromDegrees(randomFactor * randomSpread);
-
-            angles[i] = baseAngle + randomOffset;
-        }
-
-        return angles;
-    }
-
-    private Angle GetRecoilAngle(TimeSpan curTime, GunComponent component, Angle direction)
-    {
-        var timeSinceLastFire = (curTime - component.LastFire).TotalSeconds;
-        var newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
-        component.CurrentAngle = new Angle(newTheta);
-        component.LastFire = component.NextFire;
-
-        // Convert it so angle can go either side.
-        var random = Random.NextFloat(-0.5f, 0.5f);
-        var spread = component.CurrentAngle.Theta * random;
-        var angle = new Angle(direction.Theta + component.CurrentAngle.Theta * random);
-        DebugTools.Assert(spread <= component.MaxAngleModified.Theta);
-        return angle;
-    }
+    // Starlight-start: Fully rework recoil
+    //private Angle GetRecoilAngle(TimeSpan curTime, Entity<GunComponent> gun, Angle direction)
+    // Starlight-end
 
     protected override void Popup(string message, EntityUid? uid, EntityUid? user) { }
 
@@ -362,27 +304,26 @@ public sealed partial class GunSystem : SharedGunSystem
         // 1. Entity specific sound
         // 2. Ammo's sound
         // 3. Nothing
-        var playedSound = false;
-
-        if (!forceWeaponSound && modifiedDamage != null && modifiedDamage.GetTotal() > 0 && TryComp<RangedDamageSoundComponent>(otherEntity, out var rangedSound))
-        {
-            var type = SharedMeleeWeaponSystem.GetHighestDamageSound(modifiedDamage, ProtoManager);
-
-            if (type != null && rangedSound.SoundTypes?.TryGetValue(type, out var damageSoundType) == true)
-            {
-                Audio.PlayPvs(damageSoundType, otherEntity, AudioParams.Default.WithVariation(DamagePitchVariation));
-                playedSound = true;
-            }
-            else if (type != null && rangedSound.SoundGroups?.TryGetValue(type, out var damageSoundGroup) == true)
-            {
-                Audio.PlayPvs(damageSoundGroup, otherEntity, AudioParams.Default.WithVariation(DamagePitchVariation));
-                playedSound = true;
-            }
-        }
-
-        if (!playedSound && weaponSound != null)
-        {
-            Audio.PlayPvs(weaponSound, otherEntity);
-        }
+        // Starlight-edit: the choice moved to SharedGunSystem.GetImpactSound, so the client can predict it
+        PlayImpactSound(otherEntity, modifiedDamage, weaponSound, forceWeaponSound, null);
     }
+
+    #region Starlight
+    public override void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound, EntityUid? shooter)
+    {
+        DebugTools.Assert(!Deleted(otherEntity), "Impact sound entity was deleted");
+
+        var sound = GetImpactSound(otherEntity, modifiedDamage, weaponSound, forceWeaponSound, out var variation);
+        if (sound == null)
+            return;
+
+        var filter = Filter.Pvs(otherEntity, entityManager: EntityManager);
+
+        if (TryComp<ActorComponent>(shooter, out var actor) && PredictsHitscans(actor.PlayerSession))
+            filter.RemovePlayer(actor.PlayerSession);
+
+        Audio.PlayEntity(sound, filter, otherEntity, true,
+            variation ? AudioParams.Default.WithVariation(DamagePitchVariation) : null);
+    }
+    #endregion
 }

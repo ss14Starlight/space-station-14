@@ -46,3 +46,15 @@
       entity_storage: !type:AllSelector
         children:
         - id: VendingMachineRestockIceCream
+
+- type: entity
+  parent: CratePlastic
+  id: CrateVendingMachineRestockGumballFilled
+  name: gumball dispenser restock crate
+  description: Contains a restock box for gumball dispensers.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VendingMachineRestockGumball

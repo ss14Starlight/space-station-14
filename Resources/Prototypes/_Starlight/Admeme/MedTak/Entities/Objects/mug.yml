@@ -12,12 +12,12 @@
   id: DrinkMedTakCoffee
   suffix: Coffee
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Coffee
-          Quantity: 20
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Coffee
+        Quantity: 20
   - type: Sprite
     layers:
     - state: icon

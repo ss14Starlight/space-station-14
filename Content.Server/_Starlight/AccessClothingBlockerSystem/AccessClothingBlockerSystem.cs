@@ -46,7 +46,7 @@ public sealed partial class AccessClothingBlockerSystem : EntitySystem
         if (canUse)
             return;
 
-        EntityManager.EnsureComponent<UnremoveableComponent>(uid);
+        EnsureComp<UnremoveableComponent>(uid);
         await PopupWithDelays(uid, component);
         _gibSystem.Gib(args.EquipTarget, true);
         _explosionSystem.QueueExplosion(uid, "Default", 50, 5, 30, canCreateVacuum: false);

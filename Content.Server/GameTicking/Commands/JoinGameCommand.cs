@@ -1,6 +1,6 @@
-using Content.Server._Starlight.NewLife;
+﻿using Content.Server._Starlight.NewLife;
+using Content.Server._Starlight.Station.Systems;
 using Content.Server.Administration.Managers;
-using Content.Server.Ghost.Roles;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
@@ -89,6 +89,7 @@ namespace Content.Server.GameTicking.Commands
 
                 var station = _entManager.GetEntity(new NetEntity(sid));
                 var jobPrototype = _prototypeManager.Index<JobPrototype>(id);
+                _entManager.System<ContainerSpawnJobSlotSystem>().RefreshJobSlots(); // Starlight
                 if(stationJobs.TryGetJobSlot(station, jobPrototype, out var slots) == false || slots == 0)
                 {
                     shell.WriteLine($"{jobPrototype.LocalizedName} has no available slots.");

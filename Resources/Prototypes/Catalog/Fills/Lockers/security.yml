@@ -52,6 +52,8 @@
     - id: Binoculars
     - id: NeuralLinkDisruptor # Starlight
     - id: TicketPad # Starlight
+    - id: PlushieLizardJobWarden
+      prob: 0.02
 
 - type: entityTable
   id: FillLockerWardenHarduit
@@ -101,6 +103,10 @@
       prob: 0.6
     - id: BookSpaceLaw
       prob: 0.5
+    - id: PlushieLizardJobSecuritycadet
+      prob: 0.02
+    - id: PlushieLizardJobSecurityofficer
+      prob: 0.02
 
 - type: entity
   id: LockerBrigmedicFilled
@@ -159,7 +165,7 @@
       - id: MedkitToxinFilled
         weight: 0.8
       - id: MedkitBurnFilled
-        prob: 1.8
+        weight: 1.8
     - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
       prob: 0.15
     - id: JawsOfLifeMed #Starlight
@@ -191,14 +197,17 @@
     - id: FlashlightSeclite
     - id: ForensicScanner
     - id: LogProbeCartridge
-    - id: BoxForensicPad
+    #- id: BoxForensicPad # Starlight - Condensing, duplicate of items found in the CardboardBoxLargeEvidenceFilledExtras
     - id: DrinkDetFlask
     - id: ClothingHandsGlovesForensic
     - id: RubberStampDetective
     - id: HoloprojectorSecurity
-    - id: BoxEvidenceMarkers
-    - id: HandLabeler
+    #- id: BoxEvidenceMarkers # Starlight - Condensing, duplicate of items found in the CardboardBoxLargeEvidenceFilledExtras
+    #- id: HandLabeler # Starlight - Condensing, duplicate of items found in the CardboardBoxLargeEvidenceFilledExtras
     - id: BoxTapeRecorder # Starlight
+    - id: CardboardBoxLargeEvidenceFilledExtras # Starlight
+    - id: PlushieLizardJobDetective
+      prob: 0.02
 
 - type: entity
   id: ClosetBombFilled
@@ -222,7 +231,7 @@
       prob: 0.5
 
 - type: entity
-  parent: [GunSafeBaseSecuritySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier2, GunSafeBaseSecuritySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafeDisabler
   name: disabler safe
   components:
@@ -243,7 +252,7 @@
       amount: 5
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafePistolMk58
   name: pistol safe
   components:
@@ -273,7 +282,7 @@
       amount: 2
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafeRifleLecter
   name: rifle safe
   components:
@@ -309,7 +318,7 @@
 # Starlight-end
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafeSubMachineGunDrozd
   name: smg safe
   components:
@@ -335,7 +344,7 @@
       amount: 5 # Starlight
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafeShotgunEnforcer
   name: heavy shotgun safe
   components:
@@ -363,7 +372,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafeShotgunKammerer
   name: shotgun safe
   components:
@@ -393,7 +402,7 @@
 - type: entity
   id: GunSafeSubMachineGunWt550
   suffix: Wt550
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   name: wt550 safe
   components:
   #Starlight Start
@@ -416,7 +425,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafeLaserCarbine
   name: laser safe
   components:
@@ -436,7 +445,7 @@
     - id: BoxFiringPinLaser # Starlight, firing pins
     - id: WeaponLaserCarbine
       amount: 3
-    - id: WeaponLr30
+    - id: WeaponRifleLr30
       amount: 1
     - id: MagazineBatteryLr30
       amount: 2

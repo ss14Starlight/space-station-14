@@ -1,9 +1,12 @@
+using System.Linq;
 using Content.Server.Popups;
+using Content.Shared._Starlight.Chemistry.Components;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
+using Content.Shared.Plumbing.EntitySystems;
 using JetBrains.Annotations;
 
 namespace Content.Server._Starlight.Plumbing.EntitySystems;
@@ -13,7 +16,7 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     Pulling from the network is handled by <see cref="PlumbingInletSystem"/> via <see cref="PlumbingInletComponent"/>.
 /// </summary>
 [UsedImplicitly]
-public sealed partial class PlumbingOutputSystem : EntitySystem
+public sealed partial class PlumbingOutputSystem : SharedPlumbingOutputSystem
 {
     [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private PopupSystem _popup = default!;
@@ -34,6 +37,17 @@ public sealed partial class PlumbingOutputSystem : EntitySystem
 
         if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var outputSolutionEnt, out var outputSolution))
             return;
+
+        if (TryComp<RefillReagentFilterComponent>(args.Used, out var filter)
+            && outputSolution.Contents.Any(sol => !filter.Reagents.Contains(sol.Reagent.Prototype)))
+        {
+            // Incorrect reagents being put into our lovely automenders (and anything with filters)!
+            if (args.User is { Valid: true })
+                _popup.PopupEntity(Loc.GetString(filter.Popup), ent.Owner, args.User);
+
+            args.Handled = true;
+            return;
+        }
 
         var transferAmount = outputSolution.Volume;
         if (TryComp<SolutionTransferComponent>(args.Used, out var transferComp))

@@ -22,6 +22,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -63,7 +64,24 @@ public abstract partial class SharedEntityStorageSystem : EntitySystem
         SubscribeLocalEvent<EntityStorageComponent, BeforeExplodeEvent>(OnExploded);
 
         SubscribeLocalEvent<InsideEntityStorageComponent, EntGotRemovedFromContainerMessage>(OnRemoved);
+
+        SubscribeLocalEvent<EntityStorageComponent, TimedDespawnEvent>(OnTimedDespawn); //Starlight
     }
+
+    #region Starlight
+    private void OnTimedDespawn(Entity<EntityStorageComponent> ent, ref TimedDespawnEvent args)
+    {
+        ent.Comp.Open = true;
+        Dirty(ent, ent.Comp);
+        if (!ent.Comp.DeleteContentsOnDestruction)
+        {
+            EmptyContents(ent, ent.Comp);
+            return;
+        }
+
+        foreach (var item in new List<EntityUid>(ent.Comp.Contents.ContainedEntities)) Del(item);
+    }
+    #endregion
 
     protected virtual void OnComponentInit(EntityUid uid, EntityStorageComponent component, ComponentInit args)
     {
@@ -380,12 +398,8 @@ public abstract partial class SharedEntityStorageSystem : EntitySystem
         if (containerAttemptEvent.Cancelled)
             return false;
 
-        // Consult the whitelist. The whitelist ignores the default assumption about how entity storage works.
-        if (component.Whitelist != null)
-            return _whitelistSystem.IsValid(component.Whitelist, toInsert);
-
-        // The inserted entity must be a mob or an item.
-        return HasComp<MobStateComponent>(toInsert) || HasComp<ItemComponent>(toInsert);
+        // Check the whitelist/blacklist.
+        return _whitelistSystem.CheckBoth(toInsert, component.Blacklist, component.Whitelist);
     }
 
     public bool TryOpenStorage(EntityUid user, EntityUid target, bool silent = false)

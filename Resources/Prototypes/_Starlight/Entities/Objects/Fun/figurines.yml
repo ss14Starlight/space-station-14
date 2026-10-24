@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseFigurine
+  id: ToyFigurineRoboticist
+  name: roboticist figure
+  description: A figurine depicting a Roboticist probably planning to build a robot.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/figurines.rsi
+    state: roboticist
+  - type: SpeakOnTrigger
+    pack: FigurinesRoboticist

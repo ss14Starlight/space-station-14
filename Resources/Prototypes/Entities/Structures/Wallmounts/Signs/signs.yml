@@ -644,6 +644,7 @@
 - type: entity
   parent: BaseSign
   id: SignLaundromat
+  suffix: Laundry # Starlight - ease of search
   name: laundromat sign
   description: A sign indicating the laundromat.
   components:

@@ -1,0 +1,19 @@
+- type: !PartialOnly entity
+  id: MMI
+  components:
+  - type: Blindable
+  - type: ParentCanBlockVision
+
+- type: !PartialOnly entity
+  id: MMIFilled
+  components:
+  - type: BorgBrain
+    borgConsent: true # If you are spawning as a filled MMI, you chose to play borg.
+
+- type: !PartialOnly entity
+  id: PositronicBrain
+  components:
+  - type: BorgBrain
+    borgConsent: true # Posibrains choose to play borg.
+  - type: Blindable
+  - type: ParentCanBlockVision

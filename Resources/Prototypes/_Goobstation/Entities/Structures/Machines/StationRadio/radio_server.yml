@@ -13,12 +13,26 @@
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: mic_on # Starlight
+      shader: unshaded
+      visible: false
+      map: ["micOn"]
+    - state: mic_off # Starlight
+      shader: unshaded
+      map: ["micOff"]
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
         enum.PowerDeviceVisualLayers.Powered:
           True: { visible: true }
           False: { visible: false }
+      enum.RadioDeviceVisuals.Broadcasting: # Starlight
+        micOn:
+          True: { visible: true }
+          False: { visible: false }
+        micOff:
+          True: { visible: false }
+          False: { visible: true }
   - type: StationRadioServer
   - type: DeviceLinkSource
     ports:

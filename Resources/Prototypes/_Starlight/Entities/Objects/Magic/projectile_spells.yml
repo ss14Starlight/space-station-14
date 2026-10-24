@@ -51,10 +51,10 @@
   parent: ActionFireball #Remove actionupregadable if spell is put in shop alone
   id: ActionFireArrow
   name: Fire arrow
-  description: Fires a solid flame in the form of an arrow. (Cooldown of 15 seconds)
+  description: Fires a solid flame in the form of an arrow. (Cooldown of 10 seconds)
   components:
   - type: Action
-    useDelay: 15
+    useDelay: 10
     itemIconStyle: BigAction
     raiseOnUser: true
     icon:

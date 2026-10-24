@@ -15,6 +15,10 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.NodeContainer;
+using Content.Shared.Medical.CrewMonitoring;
+using Content.Shared.Silicons.StationAi;
+using Content.Server.Silicons.StationAi;
+using Robust.Shared.Map;
 
 namespace Content.Server.Power.EntitySystems;
 
@@ -24,6 +28,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
     [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
     [Dependency] private SharedMapSystem _sharedMapSystem = default!;
     [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private StationAiSystem _stationAiSystem = default!; // Starlight: go to clicked position for AI
 
     // Note: this data does not need to be saved
     private Dictionary<EntityUid, Dictionary<Vector2i, PowerCableChunk>> _gridPowerCableChunks = new();
@@ -44,6 +49,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
 
         // UI events
         SubscribeLocalEvent<PowerMonitoringConsoleComponent, PowerMonitoringConsoleMessage>(OnPowerMonitoringConsoleMessage);
+        SubscribeLocalEvent<PowerMonitoringConsoleComponent, CrewMonitoringWarpRequestMessage>(OnWarpRequest); // Starlight: go to clicked position for AI
         SubscribeLocalEvent<PowerMonitoringConsoleComponent, BoundUIOpenedEvent>(OnBoundUIOpened);
 
         // Grid events
@@ -56,6 +62,26 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
         SubscribeLocalEvent<GameRuleStartedEvent>(OnPowerGridCheckStarted);
         SubscribeLocalEvent<GameRuleEndedEvent>(OnPowerGridCheckEnded);
     }
+
+    #region Starlight
+    private void OnWarpRequest(EntityUid uid, PowerMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
+    {
+        if (args.Actor is not { Valid: true } actor || !HasComp<StationAiHeldComponent>(actor))
+            return;
+
+        EntityCoordinates coordinates;
+        try
+        {
+            coordinates = GetCoordinates(args.Coordinates);
+        }
+        catch
+        {
+            return;
+        }
+
+        _stationAiSystem.TryWarpEyeToCoordinates((actor, null), coordinates);
+    }
+    #endregion
 
     #region EventHandling
 
@@ -479,6 +505,18 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
             }
         }
 
+        // Starlight Start
+        // Makes the consumer tab actually show the power usage of the consumers, instead of just showing 0
+        else if (device.Group == PowerMonitoringConsoleGroup.Consumer)
+        {
+            if (TryComp<PowerConsumerComponent>(uid, out var consumer))
+            {
+                stats.PowerValue = consumer.ReceivedPower;
+                stats.PowerUsage = consumer.DrawRate;
+            }
+        }
+        // Starlight End
+
         // Master devices add the power values from all entities they represent (if applicable)
         if (device.IsCollectionMasterOrChild && device.IsCollectionMaster)
         {
@@ -869,6 +907,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
             {
                 var name = MetaData(master).EntityPrototype?.Name ?? MetaData(master).EntityName;
                 metaData.EntityName = Loc.GetString("power-monitoring-window-object-array", ("name", name), ("count", childCount + 1));
+                metaData.EntityNameIsLocalized = true; // Starlight: Prevent re-localization
             }
 
             else
@@ -978,6 +1017,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                 {
                     name = MetaData(ent).EntityPrototype?.Name ?? MetaData(ent).EntityName;
                     metaData.EntityName = Loc.GetString("power-monitoring-window-object-array", ("name", name), ("count", entDevice.ChildDevices.Count + 1));
+                    metaData.EntityNameIsLocalized = true; // Starlight: Prevent re-localization
                 }
             }
 

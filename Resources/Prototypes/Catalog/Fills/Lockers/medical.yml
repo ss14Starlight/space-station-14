@@ -75,6 +75,12 @@
     - id: HandheldHealthAnalyzer
     - id: ChemistryBottleLaughter # Widely recognized as the best medicine :o)
       prob: 0.01
+    - id: PlushieLizardJobMedicaldoctor
+      prob: 0.02
+    - id: PlushieLizardJobMedicalintern
+      prob: 0.02
+    - id: PlushieLizardJobPsychologist
+      prob: 0.02
 
 - type: entity
   parent: LockerMedical
@@ -106,8 +112,11 @@
     - id: RPLD
     - id: BoxBeakerSmall
     - id: BoxBeakerLarge
-    - id: BoxJug
+    # - id: BoxJug # should be re-enabled when CardboardBoxLargeChemistryJugs is removed from the locker fill table
     - id: PatchPack
+      amount: 2
+    - id: CardboardBoxLargeChemistryJugsExtra # These Jugs boxes must be removed when BoxShelfChemistry is properly mapped
+    - id: CardboardBoxLargeChemistryJugs # These Jugs boxes must be removed when BoxShelfChemistry is properly mapped
       amount: 2
     # Starlight end
     - id: ClothingEyesGlassesChemical
@@ -129,6 +138,8 @@
         - id: SprayBottle
         - id: Bucket
         - id: DrinkCartonMilk
+    - id: PlushieLizardJobChemist
+      prob: 0.02
 
 - type: entity
   parent: LockerChemistry
@@ -160,6 +171,8 @@
     #   - id: RollerBedSpawnFolded
     #   - id: CheapRollerBedSpawnFolded
     #   - id: EmergencyRollerBedSpawnFolded
+    - id: PlushieLizardJobParamedic
+      prob: 0.02
 
 - type: entity
   parent: LockerParamedic
