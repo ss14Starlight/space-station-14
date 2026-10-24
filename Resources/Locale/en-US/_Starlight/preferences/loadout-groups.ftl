@@ -67,6 +67,7 @@ loadout-group-dutyofficer-belt = Duty officer belt
 loadout-group-k9-variant = K9 coat
 loadout-group-k9-outerclothing = K9 armor
 loadout-group-k9-eyes = K9 eyewear
+loadout-group-k9-collar = K9 collar
 
 loadout-group-detective-lethal = Detective lethal sidearm
 
@@ -133,6 +134,9 @@ loadout-group-performer-jumpsuit = Performer jumpsuit
 loadout-group-performer-outerclothing = Performer outer clothing
 
 loadout-group-lawyer-shoes = Lawyer shoes
+
+# Engineering
+loadout-group-atmospheric-technician-id = Atmospheric Technician ID
 
 # Other
 loadout-group-scarves = Scarf
