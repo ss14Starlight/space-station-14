@@ -11,7 +11,7 @@
     - type: AlertArmoryStation
       shuttles:
         gamma:
-          shuttle: /Maps/_Starlight/Shuttles/CC-NT/GammaWeaponry.yml
+          shuttle: /Maps/_Starlight/Shuttles/CC-NT/GammaArmory.yml
           announcement: announcement-gamma-armory
           recallAnnouncement: announcement-gamma-armory-recall
         psi:

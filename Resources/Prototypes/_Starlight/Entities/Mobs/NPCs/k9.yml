@@ -4,6 +4,7 @@
   name: security K9
   description: A dog trained for station security work.
   components:
+  - type: AntagTarget
   - type: RemoveFlavorText
   - type: Sprite
     drawdepth: Mobs
@@ -45,6 +46,11 @@
           32:
             sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
             state: eyes
+      id:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: id
   - type: Stripping
   - type: RotationVisuals
     defaultRotation: 90
@@ -52,24 +58,14 @@
   - type: RandomMetadata
     nameSegments:
     - NamesCorgi
-  - type: AlwaysIdentifiable
   - type: Grammar
     attributes:
       gender: epicene
       proper: true
   - type: Vocal
     screamAction: null
-  - type: Access
-    tags:
-    - Security
-    - Brig
-    - Maintenance
-    - External
-    - Cryogenics
   - type: StatusIcon
   - type: JobStatus
-  - type: FixedJobIcon
-    job: K9
   - type: SpriteVariant
     availableVariants:
     - k9-brown

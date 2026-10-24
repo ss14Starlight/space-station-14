@@ -3,3 +3,16 @@
   components:
   - type: RefillableSolution
     solution: hypospray
+
+- type: !PartialOnly entity
+  id: Hypopen
+  components:
+  - type: Injector
+    muteInjectSoundForTarget: true
+  - type: ReactionMixer
+    # Let the injector modes handle containers instead of inherited pen stirring.
+    mixerType: None
+
+- type: !PartialOnly entity
+  id: HypopenBox
+  description: A small box containing a hypopen, with instructions cheerfully printed on the side. 10u capacity. Guaranteed visually identical to a normal pen. New sound-masking technology conceals the injection hiss from the target. The packaging disintegrates when opened, leaving no evidence behind.

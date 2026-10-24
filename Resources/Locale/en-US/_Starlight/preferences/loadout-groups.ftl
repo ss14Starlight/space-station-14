@@ -67,6 +67,7 @@ loadout-group-dutyofficer-belt = Duty officer belt
 loadout-group-k9-variant = K9 coat
 loadout-group-k9-outerclothing = K9 armor
 loadout-group-k9-eyes = K9 eyewear
+loadout-group-k9-collar = K9 collar
 
 loadout-group-detective-lethal = Detective lethal sidearm
 
@@ -103,6 +104,9 @@ loadout-group-salvagelead-id = Salvage Lead ID
 loadout-group-mining-id = Mining Specialist ID
 loadout-group-salvage-id = Salvage Specialist ID
 loadout-group-salvage-lead-mantle = Salvage Lead mantle
+loadout-group-salvage-medic-id = Salvage Medic ID
+loadout-group-salvage-medic-jumpsuit = Salvage Medic jumpsuit
+loadout-group-salvage-medic-mantle = Salvage Medic mantle
 
 # Silicons
 loadout-group-borg-brain-type = Cyborg Brain Type

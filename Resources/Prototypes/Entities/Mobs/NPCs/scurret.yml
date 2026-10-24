@@ -48,8 +48,8 @@
     heatDamageThreshold: 360
     coldDamageThreshold: 285
   # Good eatin', you monster.
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable # Starlight butchering fix
+    refineResult: # Starlight
     - id: FoodMeat
       amount: 4
   # They wawa!
