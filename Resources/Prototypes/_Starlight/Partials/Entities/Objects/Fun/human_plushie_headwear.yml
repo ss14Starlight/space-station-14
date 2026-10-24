@@ -1,5 +1,4 @@
 # Species-suffixed states bypass head displacement masks; directional half-pixel shifts are baked into the 64px frames.
-
 - type: !PartialOnly entity
   id: MobDiona
   components:
@@ -432,7 +431,7 @@
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGnome.rsi
         state: equipped-HELMET-arachnid
         scale: 0.5, 0.5
-        offset: 0, 0.28125
+        offset: 0, 0.265625
       head-avali:
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGnome.rsi
         state: equipped-HELMET-avali
@@ -467,12 +466,12 @@
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGnome.rsi
         state: equipped-HELMET-experiment
         scale: 0.5, 0.5
-        offset: 0, 0.203125
+        offset: 0, 0.21875
       head-felionoid:
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGnome.rsi
         state: equipped-HELMET-felionoid
         scale: 0.5, 0.5
-        offset: 0, 0.28125
+        offset: 0, 0.265625
       head-human:
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGnome.rsi
         state: equipped-HELMET-human
@@ -487,7 +486,7 @@
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGnome.rsi
         state: equipped-HELMET-moth
         scale: 0.5, 0.5
-        offset: 0, 0.28125
+        offset: 0, 0.265625
       head-neocyte:
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieGnome.rsi
         state: equipped-HELMET-default
@@ -675,12 +674,12 @@
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieLamp.rsi
         state: equipped-HELMET-arachnid
         scale: 0.5, 0.5
-        offset: 0, 0.28125
+        offset: 0, 0.265625
       head-avali:
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieLamp.rsi
         state: equipped-HELMET-avali
         scale: 0.5, 0.5
-        offset: 0, 0.265625
+        offset: 0, 0.25
       head-cyclorite:
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieLamp.rsi
         state: equipped-HELMET-cyclorite
@@ -715,7 +714,7 @@
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieLamp.rsi
         state: equipped-HELMET-felionoid
         scale: 0.5, 0.5
-        offset: 0, 0.28125
+        offset: 0, 0.265625
       head-human:
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieLamp.rsi
         state: equipped-HELMET-human
@@ -730,7 +729,7 @@
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieLamp.rsi
         state: equipped-HELMET-moth
         scale: 0.5, 0.5
-        offset: 0, 0.265625
+        offset: 0, 0.25
       head-neocyte:
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieLamp.rsi
         state: equipped-HELMET-default
@@ -791,7 +790,7 @@
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieSaltLampLarge.rsi
         state: equipped-HELMET-avali
         scale: 0.5, 0.5
-        offset: 0, 0.203125
+        offset: 0, 0.21875
       head-cyclorite:
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieSaltLampLarge.rsi
         state: equipped-HELMET-cyclorite
@@ -902,7 +901,7 @@
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieSaltLampSmall.rsi
         state: equipped-HELMET-avali
         scale: 0.5, 0.5
-        offset: 0, 0.203125
+        offset: 0, 0.21875
       head-cyclorite:
       - sprite: _Starlight/Objects/Fun/Plushies/HumanHeadwear/PlushieSaltLampSmall.rsi
         state: equipped-HELMET-cyclorite
