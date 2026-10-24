@@ -9,7 +9,7 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
-using Content.Shared.Mindshield.Components;
+using Content.Shared.Mindshield.Components; //Starlight
 using Content.Shared.Popups; //Starlight
 using Content.Shared.Overlays;
 using Content.Shared.Radio.Components;

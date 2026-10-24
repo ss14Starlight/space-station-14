@@ -6,7 +6,7 @@ using Content.Shared.Silicons.Laws.Components;
 using Content.Shared._Starlight.Silicons.Borgs; // Starlight
 using Robust.Shared.Random;
 using System.Linq;
-using Content.Shared.Mindshield.Components;
+using Content.Shared.Mindshield.Components; //Starlight
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
