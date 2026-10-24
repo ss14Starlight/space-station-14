@@ -171,35 +171,6 @@
     - id: JawsOfLifeMed #Starlight
 
 - type: entity
-  id: LockerGunnerySergeantFilled
-  suffix: Filled
-  parent: LockerGunnerySergeant
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillLockerGunnerySergeant¨
-
-- type: entityTable
-  id: FillLockerGunnerySergeant
-  table: !type:AllSelector
-    children:
-    - id: FlashlightSeclite
-    - id: WeaponDisabler
-    - id: WeaponTaser
-    - id: ClothingBeltSecurityFilled
-    - id: Flash
-    - id: ClothingEyesGlassesSecurity
-    - id: ClothingShoesBootsJack
-    - id: DoorRemoteArmory
-    - id: RubberStampGunnerySergeant # Starlight
-    - id: HoloprojectorSecurity
-    - id: BookSpaceLaw
-    - id: TicketPad # Starlight
-    - id: ClothingHeadsetSecurity
-    - id: ClothingOuterArmorBasic
-
-- type: entity
   id: LockerDetectiveFilled
   categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
