@@ -4,6 +4,14 @@ using Content.Shared.Armor;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body.Components;
 using Content.Shared.Changeling.Components;
+using Content.Shared.Atmos.Rotting;
+using Content.Shared.Body.Components;
+using Content.Shared.Changeling.Components;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Database;
+using Content.Shared.DoAfter;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -65,6 +73,36 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         }
     }
 
+    //TODO: Allow doafters to have proper update loop support. Attempt events should not be doing state changes.
+    private void OnConsumeAttemptTick(Entity<ChangelingDevourComponent> ent,
+       ref DoAfterAttemptEvent<ChangelingDevourConsumeDoAfterEvent> eventData)
+    {
+
+        var curTime = _timing.CurTime;
+
+        if (curTime < ent.Comp.NextTick)
+            return;
+
+        ConsumeDamageTick(eventData.Event.Target, ent.Comp, eventData.Event.User);
+        ent.Comp.NextTick += ent.Comp.DamageTimeBetweenTicks;
+        Dirty(ent, ent.Comp);
+    }
+
+    partial void CapDevourDamage(EntityUid target, ChangelingDevourComponent comp, ref DamageSpecifier damage); // Starlight
+
+    private void ConsumeDamageTick(EntityUid? target, ChangelingDevourComponent comp, EntityUid? user)
+    {
+        if (target == null)
+            return;
+
+        // Starlight begin
+        //_damageable.ChangeDamage(target.Value, comp.DamagePerTick, true, true, user);
+        var damage = comp.DamagePerTick;
+        CapDevourDamage(target.Value, comp, ref damage);
+
+        _damageable.ChangeDamage(target.Value, damage, true, true, user);
+        // Starlight end
+    }
     /// <summary>
     /// Checkes if the targets outerclothing is beyond a DamageCoefficientThreshold to protect them from being devoured.
     /// </summary>
