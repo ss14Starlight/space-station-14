@@ -1,13 +1,6 @@
 Entries:
 - author: FoxStellar
   changes:
-  - message: Added chemistry jug boxes, filled with empty jugs! Use em to make the Jug Locker! For now, they spawn in Chem Lockers, but only until their shelf can be mapped!
-    type: Add
-  id: 409339
-  time: '2026-10-10T16:56:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6583
-- author: FoxStellar
-  changes:
   - message: Also added a fully complete Jug Locker that can optionally be mapped instead of the Jug Shelf.
     type: Add
   id: 409340
@@ -2799,4 +2792,11 @@ Entries:
   id: 409738
   time: '2026-10-24T15:25:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6837
+- author: Talirson
+  changes:
+  - message: Senior Atmos Tech PDA!
+    type: Add
+  id: 409739
+  time: '2026-10-24T15:25:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6831
 Order: -1
