@@ -16,11 +16,11 @@ internal sealed partial class PointingSystem
         // A missing or stale hive must never fall back to public pointing.
         if (!TryComp<ChangelingColonyComponent>(observer.Colony, out var colony) ||
             !_minds.TryGetMind(pointer, out var pointerMind, out _) ||
-            !colony.Minds.TryGetValue(pointerMind, out var anchor) || anchor != pointer)
+            !colony.Minds.TryGetValue(pointerMind, out var anchor) || anchor != pointer || colony.PendingMinds.Contains(pointerMind))
             return Array.Empty<ICommonSession>();
 
         return _playerManager.Sessions.Where(session =>
-            _minds.TryGetMind(session, out var mind, out _) && colony.Minds.ContainsKey(mind) &&
+            _minds.TryGetMind(session, out var mind, out _) && colony.Minds.ContainsKey(mind) && !colony.PendingMinds.Contains(mind) &&
             session.AttachedEntity is { } body &&
             (colony.Members.Contains(body) || colony.Minds.Values.Contains(body))).ToArray();
     }

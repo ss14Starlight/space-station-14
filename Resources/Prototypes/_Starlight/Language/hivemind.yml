@@ -1,4 +1,15 @@
 - type: language
+  id: ChangelingHive
+  chatPrefix: r
+  iconUnderstood: false
+  iconNotUnderstood: false
+  speech:
+    blockSpeech: true
+    allowRadio: false
+    requireSpeech: false
+    requireSound: false
+
+- type: language
   id: Cosmic
   icon: LanguageIconCosmic
   chatPrefix: a

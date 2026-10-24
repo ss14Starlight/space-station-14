@@ -24,6 +24,8 @@ public sealed class ChangelingColonyBoundUserInterface(EntityUid owner, Enum uiK
         _window.OnDetach += part => SendMessage(new ChangelingDetachMessage(part));
         _window.OnSwitch += carrier => SendMessage(new ChangelingSwitchMessage(carrier));
         _window.OnObserve += carrier => SendMessage(new ChangelingObserveMessage(carrier));
+        _window.OnRecall += carrier => SendMessage(new ChangelingRecallMessage(carrier));
+        _window.OnSilence += mind => SendMessage(new ChangelingSilenceMessage(mind));
         _window.OnLeave += () => SendMessage(new ChangelingLeaveBodyMessage());
         _window.OnRupture += (request, confirmed) => SendMessage(new ChangelingRuptureMessage(request, confirmed));
     }
@@ -41,17 +43,21 @@ public sealed class ChangelingColonyWindow : FancyWindow
     public event Action<NetEntity>? OnDetach;
     public event Action<NetEntity>? OnSwitch;
     public event Action<NetEntity>? OnObserve;
+    public event Action<NetEntity>? OnRecall;
+    public event Action<NetEntity>? OnSilence;
     public event Action? OnLeave;
     public event Action<uint, bool>? OnRupture;
 
     private readonly BoxContainer _parts = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 4 };
     private readonly BoxContainer _carriers = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 6 };
+    private readonly BoxContainer _members = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 6 };
     private readonly TabContainer _tabs = new() { VerticalExpand = true, HorizontalExpand = true };
     private readonly Button _leave = new() { Text = Loc.GetString("changeling-hive-leave"), MinHeight = 32 };
     private FancyWindow? _confirmation;
     private uint _ruptureRequest;
     private List<ChangelingColonyEntry> _lastParts = new();
     private List<ChangelingColonyEntry> _lastCarriers = new();
+    private List<ChangelingHiveMemberEntry> _lastMembers = new();
     private bool? _lastMindspace;
     private bool? _lastMaster;
 
@@ -62,13 +68,16 @@ public sealed class ChangelingColonyWindow : FancyWindow
         SetSize = Vector2.Max(MinSize, Vector2.Min(new(520, 540), UserInterfaceManager.WindowRoot.Size - new Vector2(24)));
         var content = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 8 };
         content.AddChild(_leave);
+        content.AddChild(Text(Loc.GetString("changeling-hive-chat-hint")));
         _tabs.AddChild(new ScrollContainer { HScrollEnabled = false, Children = { _carriers } });
         var parts = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 8 };
         parts.AddChild(Text(Loc.GetString("changeling-colony-parts")));
         parts.AddChild(_parts);
         _tabs.AddChild(new ScrollContainer { HScrollEnabled = false, Children = { parts } });
+        _tabs.AddChild(new ScrollContainer { HScrollEnabled = false, Children = { _members } });
         _tabs.SetTabTitle(0, Loc.GetString("changeling-colony-bodies-tab"));
         _tabs.SetTabTitle(1, Loc.GetString("changeling-colony-parts-tab"));
+        _tabs.SetTabTitle(2, Loc.GetString("changeling-hive-members-tab"));
         content.AddChild(_tabs);
         ContentsContainer.AddChild(content);
         _leave.OnPressed += _ => OnLeave?.Invoke();
@@ -117,8 +126,33 @@ public sealed class ChangelingColonyWindow : FancyWindow
                 enter.Disabled = !carrier.CanEnter;
                 enter.OnPressed += _ => OnSwitch?.Invoke(carrier.Entity);
                 buttons.AddChild(enter);
+                if (state.Master && carrier.Occupant != null)
+                {
+                    var recall = Button(Loc.GetString("changeling-hive-recall"));
+                    recall.OnPressed += _ => OnRecall?.Invoke(carrier.Entity);
+                    buttons.AddChild(recall);
+                }
                 row.AddChild(buttons);
                 _carriers.AddChild(new PanelContainer { StyleClasses = { "BorderedWindowPanel" }, Children = { row } });
+            }
+        }
+        if (!_lastMembers.SequenceEqual(state.Members) || masterChanged)
+        {
+            _lastMembers = state.Members;
+            _members.RemoveAllChildren();
+            foreach (var member in state.Members)
+            {
+                var row = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 4, Margin = new(6) };
+                row.AddChild(Text(member.Name));
+                if (state.Master && member.CanSilence)
+                {
+                    var silence = Button(Loc.GetString("changeling-hive-silence"));
+                    silence.OnPressed += _ => ShowConfirmation(
+                        Loc.GetString("changeling-hive-confirm-silence", ("name", member.Name)),
+                        () => OnSilence?.Invoke(member.Mind));
+                    row.AddChild(silence);
+                }
+                _members.AddChild(new PanelContainer { StyleClasses = { "BorderedWindowPanel" }, Children = { row } });
             }
         }
         if (state.ConfirmRupture && state.RuptureRequest != _ruptureRequest)

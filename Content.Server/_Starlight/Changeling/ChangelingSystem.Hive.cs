@@ -62,6 +62,7 @@ public sealed partial class ChangelingSystem
         colony.Minds.Add(mind, anchor);
         _metaData.SetEntityName(anchor, Comp<MindComponent>(mind).CharacterName ?? Name(body));
         SetHiveUi(anchor);
+        _language.AddLanguage(anchor, "ChangelingHive");
         ObserveHiveBody(anchor, observer, body);
         return anchor;
     }
@@ -119,8 +120,25 @@ public sealed partial class ChangelingSystem
 
     private void AbsorbHiveMind(EntityUid eater, EntityUid victim)
     {
-        if (TryGetColony(victim, out _, out var colony))
-            RetireConsumedCarrier(victim, colony);
+        EnsureHive(eater);
+        if (TryGetColony(victim, out _, out var existingHive))
+        {
+            RetireConsumedCarrier(victim, existingHive);
+            return;
+        }
+        if (!TryGetColony(eater, out var member, out var colony)
+            || !_mind.TryGetMind(victim, out var mind, out _)
+            || mind == member.Mind || colony.Minds.ContainsKey(mind))
+            return;
+        if (TryComp<ActionsContainerComponent>(mind, out var oldActions))
+        {
+            foreach (var action in oldActions.Container.ContainedEntities.ToArray())
+                QueueDel(action);
+        }
+        var anchor = CreateMindspace(mind, member.Mind, eater, colony);
+        colony.PendingMinds.Add(mind);
+        _mind.TransferTo(mind, anchor, ghostCheckOverride: true, createGhost: false);
+        RequestHiveConsent(member.Mind, mind, anchor, colony);
     }
 
     private void RetireConsumedCarrier(EntityUid body, ChangelingColonyComponent colony)
@@ -133,7 +151,7 @@ public sealed partial class ChangelingSystem
             colony.Active = colony.Core;
 
         _transform.TryGetMapOrGridCoordinates(body, out var position);
-        foreach (var anchor in colony.Minds.Values)
+        foreach (var anchor in colony.Minds.Values.Concat(colony.VacantAnchors))
         {
             if (TerminatingOrDeleted(anchor) || !TryComp<ChangelingMindspaceComponent>(anchor, out var observer))
                 continue;
@@ -183,16 +201,25 @@ public sealed partial class ChangelingSystem
 
     private void SyncHiveActions(EntityUid master, EntityUid mind)
     {
+        if (TryComp<ChangelingColonyComponent>(master, out var hive) && hive.PendingMinds.Contains(mind))
+            return;
         EnsureHiveAction(mind, "ActionChangelingColony");
-        if (TryComp<ChangelingColonyComponent>(master, out var colony))
+        if (mind == master && TryComp<ChangelingColonyComponent>(master, out var colony))
             EnsureLivingBloodAction(master, colony);
+        if (mind == master || !TryComp<ActionsContainerComponent>(master, out var actions))
+            return;
+        foreach (var action in actions.Container.ContainedEntities.ToArray())
+        {
+            if (!TerminatingOrDeleted(action) && MetaData(action).EntityPrototype is { } prototype && prototype.ID != LivingBloodAction)
+                EnsureHiveAction(mind, prototype.ID);
+        }
     }
 
     private bool IsHiveMaster(EntityUid body, ChangelingColonyMemberComponent member)
         => _mind.TryGetMind(body, out var mind, out _) && mind == member.Mind;
 
     private bool IsHivePlayer(EntityUid body, ChangelingColonyComponent colony)
-        => _mind.TryGetMind(body, out var mind, out _) && colony.Minds.ContainsKey(mind);
+        => _mind.TryGetMind(body, out var mind, out _) && colony.Minds.ContainsKey(mind) && !colony.PendingMinds.Contains(mind);
 
     [SubscribeLocalEvent]
     private void OnHivePurchase(ref StorePurchaseAttemptEvent args)
@@ -333,6 +360,18 @@ public sealed partial class ChangelingSystem
             ReturnToHive(mind, colony);
     }
 
+    [SubscribeLocalEvent]
+    private void OnRecallHiveMind(EntityUid uid, ChangelingColonyMemberComponent member, ChangelingRecallMessage args)
+    {
+        if (args.Actor != uid || !IsHiveMaster(uid, member)
+            || !TryComp<ChangelingColonyComponent>(member.Mind, out var colony))
+            return;
+        var target = GetEntity(args.Carrier);
+        if (colony.Members.Contains(target) && _mind.TryGetMind(target, out var mind, out _)
+            && mind != member.Mind && colony.Minds.ContainsKey(mind))
+            ReturnToHive(mind, colony);
+    }
+
     private void UpdateHiveObserver(EntityUid anchor, ChangelingMindspaceComponent observer, ChangelingColonyComponent colony)
     {
         var bodies = colony.Members.Where(e => !TerminatingOrDeleted(e)).ToList();
@@ -378,14 +417,22 @@ public sealed partial class ChangelingSystem
     {
         var master = !TerminatingOrDeleted(colony.Core)
             ? Comp<ChangelingMindspaceComponent>(colony.Core).Colony : (EntityUid?) null;
+        colony.PendingMinds.Clear();
         foreach (var (mind, anchor) in colony.Minds.ToArray())
         {
+            CloseHiveConsent(mind);
             if (mind != preservedMind && TryComp<MindComponent>(mind, out var comp) && comp.OwnedEntity != null)
                 _mind.TransferTo(mind, null);
             if (!TerminatingOrDeleted(anchor))
                 QueueDel(anchor);
         }
         colony.Minds.Clear();
+        foreach (var anchor in colony.VacantAnchors)
+        {
+            if (!TerminatingOrDeleted(anchor))
+                QueueDel(anchor);
+        }
+        colony.VacantAnchors.Clear();
         foreach (var identity in colony.Identities)
         {
             if (!TerminatingOrDeleted(identity))

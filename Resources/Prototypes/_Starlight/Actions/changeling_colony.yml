@@ -1,7 +1,7 @@
 - type: entity
   id: ActionChangelingColony
   name: Colony
-  description: Detach living limbs, rupture your body, switch carriers and possess organic bodies. Evolution unlocks specialized fragment abilities and living blood.
+  description: Detach living limbs, rupture your body, switch carriers and possess organic bodies. Includes Assimilation Sting to bring victims into your hive. Evolution unlocks specialized fragment abilities and living blood.
   categories: [HideSpawnMenu]
   components:
   - type: Action
@@ -11,6 +11,23 @@
     icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: collective }
   - type: InstantAction
     event: !type:OpenChangelingColonyEvent {}
+
+- type: entity
+  parent: ActionChangelingDevour
+  id: ActionStingAssimilate
+  name: Assimilation Sting
+  description: Draw a victim into your hive in two 10-second stages, or 5 seconds each after Evolution. Their mind joins the hive while their slain body is restored as a vacant carrier. Costs biomass equal to 25% of your body's maximum only on success. Uses no chemicals and grants no evolution points.
+  categories: [HideSpawnMenu]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_lethargic }
+    iconOn: null
+  - type: EntityTargetAction
+    canTargetSelf: false
+    event: !type:StingAssimilateEvent {}
+  - type: ChangelingAction
+    chemicalCost: 0
 
 - type: entity
   id: ActionChangelingLivingBlood

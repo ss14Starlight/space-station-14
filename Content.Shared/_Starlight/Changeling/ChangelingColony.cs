@@ -54,6 +54,9 @@ public enum ChangelingColonyUiKey : byte { Key }
 public sealed record ChangelingColonyEntry(NetEntity Entity, string Name, string? Occupant = null, bool CanEnter = true);
 
 [Serializable, NetSerializable]
+public sealed record ChangelingHiveMemberEntry(NetEntity Mind, string Name, bool CanSilence = true);
+
+[Serializable, NetSerializable]
 public sealed class ChangelingColonyUiState(
     List<ChangelingColonyEntry> parts,
     List<ChangelingColonyEntry> carriers,
@@ -64,7 +67,8 @@ public sealed class ChangelingColonyUiState(
     bool learned = true,
     bool evolved = false,
     bool confirmRupture = false,
-    uint ruptureRequest = 0) : BoundUserInterfaceState
+    uint ruptureRequest = 0,
+    List<ChangelingHiveMemberEntry>? members = null) : BoundUserInterfaceState
 {
     public readonly List<ChangelingColonyEntry> Parts = parts;
     public readonly List<ChangelingColonyEntry> Carriers = carriers;
@@ -76,6 +80,7 @@ public sealed class ChangelingColonyUiState(
     public readonly bool Evolved = evolved;
     public readonly bool ConfirmRupture = confirmRupture;
     public readonly uint RuptureRequest = ruptureRequest;
+    public readonly List<ChangelingHiveMemberEntry> Members = members ?? new();
 }
 
 [Serializable, NetSerializable]
@@ -85,7 +90,19 @@ public sealed class ChangelingObserveMessage(NetEntity carrier) : BoundUserInter
 }
 
 [Serializable, NetSerializable]
+public sealed class ChangelingRecallMessage(NetEntity carrier) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity Carrier = carrier;
+}
+
+[Serializable, NetSerializable]
 public sealed class ChangelingLeaveBodyMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class ChangelingSilenceMessage(NetEntity mind) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity Mind = mind;
+}
 
 [Serializable, NetSerializable]
 public sealed class ChangelingRuptureMessage(uint request, bool confirmed) : BoundUserInterfaceMessage

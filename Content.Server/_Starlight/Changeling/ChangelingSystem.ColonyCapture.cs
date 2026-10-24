@@ -121,8 +121,6 @@ public sealed partial class ChangelingSystem
         if (!_mind.TryGetMind(uid, out var attackerMind, out _))
             return;
         AbsorbHiveMind(uid, target);
-        if (_mind.TryGetMind(target, out var victimMind, out _))
-            _mind.TransferTo(victimMind, null);
         _damage.SetAllDamage(target, FixedPoint2.Zero);
         _blood.TryModifyBloodLevel(target, 1000);
         _mobState.ChangeMobState(target, MobState.Alive);

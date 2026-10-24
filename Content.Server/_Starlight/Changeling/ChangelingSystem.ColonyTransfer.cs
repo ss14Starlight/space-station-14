@@ -8,17 +8,22 @@ public sealed partial class ChangelingSystem
 {
     private bool TransferColony(EntityUid mind, ChangelingColonyComponent colony, EntityUid target)
     {
-        if (colony.Moving || !colony.Minds.ContainsKey(mind) || !CanEnterHiveCarrier(target)
+        if (colony.Moving || !colony.Minds.ContainsKey(mind) || colony.PendingMinds.Contains(mind) || !CanEnterHiveCarrier(target)
             || !TryComp<MindComponent>(mind, out var consciousness) || consciousness.OwnedEntity == target)
             return false;
         var source = consciousness.OwnedEntity;
         var master = Comp<ChangelingColonyMemberComponent>(target).Mind;
-        if (_mind.TryGetMind(target, out _, out _) || HasComp<ActorComponent>(target))
+        var occupied = _mind.TryGetMind(target, out var otherMind, out _);
+        if (occupied && (mind != master || otherMind == master || !colony.Minds.ContainsKey(otherMind)))
+            return false;
+        if (!occupied && HasComp<ActorComponent>(target))
             return false;
 
         colony.Moving = true;
         try
         {
+            if (occupied)
+                ReturnToHive(otherMind, colony);
             if (source is { } old && TryComp<ChangelingColonyMemberComponent>(old, out var member))
             {
                 EndCapture(old, member);
@@ -33,7 +38,15 @@ public sealed partial class ChangelingSystem
             }
             if (source is { } previous && colony.Members.Contains(previous) && !TerminatingOrDeleted(previous))
             {
-                ActivateVacantCarrier(previous);
+                if (occupied && CanEnterHiveCarrier(previous))
+                {
+                    PrepareHiveBody(previous, colony);
+                    _mind.TransferTo(otherMind, previous, ghostCheckOverride: true, createGhost: false);
+                    SyncHiveActions(master, otherMind);
+                    RefreshFragmentActions(previous, colony);
+                }
+                else
+                    ActivateVacantCarrier(previous);
             }
             SyncHiveActions(master, mind);
             RefreshFragmentActions(target, colony);

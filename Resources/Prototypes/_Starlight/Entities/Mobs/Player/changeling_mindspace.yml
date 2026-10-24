@@ -12,3 +12,29 @@
   - type: Actions
   - type: ActionsContainer
   - type: UserInterface
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks: [ChangelingHive]
+    understands: [ChangelingHive]
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleChangelingHive
+  name: Absorbed consciousness
+  components:
+  - type: MindRole
+    antagPrototype: Changeling
+  - type: RoleBriefing
+    briefing: changeling-hive-briefing
+
+- type: entity
+  id: ChangelingHiveVacancy
+  abstract: true
+  components:
+  - type: GhostRole
+    name: changeling-hive-ghost-name
+    description: changeling-hive-ghost-description
+    rules: changeling-hive-ghost-rules
+    makeSentient: false
+    reregister: false
+    mindRoles: [MindRoleChangelingHive]

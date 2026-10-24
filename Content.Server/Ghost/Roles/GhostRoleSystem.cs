@@ -495,6 +495,11 @@ public sealed partial class GhostRoleSystem : EntitySystem
         if (!_ghostRoles.TryGetValue(identifier, out var roleEnt))
             return;
 
+        // Starlight-start
+        if (!CanRequestGhostRole(roleEnt, player))
+            return;
+        // Starlight-end
+
         TryPrototypes(roleEnt, out var antags, out var jobs);
 
         // Check role bans
@@ -603,6 +608,11 @@ public sealed partial class GhostRoleSystem : EntitySystem
         if (!_ghostRoles.TryGetValue(identifier, out var role))
             return false;
 
+        // Starlight-start
+        if (!CanRequestGhostRole(role, player))
+            return false;
+        // Starlight-end
+
         var ev = new TakeGhostRoleEvent(player);
         RaiseLocalEvent(role, ref ev);
 
@@ -675,6 +685,11 @@ public sealed partial class GhostRoleSystem : EntitySystem
             if (metaQuery.GetComponent(uid).EntityPaused)
                 continue;
 
+
+            // Starlight-start
+            if (player != null && !CanRequestGhostRole(uid, player))
+                continue;
+            // Starlight-end
 
             var kind = GhostRoleKind.FirstComeFirstServe;
             GhostRoleRaffleComponent? raffle = null;
@@ -857,6 +872,15 @@ public sealed partial class GhostRoleSystem : EntitySystem
 
         args.TookRole = true;
     }
+
+    #region Starlight
+    private bool CanRequestGhostRole(EntityUid role, ICommonSession player)
+    {
+        var attempt = new GhostRoleRequestAttemptEvent(player);
+        RaiseLocalEvent(role, ref attempt);
+        return !attempt.Cancelled;
+    }
+    #endregion
 
     private bool CanTakeGhost(EntityUid uid, GhostRoleComponent? component = null)
     {

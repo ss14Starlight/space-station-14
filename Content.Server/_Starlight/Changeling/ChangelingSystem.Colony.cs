@@ -60,6 +60,7 @@ public sealed partial class ChangelingSystem
         colony.Active = uid;
         AddColonyMember(uid, mind, colony);
         EnsureHiveAction(mind, "ActionChangelingColony");
+        EnsureHiveAction(mind, "ActionStingAssimilate");
         _actionContainers.AddAction(mind, "ActionChangelingRupture");
         EnsureLivingBloodAction(mind, colony);
     }
@@ -94,6 +95,7 @@ public sealed partial class ChangelingSystem
         SetHiveUi(uid);
         if (!member.IsBlood && colony.Core.IsValid())
             PrepareHiveBody(uid, colony);
+        _language.AddLanguage(uid, "ChangelingHive");
         RefreshColonyFriends(uid);
     }
 
@@ -137,9 +139,14 @@ public sealed partial class ChangelingSystem
                 var enter = CanEnterHiveCarrier(carrier) && (!occupied || master && mind != Comp<ChangelingColonyMemberComponent>(uid).Mind);
                 return new ChangelingColonyEntry(GetNetEntity(carrier), Name(carrier), occupant, enter);
             }).ToList();
+        var members = colony.Minds.Keys
+            .Where(mind => !TerminatingOrDeleted(mind))
+            .Select(mind => new ChangelingHiveMemberEntry(GetNetEntity(mind),
+                Comp<MindComponent>(mind).CharacterName ?? Name(mind), master && mind != Comp<ChangelingColonyMemberComponent>(uid).Mind))
+            .ToList();
         _chemistryUi.SetUiState(uid, ChangelingColonyUiKey.Key,
             new ChangelingColonyUiState(parts, carriers, colony.AnimateBlood, master, mindspace, canDetach, colony.Learned, colony.Evolved,
-                Comp<ChangelingColonyMemberComponent>(uid).ConfirmRupture, Comp<ChangelingColonyMemberComponent>(uid).RuptureRequest));
+                Comp<ChangelingColonyMemberComponent>(uid).ConfirmRupture, Comp<ChangelingColonyMemberComponent>(uid).RuptureRequest, members));
     }
 
     private void EnsureLivingBloodAction(EntityUid mind, ChangelingColonyComponent colony)
@@ -382,7 +389,7 @@ public sealed partial class ChangelingSystem
             return;
         if (TryComp<ChangelingColonyComponent>(member.Mind, out var hive))
         {
-            foreach (var anchor in hive.Minds.Values)
+            foreach (var anchor in hive.Minds.Values.Concat(hive.VacantAnchors))
             {
                 if (!TerminatingOrDeleted(anchor) && Comp<ChangelingMindspaceComponent>(anchor).Viewing == uid)
                     _transform.SetCoordinates(anchor, Transform(uid).Coordinates);
@@ -431,7 +438,8 @@ public sealed partial class ChangelingSystem
                 continue;
             colony.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
             colony.Members.RemoveWhere(body => TerminatingOrDeleted(body));
-            if (colony.Minds.Count == 0)
+            colony.VacantAnchors.RemoveWhere(anchor => TerminatingOrDeleted(anchor));
+            if (colony.Minds.Count == 0 && colony.VacantAnchors.Count == 0)
             {
                 ReleaseHive(colony);
                 RemCompDeferred<ChangelingColonyComponent>(master);
@@ -441,6 +449,14 @@ public sealed partial class ChangelingSystem
             {
                 if (TerminatingOrDeleted(anchor) || !TryComp<MindComponent>(mind, out var consciousness))
                     continue;
+                if (colony.PendingMinds.Contains(mind))
+                {
+                    if (consciousness.UserId is not { } user || colony.SilencedUsers.Contains(user)
+                        || !_player.TryGetSessionById(user, out var session)
+                        || session.Status != SessionStatus.InGame || session.AttachedEntity != anchor)
+                        RespondHiveConsent((master, colony), mind, false);
+                    continue;
+                }
                 SyncHiveActions(master, mind);
                 if (consciousness.OwnedEntity is not { } body || TerminatingOrDeleted(body))
                     continue;
@@ -473,6 +489,8 @@ public sealed partial class ChangelingSystem
     {
         if (!TryGetColony(user, out var member, out var colony))
             return true;
+        if (_mind.TryGetMind(user, out var mind, out _) && colony.PendingMinds.Contains(mind))
+            return false;
         var prototype = MetaData(action).EntityPrototype?.ID;
         if (prototype == LivingBloodAction)
             return colony.Learned && colony.Evolved && IsHiveMaster(user, member);
