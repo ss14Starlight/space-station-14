@@ -1,4 +1,5 @@
-﻿using Content.Shared._Starlight.StationRadio.Components;
+using System.Linq;
+using Content.Shared._Starlight.StationRadio.Components;
 using Content.Shared._Starlight.StationRadio.Systems;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared.Power;
@@ -13,6 +14,10 @@ namespace Content.Client._Starlight.StationRadio.Systems;
 
 public sealed partial class StationRadioReceiverSystem : SharedStationRadioReceiverSystem
 {
+    private const float StaticGain = 0.6f;
+
+    private const float MaxWaver = 0.7f;
+
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private SharedPowerReceiverSystem _power = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
@@ -31,84 +36,124 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
         _cfg.UnsubValueChanged(StarlightCCVars.StationRadioVolume, OnVolumeCfgChanged);
     }
 
-    protected override void OnReceiverMapInit(EntityUid uid, StationRadioReceiverComponent component, MapInitEvent args)
-    {
-        if (component.SoundEntity == null)
-            return;
-        if (!TryComp<AudioComponent>(component.SoundEntity, out var audio))
-            return;
-
-        _audio.SetGain(component.SoundEntity, GetGain(component, _power.IsPowered(uid)) * component.ClientVolume ?? 0, audio);
-
-        var playOffset = _timing.CurTime - component.StartTime;
-        if (playOffset is not null)
-            _audio.SetPlaybackPosition((component.SoundEntity.Value, audio), (float)playOffset.Value.TotalSeconds);
-    }
+    protected override void OnReceiverMapInit(EntityUid uid, StationRadioReceiverComponent component, MapInitEvent args) =>
+        UpdateGain((uid, component));
 
     [SubscribeLocalEvent]
     private void OnVolumeChanged(EntityUid uid, StationRadioReceiverComponent component, StationRadioVolumeChangedEvent args)
     {
         component.ClientVolume = args.Volume;
-        if (!TryComp<AudioComponent>(component.SoundEntity, out var audio))
-            return;
-
-        _audio.SetGain(component.SoundEntity, GetGain(component, _power.IsPowered(uid)) * (component.ClientVolume ?? 0), audio);
+        UpdateGain((uid, component));
     }
 
     [SubscribeLocalEvent]
     private void OnComponentShutdown(EntityUid uid, StationRadioReceiverComponent component, ComponentShutdown args)
     {
-        if (component.SoundEntity == null)
-            return;
+        foreach (var (stream, _) in component.Streams.Values)
+            EndStream(stream);
 
-        component.SoundEntity = _audio.Stop(component.SoundEntity);
+        component.Streams.Clear();
+        component.StaticStream = EndStream(component.StaticStream);
     }
 
     [SubscribeLocalEvent]
     private void AfterHandleReceiverState(Entity<StationRadioReceiverComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-
         var playerSession = _playerManager.LocalSession;
         if (playerSession == null)
             return;
 
-        var (uid, comp) = ent;
+        var comp = ent.Comp;
 
-        if (comp.CurrentSound == null)
+        var restart = comp.BoostVolume != comp.BoostVolumePrev;
+        comp.BoostVolumePrev = comp.BoostVolume;
+
+        foreach (var (source, (stream, playing)) in comp.Streams.ToArray())
         {
-            comp.SoundEntity = EndStream(comp.SoundEntity);
-            return;
+            if (!restart && comp.Tracks.TryGetValue(source, out var track) && track.SamePlayback(playing))
+                continue;
+
+            EndStream(stream);
+            comp.Streams.Remove(source);
         }
 
-        if (comp.CurrentSound != comp.PervSound)
-            comp.SoundEntity = EndStream(comp.SoundEntity);
+        var muteParam = (comp.BoostVolume ? comp.BoostedParams : comp.DefaultParams).WithVolume(0f);
+        foreach (var (source, track) in comp.Tracks)
+        {
+            if (comp.Streams.ContainsKey(source))
+                continue;
 
-        if (comp.BoostVolume != comp.BoostVolumePrev)
-            comp.SoundEntity = EndStream(comp.SoundEntity);
+            if (_audio.PlayEntity(track.Sound, playerSession, ent, muteParam)?.Entity is not { } stream)
+                continue;
 
-        var currentParam = comp.BoostVolume ? comp.BoostedParams : comp.DefaultParams;
-        var muteParam = currentParam.WithVolume(0f);
-        comp.SoundEntity ??= _audio.PlayEntity(comp.CurrentSound, playerSession, uid, muteParam)?.Entity;
-        comp.BoostVolumePrev =  comp.BoostVolume;
+            if (TryComp<AudioComponent>(stream, out var audio))
+                _audio.SetPlaybackPosition((stream, audio), (float) (_timing.CurTime - track.StartTime).TotalSeconds);
 
-        if (comp.SoundEntity == null || !TryComp<AudioComponent>(comp.SoundEntity, out var audio))
-            return;
+            comp.Streams[source] = (stream, track);
+        }
 
-        var playOffset = _timing.CurTime - comp.StartTime;
-        if (playOffset is not null)
-            _audio.SetPlaybackPosition((comp.SoundEntity.Value, audio), (float)playOffset.Value.TotalSeconds);
+        if (restart || comp.Interference <= 0f)
+            comp.StaticStream = EndStream(comp.StaticStream);
 
-        comp.PervSound = comp.CurrentSound;
-        comp.ClientVolume ??= _cfg.GetCVar(StarlightCCVars.StationRadioVolume);
-        _audio.SetVolume(comp.SoundEntity, currentParam.Volume, audio);
-        _audio.SetGain(comp.SoundEntity, GetGain(comp, _power.IsPowered(uid)) * (comp.ClientVolume ?? 0), audio);
+        if (comp.Interference > 0f && comp.StaticStream == null)
+            comp.StaticStream = _audio.PlayEntity(comp.StaticSound, playerSession, ent, muteParam.WithLoop(true))?.Entity;
+
+        UpdateGain(ent);
     }
 
-    //TODO Replace all usages of this with _audio.Stop whenever upstream fixes it
+    public override void FrameUpdate(float frameTime)
+    {
+        base.FrameUpdate(frameTime);
+
+        var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.Interference > 0f)
+                UpdateGain((uid, comp));
+        }
+    }
+
+    private void UpdateGain(Entity<StationRadioReceiverComponent> ent)
+    {
+        var comp = ent.Comp;
+        comp.ClientVolume ??= _cfg.GetCVar(StarlightCCVars.StationRadioVolume);
+
+        var param = comp.BoostVolume ? comp.BoostedParams : comp.DefaultParams;
+        var gain = GetGain(comp, _power.IsPowered(ent.Owner)) * comp.ClientVolume.Value;
+        var music = gain * InterferenceWaver(ent, comp.Interference);
+
+        foreach (var (source, (stream, _)) in comp.Streams)
+        {
+            if (!TryComp<AudioComponent>(stream, out var audio))
+                continue;
+
+            var trackGain = comp.Tracks.TryGetValue(source, out var track) ? track.Gain : 0f;
+            _audio.SetVolume(stream, param.Volume, audio);
+            _audio.SetGain(stream, music * trackGain, audio);
+        }
+
+        if (TryComp<AudioComponent>(comp.StaticStream, out var hiss))
+        {
+            _audio.SetVolume(comp.StaticStream, param.Volume, hiss);
+            _audio.SetGain(comp.StaticStream, gain * comp.Interference * StaticGain, hiss);
+        }
+    }
+
+    private float InterferenceWaver(EntityUid uid, float interference)
+    {
+        if (interference <= 0f)
+            return 1f;
+
+        var t = (float) _timing.RealTime.TotalSeconds;
+        var phase = uid.Id * 1.618f;
+        var fade = 0.5f + (0.5f * MathF.Sin((t * 5.3f) + phase) * MathF.Sin((t * 1.7f) + (phase * 0.5f)));
+        return 1f - (MaxWaver * interference * fade);
+    }
+
     private EntityUid? EndStream(EntityUid? uid)
     {
         if (TryComp<AudioComponent>(uid, out var audioComponent))
-            audioComponent.StopPlaying();  // <- I'm pretty sure robust is supposed to do this.
+            audioComponent.StopPlaying();
         return _audio.Stop(uid, audioComponent);
     }
 
@@ -116,17 +161,11 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
     {
         var receiverQuery = EntityQueryEnumerator<StationRadioReceiverComponent>();
         foreach (var receiver in receiverQuery)
-        {
             RaiseLocalEvent(receiver, new  StationRadioVolumeChangedEvent(volume));
-        }
     }
 
-    protected override void OnPowerChanged(EntityUid uid, StationRadioReceiverComponent comp, PowerChangedEvent args)
-    {
-        if (!TryComp<AudioComponent>(comp.SoundEntity, out var audio))
-            return;
-        _audio.SetGain(comp.SoundEntity, GetGain(comp, _power.IsPowered(uid)) * (comp.ClientVolume ?? 0), audio);
-    }
+    protected override void OnPowerChanged(EntityUid uid, StationRadioReceiverComponent comp, PowerChangedEvent args) =>
+        UpdateGain((uid, comp));
 }
 
 [Serializable]

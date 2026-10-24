@@ -1,0 +1,68 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Drawn for Starlight, procedurally generated record sprites",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "default"
+        },
+        {
+            "name": "base-dark"
+        },
+        {
+            "name": "base-medium"
+        },
+        {
+            "name": "base-light"
+        },
+        {
+            "name": "base-shine"
+        },
+        {
+            "name": "label"
+        },
+        {
+            "name": "ai-vinyl-disc"
+        },
+        {
+            "name": "broken-vinyl-disc"
+        },
+        {
+            "name": "carrot-vinyl-disc"
+        },
+        {
+            "name": "devil-vinyl-disc"
+        },
+        {
+            "name": "earth-vinyl-disc"
+        },
+        {
+            "name": "floaty-vinyl-disc"
+        },
+        {
+            "name": "forgotten-vinyl-disc"
+        },
+        {
+            "name": "glossy-vinyl-disc"
+        },
+        {
+            "name": "nb-vinyl-disc"
+        },
+        {
+            "name": "pizza-vinyl-disc"
+        },
+        {
+            "name": "pride-vinyl-disc"
+        },
+        {
+            "name": "trans-vinyl-disc"
+        },
+        {
+            "name": "ttd-vinyl-disc"
+        }
+    ]
+}
