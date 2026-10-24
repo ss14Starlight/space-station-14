@@ -11,12 +11,20 @@ namespace Content.Shared.Changeling.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class ChangelingIdentityComponent : Component
 {
+    #region Starlight
+    /// <summary>
+    /// Whether the stored identities belong to a hive and must survive this carrier's cleanup.
+    /// </summary>
+    public bool SharedStorage;
+    #endregion Starlight
+
     /// <summary>
     /// The list of entities that exist on a paused map. They are paused clones of the victims that the ling has consumed, with all relevant components copied from the original.
     /// </summary>
     // TODO: Store a reference to the original entity as well so you cannot infinitely devour somebody. Currently very tricky due the inability to send over EntityUid if the original is ever deleted. Can be fixed by something like WeakEntityReference.
     [DataField, AutoNetworkedField]
     public List<EntityUid> ConsumedIdentities = new();
+
 
     /// <summary>
     /// The currently assumed identity.

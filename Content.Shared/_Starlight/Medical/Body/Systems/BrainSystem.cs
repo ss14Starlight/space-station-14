@@ -25,7 +25,8 @@ public sealed partial class BrainSystem : EntitySystem
     private void HandleMind(EntityUid newEntity, EntityUid oldEntity)
     {
         if (TerminatingOrDeleted(newEntity) || TerminatingOrDeleted(oldEntity)
-            || HasComp<ChangelingComponent>(newEntity) || HasComp<ChangelingComponent>(oldEntity))
+            || HasComp<ChangelingComponent>(newEntity) || HasComp<ChangelingComponent>(oldEntity)
+            || HasComp<ChangelingColonyMemberComponent>(newEntity) || HasComp<ChangelingColonyMemberComponent>(oldEntity))
             return;
 
         EnsureComp<MindContainerComponent>(newEntity);

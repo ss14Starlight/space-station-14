@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by ZerlGray with OpenAI image generation.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "alive",
+      "directions": 4,
+      "delays": [
+        [
+          0.18,
+          0.18,
+          0.18,
+          0.18
+        ],
+        [
+          0.18,
+          0.18,
+          0.18,
+          0.18
+        ],
+        [
+          0.18,
+          0.18,
+          0.18,
+          0.18
+        ],
+        [
+          0.18,
+          0.18,
+          0.18,
+          0.18
+        ]
+      ]
+    },
+    {
+      "name": "dead",
+      "directions": 4
+    }
+  ]
+}

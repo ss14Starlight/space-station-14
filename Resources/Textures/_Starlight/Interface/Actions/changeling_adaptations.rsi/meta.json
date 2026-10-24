@@ -14,16 +14,28 @@
       "name": "shock-hand"
     },
     {
+      "name": "collective"
+    },
+    {
       "name": "pain-suppression"
     },
     {
+      "name": "rupture"
+    },
+    {
       "name": "organic-emag"
+    },
+    {
+      "name": "possession"
     },
     {
       "name": "evolution-upgrade"
     },
     {
       "name": "breathing"
+    },
+    {
+      "name": "neuro-bite"
     }
   ]
 }

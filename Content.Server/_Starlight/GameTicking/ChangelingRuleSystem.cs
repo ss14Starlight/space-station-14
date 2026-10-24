@@ -82,6 +82,8 @@ public sealed partial class ChangelingRuleSystem : GameRuleSystem<SLChangelingRu
         store.CurrencyWhitelist.Add(Currency);
         store.Balance[Currency] = startingEvolutionPoints;
 
+        EntityManager.System<Content.Server._Starlight.Changeling.ChangelingSystem>().EnsureHive(target);
+
         rule.ChangelingMinds.Add(mindId);
 
         foreach (var objective in rule.Objectives)

@@ -40,7 +40,9 @@ public sealed partial class ChangelingSystem
             _blood.TryModifyBloodLevel((uid, blood), blood.BloodReferenceSolution.Volume * fraction * seconds);
         }
 
-        if (!ling.Evolved || !TryComp<BodyComponent>(uid, out var body))
+        if (!ling.Evolved || HasComp<ChangelingMindspaceComponent>(uid)
+            || TryComp<ChangelingColonyMemberComponent>(uid, out var member) && member.IsFragment
+            || !TryComp<BodyComponent>(uid, out var body))
             return;
 
         foreach (var (organ, _) in _body.GetBodyOrgans(uid, body))
@@ -129,7 +131,7 @@ public sealed partial class ChangelingSystem
                 var grown = Spawn(prototype, Transform(uid).Coordinates);
                 var grownPart = Comp<BodyPartComponent>(grown);
                 _body.TryCreatePartSlot(current.Part, childSlot, grownPart.PartType, out _, current.Part.Comp);
-                if (existing is { } old && !TryDetachBodyPart(uid, old))
+                if (existing is { } old && !DetachRegeneratingProsthesis(uid, old))
                 {
                     QueueDel(grown);
                     return false;
@@ -170,14 +172,33 @@ public sealed partial class ChangelingSystem
         return false;
     }
 
-    private bool TryDetachBodyPart(EntityUid uid, EntityUid part)
+    private bool DetachRegeneratingProsthesis(EntityUid uid, EntityUid part)
     {
-        if (TryComp<HumanoidAppearanceComponent>(uid, out var appearance)
-            && TryComp<BodyComponent>(uid, out var anatomy) && TryComp<BodyPartComponent>(part, out var limb)
+        ChangelingColonyComponent? colony = null;
+        if (TryComp<ChangelingColonyMemberComponent>(uid, out var member))
+            TryComp(member.Mind, out colony);
+        var suppressed = colony?.SuppressAnimation ?? false;
+        if (colony != null)
+            colony.SuppressAnimation = true;
+        try
+        {
+            return TryDetachBodyPart(uid, part);
+        }
+        finally
+        {
+            if (colony != null)
+                colony.SuppressAnimation = suppressed;
+        }
+    }
+
+    private bool TryDetachBodyPart(EntityUid body, EntityUid part)
+    {
+        if (TryComp<HumanoidAppearanceComponent>(body, out var appearance)
+            && TryComp<BodyComponent>(body, out var anatomy) && TryComp<BodyPartComponent>(part, out var limb)
             && limb.PartType != BodyPartType.Torso)
-            return _bodyLimbs.Amputatate((uid, Transform(uid), appearance, anatomy),
+            return _bodyLimbs.Amputatate((body, Transform(body), appearance, anatomy),
                 (part, Transform(part), MetaData(part), limb));
         return _bodyContainers.TryGetContainingContainer((part, null, null), out var container)
-            && _bodyContainers.Remove(part, container, force: true, destination: Transform(uid).Coordinates);
+            && _bodyContainers.Remove(part, container, force: true, destination: Transform(body).Coordinates);
     }
 }

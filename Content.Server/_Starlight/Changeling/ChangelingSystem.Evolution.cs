@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Shared._Starlight.Changeling;
 using Content.Shared.Actions;
+using Content.Shared.Body.Part;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Changeling.Systems;
 using Content.Shared.Mind;
@@ -15,15 +17,6 @@ public sealed partial class ChangelingSystem
     [Dependency] private RetractableItemActionSystem _retractable = default!;
     [Dependency] private ChangelingDevourSystem _devour = default!;
 
-    [SubscribeLocalEvent]
-    private void OnEvolveAdaptations(EntityUid uid, ChangelingComponent ling, EvolveChangelingEvent args)
-    {
-        if (ling.Evolved)
-            return;
-        ling.Evolved = true;
-        ApplyBodyEvolution(uid, ling);
-    }
-
     private float ChemicalCost(ChangelingComponent ling, ChangelingActionComponent action)
         => ling.Evolved ? action.EvolvedChemicalCost ?? action.ChemicalCost : action.ChemicalCost;
 
@@ -32,6 +25,22 @@ public sealed partial class ChangelingSystem
     {
         if (mind.OwnedEntity is { } body && TryComp<ChangelingComponent>(body, out var ling))
             ApplyActionEvolution(ling, args.Action);
+        RefreshHiveFragmentActions(uid);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnEvolutionMindActionRemoved(EntityUid uid, MindComponent mind, ref ActionRemovedEvent args)
+        => RefreshHiveFragmentActions(uid);
+
+    private void RefreshHiveFragmentActions(EntityUid mind)
+    {
+        if (!TryComp<ChangelingColonyComponent>(mind, out var colony))
+            return;
+        foreach (var body in colony.Members.ToArray())
+        {
+            if (!TerminatingOrDeleted(body))
+                RefreshFragmentActions(body, colony);
+        }
     }
 
     [SubscribeLocalEvent]
@@ -44,8 +53,8 @@ public sealed partial class ChangelingSystem
             return;
         var iconState = MetaData(action).EntityPrototype?.ID switch
         {
-            "ActionRetractableItemArmBlade" => "armblade-plus",
-            "ActionShriekDissonant" => "shriek_resonant",
+            "ActionRetractableItemArmBlade" or "ActionChangelingFragmentArmblade" => "armblade-plus",
+            "ActionShriekDissonant" or "ActionChangelingFragmentShriek" => "shriek_resonant",
             "ActionToggleSpacesuit" => "chitinous_armor",
             _ => null,
         };
@@ -56,7 +65,7 @@ public sealed partial class ChangelingSystem
             _actions.SetCanTargetSelf(action, true);
         if (!TryComp<RetractableItemActionComponent>(action, out var retractable))
             return;
-        if (MetaData(action).EntityPrototype?.ID == "ActionRetractableItemArmBlade")
+        if (MetaData(action).EntityPrototype?.ID is "ActionRetractableItemArmBlade" or "ActionChangelingFragmentArmblade")
             _retractable.SetPrototype((action, retractable), "ArmBladePlus");
     }
 
@@ -75,6 +84,18 @@ public sealed partial class ChangelingSystem
             UpdateEnhancedEyes(uid, ling);
         if (ling.StealthEnabled)
             ConfigureChameleon(uid, ling);
+        if (TryComp<ChangelingColonyMemberComponent>(uid, out var member) && member.IsFragment && !member.IsBlood
+            && TryComp<BodyPartComponent>(uid, out var part))
+        {
+            member.EvolvedAction = part.PartType switch
+            {
+                BodyPartType.Arm or BodyPartType.Hand => "ActionChangelingFragmentArmblade",
+                BodyPartType.Head => "ActionChangelingFragmentShriek",
+                BodyPartType.Leg or BodyPartType.Foot => "ActionChangelingFragmentChameleon",
+                _ => null,
+            };
+            EnsureFragmentHands(uid, part);
+        }
         _speed.RefreshMovementSpeedModifiers(uid);
         Dirty(uid, ling);
     }

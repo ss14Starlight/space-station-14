@@ -527,6 +527,7 @@ public partial class SharedBodySystem
         sprintSpeed *= speedFactor;
         acceleration *= speedFactor;
 
+
         minSpeedMod /= body.RequiredLegs;
         maxSpeedMod /= body.RequiredLegs;
         // 🌟Starlight🌟 End

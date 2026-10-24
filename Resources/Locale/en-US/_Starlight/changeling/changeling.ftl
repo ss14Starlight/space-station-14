@@ -43,6 +43,7 @@ changeling-strength-disabled = Your muscles relax.
 evolutionmenu-evolving-eyes-desc = Protect your eyes from flashes and see in darkness. Evolution also reveals heat signatures through walls. Toggle at will.
 evolutionmenu-evolving-chameleon-desc = Cloak your body to blend into your surroundings. Costs 15 chemicals to toggle and 1.25 per second while active. Evolution lets you move without revealing yourself and reduces upkeep to 0.5 chemicals per second.
 changeling-regrown = Your { $part } has regenerated.
+changeling-absorb-fragment = We consume the fragment and replenish our biomass.
 
 evolutionmenu-evolution-name = Evolution
 evolutionmenu-evolution-desc = Permanently evolve your hive's abilities, including future purchases. Strengthen armblades, chemistry, shock hands, regeneration, pain suppression, hacking, camouflage, muscles, eyes and stasis. Halve devour and possession stages. Unlock specialized abilities for fragments and optional living blood. Costs 10 evolution points, once.

@@ -62,14 +62,16 @@ changeling-chemistry-status-paused = Synthesis paused: insufficient chemicals or
 evolutionmenu-sting-infect-name = Infection Sting
 evolutionmenu-sting-infect-desc = Awaken an independent changeling in an organic victim. They retain their mind and enter regenerative stasis with half the usual starting evolution points. Costs 2 evolution points once the transformation is complete.
 
-# Legacy Starlight changeling actions.
+# Legacy changeling actions.
 evolutionmenu-sting-burn-name = Bloodburn Sting
+
 evolutionmenu-sting-burn-desc =
     Inject an organic target with a cocktail of chemicals that burns their blood and disorients them.
     May be used while under the effects of Lesser Form.
     Costs 35 chemicals.
 
 evolutionmenu-sting-drain-name = Draining Sting
+
 evolutionmenu-sting-drain-desc =
     Inject an organic target with a cocktail of chemicals that quickly erode their hunger and thirst.
     May be used while under the effects of Lesser Form.

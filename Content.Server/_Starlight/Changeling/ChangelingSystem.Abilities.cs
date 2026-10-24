@@ -63,6 +63,8 @@ public sealed partial class ChangelingSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnOpenEvolutionMenu(EntityUid uid, ChangelingComponent comp, ref OpenEvolutionMenuEvent args)
     {
+        if (TryGetColony(uid, out var member, out _) && !IsHiveMaster(uid, member))
+            return;
         if (!TryComp<StoreComponent>(uid, out var store))
             return;
 
@@ -111,7 +113,8 @@ public sealed partial class ChangelingSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnDevourEvolutionReward(EntityUid uid, ChangelingComponent comp, ref ChangelingDevourFinishedEvent args)
     {
-        if (!args.Completed || args.Handled || HasComp<ChangelingInfectionComponent>(uid))
+        if (!args.Completed || args.Handled || HasComp<ChangelingInfectionComponent>(uid)
+            || TryComp<ChangelingColonyMemberComponent>(uid, out var member) && member.IsFragment)
             return;
         AwardEvolutionPoints(uid, args.Target);
     }
@@ -146,6 +149,13 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (TryComp<PerishableComponent>(target, out var perishable))
             _rotting.SetRotAfter(target, TimeSpan.FromMinutes(20), perishable);
 
+        if (TryComp<ChangelingColonyMemberComponent>(target, out var fragment) && (fragment.IsFragment || fragment.IsBlood))
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-absorb-fragment"), uid, uid);
+            AbsorbHiveMind(uid, target);
+            return;
+        }
+
         var popup = Loc.GetString("changeling-absorb-end-self-ling");
         var bonusChemicals = 0f;
         if (TryComp<ChangelingComponent>(target, out var targetComp))
@@ -171,20 +181,22 @@ public sealed partial class ChangelingSystem : EntitySystem
         _popup.PopupEntity(popup, uid, uid);
         comp.MaxChemicals += bonusChemicals;
 
-        var owner = _mind.GetMind(uid);
+        var owner = TryGetColony(uid, out var member, out _) ? member.Mind : _mind.GetMind(uid);
         if (owner is { } mindId && TryComp<Content.Shared.Mind.MindComponent>(mindId, out var mind))
             if (_mind.TryGetObjectiveComp<AbsorbConditionComponent>(mindId, out var objective, mind))
                 objective.Absorbed += 1;
+        AbsorbHiveMind(uid, target);
     }
 
     private void AwardEvolutionPoints(EntityUid uid, EntityUid target)
     {
-        if (HasComp<AbsorbedComponent>(target))
+        if (HasComp<AbsorbedComponent>(target)
+            || TryComp<ChangelingColonyMemberComponent>(target, out var fragment) && (fragment.IsFragment || fragment.IsBlood))
             return;
         var points = HasComp<ChangelingComponent>(target) ? 10 : HasComp<HumanoidAppearanceComponent>(target) ? 2 : 0;
         if (points == 0)
             return;
-        var owner = uid;
+        var owner = TryGetColony(uid, out _, out var colony) && colony.Core.IsValid() ? colony.Core : uid;
         if (!TryComp<StoreComponent>(owner, out var store))
         {
             Log.Error($"Cannot award evolution points to {ToPrettyString(uid)}: missing store on {ToPrettyString(owner)}.");
@@ -195,7 +207,12 @@ public sealed partial class ChangelingSystem : EntitySystem
             Log.Error($"Cannot award evolution points to {ToPrettyString(uid)}: store {ToPrettyString(owner)} rejected EvolutionPoint.");
             return;
         }
-        _store.UpdateUserInterface(uid, uid, store);
+        var stores = EntityQueryEnumerator<StoreComponent>();
+        while (stores.MoveNext(out var body, out var sharedStore))
+        {
+            if (ReferenceEquals(sharedStore.Balance, store.Balance) && _chemistryUi.IsUiOpen(body, StoreUiKey.Key))
+                _store.UpdateUserInterface(body, body, sharedStore);
+        }
     }
 
     [SubscribeLocalEvent]
@@ -610,7 +627,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [SubscribeLocalEvent(before: [typeof(RetractableItemActionSystem)])]
     private void OnAttemptLingAction(Entity<ChangelingActionComponent> ent, ref ActionAttemptEvent ev)
     {
-        if (ev.Cancelled)
+        if (ev.Cancelled || !IsFragmentActionAllowed(ev.User, ent.Owner))
         {
             ev.Cancelled = true;
             return;

@@ -1,3 +1,5 @@
+using Content.Shared.Body.Part;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Restrict;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
@@ -17,11 +19,23 @@ public sealed partial class ChangelingEvolutionSystem : EntitySystem
         => args.Cancel();
 
     [SubscribeLocalEvent]
+    private void OnHivePickupAttempt(Entity<ChangelingColonyMemberComponent> ent, ref GettingPickedUpAttemptEvent args)
+        => args.Cancel();
+
+    [SubscribeLocalEvent]
     private void OnEquipHandAttempt(Entity<ChangelingComponent> ent, ref BeforeGettingEquippedHandEvent args)
         => args.Cancelled = true;
 
     [SubscribeLocalEvent]
+    private void OnHiveEquipHandAttempt(Entity<ChangelingColonyMemberComponent> ent, ref BeforeGettingEquippedHandEvent args)
+        => args.Cancelled = true;
+
+    [SubscribeLocalEvent]
     private void OnCharacterPickupAttempt(Entity<ChangelingComponent> ent, ref DoAfterAttemptEvent<RestrictNestingItemPickupDoAfterEvent> args)
+        => args.Cancel();
+
+    [SubscribeLocalEvent]
+    private void OnHiveCharacterPickupAttempt(Entity<ChangelingColonyMemberComponent> ent, ref DoAfterAttemptEvent<RestrictNestingItemPickupDoAfterEvent> args)
         => args.Cancel();
 
     /// <summary>
@@ -81,6 +95,10 @@ public sealed partial class ChangelingEvolutionSystem : EntitySystem
         ent.Comp.OriginalStrengthPrying = null;
     }
 
+    private bool IsEvolvedTorso(EntityUid uid)
+        => TryComp<ChangelingColonyMemberComponent>(uid, out var member) && member.IsFragment
+           && TryComp<BodyPartComponent>(uid, out var part) && part.PartType == BodyPartType.Torso;
+
     [SubscribeLocalEvent]
     private void OnMeleeDamage(Entity<ChangelingComponent> ent, ref GetMeleeDamageEvent args)
     {
@@ -88,6 +106,8 @@ public sealed partial class ChangelingEvolutionSystem : EntitySystem
             return;
         if (ent.Comp.StrainedMusclesActive)
             args.Damage *= ent.Comp.Evolved ? 3f : 2f;
+        if (ent.Comp.Evolved && IsEvolvedTorso(ent))
+            args.Damage *= 1.5f;
     }
 
     [SubscribeLocalEvent]
@@ -95,7 +115,7 @@ public sealed partial class ChangelingEvolutionSystem : EntitySystem
     {
         if (!ent.Comp.Evolved || ent.Comp.Biomass < 1)
             return;
-        var coefficient = ent.Comp.StrainedMusclesActive ? 0.8f : 1f;
+        var coefficient = IsEvolvedTorso(ent) ? 0.75f : ent.Comp.StrainedMusclesActive ? 0.8f : 1f;
         if (coefficient == 1)
             return;
         args.Damage = args.Damage.Clone();

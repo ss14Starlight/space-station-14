@@ -8,7 +8,6 @@ using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Ensnaring.Components;
 using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Popups;
@@ -20,7 +19,6 @@ namespace Content.Server._Starlight.Changeling;
 public sealed partial class ChangelingSystem
 {
     [Dependency] private SharedCuffableSystem _cuffs = default!;
-    [Dependency] private BlindableSystem _legacyBlindness = default!;
     [Dependency] private SharedLatchSystem _latch = default!;
     [Dependency] private EnsnareableSystem _ensnareable = default!;
 
@@ -36,7 +34,7 @@ public sealed partial class ChangelingSystem
             || !TryComp<BlindableComponent>(args.Target, out var blindable) || blindable.IsBlind)
             return;
 
-        _legacyBlindness.AdjustEyeDamage((args.Target, blindable), 2);
+        _hiveBlindness.AdjustEyeDamage((args.Target, blindable), 2);
         _statusEffect.TryAddStatusEffectDuration(args.Target, "StatusEffectTemporaryBlindness", TimeSpan.FromSeconds(5));
         args.Handled = true;
     }
@@ -119,6 +117,18 @@ public sealed partial class ChangelingSystem
         // This replaces a carrier, rather than creating an independent one. The successful action's cost follows it.
         transformed.Resources = comp.Resources;
         transformed.IsInLesserForm = true;
+        if (TryGetColony(uid, out var member, out var colony))
+        {
+            AddColonyMember(monkey, member.Mind, colony);
+            colony.Members.Remove(uid);
+            if (colony.Active == uid)
+                colony.Active = monkey;
+            foreach (var anchor in colony.Minds.Values)
+            {
+                if (!TerminatingOrDeleted(anchor) && Comp<ChangelingMindspaceComponent>(anchor).Viewing == uid)
+                    ObserveHiveBody(anchor, Comp<ChangelingMindspaceComponent>(anchor), monkey);
+            }
+        }
         Dirty(monkey, transformed);
         PlayMeatySound(monkey, transformed);
         var message = Loc.GetString("changeling-transform-others", ("user", Identity.Entity(monkey, EntityManager)));

@@ -72,7 +72,7 @@ public abstract partial class SharedChangelingIdentitySystem : EntitySystem
     /// <param name="ent">the changeling</param>
     public void CleanupChangelingNullspaceIdentities(Entity<ChangelingIdentityComponent> ent)
     {
-        if (_net.IsClient)
+        if (_net.IsClient || ent.Comp.SharedStorage) // Starlight: the hive owns shared identity storage.
             return;
 
         foreach (var consumedIdentity in ent.Comp.ConsumedIdentities)
@@ -135,6 +135,20 @@ public abstract partial class SharedChangelingIdentitySystem : EntitySystem
 
         Dirty(ent);
         HandlePvsOverride(ent, clone.Value);
+        // Starlight-start
+        if (ent.Comp.SharedStorage)
+        {
+            var query = EntityQueryEnumerator<ChangelingIdentityComponent, ActorComponent>();
+            while (query.MoveNext(out var uid, out var identity, out var actor))
+            {
+                if (uid == ent.Owner || !identity.SharedStorage
+                    || !ReferenceEquals(identity.ConsumedIdentities, ent.Comp.ConsumedIdentities))
+                    continue;
+                Dirty(uid, identity);
+                _pvsOverrideSystem.AddSessionOverride(clone.Value, actor.PlayerSession);
+            }
+        }
+        // Starlight-end
 
         return clone;
     }

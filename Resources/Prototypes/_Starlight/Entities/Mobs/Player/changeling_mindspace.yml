@@ -1,0 +1,14 @@
+- type: entity
+  id: ChangelingMindspace
+  name: absorbed consciousness
+  categories: [HideSpawnMenu]
+  components:
+  - type: ChangelingMindspace
+  - type: Eye
+  - type: Examiner
+  - type: Input
+    context: human
+  - type: MindContainer
+  - type: Actions
+  - type: ActionsContainer
+  - type: UserInterface

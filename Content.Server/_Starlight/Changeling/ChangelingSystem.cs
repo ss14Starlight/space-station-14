@@ -121,10 +121,15 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
+        UpdateColonies();
+
         var query = EntityQueryEnumerator<ChangelingComponent>();
 
         while (query.MoveNext(out var uid, out var comp))
         {
+            // Only genetics belong to the hive. Each physical carrier maintains its own reserves.
+            if (HasComp<ChangelingMindspaceComponent>(uid))
+                continue;
             if (_timing.CurTime >= comp.ChemicalNextUpdateTime)
             {
                 comp.ChemicalNextUpdateTime = _timing.CurTime + comp.ChemicalUpdateCooldown;
@@ -380,7 +385,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-sting-extract-max"), uid, uid);
         else comp.AbsorbedDNA.Add(data);
 
-        var owner = _mind.GetMind(uid);
+        var owner = TryGetColony(uid, out var member, out _) ? member.Mind : _mind.GetMind(uid);
         if (countObjective && owner is { } mindId && TryComp<MindComponent>(mindId, out var mind)
         && _mind.TryGetObjectiveComp<StealDNAConditionComponent>(mindId, out var objective, mind))
         {
@@ -395,7 +400,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     private ChangelingComponent? CopyChangelingComponent(EntityUid source, EntityUid target, ChangelingComponent comp)
     {
         var newComp = EnsureComp<ChangelingComponent>(target);
-        newComp.Resources = comp.Resources;
+        newComp.Resources.Genetics = comp.Resources.Genetics;
         newComp.AbsorbedDNA = comp.AbsorbedDNA;
         newComp.AbsorbedDNAIndex = comp.AbsorbedDNAIndex;
         newComp.MaxAbsorbedDNA = comp.MaxAbsorbedDNA;
@@ -560,6 +565,11 @@ public sealed partial class ChangelingSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnStartup(EntityUid uid, ChangelingComponent comp, ref ComponentStartup args)
     {
+        if (HasComp<ChangelingMindspaceComponent>(uid))
+            return;
+        var members = EntityQueryEnumerator<ChangelingColonyMemberComponent>();
+        while (members.MoveNext(out var member, out _))
+            _factionSystem.IgnoreEntity(member, uid);
 
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
@@ -623,6 +633,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         _respirator.SetEnabled(ent.Owner, true);
         RemoveStingChemistry(ent.Owner);
     }
+
 
     #endregion
 }

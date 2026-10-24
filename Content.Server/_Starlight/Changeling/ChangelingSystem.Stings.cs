@@ -7,6 +7,7 @@ using Content.Shared.Changeling;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Changeling.Systems;
 using Content.Shared.DoAfter;
+using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs;
 using Content.Shared.Roles;
@@ -84,7 +85,7 @@ public sealed partial class ChangelingSystem
 
     private bool IsPossessable(EntityUid target)
         => !TerminatingOrDeleted(target) && HasComp<BodyComponent>(target) && HasComp<BloodstreamComponent>(target)
-           && !HasComp<ChangelingComponent>(target)
+           && !HasComp<ChangelingComponent>(target) && !HasComp<ChangelingColonyMemberComponent>(target)
            && !HasComp<AbsorbedComponent>(target) && !_tag.HasTag(target, IpcTag);
 
     private bool CanInfect(EntityUid target)
@@ -102,7 +103,7 @@ public sealed partial class ChangelingSystem
     }
 
     private bool CanContinueInfection(EntityUid uid, ChangelingInfectionComponent infection, EntityUid? target)
-        => target == infection.Target && HasComp<ChangelingComponent>(uid) && _mobState.IsAlive(uid)
+        => target == infection.Target && TryComp<ChangelingComponent>(uid, out var comp) && _mobState.IsAlive(uid)
            && CanInfect(infection.Target)
            && HasInfectionPoints(uid)
            && _mind.TryGetMind(uid, out var mind, out _) && mind == infection.Mind

@@ -1,0 +1,20 @@
+evolutionmenu-colony-name = Colony
+evolutionmenu-colony-desc = Detach living limbs, rupture your body even after death, switch carriers and possess organic bodies. Evolution unlocks specialized fragment abilities and living blood. Costs 10 evolution points.
+changeling-colony-title = Hive
+changeling-colony-bodies-tab = Bodies
+changeling-colony-parts-tab = Sever a part
+changeling-colony-confirm-title = Confirm hive action
+changeling-colony-confirm-detach = Tear off {$part}? It will become a living hive body. Costs 15 chemicals and 3–8 biomass; you lose this part from your current body.
+changeling-colony-confirm-rupture = Tear your entire body into living parts? Your current body will be destroyed. Costs 20 biomass.
+changeling-colony-confirm-yes = Yes
+changeling-colony-confirm-no = No
+changeling-colony-parts = Tear off a part (15 chemicals; 3–8 biomass):
+changeling-colony-carriers = Bodies of the hive:
+changeling-colony-detach = Tear off: {$part}
+changeling-colony-switch = Control: {$part}
+
+changeling-hive-leave = Return to mindspace
+changeling-hive-observe = Observe
+changeling-hive-enter = Enter body
+changeling-hive-vacant = vacant
+changeling-hive-body = {$body} — {$occupant}

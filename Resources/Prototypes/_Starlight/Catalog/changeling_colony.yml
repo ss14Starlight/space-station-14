@@ -1,0 +1,14 @@
+- type: listing
+  id: EvolutionMenuColony
+  name: evolutionmenu-colony-name
+  description: evolutionmenu-colony-desc
+  icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: collective }
+  productEvent: !type:LearnChangelingColonyEvent {}
+  raiseProductEventOnUser: true
+  disableRefund: true
+  cost:
+    EvolutionPoint: 10
+  categories: [ChangelingAbilityUtility]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

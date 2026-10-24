@@ -56,7 +56,12 @@ public sealed partial class ChangelingSystem
     }
 
     private bool CanManageStingChemistry(EntityUid uid, ChangelingComponent comp, EntityUid actor)
-        => actor == uid && comp.HasChemicalSting;
+    {
+        if (actor != uid || !comp.HasChemicalSting || HasComp<ChangelingMindspaceComponent>(uid))
+            return false;
+        return !TryComp<ChangelingColonyMemberComponent>(uid, out var member)
+            || !member.IsFragment && TryComp<ChangelingColonyComponent>(member.Mind, out var colony) && IsHivePlayer(uid, colony);
+    }
 
     [SubscribeLocalEvent]
     private void OnOpenChemistry(EntityUid uid, ChangelingComponent comp, ref OpenChangelingChemistryEvent args)
