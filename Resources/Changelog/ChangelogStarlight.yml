@@ -1,20 +1,4 @@
 Entries:
-- author: baltdev
-  changes:
-  - message: Added a snout marking option to Laspi.
-    type: Add
-  id: 409325
-  time: '2026-10-10T09:47:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6598
-- author: Johnny
-  changes:
-  - message: Added an ERT loadout radio.
-    type: Add
-  - message: Changed ERT security to use the new loadout radio.
-    type: Tweak
-  id: 409326
-  time: '2026-10-10T10:22:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6605
 - author: Rinary
   changes:
   - message: Changed space occlusion logic, now you won't hear sounds from another players while standing in atmosphere, you won't hear anyone else sounds while standing in space(only yours).
@@ -2851,4 +2835,18 @@ Entries:
   id: 409724
   time: '2026-10-24T14:31:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6785
+- author: wonderfulnewworld, ItsMaitake
+  changes:
+  - message: Added new Cryptographic Sequencer/Emag functionality to over 42 machines and vendors!
+    type: Add
+  id: 409725
+  time: '2026-10-24T14:31:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6794
+- author: wonderfulnewworld, ItsMaitake
+  changes:
+  - message: Departmental clothing vendor drobes now have Syndicate specific clothing types when emagged, instead of just being Operative Jumpsuits/Jumpskirts.
+    type: Tweak
+  id: 409726
+  time: '2026-10-24T14:31:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6794
 Order: -1
