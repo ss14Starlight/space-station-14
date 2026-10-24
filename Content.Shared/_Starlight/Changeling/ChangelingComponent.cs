@@ -1,6 +1,7 @@
 using Content.Shared.Humanoid;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
+using Content.Shared.Prying.Components;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -9,7 +10,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Changeling;
 
 [RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState]
+[AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class ChangelingComponent : Component
 {
     #region Prototypes
@@ -46,6 +47,9 @@ public sealed partial class ChangelingComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool StrainedMusclesActive = false;
+
+    public PryingComponent? StrengthPrying;
+    public (bool Enabled, bool PryPowered, bool Force, float SpeedModifier)? OriginalStrengthPrying;
 
     public bool IsInLesserForm = false;
 

@@ -36,7 +36,10 @@ evolutionmenu-shock-hand-desc = Deliver concealed electrical strikes that stun y
 
 evolutionmenu-evolving-armblade-desc = Reshape your arm into a blade of flesh and bone. Costs 20 chemicals to grow or retract. Evolution transforms it into a more powerful blade.
 evolutionmenu-evolving-shriek-desc = Unleash an electromagnetic shriek that disrupts nearby electronics. Evolution also disorients living creatures and shatters lights. Costs 30 chemicals.
-evolutionmenu-evolving-muscles-desc = Push your muscles past their limits to run faster at the cost of stamina. Costs 30 chemicals to toggle. Evolution further increases speed, boosts melee damage by 25%, and reduces all damage taken by 20% while active.
+evolutionmenu-enhanced-strength-name = Enhanced Strength
+evolutionmenu-evolving-muscles-desc = Double your melee damage, move faster and force open powered or bolted airlocks. Welded doors remain sealed. Costs 3 chemicals per second while active. Evolution raises melee damage to three times normal, increases speed further and reduces all damage taken by 20%.
+changeling-strength-enabled = Your muscles surge with unnatural strength.
+changeling-strength-disabled = Your muscles relax.
 evolutionmenu-evolving-eyes-desc = Protect your eyes from flashes and see in darkness. Evolution also reveals heat signatures through walls. Toggle at will.
 evolutionmenu-evolving-chameleon-desc = Cloak your body to blend into your surroundings. Costs 15 chemicals to toggle and 1.25 per second while active. Evolution lets you move without revealing yourself and reduces upkeep to 0.5 chemicals per second.
 changeling-regrown = Your { $part } has regenerated.

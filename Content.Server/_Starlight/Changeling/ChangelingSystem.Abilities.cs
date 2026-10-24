@@ -52,6 +52,9 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private StomachSystem _stomach = default!;
     [Dependency] private TagSystem _tag = default!;
+    [Dependency] private ChangelingEvolutionSystem _evolution = default!;
+
+    private const float StrengthChemicalDrain = 3f;
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
 
@@ -376,6 +379,18 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
     private void OnToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp, ref ToggleStrainedMusclesEvent args)
     {
+        if (args.Handled)
+            return;
+        if (!comp.StrainedMusclesActive)
+        {
+            if (!CanActivateAdaptation(uid, comp))
+                return;
+            if (comp.Chemicals < StrengthChemicalDrain * (float) comp.ChemicalUpdateCooldown.TotalSeconds)
+            {
+                _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
+                return;
+            }
+        }
         ToggleStrainedMuscles(uid, comp);
         args.Handled = true;
     }
@@ -384,15 +399,17 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         if (!comp.StrainedMusclesActive)
         {
-            _popup.PopupEntity(Loc.GetString("changeling-muscles-start"), uid, uid);
+            _popup.PopupEntity(Loc.GetString("changeling-strength-enabled"), uid, uid);
             comp.StrainedMusclesActive = true;
         }
         else
         {
-            _popup.PopupEntity(Loc.GetString("changeling-muscles-end"), uid, uid);
+            _popup.PopupEntity(Loc.GetString("changeling-strength-disabled"), uid, uid);
             comp.StrainedMusclesActive = false;
         }
 
+        _evolution.RefreshStrength((uid, comp));
+        Dirty(uid, comp);
         _speed.RefreshMovementSpeedModifiers(uid);
         SetAbilityToggled<ToggleStrainedMusclesEvent>(uid, comp.StrainedMusclesActive);
         PlayMeatySound(uid, comp);

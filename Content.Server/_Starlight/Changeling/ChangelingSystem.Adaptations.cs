@@ -223,6 +223,8 @@ public sealed partial class ChangelingSystem
 
     private void StopAdaptations(EntityUid uid, ChangelingComponent comp)
     {
+        if (comp.StrainedMusclesActive)
+            ToggleStrainedMuscles(uid, comp);
         SetAdaptationAction(ref comp.RegenerationAction, null);
         StopPainSuppression(uid, comp);
         StopShockHand(comp);

@@ -46,7 +46,6 @@ using System.Numerics;
 using Content.Shared.Camera;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Components;
-using Content.Server.Gravity;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Jittering;
 using System.Linq;
@@ -94,7 +93,6 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private MovementSpeedModifierSystem _speed = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
-    [Dependency] private GravitySystem _gravity = default!;
     [Dependency] private SharedPuddleSystem _puddle = default!;
     [Dependency] private SharedJitteringSystem _jitter = default!;
     [Dependency] private NpcFactionSystem _factionSystem = default!;
@@ -230,9 +228,11 @@ public sealed partial class ChangelingSystem : EntitySystem
         var stamina = EnsureComp<StaminaComponent>(uid);
         if (comp.StrainedMusclesActive)
         {
-            _stamina.TakeStaminaDamage(uid, 7.5f, visual: false);
-            if (comp.Biomass < 1 || stamina.StaminaDamage >= stamina.CritThreshold || _gravity.IsWeightless(uid))
+            var drain = StrengthChemicalDrain * (float) comp.ChemicalUpdateCooldown.TotalSeconds;
+            if (comp.Biomass < 1 || comp.IsInStasis || _mobState.IsDead(uid) || comp.Chemicals < drain)
                 ToggleStrainedMuscles(uid, comp);
+            else
+                UpdateChemicals(uid, comp, -drain);
         }
 
         if (comp.StealthEnabled)

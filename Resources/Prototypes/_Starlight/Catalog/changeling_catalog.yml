@@ -44,7 +44,7 @@
 
 - type: listing
   id: EvolutionMenuCombatMuscles
-  name: evolutionmenu-combat-strainedmuscles-name
+  name: evolutionmenu-enhanced-strength-name
   description: evolutionmenu-evolving-muscles-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: strained_muscles }
   productAction: ActionToggleStrainedMuscles
