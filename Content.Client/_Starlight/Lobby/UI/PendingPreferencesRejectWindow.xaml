@@ -1,0 +1,15 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'pending-preferences-reject-window-title'}"
+               MinSize="400 220">
+    <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="8">
+        <Label Text="{Loc 'pending-preferences-reject-window-info'}" />
+        <TextEdit Name="ReasonEdit" MinHeight="120" VerticalExpand="True" HorizontalExpand="True">
+            <Label Name="Placeholder" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Text="{Loc 'pending-preferences-reject-window-placeholder'}" StyleClasses="PlaceholderText" />
+        </TextEdit>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4" HorizontalAlignment="Right">
+            <Button Name="CancelButton" Text="{Loc 'pending-preferences-reject-window-cancel'}" />
+            <Button Name="SubmitButton" Text="{Loc 'pending-preferences-reject-button'}" StyleClasses="ButtonColorRed" />
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

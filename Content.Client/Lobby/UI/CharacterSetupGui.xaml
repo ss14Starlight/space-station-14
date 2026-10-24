@@ -12,7 +12,7 @@
             <BoxContainer Orientation="Horizontal" MinSize="0 40">
                 <Label Text="{Loc 'character-setup-gui-character-setup-label'}"
                        Margin="8 0 0 0" VAlign="Center"
-                       StyleClasses="LabelHeadingBigger" />
+                       StyleClasses="LabelHeadingBigger" Name = "WindowHeader" /> <!--Starlight edit-->
 
                 <Button Name="StatsButton" HorizontalExpand="True"
                         Text="{Loc 'character-setup-gui-character-setup-stats-button'}"
@@ -31,6 +31,16 @@
                         StyleClasses="ButtonBig"/>
             </BoxContainer>
             <PanelContainer StyleClasses="highlight" MinHeight="2" />
+            <!-- Starlight begin -->
+            <BoxContainer Name="PendingReviewBar" Orientation="Horizontal" SeparationOverride="4" Margin="8 4" Visible="False">
+                <Label Name="PendingReviewLabel" HorizontalExpand="True" VAlign="Center" />
+                <Button Name="PendingToggleButton" Access="Public" />
+                <Button Name="PendingAcceptButton" Access="Public" Text="{Loc 'pending-preferences-accept-button'}"
+                        StyleClasses="ButtonColorGreen" />
+                <Button Name="PendingRejectButton" Access="Public" Text="{Loc 'pending-preferences-reject-button'}"
+                        StyleClasses="ButtonColorRed" />
+            </BoxContainer>
+            <!-- Starlight end -->
             <BoxContainer Orientation="Horizontal" VerticalExpand="True" SeparationOverride="0">
 
                 <!-- This box holds all the character pickers and job priority button, the left side of the window  -->
@@ -63,7 +73,7 @@
 
                 <!-- The "right" side of the window, where the character and priority editors are instantiated -->
                 <BoxContainer Name="CharEditor" HorizontalExpand="True" />
-                <BoxContainer Name="JobPriorityEditor" HorizontalExpand="True" Visible="False"/>
+                <BoxContainer Name="JobPriorityEditor" HorizontalExpand="True" Visible="False" Access="Public" /> <!-- Starlight edit -->
             </BoxContainer>
         </BoxContainer>
     </Control>

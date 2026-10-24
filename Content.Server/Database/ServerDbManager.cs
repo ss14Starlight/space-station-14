@@ -211,6 +211,10 @@ namespace Content.Server.Database
         /// 🌟Starlight🌟
         Task SetPlayerDataForAsync(NetUserId userId, StarLightModel.PlayerDataDTO data, CancellationToken cancel = default);
         Task<StarLightModel.PlayerDataDTO?> GetPlayerDataForAsync(NetUserId userId, CancellationToken cancel = default);
+        Task<StarLightModel.PendingPreference?> GetPendingPreferenceAsync(NetUserId userId, CancellationToken cancel = default);
+        Task SavePendingProfileAsync(NetUserId userId, NetUserId adminId, string adminName, int slot, string? data);
+        Task SavePendingJobPrioritiesAsync(NetUserId userId, NetUserId adminId, string adminName, Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities);
+        Task<bool> DeletePendingPreferenceAsync(NetUserId userId, int revision);
 
         #endregion
 
@@ -676,6 +680,26 @@ namespace Content.Server.Database
         {
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.SetPlayerDataForAsync(userId, data, cancel));
+        }
+        public Task<StarLightModel.PendingPreference?> GetPendingPreferenceAsync(NetUserId userId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPendingPreferenceAsync(userId, cancel));
+        }
+        public Task SavePendingProfileAsync(NetUserId userId, NetUserId adminId, string adminName, int slot, string? data)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SavePendingProfileAsync(userId, adminId, adminName, slot, data));
+        }
+        public Task SavePendingJobPrioritiesAsync(NetUserId userId, NetUserId adminId, string adminName, Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SavePendingJobPrioritiesAsync(userId, adminId, adminName, jobPriorities));
+        }
+        public Task<bool> DeletePendingPreferenceAsync(NetUserId userId, int revision)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeletePendingPreferenceAsync(userId, revision));
         }
 
         //🌟Starlight🌟 end

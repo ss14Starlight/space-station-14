@@ -2,6 +2,7 @@ using Content.Client._Starlight.Managers;
 using Content.Client.Administration.Managers;
 using Content.Client.FeedbackPopup;
 using Content.Client.Gameplay;
+using Content.Client.Lobby;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Client.UserInterface.Systems.Info;
 using Content.Shared.CCVar;
@@ -30,6 +31,7 @@ public sealed partial class EscapeUIController : UIController, IOnStateEntered<G
     [Dependency] private OptionsUIController _options = default!;
     [Dependency] private GuidebookUIController _guidebook = default!;
     [Dependency] private FeedbackPopupUIController _feedback = null!;
+    [Dependency] private IClientPreferencesManager _preferences = null!; // Starlight
 
     private Options.UI.EscapeMenu? _escapeWindow;
 
@@ -67,6 +69,16 @@ public sealed partial class EscapeUIController : UIController, IOnStateEntered<G
 
         _escapeWindow.OnClose += DeactivateButton;
         _escapeWindow.OnOpen += ActivateButton;
+
+        // Starlight begin
+        _escapeWindow.OnOpen += UpdatePendingPreferencesButton;
+        _preferences.OnPendingPreferencesReceived += UpdatePendingPreferencesButton;
+        _escapeWindow.PendingPreferencesButton.OnPressed += _ =>
+        {
+            CloseEscapeWindow();
+            UIManager.GetUIController<LobbyUIController>().StartPendingReview();
+        };
+        // Starlight end
 
         _escapeWindow.FeedbackButton.OnPressed += _ =>
         {
@@ -139,6 +151,7 @@ public sealed partial class EscapeUIController : UIController, IOnStateEntered<G
 
     public void OnStateExited(GameplayState state)
     {
+        _preferences.OnPendingPreferencesReceived -= UpdatePendingPreferencesButton; // Starlight
         if (_escapeWindow != null)
         {
             _escapeWindow.Dispose();
