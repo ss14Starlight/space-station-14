@@ -9,6 +9,7 @@ using Content.Shared.Wires;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes; // Starlight
 using Content.Shared.Emag.Components; //Starlight
+using Content.Shared.Mindshield.Components;
 
 namespace Content.Shared.Silicons.Laws;
 
@@ -36,6 +37,12 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
 
         if (_emag.CheckFlag(uid, EmagType.Interaction, args.EmagComponent)) // Starlight edit | allow bypass if differing factions
             return;
+        // Starlight start - no go if they're mindshielded
+        if (HasComp<MindShieldComponent>(uid))
+        {
+            _popup.PopupClient(Loc.GetString("law-emag-mindshielded"), uid, args.UserUid);
+            return;
+        } // Starlight end
 
         // prevent self-emagging
         if (uid == args.UserUid)
