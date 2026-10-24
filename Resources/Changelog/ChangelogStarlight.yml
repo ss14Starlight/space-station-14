@@ -1,18 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Changed and modernized mentor help.
-    type: Tweak
-  id: 409344
-  time: '2026-10-10T17:16:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6609
-- author: Rinary
-  changes:
-  - message: Changed separated chatbox, now it has smaller amount of buttons and some of not popular buttons hidden under dialog(... button).
-    type: Tweak
-  id: 409345
-  time: '2026-10-10T17:16:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6609
 - author: Floximo
   changes:
   - message: The secure terminal and its keycard counterparts have now power cells for reserve power.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409743
   time: '2026-10-24T19:10:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6838
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Improved the guidebook searching by alot.
+    type: Tweak
+  id: 409744
+  time: '2026-10-24T20:51:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6822
+- author: Scarlet Lightweaver.
+  changes:
+  - message: added color coding to the guidebook.
+    type: Add
+  id: 409745
+  time: '2026-10-24T20:51:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6822
 Order: -1
