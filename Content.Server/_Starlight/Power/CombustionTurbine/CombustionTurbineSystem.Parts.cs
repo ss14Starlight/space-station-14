@@ -21,9 +21,9 @@ public sealed partial class CombustionTurbineSystem
 
     public CombustionTurbinePartComponent? GetPart(Entity<CombustionTurbineStageComponent> ent)
         => _itemSlots.GetItemOrNull(ent, ent.Comp.PartSlot) is { } item
-           && TryComp<CombustionTurbinePartComponent>(item, out var part)
-            ? part
-            : null;
+        && TryComp<CombustionTurbinePartComponent>(item, out var part)
+        ? part
+        : null;
 
     private bool IsRunning(EntityUid uid)
         => GetRotor(uid) is { } rotor && (rotor.Comp.Enabled || rotor.Comp.Rpm > 0f);
