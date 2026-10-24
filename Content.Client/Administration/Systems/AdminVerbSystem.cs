@@ -59,7 +59,7 @@ namespace Content.Client.Administration.Systems
             if (_admin.HasAdminFlag(args.User, AdminFlags.Debug))
                 args.ExtraCategories.Add(VerbCategory.Debug);
 
-            if (_admin.HasAdminFlag(args.User, AdminFlags.Fun))
+            if (_admin.HasAdminFlag(args.User, AdminFlags.Smite)) // Starlight-edit: was Fun
                 args.ExtraCategories.Add(VerbCategory.Smite);
 
             if (_admin.HasAdminFlag(args.User, AdminFlags.Admin))
