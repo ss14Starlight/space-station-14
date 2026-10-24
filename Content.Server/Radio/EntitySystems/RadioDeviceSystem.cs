@@ -218,7 +218,7 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
         }
 
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
-        var message = args.OriginalChatMsg.Message; 
+        var message = args.OriginalChatMsg.Message;
         if (receiverComp != null)
             message = StationRadioServerSystem.Garble(message, receiverComp.Interference, _random);
         _chat.TrySendInGameICMessage(uid, message,

@@ -482,8 +482,7 @@ public sealed partial class BroadcastRecorderSystem : EntitySystem
             error = "broadcast-recorder-popup-no-tape";
         else if (!_power.IsPowered(ent.Owner))
             error = "broadcast-recorder-popup-no-power";
-        else if (!_stationRadio.TryGetLinkedPoweredServer(ent, out var serverUid)
-                 || !TryComp<StationRadioServerComponent>(serverUid, out var serverComp))
+        else if (!_stationRadio.TryGetLinkedPoweredServer(ent, out var serverUid) || !TryComp<StationRadioServerComponent>(serverUid, out var serverComp))
             error = "broadcast-recorder-popup-no-server";
         else
             server = (serverUid, serverComp);
