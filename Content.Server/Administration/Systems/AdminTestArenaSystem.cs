@@ -35,8 +35,8 @@ public sealed partial class AdminTestArenaSystem : EntitySystem
             return arenaMap;
 
         var path = _cfg.GetClientCVar(admin.Channel, StarlightCCVars.AdminArenaMapPath);
-        var init = _cfg.GetClientCVar(admin.Channel, StarlightCCVars.AdminArenaMapInit) ^
-            !_admin.HasAdminFlag(admin, AdminFlags.Mapping);
+        var init = !_admin.HasAdminFlag(admin, AdminFlags.Mapping) ||
+            _cfg.GetClientCVar(admin.Channel, StarlightCCVars.AdminArenaMapInit);
         // Admins must have mapping perms to utilize this.
         if (!string.IsNullOrWhiteSpace(path) && _admin.HasAdminFlag(admin, AdminFlags.Mapping))
         {
