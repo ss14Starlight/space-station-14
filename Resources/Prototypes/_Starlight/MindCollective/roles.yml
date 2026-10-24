@@ -1,0 +1,48 @@
+- type: mindCollectiveRole
+  id: MindCollectiveMember
+  name: mind-collective-role-member
+  permissions:
+  - body.enter
+  - body.observe
+
+- type: mindCollectiveRole
+  id: MindCollectiveOperator
+  name: mind-collective-role-operator
+  priority: 10
+  permissions:
+  - body.enter
+  - body.observe
+  - body.control
+  control:
+    fullControl: true
+
+- type: mindCollectiveRole
+  id: MindCollectiveSteward
+  name: mind-collective-role-steward
+  priority: 50
+  permissions:
+  - body.enter
+  - body.observe
+  - body.control
+  - body.takeover
+  - mind-collective.recall
+  - mind-collective.expel
+  - mind-collective.roles
+  control:
+    fullControl: true
+
+- type: mindCollectiveRole
+  id: MindCollectiveOwner
+  name: mind-collective-role-owner
+  unique: true
+  priority: 100
+  permissions:
+  - body.enter
+  - body.observe
+  - body.control
+  - body.takeover
+  - mind-collective.recall
+  - mind-collective.expel
+  - mind-collective.roles
+  control:
+    fullControl: true

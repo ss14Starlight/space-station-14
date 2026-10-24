@@ -28,6 +28,9 @@ public sealed partial class MindCollectiveSystem
         var prefixed = args.Message.StartsWith("+h ", StringComparison.OrdinalIgnoreCase);
         if (!observer && !prefixed)
             return;
+        if (observer && !prefixed && TryComp<MindCollectiveObserverComponent>(args.Source, out var view)
+            && view.AllowWorldSpeech)
+            return;
         args.Handled |= observer;
         if (!TryGetCollective(args.Source, out var id, out var collective))
             return;
@@ -40,11 +43,8 @@ public sealed partial class MindCollectiveSystem
         var name = Comp<MindComponent>(mind).CharacterName ?? Name(args.Source);
         var content = FormattedMessage.EscapeText(text);
         var wrapped = Loc.GetString("mind-collective-chat", ("name", FormattedMessage.EscapeText(name)), ("message", content));
-        var recipients = collective.Minds.Keys
-            .Select(m => TryComp<MindComponent>(m, out var participant) ? participant.UserId : null)
-            .Select(user => user is { } uid && _players.TryGetSessionById(uid, out var session) ? session : null)
-            .Where(session => session?.AttachedEntity is { } actor && TryGetActorMind(actor, id, collective, out _))
-            .Select(session => session!.Channel).ToList();
+        var recipients = GetCommunicationAudience(args.Source, MindCollectiveCommunicationKind.Chat)
+            .Select(session => session.Channel).ToList();
         _collectiveChat.ChatMessageToMany(ChatChannel.Radio, content, wrapped, EntityUid.Invalid, false, false, recipients);
         _collectiveLog.Add(LogType.Chat, LogImpact.Low, $"Collective message from {ToPrettyString(args.Source):player}: {text}");
     }
@@ -63,7 +63,7 @@ public sealed partial class MindCollectiveSystem
             var distance = args.VoiceRange;
             foreach (var body in collective.Bodies)
             {
-                if (!IsRegisteredBody(view.Collective, collective, body))
+                if (!view.Bodies.Contains(body) || !IsRegisteredBody(view.Collective, collective, body))
                     continue;
                 var xform = Transform(body);
                 if (source.MapID != xform.MapID
@@ -83,9 +83,14 @@ public sealed partial class MindCollectiveSystem
     [SubscribeLocalEvent]
     private void OnCollectiveLanguages(Entity<MindCollectiveObserverComponent> ent, ref DetermineEntityLanguagesEvent args)
     {
-        if (TryGetObserver(ent, out _, out var collective, out _) && ent.Comp.Listening is { } body
+        if (!TryGetObserver(ent, out _, out var collective, out _))
+            return;
+        if (ent.Comp.Listening is { } body
             && IsRegisteredBody(ent.Comp.Collective, collective, body))
             args.UnderstoodLanguages.UnionWith(_collectiveLanguage.GetUnderstoodLanguages(body));
+        if (ent.Comp.AllowWorldSpeech && ent.Comp.Viewing is { } viewed
+            && IsRegisteredBody(ent.Comp.Collective, collective, viewed))
+            args.SpokenLanguages.UnionWith(_collectiveLanguage.GetSpokenLanguages(viewed));
     }
 
     [SubscribeLocalEvent]
@@ -100,7 +105,8 @@ public sealed partial class MindCollectiveSystem
                 continue;
             foreach (var body in collective.Bodies)
             {
-                if (!IsRegisteredBody(view.Collective, collective, body) || !_collectiveLanguage.CanUnderstand(body, args.Language.ID))
+                if (!view.Bodies.Contains(body) || !IsRegisteredBody(view.Collective, collective, body)
+                    || !_collectiveLanguage.CanUnderstand(body, args.Language.ID))
                     continue;
                 var xform = Transform(body);
                 if (xform.MapID != source.MapID
@@ -130,7 +136,7 @@ public sealed partial class MindCollectiveSystem
         foreach (var observer in collective.Minds.Values)
         {
             if (message.Receivers.Contains(observer) || !TryGetObserver(observer, out var view, out var current, out var actor)
-                || current != collective)
+                || current != collective || !view.Bodies.Contains(body))
                 continue;
             view.Listening = body;
             _collectiveLanguage.UpdateEntityLanguages(observer);

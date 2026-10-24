@@ -426,6 +426,11 @@ public sealed partial class GunSystem : SharedGunSystem
             entity = mechPilot.Mech;
         }
 
+        // Starlight: remote/scoped controllers shoot through the authorized hand dispatcher.
+        if (TryComp<Content.Shared._Starlight.BodyControl.BodyControlSourceComponent>(entity, out var control)
+            && !control.ExternallyDriven && (control.Body != entity || !control.Access.FullControl))
+            return;
+
         if (!TryGetGun(entity, out var gun))
         {
             return;

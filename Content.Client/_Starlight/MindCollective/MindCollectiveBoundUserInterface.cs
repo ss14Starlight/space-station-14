@@ -21,6 +21,8 @@ public sealed class MindCollectiveBoundUserInterface(EntityUid owner, Enum uiKey
         _window.OnEnter += body => SendMessage(new EnterCollectiveBodyMessage(body));
         _window.OnObserve += body => SendMessage(new ObserveCollectiveBodyMessage(body));
         _window.OnRecall += mind => SendMessage(new RecallCollectiveMemberMessage(mind));
+        _window.OnControl += body => SendMessage(new ControlCollectiveBodyMessage(body));
+        _window.OnSetRole += (mind, role, assigned) => SendMessage(new SetCollectiveRoleMessage(mind, role, assigned));
         _window.OnLeave += () => SendMessage(new LeaveCollectiveBodyMessage());
         _window.OnExpel += (mind, request, confirmed) =>
             SendMessage(new ExpelCollectiveMemberMessage(mind, request, confirmed));

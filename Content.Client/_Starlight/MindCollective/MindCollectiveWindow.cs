@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Starlight.MindCollective;
+using Robust.Shared.Prototypes;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Utility;
 
@@ -12,6 +13,8 @@ public sealed class MindCollectiveWindow : FancyWindow
     public event Action<NetEntity>? OnEnter;
     public event Action<NetEntity>? OnObserve;
     public event Action<NetEntity>? OnRecall;
+    public event Action<NetEntity>? OnControl;
+    public event Action<NetEntity, ProtoId<MindCollectiveRolePrototype>, bool>? OnSetRole;
     public event Action? OnLeave;
     public event Action<NetEntity, uint, bool>? OnExpel;
 
@@ -20,7 +23,7 @@ public sealed class MindCollectiveWindow : FancyWindow
     private readonly Button _leave = new() { Text = Loc.GetString("mind-collective-leave"), MinHeight = 32 };
     private List<MindCollectiveBodyEntry> _lastBodies = new();
     private List<MindCollectiveMemberEntry> _lastMembers = new();
-    private bool? _lastOwner;
+    private bool? _lastCanManage;
     private bool? _lastMindspace;
     private FancyWindow? _confirmation;
     private uint _expelRequest;
@@ -53,9 +56,9 @@ public sealed class MindCollectiveWindow : FancyWindow
     public void UpdateState(MindCollectiveUiState state)
     {
         Title = state.Name;
-        _leave.Visible = !state.InMindspace;
-        var ownerChanged = _lastOwner != state.Owner;
-        if (!_lastBodies.SequenceEqual(state.Bodies) || ownerChanged || _lastMindspace != state.InMindspace)
+        _leave.Visible = !state.InMindspace || state.Bodies.Any(body => body.IsControlling);
+        var managementChanged = _lastCanManage != state.CanManage;
+        if (!_lastBodies.SequenceEqual(state.Bodies) || managementChanged || _lastMindspace != state.InMindspace)
         {
             _lastBodies = state.Bodies.ToList();
             _bodies.RemoveAllChildren();
@@ -77,7 +80,13 @@ public sealed class MindCollectiveWindow : FancyWindow
                 enter.Disabled = !body.CanEnter;
                 enter.OnPressed += _ => OnEnter?.Invoke(body.Entity);
                 buttons.AddChild(enter);
-                if (state.Owner && body.CanRecall && body.OccupantMind is { } occupant)
+                if (body.CanControl)
+                {
+                    var control = Button(Loc.GetString(body.IsControlling ? "mind-collective-stop-control" : "mind-collective-control"));
+                    control.OnPressed += _ => OnControl?.Invoke(body.Entity);
+                    buttons.AddChild(control);
+                }
+                if (body.CanRecall && body.OccupantMind is { } occupant)
                 {
                     var recall = Button(Loc.GetString("mind-collective-recall"));
                     recall.OnPressed += _ => OnRecall?.Invoke(occupant);
@@ -87,7 +96,7 @@ public sealed class MindCollectiveWindow : FancyWindow
                 _bodies.AddChild(new PanelContainer { StyleClasses = { "BorderedWindowPanel" }, Children = { row } });
             }
         }
-        if (!_lastMembers.SequenceEqual(state.Members) || ownerChanged)
+        if (!SameMembers(_lastMembers, state.Members) || managementChanged)
         {
             _lastMembers = state.Members.ToList();
             _members.RemoveAllChildren();
@@ -95,16 +104,34 @@ public sealed class MindCollectiveWindow : FancyWindow
             {
                 var row = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 4, Margin = new(6) };
                 row.AddChild(Text(member.Name));
-                if (state.Owner && member.CanExpel)
+                foreach (var role in member.Roles)
+                {
+                    if (!member.CanManageRoles)
+                    {
+                        if (role.Assigned)
+                            row.AddChild(Text(role.Name));
+                        continue;
+                    }
+                    var toggle = Button(Loc.GetString(role.Assigned ? "mind-collective-role-revoke" : "mind-collective-role-assign", ("role", role.Name)));
+                    toggle.OnPressed += _ => OnSetRole?.Invoke(member.Mind, role.Role, !role.Assigned);
+                    row.AddChild(toggle);
+                }
+                if (member.CanExpel)
                 {
                     var expel = Button(Loc.GetString("mind-collective-expel"));
                     expel.OnPressed += _ => OnExpel?.Invoke(member.Mind, 0, false);
                     row.AddChild(expel);
                 }
+                if (member.CanRecall)
+                {
+                    var recall = Button(Loc.GetString("mind-collective-recall"));
+                    recall.OnPressed += _ => OnRecall?.Invoke(member.Mind);
+                    row.AddChild(recall);
+                }
                 _members.AddChild(new PanelContainer { StyleClasses = { "BorderedWindowPanel" }, Children = { row } });
             }
         }
-        _lastOwner = state.Owner;
+        _lastCanManage = state.CanManage;
         _lastMindspace = state.InMindspace;
         if (state.ExpelTarget is { } target && state.ExpelRequest != 0 && state.ExpelRequest != _expelRequest)
         {
@@ -160,6 +187,12 @@ public sealed class MindCollectiveWindow : FancyWindow
     }
 
     private void CloseConfirmation() => _confirmation?.Close();
+
+    private static bool SameMembers(List<MindCollectiveMemberEntry> previous, List<MindCollectiveMemberEntry> current)
+        => previous.Count == current.Count && previous.Zip(current).All(pair => pair.First.Mind == pair.Second.Mind
+            && pair.First.Name == pair.Second.Name && pair.First.CanExpel == pair.Second.CanExpel
+            && pair.First.CanManageRoles == pair.Second.CanManageRoles && pair.First.CanRecall == pair.Second.CanRecall
+            && pair.First.Roles.SequenceEqual(pair.Second.Roles));
 
     protected override void Dispose(bool disposing)
     {

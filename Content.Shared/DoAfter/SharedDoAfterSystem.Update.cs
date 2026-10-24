@@ -107,6 +107,9 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         for (var i = 0; i < count; i++)
         {
             var doAfter = _doAfters[i];
+            // Starlight: a client cannot predict another controller's private hand state.
+            if (!ShouldUpdateDoAfter(doAfter))
+                continue;
             if (doAfter.CancelledTime != null)
             {
                 if (time - doAfter.CancelledTime.Value > ExcessTime)
@@ -147,6 +150,8 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         if (comp.DoAfters.Count == 0)
             RemCompDeferred(uid, active);
     }
+
+    protected virtual bool ShouldUpdateDoAfter(DoAfter doAfter) => true;
 
     private bool TryAttemptEvent(DoAfter doAfter)
     {
@@ -280,11 +285,19 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
             // If an item was in the user's hand to begin with,
             // check if the user is no longer holding the item.
-            if (args.BreakOnDropItem && doAfter.InitialItem != null && !_hands.IsHolding((args.User, hands), doAfter.InitialItem))
+            if (args.HandController is { } controller
+                && !EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>()
+                    .IsDoAfterHandValid(args.User, controller, doAfter.InitialHand, args.BreakOnHandChange))
+                return true;
+
+            if (args.BreakOnDropItem && doAfter.InitialItem != null
+                && (args.HandController != null
+                    ? _hands.GetHeldItem((args.User, hands), doAfter.InitialHand) != doAfter.InitialItem
+                    : !_hands.IsHolding((args.User, hands), doAfter.InitialItem)))
                 return true;
 
             // If the user changes which hand is active at all, interrupt the do-after
-            if (args.BreakOnHandChange && hands.ActiveHandId != doAfter.InitialHand)
+            if (args.HandController == null && args.BreakOnHandChange && hands.ActiveHandId != doAfter.InitialHand)
                 return true;
         }
 

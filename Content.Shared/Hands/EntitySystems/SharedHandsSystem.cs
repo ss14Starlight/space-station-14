@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._Starlight.BodyControl;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Hands.Components;
@@ -216,7 +217,7 @@ public abstract partial class SharedHandsSystem
         if (!Resolve(entity, ref entity.Comp, false))
             return false;
 
-        if (!TryGetHeldItem(entity, entity.Comp.ActiveHandId, out var held))
+        if (!TryGetHeldItem(entity, GetActiveHand(entity), out var held))
             return false;
 
         item = held;
@@ -246,7 +247,7 @@ public abstract partial class SharedHandsSystem
         if (!Resolve(entity, ref entity.Comp, false))
             return null;
 
-        return entity.Comp.ActiveHandId;
+        return EntityManager.System<BodyControlHandContextSystem>().GetSelectedHand(entity, entity.Comp.ActiveHandId);
     }
 
     /// <summary>
@@ -259,7 +260,7 @@ public abstract partial class SharedHandsSystem
         if (!Resolve(entity, ref entity.Comp, false))
             return null;
 
-        return GetHeldItem(entity, entity.Comp.ActiveHandId);
+        return GetHeldItem(entity, GetActiveHand(entity));
     }
 
     public bool ActiveHandIsEmpty(Entity<HandsComponent?> entity)
@@ -275,12 +276,14 @@ public abstract partial class SharedHandsSystem
         if (!Resolve(ent, ref ent.Comp, false))
             yield break;
 
-        if (ent.Comp.ActiveHandId != null)
-            yield return ent.Comp.ActiveHandId;
+        var active = GetActiveHand(ent);
+        var control = EntityManager.System<BodyControlHandContextSystem>();
+        if (active != null)
+            yield return active;
 
         foreach (var name in ent.Comp.SortedHands)
         {
-            if (name != ent.Comp.ActiveHandId)
+            if (name != active && control.AllowsHand(ent, name))
                 yield return name;
         }
     }
@@ -293,14 +296,8 @@ public abstract partial class SharedHandsSystem
         if (!Resolve(ent, ref ent.Comp, false))
             yield break;
 
-        if (TryGetActiveItem(ent, out var activeHeld))
-            yield return activeHeld.Value;
-
-        foreach (var name in ent.Comp.SortedHands)
+        foreach (var name in EnumerateHands(ent))
         {
-            if (name == ent.Comp.ActiveHandId)
-                continue;
-
             if (TryGetHeldItem(ent, name, out var held))
                 yield return held.Value;
         }
@@ -315,6 +312,13 @@ public abstract partial class SharedHandsSystem
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
+
+        if (TryComp<BodyControlSourceComponent>(ent, out var source) && !source.ExternallyDriven && source.Body == ent.Owner)
+        {
+            var request = new BodyControlHandRequestEvent(BodyControlCommand.SelectHand, name);
+            RaiseLocalEvent(ent.Owner, ref request);
+            return false;
+        }
 
         if (name == ent.Comp.ActiveHandId)
             return false;

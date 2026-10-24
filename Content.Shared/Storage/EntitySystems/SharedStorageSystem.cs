@@ -50,6 +50,7 @@ using Content.Shared.Tools.Systems;
 using Robust.Shared.Network;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Computers.RemoteControl;
+using Content.Shared._Starlight.BodyControl;
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -802,6 +803,8 @@ public abstract partial class SharedStorageSystem : EntitySystem
     /// </summary>
     private void OnInteractWithItem(StorageInteractWithItemEvent msg, EntitySessionEventArgs args)
     {
+        if (WithRemoteHand(args, () => OnInteractWithItem(msg, args)))
+            return;
         if (!ValidateInput(args, msg.StorageUid, msg.InteractedItemUid, out var player, out var storage, out var item))
             return;
 
@@ -855,6 +858,8 @@ public abstract partial class SharedStorageSystem : EntitySystem
 
     private void OnStorageNested(OpenNestedStorageEvent msg, EntitySessionEventArgs args)
     {
+        if (WithRemoteHand(args, () => OnStorageNested(msg, args)))
+            return;
         if (!NestedStorage)
             return;
 
@@ -883,6 +888,8 @@ public abstract partial class SharedStorageSystem : EntitySystem
 
     private void OnStorageTransfer(StorageTransferItemEvent msg, EntitySessionEventArgs args)
     {
+        if (WithRemoteHand(args, () => OnStorageTransfer(msg, args)))
+            return;
         if (!TryGetEntity(msg.ItemEnt, out var itemUid) || !TryComp(itemUid, out ItemComponent? itemComp))
             return;
 
@@ -913,6 +920,20 @@ public abstract partial class SharedStorageSystem : EntitySystem
                 RaiseLocalEvent(new RemoteControlInventoryChangedEvent(player.Owner)); // Starlight
         }
         // Starlight - end
+    }
+
+    // Preserve the requester's hand across the existing storage actor-to-body resolver.
+    private bool WithRemoteHand(EntitySessionEventArgs args, Action command)
+    {
+        if (args.SenderSession.AttachedEntity is not { } actor
+            || !TryComp<BodyControlSourceComponent>(actor, out var source) || source.ExternallyDriven
+            || !source.Access.FullControl || source.Body == actor || TerminatingOrDeleted(source.Body))
+            return false;
+        var context = EntityManager.System<BodyControlHandContextSystem>();
+        if (context.IsExecuting(source.Body))
+            return false;
+        context.Execute(source.Body, actor, source.Access, source.SelectedHand, command);
+        return true;
     }
 
     private void OnInsertItemIntoLocation(StorageInsertItemIntoLocationEvent msg, EntitySessionEventArgs args)

@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Starlight.BodyControl;
 using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
@@ -131,12 +132,14 @@ public abstract partial class SharedHandsSystem : EntitySystem
 
     public bool TryActivateItemInHand(EntityUid uid, HandsComponent? handsComp = null, string? handName = null)
     {
+        if (RelayControlHandRequest(uid, BodyControlCommand.ActivateHand, handName))
+            return true;
         if (!Resolve(uid, ref handsComp, false))
             return false;
 
         var hand = handName;
         if (!TryGetHand(uid, hand, out _))
-            hand = handsComp.ActiveHandId;
+            hand = GetActiveHand((uid, handsComp));
 
         if (!TryGetHeldItem((uid, handsComp), hand, out var held))
             return false;
@@ -146,6 +149,11 @@ public abstract partial class SharedHandsSystem : EntitySystem
 
     public bool TryInteractHandWithActiveHand(EntityUid uid, string handName, HandsComponent? handsComp = null)
     {
+        if (!EntityManager.System<BodyControlHandContextSystem>().AllowsHand(uid, handName))
+            return false;
+        if (TryComp<BodyControlSourceComponent>(uid, out var source) && !source.ExternallyDriven && source.Body == uid && !source.Access.FullControl
+            && !EntityManager.System<BodyControlHandContextSystem>().IsExecuting(uid))
+            return false;
         if (!Resolve(uid, ref handsComp, false))
             return false;
 
@@ -161,12 +169,14 @@ public abstract partial class SharedHandsSystem : EntitySystem
 
     public bool TryUseItemInHand(EntityUid uid, bool altInteract = false, HandsComponent? handsComp = null, string? handName = null)
     {
+        if (RelayControlHandRequest(uid, altInteract ? BodyControlCommand.AltUseHand : BodyControlCommand.UseHand, handName))
+            return true;
         if (!Resolve(uid, ref handsComp, false))
             return false;
 
         var hand = handName;
         if (!TryGetHand(uid, hand, out _))
-            hand = handsComp.ActiveHandId;
+            hand = GetActiveHand((uid, handsComp));
 
         if (!TryGetHeldItem((uid, handsComp), hand, out var held))
             return false;
@@ -181,10 +191,17 @@ public abstract partial class SharedHandsSystem : EntitySystem
     /// </summary>
     public bool TryMoveHeldEntityToActiveHand(EntityUid uid, string handName, bool checkActionBlocker = true, HandsComponent? handsComp = null)
     {
+        if (!EntityManager.System<BodyControlHandContextSystem>().AllowsHand(uid, handName))
+            return false;
+        // Moving or combining two hand slots needs an explicit two-hand command.
+        if (TryComp<BodyControlSourceComponent>(uid, out var source) && !source.ExternallyDriven && source.Body == uid && !source.Access.FullControl
+            && !EntityManager.System<BodyControlHandContextSystem>().IsExecuting(uid))
+            return false;
         if (!Resolve(uid, ref handsComp))
             return false;
 
-        if (handsComp.ActiveHandId == null || !HandIsEmpty((uid, handsComp), handsComp.ActiveHandId))
+        var active = GetActiveHand((uid, handsComp));
+        if (active == null || !HandIsEmpty((uid, handsComp), active))
             return false;
 
         if (!TryGetHeldItem((uid, handsComp), handName, out var entity))
@@ -193,11 +210,21 @@ public abstract partial class SharedHandsSystem : EntitySystem
         if (!CanDropHeld(uid, handName, checkActionBlocker))
             return false;
 
-        if (!CanPickupToHand(uid, entity.Value, handsComp.ActiveHandId, checkActionBlocker: checkActionBlocker, handsComp: handsComp))
+        if (!CanPickupToHand(uid, entity.Value, active, checkActionBlocker: checkActionBlocker, handsComp: handsComp))
             return false;
 
         DoDrop(uid, handName, false, log: false);
-        DoPickup(uid, handsComp.ActiveHandId, entity.Value, handsComp, log: false);
+        DoPickup(uid, active, entity.Value, handsComp, log: false);
+        return true;
+    }
+
+    private bool RelayControlHandRequest(EntityUid uid, BodyControlCommand command, string? hand)
+    {
+        if (!TryComp<BodyControlSourceComponent>(uid, out var source) || source.ExternallyDriven || source.Body != uid
+            || EntityManager.System<BodyControlHandContextSystem>().IsExecuting(uid))
+            return false;
+        var request = new BodyControlHandRequestEvent(command, hand);
+        RaiseLocalEvent(uid, ref request);
         return true;
     }
 

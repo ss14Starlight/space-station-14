@@ -179,7 +179,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         if (target is not { } targetEntity)
             return false;
 
-        if (_remoteControl.ControlledEntity is not { } remoteEntity)
+        if (_remoteControl.ConsoleControlledEntity is not { } remoteEntity)
             return false;
 
         _examineSystem.DoExamine(targetEntity, userOverride: remoteEntity, uiRoot: RemoteView.Root);
@@ -191,7 +191,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         if (_targetingAction != null)
             return HandleRemoteInteraction(args, false);
 
-        if (_remoteControl.ControlledEntity is { } remoteEntity
+        if (_remoteControl.ConsoleControlledEntity is { } remoteEntity
             && _entityManager.TryGetComponent<CombatModeComponent>(remoteEntity, out var combatMode)
             && combatMode.IsInCombatMode
             && _entityManager.System<SharedGunSystem>().TryGetGun(remoteEntity, out var gun)
@@ -219,7 +219,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     private bool HandleRemoteMovePulled(in PointerInputCmdHandler.PointerInputCmdArgs args)
     {
         if (!_inputManager.IsKeyDown(Keyboard.Key.Control)
-            || _remoteControl.ControlledEntity is not { } remoteEntity
+            || _remoteControl.ConsoleControlledEntity is not { } remoteEntity
             || !_entityManager.TryGetComponent<PullerComponent>(remoteEntity, out var puller)
             || puller.Pulling is null)
             return false;
@@ -247,7 +247,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         if (_inputManager.IsKeyDown(Keyboard.Key.Control) && HandleRemoteMovePulled(args))
             return true;
 
-        if (_remoteControl.ControlledEntity is not { } remoteEntity)
+        if (_remoteControl.ConsoleControlledEntity is not { } remoteEntity)
             return false;
 
         if (_entityManager.TryGetComponent<CombatModeComponent>(remoteEntity, out var combatMode)
@@ -290,7 +290,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             && !activateInWorld
             && action == RemoteControlInteractionAction.Interact
             && _targetingAction is { } targetingAction
-            && _remoteControl.ControlledEntity is { } user
+            && _remoteControl.ConsoleControlledEntity is { } user
             && HandleRemoteTargetAction(targetingAction, user, target, coordinates))
             return true;
 
@@ -433,7 +433,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
     private void OnRemoteViewportMouseMove(Vector2 position)
     {
-        if (_remoteControl.ControlledEntity is not { })
+        if (_remoteControl.ConsoleControlledEntity is not { })
             return;
 
         _remoteMouseScreenPosition = position;
@@ -467,7 +467,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
     public bool OpenRemoteRadialMenu(SimpleRadialMenu menu)
     {
-        if (_remoteControl.ControlledEntity is null || !RemoteView.Visible)
+        if (_remoteControl.ConsoleControlledEntity is null || !RemoteView.Visible)
             return false;
 
         _remoteRadialMenu?.Close();
@@ -736,11 +736,8 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
         foreach (var action in actionList)
         {
-            var button = new ActionButton(IoCManager.Resolve<IEntityManager>()) { MinSize = new Vector2(64, 64), };
-            button.UpdateData(action, _actionsSystem);
-            button.SetRemoteSelected(
-                button.Action?.Owner == _selectedAction || button.Action?.Owner == _targetingAction);
-            button.ActionUnpressed += OnRemoteActionUnpressed;
+            var button = RemoteControlButtons.CreateAction(_entityManager, _actionsSystem, action,
+                action == _selectedAction || action == _targetingAction, OnRemoteActionUnpressed);
             ActionButtons.AddChild(button);
         }
     }
@@ -819,20 +816,12 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
         foreach (var hand in hands)
         {
-            var handButton = new HandButton(hand.Name, hand.Location);
             EntityUid? heldEntity = null;
             if (hand.HeldItem is { } held)
                 _entityManager.TryGetEntity(held, out heldEntity);
 
-            if (heldEntity is { } entity)
-                handButton.SetEntity(entity);
-            else if (hand.EmptyRepresentative is { } representative)
-                handButton.SetPrototype(representative, true);
-            else
-                handButton.SetEntity(null);
-
-            handButton.Highlight = hand.Active;
-            handButton.Pressed += (args, _) => OnRemoteHandButtonPressed(args, hand);
+            var handButton = RemoteControlButtons.CreateHand(hand.Name, hand.Location, heldEntity,
+                hand.EmptyRepresentative, hand.Active, (args, _) => OnRemoteHandButtonPressed(args, hand));
             HandButtons.AddChild(handButton);
         }
     }
@@ -990,7 +979,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
     private bool HandleRemoteHandCycle(RemoteControlHandAction action)
     {
-        if (_remoteControl.ControlledEntity is null || !RemoteView.Visible)
+        if (_remoteControl.ConsoleControlledEntity is null || !RemoteView.Visible)
             return false;
 
         RemoteHandPressed?.Invoke(string.Empty, action);
@@ -1004,7 +993,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         public override bool HandleCmdMessage(IEntityManager entManager, ICommonSession? session,
             IFullInputCmdMessage message)
         {
-            if (window._remoteControl.ControlledEntity is null)
+            if (window._remoteControl.ConsoleControlledEntity is null)
                 return false;
 
             if (message.State == BoundKeyState.Down)
@@ -1022,7 +1011,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             IFullInputCmdMessage message)
         {
             if (message.State != BoundKeyState.Down)
-                return window._remoteControl.ControlledEntity is not null && window.RemoteView.Visible;
+                return window._remoteControl.ConsoleControlledEntity is not null && window.RemoteView.Visible;
 
             return window.HandleRemoteHandCycle(action);
         }

@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared._Starlight.MindCollective;
+using Content.Shared._Starlight.BodyControl;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.Overlay.Systems;
 using Content.Shared._Starlight.Sound;
@@ -25,9 +26,12 @@ public sealed partial class MindCollectiveSystem
     public bool Observe(EntityUid observer, EntityUid body)
     {
         if (!TryGetObserver(observer, out var view, out var collective, out var actor)
-            || !IsRegisteredBody(view.Collective, collective, body))
+            || !IsRegisteredBody(view.Collective, collective, body)
+            || !_mind.TryGetMind(observer, out var mind, out _) || !HasPermission(mind, "body.observe", body))
             return false;
 
+        if (TryComp<BodyControlSourceComponent>(observer, out var control) && control.Body != body)
+            _bodyControl.StopControl(observer);
         SyncObserverViews(observer, view, collective, actor.PlayerSession);
         SetObserverView(observer, view, body);
         return true;
@@ -42,9 +46,9 @@ public sealed partial class MindCollectiveSystem
         }
 
         SyncObserverViews(observer, view, collective, actor.PlayerSession);
-        if (view.Viewing is { } body && IsRegisteredBody(view.Collective, collective, body))
+        if (view.Viewing is { } body && view.Bodies.Contains(body))
             SetObserverView(observer, view, body);
-        else if (collective.ActiveBody is { } active && IsRegisteredBody(view.Collective, collective, active))
+        else if (collective.ActiveBody is { } active && view.Bodies.Contains(active))
             SetObserverView(observer, view, active);
         else if (view.Bodies.Count > 0)
             SetObserverView(observer, view, view.Bodies[0]);
@@ -73,7 +77,9 @@ public sealed partial class MindCollectiveSystem
             RemoveObserverViews(observer);
 
         _observerSessions[observer] = session;
-        var bodies = collective.Bodies.Where(body => IsRegisteredBody(view.Collective, collective, body)).ToList();
+        _mind.TryGetMind(observer, out var mind, out _);
+        var bodies = collective.Bodies.Where(body => IsRegisteredBody(view.Collective, collective, body)
+            && HasPermission(mind, "body.observe", body)).ToList();
         foreach (var removed in view.Bodies.Except(bodies))
         {
             if (!Deleted(removed))
@@ -101,11 +107,17 @@ public sealed partial class MindCollectiveSystem
 
     private void SetObserverView(EntityUid observer, MindCollectiveObserverComponent view, EntityUid body)
     {
+        if (TryComp<BodyControlSourceComponent>(observer, out var control) && control.Body != body)
+            _bodyControl.StopControl(observer);
         if (view.Viewing != body)
         {
             view.Viewing = body;
             Dirty(observer, view);
+            if (view.AllowWorldSpeech)
+                _collectiveLanguage.UpdateEntityLanguages(observer);
         }
+        _mind.TryGetMind(observer, out var mind, out _);
+        RefreshObserverWorldPermissions(observer, view, mind);
         var previous = TryComp<EyeComponent>(observer, out var eye) ? eye.Target : null;
         _collectiveEye.SetTarget(observer, body);
         // SetTarget removes its previous view subscription; the collective still listens through that body.
@@ -127,6 +139,9 @@ public sealed partial class MindCollectiveSystem
             Dirty(observer, view);
         }
         view.Listening = null;
+        _bodyControl.StopControl(observer);
+        _mind.TryGetMind(observer, out var mind, out _);
+        RefreshObserverWorldPermissions(observer, view, mind);
         if (HasComp<EyeComponent>(observer))
             _collectiveEye.SetTarget(observer, null);
         if (!TerminatingOrDeleted(observer))

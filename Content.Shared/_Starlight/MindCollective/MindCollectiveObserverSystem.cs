@@ -8,11 +8,11 @@ public sealed partial class MindCollectiveObserverSystem : EntitySystem
 {
     [SubscribeLocalEvent]
     private void OnInteraction(Entity<MindCollectiveObserverComponent> ent, ref InteractionAttemptEvent args)
-        => args.Cancelled = true;
+        => args.Cancelled |= !ent.Comp.AllowWorldInteraction;
 
     [SubscribeLocalEvent]
     private void OnConsciousAction(Entity<MindCollectiveObserverComponent> ent, ref ConsciousAttemptEvent args)
-        => args.Cancelled = true;
+        => args.Cancelled |= !ent.Comp.AllowConsciousActions;
 
     [SubscribeLocalEvent]
     private void OnCanSee(Entity<MindCollectiveObserverComponent> ent, ref CanSeeAttemptEvent args)

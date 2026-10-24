@@ -39,13 +39,13 @@ public sealed partial class RemoteConstructionPlacementSystem : EntitySystem
 
     private void OnControlledEntityChanged(EntityUid? entity)
     {
-        if (entity is null)
+        if (EntityManager.System<RemoteControlInterface>().ConsoleControlledEntity is null)
             Clear();
     }
 
     public bool TryBegin(ConstructionPrototype prototype)
     {
-        if (EntityManager.System<RemoteControlInterface>().ControlledEntity is null
+        if (EntityManager.System<RemoteControlInterface>().ConsoleControlledEntity is null
             || prototype.Type != ConstructionType.Structure)
             return false;
 
@@ -81,7 +81,7 @@ public sealed partial class RemoteConstructionPlacementSystem : EntitySystem
         base.Update(frameTime);
 
         if (_prototype is not { } prototype
-            || EntityManager.System<RemoteControlInterface>().ControlledEntity is not { } user
+            || EntityManager.System<RemoteControlInterface>().ConsoleControlledEntity is not { } user
             || EntityManager.System<RemoteControlInterface>().RemoteMousePosition is not { } mouse)
             return;
 

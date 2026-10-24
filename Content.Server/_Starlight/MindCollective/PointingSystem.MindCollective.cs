@@ -12,13 +12,15 @@ internal sealed partial class PointingSystem
 
     private IEnumerable<ICommonSession>? GetCollectivePointingViewers(EntityUid pointer)
     {
-        if (!HasComp<MindCollectiveObserverComponent>(pointer))
+        if (!TryComp<MindCollectiveObserverComponent>(pointer, out var observer))
             return null;
         if (!_collectives.TryGetCollective(pointer, out _, out var collective)
             || !TryComp<ActorComponent>(pointer, out var actor) || !IsCollectiveViewer(actor.PlayerSession, collective)
             || actor.PlayerSession.AttachedEntity != pointer)
             return Array.Empty<ICommonSession>();
-        return _playerManager.Sessions.Where(session => IsCollectiveViewer(session, collective)).ToArray();
+        if (observer.AllowWorldPointing)
+            return null;
+        return _collectives.GetCommunicationAudience(pointer, MindCollectiveCommunicationKind.Pointing);
     }
 
     private bool IsCollectiveViewer(ICommonSession session, MindCollectiveComponent collective)

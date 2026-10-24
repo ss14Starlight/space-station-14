@@ -13,6 +13,7 @@ public sealed partial class MindCollectiveCreatorComponent : Component
     [DataField] public EntProtoId? VacancyPrototype = "MindCollectiveVacancy";
     [DataField] public LocId JoinTitle = "mind-collective-consent-title";
     [DataField] public LocId JoinDescription = "mind-collective-consent-description";
+    [DataField] public EntProtoId CollectivePrototype = "MindCollective";
     public EntityUid? Collective;
 }
 
@@ -32,6 +33,10 @@ public sealed partial class MindCollectiveObserverComponent : Component
     [AutoNetworkedField] public EntityUid? Viewing;
     [AutoNetworkedField] public List<EntityUid> Bodies = new();
     [AutoNetworkedField] public List<MindCollectiveHearingState> Hearing = new();
+    [AutoNetworkedField] public bool AllowWorldInteraction;
+    [AutoNetworkedField] public bool AllowConsciousActions;
+    [AutoNetworkedField] public bool AllowWorldSpeech;
+    [AutoNetworkedField] public bool AllowWorldPointing;
     public override bool SendOnlyToOwner => true;
 }
 
@@ -55,16 +60,22 @@ public sealed record MindCollectiveBodyEntry(
     string? Occupant,
     bool CanEnter,
     bool CanRecall,
-    NetEntity? OccupantMind = null);
+    NetEntity? OccupantMind = null,
+    bool CanControl = false,
+    bool IsControlling = false);
 
 [Serializable, NetSerializable]
-public sealed record MindCollectiveMemberEntry(NetEntity Mind, string Name, bool CanExpel);
+public sealed record MindCollectiveMemberEntry(NetEntity Mind, string Name, bool CanExpel,
+    List<MindCollectiveRoleEntry> Roles, bool CanManageRoles, bool CanRecall);
+
+[Serializable, NetSerializable]
+public sealed record MindCollectiveRoleEntry(ProtoId<MindCollectiveRolePrototype> Role, string Name, bool Assigned);
 
 [Serializable, NetSerializable]
 public sealed class MindCollectiveUiState(
     List<MindCollectiveBodyEntry> bodies,
     List<MindCollectiveMemberEntry> members,
-    bool owner,
+    bool canManage,
     bool inMindspace,
     string name,
     NetEntity? expelTarget = null,
@@ -72,7 +83,7 @@ public sealed class MindCollectiveUiState(
 {
     public readonly List<MindCollectiveBodyEntry> Bodies = bodies;
     public readonly List<MindCollectiveMemberEntry> Members = members;
-    public readonly bool Owner = owner;
+    public readonly bool CanManage = canManage;
     public readonly bool InMindspace = inMindspace;
     public readonly string Name = name;
     public readonly NetEntity? ExpelTarget = expelTarget;
@@ -99,6 +110,20 @@ public sealed class RecallCollectiveMemberMessage(NetEntity mind) : BoundUserInt
 
 [Serializable, NetSerializable]
 public sealed class LeaveCollectiveBodyMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class ControlCollectiveBodyMessage(NetEntity body) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity Body = body;
+}
+
+[Serializable, NetSerializable]
+public sealed class SetCollectiveRoleMessage(NetEntity mind, ProtoId<MindCollectiveRolePrototype> role, bool assigned) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity Mind = mind;
+    public readonly ProtoId<MindCollectiveRolePrototype> Role = role;
+    public readonly bool Assigned = assigned;
+}
 
 [Serializable, NetSerializable]
 public sealed class ExpelCollectiveMemberMessage(NetEntity mind, uint request = 0, bool confirmed = false) : BoundUserInterfaceMessage

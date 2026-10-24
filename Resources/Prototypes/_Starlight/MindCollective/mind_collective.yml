@@ -1,4 +1,11 @@
 - type: entity
+  id: MindCollective
+  name: collective
+  categories: [HideSpawnMenu]
+  components:
+  - type: MindCollective
+
+- type: entity
   id: MindCollectiveObserver
   name: consciousness
   categories: [HideSpawnMenu]
@@ -14,6 +21,8 @@
   - type: UserInterface
   - type: LanguageSpeaker
   - type: LanguageKnowledge
+    speaks: []
+    understands: []
   - type: Blindable
     isBlind: true
 

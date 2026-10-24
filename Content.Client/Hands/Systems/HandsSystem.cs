@@ -90,6 +90,13 @@ namespace Content.Client.Hands.Systems
             OnPlayerHandsAdded?.Invoke(hands.Value);
         }
 
+        /// <summary>Refreshes the native hand highlight after the player's private selection changes.</summary>
+        public void RefreshControlHand()
+        {
+            if (_playerManager.LocalEntity is { } player)
+                OnPlayerSetActiveHand?.Invoke(GetActiveHand(player));
+        }
+
         public override void DoDrop(Entity<HandsComponent?> ent,
             string handId,
             bool doDropInteraction = true,
@@ -125,14 +132,19 @@ namespace Content.Client.Hands.Systems
         /// </summary>
         public void UIHandClick(Entity<HandsComponent> ent, string handName)
         {
+            // Starlight: remote hands are displayed in the control panel, not this body's hand slots.
+            if (TryComp<Content.Shared._Starlight.BodyControl.BodyControlSourceComponent>(ent, out var source)
+                && !source.ExternallyDriven && source.Body != ent.Owner)
+                return;
             var hands = ent.Comp;
-            if (hands.ActiveHandId == null)
+            var activeHand = GetActiveHand(ent.AsNullable());
+            if (activeHand == null)
                 return;
 
             var pressedEntity = GetHeldItem(ent.AsNullable(), handName);
             var activeEntity = GetActiveItem(ent.AsNullable());
 
-            if (handName == hands.ActiveHandId && activeEntity != null)
+            if (handName == activeHand && activeEntity != null)
             {
                 // use item in hand
                 // it will always be attack_self() in my heart.
@@ -140,21 +152,21 @@ namespace Content.Client.Hands.Systems
                 return;
             }
 
-            if (handName != hands.ActiveHandId && pressedEntity == null)
+            if (handName != activeHand && pressedEntity == null)
             {
                 // change active hand
                 RaisePredictiveEvent(new RequestSetHandEvent(handName));
                 return;
             }
 
-            if (handName != hands.ActiveHandId && pressedEntity != null && activeEntity != null)
+            if (handName != activeHand && pressedEntity != null && activeEntity != null)
             {
                 // use active item on held item
                 RaisePredictiveEvent(new RequestHandInteractUsingEvent(handName));
                 return;
             }
 
-            if (handName != hands.ActiveHandId && pressedEntity != null && activeEntity == null)
+            if (handName != activeHand && pressedEntity != null && activeEntity == null)
             {
                 // move the item to the active hand
                 RaisePredictiveEvent(new RequestMoveHandItemEvent(handName));

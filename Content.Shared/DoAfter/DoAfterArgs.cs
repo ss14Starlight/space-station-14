@@ -98,6 +98,10 @@ public sealed partial class DoAfterArgs
     [DataField]
     public bool NeedHand;
 
+    // Starlight: a cooperative controller binds a do-after to its own hand, not the body's global selection.
+    [DataField] public string? ControlHand;
+    [DataField] public NetEntity? HandController;
+
     /// <summary>
     ///     Whether we need to keep our active hand as is (i.e. can't change hand or change item). This also covers
     ///     requiring the hand to be free (if applicable). This does nothing if <see cref="NeedHand"/> is false.
@@ -273,6 +277,8 @@ public sealed partial class DoAfterArgs
         EventTarget = other.EventTarget;
         Broadcast = other.Broadcast;
         NeedHand = other.NeedHand;
+        ControlHand = other.ControlHand;
+        HandController = other.HandController;
         BreakOnHandChange = other.BreakOnHandChange;
         BreakOnDropItem = other.BreakOnDropItem;
         BreakOnMove = other.BreakOnMove;

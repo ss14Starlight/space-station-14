@@ -97,10 +97,11 @@ public abstract partial class SharedHandsSystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        if (ent.Comp.ActiveHandId == null)
+        var active = GetActiveHand(ent);
+        if (active == null)
             return false;
 
-        return TryDrop(ent, ent.Comp.ActiveHandId, targetDropLocation, checkActionBlocker, doDropInteraction);
+        return TryDrop(ent, active, targetDropLocation, checkActionBlocker, doDropInteraction);
     }
 
     /// <summary>

@@ -75,7 +75,7 @@ public abstract partial class SharedHandsSystem
         if (!Resolve(uid, ref handsComp, false))
             return false;
 
-        handId ??= handsComp.ActiveHandId;
+        handId ??= GetActiveHand((uid, handsComp));
 
         if (handId == null)
             return false;
@@ -178,6 +178,8 @@ public abstract partial class SharedHandsSystem
     /// </summary>
     public bool CanPickupToHand(EntityUid uid, EntityUid entity, string handId, bool checkActionBlocker = true, bool showPopup = false, HandsComponent? handsComp = null, ItemComponent? item = null)
     {
+        if (!EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>().AllowsHand(uid, handId))
+            return false;
         if (!Resolve(uid, ref handsComp, false))
             return false;
 

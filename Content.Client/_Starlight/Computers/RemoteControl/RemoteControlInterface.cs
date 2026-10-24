@@ -18,8 +18,13 @@ public sealed partial class RemoteControlInterface : EntitySystem
 {
     private RemoteControlConsoleWindow? _window;
     private TimeSpan _nextRemoteAlertUpdate;
+    private EntityUid? _consoleEntity;
+    private IEye? _consoleEye;
+    private IViewportControl? _consoleViewport;
+    private EntityUid? _bodyControlEntity;
 
     public EntityUid? ControlledEntity { get; private set; }
+    public EntityUid? ConsoleControlledEntity => _bodyControlEntity == null ? _consoleEntity : null;
     public IEye? ControlledEye { get; private set; }
     public IViewportControl? ControlledViewport { get; private set; }
     public IViewportControl? RemoteViewport { get; private set; }
@@ -28,6 +33,7 @@ public sealed partial class RemoteControlInterface : EntitySystem
     public event Action<EntityUid?>? ControlledEntityChanged;
     public event Action<EntityUid, bool, RemoteControlInteractionAction>? InteractionRequested;
     public event Action<string>? ItemConstructionRequested;
+    public event Action<EntityUid, bool, RemoteControlInteractionAction>? BodyInteractionRequested;
 
     public override void Initialize() => base.Initialize();
 
@@ -58,6 +64,25 @@ public sealed partial class RemoteControlInterface : EntitySystem
 
     public void SetControlledEntity(EntityUid? entity, IEye? eye = null, IViewportControl? viewport = null)
     {
+        _consoleEntity = entity;
+        _consoleEye = eye;
+        _consoleViewport = viewport;
+        if (_bodyControlEntity == null)
+            UpdateControlledEntity(entity, eye, viewport);
+    }
+
+    /// <summary>The native world view may use the same examine, verb and UI hooks as a console viewport.</summary>
+    public void SetBodyControlEntity(EntityUid? entity, IEye? eye = null)
+    {
+        if (_bodyControlEntity != entity)
+            RemoteMousePosition = null;
+        _bodyControlEntity = entity;
+        UpdateControlledEntity(entity ?? _consoleEntity, entity != null ? eye : _consoleEye,
+            entity != null ? null : _consoleViewport);
+    }
+
+    private void UpdateControlledEntity(EntityUid? entity, IEye? eye, IViewportControl? viewport)
+    {
         if (ControlledEntity == entity)
         {
             ControlledEye = eye;
@@ -86,6 +111,7 @@ public sealed partial class RemoteControlInterface : EntitySystem
     public bool TryEmbedWindow(BaseWindow window)
     {
         if (ControlledEntity is null
+            || _bodyControlEntity != null
             || _window is not { Disposed: false } remoteWindow
             || window.Disposed)
             return false;
@@ -113,11 +139,14 @@ public sealed partial class RemoteControlInterface : EntitySystem
     }
 
     public void SetRemoteMousePosition(MapCoordinates? position)
-        => RemoteMousePosition = position;
+    {
+        if (_bodyControlEntity == null)
+            RemoteMousePosition = position;
+    }
 
     public bool TryRequestItemConstruction(string prototypeName)
     {
-        if (ControlledEntity is null)
+        if (ControlledEntity is null || _bodyControlEntity != null)
             return false;
 
         ItemConstructionRequested?.Invoke(prototypeName);
@@ -141,5 +170,10 @@ public sealed partial class RemoteControlInterface : EntitySystem
                 : null;
 
     public void RequestInteraction(EntityUid target, bool altInteract, RemoteControlInteractionAction action = RemoteControlInteractionAction.Interact)
-        => InteractionRequested?.Invoke(target, altInteract, action);
+    {
+        if (_bodyControlEntity != null)
+            BodyInteractionRequested?.Invoke(target, altInteract, action);
+        else
+            InteractionRequested?.Invoke(target, altInteract, action);
+    }
 }

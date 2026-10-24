@@ -30,6 +30,9 @@ public sealed partial class DoAfterSystem : SharedDoAfterSystem
         _overlay.RemoveOverlay<DoAfterOverlay>();
     }
 
+    protected override bool ShouldUpdateDoAfter(Shared.DoAfter.DoAfter doAfter)
+        => doAfter.Args.HandController is not { } controller || controller == GetNetEntity(_player.LocalEntity);
+
 #pragma warning disable RA0028 // No base call in overriden function
     public override void Update(float frameTime)
 #pragma warning restore RA0028 // No base call in overriden function

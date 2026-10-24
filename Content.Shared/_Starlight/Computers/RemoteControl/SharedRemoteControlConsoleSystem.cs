@@ -1,4 +1,5 @@
 using Content.Shared.ActionBlocker;
+using Content.Shared._Starlight.BodyControl;
 using Content.Shared.Body.Organ;
 using Content.Shared.Interaction;
 using Content.Shared.Silicons.Borgs.Components;
@@ -28,6 +29,13 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
     /// <returns>True if the actor controls a remote entity.</returns>
     public bool TryGetControlledEntity(EntityUid actor, out EntityUid remoteEntity)
     {
+        // Generic verbs, inventory and UI relays require full access; scoped commands use their explicit hand context.
+        if (TryComp<BodyControlSourceComponent>(actor, out var source))
+        {
+            remoteEntity = source.Body;
+            return source.LifeStage <= ComponentLifeStage.Running && source.Access.FullControl
+                   && remoteEntity != actor && !TerminatingOrDeleted(remoteEntity);
+        }
         if (TryComp<RemoteControlControllerComponent>(actor, out var controller))
         {
             foreach (var consoleUid in controller.Consoles)
