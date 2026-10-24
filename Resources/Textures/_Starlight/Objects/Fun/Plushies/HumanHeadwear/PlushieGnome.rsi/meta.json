@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC0-1.0",
+  "copyright": "By CawsForConcern (GitHub); headwear derivative of _Starlight/Objects/Fun/Plushies/gnome_plushie.rsi/icon.png.; human headwear adapted from _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieGnome.rsi.",
+  "states": [
+    {
+      "name": "equipped-HELMET-experiment",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    }
+  ]
+}

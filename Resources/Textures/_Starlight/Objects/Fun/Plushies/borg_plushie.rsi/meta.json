@@ -1,4 +1,4 @@
-﻿{
+{
   "version": 2,
   "license": "CC-BY-SA-3.0",
   "copyright": "State based copyright",
@@ -9,7 +9,8 @@
   "states": [
     {
       "name": "icon",
-      "copyright": "By taco_llama"
+      "copyright": "Cricket and Noble by Conflee. Edits by Conflee, originals taken from Paradise Station at https://github.com/ParadiseSS13/Paradise/commit/34f3823923b7692533b7a99c6f2a8bc91c834870; scaled derivative of engineer.rsi borg, borg_e and borg_l states.",
+      "directions": 4
     },
     {
       "name": "inhand-left",
