@@ -1,0 +1,59 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e. Made by Flareguy for Space Station 14. Syndicate variants by ItsMaitake on Blimpuf Station."
+        },
+        {
+            "name": "icon-open",
+            "copyright": "TG Station, Flareguy, ItsMaitake"
+        },
+        {
+            "name": "equipped-OUTERCLOTHING",
+            "copyright": "TG Station, Flareguy, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "open-equipped-OUTERCLOTHING",
+            "copyright": "TG Station, Flareguy, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-vox",
+            "copyright": "TG Station, Flareguy, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "open-equipped-OUTERCLOTHING-vox",
+            "copyright": "TG Station, Flareguy, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "TG Station, Flareguy, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "TG Station, Flareguy, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "open-inhand-left",
+            "copyright": "TG Station, Flareguy, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "open-inhand-right",
+            "copyright": "TG Station, Flareguy, ItsMaitake",
+            "directions": 4
+        }
+    ]
+}

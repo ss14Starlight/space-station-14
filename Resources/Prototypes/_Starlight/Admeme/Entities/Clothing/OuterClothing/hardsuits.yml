@@ -1,6 +1,6 @@
 #CCNT Consortium BSOs
 - type: entity
-  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitSyndieElite] #sl Change
+  parent: [ BaseNanoTrasenContraband, ClothingOuterHardsuitERTLeader ]
   id: ClothingOuterHardsuitNTNCConsortium
   name: NanoTrasen navy marine hardsuit
   description: A protective hardsuit worn by NanoTrasen Navy Marines.
@@ -11,9 +11,31 @@
       sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitNTNCConsortium
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.40
+          Slash: 0.40
+          Piercing: 0.40
+          Radiation: 0.65
+          Caustic: 0.6
+      staminaModifier: 0.3
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+        params:
+          volume: -7
+          pitch: 0.85
+          variation: 0.025
+    - type: TemperatureProtection
+      heatingCoefficient: 0.001
+      coolingCoefficient: 0.001
+    - type: PressureProtection
+      highPressureMultiplier: 0.02
+      lowPressureMultiplier: 1000
 
 - type: entity
-  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitSyndieMedic] #sl Change
+  parent: [ BaseNanoTrasenContraband, ClothingOuterHardsuitSyndieMedic ]
   id: ClothingOuterHardsuitNTNCConsortiumMedic
   name: NanoTrasen navy marine medic hardsuit
   description: A protective hardsuit worn by NanoTrasen Navy Marine medical personnel.
@@ -28,3 +50,27 @@
       tags:
         - Hardsuit
         - WhitelistChameleon
+    - type: ItemToggle
+      onUse: false
+      soundActivate:
+        path: /Audio/Items/flashlight_on.ogg
+      soundDeactivate:
+        path: /Audio/Items/flashlight_off.ogg
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Effects/Vehicle/ambulancesiren.ogg
+        params:
+          volume: -4
+    - type: UseDelay
+      delay: 1.0
+    - type: ToggleClothing
+      action: ActionToggleParamedicSiren
+    - type: ItemTogglePointLight
+    - type: PointLight
+      enabled: false
+      radius: 2
+      energy: 2
+      color: blue
+      lightMask: ConeDouble
+    - type: RotatingLight
+      speed: 360

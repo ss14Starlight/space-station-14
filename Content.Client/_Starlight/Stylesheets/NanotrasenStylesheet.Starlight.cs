@@ -5,7 +5,7 @@ using Content.Client.Stylesheets.SheetletConfigs;
 // ReSharper disable once CheckNamespace
 namespace Content.Client.Stylesheets.Stylesheets;
 
-public partial class NanotrasenStylesheet : IButtonConfig
+public sealed partial class NanotrasenStylesheet : IButtonConfig
 {
     public StyleTheme? Theme => Config as StyleTheme;
 

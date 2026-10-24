@@ -17,9 +17,6 @@ public sealed partial class SupermatterCascadeSystem : EntitySystem
     private readonly LinkedList<Branch> _branches = [];
     private LinkedListNode<Branch>? _node;
     private readonly string[] _prototypes = ["Cascad1", "Cascad2", "Cascad3", "Cascad4", "Cascad5", "Cascad6"];
-    public override void Initialize()
-    {
-    }
 
     public override void Update(float frameTime)
     {
@@ -73,7 +70,7 @@ public sealed partial class SupermatterCascadeSystem : EntitySystem
         if (_transform.GetGrid(branch.Coordinates) is not { } grid
             || !TryComp<MapGridComponent>(grid, out var gridComp)
             || !_map.TryGetTileRef(grid, gridComp, branch.Coordinates, out var tileRef)
-            || _turf.IsSpace(tileRef))
+            || tileRef.Tile.IsEmpty)
         {
             _branches.Remove(_node);
             _node = nextNode;
@@ -88,7 +85,7 @@ public sealed partial class SupermatterCascadeSystem : EntitySystem
 
     public void StartCascade(EntityCoordinates coordinates)
     {
-        for (int i = 0; i < 8; i += 2)
+        for (var i = 0; i < 8; i += 2)
             _branches.AddLast(new Branch
             {
                 Coordinates = coordinates,

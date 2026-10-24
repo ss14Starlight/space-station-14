@@ -23,13 +23,25 @@
   parent: BaseMentalAction
   id: ActionReplayToggleStatusIcons
   name: Toggle Status Icons
-  description: Show job, mindshield and health icons in this replay.
+  description: Show job, mindshield, security status and health icons in this replay.
   components:
   - type: Action
     icon: { sprite: Clothing/Eyes/Hud/med.rsi, state: icon }
     clientExclusive: true
   - type: InstantAction
     event: !type:ReplayToggleStatusIconsActionEvent
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionReplayToggleWeather
+  name: Toggle Weather
+  description: Show or hide weather overlays in this replay.
+  components:
+  - type: Action
+    icon: Interface/VerbIcons/snow.svg.192dpi.png
+    clientExclusive: true
+  - type: InstantAction
+    event: !type:ReplayToggleWeatherActionEvent
 
 # Component set added to the replay observer by the status icons action. Never spawned.
 - type: entity
@@ -38,6 +50,7 @@
   components:
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
   - type: ShowHealthBars
     damageContainers:
     - Biological
