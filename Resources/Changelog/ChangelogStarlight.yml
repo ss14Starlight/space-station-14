@@ -1,20 +1,4 @@
 Entries:
-- author: rhithebirdthing
-  changes:
-  - message: Added slice turns to the twisty cube.
-    type: Add
-  - message: Unswapped x and x' on the twisty cube.
-    type: Fix
-  id: 409321
-  time: '2026-10-10T09:20:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6596
-- author: Sparlight, a_197
-  changes:
-  - message: K9 SOP.  No more biting tider ankles for fun while running solo.
-    type: Add
-  id: 409322
-  time: '2026-10-10T09:26:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6594
 - author: Scarlet.
   changes:
   - message: Added the assault suit for blackstar!.
@@ -2859,4 +2843,18 @@ Entries:
   id: 409720
   time: '2026-10-23T18:22:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6828
+- author: baltdev
+  changes:
+  - message: Borgs can now always sign papers, and they use a different font when doing so.
+    type: Tweak
+  id: 409721
+  time: '2026-10-24T14:05:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6760
+- author: baltdev
+  changes:
+  - message: Signatures now strip parenthesized text at the end of names.
+    type: Tweak
+  id: 409722
+  time: '2026-10-24T14:05:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6760
 Order: -1
