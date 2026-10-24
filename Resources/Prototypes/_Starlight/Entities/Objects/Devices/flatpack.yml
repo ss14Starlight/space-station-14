@@ -183,7 +183,7 @@
     layers:
     - state: large
   - type: Flatpack
-    entity: CombustionTurbineCompressor
+    entity: CombustionTurbineCompressorFilled
 
 - type: entity
   parent: [ BaseStructureFlatpack, BaseEngineeringContraband ]
@@ -196,7 +196,7 @@
     layers:
     - state: large
   - type: Flatpack
-    entity: CombustionTurbineRotor
+    entity: CombustionTurbineRotorFilled
 
 - type: entity
   parent: [ BaseStructureFlatpack, BaseEngineeringContraband ]
@@ -209,7 +209,7 @@
     layers:
     - state: large
   - type: Flatpack
-    entity: CombustionTurbineOutlet
+    entity: CombustionTurbineOutletFilled
 
 - type: entity
   parent: [ BaseStructureFlatpack, BaseEngineeringContraband ]

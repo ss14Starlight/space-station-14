@@ -17,7 +17,7 @@
   ## Getting one
 
   Cargo sells a [color=#a4885c]combustion turbine crate[/color] with all three sections flatpacked, tier 1 parts already installed, and the control computer.
-  To build more, research [color=#a4885c]Combustion turbines[/color] (Industrial). The section boards are expensive to print (plasma and gold), and each section takes plasteel and plasma sheets to build.
+  To build more, research [color=#a4885c]Combustion turbines[/color] (Industrial). The section boards are expensive to print (plasma and gold), and each section takes plasteel and plasma sheets to build. Sections built from boards come without parts: print tier 1 parts at the [color=#a4885c]engineering techfab[/color].
 
   ## Assembly
 
@@ -51,7 +51,7 @@
   ## Parts and upgrades
 
   Every section holds one part: a [color=#a4885c]compressor part[/color], a [color=#a4885c]rotor part[/color] or a [color=#a4885c]stator part[/color]. The turbine will not run with a part missing.
-  Every section comes with a tier 1 part installed, and spare tier 1 parts can be printed at an engineering lathe. To reach a higher tier, use the material listed when you examine the part on it while holding it.
+  Sections from the cargo crate come with tier 1 parts installed; tier 1 parts for sections built from boards, and spares, are printed at the engineering techfab. To reach a higher tier, use the material listed when you examine the part on it while holding it.
 
   <Table Columns="3">
     <ColorBox>

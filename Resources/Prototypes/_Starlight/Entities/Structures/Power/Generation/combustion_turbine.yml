@@ -44,6 +44,14 @@
     ports:
     - CombustionTurbineConsoleReceiver
   - type: WiresPanel
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        whitelist:
+          components:
+          - CombustionTurbinePart
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
@@ -87,15 +95,6 @@
         enum.WiresVisualLayers.MaintenancePanel:
           True: { visible: true }
           False: { visible: false }
-  - type: ItemSlots
-    slots:
-      turbine_part:
-        name: combustion-turbine-slot-part
-        locked: true
-        startingItem: CombustionTurbineCompressorPart
-        whitelist:
-          components:
-          - CombustionTurbinePart
   - type: CombustionTurbineStage
     stage: Compressor
   - type: Machine
@@ -127,15 +126,6 @@
         enum.WiresVisualLayers.MaintenancePanel:
           True: { visible: true }
           False: { visible: false }
-  - type: ItemSlots
-    slots:
-      turbine_part:
-        name: combustion-turbine-slot-part
-        locked: true
-        startingItem: CombustionTurbineRotorPart
-        whitelist:
-          components:
-          - CombustionTurbinePart
   - type: CombustionTurbineStage
     stage: Rotor
   - type: CombustionTurbineRotor
@@ -192,6 +182,46 @@
         enum.WiresVisualLayers.MaintenancePanel:
           True: { visible: true }
           False: { visible: false }
+  - type: CombustionTurbineStage
+    stage: Outlet
+  - type: Machine
+    board: CombustionTurbineOutletMachineCircuitboard
+
+- type: entity
+  parent: CombustionTurbineCompressor
+  id: CombustionTurbineCompressorFilled
+  suffix: Filled
+  components:
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineCompressorPart
+        whitelist:
+          components:
+          - CombustionTurbinePart
+
+- type: entity
+  parent: CombustionTurbineRotor
+  id: CombustionTurbineRotorFilled
+  suffix: Filled
+  components:
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineRotorPart
+        whitelist:
+          components:
+          - CombustionTurbinePart
+
+- type: entity
+  parent: CombustionTurbineOutlet
+  id: CombustionTurbineOutletFilled
+  suffix: Filled
+  components:
   - type: ItemSlots
     slots:
       turbine_part:
@@ -201,10 +231,6 @@
         whitelist:
           components:
           - CombustionTurbinePart
-  - type: CombustionTurbineStage
-    stage: Outlet
-  - type: Machine
-    board: CombustionTurbineOutletMachineCircuitboard
 
 # Parts
 

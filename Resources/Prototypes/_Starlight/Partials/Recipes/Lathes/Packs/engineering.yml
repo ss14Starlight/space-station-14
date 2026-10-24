@@ -5,13 +5,6 @@
   - IgniterMachineCircuitboard
 
 - type: !PartialOnly latheRecipePack
-  id: AtmosStatic
-  recipes:
-  - CombustionTurbineCompressorPart
-  - CombustionTurbineRotorPart
-  - CombustionTurbineStatorPart
-
-- type: !PartialOnly latheRecipePack
   id: EngineeringBoards
   recipes:
   - CombustionTurbineCompressorMachineCircuitboard
