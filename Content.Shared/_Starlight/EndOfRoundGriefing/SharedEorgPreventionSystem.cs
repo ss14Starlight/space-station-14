@@ -14,7 +14,7 @@ namespace Content.Shared._Starlight.EndOfRoundGriefing;
 /// </summary>
 public abstract partial class SharedEorgPreventionSystem : EntitySystem
 {
-    [Dependency] private SharedPopupSystem _popup = null!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     protected bool IsEnabled = false;
     protected bool HasRoundEnded = false;
