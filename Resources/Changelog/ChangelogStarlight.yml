@@ -1,131 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Changed space occlusion logic, now you won't hear sounds from another players while standing in atmosphere, you won't hear anyone else sounds while standing in space(only yours).
-    type: Tweak
-  - message: Changed general occlusion, now grille has less occlusion power, airlocks get occlusion.
-    type: Tweak
-  - message: Changed space wind sounds(again), added decompression sound effect at the start.
-    type: Tweak
-  id: 409327
-  time: '2026-10-10T12:34:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6590
-- author: Rinary
-  changes:
-  - message: Changed ammo counter for revolvers, now it visualized as revolver drum.
-    type: Tweak
-  - message: Changed shotgun pellets, now default pellets will lose their damage as distance increases.
-    type: Tweak
-  - message: Changed shotgun pellets, now default pellets has worse armor penetration(however slug will breach armor).
-    type: Tweak
-  - message: Changed shotgun deviation, now it won't make big amount of pellets in one place.
-    type: Tweak
-  - message: "Added 2 new indicators on top of item preview: opened bolt and jammed, so now you can see when your weapon isn't bolted or jammed on sight."
-    type: Add
-  - message: 'Added ability to disable 2 new indicators, Added ability to disable item preview in combat or show only in combat(4 options: in combat, not in combat, always, never).'
-    type: Add
-  - message: Changed pistols accuracy options, now they're 100% accurate on first shot, however you anyway can't spam click.
-    type: Tweak
-  - message: Added heat gauge near ammo counter so now you will know which weapon has heat system and how much it heated, it also shows you when weapon jams or melts.
-    type: Add
-  - message: Added new heat shader for held sprite, so now you can see how heated weapon is held by your opponent.
-    type: Add
-  - message: "Changed lockers, now you also can flip them to use as cover(NOTE: only closed lockers, you can't open flipped locker, entity inside flipped locker can go out, but they will unflip locker)."
-    type: Tweak
-  - message: Changed crates/counters, now you can use them as cover but only when you're laying down.
-    type: Tweak
-  - message: Changed LR-30 balance, now it's burst weapon with 3 shots per second instead of 10.
-    type: Tweak
-  - message: Changed NPCs, now they will remember you if you'll try to hide in lockers while they're near you(i.e. they'll try to break or open locker to kill you if they're hostile, this works only if you done that on their eyes, so you anyway can hide from NPCs).
-    type: Tweak
-  - message: Changed NPCs , now they will see you through lockers/crates/vending machines, they'll break your "cover" first.
-    type: Tweak
-  - message: Added heat gauge near crosshair(you can disable it in settings).
-    type: Add
-  - message: Fixed some cases with shotgun/burst weaponry misspredicts.
-    type: Fix
-  - message: Fixed burst overall, now it will shoot even if you won't keep activated mouse button(i.e. 1 click, all burst), it won't fire 90 degrees up.
-    type: Fix
-  - message: Added prediction for sounds when shooting.
-    type: Add
-  - message: Fixed problems when firing pin can be melted from things like burning or explosion while it's in weapon(i.e. gun heat  only now).
-    type: Fix
-  - message: Added craft for unique pins, requires tier 3 research.
-    type: Add
-  - message: Added broken laser crystal which works the same as melted pin but for laser weaponry(before it also spawned melted firing pin).
-    type: Add
-  - message: You can again fast-swap modes for energy pistols by pressing interaction button.
-    type: Tweak
-  - message: Fixed bug when weapon disappears when trying to wield it, when it don't have any wield sprite.
-    type: Fix
-  - message: Added prediction for firing modes, so now instead of <whatever> laser you will see correct laser mode when shooting(was reported before that if you're shooting in taser mode you can see a laser from stun mode or kill mode and other such reports).
-    type: Add
-  id: 409328
-  time: '2026-10-10T12:38:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6373
-- author: Johnny
-  changes:
-  - message: Changed warops ERT to take 50 minutes instead of 25.
-    type: Tweak
-  id: 409329
-  time: '2026-10-10T12:38:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6607
-- author: Rinary
-  changes:
-  - message: 'Added themes into SS14(NOTE: You can return to old theme).'
-    type: Add
-  id: 409330
-  time: '2026-10-10T12:55:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6595
-- author: OmgDev
-  changes:
-  - message: Smile and other slime-kin can also Squish, Pop, and Bubble!
-    type: Add
-  id: 409331
-  time: '2026-10-10T16:03:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6603
-- author: OmgDev
-  changes:
-  - message: Added an option to SpeechComponent that allows entities to opt-in to vocal emotes rather then having to blacklist global ones!
-    type: Tweak
-  id: 409332
-  time: '2026-10-10T16:03:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6603
-- author: Swonki, thepipetoadcouncil
-  changes:
-  - message: ITG Loss Prevention Hardsuit.
-    type: Add
-  id: 409333
-  time: '2026-10-10T16:31:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6608
-- author: Swonki, thepipetoadcouncil
-  changes:
-  - message: ATM's to ATS.
-    type: Add
-  id: 409334
-  time: '2026-10-10T16:31:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6608
-- author: Swonki, thepipetoadcouncil
-  changes:
-  - message: New suite of items to be obtained from ITG Surplus crates.
-    type: Add
-  id: 409335
-  time: '2026-10-10T16:31:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6608
-- author: Swonki, thepipetoadcouncil
-  changes:
-  - message: Salvage Crates are now only salvage locked.
-    type: Tweak
-  id: 409336
-  time: '2026-10-10T16:31:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6608
-- author: Swonki, thepipetoadcouncil
-  changes:
-  - message: Roll values from surplus crates.
-    type: Tweak
-  id: 409337
-  time: '2026-10-10T16:31:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6608
 - author: Swonki, thepipetoadcouncil
   changes:
   - message: Chain Accelerator and Regulator Accuracy.
@@ -2849,4 +2722,81 @@ Entries:
   id: 409726
   time: '2026-10-24T14:31:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6794
+- author: Ohelig
+  changes:
+  - message: (Cork) Salvage is now gone. QM's office moved to make way for...
+    type: Remove
+  id: 409727
+  time: '2026-10-24T15:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6826
+- author: Ohelig
+  changes:
+  - message: (Cork) Laundry is now here, in the space formerly occupied by QM's office.
+    type: Add
+  id: 409728
+  time: '2026-10-24T15:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6826
+- author: Ohelig
+  changes:
+  - message: (Cork) Added a Surgeon slot.
+    type: Add
+  id: 409729
+  time: '2026-10-24T15:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6826
+- author: Ohelig
+  changes:
+  - message: (Cork) Powered Botany.
+    type: Fix
+  id: 409730
+  time: '2026-10-24T15:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6826
+- author: Ohelig
+  changes:
+  - message: (Cork) Powered the bar north of Radio Host.
+    type: Fix
+  id: 409731
+  time: '2026-10-24T15:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6826
+- author: Ohelig
+  changes:
+  - message: (Cork) Linked the artifact analyzers to the consoles.
+    type: Fix
+  id: 409732
+  time: '2026-10-24T15:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6826
+- author: Ohelig
+  changes:
+  - message: (Cork) Fixed space weather in Botany.
+    type: Fix
+  id: 409733
+  time: '2026-10-24T15:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6826
+- author: Ohelig
+  changes:
+  - message: (Cork) Replaced empty variants of wall lockers with filled.
+    type: Fix
+  id: 409734
+  time: '2026-10-24T15:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6826
+- author: Ohelig
+  changes:
+  - message: (Cork) Added some fire-safety closets.
+    type: Add
+  id: 409735
+  time: '2026-10-24T15:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6826
+- author: Ohelig
+  changes:
+  - message: (Cork) Added some botany supplies to genpop.
+    type: Add
+  id: 409736
+  time: '2026-10-24T15:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6826
+- author: Ohelig
+  changes:
+  - message: (Cork) Removed the fans under the door to botany and kitchen.
+    type: Unknown
+  id: 409737
+  time: '2026-10-24T15:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6826
 Order: -1
