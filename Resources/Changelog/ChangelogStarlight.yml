@@ -1,11 +1,4 @@
 Entries:
-- author: Swonki, thepipetoadcouncil
-  changes:
-  - message: Chain Accelerator and Regulator Accuracy.
-    type: Tweak
-  id: 409338
-  time: '2026-10-10T16:31:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6608
 - author: FoxStellar
   changes:
   - message: Added chemistry jug boxes, filled with empty jugs! Use em to make the Jug Locker! For now, they spawn in Chem Lockers, but only until their shelf can be mapped!
@@ -2799,4 +2792,11 @@ Entries:
   id: 409737
   time: '2026-10-24T15:01:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6826
+- author: Xale
+  changes:
+  - message: Psicodine can now be consumed to suppresses auditory hallucinations for a while.
+    type: Add
+  id: 409738
+  time: '2026-10-24T15:25:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6837
 Order: -1
