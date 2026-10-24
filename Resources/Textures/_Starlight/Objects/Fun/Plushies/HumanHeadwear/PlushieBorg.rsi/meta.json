@@ -1,94 +1,14 @@
 {
   "version": 1,
   "size": {
-    "x": 64,
-    "y": 64
+    "x": 32,
+    "y": 32
   },
   "license": "CC-BY-SA-3.0",
   "copyright": "Cricket and Noble by Conflee. Edits by Conflee, originals taken from Paradise Station at https://github.com/ParadiseSS13/Paradise/commit/34f3823923b7692533b7a99c6f2a8bc91c834870; headwear derived from Mobs/Silicon/Chassis/engineer.rsi states borg, borg_e and borg_l. Headwear edits: By Rescue for Starlight.; human headwear adapted from _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieBorg.rsi.",
   "states": [
     {
-      "name": "equipped-HELMET-arachnid",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-avali",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-cyclorite",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-diona",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-Doll",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-dwarf",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-elf",
-      "directions": 4
-    },
-    {
       "name": "equipped-HELMET-experiment",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-felionoid",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-human",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-lagomorph",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-moth",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-default",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-reptilian",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-resomi",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-rodentia",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-shadekin",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-slimeperson",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-thaven",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-vox",
-      "directions": 4
-    },
-    {
-      "name": "equipped-HELMET-vulpkanin",
       "directions": 4
     }
   ]
