@@ -64,7 +64,6 @@ public sealed class CombustionTurbineConsoleState : BoundUserInterfaceState
     public float Integrity;
     public float InletTemperature;
     public float InletPressure;
-    public float ChamberPressure;
     public float OutletPressure;
     public float ExhaustTemperature;
     public float MaxTemperature;

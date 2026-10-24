@@ -1,4 +1,3 @@
-using Content.Shared.Atmos;
 using Content.Shared.Radio;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -30,12 +29,6 @@ public sealed partial class CombustionTurbineRotorComponent : Component
     public float MinIntakeRatio = 0.01f;
 
     /// <summary>
-    /// Gas held between the compressor and the turbine.
-    /// </summary>
-    [DataField]
-    public GasMixture Air = new(1000f) { Temperature = Atmospherics.T20C };
-
-    /// <summary>
     /// Rotational energy of the rotor, in joules.
     /// </summary>
     [DataField]
@@ -55,19 +48,6 @@ public sealed partial class CombustionTurbineRotorComponent : Component
     /// </summary>
     [DataField]
     public float IntakeFullRpm = 10000f;
-
-    /// <summary>
-    /// Fraction of the internal chamber pushed through the turbine per second.
-    /// </summary>
-    [DataField]
-    public float OutflowRate = 2f;
-
-    /// <summary>
-    /// Isentropic efficiency of the compressor. Work spent compressing gas into the chamber is the ideal work
-    /// divided by this, and ends up as heat in the chamber.
-    /// </summary>
-    [DataField]
-    public float CompressionEfficiency = 0.7f;
 
     /// <summary>
     /// The blades turn tanh((T - 20 °C) / this) of the expansion into rotor work, so cold gas turns the turbine
@@ -118,8 +98,27 @@ public sealed partial class CombustionTurbineRotorComponent : Component
     [DataField]
     public float StarterRpm = 1000f;
 
+    /// <summary>
+    /// Once the starter has spun the rotor up, it only kicks in again below this speed.
+    /// </summary>
+    [DataField]
+    public float StarterRestartRpm = 500f;
+
     [DataField]
     public float StarterPower = 3000f;
+
+    /// <summary>
+    /// Watts per second the starter draw grows by. APCs take a 1 kW step at once and ramp 500 W/s after that,
+    /// so keep this below 500 or the starter browns out the room.
+    /// </summary>
+    [DataField]
+    public float StarterRampRate = 400f;
+
+    /// <summary>
+    /// Current starter draw, in watts, on top of <see cref="IdlePower"/>.
+    /// </summary>
+    [ViewVariables]
+    public float StarterLoad;
 
     [DataField]
     public float IdlePower = 200f;

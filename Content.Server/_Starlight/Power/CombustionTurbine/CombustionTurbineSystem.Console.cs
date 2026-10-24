@@ -128,7 +128,6 @@ public sealed partial class CombustionTurbineSystem
             state.Integrity = comp.Integrity;
             state.InletTemperature = comp.InletTemperature;
             state.InletPressure = comp.InletPressure;
-            state.ChamberPressure = comp.Air.Pressure;
             state.OutletPressure = comp.OutletPressure;
             state.ExhaustTemperature = comp.ExhaustTemperature;
             state.MaxTemperature = comp.MaxTemperature;

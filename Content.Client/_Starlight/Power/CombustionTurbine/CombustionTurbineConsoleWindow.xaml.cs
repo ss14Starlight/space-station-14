@@ -88,7 +88,13 @@ public sealed partial class CombustionTurbineConsoleWindow : FancyWindow
             ("temperature", (int) state.ExhaustTemperature));
 
         InletPressureText.Text = FormatPressure(state.InletPressure);
-        ChamberPressureText.Text = FormatPressure(state.ChamberPressure);
+        var ratio = state.OutletPressure > 0f ? state.InletPressure / state.OutletPressure : 0f;
+        PressureRatioText.Text = state.InletPressure <= state.OutletPressure
+            ? Loc.GetString("combustion-turbine-console-pressure-ratio-stalled")
+            : state.OutletPressure > 0f
+                ? Loc.GetString("combustion-turbine-console-pressure-ratio-value", ("ratio", ratio.ToString("F1")))
+                : Loc.GetString("combustion-turbine-console-pressure-ratio-vacuum");
+        PressureRatioText.FontColorOverride = state.InletPressure <= state.OutletPressure ? _badColor : null;
         OutletPressureText.Text = FormatPressure(state.OutletPressure);
         FlowText.Text = Loc.GetString("combustion-turbine-console-flow-value", ("flow", state.MolesPerSecond.ToString("F1")));
 

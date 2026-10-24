@@ -47,12 +47,12 @@
                 <Label Name="InletPressureText" />
             </BoxContainer>
             <BoxContainer Orientation="Horizontal">
-                <Label Text="{Loc 'combustion-turbine-console-chamber-pressure'}" MinWidth="130" />
-                <Label Name="ChamberPressureText" />
-            </BoxContainer>
-            <BoxContainer Orientation="Horizontal">
                 <Label Text="{Loc 'combustion-turbine-console-outlet-pressure'}" MinWidth="130" />
                 <Label Name="OutletPressureText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-pressure-ratio'}" MinWidth="130" />
+                <Label Name="PressureRatioText" />
             </BoxContainer>
             <BoxContainer Orientation="Horizontal">
                 <Label Text="{Loc 'combustion-turbine-console-exhaust-temperature'}" MinWidth="130" />

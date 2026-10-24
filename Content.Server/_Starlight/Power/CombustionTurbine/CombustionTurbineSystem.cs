@@ -61,17 +61,7 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
             comp.Enabled = false;
 
         var rpm = GetRpm(comp);
-        var powered = _receiver.IsPowered(ent.Owner);
-
-        var starter = comp.Enabled && powered && rpm < comp.StarterRpm;
-        if (starter != comp.StarterRunning)
-        {
-            comp.StarterRunning = starter;
-            _receiver.SetLoad(ent.Owner, starter ? comp.StarterPower : comp.IdlePower);
-        }
-
-        if (starter)
-            comp.RotorEnergy += comp.StarterPower * dt;
+        UpdateStarter(ent, rpm, dt);
 
         GasMixture? inlet = null;
         GasMixture? outlet = null;
@@ -89,23 +79,13 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         comp.MolesPerSecond = 0f;
         comp.ExhaustTemperature = 0f;
 
-        var compressionWork = 0f;
         var expansionWork = 0f;
-
-        if (comp.Enabled)
-        {
-            var speedup = _atmosphere.PumpSpeedup();
-
-            if (inlet != null && rpm > 0f)
-                compressionWork = Compress(comp, inlet, rpm, dt * speedup);
-
-            if (outlet != null)
-                expansionWork = Expand(comp, outlet, dt * speedup, dt);
-        }
+        if (comp.Enabled && inlet != null && outlet != null && rpm > 0f)
+            expansionWork = Expand(comp, inlet, outlet, rpm, dt);
 
         var maxOmega = comp.MaxRpm / RpmPerRadian;
         var maxEnergy = 0.5f * comp.RotorInertia * maxOmega * maxOmega;
-        comp.RotorEnergy = Math.Clamp(comp.RotorEnergy + expansionWork - compressionWork, 0f, maxEnergy);
+        comp.RotorEnergy = Math.Clamp(comp.RotorEnergy + expansionWork, 0f, maxEnergy);
 
         var load = ready ? comp.LoadCoefficient : 0f;
         var friction = (comp.FrictionCoefficient * comp.FrictionMultiplier) + (comp.Enabled ? 0f : comp.BrakeCoefficient);
@@ -127,40 +107,16 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         UpdateIntegrity(ent, dt);
     }
 
-    private float Compress(CombustionTurbineRotorComponent comp, GasMixture inlet, float rpm, float dt)
+    private float Expand(CombustionTurbineRotorComponent comp, GasMixture inlet, GasMixture outlet, float rpm, float dt)
     {
+        var inletPressure = inlet.Pressure;
+        var outletPressure = MathF.Max(outlet.Pressure, comp.MinOutletPressure);
+        if (inletPressure <= outletPressure)
+            return 0f;
+
         var speed = MathF.Min(1f, rpm / comp.IntakeFullRpm);
         var volume = comp.IntakeVolume * comp.IntakeMultiplier * comp.IntakeRatio * comp.GovernorFactor * speed * dt;
-        var inletPressure = MathF.Max(inlet.Pressure, comp.MinOutletPressure);
-
-        var removed = inlet.RemoveVolume(MathF.Min(volume, inlet.Volume));
-        var moles = removed.TotalMoles;
-        if (moles <= 0f)
-            return 0f;
-
-        var inletTemperature = removed.Temperature;
-        var removedHeatCapacity = _atmosphere.GetHeatCapacity(removed, true);
-        var exponent = GetIsentropicExponent(removed);
-        _atmosphere.Merge(comp.Air, removed);
-
-        var chamberPressure = comp.Air.Pressure;
-        if (chamberPressure <= inletPressure || exponent <= 0f)
-            return 0f;
-
-        var idealRise = inletTemperature * (MathF.Pow(chamberPressure / inletPressure, exponent) - 1f);
-        var work = removedHeatCapacity * idealRise / comp.CompressionEfficiency;
-        _atmosphere.AddHeat(comp.Air, work);
-        return work;
-    }
-
-    private float Expand(CombustionTurbineRotorComponent comp, GasMixture outlet, float scaledDt, float dt)
-    {
-        var chamberPressure = comp.Air.Pressure;
-        var outletPressure = MathF.Max(outlet.Pressure, comp.MinOutletPressure);
-        if (comp.Air.TotalMoles <= 0f || chamberPressure <= outletPressure)
-            return 0f;
-
-        var passing = comp.Air.RemoveRatio(MathF.Min(1f, comp.OutflowRate * scaledDt));
+        var passing = inlet.RemoveVolume(MathF.Min(volume, inlet.Volume));
         var moles = passing.TotalMoles;
         var temperature = passing.Temperature;
         var heatCapacity = _atmosphere.GetHeatCapacity(passing, true);
@@ -169,7 +125,7 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         var work = 0f;
         if (moles > 0f && heatCapacity > 0f && exponent > 0f)
         {
-            var idealDrop = temperature * (1f - MathF.Pow(outletPressure / chamberPressure, exponent));
+            var idealDrop = temperature * (1f - MathF.Pow(outletPressure / inletPressure, exponent));
             var thermal = MathF.Tanh(MathF.Max(0f, temperature - Atmospherics.T20C) / comp.ThermalScale);
             var drop = MathF.Max(0f, MathF.Min(comp.ExpansionEfficiency * idealDrop, temperature - Atmospherics.TCMB));
             work = comp.WorkMultiplier * thermal * heatCapacity * drop;
@@ -187,6 +143,28 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         var moles = mixture.TotalMoles;
         var heatCapacity = _atmosphere.GetHeatCapacity(mixture, false);
         return moles > 0f && heatCapacity > 0f ? Atmospherics.R * moles / heatCapacity : 0f;
+    }
+
+    private void UpdateStarter(Entity<CombustionTurbineRotorComponent> ent, float rpm, float dt)
+    {
+        var comp = ent.Comp;
+        if (!comp.Enabled || rpm >= comp.StarterRpm)
+            comp.StarterRunning = false;
+        else if (rpm < comp.StarterRestartRpm)
+            comp.StarterRunning = true;
+
+        var load = comp.StarterRunning
+            ? MathF.Min(comp.StarterPower, comp.StarterLoad + (comp.StarterRampRate * dt))
+            : 0f;
+
+        if (!MathHelper.CloseTo(load, comp.StarterLoad))
+        {
+            comp.StarterLoad = load;
+            _receiver.SetLoad(ent.Owner, comp.IdlePower + load);
+        }
+
+        if (load > 0f && _receiver.IsPowered(ent.Owner))
+            comp.RotorEnergy += load * dt;
     }
 
     private static void UpdateGovernor(CombustionTurbineRotorComponent comp, float dt)
@@ -231,11 +209,8 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         ent.Comp.RotorEnergy = 0f;
         ent.Comp.Rpm = 0f;
         ent.Comp.StarterRunning = false;
+        ent.Comp.StarterLoad = 0f;
         _receiver.SetLoad(ent.Owner, ent.Comp.IdlePower);
-
-        if (_atmosphere.GetContainingMixture(ent.Owner, excite: true) is { } air)
-            _atmosphere.Merge(air, ent.Comp.Air);
-        ent.Comp.Air.Clear();
 
         UpdateGenerator(ent, 0f);
     }
