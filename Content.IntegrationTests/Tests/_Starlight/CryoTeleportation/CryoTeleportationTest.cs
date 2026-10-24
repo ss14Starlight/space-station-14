@@ -73,6 +73,7 @@ public sealed class CryoTeleportationTest : GameTest
     [SidedDependency(Side.Server)] private readonly StationJobsSystem _stationJobs = default!;
     [SidedDependency(Side.Server)] private readonly IServerPreferencesManager _prefs = default!;
     [SidedDependency(Side.Server)] private readonly SharedContainerSystem _container = default!;
+    [SidedDependency(Side.Server)] private readonly SharedTransformSystem _transform = default!;
 
     /// <summary>
     /// /ghost while alive leaves a mindless body. Auto-cryo must still reopen its slot.
@@ -286,6 +287,61 @@ public sealed class CryoTeleportationTest : GameTest
         {
             AssertSlots(station, _mime, 0);
             SComp<CryostorageContainedComponent>(body).GracePeriodEndTime = TimeSpan.Zero;
+        });
+        await RunTicksSync(5);
+
+        await Server.WaitAssertion(() =>
+        {
+            AssertStored(pod, body);
+            AssertSlots(station, _mime, 0);
+            Assert.That(_stationJobs.TryGetPlayerJobs(station, session.UserId, out var jobs));
+            Assert.That(jobs, Does.Contain(_mime));
+        });
+
+        await Server.WaitPost(() => _ticker.RestartRound());
+    }
+
+    /// <summary>
+    /// The pod reopens the slot through the player in the body. The body is later brought back out,
+    /// the holder rejoins as that job, and the body goes in a pod again with no player. The new slot must stay taken.
+    /// </summary>
+    [Test]
+    public async Task PodReturnThenReinsertReturnsSlotOnce()
+    {
+        var (body, station, pod) = await StartRoundAs(_mime);
+        var session = ServerSession!;
+
+        await Server.WaitAssertion(() =>
+        {
+            // Only the pod may return the slot here.
+            SComp<StationCryoTeleportationComponent>(station).TransferDelay = TimeSpan.FromHours(1);
+
+            var container = _container.GetContainer(pod, SComp<CryostorageComponent>(pod).ContainerId);
+            Assert.That(_container.Insert(body, container));
+        });
+        await RunTicksSync(5);
+
+        await Server.WaitAssertion(() =>
+        {
+            AssertStored(pod, body);
+            AssertSlots(station, _mime, 1);
+            Assert.That(SComp<TargetCryoTeleportationComponent>(body).Job, Is.Null);
+
+            var profile = _prefs.GetPreferences(session.UserId).Characters[0];
+            _ticker.MakeJoinGame(session, profile, station, _mime);
+        });
+        await RunTicksSync(10);
+
+        await Server.WaitAssertion(() =>
+        {
+            AssertSlots(station, _mime, 0);
+
+            // Back to the station, as an admin might, then into the pod with no player.
+            SEntMan.RemoveComponent<CryostorageContainedComponent>(body);
+            _transform.SetCoordinates(body, SEntMan.GetComponent<TransformComponent>(pod).Coordinates);
+
+            var container = _container.GetContainer(pod, SComp<CryostorageComponent>(pod).ContainerId);
+            Assert.That(_container.Insert(body, container));
         });
         await RunTicksSync(5);
 

@@ -49,6 +49,7 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
         SubscribeLocalEvent<TargetCryoTeleportationComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<TargetCryoTeleportationComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<TargetCryoTeleportationComponent, CryoStoredWithoutPlayerEvent>(OnStoredWithoutPlayer);
+        SubscribeLocalEvent<CryoSlotReturnedEvent>(OnSlotReturned);
         _playerMan.PlayerStatusChanged += OnSessionStatus;
     }
 
@@ -134,6 +135,13 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
     private void OnStoredWithoutPlayer(Entity<TargetCryoTeleportationComponent> ent, ref CryoStoredWithoutPlayerEvent args)
         => ReturnJobSlot(ent, ent.Comp);
 
+    // One reopen per body, by any path; the holder may since have rejoined as this job.
+    private void OnSlotReturned(ref CryoSlotReturnedEvent args)
+    {
+        if (TryComp<TargetCryoTeleportationComponent>(args.Body, out var comp) && comp.Job == args.Job)
+            comp.Job = null;
+    }
+
     private void ReturnJobSlot(EntityUid body, TargetCryoTeleportationComponent comp)
     {
         if (comp.Station is not { } station
@@ -144,9 +152,6 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
         if (!_stationJobs.TryRemovePlayerJob(station, holder, job)
             || !_stationJobs.TryAdjustJobSlot(station, job, 1, clamp: true))
             return;
-
-        // Storing the body asks again after auto-cryo; the holder may have rejoined as this job by then.
-        comp.Job = null;
 
         var slotReturned = new CryoSlotReturnedEvent(body, job);
         RaiseLocalEvent(ref slotReturned);
