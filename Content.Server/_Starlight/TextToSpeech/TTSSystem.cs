@@ -216,6 +216,11 @@ public sealed partial class TTSSystem : EntitySystem
                .AddInRange(mapCoords, SharedChatSystem.WhisperClearRange);
         }
 
+        var expand = new ExpandTtsRecipientsEvent(uid,
+            args.IsWhisper ? SharedChatSystem.WhisperClearRange : SharedChatSystem.VoiceRange,
+            args.Language, filter);
+        RaiseLocalEvent(expand);
+
         return filter.RemovePlayers(_ignoredRecipients)
                .RemoveWhere(x => x.AttachedEntity.HasValue
                    && x.AttachedEntity != uid

@@ -82,7 +82,8 @@ namespace Content.Server.Pointing.EntitySystems
             EntityUid pointed,
             string selfMessage,
             string viewerMessage,
-            string? viewerPointedAtMessage = null)
+            string? viewerPointedAtMessage = null,
+            bool privatePointing = false) // Starlight
         {
             var netSource = GetNetEntity(source);
 
@@ -102,10 +103,12 @@ namespace Content.Server.Pointing.EntitySystems
                 // Someone pointing at YOU is slightly more important
                 var popupType = viewerEntity == pointed ? PopupType.Medium : PopupType.Small;
 
-                RaiseNetworkEvent(new PopupEntityEvent(message, popupType, netSource), viewerEntity);
+                var popupSource = privatePointing ? GetNetEntity(viewerEntity) : netSource; // Starlight
+                RaiseNetworkEvent(new PopupEntityEvent(message, popupType, popupSource), viewerEntity);
             }
 
-            _replay.RecordServerMessage(new PopupEntityEvent(viewerMessage, PopupType.Small, netSource));
+            if (!privatePointing) // Starlight
+                _replay.RecordServerMessage(new PopupEntityEvent(viewerMessage, PopupType.Small, netSource));
         }
 
         public bool InRange(EntityUid pointer, EntityCoordinates coordinates)
@@ -157,32 +160,38 @@ namespace Content.Server.Pointing.EntitySystems
                 return false;
             }
             var mapCoordsPointed = _transform.ToMapCoordinates(coordsPointed);
-            _rotateToFaceSystem.TryFaceCoordinates(player, mapCoordsPointed.Position);
-
-            var arrow = Spawn("PointingArrow", coordsPointed);
-
-            if (TryComp<PointingArrowComponent>(arrow, out var pointing))
-            {
-                pointing.StartPosition = _transform.ToCoordinates((arrow, Transform(arrow)), _transform.ToMapCoordinates(Transform(player).Coordinates)).Position;
-                pointing.EndTime = _gameTiming.CurTime + PointDuration;
-
-                Dirty(arrow, pointing);
-            }
-
-            if (EntityQuery<PointingArrowAngeringComponent>().FirstOrDefault() != null)
-            {
-                if (TryComp<PointingArrowComponent>(arrow, out var pointingArrowComponent))
-                {
-                    pointingArrowComponent.Rogue = true;
-                }
-            }
-
+            var privateViewers = GetCollectivePointingViewers(player); // Starlight
             var layer = (int) VisibilityFlags.Normal;
-            if (TryComp(player, out VisibilityComponent? playerVisibility))
+            if (privateViewers != null) // Starlight
+                SendCollectivePointingArrow(player, mapCoordsPointed, privateViewers);
+            else
             {
-                var arrowVisibility = EnsureComp<VisibilityComponent>(arrow);
-                layer = playerVisibility.Layer;
-                _visibilitySystem.SetLayer((arrow, arrowVisibility), (ushort) layer);
+                _rotateToFaceSystem.TryFaceCoordinates(player, mapCoordsPointed.Position);
+
+                var arrow = Spawn("PointingArrow", coordsPointed);
+
+                if (TryComp<PointingArrowComponent>(arrow, out var pointing))
+                {
+                    pointing.StartPosition = _transform.ToCoordinates((arrow, Transform(arrow)), _transform.ToMapCoordinates(Transform(player).Coordinates)).Position;
+                    pointing.EndTime = _gameTiming.CurTime + PointDuration;
+
+                    Dirty(arrow, pointing);
+                }
+
+                if (EntityQuery<PointingArrowAngeringComponent>().FirstOrDefault() != null)
+                {
+                    if (TryComp<PointingArrowComponent>(arrow, out var pointingArrowComponent))
+                    {
+                        pointingArrowComponent.Rogue = true;
+                    }
+                }
+
+                if (TryComp(player, out VisibilityComponent? playerVisibility))
+                {
+                    var arrowVisibility = EnsureComp<VisibilityComponent>(arrow);
+                    layer = playerVisibility.Layer;
+                    _visibilitySystem.SetLayer((arrow, arrowVisibility), (ushort) layer);
+                }
             }
 
             // Get players that are in range and whose visibility layer matches the arrow's.
@@ -197,7 +206,7 @@ namespace Content.Server.Pointing.EntitySystems
                 return _transform.GetMapCoordinates(ent).InRange(_transform.GetMapCoordinates(player), PointingRange);
             }
 
-            var viewers = Filter.Empty()
+            var viewers = privateViewers ?? Filter.Empty() // Starlight
                 .AddWhere(session1 => ViewerPredicate(session1))
                 .Recipients;
 
@@ -271,10 +280,13 @@ namespace Content.Server.Pointing.EntitySystems
                     viewerPointedAtMessage = Loc.GetString("pointing-system-point-at-you-other", ("otherName", playerName));
                 }
 
-                var ev = new AfterPointedAtEvent(pointed);
-                RaiseLocalEvent(player, ref ev);
-                var gotev = new AfterGotPointedAtEvent(player);
-                RaiseLocalEvent(pointed, ref gotev);
+                if (privateViewers == null) // Starlight
+                {
+                    var ev = new AfterPointedAtEvent(pointed);
+                    RaiseLocalEvent(player, ref ev);
+                    var gotev = new AfterGotPointedAtEvent(player);
+                    RaiseLocalEvent(pointed, ref gotev);
+                }
 
                 _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(player):user} pointed at {ToPrettyString(pointed):target} {Transform(pointed).Coordinates}");
             }
@@ -301,7 +313,7 @@ namespace Content.Server.Pointing.EntitySystems
 
             _pointers[session] = _gameTiming.CurTime;
 
-            SendMessage(player, viewers, pointed, selfMessage, viewerMessage, viewerPointedAtMessage);
+            SendMessage(player, viewers, pointed, selfMessage, viewerMessage, viewerPointedAtMessage, privateViewers != null); // Starlight
 
             return true;
         }

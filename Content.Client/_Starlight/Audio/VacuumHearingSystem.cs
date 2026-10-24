@@ -159,14 +159,29 @@ public sealed partial class VacuumHearingSystem : EntitySystem
     }
 
     private float GetOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid? ignoredEnt)
+        => GetOcclusion(listener, delta, distance, ignoredEnt, ListenerMuffleValue, HelmetOcclusionValue, _wornHelmet,
+            _listenerGrid, _listenerGrounded,
+            distance < OwnBodyRange || (ignoredEnt is { } parent && _ownParents.Contains(parent)));
+
+    public float GetOcclusionForListener(EntityUid body, float pressure, bool sealedHelmet,
+        MapCoordinates listener, Vector2 delta, float distance, EntityUid? ignoredEnt)
+    {
+        var grid = Transform(body).GridUid;
+        EntityUid? helmet = sealedHelmet && _inventory.TryGetSlotEntity(body, "head", out var head) ? head : null;
+        return GetOcclusion(listener, delta, distance, ignoredEnt,
+            Math.Clamp(1f - (pressure / MuffleStartPressure), 0f, 1f), sealedHelmet ? HelmetOcclusion : 0f, helmet,
+            grid, grid != null && !_gravity.IsWeightless(body),
+            distance < OwnBodyRange || (ignoredEnt is { } parent && IsOwnedBy(parent, body)));
+    }
+
+    private float GetOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid? ignoredEnt,
+        float listenerMuffle, float helmetOcclusion, EntityUid? wornHelmet, EntityUid? listenerGrid, bool listenerGrounded, bool own)
     {
         // Racy across audio threads, good enough for a debug counter.
         OcclusionCalls++;
 
         var source = FindSource(listener.MapId, listener.Position + delta);
-        var own = distance < OwnBodyRange || (ignoredEnt is { } parent && _ownParents.Contains(parent));
-
-        var vacuum = MathF.Max(ListenerMuffleValue, source is { OpenSpace: true } ? 1f : 0f);
+        var vacuum = MathF.Max(listenerMuffle, source is { OpenSpace: true } ? 1f : 0f);
 
         var walls = 0f;
         if (!own && distance > ContactRange)
@@ -178,15 +193,15 @@ public sealed partial class VacuumHearingSystem : EntitySystem
         float vacuumOcclusion;
         if (own)
             vacuumOcclusion = OwnOcclusion;
-        else if (CarriesThroughStructure(source))
+        else if (CarriesThroughStructure(source, listenerGrounded, listenerGrid))
             vacuumOcclusion = StructureOcclusion + (StructureOcclusionPerTile * distance);
         else
             vacuumOcclusion = SilentOcclusion;
 
-        var helmet = HelmetOcclusionValue;
+        var helmet = helmetOcclusion;
         if (own)
         {
-            if (ignoredEnt != null && ignoredEnt == _wornHelmet)
+            if (ignoredEnt != null && ignoredEnt == wornHelmet)
                 helmet = 0f;
         }
         else if (helmet > 0f && ignoredEnt is { } ambient && _ambientParents.Contains(ambient))
@@ -199,11 +214,11 @@ public sealed partial class VacuumHearingSystem : EntitySystem
         return walls + helmet + air + (vacuumOcclusion * vacuum);
     }
 
-    private bool CarriesThroughStructure(SourceInfo? source)
+    private static bool CarriesThroughStructure(SourceInfo? source, bool listenerGrounded, EntityUid? listenerGrid)
     {
-        return _listenerGrounded
+        return listenerGrounded
             && source is { OpenSpace: false, Grid: { } grid }
-            && grid == _listenerGrid;
+            && grid == listenerGrid;
     }
 
     private float GetWallOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid? ignoredEnt)

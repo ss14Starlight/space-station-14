@@ -1,0 +1,33 @@
+- type: entity
+  id: MindCollectiveObserver
+  name: consciousness
+  categories: [HideSpawnMenu]
+  components:
+  - type: MindCollectiveObserver
+  - type: Eye
+  - type: Examiner
+  - type: Input
+    context: human
+  - type: MindContainer
+  - type: Actions
+  - type: ActionsContainer
+  - type: UserInterface
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+  - type: Blindable
+    isBlind: true
+
+- type: entity
+  id: ActionMindCollective
+  name: Collective
+  description: View the collective's bodies and members, enter a vacant body or return to mindspace.
+  categories: [HideSpawnMenu]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon: { sprite: Interface/Actions/actions_ai.rsi, state: ai_core }
+    checkCanInteract: false
+    checkConsciousness: false
+    useDelay: 0.5
+  - type: InstantAction
+    event: !type:OpenMindCollectiveEvent {}

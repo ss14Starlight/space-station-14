@@ -49,6 +49,15 @@ public sealed partial class ThermalVisionSystem : SharedThermalVisionSystem
         _altOverlay = new(_prototypeManager.Index<ShaderPrototype>(AlternativeThermalVisionShader));
     }
 
+    [SubscribeLocalEvent]
+    private void OnAutoHandleState(Entity<ThermalVisionComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        if (ent.Comp.Active)
+            AttemptAddVision(ent.Owner);
+        else
+            AttemptRemoveVision(ent.Owner);
+    }
+
     private void OnFlashImmunityChanged(Entity<ThermalVisionComponent> ent, ref FlashImmunityCheckEvent args)
     {
         if (args.IsImmune)

@@ -1,0 +1,27 @@
+mind-collective-title = Collective
+mind-collective-bodies-tab = Bodies
+mind-collective-members-tab = Members
+mind-collective-leave = Return to mindspace
+mind-collective-observe = Observe
+mind-collective-enter = Enter body
+mind-collective-recall = Recall
+mind-collective-vacant = vacant
+mind-collective-body = {$body} — {$occupant}
+mind-collective-no-bodies = There are no available bodies.
+mind-collective-chat-hint = Collective chat: +h message. In mindspace, ordinary speech stays within the collective.
+mind-collective-member = this member
+mind-collective-expel = Expel
+mind-collective-confirm-title = Confirm expulsion
+mind-collective-confirm-expel = Expel {$name} from the collective? They will leave their current body and become a ghost, losing access to the collective.
+mind-collective-confirm-yes = Yes
+mind-collective-confirm-no = No
+mind-collective-consent-title = Join the collective?
+mind-collective-consent-description = Join this collective of minds? You can speak privately with its members, observe through its bodies and control vacant ones. Its owner can take over your body, recall you to mindspace or expel you. You will leave your current body. If you decline or close this window, you will become a ghost.
+ent-ActionMindCollective = Collective
+    .desc = View the collective's bodies and members, enter a vacant body or return to mindspace.
+mind-collective-chat = [color=#c77dff]{$name}: {$message}[/color]
+mind-collective-joined = Your mind has joined the collective.
+mind-collective-expelled = You have been expelled from the collective and become a ghost.
+mind-collective-ghost-name = Collective Consciousness
+mind-collective-ghost-description = Join an existing collective of minds. Communicate with its members and control vacant bodies.
+mind-collective-ghost-rules = Cooperate with the collective and its owner. The owner can take over your body, recall you to mindspace or expel you.

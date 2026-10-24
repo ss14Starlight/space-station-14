@@ -1,0 +1,10 @@
+- type: entity
+  id: MindCollectiveVacancy
+  abstract: true
+  components:
+  - type: GhostRole
+    name: mind-collective-ghost-name
+    description: mind-collective-ghost-description
+    rules: mind-collective-ghost-rules
+    makeSentient: false
+    reregister: false
