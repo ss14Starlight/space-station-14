@@ -8,8 +8,8 @@ namespace Content.Shared._Starlight.DestinyDice.EffectSystems;
 
 public sealed partial class FloorIsLavaEffectSystem : EntityEffectSystem<DestinyDiceComponent, FloorIsLavaEffect>
 {
-    [Dependency] private TurfSystem _turf = default!;
-    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private TurfSystem _turf = null!;
+    [Dependency] private SharedMapSystem _map = null!;
 
     private const string LavaPrototypeId = "FloorLavaEntity";
 
@@ -26,3 +26,5 @@ public sealed partial class FloorIsLavaEffectSystem : EntityEffectSystem<Destiny
             PredictedSpawnAtPosition(LavaPrototypeId, coords);
     }
 }
+
+public sealed partial class FloorIsLavaEffect : EntityEffectBase<FloorIsLavaEffect>;

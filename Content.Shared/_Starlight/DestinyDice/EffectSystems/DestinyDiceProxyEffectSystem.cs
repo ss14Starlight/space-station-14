@@ -3,11 +3,13 @@ using Content.Shared.EntityEffects;
 
 namespace Content.Shared._Starlight.DestinyDice.EffectSystems;
 
+/// <summary>
 /// Acts as a proxy to apply effects to all effect targets.
+/// </summary>
 public sealed partial class DestinyDiceProxyEffectSystem : EntityEffectSystem<DestinyDiceComponent, DestinyDiceProxyEffect>
 {
-    [Dependency] private DestinyDiceSystem _dd = default!;
-    [Dependency] private SharedEntityEffectsSystem _effects = default!;
+    [Dependency] private DestinyDiceSystem _dd = null!;
+    [Dependency] private SharedEntityEffectsSystem _effects = null!;
 
     protected override void Effect(Entity<DestinyDiceComponent> entity,
         ref EntityEffectEvent<DestinyDiceProxyEffect> args)

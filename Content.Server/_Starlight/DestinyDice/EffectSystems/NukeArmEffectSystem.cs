@@ -11,10 +11,10 @@ namespace Content.Server._Starlight.DestinyDice.EffectSystems;
 
 public sealed partial class NukeArmEffectSystem : EntityEffectSystem<DestinyDiceComponent, NukeArmEffect>
 {
-    [Dependency] private NukeSystem _nuke = default!;
-    [Dependency] private TransformSystem _xform = default!;
-    [Dependency] private ContainerSystem _container = default!;
-    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private NukeSystem _nuke = null!;
+    [Dependency] private TransformSystem _xform = null!;
+    [Dependency] private ContainerSystem _container = null!;
+    [Dependency] private IRobustRandom _random = null!;
 
     protected override void Effect(Entity<DestinyDiceComponent> entity, ref EntityEffectEvent<NukeArmEffect> args)
     {

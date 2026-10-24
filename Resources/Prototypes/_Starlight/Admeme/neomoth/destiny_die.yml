@@ -81,14 +81,15 @@
 
 - type: destinyDiceEffect
   id: TestEffect
-  entityEffect: !type:DestinyDiceProxyEffect
-    effects:
-      - !type:SpawnEntity
-        predicted: true
-        entity: FoodBurgerBacon
-        overrides:
-          - type: ScaleVisuals
-            scale: 3, 3
+  entityEffect: !type:MakeDraggableEffect
+#  entityEffect: !type:DestinyDiceProxyEffect
+#    effects:
+#      - !type:SpawnEntity
+#        predicted: true
+#        entity: FoodBurgerBacon
+#        overrides:
+#          - type: ScaleVisuals
+#            scale: 3, 3
   targetData:
     type: Self
 

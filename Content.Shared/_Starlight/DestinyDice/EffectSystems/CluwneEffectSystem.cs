@@ -9,7 +9,7 @@ namespace Content.Shared._Starlight.DestinyDice.EffectSystems;
 
 public sealed partial class CluwneEffectSystem : EntityEffectSystem<DestinyDiceComponent, CluwneEffect>
 {
-    [Dependency] private DestinyDiceSystem _dd = default!;
+    [Dependency] private DestinyDiceSystem _dd = null!;
 
     protected override void Effect(Entity<DestinyDiceComponent> entity, ref EntityEffectEvent<CluwneEffect> args)
     {
@@ -19,3 +19,5 @@ public sealed partial class CluwneEffectSystem : EntityEffectSystem<DestinyDiceC
             EnsureComp<CluwneComponent>(target);
     }
 }
+
+public sealed partial class CluwneEffect : EntityEffectBase<CluwneEffect>;
