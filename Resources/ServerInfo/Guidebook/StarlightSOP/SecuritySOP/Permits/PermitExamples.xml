@@ -17,7 +17,7 @@
         <GuideEntityEmbed Entity="WeaponPistolMk58" Caption="" Margin="4"/>
         <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
           [bold]Mk 58[/bold]
-          - [bold]From Security:[/bold] If you got the Mk 58 from Security, you only need the [color=#ff6666]Warden[/color]'s stamp.
+          - [bold]From Security:[/bold] If you got the Mk 58 from Security, you only need either the [color=#ff6666]Warden[/color]'s stamp or the [color=#c4363b]Gunnery Sergeant[/color]'s stamp.
           - [bold]Purchased from ITG:[/bold] If you bought it from ITG, you need both the [color=#963dca]Salvage Lead[/color]'s stamp and the [color=#ff6666]Warden[/color]'s stamp.
         </Box>
       </Box>
@@ -27,7 +27,7 @@
         <GuideEntityEmbed Entity="JawsOfLifeMed" Caption="" Margin="4"/>
         <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
           [bold]Medical Jaws of Life[/bold]
-          - [bold]No Origin (e.g., found in maintenance):[/bold] Since it has no departmental origin and is approved for Medical and Security, you only need a stamp from any one Relevant Leader: the [color=#57b8f0]Chief Medical Officer[/color], [color=#ff6666]Warden[/color], or [color=#ff4242]Head of Security[/color].
+          - [bold]No Origin (e.g., found in maintenance):[/bold] Since it has no departmental origin and is approved for Medical and Security, you only need a stamp from any one Relevant Leader: the [color=#57b8f0]Chief Medical Officer[/color], [color=#ff6666]Warden[/color], [color=#c4363b]Gunnery Sergeant[/color], or [color=#ff4242]Head of Security[/color].
         </Box>
       </Box>
     </ColorBox>
@@ -45,7 +45,7 @@
         <GuideEntityEmbed Entity="ClothingHeadHatCatEars" Caption="" Margin="4"/>
         <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
           [bold]Cat Ears[/bold]
-          - As a Tier 1 Rival Corporation item, you only need the [color=#ff6666]Warden[/color]'s stamp.
+          - As a Tier 1 Rival Corporation item, you only need either the [color=#ff6666]Warden[/color]'s stamp or the [color=#c4363b]Gunnery Sergeant[/color]'s stamp.
         </Box>
       </Box>
     </ColorBox>

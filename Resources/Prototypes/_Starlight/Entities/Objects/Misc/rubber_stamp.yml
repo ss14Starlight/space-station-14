@@ -87,11 +87,15 @@
   components:
     - type: Stamp
       stampedName: "Gunnery Sergeant"
-      stampedColor: "#ae2e33"
+      stampedColor: "#c4363b"
       stampState: "paper_stamp-gunnerysergeant"
     - type: Sprite
       sprite: _Starlight/Objects/Misc/stamps.rsi
       state: stamp-gunnerysergeant
+    - type: Contraband # Blimpuf
+      tier: Tier2
+      allowedJobs: [ GunnerySergeant ]
+
 # Assistant Manager stamp
 - type: entity
   name: assistant manager's stamp

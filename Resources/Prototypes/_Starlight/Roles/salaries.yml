@@ -101,6 +101,7 @@
     DutyOfficer: "Central Security Division"
     SecurityOfficer: "Central Security Division"
     SecurityCadet: "Central Security Division"
+    GunnerySergeant: "Central Security Division"
 
     StationAi: "NanoTrasen"
     Borg: "NanoTrasen"
