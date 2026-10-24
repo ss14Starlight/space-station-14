@@ -1,0 +1,17 @@
+- type: !PartialOnly entity
+  id: Cane
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 60
+  - type: ItemPrice
+    fallbackPrice: 25
+
+- type: !PartialOnly entity
+  id: CaneSheath
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 9
+    soundHit:
+      collection: MetalThud

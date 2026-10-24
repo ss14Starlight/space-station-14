@@ -388,10 +388,13 @@
   id: JobSalvageMedic
   groups:
   - GroupTankHarness
+  - SalvageMedicJumpsuit
+  - SalvageMedicPDA
+  - SalvageMedicNeck
   - SalvageSpecialistBackpack
   - SalvageSpecialistOuterClothing
   - SalvageSpecialistShoes
-  - Glasses
+  - MedicalEyewear
   - Survival
   - Trinkets
   - Scarves

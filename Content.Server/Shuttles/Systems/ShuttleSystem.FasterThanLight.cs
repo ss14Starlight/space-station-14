@@ -280,7 +280,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Moves a shuttle from its current position to the target one without any checks. Goes through the hyperspace map while the timer is running.
     /// </summary>
-    public void FTLToCoordinates(
+    public bool FTLToCoordinates( // Starlight: void to bool
         EntityUid shuttleUid,
         ShuttleComponent component,
         EntityCoordinates coordinates,
@@ -290,7 +290,7 @@ public sealed partial class ShuttleSystem
         string? priorityTag = null)
     {
         if (!TrySetupFTL(shuttleUid, component, out var hyperspace))
-            return;
+            return false; // Starlight
 
         startupTime ??= DefaultStartupTime;
         hyperspaceTime ??= DefaultTravelTime;
@@ -308,8 +308,9 @@ public sealed partial class ShuttleSystem
 
         var mapId = _transform.GetMapId(coordinates);
         var mapUid = _mapSystem.GetMap(mapId);
-        var ev = new FTLRequestEvent(mapUid);
+        var ev = new FTLRequestEvent(mapUid, shuttleUid); // Starlight
         RaiseLocalEvent(shuttleUid, ref ev, true);
+        return HasComp<FTLComponent>(shuttleUid); // Starlight
     }
 
     /// <summary>
@@ -386,6 +387,13 @@ public sealed partial class ShuttleSystem
         return true;
     }
 
+    #region Starlight
+    private bool IsValidFTLTarget(EntityCoordinates target)
+        => target.IsValid(EntityManager) &&
+            HasComp<TransformComponent>(target.EntityId) &&
+            _transform.GetMap(target)?.IsValid() == true;
+    #endregion
+
     /// <summary>
     /// Transitions shuttle to FTL map.
     /// </summary>
@@ -460,7 +468,8 @@ public sealed partial class ShuttleSystem
         comp.StateTime = StartEndTime.FromCurTime(_gameTiming, DefaultArrivalTime);
         comp.State = FTLState.Arriving;
 
-        if (entity.Comp1.VisualizerProto != null)
+        // Starlight - start
+        if (entity.Comp1.VisualizerProto != null && IsValidFTLTarget(entity.Comp1.TargetCoordinates))
         {
             comp.VisualizerEntity = SpawnAttachedTo(entity.Comp1.VisualizerProto, entity.Comp1.TargetCoordinates);
             DebugTools.Assert(Transform(comp.VisualizerEntity.Value).ParentUid == entity.Comp1.TargetCoordinates.EntityId);
@@ -470,6 +479,7 @@ public sealed partial class ShuttleSystem
             _transform.SetLocalRotation(comp.VisualizerEntity.Value, entity.Comp1.TargetAngle);
             _pvs.AddGlobalOverride(comp.VisualizerEntity.Value);
         }
+        // Starlight - end
 
         _thruster.DisableLinearThrusters(shuttle);
         _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.South);
@@ -499,8 +509,10 @@ public sealed partial class ShuttleSystem
         QueueDel(entity.Comp1.VisualizerEntity);
         entity.Comp1.VisualizerEntity = null;
 
-        if (!Exists(entity.Comp1.TargetCoordinates.EntityId))
+        // Starlight - start
+        if (!IsValidFTLTarget(target))
         {
+            Log.Warning($"FTL target coordinates {target} for {ToPrettyString(uid)} are invalid; redirecting to a fallback map.");
             // Starlight edit Start: Yeah... Lets not do the first map in the list.
             // Fallback chain:
             // 1) map we started from, 2) any map with a station grid, 3) first map entity.
@@ -547,6 +559,7 @@ public sealed partial class ShuttleSystem
             }
             // Starlight edit End
         }
+        // Starlight - end
         // Docking FTL
         else if (HasComp<MapGridComponent>(target.EntityId) &&
                  !HasComp<MapComponent>(target.EntityId))

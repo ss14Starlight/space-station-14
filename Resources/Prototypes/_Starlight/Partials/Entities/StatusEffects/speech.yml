@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: StatusEffectStutter
+  components:
+  - type: StatusEffect
+    blacklist:
+      tags:
+      - StutterImmune

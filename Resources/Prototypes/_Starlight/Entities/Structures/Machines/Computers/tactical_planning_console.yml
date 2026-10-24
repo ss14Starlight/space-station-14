@@ -1,0 +1,71 @@
+- type: entity
+  parent: BaseComputer
+  id: TacticalPlanningConsole
+  name: tactical planning console
+  description: A station map for coordinating a tactical response to any threat.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/tactical_planning_console.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: base
+    - map: ["computerLayerScreen"]
+      state: unpowered
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { state: powered, shader: unshaded }
+          False: { state: unpowered, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: base }
+          West: { state: base }
+          East: { state: base }
+          East, West: { state: base }
+  - type: StationMap
+    showLocation: false
+    initializeWithStation: false
+  - type: Computer
+    board: TacticalPlanningConsoleCircuitboard
+  - type: TacticalPlanningConsole
+  - type: ActivatableUI
+    key: enum.TacticalPlanningConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.TacticalPlanningConsoleUiKey.Key:
+        type: TacticalPlanningConsoleBoundUserInterface
+
+- type: entity
+  parent: TacticalPlanningConsole
+  id: TacticalPlanningConsoleNukeops
+  name: syndicate tactical planning console
+  description: A shared tactical map for planning any syndicate operation on the target station.
+  components:
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { state: evil_powered, shader: unshaded }
+          False: { state: unpowered, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: base }
+          West: { state: base }
+          East: { state: base }
+          East, West: { state: base }
+  - type: NukeopsStationMap
+  - type: Computer
+    board: TacticalPlanningConsoleNukeopsCircuitboard

@@ -14,6 +14,7 @@ public sealed partial class ImpersonateConditionSystem : EntitySystem
     [Dependency] private TargetObjectiveSystem _target = default!;
     [Dependency] private EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private KillPersonConditionSystem _killPersonCondition = default!; // Starlight
 
     public override void Initialize()
     {
@@ -57,10 +58,8 @@ public sealed partial class ImpersonateConditionSystem : EntitySystem
     }
 
     // copypasta from escape shittle objective. eh.
-    private void OnGetProgress(EntityUid uid, ImpersonateConditionComponent comp, ref ObjectiveGetProgressEvent args)
-    {
-        args.Progress = GetProgress(args.Mind, comp);
-    }
+    private void OnGetProgress(EntityUid uid, ImpersonateConditionComponent comp, ref ObjectiveGetProgressEvent args) => args.Progress = _target.GetTarget(uid, out var target)
+            ? Math.Min(GetProgress(args.Mind, comp), _killPersonCondition.GetEliminationProgress(target.Value)) : 0; // Starlight, also eliminate the identity's owner.
 
     public float GetProgress(MindComponent mind, ImpersonateConditionComponent comp)
     {

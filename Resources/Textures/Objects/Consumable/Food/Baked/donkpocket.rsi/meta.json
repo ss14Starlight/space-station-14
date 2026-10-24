@@ -1,81 +1,112 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24. Stonk pocket by Tayrtahn on GitHub. Carp pocket by deltanedas (GitHub). Modified by ps3moira (GitHub). 'moth-box' and 'moth' States by kosticia on GitHub",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "banana"
+            "name": "banana",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24. Modified by ps3moira (GitHub)."
         },
         {
-            "name": "banana-box"
+            "name": "banana-box",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "berry"
+            "name": "berry",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "berry-box"
+            "name": "berry-box",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "dank"
+            "name": "dank",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "pizza"
+            "name": "pizza",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "pizza-box"
+            "name": "pizza-box",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "plain"
+            "name": "plain",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "box"
+            "name": "box",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "spicy"
+            "name": "spicy",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "spicy-box"
+            "name": "spicy-box",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "teriyaki"
+            "name": "teriyaki",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "teriyaki-box"
+            "name": "teriyaki-box",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "dink-box"
+            "name": "dink-box",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "dink"
+            "name": "dink",
+            "copyright": "TG Station, ps3moira"
         },
         {
-            "name": "stonk-box"
+            "name": "stonk-box",
+            "copyright": "TG Station. Stonk pocket by Tayrtahn on GitHub. ps3moira"
         },
         {
-            "name": "stonk"
+            "name": "stonk",
+            "copyright": "TG Station, Tayrtahn, ps3moira"
         },
         {
-            "name": "carp-box"
+            "name": "carp-box",
+            "copyright": "TG Station. Carp pocket by deltanedas (GitHub). ps3moira"
         },
         {
-            "name": "carp"
+            "name": "carp",
+            "copyright": "TG Station, deltanedas, ps3moira"
         },
         {
-            "name": "moth-box"
+            "name": "mime",
+            "copyright": "TG Station, ps3moira. Mime & Wonk variations by ItsMaitake on Blimpuf Station."
         },
         {
-            "name": "moth"
+            "name": "wonk",
+            "copyright": "TG Station, ps3moira, ItsMaitake"
+        },
+        {
+            "name": "moth-box",
+            "copyright": "TG Station, ps3moira. Moth states by kosticia on GitHub."
+        },
+        {
+            "name": "moth",
+            "copyright": "TG Station, ps3moira, kosticia"
         },
         {
             "name": "inhand-left",
+            "copyright": "TG Station, ps3moira",
             "directions": 4
         },
         {
             "name": "inhand-right",
+            "copyright": "TG Station, ps3moira",
             "directions": 4
         }
     ]

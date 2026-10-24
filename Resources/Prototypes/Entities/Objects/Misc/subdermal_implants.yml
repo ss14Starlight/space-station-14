@@ -98,16 +98,6 @@
     - type: StationLimitedNetwork
     - type: WirelessNetworkConnection
       range: 500
-    #region Starlight Tracker rattle
-    - type: TriggerOnMobstateChange
-      mobState:
-      - Critical
-      - Dead
-    - type: RattleOnTrigger
-      targetUser: true
-      radioChannel:
-      - Security
-    #endregion Starlight tracker rattle
 
 #Traitor implants
 
@@ -183,7 +173,6 @@
     interfaces:
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
-  - type: UplinkImplant # Starlight-edit: Uplink Implant discounts
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -385,7 +374,6 @@
       - Dead
     - type: RattleOnTrigger
       targetUser: true
-      radioChannel: [Syndicate] #Starlight, syndicate isn't default rattle channel anymore
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -406,7 +394,7 @@
   parent: BaseSubdermalImplant
   id: MindShieldImplant
   name: mindshield implant
-  description: This implant will ensure loyalty to NanoTrasen and prevent mind control devices. # SL
+  description: This implant will ensure loyalty to Nanotrasen and prevent mind control devices.
   categories: [ HideSpawnMenu ]
   components:
    - type: SubdermalImplant
@@ -417,7 +405,7 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: RadioImplantCentcomm
-  name: centcomm radio implant # Starlight
+  name: radio implant
   description: This implant grants access to the Centcomm channel without a headset. Only authorized for Centcomm employees.
   categories: [ HideSpawnMenu ]
   components:
@@ -434,4 +422,4 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger
-    radioChannel: [CentCom] # Starlight: List
+    radioChannel: CentCom

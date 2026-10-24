@@ -1,0 +1,28 @@
+- type: !PartialOnly entity
+  id: BaseWrappedCube
+  components:
+  - type: Tag
+    tags:
+    - WrappedCube
+
+- type: !PartialOnly entity
+  id: MopBucketCubeWrapped
+  components:
+  - type: Tag
+    tags:
+    - NonAnimalCube
+
+- type: !PartialOnly entity
+  id: RehydratableAnimalCube
+  components:
+  - type: Tag
+    tags:
+    - Meat
+    - AnimalCube
+
+- type: !PartialOnly entity
+  id: MonkeyCubeBox
+  components:
+  - type: Tag
+    tags:
+      - AnimalCubeBox # Starlight

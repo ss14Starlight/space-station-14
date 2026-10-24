@@ -47,6 +47,8 @@ public sealed partial class ZoneSystem
             return;
 
         var id = GetZoneId(grid, tile);
-        _tracker.SetZone(ent, GetZone(id)?.ID, GetZones(id), (grid, tile), revision);
+        var region = zoneComp == null ? NoRegion : GetRegion(zoneComp, tile);
+        var roomSize = region == NoRegion ? 0 : zoneComp!.Regions[region].TileCount;
+        _tracker.SetZone(ent, GetZone(id)?.ID, GetZones(id), (grid, tile), revision, roomSize);
     }
 }

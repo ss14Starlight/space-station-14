@@ -80,6 +80,25 @@
       - ReagentId: Cream
         Quantity: 15
 
+# Blimpuf - Emag the I Scream for Ice Cream Vendor
+- type: entity
+  name: vanilla i scream
+  parent: FoodVanillaIceCream
+  id: FoodVanillaIScream
+  description: The sweet and sharp taste of vanilla is mouthwatering.
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+      - ReagentId: Razorium
+        Quantity: 10
+
 - type: entity
   name: chocolate ice cream
   parent: FoodIceCreamBase
@@ -207,6 +226,10 @@
   id: FoodSherbetIceCream
   description: Lemon, Lime, Orange, and Strawberry in a fruity tangy blend.
   components:
+  - type: Tag
+    tags:
+    - IceCream
+    - Citrus
   - type: FlavorProfile
     flavors:
     - sherbetIceCream
@@ -256,6 +279,10 @@
   id: FoodOrangeSwirlIceCream
   description: Vanilla ice cream with orange sherbet swirled together.
   components:
+  - type: Tag
+    tags:
+    - IceCream
+    - Citrus
   - type: FlavorProfile
     flavors:
     - orangeSwirlIceCream
@@ -486,6 +513,25 @@
       - ReagentId: Cream
         Quantity: 15
 
+# Blimpuf - Emag the I Scream for Ice Cream Vendor
+- type: entity
+  name: frosty ice cream
+  parent: FoodAppleCinnamonIceCream
+  id: FoodFreezerburnedIceCream
+  description: Your hand keeps getting frozen stuck to the glass. Ouch!
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 40
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+      - ReagentId: Fresium
+        Quantity: 20
+
 - type: entity
   name: gold apple cinnamon ice cream
   parent: FoodIceCreamBase
@@ -586,6 +632,10 @@
   id: FoodWehIceCream
   description: Lime ice cream in the shape of a beloved plush.
   components:
+  - type: Tag
+    tags:
+    - IceCream
+    - Citrus
   - type: FlavorProfile
     flavors:
     - wehIceCream
@@ -661,6 +711,10 @@
   id: FoodDimensionalIceCream
   description: An ice cream that will make you feel different dimensions.
   components:
+  - type: Tag
+    tags:
+    - IceCream
+    - Citrus
   - type: FlavorProfile
     flavors:
     - dimensionalIceCream
@@ -759,6 +813,10 @@
   id: FoodFluffyBoyIceCream
   description: The power of fluffy boys shines in this ice cream.
   components:
+  - type: Tag
+    tags:
+    - IceCream
+    - Citrus
   - type: FlavorProfile
     flavors:
     - fluffyBoyIceCream
@@ -903,6 +961,10 @@
   id: FoodIanIceCream
   description: Orange and vanilla ice cream in the shape of beloved Ian.
   components:
+  - type: Tag
+    tags:
+    - IceCream
+    - Citrus
   - type: FlavorProfile
     flavors:
     - ianIceCream
@@ -949,6 +1011,10 @@
   id: FoodNTMarineIceCream
   description: Sponsored blueberry and lime ice cream to enlist your taste buds.
   components:
+  - type: Tag
+    tags:
+    - IceCream
+    - Citrus
   - type: FlavorProfile
     flavors:
     - ntMarineIceCream
@@ -995,6 +1061,10 @@
   id: FoodRisingSunIceCream
   description: Raspberry, orange, and lemon mixed together to make the ultimate tart ice cream.
   components:
+  - type: Tag
+    tags:
+    - IceCream
+    - Citrus
   - type: FlavorProfile
     flavors:
     - risingSunIceCream
@@ -1041,6 +1111,10 @@
   id: FoodStunBatonIceCream
   description: An orange ice cream fashioned in the shape of a stun baton. Now you can harm baton with ice cream!
   components:
+  - type: Tag
+    tags:
+    - IceCream
+    - Citrus
   - type: MeleeWeapon
     damage:
       types:
@@ -1071,6 +1145,10 @@
   id: FoodSyndieLandIceCream
   description: Cherry and lime ice cream in the shape of your favorite pod war protagonists.
   components:
+  - type: Tag
+    tags:
+    - IceCream
+    - Citrus
   - type: FlavorProfile
     flavors:
     - syndieLandIceCream

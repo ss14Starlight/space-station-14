@@ -101,36 +101,36 @@
   id: VendorSalvagePKAUpgradeDamage
   productEntity: PKAUpgradeDamage
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 8
     - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvagePKAUpgradeRange
   productEntity: PKAUpgradeRange
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 8
     - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvagePKAUpgradeFireRate
   productEntity: PKAUpgradeFireRate
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 8
     - !type:BuyerAccessCondition
 
 - type: listing
@@ -236,15 +236,6 @@
 #  - !type:BuyerAccessCondition
 
 #weapons
-- type: listing
-  id: VendorSalvageWeaponLaserImmolator
-  productEntity: WeaponLaserImmolator
-  cost:
-    SalvageTicket: 500
-  categories:
-  - SalvageWeapons
-  conditions:
-  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageWeaponShotgunGA12
@@ -287,13 +278,15 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageWeaponRifleLr30
-  productEntity: WeaponRifleLr30
+  id: VendorSalvageWeaponBoltRifle
+  productEntity: WeaponRifleBolt
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 1750
   categories:
   - SalvageWeapons
   conditions:
+  - !type:ListingLimitedStockCondition
+      stock: 3
   - !type:BuyerAccessCondition
 
 - type: listing
@@ -304,6 +297,18 @@
   categories:
   - SalvageWeapons
   conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageWeaponBoltPistol
+  productEntity: WeaponPistolBolt
+  cost:
+    SalvageTicket: 850
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:ListingLimitedStockCondition
+      stock: 4
   - !type:BuyerAccessCondition
 
 - type: listing
@@ -399,7 +404,7 @@
 
 #Blueprints
 - type: listing
-  id: VendorSalvageGBlueprintBasicAmmo
+  id: VendorSalvageBlueprintBasicAmmo
   productEntity: BlueprintBasicAmmo
   cost:
     SalvageTicket: 800
@@ -411,7 +416,7 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageGBlueprintBasicMedical
+  id: VendorSalvageBlueprintBasicMedical
   productEntity: BlueprintBasicMedical
   cost:
     SalvageTicket: 200
@@ -423,7 +428,7 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageGBlueprintFulton
+  id: VendorSalvageBlueprintFulton
   productEntity: BlueprintFulton
   cost:
     SalvageTicket: 400
@@ -435,10 +440,22 @@
    - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageGBlueprintDoubleEmergencyTank
+  id: VendorSalvageBlueprintDoubleEmergencyTank
   productEntity: BlueprintDoubleEmergencyTank
   cost:
     SalvageTicket: 300
+  categories:
+  - SalvageBlueprints
+  conditions:
+  - !type:ListingLimitedStockCondition
+     stock: 1
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageBlueprintPKAModkits
+  productEntity: BlueprintPKAModkits
+  cost:
+    SalvageTicket: 400
   categories:
   - SalvageBlueprints
   conditions:
@@ -458,10 +475,10 @@
     - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageSurplusShotgun
-  productEntity: CrateITGShotgunSurplus
+  id: VendorSalvageSurplusArmaments
+  productEntity: CrateITGArmamentSurplus
   cost:
-    SalvageTicket: 600
+    SalvageTicket: 1000
   categories:
     - SalvageSurplus
   conditions:
@@ -477,6 +494,26 @@
   conditions:
     - !type:BuyerAccessCondition
 
+
+- type: listing
+  id: VendorSalvageMagazineBoltRifle
+  productEntity: MagazineBoltRifle
+  cost:
+    SalvageTicket: 300
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageMagazineBoltPistol
+  productEntity: MagazineBoltPistol
+  cost:
+    SalvageTicket: 150
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
 
 #Merc Stuff
 - type: listing
@@ -649,5 +686,3 @@
     - SalvageCybernetics
   conditions:
     - !type:BuyerAccessCondition
-
-

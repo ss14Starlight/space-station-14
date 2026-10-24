@@ -138,8 +138,6 @@
           weight: 4.5 # Starlight
         - id: MobMouseBurnt
           weight: 1
-        - id: MobNyrMouseOps # Starlight
-          weight: 1
 
 - type: entity
   id: XenoArtifactPetLikeSpawn

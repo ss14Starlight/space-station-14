@@ -1,0 +1,31 @@
+- type: !PartialOnly entity
+  id: GrenadeBaton
+  description: Crack skulls, break jaws.
+  components:
+  - type: Tag
+    tags:
+    - GrenadeLessLethal
+
+- type: !PartialOnly entity
+  id: GrenadeFlash
+  description: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+  components:
+  - type: Tag
+    tags:
+    - GrenadeLessLethal
+
+- type: !PartialOnly entity
+  id: GrenadeCleanade
+  components:
+  - type: SpentAmmoVisuals
+    state: cleanade # frag -> cleanade (bugfix)
+  - type: Tag # hydra whitelist
+    tags:
+    - Grenade
+    - Cleanade
+
+- type: !PartialOnly entity
+  id: GrenadeEMP
+  components:
+  - type: SpentAmmoVisuals
+    state: emp # frag -> emp (bugfix)

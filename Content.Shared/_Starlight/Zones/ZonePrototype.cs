@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Sound;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Zones;
@@ -35,4 +36,10 @@ public sealed partial class ZonePrototype : IPrototype
     /// </summary>
     [DataField]
     public bool Corridor;
+
+    /// <summary>
+    /// How rooms of this zone echo, <see cref="RoomReverbPrototype.Default"/> when not set.
+    /// </summary>
+    [DataField]
+    public ProtoId<RoomReverbPrototype>? Reverb;
 }
