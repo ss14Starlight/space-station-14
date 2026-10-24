@@ -10,43 +10,47 @@
   "states": [
     {
       "name": "draculaJrMedal",
-	  "copyright": "taken from https://github.com/goonstation/goonstation"
+      "copyright": "taken from https://github.com/goonstation/goonstation"
     },
     {
       "name": "contributorMedal",
-	  "copyright": "@wayiscute (discord)"
+      "copyright": "@wayiscute (discord)"
     },
     {
       "name": "damnedMedal",
-	  "copyright": "@wayiscute (discord)"
+      "copyright": "@wayiscute (discord)"
     },
     {
       "name": "fishMedal",
-	  "copyright": "@wayiscute (discord)"
+      "copyright": "@wayiscute (discord)"
     },
     {
       "name": "heliosMedal",
-	  "copyright": "taken from https://github.com/goonstation/goonstation"
+      "copyright": "taken from https://github.com/goonstation/goonstation"
     },
     {
       "name": "theoryOfEverything",
-	  "copyright": "@wayiscute (discord)"
+      "copyright": "@wayiscute (discord)"
     },
     {
       "name": "dragonSlayer",
-	  "copyright": "@trosling (discord)"
+      "copyright": "@trosling (discord)"
     },
     {
       "name": "assumingDirectControl",
-	  "copyright": "@trosling (discord)"
+      "copyright": "@trosling (discord)"
     },
-	{
+    {
       "name": "homingMeteors",
-	  "copyright": "@trosling (discord)"
+      "copyright": "@trosling (discord)"
     },
-	{
+    {
       "name": "whiskeyEcho",
-	  "copyright": "@trosling (discord)"
+      "copyright": "@trosling (discord)"
+    },
+    {
+      "name": "viva",
+      "copyright": "@wayiscute (discord)"
     }
   ]
 }

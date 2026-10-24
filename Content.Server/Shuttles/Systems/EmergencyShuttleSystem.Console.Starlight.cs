@@ -15,6 +15,14 @@ public sealed partial class EmergencyShuttleSystem
 
     private void SetupEvacuationPlanet()
     {
+        _evacuationPlanetGenerated = false; // Starlight
+        // Starlight - start
+        _evacuationDungeonGenerationTasks.Clear();
+        _evacuationDungeonTiles.Clear();
+        _evacuationPodLandingMap = null;
+        _evacuationPodLandingReservations.Clear();
+        // Starlight - end
+
         try
         {
             // Create a new map for the evacuation planet
@@ -71,7 +79,14 @@ public sealed partial class EmergencyShuttleSystem
 
             // Get the map's grid component for dungeon generation
             if (!TryComp<MapGridComponent>(_evacuationPlanetMap.Value, out var grid))
+            {
+                Log.Error("Evacuation planet map has no grid for dungeon generation."); // Starlight
                 return;
+            }
+
+            _mapSystem.InitializeMap(mapId); // Starlight
+            _metaData.SetEntityName(_evacuationPlanetMap.Value, "Evacuation Planet"); // Starlight
+            _evacuationLandingZone = new EntityCoordinates(_evacuationPlanetMap.Value, Vector2.Zero); // Starlight
 
             var dungeonConfigs = new[]
             {
@@ -102,9 +117,12 @@ public sealed partial class EmergencyShuttleSystem
                 // Generate the dungeon
                 try
                 {
-                    _dungeon.GenerateDungeon(dungeonProto, _evacuationPlanetMap.Value, grid, offsetPos, seed++);
+                    // Starlight - start
+                    var generation = _dungeon.GenerateDungeonAsync(dungeonProto, _evacuationPlanetMap.Value, grid, offsetPos, seed++);
+                    _evacuationDungeonGenerationTasks.Add((configId, generation));
 
-                    Log.Debug($"Generated ruin {configId} at offset {offsetPos}");
+                    Log.Debug($"Queued ruin {configId} at offset {offsetPos}");
+                    // Starlight - end
                 }
                 catch (Exception e)
                 {
@@ -112,22 +130,17 @@ public sealed partial class EmergencyShuttleSystem
                 }
             }
 
-            // Set landing zone at center of planet
-            _evacuationLandingZone = new EntityCoordinates(_evacuationPlanetMap.Value, Vector2.Zero);
-
-            // Initialize the map
-            _mapSystem.InitializeMap(mapId);
-
-            // Set a nice name
-            _metaData.SetEntityName(_evacuationPlanetMap.Value, "Evacuation Planet");
-
-            Log.Info($"Created evacuation planet with {selectedBiome} biome and {numRuins} ruins");
+            // Starlight - start
+            _evacuationPlanetGenerated = _evacuationDungeonGenerationTasks.Count == 0;
+            Log.Info($"Created evacuation planet with {selectedBiome} biome and queued {_evacuationDungeonGenerationTasks.Count} ruins.");
+            // Starlight - end
         }
         catch (Exception ex)
         {
             Log.Error($"Failed to setup evacuation planet: {ex}");
             _evacuationPlanetMap = null;
             _evacuationLandingZone = null;
+            _evacuationPlanetGenerated = false; // Starlight
         }
     }
 }

@@ -88,6 +88,7 @@ guide-entry-sl-security-sop-headofsecurity = Head of Security
 guide-entry-sl-security-sop-prisonertreatment = Prisoner Treatment
 guide-entry-sl-security-sop-parole = Parole
 guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
+guide-entry-sl-security-sop-permitacquisition-examples = Permit Examples
 guide-entry-sl-security-sop-specialsituations = Special Situations
 guide-entry-sl-security-sop-enemy-of-corporation = Enemies of the Corporation
 guide-entry-sl-security-sop-hostage-situations = Hostage Situations

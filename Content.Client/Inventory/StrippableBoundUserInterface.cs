@@ -151,7 +151,11 @@ namespace Content.Client.Inventory
 
                     AddHandButton((Owner, handsComp), id, hand);
                 }
+
+                AddFunctionalHandButtons((Owner, handsComp)); // Starlight
             }
+
+            AddStrippableStorageButtons(Owner); // Starlight
 
             // snare-removal button. This is just the old button before the change to item slots. It is pretty out of place.
             if (EntMan.TryGetComponent<EnsnareableComponent>(Owner, out var snare) && snare.IsEnsnared)

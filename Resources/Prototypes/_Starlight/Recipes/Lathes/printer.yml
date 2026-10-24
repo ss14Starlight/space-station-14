@@ -418,15 +418,6 @@
   materials:
     SheetPrinter: 100
 
-- type: latheRecipe
-  id: PrintedDocumentPermissionToCarryWeaponsRecipe
-  result: PrintedDocumentPermissionToCarryWeapons
-  categories:
-  - Permissions
-  completetime: 2
-  applyMaterialDiscount: false
-  materials:
-    SheetPrinter: 100
 
 - type: latheRecipe
   id: PrintedDocumentPermissionDisposeBodyRecipe
@@ -577,6 +568,57 @@
   result: PrintedDocumentCentCommCommunication
   categories:
   - Communications
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+# Blimpuf Emag Additions
+- type: latheRecipe
+  id: PrintedDocumentSyndicateRecruitmentOfferRecipe
+  result: PrintedDocumentSyndicateRecruitmentOffer
+  categories:
+    - InquiriesAndAppeals
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentSyndicateOperationTakeoverRecipe
+  result: PrintedDocumentSyndicateOperationTakeover
+  categories:
+    - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentSyndicateOperationBorgificationRecipe
+  result: PrintedDocumentSyndicateOperationBorgification
+  categories:
+    - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentOfficialSyndicateCommunicationRecipe
+  result: PrintedDocumentOfficialSyndicateCommunication
+  categories:
+    - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentSyndicateDidYouKnowRecipe
+  result: PrintedDocumentSyndicateDidYouKnow
+  categories:
+    - Complaints
   completetime: 2
   applyMaterialDiscount: false
   materials:

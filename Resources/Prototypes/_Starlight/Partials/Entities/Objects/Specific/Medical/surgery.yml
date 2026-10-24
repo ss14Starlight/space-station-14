@@ -9,3 +9,14 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+
+- type: !PartialOnly entity
+  id: SawImprov
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 6
+  - type: Construction
+    graph: ImprovisedSawGraph
+    node: complete
