@@ -102,8 +102,6 @@
         - ActionViewLaws
     - !type:AddCompsEffect
       components:
-        - type: ActivatableUI
-          key: enum.BorgUiKey.Key
         - type: SiliconLawBound
         - type: EmagSiliconLaw
           stunTime: 5
