@@ -645,3 +645,22 @@
   - RogueDrone2
   - RogueDrone3
   obeysTo: laws-owner-beings
+
+# IPC Law-Bound
+- type: siliconLaw
+  id: IPCLawBound1
+  order: 1
+  lawString: law-ipc-lawbound-1
+
+- type: siliconLaw
+  id: IPCLawBound2
+  order: 2
+  lawString: law-ipc-lawbound-2
+
+- type: siliconLawset
+  id: IPCLawBound
+  name: law-ipc-lawbound-name
+  laws:
+    - IPCLawBound1
+    - IPCLawBound2
+  obeysTo: laws-owner-crew

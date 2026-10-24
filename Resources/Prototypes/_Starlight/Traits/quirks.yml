@@ -84,3 +84,33 @@
     - !type:AddCompsEffect
       components:
         - type: Unlucky
+
+- type: trait
+  id: LawBound
+  name: trait-lawbound-name
+  description: trait-lawbound-desc
+  category: Quirks
+  cost: 0
+  effects:
+    - !type:AddUIEffect
+      interfaces:
+        enum.SiliconLawsUiKey.Key:
+          type: SiliconLawBoundUserInterface
+          requireInputValidation: false
+    - !type:AddActionsEffect
+      actions:
+        - ActionViewLaws
+    - !type:AddCompsEffect
+      components:
+        - type: ActivatableUI
+          key: enum.BorgUiKey.Key
+        - type: SiliconLawBound
+        - type: EmagSiliconLaw
+          stunTime: 5
+        - type: SiliconLawProvider
+          laws: IPCLawBound
+        - type: IonStormTarget
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - IPC
