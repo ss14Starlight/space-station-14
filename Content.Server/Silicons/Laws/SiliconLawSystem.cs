@@ -398,6 +398,7 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
         if (!_tag.HasTag(args.EmagComponent.Owner, _canAffectLawBoards))
             return;
 
+
         if (!ent.Comp.IsLawboard)
             return;
 
