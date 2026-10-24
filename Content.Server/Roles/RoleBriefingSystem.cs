@@ -4,6 +4,8 @@ namespace Content.Server.Roles;
 
 public sealed class RoleBriefingSystem : EntitySystem
 {
+    [Dependency] private RoleSystem _roles = default!; // Starlight
+
     public override void Initialize()
     {
         base.Initialize();
@@ -13,6 +15,10 @@ public sealed class RoleBriefingSystem : EntitySystem
 
     private void OnGetBriefing(EntityUid uid, RoleBriefingComponent comp, ref GetBriefingEvent args)
     {
+        // Starlight, antagonists use their role briefing instead of the crew alignment briefing.
+        if (HasComp<JobRoleComponent>(uid) && _roles.MindIsAntagonist(args.Mind.Owner))
+            return;
+
         args.Append(Loc.GetString(comp.Briefing));
     }
 }

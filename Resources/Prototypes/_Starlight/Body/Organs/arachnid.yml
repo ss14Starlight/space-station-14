@@ -67,6 +67,10 @@
   suffix: Arachnid
   description: "A disgustingly persistent little biological pump made for spiders."
   components:
+  - type: Tag
+    tags:
+    - Meat
+    - Heart
   - type: Sprite
     state: heart-on
   - type: Item

@@ -1,6 +1,7 @@
 - type: npcFaction
   id: Abyss
   hostile:
+    - BloodBound
     - DungeonSoviet
     - DungeonSyndicate
     - Dragon
@@ -25,6 +26,7 @@
 - type: npcFaction
   id: DungeonSoviet
   hostile:
+    - BloodBound
     - NanoTrasen
     - NanoTrasenSilicon
     - SimpleHostile
@@ -46,6 +48,7 @@
 - type: npcFaction
   id: DungeonSyndicate
   hostile:
+    - BloodBound
     - MoffNarsianDemon
     - NanoTrasen
     - NanoTrasenSilicon
@@ -69,6 +72,7 @@
 - type: npcFaction
   id: Gorilla
   hostile:
+    - BloodBound
     - NanoTrasen
     - NanoTrasenSilicon
     - Dragon
@@ -116,6 +120,7 @@
 - type: npcFaction
   id: SyndicateSilicon # Again, zombies fuck you.
   hostile:
+    - BloodBound
     - NanoTrasen
     - NanoTrasenSilicon
     - SimpleHostile
@@ -138,6 +143,7 @@
 - type: npcFaction
   id: Abductor
   hostile: # SimpleHostile with additions so that it gets attacked by mobs
+  - BloodBound
   - NanoTrasen
   - NanoTrasenSilicon
   - Syndicate
@@ -166,6 +172,7 @@
 - type: npcFaction
   id: Pirate
   hostile:
+  - BloodBound
   - NanoTrasen
   - NanoTrasenSilicon
   - Syndicate
@@ -193,6 +200,7 @@
 - type: npcFaction
   id: Changeling
   hostile:
+  - BloodBound
   - NanoTrasen
   - NanoTrasenSilicon
   - Syndicate
@@ -207,6 +215,7 @@
 - type: npcFaction
   id: Vampire
   hostile:
+  - BloodBound
   - NanoTrasen
   - NanoTrasenSilicon
   - Syndicate
@@ -223,6 +232,7 @@
 - type: npcFaction
   id: HonkHostile
   hostile:
+  - BloodBound
   - NanoTrasen
   - NanoTrasenSilicon
   - Syndicate
@@ -253,6 +263,7 @@
 - type: npcFaction
   id: CosmicCult
   hostile:
+    - BloodBound
     - NanoTrasen
     - NanoTrasenSilicon
     - Syndicate
@@ -275,3 +286,29 @@
     - HonkNeutral
     - Floral
     - Passive
+
+- type: npcFaction
+  id: BloodBound
+  friendly:
+  - NanoTrasen
+  - MoffNarsianDemon
+  hostile:
+  - SimpleHostile
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Dragon
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  - SyndicateSilicon
+  - DungeonSyndicate
+  - DungeonSoviet
+  - Abyss
+  - Vampire
+  - Changeling
+  - Gorilla
+  - Abductor
+  - Pirate
+  - CosmicCult

@@ -125,19 +125,17 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.43 # Starlight. Adds up to 1.
-    - id: VampireLess # Starlight. The rework is here.
+      prob: 0.40
+    - id: BloodBound
+      prob: 0.20
+    - id: VampireLess
       prob: 0.25
     - id: SubWizard
-      prob: 0.05 # We can go back down to 0.05, since they scale now.
+      prob: 0.05
     - id: Devil
-      prob: 0.10 # rare Starlight: More devils
-    #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
-    #  prob: 0.05
-    #- id: SubBrighteye # Brighteye is disabled until more work is put in.
-    #  prob: 0.05 # We can go back down to 0.05, since they scale now.
+      prob: 0.10
     - id: SiliconLiberation
-      prob: 0.17
+      prob: 0.15
 
 - type: entity
   parent: BaseGameRule
@@ -145,18 +143,16 @@
   components:
   - type: SubGamemodes
     rules:
-    - id: ThiefLess # So that only 3 thieves max spawn in rev games.
-      prob: 0.40 # Starlight
-    - id: SLChangeling #Starlight lings
-      prob: 0.175 # They can honestly just have the same chance as the vampires.
-    - id: VampireLess # Starlight reworked
+    - id: ThiefLess
+      prob: 0.40
+    - id: BloodBound
+      prob: 0.175
+    - id: SLChangeling
+      prob: 0.175
+    - id: VampireLess
       prob: 0.175
     - id: SubWizard
-      prob: 0.05 # We can go back down to 0.05, since they scale now.
-    #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
-    #      prob: 0.05
-    #- id: SubBrighteye
-    #  prob: 0.05 # We can go back down to 0.05, since they scale now.
+      prob: 0.05
     # No SELF Agents in rev games because of the FREEmag.
     # no devil because this is the secret set used for conversion antags i guess? either way dont want revs spamming devil
 
@@ -167,17 +163,15 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.50 # Starlight had to lower to account for increase in devils
-    - id: SLChangeling #Starlight lings
-      prob: 0.20 # Can be a little higher now, since lings don't have their standalone anymore.
+      prob: 0.50
+    - id: BloodBound
+      prob: 0.20
+    - id: SLChangeling
+      prob: 0.20
     - id: SubWizard
-      prob: 0.05 # We can go back down to 0.05, since they scale now.
+      prob: 0.05
     - id: Devil
-      prob: 0.10 # rare Starlight: More devils
-    #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
-    #  prob: 0.05
-    #- id: SubBrighteye
-    #  prob: 0.05 # We can go back down to 0.05, since they scale now.
+      prob: 0.10
     - id: SiliconLiberation
       prob: 0.20
 
@@ -187,18 +181,16 @@
   components:
   - type: SubGamemodes
     rules:
-    - id: ThiefLess # So that only 3 thieves max spawn in rev games.
-      prob: 0.23 # Starlight, to account for Wizard and Xenoborgs
+    - id: ThiefLess
+      prob: 0.20
+    - id: BloodBound
+      prob: 0.10
     - id: SubWizard
       prob: 0.05
     - id: Devil
-      prob: 0.10 #Starlight, More devils
-    #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
-    #      prob: 0.05
-    #- id: SubBrighteye
-    #  prob: 0.05
+      prob: 0.10
     - id: SiliconLiberation
-      prob: 0.12
+      prob: 0.10
 
 - type: entity
   parent: BaseGameRule
@@ -208,16 +200,14 @@
     rules:
     - id: ThiefLess
       prob: 0.50
-    - id: SubTraitor # Special traitors with a curated set of objectives; they do not have Kill/Lesson/DAGD, and scale a lot less.
+    - id: SubTraitor
       prob: 0.25
-    - id: VampireLess # This is probably the most interesting sub-gamemode for them.
+    - id: BloodBound
       prob: 0.20
-    - id: SLChangelingLess # I have managed to make changelings lose their abilities when they turn into zombies, so the concern with them is gone.
+    - id: VampireLess
       prob: 0.20
-    #- id: SubXenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
-    #  prob: 0.05
-    #- id: SubBrighteye
-    #  prob: 0.05 # We can go back down to 0.05, since they scale now.
+    - id: SLChangelingLess
+      prob: 0.20
     - id: SiliconLiberation # I mean technically there's nothing inherently wrong with them showing up.
       prob: 0.15
 
@@ -229,14 +219,14 @@
     rules:
     - id: Thief
       prob: 0.50
-    - id: SLChangelingLess # 6 changelings makes it too hard to arm crew on warops
+    - id: BloodBound
+      prob: 0.15
+    - id: SLChangelingLess
       prob: 0.15
     - id: VampireLess
       prob: 0.15
     - id: SubWizard
       prob: 0.05
-    #- id: SubXenoborgs
-    #  prob: 0.05
     # No SELF Agents in Nukie games because of the FREEmag = free guns!!!
 
 - type: entity
