@@ -1,6 +1,5 @@
 - type: job
   id: IAA
-  roleType: CorporateAligned
   name: job-name-iaa
   description: job-description-iaa
   playTimeTracker: JobIAA

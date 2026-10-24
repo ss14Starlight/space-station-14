@@ -1,5 +1,0 @@
-- type: !PartialOnly entity
-  id: ClothingOuterArmorRaid
-  components:
-  - type: Contraband
-    tier: Tier4

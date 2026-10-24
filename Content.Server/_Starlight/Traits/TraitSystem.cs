@@ -32,7 +32,7 @@ public sealed partial class TraitSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete, before: [typeof(Content.Server.Antag.AntagSelectionSystem)]);
+        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
 
         Subs.CVar(_config, StarlightCCVars.MaxTraitCount, value => _maxTraitCount = value, true);
         Subs.CVar(_config, StarlightCCVars.MaxTraitPoints, value => _maxTraitPoints = value, true);

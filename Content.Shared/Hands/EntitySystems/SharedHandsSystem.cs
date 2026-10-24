@@ -29,7 +29,7 @@ public abstract partial class SharedHandsSystem
 
     public event Action<Entity<HandsComponent>, string, HandLocation>? OnPlayerAddHand;
     public event Action<Entity<HandsComponent>, string>? OnPlayerRemoveHand;
-    public event Action<Entity<HandsComponent>?>? OnHandSetActive; // Starlight: set to public
+    protected event Action<Entity<HandsComponent>?>? OnHandSetActive;
 
     public override void Initialize()
     {

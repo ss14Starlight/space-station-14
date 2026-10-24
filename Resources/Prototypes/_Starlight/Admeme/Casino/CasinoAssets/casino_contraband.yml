@@ -1,0 +1,19 @@
+﻿- type: department
+  id: Casino
+  name: department-Casino
+  description: department-Casino-description
+  color: "#c19a2b"
+  primary: false
+  editorHidden: true
+
+- type: contrabandSeverity
+  id: Casino
+  examineText: contraband-examine-text-Casino
+
+- type: entity
+  id: BaseCasinoContraband
+  abstract: true
+  components:
+    - type: Contraband
+      severity: Casino
+      allowedDepartments: [ Casino ]

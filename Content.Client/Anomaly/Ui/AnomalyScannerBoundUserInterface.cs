@@ -1,4 +1,3 @@
-using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared.Anomaly;
 using JetBrains.Annotations;
 
@@ -20,7 +19,6 @@ public sealed class AnomalyScannerBoundUserInterface : BoundUserInterface
 
         _menu = new AnomalyScannerMenu();
         _menu.OpenCentered();
-        EntMan.System<RemoteControlInterface>().TryEmbedWindow(_menu); // Starlight
         _menu.OnClose += Close;
     }
 
@@ -47,3 +45,4 @@ public sealed class AnomalyScannerBoundUserInterface : BoundUserInterface
         _menu?.Dispose();
     }
 }
+

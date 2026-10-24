@@ -1,4 +1,0 @@
-- type: !PartialOnly reagent
-  id: BatteryAcid
-  contrabandTier: Tier1
-  contrabandSeverity: !Remove

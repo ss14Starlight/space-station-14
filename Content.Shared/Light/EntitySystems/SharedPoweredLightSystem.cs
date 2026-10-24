@@ -317,12 +317,6 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
             lightRadius = lightBulb.LightRadius;
             powerUse = (int) Math.Ceiling((double) lightBulb.PowerUse);
         }
-
-        // Lets the fixture itself scale its light, whatever bulb is fitted.
-        var fixtureEv = new GetLightFixtureLevelEvent(lightEnergy, lightRadius);
-        RaiseLocalEvent(uid, ref fixtureEv);
-        lightEnergy = fixtureEv.LightEnergy;
-        lightRadius = fixtureEv.LightRadius;
         // Starlight END
 
         switch (lightBulb.State)

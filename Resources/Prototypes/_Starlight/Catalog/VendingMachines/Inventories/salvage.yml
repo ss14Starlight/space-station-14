@@ -101,36 +101,36 @@
   id: VendorSalvagePKAUpgradeDamage
   productEntity: PKAUpgradeDamage
   cost:
-    SalvageTicket: 250
+    SalvageTicket: 300
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 8
+      stock: 5
     - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvagePKAUpgradeRange
   productEntity: PKAUpgradeRange
   cost:
-    SalvageTicket: 250
+    SalvageTicket: 300
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 8
+      stock: 5
     - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvagePKAUpgradeFireRate
   productEntity: PKAUpgradeFireRate
   cost:
-    SalvageTicket: 250
+    SalvageTicket: 300
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 8
+      stock: 5
     - !type:BuyerAccessCondition
 
 - type: listing
@@ -236,6 +236,15 @@
 #  - !type:BuyerAccessCondition
 
 #weapons
+- type: listing
+  id: VendorSalvageWeaponLaserImmolator
+  productEntity: WeaponLaserImmolator
+  cost:
+    SalvageTicket: 500
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageWeaponShotgunGA12
@@ -278,15 +287,23 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageWeaponBoltRifle
-  productEntity: WeaponRifleBolt
+  id: VendorSalvageWeaponRifleLr30
+  productEntity: WeaponRifleLr30
   cost:
-    SalvageTicket: 1750
+    SalvageTicket: 300
   categories:
   - SalvageWeapons
   conditions:
-  - !type:ListingLimitedStockCondition
-      stock: 3
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageWeaponBoltRifle
+  productEntity: WeaponRifleBolt
+  cost:
+    SalvageTicket: 1500
+  categories:
+  - SalvageWeapons
+  conditions:
   - !type:BuyerAccessCondition
 
 - type: listing
@@ -303,12 +320,10 @@
   id: VendorSalvageWeaponBoltPistol
   productEntity: WeaponPistolBolt
   cost:
-    SalvageTicket: 850
+    SalvageTicket: 750
   categories:
   - SalvageWeapons
   conditions:
-  - !type:ListingLimitedStockCondition
-      stock: 4
   - !type:BuyerAccessCondition
 
 - type: listing
@@ -404,7 +419,7 @@
 
 #Blueprints
 - type: listing
-  id: VendorSalvageBlueprintBasicAmmo
+  id: VendorSalvageGBlueprintBasicAmmo
   productEntity: BlueprintBasicAmmo
   cost:
     SalvageTicket: 800
@@ -416,7 +431,7 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageBlueprintBasicMedical
+  id: VendorSalvageGBlueprintBasicMedical
   productEntity: BlueprintBasicMedical
   cost:
     SalvageTicket: 200
@@ -428,7 +443,7 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageBlueprintFulton
+  id: VendorSalvageGBlueprintFulton
   productEntity: BlueprintFulton
   cost:
     SalvageTicket: 400
@@ -440,22 +455,10 @@
    - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageBlueprintDoubleEmergencyTank
+  id: VendorSalvageGBlueprintDoubleEmergencyTank
   productEntity: BlueprintDoubleEmergencyTank
   cost:
     SalvageTicket: 300
-  categories:
-  - SalvageBlueprints
-  conditions:
-  - !type:ListingLimitedStockCondition
-     stock: 1
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageBlueprintPKAModkits
-  productEntity: BlueprintPKAModkits
-  cost:
-    SalvageTicket: 400
   categories:
   - SalvageBlueprints
   conditions:
@@ -475,10 +478,10 @@
     - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageSurplusArmaments
-  productEntity: CrateITGArmamentSurplus
+  id: VendorSalvageSurplusShotgun
+  productEntity: CrateITGShotgunSurplus
   cost:
-    SalvageTicket: 1000
+    SalvageTicket: 600
   categories:
     - SalvageSurplus
   conditions:
@@ -499,7 +502,7 @@
   id: VendorSalvageMagazineBoltRifle
   productEntity: MagazineBoltRifle
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
   - SalvageConsumeables
   conditions:

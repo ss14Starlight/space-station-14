@@ -1,6 +1,5 @@
 - type: job
   id: NanotrasenCareerTrainer
-  roleType: CorporateAligned
   name: job-name-nct
   description: job-description-nct
   playTimeTracker: JobNanotrasenCareerTrainer

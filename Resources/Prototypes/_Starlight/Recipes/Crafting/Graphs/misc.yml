@@ -83,5 +83,7 @@
       - material: WoodPlank
         amount: 1
         doAfter: 2
+      - tool: Slicing
+        doAfter: 2
   - node: bowl
     entity: FoodBowlWooden

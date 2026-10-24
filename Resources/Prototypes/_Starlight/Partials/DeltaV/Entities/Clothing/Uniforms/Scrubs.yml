@@ -1,6 +1,0 @@
-- type: !PartialOnly entity
-  id: UniformScrubsColorCybersun
-  components:
-  - type: Contraband
-    tier: Tier2
-    contrabandType: Syndicate

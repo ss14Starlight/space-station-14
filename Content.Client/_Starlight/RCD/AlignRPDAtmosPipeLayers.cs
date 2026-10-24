@@ -1,6 +1,5 @@
 using Content.Client.Gameplay;
 using Content.Client.Hands.Systems;
-using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Interaction;
 using Content.Shared.RCD;
@@ -30,12 +29,12 @@ namespace Content.Client._Starlight.RCD;
 /// </remarks>
 public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
 {
-    [Dependency] private IEntityManager _entityManager = null!;
-    [Dependency] private IPrototypeManager _protoManager = null!;
-    [Dependency] private IPlayerManager _playerManager = null!;
-    [Dependency] private IStateManager _stateManager = null!;
-    [Dependency] private IEyeManager _eyeManager = null!;
-    [Dependency] private IEntityNetworkManager _entityNetwork = null!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IStateManager _stateManager = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IEntityNetworkManager _entityNetwork = default!;
 
     private readonly SharedMapSystem _mapSystem;
     private readonly SharedTransformSystem _transformSystem;
@@ -43,7 +42,6 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     private readonly SpriteSystem _spriteSystem;
     private readonly RCDSystem _rcdSystem;
     private readonly HandsSystem _handsSystem;
-    private readonly RemoteControlInterface _remoteControl;
 
     private const float SearchBoxSize = 2f;
     private const float MouseDeadzoneRadius = 0.25f;
@@ -52,10 +50,8 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     private const float GuideOffset = 0.125f;
 
     private EntityCoordinates _mouseCoordsRaw;
-    public AtmosPipeLayer CurrentLayer { get; private set; } = AtmosPipeLayer.Primary;
-    private EntityUid? _lastLayerEntity;
-    private AtmosPipeLayer? _lastSentLayer;
-    private readonly Color _guideColor = new(0, 0, 0.5785f);
+    private AtmosPipeLayer _currentLayer = AtmosPipeLayer.Primary;
+    private Color _guideColor = new(0, 0, 0.5785f);
 
     public AlignRPDAtmosPipeLayers(PlacementManager pMan) : base(pMan)
     {
@@ -66,14 +62,13 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
         _rcdSystem = _entityManager.System<RCDSystem>();
         _pipeLayersSystem = _entityManager.System<SharedAtmosPipeLayersSystem>();
         _handsSystem = _entityManager.System<HandsSystem>();
-        _remoteControl = _entityManager.System<RemoteControlInterface>();
         ValidPlaceColor = ValidPlaceColor.WithAlpha(PlaceColorBaseAlpha);
     }
 
     public override void Render(in OverlayDrawArgs args)
     {
         // Early exit if mouse is out of interaction range
-        if ((_remoteControl.ControlledEntity ?? _playerManager.LocalSession?.AttachedEntity) is not { } player ||
+        if (_playerManager.LocalSession?.AttachedEntity is not { } player ||
             !_entityManager.TryGetComponent<TransformComponent>(player, out var xform) ||
             !_transformSystem.InRange(xform.Coordinates, MouseCoords, SharedInteractionSystem.InteractionRange))
         {
@@ -94,9 +89,8 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
         {
             var gridRotation = _transformSystem.GetWorldRotation(gridUid.Value);
             var worldPosition = _mapSystem.LocalToWorld(gridUid.Value, grid, MouseCoords.Position);
-            var eyeRotation = _remoteControl.ControlledEye?.Rotation ?? _eyeManager.CurrentEye.Rotation;
-            var direction = (eyeRotation + gridRotation + (Math.PI / 2)).GetCardinalDir();
-            var multi = direction is Direction.North or Direction.South ? -1f : 1f;
+            var direction = (_eyeManager.CurrentEye.Rotation + gridRotation + (Math.PI / 2)).GetCardinalDir();
+            var multi = (direction is Direction.North or Direction.South) ? -1f : 1f;
 
             // Center circle (Primary layer)
             args.WorldHandle.DrawCircle(worldPosition, GuideRadius, _guideColor);
@@ -118,11 +112,7 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
 
     public override void AlignPlacementMode(ScreenCoordinates mouseScreen)
     {
-        var remotePosition = _remoteControl.RemoteMousePosition;
-        _mouseCoordsRaw = remotePosition is not null
-            && _remoteControl.ControlledEntity is not null
-            ? _transformSystem.ToCoordinates(remotePosition.Value)
-            : ScreenToCursorGrid(mouseScreen);
+        _mouseCoordsRaw = ScreenToCursorGrid(mouseScreen);
         MouseCoords = _mouseCoordsRaw.AlignWithClosestGridTile(SearchBoxSize, _entityManager);
 
         var gridId = _transformSystem.GetGrid(MouseCoords);
@@ -130,25 +120,23 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
         if (!_entityManager.TryGetComponent<MapGridComponent>(gridId, out var mapGrid))
             return;
 
-        if (remotePosition is not null && gridId is { } gridUid)
-        {
-            _mouseCoordsRaw = _transformSystem.ToCoordinates(gridUid, remotePosition.Value);
-            MouseCoords = _mouseCoordsRaw.AlignWithClosestGridTile(SearchBoxSize, _entityManager);
-        }
-
         CurrentTile = _mapSystem.GetTileRef(gridId.Value, mapGrid, MouseCoords);
 
         float tileSize = mapGrid.TileSize;
         GridDistancing = tileSize;
 
         if (pManager.CurrentPermission!.IsTile)
+        {
             MouseCoords = new EntityCoordinates(MouseCoords.EntityId, new Vector2(CurrentTile.X + (tileSize / 2),
                 CurrentTile.Y + (tileSize / 2)));
+        }
         else
+        {
             MouseCoords = new EntityCoordinates(MouseCoords.EntityId, new Vector2(CurrentTile.X + (tileSize / 2) + pManager.PlacementOffset.X,
                 CurrentTile.Y + (tileSize / 2) + pManager.PlacementOffset.Y));
+        }
 
-        var player = _remoteControl.ControlledEntity ?? _playerManager.LocalSession?.AttachedEntity;
+        var player = _playerManager.LocalSession?.AttachedEntity;
         if (player == null)
             return;
 
@@ -195,29 +183,30 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
                 if (mouseCoordsDiff.Length() > MouseDeadzoneRadius / 2)
                 {
                     var gridRotation = _transformSystem.GetWorldRotation(gridId.Value);
-                    var eyeRotation = _remoteControl.ControlledEye?.Rotation ?? _eyeManager.CurrentEye.Rotation;
-                    var direction = (new Angle(mouseCoordsDiff) + eyeRotation + gridRotation + (Math.PI / 2)).GetCardinalDir();
+                    var direction = (new Angle(mouseCoordsDiff) + _eyeManager.CurrentEye.Rotation + gridRotation + (Math.PI / 2)).GetCardinalDir();
 
                     // RPD uses 5-layer free placement (inner + outer rings), RPLD uses 3-layer (inner ring only).
                     if (!rcd.IsRPLD && mouseCoordsDiff.Length() > MouseDeadzoneRadius)
+                    {
                         // Outer ring
                         newLayer = (direction is Direction.North or Direction.East) ? AtmosPipeLayer.Quaternary : AtmosPipeLayer.Quinary;
+                    }
                     else
+                    {
                         // Inner ring
                         newLayer = (direction is Direction.North or Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
+                    }
                 }
                 break;
-            default:
-                throw new ArgumentOutOfRangeException();
         }
 
         // Update layer if changed
-        CurrentLayer = newLayer;
+        _currentLayer = newLayer;
 
-        if (rcd.CurrentMode == RpdMode.Free && _remoteControl.ControlledEntity is null)
+        if (rcd.CurrentMode == RpdMode.Free)
             UpdateSelectedLayer(heldEntity.Value, rcd, newLayer);
 
-        UpdatePlacer(CurrentLayer);
+        UpdatePlacer(_currentLayer);
     }
 
     // Why this replaced UpdateEyeRotation:
@@ -231,16 +220,9 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
     //   and uses it directly during placement in Free mode.
     private void UpdateSelectedLayer(EntityUid heldEntity, RCDComponent rcd, AtmosPipeLayer layer)
     {
-        if (_lastLayerEntity != heldEntity)
-        {
-            _lastLayerEntity = heldEntity;
-            _lastSentLayer = null;
-        }
-
-        if (_lastSentLayer == layer)
+        if (rcd.LastSelectedLayer == layer)
             return;
 
-        _lastSentLayer = layer;
         _entityNetwork.SendSystemNetworkMessage(new RPDSelectedLayerEvent(_entityManager.GetNetEntity(heldEntity), (byte) layer));
         _rcdSystem.SetSelectedLayer((heldEntity, rcd), layer);
     }
@@ -254,42 +236,48 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
         if (!_protoManager.TryIndex<EntityPrototype>(pManager.CurrentPermission.EntityType, out var currentProto))
             return;
 
-        if (!currentProto.TryComp<AtmosPipeLayersComponent>(out var atmosPipeLayers, _entityManager.ComponentFactory))
+        if (!currentProto.TryGetComponent<AtmosPipeLayersComponent>(out var atmosPipeLayers, _entityManager.ComponentFactory))
             return;
 
         if (!_pipeLayersSystem.TryGetAlternativePrototype(atmosPipeLayers, layer, out var newProtoId))
             return;
 
-        if (!_protoManager.TryIndex<EntityPrototype>(newProtoId, out var newProto)) return;
-        // Update the placed prototype
-        pManager.CurrentPermission.EntityType = newProtoId;
-
-        // Update the appearance of the ghost sprite
-        if (!newProto.TryComp<SpriteComponent>(out var sprite, _entityManager.ComponentFactory)) return;
-        var textures = new List<IDirectionalTextureProvider>();
-        var offsets = new List<Vector2>(); // Per-layer offset
-
-        foreach (var spriteLayer in sprite.AllLayers)
+        if (_protoManager.TryIndex<EntityPrototype>(newProtoId, out var newProto))
         {
-            if (spriteLayer.ActualRsi?.Path == null || spriteLayer.RsiState.Name == null) continue;
-            textures.Add(_spriteSystem.RsiStateLike(new SpriteSpecifier.Rsi(spriteLayer.ActualRsi.Path, spriteLayer.RsiState.Name)));
-            offsets.Add(sprite.Offset + ((SpriteComponent.Layer)spriteLayer).Offset); // Save each layer's offset
+            // Update the placed prototype
+            pManager.CurrentPermission.EntityType = newProtoId;
+
+            // Update the appearance of the ghost sprite
+            if (newProto.TryGetComponent<SpriteComponent>(out var sprite, _entityManager.ComponentFactory))
+            {
+                var textures = new List<IDirectionalTextureProvider>();
+                var offsets = new List<Vector2>(); // Per-layer offset
+
+                foreach (var spriteLayer in sprite.AllLayers)
+                {
+                    if (spriteLayer.ActualRsi?.Path == null || spriteLayer.RsiState.Name == null) continue;
+                    textures.Add(_spriteSystem.RsiStateLike(new SpriteSpecifier.Rsi(spriteLayer.ActualRsi.Path, spriteLayer.RsiState.Name)));
+                    offsets.Add(sprite.Offset + ((SpriteComponent.Layer)spriteLayer).Offset); // Save each layer's offset
+                }
+
+                pManager.CurrentTextures = textures;
+
+                // Reapply each layer's own offset to the ghost.
+                if (pManager.CurrentPlacementOverlayEntity is { } overlay
+                    && _entityManager.TryGetComponent<SpriteComponent>(overlay, out var overlaySprite))
+                {
+                    for (var i = 0; i < offsets.Count; i++)
+                        _spriteSystem.LayerSetOffset((overlay, overlaySprite), i, offsets[i]);
+
+                    overlaySprite.NoRotation = sprite.NoRotation;
+                }
+            }
         }
-
-        pManager.CurrentTextures = textures;
-
-        // Reapply each layer's own offset to the ghost.
-        if (pManager.CurrentPlacementOverlayEntity is not { } overlay
-            || !_entityManager.TryGetComponent<SpriteComponent>(overlay, out var overlaySprite)) return;
-        for (var i = 0; i < offsets.Count; i++)
-            _spriteSystem.LayerSetOffset((overlay, overlaySprite), i, offsets[i]);
-
-        overlaySprite.NoRotation = sprite.NoRotation;
     }
 
     public override bool IsValidPosition(EntityCoordinates position)
     {
-        var player = _remoteControl.ControlledEntity ?? _playerManager.LocalSession?.AttachedEntity;
+        var player = _playerManager.LocalSession?.AttachedEntity;
 
         // If the destination is out of interaction range, set the placer alpha to zero
         if (!_entityManager.TryGetComponent<TransformComponent>(player, out var xform))
@@ -302,7 +290,10 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
         }
 
         // Otherwise restore the alpha value
-        InvalidPlaceColor = InvalidPlaceColor.WithAlpha(PlaceColorBaseAlpha);
+        else
+        {
+            InvalidPlaceColor = InvalidPlaceColor.WithAlpha(PlaceColorBaseAlpha);
+        }
 
         // Determine if player is carrying an RCD in their active hand
         if (!_handsSystem.TryGetActiveItem(player.Value, out var heldEntity))
@@ -326,7 +317,9 @@ public sealed partial class AlignRPDAtmosPipeLayers : PlacementMode
         var target = screen.GetClickedEntity(_transformSystem.ToMapCoordinates(_mouseCoordsRaw));
 
         // Determine if the RCD operation is valid or not
-        return _rcdSystem.IsRCDOperationStillValid(heldEntity.Value, rcd, gridUid.Value, mapGrid, tile, posVector,
-            target, player.Value, false);
+        if (!_rcdSystem.IsRCDOperationStillValid(heldEntity.Value, rcd, gridUid.Value, mapGrid, tile, posVector, target, player.Value, false))
+            return false;
+
+        return true;
     }
 }

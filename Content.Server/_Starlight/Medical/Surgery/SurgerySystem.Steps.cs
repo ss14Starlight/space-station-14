@@ -102,32 +102,12 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         if (ent.Comp.Slot == "cavity" && _containers.TryGetContainer(args.Part, containerId, out var container))
         {
-            if (!_containers.Insert(organId, container))
-            {
-                args.IsCancelled = true;
-                return;
-            }
-
-            ResetOrganExtractionProgress(args.Part, ent.Comp.Slot);
+            _containers.Insert(organId, container);
             return;
         }
 
         if (!TryComp<OrganComponent>(organId, out var organComp))
-        {
-            // Allow deliberately wrong implants such as tools or food in organ slots.
-            if (!_body.CanInsertOrgan(args.Part, ent.Comp.Slot, bodyPart)
-                || !_containers.TryGetContainer(args.Part, containerId, out var itemContainer)
-                || !_containers.Insert(organId, itemContainer))
-            {
-                args.IsCancelled = true;
-            }
-            else
-            {
-                ResetOrganExtractionProgress(args.Part, ent.Comp.Slot);
-            }
-
             return;
-        }
 
         var part = args.Part;
         var body = args.Body;
@@ -138,61 +118,8 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             return;
         }
 
-        ResetOrganExtractionProgress(part, ent.Comp.Slot);
-
         var ev = new SurgeryOrganImplantationCompleted(body, part, organId);
         RaiseLocalEvent(organId, ref ev);
-    }
-
-    private void ResetOrganExtractionProgress(EntityUid part, string slot)
-        => ResetOrganProgress(part, slot, resetExtraction: true);
-
-    private void ResetOrganInsertionProgress(EntityUid part, string slot)
-        => ResetOrganProgress(part, slot, resetExtraction: false);
-
-    private void ResetOrganProgress(EntityUid part, string slot, bool resetExtraction)
-    {
-        if (!TryComp<SurgeryProgressComponent>(part, out var progress))
-            return;
-
-        var changed = false;
-        foreach (var surgeryId in _surgeries)
-        {
-            if (!_entity.TryGetSingleton(surgeryId, out var surgeryEnt)
-                || !TryComp(surgeryEnt, out SurgeryComponent? surgeryComp))
-            {
-                continue;
-            }
-
-            var removesSlot = false;
-            foreach (var stepId in surgeryComp.Steps)
-            {
-                if (!_entity.TryGetSingleton(stepId, out var stepEnt))
-                    continue;
-
-                var matchesSlot = resetExtraction
-                    ? TryComp(stepEnt, out SurgeryStepOrganExtractComponent? extract) && extract.Slot == slot
-                    : TryComp(stepEnt, out SurgeryStepOrganInsertComponent? insert) && insert.Slot == slot;
-                if (!matchesSlot)
-                {
-                    continue;
-                }
-
-                removesSlot = true;
-                break;
-            }
-
-            if (!removesSlot)
-                continue;
-
-            changed |= progress.CompletedSurgeries.Remove(surgeryId);
-            changed |= progress.StartedSurgeries.Remove(surgeryId);
-            foreach (var stepId in surgeryComp.Steps)
-                changed |= progress.CompletedSteps.Remove($"{surgeryId}:{stepId}");
-        }
-
-        if (changed)
-            Dirty(part, progress);
     }
 
     private void OnStepOrganExtractComplete(Entity<SurgeryStepOrganExtractComponent> ent, ref SurgeryStepEvent args)
@@ -201,32 +128,12 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         var type = ent.Comp.Organ.Values.First().Component.GetType();
 
-        var slot = ent.Comp.Slot;
-        if (slot != null && _containers.TryGetContainer(args.Part,
-                SharedBodySystem.GetOrganContainerId(slot), out var container))
+        if (ent.Comp.Slot != null && _containers.TryGetContainer(args.Part, SharedBodySystem.GetOrganContainerId(ent.Comp.Slot), out var container))
         {
-            var (containedEnt, _) = GetOrganExtractionTarget(ent.Comp, container.ContainedEntities);
-            if (containedEnt is not { } organEntity)
-                return;
+            foreach (var containedEnt in container.ContainedEntities)
+                if (HasComp(containedEnt, type))
+                    _containers.Remove(containedEnt, container);
 
-            if (TryComp<OrganComponent>(organEntity, out var organ))
-            {
-                if (!_body.RemoveOrgan(organEntity, organ))
-                {
-                    args.IsCancelled = true;
-                    return;
-                }
-
-                var ev = new SurgeryOrganExtracted(args.Body, args.Part, organEntity);
-                RaiseLocalEvent(organEntity, ref ev);
-            }
-            else if (!_containers.Remove(organEntity, container))
-            {
-                args.IsCancelled = true;
-                return;
-            }
-
-            ResetOrganInsertionProgress(args.Part, slot);
             return;
         }
 
@@ -287,80 +194,14 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
     private void OnStepAmputationComplete(Entity<SurgeryStepAmputationEffectComponent> ent, ref SurgeryStepEvent args)
     {
-        if (!_entity.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Body, out var body)
-            || !_entity.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(args.Part, out var limb)
-            || _body.GetParentPartAndSlotOrNull(args.Part) is not { } parentSlot)
-            return;
-
-        if (_limbSystem.Amputatate(body, limb))
-            ResetLimbAttachmentProgress(parentSlot.Parent, parentSlot.Slot);
+        if (_entity.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Body, out var body)
+            && _entity.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(args.Part, out var limb))
+            _limbSystem.Amputatate(body, limb);
     }
-
-    private void ResetLimbAttachmentProgress(EntityUid part, string slot)
-    {
-        if (!TryComp<SurgeryProgressComponent>(part, out var progress))
-            return;
-
-        var changed = false;
-        foreach (var surgeryId in _surgeries)
-        {
-            if (!_entity.TryGetSingleton(surgeryId, out var surgeryEnt)
-                || !TryComp(surgeryEnt, out SurgeryComponent? surgeryComp)
-                || !TryComp(surgeryEnt, out SurgeryLimbSlotConditionComponent? slotCondition)
-                || slotCondition.Slot != slot)
-                continue;
-
-            var attachesLimb = false;
-            foreach (var stepId in surgeryComp.Steps)
-            {
-                if (!_entity.TryGetSingleton(stepId, out var stepEnt)
-                    || !HasComp<SurgeryStepAttachLimbEffectComponent>(stepEnt))
-                    continue;
-
-                attachesLimb = true;
-                break;
-            }
-
-            if (!attachesLimb)
-                continue;
-
-            changed |= progress.CompletedSurgeries.Remove(surgeryId);
-            changed |= progress.StartedSurgeries.Remove(surgeryId);
-            foreach (var stepId in surgeryComp.Steps)
-                changed |= progress.CompletedSteps.Remove($"{surgeryId}:{stepId}");
-        }
-
-        if (changed)
-            Dirty(part, progress);
-    }
-
-    [SubscribeLocalEvent]
-    private void OnCustomLimbTerminating(Entity<CustomLimbMarkerComponent> ent, ref EntityTerminatingEvent args)
-        => RemoveCustomLimb(ent);
 
     private void CustomLimbRemoved(Entity<CustomLimbMarkerComponent> ent, ref ComponentRemove args)
-        => RemoveCustomLimb(ent);
-
-    private void RemoveCustomLimb(Entity<CustomLimbMarkerComponent> ent)
     {
-        if (ent.Comp.VirtualPart is not { } virtualPart)
-            return;
-
-        ent.Comp.VirtualPart = null;
-
-        if (!TryComp<BodyPartComponent>(virtualPart, out var virtualBodyPart)
-            || virtualBodyPart.Body is not { } bodyId
-            || TerminatingOrDeleted(bodyId)
-            || !_entity.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(bodyId, out var body)
-            || !_entity.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(virtualPart, out var limb)
-            || _body.GetParentPartAndSlotOrNull(virtualPart) is not { } parentSlot
-            || !_limbSystem.Amputatate(body, limb))
-        {
-            QueueDel(virtualPart);
-            return;
-        }
-
-        ResetLimbAttachmentProgress(parentSlot.Parent, parentSlot.Slot);
-        RefreshUI(bodyId);
+        if (ent.Comp.VirtualPart is null) return;
+        QueueDel(ent.Comp.VirtualPart.Value);
     }
 }

@@ -102,7 +102,7 @@
 
 - type: entity
   name: double stun baton
-  parent: [ BaseContrabandTier2, Stunbaton, BaseSecurityContraband ] # Blimpuf
+  parent: [ Stunbaton, BaseSecurityContraband ]
   id: DoubleStunbaton
   components:
   - type: Sprite
@@ -120,7 +120,7 @@
 
 - type: entity
   name: purple stun baton
-  parent: [ BaseContrabandTier2, Stunbaton, BaseSecurityContraband ] # Blimpuf
+  parent: [ Stunbaton, BaseSecurityContraband ]
   id: PurpleStunbaton
   components:
   - type: Sprite

@@ -45,7 +45,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 20
+            min: 10
       # Roundstart Minor Rules
       - !type:GroupSelector
         conditions:

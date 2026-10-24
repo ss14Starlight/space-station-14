@@ -5,7 +5,7 @@
   id: BaseVampireRule
   components:
   - type: GameRule # It doesn't really make lore sense that you can "remember" you're a vampire, but it should give everyone some calm at the start.
-    minPlayers: 20
+    minPlayers: 25
     delay:
       min: 240
       max: 420
@@ -15,10 +15,12 @@
     - VampireKillRandomPersonObjective
     - VampireDrainObjective
   - type: AntagRandomObjectives
-    forcedObjectiveGroup: VampireObjectiveGroupFate
     sets:
-    - groups: VampireObjectiveGroupsSelector
-    maxDifficulty: 4
+    - groups: VampireObjectiveGroupsStateOnly
+      maxPicks: 1
+    - groups: VampireObjectiveGroupsStealOnly
+      maxPicks: 1
+    maxDifficulty: 10
   - type: DynamicRuleCost
     cost: 125
 

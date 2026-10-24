@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Animations;
-using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared.Hands;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
@@ -17,9 +16,7 @@ public sealed partial class StorageSystem : SharedStorageSystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private EntityPickupAnimationSystem _entityPickupAnimation = default!;
-    #region Starlight
-    [Dependency] private RemoteControlInterface _remoteControl = default!;
-    #endregion
+
     private Dictionary<EntityUid, ItemStorageLocation> _oldStoredItems = new();
 
     private List<(StorageBoundUserInterface Bui, bool Value)> _queuedBuis = new();
@@ -125,12 +122,6 @@ public sealed partial class StorageSystem : SharedStorageSystem
 
     private void HandlePickupAnimation(PickupAnimationEvent msg)
     {
-        // Starlight: Remote control check
-        if (_remoteControl.ControlledEntity is { } controlledEntity
-            && msg.User is { } user
-            && GetEntity(user) == controlledEntity)
-            return;
-
         PickupAnimation(GetEntity(msg.ItemUid), GetCoordinates(msg.InitialPosition), GetCoordinates(msg.FinalPosition), msg.InitialAngle);
     }
 

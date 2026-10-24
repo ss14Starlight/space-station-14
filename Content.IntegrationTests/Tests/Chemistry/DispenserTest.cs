@@ -1,4 +1,3 @@
-using Content.Client._Starlight.Chemistry.UI; // Starlight-edit
 using Content.Client.Chemistry.UI;
 using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared.Chemistry;

@@ -1,4 +1,4 @@
-- type: !PartialOnly entityTable
+- type: !ParitalOnly entityTable
   id: AllMiscToysTable
   table:
     children:

@@ -1,7 +1,7 @@
 # Rubber
 - type: entity
   name: Drozd
-  parent: [ BaseContrabandTier3, WeaponSubMachineGunDrozd, BaseSecurityContraband ] # Blimpuf
+  parent: [WeaponSubMachineGunDrozd, BaseSecurityContraband]
   id: WeaponSubMachineGunDrozdRubber
   suffix: Non-Lethal
   components:
@@ -26,7 +26,7 @@
 
 - type: entity
   name: SP-91-RC
-  parent: [ BaseContrabandTier3, BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband ] # Blimpuf
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponSubMachineGunSP91RC
   description: Compact submachine gun designed for riot control.
   components:
@@ -130,7 +130,7 @@
     angleIncreaseDivider: 3
 - type: entity
   name: PPSH 59 SMG
-  parent: [ BaseContrabandTier3, BaseWeaponSubMachineGun, BaseSovietContraband ] # Blimpuf
+  parent: [BaseWeaponSubMachineGun, BaseSovietContraband]
   id: WeaponSubMachineGunPPSH
   description: Beloved by USSP veterans and feared by friendly fire protocols everywhere. Uses .35 ammo.
   components:
@@ -387,6 +387,7 @@
   - type: StealTarget
     stealGroup: HOSWeapon # Proto5x and WT550r
 
+
 - type: entity
   name: WT550g
   parent: [ WeaponSubMachineGunWt550 ]
@@ -409,7 +410,5 @@
     - type: Clothing
       sprite: _Starlight/Objects/Weapons/Guns/SMGs/wt550g.rsi
     - type: Contraband
-      tier: Tier4 # Blimpuf
-      contrabandType: CentralCommand # Blimpuf
       allowedDepartments: [ CentralCommand ]
       allowedJobs: []

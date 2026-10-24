@@ -1,6 +1,7 @@
 ﻿using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.UserInterface.Systems.EscapeMenu;
+using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.CCVar;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -27,10 +28,9 @@ namespace Content.Client.Info
             var uriOpener = IoCManager.Resolve<IUriOpener>();
             _cfg = IoCManager.Resolve<IConfigurationManager>();
             _playerRoles = IoCManager.Resolve<INullLinkPlayerRolesManager>(); // NullLink
-            // Starlight-edit: rules and the guidebook are buttons on the lobby top bar, the changelog goes first.
-            var changelogButton = new ChangelogButton();
-            changelogButton.OnPressed += args => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
-            buttons.AddChild(changelogButton);
+            var rulesButton = new Button() {Text = Loc.GetString("server-info-rules-button")};
+            rulesButton.OnPressed += args => new RulesAndInfoWindow().Open();
+            buttons.AddChild(rulesButton);
 
             AddInfoButton("server-info-discord-button", CCVars.InfoLinksDiscord);
             AddInfoButton("server-info-website-button", CCVars.InfoLinksWebsite);
@@ -55,6 +55,18 @@ namespace Content.Client.Info
             };
             buttons.AddChild(steamButton);
             // NullLink end
+
+            var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
+            var guidebookButton = new Button() { Text = Loc.GetString("server-info-guidebook-button") };
+            guidebookButton.OnPressed += _ =>
+            {
+                guidebookController.ToggleGuidebook();
+            };
+            buttons.AddChild(guidebookButton);
+
+            var changelogButton = new ChangelogButton();
+            changelogButton.OnPressed += args => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
+            buttons.AddChild(changelogButton);
 
             void AddInfoButton(string loc, CVarDef<string> cVar)
             {

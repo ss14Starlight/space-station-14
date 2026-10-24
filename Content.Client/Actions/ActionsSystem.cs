@@ -2,13 +2,9 @@ using System.IO;
 using System.Linq;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
-using Content.Shared.Chat.Prototypes;
-using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Mapping;
 using Content.Shared.Maps;
-using Content.Shared.Speech;
-using Content.Shared.Speech.Components;
 using JetBrains.Annotations;
 using Robust.Client.Player;
 using Robust.Shared.ContentPack;
@@ -128,7 +124,7 @@ namespace Content.Client.Actions
             ActionsUpdated?.Invoke();
         }
 
-        public int ActionComparer(Entity<ActionComponent> a, Entity<ActionComponent> b) // Starlight edit
+        public static int ActionComparer(Entity<ActionComponent> a, Entity<ActionComponent> b)
         {
             var priorityA = a.Comp?.Priority ?? 0;
             var priorityB = b.Comp?.Priority ?? 0;
@@ -137,12 +133,7 @@ namespace Content.Client.Actions
 
             priorityA = a.Comp?.Container?.Id ?? 0;
             priorityB = b.Comp?.Container?.Id ?? 0;
-            // Starlight begin
-            if (priorityA != priorityB)
-                return priorityA - priorityB;
-
-            return GetNetEntity(a.Owner).Id.CompareTo(GetNetEntity(b.Owner).Id);
-            // Starlight end
+            return priorityA - priorityB;
         }
 
         protected override void ActionAdded(Entity<ActionsComponent> performer, Entity<ActionComponent> action)
@@ -168,59 +159,8 @@ namespace Content.Client.Actions
             if (_playerManager.LocalEntity is not { } user)
                 return Enumerable.Empty<Entity<ActionComponent>>();
 
-            // Starlight - Filter disallowed vocal emote actions from the quick menu.
-            return GetActions(user).Where(action => ShouldShowEmoteAction(user, action));
+            return GetActions(user);
         }
-
-        #region Starlight
-
-        [SubscribeLocalEvent]
-        private void OnSpeechAfterHandleState(Entity<SpeechComponent> ent, ref AfterAutoHandleStateEvent args)
-        {
-            if (_playerManager.LocalEntity != ent.Owner)
-                return;
-
-            ActionsUpdated?.Invoke();
-        }
-
-        private bool ShouldShowEmoteAction(EntityUid user, Entity<ActionComponent> action)
-        {
-            var actionEvent = GetEvent(action);
-
-            // Only apply this filter to actions that play an emote.
-            if (actionEvent is PlayEmoteActionEvent emoteAction)
-                return ShouldShowVocalEmoteAction(user, emoteAction.ProtoId);
-
-            // The built-in scream button uses a separate action event from emote quick-binds.
-            if (actionEvent is ScreamActionEvent && TryComp<VocalComponent>(user, out var vocal))
-                return ShouldShowVocalEmoteAction(user, vocal.ScreamId);
-
-            return true;
-        }
-
-        private bool ShouldShowVocalEmoteAction(EntityUid user, ProtoId<EmotePrototype> emoteId)
-        {
-            // Without SpeechComponent, there is no emote restriction to apply.
-            if (!TryComp<SpeechComponent>(user, out var speech))
-                return true;
-
-            // Preserve the normal action list when the restriction is disabled.
-            if (!speech.RestrictVocalEmotesToAllowed)
-                return true;
-
-            // A missing emote prototype cannot be shown as a valid emote action.
-            if (!_proto.Resolve(emoteId, out var emote))
-                return false;
-
-            // The restriction affects Vocal emotes only, not other emote categories.
-            if (emote.Category != EmoteCategory.Vocal)
-                return true;
-
-            // Show Vocal emote actions only when the emote is explicitly allowed.
-            return speech.AllowedEmotes.Contains(emote.ID);
-        }
-
-        #endregion Starlight
 
         private void OnPlayerAttached(EntityUid uid, ActionsComponent component, LocalPlayerAttachedEvent args)
         {

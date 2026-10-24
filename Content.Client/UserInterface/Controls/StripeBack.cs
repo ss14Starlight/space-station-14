@@ -5,7 +5,7 @@ using Robust.Client.UserInterface.Controls;
 namespace Content.Client.UserInterface.Controls
 {
     [Virtual]
-    public partial class StripeBack : Container // Starlight
+    public class StripeBack : Container
     {
         public float PadSize { get; set; } = 4;
         public float EdgeSize { get; set; } = 2;
@@ -49,18 +49,17 @@ namespace Content.Client.UserInterface.Controls
 
         protected override Vector2 MeasureOverride(Vector2 availableSize)
         {
-            var padSize = HasMargins ? MathF.Max(0f, PadSize) : 0f; // Starlight
-            var edgeSize = MathF.Max(0f, EdgeSize); // Starlight
+            var padSize = HasMargins ? PadSize : 0;
             var padSizeTotal = 0f;
 
             if (HasBottomEdge)
-                padSizeTotal += padSize + edgeSize; // Starlight: because of a forced error with case
+                padSizeTotal += padSize + EdgeSize;
             if (HasTopEdge)
-                padSizeTotal += padSize + edgeSize; // Starlight: same
+                padSizeTotal += padSize + EdgeSize;
 
             var size = Vector2.Zero;
 
-            availableSize.Y = MathF.Max(0f, availableSize.Y - padSizeTotal); // Starlight
+            availableSize.Y -= padSizeTotal;
 
             foreach (var child in Children)
             {
@@ -73,8 +72,19 @@ namespace Content.Client.UserInterface.Controls
 
         protected override Vector2 ArrangeOverride(Vector2 finalSize)
         {
-            GetVerticalEdgeInsets(finalSize.Y, 1f, out var topInset, out var bottomInset); // Starlight
-            var box = new UIBox2(0, topInset, finalSize.X, finalSize.Y - bottomInset); // Starlight
+            var box = new UIBox2(Vector2.Zero, finalSize);
+
+            var padSize = HasMargins ? PadSize : 0;
+
+            if (HasTopEdge)
+            {
+                box += (0, padSize + EdgeSize, 0, 0);
+            }
+
+            if (HasBottomEdge)
+            {
+                box += (0, 0, 0, -(padSize + EdgeSize));
+            }
 
             foreach (var child in Children)
             {
@@ -89,27 +99,22 @@ namespace Content.Client.UserInterface.Controls
         {
             UIBox2 centerBox = PixelSizeBox;
 
-            var padSize = HasMargins ? MathF.Max(0f, PadSize) : 0f; // Starlight
-            GetVerticalEdgeInsets(PixelHeight, UIScale, out var topInset, out var bottomInset); // Starlight
+            var padSize = HasMargins ? PadSize : 0;
 
             if (HasTopEdge)
             {
-                centerBox += (0, topInset, 0, 0); // Starlight
-                var topEdgeTop = MathF.Min(padSize * UIScale, centerBox.Top); // Starlight
-                if (PixelWidth > 0 && centerBox.Top > topEdgeTop) // Starlight
-                    handle.DrawRect(new UIBox2(0, topEdgeTop, PixelWidth, centerBox.Top), EdgeColor); // Starlight
+                centerBox += (0, (padSize + EdgeSize) * UIScale, 0, 0);
+                handle.DrawRect(new UIBox2(0, padSize * UIScale, PixelWidth, centerBox.Top), EdgeColor);
             }
 
             if (HasBottomEdge)
             {
-                centerBox += (0, 0, 0, -bottomInset); // Starlight
-                var bottomEdgeBottom = MathF.Max(centerBox.Bottom, PixelHeight - (padSize * UIScale)); // Starlight
-                if (PixelWidth > 0 && bottomEdgeBottom > centerBox.Bottom) // Starlight
-                    handle.DrawRect(new UIBox2(0, centerBox.Bottom, PixelWidth, bottomEdgeBottom), EdgeColor); // Starlight
+                centerBox += (0, 0, 0, -((padSize + EdgeSize) * UIScale));
+                handle.DrawRect(new UIBox2(0, centerBox.Bottom, PixelWidth, PixelHeight - padSize * UIScale),
+                    EdgeColor);
             }
 
-            if (centerBox.Width > 0 && centerBox.Height > 0) // Starlight
-                GetActualStyleBox()?.Draw(handle, centerBox, UIScale); // Starlight
+            GetActualStyleBox()?.Draw(handle, centerBox, UIScale);
         }
 
         private StyleBox? GetActualStyleBox()

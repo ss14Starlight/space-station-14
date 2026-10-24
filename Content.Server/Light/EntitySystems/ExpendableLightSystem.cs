@@ -1,5 +1,5 @@
-using Content.Shared.Botany.Components;
-using Content.Shared.Botany.Items.Components;
+using Content.Shared.Botany.Components; // Starlight Edit
+using Content.Shared.Botany.Items.Components; // Starlight Edit
 using Content.Server.Light.Components;
 using Content.Server.Stack;
 using Content.Shared.Clothing.Components;
@@ -31,7 +31,6 @@ namespace Content.Server.Light.EntitySystems
         [Dependency] private SharedAppearanceSystem _appearance = default!;
         [Dependency] private StackSystem _stackSystem = default!;
         [Dependency] private NameModifierSystem _nameModifier = default!;
-        [Dependency] private SharedPointLightSystem _pointLight = default!; // Starlight
 
         private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
 
@@ -188,8 +187,6 @@ namespace Content.Server.Light.EntitySystems
                 return;
 
             _appearance.SetData(ent, ExpendableLightVisuals.State, component.CurrentState, appearance);
-
-            _pointLight.SetEnabled(ent, component.CurrentState is ExpendableLightState.Lit or ExpendableLightState.Fading); // Starlight-edit
 
             switch (component.CurrentState)
             {

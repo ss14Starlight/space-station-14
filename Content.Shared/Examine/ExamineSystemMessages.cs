@@ -15,13 +15,11 @@ namespace Content.Shared.Examine
 
             public readonly bool GetVerbs;
 
-            public readonly NetEntity? Examiner; // Starlight: optional examiner used by remote control
-            public RequestExamineInfoMessage(NetEntity netEntity, int id, bool getVerbs = false, NetEntity? examiner = null)
+            public RequestExamineInfoMessage(NetEntity netEntity, int id, bool getVerbs=false)
             {
                 NetEntity = netEntity;
                 Id = id;
                 GetVerbs = getVerbs;
-                Examiner = examiner; // Starlight
             }
         }
 

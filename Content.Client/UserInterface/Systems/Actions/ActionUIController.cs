@@ -53,6 +53,11 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
     private readonly DragDropHelper<ActionButton> _menuDragHelper;
     private readonly TextureRect _dragShadow;
     private ActionsWindow? _window;
+    #region Starlight
+    private readonly int _resetMargin = 10;
+    private long _nextReset;
+    private bool _didReset;
+    #endregion
 
     private ActionsBar? ActionsBar => UIManager.GetActiveUIWidgetOrNull<ActionsBar>();
     private UserInterface.Controls.MenuButton? ActionButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.ActionButton;
@@ -103,7 +108,10 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             _actionsSystem.OnActionAdded += OnActionAdded;
             _actionsSystem.OnActionRemoved += OnActionRemoved;
             _actionsSystem.ActionsUpdated += OnActionsUpdated;
-            StartSettling(); // Starlight
+            //Starlight Start
+            _nextReset = _timing.CurTick.Value + _resetMargin;
+            _didReset = false;
+            //Starlight End
         }
 
         UpdateFilterLabel();
@@ -258,7 +266,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             return;
 
         _actions.Add(action);
-        QueueSortIfSettling(); // Starlight
     }
 
     private void OnActionRemoved(EntityUid actionId)
@@ -283,7 +290,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
     private void OnActionsUpdated()
     {
         QueueWindowUpdate();
-        QueueSortIfSettling(); // Starlight
 
         if (_actionsSystem != null)
             _container?.SetActionData(_actionsSystem, _actions.ToArray());
@@ -439,7 +445,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         if (_actionsSystem == null)
             return;
 
-        _userArranged = true; // Starlight
         int position;
 
         if (actionId == null)
@@ -711,7 +716,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         if (_actionsSystem == null)
             return;
 
-        _userArranged = true; // Starlight
         _actions.Clear();
         foreach (var assign in assignments)
         {
@@ -747,22 +751,22 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         _menuDragHelper.Update(args.DeltaSeconds);
         if (_window is {UpdateNeeded: true})
             SearchAndDisplay();
-        // Starlight start
-        // improve sorting and race condition handling that was here before to hopefully work properly and be more consistent.
-        if (_sortQueued && _actionsSystem != null)
+        //Starlight start
+        // Don't Hack   Open inside
+        // WE LOVE RACE CONDITIONS!! we only sort actions if they're ready at the same time,
+        // then we append so new actions don't override old ones (otherwise we'd reset players dragging them)
+        // problem: roundstart, it takes so long half the actions are ready during different ticks.
+        // so I'm just adding a timer to resort everything 10 ticks after the Ui starts :'3
+        if (_didReset)
+            return;
+        if (_nextReset <= _timing.CurTick.Value && _actionsSystem != null)
         {
-            _sortQueued = false;
-            if (!_userArranged)
-            {
-                LoadDefaultActions();
-                _container?.SetActionData(_actionsSystem, _actions.ToArray());
-                QueueWindowUpdate();
-            }
+            LoadDefaultActions();
+            _container?.SetActionData(_actionsSystem, _actions.ToArray());
+            QueueWindowUpdate();
+            _didReset = true;
         }
-
-        if (_settling && AllActionsArrived())
-            _settling = false;
-        // Starlight end
+        //Starlight end
     }
 
     private void OnComponentLinked(ActionsComponent component)
@@ -770,7 +774,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         if (_actionsSystem == null)
             return;
 
-        StartSettling(); // Starlight
         LoadDefaultActions();
         _container?.SetActionData(_actionsSystem, _actions.ToArray());
         QueueWindowUpdate();
@@ -789,7 +792,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             return;
 
         var actions = _actionsSystem.GetClientActions().Where(action => action.Comp.AutoPopulate).ToList();
-        actions.Sort(_actionsSystem.ActionComparer); // Starlight edit
+        actions.Sort(ActionComparer);
 
         _actions.Clear();
         foreach (var (action, _) in actions)

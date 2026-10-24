@@ -65,6 +65,10 @@
       state: light
       shader: unshaded
       visible: false
+    - map: [ "clownedon" ] # Dynamically generated
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
   - type: MobThresholds
     thresholds:
       0: Alive

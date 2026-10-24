@@ -13,7 +13,6 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Whitelist;
-using Content.Shared._Starlight.Computers.PodConsole;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -179,9 +178,13 @@ public sealed partial class EmergencyShuttleSystem
                 }
             }
 
-            // Starlight - start
-            UnlockAllEscapePods();
-            // Starlight - end
+            var podQuery = AllEntityQuery<EscapePodComponent>();
+
+            // Stagger launches coz funny
+            while (podQuery.MoveNext(out _, out var pod))
+            {
+                pod.LaunchTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(0.05f, 0.75f));
+            }
         }
 
         var podLaunchQuery = EntityQueryEnumerator<EscapePodComponent, ShuttleComponent>();
@@ -297,7 +300,8 @@ public sealed partial class EmergencyShuttleSystem
         // Starlight edit End: Commented out for evacuation pod planet landing
 
         // Starlight Start: Evacuation pod planet landing
-        EnsureEvacuationPlanet(); // Starlight
+        if (_evacuationPlanetMap == null || _evacuationLandingZone == null)
+            SetupEvacuationPlanet();
 
         if (_evacuationPlanetMap == null || _evacuationLandingZone is not { } evacuationLandingZone)
         {
@@ -305,18 +309,11 @@ public sealed partial class EmergencyShuttleSystem
             return;
         }
 
-        // Starlight - start
-        if (!_evacuationPlanetGenerated)
-        {
-            if (!_pendingEvacuationPodLaunches.Exists(pending => pending.Uid == uid))
-                _pendingEvacuationPodLaunches.Add((uid, traveltime));
+        var angle = _random.NextAngle();
+        var distance = _random.NextFloat(0, PodSpreadRadius);
+        var offset = angle.ToVec() * distance;
+        var landingCoords = evacuationLandingZone.Offset(offset);
 
-            RemCompDeferred<EscapePodComponent>(uid);
-            return;
-        }
-        // Starlight - end
-
-        // Starlight - start
         var rotations = new[]
         {
             Angle.Zero,
@@ -326,25 +323,13 @@ public sealed partial class EmergencyShuttleSystem
         };
         var podRotation = _random.Pick(rotations);
 
-        if (GetEvacuationPodLandingCoordinates(uid, evacuationLandingZone, podRotation, out var reservation) is not { } landingCoords)
-        {
-            Log.Error($"Evacuation pod {ToPrettyString(uid)} could not find a clear landing area.");
-            RemCompDeferred<EscapePodComponent>(uid);
-            return;
-        }
-        // Starlight - end
-
-        if (!_shuttle.FTLToCoordinates(
+        _shuttle.FTLToCoordinates(
             uid,
             shuttle,
             landingCoords,
             podRotation,
-            startupTime: _shuttle.DefaultStartupTime, // Starlight
-            hyperspaceTime: traveltime))
-        {
-            _evacuationPodLandingReservations.Remove((reservation.Position, reservation.Radius));
-            _shuttle.ReleaseLandingArea(reservation.LandingArea);
-        }
+            startupTime: 0f,
+            hyperspaceTime: traveltime);
         // Starlight End: Evacuation pod planet landing
         RemCompDeferred<EscapePodComponent>(uid);
     }

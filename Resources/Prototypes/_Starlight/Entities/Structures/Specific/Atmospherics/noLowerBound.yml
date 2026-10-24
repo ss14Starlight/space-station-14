@@ -18,19 +18,19 @@
       WaterVapor: stationWaterVapor
       Ammonia: stationAmmonia
       NitrousOxide: stationNO
-      Frezon: stationFrezon
+      Frezon: danger
       # Funkystation Start: Funky atmos - /tg/ gases
       BZ: stationBZ
       Healium: stationHealium
       Nitrium: voxNitrium
       Pluoxium: stationPluoxium
-      Hydrogen: stationHydrogen
+      Hydrogen: danger
       HyperNoblium: stationHyperNoblium
-      ProtoNitrate: stationProtoNitrate
-      Zauker: stationZauker
+      ProtoNitrate: danger
+      Zauker: danger
       Halon: voxHalon
       Helium: stationHelium
-      AntiNoblium: stationAntiNoblium
+      AntiNoblium: danger
       # Funkystation End: Funky atmos - /tg/ gases
       # Starlight start, Starlight gases
       Ulnitranium: stationUlnitranium

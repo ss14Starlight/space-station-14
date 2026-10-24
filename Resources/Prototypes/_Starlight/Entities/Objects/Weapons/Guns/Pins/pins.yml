@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseContrabandTier3, BaseItem, BaseSecurityContraband ] # Blimpuf
+  parent: [BaseItem, BaseSecurityContraband]
   id: FiringPin
   name: firing pin
   description: Somebody probably really needs this right now...

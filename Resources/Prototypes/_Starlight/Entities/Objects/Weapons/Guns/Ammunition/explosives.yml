@@ -9,8 +9,7 @@
   - type: CartridgeAmmo
     proto: BulletGrenadeCleanadeSyndicate
   - type: Contraband
-    tier: Tier3 # Blimpuf
-    contrabandType: Syndicate # Blimpuf
+    severity: Syndicate
 
 # 120mm Ammunition
 
@@ -201,7 +200,7 @@
   id: GrenadeGaslauncher
   name: gas grenade
   description: Able to choke a room or several of your friends.
-  parent: [ BaseContrabandTier2, BaseGrenade, BaseSecurityContraband ] # Blimpuf
+  parent: [ BaseGrenade, BaseSecurityContraband]
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeGas
@@ -222,7 +221,7 @@
   id: GrenadeStingerlauncher
   name: stinger grenade
   description: An unruly crowd's favourite.
-  parent: [ BaseContrabandTier2, BaseGrenade, BaseSecurityContraband ] # Blimpuf
+  parent: [ BaseGrenade, BaseSecurityContraband]
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeStinger

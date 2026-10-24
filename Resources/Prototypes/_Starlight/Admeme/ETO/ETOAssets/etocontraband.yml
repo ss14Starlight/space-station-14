@@ -1,0 +1,10 @@
+- type: entity
+  id: BaseETOContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: ETO
+
+- type: contrabandSeverity
+  id: ETO
+  examineText: contraband-examine-text-eto

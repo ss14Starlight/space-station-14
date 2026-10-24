@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Client.Examine;
+using Content.Client.Hands.Systems;
 using Content.Client.Interaction;
 using Content.Client.Storage;
 using Content.Client.Storage.Systems;
@@ -220,8 +221,7 @@ public sealed partial class StorageUIController : UIController, IOnSystemChanged
               binding.Mod3 == Keyboard.Key.Control))
             return;
 
-        // Starlight
-        if (!IsDragging && GetActiveStorageHandItem() == null)
+        if (!IsDragging && EntityManager.System<HandsSystem>().GetActiveHandEntity() == null)
             return;
 
         // Do not rotate items unless we are either dragging them or hovering over a storage window.

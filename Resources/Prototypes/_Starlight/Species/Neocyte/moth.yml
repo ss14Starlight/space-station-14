@@ -48,6 +48,7 @@
 
 - type: markingPoints
   id: MobNeoMothMarkingLimits
+  onlyWhitelisted: true
   points:
     FaceCover:
       points: 1

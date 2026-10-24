@@ -115,7 +115,14 @@ namespace Content.Server.Administration.Systems
 
             if (_adminManager.IsAdmin(player))
             {
-                // Starlight - Remove vanilla mark verb.
+                Verb mark = new();
+                mark.Text = Loc.GetString("toolshed-verb-mark");
+                mark.Message = Loc.GetString("toolshed-verb-mark-description");
+                mark.Category = VerbCategory.Admin;
+                mark.Act = () => _toolshed.InvokeCommand(player, "=> $marked", new List<EntityUid> { args.Target }, out _);
+                mark.Impact = LogImpact.Low;
+                args.Verbs.Add(mark);
+
                 if (TryComp(args.Target, out ActorComponent? targetActor))
                 {
                     // AdminHelp

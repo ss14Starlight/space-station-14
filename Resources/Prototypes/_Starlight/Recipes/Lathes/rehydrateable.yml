@@ -5,24 +5,3 @@
   materials:
     Biomass: 20
     Steel: 1000
-
-- type: latheRecipe
-  parent: BaseCubeRecipe
-  id: PigCube
-  result: PigCube
-  materials:
-    Biomass: 50
-
-- type: latheRecipe
-  parent: BaseCubeRecipe
-  id: ChickenCube
-  result: ChickenCube
-  materials:
-    Biomass: 20
-
-- type: latheRecipe
-  parent: BaseCubeRecipe
-  id: KoiCube
-  result: KoiCube
-  materials:
-    Biomass: 30

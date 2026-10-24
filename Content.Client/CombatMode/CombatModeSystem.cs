@@ -8,7 +8,6 @@ using Robust.Shared.Configuration;
 using Content.Shared._Starlight.CombatMode;
 using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Prototypes;
-using Content.Client._Starlight.Computers.RemoteControl;
 
 namespace Content.Client.CombatMode;
 
@@ -22,7 +21,6 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
     #region Starlight
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IClyde _clyde = default!;
-    private RemoteControlInterface _remoteControl => EntityManager.System<RemoteControlInterface>(); // Starlight
     private bool _lastState = false;
     private string _rangedSight = "GunSight";
     private string _meleeSight = "MeleeSight";
@@ -76,11 +74,6 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
 
     public bool IsInCombatMode()
     {
-        // Starlight-start
-        if (_remoteControl.ControlledEntity is { } remote)
-            return IsInCombatMode(remote);
-        // Starlight-end
-
         var entity = _playerManager.LocalEntity;
 
         if (entity == null)

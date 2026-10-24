@@ -19,9 +19,3 @@
   - type: Tag
     tags:
     - SecBeltEquip
-
-- type: !PartialOnly entity
-  id: ClothingMaskGasSyndicate
-  components:
-  - type: Contraband
-    tier: Tier2

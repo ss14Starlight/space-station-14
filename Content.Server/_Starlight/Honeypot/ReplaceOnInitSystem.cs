@@ -9,8 +9,6 @@ namespace Content.Server._Starlight.Honeypot;
 [EntityCategory("Spawner")]
 public sealed partial class ReplaceOnInitSystem : EntitySystem
 {
-    [Dependency] private SharedTransformSystem _transform = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -22,7 +20,7 @@ public sealed partial class ReplaceOnInitSystem : EntitySystem
     {
         var xform = Transform(ent);
         var spawned = SpawnAtPosition(ent.Comp.Proto, xform.Coordinates, ent.Comp.Overrides);
-        _transform.SetLocalRotation(spawned, xform.LocalRotation);
+        Transform(spawned).LocalRotation = xform.LocalRotation;
 
         QueueDel(ent);
     }

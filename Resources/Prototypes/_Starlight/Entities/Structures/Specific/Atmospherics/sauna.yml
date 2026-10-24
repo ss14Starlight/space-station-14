@@ -20,18 +20,18 @@
       WaterVapor: ignore
       Ammonia: stationAmmonia
       NitrousOxide: stationNO
-      Frezon: stationFrezon
+      Frezon: danger
       BZ: stationBZ
       Healium: stationHealium
-      Nitrium: stationNitrium
+      Nitrium: danger
       Pluoxium: stationPluoxium
-      Hydrogen: stationHydrogen
+      Hydrogen: danger
       HyperNoblium: stationHyperNoblium
-      ProtoNitrate: stationProtoNitrate
-      Zauker: stationZauker
-      Halon: stationHalon
+      ProtoNitrate: danger
+      Zauker: danger
+      Halon: danger
       Helium: stationHelium
-      AntiNoblium: stationAntiNoblium
+      AntiNoblium: danger
       Ulnitranium: stationUlnitranium
       ZXA: stationZXA
 

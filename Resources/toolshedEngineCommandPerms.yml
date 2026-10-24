@@ -21,6 +21,8 @@
 
 - Flags: DEBUG
   Commands:
+    - comp
+    - delete
     - with
     - prototyped
     - named
@@ -33,6 +35,8 @@
     - count
     - types
     - actor
+    - spawn
+    - replace
     - mappos
     - pos
     - tp

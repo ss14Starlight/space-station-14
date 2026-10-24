@@ -3,7 +3,6 @@ using Content.Server.Station.Systems;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.CCVar;
-using Content.Shared.CrewManifest;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -61,13 +60,7 @@ public sealed partial class CrewManifestCartridgeSystem : EntitySystem
         var owningStation = _stationSystem.GetOwningStation(uid);
 
         if (owningStation is null)
-        {
-            // Display "loading failed" message
-            var failureMessage = Loc.GetString("crew-manifest-cartridge-loading-failed");
-            var failureState = new CrewManifestUiState(failureMessage, new CrewManifestEntries());
-            _cartridgeLoader.UpdateCartridgeUiState(loaderUid, failureState);
             return;
-        }
 
         var (stationName, entries) = _crewManifest.GetCrewManifest(owningStation.Value);
 

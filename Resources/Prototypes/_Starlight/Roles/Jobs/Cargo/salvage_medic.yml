@@ -1,6 +1,5 @@
 ﻿- type: job
   id: SalvageMedic
-  roleSubtype: role-subtype-itg
   name: job-name-salvagemedic
   description: job-description-salvagemedic
   rules: job-rules-itg-aligned
@@ -22,7 +21,7 @@
   - External
   special:
   - !type:AddImplantSpecial
-    implants: [ ITGMindShieldImplant ]
+    implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: NoObjectiveTarget
@@ -30,6 +29,9 @@
 - type: startingGear
   id: SalvageMedicGear
   equipment:
+    eyes: ClothingEyesHudMedical
+    jumpsuit: ClothingUniformJumpsuitSalvageMedic
+    id: SalvageMedicPDA
     ears: ClothingHeadsetSalvageLead
 
 - type: chameleonOutfit

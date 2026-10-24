@@ -36,7 +36,7 @@
   desc: reagent-desc-amoxla
   physicalDesc: reagent-physical-desc-opaque
   # Starlight Edits
-  contrabandTier: Tier1 # Blimpuf
+  contrabandSeverity: Minor
   allowedDepartments:
   - Medical
   # Starlight End
@@ -340,7 +340,6 @@
 
 - type: reagent
   id: Respirazone
-  contrabandTier: Tier1
   name: reagent-name-respirazone
   group: Medicine
   desc: reagent-desc-respirazone

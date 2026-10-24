@@ -1,6 +1,6 @@
 - type: entity
   name: Lecter
-  parent: [ BaseContrabandTier3, WeaponRifleLecter, BaseSecurityContraband ] # Blimpuf
+  parent: [WeaponRifleLecter, BaseSecurityContraband]
   id: WeaponRifleLecterRubber
   suffix: Non-lethal
   components:
@@ -25,7 +25,7 @@
 
 - type: entity
   name: lr-30
-  parent: [ BaseContrabandTier3, BaseItem, BaseGunWieldable, BaseSecurityContraband, BaseSalvageContraband ] # Blimpuf
+  parent: [BaseItem, BaseGunWieldable, BaseSecuritySalvageContraband]
   id: WeaponRifleLr30
   description: Energy carbine with lethal mode.
   components:
@@ -84,7 +84,7 @@
 
 - type: entity
   name: IK-60 laser carbine
-  parent: [ BaseContrabandTier3, BaseItem, BaseGunWieldable, BaseSecurityContraband ] # Blimpuf
+  parent: [BaseItem, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponRifleIK60
   description: A short, compact rifle-like carbine that relies more on battery-powered ammunition rather than a built-in battery. Used by the NanoTrasen Space Force in combat operations.
   components:
@@ -122,13 +122,12 @@
       gun_magazine: !type:ContainerSlot
   - type: Gun
     fireRate: 5
-    shotsPerBurst: 3
+    shotsPerBurst: 2
     burstCooldown: 0.6
     selectedMode: Burst
     availableModes:
       - SemiAuto
       - Burst
-      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: MagazineVisuals
@@ -181,7 +180,7 @@
 
 - type: entity
   name: L10 DMR
-  parent: [ BaseContrabandTier3, BaseWeaponRifle, BaseSecurityContraband ] # Blimpuf
+  parent: [ BaseWeaponRifle, BaseSecurityContraband ]
   id: WeaponRifleL10
   description: "A scoped marksman rifle for medium range engagements, built on the Lecter platform.\nChambered in .45 magnum."
   components:
@@ -304,7 +303,7 @@
 
 - type: entity
   name: Peacemaker
-  parent: [ BaseContrabandTier3, BaseWeaponRifle, BaseSecurityContraband ] # Blimpuf
+  parent: [ BaseWeaponRifle, BaseSecurityContraband ]
   id: WeaponRiflePeacemaker
   description: The best or worst thing you'll ever see, depending if it's pointed at you or not. Uses .20 rifle ammo.
   components:
@@ -373,7 +372,7 @@
 
 - type: entity
   name: Lawbringer
-  parent: [ BaseContrabandTier3, BaseWeaponRifle, BaseSecurityContraband ] # Blimpuf
+  parent: [BaseWeaponRifle, BaseSecurityContraband]
   id: WeaponRifleLawbringer
   description: "A bullpup carbine of modern design, commissioned by CentComm for their security forces.\nFeeds from .30 rifle magazines."
   components:
@@ -423,20 +422,6 @@
   id: WeaponRifleBolt
   description: A terrifyingly powerful and rugged rifle commonly used by the ITG for their frontier logistic escorts and salvage teams. Fires high-caliber explosive impact bolts. Watch out for the recoil.
   components:
-  - type: KnockbackByUserTag
-    doestContain:
-      Skating:
-        knockback: 2
-        staminaMultiplier: 6
-      Rodentia:
-        knockback: 2
-        staminaMultiplier: 6
-      Resomi:
-        knockback: 2
-        staminaMultiplier: 6
-      Felionoid:
-        knockback: 2
-        staminaMultiplier: 6
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/impact_bolt_rifle.rsi
     layers:
@@ -451,20 +436,22 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,3
+    - 0,0,3,2
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -19
-    maxAngle: -20
+    maxAngle: -22
   - type: Gun
     minAngle: 20
-    maxAngle: 35
+    maxAngle: 24
     fireRate: 3.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+    - Burst
     - FullAuto
+    shotsPerBurst: 3
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
       params:

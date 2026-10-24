@@ -30,9 +30,6 @@ public sealed partial class ReplayObserverSystem
     private readonly HashSet<(EntityUid Target, Enum Key)> _viewing = new();
     private readonly List<(EntityUid Target, Enum Key)> _viewingScratch = new();
 
-    // Views to open once a dead window's interface has been disposed, so reopening doesn't revive it.
-    private readonly List<(EntityUid Target, Enum Key)> _pendingViews = new();
-
     private void InitializeViewer()
     {
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(OnGetViewerVerbs);
@@ -106,12 +103,11 @@ public sealed partial class ReplayObserverSystem
         }
 
         AddLawVerbs(ev);
-        AddSolutionsVerb(ev);
     }
 
-    private void AddViewerVerb(GetVerbsEvent<Verb> ev, Enum key, string loc, string icon, EntityUid? uiOwner = null)
+    private void AddViewerVerb(GetVerbsEvent<Verb> ev, Enum key, string loc, string icon)
     {
-        var target = uiOwner ?? ev.Target;
+        var target = ev.Target;
         if (!_ui.HasUi(target, key))
             return;
 
@@ -142,21 +138,16 @@ public sealed partial class ReplayObserverSystem
         if (_observer is not { } observer || observer != _player.LocalEntity)
             return;
 
+        // Already open, possibly hidden behind a nested bag.
         if (_ui.IsUiOpen(target, key, observer))
         {
-            // Already open, possibly hidden behind a nested bag.
-            if (_ui.TryGetOpenUi(target, key, out var bui) && bui.IsOpened)
+            // TryGetOpenUi casts without checking the UI's type, so only ask for a bag UI under the bag key.
+            if (key is StorageComponent.StorageUiKey
+                && _ui.TryGetOpenUi<StorageBoundUserInterface>(target, key, out var openBag))
             {
-                if (bui is StorageBoundUserInterface openBag)
-                    openBag.Show();
-
-                return;
+                openBag.Show();
             }
 
-            // The window is gone but the observer is still registered on it. Close that and open fresh later.
-            _viewing.Remove((target, key));
-            _ui.CloseUi(target, key, observer);
-            _pendingViews.Add((target, key));
             return;
         }
 
@@ -214,42 +205,6 @@ public sealed partial class ReplayObserverSystem
     {
         if (args.Actor == _observer)
             _viewing.Remove((GetEntity(args.Entity), args.UiKey));
-    }
-
-    // Runs after the UI system's update: any viewed window still not opened by then was closed by the viewer while
-    // recorded state had briefly removed them from it. That close never registered and reopening revived the dead
-    // interface, leaving the observer registered on a window that no longer exists.
-    private void UpdateClosedViews()
-    {
-        if (_observer is not { } observer)
-        {
-            _pendingViews.Clear();
-            return;
-        }
-
-        _viewingScratch.Clear();
-        _viewingScratch.AddRange(_viewing);
-        foreach (var (target, key) in _viewingScratch)
-        {
-            if (!_ui.IsUiOpen(target, key, observer)
-                || (_ui.TryGetOpenUi(target, key, out var bui) && bui.IsOpened))
-            {
-                continue;
-            }
-
-            _viewing.Remove((target, key));
-            _ui.CloseUi(target, key, observer);
-        }
-
-        // Their dead interfaces were disposed by the update that just ran.
-        _viewingScratch.Clear();
-        _viewingScratch.AddRange(_pendingViews);
-        _pendingViews.Clear();
-        foreach (var (target, key) in _viewingScratch)
-        {
-            if (Exists(target))
-                OpenView(target, key);
-        }
     }
 
     private void UpdateViewer()

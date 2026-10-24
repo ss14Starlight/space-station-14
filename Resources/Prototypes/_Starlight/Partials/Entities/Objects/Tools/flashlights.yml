@@ -18,7 +18,6 @@
   - type: PointLight
     mask: !Remove
     lightMask: SLCurve
-  - type: FaceAwayWhenDropped
   # Vending Machines Prices
   - type: ItemPrice
     fallbackPrice: 12

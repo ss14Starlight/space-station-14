@@ -18,7 +18,7 @@ public sealed class GlobalSoundCommand : ToolshedCommand
         if (!TryComp<ActorComponent>(uid, out var actor)) return uid;
         var audio = AudioParams.Default.WithVolume(volume);
         EntityManager.System<ServerGlobalSoundSystem>().PlayAdminGlobal(Filter.Empty().AddPlayer(actor.PlayerSession),
-            new ResolvedPathSpecifier(path), audio, saveToReplay);
+            path, audio, saveToReplay);
         return uid;
     }
 
@@ -27,7 +27,7 @@ public sealed class GlobalSoundCommand : ToolshedCommand
     {
         var audio = AudioParams.Default.WithVolume(volume);
         EntityManager.System<ServerGlobalSoundSystem>().PlayAdminGlobal(Filter.Empty().AddPlayer(session),
-            new ResolvedPathSpecifier(path), audio, saveToReplay);
+            path, audio, saveToReplay);
         return session;
     }
 

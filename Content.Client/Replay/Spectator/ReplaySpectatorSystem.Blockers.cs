@@ -29,9 +29,6 @@ public sealed partial class ReplaySpectatorSystem
 
     private void OnInteractAttempt(Entity<ReplaySpectatorComponent> ent, ref InteractionAttemptEvent args)
     {
-        if (IsApplyingRecordedMessages()) // Starlight
-            return; // Starlight
-
         args.Cancelled = true;
     }
 

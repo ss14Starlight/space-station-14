@@ -1,11 +1,9 @@
 - type: entity
   name: CommandFriend™ X-02
-  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer, BaseBlueShieldContraband ]
+  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer, BaseBlueShieldContraband, BaseGrandTheftContraband ]
   id: HandheldBSOCrewMonitor
   description: Does not monitor the competence levels of command members.
   components:
-  - type: Contraband
-    tier: Tier3
 #  - type: Tag
 #    tags:
 #      - BSOBeltEquip

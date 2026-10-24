@@ -41,19 +41,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
 
-# Lighting
-- type: construction
-  id: StreetLamp
-  graph: StreetLamp
-  startNode: start
-  targetNode: streetLamp
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
 #railings
 #region Steel
 - type: construction
@@ -281,14 +268,6 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-
-- type: construction
-  id: TileLight
-  graph: LightFloor
-  startNode: start
-  targetNode: lightTile
-  category: construction-category-tiles
-  objectType: Item
 
 #Cell Bars
 - type: construction

@@ -840,19 +840,17 @@ doc-text-printer-permission-equipment =
      Date and Time: [datetime]
     Document Compiler: [signature]
 
-    Permit Holder: [signature]
+    I, [signature], authorize the use of departmental work equipment of the following department: [form]
 
-    Item: [form]
-    Sub Items: [form]
-    Item Origin: [form]
+    Equipment to be subject to authorization: [form]
 
-    Item Tier Level: [form]
-    Weapon or Combat Equipment Permit Yes / No : [form]
+    Authorized person: [form]
 
-    Reason for Permit Issue: [form]
-    Terms & Conditions of Use: [form]
+    Position of authorized person: [form]
 
-    I, [signature], accept the terms of use, restrictions, and legal responsibilities associated with possessing this item, and hereby swear that all information contained herein is true, accurate, and filled out strictly in accordance with official station permit standards under penalty of forgery.
+    Reason for seeking permit: [form]
+
+    Terms of use: [form]
 
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
@@ -891,6 +889,31 @@ doc-text-printer-search-permission =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
+
+doc-text-printer-permission-to-carry-weapons =
+                             [head=3]NT-CC Consortium Services[/head]
+
+                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+   ⠀⠀                             [bold]WEAPON PERMIT[/bold]
+    ────────────────────────────────────────
+     Date and Time: [datetime]
+    Document Compiler: [signature]
+
+    I, [signature], authorize the carrying of the following weapon by the named person, as long as it is used for its intended purpose. In the event of a violation, the authorization will be revoked and the weapon will be confiscated by Security.
+
+    Named of authorized person: [form]
+
+    Position of authorized person: [form]
+
+    The weapon and, if applicable, the type of ammunition for it: [form]
+
+    The method of obtaining the weapon and, if applicable, the ammunition for it: [form]
+
+    Reason for authorization: [form]
+
+    ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
 

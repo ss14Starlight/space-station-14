@@ -1,5 +1,0 @@
-#Lone Operative Gear
-- type: !PartialOnly startingGear
-  id: SyndicateLoneOperativeGearFull
-  equipment:
-    pocket1: LoneopDeclarationOfWar

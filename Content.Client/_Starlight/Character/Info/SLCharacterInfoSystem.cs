@@ -1,4 +1,4 @@
-using Content.Client._Starlight.Character.Info.UI;
+﻿using Content.Client.UserInterface.Systems.Character;
 using Content.Shared._Starlight.Character.Info;
 using Robust.Client.UserInterface;
 

@@ -855,9 +855,6 @@
   name: syndicate chameleon projector module.
   description: Contains an adaptation of the chameleon projector for the syndicate stealth cyborg.
   components:
-  - type: Tag
-    tags:
-      - BorgModuleGeneric
   - type: Sprite
     layers:
     - state: syndicate

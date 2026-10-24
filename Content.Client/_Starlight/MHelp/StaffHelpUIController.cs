@@ -17,16 +17,14 @@ public sealed partial class StaffHelpUIController : UIController
         if (_staffHelpWindow != null)
         {
             _staffHelpWindow.Close();
+            _staffHelpWindow = null;
+            SetAHelpButtonPressed(false);
             return;
         }
 
         SetAHelpButtonPressed(true);
         _staffHelpWindow = new StaffHelpWindow();
-        _staffHelpWindow.OnClose += () =>
-        {
-            _staffHelpWindow = null;
-            SetAHelpButtonPressed(false);
-        };
+        _staffHelpWindow.OnClose += () => _staffHelpWindow = null;
         _staffHelpWindow.OpenCentered();
         UIManager.ClickSound();
 
@@ -39,15 +37,17 @@ public sealed partial class StaffHelpUIController : UIController
         _staffHelpWindow.AdminHelpButton.OnPressed += _ =>
         {
             _aHelp.Open();
-            _aHelp._hasUnreadAHelp = false;
             _staffHelpWindow.Close();
+            _aHelp._hasUnreadAHelp = false;
+            SetAHelpButtonPressed(false);
         };
 
         _staffHelpWindow.MentorHelpButton.OnPressed += _ =>
         {
             _mHelp.Open();
-            _mHelp._hasUnreadMHelp = false;
             _staffHelpWindow.Close();
+            _mHelp._hasUnreadMHelp = false;
+            SetAHelpButtonPressed(false);
         };
     }
 

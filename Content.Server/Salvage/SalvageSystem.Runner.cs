@@ -29,7 +29,6 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<FTLStartedEvent>(OnFTLStarted);
         SubscribeLocalEvent<FTLCompletedEvent>(OnFTLCompleted);
         SubscribeLocalEvent<ConsoleFTLAttemptEvent>(OnConsoleFTLAttempt);
-        InitializeSurfaceReturn(); // Starlight
     }
 
     private void OnConsoleFTLAttempt(ref ConsoleFTLAttemptEvent ev)
@@ -93,14 +92,6 @@ public sealed partial class SalvageSystem
         {
             return;
         }
-
-        // Starlight - start
-        if (!PlaceSalvageShuttleAtClearLanding(ev.ShuttleUid, ev.MapUid))
-        {
-            _shuttle.CancelFTL(ev.ShuttleUid);
-            return;
-        }
-        // Starlight - end
 
         // Only one shuttle can occupy an expedition.
         dest.Enabled = false;
@@ -194,15 +185,21 @@ public sealed partial class SalvageSystem
                 ftlTime = MathF.Min(ftlTime, _shuttle.DefaultStartupTime);
                 var shuttleQuery = AllEntityQuery<ShuttleComponent, TransformComponent>();
 
-                // Starlight - start
-                while (shuttleQuery.MoveNext(out var shuttleUid, out var shuttle, out var shuttleXform))
+                if (TryComp<StationDataComponent>(comp.Station, out var data))
                 {
-                    if (shuttleXform.MapUid != uid || HasComp<FTLComponent>(shuttleUid))
-                        continue;
+                    foreach (var member in data.Grids)
+                    {
+                        while (shuttleQuery.MoveNext(out var shuttleUid, out var shuttle, out var shuttleXform))
+                        {
+                            if (shuttleXform.MapUid != uid || HasComp<FTLComponent>(shuttleUid))
+                                continue;
 
-                    ReturnShuttleToStation(shuttleUid, shuttle, comp.Station, ftlTime);
+                            _shuttle.FTLToDock(shuttleUid, shuttle, member, ftlTime);
+                        }
+
+                        break;
+                    }
                 }
-                // Starlight - end
             }
 
             if (remaining < TimeSpan.Zero)

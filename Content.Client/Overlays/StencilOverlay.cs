@@ -73,7 +73,8 @@ public sealed partial class StencilOverlay : Overlay
             res.Blep = _clyde.CreateRenderTarget(args.Viewport.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "weather-stencil");
         }
 
-        DrawWeatherIfEnabled(args, mapUid, res, invMatrix); // Starlight
+        if (_statusEffects.TryEffectsWithComp(mapUid, out _weatherSet))
+            DrawWeather(args, res, _weatherSet, invMatrix);
 
         if (_entManager.TryGetComponent<RestrictedRangeComponent>(mapUid, out var restrictedRangeComponent))
             DrawRestrictedRange(args, res, restrictedRangeComponent, invMatrix);

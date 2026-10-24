@@ -10,9 +10,3 @@
     understands:
     - Sylvan
     - GalacticCommon
-
-- type: !PartialOnly entity
-  id: RainbowCannabisPlants
-  components:
-  - type: Plant
-    growthStages: 3

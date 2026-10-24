@@ -1,7 +1,0 @@
-- type: !PartialOnly vendingMachineInventory
-  id: ChangInventory
-  contrabandInventory:
-    FoodRiceBoiled: 2
-  emaggedInventory:
-    DrinkCarpRamen: 2
-    FoodSnackNapNapNoodles: 1

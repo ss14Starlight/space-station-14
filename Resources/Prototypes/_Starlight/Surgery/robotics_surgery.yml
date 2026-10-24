@@ -15,7 +15,6 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: HandImplant
-    container: hand_implant
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -77,7 +76,6 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: BrainImplant
-    container: brain_implant
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:

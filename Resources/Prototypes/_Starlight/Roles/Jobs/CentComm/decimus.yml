@@ -1,6 +1,5 @@
 - type: job
   id: Decimus
-  roleType: CorporateAligned
   name: job-name-decimus
   description: job-description-decimus
   playTimeTracker: JobDecimus

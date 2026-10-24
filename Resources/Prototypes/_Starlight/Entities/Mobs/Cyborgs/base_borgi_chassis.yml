@@ -273,13 +273,10 @@
     - type: IntrinsicRadioTransmitter
       channels:
       - Syndicate
-      - Gorlex
       - Binary
     - type: ActiveRadio
       channels:
       - Syndicate
-      - Gorlex
-      - Binary
     - type: Damageable
       damageModifierSet: ArmoredSilicon
     - type: Barotrauma

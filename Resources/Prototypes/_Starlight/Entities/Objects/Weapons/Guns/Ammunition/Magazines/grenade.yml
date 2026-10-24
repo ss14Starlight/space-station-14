@@ -1,7 +1,7 @@
 - type: entity
   id: MagazineGrenadeCleanade
   name: cleanade grenade cartridge
-  parent: [ BaseContrabandTier2, BaseMagazineGrenade, BaseJanitorContraband ] # Blimpuf
+  parent: [ BaseMagazineGrenade, BaseJanitorContraband ]
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeCleanade

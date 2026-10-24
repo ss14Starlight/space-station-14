@@ -11,8 +11,6 @@
         map: ["base"]
     - type: Input
       context: human
-    - type: Eye
-    - type: ContentEye
     - type: BlockMovement
     - type: Examiner
     - type: BorgBrain

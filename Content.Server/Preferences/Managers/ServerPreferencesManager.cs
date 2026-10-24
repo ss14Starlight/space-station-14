@@ -134,7 +134,7 @@ namespace Content.Server.Preferences.Managers
             prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, jobPriorities);
 
             if (ShouldStorePrefs(session.Channel.AuthType))
-                await SaveJobPrioritiesQueued(userId, jobPriorities); // Starlight-edit: one save at a time
+                await _db.SaveJobPrioritiesAsync(userId, jobPriorities);
         }
 
         private async void HandleDeleteCharacterMessage(MsgDeleteCharacter message)

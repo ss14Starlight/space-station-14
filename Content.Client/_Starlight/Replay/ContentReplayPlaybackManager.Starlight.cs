@@ -8,7 +8,4 @@ public sealed partial class ContentReplayPlaybackManager
 {
     private bool ShouldSkipChatMessage(ChatMessage chat) =>
         !_entMan.System<ReplayObserverSystem>().ShouldHearChat(chat);
-
-    private void NoteRecordedMessage() =>
-        _entMan.System<ReplayObserverSystem>().IsApplyingRecordedMessages = true;
 }

@@ -184,8 +184,6 @@
   description: A propaganda pamphlet that smells of burnt matches. It's so thick it won't fit in the fax.
   parent: [ Paper, BaseSovietContraband ]
   components:
-    - type: Contraband # Blimpuf
-      tier: Tier3
     - type: Paper
       content: delivery-spam-join-soviets
       editingDisabled: true
@@ -209,8 +207,6 @@
   description: A propaganda pamphlet that smells of burnt matches. It's so thick it won't fit in the fax.
   parent: [ Paper, BaseSovietContraband ]
   components:
-    - type: Contraband
-      tier: Tier3
     - type: Paper
       content: delivery-spam-join-soviets
       editingDisabled: true
@@ -234,8 +230,6 @@
   description: A propaganda pamphlet that smells of burnt matches. It's so thick it won't fit in the fax.
   parent: [ Paper, BaseSovietContraband ]
   components:
-    - type: Contraband # Blimpuf
-      tier: Tier3
     - type: Paper
       content: delivery-spam-join-soviets
       editingDisabled: true

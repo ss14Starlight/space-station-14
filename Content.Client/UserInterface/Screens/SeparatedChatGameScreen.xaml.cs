@@ -14,13 +14,7 @@ public sealed partial class SeparatedChatGameScreen : InGameScreen
     public const string StyleClassChatContainer = "ChatContainer";
     public const string StyleClassChatOutput = "ChatOutput";
 
-    #region Starlight
-
-    [Dependency] private IConfigurationManager _cfg = default!;
-
-    private float? _pendingChatFraction;
-
-    #endregion
+    [Dependency] private IConfigurationManager _cfg = default!; // Starlight
 
     public SeparatedChatGameScreen()
     {
@@ -41,19 +35,20 @@ public sealed partial class SeparatedChatGameScreen : InGameScreen
             OnChatResized?.Invoke(new Vector2(ScreenContainer.SplitFraction, 0));
 
         ViewportContainer.OnResized += ResizeActionContainer;
-        // Starlight-start
-        ScreenContainer.OnResized += ApplyChatSize;
 
+        //starlight
         IoCManager.InjectDependencies(this);
         _cfg.OnValueChanged(StarlightCCVars.ChatSeparatedMinWidth, SetMinimumChatWidth, true);
-        // Starlight-end
+        //starlight end
     }
 
+    //starlight
     private void SetMinimumChatWidth(int width)
     {
         SeparatedChatPanel.MinWidth = width;
-        ScreenContainer.InvalidateMeasure(); // Starlight-edit
+        //TODO: Theres a issue where the actual UI doesnt get re measured so theres some wackyness here, but its not a huge deal
     }
+    //starlight end
 
     private void ResizeActionContainer()
     {
@@ -65,21 +60,6 @@ public sealed partial class SeparatedChatGameScreen : InGameScreen
 
     public override void SetChatSize(Vector2 size)
     {
-        // Starlight-start
-        _pendingChatFraction = size.X;
         ScreenContainer.ResizeMode = SplitContainer.SplitResizeMode.RespectChildrenMinSize;
-        ApplyChatSize();
-        // Starlight-end
     }
-
-    #region Starlight
-    private void ApplyChatSize()
-    {
-        if (_pendingChatFraction is not { } fraction || ScreenContainer.Width <= 0)
-            return;
-
-        _pendingChatFraction = null;
-        ScreenContainer.SplitFraction = fraction;
-    }
-    #endregion
 }

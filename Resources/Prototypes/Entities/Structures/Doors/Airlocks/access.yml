@@ -1241,7 +1241,7 @@
       - HideLabel
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsMaintenance ] # Starlight edit: DoorElectronicsExternal to DoorElectronicsMaintenance
+      board: [ DoorElectronicsExternal ]
 
 #HighSecDoors
 - type: entity

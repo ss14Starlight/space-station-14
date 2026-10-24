@@ -90,20 +90,20 @@ public abstract partial class SharedSurgerySystem
 
         if (ent.Comp.Container != null)
         {
-            var part = Comp<BodyPartComponent>(mainPart);
-            var containerId = SharedBodySystem.GetOrganContainerId(ent.Comp.Container);
-            if (!_body.CanInsertOrgan(mainPart, ent.Comp.Container, part)
-                || !_containers.TryGetContainer(mainPart, containerId, out var container))
+            foreach (var slotId in Comp<BodyPartComponent>(mainPart).Organs.Keys)
             {
-                args.Cancelled = true;
-                return;
+                if (ent.Comp.Container == slotId)
+                {
+                    if (!_containers.TryGetContainer(mainPart, SharedBodySystem.GetOrganContainerId(ent.Comp.Container), out var container))
+                        continue;
+
+                    foreach (var containedEnt in container.ContainedEntities)
+                        if (HasComp(containedEnt, type))
+                            return;
+
+                    args.Cancelled = true;
+                }
             }
-
-            foreach (var containedEnt in container.ContainedEntities)
-                if (HasComp(containedEnt, type))
-                    return;
-
-            args.Cancelled = container.ContainedEntities.Count == 0;
         }
         else
         {

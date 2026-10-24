@@ -128,19 +128,16 @@ namespace Content.Shared.Hands
         public readonly NetCoordinates InitialPosition;
         public readonly NetCoordinates FinalPosition;
         public readonly Angle InitialAngle;
-        public readonly NetEntity? User; // Starlight
 
         public PickupAnimationEvent(NetEntity itemUid,
             NetCoordinates initialPosition,
             NetCoordinates finalPosition,
-            Angle initialAngle,
-            NetEntity? user = null) // Starlight
+            Angle initialAngle)
         {
             ItemUid = itemUid;
             FinalPosition = finalPosition;
             InitialPosition = initialPosition;
             InitialAngle = initialAngle;
-            User = user; // Starlight
         }
     }
 

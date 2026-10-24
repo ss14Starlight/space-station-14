@@ -71,7 +71,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatSecurityTrooper
   name: trooper hat
-  description: A campaign hat for the Nanotrasen Troopers. It's supposed to come with a case, too...
+  description: A campaign hat for the NanoTrasen Troopers. It's supposed to come with a case, too... # SL
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/security_trooper_hat.rsi
@@ -234,10 +234,10 @@
     - CorgiWearable
 
 - type: entity
-  parent: [ ClothingHeadBase, BaseCommandContraband, BaseAssistantManagerContraband ] # Starlight
+  parent: [ClothingHeadBase, BaseCommandManagerContraband] # Starlight
   id: ClothingHeadHatBeretCommand
   name: command beret
-  description: A beret with the Nanotrasen logo. It has an aura of authority.
+  description: A beret with the NanoTrasen logo. It has an aura of authority. # SL
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/beret_command.rsi
@@ -377,6 +377,10 @@
     sprite: Clothing/Head/Hats/greyfedora.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/greyfedora.rsi
+  - type: Tag # Starlight start
+    tags:
+    - PetWearable
+    - CorgiWearable # Starlight end
 
 - type: entity
   parent: ClothingHeadHatFedoraBrown
@@ -427,7 +431,7 @@
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatHoshat
   name: head of security cap
-  description: A stylish cap worn by the Head of Security. Shows the officers who's in charge.
+  description: The robust hat of the Head of Security. For showing the officers who's the real boss.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/hoshat.rsi
@@ -535,12 +539,14 @@
   description: A strange-looking red hat that most certainly belongs to a powerful magic-user.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hats/redwizard.rsi
+    sprite: _Starlight/Clothing/Head/Hats/wizard_red.rsi # Starlight resprited
   - type: Clothing
-    sprite: Clothing/Head/Hats/redwizard.rsi
+    sprite: _Starlight/Clothing/Head/Hats/wizard_red.rsi # Starlight resprited
   - type: Tag
     tags:
     - PetWearable
+    - CorgiWearable
+#    - HamsterWearable # Starlight
     - ClothMade
     - WhitelistChameleon
 
@@ -745,6 +751,8 @@
   - type: Tag
     tags:
     - PetWearable
+    - CorgiWearable
+    - HamsterWearable
     - ClothMade
     - WhitelistChameleon
 
@@ -779,6 +787,7 @@
   - type: Tag
     tags:
     - PetWearable
+    - CorgiWearable # Starlight
     - WhitelistChameleon
     - ClothMade
     - Recyclable
@@ -812,13 +821,13 @@
 - type: entity
   parent: ClothingHeadHatWizardBase
   id: ClothingHeadHatWizard
-  name: wizard hat
+  name: blue wizard hat # Starlight name consistency
   description: A strange-looking blue hat that most certainly belongs to a powerful magic-user.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hats/wizardhat.rsi
+    sprite: _Starlight/Clothing/Head/Hats/wizard_blue.rsi # Starlight resprited
   - type: Clothing
-    sprite: Clothing/Head/Hats/wizardhat.rsi
+    sprite: _Starlight/Clothing/Head/Hats/wizard_blue.rsi # Starlight resprited
   - type: Tag
     tags:
     - PetWearable
@@ -827,6 +836,7 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
+    - CorgiWearable
 
 - type: entity
   parent: ClothingHeadBase
@@ -851,7 +861,7 @@
     sprite: Clothing/Head/Hats/truckershat.rsi
 
 - type: entity
-  parent: ClothingHeadBaseWinter # Starlight, winter protection + major contra -> minor contra
+  parent: [ ClothingHeadBaseWinter, BaseMinorContraband ] # Starlight, winter protection + major contra -> minor contra
   id: ClothingHeadPyjamaSyndicateBlack
   name: syndicate black pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -867,7 +877,7 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: ClothingHeadBaseWinter # Starlight, winter protection + major contra -> minor contra
+  parent: [ ClothingHeadBaseWinter, BaseMinorContraband ] # Starlight, winter protection + major contra -> minor contra
   id: ClothingHeadPyjamaSyndicatePink
   name: syndicate pink pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -883,7 +893,7 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: ClothingHeadBaseWinter # Starlight, winter protection + major contra -> minor contra
+  parent: [ ClothingHeadBaseWinter, BaseMinorContraband ] # Starlight, winter protection + major contra -> minor contra
   id: ClothingHeadPyjamaSyndicateRed
   name: syndicate red pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -1066,6 +1076,8 @@
     sprite: Clothing/Head/Hats/melon.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/melon.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -1081,6 +1093,8 @@
     sprite: Clothing/Head/Hats/holyhatmelon.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/holyhatmelon.rsi
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:

@@ -7,8 +7,3 @@
   id: MobWalter
   components:
   - type: FirelockOpener
-
-- type: !PartialOnly entity
-  id: MobMonkeyPunpun
-  components:
-  - type: AntagTarget

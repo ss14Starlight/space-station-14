@@ -4,6 +4,7 @@
     children:
     - id: UnknownShuttleCargoLost
     - id: UnknownShuttleTravelingCuisine
+    - id: UnknownShuttleDisasterEvacPod
     - id: UnknownShuttleHonki
     - id: UnknownShuttleNTQuark
     - id: UnknownShuttleCruiser
@@ -15,6 +16,7 @@
     - id: UnknownShuttleJoe
     - id: UnknownShuttleLambordeere
     - id: UnknownShuttleMeatZone
+    - id: UnknownShuttleMicroshuttle
     - id: UnknownShuttleSpacebus
     - id: UnknownShuttleFireResponse
     - id: UnknownShuttleQuail
@@ -172,7 +174,28 @@
   - type: LoadMapRule
     gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Meatzone.yml # Starlight
 
-# The power of 3 clowns proved too strong for the players and may need to be 1984'ed. Replace this with a more engaging clown shuttle. # People truly want the clowns... - Johnny
+- type: entity
+  id: UnknownShuttleMicroshuttle
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+    weight: 11 # this is higher because its just a little generic personal shuttle
+    maxOccurrences: 4
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/microshuttle.yml
+
+- type: entity
+  parent: BaseUnknownShuttleRule
+  id: UnknownShuttleDisasterEvacPod
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming
+    maxOccurrences: 3
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/disaster_evacpod.yml
+
+# The power of 3 clowns proved too strong for the players and may need to be 1984'ed. Replace this with a more engaging clown shuttle. # Ill honour this in a diff PR for whoever put this here beforehand. - Johnny
 - type: entity
   parent: BaseUnknownShuttleRule
   id: UnknownShuttleHonki

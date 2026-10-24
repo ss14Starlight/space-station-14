@@ -1080,7 +1080,7 @@
 
 - type: entity
   id: RCDXeno
-  parent: [ BaseContrabandTier2, BaseItem, BaseEngineeringContraband ] # Blimpuf
+  parent: [ BaseItem, BaseEngineeringContraband ]
   name: Xenoborg RCD
   description: Xenoborg-mounted Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
   components:

@@ -3,12 +3,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Antag.Components;
 
-#region Moffstation
-// Starlight: AntagRandomObjectivesComponent now lives in Content.Server._Starlight.Objectives.ObjectivePicker.
-// Second is kept because it's used by our stuff
-// Take any upstream changes
-/*
-
 /// <summary>
 /// Gives antags selected by this rule a random list of objectives.
 /// </summary>
@@ -27,8 +21,6 @@ public sealed partial class AntagRandomObjectivesComponent : Component
     [DataField(required: true)]
     public float MaxDifficulty;
 }
-*/
-#endregion
 
 /// <summary>
 /// A set of objectives to try picking.

@@ -1,5 +1,4 @@
 ﻿using Content.Shared.MedicalScanner;
-using Content.Client._Starlight.Computers.RemoteControl;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
@@ -20,7 +19,6 @@ namespace Content.Client.HealthAnalyzer.UI
             base.Open();
 
             _window = this.CreateWindow<HealthAnalyzerWindow>();
-            EntMan.System<RemoteControlInterface>().TryEmbedWindow(_window); // Starlight
             // Starlight-start: Printable health reports.
             _window.PrintReportPressed += OnPrintReportPressed;
             // Starlight-end
@@ -49,14 +47,13 @@ namespace Content.Client.HealthAnalyzer.UI
             if (message is not HealthAnalyzerScannedUserMessage cast)
                 return;
 
-            if (_window is not { Disposed: false } window)
+            if (_window == null)
             {
-                _window = null;
                 _pendingMessage = cast;
                 return;
             }
             // Starlight-end
-            window.Populate(cast);
+            _window.Populate(cast);
         }
     }
 }

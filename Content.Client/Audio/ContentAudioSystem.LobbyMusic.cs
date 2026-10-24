@@ -91,19 +91,21 @@ public sealed partial class ContentAudioSystem
                 StartLobbyMusic();
                 break;
             default:
-                // Starlight begin
-                if (!_postRoundMusic)
-                    EndLobbyMusic();
-                // Starlight end
+                EndLobbyMusic();
                 break;
         }
     }
 
     private void OnLeave(object? sender, PlayerEventArgs args)
     {
-        _postRoundMusic = false; // Starlight
         EndLobbyMusic();
     }
+
+    #region Starlight
+
+    private void OnRoundEndCancelMessage(RoundEndCancelMessageEvent ev) => EndLobbyMusic();
+
+    #endregion
 
     private void LobbyMusicVolumeCVarChanged(float volume)
     {
@@ -131,11 +133,8 @@ public sealed partial class ContentAudioSystem
     private void OnLobbySongChanged(LobbyPlaylistChangedEvent playlistChangedEvent)
     {
         var playlist = playlistChangedEvent.Playlist;
-        _postRoundMusic = playlistChangedEvent.PostRound; // Starlight
-
         //playlist is already playing, no need to restart it
         if (_lobbySoundtrackInfo != null
-            && !IsLobbyMusicExisting(_lobbySoundtrackInfo) // Starlight
             && _lobbyPlaylist != null
             && _lobbyPlaylist.SequenceEqual(playlist)
            )
@@ -166,11 +165,6 @@ public sealed partial class ContentAudioSystem
     /// <param name="playlist">Array of soundtrack filenames for lobby playlist.</param>
     private void StartLobbyMusic(string[] playlist)
     {
-        // Starlight begin
-        if (_lobbySoundtrackInfo != null && IsLobbyMusicExisting(_lobbySoundtrackInfo))
-            EndLobbyMusic();
-        // Starlight end
-
         if (_lobbySoundtrackInfo != null || !_configManager.GetCVar(CCVars.LobbyMusicEnabled))
             return;
 
@@ -256,8 +250,7 @@ public sealed partial class ContentAudioSystem
     {
         if (
             _lobbySoundtrackInfo != null
-            && (_timing.CurTime >= _lobbySoundtrackInfo.NextTrackOn
-                || IsLobbyMusicExisting(_lobbySoundtrackInfo)) // Starlight
+            && _timing.CurTime >= _lobbySoundtrackInfo.NextTrackOn
             && _lobbyPlaylist?.Length > 0
             )
         {

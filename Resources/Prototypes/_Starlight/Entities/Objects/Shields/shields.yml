@@ -42,8 +42,6 @@
         path: "/Audio/Weapons/smash.ogg"
     - type: Damageable
       damageContainer: Shield
-    - type: ExaminableDamage
-      messages: ShieldMessages
     - type: Destructible
       thresholds:
         - trigger:
@@ -474,12 +472,11 @@
         path: "/Audio/Weapons/smash.ogg"
 
 - type: entity
-  name: X-03 phase shield
-  parent: BaseItem
-  id: BaseLightShield
-  abstract: true
+  name: X-03 green phase shield
+  parent: [BaseItem, BaseCentcommContraband ]
+  id: GreenLightShield
   categories: [ DoNotMap ]
-  description: An experimental hardlight shield that has a micro reactor in place of the syndicate chemical based battery. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
+  description: Reverse engineered from a prototype that NT loaned CentComm, the wavelength has been tweaked to the glorious CentComm Green. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
   components:
     - type: ItemToggle
       soundActivate:
@@ -522,7 +519,7 @@
       sprite: _Starlight/Objects/Weapons/Melee/nt_energy_shield.rsi
       heldPrefix: off
     - type: EnergyColor
-      color: "#9bcefe"
+      color: "#9dfe9b"
       hackingLocked: true
       hackingUnlockQuality: Cutting
     - type: UseDelay
@@ -566,7 +563,7 @@
       enabled: false
       radius: 2
       energy: 3
-      color: "#87CEEB"
+      color: "#439909"
       castShadows: false
     - type: PowerCellSlot
       cellSlotId: cell_slot
@@ -609,19 +606,8 @@
       level: HardenedMetal
 
 - type: entity
-  parent: [BaseLightShield, BaseCentcommContraband]
-  id: GreenLightShield
-  name: X-03 green phase shield
-  description: Reverse engineered from a prototype that NT loaned CentComm, the wavelength has been tweaked to the glorious CentComm Green. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
-  components:
-  - type: PointLight
-    color: "#439909"
-  - type: EnergyColor
-    color: "#9dfe9b"
-
-- type: entity
   name: X-03 phase shield
-  parent: [ BaseContrabandTier3, BaseLightShield, BaseBlueShieldContraband ]
+  parent: [GreenLightShield, BaseBlueShieldContraband, BaseGrandTheftContraband ]
   id: BlueLightShield
   categories: [ DoNotMap ]
   description: An experimental hardlight shield that has a micro reactor in place of the syndicate chemical based battery. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
@@ -650,5 +636,5 @@
           Piercing: 1
       damageEnergyDraw: 4
     - type: Contraband
-      tier: Tier3
-      contrabandType: NanoTrasen
+      allowedDepartments: []
+      allowedJobs: [ BlueShield ]

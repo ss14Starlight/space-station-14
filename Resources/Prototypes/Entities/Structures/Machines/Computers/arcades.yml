@@ -31,8 +31,8 @@
           False: { visible: false }
       enum.WiresVisuals.MaintenancePanelState:
         enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: true } # Starlight
-          False: { visible: false } # Starlight
+          True: { visible: false }
+          False: { visible: true }
       enum.EdgeConnectionVisuals.ConnectionMask:
         computerLayerBody:
           None: { state: arcade }

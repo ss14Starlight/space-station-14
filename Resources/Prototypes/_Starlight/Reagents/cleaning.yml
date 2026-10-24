@@ -8,8 +8,7 @@
   recognizable: false
   boilingPoint: 147.0 # Made this up, loosely based on bleach
   meltingPoint: -11.0
-  contrabandTier: Tier3 # Blimpuf
-  contrabandType: Syndicate # Blimpuf
+  contrabandSeverity: Syndicate
   metabolisms:
     Bloodstream:
       effects:

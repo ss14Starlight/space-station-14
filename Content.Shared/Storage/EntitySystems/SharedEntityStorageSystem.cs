@@ -398,8 +398,12 @@ public abstract partial class SharedEntityStorageSystem : EntitySystem
         if (containerAttemptEvent.Cancelled)
             return false;
 
-        // Check the whitelist/blacklist.
-        return _whitelistSystem.CheckBoth(toInsert, component.Blacklist, component.Whitelist);
+        // Consult the whitelist. The whitelist ignores the default assumption about how entity storage works.
+        if (component.Whitelist != null)
+            return _whitelistSystem.IsValid(component.Whitelist, toInsert);
+
+        // The inserted entity must be a mob or an item.
+        return HasComp<MobStateComponent>(toInsert) || HasComp<ItemComponent>(toInsert);
     }
 
     public bool TryOpenStorage(EntityUid user, EntityUid target, bool silent = false)

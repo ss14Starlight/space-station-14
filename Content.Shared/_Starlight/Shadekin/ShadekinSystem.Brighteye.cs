@@ -221,7 +221,7 @@ public sealed partial class ShadekinSystem
         }
 
         var effect = PredictedSpawnAtPosition(ent.Comp.ShadekinPhaseInEffect2, Transform(ent.Owner).Coordinates);
-        _transform.SetLocalRotation(effect, Transform(ent.Owner).LocalRotation);
+        Transform(effect).LocalRotation = Transform(ent.Owner).LocalRotation;
 
         RaiseLocalEvent(ent.Owner, new RejuvenateEvent());
 

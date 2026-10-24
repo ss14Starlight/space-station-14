@@ -26,7 +26,7 @@ namespace Content.Client.Voting.UI
             IoCManager.InjectDependencies(this);
             RobustXamlLoader.Load(this);
 
-            // Starlight-edit: follow the interface theme instead of forcing the system sheet
+            Stylesheet = IoCManager.Resolve<IStylesheetManager>().SheetSystem;
 
             if (_vote.TargetEntity != null && _vote.TargetEntity != 0)
             {

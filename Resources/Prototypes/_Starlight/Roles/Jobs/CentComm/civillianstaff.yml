@@ -1,6 +1,5 @@
 - type: job
   id: CentCommServiceWorker
-  roleType: CentCommAligned
   name: job-name-cc-serviceworker
   description: job-description-cc-serviceworker
   playTimeTracker: JobCentCommServiceWorker
@@ -21,7 +20,6 @@
 
 - type: job
   id: CentCommChef
-  roleType: CentCommAligned
   name: job-name-cc-chef
   description: job-description-cc-chef
   playTimeTracker: JobCentCommChef
@@ -40,7 +38,6 @@
 
 - type: job
   id: CentCommBartender
-  roleType: CentCommAligned
   name: job-name-cc-bartender
   description: job-description-cc-bartender
   playTimeTracker: JobCentCommBartender
@@ -59,7 +56,6 @@
 
 - type: job
   id: CentCommJanitor
-  roleType: CentCommAligned
   name: job-name-cc-janitor
   description: job-description-cc-janitor
   playTimeTracker: JobCentCommJanitor

@@ -1228,15 +1228,6 @@
   - EngineeringWinterBoots
   - Heels # 🌟Starlight🌟
 
-- type: loadoutGroup
-  id: AtmosphericTechnicianID
-  minLimit: 1
-  defaultSelected: 1
-  name: loadout-group-atmospheric-technician-id
-  loadouts:
-    - AtmosPDA
-    - SeniorAtmosPDA # Starlight
-
 #- type: loadoutGroup
 #  id: AtmosphericTechnicianJobTrinkets
 #  name: loadout-group-jobtrinkets

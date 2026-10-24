@@ -140,7 +140,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
     private void OnActivate(EntityUid uid, ActivatableUIComponent component, ActivateInWorldEvent args)
     {
-        if (args.Handled || (!args.Complex && component.RequiresComplex)) // Starlight-edit: respect RequiresComplex like the verb does, e.g. so a K9 can open its collar
+        if (args.Handled || !args.Complex)
             return;
 
         if (component.VerbOnly)

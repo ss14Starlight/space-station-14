@@ -90,7 +90,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
         // Starligth edit Start: Extra Logging and Cooldown
         _dynamicRuleCooldown.EnsureRoundInitialized(dynamicRound: false);
         var baseOptions = _prototypeManager.Index(weights).Weights.ShallowClone();
-        var players = GameTicker.GetEffectivePlayerCountGamerule(GameTicker.ReadyPlayerCount()); // Starlight
+        var players = GameTicker.ReadyPlayerCount();
 
         Log.Info(
             $"Secret roll pool: weights={weights}, players={players}, " +
@@ -143,7 +143,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
     /// </summary>
     public bool CanPickAny(IEnumerable<ProtoId<GamePresetPrototype>> protos)
     {
-        var players = GameTicker.GetEffectivePlayerCountGamerule(GameTicker.ReadyPlayerCount()); // Starlight
+        var players = GameTicker.ReadyPlayerCount();
         foreach (var id in protos)
         {
             if (!_prototypeManager.TryIndex(id, out var selectedPreset))

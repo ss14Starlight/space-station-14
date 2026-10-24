@@ -737,28 +737,6 @@
     - SalvagePDA
     - VeteranSalvagePDA
 
-# Salvage Medic
-- type: loadoutGroup
-  id: SalvageMedicPDA
-  name: loadout-group-salvage-medic-id
-  loadouts:
-    - SalvageMedicPDA
-    - VeteranSalvageMedicPDA
-
-- type: loadoutGroup
-  id: SalvageMedicJumpsuit
-  name: loadout-group-salvage-medic-jumpsuit
-  loadouts:
-    - SalvageMedicJumpsuit
-    - SalvageMedicJumpskirt
-
-- type: loadoutGroup
-  id: SalvageMedicNeck
-  name: loadout-group-salvage-medic-mantle
-  loadouts:
-    - SalvageMedicMantle
-    - VeteranSalvageMedicMantle
-
 # Service
 # Mime
 - type: loadoutGroup
@@ -1147,7 +1125,6 @@
   - LaceupShoes
   - Heels
   - LeatherShoes
-  - HighHeelBootsFilled
 
 - type: loadoutGroup
   id: NanotrasenCareerTrainerEyewear

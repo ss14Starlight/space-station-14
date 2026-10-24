@@ -8,10 +8,8 @@ using Content.Shared._Starlight.Medical.Surgery.Components;
 
 namespace Content.Client._Starlight.Medical.Surgery;
 
-public sealed partial class CustomLimbVisualizerSystem : EntitySystem
+public sealed class CustomLimbVisualizerSystem : EntitySystem
 {
-    [Dependency] private SpriteSystem _sprite = null!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -86,11 +84,11 @@ public sealed partial class CustomLimbVisualizerSystem : EntitySystem
             }
             if (layerSprite?.BaseRSI?.TryGetState(state, out var rsiState) ?? false)
             {
-                var index = _sprite.LayerMapReserve((ent.Owner, sprite), $"custom-{item.Key}");
+                var index = sprite.LayerMapReserveBlank($"custom-{item.Key}");
 
-                _sprite.LayerSetRsi((ent.Owner, sprite), index, layerSprite.BaseRSI, rsiState.StateId);
-                _sprite.LayerSetOffset((ent.Owner, sprite), index, offset);
-                _sprite.LayerSetVisible((ent.Owner, sprite), index, true);
+                sprite.LayerSetState(index, rsiState.StateId, layerSprite.BaseRSI);
+                sprite.LayerSetOffset(index, offset);
+                sprite.LayerSetVisible(index, true);
                 ent.Comp.CachedLayers.Add(item.Key);
             }
 
@@ -104,8 +102,8 @@ public sealed partial class CustomLimbVisualizerSystem : EntitySystem
         foreach (var layer in old)
             if (!ent.Comp.CachedLayers.Contains(layer))
             {
-                var index = _sprite.LayerMapReserve((ent.Owner, sprite), $"custom-{layer}");
-                _sprite.LayerSetVisible((ent.Owner, sprite), index, false);
+                var index = sprite.LayerMapReserveBlank($"custom-{layer}");
+                sprite.LayerSetVisible(layer, false);
             }
     }
 }

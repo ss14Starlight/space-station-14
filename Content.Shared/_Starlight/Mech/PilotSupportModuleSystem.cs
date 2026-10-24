@@ -38,7 +38,7 @@ public sealed partial class PilotSupportModuleSystem : EntitySystem
                 }
             }
 
-            Dirty(args.Mech, mech);
+            mech.Dirty();
         }
     }
 
@@ -62,7 +62,7 @@ public sealed partial class PilotSupportModuleSystem : EntitySystem
                 }
             }
 
-            Dirty(args.Mech, mech);
+            mech.Dirty();
         }
     }
 }

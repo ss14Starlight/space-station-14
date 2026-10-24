@@ -44,7 +44,7 @@
   - type: StaticPrice
     price: 1500
   - type: AccessReader
-    access: [["Security"], ["Command"], ["CentralCommand"]] # Blimpuf
+    access: [["Security"]]
   - type: Electrified
     enabled: false
     usesApcPower: true

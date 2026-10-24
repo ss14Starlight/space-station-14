@@ -7,7 +7,7 @@ namespace Content.Shared.Verbs
     ///     Contains combined name and icon information for a verb category.
     /// </summary>
     [Serializable, NetSerializable]
-    public sealed partial class VerbCategory // Starlight edit - Make partial
+    public sealed class VerbCategory
     {
         public readonly string Text;
 

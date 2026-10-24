@@ -1,6 +1,6 @@
 - type: entity
   name: bulwark
-  parent: [ BaseContrabandTier2, BaseItem, BaseSecurityContraband ] # Blimpuf
+  parent: [BaseItem, BaseSecurityContraband]
   id: EnergyShieldCyber
   description: The true shield for warriors, made out of hard-light materials making it lightweight and portable.
   components:
@@ -66,8 +66,6 @@
     - type: Appearance
     - type: Damageable
       damageContainer: Shield
-    - type: ExaminableDamage
-      messages: EnergyShieldMessages
     - type: Destructible
       thresholds:
         - trigger:

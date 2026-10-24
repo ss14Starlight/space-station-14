@@ -9,25 +9,15 @@ namespace Content.Shared.Audio.Events;
 public sealed class LobbyPlaylistChangedEvent : EntityEventArgs
 {
     /// <inheritdoc />
-    public LobbyPlaylistChangedEvent(string[] playlist, bool postRound = false) // Starlight
+    public LobbyPlaylistChangedEvent(string[] playlist)
     {
         Playlist = playlist;
-        PostRound = postRound; // Starlight
     }
 
     /// <summary>
     /// List of soundtrack filenames for lobby playlist.
     /// </summary>
     public string[] Playlist;
-
-    #region Starlight
-
-    /// <summary>
-    /// <see langword="true"/> if game is in post-round run level.
-    /// </summary>
-    public bool PostRound;
-
-    #endregion
 }
 
 /// <summary>

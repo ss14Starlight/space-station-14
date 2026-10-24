@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseContrabandTier3, BaseItem, BaseSecurityContraband ] # Blimpuf
+  parent: [ BaseItem, BaseSecurityContraband ]
   id: BaseMagazineShotgun
   name: ammo drum (.50 shells)
   components:

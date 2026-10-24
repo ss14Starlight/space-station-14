@@ -186,13 +186,5 @@ public partial struct BriefingData
     /// </summary>
     [DataField]
     public SoundSpecifier? Sound;
-
-    // Moffstation - Start - Character window redesign
-    /// <summary>
-    /// If true, the briefing text is not sent to the chatbox. Sound still plays.
-    /// </summary>
-    [DataField]
-    public bool ChatNotification;
-    // Moffstation - End
 }
 

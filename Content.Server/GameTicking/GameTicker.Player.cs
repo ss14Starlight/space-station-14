@@ -201,7 +201,6 @@ namespace Content.Server.GameTicking
             }
 
             RaiseNetworkEvent(new TickerJoinGameEvent(), session.Channel);
-            RaiseLocalEvent(new PlayerJoinedGameEvent(session)); // Starlight
         }
 
         private void PlayerJoinLobby(ICommonSession session)

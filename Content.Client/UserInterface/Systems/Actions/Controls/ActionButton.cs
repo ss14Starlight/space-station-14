@@ -22,7 +22,7 @@ using Robust.Client.UserInterface.Themes;
 
 namespace Content.Client.UserInterface.Systems.Actions.Controls;
 
-public sealed partial class ActionButton : Control, IEntityControl
+public sealed class ActionButton : Control, IEntityControl
 {
     public const string StyleClassActionHighlightRect = "ActionHighlightRect";
 
@@ -364,14 +364,7 @@ public sealed partial class ActionButton : Control, IEntityControl
             Cooldown.FromTime(cooldown.Start, cooldown.End);
 
         if (_toggled != action.Toggled)
-        {
             _toggled = action.Toggled;
-            // Starlight - start
-            // Remote action buttons must refresh their visual state after server-side toggles.
-            UpdateIcons();
-            DrawModeChanged();
-            // Starlight - end
-        }
     }
 
     protected override void MouseEntered()
@@ -433,7 +426,7 @@ public sealed partial class ActionButton : Control, IEntityControl
         }
 
         // if it's toggled on, always show the toggled on style (currently same as depressed style)
-        if (action.Toggled || RemoteSelected || _controller.SelectingTargetFor == Action?.Owner) // Starlight: RemoteControl selection
+        if (action.Toggled || _controller.SelectingTargetFor == Action?.Owner)
         {
             // when there's a toggle sprite, we're showing that sprite instead of highlighting this slot
             SetOnlyStylePseudoClass(action.IconOn != null

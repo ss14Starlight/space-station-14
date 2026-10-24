@@ -555,10 +555,6 @@
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/brownie.rsi
     state: brownie-batch
-  - type: ToolRefinable
-    refineResult:
-    - id: FoodBakedBrownie
-      amount: 8
   - type: Solution
     solution:
       reagents:
@@ -568,6 +564,10 @@
         Quantity: 32
       - ReagentId: Theobromine
         Quantity: 8
+  - type: ToolRefinable
+    refineResult:
+    - id: FoodBakedBrownie
+      amount: 8
 
 - type: entity
   name: brownie
@@ -613,10 +613,6 @@
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/brownie.rsi
     state: brownie-batch
-  - type: ToolRefinable
-    refineResult:
-    - id: FoodBakedCannabisBrownie
-      amount: 8
   - type: Solution
     solution:
       reagents:
@@ -628,6 +624,10 @@
         Quantity: 8
       - ReagentId: THC
         Quantity: 16
+  - type: ToolRefinable
+    refineResult:
+    - id: FoodBakedCannabisBrownie
+      amount: 8
 
 - type: entity
   parent: FoodBakedBase

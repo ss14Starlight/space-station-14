@@ -64,8 +64,11 @@ public sealed partial class ExecutionSystem : EntitySystem
         }
     }
 
-    private void ShowExecutionExternalPopup(string locString, EntityUid attacker, EntityUid victim, EntityUid weapon) => _popup.PopupEntity(
+    private void ShowExecutionExternalPopup(string locString, EntityUid attacker, EntityUid victim, EntityUid weapon)
+    {
+        _popup.PopupEntity(
             Loc.GetString(locString, ("attacker", Identity.Entity(attacker, EntityManager)), ("victim", Identity.Entity(victim, EntityManager)), ("weapon", weapon)), attacker, Filter.PvsExcept(attacker), true, PopupType.MediumCaution);
+    }
 
     private void OnExecutionDoAfterMelee(EntityUid entity, ToolComponent component, ref ExecutionDoAfterEvent args)
     {
@@ -181,20 +184,20 @@ public sealed partial class ExecutionSystem : EntitySystem
                 var prototype = _prototypeManager.Index<EntityPrototype>(cartridge.Prototype);
 
                 // Starlight start - support hitscans in cartridges
-                if (prototype.TryComp<HitscanAmmoComponent>(out var hitscan, _componentFactory))
+                if (prototype.TryGetComponent<HitscanAmmoComponent>(out var hitscan, _componentFactory))
                 {
-                    if (prototype.TryComp<HitscanBasicDamageComponent>(out var hitscanDamage, _componentFactory))
+                    if (prototype.TryGetComponent<HitscanBasicDamageComponent>(out var hitscanDamage, _componentFactory))
                     {
                         damage = hitscanDamage.Damage;
                     }
                 }
                 // Starlight end
-                prototype.TryComp<ProjectileComponent>(out var projectileA, _componentFactory); // sloth forgive me
+                prototype.TryGetComponent<ProjectileComponent>(out var projectileA, _componentFactory); // sloth forgive me
                 if (projectileA != null)
                 {
                     damage = projectileA.Damage;
                 }
-                prototype.TryComp<ProjectileSpreadComponent>(out var projectilespreaderA, _componentFactory);
+                prototype.TryGetComponent<ProjectileSpreadComponent>(out var projectilespreaderA, _componentFactory);
                 if (projectilespreaderA != null)
                 {
                     damage *= projectilespreaderA.Count;

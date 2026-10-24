@@ -21,11 +21,6 @@
   id: RubberStampChaplain
   description: A rubber stamp for stamping important documents. Holy rubber to bless the holy paper.
   categories: !Remove
-  components:
-  - type: Contraband
-    tier: Tier2
-    allowedJobs:
-    - Chaplain
 
 - type: !PartialOnly entity
   id: RubberStampLawyer
@@ -36,20 +31,11 @@
     stampState: "paper_stamp-lawyer-sl"
   - type: Sprite
     sprite: _Starlight/Objects/Misc/stamps.rsi
-  - type: Contraband
-    tier: Tier2
-    allowedJobs:
-    - Lawyer
 
 - type: !PartialOnly entity
   id: RubberStampClown
   description: A rubber stamp for stamping important documents. Funni.
   categories: !Remove
-  components:
-  - type: Contraband
-    tier: Tier2
-    allowedJobs:
-    - Clown
 
 - type: !PartialOnly entity
   id: RubberStampCE
@@ -71,11 +57,6 @@
   id: RubberStampMime
   description: A rubber stamp for silently stamping important documents.
   categories: !Remove
-  components:
-  - type: Contraband
-    tier: Tier2
-    allowedJobs:
-    - Mime
 
 - type: !PartialOnly entity
   id: RubberStampQm
@@ -112,8 +93,3 @@
 - type: !PartialOnly entity
   id: RubberStampPsychologist
   categories: !Remove
-  components:
-  - type: Contraband
-    tier: Tier2
-    allowedJobs:
-    - Psychologist

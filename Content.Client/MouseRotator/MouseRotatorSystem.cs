@@ -1,10 +1,8 @@
 ﻿using Content.Shared.MouseRotator;
-using Content.Client._Starlight.Computers.RemoteControl;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Shared.Map;
-using Robust.Shared.Graphics;
 using Robust.Shared.Timing;
 
 namespace Content.Client.MouseRotator;
@@ -17,7 +15,6 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IEyeManager _eye = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    private RemoteControlInterface _remoteControl => EntityManager.System<RemoteControlInterface>(); // Starlight
 
     public override void Update(float frameTime)
     {
@@ -28,45 +25,19 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
 
         var player = _player.LocalEntity;
 
-        if (player == null)
+        if (player == null || !TryComp<MouseRotatorComponent>(player, out var rotator))
             return;
 
-        // Starlight-start: use the controlled entity and its viewport while remotely controlling.
-        var rotationEntity = player.Value;
-        IEye eye = _eye.CurrentEye;
-        var useRemoteRotator = false;
-        if (_remoteControl.ControlledEntity is { } controlled
-            && _remoteControl.ControlledEye is { } controlledEye
-            && TryComp<MouseRotatorComponent>(controlled, out var remoteRotator))
-        {
-            rotationEntity = controlled;
-            eye = controlledEye;
-            useRemoteRotator = true;
-        }
-
-        if (!TryComp<MouseRotatorComponent>(rotationEntity, out var rotator))
-            return;
-
-        var xform = Transform(rotationEntity);
+        var xform = Transform(player.Value);
 
         // Get mouse loc and convert to angle based on player location
         var coords = _input.MouseScreenPosition;
-        MapCoordinates? mapPos;
-        if (useRemoteRotator)
-            mapPos = _remoteControl.RemoteMousePosition;
-        else
-            mapPos = _eye.PixelToMap(coords);
-        // Starlight-end
+        var mapPos = _eye.PixelToMap(coords);
 
-        // Starlight-start
-        if (mapPos is not { } remoteMapPosition)
+        if (mapPos.MapId == MapId.Nullspace)
             return;
 
-        if (remoteMapPosition.MapId == MapId.Nullspace)
-            return;
-
-        var angle = (remoteMapPosition.Position - _transform.GetMapCoordinates(rotationEntity, xform: xform).Position).ToWorldAngle();
-        // Starlight-end
+        var angle = (mapPos.Position - _transform.GetMapCoordinates(player.Value, xform: xform).Position).ToWorldAngle();
 
         var curRot = _transform.GetWorldRotation(xform);
 
@@ -74,7 +45,7 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
         // only raise event if the cardinal direction has changed
         if (rotator.Simple4DirMode)
         {
-            var eyeRot = eye.Rotation; // Starlight: camera rotation
+            var eyeRot = _eye.CurrentEye.Rotation; // camera rotation
             var angleDir = (angle + eyeRot).GetCardinalDir(); // apply GetCardinalDir in the camera frame, not in the world frame
             if (angleDir == (curRot + eyeRot).GetCardinalDir())
                 return;
@@ -87,7 +58,7 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
             RaisePredictiveEvent(new RequestMouseRotatorRotationEvent
             {
                 Rotation = rotation,
-                User = GetNetEntity(player.Value) // Starlight
+                User = GetNetEntity(player)
             });
 
             return;
@@ -108,7 +79,7 @@ public sealed partial class MouseRotatorSystem : SharedMouseRotatorSystem
         RaisePredictiveEvent(new RequestMouseRotatorRotationEvent
         {
             Rotation = angle,
-            User = GetNetEntity(player.Value) // Starlight
+            User = GetNetEntity(player)
         });
     }
 }

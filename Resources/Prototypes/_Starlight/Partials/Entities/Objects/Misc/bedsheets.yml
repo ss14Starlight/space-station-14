@@ -1,6 +1,0 @@
-- type: !PartialOnly entity
-  id: BedsheetSyndie
-  components:
-  - type: Contraband
-    tier: Tier1
-    contrabandType: Syndicate

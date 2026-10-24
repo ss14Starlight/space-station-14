@@ -5,6 +5,7 @@ using Content.Shared.Popups;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Weapons.Ranged.Systems;
@@ -50,8 +51,7 @@ public abstract partial class SharedGunHeatSystem : EntitySystem
 
         if (!ent.Comp.Jammed)
         {
-            var random = _gun.GetShotRandom(ent, JamSalt);
-            if (random.NextDouble() < GetJamChance(ent.Comp, ent.Comp.Temperature))
+            if (_gun.GetShotRandom(ent, JamSalt).Prob(GetJamChance(ent.Comp, ent.Comp.Temperature)))
             {
                 ent.Comp.Jammed = true;
                 Audio.PlayPredicted(ent.Comp.JamSound, ent, args.User);

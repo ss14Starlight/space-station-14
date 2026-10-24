@@ -7,7 +7,6 @@ using Content.Shared.Examine;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
-using Content.Shared.Movement.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.RCD.Components;
@@ -458,7 +457,7 @@ public sealed partial class RCDSystem : EntitySystem
         }
 
         // Finalize the operation (this should handle prediction properly)
-        FinalizeRCDOperation(uid, component, gridUid, mapGrid, tile, position, args.Direction, args.PipeLayer, args.Target, args.User); // Starlight edit: Use the layer captured by the do-after event.
+        FinalizeRCDOperation(uid, component, gridUid, mapGrid, tile, position, args.Direction, args.PipeLayer, args.Target, args.User);         // Starlight Edit: Include layer from do-after event to avoid finalize time drift.
 
         // Play audio and consume charges
         _audio.PlayPredicted(component.SuccessSound, uid, args.User);
@@ -473,14 +472,7 @@ public sealed partial class RCDSystem : EntitySystem
         if (session.SenderSession.AttachedEntity is not { } player)
             return;
 
-        // Starlight start
-        var handOwner = TryComp<RelayInputMoverComponent>(player, out var relay)
-            && relay.RelayEntity is { } relayEntity
-            ? relayEntity
-            : player;
-        // Starlight end
-
-        if (_hands.GetActiveItem(handOwner) != uid) // Starlight
+        if (_hands.GetActiveItem(player) != uid)
             return;
 
         if (!TryComp<RCDComponent>(uid, out var rcd))

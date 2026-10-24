@@ -3,7 +3,6 @@ using Content.Shared.Timing;
 using Content.Shared.Verbs;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Content.Shared.Xenoarchaeology.Equipment.Components;
-using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Xenoarchaeology.Equipment;
@@ -15,9 +14,6 @@ public sealed partial class NodeScannerSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    #region Starlight
-    [Dependency] private INetManager _net = default!;
-    #endregion
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -99,6 +95,6 @@ public sealed partial class NodeScannerSystem : EntitySystem
             Dirty(device, connected);
         }
 
-        _ui.TryOpenUi((device, null), NodeScannerUiKey.Key, actor, predicted: !_net.IsServer); // Starlight: prevents predict on server
+        _ui.TryOpenUi((device, null), NodeScannerUiKey.Key, actor, predicted: true);
     }
 }

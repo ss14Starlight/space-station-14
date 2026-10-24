@@ -1,6 +1,6 @@
 #EVA Helmet
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadEVAHelmetBase ] # Blimpuf
+  parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadSoftsuitCBURN
   name: CBURN helmet
   description: A pressure resistant and fireproof hood worn by special cleanup units.

@@ -14,19 +14,12 @@
   icon: "JobIconK9"
   supervisors: job-supervisors-security
   jobEntity: MobK9
-  access:
-  - Security
-  - Brig
-  - Maintenance
-  - External
-  - Cryogenics
   special:
   - !type:AddComponentSpecial
     components:
     - type: SkipLoadingCharacterRecords
-    - type: UseEntityNameAsCharacterName # the dog's name is the character's, not the profile's
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ TrackingImplant, MindShieldImplant ]
   - !type:EquipStartingGearSpecial
     gear: K9Gear
   applyTraits: false

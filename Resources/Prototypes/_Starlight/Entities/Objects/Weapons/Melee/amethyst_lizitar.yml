@@ -1,6 +1,6 @@
 - type: entity
   name: amethyst lizitar
-  parent: [ BaseSword, BaseSecurityContraband, BaseCargoContraband ]
+  parent: [ BaseSword, BaseSecurityCargoContraband ]
   id: AmethystLizitar
   description: Now you really have no clue what this thing is made from.
   components:

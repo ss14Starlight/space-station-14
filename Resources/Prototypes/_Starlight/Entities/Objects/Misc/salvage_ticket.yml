@@ -53,7 +53,6 @@
   - type: Currency
     price:
       SalvageTicket: 1
-  - type: CargoSellBlacklist
   - type: Tag # Starlight
     tags:
       - SalvageTicket

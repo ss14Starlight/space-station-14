@@ -41,10 +41,6 @@ public sealed class FlatHudSheetlet : Sheetlet<NanotrasenStylesheet>
             E<MenuButton>().Class(StyleClass.ButtonOpenRight).Box(menuButtonBox),
             E<MenuButton>().Class(StyleClass.ButtonOpenBoth).Box(menuButtonBox),
             E<MenuButton>().Class(DropdownButton.StyleClassDropdownItem).Box(menuItemBox),
-            E<PanelContainer>()
-                .Class(MenuButton.StyleClassKeyBadge)
-                .Panel(FlatBox.Fill(proto.Background.WithAlpha(0.85f))
-                    .WithContentMargin(StyleBox.Margin.Horizontal, 2)),
             E<Label>()
                 .Class(MenuButton.StyleClassLabelTopButton)
                 .Font(sheet.BaseFont.GetFont(9, FontKind.Bold)),
@@ -58,15 +54,9 @@ public sealed class FlatHudSheetlet : Sheetlet<NanotrasenStylesheet>
                 .Prop(LineEdit.StylePropertyStyleBox, FlatBox.Bordered(proto.Surface, proto.Border)
                     .WithContentMargin(StyleBox.Margin.Horizontal, 6)
                     .WithContentMargin(StyleBox.Margin.Vertical, 3)),
+            E<ContainerButton>().Class(ChatInputBox.StyleClassChatFilterOptionButton).Box(chatButtonBox),
+            E<ContainerButton>().Class(ChannelSelectorItemButton.StyleClassChatSelectorOptionButton).Box(chatButtonBox),
         };
-
-        if (!theme.Proto.ClassicDecor)
-        {
-            rules.AddRange([
-                E<ContainerButton>().Class(ChatInputBox.StyleClassChatFilterOptionButton).Box(chatButtonBox),
-                E<ContainerButton>().Class(ChannelSelectorItemButton.StyleClassChatSelectorOptionButton).Box(chatButtonBox),
-            ]);
-        }
 
         IconColors<MenuButton>(rules, theme);
         IconColors<ChannelFilterButton>(rules, theme);

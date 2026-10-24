@@ -9,7 +9,7 @@ using Robust.Shared.Toolshed;
 namespace Content.Server._Starlight.Verbs;
 
 [ToolshedCommand]
-[AdminCommand(AdminFlags.Admin)]
+[AdminCommand(AdminFlags.Fun)]
 public sealed class InvokeVerbCommand : ToolshedCommand
 {
     private VerbSystem? _verb;

@@ -1,6 +1,5 @@
 using Content.Shared.Mind;
 using Robust.Shared.GameStates;
-using Robust.Shared.Maths; // Moffstation - SubtypeColor
 using Robust.Shared.Prototypes;
 
 #region Starlight
@@ -33,14 +32,6 @@ public sealed partial class MindRoleComponent : BaseMindRoleComponent
     /// </summary>
     [DataField]
     public LocId? Subtype;
-
-    // Moffstation - Start - SubtypeColor
-    /// <summary>
-    /// Optional color to display in the character menu header when this subtype is active.
-    /// </summary>
-    [DataField]
-    public Color? SubtypeColor;
-    // Moffstation - End
 
     /// <summary>
     /// True if this mindrole is an exclusive antagonist. Antag setting is not checked if this is True.

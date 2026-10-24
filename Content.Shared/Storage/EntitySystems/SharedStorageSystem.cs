@@ -44,12 +44,13 @@ using Robust.Shared.Utility;
 using Content.Shared.Rounding;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Enumerators;
+#region Starlight
 using Content.Shared._Starlight.Lock;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Network;
 using Content.Shared._Starlight.Medical.Surgery.Components;
-using Content.Shared._Starlight.Computers.RemoteControl;
+#endregion
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -329,20 +330,8 @@ public abstract partial class SharedStorageSystem : EntitySystem
         }
     }
 
-    #region Starlight
-    private partial bool HandleStarlightStrippableStorageVerb(
-        EntityUid uid,
-        StorageComponent component,
-        GetVerbsEvent<ActivationVerb> args);
-    #endregion
-
     private void AddUiVerb(EntityUid uid, StorageComponent component, GetVerbsEvent<ActivationVerb> args)
     {
-        // Starlight - start
-        if (HandleStarlightStrippableStorageVerb(uid, component, args))
-            return;
-        // Starlight - end
-
         if (component.ShowVerb == false || !CanInteract(args.User, (uid, component), args.CanAccess && args.CanInteract))
             return;
 
@@ -886,16 +875,17 @@ public abstract partial class SharedStorageSystem : EntitySystem
         if (!TryGetEntity(msg.ItemEnt, out var itemUid) || !TryComp(itemUid, out ItemComponent? itemComp))
             return;
 
+        var localPlayer = args.SenderSession.AttachedEntity;
         var itemEnt = new Entity<ItemComponent?>(itemUid.Value, itemComp);
 
         // Validate the source storage
         if (!TryGetStorageLocation(itemEnt, out var container, out _, out _) ||
-            !ValidateInput(args, GetNetEntity(container.Owner), out var sourcePlayer, out _))
+            !ValidateInput(args, GetNetEntity(container.Owner), out _, out _))
         {
             return;
         }
 
-        if (!_sharedHandsSystem.TryPickup(sourcePlayer.AsNullable(), itemEnt, handsComp: sourcePlayer.Comp, animate: false))
+        if (!TryComp(localPlayer, out HandsComponent? handsComp) || !_sharedHandsSystem.TryPickup(localPlayer.Value, itemEnt, handsComp: handsComp, animate: false))
             return;
 
         // Validate the target storage
@@ -906,13 +896,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
             LogType.Storage,
             LogImpact.Low,
             $"{ToPrettyString(player):player} is inserting {ToPrettyString(item):item} into {ToPrettyString(storage):storage}");
-        // Starlight - start
-        if (InsertAt(storage!, item!, msg.Location, out _, player, stackAutomatically: false))
-        {
-            if (args.SenderSession.AttachedEntity != player.Owner) // Starlight
-                RaiseLocalEvent(new RemoteControlInventoryChangedEvent(player.Owner)); // Starlight
-        }
-        // Starlight - end
+        InsertAt(storage!, item!, msg.Location, out _, player, stackAutomatically: false);
     }
 
     private void OnInsertItemIntoLocation(StorageInsertItemIntoLocationEvent msg, EntitySessionEventArgs args)
@@ -924,13 +908,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
             LogType.Storage,
             LogImpact.Low,
             $"{ToPrettyString(player):player} is inserting {ToPrettyString(item):item} into {ToPrettyString(storage):storage}");
-        // Starlight - start
-        if (InsertAt(storage!, item!, msg.Location, out _, player, stackAutomatically: false))
-        {
-            if (args.SenderSession.AttachedEntity != player.Owner) // Starlight
-                RaiseLocalEvent(new RemoteControlInventoryChangedEvent(player.Owner)); // Starlight
-        }
-        // Starlight - end
+        InsertAt(storage!, item!, msg.Location, out _, player, stackAutomatically: false);
     }
 
     private void OnSaveItemLocation(StorageSaveItemLocationEvent msg, EntitySessionEventArgs args)
@@ -2051,7 +2029,10 @@ public abstract partial class SharedStorageSystem : EntitySystem
         player = default;
         storage = default;
 
-        if (args.SenderSession.AttachedEntity is not { } controllerUid)
+        if (args.SenderSession.AttachedEntity is not { } playerUid)
+            return false;
+
+        if (!TryComp(playerUid, out HandsComponent? hands) || hands.Count == 0)
             return false;
 
         if (!TryGetEntity(netStorage, out var storageUid))
@@ -2060,26 +2041,12 @@ public abstract partial class SharedStorageSystem : EntitySystem
         if (!TryComp(storageUid, out StorageComponent? storageComp))
             return false;
 
-        if (!UI.IsUiOpen(storageUid.Value, StorageComponent.StorageUiKey.Key, controllerUid)) // Starlight
-            return false;
-
-        var playerUid = controllerUid; // Starlight
-        var remoteControlCheck = new RemoteControlInteractionCheckEvent(controllerUid, storageUid.Value); // Starlight
-        RaiseLocalEvent(ref remoteControlCheck); // Starlight
-        if (remoteControlCheck.RemoteEntity is { } remoteEntity)
-        {
-            if (!_net.IsClient && !remoteControlCheck.Allowed)
-                return false;
-
-            playerUid = remoteEntity; // Starlight
-        }
-
-        if (!TryComp(playerUid, out HandsComponent? hands) || hands.Count == 0)
-            return false;
-
         // TODO STORAGE use BUI events
         // This would automatically validate that the UI is open & that the user can interact.
         // However, we still need to manually validate that items being used are in the users hands or in the storage.
+        if (!UI.IsUiOpen(storageUid.Value, StorageComponent.StorageUiKey.Key, playerUid))
+            return false;
+
         if (!ActionBlocker.CanInteract(playerUid, storageUid))
             return false;
 

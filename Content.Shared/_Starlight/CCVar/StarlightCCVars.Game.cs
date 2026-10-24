@@ -56,7 +56,4 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<float> NukeRoundRestartTime =
         CVarDef.Create("game.nuke_round_restart_time", 20f, CVar.SERVERONLY);
-
-    public static readonly CVarDef<bool> AntagsEnabled =
-        CVarDef.Create("game.antags_enabled", true, CVar.REPLICATED | CVar.CLIENT | CVar.ARCHIVE);
 }

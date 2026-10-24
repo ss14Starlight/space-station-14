@@ -1,48 +1,40 @@
-using Content.Client._Starlight.Computers.RemoteControl;
 using Robust.Client.UserInterface;
-using Content.Shared.Atmos.Components;
+using static Content.Shared.Atmos.Components.GasAnalyzerComponent;
 
-namespace Content.Client.Atmos.UI;
-
-public sealed class GasAnalyzerBoundUserInterface : BoundUserInterface
+namespace Content.Client.Atmos.UI
 {
-    [ViewVariables]
-    private GasAnalyzerWindow? _window;
-
-    public GasAnalyzerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    public sealed class GasAnalyzerBoundUserInterface : BoundUserInterface
     {
-    }
+        [ViewVariables]
+        private GasAnalyzerWindow? _window;
 
-    protected override void Open()
-    {
-        base.Open();
-
-        _window = this.CreateWindowCenteredLeft<GasAnalyzerWindow>();
-        EntMan.System<RemoteControlInterface>().TryEmbedWindow(_window); // Starlight
-        _window.OnClose += Close;
-    }
-
-    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
-    {
-        if (_window == null)
-            return;
-
-        if (message is not GasAnalyzerUserMessage cast)
-            return;
-
-        _window.Populate(cast);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        // Starlight - start
-        if (disposing && _window is { } window)
+        public GasAnalyzerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
-            window.Parent?.RemoveChild(window);
-            _window = null;
         }
-        // Starlight - end
+
+        protected override void Open()
+        {
+            base.Open();
+
+            _window = this.CreateWindowCenteredLeft<GasAnalyzerWindow>();
+            _window.OnClose += Close;
+        }
+
+        protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+        {
+            if (_window == null)
+                return;
+            if (message is not GasAnalyzerUserMessage cast)
+                return;
+            _window.Populate(cast);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (disposing)
+                _window?.Dispose();
+        }
     }
 }

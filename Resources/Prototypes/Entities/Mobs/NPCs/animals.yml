@@ -1574,6 +1574,10 @@
     - map: [ "outerClothing" ]
     - map: [ "mask" ]
     - map: [ "head" ]
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
   - type: Hands
     # Starlight edit Start: Reverted NuBody
     # activeHandId: Hand
@@ -1582,15 +1586,18 @@
     #     location: Left
     # Starlight edit End: Reverted NuBody
   - type: ComplexInteraction
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon:
+          True: {visible: true}
+          False: {visible: false}
   # Starlight - start
   - type: Body
     prototype: Primate
     requiredLegs: 1 # TODO: More than 1 leg
   # Starlight - end
   - type: CreamPied
-    sprite:
-      sprite: Effects/creampie.rsi
-      state: creampie_monkey
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Monkey_burning
@@ -1612,8 +1619,8 @@
       types:
         Blunt: 3
         Piercing: 3
-  - type: ToolRefinable # Starlight Butchering fix
-    refineResult: # Starlight
+  - type: Butcherable
+    spawned:
     - id: FoodMeat
       amount: 3
   - type: Puller
@@ -1712,7 +1719,7 @@
 - type: entity
   name: monkey
   id: MobBaseSyndicateMonkey
-  parent: MobBaseAncestor # TODO: fix copy paste from MobMonkey
+  parent: MobBaseAncestor
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   suffix: syndicate base
   components:
@@ -1879,6 +1886,10 @@
     - map: [ "id" ]
     - map: [ "mask" ]
     - map: [ "head" ]
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
   - type: RandomSprite
     getAllGroups: true
     available:
@@ -1895,8 +1906,8 @@
           horns_floppy_kobold_ears: Inherit
           horns_double: Inherit
           horns_kobold_ears: Inherit
-  - type: ToolRefinable # Starlight butchering fix
-    refineResult: # Starlight
+  - type: Butcherable
+    spawned:
     - id: FoodMeat
       amount: 2
   - type: AlwaysRevolutionaryConvertible
@@ -2915,7 +2926,6 @@
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
-  - type: ForceAttack
 
 - type: entity
   name: tarantula
@@ -3339,10 +3349,6 @@
   - type: MobPrice
     price: 200
   - type: MessyDrinker
-  - type: CreamPied
-    sprite:
-      sprite: Effects/creampie.rsi
-      state: creampie_corgi
   - type: Puller
     needsHands: false
   # Starlight Start

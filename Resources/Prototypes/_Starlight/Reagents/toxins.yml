@@ -6,7 +6,6 @@
   flavor: entropic
   color: "#371a47"
   physicalDesc: reagent-physical-desc-malign
-  contrabandTier: Tier1 # Blimpuf
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: 10
@@ -48,7 +47,6 @@
 
 - type: reagent
   id: DevilJuice
-  contrabandTier: Tier2
   name: reagent-name-devil-juice
   group: Toxins
   desc: reagent-desc-devil-juice
@@ -81,7 +79,7 @@
   group: Toxins
   desc: reagent-desc-neuralprion
   physicalDesc: reagent-physical-desc-neural
-  contrabandTier: Tier3
+  contrabandSeverity: Major
   color: "#EE35FF"
   metabolisms:
     Bloodstream:

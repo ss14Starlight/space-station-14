@@ -51,8 +51,8 @@
           True: { visible: false }
       enum.WiresVisuals.MaintenancePanelState:
         enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: true } # Starlight
-          False: { visible: false } # Starlight
+          True: { visible: false }
+          False: { visible: true }
   - type: Machine
     board: HolopadMachineCircuitboard
   - type: StationAiWhitelist

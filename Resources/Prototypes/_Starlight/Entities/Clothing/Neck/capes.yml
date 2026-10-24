@@ -390,7 +390,7 @@
 
 # Greenshield Officer
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingNeckBase ] # Blimpuf
+  parent: [ ClothingNeckBase ]
   categories: [ DoNotMap ]
   id: ClothingNeckGreenshield
   name: greenshield mantle

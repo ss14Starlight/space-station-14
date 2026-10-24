@@ -1,7 +1,7 @@
 # NT stamps
 - type: entity
   name: magistrate stamp
-  parent: [ BaseContrabandTier2, RubberStampBase, BaseNanoTrasenContraband ] # Blimpuf
+  parent: [ RubberStampBase, BaseCommandContraband ]
   id: RubberStampMagistrate
   description: A rubber stamp for stamping important documents. Your word is law. This stamp is order.
   suffix: DO NOT MAP
@@ -16,7 +16,7 @@
 
 - type: entity
   name: nt representative's rubber stamp
-  parent: [ BaseContrabandTier2, RubberStampBase, BaseNanoTrasenContraband ] # Blimpuf
+  parent: [ RubberStampBase, BaseCommandContraband ]
   id: RubberStampNtrep
   description: A rubber stamp for stamping important documents. Heads will roll.
   suffix: DO NOT MAP
@@ -31,7 +31,7 @@
 
 - type: entity
   name: internal affairs agent's rubber stamp
-  parent: [ BaseContrabandTier2, RubberStampBase, BaseLawContraband ] # Blimpuf
+  parent: [ RubberStampBase, BaseLawContraband ]
   id: RubberStampIAA
   description: A rubber stamp for stamping important documents. For when you want your fax to CC to have that bit more authority.
   suffix: DO NOT MAP
@@ -46,7 +46,7 @@
 
 - type: entity
   name: blueshield rubber stamp
-  parent: [ BaseContrabandTier2, RubberStampBase, BaseBlueShieldContraband ] # Blimpuf
+  parent: [ RubberStampBase, BaseBlueShieldContraband ]
   id: RubberStampBSO
   description: A rubber stamp for stamping important documents. While you are stamping a document, the captain is getting his shoes stolen AGAIN.
   suffix: DO NOT MAP
@@ -74,9 +74,6 @@
     - type: Sprite
       sprite: _Starlight/Objects/Misc/stamps.rsi
       state: stamp-brigmedic
-    - type: Contraband # Blimpuf
-      tier: Tier2
-      allowedJobs: [ Brigmedic ]
 
 # Assistant Manager stamp
 - type: entity
@@ -113,7 +110,7 @@
 # CC Division Stamps
 - type: entity
   name: central administration division rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampCAD
   description: A rubber stamp for stamping important documents. Somebody is getting fired.
   categories: [ DoNotMap ]
@@ -127,7 +124,7 @@
 
 - type: entity
   name: central cargo division rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampCCD
   description: A rubber stamp for stamping important documents. Used to deny the urgent medical supplies request and send over a pizza party instead.
   categories: [ DoNotMap ]
@@ -141,7 +138,7 @@
 
 - type: entity
   name: central engineering division rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampCED
   description: A rubber stamp for stamping important documents. Use when another multi-trillion dollar station was lost.
   categories: [ DoNotMap ]
@@ -169,7 +166,7 @@
 
 - type: entity
   name: central medical division rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampCMD
   description: A rubber stamp for stamping important documents. For when the REAL doctor is in.
   categories: [ DoNotMap ]
@@ -183,7 +180,7 @@
 
 - type: entity
   name: central research division rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampCRD
   description: A rubber stamp for stamping important documents. Every bit as exploded as it's non-CC counterpart.
   categories: [ DoNotMap ]
@@ -197,7 +194,7 @@
 
 - type: entity
   name: central domestic division rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampCDD
   description: A rubber stamp for stamping important documents. What do you even do again?
   categories: [ DoNotMap ]
@@ -226,7 +223,7 @@
 
 - type: entity
   name: central security division rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampCSD
   description: A rubber stamp for stamping important documents. They fought the law, and the law won.
   categories: [ DoNotMap ]
@@ -240,7 +237,7 @@
 
 - type: entity
   name: cc department stamps box
-  parent: [ BoxCardboard, BaseCentcommContraband ] # Blimpuf
+  parent: BoxCardboard
   id: BoxStampsCCDepartments
   description: A small box containing stamps. You would think by the 26th century there would be something more sophisticated than a rubber stamp.
   components:
@@ -274,7 +271,7 @@
 # CC Administrative Stamps
 - type: entity
   name: ACKNOWLEDGED rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampAcknowledged
   description: A rubber stamp for stamping important documents. Yes we hear you. No, we will not do anything.
   suffix: DO NOT MAP
@@ -289,7 +286,7 @@
 
 - type: entity
   name: MISSING STAMPS rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampMissingStamps
   description: A rubber stamp for stamping important documents. Next time, get the clown's stamp!
   suffix: DO NOT MAP
@@ -304,7 +301,7 @@
 
 - type: entity
   name: INCORRECT STAMPS rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampIncorrectStamps
   description: A rubber stamp for stamping important documents. Next time, don't get the clown's stamp!
   suffix: DO NOT MAP
@@ -319,7 +316,7 @@
 
 - type: entity
   name: INCORRECT FORM rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampIncorrectForm
   description: A rubber stamp for stamping important documents. They needed the OTHER document. No, the OTHER OTHER document.
   suffix: DO NOT MAP
@@ -334,7 +331,7 @@
 
 - type: entity
   name: INCOMPLETE FORM rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampIncompleteForm
   description: A rubber stamp for stamping important documents. If they aren't going to finish this form, then I'm not going to f
   suffix: DO NOT MAP
@@ -349,7 +346,7 @@
 
 - type: entity
   name: SENT TO ATS rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampSentToATS
   description: A rubber stamp for stamping important documents. Especially useful if the cargo shuttle is still intact.
   suffix: DO NOT MAP
@@ -364,7 +361,7 @@
 
 - type: entity
   name: DEFER TO COMMAND rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampDeferToCommand
   description: A rubber stamp for stamping important documents. Passing the buck, the CC way.
   suffix: DO NOT MAP
@@ -379,7 +376,7 @@
 
 - type: entity
   name: STANDBY rubber stamp
-  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampStandby
   description: A rubber stamp for stamping important documents. You will do something. Maybe.
   suffix: DO NOT MAP
@@ -394,7 +391,7 @@
 
 - type: entity
   name: cc administrative stamps box
-  parent: [ BoxCardboard, BaseCentcommContraband ] # Blimpuf
+  parent: BoxCardboard
   id: BoxStampsCCAdministrative
   description: A small box containing stamps. You would think by the 26th century there would be something more sophisticated than a rubber stamp.
   components:
@@ -440,14 +437,11 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/stamps.rsi
     state: stamp-salvagelead
-  - type: Contraband
-    tier: Tier2 # Blimpuf
-    allowedJobs: [ SalvageLead ]
 
 # TSF/Solgov stamp
 - type: entity
   name: trans-solar federation rubber stamp
-  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampTSF
   description: A rubber stamp for stamping important documents. Oh god...
   categories: [ DoNotMap ]
@@ -461,7 +455,7 @@
 
 - type: entity
   name: trans-solar marine corps rubber stamp
-  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampTSMC
   description: A rubber stamp for stamping important documents. OH GOD OH FUCK...!
   categories: [ DoNotMap ]
@@ -475,7 +469,7 @@
 
 - type: entity
   name: solgov law enforcement rubber stamp
-  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampSolgovLaw
   description: A rubber stamp for stamping important documents. Oh fuck...
   categories: [ DoNotMap ]
@@ -489,7 +483,7 @@
 
 - type: entity
   name: solgov representative rubber stamp
-  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampSolgovRep
   description: A rubber stamp for stamping important documents. Reminds people that CC and NT answer to somebody.
   categories: [ DoNotMap ]
@@ -503,7 +497,7 @@
 
 - type: entity
   name: solgov traders rubber stamp
-  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
+  parent: RubberStampBase
   id: RubberStampSolgovTraders
   description: A rubber stamp for stamping important documents. Where is money to be made, that is.
   categories: [ DoNotMap ]
@@ -528,9 +522,7 @@
       stampState: "paper_stamp-psychologist"
     - type: Sprite
       state: stamp-hop
-    - type: Contraband # Blimpuf
-      tier: Tier2
-      allowedJobs: [ Reporter ]
+
 # ITG stamp
 - type: entity
   name: ITG stamp

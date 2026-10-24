@@ -82,11 +82,6 @@ public abstract partial class InventorySystem
         if (eventArgs.SenderSession.AttachedEntity is not { Valid: true } actor)
             return;
 
-        // Starlight start
-        if (TryActivateSlotWithoutHands(actor, ev.Slot))
-            return;
-        // Starlight end
-
         if (!TryComp(actor, out InventoryComponent? inventory) || !TryComp<HandsComponent>(actor, out var hands))
             return;
 

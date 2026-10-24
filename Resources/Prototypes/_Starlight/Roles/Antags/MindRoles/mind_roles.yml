@@ -17,7 +17,6 @@
     exclusiveAntag: true
     antagPrototype: Devil
     subtype: role-subtype-devil
-    subtypeColor: '#D17C38'
   - type: DevilRole
 
 - type: entity
@@ -28,7 +27,6 @@
   - type: MindRole
     antagPrototype: Brighteye
     subtype: roles-antag-brighteye-name
-    subtypeColor: '#6B2F8A'
     exclusiveAntag: true
   - type: BrighteyeRole
 
@@ -52,14 +50,6 @@
     exclusiveAntag: true
     antagPrototype: TerrorPrincess
 
-- type: entity
-  parent: MindRoleGhostRoleTeamAntagonist
-  id: MindRoleTerrorSpider
-  name: Terror Spider Role
-  components:
-  - type: MindRole
-    characterMenuName: role-subtype-terror-spider
-
 # Wizard Duelists, moved from Moff Station since we've doubled the number of them and modified them a decent amount.
 - type: entity
   parent: MindRoleWizard
@@ -69,7 +59,6 @@
   - type: MindRole
     roleType: SoloAntagonist
     antagPrototype: Wizard
-    characterMenuName: roles-solo-antagonist-wizard-duelist-name
     exclusiveAntag: true
     subtype: role-subtype-wizard
 
@@ -79,8 +68,6 @@
   name: Red Wizard Duelist Role
   components:
   - type: WizardDuelistRole
-  - type: RoleBriefing
-    briefing: wizard-duelist-red-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -88,8 +75,6 @@
   name: Blue Wizard Duelist Role
   components:
   - type: WizardDuelistRole
-  - type: RoleBriefing
-    briefing: wizard-duelist-blue-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -97,8 +82,6 @@
   name: Purple Wizard Duelist Role
   components:
   - type: WizardDuelistRole
-  - type: RoleBriefing
-    briefing: wizard-duelist-purple-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -106,8 +89,6 @@
   name: Yellow Wizard Duelist Role
   components:
   - type: WizardDuelistRole
-  - type: RoleBriefing
-    briefing: wizard-duelist-yellow-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -115,8 +96,6 @@
   name: Green Wizard Duelist Role
   components:
   - type: WizardDuelistRole
-  - type: RoleBriefing
-    briefing: wizard-duelist-green-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -124,6 +103,4 @@
   name: Orange Wizard Duelist Role
   components:
   - type: WizardDuelistRole
-  - type: RoleBriefing
-    briefing: wizard-duelist-orange-role-greeting
 

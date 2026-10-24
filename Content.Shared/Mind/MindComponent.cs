@@ -1,7 +1,6 @@
 using Content.Shared.Mind.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
-using Robust.Shared.Maths; // Moffstation - SubtypeColor
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
@@ -120,16 +119,8 @@ public sealed partial class MindComponent : Component
     /// <summary>
     ///     The role's subtype, shown only to admins to help with antag categorization
     /// </summary>
-    [DataField, AutoNetworkedField] // Moffstation - AutoNetworkedField added for character menu display
+    [DataField]
     public LocId? Subtype;
-
-    // Moffstation - Start - SubtypeColor
-    /// <summary>
-    ///     Optional color for the active role subtype, displayed in the character menu header.
-    /// </summary>
-    [ViewVariables, AutoNetworkedField]
-    public Color? SubtypeColor;
-    // Moffstation - End
 
     // 🌟Starlight🌟
     [DataField]

@@ -4,11 +4,13 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.Pinpointer;
 using Content.Shared.Station;
+using Robust.Server.GameObjects;
 
 namespace Content.Server.Pinpointer;
 
 public sealed partial class StationMapSystem : EntitySystem
 {
+    [Dependency] private UserInterfaceSystem _ui = default!;
     [Dependency] private PowerCellSystem _cell = default!;
     [Dependency] private SharedStationSystem _station = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
@@ -18,16 +20,15 @@ public sealed partial class StationMapSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<StationMapComponent, MapInitEvent>(OnMapInit);
-        // Starlight: Parent changes no longer close an open Station Map.
+        SubscribeLocalEvent<StationMapUserComponent, EntParentChangedMessage>(OnUserParentChanged);
 
         SubscribeLocalEvent<NukeopsStationMapComponent, NukeopsTargetStationSelectedEvent>(OnNukeopsStationSelected);
 
-        // Starlight - start
         Subs.BuiEvents<StationMapComponent>(StationMapUiKey.Key, subs =>
         {
             subs.Event<BoundUIOpenedEvent>(OnStationMapOpened);
+            subs.Event<BoundUIClosedEvent>(OnStationMapClosed);
         });
-        // Starlight - end
     }
 
     private void OnMapInit(Entity<StationMapComponent> ent, ref MapInitEvent args)
@@ -42,7 +43,7 @@ public sealed partial class StationMapSystem : EntitySystem
             {
                 if (TryComp<NukeopsRuleComponent>(rule, out var nukeopsRule) && nukeopsRule.TargetStation != null)
                 {
-                    ent.Comp.TargetGrid = GetMainStationGrid(nukeopsRule.TargetStation.Value); // Starlight
+                    ent.Comp.TargetGrid = _station.GetLargestGrid((nukeopsRule.TargetStation.Value, null));
                     Dirty(ent);
                     return;
                 }
@@ -52,19 +53,31 @@ public sealed partial class StationMapSystem : EntitySystem
         var station = _station.GetStationInMap(_xform.GetMapId(ent.Owner));
         if (station != null)
         {
-            // Starlight - start
-            ent.Comp.TargetGrid = GetMainStationGrid(station.Value);
-            // Starlight - end
+            ent.Comp.TargetGrid = _station.GetLargestGrid((station.Value, null));
             Dirty(ent);
         }
     }
 
+    private void OnStationMapClosed(EntityUid uid, StationMapComponent component, BoundUIClosedEvent args)
+    {
+        if (!Equals(args.UiKey, StationMapUiKey.Key))
+            return;
+
+        RemCompDeferred<StationMapUserComponent>(args.Actor);
+    }
+
+    private void OnUserParentChanged(EntityUid uid, StationMapUserComponent component, ref EntParentChangedMessage args)
+    {
+        _ui.CloseUi(component.Map, StationMapUiKey.Key, uid);
+    }
+
     private void OnStationMapOpened(EntityUid uid, StationMapComponent component, BoundUIOpenedEvent args)
     {
-        // Starlight - start
         if (!_cell.TryUseActivatableCharge(uid))
             return;
-        // Starlight - end
+
+        var comp = EnsureComp<StationMapUserComponent>(args.Actor);
+        comp.Map = uid;
     }
 
     private void OnNukeopsStationSelected(Entity<NukeopsStationMapComponent> ent, ref NukeopsTargetStationSelectedEvent args)
@@ -78,7 +91,7 @@ public sealed partial class StationMapSystem : EntitySystem
         if (Transform(ent).MapID != ruleGrids.Map)
             return;
 
-        stationMap.TargetGrid = GetMainStationGrid(args.TargetStation.Value); // Starlight
+        stationMap.TargetGrid = _station.GetLargestGrid((args.TargetStation.Value, null));
         Dirty(ent);
     }
 }

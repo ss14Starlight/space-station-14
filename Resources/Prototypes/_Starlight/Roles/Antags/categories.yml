@@ -5,7 +5,6 @@
   description: antag-category-syndicate-desc
   priority: -1
   accentColor: "#69152e"
-  factionColor: "#C43C47"
   antags:
   - Traitor
   - TraitorSleeper
@@ -22,7 +21,6 @@
   description: antag-category-outlaws-desc
   priority: 2
   accentColor: "#753c2f"
-  keepIndividualColors: true
   antags:
   - Brighteye
   - SpaceNinja
@@ -34,7 +32,6 @@
   description: antag-category-ussp-desc
   priority: 4
   accentColor: "#cc2500"
-  factionColor: "#CC2500"
   antags:
   - HeadRev
 
@@ -44,7 +41,6 @@
   description: antag-category-wizard-desc
   priority: 3
   accentColor: "#6b3999"
-  factionColor: "#B478E6"
   antags:
   - Wizard
   - WizardDuelist
@@ -55,7 +51,6 @@
   description: antag-category-xenoborg-desc
   priority: 5
   accentColor: "#0a0344"
-  factionColor: "#6977D8"
   antags:
   - MothershipCore
   - Xenoborg
@@ -66,7 +61,6 @@
   description: antag-category-occult-desc
   priority: 1
   accentColor: "#69bbbb"
-  keepIndividualColors: true
   antags:
   - CosmicAntagCultist
   - Devil

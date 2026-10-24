@@ -1,9 +1,0 @@
-- Flags: SPAWN
-  Commands:
-    - delete
-    - spawn
-    - replace
-
-- Flags: VAREDIT
-  Commands:
-    - comp

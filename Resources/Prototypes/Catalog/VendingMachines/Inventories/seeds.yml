@@ -9,6 +9,7 @@
     CarrotSeeds: 5
     CabbageSeeds: 5
     ChanterelleSeeds: 5
+    BrownMushroomSeeds: 5 # Starlight
     CherrySeeds: 5
     ChiliSeeds: 5
     CocoaSeeds: 3
@@ -30,6 +31,7 @@
     PoppySeeds: 3
     PotatoSeeds: 5
     PumpkinSeeds: 5
+    ResinferaSeeds: 3 #  🌟Starlight🌟
     RiceSeeds: 5
     SoybeanSeeds: 5
     SugarcaneSeeds: 5
@@ -38,7 +40,11 @@
     TowercapSeeds: 5
     WheatSeeds: 5
     WatermelonSeeds: 5
+    OrganTreeSeeds: 3
+    MintSeeds: 3 #      🌟Starlight🌟
+    CinnamonSeeds: 3 #  🌟Starlight🌟
   contrabandInventory:
     TobaccoSeeds: 2
+    CannabisSeeds: 2 # 🌟Starlight🌟
     FoodSnackSemki: 2
     FlyAmanitaSeeds: 1

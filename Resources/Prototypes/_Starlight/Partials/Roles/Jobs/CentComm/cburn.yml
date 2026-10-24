@@ -2,7 +2,3 @@
   id: CBURNGear
   equipment:
     pocket2: WeaponPistolPDW9
-
-- type: !PartialOnly job
-  id: CBURN
-  roleType: CentCommAligned

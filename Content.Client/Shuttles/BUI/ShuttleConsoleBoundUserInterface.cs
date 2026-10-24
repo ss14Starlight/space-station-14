@@ -25,7 +25,6 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
         base.Open();
         _window = this.CreatePopOutableWindow<ShuttleConsoleWindow>(EntMan); // Starlight: popout support
         _window.RadarClicked += OnRadarClicked; // Starlight
-        _window.SurfaceReturnRequested += OnSurfaceReturnRequested; // Starlight
 
         _window.RequestFTL += OnFTLRequest;
         _window.RequestBeaconFTL += OnFTLBeaconRequest;
@@ -75,7 +74,6 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
         if (disposing)
         {
             _window?.RadarClicked -= OnRadarClicked; // Starlight
-            _window?.SurfaceReturnRequested -= OnSurfaceReturnRequested; // Starlight
             _window?.DisposePopOut(); // Starlight: close the popout if exists
         }
     }
@@ -88,9 +86,6 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
 
         SendMessage(new CrewMonitoringWarpRequestMessage(EntMan.GetNetCoordinates(coordinates)));
     }
-    // Starlight - start
-    private void OnSurfaceReturnRequested() => SendMessage(new ShuttleConsoleSurfaceReturnMessage());
-    // Starlight - end
     #endregion
 
     protected override void UpdateState(BoundUserInterfaceState state)

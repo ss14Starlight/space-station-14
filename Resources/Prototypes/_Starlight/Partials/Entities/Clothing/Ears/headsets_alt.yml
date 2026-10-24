@@ -1,5 +1,0 @@
-- type: !PartialOnly entity
-  id: ClothingHeadsetAltSyndicate
-  components:
-  - type: Contraband
-    tier: Tier2

@@ -18,7 +18,6 @@
     - Hybrid
     - MoffDemonBiological
 
-
 # =============================================
 # Blackstar Rank Clothing (PLACEHOLDER SPRITES)
 # All sprites marked for replacement later.
@@ -123,6 +122,12 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavy
+      params:
+        volume: -6
+        variation: 0.09
   - type: AllowSuitStorage
   - type: Tag
     tags:

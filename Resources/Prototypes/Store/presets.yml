@@ -17,7 +17,6 @@
     - UplinkJob
     - UplinkCybernetics
     - UplinkPointless
-    - UplinkObjective
     - UplinkDAGD # funkystation
     currencyWhitelist:
     - Telecrystal

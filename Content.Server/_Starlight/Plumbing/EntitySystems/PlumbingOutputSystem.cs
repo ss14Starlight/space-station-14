@@ -6,7 +6,6 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
-using Content.Shared.Plumbing.EntitySystems;
 using JetBrains.Annotations;
 
 namespace Content.Server._Starlight.Plumbing.EntitySystems;
@@ -16,7 +15,7 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     Pulling from the network is handled by <see cref="PlumbingInletSystem"/> via <see cref="PlumbingInletComponent"/>.
 /// </summary>
 [UsedImplicitly]
-public sealed partial class PlumbingOutputSystem : SharedPlumbingOutputSystem
+public sealed partial class PlumbingOutputSystem : EntitySystem
 {
     [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private PopupSystem _popup = default!;

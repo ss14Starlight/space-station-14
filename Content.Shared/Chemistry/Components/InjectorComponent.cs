@@ -78,12 +78,6 @@ public sealed partial class InjectorComponent : Component
     /// </summary>
     [DataField]
     public bool ShowInteractionParticles = true;
-
-    /// <summary>
-    /// Whether an injection target other than the user is excluded from hearing the injection sound.
-    /// </summary>
-    [DataField]
-    public bool MuteInjectSoundForTarget;
     #endregion
 
     /// <summary>

@@ -1,8 +1,6 @@
 using Content.Client.Stylesheets;
-using Content.Client._Starlight.Pinpointer;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Input;
-using Content.Shared.Item;
 using Content.Shared.Pinpointer;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -36,7 +34,6 @@ public partial class NavMapControl : MapGridControl
 
     public EntityUid? Owner;
     public EntityUid? MapUid;
-    private bool _canRenderMap = true; // Starlight
 
     protected override bool Draggable => true;
 
@@ -69,7 +66,6 @@ public partial class NavMapControl : MapGridControl
     protected float FullWallInstep = 0.165f;
     protected float ThinWallThickness = 0.165f;
     protected float ThinDoorThickness = 0.30f;
-    protected virtual float TopPanelWidth => 650f; // Starlight-edit: let tactical maps override the fixed header width.
 
     // Local variables
     private float _updateTimer = 1.0f;
@@ -136,7 +132,7 @@ public partial class NavMapControl : MapGridControl
             StyleClasses = { StyleClass.PanelDark },
             VerticalExpand = false,
             HorizontalExpand = true,
-            SetWidth = TopPanelWidth, // Starlight
+            SetWidth = 650f,
             Children =
             {
                 new BoxContainer()
@@ -181,24 +177,11 @@ public partial class NavMapControl : MapGridControl
 
     public void ForceNavMapUpdate()
     {
-        // Starlight - start
-        _canRenderMap = true;
-        if (Owner is { } owner &&
-            MapUid is { } targetGrid &&
-            EntManager.HasComponent<ItemComponent>(owner))
-        {
-            _canRenderMap = HandheldMapUtility.CanDisplayTargetMap(EntManager, owner, targetGrid, MapUid);
-        }
-
-        if (!_canRenderMap)
-            return;
-
         EntManager.TryGetComponent(MapUid, out _navMap);
         EntManager.TryGetComponent(MapUid, out _grid);
         EntManager.TryGetComponent(MapUid, out _xform);
         EntManager.TryGetComponent(MapUid, out _physics);
         EntManager.TryGetComponent(MapUid, out _fixtures);
-        // Starlight - end
 
         UpdateNavMap();
     }
@@ -308,11 +291,6 @@ public partial class NavMapControl : MapGridControl
 
     protected override void Draw(DrawingHandleScreen handle)
     {
-        // Starlight - start
-        if (!_canRenderMap)
-            return;
-        // Starlight - end
-
         base.Draw(handle);
 
         // Get the components necessary for drawing the navmap
@@ -502,9 +480,7 @@ public partial class NavMapControl : MapGridControl
         {
             _updateTimer -= UpdateTime;
 
-            // Starlight - start
-            ForceNavMapUpdate();
-            // Starlight - end
+            UpdateNavMap();
         }
     }
 

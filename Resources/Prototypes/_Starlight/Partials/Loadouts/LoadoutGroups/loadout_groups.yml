@@ -90,7 +90,6 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
-  - RetroTie
 
 - type: !PartialOnly loadoutGroup
   id: ScientistNeck
@@ -100,7 +99,6 @@
   - GreenTieGeneric
   - GreyTieGeneric
   - LGBTieLoadout
-  - RetroTie
 
 - type: !PartialOnly loadoutGroup
   id: HeadofSecurityNeck
@@ -133,7 +131,6 @@
   - GreenTieGeneric
   - GreyTieGeneric
   - LGBTieLoadout
-  - RetroTie
 
 - type: !PartialOnly loadoutGroup
   id: NanoTrasenRepresentativeNeck

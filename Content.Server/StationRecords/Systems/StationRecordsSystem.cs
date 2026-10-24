@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Server.Access.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Forensics.Components;
@@ -10,7 +9,6 @@ using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -39,7 +37,6 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private StationRecordKeyStorageSystem _keyStorage = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IdCardSystem _idCard = default!;
-    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -102,7 +99,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             specie = profile.CustomSpecieName + " (" + profile.Species + ")";
         /// Starlight - End
 
-        CreateGeneralRecord(station, idUid.Value, Name(player), profile.Age, specie, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Starlight Edited (profile.Species -> specie, profile.Name -> Name(player) so the record matches the ID card's name)
+        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, specie, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Starlight Edited (profile.Species -> specie)
     }
 
 
@@ -221,27 +218,6 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         return false;
     }
 
-    /// <summary>
-    /// Gets a random record from the station's record entries.
-    /// </summary>
-    /// <param name="ent">The EntityId of the station from which you want to get the record.</param>
-    /// <param name="entry">The resulting entry.</param>
-    /// <typeparam name="T">Type to get from the record set.</typeparam>
-    /// <returns>True if a record was obtained. False otherwise.</returns>
-    public bool TryGetRandomRecord<T>(Entity<StationRecordsComponent?> ent, [NotNullWhen(true)] out T? entry)
-    {
-        entry = default;
-
-        if (!Resolve(ent.Owner, ref ent.Comp))
-            return false;
-
-        if (ent.Comp.Records.Keys.Count == 0)
-            return false;
-
-        var key = _random.Pick(ent.Comp.Records.Keys);
-
-        return ent.Comp.Records.TryGetRecordEntry(key, out entry);
-    }
 
     /// <summary>
     /// Get the name for a record, or an empty string if it has no record.

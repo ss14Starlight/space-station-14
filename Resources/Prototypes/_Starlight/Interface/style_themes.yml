@@ -52,32 +52,10 @@
   negative: "#B42F2F"
 
 - type: styleTheme
-  id: NanoTrasen
-  name: style-theme-nanotrasen
+  id: Classic
+  name: style-theme-classic
   order: 3
-  classicDecor: true
-  rawColors: true
-  accent: "#A88B5E"
-  secondaryAccent: "#126128"
-  accentTint: 1
-  borderThickness: 2
-  secondaryBorderThickness: 2
-  windowBackground: "#252632"
-  background: "#24242B"
-  surface: "#2F2F3B"
-  surfaceInspect: "#1B1B1F"
-  surfaceRaised: "#343541"
-  element: "#424665"
-  elementHovered: "#4F5376"
-  elementDisabled: "#2B2D40"
-  border: "#3F4159"
-  text: "#FEFEFE"
-  textMuted: "#7E7E7E"
-  textDisabled: "#ABACAE"
-  textTooltip: "#C8C8C8"
-  textPlaceholder: "#808080"
-  positive: "#3E9A5A"
-  negative: "#9A1C1C"
+  stock: true
 
 - type: styleTheme
   id: Abyss

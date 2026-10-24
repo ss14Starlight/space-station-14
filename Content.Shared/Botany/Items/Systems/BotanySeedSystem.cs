@@ -39,17 +39,6 @@ public sealed partial class BotanySeedSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnPlantAnalyzerAttempt(Entity<SeedComponent> ent, ref PlantAnalyzerAttemptEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        args.PlantData = ent.Comp.PlantData;
-        args.PlantProtoId = ent.Comp.PlantProtoId;
-        args.Handled = true;
-    }
-
-    [SubscribeLocalEvent]
     private void OnPlantingSeedAttempt(Entity<PlantTrayComponent> ent, ref PlantingSeedAttemptEvent args)
     {
         if (args.Cancelled)
@@ -57,9 +46,8 @@ public sealed partial class BotanySeedSystem : EntitySystem
 
         if (_plantTray.HasPlant(ent.AsNullable()))
         {
-            _popup.PopupPredictedCursor( // Starlight: Predicted for popups
-                Loc.GetString("plant-component-already-seeded-popup", ("name", MetaData(ent.Owner).EntityName)),
-                args.User,
+            _popup.PopupCursor(
+                Loc.GetString("plant-component-already-seeded-popup", ("name", MetaData(ent.Owner).EntityName)), // Starlight: If you see here error after upstreaming, revert this commit
                 PopupType.Medium);
             return;
         }
@@ -72,16 +60,15 @@ public sealed partial class BotanySeedSystem : EntitySystem
 
         var name = Loc.GetString(plantData.Name);
         var noun = Loc.GetString(plantData.Noun);
-        _popup.PopupPredictedCursor(Loc.GetString("plant-component-plant-success-popup", // Starlight: Predicted for popups
+        _popup.PopupCursor(Loc.GetString("plant-component-plant-success-popup",
                 ("seedName", name),
-                ("seedNoun", noun)),
-            args.User);
+                ("seedNoun", noun))); // Starlight: If you see here error after upstreaming, revert this commit
 
         if (_labelQuery.TryComp(args.Seed, out var paperLabel))
             _itemSlots.TryEjectToHands(args.Seed, paperLabel.LabelSlot, args.User);
 
         _plantTray.PlantingPlantInTray(ent.Owner, plantUid, args.Seed.Comp.HealthOverride);
-        QueueDel(args.Seed);
+        PredictedQueueDel(args.Seed);
 
         if (plantData.PlantLogImpact != null)
         {

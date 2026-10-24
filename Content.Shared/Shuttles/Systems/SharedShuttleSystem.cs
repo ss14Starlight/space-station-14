@@ -62,11 +62,6 @@ public abstract partial class SharedShuttleSystem : EntitySystem
     public bool CanFTLTo(EntityUid shuttleUid, MapId targetMap, EntityUid consoleUid)
     {
         var mapUid = Maps.GetMapOrInvalid(targetMap);
-        // Starlight - start
-        if (!TryComp<MapComponent>(mapUid, out var mapComponent) || !mapComponent.MapInitialized)
-            return false;
-        // Starlight - end
-
         var shuttleMap = _xformQuery.GetComponent(shuttleUid).MapID;
 
         if (shuttleMap == targetMap)

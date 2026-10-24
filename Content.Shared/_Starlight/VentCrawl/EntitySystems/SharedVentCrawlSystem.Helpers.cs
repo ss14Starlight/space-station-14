@@ -148,7 +148,9 @@ public sealed partial class SharedVentCrawlSystem
         if (offsetIndex == 0)
             return Vector2.Zero;
 
-        var right = _xformSystem.GetWorldRotation(pipeUid).RotateVec(Vector2.UnitX);
+        var xform = Transform(pipeUid);
+
+        var right = xform.WorldRotation.RotateVec(Vector2.UnitX);
 
         var spacing = 0.15f;
 

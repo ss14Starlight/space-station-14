@@ -98,10 +98,10 @@
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
       visible: false # Starlight end: Layering fix
-  - type: CreamPied
-    sprite:
-      sprite: _Starlight/Effects/creampie.rsi
-      state: creampie_rodentia
+    - map: [ "clownedon" ]
+      sprite: "_Starlight/Effects/creampie.rsi"
+      state: "creampie_rodentia"
+      visible: false
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw

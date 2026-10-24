@@ -38,7 +38,6 @@ public sealed partial class AmbientLoopSystem : EntitySystem
     private readonly HashSet<EntityUid> _fadingOut = new();
     private TimeSpan _nextCheck;
     private float _volumeSlider;
-    private bool _stopPending;
 
     public override void Initialize()
     {
@@ -53,8 +52,6 @@ public sealed partial class AmbientLoopSystem : EntitySystem
 
     private void OnPlayerDetached(LocalPlayerDetachedEvent args)
     {
-        _stopPending = true;
-        _nextCheck = TimeSpan.Zero;
         // Streams sit in nullspace, so nothing else cleans them up; also kill loops that are still fading out.
         foreach (var stream in _fadingOut)
             DeleteStream(stream);
@@ -97,18 +94,7 @@ public sealed partial class AmbientLoopSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
-        // AudioSystem.Stop ignores client-side deletes outside the first predicted update.
-        if (_stopPending)
-        {
-            Stop(0f);
-            _current = null;
-            _stopPending = false;
-        }
-
-        if (_timing.RealTime < _nextCheck)
+        if (!_timing.IsFirstTimePredicted || _timing.RealTime < _nextCheck)
             return;
 
         _nextCheck = _timing.RealTime + CheckInterval;

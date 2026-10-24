@@ -25,7 +25,7 @@ public sealed partial class StarlightCCVars
     /// The theme of the interface.
     /// </summary>
     public static readonly CVarDef<string> StyleTheme =
-        CVarDef.Create("ui.style_theme", "NanoTrasen", CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("ui.style_theme", "Void", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// Accent color of the interface: window titles, headings, selected tabs, pressed buttons.
@@ -38,61 +38,6 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> StyleCustomAccent =
         CVarDef.Create("ui.style_custom_accent", false, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Show the old drag and drop job priority columns in the lobby, under the round info.
-    /// </summary>
-    public static readonly CVarDef<bool> LobbyJobColumns =
-        CVarDef.Create("ui.lobby_job_columns", false, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<string> LobbyBackground =
-        CVarDef.Create("ui.lobby_background", "", CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Width of the chat column in the lobby, dragged by its left edge.
-    /// </summary>
-    public static readonly CVarDef<int> LobbyChatWidth =
-        CVarDef.Create("ui.lobby_chat_width", 630, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Opacity of the lobby panels over the lobby art, 1 is fully opaque.
-    /// </summary>
-    public static readonly CVarDef<float> LobbyOpacity =
-        CVarDef.Create("ui.lobby_opacity", 0.95f, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Whether the chat in the lobby is collapsed to its header.
-    /// </summary>
-    public static readonly CVarDef<bool> LobbyChatCollapsed =
-        CVarDef.Create("ui.lobby_chat_collapsed", false, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Whether the ready and observe block sits above the lobby chat instead of below it.
-    /// </summary>
-    public static readonly CVarDef<bool> LobbyReadyOnTop =
-        CVarDef.Create("ui.lobby_ready_on_top", false, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Where each button of the top menu bar goes: <c>Name=Pinned|Auto|Menu|Hidden;...</c>, see BarLayout.
-    /// Buttons left out are Auto: on the bar while it fits, in the "more" menu otherwise.
-    /// </summary>
-    public static readonly CVarDef<string> MenuBarLayout =
-        CVarDef.Create("ui.menu_bar_layout",
-            "AchievementButton=Menu;ReportBugButton=Menu;SandboxButton=Menu",
-            CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// When the top menu bar shows keybinds on its buttons: Always, Hold (while Alt is held) or Never.
-    /// </summary>
-    public static readonly CVarDef<string> MenuBarKeyHints =
-        CVarDef.Create("ui.menu_bar_key_hints", "Always", CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    /// <summary>
-    /// Where each action and setting of the admin help header goes, same format as <see cref="MenuBarLayout"/>.
-    /// </summary>
-    public static readonly CVarDef<string> AHelpBarLayout =
-        CVarDef.Create("ui.ahelp_bar_layout", "Ban=Menu;Bans=Menu;Kick=Menu;RememberSelected=Menu;Respawn=Menu",
-            CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<string> RangedSight =
         CVarDef.Create("ui.ranged_sight", "GunSight", CVar.CLIENTONLY | CVar.ARCHIVE);

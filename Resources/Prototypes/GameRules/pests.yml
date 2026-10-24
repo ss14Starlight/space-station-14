@@ -52,7 +52,7 @@
   components:
   - type: StationEvent
     globalAnnouncement: false # Starlight
-    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAnnouncement: station-event-vent-creatures-start-horde-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
     earliestStart: 15

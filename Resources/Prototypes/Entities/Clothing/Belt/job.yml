@@ -255,7 +255,6 @@
       - CigPack
       - Dropper
       components:
-      - PlantAnalyzer
       - BotanySampleTaker
       - BotanyHoe
       - Seed
