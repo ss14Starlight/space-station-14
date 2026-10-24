@@ -72,12 +72,19 @@
   - type: HeldBreathStatusEffect
 
 - type: entity
-  parent: MobStatusEffectDebuff
-  id: StatusEffectAnxietySuppression
-  name: anxiety suppression
+  parent: StatusEffectSlowdown
+  id: StatusEffectPredatorHunt
+  name: Predator Hunt
   components:
   - type: StatusEffect
     whitelist:
       components:
       - MobState
-    maximumDuration: 40m
+      - MovementSpeedModifier
+      requireAll: true
+  - type: PredatorHuntStatusEffect
+  - type: MovementModStatusEffect
+    walkSpeedModifier: 0.95
+    sprintSpeedModifier: 0.95
+  - type: StatusEffectAlert
+    alert: PredatorHunt

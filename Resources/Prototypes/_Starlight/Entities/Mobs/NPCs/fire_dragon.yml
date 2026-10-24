@@ -1,0 +1,165 @@
+- type: entity
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, BaseSlicingRefinable ]
+  id: MobFireDragon
+  name: fire dragon
+  description: A massive western dragon with ember-hot scales and wings that darken the sky.
+  suffix: Dungeon
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFireDragon
+  - type: FireDragon
+    # Wing Dash is disabled until its movement is less snappy. It needs more work.
+    wingDashEnabled: false
+    abilitySound: /Audio/Animals/space_dragon_roar.ogg
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Carptongue
+    - Carpmind
+    understands:
+    - GalacticCommon
+    - Carptongue
+    - Carpmind
+    - Thaveyan
+  - type: ThermalVision
+  - type: AntagMonsterScaling
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 650
+    bloodlossThreshold: 0.3
+    bleedReductionAmount: 1.5
+    bloodRefreshAmount: 5
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ghost-role-information-fire-dragon-name
+    description: ghost-role-information-fire-dragon-description
+    rules: ghost-role-information-space-dragon-dungeon-rules
+    important: true
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: HTN
+    rootTask:
+      task: XenoCompound
+    blackboard:
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - Dragon
+  - type: Speech
+    speechVerb: LargeMob
+  - type: Emoting
+  - type: CombatMode
+  - type: MobMover
+  - type: InputMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.25
+    baseSprintSpeed: 4
+    baseWeightlessModifier: 1.5
+  - type: Sprite
+    sprite: _Starlight/Mobs/Aliens/Dragons/firedragon.rsi
+    noRot: true
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dragon-base
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dragon-base
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 100
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      567: Dead # 1.62 times the space dragon's base death threshold.
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      360: 0.9
+      450: 0.7
+      500: 0.5
+  - type: Damageable
+    damageModifierSet: FireDragonResistances
+  - type: Flammable
+    damage:
+      types: {}
+  - type: StatusEffects
+    allowed:
+    - Electrocution
+    - TemporaryBlindness
+    - Pacified
+    - RadiationProtection
+    - Adrenaline
+  - type: Temperature
+  - type: TemperatureDamage
+    heatDamageThreshold: 2400
+  - type: Metabolizer
+    solutionOnBody: false
+    updateInterval: 0.25
+    metabolizerTypes: [ Dragon ]
+    stages: [ Digestion, Bloodstream ]
+  - type: ToolRefinable
+    refineResult:
+    - id: FoodMeatDragon
+      amount: 2
+    - id: DragonTreasure
+      amount: 1
+  - type: InteractionPopup
+    successChance: 0.25
+    interactSuccessString: petting-success-dragon
+    interactFailureString: petting-failure-dragon
+    interactFailureSound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+    soundPerceivedByOthers: false
+  - type: MeleeWeapon
+    altDisarm: false
+    attackRate: 0.8
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Piercing: 12.5
+        Slash: 12.5
+  - type: Tag
+    tags:
+    - FireDragon
+    - CannotSuicide
+    - DoorBumpOpener
+    - StunImmune
+  - type: Puller
+    needsHands: false
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 2.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg

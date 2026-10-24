@@ -156,12 +156,49 @@
     - proto: MobCarpRainbow # carp version of rouny...
       cost: 3
       prob: 0.05
-    - proto: MobDragonDungeon
-      cost: 10
-      prob: 0.02
   difficulties:
     - Moderate
     - Easy
   configs:
     DefenseStructure: CarpStatue
-    Megafauna: MobDragonDungeon
+
+- type: salvageFaction
+  id: CarpsDragon
+  desc: salvage-faction-carps
+  megafauna: MobFireDragon
+  biomes:
+    - Abyss
+  # At most five supporting carps on Difficult.
+  entries:
+    - proto: MobCarpDungeon
+      cost: 40
+    - proto: MobCarpRainbow
+      cost: 80
+      prob: 0.05
+  difficulties:
+    - Difficult
+  configs:
+    DefenseStructure: CarpStatue
+
+- type: salvageFaction
+  id: CarpsDragonImpossible
+  desc: salvage-faction-carps
+  megafauna: MobFireDragon
+  biomes:
+    - Abyss
+  # Keep the usual Impossible carp budget, then add seven carps and two sharkminnows.
+  entries:
+    - proto: MobCarpDungeon
+      cost: 40
+    - proto: MobCarpRainbow
+      cost: 80
+      prob: 0.05
+  extraMobs:
+    - id: MobCarpDungeon
+      amount: 7
+    - id: MobShark
+      amount: 2
+  difficulties:
+    - Impossible
+  configs:
+    DefenseStructure: CarpStatue
