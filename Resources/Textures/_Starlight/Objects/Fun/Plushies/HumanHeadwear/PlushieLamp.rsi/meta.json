@@ -8,7 +8,87 @@
   "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432, inhand sprites by TiniestShark (github); headwear derivative of Objects/Fun/Plushies/lamp.rsi/icon.png.; human headwear adapted from _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieLamp.rsi.",
   "states": [
     {
-      "name": "equipped-HELMET",
+      "name": "equipped-HELMET-arachnid",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-avali",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-cyclorite",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-diona",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-Doll",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-dwarf",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-elf",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-experiment",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-felionoid",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-human",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-lagomorph",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-moth",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-default",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-reptilian",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-resomi",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-rodentia",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-shadekin",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-slimeperson",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-thaven",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-vox",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-vulpkanin",
       "directions": 4
     }
   ]

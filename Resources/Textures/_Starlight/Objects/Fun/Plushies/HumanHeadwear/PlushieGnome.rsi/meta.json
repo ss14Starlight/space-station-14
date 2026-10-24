@@ -8,7 +8,107 @@
   "copyright": "By CawsForConcern (GitHub); headwear derivative of _Starlight/Objects/Fun/Plushies/gnome_plushie.rsi/icon.png.; human headwear adapted from _Starlight/Objects/Fun/Plushies/BorgHeadwear/PlushieGnome.rsi.",
   "states": [
     {
-      "name": "equipped-HELMET",
+      "name": "equipped-HELMET-arachnid",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-avali",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-cyclorite",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-diona",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-Doll",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-dwarf",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-elf",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-experiment",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-felionoid",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-human",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-lagomorph",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-moth",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-default",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-reptilian",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-resomi",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-rodentia",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-shadekin",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-slimeperson",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-thaven",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-vox",
+      "copyright": "By CawsForConcern (GitHub)",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-vulpkanin",
       "copyright": "By CawsForConcern (GitHub)",
       "directions": 4
     }
