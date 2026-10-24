@@ -423,3 +423,17 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+- type: listing
+  id: EvolutionMenuUtilityBreathing
+  name: evolutionmenu-utility-breathing-name
+  description: evolutionmenu-utility-breathing-desc
+  icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: breathing }
+  productAction: ActionToggleChangelingBreathing
+  cost:
+    EvolutionPoint: 0
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

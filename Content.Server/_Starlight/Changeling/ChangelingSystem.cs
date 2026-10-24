@@ -79,6 +79,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private DamageableSystem _damage = default!;
     [Dependency] private BloodstreamSystem _blood = default!;
+    [Dependency] private RespiratorSystem _respirator = default!;
     [Dependency] private ISerializationManager _serialization = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
@@ -120,17 +121,6 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private static readonly ProtoId<ReagentPrototype> BloodPrototype = "Blood";
     private static readonly ProtoId<ReagentPrototype> BloodChangelingPrototype = "BloodChangeling";
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<ChangelingComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<ChangelingComponent, MobStateChangedEvent>(OnMobStateChange);
-        SubscribeLocalEvent<ChangelingComponent, DamageChangedEvent>(OnDamageChange);
-        SubscribeLocalEvent<ChangelingComponent, ComponentRemove>(OnComponentRemove);
-
-        SubscribeAbilities();
-    }
 
     public override void Update(float frameTime)
     {
@@ -147,21 +137,22 @@ public sealed partial class ChangelingSystem : EntitySystem
             {
                 comp.ChemicalNextUpdateTime = _timing.CurTime + comp.ChemicalUpdateCooldown;
                 UpdateChemicals(uid, comp);
-                UpdateAbilities(uid, comp); //probably overkill since I dont think chemicals affect abilities but whatever, im cleaning up shitcode
+                // Stasis drains once per chemical tick, not again on biomass updates.
+                if (comp.IsInStasis)
+                    comp.Biomass = Math.Max(0, comp.Biomass - comp.StasisDrain * (float) comp.ChemicalUpdateCooldown.TotalSeconds);
+                UpdateAbilities(uid, comp);
             }
 
             if (_timing.CurTime >= comp.BiomassNextUpdateTime)
             {
                 comp.BiomassNextUpdateTime = _timing.CurTime + comp.BiomassUpdateCooldown;
                 //subtract biomass
-                if (_gameTicker.RunLevel < GameRunLevel.PostRound) // Starlight: Only get hungrier when not EOR
+                if (_gameTicker.RunLevel < GameRunLevel.PostRound)
                     comp.Biomass -= comp.BiomassDrain;
                 UpdateBiomass(uid, comp);
-                UpdateAbilities(uid, comp);
             }
         }
     }
-
     private void UpdateChemicals(EntityUid uid, ChangelingComponent comp, float? amount = null)
     {
         var chemicals = comp.Chemicals;
@@ -180,12 +171,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var random = _rand.Prob(0.5f);
 
-        if (comp.Biomass <= 0)
-        {
-            // game over, man
-            _damage.TryChangeDamage(uid, new DamageSpecifier(_proto.Index(AbsorbedDamageGroup), 50), true);
-        }
-        else if (comp.Biomass <= comp.MaxBiomass * comp.BiomassDeficitVomitPercent)
+        if (comp.Biomass <= comp.MaxBiomass * comp.BiomassDeficitVomitPercent)
         {
             // THE FUNNY ITCH IS REAL!!
             comp.BonusChemicalRegen = 3f;
@@ -230,14 +216,16 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (comp.StrainedMusclesActive)
         {
             _stamina.TakeStaminaDamage(uid, 7.5f, visual: false);
-            if (stamina.StaminaDamage >= stamina.CritThreshold || _gravity.IsWeightless(uid))
+            if (comp.Biomass < 1 || stamina.StaminaDamage >= stamina.CritThreshold || _gravity.IsWeightless(uid))
                 ToggleStrainedMuscles(uid, comp);
         }
 
         if (comp.StealthEnabled)
         {
-            if (comp.Chemicals > comp.StealthDrain)
-                comp.Chemicals -= comp.StealthDrain;
+            if (comp.Biomass < 1)
+                ToggleChameleonSkin(uid, comp, false);
+            else if (comp.Chemicals >= comp.StealthDrain)
+                UpdateChemicals(uid, comp, -comp.StealthDrain);
             else
             {
                 _stamina.TakeStaminaDamage(uid, 35f, visual: false);
@@ -246,18 +234,12 @@ public sealed partial class ChangelingSystem : EntitySystem
             }
         }
 
-        if (comp.IsInStasis)
+        if (comp.IsInStasis && comp.Biomass <= 0)
         {
-            if (comp.Biomass > comp.StasisDrain)
-                comp.Biomass -= comp.StasisDrain;
-            else
-            {
-                comp.IsInStasis = false;
-                _mobState.ChangeMobState(uid, MobState.Dead);
-            }
+            comp.IsInStasis = false;
+            _mobState.ChangeMobState(uid, MobState.Dead);
         }
     }
-
     #region Helper Methods
 
     public void PlayMeatySound(EntityUid uid, ChangelingComponent comp)
@@ -423,6 +405,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     private ChangelingComponent? CopyChangelingComponent(EntityUid target, ChangelingComponent comp)
     {
         var newComp = EnsureComp<ChangelingComponent>(target);
+        newComp.Resources = comp.Resources;
         newComp.AbsorbedDNA = comp.AbsorbedDNA;
         newComp.AbsorbedDNAIndex = comp.AbsorbedDNAIndex;
 
@@ -432,6 +415,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         newComp.Biomass = comp.Biomass;
         newComp.MaxBiomass = comp.MaxBiomass;
 
+        newComp.BreathingEnabled = comp.BreathingEnabled;
+        _respirator.SetEnabled(target, newComp.BreathingEnabled);
         newComp.IsInLesserForm = comp.IsInLesserForm;
         newComp.CurrentForm = comp.CurrentForm;
 
@@ -543,6 +528,9 @@ public sealed partial class ChangelingSystem : EntitySystem
             newUid = TransformEntity(target, data: data, persistentDna: persistentDna);
         else newUid = TransformEntity(target, data: data, comp: comp, persistentDna: persistentDna);
 
+        if (newUid == null)
+            return false;
+
         if (newUid != null)
         {
             PlayMeatySound((EntityUid) newUid, comp);
@@ -552,7 +540,6 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         return true;
     }
-
     public void RemoveAllChangelingEquipment(EntityUid target, ChangelingComponent comp)
     {
         // check if there's no entities or all entities are null
@@ -570,10 +557,12 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     #region Event Handlers
 
+    [SubscribeLocalEvent]
     private void OnStartup(EntityUid uid, ChangelingComponent comp, ref ComponentStartup args)
     {
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
+        _respirator.SetEnabled(uid, comp.BreathingEnabled);
         //EnsureComp<ZombieImmuneComponent>(uid); Starlight, we're bringing Lings into Zombies!
 
         // add actions
@@ -598,12 +587,14 @@ public sealed partial class ChangelingSystem : EntitySystem
         // Starlight edit end
     }
 
+    [SubscribeLocalEvent]
     private void OnMobStateChange(EntityUid uid, ChangelingComponent comp, ref MobStateChangedEvent args)
     {
         if (args.NewMobState == MobState.Dead)
             RemoveAllChangelingEquipment(uid, comp);
     }
 
+    [SubscribeLocalEvent]
     private void OnDamageChange(Entity<ChangelingComponent> ent, ref DamageChangedEvent args)
     {
         var target = args.Damageable;
@@ -620,8 +611,11 @@ public sealed partial class ChangelingSystem : EntitySystem
         damageSpec.ClampMax(200); // we never die. UNLESS??
     }
 
-    private void OnComponentRemove(Entity<ChangelingComponent> ent, ref ComponentRemove args) => RemoveAllChangelingEquipment(ent, ent.Comp);
-
-
+    [SubscribeLocalEvent]
+    private void OnComponentRemove(Entity<ChangelingComponent> ent, ref ComponentRemove args)
+    {
+        RemoveAllChangelingEquipment(ent, ent.Comp);
+        _respirator.SetEnabled(ent.Owner, true);
+    }
     #endregion
 }

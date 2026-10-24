@@ -42,6 +42,11 @@ public sealed partial class ChangelingComponent : Component
 
     public bool IsInStasis = false;
 
+    [DataField, AutoNetworkedField]
+    public bool BreathingEnabled = true;
+
+    public ChangelingResources Resources = new();
+
     public bool StrainedMusclesActive = false;
 
     public bool IsInLesserForm = false;
@@ -52,7 +57,7 @@ public sealed partial class ChangelingComponent : Component
     public float StealthDrain = 1.25f; // 6.6 minutes to fully drain 100 chemicals
 
     [DataField]
-    public float StasisDrain = 0.2f;
+    public float StasisDrain = 10f / 60f;
 
 
     public Dictionary<string, EntityUid?> Equipment = new();
@@ -61,13 +66,13 @@ public sealed partial class ChangelingComponent : Component
     ///     Amount of biomass changeling currently has.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float Biomass = 40f;
+    public float Biomass { get => Resources.Biomass; set => Resources.Biomass = value; }
 
     /// <summary>
     ///     Maximum amount of biomass a changeling can have.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float MaxBiomass = 60f;
+    public float MaxBiomass { get => Resources.MaxBiomass; set => Resources.MaxBiomass = value; }
 
     [DataField, AutoNetworkedField]
     public float BiomassDeficitWarningPercent = 0.5f;
@@ -80,25 +85,25 @@ public sealed partial class ChangelingComponent : Component
     ///     How much biomass should be removed per cycle.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float BiomassDrain = 0.5f; // Starlight, gives them double time to eat.
+    public float BiomassDrain = 0.4f;
 
     /// <summary>
     ///     Current amount of chemicals changeling currently has.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float Chemicals = 100f;
+    public float Chemicals { get => Resources.Chemicals; set => Resources.Chemicals = value; }
 
     /// <summary>
     ///     Maximum amount of chemicals changeling can have.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float MaxChemicals = 100f;
+    public float MaxChemicals { get => Resources.MaxChemicals; set => Resources.MaxChemicals = value; }
 
     /// <summary>
     ///     Bonus chemicals regeneration. In case
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float BonusChemicalRegen = 0f;
+    public float BonusChemicalRegen { get => Resources.BonusChemicalRegen; set => Resources.BonusChemicalRegen = value; }
 
     /// <summary>
     ///     Cooldown between chem regen events.
@@ -147,6 +152,15 @@ public sealed partial class ChangelingComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly)]
     public TransformData? SelectedForm;
+}
+
+public sealed class ChangelingResources
+{
+    public float Biomass = 40f;
+    public float MaxBiomass = 60f;
+    public float Chemicals = 100f;
+    public float MaxChemicals = 100f;
+    public float BonusChemicalRegen;
 }
 
 [DataDefinition]
