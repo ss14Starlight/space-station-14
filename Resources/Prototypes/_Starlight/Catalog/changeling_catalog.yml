@@ -1,3 +1,5 @@
+# combat
+
 - type: listing
   id: EvolutionMenuCombatArmblade
   name: evolutionmenu-combat-armblade-name
@@ -13,19 +15,6 @@
     stock: 1
 
 - type: listing
-  id: EvolutionMenuCombatArmbladePlus
-  name: evolutionmenu-combat-armblade-plus-name
-  description: evolutionmenu-combat-armblade-plus-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: armblade-plus }
-  productAction: ActionRetractableItemArmBladePlus
-  cost:
-    EvolutionPoint: 5
-  categories: []
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: EvolutionMenuCombatBoneShard
   name: evolutionmenu-combat-boneshard-name
   description: evolutionmenu-evolving-boneshard-desc
@@ -35,6 +24,195 @@
     EvolutionPoint: 3
   categories:
   - ChangelingAbilityCombat
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuCombatShriekDissonant
+  name: evolutionmenu-combat-shriek-dissonant-name
+  description: evolutionmenu-evolving-shriek-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: shriek_dissonant }
+  productAction: ActionShriekDissonant
+  cost:
+    EvolutionPoint: 2
+  categories:
+  - ChangelingAbilityCombat
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuCombatMuscles
+  name: evolutionmenu-enhanced-strength-name
+  description: evolutionmenu-evolving-muscles-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: strained_muscles }
+  productAction: ActionToggleStrainedMuscles
+  cost:
+    EvolutionPoint: 2
+  categories:
+  - ChangelingAbilityCombat
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# sting
+
+- type: listing
+  id: EvolutionMenuChemicalSting
+  name: evolutionmenu-sting-chemical-name
+  description: evolutionmenu-sting-chemical-desc
+  icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: chemical-synthesis }
+  productEvent: !type:LearnChemicalStingEvent {}
+  raiseProductEventOnUser: true
+  disableRefund: true
+  cost:
+    EvolutionPoint: 10
+  categories:
+  - ChangelingAbilitySting
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuStingFakeArmblade
+  name: evolutionmenu-sting-armblade-name
+  description: evolutionmenu-sting-armblade-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_armblade }
+  productAction: ActionStingFakeArmblade
+  cost:
+    EvolutionPoint: 5
+  categories:
+  - ChangelingAbilitySting
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuStingInfect
+  name: evolutionmenu-sting-infect-name
+  description: evolutionmenu-sting-infect-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_transform }
+  productAction: ActionStingInfect
+  cost:
+    EvolutionPoint: 0
+  categories:
+  - ChangelingAbilitySting
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+
+# utility
+- type: listing
+  id: EvolutionMenuUtilityBreathing
+  name: evolutionmenu-utility-breathing-name
+  description: evolutionmenu-utility-breathing-desc
+  icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: breathing }
+  productAction: ActionToggleChangelingBreathing
+  cost:
+    EvolutionPoint: 0
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuUtilityEyesight
+  name: evolutionmenu-utility-eyesight-name
+  description: evolutionmenu-evolving-eyes-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: augmented_eyesight }
+  productAction: ActionAugmentedEyesight
+  cost:
+    EvolutionPoint: 2
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# Starlight start
+- type: listing
+  id: EvolutionMenuUtilityChameleon
+  name: evolutionmenu-utility-chameleon-name
+  description: evolutionmenu-evolving-chameleon-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: chameleon_skin }
+  productAction: ActionChameleonSkin
+  cost:
+    EvolutionPoint: 4
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuUtilitySpacesuit
+  name: evolutionmenu-utility-spacesuit-name
+  description: evolutionmenu-evolving-spacesuit-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: space_adaptation }
+  productAction: ActionToggleSpacesuit
+  cost:
+    EvolutionPoint: 4
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuUtilityNeocyte
+  name: evolutionmenu-utility-neocyte-name
+  description: evolutionmenu-utility-neocyte-desc
+  icon: { sprite: _Starlight/Actions/changeling.rsi, state: protogen_armor }
+  productAction: ActionToggleNeocyteDisguise
+  cost:
+    EvolutionPoint: 0
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuUtilityHivemindAccess
+  name: evolutionmenu-utility-hivemindaccess-name
+  description: evolutionmenu-utility-hivemindaccess-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: hivemind_access }
+  productAction: ActionHivemindAccess
+  cost:
+    EvolutionPoint: 2
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuUtilityFakeMindshield
+  name: evolutionmenu-utility-fakemindshield-name
+  description: evolutionmenu-utility-fakemindshield-desc
+  icon: { sprite: Interface/Actions/actions_fakemindshield.rsi, state: icon }
+  productAction: FakeMindShieldToggleAction
+  cost:
+    EvolutionPoint: 4
+  categories:
+    - ChangelingAbilityUtility
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+# Legacy listings stay registered, with no categories so stores cannot offer or purchase them.
+- type: listing
+  id: EvolutionMenuCombatArmbladePlus
+  name: evolutionmenu-combat-armblade-plus-name
+  description: evolutionmenu-combat-armblade-plus-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: armblade-plus }
+  productAction: ActionRetractableItemArmBladePlus
+  cost:
+    EvolutionPoint: 5
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -66,20 +244,6 @@
     stock: 1
 
 - type: listing
-  id: EvolutionMenuCombatShriekDissonant
-  name: evolutionmenu-combat-shriek-dissonant-name
-  description: evolutionmenu-evolving-shriek-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: shriek_dissonant }
-  productAction: ActionShriekDissonant
-  cost:
-    EvolutionPoint: 2
-  categories:
-  - ChangelingAbilityCombat
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: EvolutionMenuCombatShriekResonant
   name: evolutionmenu-combat-shriek-resonant-name
   description: evolutionmenu-combat-shriek-resonant-desc
@@ -93,22 +257,6 @@
     stock: 1
 
 - type: listing
-  id: EvolutionMenuCombatMuscles
-  name: evolutionmenu-enhanced-strength-name
-  description: evolutionmenu-evolving-muscles-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: strained_muscles }
-  productAction: ActionToggleStrainedMuscles
-  cost:
-    EvolutionPoint: 2
-  categories:
-  - ChangelingAbilityCombat
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-# sting
-
-- type: listing
   id: EvolutionMenuStingBlind
   name: evolutionmenu-sting-blind-name
   description: evolutionmenu-sting-blind-desc
@@ -116,8 +264,7 @@
   productAction: ActionStingBlind
   cost:
     EvolutionPoint: 4
-  categories:
-  - ChangelingAbilitySting
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -130,8 +277,7 @@
   productAction: ActionStingCryo
   cost:
     EvolutionPoint: 3
-  categories:
-  - ChangelingAbilitySting
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -144,8 +290,7 @@
   productAction: ActionStingBurn
   cost:
     EvolutionPoint: 4
-  categories:
-  - ChangelingAbilitySting
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -158,8 +303,7 @@
   productAction: ActionStingLethargic
   cost:
     EvolutionPoint: 3 # Starlight, the drain sting is the stronger version of this.
-  categories:
-  - ChangelingAbilitySting
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -172,8 +316,7 @@
   productAction: ActionStingDrain
   cost:
     EvolutionPoint: 4
-  categories:
-  - ChangelingAbilitySting
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -186,27 +329,10 @@
   productAction: ActionStingMute
   cost:
     EvolutionPoint: 4
-  categories:
-  - ChangelingAbilitySting
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
-
-- type: listing
-  id: EvolutionMenuStingFakeArmblade
-  name: evolutionmenu-sting-armblade-name
-  description: evolutionmenu-sting-armblade-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_armblade }
-  productAction: ActionStingFakeArmblade
-  cost:
-    EvolutionPoint: 5
-  categories:
-  - ChangelingAbilitySting
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-# utility
 
 - type: listing
   id: EvolutionMenuUtilityPanacea
@@ -220,22 +346,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
-
-- type: listing
-  id: EvolutionMenuUtilityEyesight
-  name: evolutionmenu-utility-eyesight-name
-  description: evolutionmenu-evolving-eyes-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: augmented_eyesight }
-  productAction: ActionAugmentedEyesight
-  cost:
-    EvolutionPoint: 2
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-# Starlight start
 
 - type: listing
   id: EvolutionMenuUtilityNightEyesight
@@ -271,22 +381,7 @@
   productAction: ActionBiodegrade
   cost:
     EvolutionPoint: 4
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuUtilityChameleon
-  name: evolutionmenu-utility-chameleon-name
-  description: evolutionmenu-evolving-chameleon-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: chameleon_skin }
-  productAction: ActionChameleonSkin
-  cost:
-    EvolutionPoint: 4
-  categories:
-  - ChangelingAbilityUtility
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -351,66 +446,7 @@
   productAction: ActionToggleLesserForm
   cost:
     EvolutionPoint: 2
-  categories:
-  - ChangelingAbilityUtility
+  categories: []
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
-
-- type: listing
-  id: EvolutionMenuUtilitySpacesuit
-  name: evolutionmenu-utility-spacesuit-name
-  description: evolutionmenu-evolving-spacesuit-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: space_adaptation }
-  productAction: ActionToggleSpacesuit
-  cost:
-    EvolutionPoint: 4
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuUtilityNeocyte
-  name: evolutionmenu-utility-neocyte-name
-  description: evolutionmenu-utility-neocyte-desc
-  icon: { sprite: _Starlight/Actions/changeling.rsi, state: protogen_armor }
-  productAction: ActionToggleNeocyteDisguise
-  cost:
-    EvolutionPoint: 0
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuUtilityHivemindAccess
-  name: evolutionmenu-utility-hivemindaccess-name
-  description: evolutionmenu-utility-hivemindaccess-desc
-  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: hivemind_access }
-  productAction: ActionHivemindAccess
-  cost:
-    EvolutionPoint: 2
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: EvolutionMenuUtilityFakeMindshield
-  name: evolutionmenu-utility-fakemindshield-name
-  description: evolutionmenu-utility-fakemindshield-desc
-  icon: { sprite: Interface/Actions/actions_fakemindshield.rsi, state: icon }
-  productAction: FakeMindShieldToggleAction
-  cost:
-    EvolutionPoint: 4
-  categories:
-    - ChangelingAbilityUtility
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
-# Legacy listings stay registered, with no categories so stores cannot offer or purchase them.

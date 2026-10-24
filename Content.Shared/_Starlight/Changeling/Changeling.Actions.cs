@@ -44,6 +44,13 @@ public sealed partial class ToggleStrainedMusclesEvent : InstantActionEvent { }
 
 #region Events - Sting
 
+[DataDefinition, Serializable, NetSerializable]
+public sealed partial class LearnChemicalStingEvent : EntityEventArgs { }
+public sealed partial class OpenChangelingChemistryEvent : InstantActionEvent { }
+public sealed partial class ChemicalStingEvent : EntityTargetActionEvent { }
+public sealed partial class StingFakeArmbladeEvent : EntityTargetActionEvent { }
+public sealed partial class StingInfectEvent : EntityTargetActionEvent { }
+
 public sealed partial class StingBlindEvent : EntityTargetActionEvent { }
 public sealed partial class StingChemEvent : EntityTargetActionEvent
 {

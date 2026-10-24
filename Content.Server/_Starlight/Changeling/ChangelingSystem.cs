@@ -134,6 +134,7 @@ public sealed partial class ChangelingSystem : EntitySystem
                     comp.Biomass = Math.Max(0, comp.Biomass - comp.StasisDrain * (comp.Evolved ? 0.5f : 1) * (float) comp.ChemicalUpdateCooldown.TotalSeconds);
                 UpdateAbilities(uid, comp);
                 UpdateAdaptations(uid, comp);
+                UpdateStingChemistry(uid, comp);
             }
 
             if (_timing.CurTime >= comp.BiomassNextUpdateTime)
@@ -416,6 +417,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         newComp.BiomassDeficitVomitPercent = comp.BiomassDeficitVomitPercent;
         newComp.BreathingEnabled = comp.BreathingEnabled;
         _respirator.SetEnabled(target, newComp.BreathingEnabled);
+        CopyStingChemistry(source, target, comp, newComp);
 
         newComp.IsInLesserForm = comp.IsInLesserForm;
         newComp.CurrentForm = comp.CurrentForm;
@@ -619,6 +621,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         StopAdaptations(ent, ent.Comp);
         RemoveAllChangelingEquipment(ent, ent.Comp);
         _respirator.SetEnabled(ent.Owner, true);
+        RemoveStingChemistry(ent.Owner);
     }
 
     #endregion

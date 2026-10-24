@@ -1,3 +1,6 @@
+# abilities
+
+# starting
 - type: entity
   id: ActionEvolutionMenu
   name: Open evolution menu
@@ -41,6 +44,7 @@
     useInLesserForm: true
   - type: EorgPreventAction
 
+
 - type: entity
   id: ActionEnterStasis
   name: Enter regenerative stasis
@@ -83,7 +87,6 @@
     useInLesserForm: true
 
 # combat
-
 - type: entity
   parent: BaseAction
   id: ActionRetractableItemArmBladePlus
@@ -223,7 +226,322 @@
     useInLesserForm: true
 
 # stings
+- type: entity
+  id: ActionChangelingChemistry
+  name: Chemical Synthesis
+  description: Mix, heat or cool up to 30u of chemicals for your sting. Replenishing your reagent stocks consumes chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: chemical-synthesis }
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:OpenChangelingChemistryEvent {}
+  - type: ChangelingAction
+    requireBiomass: false
+    useInLesserForm: true
 
+- type: entity
+  id: ActionChemicalSting
+  name: Chemical Sting
+  description: Silently inject a chosen dose of your prepared mixture. Evolution lets you inject yourself. Costs 10 chemicals per sting.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    useDelay: 1
+    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: epinephrine_overdose }
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    event: !type:ChemicalStingEvent {}
+  - type: ChangelingAction
+    useInLesserForm: true
+
+- type: entity
+  id: ActionStingFakeArmblade
+  name: Fake Armblade Sting
+  description: Grow a dull armblade in your target's hand. It cannot be dropped and lasts 30 seconds. Evolution grows a blade in each hand. Costs 50 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
+      state: sting_armblade
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    event: !type:StingFakeArmbladeEvent {}
+  - type: ChangelingAction
+    chemicalCost: 50
+  - type: EorgPreventAction
+
+- type: entity
+  parent: ActionChangelingDevour
+  id: ActionStingInfect
+  name: Infection Sting
+  description: Awaken an independent changeling in an organic victim. They retain their mind and enter regenerative stasis with half the usual starting evolution points. Costs 2 evolution points once the transformation is complete.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: sting_transform }
+    iconOn: null
+  - type: EntityTargetAction
+    canTargetSelf: false
+    event: !type:StingInfectEvent {}
+  - type: ChangelingAction
+
+# utility
+- type: entity
+  id: ActionAnatomicPanacea
+  name: Anatomic Panacea
+  description: Cure yourself of diseases, disabilities, radiation, toxins, drunkedness and brain damage. Costs 30 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
+      state: anatomic_panacea
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:ActionAnatomicPanaceaEvent {}
+  - type: ChangelingAction
+    chemicalCost: 30
+    useInLesserForm: true
+
+- type: entity
+  id: ActionToggleChangelingBreathing
+  name: Respiratory Control
+  description: Choose whether your body needs to breathe. While breathing is stopped, you cannot inhale gases or suffocate. Costs no chemicals or biomass.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    useDelay: 1
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: breathing }
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:ToggleChangelingBreathingEvent {}
+  # No ChangelingAction: respiration is independent of biomass, chemicals and form.
+
+- type: entity
+  id: ActionAugmentedEyesight
+  name: Augmented Eyesight
+  description: Protect your eyes from flashes and see in darkness. Evolution also reveals heat signatures through walls. Toggle at will.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
+      state: augmented_eyesight
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ActionAugmentedEyesightEvent {}
+  - type: ChangelingAction
+    chemicalCost: 0
+    requireBiomass: false
+
+- type: entity
+  id: ActionNightEyesight
+  name: Night Vision Eyesight
+  description: Toggle night vision.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: night_eyesight
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ActionNightEyesightEvent {}
+  - type: ChangelingAction
+    chemicalCost: 15
+    useInLesserForm: true
+
+- type: entity
+  id: ActionThermalEyesight
+  name: Thermal Eyesight
+  description: Toggle thermal vision.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: thermal_eyesight
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ActionThermalEyesightEvent {}
+  - type: ChangelingAction
+    chemicalCost: 30 # Should have some cost associated with it.
+    useInLesserForm: true
+
+- type: entity
+  id: ActionChameleonSkin
+  name: Chameleon Skin
+  description: Cloak your body to blend into your surroundings. Costs 15 chemicals to toggle and 1.25 per second while active. Evolution lets you move without revealing yourself and reduces upkeep to 0.5 chemicals per second.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
+      state: chameleon_skin
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:ActionChameleonSkinEvent {}
+  - type: ChangelingAction
+    chemicalCost: 15 # Takes energy to disable, so we can make it a little cheaper.
+
+- type: entity
+  id: ActionEphedrineOverdose
+  name: Ephedrine Overdose
+  description: Inject some stimulants into yourself. Costs 20 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
+      state: epinephrine_overdose
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ActionEphedrineOverdoseEvent {}
+  - type: ChangelingAction
+    chemicalCost: 20 # It's the weakest one of the stimulants, so it can be cheaper.
+    useInLesserForm: true
+
+- type: entity
+  id: ActionDesoxyephedrineOverdose
+  name: Desoxyephedrine Overdose
+  description: Inject some stronger stimulants into yourself, poisoning yourself mildly. Costs 30 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: desoxyephedrine_overdose
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ActionDesoxyephedrineOverdoseEvent {}
+  - type: ChangelingAction
+    chemicalCost: 30 # It injects enough Desoxy to hurt you, so it doesn't need to be that more expensive.
+    useInLesserForm: true
+
+- type: entity
+  id: ActionAmalgamOverdose
+  name: Amalgam Overdose
+  description: Inject some incredibly strong stimulants into yourself. Costs 40 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: amalgam_overdose
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ActionAmalgamOverdoseEvent {}
+  - type: ChangelingAction
+    chemicalCost: 40
+    useInLesserForm: true
+
+- type: entity
+  id: ActionFleshmend
+  name: Fleshmend
+  description: Rapidly heal yourself. Costs 35 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
+      state: fleshmend
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ActionFleshmendEvent {}
+  - type: ChangelingAction
+    chemicalCost: 35
+    useInLesserForm: true
+
+- type: entity
+  id: ActionToggleSpacesuit
+  name: Toggle Space Suit
+  description: Grow an organic suit and helmet that protect you from space. Evolution hardens them into heavily reinforced chitinous armor. Costs 20 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
+      state: space_adaptation
+  - type: InstantAction
+    event: !type:ActionSpacesuitEvent {}
+  - type: ChangelingAction
+    chemicalCost: 20
+
+- type: entity
+  id: ActionToggleNeocyteDisguise
+  name: Toggle Neocyte Disguise
+  description: Shape your outer tissue to resemble a Neocyte's cybernetic frame. Requires a Neocyte disguise. Costs no chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: protogen_armor
+  - type: InstantAction
+    event: !type:ActionNeocyteDisguiseEvent {}
+  - type: ChangelingAction
+    chemicalCost: 0
+
+- type: entity
+  id: ActionHivemindAccess
+  name: Hivemind Access
+  description: Tune your chemical receptors for hivemind communication.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
+      state: hivemind_access
+  - type: InstantAction
+    event: !type:ActionHivemindAccessEvent {}
+  - type: ChangelingAction
+    chemicalCost: 0
+    useInLesserForm: true
+
+# Legacy actions are available for compatibility/admin grants; normal changelings do not receive them.
 - type: entity
   id: ActionStingBlind
   name: Blind Sting
@@ -366,29 +684,6 @@
     useInLesserForm: true
 
 - type: entity
-  id: ActionStingFakeArmblade
-  name: Fake Armblade Sting
-  description: Silently sting your target, making them grow a dull armblade for a short time. Costs 50 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: sting_armblade
-  - type: TargetAction
-    interactOnMiss: false
-  - type: EntityTargetAction
-    whitelist:
-      components:
-      - Body
-    canTargetSelf: false
-    event: !type:StingFakeArmbladeEvent {}
-  - type: ChangelingAction
-    chemicalCost: 50
-    useInLesserForm: true
-
-- type: entity
   id: ActionStingTransform
   name: Transformation Sting
   description: Silently sting your target, transforming them into a person of your choosing. Costs 75 chemicals.
@@ -412,82 +707,6 @@
     useInLesserForm: true
   - type: EorgPreventAction
 
-# utility
-
-- type: entity
-  id: ActionAnatomicPanacea
-  name: Anatomic Panacea
-  description: Cure yourself of diseases, disabilities, radiation, toxins, drunkedness and brain damage. Costs 30 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 30
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: anatomic_panacea
-    checkCanInteract: false
-    checkConsciousness: false
-  - type: InstantAction
-    event: !type:ActionAnatomicPanaceaEvent {}
-  - type: ChangelingAction
-    chemicalCost: 30
-    useInLesserForm: true
-
-- type: entity
-  id: ActionAugmentedEyesight
-  name: Augmented Eyesight
-  description: Protect your eyes from flashes and see in darkness. Evolution also reveals heat signatures through walls. Toggle at will.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: augmented_eyesight
-    checkCanInteract: false
-  - type: InstantAction
-    event: !type:ActionAugmentedEyesightEvent {}
-  - type: ChangelingAction
-    chemicalCost: 0
-    requireBiomass: false
-
-- type: entity
-  id: ActionNightEyesight
-  name: Night Vision Eyesight
-  description: Toggle night vision.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Actions/changeling.rsi
-      state: night_eyesight
-    checkCanInteract: false
-  - type: InstantAction
-    event: !type:ActionNightEyesightEvent {}
-  - type: ChangelingAction
-    chemicalCost: 15
-    useInLesserForm: true
-
-- type: entity
-  id: ActionThermalEyesight
-  name: Thermal Eyesight
-  description: Toggle thermal vision.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Actions/changeling.rsi
-      state: thermal_eyesight
-    checkCanInteract: false
-  - type: InstantAction
-    event: !type:ActionThermalEyesightEvent {}
-  - type: ChangelingAction
-    chemicalCost: 30 # Should have some cost associated with it.
-    useInLesserForm: true
-
 - type: entity
   id: ActionBiodegrade
   name: Biodegrade
@@ -509,101 +728,6 @@
   - type: EorgPreventAction
 
 - type: entity
-  id: ActionChameleonSkin
-  name: Chameleon Skin
-  description: Cloak your body to blend into your surroundings. Costs 15 chemicals to toggle and 1.25 per second while active. Evolution lets you move without revealing yourself and reduces upkeep to 0.5 chemicals per second.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 1
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: chameleon_skin
-    checkCanInteract: false
-    checkConsciousness: false
-  - type: InstantAction
-    event: !type:ActionChameleonSkinEvent {}
-  - type: ChangelingAction
-    chemicalCost: 15 # Takes energy to disable, so we can make it a little cheaper.
-
-- type: entity
-  id: ActionEphedrineOverdose
-  name: Ephedrine Overdose
-  description: Inject some stimulants into yourself. Costs 20 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 10
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: epinephrine_overdose
-    checkCanInteract: false
-  - type: InstantAction
-    event: !type:ActionEphedrineOverdoseEvent {}
-  - type: ChangelingAction
-    chemicalCost: 20 # It's the weakest one of the stimulants, so it can be cheaper.
-    useInLesserForm: true
-
-- type: entity
-  id: ActionDesoxyephedrineOverdose
-  name: Desoxyephedrine Overdose
-  description: Inject some stronger stimulants into yourself, poisoning yourself mildly. Costs 30 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 20
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Actions/changeling.rsi
-      state: desoxyephedrine_overdose
-    checkCanInteract: false
-  - type: InstantAction
-    event: !type:ActionDesoxyephedrineOverdoseEvent {}
-  - type: ChangelingAction
-    chemicalCost: 30 # It injects enough Desoxy to hurt you, so it doesn't need to be that more expensive.
-    useInLesserForm: true
-
-- type: entity
-  id: ActionAmalgamOverdose
-  name: Amalgam Overdose
-  description: Inject some incredibly strong stimulants into yourself. Costs 40 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 20
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Actions/changeling.rsi
-      state: amalgam_overdose
-    checkCanInteract: false
-  - type: InstantAction
-    event: !type:ActionAmalgamOverdoseEvent {}
-  - type: ChangelingAction
-    chemicalCost: 40
-    useInLesserForm: true
-
-- type: entity
-  id: ActionFleshmend
-  name: Fleshmend
-  description: Rapidly heal yourself. Costs 35 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 30
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: fleshmend
-    checkCanInteract: false
-  - type: InstantAction
-    event: !type:ActionFleshmendEvent {}
-  - type: ChangelingAction
-    chemicalCost: 35
-    useInLesserForm: true
-
-- type: entity
   id: ActionToggleLesserForm
   name: Lesser Form
   description: Abandon your current form and transform into a monkey. Costs 20 chemicals.
@@ -620,74 +744,3 @@
     event: !type:ActionLesserFormEvent {}
   - type: ChangelingAction
     chemicalCost: 20
-
-- type: entity
-  id: ActionToggleSpacesuit
-  name: Toggle Space Suit
-  description: Grow an organic suit and helmet that protect you from space. Evolution hardens them into heavily reinforced chitinous armor. Costs 20 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 2
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: space_adaptation
-  - type: InstantAction
-    event: !type:ActionSpacesuitEvent {}
-  - type: ChangelingAction
-    chemicalCost: 20
-
-- type: entity
-  id: ActionToggleNeocyteDisguise
-  name: Toggle Neocyte Disguise
-  description: Shape your outer tissue to resemble a Neocyte's cybernetic frame. Requires a Neocyte disguise. Costs no chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 2
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Actions/changeling.rsi
-      state: protogen_armor
-  - type: InstantAction
-    event: !type:ActionNeocyteDisguiseEvent {}
-  - type: ChangelingAction
-    chemicalCost: 0
-
-- type: entity
-  id: ActionHivemindAccess
-  name: Hivemind Access
-  description: Tune your chemical receptors for hivemind communication.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    checkCanInteract: false
-    checkConsciousness: false
-    itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
-      state: hivemind_access
-  - type: InstantAction
-    event: !type:ActionHivemindAccessEvent {}
-  - type: ChangelingAction
-    chemicalCost: 0
-    useInLesserForm: true
-
-# Legacy actions are available for compatibility/admin grants; normal changelings do not receive them.
-
-- type: entity
-  id: ActionToggleChangelingBreathing
-  name: Respiratory Control
-  description: Choose whether your body needs to breathe. While breathing is stopped, you cannot inhale gases or suffocate. Costs no chemicals or biomass.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    useDelay: 1
-    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: breathing }
-    checkCanInteract: false
-    checkConsciousness: false
-  - type: InstantAction
-    event: !type:ToggleChangelingBreathingEvent {}
-  # No ChangelingAction: respiration is independent of biomass, chemicals and form.

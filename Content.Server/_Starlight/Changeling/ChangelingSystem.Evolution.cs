@@ -52,6 +52,8 @@ public sealed partial class ChangelingSystem
         if (iconState != null)
             _actions.SetIcon(action, new SpriteSpecifier.Rsi(
                 new ResPath("/Textures/_Starlight/Interface/Actions/actions_changeling.rsi"), iconState));
+        if (MetaData(action).EntityPrototype?.ID == "ActionChemicalSting")
+            _actions.SetCanTargetSelf(action, true);
         if (!TryComp<RetractableItemActionComponent>(action, out var retractable))
             return;
         if (MetaData(action).EntityPrototype?.ID == "ActionRetractableItemArmBlade")
@@ -67,6 +69,8 @@ public sealed partial class ChangelingSystem
         EvolveSpacesuit(uid, ling);
         foreach (var action in _actions.GetActions(uid).ToArray())
             ApplyActionEvolution(ling, action.Owner);
+        if (ling.HasChemicalSting)
+            InitializeStingChemistry(uid);
         if (ling.EyesAction != null)
             UpdateEnhancedEyes(uid, ling);
         if (ling.StealthEnabled)

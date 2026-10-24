@@ -1,4 +1,6 @@
 using Content.Shared.Humanoid;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.FixedPoint;
 using Content.Shared.Prying.Components;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
@@ -67,12 +69,19 @@ public sealed partial class ChangelingComponent : Component
     public bool BreathingEnabled = true;
 
     public ChangelingResources Resources = new();
+    public bool HasChemicalSting { get => Resources.HasChemicalSting; set => Resources.HasChemicalSting = value; }
+    public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> StingReagents { get => Resources.StingReagents; set => Resources.StingReagents = value; }
+    public TimeSpan NextStingRegeneration { get => Resources.NextStingRegeneration; set => Resources.NextStingRegeneration = value; }
+    public bool StingRegenerationEnabled { get => Resources.StingRegenerationEnabled; set => Resources.StingRegenerationEnabled = value; }
+    public float StingTargetTemperature { get => Resources.StingTargetTemperature; set => Resources.StingTargetTemperature = value; }
+    public int StingDose { get => Resources.StingDose; set => Resources.StingDose = value; }
 
     [DataField]
     public float StealthDrain = 1.25f; // 6.6 minutes to fully drain 100 chemicals
 
     [DataField]
     public float StasisDrain = 10f / 60f;
+
 
     public Dictionary<string, EntityUid?> Equipment = new();
 
@@ -174,12 +183,18 @@ public sealed class ChangelingResources
     public int TotalAbsorbedEntities { get => Genetics.TotalAbsorbedEntities; set => Genetics.TotalAbsorbedEntities = value; }
     public int TotalStolenDNA { get => Genetics.TotalStolenDNA; set => Genetics.TotalStolenDNA = value; }
     public List<TransformData> AbsorbedDNA { get => Genetics.AbsorbedDNA; set => Genetics.AbsorbedDNA = value; }
+    public bool HasChemicalSting { get => Genetics.HasChemicalSting; set => Genetics.HasChemicalSting = value; }
+    public bool StingRegenerationEnabled { get => Genetics.StingRegenerationEnabled; set => Genetics.StingRegenerationEnabled = value; }
 
     public float Biomass = 40f;
     public float MaxBiomass = 60f;
     public float Chemicals = 100f;
     public float MaxChemicals = 100f;
     public float BonusChemicalRegen;
+    public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> StingReagents = new();
+    public TimeSpan NextStingRegeneration;
+    public float StingTargetTemperature = 293.15f;
+    public int StingDose = ChangelingChemistry.Capacity;
 }
 
 public sealed class ChangelingGenetics
@@ -188,6 +203,8 @@ public sealed class ChangelingGenetics
     public int TotalAbsorbedEntities;
     public int TotalStolenDNA;
     public List<TransformData> AbsorbedDNA = new();
+    public bool HasChemicalSting;
+    public bool StingRegenerationEnabled = true;
 }
 
 [DataDefinition]

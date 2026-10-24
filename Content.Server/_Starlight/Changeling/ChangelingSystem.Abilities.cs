@@ -111,7 +111,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnDevourEvolutionReward(EntityUid uid, ChangelingComponent comp, ref ChangelingDevourFinishedEvent args)
     {
-        if (!args.Completed || args.Handled)
+        if (!args.Completed || args.Handled || HasComp<ChangelingInfectionComponent>(uid))
             return;
         AwardEvolutionPoints(uid, args.Target);
     }
