@@ -8,20 +8,8 @@
             <BoxContainer Orientation="Vertical" Margin="0 0 8 8">
                 <Label Text="{Loc 'ui-options-admin-tools'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
                 <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
-                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
-                        <BoxContainer Orientation="Horizontal">
-                            <Label ToolTip="{Loc 'ui-options-admin-ghost-script-tooltip'}" Text="{Loc 'ui-options-admin-ghost-script-label'}" HorizontalExpand="True" VerticalAlignment="Center" />
-                            <LineEdit ToolTip="{Loc 'ui-options-admin-ghost-script-tooltip'}" Name="AghostScriptName" MinWidth="240" />
-                        </BoxContainer>
-	                    <HBox>
-		                    <Label ToolTip="{Loc 'ui-options-admin-space-map-tooltip'}" Text="{Loc 'ui-options-admin-space-map-label'}" HorizontalExpand="True" VerticalAlignment="Center" />
-		                    <LineEdit ToolTip="{Loc 'ui-options-admin-space-map-tooltip'}" Name="AdminArenaMapPath" MinWidth="240" />
-	                    </HBox>
-	                    <HBox>
-		                    <Label ToolTip="{Loc 'ui-options-admin-space-map-init-tooltip'}" Text="{Loc 'ui-options-admin-space-map-init-label'}" HorizontalExpand="True" VerticalAlignment="Center" />
-		                    <CheckBox ToolTip="{Loc 'ui-options-admin-space-map-init-tooltip'}" Name="AdminArenaMapInit" MinWidth="240" />
-	                    </HBox>
-                    </BoxContainer>
+	                <!-- Options here are generated and controlled via flags -->
+	                <VBox Orientation="Vertical" Margin="10 6" SeparationOverride="4" Name="AdminToolOptsContainer"/>
                 </PanelContainer>
 
                 <Label Text="{Loc 'ui-options-admin-ghost-hud'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />

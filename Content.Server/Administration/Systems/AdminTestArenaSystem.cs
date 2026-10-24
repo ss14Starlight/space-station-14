@@ -1,4 +1,6 @@
+using Content.Server.Administration.Managers;
 using Content.Shared._Starlight.CCVar;
+using Content.Shared.Administration;
 using Robust.Server.Configuration;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
@@ -16,22 +18,27 @@ public sealed partial class AdminTestArenaSystem : EntitySystem
     [Dependency] private MapLoaderSystem _loader = default!;
     [Dependency] private MetaDataSystem _metaDataSystem = default!;
     [Dependency] private SharedMapSystem _maps = default!;
-    [Dependency] private IServerNetConfigurationManager _cfg = null!; // Starlight
+    #region Starlight
+    [Dependency] private IServerNetConfigurationManager _cfg = null!;
+    [Dependency] private IAdminManager _admin = null!;
+    #endregion
 
     // Replaces Test Arena with a STARLIGHT varient
     public const string ArenaMapPath = "/Maps/_Starlight/Test/SL_admin_test_arena.yml";
 
     public Dictionary<NetUserId, EntityUid> ArenaMap { get; private set; } = new();
-    // Starlight begin - No need for grid tbh + add stuff for loading custom map.
 
+    // Starlight begin - No need for grid tbh + add stuff for loading custom map.
     public EntityUid AssertArenaLoaded(ICommonSession admin)
     {
         if (ArenaMap.TryGetValue(admin.UserId, out var arenaMap) && !Deleted(arenaMap) && !Terminating(arenaMap))
             return arenaMap;
 
         var path = _cfg.GetClientCVar(admin.Channel, StarlightCCVars.AdminArenaMapPath);
-        var init = _cfg.GetClientCVar(admin.Channel, StarlightCCVars.AdminArenaMapInit);
-        if (!string.IsNullOrWhiteSpace(path))
+        var init = _cfg.GetClientCVar(admin.Channel, StarlightCCVars.AdminArenaMapInit) ^
+            !_admin.HasAdminFlag(admin, AdminFlags.Mapping);
+        // Admins must have mapping perms to utilize this.
+        if (!string.IsNullOrWhiteSpace(path) && _admin.HasAdminFlag(admin, AdminFlags.Mapping))
         {
             var mapPath = new ResPath(path);
             if (!_loader.TryLoadMap(mapPath, out var map, out var grids,
