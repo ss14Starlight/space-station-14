@@ -374,6 +374,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         bool outputSourceChanged = false;
         bool bufferReagentsDirty = false;
+        bool sortingChanged = false;
 
         if ((flags & ChemMasterUIDirtyFlags.Settings) != 0)
         {
@@ -407,6 +408,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                 BufferSortButtonClassic.Text = sortLabel;
 
                 bufferReagentsDirty = true;
+                sortingChanged = true;
             }
 
             // DrawSource
@@ -472,7 +474,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                 return true;
             }
 
-            if (!ReagentsEqual(bufferReagents, _prevBufferContents))
+            if (sortingChanged || !ReagentsEqual(bufferReagents, _prevBufferContents))
             {
                 _prevBufferContents ??= [];
                 _prevBufferContents.Clear();

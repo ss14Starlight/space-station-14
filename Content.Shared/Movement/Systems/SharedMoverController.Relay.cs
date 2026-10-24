@@ -1,3 +1,4 @@
+using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -10,6 +11,9 @@ public abstract partial class SharedMoverController
     {
         SubscribeLocalEvent<RelayInputMoverComponent, ComponentShutdown>(OnRelayShutdown);
         SubscribeLocalEvent<MovementRelayTargetComponent, ComponentShutdown>(OnTargetRelayShutdown);
+        // Starlight - start
+        SubscribeLocalEvent<MovementRelayTargetComponent, MobStateChangedEvent>(OnRelayTargetMobStateChanged);
+        // Starlight - end
         SubscribeLocalEvent<MovementRelayTargetComponent, AfterAutoHandleStateEvent>(OnAfterRelayTargetState);
         SubscribeLocalEvent<RelayInputMoverComponent, AfterAutoHandleStateEvent>(OnAfterRelayState);
     }
