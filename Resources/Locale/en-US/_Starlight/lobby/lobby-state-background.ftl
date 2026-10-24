@@ -70,17 +70,11 @@ lobby-state-background-ipcandmoff-artist = Doner
 lobby-state-background-thesix-title = The Six
 lobby-state-background-thesix-artist = Doner
 
-lobby-state-background-cemoneystack-title = Money Stack
-lobby-state-background-cemoneystack-artist = zymshok
-
 lobby-state-background-mushroomannihilator-title = Mushroom Annihilator
 lobby-state-background-mushroomannihilator-artist = zymshok
 
 lobby-state-background-doomdeed-title = Doom Deed
 lobby-state-background-doomdeed-artist = sharkpeekotwoelecticboogaloo
-
-lobby-state-background-rats-title = Rats
-lobby-state-background-rats-artist = Gostir
 
 lobby-state-background-ivan-title = Ivan
 lobby-state-background-ivan-artist = ramblinger
@@ -112,3 +106,5 @@ lobby-state-background-solesurvivor-artist = rozycosmic
 lobby-state-background-invisiblewall-title = Invisible Wall
 lobby-state-background-invisiblewall-artist = vanderslootassgiraffe
 
+lobby-state-background-glubs-title = Glubs
+lobby-state-background-glubs-artist = Eviinuuangel

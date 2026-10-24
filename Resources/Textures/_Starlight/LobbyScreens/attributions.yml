@@ -118,11 +118,6 @@
   copyright: "Doner"
   source: "https://discord.com/channels/1272545509562777621/1311190248310575114/1545100732611559424"
 
-- files: ["cemoneystack.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "@zymshok  on discord. Taken from Goob-Station (Resources/Textures/LobbyScreens/CEMoneyStack.webp)"
-  source: "https://github.com/Goob-Station/Goob-Station"
-
 - files: ["mushroomannihilator.webp"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "@zymshok on discord. Taken from Goob-Station (Resources/Textures/LobbyScreens/MushroomAnnihilator.webp)"
@@ -131,11 +126,6 @@
 - files: ["doomdeed.webp"]
   license: "CC-BY-SA-3.0"
   copyright: "sharkpeekotwoelecticboogaloo. Taken from funky-station (Resources/Textures/LobbyScreens/doomdeed.webp)"
-  source: "https://github.com/funky-station/funky-station"
-
-- files: ["rats.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Gostir. Taken from funky-station (Resources/Textures/LobbyScreens/rats.webp)"
   source: "https://github.com/funky-station/funky-station"
 
 - files: ["ivan.webp"]
@@ -189,3 +179,7 @@
   copyright: "vanderslootassgiraffe on discord. Taken from Corvax (Resources/Textures/LobbyScreens/invisiblewall.webp)"
   source: "https://github.com/space-syndicate/space-station-14"
 
+- files: ["glubs.webp"]
+  license: "CC-BY-NC-SA-4.0"
+  copyright: "By eniinguuangel"
+  source: "https://github.com/ss14Starlight/space-station-14/pull/6838"

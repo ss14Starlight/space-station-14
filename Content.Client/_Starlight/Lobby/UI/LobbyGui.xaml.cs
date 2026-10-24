@@ -138,6 +138,8 @@ public sealed partial class LobbyGui : UIScreen
             ReadyPanel.SetPositionFirst();
         else
             ReadyPanel.SetPositionLast();
+
+        ChatColumn.InvalidateMeasure();
     }
 
     private void SetCardCollapsed(bool collapsed)

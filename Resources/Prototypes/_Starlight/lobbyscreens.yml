@@ -143,12 +143,6 @@
   artist: lobby-state-background-thesix-artist
 
 - type: lobbyBackground
-  id: CEMoneyStack
-  background: /Textures/_Starlight/LobbyScreens/cemoneystack.webp
-  title: lobby-state-background-cemoneystack-title
-  artist: lobby-state-background-cemoneystack-artist
-
-- type: lobbyBackground
   id: MushroomAnnihilator
   background: /Textures/_Starlight/LobbyScreens/mushroomannihilator.webp
   title: lobby-state-background-mushroomannihilator-title
@@ -159,12 +153,6 @@
   background: /Textures/_Starlight/LobbyScreens/doomdeed.webp
   title: lobby-state-background-doomdeed-title
   artist: lobby-state-background-doomdeed-artist
-
-- type: lobbyBackground
-  id: Rats
-  background: /Textures/_Starlight/LobbyScreens/rats.webp
-  title: lobby-state-background-rats-title
-  artist: lobby-state-background-rats-artist
 
 - type: lobbyBackground
   id: Ivan
@@ -225,3 +213,9 @@
   background: /Textures/_Starlight/LobbyScreens/invisiblewall.webp
   title: lobby-state-background-invisiblewall-title
   artist: lobby-state-background-invisiblewall-artist
+
+- type: lobbyBackground
+  id: Glubs
+  background: /Textures/_Starlight/LobbyScreens/glubs.webp
+  title: lobby-state-background-glubs-title
+  artist: lobby-state-background-glubs-artist
