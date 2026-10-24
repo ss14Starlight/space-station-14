@@ -1,0 +1,18 @@
+- type: !PartialOnly construction
+  id: !type:CreateVariants
+    values: [ Grille, ClockGrille, GrilleDiagonal, ClockworkGrilleDiagonal ]
+  conditions:
+  - !type:NoEntityInTile
+    blacklist:
+      components:
+      - Conveyor
+    guideString: construction-step-condition-no-conveyor-in-tile
+
+- type: !PartialOnly construction
+  id: ConveyorBelt
+  conditions:
+  - !type:NoEntityInTile
+    blacklist:
+      components:
+      - Grille
+    guideString: construction-step-condition-no-grille-in-tile
