@@ -9,18 +9,22 @@
 - type: roleType
   id: CorporateAligned
   name: role-type-corporate-aligned-name
+  faction: role-subtype-nanotrasen
   color: '#134975'
   symbol: "🗡" # Should never be antag, but just in case.
 
 - type: roleType
   id: CentCommAligned
   name: role-type-cc-aligned-name
+  alignment: role-type-corporate-aligned-name
+  faction: role-subtype-CentComm
   color: '#00b600'
   symbol: "🗡" # Should never be antag, but just in case.
 
 - type: roleType
   id: TSFAligned
   name: role-type-tsf-aligned-name
+  faction: character-info-faction-tsf
   color: '#22a7ff'
   symbol: "🗡" # Should never be antag, but just in case.
 

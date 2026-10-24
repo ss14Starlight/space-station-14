@@ -1,0 +1,190 @@
+- type: entity
+  abstract: true
+  id: ToyStepsBase
+  components:
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: ToySqueak
+        params:
+          volume: -4
+
+- type: entity
+  id: NeomothTippyClueless
+  categories: [HideSpawnMenu]
+  name: clueless
+  description: ":clueless:"
+  parent: BaseItem
+  suffix: Admeme
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/neomoth/bullshit.rsi
+      state: clueless
+      scale: 0.5, 0.5
+
+- type: entity
+  id: NeomothTippyCluelessToy
+  categories: [HideSpawnMenu]
+  parent: [NeomothTippyClueless, BasePlushie, ToyStepsBase]
+  suffix: Admeme
+
+- type: entity
+  id: NeomothTippyTrollface
+  categories: [HideSpawnMenu]
+  name: troll
+  description: ":tf:"
+  parent: BaseItem
+  suffix: Admeme
+  components:
+    - type: Sprite
+      texture: /Textures/_Funkystation/Interface/NanoChat/Emotes/troll.png
+      scale: 2, 2
+
+- type: entity
+  id: NeomothTippyTrollfaceToy
+  categories: [HideSpawnMenu]
+  parent: [NeomothTippyTrollface, BasePlushie, ToyStepsBase]
+  suffix: Admeme
+
+- type: entity
+  id: NeomothTippyGodo
+  categories: [HideSpawnMenu]
+  name: godo
+  description: ":godo:"
+  parent: BaseItem
+  suffix: Admeme
+  components:
+    - type: Sprite
+      texture: /Textures/_Starlight/Interface/Nanochat/Emotes/godo.png
+      scale: 2, 2
+
+- type: entity
+  id: NeomothTippyGodoToy
+  categories: [HideSpawnMenu]
+  parent: [NeomothTippyGodo, BasePlushie, ToyStepsBase]
+  suffix: Admeme
+
+- type: entity
+  id: NeomothTippyDo
+  categories: [HideSpawnMenu]
+  name: do
+  description: ":do:"
+  parent: BaseItem
+  suffix: Admeme
+  components:
+    - type: Sprite
+      texture: /Textures/_Starlight/Interface/Nanochat/Emotes/do.png
+      scale: 2, 2
+
+- type: entity
+  id: NeomothTippyDoToy
+  categories: [HideSpawnMenu]
+  parent: [NeomothTippyDo, BasePlushie, ToyStepsBase]
+  suffix: Admeme
+
+- type: entity
+  id: NeomothTippyDonow
+  categories: [HideSpawnMenu]
+  name: donow
+  description: ":donow:"
+  parent: BaseItem
+  suffix: Admeme
+  components:
+    - type: Sprite
+      texture: /Textures/_Starlight/Interface/Nanochat/Emotes/donow.png
+      scale: 2, 2
+
+- type: entity
+  id: NeomothTippyDonowToy
+  categories: [HideSpawnMenu]
+  parent: [NeomothTippyDonow, BasePlushie, ToyStepsBase]
+  suffix: Admeme
+
+- type: entity
+  id: NeomothTippyGoCrazy
+  categories: [HideSpawnMenu]
+  name: gocrazy
+  description: ":gocrazy:"
+  parent: BaseItem
+  suffix: Admeme
+  components:
+    - type: Sprite
+      texture: /Textures/_Starlight/Interface/Nanochat/Emotes/donot.png
+      scale: 2, 2
+
+- type: entity
+  id: NeomothTippyGoCrazyToy
+  categories: [HideSpawnMenu]
+  parent: [NeomothTippyGoCrazy, BasePlushie, ToyStepsBase]
+  suffix: Admeme
+
+- type: entity
+  id: NeomothTippyGodover
+  categories: [HideSpawnMenu]
+  name: godover
+  description: ":godover:"
+  parent: BaseItem
+  suffix: Admeme
+  components:
+    - type: Sprite
+      texture: /Textures/_Starlight/Interface/Nanochat/Emotes/godover.png
+      scale: 2, 2
+
+- type: entity
+  id: NeomothTippyGodoverToy
+  categories: [HideSpawnMenu]
+  parent: [NeomothTippyGodover, BasePlushie, ToyStepsBase]
+  suffix: Admeme
+
+- type: entity
+  id: NeomothTippyGolove
+  categories: [HideSpawnMenu]
+  name: golove
+  description: ":golove:"
+  parent: BaseItem
+  suffix: Admeme
+  components:
+    - type: Sprite
+      texture: /Textures/_Starlight/Interface/Nanochat/Emotes/golove.png
+      scale: 2, 2
+
+- type: entity
+  id: NeomothTippyGoloveToy
+  categories: [HideSpawnMenu]
+  parent: [NeomothTippyGolove, BasePlushie, ToyStepsBase]
+  suffix: Admeme
+
+- type: entity
+  id: NeomothTippyGosad
+  categories: [HideSpawnMenu]
+  name: gosad
+  description: ":gosad:"
+  parent: BaseItem
+  suffix: Admeme
+  components:
+    - type: Sprite
+      texture: /Textures/_Starlight/Interface/Nanochat/Emotes/dontdo.png
+      scale: 2, 2
+
+- type: entity
+  id: NeomothTippyGosadToy
+  categories: [HideSpawnMenu]
+  parent: [NeomothTippyGosad, BasePlushie, ToyStepsBase]
+  suffix: Admeme
+
+- type: entity
+  id: NeomothTippyChud
+  categories: [HideSpawnMenu]
+  name: lardass
+  description: fatty fat fat chudmoth
+  parent: BaseItem
+  suffix: Admeme
+  components:
+    - type: Sprite
+      texture: /Textures/_Starlight/Admeme/neomoth/tex/konilardass.png
+      scale: 0.8, 0.8
+
+- type: entity
+  id: NeomothTippyChudToy
+  categories: [HideSpawnMenu]
+  parent: [NeomothTippyChud, BasePlushie, ToyStepsBase]
+  suffix: Admeme

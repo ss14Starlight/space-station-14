@@ -13,7 +13,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.HijackBeacon;
 
-public sealed class HijackBeaconSystem : EntitySystem
+public sealed partial class HijackBeaconSystem : EntitySystem
 {
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private AnchorableSystem _anchor = default!;

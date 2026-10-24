@@ -2,7 +2,7 @@
 
 namespace Content.Client.Stylesheets.Stylesheets;
 
-public partial class NanotrasenStylesheet
+public sealed partial class NanotrasenStylesheet
 {
     // Starlight-start
     public override ColorPalette PrimaryPalette => Theme?.Primary ?? Palettes.Navy;

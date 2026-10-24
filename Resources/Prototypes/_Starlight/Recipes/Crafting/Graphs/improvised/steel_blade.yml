@@ -11,3 +11,30 @@
         doAfter: 10
   - node: blade
     entity: BladeSteel
+
+- type: constructionGraph
+  id: SawBladeGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: blade
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 10
+  - node: blade
+    entity: SawBlade
+
+- type: constructionGraph
+  id: ImprovisedSawGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: complete
+          steps:
+            - tool: Slicing
+              doAfter: 15
+    - node: complete
+      entity: SawImprov
