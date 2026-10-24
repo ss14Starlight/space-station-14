@@ -63,11 +63,11 @@ public sealed partial class ParacusiaSystem : SharedParacusiaSystem
         var timeInterval = _random.NextFloat(paracusia.MinTimeBetweenIncidents, paracusia.MaxTimeBetweenIncidents);
         paracusia.NextIncidentTime += TimeSpan.FromSeconds(timeInterval);
 
-        #region Starlight
+        // Starlight-start
         // Medications can block hallucinations
         if (_status.HasStatusEffect(uid, _anxietySuppressionStatus))
             return;
-        #endregion
+        // Starlight-end
 
         // Offset position where the sound is played
         var randomOffset =
