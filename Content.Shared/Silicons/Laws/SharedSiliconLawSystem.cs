@@ -39,7 +39,7 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
             return;
         // Starlight start - no go if they're mindshielded
         if (HasComp<MindShieldComponent>(uid))
-        { 
+        {
             _popup.PopupClient(Loc.GetString("law-emag-mindshielded"), uid, args.UserUid);
             return;
         } // Starlight end
