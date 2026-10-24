@@ -36,7 +36,7 @@ public sealed partial class AdminOptionsTab
     }
 
     private void RenderAdminTools() =>
-        AdminToolOptsContainer.Visible = RenderAdminGhostTools() | RenderAdminArenaMapTools();
+        AdminToolsContainer.Visible = RenderAdminGhostTools() | RenderAdminArenaMapTools();
 
     private bool RenderAdminGhostTools()
 	{

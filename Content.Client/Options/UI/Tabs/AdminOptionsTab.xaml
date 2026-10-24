@@ -6,11 +6,13 @@
         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
             <!-- Starlight-start -->
             <BoxContainer Orientation="Vertical" Margin="0 0 8 8">
-                <Label Text="{Loc 'ui-options-admin-tools'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
-                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
-	                <!-- Options here are generated and controlled via flags -->
-	                <VBox Orientation="Vertical" Margin="10 6" SeparationOverride="4" Name="AdminToolOptsContainer"/>
-                </PanelContainer>
+                <VBox Name="AdminToolsContainer">
+	                <Label Text="{Loc 'ui-options-admin-tools'}" StyleClasses="LabelKeyText" Margin="0 0 0 4"/>
+	                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+		                <!-- Options here are generated and controlled via flags -->
+		                <VBox Orientation="Vertical" Margin="10 6" SeparationOverride="4" Name="AdminToolOptsContainer"/>
+	                </PanelContainer>
+                </VBox>
 
                 <Label Text="{Loc 'ui-options-admin-ghost-hud'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
                 <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
