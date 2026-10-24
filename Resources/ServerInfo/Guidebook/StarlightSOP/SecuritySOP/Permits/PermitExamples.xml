@@ -18,7 +18,7 @@
         <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
           [bold]Mk 58[/bold]
           - [bold]From Security:[/bold] If you got the Mk 58 from Security, you only need either the [color=#ff6666]Warden[/color]'s stamp or the [color=#c4363b]Gunnery Sergeant[/color]'s stamp.
-          - [bold]Purchased from ITG:[/bold] If you bought it from ITG, you need both the [color=#963dca]Salvage Lead[/color]'s stamp and the [color=#ff6666]Warden[/color]'s stamp.
+          - [bold]Purchased from ITG:[/bold] If you bought it from ITG, you need both the [color=#963dca]Salvage Lead[/color]'s stamp and the [color=#ff6666]Warden[/color]'s stamp or the [color=#c4363b]Gunnery Sergeant[/color]'s stamp.
         </Box>
       </Box>
     </ColorBox>
