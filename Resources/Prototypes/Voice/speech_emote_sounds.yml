@@ -99,7 +99,7 @@
     Whistle:
       collection: Whistles
     Crying:
-      collection: MaleCry
+      path: /Audio/Voice/Reptilian/reptilian_cry.ogg
     Weh:
       collection: Weh
     Hew:
@@ -131,7 +131,7 @@
     Whistle:
       collection: Whistles
     Crying:
-      collection: FemaleCry
+      path: /Audio/Voice/Reptilian/reptilian_cry.ogg
     Weh:
       collection: Weh
     Hew:
