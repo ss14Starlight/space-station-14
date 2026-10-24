@@ -19,19 +19,12 @@ namespace Content.Server._Starlight.Atmos.Reactions;
 [UsedImplicitly]
 public sealed partial class UlnitraniumRadiationProductionReaction : IGasReactionEffect
 {
-    [Dependency] private IEntityManager _ent = null!;
-    [Dependency] private IGameTiming _timing = null!;
-    private readonly RadiationSystem _rads = null!;
-    private readonly SharedMapSystem _map = null!;
+    private static IEntityManager s_ent => IoCManager.Resolve<IEntityManager>();
+    private static IGameTiming s_timing => IoCManager.Resolve<IGameTiming>();
+    private static RadiationSystem s_rads => s_ent.System<RadiationSystem>();
+    private static SharedMapSystem s_map => s_ent.System<SharedMapSystem>();
     private const float RadiationThreshold = 0.01f;
     private static readonly TimeSpan _timerDuration = TimeSpan.FromSeconds(5);
-
-    public UlnitraniumRadiationProductionReaction()
-    {
-        IoCManager.InjectDependencies(this);
-        _rads = _ent.System<RadiationSystem>();
-        _map = _ent.System<SharedMapSystem>();
-    }
 
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem,
         float heatScale)
@@ -56,13 +49,13 @@ public sealed partial class UlnitraniumRadiationProductionReaction : IGasReactio
                     var tileRef = atmosphereSystem.GetTileRef(tile);
 
                     // We use the center of the tile to ensure the Raycast actually hits the intended area
-                    var coords = _map.ToCenterCoordinates(tileRef);
-                    radiationLevel = _rads.GetRadiationAtCoordinates(coords);
+                    var coords = s_map.ToCenterCoordinates(tileRef);
+                    radiationLevel = s_rads.GetRadiationAtCoordinates(coords);
 
                     // If we have no data, or data is too low, we MUST request a sample for the future
                     if (radiationLevel < RadiationThreshold)
                     {
-                        _rads.RequestTileRadiationSampling(coords);
+                        s_rads.RequestTileRadiationSampling(coords);
                         return ReactionResult.Reacting;
                     }
 
@@ -77,7 +70,7 @@ public sealed partial class UlnitraniumRadiationProductionReaction : IGasReactio
                     if (totalNodes == 0)
                         return ReactionResult.NoReaction;
 
-                    var xformQuery = _ent.GetEntityQuery<TransformComponent>();
+                    var xformQuery = s_ent.GetEntityQuery<TransformComponent>();
 
                     foreach (var node in pipeNet.Nodes)
                     {
@@ -85,11 +78,11 @@ public sealed partial class UlnitraniumRadiationProductionReaction : IGasReactio
                             continue;
 
                         var coords = xform.Coordinates;
-                        var nodeRads = _rads.GetRadiationAtCoordinates(coords);
+                        var nodeRads = s_rads.GetRadiationAtCoordinates(coords);
 
                         // Always request sampling so the cache stays fresh for the next atmos tick
                         if (nodeRads < 0.001f)
-                            _rads.RequestTileRadiationSampling(coords);
+                            s_rads.RequestTileRadiationSampling(coords);
 
                         // Add the rads to the total
                         totalRads += nodeRads;
@@ -130,16 +123,16 @@ public sealed partial class UlnitraniumRadiationProductionReaction : IGasReactio
 
     private float GetRadiationLevel(EntityUid entity)
     {
-        var hadReceiver = _ent.HasComponent<RadiationReceiverComponent>(entity);
-        var receiverComp = _ent.EnsureComponent<RadiationReceiverComponent>(entity);
+        var hadReceiver = s_ent.HasComponent<RadiationReceiverComponent>(entity);
+        var receiverComp = s_ent.EnsureComponent<RadiationReceiverComponent>(entity);
 
         if (!hadReceiver)
         {
-            var timerComp = _ent.EnsureComponent<RadiationReceiverTimerComponent>(entity);
-            timerComp.TimerExpiresAt = _timing.CurTime + _timerDuration;
+            var timerComp = s_ent.EnsureComponent<RadiationReceiverTimerComponent>(entity);
+            timerComp.TimerExpiresAt = s_timing.CurTime + _timerDuration;
         }
-        else if (_ent.TryGetComponent<RadiationReceiverTimerComponent>(entity, out var timerComp))
-            timerComp.TimerExpiresAt = _timing.CurTime + _timerDuration;
+        else if (s_ent.TryGetComponent<RadiationReceiverTimerComponent>(entity, out var timerComp))
+            timerComp.TimerExpiresAt = s_timing.CurTime + _timerDuration;
 
         return receiverComp.CurrentRadiation;
     }
