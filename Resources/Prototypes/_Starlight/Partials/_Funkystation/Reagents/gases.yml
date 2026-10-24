@@ -11,7 +11,7 @@
           max: 8
         effectProto: StatusEffectSleepiness
         maximumSleepiness: 60s
-        time: 3.66 # Scales to 5.5
+        time: 3.66 # Always 5.5
       - !type:ModifySleepiness
         conditions:
         - !type:ReagentCondition
