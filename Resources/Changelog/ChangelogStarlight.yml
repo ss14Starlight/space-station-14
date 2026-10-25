@@ -1,11 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: Emergency shuttle no longer misinterprets 45 minutes as 45 seconds when resetting the timer after the first automatic shuttle call.
-    type: Fix
-  id: 409379
-  time: '2026-10-12T06:24:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6648
 - author: SevenShades
   changes:
   - message: MedTak visors are now compatible with eye implants.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409778
   time: '2026-10-25T13:58:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6850
+- author: Ohelig, Claude Sonnet 5.5
+  changes:
+  - message: Fixes AI cores having damaged speech without being damaged.
+    type: Fix
+  id: 409779
+  time: '2026-10-25T18:16:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6857
 Order: -1
