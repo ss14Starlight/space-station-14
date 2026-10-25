@@ -331,7 +331,13 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
             CancelDuplicate = true
         };
 
-        _popup.PopupEntity(Loc.GetString(accessPopup, ("user", user)), owner, owner, PopupType.Medium);
+        var beforeStripEvent = new BeforeStripEvent(accessDelay);
+        RaiseLocalEvent(user, ref beforeStripEvent);
+        doAfterArgs.Hidden = beforeStripEvent.Stealth;
+
+        if (!beforeStripEvent.Stealth)
+            _popup.PopupEntity(Loc.GetString(accessPopup, ("user", user)), owner, owner, PopupType.Medium);
+
         _doAfter.TryStartDoAfter(doAfterArgs);
     }
 }
