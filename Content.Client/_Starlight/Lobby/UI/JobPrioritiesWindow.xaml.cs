@@ -232,12 +232,21 @@ public sealed partial class JobPrioritiesWindow : DefaultWindow
         if (priority == JobPriority.High)
             card.AddStyleClass(StarlightStyleClass.JobCardHigh);
 
-        var tooltip = $"{job.LocalizedName}: {PriorityName(priority)}";
-        if (!allowed)
-            tooltip += "\n" + reason;
-        else if (noCharacter)
-            tooltip += "\n" + Loc.GetString("job-priorities-window-no-character");
-        card.ToolTip = tooltip;
+        var requirements = new FormattedMessage();
+        requirements.AddText($"{job.LocalizedName}: {PriorityName(priority)}");
+        if (noCharacter)
+        {
+            requirements.PushNewline();
+            requirements.AddMarkupPermissive(Loc.GetString("job-priorities-window-no-character"));
+        }
+        requirements.PushNewline();
+        requirements.PushNewline();
+        requirements.AddMessage(reason);
+        requirements.TrimEnd();
+
+        var tooltip = new Tooltip();
+        tooltip.SetMessage(requirements);
+        card.TooltipSupplier = (_) => tooltip;
 
         var name = new Label
         {
