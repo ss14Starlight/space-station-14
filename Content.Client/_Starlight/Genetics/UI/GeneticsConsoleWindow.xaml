@@ -1,0 +1,23 @@
+<DefaultWindow
+	xmlns="https://spacestation14.io"
+	xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+	xmlns:panels="clr-namespace:Content.Client._Starlight.Genetics.UI.Panels"
+	Title="{Loc 'genetics-ui-console-window-title'}"
+	MinSize="1250 750" SetSize="1250 750" VerticalExpand="True">
+	<VBox>
+		<BoxContainer Orientation="Horizontal" VerticalExpand="True">
+			<!--Selection Panel-->
+			<BoxContainer Orientation="Vertical" MinWidth="180" VerticalExpand="True"
+			              HorizontalExpand="True" SizeFlagsStretchRatio="0.2">
+				<panels:SelectedGenomePanel Name="SelectedGenomePanel" Access="Public"/>
+				<panels:SelectedTraitPanel Name="SelectedTraitPanel" Access="Public"/>
+			</BoxContainer>
+			<customControls:VSeparator Margin="5 0 5 0"/>
+			<panels:CreationPanel Name="CreationPanel"/>
+		</BoxContainer>
+		<customControls:HSeparator/>
+		<BoxContainer HorizontalExpand="True">
+			<Label StyleClasses="WindowFooterText" Name="StatusMessage" Text="{Loc 'genetics-ui-status-fallback'}" />
+		</BoxContainer>
+	</VBox>
+</DefaultWindow>
