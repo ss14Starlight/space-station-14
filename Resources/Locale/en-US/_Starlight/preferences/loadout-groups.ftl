@@ -135,6 +135,9 @@ loadout-group-performer-outerclothing = Performer outer clothing
 
 loadout-group-lawyer-shoes = Lawyer shoes
 
+# Engineering
+loadout-group-atmospheric-technician-id = Atmospheric Technician ID
+
 # Other
 loadout-group-scarves = Scarf
 loadout-group-pins = Pins

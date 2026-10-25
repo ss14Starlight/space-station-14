@@ -17,7 +17,6 @@
     ClothingHeadHatPwig: 2
     ClothingOuterRobesJudge: 2
     ClothingOuterPoncho: 2
-    ClothingOuterCoatDuster: 2 # DeltaV
     ClothingHeadHatSantahat: 2
     ClothingOuterSanta: 2
     ClothingHeadHatSkub: 2
@@ -45,12 +44,6 @@
     ClothingMaskSadMime: 1
     ClothingMaskScaredMime: 1
     ClothingUniformJumpsuitKimono: 1
-    ClothingUniformJumpsuitPerformerMusician: 1
-    ClothingUniformJumpskirtPerformerMusician: 1
-    ClothingUniformJumpsuitPerformerClown: 1
-    ClothingUniformJumpskirtPerformerClown: 1
-    ClothingUniformJumpsuitPerformerMime: 1
-    ClothingUniformJumpskirtPerformerMime: 1
     ClothingHeadHatCasa: 1
     FoodPoppy: 1
     ClothingHeadHatGladiator: 1
@@ -62,53 +55,14 @@
     ClothingShoesBootsCowboyBrown: 1
     ClothingShoesBootsCowboyBlack: 1
     ClothingShoesBootsCowboyWhite: 1
-    #Starlight
-    ClothingUniformJumpsuitRisk: 1
-    ClothingHeadHelmetRisk: 1
-    ClothingUniformJumpsuitKilt: 1 # DeltaV
-    ClothingHeadHatWrestlingMaskLuchaBlue: 1 # DeltaV
-    ClothingHeadHatWrestlingMaskLuchaRed: 1 # DeltaV
-    ClothingUniformJumpsuitWrestlerBlue: 1 # DeltaV
-    ClothingUniformJumpsuitWrestlerRed: 1 # DeltaV
-    ClothingUniformJumpsuitWrestlerGreen: 1 # DeltaV
-    ClothingUniformJumpsuitWrestlerYellow: 1 # DeltaV
-    CandyClownUniformSuit: 1
-    StripedClownUniformSuit: 1
-    SpottedClownUniformSuit: 1
-    ClothingShoesSpecificMoffers: 1 # DeltaV
-    DruidRobesUniformSuit: 1
-    FlamboyantUniformSuit: 3
-    FlamencoUniformSuit: 2
-    FlyCaptainUniformSuit: 1
-    ClothingHeadHatWitchyHat: 2 # Starlight
-    KiltUniformSuit: 4
-    MimeFrillsUniformSuit: 1
-    RefereeUniformSuit: 2
-    SailorUniformSuit: 2
-    TogaUniformSuit: 2
-    ClothingUnderSocksMime: 1
-    ClothingUnderSocksStirrup: 1
-    ClothingOutercorset: 2
-    ClothingKitsuneMask: 2
-    ClothingHeadHatTVHead: 1
-    ClothingHeadHatFeatheredHat: 1
-    ClothingHeadHatBrimHat: 1
-    ClothingHeadSafari: 2 # Zookeeper removal
-    ClothingUniformJumpsuitSafari: 2 # Zookeeper removal
   contrabandInventory:
     ClothingHeadHatRichard: 1
     ToyFigurineBoxer: 1
     ToyFigurineMusician: 1
-    ClothingUniformJumpsuitLittleGuyOveralls: 1 # DeltaV
-    ClothingOuterBurnedRobes: 1 #Starlight
-    CamoUniformSuit: 1 #Starlight
-    TatteredClothesUniformSuit: 1 #Starlight
-    ClothingNeckTatteredHood: 1 #Starlight
     ClothingShoesBling: 1
     ClothingShoesBootsCowboyFancy: 1
     ClothingOuterDogi: 1
     ClothingOuterSuitCarp: 1
     ClothingMaskBlushingClown: 1
     ClothingMaskBlushingMime: 1
-    ClothingMaskSusMime: 1 #Starlight
     ClothingHeadHatCowboyBountyHunter: 1
