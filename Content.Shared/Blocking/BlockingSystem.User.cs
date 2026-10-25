@@ -142,13 +142,13 @@ public sealed partial class BlockingSystem
             if (!_powerCell.TryUseCharge(item, energyUsed))
                 return; // if no battery or no charge, doesn't work and all damage is applied
         }
-        
+        #endregion
+
         var modify = new DamageModifierSet();
         foreach (var key in modifier.Coefficients.Keys.Concat(modifier.FlatReductions.Keys))
         {
             modify.Coefficients.TryAdd(key, 1 - blockFraction);
         }
-        #endregion
         args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, modify);
 
         if (blocking.IsBlocking && !args.Damage.Equals(args.OriginalDamage))
