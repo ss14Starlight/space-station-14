@@ -3,6 +3,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.Containers;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
@@ -115,14 +116,14 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         SubscribeLocalEvent<StationAiHolderComponent, ComponentRemove>(OnHolderRemove);
         SubscribeLocalEvent<StationAiHolderComponent, AfterInteractEvent>(OnHolderInteract);
         SubscribeLocalEvent<StationAiHolderComponent, MapInitEvent>(OnHolderMapInit);
-        SubscribeLocalEvent<StationAiHolderComponent, EntInsertedIntoContainerMessage>(OnHolderConInsert);
+        SubscribeLocalEvent<StationAiHolderComponent, EntInsertedIntoContainerMessage>(OnHolderConInsert, after: [typeof(ContainerCompSystem)]); //Starlight-edit: must run after ContainerCompSystem adds the AiHeld components
         SubscribeLocalEvent<StationAiHolderComponent, EntRemovedFromContainerMessage>(OnHolderConRemove);
         SubscribeLocalEvent<StationAiHolderComponent, IntellicardDoAfterEvent>(OnIntellicardDoAfter);
 
         SubscribeLocalEvent<BorgBrainComponent, IntellicardDoAfterEvent>(OnIntellicardBorgDoAfter); // Starlight-edit
         SubscribeLocalEvent<PAIComponent, IntellicardDoAfterEvent>(OnIntellicardPaiDoAfter); // Starlight-edit
 
-        SubscribeLocalEvent<StationAiCoreComponent, EntInsertedIntoContainerMessage>(OnAiInsert);
+        SubscribeLocalEvent<StationAiCoreComponent, EntInsertedIntoContainerMessage>(OnAiInsert, after: [typeof(ContainerCompSystem)]); //Starlight-edit: must run after ContainerCompSystem adds the AiHeld components
         SubscribeLocalEvent<StationAiCoreComponent, EntRemovedFromContainerMessage>(OnAiRemove);
         SubscribeLocalEvent<StationAiCoreComponent, ComponentShutdown>(OnAiShutdown);
         SubscribeLocalEvent<StationAiCoreComponent, PowerChangedEvent>(OnCorePower);
