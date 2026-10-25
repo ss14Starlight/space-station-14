@@ -137,7 +137,7 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
         if (!HasComp<SiliconLawBoundComponent>(args.Target)) return;
         if (!HasComp<SiliconLawProviderComponent>(args.Target)) return;
         if (!TryComp(args.Target, out LawboardResettableComponent? lrComp)) return;
-        
+
         // can't change own laws
         if (args.Target == args.User)
         {
@@ -153,7 +153,7 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
         }
 
         if (HasComp<MindShieldComponent>(args.Target))
-        { 
+        {
             _popup.PopupEntity(Loc.GetString("law-updater-mindshielded"), target, args.User);
             return;
         }
@@ -162,7 +162,7 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
             Loc.GetString("law-updater-alert", ("name", Name(args.User))),
             target, target, PopupType.Large
         );
-        
+
         _doAfter.TryStartDoAfter(
             new DoAfterArgs(
                 EntityManager, args.User, lrComp.Delay,
