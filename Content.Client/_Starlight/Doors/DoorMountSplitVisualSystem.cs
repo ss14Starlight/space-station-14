@@ -13,16 +13,17 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._Starlight.Doors;
 
 /// <summary>
-/// Renders wall-mounted entities on an opening secret door as two clipped copies that
+/// Renders wall mounts on explicitly opted-in doors as two clipped copies that
 /// follow the door panels. The original entity remains in place for interaction.
 /// </summary>
-public sealed partial class SecretDoorMountVisualSystem : EntitySystem
+public sealed partial class DoorMountSplitVisualSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private SharedTransformSystem _transforms = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SpriteSystem _sprites = default!;
     [Dependency] private TagSystem _tags = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     private static readonly ProtoId<ShaderPrototype> LeftShader = "SecretDoorMountLeft";
     private static readonly ProtoId<ShaderPrototype> RightShader = "SecretDoorMountRight";
@@ -37,7 +38,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
     private readonly Dictionary<EntityUid, SplitMount> _mounts = new();
     private readonly Dictionary<EntityUid, float> _doorProgress = new();
     private readonly Dictionary<(EntityUid Grid, Vector2i Tile), EntityUid> _doorsByTile = new();
-    private readonly HashSet<EntityUid> _activeDoors = new();
+    private readonly Dictionary<EntityUid, DoorState> _activeDoors = new();
     private readonly HashSet<EntityUid> _verticalDoors = new();
     private readonly HashSet<EntityUid> _seenMounts = new();
     private readonly HashSet<EntityUid> _nearbyEntities = new();
@@ -63,12 +64,47 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<SecretDoorPanelComponent, ComponentShutdown>(OnDoorShutdown);
+        SubscribeLocalEvent<DoorMountSplitComponent, ComponentStartup>(OnDoorStartup);
+        SubscribeLocalEvent<DoorMountSplitComponent, AppearanceChangeEvent>(OnDoorAppearanceChange);
+        SubscribeLocalEvent<DoorMountSplitComponent, ComponentShutdown>(OnDoorShutdown);
         SubscribeLocalEvent<WallMountComponent, ComponentShutdown>(OnMountShutdown);
     }
 
-    /// <summary>Restores mounts and removes clones when their door is removed.</summary>
-    private void OnDoorShutdown(Entity<SecretDoorPanelComponent> ent, ref ComponentShutdown args)
+    private void OnDoorStartup(Entity<DoorMountSplitComponent> ent, ref ComponentStartup args)
+    {
+        if (TryComp<DoorComponent>(ent, out var door))
+            SetDoorState(ent.Owner, door.State);
+    }
+
+    private void OnDoorAppearanceChange(Entity<DoorMountSplitComponent> ent, ref AppearanceChangeEvent args)
+    {
+        if (_appearance.TryGetData<DoorState>(ent, DoorVisuals.State, out var state, args.Component))
+            SetDoorState(ent.Owner, state);
+    }
+
+    private void SetDoorState(EntityUid uid, DoorState state)
+    {
+        if (state is DoorState.Open or DoorState.Opening or DoorState.Closing)
+        {
+            if (_activeDoors.TryGetValue(uid, out var previous) && previous == state)
+                return;
+
+            _activeDoors[uid] = state;
+            _doorProgress.TryAdd(uid, state is DoorState.Open or DoorState.Closing ? 1f : 0f);
+        }
+        else if (!_activeDoors.Remove(uid))
+        {
+            return;
+        }
+        else
+        {
+            _doorProgress.Remove(uid);
+        }
+
+        _scanCountdown = 0f;
+    }
+
+    private void OnDoorShutdown(Entity<DoorMountSplitComponent> ent, ref ComponentShutdown args)
     {
         _removeMounts.Clear();
         foreach (var (mount, split) in _mounts)
@@ -87,9 +123,11 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
     private void OnMountShutdown(Entity<WallMountComponent> ent, ref ComponentShutdown args)
         => RemoveMount(ent.Owner);
 
-    /// <summary>Advances door slides and keeps split clones aligned with their mounts.</summary>
     public override void FrameUpdate(float frameTime)
     {
+        if (_activeDoors.Count == 0 && _mounts.Count == 0)
+            return;
+
         UpdateDoorProgress(frameTime);
         _scanCountdown -= frameTime;
         if (_scanCountdown <= 0f)
@@ -100,9 +138,9 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
 
         foreach (var (mount, split) in _mounts)
         {
-            if (!HasComp<SecretDoorPanelComponent>(split.Door) ||
-                !TryComp<DoorComponent>(split.Door, out var door) ||
-                door.State == DoorState.Closed ||
+            if (!TryComp<DoorMountSplitComponent>(split.Door, out var panel) ||
+                !HasComp<DoorComponent>(split.Door) ||
+                !_activeDoors.ContainsKey(split.Door) ||
                 !_doorProgress.TryGetValue(split.Door, out var progress) ||
                 !TryComp<SpriteComponent>(mount, out var sourceSprite) ||
                 !TryComp(mount, out TransformComponent? sourceTransform) ||
@@ -126,7 +164,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
             if (Transform(split.Second).LocalRotation != sourceTransform.LocalRotation)
                 _transforms.SetLocalRotationNoLerp(split.Second, sourceTransform.LocalRotation);
 
-            var slide = 0.45f * progress;
+            var slide = MathF.Max(0f, panel.SlideDistance) * progress;
             var direction = GetLocalSlideDirection(sourceTransform, sourceSprite, split.Vertical);
             var firstOffset = sourceSprite.Offset - (direction * slide);
             var secondOffset = sourceSprite.Offset + (direction * slide);
@@ -141,16 +179,15 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         _removeMounts.Clear();
     }
 
-    /// <summary>Tracks opening progress for doors that currently need split visuals.</summary>
     private void UpdateDoorProgress(float frameTime)
     {
-        foreach (var uid in _activeDoors)
+        foreach (var (uid, state) in _activeDoors)
         {
             if (!TryComp<DoorComponent>(uid, out var door))
                 continue;
 
             var progress = _doorProgress.GetValueOrDefault(uid);
-            _doorProgress[uid] = door.State switch
+            _doorProgress[uid] = state switch
             {
                 DoorState.Open => 1f,
                 DoorState.Opening => MathF.Min(1f, progress + (frameTime / MathF.Max(0.001f, (float)door.OpeningAnimationTime.TotalSeconds))),
@@ -160,37 +197,35 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         }
     }
 
-    /// <summary>Finds wall mounts sharing a tile with an active secret door.</summary>
     private void ScanMounts()
     {
         _doorsByTile.Clear();
-        _activeDoors.Clear();
         _verticalDoors.Clear();
         _removeDoors.Clear();
 
-        var doorQuery = EntityQueryEnumerator<SecretDoorPanelComponent, DoorComponent, TransformComponent>();
-        while (doorQuery.MoveNext(out var uid, out _, out var door, out var xform))
+        foreach (var (uid, _) in _activeDoors)
         {
+            if (!HasComp<DoorMountSplitComponent>(uid) ||
+                !HasComp<DoorComponent>(uid) ||
+                !TryComp(uid, out TransformComponent? xform))
+            {
+                _removeDoors.Add(uid);
+                continue;
+            }
+
             if (xform.GridUid is not { } grid || !HasComp<MapGridComponent>(grid))
                 continue;
 
-            if (door.State is not (DoorState.Open or DoorState.Opening or DoorState.Closing))
-                continue;
-
-            _doorProgress.TryAdd(uid, door.State is DoorState.Closing or DoorState.Open ? 1f : 0f);
-            _activeDoors.Add(uid);
             if (MathF.Abs(xform.LocalRotation.RotateVec(Vector2.UnitX).Y) > 0.5f)
                 _verticalDoors.Add(uid);
             _doorsByTile[(grid, _transforms.GetGridOrMapTilePosition(uid, xform))] = uid;
         }
 
-        foreach (var door in _doorProgress.Keys)
-        {
-            if (!_activeDoors.Contains(door))
-                _removeDoors.Add(door);
-        }
         foreach (var door in _removeDoors)
+        {
+            _activeDoors.Remove(door);
             _doorProgress.Remove(door);
+        }
 
         if (_activeDoors.Count == 0)
         {
@@ -205,7 +240,7 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
 
         _seenMounts.Clear();
         _nearbyEntities.Clear();
-        foreach (var door in _activeDoors)
+        foreach (var door in _activeDoors.Keys)
             _lookup.GetEntitiesInRange(door, 1.5f, _nearbyEntities, LookupFlags.Uncontained);
 
         foreach (var uid in _nearbyEntities)
@@ -263,7 +298,6 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         _removeMounts.Clear();
     }
 
-    /// <summary>Creates the two non-interactive sprite clones for a wall mount.</summary>
     private SplitMount CreateMount(EntityUid mount, EntityUid door, SpriteComponent sprite, TransformComponent xform)
     {
         var first = Spawn("clientsideclone", xform.Coordinates);
@@ -278,14 +312,16 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         return new SplitMount(door, first, second, originalColor, vertical, maskVertical, maskReversed);
     }
 
-    /// <summary>Converts the door's slide axis into the mount sprite's local space.</summary>
+    /// <summary>
+    /// Converts the door's world-space slide axis into the mount sprite's local
+    /// space so a rotated mount is clipped along the correct axis.
+    /// </summary>
     private static Vector2 GetLocalSlideDirection(TransformComponent xform, SpriteComponent sprite, bool vertical)
     {
         var worldAxis = vertical ? Vector2.UnitY : Vector2.UnitX;
         return sprite.NoRotation ? worldAxis : (-xform.LocalRotation).RotateVec(worldAxis);
     }
 
-    /// <summary>Copies changed source art to both halves and reapplies their masks.</summary>
     private void RefreshMount(EntityUid mount, SpriteComponent source, SplitMount split)
     {
         if (!TryComp<SpriteComponent>(split.First, out var first) ||
@@ -302,7 +338,10 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         MaskHalf(second, firstHalf: false, split.MaskVertical, split.MaskReversed);
     }
 
-    /// <summary>Clips each sprite layer to the half that follows its door panel.</summary>
+    /// <summary>
+    /// Selects the shaded or unshaded clipping shader for each sprite layer,
+    /// accounting for the mount's orientation relative to the door.
+    /// </summary>
     private void MaskHalf(SpriteComponent sprite, bool firstHalf, bool vertical, bool reversed)
     {
         var index = 0;
@@ -329,7 +368,10 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         }
     }
 
-    /// <summary>Restores the source color and queues its visual clones for deletion.</summary>
+    /// <summary>
+    /// Restores the original mount's color before removing its client-side
+    /// halves, including any color managed by an active flash effect.
+    /// </summary>
     private void RemoveMount(EntityUid mount)
     {
         if (!_mounts.Remove(mount, out var split))
@@ -345,7 +387,10 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
         QueueDel(split.Second);
     }
 
-    /// <summary>Preserves lasting recolors without saving temporary flash colors.</summary>
+    /// <summary>
+    /// Saves persistent color changes while excluding temporary flash colors
+    /// and the transparent color used to hide the original sprite.
+    /// </summary>
     private void TrackSourceColor(EntityUid mount, SpriteComponent sprite, SplitMount split)
     {
         if (!HasComp<ColorFlashEffectComponent>(mount) &&
@@ -353,7 +398,10 @@ public sealed partial class SecretDoorMountVisualSystem : EntitySystem
             split.OriginalColor = sprite.Color;
     }
 
-    /// <summary>Fingerprints common sprite properties to avoid redundant full copies.</summary>
+    /// <summary>
+    /// Fingerprints common sprite properties to avoid full copies on every
+    /// scan; the timed refresh covers properties omitted from this hash.
+    /// </summary>
     private static int GetVisualHash(SpriteComponent sprite, Color originalColor)
     {
         var hash = new HashCode();

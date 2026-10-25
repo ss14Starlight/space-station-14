@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Secret door animation by Nimfar11 (GitHub), modified by spanky_spanky (GitHub), new version by Conflee. Closed reinforced wall frames composited from Structures/Walls/solid.rsi by Conflee.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "assembly",
+      "directions": 4
+    },
+    {
+      "name": "closed",
+      "directions": 4
+    },
+    {
+      "name": "closing",
+      "directions": 4,
+      "delays": [[0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2]]
+    },
+    {
+      "name": "open",
+      "directions": 4
+    },
+    {
+      "name": "opening",
+      "directions": 4,
+      "delays": [[0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2]]
+    }
+  ]
+}
