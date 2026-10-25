@@ -133,7 +133,7 @@ public sealed partial class MindCollectiveSystem : EntitySystem
     private EntityUid CreateObserver(EntityUid collectiveId, MindCollectiveComponent collective, EntityUid mind, EntityUid? body)
     {
         var observer = body is { } target && !TerminatingOrDeleted(target)
-            ? Spawn(collective.ObserverPrototype, Transform(target).Coordinates)
+            ? Spawn(collective.ObserverPrototype, _transform.GetMoverCoordinates(target))
             : Spawn(collective.ObserverPrototype);
         Comp<MindCollectiveObserverComponent>(observer).Collective = collectiveId;
         collective.Minds.Add(mind, observer);

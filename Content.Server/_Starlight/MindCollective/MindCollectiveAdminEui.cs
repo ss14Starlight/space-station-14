@@ -181,7 +181,8 @@ public sealed class MindCollectiveAdminEui : BaseEui
                 if (actor is not { } location || !_entities.TryGetComponent(location, out TransformComponent? transform)
                     || transform.MapID == MapId.Nullspace)
                     return false;
-                _body = _entities.SpawnEntity("MobHuman", transform.Coordinates.Offset(new Vector2(1, 0)));
+                var coordinates = _entities.System<SharedTransformSystem>().GetMoverCoordinates(location, transform);
+                _body = _entities.SpawnEntity("MobHuman", coordinates.Offset(new Vector2(1, 0)));
                 if (_collectives.RegisterBody(group, _body.Value))
                     return true;
                 _entities.QueueDeleteEntity(_body);
