@@ -62,6 +62,9 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
 
             sensitive.NextInteraction = now + s_checkInterval;
 
+            if (_scent.IsSealed(uid))
+                continue;
+
             var nearby = _lookup.GetEntitiesInRange(sensitiveTransform.Coordinates, sensitive.PollenRange);
             var containerHere = _scent.GetAirtightContainer(sensitiveTransform);
 
@@ -70,6 +73,7 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
                 if (!TryComp<ScentMarkerComponent>(candidate, out var pollen) || !pollen.IsPollen)
                     continue;
 
+                // made this if, but i want people to die when they have the items in their backpack
                 // Only interact with pollen in the same airtight container.
                 if (pollen.ContainedIn != containerHere)
                     continue;
@@ -116,11 +120,21 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
             string.IsNullOrWhiteSpace(record.PRecords.Allergies))
             return false;
 
+        var normalizedPollenId = NormalizePollenId(pollenId);
+
         return record.PRecords.Allergies
             .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .Any(allergy => allergy.Equals(pollenId, StringComparison.OrdinalIgnoreCase));
+            .Any(allergy => NormalizePollenId(allergy).Equals(normalizedPollenId, StringComparison.OrdinalIgnoreCase));
     }
 
+    private static string NormalizePollenId(string pollenId)
+    {
+        const string suffix = "Plants";
+
+        return pollenId.EndsWith(suffix, StringComparison.OrdinalIgnoreCase)
+            ? pollenId[..^suffix.Length]
+            : pollenId;
+    }
     private void InteractWithPollen(Entity<PollenSensitiveComponent> ent, string pollenId, bool isAdvancedPollen)
     {
         // Collectors (Dionas) absorb pollen through PollenCollectorSystem.

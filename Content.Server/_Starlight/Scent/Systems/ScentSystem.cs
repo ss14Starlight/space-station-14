@@ -590,6 +590,9 @@ public sealed partial class ScentSystem : SharedScentSystem
             var pollenDecayTime = GetDecayTime(scent, uid);
             var pollenMarker = EmitPollenMarker(ref scent.LastMarkerEntity, scentId, xform, pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
 
+            if (!pollenMarker.IsValid())
+                return;
+
             if (TryComp<ScentMarkerComponent>(pollenMarker, out var pollenMarkerComp))
             {
                 pollenMarkerComp.WasDead = MobState.IsDead(uid);
@@ -623,7 +626,7 @@ public sealed partial class ScentSystem : SharedScentSystem
 
     // Fully encased in pressure-protective gear - a sealed hardsuit/EVA setup. Nothing is
     // actually escaping into the room.
-    private bool IsSealed(EntityUid uid)
+    internal bool IsSealed(EntityUid uid)
     {
         var headSealed = _inventory.TryGetSlotEntity(uid, "head", out var head) &&
                           HasComp<PressureProtectionComponent>(head!.Value);
@@ -732,6 +735,12 @@ public sealed partial class ScentSystem : SharedScentSystem
     {
         var container = GetAirtightContainer(emitterXform);
         EntityUid? matchingMarker = null;
+
+        if ((_atmosphere.GetTileMixture(emitterXform.Owner)?.Pressure ?? 0f) <= 5f) // dont emit pollen below 5 kpa
+        {
+            lastMarker = null;
+            return EntityUid.Invalid;
+        }
 
         // Select the same matching marker consistently, regardless of each emitter's cached reference.
         foreach (var candidate in _lookup.GetEntitiesInRange(emitterXform.Coordinates, mergeRadius))
