@@ -2,12 +2,15 @@ using Content.Shared._Starlight.StationRadio.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Examine;
+using Content.Shared.Toggleable;
 using Content.Shared.Verbs;
 
 namespace Content.Shared._Starlight.StationRadio.Systems;
 
 public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
 {
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+
     [SubscribeLocalEvent]
     private void OnRadioToggle(EntityUid uid, StationRadioReceiverComponent comp, ActivateInWorldEvent args)
     {
@@ -15,7 +18,16 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
             return;
 
         comp.Active = !comp.Active;
+        UpdateVisuals(new(uid, comp));
         Dirty(uid, comp);
+    }
+
+    private void UpdateVisuals(Entity<StationRadioReceiverComponent> ent)
+    {
+        if (TryComp(ent, out AppearanceComponent? appearance))
+        {
+            _appearance.SetData(ent, ToggleableVisuals.Enabled, ent.Comp.Active, appearance); // this is a bit of a hack
+        }
     }
 
     /// <summary>

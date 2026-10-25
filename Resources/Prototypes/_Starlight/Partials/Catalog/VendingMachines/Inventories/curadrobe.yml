@@ -1,0 +1,21 @@
+- type: !PartialOnly vendingMachineInventory
+  id: CuraDrobeInventory
+  startingInventory: !Clear
+    BooksBag: 2
+    BriefcaseBrown: 2
+    HandLabeler: 2
+    Cane: 3
+    ClothingEyesGlasses: 2
+    ClothingEyesGlassesJamjar: 2
+    ClothingNeckScarfStripedGreen: 2
+    ClothingNeckScarfSolidGreen: 2
+    ClothingUniformJumpsuitCurator: 3
+    ClothingUniformJumpskirtCurator: 3
+    ClothingUniformJumpsuitLibrarian: 3
+    ClothingUniformJumpskirtLibrarian: 3
+    ClothingShoesBootsLaceup: 2
+    ClothingHeadsetService: 2
+    PrinterDocFlatpack: 2
+  emaggedInventory: # Blimpuf
+    HeavyCane: 1 # Blimpuf
+    SharpPaper: 2 # Blimpuf
