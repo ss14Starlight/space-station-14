@@ -1,18 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: The secure terminal and its keycard counterparts have now power cells for reserve power.
-    type: Add
-  id: 409346
-  time: '2026-10-10T17:48:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6564
-- author: Floximo
-  changes:
-  - message: The tools to add the same ability to every terminal or computer.
-    type: Add
-  id: 409347
-  time: '2026-10-10T17:48:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6564
 - author: Conflee
   changes:
   - message: Added the Gorlex Marauder communication channel. All Nukie headsets now come with a Gorlex Encryption Key that has access to Traitor and Gorlex comms channels. The new Gorlex channel is not obfuscated, allowing Nukie teams to once again coordinate on comms and tell who the fuck is talking.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409745
   time: '2026-10-24T20:51:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6822
+- author: Ohelig
+  changes:
+  - message: Meat spikes are now spiky again.
+    type: Fix
+  id: 409746
+  time: '2026-10-25T09:53:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6852
+- author: Ohelig
+  changes:
+  - message: You can no longer butcher monkeys and kobolds with a welder.
+    type: Fix
+  id: 409747
+  time: '2026-10-25T09:53:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6852
 Order: -1
