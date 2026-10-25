@@ -73,7 +73,6 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
                 if (!TryComp<ScentMarkerComponent>(candidate, out var pollen) || !pollen.IsPollen)
                     continue;
 
-                // made this if, but i want people to die when they have the items in their backpack
                 // Only interact with pollen in the same airtight container.
                 if (pollen.ContainedIn != containerHere)
                     continue;
