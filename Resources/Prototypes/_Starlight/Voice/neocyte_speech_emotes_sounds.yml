@@ -296,8 +296,8 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg # Starlight
-    Cry:
-      path: /Audio/_FarHorizons/Voice/Proto/Reptilian/protoreptilian_cry.ogg
+    Crying:
+      path: /Audio/Voice/Reptilian/neoreptilian_cry.ogg
 
 - type: emoteSounds
   parent: NeoHumanFSounds
@@ -305,8 +305,8 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg # Starlight
-    Cry:
-      path: /Audio/_FarHorizons/Voice/Proto/Reptilian/protoreptilian_cry.ogg
+    Crying:
+      path: /Audio/Voice/Reptilian/neoreptilian_cry.ogg
 
 - type: emoteSounds
   parent: NeoHumanMSounds

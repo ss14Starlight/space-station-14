@@ -18,3 +18,8 @@
   copyright: '"raptor_purr.ogg" by Citadel-Station-13 - applied robotic voice'
   license: CC-BY-SA-3.0
   source: https://github.com/BlackMajor/Citadel-Station-13/blob/c2b09cf3ee949e9454a10d8f8fa40296bf435428/modular_citadel/sound/voice/raptor_purr.ogg
+
+- files: [neoreptilian_cry.ogg]
+  copyright: 'Adapted from HowesenbergFilms on Freesound - applied robotic voice'
+  license: "CC0-1.0"
+  source: https://freesound.org/people/HowesenbergFilms/sounds/828228/
