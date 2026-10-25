@@ -195,6 +195,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         RaiseLocalEvent(intercept);
         if (intercept.Handled)
             return;
+        source = intercept.Source;
         // Starlight end
 
         ignoreActionBlocker = CheckIgnoreSpeechBlocker(source, ignoreActionBlocker);
@@ -1211,7 +1212,7 @@ public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Di
 // Starlight Start
 public sealed class BeforeInGameICMessageEvent(EntityUid source, string message) : EntityEventArgs
 {
-    public readonly EntityUid Source = source;
+    public EntityUid Source = source;
     public readonly string Message = message;
     public bool Handled;
 }

@@ -16,6 +16,7 @@ public sealed partial class MindCollectiveComponent : Component
     public HashSet<EntityUid> VacantObservers = new();
     public HashSet<NetUserId> ExcludedUsers = new();
     public HashSet<EntityUid> Bodies = new();
+    public Dictionary<EntityUid, Dictionary<EntityUid, BodyControlAccess>> ControlAccess = new();
     public bool Moving;
     public bool Closing;
     public TimeSpan NextUpdate;

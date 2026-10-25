@@ -92,7 +92,7 @@ public sealed partial class AlertsUIController : UIController, IOnStateEntered<G
 
     public void UpdateAlertSpriteEntity(EntityUid spriteViewEnt, AlertPrototype alert)
     {
-        if (_player.LocalEntity is not { } player)
+        if (EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity is not { } player)
             return;
 
         if (!EntityManager.TryGetComponent<SpriteComponent>(spriteViewEnt, out var sprite))

@@ -13,7 +13,7 @@ namespace Content.Shared._Starlight.Language.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class LanguageSpeakerComponent : Component
 {
-    public override bool SendOnlyToOwner => true;
+    public override bool SessionSpecific => true;
 
     /// <summary>
     ///     The current language the entity uses when speaking.

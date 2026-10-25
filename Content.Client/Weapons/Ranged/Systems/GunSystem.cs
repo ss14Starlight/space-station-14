@@ -404,7 +404,7 @@ public sealed partial class GunSystem : SharedGunSystem
         base.Update(frameTime);
 
         // Starlight-start: predict gun burst fire for all held guns
-        if (_player.LocalEntity is not EntityUid entity) return;
+        if (EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity is not EntityUid entity) return;
 
         foreach (var heldGun in EnumerateGuns(entity))
         {
@@ -425,11 +425,6 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             entity = mechPilot.Mech;
         }
-
-        // Starlight: remote/scoped controllers shoot through the authorized hand dispatcher.
-        if (TryComp<Content.Shared._Starlight.BodyControl.BodyControlSourceComponent>(entity, out var control)
-            && !control.ExternallyDriven && (control.Body != entity || !control.Access.FullControl))
-            return;
 
         if (!TryGetGun(entity, out var gun))
         {

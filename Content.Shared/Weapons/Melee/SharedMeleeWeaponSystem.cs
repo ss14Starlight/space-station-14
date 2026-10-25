@@ -190,7 +190,9 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
     private void OnStopAttack(StopAttackEvent msg, EntitySessionEventArgs args)
     {
-        var user = args.SenderSession.AttachedEntity;
+        if (WithBodyControl(args, () => OnStopAttack(msg, args)))
+            return;
+        var user = GetAttackUser(args);
 
         if (user == null)
             return;
@@ -210,7 +212,9 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
     private void OnLightAttack(LightAttackEvent msg, EntitySessionEventArgs args)
     {
-        if (args.SenderSession.AttachedEntity is not {} user)
+        if (WithBodyControl(args, () => OnLightAttack(msg, args)))
+            return;
+        if (GetAttackUser(args) is not {} user)
             return;
 
         if (!TryGetWeapon(user, out var weaponUid, out var weapon) ||
@@ -224,7 +228,9 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
     private void OnHeavyAttack(HeavyAttackEvent msg, EntitySessionEventArgs args)
     {
-        if (args.SenderSession.AttachedEntity is not {} user)
+        if (WithBodyControl(args, () => OnHeavyAttack(msg, args)))
+            return;
+        if (GetAttackUser(args) is not {} user)
             return;
 
         if (!TryGetWeapon(user, out var weaponUid, out var weapon) ||
@@ -238,12 +244,23 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
     private void OnDisarmAttack(DisarmAttackEvent msg, EntitySessionEventArgs args)
     {
-        if (args.SenderSession.AttachedEntity is not {} user)
+        if (WithBodyControl(args, () => OnDisarmAttack(msg, args)))
+            return;
+        if (GetAttackUser(args) is not {} user)
             return;
 
         if (TryGetWeapon(user, out var weaponUid, out var weapon))
             AttemptAttack(user, weaponUid, weapon, msg, args.SenderSession);
     }
+
+    private EntityUid? GetAttackUser(EntitySessionEventArgs args)
+        => args.SenderSession.AttachedEntity is { } actor
+            ? EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>().GetControlledBody(actor) : null;
+
+    private bool WithBodyControl(EntitySessionEventArgs args, Action command)
+        => args.SenderSession.AttachedEntity is { } actor
+           && EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>()
+               .WithController(actor, "body.interact", HasComp<HandsComponent>(GetAttackUser(args)), command);
 
     /// <summary>
     /// Gets the total damage a weapon does, including modifiers like wielding and enablind/disabling

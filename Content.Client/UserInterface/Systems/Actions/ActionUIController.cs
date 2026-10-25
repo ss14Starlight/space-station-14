@@ -132,7 +132,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             .Bind(ContentKeyFunctions.OpenActionsMenu,
                 InputCmdHandler.FromDelegate(_ => ToggleWindow()))
             .BindBefore(EngineKeyFunctions.Use, new PointerInputCmdHandler(TargetingOnUse, outsidePrediction: true),
-                    typeof(ConstructionSystem), typeof(DragDropSystem))
+                    typeof(ConstructionSystem), typeof(DragDropSystem), typeof(Content.Client._Starlight.BodyControl.BodyControlSystem))
                 .BindBefore(EngineKeyFunctions.UIRightClick, new PointerInputCmdHandler(TargetingCancel, outsidePrediction: true))
             .Register<ActionUIController>();
     }
@@ -158,7 +158,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         if (!_timing.IsFirstTimePredicted || _actionsSystem == null || SelectingTargetFor is not { } actionId)
             return false;
 
-        if (_playerManager.LocalEntity is not { } user)
+        if (_actionsSystem?.UiEntity is not { } user)
             return false;
 
         if (!EntityManager.TryGetComponent<ActionsComponent>(user, out var comp))
@@ -236,6 +236,8 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         {
             return;
         }
+        if (!_actionsSystem.CheckControlActionAccess(action))
+            return;
 
         // TODO: probably should have a clientside event raised for flexibility
         if (EntityManager.TryGetComponent<TargetActionComponent>(action, out var target))
@@ -331,8 +333,8 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         return filter switch
         {
             Filters.Enabled => comp.Enabled,
-            Filters.Item => comp.Container != null && comp.Container != _playerManager.LocalEntity,
-            Filters.Innate => comp.Container == null || comp.Container == _playerManager.LocalEntity,
+            Filters.Item => comp.Container != null && comp.Container != _actionsSystem?.UiEntity,
+            Filters.Innate => comp.Container == null || comp.Container == _actionsSystem?.UiEntity,
             Filters.Instant => EntityManager.HasComponent<InstantActionComponent>(uid),
             Filters.Targeted => EntityManager.HasComponent<TargetActionComponent>(uid),
             _ => throw new ArgumentOutOfRangeException(nameof(filter), filter, null)
@@ -399,7 +401,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         if (_actionsSystem == null)
             return;
 
-        if (_playerManager.LocalEntity is not { } player)
+        if (_actionsSystem?.UiEntity is not { } player)
             return;
 
         var search = _window.SearchBar.Text;
@@ -597,6 +599,8 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             return;
         }
 
+        if (_actionsSystem != null && !_actionsSystem.CheckControlActionAccess(action))
+            return;
         // for target actions, we go into "select target" mode, we don't
         // message the server until we actually pick our target.
 

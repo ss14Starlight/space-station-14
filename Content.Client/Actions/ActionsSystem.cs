@@ -1,5 +1,9 @@
 using System.IO;
 using System.Linq;
+using Content.Client._Starlight.BodyControl;
+using Content.Shared._Starlight.BodyControl;
+using Content.Shared._Starlight.MindCollective;
+using Content.Shared.CombatMode;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Chat.Prototypes;
@@ -13,6 +17,7 @@ using JetBrains.Annotations;
 using Robust.Client.Player;
 using Robust.Shared.ContentPack;
 using Robust.Shared.GameStates;
+using Robust.Shared.Map;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -33,6 +38,9 @@ namespace Content.Client.Actions
 
         [Dependency] private SharedChargesSystem _sharedCharges = default!;
         [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private BodyControlViewSystem _bodyView = default!;
+
+        public EntityUid? UiEntity => _bodyView.Entity;
         [Dependency] private IPrototypeManager _proto = default!;
         [Dependency] private IResourceManager _resources = default!;
         [Dependency] private MetaDataSystem _metaData = default!;
@@ -76,7 +84,7 @@ namespace Content.Client.Actions
             // TODO: Decouple this.
             ent.Comp.IconColor = _sharedCharges.GetCurrentCharges(ent.Owner) == 0 ? ent.Comp.DisabledIconColor : ent.Comp.OriginalIconColor;
             base.UpdateAction(ent);
-            if (_playerManager.LocalEntity != ent.Comp.AttachedEntity)
+            if (_bodyView.Entity != ent.Comp.AttachedEntity && _playerManager.LocalEntity != ent.Comp.AttachedEntity)
                 return;
 
             ActionsUpdated?.Invoke();
@@ -110,7 +118,7 @@ namespace Content.Client.Actions
                     _added.Add(action);
             }
 
-            if (_playerManager.LocalEntity != uid)
+            if (_bodyView.Entity != uid && _playerManager.LocalEntity != uid)
                 return;
 
             foreach (var action in _removed)
@@ -122,7 +130,8 @@ namespace Content.Client.Actions
 
             foreach (var action in _added)
             {
-                OnActionAdded?.Invoke(action);
+                if (IsUiAction(action))
+                    OnActionAdded?.Invoke(action);
             }
 
             ActionsUpdated?.Invoke();
@@ -147,7 +156,7 @@ namespace Content.Client.Actions
 
         protected override void ActionAdded(Entity<ActionsComponent> performer, Entity<ActionComponent> action)
         {
-            if (_playerManager.LocalEntity != performer.Owner)
+            if (!IsUiAction(action))
                 return;
 
             OnActionAdded?.Invoke(action);
@@ -156,7 +165,7 @@ namespace Content.Client.Actions
 
         protected override void ActionRemoved(Entity<ActionsComponent> performer, Entity<ActionComponent> action)
         {
-            if (_playerManager.LocalEntity != performer.Owner)
+            if (_bodyView.Entity != performer.Owner && _playerManager.LocalEntity != performer.Owner)
                 return;
 
             OnActionRemoved?.Invoke(action);
@@ -165,19 +174,54 @@ namespace Content.Client.Actions
 
         public IEnumerable<Entity<ActionComponent>> GetClientActions()
         {
-            if (_playerManager.LocalEntity is not { } user)
+            if (_bodyView.Entity is not { } user)
                 return Enumerable.Empty<Entity<ActionComponent>>();
 
             // Starlight - Filter disallowed vocal emote actions from the quick menu.
-            return GetActions(user).Where(action => ShouldShowEmoteAction(user, action));
+            var actions = GetActions(user).Where(IsUiAction);
+            if (_playerManager.LocalEntity is { } actor && actor != user)
+                actions = actions.Concat(GetActions(actor).Where(action => GetEvent(action) is OpenMindCollectiveEvent));
+            return actions.Where(action => ShouldShowEmoteAction(user, action));
         }
+
+        private bool IsUiAction(Entity<ActionComponent> action)
+            => action.Comp.AttachedEntity == _bodyView.Entity
+               && (GetEvent(action) is not OpenMindCollectiveEvent || _bodyView.Entity == _playerManager.LocalEntity)
+               || action.Comp.AttachedEntity == _playerManager.LocalEntity && GetEvent(action) is OpenMindCollectiveEvent;
+
+        [SubscribeLocalEvent]
+        private void OnControlViewChanged(BodyControlViewChangedEvent args)
+        {
+            UnlinkAllActions();
+            LinkAllActions();
+        }
+
+        public bool CheckControlActionAccess(Entity<ActionComponent> action)
+        {
+            if (!_bodyView.TryGetSource(out _, out var source) || action.Comp.AttachedEntity != source.Body
+                || GetEvent(action) is OpenMindCollectiveEvent)
+                return true;
+            var permitted = GetEvent(action) is ToggleCombatActionEvent ? source.Access.Allows("body.interact")
+                : source.Access.Allows("body.actions");
+            if (permitted && (GetEvent(action) is ToggleCombatActionEvent || source.Access.FullControl || source.Access.Actions == null
+                || MetaData(action).EntityPrototype is { } prototype && source.Access.Actions.Contains(prototype.ID)))
+                return true;
+            _bodyView.Send(new BodyControlCommandEvent(BodyControlCommand.Action, action: GetNetEntity(action)));
+            return false;
+        }
+
+        private bool SendControlledAction(Entity<ActionComponent> action, EntityUid? target = null, NetCoordinates? coordinates = null)
+            => _bodyView.TryGetSource(out _, out var source) && action.Comp.AttachedEntity == source.Body
+               && GetEvent(action) is not OpenMindCollectiveEvent
+               && _bodyView.Send(new BodyControlCommandEvent(BodyControlCommand.Action,
+                   target: GetNetEntity(target), coordinates: coordinates, action: GetNetEntity(action)));
 
         #region Starlight
 
         [SubscribeLocalEvent]
         private void OnSpeechAfterHandleState(Entity<SpeechComponent> ent, ref AfterAutoHandleStateEvent args)
         {
-            if (_playerManager.LocalEntity != ent.Owner)
+            if (_bodyView.Entity != ent.Owner)
                 return;
 
             ActionsUpdated?.Invoke();
@@ -239,8 +283,8 @@ namespace Content.Client.Actions
 
         public void LinkAllActions(ActionsComponent? actions = null)
         {
-            if (_playerManager.LocalEntity is not { } user ||
-                !Resolve(user, ref actions, false))
+            if (_bodyView.Entity is not { } user ||
+                !Resolve(user, ref actions, false) && !TryComp(_playerManager.LocalEntity, out actions))
             {
                 return;
             }
@@ -256,6 +300,15 @@ namespace Content.Client.Actions
 
         public void TriggerAction(Entity<ActionComponent> action)
         {
+            if (action.Comp.ClientExclusive && _bodyView.TryGetSource(out _, out var source)
+                && action.Comp.AttachedEntity == source.Body)
+            {
+                if (CheckControlActionAccess(action))
+                    PerformAction(source.Body, action);
+                return;
+            }
+            if (SendControlledAction(action))
+                return;
             if (_playerManager.LocalEntity is not { } user)
                 return;
 
@@ -405,7 +458,7 @@ namespace Content.Client.Actions
 
                 PerformAction((user, user.Comp), (uid, action));
             }
-            else
+            else if (!SendControlledAction((uid, action), targetEnt, GetNetCoordinates(coords)))
                 RaisePredictiveEvent(new RequestPerformActionEvent(GetNetEntity(uid), GetNetEntity(targetEnt), GetNetCoordinates(coords)));
 
             args.FoundTarget = true;
@@ -443,7 +496,8 @@ namespace Content.Client.Actions
             }
             else
             {
-                RaisePredictiveEvent(new RequestPerformActionEvent(GetNetEntity(uid), GetNetEntity(entity)));
+                if (!SendControlledAction((uid, action), entity))
+                    RaisePredictiveEvent(new RequestPerformActionEvent(GetNetEntity(uid), GetNetEntity(entity)));
             }
 
             args.FoundTarget = true;

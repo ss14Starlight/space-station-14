@@ -1,3 +1,4 @@
+using Content.Client._Starlight.BodyControl;
 using System.Linq;
 using Content.Client.Clothing;
 using Content.Client.Examine;
@@ -7,7 +8,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Storage;
 using JetBrains.Annotations;
-using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
@@ -18,7 +18,7 @@ namespace Content.Client.Inventory
     [UsedImplicitly]
     public sealed partial class ClientInventorySystem : InventorySystem
     {
-        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private BodyControlViewSystem _bodyView = default!;
         [Dependency] private IUserInterfaceManager _ui = default!;
         [Dependency] private ClientClothingSystem _clothingVisualsSystem = default!;
         [Dependency] private ExamineSystem _examine = default!;
@@ -82,7 +82,7 @@ namespace Content.Client.Inventory
         private void OnDidUnequip(InventorySlotsComponent component, DidUnequipEvent args)
         {
             UpdateSlot(args.EquipTarget, component, args.Slot);
-            if (args.EquipTarget != _playerManager.LocalEntity)
+            if (args.EquipTarget != _bodyView.Entity)
                 return;
             var update = new SlotSpriteUpdate(null, args.SlotGroup, args.Slot, false);
             OnSpriteUpdate?.Invoke(update);
@@ -91,7 +91,7 @@ namespace Content.Client.Inventory
         private void OnDidEquip(InventorySlotsComponent component, DidEquipEvent args)
         {
             UpdateSlot(args.EquipTarget, component, args.Slot);
-            if (args.EquipTarget != _playerManager.LocalEntity)
+            if (args.EquipTarget != _bodyView.Entity)
                 return;
             var update = new SlotSpriteUpdate(args.Equipment, args.SlotGroup, args.Slot,
                 HasComp<StorageComponent>(args.Equipment));
@@ -108,7 +108,7 @@ namespace Content.Client.Inventory
                 }
             }
 
-            if (uid == _playerManager.LocalEntity)
+            if (uid == _bodyView.Entity)
                 OnUnlinkInventory?.Invoke();
         }
 
@@ -137,7 +137,7 @@ namespace Content.Client.Inventory
 
         public void ReloadInventory(InventorySlotsComponent? component = null)
         {
-            var player = _playerManager.LocalEntity;
+            var player = _bodyView.Entity;
             if (player == null || !Resolve(player.Value, ref component, false))
                 return;
 
@@ -145,11 +145,18 @@ namespace Content.Client.Inventory
             OnLinkInventorySlots?.Invoke(player.Value, component);
         }
 
+        [SubscribeLocalEvent]
+        private void OnControlViewChanged(BodyControlViewChangedEvent args)
+        {
+            OnUnlinkInventory?.Invoke();
+            ReloadInventory();
+        }
+
         public void SetSlotHighlight(EntityUid owner, InventorySlotsComponent component, string slotName, bool state)
         {
             var oldData = component.SlotData[slotName];
             var newData = component.SlotData[slotName] = new SlotData(oldData, state);
-            if (owner == _playerManager.LocalEntity)
+            if (owner == _bodyView.Entity)
                 EntitySlotUpdate?.Invoke(newData);
         }
 
@@ -171,7 +178,7 @@ namespace Content.Client.Inventory
 
             var newData = component.SlotData[slotName] =
                 new SlotData(component.SlotData[slotName], newHighlight, newBlocked);
-            if (owner == _playerManager.LocalEntity)
+            if (owner == _bodyView.Entity)
                 EntitySlotUpdate?.Invoke(newData);
         }
 
@@ -183,7 +190,7 @@ namespace Content.Client.Inventory
             if (TryGetSlotContainer(ent.Owner, newSlotData.SlotName, out var newContainer, out _))
                 ent.Comp.SlotData[newSlotData.SlotName].Container = newContainer;
 
-            if (ent.Owner == _playerManager.LocalEntity)
+            if (ent.Owner == _bodyView.Entity)
                 OnSlotAdded?.Invoke(newSlotData);
 
             return true;
@@ -194,7 +201,7 @@ namespace Content.Client.Inventory
             if (!ent.Comp.SlotData.Remove(removedSlotData.SlotName))
                 return false;
 
-            if (ent.Owner == _playerManager.LocalEntity)
+            if (ent.Owner == _bodyView.Entity)
                 OnSlotRemoved?.Invoke(removedSlotData);
 
             return true;
@@ -202,11 +209,17 @@ namespace Content.Client.Inventory
 
         public void UIInventoryActivate(string slot)
         {
+            if (_bodyView.Send(new Content.Shared._Starlight.BodyControl.BodyControlCommandEvent(
+                    Content.Shared._Starlight.BodyControl.BodyControlCommand.InventoryUse, slot: slot)))
+                return;
             RaisePredictiveEvent(new UseSlotNetworkMessage(slot));
         }
 
         public void UIInventoryStorageActivate(string slot)
         {
+            if (_bodyView.Send(new Content.Shared._Starlight.BodyControl.BodyControlCommandEvent(
+                    Content.Shared._Starlight.BodyControl.BodyControlCommand.InventoryStorage, slot: slot)))
+                return;
             RaisePredictiveEvent(new OpenSlotStorageNetworkMessage(slot));
         }
 
@@ -228,6 +241,9 @@ namespace Content.Client.Inventory
 
         public void UIInventoryActivateItem(string slot, EntityUid uid)
         {
+            if (_bodyView.Send(new Content.Shared._Starlight.BodyControl.BodyControlCommandEvent(
+                    Content.Shared._Starlight.BodyControl.BodyControlCommand.InventoryActivate, slot: slot)))
+                return;
             if (!TryGetSlotEntity(uid, slot, out var item))
                 return;
 
@@ -237,6 +253,9 @@ namespace Content.Client.Inventory
 
         public void UIInventoryAltActivateItem(string slot, EntityUid uid)
         {
+            if (_bodyView.Send(new Content.Shared._Starlight.BodyControl.BodyControlCommandEvent(
+                    Content.Shared._Starlight.BodyControl.BodyControlCommand.InventoryAltActivate, slot: slot)))
+                return;
             if (!TryGetSlotEntity(uid, slot, out var item))
                 return;
 
@@ -273,7 +292,7 @@ namespace Content.Client.Inventory
                     TryAddSlotData((ent.Owner, inventorySlots), (SlotData)slot);
             }
 
-            if (ent.Owner == _playerManager.LocalEntity)
+            if (ent.Owner == _bodyView.Entity)
                 ReloadInventory(inventorySlots);
         }
 

@@ -15,7 +15,7 @@ public sealed partial class AlertsComponent : Component
     [ViewVariables]
     public Dictionary<AlertKey, AlertState> Alerts = new();
 
-    public override bool SendOnlyToOwner => true;
+    public override bool SessionSpecific => true;
 }
 
 [Serializable, NetSerializable]

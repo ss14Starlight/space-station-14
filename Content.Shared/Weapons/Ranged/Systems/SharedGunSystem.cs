@@ -10,6 +10,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
+using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
@@ -153,7 +154,9 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     private void OnShootRequest(RequestShootEvent msg, EntitySessionEventArgs args)
     {
-        var user = args.SenderSession.AttachedEntity;
+        if (WithBodyControl(args, () => OnShootRequest(msg, args)))
+            return;
+        var user = GetShootingUser(args);
 
         if (user == null ||
             !_combatMode.IsInCombatMode(user) ||
@@ -163,7 +166,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
 
         // Starlight-start
-        var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active;
+        var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active && CanUseBothHands(user.Value);
         if (!isDualWield && gun.Owner != GetEntity(msg.Gun))
             return;
 
@@ -202,11 +205,14 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
     {
+        if (WithBodyControl(args, () => OnStopShootRequest(ev, args)))
+            return;
         var gunUid = GetEntity(ev.Gun);
+        var user = GetShootingUser(args);
 
-        if (args.SenderSession.AttachedEntity == null ||
+        if (user == null ||
             !TryComp<GunComponent>(gunUid, out var gun) ||
-            !TryGetGun(args.SenderSession.AttachedEntity.Value, out var userGun))
+            !TryGetGun(user.Value, out var userGun))
         {
             return;
         }
@@ -216,6 +222,19 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         StopShooting(userGun);
     }
+
+    private EntityUid? GetShootingUser(EntitySessionEventArgs args)
+        => args.SenderSession.AttachedEntity is { } actor
+            ? EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>().GetControlledBody(actor) : null;
+
+    private bool WithBodyControl(EntitySessionEventArgs args, Action command)
+        => args.SenderSession.AttachedEntity is { } actor
+           && EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>()
+               .WithController(actor, "body.interact", HasComp<HandsComponent>(GetShootingUser(args)), command);
+
+    private bool CanUseBothHands(EntityUid body)
+        => !EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>().TryGetContext(body, out var context)
+           || context.Access.FullControl || context.Access.Allows("body.hands") && context.Access.Hands == null && context.Access.Parts == null;
 
     public bool CanShoot(GunComponent component)
     {
@@ -236,7 +255,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun = default;
 
         // 🌟Starlight🌟 — dual-wield: return the alternating gun instead of the active-hand gun
-        if (TryComp<DualWieldComponent>(entity, out var dualWieldComp) && dualWieldComp.Active)
+        if (TryComp<DualWieldComponent>(entity, out var dualWieldComp) && dualWieldComp.Active && CanUseBothHands(entity))
         {
             var dwGunUid = dualWieldComp.NextIsLeft ? dualWieldComp.LeftGun : dualWieldComp.RightGun;
             if (TryComp<GunComponent>(dwGunUid, out var dwGunComp))

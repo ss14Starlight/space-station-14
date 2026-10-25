@@ -29,11 +29,11 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
     /// <returns>True if the actor controls a remote entity.</returns>
     public bool TryGetControlledEntity(EntityUid actor, out EntityUid remoteEntity)
     {
-        // Generic verbs, inventory and UI relays require full access; scoped commands use their explicit hand context.
+        // This resolves identity only. Each command checks its own permissions before acting.
         if (TryComp<BodyControlSourceComponent>(actor, out var source))
         {
             remoteEntity = source.Body;
-            return source.LifeStage <= ComponentLifeStage.Running && source.Access.FullControl
+            return source.LifeStage <= ComponentLifeStage.Running
                    && remoteEntity != actor && !TerminatingOrDeleted(remoteEntity);
         }
         if (TryComp<RemoteControlControllerComponent>(actor, out var controller))
@@ -73,6 +73,9 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
             return;
 
         args.RemoteEntity = remoteEntity;
+        if (TryComp<BodyControlSourceComponent>(args.Actor, out var source) && !source.ExternallyDriven
+            && !source.Access.Allows(args.Permission))
+            return;
         args.Allowed = CanRemoteControlledEntityAct(remoteEntity)
             && _interaction.InRangeAndAccessible(remoteEntity, args.Target);
     }

@@ -8,7 +8,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared._Starlight.BodyControl;
 
-/// <summary>Supplies an explicit hand only while a trusted controller command is executing.</summary>
+/// <summary>Resolves each controller's hand without changing the body's shared active hand.</summary>
 public sealed partial class BodyControlHandContextSystem : EntitySystem
 {
     [Dependency] private SharedBodySystem _body = default!;
@@ -31,6 +31,30 @@ public sealed partial class BodyControlHandContextSystem : EntitySystem
 
     public bool IsExecuting(EntityUid body) => _commands.ContainsKey(body);
 
+    public EntityUid GetControlledBody(EntityUid actor)
+        => TryComp<BodyControlSourceComponent>(actor, out var source) && !source.ExternallyDriven
+           && source.LifeStage <= ComponentLifeStage.Running && !TerminatingOrDeleted(source.Body) ? source.Body : actor;
+
+    /// <summary>Preserves the requester's hand while an existing session handler resolves its physical user.</summary>
+    public bool WithController(EntityUid actor, string? permission, bool needsHand, Action command)
+    {
+        if (!TryComp<BodyControlSourceComponent>(actor, out var source) || source.ExternallyDriven
+            || source.LifeStage > ComponentLifeStage.Running || TerminatingOrDeleted(source.Body)
+            || IsExecuting(source.Body))
+            return false;
+        var reason = permission != null && !source.Access.Allows(permission) ? permission[5..]
+            : needsHand && (source.SelectedHand == null || !AllowsHand(source.Body, source.SelectedHand, source.Access))
+                ? "hands" : null;
+        if (reason != null)
+        {
+            var denied = new BodyControlDeniedEvent(reason);
+            RaiseLocalEvent(actor, ref denied);
+            return true;
+        }
+        Execute(source.Body, actor, source.Access, source.SelectedHand, command);
+        return true;
+    }
+
     public bool AllowsObserverInteraction(EntityUid actor)
         => _commands.Values.Any(context => context.Controller == actor && context.Access.Allows("body.interact"));
 
@@ -38,6 +62,13 @@ public sealed partial class BodyControlHandContextSystem : EntitySystem
     {
         if (_commands.TryGetValue(body, out context!))
             return true;
+        var request = new BodyControlHandContextEvent();
+        RaiseLocalEvent(body, ref request);
+        if (request.Context is { } presented)
+        {
+            context = presented;
+            return true;
+        }
         if (TryComp<BodyControlSourceComponent>(body, out var source) && !source.ExternallyDriven && source.Body == body)
         {
             context = new(body, source.Access, source.SelectedHand);
@@ -73,7 +104,7 @@ public sealed partial class BodyControlHandContextSystem : EntitySystem
     }
 
     public bool AllowsHand(EntityUid body, string hand)
-        => !_commands.TryGetValue(body, out var context) || AllowsHand(body, hand, context.Access);
+        => !TryGetContext(body, out var context) || AllowsHand(body, hand, context.Access);
 
     public string? GetSelectedHand(EntityUid body, string? fallback)
     {
@@ -93,7 +124,8 @@ public sealed partial class BodyControlHandContextSystem : EntitySystem
     private void OnNativeMelee(Entity<BodyControlSourceComponent> ent, ref GetMeleeWeaponEvent args)
     {
         if (!ent.Comp.ExternallyDriven && !_commands.ContainsKey(ent.Owner)
-            && (ent.Comp.Body != ent.Owner || !ent.Comp.Access.FullControl))
+            && (ent.Comp.Body != ent.Owner || !ent.Comp.Access.Allows("body.interact")
+                || HasComp<HandsComponent>(ent) && (ent.Comp.SelectedHand == null || !AllowsHand(ent, ent.Comp.SelectedHand, ent.Comp.Access))))
         {
             args.Weapon = null;
             args.Handled = true;
@@ -114,4 +146,10 @@ public sealed partial class BodyControlHandContextSystem : EntitySystem
             && hands.Hands.ContainsKey(args.Container.ID) && !AllowsHand(body, args.Container.ID))
             args.Cancel();
     }
+}
+
+[ByRefEvent]
+public struct BodyControlHandContextEvent
+{
+    public BodyControlHandContextSystem.Context? Context;
 }

@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared._Starlight.BodyControl;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -44,6 +45,8 @@ public sealed partial class MindCollectiveObserverComponent : Component
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class MindCollectiveUiComponent : Component
 {
+    public EntityUid? EditingMind;
+    public EntityUid? EditingBody;
     [AutoNetworkedField] public MindCollectiveUiState? State;
     public override bool SendOnlyToOwner => true;
 }
@@ -66,7 +69,10 @@ public sealed record MindCollectiveBodyEntry(
 
 [Serializable, NetSerializable]
 public sealed record MindCollectiveMemberEntry(NetEntity Mind, string Name, bool CanExpel,
-    List<MindCollectiveRoleEntry> Roles, bool CanManageRoles, bool CanRecall);
+    List<MindCollectiveRoleEntry> Roles, bool CanManageRoles, bool CanRecall, bool CanConfigureControl = false);
+
+[Serializable, NetSerializable]
+public sealed record MindCollectiveControlEditorState(NetEntity Mind, NetEntity Body, string Name, BodyControlAccessState Settings);
 
 [Serializable, NetSerializable]
 public sealed record MindCollectiveRoleEntry(ProtoId<MindCollectiveRolePrototype> Role, string Name, bool Assigned);
@@ -79,7 +85,8 @@ public sealed class MindCollectiveUiState(
     bool inMindspace,
     string name,
     NetEntity? expelTarget = null,
-    uint expelRequest = 0) : BoundUserInterfaceState
+    uint expelRequest = 0,
+    MindCollectiveControlEditorState? controlEditor = null) : BoundUserInterfaceState
 {
     public readonly List<MindCollectiveBodyEntry> Bodies = bodies;
     public readonly List<MindCollectiveMemberEntry> Members = members;
@@ -88,6 +95,22 @@ public sealed class MindCollectiveUiState(
     public readonly string Name = name;
     public readonly NetEntity? ExpelTarget = expelTarget;
     public readonly uint ExpelRequest = expelRequest;
+    public readonly MindCollectiveControlEditorState? ControlEditor = controlEditor;
+}
+
+[Serializable, NetSerializable]
+public sealed class ConfigureCollectiveControlMessage(NetEntity? mind, NetEntity? body = null) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity? Mind = mind;
+    public readonly NetEntity? Body = body;
+}
+
+[Serializable, NetSerializable]
+public sealed class SetCollectiveControlMessage(NetEntity mind, NetEntity body, BodyControlAccess? access) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity Mind = mind;
+    public readonly NetEntity Body = body;
+    public readonly BodyControlAccess? Access = access;
 }
 
 [Serializable, NetSerializable]

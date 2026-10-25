@@ -646,7 +646,7 @@ public sealed partial class ChatUIController : UIController
             CreateSpeechBubble(entity, msg);
         }
 
-        var player = _player.LocalEntity;
+        var player = EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity;
         var predicate = static (EntityUid uid, (EntityUid compOwner, EntityUid? attachedEntity) data)
             => uid == data.compOwner || uid == data.attachedEntity;
         var playerPos = player != null
@@ -703,7 +703,7 @@ public sealed partial class ChatUIController : UIController
     private bool TryGetRadioChannel(string text, out RadioChannelPrototype? radioChannel)
     {
         radioChannel = null;
-        return _player.LocalEntity is EntityUid { Valid: true } uid
+        return EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity is EntityUid { Valid: true } uid
            && _chatSys != null
            && _chatSys.TryProcessRadioMessage(uid, text, out _, out radioChannel, out _, quiet: true); // Starlight edit
     }
@@ -712,7 +712,7 @@ public sealed partial class ChatUIController : UIController
     private bool TryGetLanguage(ref string text, [NotNullWhen(true)] out LanguagePrototype? language)
     {
         language = null;
-        if (_player.LocalEntity is not { Valid: true } uid || _lang == null) return false;
+        if (EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity is not { Valid: true } uid || _lang == null) return false;
         language = _lang.GetLanguageFromPrefix(uid, ref text, out var parsed);
         return parsed;
     }
@@ -720,7 +720,7 @@ public sealed partial class ChatUIController : UIController
     private bool TryGetCustomRadioChannel(string text, out CustomRadioChannelData? radioChannel)
     {
         radioChannel = null;
-        return _player.LocalEntity is EntityUid { Valid: true } uid
+        return EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity is EntityUid { Valid: true } uid
                && _chatSys != null
                && _chatSys.TryProcessRadioMessage(uid, text, out _, out _, out radioChannel, quiet: true);
     }

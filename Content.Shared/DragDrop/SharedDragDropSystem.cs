@@ -1,5 +1,7 @@
 ﻿using Content.Shared.ActionBlocker;
 using Content.Shared.Interaction;
+using Content.Shared._Starlight.BodyControl;
+using Content.Shared.Hands.Components;
 
 namespace Content.Shared.DragDrop;
 
@@ -23,6 +25,14 @@ public abstract partial class SharedDragDropSystem : EntitySystem
             return;
 
         var user = args.SenderSession.AttachedEntity;
+        if (user is { } actor)
+        {
+            var control = EntityManager.System<BodyControlHandContextSystem>();
+            if (control.WithController(actor, "body.interact", HasComp<HandsComponent>(control.GetControlledBody(actor)),
+                    () => OnDragDropRequestEvent(msg, args)))
+                return;
+            user = control.GetControlledBody(actor);
+        }
 
         if (user == null || !_actionBlockerSystem.CanInteract(user.Value, target))
             return;

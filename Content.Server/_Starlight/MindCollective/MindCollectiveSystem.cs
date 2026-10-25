@@ -199,6 +199,7 @@ public sealed partial class MindCollectiveSystem : EntitySystem
         if (!TryGetCollective(ent, out var id, out var collective))
             return;
         EnsureControlAction(ent);
+        RefreshNativeControl(id, collective, ent);
         UpdateUi(id, collective);
     }
 
@@ -244,14 +245,24 @@ public sealed partial class MindCollectiveSystem : EntitySystem
                         .Select(role => new MindCollectiveRoleEntry(role.ID, Loc.GetString(role.Name),
                             collective.Roles.TryGetValue(m, out var roles) && roles.ContainsKey(role.ID))).ToList(),
                     CanManageMember(mind, m, "mind-collective.roles"),
-                    CanManageMember(mind, m, "mind-collective.recall"))).ToList();
+                    CanManageMember(mind, m, "mind-collective.recall"), CanConfigureControl(mind, m))).ToList();
             NetEntity? expel = null;
             uint request = 0;
             if (TryGetExpulsion(collectiveId, mind, out var expelled, out request))
                 expel = GetNetEntity(expelled);
             var menu = EnsureComp<MindCollectiveUiComponent>(actor);
+            MindCollectiveControlEditorState? editor = null;
+            if (menu.EditingMind is { } editing && menu.EditingBody is { } editingBody && CanConfigureControl(mind, editing)
+                && GetControlAccessState(collectiveId, editing, editingBody) is { } settings)
+                editor = new(GetNetEntity(editing), GetNetEntity(editingBody),
+                    TryComp<MindComponent>(editing, out var editedMind) ? editedMind.CharacterName ?? Name(editing) : Name(editing), settings);
+            else
+            {
+                menu.EditingMind = null;
+                menu.EditingBody = null;
+            }
             menu.State = new MindCollectiveUiState(bodies, members, canManage, HasComp<MindCollectiveObserverComponent>(actor),
-                Name(collectiveId), expel, request);
+                Name(collectiveId), expel, request, editor);
             Dirty(actor, menu);
         }
     }

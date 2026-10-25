@@ -1,7 +1,8 @@
 using Content.Shared._Starlight.BodyControl;
 using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Computers.RemoteControl;
-using Content.Shared.Actions;
+using Content.Shared.CombatMode;
+using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Input;
 using Content.Shared.Interaction;
@@ -15,18 +16,16 @@ namespace Content.Client._Starlight.BodyControl;
 public sealed partial class BodyControlSystem
 {
     [Dependency] private IPlayerManager _controlPlayer = default!;
-    [Dependency] private SharedHandsSystem _controlHands = default!;
-    [Dependency] private SharedActionsSystem _controlActions = default!;
     [Dependency] private BodyControlHandContextSystem _handContext = default!;
+    [Dependency] private BodyControlViewSystem _bodyView = default!;
     [Dependency] private RemoteControlInterface _remoteInterface = default!;
 
-    private EntityUid? _selectedControlAction;
     private string? _shownControlHand;
     private EntityUid? _shownControlSource;
     private EntityUid? _shownControlBody;
 
     private bool HasLocalControl()
-        => TryComp<BodyControlSourceComponent>(_controlPlayer.LocalEntity, out var source) && !source.ExternallyDriven;
+        => _bodyView.TryGetSource(out _, out _);
 
     private void InitializeInteractions()
     {
@@ -37,18 +36,20 @@ public sealed partial class BodyControlSystem
             {
                 if (!HasLocalControl())
                     return false;
-                if (command is BodyControlCommand.Throw or BodyControlCommand.Pull
-                    && !Comp<BodyControlSourceComponent>(_controlPlayer.LocalEntity!.Value).Access.FullControl)
+                if (key == EngineKeyFunctions.UseSecondary
+                    && (!TryComp<BodyControlSourceComponent>(_controlPlayer.LocalEntity, out var secondary)
+                        || !EntityManager.System<SharedCombatModeSystem>().IsInCombatMode(secondary.Body)))
+                    return false;
+                // Combat uses the native melee/gun input handlers, including held fire and secondary attacks.
+                if (command == BodyControlCommand.Interact
+                    && TryComp<BodyControlSourceComponent>(_controlPlayer.LocalEntity, out var control)
+                    && EntityManager.System<SharedCombatModeSystem>().IsInCombatMode(control.Body)
+                    && control.Access.Allows("body.interact")
+                    && (!HasComp<HandsComponent>(control.Body) || control.SelectedHand is { } selected
+                        && _handContext.AllowsHand(control.Body, selected, control.Access)))
                     return true;
-                if (command == BodyControlCommand.Interact && _selectedControlAction is { } action)
-                {
-                    _selectedControlAction = null;
-                    SendControlCommand(new(BodyControlCommand.Action, target: target.IsValid() ? GetNetEntity(target) : null,
-                        coordinates: GetNetCoordinates(coordinates), action: GetNetEntity(action)));
-                }
-                else
-                    SendControlCommand(new(command, target: target.IsValid() ? GetNetEntity(target) : null,
-                        coordinates: GetNetCoordinates(coordinates)));
+                SendControlCommand(new(command, target: target.IsValid() ? GetNetEntity(target) : null,
+                    coordinates: GetNetCoordinates(coordinates)));
                 return true;
             }, outsidePrediction: true), typeof(SharedHandsSystem), typeof(SharedInteractionSystem));
         binds.Register<BodyControlSystem>();
@@ -57,15 +58,14 @@ public sealed partial class BodyControlSystem
     private void ShutdownInteractions()
     {
         CommandBinds.Unregister<BodyControlSystem>();
-        ShutdownPresentation();
         _remoteInterface.BodyInteractionRequested -= OnBodyInteractionRequested;
         _remoteInterface.SetBodyControlEntity(null);
-        _selectedControlAction = null;
     }
 
     private static (BoundKeyFunction, BodyControlCommand)[] ControlBindings() =>
     [
         (EngineKeyFunctions.Use, BodyControlCommand.Interact),
+        (EngineKeyFunctions.UseSecondary, BodyControlCommand.Interact),
         (ContentKeyFunctions.AltActivateItemInWorld, BodyControlCommand.AltInteract),
         (ContentKeyFunctions.ActivateItemInWorld, BodyControlCommand.ActivateWorld),
         (ContentKeyFunctions.UseItemInHand, BodyControlCommand.UseHand),
@@ -82,9 +82,6 @@ public sealed partial class BodyControlSystem
         if (HasLocalControl())
             RaiseNetworkEvent(command);
     }
-
-    public void SelectTargetAction(EntityUid action)
-        => _selectedControlAction = action;
 
     private void OnBodyInteractionRequested(EntityUid target, bool alt, RemoteControlInteractionAction action)
     {
@@ -108,7 +105,6 @@ public sealed partial class BodyControlSystem
         if (!HasLocalControl())
         {
             _remoteInterface.SetBodyControlEntity(null);
-            _selectedControlAction = null;
             if (_shownControlSource != null)
             {
                 _shownControlSource = null;
@@ -119,15 +115,12 @@ public sealed partial class BodyControlSystem
         else if (TryComp<BodyControlSourceComponent>(_controlPlayer.LocalEntity, out var source)
                  && (_shownControlSource != _controlPlayer.LocalEntity || _shownControlBody != source.Body || _shownControlHand != source.SelectedHand))
         {
-            if (_shownControlBody != source.Body)
-                _selectedControlAction = null;
             _shownControlSource = _controlPlayer.LocalEntity;
             _shownControlBody = source.Body;
             _shownControlHand = source.SelectedHand;
             EntityManager.System<Content.Client.Hands.Systems.HandsSystem>().RefreshControlHand();
         }
-        if (TryComp<BodyControlSourceComponent>(_controlPlayer.LocalEntity, out var view) && !view.ExternallyDriven)
-            _remoteInterface.SetBodyControlEntity(view.Access.FullControl && view.Body != _controlPlayer.LocalEntity ? view.Body : null);
-        UpdatePresentation();
+        if (_bodyView.TryGetSource(out _, out var view))
+            _remoteInterface.SetBodyControlEntity(view.Body != _controlPlayer.LocalEntity ? view.Body : null);
     }
 }

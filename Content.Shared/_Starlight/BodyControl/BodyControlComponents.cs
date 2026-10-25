@@ -9,6 +9,8 @@ namespace Content.Shared._Starlight.BodyControl;
 [DataDefinition, Serializable, NetSerializable]
 public sealed partial class BodyControlAccess
 {
+    public static readonly string[] StandardPermissions =
+        ["body.move", "body.hands", "body.interact", "body.inventory", "body.speak", "body.actions"];
     [DataField] public bool FullControl;
     [DataField] public HashSet<string> Permissions = new();
     [DataField] public HashSet<string>? Hands;
@@ -16,6 +18,13 @@ public sealed partial class BodyControlAccess
     [DataField] public HashSet<EntProtoId>? Actions;
 
     public bool Allows(string permission) => FullControl || Permissions.Contains(permission);
+
+    public bool SameAs(BodyControlAccess other) => FullControl == other.FullControl
+        && Permissions.SetEquals(other.Permissions) && Same(Hands, other.Hands)
+        && Same(Parts, other.Parts) && Same(Actions, other.Actions);
+
+    private static bool Same<T>(HashSet<T>? first, HashSet<T>? second)
+        => first == null ? second == null : second != null && first.SetEquals(second);
 
     public BodyControlAccess Copy() => new()
     {
@@ -39,6 +48,7 @@ public sealed partial class BodyControlSourceComponent : Component
 
     public EntityUid Mind;
     public MoveButtons Held;
+    public TimeSpan NextDeniedPopup;
     public readonly Dictionary<MoveButtons, ulong> PressOrder = new();
 
     public override bool SendOnlyToOwner => true;

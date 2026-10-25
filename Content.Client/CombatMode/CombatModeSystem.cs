@@ -76,6 +76,9 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
 
     public bool IsInCombatMode()
     {
+        var view = EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>();
+        if (view.TryGetSource(out _, out var source))
+            return IsInCombatMode(source.Body);
         // Starlight-start
         if (_remoteControl.ControlledEntity is { } remote)
             return IsInCombatMode(remote);
@@ -97,7 +100,7 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
 
     private void UpdateHud(EntityUid entity)
     {
-        if (entity != _playerManager.LocalEntity || !Timing.IsFirstTimePredicted)
+        if (entity != EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity || !Timing.IsFirstTimePredicted)
         {
             return;
         }
@@ -105,6 +108,10 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
         var inCombatMode = IsInCombatMode();
         LocalPlayerCombatModeUpdated?.Invoke(inCombatMode);
     }
+
+    [SubscribeLocalEvent]
+    private void OnControlViewChanged(Content.Client._Starlight.BodyControl.BodyControlViewChangedEvent args)
+        => LocalPlayerCombatModeUpdated?.Invoke(IsInCombatMode());
 
     private void OnShowCombatIndicatorsChanged(bool isShow) // Starlight-edit: moved into another method
         => UpdateCombatIndicators(isShow);

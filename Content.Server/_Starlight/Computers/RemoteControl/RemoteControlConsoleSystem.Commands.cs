@@ -27,8 +27,8 @@ public sealed partial class RemoteControlConsoleSystem
         if (TerminatingOrDeleted(remoteEntity) || !CanRemoteControlledEntityAct(remoteEntity)
             || !GetRemoteActionEntities(remoteEntity).Contains(action))
             return false;
-        if (coordinates is { } position)
-            return HasComp<TargetActionComponent>(action) && _actions.TryPerformAction(remoteEntity, action, target, position);
+        if (target != null || coordinates != null)
+            return HasComp<TargetActionComponent>(action) && _actions.TryPerformAction(remoteEntity, action, target, coordinates);
         return _actions.TryPerformAction(remoteEntity, action);
     }
 

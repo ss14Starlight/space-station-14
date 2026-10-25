@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._Starlight.BodyControl;
 using Content.Client.Eui;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Starlight.MindCollective;
@@ -44,6 +45,9 @@ public sealed class MindCollectiveAdminWindow : FancyWindow
     private readonly OptionButton _bodies = new() { HorizontalExpand = true };
     private readonly OptionButton _roles = new() { HorizontalExpand = true };
     private readonly RichTextLabel _feedback = new() { HorizontalExpand = true };
+    private readonly BodyControlAccessEditor _accessEditor = new() { Visible = false };
+    private NetUserId? _accessPlayer;
+    private NetEntity? _accessBody;
     private readonly Dictionary<MindCollectiveAdminAction, Button> _buttons = new();
     private MindCollectiveAdminState? _state;
     private NetEntity? _group;
@@ -69,6 +73,10 @@ public sealed class MindCollectiveAdminWindow : FancyWindow
         AddSelector(content, "mind-collective-admin-body", _bodies);
         AddButtons(content, MindCollectiveAdminAction.AddBody, MindCollectiveAdminAction.RemoveBody);
         AddButtons(content, MindCollectiveAdminAction.SpawnBody);
+        content.AddChild(_accessEditor);
+        _accessEditor.OnApply += access => OnRequest?.Invoke(new MindCollectiveAdminMessage(
+            access == null ? MindCollectiveAdminAction.ResetAccess : MindCollectiveAdminAction.SaveAccess,
+            _group, _player, _body, _role, access));
         AddButtons(content, MindCollectiveAdminAction.Enter, MindCollectiveAdminAction.Observe);
         AddButtons(content, MindCollectiveAdminAction.Control, MindCollectiveAdminAction.Leave);
         AddButtons(content, MindCollectiveAdminAction.Refresh);
@@ -105,6 +113,15 @@ public sealed class MindCollectiveAdminWindow : FancyWindow
         _group = state.Collective;
         _player = state.Player;
         _body = state.Body;
+        _accessEditor.Visible = state.Access != null;
+        if (_accessPlayer != state.Player || _accessBody != state.Body)
+        {
+            _accessEditor.Reset();
+            _accessPlayer = state.Player;
+            _accessBody = state.Body;
+        }
+        if (state.Access is { } settings)
+            _accessEditor.UpdateState(settings);
         Fill(_groups, state.Collectives, entry => entry.Name, entry => entry.Entity == _group);
         Fill(_players, state.Players, entry => entry.Name, entry => entry.User == _player);
         Fill(_bodies, state.Bodies, entry => entry.Name, entry => entry.Entity == _body);

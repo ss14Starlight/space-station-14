@@ -1,0 +1,17 @@
+body-control-access-title = Body control permissions
+body-control-access-move = Movement
+body-control-access-hands = Hands
+body-control-access-interact = Interaction and combat
+body-control-access-inventory = Inventory and interfaces
+body-control-access-speak = Speech
+body-control-access-actions = Abilities
+body-control-access-apply = Apply
+body-control-access-reset = Restore role defaults
+body-control-denied-move = You cannot move this body.
+body-control-denied-hands = You cannot use this hand.
+body-control-denied-interact = You cannot interact through this body.
+body-control-denied-inventory = You cannot use this body's inventory or interfaces.
+body-control-denied-speak = You cannot speak through this body.
+body-control-denied-actions = You cannot use this ability.
+mind-collective-admin-action-saveaccess = Apply control permissions
+mind-collective-admin-action-resetaccess = Restore role permissions

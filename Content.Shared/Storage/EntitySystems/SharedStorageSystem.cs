@@ -845,6 +845,8 @@ public abstract partial class SharedStorageSystem : EntitySystem
 
     private void OnSetItemLocation(StorageSetItemLocationEvent msg, EntitySessionEventArgs args)
     {
+        if (WithRemoteHand(args, () => OnSetItemLocation(msg, args)))
+            return;
         if (!ValidateInput(args, msg.StorageEnt, msg.ItemEnt, out var player, out var storage, out var item))
             return;
 
@@ -925,19 +927,15 @@ public abstract partial class SharedStorageSystem : EntitySystem
     // Preserve the requester's hand across the existing storage actor-to-body resolver.
     private bool WithRemoteHand(EntitySessionEventArgs args, Action command)
     {
-        if (args.SenderSession.AttachedEntity is not { } actor
-            || !TryComp<BodyControlSourceComponent>(actor, out var source) || source.ExternallyDriven
-            || !source.Access.FullControl || source.Body == actor || TerminatingOrDeleted(source.Body))
-            return false;
-        var context = EntityManager.System<BodyControlHandContextSystem>();
-        if (context.IsExecuting(source.Body))
-            return false;
-        context.Execute(source.Body, actor, source.Access, source.SelectedHand, command);
-        return true;
+        return args.SenderSession.AttachedEntity is { } actor
+               && EntityManager.System<BodyControlHandContextSystem>()
+                   .WithController(actor, "body.inventory", true, command);
     }
 
     private void OnInsertItemIntoLocation(StorageInsertItemIntoLocationEvent msg, EntitySessionEventArgs args)
     {
+        if (WithRemoteHand(args, () => OnInsertItemIntoLocation(msg, args)))
+            return;
         if (!ValidateInput(args, msg.StorageEnt, msg.ItemEnt, out var player, out var storage, out var item, held: true))
             return;
 
@@ -956,6 +954,8 @@ public abstract partial class SharedStorageSystem : EntitySystem
 
     private void OnSaveItemLocation(StorageSaveItemLocationEvent msg, EntitySessionEventArgs args)
     {
+        if (WithRemoteHand(args, () => OnSaveItemLocation(msg, args)))
+            return;
         if (!ValidateInput(args, msg.Storage, msg.Item, out var player, out var storage, out var item))
             return;
 
@@ -2085,7 +2085,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
             return false;
 
         var playerUid = controllerUid; // Starlight
-        var remoteControlCheck = new RemoteControlInteractionCheckEvent(controllerUid, storageUid.Value); // Starlight
+        var remoteControlCheck = new RemoteControlInteractionCheckEvent(controllerUid, storageUid.Value, "body.inventory"); // Starlight
         RaiseLocalEvent(ref remoteControlCheck); // Starlight
         if (remoteControlCheck.RemoteEntity is { } remoteEntity)
         {

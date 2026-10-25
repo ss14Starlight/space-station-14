@@ -8,7 +8,6 @@ using Content.Shared.StatusEffectNew;
 using Content.Shared.Traits.Assorted;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
-using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Player;
@@ -19,7 +18,6 @@ namespace Content.Client.UserInterface.Systems.DamageOverlays;
 public sealed partial class DamageOverlayUiController : UIController
 {
     [Dependency] private IOverlayManager _overlayManager = default!;
-    [Dependency] private IPlayerManager _playerManager = default!;
 
     [UISystemDependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [UISystemDependency] private readonly StatusEffectsSystem _statusEffects = default!;
@@ -33,6 +31,17 @@ public sealed partial class DamageOverlayUiController : UIController
         SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<MobThresholdChecked>(OnThresholdCheck);
+        SubscribeLocalEvent<Content.Client._Starlight.BodyControl.BodyControlViewChangedEvent>(OnControlViewChanged);
+    }
+
+    private void OnControlViewChanged(Content.Client._Starlight.BodyControl.BodyControlViewChangedEvent args)
+    {
+        _overlayManager.RemoveOverlay(_overlay);
+        ClearOverlay();
+        if (args.Current is not { } body || !EntityManager.TryGetComponent<MobStateComponent>(body, out var state))
+            return;
+        UpdateOverlays(body, state);
+        _overlayManager.AddOverlay(_overlay);
     }
 
     private void OnPlayerAttach(LocalPlayerAttachedEvent args)
@@ -53,7 +62,7 @@ public sealed partial class DamageOverlayUiController : UIController
 
     private void OnMobStateChanged(MobStateChangedEvent args)
     {
-        if (args.Target != _playerManager.LocalEntity)
+        if (args.Target != EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity)
             return;
 
         UpdateOverlays(args.Target, args.Component);
@@ -62,7 +71,7 @@ public sealed partial class DamageOverlayUiController : UIController
     private void OnThresholdCheck(ref MobThresholdChecked args)
     {
 
-        if (args.Target != _playerManager.LocalEntity)
+        if (args.Target != EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity)
             return;
         UpdateOverlays(args.Target, args.MobState, args.Damageable, args.Threshold);
     }

@@ -171,6 +171,7 @@ public sealed partial class MindCollectiveSystem
         collective.Minds.Remove(mind);
         collective.PendingMinds.Remove(mind);
         _joinPreviousBodies.Remove(mind);
+        collective.ControlAccess.Remove(mind);
         _joinPreviousGhosts.Remove(mind);
         CloseJoinConsent(mind);
         if (_expulsionRequests.TryGetValue(collectiveId, out var challenge)

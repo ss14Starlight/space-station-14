@@ -9,6 +9,8 @@ using Content.Shared.Actions.Events;
 using Content.Shared.CombatMode;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Inventory;
+using Content.Shared.Alert;
 using Content.Shared.Input;
 using Content.Shared.Interaction;
 using Content.Shared.UserInterface;
@@ -116,15 +118,22 @@ public sealed partial class BodyControlSystem
         if (command.Command is BodyControlCommand.SelectHand or BodyControlCommand.CycleHand or BodyControlCommand.CycleHandReverse)
         {
             if (!access.Allows("body.hands") || !TryComp<HandsComponent>(body, out var hands))
-                return;
-            var allowed = hands.SortedHands.Where(id => _handContext.AllowsHand(body, id, access)).ToList();
-            if (command.Command != BodyControlCommand.SelectHand && allowed.Count > 0)
             {
-                var index = allowed.IndexOf(source.SelectedHand ?? "");
-                hand = allowed[(index + (command.Command == BodyControlCommand.CycleHandReverse ? allowed.Count - 1 : 1)) % allowed.Count];
+                Deny(actor, "hands");
+                return;
+            }
+            var allowed = hands.SortedHands.Where(id => _handContext.AllowsHand(body, id, access)).ToList();
+            if (command.Command != BodyControlCommand.SelectHand && hands.SortedHands.Count > 0)
+            {
+                var allHands = hands.SortedHands;
+                var index = allHands.IndexOf(source.SelectedHand ?? "");
+                hand = allHands[(index + (command.Command == BodyControlCommand.CycleHandReverse ? allHands.Count - 1 : 1)) % allHands.Count];
             }
             if (hand == null || !allowed.Contains(hand))
+            {
+                Deny(actor, "hands");
                 return;
+            }
             source.SelectedHand = hand;
             Dirty(actor, source);
             return;
@@ -133,7 +142,38 @@ public sealed partial class BodyControlSystem
         var handsCommand = command.Command is BodyControlCommand.UseHand or BodyControlCommand.AltUseHand
             or BodyControlCommand.ActivateHand or BodyControlCommand.Drop;
         if (handsCommand && (!access.Allows("body.hands") || !handAllowed))
+        {
+            Deny(actor, "hands");
             return;
+        }
+        if (command.Command == BodyControlCommand.HandClick)
+        {
+            if (!handAllowed || hand == null)
+            {
+                Deny(actor, "hands");
+                return;
+            }
+            if (hand != source.SelectedHand && _controlHands.GetHeldItem(body, hand) == null)
+            {
+                source.SelectedHand = hand;
+                Dirty(actor, source);
+                return;
+            }
+            var selected = source.SelectedHand;
+            if (selected == null || !_handContext.AllowsHand(body, selected, access))
+            {
+                Deny(actor, "hands");
+                return;
+            }
+            _handContext.Execute(body, actor, access, selected, () => _remoteControl.ExecuteRemoteHand(body, new RemoteControlHandMessage
+            {
+                Hand = hand,
+                Action = hand == selected ? RemoteControlHandAction.Use
+                    : _controlHands.GetHeldItem(body, selected) == null ? RemoteControlHandAction.MoveToActive
+                    : RemoteControlHandAction.InteractWithHand,
+            }));
+            return;
+        }
         if (handsCommand && source.SelectedHand != hand)
         {
             source.SelectedHand = hand;
@@ -143,20 +183,73 @@ public sealed partial class BodyControlSystem
         {
             if (command.Action is not { } netAction || !TryGetEntity(netAction, out var action)
                 || !CanControlAction(body, action.Value, access))
+            {
+                Deny(actor, "actions");
                 return;
+            }
             _handContext.Execute(body, actor, access, handAllowed ? hand : null, () =>
                 _remoteControl.ExecuteRemoteAction(body, action.Value, ResolveTarget(command.Target), command.Coordinates));
             return;
         }
+        if (command.Command is BodyControlCommand.InventoryUse or BodyControlCommand.InventoryStorage
+            or BodyControlCommand.InventoryActivate or BodyControlCommand.InventoryAltActivate)
+        {
+            if (!access.Allows("body.inventory"))
+            {
+                Deny(actor, "inventory");
+                return;
+            }
+            if (command.Command == BodyControlCommand.InventoryUse && HasComp<HandsComponent>(body) && !handAllowed)
+            {
+                Deny(actor, "hands");
+                return;
+            }
+            if (command.Slot is not { } slot)
+                return;
+            _handContext.Execute(body, actor, access, handAllowed ? hand : null, () =>
+            {
+                if (command.Command is BodyControlCommand.InventoryUse or BodyControlCommand.InventoryStorage)
+                    _remoteControl.ExecuteRemoteInventory(body, new RemoteControlInventoryMessage
+                    {
+                        Slot = slot,
+                        Action = command.Command == BodyControlCommand.InventoryUse ? RemoteControlInventoryAction.UseSlot : RemoteControlInventoryAction.OpenStorage,
+                    });
+                else if (EntityManager.System<InventorySystem>().TryGetSlotEntity(body, slot, out var equipped))
+                    _remoteControl.ExecuteRemoteInteraction(body, new RemoteControlInteractionMessage
+                    {
+                        Coordinates = GetNetCoordinates(Transform(body).Coordinates),
+                        Target = GetNetEntity(equipped),
+                        Action = RemoteControlInteractionAction.Interact,
+                        ActivateInWorld = command.Command == BodyControlCommand.InventoryActivate,
+                        AltInteract = command.Command == BodyControlCommand.InventoryAltActivate,
+                    }, hand);
+            });
+            return;
+        }
+        if (command.Command == BodyControlCommand.Alert)
+        {
+            if (!access.Allows("body.interact"))
+            {
+                Deny(actor, "interact");
+                return;
+            }
+            var alerts = EntityManager.System<AlertsSystem>();
+            if (command.Slot is { } alert && alerts.TryGet(alert, out var prototype) && alerts.IsShowingAlert(body, prototype.ID))
+                _handContext.Execute(body, actor, access, handAllowed ? hand : null, () => alerts.ActivateAlert(body, prototype));
+            return;
+        }
         if (!handsCommand && !access.Allows("body.interact"))
+        {
+            Deny(actor, "interact");
             return;
-        if (!access.FullControl && command.Command is BodyControlCommand.Throw or BodyControlCommand.Pull
-            or BodyControlCommand.Shoot or BodyControlCommand.MovePulledObject)
-            return;
+        }
         // A scoped world interaction must identify the permitted hand. Handless full-body mobs may still act.
         if (!handsCommand && HasComp<HandsComponent>(body) && !handAllowed
             && command.Command != BodyControlCommand.ToggleCombat)
+        {
+            Deny(actor, "hands");
             return;
+        }
 
         var target = ResolveTarget(command.Target);
         var coordinates = command.Coordinates is { } netCoords ? GetCoordinates(netCoords) : Transform(body).Coordinates;
@@ -167,9 +260,13 @@ public sealed partial class BodyControlSystem
                 case BodyControlCommand.UseHand:
                 case BodyControlCommand.AltUseHand:
                 case BodyControlCommand.ActivateHand:
-                    if (_controlHands.TryGetHeldItem(body, hand, out var held)
-                        && (access.FullControl || !HasComp<ActivatableUIComponent>(held)))
+                    if (_controlHands.TryGetHeldItem(body, hand, out var held))
                     {
+                        if (HasComp<ActivatableUIComponent>(held) && !access.Allows("body.inventory"))
+                        {
+                            Deny(actor, "inventory");
+                            break;
+                        }
                         _remoteControl.ExecuteRemoteHand(body, new RemoteControlHandMessage
                         {
                             Hand = hand!,
@@ -197,8 +294,6 @@ public sealed partial class BodyControlSystem
                 case BodyControlCommand.Pull:
                 case BodyControlCommand.Shoot:
                 case BodyControlCommand.MovePulledObject:
-                    if (!access.FullControl && target is { } uiTarget && HasComp<ActivatableUIComponent>(uiTarget))
-                        break;
                     var alt = command.Command == BodyControlCommand.AltInteract
                         || command.Command == BodyControlCommand.Shoot
                         && EntityManager.System<SharedGunSystem>().TryGetGun(body, out var shootingGun) && !shootingGun.Comp.UseKey;
@@ -231,29 +326,30 @@ public sealed partial class BodyControlSystem
 
     private bool CanControlAction(EntityUid body, EntityUid action, BodyControlAccess access)
     {
-        return access.Allows("body.actions") && !TerminatingOrDeleted(action)
+        return !TerminatingOrDeleted(action)
+               && (_controlActions.GetEvent(action) is ToggleCombatActionEvent ? access.Allows("body.interact") : access.Allows("body.actions"))
                && _controlActions.GetActions(body).Any(available => available.Owner == action)
                && _controlActions.GetEvent(action) is not OpenMindCollectiveEvent
-               && (access.FullControl || access.Actions == null
+               && (_controlActions.GetEvent(action) is ToggleCombatActionEvent || access.FullControl || access.Actions == null
                    || MetaData(action).EntityPrototype is { } prototype && access.Actions.Contains(prototype.ID));
     }
 
     [SubscribeLocalEvent]
     private void OnControlledMelee(Entity<BodyControlTargetComponent> ent, ref AttemptMeleeEvent args)
     {
-        if (!_handContext.IsExecuting(ent) && !IsNativeFullController(ent) && !HasExternalController(ent))
+        if (!_handContext.IsExecuting(ent) && !CanNativeInteract(ent) && !HasExternalController(ent))
             args.Cancelled = true;
     }
 
     [SubscribeLocalEvent]
     private void OnControlledShot(Entity<BodyControlTargetComponent> ent, ref ShotAttemptedEvent args)
     {
-        if (!_handContext.IsExecuting(ent) && !IsNativeFullController(ent) && !HasExternalController(ent))
+        if (!_handContext.IsExecuting(ent) && !CanNativeInteract(ent) && !HasExternalController(ent))
             args.Cancel();
     }
 
-    private bool IsNativeFullController(EntityUid body)
-        => TryGetControl(body, out var controlled, out var access) && controlled == body && access.FullControl;
+    private bool CanNativeInteract(EntityUid body)
+        => TryGetControl(body, out var controlled, out var access) && controlled == body && access.Allows("body.interact");
 
     private bool HasExternalController(Entity<BodyControlTargetComponent> body)
         => body.Comp.Controllers.Any(controller => TryComp<BodyControlSourceComponent>(controller, out var source)
@@ -267,9 +363,12 @@ public sealed partial class BodyControlSystem
     {
         if (TryComp<BodyControlSourceComponent>(args.User, out var source) && source.Body == args.User
             && !source.ExternallyDriven
-            && !_handContext.IsExecuting(args.User) && !source.Access.FullControl
+            && !_handContext.IsExecuting(args.User) && !CanControlAction(args.User, ent, source.Access)
             && _controlActions.GetEvent(ent) is not OpenMindCollectiveEvent)
+        {
             args.Cancelled = true;
+            Deny(args.User, "actions");
+        }
     }
 
     private void UpdateControlPresentation(EntityUid actor, BodyControlSourceComponent source)
@@ -292,12 +391,15 @@ public sealed partial class BodyControlSystem
         if (TryComp<HandsComponent>(body, out var hands))
             foreach (var hand in hands.SortedHands)
             {
-                if (_handContext.AllowsHand(body, hand, access) && _controlHands.TryGetHeldItem((body, hands), hand, out var item))
+                if (_controlHands.TryGetHeldItem((body, hands), hand, out var item))
                     entities.Add(item.Value);
             }
         foreach (var action in _controlActions.GetActions(body))
-            if (CanControlAction(body, action.Owner, access))
-                entities.Add(action.Owner);
+            entities.Add(action.Owner);
+        if (TryComp<InventoryComponent>(body, out var inventory))
+            foreach (var slot in inventory.Slots)
+                if (EntityManager.System<InventorySystem>().TryGetSlotEntity(body, slot.Name, out var item, inventory))
+                    entities.Add(item.Value);
         foreach (var removed in view.Entities.Except(entities))
             _controlPvs.RemoveSessionOverride(removed, view.Session);
         foreach (var added in entities.Except(view.Entities))

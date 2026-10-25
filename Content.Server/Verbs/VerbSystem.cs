@@ -41,6 +41,10 @@ namespace Content.Server.Verbs
                 return;
             }
 
+            if (EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>()
+                .WithController(attached, null, false, () => HandleVerbRequest(args, eventArgs)))
+                return;
+
             // We do not verify that the user has access to the requested entity. The individual verbs should check
             // this, and some verbs (e.g. view variables) won't even care about whether an entity is accessible through
             // the entity menu or not.

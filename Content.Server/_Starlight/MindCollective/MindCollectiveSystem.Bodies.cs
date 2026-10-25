@@ -21,6 +21,8 @@ public sealed partial class MindCollectiveSystem
         EnsureComp<MindCollectiveBodyComponent>(body).Collective = collectiveId;
         collective.Bodies.Add(body);
         SetCollectiveUi(body);
+        if (_mind.TryGetMind(body, out var nativeMind, out _))
+            RefreshNativeControl(collectiveId, collective, nativeMind);
         UpdateUi(collectiveId, collective);
         return true;
     }
@@ -33,6 +35,8 @@ public sealed partial class MindCollectiveSystem
         if (!collective.Closing && _mind.TryGetMind(body, out var mind, out _) && collective.Minds.ContainsKey(mind))
             ReturnToMindspace(collectiveId, collective, mind);
         collective.Bodies.Remove(body);
+        foreach (var grants in collective.ControlAccess.Values)
+            grants.Remove(body);
         if (collective.ActiveBody == body)
             collective.ActiveBody = collective.Bodies.Count > 0 ? collective.Bodies.First() : null;
         DetachObservers(collectiveId, collective, body);
@@ -280,7 +284,9 @@ public sealed partial class MindCollectiveSystem
             return false;
         // The physical occupant is also an input source, so its commands follow the same arbitration rules.
         var addNative = HasComp<ActorComponent>(body) && !_bodyControl.IsControlling(body, body);
-        if (addNative && !_bodyControl.TryStartControl(body, body, new BodyControlAccess { FullControl = true }))
+        var nativeAccess = _mind.TryGetMind(body, out var nativeMind, out _)
+            ? GetMemberControlAccess(collective, nativeMind, body) : new BodyControlAccess { FullControl = true };
+        if (addNative && !_bodyControl.TryStartControl(body, body, nativeAccess))
             return false;
         if (!_bodyControl.TryStartControl(actor, body, access))
         {

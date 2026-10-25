@@ -50,6 +50,11 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         if (args.SenderSession.AttachedEntity is not { Valid: true } uid)
             return;
 
+        var control = EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>();
+        if (control.WithController(uid, "body.speak", false, () => OnClientSetLanguage(message, args)))
+            return;
+        uid = control.GetControlledBody(uid);
+
         var language = GetLanguagePrototype(message.CurrentLanguage);
         if (language == null || !CanSpeak(uid, language.ID))
             return;

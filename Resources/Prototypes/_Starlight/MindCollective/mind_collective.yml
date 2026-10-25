@@ -33,6 +33,7 @@
   categories: [HideSpawnMenu]
   components:
   - type: Action
+    priority: -100
     itemIconStyle: NoItem
     icon: { sprite: Interface/Actions/actions_ai.rsi, state: ai_core }
     checkCanInteract: false

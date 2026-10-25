@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Client.CombatMode;
+using Content.Client._Starlight.BodyControl;
 using Content.Client.Gameplay;
 using Content.Client.Graphics;
 using Content.Client.Outline;
@@ -12,7 +13,6 @@ using Content.Shared.Popups;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
-using Robust.Client.Player;
 using Robust.Client.State;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input;
@@ -37,7 +37,7 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
     [Dependency] private IStateManager _stateManager = default!;
     [Dependency] private IInputManager _inputManager = default!;
     [Dependency] private IEyeManager _eyeManager = default!;
-    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private BodyControlViewSystem _bodyView = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IConfigurationManager _cfgMan = default!;
     [Dependency] private InteractionOutlineSystem _outline = default!;
@@ -117,7 +117,7 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
         _dropTargetOutOfRangeShader = _prototypeManager.Index(ShaderDropTargetOutOfRange).Instance();
         // needs to fire on mouseup and mousedown so we can detect a drag / drop
         CommandBinds.Builder
-            .BindBefore(EngineKeyFunctions.Use, new PointerInputCmdHandler(OnUse, false, true), new[] { typeof(SharedInteractionSystem) })
+            .BindBefore(EngineKeyFunctions.Use, new PointerInputCmdHandler(OnUse, false, true), new[] { typeof(SharedInteractionSystem), typeof(BodyControlSystem) })
             .Register<DragDropSystem>();
     }
 
@@ -179,7 +179,7 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
 
     private bool OnUseMouseDown(in PointerInputCmdHandler.PointerInputCmdArgs args)
     {
-        if (args.Session?.AttachedEntity is not { Valid: true } dragger ||
+        if (_bodyView.Entity is not { Valid: true } dragger ||
             _combatMode.IsInCombatMode())
         {
             return false;
@@ -275,7 +275,7 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
             return false;
         }
 
-        var player = _playerManager.LocalEntity;
+        var player = _bodyView.Entity;
 
         // still in range of the thing we are dragging?
         if (player == null || !_interactionSystem.InRangeUnobstructed(player.Value, _draggedEntity.Value))
@@ -352,7 +352,7 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
             return false;
         }
 
-        var localPlayer = _playerManager.LocalEntity;
+        var localPlayer = _bodyView.Entity;
 
         if (localPlayer == null || !Exists(_draggedEntity))
         {
@@ -416,7 +416,7 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
             return;
         }
 
-        var user = _playerManager.LocalEntity;
+        var user = _bodyView.Entity;
 
         if (user == null)
             return;

@@ -86,6 +86,7 @@ public sealed partial class MindCollectiveSystem
 
     private void RefreshMemberPermissions(EntityUid id, MindCollectiveComponent collective, EntityUid mind)
     {
+        RefreshNativeControl(id, collective, mind);
         if (collective.Minds.TryGetValue(mind, out var observer)
             && TryComp<MindCollectiveObserverComponent>(observer, out var view))
         {
@@ -132,7 +133,8 @@ public sealed partial class MindCollectiveSystem
             if (assignment.Bodies != null && !assignment.Bodies.Contains(body)
                 || !role.Permissions.Contains("body.control") && !role.Permissions.Contains("*"))
                 continue;
-            access = (assignment.Control ?? role.Control).Copy();
+            access = collective.ControlAccess.TryGetValue(mind, out var bodies) && bodies.TryGetValue(body, out var configured)
+                ? configured.Copy() : (assignment.Control ?? role.Control).Copy();
             return true;
         }
         return false;

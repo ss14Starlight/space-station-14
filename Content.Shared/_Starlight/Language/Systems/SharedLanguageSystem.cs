@@ -179,7 +179,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     ///     Returns the LanguageSpeakerComponent of the local player entity.
     ///     Will return null if the player does not have an entity, or if the client has not yet received the component state.
     /// </summary>
-    public LanguageSpeakerComponent? GetLocalSpeaker()
+    public virtual LanguageSpeakerComponent? GetLocalSpeaker()
     {
         return CompOrNull<LanguageSpeakerComponent>(_player.LocalEntity);
     }

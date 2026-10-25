@@ -41,6 +41,12 @@ namespace Content.Shared.Verbs
             if (attachedEntity is not { } attached)
                 return;
 
+            var context = EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>();
+            if (context.WithController(attached, args.RequestedVerb is ExamineVerb ? null : "body.interact",
+                    args.RequestedVerb is not ExamineVerb && HasComp<HandsComponent>(context.GetControlledBody(attached)),
+                    () => HandleExecuteVerb(args, eventArgs)))
+                return;
+
             var user = ResolveVerbUser(attached);
             if (user is not { } userEntity)
                 return;

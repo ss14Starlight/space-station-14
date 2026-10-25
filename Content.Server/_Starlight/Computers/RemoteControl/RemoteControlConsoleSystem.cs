@@ -912,8 +912,11 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     private bool OnRemoteReleasePulledObjectInput(ICommonSession? session, BoundKeyState state)
     {
-        if (session?.AttachedEntity is not { Valid: true } actor
-            || !TryGetControlledEntity(actor, out var remoteEntity))
+        if (session?.AttachedEntity is not { Valid: true } actor)
+            return false;
+        if (!CheckControlPermission(actor, "body.interact", state == BoundKeyState.Down))
+            return true;
+        if (!TryGetControlledEntity(actor, out var remoteEntity))
             return false;
 
         if (!CanRemoteControlledEntityAct(remoteEntity))
@@ -931,8 +934,11 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     private bool OnRemoteToggleKnockdownInput(ICommonSession? session, BoundKeyState state)
     {
-        if (session?.AttachedEntity is not { Valid: true } actor
-            || !TryGetControlledEntity(actor, out var remoteEntity))
+        if (session?.AttachedEntity is not { Valid: true } actor)
+            return false;
+        if (!CheckControlPermission(actor, "body.interact", state == BoundKeyState.Down))
+            return true;
+        if (!TryGetControlledEntity(actor, out var remoteEntity))
             return false;
 
         if (state == BoundKeyState.Down && CanRemoteControlledEntityAct(remoteEntity))
@@ -991,6 +997,13 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnRemoteUiMessageAttempt(BoundUserInterfaceMessageAttempt args)
     {
+        if (args.Message is not CloseBoundInterfaceMessage
+            && args.UiKey is not Content.Shared._Starlight.MindCollective.MindCollectiveUiKey
+            && !CheckControlPermission(args.Actor, "body.inventory"))
+        {
+            args.Cancel();
+            return;
+        }
         var pendingOpenKey = (args.Actor, args.Target, args.UiKey);
         _pendingRemoteUiOpenAttempts.Remove(pendingOpenKey);
 
@@ -1020,6 +1033,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         if (pendingOpen)
             _pendingRemoteUiOpenAttempts.Add(pendingOpenKey);
+        RelayCooperativeUi(args);
     }
 
     [SubscribeLocalEvent]

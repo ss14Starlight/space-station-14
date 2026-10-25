@@ -1,4 +1,5 @@
 using Content.Shared.Eui;
+using Content.Shared._Starlight.BodyControl;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
@@ -22,7 +23,7 @@ public sealed class MindCollectiveAdminState(
     NetEntity? collective,
     NetUserId? player,
     NetEntity? body,
-    string feedback) : EuiStateBase
+    string feedback, BodyControlAccessState? access = null) : EuiStateBase
 {
     public readonly List<MindCollectiveAdminEntity> Collectives = collectives;
     public readonly List<MindCollectiveAdminPlayer> Players = players;
@@ -32,6 +33,7 @@ public sealed class MindCollectiveAdminState(
     public readonly NetUserId? Player = player;
     public readonly NetEntity? Body = body;
     public readonly string Feedback = feedback;
+    public readonly BodyControlAccessState? Access = access;
 }
 
 [Serializable, NetSerializable]
@@ -49,6 +51,8 @@ public enum MindCollectiveAdminAction : byte
     Observe,
     Control,
     Leave,
+    SaveAccess,
+    ResetAccess,
 }
 
 [Serializable, NetSerializable]
@@ -57,11 +61,12 @@ public sealed class MindCollectiveAdminMessage(
     NetEntity? collective,
     NetUserId? player,
     NetEntity? body,
-    string? role) : EuiMessageBase
+    string? role, BodyControlAccess? access = null) : EuiMessageBase
 {
     public readonly MindCollectiveAdminAction Action = action;
     public readonly NetEntity? Collective = collective;
     public readonly NetUserId? Player = player;
     public readonly NetEntity? Body = body;
     public readonly string? Role = role;
+    public readonly BodyControlAccess? Access = access;
 }

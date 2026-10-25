@@ -63,9 +63,6 @@ public sealed partial class BodyControlSystem : EntitySystem
     /// <summary>The caller must authorize this grant. An existing native player must be registered first.</summary>
     public bool TryStartControl(EntityUid actor, EntityUid body, BodyControlAccess access)
     {
-        // The native actor already owns this body; a cooperative grant must preserve those full rights.
-        if (actor == body && !access.FullControl)
-            return false;
         if (TerminatingOrDeleted(actor) || TerminatingOrDeleted(body)
             || !TryComp<PhysicsComponent>(body, out var physics)
             || physics.BodyType is not (BodyType.KinematicController or BodyType.Kinematic)
@@ -109,8 +106,6 @@ public sealed partial class BodyControlSystem : EntitySystem
             return false;
         if (source.ExternallyDriven)
             return false;
-        if (actor == body && !access.FullControl)
-            return false;
         var couldMove = source.Access.Allows("body.move");
         RemoveControlPresentation(actor);
         source.Access = access.Copy();
@@ -126,6 +121,9 @@ public sealed partial class BodyControlSystem : EntitySystem
         Dirty(actor, source);
         if (couldMove != source.Access.Allows("body.move"))
             Rebalance(body, Comp<BodyControlTargetComponent>(body));
+        if (actor == body && access.FullControl && TryComp<BodyControlTargetComponent>(body, out var nativeTarget)
+            && nativeTarget.Controllers.Count == 1)
+            StopControl(actor);
         return true;
     }
 
@@ -185,7 +183,8 @@ public sealed partial class BodyControlSystem : EntitySystem
                 foreach (var other in target.Controllers.ToArray())
                     StopControl(other);
             }
-            if (actor != body && target.Controllers.Count == 1 && target.Controllers.Contains(body))
+            if (actor != body && target.Controllers.Count == 1 && target.Controllers.Contains(body)
+                && TryComp<BodyControlSourceComponent>(body, out var nativeSource) && nativeSource.Access.FullControl)
                 StopControl(body);
             else
                 Rebalance(body, target);
@@ -264,6 +263,8 @@ public sealed partial class BodyControlSystem : EntitySystem
         if (!access.Allows("body.move"))
         {
             args.Handled = true;
+            if (args.Pressed)
+                Deny(ent, "move");
             return;
         }
         RecordInput(ent.Comp, args.Button, args.Pressed);
@@ -285,6 +286,10 @@ public sealed partial class BodyControlSystem : EntitySystem
 
         target.ControllerCount = target.Controllers.Count;
         target.SoleController = target.ControllerCount == 1 ? target.Controllers.First() : null;
+        if (TryComp<Content.Shared.Alert.AlertsComponent>(body, out var alerts))
+            Dirty(body, alerts);
+        if (TryComp<Content.Shared._Starlight.Language.Components.LanguageSpeakerComponent>(body, out var languages))
+            Dirty(body, languages);
         Dirty(body, target);
         EnsureComp<InputMoverComponent>(body);
         _mover.ResetMovementInput(body);

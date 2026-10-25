@@ -105,7 +105,9 @@ public sealed class MindCollectiveAdminEui : BaseEui
                 _selectedCollective is { } roleGroup && _entities.TryGetComponent(roleGroup, out MindCollectiveComponent? roleCollective)
                 && mind is { } member && roleCollective.Roles.TryGetValue(member, out var assigned) && assigned.ContainsKey(role.ID))).ToList();
         return new MindCollectiveAdminState(groups, players, bodies, roles,
-            _entities.GetNetEntity(_selectedCollective), _player, _entities.GetNetEntity(_body), _feedback);
+            _entities.GetNetEntity(_selectedCollective), _player, _entities.GetNetEntity(_body), _feedback,
+            _selectedCollective is { } accessGroup && mind is { } accessMind && _body is { } accessBody
+                ? _collectives.GetControlAccessState(accessGroup, accessMind, accessBody) : null);
     }
 
     public override void HandleMessage(EuiMessageBase message)
@@ -160,6 +162,12 @@ public sealed class MindCollectiveAdminEui : BaseEui
             return false;
         switch (request.Action)
         {
+            case MindCollectiveAdminAction.SaveAccess:
+            case MindCollectiveAdminAction.ResetAccess:
+                return mind is { } configured && _body is { } configuredBody
+                       && (request.Action == MindCollectiveAdminAction.ResetAccess || request.Access != null)
+                       && _collectives.SetControlAccess(group, configured, configuredBody,
+                           request.Action == MindCollectiveAdminAction.ResetAccess ? null : request.Access);
             case MindCollectiveAdminAction.Invite:
                 return mind is { } invited && _collectives.RequestJoin(group, invited);
             case MindCollectiveAdminAction.AddBody:
