@@ -1,32 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: Fixed creatures like corgis, K9s, xenos, and various other combat-capable creatures doing no damage to objects or mechs.
-    type: Fix
-  id: 409351
-  time: '2026-10-11T08:53:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6620
-- author: Johnny
-  changes:
-  - message: Balanced the war category for revolutionaries a bit.
-    type: Tweak
-  id: 409352
-  time: '2026-10-11T08:53:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6621
-- author: Johnny
-  changes:
-  - message: Changed the acidic gas grenade to be better at its purpose.
-    type: Tweak
-  id: 409353
-  time: '2026-10-11T09:23:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6619
-- author: Caws
-  changes:
-  - message: NT Career Trainers now have Brig access (meaning they can enter Brigmedic).
-    type: Add
-  id: 409354
-  time: '2026-10-11T09:23:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6616
 - author: Caws
   changes:
   - message: NT Career Trainers no longer have Security access by default.
@@ -2799,4 +2771,32 @@ Entries:
   id: 409750
   time: '2026-10-25T10:44:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6849
+- author: baltdev, bynddark8
+  changes:
+  - message: Added the Handheld Station Radio, which can be purchased from the Games & Fun vending machine or put in the round-start loadout as a trinket. It has a very short audio range, and does not require power.
+    type: Add
+  id: 409751
+  time: '2026-10-25T10:44:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6797
+- author: baltdev, bynddark8
+  changes:
+  - message: Gives the Radio Host a Network Configuratior when joining the round, in case the vinyl player isn't set up yet.
+    type: Tweak
+  id: 409752
+  time: '2026-10-25T10:44:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6797
+- author: baltdev, bynddark8
+  changes:
+  - message: Gives the Radio Host a handheld station radio when joining the round.
+    type: Tweak
+  id: 409753
+  time: '2026-10-25T10:44:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6797
+- author: baltdev, bynddark8
+  changes:
+  - message: Adds a construction recipe for handheld station radios, requiring basic materials and a station radio circuitboard.
+    type: Add
+  id: 409754
+  time: '2026-10-25T10:44:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6797
 Order: -1
