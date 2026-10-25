@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-NC-SA-3.0",
+  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432, holoplush and magicplush modified by deltanedas (github), rainbowcarplush and inhand sprites modified from carpplush and inhand sprites by ArtisticRoomba, magicarp and holocarp inhand sprites by TiniestShark (github); south/north derived from Mobs/Aliens/Carps/holo.rsi alive: Taken from https://github.com/tgstation/tgstation/commit/b143783881fb7418213026857cb8c569636e259e#diff-8dd94e19fdb2ff341b57e31bce101298, edited 'alive' to create 'crit' and 'dead' states (CC-BY-SA-3.0). South/north plushie edits: By Rescue for Starlight.",
+  "states": [
+    {
+      "name": "holoplush",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

@@ -78,7 +78,8 @@
     netsync: false
   - type: Sprite
     layers:
-    - state: holoplush
+    - sprite: _Starlight/Objects/Fun/Plushies/holocarp.rsi
+      state: holoplush
       shader: unshaded
   - type: Item
     inhandVisuals:

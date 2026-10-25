@@ -161,6 +161,12 @@
         blacklist:
           tags:
           - MechReactor
+    - hand:
+        emptyRepresentative: ClothingHeadHatTophat
+        emptyLabel: borg-slot-clothing-empty
+        whitelist:
+          components:
+          - Clothing
 
 - type: !PartialOnly entity
   id: XenoborgModuleLaser

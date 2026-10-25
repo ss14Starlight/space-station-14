@@ -315,3 +315,141 @@
   components:
   - type: BorgSubtypeDefinition
     inventoryTemplateId: borgHeadPurrfusTall
+
+- type: !PartialOnly entity
+  id: XenoborgEngi
+  components:
+  - type: Inventory
+    templateId: borgHeadEngineeringDefault
+
+- type: !PartialOnly entity
+  id: DerelictEngiXenoborg
+  components:
+  - type: Inventory
+    templateId: borgHeadEngineeringDefault
+
+- type: !PartialOnly entity
+  id: PurrfusBorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadPurrfus
+
+- type: !PartialOnly entity
+  id: BorgChassisSyndicateMedical
+  components:
+  - type: Inventory
+    templateId: borgHeadMedicalSyndicate
+
+- type: !PartialOnly entity
+  id: XenoborgScout
+  components:
+  - type: Inventory
+    templateId: borgHeadMedicalScout
+
+- type: !PartialOnly entity
+  id: DerelictScoutXenoborg
+  components:
+  - type: Inventory
+    templateId: borgHeadMedicalScout
+
+- type: !PartialOnly entity
+  id: MedicalBorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadMedicalDefault
+
+- type: !PartialOnly entity
+  id: XenoborgStealth
+  components:
+  - type: Inventory
+    templateId: borgHeadXenoStealth
+
+- type: !PartialOnly entity
+  id: DerelictStealthXenoborg
+  components:
+  - type: Inventory
+    templateId: borgHeadXenoStealthDerelict
+
+- type: !PartialOnly entity
+  id: BorgChassisSyndicateAssault
+  components:
+  - type: Inventory
+    templateId: borgHeadSyndicateAssault
+
+- type: !PartialOnly entity
+  id: BorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadStandard
+
+- type: !PartialOnly entity
+  id: BorgChassisSyndicateSaboteur
+  components:
+  - type: Inventory
+    templateId: borgHeadEngineeringDefault
+
+- type: !PartialOnly entity
+  id: EngineeringBorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadEngineeringDefault
+
+- type: !PartialOnly entity
+  id: SyndicateAssaultBorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadSyndicateAssault
+
+- type: !PartialOnly entity
+  id: XenoborgHeavy
+  components:
+  - type: Inventory
+    templateId: borgHeadXenoHeavy
+
+- type: !PartialOnly entity
+  id: DerelictHeavyXenoborg
+  components:
+  - type: Inventory
+    templateId: borgHeadXenoHeavy
+
+- type: !PartialOnly entity
+  id: JanitorBorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadJanitorDefault
+
+- type: !PartialOnly entity
+  id: MiningBorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadMiningDefault
+
+- type: !PartialOnly entity
+  id: BorgChassisMedTak
+  components:
+  - type: Inventory
+    templateId: borgHeadMedTak
+
+- type: !PartialOnly entity
+  id: BorgChassisTSF
+  components:
+  - type: Inventory
+    templateId: borgHeadTsf
+
+- type: !PartialOnly entity
+  id: BorgChassisSyndicateStealth
+  components:
+  - type: Inventory
+    templateId: borgHeadSyndicateStealth
+
+- type: !PartialOnly entity
+  id: BaseNTNCChassis
+  components:
+  - type: Inventory
+    templateId: borgHeadNtnc
+
+- type: !PartialOnly entity
+  id: MothershipCore
+  components:
+  - type: Inventory
+    templateId: borgHeadMothershipCore
