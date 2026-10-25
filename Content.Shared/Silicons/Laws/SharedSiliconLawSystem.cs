@@ -145,7 +145,6 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
             return;
         }
 
-
         if (TryComp<WiresPanelComponent>(args.Target, out var panel) && !panel.Open)
         {
             _popup.PopupEntity(Loc.GetString("law-updater-require-panel"), target, args.User);
