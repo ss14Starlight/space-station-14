@@ -1,11 +1,4 @@
 Entries:
-- author: enerjak
-  changes:
-  - message: Buffed binoculars; they now see twice as far.
-    type: Tweak
-  id: 409350
-  time: '2026-10-10T18:36:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6585
 - author: Sparlight
   changes:
   - message: Fixed creatures like corgis, K9s, xenos, and various other combat-capable creatures doing no damage to objects or mechs.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409749
   time: '2026-10-25T10:23:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6851
+- author: Talirson
+  changes:
+  - message: Fixed CentComm issuing atmospheric technicians two PDAs.
+    type: Fix
+  id: 409750
+  time: '2026-10-25T10:44:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6849
 Order: -1
