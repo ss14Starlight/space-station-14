@@ -19,6 +19,7 @@
             <cc:UICommandButton Command="purgecharacterrecords" Text="{Loc admin-player-actions-window-cd-record-purge}" WindowType="{x:Type cdAdmin:ModifyCharacterRecords}"/>
             <!-- Cosmatic Drift Record System-end -->
             <cc:CommandButton Command="achatwindow" Text="{Loc admin-player-actions-window-admin-chat}"/>
+            <cc:CommandButton Command="mindcollective" Text="{Loc mind-collective-admin-title}"/> <!-- Starlight -->
         </GridContainer>
     </BoxContainer>
 </Control>
