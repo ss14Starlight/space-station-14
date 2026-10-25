@@ -1,6 +1,7 @@
 - type: guideEntry
   id: Chemicals
   name: guide-entry-chemicals
+  department: Medical # Starlight
   text: "/ServerInfo/Guidebook/Chemicals.xml"
   children:
   - Elements
@@ -18,53 +19,62 @@
 - type: guideEntry
   id: Elements
   name: guide-entry-elements
+  color: "#B3B3B3" # Starlight: Advanced neutralmedium
   text: "/ServerInfo/Guidebook/ChemicalTabs/Elements.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: Narcotics
   name: guide-entry-narcotics
+  color: "#CA7EF2" # Starlight: Advanced salvagelight
   text: "/ServerInfo/Guidebook/ChemicalTabs/Narcotics.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: Pyrotechnic
   name: guide-entry-pyrotechnics
+  color: "#FFA647" # Starlight: Advanced engineeringlight
   text: "/ServerInfo/Guidebook/ChemicalTabs/Pyrotechnic.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: Toxins
   name: guide-entry-toxins
+  color: "#80C71F" # Starlight: Sixteen lime
   text: "/ServerInfo/Guidebook/ChemicalTabs/Toxins.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: Foods
   name: guide-entry-foods
+  color: "#D69949" # Starlight: Advanced cargolight
   text: "/ServerInfo/Guidebook/ChemicalTabs/Foods.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: Botanical
   name: guide-entry-botanical
+  color: "#3EB388" # Starlight: Departmental atmospherics, opaque
   text: "/ServerInfo/Guidebook/Medical/Botanicals.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: Biological
   name: guide-entry-biological
+  color: "#F38BAA" # Starlight: Sixteen pink
   text: "/ServerInfo/Guidebook/ChemicalTabs/Biological.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: Special
   name: guide-entry-special
+  color: "#F98AFF" # Starlight: Advanced sciencemedium
   text: "/ServerInfo/Guidebook/ChemicalTabs/Special.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: Others
   name: guide-entry-others
+  color: "#999999" # Starlight: Advanced neutraldark
   text: "/ServerInfo/Guidebook/ChemicalTabs/Other.xml"
   filterEnabled: True

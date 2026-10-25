@@ -1,60 +1,4 @@
 Entries:
-- author: Swonki, thepipetoadcouncil
-  changes:
-  - message: Chain Accelerator and Regulator Accuracy.
-    type: Tweak
-  id: 409338
-  time: '2026-10-10T16:31:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6608
-- author: FoxStellar
-  changes:
-  - message: Added chemistry jug boxes, filled with empty jugs! Use em to make the Jug Locker! For now, they spawn in Chem Lockers, but only until their shelf can be mapped!
-    type: Add
-  id: 409339
-  time: '2026-10-10T16:56:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6583
-- author: FoxStellar
-  changes:
-  - message: Also added a fully complete Jug Locker that can optionally be mapped instead of the Jug Shelf.
-    type: Add
-  id: 409340
-  time: '2026-10-10T16:56:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6583
-- author: FoxStellar
-  changes:
-  - message: Changed jug box (small box) to once again have 4 jugs (instead of 2).
-    type: Tweak
-  id: 409341
-  time: '2026-10-10T16:56:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6583
-- author: FoxStellar
-  changes:
-  - message: Temporarily removed the jug box (small box) from the Chem Lockers, they'll return once the big boxes leave.
-    type: Remove
-  id: 409342
-  time: '2026-10-10T16:56:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6583
-- author: Rinary
-  changes:
-  - message: Changed and modernized admin help UI, now it won't have a lot of buttons in row, added job icon of player, added typing indicator, added search.
-    type: Tweak
-  id: 409343
-  time: '2026-10-10T17:16:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6609
-- author: Rinary
-  changes:
-  - message: Changed and modernized mentor help.
-    type: Tweak
-  id: 409344
-  time: '2026-10-10T17:16:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6609
-- author: Rinary
-  changes:
-  - message: Changed separated chatbox, now it has smaller amount of buttons and some of not popular buttons hidden under dialog(... button).
-    type: Tweak
-  id: 409345
-  time: '2026-10-10T17:16:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6609
 - author: Floximo
   changes:
   - message: The secure terminal and its keycard counterparts have now power cells for reserve power.
@@ -2799,4 +2743,60 @@ Entries:
   id: 409737
   time: '2026-10-24T15:01:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6826
+- author: Xale
+  changes:
+  - message: Psicodine can now be consumed to suppresses auditory hallucinations for a while.
+    type: Add
+  id: 409738
+  time: '2026-10-24T15:25:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6837
+- author: Talirson
+  changes:
+  - message: Senior Atmos Tech PDA!
+    type: Add
+  id: 409739
+  time: '2026-10-24T15:25:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6831
+- author: Rinary
+  changes:
+  - message: Removed certain Lobby arts for various reasons, such as AI generated, low quality, arts that had copyright issues and too personal lobby arts(removed 5 arts).
+    type: Remove
+  id: 409740
+  time: '2026-10-24T19:10:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6838
+- author: Rinary
+  changes:
+  - message: Added a bunch of new arts in replacement of removed once(added 13 arts).
+    type: Add
+  id: 409741
+  time: '2026-10-24T19:10:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6838
+- author: Rinary
+  changes:
+  - message: Added ability to hide chat on lobby screen.
+    type: Add
+  id: 409742
+  time: '2026-10-24T19:10:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6838
+- author: Rinary
+  changes:
+  - message: Added ability to move ready/observe buttons at the top of chat box.
+    type: Add
+  id: 409743
+  time: '2026-10-24T19:10:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6838
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Improved the guidebook searching by alot.
+    type: Tweak
+  id: 409744
+  time: '2026-10-24T20:51:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6822
+- author: Scarlet Lightweaver.
+  changes:
+  - message: added color coding to the guidebook.
+    type: Add
+  id: 409745
+  time: '2026-10-24T20:51:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6822
 Order: -1
