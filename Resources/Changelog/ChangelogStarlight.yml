@@ -1,18 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Tricordrazine now induces vomiting when over 40.5u is in the stomach, and deals poison damage while over 40.5u in the bloodstream. It still does no healing when above 40u.
-    type: Tweak
-  id: 409377
-  time: '2026-10-11T18:40:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6640
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Fixed multiple medibots being able to inject the same patient, resulting in patients with large amounts of inap or tric. Now only the first injection succeeds.
-    type: Fix
-  id: 409378
-  time: '2026-10-11T18:40:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6640
 - author: neomoth
   changes:
   - message: Emergency shuttle no longer misinterprets 45 minutes as 45 seconds when resetting the timer after the first automatic shuttle call.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409776
   time: '2026-10-25T11:41:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: SirLutz
+  changes:
+  - message: Fixed shields applying their own resistance values to the holder instead of their block percentage, which made holders (such as Xorg scouts) nearly immune to damage.
+    type: Fix
+  id: 409777
+  time: '2026-10-25T13:37:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6854
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Reverted shadekin light sensitivity values.
+    type: Tweak
+  id: 409778
+  time: '2026-10-25T13:58:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6850
 Order: -1
