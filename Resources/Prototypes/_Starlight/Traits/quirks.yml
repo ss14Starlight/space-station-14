@@ -108,6 +108,7 @@
         - type: SiliconLawProvider
           laws: IPCLawBound
         - type: IonStormTarget
+        - type: LawboardResettable
   requirements:
     - !type:SpeciesRequirement
       species:

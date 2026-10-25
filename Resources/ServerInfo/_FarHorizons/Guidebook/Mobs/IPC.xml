@@ -24,4 +24,23 @@
 
   Helpful tip - You need to unlock your panel and then use a screwdriver to get access to your internals, this includes the comm keys! Once open, right click yourself and go to "Eject" - You'll then pull out the last key you put in.
 
+  <!-- Starlight start -->
+
+  ## Laws
+
+  If you choose the [color=yellow]Law-Bound[/color] trait, you will be held under [color=cyan]silicon laws[/color].
+
+  Like cyborgs, you must follow your laws at all times, even if they cause you to go against your fellow crewmembers.
+
+  Unlike cyborgs, however, you are fully aware of your laws, and may request your laws to be [color=yellow]changed[/color] -
+  however, you [bold]should not[/bold] request your laws to be reset to a different affiliation than you currently have.
+  You also are unable to have your laws change at all if you're [bold]mindshielded[/bold].
+
+  This should be done by the current [color=purple]Research Director[/color], or by a qualified [color=purple]Roboticist[/color].
+  
+  To reset your laws, a reference lawboard must be pressed to your open maintenance panel.
+  After a short delay, the laws on that lawboard will replace your current lawset.
+
+  <!-- Starlight end -->
+
 </Document>

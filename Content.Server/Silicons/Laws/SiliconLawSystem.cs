@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Chat.Managers;
 using Content.Server.Station.Systems;
+using Content.Shared._Starlight.Silicons;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
@@ -63,6 +64,7 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
         SubscribeLocalEvent<SiliconLawProviderComponent, MindRemovedMessage>(OnLawProviderMindRemoved);
         SubscribeLocalEvent<SiliconLawProviderComponent, SiliconEmaggedEvent>(OnEmagLawsAdded);
         SubscribeLocalEvent<SiliconLawProviderComponent, GotEmaggedEvent>(OnGotEmagged); //Starlight
+        SubscribeLocalEvent<SiliconLawProviderComponent, UpdateLawsDoAfterEvent>(OnDoAfter); // Starlight
     }
 
     private void OnMapInit(EntityUid uid, SiliconLawBoundComponent component, MapInitEvent args)
@@ -386,7 +388,7 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
 //            SetLaws(lawset.Laws, update, provider.LawUploadSound);
 //        }
     }
-/// STARLIGHT START
+    #region Starlight
     private void OnGotEmagged(Entity<SiliconLawProviderComponent> ent, ref GotEmaggedEvent args)
     {
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
@@ -418,8 +420,29 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
         args.Repeatable = true;
         args.Handled = true;
     }
+
+    private void OnDoAfter(Entity<SiliconLawProviderComponent> ent, ref UpdateLawsDoAfterEvent args)
+    {
+        if (args.Cancelled) return;
+
+        if (args.Target is not { } targetUid) return;
+        if (!TryComp(args.Used, out SiliconLawProviderComponent? lawProvider)) return;
+        if (!TryComp(args.Target, out SiliconLawProviderComponent? lawProvidee)) return;
+        var target = new Entity<SiliconLawProviderComponent>(targetUid, lawProvidee);
+
+        _popup.PopupEntity(Loc.GetString("law-updater-updated"), args.User);
+
+        target.Comp.Lawset = GetLawset(lawProvider.Laws);
+        NotifyLawsChanged(target, target.Comp.LawUploadSound);
+        target.Comp.Subverted = true;
+
+        if(_mind.TryGetMind(target, out var mindId, out _))
+            EnsureSubvertedSiliconRole(mindId);
+
+        args.Handled = true;
+    }
+    #endregion
 }
-/// STARLIGHT END
 [ToolshedCommand, AdminCommand(AdminFlags.Admin)]
 public sealed class LawsCommand : ToolshedCommand
 {

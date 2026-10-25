@@ -2,3 +2,8 @@
 vinyl-heal-popup = The electricity heals the cracks in the vinyl!
 radio-failed-to-send-soft-critical = Your hands are too shaky to use the radio!
 law-emag-mindshielded = The device is inserted, but nothing happens.
+law-updater-mindshielded = The lawboard is inserted, but nothing happens.
+law-updater-require-panel = You need to open the maintenance panel first!
+law-updater-updated = Laws updated!
+law-updater-alert = {$name} is trying to alter your lawset!
+law-updater-cannot-change-self = You can't change your own laws!

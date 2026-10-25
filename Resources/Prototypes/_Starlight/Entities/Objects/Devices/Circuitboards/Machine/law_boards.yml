@@ -55,6 +55,21 @@
     price: 1000
 
 - type: entity
+  id: IPCmovCircuitBoard
+  parent: [ BaseElectronics, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ]
+  name: law board (IPC Default)
+  description: If an IPC hands this to you, please use common sense and help them.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: std_mod
+    - type: SiliconLawProvider
+      laws: IPCLawBound
+      IsLawboard: true
+    - type: StaticPrice
+      price: 1000
+
+- type: entity
   id: CommiemovCircuitBoard
   parent: [BaseElectronics, BaseSovietContraband]
   name: law board (commiemov)
