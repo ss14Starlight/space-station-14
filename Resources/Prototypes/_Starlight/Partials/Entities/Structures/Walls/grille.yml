@@ -16,7 +16,7 @@
   - type: DamagedOnShock
     damage:
       types:
-        Shock: 18
+        Shock: 12
 
 - type: !PartialOnly entity
   id: GrilleBroken

@@ -8,8 +8,9 @@
   - !type:DoorBoltWireAction
   - !type:DoorBoltLightWireAction
   - !type:DoorTimingWireAction
-  - !type:DoorSafetyWireAction
+#  - !type:DoorSafetyWireAction Starlight-edit
   - !type:AiInteractWireAction
+  dummyWires: 1 # Starlight-edit
 
 - type: wireLayout
   parent: Airlock
