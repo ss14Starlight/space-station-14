@@ -31,7 +31,7 @@ public sealed partial class HitscanBasicRaycastSystem
         List<RayCastResults> rayCastResults,
         int? seed,
         List<HitscanTrace>? previousTraces,
-        EntityUid domeOwner)
+        EntityUid domeOwner) // Starlight-edit: track dome ownership separately from raycast exclusion.
     {
         RayCastResults? result = null;
 
@@ -145,7 +145,7 @@ public sealed partial class HitscanBasicRaycastSystem
         if (TryComp<MechPilotComponent>(shooter, out var pilot))
             shooter = pilot.Mech;
 
-        var domeOwner = shooter;
+        var domeOwner = shooter; // Starlight-edit: preserve the holder exemption across penetrating legs.
         var traces = new List<HitscanTrace>();
         int? legSeed = seed;
 
