@@ -1,0 +1,473 @@
+- type: entity
+  abstract: true
+  parent: BaseMachine
+  id: BaseCombustionTurbineSection
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: false
+  - type: Rotatable
+  - type: Sprite
+    sprite: _Starlight/Structures/Power/Generation/combustion_turbine.rsi
+  - type: Appearance
+  - type: Airtight
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 4
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: DeviceLinkSink
+    ports:
+    - CombustionTurbineConsoleReceiver
+  - type: WiresPanel
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        whitelist:
+          components:
+          - CombustionTurbinePart
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      turbine_part: !type:ContainerSlot
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - turbine_part
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+  - type: GuideHelp
+    guides:
+    - CombustionTurbine
+    - Power
+
+- type: entity
+  parent: BaseCombustionTurbineSection
+  id: CombustionTurbineCompressor
+  name: inlet compressor
+  description: The intake section of a combustion turbine. Draws hot gas from the tile behind it into the core rotor.
+  components:
+  - type: Sprite
+    layers:
+    - state: inlet_compressor
+    - state: inlet_off
+      map: [ "enum.CombustionTurbineVisualLayers.Running" ]
+    - state: inlet_open
+      visible: false
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.CombustionTurbineVisuals.Running:
+        enum.CombustionTurbineVisualLayers.Running:
+          True: { state: inlet_on }
+          False: { state: inlet_off }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: true }
+          False: { visible: false }
+  - type: CombustionTurbineStage
+    stage: Compressor
+  - type: Machine
+    board: CombustionTurbineCompressorMachineCircuitboard
+
+- type: entity
+  parent: BaseCombustionTurbineSection
+  id: CombustionTurbineRotor
+  name: core rotor
+  description: The middle section of a combustion turbine, holding the rotor and the generator. Assemble it with an inlet compressor behind it and a turbine outlet in front, all facing the same way.
+  components:
+  - type: Sprite
+    layers:
+    - state: core_rotor
+    - state: core_on
+      shader: unshaded
+      visible: false
+      map: [ "enum.CombustionTurbineVisualLayers.Running" ]
+    - state: core_open
+      visible: false
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.CombustionTurbineVisuals.Running:
+        enum.CombustionTurbineVisualLayers.Running:
+          True: { visible: true }
+          False: { visible: false }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: true }
+          False: { visible: false }
+  - type: CombustionTurbineStage
+    stage: Rotor
+  - type: CombustionTurbineRotor
+  - type: AtmosDevice
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: LightningTarget
+    priority: 1
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerSupplier
+    supplyRampRate: 100000000
+    supplyRampTolerance: 10000000000
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+    sprite: _Starlight/Structures/Power/Generation/combustion_turbine.rsi
+    state: core_rotor
+  - type: AmbientSound
+    enabled: false
+    volume: -6
+    range: 6
+    sound:
+      path: /Audio/_FarHorizons/Ambience/Objects/turbine_room.ogg
+  - type: Machine
+    board: CombustionTurbineRotorMachineCircuitboard
+
+- type: entity
+  parent: BaseCombustionTurbineSection
+  id: CombustionTurbineOutlet
+  name: turbine outlet
+  description: The exhaust section of a combustion turbine, holding the turbine blades and the stator. Spent gas vents onto the tile in front of it.
+  components:
+  - type: Sprite
+    layers:
+    - state: turbine_outlet
+    - state: outlet_off
+      map: [ "enum.CombustionTurbineVisualLayers.Running" ]
+    - state: outlet_open
+      visible: false
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.CombustionTurbineVisuals.Running:
+        enum.CombustionTurbineVisualLayers.Running:
+          True: { state: outlet_on }
+          False: { state: outlet_off }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: true }
+          False: { visible: false }
+  - type: CombustionTurbineStage
+    stage: Outlet
+  - type: Machine
+    board: CombustionTurbineOutletMachineCircuitboard
+
+- type: entity
+  parent: CombustionTurbineCompressor
+  id: CombustionTurbineCompressorFilled
+  suffix: Filled, Tier 1
+  components:
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineCompressorPart
+        whitelist:
+          components:
+          - CombustionTurbinePart
+
+- type: entity
+  parent: CombustionTurbineRotor
+  id: CombustionTurbineRotorFilled
+  suffix: Filled, Tier 1
+  components:
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineRotorPart
+        whitelist:
+          components:
+          - CombustionTurbinePart
+
+- type: entity
+  parent: CombustionTurbineOutlet
+  id: CombustionTurbineOutletFilled
+  suffix: Filled, Tier 1
+  components:
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineStatorPart
+        whitelist:
+          components:
+          - CombustionTurbinePart
+
+- type: entity
+  parent: CombustionTurbineCompressorFilled
+  id: CombustionTurbineCompressorFilledTier2
+  suffix: Filled, Tier 2
+  components:
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineCompressorPartTier2
+        whitelist:
+          components:
+          - CombustionTurbinePart
+
+- type: entity
+  parent: CombustionTurbineRotorFilled
+  id: CombustionTurbineRotorFilledTier2
+  suffix: Filled, Tier 2
+  components:
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineRotorPartTier2
+        whitelist:
+          components:
+          - CombustionTurbinePart
+
+- type: entity
+  parent: CombustionTurbineOutletFilled
+  id: CombustionTurbineOutletFilledTier2
+  suffix: Filled, Tier 2
+  components:
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineStatorPartTier2
+        whitelist:
+          components:
+          - CombustionTurbinePart
+
+- type: entity
+  parent: CombustionTurbineCompressorFilled
+  id: CombustionTurbineCompressorFilledTier3
+  suffix: Filled, Tier 3
+  components:
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineCompressorPartTier3
+        whitelist:
+          components:
+          - CombustionTurbinePart
+
+- type: entity
+  parent: CombustionTurbineRotorFilled
+  id: CombustionTurbineRotorFilledTier3
+  suffix: Filled, Tier 3
+  components:
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineRotorPartTier3
+        whitelist:
+          components:
+          - CombustionTurbinePart
+
+- type: entity
+  parent: CombustionTurbineOutletFilled
+  id: CombustionTurbineOutletFilledTier3
+  suffix: Filled, Tier 3
+  components:
+  - type: ItemSlots
+    slots:
+      turbine_part:
+        name: combustion-turbine-slot-part
+        locked: true
+        startingItem: CombustionTurbineStatorPartTier3
+        whitelist:
+          components:
+          - CombustionTurbinePart
+
+# Parts
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseCombustionTurbinePart
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Power/Generation/combustion_turbine.rsi
+  - type: Item
+    size: Normal
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
+  - type: GuideHelp
+    guides:
+    - CombustionTurbine
+
+- type: entity
+  parent: BaseCombustionTurbinePart
+  id: CombustionTurbineCompressorPart
+  name: compressor part
+  suffix: Tier 1
+  description: Install in a turbine inlet compressor. Better tiers draw more gas and handle more speed and heat.
+  components:
+  - type: Sprite
+    state: compressor_part
+  - type: CombustionTurbinePart
+    stage: Compressor
+    efficiency: [ 1, 1.2, 1.4, 1.6 ]
+    upgrades:
+    - stack: Plasteel
+      amount: 10
+    - stack: Uranium
+      amount: 10
+    - stack: Diamond
+      amount: 5
+
+- type: entity
+  parent: BaseCombustionTurbinePart
+  id: CombustionTurbineRotorPart
+  name: rotor part
+  suffix: Tier 1
+  description: Install in a turbine core rotor. Better tiers lose less power to friction and handle more speed and heat.
+  components:
+  - type: Sprite
+    state: rotor_part
+  - type: CombustionTurbinePart
+    stage: Rotor
+    efficiency: [ 1, 0.8, 0.6, 0.4 ]
+    upgrades:
+    - stack: Plasteel
+      amount: 10
+    - stack: Uranium
+      amount: 10
+    - stack: Diamond
+      amount: 5
+
+- type: entity
+  parent: BaseCombustionTurbinePart
+  id: CombustionTurbineStatorPart
+  name: stator part
+  suffix: Tier 1
+  description: Install in a turbine outlet. Better tiers catch more of the expanding gas's energy and handle more speed and heat.
+  components:
+  - type: Sprite
+    state: stator_part
+  - type: CombustionTurbinePart
+    stage: Outlet
+    efficiency: [ 0.4, 0.48, 0.56, 0.65 ]
+    upgrades:
+    - stack: Plasteel
+      amount: 15
+    - stack: Uranium
+      amount: 15
+    - stack: Diamond
+      amount: 8
+
+- type: entity
+  parent: CombustionTurbineCompressorPart
+  id: CombustionTurbineCompressorPartTier2
+  suffix: Tier 2
+  components:
+  - type: CombustionTurbinePart
+    tier: 2
+
+- type: entity
+  parent: CombustionTurbineCompressorPart
+  id: CombustionTurbineCompressorPartTier3
+  suffix: Tier 3
+  components:
+  - type: CombustionTurbinePart
+    tier: 3
+
+- type: entity
+  parent: CombustionTurbineCompressorPart
+  id: CombustionTurbineCompressorPartTier4
+  suffix: Tier 4
+  components:
+  - type: CombustionTurbinePart
+    tier: 4
+
+- type: entity
+  parent: CombustionTurbineRotorPart
+  id: CombustionTurbineRotorPartTier2
+  suffix: Tier 2
+  components:
+  - type: CombustionTurbinePart
+    tier: 2
+
+- type: entity
+  parent: CombustionTurbineRotorPart
+  id: CombustionTurbineRotorPartTier3
+  suffix: Tier 3
+  components:
+  - type: CombustionTurbinePart
+    tier: 3
+
+- type: entity
+  parent: CombustionTurbineRotorPart
+  id: CombustionTurbineRotorPartTier4
+  suffix: Tier 4
+  components:
+  - type: CombustionTurbinePart
+    tier: 4
+
+- type: entity
+  parent: CombustionTurbineStatorPart
+  id: CombustionTurbineStatorPartTier2
+  suffix: Tier 2
+  components:
+  - type: CombustionTurbinePart
+    tier: 2
+
+- type: entity
+  parent: CombustionTurbineStatorPart
+  id: CombustionTurbineStatorPartTier3
+  suffix: Tier 3
+  components:
+  - type: CombustionTurbinePart
+    tier: 3
+
+- type: entity
+  parent: CombustionTurbineStatorPart
+  id: CombustionTurbineStatorPartTier4
+  suffix: Tier 4
+  components:
+  - type: CombustionTurbinePart
+    tier: 4
