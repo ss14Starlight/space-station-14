@@ -1,5 +1,6 @@
 ## Laspi Storage Access System
 
+action-storage-accessing-outsider = {CAPITALIZE(THE($user))} is trying to access your storage!
 laspi-storage-accessing = {CAPITALIZE(THE($user))} is trying to access your internal storage!
 
 ## Cargo Leg Storage Access System
