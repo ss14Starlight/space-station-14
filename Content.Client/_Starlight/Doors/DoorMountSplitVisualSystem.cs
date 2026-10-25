@@ -15,6 +15,8 @@ namespace Content.Client._Starlight.Doors;
 /// <summary>
 /// Renders wall mounts on explicitly opted-in doors as two clipped copies that
 /// follow the door panels. The original entity remains in place for interaction.
+/// Door state events select active doors; the frame update discovers nearby
+/// mounts and keeps their visual halves aligned while those doors are active.
 /// </summary>
 public sealed partial class DoorMountSplitVisualSystem : EntitySystem
 {
@@ -70,6 +72,22 @@ public sealed partial class DoorMountSplitVisualSystem : EntitySystem
         SubscribeLocalEvent<WallMountComponent, ComponentShutdown>(OnMountShutdown);
     }
 
+    public override void FrameUpdate(float frameTime)
+    {
+        if (_activeDoors.Count == 0 && _mounts.Count == 0)
+            return;
+
+        UpdateDoorProgress(frameTime);
+        _scanCountdown -= frameTime;
+        if (_scanCountdown <= 0f)
+        {
+            _scanCountdown = 0.1f;
+            ScanMounts();
+        }
+
+        UpdateSplitMounts();
+    }
+
     private void OnDoorStartup(Entity<DoorMountSplitComponent> ent, ref ComponentStartup args)
     {
         if (TryComp<DoorComponent>(ent, out var door))
@@ -80,28 +98,6 @@ public sealed partial class DoorMountSplitVisualSystem : EntitySystem
     {
         if (_appearance.TryGetData<DoorState>(ent, DoorVisuals.State, out var state, args.Component))
             SetDoorState(ent.Owner, state);
-    }
-
-    private void SetDoorState(EntityUid uid, DoorState state)
-    {
-        if (state is DoorState.Open or DoorState.Opening or DoorState.Closing)
-        {
-            if (_activeDoors.TryGetValue(uid, out var previous) && previous == state)
-                return;
-
-            _activeDoors[uid] = state;
-            _doorProgress.TryAdd(uid, state is DoorState.Open or DoorState.Closing ? 1f : 0f);
-        }
-        else if (!_activeDoors.Remove(uid))
-        {
-            return;
-        }
-        else
-        {
-            _doorProgress.Remove(uid);
-        }
-
-        _scanCountdown = 0f;
     }
 
     private void OnDoorShutdown(Entity<DoorMountSplitComponent> ent, ref ComponentShutdown args)
@@ -123,60 +119,26 @@ public sealed partial class DoorMountSplitVisualSystem : EntitySystem
     private void OnMountShutdown(Entity<WallMountComponent> ent, ref ComponentShutdown args)
         => RemoveMount(ent.Owner);
 
-    public override void FrameUpdate(float frameTime)
+    private void SetDoorState(EntityUid uid, DoorState state)
     {
-        if (_activeDoors.Count == 0 && _mounts.Count == 0)
+        if (state is DoorState.Open or DoorState.Opening or DoorState.Closing)
+        {
+            if (_activeDoors.TryGetValue(uid, out var previous) && previous == state)
+                return;
+
+            _activeDoors[uid] = state;
+            _doorProgress.TryAdd(uid, state is DoorState.Open or DoorState.Closing ? 1f : 0f);
+        }
+        else if (!_activeDoors.Remove(uid))
+        {
             return;
-
-        UpdateDoorProgress(frameTime);
-        _scanCountdown -= frameTime;
-        if (_scanCountdown <= 0f)
+        }
+        else
         {
-            _scanCountdown = 0.1f;
-            ScanMounts();
+            _doorProgress.Remove(uid);
         }
 
-        foreach (var (mount, split) in _mounts)
-        {
-            if (!TryComp<DoorMountSplitComponent>(split.Door, out var panel) ||
-                !HasComp<DoorComponent>(split.Door) ||
-                !_activeDoors.ContainsKey(split.Door) ||
-                !_doorProgress.TryGetValue(split.Door, out var progress) ||
-                !TryComp<SpriteComponent>(mount, out var sourceSprite) ||
-                !TryComp(mount, out TransformComponent? sourceTransform) ||
-                !TryComp<SpriteComponent>(split.First, out var firstSprite) ||
-                !TryComp<SpriteComponent>(split.Second, out var secondSprite))
-            {
-                _removeMounts.Add(mount);
-                continue;
-            }
-
-            TrackSourceColor(mount, sourceSprite, split);
-
-            var hiddenColor = split.OriginalColor.WithAlpha(0f);
-            if (sourceSprite.Color != hiddenColor)
-                _sprites.SetColor((mount, sourceSprite), hiddenColor);
-
-            _transforms.SetCoordinates(split.First, sourceTransform.Coordinates);
-            _transforms.SetCoordinates(split.Second, sourceTransform.Coordinates);
-            if (Transform(split.First).LocalRotation != sourceTransform.LocalRotation)
-                _transforms.SetLocalRotationNoLerp(split.First, sourceTransform.LocalRotation);
-            if (Transform(split.Second).LocalRotation != sourceTransform.LocalRotation)
-                _transforms.SetLocalRotationNoLerp(split.Second, sourceTransform.LocalRotation);
-
-            var slide = MathF.Max(0f, panel.SlideDistance) * progress;
-            var direction = GetLocalSlideDirection(sourceTransform, sourceSprite, split.Vertical);
-            var firstOffset = sourceSprite.Offset - (direction * slide);
-            var secondOffset = sourceSprite.Offset + (direction * slide);
-            if (firstSprite.Offset != firstOffset)
-                _sprites.SetOffset((split.First, firstSprite), firstOffset);
-            if (secondSprite.Offset != secondOffset)
-                _sprites.SetOffset((split.Second, secondSprite), secondOffset);
-        }
-
-        foreach (var mount in _removeMounts)
-            RemoveMount(mount);
-        _removeMounts.Clear();
+        _scanCountdown = 0f;
     }
 
     private void UpdateDoorProgress(float frameTime)
@@ -258,7 +220,7 @@ public sealed partial class DoorMountSplitVisualSystem : EntitySystem
             _seenMounts.Add(uid);
             // Door orientation is in world space, but the clipping shader runs
             // in sprite-local space. A rotated mount can reverse either axis.
-            var localAxis = GetLocalSlideDirection(xform, sprite, _verticalDoors.Contains(door));
+            var localAxis = GetMaskDirection(xform, sprite, _verticalDoors.Contains(door));
             var maskVertical = MathF.Abs(localAxis.Y) > 0.5f;
             var maskReversed = (maskVertical ? localAxis.Y : localAxis.X) < 0f;
             if (!_mounts.TryGetValue(uid, out var split))
@@ -305,22 +267,70 @@ public sealed partial class DoorMountSplitVisualSystem : EntitySystem
         _tags.AddTag(first, HideContextMenuTag);
         _tags.AddTag(second, HideContextMenuTag);
         var vertical = _verticalDoors.Contains(door);
-        var localAxis = GetLocalSlideDirection(xform, sprite, vertical);
+        var localAxis = GetMaskDirection(xform, sprite, vertical);
         var maskVertical = MathF.Abs(localAxis.Y) > 0.5f;
         var maskReversed = (maskVertical ? localAxis.Y : localAxis.X) < 0f;
         var originalColor = TryComp<ColorFlashEffectComponent>(mount, out var flash) ? flash.Color : sprite.Color;
         return new SplitMount(door, first, second, originalColor, vertical, maskVertical, maskReversed);
     }
 
+    private void UpdateSplitMounts()
+    {
+        foreach (var (mount, split) in _mounts)
+        {
+            if (!TryComp<DoorMountSplitComponent>(split.Door, out var panel) ||
+                !HasComp<DoorComponent>(split.Door) ||
+                !_activeDoors.ContainsKey(split.Door) ||
+                !_doorProgress.TryGetValue(split.Door, out var progress) ||
+                !TryComp<SpriteComponent>(mount, out var sourceSprite) ||
+                !TryComp(mount, out TransformComponent? sourceTransform) ||
+                !TryComp<SpriteComponent>(split.First, out var firstSprite) ||
+                !TryComp<SpriteComponent>(split.Second, out var secondSprite))
+            {
+                _removeMounts.Add(mount);
+                continue;
+            }
+
+            TrackSourceColor(mount, sourceSprite, split);
+
+            var hiddenColor = split.OriginalColor.WithAlpha(0f);
+            if (sourceSprite.Color != hiddenColor)
+                _sprites.SetColor((mount, sourceSprite), hiddenColor);
+
+            _transforms.SetCoordinates(split.First, sourceTransform.Coordinates);
+            _transforms.SetCoordinates(split.Second, sourceTransform.Coordinates);
+            if (Transform(split.First).LocalRotation != sourceTransform.LocalRotation)
+                _transforms.SetLocalRotationNoLerp(split.First, sourceTransform.LocalRotation);
+            if (Transform(split.Second).LocalRotation != sourceTransform.LocalRotation)
+                _transforms.SetLocalRotationNoLerp(split.Second, sourceTransform.LocalRotation);
+
+            var slide = MathF.Max(0f, panel.SlideDistance) * progress;
+            var direction = GetLocalSlideDirection(sourceTransform, sourceSprite, split.Vertical);
+            var firstOffset = sourceSprite.Offset - (direction * slide);
+            var secondOffset = sourceSprite.Offset + (direction * slide);
+            if (firstSprite.Offset != firstOffset)
+                _sprites.SetOffset((split.First, firstSprite), firstOffset);
+            if (secondSprite.Offset != secondOffset)
+                _sprites.SetOffset((split.Second, secondSprite), secondOffset);
+        }
+
+        foreach (var mount in _removeMounts)
+            RemoveMount(mount);
+        _removeMounts.Clear();
+    }
+
     /// <summary>
-    /// Converts the door's world-space slide axis into the mount sprite's local
-    /// space so a rotated mount is clipped along the correct axis.
+    /// Converts the door's world-space slide axis into the coordinate space
+    /// used by the mount sprite's offset, which does not include sprite rotation.
     /// </summary>
     private static Vector2 GetLocalSlideDirection(TransformComponent xform, SpriteComponent sprite, bool vertical)
     {
         var worldAxis = vertical ? Vector2.UnitY : Vector2.UnitX;
         return sprite.NoRotation ? worldAxis : (-xform.LocalRotation).RotateVec(worldAxis);
     }
+
+    private static Vector2 GetMaskDirection(TransformComponent xform, SpriteComponent sprite, bool vertical)
+        => (-sprite.Rotation).RotateVec(GetLocalSlideDirection(xform, sprite, vertical));
 
     private void RefreshMount(EntityUid mount, SpriteComponent source, SplitMount split)
     {
@@ -366,25 +376,6 @@ public sealed partial class DoorMountSplitVisualSystem : EntitySystem
             }
             index++;
         }
-    }
-
-    /// <summary>
-    /// Restores the original mount's color before removing its client-side
-    /// halves, including any color managed by an active flash effect.
-    /// </summary>
-    private void RemoveMount(EntityUid mount)
-    {
-        if (!_mounts.Remove(mount, out var split))
-            return;
-
-        if (TryComp<ColorFlashEffectComponent>(mount, out var flash))
-            flash.Color = split.OriginalColor;
-
-        if (TryComp<SpriteComponent>(mount, out var sprite))
-            _sprites.SetColor((mount, sprite), split.OriginalColor);
-
-        QueueDel(split.First);
-        QueueDel(split.Second);
     }
 
     /// <summary>
@@ -438,5 +429,24 @@ public sealed partial class DoorMountSplitVisualSystem : EntitySystem
         }
 
         return hash.ToHashCode();
+    }
+
+    /// <summary>
+    /// Restores the original mount's color before removing its client-side
+    /// halves, including any color managed by an active flash effect.
+    /// </summary>
+    private void RemoveMount(EntityUid mount)
+    {
+        if (!_mounts.Remove(mount, out var split))
+            return;
+
+        if (TryComp<ColorFlashEffectComponent>(mount, out var flash))
+            flash.Color = split.OriginalColor;
+
+        if (TryComp<SpriteComponent>(mount, out var sprite))
+            _sprites.SetColor((mount, sprite), split.OriginalColor);
+
+        QueueDel(split.First);
+        QueueDel(split.Second);
     }
 }
