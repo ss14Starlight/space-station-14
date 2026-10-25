@@ -134,6 +134,11 @@
   effects:
   - !type:AmmoniaSynthesisReaction {}
 
+# Pluoxium is a very strong oxidiser, and can burn tritium and plasma at a much higher rate than oxygen.
+# This is because one mol of Pluoxium is equivalent to 8 mols of oxygen in terms of oxidising power. 
+# Thus the following reactions are the same as the existing tritium and plasma fire reactions, but with Pluoxium instead of oxygen.
+# They are also at a higher priority than the existing reactions, so they will take precedence when Pluoxium is present, as it is a stronger oxidiser than oxygen, for lack of a better term.
+
 - type: gasReaction
   id: PluoxTritiumFire
   priority: 0

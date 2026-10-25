@@ -21,17 +21,18 @@ namespace Content.Server._Starlight.Atmos.Reactions
             var initialTrit = mixture.GetMoles(Gas.Tritium);
             var initialPluoxium = mixture.GetMoles(Gas.Pluoxium);
 
-            // one mol pluox acts as eight mols oxygen as an oxidiser, so we multiply the initial amount of pluox by 8 to get the effective amount of oxygen available for the reaction so we can reuse the existing tritium burning code.
+            // one mol pluox acts as eight mols oxygen as an oxidiser, so we multiply the initial amount of pluox by 8 to get the effective amount of oxidiser relative to oxygen 
             var effectiveOxidiser = initialPluoxium * PluoxiumFactor;
 
             if (effectiveOxidiser < initialTrit ||
                 Atmospherics.MinimumTritiumOxyburnEnergy > (temperature * oldHeatCapacity * heatScale))
             {
+                // effective oxidiser divided by 100f = amount of tritium that can be burned given the amount of oxidiser present
                 burnedFuel = effectiveOxidiser / Atmospherics.TritiumBurnOxyFactor;
                 if (burnedFuel > initialTrit)
                     burnedFuel = initialTrit;
 
-                // now convert the effective oxidiser variable back into the actual amount of pluox to consume 
+                // burned fuel / trit burn ratio = the amount of oxidiser consumed, which we then divide by our pluoxium factor to get the actual amount of pluox consumed
                 var pluoxiumConsumed = burnedFuel / Atmospherics.TritiumBurnFuelRatio / PluoxiumFactor;
                 if (pluoxiumConsumed > initialPluoxium)
                     pluoxiumConsumed = initialPluoxium;

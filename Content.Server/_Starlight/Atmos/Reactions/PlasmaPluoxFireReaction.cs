@@ -31,18 +31,21 @@ namespace Content.Server._Starlight.Atmos.Reactions
 
             if (temperatureScale > 0)
             {
-                // pluox is 8x as effective as oxygen, so the same amount of pluoxium will burn 8x slower than oxygen, thus we divide the oxygen burn rate by 8 for pluox burn rate
+                // pluox is 8x as effective as oxygen, so 8x less pluoxium will be burnt per mol of plasma than oxygen, thus we divide the oxygen burn rate by 8 for pluox burn rate
                 var pluoxiumBurnRate = (Atmospherics.OxygenBurnRateBase - temperatureScale) / PluoxiumFactor;
                 var plasmaBurnRate = 0f;
 
                 var initialPluoxium = mixture.GetMoles(Gas.Pluoxium);
                 var initialPlasmaMoles = mixture.GetMoles(Gas.Plasma);
 
-                // as pluox is essentially 8x oxygen per mol, we can multiply the initial amount of pluox by our pluoxium factor to get the amount of effective oxidiser we have
+                // as pluox is essentially 8x oxygen per mol, we can multiply the initial amount of pluox by our pluoxium factor to get the amount of effective oxidiser we have relative to oxygen
                 var effectiveOxidiser = initialPluoxium * PluoxiumFactor;
 
                 // Supersaturation makes tritium.
-                // instead of 1.03% to 3.03% plasma to oxygen for supersaturation, its now appx. 7.7% to 20% plasma concentration for tritium production, as pluox is 8x the oxidiser that oxygen is
+                // supersaturation starts at 32:1 oxidiser:plasma and reaches maximum at 96:1 oxidiser:plasma
+                // we use the effective oxidiser variable to get the ratio of oxidiser to plasma relative to oxygen, controlling how much of the plasma burn is converted to tritium vs CO2
+                // so instead of 1.03%-3.03% plasma to oxygen alone for supersaturation, its now appx. 7.7%-20% plasma to pluox alone concentration for tritium production
+                // this does not account for both oxygen and pluoxium being present, but that is not a pressing issue as the trit production reaction will still work with both present, just not as efficiently
                 var oxidiserRatio = effectiveOxidiser / initialPlasmaMoles;
                 var supersaturation = Math.Clamp((oxidiserRatio - Atmospherics.SuperSaturationEnds) /
                                                  (Atmospherics.SuperSaturationThreshold -
@@ -54,7 +57,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
                     plasmaBurnRate = temperatureScale * (effectiveOxidiser / Atmospherics.PlasmaOxygenFullburn) / Atmospherics.PlasmaBurnRateDelta;
                 if (plasmaBurnRate > Atmospherics.MinimumHeatCapacity)
                 {
-                    // limiting the amount of plasma burned by either our initial plasma or the amount of pluoxium available given the burn ratio.
+                    // limiting plasma consumption either to the calculated burn rate, the amount of plasma present, or the amount of avaliable pluoxium present given the burn ratio - whichever is lowest
                     plasmaBurnRate = MathF.Min(plasmaBurnRate, MathF.Min(initialPlasmaMoles, initialPluoxium / pluoxiumBurnRate));
                     mixture.SetMoles(Gas.Plasma, initialPlasmaMoles - plasmaBurnRate);
                     mixture.SetMoles(Gas.Pluoxium, initialPluoxium - plasmaBurnRate * pluoxiumBurnRate);
