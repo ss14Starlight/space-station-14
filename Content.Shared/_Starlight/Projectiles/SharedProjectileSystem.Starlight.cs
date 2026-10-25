@@ -11,7 +11,7 @@ public abstract partial class SharedProjectileSystem
     private bool IgnoresPersonalEnergyDome(ProjectileComponent projectile, EntityUid other)
     {
         return projectile.IgnoreShooter && projectile.Shooter != null &&
-               _tag.HasTag(other, PersonalEnergyDomeTag) &&
-               Transform(other).ParentUid == projectile.Shooter;
+            _tag.HasTag(other, PersonalEnergyDomeTag) &&
+            Transform(other).ParentUid == projectile.Shooter;
     }
 }
