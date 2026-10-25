@@ -1,25 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: NT Career Trainers no longer have Security access by default.
-    type: Remove
-  id: 409355
-  time: '2026-10-11T09:23:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6616
-- author: Caws
-  changes:
-  - message: Mice-spawning artifacts can no longer spawn the Admeme-only blood-red 'mouff operative'.
-    type: Remove
-  id: 409356
-  time: '2026-10-11T09:23:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6617
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The 'brigmedic plumbing input' near Chemistry that wouldn't accept any chemicals has now been fixed.
-    type: Fix
-  id: 409357
-  time: '2026-10-11T09:51:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6614
 - author: SirLutz
   changes:
   - message: The red damage indicator now also accounts for structural damage.
@@ -2799,4 +2778,25 @@ Entries:
   id: 409754
   time: '2026-10-25T10:44:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6797
+- author: FoxStellar
+  changes:
+  - message: Added Mortizol, an accessible alternative to Opporozidone. Rotting should be more interactive for the player base!
+    type: Add
+  id: 409755
+  time: '2026-10-25T10:44:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6758
+- author: FoxStellar
+  changes:
+  - message: Added Cell Culture Medium, primarily an ingredient for Mortizol, but also an incredibly weak Cellular Cryo med.
+    type: Add
+  id: 409756
+  time: '2026-10-25T10:44:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6758
+- author: FoxStellar
+  changes:
+  - message: Changed Opporozidone to heal 60 seconds of rot per unit (up from 40s/u), to make its usage math simple.
+    type: Tweak
+  id: 409757
+  time: '2026-10-25T10:44:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6758
 Order: -1
