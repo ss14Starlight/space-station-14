@@ -1,130 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Mechs can no longer hit themselves or their pilots with wide swings.
-    type: Fix
-  id: 409359
-  time: '2026-10-11T09:51:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6613
-- author: Swonki
-  changes:
-  - message: Jurisdiction SOP clarity regarding ATS.
-    type: Tweak
-  id: 409360
-  time: '2026-10-11T10:17:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6522
-- author: Rinary
-  changes:
-  - message: Fixed damage overlay flickering.
-    type: Fix
-  id: 409361
-  time: '2026-10-11T12:20:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6631
-- author: Scarlet lightweaver.
-  changes:
-  - message: Added beef strognaoff to the game!.
-    type: Add
-  id: 409362
-  time: '2026-10-11T12:51:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6627
-- author: Scarlet lightweaver.
-  changes:
-  - message: Added wooden bowls.
-    type: Add
-  id: 409363
-  time: '2026-10-11T12:51:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6627
-- author: Scarlet lightweaver.
-  changes:
-  - message: added brown mushrooms and thier spores.
-    type: Add
-  id: 409364
-  time: '2026-10-11T12:51:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6627
-- author: wonderfulnewworld
-  changes:
-  - message: Diona minds are now correctly transferred to their nymphs when they gib. (this time for real).
-    type: Fix
-  id: 409365
-  time: '2026-10-11T12:51:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6630
-- author: Rhapsody (Pepta Vismahl), Johnny, DocMoth, Swonkus
-  changes:
-  - message: Player-controlled monkeys, kobolds, scurrets (including Pun Pun, Stir Stir, and Kiki), and smart corgis can now become cosmic cultists!
-    type: Tweak
-  id: 409366
-  time: '2026-10-11T13:10:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6370
-- author: Rhapsody (Pepta Vismahl), Johnny, DocMoth, Swonkus
-  changes:
-  - message: Monkeys, kobolds, scurrets, and corgis can now wear the cosmic cult's entropic armor thanks to sprite work by Johnny, DocMoth, and Swonkus!
-    type: Add
-  id: 409367
-  time: '2026-10-11T13:10:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6370
-- author: Rhapsody (Pepta Vismahl), Johnny, DocMoth, Swonkus
-  changes:
-  - message: Aberrant Lapse now has unique sprites for every player species, as well as monkeys, kobolds, scurrets, and corgis.
-    type: Add
-  id: 409368
-  time: '2026-10-11T13:10:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6370
-- author: Rinary
-  changes:
-  - message: Fixed issue when after space you're losing your ability to hear any sound.
-    type: Fix
-  id: 409369
-  time: '2026-10-11T18:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6641
-- author: OJG
-  changes:
-  - message: (Refinery) Redid the reactor due to map version errors.
-    type: Tweak
-  id: 409370
-  time: '2026-10-11T18:32:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6622
-- author: OJG
-  changes:
-  - message: (Refinery) Bunch of changes re-implemented due to aforementioned map versions.
-    type: Fix
-  id: 409371
-  time: '2026-10-11T18:32:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6622
-- author: OJG
-  changes:
-  - message: (Refinery) Engineer hardsuits.
-    type: Fix
-  id: 409372
-  time: '2026-10-11T18:32:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6622
-- author: OJG
-  changes:
-  - message: (Refinery) Intercom for AI.
-    type: Fix
-  id: 409373
-  time: '2026-10-11T18:32:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6622
-- author: OJG
-  changes:
-  - message: (Refinery) QM office computers and terminals.
-    type: Fix
-  id: 409374
-  time: '2026-10-11T18:32:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6622
-- author: Floximo
-  changes:
-  - message: More intelligent selection on secret game mode, that no longer simply fails on low pop.
-    type: Fix
-  id: 409375
-  time: '2026-10-11T18:32:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6638
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Tricordrazine is now effective when ingested once again.
-    type: Tweak
-  id: 409376
-  time: '2026-10-11T18:40:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6640
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Tricordrazine now induces vomiting when over 40.5u is in the stomach, and deals poison damage while over 40.5u in the bloodstream. It still does no healing when above 40u.
@@ -2799,4 +2673,130 @@ Entries:
   id: 409758
   time: '2026-10-25T11:04:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6844
+- author: Wizden Team
+  changes:
+  - message: Clowns may change their loadout to start with the honkmother mitre.
+    type: Add
+  id: 409759
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Cameras show as in-use when AI is nearby.
+    type: Add
+  id: 409760
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Web vests have new more visible sprites.
+    type: Add
+  id: 409761
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Added a wide variety of new tile recipes to the Cutter Machine.
+    type: Add
+  id: 409762
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Uplink implant now links to the same store as your PDA ringtone.
+    type: Add
+  id: 409763
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Nuclear operatives round end summary now shows the Disk's location. If it wasn't atomized, that is.
+    type: Add
+  id: 409764
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Added a new Traitor objective to kill the Station AI!
+    type: Add
+  id: 409765
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Traitors can now be tasked with causing anomalies to go supercritical.
+    type: Add
+  id: 409766
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Added the tourist's travel camera along with very basic textual photographs.
+    type: Add
+  id: 409767
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: The Station AI is now notified when their core is taking damage.
+    type: Add
+  id: 409768
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: AI can no longer enable lights on cameras.
+    type: Remove
+  id: 409769
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Rat Kings can now pull objects.
+    type: Tweak
+  id: 409770
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Uplink PDA codes are now universal. This means any PDA can open an uplink store, as long as they have the correct code.
+    type: Tweak
+  id: 409771
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: PDA ringtones now feature more notes.
+    type: Tweak
+  id: 409772
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Renames robes of the honkmother to honkmother coat.
+    type: Tweak
+  id: 409773
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Heavily optimized the radiation system to prevent severe server lag when a large number of radiation sources are active.
+    type: Fix
+  id: 409774
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Traitor kill objectives will now show stage names instead of character names if applicable.
+    type: Fix
+  id: 409775
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
+- author: Wizden Team
+  changes:
+  - message: Items that can be stuck to walls are now able to be unstuck properly.
+    type: Fix
+  id: 409776
+  time: '2026-10-25T11:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6795
 Order: -1
