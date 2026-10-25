@@ -100,8 +100,8 @@
       Dead:
         Base: dead
   - type: Puller
-  - type: ToolRefinable # Starlight butchering fix
-    refineResult: # StarlightS
+  - type: Butcherable
+    spawned:
     - id: FoodMeatXeno
       amount: 5
   - type: GhostRole
@@ -335,8 +335,8 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/rouny.rsi
     offset: 0,0.6
-  - type: ToolRefinable # Starlight butchering fix
-    refineResult: # Starlight
+  - type: Butcherable
+    spawned:
     - id: FoodMeatRouny
       amount: 3
 
@@ -552,8 +552,8 @@
       Dead:
         Base: dead
   - type: Puller
-  - type: ToolRefinable # Starlight butchering fix
-    refineResult: # Starlight
+  - type: Butcherable
+    spawned:
     - id: FoodMeatXeno
       amount: 5
   - type: TypingIndicator
