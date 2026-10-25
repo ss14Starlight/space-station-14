@@ -9,10 +9,21 @@
     guideString: construction-step-condition-no-conveyor-in-tile
 
 - type: !PartialOnly construction
+  id: !type:CreateVariants
+    values: [ Airlock, AirlockGlass, AirlockShuttle, AirlockGlassShuttle, PinionAirlock, PinionAirlockGlass ]
+  conditions:
+  - !type:NoEntityInTile
+    blacklist:
+      components:
+      - Conveyor
+    guideString: construction-step-condition-no-conveyor-in-tile
+
+- type: !PartialOnly construction
   id: ConveyorBelt
   conditions:
   - !type:NoEntityInTile
     blacklist:
       components:
       - Grille
+      - Airlock
     guideString: construction-step-condition-no-grille-in-tile
