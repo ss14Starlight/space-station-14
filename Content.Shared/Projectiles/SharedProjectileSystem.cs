@@ -229,6 +229,7 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     private void PreventCollision(EntityUid uid, ProjectileComponent component, ref PreventCollideEvent args)
     {
         if ((component.IgnoreShooter && (args.OtherEntity == component.Shooter || args.OtherEntity == component.Weapon)) //Starlight edit
+        || IgnoresPersonalEnergyDome(component, args.OtherEntity) // Starlight-edit: let the holder's projectiles pass through their dome.
         || (!component.Armed && !_tag.HasAnyTag(args.OtherEntity, component.NotArmedCollideWith))) //Starlight
         {
             args.Cancelled = true;

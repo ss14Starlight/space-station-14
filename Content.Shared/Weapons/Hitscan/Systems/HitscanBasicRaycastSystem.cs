@@ -76,7 +76,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
             args.ShotDirection, ent.Comp.MaxDistance, (int) ent.Comp.CollisionMask, rayCastResults);
         RaiseLocalEvent(ref lagEv);
 
-        var result = SelectHit(ent, shooter, mapCords, args.ShotDirection, pointer, args.Target, rayCastResults, args.PredictionSeed);
+        var result = SelectHit(ent, shooter, mapCords, args.ShotDirection, pointer, args.Target, rayCastResults, args.PredictionSeed, args.OutputTrace); // Starlight-edit: pass trace history to avoid repeated dome hits.
 
         var distanceTried = result?.Distance ?? ent.Comp.MaxDistance;
 

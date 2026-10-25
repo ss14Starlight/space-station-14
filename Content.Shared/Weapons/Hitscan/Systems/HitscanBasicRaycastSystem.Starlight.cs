@@ -29,7 +29,8 @@ public sealed partial class HitscanBasicRaycastSystem
         float pointer,
         EntityUid? target,
         List<RayCastResults> rayCastResults,
-        int? seed)
+        int? seed,
+        List<HitscanTrace>? previousTraces)
     {
         RayCastResults? result = null;
 
@@ -39,6 +40,16 @@ public sealed partial class HitscanBasicRaycastSystem
         {
             foreach (var collide in rayCastResults)
             {
+                // Starlight-start: apply personal-dome ownership and zero-distance rules.
+                if (GetPersonalEnergyDomeHitOverride(collide, shooter, previousTraces) is { } hitDome)
+                {
+                    if (!hitDome)
+                        continue;
+                    result = collide;
+                    break;
+                }
+                // Starlight-end
+
                 if (collide.Distance == 0) // prevent self-referential loop that results in rounds getting "trapped", awful 3x damage self-crits with guns against 0 distance walls, etc
                     continue;
                 // FOR ANYONE TOUCHING HITSCAN ONCE MORE, DO NOT FORGET THE CHECK NullSpaceComponent, This is the Third time i have to FIX IT!
@@ -142,7 +153,7 @@ public sealed partial class HitscanBasicRaycastSystem
             var ray = new CollisionRay(from.Position, direction, (int) hitscan.Comp.CollisionMask);
             var rayCastResults = _physics.IntersectRay(from.MapId, ray, hitscan.Comp.MaxDistance, shooter, false).ToList();
 
-            var result = SelectHit(hitscan, shooter, from, direction, pointer, target, rayCastResults, legSeed);
+            var result = SelectHit(hitscan, shooter, from, direction, pointer, target, rayCastResults, legSeed, traces);
             var distance = result?.Distance ?? hitscan.Comp.MaxDistance;
 
             traces.Add(GenerateTraceStep(fromCoordinates, distance, direction.ToAngle(), result?.HitEntity));

@@ -657,6 +657,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
         // Validate client
         entities.RemoveWhere(entity => TerminatingOrDeleted(entity) ||
+            IsPersonalEnergyDome(entity) || // Starlight-edit: reject personal domes as wide-swing targets.
             !ArcRaySuccessful(entity,
                                         userPos,
                                         direction.ToWorldAngle(),
@@ -793,6 +794,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
                 range,
                 ignore,
                 false)
+                .Where(hit => !IsPersonalEnergyDome(hit.HitEntity)) // Starlight-edit: exclude domes before choosing wide-swing targets.
                 .ToList();
 
             if (res.Count != 0)
