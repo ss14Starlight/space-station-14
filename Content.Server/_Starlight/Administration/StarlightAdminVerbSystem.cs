@@ -75,8 +75,8 @@ public sealed partial class StarlightAdminVerbSystem : EntitySystem
                 Act = () => _tsh.InvokeCommand(player, "mark:set", args.Target, out _),
                 Impact = LogImpact.Low,
                 Priority = 4,
-                Icon = new SpriteSpecifier.Texture(
-                    new ResPath("/Textures/_Starlight/Interface/Misc/crosshair_pointers.rsi/cross_dot.png"))
+                Icon = new SpriteSpecifier.Rsi(
+                    new ResPath("/Textures/_Starlight/Interface/Misc/crosshair_pointers.rsi"), "cross_dot")
             };
             args.Verbs.Add(setMarked);
 

@@ -1,0 +1,6 @@
+- type: !PartialOnly vendingMachineInventory
+  id: YouToolInventory
+  emaggedInventory: # Blimpuf
+    ClothingHandsGlovesConducting: 1 # Blimpuf
+    ClothingBeltUtility: 1 # Blimpuf
+    Omnitool: 0 # Blimpuf
