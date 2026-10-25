@@ -4,4 +4,4 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Starlight.Silicons;
 
 [Serializable, NetSerializable]
-public partial sealed class UpdateLawsDoAfterEvent : SimpleDoAfterEvent;
+public sealed partial class UpdateLawsDoAfterEvent : SimpleDoAfterEvent;
