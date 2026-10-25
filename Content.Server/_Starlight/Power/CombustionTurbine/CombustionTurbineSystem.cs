@@ -313,11 +313,22 @@ public sealed partial class CombustionTurbineSystem : EntitySystem
         var rotorPart = TryComp<CombustionTurbineStageComponent>(ent, out var rotorStage) ? GetPart((ent, rotorStage)) : null;
         var statorPart = outlet is { } o ? GetPart(o) : null;
 
-        comp.Assembly = compressor == null ? CombustionTurbineAssembly.MissingCompressor
-            : outlet == null ? CombustionTurbineAssembly.MissingOutlet
-            : IsPanelOpen(ent) || IsPanelOpen(compressor.Value) || IsPanelOpen(outlet.Value) ? CombustionTurbineAssembly.PanelOpen
-            : compressorPart == null || rotorPart == null || statorPart == null ? CombustionTurbineAssembly.MissingPart
-            : CombustionTurbineAssembly.Ready;
+        comp.Assembly = (compressor, outlet, compressorPart, rotorPart, statorPart) switch
+        {
+            (null, _, _, _, _) => CombustionTurbineAssembly.MissingCompressor,
+            (_, null, _, _, _) => CombustionTurbineAssembly.MissingOutlet,
+
+            _ when IsPanelOpen(ent)
+                || IsPanelOpen(compressor!.Value)
+                || IsPanelOpen(outlet!.Value)
+                => CombustionTurbineAssembly.PanelOpen,
+
+            (_, _, null, _, _) => CombustionTurbineAssembly.MissingPart,
+            (_, _, _, null, _) => CombustionTurbineAssembly.MissingPart,
+            (_, _, _, _, null) => CombustionTurbineAssembly.MissingPart,
+
+            _ => CombustionTurbineAssembly.Ready
+        };
 
         if (comp.Assembly != CombustionTurbineAssembly.Ready)
         {
