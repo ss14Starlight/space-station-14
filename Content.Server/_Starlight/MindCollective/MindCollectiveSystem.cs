@@ -258,7 +258,7 @@ public sealed partial class MindCollectiveSystem : EntitySystem
         }
     }
 
-    [SubscribeLocalEvent]
+    [SubscribeLocalEvent(before: [typeof(Content.Server.Mind.MindSystem)])]
     private void OnCollectiveTerminating(Entity<MindCollectiveComponent> ent, ref EntityTerminatingEvent args)
         => Disband(ent);
 
@@ -274,7 +274,7 @@ public sealed partial class MindCollectiveSystem : EntitySystem
             Disband(id);
     }
 
-    [SubscribeLocalEvent]
+    [SubscribeLocalEvent(before: [typeof(Content.Server.Mind.MindSystem)])]
     private void OnMemberTerminating(Entity<MindCollectiveMemberComponent> ent, ref EntityTerminatingEvent args)
     {
         if (TryComp<MindCollectiveComponent>(ent.Comp.Collective, out var collective) && !collective.Closing)

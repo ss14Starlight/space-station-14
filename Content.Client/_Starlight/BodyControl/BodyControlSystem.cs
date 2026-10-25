@@ -49,7 +49,7 @@ public sealed partial class BodyControlSystem : EntitySystem
         => _physics.UpdateIsPredicted(ent);
 
     [SubscribeLocalEvent]
-    private void OnTargetRemoved(Entity<BodyControlTargetComponent> ent, ref ComponentRemove args)
+    private void OnTargetShutdown(Entity<BodyControlTargetComponent> ent, ref ComponentShutdown args)
         => _physics.UpdateIsPredicted(ent);
 
     [SubscribeLocalEvent]
