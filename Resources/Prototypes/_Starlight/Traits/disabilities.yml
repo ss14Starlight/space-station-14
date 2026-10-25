@@ -178,8 +178,8 @@
           thresholds:
             0.6: Low
             0.7: Annoying
-            1: High
-            3: Extreme
+            0.8: High
+            5: Extreme
   requirements:
     - !type:SpeciesRequirement
       species:
