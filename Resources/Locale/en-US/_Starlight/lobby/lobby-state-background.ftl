@@ -103,8 +103,5 @@ lobby-state-background-expedition-artist = reynir_exe
 lobby-state-background-solesurvivor-title = Sole Survivor
 lobby-state-background-solesurvivor-artist = rozycosmic
 
-lobby-state-background-invisiblewall-title = Invisible Wall
-lobby-state-background-invisiblewall-artist = vanderslootassgiraffe
-
 lobby-state-background-glubs-title = Glubs
 lobby-state-background-glubs-artist = Eviinuuangel
