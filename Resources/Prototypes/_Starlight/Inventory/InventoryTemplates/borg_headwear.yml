@@ -1145,7 +1145,7 @@
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
-          state: securityDefault
+          state: serviceDefault
   - name: misc
     slotTexture: misc
     slotFlags: MISC
