@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: The red damage indicator now also accounts for structural damage.
-    type: Fix
-  id: 409358
-  time: '2026-10-11T09:51:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6613
-- author: SirLutz
-  changes:
   - message: Mechs can no longer hit themselves or their pilots with wide swings.
     type: Fix
   id: 409359
@@ -2799,4 +2792,11 @@ Entries:
   id: 409757
   time: '2026-10-25T10:44:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6758
+- author: Sparlight
+  changes:
+  - message: Fixed an edge case where bodies put into cryosleep would not return their job slot in specific scenarios.
+    type: Fix
+  id: 409758
+  time: '2026-10-25T11:04:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6844
 Order: -1
