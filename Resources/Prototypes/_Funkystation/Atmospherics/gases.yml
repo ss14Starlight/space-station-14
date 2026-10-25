@@ -49,6 +49,7 @@
   reagent: Pluoxium
   pricePerMole: 0.4
   abbreviation: gas-pluoxium-abbreviation
+  isOxidizer: true
 
 - type: gas
   id: Hydrogen
