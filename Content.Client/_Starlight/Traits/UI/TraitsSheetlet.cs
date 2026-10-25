@@ -1,4 +1,6 @@
 using Content.Client.Stylesheets;
+using Content.Client.Stylesheets.Colorspace;
+using Content.Client.Stylesheets.Stylesheets;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -11,19 +13,22 @@ public sealed class TraitsSheetlet<T> : Sheetlet<T> where T : PalettedStylesheet
 {
     public override StyleRule[] GetRules(T sheet, object config)
     {
-        // Color palette
-        // sorry but the default ColorPalette just sucks in terms of ligher/darker colors
-        var bgDark = Color.FromHex("#1a1a22");
-        var bgMedium = Color.FromHex("#22222a");
-        var bgLight = Color.FromHex("#2a2a35");
-        var bgLighter = Color.FromHex("#32323e");
-        var textPrimary = Color.FromHex("#e0e0e0");
-        var textSecondary = Color.FromHex("#a0a0a0");
-        var textMuted = Color.FromHex("#707070");
-        var accentGreen = Color.FromHex("#4ade80");
-        var accentYellow = Color.FromHex("#fbbf24");
-        var accentRed = Color.FromHex("#f87171");
-        var accentBlue = Color.FromHex("#60a5fa");
+        // Colors come from the stylesheet palettes, so the tabs follow the picked theme.
+        var surfaces = sheet.SecondaryPalette;
+        var text = sheet.PrimaryPalette;
+        var bgDark = surfaces.BackgroundDark;
+        var bgMedium = surfaces.Background;
+        var bgLight = surfaces.BackgroundLight;
+        var bgLighter = sheet is NanotrasenStylesheet { Theme: { } theme }
+            ? theme.Proto.Border
+            : text.Element;
+        var textPrimary = text.Text;
+        var textSecondary = text.TextDark;
+        var textMuted = text.TextDark.WithAlpha(0.75f);
+        var accentGreen = sheet.PositivePalette.Base;
+        var accentYellow = sheet.HighlightPalette.Base.OkBlend(Color.FromHex("#fbbf24"), 0.5f);
+        var accentRed = sheet.NegativePalette.Base;
+        var accentBlue = sheet.HighlightPalette.Text;
 
         // StyleBoxes
         var headerPanelBox = new StyleBoxFlat
@@ -71,7 +76,7 @@ public sealed class TraitsSheetlet<T> : Sheetlet<T> where T : PalettedStylesheet
 
         var entrySelectedBox = new StyleBoxFlat
         {
-            BackgroundColor = Color.FromHex("#2a3a4a"),
+            BackgroundColor = sheet.HighlightPalette.BackgroundLight,
             BorderColor = accentBlue,
             BorderThickness = new Thickness(1, 1, 1, 1)
         };
@@ -79,8 +84,8 @@ public sealed class TraitsSheetlet<T> : Sheetlet<T> where T : PalettedStylesheet
 
         var entryDisabledBox = new StyleBoxFlat
         {
-            BackgroundColor = Color.FromHex("#1a1a22"),
-            BorderColor = Color.FromHex("#2a2a2a"),
+            BackgroundColor = bgDark,
+            BorderColor = bgLight,
             BorderThickness = new Thickness(1)
         };
         entryDisabledBox.SetContentMarginOverride(StyleBox.Margin.All, 0);

@@ -1,3 +1,6 @@
+using Robust.Shared.Prototypes;
+
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Roles;
 
 public sealed partial class AntagPrototype
@@ -8,4 +11,10 @@ public sealed partial class AntagPrototype
     /// </summary>
     [DataField]
     public bool IsGeneric { get; private set; }
+
+    /// <summary>
+    /// Shown in the character editor in place of the character, for antags that become something else.
+    /// </summary>
+    [DataField]
+    public EntProtoId? PreviewEntity { get; private set; }
 }

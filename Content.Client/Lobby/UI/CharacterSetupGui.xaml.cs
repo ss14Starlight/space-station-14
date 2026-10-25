@@ -63,15 +63,7 @@ namespace Content.Client.Lobby.UI
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
 
-            var panelTex = _resourceCache.GetTexture("/Textures/Interface/Nano/button.svg.96dpi.png");
-            var back = new StyleBoxTexture
-            {
-                Texture = panelTex,
-                Modulate = new Color(37, 37, 42)
-            };
-            back.SetPatchMargin(StyleBox.Margin.All, 10);
-
-            BackgroundPanel.PanelOverride = back;
+            // Starlight-edit: no Nano panel texture, the window behind is the background.
 
             _createNewCharacterButton = new Button
             {
@@ -93,14 +85,11 @@ namespace Content.Client.Lobby.UI
 
             _cfg.OnValueChanged(CCVars.SeeOwnNotes, p => AdminRemarksButton.Visible = p, true);
 
-            // This is in the same button group as the character picker buttons
-            JobPrioritiesButton.OnPressed += args =>
-            {
-                jobPriorityEditor.LoadJobPriorities();
-                CharEditor.Visible = false;
-                JobPriorityEditor.Visible = true;
-                ReloadCharacterPickers(selectJobPriorities: true);
-            };
+            // Starlight-edit: the same job priorities window as in the lobby, instead of swapping the editor out.
+            JobPrioritiesButton.OnPressed += _ => UserInterfaceManager.GetUIController<LobbyUIController>().OpenJobPrioritiesWindow();
+
+            // Starlight: the body tab needs the room.
+            profileEditor.BodyTabVisibilityChanged += bodyTab => CharacterPickerPanel.Visible = !bodyTab;
         }
 
         /// <summary>
@@ -115,9 +104,6 @@ namespace Content.Client.Lobby.UI
 
             var numberOfFullSlots = 0;
             var characterButtonsGroup = new ButtonGroup();
-
-            // Include the Edit Job Priorities button into this group
-            JobPrioritiesButton.Group = characterButtonsGroup;
 
             if (!_preferencesManager.ServerDataLoaded)
             {

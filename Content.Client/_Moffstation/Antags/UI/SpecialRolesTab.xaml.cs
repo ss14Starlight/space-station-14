@@ -20,6 +20,13 @@ public sealed partial class SpecialRolesTab : BoxContainer
     public event Action<HashSet<ProtoId<AntagPrototype>>>? OnAntagsChanged;
     public event Action<ProtoId<AntagPrototype>>? OnLoadoutPressed;
 
+    /// <summary>
+    /// Starlight: the antag to show on the character preview, or null to stop.
+    /// </summary>
+    public event Action<ProtoId<AntagPrototype>?>? OnPreviewChanged;
+
+    private ProtoId<AntagPrototype>? _previewed; // Starlight
+
     private readonly Dictionary<ProtoId<AntagCategoryPrototype>, AntagCategory> _categoryUis = new();
 
     private string _currentSearchText = string.Empty;
@@ -75,6 +82,8 @@ public sealed partial class SpecialRolesTab : BoxContainer
             var categoryUi = new AntagCategory(category, antags, profile, selectedAntags, expanded); // Starlight
             categoryUi.OnAntagToggled += OnAntagToggled;
             categoryUi.OnLoadoutPressed += id => OnLoadoutPressed?.Invoke(id);
+            categoryUi.OnPreviewPressed += TogglePreview; // Starlight
+            categoryUi.SetPreviewed(_previewed); // Starlight
             _categoryUis[category.ID] = categoryUi;
             CategoriesContainer.AddChild(categoryUi);
 
@@ -115,6 +124,14 @@ public sealed partial class SpecialRolesTab : BoxContainer
     }
 
 #region Starlight
+    private void TogglePreview(ProtoId<AntagPrototype> antag)
+    {
+        _previewed = _previewed == antag ? (ProtoId<AntagPrototype>?) null : antag;
+        foreach (var category in _categoryUis.Values)
+            category.SetPreviewed(_previewed);
+        OnPreviewChanged?.Invoke(_previewed);
+    }
+
     private HashSet<ProtoId<AntagPrototype>> GetSelectedAntagIds()
     {
         return _categoryUis.Values.SelectMany(category => category.GetSelectedAntagIds()).ToHashSet();
