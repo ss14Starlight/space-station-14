@@ -133,7 +133,7 @@ public sealed partial class DevourSystem : EntitySystem
             if (!_damageSystem.TryChangeDamage(target, damageToApply)) //This will run as backup if airloss damage cannot be applied
             {
                 damageToApply = new DamageSpecifier { DamageDict = { { "Caustic", requiredDamage } } };
-                _damageSystem.TryChangeDamage(target, damageToApply);
+                _damageSystem.TryChangeDamage(target, damageToApply, ignoreResistances: true);
             }
         }
         //Starlight-End

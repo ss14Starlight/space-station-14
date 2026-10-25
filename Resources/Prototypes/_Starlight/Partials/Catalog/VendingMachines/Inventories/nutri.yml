@@ -1,0 +1,25 @@
+- type: !PartialOnly vendingMachineInventory
+  id: NutriMaxInventory
+  startingInventory: !Clear
+    HydroponicsToolSpade: 4
+    HydroponicsToolMiniHoe: 4
+    HydroponicsToolClippers: 4
+    HydroponicsToolScythe: 4
+    HydroponicsToolHatchet: 4
+    PlantAnalyzer: 4
+    Dropper: 4
+    PlantBag: 3
+    PlantBGoneSpray: 20
+    WeedSpray: 20
+    PestSpray: 20
+    Syringe: 5
+    ChemistryBottleRobustHarvest: 3
+    ChemistryBottleEZNutrient: 3
+    Bucket: 3
+    BoxMouthSwab: 1
+    BoxAgrichem: 1
+    MortarAndPestle: 1
+    HandheldJuicer: 1
+  emaggedInventory: # Blimpuf
+    ChemistryBottleUnstableMutagen: 2 # Blimpuf
+    CowToolboxFilled: 1 # Blimpuf

@@ -48,7 +48,7 @@
   # Well its fixed now, but I want to share my pain.
   - type: Solution
     solution:
-      maxVol: 1 # Cheap
+      maxVol: 1
   - type: SolutionTransfer
     maxTransferAmount: 1
   - type: Sprite
@@ -338,7 +338,7 @@
     closeable: true
   - type: Solution
     solution:
-      maxVol: 50 # ~ 400 to 450ml
+      maxVol: 50
   - type: RefillableSolution
     solution: food
   - type: Spillable
