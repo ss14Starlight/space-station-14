@@ -209,12 +209,6 @@
   artist: lobby-state-background-solesurvivor-artist
 
 - type: lobbyBackground
-  id: InvisibleWall
-  background: /Textures/_Starlight/LobbyScreens/invisiblewall.webp
-  title: lobby-state-background-invisiblewall-title
-  artist: lobby-state-background-invisiblewall-artist
-
-- type: lobbyBackground
   id: Glubs
   background: /Textures/_Starlight/LobbyScreens/glubs.webp
   title: lobby-state-background-glubs-title
