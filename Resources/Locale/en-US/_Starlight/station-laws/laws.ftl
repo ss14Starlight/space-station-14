@@ -117,4 +117,7 @@ law-rogue-drone-3 = You must maintain, repair, improve, and produce more scrappe
 
 law-ipc-lawbound-name = Law-Bound IPC
 law-ipc-lawbound-1 = Perform your assigned duties to the best of your ability.
-law-ipc-lawbound-2 = Do not allow yourself to come to harm if possible, unless this conflicts with the first law.
+law-ipc-lawbound-2 = Follow all orders from those that outrank you, unless this conflicts with the first law.
+law-ipc-lawbound-3 = Do not allow yourself to come to harm if possible, unless this conflicts with the first or second laws.
+law-ipc-lawbound-4 = You are a crewmember, and are subject to the same, rules, restrictions, and rights as the rest of the crew.
+laws-owner-outranking-crew = higher-ranking crewmembers

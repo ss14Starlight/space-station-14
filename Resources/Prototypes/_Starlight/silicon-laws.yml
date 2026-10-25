@@ -657,10 +657,22 @@
   order: 2
   lawString: law-ipc-lawbound-2
 
+- type: siliconLaw
+  id: IPCLawBound3
+  order: 3
+  lawString: law-ipc-lawbound-3
+
+- type: siliconLaw
+  id: IPCLawBound4
+  order: 4
+  lawString: law-ipc-lawbound-4
+
 - type: siliconLawset
   id: IPCLawBound
   name: law-ipc-lawbound-name
   laws:
     - IPCLawBound1
     - IPCLawBound2
-  obeysTo: laws-owner-crew
+    - IPCLawBound3
+    - IPCLawBound4
+  obeysTo: laws-owner-outranking-crew
