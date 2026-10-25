@@ -6,7 +6,6 @@
     blacklist:
       components:
       - Conveyor
-    guideString: construction-step-condition-no-conveyor-in-tile
 
 - type: !PartialOnly construction
   id: !type:CreateVariants
@@ -16,7 +15,6 @@
     blacklist:
       components:
       - Conveyor
-    guideString: construction-step-condition-no-conveyor-in-tile
 
 - type: !PartialOnly construction
   id: ConveyorBelt
@@ -26,4 +24,3 @@
       components:
       - Grille
       - Airlock
-    guideString: construction-step-condition-no-grille-in-tile

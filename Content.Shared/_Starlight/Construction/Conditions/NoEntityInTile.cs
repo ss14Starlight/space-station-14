@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Conditions;
 using Content.Shared.Whitelist;
@@ -36,9 +37,26 @@ public sealed partial class NoEntityInTile : IConstructionCondition
 
     public ConstructionGuideEntry GenerateGuideEntry()
     {
-        return new ConstructionGuideEntry
+        var components = Blacklist.Components ?? [];
+        var tags = Blacklist.Tags?.Select(t => t.Id).ToArray() ?? [];
+        var sizes = Blacklist.Sizes?.Select(s => s.Id).ToArray() ?? [];
+        var toolQualities = Blacklist.ToolQualities?.Select(q => q.Id).ToArray() ?? [];
+
+        return new()
         {
-            Localization = GuideString
+            Localization = GuideString,
+            Arguments =
+            [
+                ("components", string.Join(", ", components)),
+                ("componentCount", components.Length),
+                ("tags", string.Join(", ", tags)),
+                ("tagCount", tags.Length),
+                ("sizes", string.Join(", ", sizes)),
+                ("sizeCount", sizes.Length),
+                ("toolQualities", string.Join(", ", toolQualities)),
+                ("toolQualityCount", toolQualities.Length),
+                ("requireAll", Blacklist.RequireAll ? "true" : "false"),
+            ],
         };
     }
 }

@@ -16,9 +16,7 @@ public sealed partial class DamagedOnShockSystem : EntitySystem
     }
 
     private void OnShockDealt(Entity<DamagedOnShockComponent> ent, ref ElectrifiedShockDealtEvent args)
-    {
-        _pending.Add(ent);
-    }
+        => _pending.Add(ent);
 
     public override void Update(float frameTime)
     {
