@@ -3,7 +3,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
 
-namespace Content.Server.Atmos.Reactions
+namespace Content.Server._Starlight.Atmos.Reactions
 {
     [UsedImplicitly]
     [DataDefinition]
@@ -40,10 +40,9 @@ namespace Content.Server.Atmos.Reactions
 
                 // as pluox is essentially 8x oxygen per mol, we can multiply the initial amount of pluox by our pluoxium factor to get the amount of effective oxidiser we have
                 var effectiveOxidiser = initialPluoxium * PluoxiumFactor;
-                Console.WriteLine($"PLUOX DEBUG: Temp={temperature}, " + $"Scale={temperatureScale}, " + $"Plasma={initialPlasmaMoles}, " + $"Pluoxium={initialPluoxium}, " +$"EffectiveOxidiser={effectiveOxidiser}");
 
                 // Supersaturation makes tritium.
-                // 
+                // instead of 1.03% to 3.03% plasma to oxygen for supersaturation, its now appx. 7.7% to 20% plasma concentration for tritium production, as pluox is 8x the oxidiser that oxygen is
                 var oxidiserRatio = effectiveOxidiser / initialPlasmaMoles;
                 var supersaturation = Math.Clamp((oxidiserRatio - Atmospherics.SuperSaturationEnds) /
                                                  (Atmospherics.SuperSaturationThreshold -
@@ -53,7 +52,6 @@ namespace Content.Server.Atmos.Reactions
                     plasmaBurnRate = initialPlasmaMoles * temperatureScale / Atmospherics.PlasmaBurnRateDelta;
                 else
                     plasmaBurnRate = temperatureScale * (effectiveOxidiser / Atmospherics.PlasmaOxygenFullburn) / Atmospherics.PlasmaBurnRateDelta;
-                Console.WriteLine( $"PLUOX DEBUG: PlasmaBurnRate={plasmaBurnRate}, " + $"PluoxiumBurnRate={pluoxiumBurnRate}, " + $"MinHeatCapacity={Atmospherics.MinimumHeatCapacity}");
                 if (plasmaBurnRate > Atmospherics.MinimumHeatCapacity)
                 {
                     // limiting the amount of plasma burned by either our initial plasma or the amount of pluoxium available given the burn ratio.
