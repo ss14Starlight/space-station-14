@@ -30,7 +30,8 @@ public sealed partial class HitscanBasicRaycastSystem
         EntityUid? target,
         List<RayCastResults> rayCastResults,
         int? seed,
-        List<HitscanTrace>? previousTraces)
+        List<HitscanTrace>? previousTraces,
+        EntityUid domeOwner)
     {
         RayCastResults? result = null;
 
@@ -41,7 +42,7 @@ public sealed partial class HitscanBasicRaycastSystem
             foreach (var collide in rayCastResults)
             {
                 // Starlight-start: apply personal-dome ownership and zero-distance rules.
-                if (GetPersonalEnergyDomeHitOverride(collide, shooter, previousTraces) is { } hitDome)
+                if (GetPersonalEnergyDomeHitOverride(collide, domeOwner, previousTraces) is { } hitDome)
                 {
                     if (!hitDome)
                         continue;
@@ -144,6 +145,7 @@ public sealed partial class HitscanBasicRaycastSystem
         if (TryComp<MechPilotComponent>(shooter, out var pilot))
             shooter = pilot.Mech;
 
+        var domeOwner = shooter;
         var traces = new List<HitscanTrace>();
         int? legSeed = seed;
 
@@ -153,7 +155,7 @@ public sealed partial class HitscanBasicRaycastSystem
             var ray = new CollisionRay(from.Position, direction, (int) hitscan.Comp.CollisionMask);
             var rayCastResults = _physics.IntersectRay(from.MapId, ray, hitscan.Comp.MaxDistance, shooter, false).ToList();
 
-            var result = SelectHit(hitscan, shooter, from, direction, pointer, target, rayCastResults, legSeed, traces);
+            var result = SelectHit(hitscan, shooter, from, direction, pointer, target, rayCastResults, legSeed, traces, domeOwner);
             var distance = result?.Distance ?? hitscan.Comp.MaxDistance;
 
             traces.Add(GenerateTraceStep(fromCoordinates, distance, direction.ToAngle(), result?.HitEntity));

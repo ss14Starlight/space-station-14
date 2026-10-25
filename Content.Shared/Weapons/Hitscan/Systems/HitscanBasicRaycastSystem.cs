@@ -76,7 +76,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
             args.ShotDirection, ent.Comp.MaxDistance, (int) ent.Comp.CollisionMask, rayCastResults);
         RaiseLocalEvent(ref lagEv);
 
-        var result = SelectHit(ent, shooter, mapCords, args.ShotDirection, pointer, args.Target, rayCastResults, args.PredictionSeed, args.OutputTrace); // Starlight-edit: pass trace history to avoid repeated dome hits.
+        var result = SelectHit(ent, shooter, mapCords, args.ShotDirection, pointer, args.Target, rayCastResults, args.PredictionSeed, args.OutputTrace, args.DomeOwner ?? shooter); // Starlight-edit: preserve dome ownership and avoid repeated dome hits.
 
         var distanceTried = result?.Distance ?? ent.Comp.MaxDistance;
 
@@ -107,6 +107,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
             ShotDirection = args.ShotDirection,
             Gun = args.Gun,
             Shooter = args.Shooter,
+            DomeOwner = args.DomeOwner ?? shooter, // Starlight-edit: preserve ownership through penetration.
             HitEntity = result?.HitEntity,
             OutputTrace = args.OutputTrace, // Starlight
             HitPosition = result?.HitPos, // Starlight

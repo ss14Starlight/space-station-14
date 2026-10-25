@@ -4,6 +4,7 @@ using Content.IntegrationTests.Fixtures;
 using Content.Shared._Starlight.Weapons.Hitscan.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Hitscan.Components;
+using Content.Shared.Weapons.Hitscan.Events;
 using Content.Shared.Weapons.Hitscan.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -86,8 +87,11 @@ public sealed class PersonalEnergyDomeTest : GameTest
         });
     }
 
-    [Test]
-    public async Task PenetrationHitsOverlappingDomesOnceEach()
+    [TestCase(false, true)]
+    [TestCase(true, true)]
+    [TestCase(false, false)]
+    [TestCase(true, false)]
+    public async Task PenetrationHitsOverlappingDomesOnceEach(bool ownsSecondDome, bool predict)
     {
         var map = await Pair.CreateTestMap();
         var server = Pair.Server;
@@ -98,7 +102,7 @@ public sealed class PersonalEnergyDomeTest : GameTest
             holder = em.SpawnEntity(null, map.GridCoords);
             stranger = em.SpawnEntity(null, map.GridCoords);
             first = em.SpawnEntity("EnergyDomeSmallRed", new EntityCoordinates(holder, Vector2.Zero));
-            second = em.SpawnEntity("EnergyDomeSmallRed", new EntityCoordinates(holder, Vector2.Zero));
+            second = em.SpawnEntity("EnergyDomeSmallRed", new EntityCoordinates(ownsSecondDome ? stranger : holder, Vector2.Zero));
             shot = em.SpawnEntity("BulletRifleTraceAP", map.GridCoords);
             var pierce = em.GetComponent<HitscanPierceComponent>(shot);
             pierce.Chance = 1;
@@ -108,10 +112,24 @@ public sealed class PersonalEnergyDomeTest : GameTest
         await server.WaitAssertion(() =>
         {
             var hitscan = new Entity<HitscanBasicRaycastComponent>(shot, em.GetComponent<HitscanBasicRaycastComponent>(shot));
-            var traces = em.System<HitscanBasicRaycastSystem>().PredictTrace(hitscan, stranger,
-                map.GridCoords.Offset(new Vector2(-4, 0)), Vector2.UnitX, 4, holder, 1);
+            var from = map.GridCoords.Offset(ownsSecondDome ? Vector2.Zero : new Vector2(-4, 0));
+            var firing = new HitscanTraceEvent
+            {
+                FromCoordinates = from,
+                ToCoordinates = from.Offset(new Vector2(4, 0)),
+                ShotDirection = Vector2.UnitX,
+                Gun = stranger,
+                Shooter = stranger,
+                Target = holder,
+                PredictionSeed = 1,
+            };
+            if (!predict)
+                em.EventBus.RaiseLocalEvent(shot, ref firing);
+            var traces = predict
+                ? em.System<HitscanBasicRaycastSystem>().PredictTrace(hitscan, stranger, from, Vector2.UnitX, 4, holder, 1)
+                : firing.OutputTrace!;
             Assert.That(traces.Count(trace => trace.ImpactedEnt == em.GetNetEntity(first)), Is.EqualTo(1));
-            Assert.That(traces.Count(trace => trace.ImpactedEnt == em.GetNetEntity(second)), Is.EqualTo(1));
+            Assert.That(traces.Count(trace => trace.ImpactedEnt == em.GetNetEntity(second)), Is.EqualTo(ownsSecondDome ? 0 : 1));
             foreach (var uid in new[] { shot, first, second, holder, stranger })
                 em.DeleteEntity(uid);
         });

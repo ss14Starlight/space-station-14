@@ -14,14 +14,13 @@ public sealed partial class HitscanBasicRaycastSystem
     /// <returns>True to hit, false to skip, or null to use normal hit selection.</returns>
     private bool? GetPersonalEnergyDomeHitOverride(
         RayCastResults collision,
-        EntityUid shooter,
+        EntityUid domeOwner,
         List<HitscanTrace>? previousTraces)
     {
         if (!_tag.HasTag(collision.HitEntity, PersonalEnergyDomeTag))
             return null;
 
-        // Reflection changes the shooter, so the original holder loses the exemption.
-        if (Transform(collision.HitEntity).ParentUid == shooter)
+        if (Transform(collision.HitEntity).ParentUid == domeOwner)
             return false;
 
         if (collision.Distance != 0)

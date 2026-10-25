@@ -58,6 +58,7 @@ public sealed partial class PierceSystem : EntitySystem
             ShotDirection = dir,
             Gun = data.Gun,
             Shooter = data.HitEntity.Value,
+            DomeOwner = data.DomeOwner,
             OutputTrace = data.OutputTrace,
             PredictionSeed = GetNextSeed(data.PredictionSeed, reflect.CurrentReflections),
         };
