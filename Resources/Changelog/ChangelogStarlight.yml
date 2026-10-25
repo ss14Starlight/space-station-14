@@ -1,18 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Added the Gorlex Marauder communication channel. All Nukie headsets now come with a Gorlex Encryption Key that has access to Traitor and Gorlex comms channels. The new Gorlex channel is not obfuscated, allowing Nukie teams to once again coordinate on comms and tell who the fuck is talking.
-    type: Add
-  id: 409348
-  time: '2026-10-10T18:12:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6610
-- author: enerjak
-  changes:
-  - message: Binoculars are now autolatheable for 4 steel, 2 plastic, and 2 glass.
-    type: Add
-  id: 409349
-  time: '2026-10-10T18:36:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6585
 - author: enerjak
   changes:
   - message: Buffed binoculars; they now see twice as far.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409747
   time: '2026-10-25T09:53:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6852
+- author: Floximo
+  changes:
+  - message: Legs will now check if attached feets are compatible before adding to character speed.
+    type: Fix
+  id: 409748
+  time: '2026-10-25T10:23:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6851
+- author: Floximo
+  changes:
+  - message: Detaching legs will now drop items attached as foot to that leg.
+    type: Fix
+  id: 409749
+  time: '2026-10-25T10:23:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6851
 Order: -1
