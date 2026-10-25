@@ -205,3 +205,23 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockChapelStandardGlassLocked
+  parent: AirlockServiceGlass
+
+- type: !PartialOnly entity
+  id: AirlockServiceLocked
+  parent: AirlockService
+
+- type: !PartialOnly entity
+  id: AirlockServiceGlassLocked
+  parent: AirlockServiceGlass
+
+- type: !PartialOnly entity
+  id: AirlockServiceTheatreLocked
+  parent: AirlockService
+
+- type: !PartialOnly entity
+  id: AirlockServiceTheatreGlassLocked
+  parent: AirlockServiceGlass
