@@ -3,7 +3,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat.Prototypes;
-using Content.Shared.Containers; // Starlight-edit
+using Content.Shared.Containers;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
