@@ -494,40 +494,37 @@
   - type: Appearance
 
 - type: entity
-  name: Verdict
+  name: verdict
   parent: [ BaseContrabandTier3, BaseWeaponRifle, BaseSecurityContraband ] # Blimpuf
   id: WeaponRifleVerdict
-  description: "A scoped marksman rifle for medium range engagements, built on the Lecter platform.\nChambered in .45 magnum."
+  description: "A compact heavy rifle, sentencing at the end of a barrel.\nChambered in .45 magnum."
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/verdict.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/verdict.rsi
   - type: Gun
     fireRate: 2
-    angleIncrease: 3
     selectedMode: SemiAuto
     availableModes:
-    - SemiAuto
-    minAngle: 12
-    maxAngle: 30
+      - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
-    angleDecay: 10
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/deagle.ogg
+    minAngle: 6
+    maxAngle: 20
+    angleIncrease: 5
+    angleDecay: 12
   - type: GunWieldBonus
-    angleIncreaseDivider: 2
-    minAngleDivider: 8
-    maxAngleDivider: 3.75
     minAngle: 0
     maxAngle: 0
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    minAngleDivider: 2
+    maxAngleDivider: 2
+    angleIncreaseDivider: 2
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -552,20 +549,4 @@
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
       firing_pin: !type:Container
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: true
   - type: Appearance
-
-#- type: Gun
-#    fireRate: 3.5
-#    shotsPerBurst: 3
-#    burstFireRate: 6
-#    burstCooldown: 0.7
-#    selectedMode: Burst
-#    availableModes:
-#      - SemiAuto
-#      - Burst
-#    angleIncrease: 3
-#    angleDecay: 8
