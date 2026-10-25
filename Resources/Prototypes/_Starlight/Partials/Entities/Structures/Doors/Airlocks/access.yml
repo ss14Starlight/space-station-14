@@ -212,16 +212,24 @@
 
 - type: !PartialOnly entity
   id: AirlockServiceLocked
-  parent: AirlockService
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services.rsi
 
 - type: !PartialOnly entity
   id: AirlockServiceGlassLocked
-  parent: AirlockServiceGlass
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services.rsi
 
 - type: !PartialOnly entity
   id: AirlockServiceTheatreLocked
-  parent: AirlockService
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services.rsi
 
 - type: !PartialOnly entity
   id: AirlockServiceTheatreGlassLocked
-  parent: AirlockServiceGlass
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services.rsi
