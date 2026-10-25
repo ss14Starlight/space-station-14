@@ -18,8 +18,7 @@ public sealed partial class MindCollectiveSystem
     public HashSet<ICommonSession> GetCommunicationAudience(EntityUid sender, MindCollectiveCommunicationKind kind)
     {
         var recipients = new HashSet<ICommonSession>();
-        if (!TryGetCollective(sender, out var id, out var collective)
-            || !TryGetActorMind(sender, id, collective, out _))
+        if (!TryGetActorCollective(sender, out var id, out var collective, out _))
             return recipients;
         foreach (var mind in collective.Minds.Keys)
         {

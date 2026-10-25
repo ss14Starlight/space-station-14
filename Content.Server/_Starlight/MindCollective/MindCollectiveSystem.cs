@@ -4,6 +4,7 @@ using Content.Shared._Starlight.MindCollective;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.GameTicking;
+using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.UserInterface;
@@ -50,7 +51,6 @@ public sealed partial class MindCollectiveSystem : EntitySystem
         TryComp<MindCollectiveCreatorComponent>(body, out var creator);
         var id = CreateCollective(creator?.CollectivePrototype ?? "MindCollective");
         var collective = Comp<MindCollectiveComponent>(id);
-        collective.ActiveBody = body;
         if (creator != null)
         {
             creator.Collective = id;
@@ -59,10 +59,13 @@ public sealed partial class MindCollectiveSystem : EntitySystem
             collective.JoinTitle = creator.JoinTitle;
             collective.JoinDescription = creator.JoinDescription;
         }
-        CreateObserver(id, collective, initialMind, null);
+        var observer = CreateObserver(id, collective, initialMind, body);
         EnsureDefaultRole(id, collective, initialMind);
         AssignRole(id, initialMind, collective.InitialRole);
-        RegisterBody(id, body);
+        if (HasComp<GhostComponent>(body))
+            _mind.TransferTo(initialMind, observer, ghostCheckOverride: true, createGhost: false);
+        else if (RegisterBody(id, body))
+            collective.ActiveBody = body;
         EnsureControlAction(initialMind);
         return id;
     }
@@ -102,11 +105,18 @@ public sealed partial class MindCollectiveSystem : EntitySystem
     {
         return !TerminatingOrDeleted(entity) && _mind.TryGetMind(entity, out var mind, out var consciousness)
                && consciousness.OwnedEntity == entity
-               && collective.Minds.TryGetValue(mind, out var observer)
-               && !collective.PendingMinds.Contains(mind)
-               && (entity == observer || collective.Bodies.Contains(entity)
-                   && TryComp<MindCollectiveBodyComponent>(entity, out var body)
-                   && TryComp<MindCollectiveComponent>(body.Collective, out var group) && group == collective);
+               && collective.Minds.ContainsKey(mind) && !collective.PendingMinds.Contains(mind);
+    }
+
+    private bool TryGetActorCollective(EntityUid actor, out EntityUid id, out MindCollectiveComponent collective,
+        out EntityUid mind)
+    {
+        id = default;
+        collective = default!;
+        mind = default;
+        return _mind.TryGetMind(actor, out var current, out _)
+               && TryGetCollective(current, out id, out collective)
+               && TryGetActorMind(actor, id, collective, out mind);
     }
 
     private bool TryGetActorMind(EntityUid actor, EntityUid collectiveId, MindCollectiveComponent collective, out EntityUid mind)
@@ -147,6 +157,9 @@ public sealed partial class MindCollectiveSystem : EntitySystem
         if (!TryComp<MindComponent>(mind, out var consciousness) || consciousness.OwnedEntity is not { } entity
             || !TryGetCollective(mind, out _, out var collective) || !IsAccepted(entity, collective))
             return;
+        if (!_ui.HasUi(entity, MindCollectiveUiKey.Key))
+            SetCollectiveUi(entity);
+        EnsureComp<MindCollectiveUiComponent>(entity);
         EntityUid? action = null;
         if (TryComp<ActionsContainerComponent>(mind, out var container))
         {
@@ -168,21 +181,36 @@ public sealed partial class MindCollectiveSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnOpenBody(Entity<MindCollectiveBodyComponent> ent, ref OpenMindCollectiveEvent args)
-        => OpenUi(ent, args);
-
-    [SubscribeLocalEvent]
-    private void OnOpenObserver(Entity<MindCollectiveObserverComponent> ent, ref OpenMindCollectiveEvent args)
+    private void OnOpenCollective(Entity<MindCollectiveUiComponent> ent, ref OpenMindCollectiveEvent args)
         => OpenUi(ent, args);
 
     private void OpenUi(EntityUid actor, OpenMindCollectiveEvent args)
     {
-        if (args.Handled || args.Performer != actor || !TryGetCollective(actor, out var id, out var collective)
-            || !TryGetActorMind(actor, id, collective, out _))
+        if (args.Handled || args.Performer != actor || !TryGetActorCollective(actor, out var id, out var collective, out _))
             return;
         args.Handled = true;
         UpdateUi(id, collective);
         _ui.OpenUi(actor, MindCollectiveUiKey.Key, actor);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnMemberMindAdded(Entity<MindCollectiveMemberComponent> ent, ref MindGotAddedEvent args)
+    {
+        if (!TryGetCollective(ent, out var id, out var collective))
+            return;
+        EnsureControlAction(ent);
+        UpdateUi(id, collective);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnMemberMindRemoved(Entity<MindCollectiveMemberComponent> ent, ref MindGotRemovedEvent args)
+    {
+        foreach (var action in _actions.GetActions(args.Container).ToArray())
+        {
+            if (action.Comp.Container == ent.Owner && MetaData(action).EntityPrototype?.ID == ControlAction)
+                _actions.RemoveAction(action.AsNullable());
+        }
+        CloseBodyUi(args.Container);
     }
 
     private void UpdateUi(EntityUid collectiveId, MindCollectiveComponent collective)
@@ -336,8 +364,7 @@ public sealed partial class MindCollectiveSystem : EntitySystem
             StopBodyControllers(body);
             if (!TerminatingOrDeleted(body))
             {
-                _ui.CloseUi(body, MindCollectiveUiKey.Key);
-                RemComp<MindCollectiveUiComponent>(body);
+                CloseBodyUi(body, collectiveId);
                 RemComp<MindCollectiveBodyComponent>(body);
             }
         }

@@ -31,12 +31,10 @@ public sealed partial class MindCollectiveSystem
         if (observer && !prefixed && TryComp<MindCollectiveObserverComponent>(args.Source, out var view)
             && view.AllowWorldSpeech)
             return;
-        args.Handled |= observer;
-        if (!TryGetCollective(args.Source, out var id, out var collective))
+        args.Handled |= observer || prefixed;
+        if (!TryGetActorCollective(args.Source, out _, out _, out var mind))
             return;
         args.Handled = true;
-        if (!TryGetActorMind(args.Source, id, collective, out var mind))
-            return;
         var text = (prefixed ? args.Message[3..] : args.Message).Trim();
         if (text.Length == 0)
             return;

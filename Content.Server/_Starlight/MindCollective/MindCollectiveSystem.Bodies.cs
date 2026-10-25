@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared._Starlight.BodyControl;
 using Content.Shared._Starlight.MindCollective;
+using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.UserInterface;
 using Robust.Shared.Player;
@@ -13,13 +14,14 @@ public sealed partial class MindCollectiveSystem
     public bool RegisterBody(EntityUid collectiveId, EntityUid body)
     {
         if (!TryComp<MindCollectiveComponent>(collectiveId, out var collective) || collective.Closing
-            || TerminatingOrDeleted(body) || HasComp<MindCollectiveObserverComponent>(body)
+            || TerminatingOrDeleted(body) || HasComp<MindCollectiveObserverComponent>(body) || HasComp<GhostComponent>(body)
             || TryComp<MindCollectiveBodyComponent>(body, out var existing) && existing.Collective != collectiveId
             || _mind.TryGetMind(body, out var occupant, out _) && !collective.Minds.ContainsKey(occupant))
             return false;
         EnsureComp<MindCollectiveBodyComponent>(body).Collective = collectiveId;
         collective.Bodies.Add(body);
         SetCollectiveUi(body);
+        UpdateUi(collectiveId, collective);
         return true;
     }
 
@@ -36,8 +38,7 @@ public sealed partial class MindCollectiveSystem
         DetachObservers(collectiveId, collective, body);
         if (!TerminatingOrDeleted(body))
         {
-            _ui.CloseUi(body, MindCollectiveUiKey.Key);
-            RemComp<MindCollectiveUiComponent>(body);
+            CloseBodyUi(body, collectiveId);
             RemComp<MindCollectiveBodyComponent>(body);
         }
         if (!collective.Closing)
@@ -50,10 +51,10 @@ public sealed partial class MindCollectiveSystem
 
     private bool CanEnter(EntityUid collectiveId, MindCollectiveComponent collective, EntityUid mind, EntityUid target)
     {
-        if (collective.Closing || collective.Moving || !collective.Minds.TryGetValue(mind, out var observer)
+        if (collective.Closing || collective.Moving || !collective.Minds.ContainsKey(mind)
             || collective.PendingMinds.Contains(mind) || !IsRegisteredBody(collectiveId, collective, target)
             || !TryComp<MindComponent>(mind, out var consciousness) || consciousness.OwnedEntity is not { } source
-            || source == target || source != observer && !IsRegisteredBody(collectiveId, collective, source)
+            || source == target
             || !HasPermission(mind, "body.enter", target))
             return false;
         if (_mind.TryGetMind(target, out var occupant, out _))
@@ -68,8 +69,8 @@ public sealed partial class MindCollectiveSystem
     /// <summary>Transfers only the requesting player, within their own collective.</summary>
     public bool TryEnterBody(EntityUid actor, EntityUid target)
     {
-        if (!TryGetCollective(actor, out var id, out var collective)
-            || !TryGetActorMind(actor, id, collective, out var mind) || !CanEnter(id, collective, mind, target))
+        if (!TryGetActorCollective(actor, out var id, out var collective, out var mind)
+            || !CanEnter(id, collective, mind, target))
             return false;
         var source = Comp<MindComponent>(mind).OwnedEntity!.Value;
         var occupied = _mind.TryGetMind(target, out var otherMind, out _);
@@ -113,8 +114,7 @@ public sealed partial class MindCollectiveSystem
 
     public bool TryLeaveBody(EntityUid actor)
     {
-        if (!TryGetCollective(actor, out var id, out var collective)
-            || !TryGetActorMind(actor, id, collective, out var mind) || collective.Moving)
+        if (!TryGetActorCollective(actor, out var id, out var collective, out var mind) || collective.Moving)
             return false;
         if (HasComp<MindCollectiveObserverComponent>(actor) && TryComp<BodyControlSourceComponent>(actor, out var control))
         {
@@ -132,8 +132,6 @@ public sealed partial class MindCollectiveSystem
         if (collective.Closing || !collective.Minds.TryGetValue(mind, out var observer) || TerminatingOrDeleted(observer)
             || !TryComp<MindComponent>(mind, out var consciousness) || consciousness.OwnedEntity == observer
             || collective.PendingMinds.Contains(mind)
-            || consciousness.OwnedEntity is { } owned && (!collective.Bodies.Contains(owned)
-                || !TryComp<MindCollectiveBodyComponent>(owned, out var carrier) || carrier.Collective != collectiveId)
             || HasComp<ActorComponent>(observer) || _mind.TryGetMind(observer, out _, out _))
             return false;
         var previous = consciousness.OwnedEntity;
@@ -158,8 +156,7 @@ public sealed partial class MindCollectiveSystem
 
     public bool TryRecallMember(EntityUid actor, EntityUid targetMind)
     {
-        if (!TryGetCollective(actor, out var id, out var collective) || collective.Moving
-            || !TryGetActorMind(actor, id, collective, out var mind)
+        if (!TryGetActorCollective(actor, out var id, out var collective, out var mind) || collective.Moving
             || !CanManageMember(mind, targetMind, "mind-collective.recall"))
             return false;
         if (collective.Minds.TryGetValue(targetMind, out var observer) && HasComp<BodyControlSourceComponent>(observer))
@@ -171,8 +168,11 @@ public sealed partial class MindCollectiveSystem
         return ReturnToMindspace(id, collective, targetMind);
     }
 
-    private void CloseBodyUi(EntityUid body)
+    private void CloseBodyUi(EntityUid body, EntityUid? collectiveId = null)
     {
+        if (collectiveId != null && _mind.TryGetMind(body, out var mind, out _)
+            && TryComp<MindCollectiveMemberComponent>(mind, out var member) && member.Collective != collectiveId)
+            return;
         _ui.CloseUi(body, MindCollectiveUiKey.Key);
         RemComp<MindCollectiveUiComponent>(body);
         if (TryComp<MindCollectiveObserverComponent>(body, out var observer))
@@ -184,7 +184,7 @@ public sealed partial class MindCollectiveSystem
     }
 
     [SubscribeLocalEvent]
-    private void OnBodyPlayerDetached(Entity<MindCollectiveBodyComponent> ent, ref PlayerDetachedEvent args)
+    private void OnMemberPlayerDetached(Entity<MindCollectiveUiComponent> ent, ref PlayerDetachedEvent args)
         => CloseBodyUi(ent);
 
     [SubscribeLocalEvent(before: [typeof(Content.Server.Mind.MindSystem)])]
@@ -196,33 +196,24 @@ public sealed partial class MindCollectiveSystem
         => UnregisterBody(ent.Comp.Collective, ent);
 
     [SubscribeLocalEvent]
-    private void OnBodyUiOpened(Entity<MindCollectiveBodyComponent> ent, ref BoundUIOpenedEvent args)
-        => OnCollectiveUiOpened(ent, args);
-
-    [SubscribeLocalEvent]
-    private void OnObserverUiOpened(Entity<MindCollectiveObserverComponent> ent, ref BoundUIOpenedEvent args)
+    private void OnMemberUiOpened(Entity<MindCollectiveUiComponent> ent, ref BoundUIOpenedEvent args)
         => OnCollectiveUiOpened(ent, args);
 
     private void OnCollectiveUiOpened(EntityUid entity, BoundUIOpenedEvent args)
     {
         if (args.UiKey is MindCollectiveUiKey && (args.Actor != entity
-            || !TryGetCollective(entity, out var id, out var collective) || !TryGetActorMind(entity, id, collective, out _)))
+            || !TryGetActorCollective(entity, out _, out _, out _)))
             _ui.CloseUi(entity, args.UiKey, args.Actor);
     }
 
     [SubscribeLocalEvent]
-    private void OnBodyUiClosed(Entity<MindCollectiveBodyComponent> ent, ref BoundUIClosedEvent args)
-        => OnCollectiveUiClosed(ent, args);
-
-    [SubscribeLocalEvent]
-    private void OnObserverUiClosed(Entity<MindCollectiveObserverComponent> ent, ref BoundUIClosedEvent args)
+    private void OnMemberUiClosed(Entity<MindCollectiveUiComponent> ent, ref BoundUIClosedEvent args)
         => OnCollectiveUiClosed(ent, args);
 
     private void OnCollectiveUiClosed(EntityUid entity, BoundUIClosedEvent args)
     {
         if (args.UiKey is MindCollectiveUiKey && args.Actor == entity
-            && TryGetCollective(entity, out var id, out var collective)
-            && TryGetActorMind(entity, id, collective, out var mind))
+            && TryGetActorCollective(entity, out var id, out _, out var mind))
             CancelExpulsion(id, mind);
     }
 
@@ -251,7 +242,7 @@ public sealed partial class MindCollectiveSystem
     private void OnObserveMessage(Entity<UserInterfaceComponent> ent, ref ObserveCollectiveBodyMessage args)
     {
         if (args.Actor == ent.Owner && HasComp<MindCollectiveObserverComponent>(ent)
-            && TryGetCollective(ent, out var id, out var collective) && TryGetActorMind(ent, id, collective, out _))
+            && TryGetActorCollective(ent, out _, out _, out _))
             Observe(ent, GetEntity(args.Body));
     }
 
@@ -276,8 +267,7 @@ public sealed partial class MindCollectiveSystem
     /// <summary>Grants cooperative control without moving the participant's mind or displacing an occupant.</summary>
     public bool TryControlBody(EntityUid actor, EntityUid body)
     {
-        if (!TryGetCollective(actor, out var id, out var collective)
-            || !TryGetActorMind(actor, id, collective, out var mind)
+        if (!TryGetActorCollective(actor, out var id, out var collective, out var mind)
             || !CanControlBody(id, collective, mind, actor, body) || !TryGetControlAccess(mind, body, out var access))
             return false;
         if (_bodyControl.IsControlling(actor, body))
@@ -286,12 +276,18 @@ public sealed partial class MindCollectiveSystem
             UpdateUi(id, collective);
             return true;
         }
+        if (!Observe(actor, body))
+            return false;
         // The physical occupant is also an input source, so its commands follow the same arbitration rules.
-        if (HasComp<ActorComponent>(body) && !_bodyControl.IsControlling(body, body)
-            && !_bodyControl.TryStartControl(body, body, new BodyControlAccess { FullControl = true }))
+        var addNative = HasComp<ActorComponent>(body) && !_bodyControl.IsControlling(body, body);
+        if (addNative && !_bodyControl.TryStartControl(body, body, new BodyControlAccess { FullControl = true }))
             return false;
-        if (!Observe(actor, body) || !_bodyControl.TryStartControl(actor, body, access))
+        if (!_bodyControl.TryStartControl(actor, body, access))
+        {
+            if (addNative)
+                _bodyControl.StopControl(body);
             return false;
+        }
         UpdateUi(id, collective);
         return true;
     }

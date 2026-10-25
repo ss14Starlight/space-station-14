@@ -185,7 +185,10 @@ public sealed partial class BodyControlSystem : EntitySystem
                 foreach (var other in target.Controllers.ToArray())
                     StopControl(other);
             }
-            Rebalance(body, target);
+            if (actor != body && target.Controllers.Count == 1 && target.Controllers.Contains(body))
+                StopControl(body);
+            else
+                Rebalance(body, target);
         }
         if (actor != body && !TerminatingOrDeleted(actor))
         {
@@ -197,6 +200,9 @@ public sealed partial class BodyControlSystem : EntitySystem
                 && consciousness.UserId == player.PlayerSession.UserId)
                 _mover.ApplyMovementInput(actor, ReadHeldButtons(player.PlayerSession));
         }
+        else if (actor == body && !detaching && !TerminatingOrDeleted(body)
+                 && TryComp<ActorComponent>(body, out var nativePlayer) && nativePlayer.PlayerSession.AttachedEntity == body)
+            _mover.ApplyMovementInput(body, ReadHeldButtons(nativePlayer.PlayerSession));
     }
 
     private MoveButtons ReadHeldButtons(ICommonSession session)

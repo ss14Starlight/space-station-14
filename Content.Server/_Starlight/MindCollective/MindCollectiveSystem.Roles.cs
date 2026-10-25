@@ -142,8 +142,7 @@ public sealed partial class MindCollectiveSystem
     private void OnSetRoleMessage(Entity<UserInterfaceComponent> ent, ref SetCollectiveRoleMessage args)
     {
         var target = GetEntity(args.Mind);
-        if (args.Actor != ent.Owner || !TryGetCollective(ent, out var id, out var collective)
-            || !TryGetActorMind(ent, id, collective, out var actor)
+        if (args.Actor != ent.Owner || !TryGetActorCollective(ent, out var id, out var collective, out var actor)
             || !CanManageMember(actor, target, "mind-collective.roles")
             || !_rolePrototypes.TryIndex(args.Role, out var role) || role.Priority > RolePriority(collective, actor))
             return;
