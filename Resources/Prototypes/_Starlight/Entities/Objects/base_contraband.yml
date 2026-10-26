@@ -125,3 +125,11 @@
   - type: Contraband
     tier: Tier4 # Blimpuf
     contrabandType: MedTak # Blimpuf
+
+- type: entity
+  id: BaseCybersunContraband
+  abstract: true
+  components:
+  - type: Contraband
+    tier: Tier2
+    contrabandType: Cybersun
