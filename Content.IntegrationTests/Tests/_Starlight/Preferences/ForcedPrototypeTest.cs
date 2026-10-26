@@ -41,11 +41,11 @@ public sealed class ForcedPrototypeTest : GameTest
         await server.WaitAssertion(() => Assert.That(ServerSlot().ForcedPrototype, Is.Empty));
         await WaitForClientCopy(string.Empty);
 
-        // What characterforceprototype does.
+        // What characterforceprototype does. The client is sent the new value straight away.
         await server.WaitPost(() => _ = serverPrefs.SetProfile(user, 0, ServerSlot().WithForcedPrototype(AdminSet)));
-        await Pair.RunTicksSync(1);
+        await WaitForClientCopy(AdminSet);
 
-        // A client copy that hasn't seen the admin change.
+        // A save sent without the admin's value, e.g. before the resend arrived.
         await SaveFromClient("Bravo Test", string.Empty);
         await server.WaitAssertion(() => Assert.That(ServerSlot().ForcedPrototype, Is.EqualTo(AdminSet)));
         await WaitForClientCopy(AdminSet);
@@ -57,17 +57,20 @@ public sealed class ForcedPrototypeTest : GameTest
 
         HumanoidCharacterProfile ServerSlot() => serverPrefs.GetPreferences(user).Characters[0];
 
-        // The server sends its copy back after a correction, once its save finishes.
+        // Waits for the server's resend to reach the client.
         async Task WaitForClientCopy(string expected)
         {
-            string? current = null;
-            for (var i = 0; i < 60 && current != expected; i++)
+            var current = string.Empty;
+            for (var i = 0; i < 60; i++)
             {
                 await Pair.RunTicksSync(1);
                 await client.WaitPost(() => current = clientPrefs.Preferences!.Characters[0].ForcedPrototype);
+
+                if (current == expected)
+                    break;
             }
 
-            Assert.That(current, Is.EqualTo(expected), "Client copy after the server's correction");
+            Assert.That(current, Is.EqualTo(expected), "Client copy after the server's resend");
         }
 
         async Task SaveFromClient(string name, string forcedPrototype)

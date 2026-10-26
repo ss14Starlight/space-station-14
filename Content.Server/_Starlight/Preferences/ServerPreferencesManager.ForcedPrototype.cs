@@ -56,7 +56,7 @@ public sealed partial class ServerPreferencesManager
             return profile;
 
         // A normal client sends back the server's value, or nothing for a new or imported character.
-        // It can also be stale just after an admin changes the slot.
+        // It can still be stale if it saved before the resend of an admin change arrived.
         if (!string.IsNullOrEmpty(profile.ForcedPrototype) && _playerManager.TryGetSessionById(userId, out var session))
         {
             var attempted = ForReport(profile.ForcedPrototype);
