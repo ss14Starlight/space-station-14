@@ -56,6 +56,10 @@ internal sealed partial class ChatManager : IChatManager
             case ChatSelectChannel.Admin:
                 _consoleHost.ExecuteCommand($"asay \"{CommandParsing.Escape(str)}\"");
                 break;
+            //Starlight-edit: Mentor chat
+            case ChatSelectChannel.Mentor:
+                _consoleHost.ExecuteCommand($"msay \"{CommandParsing.Escape(str)}\"");
+                break;
 
             case ChatSelectChannel.Emotes:
                 _consoleHost.ExecuteCommand($"me \"{CommandParsing.Escape(str)}\"");

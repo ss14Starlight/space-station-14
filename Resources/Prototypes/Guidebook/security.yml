@@ -1,6 +1,7 @@
 - type: guideEntry
   id: Security
   name: guide-entry-security
+  department: Security # Starlight
   text: "/ServerInfo/Guidebook/Security/Security.xml"
   children:
   - Forensics

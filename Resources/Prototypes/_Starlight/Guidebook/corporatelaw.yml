@@ -1,6 +1,7 @@
 ﻿- type: guideEntry
   id: CorporateLaw
   name: guide-entry-corporate-law
+  department: Security
   priority: 4
   text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CorporateLaw.xml"
   children:

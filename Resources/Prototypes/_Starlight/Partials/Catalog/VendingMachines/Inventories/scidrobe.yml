@@ -1,0 +1,25 @@
+- type: !PartialOnly vendingMachineInventory
+  id: SciDrobeInventory
+  startingInventory: !Clear
+    ClothingBackpackScience: 3
+    ClothingBackpackSatchelScience: 3
+    ClothingBackpackDuffelScience: 3
+    ClothingUniformJumpsuitScientist: 3
+    ClothingUniformJumpskirtScientist: 3
+    ClothingUniformJumpsuitScientistFormal: 3
+    ClothingOuterCoatRnd: 3
+    ClothingShoesColorWhite: 3
+    ClothingNeckTieSci: 3
+    ClothingHeadsetScience: 3
+    ClothingMaskGas: 3
+    ClothingOuterWinterSci: 2
+    ClothingOuterWindbreakerScience: 2
+    ClothingNeckScarfStripedPurple: 3
+    ClothingNeckScarfSolidPurple: 3
+    ClothingShoesBootsWinterSci: 2
+    SlimeExtractBag: 5
+  emaggedInventory: # Blimpuf
+    ClothingMaskGasSyndicate: 1 # Blimpuf
+    ClothingOuterCoatRndSyndicate: 1 # Blimpuf
+    ClothingUniformJumpsuitScienceSyndie: 1 # Blimpuf
+    ClothingUniformJumpskirtScienceSyndie: 1 # Blimpuf
