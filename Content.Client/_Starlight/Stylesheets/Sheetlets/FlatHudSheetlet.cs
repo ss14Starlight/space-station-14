@@ -50,19 +50,26 @@ public sealed class FlatHudSheetlet : Sheetlet<NanotrasenStylesheet>
                 .Font(sheet.BaseFont.GetFont(9, FontKind.Bold)),
 
             // Chat
-            E<PanelContainer>().Class(ChatInputBox.StyleClassChatPanel).Panel(FlatBox.Fill(proto.Background)),
-            E<ChatInputBox>().Class(ChatInputBox.StyleClassChatPanel).Panel(new StyleBoxEmpty()),
             E().Class(SeparatedChatGameScreen.StyleClassChatContainer).Panel(FlatBox.Fill(proto.Surface)),
-            E<LineEdit>()
-                .Class(ChatInputBox.StyleClassChatLineEdit)
-                .Prop(LineEdit.StylePropertyStyleBox, FlatBox.Bordered(proto.Surface, proto.Border)
-                    .WithContentMargin(StyleBox.Margin.Horizontal, 6)
-                    .WithContentMargin(StyleBox.Margin.Vertical, 3)),
         };
 
-        if (!theme.Proto.ClassicDecor)
+        if (proto.ClassicDecor)
+        {
+            var chatRow = (proto.WindowBackground ?? proto.Background).WithAlpha(221f / 255f);
+            rules.Add(E<PanelContainer>()
+                .Class(ChatInputBox.StyleClassChatPanel)
+                .Panel(FlatBox.Fill(chatRow)));
+        }
+        else
         {
             rules.AddRange([
+                E<ChatInputBox>().Class(ChatInputBox.StyleClassChatPanel).Panel(new StyleBoxEmpty()),
+                E<PanelContainer>().Class(ChatInputBox.StyleClassChatPanel).Panel(FlatBox.Fill(proto.Background)),
+                E<LineEdit>()
+                    .Class(ChatInputBox.StyleClassChatLineEdit)
+                    .Prop(LineEdit.StylePropertyStyleBox, FlatBox.Bordered(proto.Surface, proto.Border)
+                        .WithContentMargin(StyleBox.Margin.Horizontal, 6)
+                        .WithContentMargin(StyleBox.Margin.Vertical, 3)),
                 E<ContainerButton>().Class(ChatInputBox.StyleClassChatFilterOptionButton).Box(chatButtonBox),
                 E<ContainerButton>().Class(ChannelSelectorItemButton.StyleClassChatSelectorOptionButton).Box(chatButtonBox),
             ]);
