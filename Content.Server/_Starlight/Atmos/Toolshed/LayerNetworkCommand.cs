@@ -32,8 +32,8 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
     /// <param name="root">The targeted entity</param>
     /// <param name="group">The network type</param>
     /// <returns>All entities part of the network, restricted to the same layer.</returns>
-    [CommandImplementation("members")]
-    public IEnumerable<EntityUid> Members([PipedArgument] EntityUid root, NodeGroupID group)
+    [CommandImplementation("list")]
+    public IEnumerable<EntityUid> List([PipedArgument] EntityUid root, NodeGroupID group)
         => CollectNetwork(root, group);
 
     /// <summary>
@@ -159,8 +159,7 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
 
                 if (seen.Add(uid))
                     conflicts.Add(uid);
-                if (seen.Add(other))
-                    conflicts.Add(other);
+                seen.Add(other);
             }
         }
 
