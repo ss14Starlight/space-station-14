@@ -39,12 +39,6 @@ public record struct HitscanTraceEvent
 
     #region Starlight
     /// <summary>
-    /// Dome exemption preserved by penetration. Null uses this leg's shooter;
-    /// reflection and ricochet leave it unset to discard the previous owner's exemption.
-    /// </summary>
-    public EntityUid? DomeOwner;
-
-    /// <summary>
     /// Location the hitscan was fired to.
     /// </summary>
     public EntityCoordinates ToCoordinates;
@@ -68,13 +62,6 @@ public record struct HitscanTraceEvent
 /// </summary>
 public record struct HitscanRaycastFiredData
 {
-    #region Starlight
-    /// <summary>
-    /// Dome owner to preserve when continuing through a penetrated target.
-    /// </summary>
-    public EntityUid? DomeOwner;
-    #endregion
-
     // Starlight-start
     /// <summary>
     /// Seed for the random rolls of this leg. Set on shots the shooter's client predicts,

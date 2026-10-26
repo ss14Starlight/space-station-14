@@ -15,7 +15,7 @@ using Robust.Shared.Physics.Events;
 namespace Content.IntegrationTests.Tests._Starlight.Weapons;
 
 /// <summary>
-/// Checks who can shoot through personal shields and how overlapping shields handle penetration.
+/// Checks that personal shields catch shots from either side and allow normal penetration.
 /// </summary>
 public sealed class PersonalEnergyDomeTest : GameTest
 {
@@ -23,7 +23,7 @@ public sealed class PersonalEnergyDomeTest : GameTest
     [TestCase("EnergyDomeSmallPink")]
     [TestCase("EnergyDomeSmallCap")]
     [TestCase("EnergyDomeMediumBlue")]
-    public async Task OnlyOwnerProjectilesIgnoreDome(string prototype)
+    public async Task ProjectilesHitDomeFromInside(string prototype)
     {
         var map = await Pair.CreateTestMap();
         await Server.WaitAssertion(() =>
@@ -33,22 +33,22 @@ public sealed class PersonalEnergyDomeTest : GameTest
             var dome = SEntMan.SpawnEntity(prototype, new EntityCoordinates(owner, Vector2.Zero));
             var bullet = SEntMan.SpawnEntity("BulletEnergySMGLaser", map.GridCoords);
             var projectile = SEntMan.GetComponent<ProjectileComponent>(bullet);
-            projectile.Armed = true;
             var projectiles = SEntMan.System<SharedProjectileSystem>();
 
-            foreach (var shooter in new[] { owner, stranger, owner })
+            foreach (var armed in new[] { false, true })
             {
-                // Check ownership again after the projectile's shooter changes.
-                projectiles.SetShooter(bullet, projectile, shooter);
-                var ev = new PreventCollideEvent(bullet, dome,
-                    SEntMan.GetComponent<PhysicsComponent>(bullet), SEntMan.GetComponent<PhysicsComponent>(dome),
-                    SEntMan.GetComponent<FixturesComponent>(bullet).Fixtures.Values.First(),
-                    SEntMan.GetComponent<FixturesComponent>(dome).Fixtures.Values.First());
-                SEntMan.EventBus.RaiseLocalEvent(bullet, ref ev);
-                Assert.That(ev.Cancelled, Is.EqualTo(shooter == owner),
-                    shooter == owner
-                        ? "The owner's projectile hit their shield."
-                        : "Another shooter's projectile skipped the shield.");
+                projectile.Armed = armed;
+                foreach (var shooter in new[] { owner, stranger })
+                {
+                    projectiles.SetShooter(bullet, projectile, shooter);
+                    var ev = new PreventCollideEvent(bullet, dome,
+                        SEntMan.GetComponent<PhysicsComponent>(bullet), SEntMan.GetComponent<PhysicsComponent>(dome),
+                        SEntMan.GetComponent<FixturesComponent>(bullet).Fixtures.Values.First(),
+                        SEntMan.GetComponent<FixturesComponent>(dome).Fixtures.Values.First());
+                    SEntMan.EventBus.RaiseLocalEvent(bullet, ref ev);
+                    Assert.That(ev.Cancelled, Is.False,
+                        armed ? "An armed projectile skipped the shield." : "An unarmed projectile skipped the shield.");
+                }
             }
 
             SEntMan.DeleteEntity(bullet);
@@ -60,7 +60,7 @@ public sealed class PersonalEnergyDomeTest : GameTest
 
     [TestCase("EnergyDomeSmallRed")]
     [TestCase("EnergyDomeMediumBlue")]
-    public async Task HitscanInsideDomeOnlyExemptsOwner(string prototype)
+    public async Task HitscanHitsDomeFromBothSides(string prototype)
     {
         var map = await Pair.CreateTestMap();
         EntityUid owner = default;
@@ -68,6 +68,7 @@ public sealed class PersonalEnergyDomeTest : GameTest
         EntityUid dome = default;
         EntityUid target = default;
         EntityUid shot = default;
+        EntityUid piercingShot = default;
 
         await Server.WaitPost(() =>
         {
@@ -76,6 +77,10 @@ public sealed class PersonalEnergyDomeTest : GameTest
             dome = SEntMan.SpawnEntity(prototype, new EntityCoordinates(owner, Vector2.Zero));
             target = SEntMan.SpawnEntity("WallSolid", map.GridCoords.Offset(new Vector2(4, 0)));
             shot = SEntMan.SpawnEntity("PracticeBulletTrace", map.GridCoords);
+            piercingShot = SEntMan.SpawnEntity("BulletRifleTraceAP", map.GridCoords);
+            var pierce = SEntMan.GetComponent<HitscanPierceComponent>(piercingShot);
+            pierce.Chance = 1;
+            pierce.Deviation = 0;
         });
         await RunTicksSync(2);
 
@@ -85,8 +90,16 @@ public sealed class PersonalEnergyDomeTest : GameTest
             var hitscan = new Entity<HitscanBasicRaycastComponent>(shot, SEntMan.GetComponent<HitscanBasicRaycastComponent>(shot));
             var outgoing = raycast.PredictTrace(hitscan, owner, map.GridCoords, Vector2.UnitX, 4, target, 1);
             Assert.That(outgoing, Is.Not.Empty, "The owner's shot from inside the shield produced no trace.");
-            Assert.That(outgoing[0].ImpactedEnt, Is.EqualTo(SEntMan.GetNetEntity(target)),
-                "The owner's shot did not reach the target.");
+            Assert.That(outgoing[0].ImpactedEnt, Is.EqualTo(SEntMan.GetNetEntity(dome)),
+                "The owner's shot from inside missed the shield.");
+
+            var piercingHitscan = new Entity<HitscanBasicRaycastComponent>(piercingShot,
+                SEntMan.GetComponent<HitscanBasicRaycastComponent>(piercingShot));
+            var piercing = raycast.PredictTrace(piercingHitscan, owner, map.GridCoords, Vector2.UnitX, 4, target, 1);
+            Assert.That(piercing.Count(trace => trace.ImpactedEnt == SEntMan.GetNetEntity(dome)), Is.EqualTo(1),
+                "The owner's piercing shot missed the shield.");
+            Assert.That(piercing.Any(trace => trace.ImpactedEnt == SEntMan.GetNetEntity(target)), Is.True,
+                "The owner's piercing shot did not reach the target.");
 
             var inside = raycast.PredictTrace(hitscan, stranger, map.GridCoords, Vector2.UnitX, 4, target, 1);
             Assert.That(inside, Is.Not.Empty, "Another shooter's shot from inside the shield produced no trace.");
@@ -99,15 +112,15 @@ public sealed class PersonalEnergyDomeTest : GameTest
             Assert.That(incoming[0].ImpactedEnt, Is.EqualTo(SEntMan.GetNetEntity(dome)),
                 "The incoming shot missed the shield.");
 
-            foreach (var uid in new[] { shot, target, dome, owner, stranger })
+            foreach (var uid in new[] { shot, piercingShot, target, dome, owner, stranger })
                 SEntMan.DeleteEntity(uid);
         });
     }
 
     [TestCase(false, true, TestName = "PredictionHitsBothOverlappingShields")]
-    [TestCase(true, true, TestName = "PredictionSkipsOwnShieldAfterPenetration")]
+    [TestCase(true, true, TestName = "PredictionHitsOwnShieldAfterPenetration")]
     [TestCase(false, false, TestName = "LiveHitscanHitsBothOverlappingShields")]
-    [TestCase(true, false, TestName = "LiveHitscanSkipsOwnShieldAfterPenetration")]
+    [TestCase(true, false, TestName = "LiveHitscanHitsOwnShieldAfterPenetration")]
     public async Task PenetrationHitsOverlappingDomesOnceEach(bool ownsSecondDome, bool predict)
     {
         var map = await Pair.CreateTestMap();
@@ -159,10 +172,8 @@ public sealed class PersonalEnergyDomeTest : GameTest
                 : "The fired shot through overlapping shields produced no trace.");
             Assert.That(traces.Count(trace => trace.ImpactedEnt == SEntMan.GetNetEntity(first)), Is.EqualTo(1),
                 "The first shield should be hit once.");
-            Assert.That(traces.Count(trace => trace.ImpactedEnt == SEntMan.GetNetEntity(second)), Is.EqualTo(ownsSecondDome ? 0 : 1),
-                ownsSecondDome
-                    ? "The shot hit its owner's shield after penetrating."
-                    : "The second shield should be hit once.");
+            Assert.That(traces.Count(trace => trace.ImpactedEnt == SEntMan.GetNetEntity(second)), Is.EqualTo(1),
+                "The second shield should be hit once.");
 
             foreach (var uid in new[] { shot, first, second, owner, stranger })
                 SEntMan.DeleteEntity(uid);

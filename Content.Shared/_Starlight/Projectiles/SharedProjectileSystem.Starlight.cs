@@ -8,8 +8,6 @@ public abstract partial class SharedProjectileSystem
 {
     private static readonly ProtoId<TagPrototype> PersonalEnergyDomeTag = "PersonalEnergyDome";
 
-    private bool IgnoresPersonalEnergyDome(ProjectileComponent projectile, EntityUid other)
-        => projectile.IgnoreShooter && projectile.Shooter != null &&
-            _tag.HasTag(other, PersonalEnergyDomeTag) &&
-            Transform(other).ParentUid == projectile.Shooter;
+    private bool IsPersonalEnergyDome(EntityUid other)
+        => _tag.HasTag(other, PersonalEnergyDomeTag);
 }

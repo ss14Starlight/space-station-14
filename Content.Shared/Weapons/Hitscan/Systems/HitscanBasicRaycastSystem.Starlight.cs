@@ -30,8 +30,7 @@ public sealed partial class HitscanBasicRaycastSystem
         EntityUid? target,
         List<RayCastResults> rayCastResults,
         int? seed,
-        List<HitscanTrace>? previousTraces,
-        EntityUid domeOwner) // Starlight-edit: track dome ownership separately from raycast exclusion.
+        List<HitscanTrace>? previousTraces)
     {
         RayCastResults? result = null;
 
@@ -41,8 +40,8 @@ public sealed partial class HitscanBasicRaycastSystem
         {
             foreach (var collide in rayCastResults)
             {
-                // Starlight-start: apply personal-dome ownership and zero-distance rules.
-                if (GetPersonalEnergyDomeHitOverride(collide, domeOwner, previousTraces) is { } hitDome)
+                // Starlight-start: catch shots fired from inside personal domes.
+                if (GetPersonalEnergyDomeHitOverride(collide, previousTraces) is { } hitDome)
                 {
                     if (!hitDome)
                         continue;
@@ -145,7 +144,6 @@ public sealed partial class HitscanBasicRaycastSystem
         if (TryComp<MechPilotComponent>(shooter, out var pilot))
             shooter = pilot.Mech;
 
-        var domeOwner = shooter; // Starlight-edit: preserve the holder exemption across penetrating legs.
         var traces = new List<HitscanTrace>();
         int? legSeed = seed;
 
@@ -155,7 +153,7 @@ public sealed partial class HitscanBasicRaycastSystem
             var ray = new CollisionRay(from.Position, direction, (int) hitscan.Comp.CollisionMask);
             var rayCastResults = _physics.IntersectRay(from.MapId, ray, hitscan.Comp.MaxDistance, shooter, false).ToList();
 
-            var result = SelectHit(hitscan, shooter, from, direction, pointer, target, rayCastResults, legSeed, traces, domeOwner);
+            var result = SelectHit(hitscan, shooter, from, direction, pointer, target, rayCastResults, legSeed, traces);
             var distance = result?.Distance ?? hitscan.Comp.MaxDistance;
 
             traces.Add(GenerateTraceStep(fromCoordinates, distance, direction.ToAngle(), result?.HitEntity));
