@@ -52,6 +52,7 @@ namespace Content.Shared.SubFloor
             var xform = Transform(uid);
 
             if (!component.AllowAnchoringUnderCover // Starlight
+                && !HasComp<BypassInteractionChecksComponent>(args.User) // Starlight
                 && TryComp<MapGridComponent>(xform.GridUid, out var grid)
                 && HasFloorCover(xform.GridUid.Value, grid, Map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates)))
             {
@@ -64,7 +65,7 @@ namespace Content.Shared.SubFloor
         {
             // No un-anchoring things under the floor. Only required for something like vents, which are still interactable
             // despite being partially under the floor.
-            if (!component.AllowAnchoringUnderCover && component.IsUnderCover) // Starlight
+            if (!component.AllowAnchoringUnderCover && component.IsUnderCover && !HasComp<BypassInteractionChecksComponent>(args.User)) // Starlight
             {
                 _popup.PopupClient(Loc.GetString("subfloor-unanchor-failure", ("entity", uid)), args.User);
                 args.Cancel();
