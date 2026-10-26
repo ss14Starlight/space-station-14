@@ -30,7 +30,7 @@
 
 - type: entity
   name: china lake
-  parent: [ BaseContrabandTier4, BaseWeaponLauncher, BaseSyndicateContraband ]
+  parent: [ BaseContrabandTier4, BaseWeaponLauncher, BaseSyndicateContraband ] # Starlight
   id: WeaponLauncherChinaLake
   description: A pump-action grenade launcher commonly used by the infamous Nuclear Operatives. PLOOP!
   components:

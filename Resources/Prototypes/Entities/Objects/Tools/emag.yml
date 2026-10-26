@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseContrabandTier4, BaseItem, BaseSyndicateContraband ]
+  parent: [ BaseContrabandTier4, BaseItem, BaseSyndicateContraband ] # Starlight
   id: EmagUnlimited
   suffix: Unlimited
   name: cryptographic sequencer
@@ -14,7 +14,7 @@
     storedRotation: -90
 
 - type: entity
-  parent: [ BaseContrabandTier4, EmagUnlimited ]
+  parent: [ BaseContrabandTier4, EmagUnlimited ] # Starlight
   id: Emag
   suffix: Limited
   components:

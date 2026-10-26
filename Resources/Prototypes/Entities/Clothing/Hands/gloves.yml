@@ -103,7 +103,7 @@
   description: Red gloves for competitive boxing.
 
 - type: entity
-  parent: [ BaseContrabandTier4, ClothingHandsGlovesBoxingRiggedBase, ClothingHandsGlovesBoxingBlue ]
+  parent: [ BaseContrabandTier4, ClothingHandsGlovesBoxingRiggedBase, ClothingHandsGlovesBoxingBlue ] # Starlight
   id: ClothingHandsGlovesBoxingRiggedBlue
   name: blue boxing gloves
   description: Blue gloves for competitive boxing.
@@ -454,7 +454,7 @@
   #endregion Starlight
 
 - type: entity
-  parent: [ BaseContrabandTier4, ClothingHandsButcherable, BaseSyndicateContraband ]
+  parent: [ BaseContrabandTier4, ClothingHandsButcherable, BaseSyndicateContraband ] # Starlight
   id: ClothingHandsGlovesNorthStar
   name: gloves of the north star
   description: These gloves allow you to punch incredibly fast.

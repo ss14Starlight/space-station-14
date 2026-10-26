@@ -1339,7 +1339,7 @@
 
 #syndicate modules
 - type: entity
-  parent: [ BaseContrabandTier4, BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+  parent: [ BaseContrabandTier4, BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] # Starlight
   id: BorgModuleSyndicateWeapon
   name: weapon cyborg module
   components:
@@ -1462,7 +1462,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-c20r-module }
 
 - type: entity
-  parent: [ BaseContrabandTier4, BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+  parent: [ BaseContrabandTier4, BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] # Starlight
   id: BorgModuleMartyr
   name: martyr cyborg module
   description: "A module that comes with an explosive you probably don't want to handle yourself."

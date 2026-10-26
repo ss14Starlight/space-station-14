@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseContrabandTier4, BaseItem, BaseSyndicateContraband ]
+  parent: [ BaseContrabandTier4, BaseItem, BaseSyndicateContraband ] # Starlight
   id: AccessBreakerUnlimited
   suffix: Unlimited
   name: authentication disruptor
@@ -15,7 +15,7 @@
     sprite: Objects/Tools/access_breaker.rsi
 
 - type: entity
-  parent: [ BaseContrabandTier4, AccessBreakerUnlimited ]
+  parent: [ BaseContrabandTier4, AccessBreakerUnlimited ] # Starlight
   id: AccessBreaker
   suffix: Limited
   components:

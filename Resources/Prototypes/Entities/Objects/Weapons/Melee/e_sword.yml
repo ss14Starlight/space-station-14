@@ -75,7 +75,7 @@
 
 - type: entity
   name: energy sword
-  parent: [ BaseContrabandTier4, BaseMeleeWeaponEnergy, BaseSyndicateContraband ]
+  parent: [ BaseContrabandTier4, BaseMeleeWeaponEnergy, BaseSyndicateContraband ] # Starlight
   id: EnergySword
   description: A very loud & dangerous sword with a beam made of pure, concentrated plasma. Cuts through unarmored targets like butter.
   components:

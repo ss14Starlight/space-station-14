@@ -47,7 +47,7 @@
       maxVol: 10
 
 - type: entity
-  parent: [BaseContrabandTier4, SolutionToolSmall, BaseHypospray, BaseGrandTheftContraband]
+  parent: [BaseContrabandTier4, SolutionToolSmall, BaseHypospray, BaseGrandTheftContraband] # Starlight
   id: Hypospray
   name: hypospray
   description: A sterile injector for rapid administration of drugs to patients.

@@ -94,7 +94,7 @@
       disposable: false
 
 - type: entity
-  parent: [ BaseContrabandTier4, BaseHardBomb, BaseSyndicateContraband ]
+  parent: [ BaseContrabandTier4, BaseHardBomb, BaseSyndicateContraband ] # Starlight
   id: SyndicateBomb
   name: syndicate bomb
   description: A bomb for Syndicate operatives and agents alike. The real deal, no more training, get to it!

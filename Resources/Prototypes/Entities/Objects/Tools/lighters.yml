@@ -282,7 +282,7 @@
 
 
 - type: entity
-  parent: [ BaseContrabandTier1, BaseBrandedLighter, BaseSyndicateContraband ]
+  parent: [ BaseContrabandTier1, BaseBrandedLighter, BaseSyndicateContraband ] # Starlight
   id: SyndicateFlippo
   name: blood-red flippo # Starlight-edit
   description: "A 'Valid' choice in lighters. Contains no copper. Causes nasty burns if mishandled."

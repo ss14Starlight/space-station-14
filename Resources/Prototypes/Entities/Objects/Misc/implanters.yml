@@ -199,7 +199,7 @@
 - type: entity
   id: StorageImplanter
   name: storage implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: StorageImplant
@@ -207,7 +207,7 @@
 - type: entity
   id: FreedomImplanter
   name: freedom implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: FreedomImplant
@@ -215,7 +215,7 @@
 - type: entity
   id: RadioImplanter
   name: syndicate radio implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: RadioImplant
@@ -223,7 +223,7 @@
 - type: entity
   id: UplinkImplanter
   name: uplink implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: UplinkImplant
@@ -231,7 +231,7 @@
 - type: entity
   id: EmpImplanter
   name: EMP implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: EmpImplant
@@ -239,7 +239,7 @@
 - type: entity
   id: ScramImplanter
   name: scram implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: ScramImplant
@@ -247,7 +247,7 @@
 - type: entity
   id: DnaScramblerImplanter
   name: DNA scrambler implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: DnaScramblerImplant
@@ -255,7 +255,7 @@
 - type: entity
   id: ChameleonControllerImplanter
   name: chameleon controller implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: ChameleonControllerImplant
@@ -263,7 +263,7 @@
 - type: entity
   id: VoiceMaskImplanter
   name: identity mask implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: VoiceMaskImplant
@@ -273,7 +273,7 @@
 - type: entity
   id: MicroBombImplanter
   name: micro-bomb implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: MicroBombImplant
@@ -281,7 +281,7 @@
 - type: entity
   id: MacroBombImplanter
   name: macro-bomb implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: MacroBombImplant
@@ -289,7 +289,7 @@
 - type: entity
   id: DeathRattleImplanter
   name: death rattle implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: DeathRattleImplant
@@ -297,7 +297,7 @@
 - type: entity
   id: DeathAcidifierImplanter
   name: death acidifier implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: DeathAcidifierImplant
@@ -305,7 +305,7 @@
 - type: entity
   id: FakeMindShieldImplanter
   name: fake mindshield implanter
-  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ] # Starlight
   components:
   - type: Implanter
     implant: FakeMindShieldImplant
