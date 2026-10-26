@@ -132,10 +132,8 @@ public sealed partial class PipeRestrictOverlapSystem : EntitySystem
     public EntityUid? CheckIfWouldConflict(EntityUid gridUid,
         Vector2i tileIndices,
         ProposedPipe proposed,
-        EntityUid? ignoreEntity = null)
-    {
-        return CheckIfWouldConflict(gridUid, tileIndices, proposed, otherEnt => otherEnt == ignoreEntity);
-    }
+        EntityUid? ignoreEntity = null) =>
+        CheckIfWouldConflict(gridUid, tileIndices, proposed, otherEnt => otherEnt == ignoreEntity);
 
     /// <summary>
     /// As <see cref="CheckIfWouldConflict(EntityUid, Vector2i, ProposedPipe, EntityUid?)"/>, but ignores a whole
@@ -144,10 +142,8 @@ public sealed partial class PipeRestrictOverlapSystem : EntitySystem
     public EntityUid? CheckIfWouldConflict(EntityUid gridUid,
         Vector2i tileIndices,
         ProposedPipe proposed,
-        IReadOnlySet<EntityUid> ignoreEntities)
-    {
-        return CheckIfWouldConflict(gridUid, tileIndices, proposed, ignoreEntities.Contains);
-    }
+        IReadOnlySet<EntityUid> ignoreEntities) =>
+        CheckIfWouldConflict(gridUid, tileIndices, proposed, ignoreEntities.Contains);
 
     private EntityUid? CheckIfWouldConflict(EntityUid gridUid,
         Vector2i tileIndices,
