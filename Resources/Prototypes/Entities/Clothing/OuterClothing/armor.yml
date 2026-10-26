@@ -189,7 +189,7 @@
 
 #Web vest
 - type: entity
-  parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseSyndicateContraband]
+  parent: [ BaseContrabandTier4, ClothingOuterArmorBase, ClothingOuterStorageBase, BaseSyndicateContraband ] # Starlight
   id: ClothingOuterVestWeb
   name: web vest
   description: A synthetic armor vest. This one has added webbing and ballistic plates.

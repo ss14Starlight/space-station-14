@@ -1,9 +1,8 @@
 - type: !PartialOnly entity
   id: ClothingOuterWinterSyndieCap
   components:
-  - type: ScanDetectable
   - type: Contraband
-    tier: Tier4
+    tier: Tier1
     contrabandType: Syndicate
 
 - type: !PartialOnly entity

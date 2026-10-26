@@ -1,5 +1,5 @@
 - type: entity
-  parent: CrateSyndicate
+  parent: [ BaseContrabandTier1, CrateSyndicate, BaseSyndicateContraband ]
   id: CrateNameSyndicateShuttleBundle
   name: shuttle bundle crate
   description: Everything but the shuttle board. It's a shuttle in a crate* (Some assembly required)

@@ -27,7 +27,7 @@
   id: HandImplantForensics
   name: forensics implant
   description: A surgically-installed hand implant that removes your fingerprints, meaning you'll leave no trace at the scene of the crime... as long as you don't mind not being able to open your mail.
-  parent: BaseEntityHandImplant
+  parent: [ BaseContrabandTier3, BaseEntityHandImplant ]
   components:
   - type: Sprite
     state: hand_implant_forensics
@@ -39,7 +39,7 @@
   id: HandImplantClaws
   name: claws implant
   description: A surgically-installed hand implant that provides sharp retractable claws.
-  parent: BaseEntityHandImplant
+  parent: [ BaseContrabandTier3, BaseEntityHandImplant ]
   components:
   - type: Sprite
     state: hand_implant_claws

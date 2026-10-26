@@ -66,7 +66,7 @@
     - Flashlight
 
 - type: entity
-  parent: BaseDecoy
+  parent: [ BaseContrabandTier2, BaseDecoy, BaseSyndicateContraband ] # Starlight
   id: BalloonOperative
   name: operative balloon
   description: Upon closer inspection, this Syndicate operative is actually a balloon.
@@ -81,7 +81,7 @@
       visible: false
 
 - type: entity
-  parent: BaseDecoy
+  parent: [ BaseContrabandTier2, BaseDecoy, BaseSyndicateContraband ] # Starlight
   id: BalloonAgent
   name: corpsman balloon
   description: Upon closer inspection, this Syndicate corpsman is actually a balloon.
@@ -96,7 +96,7 @@
       visible: false
 
 - type: entity
-  parent: BaseDecoy
+  parent: [ BaseContrabandTier2, BaseDecoy, BaseSyndicateContraband ] # Starlight
   id: BalloonElite
   name: elite operative balloon
   description: Upon closer inspection, this Syndicate elite operative is actually a balloon.
@@ -113,7 +113,7 @@
     color: red
 
 - type: entity
-  parent: BaseDecoy
+  parent: [ BaseContrabandTier2, BaseDecoy, BaseSyndicateContraband ] # Starlight
   id: BalloonJuggernaut
   name: juggernaut balloon
   description: Upon closer inspection, this Syndicate juggernaut is actually a balloon.
@@ -128,7 +128,7 @@
       visible: false
 
 - type: entity
-  parent: BaseDecoy
+  parent: [ BaseContrabandTier2, BaseDecoy, BaseSyndicateContraband ] # Starlight
   id: BalloonCommander
   name: commander balloon
   description: Upon closer inspection, this Syndicate commander is actually a balloon.

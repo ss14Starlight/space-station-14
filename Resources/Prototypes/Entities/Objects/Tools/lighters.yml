@@ -358,7 +358,7 @@
           Heat: 2
 
 - type: entity
-  parent: [ BaseContrabandTier1, BaseBrandedLighter, BaseSyndicateContraband, FlippoLighter ] #SL Edit: added flippolighter parent
+  parent: [ BaseContrabandTier1, BaseBrandedLighter, BaseCybersunContraband, FlippoLighter ] #SL Edit: added flippolighter parent
   id: CybersunFlippo
   name: CyberSun flippo
   description: "A Sleek black and magenta flippo lighter, bearing the logo and iconography of CyberSun Industries."

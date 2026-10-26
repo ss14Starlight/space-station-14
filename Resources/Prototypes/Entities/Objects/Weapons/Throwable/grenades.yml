@@ -444,7 +444,7 @@
 - type: entity
   name: syndicate trickybomb
   description: A syndicate-manufactured explosive used to make an excellent distraction.
-  parent: [GrenadeDummy, BaseSyndicateContraband]
+  parent: [ BaseContrabandTier2, GrenadeDummy, BaseSyndicateContraband ] # Starlight
   id: SyndieTrickyBomb
   components:
   - type: Sprite

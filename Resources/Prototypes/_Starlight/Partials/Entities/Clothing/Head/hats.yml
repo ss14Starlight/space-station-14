@@ -37,7 +37,6 @@
 - type: !PartialOnly entity
   id: ClothingHeadHatSyndieMAA
   components:
-  - type: ScanDetectable
   - type: Contraband
-    tier: Tier4
+    tier: Tier2
     contrabandType: Syndicate
