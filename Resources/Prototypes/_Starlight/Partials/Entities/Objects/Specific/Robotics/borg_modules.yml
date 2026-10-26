@@ -167,6 +167,10 @@
         whitelist:
           components:
           - Clothing
+        blacklist:
+          components:
+          - Armor
+          - Reflect
 
 - type: !PartialOnly entity
   id: XenoborgModuleLaser
