@@ -1,7 +1,6 @@
 - type: !PartialOnly weightedRandom
   id: TraitorObjectiveGroups
   weights:
-    TraitorObjectiveGroupSabotage: !Remove
     TraitorObjectiveGroupSocial: 0.25 #Involves helping/harming others without killing them or stealing their stuff, lowered because the chance of rolling this was enormous when its just one objective in the category
     TraitorObjectiveGroupStory: 0.85
 
