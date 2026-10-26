@@ -123,12 +123,12 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
         var moved = 0;
         foreach (var uid in net)
         {
-            if (!TryComp<AtmosPipeLayersComponent>(uid, out var comp)
-                || comp.CurrentPipeLayer == layer
-                || !CanUseLayer(comp, layer))
+            if (!TryComp<AtmosPipeLayersComponent>(uid, out var pipeLayers)
+                || pipeLayers.CurrentPipeLayer == layer
+                || !CanUseLayer(pipeLayers, layer))
                 continue;
 
-            _layers.SetPipeLayer((uid, comp), layer);
+            _layers.SetPipeLayer((uid, pipeLayers), layer);
             moved++;
         }
         ctx.WriteLine($"Moved {moved} entities on the {group} network to {layer}.");
@@ -163,7 +163,8 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
 
         foreach (var uid in net)
         {
-            if (!HasComp<AtmosPipeLayersComponent>(uid) ||
+            if (!TryComp<AtmosPipeLayersComponent>(uid, out var comp) ||
+                !CanUseLayer(comp, layer) ||
                 !TryComp<NodeContainerComponent>(uid, out var container))
                 continue;
 
