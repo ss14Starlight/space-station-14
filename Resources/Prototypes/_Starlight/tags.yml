@@ -655,9 +655,6 @@
   id: PatchPack
 
 - type: Tag
-  id: WideSwingPassThroughDome
-
-- type: Tag
   id: PersonnelStorage
 
 - type: Tag
@@ -835,6 +832,9 @@
 
 - type: Tag
   id: VinylSleeve # Storage whitelist: RecordMilkCrate, SyndicateMilkCrate
+
+- type: Tag
+  id: WideSwingPassThroughDome
 
 - type: Tag
   id: WallmountMassScannerElectronics

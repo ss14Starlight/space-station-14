@@ -400,6 +400,7 @@ uplink-clothing-outer-hardsuit-juggernaut-name = Cybersun Juggernaut Suit
 uplink-clothing-outer-hardsuit-juggernaut-desc = Hyper resilient armor made of materials tested in the Tau chromosphere facility. The only thing that's going to be slowing you down is this suit... and tasers.
 
 uplink-energy-dome-name = Personal energy dome
+# Starlight
 uplink-energy-dome-desc = A personal shield generator that protects the wearer from lasers and projectiles. May be penetrated by piercing ammunition. Does not interfere with melee. Comes with a high-capacity power cell.
 
 # Misc
