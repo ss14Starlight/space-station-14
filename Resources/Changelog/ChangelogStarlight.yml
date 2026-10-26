@@ -1,18 +1,4 @@
 Entries:
-- author: Wizden Team
-  changes:
-  - message: 'Added a new objective for traitors: Hijack the Automated Trade Station. Your uplink will have a hijack beacon for you to use if you have this objective.'
-    type: Add
-  id: 409420
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Scarlet.
-  changes:
-  - message: Removed old prototypes that arent used.
-    type: Remove
-  id: 409421
-  time: '2026-10-13T10:47:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6669
 - author: Rinary
   changes:
   - message: Changed Settings && Ghost Themes && Votes UIs.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409819
   time: '2026-10-26T07:26:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6870
+- author: Johnny
+  changes:
+  - message: Yeah guess what, armament crates despawn WAY QUICKER NOW, you cant blame crates for lag anymore.
+    type: Tweak
+  id: 409820
+  time: '2026-10-26T15:31:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6872
+- author: Johnny
+  changes:
+  - message: Changed revolutionary portal items and weights based off feedback and testing.
+    type: Tweak
+  id: 409821
+  time: '2026-10-26T15:31:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6872
 Order: -1
