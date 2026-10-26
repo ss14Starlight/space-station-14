@@ -10,4 +10,11 @@ public sealed partial class JobPrototype
     /// </summary>
     [DataField]
     public ProtoId<RoleTypePrototype> RoleType = "Neutral";
+
+    /// <summary>
+    /// Optional displayed faction when this job's mind has no active antagonist or special role.
+    /// Defaults to the faction of the job's role type.
+    /// </summary>
+    [DataField]
+    public LocId? RoleSubtype;
 }

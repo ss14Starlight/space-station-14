@@ -113,9 +113,12 @@ public sealed partial class ChangelingDevourComponent : Component
     {
         DamageDict = new()
         {
-            { "Slash", 20},
-            { "Piercing", 20 },
-            { "Blunt", 10 },
+            // Starlight-start: Upstream removed per-tick devour damage
+            { "Slash", 43.2 },
+            { "Piercing", 43.2 },
+            { "Blunt", 21.6 },
+            { "Cellular", 162 },
+            // Starlight-end
         },
     };
 

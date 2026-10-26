@@ -10,6 +10,8 @@ using Content.Shared.Mind;
 using Content.Shared.Pinpointer;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared.Objectives.Systems;
+using Content.Shared.Random.Helpers;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
@@ -19,6 +21,7 @@ public sealed partial class TerminatorRuleSystem : GameRuleSystem<TerminatorRule
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private EmpSystem _emp = default!;
     [Dependency] private MindSystem _mind = default!;
+    [Dependency] private TargetSystem _target = default!;
     [Dependency] private IRobustRandom _random = default!;
 
     private const float EmpPower = 2.5f;
@@ -71,7 +74,7 @@ public sealed partial class TerminatorRuleSystem : GameRuleSystem<TerminatorRule
 
     private Entity<MindComponent>? FindValidPlayer()
     {
-        var validPlayers = _mind.GetAliveHumans().Where(mind => !HasComp<NoObjectiveTargetComponent>(mind.Comp.OwnedEntity)).ToHashSet();
+        var validPlayers = _target.GetAliveHumans().Where(mind => !HasComp<NoObjectiveTargetComponent>(mind.Comp.OwnedEntity)).ToHashSet();
         if (validPlayers.Count == 0) return null;
         return _random.Pick(validPlayers);
     }
