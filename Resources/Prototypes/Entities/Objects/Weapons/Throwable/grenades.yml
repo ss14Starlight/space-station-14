@@ -386,7 +386,7 @@
 - type: entity
   name: holy hand grenade
   description: O Lord, bless this thy hand grenade, that with it thou mayst blow thine enemies to tiny bits, in thy mercy.
-  parent: [TimerGrenadeBase, BaseSyndicateContraband]
+  parent: [ BaseContrabandTier4, TimerGrenadeBase, BaseSyndicateContraband ]
   id: HolyHandGrenade
   components:
   - type: Sprite

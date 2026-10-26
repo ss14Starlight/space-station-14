@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseItem, BaseSyndicateContraband]
+  parent: [ BaseContrabandTier4, BaseItem, BaseSyndicateContraband ]
   id: AccessBreakerUnlimited
   suffix: Unlimited
   name: authentication disruptor
@@ -15,7 +15,7 @@
     sprite: Objects/Tools/access_breaker.rsi
 
 - type: entity
-  parent: AccessBreakerUnlimited
+  parent: [ BaseContrabandTier4, AccessBreakerUnlimited ]
   id: AccessBreaker
   suffix: Limited
   components:

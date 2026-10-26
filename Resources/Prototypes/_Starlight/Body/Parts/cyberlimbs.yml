@@ -923,7 +923,7 @@
 - type: entity
   id: LeftArmCyberMantisBlade
   name: "left mantis blade arm"
-  parent: [PartCyber, BaseLeftArm, BaseSyndicateContraband]
+  parent: [ BaseContrabandTier4, PartCyber, BaseLeftArm, BaseSyndicateContraband ]
   description: A shady, surgically-installed cybernetic arm favored by syndicate operatives that favor discrete weaponry. Features a deployable mantis blade, specializing in breaking and prying.
   components:
     - type: BaseLayerId
@@ -988,7 +988,7 @@
 - type: entity
   id: RightArmCyberMantisBlade
   name: "right mantis blade arm"
-  parent: [PartCyber, BaseRightArm, BaseSyndicateContraband]
+  parent: [ BaseContrabandTier4, PartCyber, BaseRightArm, BaseSyndicateContraband ]
   description: A shady, surgically-installed cybernetic arm favored by syndicate operatives that favor discrete weaponry. Features a deployable mantis blade, specializing in breaking and prying.
   components:
     - type: BaseLayerId
