@@ -68,12 +68,12 @@ public async Task StealHeartObjectiveTest()
         var heart = hearts.GetHearts(target).Single();
 
         tags.RemoveTag(heart, heartTag);
-        Assert.That(filter.Filter(targetMind, ownerMind, (EntityManager) SEntMan, minds), Is.True,
+        Assert.That(filter.Filter(targetMind, ownerMind, (EntityManager) SEntMan), Is.True,
             "A heart without the Heart tag must not qualify.");
 
         tags.AddTag(heart, heartTag);
-        Assert.That(filter.Filter(targetMind, ownerMind, (EntityManager) SEntMan, minds), Is.False);
-        Assert.That(filter.Filter(ipcMind, ownerMind, (EntityManager) SEntMan, minds), Is.True,
+        Assert.That(filter.Filter(targetMind, ownerMind, (EntityManager) SEntMan), Is.False);
+        Assert.That(filter.Filter(ipcMind, ownerMind, (EntityManager) SEntMan), Is.True,
             "IPC pumps must not qualify.");
 
         var weighted = new WeightedAlivePool();
@@ -100,7 +100,7 @@ public async Task StealHeartObjectiveTest()
             "An unrelated heart must not count.");
 
         Assert.That(bodies.RemoveOrgan(heart), Is.True);
-        Assert.That(filter.Filter(targetMind, ownerMind, (EntityManager) SEntMan, minds), Is.True,
+        Assert.That(filter.Filter(targetMind, ownerMind, (EntityManager) SEntMan), Is.True,
             "A person with no heart must not be selected.");
 
         containers.Insert(heart, inventory);

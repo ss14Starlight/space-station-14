@@ -7,8 +7,7 @@ namespace Content.Server._Starlight.Objectives.Targeting;
 
 public sealed partial class HasHeartMindFilter : MindFilter
 {
-    protected override bool ShouldRemove(Entity<MindComponent> mind, EntityUid? exclude,
-        IEntityManager entMan, SharedMindSystem mindSys)
+    protected override bool ShouldRemove(Entity<MindComponent> mind, EntityUid? exclude, IEntityManager entMan)
         => mind.Comp.OwnedEntity is not { } body ||
             !entMan.System<StealHeartConditionSystem>().GetHearts(body).Any();
 }
