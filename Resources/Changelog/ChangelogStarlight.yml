@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Added true remote control.
-    type: Add
-  id: 409431
-  time: '2026-10-13T20:56:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6574
-- author: Floximo
-  changes:
   - message: AI can now remote control every remote controllable thing that is not already controlled.
     type: Add
   id: 409432
@@ -2799,4 +2792,11 @@ Entries:
   id: 409830
   time: '2026-10-26T22:54:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6877
+- author: Floximo
+  changes:
+  - message: Visuals for communication consoles (merged and light intensity) repaired.
+    type: Fix
+  id: 409831
+  time: '2026-10-26T23:16:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6889
 Order: -1
