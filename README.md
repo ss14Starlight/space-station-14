@@ -34,6 +34,14 @@ Space-Station 14 has [docs site](https://docs.spacestation14.io/) documentation 
 
 ---
 
+## AI-generated contributions disclaimer
+
+This project does not accept wholesale AI-generated contributions. Due diligence for quality assurance, cleanup, and verification is the responsibility of the contributor. Any submission that is low quality and has not seen this due diligence will be rejected outright.
+
+The use of assistant tools such as an IDE's autocomplete, coderabbitai, debuggers or AI parsing of large amounts of data and error logs, etc is always acceptable.
+
+---
+
 ## License
 
 
