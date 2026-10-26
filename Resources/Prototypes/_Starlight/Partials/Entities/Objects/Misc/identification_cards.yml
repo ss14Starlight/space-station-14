@@ -8,3 +8,60 @@
     sound:
       path: /Audio/_Starlight/Items/Handling/id_card_drop1.ogg
 
+
+- type: !PartialOnly entity
+  id: CaptainIDCard
+  components:
+  - type: Contraband
+    tier: Tier5
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: HoPIDCard
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: CEIDCard
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: CMOIDCard
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: RDIDCard
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: HoSIDCard
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: QuartermasterIDCard
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+

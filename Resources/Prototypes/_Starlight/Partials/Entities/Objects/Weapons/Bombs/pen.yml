@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: PenExplodingBox
+  components:
+  - type: Contraband
+    tier: Tier4
+    contrabandType: Syndicate

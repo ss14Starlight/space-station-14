@@ -37,7 +37,7 @@
           Piercing: 3
 
 - type: entity
-  parent: [ BaseContrabandTier4, BaseItem, BaseSyndicateContraband ] # Starlight
+  parent: [BaseItem, BaseSyndicateContraband]
   id: PenExplodingBox
   name: exploding pen box
   description: A small box containing an exploding pen. Packaging disintegrates when opened, leaving no evidence behind.

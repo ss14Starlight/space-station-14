@@ -184,3 +184,15 @@
   - type: ItemBorgModule
     hands:
     - item: LicoxideHypo # It's not that good. They can have it.
+
+- type: !PartialOnly entity
+  id: BorgModuleSyndicateWeapon
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: BorgModuleMartyr
+  components:
+  - type: Contraband
+    tier: Tier4

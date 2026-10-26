@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseContrabandTier5, BaseStructure, StructureWheeled, BaseMajorContraband] # Starlight
+  parent: [BaseStructure, StructureWheeled, BaseMajorContraband]
   id: NuclearBomb
   categories: [ ShouldMapStation ] # Starlight
   name: nuclear fission explosive

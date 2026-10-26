@@ -124,7 +124,7 @@
   # Starlight-end
 
 - type: entity
-  parent: [ BaseContrabandTier1, Matchbox, BaseSyndicateContraband ] # Starlight
+  parent: [Matchbox, BaseSyndicateContraband]
   id: GorlexMatchbox
   name: Gorlex match box
   description: "A pneumatic match box styled after the Gorlex Marauders' equipment. Contains 24 matches."
@@ -148,7 +148,7 @@
 
 - type: entity
   name: match stick
-  parent: [ BaseContrabandTier1, Matchstick, BaseSyndicateContraband ] # Starlight
+  parent: [Matchstick, BaseSyndicateContraband]
   id: GorlexMatchstick
   description: A military grade match stick, used for lighting fine smokables and noncombatants alike.
   components:

@@ -36,7 +36,7 @@
 
 - type: entity
   id: ShuttleGunFriendshipCircuitboard
-  parent: [ BaseContrabandTier4, BaseMachineCircuitboard, BaseSyndicateContraband ] # Starlight
+  parent: BaseMachineCircuitboard
   name: EXP-320g "Friendship" machine board
   description: A machine printed circuit board for an EXP-320g "Friendship".
   suffix: DO NOT MAP, Machine Board

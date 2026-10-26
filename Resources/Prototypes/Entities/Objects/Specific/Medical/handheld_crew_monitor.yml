@@ -1,7 +1,7 @@
 - type: entity
   name: handheld crew monitor
   categories: [ DoNotMap ]
-  parent: [ BaseContrabandTier4, PowerCellSlotMediumItem, BaseHandheldComputer, BaseGrandTheftContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
+  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer, BaseGrandTheftContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   # CMO-only bud, don't add more.
   id: HandheldCrewMonitor
   description: A hand-held crew monitor displaying the status of suit sensors.

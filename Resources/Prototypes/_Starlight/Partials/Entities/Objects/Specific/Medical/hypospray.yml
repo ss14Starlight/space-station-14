@@ -3,3 +3,9 @@
   components:
   - type: RefillableSolution
     solution: hypospray
+
+- type: !PartialOnly entity
+  id: Hypospray
+  components:
+  - type: Contraband
+    tier: Tier4

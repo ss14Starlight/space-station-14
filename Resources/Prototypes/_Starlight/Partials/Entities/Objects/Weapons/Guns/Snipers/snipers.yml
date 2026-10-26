@@ -20,6 +20,8 @@
 - type: !PartialOnly entity
   id: WeaponSniperHristov
   components:
+  - type: Contraband
+    tier: Tier4
   - type: !Remove GunRequiresWield
   - type: GunWieldBonus
     angleIncreaseDivider: 1

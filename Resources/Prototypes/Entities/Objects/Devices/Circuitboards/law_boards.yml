@@ -126,7 +126,7 @@
 
 - type: entity
   id: SyndimovCircuitBoard
-  parent: [ BaseContrabandTier4, BaseSiliconLawboard, BaseSyndicateContraband ] # Starlight
+  parent: [BaseSiliconLawboard, BaseSyndicateContraband]
   name: law board (Syndimov)
   description: An electronics board containing the Syndimov lawset.
   components:

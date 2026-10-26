@@ -78,3 +78,9 @@
     angleIncreaseDivider: 2
   - type: GunHeat
     heatPerShot: 1000
+
+- type: !PartialOnly entity
+  id: WeaponAntiqueLaser
+  components:
+  - type: Contraband
+    tier: Tier4

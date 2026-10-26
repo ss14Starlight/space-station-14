@@ -566,7 +566,7 @@
         tableId: HappyHonkToyUnsafeEntityTable
 
 - type: entity
-  parent: [ BaseContrabandTier1, HappyHonkNukie ] # Starlight
+  parent: HappyHonkNukie
   id: HappyHonkNukieSnacks
   suffix: Toy Unsafe, Snacks
   name: syndicate snack box

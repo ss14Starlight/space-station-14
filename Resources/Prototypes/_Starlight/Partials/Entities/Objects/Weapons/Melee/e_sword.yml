@@ -49,3 +49,9 @@
     - type: Contraband
       tier: Tier3
       contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: EnergySword
+  components:
+  - type: Contraband
+    tier: Tier4

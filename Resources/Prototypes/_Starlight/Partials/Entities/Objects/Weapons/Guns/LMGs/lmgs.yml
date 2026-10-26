@@ -19,3 +19,9 @@
     maxAngle: 14
     angleIncrease: 1
     angleDecay: 14
+
+- type: !PartialOnly entity
+  id: WeaponLightMachineGunL6
+  components:
+  - type: Contraband
+    tier: Tier4
