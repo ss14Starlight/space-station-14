@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Atmos.Piping.Components;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Administration;
 using Content.Shared.Atmos.Components;
@@ -34,7 +35,22 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
     /// <returns>All entities part of the network, restricted to the same layer.</returns>
     [CommandImplementation("list")]
     public IEnumerable<EntityUid> List([PipedArgument] EntityUid root, NodeGroupID group)
-        => CollectNetwork(root, group);
+        => CollectNetwork(root, group, out _);
+
+    [CommandImplementation("getborders")]
+    public IEnumerable<EntityUid> GetBorders([PipedArgument] EntityUid root, NodeGroupID group)
+    {
+        CollectNetwork(root, group, out var borders);
+        return borders;
+    }
+
+    [CommandImplementation("getconflicts")]
+    public IEnumerable<EntityUid> GetConflicts([PipedArgument] EntityUid root, NodeGroupID group, AtmosPipeLayer layer)
+    {
+        var net = CollectNetwork(root, group, out _);
+        var conflicts = FindConflicts(net, layer);
+        return conflicts;
+    }
 
     /// <summary>
     /// Report which entities would block moving the network to the given layer.
@@ -44,13 +60,12 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
     /// <param name="group">The network type</param>
     /// <param name="layer">The targeted layer</param>
     /// <returns>The entities that would fail to move (error), or would fail to partake (warning).</returns>
-    [CommandImplementation("check")]
+    [CommandImplementation("dryrun")]
     public IEnumerable<EntityUid> Check(IInvocationContext ctx, [PipedArgument] EntityUid root, NodeGroupID group,
         AtmosPipeLayer layer)
     {
-        var net = CollectNetwork(root, group);
+        var net = CollectNetwork(root, group, out var borders);
         var conflicts = FindConflicts(net, layer);
-        var unmovable = FindUnmovable(net, group, layer);
 
         // Conflicts cause an early return as it blocks the operation entirely. Warnings are not included in this case
         // to prevent confusing the user.
@@ -60,13 +75,18 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
             return conflicts;
         }
 
+        var unmovable = FindUnmovable(net, group, layer);
+
         if (unmovable.Count > 0)
             ctx.WriteLine(
-                $"Warning: {unmovable.Count} entities can't use {layer} and would be left behind: {string.Join(", ", unmovable.Select(EntName))}.");
-        if (conflicts.Count == 0 && unmovable.Count == 0)
+                $"Warning: {unmovable.Count} entities can't use {layer} and would be left behind.");
+        if (borders.Count > 0)
+            ctx.WriteLine(
+                $"Info: {borders.Count} border entities have a different color and are excluded.");
+        if (unmovable.Count == 0 && borders.Count == 0)
             ctx.WriteLine($"Success: the {group} network ({net.Count} entities) can move to {layer} cleanly.");
 
-        return conflicts.Concat(unmovable).Distinct();
+        return unmovable.Concat(borders).Distinct();
     }
 
     /// <summary>
@@ -77,12 +97,12 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
     /// <param name="group">The network type</param>
     /// <param name="layer">The target layer</param>
     /// <returns>The entities that would fail to move (error), or failed to partake (warning).</returns>
-    [CommandImplementation("set")]
-    public IEnumerable<EntityUid> Set(IInvocationContext ctx, [PipedArgument] EntityUid root, NodeGroupID group,
+    [CommandImplementation("apply")]
+    public IEnumerable<EntityUid> Apply(IInvocationContext ctx, [PipedArgument] EntityUid root, NodeGroupID group,
         AtmosPipeLayer layer)
     {
         _layers ??= GetSys<AtmosPipeLayersSystem>();
-        var net = CollectNetwork(root, group);
+        var net = CollectNetwork(root, group, out var borders);
 
         // Don't do anything if there are any conflicts.
         var conflicts = FindConflicts(net, layer);
@@ -109,14 +129,15 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
 
         // Report entities left behind.
         var unmoved = FindUnmovable(net, group, layer);
+
         if (unmoved.Count > 0)
-        {
             ctx.WriteLine(
                 $"Warning: {unmoved.Count} entities can't use {layer} and were left behind (now disconnected): {string.Join(", ", unmoved.Select(EntName))}.");
-            return unmoved;
-        }
+        if (borders.Count > 0)
+            ctx.WriteLine(
+                $"Info: {borders.Count} entities border this network on a different colour and were left untouched: {string.Join(", ", borders.Select(EntName))}.");
 
-        return Array.Empty<EntityUid>();
+        return unmoved.Count > 0 ? unmoved : borders;
     }
 
     #endregion
@@ -192,31 +213,54 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
     /// <summary>
     /// Finds all entities on the target network that match the layer of the root entity.
     /// </summary>
-    private HashSet<EntityUid> CollectNetwork(EntityUid root, NodeGroupID group)
+    private HashSet<EntityUid> CollectNetwork(EntityUid root, NodeGroupID group, out HashSet<EntityUid> borders)
     {
         var result = new HashSet<EntityUid>();
+        borders = new HashSet<EntityUid>();
+        var color = GetPipeColor(root);
 
         if (!TryComp<NodeContainerComponent>(root, out var rootContainer) ||
             !GetRootLayer(root, rootContainer, group, out var layer))
             return result;
 
         var nodeQuery = GetEntityQuery<NodeContainerComponent>();
-        var visited = new HashSet<INodeGroup>();
-        var queue = new Queue<INodeGroup>();
+        var xformQuery = GetEntityQuery<TransformComponent>();
+        var visited = new HashSet<PipeNode>();
+        var queue = new Queue<PipeNode>();
 
         // Flood fill, starting from the root.
-        EnqueueGroups(rootContainer, group, layer, visited, queue);
+        EnqueueNodes(rootContainer, group, layer, visited, queue);
 
-        while (queue.TryDequeue(out var pipeNet))
+        while (queue.TryDequeue(out var node))
         {
-            foreach (var node in pipeNet.Nodes)
-            {
-                result.Add(node.Owner);
+            result.Add(node.Owner);
 
-                // Some entities don't interconnect the nodes (e.g. a pump has two nodes on the same layer).
-                // We jump this gap and enqueue the other network so long as it matches the layer.
-                if (nodeQuery.TryGetComponent(node.Owner, out var container))
-                    EnqueueGroups(container, group, layer, visited, queue);
+            // Some entities don't interconnect the nodes (e.g. a pump has two nodes on the same layer).
+            // We jump this gap and enqueue the other network so long as it matches the layer.
+            if (nodeQuery.TryGetComponent(node.Owner, out var container))
+                EnqueueNodes(container, group, layer, visited, queue);
+
+            var xform = Transform(node.Owner);
+            if (xform.GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
+                continue;
+
+            foreach (var reachable in node.GetReachableNodes((node.Owner, xform), nodeQuery, xformQuery,
+                         (grid, gridComp), EntityManager))
+            {
+                if (reachable is not PipeNode pipe)
+                    continue;
+
+                if (pipe.CurrentPipeLayer != layer)
+                    continue;
+
+                if (GetPipeColor(pipe.Owner) != color)
+                {
+                    borders.Add(pipe.Owner);
+                    continue;
+                }
+
+                if (visited.Add(pipe))
+                    queue.Enqueue(pipe);
             }
         }
 
@@ -240,7 +284,10 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
         return false;
     }
 
-    private bool GetRootLayer(EntityUid root, NodeContainerComponent container, NodeGroupID group,
+    private bool GetRootLayer(
+        EntityUid root,
+        NodeContainerComponent container,
+        NodeGroupID group,
         out AtmosPipeLayer layer)
     {
         if (TryComp<AtmosPipeLayersComponent>(root, out var layers))
@@ -262,24 +309,30 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
         return false;
     }
 
-    private static void EnqueueGroups(NodeContainerComponent container, NodeGroupID group, AtmosPipeLayer layer,
-        HashSet<INodeGroup> visited, Queue<INodeGroup> queue)
+    private static void EnqueueNodes(
+        NodeContainerComponent container,
+        NodeGroupID group,
+        AtmosPipeLayer layer,
+        HashSet<PipeNode> visited,
+        Queue<PipeNode> queue)
     {
         foreach (var node in container.Nodes.Values)
         {
             if (node is PipeNode pipe
                 && pipe.NodeGroupID == group
                 && pipe.CurrentPipeLayer == layer
-                && pipe.NodeGroup is { } pipeNet
-                && visited.Add(pipeNet))
+                && visited.Add(pipe))
             {
-                queue.Enqueue(pipeNet);
+                queue.Enqueue(pipe);
             }
         }
     }
 
     private static bool CanUseLayer(AtmosPipeLayersComponent comp, AtmosPipeLayer layer)
         => !comp.PipeLayersLocked && (int)layer < comp.NumberOfPipeLayers;
+
+    private Color GetPipeColor(EntityUid uid)
+        => TryComp<AtmosPipeColorComponent>(uid, out var comp) ? comp.Color : Color.White;
 
     #endregion
 
