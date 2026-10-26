@@ -1,18 +1,4 @@
 Entries:
-- author: Tjmaxmillion
-  changes:
-  - message: Recalling NRT now needs any two of the Captain, HOS and NTR and one command; any one of the Captain, HOS and NTR and three command.
-    type: Tweak
-  id: 409435
-  time: '2026-10-14T05:22:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6635
-- author: Maxim
-  changes:
-  - message: Virtual PDA for the Station AI.
-    type: Add
-  id: 409436
-  time: '2026-10-14T05:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6637
 - author: wonderfulnewworld, Killer Tamashi
   changes:
   - message: Neocytes no longer get stunned by EMPs, only knocked down.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409834
   time: '2026-10-26T23:57:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6798
+- author: wonderfulnewworld
+  changes:
+  - message: Gamerules/presets with cooldowns now actually include themselves in the cooldown. (Weird corner case with Zombies).
+    type: Tweak
+  id: 409835
+  time: '2026-10-26T23:58:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6818
+- author: wonderfulnewworld
+  changes:
+  - message: Secret Zombieteors should no longer roll into Secret Zombie.
+    type: Fix
+  id: 409836
+  time: '2026-10-26T23:58:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6818
 Order: -1
