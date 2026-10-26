@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: 'Added a new objective for traitors: Hijack the Automated Trade Station. Your uplink will have a hijack beacon for you to use if you have this objective.'
-    type: Add
-  id: 409418
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Wizden Team
-  changes:
   - message: Humanoids can now break out of locked genpop lockers.
     type: Tweak
   id: 409419
@@ -2799,4 +2792,11 @@ Entries:
   id: 409817
   time: '2026-10-26T07:26:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6865
+- author: baltdev
+  changes:
+  - message: Changed "(surgeon) starts (action)" to "(surgeon) starts to (action)" in surgery popups.
+    type: Tweak
+  id: 409818
+  time: '2026-10-26T07:26:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6871
 Order: -1
