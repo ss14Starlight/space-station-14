@@ -247,8 +247,8 @@
     suitstorage: WeaponDisablerSMG
   storage: !Clear
     back:
-    - WeaponPistolMk58Nonlethal
-    - MagazinePistolRubber
+    - WeaponPistolMk58
+    - MagazinePistolSP
     - TearGasGrenade
     - GrenadeStinger
     - Flash
@@ -489,8 +489,8 @@
     - MagazineGrenadeCleanade
     - MagazineGrenadeCleanade
     belt:
-    - WeaponPistolMk58Nonlethal
-    - MagazinePistolRubber
+    - WeaponPistolMk58
+    - MagazinePistolSP
     - MegaSprayBottleSpaceCleaner
     - WireBrush
     - LightReplacer

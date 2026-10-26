@@ -48,30 +48,6 @@
       price: 150
 
 - type: entity
-  id: WeaponPistolMk58Nonlethal
-  parent: WeaponPistolMk58 # Blimpuf
-  suffix: Non-lethal
-  components:
-    - type: ItemSlots
-      slots:
-        gun_magazine:
-          name: item-slot-component-slot-name-magazine
-          startingItem: MagazinePistolRubber
-          insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-          ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-          priority: 2
-          whitelist:
-            tags:
-              - MagazinePistol
-        gun_chamber:
-          name: item-slot-component-slot-name-chamber
-          startingItem: CartridgePistolRubber
-          priority: 1
-          whitelist:
-            tags:
-              - CartridgePistol
-
-- type: entity
   name: N1984
   parent: [ BaseContrabandTier3, WeaponPistolN1984, BaseSecurityContraband ] # Blimpuf
   id: WeaponPistolN1984Nonlethal
