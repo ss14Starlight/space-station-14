@@ -1,27 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: '"Reduce motion of visual effects" now works for drunk and blood loss status.'
-    type: Add
-  id: 409413
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Wizden Team
-  changes:
-  - message: Hot gasses now have a visible distortion effect.
-    type: Add
-  id: 409414
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Wizden Team
-  changes:
-  - message: Lathe machine interfaces now display their proper names.
-    type: Tweak
-  id: 409415
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Wizden Team
-  changes:
   - message: The value of tier 1 tech disks has been lowered.
     type: Tweak
   id: 409416
@@ -2799,4 +2778,25 @@ Entries:
   id: 409812
   time: '2026-10-25T18:16:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6853
+- author: Rinary
+  changes:
+  - message: 'Added combustion turbine: alternative for TEG.'
+    type: Add
+  id: 409813
+  time: '2026-10-25T19:53:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6672
+- author: Rinary
+  changes:
+  - message: Added static igniter, same igniter but as machine/structure, has 2 states, on and off, so you can just turn it on and it will burn all gases it can.
+    type: Add
+  id: 409814
+  time: '2026-10-25T19:53:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6672
+- author: redmushie
+  changes:
+  - message: Job requirements tooltip in the Job Priorities window shows colors correctly again.
+    type: Fix
+  id: 409815
+  time: '2026-10-25T21:25:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6868
 Order: -1
