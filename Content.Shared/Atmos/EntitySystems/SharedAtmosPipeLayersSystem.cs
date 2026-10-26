@@ -126,8 +126,8 @@ public abstract partial class SharedAtmosPipeLayersSystem : EntitySystem
         if (!TryComp<ToolComponent>(args.Used, out var tool) || !_tool.HasQuality(args.Used, ent.Comp.Tool, tool))
             return;
 
-        if (TryComp<SubFloorHideComponent>(ent, out var subFloorHide) && subFloorHide.IsUnderCover // Starlight-edit
-            && !HasComp<BypassInteractionChecksComponent>(args.User)) // Starlight-edit: Admins bypass
+        if (TryComp<SubFloorHideComponent>(ent, out var subFloorHide) && subFloorHide.IsUnderCover // Starlight-start: Admins bypass
+            && !HasComp<BypassInteractionChecksComponent>(args.User)) // Starlight-end
         {
             _popup.PopupClient(Loc.GetString("atmos-pipe-layers-component-cannot-adjust-pipes"), ent, args.User);
             return;
