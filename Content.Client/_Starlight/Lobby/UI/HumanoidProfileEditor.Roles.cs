@@ -226,6 +226,7 @@ public sealed partial class HumanoidProfileEditor
 
                 var loadoutWindowBtn = new Button
                 {
+                    Name = "LoadoutButton",
                     Text = Loc.GetString("loadout-window"),
                     HorizontalAlignment = HAlignment.Right,
                     VerticalAlignment = VAlignment.Center,
@@ -277,6 +278,9 @@ public sealed partial class HumanoidProfileEditor
             prioritySelector.Select(Profile?.JobPreferences.Contains(jobId) == true ? 0 : 1);
     }
 
+    public LoadoutWindow? LoadoutWindow => _loadoutWindow;
+    public event Action<LoadoutWindow>? OnLoadoutWindowOpened;
+
     private void OpenLoadout(
         JobPrototype? jobProto,
         RoleLoadout roleLoadout,
@@ -304,6 +308,7 @@ public sealed partial class HumanoidProfileEditor
 
         _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
         _loadoutWindow.OpenCenteredLeft();
+        OnLoadoutWindowOpened?.Invoke(_loadoutWindow);
 
         _loadoutWindow.OnNameChanged += name =>
         {
@@ -363,6 +368,7 @@ public sealed partial class HumanoidProfileEditor
 
         _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
         _loadoutWindow.OpenCenteredLeft();
+        OnLoadoutWindowOpened?.Invoke(_loadoutWindow);
 
         _loadoutWindow.OnNameChanged += name =>
         {

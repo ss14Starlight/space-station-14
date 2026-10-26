@@ -55,12 +55,9 @@ public sealed partial class CharacterPickerButton : ContainerButton
         ToggleMode = true;
         Group = group;
         Profile = profile;
-        View.Initialize(prefMan, protoMan, playerMan); //Starlight
-        View.LoadPreview(profile);
 
         if (profile is HumanoidCharacterProfile humanoid)
         {
-
             View.Initialize(prefMan, protoMan, playerMan);
             View.LoadPreview(profile);
 

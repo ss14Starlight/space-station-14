@@ -1,0 +1,12 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'pending-preferences-window-title'}"
+               MinSize="400 120">
+    <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="8">
+        <RichTextLabel Name="InfoLabel" HorizontalExpand="True" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4" HorizontalAlignment="Right">
+            <Button Name="ReviewButton" Access="Public" Text="{Loc 'pending-preferences-review-button'}" />
+            <Button Name="AcceptButton" Access="Public" Text="{Loc 'pending-preferences-accept-button'}" StyleClasses="ButtonColorGreen" />
+            <Button Name="RejectButton" Access="Public" Text="{Loc 'pending-preferences-reject-button'}" StyleClasses="ButtonColorRed" />
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>
