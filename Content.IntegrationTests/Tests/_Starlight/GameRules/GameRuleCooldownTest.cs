@@ -90,7 +90,7 @@ public sealed class GameRuleCooldownTest : GameTest
         id: TestSharedCooldownSecondWeights
         weights:
             {OtherPreset}: 1
-            TestSharedCooldownFallback: 1
+            TestSharedCooldownFallback: 0.001
 
     -   type: weightedRandom
         id: TestSharedCooldownBypassWeights
