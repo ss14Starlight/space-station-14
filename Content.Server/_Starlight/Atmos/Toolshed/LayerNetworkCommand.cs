@@ -250,8 +250,7 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
             if (xform.GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
                 continue;
 
-            foreach (var reachable in node.GetReachableNodes((node.Owner, xform), nodeQuery, xformQuery,
-                         (grid, gridComp), EntityManager))
+            foreach (var reachable in node.GetReachableNodes((node.Owner, xform), nodeQuery, xformQuery, (grid, gridComp), EntityManager))
             {
                 if (reachable is not PipeNode pipe)
                     continue;
