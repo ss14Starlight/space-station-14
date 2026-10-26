@@ -1,11 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: Drones are no longer shuntables and support the intellicard now.
-    type: Tweak
-  id: 409434
-  time: '2026-10-13T20:56:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6574
 - author: Tjmaxmillion
   changes:
   - message: Recalling NRT now needs any two of the Captain, HOS and NTR and one command; any one of the Captain, HOS and NTR and three command.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409833
   time: '2026-10-26T23:36:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6827
+- author: Johnny
+  changes:
+  - message: Changed the shuttle bundle to actually hold a shuttle board.
+    type: Tweak
+  id: 409834
+  time: '2026-10-26T23:57:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6798
 Order: -1
