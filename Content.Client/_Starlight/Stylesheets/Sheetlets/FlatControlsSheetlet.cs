@@ -28,7 +28,10 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
         var proto = theme.Proto;
         ISliderConfig sliderCfg = sheet;
 
-        var lineEditBox = FlatBox.Bordered(proto.Background, proto.Border, proto.SecondaryBorderThickness)
+        StyleBox lineEditBox = theme.ClassicDecor
+            ? FlatBox.Chamfered(proto.Background, proto.Border, proto.SecondaryBorderThickness)
+            : FlatBox.Bordered(proto.Background, proto.Border, proto.SecondaryBorderThickness);
+        lineEditBox = lineEditBox
             .WithContentMargin(StyleBox.Margin.Vertical, 3)
             .WithContentMargin(StyleBox.Margin.Horizontal, 5);
 
