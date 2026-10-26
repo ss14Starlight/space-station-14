@@ -5,7 +5,6 @@
     tags:
     - Condiment
 
-# Vending Machines Prices
 - type: !PartialOnly entity
   id: BaseFoodCondimentPacket
   components:
@@ -15,25 +14,58 @@
 - type: !PartialOnly entity
   id: BaseFoodCondimentBottle
   components:
-  - type: SurgeryTool
   - type: BoneGel
-    successRate: 0.01 # How.
+    successRate: 0.01
     speed: 0.5
     startSound:
       path: /Audio/Items/Medical/ointment_begin.ogg
     endSound:
       path: /Audio/Items/Medical/ointment_end.ogg
+  - type: SurgeryTool
 
 - type: !PartialOnly entity
-  id: !type:CreateVariants
-    values:
-    - FoodCondimentBottleColdsauce
-    - FoodCondimentBottleEnzyme
-    - FoodCondimentBottleVinegar
-    - FoodCondimentBottleHotsauce
-    - FoodCondimentBottleKetchup
-    - FoodCondimentBottleBBQ
+  id: FoodCondimentBottleColdsauce
+  components:
+  - type: Tag
+    tags: !Clear
+    - Condiment
+    - Coldsauce
+
+- type: !PartialOnly entity
+  id: FoodCondimentBottleEnzyme
+  components:
+  - type: Tag
+    tags: !Clear
+    - Condiment
+    - Enzyme
+
+- type: !PartialOnly entity
+  id: FoodCondimentBottleVinegar
   components:
   - type: Tag
     tags:
     - Condiment
+
+- type: !PartialOnly entity
+  id: FoodCondimentBottleHotsauce
+  components:
+  - type: Tag
+    tags: !Clear
+    - Condiment
+    - Hotsauce
+
+- type: !PartialOnly entity
+  id: FoodCondimentBottleKetchup
+  components:
+  - type: Tag
+    tags: !Clear
+    - Condiment
+    - Ketchup
+
+- type: !PartialOnly entity
+  id: FoodCondimentBottleBBQ
+  components:
+  - type: Tag
+    tags: !Clear
+    - Condiment
+    - BBQsauce
