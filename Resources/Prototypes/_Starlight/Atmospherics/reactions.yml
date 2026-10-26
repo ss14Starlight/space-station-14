@@ -1,4 +1,6 @@
 # Folded all plasma burn reactions into one
+# yaml has no "or" function for minimumrequirements, so adding oxygen and pluoxium checks to the reaction C# itself
+# can't keep both plasma fire prototypes separate and have them trigger the same effect, because if a mix of both oxy plux is being burnt i have a sneaking suspicion that it'll just execute the reaction C# twice per tick instead of once
 - type: gasReaction
   id: PlasmaCombinedFire
   priority: -2

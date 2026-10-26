@@ -42,6 +42,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
             {
                 // oxygen burn rate
                 var oxygenBurnRate = Atmospherics.OxygenBurnRateBase - temperatureScale;
+
                 // pluox is 8x as effective as oxygen, so 8x less pluoxium will be burnt per mol of plasma than oxygen, thus we divide the oxygen burn rate by 8 for pluox burn rate
                 var pluoxiumBurnRate = oxygenBurnRate / PluoxiumFactor;
                 var plasmaBurnRate = 0f;
@@ -55,8 +56,9 @@ namespace Content.Server._Starlight.Atmos.Reactions
 
                 // Supersaturation makes tritium.
                 // supersaturation starts at 32:1 oxidiser:plasma and reaches maximum at 96:1 oxidiser:plasma
-                // we use the effective oxidiser variable to get the ratio of oxidiser to plasma relative to oxygen, controlling how much of the plasma burn is converted to tritium vs CO2
-                // so instead of 1.03%-3.03% plasma to oxygen alone for supersaturation, or appx. 7.7%-20% plasma to pluox alone concentration, its now dynamic
+                // we use the effective oxidiser variable to get the ratio of oxidiser to plasma, controlling how much of the plasma burn is converted to tritium vs CO2
+                // so while it still preserves the values of 1.03%-3.03% plasma to pure oxygen and appx. 7.7%-20% plasma to pure pluox  for supersaturation
+                // supersaturation is now dynamic and scales based on the combined effective oxidiser-to-plasma ratio, regardless of the proportions of oxygen and pluoxium in the mixture
                 var oxidiserRatio = effectiveOxidiser / initialPlasmaMoles;
                 var supersaturation = Math.Clamp((oxidiserRatio - Atmospherics.SuperSaturationEnds) /
                                                  (Atmospherics.SuperSaturationThreshold -
@@ -68,12 +70,12 @@ namespace Content.Server._Starlight.Atmos.Reactions
                     plasmaBurnRate = temperatureScale * (effectiveOxidiser / Atmospherics.PlasmaOxygenFullburn) / Atmospherics.PlasmaBurnRateDelta;
                 if (plasmaBurnRate > Atmospherics.MinimumHeatCapacity)
                 {
-                    // limiting plasma consumption either to the calculated burn rate, the amount of plasma present, or the amount of avaliable pluoxium present given the burn ratio - whichever is lowest
+                    // limiting plasma consumption either to the calculated burn rate, the amount of plasma present, or the amount of effective oxidiser present given the burn ratio - whichever is lowest
                     plasmaBurnRate = MathF.Min(plasmaBurnRate, MathF.Min(initialPlasmaMoles, effectiveOxidiser / oxygenBurnRate));
                     mixture.SetMoles(Gas.Plasma, initialPlasmaMoles - plasmaBurnRate);
                     // total oxidiser consumed
                     var oxidiserConsumed = MathF.Min(effectiveOxidiser, plasmaBurnRate * oxygenBurnRate);
-                    // pluox consumed first
+                    // pluox consumed first, remove the amount of oxidising factor it contributed to the total oxidiser consumed, if any
                     var pluoxConsumed = MathF.Min(initialPluoxium, oxidiserConsumed / PluoxiumFactor);
                     // calculate how much effective oxidiser remains after pluoxium is consumed, if any
                     var remainingOxidiser = oxidiserConsumed - (pluoxConsumed * PluoxiumFactor);
