@@ -10,7 +10,5 @@ public abstract partial class SharedMeleeWeaponSystem
     private static readonly ProtoId<TagPrototype> PersonalEnergyDomeTag = "PersonalEnergyDome";
 
     private bool IsPersonalEnergyDome(EntityUid entity)
-    {
-        return _tag.HasTag(entity, PersonalEnergyDomeTag);
-    }
+        => _tag.HasTag(entity, PersonalEnergyDomeTag);
 }
