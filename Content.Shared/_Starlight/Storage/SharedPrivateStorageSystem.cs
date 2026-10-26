@@ -334,6 +334,7 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
             CancelDuplicate = true
         };
 
+        doAfterArgs.Hidden = beforeStripEvent.Stealth;
         if (!beforeStripEvent.Stealth)
             _popup.PopupEntity(Loc.GetString(accessPopup, ("user", user)), owner, owner, PopupType.Medium);
 
