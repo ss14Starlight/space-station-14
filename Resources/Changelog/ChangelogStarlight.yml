@@ -1,18 +1,4 @@
 Entries:
-- author: OmgDev
-  changes:
-  - message: Smile no longer pretends like they can scream.
-    type: Fix
-  id: 409427
-  time: '2026-10-13T17:12:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6643
-- author: wonderfulnewworld
-  changes:
-  - message: Secret will now actually count effective players rather than only readied players.
-    type: Fix
-  id: 409428
-  time: '2026-10-13T20:14:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6671
 - author: Trosling
   changes:
   - message: Updates Corporate Law to match new contraband tier system.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409826
   time: '2026-10-26T20:50:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6878
+- author: redmushie
+  changes:
+  - message: Admins and mappers can (un)anchor entities through floor tiles.
+    type: Add
+  id: 409827
+  time: '2026-10-26T22:28:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6876
+- author: redmushie
+  changes:
+  - message: Admins and mappers can adjust pipe layers through floor tiles.
+    type: Add
+  id: 409828
+  time: '2026-10-26T22:28:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6876
 Order: -1
