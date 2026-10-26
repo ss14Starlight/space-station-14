@@ -8,6 +8,7 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking.Rules;
 using Robust.Shared.Configuration;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -96,6 +97,17 @@ public sealed class GameRuleCooldownTest : GameTest
         id: TestSharedCooldownBypassWeights
         weights:
             TestSharedCooldownBypass: 1
+
+    -   type: weightedRandom
+        id: {ZombieSourceWeights}
+        weights:
+            Zombieteors: 1
+
+    -   type: weightedRandom
+        id: {ZombieNextWeights}
+        weights:
+            Zombie: 1
+            TestSharedCooldownFallback: 0.001
     """;
 
     public override PoolSettings PoolSettings => new()
@@ -171,6 +183,86 @@ public sealed class GameRuleCooldownTest : GameTest
             var dynamic = ticker.AddGameRule(Dynamic);
             Assert.That(Server.EntMan.GetComponent<DynamicRuleComponent>(dynamic).Rules, Is.Empty);
         });
+    }
+
+    // oddly specific test but it keeps happening and i want it to stop
+    [Test]
+    public async Task GameruleCooldownSecretZombiePresetTest()
+    {
+        var ticker = Server.System<GameTicker>();
+        var cooldowns = Server.System<DynamicRuleCooldownSystem>();
+        var configuration = Server.ResolveDependency<IConfigurationManager>();
+        var random = Server.ResolveDependency<IRobustRandom>();
+        var minimumPlayers = 0;
+
+        // Consume a Zombie cooldown left by an earlier test on the pooled server.
+        await RestartRound();
+        await Server.WaitPost(() => cooldowns.EnsureRoundInitialized(dynamicRound: true));
+        await RestartRound();
+
+        await Server.WaitPost(() => minimumPlayers = Math.Max(
+                ticker.GetMinimumPlayerCount(new ProtoId<GamePresetPrototype>("Zombie")),
+                ticker.GetMinimumPlayerCount(new ProtoId<GamePresetPrototype>("Zombieteors"))));
+
+        if (minimumPlayers > 1)
+            await Server.AddDummySessions(minimumPlayers - 1);
+
+        await Pair.RunUntilSynced();
+        await Server.WaitAssertion(() =>
+        {
+            ticker.ToggleReadyAll(true);
+            Assert.That(ticker.ReadyPlayerCount(), Is.GreaterThanOrEqualTo(minimumPlayers),
+                "Not enough players.");
+
+            configuration.SetCVar(CCVars.SecretWeightPrototype, ZombieSourceWeights);
+            var secret = ticker.AddGameRule(SecretRule);
+            var rules = Server.EntMan.GetComponent<SecretRuleComponent>(secret).AdditionalGameRules
+                .Select(rule => Server.EntMan.GetComponent<MetaDataComponent>(rule).EntityPrototype?.ID);
+            Assert.That(rules, Does.Contain("Zombie"));
+            Assert.That(rules, Does.Contain("KesslerSyndromeScheduler"),
+                "The first Secret selection must be Zombieteors.");
+        });
+
+        await RestartRound();
+        await Server.WaitAssertion(() =>
+        {
+            ticker.ToggleReadyAll(true);
+            Assert.That(ticker.ReadyPlayerCount(), Is.GreaterThanOrEqualTo(minimumPlayers));
+
+            cooldowns.EnsureRoundInitialized(dynamicRound: false);
+            Assert.That(cooldowns.CurrentRuleCooldowns, Does.Contain(new EntProtoId("Zombie")));
+            Assert.That(cooldowns.TryGetPresetCooldown(new ProtoId<GamePresetPrototype>("Zombie"), out var remaining), Is.True);
+            Assert.That(remaining, Is.EqualTo(1));
+
+            configuration.SetCVar(CCVars.SecretWeightPrototype, ZombieNextWeights);
+            random.SetSeed(1);
+            var secret = ticker.AddGameRule(SecretRule);
+            Assert.That(Server.EntMan.GetComponent<SecretRuleComponent>(secret).AdditionalGameRules, Is.Empty,
+                "Secret must reject Zombie after Zombieteors and select the empty fallback preset.");
+        });
+
+        await RestartRound();
+        await Server.WaitAssertion(() =>
+        {
+            ticker.ToggleReadyAll(true);
+            Assert.That(ticker.ReadyPlayerCount(), Is.GreaterThanOrEqualTo(minimumPlayers));
+
+            cooldowns.EnsureRoundInitialized(dynamicRound: false);
+            Assert.That(cooldowns.TryGetPresetCooldown(new ProtoId<GamePresetPrototype>("Zombie"), out _), Is.False);
+
+            // The same pool and seed must select Zombie once its cooldown expires.
+            random.SetSeed(1);
+            var secret = ticker.AddGameRule(SecretRule);
+            var rules = Server.EntMan.GetComponent<SecretRuleComponent>(secret).AdditionalGameRules
+                .Select(rule => Server.EntMan.GetComponent<MetaDataComponent>(rule).EntityPrototype?.ID);
+            Assert.That(rules, Does.Contain("Zombie"),
+                "The selection must be Zombie after its cooldown expires.");
+        });
+
+        // Consume the positive control's outgoing cooldown before returning the pooled server.
+        await RestartRound();
+        await Server.WaitPost(() => cooldowns.EnsureRoundInitialized(dynamicRound: true));
+        await RestartRound();
     }
 
     [Test]

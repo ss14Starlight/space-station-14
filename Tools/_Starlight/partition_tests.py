@@ -114,6 +114,7 @@ WEIGHT_OVERRIDES = {
     "GameruleCooldownPresetBlockAndExpireTest": 0.2,
     "GameruleCooldownSecretBypassTest": 0.2,
     "GameruleCooldownSecretPresetTest": 0.2,
+    "GameruleCooldownSecretZombiePresetTest": 0.2,
     "GasSpecificHeats_Agree": 0.5,
     "GasSpreading": 0.5,
     "GetAndReturnCup": 0.25,
