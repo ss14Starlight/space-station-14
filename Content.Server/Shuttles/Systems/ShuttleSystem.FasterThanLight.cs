@@ -294,7 +294,7 @@ public sealed partial class ShuttleSystem
             Log.Error($"Found invalid FTL destination with coordinates {coordinates} and angle {angle} for shuttle {shuttleUid}");
             return;
         }
-        
+
         if (!TrySetupFTL(shuttleUid, component, out var hyperspace))
             return false; // Starlight
 
