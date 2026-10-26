@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: 'EXPERIMENTAL: Player-controlled spiders and slimes are now forced to attack if they are passive near enemies for too long.'
-    type: Tweak
-  id: 409417
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Wizden Team
-  changes:
   - message: 'Added a new objective for traitors: Hijack the Automated Trade Station. Your uplink will have a hijack beacon for you to use if you have this objective.'
     type: Add
   id: 409418
@@ -2799,4 +2792,11 @@ Entries:
   id: 409816
   time: '2026-10-26T06:47:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6863
+- author: Caws
+  changes:
+  - message: Service airlocks now correctly use the new Service door sprites.
+    type: Fix
+  id: 409817
+  time: '2026-10-26T07:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6865
 Order: -1
