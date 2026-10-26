@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: The value of tier 1 tech disks has been lowered.
-    type: Tweak
-  id: 409416
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Wizden Team
-  changes:
   - message: 'EXPERIMENTAL: Player-controlled spiders and slimes are now forced to attack if they are passive near enemies for too long.'
     type: Tweak
   id: 409417
@@ -2799,4 +2792,11 @@ Entries:
   id: 409815
   time: '2026-10-25T21:25:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6868
+- author: WNP78
+  changes:
+  - message: Fixed "Examine Voice" button appearing after a short delay, moving all the other buttons.
+    type: Fix
+  id: 409816
+  time: '2026-10-26T06:47:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6863
 Order: -1
