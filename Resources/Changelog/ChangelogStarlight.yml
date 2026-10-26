@@ -1,20 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: AI can now remote control every remote controllable thing that is not already controlled.
-    type: Add
-  id: 409432
-  time: '2026-10-13T20:56:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6574
-- author: Floximo
-  changes:
-  - message: AI can remote control AI interfaces.
-    type: Add
-  id: 409433
-  time: '2026-10-13T20:56:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6574
-- author: Floximo
-  changes:
   - message: Drones are no longer shuntables and support the intellicard now.
     type: Tweak
   id: 409434
@@ -2799,4 +2785,18 @@ Entries:
   id: 409831
   time: '2026-10-26T23:16:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6889
+- author: Rescue
+  changes:
+  - message: Molotovs are now lit with welding torches, lighters and other sources of flame.
+    type: Tweak
+  id: 409832
+  time: '2026-10-26T23:36:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6827
+- author: Rescue
+  changes:
+  - message: Lit molotovs that have not been thrown, will burn out and require more cloth.
+    type: Fix
+  id: 409833
+  time: '2026-10-26T23:36:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6827
 Order: -1
