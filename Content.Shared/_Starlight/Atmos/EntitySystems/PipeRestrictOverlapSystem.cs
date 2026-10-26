@@ -134,6 +134,26 @@ public sealed partial class PipeRestrictOverlapSystem : EntitySystem
         ProposedPipe proposed,
         EntityUid? ignoreEntity = null)
     {
+        return CheckIfWouldConflict(gridUid, tileIndices, proposed, otherEnt => otherEnt == ignoreEntity);
+    }
+
+    /// <summary>
+    /// As <see cref="CheckIfWouldConflict(EntityUid, Vector2i, ProposedPipe, EntityUid?)"/>, but ignores a whole
+    /// set of entities. Useful when shifting an entire network at once, so its own members don't count as conflicts.
+    /// </summary>
+    public EntityUid? CheckIfWouldConflict(EntityUid gridUid,
+        Vector2i tileIndices,
+        ProposedPipe proposed,
+        IReadOnlySet<EntityUid> ignoreEntities)
+    {
+        return CheckIfWouldConflict(gridUid, tileIndices, proposed, ignoreEntities.Contains);
+    }
+
+    private EntityUid? CheckIfWouldConflict(EntityUid gridUid,
+        Vector2i tileIndices,
+        ProposedPipe proposed,
+        Func<EntityUid, bool> ignore)
+    {
         if (!TryComp<MapGridComponent>(gridUid, out var gridComp))
             return null;
 
@@ -145,7 +165,7 @@ public sealed partial class PipeRestrictOverlapSystem : EntitySystem
 
         foreach (var otherEnt in _anchoredEntities)
         {
-            if (otherEnt == ignoreEntity)
+            if (ignore(otherEnt))
                 continue;
 
             if (!_nodeContainerQuery.TryComp(otherEnt, out var otherNodeComp))
