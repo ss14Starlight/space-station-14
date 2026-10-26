@@ -79,7 +79,7 @@
 - type: entity
   name: syndicate minibomb
   description: A syndicate-manufactured explosive used to stow destruction and cause chaos.
-  parent: [VolatileGrenadeBase, TimerGrenadeBase, BaseSyndicateContraband]
+  parent: [ BaseContrabandTier4, VolatileGrenadeBase, TimerGrenadeBase, BaseSyndicateContraband ]
   id: SyndieMiniBomb
   components:
   - type: Sprite
