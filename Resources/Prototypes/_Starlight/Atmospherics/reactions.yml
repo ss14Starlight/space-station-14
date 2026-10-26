@@ -1,3 +1,13 @@
+# Folded all plasma burn reactions into one
+- type: gasReaction
+  id: PlasmaCombinedFire
+  priority: -2
+  minimumTemperature: 373.149
+  minimumRequirements:
+    Plasma: 0.01
+  effects:
+    - !type:PlasmaCombinedFireReaction {}
+
 - type: gasReaction
   id: UlnitraniumProduction
   priority: 3
@@ -148,16 +158,6 @@
     Tritium: 0.01
   effects:
     - !type:TritiumPluoxFireReaction {}
-
-- type: gasReaction
-  id: PluoxPlasmaFire
-  priority: -1
-  minimumTemperature: 373.149
-  minimumRequirements:
-    Pluoxium: 0.01
-    Plasma: 0.01
-  effects:
-    - !type:PlasmaPluoxFireReaction {}
   
 - type: gasReaction
   id: PluoxHydrogenFire

@@ -1,12 +1,14 @@
-- type: gasReaction
-  id: PlasmaFire
-  priority: -2
-  minimumTemperature: 373.149 # Same as Atmospherics.FireMinimumTemperatureToExist
-  minimumRequirements: # In this case, same as minimum mole count.
-    Oxygen: 0.01
-    Plasma: 0.01
-  effects:
-    - !type:PlasmaFireReaction {}
+# Starlight start
+# Folded all plasma fire reactions into a master PlasmaCombinedFire reaction prototype in /Prototypes/_Starlight/Atmospherics/reactions.yml
+#- type: gasReaction
+#  id: PlasmaFire
+#  priority: -2
+#  minimumTemperature: 373.149 # Same as Atmospherics.FireMinimumTemperatureToExist
+#  minimumRequirements: # In this case, same as minimum mole count.
+#    Oxygen: 0.01
+#    Plasma: 0.01
+#  effects:
+#    - !type:PlasmaFireReaction {}
 
 - type: gasReaction
   id: TritiumFire
