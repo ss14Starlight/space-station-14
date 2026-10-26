@@ -134,8 +134,8 @@
       prob: 0.10 # rare Starlight: More devils
     #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
     #  prob: 0.05
-    #- id: SubBrighteye # Brighteye is disabled until more work is put in.
-    #  prob: 0.05 # We can go back down to 0.05, since they scale now.
+    - id: SubBrighteye
+      prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
       prob: 0.17
 
@@ -155,8 +155,8 @@
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
     #      prob: 0.05
-    #- id: SubBrighteye
-    #  prob: 0.05 # We can go back down to 0.05, since they scale now.
+    - id: SubBrighteye
+      prob: 0.05 # We can go back down to 0.05, since they scale now.
     # No SELF Agents in rev games because of the FREEmag.
     # no devil because this is the secret set used for conversion antags i guess? either way dont want revs spamming devil
 
@@ -176,8 +176,8 @@
       prob: 0.10 # rare Starlight: More devils
     #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
     #  prob: 0.05
-    #- id: SubBrighteye
-    #  prob: 0.05 # We can go back down to 0.05, since they scale now.
+    - id: SubBrighteye
+      prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
       prob: 0.20
 
@@ -195,8 +195,8 @@
       prob: 0.10 #Starlight, More devils
     #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
     #      prob: 0.05
-    #- id: SubBrighteye
-    #  prob: 0.05
+    - id: SubBrighteye
+      prob: 0.05
     - id: SiliconLiberation
       prob: 0.12
 
@@ -216,8 +216,8 @@
       prob: 0.20
     #- id: SubXenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
     #  prob: 0.05
-    #- id: SubBrighteye
-    #  prob: 0.05 # We can go back down to 0.05, since they scale now.
+    - id: SubBrighteye
+      prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation # I mean technically there's nothing inherently wrong with them showing up.
       prob: 0.15
 

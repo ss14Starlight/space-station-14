@@ -12,6 +12,8 @@ using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared._Starlight.Station;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Spawners.Components;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared.Eye;
 
 namespace Content.Shared._Starlight.Shadekin;
 
@@ -20,6 +22,10 @@ public sealed partial class ShadekinSystem
     [SubscribeLocalEvent]
     private void OnZombify(Entity<BrighteyeComponent> ent, ref EntityZombifiedEvent args)
         => RemComp<BrighteyeComponent>(ent.Owner);
+
+    [SubscribeLocalEvent]
+    private void OnGetVisMask(Entity<BrighteyeComponent> uid, ref GetVisMaskEvent args) =>
+        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
 
     [SubscribeLocalEvent]
     private void OnInit(Entity<BrighteyeComponent> ent, ref ComponentStartup _)
@@ -57,8 +63,8 @@ public sealed partial class ShadekinSystem
                 if (core.Comp1.OrganOwner != ent.Owner)
                 {
                     ent.Comp.LesserKin = true;
-                    ent.Comp.MaxEnergy = 100;
-                    ent.Comp.PhaseCost = 100;
+                    ent.Comp.MaxEnergy = 50;
+                    ent.Comp.PhaseCost = 50;
 
                     _alerts.ClearAlert(ent.Owner, ent.Comp.PortalAlert);
                     _actionsSystem.RemoveAction(ent.Owner, ent.Comp.PortalAction);
@@ -169,7 +175,7 @@ public sealed partial class ShadekinSystem
     [SubscribeLocalEvent]
     private void OnMobStateChanged(Entity<BrighteyeComponent> ent, ref MobStateChangedEvent args)
     {
-        if (args.NewMobState == MobState.Alive)
+        if (args.NewMobState is MobState.Alive or MobState.SoftCritical or MobState.Critical)
             return;
 
         // We hit Crit/Death we lose energy... EVERYTIME!
@@ -286,7 +292,10 @@ public sealed partial class ShadekinSystem
             _alerts.ClearAlert(uid, brighteye.RejuvenationAlert);
         }
 
-        if (component.CurrentState == ShadekinState.Low) // On Low State, we gain and lose nothing!
+        if (HasComp<NullSpaceComponent>(uid)) // We dont gain energy in nullspace.
+            return;
+
+        if (component.CurrentState is ShadekinState.Low) // On Low State, we gain and lose nothing!
             return;
 
         var newEnergy = 0;
@@ -302,7 +311,7 @@ public sealed partial class ShadekinSystem
         }
         else if (brighteye.Energy < brighteye.MaxEnergy && component.CurrentState == ShadekinState.Dark) // We now handle energy gain.
         {
-            // TODO: Add buffs here depanding on different situations?
+            // TODO: For newmed; Brighteye in full darkness should have no pain... The dark is the best painkller for them.
             newEnergy = 1;
         }
 

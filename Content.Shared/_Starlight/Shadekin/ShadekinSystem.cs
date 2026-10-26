@@ -219,6 +219,7 @@ public sealed partial class ShadekinSystem : EntitySystem
             case ShadekinState.Dark:
                 passive.AllowedStates.Clear();
                 passive.AllowedStates.Add(MobState.Alive);
+                passive.AllowedStates.Add(MobState.SoftCritical);
                 passive.AllowedStates.Add(MobState.Critical);
                 passive.AllowedStates.Add(MobState.Dead);
                 passive.Interval = 0.5f;
