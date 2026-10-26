@@ -142877,8 +142877,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 136
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 20590
@@ -144621,8 +144619,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 136
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVolumePump
