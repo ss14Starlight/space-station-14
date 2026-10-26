@@ -1,7 +1,7 @@
 using Content.Shared.Humanoid;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Popups;
-using Content.Shared._Starlight.Medical.Surgery.Events;
+using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Inventory;
@@ -102,17 +102,13 @@ public sealed partial class ShadekinSystem
     }
 
     [SubscribeLocalEvent]
-    private void OnCoreOrganImplanted(Entity<OrganShadekinCoreComponent> ent, ref SurgeryOrganImplantationCompleted args)
+    private void OnCoreOrganExtracted(Entity<OrganShadekinCoreComponent> ent, ref OrganRemovedFromBodyEvent args)
     {
-        if (!ent.Comp.Damaged)
-            EnsureComp<BrighteyeComponent>(args.Body);
-    }
+        if (TerminatingOrDeleted(args.OldBody))
+            return;
 
-    [SubscribeLocalEvent]
-    private void OnCoreOrganExtracted(Entity<OrganShadekinCoreComponent> ent, ref SurgeryOrganExtracted args)
-    {
-        if (HasComp<BrighteyeComponent>(args.Body) && !ent.Comp.Damaged)
-            RemComp<BrighteyeComponent>(args.Body);
+        if (args.IsImplanted && HasComp<BrighteyeComponent>(args.OldBody) && !ent.Comp.Damaged)
+            RemComp<BrighteyeComponent>(args.OldBody);
     }
 
     [SubscribeLocalEvent]

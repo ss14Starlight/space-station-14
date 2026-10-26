@@ -12,12 +12,6 @@ namespace Content.Server.Body.Components
     public sealed partial class RespiratorComponent : Component
     {
         /// <summary>
-        /// Whether breathing and the need for air are enabled.
-        /// </summary>
-        [DataField]
-        public bool Enabled = true;
-
-        /// <summary>
         ///     Volume of our breath in liters
         /// </summary>
         [DataField]

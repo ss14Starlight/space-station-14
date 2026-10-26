@@ -112,7 +112,14 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     [SubscribeLocalEvent]
     private void CoreOrganInit(Entity<OrganShadekinCoreComponent> ent, ref OrganAddedToBodyEvent args)
-        => ent.Comp.OrganOwner ??= args.Body;
+    {
+        if (TerminatingOrDeleted(args.Body))
+            return;
+
+        ent.Comp.OrganOwner ??= args.Body;
+        if (args.IsImplanted && !ent.Comp.Damaged)
+            EnsureComp<BrighteyeComponent>(args.Body);
+    }
 
     [SubscribeLocalEvent]
     private void OnExamined(Entity<OrganShadekinCoreComponent> ent, ref ExaminedEvent args)

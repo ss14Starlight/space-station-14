@@ -215,6 +215,7 @@ namespace Content.Server.Medical.BiomassReclaimer
                 component.BloodReagents.ScaleSolution(.25f);
                 if (component.BloodReagents.Volume > 50)
                     component.BloodReagents.ScaleTo(50f);
+                _solution.PrepareExternalSample(toProcess, component.BloodReagents);
                 // Starlight-end
             }
             if (TryComp<ToolRefinableComponent>(toProcess, out var refinable))

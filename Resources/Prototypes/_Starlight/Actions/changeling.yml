@@ -1,5 +1,10 @@
 # abilities
 
+- type: entity
+  parent: ActionChangelingDevour
+  id: ActionChangelingDevourStarlight
+  description: Consume an organic victim and steal their identity. Takes 10 seconds to prepare and another 10 seconds to feed. Movement interrupts the process.
+
 # starting
 - type: entity
   id: ActionEvolutionMenu
@@ -68,7 +73,7 @@
 - type: entity
   id: ActionExitStasis
   name: Exit stasis
-  description: Rise from the dead with full health. Costs 60 chemicals.
+  description: Rise from the dead with full health, restoring your organs, regrowing missing body parts, and shedding foreign replacements. Costs 60 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action

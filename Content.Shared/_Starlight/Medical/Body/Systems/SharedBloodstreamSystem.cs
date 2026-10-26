@@ -595,6 +595,8 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
             SolutionContainer.RemoveAllSolution(ent.Comp.TemporarySolution.Value);
         }
 
+        SolutionContainer.PrepareExternalSample(ent.Owner, tempSol);
+
         // Forky - Start - Clothing stains
         var stainEv = new SpilledOnEvent(ent.Owner, tempSol);
         RaiseLocalEvent(ent.Owner, stainEv);

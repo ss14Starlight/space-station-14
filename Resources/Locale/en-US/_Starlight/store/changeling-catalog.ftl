@@ -52,3 +52,28 @@ evolutionmenu-sting-drain-desc =
 
 evolutionmenu-utility-breathing-name = Respiratory Control
 evolutionmenu-utility-breathing-desc = Choose whether your body needs to breathe. While breathing is stopped, you cannot inhale gases or suffocate. You start out breathing normally. Costs no chemicals or biomass.
+
+
+starlight-evolutionmenu-combat-armblade-desc =
+    Reform one of your arms into a grotesque blade, composed of bone and flesh, able to pry open airlocks and cut through your foes like butter.
+    Costs 20 chemicals each time you summon it, and each time you retract it.
+
+starlight-evolutionmenu-combat-armor-desc =
+    Inflate your body into an all-consuming chitinous mass of armor.
+    Provides extensive protection against physical damage, but less against other types.
+    It massively slows your movement, and maintaining its shape slows chemical generation.
+    Costs 25 chemicals.
+
+starlight-evolutionmenu-combat-shield-desc =
+    Reforms one of your arms into a large, fleshy shield.
+    Blocks attacks automatically, but very brittle.
+    Costs 20 chemicals.
+
+starlight-evolutionmenu-combat-shriek-dissonant-desc =
+    You emit an EMP blast, which disables technology in the surrounding area, including radio headsets.
+    Good for escaping cyborgs and security.
+    Costs 30 chemicals.
+
+starlight-evolutionmenu-utility-fleshmend-desc =
+    Rapidly heal yourself of all bruises and burns.
+    Costs 35 chemicals.

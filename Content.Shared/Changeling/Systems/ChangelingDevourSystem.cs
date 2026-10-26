@@ -6,11 +6,9 @@ using Content.Shared.Changeling.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
-using Content.Shared.FixedPoint; // Starlight
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
-using Content.Shared.Mobs.Components; // Starlight
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
@@ -34,7 +32,6 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private MobStateSystem _mobState = default!;
-    [Dependency] private MobThresholdSystem _mobThreshold = default!; // Starlight
     [Dependency] private SharedChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
@@ -59,11 +56,9 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
     private void OnShutdown(Entity<ChangelingDevourComponent> ent, ref ComponentShutdown args)
     {
-        // Starlight-start
-        FinishDevour(ent, ent.Comp.CurrentTarget, false);
-        ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
-        // Starlight-end
-        if (ent.Comp.ChangelingDevourActionEntity != null)
+        StopStarlightDevour(ent); // Starlight
+        // Owner-only components can disappear on clients while their server-owned actions remain granted.
+        if (_net.IsServer && ent.Comp.ChangelingDevourActionEntity != null)
         {
             _actionsSystem.RemoveAction(ent.Owner, ent.Comp.ChangelingDevourActionEntity);
         }
@@ -74,7 +69,6 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
     private void OnDevourAction(Entity<ChangelingDevourComponent> ent, ref ChangelingDevourActionEvent args)
     {
         if (args.Handled
-            || ent.Comp.CurrentTarget != null // Starlight
             || _whitelistSystem.IsWhitelistFailOrNull(ent.Comp.Whitelist, args.Target)
             || !HasComp<ChangelingIdentityComponent>(ent))
             return;
@@ -82,20 +76,8 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         args.Handled = true;
         var target = args.Target;
 
-        if (!CanDevour(ent.AsNullable(), target))
+        if (!CanDevour(ent.AsNullable(), target) || !TryBeginStarlightDevour(ent, target)) // Starlight
             return;
-
-        // Starlight-start
-        var attempt = new ChangelingDevourAttemptEvent(target);
-        RaiseLocalEvent(ent, ref attempt);
-        if (attempt.Cancelled)
-            return;
-
-        ent.Comp.CurrentTarget = target;
-        Dirty(ent);
-        var started = new ChangelingDevourStartedEvent(target);
-        RaiseLocalEvent(ent, ref started);
-        // Starlight-end
 
         if (_net.IsServer)
         {
@@ -105,19 +87,16 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ent:player} started changeling devour windup against {target:player}");
 
-        // Starlight-start
         if (!_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.DevourWindupTime, new ChangelingDevourWindupDoAfterEvent(), ent, target: target, used: ent)
         {
             BreakOnMove = true,
-            AttemptFrequency = AttemptFrequency.EveryTick,
             CancelDuplicate = true,
             DuplicateCondition = DuplicateConditions.None,
         }))
         {
-            FinishDevour(ent, target, false);
+            ResetStarlightDevour(ent); // Starlight
             return;
         }
-        // Starlight-end
 
         var selfMessage = Loc.GetString("changeling-devour-begin-windup-self", ("user", Identity.Entity(ent.Owner, EntityManager)));
         var othersMessage = Loc.GetString("changeling-devour-begin-windup-others", ("user", Identity.Entity(ent.Owner, EntityManager)));
@@ -136,19 +115,11 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         args.Handled = true;
         ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
 
-        // Starlight-start
-        if (args.Cancelled)
+        if (args.Cancelled || args.Target is not { } target)
         {
-            FinishDevour(ent, args.Target, false);
+            ResetStarlightDevour(ent); // Starlight
             return;
         }
-
-        if (args.Target is not { } target)
-        {
-            FinishDevour(ent, null, false);
-            return;
-        }
-        // Starlight-end
 
         _damageable.ChangeDamage(target, ent.Comp.WindupDamage, true, true, ent.Owner);
 
@@ -166,8 +137,6 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} began to devour {ToPrettyString(target):player}'s identity");
 
-        // Starlight-start
-        ent.Comp.DevourDamageProgress = 0f;
         if (!_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager,
             ent,
             ent.Comp.DevourConsumeTime,
@@ -177,92 +146,38 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             used: ent)
         {
             BreakOnMove = true,
-            AttemptFrequency = AttemptFrequency.EveryTick,
+            AttemptFrequency = GetDevourAttemptFrequency(ent), // Starlight
             CancelDuplicate = true,
             DuplicateCondition = DuplicateConditions.None,
         }))
-            FinishDevour(ent, target, false);
-        // Starlight-end
+            ResetStarlightDevour(ent); // Starlight
     }
-
-    #region Starlight
-    [SubscribeLocalEvent]
-    private void OnDevourConsumeAttempt(Entity<ChangelingDevourComponent> ent,
-        ref DoAfterAttemptEvent<ChangelingDevourConsumeDoAfterEvent> args)
-    {
-        if (_net.IsClient || args.Cancelled || args.DoAfter.Args.Delay <= TimeSpan.Zero
-            || args.DoAfter.Args.Target is not { } target)
-            return;
-
-        // Preserve the existing damage timing for corpses.
-        if (_mobState.IsDead(target))
-            return;
-
-        // Keep one continuous progress bar, with damage once per second after the windup.
-        var seconds = Math.Floor((_timing.CurTime - args.DoAfter.StartTime).TotalSeconds);
-        var progress = (float) Math.Clamp(seconds / args.DoAfter.Args.Delay.TotalSeconds, 0, 1);
-        ApplyDevourDamage(ent, target, progress);
-    }
-
-    private void ApplyDevourDamage(Entity<ChangelingDevourComponent> ent, EntityUid target, float progress)
-    {
-        if (_net.IsClient || progress <= ent.Comp.DevourDamageProgress)
-            return;
-
-        var damage = ent.Comp.DevourDamage * (progress - ent.Comp.DevourDamageProgress);
-        ent.Comp.DevourDamageProgress = progress;
-        _damageable.ChangeDamage(target, damage, true, true, ent.Owner);
-    }
-    #endregion
 
     // Second doafter finished.
-    // Finish the damage, kill a living victim and save its identity.
+    // Save the identity and deal more damage.
     private void OnDevourConsume(Entity<ChangelingDevourComponent> ent, ref ChangelingDevourConsumeDoAfterEvent args)
     {
         args.Handled = true;
         ent.Comp.CurrentDevourSound = _audio.Stop(ent.Comp.CurrentDevourSound);
 
-        // Starlight-start
-        if (args.Cancelled)
+        if (args.Cancelled || args.Target is not { } target)
         {
-            FinishDevour(ent, args.Target, false);
+            ResetStarlightDevour(ent); // Starlight
             return;
         }
 
-        if (args.Target is not { } target)
+        // Damage first before the CanDevour check to make sure they don't gib in-between and to kill them again in case they somehow revived.
+        if (!ApplyDevourCompletionDamage(ent, target, args.DoAfter.Args.Delay)) // Starlight
         {
-            FinishDevour(ent, null, false);
-            return;
-        }
-
-        ApplyDevourDamage(ent, target, 1f);
-
-        if (_net.IsServer && !_mobState.IsDead(target)
-            && _mobThreshold.TryGetDeadThreshold(target, out var deathThreshold))
-        {
-            // Use the victim's actual death threshold rather than a fixed lethal dose.
-            var remaining = FixedPoint2.Max(FixedPoint2.Zero, deathThreshold.Value - _damageable.GetTotalDamage(target)) + 1;
-            var damage = ent.Comp.DevourDamage * ((float) remaining / (float) ent.Comp.DevourDamage.GetTotal());
-            _damageable.ChangeDamage(target, damage, ignoreResistances: true, origin: ent.Owner, ignoreGlobalModifiers: true);
-        }
-
-        if (_net.IsServer && !_mobState.IsDead(target))
-        {
-            _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-not-dead"), args.User, args.User, PopupType.Medium);
-            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} unsuccessfully devoured {ToPrettyString(args.Target):player}'s identity");
-            FinishDevour(ent, target, false);
+            ResetStarlightDevour(ent);
             return;
         }
 
         if (!CanDevour(ent.AsNullable(), target)) // Check again if the conditions are still met.
         {
-            FinishDevour(ent, target, false); // Starlight
+            ResetStarlightDevour(ent); // Starlight
             return;
         }
-
-        if (FinishDevour(ent, target, true))
-            return;
-        // Starlight-end
 
         var selfMessage = Loc.GetString("changeling-devour-consume-complete-self", ("user", Identity.Entity(ent.Owner, EntityManager)));
         var othersMessage = Loc.GetString("changeling-devour-consume-complete-others", ("user", Identity.Entity(ent.Owner, EntityManager)));
@@ -293,27 +208,11 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         // We add a reference to ourselves to prevent repeated identity gain.
         var targetDevoured = EnsureComp<ChangelingDevouredComponent>(target);
         targetDevoured.DevouredBy.Add(ent.Owner);
+        TrackDevouredAnimal(ent, target); // Starlight
         Dirty(target, targetDevoured);
         Dirty(ent);
+        ResetStarlightDevour(ent); // Starlight
     }
-
-    #region Starlight
-    private bool FinishDevour(EntityUid user, EntityUid? target, bool completed)
-    {
-        TryComp<ChangelingDevourComponent>(user, out var devour);
-        target ??= devour?.CurrentTarget;
-        if (target is not { } victim)
-            return false;
-        if (devour != null && devour.CurrentTarget == victim)
-        {
-            devour.CurrentTarget = null;
-            Dirty(user, devour);
-        }
-        var finished = new ChangelingDevourFinishedEvent(victim, completed);
-        RaiseLocalEvent(user, ref finished);
-        return finished.Handled;
-    }
-    #endregion
 
     /// <summary>
     /// Has the given victim been devoured by the given changeling before?
@@ -324,9 +223,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             return false;
 
         return changeling.Comp.ConsumedIdentities.ContainsValue(devoured)
-            // Starlight: non-humanoid prey does not have a stored identity.
-            || TryComp<ChangelingDevouredComponent>(devoured, out var devouredComp)
-            && devouredComp.DevouredBy.Contains(changeling.Owner);
+            || HasDevouredAnimal(changeling, devoured); // Starlight
     }
 
     /// <summary>
@@ -340,7 +237,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         if (changeling.Owner == victim)
             return false; // Can't devour yourself.
 
-        if (!HasComp<MobStateComponent>(victim)) // Starlight: living and non-humanoid prey are valid.
+        if (!IsDevourablePreyType(changeling, victim)) // Starlight
         {
             if (showPopup)
                 _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-cannot-devour"), changeling.Owner, changeling.Owner, PopupType.Medium);
@@ -351,6 +248,13 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         {
             if (showPopup)
                 _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-already-devoured"), changeling.Owner, changeling.Owner, PopupType.Medium);
+            return false;
+        }
+
+        if (!CanDevourLivingPrey(changeling) && !_mobState.IsDead(victim)) // Starlight
+        {
+            if (showPopup)
+                _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-not-dead"), changeling.Owner, changeling.Owner, PopupType.Medium);
             return false;
         }
 

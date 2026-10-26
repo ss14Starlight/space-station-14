@@ -4,6 +4,7 @@ using Content.Shared.Species.Components;
 using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.Medical.Body.Events;
+using Content.Shared.Body.Systems;
 
 namespace Content.Server.Species.Systems;
 
@@ -12,6 +13,7 @@ public sealed partial class NymphSystem : EntitySystem
     [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private MindSystem _mindSystem = default!;
     [Dependency] private ZombieSystem _zombie = default!;
+    [Dependency] private SharedBodySystem _body = default!;
 
     public override void Initialize()
     {
@@ -35,9 +37,15 @@ public sealed partial class NymphSystem : EntitySystem
         if (HasComp<ZombieComponent>(args.OldBody)) // Zombify the new nymph if old one is a zombie // Starlight Edit: Target -> OldBody
             _zombie.ZombifyEntity(nymph);
 
-        // Move the mind if there is one and it's supposed to be transferred
-        if (comp.TransferMind == true && _mindSystem.TryGetMind(args.OldBody, out var mindId, out var mind)) // Starlight Edit: Target -> OldBody
-            _mindSystem.TransferTo(mindId, nymph, mind: mind);
+        // The brain may already own the mind, including a donor's mind in a transplanted organ.
+        // Use the same anatomical transfer policy as ordinary brains.
+        if (comp.TransferMind == true)
+        {
+            var source = _mindSystem.TryGetMind(uid, out _, out _) ? uid : args.OldBody;
+            if (_body.CanTransferMindOnOrganChange(source, nymph)
+                && _mindSystem.TryGetMind(source, out var mindId, out var mind))
+                _mindSystem.TransferTo(mindId, nymph, mind: mind);
+        }
 
         // Delete the old organ
         QueueDel(uid);

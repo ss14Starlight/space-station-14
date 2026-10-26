@@ -1,0 +1,35 @@
+- type: entity
+  id: ActionChangelingEmag
+  name: Organic access breaker
+  description: Unlock doors and erase access from digital locks with a touch, like an access breaker. Costs 30 chemicals per successful hack.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 5
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: organic-emag }
+  - type: TargetAction
+    range: 1.5
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: false
+    event: !type:ChangelingEmagEvent
+  - type: ChangelingAction
+    chemicalCost: 30
+  - type: EorgPreventAction
+
+- type: entity
+  id: ActionChangelingShockHand
+  name: Electrified hand
+  description: Grow or retract an electrified hand. Each successful strike deals 35 stamina damage and costs 10 chemicals. Your hands emit a faint glow while active.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+    checkCanInteract: false
+    itemIconStyle: NoItem
+    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: shock-hand }
+  - type: InstantAction
+    event: !type:ToggleChangelingShockHandEvent
+  - type: ChangelingAction
+    requireBiomass: false

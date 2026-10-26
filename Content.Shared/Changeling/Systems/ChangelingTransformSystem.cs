@@ -54,7 +54,8 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
 
     private void OnShutdown(Entity<ChangelingTransformComponent> ent, ref ComponentShutdown args)
     {
-        if (ent.Comp.ChangelingTransformActionEntity != null)
+        // Owner-only components can disappear on clients while their server-owned actions remain granted.
+        if (_net.IsServer && ent.Comp.ChangelingTransformActionEntity != null)
         {
             _actions.RemoveAction(ent.Owner, ent.Comp.ChangelingTransformActionEntity);
         }

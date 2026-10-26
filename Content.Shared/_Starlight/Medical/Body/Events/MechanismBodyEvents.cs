@@ -11,9 +11,10 @@ public readonly record struct OrganAddedEvent(EntityUid Part);
 
 /// <summary>
 /// Raised on a mechanism when it is added to a body part within a body.
+/// IsImplanted is false for an organ merely stored in a body cavity.
 /// </summary>
 [ByRefEvent]
-public readonly record struct OrganAddedToBodyEvent(EntityUid Body, EntityUid Part);
+public readonly record struct OrganAddedToBodyEvent(EntityUid Body, EntityUid Part, bool IsImplanted = true);
 
 /// <summary>
 /// Raised on a mechanism when it is removed from a body part.
@@ -23,6 +24,7 @@ public readonly record struct OrganRemovedEvent(EntityUid OldPart);
 
 /// <summary>
 /// Raised on a mechanism when it is removed from a body part within a body.
+/// IsImplanted is false for an organ merely stored in a body cavity.
 /// </summary>
 [ByRefEvent]
-public readonly record struct OrganRemovedFromBodyEvent(EntityUid OldBody, EntityUid OldPart);
+public readonly record struct OrganRemovedFromBodyEvent(EntityUid OldBody, EntityUid OldPart, bool IsImplanted = true);

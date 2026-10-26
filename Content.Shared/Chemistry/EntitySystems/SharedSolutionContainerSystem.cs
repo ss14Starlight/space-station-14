@@ -439,9 +439,12 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         var solution = comp.Solution;
 
         var splitSol = solution.SplitSolution(quantity);
+        AfterSolutionSplit(soln, splitSol);
         UpdateChemicals(soln);
         return splitSol;
     }
+
+    partial void AfterSolutionSplit(Entity<SolutionComponent> source, Solution sample);
 
     public Solution SplitStackSolution(Entity<SolutionComponent> soln, FixedPoint2 quantity, int stackCount)
     {

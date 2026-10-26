@@ -4,6 +4,7 @@ using Content.Server.Popups;
 using Content.Server.Store.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Changeling.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.FixedPoint;
@@ -119,7 +120,6 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     public static readonly EntProtoId SlowdownPrototype = "StatusEffectStaminaLow";
 
-    private static readonly ProtoId<ReagentPrototype> BloodPrototype = "Blood";
     private static readonly ProtoId<ReagentPrototype> BloodChangelingPrototype = "BloodChangeling";
 
     public override void Update(float frameTime)
@@ -183,11 +183,9 @@ public sealed partial class ChangelingSystem : EntitySystem
             {
                 _movementMod.TryAddMovementSpeedModDuration(uid, SlowdownPrototype, TimeSpan.FromSeconds(1.5f), 0.5f);
 
-                var solution = new Solution();
-
                 var vomitAmount = 15f;
                 _blood.TryModifyBloodLevel(uid, -vomitAmount);
-                solution.AddReagent(BloodPrototype, vomitAmount); // pw note - blood without forensics data probably shouldn't get generated except by esoteric effects
+                var solution = _blood.CreateBloodSample(uid, FixedPoint2.New(vomitAmount));
 
                 _puddle.TrySplashSpillAt(uid, Transform(uid).Coordinates, solution, out _);
 
@@ -560,6 +558,8 @@ public sealed partial class ChangelingSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnStartup(EntityUid uid, ChangelingComponent comp, ref ComponentStartup args)
     {
+        EnsureComp<ChangelingIdentityComponent>(uid);
+        _devour.EnsureStarlightDevour(uid);
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
         _respirator.SetEnabled(uid, comp.BreathingEnabled);
@@ -582,7 +582,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (TryComp<BloodstreamComponent>(uid, out var bloodstream) &&
             bloodstream.BloodReferenceSolution is { } originalBlood)
         {
-            _blood.ChangeBloodReagents(uid, new Solution([new ReagentQuantity(BloodChangelingPrototype, originalBlood.Volume)]));
+            _blood.ChangeBloodReagents(uid, new Solution([new ReagentQuantity(BloodChangelingPrototype, originalBlood.Volume, _blood.GetEntityBloodData((uid, bloodstream)))]));
         }
         // Starlight edit end
     }

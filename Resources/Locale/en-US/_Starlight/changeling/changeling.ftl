@@ -3,3 +3,4 @@ changeling-equip-neocyte-fail = Need to be a neocyte, and must not be wearing a 
 
 changeling-breathing-enabled = We resume breathing.
 changeling-breathing-disabled = We no longer need to breathe.
+changeling-devour-attempt-failed-finish = We failed to finish consuming this body!

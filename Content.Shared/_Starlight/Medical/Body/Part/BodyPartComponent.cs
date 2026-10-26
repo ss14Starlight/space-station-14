@@ -19,6 +19,12 @@ public sealed partial class BodyPartComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid? Body;
 
+    /// <summary>
+    /// Body that grew this part. Attaching it elsewhere does not change its origin.
+    /// </summary>
+    [DataField]
+    public EntityUid? OriginalBody;
+
     [DataField, AutoNetworkedField]
     public BodyPartType PartType = BodyPartType.Other;
 

@@ -1,4 +1,5 @@
 using Content.Server._Starlight.Language;
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Server.Changeling.Systems;
 using Content.Server.Ensnaring;
@@ -11,14 +12,12 @@ using Content.Shared.Actions.Events;
 using Content.Shared.Changeling;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Changeling.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.Ensnaring.Components;
 using Content.Shared.Eye.Blinding.Components;
@@ -48,10 +47,11 @@ public sealed partial class ChangelingSystem : EntitySystem
 {
     [Dependency] private StatusEffectsSystem _statusEffect = default!;
     [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
+    [Dependency] private ChangelingDevourSystem _devour = default!;
     [Dependency] private LanguageSystem _language = default!;
     [Dependency] private SharedFlashSystem _flashSystem = default!;
     [Dependency] private SharedRottingSystem _rotting = default!;
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BodySystem _body = default!;
     [Dependency] private StomachSystem _stomach = default!;
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private EnsnareableSystem _ensnareable = default!;
@@ -62,15 +62,6 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     #region Basic Abilities
 
-    [SubscribeLocalEvent]
-    private void OnOpenEvolutionMenu(EntityUid uid, ChangelingComponent comp, ref OpenEvolutionMenuEvent args)
-    {
-        if (!TryComp<StoreComponent>(uid, out var store))
-            return;
-
-        _store.ToggleUi(uid, uid, store);
-        args.Handled = true;
-    }
     [SubscribeLocalEvent]
     private void OnAbsorb(EntityUid uid, ChangelingComponent comp, ref AbsorbDNAEvent args)
     {
@@ -106,14 +97,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         };
         args.Handled = _doAfter.TryStartDoAfter(dargs);
     }
-    public ProtoId<DamageGroupPrototype> AbsorbedDamageGroup = "Genetic";
-    [SubscribeLocalEvent]
-    private void OnDevourEvolutionReward(EntityUid uid, ChangelingComponent comp, ref ChangelingDevourFinishedEvent args)
-    {
-        if (!args.Completed || args.Handled)
-            return;
-        AwardEvolutionPoints(uid, args.Target);
-    }
+
     private void AwardEvolutionPoints(EntityUid uid, EntityUid target)
     {
         if (HasComp<AbsorbedComponent>(target))
@@ -143,6 +127,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (!IsIncapacitated(target) || HasComp<AbsorbedComponent>(target))
             return;
 
+        AwardEvolutionPoints(uid, target);
         PlayMeatySound(uid, comp);
 
         UpdateBiomass(uid, comp, comp.MaxBiomass - comp.TotalAbsorbedEntities);
@@ -251,7 +236,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
-        if (!TryComp<DamageableComponent>(uid, out var damageable))
+        if (!TryComp<DamageableComponent>(uid, out var damageable) || !_body.TryRestoreBody(uid))
             return;
 
         // heal of everything
@@ -522,9 +507,6 @@ public sealed partial class ChangelingSystem : EntitySystem
         args.Handled |= _puddle.TrySplashSpillAt(target, Transform(target).Coordinates, solution, out _);
     }
 
-    /// <summary>
-    /// Retains the unimplemented legacy last-resort event for compatibility.
-    /// </summary>
     [SubscribeLocalEvent]
     private void OnChameleonSkin(EntityUid uid, ChangelingComponent comp, ref ActionChameleonSkinEvent args)
     {
@@ -556,9 +538,6 @@ public sealed partial class ChangelingSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnEphedrineOverdose(EntityUid uid, ChangelingComponent comp, ref ActionEphedrineOverdoseEvent args)
     {
-        var stam = EnsureComp<StaminaComponent>(uid);
-        stam.StaminaDamage = 0;
-
         var reagents = new Dictionary<string, FixedPoint2>
         {
             { "Ephedrine", 15f }
@@ -570,15 +549,13 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-inject-fail"), uid, uid);
             return;
         }
+        EnsureComp<StaminaComponent>(uid).StaminaDamage = 0;
         args.Handled = true;
     }
     #region Starlight
     [SubscribeLocalEvent]
     private void OnDesoxyephedrineOverdose(EntityUid uid, ChangelingComponent comp, ref ActionDesoxyephedrineOverdoseEvent args)
     {
-        var stam = EnsureComp<StaminaComponent>(uid);
-        stam.StaminaDamage = 0;
-
         var reagents = new Dictionary<string, FixedPoint2>
         {
             { "Desoxyephedrine", 15f }
@@ -590,14 +567,12 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-inject-fail"), uid, uid);
             return;
         }
+        EnsureComp<StaminaComponent>(uid).StaminaDamage = 0;
         args.Handled = true;
     }
     [SubscribeLocalEvent]
     private void OnAmalgamOverdose(EntityUid uid, ChangelingComponent comp, ref ActionAmalgamOverdoseEvent args)
     {
-        var stam = EnsureComp<StaminaComponent>(uid);
-        stam.StaminaDamage = 0;
-
         var reagents = new Dictionary<string, FixedPoint2>
         {
             { "Amalgam", 15f }
@@ -609,6 +584,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-inject-fail"), uid, uid);
             return;
         }
+        EnsureComp<StaminaComponent>(uid).StaminaDamage = 0;
         args.Handled = true;
     }
     #endregion

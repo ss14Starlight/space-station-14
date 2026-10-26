@@ -10,7 +10,7 @@
   tags:
     - CantBecomeRevolutionary
   components:
-  - type: ChangelingDevour
+  - type: StarlightChangelingDevour
   - type: ChangelingIdentity
   - type: ChangelingTransform
   mindRoles:

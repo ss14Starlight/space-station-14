@@ -1,0 +1,22 @@
+- type: entity
+  id: ChangelingShockHand
+  name: electrified hand
+  description: A faint glow emanates from the hand.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi
+    state: shock-hand
+  - type: Item
+  - type: Unremoveable
+  - type: MeleeWeapon
+    animation: WeaponArcFist
+    wideAnimation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 0
+  - type: StaminaDamageOnHit
+    damage: 35
+    sound: /Audio/Weapons/egloves.ogg
+  - type: ChangelingShockHand
+    chemicalCost: 10

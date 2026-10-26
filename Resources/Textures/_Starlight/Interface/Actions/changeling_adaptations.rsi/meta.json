@@ -9,6 +9,12 @@
   "states": [
     {
       "name": "breathing"
+    },
+    {
+      "name": "organic-emag"
+    },
+    {
+      "name": "shock-hand"
     }
   ]
 }

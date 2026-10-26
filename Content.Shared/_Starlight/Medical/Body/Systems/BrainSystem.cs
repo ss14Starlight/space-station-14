@@ -1,5 +1,6 @@
 ﻿using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -11,6 +12,7 @@ namespace Content.Shared._Starlight.Medical.Body.Systems;
 public sealed partial class BrainSystem : EntitySystem
 {
     [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private SharedBodySystem _body = default!;
 
     public override void Initialize()
     {
@@ -23,7 +25,7 @@ public sealed partial class BrainSystem : EntitySystem
 
     private void HandleMind(EntityUid newEntity, EntityUid oldEntity)
     {
-        if (TerminatingOrDeleted(newEntity) || TerminatingOrDeleted(oldEntity))
+        if (!_body.CanTransferMindOnOrganChange(oldEntity, newEntity))
             return;
 
         EnsureComp<MindContainerComponent>(newEntity);

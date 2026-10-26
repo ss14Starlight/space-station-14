@@ -13,7 +13,8 @@ public partial class SharedBodySystem
     private void AddOrgan(
         Entity<OrganComponent> organEnt,
         EntityUid bodyUid,
-        EntityUid parentPartUid)
+        EntityUid parentPartUid,
+        bool isImplanted = true)
     {
         organEnt.Comp.Body = bodyUid;
         var addedEv = new OrganAddedEvent(parentPartUid);
@@ -21,21 +22,21 @@ public partial class SharedBodySystem
 
         if (organEnt.Comp.Body is not null)
         {
-            var addedInBodyEv = new OrganAddedToBodyEvent(bodyUid, parentPartUid);
+            var addedInBodyEv = new OrganAddedToBodyEvent(bodyUid, parentPartUid, isImplanted);
             RaiseLocalEvent(organEnt, ref addedInBodyEv);
         }
 
         Dirty(organEnt, organEnt.Comp);
     }
 
-    private void RemoveOrgan(Entity<OrganComponent> organEnt, EntityUid parentPartUid)
+    private void RemoveOrgan(Entity<OrganComponent> organEnt, EntityUid parentPartUid, bool isImplanted = true)
     {
         var removedEv = new OrganRemovedEvent(parentPartUid);
         RaiseLocalEvent(organEnt, ref removedEv);
 
         if (organEnt.Comp.Body is { Valid: true } bodyUid)
         {
-            var removedInBodyEv = new OrganRemovedFromBodyEvent(bodyUid, parentPartUid);
+            var removedInBodyEv = new OrganRemovedFromBodyEvent(bodyUid, parentPartUid, isImplanted);
             RaiseLocalEvent(organEnt, ref removedInBodyEv);
         }
 

@@ -52,7 +52,7 @@ public partial class SharedBodySystem
         if (TryComp(insertedUid, out OrganComponent? organ))
         //Starlight start
         {
-            AddOrgan((insertedUid, organ), ent.Comp.Body.Value, ent);
+            AddOrgan((insertedUid, organ), ent.Comp.Body.Value, ent, slotId != GetOrganContainerId("cavity"));
             if (slotId != "body_organ_slot_cavity")
             {
                 var addedEv = new SurgeryOrganImplantationCompleted(ent.Comp.Body.Value, ent.Owner, insertedUid);
@@ -78,7 +78,7 @@ public partial class SharedBodySystem
         }
 
         if (TryComp(removedUid, out OrganComponent? organ))
-            RemoveOrgan((removedUid, organ), ent);
+            RemoveOrgan((removedUid, organ), ent, slotId != GetOrganContainerId("cavity"));
     }
 
     private void RecursiveBodyUpdate(Entity<BodyPartComponent> ent, EntityUid? bodyUid)
@@ -100,14 +100,14 @@ public partial class SharedBodySystem
 
                 if (organComp.Body is { Valid: true } oldBodyUid)
                 {
-                    var removedEv = new OrganRemovedFromBodyEvent(oldBodyUid, ent);
+                    var removedEv = new OrganRemovedFromBodyEvent(oldBodyUid, ent, slotId != "cavity");
                     RaiseLocalEvent(organ, ref removedEv);
                 }
 
                 organComp.Body = bodyUid;
                 if (bodyUid is not null)
                 {
-                    var addedEv = new OrganAddedToBodyEvent(bodyUid.Value, ent);
+                    var addedEv = new OrganAddedToBodyEvent(bodyUid.Value, ent, slotId != "cavity");
                     RaiseLocalEvent(organ, ref addedEv);
                 }
             }
