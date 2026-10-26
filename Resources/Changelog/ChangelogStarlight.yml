@@ -1,18 +1,4 @@
 Entries:
-- author: Trosling
-  changes:
-  - message: Updates Corporate Law to match new contraband tier system.
-    type: Tweak
-  id: 409429
-  time: '2026-10-13T20:34:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6660
-- author: Vincolan
-  changes:
-  - message: The horse.
-    type: Add
-  id: 409430
-  time: '2026-10-13T20:34:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6623
 - author: Floximo
   changes:
   - message: Added true remote control.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409828
   time: '2026-10-26T22:28:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6876
+- author: redmushie
+  changes:
+  - message: Added Toolshed "layernetwork" command, letting mappers move entire pipe networks to a different layer at once.
+    type: Add
+  id: 409829
+  time: '2026-10-26T22:54:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6877
+- author: redmushie
+  changes:
+  - message: Toolshed's "visualize" command's window is now less unnecessarily big.
+    type: Tweak
+  id: 409830
+  time: '2026-10-26T22:54:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6877
 Order: -1
