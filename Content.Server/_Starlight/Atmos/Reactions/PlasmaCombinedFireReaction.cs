@@ -17,7 +17,6 @@ namespace Content.Server._Starlight.Atmos.Reactions
             if (mixture.GetMoles(Gas.Oxygen) < 0.01f && mixture.GetMoles(Gas.Pluoxium) < 0.01f)
             {
                 // no oxidisers, no reaction
-                Console.WriteLine($"A check was performed for oxidiser this tick");
                 mixture.ReactionResults[(byte)GasReaction.Fire] = 0;
                 return ReactionResult.NoReaction;
             }
