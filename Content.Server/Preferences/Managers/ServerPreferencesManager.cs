@@ -62,7 +62,17 @@ namespace Content.Server.Preferences.Managers
             if (message.Profile == null)
                 _sawmill.Error($"User {userId} sent a {nameof(MsgUpdateCharacter)} with a null profile in slot {message.Slot}.");
             else
+            {
+                // Starlight-start: Do not accept ForcedPrototype from clients.
+                message.Profile.ForcedPrototype =
+                    _cachedPlayerPrefs.TryGetValue(userId, out var prefsData)
+                    && prefsData.Prefs?.Characters.TryGetValue(message.Slot, out var stored) == true
+                        ? stored.ForcedPrototype
+                        : "";
+                // Starlight-end
+
                 await SetProfile(userId, message.Slot, message.Profile);
+            }
         }
 
         public async Task SetProfile(NetUserId userId, int slot, HumanoidCharacterProfile profile)
