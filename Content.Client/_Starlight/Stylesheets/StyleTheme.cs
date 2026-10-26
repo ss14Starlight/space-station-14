@@ -57,7 +57,9 @@ public sealed class StyleTheme
     {
         Proto = proto;
         Accent = Readable(accent.WithAlpha(1f), proto.Light);
-        SecondaryAccent = Readable((secondaryAccent ?? accent).WithAlpha(1f), proto.Light);
+        SecondaryAccent = proto.RawColors
+            ? (secondaryAccent ?? accent).WithAlpha(1f)
+            : Readable((secondaryAccent ?? accent).WithAlpha(1f), proto.Light);
         ClassicDecor = classicDecor;
 
         var activeBase = proto.RawColors
