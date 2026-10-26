@@ -4,4 +4,4 @@
   - type: LimitedCharges
     maxCharges: 100000
   - type: AutoRecharge
-    rechargeDuration: 1
+    rechargeDuration: 1s
