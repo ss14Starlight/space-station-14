@@ -373,3 +373,95 @@
           type: [ Cyclorite ]
         reagent: Respirazone
         amount: -0.5
+
+- type: reagent
+  id: Mortizol # name is a combination of Rigor Mortis and Cortizol ^w^
+  name: reagent-name-mortizol
+  group: Medicine
+  desc: reagent-desc-mortizol
+  physicalDesc: reagent-physical-desc-thick
+  flavor: death
+  color: "#1b0330"
+  worksOnTheDead: true
+  metabolisms:
+    Bloodstream:
+      effects:
+        - !type:ReduceRotting
+          seconds: 30
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          - !type:MobStateCondition
+            mobstate: Dead
+        - !type:HealthChange
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          - !type:MobStateCondition
+            mobstate: Dead
+          damage:
+            types:
+              Blunt: 1.5
+              Radiation: 10 # 10u deals 200 Radiation, Synergizes strongly with Chronexaline
+        - !type:ModifyBleed # bleeding from of every orifices, was meant to target the living; but felt thematic for the dead too
+          amount: 1
+        - !type:HealthChange
+          conditions:
+          - !type:MobStateCondition
+            mobstate: Alive
+          damage:
+            types:
+              Blunt: 3
+              Cellular: 3
+        - !type:HealthChange # these repeats for each mobstate are pretty hacky and should be changed if support for a multi-mobstate-condition or inverted-mobstate-condition is added
+          conditions:
+          - !type:MobStateCondition
+            mobstate: SoftCritical
+          damage:
+            types:
+              Blunt: 3
+              Cellular: 3
+        - !type:HealthChange
+          conditions:
+          - !type:MobStateCondition
+            mobstate: Critical
+          damage:
+            types:
+              Blunt: 3
+              Cellular: 3
+        - !type:AdjustReagent
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: Mortizol
+          amount: -0.5
+
+- type: reagent
+  id: CellCultureMedium # aka Cell Grow™
+  name: reagent-name-cell-culture-medium
+  group: Medicine
+  desc: reagent-desc-cell-culture-medium
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: brothy
+  color: "#ddc874"
+  worksOnTheDead: true
+  metabolisms:
+    Bloodstream:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          - !type:MobStateCondition
+            mobstate: Dead
+          damage:
+            types:
+              Cellular: -0.25 # 0.5 cell per unit, very weak
+        - !type:SatiateHunger
+          factor: 0.5
+        - !type:AdjustReagent
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: CellCultureMedium
+          amount: -0.5
