@@ -76,6 +76,8 @@ public sealed partial class UITab : Control
         ThemePicker.OnPicked += SyncClassicDecorCheckbox;
         Control.AddOption(new OptionAccentCVar(Control, _cfg, AccentPicker));
         Control.AddOption(new OptionCustomAccentCVar(Control, _cfg, AccentPicker));
+        Control.AddOption(new OptionAccentCVar(Control, _cfg, SecondaryAccentPicker, StarlightCCVars.StyleSecondaryAccent));
+        Control.AddOption(new OptionCustomAccentCVar(Control, _cfg, SecondaryAccentPicker, StarlightCCVars.StyleCustomSecondaryAccent));
         Control.AddOptionDropDown(CVars.InterfaceTheme, DropDownHudTheme, themeEntries);
         Control.AddOptionDropDown(CCVars.UILayout, DropDownHudLayout, layoutEntries);
         Control.AddOptionSlider(StarlightCCVars.ChatSeparatedMinWidth, SeparatedChatWidthSlider, 300, 580);

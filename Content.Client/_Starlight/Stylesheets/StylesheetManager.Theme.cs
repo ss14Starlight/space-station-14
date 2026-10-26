@@ -43,6 +43,8 @@ public sealed partial class StylesheetManager
         _cfg.OnValueChanged(StarlightCCVars.StyleClassicDecor, _ => QueueStyleThemeRebuild());
         _cfg.OnValueChanged(StarlightCCVars.StyleAccent, _ => QueueStyleThemeRebuild());
         _cfg.OnValueChanged(StarlightCCVars.StyleCustomAccent, _ => QueueStyleThemeRebuild());
+        _cfg.OnValueChanged(StarlightCCVars.StyleSecondaryAccent, _ => QueueStyleThemeRebuild());
+        _cfg.OnValueChanged(StarlightCCVars.StyleCustomSecondaryAccent, _ => QueueStyleThemeRebuild());
         _cfg.OnValueChanged(StarlightCCVars.LobbyOpacity, _ => QueueStyleThemeRebuild());
         _prototype.PrototypesReloaded += args =>
         {
@@ -94,6 +96,10 @@ public sealed partial class StylesheetManager
 
     private Color? ResolveSecondaryAccent(StyleThemePrototype proto)
     {
+        if (_cfg.GetCVar(StarlightCCVars.StyleCustomSecondaryAccent)
+            && Color.TryFromHex(_cfg.GetCVar(StarlightCCVars.StyleSecondaryAccent), out var custom))
+            return custom;
+
         if (_cfg.GetCVar(StarlightCCVars.StyleCustomAccent))
             return null;
 

@@ -12,6 +12,7 @@
                     <BoxContainer Orientation="Vertical" Margin="10 8" SeparationOverride="10">
                         <sui:StyleThemePicker Name="ThemePicker" />
                         <sui:AccentPicker Name="AccentPicker" />
+                        <sui:AccentPicker Name="SecondaryAccentPicker" TitleLoc="ui-options-style-secondary-accent" />
                     </BoxContainer>
                 </PanelContainer>
 
