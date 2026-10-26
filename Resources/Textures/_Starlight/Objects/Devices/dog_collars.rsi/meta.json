@@ -1,0 +1,345 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "pda",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-assistantmanager",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-atmos",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-bartender",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-blueshield",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-boxer",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-brigmedic",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-captain",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-cargo",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-ce",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-centcom",
+      "copyright": "Made by xxhotgirl69 (GitHub). Copy of base pda until this collar gets its own art."
+    },
+    {
+      "name": "pda-chaplain",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-chemistry",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-clear",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-clown",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-cluwne",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-cmo",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-commander",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-cook",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-corpsman",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-decimus",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-detective",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-dutyofficer",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-engineer",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-ert",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-hop",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-hos",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-hydro",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-interncadet",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-internmed",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-internsci",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-internservice",
+      "copyright": "Made by xxhotgirl69 (GitHub). Copy of pda until this collar gets its own art."
+    },
+    {
+      "name": "pda-interntech",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-janitor",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-lawyer",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "pda-library",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-magi",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-mailtech",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-medical",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-mime",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-miner",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-mining",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "pda-musician",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-ninja",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-ntnc-cs",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-ntrep",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-ntsf",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-paramedic",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "pda-pirate",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-punpun",
+      "copyright": "Made by xxhotgirl69 (GitHub). Copy of pda until this collar gets its own art."
+    },
+    {
+      "name": "pda-qm",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-rd",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-reporter",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-salvagelead",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-science",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-security",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-seniorchemist",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-seniorcourier",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-seniorengineer",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-seniormailtech",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-seniorofficer",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-seniorparamedic",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-seniorphysician",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-seniorresearcher",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-solgov",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-syndi",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-syndi-commander",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-syndi-corpsman",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-syndi-operative",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-veteranblueshield",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-veteranbrigmedic",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-veterancorpsman",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-veteranmining",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "pda-veteransalvage",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-veteransalvagelead",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-warden",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-wizard",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-zookeeper",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "equipped-IDCARD",
+      "directions": 4,
+      "copyright": "Composited (all 4 frames of corgicollar + corgitag) from Mobs/Pets/corgi.rsi: https://github.com/tgstation/tgstation/commit/53d1f1477d22a11a99c6c6924977cd431075761b"
+    },
+    {
+      "name": "equipped-BELT",
+      "directions": 4,
+      "copyright": "Composited (all 4 frames of corgicollar + corgitag) from Mobs/Pets/corgi.rsi: https://github.com/tgstation/tgstation/commit/53d1f1477d22a11a99c6c6924977cd431075761b"
+    },
+    {
+      "name": "collar-light-overlay",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-clear-xeno",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "pda-medtak",
+      "copyright": "Made by xxhotgirl69 (GitHub)."
+    }
+  ]
+}

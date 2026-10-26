@@ -31,7 +31,7 @@ public sealed partial class ObjectiveConditionsControl : PanelContainer // Moffs
 
         Title.SetMarkupPermissive(Loc.GetString("objective-title-format", ("title", condition.Title)));
         Description.SetMarkupPermissive(Loc.GetString("objective-description-format",
-            ("description", condition.Description)));
+            ("description", condition.Description ?? string.Empty))); // Starlight
     }
     // Moffstation - End
 }

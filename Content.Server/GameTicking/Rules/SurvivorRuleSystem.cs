@@ -7,6 +7,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Objectives.Systems;
 using Content.Shared.Roles.Components;
 using Content.Shared.Survivor.Components;
 using Content.Shared.Tag;
@@ -18,7 +19,7 @@ namespace Content.Server.GameTicking.Rules;
 public sealed partial class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
 {
     [Dependency] private RoleSystem _role = default!;
-    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private TargetSystem _target = default!;
     [Dependency] private AntagSelectionSystem _antag = default!;
     [Dependency] private TransformSystem _xform = default!;
     [Dependency] private EmergencyShuttleSystem _eShuttle = default!;
@@ -39,7 +40,7 @@ public sealed partial class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComp
     {
         base.Started(uid, component, gameRule, args);
 
-        var allAliveHumanMinds = _mind.GetAliveHumans();
+        var allAliveHumanMinds = _target.GetAliveHumans();
 
         foreach (var humanMind in allAliveHumanMinds)
         {
