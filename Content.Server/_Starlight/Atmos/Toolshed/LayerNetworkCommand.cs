@@ -37,6 +37,9 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
     public IEnumerable<EntityUid> List([PipedArgument] EntityUid root, NodeGroupID group)
         => CollectNetwork(root, group, out _);
 
+    /// <summary>
+    /// Find all border entities, meaning places where the network changes color.
+    /// </summary>
     [CommandImplementation("getborders")]
     public IEnumerable<EntityUid> GetBorders([PipedArgument] EntityUid root, NodeGroupID group)
     {
@@ -44,6 +47,9 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
         return borders;
     }
 
+    /// <summary>
+    /// Finds all entities that cannot change layers due to another entity already occupying said spot.
+    /// </summary>
     [CommandImplementation("getconflicts")]
     public IEnumerable<EntityUid> GetConflicts([PipedArgument] EntityUid root, NodeGroupID group, AtmosPipeLayer layer)
     {
@@ -135,7 +141,7 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
                 $"Warning: {unmoved.Count} entities can't use {layer} and were left behind (now disconnected): {string.Join(", ", unmoved.Select(EntName))}.");
         if (borders.Count > 0)
             ctx.WriteLine(
-                $"Info: {borders.Count} entities border this network on a different colour and were left untouched: {string.Join(", ", borders.Select(EntName))}.");
+                $"Info: {borders.Count} entities border this network on a different color and were left untouched: {string.Join(", ", borders.Select(EntName))}.");
 
         return unmoved.Count > 0 ? unmoved : borders;
     }
@@ -211,7 +217,7 @@ public sealed partial class LayerNetworkCommand : ToolshedCommand
     }
 
     /// <summary>
-    /// Finds all entities on the target network that match the layer of the root entity.
+    /// Finds all entities on the target network that match the layer and color of the root entity.
     /// </summary>
     private HashSet<EntityUid> CollectNetwork(EntityUid root, NodeGroupID group, out HashSet<EntityUid> borders)
     {
