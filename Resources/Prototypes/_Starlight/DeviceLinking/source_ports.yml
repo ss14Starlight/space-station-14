@@ -76,3 +76,9 @@
   name: signal-port-name-turret-controller-sync-sender
   description: signal-port-description-turret-controller-sync-sender
   defaultLinks: [ TurretControllerSyncReceiver ]
+
+- type: sourcePort
+  id: CombustionTurbineConsoleSender
+  name: signal-port-name-combustion-turbine-console-sender
+  description: signal-port-description-combustion-turbine-console-sender
+  defaultLinks: [ CombustionTurbineConsoleReceiver ]
