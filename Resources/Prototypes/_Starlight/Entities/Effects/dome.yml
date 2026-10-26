@@ -41,7 +41,7 @@
   - type: Pierceable
     level: Metal
   - type: Tag
-    tags: [HideContextMenu, PersonalEnergyDome]
+    tags: [HideContextMenu, WideSwingPassThroughDome]
   - type: Sprite
     sprite: Effects/EnergyDome/energydome_small.rsi
     layers:
@@ -58,6 +58,8 @@
   categories: [ HideSpawnMenu ]
   parent: EnergyDomeBase
   components:
+  - type: Tag
+    tags: [HideContextMenu, WideSwingPassThroughDome]
   - type: Sprite
     sprite: Effects/EnergyDome/energydome_small.rsi
     layers:
@@ -77,7 +79,7 @@
   - type: Pierceable
     level: Metal
   - type: Tag
-    tags: [HideContextMenu, PersonalEnergyDome]
+    tags: [HideContextMenu, WideSwingPassThroughDome]
   - type: Sprite
     sprite: Effects/EnergyDome/energydome_small.rsi
     layers:
@@ -92,7 +94,7 @@
   - type: Pierceable
     level: Metal
   - type: Tag
-    tags: [HideContextMenu, PersonalEnergyDome]
+    tags: [HideContextMenu, WideSwingPassThroughDome]
   - type: Sprite
     drawdepth: Effects
     noRot: true
@@ -114,7 +116,7 @@
   - type: Pierceable
     level: Metal
   - type: Tag
-    tags: [HideContextMenu, PersonalEnergyDome]
+    tags: [HideContextMenu, WideSwingPassThroughDome]
   - type: Fixtures
     fixtures:
       fix1:

@@ -7,8 +7,8 @@ namespace Content.Shared.Weapons.Melee;
 public abstract partial class SharedMeleeWeaponSystem
 {
     [Dependency] private TagSystem _tag = default!;
-    private static readonly ProtoId<TagPrototype> PersonalEnergyDomeTag = "PersonalEnergyDome";
+    private static readonly ProtoId<TagPrototype> WideSwingPassThroughDomeTag = "WideSwingPassThroughDome";
 
-    private bool IsPersonalEnergyDome(EntityUid entity)
-        => _tag.HasTag(entity, PersonalEnergyDomeTag);
+    private bool IsWideSwingPassThroughDome(EntityUid entity)
+        => _tag.HasTag(entity, WideSwingPassThroughDomeTag);
 }
