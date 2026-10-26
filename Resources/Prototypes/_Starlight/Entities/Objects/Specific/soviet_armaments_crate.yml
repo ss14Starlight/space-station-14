@@ -141,6 +141,8 @@
       weight: 0.8
     - id: MaterialWoodPlank
       weight: 0.2
+    - id: CrateMaterialBasicResource
+      weight: 0.4
 
 - type: entityTable
   id: SKBWeaponsTable
