@@ -72,6 +72,8 @@ public sealed partial class UITab : Control
         SightsOptionsHash.OnTextChanged += OnTextChanged;
 
         Control.AddOption(new OptionStyleThemeCVar(Control, _cfg, ThemePicker));
+        Control.AddOptionCheckBox(StarlightCCVars.StyleClassicDecor, ClassicDecorCheckBox);
+        ThemePicker.OnPicked += SyncClassicDecorCheckbox;
         Control.AddOption(new OptionAccentCVar(Control, _cfg, AccentPicker));
         Control.AddOption(new OptionCustomAccentCVar(Control, _cfg, AccentPicker));
         Control.AddOptionDropDown(CVars.InterfaceTheme, DropDownHudTheme, themeEntries);
@@ -141,9 +143,22 @@ public sealed partial class UITab : Control
         Control.AddOptionColorSlider(StarlightCCVars.SightSecondColor, SightSecondColorSlider);
     }
 
+    private void OnStyleThemeChanged(string id)
+    {
+        if (_prototypeManager.TryIndex<StyleThemePrototype>(id, out var proto))
+            ClassicDecorCheckBox.Pressed = proto.ClassicDecor;
+    }
+
+    private void SyncClassicDecorCheckbox()
+    {
+        if (ThemePicker.Selected is { } id)
+            OnStyleThemeChanged(id);
+    }
+
     protected override void EnteredTree()
     {
         base.EnteredTree();
+        _cfg.OnValueChanged(StarlightCCVars.StyleTheme, OnStyleThemeChanged);
         _cfg.OnValueChanged(StarlightCCVars.RangedSight, OnSightCVarChanged);
         _cfg.OnValueChanged(StarlightCCVars.MeleeSight, OnSightCVarChanged);
         _cfg.OnValueChanged(StarlightCCVars.RangedSightScale, OnSightCVarChanged);
@@ -158,6 +173,7 @@ public sealed partial class UITab : Control
     protected override void ExitedTree()
     {
         base.ExitedTree();
+        _cfg.UnsubValueChanged(StarlightCCVars.StyleTheme, OnStyleThemeChanged);
         _cfg.UnsubValueChanged(StarlightCCVars.RangedSight, OnSightCVarChanged);
         _cfg.UnsubValueChanged(StarlightCCVars.MeleeSight, OnSightCVarChanged);
         _cfg.UnsubValueChanged(StarlightCCVars.RangedSightScale, OnSightCVarChanged);

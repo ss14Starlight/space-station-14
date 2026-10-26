@@ -24,13 +24,14 @@ public sealed class FlatContextMenuSheetlet : Sheetlet<NanotrasenStylesheet>
 
         var proto = theme.Proto;
 
-        if (proto.ClassicDecor)
+        if (theme.ClassicDecor)
         {
+            var menuFrame = ThemeBox.Or(proto.Window, ResCache, ClassicMenuBox(sheet));
             var rules = new List<StyleRule>
             {
                 E<PanelContainer>()
                     .Class(ContextMenuPopup.StyleClassContextMenuPopup)
-                    .Panel(ThemeBox.Or(proto.Window, ResCache, ClassicMenuBox(sheet))),
+                    .Panel(menuFrame),
             };
 
             var buttonPalette = new ColorPalette(

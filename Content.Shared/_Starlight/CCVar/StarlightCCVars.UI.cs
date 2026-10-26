@@ -40,6 +40,12 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("ui.style_custom_accent", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// Whether classic-style decorations are used.
+    /// </summary>
+    public static readonly CVarDef<bool> StyleClassicDecor =
+        CVarDef.Create("ui.style_classic_decor", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Show the old drag and drop job priority columns in the lobby, under the round info.
     /// </summary>
     public static readonly CVarDef<bool> LobbyJobColumns =

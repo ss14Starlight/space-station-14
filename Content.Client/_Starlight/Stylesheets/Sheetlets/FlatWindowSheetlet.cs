@@ -31,12 +31,13 @@ public sealed class FlatWindowSheetlet : Sheetlet<NanotrasenStylesheet>
 
         var rules = new List<StyleRule>();
 
-        if (!proto.ClassicDecor)
+        rules.Add(E().Class(DefaultWindow.StyleClassWindowPanel).Panel(windowBox));
+        rules.Add(E().Class(DefaultWindow.StyleClassWindowHeader).Panel(headerBox));
+
+        if (!theme.ClassicDecor)
         {
             rules.AddRange([
-                E().Class(DefaultWindow.StyleClassWindowPanel).Panel(windowBox),
                 E().Class(StyleClass.BorderedWindowPanel).Panel(windowBox),
-                E().Class(DefaultWindow.StyleClassWindowHeader).Panel(headerBox),
                 E().Class(StyleClass.AlertWindowHeader).Panel(alertHeaderBox),
                 E<PanelContainer>().Class("WindowHeadingBackground").Panel(FlatBox.Fill(proto.Surface)),
 
@@ -48,6 +49,13 @@ public sealed class FlatWindowSheetlet : Sheetlet<NanotrasenStylesheet>
                     .WithContentMargin(StyleBox.Margin.Right, 8)),
                 E<PanelContainer>().Class("BackgroundDark").Panel(FlatBox.Fill(proto.Background)),
             ]);
+        }
+
+        if (theme.ClassicDecor)
+        {
+            rules.Add(E<PanelContainer>()
+                .Class("BackgroundDark")
+                .Panel(FlatBox.Fill(sheet.SecondaryPalette.BackgroundDark)));
         }
 
         if (proto.WindowBackground is {} windowBackground)

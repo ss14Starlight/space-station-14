@@ -53,7 +53,7 @@ public sealed class FlatHudSheetlet : Sheetlet<NanotrasenStylesheet>
             E().Class(SeparatedChatGameScreen.StyleClassChatContainer).Panel(FlatBox.Fill(proto.Surface)),
         };
 
-        if (proto.ClassicDecor)
+        if (theme.ClassicDecor)
         {
             var chatRow = (proto.WindowBackground ?? proto.Background).WithAlpha(221f / 255f);
             rules.Add(E<PanelContainer>()

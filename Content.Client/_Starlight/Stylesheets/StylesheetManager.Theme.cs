@@ -34,7 +34,13 @@ public sealed partial class StylesheetManager
             _cfg.SaveToFile();
         }
 
-        _cfg.OnValueChanged(StarlightCCVars.StyleTheme, _ => QueueStyleThemeRebuild());
+        SyncClassicDecorToTheme();
+        _cfg.OnValueChanged(StarlightCCVars.StyleTheme, _ =>
+        {
+            SyncClassicDecorToTheme();
+            QueueStyleThemeRebuild();
+        });
+        _cfg.OnValueChanged(StarlightCCVars.StyleClassicDecor, _ => QueueStyleThemeRebuild());
         _cfg.OnValueChanged(StarlightCCVars.StyleAccent, _ => QueueStyleThemeRebuild());
         _cfg.OnValueChanged(StarlightCCVars.StyleCustomAccent, _ => QueueStyleThemeRebuild());
         _cfg.OnValueChanged(StarlightCCVars.LobbyOpacity, _ => QueueStyleThemeRebuild());
@@ -45,6 +51,7 @@ public sealed partial class StylesheetManager
         };
         _userInterfaceManager.OnScreenChanged += args => ApplyHudSheet(args.New);
 
+        QueueStyleThemeRebuild();
         RebuildHudSheet();
     }
 
@@ -61,11 +68,20 @@ public sealed partial class StylesheetManager
         }
 
         _hudStyleTheme = proto.Hud is { } hud && _prototype.TryIndex(hud, out var hudProto)
-            ? new StyleTheme(hudProto, ResolveAccent(hudProto), ResolveSecondaryAccent(hudProto))
+            ? new StyleTheme(hudProto, ResolveAccent(hudProto), ResolveSecondaryAccent(hudProto), ResolveClassicDecor())
             : null;
 
-        return new StyleTheme(proto, ResolveAccent(proto), ResolveSecondaryAccent(proto));
+        return new StyleTheme(proto, ResolveAccent(proto), ResolveSecondaryAccent(proto), ResolveClassicDecor());
     }
+
+    private void SyncClassicDecorToTheme()
+    {
+        if (_prototype.TryIndex<StyleThemePrototype>(_cfg.GetCVar(StarlightCCVars.StyleTheme), out var proto))
+            _cfg.SetCVar(StarlightCCVars.StyleClassicDecor, proto.ClassicDecor);
+    }
+
+    private bool ResolveClassicDecor()
+        => _cfg.GetCVar(StarlightCCVars.StyleClassicDecor);
 
     private Color ResolveAccent(StyleThemePrototype proto)
     {
