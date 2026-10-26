@@ -439,7 +439,6 @@ public sealed partial class ReagentFireSystem : EntitySystem
         // convert any oxygen and/or pluoxium in the tile to an effective oxidiser value relative to oxygen
         // i.e. 1 mol of oxygen = 1 effective oxidiser, 1 mol of pluoxium = 8 effective oxidiser
         var effectiveOxidiser = (tileMix?.GetMoles(Gas.Oxygen) ?? 0f) + ((tileMix?.GetMoles(Gas.Pluoxium) * PluoxiumFactor) ?? 0f);
-        Console.WriteLine($"Effective oxidiser: {effectiveOxidiser}");
         if (!fireComp.SelfOxidizing && effectiveOxidiser <= 0.1f)
         // Starlight end
         {
@@ -486,23 +485,17 @@ public sealed partial class ReagentFireSystem : EntitySystem
                 // Starlight start
                 // calculate the target effective oxidiser consumption, limiting by flammability and the available effective oxidiser in the tile
                 var burnAmount = MathF.Min(0.2f * effectiveFlammability, effectiveOxidiser);
-                Console.WriteLine($"Burn amount: {burnAmount}");
                 // get the mols of each oxidiser present in the tile
                 // oxygen and pluoxium are the only oxidisers that exist at the time of writing this, so in order to save on performance
                 // we will only check for oxygen and pluoxium; instead of iterating through all the gases in the tile and checking for the isOxidizer component
                 var oxygenMols = tileMix.GetMoles(Gas.Oxygen);
-                Console.WriteLine($"Oxygen moles: {oxygenMols}");
                 var pluoxMols = tileMix.GetMoles(Gas.Pluoxium);
-                Console.WriteLine($"Pluoxium moles: {pluoxMols}");
                 // pluox will be consumed first if present, so calculate how many mols of it will be consumed and prevent it from consuming more than is available in the tile
                 var pluoxConsumed = MathF.Min(pluoxMols, burnAmount / PluoxiumFactor);
-                Console.WriteLine($"Pluoxium consumed: {pluoxConsumed}");
                 // subtract pluoxium's oxygen-equivalent contribution from the total burn amount to get the remaining oxidiser that needs to be consumed
                 var remainingOxidiser = burnAmount - (pluoxConsumed * PluoxiumFactor);
-                Console.WriteLine($"Remaining oxidiser: {remainingOxidiser}");
                 // consume oxygen from the remaining oxidiser, without consuming more than is available 
                 var oxygenConsumed = MathF.Min(oxygenMols, remainingOxidiser);
-                Console.WriteLine($"Oxygen consumed: {oxygenConsumed}");
                 // remove moles of oxygen and/or pluox from the tile mix
                 tileMix.AdjustMoles(Gas.Pluoxium, -pluoxConsumed);
                 tileMix.AdjustMoles(Gas.Oxygen, -oxygenConsumed);
