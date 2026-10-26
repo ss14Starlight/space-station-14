@@ -1,13 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Changed Settings && Ghost Themes && Votes UIs.
-    type: Tweak
-  id: 409422
-  time: '2026-10-13T11:37:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6611
-- author: Rinary
-  changes:
   - message: Changed game top bar with buttons, now you can select what buttons you want to hide, pin, keep in "..." or use auto mode.
     type: Tweak
   id: 409423
@@ -2799,4 +2792,11 @@ Entries:
   id: 409821
   time: '2026-10-26T15:31:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6872
+- author: ahandleman
+  changes:
+  - message: The station will no longer suddenly disappear.
+    type: Fix
+  id: 409822
+  time: '2026-10-26T15:33:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6880
 Order: -1
