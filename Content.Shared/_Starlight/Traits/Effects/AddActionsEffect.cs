@@ -9,9 +9,13 @@ namespace Content.Shared._Starlight.Traits.Effects;
 /// </summary>
 public sealed partial class AddActionsEffect : BaseTraitEffect
 {
+    /// <summary>
+    /// The set of actions to add to the entity.
+    /// </summary>
     [DataField(required: true)]
     public HashSet<EntProtoId> Actions { get; private set; } = new();
 
+    /// <inheritdoc/>
     public override void Apply(TraitEffectContext ctx)
     {
         if (!ctx.EntMan.EntitySysManager.TryGetEntitySystem(out SharedActionsSystem? actionsSystem))

@@ -109,7 +109,11 @@
           laws: IPCLawBound
         - type: IonStormTarget
         - type: LawboardResettable
+          defaultLaws: IPCLawBound
   requirements:
+    - !type:RoleTimeRequirement
+      role: JobBorg
+      time: 8h
     - !type:SpeciesRequirement
       species:
         - IPC

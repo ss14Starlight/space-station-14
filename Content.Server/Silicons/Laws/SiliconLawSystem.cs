@@ -10,6 +10,7 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.Mindshield.Components;
 using Content.Shared.Popups; //Starlight
 using Content.Shared.Overlays;
 using Content.Shared.Radio.Components;
@@ -18,7 +19,8 @@ using Content.Shared.Roles.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Silicons.StationAi; // Starlight-edit
-using Content.Shared.Tag; //Starlight
+using Content.Shared.Tag;
+using Content.Shared.Wires; //Starlight
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -64,7 +66,8 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
         SubscribeLocalEvent<SiliconLawProviderComponent, MindRemovedMessage>(OnLawProviderMindRemoved);
         SubscribeLocalEvent<SiliconLawProviderComponent, SiliconEmaggedEvent>(OnEmagLawsAdded);
         SubscribeLocalEvent<SiliconLawProviderComponent, GotEmaggedEvent>(OnGotEmagged); //Starlight
-        SubscribeLocalEvent<SiliconLawProviderComponent, UpdateLawsDoAfterEvent>(OnDoAfter); // Starlight
+
+        SubscribeLocalEvent<LawboardResettableComponent, UpdateLawsDoAfterEvent>(OnDoAfter); // Starlight
     }
 
     private void OnMapInit(EntityUid uid, SiliconLawBoundComponent component, MapInitEvent args)
@@ -421,23 +424,44 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
         args.Handled = true;
     }
 
-    private void OnDoAfter(Entity<SiliconLawProviderComponent> ent, ref UpdateLawsDoAfterEvent args)
+    private void OnDoAfter(Entity<LawboardResettableComponent> ent, ref UpdateLawsDoAfterEvent args)
     {
         if (args.Cancelled) return;
 
         if (args.Target is not { } targetUid) return;
         if (!TryComp(args.Used, out SiliconLawProviderComponent? lawProvider)) return;
         if (!TryComp(args.Target, out SiliconLawProviderComponent? lawProvidee)) return;
+
         var target = new Entity<SiliconLawProviderComponent>(targetUid, lawProvidee);
+
+        if (HasComp<MindShieldComponent>(target))
+        {
+            _popup.PopupEntity(Loc.GetString("law-updater-mindshielded"), target, args.User);
+            return;
+        }
+        if (TryComp<WiresPanelComponent>(target, out var panel) && !panel.Open)
+        {
+            _popup.PopupEntity(Loc.GetString("law-updater-require-panel"), target, args.User);
+            return;
+        }
 
         _popup.PopupEntity(Loc.GetString("law-updater-updated"), args.User);
 
         target.Comp.Lawset = GetLawset(lawProvider.Laws);
         NotifyLawsChanged(target, target.Comp.LawUploadSound);
-        target.Comp.Subverted = true;
 
-        if(_mind.TryGetMind(target, out var mindId, out _))
-            EnsureSubvertedSiliconRole(mindId);
+        if (lawProvider.Laws == ent.Comp.DefaultLaws)
+        {
+            target.Comp.Subverted = false;
+            if(_mind.TryGetMind(target, out var mindId, out _))
+                RemoveSubvertedSiliconRole(mindId);
+        }
+        else
+        {
+            target.Comp.Subverted = true;
+            if(_mind.TryGetMind(target, out var mindId, out _))
+                EnsureSubvertedSiliconRole(mindId);
+        }
 
         args.Handled = true;
     }
