@@ -43,7 +43,10 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
             .WithContentMargin(StyleBox.Margin.Vertical, 3);
 
         var tooltipSurface = proto.SurfaceInspect ?? proto.Surface;
-        var tooltipBox = FlatBox.Bordered(tooltipSurface.WithAlpha(0.96f), proto.Border, proto.BorderThickness)
+        StyleBox tooltipBox = theme.ClassicDecor
+            ? FlatBox.Chamfered(tooltipSurface.WithAlpha(0.96f), proto.Border, proto.BorderThickness)
+            : FlatBox.Bordered(tooltipSurface.WithAlpha(0.96f), proto.Border, proto.BorderThickness);
+        tooltipBox = tooltipBox
             .WithContentMargin(StyleBox.Margin.Vertical, 2)
             .WithContentMargin(StyleBox.Margin.Horizontal, 7);
 
@@ -81,7 +84,9 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
             E<TextEdit>().Pseudo(TextEdit.StylePseudoClassPlaceholder).Prop("font-color", proto.TextPlaceholder ?? proto.TextDisabled),
 
             E<TabContainer>()
-                .Prop(TabContainer.StylePropertyPanelStyleBox, FlatBox.Bordered(proto.Surface, proto.Border, proto.SecondaryBorderThickness))
+                .Prop(TabContainer.StylePropertyPanelStyleBox, theme.ClassicDecor
+                    ? FlatBox.Chamfered(proto.Surface, proto.Border, proto.SecondaryBorderThickness)
+                    : FlatBox.Bordered(proto.Surface, proto.Border, proto.SecondaryBorderThickness))
                 .Prop(TabContainer.StylePropertyTabStyleBox, tabActive)
                 .Prop(TabContainer.StylePropertyTabStyleBoxInactive, tabInactive)
                 .Prop(TabContainer.stylePropertyTabFontColor, proto.Text)
