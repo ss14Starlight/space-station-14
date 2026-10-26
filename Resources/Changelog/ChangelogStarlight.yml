@@ -1,53 +1,4 @@
 Entries:
-- author: Wizden Team
-  changes:
-  - message: The value of tier 1 tech disks has been lowered.
-    type: Tweak
-  id: 409416
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Wizden Team
-  changes:
-  - message: 'EXPERIMENTAL: Player-controlled spiders and slimes are now forced to attack if they are passive near enemies for too long.'
-    type: Tweak
-  id: 409417
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Wizden Team
-  changes:
-  - message: 'Added a new objective for traitors: Hijack the Automated Trade Station. Your uplink will have a hijack beacon for you to use if you have this objective.'
-    type: Add
-  id: 409418
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Wizden Team
-  changes:
-  - message: Humanoids can now break out of locked genpop lockers.
-    type: Tweak
-  id: 409419
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Wizden Team
-  changes:
-  - message: 'Added a new objective for traitors: Hijack the Automated Trade Station. Your uplink will have a hijack beacon for you to use if you have this objective.'
-    type: Add
-  id: 409420
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Scarlet.
-  changes:
-  - message: Removed old prototypes that arent used.
-    type: Remove
-  id: 409421
-  time: '2026-10-13T10:47:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6669
-- author: Rinary
-  changes:
-  - message: Changed Settings && Ghost Themes && Votes UIs.
-    type: Tweak
-  id: 409422
-  time: '2026-10-13T11:37:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6611
 - author: Rinary
   changes:
   - message: Changed game top bar with buttons, now you can select what buttons you want to hide, pin, keep in "..." or use auto mode.
@@ -2799,4 +2750,53 @@ Entries:
   id: 409815
   time: '2026-10-25T21:25:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6868
+- author: WNP78
+  changes:
+  - message: Fixed "Examine Voice" button appearing after a short delay, moving all the other buttons.
+    type: Fix
+  id: 409816
+  time: '2026-10-26T06:47:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6863
+- author: Caws
+  changes:
+  - message: Service airlocks now correctly use the new Service door sprites.
+    type: Fix
+  id: 409817
+  time: '2026-10-26T07:26:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6865
+- author: baltdev
+  changes:
+  - message: Changed "(surgeon) starts (action)" to "(surgeon) starts to (action)" in surgery popups.
+    type: Tweak
+  id: 409818
+  time: '2026-10-26T07:26:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6871
+- author: Musiklie
+  changes:
+  - message: Reduced Mimic health by 30, halved damage, reduced speed by 1/3rd, and rate of spawning by 2/5ths.
+    type: Tweak
+  id: 409819
+  time: '2026-10-26T07:26:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6870
+- author: Johnny
+  changes:
+  - message: Yeah guess what, armament crates despawn WAY QUICKER NOW, you cant blame crates for lag anymore.
+    type: Tweak
+  id: 409820
+  time: '2026-10-26T15:31:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6872
+- author: Johnny
+  changes:
+  - message: Changed revolutionary portal items and weights based off feedback and testing.
+    type: Tweak
+  id: 409821
+  time: '2026-10-26T15:31:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6872
+- author: ahandleman
+  changes:
+  - message: The station will no longer suddenly disappear.
+    type: Fix
+  id: 409822
+  time: '2026-10-26T15:33:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6880
 Order: -1
