@@ -62,7 +62,7 @@ namespace Content.Server.Preferences.Managers
             if (message.Profile == null)
                 _sawmill.Error($"User {userId} sent a {nameof(MsgUpdateCharacter)} with a null profile in slot {message.Slot}.");
             else
-                await SetProfile(userId, message.Slot, message.Profile);
+                await SetProfile(userId, message.Slot, WithServerForcedPrototype(userId, message.Slot, message.Profile)); // Starlight
         }
 
         public async Task SetProfile(NetUserId userId, int slot, HumanoidCharacterProfile profile)
