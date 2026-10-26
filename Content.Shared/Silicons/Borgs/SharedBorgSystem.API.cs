@@ -26,8 +26,11 @@ public abstract partial class SharedBorgSystem
 
         // TODO: Replace this with something else, only the client's own mind is networked to them,
         // so this will always be false for the minds of other clients.
-        if (!allowRemoteControl && !_mind.TryGetMind(chassis.Owner, out _, out _)) // Starlight
+        // Starlight - start: Ensure its remote controlled or has an actor
+        if (!allowRemoteControl &&
+            (!_mind.TryGetMind(chassis.Owner, out _, out _) || !HasComp<ActorComponent>(chassis.Owner)))
             return false;
+        // Starlight - end
 
         if (_mobState.IsIncapacitated(chassis.Owner))
             return false;
