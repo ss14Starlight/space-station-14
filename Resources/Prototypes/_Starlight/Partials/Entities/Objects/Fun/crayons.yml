@@ -2,4 +2,6 @@
   id: CrayonBorg
   components:
   - type: LimitedCharges
-    maxCharges: 2147483647 # Match the magic crayon's effectively unlimited capacity.
+    maxCharges: 100000
+  - type: AutoRecharge
+    rechargeDuration: 1
