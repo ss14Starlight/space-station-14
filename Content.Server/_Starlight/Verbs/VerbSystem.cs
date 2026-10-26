@@ -13,6 +13,6 @@ public sealed partial class VerbSystem
         if (!_remoteControl.TryGetControlledEntity(attachedEntity, out var remoteEntity))
             return attachedEntity;
 
-        return remoteEntity;
+        return _remoteControl.CanRemoteControlledEntityAct(remoteEntity) ? remoteEntity : null;
     }
 }

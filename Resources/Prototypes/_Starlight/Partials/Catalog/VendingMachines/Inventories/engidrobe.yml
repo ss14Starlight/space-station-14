@@ -1,0 +1,28 @@
+- type: !PartialOnly vendingMachineInventory
+  id: EngiDrobeInventory
+  startingInventory: !Clear
+    ClothingBackpackDuffelEngineering: 3
+    ClothingBackpackSatchelEngineering: 3
+    ClothingBackpackEngineering: 3
+    ClothingUniformJumpsuitEngineering: 3
+    ClothingUniformJumpskirtEngineering: 3
+    ClothingUniformJumpsuitEngineeringHazard: 3
+    ClothingShoesColorBlack: 3
+    ClothingOuterVestHazard: 3
+    ClothingShoesBootsWork: 3
+    ClothingHeadHatHardhatYellow: 3
+    ClothingHeadHatHardhatOrange: 3
+    ClothingHeadsetEngineering: 3
+    ClothingOuterWinterEngi: 2
+    ClothingOuterWindbreakerEngineering: 2
+    ClothingNeckScarfStripedOrange: 3
+    ClothingNeckScarfSolidOrange: 3
+    ClothingShoesBootsWinterEngi: 2
+    ClothingBeltUtility: 3
+    ClothingMaskGas: 3
+  emaggedInventory: # Blimpuf
+    ClothingHandsGlovesConducting: 1 # Blimpuf
+    ClothingMaskGasSyndicate: 1 # Blimpuf
+    ClothingUniformJumpsuitRepairmanSyndie: 1 # Blimpuf
+    ClothingHeadHatSyndie: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf

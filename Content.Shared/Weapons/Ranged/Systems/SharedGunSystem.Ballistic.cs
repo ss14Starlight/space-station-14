@@ -66,7 +66,6 @@ public abstract partial class SharedGunSystem
     {
         if (args.Handled ||
             !component.MayTransfer ||
-            !Timing.IsFirstTimePredicted ||
             args.Target == null ||
             args.Used == args.Target ||
             Deleted(args.Target) ||
@@ -400,11 +399,8 @@ public abstract partial class SharedGunSystem
 
     public void UpdateBallisticAppearance(Entity<BallisticAmmoProviderComponent> ent)
     {
-        if (!Timing.IsFirstTimePredicted || !TryComp<AppearanceComponent>(ent, out var appearance))
-            return;
-
-        Appearance.SetData(ent, AmmoVisuals.AmmoCount, GetBallisticShots(ent.Comp), appearance);
-        Appearance.SetData(ent, AmmoVisuals.AmmoMax, ent.Comp.Capacity, appearance);
+        Appearance.SetData(ent, AmmoVisuals.AmmoCount, GetBallisticShots(ent.Comp));
+        Appearance.SetData(ent, AmmoVisuals.AmmoMax, ent.Comp.Capacity);
     }
 
     public void SetBallisticUnspawned(Entity<BallisticAmmoProviderComponent> entity, int count)

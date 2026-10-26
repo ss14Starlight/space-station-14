@@ -1,0 +1,20 @@
+- type: !PartialOnly vendingMachineInventory
+  id: ViroDrobeInventory
+  startingInventory: !Clear
+    ClothingUniformJumpsuitVirology: 2
+    ClothingUniformJumpskirtVirology: 2
+    ClothingShoesColorWhite: 2
+    ClothingOuterCoatLabViro: 2
+    ClothingOuterCoatLabVirologyLong: 2
+    ClothingOuterWinterViro: 2
+    ClothingMaskSterile: 2
+    ClothingBackpackVirology: 2
+    ClothingBackpackSatchelVirology: 2
+    ClothingBackpackDuffelVirology: 2
+  emaggedInventory: # Blimpuf
+    OminousPill: 1 # Blimpuf
+    ClothingHeadHatSyndie: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf
+    UniformScrubsColorCybersun: 1 # Blimpuf
+    UniformScrubsSkirtColorCybersun: 1 # Blimpuf
+    ClothingHeadHatSurgcapCybersun: 1 # Blimpuf

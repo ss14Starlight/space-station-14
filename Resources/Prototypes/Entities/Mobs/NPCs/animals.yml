@@ -1612,8 +1612,8 @@
       types:
         Blunt: 3
         Piercing: 3
-  - type: ToolRefinable # Starlight Butchering fix
-    refineResult: # Starlight
+  - type: Butcherable
+    spawned:
     - id: FoodMeat
       amount: 3
   - type: Puller
@@ -1895,8 +1895,8 @@
           horns_floppy_kobold_ears: Inherit
           horns_double: Inherit
           horns_kobold_ears: Inherit
-  - type: ToolRefinable # Starlight butchering fix
-    refineResult: # Starlight
+  - type: Butcherable
+    spawned:
     - id: FoodMeat
       amount: 2
   - type: AlwaysRevolutionaryConvertible

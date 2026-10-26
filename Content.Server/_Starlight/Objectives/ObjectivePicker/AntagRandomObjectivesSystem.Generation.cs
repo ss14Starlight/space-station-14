@@ -11,6 +11,7 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.Random;
 using Content.Shared.Whitelist;
 using Content.Shared._Starlight.Objectives.ObjectivePicker;
+using Content.Shared.Objectives.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -21,6 +22,7 @@ public sealed partial class AntagRandomObjectivesSystem
     [Dependency] private EntityWhitelistSystem _slWhitelist = default!;
     [Dependency] private IPrototypeManager _slPrototypes = default!;
     [Dependency] private TargetObjectiveSystem _slTarget = default!;
+    [Dependency] private TargetSystem _target = default!;
 
     private static readonly EntProtoId _sLDieObjective = "DieObjective";
     private TimeSpan _slNextAvailability;
@@ -224,7 +226,7 @@ public sealed partial class AntagRandomObjectivesSystem
                 {
                     var targets = new HashSet<Entity<MindComponent>>();
                     var pool = pick.Pool;
-                    pool.FindMinds(targets, mindId, EntityManager, _mind);
+                    pool.FindMinds(targets, mindId, EntityManager, _target);
                     _mind.FilterMinds(targets, pick.Filters, mindId);
                     if (offers.ObjectiveOptions.Keys.Count(id => Prototype(GetEntity(id))?.ID == prototype) >= targets.Count)
                     {
@@ -299,7 +301,7 @@ public sealed partial class AntagRandomObjectivesSystem
         {
             // Check eligibility without assigning a target or revealing their identity.
             if (!TryComp<PickRandomPersonComponent>(uid, out var pick) ||
-                _mind.PickFromPool(pick.Pool, pick.Filters, mindId) == null)
+                _target.PickFromPool(pick.Pool, pick.Filters, mindId) == null)
             {
                 Del(uid);
                 return false;
@@ -399,7 +401,7 @@ public sealed partial class AntagRandomObjectivesSystem
             {
                 var candidates = new HashSet<Entity<MindComponent>>();
                 var poolSource = pick.Pool;
-                poolSource.FindMinds(candidates, mindId, EntityManager, _mind);
+                poolSource.FindMinds(candidates, mindId, EntityManager, _target);
                 _mind.FilterMinds(candidates, pick.Filters, mindId);
                 var pool = new HashSet<int>();
                 foreach (var candidate in candidates)

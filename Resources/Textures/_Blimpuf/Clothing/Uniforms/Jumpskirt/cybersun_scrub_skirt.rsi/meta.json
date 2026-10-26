@@ -1,0 +1,30 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "Original and inhand sprites made by @Leonardo DaBepis. Skirt icon/equipped sprites by ItsMaitake on Blimpuf Station."
+        },
+        {
+            "name": "equipped-INNERCLOTHING",
+            "copyright": "Leonardo DaBepis, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "Leonardo DaBepis",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "Leonardo DaBepis",
+            "directions": 4
+        }
+    ]
+}

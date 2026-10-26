@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: BaseBorgChassisNotIonStormable
+  components:
+    - type: CustomSignature
+      config: !type:SignatureConfig
+        fontPath: "/Fonts/_Starlight/WireOne-Regular.ttf"

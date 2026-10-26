@@ -73,10 +73,17 @@
             <!-- Right, resized by dragging its left edge -->
             <sc:ResizeHandle Name="ChatResizeHandle" />
             <BoxContainer Name="ChatColumn" Orientation="Vertical" SeparationOverride="8">
+                <PanelContainer Name="ChatHeader" StyleClasses="LobbyCard">
+                    <BoxContainer Orientation="Horizontal" Margin="10 4">
+                        <Label Text="{Loc 'lobby-chat-header'}" StyleClasses="LabelKeyText" HorizontalExpand="True" VAlign="Center" />
+                        <Button Name="ChatToggle" StyleClasses="ButtonSquare" />
+                    </BoxContainer>
+                </PanelContainer>
                 <Control Name="RightSide" Access="Public" VerticalExpand="True">
                     <widgets:ChatBox Name="Chat" Access="Public" MinSize="0 0" />
                 </Control>
-                <PanelContainer StyleClasses="HubPanel">
+                <Control Name="ChatSpacer" VerticalExpand="True" Visible="False" />
+                <PanelContainer Name="ReadyPanel" StyleClasses="HubPanel">
                     <BoxContainer Orientation="Vertical" SeparationOverride="6" Margin="8">
                         <BoxContainer Orientation="Horizontal">
                             <Label Name="StartTime" Access="Public" HorizontalExpand="True" VAlign="Center" />

@@ -1724,7 +1724,7 @@
     Bloodstream:
       effects:
         - !type:ReduceRotting
-          seconds: 20
+          seconds: 30 # Starlight: 20 -> 30
           conditions:
           #Patient must be dead and in a cryo tube (or something cold)
           - !type:TemperatureCondition

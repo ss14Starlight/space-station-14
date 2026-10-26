@@ -25,4 +25,10 @@ reagent-desc-iceialin = Cool to the touch, a chem that can restore the temperatu
 reagent-name-respirazone = respirazone
 reagent-desc-respirazone = Used in the treatment of severe respiratory distress and blood loss. Unlike conventional oxygenation medicines, it is compatible with a wide variety of species.
 
+reagent-name-mortizol = mortizol
+reagent-desc-mortizol = Looks like Death, smells like Death. Clears the rot and rigor mortis from frozen corpses. Its use comes at a cost. Living bodies hate this stuff.
+
+reagent-name-cell-culture-medium = cell culture medium
+reagent-desc-cell-culture-medium = Branded and sold as Cell Grow™. Used to regrow and replace dead cells in old cadavers. Apply liberally
+
 reagent-desc-polypyrylium-oligomers-sl = A purple mixture of short polyelectrolyte chains not easily synthesized in the laboratory. Heals airloss and brute damage. Stops bleeding over time.

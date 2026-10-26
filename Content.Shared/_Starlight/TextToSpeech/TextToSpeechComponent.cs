@@ -4,9 +4,9 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Shared._Starlight.TextToSpeech;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class TextToSpeechComponent : Component
 {
-    [DataField("voice")]
+    [DataField("voice"), AutoNetworkedField]
     public ProtoId<VoicePrototype>? VoicePrototypeId { get; set; }
 }

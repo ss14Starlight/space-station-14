@@ -62,8 +62,8 @@
     rules: ghost-role-information-nonantagonist-rules
     job: Botanist
   - type: GhostTakeoverAvailable
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    spawned:
     - id: FoodMeat
       amount: 3
     - id: ChemistryBottleUnstableMutagen
@@ -114,8 +114,8 @@
     rules: ghost-role-information-nonantagonist-rules
     job: StirStir
   - type: GhostTakeoverAvailable
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    spawned:
     - id: FoodMeat
       amount: 3
   - type: Tag

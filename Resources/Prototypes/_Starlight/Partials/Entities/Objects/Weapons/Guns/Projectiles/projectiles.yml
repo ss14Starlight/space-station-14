@@ -1,0 +1,140 @@
+- type: !PartialOnly entity
+  id: BulletTaser
+  components:
+  - type: CyberneticDisruptionOnCollide
+    disableChance: 0.2
+
+- type: !PartialOnly entity
+  id: BulletTaserSuper
+  components:
+  - type: CyberneticDisruptionOnCollide
+    disableChance: 0.2
+
+- type: !PartialOnly entity
+  id: BulletDisabler
+  components:
+  - type: CyberneticDisruptionOnCollide
+    disableChance: 0.1
+
+- type: !PartialOnly entity
+  id: EmitterBolt
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: CyberneticDisruptionOnCollide
+    duration: 5
+
+- type: !PartialOnly entity
+  id: BulletKinetic
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 25
+  - type: TimedDespawn
+    lifetime: 0.275
+
+- type: !PartialOnly entity
+  id: BulletCharge
+  components:
+  - type: DamageMarkerOnCollide
+    damage:
+      types:
+        Blunt: 20
+        Slash: 5
+
+- type: !PartialOnly entity
+  id: BulletRocket
+  components:
+  - type: RadarBlip
+    color: "#44FFAA"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+  - type: PDTarget
+
+- type: !PartialOnly entity
+  id: BulletGrenadeBaton
+  components:
+  - type: Projectile
+    deleteOnCollide: true
+    damage:
+      types:
+        Blunt: 15
+  - type: StaminaDamageOnCollide
+    damage: 65
+
+- type: !PartialOnly entity
+  id: BulletGrenadeBlast
+  components:
+  - type: RadarBlip
+    color: "#FFDD00"
+    scale: 1
+    shape: Square
+    requireInSpace: true
+  - type: PDTarget
+
+- type: !PartialOnly entity
+  id: BulletGrenadeFrag
+  components:
+  - type: RadarBlip
+    color: "#FFDD00"
+    scale: 1
+    shape: Square
+    requireInSpace: true
+  - type: PDTarget
+
+- type: !PartialOnly entity
+  id: BulletGrenadeCleanade
+  components:
+  - type: SmokeOnTrigger
+    duration: 6
+    spreadAmount: 45
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+  - type: !Remove ExplodeOnTrigger
+  - type: !Remove Explosive
+
+- type: !PartialOnly entity
+  id: BulletGrenadeEMP
+  components:
+  - type: RadarBlip
+    color: "#44FFAA"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+  - type: PDTarget
+
+- type: !PartialOnly entity
+  id: BulletDisablerSmg
+  components:
+  - type: CyberneticDisruptionOnCollide
+    disableChance: 0.1
+
+- type: !PartialOnly entity
+  id: BulletEnergyTurretDisabler
+  components:
+  - type: CyberneticDisruptionOnCollide
+
+- type: !PartialOnly entity
+  id: BulletLaser
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 20
+
+- type: !PartialOnly entity
+  id: EnergyCrossbowBolt
+  components:
+  - type: Solution
+    solution:
+      maxVol: 4
+      reagents: !Clear
+      - ReagentId: Impedrezene
+        Quantity: 4
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 4

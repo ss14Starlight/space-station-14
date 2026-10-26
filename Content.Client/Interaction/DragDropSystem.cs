@@ -49,6 +49,7 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
 
     // how often to recheck possible targets (prevents calling expensive
     // check logic each update)
@@ -434,11 +435,9 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
         var bounds = new Box2(mousePos.Position - expansion, mousePos.Position + expansion);
         var pvsEntities = _lookup.GetEntitiesIntersecting(mousePos.MapId, bounds);
 
-        var spriteQuery = GetEntityQuery<SpriteComponent>();
-
         foreach (var entity in pvsEntities)
         {
-            if (!spriteQuery.TryGetComponent(entity, out var inRangeSprite) ||
+            if (!_spriteQuery.TryGetComponent(entity, out var inRangeSprite) ||
                 !inRangeSprite.Visible ||
                 entity == _draggedEntity)
             {

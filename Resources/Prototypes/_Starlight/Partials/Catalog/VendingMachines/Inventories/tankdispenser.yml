@@ -1,0 +1,20 @@
+- type: !PartialOnly vendingMachineInventory
+  id: TankDispenserEVAInventory
+  startingInventory:
+    OxygenTankFilled: 13
+    NitrogenTankFilled: 13
+    CoolingUnit: 13
+  emaggedInventory: # Blimpuf
+    DoubleEmergencyNitrogenTankFilled: 1 # Blimpuf
+    DoubleEmergencyOxygenTankFilled: 1 # Blimpuf
+    EmergencyFunnyOxygenTankFilled: 3 # Blimpuf
+    PlasmaTankFilled: 3
+
+- type: !PartialOnly vendingMachineInventory
+  id: TankDispenserEngineeringInventory
+  startingInventory:
+    CoolingUnit: 10
+  emaggedInventory: # Blimpuf
+    DoubleEmergencyNitrogenTankFilled: 1 # Blimpuf
+    DoubleEmergencyOxygenTankFilled: 1 # Blimpuf
+    EmergencyFunnyOxygenTankFilled: 3 # Blimpuf

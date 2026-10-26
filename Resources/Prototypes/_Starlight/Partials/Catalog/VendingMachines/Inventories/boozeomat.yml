@@ -1,0 +1,6 @@
+- type: !PartialOnly vendingMachineInventory
+  id: BoozeOMatInventory
+  emaggedInventory: # Blimpuf
+    OminousPill: 1 # Blimpuf
+    DrinkPoisonWinebottleFull: 2 # Blimpuf
+    DrinkVodkizineSmallBottleUsed: 1 # Blimpuf

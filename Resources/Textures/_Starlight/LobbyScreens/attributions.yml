@@ -3,8 +3,8 @@
   copyright: "by Doner, t.me/Doner19"
   source: "https://github.com/Veritius"
 
-- files: ["IPCsaster.webp"]
-  license: "CC-BY-NC-SA-4.0"
+- files: ["ipcsaster.webp"]
+  license: "CC-BY-SA-4.0"
   copyright: "By TheAnaRina, Apart of @manisols.bsky.social on Bluesky"
   source: "https://bsky.app/profile/manisols.bsky.social"
 
@@ -24,11 +24,6 @@
   source: "https://www.instagram.com/neevoytattoo/"
 
 - files: ["ntosprey.webp"]
-  license: "CC0-1.0"
-  copyright: "ItsAbby11 on Github, happymemories11 on Discord."
-  source: "https://github.com/ItsAbby11"
-
-- files: ["friendsforever.webp"]
   license: "CC0-1.0"
   copyright: "ItsAbby11 on Github, happymemories11 on Discord."
   source: "https://github.com/ItsAbby11"
@@ -73,7 +68,7 @@
   copyright: "TheKillerDumb & Bukkataro on Discord & Twitter"
   source: "https://discord.com/channels/1272545509562777621/1311190248310575114/1419524113655136358"
 
-- files: ["The_mid-round_antag's_bane.webp"]
+- files: ["the-mid-round-antags-bane.webp"]
   license: "CC-BY-NC-SA-4.0"
   copyright: "By voy0099 on discord"
   source: "https://www.instagram.com/neevoytattoo/"
@@ -83,7 +78,7 @@
   copyright: "Gib Schmib"
   source: "https://www.artstation.com/javichuk1"
 
-- files: ["Dispace.webp"]
+- files: ["dispace.webp"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "IQlvlZero"
   source: "https://discord.com/channels/1406768242843979816/1426693464703111281/1460028294027022591"
@@ -93,42 +88,27 @@
   copyright: "m0lem4n"
   source: "https://discord.com/channels/1272545509562777621/1428793935974891690/1428961585589911613"
 
-- files: ["FatefulShift.webp"]
+- files: ["fatefulshift.webp"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "rickery"
   source: "https://discord.com/channels/1272545509562777621/1428793935974891690/1433725406950854727"
 
-- files: ["HoPdeskSimulator.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "swonki"
-  source: "https://discord.com/channels/1272545509562777621/1428793935974891690/1429111869813035214"
-
-- files: ["janitorial.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "wintergem18"
-  source: "https://discord.com/channels/1272545509562777621/1428793935974891690/1433846888028835991"
-
-- files: ["KATIEVSSYNDIE.webp"]
+- files: ["katievssyndie.webp"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "ramblinger"
   source: "https://discord.com/channels/1272545509562777621/1428793935974891690/1429967068283011194"
 
-- files: ["NoGalCom.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "deltaVelocity"
-  source: "https://discord.com/channels/1272545509562777621/1499926836560269353"
-
-- files: ["AiderThief.webp"]
+- files: ["aiderthief.webp"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "silkielol"
   source: "https://discord.com/channels/1272545509562777621/1311190248310575114/1509637617036165190"
 
-- files: ["AuroraCaelus.webp"]
+- files: ["auroracaelus.webp"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "xxhotgirl69"
   source: "https://discord.com/channels/1272545509562777621/1311190248310575114/1541710998199734364"
 
-- files: ["IPCAndMoff.webp"]
+- files: ["ipcandmoff.webp"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "Doner"
   source: "https://discord.com/channels/1272545509562777621/1311190248310575114/1544381665709789336"
@@ -137,3 +117,69 @@
   license: "CC-BY-NC-SA-3.0"
   copyright: "Doner"
   source: "https://discord.com/channels/1272545509562777621/1311190248310575114/1545100732611559424"
+
+- files: ["mushroomannihilator.webp"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "@zymshok on discord. Taken from Goob-Station (Resources/Textures/LobbyScreens/MushroomAnnihilator.webp)"
+  source: "https://github.com/Goob-Station/Goob-Station"
+
+- files: ["doomdeed.webp"]
+  license: "CC-BY-SA-3.0"
+  copyright: "sharkpeekotwoelecticboogaloo. Taken from funky-station (Resources/Textures/LobbyScreens/doomdeed.webp)"
+  source: "https://github.com/funky-station/funky-station"
+
+- files: ["ivan.webp"]
+  license: "CC-BY-NC-3.0"
+  copyright: "ramblinger. Taken from funky-station (Resources/Textures/LobbyScreens/ivan.webp)"
+  source: "https://github.com/funky-station/funky-station"
+
+- files: ["tidy.webp"]
+  license: "CC-BY-SA-4.0"
+  copyright: "argentsunshine. Taken from imp-station-14 (Resources/Textures/_Impstation/LobbyScreens/tidy.webp)"
+  source: "https://github.com/impstation/imp-station-14"
+
+- files: ["smoko.webp"]
+  license: "CC-BY-SA-4.0"
+  copyright: "Wowls. Taken from imp-station-14 (Resources/Textures/_Impstation/LobbyScreens/smoko.webp)"
+  source: "https://github.com/impstation/imp-station-14"
+
+- files: ["why.webp"]
+  license: "CC-BY-SA-4.0"
+  copyright: "starlighthowls. Taken from imp-station-14 (Resources/Textures/_Impstation/LobbyScreens/why.webp)"
+  source: "https://github.com/impstation/imp-station-14"
+
+
+- files: ["regular-shift.webp"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Gasper_horned#9372 (428967480057397260) on discord. Taken from Corvax (Resources/Textures/Corvax/LobbyScreens/regular-shift.webp)"
+  source: "https://github.com/space-syndicate/space-station-14"
+
+- files: ["xenosattack.webp"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Gasper_horned#9372 (428967480057397260) on discord. Taken from Corvax (Resources/Textures/Corvax/LobbyScreens/xenosattack.webp)"
+  source: "https://github.com/space-syndicate/space-station-14"
+
+- files: ["maintenance-clown.webp"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Nijn#5581 (436971507923681290) on discord. Taken from Corvax (Resources/Textures/Corvax/LobbyScreens/maintenance-clown.webp)"
+  source: "https://github.com/space-syndicate/space-station-14"
+
+- files: ["expedition.webp"]
+  license: "CC-BY-NC-SA-4.0"
+  copyright: "reynir_exe(1016704512221794354) on discord. Taken from Corvax (Resources/Textures/Corvax/LobbyScreens/expedition.webp)"
+  source: "https://github.com/space-syndicate/space-station-14"
+
+- files: ["sole-survivor.webp"]
+  license: "CC-BY-NC-SA-4.0"
+  copyright: "rozycosmic(470913355775737856) on discord. Taken from Corvax (Resources/Textures/Corvax/LobbyScreens/sole-survivor.webp)"
+  source: "https://github.com/space-syndicate/space-station-14"
+
+- files: ["invisiblewall.webp"]
+  license: "CC-BY-SA-3.0"
+  copyright: "vanderslootassgiraffe on discord. Taken from Corvax (Resources/Textures/LobbyScreens/invisiblewall.webp)"
+  source: "https://github.com/space-syndicate/space-station-14"
+
+- files: ["glubs.webp"]
+  license: "CC-BY-NC-SA-4.0"
+  copyright: "By eniinguuangel"
+  source: "https://github.com/ss14Starlight/space-station-14/pull/6838"

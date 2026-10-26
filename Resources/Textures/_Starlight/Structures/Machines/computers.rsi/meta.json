@@ -475,6 +475,11 @@
                     0.2
                 ]
             ]
+        },
+        {
+            "name": "turbine",
+            "copyright": "Taken from Aurora Station at commit https://github.com/Aurorastation/Aurora.3/commit/4c83a7bac48311e4e0fd9449a27980ca35eed7a7 (icons/obj/modular_computers/modular_terminal.dmi, turbinecomp)",
+            "directions": 4
         }
     ]
 }

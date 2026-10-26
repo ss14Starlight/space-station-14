@@ -71,7 +71,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatSecurityTrooper
   name: trooper hat
-  description: A campaign hat for the NanoTrasen Troopers. It's supposed to come with a case, too... # SL
+  description: A campaign hat for the Nanotrasen Troopers. It's supposed to come with a case, too...
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/security_trooper_hat.rsi
@@ -237,7 +237,7 @@
   parent: [ ClothingHeadBase, BaseCommandContraband, BaseAssistantManagerContraband ] # Starlight
   id: ClothingHeadHatBeretCommand
   name: command beret
-  description: A beret with the NanoTrasen logo. It has an aura of authority. # SL
+  description: A beret with the Nanotrasen logo. It has an aura of authority.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/beret_command.rsi
@@ -377,10 +377,6 @@
     sprite: Clothing/Head/Hats/greyfedora.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/greyfedora.rsi
-  - type: Tag # Starlight start
-    tags:
-    - PetWearable
-    - CorgiWearable # Starlight end
 
 - type: entity
   parent: ClothingHeadHatFedoraBrown
@@ -431,7 +427,7 @@
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatHoshat
   name: head of security cap
-  description: The robust hat of the Head of Security. For showing the officers who's the real boss.
+  description: A stylish cap worn by the Head of Security. Shows the officers who's in charge.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/hoshat.rsi
@@ -539,14 +535,12 @@
   description: A strange-looking red hat that most certainly belongs to a powerful magic-user.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/wizard_red.rsi # Starlight resprited
+    sprite: Clothing/Head/Hats/redwizard.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/wizard_red.rsi # Starlight resprited
+    sprite: Clothing/Head/Hats/redwizard.rsi
   - type: Tag
     tags:
     - PetWearable
-    - CorgiWearable
-#    - HamsterWearable # Starlight
     - ClothMade
     - WhitelistChameleon
 
@@ -751,8 +745,6 @@
   - type: Tag
     tags:
     - PetWearable
-    - CorgiWearable
-    - HamsterWearable
     - ClothMade
     - WhitelistChameleon
 
@@ -787,7 +779,6 @@
   - type: Tag
     tags:
     - PetWearable
-    - CorgiWearable # Starlight
     - WhitelistChameleon
     - ClothMade
     - Recyclable
@@ -821,13 +812,13 @@
 - type: entity
   parent: ClothingHeadHatWizardBase
   id: ClothingHeadHatWizard
-  name: blue wizard hat # Starlight name consistency
+  name: wizard hat
   description: A strange-looking blue hat that most certainly belongs to a powerful magic-user.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/wizard_blue.rsi # Starlight resprited
+    sprite: Clothing/Head/Hats/wizardhat.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/wizard_blue.rsi # Starlight resprited
+    sprite: Clothing/Head/Hats/wizardhat.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -836,7 +827,6 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
-    - CorgiWearable
 
 - type: entity
   parent: ClothingHeadBase
@@ -1076,8 +1066,6 @@
     sprite: Clothing/Head/Hats/melon.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/melon.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -1093,8 +1081,6 @@
     sprite: Clothing/Head/Hats/holyhatmelon.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/holyhatmelon.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -1549,3 +1535,14 @@
     tags:
     - PetWearable
     - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMitreClown
+  name: honkmother mitre
+  description: It's hard for parishoners to see a banana peel on the floor when they're looking up at your glorious chapeau.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/mitre_clown.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/mitre_clown.rsi

@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e."
+        },
+        {
+            "name": "equipped-HELMET",
+            "copyright": "TG Station",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET-hamster",
+            "copyright": "TG Station",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "TG Station",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "TG Station",
+            "directions": 4
+        }
+    ]
+}

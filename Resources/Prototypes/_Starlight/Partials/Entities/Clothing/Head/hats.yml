@@ -1,10 +1,84 @@
 - type: !PartialOnly entity
+  id: ClothingHeadHatSecurityTrooper
+  description: A campaign hat for the NanoTrasen Troopers. It's supposed to come with a case, too...
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatBeretCommand
+  description: A beret with the NanoTrasen logo. It has an aura of authority.
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatFedoraGrey
+  components:
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoshat
+  description: The robust hat of the Head of Security. For showing the officers who's the real boss.
+
+- type: !PartialOnly entity
   id: ClothingHeadHatPlaguedoctor
   components:
-  - type: Armor
-    modifiers: { }
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.95
+  - type: Armor
+    modifiers: {}
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatRedwizard
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/wizard_red.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/wizard_red.rsi
+  - type: Tag
+    tags: !Clear
+    - WhitelistChameleon
+    - ClothMade
+    - CorgiWearable
+    - PetWearable
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatVioletwizard
+  components:
+  - type: Tag
+    tags: !Clear
+    - WhitelistChameleon
+    - ClothMade
+    - HamsterWearable
+    - CorgiWearable
+    - PetWearable
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatWitch
+  components:
+  - type: Tag
+    tags: !Clear
+    - Recyclable
+    - ClothMade
+    - WhitelistChameleon
+    - CorgiWearable
+    - PetWearable
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatWizard
+  name: blue wizard hat
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/wizard_blue.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/wizard_blue.rsi
+  - type: Tag
+    tags: !Clear
+    - CorgiWearable
+    - WhitelistChameleon
+    - HamsterWearable
+    - Recyclable
+    - ClothMade
+    - CorgiWearable
+    - PetWearable
 
 - type: !PartialOnly entity
   id: ClothingHeadPyjamaSyndicateBlack
@@ -28,6 +102,18 @@
     contrabandType: Syndicate
 
 - type: !PartialOnly entity
+  id: ClothingHeadHatWatermelon
+  components:
+  - type: Pierceable
+    level: Metal
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHolyWatermelon
+  components:
+  - type: Pierceable
+    level: Metal
+
+- type: !PartialOnly entity
   id: ClothingHeadHatSyndie
   components:
   - type: Contraband
@@ -37,7 +123,7 @@
 - type: !PartialOnly entity
   id: ClothingHeadHatSyndieMAA
   components:
-  - type: ScanDetectable
   - type: Contraband
     tier: Tier4
     contrabandType: Syndicate
+  - type: ScanDetectable

@@ -1,0 +1,97 @@
+# Emagged Discount Dan's
+- type: entity
+  parent: FoodSnackEnergy
+  id: FoodSnackHighEnergy
+  name: even more energy bar
+  description: An energy bar with a lot of punch.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: FoodPacketEnergyTrash
+    - id: FoodSnackHighEnergyBar
+
+- type: entity
+  parent: FoodSnackEnergyBar
+  id: FoodSnackHighEnergyBar
+  name: even more energy bar
+  description: An energy bar with a shocking amount of flavor!
+  components:
+  - type: FlavorProfile
+    flavors:
+    - nutty
+    - oats
+    - shocky
+    - sweet
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Tazinide
+        Quantity: 20
+
+# Emagged Discount Dan's
+- type: entity
+  name: soggy popcorn
+  parent: FoodSnackPopcorn
+  id: FoodSnackPopcornBoom
+  description: Each popped kernel is slightly too damp.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - corn
+    - salt
+    - butter
+    - wet
+    - dangerous
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      canReact: false
+      reagents:
+      - ReagentId: Water
+        Quantity: 10
+      - ReagentId: Potassium
+        Quantity: 10
+
+# Mr. Chang's Emagged Food
+- type: entity
+  parent: DrinkRamen
+  id: DrinkCarpRamen
+  name: carp ramen
+  description: A rare, discontinued ramen with chunks of spicy fried space carp.
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 50
+      reagents:
+      - ReagentId: DryRamen
+        Quantity: 30
+      - ReagentId: CarpoToxin
+        Quantity: 15
+
+# Emagged Mr. Chang's
+- type: entity
+  parent: FoodSnackDanDanNoodles
+  id: FoodSnackNapNapNoodles
+  name: nap nap noodles
+  description: A spicy snack! There's some type of powder or seasoning coating the each of the noodles.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - cheapnoodles
+    - strange
+    - spicy
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 35
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: Nocturine
+        Quantity: 17
+      - ReagentId: Soysauce
+        Quantity: 3

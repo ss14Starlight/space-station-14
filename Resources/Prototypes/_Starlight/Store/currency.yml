@@ -1,20 +1,20 @@
 - type: currency
   id: BuildToken
-  displayName: "Currency"
+  displayName: store-currency-display-build-token
   cash:
     1: BuildToken
   canWithdraw: true
 
 - type: currency
   id: Telebond
-  displayName: "Telebonds"
+  displayName: store-currency-display-telebond
   cash:
     1: Telebond1
   canWithdraw: true
 
 - type: currency
   id: Conversion
-  displayName: "Total Conversions"
+  displayName: store-currency-display-conversion
   canWithdraw: false
 
 - type: currency

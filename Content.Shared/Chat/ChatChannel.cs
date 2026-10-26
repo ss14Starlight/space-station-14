@@ -81,6 +81,12 @@ namespace Content.Shared.Chat
         AdminChat = 1 << 13,
 
         /// <summary>
+        ///     Mentor chat
+        ///     Starlight-edit: Mentor chat
+        /// </summary>
+        MentorChat = 1 << 14,
+
+        /// <summary>
         ///     Unspecified.
         /// </summary>
         Unspecified = 1 << 15,
@@ -90,7 +96,7 @@ namespace Content.Shared.Chat
         /// </summary>
         IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | Notifications,
 
-        AdminRelated = Admin | AdminAlert | AdminChat,
+        AdminRelated = Admin | AdminAlert | AdminChat | MentorChat,
     }
 
     /// <summary>
@@ -108,6 +114,7 @@ namespace Content.Shared.Chat
             {
                 ChatChannel.OOC => Loc.GetString("chat-channel-humanized-ooc"),
                 ChatChannel.AdminChat => Loc.GetString("chat-channel-humanized-admin"),
+                ChatChannel.MentorChat => Loc.GetString("chat-channel-humanized-mentor"),
                 _ => throw new ArgumentOutOfRangeException(nameof(channel), channel, null)
             };
         }

@@ -2,7 +2,6 @@
 - type: entity
   id: MobKoni
   parent: MobMoth # more moth-like than cat-like, makes sense to inherit this and not felionoid
-  categories: [HideSpawnMenu] # not supposed to be spawnable, designed for characterforceprototype.
   name: Koni Clothsbane
   save: false # player entity, don't save this to maps
   components:

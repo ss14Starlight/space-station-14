@@ -1,0 +1,11 @@
+- type: !PartialOnly vendingMachineInventory
+  id: DetDrobeInventory
+  startingInventory:
+    ClothingHeadsetDetective: 2
+    ClothingHeadsetSecurity: !Remove
+  emaggedInventory: # Blimpuf
+    ClothingEyesGlassesOutlawGlasses: 1 # Blimpuf
+    ClothingHandsGlovesForensic: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf
+    ClothingUniformJumpskirtOperative: 1 # Blimpuf
+    ClothingUniformJumpsuitOperative: 1 # Blimpuf

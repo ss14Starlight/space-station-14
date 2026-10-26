@@ -19,6 +19,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     [Dependency] private SharedGravitySystem _gravity = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] EntityQuery<HandsComponent> _handsQuery = default!;
 #if EXCEPTION_TOLERANCE
     [Dependency] private INetManager _netManager = default!;
     [Dependency] private IRuntimeLog _runtimeLog = default!;
@@ -40,7 +41,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
             try
             {
-                Update(uid, active, comp, time, xformQuery, handsQuery);
+                Update(uid, active, comp, time);
             }
             // ReSharper disable once RedundantCatchClause
 #if EXCEPTION_TOLERANCE
@@ -92,9 +93,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         EntityUid uid,
         ActiveDoAfterComponent active,
         DoAfterComponent comp,
-        TimeSpan time,
-        EntityQuery<TransformComponent> xformQuery,
-        EntityQuery<HandsComponent> handsQuery)
+        TimeSpan time)
     {
         var dirty = false;
 
@@ -127,7 +126,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
                 continue;
             }
 
-            if (ShouldCancel(doAfter, xformQuery, handsQuery))
+            if (ShouldCancel(doAfter))
             {
                 InternalCancel(doAfter, comp);
                 dirty = true;
@@ -201,27 +200,24 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         }
     }
 
-    private bool ShouldCancel(DoAfter doAfter,
-        EntityQuery<TransformComponent> xformQuery,
-        EntityQuery<HandsComponent> handsQuery)
+    private bool ShouldCancel(DoAfter doAfter)
     {
         var args = doAfter.Args;
 
-        //re-using xformQuery for Exists() checks.
-        if (args.Used is { } used && !xformQuery.HasComponent(used))
+        if (args.Used is { } used && !Exists(used))
             return true;
 
-        if (args.EventTarget is { Valid: true } eventTarget && !xformQuery.HasComponent(eventTarget))
+        if (args.EventTarget is { Valid: true } eventTarget && !Exists(eventTarget))
             return true;
 
-        if (!xformQuery.TryGetComponent(args.User, out var userXform))
+        if (!TryComp(args.User, out TransformComponent? userXform))
             return true;
 
         TransformComponent? targetXform = null;
-        if (args.Target is { } target && !xformQuery.TryGetComponent(target, out targetXform))
+        if (args.Target is { } target && !TryComp(target, out targetXform))
             return true;
 
-        if (args.Used is { } @using && !xformQuery.HasComp(@using))
+        if (args.Used is { } @using && !Exists(@using))
             return true;
 
         // TODO: Re-use existing xform query for these calculations.
@@ -275,7 +271,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         // This does not mean their hand needs to be empty.
         if (args.NeedHand)
         {
-            if (!handsQuery.TryGetComponent(args.User, out var hands) || (hands.Count == 0 && !HasComp<HandlessDoAfterComponent>(args.User))) // Starlight
+            if (!_handsQuery.TryGetComponent(args.User, out var hands) || (hands.Count == 0 && !HasComp<HandlessDoAfterComponent>(args.User))) // Starlight
                 return true;
 
             // If an item was in the user's hand to begin with,

@@ -17,7 +17,7 @@
       sprite: DeltaV/Clothing/Uniforms/Scrubs/cyan.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: UnsensoredClothingUniformBase
   id: UniformScrubsColorCybersun
   name: cybersun scrubs
   description: The official uniform of Cybersun's biotechnology division

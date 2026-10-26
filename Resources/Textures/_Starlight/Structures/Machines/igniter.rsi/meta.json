@@ -1,0 +1,24 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Aurora Station at commit https://github.com/Aurorastation/Aurora.3/commit/4c83a7bac48311e4e0fd9449a27980ca35eed7a7 (icons/obj/stationobjs.dmi)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "on",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "off"
+        }
+    ]
+}

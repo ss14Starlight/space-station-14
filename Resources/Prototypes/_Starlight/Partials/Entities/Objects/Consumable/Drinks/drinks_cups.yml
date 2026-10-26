@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: DrinkBaseCup
+  components:
+  - type: ItemPrice
+    priceCategory: drink
+
+- type: !PartialOnly entity
+  id: DrinkGlassCoupeShaped
+  components:
+  - type: Tag
+    tags:
+    - CoupeGlass

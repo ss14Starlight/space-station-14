@@ -6,10 +6,6 @@
   id: FoodSnackBase
   abstract: true
   components:
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_cheap
-  # Starlight-end
   - type: Tag
     tags:
       - FoodSnack
@@ -122,11 +118,6 @@
       - id: FoodSnackChocolateBar
     sound:
       path: /Audio/Effects/unwrap.ogg
-    requireHands: false # 🌟Starlight🌟
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_medium
-  # Starlight-end
 
 - type: entity
   parent: FoodSnackBase
@@ -173,7 +164,6 @@
       - id: FoodSnackEnergyBar
     sound:
       path: /Audio/Effects/unwrap.ogg
-    requireHands: false # 🌟Starlight🌟
 
 - type: entity
   parent: FoodSnackBase
@@ -309,10 +299,6 @@
   - type: Edible
     trash:
     - FoodPacketSyndiTrash
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_medium
-  # Starlight-end
 
 - type: entity
   parent: FoodSnackBase
@@ -409,10 +395,6 @@
   - type: Edible
     trash:
     - FoodPacketDanDanTrash
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_medium
-  # Starlight-end
 
 - type: entity
   parent: FoodSnackBase
@@ -462,11 +444,6 @@
       - id: FoodSnackNutribrickOpen
     sound:
       path: /Audio/Effects/unwrap.ogg
-    requireHands: false # 🌟Starlight🌟
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_medium
-  # Starlight-end
 
 - type: entity
   parent: FoodSnackBase
@@ -484,13 +461,8 @@
   - type: Tag
     tags:
       - ReptilianFood
-      - AvianFood # Starlight
   - type: Sprite
     state: nutribrick-open
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_medium
-  # Starlight-end
 
 - type: entity
   parent: BaseItem
@@ -514,7 +486,6 @@
       - id: FoodSnackMREBrownieOpen
     sound:
       path: /Audio/Effects/unwrap.ogg
-    requireHands: false # 🌟Starlight🌟
 
 - type: entity
   parent: [SolutionVeryTiny, FoodSnackBase]
@@ -538,10 +509,6 @@
         Quantity: 5
       - ReagentId: Theobromine
         Quantity: 1
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: food_medium
-  # Starlight-end
 
 - type: entity
   parent: FoodSnackBase
@@ -762,7 +729,6 @@
       right:
       - state: trash-inhand-right
         color: "#FF0033"
-
 
 - type: entity
   categories: [ HideSpawnMenu ]

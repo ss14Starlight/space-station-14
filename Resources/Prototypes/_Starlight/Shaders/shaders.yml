@@ -123,12 +123,6 @@
   id: MonumentPulse
   kind: source
   path: "/Textures/_Starlight/CosmicCult/Shaders/monument_pulse.swsl"
-- type: shader
-  id: DisplacedDrawUnshaded
-  kind: source
-  path: "/Textures/_Starlight/Shaders/displacement_unshaded.swsl"
-  params:
-    displacementSize: 127
 
 - type: shader
   id: LatchTargetOutline

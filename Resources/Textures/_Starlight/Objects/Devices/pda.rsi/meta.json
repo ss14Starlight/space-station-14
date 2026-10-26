@@ -223,6 +223,18 @@
     {
       "name": "pda-veteransalvagemedic",
       "copyright": "deltaVelocity, ParadiseStation, recoloured by RoseHB"
+    },
+    {
+      "name": "pda-senioratmos",
+      "copyright": "Talirson",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.15,
+          0.15
+        ]
+      ]
     }
   ]
 }

@@ -1,6 +1,47 @@
+- type: !PartialOnly entity
+  id: FoamCrossbow
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 1
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: WeakHit
+  - type: AltFireMelee
+
+- type: !PartialOnly entity
+  id: WeaponRifleFoam
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      collection: WeakHit
+  - type: KnockbackByUserTag
+    doestContain:
+      Rodentia:
+        knockback: 0
+      Resomi:
+        knockback: 0
+      Avali:
+        knockback: 0
+      Felionoid:
+        knockback: 0
+  - type: FiringPinHolder
+    supportedPins: [Makeshift]
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinMakeshift
+
 # fake cap gun, the enabled field for CanDualWield is what stops you from dual wielding the fake cap gun, because it does WAY too much damage with tiny spread
 - type: !PartialOnly entity
   id: RevolverCapGunFake
+  suffix: Lethal
   components:
   - type: CanDualWield
     enabled: false # genuinely does crazy damage, destroys a whole wall
@@ -9,4 +50,28 @@
 - type: !PartialOnly entity
   id: RevolverCapGun
   components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 1
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: WeakHit
+  - type: AltFireMelee
   - type: CanDualWield
+
+- type: !PartialOnly entity
+  id: BaseToySword
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 0.1
+
+- type: !PartialOnly entity
+  id: ToySword
+  components:
+  - type: EnergyColor
+  - type: !Remove EnergySword

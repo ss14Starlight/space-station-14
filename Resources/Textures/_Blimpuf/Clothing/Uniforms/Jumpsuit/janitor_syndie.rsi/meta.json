@@ -1,0 +1,45 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039. Syndicate variants by ItsMaitake on Blimpuf Station."
+        },
+        {
+            "name": "equipped-INNERCLOTHING",
+            "copyright": "TG Station, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "rolled-equipped-INNERCLOTHING",
+            "copyright": "TG Station. Rolled by https://github.com/GentleButter. ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "folded-equipped-INNERCLOTHING",
+            "copyright": "TG Station, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "equipped-INNERCLOTHING-monkey",
+            "copyright": "TG Station. Monkey derivative made by brainfood1183 (github) for ss14. ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "TG Station, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "TG Station, ItsMaitake",
+            "directions": 4
+        }
+    ]
+}

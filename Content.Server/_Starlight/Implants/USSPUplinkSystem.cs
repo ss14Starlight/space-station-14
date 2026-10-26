@@ -9,27 +9,26 @@ using Content.Shared.IdentityManagement;
 using Content.Server.RoundEnd;
 using Content.Shared._Starlight.Implants.Components;
 using Content.Server.GameTicking.Rules;
-using Content.Server.Implants;
 using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Shared._Starlight.Store.Conditions;
 using Content.Server._Starlight.Revolutionary.Components;
 using Content.Shared.Store;
+using Content.Shared.UserInterface;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Implants;
 public sealed partial class USSPUplinkSystem : EntitySystem
 {
     [Dependency] private StoreSystem _storeSystem = default!;
-    [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private RevolutionaryRuleSystem _rev = default!;
-    [Dependency] private SubdermalImplantSystem _implant = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<StoreBuyFinishedEvent>(OnStoreBuyFinished);
         SubscribeLocalEvent<USSPUplinkImplantComponent, ImplantImplantedEvent>(OnImplantImplanted);
+        SubscribeLocalEvent<RemoteStoreComponent, AfterActivatableUIOpenEvent>(OnRemoteUiOpen);
         SubscribeLocalEvent<RoundEndSystemChangedEvent>(OnRoundEnd);
     }
 
@@ -71,402 +70,93 @@ public sealed partial class USSPUplinkSystem : EntitySystem
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
 
         // Reset the dictionaries
-        if (stockCountsField != null && stockCountsField.GetValue(null) is Dictionary<string, int> stockCounts)
+        if (stockCountsField?.GetValue(null) is Dictionary<string, int> stockCounts)
             stockCounts.Clear();
 
-        if (stockLimitsField != null && stockLimitsField.GetValue(null) is Dictionary<string, int> stockLimits)
+        if (stockLimitsField?.GetValue(null) is Dictionary<string, int> stockLimits)
             stockLimits.Clear();
 
-        if (lastPurchasersField != null && lastPurchasersField.GetValue(null) is Dictionary<string, string> lastPurchasers)
+        if (lastPurchasersField?.GetValue(null) is Dictionary<string, string> lastPurchasers)
             lastPurchasers.Clear();
 
-        if (outOfStockField != null && outOfStockField.GetValue(null) is Dictionary<string, bool> outOfStock)
+        if (outOfStockField?.GetValue(null) is Dictionary<string, bool> outOfStock)
             outOfStock.Clear();
 
-        if (modifiedListingsField != null && modifiedListingsField.GetValue(null) is Dictionary<string, bool> modifiedListings)
+        if (modifiedListingsField?.GetValue(null) is Dictionary<string, bool> modifiedListings)
             modifiedListings.Clear();
 
         // Update all uplink UIs to show the reset stock counts
-        UpdateAllUplinkListings();
+        _storeSystem.UpdateAllUSSPUplinkUIs();
     }
 
     /// <summary>
-    /// Synchronizes all uplinks in the game to ensure they have the correct currency values.
-    /// This is called periodically to ensure that uplinks are always in sync.
-    /// </summary>
-    public void SynchronizeAllUplinks()
-    {
-        // Get all head revolutionaries
-        var headQuery = EntityQueryEnumerator<HeadRevolutionaryComponent>();
-        while (headQuery.MoveNext(out var uid, out var headRev))
-        {
-            // Call the SynchronizeAllUplinksByOwner method for each head revolutionary
-            _rev.SynchronizeAllUplinksByOwner(uid);
-        }
-    }
-
-    /// <summary>
-    /// Directly synchronizes telebonds and conversions between two uplinks.
-    /// This ensures that when a revolutionary gets a head revolutionary's uplink,
-    /// they immediately receive the correct currency values.
-    ///
-    /// For telebonds, it only synchronizes if both uplinks have the same owner.
-    /// For conversions, it always synchronizes as this is a global counter.
-    /// </summary>
-    public void SyncUplinkCurrencies(EntityUid sourceUplinkUid, EntityUid targetUplinkUid)
-    {
-        if (!TryComp<StoreComponent>(sourceUplinkUid, out var sourceStore) ||
-            !TryComp<StoreComponent>(targetUplinkUid, out var targetStore))
-            return;
-
-        // Get the currency values from the source uplink
-        var sourceTelebond = sourceStore.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
-        var sourceConversion = sourceStore.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
-
-        // Make sure the target store has both currencies initialized
-        if (!targetStore.Balance.ContainsKey("Telebond"))
-        {
-            targetStore.Balance["Telebond"] = FixedPoint2.Zero;
-        }
-
-        if (!targetStore.Balance.ContainsKey("Conversion"))
-        {
-            targetStore.Balance["Conversion"] = FixedPoint2.Zero;
-        }
-
-        // Check if both uplinks have the same owner for telebond synchronization
-        bool sameOwner = false;
-        EntityUid? sourceOwner = null;
-        EntityUid? targetOwner = null;
-
-        if (TryComp<USSPUplinkOwnerComponent>(sourceUplinkUid, out var sourceOwnerComp))
-            sourceOwner = sourceOwnerComp.OwnerUid;
-
-        if (TryComp<USSPUplinkOwnerComponent>(targetUplinkUid, out var targetOwnerComp))
-            targetOwner = targetOwnerComp.OwnerUid;
-
-        // If both uplinks have the same owner, or if one doesn't have an owner but the other does
-        if (sourceOwner != null && targetOwner != null && sourceOwner == targetOwner)
-            sameOwner = true;
-        // If target doesn't have an owner but source does, set target's owner to match source
-        else if (sourceOwner != null && targetOwner == null)
-        {
-            var newOwnerComp = EnsureComp<USSPUplinkOwnerComponent>(targetUplinkUid);
-            newOwnerComp.OwnerUid = sourceOwner;
-            sameOwner = true;
-        }
-        // If source doesn't have an owner but target does, set source's owner to match target
-        else if (sourceOwner == null && targetOwner != null)
-        {
-            var newOwnerComp = EnsureComp<USSPUplinkOwnerComponent>(sourceUplinkUid);
-            newOwnerComp.OwnerUid = targetOwner;
-            sameOwner = true;
-        }
-
-        // Update the target uplink with the source telebond value if they're higher AND they have the same owner
-        if (sameOwner && targetStore.Balance["Telebond"] < sourceTelebond)
-            targetStore.Balance["Telebond"] = sourceTelebond;
-
-        // Always update Conversion as it's a global counter
-        if (targetStore.Balance["Conversion"] < sourceConversion)
-            targetStore.Balance["Conversion"] = sourceConversion;
-    }
-
-    /// <summary>
-    /// Handles the event when a USSP uplink implant is implanted.
-    /// If the implanted entity is a head revolutionary, updates their HeadRevolutionaryImplantComponent
-    /// to point to this implant.
+    /// Points an implanted uplink at the head revolutionary's nullspace store.
+    /// A head uses their own store. A converted revolutionary uses the head who converted them.
     /// </summary>
     private void OnImplantImplanted(EntityUid uid, USSPUplinkImplantComponent component, ref ImplantImplantedEvent args)
     {
-        // First, check if this uplink already has an owner
-        EntityUid? originalOwner = null;
-        if (TryComp<USSPUplinkOwnerComponent>(uid, out var existingOwnerComp) && existingOwnerComp.OwnerUid != null)
-            originalOwner = existingOwnerComp.OwnerUid;
+        EntityUid? head = null;
+        if (HasComp<HeadRevolutionaryComponent>(args.Implanted))
+            head = args.Implanted;
+        else if (TryComp<RevolutionaryConverterComponent>(args.Implanted, out var converter))
+            head = converter.ConverterUid;
 
-        // Check if the implanted entity is a head revolutionary
+        if (head == null || !HasComp<HeadRevolutionaryComponent>(head.Value))
+            return;
+
+        var store = _rev.EnsureHeadStore(head.Value);
+        if (TryComp<RemoteStoreComponent>(uid, out var remote))
+            _storeSystem.SetRemoteStore(uid, store);
+
+        // Set this head revolutionary as the owner
+        var ownerComp = EnsureComp<USSPUplinkOwnerComponent>(uid);
+        ownerComp.OwnerUid = head;
+
         if (HasComp<HeadRevolutionaryComponent>(args.Implanted))
         {
             // Update the head revolutionary's implant component to point to this implant
             var implantComponent = EnsureComp<HeadRevolutionaryImplantComponent>(args.Implanted);
             implantComponent.ImplantUid = uid;
-
-            // If the uplink doesn't have an owner yet, set this head revolutionary as the owner
-            if (originalOwner == null)
-            {
-                var uplinkOwnerComp = EnsureComp<USSPUplinkOwnerComponent>(uid);
-                uplinkOwnerComp.OwnerUid = args.Implanted;
-                originalOwner = args.Implanted;
-            }
-
-            // Ensure the store component has both currencies initialized
-            if (TryComp<StoreComponent>(uid, out var store))
-            {
-                if (!store.Balance.ContainsKey("Telebond"))
-                    store.Balance["Telebond"] = FixedPoint2.Zero;
-
-                if (!store.Balance.ContainsKey("Conversion"))
-                    store.Balance["Conversion"] = FixedPoint2.Zero;
-            }
-
-            // Find all revolutionaries that were converted by this head revolutionary
-            // and add telebonds for each one
-            var convertedRevs = EntityQuery<RevolutionaryComponent, RevolutionaryConverterComponent>();
-            int convertedCount = 0;
-
-            foreach (var (_, converterComp) in convertedRevs)
-            {
-                // Check if this revolutionary was converted by this head revolutionary
-                if (converterComp.ConverterUid != args.Implanted)
-                    continue;
-
-                convertedCount++;
-
-                // Add a telebond for each converted revolutionary
-                if (TryComp<StoreComponent>(uid, out var storeComp))
-                    storeComp.Balance["Telebond"] = storeComp.Balance.GetValueOrDefault("Telebond") + FixedPoint2.New(1);
-            }
-
-            // Synchronize all uplinks to ensure this one has the correct values
-            SynchronizeAllUplinks();
-
-            // Show the current telebond and conversion values
-            if (TryComp<StoreComponent>(uid, out var storeAfterSync))
-            {
-                var telebonds = storeAfterSync.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
-                var conversions = storeAfterSync.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
-
-                _popup.PopupEntity(Loc.GetString("ussp-uplink-implanted", ("telebonds", telebonds), ("converted", convertedCount), ("conversions", conversions)),
-                    args.Implanted, args.Implanted, PopupType.Medium);
-            }
-
-            // If the head revolutionary is implanting an uplink that belongs to another head revolutionary,
-            // we need to update the ownership to the current head revolutionary
-            if (originalOwner != null && originalOwner.Value != args.Implanted)
-            {
-                // Only change ownership if the implanted entity is a head revolutionary
-                var uplinkOwnerComp = EnsureComp<USSPUplinkOwnerComponent>(uid);
-                uplinkOwnerComp.OwnerUid = args.Implanted;
-
-                // Notify the original owner that their uplink has been claimed by another head revolutionary
-                _popup.PopupEntity(Loc.GetString("ussp-uplink-claimed", ("name", Identity.Name(args.Implanted, EntityManager))),
-                    originalOwner.Value, originalOwner.Value, PopupType.Medium);
-            }
         }
-        // Check if the implanted entity is a regular revolutionary
-        else if (HasComp<RevolutionaryComponent>(args.Implanted))
-        {
-            // If the uplink doesn't have an owner component yet, try to find its owner
-            if (originalOwner == null)
-            {
-                var ownerComp = EnsureComp<USSPUplinkOwnerComponent>(uid);
-                // Try to find a head revolutionary who might own this uplink
-                var headQuery = EntityQueryEnumerator<HeadRevolutionaryComponent, HeadRevolutionaryImplantComponent>();
-                while (headQuery.MoveNext(out var implantOwner, out var _, out var headRevImplant))
-                {
-                    if (headRevImplant.ImplantUid != uid)
-                        continue;
-                    ownerComp.OwnerUid = implantOwner;
-                    originalOwner = implantOwner;
-                    break;
-                }
 
-                // If we still don't have an owner, try to find a head revolutionary who has this implant
-                if (ownerComp.OwnerUid == null)
-                {
-                    // Get all head revolutionaries
-                    var headRevsQuery = EntityQueryEnumerator<HeadRevolutionaryComponent>();
-                    while (headRevsQuery.MoveNext(out var headRevOwner, out var headRev))
-                    {
-                        // Check if this head revolutionary has this implant
-                        if (_implant.TryGetImplants(headRevOwner, out var implants))
-                        {
-                            foreach (var implant in implants)
-                            {
-                                if (implant == uid)
-                                {
-                                    ownerComp.OwnerUid = headRevOwner;
-                                    originalOwner = headRevOwner;
+        if (!TryComp<StoreComponent>(store, out var storeComp))
+            return;
 
-                                    // Also update the head revolutionary's implant component
-                                    var headRevImplantComp = EnsureComp<HeadRevolutionaryImplantComponent>(headRevOwner);
-                                    headRevImplantComp.ImplantUid = uid;
-                                    break;
-                                }
-                            }
+        var telebonds = storeComp.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
+        var conversions = storeComp.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
+        _popup.PopupEntity(Loc.GetString("ussp-uplink-implanted", ("telebonds", telebonds), ("converted", 0), ("conversions", conversions)),
+            args.Implanted, args.Implanted, PopupType.Medium);
+    }
 
-                            if (ownerComp.OwnerUid != null)
-                                break;
-                        }
-                    }
-                }
+    /// <summary>
+    /// Radios open through ActivatableUI. Bind an unbound radio to the user's head store, then push that store's state.
+    /// </summary>
+    private void OnRemoteUiOpen(Entity<RemoteStoreComponent> ent, ref AfterActivatableUIOpenEvent args)
+    {
+        if (!TryComp<ActivatableUIComponent>(ent, out var activatable) || activatable.Key is not { } key || !key.Equals(StoreUiKey.Key))
+            return;
 
-                // If we still don't have an owner, find the head revolutionary who most recently converted this revolutionary
-                if (ownerComp.OwnerUid == null)
-                {
-                    // Get all head revolutionaries
-                    var implantedHeadRevsQuery = EntityQueryEnumerator<HeadRevolutionaryComponent, HeadRevolutionaryImplantComponent>();
-                    while (implantedHeadRevsQuery.MoveNext(out var headRevImplantOwner, out var _, out var headRevImplant))
-                    {
-                        if (headRevImplant.ImplantUid != null && Exists(headRevImplant.ImplantUid.Value))
-                        {
-                            // Set this head revolutionary as the owner of the uplink
-                            ownerComp.OwnerUid = headRevImplantOwner;
-                            originalOwner = headRevImplantOwner;
+        if (ent.Comp.Store == null)
+            TryBindRevolutionaryStore(ent, args.User);
 
-                            // Directly sync with this head revolutionary's uplink
-                            SyncUplinkCurrencies(headRevImplant.ImplantUid.Value, uid);
-                            break;
-                        }
-                    }
-                }
-            }
+        if (_storeSystem.GetRemoteStore(ent.AsNullable()) is not { } store)
+            return;
 
-            // Add HeadRevolutionaryImplantComponent to the revolutionary to track the implant
-            var implantComponent = EnsureComp<HeadRevolutionaryImplantComponent>(args.Implanted);
-            implantComponent.ImplantUid = uid;
+        _storeSystem.UpdateUserInterface(args.User, store.Owner, store.Comp);
+    }
 
-            // Ensure the store component has the correct currencies
-            if (TryComp<StoreComponent>(uid, out var store))
-            {
-                // Make sure the store has both currencies initialized
-                if (!store.Balance.ContainsKey("Telebond"))
-                {
-                    store.Balance["Telebond"] = FixedPoint2.Zero;
-                }
+    private void TryBindRevolutionaryStore(Entity<RemoteStoreComponent> ent, EntityUid user)
+    {
+        EntityUid? head = null;
+        if (HasComp<HeadRevolutionaryComponent>(user))
+            head = user;
+        else if (TryComp<RevolutionaryConverterComponent>(user, out var converter))
+            head = converter.ConverterUid;
 
-                if (!store.Balance.ContainsKey("Conversion"))
-                {
-                    store.Balance["Conversion"] = FixedPoint2.Zero;
-                }
+        if (head == null || !HasComp<HeadRevolutionaryComponent>(head.Value))
+            return;
 
-                // Find all uplinks owned by the same head revolutionary and get the maximum currency values
-                var allUplinks = new List<EntityUid>();
-                var maxTelebond = store.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
-                var maxConversion = store.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
-
-                // Only synchronize telebonds with uplinks from the same owner
-                if (originalOwner != null)
-                {
-                    // Find all uplinks owned by this head revolutionary
-                    var uplinkQuery = EntityQueryEnumerator<USSPUplinkOwnerComponent, StoreComponent>();
-                    while (uplinkQuery.MoveNext(out var uplinkOwnerOwner, out var uplinkOwner, out var uplinkStore))
-                    {
-                        if (uplinkOwner.OwnerUid == originalOwner && uplinkOwnerOwner != uid)
-                        {
-                            allUplinks.Add(uplinkOwnerOwner);
-
-                            // Get the currency values
-                            var otherTelebonds = uplinkStore.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
-                            var otherConversions = uplinkStore.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
-
-                            // Update the maximum values
-                            if (otherTelebonds > maxTelebond)
-                            {
-                                maxTelebond = otherTelebonds;
-                            }
-
-                            if (otherConversions > maxConversion)
-                            {
-                                maxConversion = otherConversions;
-                            }
-                        }
-                    }
-
-                    // Also check if the owner has an uplink
-                    if (TryComp<HeadRevolutionaryImplantComponent>(originalOwner.Value, out var ownerImplant) &&
-                        ownerImplant.ImplantUid != null &&
-                        Exists(ownerImplant.ImplantUid.Value) &&
-                        ownerImplant.ImplantUid.Value != uid)
-                    {
-                        var ownerUplinkUid = ownerImplant.ImplantUid.Value;
-
-                        if (TryComp<StoreComponent>(ownerUplinkUid, out var ownerStore))
-                        {
-                            var ownerTelebonds = ownerStore.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
-                            var ownerConversions = ownerStore.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
-
-                            if (ownerTelebonds > maxTelebond)
-                            {
-                                maxTelebond = ownerTelebonds;
-                            }
-
-                            if (ownerConversions > maxConversion)
-                            {
-                                maxConversion = ownerConversions;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    // If we don't have an owner, just get the global maximum conversion value
-                    // This ensures we get the correct values even if the original owner isn't properly set
-                    var uplinkQuery = EntityQueryEnumerator<StoreComponent>();
-                    while (uplinkQuery.MoveNext(out var uplinkStoreOwner, out var uplinkStore))
-                    {
-                        if (uplinkStoreOwner == uid)
-                            continue;
-
-                        if (uplinkStore.Balance.TryGetValue("Conversion", out var conversion) && conversion > maxConversion)
-                        {
-                            maxConversion = conversion;
-                        }
-                    }
-                }
-
-                // Update the current uplink with the maximum values
-                if (maxTelebond > store.Balance["Telebond"])
-                {
-                    store.Balance["Telebond"] = maxTelebond;
-                }
-
-                if (maxConversion > store.Balance["Conversion"])
-                {
-                    store.Balance["Conversion"] = maxConversion;
-                }
-
-                // Synchronize all uplinks to ensure this one has the correct values
-                SynchronizeAllUplinks();
-
-                // Always show +1 telebond and +1 conversion in the popup, regardless of the actual values
-                //var ownerInfo = originalOwner != null ? $" (owned by {Identity.Name(originalOwner.Value, EntityManager)})" : "";
-                //_popup.PopupEntity(Loc.GetString($"Uplink implanted{ownerInfo}. +1 Telebond, +1 Conversion"),
-                //    args.Implanted, args.Implanted, PopupType.Medium);
-            }
-
-            // If we have an original owner, notify them that their uplink has been implanted in someone else
-            if (originalOwner != null && originalOwner.Value != args.Implanted)
-            {
-                _popup.PopupEntity(Loc.GetString("ussp-uplink-implanted-in", ("name", Identity.Name(args.Implanted, EntityManager))),
-                    originalOwner.Value, originalOwner.Value, PopupType.Medium);
-
-                // Call the RevolutionaryRuleSystem to synchronize all uplinks owned by this head revolutionary
-                _rev.SynchronizeAllUplinksByOwner(originalOwner.Value);
-
-                // Special case: If the implanted entity was just converted by the head revolutionary,
-                // we need to make sure the uplink has the latest values
-                if (HasComp<RevolutionaryComponent>(args.Implanted) &&
-                    TryComp<HeadRevolutionaryImplantComponent>(originalOwner.Value, out var headRevImplant) &&
-                    headRevImplant.ImplantUid != null &&
-                    Exists(headRevImplant.ImplantUid.Value))
-                {
-                    // Directly sync the currencies from the head revolutionary's uplink to this uplink
-                    SyncUplinkCurrencies(headRevImplant.ImplantUid.Value, uid);
-
-                    // Update the UI to show the latest values
-                    if (TryComp<StoreComponent>(uid, out var finalStore))
-                    {
-                        var finalTelebonds = finalStore.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
-                        var finalConversions = finalStore.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
-
-                        // Show an additional popup with the updated values
-                        _popup.PopupEntity(Loc.GetString("ussp-uplink-synchronized", ("telebonds", finalTelebonds), ("conversions", finalConversions)),
-                            args.Implanted, args.Implanted, PopupType.Medium);
-                    }
-                }
-            }
-        }
+        _storeSystem.SetRemoteStore(ent.AsNullable(), _rev.EnsureHeadStore(head.Value));
     }
 
     /// <summary>
@@ -477,136 +167,37 @@ public sealed partial class USSPUplinkSystem : EntitySystem
     private void OnStoreBuyFinished(ref StoreBuyFinishedEvent args)
     {
         // Get the store component
-        if (!_entityManager.TryGetComponent(args.StoreUid, out StoreComponent? store))
+        if (!TryComp<StoreComponent>(args.StoreUid, out var store))
             return;
 
         // Check if this store uses Conversion currency
         if (store.CurrencyWhitelist.Contains("Conversion"))
         {
             // Check if Conversion was spent in this purchase
-            bool conversionWasSpent = false;
             foreach (var (currency, amount) in args.PurchasedItem.Cost)
             {
-                if (currency == "Conversion" && amount > FixedPoint2.Zero)
-                {
-                    conversionWasSpent = true;
-                    break;
-                }
-            }
-
-            if (conversionWasSpent)
-            {
-                // Calculate how much Conversion was spent
-                FixedPoint2 spentAmount = FixedPoint2.Zero;
-                foreach (var (currency, amount) in args.PurchasedItem.Cost)
-                {
-                    if (currency == "Conversion")
-                    {
-                        spentAmount = amount;
-                        break;
-                    }
-                }
+                if (currency != "Conversion" || amount <= FixedPoint2.Zero)
+                    continue;
 
                 // Add the Conversion currency back
-                var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Conversion", spentAmount } };
+                var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Conversion", amount } };
                 _storeSystem.TryAddCurrency(currencyToAdd, args.StoreUid);
+                break;
             }
         }
 
         // Check if this is a stock-limited listing
-        bool isStockLimited = false;
-        if (args.PurchasedItem.Conditions != null)
+        if (args.PurchasedItem.Conditions == null || !store.CurrencyWhitelist.Contains("Telebond"))
+            return;
+
+        foreach (var condition in args.PurchasedItem.Conditions)
         {
-            foreach (var condition in args.PurchasedItem.Conditions)
-            {
-                if (condition is StockLimitedListingCondition)
-                {
-                    isStockLimited = true;
-                    break;
-                }
-            }
-        }
+            if (condition is not StockLimitedListingCondition)
+                continue;
 
-        // If this is a stock-limited listing, update all uplinks
-        if (isStockLimited && store.CurrencyWhitelist.Contains("Telebond"))
-        {
-            // Update all uplinks with the latest stock count and last purchaser information
-            UpdateAllUplinkListings();
-        }
-    }
-
-    /// <summary>
-    /// Adds Conversion currency to all head revolutionary uplinks.
-    /// This is a shared counter that tracks total conversions by all head revolutionaries.
-    /// </summary>
-    public void AddConversionToAllHeadRevs(StoreSystem storeSystem)
-    {
-        // Get all USSPUplinkImplant entities in the game
-        var query = AllEntityQuery<MetaDataComponent, StoreComponent>();
-        var uplinkEntities = new List<EntityUid>();
-
-        while (query.MoveNext(out var metadataOwner, out var metadata, out var _))
-        {
-            if (metadata.EntityPrototype?.ID == "USSPUplinkImplant")
-            {
-                uplinkEntities.Add(metadataOwner);
-            }
-        }
-
-        // Add Conversion to all uplinks
-        foreach (var uplinkEntity in uplinkEntities)
-        {
-            var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Conversion", FixedPoint2.New(1) } };
-            var success = storeSystem.TryAddCurrency(currencyToAdd, uplinkEntity);
-        }
-
-        // Show popup to all head revolutionaries (private)
-        var headRevsQuery = EntityQueryEnumerator<HeadRevolutionaryComponent>();
-        while (headRevsQuery.MoveNext(out var headRevOwner, out var headRev))
-        {
-            // Get the current conversion value to show in the popup
-            var conversionValue = FixedPoint2.New(1); // Default to 1 if we can't find the actual value
-
-            // Try to get the head revolutionary's uplink
-            if (TryComp<HeadRevolutionaryImplantComponent>(headRevOwner, out var implantComp) &&
-                implantComp.ImplantUid != null &&
-                Exists(implantComp.ImplantUid.Value) &&
-                TryComp<StoreComponent>(implantComp.ImplantUid.Value, out var store))
-            {
-                conversionValue = store.Balance.GetValueOrDefault("Conversion", FixedPoint2.New(1));
-            }
-
-            _popup.PopupEntity(Loc.GetString("ussp-uplink-conversion", ("total", conversionValue)), headRevOwner, headRevOwner, PopupType.Medium);
-        }
-
-        // Also show popup to all revolutionaries with implants
-        // var revQuery = EntityManager.EntityQuery<RevolutionaryComponent, HeadRevolutionaryImplantComponent>();
-        // foreach (var (_, revImplant) in revQuery)
-        // {
-        //     if (revImplant.ImplantUid != null &&
-        //         EntityManager.EntityExists(revImplant.ImplantUid.Value) &&
-        //         TryComp<StoreComponent>(revImplant.ImplantUid.Value, out var store))
-        //     {
-        //         var conversionValue = store.Balance.GetValueOrDefault("Conversion", FixedPoint2.New(1));
-        //         _popup.PopupEntity(Loc.GetString($"+1 Conversion (Total: {conversionValue})"), revImplant.Owner, revImplant.Owner, PopupType.Medium);
-        //     }
-        // }
-    }
-
-    /// <summary>
-    /// Updates all USSP uplink listings with the current stock count and last purchaser information.
-    /// </summary>
-    public void UpdateAllUplinkListings()
-    {
-        // Use the StoreSystem's method to update all USSP uplink UIs
-        _storeSystem.UpdateAllUSSPUplinkUIs();
-
-        // Get all head revolutionaries
-        var headRevsQuery = EntityQueryEnumerator<HeadRevolutionaryComponent>();
-        while (headRevsQuery.MoveNext(out var headRevOwner, out var _))
-        {
-            // Synchronize all uplinks owned by this head revolutionary
-            _rev.SynchronizeAllUplinksByOwner(headRevOwner);
+            // If this is a stock-limited listing, update all uplinks
+            _storeSystem.UpdateAllUSSPUplinkUIs();
+            break;
         }
     }
 }

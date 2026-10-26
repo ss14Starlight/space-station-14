@@ -1,0 +1,17 @@
+- type: !PartialOnly vendingMachineInventory
+  id: SalvageEquipmentInventory
+  startingInventory:
+    Crowbar: 4
+    Pickaxe: 8
+    OreBag: 10
+    Flare: 8
+    FlashlightLantern: 6
+    HandheldGPSBasic: 6
+    RadioHandheld: 4
+    RadioHandheldExpedition: 6
+    WeaponGrapplingGun: 8
+    WeaponProtoKineticAccelerator: 10
+  emaggedInventory: # Blimpuf
+    WeaponGrapplingGunSyndie: 1 # Blimpuf
+    PickaxeDiamond: 1 # Blimpuf
+    DullPickaxe: 1 # Blimpuf

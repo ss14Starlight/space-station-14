@@ -198,7 +198,7 @@
 
 # Snouse, moved here since we inherit snail instead
 - type: entity
-  parent: MobSnail # Starlight Edit: Removed BaseMobMothroach
+  parent: [MobSnail, BaseSlicingRefinable] # Starlight Edit: Removed BaseMobMothroach
   id: MobSnouse
   name: Snouse
   description: Developed by Interdyne as one of their many attempts to stifle the ever-present problem of pests on agri-worlds, the Snouse is a transgenic organism intended to interfere and mingle with existing rodent populations. Populations of these were released into farming communities alongside Snoths in hopes they would pass on the snail genes, making future generations of pests unable to escape from traps and other forms of pest control. Unfortunately, this attempt proved futile as the hardened shells of these organisms made them resistant to commonly available mousetraps. Interdyne then moved onto their next attempt at solving the pest problem, the meowl.

@@ -66,3 +66,8 @@
   id: SupermatterAdvancedSupermatterHandling
   name: guide-entry-sl-engineering-supermatter-advanced-handling
   text: "/ServerInfo/_Starlight/Guidebook/Engineering/SupermatterAdvancedSupermatterHandling.xml"
+
+- type: guideEntry
+  id: CombustionTurbine
+  name: guide-entry-combustion-turbine
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/CombustionTurbine.xml"

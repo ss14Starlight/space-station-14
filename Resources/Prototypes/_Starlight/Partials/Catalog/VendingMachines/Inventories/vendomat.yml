@@ -1,0 +1,6 @@
+- type: !PartialOnly vendingMachineInventory
+  id: VendomatInventory
+  emaggedInventory:
+    RemoteSignallerAdvanced: 1 # Blimpuf
+    FireBomb: 2 # Blimpuf
+    GrenadeDummy: 1 # Blimpuf

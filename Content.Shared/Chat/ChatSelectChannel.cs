@@ -51,6 +51,12 @@
         /// </summary>
         Admin = ChatChannel.AdminChat,
 
+        /// <summary>
+        ///     Mentor chat
+        /// Starlight-edit: Mentor chat
+        /// </summary>
+        Mentor = ChatChannel.MentorChat,
+
         Console = ChatChannel.Unspecified
     }
 }

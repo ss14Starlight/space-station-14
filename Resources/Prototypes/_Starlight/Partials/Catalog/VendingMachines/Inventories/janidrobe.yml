@@ -1,0 +1,15 @@
+- type: !PartialOnly vendingMachineInventory
+  id: JaniDrobeInventory
+  startingInventory:
+    ClothingNeckScarfSolidPurple: 3
+  contrabandInventory:
+    ClothingUniformJumpskirtJanimaid: 2
+    ClothingUniformJumpskirtJanimaidmini: 1
+  emaggedInventory:
+    ClothingUniformJumpskirtJanitorSyndie: 1
+    ClothingUniformJumpsuitJanitorSyndie: 1
+    ClothingShoesSyndicateGaloshes: 1
+    CrazyLube: 1
+    CrazyGlue: 1
+    ClothingUniformJumpskirtJanimaid: !Remove
+    ClothingUniformJumpskirtJanimaidmini: !Remove

@@ -53,6 +53,14 @@ public sealed partial class LobbyGui : UIScreen
         CardToggle.OnPressed += _ => SetCardCollapsed(CardBody.Visible);
         SetCardCollapsed(false);
 
+        ChatToggle.OnPressed += _ =>
+        {
+            _configurationManager.SetCVar(StarlightCCVars.LobbyChatCollapsed, RightSide.Visible);
+            _configurationManager.SaveToFile();
+        };
+        _configurationManager.OnValueChanged(StarlightCCVars.LobbyChatCollapsed, _ => UpdateChatColumn());
+        _configurationManager.OnValueChanged(StarlightCCVars.LobbyReadyOnTop, _ => UpdateChatColumn(), true);
+
         _configurationManager.OnValueChanged(StarlightCCVars.LobbyJobColumns, show => JobColumnsBox.Visible = show, true);
 
         _configurationManager.OnValueChanged(StarlightCCVars.AntagsEnabled, enabled => AntagsCheckBox.Pressed = enabled, true);
@@ -115,6 +123,23 @@ public sealed partial class LobbyGui : UIScreen
         // The screen's own size: in Resized the columns aren't arranged yet.
         var max = Width - ColumnsBox.Margin.SumHorizontal - LeftSide.SetWidth - LeftSide.Margin.SumHorizontal - ChatResizeHandle.MinWidth - MinMiddleWidth;
         return Math.Clamp(width, MinChatWidth, Math.Max(MinChatWidth, max));
+    }
+
+    private void UpdateChatColumn()
+    {
+        var collapsed = _configurationManager.GetCVar(StarlightCCVars.LobbyChatCollapsed);
+        var readyOnTop = _configurationManager.GetCVar(StarlightCCVars.LobbyReadyOnTop);
+
+        RightSide.Visible = !collapsed;
+        ChatToggle.Text = collapsed ? "►" : "▼";
+        ChatSpacer.Visible = collapsed && !readyOnTop;
+
+        if (readyOnTop)
+            ReadyPanel.SetPositionFirst();
+        else
+            ReadyPanel.SetPositionLast();
+
+        ChatColumn.InvalidateMeasure();
     }
 
     private void SetCardCollapsed(bool collapsed)

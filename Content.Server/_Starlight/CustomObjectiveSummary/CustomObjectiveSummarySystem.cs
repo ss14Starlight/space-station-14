@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Shared._Starlight.CustomObjectiveSummary;
 using Content.Shared.Database;
 using Content.Shared.Mind;
+using Content.Shared.Objectives.Systems;
 using Robust.Server.Player;
 using Robust.Shared.Network;
 
@@ -11,6 +12,7 @@ public sealed partial class CustomObjectiveSummarySystem : EntitySystem
 {
     [Dependency] private IServerNetManager _net = default!;
     [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private TargetSystem _target = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;
     [Dependency] private IPlayerManager _players = default!;
 
@@ -39,7 +41,7 @@ public sealed partial class CustomObjectiveSummarySystem : EntitySystem
 
     private void OnEvacShuttleLeft(EvacShuttleLeftEvent args)
     {
-        var allMinds = _mind.GetAliveHumans();
+        var allMinds = _target.GetAliveHumans();
 
         // Assumes the assistant is still there at the end of the round.
         foreach (var mind in allMinds)

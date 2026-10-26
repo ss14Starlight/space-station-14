@@ -1,0 +1,38 @@
+- type: !PartialOnly vendingMachineInventory
+  id: CargoDrobeInventory
+  startingInventory: !Clear
+    ClothingBackpackCargo: 3
+    ClothingBackpackSatchelCargo: 3
+    ClothingBackpackDuffelCargo: 3
+    ClothingUniformJumpsuitCargo: 3
+    ClothingUniformJumpskirtCargo: 3
+    ClothingUniformJumpsuitCargoInformal: 2 # DeltaV
+    ClothingUniformJumpsuitMail: 2
+    ClothingUniformJumpskirtMail: 2
+    CargoOverallsUniformSuit: 2
+    ClothingShoesColorBlack: 3
+    ClothingHandsGlovesFingerless: 3
+    ClothingBeltCargo: 1
+    ClothingHeadHatCargosoft: 3
+    ClothingHeadHatMailsoftVisor: 2
+    ClothingHeadHatBeretCargo: 3
+    ClothingHeadBandBrown: 3
+    ClothingHeadsetCargo: 3
+    ClothingOuterWinterCargo: 2
+    ClothingOuterWinterMiner: 2
+    ClothingOuterWindbreakerCargo: 2
+    ClothingNeckScarfStripedBrown: 3
+    ClothingNeckScarfSolidBrown: 3
+    ClothingShoesBootsWinterCargo: 2
+    ClothingShoesBootsMail: 1
+    MailBag: 2
+    MailTrolleyFlatpack: 2
+    WeaponMeleeBoxcutter: 2
+  contrabandInventory:
+    ClothingBackpackTrunkMail: 1
+  emaggedInventory: # Blimpuf
+    ClothingBackpackDuffelSyndicate: 1 # Blimpuf
+    ClothingHeadHatSyndie: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf
+    ClothingUniformJumpsuitCargoSyndie: 1 # Blimpuf
+    ClothingUniformJumpskirtCargoSyndie: 1 # Blimpuf

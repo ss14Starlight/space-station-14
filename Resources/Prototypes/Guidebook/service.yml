@@ -1,6 +1,7 @@
 - type: guideEntry
   id: Service
   name: guide-entry-service
+  department: Civilian # Starlight
   text: "/ServerInfo/Guidebook/Service/Service.xml"
   filterEnabled: True
   children:

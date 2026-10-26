@@ -1,0 +1,17 @@
+# Emagged Salvage Vendor Hook
+- type: entity
+  parent: ChainSickle
+  id: GrapplerHook
+  name: grappler hook
+  categories: [HideSpawnMenu]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
+  - type: Projectile
+    deleteOnCollide: false
+    penetrationThreshold: 1000
+    damage:
+      types:
+        Piercing: 5 # 1/4th as much damage as the chain sickle.
+    soundHit:
+      path: "/Audio/Weapons/Guns/Empty/lmg_empty.ogg" # Starlight, we don't have the Moffstation sound

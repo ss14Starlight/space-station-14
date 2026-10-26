@@ -25,6 +25,17 @@ nukeops-cond-allnukiesdead = All nuclear operatives have died.
 nukeops-cond-somenukiesalive = Some nuclear operatives died.
 nukeops-cond-allnukiesalive = No nuclear operatives died.
 
+nukeops-disk-location-title = Final location of Disk:
+nukeops-disk-carried-by = {" "}carried by [color=White]{$name}[/color], [color=orange]{$job}[/color], {$location} { $user ->
+    [unknown] { "" }
+    *[other] ([color=gray]{$user}[/color])
+}
+
+storage-hierarchy-list = { $items-left ->
+  [0] { $existing-text } { $item },
+  *[other] { $existing-text } { $item }, in
+}
+
 nukeops-list-start = The nuclear operatives were:
 nukeops-list-name = - [color=White]{$name}[/color]
 nukeops-list-name-user = - [color=White]{$name}[/color] ([color=gray]{$user}[/color])

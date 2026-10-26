@@ -1,0 +1,68 @@
+# Emagged Chefdrobe (had to copy over everything so it doesn't parent from the normal chef hat because the Piloted Clothing being left out. We don't want 6 mice steering someone, probably. Maybe?)
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatChefLarge
+  name: spacious chef's hat
+  description: A hat used by chefs to keep their hair out of your food. It's nice and roomy, you won't have to worry about your hair getting messed up in this one.
+  components:
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/Head/Hats/largechefhat.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/Head/Hats/largechefhat.rsi
+  - type: Storage
+    grid:
+    - 0,0,1,2
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  #    - type: PilotedClothing # Left out unless we want 6 mice being able to steer someone at once.
+  #      pilotWhitelist:
+  #        tags:
+  #          - ChefPilot
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadHatBowlerHat
+  id: ClothingHeadHatSyndicateBowlerHat
+  name: syndicate bowler hat
+  description: A stylish bowler hat made from red velvet. The rim of it feels excessively sharp.
+  components:
+  - type: Contraband
+    tier: Tier2
+    contrabandType: Syndicate
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/Head/Hats/syndicate_bowler_hat.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/Head/Hats/syndicate_bowler_hat.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 12

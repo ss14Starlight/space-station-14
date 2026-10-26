@@ -1,0 +1,76 @@
+- type: entity
+  id: IgniterFloor
+  name: igniter
+  description: A floor-mounted ignition device. While on and powered it keeps its tile hot enough to light any burn mix over it.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Starlight/Structures/Machines/igniter.rsi
+    layers:
+    - state: off
+    - state: on
+      shader: unshaded
+      visible: false
+      map: [ "enum.IgniterVisuals.Active" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.IgniterVisuals.Active:
+        enum.IgniterVisuals.Active:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ExtensionCableReceiver
+  - type: IgnitionSource
+    temperature: 1000
+  - type: Igniter
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - Toggle
+    - On
+    - Off
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+  - type: Machine
+    board: IgniterMachineCircuitboard
+  - type: GuideHelp
+    guides:
+    - CombustionTurbine

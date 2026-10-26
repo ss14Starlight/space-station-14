@@ -27,15 +27,14 @@ public sealed partial class SpriteFadeSystem : EntitySystem
     [Dependency] private IInputManager _inputManager = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
+    [Dependency] private EntityQuery<SpriteFadeComponent> _fadeQuery = default!;
+    [Dependency] private EntityQuery<FadingSpriteComponent> _fadingQuery = default!;
+    [Dependency] private EntityQuery<FixturesComponent> _fixturesQuery = default!;
 
     private List<(MapCoordinates Point, bool ExcludeBoundingBox)> _points = new();
 
     private readonly HashSet<FadingSpriteComponent> _comps = new();
-
-    private EntityQuery<SpriteComponent> _spriteQuery;
-    private EntityQuery<SpriteFadeComponent> _fadeQuery;
-    private EntityQuery<FadingSpriteComponent> _fadingQuery;
-    private EntityQuery<FixturesComponent> _fixturesQuery;
 
     private const float TargetAlpha = 0.4f;
     private const float ChangeRate = 1f;
@@ -43,11 +42,6 @@ public sealed partial class SpriteFadeSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
-        _spriteQuery = GetEntityQuery<SpriteComponent>();
-        _fadeQuery = GetEntityQuery<SpriteFadeComponent>();
-        _fadingQuery = GetEntityQuery<FadingSpriteComponent>();
-        _fixturesQuery = GetEntityQuery<FixturesComponent>();
 
         SubscribeLocalEvent<FadingSpriteComponent, ComponentShutdown>(OnFadingShutdown);
     }
