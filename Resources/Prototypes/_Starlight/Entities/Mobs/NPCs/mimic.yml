@@ -65,8 +65,8 @@
       sprite: _Starlight/Mobs/Demons/susmimic.rsi
   - type: Physics
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 6
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
   - type: Fixtures
     fixtures:
       fix1:
@@ -85,9 +85,9 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Dead
+      120: Dead
   - type: Stamina
-    baseCritThreshold: 100
+    baseCritThreshold: 90
     animationThreshold: 60
   - type: MovementAlwaysTouching
   - type: DamageStateVisuals
@@ -109,7 +109,7 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 20
+        Slash: 10
   - type: ToolRefinable
     refineResult:
     - id: ToolboxSyndicate
