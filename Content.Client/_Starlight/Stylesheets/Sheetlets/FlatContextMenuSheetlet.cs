@@ -1,5 +1,7 @@
 using Content.Client.ContextMenu.UI;
 using Content.Client.Stylesheets;
+using Content.Client.Stylesheets.Palette;
+using Content.Client.Stylesheets.SheetletConfigs;
 using Content.Client.Stylesheets.Sheetlets;
 using Content.Client.Stylesheets.Stylesheets;
 using Robust.Client.Graphics;
@@ -21,9 +23,40 @@ public sealed class FlatContextMenuSheetlet : Sheetlet<NanotrasenStylesheet>
             return [];
 
         var proto = theme.Proto;
-        var buttonPalette = theme.Primary with { Element = proto.Surface };
 
-        var rules = new List<StyleRule>
+        if (proto.ClassicDecor)
+        {
+            var rules = new List<StyleRule>
+            {
+                E<PanelContainer>()
+                    .Class(ContextMenuPopup.StyleClassContextMenuPopup)
+                    .Panel(ThemeBox.Or(proto.Window, ResCache, ClassicMenuBox(sheet))),
+            };
+
+            var buttonPalette = new ColorPalette(
+                Base: proto.Surface,
+                LightnessShift: 0f,
+                ChromaShift: 0f,
+                Element: Color.FromHex("#1119"),
+                HoveredElement: proto.ElementHovered,
+                PressedElement: theme.ElementActive,
+                DisabledElement: proto.ElementDisabled,
+                Background: proto.Surface,
+                BackgroundLight: proto.SurfaceRaised,
+                BackgroundDark: proto.Background,
+                Text: proto.Text,
+                TextDark: proto.TextMuted);
+
+            ButtonSheetlet<NanotrasenStylesheet>.MakeButtonRules<ContextMenuElement>(rules,
+                buttonPalette,
+                ContextMenuElement.StyleClassContextMenuButton);
+
+            return rules.ToArray();
+        }
+
+        var flatButtonPalette = theme.Primary with { Element = proto.Surface };
+
+        var flatRules = new List<StyleRule>
         {
             E<PanelContainer>()
                 .Class(ContextMenuPopup.StyleClassContextMenuPopup)
@@ -31,10 +64,21 @@ public sealed class FlatContextMenuSheetlet : Sheetlet<NanotrasenStylesheet>
                     .WithContentMargin(StyleBox.Margin.All, ContextMenuElement.ElementMargin)),
         };
 
-        ButtonSheetlet<NanotrasenStylesheet>.MakeButtonRules<ContextMenuElement>(rules,
-            buttonPalette,
+        ButtonSheetlet<NanotrasenStylesheet>.MakeButtonRules<ContextMenuElement>(flatRules,
+            flatButtonPalette,
             ContextMenuElement.StyleClassContextMenuButton);
 
-        return rules.ToArray();
+        return flatRules.ToArray();
+    }
+
+    private static StyleBox ClassicMenuBox(NanotrasenStylesheet sheet)
+    {
+        IWindowConfig windowCfg = sheet;
+        var box = new StyleBoxTexture
+        {
+            Texture = sheet.GetTextureOr(windowCfg.WindowBackgroundBorderedPath, NanotrasenStylesheet.TextureRoot),
+        };
+        box.SetPatchMargin(StyleBox.Margin.All, ContextMenuElement.ElementMargin);
+        return box;
     }
 }
