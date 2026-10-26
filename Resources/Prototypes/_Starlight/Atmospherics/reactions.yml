@@ -158,4 +158,26 @@
     Plasma: 0.01
   effects:
     - !type:PlasmaPluoxFireReaction {}
+  
+- type: gasReaction
+  id: PluoxHydrogenFire
+  priority: 0
+  minimumTemperature: 373.149 
+  minimumRequirements: 
+  - 0     # oxygen
+  - 0     # nitrogen
+  - 0     # carbon dioxide
+  - 0     # plasma
+  - 0     # tritium
+  - 0     # vapor
+  - 0     # miasma
+  - 0     # n2o
+  - 0     # frezon
+  - 0     # bz
+  - 0     # healium
+  - 0     # nitrium
+  - 0.01  # pluox
+  - 0.01  # hydrogen
+  effects:
+  - !type:HydrogenPluoxFireReaction {}
     
