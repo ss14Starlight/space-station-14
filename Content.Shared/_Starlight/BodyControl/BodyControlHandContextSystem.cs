@@ -3,6 +3,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Part;
 using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Containers;
 
@@ -12,14 +13,16 @@ namespace Content.Shared._Starlight.BodyControl;
 public sealed partial class BodyControlHandContextSystem : EntitySystem
 {
     [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     private readonly Dictionary<EntityUid, Context> _commands = new();
 
-    public sealed record Context(EntityUid Controller, BodyControlAccess Access, string? Hand);
+    public sealed record Context(EntityUid Controller, BodyControlAccess Access, string? Hand, string? Permission = null);
 
-    public void Execute(EntityUid body, EntityUid controller, BodyControlAccess access, string? hand, Action command)
+    public void Execute(EntityUid body, EntityUid controller, BodyControlAccess access, string? hand, Action command,
+        string? permission = null)
     {
         _commands.Remove(body, out var previous);
-        _commands[body] = new(controller, access, hand);
+        _commands[body] = new(controller, access, hand, permission);
         try { command(); }
         finally
         {
@@ -51,7 +54,7 @@ public sealed partial class BodyControlHandContextSystem : EntitySystem
             RaiseLocalEvent(actor, ref denied);
             return true;
         }
-        Execute(source.Body, actor, source.Access, source.SelectedHand, command);
+        Execute(source.Body, actor, source.Access, source.SelectedHand, command, permission);
         return true;
     }
 
@@ -80,7 +83,7 @@ public sealed partial class BodyControlHandContextSystem : EntitySystem
 
     public bool AllowsHand(EntityUid body, string hand, BodyControlAccess access)
     {
-        if (!access.Allows("body.hands") || !TryComp<HandsComponent>(body, out var hands) || !hands.Hands.ContainsKey(hand))
+        if (!access.Allows("body.hands") || !_hands.TryGetHand(body, hand, out _))
             return false;
         if (access.FullControl)
             return true;
@@ -113,11 +116,17 @@ public sealed partial class BodyControlHandContextSystem : EntitySystem
         return context.Hand != null && AllowsHand(body, context.Hand, context.Access) ? context.Hand : null;
     }
 
-    public bool IsDoAfterHandValid(EntityUid body, NetEntity controller, string? hand, bool checkSelection)
+    public bool TryGetController(EntityUid body, NetEntity controller, out EntityUid actor,
+        out BodyControlSourceComponent source)
     {
-        return hand != null && TryGetEntity(controller, out var actor)
-               && TryComp<BodyControlSourceComponent>(actor, out var source) && source.Body == body
-               && (!checkSelection || source.SelectedHand == hand) && AllowsHand(body, hand, source.Access);
+        actor = EntityUid.Invalid;
+        source = default!;
+        if (!TryGetEntity(controller, out var entity) || entity is not { } resolved || TerminatingOrDeleted(resolved)
+            || !TryComp(resolved, out source!) || source.ExternallyDriven || source.Body != body
+            || source.LifeStage > ComponentLifeStage.Running || TerminatingOrDeleted(body))
+            return false;
+        actor = resolved;
+        return true;
     }
 
     [SubscribeLocalEvent]
@@ -142,8 +151,8 @@ public sealed partial class BodyControlHandContextSystem : EntitySystem
 
     private void CheckHandContainer(EntityUid body, ContainerAttemptEventBase args)
     {
-        if (_commands.ContainsKey(body) && TryComp<HandsComponent>(body, out var hands)
-            && hands.Hands.ContainsKey(args.Container.ID) && !AllowsHand(body, args.Container.ID))
+        if (_commands.ContainsKey(body) && _hands.TryGetHand(body, args.Container.ID, out _)
+            && !AllowsHand(body, args.Container.ID))
             args.Cancel();
     }
 }

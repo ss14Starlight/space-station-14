@@ -1,3 +1,5 @@
+using Content.Shared.Input;
+using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
@@ -33,3 +35,26 @@ public record struct BodyControlHandRequestEvent(BodyControlCommand Command, str
 
 [ByRefEvent]
 public readonly record struct BodyControlDeniedEvent(string Reason);
+
+/// <summary>The input commands shared by native-HUD control on the client and server.</summary>
+public static class BodyControlBindings
+{
+    public static readonly (BoundKeyFunction Key, BodyControlCommand Command)[] All =
+    [
+        (EngineKeyFunctions.Use, BodyControlCommand.Interact),
+        (EngineKeyFunctions.UseSecondary, BodyControlCommand.Interact),
+        (ContentKeyFunctions.AltActivateItemInWorld, BodyControlCommand.AltInteract),
+        (ContentKeyFunctions.ActivateItemInWorld, BodyControlCommand.ActivateWorld),
+        (ContentKeyFunctions.UseItemInHand, BodyControlCommand.UseHand),
+        (ContentKeyFunctions.AltUseItemInHand, BodyControlCommand.AltUseHand),
+        (ContentKeyFunctions.SwapHands, BodyControlCommand.CycleHand),
+        (ContentKeyFunctions.SwapHandsReverse, BodyControlCommand.CycleHandReverse),
+        (ContentKeyFunctions.Drop, BodyControlCommand.Drop),
+        (ContentKeyFunctions.ThrowItemInHand, BodyControlCommand.Throw),
+        (ContentKeyFunctions.TryPullObject, BodyControlCommand.Pull),
+    ];
+}
+
+/// <summary>Lets control providers close their interfaces before a cooperative grant is removed.</summary>
+[ByRefEvent]
+public readonly record struct BodyControlStoppingEvent(EntityUid Controller, EntityUid Body);

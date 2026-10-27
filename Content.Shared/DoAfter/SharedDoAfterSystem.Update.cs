@@ -153,6 +153,13 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
     private bool TryAttemptEvent(DoAfter doAfter)
     {
+        // Starlight: attempts use the same hand and current permissions as completion.
+        var result = false;
+        return RunDoAfterWithController(doAfter, () => result = TryAttemptEventInternal(doAfter)) && result;
+    }
+
+    private bool TryAttemptEventInternal(DoAfter doAfter)
+    {
         var args = doAfter.Args;
 
         if (args.ExtraCheck?.Invoke() == false)
@@ -209,6 +216,9 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         EntityQuery<HandsComponent> handsQuery)
     {
         var args = doAfter.Args;
+
+        if (!IsDoAfterControllerValid(doAfter)) // Starlight
+            return true;
 
         //re-using xformQuery for Exists() checks.
         if (args.Used is { } used && !xformQuery.HasComponent(used))
@@ -283,11 +293,6 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
             // If an item was in the user's hand to begin with,
             // check if the user is no longer holding the item.
-            // Starlight start
-            if (!IsDoAfterControllerValid(doAfter))
-                return true;
-            // Starlight end
-
             if (args.BreakOnDropItem && doAfter.InitialItem != null && !IsDoAfterItemHeld(doAfter, hands)) // Starlight
                 return true;
 

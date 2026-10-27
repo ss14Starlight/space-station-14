@@ -79,6 +79,19 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
     private void RaiseDoAfterEvents(DoAfter doAfter, DoAfterComponent component)
     {
+        // Starlight: restore the initiating controller for delayed callbacks.
+        if (!RunDoAfterWithController(doAfter, () => RaiseDoAfterEvent(doAfter)))
+        {
+            InternalCancel(doAfter, component, force: true);
+            return;
+        }
+
+        if (component.AwaitedDoAfters.Remove(doAfter.Index, out var tcs))
+            tcs.SetResult(doAfter.Cancelled ? DoAfterStatus.Cancelled : DoAfterStatus.Finished);
+    }
+
+    private void RaiseDoAfterEvent(DoAfter doAfter)
+    {
         var ev = doAfter.Args.Event;
         ev.Handled = false;
         ev.Repeat = false;
@@ -88,9 +101,6 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             RaiseLocalEvent(doAfter.Args.EventTarget.Value, (object)ev, doAfter.Args.Broadcast);
         else if (doAfter.Args.Broadcast)
             RaiseLocalEvent((object)ev);
-
-        if (component.AwaitedDoAfters.Remove(doAfter.Index, out var tcs))
-            tcs.SetResult(doAfter.Cancelled ? DoAfterStatus.Cancelled : DoAfterStatus.Finished);
     }
 
     private void OnDoAfterGetState(EntityUid uid, DoAfterComponent comp, ref ComponentGetState args)

@@ -18,7 +18,6 @@
   - type: MindContainer
   - type: Actions
   - type: ActionsContainer
-  - type: UserInterface
   - type: LanguageSpeaker
   - type: LanguageKnowledge
     speaks: []

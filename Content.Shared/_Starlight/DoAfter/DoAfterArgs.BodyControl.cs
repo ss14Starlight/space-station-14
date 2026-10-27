@@ -6,10 +6,12 @@ public sealed partial class DoAfterArgs
     // A cooperative controller binds a do-after to its own hand, not the body's global selection.
     [DataField] public string? ControlHand;
     [DataField] public NetEntity? HandController;
+    [DataField] public string? ControlPermission;
 
     private void CopyBodyControlFrom(DoAfterArgs other)
     {
         ControlHand = other.ControlHand;
         HandController = other.HandController;
+        ControlPermission = other.ControlPermission;
     }
 }

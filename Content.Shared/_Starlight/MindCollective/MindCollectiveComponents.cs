@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared._Starlight.BodyControl;
+using Content.Shared.Eui;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -30,7 +31,6 @@ public sealed partial class MindCollectiveObserverComponent : Component
 {
     public EntityUid Collective;
     public EntityUid? Listening;
-    public TimeSpan OpenUiAt;
     [AutoNetworkedField] public EntityUid? Viewing;
     [AutoNetworkedField] public List<EntityUid> Bodies = new();
     [AutoNetworkedField] public List<MindCollectiveHearingState> Hearing = new();
@@ -41,20 +41,7 @@ public sealed partial class MindCollectiveObserverComponent : Component
     public override bool SendOnlyToOwner => true;
 }
 
-/// <summary>Private menu data for the player currently controlling this body.</summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
-public sealed partial class MindCollectiveUiComponent : Component
-{
-    public EntityUid? EditingMind;
-    public EntityUid? EditingBody;
-    [AutoNetworkedField] public MindCollectiveUiState? State;
-    public override bool SendOnlyToOwner => true;
-}
-
 public sealed partial class OpenMindCollectiveEvent : InstantActionEvent, IBodyControlPersonalAction;
-
-[Serializable, NetSerializable]
-public enum MindCollectiveUiKey : byte { Key }
 
 [Serializable, NetSerializable]
 public sealed record MindCollectiveBodyEntry(
@@ -84,29 +71,25 @@ public sealed class MindCollectiveUiState(
     bool canManage,
     bool inMindspace,
     string name,
-    NetEntity? expelTarget = null,
-    uint expelRequest = 0,
-    MindCollectiveControlEditorState? controlEditor = null) : BoundUserInterfaceState
+    MindCollectiveControlEditorState? controlEditor = null) : EuiStateBase
 {
     public readonly List<MindCollectiveBodyEntry> Bodies = bodies;
     public readonly List<MindCollectiveMemberEntry> Members = members;
     public readonly bool CanManage = canManage;
     public readonly bool InMindspace = inMindspace;
     public readonly string Name = name;
-    public readonly NetEntity? ExpelTarget = expelTarget;
-    public readonly uint ExpelRequest = expelRequest;
     public readonly MindCollectiveControlEditorState? ControlEditor = controlEditor;
 }
 
 [Serializable, NetSerializable]
-public sealed class ConfigureCollectiveControlMessage(NetEntity? mind, NetEntity? body = null) : BoundUserInterfaceMessage
+public sealed class ConfigureCollectiveControlMessage(NetEntity? mind, NetEntity? body = null) : EuiMessageBase
 {
     public readonly NetEntity? Mind = mind;
     public readonly NetEntity? Body = body;
 }
 
 [Serializable, NetSerializable]
-public sealed class SetCollectiveControlMessage(NetEntity mind, NetEntity body, BodyControlAccess? access) : BoundUserInterfaceMessage
+public sealed class SetCollectiveControlMessage(NetEntity mind, NetEntity body, BodyControlAccess? access) : EuiMessageBase
 {
     public readonly NetEntity Mind = mind;
     public readonly NetEntity Body = body;
@@ -114,34 +97,34 @@ public sealed class SetCollectiveControlMessage(NetEntity mind, NetEntity body, 
 }
 
 [Serializable, NetSerializable]
-public sealed class EnterCollectiveBodyMessage(NetEntity body) : BoundUserInterfaceMessage
+public sealed class EnterCollectiveBodyMessage(NetEntity body) : EuiMessageBase
 {
     public readonly NetEntity Body = body;
 }
 
 [Serializable, NetSerializable]
-public sealed class ObserveCollectiveBodyMessage(NetEntity body) : BoundUserInterfaceMessage
+public sealed class ObserveCollectiveBodyMessage(NetEntity body) : EuiMessageBase
 {
     public readonly NetEntity Body = body;
 }
 
 [Serializable, NetSerializable]
-public sealed class RecallCollectiveMemberMessage(NetEntity mind) : BoundUserInterfaceMessage
+public sealed class RecallCollectiveMemberMessage(NetEntity mind) : EuiMessageBase
 {
     public readonly NetEntity Mind = mind;
 }
 
 [Serializable, NetSerializable]
-public sealed class LeaveCollectiveBodyMessage : BoundUserInterfaceMessage;
+public sealed class LeaveCollectiveBodyMessage : EuiMessageBase;
 
 [Serializable, NetSerializable]
-public sealed class ControlCollectiveBodyMessage(NetEntity body) : BoundUserInterfaceMessage
+public sealed class ControlCollectiveBodyMessage(NetEntity body) : EuiMessageBase
 {
     public readonly NetEntity Body = body;
 }
 
 [Serializable, NetSerializable]
-public sealed class SetCollectiveRoleMessage(NetEntity mind, ProtoId<MindCollectiveRolePrototype> role, bool assigned) : BoundUserInterfaceMessage
+public sealed class SetCollectiveRoleMessage(NetEntity mind, ProtoId<MindCollectiveRolePrototype> role, bool assigned) : EuiMessageBase
 {
     public readonly NetEntity Mind = mind;
     public readonly ProtoId<MindCollectiveRolePrototype> Role = role;
@@ -149,9 +132,7 @@ public sealed class SetCollectiveRoleMessage(NetEntity mind, ProtoId<MindCollect
 }
 
 [Serializable, NetSerializable]
-public sealed class ExpelCollectiveMemberMessage(NetEntity mind, uint request = 0, bool confirmed = false) : BoundUserInterfaceMessage
+public sealed class ExpelCollectiveMemberMessage(NetEntity mind) : EuiMessageBase
 {
     public readonly NetEntity Mind = mind;
-    public readonly uint Request = request;
-    public readonly bool Confirmed = confirmed;
 }

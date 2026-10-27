@@ -3,7 +3,6 @@ using Content.Shared._Starlight.BodyControl;
 using Content.Shared._Starlight.MindCollective;
 using Content.Shared.Hands.Components;
 using Content.Shared.Mind;
-using Content.Shared.UserInterface;
 using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.MindCollective;
@@ -13,7 +12,7 @@ public sealed partial class MindCollectiveSystem
     public BodyControlAccessState? GetControlAccessState(EntityUid id, EntityUid mind, EntityUid body)
     {
         if (!TryComp<MindCollectiveComponent>(id, out var collective) || collective.Closing
-            || !collective.Minds.ContainsKey(mind) || collective.PendingMinds.Contains(mind)
+            || !collective.Members.TryGetValue(mind, out var member) || member.Pending || member.Leaving
             || !IsRegisteredBody(id, collective, body))
             return null;
         return new(GetMemberControlAccess(collective, mind, body),
@@ -22,10 +21,10 @@ public sealed partial class MindCollectiveSystem
 
     private BodyControlAccess GetMemberControlAccess(MindCollectiveComponent collective, EntityUid mind, EntityUid body)
     {
-        if (collective.ControlAccess.TryGetValue(mind, out var bodies) && bodies.TryGetValue(body, out var access))
+        if (collective.Members.TryGetValue(mind, out var member) && member.ControlAccess.TryGetValue(body, out var access))
             return access.Copy();
-        if (TryGetControlAccess(mind, body, out access))
-            return access;
+        if (TryGetControlAccess(mind, body, out var granted))
+            return granted;
         return new BodyControlAccess { FullControl = TryComp<MindComponent>(mind, out var consciousness) && consciousness.OwnedEntity == body };
     }
 
@@ -34,18 +33,11 @@ public sealed partial class MindCollectiveSystem
     {
         if (GetControlAccessState(id, mind, body) == null || !TryComp<MindCollectiveComponent>(id, out var collective))
             return false;
+        var member = collective.Members[mind];
         if (access != null)
-        {
-            if (!collective.ControlAccess.TryGetValue(mind, out var bodies))
-                collective.ControlAccess[mind] = bodies = new();
-            bodies[body] = access.Copy();
-        }
-        else if (collective.ControlAccess.TryGetValue(mind, out var bodies))
-        {
-            bodies.Remove(body);
-            if (bodies.Count == 0)
-                collective.ControlAccess.Remove(mind);
-        }
+            member.ControlAccess[body] = access.Copy();
+        else
+            member.ControlAccess.Remove(body);
         RefreshMemberPermissions(id, collective, mind);
         return true;
     }
@@ -65,43 +57,15 @@ public sealed partial class MindCollectiveSystem
     [SubscribeLocalEvent(after: [typeof(BodyControl.BodyControlSystem)])]
     private void OnCollectiveBodyAttached(Entity<MindCollectiveBodyComponent> ent, ref PlayerAttachedEvent args)
     {
-        if (TryComp<MindCollectiveComponent>(ent.Comp.Collective, out var collective) && !collective.Closing
-            && _mind.TryGetMind(ent, out var mind, out _) && collective.Minds.ContainsKey(mind)
-            && !collective.PendingMinds.Contains(mind))
+        if (!TryComp<MindCollectiveComponent>(ent.Comp.Collective, out var collective) || collective.Closing)
+            return;
+        if (_mind.TryGetMind(ent, out var mind, out _) && collective.Members.TryGetValue(mind, out var member)
+            && !member.Pending && !member.Leaving)
             RefreshNativeControl(ent.Comp.Collective, collective, mind);
+        UpdateUi(ent.Comp.Collective, collective);
     }
 
     private bool CanConfigureControl(EntityUid actor, EntityUid target)
         => HasPermission(actor, "mind-collective.roles")
            && (actor == target || CanManageMember(actor, target, "mind-collective.roles"));
-
-    [SubscribeLocalEvent]
-    private void OnConfigureControl(Entity<UserInterfaceComponent> ent, ref ConfigureCollectiveControlMessage args)
-    {
-        if (args.Actor != ent.Owner || !TryGetActorCollective(ent, out var id, out var collective, out var actor))
-            return;
-        var menu = EnsureComp<MindCollectiveUiComponent>(ent);
-        if (args.Mind is not { } netMind)
-        {
-            menu.EditingMind = null;
-            menu.EditingBody = null;
-        }
-        else if (TryGetEntity(netMind, out var target) && CanConfigureControl(actor, target.Value))
-        {
-            menu.EditingMind = target;
-            menu.EditingBody = args.Body is { } netBody && TryGetEntity(netBody, out var body)
-                && IsRegisteredBody(id, collective, body.Value) ? body
-                : collective.Bodies.Count > 0 ? collective.Bodies.First() : null;
-        }
-        UpdateUi(id, collective);
-    }
-
-    [SubscribeLocalEvent]
-    private void OnSetControlAccess(Entity<UserInterfaceComponent> ent, ref SetCollectiveControlMessage args)
-    {
-        if (args.Actor == ent.Owner && TryGetActorCollective(ent, out var id, out _, out var actor)
-            && TryGetEntity(args.Mind, out var target) && TryGetEntity(args.Body, out var body)
-            && CanConfigureControl(actor, target.Value))
-            SetControlAccess(id, target.Value, body.Value, args.Access);
-    }
 }

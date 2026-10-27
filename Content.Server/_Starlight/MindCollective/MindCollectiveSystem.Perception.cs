@@ -66,7 +66,7 @@ public sealed partial class MindCollectiveSystem
                && TryComp(observer, out view!)
                && TryComp(view.Collective, out collective!) && !collective.Closing
                && TryGetActorMind(observer, view.Collective, collective, out var mind)
-               && collective.Minds.TryGetValue(mind, out var owned) && owned == observer
+               && collective.Members.TryGetValue(mind, out var member) && member.Observer == observer
                && TryComp(observer, out actor!);
     }
 
@@ -223,7 +223,7 @@ public sealed partial class MindCollectiveSystem
     /// <summary>Called after removing a body from the pool and before deleting its entity.</summary>
     public void DetachObservers(EntityUid collectiveId, MindCollectiveComponent collective, EntityUid body)
     {
-        foreach (var observer in collective.Minds.Values.Concat(collective.VacantObservers).Distinct().ToArray())
+        foreach (var observer in collective.Members.Values.Select(member => member.Observer).Concat(collective.VacantObservers).Distinct().ToArray())
         {
             if (TerminatingOrDeleted(observer) || !TryComp<MindCollectiveObserverComponent>(observer, out var view)
                 || view.Collective != collectiveId)

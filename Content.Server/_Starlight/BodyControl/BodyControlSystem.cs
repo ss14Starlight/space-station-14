@@ -165,7 +165,8 @@ public sealed partial class BodyControlSystem : EntitySystem
             ReleaseExclusiveControl(actor, source.Provider, notifyProvider: true);
             return;
         }
-        CloseControlInterfaces(actor);
+        var stopping = new BodyControlStoppingEvent(actor, source.Body);
+        RaiseLocalEvent(ref stopping);
         RemoveControlPresentation(actor);
         var body = source.Body;
         source.Body = EntityUid.Invalid;

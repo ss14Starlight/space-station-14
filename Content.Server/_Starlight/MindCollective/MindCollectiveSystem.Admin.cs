@@ -12,7 +12,7 @@ public sealed partial class MindCollectiveSystem
     public void OpenAdminUi(ICommonSession player, EntityUid? target = null)
     {
         if (_collectiveAdmins.HasAdminFlag(player, AdminFlags.Debug))
-            _membershipEui.OpenEui(new MindCollectiveAdminEui(this, target), player);
+            _eui.OpenEui(new MindCollectiveAdminEui(this, target), player);
     }
 
     [SubscribeLocalEvent]

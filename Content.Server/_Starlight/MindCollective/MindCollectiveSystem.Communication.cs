@@ -132,7 +132,7 @@ public sealed partial class MindCollectiveSystem
         if (!TryComp<MindCollectiveComponent>(member.Collective, out var collective) || collective.Closing
             || !IsRegisteredBody(member.Collective, collective, body))
             return;
-        foreach (var observer in collective.Minds.Values)
+        foreach (var observer in collective.Members.Values.Select(member => member.Observer))
         {
             if (message.Receivers.Contains(observer) || !TryGetObserver(observer, out var view, out var current, out var actor)
                 || current != collective || !view.Bodies.Contains(body))

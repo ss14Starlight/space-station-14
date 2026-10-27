@@ -103,7 +103,7 @@ public sealed class MindCollectiveAdminEui : BaseEui
         var roles = _prototypes.EnumeratePrototypes<MindCollectiveRolePrototype>().OrderByDescending(role => role.Priority)
             .Select(role => new MindCollectiveAdminRole(role.ID, Loc.GetString(role.Name),
                 _selectedCollective is { } roleGroup && _entities.TryGetComponent(roleGroup, out MindCollectiveComponent? roleCollective)
-                && mind is { } member && roleCollective.Roles.TryGetValue(member, out var assigned) && assigned.ContainsKey(role.ID))).ToList();
+                && mind is { } member && roleCollective.Members.TryGetValue(member, out var assigned) && assigned.Roles.ContainsKey(role.ID))).ToList();
         return new MindCollectiveAdminState(groups, players, bodies, roles,
             _entities.GetNetEntity(_selectedCollective), _player, _entities.GetNetEntity(_body), _feedback,
             _selectedCollective is { } accessGroup && mind is { } accessMind && _body is { } accessBody

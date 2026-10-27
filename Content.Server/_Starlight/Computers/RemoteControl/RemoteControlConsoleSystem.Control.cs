@@ -19,6 +19,10 @@ public sealed partial class RemoteControlConsoleSystem
         => TryComp<BodyControlTargetComponent>(entity, out var target) && !target.ExternallyDriven;
 
     [SubscribeLocalEvent]
+    private void OnBodyControlStopping(ref BodyControlStoppingEvent args)
+        => CloseControllerInterfaces(args.Controller);
+
+    [SubscribeLocalEvent]
     private void OnControlLeaseReleased(Entity<RemoteControlConsoleComponent> ent, ref BodyControlProviderReleasedEvent args)
     {
         if (ent.Comp.Controller == args.Actor)

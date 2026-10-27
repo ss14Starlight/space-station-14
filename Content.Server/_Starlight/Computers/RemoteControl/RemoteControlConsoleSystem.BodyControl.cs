@@ -1,14 +1,17 @@
+using System.IO;
 using System.Linq;
 using Content.Server._Starlight.BodyControl;
 using Content.Shared._Starlight.BodyControl;
 using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.UserInterface;
+using Robust.Shared.Serialization;
 
 namespace Content.Server._Starlight.Computers.RemoteControl;
 
 public sealed partial class RemoteControlConsoleSystem
 {
     [Dependency] private BodyControlHandContextSystem _controlHandContext = default!;
+    [Dependency] private IRobustSerializer _controlUiSerializer = default!;
 
     private bool TryGetUiController(EntityUid body, out EntityUid provider, out EntityUid controller)
     {
@@ -41,13 +44,6 @@ public sealed partial class RemoteControlConsoleSystem
         => TryComp<BodyControlSourceComponent>(actor, out var source) && !source.ExternallyDriven
            && source.Body != actor;
 
-    private bool IsPersonalControlInterface(BoundUserInterfaceMessageAttempt args)
-    {
-        var attempt = new BodyControlPersonalInterfaceEvent(args.Actor, args.Target, args.UiKey);
-        RaiseLocalEvent(attempt);
-        return attempt.Personal;
-    }
-
     private bool CheckControlPermission(EntityUid actor, string permission, bool notify = true)
     {
         if (_controlHandContext.TryGetContext(actor, out var context))
@@ -71,36 +67,37 @@ public sealed partial class RemoteControlConsoleSystem
             || !_controlOwnership.TryGetControl(args.Actor, out var body, out var access))
             return;
         args.Cancel();
-        if (!CanUseCooperativeUi(args.Actor, args.Target, args.UiKey))
+        if (!_ui.IsUiOpen((args.Target, null), args.UiKey, args.Actor)
+            || !CanUseCooperativeUi(args.Actor, args.Target, args.UiKey))
             return;
 
-        // The engine has checked the real subscriber. Reapply content validation to the physical user.
+        // Keep the authenticated subscriber's message intact for the remaining attempt handlers.
+        using var buffer = new MemoryStream();
+        _controlUiSerializer.Serialize(buffer, args.Message);
+        buffer.Position = 0;
+        var message = _controlUiSerializer.Deserialize<BoundUserInterfaceMessage>(buffer);
+        message.Actor = body;
+        message.Entity = GetNetEntity(args.Target);
+        message.UiKey = args.UiKey;
+
         _controlHandContext.Execute(body, args.Actor, access, Comp<BodyControlSourceComponent>(args.Actor).SelectedHand, () =>
         {
-            var message = args.Message;
-            var previousActor = message.Actor;
-            var previousEntity = message.Entity;
-            var previousKey = message.UiKey;
-            try
+            if (_ui.IsUiOpen((args.Target, null), args.UiKey, body))
             {
-                message.Actor = body;
-                message.Entity = GetNetEntity(args.Target);
-                message.UiKey = args.UiKey;
-                var validation = new BoundUserInterfaceMessageAttempt(body, args.Target, args.UiKey, message);
-                RaiseLocalEvent(validation);
-                if (validation.Cancelled)
-                    return;
-                RaiseLocalEvent(args.Target, validation);
-                if (!validation.Cancelled)
-                    RaiseLocalEvent(args.Target, (object)message, broadcast: true);
+                _ui.RaiseUiMessage((args.Target, null), args.UiKey, message);
+                return;
             }
-            finally
-            {
-                message.Actor = previousActor;
-                message.Entity = previousEntity;
-                message.UiKey = previousKey;
-            }
-        });
+
+            // A controller's mirror can outlive the native player's window. The engine has no
+            // dispatch API separating subscriber from physical user; do not reopen their window.
+            var validation = new BoundUserInterfaceMessageAttempt(body, args.Target, args.UiKey, message);
+            RaiseLocalEvent(validation);
+            if (validation.Cancelled)
+                return;
+            RaiseLocalEvent(args.Target, validation);
+            if (!validation.Cancelled)
+                RaiseLocalEvent(args.Target, (object)message, broadcast: true);
+        }, permission: "body.inventory");
     }
 
     private void ForgetCooperativeUi(EntityUid uiEntity, Enum uiKey, EntityUid actor)

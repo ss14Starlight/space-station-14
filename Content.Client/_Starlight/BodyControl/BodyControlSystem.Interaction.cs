@@ -20,10 +20,6 @@ public sealed partial class BodyControlSystem
     [Dependency] private BodyControlViewSystem _bodyView = default!;
     [Dependency] private RemoteControlInterface _remoteInterface = default!;
 
-    private string? _shownControlHand;
-    private EntityUid? _shownControlSource;
-    private EntityUid? _shownControlBody;
-
     private bool HasLocalControl()
         => _bodyView.TryGetSource(out _, out _);
 
@@ -31,7 +27,7 @@ public sealed partial class BodyControlSystem
     {
         _remoteInterface.BodyInteractionRequested += OnBodyInteractionRequested;
         var binds = CommandBinds.Builder;
-        foreach (var (key, command) in ControlBindings())
+        foreach (var (key, command) in BodyControlBindings.All)
             binds.BindBefore(key, new PointerInputCmdHandler((session, coordinates, target) =>
             {
                 if (!HasLocalControl())
@@ -62,21 +58,6 @@ public sealed partial class BodyControlSystem
         _remoteInterface.SetBodyControlEntity(null);
     }
 
-    private static (BoundKeyFunction, BodyControlCommand)[] ControlBindings() =>
-    [
-        (EngineKeyFunctions.Use, BodyControlCommand.Interact),
-        (EngineKeyFunctions.UseSecondary, BodyControlCommand.Interact),
-        (ContentKeyFunctions.AltActivateItemInWorld, BodyControlCommand.AltInteract),
-        (ContentKeyFunctions.ActivateItemInWorld, BodyControlCommand.ActivateWorld),
-        (ContentKeyFunctions.UseItemInHand, BodyControlCommand.UseHand),
-        (ContentKeyFunctions.AltUseItemInHand, BodyControlCommand.AltUseHand),
-        (ContentKeyFunctions.SwapHands, BodyControlCommand.CycleHand),
-        (ContentKeyFunctions.SwapHandsReverse, BodyControlCommand.CycleHandReverse),
-        (ContentKeyFunctions.Drop, BodyControlCommand.Drop),
-        (ContentKeyFunctions.ThrowItemInHand, BodyControlCommand.Throw),
-        (ContentKeyFunctions.TryPullObject, BodyControlCommand.Pull),
-    ];
-
     public void SendControlCommand(BodyControlCommandEvent command)
     {
         if (HasLocalControl())
@@ -99,28 +80,14 @@ public sealed partial class BodyControlSystem
         SendControlCommand(new(command, target: GetNetEntity(target), coordinates: GetNetCoordinates(Transform(target).Coordinates)));
     }
 
-    public override void FrameUpdate(float frameTime)
+    [SubscribeLocalEvent]
+    private void OnControlViewChanged(BodyControlViewChangedEvent args)
     {
-        base.FrameUpdate(frameTime);
-        if (!HasLocalControl())
-        {
-            _remoteInterface.SetBodyControlEntity(null);
-            if (_shownControlSource != null)
-            {
-                _shownControlSource = null;
-                _shownControlHand = null;
-                EntityManager.System<Content.Client.Hands.Systems.HandsSystem>().RefreshControlHand();
-            }
-        }
-        else if (TryComp<BodyControlSourceComponent>(_controlPlayer.LocalEntity, out var source)
-                 && (_shownControlSource != _controlPlayer.LocalEntity || _shownControlBody != source.Body || _shownControlHand != source.SelectedHand))
-        {
-            _shownControlSource = _controlPlayer.LocalEntity;
-            _shownControlBody = source.Body;
-            _shownControlHand = source.SelectedHand;
-            EntityManager.System<Content.Client.Hands.Systems.HandsSystem>().RefreshControlHand();
-        }
-        if (_bodyView.TryGetSource(out _, out var view))
-            _remoteInterface.SetBodyControlEntity(view.Body != _controlPlayer.LocalEntity ? view.Body : null);
+        _remoteInterface.SetBodyControlEntity(_bodyView.TryGetSource(out _, out var view)
+            && view.Body != _controlPlayer.LocalEntity ? view.Body : null);
     }
+
+    [SubscribeLocalEvent]
+    private void OnControlHandChanged(BodyControlHandChangedEvent args)
+        => EntityManager.System<Content.Client.Hands.Systems.HandsSystem>().RefreshControlHand();
 }

@@ -18,7 +18,7 @@ public sealed class MindCollectiveWindow : FancyWindow
     public event Action<NetEntity>? OnControl;
     public event Action<NetEntity, ProtoId<MindCollectiveRolePrototype>, bool>? OnSetRole;
     public event Action? OnLeave;
-    public event Action<NetEntity, uint, bool>? OnExpel;
+    public event Action<NetEntity>? OnExpel;
     public event Action<NetEntity?, NetEntity?>? OnConfigureControl;
     public event Action<NetEntity, NetEntity, BodyControlAccess?>? OnSetControl;
     private FancyWindow? _controlEditorWindow;
@@ -36,7 +36,6 @@ public sealed class MindCollectiveWindow : FancyWindow
     private bool? _lastCanManage;
     private bool? _lastMindspace;
     private FancyWindow? _confirmation;
-    private uint _expelRequest;
 
     public MindCollectiveWindow()
     {
@@ -138,7 +137,7 @@ public sealed class MindCollectiveWindow : FancyWindow
                 if (member.CanExpel)
                 {
                     var expel = Button(Loc.GetString("mind-collective-expel"));
-                    expel.OnPressed += _ => OnExpel?.Invoke(member.Mind, 0, false);
+                    expel.OnPressed += _ => ShowExpelConfirmation(member.Mind, member.Name);
                     row.AddChild(expel);
                 }
                 if (member.CanRecall)
@@ -153,21 +152,9 @@ public sealed class MindCollectiveWindow : FancyWindow
         _lastCanManage = state.CanManage;
         _lastMindspace = state.InMindspace;
         UpdateControlEditor(state);
-        if (state.ExpelTarget is { } target && state.ExpelRequest != 0 && state.ExpelRequest != _expelRequest)
-        {
-            _expelRequest = state.ExpelRequest;
-            var name = state.Members.FirstOrDefault(member => member.Mind == target)?.Name
-                ?? Loc.GetString("mind-collective-member");
-            ShowExpelConfirmation(target, name, state.ExpelRequest);
-        }
-        else if (state.ExpelTarget == null)
-        {
-            _expelRequest = 0;
-            CloseConfirmation();
-        }
     }
 
-    private void ShowExpelConfirmation(NetEntity target, string name, uint request)
+    private void ShowExpelConfirmation(NetEntity target, string name)
     {
         CloseConfirmation();
         var dialog = new FancyWindow
@@ -184,12 +171,10 @@ public sealed class MindCollectiveWindow : FancyWindow
         var buttons = new BoxContainer { SeparationOverride = 8 };
         var yes = Button(Loc.GetString("mind-collective-confirm-yes"));
         var no = Button(Loc.GetString("mind-collective-confirm-no"));
-        var accepted = false;
         yes.OnPressed += _ =>
         {
-            accepted = true;
             dialog.Close();
-            OnExpel?.Invoke(target, request, true);
+            OnExpel?.Invoke(target);
         };
         no.OnPressed += _ => dialog.Close();
         buttons.AddChild(yes);
@@ -199,8 +184,6 @@ public sealed class MindCollectiveWindow : FancyWindow
         dialog.OnClose += () =>
         {
             _confirmation = null;
-            if (!accepted)
-                OnExpel?.Invoke(target, request, false);
             dialog.Dispose();
         };
         dialog.OpenCentered();

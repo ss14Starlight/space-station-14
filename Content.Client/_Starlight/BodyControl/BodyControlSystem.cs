@@ -50,13 +50,17 @@ public sealed partial class BodyControlSystem : EntitySystem
 
     [SubscribeLocalEvent]
     private void OnTargetShutdown(Entity<BodyControlTargetComponent> ent, ref ComponentShutdown args)
-        => _physics.UpdateIsPredicted(ent);
+    {
+        _physics.UpdateIsPredicted(ent);
+        _bodyView.Refresh(ent);
+    }
 
     [SubscribeLocalEvent]
     private void OnSourceState(Entity<BodyControlSourceComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         _physics.UpdateIsPredicted(ent);
         _physics.UpdateIsPredicted(ent.Comp.Body);
+        _bodyView.Refresh(ent);
     }
 
     [SubscribeLocalEvent]
@@ -64,5 +68,6 @@ public sealed partial class BodyControlSystem : EntitySystem
     {
         _physics.UpdateIsPredicted(ent);
         _physics.UpdateIsPredicted(ent.Comp.Body);
+        _bodyView.Refresh(ent);
     }
 }

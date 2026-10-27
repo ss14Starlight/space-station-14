@@ -1,4 +1,5 @@
 body-control-access-title = Body control permissions
+body-control-access-full = Full control
 body-control-access-move = Movement
 body-control-access-hands = Hands
 body-control-access-interact = Interaction and combat

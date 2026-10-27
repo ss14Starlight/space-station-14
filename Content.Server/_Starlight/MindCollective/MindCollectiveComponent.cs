@@ -2,6 +2,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.MindCollective;
 using Content.Shared._Starlight.BodyControl;
+using Robust.Shared.Map;
 
 namespace Content.Server._Starlight.MindCollective;
 
@@ -10,13 +11,10 @@ namespace Content.Server._Starlight.MindCollective;
 public sealed partial class MindCollectiveComponent : Component
 {
     public EntityUid? ActiveBody;
-    public Dictionary<EntityUid, EntityUid> Minds = new();
-    public Dictionary<EntityUid, Dictionary<ProtoId<MindCollectiveRolePrototype>, MindCollectiveRoleAssignment>> Roles = new();
-    public HashSet<EntityUid> PendingMinds = new();
+    public Dictionary<EntityUid, MindCollectiveMemberState> Members = new();
     public HashSet<EntityUid> VacantObservers = new();
     public HashSet<NetUserId> ExcludedUsers = new();
     public HashSet<EntityUid> Bodies = new();
-    public Dictionary<EntityUid, Dictionary<EntityUid, BodyControlAccess>> ControlAccess = new();
     public bool Moving;
     public bool Closing;
     public TimeSpan NextUpdate;
@@ -31,6 +29,20 @@ public sealed partial class MindCollectiveComponent : Component
     [DataField] public bool CreateVacancyOnDecline;
     [DataField] public bool CreateVacancyOnExpel;
     [DataField] public bool ExcludeExpelledUsers = true;
+}
+
+public sealed class MindCollectiveMemberState(EntityUid observer)
+{
+    public EntityUid Observer = observer;
+    public bool Pending;
+    public bool Leaving;
+    public EntityUid? PreviousBody;
+    public EntityCoordinates? PreviousGhostPosition;
+    public EntityUid? Action;
+    public AcceptMindCollectiveEui? Consent;
+    public MindCollectiveEui? Menu;
+    public Dictionary<ProtoId<MindCollectiveRolePrototype>, MindCollectiveRoleAssignment> Roles = new();
+    public Dictionary<EntityUid, BodyControlAccess> ControlAccess = new();
 }
 
 public enum MindCollectiveDepartureDisposition : byte { Detach, ReturnToPreviousBody, Ghost }

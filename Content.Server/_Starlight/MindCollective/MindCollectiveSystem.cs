@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.EUI;
 using Content.Server.Ghost;
 using Content.Shared._Starlight.MindCollective;
 using Content.Shared.Actions;
@@ -7,8 +8,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
-using Content.Shared.UserInterface;
-using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -21,13 +20,14 @@ public sealed partial class MindCollectiveSystem : EntitySystem
 {
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private GhostSystem _ghosts = default!;
-    [Dependency] private UserInterfaceSystem _ui = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private ActionContainerSystem _actionContainers = default!;
     [Dependency] private IPlayerManager _players = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private MetaDataSystem _metadata = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EuiManager _eui = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     private const string ControlAction = "ActionMindCollective";
 
@@ -59,11 +59,11 @@ public sealed partial class MindCollectiveSystem : EntitySystem
             collective.JoinTitle = creator.JoinTitle;
             collective.JoinDescription = creator.JoinDescription;
         }
-        var observer = CreateObserver(id, collective, initialMind, body);
+        var member = AddMember(id, collective, initialMind, body);
         EnsureDefaultRole(id, collective, initialMind);
         AssignRole(id, initialMind, collective.InitialRole);
         if (HasComp<GhostComponent>(body))
-            _mind.TransferTo(initialMind, observer, ghostCheckOverride: true, createGhost: false);
+            _mind.TransferTo(initialMind, member.Observer, ghostCheckOverride: true, createGhost: false);
         else if (RegisterBody(id, body))
             collective.ActiveBody = body;
         EnsureControlAction(initialMind);
@@ -102,11 +102,9 @@ public sealed partial class MindCollectiveSystem : EntitySystem
     }
 
     public bool IsAccepted(EntityUid entity, MindCollectiveComponent collective)
-    {
-        return !TerminatingOrDeleted(entity) && _mind.TryGetMind(entity, out var mind, out var consciousness)
-               && consciousness.OwnedEntity == entity
-               && collective.Minds.ContainsKey(mind) && !collective.PendingMinds.Contains(mind);
-    }
+        => !TerminatingOrDeleted(entity) && _mind.TryGetMind(entity, out var mind, out var consciousness)
+           && consciousness.OwnedEntity == entity
+           && collective.Members.TryGetValue(mind, out var member) && !member.Pending && !member.Leaving;
 
     private bool TryGetActorCollective(EntityUid actor, out EntityUid id, out MindCollectiveComponent collective,
         out EntityUid mind)
@@ -130,26 +128,23 @@ public sealed partial class MindCollectiveSystem : EntitySystem
                && TryComp<MindCollectiveMemberComponent>(mind, out var member) && member.Collective == collectiveId;
     }
 
+    private MindCollectiveMemberState AddMember(EntityUid id, MindCollectiveComponent collective, EntityUid mind,
+        EntityUid? body, bool pending = false)
+    {
+        var member = new MindCollectiveMemberState(CreateObserver(id, collective, mind, body)) { Pending = pending };
+        collective.Members.Add(mind, member);
+        EnsureComp<MindCollectiveMemberComponent>(mind).Collective = id;
+        return member;
+    }
+
     private EntityUid CreateObserver(EntityUid collectiveId, MindCollectiveComponent collective, EntityUid mind, EntityUid? body)
     {
         var observer = body is { } target && !TerminatingOrDeleted(target)
             ? Spawn(collective.ObserverPrototype, _transform.GetMoverCoordinates(target))
             : Spawn(collective.ObserverPrototype);
         Comp<MindCollectiveObserverComponent>(observer).Collective = collectiveId;
-        collective.Minds.Add(mind, observer);
-        EnsureComp<MindCollectiveMemberComponent>(mind).Collective = collectiveId;
         _metadata.SetEntityName(observer, Comp<MindComponent>(mind).CharacterName ?? Name(mind));
-        SetCollectiveUi(observer);
-        if (body is { } viewed && collective.Bodies.Contains(viewed))
-            Observe(observer, viewed);
         return observer;
-    }
-
-    private void SetCollectiveUi(EntityUid entity)
-    {
-        EnsureComp<UserInterfaceComponent>(entity);
-        _ui.SetUi(entity, MindCollectiveUiKey.Key,
-            new InterfaceData("MindCollectiveBoundUserInterface", interactionRange: 0, requireInputValidation: false));
     }
 
     private void EnsureControlAction(EntityUid mind)
@@ -157,40 +152,23 @@ public sealed partial class MindCollectiveSystem : EntitySystem
         if (!TryComp<MindComponent>(mind, out var consciousness) || consciousness.OwnedEntity is not { } entity
             || !TryGetCollective(mind, out _, out var collective) || !IsAccepted(entity, collective))
             return;
-        if (!_ui.HasUi(entity, MindCollectiveUiKey.Key))
-            SetCollectiveUi(entity);
-        EnsureComp<MindCollectiveUiComponent>(entity);
-        EntityUid? action = null;
-        if (TryComp<ActionsContainerComponent>(mind, out var container))
-        {
-            foreach (var candidate in container.Container.ContainedEntities)
-            {
-                if (!TerminatingOrDeleted(candidate) && MetaData(candidate).EntityPrototype?.ID == ControlAction)
-                {
-                    action = candidate;
-                    break;
-                }
-            }
-        }
-        action ??= _actionContainers.AddAction(mind, ControlAction);
-        if (action is not { } actionId || _actions.GetAction(actionId) is not { } current)
+        var member = collective.Members[mind];
+        if (member.Action is not { } existing || TerminatingOrDeleted(existing))
+            member.Action = _actionContainers.AddAction(mind, ControlAction);
+        if (member.Action is not { } actionId || _actions.GetAction(actionId) is not { } action)
             return;
-        if (current.Comp.AttachedEntity != entity || !_actions.GetActions(entity).Any(a => a.Owner == actionId))
+        if (action.Comp.AttachedEntity != entity)
             _actions.GrantContainedAction(entity, mind, actionId);
-        _actions.SetEnabled(current.AsNullable(), true);
+        _actions.SetEnabled(action.AsNullable(), true);
     }
 
     [SubscribeLocalEvent]
-    private void OnOpenCollective(Entity<MindCollectiveUiComponent> ent, ref OpenMindCollectiveEvent args)
-        => OpenUi(ent, args);
-
-    private void OpenUi(EntityUid actor, OpenMindCollectiveEvent args)
+    private void OnOpenCollective(OpenMindCollectiveEvent args)
     {
-        if (args.Handled || args.Performer != actor || !TryGetActorCollective(actor, out var id, out var collective, out _))
+        if (args.Handled || !TryGetActorCollective(args.Performer, out var id, out var collective, out var mind))
             return;
         args.Handled = true;
-        UpdateUi(id, collective);
-        _ui.OpenUi(actor, MindCollectiveUiKey.Key, actor);
+        OpenMenu(id, collective, mind);
     }
 
     [SubscribeLocalEvent]
@@ -206,65 +184,28 @@ public sealed partial class MindCollectiveSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnMemberMindRemoved(Entity<MindCollectiveMemberComponent> ent, ref MindGotRemovedEvent args)
     {
-        foreach (var action in _actions.GetActions(args.Container).ToArray())
+        if (!TryGetCollective(ent, out var id, out var collective)
+            || !collective.Members.TryGetValue(ent, out var member))
+            return;
+        if (member.Action is { } action)
+            _actions.RemoveAction(action);
+        if (HasComp<MindCollectiveObserverComponent>(args.Container))
         {
-            if (action.Comp.Container == ent.Owner && MetaData(action).EntityPrototype?.ID == ControlAction)
-                _actions.RemoveAction(action.AsNullable());
+            _bodyControl.StopControl(args.Container);
+            RemoveObserverViews(args.Container);
         }
-        CloseBodyUi(args.Container);
+        if (args.TransferEntity == null && !member.Pending && !member.Leaving)
+            QueueLocalEvent(new CollectiveMindDetachedEvent(id, ent));
+        UpdateUi(id, collective);
     }
 
-    private void UpdateUi(EntityUid collectiveId, MindCollectiveComponent collective)
+    // Mind removal is raised midway through TransferTo; resolve unowned minds after that operation completes.
+    [SubscribeLocalEvent]
+    private void OnMindDetached(CollectiveMindDetachedEvent args)
     {
-        foreach (var mind in collective.Minds.Keys)
-        {
-            if (collective.PendingMinds.Contains(mind) || !TryComp<MindComponent>(mind, out var consciousness)
-                || consciousness.OwnedEntity is not { } actor || TerminatingOrDeleted(actor) || !IsAccepted(actor, collective))
-                continue;
-            var canManage = HasPermission(mind, "mind-collective.expel") || HasPermission(mind, "mind-collective.roles");
-            var bodies = new List<MindCollectiveBodyEntry>();
-            foreach (var body in collective.Bodies)
-            {
-                if (!IsRegisteredBody(collectiveId, collective, body))
-                    continue;
-                var occupied = _mind.TryGetMind(body, out var occupant, out var occupiedMind);
-                bodies.Add(new(GetNetEntity(body), Name(body), occupied ? occupiedMind!.CharacterName ?? Name(body) : null,
-                    CanEnter(collectiveId, collective, mind, body),
-                    occupied && CanManageMember(mind, occupant, "mind-collective.recall"),
-                    occupied ? GetNetEntity(occupant) : null,
-                    CanControlBody(collectiveId, collective, mind, actor, body), _bodyControl.IsControlling(actor, body)));
-            }
-            var members = collective.Minds.Keys.Where(m => !collective.PendingMinds.Contains(m))
-                .Select(m => new MindCollectiveMemberEntry(GetNetEntity(m),
-                    TryComp<MindComponent>(m, out var member) ? member.CharacterName ?? Name(m) : Name(m),
-                    CanManageMember(mind, m, "mind-collective.expel"),
-                    _rolePrototypes.EnumeratePrototypes<MindCollectiveRolePrototype>()
-                        .Where(role => collective.Roles.TryGetValue(m, out var roles) && roles.ContainsKey(role.ID)
-                            || HasPermission(mind, "mind-collective.roles") && role.Priority <= RolePriority(collective, mind))
-                        .OrderByDescending(role => role.Priority)
-                        .Select(role => new MindCollectiveRoleEntry(role.ID, Loc.GetString(role.Name),
-                            collective.Roles.TryGetValue(m, out var roles) && roles.ContainsKey(role.ID))).ToList(),
-                    CanManageMember(mind, m, "mind-collective.roles"),
-                    CanManageMember(mind, m, "mind-collective.recall"), CanConfigureControl(mind, m))).ToList();
-            NetEntity? expel = null;
-            uint request = 0;
-            if (TryGetExpulsion(collectiveId, mind, out var expelled, out request))
-                expel = GetNetEntity(expelled);
-            var menu = EnsureComp<MindCollectiveUiComponent>(actor);
-            MindCollectiveControlEditorState? editor = null;
-            if (menu.EditingMind is { } editing && menu.EditingBody is { } editingBody && CanConfigureControl(mind, editing)
-                && GetControlAccessState(collectiveId, editing, editingBody) is { } settings)
-                editor = new(GetNetEntity(editing), GetNetEntity(editingBody),
-                    TryComp<MindComponent>(editing, out var editedMind) ? editedMind.CharacterName ?? Name(editing) : Name(editing), settings);
-            else
-            {
-                menu.EditingMind = null;
-                menu.EditingBody = null;
-            }
-            menu.State = new MindCollectiveUiState(bodies, members, canManage, HasComp<MindCollectiveObserverComponent>(actor),
-                Name(collectiveId), expel, request, editor);
-            Dirty(actor, menu);
-        }
+        if (TryComp<MindCollectiveComponent>(args.Collective, out var collective)
+            && TryComp<MindComponent>(args.Mind, out var mind) && mind.OwnedEntity == null)
+            ReturnToMindspace(args.Collective, collective, args.Mind);
     }
 
     public override void Update(float frameTime)
@@ -277,23 +218,11 @@ public sealed partial class MindCollectiveSystem : EntitySystem
                 continue;
             collective.NextUpdate = _timing.CurTime + TimeSpan.FromMilliseconds(250);
             UpdateMembership(id, collective);
-            foreach (var (mind, observer) in collective.Minds.ToArray())
+            foreach (var member in collective.Members.Values.ToArray())
             {
-                if (collective.PendingMinds.Contains(mind) || TerminatingOrDeleted(observer)
-                    || !TryComp<MindCollectiveObserverComponent>(observer, out var view))
-                    continue;
-                if (TryComp<MindComponent>(mind, out var consciousness) && consciousness.OwnedEntity == null)
-                    ReturnToMindspace(id, collective, mind);
-                EnsureControlAction(mind);
-                UpdateObserver(observer, collective);
-                if (view.OpenUiAt != TimeSpan.Zero && _timing.CurTime >= view.OpenUiAt
-                    && IsAccepted(observer, collective))
-                {
-                    view.OpenUiAt = TimeSpan.Zero;
-                    _ui.OpenUi(observer, MindCollectiveUiKey.Key, observer);
-                }
+                if (!member.Pending && !member.Leaving && !TerminatingOrDeleted(member.Observer))
+                    UpdateObserver(member.Observer, collective);
             }
-            UpdateUi(id, collective);
         }
     }
 
@@ -329,28 +258,22 @@ public sealed partial class MindCollectiveSystem : EntitySystem
         RemoveObserverViews(ent);
         if (!TryComp<MindCollectiveComponent>(ent.Comp.Collective, out var collective) || collective.Closing)
             return;
-        var vacant = collective.VacantObservers.Remove(ent);
-        var entry = collective.Minds.FirstOrDefault(pair => pair.Value == ent.Owner);
-        if (!entry.Key.IsValid())
-        {
-            if (vacant && !TerminatingOrDeleted(ent))
-                QueueDel(ent);
+        collective.VacantObservers.Remove(ent);
+        var entry = collective.Members.FirstOrDefault(pair => pair.Value.Observer == ent.Owner);
+        if (entry.Value == null || entry.Value.Leaving)
             return;
-        }
-        var mind = entry.Key;
-        if (collective.PendingMinds.Contains(mind) || TerminatingOrDeleted(mind))
+        var (mind, member) = entry;
+        if (member.Pending || TerminatingOrDeleted(mind))
         {
             RemoveMember(ent.Comp.Collective, mind, createVacancy: false);
             return;
         }
-        collective.Minds.Remove(mind);
-        var replacement = CreateObserver(ent.Comp.Collective, collective, mind, collective.ActiveBody);
+        member.Observer = CreateObserver(ent.Comp.Collective, collective, mind, collective.ActiveBody);
         RefreshMemberPermissions(ent.Comp.Collective, collective, mind);
         if (TryComp<MindComponent>(mind, out var consciousness) && consciousness.OwnedEntity == ent.Owner)
         {
-            _mind.TransferTo(mind, replacement, ghostCheckOverride: true, createGhost: false);
-            EnsureControlAction(mind);
-            Comp<MindCollectiveObserverComponent>(replacement).OpenUiAt = _timing.CurTime + TimeSpan.FromMilliseconds(100);
+            _mind.TransferTo(mind, member.Observer, ghostCheckOverride: true, createGhost: false);
+            OpenMenu(ent.Comp.Collective, collective, mind);
         }
         if (!TerminatingOrDeleted(ent))
             QueueDel(ent);
@@ -361,8 +284,7 @@ public sealed partial class MindCollectiveSystem : EntitySystem
         if (!TryComp<MindCollectiveComponent>(collectiveId, out var collective) || collective.Closing)
             return;
         collective.Closing = true;
-        CloseConsents(collectiveId);
-        foreach (var mind in collective.Minds.Keys.ToArray())
+        foreach (var mind in collective.Members.Keys.ToArray())
             RemoveMember(collectiveId, mind, createVacancy: false, disposition: MindCollectiveDepartureDisposition.Detach);
         foreach (var observer in collective.VacantObservers.ToArray())
         {
@@ -374,13 +296,16 @@ public sealed partial class MindCollectiveSystem : EntitySystem
         {
             StopBodyControllers(body);
             if (!TerminatingOrDeleted(body))
-            {
-                CloseBodyUi(body, collectiveId);
                 RemComp<MindCollectiveBodyComponent>(body);
-            }
         }
         collective.Bodies.Clear();
         if (!TerminatingOrDeleted(collectiveId))
             QueueDel(collectiveId);
+    }
+
+    private sealed class CollectiveMindDetachedEvent(EntityUid collective, EntityUid mind) : EntityEventArgs
+    {
+        public readonly EntityUid Collective = collective;
+        public readonly EntityUid Mind = mind;
     }
 }

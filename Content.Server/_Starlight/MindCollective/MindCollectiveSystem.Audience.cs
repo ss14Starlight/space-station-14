@@ -20,7 +20,7 @@ public sealed partial class MindCollectiveSystem
         var recipients = new HashSet<ICommonSession>();
         if (!TryGetActorCollective(sender, out var id, out var collective, out _))
             return recipients;
-        foreach (var mind in collective.Minds.Keys)
+        foreach (var mind in collective.Members.Keys)
         {
             if (TryComp<MindComponent>(mind, out var member) && member.UserId is { } user
                 && _players.TryGetSessionById(user, out var session) && session.AttachedEntity is { } actor
