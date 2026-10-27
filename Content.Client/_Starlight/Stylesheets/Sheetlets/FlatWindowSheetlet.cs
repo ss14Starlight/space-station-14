@@ -24,8 +24,8 @@ public sealed class FlatWindowSheetlet : Sheetlet<NanotrasenStylesheet>
 
         var proto = theme.Proto;
 
-        var windowFallback = FlatBox.Bordered(proto.Background, proto.Border, proto.BorderThickness);
-        var headerFallback = FlatBox.Underlined(proto.Surface, proto.Border, 1)
+        var windowFallback = FlatBox.BorderedOrChamfered(theme.ClassicDecor, proto.Background, proto.Border, proto.BorderThickness);
+        var headerFallback = FlatBox.BorderedOrChamfered(theme.ClassicDecor, proto.Surface, proto.Border, 1)
             .WithContentMargin(StyleBox.Margin.Bottom, 0);
 
         var windowBox = UseThemeDecor(theme.ClassicDecor, proto.Window)

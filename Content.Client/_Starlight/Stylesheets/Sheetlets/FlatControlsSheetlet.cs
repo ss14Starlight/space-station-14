@@ -39,7 +39,6 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
             .WithContentMargin(StyleBox.Margin.Horizontal, 8)
             .WithContentMargin(StyleBox.Margin.Vertical, 3);
 
-        // Classic tooltips are fully opaque like the classic texture; Starlight's flat style uses 0.96 alpha.
         var tooltipFill = (proto.SurfaceInspect ?? proto.Surface).WithAlpha(theme.ClassicDecor ? 1f : 0.96f);
         var tooltipBox = FlatBox.BorderedOrChamfered(theme.ClassicDecor, tooltipFill, proto.Border, proto.BorderThickness)
             .WithContentMargin(StyleBox.Margin.Vertical, 2)

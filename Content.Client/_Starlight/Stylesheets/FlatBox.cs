@@ -127,18 +127,12 @@ public static class FlatBox
         Band(handle, box.Right - cut, box.Top + cut, box.Right, box.Bottom - cut, color);
     }
 
-    private static UIBox2 Deflate(UIBox2 box, float amount)
-        {
-            return new UIBox2(
-                MathF.Min(box.Left + amount, box.Right),
-                MathF.Min(box.Top + amount, box.Bottom),
-                MathF.Max(box.Right - amount, box.Left),
-                MathF.Max(box.Bottom - amount, box.Top));
-        }
+    private static UIBox2 Deflate(UIBox2 box, float amount) => new(
+        MathF.Min(box.Left + amount, box.Right),
+        MathF.Min(box.Top + amount, box.Bottom),
+        MathF.Max(box.Right - amount, box.Left),
+        MathF.Max(box.Bottom - amount, box.Top));
 
-        protected override float GetDefaultContentMargin(Margin margin)
-        {
-            return BorderThickness;
-        }
+    protected override float GetDefaultContentMargin(Margin margin) => BorderThickness;
     }
 }

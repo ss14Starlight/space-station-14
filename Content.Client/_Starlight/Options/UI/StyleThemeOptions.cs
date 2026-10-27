@@ -115,16 +115,8 @@ public sealed class AccentPicker : BoxContainer
     /// </summary>
     public bool UseCustom { get; private set; }
 
-    public string TitleLoc
-    {
-        get => _titleLoc;
-        set
-        {
-            _titleLoc = value;
-            _title.Text = Loc.GetString(value);
-        }
-    }
-    private string _titleLoc = "ui-options-style-accent";
+    public void SetTitle(string locId)
+        => _title.Text = Loc.GetString(locId);
 
     public AccentPicker()
     {
@@ -135,7 +127,7 @@ public sealed class AccentPicker : BoxContainer
         _sliders.OnColorChanged += color => Pick(color, fromPreset: false);
 
         var row = new BoxContainer { Orientation = LayoutOrientation.Horizontal, SeparationOverride = 4 };
-        _title = new Label { Text = Loc.GetString(_titleLoc), HorizontalExpand = true };
+        _title = new Label { Text = Loc.GetString("ui-options-style-accent"), HorizontalExpand = true };
         row.AddChild(_title);
 
         _theme = new Button { Text = Loc.GetString("ui-options-style-accent-theme"), ToggleMode = true };
