@@ -17,11 +17,11 @@
         - GalacticCommon
 
 # TODO: uncomment these when parent partials work
-# 
+#
 # - type: !PartialOnly entity
 #   id: Spear
 #   parent: !Clear [BaseItem, SolutionDart, BaseEmotionalSupportScurretContraband]
-# 
+#
 # - type: !PartialOnly entity
 #   id: ClothingNeckMantleQM
 #   parent: !Clear [ClothingNeckBase, BaseCommandContraband, BaseEmotionalSupportScurretContraband]
