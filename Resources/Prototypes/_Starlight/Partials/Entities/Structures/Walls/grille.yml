@@ -1,4 +1,9 @@
 - type: !PartialOnly entity
+  id: Grille
+  components:
+  - type: ShockCooldown
+
+- type: !PartialOnly entity
   id: ClockworkGrille
   components:
   - type: Sprite

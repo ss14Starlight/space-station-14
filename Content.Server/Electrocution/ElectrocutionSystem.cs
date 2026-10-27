@@ -168,7 +168,9 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
         if (_meleeWeapon.GetDamage(args.Used, args.User).Empty)
             return;
 
-        TryDoElectrifiedAct(uid, args.User, 1, electrified);
+        // Starlight-start: An intentional attack must still risk a shock during contact recovery.
+        TryDoElectrifiedAct(uid, args.User, 1, electrified, bypassShockCooldown: true);
+        // Starlight-end
     }
 
     private void OnElectrifiedHandInteract(EntityUid uid, ElectrifiedComponent electrified, InteractHandEvent args)
@@ -204,10 +206,17 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
         float siemens = 1,
         ElectrifiedComponent? electrified = null,
         NodeContainerComponent? nodeContainer = null,
-        TransformComponent? transform = null)
+        TransformComponent? transform = null,
+        bool bypassShockCooldown = false) // Starlight-edit: Attacks bypass the contact cooldown.
     {
         if (!Resolve(uid, ref electrified, ref transform, false))
             return false;
+
+        // Starlight-start: Only sources marked with ShockCooldown use the victim recovery period.
+        var useShockCooldown = HasComp<ShockCooldownComponent>(uid);
+        if (useShockCooldown && !bypassShockCooldown && !CanReceiveElectrifiedShock(targetUid))
+            return false;
+        // Starlight-end
 
         if (!IsPowered(uid, electrified, transform))
             return false;
@@ -230,14 +239,17 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
             for (var i = targets.Count - 1; i >= 0; i--)
             {
                 var (entity, depth) = targets[i];
-                lastRet = TryDoElectrocution(
+                // Starlight-start: Apply the victim's electrified shock cooldown.
+                lastRet = TryDoUnpoweredElectrifiedShock(
                     entity,
                     uid,
                     (int) (electrified.ShockDamage * MathF.Pow(RecursiveDamageMultiplier, depth)),
                     TimeSpan.FromSeconds(electrified.ShockTime * MathF.Pow(RecursiveTimeMultiplier, depth)),
-                    true,
-                    electrified.SiemensCoefficient
+                    electrified.SiemensCoefficient,
+                    useShockCooldown,
+                    bypassShockCooldown && entity == targetUid
                 );
+                // Starlight-end
             }
             return lastRet;
         }
@@ -258,14 +270,17 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
             for (var i = targets.Count - 1; i >= 0; i--)
             {
                 var (entity, depth) = targets[i];
-                lastRet = TryDoElectrocutionPowered(
+                // Starlight-start: Apply the victim's electrified shock cooldown.
+                lastRet = TryDoPoweredElectrifiedShock(
                     entity,
                     uid,
                     node,
                     (int) (electrified.ShockDamage * MathF.Pow(RecursiveDamageMultiplier, depth) * damageScalar),
                     TimeSpan.FromSeconds(electrified.ShockTime * MathF.Pow(RecursiveTimeMultiplier, depth) * timeScalar),
-                    true,
-                    electrified.SiemensCoefficient);
+                    electrified.SiemensCoefficient,
+                    useShockCooldown,
+                    bypassShockCooldown && entity == targetUid);
+                // Starlight-end
             }
             return lastRet;
         }
