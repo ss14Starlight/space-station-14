@@ -181,7 +181,7 @@
     - Dead
   - type: AntagMonsterScaling
     minimumHealthScaling: -0.25
-    maximumHealthScaling: 0.25
+    maximumHealthScaling: 0.5
   - type: ToolRefinable
     refineTime: 16
     refineResult: []
