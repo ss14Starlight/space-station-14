@@ -8,13 +8,10 @@
     sprite: _Starlight/Objects/Weapons/Melee/cleaver_gold.rsi/
   - type: Item
     sprite: _Starlight/Objects/Weapons/Melee/cleaver_gold.rsi/
-  - type: Tool
-    speedModifier: 1.2 # Sharper blade means cleaner cuts means less time to butcher. Sharpen your knives, people.
-    qualities:
-      - Slicing
   - type: MeleeWeapon
     wideAnimationRotation: -115
     attackRate: 1.5
     damage:
       types:
-        Slash: 13.5 # It's sharp! Extra 0.5 damage a swing.
+        Slash: 13.1 # Extra 0.1 damage a swing is… basically cosmetic.
+
