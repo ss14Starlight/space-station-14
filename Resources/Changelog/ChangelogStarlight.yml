@@ -1,123 +1,4 @@
 Entries:
-- author: Wizden Team
-  changes:
-  - message: 'Added a new objective for traitors: Hijack the Automated Trade Station. Your uplink will have a hijack beacon for you to use if you have this objective.'
-    type: Add
-  id: 409420
-  time: '2026-10-13T05:57:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6575
-- author: Scarlet.
-  changes:
-  - message: Removed old prototypes that arent used.
-    type: Remove
-  id: 409421
-  time: '2026-10-13T10:47:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6669
-- author: Rinary
-  changes:
-  - message: Changed Settings && Ghost Themes && Votes UIs.
-    type: Tweak
-  id: 409422
-  time: '2026-10-13T11:37:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6611
-- author: Rinary
-  changes:
-  - message: Changed game top bar with buttons, now you can select what buttons you want to hide, pin, keep in "..." or use auto mode.
-    type: Tweak
-  id: 409423
-  time: '2026-10-13T11:37:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6611
-- author: Rinary
-  changes:
-  - message: Changed game top bar buttons, returned hotbinds hints, but now you can disable them, show only when holding "Alt" or show always.
-    type: Tweak
-  id: 409424
-  time: '2026-10-13T11:37:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6611
-- author: Rinary
-  changes:
-  - message: Changed AHELP top bar with buttons, now you can select what buttons you want to hide, pin, keep in "..." or use auto mode(same with check boxes).
-    type: Tweak
-  id: 409425
-  time: '2026-10-13T11:37:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6611
-- author: Rinary
-  changes:
-  - message: Fixed bug when chat width can't be saved between rounds or sessions.
-    type: Fix
-  id: 409426
-  time: '2026-10-13T11:37:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6611
-- author: OmgDev
-  changes:
-  - message: Smile no longer pretends like they can scream.
-    type: Fix
-  id: 409427
-  time: '2026-10-13T17:12:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6643
-- author: wonderfulnewworld
-  changes:
-  - message: Secret will now actually count effective players rather than only readied players.
-    type: Fix
-  id: 409428
-  time: '2026-10-13T20:14:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6671
-- author: Trosling
-  changes:
-  - message: Updates Corporate Law to match new contraband tier system.
-    type: Tweak
-  id: 409429
-  time: '2026-10-13T20:34:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6660
-- author: Vincolan
-  changes:
-  - message: The horse.
-    type: Add
-  id: 409430
-  time: '2026-10-13T20:34:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6623
-- author: Floximo
-  changes:
-  - message: Added true remote control.
-    type: Add
-  id: 409431
-  time: '2026-10-13T20:56:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6574
-- author: Floximo
-  changes:
-  - message: AI can now remote control every remote controllable thing that is not already controlled.
-    type: Add
-  id: 409432
-  time: '2026-10-13T20:56:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6574
-- author: Floximo
-  changes:
-  - message: AI can remote control AI interfaces.
-    type: Add
-  id: 409433
-  time: '2026-10-13T20:56:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6574
-- author: Floximo
-  changes:
-  - message: Drones are no longer shuntables and support the intellicard now.
-    type: Tweak
-  id: 409434
-  time: '2026-10-13T20:56:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6574
-- author: Tjmaxmillion
-  changes:
-  - message: Recalling NRT now needs any two of the Captain, HOS and NTR and one command; any one of the Captain, HOS and NTR and three command.
-    type: Tweak
-  id: 409435
-  time: '2026-10-14T05:22:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6635
-- author: Maxim
-  changes:
-  - message: Virtual PDA for the Station AI.
-    type: Add
-  id: 409436
-  time: '2026-10-14T05:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6637
 - author: wonderfulnewworld, Killer Tamashi
   changes:
   - message: Neocytes no longer get stunned by EMPs, only knocked down.
@@ -2799,4 +2680,123 @@ Entries:
   id: 409819
   time: '2026-10-26T07:26:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6870
+- author: Johnny
+  changes:
+  - message: Yeah guess what, armament crates despawn WAY QUICKER NOW, you cant blame crates for lag anymore.
+    type: Tweak
+  id: 409820
+  time: '2026-10-26T15:31:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6872
+- author: Johnny
+  changes:
+  - message: Changed revolutionary portal items and weights based off feedback and testing.
+    type: Tweak
+  id: 409821
+  time: '2026-10-26T15:31:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6872
+- author: ahandleman
+  changes:
+  - message: The station will no longer suddenly disappear.
+    type: Fix
+  id: 409822
+  time: '2026-10-26T15:33:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6880
+- author: redmushie
+  changes:
+  - message: (Elkridge) Change Distro/Waste layers to match docking port standard.
+    type: Tweak
+  id: 409823
+  time: '2026-10-26T20:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6878
+- author: redmushie
+  changes:
+  - message: (Elkridge) Map distro, waste and HV to every docking port.
+    type: Add
+  id: 409824
+  time: '2026-10-26T20:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6878
+- author: redmushie
+  changes:
+  - message: (Packed) Change Distro/Waste layers to match docking port standard.
+    type: Tweak
+  id: 409825
+  time: '2026-10-26T20:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6878
+- author: redmushie
+  changes:
+  - message: (Packed) Map distro, waste and HV to every docking port.
+    type: Add
+  id: 409826
+  time: '2026-10-26T20:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6878
+- author: redmushie
+  changes:
+  - message: Admins and mappers can (un)anchor entities through floor tiles.
+    type: Add
+  id: 409827
+  time: '2026-10-26T22:28:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6876
+- author: redmushie
+  changes:
+  - message: Admins and mappers can adjust pipe layers through floor tiles.
+    type: Add
+  id: 409828
+  time: '2026-10-26T22:28:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6876
+- author: redmushie
+  changes:
+  - message: Added Toolshed "layernetwork" command, letting mappers move entire pipe networks to a different layer at once.
+    type: Add
+  id: 409829
+  time: '2026-10-26T22:54:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6877
+- author: redmushie
+  changes:
+  - message: Toolshed's "visualize" command's window is now less unnecessarily big.
+    type: Tweak
+  id: 409830
+  time: '2026-10-26T22:54:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6877
+- author: Floximo
+  changes:
+  - message: Visuals for communication consoles (merged and light intensity) repaired.
+    type: Fix
+  id: 409831
+  time: '2026-10-26T23:16:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6889
+- author: Rescue
+  changes:
+  - message: Molotovs are now lit with welding torches, lighters and other sources of flame.
+    type: Tweak
+  id: 409832
+  time: '2026-10-26T23:36:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6827
+- author: Rescue
+  changes:
+  - message: Lit molotovs that have not been thrown, will burn out and require more cloth.
+    type: Fix
+  id: 409833
+  time: '2026-10-26T23:36:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6827
+- author: Johnny
+  changes:
+  - message: Changed the shuttle bundle to actually hold a shuttle board.
+    type: Tweak
+  id: 409834
+  time: '2026-10-26T23:57:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6798
+- author: wonderfulnewworld
+  changes:
+  - message: Gamerules/presets with cooldowns now actually include themselves in the cooldown. (Weird corner case with Zombies).
+    type: Tweak
+  id: 409835
+  time: '2026-10-26T23:58:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6818
+- author: wonderfulnewworld
+  changes:
+  - message: Secret Zombieteors should no longer roll into Secret Zombie.
+    type: Fix
+  id: 409836
+  time: '2026-10-26T23:58:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6818
 Order: -1
