@@ -27,10 +27,7 @@
         Quantity: 650
     bloodlossThreshold: 0.3 # Starlight start
     bleedReductionAmount: 1.5
-    bloodRefreshAmount: 5
-  - type: AntagMonsterScaling # Starlight end
-    minimumHealthScaling: -0.5
-    maximumHealthScaling: 0.75
+    bloodRefreshAmount: 5  # Starlight end
   - type: GhostRole
     allowMovement: true
     allowSpeech: true
