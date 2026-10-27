@@ -1,6 +1,7 @@
-﻿using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Components;
 using Content.Shared.NPC;
 using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.BodyControl;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -38,6 +39,9 @@ public sealed partial class StarlightInputSystem : EntitySystem
         SubscribeLocalEvent<MovementRelayTargetComponent, ComponentRemove>(OnActiveChanged);
         SubscribeLocalEvent<MovementRelayTargetComponent, MapInitEvent>(OnActiveChanged);
 
+        SubscribeLocalEvent<BodyControlTargetComponent, ComponentStartup>(OnActiveChanged);
+        SubscribeLocalEvent<BodyControlTargetComponent, ComponentRemove>(OnActiveChanged);
+
         Subs.CVar(_config, StarlightCCVars.PhysicsActiveInputMoverEnabled, v => _activeInputMoverEnabled = v, true);
     }
 
@@ -59,6 +63,7 @@ public sealed partial class StarlightInputSystem : EntitySystem
     {
         return _actorQuery.HasComp(ent) ||
                _activeNpcQuery.HasComp(ent) ||
+               TryComp<BodyControlTargetComponent>(ent, out var shared) && !shared.ExternallyDriven && shared.LifeStage <= ComponentLifeStage.Running ||
                _movementRelayTargetQuery.CompOrNull(ent)?.Source != null;
     }
 }

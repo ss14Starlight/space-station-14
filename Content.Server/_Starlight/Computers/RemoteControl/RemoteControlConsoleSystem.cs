@@ -91,6 +91,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         EntityUid Remote);
 
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private RemoteControlCommandSystem _commands = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private ActivatableUISystem _activatableUi = default!;
     [Dependency] private AppearanceSystem _appearance = default!;
@@ -440,7 +441,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             SetController(uid, component, user, remoteEntity);
 
         var actionEntities = component.EnableRemoteView
-            ? GetRemoteActionEntities(remoteEntity)
+            ? _commands.GetActionEntities(remoteEntity)
             : new HashSet<EntityUid>();
         var quickConstructionItem = component.EnableRemoteView ? GetRemoteQuickConstructionItem(remoteEntity) : null;
 
@@ -586,7 +587,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return;
 
         var action = GetEntity(args.Action);
-        var availableActions = GetRemoteActionEntities(remoteEntity);
+        var availableActions = _commands.GetActionEntities(remoteEntity);
         if (!availableActions.Contains(action))
             return;
 
@@ -608,7 +609,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return;
         }
 
-        _actions.TryPerformAction(remoteEntity, action);
+        _commands.ExecuteAction(remoteEntity, action);
     }
 
     private void OnRemoteToggleKnockdown(EntityUid uid, RemoteControlConsoleComponent component,
@@ -628,12 +629,12 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return;
 
         var action = GetEntity(args.Action);
-        if (!GetRemoteActionEntities(remoteEntity).Contains(action)
+        if (!_commands.GetActionEntities(remoteEntity).Contains(action)
             || !HasComp<TargetActionComponent>(action))
             return;
 
         var target = args.Target is { } targetNet ? GetEntity(targetNet) : (EntityUid?)null;
-        _actions.TryPerformAction(remoteEntity, action, target, args.Coordinates);
+        _commands.ExecuteAction(remoteEntity, action, target, args.Coordinates);
     }
 
     private void OnRemoteInteraction(EntityUid uid, RemoteControlConsoleComponent component,
@@ -641,115 +642,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity))
             return;
-
-        var target = args.Target is { } targetNet ? GetEntity(targetNet) : (EntityUid?)null;
-
-        if (args.Action == RemoteControlInteractionAction.Drop)
-        {
-            _hands.TryDrop(remoteEntity, GetCoordinates(args.Coordinates));
-            RefreshRemoteState(uid, component, remoteEntity);
-            return;
-        }
-
-        if (args.Action == RemoteControlInteractionAction.Throw)
-        {
-            EntityManager.System<PredictedHandsSystem>()
-                .ThrowHeldItem(remoteEntity, GetCoordinates(args.Coordinates));
-            RefreshRemoteState(uid, component, remoteEntity);
-            return;
-        }
-
-        if (args.Action == RemoteControlInteractionAction.Shoot)
-        {
-            if (TryComp<CombatModeComponent>(remoteEntity, out var shootCombatMode)
-                && shootCombatMode.IsInCombatMode
-                && EntityManager.System<SharedGunSystem>().TryGetGun(remoteEntity, out var gun)
-                && gun.Comp.UseKey != args.AltInteract)
-                EntityManager.System<SharedGunSystem>().AttemptShoot(remoteEntity, gun,
-                    GetCoordinates(args.Coordinates), target);
-
-            RefreshRemoteState(uid, component, remoteEntity);
-            return;
-        }
-
-        if (args.Action == RemoteControlInteractionAction.TryPull
-            && target is { } pullTarget)
-        {
-            _interaction.TryPullObject(remoteEntity, pullTarget);
-            RefreshRemoteState(uid, component, remoteEntity);
-            return;
-        }
-
-        if (args.Action == RemoteControlInteractionAction.MovePulledObject)
-        {
-            _pullController.MovePulledObject(
-                new Entity<PullerComponent?>(remoteEntity, null), GetCoordinates(args.Coordinates));
-            RefreshRemoteState(uid, component, remoteEntity);
-            return;
-        }
-
-        if (args.ActivateInWorld && target is { } activateTarget)
-        {
-            _interaction.InteractionActivate(remoteEntity, activateTarget, complexInteractions: true);
-            RefreshRemoteState(uid, component, remoteEntity);
-            return;
-        }
-
-        var activeItem = TryComp<HandsComponent>(remoteEntity, out var remoteHands)
-            ? _hands.GetActiveItem((remoteEntity, remoteHands))
-            : null;
-        if (target == remoteEntity && activeItem is { } heldItem)
-        {
-            if (args.AltInteract)
-                _hands.TryUseItemInHand(remoteEntity, true);
-            else
-                _interaction.UseInHandInteraction(remoteEntity, heldItem);
-
-            RefreshRemoteState(uid, component, remoteEntity);
-            return;
-        }
-
-        if (target is { } item
-            && TryComp<ItemComponent>(item, out var itemComp)
-            && itemComp.AllowDirectHandPickup
-            && !HasComp<ActivatableUIComponent>(item)
-            && TryComp<HandsComponent>(remoteEntity, out var hands)
-            && !_hands.TryGetActiveItem((remoteEntity, hands), out _)
-            && _interaction.InRangeAndAccessible(remoteEntity, item)
-            && _hands.TryPickupAnyHand(remoteEntity, item, handsComp: hands, item: itemComp))
-        {
-            RefreshRemoteState(uid, component, remoteEntity);
-            return;
-        }
-
-        if (!args.AltInteract
-            && target is { } attackTarget
-            && TryComp<CombatModeComponent>(remoteEntity, out var combatMode)
-            && combatMode.IsInCombatMode
-            && !HasComp<MapGridComponent>(attackTarget)
-            && !HasComp<MapComponent>(attackTarget)
-            && EntityManager.System<SharedMeleeWeaponSystem>()
-                .TryGetWeapon(remoteEntity, out var weaponUid, out var weapon))
-        {
-            EntityManager.System<SharedMeleeWeaponSystem>()
-                .AttemptLightAttack(remoteEntity, weaponUid, weapon, attackTarget);
-            RefreshRemoteState(uid, component, remoteEntity);
-            return;
-        }
-
-        if (args.PipeLayer is { } pipeLayer
-            && activeItem is { } rcdItem
-            && TryComp<RCDComponent>(rcdItem, out var rcd)
-            && (rcd.IsRpd || rcd.IsRPLD)
-            && rcd.CurrentMode == RpdMode.Free)
-        {
-            var selectedLayer = rcd.IsRPLD && pipeLayer > AtmosPipeLayer.Tertiary
-                ? AtmosPipeLayer.Tertiary
-                : pipeLayer;
-            EntityManager.System<RCDSystem>().SetSelectedLayer((rcdItem, rcd), selectedLayer);
-        }
-
-        _interaction.UserInteraction(remoteEntity, GetCoordinates(args.Coordinates), target, args.AltInteract);
+        _commands.ExecuteInteraction(remoteEntity, GetCoordinates(args.Coordinates), args.Action,
+            args.Target is { } target ? GetEntity(target) : null, args.AltInteract, args.ActivateInWorld, args.PipeLayer);
         RefreshRemoteState(uid, component, remoteEntity);
     }
 
@@ -777,106 +671,28 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             RefreshRemoteState(uid, component, remoteEntity);
     }
 
-    private void CycleRemoteActiveHand(Entity<HandsComponent?> remote)
-        => _hands.TryCycleActiveHand(remote);
 
     private void OnRemoteHand(EntityUid uid, RemoteControlConsoleComponent component, RemoteControlHandMessage args)
     {
         if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity))
             return;
-
-        switch (args.Action)
-        {
-            case RemoteControlHandAction.SetActive:
-                _hands.TrySetActiveHand(new Entity<HandsComponent?>(remoteEntity, null), args.Hand);
-                break;
-            case RemoteControlHandAction.Use:
-                _hands.TryUseItemInHand(remoteEntity, handName: args.Hand);
-                break;
-            case RemoteControlHandAction.Activate:
-                _hands.TryActivateItemInHand(remoteEntity, handName: args.Hand);
-                break;
-            case RemoteControlHandAction.AltUse:
-                _hands.TryUseItemInHand(remoteEntity, true, handName: args.Hand);
-                break;
-            case RemoteControlHandAction.MoveToActive:
-                _hands.TryMoveHeldEntityToActiveHand(remoteEntity, args.Hand);
-                break;
-            case RemoteControlHandAction.Drop:
-                _hands.TryDrop(remoteEntity, args.Hand);
-                break;
-            case RemoteControlHandAction.CycleActive:
-                CycleRemoteActiveHand(remoteEntity);
-                break;
-            case RemoteControlHandAction.CycleActiveReverse:
-                _hands.TryCycleActiveHandReverse(remoteEntity);
-                break;
-            case RemoteControlHandAction.InteractWithHand:
-                _hands.TryInteractHandWithActiveHand(remoteEntity, args.Hand);
-                break;
-        }
-
+        _commands.ExecuteHand(remoteEntity, args.Hand, args.Action);
         RefreshRemoteState(uid, component, remoteEntity);
     }
 
     private void OnRemoteInventory(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlInventoryMessage args)
     {
-        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity)
-            || !TryComp<InventoryComponent>(remoteEntity, out var inventory))
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity))
             return;
-
-        switch (args.Action)
-        {
-            case RemoteControlInventoryAction.UseSlot:
-                UseRemoteSlot(remoteEntity, args.Slot, inventory);
-                break;
-            case RemoteControlInventoryAction.OpenStorage:
-                if (_inventory.TryGetSlotEntity(remoteEntity, args.Slot, out var item, inventory)
-                    && item is { } storageItem
-                    && TryComp<StorageComponent>(storageItem, out var storage))
-                {
-                    var wasOpen = _ui.IsUiOpen(storageItem, StorageComponent.StorageUiKey.Key, remoteEntity);
-                    _storage.OpenStorageUI(storageItem, remoteEntity, storage, false);
-
-                    if (!wasOpen && _ui.IsUiOpen(storageItem, StorageComponent.StorageUiKey.Key, remoteEntity))
-                        TrackRemoteStorageUi(uid, storageItem, args.Actor, remoteEntity);
-                }
-
-                break;
-        }
-
+        _commands.ExecuteInventory(remoteEntity, args.Slot, args.Action);
+        if (args.Action == RemoteControlInventoryAction.OpenStorage
+            && _inventory.TryGetSlotEntity(remoteEntity, args.Slot, out var item)
+            && item is { } storage && _ui.IsUiOpen(storage, StorageComponent.StorageUiKey.Key, remoteEntity))
+            TrackRemoteStorageUi(uid, storage, args.Actor, remoteEntity);
         RefreshRemoteState(uid, component, remoteEntity);
     }
 
-    private void UseRemoteSlot(EntityUid remoteEntity, string slot, InventoryComponent inventory)
-    {
-        if (!TryComp<HandsComponent>(remoteEntity, out var hands))
-            return;
-
-        var held = _hands.GetActiveItem((remoteEntity, hands));
-        _inventory.TryGetSlotEntity(remoteEntity, slot, out var item, inventory);
-
-        if (held is { } heldItem && item is { } slotItem)
-        {
-            _interaction.InteractUsing(remoteEntity, heldItem, slotItem, Transform(slotItem).Coordinates);
-            return;
-        }
-
-        if (item is { } equipped)
-        {
-            if (!_inventory.TryUnequip(remoteEntity, slot, out var removed, predicted: true,
-                    inventory: inventory, checkDoafter: true, triggerHandContact: true))
-                return;
-
-            _hands.PickupOrDrop(remoteEntity, removed.Value);
-            return;
-        }
-
-        if (held is { } heldEntity)
-            _inventory.TryEquip(remoteEntity, heldEntity, slot, predicted: true, inventory: inventory,
-                checkDoafter: true, triggerHandContact: true);
-    }
 
     private bool TryGetActionableControlledEntity(Entity<RemoteControlConsoleComponent> console, EntityUid actor,
         out EntityUid remoteEntity)
@@ -884,6 +700,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         remoteEntity = default;
         return console.Comp.Controller == actor
                 && _sharedRemoteControl.TryGetRemoteEntity(console.AsNullable(), out remoteEntity)
+                && _controlOwnership.TryGetControl(actor, out var controlled, out _) && controlled == remoteEntity
+                && TryComp<Content.Shared._Starlight.BodyControl.BodyControlSourceComponent>(actor, out var source)
+                && source.ExternallyDriven && source.Provider == console.Owner
                 && CanRemoteControlledEntityAct(remoteEntity);
     }
 
@@ -1527,6 +1346,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         if (!_sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var remoteEntity))
         {
+            if (entity.Comp.Controller is { } controller)
+                _controlOwnership.StopExclusiveControl(controller, entity.Owner);
             UpdateControllerIndex(entity.Owner, entity.Comp.Controller, null);
             return;
         }
@@ -1540,6 +1361,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         var controllingUser = entity.Comp.Controller;
         if (clearController && controllingUser is { } controller)
         {
+            _controlOwnership.StopExclusiveControl(controller, entity.Owner);
             CloseMirroredStorageUis(entity.Owner, controller);
             CloseMirroredUis(entity.Owner, controller);
             CloseRemoteBorgTypeSelectionUi(remoteEntity, controller);
@@ -1653,6 +1475,20 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                     : (EntityUid?)null;
                 SetController(otherConsoleUid, otherConsole, null, otherRemoteEntity);
             }
+        }
+
+        // Legacy console takeovers above release their leases first. Cooperative grants are never displaced.
+        if (component.Controller is { } oldLeaseController)
+            _controlOwnership.StopExclusiveControl(oldLeaseController, consoleUid);
+        if (controller is { } leaseController && remoteEntity is { } leaseTarget
+            && !_controlOwnership.TryStartExclusiveControl(leaseController, leaseTarget, consoleUid))
+        {
+            // If acquisition was invalidated during takeover cleanup, leave the console fully disconnected.
+            if (component.Controller != null)
+                SetController(consoleUid, component, null, remoteEntity, false);
+            if (refreshUi)
+                RefreshRemoteState(consoleUid, component, leaseTarget);
+            return false;
         }
 
         if (component.Controller is { } previousController && previousController != controller)
@@ -1802,6 +1638,12 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         EntityUid controller,
         EntityUid? previousRelayEntity)
     {
+        if (HasCooperativeControl(controller, remoteEntity))
+        {
+            PopupRemoteControlMessage(
+                Loc.GetString("remote-control-target-already-controlled"), consoleUid, controller, previousRelayEntity);
+            return false;
+        }
         if (!HasComp<ActorComponent>(remoteEntity))
             return true;
 
@@ -1851,7 +1693,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 AddRemotePvsOverrides(remoteEntity, user, session);
 
         var actionEntities = component.EnableRemoteView
-            ? GetRemoteActionEntities(remoteEntity)
+            ? _commands.GetActionEntities(remoteEntity)
             : new HashSet<EntityUid>();
         var quickConstructionItem = component.EnableRemoteView ? GetRemoteQuickConstructionItem(remoteEntity) : null;
         _ui.SetUiState(consoleUid, RemoteControlUIKey.Key,
@@ -1954,29 +1796,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         return result;
     }
 
-    private HashSet<EntityUid> GetRemoteActionEntities(EntityUid remoteEntity)
-    {
-        var result = new HashSet<EntityUid>();
-        if (TryComp<ActionsComponent>(remoteEntity, out var actions))
-            foreach (var action in _actions.GetActions(remoteEntity, actions))
-                result.Add(action.Owner);
-
-        if (TryComp<BorgSwitchableTypeComponent>(remoteEntity, out var switchable)
-            && switchable.SelectTypeAction is { } selectTypeAction
-            && Exists(selectTypeAction))
-            result.Add(selectTypeAction);
-
-        if (!TryComp<BorgChassisComponent>(remoteEntity, out var chassis))
-            return result;
-
-        foreach (var module in chassis.ModuleContainer.ContainedEntities)
-            if (TryComp<SelectableBorgModuleComponent>(module, out var selectable)
-                && selectable.ModuleSwapActionEntity is { } action
-                && Exists(action))
-                result.Add(action);
-
-        return result;
-    }
 
     private void AddRemotePvsOverrides(EntityUid remoteEntity, EntityUid user, ICommonSession session)
     {
@@ -1996,28 +1815,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             _remoteActionOverrides[user] = actionOverrides;
         }
 
-        if (TryComp<BorgChassisComponent>(remoteEntity, out var chassis))
-            foreach (var module in chassis.ModuleContainer.ContainedEntities)
-            {
-                _pvsOverride.AddSessionOverride(module, session);
-                actionOverrides.Add(module);
-            }
-
-        if (TryComp<HandsComponent>(remoteEntity, out var hands))
-            foreach (var hand in hands.SortedHands)
-            {
-                if (!_hands.TryGetHeldItem((remoteEntity, hands), hand, out var held))
-                    continue;
-
-                _pvsOverride.AddSessionOverride(held.Value, session);
-                actionOverrides.Add(held.Value);
-            }
-
-        foreach (var action in GetRemoteActionEntities(remoteEntity))
-        {
-            _pvsOverride.AddSessionOverride(action, session);
-            actionOverrides.Add(action);
-        }
+        _commands.CollectVisibleEntities(remoteEntity, actionOverrides, includeInventory: false);
+        foreach (var entity in actionOverrides)
+            _pvsOverride.AddSessionOverride(entity, session);
     }
 
     private void RemoveRemotePvsOverrides(EntityUid remoteEntity, EntityUid user, ICommonSession session)
