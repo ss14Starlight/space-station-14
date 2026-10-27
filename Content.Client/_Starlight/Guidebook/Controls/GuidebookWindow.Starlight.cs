@@ -28,17 +28,15 @@ public sealed partial class GuidebookWindow
     /// </summary>
     private float? _sidebarSplit;
 
-    private bool _sidebarCollapsed;
-
     /// <summary>
     /// Whether the guide list is collapsed. Carried over to new windows by <c>GuidebookUIController</c>.
     /// </summary>
     public bool SidebarCollapsed
     {
-        get => _sidebarCollapsed;
+        get;
         set
         {
-            _sidebarCollapsed = value;
+            field = value;
             ApplySidebarCollapsed(value);
         }
     }
@@ -77,7 +75,7 @@ public sealed partial class GuidebookWindow
         _sidebarButton.Visible = available;
 
         if (available)
-            ApplySidebarCollapsed(_sidebarCollapsed);
+            ApplySidebarCollapsed(SidebarCollapsed);
     }
 
     private void ApplySidebarCollapsed(bool collapsed)

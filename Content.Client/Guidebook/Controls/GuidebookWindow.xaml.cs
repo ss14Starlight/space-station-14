@@ -42,11 +42,8 @@ public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandl
             HandleFilter();
         };
 
-        #region Starlight
-        CategorySearchBar.OnTextChanged += _ => HandleCategorySearch();
-        InitializeSidebarToggle();
         InitializeGuidebookSearch(); // Starlight
-        #endregion
+        InitializeSidebarToggle(); // Starlight
     }
 
     public void HandleClick(string link)
