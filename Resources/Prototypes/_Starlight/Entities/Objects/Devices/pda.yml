@@ -1070,3 +1070,35 @@
         - AstroNavCartridge
         - MedTekCartridge
         - NanoChatCartridge
+
+- type: entity
+  parent: BasePDA
+  id: SeniorAtmosPDA
+  name: senior atmos PDA
+  description: Smells like the glory of pressurised annihilation, and the stench of steel reduced to slag.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: AtmosIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-senioratmos
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentHColor: "#447987"
+    accentVColor: "#447987"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-senioratmos
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD

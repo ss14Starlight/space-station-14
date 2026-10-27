@@ -77,6 +77,14 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
             foreach (var item in ent.Comp.Completed)
                 RaiseLocalEvent(item, ref collect);
 
+        // Keep the description non-null so it doesn't break the character ui
+        for (var i = 0; i < collect.Objectives.Count; i++)
+        {
+            var objective = collect.Objectives[i];
+            objective.Description ??= string.Empty;
+            collect.Objectives[i] = objective;
+        }
+
         args.Groups[Loc.GetString("cards")] = collect.Objectives;
     }
 

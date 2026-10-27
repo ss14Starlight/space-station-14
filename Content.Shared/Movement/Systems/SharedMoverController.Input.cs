@@ -355,8 +355,12 @@ namespace Content.Shared.Movement.Systems
                 if (MoverQuery.TryGetComponent(entity, out var mover))
                     SetMoveInput((entity, mover), MoveButtons.None);
 
-                if (!_mobState.IsIncapacitated(entity))
+                // Starlight - start
+                if (_mobState.IsIncapacitated(entity) || _mobState.IsIncapacitated(relayMover.RelayEntity))
+                    StopRelayMovement(relayMover.RelayEntity);
+                else
                     HandleDirChange(relayMover.RelayEntity, dir, subTick, state);
+                // Starlight - end
 
                 return;
             }

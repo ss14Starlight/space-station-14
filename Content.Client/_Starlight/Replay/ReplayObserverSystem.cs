@@ -158,6 +158,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         UpdateRefollow();
         UpdateSolutionWindows(frameTime);
         UpdateMutedSounds();
+        UpdateAudioAudiences();
     }
 
     public override void Update(float frameTime)

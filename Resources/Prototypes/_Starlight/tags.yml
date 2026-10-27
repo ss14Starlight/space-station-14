@@ -850,3 +850,6 @@
 
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground
+
+- type: Tag
+  id: StationRadioCircuitboard
