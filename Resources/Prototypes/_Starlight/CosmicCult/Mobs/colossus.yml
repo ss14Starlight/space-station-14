@@ -25,7 +25,7 @@
     - CosmicCult
   - type: CosmicMalignantHealing
     healInterval: 10s
-    healAmount: 1
+    healAmount: 1.5
   - type: StaminaResistance
     damageCoefficient: 0 # No more stunning colossi
   - type: Sprite

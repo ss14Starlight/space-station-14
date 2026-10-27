@@ -94,14 +94,19 @@ public sealed partial class ScalingSystem : SharedScalingSystem
             if (job == null)
                 continue;
 
-            if (((string)job.Supervisors).Contains("hos")
-            || job.Name.Contains("Security"))
+            var supervisors = (string) job.Supervisors;
+            if (supervisors.Contains("hos")
+                || supervisors.Contains("warden"))
             {
                 updatedPopulation += 1 * _securityWeight;
             }
+
+            if (supervisors.Contains("security")) // K9, Cadets
+                updatedPopulation += 0.5 * _securityWeight;
+
             if (job.Name.Contains("salvage"))
             {
-                updatedPopulation += 1 * _salvageWeight;
+                updatedPopulation += 1 * _salvageWeight; // 0.25 mod
             }
             if (((string)job.Supervisors).Contains("centcom")
                 && !job.Name.Contains("Magistrate")
