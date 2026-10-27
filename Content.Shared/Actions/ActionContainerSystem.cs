@@ -42,10 +42,6 @@ public sealed partial class ActionContainerSystem : EntitySystem
 
     private void OnMindAdded(EntityUid uid, ActionsContainerComponent component, MindAddedMessage args)
     {
-        // Starlight: replicated ownership is already supplied by the server.
-        if (_timing.ApplyingState && component.NetSyncEnabled)
-            return;
-
         if (!_mind.TryGetMind(uid, out var mindId, out _))
             return;
         if (!TryComp<ActionsContainerComponent>(mindId, out var mindActionContainerComp))
@@ -57,10 +53,6 @@ public sealed partial class ActionContainerSystem : EntitySystem
 
     private void OnMindRemoved(EntityUid uid, ActionsContainerComponent component, MindRemovedMessage args)
     {
-        // Starlight: replicated ownership is already supplied by the server.
-        if (_timing.ApplyingState && component.NetSyncEnabled)
-            return;
-
         _actions.RemoveProvidedActions(uid, args.Mind);
     }
 
@@ -333,10 +325,6 @@ public sealed partial class ActionContainerSystem : EntitySystem
 
     private void OnEntityInserted(EntityUid uid, ActionsContainerComponent component, EntInsertedIntoContainerMessage args)
     {
-        // Starlight: the server replicates ownership; container states may arrive before component initialization.
-        if (_timing.ApplyingState && component.NetSyncEnabled)
-            return;
-
         if (args.Container.ID != ActionsContainerComponent.ContainerId)
             return;
 
@@ -355,10 +343,6 @@ public sealed partial class ActionContainerSystem : EntitySystem
 
     private void OnEntityRemoved(EntityUid uid, ActionsContainerComponent component, EntRemovedFromContainerMessage args)
     {
-        // Starlight: replicated ownership is already supplied by the server.
-        if (_timing.ApplyingState && component.NetSyncEnabled)
-            return;
-
         if (args.Container.ID != ActionsContainerComponent.ContainerId)
             return;
 
@@ -377,10 +361,6 @@ public sealed partial class ActionContainerSystem : EntitySystem
 
     private void OnActionAdded(EntityUid uid, ActionsContainerComponent component, ActionAddedEvent args)
     {
-        // Starlight: replicated ownership is already supplied by the server.
-        if (_timing.ApplyingState && component.NetSyncEnabled)
-            return;
-
         if (TryComp<MindComponent>(uid, out var mindComp) && mindComp.OwnedEntity != null && HasComp<ActionsContainerComponent>(mindComp.OwnedEntity.Value))
             _actions.GrantContainedAction(mindComp.OwnedEntity.Value, uid, args.Action);
     }

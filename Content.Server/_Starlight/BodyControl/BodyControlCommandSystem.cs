@@ -23,13 +23,13 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
-namespace Content.Server._Starlight.Computers.RemoteControl;
+namespace Content.Server._Starlight.BodyControl;
 
 /// <summary>
 /// Executes commands as a physical body using normal action, hand and interaction systems.
 /// Callers authorize the controller and establish any required hand context before invoking these methods.
 /// </summary>
-public sealed partial class RemoteControlCommandSystem : EntitySystem
+public sealed partial class BodyControlCommandSystem : EntitySystem
 {
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
@@ -49,7 +49,7 @@ public sealed partial class RemoteControlCommandSystem : EntitySystem
             || !GetActionEntities(remoteEntity).Contains(action))
             return false;
         if (target != null || coordinates != null)
-            return HasComp<TargetActionComponent>(action) && _actions.TryPerformAction(remoteEntity, action, target, coordinates);
+            return HasComp<TargetActionComponent>(action) && _actions.TryPerformBodyControlAction(remoteEntity, action, target, coordinates);
         return _actions.TryPerformAction(remoteEntity, action);
     }
 

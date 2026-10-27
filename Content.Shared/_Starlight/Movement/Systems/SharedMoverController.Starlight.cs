@@ -61,6 +61,9 @@ public abstract partial class SharedMoverController
 
     private bool RouteMoveInput(EntityUid entity, MoveButtons button, ushort subTick, bool pressed)
     {
+        if (!HasComp<BodyControlSourceComponent>(entity))
+            return false;
+
         var attempt = new BodyControlMoveInputEvent(button, subTick, pressed);
         RaiseLocalEvent(entity, ref attempt);
         return attempt.Handled;

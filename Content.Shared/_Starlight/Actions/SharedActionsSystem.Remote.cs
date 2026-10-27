@@ -10,9 +10,9 @@ public abstract partial class SharedActionsSystem
     public bool TryPerformAction(EntityUid user, EntityUid action)
         => TryPerformAction(new RequestPerformActionEvent(GetNetEntity(action)), user);
 
-    public bool TryPerformAction(EntityUid user, EntityUid action, EntityUid? target, NetCoordinates? coordinates)
-        => TryPerformAction(coordinates is { } position
-            ? new RequestPerformActionEvent(GetNetEntity(action), GetNetEntity(target), position)
-            : target is { } entity ? new RequestPerformActionEvent(GetNetEntity(action), GetNetEntity(entity))
-            : new RequestPerformActionEvent(GetNetEntity(action)), user);
+    public bool TryPerformAction(EntityUid user, EntityUid action, EntityUid? target, NetCoordinates coordinates)
+        => TryPerformAction(new RequestPerformActionEvent(
+            GetNetEntity(action),
+            target is { } targetEntity ? GetNetEntity(targetEntity) : null,
+            coordinates), user);
 }
