@@ -42,7 +42,9 @@ using Robust.Shared.Utility;
 using Content.Client._Starlight.Radio.Systems;
 using Content.Shared._Starlight.Language;
 using System.Diagnostics.CodeAnalysis;
+using Content.Client._NullLink;
 using Content.Client._Starlight.Language.Systems;
+using Content.Shared._NullLink;
 using Content.Shared._Starlight.Ghost;
 using Content.Shared._Starlight.NameConfusion;
 using Content.Shared._Starlight.Radio;
@@ -53,6 +55,7 @@ namespace Content.Client.UserInterface.Systems.Chat;
 public sealed partial class ChatUIController : UIController
 {
     [Dependency] private IClientAdminManager _admin = default!;
+    [Dependency] private ISharedNullLinkPlayerRolesReqManager _reqManager = default!; //Starlight
     [Dependency] private IChatManager _manager = default!;
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private IEyeManager _eye = default!;
@@ -92,6 +95,7 @@ public sealed partial class ChatUIController : UIController
         {SharedChatSystem.EmotesPrefix, ChatSelectChannel.Emotes},
         {SharedChatSystem.EmotesAltPrefix, ChatSelectChannel.Emotes},
         {SharedChatSystem.AdminPrefix, ChatSelectChannel.Admin},
+        {SharedChatSystem.MentorPrefix, ChatSelectChannel.Mentor}, //Starlight-edit: Mentor chat
         {SharedChatSystem.RadioCommonPrefix, ChatSelectChannel.Radio},
         {SharedChatSystem.DeadPrefix, ChatSelectChannel.Dead}
     };
@@ -105,6 +109,7 @@ public sealed partial class ChatUIController : UIController
         {ChatSelectChannel.OOC, SharedChatSystem.OOCPrefix},
         {ChatSelectChannel.Emotes, SharedChatSystem.EmotesPrefix},
         {ChatSelectChannel.Admin, SharedChatSystem.AdminPrefix},
+        {ChatSelectChannel.Mentor, SharedChatSystem.MentorPrefix}, //Starlight-edit: Mentor chat
         {ChatSelectChannel.Radio, SharedChatSystem.RadioCommonPrefix},
         {ChatSelectChannel.Dead, SharedChatSystem.DeadPrefix}
     };
@@ -579,6 +584,13 @@ public sealed partial class ChatUIController : UIController
             CanSendChannels |= ChatSelectChannel.Admin;
         }
 
+        //Starlight start : Mentor Chat
+        if ((_player.LocalSession != null && _reqManager.IsMentor(_player.LocalSession)) || _admin.IsAdmin())
+        {
+            FilterableChannels |= ChatChannel.MentorChat;
+            CanSendChannels |= ChatSelectChannel.Mentor;
+        }
+        //Starlight end
         SelectableChannels = CanSendChannels;
 
         // Necessary so that we always have a channel to fall back to.
