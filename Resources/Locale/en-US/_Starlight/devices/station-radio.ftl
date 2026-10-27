@@ -51,6 +51,7 @@ station-radio-mixer-level = {$level}%
 station-radio-mixer-empty = no disc
 station-radio-mixer-playlist = Playlist
 station-radio-mixer-next = Next
+station-radio-mixer-eject = Eject
 station-radio-mixer-tracks = { $name } tracks
 station-radio-mixer-track = { $number }. { $disc }
 

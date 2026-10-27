@@ -2,7 +2,10 @@ using Content.Server.Station.Systems;
 using Content.Shared._Starlight.StationRadio.Events;
 using Content.Shared._Starlight.StationRadio.Systems;
 using Content.Shared._Starlight.StationRadio.Components;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Destructible;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
@@ -20,6 +23,9 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
     [Dependency] private StationRadioReceiverSystem _stationRadio = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
 
     public override void Update(float frameTime)
     {
@@ -206,6 +212,19 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
 
         if (!wasPlaying || !Play(ent, user))
             Changed(ent);
+    }
+
+    /// <summary>
+    /// Ejects the disc in the given slot, into the user's hands if they stand at the player.
+    /// </summary>
+    public void EjectSlot(Entity<VinylPlayerComponent> ent, int slot, EntityUid? user = null)
+    {
+        if (slot < 0 || slot >= ent.Comp.Slots.Length
+            || !_itemSlots.TryEject(ent, ent.Comp.Slots[slot], user, out var disc))
+            return;
+
+        if (user != null && _interaction.InRangeUnobstructed(user.Value, ent.Owner))
+            _hands.TryPickupAnyHand(user.Value, disc.Value);
     }
 
     /// <summary>

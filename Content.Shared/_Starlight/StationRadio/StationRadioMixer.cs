@@ -46,6 +46,8 @@ public enum StationRadioMixerTransport : byte
     Next,
 
     Select,
+
+    Eject,
 }
 
 [Serializable, NetSerializable]

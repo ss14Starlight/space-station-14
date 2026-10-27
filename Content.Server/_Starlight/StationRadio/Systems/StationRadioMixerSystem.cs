@@ -91,6 +91,9 @@ public sealed partial class StationRadioMixerSystem : EntitySystem
             case StationRadioMixerTransport.Select:
                 _vinylPlayer.SelectSlot((source.Value, player), args.Slot, args.Actor);
                 break;
+            case StationRadioMixerTransport.Eject:
+                _vinylPlayer.EjectSlot((source.Value, player), args.Slot, args.Actor);
+                break;
         }
     }
 

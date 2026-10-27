@@ -26,6 +26,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
     private const string PauseIcon = "/Textures/_Starlight/Interface/StationRadio/icon_pause.png";
     private const string RewindIcon = "/Textures/_Starlight/Interface/StationRadio/icon_rewind.png";
     private const string NextIcon = "/Textures/_Starlight/Interface/StationRadio/icon_next.png";
+    private const string EjectIcon = "/Textures/_Starlight/Interface/StationRadio/icon_eject.png";
     private static readonly Color CurrentTrackColor = Color.FromHex("#4fc257");
 
     private readonly BoxContainer _sources;
@@ -271,7 +272,20 @@ public sealed class StationRadioMixerWindow : FancyWindow
                 button.Label.FontColorOverride = CurrentTrackColor;
 
             button.OnPressed += _ => OnTransport?.Invoke(source, StationRadioMixerTransport.Select, slot);
-            list.AddChild(button);
+
+            var (eject, _) = ChannelStrip.IconButton(EjectIcon);
+            eject.Disabled = disc == null;
+            eject.ToolTip = Loc.GetString("station-radio-mixer-eject");
+            eject.OnPressed += _ => OnTransport?.Invoke(source, StationRadioMixerTransport.Eject, slot);
+
+            var row = new BoxContainer
+            {
+                Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                SeparationOverride = 2,
+            };
+            row.AddChild(button);
+            row.AddChild(eject);
+            list.AddChild(row);
         }
 
         var panel = new PanelContainer
@@ -494,7 +508,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
             }
         }
 
-        private static (Button, TextureRect) IconButton(string path)
+        public static (Button, TextureRect) IconButton(string path)
         {
             var icon = new TextureRect
             {
