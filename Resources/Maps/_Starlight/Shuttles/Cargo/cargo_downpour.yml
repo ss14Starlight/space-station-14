@@ -1224,8 +1224,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 63
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 143
@@ -1236,8 +1234,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 63
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubberAlt4
@@ -1251,8 +1247,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 63
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 138
@@ -1264,8 +1258,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 63
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GeneratorBasic20kW
