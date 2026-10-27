@@ -279,9 +279,9 @@ public sealed partial class StationRadioServerSystem : EntitySystem
         var (score, samples) = server.AdvertAirtime.GetValueOrDefault(ent);
         server.AdvertAirtime.Remove(ent);
 
-        if (now - server.LastAdvertPaid < server.AdGlobalCooldown)
+        if (server.LastAdvertPaid is { } lastPaid && now - lastPaid < server.AdGlobalCooldown)
         {
-            var left = server.AdGlobalCooldown - (now - server.LastAdvertPaid);
+            var left = server.AdGlobalCooldown - (now - lastPaid);
             _popup.PopupEntity(Loc.GetString("radio-advert-popup-too-soon", ("minutes", (int) Math.Ceiling(left.TotalMinutes))),
                 args.Player,
                 PopupType.Small);

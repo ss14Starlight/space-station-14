@@ -144,7 +144,7 @@ public sealed partial class StationRadioServerComponent : Component
     public TimeSpan AdGlobalCooldown = TimeSpan.FromMinutes(5);
 
     [ViewVariables]
-    public TimeSpan LastAdvertPaid = TimeSpan.MinValue;
+    public TimeSpan? LastAdvertPaid;
 
     /// <summary>
     /// How well each advert disc playing now has come across so far, from 0 to 1 per sample.
