@@ -81,8 +81,13 @@ public sealed partial class StylesheetManager
         if (_cfg.GetCVar(StarlightCCVars.StyleClassicDecorExplicit))
             return;
 
-        if (_prototype.TryIndex<StyleThemePrototype>(_cfg.GetCVar(StarlightCCVars.StyleTheme), out var proto))
-            _cfg.SetCVar(StarlightCCVars.StyleClassicDecor, proto.ClassicDecor);
+        if (!_prototype.TryIndex<StyleThemePrototype>(_cfg.GetCVar(StarlightCCVars.StyleTheme), out var proto))
+            proto = _prototype.EnumeratePrototypes<StyleThemePrototype>().MinBy(p => p.Order);
+
+        if (proto == null)
+            return;
+
+        _cfg.SetCVar(StarlightCCVars.StyleClassicDecor, proto.ClassicDecor);
     }
 
     private bool ResolveClassicDecor()
