@@ -1,5 +1,0 @@
-- type: !PartialOnly entity
-  id: CrayonBorg
-  components:
-  - type: AutoRecharge
-    rechargeDuration: 1s
