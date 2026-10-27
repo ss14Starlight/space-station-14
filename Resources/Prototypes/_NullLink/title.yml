@@ -1,5 +1,6 @@
 - type: titleBuilder
   id: Starlight
+  separator: " "
   segments:
   - # testers
     titles:
@@ -17,39 +18,47 @@
       color: "#EC9C49"
       roles:
       - 1305376794823753904 # Host
-    - text: "SLN-Manager"
+    - text: "SLN Manager"
       color: "#369876"
       roles:
       - 1305029511838175262 # SLN Manager
-    - text: "Community-Manager"
+    - text: "Community Manager"
       color: "#EBB8E8"
       roles:
       - 1352520081002991636 # Community Manager
-    - text: "Events-Manager"
+    - text: "Head Admin"
+      color: "#970e41"
+      roles:
+        - 1422289908415856861 # Administration Manager
+    - text: "Events Manager"
       color: "#5900ff"
       roles:
       - 1353887132082507857 # Events Manager
+    - text: "Head Spriter"
+      color: "#ea800f"
+      roles:
+      - 1362773454721519668 # Head Spriter
+    - text: "Head Mapper"
+      color: "#f19b40"
+      roles:
+      - 1307729133614141441 # Head Mapper
     - text: "Supervisor"
       color: "#ff4848"
       roles:
       - 1305375624613068800 # Supervisor
-    - text: "Head-Spriter"
-      color: "#ea800f"
+    - text: "Senior Admin"
+      color: "#7b1113"
       roles:
-      - 1362773454721519668 # Head Spriter
-    - text: "Head-Mapper"
-      color: "#f19b40"
-      roles:
-      - 1307729133614141441 # Head Mapper
-    - text: "Staff-Admin"
+      - 1558519010314690580 # Senior Admin
+    - text: "Staff Admin"
       color: "#1153cc"
       roles:
       - 1310741799601573960 # Staff Admin
-    - text: "Staff-Instructor"
+    - text: "Staff Instructor"
       color: "#b3aeff"
       roles:
       - 1276773207453728841 # Staff Instructor
-    - text: "SLN-PL"
+    - text: "SLN PL"
       color: "#f1eb58"
       roles:
       - 1374523965850128517 # SLN-PL
