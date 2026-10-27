@@ -1,5 +1,7 @@
 using Content.Shared.NodeContainer;
+using Content.Shared.Stunnable;
 using Robust.Shared.Timing;
+using NewStatusEffectsSystem = Content.Shared.StatusEffectNew.StatusEffectsSystem;
 
 // ReSharper disable CheckNamespace
 namespace Content.Server.Electrocution;
@@ -7,6 +9,7 @@ namespace Content.Server.Electrocution;
 public sealed partial class ElectrocutionSystem
 {
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private NewStatusEffectsSystem _newStatusEffects = default!;
 
     // Give a victim time to recover after an electrified source's shock ends.
     // The cooldown lives on the victim so changing sources cannot reset it.
@@ -47,6 +50,11 @@ public sealed partial class ElectrocutionSystem
     private void SetElectrifiedShockCooldown(EntityUid target, TimeSpan shockTime)
     {
         var cooldown = EnsureComp<ElectrifiedShockCooldownComponent>(target);
-        cooldown.NextShockAt = _timing.CurTime + shockTime + ShockRecoveryTime;
+        var paralysisEnd = _timing.CurTime + shockTime;
+        if (_newStatusEffects.TryGetTime(target, SharedStunSystem.StunId, out var stun) &&
+            stun.EndEffectTime is { } stunEnd && stunEnd > paralysisEnd)
+            paralysisEnd = stunEnd;
+
+        cooldown.NextShockAt = paralysisEnd + ShockRecoveryTime;
     }
 }
