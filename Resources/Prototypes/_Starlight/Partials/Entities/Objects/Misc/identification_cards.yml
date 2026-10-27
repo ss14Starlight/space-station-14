@@ -13,7 +13,7 @@
   id: CaptainIDCard
   components:
   - type: Contraband
-    tier: Tier5
+    tier: Tier4
     allowedDepartments:
     - Command
 
@@ -21,7 +21,7 @@
   id: HoPIDCard
   components:
   - type: Contraband
-    tier: Tier5
+    tier: Tier4
     allowedDepartments:
     - Command
 
@@ -29,7 +29,7 @@
   id: CEIDCard
   components:
   - type: Contraband
-    tier: Tier4
+    tier: Tier3
     allowedDepartments:
     - Command
 
@@ -37,7 +37,7 @@
   id: CMOIDCard
   components:
   - type: Contraband
-    tier: Tier4
+    tier: Tier3
     allowedDepartments:
     - Command
 
@@ -45,7 +45,7 @@
   id: RDIDCard
   components:
   - type: Contraband
-    tier: Tier4
+    tier: Tier3
     allowedDepartments:
     - Command
 
@@ -53,7 +53,7 @@
   id: HoSIDCard
   components:
   - type: Contraband
-    tier: Tier4
+    tier: Tier3
     allowedDepartments:
     - Command
 
@@ -61,7 +61,7 @@
   id: QuartermasterIDCard
   components:
   - type: Contraband
-    tier: Tier4
+    tier: Tier3
     allowedDepartments:
     - Command
 
