@@ -251,7 +251,7 @@ public sealed partial class DragonFireSystem : EntitySystem
             SpawnBreathPosition(wave, grid, origin, position);
         }
 
-        wave.NextStep = now + wave.Interval * stepDistance;
+        wave.NextStep = now + (wave.Interval * stepDistance);
     }
 
     private void SpawnWaveTile(DragonFireWaveComponent wave, MapGridComponent grid, MapCoordinates origin, Vector2i tile)

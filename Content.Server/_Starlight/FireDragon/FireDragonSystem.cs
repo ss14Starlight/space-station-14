@@ -334,8 +334,8 @@ public sealed partial class FireDragonSystem : EntitySystem
         for (var row = 1; row <= wave.Length; row++)
         for (var column = 0; column < wave.Width; column++)
         {
-            var offset = wave.Forward * row + side * (column - halfWidth);
-            wave.BreathPositions.Add((wave.BreathOrigin + offset * grid.TileSize, row));
+            var offset = (wave.Forward * row) + (side * (column - halfWidth));
+            wave.BreathPositions.Add((wave.BreathOrigin + (offset * grid.TileSize), row));
         }
     }
 }

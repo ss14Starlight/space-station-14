@@ -45,7 +45,6 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
 
     #endregion
 
-
     /// <summary>
     /// Countdown audio stream.
     /// </summary>
