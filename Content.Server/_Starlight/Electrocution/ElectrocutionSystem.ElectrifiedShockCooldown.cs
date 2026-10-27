@@ -18,7 +18,7 @@ public sealed partial class ElectrocutionSystem
     private bool CanReceiveElectrifiedShock(EntityUid target)
     {
         return !TryComp<ElectrifiedShockCooldownComponent>(target, out var cooldown) ||
-               _timing.CurTime >= cooldown.NextShockAt;
+            _timing.CurTime >= cooldown.NextShockAt;
     }
 
     private bool TryDoUnpoweredElectrifiedShock(EntityUid target, EntityUid source, int damage,
