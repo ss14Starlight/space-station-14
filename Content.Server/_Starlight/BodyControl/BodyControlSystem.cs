@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Shared._Starlight.BodyControl;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Components;
@@ -83,6 +84,7 @@ public sealed partial class BodyControlSystem : EntitySystem
             || !TryComp<ActorComponent>(actor, out var player) || player.PlayerSession.AttachedEntity != actor
             || !_mind.TryGetMind(actor, out var mind, out var consciousness) || consciousness.OwnedEntity != actor
             || consciousness.UserId != player.PlayerSession.UserId
+            || HasComp<RemoteControlControllerComponent>(actor)
             || HasComp<RelayInputMoverComponent>(actor) && !HasComp<BodyControlSourceComponent>(actor)
             || HasComp<RelayInputMoverComponent>(body))
             return false;

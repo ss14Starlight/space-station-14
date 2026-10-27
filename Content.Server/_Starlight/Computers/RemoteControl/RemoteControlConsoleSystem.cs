@@ -700,9 +700,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         remoteEntity = default;
         return console.Comp.Controller == actor
                 && _sharedRemoteControl.TryGetRemoteEntity(console.AsNullable(), out remoteEntity)
-                && _controlOwnership.TryGetControl(actor, out var controlled, out _) && controlled == remoteEntity
-                && TryComp<Content.Shared._Starlight.BodyControl.BodyControlSourceComponent>(actor, out var source)
-                && source.ExternallyDriven && source.Provider == console.Owner
                 && CanRemoteControlledEntityAct(remoteEntity);
     }
 
@@ -1346,8 +1343,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         if (!_sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var remoteEntity))
         {
-            if (entity.Comp.Controller is { } controller)
-                _controlOwnership.StopExclusiveControl(controller, entity.Owner);
             UpdateControllerIndex(entity.Owner, entity.Comp.Controller, null);
             return;
         }
@@ -1361,7 +1356,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         var controllingUser = entity.Comp.Controller;
         if (clearController && controllingUser is { } controller)
         {
-            _controlOwnership.StopExclusiveControl(controller, entity.Owner);
             CloseMirroredStorageUis(entity.Owner, controller);
             CloseMirroredUis(entity.Owner, controller);
             CloseRemoteBorgTypeSelectionUi(remoteEntity, controller);
@@ -1475,20 +1469,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                     : (EntityUid?)null;
                 SetController(otherConsoleUid, otherConsole, null, otherRemoteEntity);
             }
-        }
-
-        // Legacy console takeovers above release their leases first. Cooperative grants are never displaced.
-        if (component.Controller is { } oldLeaseController)
-            _controlOwnership.StopExclusiveControl(oldLeaseController, consoleUid);
-        if (controller is { } leaseController && remoteEntity is { } leaseTarget
-            && !_controlOwnership.TryStartExclusiveControl(leaseController, leaseTarget, consoleUid))
-        {
-            // If acquisition was invalidated during takeover cleanup, leave the console fully disconnected.
-            if (component.Controller != null)
-                SetController(consoleUid, component, null, remoteEntity, false);
-            if (refreshUi)
-                RefreshRemoteState(consoleUid, component, leaseTarget);
-            return false;
         }
 
         if (component.Controller is { } previousController && previousController != controller)
@@ -1638,7 +1618,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         EntityUid controller,
         EntityUid? previousRelayEntity)
     {
-        if (HasCooperativeControl(controller, remoteEntity))
+        if (HasBodyControl(controller, remoteEntity))
         {
             PopupRemoteControlMessage(
                 Loc.GetString("remote-control-target-already-controlled"), consoleUid, controller, previousRelayEntity);
