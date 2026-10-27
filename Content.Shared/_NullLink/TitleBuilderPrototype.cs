@@ -13,7 +13,7 @@ public sealed partial class TitleBuilderPrototype : IPrototype
     public List<TitleSegment> Segments = [];
 
     [DataField]
-    public string Separator = "-";
+    public string Separator = " ";
 }
 
 // In each segment, the first text in the list will be selected.
