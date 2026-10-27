@@ -16,7 +16,5 @@ public readonly record struct MetabolismExclusionEvent
     }
 
     public MetabolismExclusionEvent(List<ReagentId> reagents)
-    {
-        Reagents = reagents;
-    }
+        => Reagents = reagents;
 }
