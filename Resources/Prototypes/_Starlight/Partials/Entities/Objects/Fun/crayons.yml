@@ -1,7 +1,5 @@
 - type: !PartialOnly entity
   id: CrayonBorg
   components:
-  - type: LimitedCharges
-    maxCharges: 100000
   - type: AutoRecharge
     rechargeDuration: 1s
