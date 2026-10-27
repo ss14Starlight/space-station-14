@@ -3,7 +3,6 @@ namespace Content.Server.Electrocution;
 
 /// <summary>
 /// Shared by marked electrified sources so a victim cannot be stunned repeatedly by changing sources.
-/// Deliberate attacks bypass the cooldown.
 /// </summary>
 [RegisterComponent]
 [Access(typeof(ElectrocutionSystem))]

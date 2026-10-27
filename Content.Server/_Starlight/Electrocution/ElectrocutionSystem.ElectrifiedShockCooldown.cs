@@ -15,11 +15,9 @@ public sealed partial class ElectrocutionSystem
     // The cooldown lives on the victim so changing sources cannot reset it.
     private static readonly TimeSpan ShockRecoveryTime = TimeSpan.FromSeconds(1);
 
-    private bool CanReceiveElectrifiedShock(EntityUid target)
-    {
-        return !TryComp<ElectrifiedShockCooldownComponent>(target, out var cooldown) ||
-            _timing.CurTime >= cooldown.NextShockAt;
-    }
+    private bool CanReceiveElectrifiedShock(EntityUid target) =>
+        !TryComp<ElectrifiedShockCooldownComponent>(target, out var cooldown) ||
+        _timing.CurTime >= cooldown.NextShockAt;
 
     private bool TryDoUnpoweredElectrifiedShock(EntityUid target, EntityUid source, int damage,
         TimeSpan shockTime, float siemensCoefficient, bool useCooldown, bool bypassCooldown)
