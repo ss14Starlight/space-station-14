@@ -5,20 +5,20 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Tools.Components;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState] // Starlight - AutoState
 [Access(typeof(SharedToolSystem))]
 public sealed partial class ToolComponent : Component
 {
-    [DataField]
+    [DataField] [AutoNetworkedField] // Starlight - Auto for component toggler, to update qualities on client
     public HashSet<ProtoId<ToolQualityPrototype>> Qualities  = [];
 
     /// <summary>
     ///     For tool interactions that have a delay before action this will modify the rate, time to wait is divided by this value
     /// </summary>
-    [DataField]
+    [DataField] [AutoNetworkedField] // Starlight - Auto for component toggler, to update on client
     public float SpeedModifier = 1f;
 
-    [DataField]
+    [DataField] [AutoNetworkedField] // Starlight - Auto for component toggler, to update on client
     public SoundSpecifier? UseSound;
 }
 
