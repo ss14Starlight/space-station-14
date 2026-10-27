@@ -27,7 +27,6 @@
     Hydrogen: 0.01
   effects:
     - !type:HydrogenCombinedFireReaction {}
-  
 
 - type: gasReaction
   id: UlnitraniumProduction
@@ -164,4 +163,3 @@
     Ammonia: 0.01
   effects:
   - !type:AmmoniaSynthesisReaction {}
-  

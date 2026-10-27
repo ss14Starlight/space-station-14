@@ -4,7 +4,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Decals;
 using Content.Shared._Funkystation.CCVar;
 using Content.Shared._Funkystation.ReagentFires;
-using Content.Shared._Funkystation.Atmos; // Starlight
+using Content.Shared._Funkystation.Atmos;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Chemistry.Components;
@@ -73,7 +73,9 @@ public sealed partial class ReagentFireSystem : EntitySystem
     private float _smallPuddleBurnThreshold = 1.0f;
     private float _smallPuddleBurnPercent = 0.5f;
 
+    #region Starlight
     private const float PluoxiumFactor = 8f; // Starlight - pluoxium contributes 8x as much effective oxidiser than oxygen so make a constant for it relative to oxygen for ease of conversion
+    #endregion
 
     public override void Initialize()
     {
@@ -415,7 +417,7 @@ public sealed partial class ReagentFireSystem : EntitySystem
         // i.e. 1 mol of oxygen = 1 effective oxidiser, 1 mol of pluoxium = 8 effective oxidiser
         // "if (ambientMix == null) return;" already handles null values, and since there are multiple oxidisers, the likelihood is at least one is going to be null rather often, so removed unecessary null checks that prevented server startup
         var effectiveOxidiser = (ambientMix.GetMoles(Gas.Oxygen)) + ((ambientMix.GetMoles(Gas.Pluoxium) * PluoxiumFactor));
-        // allow pluoxium to also ignite a puddle, instead of just oxygen 
+        // allow pluoxium to also ignite a puddle, instead of just oxygen
         if (ambientMix.Temperature < autoIgnitionTemp || (!fireComp.SelfOxidizing && effectiveOxidiser <= 0.1f))
             return;
         // Starlight end
@@ -494,7 +496,7 @@ public sealed partial class ReagentFireSystem : EntitySystem
                 var pluoxConsumed = MathF.Min(pluoxMols, burnAmount / PluoxiumFactor);
                 // subtract pluoxium's oxygen-equivalent contribution from the total burn amount to get the remaining oxidiser that needs to be consumed
                 var remainingOxidiser = burnAmount - (pluoxConsumed * PluoxiumFactor);
-                // consume oxygen from the remaining oxidiser, without consuming more than is available 
+                // consume oxygen from the remaining oxidiser, without consuming more than is available
                 var oxygenConsumed = MathF.Min(oxygenMols, remainingOxidiser);
                 // remove moles of oxygen and/or pluox from the tile mix
                 tileMix.AdjustMoles(Gas.Pluoxium, -pluoxConsumed);

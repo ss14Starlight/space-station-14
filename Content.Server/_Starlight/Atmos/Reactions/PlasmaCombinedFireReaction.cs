@@ -35,7 +35,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
             else
             {
                 temperatureScale = (temperature - Atmospherics.PlasmaMinimumBurnTemperature) /
-                                   (Atmospherics.PlasmaUpperTemperature - Atmospherics.PlasmaMinimumBurnTemperature);
+                (Atmospherics.PlasmaUpperTemperature - Atmospherics.PlasmaMinimumBurnTemperature);
             }
 
             if (temperatureScale > 0)
@@ -60,9 +60,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
                 // so while it still preserves the values of 1.03%-3.03% plasma to pure oxygen and appx. 7.7%-20% plasma to pure pluox  for supersaturation
                 // supersaturation is now dynamic and scales based on the combined effective oxidiser-to-plasma ratio, regardless of the proportions of oxygen and pluoxium in the mixture
                 var oxidiserRatio = effectiveOxidiser / initialPlasmaMoles;
-                var supersaturation = Math.Clamp((oxidiserRatio - Atmospherics.SuperSaturationEnds) /
-                                                 (Atmospherics.SuperSaturationThreshold -
-                                                  Atmospherics.SuperSaturationEnds), 0.0f, 1.0f);
+                var supersaturation = Math.Clamp((oxidiserRatio - Atmospherics.SuperSaturationEnds) / (Atmospherics.SuperSaturationThreshold - Atmospherics.SuperSaturationEnds), 0.0f, 1.0f);
 
                 if (effectiveOxidiser > initialPlasmaMoles * Atmospherics.PlasmaOxygenFullburn)
                     plasmaBurnRate = initialPlasmaMoles * temperatureScale / Atmospherics.PlasmaBurnRateDelta;
@@ -86,7 +84,6 @@ namespace Content.Server._Starlight.Atmos.Reactions
                         mixture.AdjustMoles(Gas.Pluoxium, -pluoxConsumed);
                     if (oxygenConsumed > 0f)
                         mixture.AdjustMoles(Gas.Oxygen, -oxygenConsumed);
-                    
                     // supersaturation adjusts the ratio of produced tritium to unwanted CO2
                     mixture.AdjustMoles(Gas.Tritium, plasmaBurnRate * supersaturation);
                     mixture.AdjustMoles(Gas.CarbonDioxide, plasmaBurnRate * (1.0f - supersaturation));

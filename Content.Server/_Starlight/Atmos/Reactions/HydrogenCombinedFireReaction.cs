@@ -37,7 +37,6 @@ public sealed partial class HydrogenCombinedFireReaction : IGasReactionEffect
         var initialH2 = mixture.GetMoles(Gas.Hydrogen);
         var initialOxygen = mixture.GetMoles(Gas.Oxygen);
         var initialPluoxium = mixture.GetMoles(Gas.Pluoxium);
-        
         var effectiveOxidiser = initialOxygen + (initialPluoxium * PluoxiumFactor); // one mol pluox will act as eight mols oxygen, so multiply pluox mol by 8 and add to oxygen mol for effective oxidiser
 
         if (effectiveOxidiser < initialH2 || Atmospherics.MinimumHydrogenOxyburnEnergy > (temperature * oldHeatCapacity * heatScale))
@@ -69,7 +68,6 @@ public sealed partial class HydrogenCombinedFireReaction : IGasReactionEffect
         if (oxygenConsumed >0f)
             mixture.AdjustMoles(Gas.Oxygen, -oxygenConsumed);
         mixture.AdjustMoles(Gas.Hydrogen, -burnedFuel);
-        
 
         if (burnedFuel > 0)
         {
