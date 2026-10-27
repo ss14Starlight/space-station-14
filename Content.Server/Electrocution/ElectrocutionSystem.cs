@@ -168,9 +168,7 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
         if (_meleeWeapon.GetDamage(args.Used, args.User).Empty)
             return;
 
-        // Starlight-start: An intentional attack must still risk a shock during contact recovery.
-        TryDoElectrifiedAct(uid, args.User, 1, electrified, bypassShockCooldown: true);
-        // Starlight-end
+        TryDoElectrifiedAct(uid, args.User, 1, electrified, bypassShockCooldown: true); // Starlight-edit: Avoid free attacks during recovery.
     }
 
     private void OnElectrifiedHandInteract(EntityUid uid, ElectrifiedComponent electrified, InteractHandEvent args)
