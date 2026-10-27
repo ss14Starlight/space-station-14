@@ -40,9 +40,9 @@
     rootTask:
       task: SimpleHostileCompound
     blackboard:
-      NavClimb: !type:Bool "true"
-      NavPry: !type:Bool "false"
-      NavSmash: !type:Bool "true"
+      NavClimb: !type:Bool true
+      NavPry: !type:Bool false
+      NavSmash: !type:Bool true
   - type: CosmicCultFaction
   - type: CosmicMinion
   - type: NpcFactionMember
@@ -153,9 +153,9 @@
     rootTask:
       task: SimpleHostileCompound
     blackboard:
-      NavClimb: !type:Bool "true"
-      NavPry: !type:Bool "true"
-      NavSmash: !type:Bool "true"
+      NavClimb: !type:Bool true
+      NavPry: !type:Bool true
+      NavSmash: !type:Bool true
   - type: Puller
     needsHands: true
   - type: MeleeWeapon
