@@ -125,7 +125,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  #- ChefJobTrinkets
+  - ChefJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -217,7 +217,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  #- BotanistJobTrinkets
+  - BotanistJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
