@@ -25,3 +25,13 @@
       proto: SeniorChef
   equipment:
     jumpsuit: ClothingUniformJumpsuitChefSenior
+
+# Senior Trinket
+- type: loadout
+  id: ChefGoldenButchCleaver
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorChef
+  storage:
+    back:
+    - ButchCleaverGold

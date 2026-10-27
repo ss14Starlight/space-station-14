@@ -494,11 +494,12 @@
   - ChefWintercoat
   - ChefJacketSenior # Starlight
 
-#- type: loadoutGroup
-#  id: ChefJobTrinkets
-#  name: loadout-group-jobtrinkets
-#  minLimit: 0
-#  loadouts:
+- type: loadoutGroup
+  id: ChefJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - ChefGoldenButchCleaver #Starlight
 
 - type: loadoutGroup
   id: LibrarianJumpsuit

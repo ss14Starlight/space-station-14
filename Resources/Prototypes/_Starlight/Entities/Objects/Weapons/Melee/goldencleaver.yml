@@ -1,0 +1,14 @@
+- type: entity
+  parent: ButchCleaverGold
+  id: ButchCleaverGold
+  name: golden butcher's cleaver
+  description: A gold-plated butcher's cleaver given as a token of appreciation for years of service. Its edge is made of plasteel for an extra-sharp cut.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/cleaver_gold.rsi/
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/cleaver_gold.rsi/
+  - type: Tool
+    speedModifier: 1.2 # Sharper blade means cleaner cuts means less time to butcher. Sharpen your knives, people.
+    qualities:
+      - Slicing
