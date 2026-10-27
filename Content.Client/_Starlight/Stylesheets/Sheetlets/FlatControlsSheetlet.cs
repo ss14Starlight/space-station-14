@@ -28,10 +28,7 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
         var proto = theme.Proto;
         ISliderConfig sliderCfg = sheet;
 
-        StyleBox lineEditBox = theme.ClassicDecor
-            ? FlatBox.Chamfered(proto.Background, proto.Border, proto.SecondaryBorderThickness)
-            : FlatBox.Bordered(proto.Background, proto.Border, proto.SecondaryBorderThickness);
-        lineEditBox = lineEditBox
+        var lineEditBox = FlatBox.BorderedOrChamfered(theme.ClassicDecor, proto.Background, proto.Border, proto.SecondaryBorderThickness)
             .WithContentMargin(StyleBox.Margin.Vertical, 3)
             .WithContentMargin(StyleBox.Margin.Horizontal, 5);
 
@@ -42,11 +39,9 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
             .WithContentMargin(StyleBox.Margin.Horizontal, 8)
             .WithContentMargin(StyleBox.Margin.Vertical, 3);
 
-        var tooltipSurface = proto.SurfaceInspect ?? proto.Surface;
-        StyleBox tooltipBox = theme.ClassicDecor
-            ? FlatBox.Chamfered(tooltipSurface.WithAlpha(0.96f), proto.Border, proto.BorderThickness)
-            : FlatBox.Bordered(tooltipSurface.WithAlpha(0.96f), proto.Border, proto.BorderThickness);
-        tooltipBox = tooltipBox
+        // Classic tooltips are fully opaque like the classic texture; Starlight's flat style uses 0.96 alpha.
+        var tooltipFill = (proto.SurfaceInspect ?? proto.Surface).WithAlpha(theme.ClassicDecor ? 1f : 0.96f);
+        var tooltipBox = FlatBox.BorderedOrChamfered(theme.ClassicDecor, tooltipFill, proto.Border, proto.BorderThickness)
             .WithContentMargin(StyleBox.Margin.Vertical, 2)
             .WithContentMargin(StyleBox.Margin.Horizontal, 7);
 
@@ -84,9 +79,7 @@ public sealed class FlatControlsSheetlet : Sheetlet<NanotrasenStylesheet>
             E<TextEdit>().Pseudo(TextEdit.StylePseudoClassPlaceholder).Prop("font-color", proto.TextPlaceholder ?? proto.TextDisabled),
 
             E<TabContainer>()
-                .Prop(TabContainer.StylePropertyPanelStyleBox, theme.ClassicDecor
-                    ? FlatBox.Chamfered(proto.Surface, proto.Border, proto.SecondaryBorderThickness)
-                    : FlatBox.Bordered(proto.Surface, proto.Border, proto.SecondaryBorderThickness))
+                .Prop(TabContainer.StylePropertyPanelStyleBox, FlatBox.BorderedOrChamfered(theme.ClassicDecor, proto.Surface, proto.Border, proto.SecondaryBorderThickness))
                 .Prop(TabContainer.StylePropertyTabStyleBox, tabActive)
                 .Prop(TabContainer.StylePropertyTabStyleBoxInactive, tabInactive)
                 .Prop(TabContainer.stylePropertyTabFontColor, proto.Text)

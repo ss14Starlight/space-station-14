@@ -1,4 +1,3 @@
-using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Shared.Maths;
 
@@ -19,6 +18,9 @@ public static class FlatBox
 
     public static StyleBox Chamfered(Color color, Color border, float thickness)
         => new ChamferedBox(color, border, thickness);
+
+    public static StyleBox BorderedOrChamfered(bool classic, Color color, Color border, float thickness)
+        => classic ? Chamfered(color, border, thickness) : Bordered(color, border, thickness);
 
     public static StyleBoxFlat Underlined(Color color, Color border, float thickness)
         => new()
@@ -65,7 +67,7 @@ public static class FlatBox
             if (box.Width <= 0f || box.Height <= 0f)
                 return;
 
-            var cut = MathF.Min(1f * uiScale, MathF.Min(box.Width, box.Height) / 2f);
+            var cut = MathF.Min(uiScale, MathF.Min(box.Width, box.Height) / 2f);
             var thickness = MathF.Max(BorderThickness * uiScale, 0f);
 
             if (thickness <= 0f)
@@ -74,47 +76,58 @@ public static class FlatBox
                 return;
             }
 
-            var border = BorderColor;
-            var outer = new Color(border.R * 0.85f, border.G * 0.85f, border.B * 0.85f, border.A);
+            if (thickness * 2f >= MathF.Min(box.Width, box.Height))
+            {
+                DrawChamfered(handle, box, cut, BorderColor);
+                return;
+            }
 
+            var px = uiScale;
             if (BorderThickness >= 2f)
             {
-                DrawChamfered(handle, box, cut, outer);
-                DrawChamfered(handle, Deflate(box, 1f * uiScale), cut, BorderColor);
+                var border = BorderColor;
+                var outer = new Color(border.R * 0.85f, border.G * 0.85f, border.B * 0.85f, border.A);
+
+                Band(handle, box.Left + px, box.Top, box.Right - px, box.Top + px, outer);
+                Band(handle, box.Left + px, box.Bottom - px, box.Right - px, box.Bottom, outer);
+                Band(handle, box.Left, box.Top + cut, box.Left + px, box.Bottom - cut, outer);
+                Band(handle, box.Right - px, box.Top + cut, box.Right, box.Bottom - cut, outer);
+
+                var inner = Deflate(box, px);
+                var band = thickness - px;
+                Band(handle, inner.Left, inner.Top, inner.Left + band, inner.Bottom, BorderColor);
+                Band(handle, inner.Right - band, inner.Top, inner.Right, inner.Bottom, BorderColor);
+                Band(handle, inner.Left + band, inner.Top, inner.Right - band, inner.Top + band, BorderColor);
+                Band(handle, inner.Left + band, inner.Bottom - band, inner.Right - band, inner.Bottom, BorderColor);
             }
             else
             {
-                DrawChamfered(handle, box, cut, BorderColor);
+                Band(handle, box.Left + thickness, box.Top, box.Right - thickness, box.Top + thickness, BorderColor);
+                Band(handle, box.Left + thickness, box.Bottom - thickness, box.Right - thickness, box.Bottom, BorderColor);
+                Band(handle, box.Left, box.Top + cut, box.Left + thickness, box.Bottom - cut, BorderColor);
+                Band(handle, box.Right - thickness, box.Top + cut, box.Right, box.Bottom - cut, BorderColor);
             }
 
-            DrawRect(handle, Deflate(box, thickness), BackgroundColor);
-        }
+        var fill = Deflate(box, thickness);
+        Band(handle, fill.Left, fill.Top, fill.Right, fill.Bottom, BackgroundColor);
+    }
 
-        private static void DrawChamfered(DrawingHandleScreen handle, UIBox2 box, float cut, Color color)
+        private static void Band(DrawingHandleScreen handle, float left, float top, float right, float bottom, Color color)
         {
-            if (color.A <= 0f || box.Width <= 0f || box.Height <= 0f)
+            if (color.A <= 0f || right <= left || bottom <= top)
                 return;
 
-            if (cut <= 0f)
-            {
-                handle.DrawRect(box, color);
-                return;
-            }
-
-            handle.DrawRect(new UIBox2(box.Left + cut, box.Top, box.Right - cut, box.Bottom), color);
-            handle.DrawRect(new UIBox2(box.Left, box.Top + cut, box.Left + cut, box.Bottom - cut), color);
-            handle.DrawRect(new UIBox2(box.Right - cut, box.Top + cut, box.Right, box.Bottom - cut), color);
+            handle.DrawRect(new UIBox2(left, top, right, bottom), color);
         }
 
-        private static void DrawRect(DrawingHandleScreen handle, UIBox2 box, Color color)
-        {
-            if (color.A <= 0f || box.Width <= 0f || box.Height <= 0f)
-                return;
+    private static void DrawChamfered(DrawingHandleScreen handle, UIBox2 box, float cut, Color color)
+    {
+        Band(handle, box.Left + cut, box.Top, box.Right - cut, box.Bottom, color);
+        Band(handle, box.Left, box.Top + cut, box.Left + cut, box.Bottom - cut, color);
+        Band(handle, box.Right - cut, box.Top + cut, box.Right, box.Bottom - cut, color);
+    }
 
-            handle.DrawRect(box, color);
-        }
-
-        private static UIBox2 Deflate(UIBox2 box, float amount)
+    private static UIBox2 Deflate(UIBox2 box, float amount)
         {
             return new UIBox2(
                 MathF.Min(box.Left + amount, box.Right),

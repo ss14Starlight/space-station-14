@@ -1,7 +1,6 @@
 using Content.Client.ContextMenu.UI;
 using Content.Client.Stylesheets;
 using Content.Client.Stylesheets.Palette;
-using Content.Client.Stylesheets.SheetletConfigs;
 using Content.Client.Stylesheets.Sheetlets;
 using Content.Client.Stylesheets.Stylesheets;
 using Robust.Client.Graphics;
@@ -26,7 +25,8 @@ public sealed class FlatContextMenuSheetlet : Sheetlet<NanotrasenStylesheet>
 
         if (theme.ClassicDecor)
         {
-            var menuFrame = ThemeBox.Or(proto.Window, ResCache, ClassicMenuBox(sheet));
+            var menuFrame = FlatBox.Bordered(proto.Surface, proto.Border, proto.BorderThickness)
+                .WithContentMargin(StyleBox.Margin.All, ContextMenuElement.ElementMargin);
             var rules = new List<StyleRule>
             {
                 E<PanelContainer>()
@@ -70,16 +70,5 @@ public sealed class FlatContextMenuSheetlet : Sheetlet<NanotrasenStylesheet>
             ContextMenuElement.StyleClassContextMenuButton);
 
         return flatRules.ToArray();
-    }
-
-    private static StyleBox ClassicMenuBox(NanotrasenStylesheet sheet)
-    {
-        IWindowConfig windowCfg = sheet;
-        var box = new StyleBoxTexture
-        {
-            Texture = sheet.GetTextureOr(windowCfg.WindowBackgroundBorderedPath, NanotrasenStylesheet.TextureRoot),
-        };
-        box.SetPatchMargin(StyleBox.Margin.All, ContextMenuElement.ElementMargin);
-        return box;
     }
 }
