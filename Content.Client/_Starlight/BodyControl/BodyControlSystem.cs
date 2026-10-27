@@ -3,6 +3,10 @@ using Robust.Client.Physics;
 
 namespace Content.Client._Starlight.BodyControl;
 
+/// <summary>
+/// Keeps client movement prediction consistent with the replicated controller arrangement.
+/// Shared-body input still reaches the server even when it must not be applied locally.
+/// </summary>
 public sealed partial class BodyControlSystem : EntitySystem
 {
     [Dependency] private Robust.Client.Physics.PhysicsSystem _physics = default!;

@@ -16,7 +16,10 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.BodyControl;
 
-/// <summary>Routes authorized players' movement to one body without changing its mind or actor.</summary>
+/// <summary>
+/// Routes authorized controllers' input to a physical body while preserving their mind and session attachments.
+/// Coordinates shared movement and restores normal movement and NPC state when control ends.
+/// </summary>
 public sealed partial class BodyControlSystem : EntitySystem
 {
     [Dependency] private SharedMoverController _mover = default!;
@@ -60,7 +63,17 @@ public sealed partial class BodyControlSystem : EntitySystem
                 StopControl(actor);
     }
 
-    /// <summary>The caller must authorize this grant. An existing native player must be registered first.</summary>
+    /// <summary>
+    /// Starts cooperative control or updates an existing grant for the same body.
+    /// The caller must authorize access before calling this method.
+    /// Only grants with <see cref="BodyControlAccess.FullControl"/> enabled are accepted.
+    /// </summary>
+    /// <param name="actor">The player's real attached entity, whose mind owns that entity.</param>
+    /// <param name="body">
+    /// The physical body to control. Its directly attached player must first be registered with actor equal to body.
+    /// </param>
+    /// <param name="access">The requested grant. Its collections are copied before storing it.</param>
+    /// <returns>False when the player, body or grant is invalid, or an existing control arrangement conflicts.</returns>
     public bool TryStartControl(EntityUid actor, EntityUid body, BodyControlAccess access)
     {
         // Scoped grants require the interaction-permissions layer.
@@ -101,6 +114,12 @@ public sealed partial class BodyControlSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Replaces a cooperative grant with a copy of the caller-authorized permissions.
+    /// Refreshes the selected hand and presentation, and clears held movement when movement access changes.
+    /// Only grants with <see cref="BodyControlAccess.FullControl"/> enabled are accepted.
+    /// </summary>
+    /// <returns>False if the grant is invalid or its provider manages control externally.</returns>
     public bool UpdateAccess(EntityUid actor, BodyControlAccess access)
     {
         if (!access.FullControl || !TryGetControl(actor, out var body, out _) || !TryComp<BodyControlSourceComponent>(actor, out var source))
@@ -128,10 +147,19 @@ public sealed partial class BodyControlSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Checks for a current grant to this body, including validation of the controller's live session.
+    /// </summary>
     public bool IsControlling(EntityUid actor, EntityUid body)
         => TryGetControl(actor, out var target, out _) && target == body;
 
-    /// <summary>Resolves a current grant using the real session and mind of the player entity.</summary>
+    /// <summary>
+    /// Resolves a live grant from the controller's current session and its registered target.
+    /// Cooperative grants also require the original mind; exclusive grants require a live provider.
+    /// </summary>
+    /// <remarks>
+    /// The returned access object is the stored grant. Use UpdateAccess to change cooperative permissions.
+    /// </remarks>
     public bool TryGetControl(EntityUid actor, out EntityUid body, out BodyControlAccess access)
     {
         body = default;
@@ -154,6 +182,10 @@ public sealed partial class BodyControlSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Removes a grant and restores the controller's ordinary input state.
+    /// If a native player ends its own grant, other controllers are removed to prevent bypassing shared input handling.
+    /// </summary>
     public void StopControl(EntityUid actor)
         => StopControl(actor, detaching: false);
 
@@ -277,6 +309,10 @@ public sealed partial class BodyControlSystem : EntitySystem
         ApplyMovement(body, target);
     }
 
+    /// <summary>
+    /// Rebuilds movement routing after controller or permission changes.
+    /// One controller uses the normal predicted relay; multiple controllers use server-arbitrated input.
+    /// </summary>
     private void Rebalance(EntityUid body, BodyControlTargetComponent target)
     {
         if (target.ExternallyDriven)
@@ -333,6 +369,10 @@ public sealed partial class BodyControlSystem : EntitySystem
             _controlNpc.WakeNPC(body, htn);
     }
 
+    /// <summary>
+    /// Applies the latest still-held press on each axis across authorized controllers.
+    /// Releasing that press lets an older held direction take effect; any authorized controller may request walking.
+    /// </summary>
     private void ApplyMovement(EntityUid body, BodyControlTargetComponent target)
     {
         if (target.SoleController is { } sole && TryComp<BodyControlSourceComponent>(sole, out var single))

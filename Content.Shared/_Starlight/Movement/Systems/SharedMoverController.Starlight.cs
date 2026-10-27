@@ -8,7 +8,10 @@ namespace Content.Shared.Movement.Systems;
 
 public abstract partial class SharedMoverController
 {
-    /// <summary>Applies server-arbitrated movement through the ordinary movement and container handlers.</summary>
+    /// <summary>
+    /// Applies changes to held movement through the ordinary direction and walk handlers.
+    /// This preserves normal movement checks and container handling for server-arbitrated input.
+    /// </summary>
     public void ApplyMovementInput(EntityUid entity, MoveButtons buttons)
     {
         if (!MoverQuery.TryComp(entity, out var mover))
@@ -28,7 +31,10 @@ public abstract partial class SharedMoverController
         }
     }
 
-    /// <summary>Clears commands and subtick accumulation when the source of movement changes.</summary>
+    /// <summary>
+    /// Clears held input and subtick movement accumulated by the previous input source.
+    /// Call when changing control routing so the old source cannot leave the body moving.
+    /// </summary>
     public void ResetMovementInput(EntityUid entity)
     {
         if (!MoverQuery.TryComp(entity, out var mover))

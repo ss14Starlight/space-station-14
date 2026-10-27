@@ -1,5 +1,7 @@
 namespace Content.Shared._Starlight.BodyControl;
 
-/// <summary>Lets providers release their interfaces before a cooperative grant is removed.</summary>
+/// <summary>
+/// Raised before a cooperative grant is invalidated so consumers can close interfaces that still need its body reference.
+/// </summary>
 [ByRefEvent]
 public readonly record struct BodyControlStoppingEvent(EntityUid Controller, EntityUid Body);

@@ -25,7 +25,10 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server._Starlight.Computers.RemoteControl;
 
-/// <summary>Executes authorized body commands for console and native-HUD controllers.</summary>
+/// <summary>
+/// Executes commands as a physical body using normal action, hand and interaction systems.
+/// Callers authorize the controller and establish any required hand context before invoking these methods.
+/// </summary>
 public sealed partial class RemoteControlCommandSystem : EntitySystem
 {
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
@@ -36,7 +39,10 @@ public sealed partial class RemoteControlCommandSystem : EntitySystem
     [Dependency] private SharedStorageSystem _storage = default!;
     [Dependency] private PullController _pullController = default!;
 
-    /// <summary>Executes an action after the caller has authorized control of the body.</summary>
+    /// <summary>
+    /// Performs an action available to the body after the caller authorizes control and action access.
+    /// Checks conscious action availability and rejects actions not owned by the body.
+    /// </summary>
     public bool ExecuteAction(EntityUid remoteEntity, EntityUid action, EntityUid? target = null, NetCoordinates? coordinates = null)
     {
         if (TerminatingOrDeleted(remoteEntity) || !_actionBlocker.CanConsciouslyPerformAction(remoteEntity)
@@ -47,7 +53,10 @@ public sealed partial class RemoteControlCommandSystem : EntitySystem
         return _actions.TryPerformAction(remoteEntity, action);
     }
 
-    /// <summary>Executes a world command after the caller has authorized control and the optional hand.</summary>
+    /// <summary>
+    /// Executes an authorized world interaction through the body's normal interaction handlers.
+    /// A supplied hand directs pickup; callers must establish hand context for operations using the active item.
+    /// </summary>
     public void ExecuteInteraction(EntityUid remoteEntity, EntityCoordinates coordinates,
         RemoteControlInteractionAction action = RemoteControlInteractionAction.Interact, EntityUid? target = null,
         bool altInteract = false, bool activateInWorld = false, AtmosPipeLayer? pipeLayer = null, string? hand = null)
@@ -159,7 +168,10 @@ public sealed partial class RemoteControlCommandSystem : EntitySystem
         _interaction.UserInteraction(remoteEntity, coordinates, target, altInteract);
     }
 
-    /// <summary>Executes a hand operation after the caller has authorized that hand.</summary>
+    /// <summary>
+    /// Executes a hand operation after the caller authorizes the requested hand and operation.
+    /// Active-hand operations resolve through the caller's current hand context.
+    /// </summary>
     public void ExecuteHand(EntityUid remoteEntity, string hand, RemoteControlHandAction action)
     {
         if (TerminatingOrDeleted(remoteEntity) || !_actionBlocker.CanConsciouslyPerformAction(remoteEntity))
@@ -197,7 +209,10 @@ public sealed partial class RemoteControlCommandSystem : EntitySystem
         }
     }
 
-    /// <summary>Executes an inventory operation after the caller has authorized full inventory access.</summary>
+    /// <summary>
+    /// Executes an inventory-slot operation after the caller authorizes inventory access.
+    /// Equipping and unequipping retain the body's normal interaction and timed-action checks.
+    /// </summary>
     public void ExecuteInventory(EntityUid remoteEntity, string slot, RemoteControlInventoryAction action)
     {
         if (TerminatingOrDeleted(remoteEntity) || !_actionBlocker.CanConsciouslyPerformAction(remoteEntity) || !TryComp<InventoryComponent>(remoteEntity, out var inventory))
@@ -249,6 +264,9 @@ public sealed partial class RemoteControlCommandSystem : EntitySystem
                 checkDoafter: true, triggerHandContact: true);
     }
 
+    /// <summary>
+    /// Collects actions belonging to the body, including chassis and module actions stored outside its action list.
+    /// </summary>
     public HashSet<EntityUid> GetActionEntities(EntityUid remoteEntity)
     {
         var result = new HashSet<EntityUid>();
@@ -273,7 +291,10 @@ public sealed partial class RemoteControlCommandSystem : EntitySystem
         return result;
     }
 
-    /// <summary>Collects the items and actions needed to display a controlled body.</summary>
+    /// <summary>
+    /// Adds held items, modules and actions needed to display the body to the supplied entity set.
+    /// Inventory-slot items are included only when requested; the caller manages visibility subscriptions.
+    /// </summary>
     public void CollectVisibleEntities(EntityUid body, HashSet<EntityUid> entities, bool includeInventory)
     {
         if (TryComp<BorgChassisComponent>(body, out var chassis))

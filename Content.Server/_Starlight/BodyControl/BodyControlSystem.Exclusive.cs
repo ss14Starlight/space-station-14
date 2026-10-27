@@ -5,7 +5,10 @@ namespace Content.Server._Starlight.BodyControl;
 
 public sealed partial class BodyControlSystem
 {
-    /// <summary>Checks ownership without changing the provider's movement or takeover policy.</summary>
+    /// <summary>
+    /// Checks whether either entity belongs to an incompatible control arrangement.
+    /// A matching exclusive grant for the same actor, body and provider is not a conflict.
+    /// </summary>
     public bool HasConflictingControl(EntityUid actor, EntityUid body, EntityUid? provider = null)
     {
         if (TryComp<BodyControlSourceComponent>(actor, out var source)
@@ -22,7 +25,11 @@ public sealed partial class BodyControlSystem
                || source == null || source.Provider != provider;
     }
 
-    /// <summary>Reserves exclusive ownership. The provider retains its existing relay, UI and body-specific setup.</summary>
+    /// <summary>
+    /// Reserves a body for one provider-managed controller without transferring its mind or session.
+    /// The provider remains responsible for movement, interfaces and body-specific setup and cleanup.
+    /// </summary>
+    /// <returns>False if an entity is unavailable, the body has a directly attached player, or another grant conflicts.</returns>
     public bool TryStartExclusiveControl(EntityUid actor, EntityUid body, EntityUid provider)
     {
         if (TerminatingOrDeleted(actor) || TerminatingOrDeleted(body) || TerminatingOrDeleted(provider)
@@ -50,6 +57,10 @@ public sealed partial class BodyControlSystem
         return true;
     }
 
+    /// <summary>
+    /// Releases an exclusive grant only when it belongs to this provider.
+    /// Does not notify the provider, which is already responsible for performing its own cleanup.
+    /// </summary>
     public void StopExclusiveControl(EntityUid actor, EntityUid provider)
         => ReleaseExclusiveControl(actor, provider, notifyProvider: false);
 
