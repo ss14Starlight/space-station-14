@@ -42,9 +42,16 @@ public sealed partial class ChangelingComponent : Component
 
     public bool IsInStasis = false;
 
+    /// <summary>
+    /// The chosen respiratory state, copied to replacement bodies and applied to their respirator on startup.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public bool BreathingEnabled = true;
 
+    /// <summary>
+    /// Shared with a replacement body so a successful transformation's deferred action cost reaches the new form.
+    /// Serialized and networked values are exposed through the resource properties below.
+    /// </summary>
     public ChangelingResources Resources = new();
 
     public bool StrainedMusclesActive = false;
@@ -56,6 +63,9 @@ public sealed partial class ChangelingComponent : Component
     [DataField]
     public float StealthDrain = 1.25f; // 6.6 minutes to fully drain 100 chemicals
 
+    /// <summary>
+    /// Biomass consumed per second of stasis, charged on chemical updates using their interval.
+    /// </summary>
     [DataField]
     public float StasisDrain = 10f / 60f;
 
@@ -82,7 +92,7 @@ public sealed partial class ChangelingComponent : Component
     public float BiomassDeficitVomitPercent = 0.1f;
 
     /// <summary>
-    ///     How much biomass should be removed per cycle.
+    ///     Biomass removed each BiomassUpdateCooldown, independently of the per-second stasis drain.
     /// </summary>
     [DataField, AutoNetworkedField]
     public float BiomassDrain = 0.4f;
@@ -154,6 +164,10 @@ public sealed partial class ChangelingComponent : Component
     public TransformData? SelectedForm;
 }
 
+/// <summary>
+/// Mutable resource pool shared by forms of the same changeling when one body replaces another.
+/// Independent changelings must keep separate instances.
+/// </summary>
 public sealed class ChangelingResources
 {
     public float Biomass = 40f;

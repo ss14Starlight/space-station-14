@@ -9,12 +9,21 @@ namespace Content.Shared._Starlight.Changeling;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class StarlightChangelingDevourComponent : Component
 {
+    /// <summary>
+    /// Reserves the prey across windup and consumption; null means another devour can begin.
+    /// </summary>
     [AutoNetworkedField]
     public EntityUid? CurrentTarget;
 
+    /// <summary>
+    /// Server-side consumption fraction already processed, preventing every-tick callbacks from repeating damage.
+    /// </summary>
     public float DamageProgress;
 
-    // Humanoids are already tracked and cleaned up by ChangelingIdentityComponent.
+    /// <summary>
+    /// Non-humanoid prey whose DevouredBy sets reference this body. These reverse links let role removal
+    /// clean up animals that are absent from ChangelingIdentityComponent's humanoid identity records.
+    /// </summary>
     public readonly HashSet<EntityUid> DevouredAnimals = new();
 
     public override bool SendOnlyToOwner => true;

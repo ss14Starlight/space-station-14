@@ -10,8 +10,17 @@ namespace Content.Server._Starlight.Medical.Body.Systems;
 public sealed partial class BodySystem
 {
     /// <summary>
-    /// Restores native anatomy, retaining the body's own limbs and shedding foreign replacements.
+    /// Restores the anatomy described by the body's prototype. Parts grown by this body are healed and retained;
+    /// missing parts are regrown, and foreign replacements are detached through the normal limb lifecycle.
     /// </summary>
+    /// <remarks>
+    /// Native organs are recreated, while grafts, implants, cavity contents and organs carrying a mind are ejected.
+    /// Origin is tracked independently of species, so a same-species graft is still a foreign replacement.
+    /// </remarks>
+    /// <returns>
+    /// True when restoration completes or the body has no restorable template. False if attachment or detachment
+    /// fails; changes already made are not rolled back.
+    /// </returns>
     public bool TryRestoreBody(Entity<BodyComponent?> body)
     {
         if (!Resolve(body, ref body.Comp, logMissing: false) || body.Comp.Prototype is not { } prototypeId)
@@ -74,6 +83,7 @@ public sealed partial class BodySystem
                     foreach (var uid in container.ContainedEntities.ToArray())
                     {
                         var part = Comp<BodyPartComponent>(uid);
+                        // Keep native limbs in place so repeated restoration does not shed healthy anatomy.
                         if (part.OriginalBody == body.Owner)
                             child = (uid, part);
                         else if (!TryShedPart((body.Owner, body.Comp), (uid, part), appearance))
@@ -107,6 +117,10 @@ public sealed partial class BodySystem
         return true;
     }
 
+    /// <summary>
+    /// Detaches a replacement without rebuilding its contents. Normal limb removal updates hands, visuals and
+    /// the body membership of contained organs, allowing their effects to be removed from the former body.
+    /// </summary>
     private bool TryShedPart(Entity<BodyComponent> body, Entity<BodyPartComponent> part,
         HumanoidAppearanceComponent? appearance)
         => appearance != null
@@ -115,9 +129,13 @@ public sealed partial class BodySystem
             : Containers.TryGetContainingContainer(part.Owner, out var container)
                 && Containers.Remove(part.Owner, container, destination: Transform(body).Coordinates);
 
+    /// <summary>
+    /// Replaces native organs with their template defaults and ejects other contents from this part.
+    /// An organ's origin does not establish ownership of its mind, so any organ carrying a mind is preserved.
+    /// </summary>
     private bool TryRestoreOrgans(EntityUid body, Entity<BodyPartComponent> part, Dictionary<string, string> organs)
     {
-        // Preserve grafts, implants and cavity contents; only the body's own organs are rebuilt in place.
+        // Visit every registered slot, including implants and cavity items absent from the native template.
         foreach (var slotId in part.Comp.Organs.Keys.ToArray())
         {
             if (!Containers.TryGetContainer(part, GetOrganContainerId(slotId), out var container))
@@ -127,6 +145,8 @@ public sealed partial class BodySystem
             {
                 if (TryComp<OrganComponent>(uid, out var organ) && organ.OriginalBody == body
                     && !_mindSystem.TryGetMind(uid, out _, out _))
+                    // Synchronous deletion frees the slot and marks the organ as terminating before removal
+                    // handlers run. Native Diona organs must not turn into nymphs during regeneration.
                     Del(uid);
                 else if (!Containers.Remove(uid, container, destination: Transform(body).Coordinates))
                     return false;

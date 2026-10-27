@@ -121,6 +121,8 @@ public partial class SharedBodySystem
         SetupOrgans((rootPartUid, rootPart), protoRoot.Organs);
         MapInitParts(rootPartUid, prototype);
 
+        // Record origin after the whole template is assembled, including the root and nested anatomy.
+        // Attachment later changes Body only, so a transplant cannot acquire the recipient's native origin.
         foreach (var (_, part) in GetBodyChildren(bodyEntity))
             part.OriginalBody = bodyEntity;
         foreach (var (_, organ) in GetBodyOrgans(bodyEntity))

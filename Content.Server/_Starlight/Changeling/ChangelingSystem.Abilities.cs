@@ -62,6 +62,10 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     #region Basic Abilities
 
+    /// <summary>
+    /// Starts interruptible DNA absorption after validating the prey. A failed start leaves the action unhandled
+    /// so the shared successful-action handler does not charge its resource cost.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnAbsorb(EntityUid uid, ChangelingComponent comp, ref AbsorbDNAEvent args)
     {
@@ -98,6 +102,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         args.Handled = _doAfter.TryStartDoAfter(dargs);
     }
 
+    /// <summary>
+    /// Credits the current body's evolution store for previously unabsorbed humanoid or changeling prey.
+    /// The caller marks the prey absorbed after awarding its first-absorption rewards.
+    /// </summary>
     private void AwardEvolutionPoints(EntityUid uid, EntityUid target)
     {
         if (HasComp<AbsorbedComponent>(target))
@@ -119,6 +127,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         _store.UpdateUserInterface(uid, uid, store);
     }
 
+    /// <summary>
+    /// Applies Starlight's first-absorption rewards and husking effects when the shared devour workflow consumes prey.
+    /// Already absorbed prey cannot grant these rewards again.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnDevouredPerson(EntityUid uid, ChangelingComponent comp, ref OnLingDevour args)
     {
@@ -132,8 +144,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         UpdateBiomass(uid, comp, comp.MaxBiomass - comp.TotalAbsorbedEntities);
 
-        // Starlight edit start - Do not turn the victim's blood into ferrochromic acid permanently
-        // allows for ling tests to still pass despite being hollowed.
+        // Starlight edit start - Spill acid without permanently replacing the victim's blood composition.
         if (TryComp<BloodstreamComponent>(target, out var bloodstream) && bloodstream.BloodReferenceSolution is { } originalBlood)
         {
             var blood = originalBlood.Clone();
@@ -179,6 +190,9 @@ public sealed partial class ChangelingSystem : EntitySystem
             if (_mind.TryGetObjectiveComp<AbsorbConditionComponent>(mindId, out var objective, mind))
                 objective.Absorbed += 1;
     }
+    /// <summary>
+    /// Stores the target's identity and reports success only if cloning succeeds, avoiding a charge for a failed sting.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnStingExtractDNA(EntityUid uid, ChangelingComponent comp, ref StingExtractDNAEvent args)
     {
@@ -222,6 +236,10 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         args.Handled = true;
     }
+    /// <summary>
+    /// Restores the body's anatomy before clearing damage, refilling blood and reviving the changeling.
+    /// Native limbs are retained; missing parts regrow and foreign replacements are shed by the body system.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnExitStasis(EntityUid uid, ChangelingComponent comp, ref ExitStasisEvent args)
     {
@@ -239,7 +257,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (!TryComp<DamageableComponent>(uid, out var damageable) || !_body.TryRestoreBody(uid))
             return;
 
-        // heal of everything
+        // Clearing damage alone cannot restore missing anatomy; body restoration must succeed first.
         _damage.SetAllDamage(uid, 0);
         _mobState.ChangeMobState(uid, MobState.Alive);
         _blood.TryModifyBloodLevel(uid, 1000);
@@ -254,6 +272,10 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     #endregion
 
+    /// <summary>
+    /// Toggles respiratory processing and saves the choice for later body changes.
+    /// The action is shown as toggled while breathing is disabled.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnToggleBreathing(EntityUid uid, ChangelingComponent comp, ref ToggleChangelingBreathingEvent args)
     {
@@ -609,6 +631,9 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         // todo: implement
     }
+    /// <summary>
+    /// Replaces the current body with the lesser form while preserving the resource pool used to charge this action.
+    /// </summary>
     [SubscribeLocalEvent]
     public void OnLesserForm(EntityUid uid, ChangelingComponent comp, ref ActionLesserFormEvent args)
     {
@@ -625,6 +650,13 @@ public sealed partial class ChangelingSystem : EntitySystem
         _popup.PopupEntity(message, monkey, PopupType.LargeCaution);
         args.Handled = true;
     }
+    /// <summary>
+    /// Deducts configured resources after an action succeeds. Ability handlers signal success with Handled
+    /// instead of charging in advance and refunding failures.
+    /// </summary>
+    /// <remarks>
+    /// Replacement bodies share the performer's resource pool, so an action that transforms its user still pays its cost.
+    /// </remarks>
     [SubscribeLocalEvent]
     private void OnLingActionPerformed(Entity<ChangelingActionComponent> ent, ref ActionPerformedEvent args)
     {
@@ -639,6 +671,10 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     }
 
+    /// <summary>
+    /// Retracts any existing pieces or grows the full armor set. If the helmet cannot be equipped, the newly grown
+    /// armor is retracted as well, leaving the failed action without a partial reward.
+    /// </summary>
     private bool TryToggleArmorSet(EntityUid uid, ChangelingComponent comp, EntProtoId armor, EntProtoId helmet)
     {
         if (comp.Equipment.ContainsKey(armor.Id) || comp.Equipment.ContainsKey(helmet.Id))
@@ -707,6 +743,10 @@ public sealed partial class ChangelingSystem : EntitySystem
     public void OnFakeMindShieldToggle(EntityUid uid, ChangelingComponent comp, FakeMindShieldToggleEvent toggleEvent) => EnsureComp<FakeMindShieldComponent>(uid);
     #endregion
 
+    /// <summary>
+    /// Checks form and resource requirements before retractable-item handlers can produce equipment.
+    /// This is a preflight check; resource deduction belongs to the successful-action handler.
+    /// </summary>
     [SubscribeLocalEvent(before: [typeof(RetractableItemActionSystem)])]
     private void OnAttemptLingAction(Entity<ChangelingActionComponent> ent, ref ActionAttemptEvent ev)
     {

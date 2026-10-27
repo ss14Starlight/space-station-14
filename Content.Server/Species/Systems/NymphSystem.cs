@@ -19,11 +19,16 @@ public sealed partial class NymphSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<NymphComponent, OrganRemovedFromBodyEvent>(OnRemovedFromPart); // Starlight Edit: OrganRemovedFromBodyEvent -> OrganRemovedFromBodyEvent
+        SubscribeLocalEvent<NymphComponent, OrganRemovedFromBodyEvent>(OnRemovedFromPart);
     }
 
-    private void OnRemovedFromPart(EntityUid uid, NymphComponent comp, ref OrganRemovedFromBodyEvent args) // Starlight Edit: OrganRemovedFromBodyEvent -> OrganRemovedFromBodyEvent
+    /// <summary>
+    /// Converts a removed Diona organ into a nymph. The shared anatomical policy controls only the mind transfer;
+    /// ordinary organ removal still creates the nymph even if the former body keeps its mind.
+    /// </summary>
+    private void OnRemovedFromPart(EntityUid uid, NymphComponent comp, ref OrganRemovedFromBodyEvent args)
     {
+        // Deleting native anatomy during regeneration is not an extraction that should create another nymph.
         if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.OldBody)) // Starlight Edit: Target -> OldBody
             return;
 
@@ -37,8 +42,8 @@ public sealed partial class NymphSystem : EntitySystem
         if (HasComp<ZombieComponent>(args.OldBody)) // Zombify the new nymph if old one is a zombie // Starlight Edit: Target -> OldBody
             _zombie.ZombifyEntity(nymph);
 
-        // The brain may already own the mind, including a donor's mind in a transplanted organ.
-        // Use the same anatomical transfer policy as ordinary brains.
+        // The brain handler may already have moved the mind into this organ. Prefer it over the former body's
+        // mind, including when a transplanted organ carries a donor's mind, then use the same policy as BrainSystem.
         if (comp.TransferMind == true)
         {
             var source = _mindSystem.TryGetMind(uid, out _, out _) ? uid : args.OldBody;

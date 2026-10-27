@@ -20,8 +20,13 @@ public sealed partial class BodyPartComponent : Component
     public EntityUid? Body;
 
     /// <summary>
-    /// Body that grew this part. Attaching it elsewhere does not change its origin.
+    /// Body that created this part during initial anatomy setup or regeneration.
+    /// Unlike <see cref="Body"/>, this is preserved when the part is detached or transplanted.
     /// </summary>
+    /// <remarks>
+    /// Regeneration retains parts with a matching origin and replaces grafts or prostheses, even when their
+    /// species and prototype match. Null means no native origin was recorded.
+    /// </remarks>
     [DataField]
     public EntityUid? OriginalBody;
 

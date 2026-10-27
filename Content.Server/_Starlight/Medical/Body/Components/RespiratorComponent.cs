@@ -52,6 +52,10 @@ namespace Content.Server.Body.Components
         ///     Saturation level. Reduced by UpdateInterval each tick.
         ///     Can be thought of as 'how many seconds you have until you start suffocating' in this configuration.
         /// </summary>
+        /// <remarks>
+        /// Scheduled saturation loss is suspended while <see cref="Enabled"/> is false.
+        /// Disabling respiration preserves this value rather than refilling it.
+        /// </remarks>
         [DataField]
         public float Saturation = 5.0f;
 

@@ -82,6 +82,8 @@ public sealed partial class RespiratorSystem : EntitySystem
 
             respirator.NextUpdate += respirator.AdjustedUpdateInterval;
 
+            // Disabling respiration suspends the whole cycle, including saturation loss and
+            // suffocation damage/recovery, while retaining the current inhale/exhale phase.
             if (!respirator.Enabled || _mobState.IsDead(uid))
                 continue;
 
@@ -184,7 +186,8 @@ public sealed partial class RespiratorSystem : EntitySystem
     }
 
     /// <summary>
-    /// Returns true if the entity is above their SuffocationThreshold and alive.
+    /// Returns true when respiration is enabled, saturation is above the suffocation threshold,
+    /// and the entity is neither incapacitated nor in soft critical condition.
     /// </summary>
     public bool IsBreathing(Entity<RespiratorComponent?> ent)
     {

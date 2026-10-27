@@ -110,12 +110,17 @@ public sealed partial class ShadekinSystem : EntitySystem
         RemComp<BrighteyeComponent>(ent);
     }
 
+    /// <summary>
+    /// Records the core's first body and grants Brighteye while an undamaged core occupies an implanted slot.
+    /// Body membership also covers attaching a part that already contains the core.
+    /// </summary>
     [SubscribeLocalEvent]
     private void CoreOrganInit(Entity<OrganShadekinCoreComponent> ent, ref OrganAddedToBodyEvent args)
     {
         if (TerminatingOrDeleted(args.Body))
             return;
 
+        // Preserve the original core owner across transplants; its active effect belongs to the current body.
         ent.Comp.OrganOwner ??= args.Body;
         if (args.IsImplanted && !ent.Comp.Damaged)
             EnsureComp<BrighteyeComponent>(args.Body);

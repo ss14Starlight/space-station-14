@@ -4,6 +4,10 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._Starlight.Changeling;
 
+/// <summary>
+/// Per-use restrictions and resource costs, separate from the evolution store's purchase price.
+/// Resources are checked before an action but deducted only after its effect succeeds.
+/// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ChangelingActionComponent : Component
 {
@@ -26,6 +30,9 @@ public sealed partial class ChangelingTransformCycleEvent : InstantActionEvent {
 public sealed partial class ChangelingTransformEvent : InstantActionEvent { }
 public sealed partial class EnterStasisEvent : InstantActionEvent { }
 public sealed partial class ExitStasisEvent : InstantActionEvent { }
+/// <summary>
+/// Respiratory control uses an action without ChangelingActionComponent, allowing it at zero biomass and in lesser form.
+/// </summary>
 public sealed partial class ToggleChangelingBreathingEvent : InstantActionEvent { }
 
 #endregion

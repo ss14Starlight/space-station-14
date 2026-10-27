@@ -10,6 +10,7 @@
   tags:
     - CantBecomeRevolutionary
   components:
+  # Opt into Starlight's devour rules without changing the common ChangelingDevour defaults.
   - type: StarlightChangelingDevour
   - type: ChangelingIdentity
   - type: ChangelingTransform

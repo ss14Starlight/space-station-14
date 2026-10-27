@@ -444,6 +444,11 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         return splitSol;
     }
 
+    /// <summary>
+    /// Prepares the detached portion after removal, before the source's chemical update and return to the caller.
+    /// </summary>
+    /// <param name="source">The solution entity from which the sample was removed.</param>
+    /// <param name="sample">The detached portion; changes here must not alter the remaining source solution.</param>
     partial void AfterSolutionSplit(Entity<SolutionComponent> source, Solution sample);
 
     public Solution SplitStackSolution(Entity<SolutionComponent> soln, FixedPoint2 quantity, int stackCount)

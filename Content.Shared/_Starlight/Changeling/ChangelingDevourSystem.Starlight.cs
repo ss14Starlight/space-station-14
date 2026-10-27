@@ -15,6 +15,7 @@ public sealed partial class ChangelingDevourSystem
 {
     [Dependency] private MobThresholdSystem _mobThreshold = default!;
 
+    // Only the explicit marker enables these rules; the common component retains its ordinary defaults.
     private bool CanDevourLivingPrey(EntityUid user)
         => HasComp<StarlightChangelingDevourComponent>(user);
 
@@ -53,6 +54,7 @@ public sealed partial class ChangelingDevourSystem
     /// Grants the Starlight devour and restores it if another transformation removed
     /// the common component while leaving the opt-in component in place.
     /// </summary>
+    /// <remarks>Safe to call repeatedly; an existing marker does not imply the common action is still present.</remarks>
     public void EnsureStarlightDevour(EntityUid uid)
     {
         if (_net.IsClient)
@@ -62,6 +64,10 @@ public sealed partial class ChangelingDevourSystem
         ConfigureStarlightDevour(uid);
     }
 
+    /// <summary>
+    /// Configures the shared action and windup on the server. Consumption duration and the damage mix
+    /// remain on the common component; MapInit grants the action if the entity has not reached that stage yet.
+    /// </summary>
     private void ConfigureStarlightDevour(EntityUid uid)
     {
         // The client receives the component, action reference and timings from the server.
@@ -112,6 +118,7 @@ public sealed partial class ChangelingDevourSystem
 
     private void CleanupDevouredAnimals(Entity<StarlightChangelingDevourComponent> ent)
     {
+        // The identity system cleans humanoid links. Animals have no cloned identity, so release their links here.
         foreach (var target in ent.Comp.DevouredAnimals)
         {
             if (TryComp<ChangelingDevouredComponent>(target, out var devoured)
@@ -122,6 +129,9 @@ public sealed partial class ChangelingDevourSystem
         ent.Comp.DevouredAnimals.Clear();
     }
 
+    /// <summary>
+    /// Cancels feeding and releases prey references when the owning body loses its devour or identity components.
+    /// </summary>
     private void StopStarlightDevour(EntityUid user, StarlightChangelingDevourComponent? devour = null)
     {
         // Losing owner-only state on a client must not cancel a server-owned devour.
@@ -141,6 +151,9 @@ public sealed partial class ChangelingDevourSystem
         CleanupDevouredAnimals((user, devour));
     }
 
+    /// <summary>
+    /// Reserves one target for both do-afters so overlapping attempts cannot share damage progress.
+    /// </summary>
     private bool TryBeginStarlightDevour(EntityUid user, EntityUid target)
     {
         if (!TryComp<StarlightChangelingDevourComponent>(user, out var devour))
@@ -154,6 +167,9 @@ public sealed partial class ChangelingDevourSystem
         return true;
     }
 
+    /// <summary>
+    /// Releases the current attempt after completion, cancellation or failed startup, preserving past prey records.
+    /// </summary>
     private void ResetStarlightDevour(EntityUid user, StarlightChangelingDevourComponent? devour = null)
     {
         if (!Resolve(user, ref devour, false))
@@ -175,12 +191,21 @@ public sealed partial class ChangelingDevourSystem
             || !TryComp<ChangelingDevourComponent>(ent, out var common))
             return;
 
-        // One continuous progress bar, with damage once per second after the windup.
+        // EveryTick keeps one continuous do-after; whole seconds plus DamageProgress prevent repeated damage.
         var seconds = Math.Floor((_timing.CurTime - args.DoAfter.StartTime).TotalSeconds);
         var progress = (float) Math.Clamp(seconds / args.DoAfter.Args.Delay.TotalSeconds, 0, 1);
         ApplyLivingDevourDamage((ent, common), ent.Comp, target, progress, args.DoAfter.Args.Delay);
     }
 
+    /// <summary>
+    /// Applies only newly reached progress, preserving the configured damage mix. The dead threshold
+    /// represents maximum health; without one, the configured total is spread over the consumption duration.
+    /// </summary>
+    /// <param name="ent">The owner and shared damage configuration.</param>
+    /// <param name="devour">Tracks the fraction already processed by earlier attempts.</param>
+    /// <param name="target">The prey whose death threshold determines the damage scale.</param>
+    /// <param name="progress">Cumulative consumption progress from zero to one.</param>
+    /// <param name="duration">Consumption time used to convert progress into elapsed seconds.</param>
     private void ApplyLivingDevourDamage(Entity<ChangelingDevourComponent> ent,
         StarlightChangelingDevourComponent devour, EntityUid target, float progress, TimeSpan duration)
     {
@@ -197,6 +222,10 @@ public sealed partial class ChangelingDevourSystem
         _damageable.ChangeDamage(target, ent.Comp.DevourDamage * scale, true, true, ent.Owner);
     }
 
+    /// <summary>
+    /// Applies remaining progress, then attempts to cross the death threshold with unmodified damage if needed.
+    /// The server requires actual death before completion; the client leaves that decision to server state.
+    /// </summary>
     private bool TryFinishLivingDevour(Entity<ChangelingDevourComponent> ent,
         StarlightChangelingDevourComponent devour, EntityUid target, TimeSpan duration)
     {

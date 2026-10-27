@@ -10,6 +10,12 @@ namespace Content.Shared.Body.Systems;
 
 public partial class SharedBodySystem
 {
+    /// <summary>
+    /// Updates current body membership and notifies the organ's part and body listeners without changing its origin.
+    /// </summary>
+    /// <remarks>
+    /// <paramref name="isImplanted"/> is false for cavity storage: membership still changes, but implant effects stay inactive.
+    /// </remarks>
     private void AddOrgan(
         Entity<OrganComponent> organEnt,
         EntityUid bodyUid,
@@ -29,6 +35,13 @@ public partial class SharedBodySystem
         Dirty(organEnt, organEnt.Comp);
     }
 
+    /// <summary>
+    /// Notifies listeners of the former part and body before clearing current membership. Native origin is retained
+    /// so removing and reinstalling an organ does not make it native to another body.
+    /// </summary>
+    /// <remarks>
+    /// <paramref name="isImplanted"/> describes the former slot, distinguishing an active organ from cavity storage.
+    /// </remarks>
     private void RemoveOrgan(Entity<OrganComponent> organEnt, EntityUid parentPartUid, bool isImplanted = true)
     {
         var removedEv = new OrganRemovedEvent(parentPartUid);

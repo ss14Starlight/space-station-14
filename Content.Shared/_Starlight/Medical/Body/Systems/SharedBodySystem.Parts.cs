@@ -52,6 +52,7 @@ public partial class SharedBodySystem
         if (TryComp(insertedUid, out OrganComponent? organ))
         //Starlight start
         {
+            // Cavity contents belong to the body but must not grant the effects of an installed organ.
             AddOrgan((insertedUid, organ), ent.Comp.Body.Value, ent, slotId != GetOrganContainerId("cavity"));
             if (slotId != "body_organ_slot_cavity")
             {
@@ -81,6 +82,11 @@ public partial class SharedBodySystem
             RemoveOrgan((removedUid, organ), ent, slotId != GetOrganContainerId("cavity"));
     }
 
+    /// <summary>
+    /// Updates body membership for an intact part subtree without removing its organs from their containers.
+    /// Contained organs receive body exit and entry events so amputation, reattachment and transplantation update
+    /// persistent effects just like direct organ removal and insertion. Native origin remains unchanged.
+    /// </summary>
     private void RecursiveBodyUpdate(Entity<BodyPartComponent> ent, EntityUid? bodyUid)
     {
         ent.Comp.Body = bodyUid;

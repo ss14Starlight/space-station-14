@@ -13,6 +13,10 @@ public sealed partial class ChangelingSystem
 
     private static readonly EntProtoId ShockHandPrototype = "ChangelingShockHand";
 
+    /// <summary>
+    /// Applies the standard access breaker's effects and immunity rules through a temporary tool.
+    /// Marks the action handled only when the target accepts the hack, so failed attempts do not spend chemicals.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnOrganicEmag(Entity<ChangelingComponent> ent, ref ChangelingEmagEvent args)
     {
@@ -23,12 +27,16 @@ public sealed partial class ChangelingSystem
             || ent.Comp.Chemicals < action.ChemicalCost)
             return;
 
-        // Reuse the ordinary access breaker's effects and immunity checks.
+        // The prototype supplies both the Access emag type and AccessBreakerImmune tag.
         var tool = Spawn("AccessBreakerUnlimited", Transform(ent).Coordinates);
         args.Handled = _organicEmag.TryEmagEffect((tool, Comp<EmagComponent>(tool)), ent, args.Target);
         QueueDel(tool);
     }
 
+    /// <summary>
+    /// Grows or retracts a shock hand and records the owner and action used by hit validation and cleanup.
+    /// Retraction remains available even when the changeling can no longer grow or power the hand.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnToggleOrganicShockHand(Entity<ChangelingComponent> ent, ref ToggleChangelingShockHandEvent args)
     {
@@ -51,6 +59,9 @@ public sealed partial class ChangelingSystem
         args.Handled = true;
     }
 
+    /// <summary>
+    /// Prevents the hand's stamina effect when its original owner cannot power it or is no longer holding it.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnOrganicShockAttempt(Entity<ChangelingShockHandComponent> ent, ref StaminaDamageOnHitAttemptEvent args)
     {
@@ -58,6 +69,9 @@ public sealed partial class ChangelingSystem
             args.Cancelled = true;
     }
 
+    /// <summary>
+    /// Charges chemicals once for an eligible melee-hit event with at least one target, not once per target.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnOrganicShockHit(Entity<ChangelingShockHandComponent> ent, ref StaminaMeleeHitEvent args)
     {
@@ -65,6 +79,10 @@ public sealed partial class ChangelingSystem
             UpdateChemicals(user, user.Comp, -ent.Comp.ChemicalCost);
     }
 
+    /// <summary>
+    /// Resolves the hand's original owner and checks possession, stasis, death, biomass and chemical reserves.
+    /// Both the stamina effect and its chemical charge use this eligibility check.
+    /// </summary>
     private bool TryGetOrganicShockUser(Entity<ChangelingShockHandComponent> ent, out Entity<ChangelingComponent> user)
     {
         user = default;
@@ -77,6 +95,9 @@ public sealed partial class ChangelingSystem
         return true;
     }
 
+    /// <summary>
+    /// Clears the action toggle and this hand's equipment entry when the hand is retracted or otherwise removed.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnOrganicShockRemoved(Entity<ChangelingShockHandComponent> ent, ref ComponentShutdown args)
     {
@@ -87,6 +108,9 @@ public sealed partial class ChangelingSystem
             ling.Equipment.Remove(ShockHandPrototype.Id);
     }
 
+    /// <summary>
+    /// Adds the visible glow cue whenever a shock hand is held, even if its owner currently cannot power a strike.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnOrganicShockExamine(Entity<ChangelingComponent> ent, ref ExaminedEvent args)
     {

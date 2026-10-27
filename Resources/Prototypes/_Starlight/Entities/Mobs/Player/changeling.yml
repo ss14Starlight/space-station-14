@@ -3,6 +3,7 @@
   id: MobLingMonkey
   suffix: Do Not Map
   components:
+    # A replacement body needs the same devour policy and identity storage as the original carrier.
     - type: StarlightChangelingDevour
     - type: ChangelingIdentity
     - type: UserInterface # Ensures that lesser form has necessary UIs

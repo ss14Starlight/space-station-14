@@ -1,5 +1,6 @@
 # abilities
 
+# Keep Starlight's description local; the StarlightChangelingDevour marker selects the shared workflow's behavior.
 - type: entity
   parent: ActionChangelingDevour
   id: ActionChangelingDevourStarlight

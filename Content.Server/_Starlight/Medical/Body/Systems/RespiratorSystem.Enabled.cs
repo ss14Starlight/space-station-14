@@ -6,8 +6,16 @@ public sealed partial class RespiratorSystem
 {
     /// <summary>
     /// Suspend or resume respiration without losing the body's breathing configuration.
-    /// Disabling respiration clears suffocation warnings, but does not heal existing damage.
     /// </summary>
+    /// <param name="ent">The entity whose respirator is toggled; the component is not added if absent.</param>
+    /// <param name="enabled">Whether respiratory updates and gas exchange should run.</param>
+    /// <returns>False if the respirator cannot be resolved; true even if it already has the requested state.</returns>
+    /// <remarks>
+    /// A state change schedules the next tick one adjusted interval from now. Disabling also resets
+    /// consecutive suffocation cycles and raises <see cref="StopSuffocatingEvent"/> to clear warnings.
+    /// Neither transition heals damage, refills saturation, empties lungs, or resets the breath phase.
+    /// Repeating the current state has no side effects.
+    /// </remarks>
     public bool SetEnabled(Entity<RespiratorComponent?> ent, bool enabled)
     {
         if (!Resolve(ent, ref ent.Comp, logMissing: false))

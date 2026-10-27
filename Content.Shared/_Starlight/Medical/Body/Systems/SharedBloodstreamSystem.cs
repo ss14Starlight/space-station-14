@@ -509,6 +509,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
             return false;
         }
 
+        // The split hook prepares external blood before it enters the temporary bleed reservoir.
         var leakedBlood = SolutionContainer.SplitSolution(ent.Comp.BloodSolution.Value, amount);
 
         if (!SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodTemporarySolutionName, ref ent.Comp.TemporarySolution, out var tempSolution))
@@ -595,6 +596,8 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
             SolutionContainer.RemoveAllSolution(ent.Comp.TemporarySolution.Value);
         }
 
+        // This path combines and clears whole solutions instead of splitting them, so prepare the
+        // detached mixture explicitly before stains, wall splashes, or puddles can observe it.
         SolutionContainer.PrepareExternalSample(ent.Owner, tempSol);
 
         // Forky - Start - Clothing stains

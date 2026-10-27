@@ -215,6 +215,8 @@ namespace Content.Server.Medical.BiomassReclaimer
                 component.BloodReagents.ScaleSolution(.25f);
                 if (component.BloodReagents.Volume > 50)
                     component.BloodReagents.ScaleTo(50f);
+                // Cloning bypasses the split hook. Prepare the stored spill while the donor's
+                // appearance and bloodstream still exist; processing deletes the donor below.
                 _solution.PrepareExternalSample(toProcess, component.BloodReagents);
                 // Starlight-end
             }

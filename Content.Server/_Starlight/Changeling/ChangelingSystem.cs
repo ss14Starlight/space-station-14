@@ -63,6 +63,10 @@ using Content.Server._Starlight.Objectives.Components;
 
 namespace Content.Server._Starlight.Changeling;
 
+/// <summary>
+/// Manages Starlight changeling resources and abilities, integrating with the shared identity, action and body systems.
+/// Event subscriptions are declared on handlers so each feature can remain in its own partial file.
+/// </summary>
 public sealed partial class ChangelingSystem : EntitySystem
 {
     // this is one hell of a star wars intro text
@@ -122,6 +126,10 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private static readonly ProtoId<ReagentPrototype> BloodChangelingPrototype = "BloodChangeling";
 
+    /// <summary>
+    /// Advances chemical regeneration and biomass decay on their separate schedules.
+    /// Stasis and sustained abilities are processed only on the chemical tick to avoid charging their upkeep twice.
+    /// </summary>
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -162,6 +170,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         Dirty(uid, comp);
         _alerts.ShowAlert(uid, "ChangelingChemicals");
     }
+    /// <summary>
+    /// Applies a biomass adjustment and its low-biomass effects, updating the alert and replicated state.
+    /// Blood expelled by the deficiency effects uses the normal external-sample path and its forensic data.
+    /// </summary>
     private void UpdateBiomass(EntityUid uid, ChangelingComponent comp, float? amount = null)
     {
         comp.Biomass += amount ?? 0;
@@ -207,6 +219,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
         else comp.BonusChemicalRegen = 0f;
     }
+    /// <summary>
+    /// Applies sustained-ability costs and disables abilities whose requirements are no longer met.
+    /// The caller has already deducted the current tick's stasis upkeep.
+    /// </summary>
     private void UpdateAbilities(EntityUid uid, ChangelingComponent comp)
     {
         _speed.RefreshMovementSpeedModifiers(uid);
@@ -400,6 +416,11 @@ public sealed partial class ChangelingSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Carries changeling progression and breathing state to a replacement body, sharing the resource pool so
+    /// a successful action can charge its original performer after polymorphing without losing the cost.
+    /// </summary>
+    /// <returns>The source component; both bodies share its resource pool and stored DNA collection.</returns>
     private ChangelingComponent? CopyChangelingComponent(EntityUid target, ChangelingComponent comp)
     {
         var newComp = EnsureComp<ChangelingComponent>(target);
@@ -555,6 +576,10 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     #region Event Handlers
 
+    /// <summary>
+    /// Installs Starlight's devour policy, identity storage and base actions, and applies the body's breathing state.
+    /// Internal blood remains BloodChangeling with forensic data; extracted samples are normalized by ChangelingBloodSystem.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnStartup(EntityUid uid, ChangelingComponent comp, ref ComponentStartup args)
     {
@@ -577,8 +602,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         UpdateChemicals(uid, comp, 0);
         UpdateBiomass(uid, comp, 0);
 
-        // make their blood unreal
-        // Starlight edit start - remove deprecated method
+        // Starlight edit start - Keep forensic data on internal blood so extracted samples retain the body's identity.
         if (TryComp<BloodstreamComponent>(uid, out var bloodstream) &&
             bloodstream.BloodReferenceSolution is { } originalBlood)
         {
@@ -611,6 +635,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         damageSpec.ClampMax(200); // we never die. UNLESS??
     }
 
+    /// <summary>
+    /// Removes grown equipment and re-enables respiratory processing when the body loses its changeling component.
+    /// A body that no longer has the ability must not retain disabled breathing.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnComponentRemove(Entity<ChangelingComponent> ent, ref ComponentRemove args)
     {

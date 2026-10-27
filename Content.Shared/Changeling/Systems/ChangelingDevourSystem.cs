@@ -22,6 +22,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Changeling.Systems;
 
+/// <summary>
+/// Runs the shared windup, consumption and identity capture sequence. The Starlight partial
+/// supplies opt-in target rules and damage handling without a second action or do-after pipeline.
+/// </summary>
 public sealed partial class ChangelingDevourSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
@@ -57,7 +61,8 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
     private void OnShutdown(Entity<ChangelingDevourComponent> ent, ref ComponentShutdown args)
     {
         StopStarlightDevour(ent); // Starlight
-        // Owner-only components can disappear on clients while their server-owned actions remain granted.
+        // Owner-only components can disappear on clients after ghosting while the server keeps their actions.
+        // Client removal would clear AttachedEntity without a server change to restore it on return.
         if (_net.IsServer && ent.Comp.ChangelingDevourActionEntity != null)
         {
             _actionsSystem.RemoveAction(ent.Owner, ent.Comp.ChangelingDevourActionEntity);
@@ -166,7 +171,8 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             return;
         }
 
-        // Damage first before the CanDevour check to make sure they don't gib in-between and to kill them again in case they somehow revived.
+        // Finish damage before rechecking eligibility or granting rewards: living prey must be killed,
+        // and damage may have removed a target that was valid when consumption started.
         if (!ApplyDevourCompletionDamage(ent, target, args.DoAfter.Args.Delay)) // Starlight
         {
             ResetStarlightDevour(ent);
@@ -216,6 +222,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
     /// <summary>
     /// Has the given victim been devoured by the given changeling before?
+    /// Includes the Starlight animal records, which have no stored humanoid identity.
     /// </summary>
     public bool HasDevoured(Entity<ChangelingIdentityComponent?> changeling, EntityUid devoured)
     {

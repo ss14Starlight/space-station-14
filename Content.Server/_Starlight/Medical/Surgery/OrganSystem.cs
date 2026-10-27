@@ -37,6 +37,14 @@ using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server._Starlight.Medical.Surgery;
 
+/// <summary>
+/// Applies organ effects to the body currently containing an implanted organ.
+/// </summary>
+/// <remarks>
+/// Persistent effects follow body membership, including whole-limb removal and regeneration. Cavity storage does
+/// not activate them. Removal notifications also run during body deletion, so handlers avoid mutating a terminating body.
+/// Damage exchange remains tied to surgery events rather than every body membership change.
+/// </remarks>
 public sealed partial class OrganSystem : EntitySystem
 {
 
@@ -58,6 +66,8 @@ public sealed partial class OrganSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        // Body events cover direct extraction and organs still inside a detached limb. Listening to surgery events
+        // as well would apply the same persistent effect twice when an operation already changed the container.
         SubscribeLocalEvent<FunctionalOrganComponent, OrganAddedToBodyEvent>(OnFunctionalOrganImplanted);
         SubscribeLocalEvent<FunctionalOrganComponent, OrganRemovedFromBodyEvent>(OnFunctionalOrganExtracted);
 
@@ -82,6 +92,7 @@ public sealed partial class OrganSystem : EntitySystem
         SubscribeLocalEvent<AbductorOrganComponent, OrganAddedToBodyEvent>(OnAbductorOrganImplanted);
         SubscribeLocalEvent<AbductorOrganComponent, OrganRemovedFromBodyEvent>(OnAbductorOrganExtracted);
 
+        // These transfer damage for the operation itself; they are not persistent effects of body membership.
         SubscribeLocalEvent<DamageableComponent, SurgeryOrganImplantationCompleted>(OnOrganImplanted);
         SubscribeLocalEvent<DamageableComponent, SurgeryOrganExtracted>(OnOrganExtracted);
 
@@ -93,6 +104,10 @@ public sealed partial class OrganSystem : EntitySystem
 
     //
 
+    /// <summary>
+    /// Installs fresh copies of missing components and records only those supplied by this organ for later removal.
+    /// Existing body components are left unclaimed by the implant.
+    /// </summary>
     private void OnFunctionalOrganImplanted(Entity<FunctionalOrganComponent> ent, ref OrganAddedToBodyEvent args)
     {
         if (!args.IsImplanted || TerminatingOrDeleted(args.Body))
@@ -113,6 +128,9 @@ public sealed partial class OrganSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Removes components installed by this organ and clears its installation record so it can be implanted again.
+    /// </summary>
     private void OnFunctionalOrganExtracted(Entity<FunctionalOrganComponent> ent, ref OrganRemovedFromBodyEvent args)
     {
         if (!args.IsImplanted)
@@ -120,6 +138,7 @@ public sealed partial class OrganSystem : EntitySystem
 
         if (TerminatingOrDeleted(args.OldBody))
         {
+            // The body is already being dismantled; only reset the surviving organ's installation bookkeeping.
             _surgery.ClearInstalledComponents(ent.Owner);
             return;
         }
@@ -145,7 +164,8 @@ public sealed partial class OrganSystem : EntitySystem
             case IntrinsicTranslatorComponent _:
                 _language.UpdateEntityLanguages(ent);
                 break;
-            case EncryptionKeyHolderComponent encrypt: //Move encryption keys between implant and body
+            // Keep the keys with the implant when its granted holder is removed from the body.
+            case EncryptionKeyHolderComponent encrypt:
                 if (implant != null)
                     if (TryComp(implant, out EncryptionKeyHolderComponent? implantKeyHolder))
                         if (TryComp(ent, out EncryptionKeyHolderComponent? bodyKeyHolder))

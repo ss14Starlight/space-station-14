@@ -101,6 +101,10 @@ public sealed partial class ShadekinSystem
             RemCompDeferred<MindShieldComponent>(uid);
     }
 
+    /// <summary>
+    /// Removes an implanted core's Brighteye effect when it leaves the body, including whole-part detachment.
+    /// Cavity storage never grants the effect, and a terminating body must not be modified during its teardown.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnCoreOrganExtracted(Entity<OrganShadekinCoreComponent> ent, ref OrganRemovedFromBodyEvent args)
     {

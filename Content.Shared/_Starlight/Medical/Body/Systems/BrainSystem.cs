@@ -23,6 +23,10 @@ public sealed partial class BrainSystem : EntitySystem
         SubscribeLocalEvent<BrainComponent, PointAttemptEvent>(OnPointAttempt);
     }
 
+    /// <summary>
+    /// Moves a mind between a brain and its body after checking the shared anatomical transfer policy.
+    /// Check before creating mind containers or changing ghost behavior so a rejected transfer has no setup effects.
+    /// </summary>
     private void HandleMind(EntityUid newEntity, EntityUid oldEntity)
     {
         if (!_body.CanTransferMindOnOrganChange(oldEntity, newEntity))
