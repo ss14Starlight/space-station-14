@@ -75,7 +75,7 @@ public abstract partial class SharedHandsSystem
         if (!Resolve(uid, ref handsComp, false))
             return false;
 
-        handId ??= GetActiveHand((uid, handsComp));
+        handId ??= GetActiveHand((uid, handsComp)); // Starlight: controller-selected hand.
 
         if (handId == null)
             return false;
@@ -178,8 +178,10 @@ public abstract partial class SharedHandsSystem
     /// </summary>
     public bool CanPickupToHand(EntityUid uid, EntityUid entity, string handId, bool checkActionBlocker = true, bool showPopup = false, HandsComponent? handsComp = null, ItemComponent? item = null)
     {
-        if (!EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>().AllowsHand(uid, handId))
+        // Starlight start
+        if (!AllowsControlHand(uid, handId))
             return false;
+        // Starlight end
         if (!Resolve(uid, ref handsComp, false))
             return false;
 

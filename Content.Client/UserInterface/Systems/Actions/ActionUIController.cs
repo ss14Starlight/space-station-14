@@ -132,7 +132,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             .Bind(ContentKeyFunctions.OpenActionsMenu,
                 InputCmdHandler.FromDelegate(_ => ToggleWindow()))
             .BindBefore(EngineKeyFunctions.Use, new PointerInputCmdHandler(TargetingOnUse, outsidePrediction: true),
-                    typeof(ConstructionSystem), typeof(DragDropSystem), typeof(Content.Client._Starlight.BodyControl.BodyControlSystem))
+                    typeof(ConstructionSystem), typeof(DragDropSystem), typeof(Content.Client._Starlight.BodyControl.BodyControlSystem)) // Starlight
                 .BindBefore(EngineKeyFunctions.UIRightClick, new PointerInputCmdHandler(TargetingCancel, outsidePrediction: true))
             .Register<ActionUIController>();
     }
@@ -158,7 +158,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         if (!_timing.IsFirstTimePredicted || _actionsSystem == null || SelectingTargetFor is not { } actionId)
             return false;
 
-        if (_actionsSystem?.UiEntity is not { } user)
+        if (_actionsSystem?.UiEntity is not { } user) // Starlight
             return false;
 
         if (!EntityManager.TryGetComponent<ActionsComponent>(user, out var comp))
@@ -236,7 +236,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         {
             return;
         }
-        if (!_actionsSystem.CheckControlActionAccess(action))
+        if (!_actionsSystem.CheckControlActionAccess(action)) // Starlight
             return;
 
         // TODO: probably should have a clientside event raised for flexibility
@@ -333,8 +333,8 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         return filter switch
         {
             Filters.Enabled => comp.Enabled,
-            Filters.Item => comp.Container != null && comp.Container != _actionsSystem?.UiEntity,
-            Filters.Innate => comp.Container == null || comp.Container == _actionsSystem?.UiEntity,
+            Filters.Item => comp.Container != null && comp.Container != _actionsSystem?.UiEntity, // Starlight
+            Filters.Innate => comp.Container == null || comp.Container == _actionsSystem?.UiEntity, // Starlight
             Filters.Instant => EntityManager.HasComponent<InstantActionComponent>(uid),
             Filters.Targeted => EntityManager.HasComponent<TargetActionComponent>(uid),
             _ => throw new ArgumentOutOfRangeException(nameof(filter), filter, null)
@@ -401,7 +401,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         if (_actionsSystem == null)
             return;
 
-        if (_actionsSystem?.UiEntity is not { } player)
+        if (_actionsSystem?.UiEntity is not { } player) // Starlight
             return;
 
         var search = _window.SearchBar.Text;
@@ -599,7 +599,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             return;
         }
 
-        if (_actionsSystem != null && !_actionsSystem.CheckControlActionAccess(action))
+        if (_actionsSystem != null && !_actionsSystem.CheckControlActionAccess(action)) // Starlight
             return;
         // for target actions, we go into "select target" mode, we don't
         // message the server until we actually pick our target.

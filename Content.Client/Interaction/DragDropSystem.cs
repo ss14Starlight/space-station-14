@@ -1,6 +1,6 @@
 using System.Numerics;
 using Content.Client.CombatMode;
-using Content.Client._Starlight.BodyControl;
+using Content.Client._Starlight.BodyControl; // Starlight
 using Content.Client.Gameplay;
 using Content.Client.Graphics;
 using Content.Client.Outline;
@@ -37,7 +37,6 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
     [Dependency] private IStateManager _stateManager = default!;
     [Dependency] private IInputManager _inputManager = default!;
     [Dependency] private IEyeManager _eyeManager = default!;
-    [Dependency] private BodyControlViewSystem _bodyView = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IConfigurationManager _cfgMan = default!;
     [Dependency] private InteractionOutlineSystem _outline = default!;
@@ -117,7 +116,7 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
         _dropTargetOutOfRangeShader = _prototypeManager.Index(ShaderDropTargetOutOfRange).Instance();
         // needs to fire on mouseup and mousedown so we can detect a drag / drop
         CommandBinds.Builder
-            .BindBefore(EngineKeyFunctions.Use, new PointerInputCmdHandler(OnUse, false, true), new[] { typeof(SharedInteractionSystem), typeof(BodyControlSystem) })
+            .BindBefore(EngineKeyFunctions.Use, new PointerInputCmdHandler(OnUse, false, true), new[] { typeof(SharedInteractionSystem), typeof(BodyControlSystem) }) // Starlight
             .Register<DragDropSystem>();
     }
 
@@ -179,7 +178,7 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
 
     private bool OnUseMouseDown(in PointerInputCmdHandler.PointerInputCmdArgs args)
     {
-        if (_bodyView.Entity is not { Valid: true } dragger ||
+        if (DragUiEntity is not { Valid: true } dragger || // Starlight
             _combatMode.IsInCombatMode())
         {
             return false;
@@ -275,7 +274,7 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
             return false;
         }
 
-        var player = _bodyView.Entity;
+        var player = DragUiEntity; // Starlight
 
         // still in range of the thing we are dragging?
         if (player == null || !_interactionSystem.InRangeUnobstructed(player.Value, _draggedEntity.Value))
@@ -352,7 +351,7 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
             return false;
         }
 
-        var localPlayer = _bodyView.Entity;
+        var localPlayer = DragUiEntity; // Starlight
 
         if (localPlayer == null || !Exists(_draggedEntity))
         {
@@ -416,7 +415,7 @@ public sealed partial class DragDropSystem : SharedDragDropSystem
             return;
         }
 
-        var user = _bodyView.Entity;
+        var user = DragUiEntity; // Starlight
 
         if (user == null)
             return;

@@ -151,8 +151,6 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             RemCompDeferred(uid, active);
     }
 
-    protected virtual bool ShouldUpdateDoAfter(DoAfter doAfter) => true;
-
     private bool TryAttemptEvent(DoAfter doAfter)
     {
         var args = doAfter.Args;
@@ -285,19 +283,16 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
             // If an item was in the user's hand to begin with,
             // check if the user is no longer holding the item.
-            if (args.HandController is { } controller
-                && !EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>()
-                    .IsDoAfterHandValid(args.User, controller, doAfter.InitialHand, args.BreakOnHandChange))
+            // Starlight start
+            if (!IsDoAfterControllerValid(doAfter))
                 return true;
+            // Starlight end
 
-            if (args.BreakOnDropItem && doAfter.InitialItem != null
-                && (args.HandController != null
-                    ? _hands.GetHeldItem((args.User, hands), doAfter.InitialHand) != doAfter.InitialItem
-                    : !_hands.IsHolding((args.User, hands), doAfter.InitialItem)))
+            if (args.BreakOnDropItem && doAfter.InitialItem != null && !IsDoAfterItemHeld(doAfter, hands)) // Starlight
                 return true;
 
             // If the user changes which hand is active at all, interrupt the do-after
-            if (args.HandController == null && args.BreakOnHandChange && hands.ActiveHandId != doAfter.InitialHand)
+            if (args.BreakOnHandChange && HasDoAfterHandChanged(doAfter, hands)) // Starlight
                 return true;
         }
 

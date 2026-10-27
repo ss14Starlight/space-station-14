@@ -80,7 +80,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         if (!Timing.IsFirstTimePredicted)
             return;
 
-        var entityNull = EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity;
+        var entityNull = EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity; // Starlight
 
         if (entityNull == null)
             return;

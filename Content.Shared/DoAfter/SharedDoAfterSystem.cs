@@ -210,13 +210,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             return false;
         }
 
-        // Starlight: retain the explicit controller even after its synchronous interaction returns.
-        if (EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>()
-            .TryGetContext(args.User, out var control))
-        {
-            args.ControlHand = control.Hand;
-            args.HandController = GetNetEntity(control.Controller);
-        }
+        CaptureDoAfterController(args); // Starlight
 
         // Duplicate blocking & cancellation.
         if (!ProcessDuplicates(args, comp))
@@ -249,13 +243,13 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
         // For this we need to stay on the same hand slot and need the same item in that hand slot
         // (or if there is no item there we need to keep it free).
-        if (args.NeedHand && (args.BreakOnHandChange || args.BreakOnDropItem || args.HandController != null))
+        if (args.NeedHand && (args.BreakOnHandChange || args.BreakOnDropItem || HasDoAfterController(args))) // Starlight
         {
             if (!TryComp(args.User, out HandsComponent? handsComponent))
                 return false;
 
-            doAfter.InitialHand = args.HandController != null ? args.ControlHand : handsComponent.ActiveHandId;
-            doAfter.InitialItem = _hands.GetHeldItem((args.User, handsComponent), doAfter.InitialHand);
+            doAfter.InitialHand = GetDoAfterHand(args, handsComponent.ActiveHandId); // Starlight
+            doAfter.InitialItem = _hands.GetHeldItem((args.User, handsComponent), doAfter.InitialHand); // Starlight
         }
 
         doAfter.NetInitialItem = GetNetEntity(doAfter.InitialItem);

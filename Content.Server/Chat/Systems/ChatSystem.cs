@@ -1210,13 +1210,6 @@ public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Di
 }
 
 // Starlight Start
-public sealed class BeforeInGameICMessageEvent(EntityUid source, string message) : EntityEventArgs
-{
-    public EntityUid Source = source;
-    public readonly string Message = message;
-    public bool Handled;
-}
-
 /// <summary>
 ///     Should entity be exempt from crit LOOC restrictions.
 /// </summary>

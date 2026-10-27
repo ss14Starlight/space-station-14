@@ -51,7 +51,7 @@ public sealed partial class MindCollectiveUiComponent : Component
     public override bool SendOnlyToOwner => true;
 }
 
-public sealed partial class OpenMindCollectiveEvent : InstantActionEvent;
+public sealed partial class OpenMindCollectiveEvent : InstantActionEvent, IBodyControlPersonalAction;
 
 [Serializable, NetSerializable]
 public enum MindCollectiveUiKey : byte { Key }

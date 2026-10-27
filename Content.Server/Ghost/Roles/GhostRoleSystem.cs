@@ -978,14 +978,6 @@ public sealed partial class GhostRoleSystem : EntitySystem
 
         SetMode(entity.Owner, ghostRoleProto, ghostRoleProto.Name, entity.Comp);
     }
-    #region Starlight
-    private bool CanRequestGhostRole(EntityUid role, ICommonSession player)
-    {
-        var attempt = new GhostRoleRequestAttemptEvent(player);
-        RaiseLocalEvent(role, ref attempt);
-        return !attempt.Cancelled;
-    }
-    #endregion
 
     # region Starlight
     // Used for some antag selection stuff to prevent extra antags from rolling

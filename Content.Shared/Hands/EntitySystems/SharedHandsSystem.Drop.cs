@@ -97,7 +97,7 @@ public abstract partial class SharedHandsSystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        var active = GetActiveHand(ent);
+        var active = GetActiveHand(ent); // Starlight: controller-selected hand.
         if (active == null)
             return false;
 

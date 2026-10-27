@@ -3,6 +3,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Radio;
+using Content.Server._Starlight.BodyControl;
 using Content.Server._Starlight.Language;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Shared._Starlight.Language.Events;
@@ -21,7 +22,7 @@ public sealed partial class MindCollectiveSystem
     [Dependency] private IAdminLogManager _collectiveLog = default!;
     [Dependency] private LanguageSystem _collectiveLanguage = default!;
 
-    [SubscribeLocalEvent]
+    [SubscribeLocalEvent(after: [typeof(BodyControlSystem)])]
     private void OnCollectiveMessage(BeforeInGameICMessageEvent args)
     {
         var observer = HasComp<MindCollectiveObserverComponent>(args.Source);

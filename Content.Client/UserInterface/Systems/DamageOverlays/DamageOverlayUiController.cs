@@ -31,17 +31,7 @@ public sealed partial class DamageOverlayUiController : UIController
         SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<MobThresholdChecked>(OnThresholdCheck);
-        SubscribeLocalEvent<Content.Client._Starlight.BodyControl.BodyControlViewChangedEvent>(OnControlViewChanged);
-    }
-
-    private void OnControlViewChanged(Content.Client._Starlight.BodyControl.BodyControlViewChangedEvent args)
-    {
-        _overlayManager.RemoveOverlay(_overlay);
-        ClearOverlay();
-        if (args.Current is not { } body || !EntityManager.TryGetComponent<MobStateComponent>(body, out var state))
-            return;
-        UpdateOverlays(body, state);
-        _overlayManager.AddOverlay(_overlay);
+        InitializeBodyControlView(); // Starlight
     }
 
     private void OnPlayerAttach(LocalPlayerAttachedEvent args)
@@ -62,7 +52,7 @@ public sealed partial class DamageOverlayUiController : UIController
 
     private void OnMobStateChanged(MobStateChangedEvent args)
     {
-        if (args.Target != EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity)
+        if (args.Target != DamageUiEntity) // Starlight
             return;
 
         UpdateOverlays(args.Target, args.Component);
@@ -71,7 +61,7 @@ public sealed partial class DamageOverlayUiController : UIController
     private void OnThresholdCheck(ref MobThresholdChecked args)
     {
 
-        if (args.Target != EntityManager.System<Content.Client._Starlight.BodyControl.BodyControlViewSystem>().Entity)
+        if (args.Target != DamageUiEntity) // Starlight
             return;
         UpdateOverlays(args.Target, args.MobState, args.Damageable, args.Threshold);
     }

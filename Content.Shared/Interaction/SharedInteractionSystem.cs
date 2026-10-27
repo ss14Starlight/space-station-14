@@ -1,6 +1,5 @@
 ﻿using Content.Shared._Starlight.Light;
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared._Starlight.BodyControl;
 using System.Linq;
 using Content.Shared._ST.Interaction;
 using Content.Shared._FarHorizons.Util;
@@ -173,12 +172,7 @@ namespace Content.Shared.Interaction
 
             var slottedPAI = IsSlottedPAI(ev.Actor, ev.Target);  // Starlight-edit: PAI's can be slotted into and use console BUIs.
 
-            // A mirrored interface validates the body while retaining the real message sender.
-            var interactionActor = ev.Actor;
-            if (TryComp<BodyControlSourceComponent>(ev.Actor, out var control) && !control.ExternallyDriven
-                && control.Access.FullControl && control.Body != ev.Actor && !TerminatingOrDeleted(control.Body)
-                && _ui.IsUiOpen(ent.AsNullable(), ev.UiKey, ev.Actor))
-                interactionActor = control.Body;
+            var interactionActor = GetControlledUiActor(ent, ev); // Starlight
 
             if (!_actionBlockerSystem.CanInteract(interactionActor, ev.Target) && !slottedPAI) // Starlight-edit: PAI's can be slotted into and use console BUIs.
             {
@@ -234,7 +228,7 @@ namespace Content.Shared.Interaction
                 return;
             }
 
-            if (aUiComp.RequiresComplex && !_actionBlockerSystem.CanComplexInteract(interactionActor) && !slottedPAI)
+            if (aUiComp.RequiresComplex && !_actionBlockerSystem.CanComplexInteract(interactionActor) && !slottedPAI) // Starlight
                 ev.Cancel();
         }
 

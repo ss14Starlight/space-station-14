@@ -41,8 +41,8 @@ namespace Content.Server.Verbs
                 return;
             }
 
-            if (EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>()
-                .WithController(attached, null, false, () => HandleVerbRequest(args, eventArgs)))
+            // Starlight - preserve the controller's hand while resolving the physical verb user.
+            if (WithControlledVerbRequest(attached, args, eventArgs))
                 return;
 
             // We do not verify that the user has access to the requested entity. The individual verbs should check

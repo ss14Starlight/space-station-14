@@ -15,7 +15,7 @@ public sealed partial class AlertsComponent : Component
     [ViewVariables]
     public Dictionary<AlertKey, AlertState> Alerts = new();
 
-    public override bool SessionSpecific => true;
+    public override bool SessionSpecific => true; // Starlight: include authorized body controllers.
 }
 
 [Serializable, NetSerializable]

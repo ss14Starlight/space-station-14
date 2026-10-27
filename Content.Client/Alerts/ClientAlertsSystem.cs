@@ -1,4 +1,3 @@
-using Content.Client._Starlight.BodyControl;
 using System.Linq;
 using Content.Shared.Alert;
 using JetBrains.Annotations;
@@ -14,7 +13,6 @@ public sealed partial class ClientAlertsSystem : AlertsSystem
 {
     public AlertOrderPrototype? AlertOrder { get; set; }
 
-    [Dependency] private BodyControlViewSystem _bodyView = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IUserInterfaceManager _ui = default!;
 
@@ -48,7 +46,7 @@ public sealed partial class ClientAlertsSystem : AlertsSystem
     {
         get
         {
-            var ent = _bodyView.Entity;
+            var ent = AlertsUiEntity; // Starlight
             return ent is not null
                 ? GetActiveAlerts(ent.Value)
                 : null;
@@ -93,13 +91,13 @@ public sealed partial class ClientAlertsSystem : AlertsSystem
 
     private void UpdateHud(Entity<AlertsComponent> entity)
     {
-        if (_bodyView.Entity == entity.Owner)
+        if (AlertsUiEntity == entity.Owner) // Starlight
             SyncAlerts?.Invoke(this, entity.Comp.Alerts);
     }
 
     private void OnPlayerAttached(EntityUid uid, AlertsComponent component, LocalPlayerAttachedEvent args)
     {
-        if (_bodyView.Entity != uid)
+        if (AlertsUiEntity != uid) // Starlight
             return;
 
         SyncAlerts?.Invoke(this, component.Alerts);
@@ -109,7 +107,7 @@ public sealed partial class ClientAlertsSystem : AlertsSystem
     {
         base.HandleComponentShutdown(uid, component, args);
 
-        if (_bodyView.Entity != uid)
+        if (AlertsUiEntity != uid) // Starlight
             return;
 
         ClearAlerts?.Invoke(this, EventArgs.Empty);
@@ -122,17 +120,8 @@ public sealed partial class ClientAlertsSystem : AlertsSystem
 
     public void AlertClicked(ProtoId<AlertPrototype> alertType)
     {
-        if (_bodyView.Send(new Content.Shared._Starlight.BodyControl.BodyControlCommandEvent(
-                Content.Shared._Starlight.BodyControl.BodyControlCommand.Alert, slot: alertType.Id)))
+        if (TryControlAlert(alertType)) // Starlight
             return;
         RaisePredictiveEvent(new ClickAlertEvent(alertType));
-    }
-
-    [SubscribeLocalEvent]
-    private void OnControlViewChanged(BodyControlViewChangedEvent args)
-    {
-        ClearAlerts?.Invoke(this, EventArgs.Empty);
-        if (ActiveAlerts is { } alerts)
-            SyncAlerts?.Invoke(this, alerts);
     }
 }

@@ -998,7 +998,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private void OnRemoteUiMessageAttempt(BoundUserInterfaceMessageAttempt args)
     {
         if (args.Message is not CloseBoundInterfaceMessage
-            && args.UiKey is not Content.Shared._Starlight.MindCollective.MindCollectiveUiKey
+            && !IsPersonalControlInterface(args)
             && !CheckControlPermission(args.Actor, "body.inventory"))
         {
             args.Cancel();

@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Starlight.BodyControl;
 using Content.Shared._Starlight.BodyControl;
 using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared.UserInterface;
@@ -39,6 +40,13 @@ public sealed partial class RemoteControlConsoleSystem
     private bool IsCooperativeController(EntityUid actor)
         => TryComp<BodyControlSourceComponent>(actor, out var source) && !source.ExternallyDriven
            && source.Body != actor;
+
+    private bool IsPersonalControlInterface(BoundUserInterfaceMessageAttempt args)
+    {
+        var attempt = new BodyControlPersonalInterfaceEvent(args.Actor, args.Target, args.UiKey);
+        RaiseLocalEvent(attempt);
+        return attempt.Personal;
+    }
 
     private bool CheckControlPermission(EntityUid actor, string permission, bool notify = true)
     {

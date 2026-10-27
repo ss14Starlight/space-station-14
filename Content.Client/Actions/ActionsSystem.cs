@@ -1,9 +1,5 @@
 using System.IO;
 using System.Linq;
-using Content.Client._Starlight.BodyControl;
-using Content.Shared._Starlight.BodyControl;
-using Content.Shared._Starlight.MindCollective;
-using Content.Shared.CombatMode;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Chat.Prototypes;
@@ -17,7 +13,6 @@ using JetBrains.Annotations;
 using Robust.Client.Player;
 using Robust.Shared.ContentPack;
 using Robust.Shared.GameStates;
-using Robust.Shared.Map;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -38,9 +33,6 @@ namespace Content.Client.Actions
 
         [Dependency] private SharedChargesSystem _sharedCharges = default!;
         [Dependency] private IPlayerManager _playerManager = default!;
-        [Dependency] private BodyControlViewSystem _bodyView = default!;
-
-        public EntityUid? UiEntity => _bodyView.Entity;
         [Dependency] private IPrototypeManager _proto = default!;
         [Dependency] private IResourceManager _resources = default!;
         [Dependency] private MetaDataSystem _metaData = default!;
@@ -84,7 +76,7 @@ namespace Content.Client.Actions
             // TODO: Decouple this.
             ent.Comp.IconColor = _sharedCharges.GetCurrentCharges(ent.Owner) == 0 ? ent.Comp.DisabledIconColor : ent.Comp.OriginalIconColor;
             base.UpdateAction(ent);
-            if (_bodyView.Entity != ent.Comp.AttachedEntity && _playerManager.LocalEntity != ent.Comp.AttachedEntity)
+            if (!IsUiEntity(ent.Comp.AttachedEntity)) // Starlight
                 return;
 
             ActionsUpdated?.Invoke();
@@ -118,7 +110,7 @@ namespace Content.Client.Actions
                     _added.Add(action);
             }
 
-            if (_bodyView.Entity != uid && _playerManager.LocalEntity != uid)
+            if (!IsUiEntity(uid)) // Starlight
                 return;
 
             foreach (var action in _removed)
@@ -130,7 +122,7 @@ namespace Content.Client.Actions
 
             foreach (var action in _added)
             {
-                if (IsUiAction(action))
+                if (IsUiAction(action)) // Starlight
                     OnActionAdded?.Invoke(action);
             }
 
@@ -156,7 +148,7 @@ namespace Content.Client.Actions
 
         protected override void ActionAdded(Entity<ActionsComponent> performer, Entity<ActionComponent> action)
         {
-            if (!IsUiAction(action))
+            if (!IsUiAction(action)) // Starlight
                 return;
 
             OnActionAdded?.Invoke(action);
@@ -165,7 +157,7 @@ namespace Content.Client.Actions
 
         protected override void ActionRemoved(Entity<ActionsComponent> performer, Entity<ActionComponent> action)
         {
-            if (_bodyView.Entity != performer.Owner && _playerManager.LocalEntity != performer.Owner)
+            if (!IsUiEntity(performer.Owner)) // Starlight
                 return;
 
             OnActionRemoved?.Invoke(action);
@@ -174,54 +166,19 @@ namespace Content.Client.Actions
 
         public IEnumerable<Entity<ActionComponent>> GetClientActions()
         {
-            if (_bodyView.Entity is not { } user)
+            if (UiEntity is not { } user) // Starlight
                 return Enumerable.Empty<Entity<ActionComponent>>();
 
             // Starlight - Filter disallowed vocal emote actions from the quick menu.
-            var actions = GetActions(user).Where(IsUiAction);
-            if (_playerManager.LocalEntity is { } actor && actor != user)
-                actions = actions.Concat(GetActions(actor).Where(action => GetEvent(action) is OpenMindCollectiveEvent));
-            return actions.Where(action => ShouldShowEmoteAction(user, action));
+            return GetUiActions(user).Where(action => ShouldShowEmoteAction(user, action));
         }
-
-        private bool IsUiAction(Entity<ActionComponent> action)
-            => action.Comp.AttachedEntity == _bodyView.Entity
-               && (GetEvent(action) is not OpenMindCollectiveEvent || _bodyView.Entity == _playerManager.LocalEntity)
-               || action.Comp.AttachedEntity == _playerManager.LocalEntity && GetEvent(action) is OpenMindCollectiveEvent;
-
-        [SubscribeLocalEvent]
-        private void OnControlViewChanged(BodyControlViewChangedEvent args)
-        {
-            UnlinkAllActions();
-            LinkAllActions();
-        }
-
-        public bool CheckControlActionAccess(Entity<ActionComponent> action)
-        {
-            if (!_bodyView.TryGetSource(out _, out var source) || action.Comp.AttachedEntity != source.Body
-                || GetEvent(action) is OpenMindCollectiveEvent)
-                return true;
-            var permitted = GetEvent(action) is ToggleCombatActionEvent ? source.Access.Allows("body.interact")
-                : source.Access.Allows("body.actions");
-            if (permitted && (GetEvent(action) is ToggleCombatActionEvent || source.Access.FullControl || source.Access.Actions == null
-                || MetaData(action).EntityPrototype is { } prototype && source.Access.Actions.Contains(prototype.ID)))
-                return true;
-            _bodyView.Send(new BodyControlCommandEvent(BodyControlCommand.Action, action: GetNetEntity(action)));
-            return false;
-        }
-
-        private bool SendControlledAction(Entity<ActionComponent> action, EntityUid? target = null, NetCoordinates? coordinates = null)
-            => _bodyView.TryGetSource(out _, out var source) && action.Comp.AttachedEntity == source.Body
-               && GetEvent(action) is not OpenMindCollectiveEvent
-               && _bodyView.Send(new BodyControlCommandEvent(BodyControlCommand.Action,
-                   target: GetNetEntity(target), coordinates: coordinates, action: GetNetEntity(action)));
 
         #region Starlight
 
         [SubscribeLocalEvent]
         private void OnSpeechAfterHandleState(Entity<SpeechComponent> ent, ref AfterAutoHandleStateEvent args)
         {
-            if (_bodyView.Entity != ent.Owner)
+            if (UiEntity != ent.Owner)
                 return;
 
             ActionsUpdated?.Invoke();
@@ -283,7 +240,7 @@ namespace Content.Client.Actions
 
         public void LinkAllActions(ActionsComponent? actions = null)
         {
-            if (_bodyView.Entity is not { } user ||
+            if (UiEntity is not { } user || // Starlight
                 !Resolve(user, ref actions, false) && !TryComp(_playerManager.LocalEntity, out actions))
             {
                 return;
@@ -300,14 +257,7 @@ namespace Content.Client.Actions
 
         public void TriggerAction(Entity<ActionComponent> action)
         {
-            if (action.Comp.ClientExclusive && _bodyView.TryGetSource(out _, out var source)
-                && action.Comp.AttachedEntity == source.Body)
-            {
-                if (CheckControlActionAccess(action))
-                    PerformAction(source.Body, action);
-                return;
-            }
-            if (SendControlledAction(action))
+            if (TryTriggerControlledAction(action)) // Starlight
                 return;
             if (_playerManager.LocalEntity is not { } user)
                 return;
@@ -458,7 +408,7 @@ namespace Content.Client.Actions
 
                 PerformAction((user, user.Comp), (uid, action));
             }
-            else if (!SendControlledAction((uid, action), targetEnt, GetNetCoordinates(coords)))
+            else if (!SendControlledAction((uid, action), targetEnt, GetNetCoordinates(coords))) // Starlight
                 RaisePredictiveEvent(new RequestPerformActionEvent(GetNetEntity(uid), GetNetEntity(targetEnt), GetNetCoordinates(coords)));
 
             args.FoundTarget = true;
@@ -496,7 +446,7 @@ namespace Content.Client.Actions
             }
             else
             {
-                if (!SendControlledAction((uid, action), entity))
+                if (!SendControlledAction((uid, action), entity)) // Starlight
                     RaisePredictiveEvent(new RequestPerformActionEvent(GetNetEntity(uid), GetNetEntity(entity)));
             }
 

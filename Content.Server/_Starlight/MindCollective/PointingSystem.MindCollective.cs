@@ -4,6 +4,7 @@ using Content.Shared._Starlight.MindCollective;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Pointing.EntitySystems;
 
 internal sealed partial class PointingSystem
@@ -27,9 +28,14 @@ internal sealed partial class PointingSystem
         => session.AttachedEntity is { } entity && _collectives.IsAccepted(entity, collective)
            && _minds.TryGetMind(entity, out _, out var mind) && mind.UserId == session.UserId;
 
-    private void SendCollectivePointingArrow(EntityUid pointer, MapCoordinates target, IEnumerable<ICommonSession> viewers)
+    private bool TrySendPrivatePointingArrow(EntityUid pointer, MapCoordinates target, out IEnumerable<ICommonSession>? viewers)
     {
+        viewers = GetCollectivePointingViewers(pointer);
+        if (viewers == null)
+            return false;
+
         RaiseNetworkEvent(new MindCollectivePointingEvent(target, _transform.GetMapCoordinates(pointer)),
             Filter.Empty().AddPlayers(viewers), recordReplay: false);
+        return true;
     }
 }

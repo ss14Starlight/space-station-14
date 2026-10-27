@@ -1,4 +1,3 @@
-using Content.Client._Starlight.BodyControl;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Client.DisplacementMap;
@@ -23,7 +22,6 @@ namespace Content.Client.Hands.Systems
     [UsedImplicitly]
     public sealed partial class HandsSystem : SharedHandsSystem
     {
-        [Dependency] private BodyControlViewSystem _bodyView = default!;
         [Dependency] private IUserInterfaceManager _ui = default!;
 
         [Dependency] private StrippableSystem _stripSys = default!;
@@ -90,21 +88,6 @@ namespace Content.Client.Hands.Systems
             OnPlayerHandsAdded?.Invoke(hands.Value);
         }
 
-        [SubscribeLocalEvent]
-        private void OnControlViewChanged(BodyControlViewChangedEvent args)
-        {
-            OnPlayerHandsRemoved?.Invoke();
-            ReloadHandButtons();
-            RefreshControlHand();
-        }
-
-        /// <summary>Refreshes the native hand highlight after the player's private selection changes.</summary>
-        public void RefreshControlHand()
-        {
-            if (_bodyView.Entity is { } player)
-                OnPlayerSetActiveHand?.Invoke(GetActiveHand(player));
-        }
-
         public override void DoDrop(Entity<HandsComponent?> ent,
             string handId,
             bool doDropInteraction = true,
@@ -126,7 +109,7 @@ namespace Content.Client.Hands.Systems
         /// </summary>
         public bool TryGetPlayerHands([NotNullWhen(true)] out Entity<HandsComponent>? hands)
         {
-            var player = _bodyView.Entity;
+            var player = HandUiEntity; // Starlight
             hands = null;
             if (player == null || !TryComp<HandsComponent>(player.Value, out var handsComp))
                 return false;
@@ -140,11 +123,10 @@ namespace Content.Client.Hands.Systems
         /// </summary>
         public void UIHandClick(Entity<HandsComponent> ent, string handName)
         {
-            if (_bodyView.Send(new Content.Shared._Starlight.BodyControl.BodyControlCommandEvent(
-                    Content.Shared._Starlight.BodyControl.BodyControlCommand.HandClick, handName)))
+            if (TryControlHandClick(handName)) // Starlight
                 return;
             var hands = ent.Comp;
-            var activeHand = GetActiveHand(ent.AsNullable());
+            var activeHand = GetActiveHand(ent.AsNullable()); // Starlight: resolve the controller's selected hand.
             if (activeHand == null)
                 return;
 
@@ -186,8 +168,7 @@ namespace Content.Client.Hands.Systems
         /// </summary>
         public void UIHandActivate(string handName)
         {
-            if (_bodyView.Send(new Content.Shared._Starlight.BodyControl.BodyControlCommandEvent(
-                    Content.Shared._Starlight.BodyControl.BodyControlCommand.ActivateHand, handName)))
+            if (TryControlHandActivate(handName)) // Starlight
                 return;
             RaisePredictiveEvent(new RequestActivateInHandEvent(handName));
         }
@@ -220,8 +201,7 @@ namespace Content.Client.Hands.Systems
 
         public void UIHandAltActivateItem(string handName)
         {
-            if (_bodyView.Send(new Content.Shared._Starlight.BodyControl.BodyControlCommandEvent(
-                    Content.Shared._Starlight.BodyControl.BodyControlCommand.AltUseHand, handName)))
+            if (TryControlHandAltActivate(handName)) // Starlight
                 return;
             RaisePredictiveEvent(new RequestHandAltInteractEvent(handName));
         }
@@ -238,7 +218,7 @@ namespace Content.Client.Hands.Systems
             UpdateHandVisuals(uid, args.Entity, args.Container.ID);
             _stripSys.UpdateUi(uid);
 
-            if (uid != _bodyView.Entity)
+            if (uid != HandUiEntity) // Starlight
                 return;
 
             OnPlayerItemAdded?.Invoke(args.Container.ID, args.Entity);
@@ -257,7 +237,7 @@ namespace Content.Client.Hands.Systems
             UpdateHandVisuals(uid, args.Entity, args.Container.ID);
             _stripSys.UpdateUi(uid);
 
-            if (uid != _bodyView.Entity)
+            if (uid != HandUiEntity) // Starlight
                 return;
 
             OnPlayerItemRemoved?.Invoke(args.Container.ID, args.Entity);
@@ -280,7 +260,7 @@ namespace Content.Client.Hands.Systems
                 return;
 
             // visual update might involve changes to the entity's effective sprite -> need to update hands GUI.
-            if (ent == _bodyView.Entity)
+            if (ent == HandUiEntity) // Starlight
                 OnPlayerItemAdded?.Invoke(handId, held);
 
             if (!handComp.ShowInHands)
@@ -381,13 +361,13 @@ namespace Content.Client.Hands.Systems
 
         private void OnHandsStartup(EntityUid uid, HandsComponent component, ComponentStartup args)
         {
-            if (_bodyView.Entity == uid)
+            if (HandUiEntity == uid) // Starlight
                 OnPlayerHandsAdded?.Invoke((uid, component));
         }
 
         private void OnHandsShutdown(EntityUid uid, HandsComponent component, ComponentShutdown args)
         {
-            if (_bodyView.Entity == uid)
+            if (HandUiEntity == uid) // Starlight
                 OnPlayerHandsRemoved?.Invoke();
         }
         #endregion
@@ -397,10 +377,10 @@ namespace Content.Client.Hands.Systems
             if (ent is not { } hand)
                 return;
 
-            if (_bodyView.Entity != hand.Owner)
+            if (HandUiEntity != hand.Owner) // Starlight
                 return;
 
-            OnPlayerSetActiveHand?.Invoke(GetActiveHand(hand.AsNullable()));
+            OnPlayerSetActiveHand?.Invoke(GetActiveHand(hand.AsNullable())); // Starlight
         }
     }
 }

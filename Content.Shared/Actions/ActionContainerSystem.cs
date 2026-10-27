@@ -42,6 +42,7 @@ public sealed partial class ActionContainerSystem : EntitySystem
 
     private void OnMindAdded(EntityUid uid, ActionsContainerComponent component, MindAddedMessage args)
     {
+        // Starlight: replicated ownership is already supplied by the server.
         if (_timing.ApplyingState && component.NetSyncEnabled)
             return;
 
@@ -56,6 +57,7 @@ public sealed partial class ActionContainerSystem : EntitySystem
 
     private void OnMindRemoved(EntityUid uid, ActionsContainerComponent component, MindRemovedMessage args)
     {
+        // Starlight: replicated ownership is already supplied by the server.
         if (_timing.ApplyingState && component.NetSyncEnabled)
             return;
 
@@ -331,7 +333,7 @@ public sealed partial class ActionContainerSystem : EntitySystem
 
     private void OnEntityInserted(EntityUid uid, ActionsContainerComponent component, EntInsertedIntoContainerMessage args)
     {
-        // The server already replicates action ownership; container states may arrive before component initialization.
+        // Starlight: the server replicates ownership; container states may arrive before component initialization.
         if (_timing.ApplyingState && component.NetSyncEnabled)
             return;
 
@@ -353,6 +355,7 @@ public sealed partial class ActionContainerSystem : EntitySystem
 
     private void OnEntityRemoved(EntityUid uid, ActionsContainerComponent component, EntRemovedFromContainerMessage args)
     {
+        // Starlight: replicated ownership is already supplied by the server.
         if (_timing.ApplyingState && component.NetSyncEnabled)
             return;
 
@@ -374,6 +377,7 @@ public sealed partial class ActionContainerSystem : EntitySystem
 
     private void OnActionAdded(EntityUid uid, ActionsContainerComponent component, ActionAddedEvent args)
     {
+        // Starlight: replicated ownership is already supplied by the server.
         if (_timing.ApplyingState && component.NetSyncEnabled)
             return;
 

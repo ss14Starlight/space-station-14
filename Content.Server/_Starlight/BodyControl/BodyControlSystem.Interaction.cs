@@ -2,7 +2,6 @@ using System.Linq;
 using Content.Server._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.BodyControl;
 using Content.Shared._Starlight.Computers.RemoteControl;
-using Content.Shared._Starlight.MindCollective;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
@@ -329,7 +328,7 @@ public sealed partial class BodyControlSystem
         return !TerminatingOrDeleted(action)
                && (_controlActions.GetEvent(action) is ToggleCombatActionEvent ? access.Allows("body.interact") : access.Allows("body.actions"))
                && _controlActions.GetActions(body).Any(available => available.Owner == action)
-               && _controlActions.GetEvent(action) is not OpenMindCollectiveEvent
+               && _controlActions.GetEvent(action) is not IBodyControlPersonalAction
                && (_controlActions.GetEvent(action) is ToggleCombatActionEvent || access.FullControl || access.Actions == null
                    || MetaData(action).EntityPrototype is { } prototype && access.Actions.Contains(prototype.ID));
     }
@@ -364,7 +363,7 @@ public sealed partial class BodyControlSystem
         if (TryComp<BodyControlSourceComponent>(args.User, out var source) && source.Body == args.User
             && !source.ExternallyDriven
             && !_handContext.IsExecuting(args.User) && !CanControlAction(args.User, ent, source.Access)
-            && _controlActions.GetEvent(ent) is not OpenMindCollectiveEvent)
+            && _controlActions.GetEvent(ent) is not IBodyControlPersonalAction)
         {
             args.Cancelled = true;
             Deny(args.User, "actions");

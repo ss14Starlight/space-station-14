@@ -160,11 +160,9 @@ namespace Content.Server.Pointing.EntitySystems
                 return false;
             }
             var mapCoordsPointed = _transform.ToMapCoordinates(coordsPointed);
-            var privateViewers = GetCollectivePointingViewers(player); // Starlight
             var layer = (int) VisibilityFlags.Normal;
-            if (privateViewers != null) // Starlight
-                SendCollectivePointingArrow(player, mapCoordsPointed, privateViewers);
-            else
+            // Starlight - private pointing supplies its own arrow and audience.
+            if (!TrySendPrivatePointingArrow(player, mapCoordsPointed, out var privateViewers))
             {
                 _rotateToFaceSystem.TryFaceCoordinates(player, mapCoordsPointed.Position);
 
@@ -192,7 +190,7 @@ namespace Content.Server.Pointing.EntitySystems
                     layer = playerVisibility.Layer;
                     _visibilitySystem.SetLayer((arrow, arrowVisibility), (ushort) layer);
                 }
-            }
+            } // Starlight
 
             // Get players that are in range and whose visibility layer matches the arrow's.
             bool ViewerPredicate(ICommonSession playerSession)

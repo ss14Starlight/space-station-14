@@ -4,9 +4,6 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared._Starlight.CCVar;
-// Starlight start
-using Content.Shared._Starlight.BodyControl;
-// Starlight end
 using Robust.Client.Physics;
 using Robust.Client.Player;
 using Robust.Shared.Configuration;
@@ -142,15 +139,8 @@ public sealed partial class MoverController : SharedMoverController
 
     private void HandleClientsideMovement(EntityUid player, float frameTime)
     {
-        // Starlight start
-        // Each client knows only its own commands while the server arbitrates a shared body's movement.
-        if (TryComp<BodyControlTargetComponent>(player, out var shared)
-            && shared.LifeStage <= ComponentLifeStage.Running && shared.ControllerCount > 1)
+        if (!CanPredictBodyControlMovement(player)) // Starlight
             return;
-        if (TryComp<BodyControlSourceComponent>(player, out var source)
-            && !source.ExternallyDriven && source.LifeStage <= ComponentLifeStage.Running && source.Body != player)
-            return;
-        // Starlight end
         if (!MoverQuery.TryGetComponent(player, out var mover))
         {
             return;

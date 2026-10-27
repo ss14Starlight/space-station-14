@@ -50,7 +50,6 @@ using Content.Shared.Tools.Systems;
 using Robust.Shared.Network;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Computers.RemoteControl;
-using Content.Shared._Starlight.BodyControl;
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -803,7 +802,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
     /// </summary>
     private void OnInteractWithItem(StorageInteractWithItemEvent msg, EntitySessionEventArgs args)
     {
-        if (WithRemoteHand(args, () => OnInteractWithItem(msg, args)))
+        if (WithRemoteHand(args, () => OnInteractWithItem(msg, args))) // Starlight
             return;
         if (!ValidateInput(args, msg.StorageUid, msg.InteractedItemUid, out var player, out var storage, out var item))
             return;
@@ -845,7 +844,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
 
     private void OnSetItemLocation(StorageSetItemLocationEvent msg, EntitySessionEventArgs args)
     {
-        if (WithRemoteHand(args, () => OnSetItemLocation(msg, args)))
+        if (WithRemoteHand(args, () => OnSetItemLocation(msg, args))) // Starlight
             return;
         if (!ValidateInput(args, msg.StorageEnt, msg.ItemEnt, out var player, out var storage, out var item))
             return;
@@ -860,7 +859,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
 
     private void OnStorageNested(OpenNestedStorageEvent msg, EntitySessionEventArgs args)
     {
-        if (WithRemoteHand(args, () => OnStorageNested(msg, args)))
+        if (WithRemoteHand(args, () => OnStorageNested(msg, args))) // Starlight
             return;
         if (!NestedStorage)
             return;
@@ -890,7 +889,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
 
     private void OnStorageTransfer(StorageTransferItemEvent msg, EntitySessionEventArgs args)
     {
-        if (WithRemoteHand(args, () => OnStorageTransfer(msg, args)))
+        if (WithRemoteHand(args, () => OnStorageTransfer(msg, args))) // Starlight
             return;
         if (!TryGetEntity(msg.ItemEnt, out var itemUid) || !TryComp(itemUid, out ItemComponent? itemComp))
             return;
@@ -924,17 +923,9 @@ public abstract partial class SharedStorageSystem : EntitySystem
         // Starlight - end
     }
 
-    // Preserve the requester's hand across the existing storage actor-to-body resolver.
-    private bool WithRemoteHand(EntitySessionEventArgs args, Action command)
-    {
-        return args.SenderSession.AttachedEntity is { } actor
-               && EntityManager.System<BodyControlHandContextSystem>()
-                   .WithController(actor, "body.inventory", true, command);
-    }
-
     private void OnInsertItemIntoLocation(StorageInsertItemIntoLocationEvent msg, EntitySessionEventArgs args)
     {
-        if (WithRemoteHand(args, () => OnInsertItemIntoLocation(msg, args)))
+        if (WithRemoteHand(args, () => OnInsertItemIntoLocation(msg, args))) // Starlight
             return;
         if (!ValidateInput(args, msg.StorageEnt, msg.ItemEnt, out var player, out var storage, out var item, held: true))
             return;
@@ -954,7 +945,7 @@ public abstract partial class SharedStorageSystem : EntitySystem
 
     private void OnSaveItemLocation(StorageSaveItemLocationEvent msg, EntitySessionEventArgs args)
     {
-        if (WithRemoteHand(args, () => OnSaveItemLocation(msg, args)))
+        if (WithRemoteHand(args, () => OnSaveItemLocation(msg, args))) // Starlight
             return;
         if (!ValidateInput(args, msg.Storage, msg.Item, out var player, out var storage, out var item))
             return;

@@ -1,5 +1,4 @@
 using Content.Server.Chat.Systems;
-using Content.Server._Starlight.MindCollective;
 using Content.Shared._Starlight.BodyControl;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Alert;
@@ -40,10 +39,14 @@ public sealed partial class BodyControlSystem
     private void OnDenied(Entity<BodyControlSourceComponent> ent, ref BodyControlDeniedEvent args)
         => Deny(ent, args.Reason);
 
-    [SubscribeLocalEvent(before: [typeof(MindCollectiveSystem)])]
+    [SubscribeLocalEvent]
     private void OnControlledSpeech(BeforeInGameICMessageEvent args)
     {
-        if (args.Handled || args.Message.StartsWith("+h ", StringComparison.OrdinalIgnoreCase))
+        if (args.Handled)
+            return;
+        var relay = new BodyControlSpeechRelayEvent(args.Source, args.Message);
+        RaiseLocalEvent(relay);
+        if (relay.Cancelled)
             return;
         var actor = args.Source;
         if (_handContext.TryGetContext(args.Source, out var context))

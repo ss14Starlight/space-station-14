@@ -7,9 +7,6 @@ using Content.Shared.Follower.Components;
 using Content.Shared.Input;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
-// Starlight start
-using Content.Shared._Starlight.BodyControl;
-// Starlight end
 using Robust.Shared.GameStates;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
@@ -424,48 +421,6 @@ namespace Content.Shared.Movement.Systems
             SetSprinting((uid, moverComp), subTick, walking);
         }
 
-        // Starlight start
-        /// <summary>Applies server-arbitrated movement through the ordinary movement and container handlers.</summary>
-        public void ApplyMovementInput(EntityUid entity, MoveButtons buttons)
-        {
-            if (!MoverQuery.TryComp(entity, out var mover))
-                return;
-            var previous = mover.HeldMoveButtons;
-            ApplyDirection(MoveButtons.Up, Direction.North);
-            ApplyDirection(MoveButtons.Down, Direction.South);
-            ApplyDirection(MoveButtons.Left, Direction.West);
-            ApplyDirection(MoveButtons.Right, Direction.East);
-            if ((previous & MoveButtons.Walk) != (buttons & MoveButtons.Walk))
-                HandleRunChange(entity, 0, (buttons & MoveButtons.Walk) != 0);
-
-            void ApplyDirection(MoveButtons button, Direction direction)
-            {
-                if ((previous & button) != (buttons & button))
-                    HandleDirChange(entity, direction, 0, (buttons & button) != 0);
-            }
-        }
-
-        /// <summary>Clears commands and subtick accumulation when the source of movement changes.</summary>
-        public void ResetMovementInput(EntityUid entity)
-        {
-            if (!MoverQuery.TryComp(entity, out var mover))
-                return;
-            SetMoveInput((entity, mover), MoveButtons.None);
-            mover.LastInputTick = Timing.CurTick;
-            mover.LastInputSubTick = 0;
-            mover.CurTickWalkMovement = default;
-            mover.CurTickSprintMovement = default;
-            SetWishDir((entity, mover), default);
-        }
-
-        private bool RouteMoveInput(EntityUid entity, MoveButtons button, ushort subTick, bool pressed)
-        {
-            var attempt = new BodyControlMoveInputEvent(button, subTick, pressed);
-            RaiseLocalEvent(entity, ref attempt);
-            return attempt.Handled;
-        }
-        // Starlight end
-
         public (Vector2 Walking, Vector2 Sprinting) GetVelocityInput(InputMoverComponent mover)
         {
             if (!Timing.InSimulation)
@@ -674,14 +629,7 @@ namespace Content.Shared.Movement.Systems
                 if (session?.AttachedEntity == null) return false;
 
                 // Starlight start
-                var button = _dir switch
-                {
-                    Direction.North => MoveButtons.Up,
-                    Direction.South => MoveButtons.Down,
-                    Direction.West => MoveButtons.Left,
-                    _ => MoveButtons.Right,
-                };
-                if (_controller.RouteMoveInput(session.AttachedEntity.Value, button, message.SubTick,
+                if (_controller.RouteMoveInput(session.AttachedEntity.Value, _dir, message.SubTick,
                         message.State == BoundKeyState.Down))
                     return false;
                 // Starlight end

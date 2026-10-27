@@ -10,7 +10,6 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
-using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
@@ -154,9 +153,11 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     private void OnShootRequest(RequestShootEvent msg, EntitySessionEventArgs args)
     {
+        // Starlight start
         if (WithBodyControl(args, () => OnShootRequest(msg, args)))
             return;
         var user = GetShootingUser(args);
+        // Starlight end
 
         if (user == null ||
             !_combatMode.IsInCombatMode(user) ||
@@ -205,14 +206,16 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
     {
+        // Starlight start
         if (WithBodyControl(args, () => OnStopShootRequest(ev, args)))
             return;
+        // Starlight end
         var gunUid = GetEntity(ev.Gun);
-        var user = GetShootingUser(args);
+        var user = GetShootingUser(args); // Starlight
 
         if (user == null ||
             !TryComp<GunComponent>(gunUid, out var gun) ||
-            !TryGetGun(user.Value, out var userGun))
+            !TryGetGun(user.Value, out var userGun)) // Starlight: validate the controlled body.
         {
             return;
         }
@@ -222,19 +225,6 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         StopShooting(userGun);
     }
-
-    private EntityUid? GetShootingUser(EntitySessionEventArgs args)
-        => args.SenderSession.AttachedEntity is { } actor
-            ? EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>().GetControlledBody(actor) : null;
-
-    private bool WithBodyControl(EntitySessionEventArgs args, Action command)
-        => args.SenderSession.AttachedEntity is { } actor
-           && EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>()
-               .WithController(actor, "body.interact", HasComp<HandsComponent>(GetShootingUser(args)), command);
-
-    private bool CanUseBothHands(EntityUid body)
-        => !EntityManager.System<Content.Shared._Starlight.BodyControl.BodyControlHandContextSystem>().TryGetContext(body, out var context)
-           || context.Access.FullControl || context.Access.Allows("body.hands") && context.Access.Hands == null && context.Access.Parts == null;
 
     public bool CanShoot(GunComponent component)
     {

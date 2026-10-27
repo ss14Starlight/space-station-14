@@ -1,4 +1,4 @@
-using Content.Client._Starlight.BodyControl;
+using Content.Client._Starlight.BodyControl; // Starlight
 using Content.Client.Gameplay;
 using Content.Client.Hands.Systems;
 using Content.Client.UserInterface.Controls;
@@ -65,7 +65,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
 
     private void OnAddHand(Entity<HandsComponent> entity, string name, HandLocation location)
     {
-        if (entity.Owner != EntityManager.System<BodyControlViewSystem>().Entity)
+        if (entity.Owner != EntityManager.System<BodyControlViewSystem>().Entity) // Starlight
             return;
         if (_handsSystem.TryGetHand((entity.Owner, entity.Comp), name, out var hand))
             AddHand(name, hand.Value);
@@ -76,7 +76,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
 
     private void OnRemoveHand(Entity<HandsComponent> entity, string name)
     {
-        if (entity.Owner != EntityManager.System<BodyControlViewSystem>().Entity)
+        if (entity.Owner != EntityManager.System<BodyControlViewSystem>().Entity) // Starlight
             return;
         RemoveHand(name);
     }
@@ -119,9 +119,11 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
         HandsGui?.HandContainer.ClearButtons();
         HandsGui?.FunctionalHandContainer.ClearButtons(); // Starlight
         _playerHandsComponent = null;
+        // Starlight start
         _activeHand = null;
         _statusHandLeft = null;
         _statusHandRight = null;
+        // Starlight end
         UpdateVisibleStatusPanels(); // Starlight
     }
 
@@ -165,7 +167,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
 
         if (handsComp.Comp.ActiveHandId == null)
             return;
-        SetActiveHand(_handsSystem.GetActiveHand(handsComp.AsNullable()));
+        SetActiveHand(_handsSystem.GetActiveHand(handsComp.AsNullable())); // Starlight
     }
 
     private void SetRepresentative(HandButton handButton, EntProtoId prototype)
@@ -207,7 +209,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
         }
 
         if (_playerHandsComponent != null &&
-            EntityManager.System<BodyControlViewSystem>().Entity is { } playerEntity &&
+            EntityManager.System<BodyControlViewSystem>().Entity is { } playerEntity && // Starlight
             _handsSystem.TryGetHand((playerEntity, _playerHandsComponent), name, out var handData))
         {
             UpdateHandStatus(hand, entity, handData);
@@ -221,7 +223,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
             return;
 
         if (_playerHandsComponent != null &&
-            EntityManager.System<BodyControlViewSystem>().Entity is { } playerEntity &&
+            EntityManager.System<BodyControlViewSystem>().Entity is { } playerEntity && // Starlight
             _handsSystem.TryGetHand((playerEntity, _playerHandsComponent), name, out var handData))
         {
             UpdateHandStatus(hand, null, handData);
@@ -247,7 +249,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
         {
             if (_activeHand != null)
                 _activeHand.Highlight = false;
-            _activeHand = null;
+            _activeHand = null; // Starlight
 
             return;
         }
@@ -262,7 +264,7 @@ public sealed partial class HandsUIController : UIController, IOnStateEntered<Ga
         _activeHand = handControl;
 
         if (_playerHandsComponent != null &&
-            EntityManager.System<BodyControlViewSystem>().Entity is { } playerEntity &&
+            EntityManager.System<BodyControlViewSystem>().Entity is { } playerEntity && // Starlight
             _handsSystem.TryGetHand((playerEntity, _playerHandsComponent), handName, out var hand))
         {
             var heldEnt = _handsSystem.GetHeldItem((playerEntity, _playerHandsComponent), handName);
