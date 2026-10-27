@@ -1,5 +1,6 @@
 using Content.Client._Starlight.UserInterface;
 using Content.Client.Stylesheets;
+using Content.Shared._Starlight.UserInterface;
 using Content.Client.Stylesheets.Sheetlets;
 using Content.Client.Stylesheets.Stylesheets;
 using Content.Client.UserInterface.Controls;
@@ -7,6 +8,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
+using Robust.Shared.Utility;
 using static Content.Client.Stylesheets.StylesheetHelpers;
 using static Robust.Client.UserInterface.StylesheetHelpers;
 
@@ -22,10 +24,16 @@ public sealed class FlatWindowSheetlet : Sheetlet<NanotrasenStylesheet>
 
         var proto = theme.Proto;
 
-        var windowBox = ThemeBox.Or(proto.Window, ResCache,
-            FlatBox.Bordered(proto.Background, proto.Border, proto.BorderThickness));
-        var headerBox = ThemeBox.Or(proto.Header, ResCache,
-            FlatBox.Underlined(proto.Surface, proto.Border, 1).WithContentMargin(StyleBox.Margin.Bottom, 0));
+        var windowFallback = FlatBox.Bordered(proto.Background, proto.Border, proto.BorderThickness);
+        var headerFallback = FlatBox.Underlined(proto.Surface, proto.Border, 1)
+            .WithContentMargin(StyleBox.Margin.Bottom, 0);
+
+        var windowBox = UseThemeDecor(theme.ClassicDecor, proto.Window)
+            ? ThemeBox.Or(proto.Window, ResCache, windowFallback)
+            : windowFallback;
+        var headerBox = UseThemeDecor(theme.ClassicDecor, proto.Header)
+            ? ThemeBox.Or(proto.Header, ResCache, headerFallback)
+            : headerFallback;
         var alertHeaderBox = FlatBox.Underlined(theme.Negative.Background, theme.Negative.Base, 1)
             .WithContentMargin(StyleBox.Margin.Bottom, 0);
 
@@ -76,6 +84,17 @@ public sealed class FlatWindowSheetlet : Sheetlet<NanotrasenStylesheet>
         ]);
 
         return [.. rules];
+    }
+
+    private static readonly ResPath ClassicWindowBackground = new("/Textures/Interface/Nano/window_background.png");
+    private static readonly ResPath ClassicWindowHeader = new("/Textures/Interface/Nano/window_header.png");
+
+    private static bool UseThemeDecor(bool classicDecor, StyleThemeBox? decor)
+    {
+        if (classicDecor || decor == null)
+            return true;
+
+        return decor.Texture != ClassicWindowBackground && decor.Texture != ClassicWindowHeader;
     }
 
     private static StyleRule[] ChromeButton(string styleClass, Color normal, Color hovered)

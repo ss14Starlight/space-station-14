@@ -54,6 +54,9 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<bool> StyleClassicDecor =
         CVarDef.Create("ui.style_classic_decor", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    public static readonly CVarDef<bool> StyleClassicDecorExplicit =
+        CVarDef.Create("ui.style_classic_decor_explicit", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /// <summary>
     /// Show the old drag and drop job priority columns in the lobby, under the round info.
     /// </summary>

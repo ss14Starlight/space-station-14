@@ -78,6 +78,9 @@ public sealed partial class StylesheetManager
 
     private void SyncClassicDecorToTheme()
     {
+        if (_cfg.GetCVar(StarlightCCVars.StyleClassicDecorExplicit))
+            return;
+
         if (_prototype.TryIndex<StyleThemePrototype>(_cfg.GetCVar(StarlightCCVars.StyleTheme), out var proto))
             _cfg.SetCVar(StarlightCCVars.StyleClassicDecor, proto.ClassicDecor);
     }
@@ -99,9 +102,6 @@ public sealed partial class StylesheetManager
         if (_cfg.GetCVar(StarlightCCVars.StyleCustomSecondaryAccent)
             && Color.TryFromHex(_cfg.GetCVar(StarlightCCVars.StyleSecondaryAccent), out var custom))
             return custom;
-
-        if (_cfg.GetCVar(StarlightCCVars.StyleCustomAccent))
-            return null;
 
         return proto.SecondaryAccent;
     }
