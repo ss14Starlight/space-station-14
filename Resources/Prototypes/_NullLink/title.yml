@@ -1,5 +1,6 @@
 - type: titleBuilder
   id: Starlight
+  separator: " "
   segments:
   - # testers
     titles:
