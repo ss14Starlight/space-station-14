@@ -3,6 +3,8 @@ using Content.Shared.Destructible;
 using Content.Shared.Power;
 using Robust.Shared.Containers;
 using Content.Shared.Examine;
+using Content.Shared.Interaction;
+using Content.Shared.Verbs;
 
 namespace Content.Shared._Starlight.StationRadio.Systems;
 
@@ -33,6 +35,50 @@ public abstract partial class SharedVinylPlayerSystem : EntitySystem
 
     [SubscribeLocalEvent]
     protected virtual void OnVinylRemove(EntityUid uid, VinylPlayerComponent comp, EntRemovedFromContainerMessage args)
+    {
+    }
+
+    [SubscribeLocalEvent]
+    private void OnActivate(EntityUid uid, VinylPlayerComponent comp, ActivateInWorldEvent args)
+    {
+        if (args.Handled || !args.Complex || !comp.ToggleOnActivate)
+            return;
+
+        TogglePlay((uid, comp), args.User);
+        args.Handled = true;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnGetVerbs(EntityUid uid, VinylPlayerComponent comp, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || GetCurrentDisc((uid, comp)) == null)
+            return;
+
+        var user = args.User;
+        args.Verbs.Add(new AlternativeVerb
+        {
+            Text = Loc.GetString(comp.Playing ? "vinyl-player-verb-pause" : "vinyl-player-verb-play"),
+            Priority = 1,
+            Act = () => TogglePlay((uid, comp), user),
+        });
+        args.Verbs.Add(new AlternativeVerb
+        {
+            Text = Loc.GetString("vinyl-player-verb-rewind"),
+            Act = () => Rewind((uid, comp), user),
+        });
+    }
+
+    /// <summary>
+    /// Starts or pauses the current disc. Playback runs on the server only.
+    /// </summary>
+    public virtual void TogglePlay(Entity<VinylPlayerComponent> ent, EntityUid? user = null)
+    {
+    }
+
+    /// <summary>
+    /// Goes back to the start of the current disc. Playback runs on the server only.
+    /// </summary>
+    public virtual void Rewind(Entity<VinylPlayerComponent> ent, EntityUid? user = null)
     {
     }
 

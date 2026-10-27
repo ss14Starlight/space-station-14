@@ -3,11 +3,9 @@ using Content.Shared._Starlight.StationRadio.Events;
 using Content.Shared._Starlight.StationRadio.Systems;
 using Content.Shared._Starlight.StationRadio.Components;
 using Content.Shared.Destructible;
-using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
-using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
@@ -88,37 +86,7 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
         Changed((uid, comp));
     }
 
-    [SubscribeLocalEvent]
-    private void OnActivate(EntityUid uid, VinylPlayerComponent comp, ActivateInWorldEvent args)
-    {
-        if (args.Handled || !args.Complex || !comp.ToggleOnActivate)
-            return;
-
-        TogglePlay((uid, comp), args.User);
-        args.Handled = true;
-    }
-
-    [SubscribeLocalEvent]
-    private void OnGetVerbs(EntityUid uid, VinylPlayerComponent comp, GetVerbsEvent<AlternativeVerb> args)
-    {
-        if (!args.CanAccess || !args.CanInteract || GetCurrentDisc((uid, comp)) == null)
-            return;
-
-        var user = args.User;
-        args.Verbs.Add(new AlternativeVerb
-        {
-            Text = Loc.GetString(comp.Playing ? "vinyl-player-verb-pause" : "vinyl-player-verb-play"),
-            Priority = 1,
-            Act = () => TogglePlay((uid, comp), user),
-        });
-        args.Verbs.Add(new AlternativeVerb
-        {
-            Text = Loc.GetString("vinyl-player-verb-rewind"),
-            Act = () => Rewind((uid, comp), user),
-        });
-    }
-
-    public void TogglePlay(Entity<VinylPlayerComponent> ent, EntityUid? user = null)
+    public override void TogglePlay(Entity<VinylPlayerComponent> ent, EntityUid? user = null)
     {
         if (ent.Comp.Playing)
             Pause(ent);
@@ -202,7 +170,7 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
     /// <summary>
     /// Goes back to the start of the current disc, still playing if it was.
     /// </summary>
-    public void Rewind(Entity<VinylPlayerComponent> ent, EntityUid? user = null)
+    public override void Rewind(Entity<VinylPlayerComponent> ent, EntityUid? user = null)
     {
         var wasPlaying = ent.Comp.Playing;
         StopOutput(ent);
