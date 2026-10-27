@@ -39,24 +39,6 @@
       uiWindowPos: 1,0
       strippingWindowPos: 0,2
       displayName: Jumpsuit
-    - name: id
-      slotTexture: id
-      fullTextureName: template_small
-      slotFlags: IDCARD
-      slotGroup: SecondHotbar
-      stripTime: 6
-      uiWindowPos: 2,1
-      strippingWindowPos: 2,4
-      displayName: ID
-    - name: belt
-      slotTexture: belt
-      fullTextureName: template_small
-      slotFlags: BELT
-      slotGroup: SecondHotbar
-      stripTime: 6
-      uiWindowPos: 3,1
-      strippingWindowPos: 1,5
-      displayName: Belt
     - name: back
       slotTexture: back
       fullTextureName: template_small
@@ -69,6 +51,24 @@
       whitelist:
         tags:
           - ScurretWearable
+    - name: belt
+      slotTexture: belt
+      fullTextureName: template_small
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 3,1
+      strippingWindowPos: 1,5
+      displayName: Belt
+    - name: id
+      slotTexture: id
+      fullTextureName: template_small
+      slotFlags: IDCARD
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      displayName: ID
     - name: pocket1
       slotTexture: pocket
       fullTextureName: template_small
