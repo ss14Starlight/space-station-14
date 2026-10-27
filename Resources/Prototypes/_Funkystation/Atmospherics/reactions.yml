@@ -137,7 +137,7 @@
   - !type:MetalHydrogenReaction {}
 
 # Starlight start
-# Folded all plasma and tritium fire reactions into master PlasmaCombinedFire & TritiumCombinedFire reaction prototypes in /Prototypes/_Starlight/Atmospherics/reactions.yml to allow for more than one oxidiser
+# Folded all oxidised atmos-fire reactions into master PlasmaCombinedFire, TritiumCombinedFire, and HydrogenCombinedFire reactions to allow for more oxidisers; prototypes moved to /Prototypes/_Starlight/Atmospherics/reactions.yml
 #- type: gasReaction
 #  id: HydrogenFire
 #  priority: -1
