@@ -94,7 +94,7 @@
       slotTexture: glasses
       slotFlags: EYES
       stripTime: 3
-      uiWindowPos: 0,2
+      uiWindowPos: 2,2
       strippingWindowPos: 1,0
       displayName: Eyes
     - name: misc

@@ -9,9 +9,9 @@
   id: ScurretPDA
   name: scurret PDA
   description: A temporary PDA granted to scurret temps. Doesn't do much. Wawa!
-  components: !Clear
+  components:
+    - !Remove
+      type: Pda
+      id: VisitorIDCard
     - type: Pda
       id: EmotionalSupportScurretIDCard
-    - type: Tag #  Ignore Chameleon tags
-      tags:
-        - DoorBumpOpener
