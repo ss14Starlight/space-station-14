@@ -44,6 +44,7 @@ public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandl
 
         #region Starlight
         CategorySearchBar.OnTextChanged += _ => HandleCategorySearch();
+        InitializeSidebarToggle();
         #endregion
     }
 
@@ -194,6 +195,8 @@ public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandl
             TreeBox.Visible = true;
             Split.ResizeMode = SplitContainer.SplitResizeMode.RespectChildrenMinSize;
         }
+
+        SetSidebarAvailable(TreeBox.Visible); // Starlight
 
         if (selected != null)
         {
