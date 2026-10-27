@@ -13,10 +13,6 @@
   id: Grille
   components:
   - type: Grille
-  - type: DamagedOnShock
-    damage:
-      types:
-        Shock: 12
 
 - type: !PartialOnly entity
   id: GrilleBroken

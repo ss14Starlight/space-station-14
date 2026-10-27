@@ -15,3 +15,4 @@ construction-step-condition-no-entity-in-tile = Can't be built on the same tile 
        *[other] {" "}Tool qualities: { $toolQualities }.
     }
 construction-step-condition-no-grille-in-tile = It can't be built under a grille.
+anchorable-tile-blacklisted = Something on this tile is in the way.
