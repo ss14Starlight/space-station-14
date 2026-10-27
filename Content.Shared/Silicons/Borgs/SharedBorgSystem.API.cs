@@ -15,7 +15,6 @@ public abstract partial class SharedBorgSystem
     /// - Having a player mind attached
     /// - The borg is alive (not crit or dead).
     /// </summary>
-    /// <param name="allowRemoteControl">If true, bypasses both the attached mind check and the ActorComponent check, including the disconnected-player guard.</param>
     public bool CanActivate(Entity<BorgChassisComponent> chassis, bool allowRemoteControl = false) // Starlight
     {
         if (HasComp<BorgLockdownComponent>(chassis)) // Starlight
@@ -42,7 +41,6 @@ public abstract partial class SharedBorgSystem
     /// Activates the borg if the conditions are met.
     /// Returns true if the borg was activated.
     /// </summary>
-    /// <param name="allowRemoteControl">If true, bypasses both the attached mind check and the ActorComponent check, including the disconnected-player guard.</param>
     public bool TryActivate(Entity<BorgChassisComponent> chassis, EntityUid? user = null, bool allowRemoteControl = false) // Starlight
     {
         if (chassis.Comp.Active)
