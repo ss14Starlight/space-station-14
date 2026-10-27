@@ -16,16 +16,6 @@
         - ScurretSign
         - GalacticCommon
 
-# Contraband marking for hydrated scurrets
-
-- type: entity
-  id: BaseEmotionalSupportScurretContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-    - type: Contraband
-      allowedJobs: [ EmotionalSupportScurret ]
-
 # TODO: uncomment these when parent partials work
 # 
 # - type: !PartialOnly entity
