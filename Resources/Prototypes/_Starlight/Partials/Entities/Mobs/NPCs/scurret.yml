@@ -6,7 +6,8 @@
 - type: !PartialOnly entity
   id: MobBaseEmotionalSupportScurret
   components:
-    - !CombineIndex:2 type: GhostRole
+    - !CombineIndex:2
+      type: GhostRole
       job: EmotionalSupportScurret
     - type: LanguageKnowledge
       speaks:
