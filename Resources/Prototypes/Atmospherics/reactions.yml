@@ -1,5 +1,6 @@
 # Starlight start
-# Folded all plasma fire reactions into a master PlasmaCombinedFire reaction prototype in /Prototypes/_Starlight/Atmospherics/reactions.yml
+# Folded all plasma and tritium fire reactions into master PlasmaCombinedFire & TritiumCombinedFire reaction prototypes in /Prototypes/_Starlight/Atmospherics/reactions.yml to allow for more than one oxidiser
+#
 #- type: gasReaction
 #  id: PlasmaFire
 #  priority: -2
@@ -9,16 +10,17 @@
 #    Plasma: 0.01
 #  effects:
 #    - !type:PlasmaFireReaction {}
-
-- type: gasReaction
-  id: TritiumFire
-  priority: -1
-  minimumTemperature: 373.149 # Same as Atmospherics.FireMinimumTemperatureToExist
-  minimumRequirements: # In this case, same as minimum mole count.
-    Oxygen: 0.01
-    Tritium: 0.01
-  effects:
-    - !type:TritiumFireReaction {}
+#
+#- type: gasReaction
+#  id: TritiumFire
+#  priority: -1
+#  minimumTemperature: 373.149 # Same as Atmospherics.FireMinimumTemperatureToExist
+#  minimumRequirements: # In this case, same as minimum mole count.
+#    Oxygen: 0.01
+#    Tritium: 0.01
+#  effects:
+#    - !type:TritiumFireReaction {}
+# Starlight end
 
 - type: gasReaction
   id: FrezonCoolant

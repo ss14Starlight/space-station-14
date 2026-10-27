@@ -86,14 +86,17 @@ namespace Content.Server._Starlight.Atmos.Reactions
                         mixture.AdjustMoles(Gas.Pluoxium, -pluoxConsumed);
                     if (oxygenConsumed > 0f)
                         mixture.AdjustMoles(Gas.Oxygen, -oxygenConsumed);
-
+                    
                     // supersaturation adjusts the ratio of produced tritium to unwanted CO2
                     mixture.AdjustMoles(Gas.Tritium, plasmaBurnRate * supersaturation);
                     mixture.AdjustMoles(Gas.CarbonDioxide, plasmaBurnRate * (1.0f - supersaturation));
 
+                    // calculate the burn rate of all oxidisers consumed
+                    var oxidiserBurnRate = (oxygenConsumed + pluoxConsumed * PluoxiumFactor) / plasmaBurnRate;
+
                     energyReleased += Atmospherics.FirePlasmaEnergyReleased * plasmaBurnRate;
                     energyReleased /= heatScale; // adjust energy to make sure speedup doesn't cause mega temperature rise
-                    mixture.ReactionResults[(byte)GasReaction.Fire] += plasmaBurnRate * (1 + pluoxiumBurnRate);
+                    mixture.ReactionResults[(byte)GasReaction.Fire] += plasmaBurnRate * (1 + oxidiserBurnRate);
                 }
             }
 
