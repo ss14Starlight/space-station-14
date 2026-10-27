@@ -21,7 +21,7 @@ public abstract partial class SharedMoverController
         if (tileDef.BarestepSounds is SoundCollectionSpecifier { Collection: { } bare } &&
             bare.Id == DefaultBarestep &&
             tileDef.FootstepSounds is SoundCollectionSpecifier { Collection: { } surface } &&
-            _footstepProto.TryIndex<BarestepSurfacePrototype>(surface.Id, out var barestep))
+            _footstepProto.TryIndex<BarestepSoundPrototype>(surface.Id, out var barestep))
             return barestep.Sound;
 
         return tileDef.BarestepSounds;

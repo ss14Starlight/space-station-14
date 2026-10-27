@@ -8,7 +8,7 @@ namespace Content.Shared._Starlight.Movement;
 /// so tiles that keep the default BarestepHard still sound like their surface.
 /// </summary>
 [Prototype]
-public sealed partial class BarestepSurfacePrototype : IPrototype
+public sealed partial class BarestepSoundPrototype : IPrototype
 {
     /// <summary>
     /// The footstep sound collection of the surface, e.g. FootstepFloor.
