@@ -1,20 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Killer Tamashi
   changes:
-  - message: Neocytes no longer get stunned by EMPs, only knocked down.
-    type: Tweak
-  id: 409437
-  time: '2026-10-14T06:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6658
-- author: wonderfulnewworld, Killer Tamashi
-  changes:
-  - message: Reduced EMP knockdown on IPCs.
-    type: Tweak
-  id: 409438
-  time: '2026-10-14T06:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6658
-- author: wonderfulnewworld, Killer Tamashi
-  changes:
   - message: Neo-Moths can now have hair.
     type: Fix
   id: 409439
@@ -2799,4 +2785,18 @@ Entries:
   id: 409836
   time: '2026-10-26T23:58:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6818
+- author: Floximo
+  changes:
+  - message: Worn storages can now be accessed by thieves without notifying the victim.
+    type: Fix
+  id: 409837
+  time: '2026-10-27T16:54:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6861
+- author: to01
+  changes:
+  - message: Added cheap sunglasses to the selection of glasses in the loadout menu.
+    type: Add
+  id: 409838
+  time: '2026-10-27T17:25:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6885
 Order: -1
