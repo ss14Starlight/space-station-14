@@ -21,7 +21,7 @@
   id: HoPIDCard
   components:
   - type: Contraband
-    tier: Tier4
+    tier: Tier5
     allowedDepartments:
     - Command
 
