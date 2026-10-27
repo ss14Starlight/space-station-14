@@ -331,10 +331,10 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
             NeedHand = false,
             RequireCanInteract = true,
             BlockDuplicate = true,
-            CancelDuplicate = true
+            CancelDuplicate = true,
+            Hidden = beforeStripEvent.Stealth
         };
 
-        doAfterArgs.Hidden = beforeStripEvent.Stealth;
         if (!beforeStripEvent.Stealth)
             _popup.PopupEntity(Loc.GetString(accessPopup, ("user", user)), owner, owner, PopupType.Medium);
 
