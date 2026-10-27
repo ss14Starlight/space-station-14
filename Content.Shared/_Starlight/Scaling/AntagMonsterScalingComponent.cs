@@ -20,4 +20,10 @@ public sealed partial class AntagMonsterScalingComponent : Component
 
     [DataField]
     public SortedDictionary<FixedPoint2, MobState>? OriginalThresholds;
+
+    /// <summary>
+    /// Maximum health after scaling has been applied.
+    /// </summary>
+    [ViewVariables]
+    public FixedPoint2? ScaledMaxHealth;
 }

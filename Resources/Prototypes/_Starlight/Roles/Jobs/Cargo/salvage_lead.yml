@@ -28,6 +28,7 @@
   - !type:AddComponentSpecial
     components:
       - type: NoObjectiveTarget
+  antagScalingSalvageWeight: 0.75
 
 - type: startingGear
   id: SalvageLeadGear

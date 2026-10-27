@@ -9,6 +9,7 @@ using Content.Shared.StationRecords;
 using Content.Server.Station.Systems;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Scaling;
+using System.Linq;
 
 namespace Content.Server._Starlight.Scaling;
 
@@ -67,6 +68,8 @@ public sealed partial class ScalingSystem : SharedScalingSystem
 
         ApplyHealthScaling(station, scalingComp, thresholdsComp, _cachedPopulations, _universalHealthWeight);
 
+        scalingComp.ScaledMaxHealth = thresholdsComp.Thresholds.Keys.Max();
+
         scalingComp.IsScaled = true;
     }
 
@@ -94,28 +97,9 @@ public sealed partial class ScalingSystem : SharedScalingSystem
             if (job == null)
                 continue;
 
-            var supervisors = (string) job.Supervisors;
-            var jobId = job.ID;
-            if (jobId == "HeadOfSecurity"
-                || supervisors.Contains("hos")
-                || supervisors.Contains("warden"))
-            {
-                updatedPopulation += 1 * _securityWeight;
-            }
-
-            if (supervisors.Contains("security")) // K9, Cadets
-                updatedPopulation += 0.5 * _securityWeight;
-
-            if (job.Name.Contains("salvage"))
-            {
-                updatedPopulation += 1 * _salvageWeight; // 0.25 mod
-            }
-            if (((string)job.Supervisors).Contains("centcom")
-                && !job.Name.Contains("Magistrate")
-                && !job.Name.Contains("Representative"))
-            {
-                updatedPopulation += 1 * _centcomWeight;
-            }
+            updatedPopulation += job.AntagScalingSecurityWeight * _securityWeight;
+            updatedPopulation += job.AntagScalingSalvageWeight * _salvageWeight;
+            updatedPopulation += job.AntagScalingCentcomWeight * _centcomWeight;
         }
 
         _cachedPopulations.GetOrNew(station);

@@ -26,6 +26,7 @@
   - !type:AddComponentSpecial
     components:
       - type: NoObjectiveTarget
+  antagScalingSalvageWeight: 0.5
 
 - type: startingGear
   id: SalvageMedicGear
