@@ -65,10 +65,7 @@
     sprite: Clothing/Neck/mantles/rdmantle.rsi
 
 - type: entity
-  # Starlight
-  # TODO: put this back once parent partials don't break literally everything
-  # parent: [ClothingNeckBase, BaseCommandContraband]
-  parent: [ClothingNeckBase, BaseCommandContraband, BaseEmotionalSupportScurretContraband]
+  parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckMantleQM
   name: quartermaster's mantle
   description: For the master of goods and materials to rule over the department, a befitting mantle to show off superiority!

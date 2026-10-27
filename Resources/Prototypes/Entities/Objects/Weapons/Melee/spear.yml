@@ -1,9 +1,6 @@
 - type: entity
   name: spear
-  # Starlight
-  # TODO: put this back once parent partials don't break literally everything
-  # parent: [BaseItem, SolutionDart, BaseMinorContraband]
-  parent: [BaseItem, SolutionDart, BaseEmotionalSupportScurretContraband]
+  parent: [BaseItem, SolutionDart, BaseMinorContraband]
   id: Spear
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
