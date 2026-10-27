@@ -1,0 +1,20 @@
+# Senior Time
+- type: loadoutEffectGroup
+  id: SeniorBotanist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 216000 # 60 hrs
+
+# Senior Trinket
+- type: loadout
+  id: BotanistGoldenClippers
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorBotanist
+  storage:
+    belt:
+    - HydroponicsToolClippersGold
+

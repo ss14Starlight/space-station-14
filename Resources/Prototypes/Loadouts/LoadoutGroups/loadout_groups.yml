@@ -700,11 +700,12 @@
   - BotanistApron
   - BotanistWintercoat
 
-#- type: loadoutGroup
-#  id: BotanistJobTrinkets
-#  name: loadout-group-jobtrinkets
-#  minLimit: 0
-#  loadouts:
+- type: loadoutGroup
+  id: BotanistJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - BotanistGoldenClippers
 
 - type: loadoutGroup
   id: ClownHead
