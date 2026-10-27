@@ -29,6 +29,8 @@
     bleedReductionAmount: 1.5
     bloodRefreshAmount: 5
   - type: AntagMonsterScaling # Starlight end
+    minimumHealthScaling: -0.5
+    maximumHealthScaling: 0.75
   - type: GhostRole
     allowMovement: true
     allowSpeech: true

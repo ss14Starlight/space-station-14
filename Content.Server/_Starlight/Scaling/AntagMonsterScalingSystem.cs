@@ -95,7 +95,9 @@ public sealed partial class ScalingSystem : SharedScalingSystem
                 continue;
 
             var supervisors = (string) job.Supervisors;
-            if (supervisors.Contains("hos")
+            var jobId = job.ID;
+            if (jobId == "HeadOfSecurity"
+                || supervisors.Contains("hos")
                 || supervisors.Contains("warden"))
             {
                 updatedPopulation += 1 * _securityWeight;
