@@ -233,3 +233,4 @@ guide-entry-gasses2 = Key Gasses
 guide-entry-gasses3 = Utility Gasses
 guide-entry-gasses4 = Advanced Gasses
 guide-entry-gasses5 = Rare Gasses
+guide-entry-combustion-turbine = Combustion Turbine

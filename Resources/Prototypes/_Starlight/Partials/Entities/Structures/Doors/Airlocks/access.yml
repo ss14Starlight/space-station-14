@@ -1,5 +1,11 @@
 # Keep alphabetical
 - type: !PartialOnly entity
+  id: AirlockChapelStandardGlassLocked
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/services.rsi
+
+- type: !PartialOnly entity
   id: AirlockMaintArmoryLocked
   name: maintenance access
   components:
@@ -205,3 +211,27 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
+
+- type: !PartialOnly entity
+  id: AirlockServiceLocked
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services.rsi
+
+- type: !PartialOnly entity
+  id: AirlockServiceGlassLocked
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/services.rsi
+
+- type: !PartialOnly entity
+  id: AirlockServiceTheatreLocked
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services.rsi
+
+- type: !PartialOnly entity
+  id: AirlockServiceTheatreGlassLocked
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/services.rsi
