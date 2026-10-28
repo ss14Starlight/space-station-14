@@ -3,7 +3,7 @@
   id: MobLingMonkey
   suffix: Do Not Map
   components:
-    - type: ChangelingDevour
+    - type: StarlightChangelingDevour
     - type: ChangelingIdentity
     - type: UserInterface # Ensures that lesser form has necessary UIs
       interfaces:

@@ -52,7 +52,7 @@ public sealed partial class ChangelingComponent : Component
     public float StealthDrain = 1.25f; // 6.6 minutes to fully drain 100 chemicals
 
     [DataField]
-    public float StasisDrain = 0.2f;
+    public float StasisDrain = 10f / 60f; // Biomass per second in stasis.
 
 
     public Dictionary<string, EntityUid?> Equipment = new();
@@ -80,7 +80,7 @@ public sealed partial class ChangelingComponent : Component
     ///     How much biomass should be removed per cycle.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float BiomassDrain = 0.5f; // Starlight, gives them double time to eat.
+    public float BiomassDrain = 0.4f;
 
     /// <summary>
     ///     Current amount of chemicals changeling currently has.

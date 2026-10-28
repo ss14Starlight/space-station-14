@@ -16,7 +16,6 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.Ensnaring.Components;
 using Content.Shared.Eye.Blinding.Components;
@@ -46,6 +45,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 {
     [Dependency] private StatusEffectsSystem _statusEffect = default!;
     [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
+    [Dependency] private ChangelingDevourSystem _devour = default!;
     [Dependency] private LanguageSystem _language = default!;
     [Dependency] private SharedFlashSystem _flashSystem = default!;
     [Dependency] private SharedRottingSystem _rotting = default!;
@@ -144,7 +144,6 @@ public sealed partial class ChangelingSystem : EntitySystem
         _doAfter.TryStartDoAfter(dargs);
     }
 
-    public ProtoId<DamageGroupPrototype> AbsorbedDamageGroup = "Genetic";
     private void OnDevouredPerson(EntityUid uid, ChangelingComponent comp, ref OnLingDevour args)
     {
         var target = args.Consumed;
@@ -348,7 +347,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
     private void OnRefreshSpeed(Entity<ChangelingComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
-        if (ent.Comp.StrainedMusclesActive)
+        if (ent.Comp.StrainedMusclesActive && ent.Comp.Biomass >= 1)
             args.ModifySpeed(1.25f, 1.5f);
         else
             args.ModifySpeed(1f, 1f);
@@ -706,13 +705,6 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
-        if (lingAction.RequireAbsorbed > comp.TotalAbsorbedEntities)
-        {
-            var delta = lingAction.RequireAbsorbed - comp.TotalAbsorbedEntities;
-            _popup.PopupEntity(Loc.GetString("changeling-action-fail-absorbed", ("number", delta)), uid, uid);
-            ev.Cancelled = true;
-            return;
-        }
 
         UpdateChemicals(uid, comp, -lingAction.ChemicalCost);
         UpdateBiomass(uid, comp, -lingAction.BiomassCost);
