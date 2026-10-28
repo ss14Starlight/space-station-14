@@ -344,6 +344,14 @@
                     1.0
                 ]
             ]
+        },
+        {
+            "name": "EmotionalSupportScurret",
+            "copyright": "baltdev"
+        },
+        {
+            "name": "SyndicateScurret",
+            "copyright": "baltdev"
         }
     ]
 }
