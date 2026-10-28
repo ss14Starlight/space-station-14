@@ -59,7 +59,7 @@
       roles:
       - 1374523965850128517 # NullLink Ambassador
     - text: "Ambassador"
-      color: "##d6bb94"
+      color: "#d6bb94"
       roles:
       - 1558022844632408084 # Ambassador
     - text: "Maintainer"
