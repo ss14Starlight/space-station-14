@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/28/2026 09:03:24
+  time: 10/28/2026 09:05:21
   entityCount: 30484
 maps:
 - 1
@@ -15244,8 +15244,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 184
-      configurators:
-      - invalid
 - proto: AltarBananium
   entities:
   - uid: 836
