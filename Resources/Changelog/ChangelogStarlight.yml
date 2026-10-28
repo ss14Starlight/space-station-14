@@ -1,298 +1,4 @@
 Entries:
-- author: OmgDev
-  changes:
-  - message: Smile no longer pretends like they can scream.
-    type: Fix
-  id: 409427
-  time: '2026-10-13T17:12:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6643
-- author: wonderfulnewworld
-  changes:
-  - message: Secret will now actually count effective players rather than only readied players.
-    type: Fix
-  id: 409428
-  time: '2026-10-13T20:14:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6671
-- author: Trosling
-  changes:
-  - message: Updates Corporate Law to match new contraband tier system.
-    type: Tweak
-  id: 409429
-  time: '2026-10-13T20:34:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6660
-- author: Vincolan
-  changes:
-  - message: The horse.
-    type: Add
-  id: 409430
-  time: '2026-10-13T20:34:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6623
-- author: Floximo
-  changes:
-  - message: Added true remote control.
-    type: Add
-  id: 409431
-  time: '2026-10-13T20:56:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6574
-- author: Floximo
-  changes:
-  - message: AI can now remote control every remote controllable thing that is not already controlled.
-    type: Add
-  id: 409432
-  time: '2026-10-13T20:56:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6574
-- author: Floximo
-  changes:
-  - message: AI can remote control AI interfaces.
-    type: Add
-  id: 409433
-  time: '2026-10-13T20:56:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6574
-- author: Floximo
-  changes:
-  - message: Drones are no longer shuntables and support the intellicard now.
-    type: Tweak
-  id: 409434
-  time: '2026-10-13T20:56:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6574
-- author: Tjmaxmillion
-  changes:
-  - message: Recalling NRT now needs any two of the Captain, HOS and NTR and one command; any one of the Captain, HOS and NTR and three command.
-    type: Tweak
-  id: 409435
-  time: '2026-10-14T05:22:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6635
-- author: Maxim
-  changes:
-  - message: Virtual PDA for the Station AI.
-    type: Add
-  id: 409436
-  time: '2026-10-14T05:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6637
-- author: wonderfulnewworld, Killer Tamashi
-  changes:
-  - message: Neocytes no longer get stunned by EMPs, only knocked down.
-    type: Tweak
-  id: 409437
-  time: '2026-10-14T06:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6658
-- author: wonderfulnewworld, Killer Tamashi
-  changes:
-  - message: Reduced EMP knockdown on IPCs.
-    type: Tweak
-  id: 409438
-  time: '2026-10-14T06:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6658
-- author: wonderfulnewworld, Killer Tamashi
-  changes:
-  - message: Neo-Moths can now have hair.
-    type: Fix
-  id: 409439
-  time: '2026-10-14T06:08:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6658
-- author: Floximo
-  changes:
-  - message: Syndicats can now fit in pet carriers.
-    type: Fix
-  id: 409440
-  time: '2026-10-14T06:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6676
-- author: Floximo
-  changes:
-  - message: A lot of air alert values got changed to better reflect actual danger.
-    type: Tweak
-  id: 409441
-  time: '2026-10-14T06:34:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6659
-- author: WNP78
-  changes:
-  - message: Fixed burst fire guns having sticky triggers.
-    type: Fix
-  id: 409442
-  time: '2026-10-14T06:34:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6677
-- author: WNP78
-  changes:
-  - message: Fixed burst fire guns not predicting burst shots after the trigger is released.
-    type: Fix
-  id: 409443
-  time: '2026-10-14T06:34:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6677
-- author: chaoticevii, RodTheRick, Bibbs, Nzuno
-  changes:
-  - message: Added 9 Shared Thaven Moods.
-    type: Add
-  id: 409444
-  time: '2026-10-14T06:55:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6666
-- author: chaoticevii, RodTheRick, Bibbs, Nzuno
-  changes:
-  - message: Added 9 Yes And Thaven Moods.
-    type: Add
-  id: 409445
-  time: '2026-10-14T06:55:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6666
-- author: chaoticevii, RodTheRick, Bibbs, Nzuno
-  changes:
-  - message: Added 6 No And Thaven Moods.
-    type: Add
-  id: 409446
-  time: '2026-10-14T06:55:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6666
-- author: chaoticevii, RodTheRick, Bibbs, Nzuno
-  changes:
-  - message: Added 5 Wildcard Thaven Moods.
-    type: Add
-  id: 409447
-  time: '2026-10-14T06:55:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6666
-- author: 0warie
-  changes:
-  - message: Added Light Floors. They sit on the same layer as carpets and take light bulbs, so their colour changes with the bulb you put in. Light output is toned down compared to regular lights.
-    type: Add
-  id: 409448
-  time: '2026-10-14T14:23:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6657
-- author: enerjak
-  changes:
-  - message: Buffed the spyglass and captain's spyglass to match the binoculars.
-    type: Tweak
-  id: 409449
-  time: '2026-10-14T14:23:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6664
-- author: Talirson
-  changes:
-  - message: Lowered reaction priority for Ulnitranium/Pluoxium radiation reactions.
-    type: Tweak
-  id: 409450
-  time: '2026-10-14T15:34:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6678
-- author: Johnny
-  changes:
-  - message: Nuclear reactor can do bigger boom boom.
-    type: Tweak
-  id: 409451
-  time: '2026-10-15T06:38:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6687
-- author: CrazyPhantom
-  changes:
-  - message: Supermatter Cascades now spread to spaced tiles.
-    type: Tweak
-  id: 409452
-  time: '2026-10-15T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6686
-- author: Caws
-  changes:
-  - message: Fixed a bunch of gamemodes that had an impractically high minPlayers of 40-50 players (e.g. Vampire, Traitorling, Zombieteors, and Vamptraitorling). These gamemodes now have a more reasonable minPlayers of 20-25.
-    type: Fix
-  id: 409453
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: Both Beta and Epsilon should have a better variety of gamemodes (instead of constantly rolling Shitstation).
-    type: Tweak
-  id: 409454
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: Non-ready players now count as 1/2 of a Ready player for roundstart gamemode rolling.
-    type: Tweak
-  id: 409455
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: (Beta/Epsilon) PvP gamemodes (NukeOps, Revs, Cultists, Zombies) now make up 30% of rounds (up from effectively 18.9%).
-    type: Tweak
-  id: 409456
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: (Beta/Epsilon) PvE gamemodes (Survival, Kessler) now make up 10% of rounds (up from effectively 5.6%).
-    type: Tweak
-  id: 409457
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: (Beta/Epsilon) Traitor-Like gamemodes (Traitors, Vampires, Changelings) now make up 30% of rounds (down from effectively 35.7%).
-    type: Tweak
-  id: 409458
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: (Beta/Epsilon) Dynamic's gamemode weight increased from effectively 21% to 25%.
-    type: Tweak
-  id: 409459
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: (Beta/Epsilon) Shitstation weight reduced from effectively 5.6% to 3%.
-    type: Tweak
-  id: 409460
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: (Beta/Epsilon) Wizard Duel weight increased from effectively 1.4% to 2%.
-    type: Tweak
-  id: 409461
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: "(Beta/Epsilon) Extended can no longer roll as a primary gamemode - it's back to being a back-up / failsafe. If you hate any of the above gamemode tweaks after trying it, make your voice heard in #suggestions."
-    type: Remove
-  id: 409462
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: The syndicate chameleon projector module, printable from an emagged exosuit fabricator, can now fit in any model of cyborg chassis, like the description indicated it should.
-    type: Fix
-  id: 409463
-  time: '2026-10-15T07:03:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6684
-- author: Hot Mic
-  changes:
-  - message: 'New Station: NT-18 Flotilla Station. (Only manual map loading for Testing and Feedback).'
-    type: Add
-  id: 409464
-  time: '2026-10-16T09:12:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5952
-- author: Yosif
-  changes:
-  - message: Added a plant analyzer (from wizards).
-    type: Add
-  id: 409465
-  time: '2026-10-16T09:13:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6709
-- author: Yosif
-  changes:
-  - message: logs now cuttable by sharp tools.
-    type: Tweak
-  id: 409466
-  time: '2026-10-16T09:13:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6709
-- author: Yosif
-  changes:
-  - message: Choppa now is craftable (saw blade in crafting menu) For perma escapers to cut plants.
-    type: Tweak
-  id: 409467
-  time: '2026-10-16T09:13:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6709
-- author: Yosif
-  changes:
-  - message: Popups now not showing to others.
-    type: Fix
-  id: 409468
-  time: '2026-10-16T09:13:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6709
 - author: Makeshift
   changes:
   - message: Downpour Station, a new low-mid pop map! (Admeme only for play-testing).
@@ -2799,4 +2505,298 @@ Entries:
   id: 409826
   time: '2026-10-26T20:50:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6878
+- author: redmushie
+  changes:
+  - message: Admins and mappers can (un)anchor entities through floor tiles.
+    type: Add
+  id: 409827
+  time: '2026-10-26T22:28:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6876
+- author: redmushie
+  changes:
+  - message: Admins and mappers can adjust pipe layers through floor tiles.
+    type: Add
+  id: 409828
+  time: '2026-10-26T22:28:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6876
+- author: redmushie
+  changes:
+  - message: Added Toolshed "layernetwork" command, letting mappers move entire pipe networks to a different layer at once.
+    type: Add
+  id: 409829
+  time: '2026-10-26T22:54:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6877
+- author: redmushie
+  changes:
+  - message: Toolshed's "visualize" command's window is now less unnecessarily big.
+    type: Tweak
+  id: 409830
+  time: '2026-10-26T22:54:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6877
+- author: Floximo
+  changes:
+  - message: Visuals for communication consoles (merged and light intensity) repaired.
+    type: Fix
+  id: 409831
+  time: '2026-10-26T23:16:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6889
+- author: Rescue
+  changes:
+  - message: Molotovs are now lit with welding torches, lighters and other sources of flame.
+    type: Tweak
+  id: 409832
+  time: '2026-10-26T23:36:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6827
+- author: Rescue
+  changes:
+  - message: Lit molotovs that have not been thrown, will burn out and require more cloth.
+    type: Fix
+  id: 409833
+  time: '2026-10-26T23:36:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6827
+- author: Johnny
+  changes:
+  - message: Changed the shuttle bundle to actually hold a shuttle board.
+    type: Tweak
+  id: 409834
+  time: '2026-10-26T23:57:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6798
+- author: wonderfulnewworld
+  changes:
+  - message: Gamerules/presets with cooldowns now actually include themselves in the cooldown. (Weird corner case with Zombies).
+    type: Tweak
+  id: 409835
+  time: '2026-10-26T23:58:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6818
+- author: wonderfulnewworld
+  changes:
+  - message: Secret Zombieteors should no longer roll into Secret Zombie.
+    type: Fix
+  id: 409836
+  time: '2026-10-26T23:58:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6818
+- author: Floximo
+  changes:
+  - message: Worn storages can now be accessed by thieves without notifying the victim.
+    type: Fix
+  id: 409837
+  time: '2026-10-27T16:54:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6861
+- author: to01
+  changes:
+  - message: Added cheap sunglasses to the selection of glasses in the loadout menu.
+    type: Add
+  id: 409838
+  time: '2026-10-27T17:25:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6885
+- author: Sparlight
+  changes:
+  - message: Added a button to collapse the sidebar of the guidebook.
+    type: Add
+  id: 409839
+  time: '2026-10-27T19:24:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6895
+- author: Makeshift
+  changes:
+  - message: Added Downpour Station into the map pool! (20-100 Pop).
+    type: Add
+  id: 409840
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Added a new Cargo Shuttle.
+    type: Add
+  id: 409841
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Grinder and Electrolysis Unit to chemistry.
+    type: Add
+  id: 409842
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Firelocks to the science maints beach room.
+    type: Add
+  id: 409843
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Sprinkled more ATMs around.
+    type: Add
+  id: 409844
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) More Holopads to rooms that were missing them.
+    type: Add
+  id: 409845
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Widened the maintenance path between the reactor and atmos.
+    type: Fix
+  id: 409846
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Fixed two unpowered maintenance doors near security.
+    type: Fix
+  id: 409847
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Swapped 2 regular SMESs for Hyper-Advanced SMESs.
+    type: Tweak
+  id: 409848
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Renamed a safe in maints, to avoid confusion.
+    type: Tweak
+  id: 409849
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Conflee
+  changes:
+  - message: All medical vending machines now have 1-2 Oil Packs for IPCs etc, to ensure universal accessibility on Evac and CentComm and slightly easier access via Civilian vends on Stations.
+    type: Tweak
+  id: 409850
+  time: '2026-10-28T07:56:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6912
+- author: Caws
+  changes:
+  - message: "'Leth Vessel' has been retired from the map pool."
+    type: Remove
+  id: 409851
+  time: '2026-10-28T07:56:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6914
+- author: rhithebirdthing
+  changes:
+  - message: Added job trinkets for Chef and Botanist.
+    type: Add
+  id: 409852
+  time: '2026-10-28T08:31:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6910
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: The syndicate chameleon projector module now has a power cell hand so that standard cyborgs can recharge their projector!
+    type: Tweak
+  id: 409853
+  time: '2026-10-28T08:31:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6909
+- author: Sparlight
+  changes:
+  - message: Fixed being able to chameleon PDAs into collars.
+    type: Fix
+  id: 409854
+  time: '2026-10-28T08:31:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6911
+- author: Floximo
+  changes:
+  - message: Cyborg AA is now removed on client disconnect. Reconnect will restore them.
+    type: Fix
+  id: 409855
+  time: '2026-10-28T08:58:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6873
+- author: baltdev
+  changes:
+  - message: Traded out the suit storage slot (which seems to be broken for Scurrets) for a pocket and belt slot on Scurrets.
+    type: Tweak
+  id: 409856
+  time: '2026-10-28T09:24:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6894
+- author: baltdev
+  changes:
+  - message: Gave Emotional Support Scurrets a job entry, ID, and playtime tracker.
+    type: Add
+  id: 409857
+  time: '2026-10-28T09:24:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6894
+- author: baltdev
+  changes:
+  - message: Let Emotional Support Scurrets access maints.
+    type: Tweak
+  id: 409858
+  time: '2026-10-28T09:24:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6894
+- author: baltdev
+  changes:
+  - message: Marked the QM mantle and spear as allowed for Emotional Support Scurrets.
+    type: Tweak
+  id: 409859
+  time: '2026-10-28T09:24:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6894
+- author: baltdev
+  changes:
+  - message: Syndicate Scurret Reinforcement job icon (currently unused).
+    type: Add
+  id: 409860
+  time: '2026-10-28T09:24:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6894
+- author: Swonki
+  changes:
+  - message: 'Argocyte Expedition: Low loot, but the bodies can be chopped up for tickets.'
+    type: Add
+  id: 409861
+  time: '2026-10-28T09:24:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6763
+- author: Swonki
+  changes:
+  - message: Silicon Expedition.
+    type: Add
+  id: 409862
+  time: '2026-10-28T09:24:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6763
+- author: Swonki
+  changes:
+  - message: Expedition loot is now generated based on the type of expedition rather than just the difficulty.
+    type: Add
+  id: 409863
+  time: '2026-10-28T09:24:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6763
+- author: Swonki
+  changes:
+  - message: Difficulties are now relative to the exped type.
+    type: Add
+  id: 409864
+  time: '2026-10-28T09:24:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6763
+- author: Swonki
+  changes:
+  - message: Worm Expedition.
+    type: Remove
+  id: 409865
+  time: '2026-10-28T09:24:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6763
+- author: Swonki
+  changes:
+  - message: xenos and argocytes are butcherable.
+    type: Fix
+  id: 409866
+  time: '2026-10-28T09:24:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6763
+- author: Conflee
+  changes:
+  - message: Added the Interdyne Nuclear Operative Outpost, a new outpost themed as an abandoned Interdyne hospital. Very little 'freebie' loot for the Nukies, but an extremely robust Chemistry setup with 2 fully equipped chem stations, and a large room set aside for Corpsman to use plumbing and chem automation with an RPLD if they know how.
+    type: Add
+  id: 409867
+  time: '2026-10-28T09:24:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6820
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Revolutionary monkeys are now educated on communist ideologies and will only attack mindshielded crew. They also won't attack headrevs anymore.
+    type: Fix
+  id: 409868
+  time: '2026-10-28T11:14:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6913
 Order: -1
