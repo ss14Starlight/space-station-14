@@ -11,6 +11,10 @@ namespace Content.Server.Body.Components
     [RegisterComponent, Access(typeof(RespiratorSystem)), AutoGenerateComponentPause]
     public sealed partial class RespiratorComponent : Component
     {
+        /// <summary>Whether respiratory updates and gas exchange are enabled.</summary>
+        [DataField]
+        public bool Enabled = true;
+
         /// <summary>
         ///     Volume of our breath in liters
         /// </summary>

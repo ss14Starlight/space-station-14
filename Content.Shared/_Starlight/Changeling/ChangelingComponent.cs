@@ -42,6 +42,9 @@ public sealed partial class ChangelingComponent : Component
 
     public bool IsInStasis = false;
 
+    [DataField, AutoNetworkedField]
+    public bool BreathingEnabled = true;
+
     public bool StrainedMusclesActive = false;
 
     public bool IsInLesserForm = false;

@@ -70,6 +70,26 @@ public sealed partial class RespiratorSystem : EntitySystem
         ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
     }
 
+    /// <summary>Suspends respiration without replacing its configuration or refilling saturation.</summary>
+    public bool SetEnabled(Entity<RespiratorComponent?> ent, bool enabled)
+    {
+        if (!Resolve(ent, ref ent.Comp, logMissing: false))
+            return false;
+        if (ent.Comp.Enabled == enabled)
+            return true;
+
+        ent.Comp.Enabled = enabled;
+        ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
+        if (!enabled)
+        {
+            ent.Comp.SuffocationCycles = 0;
+            var ev = new StopSuffocatingEvent();
+            RaiseLocalEvent(ent, ref ev);
+        }
+
+        return true;
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -82,7 +102,7 @@ public sealed partial class RespiratorSystem : EntitySystem
 
             respirator.NextUpdate += respirator.AdjustedUpdateInterval;
 
-            if (_mobState.IsDead(uid))
+            if (!respirator.Enabled || _mobState.IsDead(uid))
                 continue;
 
             UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
@@ -128,7 +148,7 @@ public sealed partial class RespiratorSystem : EntitySystem
 
     public void Inhale(Entity<RespiratorComponent?> entity)
     {
-        if (!Resolve(entity, ref entity.Comp, logMissing: false))
+        if (!Resolve(entity, ref entity.Comp, logMissing: false) || !entity.Comp.Enabled)
             return;
 
         // Inhale gas
@@ -176,7 +196,7 @@ public sealed partial class RespiratorSystem : EntitySystem
 
     public void Exhale(Entity<RespiratorComponent?> entity, GasMixture gas)
     {
-        if (!Resolve(entity, ref entity.Comp, logMissing: false))
+        if (!Resolve(entity, ref entity.Comp, logMissing: false) || !entity.Comp.Enabled)
             return;
 
         var ev = new ExhaledGasEvent(gas);
@@ -194,7 +214,7 @@ public sealed partial class RespiratorSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return false;
 
-        return (ent.Comp.Saturation > ent.Comp.SuffocationThreshold);
+        return ent.Comp.Enabled && ent.Comp.Saturation > ent.Comp.SuffocationThreshold;
     }
 
     /// <summary>

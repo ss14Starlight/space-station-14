@@ -271,7 +271,8 @@ public sealed partial class SmokeSystem : EntitySystem
 
         var blockIngestion = _internals.AreInternalsWorking(entity);
 
-        if (!HasComp<RespiratorComponent>(entity)) // Starlight - Shadekin does not breathe and "AreInternalsWorking" does not check for that.
+        // Starlight: internals do not cover bodies with absent or disabled respiration.
+        if (!TryComp<RespiratorComponent>(entity, out var respirator) || !respirator.Enabled)
             blockIngestion = true;
 
         var cloneSolution = solution.Clone();

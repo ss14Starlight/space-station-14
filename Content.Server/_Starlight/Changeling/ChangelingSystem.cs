@@ -425,6 +425,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         var newComp = EnsureComp<ChangelingComponent>(target);
         newComp.AbsorbedDNA = comp.AbsorbedDNA;
         newComp.AbsorbedDNAIndex = comp.AbsorbedDNAIndex;
+        newComp.BreathingEnabled = comp.BreathingEnabled;
+        _respirator.SetEnabled(target, newComp.BreathingEnabled);
 
         newComp.Chemicals = comp.Chemicals;
         newComp.MaxChemicals = comp.MaxChemicals;
@@ -574,6 +576,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
+        _respirator.SetEnabled(uid, comp.BreathingEnabled);
         //EnsureComp<ZombieImmuneComponent>(uid); Starlight, we're bringing Lings into Zombies!
 
         // add actions
@@ -620,7 +623,11 @@ public sealed partial class ChangelingSystem : EntitySystem
         damageSpec.ClampMax(200); // we never die. UNLESS??
     }
 
-    private void OnComponentRemove(Entity<ChangelingComponent> ent, ref ComponentRemove args) => RemoveAllChangelingEquipment(ent, ent.Comp);
+    private void OnComponentRemove(Entity<ChangelingComponent> ent, ref ComponentRemove args)
+    {
+        RemoveAllChangelingEquipment(ent, ent.Comp);
+        _respirator.SetEnabled(ent.Owner, true);
+    }
 
 
     #endregion
