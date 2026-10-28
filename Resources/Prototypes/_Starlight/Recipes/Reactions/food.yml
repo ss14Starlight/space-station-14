@@ -1,6 +1,7 @@
 - type: reaction
   id: HowTheSausageIsMade
   impact: Low
+  maxTemp: 335
   quantized: true
   conserveEnergy: false
   reactants:
@@ -12,6 +13,22 @@
   effects:
     - !type:SpawnEntity
       entity: FoodSausage
+
+- type: reaction
+  id: HotTheSausageIsMade
+  impact: Low
+  minTemp: 335
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    UncookedAnimalProteins:
+      amount: 5
+    Enzyme:
+      amount: 1
+      catalyst: true
+  effects:
+    - !type:SpawnEntity
+      entity: FoodSausageCooked
 
 - type: reaction
   id: StellibininSyrup
