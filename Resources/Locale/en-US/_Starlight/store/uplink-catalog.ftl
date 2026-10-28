@@ -164,3 +164,6 @@ uplink-estoc-desc = A designated marksman rifle, fitted with a mid-range optic f
 
 uplink-plushie-linari-name = linari miun plushie
 uplink-plushie-linari-desc = An expertly crafted plush lizard in tactical officer gear, absent from the standard NanoTrasen catalogues. The stitching on the back says "Property of the Syndicate." Holding it makes you feel like you're breaking at least three corporate regulations.
+
+uplink-syndimoff-microbomb-name = SyndiMoff Teleporter
+uplink-syndimoff-microbomb-desc = Call in a handy moff equipped with a picobomb implant. Explodes when seriously injured. Doesn't bite.

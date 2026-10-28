@@ -102,25 +102,6 @@
 
 - type: entity
   parent: ReinforcementRadio
-  id: ReinforcementRadioSyndicateSyndiMoff
-  name: syndimoff reinforcement radio
-  description: Calls in a faithfully trained moff with a picobomb to assist you.
-  components:
-  - type: GhostRole
-    name: ghost-role-information-SyndiMoff-name
-    description: ghost-role-information-SyndiMoff-description
-    rules: ghost-role-information-syndicate-reinforcement-rules
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-    raffle:
-      settings: default
-  - type: GhostRoleMobSpawner
-    prototype: MobSyndiMoff
-  - type: EmitSoundOnUse
-    sound: /Audio/Voice/Moth/moth_flap.ogg
-
-- type: entity
-  parent: ReinforcementRadio
   id: ReinforcementRadioSyndicateCyborgAssault # Reinforcement radio exclusive to nukeops uplink
   name: syndicate assault cyborg reinforcement radio
   description: Call in a well armed assault cyborg, instantly!

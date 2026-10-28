@@ -57,3 +57,17 @@
     Telecrystal: 1
   categories:
     - UplinkPointless
+
+- type: listing
+  id: UplinkMobSyndiMoff
+  name: uplink-syndimoff-microbomb-name
+  description: uplink-syndimoff-microbomb-desc
+  icon: { sprite: _Starlight/Objects/Devices/communication.rsi, state: old-radio-syndimoff }
+  productEntity: ReinforcementRadioSyndicateSyndiMoff
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAllies

@@ -1387,20 +1387,6 @@
     - UplinkAllies
 
 - type: listing
-  id: UplinkMobSyndiMoff
-  name: uplink-syndimoff-microbomb-name
-  description: uplink-syndimoff-microbomb-desc
-  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-syndicat }
-  productEntity: ReinforcementRadioSyndicateSyndiMoff
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 1
-  cost:
-    Telecrystal: 2
-  categories:
-    - UplinkAllies
-
-- type: listing
   id: UplinkSyndicatePersonalAI
   name: uplink-syndicate-pai-name
   description: uplink-syndicate-pai-desc

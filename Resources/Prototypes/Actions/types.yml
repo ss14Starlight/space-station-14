@@ -118,19 +118,6 @@
 
 - type: entity
   parent: [BaseSuicideAction, BaseImplantAction]
-  id: ActionActivatePicoBomb
-  name: Activate Picobomb
-  description: Activates your internal picobomb, completely destroying you and your equipment
-  components:
-  - type: Action
-    itemIconStyle: BigAction
-    priority: -20
-    icon:
-      sprite: Interface/Actions/Implants/implants.rsi
-      state: explosive
-
-- type: entity
-  parent: [BaseSuicideAction, BaseImplantAction]
   id: ActionActivateDeathAcidifier
   name: Activate Death-Acidifier
   description: Activates your death-acidifier, completely melting you and your equipment

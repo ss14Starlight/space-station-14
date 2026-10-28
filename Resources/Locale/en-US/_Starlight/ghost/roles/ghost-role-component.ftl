@@ -165,3 +165,7 @@ ghost-role-information-spawn-point-ghost-cluwne-beast-name = Cluwne Beast
 ghost-role-information-mob-nyr-mouse-ops-description = You are mouff leader. Your goal is to steal cheese from heads!
 ghost-role-information-spawn-point-ghost-cluwne-beast-description = Spread laughter and chaos by hitting and turning the crew into cluwnes.
 ghost-role-information-spawn-point-ghost-cluwne-beast-rules = You are an antagonist, transform as many of the crew as you can into cluwnes.
+
+ghost-role-information-SyndiMoff-name = SyndiMoff
+ghost-role-information-SyndiMoff-description = You're the faithful trained pest of nuclear operatives with a picobomb. Serve your master to the death!
+ghost-role-information-SyndiMoff-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the agent who summoned you.
