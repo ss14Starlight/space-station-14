@@ -12,11 +12,17 @@ using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared._Starlight.Station;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Spawners.Components;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Shadekin;
 
 public sealed partial class ShadekinSystem
 {
+    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+
+    private static readonly ProtoId<NpcFactionPrototype> ShieldedFaction = "Shielded";
     [SubscribeLocalEvent]
     private void OnZombify(Entity<BrighteyeComponent> ent, ref EntityZombifiedEvent args)
         => RemComp<BrighteyeComponent>(ent.Owner);
@@ -31,6 +37,7 @@ public sealed partial class ShadekinSystem
         }
 
         RemCompDeferred<MindShieldComponent>(ent.Owner);
+        _npcFaction.RemoveFaction(ent.Owner, ShieldedFaction);
 
         _language.AddLanguage(ent.Owner, "Empathy");
 
@@ -91,6 +98,7 @@ public sealed partial class ShadekinSystem
         ent.Comp.PortalNeedStation = false;
 
         RemCompDeferred<MindShieldComponent>(ent.Owner);
+        _npcFaction.RemoveFaction(ent.Owner, ShieldedFaction);
     }
 
     // ! Gosh this is bad... But there no event to get implanted shit? or mindshield? il do this for now change if need later!
@@ -98,7 +106,10 @@ public sealed partial class ShadekinSystem
     private void MindShieldImplanted(EntityUid uid, MindShieldComponent comp, ComponentStartup args)
     {
         if (HasComp<BrighteyeComponent>(uid))
+        {
             RemCompDeferred<MindShieldComponent>(uid);
+            _npcFaction.RemoveFaction(uid, ShieldedFaction);
+        }
     }
 
     [SubscribeLocalEvent]
