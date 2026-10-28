@@ -1,74 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: Syndicats can now fit in pet carriers.
-    type: Fix
-  id: 409440
-  time: '2026-10-14T06:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6676
-- author: Floximo
-  changes:
-  - message: A lot of air alert values got changed to better reflect actual danger.
-    type: Tweak
-  id: 409441
-  time: '2026-10-14T06:34:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6659
-- author: WNP78
-  changes:
-  - message: Fixed burst fire guns having sticky triggers.
-    type: Fix
-  id: 409442
-  time: '2026-10-14T06:34:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6677
-- author: WNP78
-  changes:
-  - message: Fixed burst fire guns not predicting burst shots after the trigger is released.
-    type: Fix
-  id: 409443
-  time: '2026-10-14T06:34:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6677
-- author: chaoticevii, RodTheRick, Bibbs, Nzuno
-  changes:
-  - message: Added 9 Shared Thaven Moods.
-    type: Add
-  id: 409444
-  time: '2026-10-14T06:55:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6666
-- author: chaoticevii, RodTheRick, Bibbs, Nzuno
-  changes:
-  - message: Added 9 Yes And Thaven Moods.
-    type: Add
-  id: 409445
-  time: '2026-10-14T06:55:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6666
-- author: chaoticevii, RodTheRick, Bibbs, Nzuno
-  changes:
-  - message: Added 6 No And Thaven Moods.
-    type: Add
-  id: 409446
-  time: '2026-10-14T06:55:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6666
-- author: chaoticevii, RodTheRick, Bibbs, Nzuno
-  changes:
-  - message: Added 5 Wildcard Thaven Moods.
-    type: Add
-  id: 409447
-  time: '2026-10-14T06:55:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6666
-- author: 0warie
-  changes:
-  - message: Added Light Floors. They sit on the same layer as carpets and take light bulbs, so their colour changes with the bulb you put in. Light output is toned down compared to regular lights.
-    type: Add
-  id: 409448
-  time: '2026-10-14T14:23:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6657
-- author: enerjak
-  changes:
-  - message: Buffed the spyglass and captain's spyglass to match the binoculars.
-    type: Tweak
-  id: 409449
-  time: '2026-10-14T14:23:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6664
 - author: Talirson
   changes:
   - message: Lowered reaction priority for Ulnitranium/Pluoxium radiation reactions.
@@ -2799,4 +2729,74 @@ Entries:
   id: 409839
   time: '2026-10-27T19:24:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6895
+- author: Makeshift
+  changes:
+  - message: Added Downpour Station into the map pool! (20-100 Pop).
+    type: Add
+  id: 409840
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Added a new Cargo Shuttle.
+    type: Add
+  id: 409841
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Grinder and Electrolysis Unit to chemistry.
+    type: Add
+  id: 409842
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Firelocks to the science maints beach room.
+    type: Add
+  id: 409843
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Sprinkled more ATMs around.
+    type: Add
+  id: 409844
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) More Holopads to rooms that were missing them.
+    type: Add
+  id: 409845
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Widened the maintenance path between the reactor and atmos.
+    type: Fix
+  id: 409846
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Fixed two unpowered maintenance doors near security.
+    type: Fix
+  id: 409847
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Swapped 2 regular SMESs for Hyper-Advanced SMESs.
+    type: Tweak
+  id: 409848
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Makeshift
+  changes:
+  - message: (Downpour) Renamed a safe in maints, to avoid confusion.
+    type: Tweak
+  id: 409849
+  time: '2026-10-28T07:32:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6897
 Order: -1
