@@ -3676,6 +3676,56 @@
         Structural: 15
 
 - type: entity
+  name: syndimoff
+  id: MobSyndiMoff
+  parent: MobMothroach
+  description: Explosive moff.
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Mothroach
+    understands:
+    - Moffic
+    - Mothroach
+    - GalacticCommon
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mothroach
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mothroach
+      Critical:
+        Base: mothroach_dead
+      Dead:
+        Base: mothroach_dead
+  - type: GhostRole
+    prob: 1
+    name: ghost-role-information-SyndiMoff-name
+    allowMovement: true
+    description: ghost-role-information-SyndiMoff-description
+    rules: ghost-role-information-SyndiMoff-rules
+    important: true # SL
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - PicoBombImplant
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+
+- type: entity
   name: space cat
   id: MobCatSpace
   parent: [MobCat, BaseSlicingRefinable]

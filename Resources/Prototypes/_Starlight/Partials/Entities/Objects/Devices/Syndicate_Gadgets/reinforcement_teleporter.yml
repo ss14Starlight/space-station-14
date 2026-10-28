@@ -31,6 +31,12 @@
     important: true
 
 - type: !PartialOnly entity
+  id: ReinforcementRadioSyndicateSyndiMoff
+  components:
+  - type: GhostRole
+    important: true
+
+- type: !PartialOnly entity
   id: ReinforcementRadioSyndicateCyborgAssault
   components:
     - type: GhostRole
