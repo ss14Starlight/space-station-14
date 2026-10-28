@@ -547,9 +547,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
 
         // Find entities and apply curshing effects
         var stunTime = door.DoorStunTime + door.OpenTimeOne;
-        // Starlight-start: The inset lookup misses airlock edge contacts, not adding them to CurrentlyCrushing.
-        var enlargement = HasComp<AirlockComponent>(uid) ? 0f : EntityLookupSystem.TileEnlargementRadius; // Include edge contacts.
-        foreach (var entity in GetColliding(uid, physics, enlargement))
+        foreach (var entity in GetColliding(uid, physics))
         {
             door.CurrentlyCrushing.Add(entity);
             if (door.CrushDamage != null)
@@ -557,7 +555,6 @@ public abstract partial class SharedDoorSystem : EntitySystem
 
             _stunSystem.TryUpdateParalyzeDuration(entity, stunTime);
         }
-        // Starlight-end
 
         if (door.CurrentlyCrushing.Count == 0)
             return;
@@ -570,8 +567,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
     /// <summary>
     ///     Get all entities that collide with this door by more than <see cref="IntersectPercentage"/> percent.\
     /// </summary>
-    public IEnumerable<EntityUid> GetColliding(EntityUid uid, PhysicsComponent? physics = null,
-        float enlargement = EntityLookupSystem.TileEnlargementRadius) // Starlight-edit: Use full tile for airlock crush check.
+    public IEnumerable<EntityUid> GetColliding(EntityUid uid, PhysicsComponent? physics = null)
     {
         if (!Resolve(uid, ref physics))
             yield break;
@@ -584,8 +580,11 @@ public abstract partial class SharedDoorSystem : EntitySystem
         var tileRef = _mapSystem.GetTileRef(xform.GridUid.Value, mapGridComp, xform.Coordinates);
 
         _doorIntersecting.Clear();
+        // Starlight-start: Use the full airlock tile for both safety and crush checks so edge contacts are handled consistently.
+        var enlargement = HasComp<AirlockComponent>(uid) ? 0f : EntityLookupSystem.TileEnlargementRadius;
         _entityLookup.GetLocalEntitiesIntersecting(xform.GridUid.Value, tileRef.GridIndices, _doorIntersecting,
-            enlargement: enlargement, gridComp: mapGridComp, flags: (LookupFlags.All & ~LookupFlags.Sensors)); // Starlight-edit: Use the requested tile enlargement.
+            enlargement: enlargement, gridComp: mapGridComp, flags: (LookupFlags.All & ~LookupFlags.Sensors));
+        // Starlight-end
 
         // TODO SLOTH fix electro's code.
         // ReSharper disable once InconsistentNaming
