@@ -647,7 +647,7 @@
     listNumber: false
 
 - type: entity
-  parent: [ BaseContrabandTier3, BaseNanoTrasenContraband, IDCardStandard ] # Blimpuf
+  parent: [ BaseContrabandTier5, BaseNanoTrasenContraband, IDCardStandard ] # Blimpuf
   id: CentcomIDCardDecimus
   name: ERROR ID card
   components:
