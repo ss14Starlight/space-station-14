@@ -3,6 +3,7 @@ using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Computers.RemoteControl;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Silicons.Borgs;
+using Content.Server.Wires;
 using Content.Shared._Afterlight.Silicons.Borgs;
 using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Silicons.Borgs;
@@ -19,6 +20,7 @@ using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Throwing;
 using Content.Shared.UserInterface;
+using Content.Shared.Wires;
 using Robust.Server.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
@@ -337,6 +339,102 @@ public sealed class RemoteControlConsoleTest : GameTest
             Assert.That(hands.EnumerateHeld(remoteEntity).Contains(item), Is.False);
             Assert.That(SEntMan.HasComponent<ThrownItemComponent>(item), Is.True);
         });
+    }
+
+    [Test]
+    public async Task RemoteWirecutterOpensAndUsesWireUi()
+    {
+        var testMap = await Pair.CreateTestMap();
+        IPlayerManager playerManager = null!;
+        ICommonSession session = null!;
+        EntityUid? previousAttachedEntity = null;
+        EntityUid controller = default;
+        EntityUid remoteEntity = default;
+        EntityUid target = default;
+        EntityUid consoleUid = default;
+        var hasAttachedSession = false;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var coordinates = testMap.Grid.Owner;
+                remoteEntity = SEntMan.SpawnEntity("MobHuman", new EntityCoordinates(coordinates, 0, 0));
+                var wirecutter = SEntMan.SpawnEntity("Wirecutter", new EntityCoordinates(coordinates, 0, 0));
+                target = SEntMan.SpawnEntity("AirlockEngineering", new EntityCoordinates(coordinates, 1, 0));
+                controller = SEntMan.SpawnEntity("MobHuman", new EntityCoordinates(coordinates, 100, 0));
+                consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", new EntityCoordinates(coordinates, 100, 0));
+
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                console.RemoteBrain = remoteEntity;
+                console.Users.Add(controller);
+                SetTestController(consoleUid, console, controller);
+
+                playerManager = Server.ResolveDependency<IPlayerManager>();
+                session = playerManager.Sessions.Single();
+                previousAttachedEntity = session.AttachedEntity;
+                Assert.That(playerManager.SetAttachedEntity(session, controller), Is.True);
+                hasAttachedSession = true;
+
+                Assert.That(Server.System<SharedHandsSystem>().TryPickupAnyHand(remoteEntity, wirecutter), Is.True);
+            });
+
+            await Server.WaitRunTicks(1);
+            await Server.WaitAssertion(() =>
+            {
+                var wiresSystem = Server.System<WiresSystem>();
+                var panel = SEntMan.GetComponent<WiresPanelComponent>(target);
+                Assert.That(wiresSystem.TogglePanel(target, panel, true, remoteEntity), Is.True);
+
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInteractionMessage
+                {
+                    Actor = controller,
+                    Entity = SEntMan.GetNetEntity(consoleUid),
+                    UiKey = RemoteControlUIKey.Key,
+                    Coordinates = SEntMan.GetNetCoordinates(SEntMan.GetComponent<TransformComponent>(target).Coordinates),
+                    Target = SEntMan.GetNetEntity(target),
+                    Action = RemoteControlInteractionAction.Interact,
+                });
+
+                Assert.That(ui.IsUiOpen(target, WiresUiKey.Key, remoteEntity), Is.True,
+                    "The remote interaction should open the wires UI for the controlled body.");
+            });
+
+            await Server.WaitRunTicks(1);
+            await Server.WaitAssertion(() =>
+            {
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                Assert.That(ui.IsUiOpen(target, WiresUiKey.Key, controller), Is.True,
+                    "The remote wires UI should be mirrored to the controller.");
+
+                var wires = SEntMan.GetComponent<WiresComponent>(target);
+                Assert.That(wires.WiresList, Is.Not.Empty);
+                var wire = wires.WiresList[0];
+                Assert.That(wire.IsCut, Is.False);
+
+                ui.RaiseUiMessage(target, WiresUiKey.Key, new WiresActionMessage(wire.Id, WiresAction.Cut)
+                {
+                    Actor = controller,
+                    Entity = SEntMan.GetNetEntity(target),
+                    UiKey = WiresUiKey.Key,
+                });
+
+                Assert.That(wire.IsCut, Is.True,
+                    "Wire actions from the mirrored UI should use the controlled body's held tool.");
+            });
+        }
+        finally
+        {
+            if (playerManager is not null && session is not null)
+            {
+                await Server.WaitPost(() =>
+                {
+                    if (hasAttachedSession)
+                        playerManager.SetAttachedEntity(session, previousAttachedEntity);
+                });
+            }
+        }
     }
 
     [TestCase("Wrench", false)]

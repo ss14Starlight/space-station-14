@@ -10,6 +10,7 @@ using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Interaction;
 using Content.Shared.Input;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
@@ -365,7 +366,25 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
             });
 
             await RunTicks(1);
-            await PressKey(ContentKeyFunctions.ReleasePulledObject);
+            await Server.WaitAssertion(() =>
+            {
+                var remoteCoordinates = SEntMan.GetComponent<TransformComponent>(controlledBorg).Coordinates;
+                Server.System<SharedTransformSystem>().SetCoordinates(
+                    pulledEntity,
+                    remoteCoordinates.Offset(new Vector2(10f, 0f)));
+                Assert.That(Server.System<SharedInteractionSystem>().InRangeUnobstructed(controlledBorg, pulledEntity),
+                    Is.False,
+                    "The pulled object should be out of interaction range before release.");
+            });
+            await Server.WaitAssertion(() =>
+            {
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlReleasePulledObjectMessage
+                {
+                    Actor = SPlayer,
+                    Entity = SEntMan.GetNetEntity(consoleUid),
+                    UiKey = RemoteControlUIKey.Key,
+                });
+            });
             await RunTicks(5);
 
             await Server.WaitAssertion(() =>
@@ -373,7 +392,7 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
                 using (Assert.EnterMultipleScope())
                 {
                     Assert.That(SEntMan.GetComponent<PullerComponent>(controlledBorg).Pulling, Is.Null,
-                        "H should stop the remote borg from pulling.");
+                        "The remote release message should stop the borg from pulling.");
                     Assert.That(SEntMan.GetComponent<PullableComponent>(pulledEntity).Puller, Is.Null,
                         "The pulled entity should no longer have a puller.");
                 }

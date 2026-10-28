@@ -459,6 +459,12 @@ public sealed partial class WiresSystem : SharedWiresSystem
                 _uiSystem.OpenUi(uid, WiresUiKey.Key, actor.PlayerSession);
                 args.Handled = true;
             }
+            // Starlight - start
+            else if (TryOpenRemoteUserInterface(uid, args.User, args.Used, component))
+            {
+                args.Handled = true;
+            }
+            // Starlight - end
         }
     }
 

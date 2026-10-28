@@ -100,6 +100,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     private EntityUid? _selectedAction;
     public event Action? ToggleControl;
     public event Action? RemoteToggleKnockdownPressed;
+    public event Action? RemoteReleasePulledObjectPressed;
 
     public event Action<NetCoordinates, EntityUid?, bool, bool, RemoteControlInteractionAction, AtmosPipeLayer?>?
         RemoteInteractionPressed;
@@ -986,7 +987,46 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
                 typeof(ExamineSystem))
             .Register<RemoteControlConsoleWindow>();
         _commandBindsRegistered = true;
+        _inputManager.FirstChanceOnKeyEvent += OnFirstChanceKeyEvent;
     }
+
+    private void OnFirstChanceKeyEvent(KeyEventArgs args, KeyEventType type)
+    {
+        var activeContext = _inputManager.Contexts.ActiveContext;
+        var functionAvailable =
+            activeContext.FunctionExistsHierarchy(ContentKeyFunctions.ReleasePulledObject);
+        var focusedControl = IoCManager.Resolve<IUserInterfaceManager>().KeyboardFocused;
+        var controlledEntity = _remoteControl.ControlledEntity;
+
+        foreach (var binding in _inputManager.GetKeyBindings(ContentKeyFunctions.ReleasePulledObject))
+        {
+            if (binding.BaseKey != args.Key)
+                continue;
+
+            var modifiersMatch =
+                IsModifierPressed(binding.Mod1, args.Key) &&
+                IsModifierPressed(binding.Mod2, args.Key) &&
+                IsModifierPressed(binding.Mod3, args.Key);
+            var canHandle = functionAvailable &&
+                            modifiersMatch &&
+                            controlledEntity is not null &&
+                            focusedControl is null &&
+                            !args.Handled;
+
+            if (!canHandle || type == KeyEventType.Up)
+                continue;
+
+            args.Handle();
+
+            if (type == KeyEventType.Down)
+                RemoteReleasePulledObjectPressed?.Invoke();
+
+            return;
+        }
+    }
+
+    private bool IsModifierPressed(Keyboard.Key modifier, Keyboard.Key eventKey)
+        => modifier == Keyboard.Key.Unknown || modifier == eventKey || _inputManager.IsKeyDown(modifier);
 
     private bool HandleRemoteHandCycle(RemoteControlHandAction action)
     {
@@ -1033,6 +1073,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         if (!_commandBindsRegistered)
             return;
 
+        _inputManager.FirstChanceOnKeyEvent -= OnFirstChanceKeyEvent;
         ControlButton.OnPressed -= OnControlButtonPressed;
         CommandBinds.Unregister<RemoteControlConsoleWindow>();
         _commandBindsRegistered = false;

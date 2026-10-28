@@ -227,6 +227,8 @@
   name: remote control console
   description: Enables operators to view and control a linked robotic body over virtually any distance, with minimal loss of control precision.
   components:
+  - type: Computer
+    board: RemoteControlConsoleCircuitboard
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]

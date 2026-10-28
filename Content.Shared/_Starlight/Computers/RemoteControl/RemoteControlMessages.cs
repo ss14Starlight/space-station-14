@@ -18,6 +18,9 @@ public sealed class RemoteControlToggleMessage : BoundUserInterfaceMessage;
 public sealed class RemoteControlToggleKnockdownMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
+public sealed class RemoteControlReleasePulledObjectMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
 public enum RemoteControlInteractionAction : byte
 {
     Interact,

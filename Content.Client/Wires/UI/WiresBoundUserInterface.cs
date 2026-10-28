@@ -1,3 +1,4 @@
+using Content.Client._Starlight.Computers.RemoteControl; // Starlight
 using Content.Shared.Wires;
 using Robust.Client.UserInterface;
 
@@ -16,6 +17,9 @@ namespace Content.Client.Wires.UI
         {
             base.Open();
             _menu = this.CreateWindow<WiresMenu>();
+            // Starlight - start
+            EntMan.System<RemoteControlInterface>().TryEmbedWindow(_menu);
+            // Starlight - end
             _menu.OnAction += PerformAction;
         }
 

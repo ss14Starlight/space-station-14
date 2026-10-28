@@ -5,6 +5,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Construction;
 using Content.Server.Movement.Systems;
 using Content.Server.Popups;
+using Content.Server.Wires;
 using Content.Shared._Afterlight.Silicons.Borgs;
 using Content.Shared._DEN.QuickConstruction.Components;
 using Content.Shared._DEN.QuickConstruction.Events;
@@ -48,6 +49,7 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Stunnable;
 using Content.Shared.UserInterface;
+using Content.Shared.Wires;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.Containers;
@@ -106,10 +108,12 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private PullController _pullController = default!;
+    [Dependency] private PullingSystem _pullSystem = default!;
     [Dependency] private PvsOverrideSystem _pvsOverride = default!;
     [Dependency] private TTSSystem _tts = default!;
 
     [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private WiresSystem _wires = default!;
 
     // Dependency fields not read only. Ignore IDE0044.
     [Dependency] private UserInterfaceSystem _ui = default!;
@@ -124,6 +128,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 subs.Event<BoundUIClosedEvent>(OnUiClosed);
                 subs.Event<RemoteControlToggleMessage>(OnToggleControl);
                 subs.Event<RemoteControlToggleKnockdownMessage>(OnRemoteToggleKnockdown);
+                subs.Event<RemoteControlReleasePulledObjectMessage>(OnRemoteReleasePulledObject);
                 subs.Event<RemoteControlInteractionMessage>(OnRemoteInteraction);
                 subs.Event<RemoteControlBuildConstructionMessage>(OnRemoteBuildConstruction);
                 subs.Event<RemoteControlBuildItemConstructionMessage>(OnRemoteBuildItemConstruction);
@@ -132,14 +137,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 subs.Event<RemoteControlHandMessage>(OnRemoteHand);
                 subs.Event<RemoteControlInventoryMessage>(OnRemoteInventory);
             });
-        CommandBinds.Builder
-            .BindBefore(ContentKeyFunctions.ToggleKnockdown,
-                new RemoteToggleKnockdownInputCmdHandler(this),
-                typeof(SharedStunSystem))
-            .BindBefore(ContentKeyFunctions.ReleasePulledObject,
-                new RemoteReleasePulledObjectInputCmdHandler(this),
-                typeof(PullingSystem))
-            .Register<RemoteControlConsoleSystem>();
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         _hands.OnHandSetActive += OnHandSetActive;
     }
@@ -621,6 +618,15 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _stun.ToggleKnockdown(remoteEntity);
     }
 
+    private void OnRemoteReleasePulledObject(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlReleasePulledObjectMessage args)
+    {
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity))
+            return;
+
+        HandleRemoteReleasePulledObject(remoteEntity);
+    }
+
     private void OnRemoteTargetAction(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlTargetActionMessage args)
     {
@@ -1097,6 +1103,16 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         return true;
     }
 
+    private void HandleRemoteReleasePulledObject(EntityUid remoteEntity)
+    {
+        if (!TryComp<PullerComponent>(remoteEntity, out var puller)
+            || puller.Pulling is not { } pulledEntity
+            || !TryComp<PullableComponent>(pulledEntity, out var pullable))
+            return;
+
+        _pullSystem.TryStopPull(pulledEntity, pullable, user: remoteEntity);
+    }
+
     private bool OnRemoteToggleKnockdownInput(ICommonSession? session, BoundKeyState state)
     {
         if (session?.AttachedEntity is not { Valid: true } actor
@@ -1163,6 +1179,16 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             && args.Message is not CloseBoundInterfaceMessage)
         {
             args.Cancel();
+            return;
+        }
+
+        if (isController
+            && tracked
+            && args.UiKey is WiresUiKey
+            && args.Message is WiresActionMessage wireAction)
+        {
+            args.Cancel();
+            _wires.TryDoRemoteWireAction(args.Target, remoteEntity, wireAction);
             return;
         }
 

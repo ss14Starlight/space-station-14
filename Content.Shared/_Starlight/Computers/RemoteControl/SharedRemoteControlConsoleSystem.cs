@@ -45,6 +45,24 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
         return false;
     }
 
+    public bool TryGetControllerForRemoteEntity(EntityUid remoteEntity, out EntityUid controller)
+    {
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
+        {
+            if (console.Controller is not { } activeController
+                || !TryGetRemoteEntity((consoleUid, console), out var candidateRemote)
+                || candidateRemote != remoteEntity)
+                continue;
+
+            controller = activeController;
+            return true;
+        }
+
+        controller = default;
+        return false;
+    }
+
     /// <summary>
     /// Checks whether the controlled remote entity is eligible to perform conscious actions.
     /// </summary>
