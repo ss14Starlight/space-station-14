@@ -1,6 +1,8 @@
 - type: !PartialOnly entity
   id: ClothingShoesGaloshes
   components:
+  - type: Contraband
+    tier: Tier2
   - type: StealTarget
     stealGroup: GaloshesCollection
 

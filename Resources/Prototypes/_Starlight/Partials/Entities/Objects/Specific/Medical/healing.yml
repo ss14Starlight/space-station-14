@@ -12,3 +12,17 @@
   - type: EmitSoundOnPickup
     sound:
       collection: MeshPickup
+
+- type: !PartialOnly entity
+  id: PillRomerol
+  components:
+  - type: Contraband
+    tier: Tier5
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: SyringeRomerol
+  components:
+  - type: Contraband
+    tier: Tier5
+    contrabandType: Syndicate

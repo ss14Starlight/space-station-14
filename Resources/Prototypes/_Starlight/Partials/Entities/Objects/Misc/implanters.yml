@@ -8,7 +8,7 @@
   id: TrackingImplanter
   components:
   - type: Contraband
-    tier: Tier4
+    tier: Tier3
 
 - type: !PartialOnly entity
   id: StorageImplanter
@@ -26,7 +26,7 @@
   id: RadioImplanter
   components:
   - type: Contraband
-    tier: Tier4
+    tier: Tier3
 
 - type: !PartialOnly entity
   id: UplinkImplanter

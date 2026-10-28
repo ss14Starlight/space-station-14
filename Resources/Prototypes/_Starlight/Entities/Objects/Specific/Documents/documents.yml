@@ -100,7 +100,7 @@
   name: classified corporate documents
   suffix: Do Not Map
   description: A set of highly classified documents containing Corporate Secrets.
-  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier5, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_corporate_document_romerol.txt

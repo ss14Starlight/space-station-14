@@ -64,7 +64,7 @@
     entity: FloraTreeChristmas02
 
 - type: entity
-  parent: [BaseFlatpack, BaseSyndicateContraband]
+  parent: [BaseContrabandTier2, BaseFlatpack, BaseSyndicateContraband]
   id: SyndieDrobeFlatpack
   name: SyndieDrobe flatpack
   description: Looks like Syndieland's back in business.
