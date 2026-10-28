@@ -20,7 +20,7 @@ namespace Content.Shared._Starlight.Shadekin;
 
 public sealed partial class ShadekinSystem
 {
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
 
     private static readonly ProtoId<NpcFactionPrototype> ShieldedFaction = "Shielded";
     [SubscribeLocalEvent]
