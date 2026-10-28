@@ -96,10 +96,12 @@ cosmiccult-role-deconverted-briefing =
 cosmiccult-monument-stage1-briefing =
     The Monument has been beckoned.
     It is located {$location}!
+    Right click it and use the Infuse Entropy action on it to deposit your stored Entropy.
 
 cosmiccult-monument-stage2-briefing =
     The Monument grows in power!
     Its influence will affect realspace in {$time} seconds.
+    Scribe glyphs at the Monument and invoke them alongside fellow cultists.
 
 cosmiccult-monument-stage3-briefing =
     The Monument has been completed!
@@ -140,12 +142,16 @@ cosmiccult-ui-converted-text-1 =
 cosmiccult-ui-converted-text-2 =
     Aid the cult in its goals whilst ensuring its secrecy.
     Cooperate with your fellow cultists' plans.
+    Siphon Entropy from the crew, then infuse it into the Monument.
+    Scribe glyphs at the Monument and invoke them with fellow cultists nearby by clicking the glyph.
 
 cosmiccult-ui-roundstart-text-1 =
     You are a Cosmic Cultist!
 cosmiccult-ui-roundstart-text-2 =
     Aid the cult in its goals whilst ensuring its secrecy.
     Listen to your cult steward's directions.
+    Siphon Entropy from the crew, then infuse it into the Monument.
+    Scribe glyphs at the Monument and invoke them with fellow cultists nearby by clicking the glyph.
 
 cosmiccult-ui-deconverted-text =
     The cosmic influence that bound you to the cult has been severed.
