@@ -3689,17 +3689,25 @@
     - Mothroach
     - GalacticCommon
   - type: Sprite
+    sprite: _Starlight/Mobs/Animals/mothroach/syndimoff.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mothroach
+      state: syndimoff
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: syndimoff-moving
+    noMovementLayers:
+      movement:
+        state: syndimoff
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: mothroach
+        Base: syndimoff
       Critical:
-        Base: mothroach_dead
+        Base: syndimoff_dead
       Dead:
-        Base: mothroach_dead
+        Base: syndimoff_dead
   - type: GhostRole
     prob: 1
     name: ghost-role-information-SyndiMoff-name
