@@ -29,7 +29,7 @@
     - text: "Head Admin"
       color: "#970e41"
       roles:
-        - 1422289908415856861 # Administration Manager
+      - 1422289908415856861 # Administration Manager
     - text: "Events Manager"
       color: "#5900ff"
       roles:
@@ -73,7 +73,7 @@
     - text: "Sr. Admin"
       color: "#7b1113"
       roles:
-        - 1558519010314690580 # Senior Admin
+      - 1558519010314690580 # Senior Admin
     - text: "Event Coord"
       color: "#7c58ff"
       roles:
