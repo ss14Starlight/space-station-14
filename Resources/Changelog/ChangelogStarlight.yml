@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Nuclear reactor can do bigger boom boom.
-    type: Tweak
-  id: 409451
-  time: '2026-10-15T06:38:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6687
 - author: CrazyPhantom
   changes:
   - message: Supermatter Cascades now spread to spaced tiles.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409850
   time: '2026-10-28T07:56:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6912
+- author: Caws
+  changes:
+  - message: "'Leth Vessel' has been retired from the map pool."
+    type: Remove
+  id: 409851
+  time: '2026-10-28T07:56:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6914
 Order: -1
