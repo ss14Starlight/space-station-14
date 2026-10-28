@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Objectives.Components;
 using Content.Server.PDA.Ringer;
 using Content.Shared._Starlight.Implants.Components;
 using Content.Server.Store.Systems;
@@ -132,7 +131,7 @@ public sealed partial class UplinkSystem : EntitySystem
     /// </summary>
     public void SetUplink(EntityUid user, EntityUid store, FixedPoint2 balance, bool giveDiscounts)
     {
-        if (!_mind.TryGetMind(user, out var mind, out var mindUser))
+        if (!_mind.TryGetMind(user, out var mind, out _)) // Starlight
             return;
 
         var storeComp = EnsureComp<StoreComponent>(store);
@@ -141,15 +140,6 @@ public sealed partial class UplinkSystem : EntitySystem
         _store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { TelecrystalCurrencyPrototype, balance } },
             store,
             storeComp);
-
-        foreach (var objective in mindUser.Objectives)
-        {
-            if (!HasComp<DieConditionComponent>(objective))
-                continue;
-
-            DAGDUplinkExpansion(store);
-            break;
-        }
 
         var uplinkInitializedEvent = new StoreInitializedEvent(
             TargetUser: mind,
@@ -185,16 +175,6 @@ public sealed partial class UplinkSystem : EntitySystem
             return false;
         }
 
-        return true;
-    }
-
-    public bool DAGDUplinkExpansion(EntityUid? uplinkEntity = null)
-    {
-        if (uplinkEntity == null)
-            return false;
-
-        var store = EnsureComp<StoreComponent>(uplinkEntity.Value);
-        _store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { TelecrystalCurrencyPrototype, 15 } }, uplinkEntity.Value, store);
         return true;
     }
 
