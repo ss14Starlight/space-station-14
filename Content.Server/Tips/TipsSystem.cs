@@ -95,6 +95,7 @@ public sealed partial class TipsSystem : SharedTipsSystem
         float slideTime = 3f,
         float waddleInterval = 0.5f)
     {
+        ClampTippy(ref message, ref speakTime, ref slideTime, ref waddleInterval); // Starlight
         var ev = new TippyEvent(message, prototype, speakTime, slideTime, waddleInterval);
         RaiseNetworkEvent(ev);
     }
@@ -107,6 +108,7 @@ public sealed partial class TipsSystem : SharedTipsSystem
         float slideTime = 3f,
         float waddleInterval = 0.5f)
     {
+        ClampTippy(ref message, ref speakTime, ref slideTime, ref waddleInterval); // Starlight
         var ev = new TippyEvent(message, prototype, speakTime, slideTime, waddleInterval);
         RaiseNetworkEvent(ev, session);
     }

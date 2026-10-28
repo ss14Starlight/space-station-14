@@ -182,3 +182,5 @@ ui-options-handling-volume = Picking up and equipping:
 ui-options-combat-volume = Weapons and combat:
 ui-options-voice-volume = Voices and emotes:
 ui-options-announcement-volume = Announcements and alerts:
+ui-options-admin-sounds-volume = Admin sounds:
+ui-options-show-tippy = Show Tippy
