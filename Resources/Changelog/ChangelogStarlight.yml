@@ -1,11 +1,4 @@
 Entries:
-- author: CrazyPhantom
-  changes:
-  - message: Supermatter Cascades now spread to spaced tiles.
-    type: Tweak
-  id: 409452
-  time: '2026-10-15T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6686
 - author: Caws
   changes:
   - message: Fixed a bunch of gamemodes that had an impractically high minPlayers of 40-50 players (e.g. Vampire, Traitorling, Zombieteors, and Vamptraitorling). These gamemodes now have a more reasonable minPlayers of 20-25.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409851
   time: '2026-10-28T07:56:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6914
+- author: rhithebirdthing
+  changes:
+  - message: Added job trinkets for Chef and Botanist.
+    type: Add
+  id: 409852
+  time: '2026-10-28T08:31:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6910
 Order: -1
