@@ -208,22 +208,13 @@
   - Centrifuge
   reactants:
     BloodChangeling:
-      amount: 5
+      amount: 20
   products:
     Water: 11
     Iron: 0.5
     Sugar: 2
     CarbonDioxide: 3
     Protein: 4
-  effects:
-    - !type:SpawnEntity
-      entity: FleshKudzu
-    - !type:Explosion
-      explosionType: Default
-      maxIntensity: 2
-      intensityPerUnit: 0.5
-      intensitySlope: 4
-      maxTotalIntensity: 1
 
 - type: reagent
   id: PseudoceramicPlatelets
