@@ -51,7 +51,9 @@ public abstract partial class SharedSolutionContainerSystem
 
         if (container.Comp.Solutions == null)
         {
-            RemCompDeferred<SolutionManagerComponent>(container);
+            // Starlight-start: Preserve the modern solution manager when removing the legacy component.
+            RemCompDeferred(container, container.Comp);
+            // Starlight-end
             return;
         }
 
@@ -74,6 +76,8 @@ public abstract partial class SharedSolutionContainerSystem
 
         // Clear its data
         container.Comp.Solutions = null;
-        RemCompDeferred<SolutionManagerComponent>(container);
+        // Starlight-start: Keep the migrated solutions by removing only the legacy component.
+        RemCompDeferred(container, container.Comp);
+        // Starlight-end
     }
 }

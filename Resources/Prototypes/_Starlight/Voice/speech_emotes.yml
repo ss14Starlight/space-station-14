@@ -600,3 +600,18 @@
   - blinked.
   - blinked!
   - blinked?
+
+- type: emote
+  id: FireDragonRoar
+  name: chat-emote-name-fire-dragon-roar
+  category: Vocal
+  icon: { sprite: _Starlight/Interface/Actions/actions_firedragon.rsi, state: roar }
+  whitelist:
+    tags:
+    - FireDragon
+  chatMessages: ["chat-emote-msg-fire-dragon-roar"]
+  chatTriggers:
+  - roar
+  - roars
+  - roaring
+  - roared

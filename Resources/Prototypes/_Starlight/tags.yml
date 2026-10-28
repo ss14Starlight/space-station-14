@@ -321,6 +321,9 @@
   id: fingerlessinsuls
 
 - type: Tag
+  id: FireDragon
+
+- type: Tag
   id: FormerSoldierTraitBackground
 
 - type: Tag

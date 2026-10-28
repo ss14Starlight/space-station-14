@@ -1,6 +1,7 @@
 using Content.Shared.Salvage.Expeditions.Modifiers;
 using Robust.Shared.Prototypes;
 using Content.Shared.Procedural;
+using Content.Shared.Storage;
 
 namespace Content.Shared.Salvage.Expeditions;
 
@@ -13,6 +14,20 @@ public sealed partial class SalvageFactionPrototype : IPrototype
 
     [ViewVariables(VVAccess.ReadWrite), DataField("entries", required: true)]
     public List<SalvageMobEntry> MobGroups = new();
+
+    #region Starlight
+    /// <summary>
+    /// Optional boss spawned once before the faction's budgeted mobs.
+    /// </summary>
+    [DataField]
+    public EntProtoId? Megafauna;
+
+    /// <summary>
+    /// Additional supporting mobs placed after the budgeted mobs, without consuming their budget.
+    /// </summary>
+    [DataField]
+    public List<EntitySpawnEntry> ExtraMobs = new();
+    #endregion
 
     // 🌟Starlight🌟
     [DataField("biomes")]

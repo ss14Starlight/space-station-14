@@ -81,3 +81,21 @@
       components:
       - MobState
     maximumDuration: 40m
+
+- type: entity
+  parent: StatusEffectSlowdown
+  id: StatusEffectPredatorHunt
+  name: Predator Hunt
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+      - MovementSpeedModifier
+      requireAll: true
+  - type: PredatorHuntStatusEffect
+  - type: MovementModStatusEffect
+    walkSpeedModifier: 0.95
+    sprintSpeedModifier: 0.95
+  - type: StatusEffectAlert
+    alert: PredatorHunt
