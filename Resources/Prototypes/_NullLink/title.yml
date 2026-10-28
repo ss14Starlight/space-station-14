@@ -50,10 +50,6 @@
       color: "#7b1113"
       roles:
       - 1558519010314690580 # Senior Admin
-    - text: "Staff Admin"
-      color: "#1153cc"
-      roles:
-      - 1310741799601573960 # Staff Admin
     - text: "Staff Instructor"
       color: "#b3aeff"
       roles:
