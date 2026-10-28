@@ -54,6 +54,10 @@
       color: "#1153cc"
       roles:
       - 1310741799601573960 # Staff Admin
+    - text: "Maintainer"
+      color: "#f1eb58"
+      roles:
+      - 1380299412164579328 # Maintainer
     - text: "NL Ambassador"
       color: "#b3f486"
       roles:
@@ -62,10 +66,6 @@
       color: "#d6bb94"
       roles:
       - 1558022844632408084 # Ambassador
-    - text: "Maintainer"
-      color: "#f1eb58"
-      roles:
-      - 1380299412164579328 # Maintainer
     - text: "Sr. Developer"
       color: "#c4c9ce"
       roles:
