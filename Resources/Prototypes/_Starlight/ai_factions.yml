@@ -288,6 +288,9 @@
     - Passive
 
 - type: npcFaction
+  id: Shielded
+
+- type: npcFaction
   id: BloodBound
   friendly:
   - NanoTrasen
