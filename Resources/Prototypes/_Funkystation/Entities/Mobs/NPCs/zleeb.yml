@@ -73,8 +73,8 @@
           Quantity: 55
         - ReagentId: Fat
           Quantity: 5
-  - type: ToolRefinable # Starlight butchering fix
-    refineResult: # Starlight
+  - type: Butcherable
+    spawned:
     - id: FoodMeat
       amount: 1
   - type: Tag
