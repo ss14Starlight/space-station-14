@@ -1,0 +1,8 @@
+# Each red/green channel step represents half a source pixel. This lets the
+# directional maps centre odd-width hats.
+- type: shader
+  id: BorgHeadwearDisplacedDraw
+  kind: source
+  path: /Textures/Shaders/displacement.swsl
+  params:
+    displacementSize: 63.5

@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "By Rescue for Starlight",
+  "load": {
+    "srgb": false
+  },
+  "states": [
+    {
+      "name": "engineeringDefault",
+      "directions": 4
+    },
+    {
+      "name": "standard",
+      "directions": 4
+    },
+    {
+      "name": "generic",
+      "directions": 4
+    },
+    {
+      "name": "antique",
+      "directions": 4
+    },
+    {
+      "name": "noble",
+      "directions": 4
+    },
+    {
+      "name": "nobleForward",
+      "directions": 4
+    },
+    {
+      "name": "nobleService",
+      "directions": 4
+    },
+    {
+      "name": "nobleSecurity",
+      "directions": 4
+    },
+    {
+      "name": "cricket",
+      "directions": 4
+    },
+    {
+      "name": "needles",
+      "directions": 4
+    },
+    {
+      "name": "droidGeneric",
+      "directions": 4
+    },
+    {
+      "name": "droidMedical",
+      "directions": 4
+    },
+    {
+      "name": "droidMining",
+      "directions": 4,
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Cricket and Noble by Conflee (and edited by SevenShades). Edits by Conflee, originals taken from Paradise Station at https://github.com/ParadiseSS13/Paradise/commit/34f3823923b7692533b7a99c6f2a8bc91c834870; mask derived from Mobs/Silicon/Chassis/miner.rsi state droid. Displacement edits by Starlight contributors."
+    },
+    {
+      "name": "beetle",
+      "directions": 4
+    },
+    {
+      "name": "maximillion",
+      "directions": 4
+    },
+    {
+      "name": "knight",
+      "directions": 4
+    },
+    {
+      "name": "redKnight",
+      "directions": 4
+    },
+    {
+      "name": "heavy",
+      "directions": 4
+    },
+    {
+      "name": "securityCricket",
+      "directions": 4
+    },
+    {
+      "name": "realTech",
+      "directions": 4
+    },
+    {
+      "name": "purrfus",
+      "directions": 4
+    },
+    {
+      "name": "mezoEngineering",
+      "directions": 4
+    },
+    {
+      "name": "mezoGeneric",
+      "directions": 4
+    },
+    {
+      "name": "mezoJanitor",
+      "directions": 4
+    },
+    {
+      "name": "mezoMedical",
+      "directions": 4
+    },
+    {
+      "name": "mezoMining",
+      "directions": 4
+    },
+    {
+      "name": "mezoService",
+      "directions": 4
+    },
+    {
+      "name": "mezoCargo",
+      "directions": 4
+    },
+    {
+      "name": "medicalDefault",
+      "directions": 4
+    },
+    {
+      "name": "medicalScout",
+      "directions": 4
+    },
+    {
+      "name": "medicalSyndicate",
+      "directions": 4
+    },
+    {
+      "name": "xenoStealth",
+      "directions": 4
+    },
+    {
+      "name": "xenoStealthDerelict",
+      "directions": 4
+    },
+    {
+      "name": "syndicateAssault",
+      "directions": 4
+    },
+    {
+      "name": "xenoHeavy",
+      "directions": 4
+    },
+    {
+      "name": "janitorDefault",
+      "directions": 4
+    },
+    {
+      "name": "miningDefault",
+      "directions": 4
+    },
+    {
+      "name": "securityDefault",
+      "directions": 4
+    },
+    {
+      "name": "medTak",
+      "directions": 4
+    },
+    {
+      "name": "tsf",
+      "directions": 4
+    },
+    {
+      "name": "syndicateStealth",
+      "directions": 4
+    },
+    {
+      "name": "cargoDefault",
+      "directions": 4
+    },
+    {
+      "name": "serviceDefault",
+      "directions": 4
+    },
+    {
+      "name": "ntnc",
+      "directions": 4
+    },
+    {
+      "name": "mothershipCore",
+      "directions": 4
+    }
+  ]
+}
