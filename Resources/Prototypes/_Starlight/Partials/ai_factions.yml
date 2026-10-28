@@ -110,6 +110,8 @@
   hostile:
   - !Remove Wizard
   - !Remove Xenoborg
+  - !Remove NanoTrasen # Don't attack crew indiscriminately...
+  - Shielded # ...only mindshielded crew. Viva!
   - NanoTrasenSilicon
   - DungeonSyndicate
   - DungeonSoviet
