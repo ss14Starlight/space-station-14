@@ -24,3 +24,4 @@ job-description-stirstir = A disreputable monkey who should not be trusted. A re
 job-description-prisoner = You are a corporate owned prisoner serving out a sentence in a hard labor colony.
 job-description-salvagemedic = Keep your salvage team alive off station. Make sure they all come back in one piece.
 job-description-salvagespecSL = Protect ITG assets and explore strange worlds to get rare goods to sell to the station.
+job-description-scurret = Support the crew, be adorable, say "wa" a lot.

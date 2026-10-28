@@ -348,6 +348,14 @@
         {
             "name": "Artist",
             "copyright": "BriocheBear"
+        },
+        {
+            "name": "EmotionalSupportScurret",
+            "copyright": "baltdev"
+        },
+        {
+            "name": "SyndicateScurret",
+            "copyright": "baltdev"
         }
     ]
 }

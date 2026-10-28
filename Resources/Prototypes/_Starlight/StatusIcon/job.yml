@@ -474,3 +474,23 @@
   jobName: job-name-artist
   tags:
   - JobIconCrew
+  
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEmotionalSupportScurret
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EmotionalSupportScurret
+  jobName: job-name-scurret
+  tags:
+    - JobIconCrew
+
+# For messing around with the Agent ID
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateScurret
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: SyndicateScurret
+  jobName: job-name-syndicate-scurret
+  isCrewJob: false
