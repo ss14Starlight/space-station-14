@@ -1,6 +1,7 @@
 - type: guideEntry
   id: StarlightRuleset
   name: guide-entry-rules
+  color: "#D69949" # Advanced cargolight
   ruleEntry: true
   priority: 2
   text: "/ServerInfo/Guidebook/ServerRules/StarlightRules.xml"
@@ -8,6 +9,7 @@
 - type: guideEntry
   id: StarlightLRPRuleset
   name: guide-entry-rules
+  color: "#D69949" # Advanced cargolight
   ruleEntry: true
   priority: 2
   text: "/ServerInfo/_Starlight/Guidebook/ServerRules/StarlightLRPRules.xml"

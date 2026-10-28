@@ -1,0 +1,83 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                      Title="{Loc 'combustion-turbine-console-title'}"
+                      MinSize="420 500"
+                      SetSize="420 500">
+    <BoxContainer Orientation="Vertical" Margin="10 6 10 10" SeparationOverride="4">
+        <Label Name="StatusLabel" StyleClasses="LabelHeading" />
+
+        <BoxContainer Name="ControlsBox" Orientation="Vertical" SeparationOverride="4">
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-power'}" HorizontalExpand="True" />
+                <Button Name="OnButton" Text="{Loc 'combustion-turbine-console-on'}" StyleClasses="OpenRight" ToggleMode="True" MinWidth="60" />
+                <Button Name="OffButton" Text="{Loc 'combustion-turbine-console-off'}" StyleClasses="OpenLeft" ToggleMode="True" MinWidth="60" />
+            </BoxContainer>
+            <Label Name="StarterLabel" Text="{Loc 'combustion-turbine-console-starter'}" Visible="False" />
+            <Label Name="GovernorLabel" Visible="False" />
+            <Label Name="OverheatLabel" Text="{Loc 'combustion-turbine-console-overheat'}" Visible="False" />
+
+            <cc:HSeparator Margin="0 4" />
+
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-rpm'}" MinWidth="130" />
+                <ProgressBar Name="RpmBar" HorizontalExpand="True" MinValue="0" MaxValue="1" SetHeight="22">
+                    <Label Name="RpmText" Margin="4 0" />
+                </ProgressBar>
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-integrity'}" MinWidth="130" />
+                <ProgressBar Name="IntegrityBar" HorizontalExpand="True" MinValue="0" MaxValue="100" SetHeight="22">
+                    <Label Name="IntegrityText" Margin="4 0" />
+                </ProgressBar>
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-output'}" MinWidth="130" />
+                <Label Name="PowerText" />
+            </BoxContainer>
+
+            <cc:HSeparator Margin="0 4" />
+
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-inlet-temperature'}" MinWidth="130" />
+                <Label Name="TemperatureText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-inlet-pressure'}" MinWidth="130" />
+                <Label Name="InletPressureText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-outlet-pressure'}" MinWidth="130" />
+                <Label Name="OutletPressureText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-pressure-ratio'}" MinWidth="130" />
+                <Label Name="PressureRatioText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-exhaust-temperature'}" MinWidth="130" />
+                <Label Name="ExhaustTemperatureText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-flow'}" MinWidth="130" />
+                <Label Name="FlowText" />
+            </BoxContainer>
+
+            <cc:HSeparator Margin="0 4" />
+
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-intake'}" MinWidth="130" />
+                <Label Name="IntakeText" />
+            </BoxContainer>
+            <Slider Name="IntakeSlider" HorizontalExpand="True" MinValue="1" MaxValue="100" />
+        </BoxContainer>
+
+        <BoxContainer Name="PartsBox" Orientation="Vertical" SeparationOverride="4">
+            <cc:HSeparator Margin="0 4" />
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'combustion-turbine-console-parts'}" MinWidth="130" />
+                <Label Name="PartsText" />
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>
