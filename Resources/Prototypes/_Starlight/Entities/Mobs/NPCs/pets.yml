@@ -388,7 +388,7 @@
   name: Luna
   parent: MobJellyFish
   id: MobJellyFishLuna
-  description: A squishy little jellyfish, with a passion for the arts. 
+  description: A squishy little moon jelly, with a passion for the arts. 
   components:
   - type: Sprite
     drawdepth: Mobs
