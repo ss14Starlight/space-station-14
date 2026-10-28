@@ -10,8 +10,8 @@ namespace Content.Client.Options.UI.Tabs;
 
 public sealed partial class AdminOptionsTab
 {
-	[Dependency] private ISharedAdminManager _admin = null!;
-	[Dependency] private IPlayerManager _player = null!;
+    [Dependency] private ISharedAdminManager _admin = null!;
+    [Dependency] private IPlayerManager _player = null!;
 
     private readonly HashSet<BaseOption> _options = [];
 
@@ -27,8 +27,8 @@ public sealed partial class AdminOptionsTab
         AdminToolsContainer.Visible = RenderAdminGhostTools() | RenderAdminArenaMapTools();
 
     private bool RenderAdminGhostTools()
-	{
-		if (!_admin.HasAdminFlag(_player.LocalSession!, AdminFlags.Fun)) return false;
+    {
+        if (!_admin.HasAdminFlag(_player.LocalSession!, AdminFlags.Fun)) return false;
 
         var hbox = new HBox();
         var label = new Label
@@ -44,16 +44,16 @@ public sealed partial class AdminOptionsTab
             ToolTip = Loc.GetString("ui-options-admin-ghost-script-tooltip"),
             MinWidth = 240
         };
-		hbox.AddChild(label);
-		hbox.AddChild(lineEdit);
-		AdminToolOptsContainer.AddChild(hbox);
-		_options.Add(Control.AddOptionLineEdit(StarlightCCVars.AdminGhostScriptPath, lineEdit));
+        hbox.AddChild(label);
+        hbox.AddChild(lineEdit);
+        AdminToolOptsContainer.AddChild(hbox);
+        _options.Add(Control.AddOptionLineEdit(StarlightCCVars.AdminGhostScriptPath, lineEdit));
         return true;
     }
 
-	private bool RenderAdminArenaMapTools()
-	{
-		if (!_admin.HasAdminFlag(_player.LocalSession!, AdminFlags.Mapping)) return false;
+    private bool RenderAdminArenaMapTools()
+    {
+        if (!_admin.HasAdminFlag(_player.LocalSession!, AdminFlags.Mapping)) return false;
         var mapBox = new HBox();
         var mapLabel = new Label
         {
@@ -68,12 +68,12 @@ public sealed partial class AdminOptionsTab
             ToolTip = Loc.GetString("ui-options-admin-space-map-tooltip"),
             MinWidth = 240
         };
-		mapBox.AddChild(mapLabel);
-		mapBox.AddChild(mapLineEdit);
-		AdminToolOptsContainer.AddChild(mapBox);
-		_options.Add(Control.AddOptionLineEdit(StarlightCCVars.AdminArenaMapPath, mapLineEdit));
+        mapBox.AddChild(mapLabel);
+        mapBox.AddChild(mapLineEdit);
+        AdminToolOptsContainer.AddChild(mapBox);
+        _options.Add(Control.AddOptionLineEdit(StarlightCCVars.AdminArenaMapPath, mapLineEdit));
 
-		var initBox = new HBox();
+        var initBox = new HBox();
         var initLabel = new Label
         {
             Text = Loc.GetString("ui-options-admin-space-map-init-label"),
@@ -83,10 +83,10 @@ public sealed partial class AdminOptionsTab
         };
 
         var initCheckBox = new CheckBox { ToolTip = Loc.GetString("ui-options-admin-space-map-init-tooltip") };
-		initBox.AddChild(initLabel);
-		initBox.AddChild(initCheckBox);
-		AdminToolOptsContainer.AddChild(initBox);
-		_options.Add(Control.AddOptionCheckBox(StarlightCCVars.AdminArenaMapInit, initCheckBox));
+        initBox.AddChild(initLabel);
+        initBox.AddChild(initCheckBox);
+        AdminToolOptsContainer.AddChild(initBox);
+        _options.Add(Control.AddOptionCheckBox(StarlightCCVars.AdminArenaMapInit, initCheckBox));
         return true;
     }
 }
