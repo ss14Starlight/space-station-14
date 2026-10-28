@@ -580,7 +580,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         var tileRef = _mapSystem.GetTileRef(xform.GridUid.Value, mapGridComp, xform.Coordinates);
 
         _doorIntersecting.Clear();
-        // Starlight-start: Use the full airlock tile for both safety and crush checks so edge contacts are caught.
+        // Starlight-start: Use the full tile when checking airlock occupants for closing and crushing.
         var enlargement = HasComp<AirlockComponent>(uid) ? 0f : EntityLookupSystem.TileEnlargementRadius;
         _entityLookup.GetLocalEntitiesIntersecting(xform.GridUid.Value, tileRef.GridIndices, _doorIntersecting,
             enlargement: enlargement, gridComp: mapGridComp, flags: (LookupFlags.All & ~LookupFlags.Sensors));
