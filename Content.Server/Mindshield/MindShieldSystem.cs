@@ -33,12 +33,12 @@ public sealed partial class MindShieldSystem : EntitySystem
     [Dependency] private RoleSystem _roleSystem = default!;
     [Dependency] private MindSystem _mindSystem = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
-    [Dependency] private NpcFactionSystem _npcFaction = default!; // Starlight: Shielded faction
 
-    // Starlight start
+    #region Starlight
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
     private static readonly ProtoId<NpcFactionPrototype> ShieldedFaction = "Shielded";
     private static readonly ProtoId<NpcFactionPrototype> RevolutionaryFaction = "Revolutionary";
-    // Starlight end
+    #endregion
 
     public override void Initialize()
     {
