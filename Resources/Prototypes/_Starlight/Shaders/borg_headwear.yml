@@ -6,3 +6,10 @@
   path: /Textures/Shaders/displacement.swsl
   params:
     displacementSize: 63.5
+
+- type: shader
+  id: BorgHeadwearDisplacedDrawUnshaded
+  kind: source
+  path: /Textures/Shaders/displacement_unshaded.swsl
+  params:
+    displacementSize: 63.5

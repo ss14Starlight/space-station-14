@@ -15,6 +15,7 @@
     offset: 0.015625, -0.03125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -42,6 +43,7 @@
     offset: 0, 0.03125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -69,6 +71,7 @@
     offset: 0.015625, 0.1875
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -96,6 +99,7 @@
     offset: 0.015625, 0.15625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -123,6 +127,7 @@
     offset: 0.015625, 0.1875
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -153,6 +158,7 @@
     offset: 0, 0.0625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -180,6 +186,7 @@
     offset: 0.015625, 0.1875
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -207,6 +214,7 @@
     offset: 0, 0.0625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -234,6 +242,7 @@
     offset: -0.015625, -0.03125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -264,6 +273,7 @@
     offset: 0.015625, -0.09375
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -291,6 +301,7 @@
     offset: 0.015625, -0.09375
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -318,6 +329,7 @@
     offset: 0, 0.03125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -345,6 +357,7 @@
     offset: 0.015625, -0.46875
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -375,6 +388,7 @@
     offset: 0, -0.03125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -402,6 +416,7 @@
     offset: 0.015625, 0.125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -432,6 +447,7 @@
     offset: 0, -0.140625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -459,6 +475,7 @@
     offset: 0, -0.140625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -486,6 +503,7 @@
     offset: 0.015625, 0.03125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -516,6 +534,7 @@
     offset: 0, 0.140625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -543,6 +562,7 @@
     offset: 0, 0.140625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -570,6 +590,7 @@
     offset: 0, 0.09375
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -597,6 +618,7 @@
     offset: 0, 0.09375
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -624,6 +646,7 @@
     offset: 0.015625, 0.125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -651,6 +674,7 @@
     offset: 0, 0.1875
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -681,6 +705,7 @@
     offset: 0, 0.015625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -708,6 +733,7 @@
     offset: 0, 0.03125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -735,6 +761,7 @@
     offset: 0, 0.09375
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -762,6 +789,7 @@
     offset: 0, 0.03125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -789,6 +817,7 @@
     offset: 0.015625, -0.34375
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -819,6 +848,7 @@
     offset: 0, 0.0625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -846,6 +876,7 @@
     offset: 0, 0.0625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -876,6 +907,7 @@
     offset: 0, 0.03125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -903,6 +935,7 @@
     offset: 0, 0
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -930,6 +963,7 @@
     offset: 0, 0
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -957,6 +991,7 @@
     offset: 0.015625, 0.1875
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -984,6 +1019,7 @@
     offset: 0.015625, 0.15625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1011,6 +1047,7 @@
     offset: 0.015625, -0.0625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1041,6 +1078,7 @@
     offset: 0, 0.03125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1068,6 +1106,7 @@
     offset: 0, 0
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1095,6 +1134,7 @@
     offset: 0.015625, 0.1875
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1122,6 +1162,7 @@
     offset: 0.015625, 0.15625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1152,6 +1193,7 @@
     offset: 0, -0.078125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1182,6 +1224,7 @@
     offset: 0, 0.109375
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1209,6 +1252,7 @@
     offset: 0, -0.046875
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1236,6 +1280,7 @@
     offset: 0, 0.15625
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1263,6 +1308,7 @@
     offset: 0, 0.125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1293,6 +1339,7 @@
     offset: 0, 0.125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1320,6 +1367,7 @@
     offset: 0, 0.125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1347,6 +1395,7 @@
     offset: 0, 0.046875
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1377,6 +1426,7 @@
     offset: 0, 0.125
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
@@ -1404,6 +1454,7 @@
     offset: 0, 0
     displacement:
       shaderOverride: BorgHeadwearDisplacedDraw
+      shaderOverrideUnshaded: BorgHeadwearDisplacedDrawUnshaded
       sizeMaps:
         32:
           sprite: _Starlight/Mobs/Silicon/borg_headwear_displacements.rsi
