@@ -70,7 +70,15 @@
     tier: Tier3
     allowedDepartments:
     - Security
-    - Medical
+
+- type: !PartialOnly entity
+  id: EncryptionKeyLawSecurity
+  components:
+  - type: Contraband
+    tier: Tier3
+    allowedDepartments:
+    - Security
+    - Representatives
 
 # Tier 2 Keys
 - type: !PartialOnly entity
@@ -164,14 +172,4 @@
   - type: Contraband
     tier: Tier2
     allowedDepartments:
-    - Law
-
-- type: !PartialOnly entity
-  id: EncryptionKeyLawSecurity
-  components:
-  - type: Contraband
-    tier: Tier3
-    allowedDepartments:
-    - Representatives
-    - Security
     - Law
