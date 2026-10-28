@@ -195,7 +195,6 @@
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorBasic
     pocket1: FlashlightSeclite
-    pocket2: MagazinePistolRubber
     suitstorage: WeaponMiniEnergyGun
 
 - type: startingGear

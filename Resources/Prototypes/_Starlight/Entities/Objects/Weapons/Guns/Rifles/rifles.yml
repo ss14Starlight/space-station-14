@@ -497,7 +497,7 @@
   name: verdict
   parent: [ BaseContrabandTier3, BaseWeaponRifle, BaseSecurityContraband ] # Blimpuf
   id: WeaponRifleVerdict
-  description: "A compact heavy rifle, it's distinctive gunshot serve as a sign the law has already made its decision.\nChambered in .45 magnum."
+  description: "A compact heavy rifle, its distinctive gunshot serves as a sign the law has already made its decision.\nChambered in .45 magnum."
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/verdict.rsi
@@ -512,7 +512,7 @@
     fireRate: 2
     selectedMode: SemiAuto
     shotsPerBurst: 2
-    burstCooldown: 1
+    burstCooldown: 0.75
     availableModes:
       - SemiAuto
       - Burst
