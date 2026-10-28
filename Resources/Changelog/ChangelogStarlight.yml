@@ -1,41 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Beta/Epsilon) PvP gamemodes (NukeOps, Revs, Cultists, Zombies) now make up 30% of rounds (up from effectively 18.9%).
-    type: Tweak
-  id: 409456
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: (Beta/Epsilon) PvE gamemodes (Survival, Kessler) now make up 10% of rounds (up from effectively 5.6%).
-    type: Tweak
-  id: 409457
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: (Beta/Epsilon) Traitor-Like gamemodes (Traitors, Vampires, Changelings) now make up 30% of rounds (down from effectively 35.7%).
-    type: Tweak
-  id: 409458
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: (Beta/Epsilon) Dynamic's gamemode weight increased from effectively 21% to 25%.
-    type: Tweak
-  id: 409459
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
-  - message: (Beta/Epsilon) Shitstation weight reduced from effectively 5.6% to 3%.
-    type: Tweak
-  id: 409460
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
   - message: (Beta/Epsilon) Wizard Duel weight increased from effectively 1.4% to 2%.
     type: Tweak
   id: 409461
@@ -2799,4 +2764,39 @@ Entries:
   id: 409855
   time: '2026-10-28T08:58:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6873
+- author: baltdev
+  changes:
+  - message: Traded out the suit storage slot (which seems to be broken for Scurrets) for a pocket and belt slot on Scurrets.
+    type: Tweak
+  id: 409856
+  time: '2026-10-28T09:24:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6894
+- author: baltdev
+  changes:
+  - message: Gave Emotional Support Scurrets a job entry, ID, and playtime tracker.
+    type: Add
+  id: 409857
+  time: '2026-10-28T09:24:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6894
+- author: baltdev
+  changes:
+  - message: Let Emotional Support Scurrets access maints.
+    type: Tweak
+  id: 409858
+  time: '2026-10-28T09:24:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6894
+- author: baltdev
+  changes:
+  - message: Marked the QM mantle and spear as allowed for Emotional Support Scurrets.
+    type: Tweak
+  id: 409859
+  time: '2026-10-28T09:24:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6894
+- author: baltdev
+  changes:
+  - message: Syndicate Scurret Reinforcement job icon (currently unused).
+    type: Add
+  id: 409860
+  time: '2026-10-28T09:24:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6894
 Order: -1
