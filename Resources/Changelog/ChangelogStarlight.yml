@@ -1,11 +1,4 @@
 Entries:
-- author: Yosif
-  changes:
-  - message: Popups now not showing to others.
-    type: Fix
-  id: 409468
-  time: '2026-10-16T09:13:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6709
 - author: Makeshift
   changes:
   - message: Downpour Station, a new low-mid pop map! (Admeme only for play-testing).
@@ -2799,4 +2792,11 @@ Entries:
   id: 409867
   time: '2026-10-28T09:24:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6820
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Revolutionary monkeys are now educated on communist ideologies and will only attack mindshielded crew. They also won't attack headrevs anymore.
+    type: Fix
+  id: 409868
+  time: '2026-10-28T11:14:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6913
 Order: -1
