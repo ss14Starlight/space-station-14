@@ -1108,3 +1108,18 @@
       state: SalvageMedic
   - type: PresetIdCard
     job: SalvageMedic
+
+- type: entity
+  parent: IDCardStandard
+  id: EmotionalSupportScurretIDCard
+  name: emotional support scurret ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: default
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: EmotionalSupportScurret
+    - type: PresetIdCard
+      job: EmotionalSupportScurret
