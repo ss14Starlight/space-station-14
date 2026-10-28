@@ -8,6 +8,15 @@
       role: JobChef
       time: 216000 # 60 hrs
 
+- type: loadoutEffectGroup
+  id: GoldChef
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChef
+      time: 100h
+
 # Senior Outer Clothing
 - type: loadout
   id: ChefJacketSenior
@@ -31,7 +40,7 @@
   id: ChefGoldenButchCleaver
   effects:
   - !type:GroupLoadoutEffect
-    proto: SeniorChef
+    proto: GoldChef
   storage:
     back:
     - ButchCleaverGold
