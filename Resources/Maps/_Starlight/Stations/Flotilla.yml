@@ -141004,13 +141004,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -83.5,60.5
-    - type: UserInterface
-      actors:
-        enum.DisposalTaggerUiKey.Key:
-        - invalid
     - type: DisposalTagger
       tag: SCPEI
-    - type: ActiveUserInterface
 - proto: DisposalTaggerSecurityCheckpoint
   entities:
   - uid: 22792
