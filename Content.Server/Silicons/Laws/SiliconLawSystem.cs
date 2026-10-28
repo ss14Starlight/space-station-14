@@ -20,7 +20,7 @@ using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Silicons.StationAi; // Starlight-edit
 using Content.Shared.Tag;
-using Content.Shared.Wires; //Starlight
+using Content.Shared.Wires;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
