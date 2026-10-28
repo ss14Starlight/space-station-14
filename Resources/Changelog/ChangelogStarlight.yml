@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Non-ready players now count as 1/2 of a Ready player for roundstart gamemode rolling.
-    type: Tweak
-  id: 409455
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
   - message: (Beta/Epsilon) PvP gamemodes (NukeOps, Revs, Cultists, Zombies) now make up 30% of rounds (up from effectively 18.9%).
     type: Tweak
   id: 409456
@@ -2799,4 +2792,11 @@ Entries:
   id: 409854
   time: '2026-10-28T08:31:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6911
+- author: Floximo
+  changes:
+  - message: Cyborg AA is now removed on client disconnect. Reconnect will restore them.
+    type: Fix
+  id: 409855
+  time: '2026-10-28T08:58:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6873
 Order: -1
