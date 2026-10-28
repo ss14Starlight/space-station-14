@@ -1,6 +1,7 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.Body.Organ;
 using Content.Shared.Interaction;
+using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
 
@@ -137,9 +138,16 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
             return true;
         }
 
-        return _containers.TryGetContainingContainer(brain, out var container)
+        if (_containers.TryGetContainingContainer(brain, out var container)
             && container.ID == "borg_brain"
             && TryComp<BorgChassisComponent>(container.Owner, out _)
-            && (body = container.Owner) != default;
+            && (body = container.Owner) != default)
+            return true;
+
+        if (!HasComp<InputMoverComponent>(brain))
+            return false;
+
+        body = brain;
+        return true;
     }
 }

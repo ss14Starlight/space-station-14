@@ -23,6 +23,7 @@ using Content.Shared.Chat;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.CombatMode;
 using Content.Shared.Construction;
+using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -104,6 +105,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [Dependency] private ItemToggleSystem _itemToggle = default!;
     [Dependency] private SharedMoverController _mover = default!;
     [Dependency] private SharedRemoteControlConsoleSystem _sharedRemoteControl = default!;
+    [Dependency] private SharedDeviceLinkSystem _deviceLink = default!;
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private PopupSystem _popup = default!;
@@ -383,6 +385,18 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
             RefreshRemoteState(consoleUid, console, remoteEntity);
         }
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRemoteControlLinkAttempt(Entity<RemoteControlConsoleComponent> entity, ref LinkAttemptEvent args)
+    {
+        if (args.Source != entity.Owner
+            || args.SourcePort != "RemoteControl"
+            || !TryComp<DeviceLinkSourceComponent>(entity.Owner, out var source)
+            || _deviceLink.GetLinkedSinks((entity.Owner, source), args.SourcePort).Count == 0)
+            return;
+
+        args.Cancel();
     }
 
     [SubscribeLocalEvent]

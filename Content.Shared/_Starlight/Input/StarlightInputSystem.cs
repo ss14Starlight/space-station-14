@@ -1,7 +1,10 @@
 ﻿using Content.Shared.Movement.Components;
 using Content.Shared.NPC;
 using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.Silicons;
 using Robust.Shared.Configuration;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
@@ -18,12 +21,14 @@ public sealed partial class StarlightInputSystem : EntitySystem
     private EntityQuery<ActiveNPCComponent> _activeNpcQuery;
     private EntityQuery<ActorComponent> _actorQuery;
     private EntityQuery<MovementRelayTargetComponent> _movementRelayTargetQuery;
+    private EntityQuery<RemoteControlBrainComponent> _remoteControlBrainQuery;
 
     public override void Initialize()
     {
         _activeNpcQuery = GetEntityQuery<ActiveNPCComponent>();
         _actorQuery = GetEntityQuery<ActorComponent>();
         _movementRelayTargetQuery = GetEntityQuery<MovementRelayTargetComponent>();
+        _remoteControlBrainQuery = GetEntityQuery<RemoteControlBrainComponent>();
 
         SubscribeLocalEvent<ActiveInputMoverComponent, MapInitEvent>(OnActiveChanged);
         SubscribeLocalEvent<ActiveInputMoverComponent, PlayerAttachedEvent>(OnActiveChanged);
@@ -37,6 +42,9 @@ public sealed partial class StarlightInputSystem : EntitySystem
 
         SubscribeLocalEvent<MovementRelayTargetComponent, ComponentRemove>(OnActiveChanged);
         SubscribeLocalEvent<MovementRelayTargetComponent, MapInitEvent>(OnActiveChanged);
+
+        SubscribeLocalEvent<RemoteControlBrainComponent, ComponentStartup>(OnActiveChanged);
+        SubscribeLocalEvent<RemoteControlBrainComponent, ComponentRemove>(OnActiveChanged);
 
         Subs.CVar(_config, StarlightCCVars.PhysicsActiveInputMoverEnabled, v => _activeInputMoverEnabled = v, true);
     }
@@ -56,9 +64,10 @@ public sealed partial class StarlightInputSystem : EntitySystem
     }
 
     private bool ShouldBeActive(EntityUid ent)
-    {
-        return _actorQuery.HasComp(ent) ||
-               _activeNpcQuery.HasComp(ent) ||
-               _movementRelayTargetQuery.CompOrNull(ent)?.Source != null;
-    }
+        => _actorQuery.HasComp(ent)
+            || _activeNpcQuery.HasComp(ent)
+            || (_remoteControlBrainQuery.HasComp(ent)
+                && TryComp<PhysicsComponent>(ent, out var physics)
+                && physics.BodyType == BodyType.KinematicController)
+            || _movementRelayTargetQuery.CompOrNull(ent)?.Source != null;
 }

@@ -10,8 +10,12 @@ using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.DeviceLinking;
+using Content.Shared.DeviceLinking.Events;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Input;
+using Content.Shared.Item.ItemToggle;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -608,6 +612,170 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
                 if (SEntMan.EntityExists(SPlayer))
                     SEntMan.EventBus.RaiseLocalEvent(SPlayer,
                         new BoundUIClosedEvent(RemoteControlUIKey.Key, SPlayer, SPlayer));
+            });
+            await RunTicks(1);
+        }
+    }
+
+    [Test]
+    public async Task DirectRemoteControlRounyKeepsMomentumAfterInputRelease()
+    {
+        EntityUid rouny = default;
+        var velocityBeforeCoasting = 0f;
+        var positionBeforeCoasting = Vector2.Zero;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var coordinates = SEntMan.GetCoordinates(PlayerCoords);
+                rouny = SEntMan.SpawnEntity("PlushieRouny", coordinates.Offset(new Vector2(-2f, 0f)));
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(SPlayer);
+                console.Users.Add(SPlayer);
+
+                var linkEvent = new NewLinkEvent(null, SPlayer, "RemoteControl", rouny, "RemoteControl");
+                SEntMan.EventBus.RaiseLocalEvent(SPlayer, linkEvent);
+
+                var toggleMessage = new RemoteControlToggleMessage
+                {
+                    Actor = SPlayer,
+                    UiKey = RemoteControlUIKey.Key
+                };
+                SEntMan.EventBus.RaiseLocalEvent(SPlayer, toggleMessage);
+
+                Assert.That(console.Controller, Is.EqualTo(SPlayer));
+            });
+
+            await RunTicks(1);
+            await Server.WaitAssertion(() =>
+            {
+                var movement = SEntMan.GetComponent<MovementSpeedModifierComponent>(rouny);
+                Assert.That(movement.BaseFriction, Is.EqualTo(0.3125f));
+                Assert.That(movement.BaseAcceleration, Is.EqualTo(5f));
+            });
+            await Move(DirectionFlag.West, 0.5f);
+
+            await Server.WaitAssertion(() =>
+            {
+                velocityBeforeCoasting = SEntMan.GetComponent<PhysicsComponent>(rouny).LinearVelocity.Length();
+                positionBeforeCoasting = Transform.GetWorldPosition(rouny);
+                Assert.That(velocityBeforeCoasting, Is.GreaterThan(1f),
+                    "Rouny should accelerate while the movement key is held.");
+            });
+
+            await RunSeconds(0.5f);
+
+            await Server.WaitAssertion(() =>
+            {
+                var velocityAfterCoasting = SEntMan.GetComponent<PhysicsComponent>(rouny).LinearVelocity.Length();
+                var positionAfterCoasting = Transform.GetWorldPosition(rouny);
+                Assert.That(velocityAfterCoasting, Is.GreaterThan(velocityBeforeCoasting * 0.1f),
+                    "Rouny should retain momentum after the movement key is released.");
+                Assert.That(Vector2.Distance(positionBeforeCoasting, positionAfterCoasting), Is.GreaterThan(0.5f),
+                    "Rouny should continue moving after the movement key is released.");
+            });
+        }
+        finally
+        {
+            await SetMovementKey(DirectionFlag.West, BoundKeyState.Up);
+            await RunTicks(1);
+            await Server.WaitPost(() =>
+            {
+                if (SEntMan.EntityExists(SPlayer))
+                    SEntMan.EventBus.RaiseLocalEvent(SPlayer,
+                        new BoundUIClosedEvent(RemoteControlUIKey.Key, SPlayer, SPlayer));
+            });
+            await RunTicks(1);
+        }
+    }
+
+    [Test]
+    public async Task HandheldRemoteReopeningRestoresRounyMovement()
+    {
+        EntityUid handheld = default;
+        EntityUid rouny = default;
+        NetEntity rounyNet = default;
+        var playerPosition = Vector2.Zero;
+        var rounyPosition = Vector2.Zero;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var coordinates = SEntMan.GetCoordinates(PlayerCoords);
+                rouny = SEntMan.SpawnEntity("PlushieRouny", coordinates.Offset(new Vector2(2f, 0f)));
+                rounyNet = SEntMan.GetNetEntity(rouny);
+                handheld = SEntMan.SpawnEntity("HandheldRemoteControl", coordinates);
+
+                Assert.That(Server.System<SharedHandsSystem>()
+                    .TryPickup(SPlayer, handheld, checkActionBlocker: false), Is.True);
+                Assert.That(Server.System<SharedDeviceLinkSystem>()
+                    .ToggleLink(null, handheld, rouny, "RemoteControl", "RemoteControl"), Is.True);
+                Server.System<SharedUserInterfaceSystem>().OpenUi(handheld, RemoteControlUIKey.Key, SPlayer);
+
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(handheld);
+                Assert.That(console.Controller, Is.EqualTo(SPlayer));
+                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(SPlayer).RelayEntity, Is.EqualTo(rouny));
+            });
+
+            await Server.WaitAssertion(() =>
+            {
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                Assert.That(Server.System<ItemToggleSystem>().TryDeactivate(handheld, predicted: false), Is.True);
+                Assert.That(ui.IsUiOpen(handheld, RemoteControlUIKey.Key, SPlayer), Is.False);
+
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(handheld);
+                Assert.That(console.Controller, Is.Null);
+                Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(SPlayer), Is.False);
+            });
+
+            await RunTicks(5);
+            await Server.WaitAssertion(() =>
+            {
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(handheld);
+                Assert.That(console.RemoteBrain, Is.EqualTo(rouny));
+                Assert.That(SEntMan.HasComponent<InputMoverComponent>(rouny), Is.True);
+                Assert.That(Server.System<SharedRemoteControlConsoleSystem>()
+                    .TryGetBody((handheld, console), out var body), Is.True);
+                Assert.That(body, Is.EqualTo(rouny));
+
+                Assert.That(Server.System<ItemToggleSystem>().TryActivate(handheld, predicted: false), Is.True);
+                Server.System<SharedUserInterfaceSystem>().OpenUi(handheld, RemoteControlUIKey.Key, SPlayer);
+                Assert.That(console.Controller, Is.EqualTo(SPlayer));
+                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(SPlayer).RelayEntity, Is.EqualTo(rouny));
+
+                playerPosition = Transform.GetWorldPosition(SPlayer);
+                rounyPosition = Transform.GetWorldPosition(rouny);
+            });
+
+            await RunTicks(5);
+            await Client.WaitAssertion(() =>
+                Assert.That(Client.System<RemoteControlInterface>().ControlledEntity,
+                    Is.EqualTo(CEntMan.GetEntity(rounyNet))));
+            await Move(DirectionFlag.West, 0.5f);
+
+            await Server.WaitAssertion(() =>
+            {
+                Assert.That(Vector2.Distance(playerPosition, Transform.GetWorldPosition(SPlayer)), Is.LessThan(0.1f),
+                    "Movement input after reopening the handheld remote should not move the player's body.");
+                Assert.That(Vector2.Distance(rounyPosition, Transform.GetWorldPosition(rouny)), Is.GreaterThan(0.25f),
+                    "Movement input after reopening the handheld remote should move Rouny.");
+            });
+        }
+        finally
+        {
+            await SetMovementKey(DirectionFlag.West, BoundKeyState.Up);
+            await RunTicks(1);
+            await Server.WaitPost(() =>
+            {
+                if (SEntMan.EntityExists(handheld))
+                    Server.System<SharedUserInterfaceSystem>().CloseUi(handheld, RemoteControlUIKey.Key, SPlayer);
+
+                var links = Server.System<SharedDeviceLinkSystem>();
+                if (SEntMan.EntityExists(handheld)
+                    && SEntMan.EntityExists(rouny)
+                    && links.GetLinks(handheld, rouny).Count > 0)
+                    links.ToggleLink(null, handheld, rouny, "RemoteControl", "RemoteControl");
             });
             await RunTicks(1);
         }

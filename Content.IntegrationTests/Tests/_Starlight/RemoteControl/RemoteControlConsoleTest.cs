@@ -6,8 +6,10 @@ using Content.Server.Silicons.Borgs;
 using Content.Server.Wires;
 using Content.Shared._Afterlight.Silicons.Borgs;
 using Content.Shared._Starlight.Computers.RemoteControl;
+using Content.Shared._Starlight.Silicons;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.DeviceLinking;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
@@ -51,6 +53,72 @@ public sealed class RemoteControlConsoleTest : GameTest
     -   type: RemoteControlConsole
         canForceRemoteControl: true
 ";
+
+    [Test]
+    public async Task RemoteControlCanLinkDirectlyToMobileEntity()
+    {
+        await Server.WaitAssertion(() =>
+        {
+            var mapSystem = Server.System<SharedMapSystem>();
+            var map = mapSystem.CreateMap(out var mapId);
+
+            try
+            {
+                var coordinates = new MapCoordinates(0, 0, mapId);
+                var remote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
+                var secondRemote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
+                var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
+                var controller = SEntMan.SpawnEntity(null, coordinates);
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                var deviceLink = Server.System<SharedDeviceLinkSystem>();
+                var source = SEntMan.GetComponent<DeviceLinkSourceComponent>(consoleUid);
+                console.Users.Add(controller);
+
+                Assert.That(deviceLink.ToggleLink(null, consoleUid, remote, "RemoteControl", "RemoteControl"), Is.True);
+                Assert.That(deviceLink.ToggleLink(null, consoleUid, secondRemote, "RemoteControl", "RemoteControl"), Is.False);
+                Assert.That(
+                    deviceLink.GetLinkedSinks((consoleUid, source), "RemoteControl"),
+                    Is.EquivalentTo([remote]));
+
+                var toggleMessage = new RemoteControlToggleMessage
+                {
+                    Actor = controller,
+                    UiKey = RemoteControlUIKey.Key
+                };
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid, toggleMessage);
+
+                var remoteControl = Server.System<SharedRemoteControlConsoleSystem>();
+                Assert.Multiple(() =>
+                {
+                    Assert.That(SEntMan.HasComponent<RemoteControlBrainComponent>(remote), Is.True);
+                    Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+                    Assert.That(remoteControl.TryGetBody((consoleUid, console), out var body), Is.True);
+                    Assert.That(body, Is.EqualTo(remote));
+                    Assert.That(console.Controller, Is.EqualTo(controller));
+                    Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(controller).RelayEntity,
+                        Is.EqualTo(remote));
+                });
+
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid, toggleMessage);
+                Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(controller), Is.False);
+
+                Assert.That(deviceLink.ToggleLink(null, consoleUid, remote, "RemoteControl", "RemoteControl"), Is.True);
+                Assert.That(console.RemoteBrain, Is.Null);
+                Assert.That(deviceLink.ToggleLink(null, consoleUid, secondRemote, "RemoteControl", "RemoteControl"), Is.True);
+                Assert.That(console.RemoteBrain, Is.EqualTo(secondRemote));
+                Assert.That(deviceLink.ToggleLink(null, consoleUid, secondRemote, "RemoteControl", "RemoteControl"), Is.True);
+                Assert.That(console.RemoteBrain, Is.Null);
+                Assert.That(deviceLink.ToggleLink(null, consoleUid, remote, "RemoteControl", "RemoteControl"), Is.True);
+                Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+                Assert.That(deviceLink.ToggleLink(null, consoleUid, remote, "RemoteControl", "RemoteControl"), Is.True);
+                Assert.That(console.RemoteBrain, Is.Null);
+            }
+            finally
+            {
+                SEntMan.DeleteEntity(map);
+            }
+        });
+    }
 
     [TestCase(false, 1, true)]
     [TestCase(false, 10, false)]

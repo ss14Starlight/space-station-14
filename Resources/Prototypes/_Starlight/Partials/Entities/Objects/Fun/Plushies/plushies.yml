@@ -40,6 +40,22 @@
         Quantity: 30
 
 - type: !PartialOnly entity
+  id: PlushieRouny
+  parent: [BasePlushie, BaseMob]
+  components:
+  - type: RemoteControlBrain
+  - type: DeviceLinkSink
+    ports:
+    - RemoteControl
+  - type: Physics
+    bodyType: KinematicController
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.75
+    baseSprintSpeed: 4.95
+    baseAcceleration: 5
+    baseFriction: 0.3125
+
+- type: !PartialOnly entity
   id: ToyIan
   components:
   - type: EmitSoundOnUse
