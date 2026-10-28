@@ -1,11 +1,4 @@
 Entries:
-- author: Makeshift
-  changes:
-  - message: Downpour Station, a new low-mid pop map! (Admeme only for play-testing).
-    type: Add
-  id: 409469
-  time: '2026-10-16T09:54:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6534
 - author: Tjmaxmillion
   changes:
   - message: Permit SOP and paperwork has been changed to work with the new contraband system.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409868
   time: '2026-10-28T11:14:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6913
+- author: mikeysaurus
+  changes:
+  - message: Accessibility settings now include an option to preview your chat messages above your character as you type it.
+    type: Add
+  id: 409869
+  time: '2026-10-28T21:02:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6921
 Order: -1
