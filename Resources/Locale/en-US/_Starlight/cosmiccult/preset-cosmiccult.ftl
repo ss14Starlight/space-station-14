@@ -123,6 +123,10 @@ cosmiccult-rift-beginpurge = Your consecration begins purging the malign rift...
 
 cosmiccult-rift-absorb = {$NAME} absorbs the rift, and malign light empowers their body!
 cosmiccult-rift-purge = The malign rift is expunged!
+cosmiccult-rift-empowered-briefing =
+    Malign light empowers you!
+    You siphon twice as much entropy, and the void cannot harm you: you need no air and ignore pressure and cold.
+    This power is consumed if you use Null Fragmentation on a silicon, but your immunity to the void remains; a preview of things to come.
 
 
 ## CHANTRY
