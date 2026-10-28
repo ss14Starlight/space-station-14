@@ -1,11 +1,4 @@
 Entries:
-- author: Talirson
-  changes:
-  - message: Lowered reaction priority for Ulnitranium/Pluoxium radiation reactions.
-    type: Tweak
-  id: 409450
-  time: '2026-10-14T15:34:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6678
 - author: Johnny
   changes:
   - message: Nuclear reactor can do bigger boom boom.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409849
   time: '2026-10-28T07:32:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6897
+- author: Conflee
+  changes:
+  - message: All medical vending machines now have 1-2 Oil Packs for IPCs etc, to ensure universal accessibility on Evac and CentComm and slightly easier access via Civilian vends on Stations.
+    type: Tweak
+  id: 409850
+  time: '2026-10-28T07:56:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6912
 Order: -1
