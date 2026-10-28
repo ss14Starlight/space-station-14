@@ -1108,3 +1108,21 @@
       state: SalvageMedic
   - type: PresetIdCard
     job: SalvageMedic
+
+- type: entity
+  parent: IDCardStandard
+  id: ArtistIDCard
+  name: artist ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: stripe_top
+      color: "#fbb954"
+    - state: stripe_bottom
+      color: "#484a77"
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: Artist
+  - type: PresetIdCard
+    job: Artist

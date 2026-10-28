@@ -267,6 +267,26 @@
   #- PerformerJobTrinkets
   - GroupSpeciesBreathTool
 
+- type: roleLoadout
+  id: JobArtist
+  groups:
+  - GroupTankHarness # for Vox
+  - ArtistHead
+  - ArtistJumpsuit
+  - CommonBackpack
+  - CivilianShoes
+  - ArtistArtSupplies
+  - ArtistPDA
+  - ArtistNeck
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  #- ArtistJobTrinkets
+  - GroupSpeciesBreathTool
+
 # Wildcards
 - type: roleLoadout
   id: JobBoxer

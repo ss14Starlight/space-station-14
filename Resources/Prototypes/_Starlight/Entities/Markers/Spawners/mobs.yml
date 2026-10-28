@@ -129,3 +129,17 @@
   - type: ConditionalSpawner
     prototypes:
     - MobKoboldAdvanced
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobJellyFish
+  name: Jellyfish Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: luna_base
+      sprite: _Starlight/Mobs/Pets/luna.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobJellyFish

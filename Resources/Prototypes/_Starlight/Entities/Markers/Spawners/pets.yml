@@ -60,3 +60,18 @@
   - type: ConditionalSpawner
     prototypes:
     - MobLizardCecil
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobJellyFishLuna
+  name: Luna Spawner    
+  suffix: Artist Pet
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: luna_base
+      sprite: _Starlight/Mobs/Pets/luna.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobJellyFishLuna

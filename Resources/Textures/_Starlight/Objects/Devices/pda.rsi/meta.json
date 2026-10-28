@@ -67,7 +67,15 @@
             ]
         ]
     },
-	{
+    {
+      "name": "pda-artist",
+      "copyright": "BriocheBear"
+    },
+    {
+      "name": "pda-seniorartist",
+      "copyright": "BriocheBear"
+    },
+	  {
       "name": "pda-assistantmanager",
       "copyright": "wonderfulnewworld"
     },

@@ -383,3 +383,38 @@
     tags:
     - CannotSuicide
     - VimPilot
+
+- type: entity
+  name: Luna
+  parent: MobJellyFish
+  id: MobJellyFishLuna
+  description: A squishy little jellyfish, with a passion for the arts. 
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Pets/luna.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: luna_base
+    - map: ["enum.DamageStateVisualLayers.BaseUnshaded"]
+      state: luna_unshaded
+      shader: unshaded
+  - type: PointLight
+    radius: 3.0
+    energy: 2.5
+    color: "#83aaff"
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: luna_base
+      Critical:
+        Base: luna_dead
+      Dead:
+        Base: luna_dead
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot

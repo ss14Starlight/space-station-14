@@ -1,0 +1,30 @@
+- type: !PartialOnly department
+  id: Civilian
+  name: department-Civilian
+  description: department-Civilian-description
+  color: "#2cdb2c"
+  weight: -10
+  roles: !Clear
+  - Bartender
+  - Botanist
+  - Chaplain
+  - Chef
+  - Clown
+  - HeadOfPersonnel
+  - Janitor
+  - Librarian
+  - Mime
+  - Musician
+  - Assistant
+  - Reporter
+  - Visitor
+  - ServiceWorker
+  # Starlight start
+  - AssistantManager
+  - Performer
+  - Lawyer
+  - Boxer
+  - Prisoner
+  - RadioHost
+  - Artist
+  # Starlight end

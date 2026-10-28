@@ -344,6 +344,10 @@
                     1.0
                 ]
             ]
+        },
+        {
+            "name": "Artist",
+            "copyright": "BriocheBear"
         }
     ]
 }

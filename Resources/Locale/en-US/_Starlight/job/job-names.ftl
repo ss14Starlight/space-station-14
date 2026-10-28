@@ -11,6 +11,7 @@ job-name-clerical-assistant = Clerical Assistant
 job-name-janitor-assistant = Janitor Assistant
 
 # Role timers - Apparently someone from upstream will cut us if these aren't alphabetical?
+JobArtist = Artist
 JobBlueShield = BlueShield Officer
 JobBoxer = Boxer
 JobDutyOfficer = Duty Officer

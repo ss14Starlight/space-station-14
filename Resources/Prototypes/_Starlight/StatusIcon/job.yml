@@ -464,3 +464,13 @@
   jobName: job-name-makeshift-id
   isCrewJob: false
   # notice the LACK of a JobIconCrew tag
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconArtist
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: Artist
+  jobName: job-name-artist
+  tags:
+  - JobIconCrew

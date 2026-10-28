@@ -908,6 +908,70 @@
   - BlueWinterBoots
   - Heels
 
+# Artist
+- type: loadoutGroup
+  id: ArtistHead
+  name: loadout-group-artist-head
+  minLimit: 0
+  loadouts:
+  - MimeHead
+  - MimeFrenchBeret
+  - FeatheredHat
+
+- type: loadoutGroup
+  id: ArtistJumpsuit
+  name: loadout-group-artist-jumpsuit
+  loadouts:
+  - BlackTurtleneckJumpsuit
+  - WhiteTurtleneckJumpsuit
+  - RedTurtleneckJumpsuit
+  - OrangeTurtleneckJumpsuit
+  - YellowTurtleneckJumpsuit
+  - DarkGreenTurtleneckJumpsuit
+  - DarkBlueTurtleneckJumpsuit
+  - BlueTurtleneckJumpsuit
+  - PurpleTurtleneckJumpsuit
+  - PinkTurtleneckJumpsuit
+  - BlackTurtleneckJumpskirt
+  - WhiteTurtleneckJumpskirt
+  - RedTurtleneckJumpskirt
+  - OrangeTurtleneckJumpskirt
+  - YellowTurtleneckJumpskirt
+  - DarkGreenTurtleneckJumpskirt
+  - DarkBlueTurtleneckJumpskirt
+  - BlueTurtleneckJumpskirt
+  - PurpleTurtleneckJumpskirt
+  - PinkTurtleneckJumpskirt
+  - RedStripedDress
+  - TieDye
+
+- type: loadoutGroup
+  id: ArtistArtSupplies
+  name: loadout-group-artist-art-supplies
+  minLimit: 1
+  maxLimit: 4
+  loadouts:
+  - RainbowCrayon
+  - CrayonBox
+  - SprayPainterStandard
+  - SprayPainterPaint
+  - SprayPainterExperimental
+  - MagicCrayonArtist
+
+- type: loadoutGroup
+  id: ArtistPDA
+  name: loadout-group-artist-id
+  loadouts:
+  - ArtistPDA
+  - SeniorArtistPDA
+
+- type: loadoutGroup
+  id: ArtistNeck
+  name: loadout-group-artist-neck
+  minLimit: 0
+  loadouts:
+  - StarryNightBedsheet
+
 # Silicon Brain Type
 - type: loadoutGroup
   id: SiliconBrainType

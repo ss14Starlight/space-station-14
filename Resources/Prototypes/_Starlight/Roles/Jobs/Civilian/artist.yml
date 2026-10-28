@@ -1,0 +1,24 @@
+- type: job
+  id: Artist
+  name: job-name-artist
+  description: job-description-artist
+  playTimeTracker: JobArtist
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Civilian
+    time: 15h # high playtime requirement to avoid raiders violating server rules w/ the drawing tablet + round start art supplies (spam, r10, etc.)
+  startingGear: ArtistGear
+  icon: "JobIconArtist"
+  supervisors: job-supervisors-service-arts
+  access:
+  - Theatre
+  - Maintenance
+  extendedAccess:
+  - Clown
+  - Mime
+  - Journalism
+
+- type: startingGear
+  id: ArtistGear
+  equipment:
+    ears: ClothingHeadsetService

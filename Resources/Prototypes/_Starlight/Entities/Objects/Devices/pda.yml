@@ -1102,3 +1102,46 @@
       - NewsReaderCartridge
       - AstroNavCartridge #FH
       - NanoChatCartridge # CD
+
+- type: entity
+  parent: BasePDA
+  id: ArtistPDA
+  name: artist PDA
+  description: A PDA with flecks of paint along its surface, the screen is still legible.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: ArtistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-artist
+  - type: PdaBorderColor
+    borderColor: "#484a77"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-artist
+
+- type: entity
+  parent: BasePDA
+  id: SeniorArtistPDA
+  name: senior artist PDA
+  description: A PDA with flecks of paint along its surface, the screen is still legible.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: ArtistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorartist
+  - type: PdaBorderColor
+    borderColor: "#484a77"
+    accentVColor: "#83aaff"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-seniorartist
