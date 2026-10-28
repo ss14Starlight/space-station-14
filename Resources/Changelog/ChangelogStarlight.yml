@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Both Beta and Epsilon should have a better variety of gamemodes (instead of constantly rolling Shitstation).
-    type: Tweak
-  id: 409454
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
   - message: Non-ready players now count as 1/2 of a Ready player for roundstart gamemode rolling.
     type: Tweak
   id: 409455
@@ -2799,4 +2792,11 @@ Entries:
   id: 409853
   time: '2026-10-28T08:31:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6909
+- author: Sparlight
+  changes:
+  - message: Fixed being able to chameleon PDAs into collars.
+    type: Fix
+  id: 409854
+  time: '2026-10-28T08:31:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6911
 Order: -1
