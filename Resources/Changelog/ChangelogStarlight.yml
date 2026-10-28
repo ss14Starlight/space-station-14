@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Fixed a bunch of gamemodes that had an impractically high minPlayers of 40-50 players (e.g. Vampire, Traitorling, Zombieteors, and Vamptraitorling). These gamemodes now have a more reasonable minPlayers of 20-25.
-    type: Fix
-  id: 409453
-  time: '2026-10-15T07:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6670
-- author: Caws
-  changes:
   - message: Both Beta and Epsilon should have a better variety of gamemodes (instead of constantly rolling Shitstation).
     type: Tweak
   id: 409454
@@ -2799,4 +2792,11 @@ Entries:
   id: 409852
   time: '2026-10-28T08:31:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6910
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: The syndicate chameleon projector module now has a power cell hand so that standard cyborgs can recharge their projector!
+    type: Tweak
+  id: 409853
+  time: '2026-10-28T08:31:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6909
 Order: -1
