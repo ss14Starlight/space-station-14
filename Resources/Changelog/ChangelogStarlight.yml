@@ -1,13 +1,6 @@
 Entries:
 - author: Yosif
   changes:
-  - message: Choppa now is craftable (saw blade in crafting menu) For perma escapers to cut plants.
-    type: Tweak
-  id: 409467
-  time: '2026-10-16T09:13:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6709
-- author: Yosif
-  changes:
   - message: Popups now not showing to others.
     type: Fix
   id: 409468
@@ -2799,4 +2792,11 @@ Entries:
   id: 409866
   time: '2026-10-28T09:24:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6763
+- author: Conflee
+  changes:
+  - message: Added the Interdyne Nuclear Operative Outpost, a new outpost themed as an abandoned Interdyne hospital. Very little 'freebie' loot for the Nukies, but an extremely robust Chemistry setup with 2 fully equipped chem stations, and a large room set aside for Corpsman to use plumbing and chem automation with an RPLD if they know how.
+    type: Add
+  id: 409867
+  time: '2026-10-28T09:24:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6820
 Order: -1
