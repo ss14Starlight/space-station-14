@@ -286,6 +286,7 @@
     - HideContextMenu
     - MicroBomb
 
+
 - type: entity
   parent: BaseSubdermalImplant
   id: MacroBombImplant
