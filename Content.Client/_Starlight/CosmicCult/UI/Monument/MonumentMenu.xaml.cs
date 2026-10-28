@@ -116,11 +116,17 @@ public sealed partial class MonumentMenu : FancyWindow
         {
             var boxContainer = new BoxContainer();
             var unlocked = _unlockedGlyphProtoIds.Contains(glyph.ID);
+            var tooltip = Loc.GetString(glyph.Tooltip);
+            if (_proto.TryIndex<EntityPrototype>(glyph.Entity, out var glyphEntityProto) &&
+                glyphEntityProto.TryGetComponent<CosmicGlyphComponent>(out var glyphComp))
+            {
+                tooltip += "\n" + Loc.GetString("monument-interface-glyphs-requires-cultists", ("count", glyphComp.RequiredCultists));
+            }
             var button = new Button
             {
                 HorizontalExpand = true,
                 StyleClasses = { StyleClass.ButtonSquare },
-                ToolTip = Loc.GetString(glyph.Tooltip),
+                ToolTip = tooltip,
                 Group = _glyphButtonGroup,
                 Pressed = glyph.ID == _selectedGlyphProtoId,
                 Disabled = !unlocked,

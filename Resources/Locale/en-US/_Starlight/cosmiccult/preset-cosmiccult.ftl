@@ -14,7 +14,7 @@ cosmiccult-vote-steward-title = Cosmic Cult Stewardship
 cosmiccult-vote-steward-briefing =
     You are the Cosmic Cult's Steward!
     Ensure that The Monument is placed in a secure location, and organize the cult to ensure your collective victory.
-    You are not permitted to instruct cultists on how to use or spend their Entropy.
+    You are not permitted to instruct cultists on how to use or spend their entropy.
 
 cosmiccult-finale-autocall-briefing = The Monument activates in {$minutesandseconds}! Gather yourselves, and prepare for the end.
 cosmiccult-finale-ready = A terrifying light surges forth from The Monument!
@@ -35,7 +35,7 @@ cosmiccult-roundend-cultist-count = {$initialCount ->
     [1] There was {$initialCount} [color=#4cabb3]Cosmic Cultist[/color].
     *[other] There were {$initialCount} [color=#4cabb3]Cosmic Cultists[/color].
 }
-cosmiccult-roundend-entropy-count = The cult siphoned {$count} Entropy.
+cosmiccult-roundend-entropy-count = The cult siphoned {$count} entropy.
 cosmiccult-roundend-cultpop-count = Cultists made up {$count}% of the crew.
 cosmiccult-roundend-monument-stage = {$stage ->
     [1] Alas, the Monument seems abandoned.
@@ -96,7 +96,7 @@ cosmiccult-role-deconverted-briefing =
 cosmiccult-monument-stage1-briefing =
     The Monument has been beckoned.
     It is located {$location}!
-    Right click it and use the Infuse Entropy action on it to deposit your stored Entropy.
+    Right click it and use the Infuse Entropy action on it to deposit your stored entropy.
 
 cosmiccult-monument-stage2-briefing =
     The Monument grows in power!
@@ -142,7 +142,7 @@ cosmiccult-ui-converted-text-1 =
 cosmiccult-ui-converted-text-2 =
     Aid the cult in its goals whilst ensuring its secrecy.
     Cooperate with your fellow cultists' plans.
-    Siphon Entropy from the crew, then infuse it into the Monument.
+    Siphon entropy from the crew, then infuse it into the Monument.
     Scribe glyphs at the Monument and invoke them with fellow cultists nearby by clicking the glyph.
 
 cosmiccult-ui-roundstart-text-1 =
@@ -150,7 +150,7 @@ cosmiccult-ui-roundstart-text-1 =
 cosmiccult-ui-roundstart-text-2 =
     Aid the cult in its goals whilst ensuring its secrecy.
     Listen to your cult steward's directions.
-    Siphon Entropy from the crew, then infuse it into the Monument.
+    Siphon entropy from the crew, then infuse it into the Monument.
     Scribe glyphs at the Monument and invoke them with fellow cultists nearby by clicking the glyph.
 
 cosmiccult-ui-deconverted-text =
