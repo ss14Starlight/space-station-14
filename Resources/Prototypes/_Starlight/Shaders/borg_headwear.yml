@@ -1,5 +1,5 @@
-# Each red/green channel step represents half a source pixel. This lets the
-# directional maps centre odd-width hats.
+# displacementSize 63.5 makes each red/green channel step move headwear
+# half a pixel, allowing odd-width hats to be centred on even-width heads.
 - type: shader
   id: BorgHeadwearDisplacedDraw
   kind: source
