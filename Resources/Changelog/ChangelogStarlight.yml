@@ -1,32 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: Fixed animals that belong on crew manifest not showing on the manifest.
-    type: Fix
-  id: 409514
-  time: '2026-10-16T11:06:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6692
-- author: Sparlight
-  changes:
-  - message: Fixed animals going to cryostorage not showing their job, if any.
-    type: Fix
-  id: 409515
-  time: '2026-10-16T11:06:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6692
-- author: Sparlight
-  changes:
-  - message: Fixed round-end screen and ghost name for K9s being wrong; they should now show the K9 name.
-    type: Fix
-  id: 409516
-  time: '2026-10-16T11:06:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6692
-- author: Caws
-  changes:
-  - message: Alpha's gamemode pool has been tweaked slightly.
-    type: Tweak
-  id: 409517
-  time: '2026-10-16T11:06:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6691
 - author: Caws
   changes:
   - message: (Alpha) PvP gamemodes increased from 23.5% -> 25% (NukeOps, Revs, Cult, Zombies). This is lower than Beta's gamemode percentage because Alpha's rounds are much shorter (meaning they'll still roll more often 'per day').
@@ -2799,4 +2771,32 @@ Entries:
   id: 409913
   time: '2026-10-29T21:56:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5923
+- author: Rinary
+  changes:
+  - message: Changed basic footstep sounds.
+    type: Tweak
+  id: 409914
+  time: '2026-10-29T22:22:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6900
+- author: Rinary
+  changes:
+  - message: Added differet bate footstep sounds.
+    type: Add
+  id: 409915
+  time: '2026-10-29T22:22:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6900
+- author: Rinary
+  changes:
+  - message: Added new footstep sounds like glass, grass, wood, asteroid, catwalks, concrete, different floors, heavy materials, different tiles.
+    type: Add
+  id: 409916
+  time: '2026-10-29T22:22:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6900
+- author: Rinary
+  changes:
+  - message: Added ability to change volume/pitch for different boots.
+    type: Add
+  id: 409917
+  time: '2026-10-29T22:22:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6900
 Order: -1
