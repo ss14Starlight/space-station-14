@@ -416,10 +416,6 @@
         weight: 0.3
       - id: ProtoNitrateCanister
         weight: 0.35
-      - id: HyperNobliumCanister
-        weight: 0.2
-      - id: AntiNobliumCanister
-        weight: 0.1
       #Starlight End
 
 - type: entityTable
