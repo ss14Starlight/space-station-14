@@ -1,15 +1,11 @@
 # Placeholder PAIs, aka semi-automatic ghost roles
 
 - type: entity
-  parent: [ BaseItem, BaseSiliconLanguages ] #Starlight Languages
+  parent: [ BaseItem, BaseSiliconLanguages ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: PersonalAI
   name: personal ai device
   description: Your electronic pal who's fun to be with!
   components:
-  # Starlight-start: Languages
-  - type: LanguageSpeaker
-  - type: TextToSpeech
-  # Starlight-end
   - type: Instrument
     allowPercussion: false
     handheld: false
@@ -50,33 +46,24 @@
     roleDescription: pai-system-role-description
     roleRules: ghost-role-information-familiar-rules
     mindRoles:
-    - MindRoleGhostRolePAI
+    - MindRoleGhostRoleFamiliar
     wipeVerbText: pai-system-wipe-device-verb-text
     wipeVerbPopup: pai-system-wiped-device
     stopSearchVerbText: pai-system-stop-searching-verb-text
     stopSearchVerbPopup: pai-system-stopped-searching
   - type: Examiner
   - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter #Starlight pAI comms rework, see PR #3299
-    channels: [] # Starlight
   - type: ActiveRadio
-  - type: ContainerContainer #Starlight pAI comms rework, see PR #3299
-    containers:
-      key_slots: !type:Container
-  - type: EncryptionKeyHolder #Starlight pAI comms rework, see PR #3299
-    keySlots: 1
+    channels:
+    - Common
   - type: DoAfter
   - type: Actions
   - type: ActionGrant
     actions:
     - ActionPAIOpenShop
-    - ActionPAIPDA #Starlight pAI can open PDAs, see PR #3272
-    - ActionPAIConsole #Starlight pAI can open consoles
   - type: Store
-    name: store-preset-name-pai #Starlight name change for data purity
     categories:
     - PAIAbilities
-    - Languages #Starlight
     currencyWhitelist:
     - SiliconMemory
     balance:
@@ -115,14 +102,6 @@
   - type: Tag
     tags:
     - SiliconEmotes
-    - SiliconEmotesFH #Starlight - Return silicon noises to pAIs
-  # Starlight Start
-    - CanPilot
-  - type: Blindable
-  - type: ParentCanBlockVision
-  - type: ContentEye
-  - type: AntagImmune
-  # Starlight End
 
 - type: entity
   parent: [ PersonalAI, BaseSyndicateContraband]
@@ -130,7 +109,6 @@
   name: syndicate personal ai device
   description: Your Syndicate pal who's fun to be with!
   components:
-  - type: TextToSpeech
   - type: Sprite
     sprite: Objects/Fun/pai.rsi
     layers:
@@ -141,15 +119,15 @@
   - type: ToggleableGhostRole
     roleName: pai-system-role-name-syndicate
     roleDescription: pai-system-role-description-syndicate
-    roleRules: ghost-role-information-syndicate-pai-rules
+    roleRules: ghost-role-information-familiar-rules
     mindRoles:
-    - MindRoleGhostRolePAI
-  - type: ContainerFill #Starlight pAI comms rework, see PR #3299
-    containers:
-      key_slots:
-      - EncryptionKeySyndiePAI
-  - type: EncryptionKeyHolder #Starlight pAI comms rework, see PR #3299
-    keySlots: 2
+    - MindRoleGhostRoleFamiliar
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Syndicate
+  - type: ActiveRadio
+    channels:
+    - Syndicate
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -185,7 +163,6 @@
   name: potato artificial intelligence
   description: It's a potato. You forced it to be sentient, you monster.
   components:
-  - type: TextToSpeech
   - type: Sprite
     sprite: Objects/Fun/pai.rsi
     layers:
@@ -198,7 +175,7 @@
     roleDescription: pai-system-role-description-potato
     roleRules: ghost-role-information-familiar-rules
     mindRoles:
-    - MindRoleGhostRolePAI
+    - MindRoleGhostRoleFamiliar
   - type: Appearance
   - type: GenericVisualizer
     visuals:

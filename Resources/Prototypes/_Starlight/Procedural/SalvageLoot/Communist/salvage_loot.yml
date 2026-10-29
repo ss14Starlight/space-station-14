@@ -1,0 +1,196 @@
+- type: salvageLoot
+  id: SalvageLootCommiesEasy
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: DrinkVodkizineBottleFull
+          cost: 2
+        - proto: WeaponPistolMakarov
+          cost: 2
+        - proto: MagazinePistolSP
+        - proto: WeaponSniperMosin
+          cost: 2
+        - proto: SovietIdCard
+          prob: 0.5
+        - proto: ClothingHeadHatUshanka
+          prob: 0.5
+        - proto: ClothingSovietBelt
+        - proto: ClothingUniformJumpsuitSovietFatigues
+        - proto: SheetUranium
+        - proto: ClothingHeadHelmetSovietEVA
+          cost: 2
+          prob: 0.5
+        - proto: ClothingOuterHardsuitSovietEVA
+          cost: 3
+          prob: 0.5
+        - proto: WeaponShotgunDoubleBarreled
+          cost: 2
+          prob: 0.5
+        - proto: Finka
+          cost: 2
+          prob: 0.5
+        - proto: NuclearBombKeg
+        - proto: AmmoTechFabCircuitboard
+          cost: 10
+          prob: 0.2
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10
+
+- type: salvageLoot
+  id: SalvageLootCommiesMedium
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: DrinkVodkizineBottleFull
+          cost: 2
+        - proto: WeaponPistolMakarov
+          cost: 2
+        - proto: MagazinePistolSP
+        - proto: WeaponSniperMosin
+          cost: 3
+        - proto: SovietIdCard
+          prob: 0.5
+        - proto: ClothingHeadHatUshanka
+          prob: 0.5
+        - proto: ClothingSovietBelt
+        - proto: ClothingUniformJumpsuitSovietFatigues
+        - proto: SheetUranium
+        - proto: ClothingHeadHelmetSovietEVA
+          cost: 2
+          prob: 0.5
+        - proto: ClothingOuterHardsuitSovietEVA
+          cost: 3
+          prob: 0.5
+        - proto: WeaponShotgunDoubleBarreled
+          cost: 2
+          prob: 0.5
+        - proto: Finka
+          cost: 2
+          prob: 0.5
+        - proto: ClothingSovietGasMask
+          cost: 5
+        - proto: BaseRevUplinkRadio
+          cost: 7
+        - proto: ChemistryBottleDesoxyephedrine
+          cost: 4
+        - proto: ChemistryBottleEphedrine
+          cost: 2
+        - proto: WeaponLaserSvalinn
+          cost: 8
+        - proto: FireBomb
+          cost: 3
+        - proto: FakeGrenade
+          cost: 3
+          prob: 0.25
+        - proto: ExGrenade
+          cost: 4
+          prob: 0.25
+        - proto: EmpGrenade
+          cost: 8
+        - proto: NuclearBombKeg
+        - proto: AmmoTechFabCircuitboard
+          cost: 10
+          prob: 0.2
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10
+
+- type: salvageLoot
+  id: SalvageLootCommiesHard
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: DrinkVodkizineBottleFull
+          cost: 2
+        - proto: WeaponPistolMakarov
+          cost: 2
+        - proto: MagazinePistolSP
+        - proto: WeaponSniperMosin
+          cost: 3
+        - proto: SovietIdCard
+          prob: 0.5
+        - proto: ClothingHeadHatUshanka
+          prob: 0.5
+        - proto: ClothingSovietBelt
+        - proto: ClothingUniformJumpsuitSovietFatigues
+        - proto: SheetUranium
+        - proto: ClothingHeadHelmetSovietEVA
+          cost: 2
+          prob: 0.5
+        - proto: ClothingOuterHardsuitSovietEVA
+          cost: 3
+          prob: 0.5
+        - proto: WeaponShotgunDoubleBarreled
+          cost: 2
+          prob: 0.5
+        - proto: Finka
+          cost: 2
+          prob: 0.5
+        - proto: ClothingSovietGasMask
+          cost: 5
+        - proto: BaseRevUplinkRadio
+          cost: 3
+        - proto: ChemistryBottleDesoxyephedrine
+          cost: 4
+        - proto: ChemistryBottleEphedrine
+          cost: 2
+        - proto: WeaponLaserSvalinn
+          cost: 8
+        - proto: FireBomb
+          cost: 3
+        - proto: FakeGrenade
+          cost: 3
+          prob: 0.25
+        - proto: ExGrenade
+          cost: 4
+          prob: 0.25
+        - proto: EmpGrenade
+          cost: 8
+        - proto: WeaponRifleAk
+          cost: 15
+        - proto: MagazineLightRifleSP
+          cost: 5
+        - proto: ClothingBackpackDuffelSSF
+          cost: 8
+          prob: 0.5
+        - proto: ClothingBeltSovietMarineWebbing
+          cost: 15
+          prob: 0.5
+        - proto: ClothingEyesHudSovietMarine
+          cost: 15
+        - proto: JetpackSSFMarineFilled
+          cost: 15
+        - proto: ClothingOuterArmorSovietPlate
+          cost: 10
+        - proto: ClothingUniformJumpsuitSovietFatigues
+          cost: 5
+        - proto: ClothingNeckCloakCommissar
+          cost: 10
+        - proto: AmmoTechFabCircuitboard
+          cost: 15
+        - proto: NuclearBombKeg
+        - proto: MechReactorBurnout
+          cost: 10
+        - proto: MechReactorCavalier
+          cost: 13
+        - proto: MechReactorMicro
+          cost: 10
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10

@@ -110,6 +110,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
             HitEntity = result?.HitEntity,
             OutputTrace = args.OutputTrace, // Starlight
             HitPosition = result?.HitPos, // Starlight
+            PredictionSeed = args.PredictionSeed, // Starlight
         };
 
         var attemptEvent = new AttemptHitscanRaycastFiredEvent { Data = data };
@@ -183,6 +184,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
             Shooter = GetNetEntity(shooter),
             Gun = GetNetEntity(gun),
             PredictionSeed = predictionSeed,
+            Prototype = MetaData(hitscan).EntityPrototype?.ID,
             // Starlight-end
         };
 

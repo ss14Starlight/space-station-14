@@ -16,8 +16,8 @@ public sealed partial class LancerBoardControl : Control
     private const float HexSize = 28f;
     private const float EffectDuration = 0.6f;
 
-    private static readonly ResPath UnitsRsi = new("_Starlight/Interface/Arcade/Lancer/lancer_units.rsi");
-    private static readonly ResPath EffectsRsi = new("_Starlight/Interface/Arcade/Lancer/lancer_effects.rsi");
+    private static readonly ResPath UnitsRsi = new("_Starlight/Arcade/Lancer/lancer_units.rsi");
+    private static readonly ResPath EffectsRsi = new("_Starlight/Arcade/Lancer/lancer_effects.rsi");
 
     [Dependency] private IResourceCache _resourceCache = default!;
 

@@ -31,7 +31,7 @@ public sealed partial class CosmicChantryComponent : Component
 
     [DataField] public EntityUid VictimBody;
 
-    [DataField] public SoundSpecifier ChantryAlarm = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/chantry_alarm.ogg");
+    [DataField] public SoundSpecifier ChantryAlarm = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/chantry_alarm.ogg");
 
     [DataField] public EntProtoId Colossus = "MobCosmicColossus";
 

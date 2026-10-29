@@ -1,0 +1,18 @@
+- type: !PartialOnly vendingMachineInventory
+  id: GeneDrobeInventory
+  startingInventory: !Clear
+    ClothingBackpackGenetics: 2
+    ClothingBackpackSatchelGenetics: 2
+    ClothingBackpackDuffelGenetics: 2
+    ClothingUniformJumpsuitGenetics: 2
+    ClothingUniformJumpskirtGenetics: 2
+    ClothingOuterCoatLabGene: 2
+    ClothingOuterCoatLabGeneLong: 2 # DeltaV
+    ClothingOuterWinterGen: 2
+    ClothingShoesColorWhite: 2
+  emaggedInventory: # Blimpuf
+    ClothingHeadHatSyndie: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf
+    UniformScrubsColorCybersun: 1 # Blimpuf
+    UniformScrubsSkirtColorCybersun: 1 # Blimpuf
+    ClothingHeadHatSurgcapCybersun: 1 # Blimpuf

@@ -203,7 +203,7 @@
     state: poster17_contraband
 
 - type: entity
-  parent: PosterBase
+  parent: [ PosterBase, BaseSovietContraband ] # Blimpuf
   id: PosterContrabandCommunistState
   name: "Communist State"
   description: "All hail the Communist party!"
@@ -248,7 +248,7 @@
     state: poster22_contraband
 
 - type: entity
-  parent: PosterBase
+  parent: [ PosterBase, BaseSovietContraband ] # Blimpuf
   id: PosterContrabandRebelsUnite
   name: "Rebels Unite"
   description: "A poster urging the viewer to rebel against NanoTrasen." # SL
@@ -579,7 +579,7 @@
   description: "An advertisement for Interdyne Pharmaceutics' GeneClean clinics. 'Become the master of your own body!'"
   components:
     - type: Sprite # Starlight start
-      sprite: _Starlight/Structures/Wallmounts/Posters/interdyne.rsi #  To match the flippo
+      sprite: _Starlight/Structures/Wallmounts/posters/interdyne.rsi #  To match the flippo
       state: interdyne # Starlight end
 
 - type: entity

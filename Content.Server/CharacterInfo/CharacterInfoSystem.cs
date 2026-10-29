@@ -49,6 +49,8 @@ public sealed partial class CharacterInfoSystem : EntitySystem
                 if (info == null)
                     continue;
 
+                _objectivePicker.RecordObjectiveProgress(mindId, objective, info.Value.Progress); // Starlight
+
                 // group objectives by their issuer
                 var issuer = Comp<ObjectiveComponent>(objective).LocIssuer;
                 if (!objectives.ContainsKey(issuer))
@@ -60,7 +62,7 @@ public sealed partial class CharacterInfoSystem : EntitySystem
                 jobTitle = jobName;
 
             // Get briefing
-            briefing = _roles.MindGetBriefing(mindId);
+            briefing = GetCharacterBriefing(mindId); // Starlight
         }
 
         RaiseNetworkEvent(new CharacterInfoEvent(GetNetEntity(entity), jobTitle, objectives, briefing), args.SenderSession);

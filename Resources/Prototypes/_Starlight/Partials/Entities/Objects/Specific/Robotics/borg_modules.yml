@@ -1,0 +1,186 @@
+- type: !PartialOnly entity
+  id: BaseProviderBorgModule
+  components:
+  - type: Tag # Allows for people to escape from borg modules when they are picked up
+    tags:
+      - PersonnelStorage
+
+- type: !PartialOnly entity
+  id: BaseBorgModuleCargo
+  components:
+  - type: BorgModule
+    borgFitTypes:
+    - !Remove borg-type-salvage
+    - borg-type-salvage-cargo
+
+- type: !PartialOnly entity
+  id: BorgModuleTool
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: SprayPainterBorg
+
+- type: !PartialOnly entity
+  id: BorgModuleMining
+  components:
+  - type: Sprite
+    layers:
+    - !CombineIndex:0 sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: mining
+  - type: ItemBorgModule
+    hands:
+    # Listed in reverse: appended partial list items are applied back-to-front.
+    - hand:
+        emptyRepresentative: GoldOre
+        emptyLabel: borg-slot-ore-ticket-empty
+        whitelist:
+          tags:
+            - Ore
+            - SalvageTicket
+    - item: RadioHandheldExpedition
+
+- type: !PartialOnly entity
+  id: BorgModuleAdvancedMining
+  components:
+  - type: Sprite
+    layers:
+    - !CombineIndex:0 sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: mining
+  - type: ItemBorgModule
+    hands:
+    # Listed in reverse: appended partial list items are applied back-to-front.
+    - item: RadioHandheldExpedition
+    - hand:
+        emptyRepresentative: GoldOre
+        emptyLabel: borg-slot-ore-ticket-empty
+        whitelist:
+          tags:
+            - Ore
+            - SalvageTicket
+
+- type: !PartialOnly entity
+  id: BorgModuleTraversal
+  components:
+  - type: Sprite
+    layers:
+    - !CombineIndex:0 sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: mining
+
+- type: !PartialOnly entity
+  id: BorgModuleAdvancedTool
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: SprayPainterBorg
+
+- type: !PartialOnly entity
+  id: BorgModuleConstructionMaterialPlaceholder
+  categories: [ HideSpawnMenu ]
+
+- type: !PartialOnly entity
+  id: BorgModuleConstruction
+  components:
+  - type: ItemBorgModule
+    hands:
+    - !CombineIndex:4 hand: # MicroManipulatorStockPart slot
+        emptyLabel: borg-slot-comp-empty
+        whitelist:
+          tags: !Clear
+          - MicroManipulatorStockPart
+          - PowerCell
+          - PowerCellSmall
+          - PowerCage
+    - hand:
+        emptyRepresentative: PlasmaTank
+        emptyLabel: borg-slot-fuel-empty
+        whitelist:
+          components:
+          - GasTank
+          - AmeFuelContainer
+          - ReactorPart # FH edit
+
+- type: !PartialOnly entity
+  id: BorgModuleMusique
+  components:
+  - type: ItemBorgModule
+    hands:
+    - hand:
+        emptyLabel: borg-slot-music-media-empty
+        emptyRepresentative: VinylAirportLounge
+        whitelist:
+          tags:
+          - VinylSleeveFit
+          - VinylSleeve
+          - CD
+
+- type: !PartialOnly entity
+  id: BorgModuleGardening
+  components:
+  - type: ItemBorgModule
+    hands:
+    - hand:
+        emptyLabel: borg-slot-seeds-empty
+        emptyRepresentative: WheatSeeds
+        whitelist:
+          components:
+          - Seed
+
+- type: !PartialOnly entity
+  id: BorgModuleSyndicateWeapon
+  description: a simple weapon module that comes with an Echis and energy dagger.
+
+- type: !PartialOnly entity
+  id: BorgModuleL6C
+  components:
+  - type: ItemBorgModule
+    hands:
+    # L6C uses ammo
+    - !Index:1
+      item: MagazineLightRifleBoxSP
+      hand:
+        emptyRepresentative: MagazineLightRifleBoxSP
+        emptyLabel: borg-slot-light-box-empty
+        whitelist:
+          tags:
+          - MagazineLightRifleBox
+    - !Index:1
+      item: MagazineLightRifleBoxSP
+      hand:
+        emptyRepresentative: MagazineLightRifleBoxSP
+        emptyLabel: borg-slot-light-box-empty
+        whitelist:
+          tags:
+          - MagazineLightRifleBox
+
+- type: !PartialOnly entity
+  id: MothershipModule
+  components:
+  - type: ItemBorgModule
+    hands:
+    - !CombineIndex:4 hand: # PowerCellHigh slot
+        blacklist:
+          tags:
+          - MechReactor
+
+- type: !PartialOnly entity
+  id: XenoborgModuleLaser
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: XenoShiv
+
+- type: !PartialOnly entity
+  id: XenoborgModuleHeavyLaser
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: XenoKnife
+
+- type: !PartialOnly entity
+  id: XenoborgModuleHypo
+  name: hypo xenoborg module
+  description: Module with self-refilling hypos.
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: LicoxideHypo # It's not that good. They can have it.

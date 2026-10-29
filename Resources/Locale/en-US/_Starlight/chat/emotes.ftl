@@ -13,6 +13,7 @@ chat-emote-name-squawk = Squawk
 chat-emote-name-lizardpurr = Purr
 chat-emote-name-lizardhiss = Hiss
 chat-emote-name-lizardrattle = Rattle
+chat-emote-name-flap-wings = Flap wings
 chat-emote-name-bubble = Bubble
 chat-emote-name-pop = Pop
 chat-emote-name-squee = Squeak

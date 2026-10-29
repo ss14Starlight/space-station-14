@@ -25,6 +25,17 @@
     - type: Dumpable
 
 - type: entity
+  name: handheld slime scanner
+  id: HandheldSlimeScanner
+  parent: BaseItem
+  description: A hand-held scanner for collecting information on slimes.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_analyzer.rsi
+      state: icon
+    - type: SlimeScanner
+
+- type: entity
   name: Xenobiology Console Camera Tagger
   id: XenobiologyConsoleCameraTagger
   parent: BaseItem

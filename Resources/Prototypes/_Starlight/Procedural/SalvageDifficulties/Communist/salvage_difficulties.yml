@@ -1,0 +1,41 @@
+# Commies Difficulties
+
+- type: salvageDifficulty
+  id: Communist-Easy
+  lootPrototype: "SalvageLootCommiesEasy"
+  lootBudget: 20
+  mobBudget: 29
+  modifierBudget: 3
+  color: "#9FED5896"
+  recommendedPlayers: 3
+  probability: 0.3
+
+- type: salvageDifficulty
+  id: Communist-Medium
+  lootPrototype: "SalvageLootCommiesMedium"
+  lootBudget: 60
+  mobBudget: 90
+  modifierBudget: 3
+  color: "#52B4E996"
+  recommendedPlayers: 4
+  probability: 0.3
+
+- type: salvageDifficulty
+  id: Communist-Hard
+  lootPrototype: "SalvageLootCommiesHard"
+  lootBudget: 90
+  mobBudget: 150
+  modifierBudget: 3
+  color: "#EFB34196"
+  recommendedPlayers: 5
+  probability: 0.3
+
+- type: salvageDifficulty
+  id: Elder
+  lootPrototype: "SalvageLootCommiesHard"
+  lootBudget: 90
+  mobBudget: 500
+  modifierBudget: 3
+  color: "#DE3A3A96"
+  recommendedPlayers: 6
+  probability: 0.3

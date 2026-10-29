@@ -26,10 +26,9 @@
             </BoxContainer>
             <alerts:AlertsUI Name="Alerts" Access="Protected" />
         </LayoutContainer>
-        <PanelContainer Name="SeparatedChatPanel" MinWidth="300">
-            <PanelContainer.PanelOverride>
-                <graphics:StyleBoxFlat BackgroundColor="#2B2C3B" />
-            </PanelContainer.PanelOverride>
+		<!-- Starlight-start -->
+        <PanelContainer Name="SeparatedChatPanel" MinWidth="300" StyleClasses="ChatContainer">
+		<!-- Starlight-end -->
 
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="10" Margin="10">
                 <menuBar:GameTopMenuBar Name="TopBar" HorizontalExpand="True" Access="Public" />

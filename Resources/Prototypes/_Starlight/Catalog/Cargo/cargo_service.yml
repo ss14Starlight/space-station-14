@@ -21,7 +21,7 @@
 - type: cargoProduct
   id: ServiceReligiousSupplies
   icon:
-    sprite: _Starlight/Objects/Tools/CosmicCult/censer.rsi
+    sprite: _Starlight/CosmicCult/Objects/censer.rsi
     state: icon
   product: CrateServiceReligious
   cost: 1500

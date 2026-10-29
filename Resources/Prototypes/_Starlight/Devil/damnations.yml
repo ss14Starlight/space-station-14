@@ -1,0 +1,234 @@
+# Devil damnations
+
+## Categories:
+### Constitution - relating to health, body
+### Psyche - relating to mind, ability to do things
+### Materiel - relating to physical things, taking something away or giving something
+
+## Cost:
+### Cost should be balanced such that "Soul" remains the most desirable punishment.
+### Even if your damnation has a fate worse than having your soul taken, you should not go above 10 points,
+### otherwise it becomes the focus of the deals that the devil does.
+### Also keep in mind that if your deal is fatal, the cost should not necessarily be high, because people are
+### likely to chain it on along with Soul anyway if it guaranteed round removes them at some point
+### Devil deals should focus on enhancing existing chaos, deals that create new chaos (i.e. spawn a terminator or minor antag)
+### Should be heavily limited in use, otherwise we just end up with people spawning 12 terminators for shits and giggles.
+
+# CURSES
+
+- type: damnation
+  id: Soul
+  name: devil-damnation-soul-name
+  category: psyche
+  description: devil-damnation-soul-desc
+  cost: -10
+  components:
+  - type: Unrevivable
+    reasonMessage: defibrillator-damned
+  actions:
+  - !type:DamnationActionAddAlert
+    alerts:
+    - SoulDebt
+
+- type: damnation
+  id: Pacifism
+  name: devil-damnation-pacifism-name
+  category: psyche
+  description: devil-damnation-pacifism-desc
+  cost: -3
+  components:
+  - type: Pacified
+    disallowAllCombat: true
+
+- type: damnation
+  id: Blindness
+  name: devil-damnation-blindness-name
+  category: constitution
+  description: devil-damnation-blindness-desc
+  cost: -3
+  components:
+  - type: PermanentBlindness
+    blindness: 0
+
+- type: damnation
+  id: Time
+  name: devil-damnation-time-name
+  category: constitution
+  description: devil-damnation-time-desc
+  cost: -8
+  reverseOnRemove: false # prevent cheesing it for points
+  components:
+  - type: Doomed
+
+- type: damnation
+  id: Credits
+  name: devil-damnation-credits-name
+  category: materiel
+  description: devil-damnation-credits-desc
+  cost: -5
+  actions:
+  - !type:DamnationActionDeductCredits
+    amount: 5000
+
+- type: damnation
+  id: Purpose
+  name: devil-damnation-purpose-name
+  category: psyche
+  description: devil-damnation-purpose-desc
+  cost: -6
+  components:
+  - type: Cluwne
+
+- type: damnation
+  id: Humanity
+  name: devil-damnation-humanity-name
+  category: constitution
+  description: devil-damnation-humanity-desc
+  cost: -5
+  actions:
+  - !type:DamnationActionPolymorph
+    polymorph: IrreversibleMonkey
+
+- type: damnation
+  id: Organ
+  name: devil-damnation-organ-name
+  category: constitution
+  description: devil-damnation-organ-desc
+  cost: -6
+  actions:
+  - !type:DamnationActionRemoveOrgan
+
+- type: damnation
+  id: Terminator
+  name: devil-damnation-terminator-name
+  category: materiel
+  description: devil-damnation-terminator-desc
+  cost: -4
+  maxUses: 1
+  actions:
+  - !type:DamnationActionTerminator
+
+- type: damnation
+  id: Mute
+  name: devil-damnation-mute-name
+  category: constitution
+  description: devil-damnation-mute-desc
+  cost: -2
+  components:
+  - type: Muted
+
+- type: damnation
+  id: Stink
+  name: devil-damnation-stink-name
+  category: constitution
+  description: devil-damnation-stink-desc
+  cost: -1
+  components:
+  - type: IntermittentGasEmitter
+    gasType: Ammonia
+    emitPeriod: 5
+    moles: 5
+
+# REWARDS
+
+- type: damnation
+  id: SpaceImmunity
+  name: devil-damnation-space-immunity-name
+  category: constitution
+  description: devil-damnation-space-immunity-desc
+  cost: 8
+  removedComponents:
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.85
+        Heat: 0.1
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: Temperature
+
+- type: damnation
+  id: AllSeeing
+  name: devil-damnation-all-seeing-name
+  category: psyche
+  description: devil-damnation-all-seeing-desc
+  cost: 6
+  components:
+    - type: ThermalVision
+  reverseOnRemove: true
+
+- type: damnation
+  id: Magic
+  name: devil-damnation-magic-name
+  category: materiel
+  description: devil-damnation-magic-desc
+  cost: 16
+  maxUses: 2
+  components:
+    - type: Jaunt
+  reverseOnRemove: true
+
+- type: damnation
+  id: Health
+  name: devil-damnation-health-name
+  category: constitution
+  description: devil-damnation-health-desc
+  cost: 10
+  reverseOnRemove: true
+  actions:
+  - !type:DamnationActionAddAction
+    actions:
+    - ActionInstantRejuvenate
+
+- type: damnation
+  id: Power
+  name: devil-damnation-power-name
+  category: materiel
+  description: devil-damnation-power-desc
+  cost: 6
+  actions:
+  - !type:DamnationActionSpawnLoot
+    table: PowerDamnationRandomEquipment
+
+- type: damnation
+  id: Gun
+  name: devil-damnation-gun-name
+  category: materiel
+  description: devil-damnation-gun-desc
+  cost: 10
+  actions:
+  - !type:DamnationActionSpawnLoot
+    table: GunDamnationKit
+
+- type: damnation
+  id: Electricity
+  name: devil-damnation-electricity-name
+  category: constitution
+  description: devil-damnation-electricity-desc
+  cost: 4
+  components:
+  - type: Insulated
+
+- type: damnation
+  id: Noslip
+  name: devil-damnation-noslip-name
+  category: constitution
+  description: devil-damnation-noslip-desc
+  cost: 5
+  components:
+  - type: NoSlip
+
+# TESTS (not intended for gameplay)
+
+- type: damnation
+  id: TestFail
+  name: devil-damnation-test-fail-name
+  description: devil-damnation-test-fail-desc
+  cost: -10
+  actions:
+  - !type:DamnationActionFail

@@ -1,8 +1,0 @@
-- type: polymorph
-  id: CorruptHonkmotherMorph
-  configuration:
-    entity: CorruptHonkmotherTransform
-    transferName: true
-    revertOnCrit: false
-    revertOnDeath: false
-    allowRepeatedMorphs: true

@@ -1,17 +1,17 @@
 - type: entity
-  parent: [ BaseItem, BaseMinorContraband ] # Starlight - Security->Minor
+  parent: [ BaseItem, BaseMinorContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: SpeedLoaderLightRifle
-  name: "speed loader (.45 magnum)" # Starlight
+  name: "speed loader (.30 rifle)"
+  description: 5-round 'stripper clip' for quickly reloading the Kardashev-Mosin. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: SpeedLoader
   - type: BallisticAmmoProvider
     mayTransfer: true
-    fillDelay: 0.1 #Starlight
     whitelist:
       tags:
-        - CartridgeMagnum # Starlight
+      - CartridgeLightRifle
     capacity: 5
-    proto: CartridgeMagnumSP # Starlight
+    proto: CartridgeLightRifle
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/LightRifle/light_rifle_speed_loader.rsi
     layers:

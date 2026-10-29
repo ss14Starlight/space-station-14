@@ -64,6 +64,17 @@
   - !type:StockLimitedListingCondition
     stockLimit: 1
 
+- type: listing
+  id: UplinkPinpointerConversion
+  productEntity: PinpointerUSSPTracker
+  cost:
+    Conversion: 60
+  categories:
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 2
+
 ### Armaments Category
 
 - type: listing
@@ -583,7 +594,7 @@
   - RevUplinkWar
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 10
+    stock: 3
   - !type:BuyBeforeCondition
     whitelist:
       - RevSupplyRiftListing
@@ -599,7 +610,7 @@
   - RevUplinkWar
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 10
+    stock: 3
   - !type:BuyBeforeCondition
     whitelist:
       - RevSupplyRiftListing
@@ -608,7 +619,7 @@
   id: RevolutionaryWarMechListing
   productEntity: MechPobedaFilled
   cost:
-    Conversion: 60
+    Conversion: 70
   categories:
   - RevUplinkWar
   conditions:

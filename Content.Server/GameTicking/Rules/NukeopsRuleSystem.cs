@@ -11,6 +11,8 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Nuke;
@@ -23,10 +25,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Linq;
+using System.Text;
 using Content.Shared.Station.Components;
 using Content.Shared.Store.Components;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Cuffs;
 using Robust.Shared.Prototypes;
@@ -38,6 +39,17 @@ using Robust.Shared.Configuration;
 using Robust.Server.Player;
 using Content.Server._Starlight.Achievement;
 using Content.Server._Starlight.Statistics;
+using Content.Server.Pinpointer;
+using Content.Server.StationRecords.Systems;
+using Content.Shared.Access.Systems;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
+using Content.Shared.Roles;
+using Content.Shared.Roles.Jobs;
+using Content.Shared.Station;
+using Content.Shared.StationRecords;
+using Robust.Shared.Containers;
+using Robust.Shared.Network;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -55,9 +67,18 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
     [Dependency] private AntagSelectionSystem _antag = default!;
     [Dependency] private RoundStatisticsSystem _roundStatistics = default!; // Starlight
     [Dependency] private EmergencyShuttleSystem _emergency = default!;
+    [Dependency] private SharedIdCardSystem _idCard = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
     [Dependency] private NpcFactionSystem _npcFaction = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private RoundEndSystem _roundEndSystem = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private StationRecordsSystem _records = default!;
     [Dependency] private StoreSystem _store = default!;
     [Dependency] private TagSystem _tag = default!;
     // Starlight Start
@@ -66,7 +87,6 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
     [Dependency] private StationCrewCountSystem _stationCrewCount = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private AchievementSystem _achievements = default!; // Starlight: Achievements
-    [Dependency] private IPlayerManager _playerManager = default!; // StarlightL Achievements
     // Starlight End
 
     private static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
@@ -139,6 +159,63 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
         {
             var text = Loc.GetString($"nukeops-cond-{cond.ToString().ToLower()}");
             args.AddLine(text);
+        }
+
+        // Print disk location if nuke didn't explode and is not armed
+        List<WinCondition> diskWinConditions = [WinCondition.NukeDiskOnCentCom, WinCondition.NukeDiskNotOnCentCom];
+        if (component.WinConditions.Any(diskWinConditions.Contains))
+        {
+            var diskQuery = AllEntityQuery<NukeDiskComponent, TransformComponent>();
+            while (diskQuery.MoveNext(out var diskUid, out _, out var transform))
+            {
+                StringBuilder text = new StringBuilder(Loc.GetString("nukeops-disk-location-title"));
+
+                List<String> containers = new List<String>();
+                bool carriedByMob = false;
+
+                var tempParent = diskUid;
+                while (_containers.TryGetContainingContainer((tempParent, null), out var container) && !carriedByMob)
+                {
+                    if (HasComp<MindContainerComponent>(container.Owner))
+                    {
+                        carriedByMob = true;
+                    }
+                    var containermeta = MetaData(container.Owner);
+                    containers.Add(containermeta.EntityName);
+                    tempParent = container.Owner;
+                }
+
+                string location = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString((diskUid, transform)));
+
+                if (carriedByMob)
+                {
+                    GetDiskCarrierData(tempParent, out var name, out var job, out var username);
+                    text.Append(Loc.GetString("nukeops-disk-carried-by",
+                        ("name", name),
+                        ("job", job),
+                        ("user", username),
+                        ("location", location)));
+                }
+                else
+                {
+                    if (containers.Count > 0)
+                    {
+                        string hierarchy = string.Empty;
+                        for (var i = 0; i < containers.Count; i++)
+                        {
+                            hierarchy = (Loc.GetString(
+                                "storage-hierarchy-list",
+                                ("item", containers[i]),
+                                ("existing-text", hierarchy),
+                                ("items-left", containers.Count - i - 1)));
+                        }
+                        text.Append(hierarchy);
+                    }
+                    text.Append(" ");
+                    text.Append(location);
+                }
+                args.AddLine(text.ToString());
+            }
         }
 
         args.AddLine(Loc.GetString("nukeops-list-start"));
@@ -491,7 +568,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
 
         foreach (var (_, data, _) in _antag.GetAntagIdentifiers(ent.Owner))
         {
-            if (!_playerManager.TryGetSessionById(data.UserId, out var session))
+            if (!_player.TryGetSessionById(data.UserId, out var session))
                 continue;
 
             foreach (var (threshold, achievementId) in LoneOperativeAchievements)
@@ -649,6 +726,74 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
         }
 
         return null;
+    }
+
+    private void GetDiskCarrierData(EntityUid carrier,
+        out string name,
+        out string job,
+        out string username)
+    {
+        name = Name(carrier);
+        job = Loc.GetString("job-name-unknown");
+        username = "unknown"; // magic word in Fluent selector
+
+        Entity<MindComponent>? mind = null;
+
+        if (_mind.TryGetMind(carrier, out _, out var mindComp))
+        {
+            mind = (carrier, mindComp);
+        }
+        else
+        {
+            var allMinds = EntityQueryEnumerator<MindComponent>();
+            while (allMinds.MoveNext(out _, out mindComp))
+            {
+                if (mindComp.CharacterName != name)
+                    continue;
+
+                mind = (carrier, mindComp);
+                break;
+            }
+        }
+
+        if (mind is not null)
+        {
+            NetUserId? userId = mind.Value.Comp.UserId;
+            if (userId is not null && _player.TryGetPlayerData(userId.Value, out var sessionData))
+                username = sessionData.UserName;
+
+            // Role/job is the trickiest since it can be unknown in some cases
+            // For example, after "make ghost role" verb
+            var roles = _roles.MindGetAllRoleInfo(mind.Value.Owner);
+            if (roles.Count > 0)
+            {
+                job = Loc.GetString(roles.First().Name);
+                return;
+            }
+
+            if (_jobs.MindTryGetJobName(mind, out var jobName))
+            {
+                job = jobName;
+                return;
+            }
+        }
+
+        // Try station records
+        var xform = Transform(carrier);
+        var station = _station.GetStationInMap(xform.MapID);
+        if (station != null && _records.GetRecordByName(station.Value, name) is { } id)
+        {
+            var key = new StationRecordKey(id, station.Value);
+            if (_records.TryGetRecord<GeneralStationRecord>(key, out var record))
+            {
+                job = record.JobTitle;
+                return;
+            }
+        }
+
+        // Fallback to ID
+        if (_idCard.TryFindIdCard(carrier, out var idCard))
+            job = idCard.Comp.LocalizedJobTitle ?? job;
     }
 }
 

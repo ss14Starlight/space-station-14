@@ -18,8 +18,10 @@ public sealed class ReplayGhostState : ReplaySpectateEntityState
         if (screen == null)
             return;
 
-        screen.ShowWidget<GhostGui>(false);
-        screen.ShowWidget<ActionsBar>(false);
+        // Starlight Begin - used by the replay observer
+        // screen.ShowWidget<GhostGui>(false);
+        // screen.ShowWidget<ActionsBar>(false);
+        // Starlight End
         screen.ShowWidget<AlertsUI>(false);
         screen.ShowWidget<HotbarGui>(false);
     }

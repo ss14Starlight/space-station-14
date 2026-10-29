@@ -281,7 +281,7 @@ public sealed partial class WallStainSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("wall-stain-cleaning-start"), uid, user);
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(5), new CleanWallStainDoAfterEvent(), uid, target: uid, used: tool)
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(2), new CleanWallStainDoAfterEvent(), uid, target: uid, used: tool) // Starlight TimeSpan.FromSeconds(5) > (2)
         {
             BreakOnMove = true,
             BreakOnDamage = true,

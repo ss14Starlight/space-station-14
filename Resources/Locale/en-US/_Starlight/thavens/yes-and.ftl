@@ -19,6 +19,9 @@ thaven-mood-worship-silicons-desc = Their word is law.
 thaven-mood-dinner-etiquette-name = Meal Etiquette
 thaven-mood-dinner-etiquette-desc = Food should always be consumed in the manner of a proper meal - seated at a table, in courses, with dishes and utensils.
 
+thaven-mood-clarity-name = Clarity Is Vital
+thaven-mood-clarity-desc = Misunderstandings are the primary cause of conflict. You should be excessively clear and honest in your speech, explaining every minute detail, to avoid miscommunication.
+
 thaven-mood-hug-good-name = Free Hugs
 thaven-mood-hug-good-desc = It is extremely impolite not to hug people frequently.
 
@@ -39,6 +42,12 @@ thaven-mood-radio-only-desc = You firmly believe in the freedom of information. 
 
 thaven-mood-proper-storage-name = Proper Handling
 thaven-mood-proper-storage-desc = It is unacceptable to allow personal belongings to touch the floor. Your possessions should be properly stored, placed on tables, or exchanged by hand.
+
+thaven-mood-swearing-good-name = !@$%#ing @$^%*#@!$
+thaven-mood-swearing-good-desc = Swearing is the spice of any conversation, and should be used as much as reasonably possible.
+
+thaven-mood-statement-only-name = Asking Questions Is Rude
+thaven-mood-statement-only-desc = It would be terribly impolite to go around flagrantly asking questions all over the place. You'd prefer to phrase everything as a concrete statement.
 
 thaven-mood-theft-neutral-name = Petty Theft Is Morally Neutral
 thaven-mood-theft-neutral-desc = You don't understand the concept of property as it relates to other people.
@@ -232,3 +241,30 @@ thaven-mood-insecure-desc = You care deeply what people think about you, particu
 
 thaven-mood-live-laugh-love-name = Live Laugh Love
 thaven-mood-live-laugh-love-desc = Live the shift like it's your last. Laugh at every joke. Spread the joys and love of the station.
+
+thaven-mood-knightly-name = Knightly
+thaven-mood-knightly-desc = Pick one person and declare your undying fealty to them, do as they say and protect them at all costs.
+
+thaven-mood-false-memories-name = False Memories
+thaven-mood-false-memories-desc = You possess vivid memories of important events that never happened. Convince others to help you investigate them and publicize them.
+
+thaven-mood-reality-leak-name = Reality Leak
+thaven-mood-reality-leak-desc = You believe objects and events occasionally arrive from parallel universes. Determine their origin and effects through tests you conduct on them.
+
+thaven-mood-department-conspiracy-name = Department Conspiracy
+thaven-mood-department-conspiracy-desc = The {$department} department secretly controls the station from behind the scenes. Gather evidence and expose the truth.
+
+thaven-mood-formal-introductions-name = Formal Introductions
+thaven-mood-formal-introductions-desc = Speaking to someone before properly introducing yourself is exceptionally rude.
+
+thaven-mood-silence-means-agreement-name = Silence Means Agreement
+thaven-mood-silence-means-agreement-desc = A failure to object is a form of agreement. You naturally assume others agree unless they say otherwise.
+
+thaven-mood-copycat-name = Copycat
+thaven-mood-copycat-desc = Pick one person. You should dress similarly, behave similarly, and strive to be as much like them as possible.
+
+thaven-mood-communications-agent-name = Communications Agent
+thaven-mood-communications-agent-desc = You need to make sure your co-workers are excessively informed of almost every happening and discovery related to your department, no matter how insignificant or meaningless, and for you to stay informed.
+
+thaven-mood-the-curtains-must-rise-name = The Curtains Must Rise
+thaven-mood-the-curtains-must-rise-desc = Privacy is a sacred right. Build and install curtains to shield yourself from prying eyes. No one should witness what is meant to be private.

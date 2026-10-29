@@ -69,7 +69,7 @@
   - type: Puller
     needsHands: false
   - type: Icon
-    sprite: _Starlight/Mobs/Species/ProtoResomi/parts.rsi
+    sprite: _Starlight/Mobs/Species/Proto-Resomi/parts.rsi
     state: full
   - type: Body
     prototype: NeoResomi
@@ -284,10 +284,10 @@
     - map: [ "head" ]
     - map: [ "pocket1" ]
     - map: [ "pocket2" ]
-    - map: [ "clownedon" ]
-      sprite: "_Starlight/Effects/creampie.rsi"
-      state: "creampie_resomi"
-      visible: false
+  - type: CreamPied
+    sprite:
+      sprite: _Starlight/Effects/creampie.rsi
+      state: creampie_resomi
   - type: Tag
     tags:
     - CanPilot
@@ -357,10 +357,6 @@
     - map: [ "head" ]
     - map: [ "pocket1" ]
     - map: [ "pocket2" ]
-    - map: [ "clownedon" ]
-      sprite: "_Starlight/Effects/creampie.rsi"
-      state: "creampie_resomi"
-      visible: false
   - type: Inventory
     speciesId: resomi #to be replaced with proto[species] when new sprites are made
     templateId: neocyte

@@ -1,15 +1,29 @@
-# Starlight uses slotted bodies and Damageable rather than Moff's body/health bases.
 - type: !PartialOnly entity
   id: MoffMobDemonNarsieBase
   components:
   - type: Body
     prototype: Bloodsucker
+  - type: !Remove NarSieDemonAccent
+  - type: Tag
+    tags:
+    - StutterImmune
+  - type: LanguageSpeaker
+    currentLanguage: Darktongue
+  - type: LanguageKnowledge
+    speaks:
+    - Darktongue
+    understands:
+    - GalacticCommon
+    - Darktongue
 
 - type: !PartialOnly entity
   id: MoffMobDemonNarsieFleshBase
   components:
   - type: Damageable
     damageContainer: MoffDemonBiological
+  - type: Tag
+    tags:
+    - StutterImmune
 
 - type: !PartialOnly entity
   id: MoffMobDemonNarsieConstructBase
@@ -32,3 +46,16 @@
   - type: BasicEntityAmmoProvider
     ammoTable: !Remove
     proto: MoffBloodBolt
+
+- type: !PartialOnly entity
+  id: MoffMobDemonNarsieFleshFlyingBase
+  components:
+  - type: Tag
+    tags:
+    - StutterImmune
+
+- type: !PartialOnly entityTable
+  id: MoffHellportalFleshlingsTable
+  table:
+    children:
+    - id: MobGooseNarsie

@@ -128,6 +128,24 @@
       noRot: true
 
 - type: entity
+  id: VampireDrainBeam
+  name: drain beam
+  description: A crimson beam of life-draining energy.
+  categories: [HideSpawnMenu]
+  components:
+    - type: Sprite
+      sprite: /Textures/_Starlight/Effects/vampire.rsi
+      layers:
+        - state: drainbeam
+          map: ["enum.EffectLayers.Unshaded"]
+      drawdepth: Effects
+    - type: AnimationPlayer
+    - type: Physics
+      canCollide: false
+    - type: Transform
+      noRot: false
+
+- type: entity
   id: VampireDrainBeamVisual
   name: drain beam visual
   description: A smooth client-side vampire drain beam.

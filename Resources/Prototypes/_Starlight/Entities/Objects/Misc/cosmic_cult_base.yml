@@ -1,4 +1,0 @@
-- type: entity
-  parent: [BaseItem, BaseMagicalContraband]
-  id: BaseCosmicCultItem
-  abstract: true

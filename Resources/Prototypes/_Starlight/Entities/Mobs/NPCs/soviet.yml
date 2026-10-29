@@ -10,7 +10,7 @@
       speedModifier: 1.5
       useSound:
         path: /Audio/Items/crowbar.ogg
-      useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
+      useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
       playSoundOnDoafter: true
     - type: NpcFactionMember
       factions:
@@ -29,13 +29,13 @@
 
 #melee
 - type: entity
-  suffix: Broken Bottle
+  suffix: Spear
   parent: MobSovietComrade
-  id: MobSovietComradeBrokenBottle
+  id: MobSovietComradeSpear
   components:
     - type: Loadout
       prototypes:
-        - SovietComradeGearBrokenBottle
+        - SovietComradeGearSpear
 - type: entity
   suffix: Finka
   parent: MobSovietComrade
@@ -62,6 +62,15 @@
     - type: Loadout
       prototypes:
         - SovietComradeGearMakarov
+#revolver
+- type: entity
+  suffix: ZOZ
+  parent: MobSovietComrade
+  id: MobSovietComradeRevolver
+  components:
+    - type: Loadout
+      prototypes:
+        - SovietComradeGearZOZ
 #rifle
 - type: entity
   suffix: Ak

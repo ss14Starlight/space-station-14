@@ -13,10 +13,6 @@
     maxTransferAmount: 10
   - type: StaticPrice
     price: 10
-  # Starlight-edit: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: drink
-  # Starlight-end
 
 # A mug is a type of cup.[2]
 - type: entity
@@ -53,7 +49,7 @@
   components:
   - type: Solution
     solution:
-      maxVol: 17 # About 5 imperial fluid ounces which is the english measurement for a teacup. Also I think fucked up volume sizes are funny. HAHAHAHAHAHAHA
+      maxVol: 17
   - type: Sprite
     sprite: Objects/Consumable/Drinks/teacup.rsi
   - type: SolutionContainerVisuals
@@ -71,9 +67,6 @@
     sprite: Objects/Consumable/Drinks/glass_coupe_shape.rsi
   - type: SolutionContainerVisuals
     inHandsMaxFillLevels: 1
-  - type: Tag
-    tags:
-    - CoupeGlass # Starlight
 
 - type: entity
   parent: [DrinkBaseMaterialCardboard, DrinkBaseCup, DrinkBaseEmptyTrash, DrinkVisualsFill]
@@ -83,7 +76,7 @@
   components:
   - type: Solution
     solution:
-      maxVol: 10 # Miserably small
+      maxVol: 10
   - type: Sprite
     sprite: Objects/Consumable/Drinks/water_cup.rsi
   - type: SolutionContainerVisuals

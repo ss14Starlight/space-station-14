@@ -1,5 +1,21 @@
 - type: entity
   parent: BaseWeaponBallisticTurret
+  id: WeaponTurretPirate
+  suffix: Pirate
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Pirate
+  - type: Gun
+    fireRate: 3.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+
+- type: entity
+  parent: BaseWeaponBallisticTurret
   id: WeaponTurretPirateDisposable
   name: disposable ballistic turret
   suffix: Pirate, Disposable

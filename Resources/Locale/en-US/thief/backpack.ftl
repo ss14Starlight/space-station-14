@@ -36,10 +36,25 @@ thief-backpack-category-chemistry-description =
     ephedrine bottle, syringe, empty shaker, and omega soap
 
 thief-backpack-category-syndie-name = Syndie Kit
+thief-backpack-category-syndie-description =
+    Trinkets from a disavowed past, or stolen from a careless agent?
+    You've made some connections. Whiskey, echo...
+    Includes: An Emag, Access Breaker, Interdyne cigs, a Syndicate codeword,
+    a Radio Jammer, a lighter and some strange red crystals.
 
 thief-backpack-category-sleeper-name = Sleeper Kit
+thief-backpack-category-sleeper-description =
+    Until we close our eyes for good, use your illegal prescriptions
+    to keep others asleep.
+    Includes: Sleepy nitrous oxide tank, two nocturine bottles,
+    and a hypopen.
 
 thief-backpack-category-communicator-name = Communicator Kit
+thief-backpack-category-communicator-description =
+    Money is power, and secrets are money. Use your silver tongue
+    and wealth to subvert the station.
+    Includes: Master key for all station channels, a CyberSun pen,
+    voice mask implanter, and 20k spesos inside a briefcase.
 
 thief-backpack-category-smuggler-name = Smuggler Kit
 thief-backpack-category-smuggler-description =

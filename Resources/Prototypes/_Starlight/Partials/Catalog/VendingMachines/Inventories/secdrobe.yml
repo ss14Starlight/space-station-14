@@ -1,0 +1,41 @@
+- type: !PartialOnly vendingMachineInventory
+  id: SecDrobeInventory
+  startingInventory: !Clear
+    ClothingBackpackSecurity: 3
+    ClothingBackpackSatchelSecurity: 3
+    ClothingBackpackDuffelSecurity: 3
+    ClothingUniformJumpsuitSec: 3
+    ClothingShoesBootsJack: 3
+    ClothingHeadHatBeretSecurity: 3
+    ClothingHeadHatSecsoft: 3
+    ClothingHeadBandRed: 3
+    ClothingMaskNeckGaiterRed: 3
+    ClothingHandsGlovesSecurityRed: 3
+    ClothingHandsGlovesSecurityFingerlessRed: 3
+    ClothingHandsMittensSecurityRed: 3
+    ClothingUniformJumpskirtSec: 3
+    ClothingUniformJumpsuitSecGrey: 3
+    ClothingUniformJumpskirtSecGrey: 3
+    ClothingUniformJumpsuitSecBlue: 3
+    ClothingUniformSecurityTshirt: 3
+    ClothingHeadsetSecurity: 3
+    ClothingOuterWinterSec: 2
+    ClothingOuterArmorBasic: 2
+    ClothingOuterArmorBasicSlim: 2
+    ClothingOuterArmorPlate: 2
+    ClothingOuterArmorStab: 2
+    ClothingOuterArmorHeatAbsorb: 2
+    ClothingHeadHelmetPlate: 2
+    ClothingHeadHelmetStabproof: 2
+    ClothingHeadHelmetHeatAbsorbent: 2
+    ClothingNeckScarfStripedRed: 3
+    ClothingNeckScarfSolidRed: 3
+    ClothingEyesBlindfold: 1
+    ClothingShoesBootsCombat: 1
+    ClothingShoesBootsWinterSec: 2
+    ClothingOuterSecurityBomber: 2
+    ClothingOuterWindbreakerSecurity: 2
+    ClothingHeadHelmetJustice: 1
+  emaggedInventory: # Blimpuf
+    ClothingHeadHelmetSwatSyndicate: 1 # Blimpuf
+    ClothingBeltSyndieHolster: 1 # Blimpuf

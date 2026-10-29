@@ -59,7 +59,7 @@ public sealed partial class CosmicFinaleComponent : Component
     public TimeSpan InteractionTime = TimeSpan.FromSeconds(30);
 
     [DataField]
-    public SoundSpecifier FinaleMusic = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/finale.ogg");
+    public SoundSpecifier FinaleMusic = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/finale.ogg");
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan? SongTimer;

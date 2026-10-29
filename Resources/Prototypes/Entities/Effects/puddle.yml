@@ -70,6 +70,39 @@
         Quantity: 30
 
 - type: entity
+  parent: PuddleTemporary
+  id: PuddleFluorosulfuricAcidSmall
+  suffix: FluorosulfuricAcid (5u)
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: FluorosulfuricAcid
+        Quantity: 5
+
+- type: entity
+  parent: PuddleTemporary
+  id: PuddleFluorosulfuricAcid
+  suffix: FluorosulfuricAcid (15u)
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: FluorosulfuricAcid
+        Quantity: 15
+
+- type: entity
+  id: PuddleWatermelon
+  parent: PuddleTemporary
+  suffix: Watermelon
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: JuiceWatermelon
+        Quantity: 30
+
+- type: entity
   id: PuddleFlour
   parent: PuddleTemporary
   suffix: Flour

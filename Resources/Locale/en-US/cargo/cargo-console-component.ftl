@@ -1,5 +1,6 @@
 ## UI
 
+cargo-console-menu-title = Cargo request console
 cargo-console-menu-flavor-left = Order even more pizza boxes than usual!
 cargo-console-menu-flavor-right = v2.1
 cargo-console-menu-account-name-label = Account:{" "}
@@ -12,6 +13,8 @@ cargo-console-menu-points-amount = ${$amount}
 cargo-console-menu-shuttle-status-label = Shuttle status:{" "}
 cargo-console-menu-shuttle-status-away-text = Away
 cargo-console-menu-order-capacity-label = Order capacity:{" "}
+cargo-console-menu-call-shuttle-button = Activate telepad
+cargo-console-menu-permissions-button = Permissions
 cargo-console-menu-categories-label = Categories:{" "}
 cargo-console-menu-search-bar-placeholder = Search
 cargo-console-menu-requests-label = Requests
@@ -63,6 +66,10 @@ cargo-console-paper-print-text = [head=2]Order #{$orderNumber}[/head]
 
 # Cargo shuttle console
 cargo-shuttle-console-menu-title = Cargo shuttle console
+cargo-shuttle-console-station-unknown = Unknown
+cargo-shuttle-console-shuttle-not-found = Not found
+cargo-shuttle-console-organics = Detected organic lifeforms on the shuttle
+cargo-no-shuttle = No cargo shuttle found!
 
 # Funding allocation console
 cargo-funding-alloc-console-menu-title = Funding Allocation Console

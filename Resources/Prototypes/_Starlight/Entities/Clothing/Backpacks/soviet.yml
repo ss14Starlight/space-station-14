@@ -4,6 +4,8 @@
   name: SSF duffel bag
   description: Bulky olive-drab bag stamped with a faded SSF insignia.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Duffels/soviet_marine_duffel.rsi
   - type: ExplosionResistance

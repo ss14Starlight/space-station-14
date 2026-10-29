@@ -1,0 +1,4 @@
+- type: !PartialOnly weightedRandom
+  id: ThiefObjectiveGroupCollection
+  weights:
+    DepartmentIdStealObjective: 0.2

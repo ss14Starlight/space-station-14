@@ -24,6 +24,7 @@ ui-vote-map-invalid = { $winner } became invalid after the map vote! It will not
 
 # Votekick votes
 ui-vote-votekick-unknown-initiator = A player
+ui-vote-votekick-unknown-target = Unknown Player
 ui-vote-votekick-title = { $initiator } has called a votekick for user: { $targetEntity }. Reason: { $reason }
 ui-vote-votekick-yes = Yes
 ui-vote-votekick-no = No

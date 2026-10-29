@@ -1,84 +1,84 @@
 - files: ["book_drop.ogg", "book_pickup.ogg", "paper_drop.ogg", "paper_pickup.ogg", "disk_drop.ogg", "disk_pickup.ogg", "drinkglass_drop.ogg", "drinkglass_pickup.ogg", "beaker_pickup.ogg", "beaker_place.ogg", "toolbelt_drop.ogg", "toolbelt_pickup.ogg", "component_drop.ogg", "component_pickup.ogg", "matchbox_pickup.ogg", "pill_bottle_pickup.ogg", "pill_bottle_place.ogg", "ammobox_pickup.ogg", "ammobox_drop.ogg", "crowbar_pickup.ogg", "multitool_pickup.ogg", "screwdriver_pickup.ogg", "weldingtool_pickup.ogg", "wirecutter_pickup.ogg", "wrench_pickup.ogg", "toolbox_pickup.ogg", "toolbox_drop.ogg"]
   license: "CC-BY-SA-3.0"
-  copyright: "Taken from /tg/station, downmixed to mono"
+  copyright: "Taken from /tg/station, downmixed to mono, loudness-normalized; drinkglass_pickup.ogg also low-passed to soften it"
   source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling"
 
 - files: ["cloth_drop1.ogg", "cloth_drop2.ogg", "cloth_drop3.ogg", "cloth_drop4.ogg", "cloth_pickup1.ogg", "cloth_pickup2.ogg", "cloth_pickup3.ogg", "cloth_pickup4.ogg", "sneakers_drop1.ogg", "sneakers_pickup1.ogg", "backpack_drop1.ogg", "backpack_pickup1.ogg", "id_card_drop1.ogg", "id_card_pickup1.ogg", "headset_drop1.ogg", "headset_pickup1.ogg", "headset_pickup2.ogg", "headset_pickup3.ogg", "glove_drop.ogg", "glove_pick_up.ogg"]
   license: "CC-BY-SA-3.0"
-  copyright: "Made by sadboysuss for /tg/station, downmixed to mono"
+  copyright: "Made by sadboysuss for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling"
 
 - files: ["helmet_drop1.ogg"]
   license: "CC0-1.0"
-  copyright: "\"helmet motorbike put on a head\" by cupido-1, edited for /tg/station, downmixed to mono"
+  copyright: "\"helmet motorbike put on a head\" by cupido-1, edited for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://freesound.org/s/614199/"
 
 - files: ["helmet_pickup1.ogg"]
   license: "CC-BY-4.0"
-  copyright: "\"helmet_grabbing_and_handling_sound\" by Artninja, edited for /tg/station, downmixed to mono"
+  copyright: "\"helmet_grabbing_and_handling_sound\" by Artninja, edited for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://freesound.org/s/725314/"
 
 - files: ["glass_pick_up.ogg", "glass_drop.ogg"]
   license: "CC0-1.0"
-  copyright: "Sounds by Hotlavaman and tcrocker68 on freesound, edited by sadboysuss for /tg/station, downmixed to mono"
+  copyright: "Sounds by Hotlavaman and tcrocker68 on freesound, edited by sadboysuss for /tg/station, downmixed to mono, loudness-normalized; glass_pick_up.ogg also low-passed to soften it"
   source: "https://github.com/tgstation/tgstation/blob/master/sound/items/attributions.txt"
 
 - files: ["metal_pick_up.ogg"]
   license: "CC0-1.0"
-  copyright: "Sound by Hotlavaman on freesound, edited by sadboysuss for /tg/station, downmixed to mono"
+  copyright: "Sound by Hotlavaman on freesound, edited by sadboysuss for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://freesound.org/people/Hotlavaman/sounds/108673/"
 
 - files: ["cardboard_pick_up.ogg", "cardboard_drop.ogg"]
   license: "CC0-1.0"
-  copyright: "Sound by newagesoup on freesound, edited for /tg/station, downmixed to mono"
+  copyright: "Sound by newagesoup on freesound, edited for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://freesound.org/people/newagesoup/sounds/364736/"
 
 - files: ["grenade_pick_up.ogg", "grenade_drop.ogg", "needle_pickup1.ogg", "needle_pickup2.ogg", "needle_drop1.ogg", "needle_drop2.ogg", "gas_analyzer_pickup.ogg", "gas_analyzer_drop.ogg", "plastic_shield_pick_up.ogg", "plastic_shield_drop.ogg"]
   license: "CC-BY-SA-3.0"
-  copyright: "Made by sadboysuss for /tg/station, downmixed to mono"
+  copyright: "Made by sadboysuss for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling"
 
 - files: ["regen_mesh_pickup1.ogg", "regen_mesh_pickup2.ogg", "regen_mesh_pickup3.ogg"]
   license: "CC-BY-SA-3.0"
-  copyright: "Taken from /tg/station, downmixed to mono"
+  copyright: "Taken from /tg/station, downmixed to mono, loudness-normalized"
   source: "https://github.com/tgstation/tgstation/tree/master/sound/items/handling/regenerative_mesh"
 
 - files: ["plastic_pick_up.ogg"]
   license: "CC-BY-4.0"
-  copyright: "Sound by Jessica190091 on freesound, edited by sadboysuss for /tg/station, downmixed to mono"
+  copyright: "Sound by Jessica190091 on freesound, edited by sadboysuss for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://freesound.org/people/Jessica190091/sounds/491304/"
 
 - files: ["plastic_drop.ogg"]
   license: "CC0-1.0"
-  copyright: "Sound by martian on freesound, edited by sadboysuss for /tg/station, downmixed to mono"
+  copyright: "Sound by martian on freesound, edited by sadboysuss for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://freesound.org/people/martian/sounds/338854/"
 
 - files: ["iron_rod_pick_up.ogg"]
   license: "CC-BY-4.0"
-  copyright: "Sound by lostphosphene on freesound, edited by sadboysuss for /tg/station, downmixed to mono"
+  copyright: "Sound by lostphosphene on freesound, edited by sadboysuss for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://freesound.org/people/lostphosphene/sounds/258265/"
 
 - files: ["default_liquid_slosh1.ogg", "default_liquid_slosh2.ogg", "default_liquid_slosh3.ogg", "default_liquid_slosh4.ogg"]
   license: "CC0-1.0"
-  copyright: "\"Liquid bottle shaking long\" by Hope-Sounds, edited for /tg/station, downmixed to mono"
+  copyright: "\"Liquid bottle shaking long\" by Hope-Sounds, edited for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://freesound.org/s/502668/"
 
 - files: ["plastic_bottle_liquid_slosh1.ogg", "plastic_bottle_liquid_slosh2.ogg"]
   license: "CC0-1.0"
-  copyright: "\"liquid in bottle shaking\" by mrrap4food, edited for /tg/station, downmixed to mono"
+  copyright: "\"liquid in bottle shaking\" by mrrap4food, edited for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://freesound.org/s/470606/"
 
 - files: ["gas_tank_pick_up.ogg", "gas_tank_drop.ogg"]
   license: "CC0-1.0"
-  copyright: "Sound by Globofonia on freesound, edited by grungussuss for /tg/station, downmixed to mono"
+  copyright: "Sound by Globofonia on freesound, edited by grungussuss for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://freesound.org/people/Globofonia/sounds/698346/"
 
 - files: ["handcuffs_pick_up.ogg", "handcuffs_drop.ogg"]
   license: "CC-BY-3.0"
-  copyright: "\"handcuffs.ogg\" by kimuracarter, edited by sadboysuss for /tg/station, downmixed to mono"
+  copyright: "\"handcuffs.ogg\" by kimuracarter, edited by sadboysuss for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://freesound.org/s/528749/"
 
 - files: ["pepper_spray_pick_up.ogg", "pepper_spray_drop.ogg"]
   license: "CC0-1.0"
-  copyright: "\"Spray Paint Shake Slow Five\" by cbakos, edited by sadboysuss for /tg/station, downmixed to mono"
+  copyright: "\"Spray Paint Shake Slow Five\" by cbakos, edited by sadboysuss for /tg/station, downmixed to mono, loudness-normalized"
   source: "https://freesound.org/s/200376/"

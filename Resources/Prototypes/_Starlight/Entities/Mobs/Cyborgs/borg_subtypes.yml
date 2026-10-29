@@ -71,7 +71,7 @@
   name: MMeka Engineering
   components:
     - type: BorgSubtypeDefinition
-      spritePath: _Starlight/Mobs/Silicon/Chassis/Tallborgs/Engi/mmeka_engi.rsi
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-engi/mmeka_engi.rsi
       spriteBodyState: borg-alt
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
@@ -216,7 +216,7 @@
   name: MMeka Janitor
   components:
     - type: BorgSubtypeDefinition
-      spritePath: _Starlight/Mobs/Silicon/Chassis/Tallborgs/Jani/mmeka_jani.rsi
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-jani/mmeka_jani.rsi
       spriteBodyState: borg
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
@@ -321,7 +321,7 @@
   name: MMeka Medical
   components:
     - type: BorgSubtypeDefinition
-      spritePath: _Starlight/Mobs/Silicon/Chassis/Tallborgs/Med/mmeka_med.rsi
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-med/mmeka_med.rsi
       spriteBodyState: borg-alt
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
@@ -426,7 +426,7 @@
   name: MMeka Salvage
   components:
     - type: BorgSubtypeDefinition
-      spritePath: _Starlight/Mobs/Silicon/Chassis/Tallborgs/Salv/mmeka_salv.rsi
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-salv/mmeka_salv.rsi
       spriteBodyState: borg-alt
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
@@ -537,7 +537,7 @@
   name: Meka Service
   components:
     - type: BorgSubtypeDefinition
-      spritePath: _Starlight/Mobs/Silicon/Chassis/Tallborgs/Service/meka_alt_service.rsi
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-service/meka_alt_service.rsi
       spriteBodyState: borg
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
@@ -695,7 +695,7 @@
   name: Meka Cargo
   components:
     - type: BorgSubtypeDefinition
-      spritePath: _Starlight/Mobs/Silicon/Chassis/Tallborgs/Cargo/meka_cargo.rsi
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-cargo/meka_cargo.rsi
       spriteBodyState: borg-alt
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
@@ -708,7 +708,7 @@
   name: MMeka Cargo
   components:
     - type: BorgSubtypeDefinition
-      spritePath: _Starlight/Mobs/Silicon/Chassis/Tallborgs/Cargo/mmeka_cargo.rsi
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-cargo/mmeka_cargo.rsi
       spriteBodyState: borg-alt
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r

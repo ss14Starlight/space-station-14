@@ -1,0 +1,39 @@
+objective-picker-window-title = Choose Objectives
+objective-picker-window-select-tip = {$selected}/{$max} Selected
+objective-picker-window-time-left = Time left to pick: {$time}
+objective-picker-window-submit = Submit
+objective-picker-window-random = Random
+objective-picker-window-clear = Clear
+objective-picker-button = Choose Objectives...
+
+objective-picker-window-difficulty-tip = Selected Difficulty: {$selected}. Choose at least {$minimum}; you may choose more.
+objective-picker-option = {$title}
+objective-picker-option-unavailable = Unavailable: its limit has been reached or you no longer meet its requirements.
+objective-picker-option-conflict = Incompatible with an objective you have selected.
+objective-picker-window-mulligan = Mulligan
+objective-picker-window-mulligan-used = Mulligan used
+objective-picker-window-mulligan-tip = Select exactly one objective to keep, then reroll all other options. You can do this once.
+objective-picker-mulligan-success = Kept your selected objective and rerolled the other options.
+objective-picker-mulligan-rejected = Could not reroll these options. Your mulligan has not been consumed.
+objective-picker-selection-rejected = Your selection could not be confirmed. Check availability and difficulty, then try again.
+objective-picker-window-auto-selecting = Waiting for automatic selection…
+objective-picker-hidden-kill = Eliminate a person.
+objective-picker-hidden-kill-head = Eliminate a high value person.
+objective-picker-hidden-lesson = Teach a person a lesson.
+objective-picker-hidden-lesson-head = Teach a high value person a lesson.
+objective-picker-hidden-target-description = Your target will be assigned and revealed after you confirm your objectives.
+objective-condition-department-id-title = Steal {$count} IDs from {$department}.
+objective-condition-department-id-description = Keep the named crew IDs in your possession. Your own ID and blank cards do not count.
+
+objective-picker-column-objective = Objective
+objective-picker-column-difficulty = Difficulty
+objective-picker-additional-button = Choose More Objectives...
+objective-picker-additional-rejected = Additional objectives are not available yet, or no compatible objectives remain.
+objective-picker-window-optional-tip = Objectives are optional. Select any you want, or confirm with none selected.
+objectives-round-end-difficulty = Selected Difficulty: {$selected}. Completed Difficulty: {$completed} ({$percentage}%).
+objective-picker-difficulty-value = {$difficulty}
+
+objective-picker-hidden-help-progress = Help a fellow traitor achieve their objectives.
+objective-picker-hidden-help-alive = Keep a fellow traitor alive.
+objective-picker-under-budget-tip = The remaining options cannot meet the required Difficulty. You may confirm a smaller selection.
+objective-condition-escape-identity-eliminate-title = Escape alive and unrestrained disguised as {$targetName}, {CAPITALIZE($job)}, and prevent them from reaching CentComm.

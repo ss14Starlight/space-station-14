@@ -55,11 +55,27 @@
 
 - type: entity
   parent: SugarCube
+  id: SugarCube3
+  suffix: 3
+  components:
+  - type: Stack
+    count: 3
+
+- type: entity
+  parent: SugarCube
   id: SugarCube6
   suffix: 6
   components:
   - type: Stack
     count: 6
+
+- type: entity
+  parent: SugarCube
+  id: SugarCube10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
 
 - type: stack
   parent: BaseSmallStack

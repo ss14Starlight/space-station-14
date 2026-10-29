@@ -5,6 +5,7 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Shared.Weapons.Ranged.Systems;
@@ -14,14 +15,38 @@ public abstract partial class SharedGunSystem
     private const int RecoilSalt = -1;
     private const int PelletSalt = -2;
 
+    private static readonly TimeSpan MaxShotTickLag = TimeSpan.FromSeconds(0.5);
+
+    private GameTick? _shotTick;
+
+    public GameTick ShotTick => _shotTick ?? Timing.CurTick;
+
     public int GetShotSeed(EntityUid gun, int salt = 0)
-        => SharedRandomExtensions.HashCodeCombine((int) Timing.CurTick.Value, GetNetEntity(gun).Id, salt);
+        => SharedRandomExtensions.HashCodeCombine((int) ShotTick.Value, GetNetEntity(gun).Id, salt);
+
+    private static GameTick? GetBurstShotTick(GunComponent gun)
+    {
+        if (!gun.BurstActivated || gun.BurstShotsCount <= 0 || gun.BurstTick == GameTick.Zero)
+            return null;
+
+        return new GameTick(gun.BurstTick.Value + (uint) gun.BurstShotsCount);
+    }
+
+    private GameTick? GetRequestTick(GameTick tick)
+    {
+        var now = Timing.CurTick;
+        if (tick > now || tick == GameTick.Zero)
+            return null;
+
+        var maxLag = (uint) Math.Ceiling(MaxShotTickLag.TotalSeconds * Timing.TickRate);
+        return now.Value - tick.Value <= maxLag ? tick : null;
+    }
 
     public int GetHitscanSeed(EntityUid gun, int ammoIndex, int pelletIndex)
         => GetShotSeed(gun, SharedRandomExtensions.HashCodeCombine(ammoIndex, pelletIndex));
 
-    private System.Random GetShotRandom(EntityUid gun, int salt)
-        => Random.GetPredictedRandom(Timing, GetShotSeed(gun, salt));
+    public System.Random GetShotRandom(EntityUid gun, int salt)
+        => new(GetShotSeed(gun, salt));
 
     public Vector2 GetShotMapDirection(Entity<GunComponent> gun, Vector2 fromMap, Vector2 toMap)
     {
@@ -47,18 +72,11 @@ public abstract partial class SharedGunSystem
 
         var random = GetShotRandom(gun, SharedRandomExtensions.HashCodeCombine(PelletSalt, ammoIndex));
         var angles = new Angle[spread.Count];
-
-        var max = (float) spread.Deviation.Theta;
+        var sector = (end - start) / spread.Count;
 
         // Every pellet strays up to Deviation either way, but never leaves the spread cone.
         for (var i = 0; i < spread.Count; i++)
-        {
-            var theta = (start + ((end - start) * i / (spread.Count - 1))).Theta;
-#pragma warning disable CS0618
-            theta += random.NextFloat(-max, max);
-#pragma warning restore CS0618
-            angles[i] = new Angle(Math.Clamp(theta, start.Theta, end.Theta));
-        }
+            angles[i] = new Angle(start + (sector * (i + random.NextDouble())));
 
         return angles;
     }

@@ -6,8 +6,12 @@ namespace Content.Shared._Starlight.CCVar;
 
 public sealed partial class StarlightCCVars
 {
+    /// <summary>
+    /// Whether the client draws its own hitscan shots before the server confirms them.
+    /// Replicated so the server does not send the shooter impact sounds it has already played.
+    /// </summary>
     public static readonly CVarDef<bool> HitscanPrediction =
-        CVarDef.Create("opt.hitscan_prediction", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("opt.hitscan_prediction", true, CVar.CLIENT | CVar.REPLICATED | CVar.ARCHIVE);
 
     [CVarControl(AdminFlags.VarEdit)]
     public static readonly CVarDef<bool> HitscanLagCompensation =

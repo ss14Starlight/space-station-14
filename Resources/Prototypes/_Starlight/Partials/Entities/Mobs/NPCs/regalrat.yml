@@ -1,7 +1,0 @@
-- type: !PartialOnly entity
-  id: MobRatKing
-  components:
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - Wave
-    - Sniff

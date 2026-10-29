@@ -91,8 +91,62 @@
   - type: TechnologyDisk
 
 # random tech disks by tier
+- type: entity
+  parent: TechnologyDisk
+  id: TechnologyDiskT1
+  suffix: Tier 1
+  components:
+  - type: TechnologyDisk
+    tier: 1
+
+- type: entity
+  parent: TechnologyDisk
+  id: TechnologyDiskT2
+  suffix: Tier 2
+  components:
+  - type: TechnologyDisk
+    tier: 2
+
+- type: entity
+  parent: TechnologyDisk
+  id: TechnologyDiskT3
+  suffix: Tier 3
+  components:
+  - type: TechnologyDisk
+    tier: 3
 
 # random tech disks by discipline
+- type: entity
+  parent: TechnologyDisk
+  id: TechnologyDiskIndustrial
+  suffix: Industrial
+  components:
+  - type: TechnologyDisk
+    discipline: Industrial
+
+- type: entity
+  parent: TechnologyDisk
+  id: TechnologyDiskArsenal
+  suffix: Arsenal
+  components:
+  - type: TechnologyDisk
+    discipline: Arsenal
+
+- type: entity
+  parent: TechnologyDisk
+  id: TechnologyDiskExperimental
+  suffix: Experimental
+  components:
+  - type: TechnologyDisk
+    discipline: Experimental
+
+- type: entity
+  parent: TechnologyDisk
+  id: TechnologyDiskCivilianServices
+  suffix: Civilian Services
+  components:
+  - type: TechnologyDisk
+    discipline: CivilianServices
 
 - type: entity
   parent: TechnologyDisk

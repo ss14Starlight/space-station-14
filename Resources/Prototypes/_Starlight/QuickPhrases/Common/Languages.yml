@@ -113,3 +113,13 @@
   parent: BaseSpeciesLanguagePhrase
   id: ClassicalPhrase
   text: language-Classical-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: FelyaicPhrase
+  text: language-Felyaic-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: CygniStandardPhrase
+  text: language-CygniStandard-name

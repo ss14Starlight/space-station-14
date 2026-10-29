@@ -24,7 +24,7 @@ public sealed partial class SanguinePoolComponent : Component
     public EntProtoId ExitEffectPrototype = "VampireSanguinePoolIn";
 
     [DataField]
-    public SoundSpecifier ExitSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/Vampire/exit_blood.ogg");
+    public SoundSpecifier ExitSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/vampire/exit_blood.ogg");
 
     [DataField]
     public ProtoId<ReagentPrototype> TrailReagent = "Blood";

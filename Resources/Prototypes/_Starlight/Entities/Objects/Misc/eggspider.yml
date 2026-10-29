@@ -71,3 +71,13 @@
     despawnWhenDone: true
     allowContainerPlacement: true
 
+- type: entity
+  parent: EggSpider
+  id: EggSpiderFertilized
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobGiantSpider
+    intervalSeconds: 60
+    despawnWhenDone: true
+    allowContainerPlacement: true

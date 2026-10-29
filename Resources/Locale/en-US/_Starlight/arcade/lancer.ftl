@@ -1,10 +1,13 @@
 lancer-arcade-title = Lancer Solo Strike
 lancer-arcade-copyright = Lancer is copyright Massif Press
 lancer-arcade-disclaimer = Lancer Solo Strike is not an official Lancer product; it is a third party work, and is not affiliated with Massif Press. Lancer Solo Strike is published via the Lancer Third Party License.
+lancer-arcade-briefing = [bold]Operation: Hold the Line[/bold]\n\nPirate scouts are probing a remote comm relay in the ridge pass. You have been issued a field licence for frame [bold]Raijin[/bold] and ordered to hold the site until the raiders are driven off.\n\n[bold]Objectives[/bold]\n• Keep the comm relay operational — relay destruction ends the mission.\n• Destroy all raider mechs, or force them to withdraw.\n\n[bold]Terrain[/bold]\n• [color=#4A4035]Soft rubble[/color] — light cover (+1 difficulty to attackers).\n• [color=#5A5040]Hard rubble[/color] — heavy cover (+2 difficulty), blocks line of sight and normal movement (Boost ignores terrain).\n• Hover any hex during combat for a full readout.\n\n[bold]Before combat[/bold]\nCrest the ridgeline and spot the ambush before mounting up. A successful scan grants +1 ACC on your first attack; failure lets the lead raider fire first.\n\nDeploy when ready.
 lancer-arcade-start-game = Start Game
 lancer-arcade-new-game = New Mission
+lancer-arcade-scene1-text = Crest the ridgeline. Spot the ambush before committing to mech combat.
 lancer-arcade-roll-spot = Spot the Ambush (d20 + 2)
 lancer-arcade-begin-combat = Mount Raijin — Begin Combat
+lancer-arcade-spot-result = Spot check total: {$roll}
 lancer-arcade-mech-status = Mech Status
 lancer-arcade-weapons = Weapons
 lancer-arcade-actions = Actions
@@ -40,6 +43,8 @@ lancer-arcade-weapon-cutlass = Cutlass Rifle
 lancer-arcade-action-move = Move
 lancer-arcade-action-boost = Boost
 lancer-arcade-action-skirmish = Skirmish
+lancer-arcade-action-amr = AMR
+lancer-arcade-action-knife = Knife
 lancer-arcade-action-barrage = Barrage
 lancer-arcade-action-lock-on = Lock On
 lancer-arcade-action-hex = HEX
@@ -52,6 +57,7 @@ lancer-arcade-stabilize-heat = Clear Heat
 lancer-arcade-stabilize-repair = Repair
 lancer-arcade-stabilize-reload = Reload
 lancer-arcade-economy-move = MOVE {$current} / {$max}
+lancer-arcade-economy-quick = QUICK
 lancer-arcade-economy-quick-count = QUICK {$used} / {$max}
 lancer-arcade-economy-full = FULL
 lancer-arcade-economy-overcharge = OC
@@ -92,6 +98,7 @@ lancer-arcade-phase-defeat = Defeat
 
 lancer-arcade-mission-select-title = Select Mission
 lancer-arcade-mission-locked = [color=#888888]{$name} — Locked[/color]
+lancer-arcade-mission-locked-hint = Clear {$required} to unlock.
 lancer-arcade-mission-cleared = [color=#88CC88]{$name} — Cleared (replay for skills)[/color]
 lancer-arcade-mission-available = {$name}
 lancer-arcade-prefight-fight = Fight {$current} / {$total}
@@ -103,6 +110,7 @@ lancer-arcade-intermission-repair-reactor = Restore Reactor (1 REPAIR)
 lancer-arcade-intermission-continue = Continue to Next Fight
 lancer-arcade-mission-complete-title = Mission Complete
 lancer-arcade-mission-complete-continue = Return to Mission Select
+lancer-arcade-mission-complete-body = {$name} cleared. All objectives complete.
 
 lancer-mission-tutorial-name = Tutorial
 lancer-mission-tutorial-desc = Learn movement, attacks, cover, reactions, and more in a guided combat lesson. Does not affect campaign progress.
@@ -151,6 +159,8 @@ lancer-narrative-spot-ambush-label = Spot the Ambush (d20 + 2)
 lancer-narrative-spot-ambush-desc = +1 ACC on your first attack if successful.
 lancer-narrative-sweep-ridge-label = Sweep the Ridge (d20 + 1)
 lancer-narrative-sweep-ridge-desc = +1 HEX charge this fight if successful. Can exceed your normal limit.
+lancer-narrative-interrogate-label = Interrogate Scouts (d20)
+lancer-narrative-interrogate-desc = Gain +1 REPAIR if successful.
 lancer-narrative-push-advance-label = Push Advance (d20 + 1)
 lancer-narrative-push-advance-desc = +2 MOVE on your first turn if successful.
 lancer-narrative-sensor-sweep-label = Sensor Sweep (d20 + 2)
@@ -170,9 +180,11 @@ lancer-arcade-log-intermission-reactor = Spent 1 REPAIR — reactor stabilized (
 lancer-arcade-log-fight-defeat = Fight lost. Returning to mission select.
 lancer-arcade-log-mission-complete = {$name} complete — all fights cleared.
 
+lancer-arcade-roll-spot-label = Spot Check
 lancer-arcade-roll-hex-save = HEX save ({$unit})
 lancer-arcade-dice-spot-pass = SPOTTED
 lancer-arcade-dice-spot-fail = MISSED
+lancer-arcade-dice-idle = Waiting for rolls…
 lancer-arcade-mode-target-barrage-next = First target down — select next target
 lancer-arcade-dice-vs = {$total} vs {$target}
 lancer-arcade-dice-hit = HIT
@@ -182,7 +194,11 @@ lancer-arcade-dice-save-pass = SAVE
 lancer-arcade-dice-save-fail = FAIL
 lancer-arcade-dice-structure = STRUCTURE {$roll}
 lancer-arcade-dice-overheat = OVERHEAT {$roll}
+lancer-arcade-log-briefing = Operation Hold the Line — defend the comm relay from pirate scouts. Review the briefing for objectives and terrain.
+lancer-arcade-log-scene1 = Scene 1 — spot the ambush before committing.
 lancer-arcade-log-combat-begin = Combat begins. Raijin online.
+lancer-arcade-log-spot-success = Spot check: d20 {$roll} +2 = {$total} — ambush spotted (+1 ACC first attack).
+lancer-arcade-log-spot-fail = Spot check: d20 {$roll} +2 = {$total} — lead raider gets the drop.
 lancer-arcade-log-move = Raijin moves to {$coord}.
 lancer-arcade-log-enemy-move = {$unit} moves to {$coord}.
 lancer-arcade-log-enemy-turn = — Enemy turn —
@@ -191,6 +207,7 @@ lancer-arcade-log-overcharge = Overcharge — extra quick action available (+{$h
 lancer-arcade-log-core = Hyperspec Fuel Injector online — +1 ACC this scene, free BOOST once per turn.
 lancer-arcade-log-tortuga-sentinel = Hyper-Reflex Mode online — ranged Threat 3, +1 Overwatch/round, Overwatch hits Immobilize.
 lancer-arcade-log-tokugawa-radiance = Superheated Reactor Feed — Radiance online. Overclock: Exposed until end of next turn.
+lancer-arcade-log-tokugawa-exposed = Exposed — incoming Kinetic/Explosive/Energy damage doubled; Limit Break active.
 lancer-arcade-log-tokugawa-exposed-end = Reactor limiters restored — no longer Exposed.
 lancer-arcade-log-exposed = Exposed — incoming Kinetic/Explosive/Energy damage is doubled.
 lancer-arcade-log-nuclear-cavalier-ready = Nuclear Cavalier — Danger Zone: first hit this turn deals +1d6 energy and +2 heat.
@@ -201,6 +218,7 @@ lancer-arcade-log-external-batteries = External Batteries detonate! {$damage} AP
 lancer-arcade-log-annihilator-splash = {$weapon} secondary hits {$unit} for {$damage}.
 lancer-arcade-log-blast-splash = Blast hits {$unit} for {$damage}.
 lancer-arcade-log-disengage = Disengage — ignore engagement this turn.
+lancer-arcade-log-overheat = Overheat! Stress check — −1 Stress, heat cleared.
 lancer-arcade-log-overheat-vent = Overheat check d6={$roll} — Emergency Shunt (−1 Stress, Impaired).
 lancer-arcade-log-overheat-destabilized = Overheat check d6={$roll} — Destabilized Power Plant (−1 Stress, Exposed).
 lancer-arcade-log-overheat-meltdown-exposed = Meltdown check — Exposed.
@@ -226,6 +244,7 @@ lancer-arcade-log-attack-miss-reliable = {$weapon}: d20 {$roll}{$mods} vs EVA {$
 lancer-arcade-log-attack-hit = {$weapon}: d20 {$roll}{$mods} vs EVA {$eva} — hit for {$damage} kinetic.
 lancer-arcade-log-attack-hit-crit = {$weapon}: d20 {$roll}{$mods} vs EVA {$eva} — hit for {$damage} kinetic (CRIT).
 lancer-arcade-log-hunker-reduce = Hit — Cutlass Hunker Down reduces damage.
+lancer-arcade-log-structure-check = Structure check — Raijin takes system trauma.
 lancer-arcade-log-structure-glancing = Structure check d6={$roll} — Glancing Blow (Impaired).
 lancer-arcade-log-structure-trauma = Structure check d6={$roll} — System Trauma.
 lancer-arcade-log-structure-weapon-destroyed = System Trauma — {$weapon} destroyed!
@@ -246,6 +265,9 @@ lancer-arcade-log-overwatch-available = Overwatch available.
 lancer-arcade-log-brace-available = Incoming {$damage} damage — Brace for Resistance (½)? Next turn: 1 quick only.
 lancer-arcade-log-reaction-accept = {$reaction} accepted.
 lancer-arcade-log-reaction-decline = {$reaction} declined.
+lancer-arcade-log-victory = All raiders eliminated. Comm relay secured.
+lancer-arcade-log-defeat-relay = The relay is destroyed. Mission failed.
+lancer-arcade-log-defeat-mech = Raijin destroyed. Mission failed.
 
 # Hex hover tooltip
 lancer-arcade-hex-hover-idle = Hover a hex for terrain and unit info.

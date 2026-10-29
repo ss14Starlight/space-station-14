@@ -1,0 +1,10 @@
+- type: entity
+  parent: HydroponicsToolClippers
+  id: HydroponicsToolClippersGold
+  name: golden clippers
+  description: A gold-plated pair of plant clippers given as a token of appreciation for years of service. Not much different, but looks nice.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/Hydroponics/clippers_gold.rsi/
+    - type: Item
+      sprite: _Starlight/Objects/Tools/Hydroponics/clippers_gold.rsi/

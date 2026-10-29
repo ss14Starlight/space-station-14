@@ -34,9 +34,9 @@ public sealed partial class CosmicCenserComponent : Component
 
     [DataField] public SoundSpecifier SizzleSound = new SoundPathSpecifier("/Audio/Effects/lightburn.ogg");
 
-    [DataField] public SoundSpecifier CleanseSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/cleanse_deconversion.ogg");
+    [DataField] public SoundSpecifier CleanseSound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/cleanse_deconversion.ogg");
 
-    [DataField] public SoundSpecifier MalignSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/glyph_trigger.ogg");
+    [DataField] public SoundSpecifier MalignSound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/glyph_trigger.ogg");
 
     [DataField] public EntProtoId CleanseVFX = "NoosphericVFX2";
 

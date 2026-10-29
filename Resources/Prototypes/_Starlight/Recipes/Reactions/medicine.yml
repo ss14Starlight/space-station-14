@@ -150,3 +150,37 @@
       amount: 1
   products:
     Opporozidone: 3
+
+- type: reaction
+  id: Mortizol
+  impact: Medium
+  minTemp: 370
+  reactants:
+    Diphenhydramine:
+      amount: 1
+    Doxarubixadone:
+      amount: 1
+    Ultravasculine:
+      amount: 1
+    Mannitol:
+      amount: 1
+    CellCultureMedium:
+      amount: 1
+  products:
+    Mortizol: 1
+
+- type: reaction
+  id: CellCultureMedium
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    Fat:
+      amount: 3
+    Blood:
+      amount: 1
+    Carbon:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+  products:
+    CellCultureMedium: 6

@@ -1,0 +1,34 @@
+- type: !PartialOnly entity
+  id: FoodLemon
+  components:
+  - type: Tag
+    tags:
+    - Citrus
+
+- type: !PartialOnly entity
+  id: FoodLemoon
+  components:
+  - type: Tag
+    tags:
+    - Citrus
+
+- type: !PartialOnly entity
+  id: FoodLime
+  components:
+  - type: Tag
+    tags:
+    - Citrus
+
+- type: !PartialOnly entity
+  id: FoodOrange
+  components:
+  - type: Tag
+    tags:
+    - Citrus
+
+- type: !PartialOnly entity
+  id: FoodExtradimensionalOrange
+  components:
+  - type: Tag
+    tags:
+    - Citrus

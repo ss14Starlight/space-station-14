@@ -135,7 +135,7 @@
     - MindRoleCosmicColossus
   - type: Sprite
     layers:
-    - sprite: _Starlight/Mobs/CosmicCult/colossus.rsi
+    - sprite: _Starlight/CosmicCult/Mobs/colossus.rsi
       state: colossus
 
 - type: entity

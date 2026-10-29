@@ -51,7 +51,7 @@ public sealed partial class CosmicSpireComponent : Component
     public EntProtoId SpawnVFX = "CosmicGenericVFX";
 
     [DataField]
-    public SoundSpecifier DespawnSFX = new SoundPathSpecifier("/Audio/_Starlight/Effects/CosmicCult/effigy_supercritical.ogg");
+    public SoundSpecifier DespawnSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/effigy_supercritical.ogg");
 }
 
 [Serializable, NetSerializable]

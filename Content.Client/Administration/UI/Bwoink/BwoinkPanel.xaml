@@ -1,10 +1,10 @@
 ﻿<BoxContainer
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sc="clr-namespace:Content.Client._Starlight.UserInterface.Controls"
     Orientation="Vertical"
     HorizontalExpand="True">
-    <OutputPanel Name="TextOutput" VerticalExpand="true" />
-    <RichTextLabel Name="TypingIndicator" Access="Public" />
-    <HistoryLineEdit Name="SenderLineEdit" />
+    <!-- Starlight: search, typing indicator and input live in ConversationView -->
+    <sc:ConversationView Name="Conversation" Access="Public" />
     <RichTextLabel Name="RelayedToDiscordLabel" Access="Public" Visible="False" />
 </BoxContainer>

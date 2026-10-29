@@ -20,6 +20,8 @@ turret-controls-window-turret-broken = ***INOPERABLE***
 turret-controls-window-safe = Inactive
 turret-controls-window-stun = Stun
 turret-controls-window-lethal = Lethal
+turret-controls-window-ignore = Ignore
+turret-controls-window-target = Target
 turret-controls-window-access-group-label = {$prefix} {$label}
 turret-controls-window-all-checkbox = All
 

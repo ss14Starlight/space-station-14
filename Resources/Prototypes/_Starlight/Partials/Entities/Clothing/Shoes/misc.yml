@@ -1,0 +1,10 @@
+# Left speed boots with removed lathe recipe as an admeme item
+- type: !PartialOnly entity
+  id: ClothingShoesBootsSpeed
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor

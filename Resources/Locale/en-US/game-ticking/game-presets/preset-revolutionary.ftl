@@ -1,6 +1,6 @@
 ## Rev Head
 
-roles-antag-rev-head-name = USSP SKB agent
+roles-antag-rev-head-name = USSP SKB Agent
 roles-antag-rev-head-objective = Your objective is to take over the station by bringing back people to your cause, setting up supply rifts, killing, converting or imprisoning all of Command staff on station.
 
 head-rev-role-greeting =
@@ -39,6 +39,10 @@ rev-briefing = Help your soviet agent get rid of every command member to take ov
 rev-title = Red Tide
 rev-description = The air is filled with unfair treatment.
 
+rev-not-enough-ready-players = Not enough players readied up for the game. There were {$readyPlayersCount} players readied up out of {$minimumPlayers} needed. Can't start a glorious revolution!
+rev-no-one-ready = No players readied up! Can't start a glorious revolution!
+rev-no-heads = There were no revolutionary agents to be selected. Can't start a glorious revolution!
+
 rev-won = [color=red]The SKB agents survived and seized control of the station![/color]
 
 rev-lost = Command survived and killed all the SKB agents.
@@ -66,6 +70,11 @@ rev-headrev-count = {$initialCount ->
 }
 
 rev-headrev-name-user = [color=#5e9cff]{$name}[/color] ([color=gray]{$username}[/color]) recruited {$count} {$count ->
+    [one] contractor
+    *[other] contractors
+}
+
+rev-headrev-name = [color=#5e9cff]{$name}[/color] recruited {$count} {$count ->
     [one] contractor
     *[other] contractors
 }

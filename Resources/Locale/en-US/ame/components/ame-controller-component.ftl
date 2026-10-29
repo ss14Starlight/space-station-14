@@ -12,6 +12,7 @@ ame-window-toggle-injection-button = Toggle Injection
 ame-window-fuel-status-label = Fuel Status:
 ame-window-fuel-not-inserted-text = No fuel inserted
 ame-window-injection-amount-label = Injection amount:
+ame-window-refresh-parts-button = Refresh Parts
 ame-window-core-count-label = Core count:
 ame-window-power-currentsupply-label = Current power supply:
 ame-window-power-targetsupply-label = Targeted power supply:

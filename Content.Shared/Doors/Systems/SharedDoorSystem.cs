@@ -204,7 +204,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
     protected void OnActivate(EntityUid uid, DoorComponent door, ActivateInWorldEvent args)
     {
         //Starlight-start
-        if (LifeStage(uid) < EntityLifeStage.MapInitialized)
+        if (!_mapSystem.IsInitialized(Transform(uid).MapUid))
         {
             args.Handled = true;
             return;

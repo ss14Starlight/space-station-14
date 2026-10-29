@@ -1,0 +1,16 @@
+- type: !PartialOnly entity
+  id: Stunbaton
+  components:
+  - type: ItemToggle
+    soundActivate: !Remove # ES
+  - type: ItemToggleMeleeWeapon
+    deactivatedSoundOnHit:
+      collection: GenericHit
+  - type: MeleeWeapon
+    soundHit:
+      collection: GenericHit
+  # ES START
+  - type: ESSparkOnItemToggle
+    count: 1
+    sparkPrototype: SLEffectSparksBaton # smaller sparks
+  # ES END

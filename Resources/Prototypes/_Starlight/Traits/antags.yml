@@ -1,0 +1,28 @@
+- type: trait
+  id: MarkedForDeath
+  name: trait-marked-for-death-name
+  description: trait-marked-for-death-description
+  category: AntagTraits
+  cost: 0
+  blacklist:
+    components:
+    - BorgChassis
+    - StationAiCore
+    - StationAiHeld
+    - StationAiCustomization
+    - NoObjectiveTarget
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: MarkedForDeath
+
+- type: trait
+  id: Unglorious
+  name: trait-unglorious-name
+  description: trait-unglorious-description
+  category: AntagTraits
+  cost: 0
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: Unglorious

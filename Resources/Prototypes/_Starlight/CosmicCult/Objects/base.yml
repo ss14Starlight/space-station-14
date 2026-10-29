@@ -1,0 +1,10 @@
+- type: entity
+  parent: [BaseItem, BaseMagicalContraband]
+  id: BaseCosmicCultItem
+  abstract: true
+  # Blimpuf start - distinguish cosmic contraband from other magical contraband
+  components:
+  - type: Contraband
+    tier: Tier5
+    contrabandType: Cosmic
+  # Blimpuf end

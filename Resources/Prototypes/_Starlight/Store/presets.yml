@@ -1,3 +1,40 @@
+- type: entity
+  id: StorePresetShuttleBuilder
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-shuttle-uplink
+    categories:
+    - ShuttleUplinkEquipment
+    - ShuttleUplinkResources
+    - ShuttleUplinkMedicine
+    - ShuttleUplinkShipbuilding
+    - ShuttleUplinkExtra
+    currencyWhitelist:
+    - BuildToken
+    balance:
+      BuildToken: 0
+
+- type: entity
+  id: StorePresetShuttleBuilderDangerous
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-shuttle-uplink-dangerous
+    categories:
+    - ShuttleUplinkEquipment
+    - ShuttleUplinkResources
+    - ShuttleUplinkMedicine
+    - ShuttleUplinkShipbuilding
+    - ShuttleUplinkExtra
+    - MenacingShuttleUplinkEquipment
+    - MenacingShuttleUplinkWeapons
+    - MenacingShuttleUplinkPirate
+    currencyWhitelist:
+    - BuildToken
+    balance:
+      BuildToken: 0
+
 # USSP Uplink
 - type: entity
   id: StorePresetUSSP
@@ -20,6 +57,16 @@
     balance:
       Telebond: 0
       Conversion: 0
+
+- type: entity
+  parent: StorePresetUSSP
+  id: USSPHeadUplinkStore
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
 
 # Elf Cantrip Book
 - type: entity

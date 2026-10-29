@@ -15,6 +15,17 @@
     - HamsterWearable
 
 - type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCargoFormalsoft]
+  id: ClothingHeadHatCargoFormalsoftFlipped
+  name: formal cargo cap
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+
+- type: entity
   parent: ClothingHeadHeadHatBaseFlippable
   id: ClothingHeadHatMailsoftVisor
   name: mail visor
@@ -24,6 +35,17 @@
     sprite: _Starlight/Clothing/Head/Soft/mailvisor.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Soft/mailvisor.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatMailsoftVisor]
+  id: ClothingHeadHatMailsoftVisorFlipped
+  name: mail visor
+  components:
   - type: Tag
     tags:
     - ClothMade
@@ -46,3 +68,13 @@
     - Recyclable
     - HamsterWearable
 
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatMailsoftVisorSenior]
+  id: ClothingHeadHatMailsoftVisorSeniorFlipped
+  name: senior mail visor
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable

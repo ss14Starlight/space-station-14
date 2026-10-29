@@ -459,6 +459,16 @@
     sprite: Objects/Consumable/Drinks/coconutrum.rsi
     state: icon
 
+- type: entity
+  parent: DrinkGlass
+  id: DrinkCoconutWaterGlass
+  suffix: coconut water
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: CoconutWater
+        Quantity: 30
 #TODO  - type: Icon
 
 - type: entity
@@ -502,6 +512,17 @@
   - type: Icon
     sprite: Objects/Consumable/Drinks/cosmopolitan.rsi
     state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkCream
+  suffix: cream
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Cream
+        Quantity: 30
 
 - type: entity
   parent: DrinkGlass
@@ -627,6 +648,20 @@
         Quantity: 30
   - type: Icon
     sprite: Objects/Consumable/Drinks/dr_gibb_glass.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkEggnog
+  suffix: eggnog
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Eggnog
+        Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/eggnogglass.rsi
     state: icon
 
 - type: entity
@@ -757,6 +792,20 @@
 
 - type: entity
   parent: DrinkGlass
+  id: DrinkGrapeSodaGlass
+  suffix: grape soda
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: GrapeSoda
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/gsodaglass.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
   id: DrinkGreenTeaGlass
   suffix: green tea
   components:
@@ -767,6 +816,20 @@
           Quantity: 30
   - type: Icon
     sprite: Objects/Consumable/Drinks/greenteaglass.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkGrenadineGlass
+  suffix: grenadine
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: Grenadine
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/grenadineglass.rsi
     state: icon
 
 - type: entity
@@ -1052,6 +1115,20 @@
 
 - type: entity
   parent: DrinkGlass
+  id: DrinkLemonLime
+  suffix: lemon lime
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: LemonLime
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/lemonlime.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
   id: DrinkLimeJuice
   suffix: lime juice
   components:
@@ -1088,6 +1165,20 @@
           Quantity: 30
   - type: Icon
     sprite: Objects/Consumable/Drinks/manhattanglass.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkManhattanProjectGlass
+  suffix: manhattan project
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: ManhattanProject
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/proj_manhattanglass.rsi
     state: icon
 
 - type: entity
@@ -1297,6 +1388,20 @@
 
 - type: entity
   parent: DrinkGlass
+  id: DrinkPoisonBerryJuice
+  suffix: poison berry juice
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: JuiceBerryPoison
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/poisonberryjuice.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
   id: DrinkPoisonWineGlass
   suffix: poison wine
   components:
@@ -1363,6 +1468,20 @@
           Quantity: 30
   - type: Icon
     sprite: Objects/Consumable/Drinks/rewriter.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkRootBeerGlass
+  suffix: root beer
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: RootBeer
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/rootbeerglass.rsi
     state: icon
 
 - type: entity
@@ -1451,6 +1570,20 @@
 
 - type: entity
   parent: DrinkGlass
+  id: DrinkCogChampBase
+  suffix: cogchamp
+  components:
+    - type: Solution
+      solution:
+          reagents:
+            - ReagentId: CogChamp
+              Quantity: 30
+    - type: Icon
+      sprite: Objects/Consumable/Drinks/cogchamp.rsi
+      state: icon
+
+- type: entity
+  parent: DrinkGlass
   id: DrinkSuiDreamGlass
   suffix: sui dream
   components:
@@ -1461,6 +1594,20 @@
           Quantity: 30
   - type: Icon
     sprite: Objects/Consumable/Drinks/sdreamglass.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkEmeraldGlass
+  suffix: melon liquor
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: MelonLiquor
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/emeraldglass.rsi
     state: icon
 
 - type: entity
@@ -1535,6 +1682,34 @@
 
 - type: entity
   parent: DrinkGlass
+  id: DrinkSolDryGlass
+  suffix: sol dry
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: SolDry
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/sol_dry_glass.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkSnowWhite
+  suffix: snow white
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: SnowWhite
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/snowwhite.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
   id: DrinkSoyLatte
   suffix: soy latte
   components:
@@ -1559,6 +1734,20 @@
           Quantity: 30
   - type: Icon
     sprite: Objects/Consumable/Drinks/space-up_glass.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkSpaceMountainWindGlass
+  suffix: space mountain wind
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: SpaceMountainWind
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/space_mountain_wind_glass.rsi
     state: icon
 
 - type: entity
@@ -1696,6 +1885,20 @@
           Quantity: 30
   - type: Icon
     sprite: Objects/Consumable/Drinks/vampiro.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkVermouthGlass
+  suffix: vermouth
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: Vermouth
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/vermouthglass.rsi
     state: icon
 
 - type: entity
@@ -1883,6 +2086,20 @@
 
 - type: entity
   parent: DrinkGlass
+  id: DrinkCaipirinha
+  suffix: caipirinha
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: Caipirinha
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/caipirinha.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
   id: DrinkDaiquiri
   suffix: daiquiri
   components:
@@ -1907,6 +2124,76 @@
           Quantity: 30
   - type: Icon
     sprite: Objects/Consumable/Drinks/deathintheafternoon.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkEmpress75
+  suffix: empress 75
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: Empress75
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/empress75.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkEspressoMartini
+  suffix: espresso martini
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: EspressoMartini
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/espressomartini.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkMayojito
+  suffix: mayojito
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: Mayojito
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/mayojito.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkMimeosa
+  suffix: mimeosa
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: Mimeosa
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/mimeosa.rsi
+    state: icon
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkMimosa
+  suffix: mimosa
+  components:
+  - type: Solution
+    solution:
+        reagents:
+        - ReagentId: Mimosa
+          Quantity: 30
+  - type: Icon
+    sprite: Objects/Consumable/Drinks/mimosa.rsi
     state: icon
 
 - type: entity

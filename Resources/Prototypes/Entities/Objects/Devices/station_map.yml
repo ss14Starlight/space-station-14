@@ -37,6 +37,9 @@
   - BaseHandheldStationMap
   - BaseHandheldComputer
   suffix: Handheld
+  components: # Starlight
+  - type: StationMap # Starlight
+    limitDistanceMultiplier: 0.6 # Starlight
 
 - type: entity
   id: HandheldStationMapEmpty
@@ -47,16 +50,20 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        #Starlight Start
-        blacklist:
-          tags:
-          - MechReactor
-        #Starlight End
 
 - type: entity
   id: HandheldStationMapUnpowered
   parent: BaseHandheldStationMap
   suffix: Handheld, Always Powered
+
+- type: entity
+  parent: HandheldStationMap
+  id: HandheldStationMapStatic
+  suffix: Handheld, Works Off-Station
+  components:
+  - type: StationMap
+    initializeWithStation: true
+    limitDistanceMultiplier: 0 # Starlight
 
 - type: entity
   parent: HandheldStationMap
@@ -81,5 +88,5 @@
   - type: StationMap
     showLocation: false
     initializeWithStation: true
+    limitDistanceMultiplier: 0 # Starlight
   - type: NukeopsStationMap
-

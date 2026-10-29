@@ -31,8 +31,12 @@ lathe-category-faux-tile = Faux
 lathe-category-maints-tile = Maints
 lathe-category-marble = Marble
 lathe-category-steel-tile = Steel
+lathe-category-shuttle-tile = Shuttle
 lathe-category-white-tile = White
 lathe-category-wood-tile = Wood
+lathe-category-plastic-tile = Plastic
+lathe-category-precious-tile = Precious
+lathe-category-industrial-tile = Industrial
 
 # Science
 lathe-category-mechs = Mechs
@@ -54,3 +58,14 @@ lathe-category-jumpsuits = Jumpsuits
 lathe-category-neck = Neck
 
 # Mechs
+lathe-category-mechs-vim = Vim
+lathe-category-mechs-honker = H.O.N.K.
+lathe-category-mechs-hamptr = H.A.M.P.T.R.
+lathe-category-mechs-ripley = Ripley
+lathe-category-mechs-ripleymkii = Ripley MK-II
+lathe-category-mechs-paddy = Paddy
+lathe-category-mechs-clarke = Clarke
+lathe-category-mechs-gygax = Gygax
+lathe-category-mechs-durand = Durand
+lathe-category-mechs-equipment = Mech equipment
+lathe-category-mechs-weapons = Mech weapons

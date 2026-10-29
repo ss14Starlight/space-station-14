@@ -65,10 +65,10 @@ public sealed partial class SmellerComponent : Component
 
     [DataField]
     public SoundSpecifier SneezeSound =
-        new SoundPathSpecifier("/Audio/_Starlight/Effects/Scent/dog_sneeze.ogg", AudioParams.Default.WithVolume(-4));
+        new SoundPathSpecifier("/Audio/_Starlight/Scent/dog_sneeze.ogg", AudioParams.Default.WithVolume(-4));
 
     [DataField]
-    public SoundSpecifier SniffSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/Scent/dog_sniff.ogg");
+    public SoundSpecifier SniffSound = new SoundPathSpecifier("/Audio/_Starlight/Scent/dog_sniff.ogg");
 
     [DataField]
     public TimeSpan SniffDelay = TimeSpan.FromSeconds(1.5);

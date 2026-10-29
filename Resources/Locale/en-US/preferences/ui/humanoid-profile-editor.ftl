@@ -25,6 +25,13 @@ humanoid-profile-editor-reset-button = Reset
 humanoid-profile-editor-spawn-priority-label = Spawn priority:
 humanoid-profile-editor-eyes-label = Eye color:
 humanoid-profile-editor-jobs-tab = Jobs
+humanoid-profile-editor-preference-unavailable-stay-in-lobby-button = Stay in lobby if preference unavailable.
+humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button = Be {INDEFINITE($overflowJob)} {$overflowJob} if preference unavailable.
+humanoid-profile-editor-preference-jumpsuit = Jumpsuit
+humanoid-profile-editor-preference-jumpskirt = Jumpskirt
+humanoid-profile-editor-preference-backpack = Backpack
+humanoid-profile-editor-preference-satchel = Satchel
+humanoid-profile-editor-preference-duffelbag = Duffelbag
 humanoid-profile-editor-guidebook-button-tooltip = Click for more info
 
 # Spawn priority
@@ -45,9 +52,13 @@ humanoid-profile-editor-job-priority-never-button = Never
 humanoid-profile-editor-naming-rules-warning = Warning: Offensive or LRP IC names and descriptions will lead to admin intervention on this server. Read our \[Rules\] for more.
 humanoid-profile-editor-markings-tab = Markings
 humanoid-profile-editor-cybernetics-tab = Cybernetics
+humanoid-profile-editor-flavortext-tab = Description
 
 # Traits
 humanoid-profile-editor-traits-tab = Traits
+humanoid-profile-editor-no-traits = No traits available
+
+humanoid-profile-editor-trait-count-hint = Points available: [{$current}/{$max}]
 
 trait-category-disabilities = Disabilities
 trait-category-speech = Speech traits

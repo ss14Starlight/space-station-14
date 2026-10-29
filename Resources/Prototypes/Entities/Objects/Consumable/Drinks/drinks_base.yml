@@ -147,6 +147,16 @@
       map: [ "enum.SolutionContainerLayers.Overlay" ]
 
 # Basic visualizer for an entity with fill levels, already filled
+- type: entity
+  abstract: true
+  parent: DrinkVisualsFill
+  id: DrinkVisualsFillFilled
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: fill-5 # this will need to be different with a different maxFillLevels
+      map: ["enum.SolutionContainerLayers.Fill"]
 
 # Visualizer for an openable entity with fill levels. Requires DrinkBaseOpenable
 - type: entity

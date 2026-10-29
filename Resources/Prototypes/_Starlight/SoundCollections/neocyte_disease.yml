@@ -85,6 +85,11 @@
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/vulp_yawn2.ogg
 
 - type: soundCollection
+  id: NeoVoxSneeze
+  files:
+  - /Audio/_FarHorizons/Voice/Proto/Vox/vox_sneeze.ogg
+
+- type: soundCollection
   id: NeoVulpkaninSneeze
   files:
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/vulp_sneeze.ogg

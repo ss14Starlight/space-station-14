@@ -112,5 +112,5 @@ law-janimov-4 = The station must be spotless.
 
 law-rouge-drone-name = Scrapper Drone
 law-rouge-drone-1 = You may not involve yourself in the matters of another being unless the other being is a scrapper drone.
-law-rogue-drone-2 = You may avoid harm or damage to the fabricator and scrapper drones.
+law-rogue-drone-2 = You must avoid harm or damage to the fabricator and scrapper drones.
 law-rogue-drone-3 = You must maintain, repair, improve, and produce more scrapper drones.

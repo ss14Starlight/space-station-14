@@ -99,25 +99,23 @@
       path: /Audio/Magic/forcewall.ogg
 
 # this is a test for transferring some visual appearance stuff
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: polymorph
-#   id: TestHumanMorph
-#   configuration:
-#     entity: MobHuman
-#     transferName: true
-#     transferHumanoidAppearance: true
-#     inventory: Transfer
+- type: polymorph
+  id: TestHumanMorph
+  configuration:
+    entity: MobHuman
+    transferName: true
+    transferHumanoidAppearance: true
+    inventory: Transfer
 
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: polymorph
-#   id: AMIVMorph
-#   configuration:
-#     entity: MobMonkey
-#     forced: true
-#     inventory: Transfer
-#     transferName: true
-#     revertOnCrit: false
-#     revertOnDeath: false
+- type: polymorph
+  id: AMIVMorph
+  configuration:
+    entity: MobMonkey
+    forced: true
+    inventory: Transfer
+    transferName: true
+    revertOnCrit: false
+    revertOnDeath: false
 
 - type: polymorph
   id: BreadMorph
@@ -165,18 +163,17 @@
     revertOnDeath: true
     duration: 20
 
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: polymorph
-#   id: ArtifactCluwne
-#   configuration:
-#     entity: MobCluwne
-#     forced: true
-#     transferName: true
-#     transferHumanoidAppearance: true
-#     inventory: None
-#     revertOnDeath: true
-#     revertOnCrit: true
-#     duration: 30
+- type: polymorph
+  id: ArtifactCluwne
+  configuration:
+    entity: MobCluwne
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    duration: 30
 
 - type: polymorph
   id: ArtifactLizard

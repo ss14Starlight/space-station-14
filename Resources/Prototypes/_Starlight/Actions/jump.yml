@@ -49,6 +49,16 @@
       sound:
         path: /Audio/_Starlight/Effects/Jump/moth.ogg
 
+- type: entity
+  parent: Jump
+  id: JumpCat
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 15
+  - type: WorldTargetAction
+    event: !type:JumpActionEvent
+      distance: 2
       #sound: The Silent Hunter.
 
 - type: entity
@@ -82,3 +92,18 @@
         path: /Audio/Weapons/block_metal1.ogg
       isCybernetic: true
 
+- type: entity
+  parent: Jump
+  id: JumpJetNoMoles # for cyborg jetpacks
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+  - type: WorldTargetAction
+    event: !type:JumpActionEvent
+      distance: 10
+      fromGrid: false
+      toPointer: false
+      sound:
+        path: /Audio/_Starlight/Effects/Jump/jetpack.ogg

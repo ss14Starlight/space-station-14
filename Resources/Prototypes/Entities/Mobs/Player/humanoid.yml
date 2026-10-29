@@ -29,6 +29,22 @@
 
 ## Death Squad
 
+- type: entity
+  id: RandomHumanoidSpawnerDeathSquad
+  name: Death Squad Agent
+  suffix: ERTRole, Death Squad
+  components:
+    - type: Sprite
+      sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
+      state: icon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: DeathSquad
+
 - type: randomHumanoidSettings
   id: DeathSquad
   parent: EventHumanoidCentcomm
@@ -52,6 +68,7 @@
         - NamesMilitaryFirstLeader
         - NamesMilitaryLast
       nameFormat: name-format-ert
+
 
 ## ERT Leader
 
@@ -156,6 +173,18 @@
       prototypes: [ ERTChaplainGear ]
       roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
+- type: entity
+  id: RandomHumanoidSpawnerERTChaplainEVA
+  parent: RandomHumanoidSpawnerERTChaplain
+  name: ERT chaplain
+  suffix: ERTRole, EVA
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: ertchaplaineva
+    - type: RandomHumanoidSpawner
+      settings: ERTChaplainEVA
+
 - type: randomHumanoidSettings
   id: ERTChaplainEVA
   parent: ERTChaplain
@@ -196,6 +225,17 @@
     - type: Loadout
       prototypes: [ ERTJanitorGear ]
       roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  id: RandomHumanoidSpawnerERTJanitorEVA
+  parent: RandomHumanoidSpawnerERTJanitor
+  suffix: ERTRole, EVA
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: ertjanitoreva
+    - type: RandomHumanoidSpawner
+      settings: ERTJanitorEVA
 
 - type: randomHumanoidSettings
   id: ERTJanitorEVA
@@ -256,6 +296,14 @@
     - type: Loadout
       prototypes: [ ERTEngineerGearEVA ]
       roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  parent: RandomHumanoidSpawnerERTEngineerEVA
+  id: RandomHumanoidSpawnerERTEngineerArmed
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTEngineerArmed
 
 - type: randomHumanoidSettings
   id: ERTEngineerArmed
@@ -343,6 +391,15 @@
     prototypes: [ ERTSecurityGearArmedRifle ]
     roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
+- type: entity
+  parent: RandomHumanoidSpawnerERTSecurityEVA
+  id: RandomHumanoidSpawnerERTSecurityArmedGrenade
+  name: ERT security grenadier
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTSecurityArmedGrenade
+
 - type: randomHumanoidSettings
   parent: ERTSecurityEVA
   id: ERTSecurityArmedGrenade
@@ -355,6 +412,15 @@
     prototypes: [ ERTSecurityGearArmedGrenade ]
     roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
+- type: entity
+  parent: RandomHumanoidSpawnerERTSecurityEVA
+  id: RandomHumanoidSpawnerERTSecurityArmedVanguard
+  name: ERT security vanguard
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTSecurityArmedVanguard
+
 - type: randomHumanoidSettings
   parent: ERTSecurityEVA
   id: ERTSecurityArmedVanguard
@@ -366,6 +432,15 @@
   - type: Loadout
     prototypes: [ ERTSecurityGearArmedVanguard ]
     roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  parent: RandomHumanoidSpawnerERTSecurityEVA
+  id: RandomHumanoidSpawnerERTSecurityArmedShotgun
+  name: ERT security breacher
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTSecurityArmedShotgun
 
 - type: randomHumanoidSettings
   parent: ERTSecurityEVA
@@ -488,6 +563,16 @@
 
 ## Central Command
 
+- type: entity
+  name: CentComm official
+  id: RandomHumanoidSpawnerCentcomOfficial
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: centcom
+    - type: RandomHumanoidSpawner
+      settings: CentcomOfficial
+
 - type: randomHumanoidSettings
   id: CentcomOfficial
   parent: EventHumanoidCentcomm
@@ -506,6 +591,18 @@
 
 ## Syndicate
 
+- type: entity
+  id: RandomHumanoidSpawnerSyndicateAgent
+  name: syndicate agent
+  components:
+    - type: Sprite
+      sprite: Mobs/Species/Human/parts.rsi
+      state: full
+    - type: RandomMetadata
+      nameSegments: [ NamesDeathCommando ]
+    - type: RandomHumanoidSpawner
+      settings: SyndicateAgent
+
 - type: randomHumanoidSettings
   id: SyndicateAgent
   components:
@@ -515,12 +612,38 @@
       prototypes: [SyndicateOperativeGearExtremelyBasic]
       roleLoadout: [ RoleSurvivalSyndicate ]
 
+- type: entity
+  id: RandomHumanoidSpawnerNukeOp
+  name: Nuclear Operative
+  components:
+    - type: Sprite
+      sprite: Mobs/Species/Human/parts.rsi
+      state: full
+    - type: RandomHumanoidSpawner
+      settings: NukeOp
+
 - type: randomHumanoidSettings
   id: NukeOp
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: NukeOperative
+
+- type: entity
+  id: RandomHumanoidSpawnerCluwne
+  name: Cluwne
+  suffix: spawns a cluwne
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: cluwne
+    - type: RandomHumanoidSpawner
+      settings: Cluwne
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirst
+      - NamesLast
+      nameFormat: name-format-standard
 
 - type: randomHumanoidSettings
   id: Cluwne

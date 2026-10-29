@@ -1,0 +1,31 @@
+- type: !PartialOnly entity
+  id: DecalSpawnerGraffiti
+  components:
+  - type: RandomDecalSpawner
+    decals:
+    - ussp
+    - bee
+    - borgsrogue
+    - crab
+    - lies
+    - skullsketch
+    - yip
+    - aurum
+    - devil
+    - gray
+    - heartarrow
+    - marsfall
+    - syndikat
+    - tspd
+    - usspsketch
+    - xenoborg
+    - youaredead
+    - tallyg
+    - gangshitg
+    - freeg
+    - followg
+    - dontopeng
+    - donotg
+    - deadinsideg
+    - dangerg
+    - aidg

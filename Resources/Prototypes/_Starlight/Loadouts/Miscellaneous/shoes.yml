@@ -14,6 +14,21 @@
     shoes: ClothingShoesBootsLaceup
 
 - type: loadout
+  id: CowboyBootsBrown
+  equipment:
+    shoes: ClothingShoesBootsCowboyBrown
+
+- type: loadout
+  id: CowboyBootsBlack
+  equipment:
+    shoes: ClothingShoesBootsCowboyBlack
+
+- type: loadout
+  id: CowboyBootsWhite
+  equipment:
+    shoes: ClothingShoesBootsCowboyWhite
+
+- type: loadout
   id: LeatherShoes
   equipment:
     shoes: ClothingShoesLeather

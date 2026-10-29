@@ -31,108 +31,26 @@
   - type: FirelockOpener
 
 - type: !PartialOnly entity
-  id: MobBaseAncestor
+  id: MobBaseKobold
   components:
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - Wave
+  - type: CosmicLapseForm # Kobolds inherit the monkey species ID, so lapse needs an explicit form
+    form: CosmicLapseMobKobold
 
 - type: !PartialOnly entity
-  id: MobCat
+  id: MobCorgiSmart
   components:
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - SniffQuiet
-  - type: SocialInteractionReceiver
-    interactionOverrides: # you can pet the dog
-    - id: Pat
-      interactString: petting-success
-      messagePerceivedByOthers: petting-success-others
-      emoteMessage: petting-emote
+  - type: AntagTarget
+  - type: CosmicStarMarkOffset
+    south: 0.03,-0.1
+    north: 0.03,-0.1
+    east: 0.2,-0.13
+    west: -0.2,-0.13
+  - type: CosmicCultConvertible
 
 - type: !PartialOnly entity
-  id: MobMouse
+  id: MobCatSpace
   components:
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - SniffQuiet
-
-- type: !PartialOnly entity
-  id: MobHamster
-  components:
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - SniffQuiet
-
-- type: !PartialOnly entity
-  id: MobMothroach
-  components:
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - PalpateAntennae
-  - type: SocialInteractionReceiver
-    interactionOverrides: # mothroaches don't have noses
-    - id: Boop
-      interactString: booping-moth-success
-      messagePerceivedByOthers: booping-moth-success-others
-      emoteMessage: booping-moth-emote
-
-- type: !PartialOnly entity
-  id: MobParrotBase
-  components:
-  - type: SocialInteractionReceiver
-    interactionOverrides: # birds don't have noses
-    - id: Boop
-      interactString: booping-beak-success
-      messagePerceivedByOthers: booping-beak-success-others
-      emoteMessage: booping-beak-emote
-
-- type: !PartialOnly entity
-  id: MobChicken
-  components:
-  - type: SocialInteractionReceiver
-    interactionOverrides: # birds don't have noses
-    - id: Boop
-      interactString: booping-beak-success
-      messagePerceivedByOthers: booping-beak-success-others
-      emoteMessage: booping-beak-emote
-
-- type: !PartialOnly entity
-  id: MobPenguin
-  components:
-  - type: SocialInteractionReceiver
-    interactionOverrides: # birds don't have noses
-    - id: Boop
-      interactString: booping-beak-success
-      messagePerceivedByOthers: booping-beak-success-others
-      emoteMessage: booping-beak-emote
-
-- type: !PartialOnly entity
-  id: MobSpiderBase
-  components:
-  - type: SocialInteractionReceiver
-    interactionOverrides: # spiders don't have noses
-    - id: Boop
-      interactString: booping-spider-success
-      messagePerceivedByOthers: booping-spider-success-others
-      emoteMessage: booping-spider-emote
-
-- type: !PartialOnly entity
-  id: MobKangaroo
-  components:
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - Wave
-
-- type: !PartialOnly entity
-  id: MobCrab
-  components:
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - Wave # they got arms, kinda
-  - type: SocialInteractionReceiver
-    interactionOverrides: # crabs don't have noses, but they do have compound eyes
-    - id: Boop
-      interactString: booping-moth-success
-      messagePerceivedByOthers: booping-moth-success-others
-      emoteMessage: booping-moth-emote
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - VimPilot

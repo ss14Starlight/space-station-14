@@ -26,3 +26,12 @@
     - id: PlushieSharkGrey
       amount: 2
 
+- type: entity
+  id: BoxFunArtSupplies
+  parent: CardboardBoxLarge
+  name: art supplies
+  description: Make some happy little accidents with lots of crayons!
+  components:
+  - type: StorageFill
+    contents:
+    - id: CrayonBox

@@ -23,7 +23,7 @@
   - type: CosmicCultExamine
     othersText: cosmic-examine-text-glyphs
   - type: Sprite
-    sprite: _Starlight/Objects/Misc/CosmicCult/glyphs_floor.rsi
+    sprite: _Starlight/CosmicCult/Objects/glyphs_floor.rsi
     layers:
       - state: aid
     drawdepth: Puddles
@@ -35,7 +35,7 @@
   name: Glyph of Truth
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Misc/CosmicCult/glyphs_floor.rsi
+    sprite: _Starlight/CosmicCult/Objects/glyphs_floor.rsi
     layers:
       - state: truth
     drawdepth: Puddles
@@ -55,7 +55,7 @@
   name: Glyph of Knowledge
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Misc/CosmicCult/glyphs_floor.rsi
+    sprite: _Starlight/CosmicCult/Objects/glyphs_floor.rsi
     layers:
     - state: knowledge
     drawdepth: Puddles
@@ -75,7 +75,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: _Starlight/Objects/Misc/CosmicCult/glyphs_floor.rsi
+    - sprite: _Starlight/CosmicCult/Objects/glyphs_floor.rsi
       state: cessation
     drawdepth: Puddles
   - type: CosmicGlyphTransmute
@@ -98,7 +98,7 @@
   name: Glyph of Blades
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Misc/CosmicCult/glyphs_floor.rsi
+    sprite: _Starlight/CosmicCult/Objects/glyphs_floor.rsi
     layers:
     - state: blades
     drawdepth: Puddles
@@ -123,7 +123,7 @@
   name: Glyph of Warding
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Misc/CosmicCult/glyphs_floor.rsi
+    sprite: _Starlight/CosmicCult/Objects/glyphs_floor.rsi
     layers:
     - state: warding
     drawdepth: Puddles
@@ -149,7 +149,7 @@
   name: Glyph of Projection
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Misc/CosmicCult/glyphs_floor.rsi
+    sprite: _Starlight/CosmicCult/Objects/glyphs_floor.rsi
     layers:
     - state: projection
     drawdepth: Puddles

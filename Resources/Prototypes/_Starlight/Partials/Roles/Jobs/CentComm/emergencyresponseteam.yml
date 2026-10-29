@@ -1,6 +1,7 @@
 # Leader
 - type: !PartialOnly job
   id: ERTLeader
+  roleType: CentCommAligned
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 96h # Realistically, if you have the CC time, you'll have met this anyways... But, in case that CC time is removed later.
@@ -89,6 +90,7 @@
 # Chaplain
 - type: !PartialOnly job
   id: ERTChaplain
+  roleType: CentCommAligned
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 48h # While you technically are a last resort against the "paranormal", there's no threats that actually warrant you having more time than this unless Cluwne Beasts get properly implemented.
@@ -136,6 +138,7 @@
 # Engineer
 - type: !PartialOnly job
   id: ERTEngineer
+  roleType: CentCommAligned
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 72h # You should know the game's controls if you're going to be building stuff.
@@ -210,6 +213,7 @@
 # Security
 - type: !PartialOnly job
   id: ERTSecurity
+  roleType: CentCommAligned
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 72h
@@ -266,24 +270,25 @@
     - EmergencyMedipen
 
 - type: !PartialOnly startingGear
-  parent: ERTSecurityGearEVA
   id: ERTSecurityGearArmedRifle
   equipment:
-    suitstorage: WeaponRiflePeacemaker
+    back: !Clear
+    suitstorage: PortableRecharger
+    pocket1: LoadoutRadioERTSec
+    pocket2: WeaponPistolPDW9
   inhand: !Clear
   storage: !Clear
-    back:
-    - MedicatedSuture
+    belt:
+    - WeaponPistolMk58HighCapacity
+    - MagazinePistolHighCapacitySP
+    - Handcuffs
+    - Handcuffs
+    - ExGrenade
     - GrenadeShrapnel
-    - GrenadeIncendiary
     - EmpGrenade
-    - MagazineRifleFMJ
-    - MagazineRifleFMJ
-    - MagazineRifleSP
-    - MagazineRifleIncendiary
-    - MedicatedSuture
-    - TelescopicShield
-    - HoloprojectorSecurity
+    - MedkitCombatFilled
+    - ToolDebug
+    - CombatMedipen
 
 - type: !PartialOnly startingGear
   parent: ERTSecurityGearEVA
@@ -362,6 +367,7 @@
 # Medical
 - type: !PartialOnly job
   id: ERTMedical
+  roleType: CentCommAligned
   icon: "JobIconERTMedical"
   requirements:
   - !type:OverallPlaytimeRequirement
@@ -444,6 +450,7 @@
 # Janitor
 - type: !PartialOnly job
   id: ERTJanitor
+  roleType: CentCommAligned
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 48h

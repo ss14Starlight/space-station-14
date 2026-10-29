@@ -7,7 +7,7 @@
       fadeOut: false
     - type: Sprite
       layers:
-      - sprite: _Starlight/Effects/CosmicCult/weaponarcs.rsi
+      - sprite: _Starlight/CosmicCult/Effects/weaponarcs.rsi
         state: arc_cosmic
         shader: unshaded
     - type: TimedDespawn
@@ -45,7 +45,7 @@
   - type: Sprite
     snapCardinals: true
     layers:
-    - sprite: _Starlight/Effects/CosmicCult/tile_spawn.rsi
+    - sprite: _Starlight/CosmicCult/Effects/tile_spawn.rsi
       state: floorglow
       shader: unshaded
     drawdepth: Mobs
@@ -76,7 +76,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: _Starlight/Effects/CosmicCult/ability_lapsevfx.rsi
+    - sprite: _Starlight/CosmicCult/Effects/ability_lapsevfx.rsi
       state: vfx
       shader: unshaded
 
@@ -87,7 +87,7 @@
   components:
   - type: Sprite
     layers:
-    - sprite: _Starlight/Effects/CosmicCult/ability_blankvfx.rsi
+    - sprite: _Starlight/CosmicCult/Effects/ability_blankvfx.rsi
       state: vfx
       shader: unshaded
   - type: PointLight
@@ -117,7 +117,7 @@
     lifetime: 2.025
   - type: Sprite
     layers:
-    - sprite: _Starlight/Effects/CosmicCult/effect_cleansevfx.rsi
+    - sprite: _Starlight/CosmicCult/Effects/effect_cleansevfx.rsi
       state: vfx
       shader: unshaded
   - type: PointLight
@@ -147,7 +147,7 @@
     lifetime: 2.025
   - type: Sprite
     layers:
-    - sprite: _Starlight/Effects/CosmicCult/effect_ns_flarevfx.rsi
+    - sprite: _Starlight/CosmicCult/Effects/effect_ns_flarevfx.rsi
       state: vfx
       shader: unshaded
   - type: PointLight
@@ -177,7 +177,7 @@
     lifetime: 2.025
   - type: Sprite
     layers:
-    - sprite: _Starlight/Effects/CosmicCult/effect_ns_reboundvfx.rsi
+    - sprite: _Starlight/CosmicCult/Effects/effect_ns_reboundvfx.rsi
       state: vfx
       shader: unshaded
   - type: PointLight
@@ -207,7 +207,7 @@
     lifetime: 2.025
   - type: Sprite
     layers:
-    - sprite: _Starlight/Effects/CosmicCult/effect_glyphvfx.rsi
+    - sprite: _Starlight/CosmicCult/Effects/effect_glyphvfx.rsi
       state: vfx
       shader: unshaded
   - type: PointLight
@@ -237,7 +237,7 @@
     lifetime: 1.1
   - type: Sprite
     layers:
-    - sprite: _Starlight/Effects/CosmicCult/ability_glarevfx.rsi
+    - sprite: _Starlight/CosmicCult/Effects/ability_glarevfx.rsi
       state: vfx
       shader: unshaded
   - type: PointLight
@@ -267,7 +267,7 @@
     lifetime: 1.92
   - type: Sprite
     layers:
-    - sprite: _Starlight/Effects/CosmicCult/ability_impositionvfx.rsi
+    - sprite: _Starlight/CosmicCult/Effects/ability_impositionvfx.rsi
       state: vfx
       shader: unshaded
   - type: PointLight
@@ -299,7 +299,7 @@
     layers:
     - shader: unshaded
       map: ["enum.EffectLayers.Unshaded"]
-      sprite: _Starlight/Effects/CosmicCult/ability_glarevfx.rsi
+      sprite: _Starlight/CosmicCult/Effects/ability_glarevfx.rsi
       state: vfx
   - type: PointLight
     color: "#42a4ae"
@@ -335,7 +335,7 @@
   - type: InteractionOutline
   - type: Sprite
     layers:
-    - sprite: _Starlight/Effects/CosmicCult/effect_echo.rsi
+    - sprite: _Starlight/CosmicCult/Effects/effect_echo.rsi
       state: vfx
       shader: unshaded
   - type: Clickable
@@ -362,7 +362,7 @@
   - type: Sprite
     snapCardinals: true
     layers:
-    - sprite: _Starlight/Effects/CosmicCult/colossus_attack.rsi
+    - sprite: _Starlight/CosmicCult/Effects/colossus_attack.rsi
       state: attack1
       shader: unshaded
   - type: PointLight
@@ -386,6 +386,6 @@
 - type: ssdIcon
   id: CosmicSSDIcon
   icon:
-    sprite: /Textures/_Starlight/Effects/CosmicCult/astralsleep.rsi
+    sprite: /Textures/_Starlight/CosmicCult/Effects/astralsleep.rsi
     state: icon
   locationPreference: Right

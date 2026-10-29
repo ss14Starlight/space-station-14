@@ -77,4 +77,35 @@
   - type: NukeOperative
   - type: RandomHumanoidAppearance
 
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: MobHuman
+  id: MobHumanLoneNuclearOperative
+  name: Lone Operative
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: NukeOperative
+  - type: Loadout
+    prototypes: [SyndicateLoneOperativeGearFull]
+    roleLoadout: [ RoleSurvivalSyndicate ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSyndicatePrefix
+    - NamesSyndicateNormal
+    nameFormat: name-format-nukie-generic
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+
 # Wizard
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: Wizard
+  parent: MobHuman
+  id: MobHumanWizard
+  components:
+  - type: RandomHumanoidAppearance
+  - type: NpcFactionMember
+    factions:
+    - Wizard

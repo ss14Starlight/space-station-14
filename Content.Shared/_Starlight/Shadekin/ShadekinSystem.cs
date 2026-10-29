@@ -25,7 +25,7 @@ using Content.Shared.Mobs.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Content.Shared._Starlight.Medical.Body.Events;
-using Robust.Shared.Containers;
+using Content.Shared._Starlight.Light;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.NullSpace.Components;
@@ -36,12 +36,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Stunnable;
-using Robust.Shared;
 using Robust.Shared.Network;
-using Robust.Shared.ComponentTrees;
-using Robust.Shared.Configuration;
-using Robust.Shared.Physics;
-using System.Numerics;
 
 namespace Content.Shared._Starlight.Shadekin;
 
@@ -68,14 +63,9 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private StatusEffectsSystem _status = default!;
     [Dependency] private SharedGameTicker _gameTicker = default!;
-    [Dependency] private SharedContainerSystem _container = default!;
-    [Dependency] private ExamineSystemShared _examine = default!;
     [Dependency] private SharedLanguageSystem _language = default!;
     [Dependency] private INetManager _net = default!;
-    [Dependency] private IPrototypeManager _prototype = default!;
-    [Dependency] private SharedLightTreeSystem _lightTree = default!;
-    [Dependency] private SharedPointLightSystem _pointLight = default!;
-    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private SharedIlluminationSystem _illumination = default!;
 
     [Dependency] private EntityQuery<DarkLightComponent> _darkLightQuery = default!;
     [Dependency] private EntityQuery<ShadegenAffectedComponent> _shadegenAffected = default!;
@@ -91,19 +81,22 @@ public sealed partial class ShadekinSystem : EntitySystem
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
 
-    private float _maxLightRadius;
-
-    private readonly List<Entity<SharedPointLightComponent, TransformComponent>> _lightsInRange = new();
+    private readonly List<LightContribution> _lightSources = new();
     private readonly HashSet<EntityUid> _theDarkMaps = new();
 
     private bool _hadTheDarkMaps;
+
+    private IlluminationQuery _lightQuery;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        Subs.CVar(_cfg, CVars.MaxLightRadius, value => _maxLightRadius = value, true);
+        _lightQuery = new IlluminationQuery(Ignore: IsIgnoredLight);
     }
+
+    private bool IsIgnoredLight(EntityUid light)
+        => _darkLightQuery.HasComp(light) || _shadegenAffected.HasComp(light);
 
     [SubscribeLocalEvent]
     private void OnDamageChanged(Entity<ShadekinComponent> _, ref BeforeDamageChangedEvent args)
@@ -162,12 +155,11 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     /// <summary>
     /// Return an illumination float value with is how many "energy" of light is hitting our ent.
-    /// WARNING: This function might be expensive, Avoid calling it too much and CACHE THE RESULT!
+    /// Server only, the client has no light index and always gets 0.
     /// </summary>
     /// <remarks>
-    /// Lights come from the engine light tree, so <c>lookup.enable_server_light_tree</c> has to stay on.
-    /// Not using LightLevelSystem itself: it returns a clamped 0-1 luminance that doesn't match our
-    /// thresholds, and it can't ignore dark/shadegen lights, nor see the ones shut in a container with us.
+    /// Keeps the shadekin falloff (energy * (1 - (d/r)^2)^2) instead of the shader one,
+    /// our thresholds are tuned for it. Lights come from <see cref="SharedIlluminationSystem"/>.
     /// </remarks>
     public float GetLightExposure(EntityUid uid, float cap = float.MaxValue)
     {
@@ -189,119 +181,23 @@ public sealed partial class ShadekinSystem : EntitySystem
                 return illumination;
         }
 
-        _lightsInRange.Clear();
+        _lightSources.Clear();
+        _illumination.GetLightSources(uid, _lightSources, _lightQuery);
 
-        // Nothing outside an occluding container reaches us, but a light shut in here with us still does.
-        // Those are kept out of the light tree, so they have to come from the container itself.
-        if (_container.TryGetContainingContainer(uid, out var targetContainer) && targetContainer.OccludesLight)
-            GetLightsInContainer(targetContainer, _lightsInRange);
-        else
-            GetLightsAt(targetCoords, _lightsInRange);
-
-        // Cheapest checks first, the occlusion raycast is done last and only for lights that would actually add something.
-        foreach (var light in _lightsInRange)
+        foreach (var source in _lightSources)
         {
-            if (_darkLightQuery.HasComp(light.Owner) || _shadegenAffected.HasComp(light.Owner))
+            if (source.Radius < 1f)
                 continue;
 
-            var lightComp = light.Comp1;
-            if (!lightComp.Enabled || lightComp.Radius < 1 || lightComp.Energy <= 0)
-                continue;
-
-            var (lightPos, lightRot) = _transform.GetWorldPositionRotation(light.Comp2);
-            var dist = (targetCoords.Position - lightPos).Length();
-
-            // Same range check InRangeUnOccluded does.
-            if (dist > lightComp.Radius + 0.01f)
-                continue;
-
-            var denom = dist / lightComp.Radius;
+            var denom = source.Distance / source.Radius;
             var attenuation = 1 - (denom * denom);
-            var calculatedLight = 0f;
-
-            if (_prototype.TryIndex(lightComp.LightMask, out var mask))
-            {
-                var angleToTarget = GetAngleToTarget(lightComp, lightPos, lightRot, targetCoords.Position);
-                foreach (var cone in mask.LightCones)
-                {
-                    var angleOffset = Math.Abs(Angle.ShortestDistance(angleToTarget, cone.Direction));
-
-                    if (angleOffset > cone.OuterWidth)
-                        continue;
-
-                    var coneLight = lightComp.Energy * attenuation * attenuation;
-                    if (angleOffset > cone.InnerWidth)
-                    {
-                        var angleAttenuation = (float) ((cone.OuterWidth - angleOffset) /
-                            (cone.OuterWidth - cone.InnerWidth));
-                        coneLight *= angleAttenuation;
-                    }
-
-                    calculatedLight = Math.Max(calculatedLight, coneLight);
-                }
-            }
-            else
-                calculatedLight = lightComp.Energy * attenuation * attenuation;
-
-            if (calculatedLight <= 0f)
-                continue;
-
-            if (!_examine.InRangeUnOccluded(new MapCoordinates(lightPos, targetCoords.MapId), targetCoords, lightComp.Radius, null))
-                continue;
-
-            illumination += calculatedLight;
+            illumination += source.Light.Comp1.Energy * attenuation * attenuation * source.Mask;
 
             if (illumination >= cap)
                 break;
         }
 
         return illumination;
-    }
-
-    /// <summary>
-    /// Collect every light whose radius covers <paramref name="coords"/>, straight out of the engine light tree.
-    /// </summary>
-    private void GetLightsAt(MapCoordinates coords, List<Entity<SharedPointLightComponent, TransformComponent>> lights)
-    {
-        // The area we want lights for is a single point, but lights on trees further away can still reach it.
-        var treeBounds = new Box2(coords.Position, coords.Position).Enlarged(_maxLightRadius);
-
-        foreach (var (tree, treeComp) in _lightTree.GetIntersectingTrees(coords.MapId, treeBounds))
-        {
-            var localPos = Vector2.Transform(coords.Position, _transform.GetInvWorldMatrix(tree));
-            treeComp.Tree.QueryPoint(ref lights, LightQueryCallback, localPos, true);
-        }
-    }
-
-    /// <summary>
-    /// Collect the lights sharing an occluding container with us, which the light tree leaves out.
-    /// </summary>
-    private void GetLightsInContainer(BaseContainer container, List<Entity<SharedPointLightComponent, TransformComponent>> lights)
-    {
-        foreach (var contained in container.ContainedEntities)
-        {
-            if (_pointLight.TryGetLight(contained, out var light))
-                lights.Add((contained, light, Transform(contained)));
-        }
-    }
-
-    private static bool LightQueryCallback(
-        ref List<Entity<SharedPointLightComponent, TransformComponent>> lights,
-        in ComponentTreeEntry<SharedPointLightComponent> entry)
-    {
-        lights.Add(entry);
-        return true;
-    }
-
-    private static Angle GetAngleToTarget(SharedPointLightComponent lightComp, Vector2 lightPos, Angle lightRot, Vector2 targetPos)
-    {
-        var mapDiff = targetPos - (lightPos + lightRot.RotateVec(lightComp.Offset));
-
-        if (MathHelper.CloseTo(mapDiff.LengthSquared(), 0f))
-            return Angle.Zero;
-
-        var maskRotation = SharedPointLightSystem.GetMaskWorldRotation(lightComp, lightRot);
-        return mapDiff.ToWorldAngle() - maskRotation;
     }
 
     private void SetPassiveBuff(EntityUid uid, ShadekinState shadekinState)

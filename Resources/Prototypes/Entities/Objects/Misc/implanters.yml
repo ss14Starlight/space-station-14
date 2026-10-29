@@ -95,18 +95,17 @@
     tags:
     - Trash
 
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: entity
-#   id: ImplanterAdmeme
-#   parent: Implanter
-#   suffix: Admeme
-#   components:
-#   - type: Implanter
-#     # go wild with sentient chairs with macrobombs
-#     whitelist: null
-#     blacklist: null
-#     implantTime: 5
-#     drawTime: 5
+- type: entity
+  id: ImplanterAdmeme
+  parent: Implanter
+  suffix: Admeme
+  components:
+  - type: Implanter
+    # go wild with sentient chairs with macrobombs
+    whitelist: null
+    blacklist: null
+    implantTime: 5
+    drawTime: 5
 
 - type: entity
   id: BaseImplantOnlyImplanter

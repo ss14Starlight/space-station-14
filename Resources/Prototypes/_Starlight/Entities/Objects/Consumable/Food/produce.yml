@@ -203,3 +203,21 @@
       heldPrefix: unlit
     - type: Produce
       plantId: CinnaflarePlants
+
+- type: entity
+  parent: FoodMushroom
+  id: FoodBrownMushroom
+  name: brown mushrooms
+  description: Plump brown button mushrooms with a mild, earthy flavor.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Hydroponics/brown_mushroom.rsi
+  - type: Item
+    # Use the existing mushroom in-hands; the world and inventory icons are custom.
+    sprite: Objects/Specific/Hydroponics/chanterelle.rsi
+    heldPrefix: produce
+  - type: FlavorProfile
+    flavors:
+    - mushroom
+  - type: Produce
+    plantId: BrownMushroomPlants

@@ -1,0 +1,39 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - CigPackBase
+    - CigPackMixedBase
+  components:
+  - type: Storage
+    whitelist:
+      components:
+        - Smokable
+        - Matchstick
+        - Welder # for lighters
+        - Crayon # they're ciggie shaped
+
+# Vending Machines Prices
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - CigPackGreen
+    - CigPackRed
+    - CigPackBlue
+    - CigPackBlack
+    - CigPackMixed
+  components:
+  - type: ItemPrice
+    priceCategory: cigaretes
+
+# Syndie to non-contra, desc change for lore
+- type: !PartialOnly entity
+  id: CigPackSyndicate
+  description: Medicinal cigarettes infused with medicine for when you need to do more than calm your nerves.
+
+- type: !PartialOnly entityTable
+  id: RandomSoakedSmokeTable
+  table: !type:GroupSelector
+    children:
+    - !Index:0
+      id: CigaretteLead
+      weight: 1

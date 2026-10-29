@@ -10,3 +10,8 @@
   files:
   - "/Audio/Weapons/Guns/Casings/shotgun_fall.ogg"
 
+- type: soundCollection
+  id: ToyFall
+  files:
+  - "/Audio/Items/Toys/ToyFall1.ogg"
+  - "/Audio/Items/Toys/ToyFall2.ogg"

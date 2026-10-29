@@ -109,18 +109,21 @@ public sealed partial class CosmicCorruptingSystem : EntitySystem
                 }
 
                 //corrupt anything that can be corrupted
-                foreach (var convertedEnt in _map.GetAnchoredEntities((gridUid, mapGrid), pos).ToList())
+                if (ent.Comp.ConvertEntities)
                 {
-                    var proto = Prototype(convertedEnt);
-                    if (ent.Comp.EntityConversionDict.TryGetValue(proto?.ID!, out var conversion))
+                    foreach (var convertedEnt in _map.GetAnchoredEntities((gridUid, mapGrid), pos).ToList())
                     {
-                        Spawn(conversion, Transform(convertedEnt).Coordinates);
-                        QueueDel(convertedEnt);
-                    }
-                    else if (TryComp<CosmicCorruptibleComponent>(convertedEnt, out var corruptible))
-                    {
-                        Spawn(corruptible.ConvertTo, Transform(convertedEnt).Coordinates);
-                        QueueDel(convertedEnt);
+                        var proto = Prototype(convertedEnt);
+                        if (ent.Comp.EntityConversionDict.TryGetValue(proto?.ID!, out var conversion))
+                        {
+                            Spawn(conversion, Transform(convertedEnt).Coordinates);
+                            QueueDel(convertedEnt);
+                        }
+                        else if (TryComp<CosmicCorruptibleComponent>(convertedEnt, out var corruptible))
+                        {
+                            Spawn(corruptible.ConvertTo, Transform(convertedEnt).Coordinates);
+                            QueueDel(convertedEnt);
+                        }
                     }
                 }
 

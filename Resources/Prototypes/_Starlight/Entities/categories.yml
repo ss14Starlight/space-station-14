@@ -3,13 +3,3 @@
   id: ShouldMapStation
   name: entity-category-name-shouldmapstation
   inheritable: false
-
-- type: entityCategory
-  id: Surgeries
-  name: categories-surgeries
-  hideSpawnMenu: true
-
-- type: entityCategory
-  id: SurgerySteps
-  name: categories-surgery-steps
-  hideSpawnMenu: true

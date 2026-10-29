@@ -93,3 +93,10 @@
     - type: Stack
       count: 1
 
+- type: entity
+  parent: RawBluespaceCrystal
+  id: RawBluespaceCrystal10
+  suffix: 10
+  components:
+    - type: Stack
+      count: 10

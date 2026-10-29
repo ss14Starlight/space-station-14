@@ -80,6 +80,14 @@
     state: w_pawn
 
 # Black pieces
+- type: entity
+  parent: BaseTabletopPiece
+  id: BlackKing
+  name: black king
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Tabletop/chess_pieces.rsi
+    state: b_king
 
 - type: entity
   parent: BaseTabletopPiece

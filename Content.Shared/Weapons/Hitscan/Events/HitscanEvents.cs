@@ -1,9 +1,7 @@
 using System.Numerics;
 using Content.Shared.Damage;
 using Robust.Shared.Map;
-#region Starlight
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
-#endregion
 
 namespace Content.Shared.Weapons.Hitscan.Events;
 
@@ -64,6 +62,14 @@ public record struct HitscanTraceEvent
 /// </summary>
 public record struct HitscanRaycastFiredData
 {
+    // Starlight-start
+    /// <summary>
+    /// Seed for the random rolls of this leg. Set on shots the shooter's client predicts,
+    /// so both sides roll the same cover and crowd checks. Null falls back to the regular random.
+    /// </summary>
+    public int? PredictionSeed;
+    // Starlight-end
+
     /// <summary>
     /// Direction that the ray was fired towards.
     /// </summary>

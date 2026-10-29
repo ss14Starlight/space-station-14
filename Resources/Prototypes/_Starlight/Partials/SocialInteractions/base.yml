@@ -1,0 +1,20 @@
+# Non-complex social interactions for all mobs.
+- type: !PartialOnly entity
+  id: BaseControllable
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Look
+  - type: SocialInteractionReceiver
+    interactionPrototypes:
+    - Boop
+
+# Complex social interactions that 'require' arms to perform.
+- type: !PartialOnly entity
+  id: BaseMobSpecies
+  components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Look
+    - Wave
+    - Pat

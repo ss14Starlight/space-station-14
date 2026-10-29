@@ -2,6 +2,8 @@
 ## Delay shuttle round end
 cmd-delayroundend-desc = Stops the timer that ends the round when the emergency shuttle exits hyperspace.
 cmd-delayroundend-help = Usage: delayroundend
+emergency-shuttle-command-round-yes = Round delayed.
+emergency-shuttle-command-round-no = Unable to delay round end.
 
 ## Dock emergency shuttle
 cmd-dockemergencyshuttle-desc = Calls the emergency shuttle and docks it to the station... if it can.
@@ -12,7 +14,7 @@ cmd-launchemergencyshuttle-desc = Early launches the emergency shuttle if possib
 cmd-launchemergencyshuttle-help = Usage: launchemergencyshuttle
 
 # Emergency shuttle # Starlight edit: reword due to potential existence of multiple stations/shuttles
-emergency-shuttle-left = All emergency shuttles have now departed. Estimate {$transitTime} seconds until shuttles arrive at CentComm.
+emergency-shuttle-left = All emergency shuttles have now departed and escape pods have been unlocked. Estimate {$transitTime} seconds until shuttles arrive at CentComm.
 emergency-shuttle-launch-time = Emergency shuttles will launch in {$consoleAccumulator} seconds.
 emergency-shuttle-docked = The Emergency Shuttle has docked {$direction} of the station, {$location}. It will leave in {$time} seconds.{$extended}
 emergency-shuttle-good-luck = The Emergency Shuttle is unable to find a station. Good luck.

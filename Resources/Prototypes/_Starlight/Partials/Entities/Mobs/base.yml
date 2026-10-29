@@ -1,9 +1,10 @@
+# Upstream converted MobCombat's unarmed damage from Brute 5 to Blunt 5 when it removed damage groups.
+# Starlight re-added damage groups, so this restores the original Brute split (Blunt/Slash/Piercing).
 - type: !PartialOnly entity
-  id: BaseControllable
+  id: MobCombat
   components:
-  - type: SocialInteractionGiver
-    interactionPrototypes:
-    - Look
-  - type: SocialInteractionReceiver
-    interactionPrototypes:
-    - Boop
+  - type: MeleeWeapon
+    damage:
+      types: !Remove
+      groups:
+        Brute: 5

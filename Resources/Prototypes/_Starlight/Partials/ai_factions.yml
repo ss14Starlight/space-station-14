@@ -110,6 +110,8 @@
   hostile:
   - !Remove Wizard
   - !Remove Xenoborg
+  - !Remove NanoTrasen # Don't attack crew indiscriminately...
+  - Shielded # ...only mindshielded crew. Viva!
   - NanoTrasenSilicon
   - DungeonSyndicate
   - DungeonSoviet
@@ -166,5 +168,20 @@
 
 - type: !PartialOnly npcFaction
   id: SyndicateSilicon
+  hostile:
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: NanoTrasenSilicon
+  hostile:
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: DungeonSoviet
+  hostile:
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: Passive
   hostile:
   - MoffNarsianDemon

@@ -40,6 +40,7 @@ holopad-hologram-name = hologram of {THE($name)}
 
 # Holopad actions
 holopad-activate-projector-verb = Activate holopad projector
+holopad-ai-is-unable-to-reach-holopad = You are unable to interface with the source of the call, it is too far from your core.
 holopad-ai-is-unable-to-activate-projector = You are unable to activate the holopad's projector, it is too far from your core.
 
 # Mapping prototypes
@@ -121,6 +122,7 @@ holopad-security-breakroom = Security - Breakroom
 holopad-security-detective = Security - Detective
 holopad-security-perma = Security - Perma
 holopad-security-courtroom = Security - Courtroom
+holopad-security-lawyer = Security - Lawyer
 holopad-security-armory = Security - Armory
 holopad-security-locker-room = Security - Locker Room
 holopad-security-brig-med = Security - Brig Med

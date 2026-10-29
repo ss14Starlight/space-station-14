@@ -1,0 +1,25 @@
+- type: !PartialOnly entity
+  id: MobEmotionalSupportScurret
+  components:
+  - type: AntagTarget
+
+- type: !PartialOnly entity
+  id: MobBaseEmotionalSupportScurret
+  components:
+    - !CombineIndex:2
+      type: GhostRole
+      job: EmotionalSupportScurret
+    - type: LanguageKnowledge
+      speaks:
+        - ScurretSign
+      understands:
+        - ScurretSign
+        - GalacticCommon
+
+- type: !PartialOnly entity
+  id: Spear
+  parent: !Clear [BaseItem, SolutionDart, BaseEmotionalSupportScurretContraband]
+
+- type: !PartialOnly entity
+  id: ClothingNeckMantleQM
+  parent: !Clear [ClothingNeckBase, BaseCommandContraband, BaseEmotionalSupportScurretContraband]

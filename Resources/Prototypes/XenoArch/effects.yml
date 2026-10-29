@@ -1,4 +1,134 @@
 - type: entityTable
+  id: XenoArtifactEffectsDefaultTable
+  table: !type:GroupSelector
+    children:
+    # hijacks use key, prevents from using artifact, sadly
+    #- id: XenoArtifactEffectUniversalIntercom
+    #  weight: 10.0
+    - id: XenoArtifactSolutionStorage
+      weight: 10.0
+    - id: XenoArtifactPhasing
+      weight: 2.0
+    - id: XenoArtifactWandering
+      weight: 4.0
+    - id: XenoArtifactSpeedUp
+      weight: 4.0
+    - id: XenoArtifactGhost
+      weight: 2.0
+    - id: XenoArtifactEffectBadFeeling
+      weight: 10.0
+    - id: XenoArtifactEffectGoodFeeling
+      weight: 10.0
+    - id: XenoArtifactEffectJunkSpawn
+      weight: 10.0
+    - id: XenoArtifactEffectLightFlicker
+      weight: 10.0
+    - id: XenoArtifactPotassiumWave
+      weight: 7.0
+    - id: XenoArtifactFloraSpawn
+      weight: 10.0
+    - id: XenoArtifactChemicalPuddle
+      weight: 10.0
+    - id: XenoArtifactThrowThingsAround
+      weight: 10.0
+    - id: XenoArtifactColdWave
+      weight: 10.0
+    - id: XenoArtifactHeatWave
+      weight: 4.0
+    - id: XenoArtifactFoamMild
+      weight: 8.0
+    - id: XenoArtifactRandomInstrumentSpawn
+      weight: 10.0
+    - id: XenoArtifactMonkeySpawn
+      weight: 10.0
+    - id: XenoArtifactRadioactive
+      weight: 8.0
+    - id: XenoArtifactChargeBattery
+      weight: 10.0
+    - id: XenoArtifactKnock
+      weight: 4.0
+    - id: XenoArtifactMagnet
+      weight: 2.0
+    - id: XenoArtifactMagnetNegative
+      weight: 2.0
+    - id: XenoArtifactStealth
+      weight: 1.0
+    - id: XenoArtifactRareMaterialSpawnSilver
+      weight: 1.8 # amount is laughable
+    - id: XenoArtifactRareMaterialSpawnPlasma
+      weight: 2.0 # amount is laughable
+    - id: XenoArtifactRareMaterialSpawnGold
+      weight: 1.8 # amount is laughable
+    - id: XenoArtifactRareMaterialSpawnUranium
+      weight: 1.0 # amount is laughable
+    - id: XenoArtifactAngryCarpSpawn
+      weight: 4.0
+    - id: XenoArtifactFaunaSpawn
+      weight: 10.0
+    - id: XenoArtifactHostileFaunaSpawn
+      weight: 10.0
+    - id: XenoArtifactCashSpawn
+      weight: 10.0
+    - id: XenoArtifactShatterWindows
+      weight: 8.0
+    - id: XenoArtifactFoamGood
+      weight: 4.0
+    - id: XenoArtifactFoamDangerous
+      weight: 2.0
+    - id: XenoArtifactPuddleRare
+      weight: 2.0
+    - id: XenoArtifactAnomalySpawn
+      weight: 10.0
+    - id: XenoArtifactIgnite
+      weight: 2.0
+    - id: XenoArtifactTeleport
+      weight: 2.0
+    - id: XenoArtifactEmp
+      weight: 2.0
+    - id: XenoArtifactPolyMonkey
+      weight: 2.0
+    - id: XenoArtifactPolyLuminous
+      weight: 2.0
+    - id: XenoArtifactPolyLizard
+      weight: 2.0
+    - id: XenoArtifactRadioactiveStrong
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnGlass
+      weight: 3.3
+    - id: XenoArtifactMaterialSpawnSteel
+      weight: 3.3
+    - id: XenoArtifactMaterialSpawnPlastic
+      weight: 3.3
+    - id: XenoArtifactPortal
+      weight: 2.0
+    - id: XenoArtifactArtifactSpawn
+      weight: 0.5
+    - id: XenoArtifactShuffle
+      weight: 3.0
+    - id: XenoArtifactHealAll
+      weight: 1.0
+    #- id: XenoArtifactTesla
+    #  weight: 10.0
+    #- id: XenoArtifactSingularity
+    #  weight: 10.0
+    - id: XenoArtifactExplosionScary
+      weight: 1.0
+    - id: XenoArtifactBoom
+      weight: 5.0
+    - id: XenoArtifactEffectCreationGasPlasma
+      weight: 2.0
+    - id: XenoArtifactEffectCreationGasTritium
+      weight: 2.0
+    - id: XenoArtifactEffectCreationGasAmmonia
+      weight: 3.0
+    - id: XenoArtifactEffectCreationGasFrezon
+      weight: 1.0
+    - id: XenoArtifactEffectCreationGasNitrousOxide
+      weight: 4.0
+    - id: XenoArtifactEffectCreationGasCarbonDioxide
+      weight: 4.0
+
+- type: entityTable
   id: XenoArtifactEffectsHandheldOnlyTable
   table: !type:GroupSelector
     children:
@@ -83,6 +213,20 @@
       key: enum.InstrumentUiKey.Key
 
 - type: entity
+  id: XenoArtifactStorage
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Metaphysical disturbance # Funky Edit add more mystery to sci
+  components:
+  - type: XAEApplyComponents
+    components:
+    - type: Item
+      size: Huge
+    - type: Storage
+      maxItemSize: Huge
+      grid:
+      - 0,0,10,5
+
+- type: entity
   id: XenoArtifactPhasing
   parent: BaseOneTimeXenoArtifactEffect
   description: Metaphysical disturbance # Funky Edit add more mystery to sci
@@ -161,6 +305,22 @@
     - type: Tool
       qualities:
       - Slicing
+
+- type: entity
+  id: XenoArtifactGenerateEnergy
+  parent: BaseOneTimeXenoArtifactEffect # todo - increment power, but only once per node
+  description: Electromagnetic disturbance # Funky Edit add more mystery to sci
+  components:
+  - type: XAEApplyComponents
+    components:
+    - type: PowerSupplier
+      supplyRate: 20000
+    - type: NodeContainer
+      examinable: true
+      nodes:
+        output_hv:
+          !type:CableDeviceNode
+          nodeGroupID: HVPower
 
 - type: entity
   id: XenoArtifactGun
@@ -396,6 +556,42 @@
           weight: 1
 
 - type: entity
+  id: XenoArtifactChemicalPuddle
+  parent: BaseXenoArtifactEffect
+  description: Produces puddle of chemical mixture # todo: make description say what exact chemical is produced, maybe add mixes into possible chemicals
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    replaceDescription: true
+    chemicalSolution:
+      maxVol: 500
+      canReact: false
+    possibleChemicals:
+    - Aluminium
+    - Carbon
+    - Chlorine
+    - Copper
+    - Ethanol
+    - Fluorine
+    - Sugar
+    - Hydrogen
+    - Iodine
+    - Iron
+    - Lithium
+    - Mercury
+    - Nitrogen
+    - Oxygen
+    - Phosphorus
+    - Potassium
+    - Radium
+    - Silicon
+    - Sodium
+    - Water
+    - Sulfur
+
+- type: entity
   id: XenoArtifactThrowThingsAround
   parent: BaseXenoArtifactEffect
   description: Metaphysical disturbance # Funky Edit add more mystery to sci
@@ -417,6 +613,26 @@
   components:
   - type: XAETemperature
     targetTemp: 500
+
+- type: entity
+  id: XenoArtifactFoamMild
+  parent: BaseXenoArtifactEffect
+  description: Produces chemical foam # todo: separate in 1 for each chemical for description? actually sounds like a very good idea
+  components:
+  - type: XAEFoam
+    replaceDescription: true
+    reagents:
+    - Oxygen
+    - Plasma
+    - Blood
+    - SpaceCleaner
+    - Nutriment
+    - SpaceLube
+    - Ethanol
+    - Mercury
+    - VentCrud
+    - WeldingFuel
+    - JuiceThatMakesYouWeh
 
 - type: entity
   id: XenoArtifactRandomInstrumentSpawn
@@ -533,6 +749,36 @@
     - type: StealthOnMove
       passiveVisibilityRate: -0.10
       movementVisibilityRate: 0.10
+
+- type: entity
+  id: XenoArtifactRareMaterialSpawn
+  parent: BaseXenoArtifactEffect # todo: splice into different well-named effects, amounts should reflect how rare material is
+  description: Spontaneous inorganic creation # Funky Edit add more mystery to sci
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:AllSelector
+        children:
+        - id: SilverOre1
+          rolls: !type:ConstantNumberSelector
+            value: 6
+          prob: 0.3
+        - id: PlasmaOre1
+          rolls: !type:ConstantNumberSelector
+            value: 6
+          prob: 0.3
+        - id: GoldOre1
+          rolls: !type:ConstantNumberSelector
+            value: 6
+          prob: 0.3
+        - id: UraniumOre1
+          rolls: !type:ConstantNumberSelector
+            value: 6
+          prob: 0.3
 
 - type: entity
   id: XenoArtifactRareMaterialSpawnSilver
@@ -809,6 +1055,79 @@
         Structural: 200
 
 - type: entity
+  id: XenoArtifactFoamGood
+  parent: BaseXenoArtifactEffect
+  description: Creates wave of helpful foam
+  components:
+  - type: XenoArtifactNode
+    maxDurability: 7
+    maxDurabilityCanDecreaseBy:
+      min: 0
+      max: 5
+  - type: XAEFoam
+    replaceDescription: true
+    reagents:
+    - Dermaline
+    - Arithrazine
+    - Bicaridine
+    - Inaprovaline
+    - Kelotane
+    - Dexalin
+    - Omnizine
+
+- type: entity
+  id: XenoArtifactFoamDangerous
+  parent: BaseXenoArtifactEffect
+  description: Creates wave of harmful foam
+  components:
+  - type: XAEFoam
+    minFoamAmount: 20
+    maxFoamAmount: 30
+    replaceDescription: true
+    reagents:
+    - Tritium
+    - Plasma
+    - SulfuricAcid
+    - SpaceDrugs
+    - Nocturine
+    - MuteToxin
+    - Napalm
+    - CarpoToxin
+    - ChloralHydrate
+    - Mold
+    - Amatoxin
+
+- type: entity
+  id: XenoArtifactPuddleRare
+  parent: BaseXenoArtifactEffect
+  description: Creates puddle of helpful chemicals
+  components:
+  - type: XAECreatePuddle
+    chemAmount:
+      min: 1
+      max: 3
+    replaceDescription: true
+    chemicalSolution:
+      maxVol: 500
+      canReact: false
+    possibleChemicals:
+    - Dermaline
+    - Arithrazine
+    - Bicaridine
+    - Inaprovaline
+    - Kelotane
+    - Dexalin
+    - Omnizine
+    - Napalm
+    - Toxin
+    - Epinephrine
+    - Cognizine
+    - Ultravasculine
+    - Desoxyephedrine
+    - Pax
+    - Siderlac
+
+- type: entity
   id: XenoArtifactAnomalySpawn
   parent: BaseOneTimeXenoArtifactEffect
   description: Spontaneous inorganic creation # Funky Edit add more mystery to sci
@@ -991,6 +1310,36 @@
         Heat: -100
         Cold: -100
         Shock: -100
+
+- type: entity
+  id: XenoArtifactTesla
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Pyrotechnic disturbance # Funky Edit add more mystery to sci
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:AllSelector
+        children:
+        - id: Singularity
+
+- type: entity
+  id: XenoArtifactSingularity
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Electrostatic disturbance # Funky Edit add more mystery to sci
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:AllSelector
+        children:
+        - id: TeslaEnergyBall
 
 - type: entity
   id: XenoArtifactExplosionScary

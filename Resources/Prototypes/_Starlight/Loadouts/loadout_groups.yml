@@ -149,6 +149,15 @@
   - FancyPen
 
 - type: loadoutGroup
+  id: CCPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - PenCentcom
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
   id: AssistantGlasses
   name: loadout-group-assistant-glasses
   minLimit: 0
@@ -356,6 +365,7 @@
   loadouts:
   - MagistrateWhiteGloves
   - MagistrateBlackGloves
+  - MagistratePaperworkGloves
 
 - type: loadoutGroup
   id: BlueShieldHead
@@ -727,6 +737,28 @@
     - SalvagePDA
     - VeteranSalvagePDA
 
+# Salvage Medic
+- type: loadoutGroup
+  id: SalvageMedicPDA
+  name: loadout-group-salvage-medic-id
+  loadouts:
+    - SalvageMedicPDA
+    - VeteranSalvageMedicPDA
+
+- type: loadoutGroup
+  id: SalvageMedicJumpsuit
+  name: loadout-group-salvage-medic-jumpsuit
+  loadouts:
+    - SalvageMedicJumpsuit
+    - SalvageMedicJumpskirt
+
+- type: loadoutGroup
+  id: SalvageMedicNeck
+  name: loadout-group-salvage-medic-mantle
+  loadouts:
+    - SalvageMedicMantle
+    - VeteranSalvageMedicMantle
+
 # Service
 # Mime
 - type: loadoutGroup
@@ -1056,6 +1088,57 @@
   - SecurityBomber
   - WindbreakerSecurity
 
+#GunnerySergeant
+- type: loadoutGroup
+  id: GunnerySergeantHead
+  name: loadout-group-gunnery-sergeant-head
+  loadouts:
+    - GunnerySergeantBeret
+    - GunnerySergeantDrillHat
+
+- type: loadoutGroup
+  id: GunnerySergeantJumpsuit
+  name: loadout-group-gunnery-sergeant-jumpsuit
+  loadouts:
+  - SecurityJumpsuit
+  - SecurityJumpskirt
+  - SecurityJumpsuitGrey
+  - SecurityJumpskirtGrey
+  - SeniorOfficerJumpsuit
+  - SeniorOfficerJumpskirt
+  - TrooperUniform
+  - SecurityJumpsuitBlue
+  - SecurityJumpskirtBlue # starlight start
+  - FormalOfficerJumpsuit
+  - FormalOfficerJumpskirt
+  - FormalSeniorOfficerJumpsuit
+  - FormalSeniorOfficerJumpskirt
+  - DeputyFormalJumpskirt
+  - DeputyFormalJumpsuit
+
+- type: loadoutGroup
+  id: GunnerySergeantOuterClothing
+  name: loadout-group-gunnery-sergeant-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
+  loadouts:
+  - ArmorVest
+  - ArmorVestSlim
+  - ArmorVestPlate
+  - ArmorVestStab
+  - ArmorVestHeatAbsorb
+  - SecurityOfficerWintercoat
+  - SecurityBomber #Starlight
+  - WindbreakerSecurity #Starlight
+
+- type: loadoutGroup
+  id: GunnerySergeantNeck
+  name: loadout-group-gunnery-sergeant-neck
+  minLimit: 0
+  loadouts:
+    - GunnerySergeantMantle
+    - GunnerySergeantCloak
+
 # Brighteye
 - type: loadoutGroup
   id: BrighteyeJumpsuit
@@ -1115,6 +1198,7 @@
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - HighHeelBootsFilled
 
 - type: loadoutGroup
   id: NanotrasenCareerTrainerEyewear
@@ -1259,3 +1343,13 @@
   - BrigmedicRig
   - BrigmedicBelt
   - CorpsmanBelt
+
+# for paperwork related roles, Magi, IAA, and NTR
+- type: loadoutGroup
+  id: PaperworkGloves
+  name: loadout-group-gloves-paperwork
+  defaultSelected: 1
+  loadouts:
+  - MagistrateWhiteGloves
+  - MagistrateBlackGloves
+  - HopGloves

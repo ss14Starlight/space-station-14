@@ -97,6 +97,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     [Dependency] private ServerGlobalSoundSystem _sound = default!;
     [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedRoleSystem _role = default!;
@@ -116,16 +117,16 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     private TimeSpan _voteDelay = default!;
     private TimeSpan _voteTimer = default!;
 
-    private readonly SoundSpecifier _briefingSound = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/antag_cosmic_briefing.ogg");
-    private readonly SoundSpecifier _deconvertSound = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/antag_cosmic_deconvert.ogg");
-    private readonly SoundSpecifier _tier3Sound = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/tier3.ogg");
-    private readonly SoundSpecifier _tier2Sound = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/tier2.ogg");
-    private readonly SoundSpecifier _monumentAlert = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/tier_up.ogg");
+    private readonly SoundSpecifier _briefingSound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/antag_cosmic_briefing.ogg");
+    private readonly SoundSpecifier _deconvertSound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/antag_cosmic_deconvert.ogg");
+    private readonly SoundSpecifier _tier3Sound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier3.ogg");
+    private readonly SoundSpecifier _tier2Sound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier2.ogg");
+    private readonly SoundSpecifier _monumentAlert = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier_up.ogg");
     private static readonly ProtoId<NpcFactionPrototype> NanoTrasenFaction = "NanoTrasen";
     private static readonly ProtoId<NpcFactionPrototype> CosmicCultFaction = "CosmicCult";
 
     private readonly SoundSpecifier _victoryMusic =
-        new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/caustic_shift.ogg");
+        new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/caustic_shift.ogg");
 
     private readonly ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
 
@@ -398,9 +399,11 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             if (spawnPoints.IsEmpty)
                 return;
 
-            var endQuery = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent>();
-            while (endQuery.MoveNext(out var player, out _, out _))
+            var endQuery = EntityQueryEnumerator<MobStateComponent>();
+            while (endQuery.MoveNext(out var player, out _))
             {
+                if (!HasComp<HumanoidAppearanceComponent>(player) && !_cosmicCult.IsConvertible(player))
+                    continue;
                 var newSpawn = _rand.Pick(spawnPoints);
                 var spawnTgt = Transform(newSpawn.Uid).Coordinates;
 
@@ -628,7 +631,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         if (AssociatedGamerule(uid) is not { } cult)
             return;
 
-        cult.Comp.TotalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && HasComp<HumanoidAppearanceComponent>(session.AttachedEntity));
+        cult.Comp.TotalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && (HasComp<HumanoidAppearanceComponent>(session.AttachedEntity) || _cosmicCult.IsConvertible(session.AttachedEntity)));
 
 #if DEBUG
         if (cult.Comp.TotalCrew < 25)

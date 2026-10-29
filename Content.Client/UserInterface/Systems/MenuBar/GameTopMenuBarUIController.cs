@@ -1,7 +1,7 @@
-﻿using Content.Client.UserInterface.Systems.Actions;
+using Content.Client._Starlight.Character.Info.UI; // Starlight
+using Content.Client.UserInterface.Systems.Actions;
 using Content.Client.UserInterface.Systems.Admin;
 using Content.Client.UserInterface.Systems.Bwoink;
-using Content.Client.UserInterface.Systems.Character;
 using Content.Client.UserInterface.Systems.Crafting;
 using Content.Client.UserInterface.Systems.Emotes;
 using Content.Client.UserInterface.Systems.EscapeMenu;

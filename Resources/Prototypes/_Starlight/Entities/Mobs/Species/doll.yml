@@ -165,3 +165,20 @@
   - type: Shell
     generateShellPieceAction: ActionGenerateShellPiece
 
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobDollDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Doll
+  - type: Body
+    prototype: Doll
+  - type: Inventory
+    speciesId: Doll
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

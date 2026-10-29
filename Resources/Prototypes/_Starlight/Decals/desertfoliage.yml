@@ -5,7 +5,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/Foliage/Desert/cacti.rsi
+    sprite: _Starlight/Decals/Foliage/desert/cacti.rsi
     state: cacti_large01
 
 - type: decal
@@ -14,7 +14,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/Foliage/Desert/cacti.rsi
+    sprite: _Starlight/Decals/Foliage/desert/cacti.rsi
     state: cacti_large02
 
 - type: decal
@@ -23,7 +23,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/Foliage/Desert/cacti.rsi
+    sprite: _Starlight/Decals/Foliage/desert/cacti.rsi
     state: cacti_large03
 
 #Cacti Small
@@ -33,7 +33,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/Foliage/Desert/cacti.rsi
+    sprite: _Starlight/Decals/Foliage/desert/cacti.rsi
     state: cacti_small01
 
 - type: decal
@@ -42,7 +42,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/Foliage/Desert/cacti.rsi
+    sprite: _Starlight/Decals/Foliage/desert/cacti.rsi
     state: cacti_small02
 
 - type: decal
@@ -51,7 +51,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/Foliage/Desert/cacti.rsi
+    sprite: _Starlight/Decals/Foliage/desert/cacti.rsi
     state: cacti_small03
 
 #Rocks Large
@@ -65,7 +65,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/Foliage/Desert/bushes.rsi
+    sprite: _Starlight/Decals/Foliage/desert/bushes.rsi
     state: bush01
 
 - type: decal
@@ -74,7 +74,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/Foliage/Desert/bushes.rsi
+    sprite: _Starlight/Decals/Foliage/desert/bushes.rsi
     state: bush02
 
 - type: decal
@@ -83,7 +83,7 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/Foliage/Desert/bushes.rsi
+    sprite: _Starlight/Decals/Foliage/desert/bushes.rsi
     state: bush03
 
 - type: decal
@@ -92,6 +92,6 @@
   snapCardinals: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/Foliage/Desert/bushes.rsi
+    sprite: _Starlight/Decals/Foliage/desert/bushes.rsi
     state: bush04
 

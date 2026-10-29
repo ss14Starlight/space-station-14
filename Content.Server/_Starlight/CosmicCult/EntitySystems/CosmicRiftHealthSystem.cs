@@ -64,7 +64,7 @@ public sealed partial class CosmicRiftHealthSystem : EntitySystem
                 _corpseWarning3ScreamTimer = null;
 
                 _audio.PlayGlobal(
-                    new SoundPathSpecifier("/Audio/_Starlight/Voice/CosmicCult/colossus_scream.ogg"),
+                    new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/colossus_scream.ogg"),
                     Filter.Broadcast(),
                     true,
                     AudioParams.Default.WithVolume(5f));

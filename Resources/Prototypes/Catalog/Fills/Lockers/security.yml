@@ -170,7 +170,6 @@
       prob: 0.15
     - id: JawsOfLifeMed #Starlight
 
-
 - type: entity
   id: LockerDetectiveFilled
   categories: [ ShouldMapStation ] # Starlight
@@ -231,7 +230,7 @@
       prob: 0.5
 
 - type: entity
-  parent: [GunSafeBaseSecuritySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier2, GunSafeBaseSecuritySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafeDisabler
   name: disabler safe
   components:
@@ -252,7 +251,7 @@
       amount: 5
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafePistolMk58
   name: pistol safe
   components:
@@ -282,7 +281,7 @@
       amount: 2
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafeRifleLecter
   name: rifle safe
   components:
@@ -318,7 +317,7 @@
 # Starlight-end
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafeSubMachineGunDrozd
   name: smg safe
   components:
@@ -344,7 +343,7 @@
       amount: 5 # Starlight
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafeShotgunEnforcer
   name: heavy shotgun safe
   components:
@@ -372,7 +371,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafeShotgunKammerer
   name: shotgun safe
   components:
@@ -402,7 +401,7 @@
 - type: entity
   id: GunSafeSubMachineGunWt550
   suffix: Wt550
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   name: wt550 safe
   components:
   #Starlight Start
@@ -425,7 +424,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafeBaseArmorySL, BaseSecurityContraband] #SL parenting
+  parent: [ BaseContrabandTier3, GunSafeBaseArmorySL, BaseSecurityContraband ] # Blimpuf parenting
   id: GunSafeLaserCarbine
   name: laser safe
   components:

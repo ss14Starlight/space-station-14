@@ -12,6 +12,14 @@
   id: MobMedibot
   components:
   - type: FirelockOpener
+  - type: Medibot
+    treatments:
+      Alive:
+        reagent: Tricordrazine
+        quantity: 5
+      Critical:
+        reagent: Inaprovaline
+        quantity: 15
 
 - type: !PartialOnly entity
   id: MobHonkBot
@@ -22,23 +30,3 @@
   id: MobMimeBot
   components:
   - type: FirelockOpener
-
-- type: !PartialOnly entity
-  id: MobSiliconBase
-  components:
-  - type: SocialInteractionReceiver
-    interactionOverrides: # silicons don't have noses
-    - id: Boop
-      interactString: booping-borg-success
-      messagePerceivedByOthers: booping-borg-success-others
-      emoteMessage: booping-borg-emote
-
-- type: !PartialOnly entity
-  id: MobSiliconBase
-  components:
-  - type: SocialInteractionReceiver
-    interactionOverrides: # silicons don't have noses
-    - id: Boop
-      interactString: booping-borg-success
-      messagePerceivedByOthers: booping-borg-success-others
-      emoteMessage: booping-borg-emote

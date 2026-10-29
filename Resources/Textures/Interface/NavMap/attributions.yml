@@ -23,6 +23,11 @@
   copyright: "Created by chromiumboy"
   source: "https://github.com/chromiumboy"
 
+- files: ["beveled_diamond.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by chromiumboy"
+  source: "https://github.com/chromiumboy"
+
 - files: ["beveled_diamond_east_west.png"]
   license: "CC-BY-SA-3.0"
   copyright: "Created by chromiumboy"

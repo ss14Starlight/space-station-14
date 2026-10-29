@@ -9,6 +9,8 @@ cryo-pod-locked = The ejection mechanism is unresponsive!
 cryo-pod-window-product-name = NanoTrasen CRPX-229
 cryo-pod-window-product-subtitle = Cryogenic Restoration Pod
 cryo-pod-window-loading = Loading
+cryo-pod-window-atmos-pressure = Pressure
+cryo-pod-window-atmos-temperature = Temperature
 cryo-pod-window-status = Pod status:
 cryo-pod-window-status-ready-for-patient = Ready for patient
 cryo-pod-window-status-ready-to-inject = Ready to inject
@@ -18,6 +20,7 @@ cryo-pod-window-status-cooling = Cooling patient...
 cryo-pod-window-checklist-pressure = Pressurized
 cryo-pod-window-checklist-chemicals = Chemicals available
 cryo-pod-window-checklist-temperature = Cryogenic temperature
+cryo-pod-window-checklist-fail = {$item} — NO
 
 cryo-pod-window-warning-header = WARNING
 cryo-pod-window-low-pressure-warning = Dangerously low pressure. Gas pressure must be approximately 100 kPa for safe operation.
@@ -28,6 +31,7 @@ cryo-pod-window-error-header = ERROR
 cryo-pod-window-eject-error = Ejection mechanism failed. Contact a NanoTrasen-certified engineer for support.
 
 cryo-pod-window-chems-no-beaker = No beaker inserted
+cryo-pod-window-chems-empty-beaker = Beaker is empty
 cryo-pod-window-chems-injecting-tooltip = Injecting {$quantity}u
 cryo-pod-window-inject-1u = 1u
 cryo-pod-window-inject-5u = 5u
@@ -38,3 +42,5 @@ cryo-pod-window-eject-beaker = Eject
 cryo-pod-window-eject-patient = Eject patient
 
 cryo-pod-window-health-no-damage = No damage detected
+
+

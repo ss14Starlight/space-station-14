@@ -19,6 +19,12 @@ public sealed partial class ZoneTrackerComponent : Component
     [ViewVariables, AutoNetworkedField]
     public List<ProtoId<ZonePrototype>> Zones = [];
 
+    /// <summary>
+    /// Tiles in the current room, 0 when not in a room (space, off grid). Used for room acoustics.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public int RoomSize;
+
     [ViewVariables]
     public ProtoId<ZonePrototype>? Raised;
 

@@ -13,6 +13,7 @@ steal-target-groups-clothing-outer-hardsuit-hos = head of security's hardsuit
 steal-target-groups-clothing-outer-hardsuit-warden = warden's hardsuit
 steal-target-groups-clothing-outer-hardsuit-brigmedic = brigmedic's hardsuit
 steal-target-groups-clothing-outer-hardsuit-qm = quartermaster's luxury maxim hardsuit
+steal-target-groups-clothing-outer-hardsuit-salvlead = spationaut lead hardsuit
 steal-target-groups-clothing-outer-hardsuit-captain = captain's armored spacesuit
 steal-target-groups-clothing-outer-hardsuit-ntr = nanotrasen representative's hardsuit
 steal-target-groups-clothing-outer-hardsuit-bso = blueshield officer's hardsuit
@@ -25,9 +26,11 @@ steal-target-groups-bso-weapon = blueshield officer's X-01 multiphase energy gun
 
 # Thief single items
 steal-target-groups-strange-brigmed-bedsheet = strange brigmedic's bedsheet
+steal-target-groups-salvlead-mantle = salvage lead's ceremonial salvager's mantle
 
 steal-target-groups-firing-pin = firing pin
 steal-target-groups-firing-pin-advanced-laser = prototype laser crystal
+steal-target-groups-firing-pin-smart-lmg = smartgun bolt assembly
 
 steal-target-groups-departmental-tech-fab-circuitboard = cargo, engineering, medical, or science techfab machine board
 steal-target-groups-secure-tech-fab-circuitboard = command or security techfab machine board
@@ -36,6 +39,7 @@ steal-target-groups-med-tek-cartridge = med tek cartridge
 steal-target-groups-astro-nav-cartridge = astro nav cartridge
 
 steal-target-groups-mining-shuttle-console-circuitboard = mining shuttle console board
+steal-target-groups-salvage-shuttle-console-circuitboard = salvage shuttle console board
 steal-target-groups-communications-computer-circuitboard = communications computer board
 steal-target-groups-id-card-computer-circuitboard = ID card computer board
 steal-target-groups-shipyard-computer-circuitboard = shipyard computer board

@@ -32,34 +32,3 @@
     maxAngle: 24
     angleIncrease: 5
     angleDecay: 10
-
-- type: !PartialOnly entity
-  id: WeaponShotgunKammerer
-  components:
-  - type: BallisticAmmoProvider
-    soundRack:
-      collection: CockPumpAction
-
-- type: !PartialOnly entity
-  id: WeaponShotgunEnforcer
-  components:
-  - type: Gun
-    soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/gun_shotgun_automatic.ogg
-  - type: BallisticAmmoProvider
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
-
-- type: !PartialOnly entity
-  id: WeaponShotgunHushpup
-  components:
-  - type: BallisticAmmoProvider
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg # surprising enough, this shotgun is a modified version of the Enforcer (renamed to )
-
-- type: !PartialOnly entity
-  id: WeaponShotgunBulldog
-  components:
-  - type: Gun
-    soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/gun_shotgun_automatic.ogg

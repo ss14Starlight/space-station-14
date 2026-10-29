@@ -13,8 +13,10 @@ chat-manager-admin-ooc-chat-enabled-message = Admin OOC chat has been enabled.
 chat-manager-admin-ooc-chat-disabled-message = Admin OOC chat has been disabled.
 
 chat-manager-max-message-length-exceeded-message = Your message exceeded {$limit} character limit
+chat-manager-no-headset-on-message = You don't have a headset on!
 chat-manager-no-radio-key = No radio key specified!
 chat-manager-no-such-channel = There is no channel with key '{$key}'!
+chat-manager-whisper-headset-on-message = You can't whisper on the radio!
 
 chat-manager-server-wrap-message = [bold]{$message}[/bold]
 chat-manager-sender-announcement = Central Command
@@ -94,6 +96,7 @@ chat-speech-verb-plant-3 = creaks
 chat-speech-verb-name-robotic = Robotic
 chat-speech-verb-robotic-1 = states
 chat-speech-verb-robotic-2 = beeps
+chat-speech-verb-robotic-3 = boops
 
 chat-speech-verb-name-reptilian = Reptilian
 chat-speech-verb-reptilian-1 = hisses

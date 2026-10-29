@@ -124,6 +124,10 @@
   priority: 0
 
 - type: !PartialOnly emote
+  id: DeathgaspIPC
+  priority: 1
+
+- type: !PartialOnly emote
   id: Gasp
   priority: 2
 

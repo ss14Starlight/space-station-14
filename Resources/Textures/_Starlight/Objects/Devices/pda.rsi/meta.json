@@ -217,9 +217,28 @@
       ]
     },
     {
+      "name": "pda-gunnerysergeant",
+      "copyright": "Taken from tgstation, resprited into Gunnery Sergeant by AnyTap (GitHub)"
+    },
+    {
       "name": "pda-salvagemedic",
-      "copyright": "mikeysaurus, ParadiseStation",
-      "license": "CC-BY-SA-3.0"
+      "copyright": "mikeysaurus, ParadiseStation"
+    },
+    {
+      "name": "pda-veteransalvagemedic",
+      "copyright": "deltaVelocity, ParadiseStation, recoloured by RoseHB"
+    },
+    {
+      "name": "pda-senioratmos",
+      "copyright": "Talirson",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.15,
+          0.15
+        ]
+      ]
     }
   ]
 }

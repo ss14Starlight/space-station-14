@@ -7,4 +7,19 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/_Starlight/Items/Handling/book_drop.ogg
+  - type: PhysicalComposition
+    materialComposition:
+      SheetPrinter: 300
+  - type: Tag
+    tags:
+    - Recyclable
 
+- type: !PartialOnly entity
+  id: BaseGuidebook
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      SheetPrinter: 300
+  - type: Tag
+    tags:
+    - Recyclable

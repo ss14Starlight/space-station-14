@@ -1,0 +1,336 @@
+# "Evil" inverted variants of various regular station jobs. Sorted alphabetically.
+# Intended for event purposes where some secondary faction also runs a station.
+# Note: They don't actually have to be evil ;).
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilAssistant
+  icon:
+    sprite: &rsi /Textures/_Starlight/Admeme/EvilStationJobs/Interface/Misc/job_icons.rsi
+    state: EvilAssistant
+  jobName: job-name-assistant
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilAtmosphericTechnician
+  icon:
+    sprite: *rsi
+    state: EvilAtmosphericTechnician
+  jobName: job-name-atmostech
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilBartender
+  icon:
+    sprite: *rsi
+    state: EvilBartender
+  jobName: job-name-bartender
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilBotanist
+  icon:
+    sprite: *rsi
+    state: EvilBotanist
+  jobName: job-name-botanist
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilBoxer
+  icon:
+    sprite: *rsi
+    state: EvilBoxer
+  jobName: job-name-boxer
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilBrigmedic
+  icon:
+    sprite: *rsi
+    state: EvilBrigmedic
+  jobName: job-name-brigmedic
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilCargoTechnician
+  icon:
+    sprite: *rsi
+    state: EvilCargoTechnician
+  jobName: job-name-cargotech
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilChaplain
+  icon:
+    sprite: *rsi
+    state: EvilChaplain
+  jobName: job-name-chaplain
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilChef
+  icon:
+    sprite: *rsi
+    state: EvilChef
+  jobName: job-name-chef
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilChemist
+  icon:
+    sprite: *rsi
+    state: EvilChemist
+  jobName: job-name-chemist
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilDetective
+  icon:
+    sprite: *rsi
+    state: EvilDetective
+  jobName: job-name-detective
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilDutyOfficer
+  icon:
+    sprite: *rsi
+    state: EvilDutyOfficer
+  jobName: job-name-dutyofficer
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilJanitor
+  icon:
+    sprite: *rsi
+    state: EvilJanitor
+  jobName: job-name-janitor
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilMailTech
+  icon:
+    sprite: *rsi
+    state: EvilMailTech
+  jobName: job-name-mailtech
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilMedicalDoctor
+  icon:
+    sprite: *rsi
+    state: EvilMedicalDoctor
+  jobName: job-name-doctor
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilMedicalIntern
+  icon:
+    sprite: *rsi
+    state: EvilMedicalIntern
+  jobName: job-name-intern
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilMime
+  icon:
+    sprite: *rsi
+    state: EvilMime
+  jobName: job-name-mime
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilMusician
+  icon:
+    sprite: *rsi
+    state: EvilMusician
+  jobName: job-name-musician
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilParamedic
+  icon:
+    sprite: *rsi
+    state: EvilParamedic
+  jobName: job-name-paramedic
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilPerformer
+  icon:
+    sprite: *rsi
+    state: EvilPerformer
+  jobName: job-name-performer
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilPsychologist
+  icon:
+    sprite: *rsi
+    state: EvilPsychologist
+  jobName: job-name-psychologist
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilReporter
+  icon:
+    sprite: *rsi
+    state: EvilReporter
+  jobName: job-name-reporter
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilResearchAssistant
+  icon:
+    sprite: *rsi
+    state: EvilResearchAssistant
+  jobName: job-name-research-assistant
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilRoboticist
+  icon:
+    sprite: *rsi
+    state: EvilRoboticist
+  jobName: job-name-roboticist
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilSalvageLead
+  icon:
+    sprite: *rsi
+    state: EvilSalvageLead
+  jobName: job-name-salvagelead
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilSalvageSpecialist
+  icon:
+    sprite: *rsi
+    state: EvilSalvageSpecialist
+  jobName: job-name-salvagespec
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilScientist
+  icon:
+    sprite: *rsi
+    state: EvilScientist
+  jobName: job-name-scientist
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilSecurityCadet
+  icon:
+    sprite: *rsi
+    state: EvilSecurityCadet
+  jobName: job-name-cadet
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilSecurityOfficer
+  icon:
+    sprite: *rsi
+    state: EvilSecurityOfficer
+  jobName: job-name-security
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilServiceWorker
+  icon:
+    sprite: *rsi
+    state: EvilServiceWorker
+  jobName: job-name-serviceworker
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilShaftMiner
+  icon:
+    sprite: *rsi
+    state: EvilShaftMiner
+  jobName: job-name-miningspec
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilStationEngineer
+  icon:
+    sprite: *rsi
+    state: EvilStationEngineer
+  jobName: job-name-engineer
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilSurgeon
+  icon:
+    sprite: *rsi
+    state: EvilSurgeon
+  jobName: job-name-surgeon
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilTechnicalAssistant
+  icon:
+    sprite: *rsi
+    state: EvilTechnicalAssistant
+  jobName: job-name-technical-assistant
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilVisitor
+  icon:
+    sprite: *rsi
+    state: EvilVisitor
+  jobName: job-name-visitor
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilWarden
+  icon:
+    sprite: *rsi
+    state: EvilWarden
+  jobName: job-name-warden
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilZookeeper
+  icon:
+    sprite: *rsi
+    state: EvilZookeeper
+  jobName: job-name-zookeeper
+  allowSelection: false

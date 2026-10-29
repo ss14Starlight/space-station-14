@@ -15,6 +15,7 @@
       damageContainers:
         - Biological
         - Hybrid
+        - MoffDemonBiological
     - type: ShowHealthIcons
       damageContainers:
         - Biological

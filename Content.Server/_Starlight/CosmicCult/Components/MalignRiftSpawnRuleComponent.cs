@@ -7,5 +7,5 @@ namespace Content.Server._Starlight.CosmicCult.Components;
 public sealed partial class MalignRiftSpawnRuleComponent : Component
 {
     [DataField] public EntProtoId MalignRift = "CosmicMalignRift";
-    [DataField] public SoundSpecifier Tier2Sound = new SoundPathSpecifier("/Audio/_Starlight/Ambience/Antag/CosmicCult/tier2.ogg");
+    [DataField] public SoundSpecifier Tier2Sound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier2.ogg");
 }

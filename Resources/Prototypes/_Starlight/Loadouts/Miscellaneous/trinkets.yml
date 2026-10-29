@@ -948,7 +948,13 @@
 
 
 - type: loadout
-  id: TwistyCube
+  id: RadioHandheldStation
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobRadioHost
+        time: 1h
   storage:
-    back:
-      - TwistyCube
+    pocket1:
+      - RadioHandheldStation

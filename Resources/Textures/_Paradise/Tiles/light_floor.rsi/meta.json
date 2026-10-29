@@ -1,0 +1,43 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "light_off",
+            "copyright": "Taken from Paradise SS13 at commit 8c3034cba3800d39a840d263b0231e8a90ee7e03, icons/turf/floors.dmi"
+        },
+        {
+            "name": "light_on",
+            "copyright": "Single frame of light_on, taken from Paradise SS13 at commit 8c3034cba3800d39a840d263b0231e8a90ee7e03, icons/turf/floors.dmi"
+        },
+        {
+            "name": "light_open",
+            "copyright": "Based on light_off from Paradise SS13 at commit 8c3034cba3800d39a840d263b0231e8a90ee7e03, edited by 0warie for Starlight"
+        },
+        {
+            "name": "light_open_bulb",
+            "copyright": "Based on light_off from Paradise SS13 at commit 8c3034cba3800d39a840d263b0231e8a90ee7e03, edited by 0warie for Starlight"
+        },
+        {
+            "name": "light_open_bulb_glow",
+            "copyright": "Based on light_off from Paradise SS13 at commit 8c3034cba3800d39a840d263b0231e8a90ee7e03, edited by 0warie for Starlight"
+        },
+        {
+            "name": "light_open_bulb_broken",
+            "copyright": "Based on light_off from Paradise SS13 at commit 8c3034cba3800d39a840d263b0231e8a90ee7e03, edited by 0warie for Starlight"
+        },
+        {
+            "name": "light_open_bulb_burned",
+            "copyright": "Based on light_off from Paradise SS13 at commit 8c3034cba3800d39a840d263b0231e8a90ee7e03, edited by 0warie for Starlight"
+        },
+        {
+            "name": "tile",
+            "copyright": "Taken from Paradise SS13 at commit 8c3034cba3800d39a840d263b0231e8a90ee7e03, icons/obj/tiles.dmi (glass_wire)"
+        }
+    ]
+}

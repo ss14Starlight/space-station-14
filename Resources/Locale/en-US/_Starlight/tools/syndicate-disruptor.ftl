@@ -11,3 +11,6 @@ syndicate-disruptor-ion-storm = Creates an ion feedback on the station, disrupti
 syndicate-disruptor-comms-blackout = Causes the telecomms servers to short out for a time.
 syndicate-disruptor-power-grid-check = Causes a fake power spike to trigger a grid check.
 syndicate-disruptor-door-lagging-virus = Creates a virus that randomly bolts open some airlocks.
+syndicate-disruptor-security-drill = Causes errors in the station's security records, triggering a security drill.
+syndicate-disruptor-night-shift = Creates a false power savings trigger in the station's power grid, triggering low power mode.
+syndicate-disruptor-syndie-evac = Calls in a Syndicate Evac Pod for pickup.

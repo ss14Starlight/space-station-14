@@ -31,12 +31,27 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
         _cfg.UnsubValueChanged(StarlightCCVars.StationRadioVolume, OnVolumeCfgChanged);
     }
 
+    protected override void OnReceiverMapInit(EntityUid uid, StationRadioReceiverComponent component, MapInitEvent args)
+    {
+        if (component.SoundEntity == null)
+            return;
+        if (!TryComp<AudioComponent>(component.SoundEntity, out var audio))
+            return;
+
+        _audio.SetGain(component.SoundEntity, GetGain(component, _power.IsPowered(uid)) * component.ClientVolume ?? 0, audio);
+
+        var playOffset = _timing.CurTime - component.StartTime;
+        if (playOffset is not null)
+            _audio.SetPlaybackPosition((component.SoundEntity.Value, audio), (float)playOffset.Value.TotalSeconds);
+    }
+
     [SubscribeLocalEvent]
     private void OnVolumeChanged(EntityUid uid, StationRadioReceiverComponent component, StationRadioVolumeChangedEvent args)
     {
         component.ClientVolume = args.Volume;
         if (!TryComp<AudioComponent>(component.SoundEntity, out var audio))
             return;
+
         _audio.SetGain(component.SoundEntity, GetGain(component, _power.IsPowered(uid)) * (component.ClientVolume ?? 0), audio);
     }
 

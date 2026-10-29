@@ -75,7 +75,7 @@
                      max: 2
             - !type:PlaySoundBehavior
               sound:
-                path: /Audio/_Starlight/Effects/Supermatter/crystal_crack_1.ogg
+                path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
             - !type:ExplodeBehavior
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -203,7 +203,7 @@
         behaviors:
         - !type:PlaySoundBehavior
           sound:
-            path: /Audio/_Starlight/Effects/Supermatter/emitter2.ogg
+            path: /Audio/_Starlight/Effects/supermatter/emitter2.ogg
         - !type:ExplodeBehavior
         - !type:DoActsBehavior
           acts: ["Destruction"]

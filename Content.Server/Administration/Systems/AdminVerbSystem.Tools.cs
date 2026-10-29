@@ -40,7 +40,7 @@ using Robust.Shared.Utility;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
-using Content.Shared.Contraband;
+using Content.Shared._Blimpuf.Contraband; // Blimpuf
 using Content.Shared.Electrocution;
 using Content.Shared.Humanoid;
 using Content.Shared.Overlays;
@@ -362,8 +362,10 @@ public sealed partial class AdminVerbSystem
 
             Act = () =>
             {
-                var (mapUid, gridUid) = _adminTestArenaSystem.AssertArenaLoaded(player);
-                _transformSystem.SetCoordinates(args.Target, new EntityCoordinates(gridUid ?? mapUid, Vector2.One));
+                // Starlight begin
+                var mapUid = _adminTestArenaSystem.AssertArenaLoaded(player);
+                _transformSystem.SetCoordinates(args.Target, new EntityCoordinates(mapUid, Vector2.One));
+                // Starlight end
             },
             Impact = LogImpact.Medium,
             Message = Loc.GetString("admin-trick-send-to-test-arena-description"),

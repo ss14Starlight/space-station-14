@@ -1,0 +1,5 @@
+- type: !PartialOnly vendingMachineInventory
+  id: BodaInventory
+  emaggedInventory: # Blimpuf
+    DrinkVodkizineSmallBottleUsed: 2 # Blimpuf
+    BibleCommunistManifesto: 1 # Blimpuf

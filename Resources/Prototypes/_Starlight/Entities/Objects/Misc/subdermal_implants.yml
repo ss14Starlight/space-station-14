@@ -120,6 +120,30 @@
     - GearAcidifier
 
 #SELF
+- type: entity
+  parent: BaseSubdermalImplant
+  id: BluespaceStorageImplant
+  name: bluespace storage implant
+  description: This implant grants hidden storage within a person's body using bluespace technology.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageImplant
+    - type: SubdermalImplant
+      implantAction: ActionOpenStorageImplant
+      whitelist:
+        components:
+        - Hands # no use giving a mouse a storage implant, but a monkey is another story...
+    - type: Storage
+      grid:
+      - 0,0,4,3
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: [ ]
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
 
 # death acidifier for terminator phase 1, only manual activation (no death trigger to avoid phase 2 transformation issues)
 - type: entity
@@ -248,7 +272,7 @@
   id: USSPUplinkImplant
   name: USSP uplink implant
   description: A subdermal implant containing the USSP uplink radio.
-  parent: [ BaseSubdermalImplant, StorePresetUSSP ]
+  parent: BaseSubdermalImplant
   categories: [ HideSpawnMenu ]
   components:
     - type: SubdermalImplant
@@ -256,9 +280,7 @@
       whitelist:
         components:
           - Hands
-    - type: Store
-      balance:
-        Telebond: 0
+    - type: RemoteStore
     - type: UserInterface
       interfaces:
         enum.StoreUiKey.Key:
@@ -287,3 +309,13 @@
   - type: RadioImplant
     radioChannels:
     - Soviet
+
+- type: entity
+  parent: MindShieldImplant
+  id: ITGMindShieldImplant
+  name: ITG mindshield implant
+  description: This implant will ensure loyalty to the Guild and prevent mind control devices.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MindShieldImplant
+    mindShieldStatusIcon: ITGMindShieldIcon

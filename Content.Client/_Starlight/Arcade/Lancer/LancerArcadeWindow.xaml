@@ -25,7 +25,7 @@
                         <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
                     </PanelContainer.PanelOverride>
                     <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="10" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalExpand="True">
-                        <TextureRect TexturePath="/Textures/_Starlight/Interface/Arcade/Lancer/powered_by_lancer.png"
+                        <TextureRect TexturePath="/Textures/_Starlight/Arcade/Lancer/powered_by_lancer.png"
                                      Stretch="KeepAspectCentered"
                                      HorizontalAlignment="Center"
                                      MaxSize="320 80" />

@@ -1,4 +1,0 @@
-- type: entity
-  id: MailSyndicateSpamLetterAdmin
-  suffix: Admin Only, No Achievement
-  parent: RRMailSyndicateSpamLetter

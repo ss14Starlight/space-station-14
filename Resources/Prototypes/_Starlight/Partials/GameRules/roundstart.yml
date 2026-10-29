@@ -45,3 +45,22 @@
     - SubXenoborgs
     presets:
     - Xenoborgs
+
+- type: !PartialOnly entity
+  id: BaseTraitorRule
+  components:
+  - type: AntagRandomObjectives
+    traitorForcedObjectiveGroup: TraitorObjectiveGroupFate
+    storyObjectiveGroup: TraitorObjectiveGroupStory
+    excludedObjectives:
+    - EscapeShuttleObjective
+    - DieObjective
+
+- type: !PartialOnly entity
+  id: Changeling
+  components:
+  - type: AntagRandomObjectives
+    sets:
+    - groups: ChangelingObjectiveGroupCombat
+    maxDifficulty: 0
+    maxOptions: 4

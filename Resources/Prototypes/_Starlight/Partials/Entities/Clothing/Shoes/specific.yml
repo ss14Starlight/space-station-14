@@ -1,0 +1,24 @@
+- type: !PartialOnly entity
+  id: ClothingShoesGaloshes
+  components:
+  - type: StealTarget
+    stealGroup: GaloshesCollection
+
+- type: !PartialOnly entity
+  id: ClothingShoesCluwne
+  components:
+  - type: Tag
+    tags:
+      - ClownShoes
+      - WhitelistChameleon
+      - BibleThwackRemovable
+
+- type: !PartialOnly entity
+  id: ClothingShoesSkates
+  components:
+  - type: ClothingSpeedModifier
+    walkModifier: 1.5
+    sprintModifier: 1.5
+  - type: AddTagsOnClothingEquip
+    tagsToAdd:
+      - Skating

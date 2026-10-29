@@ -333,7 +333,7 @@
   components:
   - type: StationEvent
     weight: 1 # rare
-    duration: 1
+    duration: null
     earliestStart: 30
     reoccurrenceDelay: 60
     minimumPlayers: 45 # 🌟Starlight🌟 Casualization
@@ -600,22 +600,21 @@
     sounds:
       collection: Paracusia
 
-# Starlight-edit: Admeme moved into our folder _Starlight/Admeme
-# - type: entity
-#   id: CluwneBeastSpawn
-#   parent: BaseGameRule
-#   components:
-#   - type: StationEvent
-#     globalAnnouncement: false # Starlight
-#     earliestStart: 20
-#     minimumPlayers: 15
-#     weight: 6
-#     duration: 30
-#     maxOccurrences: 2
-#   - type: VentCrittersRule
-#     entries:
-#       - id: SpawnPointGhostCluwneBeast
-#         prob: 0.005
+- type: entity
+  id: CluwneBeastSpawn
+  parent: BaseGameRule
+  components:
+  - type: StationEvent
+    globalAnnouncement: false # Starlight
+    earliestStart: 20
+    minimumPlayers: 15
+    weight: 6
+    duration: 30
+    maxOccurrences: 2
+  - type: VentCrittersRule
+    entries:
+      - id: SpawnPointGhostCluwneBeast
+        prob: 0.005
 
 - type: entity
   parent: BaseGameRule

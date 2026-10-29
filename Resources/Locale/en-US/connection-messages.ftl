@@ -50,6 +50,11 @@ cmd-blacklistremove-removed = {$username} removed from the blacklist
 cmd-blacklistremove-not-found = Unable to find '{$username}'
 cmd-blacklistremove-arg-player = [player]
 
+baby-jail-account-denied = This server is a newbie server, intended for new players and those who want to help them. New connections by accounts that are too old or are not on a whitelist are not accepted. Check out some other servers and see everything Space Station 14 has to offer. Have fun!
+baby-jail-account-denied-reason = This server is a newbie server, intended for new players and those who want to help them. New connections by accounts that are too old or are not on a whitelist are not accepted. Check out some other servers and see everything Space Station 14 has to offer. Have fun! Reason: "{$reason}"
+baby-jail-account-reason-account = Your Space Station 14 account is too old. It must be younger than {$minutes} minutes
+baby-jail-account-reason-overall = Your overall playtime on the server must be younger than {$minutes} $minutes
+
 generic-misconfigured = The server is misconfigured and is not accepting players. Please contact the server owner and try again later.
 
 conntrack-resolve-failed-retry = The server could not verify your connection right now and has no previous address on record for your account. Please reconnect in a little while.

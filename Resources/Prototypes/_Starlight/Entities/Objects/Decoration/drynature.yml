@@ -57,6 +57,15 @@
             min: 2
             max: 4
 
+
+- type: entity
+  parent: BaseTreeDry
+  id: DryTreeA
+  name: Dry Tree
+  components:
+  - type: Sprite
+    state: drytreeA
+
 - type: entity
   parent: BaseTreeDry
   id: DryTreeB

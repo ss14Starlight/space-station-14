@@ -1,0 +1,80 @@
+# Blackstar PDAs
+
+- type: entity
+  parent: BasePDA
+  id: BlackstarLegionCommanderPDA
+  name: Legion Commander PDA
+  description: The weight of an entire legion behind every order.
+  components:
+    - type: Pda
+      id: BlackstarLegionCommanderIDCard
+    - type: PdaBorderColor
+      borderColor: "#1a1a1a"
+      accentHColor: "#C0A020"
+
+- type: entity
+  parent: BasePDA
+  id: BlackstarHighLegatePDA
+  name: High Legate PDA
+  description: Authority comes with a price.
+  components:
+    - type: Pda
+      id: BlackstarHighLegateIDCard
+    - type: PdaBorderColor
+      borderColor: "#1a1a1a"
+      accentHColor: "#888888"
+
+- type: entity
+  parent: BasePDA
+  id: BlackstarLegatePDA
+  name: Legate PDA
+  description: Keep your soldiers in line.
+  components:
+    - type: Pda
+      id: BlackstarLegateIDCard
+    - type: PdaBorderColor
+      borderColor: "#1a1a1a"
+
+- type: entity
+  parent: BasePDA
+  id: BlackstarDreadwalkerPDA
+  name: Dreadwalker PDA
+  description: Precision is the difference between a mission and a massacre.
+  components:
+    - type: Pda
+      id: BlackstarDreadwalkerIDCard
+    - type: PdaBorderColor
+      borderColor: "#1a1a1a"
+
+- type: entity
+  parent: BasePDA
+  id: BlackstarLegionnairePDA
+  name: Legionnaire PDA
+  description: Adapt. Overcome. Survive.
+  components:
+    - type: Pda
+      id: BlackstarLegionnaireIDCard
+    - type: PdaBorderColor
+      borderColor: "#1a1a1a"
+
+- type: entity
+  parent: BasePDA
+  id: BlackstarBlackguardPDA
+  name: Blackguard PDA
+  description: The last line of defence before the last resort.
+  components:
+    - type: Pda
+      id: BlackstarBlackguardIDCard
+    - type: PdaBorderColor
+      borderColor: "#1a1a1a"
+
+- type: entity
+  parent: BasePDA
+  id: BlackstarInitiatePDA
+  name: Initiate PDA
+  description: You've earned your place. Now keep it.
+  components:
+    - type: Pda
+      id: BlackstarInitiateIDCard
+    - type: PdaBorderColor
+      borderColor: "#1a1a1a"

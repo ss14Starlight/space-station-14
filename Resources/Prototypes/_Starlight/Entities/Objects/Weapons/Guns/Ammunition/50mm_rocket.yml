@@ -75,3 +75,15 @@
   - type: StaticPrice
     price: 600
 
+- type: entity
+  parent: Magazine60mmRocket
+  id: Magazine50mmRocketEmpty
+  name: 50mm rocket magazine (empty)
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - Cartridge50mmRocket
+    capacity: 26

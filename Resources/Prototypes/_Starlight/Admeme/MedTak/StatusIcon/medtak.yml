@@ -1,0 +1,28 @@
+- type: factionIcon
+  id: MedTakOperator
+  priority: 11
+  locationPreference: Left
+  icon:
+    sprite: /Textures/_Starlight/Admeme/MedTak/Interface/client_icons.rsi
+    state: medtak
+
+- type: factionIcon
+  parent: MedTakOperator
+  id: MedTakGold
+  icon:
+    sprite: /Textures/_Starlight/Admeme/MedTak/Interface/client_icons.rsi
+    state: gold
+
+- type: factionIcon
+  parent: MedTakOperator
+  id: MedTakSilver
+  icon:
+    sprite: /Textures/_Starlight/Admeme/MedTak/Interface/client_icons.rsi
+    state: silver
+
+- type: factionIcon
+  parent: MedTakOperator
+  id: MedTakBronze
+  icon:
+    sprite: /Textures/_Starlight/Admeme/MedTak/Interface/client_icons.rsi
+    state: bronze

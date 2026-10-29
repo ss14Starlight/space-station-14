@@ -13,6 +13,21 @@ namespace Content.Shared.Verbs
         [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] protected SharedContainerSystem ContainerSystem = default!;
 
+        #region Starlight
+        /// <summary>
+        ///     Resolves the entity to use as the user for verbs requested by a session.
+        /// </summary>
+        /// <param name="attachedEntity">The entity attached to the requesting session.</param>
+        /// <returns>
+        ///     The entity to use for verb checks and execution, or <see langword="null"/> to reject the request.
+        /// </returns>
+        /// <remarks>
+        ///     The default implementation returns <paramref name="attachedEntity"/>.
+        /// </remarks>
+        protected virtual EntityUid? ResolveVerbUser(EntityUid attachedEntity)
+            => attachedEntity;
+        #endregion
+
         public override void Initialize()
         {
             base.Initialize();
@@ -22,8 +37,12 @@ namespace Content.Shared.Verbs
 
         private void HandleExecuteVerb(ExecuteVerbEvent args, EntitySessionEventArgs eventArgs)
         {
-            var user = eventArgs.SenderSession.AttachedEntity;
-            if (user == null)
+            var attachedEntity = eventArgs.SenderSession.AttachedEntity;
+            if (attachedEntity is not { } attached)
+                return;
+
+            var user = ResolveVerbUser(attached);
+            if (user is not { } userEntity)
                 return;
 
             if (!TryGetEntity(args.Target, out var target))
@@ -31,12 +50,12 @@ namespace Content.Shared.Verbs
 
             // It is possible that client-side prediction can cause this event to be raised after the target entity has
             // been deleted. So we need to check that the entity still exists.
-            if (Deleted(user))
+            if (Deleted(userEntity))
                 return;
 
             // Get the list of verbs. This effectively also checks that the requested verb is in fact a valid verb that
             // the user can perform.
-            var verbs = GetLocalVerbs(target.Value, user.Value, args.RequestedVerb.GetType());
+            var verbs = GetLocalVerbs(target.Value, userEntity, args.RequestedVerb.GetType());
 
             // Note that GetLocalVerbs might waste time checking & preparing unrelated verbs even though we know
             // precisely which one we want to run. However, MOST entities will only have 1 or 2 verbs of a given type.
@@ -44,7 +63,7 @@ namespace Content.Shared.Verbs
 
             // Find the requested verb.
             if (verbs.TryGetValue(args.RequestedVerb, out var verb))
-                ExecuteVerb(verb, user.Value, target.Value);
+                ExecuteVerb(verb, userEntity, target.Value);
         }
 
         /// <summary>

@@ -59,8 +59,9 @@ namespace Content.Server.Verbs
                     Log.Error($"Unknown verb type received: {key}");
             }
 
+            var verbUser = ResolveVerbUser(attached) ?? attached; // Starlight
             var response =
-                new VerbsResponseEvent(args.EntityUid, GetLocalVerbs(GetEntity(args.EntityUid), attached, verbTypes, force));
+                new VerbsResponseEvent(args.EntityUid, GetLocalVerbs(GetEntity(args.EntityUid), verbUser, verbTypes, force));
             RaiseNetworkEvent(response, player.Channel);
         }
 

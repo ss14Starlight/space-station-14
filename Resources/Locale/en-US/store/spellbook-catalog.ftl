@@ -33,6 +33,10 @@ spellbook-ethereal-jaunt-name = Ethereal Jaunt
 spellbook-ethereal-jaunt-description = Slip into the ethereal plane to slip away from your enemies!
 
 spellbook-mind-swap-name = Mind Swap
+spellbook-mind-swap-description = Exchange bodies with another person!
+
+spellbook-animate-name = Animate
+spellbook-animate-description = Bring an inanimate object to life!
 
 spellbook-smite-name = Smite
 # starlight edit

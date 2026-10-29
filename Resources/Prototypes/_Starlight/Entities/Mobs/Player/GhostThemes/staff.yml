@@ -109,7 +109,7 @@
   colorizeable: true
   spriteSpecifier:
     sprite:
-      sprite: _Starlight/Mobs/CosmicCult/wisp.rsi
+      sprite: _Starlight/CosmicCult/Mobs/wisp.rsi
       state: wisp
       shader: unshaded
   requirements:

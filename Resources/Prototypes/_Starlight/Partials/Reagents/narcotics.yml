@@ -31,3 +31,61 @@
         effectProto: StatusEffectSleepiness
         maximumSleepiness: 60s
         time: 2.5
+
+- type: !PartialOnly reagent
+  id: Desoxyephedrine
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Ephedrine
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Stimulants
+  contrabandTier: Tier3
+  contrabandType: Syndicate
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: THC
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Impedrezene
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: SpaceDrugs
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Nocturine
+  contrabandTier: Tier3
+  contrabandType: Syndicate
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: MuteToxin
+  contrabandTier: Tier3
+  contrabandType: Syndicate
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: NorepinephricAcid
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: TearGas
+  contrabandTier: Tier2
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Happiness
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove

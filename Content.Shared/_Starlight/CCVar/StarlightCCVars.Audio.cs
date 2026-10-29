@@ -23,6 +23,12 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("audio.environment_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// How strongly rooms echo, scales every room reverb (roomReverb prototypes).
+    /// </summary>
+    public static readonly CVarDef<float> ReverbVolume =
+        CVarDef.Create("audio.reverb_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// World sounds that belong to no other category.
     /// </summary>
     public static readonly CVarDef<float> EffectsVolume =

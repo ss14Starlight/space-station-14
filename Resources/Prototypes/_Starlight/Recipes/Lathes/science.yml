@@ -23,6 +23,14 @@
   recipes:
   - NullSpaceDrainer
 
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: HandheldSlimeScanner
+  result: HandheldSlimeScanner
+  materials:
+    Plastic: 200
+    Glass: 150
+
 ## Dynamic
 
 - type: latheRecipePack

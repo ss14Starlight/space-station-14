@@ -332,6 +332,21 @@
       sprite: Clothing/Ears/Headsets/freelance.rsi
 
 - type: entity
+  parent: [ClothingHeadset, BaseMagicalContraband]
+  id: ClothingHeadsetWizard
+  name: wizard headset
+  description: A headset used by the dreaded space wizards.
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyWizardMasterUnremovable # Starlight
+    - type: Sprite
+      sprite: Clothing/Ears/Headsets/wizard.rsi
+    - type: Clothing
+      sprite: Clothing/Ears/Headsets/wizard.rsi
+
+- type: entity
   parent: [ClothingHeadset, BaseMajorContraband]
   id: ClothingHeadsetNinja
   name: green headset

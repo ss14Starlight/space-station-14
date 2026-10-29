@@ -6,14 +6,12 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Localizations;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
-#region Starlight
-
 using Content.Shared.Interaction;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared._Starlight.Silicons;
 using Content.Shared._Starlight.Silicons.Borgs;
-#endregion Starlight
+using Content.Shared._Starlight.Sound;
 
 namespace Content.Shared.Silicons.Borgs;
 
@@ -236,7 +234,9 @@ public abstract partial class SharedBorgSystem
 
             if (item is { } pickUp)
             {
+                EnsureComp<SilentPickupComponent>(pickUp); // Starlight: switching modules should not rattle every tool
                 _hands.DoPickup(chassis, handId, pickUp, hands);
+                RemComp<SilentPickupComponent>(pickUp); // Starlight
 
                 if (!IsDroppableHand(hand)) // Starlight
                 {

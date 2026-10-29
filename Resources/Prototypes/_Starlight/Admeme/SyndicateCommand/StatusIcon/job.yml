@@ -1,0 +1,91 @@
+# Syndicate command job icons. Sorted alphabetically.
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateCaptain
+  icon:
+    sprite: &rsi /Textures/_Starlight/Admeme/SyndicateCommand/Interface/Misc/job_icons.rsi
+    state: SyndicateCaptain
+  jobName: job-name-syndicate-captain
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateChiefEngineer
+  icon:
+    sprite: *rsi
+    state: SyndicateChiefEngineer
+  jobName: job-name-syndicate-chief-engineer
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateChiefMedicalOfficer
+  icon:
+    sprite: *rsi
+    state: SyndicateChiefMedicalOfficer
+  jobName: job-name-syndicate-chief-medical-officer
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateHeadOfPersonnel
+  icon:
+    sprite: *rsi
+    state: SyndicateHeadOfPersonnel
+  jobName: job-name-syndicate-head-of-personnel
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateHeadOfSecurity
+  icon:
+    sprite: *rsi
+    state: SyndicateHeadOfSecurity
+  jobName: job-name-syndicate-head-of-security
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateIAA
+  icon:
+    sprite: *rsi
+    state: SyndicateIAA
+  jobName: job-name-syndicate-iaa
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateMagistrate
+  icon:
+    sprite: *rsi
+    state: SyndicateMagistrate
+  jobName: job-name-syndicate-magistrate
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateQuarterMaster
+  icon:
+    sprite: *rsi
+    state: SyndicateQuarterMaster
+  jobName: job-name-syndicate-quartermaster
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateRedShield
+  icon:
+    sprite: *rsi
+    state: SyndicateRedShield
+  jobName: job-name-syndicate-redshield
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateResearchDirector
+  icon:
+    sprite: *rsi
+    state: SyndicateResearchDirector
+  jobName: job-name-syndicate-research-director
+  allowSelection: false

@@ -81,6 +81,10 @@
     cost: 200
   - type: DynamicRuleCooldown
     cooldown: 1
+    rules:
+    - DynamicSurvivalEventScheduler
+    - RampingStationEventScheduler
+    - KesslerSyndromeScheduler
     presets:
     - KesslerSyndrome
     - Zombieteors
@@ -246,6 +250,15 @@
   - type: SubGamemodes
     rules:
     - id: Thief
+      prob: 1
+
+- type: entity
+  parent: BaseGameRule
+  id: SiliconLiberationGamerule
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: SiliconLiberation
       prob: 1
 
 # Space traffic stuff, like visitors

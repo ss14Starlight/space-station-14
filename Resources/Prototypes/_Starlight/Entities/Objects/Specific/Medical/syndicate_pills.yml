@@ -14,6 +14,19 @@
         Quantity: 5
 
 # Here for consistency, but ideally if you're going to map these, use the 5u version instead.
+- type: entity
+  name: lead
+  parent: Pill
+  id: PillLead
+  suffix: Lead 15u
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Lead
+        Quantity: 15
 
 # Desoxyephedrine
 - type: entity

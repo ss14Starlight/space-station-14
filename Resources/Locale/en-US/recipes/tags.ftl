@@ -83,6 +83,15 @@ construction-graph-tag-ectoplasm = ectoplasm
 construction-graph-tag-lizard-plushie = lizard plushie
 
 # carpet
+construction-graph-tag-black-carpet = black carpet
+construction-graph-tag-blue-carpet = blue carpet
+construction-graph-tag-cyan-carpet = cyan carpet
+construction-graph-tag-green-carpet = green carpet
+construction-graph-tag-orange-carpet = orange carpet
+construction-graph-tag-pink-carpet = pink carpet
+construction-graph-tag-purple-carpet = purple carpet
+construction-graph-tag-red-carpet = red carpet
+construction-graph-tag-white-carpet = white carpet
 
 # mechs
 construction-graph-tag-hamtr-central-control-module = HAMTR central control module

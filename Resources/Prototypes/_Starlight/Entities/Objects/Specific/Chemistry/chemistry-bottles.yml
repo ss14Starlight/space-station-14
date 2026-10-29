@@ -153,6 +153,20 @@
         Quantity: 30
 
 - type: entity
+  id: ChemistryBottlePhenylpiperidine
+  suffix: phenylpiperidine
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-phenylpiperidine
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Phenylpiperidine
+        Quantity: 30
+
+- type: entity
   id: ChemistryBottleWeh
   suffix: weh
   parent: BaseChemistryBottleFilled
@@ -194,3 +208,21 @@
         - ReagentId: Glubotoxin
           Quantity: 30
 
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: CorgiJuiceChemistryBottle
+  suffix: essence of corgi
+  components:
+  - type: Label
+    currentLabel: reagent-name-corgi-endless
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: CorgiJuice
+        Quantity: 30
+  - type: SolutionRegeneration
+    generated:
+      reagents:
+      - ReagentId: CorgiJuice
+        Quantity: 0.075
