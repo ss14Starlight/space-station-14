@@ -182,7 +182,8 @@ public sealed partial class MonumentMenu : FancyWindow
         if (unlocked)
         {
             //if it's unlocked, do we have enough entropy to buy it?
-            return influence.Cost > cultComp.EntropyBudget ? InfluenceUIBox.InfluenceUIBoxState.UnlockedAndNotEnoughEntropy : InfluenceUIBox.InfluenceUIBoxState.UnlockedAndEnoughEntropy;
+            var cost = _ent.System<SharedMonumentSystem>().GetInfluenceCost(influence);
+            return cost > cultComp.EntropyBudget ? InfluenceUIBox.InfluenceUIBoxState.UnlockedAndNotEnoughEntropy : InfluenceUIBox.InfluenceUIBoxState.UnlockedAndEnoughEntropy;
         }
 
         return InfluenceUIBox.InfluenceUIBoxState.Locked;
