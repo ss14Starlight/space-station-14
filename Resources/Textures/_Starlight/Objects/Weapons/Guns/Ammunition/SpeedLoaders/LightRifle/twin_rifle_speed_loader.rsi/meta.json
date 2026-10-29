@@ -1,0 +1,45 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "states": [
+        {
+            "name": "base",
+            "copyright": "Created by kasiavonkasia (Discord)"
+        },
+        {
+            "name": "mag-1",
+            "copyright": "Created by kasiavonkasia (Discord)"
+        },
+        {
+            "name": "mag-2",
+            "copyright": "Created by kasiavonkasia (Discord)"
+        },
+        {
+            "name": "mag-3",
+            "copyright": "Created by kasiavonkasia (Discord)"
+        },
+        {
+            "name": "mag-4",
+            "copyright": "Created by kasiavonkasia (Discord)"
+        },
+        {
+            "name": "mag-5",
+            "copyright": "Created by kasiavonkasia (Discord)"
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "Created by kasiavonkasia (Discord)",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "Created by kasiavonkasia (Discord)",
+            "directions": 4
+        }
+    ]
+}
