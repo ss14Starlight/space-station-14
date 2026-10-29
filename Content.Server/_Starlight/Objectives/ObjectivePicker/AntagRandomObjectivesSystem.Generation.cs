@@ -25,7 +25,6 @@ public sealed partial class AntagRandomObjectivesSystem
     [Dependency] private TargetSystem _target = default!;
 
     private static readonly EntProtoId _sLDieObjective = "DieObjective";
-    private TimeSpan _slNextAvailability;
 
     private void CreatePicker(Entity<AntagRandomObjectivesComponent> rule, ref AfterAntagEntitySelectedEvent args)
     {
@@ -184,39 +183,68 @@ public sealed partial class AntagRandomObjectivesSystem
     /// compatible selection meeting the budget. Story goals are added separately and cost zero.
     /// </summary>
     private bool FillOffers(EntityUid mindId, MindComponent mind, PotentialObjectivesComponent offers,
-        ObjectivePickerConfigurationComponent config, Dictionary<string, int> counts, NetEntity? retained = null)
+        ObjectivePickerConfigurationComponent config, Dictionary<string, int> counts, NetEntity? retained = null,
+        int attemptBudget = int.MaxValue)
     {
-        var candidates = new Dictionary<string, float>(config.Weights);
-        var repeatable = new Dictionary<string, float>();
-        foreach (var key in offers.ObjectiveOptions.Keys)
+        if (config.Refill == null)
         {
-            if (TryComp<ObjectiveComponent>(GetEntity(key), out var objective) && objective.Unique &&
-                Prototype(GetEntity(key)) is { } proto)
-                candidates.Remove(proto.ID);
+            var candidates = new Dictionary<string, float>(config.Weights);
+            var stories = new Dictionary<string, float>(config.StoryWeights);
+            foreach (var key in offers.ObjectiveOptions.Keys)
+            {
+                if (Prototype(GetEntity(key)) is not { } proto)
+                    continue;
+                stories.Remove(proto.ID);
+                if (TryComp<ObjectiveComponent>(GetEntity(key), out var objective) && objective.Unique)
+                    candidates.Remove(proto.ID);
+            }
+
+            // Finite attempts also cover small DAGD pools with non-unique kill/lesson goals.
+            var smallest = config.Weights.Keys.Select(id => _slPrototypes.Index<EntityPrototype>(id))
+                .Select(proto => proto.TryComp<ObjectiveComponent>(out var objective, EntityManager.ComponentFactory)
+                    ? objective.Difficulty : 0).Where(difficulty => difficulty > 0).DefaultIfEmpty(1).Min();
+            config.Refill = new ObjectivePickerRefillState
+            {
+                Candidates = candidates,
+                Stories = stories,
+                Attempts = Math.Max(config.Weights.Count * 4,
+                    (int) Math.Ceiling(2 * offers.MinimumDifficulty / smallest) + (config.PreferredOptions * 8)),
+            };
+            config.LastRefillRevision = _eligibilityRevision;
+            config.RefillCounts = counts;
         }
 
-        // Finite attempts also cover small DAGD pools with non-unique kill/lesson goals.
-        var smallest = config.Weights.Keys.Select(id => _slPrototypes.Index<EntityPrototype>(id))
-            .Select(proto => proto.TryComp<ObjectiveComponent>(out var objective, EntityManager.ComponentFactory)
-                ? objective.Difficulty : 0).Where(difficulty => difficulty > 0).DefaultIfEmpty(1).Min();
-        var attempts = Math.Max(config.Weights.Count * 4,
-            (int) Math.Ceiling(2 * offers.MinimumDifficulty / smallest) + (config.PreferredOptions * 8));
-        while (attempts-- > 0)
+        var refill = config.Refill;
+        UpdateOfferState(mindId, mind, offers, counts, config);
+        while (!refill.CombatFinished)
         {
-            UpdateOfferState(mindId, mind, offers, counts, config);
             if (OffersViable(offers, retained) &&
                 offers.Difficulties.Count(pair => pair.Value > 0 && ObjectivePickerSelection.Available(offers, pair.Key))
-                >= config.PreferredOptions)
+                    >= config.PreferredOptions)
+            {
+                refill.CombatFinished = true;
                 break;
-
-            if (candidates.Count == 0)
-                candidates = new Dictionary<string, float>(repeatable);
-            if (!_random.TryPickAndTake(candidates, out var prototype))
+            }
+            if (refill.Attempts <= 0)
+            {
+                refill.CombatFinished = true;
                 break;
+            }
+            if (attemptBudget <= 0)
+                return false;
+            attemptBudget--;
+            refill.Attempts--;
 
+            if (refill.Candidates.Count == 0)
+                refill.Candidates = new Dictionary<string, float>(refill.Repeatable);
+            if (!_random.TryPickAndTake(refill.Candidates, out var prototype))
+            {
+                refill.CombatFinished = true;
+                break;
+            }
             if (!CreateOffer(mindId, mind, prototype, counts, out var uid, out var deferred))
             {
-                repeatable.Remove(prototype);
+                refill.Repeatable.Remove(prototype);
                 continue;
             }
 
@@ -232,35 +260,33 @@ public sealed partial class AntagRandomObjectivesSystem
                     if (offers.ObjectiveOptions.Keys.Count(id => Prototype(GetEntity(id))?.ID == prototype) >= targets.Count)
                     {
                         Del(uid);
-                        repeatable.Remove(prototype);
+                        refill.Repeatable.Remove(prototype);
                         continue;
                     }
                 }
-                repeatable[prototype] = config.Weights[prototype];
+                refill.Repeatable[prototype] = config.Weights[prototype];
             }
 
             AddOffer(mindId, mind, offers, config, uid, deferred);
+            UpdateOfferState(mindId, mind, offers, counts, config);
         }
 
-        var stories = new Dictionary<string, float>(config.StoryWeights);
-        var storyCount = 0;
-        foreach (var key in offers.ObjectiveOptions.Keys)
+        var storyCount = offers.ObjectiveOptions.Keys.Count(key =>
+            Prototype(GetEntity(key)) is { } proto && config.StoryWeights.ContainsKey(proto.ID));
+        while (storyCount < 2 && refill.Stories.Count > 0)
         {
-            if (Prototype(GetEntity(key)) is { } proto && config.StoryWeights.ContainsKey(proto.ID))
-            {
-                storyCount++;
-                stories.Remove(proto.ID);
-            }
-        }
-
-        while (storyCount < config.StoryObjectiveCount && _random.TryPickAndTake(stories, out var prototype))
-        {
+            if (attemptBudget <= 0)
+                return false;
+            attemptBudget--;
+            if (!_random.TryPickAndTake(refill.Stories, out var prototype))
+                break;
             if (!CreateOffer(mindId, mind, prototype, counts, out var uid, out var deferred))
                 continue;
             AddOffer(mindId, mind, offers, config, uid, deferred);
             storyCount++;
         }
 
+        config.Refill = null;
         UpdateOfferState(mindId, mind, offers, counts, config);
         return OffersViable(offers, retained);
     }
@@ -360,17 +386,39 @@ public sealed partial class AntagRandomObjectivesSystem
                 (!Comp<ObjectiveComponent>(first).Unique && !Comp<ObjectiveComponent>(second).Unique);
     }
 
-    private Dictionary<string, int> CountAssignedObjectives(EntityUid exceptMind)
+    private sealed class AssignedObjectiveCounts
     {
-        var counts = new Dictionary<string, int>();
+        public readonly Dictionary<string, int> Total = new();
+        public readonly Dictionary<EntityUid, HashSet<string>> ByMind = new();
+
+        public Dictionary<string, int> Excluding(EntityUid mind)
+        {
+            var counts = new Dictionary<string, int>(Total);
+            if (!ByMind.TryGetValue(mind, out var own))
+                return counts;
+            foreach (var prototype in own)
+            {
+                if (--counts[prototype] == 0)
+                    counts.Remove(prototype);
+            }
+            return counts;
+        }
+    }
+
+    private Dictionary<string, int> CountAssignedObjectives(EntityUid exceptMind) =>
+        CountAssignedObjectives().Excluding(exceptMind);
+
+    private AssignedObjectiveCounts CountAssignedObjectives()
+    {
+        var counts = new AssignedObjectiveCounts();
         var query = EntityQueryEnumerator<MindComponent>();
         while (query.MoveNext(out var uid, out var mind))
         {
-            if (uid == exceptMind)
-                continue;
-            foreach (var prototype in mind.Objectives.Where(Exists)
-                        .Select(objective => Prototype(objective)?.ID).OfType<string>().Distinct())
-                counts[prototype] = counts.GetValueOrDefault(prototype) + 1;
+            var prototypes = mind.Objectives.Where(Exists).Select(objective => Prototype(objective)?.ID)
+                .OfType<string>().ToHashSet();
+            counts.ByMind[uid] = prototypes;
+            foreach (var prototype in prototypes)
+                counts.Total[prototype] = counts.Total.GetValueOrDefault(prototype) + 1;
         }
         return counts;
     }
@@ -382,14 +430,14 @@ public sealed partial class AntagRandomObjectivesSystem
         Dictionary<string, int> counts, ObjectivePickerConfigurationComponent? config = null)
     {
         var unavailable = new HashSet<NetEntity>();
-        var conflicts = offers.ObjectiveOptions.Keys.ToDictionary(id => id, _ => new HashSet<NetEntity>());
         var keys = offers.ObjectiveOptions.Keys.ToArray();
         var targetPools = new Dictionary<NetEntity, HashSet<int>>();
-        var targetConflicts = new Dictionary<NetEntity, HashSet<NetEntity>>();
-        var tokens = new Dictionary<EntityUid, int>();
         if (config == null)
             TryComp<ObjectivePickerConfigurationComponent>(mindId, out config);
-        config?.TargetTokens.Clear();
+        CacheOfferCompatibility(offers, config);
+        // Keep tokens stable across refreshes so unchanged pools don't make unnecessary updates.
+        var tokens = config?.TargetTokens.ToDictionary(pair => pair.Value, pair => pair.Key)
+            ?? new Dictionary<EntityUid, int>();
         for (var i = 0; i < keys.Length; i++)
         {
             var uid = GetEntity(keys[i]);
@@ -416,13 +464,25 @@ public sealed partial class AntagRandomObjectivesSystem
                     pool.Add(token);
                 }
                 targetPools[keys[i]] = pool;
-                targetConflicts[keys[i]] = keys.Where(other => other != keys[i] && Exists(GetEntity(other)) &&
-                    pick.Filters.OfType<TargetObjectiveMindFilter>().Any(filter =>
-                        _slWhitelist.IsWhitelistPassOrNull(filter.Blacklist, GetEntity(other)))).ToHashSet();
                 if (pool.Count == 0)
                     unavailable.Add(keys[i]);
             }
+        }
+        offers.UnavailableObjectives = unavailable;
+        offers.TargetPools = targetPools;
+    }
 
+    private void CacheOfferCompatibility(PotentialObjectivesComponent offers, ObjectivePickerConfigurationComponent? config)
+    {
+        if (config != null && config.CachedOffers.SetEquals(offers.ObjectiveOptions.Keys))
+            return;
+
+        var keys = offers.ObjectiveOptions.Keys.ToArray();
+        var conflicts = keys.ToDictionary(id => id, _ => new HashSet<NetEntity>());
+        var targetConflicts = new Dictionary<NetEntity, HashSet<NetEntity>>();
+        for (var i = 0; i < keys.Length; i++)
+        {
+            var uid = GetEntity(keys[i]);
             for (var j = 0; j < i; j++)
             {
                 if (!Exists(uid) || !Exists(GetEntity(keys[j])) || !AreObjectivesCompatible(uid, GetEntity(keys[j])))
@@ -431,11 +491,14 @@ public sealed partial class AntagRandomObjectivesSystem
                     conflicts[keys[j]].Add(keys[i]);
                 }
             }
+            if (config?.DeferredTargets.Contains(keys[i]) == true && TryComp<PickRandomPersonComponent>(uid, out var pick))
+                targetConflicts[keys[i]] = keys.Where(other => other != keys[i] && Exists(GetEntity(other)) &&
+                    pick.Filters.OfType<TargetObjectiveMindFilter>().Any(filter =>
+                        _slWhitelist.IsWhitelistPassOrNull(filter.Blacklist, GetEntity(other)))).ToHashSet();
         }
-        offers.UnavailableObjectives = unavailable;
         offers.Conflicts = conflicts;
-        offers.TargetPools = targetPools;
         offers.TargetConflicts = targetConflicts;
+        config?.CachedOffers = keys.ToHashSet();
     }
 
     /// <summary>
@@ -466,5 +529,12 @@ public sealed partial class AntagRandomObjectivesSystem
         // Keep the configuration and completion ledger after confirming a batch.
         if (TryComp<ObjectivePickerConfigurationComponent>(ent, out var config) && !config.Finished)
             RemCompDeferred<ObjectivePickerConfigurationComponent>(ent);
+        if (config != null)
+        {
+            config.PickerSession = null;
+            config.Refill = null;
+            config.CachedOffers.Clear();
+            config.TargetTokens.Clear();
+        }
     }
 }
