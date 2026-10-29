@@ -10,7 +10,5 @@ public abstract partial class SharedImplanterSystem
     private static readonly ProtoId<TagPrototype> FragileImplantTag = "FragileImplant";
 
     private bool IsFragileImplant(EntityUid implant)
-    {
-        return _tags.HasTag(implant, FragileImplantTag);
-    }
+        => _tags.HasTag(implant, FragileImplantTag);
 }

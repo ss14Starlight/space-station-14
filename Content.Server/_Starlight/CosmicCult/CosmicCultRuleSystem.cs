@@ -888,7 +888,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
                 _playerMan.TryGetSessionById(mind.UserId, out _);
 
     // Pity for if the steward was deconverted after the monument was placed; a new steward is randomly chosen, once.
-    private bool TryTransferInitialSteward(EntityUid oldSteward, Entity<CosmicCultRuleComponent> cult)
+    private bool TryTransferInitialSteward(EntityUid oldSteward)
     {
         var candidates = new List<EntityUid>();
         var query = EntityQueryEnumerator<CosmicCultComponent>();
@@ -1026,7 +1026,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         _faction.RemoveFaction(uid.Owner, CosmicCultFaction);
         _faction.AddFaction(uid.Owner, NanoTrasenFaction);
 
-        if (wasSteward && cult.Comp.InitialSteward == uid.Owner && cult.Comp.CurrentTier is > 0 and < 3 && TryTransferInitialSteward(uid.Owner, cult))
+        if (wasSteward && cult.Comp.InitialSteward == uid.Owner && cult.Comp.CurrentTier is > 0 and < 3 && TryTransferInitialSteward(uid.Owner))
         {
             cult.Comp.InitialSteward = null;
             RemComp<CosmicCultLeadComponent>(uid);

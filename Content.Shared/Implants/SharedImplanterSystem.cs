@@ -403,7 +403,7 @@ public abstract partial class SharedImplanterSystem : EntitySystem
                         continue;
                     }
 
-                    DrawImplantIntoImplanter(implanter, user, target, implant, implantContainer, implanterContainer, implantComp); // Starlight
+                    DrawImplantIntoImplanter(implanter, user, target, implant, implantContainer, implanterContainer); // Starlight
                     permanentFound = implantComp.Permanent;
 
                     //Break so only one implant is drawn
@@ -438,7 +438,7 @@ public abstract partial class SharedImplanterSystem : EntitySystem
                     }
                     else
                     {
-                        DrawImplantIntoImplanter(implanter, user, target, implant.Value, implantContainer, implanterContainer, implantComp); // Starlight
+                        DrawImplantIntoImplanter(implanter, user, target, implant.Value, implantContainer, implanterContainer); // Starlight
                         permanentFound = implantComp.Permanent;
                     }
 
@@ -469,7 +469,7 @@ public abstract partial class SharedImplanterSystem : EntitySystem
         _popup.PopupEntity(failedPermanentMessage, target, user);
     }
 
-    private void DrawImplantIntoImplanter(EntityUid implanter, EntityUid user, EntityUid target, EntityUid implant, BaseContainer implantContainer, ContainerSlot implanterContainer, SubdermalImplantComponent implantComp) // Starlight
+    private void DrawImplantIntoImplanter(EntityUid implanter, EntityUid user, EntityUid target, EntityUid implant, BaseContainer implantContainer, ContainerSlot implanterContainer) // Starlight
     {
         _container.Remove(implant, implantContainer);
         // Starlight start
