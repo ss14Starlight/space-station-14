@@ -48,8 +48,8 @@
     heatDamageThreshold: 360
     coldDamageThreshold: 285
   # Good eatin', you monster.
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable # Starlight butchering fix
+    refineResult: # Starlight
     - id: FoodMeat
       amount: 4
   # They wawa!
@@ -144,7 +144,8 @@
           state: hand
 
   - type: InventorySlots
-  - type: Edible # Why? I'm not sure but I also am afraid of the answer.
+  # Starlight - remove this, doing it via partials causes tests to crash and burn for some unexplainable reason
+  # - type: Edible # Why? I'm not sure but I also am afraid of the answer.
   - type: Hunger
     baseDecayRate: 0.05 # They get a lil' hungy
   - type: BodyEmotes # Grants them clapping and so on.
@@ -200,6 +201,14 @@
   parent: MobBaseScurret
   abstract: true
   components:
+  # Starlight-start: Languages
+    - type: LanguageKnowledge
+      speaks:
+      - ScurretSign
+      understands:
+      - ScurretSign
+      - GalacticCommon
+  # Starlight-end
     - type: Loadout
       prototypes: [ EmotionalSupportScurretGear ]
     - type: NpcFactionMember
