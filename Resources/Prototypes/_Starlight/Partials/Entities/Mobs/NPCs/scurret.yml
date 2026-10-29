@@ -1,7 +1,7 @@
 - type: !PartialOnly entity
   id: MobBaseScurret
   components:
-    - type: !Remove Edible # WHAT THE FUCK UPSTREAM. WHY!?
+    - type: !Remove Edible
 
 - type: !PartialOnly entity
   id: MobEmotionalSupportScurret
