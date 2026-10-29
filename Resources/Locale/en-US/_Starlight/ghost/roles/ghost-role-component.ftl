@@ -167,5 +167,5 @@ ghost-role-information-spawn-point-ghost-cluwne-beast-description = Spread laugh
 ghost-role-information-spawn-point-ghost-cluwne-beast-rules = You are an antagonist, transform as many of the crew as you can into cluwnes.
 
 ghost-role-information-syndimoff-name = SyndiMoff
-ghost-role-information-syndimoff-description = You're the faithful trained pest of nuclear operatives with a picobomb. Serve your master to the death!
+ghost-role-information-syndimoff-description = You're the faithful trained pest of syndicate operatives with a picobomb. Serve your master to the death!
 ghost-role-information-syndimoff-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the agent who summoned you.
