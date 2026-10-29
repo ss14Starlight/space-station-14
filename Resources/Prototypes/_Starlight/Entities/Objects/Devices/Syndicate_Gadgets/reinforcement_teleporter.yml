@@ -126,20 +126,20 @@
 
 - type: entity
   parent: ReinforcementRadio
-  id: ReinforcementRadioSyndicateBoomroach
-  name: boomroach reinforcement radio
-  description: Calls in a faithfully trained boomroach with a picobomb to assist you.
+  id: ReinforcementRadioSyndicateBombroach
+  name: bombroach reinforcement radio
+  description: Calls in a faithfully trained bombroach with a picobomb to assist you.
   components:
   - type: GhostRole
     important: true
-    name: ghost-role-information-boomroach-name
-    description: ghost-role-information-boomroach-description
+    name: ghost-role-information-bombroach-name
+    description: ghost-role-information-bombroach-description
     rules: ghost-role-information-syndicate-reinforcement-rules
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
-    prototype: MobBoomroach
+    prototype: MobBombroach
   - type: EmitSoundOnUse
     sound: /Audio/Voice/Moth/moth_flap.ogg

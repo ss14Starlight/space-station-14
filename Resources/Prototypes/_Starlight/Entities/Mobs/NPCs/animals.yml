@@ -349,8 +349,8 @@
     baseSprintSpeed : 1
 
 - type: entity
-  name: boomroach
-  id: MobBoomroach
+  name: bombroach
+  id: MobBombroach
   parent: MobMothroach
   description: Is it wearing a bomb?
   components:
@@ -362,31 +362,31 @@
     - Mothroach
     - GalacticCommon
   - type: Sprite
-    sprite: _Starlight/Mobs/Animals/mothroach/boomroach.rsi
+    sprite: _Starlight/Mobs/Animals/mothroach/bombroach.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: boomroach
+      state: bombroach
   - type: SpriteMovement
     movementLayers:
       movement:
-        state: boomroach-moving
+        state: bombroach-moving
     noMovementLayers:
       movement:
-        state: boomroach
+        state: bombroach
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: boomroach
+        Base: bombroach
       Critical:
-        Base: boomroach_dead
+        Base: bombroach_dead
       Dead:
-        Base: boomroach_dead
+        Base: bombroach_dead
   - type: GhostRole
     prob: 1
-    name: ghost-role-information-boomroach-name
+    name: ghost-role-information-bombroach-name
     allowMovement: true
-    description: ghost-role-information-boomroach-description
-    rules: ghost-role-information-boomroach-rules
+    description: ghost-role-information-bombroach-description
+    rules: ghost-role-information-bombroach-rules
     important: true # SL
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist

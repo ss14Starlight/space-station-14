@@ -59,11 +59,11 @@
     - UplinkPointless
 
 - type: listing
-  id: UplinkMobBoomroach
-  name: uplink-boomroach-microbomb-name
-  description: uplink-boomroach-microbomb-desc
-  icon: { sprite: _Starlight/Objects/Devices/communication.rsi, state: old-radio-boomroach }
-  productEntity: ReinforcementRadioSyndicateBoomroach
+  id: UplinkMobBombroach
+  name: uplink-bombroach-microbomb-name
+  description: uplink-bombroach-microbomb-desc
+  icon: { sprite: _Starlight/Objects/Devices/communication.rsi, state: old-radio-bombroach }
+  productEntity: ReinforcementRadioSyndicateBombroach
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 1
