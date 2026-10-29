@@ -14,20 +14,20 @@ namespace Content.Client._Starlight.StationRadio.UI;
 
 public sealed class StationRadioMixerWindow : FancyWindow
 {
-    private static readonly Color StripColor = Color.FromHex("#1b1c21");
-    private static readonly Color StripBorder = Color.FromHex("#3d404b");
-    private static readonly Color MasterColor = Color.FromHex("#24191b");
-    private static readonly Color LedOn = Color.FromHex("#4fc257");
-    private static readonly Color LedCued = Color.FromHex("#e3c447");
-    private static readonly Color LedOff = Color.FromHex("#23302a");
-    private static readonly Color DiscColor = Color.FromHex("#999696");
+    private static readonly Color _stripColor = Color.FromHex("#1b1c21");
+    private static readonly Color _stripBorder = Color.FromHex("#3d404b");
+    private static readonly Color _masterColor = Color.FromHex("#24191b");
+    private static readonly Color _ledOn = Color.FromHex("#4fc257");
+    private static readonly Color _ledCued = Color.FromHex("#e3c447");
+    private static readonly Color _ledOff = Color.FromHex("#23302a");
+    private static readonly Color _discColor = Color.FromHex("#999696");
 
     private const string PlayIcon = "/Textures/_Starlight/Interface/StationRadio/icon_play.png";
     private const string PauseIcon = "/Textures/_Starlight/Interface/StationRadio/icon_pause.png";
     private const string RewindIcon = "/Textures/_Starlight/Interface/StationRadio/icon_rewind.png";
     private const string NextIcon = "/Textures/_Starlight/Interface/StationRadio/icon_next.png";
     private const string EjectIcon = "/Textures/_Starlight/Interface/StationRadio/icon_eject.png";
-    private static readonly Color CurrentTrackColor = Color.FromHex("#4fc257");
+    private static readonly Color _currentTrackColor = Color.FromHex("#4fc257");
 
     private readonly BoxContainer _sources;
     private readonly BoxContainer _playlists;
@@ -38,7 +38,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
     private readonly ChannelStrip _voice;
     private readonly ChannelStrip _master;
     private readonly ChannelStrip _monitor;
-    private readonly Dictionary<NetEntity, ChannelStrip> _sourceStrips = new();
+    private readonly Dictionary<NetEntity, ChannelStrip> _sourceStrips = [];
 
     public event Action<StationRadioMixerFader, NetEntity?, float, bool>? OnFaderChanged;
 
@@ -58,7 +58,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
             Visible = false,
         };
 
-        _listeners = new Label { FontColorOverride = DiscColor, HorizontalExpand = true };
+        _listeners = new Label { FontColorOverride = _discColor, HorizontalExpand = true };
         _interference = new Label
         {
             Text = Loc.GetString("station-radio-mixer-interference"),
@@ -80,15 +80,15 @@ public sealed class StationRadioMixerWindow : FancyWindow
         };
         scroll.AddChild(_sources);
 
-        _voice = new ChannelStrip(Loc.GetString("station-radio-mixer-voice"), StripColor, false);
+        _voice = new ChannelStrip(Loc.GetString("station-radio-mixer-voice"), _stripColor, false);
         _voice.Fader.OnValueChanged += f => OnFaderChanged?.Invoke(StationRadioMixerFader.Voice, null, f.Value, false);
         _voice.Fader.OnReleased += f => OnFaderChanged?.Invoke(StationRadioMixerFader.Voice, null, f.Value, true);
 
-        _master = new ChannelStrip(Loc.GetString("station-radio-mixer-master"), MasterColor, false);
+        _master = new ChannelStrip(Loc.GetString("station-radio-mixer-master"), _masterColor, false);
         _master.Fader.OnValueChanged += f => OnFaderChanged?.Invoke(StationRadioMixerFader.Master, null, f.Value, false);
         _master.Fader.OnReleased += f => OnFaderChanged?.Invoke(StationRadioMixerFader.Master, null, f.Value, true);
 
-        _monitor = new ChannelStrip(Loc.GetString("station-radio-mixer-monitor"), StripColor, false) { Visible = false };
+        _monitor = new ChannelStrip(Loc.GetString("station-radio-mixer-monitor"), _stripColor, false) { Visible = false };
         _monitor.Fader.OnValueChanged += f => OnFaderChanged?.Invoke(StationRadioMixerFader.Monitor, null, f.Value, false);
         _monitor.Fader.OnReleased += f => OnFaderChanged?.Invoke(StationRadioMixerFader.Monitor, null, f.Value, true);
 
@@ -103,7 +103,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
         row.AddChild(new PanelContainer
         {
             MinWidth = 2,
-            PanelOverride = new StyleBoxFlat { BackgroundColor = StripBorder },
+            PanelOverride = new StyleBoxFlat { BackgroundColor = _stripBorder },
         });
         row.AddChild(_voice);
         row.AddChild(_monitor);
@@ -174,7 +174,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
             if (!_sourceStrips.TryGetValue(channel.Source, out var strip))
             {
                 var source = channel.Source;
-                strip = new ChannelStrip(channel.Name, StripColor, true);
+                strip = new ChannelStrip(channel.Name, _stripColor, true);
                 strip.OnTransport += action => OnTransport?.Invoke(source, action, 0);
                 strip.Fader.OnValueChanged += f => OnFaderChanged?.Invoke(StationRadioMixerFader.Source, source, f.Value, false);
                 strip.Fader.OnReleased += f => OnFaderChanged?.Invoke(StationRadioMixerFader.Source, source, f.Value, true);
@@ -217,7 +217,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
             SetHeight = WindowHeight;
     }
 
-    private Control BuildPlaylist(StationRadioMixerChannel channel)
+    private PanelContainer BuildPlaylist(StationRadioMixerChannel channel)
     {
         var source = channel.Source;
         var list = new BoxContainer
@@ -248,7 +248,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
         var time = new DialTimeLabel(dial)
         {
             HorizontalAlignment = HAlignment.Center,
-            FontColorOverride = DiscColor,
+            FontColorOverride = _discColor,
             StyleClasses = { StyleStarlight.StyleClassLabelSmall },
         };
         list.AddChild(dial);
@@ -268,8 +268,9 @@ public sealed class StationRadioMixerWindow : FancyWindow
                 Disabled = disc == null,
                 StyleClasses = { StyleClass.ButtonOpenBoth },
             };
+            button.Label.Align = Label.AlignMode.Left;
             if (i == channel.CurrentSlot && disc != null)
-                button.Label.FontColorOverride = CurrentTrackColor;
+                button.Label.FontColorOverride = _currentTrackColor;
 
             button.OnPressed += _ => OnTransport?.Invoke(source, StationRadioMixerTransport.Select, slot);
 
@@ -292,8 +293,8 @@ public sealed class StationRadioMixerWindow : FancyWindow
         {
             PanelOverride = new StyleBoxFlat
             {
-                BackgroundColor = StripColor,
-                BorderColor = StripBorder,
+                BackgroundColor = _stripColor,
+                BorderColor = _stripBorder,
                 BorderThickness = new Thickness(1),
             },
         };
@@ -306,7 +307,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
     private const float WindowHeight = 580;
 
     private static float WindowWidth(int sources, bool playlists) =>
-        40 + (sources + 3) * StripWidth + (playlists ? PlaylistWidth + 8 : 0);
+        40 + ((sources + 3) * StripWidth) + (playlists ? PlaylistWidth + 8 : 0);
 
     private sealed class DialTimeLabel(PixelDialProgress dial) : Label
     {
@@ -315,7 +316,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
             base.FrameUpdate(args);
             Text = dial.Length > TimeSpan.Zero
                 ? $"{FormatTime(dial.Elapsed)} / {FormatTime(dial.Length)}"
-                : string.Empty;
+                : " ";
         }
 
         private static string FormatTime(TimeSpan time) => $"{(int) time.TotalMinutes}:{time.Seconds:00}";
@@ -327,7 +328,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
 
         private const int NameLineLength = 11;
 
-        private static readonly TimeSpan PendingTimeout = TimeSpan.FromSeconds(1.5);
+        private static readonly TimeSpan _pendingTimeout = TimeSpan.FromSeconds(1.5);
 
         private readonly IGameTiming _timing = IoCManager.Resolve<IGameTiming>();
 
@@ -357,7 +358,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
             PanelOverride = new StyleBoxFlat
             {
                 BackgroundColor = background,
-                BorderColor = StripBorder,
+                BorderColor = _stripBorder,
                 BorderThickness = new Thickness(1),
             };
 
@@ -374,7 +375,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
             {
                 MinSize = new Vector2(10, 6),
                 HorizontalAlignment = HAlignment.Center,
-                PanelOverride = new StyleBoxFlat { BackgroundColor = LedOff },
+                PanelOverride = new StyleBoxFlat { BackgroundColor = _ledOff },
                 Modulate = hidden,
             };
             box.AddChild(_led);
@@ -396,7 +397,8 @@ public sealed class StationRadioMixerWindow : FancyWindow
                 Align = Label.AlignMode.Center,
                 MinWidth = 76,
                 MaxWidth = 76,
-                FontColorOverride = DiscColor,
+                Text = " ",
+                FontColorOverride = _discColor,
                 StyleClasses = { StyleStarlight.StyleClassLabelSmall },
                 Modulate = hidden,
             };
@@ -407,8 +409,9 @@ public sealed class StationRadioMixerWindow : FancyWindow
 
             _time = new Label
             {
+                Text = " ",
                 Align = Label.AlignMode.Center,
-                FontColorOverride = DiscColor,
+                FontColorOverride = _discColor,
                 StyleClasses = { StyleStarlight.StyleClassLabelSmall },
                 Modulate = hidden,
             };
@@ -465,7 +468,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
             if (_pending is { } pending)
             {
                 var confirmed = MathF.Abs(pending - value) < 0.005f;
-                if (!confirmed && _timing.RealTime - _pendingSince < PendingTimeout)
+                if (!confirmed && _timing.RealTime - _pendingSince < _pendingTimeout)
                     return;
 
                 _pending = null;
@@ -492,7 +495,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
             }
 
             if (_led?.PanelOverride is StyleBoxFlat box)
-                box.BackgroundColor = playing ? LedOn : disc != null ? LedCued : LedOff;
+                box.BackgroundColor = playing ? _ledOn : disc != null ? _ledCued : _ledOff;
 
             if (_disc != null)
             {
@@ -527,8 +530,10 @@ public sealed class StationRadioMixerWindow : FancyWindow
 
         private static string WrapName(string name)
         {
-            var lines = new List<string>();
-            lines.Add(string.Empty);
+            var lines = new List<string>
+            {
+                string.Empty
+            };
             foreach (var word in name.Split(' ', StringSplitOptions.RemoveEmptyEntries))
             {
                 var line = lines[^1];
@@ -540,6 +545,9 @@ public sealed class StationRadioMixerWindow : FancyWindow
 
             if (lines.Count == 1)
                 lines.Add(string.Empty);
+
+            if (lines.Count < 2)
+                lines.Add(" ");
 
             return string.Join('\n', lines);
         }
@@ -561,7 +569,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
             _progress.Progress = _length > TimeSpan.Zero ? (float) (position / _length) : 0f;
             _time.Text = _length > TimeSpan.Zero
                 ? $"{FormatTime(position)} / {FormatTime(_length)}"
-                : string.Empty;
+                : " ";
         }
 
         private static string FormatTime(TimeSpan time) => $"{(int) time.TotalMinutes}:{time.Seconds:00}";

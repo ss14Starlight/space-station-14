@@ -9,13 +9,22 @@ namespace Content.Client._Starlight.StationRadio.UI;
 
 public sealed class PixelKnob : Control
 {
+    /// <summary>
+    /// Path to control's texture.
+    /// </summary>
     private const string TexturePath = "/Textures/_Starlight/Interface/StationRadio/radio_knob.png";
 
+    /// <summary>
+    /// Const for determining pixel size.
+    /// </summary>
     private const int PixelScale = 3;
 
+    /// <summary>
+    /// The angular sweep of the knob, in degrees.
+    /// </summary>
     private const float Sweep = 270f;
 
-    private static readonly Vector2 Center = new(16f, 15.5f);
+    private static readonly Vector2 _center = new(16f, 15.5f);
     private const float PointerInner = 4.5f;
     private const float PointerOuter = 6f;
 
@@ -23,17 +32,16 @@ public sealed class PixelKnob : Control
 
     private const float WheelStep = 0.05f;
 
-    private static readonly Color PointerColor = Color.FromHex("#f2efe9");
+    private static readonly Color _pointerColor = Color.FromHex("#f2efe9");
 
     private readonly Texture _texture;
-    private float _value = 1f;
     private Vector2 _lastMouse;
 
     public float Value
     {
-        get => _value;
-        set => _value = Math.Clamp(value, 0f, 1f);
-    }
+        get;
+        set => field = Math.Clamp(value, 0f, 1f);
+    } = 1f;
 
     public bool Grabbed { get; private set; }
 
@@ -47,7 +55,7 @@ public sealed class PixelKnob : Control
         DefaultCursorShape = CursorShape.Hand;
     }
 
-    private float Scale => MathF.Max(1f, MathF.Round(PixelScale * UIScale));
+    private float _scale => MathF.Max(1f, MathF.Round(PixelScale * UIScale));
 
     protected override Vector2 MeasureOverride(Vector2 availableSize) => _texture.Size * PixelScale;
 
@@ -55,17 +63,17 @@ public sealed class PixelKnob : Control
     {
         base.Draw(handle);
 
-        var scale = Scale;
+        var scale = _scale;
         var size = (Vector2) _texture.Size * scale;
         var origin = ((PixelSize - size) / 2f).Floored();
         handle.DrawTextureRect(_texture, UIBox2.FromDimensions(origin, size));
 
-        var angle = MathHelper.DegreesToRadians(-Sweep / 2f + Sweep * _value - 90f);
+        var angle = MathHelper.DegreesToRadians((-Sweep / 2f) + (Sweep * Value) - 90f);
         var direction = new Vector2(MathF.Cos(angle), MathF.Sin(angle));
         foreach (var radius in new[] { PointerInner, PointerOuter })
         {
-            var pixel = (Center + direction * radius).Rounded();
-            handle.DrawRect(UIBox2.FromDimensions(origin + pixel * scale, new Vector2(scale, scale)), PointerColor);
+            var pixel = (_center + (direction * radius)).Rounded();
+            handle.DrawRect(UIBox2.FromDimensions(origin + (pixel * scale), new Vector2(scale, scale)), _pointerColor);
         }
     }
 
@@ -100,7 +108,7 @@ public sealed class PixelKnob : Control
             return;
 
         var position = args.GlobalPixelPosition.Position;
-        var delta = (position.X - _lastMouse.X) - (position.Y - _lastMouse.Y);
+        var delta = position.X - _lastMouse.X - (position.Y - _lastMouse.Y);
         _lastMouse = position;
         Turn(delta / (DragRange * UIScale));
     }
@@ -119,9 +127,9 @@ public sealed class PixelKnob : Control
 
     private void Turn(float amount)
     {
-        var old = _value;
+        var old = Value;
         Value += amount;
-        if (!MathHelper.CloseTo(old, _value))
+        if (!MathHelper.CloseTo(old, Value))
             OnValueChanged?.Invoke(this);
     }
 }

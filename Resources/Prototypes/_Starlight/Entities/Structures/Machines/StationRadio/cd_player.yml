@@ -72,17 +72,17 @@
   - type: ItemSlots
     slots:
       vinyl:
-        name: item-slot-component-slot-name-cd
+        priority: 3
         whitelist:
           tags:
           - CD
       cd2:
-        name: item-slot-component-slot-name-cd
+        priority: 2
         whitelist:
           tags:
           - CD
       cd3:
-        name: item-slot-component-slot-name-cd
+        priority: 1
         whitelist:
           tags:
           - CD

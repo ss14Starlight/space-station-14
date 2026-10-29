@@ -22,7 +22,6 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private StationRadioReceiverSystem _stationRadio = default!;
     [Dependency] private StationSystem _station = default!;
-    [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
@@ -44,7 +43,7 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
                 continue;
             }
 
-            if (_timing.CurTime >= comp.PlaybackEnd)
+            if (Timing.CurTime >= comp.PlaybackEnd)
                 Finish((uid, comp));
         }
     }
@@ -58,38 +57,20 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
     protected override void OnDestruction(EntityUid uid, VinylPlayerComponent comp, DestructionEventArgs args)
         => Stop((uid, comp));
 
-    protected override void OnVinylInserted(EntityUid uid, VinylPlayerComponent comp, EntInsertedIntoContainerMessage args)
+    protected override void DiscInserted(Entity<VinylPlayerComponent> ent, int slot)
     {
-        var slot = Array.IndexOf(comp.Slots, args.Container.ID);
-        if (slot < 0)
-            return;
+        Changed(ent);
 
-        var current = GetCurrentDisc((uid, comp));
-        if (!comp.Playing && (current == null || current == args.Entity))
-        {
-            comp.CurrentSlot = slot;
-            comp.Position = TimeSpan.Zero;
-            Dirty(uid, comp);
-        }
-
-        UpdateVisuals((uid, comp));
-        Changed((uid, comp));
-
-        if (comp.AutoPlay && !comp.Playing && comp.CurrentSlot == slot)
-            Play((uid, comp));
+        if (ent.Comp.AutoPlay && !ent.Comp.Playing && ent.Comp.CurrentSlot == slot)
+            Play(ent);
     }
 
-    protected override void OnVinylRemove(EntityUid uid, VinylPlayerComponent comp, EntRemovedFromContainerMessage args)
+    protected override void DiscRemoved(Entity<VinylPlayerComponent> ent, bool wasCurrent)
     {
-        var slot = Array.IndexOf(comp.Slots, args.Container.ID);
-        if (slot < 0)
-            return;
-
-        if (slot == comp.CurrentSlot)
-            Stop((uid, comp));
-
-        UpdateVisuals((uid, comp));
-        Changed((uid, comp));
+        if (wasCurrent)
+            Stop(ent);
+        else
+            Changed(ent);
     }
 
     public override void TogglePlay(Entity<VinylPlayerComponent> ent, EntityUid? user = null)
@@ -138,7 +119,7 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
         if (comp.Position >= length)
             comp.Position = TimeSpan.Zero;
 
-        var start = _timing.CurTime - comp.Position;
+        var start = Timing.CurTime - comp.Position;
         if (comp.Standalone)
         {
             if (_audio.PlayPvs(vinyl.Song, uid, comp.DefaultParams) is { } audio)
@@ -168,7 +149,7 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
         if (!ent.Comp.Playing)
             return;
 
-        ent.Comp.Position = _timing.CurTime - ent.Comp.PlaybackStart;
+        ent.Comp.Position = Timing.CurTime - ent.Comp.PlaybackStart;
         StopOutput(ent);
         Changed(ent);
     }

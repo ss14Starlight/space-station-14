@@ -139,6 +139,9 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
         }
     }
 
+    /// <summary>
+    /// Calculates a time-varying attenuation factor for interference.
+    /// </summary>
     private float InterferenceWaver(EntityUid uid, float interference)
     {
         if (interference <= 0f)

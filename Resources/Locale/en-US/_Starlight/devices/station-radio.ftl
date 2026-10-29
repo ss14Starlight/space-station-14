@@ -40,7 +40,6 @@ station-radio-server-microphone-on-use = The microphone is { $radioState }.
 
 item-slot-component-slot-name-vinyl = vinyl
 item-slot-component-slot-name-cd = CD
-item-slot-component-slot-name-playlist = playlist disc
 
 station-radio-mixer-title = Radio mixer
 station-radio-mixer-no-server = Not linked to a powered radio server. Link the mixer to the radio rig.

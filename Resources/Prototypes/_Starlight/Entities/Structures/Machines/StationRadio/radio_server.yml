@@ -13,11 +13,11 @@
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: mic_on # Starlight
+    - state: mic_on
       shader: unshaded
       visible: false
       map: ["micOn"]
-    - state: mic_off # Starlight
+    - state: mic_off
       shader: unshaded
       map: ["micOff"]
     - state: panel
@@ -33,7 +33,7 @@
         enum.WiresVisualLayers.MaintenancePanel:
           True: { visible: true }
           False: { visible: false }
-      enum.RadioDeviceVisuals.Broadcasting: # Starlight
+      enum.RadioDeviceVisuals.Broadcasting:
         micOn:
           True: { visible: true }
           False: { visible: false }
@@ -52,7 +52,6 @@
   - type: DeviceLinkSource
     ports:
     - StationRadioServerPort
-    # TODO: unlit & maints panel sprite
   - type: Transform
     noRot: false
   - type: Rotatable
@@ -123,22 +122,22 @@
   - type: ItemSlots
     slots:
       playlist1:
-        name: item-slot-component-slot-name-playlist
+        priority: 4
         whitelist:
           tags:
-          - VinylSleeveFit # Records only, CDs go in the CD player.
+          - VinylSleeveFit
       playlist2:
-        name: item-slot-component-slot-name-playlist
+        priority: 3
         whitelist:
           tags:
-          - VinylSleeveFit # Records only, CDs go in the CD player.
+          - VinylSleeveFit
       playlist3:
-        name: item-slot-component-slot-name-playlist
+        priority: 2
         whitelist:
           tags:
-          - VinylSleeveFit # Records only, CDs go in the CD player.
+          - VinylSleeveFit
       playlist4:
-        name: item-slot-component-slot-name-playlist
+        priority: 1
         whitelist:
           tags:
-          - VinylSleeveFit # Records only, CDs go in the CD player.
+          - VinylSleeveFit

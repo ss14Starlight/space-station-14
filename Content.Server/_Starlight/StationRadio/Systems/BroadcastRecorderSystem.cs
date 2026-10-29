@@ -5,6 +5,7 @@ using Content.Server.Speech.Components;
 using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.StationRadio;
 using Content.Shared._Starlight.StationRadio.Components;
+using Content.Shared._Starlight.StationRadio.Systems;
 using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
@@ -19,7 +20,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.StationRadio.Systems;
 
-public sealed partial class BroadcastRecorderSystem : EntitySystem
+public sealed partial class BroadcastRecorderSystem : SharedBroadcastRecorderSystem
 {
     private static readonly TimeSpan GainMergeWindow = TimeSpan.FromSeconds(0.25);
 
@@ -92,27 +93,19 @@ public sealed partial class BroadcastRecorderSystem : EntitySystem
         }
     }
 
-    [SubscribeLocalEvent]
-    private void OnTapeInserted(EntityUid uid, BroadcastRecorderComponent comp, EntInsertedIntoContainerMessage args)
+    protected override void TapeInserted(Entity<BroadcastRecorderComponent> ent)
     {
-        if (args.Container.ID != comp.Slot)
-            return;
-
-        comp.Position = TimeSpan.Zero;
-        UpdateVisuals((uid, comp));
-        UpdateUi((uid, comp));
+        ent.Comp.Position = TimeSpan.Zero;
+        UpdateVisuals(ent);
+        Changed(ent);
     }
 
-    [SubscribeLocalEvent]
-    private void OnTapeRemoved(EntityUid uid, BroadcastRecorderComponent comp, EntRemovedFromContainerMessage args)
+    protected override void TapeRemoved(Entity<BroadcastRecorderComponent> ent, EntityUid tape)
     {
-        if (args.Container.ID != comp.Slot)
-            return;
-
-        Stop((uid, comp), args.Entity);
-        comp.Position = TimeSpan.Zero;
-        UpdateVisuals((uid, comp));
-        UpdateUi((uid, comp));
+        Stop(ent, tape);
+        ent.Comp.Position = TimeSpan.Zero;
+        UpdateVisuals(ent);
+        Changed(ent);
     }
 
     [SubscribeLocalEvent]

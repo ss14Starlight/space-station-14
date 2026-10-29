@@ -6,9 +6,9 @@ using Robust.Shared.Timing;
 namespace Content.Client._Starlight.StationRadio.UI;
 
 [UsedImplicitly]
-public sealed class StationRadioReceiverBoundUserInterface : BoundUserInterface
+public sealed partial class StationRadioReceiverBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
-    private static readonly TimeSpan SendInterval = TimeSpan.FromSeconds(0.1);
+    private static readonly TimeSpan _sendInterval = TimeSpan.FromSeconds(0.1);
 
     [Dependency] private IGameTiming _timing = default!;
 
@@ -16,10 +16,6 @@ public sealed class StationRadioReceiverBoundUserInterface : BoundUserInterface
     private StationRadioReceiverWindow? _window;
 
     private TimeSpan _lastSend;
-
-    public StationRadioReceiverBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-    }
 
     protected override void Open()
     {
@@ -31,7 +27,7 @@ public sealed class StationRadioReceiverBoundUserInterface : BoundUserInterface
         _window.OnVolume += (volume, released) =>
         {
             var now = _timing.RealTime;
-            if (!released && now - _lastSend < SendInterval)
+            if (!released && now - _lastSend < _sendInterval)
                 return;
 
             _lastSend = now;
