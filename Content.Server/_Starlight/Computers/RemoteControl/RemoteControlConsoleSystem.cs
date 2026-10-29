@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Linq;
+using Content.Server._Starlight.Silicons;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Server.Chat.Systems;
 using Content.Server.Construction;
@@ -23,8 +24,6 @@ using Content.Shared.Chat;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.CombatMode;
 using Content.Shared.Construction;
-using Content.Shared.DeviceLinking;
-using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Input;
@@ -63,7 +62,10 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 using static Content.Server.Chat.Systems.ChatSystem;
 // Starlight
 
@@ -71,6 +73,8 @@ namespace Content.Server._Starlight.Computers.RemoteControl;
 
 public sealed partial class RemoteControlConsoleSystem : EntitySystem
 {
+    private const int PlayerPossessionRemoteControlPower = 50;
+
     private readonly HashSet<EntityUid> _pendingBorgRefreshes = new();
     private readonly HashSet<(EntityUid Console, EntityUid Chassis)> _pendingRemoteBorgActivations = new();
     private readonly HashSet<(EntityUid UiEntity, Enum UiKey, EntityUid Controller)> _pendingRemoteUiMirrors = new();
@@ -78,6 +82,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private readonly HashSet<(EntityUid Console, EntityUid UiEntity, Enum UiKey, EntityUid Controller, EntityUid Remote)>
         _remoteUiMirrors = new();
     private readonly Dictionary<EntityUid, HashSet<EntityUid>> _remoteActionOverrides = new();
+    private readonly Dictionary<EntityUid, TimeSpan> _channelChangeAttempts = new();
 
     private readonly Dictionary<EntityUid, (EntityUid Storage, EntityUid Controller, EntityUid Remote)>
         _remoteStorageUiActors = new();
@@ -105,7 +110,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [Dependency] private ItemToggleSystem _itemToggle = default!;
     [Dependency] private SharedMoverController _mover = default!;
     [Dependency] private SharedRemoteControlConsoleSystem _sharedRemoteControl = default!;
-    [Dependency] private SharedDeviceLinkSystem _deviceLink = default!;
+    [Dependency] private RemoteControlBrainSystem _remoteControlBrains = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private PopupSystem _popup = default!;
@@ -138,6 +144,12 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 subs.Event<RemoteControlTargetActionMessage>(OnRemoteTargetAction);
                 subs.Event<RemoteControlHandMessage>(OnRemoteHand);
                 subs.Event<RemoteControlInventoryMessage>(OnRemoteInventory);
+                subs.Event<RemoteControlOpenSettingsMessage>(OnOpenSettings);
+            });
+        Subs.BuiEvents<RemoteControlConsoleComponent>(RemoteControlSettingsUIKey.Key,
+            subs =>
+            {
+                subs.Event<RemoteControlSetChannelMessage>(OnSetRemoteControlChannel);
             });
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         _hands.OnHandSetActive += OnHandSetActive;
@@ -237,14 +249,14 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         if (args.User is not { } user
             || entity.Comp.Controller is not null
-            || !_actionBlocker.CanConsciouslyPerformAction(user)
-            || !_sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var remoteEntity))
+            || !_actionBlocker.CanConsciouslyPerformAction(user))
         {
             args.Cancelled = true;
             return;
         }
 
-        if (!CanRemoteControlTarget(entity.Owner, remoteEntity, user, entity.Comp.PreviousRelayEntity))
+        if (_sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var remoteEntity)
+            && !CanRemoteControlTarget(entity.Owner, remoteEntity, user, entity.Comp))
             args.Cancelled = true;
     }
 
@@ -257,11 +269,15 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (args.Activated)
         {
             if (args.User is not { } controller
-                || entity.Comp.Controller is not null
-                || !_sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var remoteEntity))
+                || entity.Comp.Controller is not null)
                 return;
 
             entity.Comp.Users.Add(controller);
+            _ui.OpenUi((entity.Owner, null), RemoteControlSettingsUIKey.Key, controller);
+
+            if (!_sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var remoteEntity))
+                return;
+
             if (!SetController(entity.Owner, entity.Comp, controller, remoteEntity, false))
             {
                 entity.Comp.Users.Remove(controller);
@@ -271,12 +287,23 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return;
         }
 
-        if (entity.Comp.Controller is not { } activeController
-            || !_sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var controlledEntity))
+        if (entity.Comp.Controller is not { } activeController)
+        {
+            if (args.User is { } user)
+            {
+                entity.Comp.Users.Remove(user);
+                _ui.CloseUi((entity.Owner, null), RemoteControlSettingsUIKey.Key, user);
+            }
+
+            return;
+        }
+
+        if (!_sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var controlledEntity))
             return;
 
         SetController(entity.Owner, entity.Comp, null, controlledEntity, false);
         entity.Comp.Users.Remove(activeController);
+        _ui.CloseUi((entity.Owner, null), RemoteControlSettingsUIKey.Key, activeController);
     }
 
     public override void Shutdown()
@@ -388,33 +415,112 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnRemoteControlLinkAttempt(Entity<RemoteControlConsoleComponent> entity, ref LinkAttemptEvent args)
+    private void OnRemoteConsoleStartup(Entity<RemoteControlConsoleComponent> entity, ref ComponentStartup args)
     {
-        if (args.Source != entity.Owner
-            || args.SourcePort != "RemoteControl"
-            || !TryComp<DeviceLinkSourceComponent>(entity.Owner, out var source)
-            || _deviceLink.GetLinkedSinks((entity.Owner, source), args.SourcePort).Count == 0)
-            return;
+        if (entity.Comp.Channel is { } channel && _remoteControlBrains.TryGetBrain(channel, out var brain))
+            SetRemoteBrain(entity, brain);
 
-        args.Cancel();
+        UpdateSettingsUiState(entity.Owner, entity.Comp);
     }
 
     [SubscribeLocalEvent]
-    private void OnNewLink(Entity<RemoteControlConsoleComponent> entity, ref NewLinkEvent args)
+    private void OnRemoteBrainChannelRegistered(RemoteControlBrainChannelRegisteredEvent args)
     {
-        if (args.Source != entity.Owner || !HasComp<RemoteControlBrainComponent>(args.Sink))
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
+        {
+            if (console.Channel != args.Channel)
+                continue;
+
+            SetRemoteBrain((consoleUid, console), args.Brain);
+        }
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRemoteBrainChannelUnregistered(RemoteControlBrainChannelUnregisteredEvent args)
+    {
+        var query = EntityQueryEnumerator<RemoteControlConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
+        {
+            if (console.RemoteBrain != args.Brain)
+                continue;
+
+            SetRemoteBrain((consoleUid, console), null);
+        }
+    }
+
+    private void OnOpenSettings(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlOpenSettingsMessage args)
+    {
+        if (!component.Users.Contains(args.Actor)
+            || !_ui.IsUiOpen((uid, null), RemoteControlUIKey.Key, args.Actor))
             return;
+
+        _ui.OpenUi((uid, null), RemoteControlSettingsUIKey.Key, args.Actor);
+    }
+
+    private void OnSetRemoteControlChannel(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlSetChannelMessage args)
+    {
+        if (!_ui.IsUiOpen((uid, null), RemoteControlSettingsUIKey.Key, args.Actor))
+            return;
+
+        var now = _gameTiming.CurTime;
+        if (_channelChangeAttempts.TryGetValue(uid, out var lastAttempt)
+            && now - lastAttempt < TimeSpan.FromSeconds(1))
+        {
+            UpdateSettingsUiState(uid, component, string.Empty);
+            return;
+        }
+
+        _channelChangeAttempts[uid] = now;
+
+        int? channel = null;
+        if (args.Channel is { Length: > 0 } requestedChannel)
+        {
+            if (!RemoteControlChannel.TryParse(requestedChannel, out var parsedChannel))
+            {
+                UpdateSettingsUiState(uid, component, Loc.GetString("remote-control-settings-invalid-channel"));
+                return;
+            }
+
+            channel = parsedChannel;
+        }
+
+        component.Channel = channel;
+        Dirty(uid, component);
+
+        var brain = channel is { } requestedChannelValue
+                    && _remoteControlBrains.TryGetBrain(requestedChannelValue, out var foundBrain)
+            ? foundBrain
+            : (EntityUid?) null;
+        SetRemoteBrain((uid, component), brain);
+    }
+
+    private void SetRemoteBrain(Entity<RemoteControlConsoleComponent> entity, EntityUid? brain)
+    {
+        if (entity.Comp.RemoteBrain == brain)
+        {
+            UpdateSettingsUiState(entity.Owner, entity.Comp);
+            return;
+        }
 
         if (entity.Comp.RemoteBrain is not null
             && _sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var oldRemoteEntity))
+        {
             CleanupUsers(entity, oldRemoteEntity, false);
+            if (!TerminatingOrDeleted(oldRemoteEntity))
+                SetRemoteTypingState(oldRemoteEntity, TypingIndicatorState.None);
+        }
 
-        entity.Comp.RemoteBrain = args.Sink;
+        entity.Comp.RemoteBrain = brain;
         Dirty(entity);
 
-        if (!_sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var remoteEntity))
+        if (!_sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var remoteEntity)
+            || TerminatingOrDeleted(remoteEntity))
         {
             SetDisconnectedState(entity.Owner);
+            UpdateSettingsUiState(entity.Owner, entity.Comp);
             return;
         }
 
@@ -422,18 +528,71 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             if (_playerManager.TryGetSessionByEntity(user, out var session))
                 _viewSubscriber.AddViewSubscriber(remoteEntity, session);
 
+        TryStartToyRemoteControl(entity, remoteEntity);
         RefreshRemoteState(entity.Owner, entity.Comp, remoteEntity);
+        UpdateSettingsUiState(entity.Owner, entity.Comp);
+    }
+
+    private void TryStartToyRemoteControl(Entity<RemoteControlConsoleComponent> entity, EntityUid remoteEntity)
+    {
+        if (entity.Comp.EnableRemoteView
+            || entity.Comp.Controller is not null
+            || !TryComp<ItemToggleComponent>(entity.Owner, out var toggle)
+            || !toggle.Activated)
+            return;
+
+        foreach (var user in entity.Comp.Users)
+        {
+            if (!_actionBlocker.CanConsciouslyPerformAction(user))
+                continue;
+
+            if (SetController(entity.Owner, entity.Comp, user, remoteEntity, false))
+                return;
+
+            entity.Comp.Users.Remove(user);
+            DeactivateToyRemote(entity.Owner, entity.Comp);
+            return;
+        }
+    }
+
+    private void UpdateSettingsUiState(EntityUid uid, RemoteControlConsoleComponent component, string? error = null)
+    {
+        if (!HasComp<UserInterfaceComponent>(uid))
+            return;
+
+        var connected = component.RemoteBrain is { } brain
+                        && HasComp<RemoteControlBrainComponent>(brain)
+                        && _sharedRemoteControl.TryGetRemoteEntity((uid, component), out _)
+                        && !TerminatingOrDeleted(brain);
+        var channel = component.Channel is { } value && RemoteControlChannel.IsValid(value)
+            ? RemoteControlChannel.Format(value)
+            : string.Empty;
+
+        _ui.SetUiState(uid, RemoteControlSettingsUIKey.Key,
+            new RemoteControlSettingsBuiState
+            {
+                Channel = channel,
+                Connected = connected,
+                Error = error
+            });
     }
 
     [SubscribeLocalEvent]
     private void OnUiOpen(EntityUid uid, RemoteControlConsoleComponent component, BoundUIOpenedEvent args)
     {
+        if (args.UiKey.Equals(RemoteControlSettingsUIKey.Key))
+        {
+            UpdateSettingsUiState(uid, component);
+            return;
+        }
+
         if (!args.UiKey.Equals(RemoteControlUIKey.Key))
             return;
 
         var user = args.Actor;
 
         component.Users.Add(user);
+        UpdateSettingsUiState(uid, component);
 
         if (!_sharedRemoteControl.TryGetRemoteEntity((uid, component), out var remoteEntity))
         {
@@ -482,7 +641,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (args.Handled
             || !_actionBlocker.CanConsciouslyPerformAction(uid)
             || !TryComp<RemoteControlConsoleComponent>(uid, out var console)
-            || !TryComp<StationAIShuntComponent>(args.Target, out _)
+            || (!HasComp<StationAIShuntComponent>(args.Target)
+                && !HasComp<RemoteControlBrainComponent>(args.Target))
             || !_playerManager.TryGetSessionByEntity(uid, out var session)
             || (console.Controller is { } controller && controller != uid))
             return;
@@ -515,11 +675,17 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (!_sharedRemoteControl.TryGetRemoteEntity(consoleEntity, out var remoteEntity))
         {
             console.RemoteBrain = null;
+            console.Channel = null;
             Dirty(uid, console);
+            UpdateSettingsUiState(uid, console);
             return;
         }
 
+        console.Channel = TryComp<RemoteControlBrainComponent>(remoteBrain, out var brainComponent)
+            ? brainComponent.Channel
+            : null;
         Dirty(uid, console);
+        UpdateSettingsUiState(uid, console);
         if (console.Users.Contains(uid))
         {
             AddRemotePvsOverrides(remoteEntity, uid, session);
@@ -579,7 +745,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         {
             if (console.Controller is not { } controller
                 || !_sharedRemoteControl.TryGetRemoteEntity((consoleUid, console), out var remoteEntity)
-                || remoteEntity != args.Entity)
+                || remoteEntity != args.Entity
+                || console.RemoteControlPower > PlayerPossessionRemoteControlPower)
                 continue;
 
             PopupRemoteControlMessage(
@@ -1396,26 +1563,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             RemComp(args.Actor, relay);
     }
 
-    [SubscribeLocalEvent]
-    private void OnPortDisconnected(Entity<RemoteControlConsoleComponent> entity, ref PortDisconnectedEvent args)
-    {
-        if (args.Source != entity.Owner || entity.Comp.RemoteBrain != args.Sink || args.Port != "RemoteControl")
-            return;
-
-        if (_sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var remoteEntity))
-        {
-            CleanupUsers(entity, remoteEntity, false);
-            SetRemoteTypingState(remoteEntity, TypingIndicatorState.None);
-        }
-
-        if (TryGetBorg(args.Sink, out var chassis))
-            DeactivateRemoteBorg(entity.Comp, chassis);
-
-        entity.Comp.RemoteBrain = null;
-        SetDisconnectedState(entity.Owner);
-        Dirty(entity);
-    }
-
     private bool TryGetBorg(EntityUid brain, out EntityUid chassis)
     {
         chassis = default;
@@ -1565,6 +1712,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnConsoleShutdown(Entity<RemoteControlConsoleComponent> entity, ref ComponentShutdown args)
     {
+        _channelChangeAttempts.Remove(entity.Owner);
+
         if (!_sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var remoteEntity))
         {
             UpdateControllerIndex(entity.Owner, entity.Comp.Controller, null);
@@ -1622,7 +1771,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         if (controller is { } controlRequester
             && remoteEntity is { } controlledEntity
-            && !CanRemoteControlTarget(consoleUid, controlledEntity, controlRequester, component.PreviousRelayEntity))
+            && (!CanRemoteControlTarget(consoleUid, controlledEntity, controlRequester, component)
+                || !IsKinematicControllerBody(controlledEntity)))
         {
             if (refreshUi)
                 RefreshRemoteState(consoleUid, component, controlledEntity);
@@ -1631,18 +1781,17 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         if (controller is { } takeoverRequester
-            && remoteEntity is { } requestedRemoteEntity
-            && !component.CanForceRemoteControl)
+            && remoteEntity is { } requestedRemoteEntity)
         {
             var conflictQuery = EntityQueryEnumerator<RemoteControlConsoleComponent>();
             while (conflictQuery.MoveNext(out var otherConsoleUid, out var otherConsole))
             {
                 if (otherConsoleUid == consoleUid
-                    || otherConsole.Controller is not { } otherController
-                    || otherController == takeoverRequester
+                    || otherConsole.Controller is null
                     || !_sharedRemoteControl.TryGetRemoteEntity((otherConsoleUid, otherConsole),
                         out var otherRemoteEntity)
-                    || otherRemoteEntity != requestedRemoteEntity)
+                    || otherRemoteEntity != requestedRemoteEntity
+                    || component.RemoteControlPower > otherConsole.RemoteControlPower)
                     continue;
 
                 PopupRemoteControlMessage(
@@ -1836,20 +1985,25 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         UntrackRemoteUiRangeOverrideActor(remoteEntity, uiKey, controller);
     }
 
+    private bool IsKinematicControllerBody(EntityUid entity)
+        => TryComp<PhysicsComponent>(entity, out var physics)
+           && physics.BodyType == BodyType.KinematicController;
+
     private bool CanRemoteControlTarget(
         EntityUid consoleUid,
         EntityUid remoteEntity,
         EntityUid controller,
-        EntityUid? previousRelayEntity)
+        RemoteControlConsoleComponent console)
     {
-        if (!HasComp<ActorComponent>(remoteEntity))
+        if (!HasComp<ActorComponent>(remoteEntity)
+            || console.RemoteControlPower > PlayerPossessionRemoteControlPower)
             return true;
 
         PopupRemoteControlMessage(
             Loc.GetString("remote-control-target-player-controlled"),
             consoleUid,
             controller,
-            previousRelayEntity);
+            console.PreviousRelayEntity);
         return false;
     }
 

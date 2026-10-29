@@ -7,11 +7,10 @@ using Content.Server._Starlight.Computers.RemoteControl;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Silicons.Borgs;
 using Content.Shared._Starlight.Computers.RemoteControl;
+using Content.Shared._Starlight.Silicons;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.DeviceLinking;
-using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Input;
@@ -632,9 +631,9 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
                 rouny = SEntMan.SpawnEntity("PlushieRouny", coordinates.Offset(new Vector2(-2f, 0f)));
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(SPlayer);
                 console.Users.Add(SPlayer);
-
-                var linkEvent = new NewLinkEvent(null, SPlayer, "RemoteControl", rouny, "RemoteControl");
-                SEntMan.EventBus.RaiseLocalEvent(SPlayer, linkEvent);
+                var remoteBrain = SEntMan.GetComponent<RemoteControlBrainComponent>(rouny);
+                console.Channel = remoteBrain.Channel;
+                console.RemoteBrain = rouny;
 
                 var toggleMessage = new RemoteControlToggleMessage
                 {
@@ -709,11 +708,12 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
 
                 Assert.That(Server.System<SharedHandsSystem>()
                     .TryPickup(SPlayer, handheld, checkActionBlocker: false), Is.True);
-                Assert.That(Server.System<SharedDeviceLinkSystem>()
-                    .ToggleLink(null, handheld, rouny, "RemoteControl", "RemoteControl"), Is.True);
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(handheld);
+                var remoteBrain = SEntMan.GetComponent<RemoteControlBrainComponent>(rouny);
+                console.Channel = remoteBrain.Channel;
+                console.RemoteBrain = rouny;
                 Server.System<SharedUserInterfaceSystem>().OpenUi(handheld, RemoteControlUIKey.Key, SPlayer);
 
-                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(handheld);
                 Assert.That(console.Controller, Is.EqualTo(SPlayer));
                 Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(SPlayer).RelayEntity, Is.EqualTo(rouny));
             });
@@ -770,12 +770,6 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
             {
                 if (SEntMan.EntityExists(handheld))
                     Server.System<SharedUserInterfaceSystem>().CloseUi(handheld, RemoteControlUIKey.Key, SPlayer);
-
-                var links = Server.System<SharedDeviceLinkSystem>();
-                if (SEntMan.EntityExists(handheld)
-                    && SEntMan.EntityExists(rouny)
-                    && links.GetLinks(handheld, rouny).Count > 0)
-                    links.ToggleLink(null, handheld, rouny, "RemoteControl", "RemoteControl");
             });
             await RunTicks(1);
         }

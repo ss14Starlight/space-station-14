@@ -43,13 +43,19 @@ public sealed partial class StarlightInputSystem : EntitySystem
         SubscribeLocalEvent<MovementRelayTargetComponent, ComponentRemove>(OnActiveChanged);
         SubscribeLocalEvent<MovementRelayTargetComponent, MapInitEvent>(OnActiveChanged);
 
-        SubscribeLocalEvent<RemoteControlBrainComponent, ComponentStartup>(OnActiveChanged);
+        SubscribeLocalEvent<RemoteControlBrainChannelRegisteredEvent>(OnRemoteControlBrainChannelRegistered);
         SubscribeLocalEvent<RemoteControlBrainComponent, ComponentRemove>(OnActiveChanged);
 
         Subs.CVar(_config, StarlightCCVars.PhysicsActiveInputMoverEnabled, v => _activeInputMoverEnabled = v, true);
     }
 
     private void OnActiveChanged<TComp, TEvent>(Entity<TComp> ent, ref TEvent args) where TComp : IComponent?
+        => UpdateActiveMover(ent.Owner);
+
+    private void OnRemoteControlBrainChannelRegistered(RemoteControlBrainChannelRegisteredEvent args)
+        => UpdateActiveMover(args.Brain);
+
+    private void UpdateActiveMover(EntityUid ent)
     {
         if (!_activeInputMoverEnabled)
             return;

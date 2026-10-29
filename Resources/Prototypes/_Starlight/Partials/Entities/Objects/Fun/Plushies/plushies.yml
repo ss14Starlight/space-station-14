@@ -44,9 +44,6 @@
   parent: [BasePlushie, BaseMob]
   components:
   - type: RemoteControlBrain
-  - type: DeviceLinkSink
-    ports:
-    - RemoteControl
   - type: Physics
     bodyType: KinematicController
   - type: MovementSpeedModifier

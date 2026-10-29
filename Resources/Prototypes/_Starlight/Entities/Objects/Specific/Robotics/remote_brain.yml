@@ -12,6 +12,3 @@
   - type: ContentEye
   - type: RemoteControlBrain
   - type: BorgBrain
-  - type: DeviceLinkSink
-    ports:
-    - RemoteControl

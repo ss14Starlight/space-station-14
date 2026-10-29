@@ -55,6 +55,7 @@
       whitelist:
         components:
           - StationAIShunt
+          - RemoteControlBrain
       event: !type:AIRemoteControlActionEvent
 
 - type: entity

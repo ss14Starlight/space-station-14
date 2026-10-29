@@ -20,6 +20,14 @@ public sealed class RemoteControlConsoleBuiState : BoundUserInterfaceState
 }
 
 [Serializable, NetSerializable]
+public sealed class RemoteControlSettingsBuiState : BoundUserInterfaceState
+{
+    public required string Channel { get; init; }
+    public required bool Connected { get; init; }
+    public string? Error { get; init; }
+}
+
+[Serializable, NetSerializable]
 public sealed class RemoteControlHandState
 {
     public required string Name { get; init; }

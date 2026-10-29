@@ -16,6 +16,7 @@ namespace Content.Client._Starlight.Computers.RemoteControl;
 
 public sealed partial class RemoteControlInterface : EntitySystem
 {
+    private IUserInterfaceManager? _uiManager;
     private RemoteControlConsoleWindow? _window;
     private TimeSpan _nextRemoteAlertUpdate;
 
@@ -29,9 +30,33 @@ public sealed partial class RemoteControlInterface : EntitySystem
     public event Action<EntityUid, bool, RemoteControlInteractionAction>? InteractionRequested;
     public event Action<string>? ItemConstructionRequested;
 
-    public override void Initialize() => base.Initialize();
+    public override void Initialize()
+    {
+        base.Initialize();
 
-    public override void Shutdown() => base.Shutdown();
+        _uiManager = IoCManager.Resolve<IUserInterfaceManager>();
+        _uiManager.WindowRoot.OnChildAdded += OnWindowRootChildAdded;
+    }
+
+    public override void Shutdown()
+    {
+        if (_uiManager is { } uiManager)
+            uiManager.WindowRoot.OnChildAdded -= OnWindowRootChildAdded;
+
+        base.Shutdown();
+    }
+
+    private void OnWindowRootChildAdded(Control control)
+    {
+        if (control is not BaseWindow window
+            || window is RemoteControlConsoleWindow
+            || window is RemoteControlSettingsWindow
+            || ControlledEntity is null
+            || _uiManager is not { } uiManager)
+            return;
+
+        uiManager.DeferAction(() => TryEmbedWindow(window));
+    }
 
     public void SetStatusWindow(RemoteControlConsoleWindow? window)
     {
@@ -90,25 +115,7 @@ public sealed partial class RemoteControlInterface : EntitySystem
             || window.Disposed)
             return false;
 
-        if (window is StorageWindow storageWindow)
-        {
-            if (window.Parent != remoteWindow.RemoteStorageContainer)
-            {
-                window.Orphan();
-                remoteWindow.RemoteStorageContainer.AddChild(window);
-            }
-
-            storageWindow.VerticalAlignment = Control.VAlignment.Center;
-            return true;
-        }
-
-        if (window.Parent != remoteWindow.RootContainer)
-        {
-            window.Orphan();
-            remoteWindow.RootContainer.AddChild(window);
-        }
-
-        window.RecenterWindow(new Vector2(0.5f, 0.5f));
+        remoteWindow.EmbedWindow(window);
         return true;
     }
 
