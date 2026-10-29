@@ -588,7 +588,7 @@ public sealed partial class ScentSystem : SharedScentSystem
         if (isPollen)
         {
             var pollenDecayTime = GetDecayTime(scent, uid);
-            var pollenMarker = EmitPollenMarker(ref scent.LastMarkerEntity, scentId, xform, pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
+            var pollenMarker = EmitPollenMarker(ref scent.LastMarkerEntity, uid, scentId, xform, pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
 
             if (!pollenMarker.IsValid())
                 return;
@@ -730,17 +730,17 @@ public sealed partial class ScentSystem : SharedScentSystem
     /// Updated in place when a new marker is spawned.
     /// </param>
     /// <returns>The marker entity now associated with this emitter.</returns>
-    public EntityUid EmitPollenMarker(ref EntityUid? lastMarker, string pollenId,
+    public EntityUid EmitPollenMarker(ref EntityUid? lastMarker, EntityUid emitterUid, string pollenId,
         TransformComponent emitterXform, TimeSpan lifetime, float mergeRadius, float mergeStrengthStep)
     {
-        var container = GetAirtightContainer(emitterXform);
-        EntityUid? matchingMarker = null;
-
-        if ((_atmosphere.GetTileMixture(emitterXform.Owner)?.Pressure ?? 0f) <= 5f) // dont emit pollen below 5 kpa
+        if ((_atmosphere.GetTileMixture(emitterUid)?.Pressure ?? 0f) <= 5f)
         {
             lastMarker = null;
             return EntityUid.Invalid;
         }
+
+        var container = GetAirtightContainer(emitterXform);
+        EntityUid? matchingMarker = null;
 
         // Select the same matching marker consistently, regardless of each emitter's cached reference.
         foreach (var candidate in _lookup.GetEntitiesInRange(emitterXform.Coordinates, mergeRadius))
