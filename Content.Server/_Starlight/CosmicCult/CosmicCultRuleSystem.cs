@@ -288,10 +288,12 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     {
         var ruleQuery = QueryActiveRules();
         var foundRule = false;
+        EntityUid voteRuleUid = default;
 
         while (ruleQuery.MoveNext(out var ruleUid, out var activeRuleComp, out var rule, out var gameRule))
         {
             foundRule = true;
+            voteRuleUid = ruleUid;
 
             // Once the Monument is placed there are no more votes
             if (rule.CurrentTier > 0)
@@ -362,6 +364,9 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             }
 
             EnsureComp<CosmicCultLeadComponent>(picked);
+            if (TryComp<CosmicCultRuleComponent>(voteRuleUid, out var voteRule)
+                && (voteRule.InitialSteward is not { } current || !HasComp<CosmicCultLeadComponent>(current)))
+                voteRule.InitialSteward = picked;
             _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Cult stewardship vote finished: {Identity.Entity(picked, EntityManager)} is now steward.");
             _antag.SendBriefing(picked, Loc.GetString("cosmiccult-vote-steward-briefing"), Color.FromHex("#4cabb3"), _monumentAlert);
         };
@@ -882,6 +887,53 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             && _mind.TryGetMind(uid, out _, out var mind) &&
                 _playerMan.TryGetSessionById(mind.UserId, out _);
 
+    // Pity for if the steward was deconverted after the monument was placed; a new steward is randomly chosen, once.
+    private bool TryTransferInitialSteward(EntityUid oldSteward, Entity<CosmicCultRuleComponent> cult)
+    {
+        var candidates = new List<EntityUid>();
+        var query = EntityQueryEnumerator<CosmicCultComponent>();
+
+        while (query.MoveNext(out var cultist, out _))
+        {
+            if (cultist == oldSteward || !IsValidStewardCandidate(cultist))
+                continue;
+
+            candidates.Add(cultist);
+        }
+
+        if (candidates.Count == 0)
+        {
+            _sawmill.Info("Did not transfer stewardship from initial steward {0}: no valid remaining cultists.", ToPrettyString(oldSteward));
+            return false;
+        }
+
+        var successor = _rand.Pick(candidates);
+        EnsureComp<CosmicCultLeadComponent>(successor, out var leadComp);
+
+        // We don't want multiple monuments!
+        _actions.RemoveAction(successor, leadComp.CosmicMonumentPlaceActionEntity);
+
+        // Hand over the Move Monument action to the new steward.
+        // Right now this ends up allowing the cult to move the Monument twice if the 
+        // first steward gets deconverted, but it's fine. It can be changed later if needed.
+        if (leadComp.CosmicMonumentMoveActionEntity is null)
+            _actions.AddAction(successor, ref leadComp.CosmicMonumentMoveActionEntity, leadComp.CosmicMonumentMoveAction, successor);
+        _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Cult stewardship transferred: {Identity.Entity(successor, EntityManager)} is now steward (former steward {Identity.Entity(oldSteward, EntityManager)} was deconverted).");
+        _antag.SendBriefing(successor, Loc.GetString("cosmiccult-vote-steward-briefing"), Color.FromHex("#4cabb3"), _monumentAlert);
+
+        var sender = Loc.GetString("cosmiccult-announcement-sender");
+        var allCultists = Filter.Empty().FromEntities([.. candidates]);
+        _chatSystem.DispatchFilteredAnnouncement(
+            allCultists,
+            Loc.GetString("cosmiccult-leader-lost-message", ("old", Identity.Name(oldSteward, EntityManager)), ("new", Identity.Name(successor, EntityManager))),
+            sender: sender,
+            playSound: false,
+            colorOverride: Color.FromHex("#4eb1b3"));
+
+        _sawmill.Info("Transferred stewardship from deconverted initial steward {0} to {1}.", ToPrettyString(oldSteward), ToPrettyString(successor));
+        return true;
+    }
+
     private bool TryQueueStewardRevote(
         EntityUid oldSteward,
         Entity<CosmicCultRuleComponent>? rule = null,
@@ -974,7 +1026,12 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         _faction.RemoveFaction(uid.Owner, CosmicCultFaction);
         _faction.AddFaction(uid.Owner, NanoTrasenFaction);
 
-        if (wasSteward)
+        if (wasSteward && cult.Comp.InitialSteward == uid.Owner && cult.Comp.CurrentTier is > 0 and < 3 && TryTransferInitialSteward(uid.Owner, cult))
+        {
+            cult.Comp.InitialSteward = null;
+            RemComp<CosmicCultLeadComponent>(uid);
+        }
+        else if (wasSteward)
         {
             TryQueueStewardRevote(uid.Owner, cult, removeStewardComp: false);
             RemComp<CosmicCultLeadComponent>(uid);

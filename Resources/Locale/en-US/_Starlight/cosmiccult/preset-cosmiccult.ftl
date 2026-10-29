@@ -251,3 +251,4 @@ cosmiccult-silicon-effigy-exists =
     Your vessel strains under the presence of an existing effigy.
 
 cosmiccult-leader-abandonment-message = Your chosen enlightened has forsaken the grand design. You must empower another!
+cosmiccult-leader-lost-message = A piercing scream echoes through your mind as your steward, {$old}, is lost to the faithless. {$new} now carries the mantle of leadership.
