@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/27/2026 09:18:22
-  entityCount: 32627
+  time: 10/29/2026 12:08:02
+  entityCount: 32621
 maps:
 - 1
 grids:
@@ -10860,16 +10860,6 @@ entities:
         - temperature: 293.15
           volume: 2500
           moles:
-            Oxygen: 21.6852
-            Nitrogen: 81.57766
-        - temperature: 293.14975
-          volume: 2500
-          moles:
-            Oxygen: 20.078888
-            Nitrogen: 75.53487
-        - temperature: 293.15
-          volume: 2500
-          moles:
             Oxygen: 6666.982
         - temperature: 293.15
           volume: 2500
@@ -11811,11 +11801,9 @@ entities:
           -13,-12:
             0: 65520
           -12,-11:
-            0: 65245
-            4: 256
+            0: 65501
           -13,-11:
-            0: 65023
-            5: 512
+            0: 65535
           -12,-10:
             0: 65295
           -13,-10:
@@ -13074,15 +13062,15 @@ entities:
           -15,-18:
             0: 56796
           -14,-20:
-            6: 273
-            7: 1092
+            4: 273
+            5: 1092
           -14,-19:
             2: 15
             0: 65280
           -14,-18:
             0: 65535
           -13,-20:
-            8: 273
+            6: 273
             1: 1092
           -13,-19:
             2: 15
@@ -16675,6 +16663,13 @@ entities:
       pos: -5.5,-41.5
 - proto: AirlockBrigGlassLocked
   entities:
+  - uid: 1396
+    components:
+    - type: Transform
+      parent: 2
+      pos: 2.5,21.5
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 11198
     components:
     - type: Transform
@@ -17835,13 +17830,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 0.5,30.5
-  - uid: 9485
-    components:
-    - type: Transform
-      parent: 2
-      pos: 2.5,21.5
-    - type: AccessReader
-      accessListsOriginal: []
   - uid: 11111
     components:
     - type: Transform
@@ -26259,11 +26247,6 @@ entities:
       pos: -17.5,-69.5
 - proto: BlastDoorOpen
   entities:
-  - uid: 1396
-    components:
-    - type: Transform
-      parent: 2
-      pos: -58.5,60.5
   - uid: 6401
     components:
     - type: Transform
@@ -26389,11 +26372,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -48.5,61.5
-  - uid: 7445
-    components:
-    - type: Transform
-      parent: 2
-      pos: -48.5,60.5
   - uid: 9752
     components:
     - type: Transform
@@ -48356,31 +48334,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -76.5,18.5
-  - uid: 17028
-    components:
-    - type: Transform
-      parent: 2
-      pos: -56.5,39.5
-  - uid: 17029
-    components:
-    - type: Transform
-      parent: 2
-      pos: -56.5,40.5
-  - uid: 17031
-    components:
-    - type: Transform
-      parent: 2
-      pos: -55.5,41.5
-  - uid: 17032
-    components:
-    - type: Transform
-      parent: 2
-      pos: -56.5,41.5
-  - uid: 17034
-    components:
-    - type: Transform
-      parent: 2
-      pos: -54.5,41.5
   - uid: 17044
     components:
     - type: Transform
@@ -66956,6 +66909,11 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -32.5,-11.5
+  - uid: 4695
+    components:
+    - type: Transform
+      parent: 2
+      pos: -54.5,36.5
   - uid: 4851
     components:
     - type: Transform
@@ -67498,6 +67456,11 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -57.5,-24.5
+  - uid: 7156
+    components:
+    - type: Transform
+      parent: 2
+      pos: -62.5,36.5
   - uid: 7179
     components:
     - type: Transform
@@ -142867,11 +142830,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -25.5,-8.5
-  - uid: 4553
-    components:
-    - type: Transform
-      parent: 2
-      pos: -56.5,39.5
   - uid: 4594
     components:
     - type: Transform
@@ -143359,11 +143317,6 @@ entities:
       parent: 2
       pos: -54.5,-3.5
   - uid: 7153
-    components:
-    - type: Transform
-      parent: 2
-      pos: -51.5,-3.5
-  - uid: 7156
     components:
     - type: Transform
       parent: 2
@@ -144214,12 +144167,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -52.5,55.5
-  - uid: 9748
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: -58.5,60.5
   - uid: 9753
     components:
     - type: Transform
@@ -144232,12 +144179,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -51.5,60.5
-  - uid: 9765
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: -48.5,60.5
   - uid: 9767
     components:
     - type: Transform
@@ -150100,9 +150041,6 @@ entities:
         9776:
         - - Pressed
           - Toggle
-        7445:
-        - - Pressed
-          - Toggle
         7444:
         - - Pressed
           - Toggle
@@ -150155,9 +150093,6 @@ entities:
         - - Pressed
           - Toggle
         9752:
-        - - Pressed
-          - Toggle
-        1396:
         - - Pressed
           - Toggle
         7427:
@@ -150986,6 +150921,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 20.5,-4.5
+  - uid: 9749
+    components:
+    - type: Transform
+      parent: 2
+      pos: 20.5,-3.5
 - proto: LockerPrisoner
   entities:
   - uid: 11483
@@ -152602,6 +152542,83 @@ entities:
     - type: Transform
       parent: 2
       pos: -14.326101,-26.469202
+  - uid: 9765
+    components:
+    - type: Transform
+      parent: 2
+      pos: 21.5,24.5
+    - type: Paper
+      stampState: paper_stamp-hos
+      stampedBy:
+      - type: RubberStamp
+        stampedName: stamp-component-stamped-name-rubber-stamp-csd
+        stampedColor: '#CC0000FF'
+        font: /Fonts/NotoSans/NotoSans-Regular.ttf
+      content: >
+        [head=1][color=#009100]────────────────────[/color][/head]
+
+        [color=#cc0000]█▀▀ █▀▀ █▀▀▄[/color]   [color=#cc0000][head=3]CENTRAL SECURITY DIVISION[/head][/color]
+
+        [color=#cc0000]█░░ ▀▀█ █░░█[/color]   [color=#cc0000][bolditalic]Eradicating the enemies of Nanotrasen[/bolditalic][/color]
+
+        [color=#cc0000]▀▀▀ ▀▀▀ ▀▀▀░[/color]   [color=#aaaaaa][italic]OFFICIAL CSD OFFICE DOCUMENT[/italic][/color]
+
+        [head=1][color=#009100]────────────────────[/color][/head]
+
+        [head=2]NOTICE OF TEMPORARY ACCESS CHANGE[/head]
+
+
+        [mono]Attention,
+
+
+        Due to an oversight with cell bar construction, we've designated the outdoor basketball court to be only accessed by prisoners under supervision by an officer.
+
+
+        If CRD can figure out and fix the "Prisoners being able to be pulled though a 4 inch gap" issue, access may be restored to its prior state.
+
+
+        Signed,
+
+        - CSD[/mono]
+  - uid: 9766
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 3.5,21.5
+    - type: Paper
+      stampState: paper_stamp-hos
+      stampedBy:
+      - type: RubberStamp
+        stampedName: stamp-component-stamped-name-rubber-stamp-csd
+        stampedColor: '#CC0000FF'
+        font: /Fonts/NotoSans/NotoSans-Regular.ttf
+      content: >
+        [head=1][color=#009100]────────────────────[/color][/head]
+
+        [color=#cc0000]█▀▀ █▀▀ █▀▀▄[/color]   [color=#cc0000][head=3]CENTRAL SECURITY DIVISION[/head][/color]
+
+        [color=#cc0000]█░░ ▀▀█ █░░█[/color]   [color=#cc0000][bolditalic]Eradicating the enemies of Nanotrasen[/bolditalic][/color]
+
+        [color=#cc0000]▀▀▀ ▀▀▀ ▀▀▀░[/color]   [color=#aaaaaa][italic]OFFICIAL CSD OFFICE DOCUMENT[/italic][/color]
+
+        [head=1][color=#009100]────────────────────[/color][/head]
+
+        [head=2]NOTICE OF TEMPORARY ACCESS CHANGE[/head]
+
+
+        [mono]Attention,
+
+
+        Due to an oversight with cell bar construction, we've designated the outdoor basketball court to be only accessed by prisoners under supervision by an officer.
+
+
+        If CRD can figure out and fix the "Prisoners being able to be pulled though a 4 inch gap" issue, access may be restored to its prior state.
+
+
+        Signed,
+
+        - CSD[/mono]
   - uid: 11203
     components:
     - type: Transform
@@ -162073,6 +162090,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -7.5,-40.5
+  - uid: 9748
+    components:
+    - type: Transform
+      parent: 2
+      pos: 8.5,-10.5
   - uid: 11302
     components:
     - type: Transform
@@ -162403,11 +162425,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 9.5,-25.5
-  - uid: 31720
-    components:
-    - type: Transform
-      parent: 2
-      pos: 8.5,-9.5
   - uid: 31745
     components:
     - type: Transform
@@ -163440,11 +163457,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -50.5,65.5
-  - uid: 4695
-    components:
-    - type: Transform
-      parent: 2
-      pos: -56.5,39.5
   - uid: 6191
     components:
     - type: Transform
@@ -163535,21 +163547,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -52.5,55.5
-  - uid: 9749
-    components:
-    - type: Transform
-      parent: 2
-      pos: -58.5,60.5
   - uid: 9762
     components:
     - type: Transform
       parent: 2
       pos: -51.5,60.5
-  - uid: 9766
-    components:
-    - type: Transform
-      parent: 2
-      pos: -48.5,60.5
   - uid: 9768
     components:
     - type: Transform
@@ -170207,6 +170209,8 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -67.5,-40.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         22228:
@@ -185624,6 +185628,11 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -19.5,-15.5
+  - uid: 4553
+    components:
+    - type: Transform
+      parent: 2
+      pos: -58.5,60.5
   - uid: 4590
     components:
     - type: Transform
@@ -186992,6 +187001,11 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -39.5,-18.5
+  - uid: 7445
+    components:
+    - type: Transform
+      parent: 2
+      pos: -56.5,39.5
   - uid: 7475
     components:
     - type: Transform
@@ -188562,6 +188576,11 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 2.5,22.5
+  - uid: 9485
+    components:
+    - type: Transform
+      parent: 2
+      pos: -48.5,60.5
   - uid: 9503
     components:
     - type: Transform
