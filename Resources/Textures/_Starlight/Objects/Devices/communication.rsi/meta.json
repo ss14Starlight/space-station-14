@@ -1,14 +1,14 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "syndimoff sprite made by to01, parts taken from cev-eris and modified by Swept at https://github.com/discordia-space/CEV-Eris/commit/efce5b6c3be75458ce238dcc01510e8f8a653ca6. Uplink radio sprites by Vermidia, derivative of other licensed sprites in the repo",
+  "copyright": "boomroach sprite made by to01, parts taken from cev-eris and modified by Swept at https://github.com/discordia-space/CEV-Eris/commit/efce5b6c3be75458ce238dcc01510e8f8a653ca6. Uplink radio sprites by Vermidia, derivative of other licensed sprites in the repo",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "old-radio-syndimoff"
+      "name": "old-radio-boomroach"
     }
   ]
 }

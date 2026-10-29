@@ -349,10 +349,10 @@
     baseSprintSpeed : 1
 
 - type: entity
-  name: syndimoff
-  id: MobSyndiMoff
+  name: boomroach
+  id: MobBoomroach
   parent: MobMothroach
-  description: Explosive moff.
+  description: Is it wearing a bomb?
   components:
   - type: LanguageKnowledge
     speaks:
@@ -362,31 +362,31 @@
     - Mothroach
     - GalacticCommon
   - type: Sprite
-    sprite: _Starlight/Mobs/Animals/mothroach/syndimoff.rsi
+    sprite: _Starlight/Mobs/Animals/mothroach/boomroach.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: syndimoff
+      state: boomroach
   - type: SpriteMovement
     movementLayers:
       movement:
-        state: syndimoff-moving
+        state: boomroach-moving
     noMovementLayers:
       movement:
-        state: syndimoff
+        state: boomroach
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: syndimoff
+        Base: boomroach
       Critical:
-        Base: syndimoff_dead
+        Base: boomroach_dead
       Dead:
-        Base: syndimoff_dead
+        Base: boomroach_dead
   - type: GhostRole
     prob: 1
-    name: ghost-role-information-syndimoff-name
+    name: ghost-role-information-boomroach-name
     allowMovement: true
-    description: ghost-role-information-syndimoff-description
-    rules: ghost-role-information-syndimoff-rules
+    description: ghost-role-information-boomroach-description
+    rules: ghost-role-information-boomroach-rules
     important: true # SL
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
