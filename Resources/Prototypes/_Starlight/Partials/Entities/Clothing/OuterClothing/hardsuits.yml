@@ -210,3 +210,80 @@
     contrabandType: NanoTrasen
     allowedDepartments:
     - Representatives
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSF
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFPrimus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFSecundus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFTertius
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFQuartus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFQuintus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFSextus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFSeptimus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFOctavius
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFNonus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitDecimus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier5

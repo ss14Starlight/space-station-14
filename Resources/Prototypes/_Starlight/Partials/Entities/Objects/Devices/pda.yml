@@ -3,3 +3,10 @@
   id: BasePDA
   components:
   - type: DarkLight
+
+- type: !PartialOnly entity
+  id: DecimusPDA
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier5
