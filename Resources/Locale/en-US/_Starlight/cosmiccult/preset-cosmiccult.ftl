@@ -126,7 +126,7 @@ cosmiccult-rift-purge = The malign rift is expunged!
 cosmiccult-rift-empowered-briefing =
     Malign light empowers you!
     You siphon twice as much entropy, and the void cannot harm you: you need no air and ignore pressure and cold.
-    This power is consumed if you use Null Fragmentation on a silicon, but your immunity to the void remains; a preview of things to come.
+    This power is consumed if you use Null Fragmentation, but your immunity to the void remains; a preview of things to come.
 
 
 ## CHANTRY
