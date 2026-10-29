@@ -76,3 +76,19 @@
         children:
         - id: SpearAthena
         - id: SwordAres
+
+- type: entity
+  id: CrateArmoryMilitia
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  name: militia weapon crate
+  description: A filled with old surplus guns. Comes with 4 rifles, and a SMG. Ideal for arming a grey tide, ammo not included.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleMilitia
+        - id: WeaponRifleMilitia
+        - id: WeaponRifleMilitia
+        - id: WeaponRifleMilitia
+        - id: WeaponSubMachineGunMilitia
