@@ -1,13 +1,6 @@
 Entries:
 - author: Darius
   changes:
-  - message: (Prism) added ice cream machine to kitchen.
-    type: Add
-  id: 409473
-  time: '2026-10-16T09:54:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6646
-- author: Darius
-  changes:
   - message: (Prism) added more escape pods and external airlocks.
     type: Add
   id: 409474
@@ -2799,4 +2792,11 @@ Entries:
   id: 409872
   time: '2026-10-29T15:02:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6924
+- author: Conflee
+  changes:
+  - message: Fixed Interdyne Nukie Outpost APCs overloading by swapping them all from high capacity to super capacity. Run your hellfire freezer/heater all you want!
+    type: Fix
+  id: 409873
+  time: '2026-10-29T15:22:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6930
 Order: -1
