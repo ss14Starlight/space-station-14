@@ -361,7 +361,7 @@
   parent: SalvageLeadPDA
   id: VeteranSalvageLeadPDA
   name: veteran salvage lead PDA
-  description: looks like this was patched up with a bunch of scrap. barely.
+  description: Looks like this was patched up with a bunch of scrap. Barely.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/pda.rsi
@@ -384,7 +384,7 @@
   parent: SalvagePDA
   id: VeteranSalvagePDA
   name: veteran salvage PDA
-  description: looks like this was patched up with a bunch of scrap. barely.
+  description: Looks like this was patched up with a bunch of scrap. Barely.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/pda.rsi
@@ -406,7 +406,7 @@
   parent: BasePDA
   id: MiningPDA
   name: mining PDA
-  description: there is dirt in every crack.
+  description: There is dirt in every crack.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/pda.rsi
@@ -437,7 +437,7 @@
   parent: MiningPDA
   id: VeteranMiningPDA
   name: veteran mining PDA
-  description: the screen is cracked, and the buttons barely work.
+  description: The screen is cracked, and the buttons barely work.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/pda.rsi
