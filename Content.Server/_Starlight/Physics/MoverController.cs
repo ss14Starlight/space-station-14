@@ -492,14 +492,15 @@ public sealed partial class SLMoverController : SharedMoverController
             }
 
             if (!weightless && MobMoverQuery.TryGetComponent(uid, out var mobMover) &&
-                TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, tileDef: tileDef))
+                TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, out var surfaceSound, tileDef: tileDef))
             {
                 var soundModifier = mover.Sprinting ? 3.5f : 1.5f;
 
                 var audioParams = sound.Params
                     .WithVolume(sound.Params.Volume + soundModifier)
                     .WithVariation(sound.Params.Variation ?? mobMover.FootstepVariation);
-                audioParams = ApplyStepTimbre(uid, audioParams);
+                if (surfaceSound)
+                    audioParams = ApplyStepTimbre(uid, audioParams);
 
                 soundEvent = new SoundEvent(sound, uid, uid, audioParams);
             }

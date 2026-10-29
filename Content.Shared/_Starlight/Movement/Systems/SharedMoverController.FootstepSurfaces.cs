@@ -33,11 +33,6 @@ public abstract partial class SharedMoverController
             !TryComp(shoes, out FootstepTimbreComponent? timbre))
             return audioParams;
 
-        if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outer) &&
-            FootstepModifierQuery.TryComp(outer, out var outerModifier) &&
-            outerModifier.FootstepSoundCollection != null)
-            return audioParams;
-
         return audioParams
             .WithPitchScale(audioParams.Pitch * timbre.Pitch)
             .WithVolume(audioParams.Volume + timbre.Volume);
