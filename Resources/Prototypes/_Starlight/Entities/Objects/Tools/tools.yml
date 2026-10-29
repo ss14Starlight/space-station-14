@@ -1163,3 +1163,23 @@
     - ERTLoadoutSecLaserShotgun
     - ERTLoadoutSecLaserSniper
     - ERTLoadoutSecBallisticRifle
+
+# From Funky
+- type: entity
+  parent: NetworkConfigurator
+  id: NetworkConfiguratorWithTrigger
+  suffix: Trigger, Syndicate
+  components:
+  - type: Signaller
+  - type: UseDelay
+  - type: DeviceLinkSource
+    ports:
+    - Pressed
+  - type: Tag
+    tags:
+    - Payload
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 50

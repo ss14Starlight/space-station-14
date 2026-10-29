@@ -81,3 +81,13 @@
   suffix: No-slip
   components:
   - type: NoSlip
+
+# From Funky
+- type: entity
+  parent: ClothingShoesColorWhite
+  suffix: Silent, Syndicate
+  id: ClothingShoesColorWhiteNoSound
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSilence

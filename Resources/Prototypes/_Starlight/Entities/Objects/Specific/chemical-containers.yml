@@ -407,3 +407,43 @@
       reagents:
       - ReagentId: Lacerinol
         Quantity: 240
+
+# From Funky
+- type: entity
+  parent: FoodShakerPepper
+  suffix: Lead, Syndicate
+  id: FoodShakerPepperLead
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Lead
+        Quantity: 15
+
+- type: entity
+  parent: Pitcher
+  suffix: Napalm, Syndicate
+  id: PitcherNapalm
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Napalm
+        Quantity: 60
+
+- type: entity
+  parent: ChemistryEmptyVial
+  id: LeadChemistryVial
+  suffix: Lead
+  components:
+  - type: Label
+    currentLabel: reagent-name-lead
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Lead
+        Quantity: 30
+  - type: Tag
+    tags:
+    - CentrifugeCompatible
+# Funky end

@@ -209,3 +209,192 @@
     blacklist:
       components:
       - SurplusBundle
+
+# Funkystation items
+- type: listing
+  id: uplinkHiddenUplinkRadioBotany
+  name: uplink-hidden-radio-botany-name
+  description: uplink-hidden-radio-botany-desc
+  productEntity: HiddenUplinkRadioBotany
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Botanist
+    - ServiceWorker
+    - HeadOfPersonnel
+    - Captain
+
+- type: listing
+  id: uplinkFoodShakerPepperLead
+  name: uplink-food-pepper-shaker-lead-name
+  description: uplink-food-pepper-shaker-lead-desc
+  productEntity: FoodShakerPepperLead
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chef
+    - ServiceWorker
+    - HeadOfPersonnel
+    - Captain
+
+- type: listing
+  id: uplinkPitcherNapalm
+  name: uplink-pitcher-napalm-name
+  description: uplink-pitcher-napalm-desc
+  productEntity: PitcherNapalm
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chef
+    - ServiceWorker
+    - HeadOfPersonnel
+    - Captain
+
+- type: listing
+  id: uplinkEmergencyMedipenMute
+  name: uplink-emergency-medipen-mute-name
+  description: uplink-emergency-medipen-mute-desc
+  productEntity: EmergencyMedipenMute
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Mime
+    - Performer
+    - HeadOfPersonnel
+    - Captain
+
+- type: listing
+  id: uplinkClothingShoesColorWhiteNoSound
+  name: uplink-clothing-shoes-white-no-sound-name
+  description: uplink-clothing-shoes-white-no-sound-desc
+  productEntity: ClothingShoesColorWhiteNoSound
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Mime
+    - Performer
+    - HeadOfPersonnel
+    - Captain
+
+- type: listing
+  id: UplinkHiddenUplinkRadioScience
+  name: uplink-hidden-uplink-radio-science-name
+  description: uplink-hidden-uplink-radio-science-desc
+  productEntity: HiddenUplinkRadioScience
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Science
+  - !type:BuyerJobCondition
+    whitelist:
+    - Captain
+
+- type: listing
+  id: UplinkClothingSyndiHeadHatCone
+  name: uplink-clothing-syndi-head-cone-name
+  description: uplink-clothing-syndi-head-cone-desc
+  productEntity: ClothingSyndiHeadHatCone
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+  - !type:BuyerJobCondition
+    whitelist:
+    - Captain
+
+- type: listing
+  id: UplinkNetworkConfiguratorWithTrigger
+  name: uplink-network-configurator-with-trigger-name
+  description: uplink-network-configurator-with-trigger-desc
+  productEntity: NetworkConfiguratorWithTrigger
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+  - !type:BuyerJobCondition
+    whitelist:
+    - Captain
+
+- type: listing
+  id: UplinkUtilityKnifeSyndi
+  name: uplink-utility-knife-syndi-name
+  description: uplink-utility-knife-syndi-desc
+  productEntity: UtilityKnifeSyndi
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Cargo
+  - !type:BuyerJobCondition
+    whitelist:
+    - Captain
+
+- type: listing
+  id: UplinkAppraisalToolRadioJammer
+  name: uplink-apprasial-tool-radio-jammer-name
+  description: uplink-apprasial-tool-radio-jammer-desc
+  productEntity: AppraisalToolRadioJammer
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Cargo
+  - !type:BuyerJobCondition
+    whitelist:
+    - Captain
+
+- type: listing
+  id: UplinkLeadChemistryVial
+  name: uplink-lead-chemistry-vial-name
+  description: uplink-lead-chemistry-vial-desc
+  productEntity: LeadChemistryVial
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+  - !type:BuyerJobCondition
+    whitelist:
+    - Captain
+# Funky end
