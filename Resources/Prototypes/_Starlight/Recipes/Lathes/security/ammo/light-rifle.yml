@@ -86,6 +86,13 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: SpeedLoaderRifleTwin
+  result: SpeedLoaderRifleTwin
+  materials:
+    Steel: 225
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: L6SawMagazine
   result: MagazineLightRifleBoxSP
   materials:
