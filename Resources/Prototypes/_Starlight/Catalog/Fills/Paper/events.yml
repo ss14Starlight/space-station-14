@@ -127,7 +127,7 @@
 - type: entity
   parent: BasePaperQuietChaos
   id: PaperTooQuietNeedChaos
-  name: the end of Q
+  name: end of Q
   description: A dreadful paper that can't fit in a fax machine.
   components:
     - type: Paper
