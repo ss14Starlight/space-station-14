@@ -268,7 +268,7 @@
   description: uplink-emergency-medipen-mute-desc
   productEntity: EmergencyMedipenMute
   cost:
-    Telecrystal: 2
+    Telecrystal: 3
   categories:
   - UplinkJob
   conditions:
