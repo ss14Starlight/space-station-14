@@ -13,6 +13,7 @@
   - Pirate
   - CosmicCult
   - MoffNarsianDemon
+  - Floral
 
 - type: !PartialOnly npcFaction
   id: NanoTrasen

@@ -2,7 +2,7 @@
   id: BaseMobDragon
   components:
   - type: !Remove RandomSprite
-  - type: AntagMonsterScaling 
+  - type: AntagMonsterScaling
     minimumHealthScaling: -0.5
     maximumHealthScaling: 0.75
 

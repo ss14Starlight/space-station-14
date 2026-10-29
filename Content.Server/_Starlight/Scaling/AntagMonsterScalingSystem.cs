@@ -66,7 +66,7 @@ public sealed partial class ScalingSystem : SharedScalingSystem
         if (!UpdatePopulation(station))
             return;
 
-        ApplyHealthScaling(station, scalingComp, thresholdsComp, _cachedPopulations, _universalHealthWeight);
+        ApplyHealthScaling(mob, station, scalingComp, thresholdsComp, _cachedPopulations, _universalHealthWeight);
 
         scalingComp.ScaledMaxHealth = thresholdsComp.Thresholds.Keys.Max();
 

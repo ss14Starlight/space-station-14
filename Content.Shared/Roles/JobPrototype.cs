@@ -166,27 +166,6 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public List<ProtoId<GuideEntryPrototype>>? Guides;
-
-        /// <summary>
-        /// Multiplier for this job's contribution to security antag scaling.
-        /// Multiplied by the configured security weight.
-        /// </summary>
-        [DataField]
-        public double AntagScalingSecurityWeight { get; private set; }
-
-        /// <summary>
-        /// Multiplier for this job's contribution to salvage antag scaling.
-        /// Multiplied by the configured salvage weight.
-        /// </summary>
-        [DataField]
-        public double AntagScalingSalvageWeight { get; private set; }
-
-        /// <summary>
-        /// Multiplier for this job's contribution to Central Command antag scaling.
-        /// Multiplied by the configured Central Command weight.
-        /// </summary>
-        [DataField]
-        public double AntagScalingCentcomWeight { get; private set; }
     }
 
     /// <summary>
