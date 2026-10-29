@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/29/2026 11:51:31
-  entityCount: 32622
+  time: 10/29/2026 12:08:02
+  entityCount: 32621
 maps:
 - 1
 grids:
@@ -162425,11 +162425,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 9.5,-25.5
-  - uid: 31720
-    components:
-    - type: Transform
-      parent: 2
-      pos: 8.5,-9.5
   - uid: 31745
     components:
     - type: Transform
