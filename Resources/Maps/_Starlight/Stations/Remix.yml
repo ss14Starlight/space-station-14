@@ -31045,7 +31045,7 @@ entities:
 
         You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
       name: foam sabre sheath
-      description: You are the sentient blade next to the leader of the clowns. Behold your tyranny!
+      description: your are the sentient blade next to the leader of the clowns. behold your tyranny!
       raffle:
         settings: default
       mindRoles:
