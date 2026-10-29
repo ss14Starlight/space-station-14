@@ -146,7 +146,8 @@ public sealed partial class UplinkSystem : EntitySystem
             Store: store,
             UseDiscounts: giveDiscounts,
             UseSecondHand: true,
-            Listings: _store.GetAvailableListings(mind, store, storeComp).ToArray());
+            Listings: _store.GetAvailableListings(mind, store, storeComp).ToArray(),
+            BalanceInitialized: true); // Starlight, ensures that objective bonuses can be reapplied after the balance is reset.
         RaiseLocalEvent(ref uplinkInitializedEvent);
     }
 

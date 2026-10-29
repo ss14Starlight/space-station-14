@@ -13,10 +13,4 @@ public sealed partial class ObjectiveBonusComponent : Component
     /// </summary>
     [DataField(required: true)]
     public FixedPoint2 Telecrystals;
-
-    /// <summary>
-    /// Minds already rewarded for this objective instance, preventing duplicate payments.
-    /// Separate minds can receive a reward even when they share the same objective entity.
-    /// </summary>
-    public HashSet<EntityUid> RewardedMinds = new();
 }

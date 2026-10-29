@@ -34,27 +34,33 @@ public sealed partial class ObjectiveBonusSystem : EntitySystem
     private void OnObjectivesChanged(Entity<ObjectiveBonusRecipientComponent> ent, ref MindObjectivesChangedEvent args)
     {
         if (TryComp<MindComponent>(ent, out var mind))
-            QueueRewards((ent.Owner, mind));
+            QueueRewards((ent.Owner, mind), ent.Comp);
     }
 
     private void OnStoreInitialized(ref StoreInitializedEvent args)
     {
         if (!TryComp<StoreComponent>(args.Store, out var store) ||
             !store.CurrencyWhitelist.Contains(UplinkSystem.TelecrystalCurrencyPrototype) ||
+            store.AccountOwner != args.TargetUser ||
             !TryComp<MindComponent>(args.TargetUser, out var mind))
             return;
 
         // Remember the account independently of its access device and the mind's current body.
-        EnsureComp<ObjectiveBonusRecipientComponent>(args.TargetUser).Uplink = args.Store;
-        QueueRewards((args.TargetUser, mind));
+        var recipient = EnsureComp<ObjectiveBonusRecipientComponent>(args.TargetUser);
+        recipient.Uplink = args.Store;
+
+        // Clear the previous payment record so assigned objectives can grant their bonuses to the newly initialized balance.
+        if (args.BalanceInitialized)
+            recipient.RewardedObjectives.Clear();
+        QueueRewards((args.TargetUser, mind), recipient);
     }
 
-    private void QueueRewards(Entity<MindComponent> mind)
+    private void QueueRewards(Entity<MindComponent> mind, ObjectiveBonusRecipientComponent recipient)
     {
         foreach (var objective in mind.Comp.Objectives)
         {
             if (!TryComp<ObjectiveBonusComponent>(objective, out var reward) ||
-                reward.Telecrystals <= 0 || reward.RewardedMinds.Contains(mind.Owner))
+                reward.Telecrystals <= 0 || recipient.RewardedObjectives.Contains(objective))
                 continue;
 
             if (_queued.Add(mind.Owner))
@@ -78,16 +84,16 @@ public sealed partial class ObjectiveBonusSystem : EntitySystem
                 !TryComp<StoreComponent>(uplink, out var store) || store.AccountOwner != uid)
                 continue;
 
-            var rewards = new List<ObjectiveBonusComponent>();
+            var rewards = new List<EntityUid>();
             var seen = new HashSet<EntityUid>();
             var total = FixedPoint2.Zero;
             foreach (var objective in mind.Objectives)
             {
                 if (!seen.Add(objective) || !TryComp<ObjectiveBonusComponent>(objective, out var reward) ||
-                    reward.Telecrystals <= 0 || reward.RewardedMinds.Contains(uid))
+                    reward.Telecrystals <= 0 || recipient.RewardedObjectives.Contains(objective))
                     continue;
 
-                rewards.Add(reward);
+                rewards.Add(objective);
                 total += reward.Telecrystals;
             }
 
@@ -99,8 +105,7 @@ public sealed partial class ObjectiveBonusSystem : EntitySystem
                     }, uplink, store))
                 continue;
 
-            foreach (var reward in rewards)
-                reward.RewardedMinds.Add(uid);
+            recipient.RewardedObjectives.UnionWith(rewards);
         }
     }
 

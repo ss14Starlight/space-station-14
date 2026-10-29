@@ -13,6 +13,7 @@ namespace Content.Server._Starlight.Objectives.ObjectivePicker;
 public sealed partial class AntagRandomObjectivesSystem
 {
     private static readonly TimeSpan _pickerRefreshInterval = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan _pickerRefreshCooldown = TimeSpan.FromSeconds(1);
     private static readonly TimeSpan _progressCheckInterval = TimeSpan.FromSeconds(1);
     private const int PickersPerTick = 2;
     private const int RefillAttemptsPerTick = 4;
@@ -128,9 +129,14 @@ public sealed partial class AntagRandomObjectivesSystem
         if (!ev.Open)
             return;
 
+        // Stop people from spamming the picker by rapidly reopening it.
+        var now = _timing.CurTime;
+        if (now < config.NextPickerRefresh - _pickerRefreshInterval + _pickerRefreshCooldown)
+            return;
+
         // Reopening a window must not display stale eligibility until the next maintenance interval.
         RefreshPicker(mindId, mind, offers, config, CountAssignedObjectives(mindId), RefillAttemptsPerTick);
-        config.NextPickerRefresh = _timing.CurTime + _pickerRefreshInterval;
+        config.NextPickerRefresh = now + _pickerRefreshInterval;
     }
 
     private void RefreshPicker(EntityUid uid, MindComponent mind, PotentialObjectivesComponent offers,

@@ -10,4 +10,10 @@ public sealed partial class ObjectiveBonusRecipientComponent : Component
     /// The initialized uplink store, independent of access device.
     /// </summary>
     public EntityUid? Uplink;
+
+    /// <summary>
+    /// Objective bonuses already credited to this mind's uplink balance.
+    /// Cleared when the balance is reset so assigned objectives can restore their bonuses.
+    /// </summary>
+    public HashSet<EntityUid> RewardedObjectives = new();
 }
