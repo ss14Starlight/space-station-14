@@ -2,7 +2,7 @@
   parent: BaseBorgiChassis
   id: DerelictBorgiChassis
   name: derelict borgi
-  description: even after all these years. still loves chasing it's tail.
+  description: Even after all these years, still loves chasing it's tail.
   components:
     - type: ContainerFill
       containers:
@@ -346,7 +346,7 @@
   parent: [ BaseXenoBorgiLanguages, BaseXenoborgChassisDerelict, BaseXenoborgTransponder, DerelictBorgiChassis ]
   id: DerelictXenoBorgiBase
   name: derelict xenoborgi
-  description:  even after all these years. still loves the color blue.
+  description:  Even after all these years, still loves the color blue.
   components:
     - type: Sprite
       drawdepth: Mobs
