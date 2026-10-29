@@ -410,7 +410,8 @@ public abstract partial class SharedImplanterSystem : EntitySystem
                     break;
                 }
 
-                if (component.CurrentMode == ImplanterToggleMode.Draw && !component.ImplantOnly && !permanentFound)
+                // Stay in draw mode when extraction left the implanter slot empty (e.g. fragile implant destroyed).
+                if (component.CurrentMode == ImplanterToggleMode.Draw && !component.ImplantOnly && !permanentFound && implanterContainer.ContainedEntity != null) // Starlight
                     ImplantMode(implanter, component);
             }
             else
@@ -441,8 +442,7 @@ public abstract partial class SharedImplanterSystem : EntitySystem
                         DrawImplantIntoImplanter(implanter, user, target, implant.Value, implantContainer, implanterContainer); // Starlight
                         permanentFound = implantComp.Permanent;
                     }
-
-                    if (component.CurrentMode == ImplanterToggleMode.Draw && !component.ImplantOnly && !permanentFound)
+                    if (component.CurrentMode == ImplanterToggleMode.Draw && !component.ImplantOnly && !permanentFound && implanterContainer.ContainedEntity != null) // Starlight
                         ImplantMode(implanter, component);
                 }
                 else

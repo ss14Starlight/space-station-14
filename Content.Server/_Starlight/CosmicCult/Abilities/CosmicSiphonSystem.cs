@@ -9,6 +9,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Content.Shared.SSDIndicator;
 using Content.Server._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.NullSpace.Components;
@@ -28,6 +29,9 @@ public sealed partial class CosmicSiphonSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
+
+    private static readonly EntProtoId SiphonAction = "ActionCosmicSiphon";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -112,11 +116,11 @@ public sealed partial class CosmicSiphonSystem : EntitySystem
     {
         foreach (var action in _actions.GetActions(user))
         {
-            if (MetaData(action.Owner).EntityPrototype?.ID != "ActionCosmicSiphon")
+            if (MetaData(action.Owner).EntityPrototype?.ID != SiphonAction)
                 continue;
 
-            if (TryComp<ActionComponent>(action.Owner, out var actionComp) && actionComp.UseDelay is {} useDelay)
-                _actions.SetCooldown((action.Owner, actionComp), useDelay / 2);
+            if (action.Comp.UseDelay is { } useDelay)
+                _actions.SetCooldown((action.Owner, action.Comp), useDelay / 2);
             break;
         }
     }
