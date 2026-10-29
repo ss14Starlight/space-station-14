@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/29/2026 01:01:56
+  time: 10/29/2026 02:19:01
   entityCount: 56474
 maps:
 - 1
@@ -20147,27 +20147,17 @@ entities:
     - type: Transform
       parent: 2
       pos: -143.5,-38.5
-    - type: AccessReader
-      accessListsOriginal: []
     - type: Door
-      state: Welded
-      clickOpen: False
-      canPry: False
-      bumpOpen: False
-    - type: Weldable
-      isWelded: True
+      state: Opening
+      secondsUntilStateChange: -23.83372
+    - type: DeviceLinkSource
+      lastSignals:
+        DoorStatus: True
   - uid: 45745
     components:
     - type: Transform
       parent: 2
       pos: -136.5,-38.5
-    - type: Door
-      state: Welded
-      clickOpen: False
-      canPry: False
-      bumpOpen: False
-    - type: Weldable
-      isWelded: True
 - proto: AirlockEVAGlassLocked
   entities:
   - uid: 650
@@ -23522,7 +23512,7 @@ entities:
       pos: -16.5,123.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -170675.34
+      secondsUntilStateChange: -175273.98
     - type: DeviceLinkSource
       linkedPorts:
         39562:
@@ -309951,10 +309941,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -140.5,-38.5
-    - type: Door
-      state: Welded
-    - type: Weldable
-      isWelded: True
   - uid: 45743
     components:
     - type: Transform
