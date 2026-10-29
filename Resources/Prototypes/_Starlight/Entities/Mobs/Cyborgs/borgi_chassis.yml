@@ -2,7 +2,7 @@
   parent: BaseBorgiChassis
   id: DerelictBorgiChassis
   name: derelict borgi
-  description: Even after all these years, still loves chasing it's tail.
+  description: Even after all these years, still loves chasing its tail.
   components:
     - type: ContainerFill
       containers:
