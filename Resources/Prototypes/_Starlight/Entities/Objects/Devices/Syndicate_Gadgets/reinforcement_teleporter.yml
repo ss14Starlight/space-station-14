@@ -132,8 +132,8 @@
   components:
   - type: GhostRole
     important: true
-    name: ghost-role-information-SyndiMoff-name
-    description: ghost-role-information-SyndiMoff-description
+    name: ghost-role-information-syndimoff-name
+    description: ghost-role-information-syndimoff-description
     rules: ghost-role-information-syndicate-reinforcement-rules
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist

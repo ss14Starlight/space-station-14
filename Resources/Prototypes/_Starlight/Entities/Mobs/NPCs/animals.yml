@@ -383,10 +383,10 @@
         Base: syndimoff_dead
   - type: GhostRole
     prob: 1
-    name: ghost-role-information-SyndiMoff-name
+    name: ghost-role-information-syndimoff-name
     allowMovement: true
-    description: ghost-role-information-SyndiMoff-description
-    rules: ghost-role-information-SyndiMoff-rules
+    description: ghost-role-information-syndimoff-description
+    rules: ghost-role-information-syndimoff-rules
     important: true # SL
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
