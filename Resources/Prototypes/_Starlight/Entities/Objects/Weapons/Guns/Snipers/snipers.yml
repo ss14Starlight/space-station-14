@@ -58,3 +58,69 @@
       - FiringPinMakeshift
   - type: FiringPinHolder
     supportedPins: [ Makeshift, GunUpgrade ]
+
+- type: entity
+  name: Militia Rifle
+  parent: [ BaseContrabandTier3, BaseWeaponSniper, BaseSecurityContraband ] # Blimpuf
+  id: WeaponRifleMilitia
+  description: "An extremely old rifle, fires .30 with a 10 round internal magazine. Ineffective, but extremely cheap. Loaded manually or with .30 speedloaders."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/militia_rifle.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/militia_rifle.rsi
+  - type: Gun
+    pump: false
+    fireRate: 2
+    angleIncrease: 5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    minAngle: 12
+    maxAngle: 30
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+    angleDecay: 10
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 1.0
+        staminaMultiplier: 100
+      Rodentia:
+        knockback: 0.1
+        staminaMultiplier: 20
+      Resomi:
+        knockback: 0.1
+        staminaMultiplier: 20
+      Felionoid:
+        knockback: 0.05 #half of what resomi take
+        staminaMultiplier: 20
+  - type: Item
+    size: Huge
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    angleIncreaseDivider: 2
+    minAngleDivider: 8
+    maxAngleDivider: 3.75
+    minAngle: 0
+    maxAngle: 0
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: null
+    whitelist:
+      tags:
+      - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+      firing_pin: !type:Container
+  - type: StaticPrice
+    price: 25
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPin
+  - type: FiringPinHolder
+    supportedPins: [ Rifle, GunUpgrade ]
