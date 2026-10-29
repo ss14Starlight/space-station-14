@@ -26,8 +26,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
                 temperatureScale = 1f;
             else
             {
-                temperatureScale = (temperature - Atmospherics.PlasmaMinimumBurnTemperature) /
-                                   (Atmospherics.PlasmaUpperTemperature - Atmospherics.PlasmaMinimumBurnTemperature);
+                temperatureScale = (temperature - Atmospherics.PlasmaMinimumBurnTemperature) / (Atmospherics.PlasmaUpperTemperature - Atmospherics.PlasmaMinimumBurnTemperature);
             }
 
             if (temperatureScale > 0)
@@ -49,8 +48,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
                 so a 50% supersaturation mixed-oxidiser burn for example will need both oxidisers to have a 64:1 effective oxidation power to plasma ratio independant of eachother*/
                 var oxidiserRatio = effectiveOxidiser / initialPlasmaMoles;
                 var supersaturation = Math.Clamp((oxidiserRatio - Atmospherics.SuperSaturationEnds) /
-                                                 (Atmospherics.SuperSaturationThreshold -
-                                                  Atmospherics.SuperSaturationEnds), 0.0f, 1.0f);
+                                                (Atmospherics.SuperSaturationThreshold - Atmospherics.SuperSaturationEnds), 0.0f, 1.0f);
 
                 if (effectiveOxidiser > initialPlasmaMoles * Atmospherics.PlasmaOxygenFullburn)
                     plasmaBurnRate = initialPlasmaMoles * temperatureScale / Atmospherics.PlasmaBurnRateDelta;

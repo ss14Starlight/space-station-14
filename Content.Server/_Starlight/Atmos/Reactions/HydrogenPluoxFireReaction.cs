@@ -43,7 +43,7 @@ public sealed partial class HydrogenPluoxFireReaction : IGasReactionEffect
             return ReactionResult.NoReaction;
 
         // convert the effective oxidiser variable back into the actual amount of pluox gas to consume
-        var pluoxiumConsumed = burnedFuel / Atmospherics.TritiumBurnFuelRatio / PluoxiumFactor; 
+        var pluoxiumConsumed = burnedFuel / Atmospherics.TritiumBurnFuelRatio / PluoxiumFactor;
         if (initialH2 - burnedFuel < 0f || initialPluoxium - pluoxiumConsumed < 0f)
             return ReactionResult.NoReaction;
 

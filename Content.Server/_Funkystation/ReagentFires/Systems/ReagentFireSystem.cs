@@ -412,10 +412,10 @@ public sealed partial class ReagentFireSystem : EntitySystem
 
         // factor volume into auto-ignition too
         var autoIgnitionTemp = 773.15f - (50f * GetEffectiveFlammability(fireComp));
-        // Starlight start
-        // convert any oxygen and/or pluoxium in the tile to an effective oxidiser value relative to oxygen
-        // i.e. 1 mol of oxygen = 1 effective oxidiser, 1 mol of pluoxium = 8 effective oxidiser
-        // "if (ambientMix == null) return;" already handles null values, and since there are multiple oxidisers, the likelihood is at least one is going to be null rather often, so removed unecessary null checks that prevented server startup
+        /* Starlight start
+        convert any oxygen and/or pluoxium in the tile to an effective oxidiser value relative to oxygen
+        i.e. 1 mol of oxygen = 1 effective oxidiser, 1 mol of pluoxium = 8 effective oxidiser
+        "if (ambientMix == null) return;" already handles null values, and since there are multiple oxidisers the likelihood is at least one is going to be null rather often, so removed unecessary null checks */
         var effectiveOxidiser = (ambientMix.GetMoles(Gas.Oxygen)) + ((ambientMix.GetMoles(Gas.Pluoxium) * PluoxiumFactor));
         // allow pluoxium to also ignite a puddle, instead of just oxygen
         if (ambientMix.Temperature < autoIgnitionTemp || (!fireComp.SelfOxidizing && effectiveOxidiser <= 0.1f))
@@ -437,9 +437,9 @@ public sealed partial class ReagentFireSystem : EntitySystem
         var tilePos = _transform.GetGridTilePositionOrDefault((uid, xform));
         var tileMix = _atmos.GetTileMixture(gridUid, null, tilePos, excite: true);
 
-        // Starlight start
-        // convert any oxygen and/or pluoxium in the tile to an effective oxidiser value relative to oxygen
-        // i.e. 1 mol of oxygen = 1 effective oxidiser, 1 mol of pluoxium = 8 effective oxidiser
+        /* Starlight start
+        convert any oxygen and/or pluoxium in the tile to an effective oxidiser value relative to oxygen
+        i.e. 1 mol of oxygen = 1 effective oxidiser, 1 mol of pluoxium = 8 effective oxidiser */
         var effectiveOxidiser = (tileMix?.GetMoles(Gas.Oxygen) ?? 0f) + ((tileMix?.GetMoles(Gas.Pluoxium) * PluoxiumFactor) ?? 0f);
         if (!fireComp.SelfOxidizing && effectiveOxidiser <= 0.1f)
         // Starlight end
@@ -487,9 +487,9 @@ public sealed partial class ReagentFireSystem : EntitySystem
                 // Starlight start
                 // calculate the target effective oxidiser consumption, limiting by flammability and the available effective oxidiser in the tile
                 var burnAmount = MathF.Min(0.2f * effectiveFlammability, effectiveOxidiser);
-                // get the mols of each oxidiser present in the tile
-                // oxygen and pluoxium are the only oxidisers that exist at the time of writing this, so in order to save on performance
-                // we will only check for oxygen and pluoxium; instead of iterating through all the gases in the tile and checking for the isOxidizer component
+                /* get the mols of each oxidiser present in the tile
+                oxygen and pluoxium are the only oxidisers that exist at the time of writing this, so in order to save on performance
+                we will only check for oxygen and pluoxium; instead of iterating through all the gases in the tile and checking for the isOxidizer component */
                 var oxygenMols = tileMix.GetMoles(Gas.Oxygen);
                 var pluoxMols = tileMix.GetMoles(Gas.Pluoxium);
                 // pluox will be consumed first if present, so calculate how many mols of it will be consumed and prevent it from consuming more than is available in the tile
@@ -501,9 +501,9 @@ public sealed partial class ReagentFireSystem : EntitySystem
                 // remove moles of oxygen and/or pluox from the tile mix
                 tileMix.AdjustMoles(Gas.Pluoxium, -pluoxConsumed);
                 tileMix.AdjustMoles(Gas.Oxygen, -oxygenConsumed);
-                // byproducts are generated based on effective oxidiser consumption, which is now an oxygen-equivalent value rather than the literal number of mols consumed
-                // so pluoxium can produce the same quantity of byproducts whilst consuming fewer mols of oxidiser, thus these are not necessarily stoichiometrically balanced with mols of oxidiser consumed
-                // Starlight end
+                /* byproducts are generated based on effective oxidiser consumption, which is now an oxygen-equivalent value rather than the literal number of mols consumed
+                so pluoxium can produce the same quantity of byproducts whilst consuming fewer mols of oxidiser, thus these are not necessarily stoichiometrically balanced with mols of oxidiser consumed
+                Starlight end */
                 tileMix.AdjustMoles(Gas.CarbonDioxide, burnAmount * 0.6f);
                 tileMix.AdjustMoles(Gas.WaterVapor, burnAmount * 0.8f);
             }
