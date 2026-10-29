@@ -491,5 +491,6 @@ public enum LogType
     RoundstartRulesAdded = 1002,
     Sparks = 1003,
     Scent = 1004,
+    Exploit = 1005, // a client sent something it can't set through the normal UI
     #endregion
 }

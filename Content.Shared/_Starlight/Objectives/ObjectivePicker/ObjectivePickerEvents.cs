@@ -2,6 +2,16 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Objectives.ObjectivePicker;
 
+/// <summary>
+/// Tracks the window's lifetime so only visible pickers receive periodic availability refreshes.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class ObjectivePickerSetOpen : EntityEventArgs
+{
+    public NetEntity MindId;
+    public bool Open;
+}
+
 [Serializable, NetSerializable]
 public sealed class ObjectivePickerMulligan : EntityEventArgs
 {
