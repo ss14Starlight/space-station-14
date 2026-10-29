@@ -1,6 +1,7 @@
 - type: !PartialOnly entity
   id: ShuttleGunFriendshipCircuitboard
   components:
+  - type: ScanDetectable
   - type: Contraband
     tier: Tier4
     contrabandType: Syndicate

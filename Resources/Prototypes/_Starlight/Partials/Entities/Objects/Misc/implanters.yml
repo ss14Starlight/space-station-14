@@ -7,6 +7,7 @@
 - type: !PartialOnly entity
   id: TrackingImplanter
   components:
+  - type: ScanDetectable
   - type: Contraband
     tier: Tier3
 

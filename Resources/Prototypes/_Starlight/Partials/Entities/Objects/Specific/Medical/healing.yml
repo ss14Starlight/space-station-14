@@ -16,6 +16,7 @@
 - type: !PartialOnly entity
   id: PillRomerol
   components:
+  - type: ScanDetectable
   - type: Contraband
     tier: Tier5
     contrabandType: Syndicate
@@ -23,6 +24,7 @@
 - type: !PartialOnly entity
   id: SyringeRomerol
   components:
+  - type: ScanDetectable
   - type: Contraband
     tier: Tier5
     contrabandType: Syndicate

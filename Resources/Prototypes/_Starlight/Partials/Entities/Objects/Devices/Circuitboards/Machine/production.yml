@@ -25,5 +25,6 @@
 - type: !PartialOnly entity
   id: SecurityTechFabCircuitboard
   components:
+  - type: ScanDetectable
   - type: Contraband
     tier: Tier3

@@ -7,5 +7,6 @@
 - type: !PartialOnly entity
   id: CrateContrabandStorageSecure
   components:
+  - type: ScanDetectable
   - type: Contraband
     tier: Tier4

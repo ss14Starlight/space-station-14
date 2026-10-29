@@ -1,5 +1,6 @@
 - type: !PartialOnly entity
   id: ClothingNullSpaceDrainer
   components:
+  - type: ScanDetectable
   - type: Contraband
     tier: Tier3

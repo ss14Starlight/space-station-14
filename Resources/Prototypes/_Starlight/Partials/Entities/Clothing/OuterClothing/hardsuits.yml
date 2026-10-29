@@ -128,6 +128,7 @@
 - type: !PartialOnly entity
   id: ClothingOuterHardsuitSecurity
   components:
+  - type: ScanDetectable
   - type: Contraband
     tier: Tier3
     allowedDepartments:
@@ -136,6 +137,7 @@
 - type: !PartialOnly entity
   id: ClothingOuterHardsuitSecurityExperimental
   components:
+  - type: ScanDetectable
   - type: Contraband
     tier: Tier3
     allowedDepartments:
@@ -144,6 +146,7 @@
 - type: !PartialOnly entity
   id: ClothingOuterHardsuitWarden
   components:
+  - type: ScanDetectable
   - type: Contraband
     tier: Tier3
     allowedDepartments:
@@ -201,6 +204,7 @@
 - type: !PartialOnly entity
   id: ClothingOuterHardsuitNtrep
   components:
+  - type: ScanDetectable
   - type: Contraband
     tier: Tier4
     contrabandType: NanoTrasen
