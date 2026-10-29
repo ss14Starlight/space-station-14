@@ -1,18 +1,4 @@
 Entries:
-- author: Tjmaxmillion
-  changes:
-  - message: Permit SOP and paperwork has been changed to work with the new contraband system.
-    type: Tweak
-  id: 409470
-  time: '2026-10-16T09:54:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6675
-- author: Darius
-  changes:
-  - message: (Prism) added vox dorm.
-    type: Add
-  id: 409471
-  time: '2026-10-16T09:54:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6646
 - author: Darius
   changes:
   - message: (Prism) added donk-on-the-go and i scream machines.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409869
   time: '2026-10-28T21:02:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6921
+- author: AnyTap, Trosling.
+  changes:
+  - message: Added Gunnery Sergeant role to Security.
+    type: Add
+  id: 409870
+  time: '2026-10-29T14:37:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6848
+- author: AnyTap, Trosling.
+  changes:
+  - message: Added Gunnery Sergeant SOP.
+    type: Add
+  id: 409871
+  time: '2026-10-29T14:37:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6848
 Order: -1
