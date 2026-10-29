@@ -61,3 +61,25 @@
       collection: Screwdriver
   - type: ThrowingAngle
     angle: 180
+
+- type: entity
+  parent: WeaponMeleeBoxcutter
+  id: WeaponMeleeBoxcutterSyndi
+  suffix: Injector, Syndicate
+  components:
+  - type: Solution
+    id: melee
+    solution:
+      maxVol: 10
+  - type: MeleeChemicalInjector
+    transferAmount: 5
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionTransfer
+  - type: SolutionInjectOnEmbed
+    transferAmount: 5
+    solution: melee
+    blockSlots: OUTERCLOTHING

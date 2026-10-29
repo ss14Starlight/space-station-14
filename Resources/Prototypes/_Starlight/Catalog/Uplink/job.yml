@@ -306,11 +306,12 @@
   categories:
   - UplinkJob
   conditions:
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Science
   - !type:BuyerJobCondition
     whitelist:
+    - ResearchAssistant
+    - Scientist
+    - Roboticist
+    - ResearchDirector
     - Captain
 
 - type: listing
@@ -323,11 +324,12 @@
   categories:
   - UplinkJob
   conditions:
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Engineering
   - !type:BuyerJobCondition
     whitelist:
+    - TechnicalAssistant
+    - StationEngineer
+    - AtmosphericTechnician
+    - ChiefEngineer
     - Captain
 
 - type: listing
@@ -340,28 +342,29 @@
   categories:
   - UplinkJob
   conditions:
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Engineering
   - !type:BuyerJobCondition
     whitelist:
+    - TechnicalAssistant
+    - StationEngineer
+    - AtmosphericTechnician
+    - ChiefEngineer
     - Captain
 
 - type: listing
-  id: UplinkUtilityKnifeSyndi
-  name: uplink-utility-knife-syndi-name
-  description: uplink-utility-knife-syndi-desc
-  productEntity: UtilityKnifeSyndi
+  id: UplinkWeaponMeleeBoxcutterSyndi
+  name: uplink-boxcutter-syndi-name
+  description: uplink-boxcutter-syndi-desc
+  productEntity: WeaponMeleeBoxcutterSyndi
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
   categories:
   - UplinkJob
   conditions:
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Cargo
   - !type:BuyerJobCondition
     whitelist:
+    - CargoTechnician
+    - MailTech
+    - Quartermaster
     - Captain
 
 - type: listing
@@ -374,11 +377,11 @@
   categories:
   - UplinkJob
   conditions:
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Cargo
   - !type:BuyerJobCondition
     whitelist:
+    - CargoTechnician
+    - MailTech
+    - Quartermaster
     - Captain
 
 - type: listing
@@ -391,10 +394,14 @@
   categories:
   - UplinkJob
   conditions:
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Medical
   - !type:BuyerJobCondition
     whitelist:
+    - MedicalIntern
+    - MedicalDoctor
+    - Psychologist
+    - Chemist
+    - Surgeon
+    - Paramedic
+    - ChiefMedicalOfficer
     - Captain
 # Funky end
