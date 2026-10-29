@@ -57,3 +57,13 @@
   cost: 4500
   category: cargoproduct-category-name-armory
   group: market
+
+- type: cargoProduct
+  id: CrateArmoryMilitia
+  icon:
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/militia_rifle.rsi
+    state: base
+  product: CrateArmoryMilitia
+  cost: 3000
+  category: cargoproduct-category-name-armory
+  group: market
