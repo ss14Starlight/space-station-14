@@ -623,7 +623,6 @@
     - item: HydroponicsToolScythe
     - item: HydroponicsToolHatchet
     - item: PlantBag
-    - item: PlantAnalyzer
     - hand:
         emptyLabel: borg-slot-seeds-empty
         emptyRepresentative: WheatSeeds
