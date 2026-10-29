@@ -34,3 +34,8 @@
         type: StoreBoundUserInterface
   - type: ActivatableUI
     key: enum.StoreUiKey.Key
+  - type: GuideHelp
+    guides:
+    - ScannersAndVessels
+  - type: Item
+    storedRotation: -90
