@@ -362,7 +362,6 @@
   - type: WeaponDismantleOnShoot
     dismantleChance: 0
 
-
 - type: entity
   name: WT550r
   parent: [WeaponSubMachineGunWt550, BaseGrandTheftContraband] # Starlight, grand theft
@@ -413,3 +412,62 @@
       contrabandType: CentralCommand # Blimpuf
       allowedDepartments: [ CentralCommand ]
       allowedJobs: []
+
+- type: entity
+  name: Militia SMG
+  parent: [ BaseContrabandTier3, BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband ] # Blimpuf
+  id: WeaponSubMachineGunMilitia
+  description: A bulky, slow firing SMG that hits very hard. Hasn't seen use in ages. Modified to load more common .40 pistol magazines.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/militia_smg.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/militia_smg.rsi
+  - type: Gun
+    fireRate: 4.5
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/uzi.ogg
+    minAngle: 5
+    maxAngle: 15
+    angleIncrease: 1.5
+    angleDecay: 12
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 3
+    maxAngleDivider: 3
+    angleIncreaseDivider: 3
+  - type: StaticPrice
+    price: 50
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: item-slot-component-slot-name-magazine
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolDP
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: item-slot-component-slot-name-chamber
+        startingItem: null
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistolDP
