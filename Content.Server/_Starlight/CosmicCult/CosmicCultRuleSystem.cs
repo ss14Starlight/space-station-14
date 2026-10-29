@@ -914,7 +914,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         _actions.RemoveAction(successor, leadComp.CosmicMonumentPlaceActionEntity);
 
         // Hand over the Move Monument action to the new steward.
-        // Right now this ends up allowing the cult to move the Monument twice if the 
+        // Right now this ends up allowing the cult to move the Monument twice if the
         // first steward gets deconverted, but it's fine. It can be changed later if needed.
         if (leadComp.CosmicMonumentMoveActionEntity is null)
             _actions.AddAction(successor, ref leadComp.CosmicMonumentMoveActionEntity, leadComp.CosmicMonumentMoveAction, successor);
