@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Starboard) Added several laundry machines all around station.
-    type: Add
-  id: 409498
-  time: '2026-10-16T10:34:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6683
-- author: Cvlancer
-  changes:
   - message: (Starboard) Added a small lounge to replace salvage on station.
     type: Add
   id: 409499
@@ -2799,4 +2792,11 @@ Entries:
   id: 409897
   time: '2026-10-29T19:59:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6925
+- author: wonderfulnewworld
+  changes:
+  - message: Syndicate duffelbag no longer costs 5x as much TC.
+    type: Fix
+  id: 409898
+  time: '2026-10-29T20:32:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6940
 Order: -1
