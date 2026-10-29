@@ -16,5 +16,6 @@ public sealed partial class EorgPreventionSystem : SharedEorgPreventionSystem
     {
         IsEnabled = ev.IsEnabled;
         HasRoundEnded = ev.HasRoundEnded;
+        IsPending = ev.IsPending;
     }
 }

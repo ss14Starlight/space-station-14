@@ -110,22 +110,19 @@ public sealed partial class EorgPreventionSystem : SharedEorgPreventionSystem
     private void SpreadPeaceNow(EntityUid target)
     {
         if (!IsEnabled || !HasRoundEnded) return;
+
+        // Filters out ineligible targets and adds polymorph parents.
+        var targets = new List<EntityUid>();
+        SpreadPeaceQueueing(target, ref targets);
+
         if (IsPending)
         {
-            _pendingPacification.Add(target);
+            _pendingPacification.AddRange(targets);
             return;
         }
 
-        if (!ShouldPacify(target)) return;
-        Pacify(target);
-
-        // If the entity is polymorphed, also pacify the parent(s).
-        while (TryComp<PolymorphedEntityComponent>(target, out var polymorph)
-            && polymorph.Parent is { } parent && !TerminatingOrDeleted(parent))
-        {
-            target = parent;
-            Pacify(target);
-        }
+        foreach (var uid in targets)
+            Pacify(uid);
     }
 
     /// <summary>

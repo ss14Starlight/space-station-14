@@ -20,10 +20,12 @@ public abstract partial class SharedEorgPreventionSystem : EntitySystem
     protected bool HasRoundEnded = false;
     protected bool IsPending = false; // Pending is true if something is preventing peace from spreading such as zeds or an active nukie trying to nuke CC.
 
+    protected bool IsPreventionActive => IsEnabled && HasRoundEnded && !IsPending;
+
     [SubscribeLocalEvent]
     private void OnAttemptStick(EntityUid uid, EorgPreventStickingComponent component, ref AttemptEntityStickEvent args)
     {
-        if (!IsEnabled || !HasRoundEnded || !IsPending) return;
+        if (!IsPreventionActive) return;
         if (args.Cancelled) return;
         if (!HasComp<PreventEorgComponent>(args.User)) return;
 
@@ -34,7 +36,7 @@ public abstract partial class SharedEorgPreventionSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnUseAttempt(EntityUid uid, EorgPreventUseItemComponent component, ref UseAttemptEvent args)
     {
-        if (!IsEnabled || !HasRoundEnded || !IsPending) return;
+        if (!IsPreventionActive) return;
         if (args.Cancelled) return;
         if (!HasComp<PreventEorgComponent>(uid)) return;
 
@@ -45,7 +47,7 @@ public abstract partial class SharedEorgPreventionSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnAttemptTrigger(EntityUid uid, EorgPreventTriggerComponent component, ref AttemptTriggerEvent args)
     {
-        if (!IsEnabled || !HasRoundEnded || !IsPending) return;
+        if (!IsPreventionActive) return;
         if (!args.User.HasValue || args.Cancelled) return;
         if (!HasComp<PreventEorgComponent>(args.User)) return;
 
@@ -56,7 +58,7 @@ public abstract partial class SharedEorgPreventionSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnBeforeInteractHand(EntityUid uid, EorgPreventHandInteractComponent component, ref BeforeInteractHandEvent args)
     {
-        if (!IsEnabled || !HasRoundEnded || !IsPending) return;
+        if (!IsPreventionActive) return;
         if (args.Handled) return;
         if (!HasComp<PreventEorgComponent>(uid)) return;
 
@@ -67,7 +69,7 @@ public abstract partial class SharedEorgPreventionSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnBeforeRangedInteract(EntityUid uid, EorgPreventRangedInteractComponent component, ref BeforeRangedInteractEvent args)
     {
-        if (!IsEnabled || !HasRoundEnded || !IsPending) return;
+        if (!IsPreventionActive) return;
         if (args.Handled) return;
         if (!HasComp<PreventEorgComponent>(args.User)) return;
 
@@ -82,7 +84,7 @@ public abstract partial class SharedEorgPreventionSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnValidateAction(EntityUid uid, EorgPreventActionComponent component, ref ActionValidateEvent args)
     {
-        if (!IsEnabled || !HasRoundEnded || !IsPending) return;
+        if (!IsPreventionActive) return;
         if (args.Invalid) return;
         if (!HasComp<PreventEorgComponent>(args.User))  return;
 
