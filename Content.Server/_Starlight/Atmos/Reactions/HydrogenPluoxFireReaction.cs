@@ -12,19 +12,11 @@ namespace Content.Server._Starlight.Atmos.Reactions;
 /// </summary>
 [UsedImplicitly]
 [DataDefinition]
-public sealed partial class HydrogenCombinedFireReaction : IGasReactionEffect
+public sealed partial class HydrogenPluoxFireReaction : IGasReactionEffect
 {
     private const float PluoxiumFactor = 8f; // pluoxium is 8 times more effective than oxygen so make a constant
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
-        // check for presence of oxidisers
-        if (mixture.GetMoles(Gas.Oxygen) < 0.01f && mixture.GetMoles(Gas.Pluoxium) < 0.01f)
-        {
-            // no oxidisers, no reaction
-            mixture.ReactionResults[(byte)GasReaction.Fire] = 0;
-            return ReactionResult.NoReaction;
-        }
-
         if (mixture.Temperature > 20f && mixture.GetMoles(Gas.HyperNoblium) >= 5f)
             return ReactionResult.NoReaction;
 
@@ -35,15 +27,12 @@ public sealed partial class HydrogenCombinedFireReaction : IGasReactionEffect
         mixture.ReactionResults[(byte)GasReaction.Fire] = 0f;
         var burnedFuel = 0f;
         var initialH2 = mixture.GetMoles(Gas.Hydrogen);
-        var initialOxygen = mixture.GetMoles(Gas.Oxygen);
         var initialPluoxium = mixture.GetMoles(Gas.Pluoxium);
-        var effectiveOxidiser = initialOxygen + (initialPluoxium * PluoxiumFactor); // one mol pluox will act as eight mols oxygen, so multiply pluox mol by 8 and add to oxygen mol for effective oxidiser
+        var effectiveOxidiser = initialPluoxium * PluoxiumFactor; // one mol pluox will act as eight mols oxygen, so again we use the oxidising power of oxygen as a frame of reference
 
         if (effectiveOxidiser < initialH2 || Atmospherics.MinimumHydrogenOxyburnEnergy > (temperature * oldHeatCapacity * heatScale))
         {
-            burnedFuel = effectiveOxidiser / Atmospherics.HydrogenBurnOxyFactor;
-            if (burnedFuel > initialH2)
-                burnedFuel = initialH2;
+            burnedFuel = MathF.Min(initialH2, effectiveOxidiser / Atmospherics.HydrogenBurnOxyFactor);
         }
         else
         {
@@ -54,20 +43,12 @@ public sealed partial class HydrogenCombinedFireReaction : IGasReactionEffect
             return ReactionResult.NoReaction;
 
         // convert the effective oxidiser variable back into the actual amount of pluox gas to consume
-        var oxidiserConsumed = burnedFuel / Atmospherics.TritiumBurnFuelRatio;
-        // no reaction if more fuel than is available is burnt, or more oxidiser than is available used
-        if (initialH2 - burnedFuel < 0f || effectiveOxidiser - oxidiserConsumed < 0f)
+        var pluoxiumConsumed = burnedFuel / Atmospherics.TritiumBurnFuelRatio / PluoxiumFactor; 
+        if (initialH2 - burnedFuel < 0f || initialPluoxium - pluoxiumConsumed < 0f)
             return ReactionResult.NoReaction;
 
-        // work out how much pluox and oxygen are being consumed, then remove them, prioritising pluoxium first and making sure a non-negative amount is removed
-        var pluoxConsumed = MathF.Min(initialPluoxium, oxidiserConsumed / PluoxiumFactor);
-        var remainingOxidiser = oxidiserConsumed - (pluoxConsumed * PluoxiumFactor);
-        var oxygenConsumed = MathF.Min(initialOxygen, remainingOxidiser);
-        if (pluoxConsumed > 0f)
-            mixture.AdjustMoles(Gas.Pluoxium, -pluoxConsumed);
-        if (oxygenConsumed >0f)
-            mixture.AdjustMoles(Gas.Oxygen, -oxygenConsumed);
         mixture.AdjustMoles(Gas.Hydrogen, -burnedFuel);
+        mixture.AdjustMoles(Gas.Pluoxium, -pluoxiumConsumed);
 
         if (burnedFuel > 0)
         {

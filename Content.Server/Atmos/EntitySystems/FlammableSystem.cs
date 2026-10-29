@@ -454,7 +454,7 @@ namespace Content.Server.Atmos.EntitySystems
                     var air = _atmosphereSystem.GetContainingMixture(uid);
 
                     // If we're in an oxygenless environment, put the fire out.
-                    if (air == null || air.GetMoles(Gas.Oxygen) < 1f)
+                    if (air == null || air.GetMoles(Gas.Oxygen) < 1f && air.GetMoles(Gas.Pluoxium) < 1f) // Starlight - also checks for pluoxium, as that can oxidise fire reactions as well
                     {
                         Extinguish(uid, flammable);
                         continue;
