@@ -1,7 +1,9 @@
 using Content.Shared.Access;
 using Content.Shared.Access.Systems;
+using Content.Shared.NPC;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 
 namespace Content.Shared.Turrets;
 
@@ -112,13 +114,23 @@ public sealed partial class TurretTargetSettingsSystem : EntitySystem
     /// Returns whether an entity is a valid target for a turret.
     /// </summary>
     /// <remarks>
-    /// Returns false if the target possesses one or more access tags that are present on the entity's <see cref="TurretTargetSettingsComponent.ExemptAccessLevels"/> list.
+    /// Returns false if neutral targeting is disabled and the target is neither directly controlled nor autonomous, or if it
+    /// possesses one or more access tags that are present on the entity's <see cref="TurretTargetSettingsComponent.ExemptAccessLevels"/> list.
     /// </remarks>
     /// <param name="ent">The entity and its <see cref="TurretTargetSettingsComponent"/></param>
     /// <param name="target">The target entity</param>
     [PublicAPI]
     public bool EntityIsTargetForTurret(Entity<TurretTargetSettingsComponent> ent, EntityUid target)
     {
+        // Starlight - start
+        if (!ent.Comp.TargetNeutralEntities &&
+            !HasComp<ActorComponent>(target) &&
+            !HasComp<ActiveNPCComponent>(target))
+        {
+            return false;
+        }
+        // Starlight - end
+
         var accessLevels = _accessReader.FindAccessTags(target);
 
         if (accessLevels.Contains(_accessLevelBorg))

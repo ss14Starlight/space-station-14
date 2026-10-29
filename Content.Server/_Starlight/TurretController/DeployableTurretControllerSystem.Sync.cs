@@ -24,7 +24,9 @@ public sealed partial class DeployableTurretControllerSystem
     private readonly HashSet<EntityUid> _controllersBeingSynchronized = new();
 
     private void InitializeSync()
-        => SubscribeLocalEvent<DeployableTurretControllerComponent, NewLinkEvent>(OnNewSyncLink);
+    {
+        SubscribeLocalEvent<DeployableTurretControllerComponent, NewLinkEvent>(OnNewSyncLink);
+    }
 
     private void OnNewSyncLink(Entity<DeployableTurretControllerComponent> ent, ref NewLinkEvent args)
     {
@@ -65,6 +67,7 @@ public sealed partial class DeployableTurretControllerSystem
         if (exemptionsToEnable.Count > 0)
             ChangeExemptAccessLevels(stateTarget, exemptionsToEnable, true, args.User);
 
+        ChangeNeutralTargeting(stateTarget, sourceSettings.Comp.TargetNeutralEntities, args.User);
         UpdateSynchronizedUIStates(stateTarget);
     }
 

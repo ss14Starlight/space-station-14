@@ -27,6 +27,9 @@ public abstract partial class SharedDeployableTurretControllerSystem : EntitySys
         // Handling of client messages
         SubscribeLocalEvent<DeployableTurretControllerComponent, DeployableTurretArmamentSettingChangedMessage>(OnArmamentSettingChanged);
         SubscribeLocalEvent<DeployableTurretControllerComponent, DeployableTurretExemptAccessLevelChangedMessage>(OnExemptAccessLevelsChanged);
+        // Starlight - start
+        InitializeNeutralTargeting();
+        // Starlight - end
     }
 
     private void OnArmamentSettingChanged(Entity<DeployableTurretControllerComponent> ent, ref DeployableTurretArmamentSettingChangedMessage args)

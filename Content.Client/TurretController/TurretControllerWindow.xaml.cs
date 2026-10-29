@@ -67,6 +67,9 @@ public sealed partial class TurretControllerWindow : BaseWindow
         AccessConfiguration.SetMonotone(true);
         AccessConfiguration.SetLabelStyleClass("ConsoleText");
         AccessConfiguration.OnAccessLevelsChangedEvent += OnAccessLevelsChanged;
+        // Starlight - start
+        TargetNeutralEntitiesCheckBox.OnToggled += _ => OnTargetNeutralEntitiesToggled();
+        // Starlight - end
 
         // Override footer font
         var smallFont = _cache.NotoStack(size: 8);
@@ -98,6 +101,9 @@ public sealed partial class TurretControllerWindow : BaseWindow
         if (_entManager.TryGetComponent<TurretTargetSettingsComponent>(_owner, out var turretTargetSettings))
         {
             RefreshAccessControls(turretTargetSettings.ExemptAccessLevels);
+            // Starlight - start
+            RefreshNeutralTargetingControl(turretTargetSettings.TargetNeutralEntities);
+            // Starlight - end
         }
     }
 
@@ -136,7 +142,12 @@ public sealed partial class TurretControllerWindow : BaseWindow
             UpdateTheme((TurretArmamentSetting)turretController.ArmamentState);
 
         if (_entManager.TryGetComponent<TurretTargetSettingsComponent>(_owner, out var turretTargetSettings))
+        {
             RefreshAccessControls(turretTargetSettings.ExemptAccessLevels);
+            // Starlight - start
+            RefreshNeutralTargetingControl(turretTargetSettings.TargetNeutralEntities);
+            // Starlight - end
+        }
 
         RefreshLinkedTurrets(state.TurretStateByAddress);
     }
