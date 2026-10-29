@@ -4,7 +4,16 @@
   paths:
   - /Audio/Effects/Footsteps/
   - /Audio/_Starlight/CosmicCult/footsteps/
+  - /Audio/_Starlight/Effects/Footsteps/
   collections:
+  - BarestepCarpet
+  - BarestepGlass
+  - BarestepGrass
+  - BarestepGrate
+  - BarestepGravel
+  - BarestepHard
+  - BarestepMetal
+  - BarestepWood
   - FootstepAsteroid
   - FootstepBells
   - FootstepBlood
@@ -18,6 +27,7 @@
   - FootstepDuck
   - FootstepFloor
   - FootstepGrass
+  - FootstepHeavy
   - FootstepHighHeels
   - FootstepHoverBorg
   - FootstepHoverXenoborg
