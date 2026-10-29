@@ -7,8 +7,8 @@
         conditions:
         - !type:ReagentCondition
           reagent: Healium
-          min: 4
-          max: 8
+          min: 3
+          max: 6
         effectProto: StatusEffectSleepiness
         maximumSleepiness: 60s
         time: 3.66 # Always 5.5
@@ -16,7 +16,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: Healium
-          min: 8
+          min: 6
         effectProto: StatusEffectSleepiness
         maximumSleepiness: 60s
         time: 6 # Always 9
