@@ -197,5 +197,5 @@ uplink-lead-chemistry-vial-name = Lead Vial
 uplink-lead-chemistry-vial-desc = A small vial containing 15 units of lead.
 # Funky end
 
-uplink-boxcutter-syndi-name = Chemical Box Cutter
+uplink-boxcutter-syndi-name = Chemical Boxcutter
 uplink-boxcutter-syndi-desc = A boxcutter with special grooves that can hold up to 10 units of chemicals.
