@@ -396,8 +396,6 @@
   - type: AutoImplant
     implants:
     - PicoBombImplant
-  - type: ExplosionResistance
-    damageCoefficient: 0.2
   - type: NpcFactionMember
     factions:
     - Syndicate
