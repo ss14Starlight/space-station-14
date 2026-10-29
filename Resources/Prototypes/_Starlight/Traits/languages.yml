@@ -141,7 +141,7 @@
   name: trait-language-felyaic-name
   description: trait-language-felyaic-desc
   category: LanguageTraits
-  cost: 1
+  cost: 2
   effects:
     - !type:LanguageEffect
       languagesSpoken:
@@ -149,19 +149,6 @@
       languagesUnderstood:
         - Felyaic
   requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Doll
-        - Elf
-        - NeoElf
-    - !type:AnyRequirement
-      requirements:
-        - !type:SpeciesRequirement
-          species:
-            - Doll
-        - !type:TraitsRequirement
-          traits:
-            - DarkElf
     - !type:TraitsRequirement
       traits:
         - Iterator

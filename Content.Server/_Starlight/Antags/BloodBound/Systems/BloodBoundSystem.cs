@@ -14,7 +14,7 @@ public sealed partial class BloodBoundSystem : SharedBloodBoundSystem
     [Dependency] private SharedLanguageSystem _language = default!;
     [Dependency] private NpcFactionSystem _npcFaction = default!;
 
-    private static readonly ProtoId<NpcFactionPrototype> CrewFaction = "NanoTrasen";
+    private static readonly ProtoId<NpcFactionPrototype> _crewFaction = "NanoTrasen";
 
     public override void Initialize()
     {
@@ -27,7 +27,7 @@ public sealed partial class BloodBoundSystem : SharedBloodBoundSystem
     {
         _language.AddLanguage(entity.Owner, "Darktongue");
 
-        _npcFaction.RemoveFaction(entity.Owner, CrewFaction);
+        _npcFaction.RemoveFaction(entity.Owner, _crewFaction);
         _npcFaction.AddFaction(entity.Owner, entity.Comp.BloodBoundFaction);
 
         if (!entity.Comp.CanRecruit || entity.Comp.Partner != null)
@@ -37,10 +37,7 @@ public sealed partial class BloodBoundSystem : SharedBloodBoundSystem
         _actions.AddAction(entity, ref entity.Comp.CheckConvertActionEntity, entity.Comp.CheckConvertAction);
     }
 
-    private void OnShutdown(Entity<BloodBoundComponent> entity, ref ComponentShutdown args)
-    {
-        FinishRecruitment(entity);
-    }
+    private void OnShutdown(Entity<BloodBoundComponent> entity, ref ComponentShutdown args) => FinishRecruitment(entity);
 
     /// <summary>
     /// Remove recruitment actions after forming an oath or removing the role.

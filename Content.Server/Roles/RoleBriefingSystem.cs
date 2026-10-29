@@ -2,7 +2,7 @@ using Content.Shared.Roles.Components;
 
 namespace Content.Server.Roles;
 
-public sealed class RoleBriefingSystem : EntitySystem
+public sealed partial class RoleBriefingSystem : EntitySystem
 {
     [Dependency] private RoleSystem _roles = default!; // Starlight
 

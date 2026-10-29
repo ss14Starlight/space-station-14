@@ -31,10 +31,7 @@ public sealed partial class PickObjectiveTargetDepartmentSystem : EntitySystem
         args.Cancelled |= !AssignDepartment(ent, mindId);
     }
 
-    private void OnRandomDepartmentAssigned(Entity<PickRandomDepartmentComponent> ent, ref ObjectiveAssignedEvent args)
-    {
-        args.Cancelled |= !AssignDepartment(ent, args.MindId);
-    }
+    private void OnRandomDepartmentAssigned(Entity<PickRandomDepartmentComponent> ent, ref ObjectiveAssignedEvent args) => args.Cancelled |= !AssignDepartment(ent, args.MindId);
 
     private bool AssignDepartment(Entity<PickRandomDepartmentComponent> ent, EntityUid? mindId)
     {
