@@ -1,13 +1,6 @@
 Entries:
 - author: Darius
   changes:
-  - message: (Prism) added more escape pods and external airlocks.
-    type: Add
-  id: 409474
-  time: '2026-10-16T09:54:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6646
-- author: Darius
-  changes:
   - message: (Prism) added nuclear reactor crate to containment area.
     type: Add
   id: 409475
@@ -2799,4 +2792,11 @@ Entries:
   id: 409873
   time: '2026-10-29T15:22:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6930
+- author: Talirson
+  changes:
+  - message: Added ProtoNitrate to the salvage gas canister loot pool.
+    type: Add
+  id: 409874
+  time: '2026-10-29T19:31:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6807
 Order: -1
