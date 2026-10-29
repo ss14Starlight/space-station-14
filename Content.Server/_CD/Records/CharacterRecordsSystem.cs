@@ -78,7 +78,9 @@ public sealed partial class CharacterRecordsSystem : EntitySystem
             ? PlayerProvidedCharacterRecords.DefaultRecords()
             : profile.CDCharacterRecords ?? PlayerProvidedCharacterRecords.DefaultRecords();
 
-        if (!CharacterRecordSizeHelper.TryCalculateMetrics(profile, _prototype, out var derivedHeight, out var derivedWeight))
+        if (skipProfileRecords) // Starlight-edit: 0 shows as unknown; their profile's size belongs to their other character
+            profileRecords = profileRecords.WithHeight(0).WithWeight(0);
+        else if (!CharacterRecordSizeHelper.TryCalculateMetrics(profile, _prototype, out var derivedHeight, out var derivedWeight))
         {
             // Fall back to whatever the profile already stored if we cannot resolve the species sizing data.
             Sawmill.Warning($"Failed to resolve species sizing while constructing records for {profile.Name}. Using stored values.");
@@ -127,7 +129,7 @@ public sealed partial class CharacterRecordsSystem : EntitySystem
             pRecords: new PlayerProvidedCharacterRecords(profileRecords),
             stationRecordsKey: stationRecordsKey?.Id,
             name: chosenName, // Starlight
-            age: profile.Age,
+            age: skipProfileRecords ? 0 : profile.Age, // Starlight-edit: 0 shows as unknown
             species: speciesName,
             jobTitle: jobTitle,
             jobIcon: jobPrototype.Icon,

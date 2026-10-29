@@ -372,12 +372,13 @@ public sealed partial class CharacterRecordViewer : FancyWindow
 
         // Basic info
         RecordContainerName.Text = record.Name;
-        RecordContainerAge.Text = record.Age.ToString();
+        var unknown = Loc.GetString("cd-character-records-viewer-unknown"); // Starlight
+        RecordContainerAge.Text = record.Age > 0 ? record.Age.ToString() : unknown; // Starlight-edit: e.g. K9s
         RecordContainerJob.Text = record.JobTitle; /* At some point in the future we might want to display the icon */
         RecordContainerGender.Text = record.Gender.ToString();
         RecordContainerSpecies.Text = record.Species;
-        RecordContainerHeight.Text = cr.Height + " " + UnitConversion.GetImperialDisplayLength(cr.Height);
-        RecordContainerWeight.Text = cr.Weight + " " + UnitConversion.GetImperialDisplayMass(cr.Weight);
+        RecordContainerHeight.Text = cr.Height > 0 ? cr.Height + " " + UnitConversion.GetImperialDisplayLength(cr.Height) : unknown; // Starlight-edit
+        RecordContainerWeight.Text = cr.Weight > 0 ? cr.Weight + " " + UnitConversion.GetImperialDisplayMass(cr.Weight) : unknown; // Starlight-edit
         RecordContainerContactName.SetValue(cr.EmergencyContactName);
 
         RecordContainerEmployment.Visible = false;
