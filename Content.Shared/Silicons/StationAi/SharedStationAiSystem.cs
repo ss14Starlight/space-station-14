@@ -751,6 +751,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
                 _mind.TryGetMind(stationAi.Value, out var _, out var mindcomp))
             {
                 ttscomp.VoicePrototypeId = mindcomp.SiliconVoice;
+                Dirty(stationAi.Value, ttscomp);
             }
         }
 
