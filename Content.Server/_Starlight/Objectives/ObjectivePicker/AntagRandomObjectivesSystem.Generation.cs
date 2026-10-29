@@ -273,7 +273,7 @@ public sealed partial class AntagRandomObjectivesSystem
 
         var storyCount = offers.ObjectiveOptions.Keys.Count(key =>
             Prototype(GetEntity(key)) is { } proto && config.StoryWeights.ContainsKey(proto.ID));
-        while (storyCount < 2 && refill.Stories.Count > 0)
+        while (storyCount < config.StoryObjectiveCount && refill.Stories.Count > 0)
         {
             if (attemptBudget <= 0)
                 return false;

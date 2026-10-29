@@ -369,7 +369,7 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new("/Textures/_Harmony/Interface/Misc/job_icons.rsi"), "BloodBrother"),
             Act = () =>
             {
-                _antag.ForceMakeAntag<BloodBoundRuleComponent>(targetPlayer, DefaultBloodBoundRule);
+                _antag.ForceMakeAntag<BloodBoundRuleComponent>(targetPlayer, DefaultBloodBoundRule, "BloodBound");
                 _autolog.LogToDiscord(string.Join(": ", bloodBoundName, Loc.GetString("admin-verb-make-blood-bound")), player.Name); // Starlight
             },
             Impact = LogImpact.High,
