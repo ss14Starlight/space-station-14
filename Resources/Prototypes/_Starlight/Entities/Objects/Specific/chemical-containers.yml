@@ -442,7 +442,7 @@
     solution:
       reagents:
       - ReagentId: Lead
-        Quantity: 30
+        Quantity: 15
   - type: Tag
     tags:
     - CentrifugeCompatible

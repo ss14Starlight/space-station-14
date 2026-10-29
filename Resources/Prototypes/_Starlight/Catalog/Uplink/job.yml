@@ -369,8 +369,8 @@
 
 - type: listing
   id: UplinkAppraisalToolRadioJammer
-  name: uplink-apprasial-tool-radio-jammer-name
-  description: uplink-apprasial-tool-radio-jammer-desc
+  name: uplink-appraisal-tool-radio-jammer-name
+  description: uplink-appraisal-tool-radio-jammer-desc
   productEntity: AppraisalToolRadioJammer
   cost:
     Telecrystal: 4

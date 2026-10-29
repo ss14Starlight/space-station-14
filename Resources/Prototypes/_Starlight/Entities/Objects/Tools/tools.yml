@@ -1170,6 +1170,8 @@
   id: NetworkConfiguratorWithTrigger
   suffix: Trigger, Syndicate
   components:
+  - type: ActivatableUI
+    verbOnly: true
   - type: Signaller
   - type: UseDelay
   - type: DeviceLinkSource
@@ -1178,6 +1180,7 @@
   - type: Tag
     tags:
     - Payload
+    - DoorElectronicsConfigurator
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice

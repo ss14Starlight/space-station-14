@@ -11,7 +11,7 @@
 
 # From Funky
 - type: entity
-  parent: BaseUplinkRadio
+  parent: [BaseItem, StorePresetUplink]
   id: HiddenUplinkRadioBotany
   name: plant analyzer
   description: A scanner used to evaluate a plant's various areas of growth, genetic traits and chemicals.
@@ -29,3 +29,9 @@
     guides:
     - Botany
     - Chemicals
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key

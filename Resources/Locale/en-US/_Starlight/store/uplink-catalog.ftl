@@ -170,7 +170,7 @@ uplink-hidden-radio-botany-name = Hidden Uplink
 uplink-hidden-radio-botany-desc = An uplink disguised as a plant analyzer. Keep it for yourself or give it to a trusted ally to aid your mission. Telecrystals not included.
 
 uplink-food-pepper-shaker-lead-name = Lead Pepper Shaker
-uplink-food-pepper-shaker-lead-desc = Add a little spice to the crews life for what they have left of it. Contained 15 units of lead.
+uplink-food-pepper-shaker-lead-desc = Add a little spice to the crew's life for what they have left of it. Contained 15 units of lead.
 
 uplink-pitcher-napalm-name = Pitcher Full of Napalm
 uplink-pitcher-napalm-desc = Nothing quite like waking up to the smell of napalm in the morning. A pitcher full of 60 units of napalm.
@@ -182,16 +182,16 @@ uplink-clothing-shoes-white-no-sound-name = Mute Mime Shoes
 uplink-clothing-shoes-white-no-sound-desc = A silent threat. No one will hear you coming in this special pair of shoes.
 
 uplink-hidden-uplink-radio-science-name = Hidden Uplink
-uplink-hidden-uplink-radio-science-desc = An uplink disguised as a anomaly scanner. Keep it for yourself or give it to a trusted ally to aid your mission. Telecrystals not included.
+uplink-hidden-uplink-radio-science-desc = An uplink disguised as an anomaly scanner. Keep it for yourself or give it to a trusted ally to aid your mission. Telecrystals not included.
 
 uplink-clothing-syndi-head-cone-name = Hidden Compartment Warning Cone
-uplink-clothing-syndi-head-cone-desc = An unassuming cone thats hiding a secret. Use it to secretly stash goods or to plant surprises for later.
+uplink-clothing-syndi-head-cone-desc = An unassuming cone that's hiding a secret. Use it to secretly stash goods or to plant surprises for later.
 
 uplink-network-configurator-with-trigger-name = Network Configurator With Signaler
 uplink-network-configurator-with-trigger-desc = It may look and work like a regular network configurator but it hides a hidden long range signaler for all your triggering needs.
 
-uplink-apprasial-tool-radio-jammer-name = Disguised Radio Jammer
-uplink-apprasial-tool-radio-jammer-desc = A radio jammer hidden inside an apprasial tool. You can both jam their comms and price check the corpse!
+uplink-appraisal-tool-radio-jammer-name = Disguised Radio Jammer
+uplink-appraisal-tool-radio-jammer-desc = A radio jammer hidden inside an appraisal tool. You can both jam their comms and price check the corpse!
 
 uplink-lead-chemistry-vial-name = Lead Vial
 uplink-lead-chemistry-vial-desc = A small vial containing 15 units of lead.

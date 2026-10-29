@@ -1,6 +1,6 @@
 # From Funky
 - type: entity
-  parent: BaseUplinkRadio
+  parent: [BaseItem, StorePresetUplink]
   id: HiddenUplinkRadioScience
   name: anomaly scanner
   description: A hand-held scanner built to collect information on various anomalous objects.
@@ -28,3 +28,9 @@
       map: [ "enum.AnomalyScannerVisualLayers.Supercritical" ]
       shader: unshaded
       visible: false
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
