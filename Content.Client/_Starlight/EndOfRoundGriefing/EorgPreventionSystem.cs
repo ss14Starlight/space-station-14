@@ -3,15 +3,15 @@
 namespace Content.Client._Starlight.EndOfRoundGriefing;
 
 /// <inheritdoc/>
-public sealed class EorgPreventionSystem : SharedEorgPreventionSystem
+public sealed partial class EorgPreventionSystem : SharedEorgPreventionSystem
 {
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeNetworkEvent<EorgPreventionStateEvent>(OnStateChanged); // Handle server state changes.
         RaiseNetworkEvent(new RequestEorgPreventionStateEvent()); // Ask server to send a state.
     }
 
+    [SubscribeNetworkEvent]
     private void OnStateChanged(EorgPreventionStateEvent ev)
     {
         IsEnabled = ev.IsEnabled;

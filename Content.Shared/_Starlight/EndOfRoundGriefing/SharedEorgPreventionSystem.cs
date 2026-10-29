@@ -14,26 +14,16 @@ namespace Content.Shared._Starlight.EndOfRoundGriefing;
 /// </summary>
 public abstract partial class SharedEorgPreventionSystem : EntitySystem
 {
-    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPopupSystem _popup = null!;
 
     protected bool IsEnabled = false;
     protected bool HasRoundEnded = false;
+    protected bool IsPending = false; // Pending is true if something is preventing peace from spreading such as zeds or an active nukie trying to nuke CC.
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<EorgPreventActionComponent, ActionValidateEvent>(OnValidateAction);
-        SubscribeLocalEvent<EorgPreventUseItemComponent, UseAttemptEvent>(OnUseAttempt);
-        SubscribeLocalEvent<EorgPreventTriggerComponent, AttemptTriggerEvent>(OnAttemptTrigger);
-        SubscribeLocalEvent<EorgPreventHandInteractComponent, BeforeInteractHandEvent>(OnBeforeInteractHand);
-        SubscribeLocalEvent<EorgPreventRangedInteractComponent, BeforeRangedInteractEvent>(OnBeforeRangedInteract);
-        SubscribeLocalEvent<EorgPreventStickingComponent, AttemptEntityStickEvent>(OnAttemptStick);
-    }
-
+    [SubscribeLocalEvent]
     private void OnAttemptStick(EntityUid uid, EorgPreventStickingComponent component, ref AttemptEntityStickEvent args)
     {
-        if (!IsEnabled || !HasRoundEnded) return;
+        if (!IsEnabled || !HasRoundEnded || !IsPending) return;
         if (args.Cancelled) return;
         if (!HasComp<PreventEorgComponent>(args.User)) return;
 
@@ -41,9 +31,10 @@ public abstract partial class SharedEorgPreventionSystem : EntitySystem
         args.Cancelled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnUseAttempt(EntityUid uid, EorgPreventUseItemComponent component, ref UseAttemptEvent args)
     {
-        if (!IsEnabled || !HasRoundEnded) return;
+        if (!IsEnabled || !HasRoundEnded || !IsPending) return;
         if (args.Cancelled) return;
         if (!HasComp<PreventEorgComponent>(uid)) return;
 
@@ -51,9 +42,10 @@ public abstract partial class SharedEorgPreventionSystem : EntitySystem
         args.Cancel();
     }
 
+    [SubscribeLocalEvent]
     private void OnAttemptTrigger(EntityUid uid, EorgPreventTriggerComponent component, ref AttemptTriggerEvent args)
     {
-        if (!IsEnabled || !HasRoundEnded) return;
+        if (!IsEnabled || !HasRoundEnded || !IsPending) return;
         if (!args.User.HasValue || args.Cancelled) return;
         if (!HasComp<PreventEorgComponent>(args.User)) return;
 
@@ -61,9 +53,10 @@ public abstract partial class SharedEorgPreventionSystem : EntitySystem
         args.Cancelled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnBeforeInteractHand(EntityUid uid, EorgPreventHandInteractComponent component, ref BeforeInteractHandEvent args)
     {
-        if (!IsEnabled || !HasRoundEnded) return;
+        if (!IsEnabled || !HasRoundEnded || !IsPending) return;
         if (args.Handled) return;
         if (!HasComp<PreventEorgComponent>(uid)) return;
 
@@ -71,9 +64,10 @@ public abstract partial class SharedEorgPreventionSystem : EntitySystem
         args.Handled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnBeforeRangedInteract(EntityUid uid, EorgPreventRangedInteractComponent component, ref BeforeRangedInteractEvent args)
     {
-        if (!IsEnabled || !HasRoundEnded) return;
+        if (!IsEnabled || !HasRoundEnded || !IsPending) return;
         if (args.Handled) return;
         if (!HasComp<PreventEorgComponent>(args.User)) return;
 
@@ -85,9 +79,10 @@ public abstract partial class SharedEorgPreventionSystem : EntitySystem
     /// Prevents performing actions marked as <see cref="EorgPreventActionComponent"/> if the user has
     /// <see cref="PreventEorgComponent"/>.
     /// </summary>
+    [SubscribeLocalEvent]
     private void OnValidateAction(EntityUid uid, EorgPreventActionComponent component, ref ActionValidateEvent args)
     {
-        if (!IsEnabled || !HasRoundEnded) return;
+        if (!IsEnabled || !HasRoundEnded || !IsPending) return;
         if (args.Invalid) return;
         if (!HasComp<PreventEorgComponent>(args.User))  return;
 
@@ -103,8 +98,9 @@ public sealed class RequestEorgPreventionStateEvent : EntityEventArgs
 }
 
 [Serializable, NetSerializable]
-public sealed class EorgPreventionStateEvent(bool isEnabled, bool hasRoundEnded) : EntityEventArgs
+public sealed class EorgPreventionStateEvent(bool isEnabled, bool hasRoundEnded, bool isPending) : EntityEventArgs
 {
     public bool IsEnabled { get; } = isEnabled;
     public bool HasRoundEnded { get; } = hasRoundEnded;
+    public bool IsPending { get; } = isPending;
 }
