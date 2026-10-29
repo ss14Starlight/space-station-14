@@ -30,3 +30,10 @@
   components:
   - type: Contraband
     tier: Tier2
+
+- type: !PartialOnly entity
+  id: ToxicGasGrenade
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3

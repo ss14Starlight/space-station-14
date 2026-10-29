@@ -10,3 +10,9 @@
   - type: Contraband
     tier: Tier4
     severity: !Remove
+
+- type: !PartialOnly entity
+  id: SwordAres
+  components:
+  - type: Contraband
+    tier: Tier4

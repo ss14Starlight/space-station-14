@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: WeaponMeleeBoxcutter
+  components:
+  - type: Contraband
+    tier: Tier2

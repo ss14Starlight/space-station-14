@@ -26,3 +26,21 @@
   - type: Prying
     useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
     playSoundOnDoafter: true
+
+- type: !PartialOnly entity
+  id: WeaponCrusherDagger
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: WeaponCrusher
+  components:
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: WeaponCrusherGlaive
+  components:
+  - type: Contraband
+    tier: Tier3

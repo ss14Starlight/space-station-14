@@ -16,3 +16,9 @@
   components:
     - type: SubFloorHide
       subfloorLayer: MV
+
+- type: !PartialOnly entity
+  id: CableDet
+  components:
+  - type: Contraband
+    tier: Tier3

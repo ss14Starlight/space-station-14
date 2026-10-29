@@ -21,3 +21,9 @@
       componentRequirements:
         PowerCell:
           defaultPrototype: PowerCellSmallPrinted
+
+- type: !PartialOnly entity
+  id: SecurityTechFabCircuitboard
+  components:
+  - type: Contraband
+    tier: Tier3

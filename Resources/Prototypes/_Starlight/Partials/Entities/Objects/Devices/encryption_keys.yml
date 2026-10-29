@@ -23,7 +23,6 @@
     stealGroup: EncryptionKeyHybrid
   - type: Contraband
     tier: Tier4
-    contrabandType: !Remove
     allowedDepartments:
     - Command
     - CentralCommand

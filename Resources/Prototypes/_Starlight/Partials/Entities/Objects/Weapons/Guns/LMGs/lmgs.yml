@@ -25,3 +25,10 @@
   components:
   - type: Contraband
     tier: Tier4
+
+- type: !PartialOnly entity
+  id: WeaponLightMachineGunM492
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4

@@ -84,3 +84,52 @@
   components:
   - type: Contraband
     tier: Tier4
+
+- type: !PartialOnly entity
+  id: WeaponIonCarbine
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: WeaponIonRifle
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: WeaponXrayCannon
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: WeaponLaserImmolator
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: WeaponDecloner
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: WeaponPulsePistol
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: WeaponPulseM1911
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
