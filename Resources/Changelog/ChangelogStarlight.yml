@@ -1,20 +1,6 @@
 Entries:
 - author: Sparlight
   changes:
-  - message: Arithrazine, Ultravasculine, Dylovene, Dermaline and Histamine split their brute damage across blunt, slash and piercing again.
-    type: Tweak
-  id: 409553
-  time: '2026-10-17T11:42:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6699
-- author: Sparlight
-  changes:
-  - message: Histamine's severe reaction deals airloss again.
-    type: Tweak
-  id: 409554
-  time: '2026-10-17T11:42:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6699
-- author: Sparlight
-  changes:
   - message: Polypyrylium Oligomers heals 2.5 brute and 2 airloss, and its overdose deals 4.5 asphyxiation.
     type: Tweak
   id: 409555
@@ -2799,4 +2785,18 @@ Entries:
   id: 409952
   time: '2026-10-30T19:05:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6955
+- author: Sparlight
+  changes:
+  - message: K9s are now required to undergo departmental athletic training, and can now move as fast as humans.
+    type: Tweak
+  id: 409953
+  time: '2026-10-30T19:05:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6922
+- author: Sparlight
+  changes:
+  - message: Fixed not being able to clear K9 wanted status.
+    type: Fix
+  id: 409954
+  time: '2026-10-30T19:05:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6922
 Order: -1
