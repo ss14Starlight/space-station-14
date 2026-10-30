@@ -159,3 +159,6 @@ language-Squeakish-description = The language of the Rodentia, made up of a seri
 
 language-Penguin-name = Penguin
 language-Penguin-description = Squawk!
+
+language-Spore-name = Spores
+language-Spore-description = Communication over fungal spores.

@@ -3310,7 +3310,7 @@ entities:
     - type: Transform
       parent: 2
       pos: 34.5,-22.5
-- proto: APCHighCapacity
+- proto: APCSuperCapacity
   entities:
   - uid: 334
     components:
