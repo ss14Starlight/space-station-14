@@ -10,9 +10,9 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Ranged.Upgrades.Components;
 using Content.Shared.Whitelist;
-using Content.Shared.Hands.EntitySystems; //starlight
-using Content.Shared.Tools.Systems; //starlight
-using Content.Shared.Tools; //starlight
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Tools.Systems;
+using Content.Shared.Tools;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -27,8 +27,8 @@ public sealed partial class GunUpgradeSystem : EntitySystem
     [Dependency] private SharedGunSystem _gun = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedToolSystem _tool = default!; //starlight
-    [Dependency] private SharedHandsSystem _hands = default!; //starlight
+    [Dependency] private SharedToolSystem _tool = default!; #region Starlight
+    [Dependency] private SharedHandsSystem _hands = default!; #endregion
 
     /// <inheritdoc/>
     public override void Initialize()
