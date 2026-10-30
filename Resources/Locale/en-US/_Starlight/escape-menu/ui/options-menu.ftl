@@ -47,8 +47,10 @@ ui-options-radio-chime-mute = Mute Radio Chimes
 
 ui-options-tab-ui = User Interface
 ui-options-ui-style = User Interface Style
+ui-options-classic-styling = Classic styling
 ui-options-style-theme = Color Theme
 ui-options-style-accent = Accent Color
+ui-options-style-secondary-accent = Secondary Accent Color
 ui-options-style-custom-accent = Use custom accent color
 ui-options-style-accent-custom = Custom
 ui-options-style-accent-theme = Theme
