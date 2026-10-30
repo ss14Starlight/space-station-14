@@ -27,3 +27,4 @@
         - DieCondition
   - type: Objective
     difficulty: 0
+    antag: null # Story objectives shouldn't count, they're not completable
