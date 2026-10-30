@@ -37,7 +37,7 @@ public record struct StationRadioMixerChannel(
     TimeSpan PlaybackStart);
 
 [Serializable, NetSerializable]
-public enum StationRadioMixerTransport : byte
+public enum StationRadioMixerAction : byte
 {
     TogglePlay,
 
@@ -95,11 +95,11 @@ public sealed class StationRadioMixerSetGainMessage(StationRadioMixerFader fader
 }
 
 [Serializable, NetSerializable]
-public sealed class StationRadioMixerTransportMessage(NetEntity source, StationRadioMixerTransport action, int slot = 0)
+public sealed class StationRadioMixerTransportMessage(NetEntity source, StationRadioMixerAction action, int slot = 0)
     : BoundUserInterfaceMessage
 {
     public readonly NetEntity Source = source;
-    public readonly StationRadioMixerTransport Action = action;
+    public readonly StationRadioMixerAction Action = action;
     public readonly int Slot = slot;
 }
 

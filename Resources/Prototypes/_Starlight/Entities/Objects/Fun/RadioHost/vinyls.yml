@@ -3,7 +3,7 @@
   parent: BaseVinylDisc
   id: VinylAirportLounge
   name: "vinyl: Airport Lounge"
-  description: "A long, relaxing song reminiscent of elevator music. By: Kevin MacLeod" #SL  Addition
+  description: "A long, relaxing song reminiscent of elevator music. By: Kevin MacLeod"
   components:
   - type: Sprite
     state: default
@@ -20,7 +20,7 @@
   parent: BaseVinylDisc
   id: VinylBoogiePart
   name: "vinyl: Boogie Part"
-  description: "A funky jazz song that makes you want to boogie. By: Kevin MacLeod" #SL  Addition
+  description: "A funky jazz song that makes you want to boogie. By: Kevin MacLeod"
   components:
   - type: Sprite
     state: default
@@ -37,7 +37,7 @@
   parent: BaseVinylDisc
   id: VinylBurnTheWorldWaltz
   name: "vinyl: Burn The World Waltz"
-  description: "Heavy metal and brimstone. By: Kevin MacLeod" #SL  Addition
+  description: "Heavy metal and brimstone. By: Kevin MacLeod"
   components:
   - type: Sprite
     state: default
@@ -54,7 +54,7 @@
   parent: BaseVinylDisc
   id: VinylCorncob
   name: "vinyl: Corncob"
-  description: "A fast pace country tune. By: Kevin MacLeod" #SL  Addition
+  description: "A fast pace country tune. By: Kevin MacLeod"
   components:
   - type: Sprite
     state: default
@@ -71,7 +71,7 @@
   parent: BaseVinylDisc
   id: VinylDeadlyRoulette
   name: "vinyl: Deadly Roulette"
-  description: "A slow pace basey tune. By: Kevin MacLeod" #SL  Addition
+  description: "A slow pace basey tune. By: Kevin MacLeod"
   components:
   - type: Sprite
     state: default
@@ -88,7 +88,7 @@
   parent: BaseVinylDisc
   id: VinylFeralAngelWaltz
   name: "vinyl: Feral Angel Waltz"
-  description: "A slow pace rock waltz. By: Kevin MacLeod" #SL  Addition
+  description: "A slow pace rock waltz. By: Kevin MacLeod"
   components:
   - type: Sprite
     state: default
@@ -105,7 +105,7 @@
   parent: BaseVinylDisc
   id: VinylJingleBells
   name: "vinyl: Jingle Bells"
-  description: "The classic festive tune. By: Kevin MacLeod" #SL  Addition
+  description: "The classic festive tune. By: Kevin MacLeod"
   components:
   - type: Sprite
     state: default
@@ -122,7 +122,7 @@
   parent: BaseVinylDisc
   id: VinylLateNightRadio
   name: "vinyl: Late Night Radio"
-  description: "A slow pace jazzy tune. By: Kevin MacLeod" #SL  Addition
+  description: "A slow pace jazzy tune. By: Kevin MacLeod"
   components:
   - type: Sprite
     state: default
@@ -139,7 +139,7 @@
   parent: BaseVinylDisc
   id: VinylMesmerizingGalaxyLoop
   name: "vinyl: Mesmerizing Galaxy Loop"
-  description: "A hypnotic eletronic tune. By: Kevin MacLeod" #SL  Addition
+  description: "A hypnotic eletronic tune. By: Kevin MacLeod"
   components:
   - type: Sprite
     state: default
@@ -156,7 +156,7 @@
   parent: BaseVinylDisc
   id: VinylNightInVenice
   name: "vinyl: Night In Venice"
-  description: "A slow pace jazzy tune with a romantic vibe. By: Kevin MacLeod" #SL  Addition
+  description: "A slow pace jazzy tune with a romantic vibe. By: Kevin MacLeod"
   components:
   - type: Sprite
     state: default
@@ -173,7 +173,7 @@
   parent: BaseVinylAI
   id: VinylSpaceJazz
   name: "vinyl: Space Jazz"
-  description: "A slow pace jazzy tune reminiscent of elevator music. By: Kevin MacLeod" #SL  Addition
+  description: "A slow pace jazzy tune reminiscent of elevator music. By: Kevin MacLeod"
   components:
   # Starlight-start
   - type: Sprite
@@ -192,7 +192,7 @@
   parent: BaseVinylDisc
   id: VinylVibingOverVenus
   name: "vinyl: Vibing Over Venus"
-  description: "A slow pace jazzy tune. By: Kevin MacLeod" #SL  Addition
+  description: "A slow pace jazzy tune. By: Kevin MacLeod"
   components:
   - type: Sprite
     state: default
@@ -211,7 +211,7 @@
   parent: BaseVinylDisc
   id: VinylChristmasSong
   name: "vinyl: Christmas Song"
-  description: "A festive tune about giving your heart away to someone special. By: Goonstation" #SL  Addition
+  description: "A festive tune about giving your heart away to someone special. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -230,7 +230,7 @@
   parent: BaseVinylDisc
   id: VinylAlsoSprachZarathustra
   name: "vinyl: Also Sprach Zarathustra"
-  description: "A classical piece that slowly builds to an climactic crescendo. By: PM Music" #SL  Addition
+  description: "A classical piece that slowly builds to an climactic crescendo. By: PM Music"
   components:
   - type: Sprite
     state: default
@@ -247,7 +247,7 @@
   parent: BaseVinylDisc
   id: VinylRussianDance
   name: "vinyl: Russian Dance"
-  description: "A classical piece with a fast pace and a lively rhythm. By: PM Music" #SL  Addition
+  description: "A classical piece with a fast pace and a lively rhythm. By: PM Music"
   components:
   - type: Sprite
     state: default
@@ -264,7 +264,7 @@
   parent: BaseVinylDisc
   id: VinylTheFlowerDuet
   name: "vinyl: The Flower Duet"
-  description: "A classical opera duet. By: PM Music" #SL  Addition
+  description: "A classical opera duet. By: PM Music"
   components:
   - type: Sprite
     state: default
@@ -281,7 +281,7 @@
   parent: BaseVinylDisc
   id: VinylWinterVivaldi
   name: "vinyl: Vivaldi's Winter"
-  description: "A classical tune from Vivaldi, representing the winter season. By: PM Music" #SL  Addition
+  description: "A classical tune from Vivaldi, representing the winter season. By: PM Music"
   components:
   - type: Sprite
     state: default
@@ -298,7 +298,7 @@
   parent: BaseVinylDisc
   id: VinylCelloSuite
   name: "vinyl: Cello Suite"
-  description: "A classical cello solo. By: PM Music" #SL  Addition
+  description: "A classical cello solo. By: PM Music"
   components:
   - type: Sprite
     state: default
@@ -315,7 +315,7 @@
   parent: BaseVinylDisc
   id: VinylRideOfTheValkyries
   name: "vinyl: Ride Of The Valkyries"
-  description: "A classical piece best paired with the charging of cavalry. By: PM Music" #SL  Addition
+  description: "A classical piece best paired with the charging of cavalry. By: PM Music"
   components:
   - type: Sprite
     state: default
@@ -332,7 +332,7 @@
   parent: BaseVinylDisc
   id: VinylRomeoAndJuliet
   name: "vinyl: Romeo And Juliet"
-  description: "A classical romantic piece. By: PM Music" #SL  Addition
+  description: "A classical romantic piece. By: PM Music"
   components:
   - type: Sprite
     state: default
@@ -351,7 +351,7 @@
   parent: BaseVinylDevil
   id: VinylMaxi
   name: "vinyl: Maxi"
-  description: "An exciting rock/metal song. By: Goonstation" #SL  Addition
+  description: "An exciting rock/metal song. By: Goonstation"
   components:
   - type: Vinyl
     song:
@@ -361,7 +361,7 @@
   parent: BaseVinylDevil
   id: VinylXtra
   name: "vinyl: Xtra"
-  description: "An exciting rock/metal song. By: Goonstation" #SL  Addition
+  description: "An exciting rock/metal song. By: Goonstation"
   components:
   - type: Vinyl
     song:
@@ -371,7 +371,7 @@
   parent: BaseVinylDevil
   id: VinylGiga
   name: "vinyl: Giga"
-  description: "An exciting rock/metal song. By: Goonstation" #SL  Addition
+  description: "An exciting rock/metal song. By: Goonstation"
   components:
   - type: Vinyl
     song:
@@ -381,7 +381,7 @@
   parent: BaseVinylDisc
   id: VinylEveryoneIsSoAlive
   name: "vinyl: Everyone Is So Alive"
-  description: "A slow pace electronic tune. By: Goonstation" #SL  Addition
+  description: "A slow pace electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -398,7 +398,7 @@
   parent: BaseVinylDisc
   id: VinylHighTechnologicBeat
   name: "vinyl: High Technologic Beat"
-  description: "A fast pace electronic dance beat. By: Goonstation" #SL  Addition
+  description: "A fast pace electronic dance beat. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -415,7 +415,7 @@
   parent: BaseVinylDisc
   id: VinylAfterParty
   name: "vinyl: After Party"
-  description: "A slow pace electronic tune. By: Goonstation" #SL  Addition
+  description: "A slow pace electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -432,7 +432,7 @@
   parent: BaseVinylDisc
   id: VinylItFeelsGoodToBeAliveToo
   name: "vinyl: It Feels Good To Be Alive Too"
-  description: "A fast pace electronic tune. By: Goonstation" #SL  Addition
+  description: "A fast pace electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -449,7 +449,7 @@
   parent: BaseVinylDisc
   id: VinylFunkadelic
   name: "vinyl: Funkadelic"
-  description: "A slow pace funky electronic tune. By: Goonstation" #SL  Addition
+  description: "A slow pace funky electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -466,7 +466,7 @@
   parent: BaseVinylDisc
   id: VinylLunch
   name: "vinyl: Lunch"
-  description: "A fast pace groovy electronic tune. By: Goonstation" #SL  Addition
+  description: "A fast pace groovy electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -483,7 +483,7 @@
   parent: BaseVinylDisc
   id: VinylGroovy
   name: "vinyl: Groovy"
-  description: "A fast pace electronic tune. By: Goonstation" #SL  Addition
+  description: "A fast pace electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -503,7 +503,7 @@
   parent: BaseVinylDisc
   id: VinylAnonymous
   name: "vinyl: Anonymous"
-  description: "A fast pace hypnotic electronic tune. By: Goonstation" #SL  Addition
+  description: "A fast pace hypnotic electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -523,7 +523,7 @@
   parent: BaseVinylDisc
   id: VinylDistantStar
   name: "vinyl: Distant Star"
-  description: "A fast pace electronic tune. By: Goonstation" #SL  Addition
+  description: "A fast pace electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -543,7 +543,7 @@
   parent: BaseVinylDisc
   id: VinylEphedrineOverdose
   name: "vinyl: Ephedrine Overdose"
-  description: "A fast pace electronic tune. By: mrjajkes" #SL  Addition
+  description: "A fast pace electronic tune. By: mrjajkes"
   components:
   - type: Sprite
     state: default
@@ -560,7 +560,7 @@
   parent: BaseVinylDisc
   id: VinylGetThatAntag
   name: "vinyl: Get That Antag!"
-  description: "A fast pace electronic tune. By: mrjajkes" #SL  Addition
+  description: "A fast pace electronic tune. By: mrjajkes"
   components:
   - type: Sprite
     state: default
@@ -577,7 +577,7 @@
   parent: BaseVinylDisc
   id: VinylGreytideSong
   name: "vinyl: Greytide Song"
-  description: "A hip tune by DJ Tider. By: mrjajkes" #SL  Addition
+  description: "A hip tune by DJ Tider. By: mrjajkes"
   components:
   - type: Sprite
     state: default
@@ -594,7 +594,7 @@
   parent: BaseVinylDisc
   id: VinylNukiesTrap
   name: "vinyl: Nukies Trap Remix"
-  description: "A fast pace electronic tune. By: mrjajkes" #SL  Addition
+  description: "A fast pace electronic tune. By: mrjajkes"
   components:
   - type: Sprite
     state: default
@@ -611,7 +611,7 @@
   parent: BaseVinylDisc
   id: VinylRunningOut
   name: "vinyl: Running Out"
-  description: "A dramatic fast pace electronic tune. By: mrjajkes" #SL  Addition
+  description: "A dramatic fast pace electronic tune. By: mrjajkes"
   components:
   - type: Sprite
     state: default
@@ -628,7 +628,7 @@
   parent: BaseVinylDisc
   id: VinylSponsoredBySyndicate
   name: "vinyl: Sponsored By Syndicate"
-  description: "A fast pace rock tune. By: mrjajkes" #SL  Addition
+  description: "A fast pace rock tune. By: mrjajkes"
   components:
   - type: Sprite
     state: default
@@ -645,7 +645,7 @@
   parent: BaseVinylDisc
   id: VinylTraitorousIntent
   name: "vinyl: Traitorous Intent"
-  description: "A eerie low pace electronic tune. By: mrjajkes" #SL  Addition
+  description: "A eerie low pace electronic tune. By: mrjajkes"
   components:
   - type: Sprite
     state: default
@@ -662,7 +662,7 @@
   parent: BaseVinylDisc
   id: VinylViolet
   name: "vinyl: Violet"
-  description: "A fast pace electronic tune. By: mrjajkes" #SL  Addition
+  description: "A fast pace electronic tune. By: mrjajkes"
   components:
   - type: Sprite
     state: default
@@ -683,7 +683,7 @@
   parent: BaseVinylDisc
   id: VinylWaystations
   name: "vinyl: Waystations"
-  description: "A slow pace electronic tune. By: Goonstation" #SL  Addition
+  description: "A slow pace electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -700,7 +700,7 @@
   parent: BaseVinylDisc
   id: VinylUpbeatOne
   name: "vinyl: Upbeat 1"
-  description: "A groovy upbeat tune. By: Goonstation" #SL  Addition
+  description: "A groovy upbeat tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -717,7 +717,7 @@
   parent: BaseVinylDisc
   id: VinylUpbeatTwo
   name: "vinyl: Upbeat 2"
-  description: "A groovy upbeat tune. By: Goonstation" #SL  Addition
+  description: "A groovy upbeat tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -734,7 +734,7 @@
   parent: BaseVinylDisc
   id: VinylPlanets
   name: "vinyl: Planets"
-  description: "A slow pace electronic tune. By: Goonstation" #SL  Addition
+  description: "A slow pace electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -751,7 +751,7 @@
   parent: BaseVinylDisc
   id: VinylChillOne
   name: "vinyl: Chill 1"
-  description: "A slow pace calming tune. By: Goonstation" #SL  Addition
+  description: "A slow pace calming tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -768,7 +768,7 @@
   parent: BaseVinylDisc
   id: VinylChillTwo
   name: "vinyl: Chill 2"
-  description: "A slow pace calming tune. By: Goonstation" #SL  Addition
+  description: "A slow pace calming tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -785,7 +785,7 @@
   parent: BaseVinylDisc
   id: VinylChillThree
   name: "vinyl: Chill 3"
-  description: "A slow pace calming tune. By: Goonstation" #SL  Addition
+  description: "A slow pace calming tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -802,7 +802,7 @@
   parent: BaseVinylDisc
   id: VinylChillFour
   name: "vinyl: Chill 4"
-  description: "A slow pace calming tune. By: Goonstation" #SL  Addition
+  description: "A slow pace calming tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -819,7 +819,7 @@
   parent: BaseVinylDisc
   id: VinylBeaches
   name: "vinyl: Beaches"
-  description: "A slow pace electronic tune. By: aquariofury, Not Tom"  #SL  Addition
+  description: "A slow pace electronic tune. By: aquariofury, Not Tom" 
   components:
   - type: Sprite
     state: default
@@ -836,7 +836,7 @@
   parent: BaseVinylDisc
   id: VinylDanceOnASpaceVolcano
   name: "vinyl: Dance On A Space Volcano"
-  description: "A funky fast pace electronic dance tune. By: Goonstation" #SL  Addition
+  description: "A funky fast pace electronic dance tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -853,7 +853,7 @@
   parent: BaseVinylFloaty
   id: VinylFloaty
   name: "vinyl: Floaty"
-  description: "A slow pace hypnotic tune. By: aquariofury, Not Tom" #SL  Addition
+  description: "A slow pace hypnotic tune. By: aquariofury, Not Tom"
   components:
   - type: Vinyl
     song:
@@ -863,7 +863,7 @@
   parent: BaseVinylDisc
   id: VinylGraveyard
   name: "vinyl: Graveyard"
-  description: "A slow pace eerie tune. By: aquariofury, Not Tom" #SL  Addition
+  description: "A slow pace eerie tune. By: aquariofury, Not Tom"
   components:
   - type: Sprite
     state: default
@@ -880,7 +880,7 @@
   parent: BaseVinylDisc
   id: VinylRiverdancer
   name: "vinyl: Riverdancer"
-  description: "A slow pace funky electronic tune. By: Goonstation" #SL  Addition
+  description: "A slow pace funky electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -897,7 +897,7 @@
   parent: BaseVinylDisc
   id: VinylSpaceGardener
   name: "vinyl: Space Gardener"
-  description: "A slow pace electronic tune. By: tamakari" #SL  Addition
+  description: "A slow pace electronic tune. By: tamakari"
   components:
   - type: Sprite
     state: default
@@ -914,7 +914,7 @@
   parent: BaseVinylDisc
   id: VinylKeyLime
   name: "vinyl: Key Lime"
-  description: "A slow pace calming tune. By: Goonstation" #SL  Addition
+  description: "A slow pace calming tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -931,7 +931,7 @@
   parent: BaseVinylAI
   id: VinylLayEggIsTrue
   name: "vinyl: Lay Egg Is True"
-  description: "A face pace electronic tune. By: WyrdDoe" #SL  Addition
+  description: "A face pace electronic tune. By: WyrdDoe"
   components:
   - type: Vinyl
     song:
@@ -941,7 +941,7 @@
   parent: BaseVinylDisc
   id: VinylMonkeyRiot
   name: "vinyl: Monkey Riot"
-  description: "A fast pace high-energy electronic tune. By: WyrdDoe" #SL  Addition
+  description: "A fast pace high-energy electronic tune. By: WyrdDoe"
   components:
   - type: Sprite
     state: default
@@ -958,7 +958,7 @@
   parent: BaseVinylDisc
   id: VinylOhNoEvilStar
   name: "vinyl: Oh No Evil Star"
-  description: "A slow pace calming tune. By: Goonstation" #SL  Addition
+  description: "A slow pace calming tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -975,7 +975,7 @@
   parent: BaseVinylDisc
   id: VinylRepose
   name: "vinyl: Repose"
-  description: "A slow pace funky tune. By: aquariofury, Not Tom" #SL  Addition
+  description: "A slow pace funky tune. By: aquariofury, Not Tom"
   components:
   - type: Sprite
     state: default
@@ -992,7 +992,7 @@
   parent: BaseVinylDisc
   id: VinylAdventureThree
   name: "vinyl: Adventure 3"
-  description: "A fast pace adventurous tune. By: Goonstation" #SL  Addition
+  description: "A fast pace adventurous tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1009,7 +1009,7 @@
   parent: BaseVinylDisc
   id: VinylAdventureFour
   name: "vinyl: Adventure 4"
-  description: "A fast pace adventurous tune. By: Goonstation" #SL  Addition
+  description: "A fast pace adventurous tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1026,7 +1026,7 @@
   parent: BaseVinylDisc
   id: VinylAdventureFive
   name: "vinyl: Adventure 5"
-  description: "A fast pace adventurous tune. By: Goonstation" #SL  Addition
+  description: "A fast pace adventurous tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1043,7 +1043,7 @@
   parent: BaseVinylDisc
   id: VinylAtlas
   name: "vinyl: Atlas"
-  description: "A slow pace calming tune. By: Goonstation" #SL  Addition
+  description: "A slow pace calming tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1060,7 +1060,7 @@
   parent: BaseVinylDisc
   id: VinylAtmosphere
   name: "vinyl: Atmosphere"
-  description: "A slow pace calming tune. By: Goonstation" #SL  Addition
+  description: "A slow pace calming tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1077,7 +1077,7 @@
   parent: BaseVinylDisc
   id: VinylBanjoOne
   name: "vinyl: Banjo 1"
-  description: "A slow pace calming tune. By: Goonstation" #SL  Addition
+  description: "A slow pace calming tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1094,7 +1094,7 @@
   parent: BaseVinylDisc
   id: VinylBiodome
   name: "vinyl: Biodome"
-  description: "A slow pace eerie tune. By: aquariofury, Not Tom" #SL  Addition
+  description: "A slow pace eerie tune. By: aquariofury, Not Tom"
   components:
   - type: Sprite
     state: default
@@ -1111,7 +1111,7 @@
   parent: BaseVinylDisc
   id: VinylBlackWingInterface
   name: "vinyl: Black Wing Interface"
-  description: "A slow pace electronic tune. By: Goonstation" #SL  Addition
+  description: "A slow pace electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1128,7 +1128,7 @@
   parent: BaseVinylDisc
   id: VinylBumblebee
   name: "vinyl: Bumblebee"
-  description: "A incredibly fast pace violin solo. By: Goonstation" #SL  Addition
+  description: "A incredibly fast pace violin solo. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1145,7 +1145,7 @@
   parent: BaseVinylDisc
   id: VinylCloudSkyManGuy
   name: "vinyl: Cloud Sky Man Guy"
-  description: "A upbeat electronic tune. By: Goonstation" #SL  Addition
+  description: "A upbeat electronic tune. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1162,7 +1162,7 @@
   parent: BaseVinylTTD
   id: VinylJourney
   name: "vinyl: Journey"
-  description: "A upbeat electronic tune. By: OpenTTD" #SL  Addition
+  description: "A upbeat electronic tune. By: OpenTTD"
   components:
   - type: Vinyl
     song:
@@ -1172,7 +1172,7 @@
   parent: BaseVinylForgotten
   id: VinylPeakAsshole
   name: "forgotten vinyl"
-  description: "A song that we have all heard. Just not this bad... By: LuciferMkshelter" #SL  Addition
+  description: "A song that we have all heard. Just not this bad... By: LuciferMkshelter"
   components:
   - type: Vinyl
     song:
@@ -1220,7 +1220,7 @@
   parent: BaseVinylSlippery
   id: VinylButtris
   name: "vinyl: Buttris"
-  description: "An iconic videogame song remixed by the clown. By: Goonstation" #SL  Addition
+  description: "An iconic videogame song remixed by the clown. By: Goonstation"
   components:
   - type: Sprite
     layers:
@@ -1236,7 +1236,7 @@
   parent: BaseVinylSlippery
   id: VinylWeAreNumberTwo
   name: "vinyl: We Are Number Two"
-  description: "A recognisable song from a famous TV show, remixed by the clown. By: Goonstation" #SL  Addition
+  description: "A recognisable song from a famous TV show, remixed by the clown. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1253,7 +1253,7 @@
   parent: BaseVinylSlippery
   id: VinylUguu
   name: "vinyl: Uguu"
-  description: "Some will say this song doesn't contain music. Others... their masterpiece. By: Goonstation" #SL  Addition
+  description: "Some will say this song doesn't contain music. Others... their masterpiece. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1270,7 +1270,7 @@
   parent: BaseVinylSlippery
   id: VinylPoo
   name: "vinyl: Poo"
-  description: "Take a chance on... poo? By: Goonstation" #SL  Addition
+  description: "Take a chance on... poo? By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1287,7 +1287,7 @@
   parent: BaseVinylSlippery
   id: VinylDiscoPoo
   name: "vinyl: Disco Poo"
-  description: "Some will say this song doesn't contain music. Others... their masterpiece. By: Goonstation" #SL  Addition
+  description: "Some will say this song doesn't contain music. Others... their masterpiece. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1304,7 +1304,7 @@
   parent: BaseVinylSlippery
   id: VinylCoreOfPoo
   name: "vinyl: Core Of Poo"
-  description: "Some will say this song doesn't contain music. Others... their masterpiece. By: Goonstation" #SL  Addition
+  description: "Some will say this song doesn't contain music. Others... their masterpiece. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1321,7 +1321,7 @@
   parent: BaseVinylSlippery
   id: VinylFartElise
   name: "vinyl: Fart Elise"
-  description: "A classical piece remixed by the clown. By: Goonstation" #SL  Addition
+  description: "A classical piece remixed by the clown. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1338,7 +1338,7 @@
   parent: BaseVinylSlippery
   id: VinylHonkmas
   name: "vinyl: Honkmas"
-  description: "A festive tune made by the clown. With love. By: Goonstation" #SL  Addition
+  description: "A festive tune made by the clown. With love. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1355,7 +1355,7 @@
   parent: BaseVinylSlippery
   id: VinylEggshell
   name: "vinyl: Eggshell"
-  description: "Eggs. Eggs. Eggs. Eggs. Eggs. By: Goonstation" #SL  Addition
+  description: "Eggs. Eggs. Eggs. Eggs. Eggs. By: Goonstation"
   components:
   - type: Sprite
     state: default
@@ -1372,7 +1372,7 @@
   parent: BaseVinylSlippery
   id: VinylWarriorsHonk
   name: "vinyl: Warriors Honk"
-  description: "A fast pace electronic tune. By: Goonstation" #SL  Addition
+  description: "A fast pace electronic tune. By: Goonstation"
   components:
   - type: Sprite
     layers:
@@ -1543,7 +1543,7 @@
   parent: BaseVinylDisc
   id: VinylDriverUpdate
   name: "vinyl: Driver Update"
-  description: "A synth heavy ambient track. By: randomcuts" #SL  Addition
+  description: "A synth heavy ambient track. By: randomcuts"
   components:
   - type: Sprite
     state: default
@@ -1560,7 +1560,7 @@
   parent: BaseVinylDisc
   id: VinylResonantInfinite
   name: "vinyl: Resonant Infinite"
-  description: "An ambient track with a peaceful resolution. By: randomcuts" #SL  Addition
+  description: "An ambient track with a peaceful resolution. By: randomcuts"
   components:
   - type: Sprite
     state: default
@@ -1577,7 +1577,7 @@
   parent: BaseVinylDisc
   id: VinylVadeRetro
   name: "vinyl: Vade Retro"
-  description: "A fast paced repetitive electronic track. By: randomcuts" #SL  Addition
+  description: "A fast paced repetitive electronic track. By: randomcuts"
   components:
   - type: Sprite
     state: default
@@ -1594,7 +1594,7 @@
   parent: BaseVinylDisc
   id: VinylConcreteFlavoured
   name: "vinyl: Concrete Flavoured"
-  description: "A mysterious ambient track. By: randomcuts" #SL  Addition
+  description: "A mysterious ambient track. By: randomcuts"
   components:
   - type: Sprite
     state: default
@@ -1611,7 +1611,7 @@
   parent: BaseVinylDisc
   id: VinylDamperII
   name: "vinyl: Damper II"
-  description: "A remix of a very familiar, dramatically fast paced electronic tune. By: Beptol Corporation Acoustics" #SL  Addition
+  description: "A remix of a very familiar, dramatically fast paced electronic tune. By: Beptol Corporation Acoustics"
   components:
   - type: Sprite
     state: default
@@ -1628,7 +1628,7 @@
   parent: BaseVinylDisc
   id: VinylCathode
   name: "vinyl: Cathode"
-  description: "A retro-inspired electronic track with an energetic rhythm. By: Beptol Corporation Acoustics" #SL  Addition
+  description: "A retro-inspired electronic track with an energetic rhythm. By: Beptol Corporation Acoustics"
   components:
   - type: Sprite
     state: default

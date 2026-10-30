@@ -36,24 +36,24 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
         _cfg.UnsubValueChanged(StarlightCCVars.StationRadioVolume, OnVolumeCfgChanged);
     }
 
-    protected override void OnReceiverMapInit(EntityUid uid, StationRadioReceiverComponent component, MapInitEvent args) =>
-        UpdateGain((uid, component));
+    protected override void OnReceiverMapInit(Entity<StationRadioReceiverComponent> ent, ref MapInitEvent args) =>
+        UpdateGain(ent);
 
     [SubscribeLocalEvent]
-    private void OnVolumeChanged(EntityUid uid, StationRadioReceiverComponent component, StationRadioVolumeChangedEvent args)
+    private void OnVolumeChanged(Entity<StationRadioReceiverComponent> ent, ref StationRadioVolumeChangedEvent args)
     {
-        component.ClientVolume = args.Volume;
-        UpdateGain((uid, component));
+        ent.Comp.ClientVolume = args.Volume;
+        UpdateGain(ent);
     }
 
     [SubscribeLocalEvent]
-    private void OnComponentShutdown(EntityUid uid, StationRadioReceiverComponent component, ComponentShutdown args)
+    private void OnComponentShutdown(Entity<StationRadioReceiverComponent> ent, ref ComponentShutdown args)
     {
-        foreach (var (stream, _) in component.Streams.Values)
+        foreach (var (stream, _) in ent.Comp.Streams.Values)
             EndStream(stream);
 
-        component.Streams.Clear();
-        component.StaticStream = EndStream(component.StaticStream);
+        ent.Comp.Streams.Clear();
+        ent.Comp.StaticStream = EndStream(ent.Comp.StaticStream);
     }
 
     [SubscribeLocalEvent]
@@ -167,8 +167,8 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
             RaiseLocalEvent(receiver, new  StationRadioVolumeChangedEvent(volume));
     }
 
-    protected override void OnPowerChanged(EntityUid uid, StationRadioReceiverComponent comp, PowerChangedEvent args) =>
-        UpdateGain((uid, comp));
+    protected override void OnPowerChanged(Entity<StationRadioReceiverComponent> ent, ref PowerChangedEvent args) =>
+        UpdateGain(ent);
 }
 
 [Serializable]

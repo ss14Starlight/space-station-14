@@ -49,7 +49,7 @@
         acts: [ "Destruction" ]
   - type: Appearance
   - type: VinylPlayer
-    slots: [ vinyl, cd2, cd3 ] # A queue of up to three discs, picked from the mixer.
+    slots: [ cd1, cd2, cd3 ] # A queue of up to three discs, picked from the mixer.
     autoPlay: false # Cue a disc, start it from the mixer when the previous one ends.
     autoAdvance: false # Stays on a finished advert; the host starts the next one.
     displayState: unlit
@@ -66,12 +66,12 @@
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
-      vinyl: !type:ContainerSlot
+      cd1: !type:ContainerSlot
       cd2: !type:ContainerSlot
       cd3: !type:ContainerSlot
   - type: ItemSlots
     slots:
-      vinyl:
+      cd1:
         priority: 3
         whitelist:
           tags:

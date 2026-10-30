@@ -21,51 +21,51 @@ public abstract partial class SharedVinylPlayerSystem : EntitySystem
     [Dependency] protected IGameTiming Timing = default!;
 
     [SubscribeLocalEvent]
-    protected virtual void OnPowerChanged(EntityUid uid, VinylPlayerComponent comp, PowerChangedEvent args)
+    protected virtual void OnPowerChanged(Entity<VinylPlayerComponent> ent, ref PowerChangedEvent args)
     {
     }
 
     [SubscribeLocalEvent]
-    protected virtual void OnDestruction(EntityUid uid, VinylPlayerComponent comp, DestructionEventArgs args)
+    protected virtual void OnDestruction(Entity<VinylPlayerComponent> ent, ref DestructionEventArgs args)
     {
     }
 
     [SubscribeLocalEvent]
-    private void OnVinylInserted(EntityUid uid, VinylPlayerComponent comp, EntInsertedIntoContainerMessage args)
+    private void OnVinylInserted(Entity<VinylPlayerComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
-        var slot = Array.IndexOf(comp.Slots, args.Container.ID);
+        var slot = Array.IndexOf(ent.Comp.Slots, args.Container.ID);
         if (slot < 0 || Timing.ApplyingState)
             return;
 
-        var current = GetCurrentDisc((uid, comp));
-        if (!comp.Playing && (current == null || current == args.Entity))
+        var current = GetCurrentDisc(ent);
+        if (!ent.Comp.Playing && (current == null || current == args.Entity))
         {
-            comp.CurrentSlot = slot;
-            comp.Position = TimeSpan.Zero;
-            Dirty(uid, comp);
+            ent.Comp.CurrentSlot = slot;
+            ent.Comp.Position = TimeSpan.Zero;
+            Dirty(ent);
         }
 
-        UpdateVisuals((uid, comp));
-        DiscInserted((uid, comp), slot);
+        UpdateVisuals(ent);
+        DiscInserted(ent, slot);
     }
 
     [SubscribeLocalEvent]
-    private void OnVinylRemove(EntityUid uid, VinylPlayerComponent comp, EntRemovedFromContainerMessage args)
+    private void OnVinylRemove(Entity<VinylPlayerComponent> ent, ref EntRemovedFromContainerMessage args)
     {
-        var slot = Array.IndexOf(comp.Slots, args.Container.ID);
+        var slot = Array.IndexOf(ent.Comp.Slots, args.Container.ID);
         if (slot < 0 || Timing.ApplyingState)
             return;
 
-        var wasCurrent = slot == comp.CurrentSlot;
-        if (wasCurrent && FilledSlotFrom((uid, comp), slot) is { } next)
+        var wasCurrent = slot == ent.Comp.CurrentSlot;
+        if (wasCurrent && FilledSlotFrom(ent, slot) is { } next)
         {
-            comp.CurrentSlot = next;
-            comp.Position = TimeSpan.Zero;
-            Dirty(uid, comp);
+            ent.Comp.CurrentSlot = next;
+            ent.Comp.Position = TimeSpan.Zero;
+            Dirty(ent);
         }
 
-        UpdateVisuals((uid, comp));
-        DiscRemoved((uid, comp), wasCurrent);
+        UpdateVisuals(ent);
+        DiscRemoved(ent, wasCurrent);
     }
 
     protected virtual void DiscInserted(Entity<VinylPlayerComponent> ent, int slot)
@@ -90,33 +90,33 @@ public abstract partial class SharedVinylPlayerSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnActivate(EntityUid uid, VinylPlayerComponent comp, ActivateInWorldEvent args)
+    private void OnActivate(Entity<VinylPlayerComponent> ent, ref ActivateInWorldEvent args)
     {
-        if (args.Handled || !args.Complex || !comp.ToggleOnActivate)
+        if (args.Handled || !args.Complex || !ent.Comp.ToggleOnActivate)
             return;
 
-        TogglePlay((uid, comp), args.User);
+        TogglePlay(ent, args.User);
         args.Handled = true;
     }
 
     [SubscribeLocalEvent]
-    private void OnGetVerbs(EntityUid uid, VinylPlayerComponent comp, GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetVerbs(Entity<VinylPlayerComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || GetCurrentDisc((uid, comp)) == null)
+        if (!args.CanAccess || !args.CanInteract || GetCurrentDisc(ent) == null)
             return;
 
         var user = args.User;
         args.Verbs.Add(new AlternativeVerb
         {
-            Text = Loc.GetString(comp.Playing ? "vinyl-player-verb-pause" : "vinyl-player-verb-play"),
+            Text = Loc.GetString(ent.Comp.Playing ? "vinyl-player-verb-pause" : "vinyl-player-verb-play"),
             Priority = -1,
-            Act = () => TogglePlay((uid, comp), user),
+            Act = () => TogglePlay(ent, user),
         });
         args.Verbs.Add(new AlternativeVerb
         {
             Text = Loc.GetString("vinyl-player-verb-rewind"),
             Priority = -2,
-            Act = () => Rewind((uid, comp), user),
+            Act = () => Rewind(ent, user),
         });
     }
 
@@ -175,15 +175,15 @@ public abstract partial class SharedVinylPlayerSystem : EntitySystem
     /// Show what vinyl is currently inserted when examined.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnExamined(EntityUid uid, VinylPlayerComponent comp, ref ExaminedEvent args)
+    private void OnExamined(Entity<VinylPlayerComponent> ent, ref ExaminedEvent args)
     {
-        if (GetCurrentDisc((uid, comp)) is not { } vinyl)
+        if (GetCurrentDisc(ent) is not { } vinyl)
         {
             args.PushMarkup(Loc.GetString("vinyl-player-examine-empty"));
             return;
         }
 
         args.PushMarkup(Loc.GetString("vinyl-player-examine-loaded", ("vinyl", Name(vinyl))));
-        args.PushMarkup(Loc.GetString(comp.Playing ? "vinyl-player-examine-playing" : "vinyl-player-examine-paused"));
+        args.PushMarkup(Loc.GetString(ent.Comp.Playing ? "vinyl-player-examine-playing" : "vinyl-player-examine-paused"));
     }
 }

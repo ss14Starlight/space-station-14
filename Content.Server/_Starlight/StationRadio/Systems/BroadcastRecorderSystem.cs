@@ -117,11 +117,9 @@ public sealed partial class BroadcastRecorderSystem : SharedBroadcastRecorderSys
 
     [SubscribeLocalEvent]
     private void OnTapeExamined(EntityUid uid, BroadcastTapeComponent comp, ExaminedEvent args)
-    {
-        args.PushMarkup(Loc.GetString("broadcast-tape-examine",
+        => args.PushMarkup(Loc.GetString("broadcast-tape-examine",
             ("recorded", FormatTime(comp.Length)),
             ("max", FormatTime(comp.MaxLength))));
-    }
 
     #endregion
 

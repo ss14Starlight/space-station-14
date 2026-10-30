@@ -20,45 +20,45 @@ public sealed partial class RecordCrateSystem : EntitySystem
     [Dependency] private DiscCoverSystem _cover = default!;
 
     [SubscribeLocalEvent]
-    private void OnInit(EntityUid uid, RecordCrateComponent comp, ComponentInit args) =>
-        _container.EnsureContainer<Container>(uid, comp.ContainerId);
+    private void OnInit(Entity<RecordCrateComponent> ent, ref ComponentInit _) =>
+        _container.EnsureContainer<Container>(ent, ent.Comp.ContainerId);
 
-    private BaseContainer Records(Entity<RecordCrateComponent> ent) =>
+    private Container Records(Entity<RecordCrateComponent> ent) =>
         _container.EnsureContainer<Container>(ent, ent.Comp.ContainerId);
 
     [SubscribeLocalEvent]
-    private void OnInteractUsing(EntityUid uid, RecordCrateComponent comp, InteractUsingEvent args)
+    private void OnInteractUsing(Entity<RecordCrateComponent> ent, ref InteractUsingEvent args)
     {
-        if (args.Handled || !_whitelist.IsWhitelistPass(comp.Whitelist, args.Used))
+        if (args.Handled || !_whitelist.IsWhitelistPass(ent.Comp.Whitelist, args.Used))
             return;
 
         args.Handled = true;
-        var records = Records((uid, comp));
-        if (records.Count >= comp.Capacity)
+        var records = Records(ent);
+        if (records.Count >= ent.Comp.Capacity)
         {
-            _popup.PopupClient(Loc.GetString("record-crate-full"), uid, args.User);
+            _popup.PopupClient(Loc.GetString("record-crate-full"), ent.Owner, args.User);
             return;
         }
 
         if (_container.Insert(args.Used, records))
-            _audio.PlayPredicted(comp.InsertSound, uid, args.User);
+            _audio.PlayPredicted(ent.Comp.InsertSound, ent.Owner, args.User);
     }
 
     [SubscribeLocalEvent]
-    private void OnInteractHand(EntityUid uid, RecordCrateComponent comp, InteractHandEvent args)
+    private void OnInteractHand(Entity<RecordCrateComponent> ent, ref InteractHandEvent args)
     {
-        var records = Records((uid, comp));
+        var records = Records(ent);
         if (args.Handled || records.Count == 0)
             return;
 
-        TakeOut((uid, comp), records.ContainedEntities[^1], args.User);
+        TakeOut(ent, records.ContainedEntities[^1], args.User);
         args.Handled = true;
     }
 
     [SubscribeLocalEvent]
-    private void OnGetVerbs(EntityUid uid, RecordCrateComponent comp, GetVerbsEvent<Verb> args)
+    private void OnGetVerbs(Entity<RecordCrateComponent> ent, ref GetVerbsEvent<Verb> args)
     {
-        var records = Records((uid, comp));
+        var records = Records(ent);
         if (!args.CanAccess || !args.CanInteract || records.Count == 0)
             return;
 
@@ -72,20 +72,20 @@ public sealed partial class RecordCrateSystem : EntitySystem
                 Text = Name(RecordOf(record)),
                 Category = VerbCategory.Eject,
                 Priority = priority--,
-                Act = () => TakeOut((uid, comp), record, user),
+                Act = () => TakeOut(ent, record, user),
             });
         }
     }
 
     [SubscribeLocalEvent]
-    private void OnExamined(EntityUid uid, RecordCrateComponent comp, ExaminedEvent args)
+    private void OnExamined(Entity<RecordCrateComponent> ent, ref ExaminedEvent args)
     {
         if (!args.IsInDetailsRange)
             return;
 
         args.PushMarkup(Loc.GetString("record-crate-examine",
-            ("count", Records((uid, comp)).Count),
-            ("capacity", comp.Capacity)));
+            ("count", Records(ent).Count),
+            ("capacity", ent.Comp.Capacity)));
     }
 
     private void TakeOut(Entity<RecordCrateComponent> ent, EntityUid record, EntityUid user)

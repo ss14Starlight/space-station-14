@@ -46,9 +46,9 @@
     damage:
       types:
         Slash: 5
-  - type: Damageable # Starlight begin - wait so did breaking vinyls just never fucking work on goob LMAO
+  - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: FlimsyMetallic # Starlight end
+    damageModifierSet: FlimsyMetallic
   - type: Tag
     tags:
     - VinylSleeveFit
@@ -127,7 +127,6 @@
     - CD
   - type: Vinyl
     labelColor: "#ccd6e3" # Silver
-  # Starlight start - We don't want CDs to turn into broken vinyls.
   - type: Destructible
     thresholds:
     - trigger:
@@ -141,7 +140,6 @@
             volume: -4
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  # Starlight end
 
 # Base Disk Sleeve
 - type: entity
@@ -180,7 +178,7 @@
   - type: ContainerContainer
     containers:
       vinyl: !type:ContainerSlot
-  - type: Tag # Starlight
+  - type: Tag
     tags:
     - VinylSleeve
 
@@ -220,7 +218,7 @@
   - type: ContainerContainer
     containers:
       vinyl: !type:ContainerSlot
-  - type: Tag # Starlight
+  - type: Tag
     tags:
     - VinylSleeve
   - type: EntityTableContainerFill # By default just put a random one in there.

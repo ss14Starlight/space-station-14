@@ -15,7 +15,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.StationRadio.Systems;
 
-public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiverSystem
+public sealed partial class StationRadioReceiverSystem : SharedStationRadioReceiverSystem
 {
 
     [Dependency] private SharedPowerReceiverSystem _power = default!;
@@ -24,32 +24,31 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedRadioDeviceSystem _radioDevice = default!;
 
-    protected override void OnReceiverMapInit(EntityUid uid, StationRadioReceiverComponent comp, MapInitEvent args)
+    protected override void OnReceiverMapInit(Entity<StationRadioReceiverComponent> ent, ref MapInitEvent args)
     {
-        if (!TryGetPoweredGridServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
+        if (!TryGetPoweredGridServer(ent.Owner, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp))
             return;
 
-        comp.Tracks = serverComp.MusicMuted ? new Dictionary<NetEntity, StationRadioTrack>() : GetNetTracks(serverComp);
-        comp.Interference = serverComp.Interference;
-        Dirty(uid, comp);
+        ent.Comp.Tracks = serverComp.MusicMuted ? new Dictionary<NetEntity, StationRadioTrack>() : GetNetTracks(serverComp);
+        ent.Comp.Interference = serverComp.Interference;
+        Dirty(ent);
     }
 
-    protected override void OnServerPowerChanged(EntityUid uid, StationRadioServerComponent comp, PowerChangedEvent args)
+    protected override void OnServerPowerChanged(Entity<StationRadioServerComponent> ent, ref PowerChangedEvent args)
     {
-        if (Transform(uid).Anchored)
-            SyncReceivers((uid, comp));
+        if (Transform(ent.Owner).Anchored)
+            SyncReceivers(ent);
     }
 
-    protected override void OnServerTerminating(EntityUid uid, StationRadioServerComponent comp,
-        ref EntityTerminatingEvent args)
+    protected override void OnServerTerminating(Entity<StationRadioServerComponent> ent, ref EntityTerminatingEvent args)
     {
-        if (Transform(uid).Anchored)
-            StopAllReceivers(uid);
+        if (Transform(ent.Owner).Anchored)
+            StopAllReceivers(ent.Owner);
     }
 
-    protected override void OnRigTerminating(EntityUid uid, RadioRigComponent comp, ref EntityTerminatingEvent args)
+    protected override void OnRigTerminating(Entity<RadioRigComponent> ent, ref EntityTerminatingEvent args)
     {
-        if (TryGetLinkedPoweredServer(uid, out var linkedServer) && TryComp<StationRadioServerComponent>(linkedServer, out var serverComp))
+        if (TryGetLinkedPoweredServer(ent.Owner, out var linkedServer) && TryComp<StationRadioServerComponent>(linkedServer, out var serverComp))
         {
             serverComp.Tracks.Clear();
             SyncReceivers((linkedServer, serverComp));
@@ -57,17 +56,17 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
     }
 
     [SubscribeLocalEvent]
-    private void OnVolumeMessage(EntityUid uid, StationRadioReceiverComponent comp, StationRadioReceiverVolumeMessage args) =>
-        SetVolume((uid, comp), args.Volume);
+    private void OnVolumeMessage(Entity<StationRadioReceiverComponent> ent, ref StationRadioReceiverVolumeMessage args) =>
+        SetVolume(ent, args.Volume);
 
     [SubscribeLocalEvent]
-    private void OnPowerMessage(EntityUid uid, StationRadioReceiverComponent comp, StationRadioReceiverPowerMessage args)
+    private void OnPowerMessage(Entity<StationRadioReceiverComponent> ent, ref StationRadioReceiverPowerMessage args)
     {
-        comp.Active = !comp.Active;
-        Dirty(uid, comp);
+        ent.Comp.Active = !ent.Comp.Active;
+        Dirty(ent);
 
-        if (HasComp<RadioSpeakerComponent>(uid))
-            _radioDevice.SetSpeakerEnabled(uid, args.Actor, comp.Active, quiet: true);
+        if (HasComp<RadioSpeakerComponent>(ent.Owner))
+            _radioDevice.SetSpeakerEnabled(ent.Owner, args.Actor, ent.Comp.Active, quiet: true);
     }
 
     /// <summary>
@@ -292,34 +291,34 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
         return false;
     }
 
-    protected override void OnAttemptAnchor(EntityUid uid, StationRadioServerComponent comp, ref AnchorStateChangedEvent args)
+    protected override void OnAnchorStateChanged(Entity<StationRadioServerComponent> ent, ref AnchorStateChangedEvent args)
     {
         if (!args.Anchored)
         {
-            if (TryGetGridServer(uid, out var other) && TryComp<StationRadioServerComponent>(other, out var otherComp))
+            if (TryGetGridServer(ent.Owner, out var other) && TryComp<StationRadioServerComponent>(other, out var otherComp))
                 SyncReceivers((other.Value, otherComp));
             else
-                StopAllReceivers(uid);
+                StopAllReceivers(ent.Owner);
             return;
         }
 
-        var xform = Transform(uid);
+        var xform = Transform(ent.Owner);
         var c = 0;
         var query = EntityQueryEnumerator<StationRadioServerComponent>();
-        foreach (var ent in  query)
+        foreach (var server in  query)
         {
-            var entXform = Transform(ent);
+            var entXform = Transform(server);
             if (entXform.Anchored && entXform.GridUid == xform.GridUid)
                 c++;
 
             if (c > 1)
             {
-                _transform.Unanchor(uid);
-                _popupSystem.PopupEntity(Loc.GetString("station-radio-server-cancelled-anchor"), uid, PopupType.Medium);
+                _transform.Unanchor(ent.Owner);
+                _popupSystem.PopupEntity(Loc.GetString("station-radio-server-cancelled-anchor"), ent.Owner, PopupType.Medium);
                 return;
             }
         }
 
-        SyncReceivers((uid, comp));
+        SyncReceivers(ent);
     }
 }

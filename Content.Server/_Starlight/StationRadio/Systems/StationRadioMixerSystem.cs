@@ -67,9 +67,9 @@ public sealed partial class StationRadioMixerSystem : EntitySystem
 
         if (TryComp<BroadcastRecorderComponent>(source, out var recorder))
         {
-            if (args.Action == StationRadioMixerTransport.TogglePlay)
+            if (args.Action == StationRadioMixerAction.TogglePlay)
                 _recorder.TogglePlayback((source.Value, recorder), args.Actor);
-            else if (args.Action == StationRadioMixerTransport.Rewind)
+            else if (args.Action == StationRadioMixerAction.Rewind)
                 _recorder.Rewind((source.Value, recorder), args.Actor);
             return;
         }
@@ -79,19 +79,19 @@ public sealed partial class StationRadioMixerSystem : EntitySystem
 
         switch (args.Action)
         {
-            case StationRadioMixerTransport.TogglePlay:
+            case StationRadioMixerAction.TogglePlay:
                 _vinylPlayer.TogglePlay((source.Value, player), args.Actor);
                 break;
-            case StationRadioMixerTransport.Rewind:
+            case StationRadioMixerAction.Rewind:
                 _vinylPlayer.Rewind((source.Value, player), args.Actor);
                 break;
-            case StationRadioMixerTransport.Next:
+            case StationRadioMixerAction.Next:
                 _vinylPlayer.Next((source.Value, player), args.Actor);
                 break;
-            case StationRadioMixerTransport.Select:
+            case StationRadioMixerAction.Select:
                 _vinylPlayer.SelectSlot((source.Value, player), args.Slot, args.Actor);
                 break;
-            case StationRadioMixerTransport.Eject:
+            case StationRadioMixerAction.Eject:
                 _vinylPlayer.EjectSlot((source.Value, player), args.Slot, args.Actor);
                 break;
         }

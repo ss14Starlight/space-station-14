@@ -1,7 +1,7 @@
 {
     "version": 1,
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Drawn for Starlight, procedurally generated record sprites",
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Drawn for Starlight by Rinary1(GitHub), procedurally generated record sprites by python script, not AI!!!!",
     "size": {
         "x": 32,
         "y": 32

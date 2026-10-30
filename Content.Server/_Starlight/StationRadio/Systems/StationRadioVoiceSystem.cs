@@ -20,12 +20,7 @@ public sealed partial class StationRadioVoiceSystem : EntitySystem
     [Dependency] private StationRadioReceiverSystem _stationRadio = default!;
     [Dependency] private TTSSystem _tts = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<RadioSpokeEvent>(OnRadioSpoke);
-    }
-
+    [SubscribeLocalEvent]
     private void OnRadioSpoke(RadioSpokeEvent args)
     {
         if (args.SuppressTTS)
@@ -63,7 +58,7 @@ public sealed partial class StationRadioVoiceSystem : EntitySystem
             var param = receiver.BoostVolume ? receiver.BoostedParams : receiver.DefaultParams;
             var volume = serverComp.VoiceGain
                 * (receiver.BoostVolume ? 1f : LowVolumeModifier)
-                * (1f - InterferenceVolumeLoss * receiver.Interference);
+                * (1f - (InterferenceVolumeLoss * receiver.Interference));
             speakers.Add((uid, _transform.GetMapCoordinates(uid), param.MaxDistance, volume));
         }
 
@@ -98,7 +93,7 @@ public sealed partial class StationRadioVoiceSystem : EntitySystem
                 continue;
 
             if (!listeners.TryGetValue(nearest, out var group))
-                listeners[nearest] = group = new List<ICommonSession>();
+                listeners[nearest] = group = [];
             group.Add(session);
         }
 

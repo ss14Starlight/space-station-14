@@ -48,14 +48,14 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
         }
     }
 
-    protected override void OnPowerChanged(EntityUid uid, VinylPlayerComponent comp, PowerChangedEvent args)
+    protected override void OnPowerChanged(Entity<VinylPlayerComponent> ent, ref PowerChangedEvent args)
     {
         if (!args.Powered)
-            Pause((uid, comp));
+            Pause(ent);
     }
 
-    protected override void OnDestruction(EntityUid uid, VinylPlayerComponent comp, DestructionEventArgs args)
-        => Stop((uid, comp));
+    protected override void OnDestruction(Entity<VinylPlayerComponent> ent, ref DestructionEventArgs args)
+        => Stop(ent);
 
     protected override void DiscInserted(Entity<VinylPlayerComponent> ent, int slot)
     {

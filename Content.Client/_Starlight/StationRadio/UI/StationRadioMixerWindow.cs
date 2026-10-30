@@ -42,7 +42,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
 
     public event Action<StationRadioMixerFader, NetEntity?, float, bool>? OnFaderChanged;
 
-    public event Action<NetEntity, StationRadioMixerTransport, int>? OnTransport;
+    public event Action<NetEntity, StationRadioMixerAction, int>? OnTransport;
 
     public StationRadioMixerWindow()
     {
@@ -239,7 +239,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
             StyleClasses = { StyleClass.ButtonOpenBoth },
             Disabled = channel.Slots.Count(d => d != null) < 2,
         };
-        next.OnPressed += _ => OnTransport?.Invoke(source, StationRadioMixerTransport.Next, 0);
+        next.OnPressed += _ => OnTransport?.Invoke(source, StationRadioMixerAction.Next, 0);
         header.AddChild(next);
         list.AddChild(header);
 
@@ -272,12 +272,12 @@ public sealed class StationRadioMixerWindow : FancyWindow
             if (i == channel.CurrentSlot && disc != null)
                 button.Label.FontColorOverride = _currentTrackColor;
 
-            button.OnPressed += _ => OnTransport?.Invoke(source, StationRadioMixerTransport.Select, slot);
+            button.OnPressed += _ => OnTransport?.Invoke(source, StationRadioMixerAction.Select, slot);
 
             var (eject, _) = ChannelStrip.IconButton(EjectIcon);
             eject.Disabled = disc == null;
             eject.ToolTip = Loc.GetString("station-radio-mixer-eject");
-            eject.OnPressed += _ => OnTransport?.Invoke(source, StationRadioMixerTransport.Eject, slot);
+            eject.OnPressed += _ => OnTransport?.Invoke(source, StationRadioMixerAction.Eject, slot);
 
             var row = new BoxContainer
             {
@@ -348,7 +348,7 @@ public sealed class StationRadioMixerWindow : FancyWindow
         private TimeSpan _position;
         private TimeSpan _playbackStart;
 
-        public event Action<StationRadioMixerTransport>? OnTransport;
+        public event Action<StationRadioMixerAction>? OnTransport;
 
         private float? _pending;
         private TimeSpan _pendingSince;
@@ -440,9 +440,9 @@ public sealed class StationRadioMixerWindow : FancyWindow
             (_rewindButton, _) = IconButton(RewindIcon);
             (_playButton, _playIcon) = IconButton(PlayIcon);
             (_nextButton, _) = IconButton(NextIcon);
-            _rewindButton.OnPressed += _ => OnTransport?.Invoke(StationRadioMixerTransport.Rewind);
-            _playButton.OnPressed += _ => OnTransport?.Invoke(StationRadioMixerTransport.TogglePlay);
-            _nextButton.OnPressed += _ => OnTransport?.Invoke(StationRadioMixerTransport.Next);
+            _rewindButton.OnPressed += _ => OnTransport?.Invoke(StationRadioMixerAction.Rewind);
+            _playButton.OnPressed += _ => OnTransport?.Invoke(StationRadioMixerAction.TogglePlay);
+            _nextButton.OnPressed += _ => OnTransport?.Invoke(StationRadioMixerAction.Next);
             _rewindButton.Disabled = _playButton.Disabled = _nextButton.Disabled = true;
             _nextButton.Visible = false;
             buttons.AddChild(_rewindButton);

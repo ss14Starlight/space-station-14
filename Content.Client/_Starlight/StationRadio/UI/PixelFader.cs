@@ -23,13 +23,11 @@ public sealed class PixelFader : Control
     private readonly Texture _track;
     private readonly Texture _cap;
 
-    private float _value = 1f;
-
     public float Value
     {
-        get => _value;
-        set => _value = Math.Clamp(value, 0f, 1f);
-    }
+        get;
+        set => field = Math.Clamp(value, 0f, 1f);
+    } = 1f;
 
     public bool Grabbed { get; private set; }
 
@@ -47,7 +45,7 @@ public sealed class PixelFader : Control
         MouseFilter = MouseFilterMode.Stop;
     }
 
-    private float Scale => MathF.Max(1f, MathF.Round(PixelScale * UIScale));
+    private float _scale => MathF.Max(1f, MathF.Round(PixelScale * UIScale));
 
     protected override Vector2 MeasureOverride(Vector2 availableSize) =>
         new Vector2(_track.Width, _track.Height) * PixelScale;
@@ -56,7 +54,7 @@ public sealed class PixelFader : Control
     {
         base.Draw(handle);
 
-        var scale = Scale;
+        var scale = _scale;
         var trackSize = new Vector2(_track.Width, _track.Height) * scale;
         var origin = new Vector2(
             MathF.Floor((PixelWidth - trackSize.X) / 2f),
@@ -66,8 +64,8 @@ public sealed class PixelFader : Control
         handle.DrawTextureRect(_track, UIBox2.FromDimensions(origin, trackSize), tint);
 
         var capSize = new Vector2(_cap.Width, _cap.Height) * scale;
-        var capX = origin.X + MathF.Floor((_track.Width - _cap.Width) / 2f) * scale;
-        var capY = origin.Y + MathF.Round(ValueToRow(_value) - CapIndexRow) * scale;
+        var capX = origin.X + (MathF.Floor((_track.Width - _cap.Width) / 2f) * scale);
+        var capY = origin.Y + (MathF.Round(ValueToRow(Value) - CapIndexRow) * scale);
         handle.DrawTextureRect(_cap, UIBox2.FromDimensions(new Vector2(capX, capY), capSize), tint);
     }
 
@@ -117,16 +115,16 @@ public sealed class PixelFader : Control
 
     private void SetFromPixelY(float pixelY)
     {
-        var scale = Scale;
-        var originY = MathF.Floor((PixelHeight - _track.Height * scale) / 2f);
+        var scale = _scale;
+        var originY = MathF.Floor((PixelHeight - (_track.Height * scale)) / 2f);
         var row = (pixelY - originY) / scale;
-        var value = 1f - (row - SlotTop) / (SlotBottom - SlotTop);
+        var value = 1f - ((row - SlotTop) / (SlotBottom - SlotTop));
 
-        var old = _value;
+        var old = Value;
         Value = value;
-        if (!MathHelper.CloseTo(old, _value))
+        if (!MathHelper.CloseTo(old, Value))
             OnValueChanged?.Invoke(this);
     }
 
-    private static float ValueToRow(float value) => SlotTop + (1f - value) * (SlotBottom - SlotTop);
+    private static float ValueToRow(float value) => SlotTop + ((1f - value) * (SlotBottom - SlotTop));
 }
