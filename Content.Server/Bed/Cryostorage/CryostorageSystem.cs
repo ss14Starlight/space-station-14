@@ -202,6 +202,10 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
 
                 _stationJobs.TryRemovePlayerJobs(uniqueStation, userId.Value, stationJobs);
             }
+
+            // Starlight - start
+            _containerSpawnJobSlots.RefreshJobSlots();
+            // Starlight - end
         }
 
         // Starlight start
