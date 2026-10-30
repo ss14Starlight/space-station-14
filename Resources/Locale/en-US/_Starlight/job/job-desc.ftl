@@ -1,3 +1,4 @@
+job-description-artist = Create works of art for the crew to enjoy, decorate the station, and take on commissions. 
 job-description-assistantmanager = Manage your fellow Assistants, give them small tasks or informal jobs, and cultivate their progress, so that they may work towards the station's benefit.
 job-description-blueshield = Your primary job is to protect the heads. Remember, you are not a security officer.
 job-description-boxer = Fight your way to the top! Challenge the head of personnel and get brigged when you win.

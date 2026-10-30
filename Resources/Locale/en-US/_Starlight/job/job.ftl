@@ -31,6 +31,7 @@ job-name-dutyofficer = Duty Officer
 job-name-gunnerysergeant = Gunnery Sergeant
 job-name-k9 = Security K9
 job-name-assistantmanager = Assistant Manager
+job-name-artist = Artist
 job-name-abductor = Abductor
 job-title-borgi = Borgi
 

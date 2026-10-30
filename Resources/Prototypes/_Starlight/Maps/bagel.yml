@@ -35,6 +35,7 @@
             Lawyer: [ 1, 1 ]
             ServiceWorker: [ 2, 2 ]
             Reporter: [ 2, 2 ]
+            Artist: [ 1, 2 ]
             #engineering
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 4, 4 ]

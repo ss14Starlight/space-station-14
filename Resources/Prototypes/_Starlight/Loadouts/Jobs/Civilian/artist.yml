@@ -1,0 +1,205 @@
+# Senior Time
+- type: loadoutEffectGroup
+  id: SeniorArtist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobArtist
+      time: 216000 # 60 hrs
+
+# Jumpsuits
+- type: loadout
+  id: BlackTurtleneckJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckColorBlack
+  groupBy: "Turtleneck Jumpsuits"
+
+- type: loadout
+  id: WhiteTurtleneckJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckColorWhite
+  groupBy: "Turtleneck Jumpsuits"
+
+- type: loadout
+  id: RedTurtleneckJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckColorRed
+  groupBy: "Turtleneck Jumpsuits"
+
+- type: loadout
+  id: OrangeTurtleneckJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckColorOrange
+  groupBy: "Turtleneck Jumpsuits"
+
+- type: loadout
+  id: YellowTurtleneckJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckColorYellow
+  groupBy: "Turtleneck Jumpsuits"
+
+- type: loadout
+  id: DarkGreenTurtleneckJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckColorDarkGreen
+  groupBy: "Turtleneck Jumpsuits"
+
+- type: loadout
+  id: DarkBlueTurtleneckJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckColorDarkBlue
+  groupBy: "Turtleneck Jumpsuits"
+
+- type: loadout
+  id: BlueTurtleneckJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckColorBlue
+  groupBy: "Turtleneck Jumpsuits"
+
+- type: loadout
+  id: PurpleTurtleneckJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckColorPurple
+  groupBy: "Turtleneck Jumpsuits"
+
+- type: loadout
+  id: PinkTurtleneckJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckColorPink
+  groupBy: "Turtleneck Jumpsuits"
+
+# Turtleneck Jumpskirts
+- type: loadout
+  id: BlackTurtleneckJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckSkirtColorBlack
+  groupBy: "Turtleneck Jumpskirts"
+
+- type: loadout
+  id: WhiteTurtleneckJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckSkirtColorWhite
+  groupBy: "Turtleneck Jumpskirts"
+
+- type: loadout
+  id: RedTurtleneckJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckSkirtColorRed
+  groupBy: "Turtleneck Jumpskirts"
+
+- type: loadout
+  id: OrangeTurtleneckJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckSkirtColorOrange
+  groupBy: "Turtleneck Jumpskirts"
+
+- type: loadout
+  id: YellowTurtleneckJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckSkirtColorYellow
+  groupBy: "Turtleneck Jumpskirts"
+
+- type: loadout
+  id: DarkGreenTurtleneckJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckSkirtColorDarkGreen
+  groupBy: "Turtleneck Jumpskirts"
+
+- type: loadout
+  id: DarkBlueTurtleneckJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckSkirtColorDarkBlue
+  groupBy: "Turtleneck Jumpskirts"
+
+- type: loadout
+  id: BlueTurtleneckJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckSkirtColorBlue
+  groupBy: "Turtleneck Jumpskirts"
+
+- type: loadout
+  id: PurpleTurtleneckJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckSkirtColorPurple
+  groupBy: "Turtleneck Jumpskirts"
+
+- type: loadout
+  id: PinkTurtleneckJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformTurtleneckSkirtColorPink
+  groupBy: "Turtleneck Jumpskirts"
+
+- type: loadout
+  id: RedStripedDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRedStripedDress
+
+# Art supplies
+- type: loadout
+  id: RainbowCrayon
+  storage:
+    back:
+      - CrayonRainbow
+
+- type: loadout
+  id: CrayonBox
+  storage:
+    back:
+      - CrayonBox
+
+- type: loadout
+  id: SprayPainterStandard
+  storage:
+    back:
+      - SprayPainter
+
+- type: loadout
+  id: SprayPainterPaint
+  storage:
+    back:
+      - SprayPainterAmmo
+
+- type: loadout
+  id: SprayPainterExperimental
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobArtist
+        time: 36000 # 10 hours for slow recharging spray painter, playtime reward as its typically borg only. 
+  storage:
+    back:
+      - SprayPainterBorg
+
+- type: loadout
+  id: MagicCrayonArtist
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobArtist
+        time: 72000 # 20 hours - reduced playtime requirement for artists loadout ONLY, as artist kinda sucks without it let's be real.
+  storage:
+    back:
+      - CrayonMagic
+
+# PDA
+- type: loadout
+  id: ArtistPDA
+  equipment:
+    id: ArtistPDA
+
+- type: loadout
+  id: SeniorArtistPDA
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SeniorArtist
+  equipment:
+    id: SeniorArtistPDA
+
+# Neck
+- type: loadout
+  id: StarryNightBedsheet
+  equipment:
+    neck: BedsheetCosmos # placeholder

@@ -107,6 +107,9 @@
   id: JobDrone
 
 - type: playTimeTracker
+  id: JobArtist
+  
+- type: playTimeTracker
   id: JobEmotionalSupportScurret
 
 # Other ghosts

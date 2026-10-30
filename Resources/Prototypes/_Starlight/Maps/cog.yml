@@ -30,6 +30,7 @@
             Lawyer: [ 1, 1 ]
             ServiceWorker: [ 3, 3 ]
             RadioHost: [ 2, 2 ]
+            Artist: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]

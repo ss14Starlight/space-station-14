@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "states": [
+    {
+      "name": "jellyfish_base",
+      "copyright": "Created by Briochebear",
+      "directions": 4,
+      "delays": [
+        [
+          0.4,
+          0.4
+        ],
+        [
+          0.4,
+          0.4
+        ],
+        [
+          0.4,
+          0.4
+        ],
+        [
+          0.4,
+          0.4
+        ]
+      ]
+    },
+    {
+      "name": "jellyfish_dead",
+      "copyright": "Created by Briochebear"
+    }
+  ]
+}

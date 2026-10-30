@@ -138,6 +138,12 @@ loadout-group-performer-head = Performer head
 loadout-group-performer-jumpsuit = Performer jumpsuit
 loadout-group-performer-outerclothing = Performer outer clothing
 
+loadout-group-artist-head = Artist head
+loadout-group-artist-jumpsuit = Artist jumpsuit
+loadout-group-artist-art-supplies = Artist art supplies
+loadout-group-artist-id = Artist ID
+loadout-group-artist-neck = Artist neck
+
 loadout-group-lawyer-shoes = Lawyer shoes
 
 # Engineering

@@ -24,15 +24,14 @@
             Bartender: [ 2, 3 ]
             Botanist: [ 3, 3 ]
             Chef: [ 2, 2 ]
-            ServiceWorker: [ 3, 4 ]
-
             Janitor: [ 4, 4 ]
             Chaplain: [ 2, 2 ]
             RadioHost: [ 2, 2 ]
             Reporter: [ 2, 2 ]
             Librarian: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
-
+            ServiceWorker: [ 3, 4 ]
+            Artist: [ 2, 2 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 4 ]

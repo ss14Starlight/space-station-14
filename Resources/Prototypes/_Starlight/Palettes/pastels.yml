@@ -1,0 +1,28 @@
+- type: palette
+  id: PastelRainbow
+  name: PastelRainbow
+  colors:
+    Red: "#ffadad"
+    Orange: "#ffd6a5"
+    Yellow: "#fdffb6"
+    Green: "#caffbf"
+    Cyan: "#9bf6ff"
+    Blue: "#a0c4ff"
+    Purple: "#bdb2ff"
+    Pink: "#ffc6ff"
+
+- type: palette
+  id: DreamyColors
+  name: DreamyColors
+  colors:
+    PurpleA: "#cac7ff"
+    PurpleB: "#d7cdfe"
+    PurpleC: "#e4d3fc"
+    PurpleD: "#bda4fc"
+    PinkA: "#f1dafb"
+    PinkB: "#fee0f9"
+    PinkC: "#ffc1db"
+    BlueA: "#abc4ff"
+    BlueB: "#c1d3fe"
+    BlueC: "#d7e3fc"
+    BlueD: "#809bce"

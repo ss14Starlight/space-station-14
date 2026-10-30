@@ -26,6 +26,7 @@
             Janitor: [ 1, 1 ]
             Lawyer: [ 1, 1 ]
             ServiceWorker: [ 1, 1 ]
+            Artist: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 1, 1 ]

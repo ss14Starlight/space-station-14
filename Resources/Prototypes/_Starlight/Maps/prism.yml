@@ -38,6 +38,7 @@
             ServiceWorker: [ 5, 5 ]
             Lawyer: [2, 2 ]
             Performer: [ 2, 2 ]
+            Artist: [ 1, 1 ]
             #engineering
             AtmosphericTechnician: [ 2, 2 ]
             StationEngineer: [ 4, 4 ]

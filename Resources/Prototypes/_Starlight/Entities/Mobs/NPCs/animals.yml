@@ -348,3 +348,110 @@
     baseWalkSpeed : 0.7
     baseSprintSpeed : 1
 
+# Base mob for Luna
+- type: entity
+  name: jellyfish
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, BaseSlicingRefinable ]
+  id: BaseMobJellyFish
+  description: A genetically modified jellyfish spliced with slime dna, capable of surviving in space. Be careful of its sting!
+  components:
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Bubblish
+    understands:
+    - Bubblish
+    - Thaveyan
+    - GalacticCommon
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Animals/jellyfish.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: jellyfish_base
+  - type: PointLight
+    radius: 2
+    energy: 1.5
+    color: "#ffffff"
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 80
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MobState
+  - type: Deathgasp
+  - type: MobStateActions
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Critical
+      100: Dead
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: DarkBlood # looks like ink!
+        Quantity: 40
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-organic
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 5
+  - type: Stamina
+    baseCritThreshold: 50
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: jellyfish_base
+      Critical:
+        Base: jellyfish_dead
+      Dead:
+        Base: jellyfish_dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Effects/PowerSink/electric.ogg
+    damage:
+      types:
+        Shock: 5
+  - type: ToolRefinable
+    refineResult:
+    - id: FoodMeatFish
+      amount: 2
+  - type: Speech
+    speechVerb: Slime
+    speechSounds: Slime
+  - type: TypingIndicator
+    proto: slime
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-jellyfish
+    interactFailureString: petting-failure-jellyfish
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+    interactFailureSpawn: ArmorSparkEffect
+    interactFailureSound:
+      path: /Audio/Effects/PowerSink/electric.ogg
+
+
+- type: entity
+  name: jellyfish
+  parent: BaseMobJellyFish
+  id: MobJellyFish
+  components:
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          jellyfish_base: DreamyColors

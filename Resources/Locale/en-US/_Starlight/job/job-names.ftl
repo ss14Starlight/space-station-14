@@ -13,6 +13,7 @@ job-name-scurret = Emotional Support Scurret
 job-name-syndicate-scurret = Syndicate Scurret Reinforcement
 
 # Role timers - Apparently someone from upstream will cut us if these aren't alphabetical?
+JobArtist = Artist
 JobBlueShield = BlueShield Officer
 JobBoxer = Boxer
 JobDutyOfficer = Duty Officer

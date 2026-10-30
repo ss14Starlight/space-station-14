@@ -27,6 +27,7 @@
             Lawyer: [ 1, 1 ]
             Chaplain: [ 1, 1 ]
             ServiceWorker: [ 2, 4 ]
+            Artist: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 3 ]

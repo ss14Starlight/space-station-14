@@ -246,6 +246,20 @@
       state: k9-brown
 
 - type: entity
+  id: SpawnPointArtist
+  parent: SpawnPointJobBase
+  name: artist
+  components:
+  - type: SpawnPoint
+    job_id: Artist
+  - type: Sprite
+    sprite: _Starlight/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: artist
+      - state: jobicon
+
+- type: entity
   id: SpawnPointGunnerySergeant
   parent: SpawnPointJobBase
   name: gunnery sergeant

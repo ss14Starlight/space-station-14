@@ -32,6 +32,7 @@
             Lawyer: [ 1, 1 ]
             ServiceWorker: [ 2, 2 ]
             Performer: [ 2, 2 ]
+            Artist: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 3 ]

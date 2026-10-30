@@ -37,6 +37,7 @@
             Musician: [ 2, 2 ]
             Reporter: [ 2, 2 ]
             Performer: [ 3, 3 ]
+            Artist: [ 2, 2 ]
 
             # Engineering
             ChiefEngineer: [ 1, 1 ]

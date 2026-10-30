@@ -53,6 +53,7 @@
     Reporter: 46
     Assistant: 15
     Boxer: 23
+    Artist: 30
 
     Scientist: 65
     Roboticist: 58
@@ -122,6 +123,7 @@
     Reporter: "Central Domestic Division"
     Assistant: "Central Domestic Division"
     Boxer: "Central Domestic Division"
+    Artist: "devoted patrons of the arts"
 
     Scientist: "Central Research Division"
     Roboticist: "Central Research Division"

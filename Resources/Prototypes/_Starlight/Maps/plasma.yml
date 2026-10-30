@@ -39,6 +39,7 @@
             Reporter: [ 2, 2 ]
             RadioHost: [ 2, 2 ]
             Lawyer: [ 1, 1 ]
+            Artist: [ 1, 1 ]
             #engineering (8)
             AtmosphericTechnician: [ 4, 4 ]
             StationEngineer: [ 4, 4 ]

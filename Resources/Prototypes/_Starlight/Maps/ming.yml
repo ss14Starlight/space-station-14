@@ -29,6 +29,7 @@
             Librarian: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
             ServiceWorker: [ 4, 4 ]
+            Artist: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
