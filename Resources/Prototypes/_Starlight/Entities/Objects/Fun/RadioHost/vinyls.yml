@@ -819,7 +819,7 @@
   parent: BaseVinylDisc
   id: VinylBeaches
   name: "vinyl: Beaches"
-  description: "A slow pace electronic tune. By: aquariofury, Not Tom" 
+  description: "A slow pace electronic tune. By: aquariofury, Not Tom"
   components:
   - type: Sprite
     state: default
