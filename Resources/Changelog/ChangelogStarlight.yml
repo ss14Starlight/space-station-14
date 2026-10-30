@@ -1,20 +1,6 @@
 Entries:
 - author: Nexus Integrated Trait
   changes:
-  - message: Added Nexus Integrated trait under languages, requiring scratch and 2 points to take.
-    type: Add
-  id: 409582
-  time: '2026-10-17T23:49:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6701
-- author: Nexus Integrated Trait
-  changes:
-  - message: Nexus uplink implant no longer requires being an avali/resomi to start with. Characters with the Nexus Integrated trait will start with an uplink in their hand that can be installed surgically by a surgeon or anyone with the appropriate tools.
-    type: Tweak
-  id: 409583
-  time: '2026-10-17T23:49:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6701
-- author: Nexus Integrated Trait
-  changes:
   - message: Bird nexus slightly less exclusive.
     type: Tweak
   id: 409584
@@ -2799,4 +2785,18 @@ Entries:
   id: 409981
   time: '2026-10-30T22:55:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6962
+- author: Caws
+  changes:
+  - message: (Prism) Added Gunnery Sergeant.
+    type: Add
+  id: 409982
+  time: '2026-10-30T23:30:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6965
+- author: Caws
+  changes:
+  - message: (Prism) Let the dogs out (enabled K9s).
+    type: Add
+  id: 409983
+  time: '2026-10-30T23:30:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6965
 Order: -1
