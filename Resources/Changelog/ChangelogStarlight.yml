@@ -1,18 +1,4 @@
 Entries:
-- author: Rescue
-  changes:
-  - message: Hyposprays / Hypopens now correctly show "You feel a tiny prick" messages again.
-    type: Fix
-  id: 409570
-  time: '2026-10-17T14:09:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6689
-- author: Rescue
-  changes:
-  - message: Hypopen no longer attempts to stir reagents, instead of drawing them.
-    type: Fix
-  id: 409571
-  time: '2026-10-17T14:09:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6689
 - author: teh.saint
   changes:
   - message: Changed armor values to the NTNC Marine Armor Vest and NTNC Marine Hardsuit.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409969
   time: '2026-10-30T21:46:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6916
+- author: Caws
+  changes:
+  - message: (Silica) Added Gunnery Sergeant.
+    type: Add
+  id: 409970
+  time: '2026-10-30T22:25:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6959
+- author: Caws
+  changes:
+  - message: (Silica) Removed the directional fan from Dorm 4 (this used to be a Vox Dorm but I forgor to take out the fan).
+    type: Remove
+  id: 409971
+  time: '2026-10-30T22:25:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6959
 Order: -1
