@@ -21,9 +21,9 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
-#region Starlight
+    #region Starlight
     [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
-#endregion
+    #endregion
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
