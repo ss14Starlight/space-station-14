@@ -22,8 +22,10 @@ public sealed partial class ResPathCompletionParser : CustomCompletionParser<Res
             .Concat(CompletionHelper.ContentFilePath(path, _rsc))
             .DistinctBy(opt => opt.Value)
             .Select(opt => (opt.Flags & CompletionOptionFlags.PartialCompletion) != 0
-                ? new CompletionOption($"\"{opt.Value}", opt.Hint, opt.Flags | CompletionOptionFlags.NoEscape)
-                : new CompletionOption($"\"{opt.Value}\"", opt.Hint, opt.Flags | CompletionOptionFlags.NoEscape));
+                ? new CompletionOption($"\"{opt.Value}", opt.Hint,
+                    opt.Flags | CompletionOptionFlags.NoEscape | CompletionOptionFlags.NoQuote)
+                : new CompletionOption($"\"{opt.Value}\"", opt.Hint,
+                    opt.Flags | CompletionOptionFlags.NoEscape | CompletionOptionFlags.NoQuote));
 
         return CompletionResult.FromHintOptions(opts, GetArgHint(arg));
     }

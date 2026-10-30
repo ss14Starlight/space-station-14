@@ -14,6 +14,7 @@ public sealed partial class ViewVariablesIndexCompletionParser : CustomCompletio
     [Dependency] private IViewVariablesManager _vvm = null!;
 
     private const int MaxHintLength = 64;
+    private const int MaxOpts = 128;
 
     public override CompletionResult TryAutocomplete(ParserContext ctx, CommandArgument? arg)
     {
@@ -23,7 +24,7 @@ public sealed partial class ViewVariablesIndexCompletionParser : CustomCompletio
             return CompletionResult.FromHint("Not a valid array or dictionary");
 
         var opts = collection.Cast<object?>()
-            .Select((item, i) => new CompletionOption(i.ToString(), Describe(item)));
+            .Take(MaxOpts).Select((item, i) => new CompletionOption(i.ToString(), Describe(item)));
 
         return CompletionResult.FromHintOptions(opts, GetArgHint(arg));
     }

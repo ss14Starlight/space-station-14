@@ -32,7 +32,7 @@ public sealed partial class ViewVariablesPathCompletionParser : CustomCompletion
 
     private static bool IsEntityPiped(Type? pipedType)
         => pipedType is not null
-           && (pipedType == typeof(EntityUid) || pipedType.IsAssignableTo(typeof(IEnumerable<EntityUid>)));
+            && (pipedType == typeof(EntityUid) || pipedType.IsAssignableTo(typeof(IEnumerable<EntityUid>)));
 
     private IEnumerable<string> ListEntityRelativePath(ParserContext ctx, string path)
     {

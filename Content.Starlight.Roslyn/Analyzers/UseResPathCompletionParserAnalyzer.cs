@@ -17,9 +17,7 @@ public sealed class UseResPathCompletionParserAnalyzer : DiagnosticAnalyzer
     private const string ResPath = "Robust.Shared.Utility.ResPath";
     private const string CustomCompletionParser = "Robust.Shared.Toolshed.TypeParsers.CustomCompletionParser`1";
 
-#pragma warning disable RS2008
     private static readonly DiagnosticDescriptor _diagnostic = new(DiagnosticCodes.UseResPathCompletionParser,
-#pragma warning restore RS2008
         "Use ResPath Completion Parser",
         "Use [CommandArgument] with a completion parser for ResPath for toolshed argument", "Usage",
         DiagnosticSeverity.Warning, true);

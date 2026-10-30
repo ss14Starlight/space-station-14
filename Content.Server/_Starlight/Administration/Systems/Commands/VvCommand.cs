@@ -334,7 +334,7 @@ public sealed partial class VvCommand : ToolshedCommand
         uid.Select(x => Vv(ctx, x));
 
     [CommandImplementation("write")]
-    public IEnumerable<EntityUid> Write(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,
+    public IEnumerable<EntityUid> Write([PipedArgument] IEnumerable<EntityUid> uid,
         [CommandArgument(typeof(ViewVariablesPathCompletionParser))] string path, string value)
         => uid.Select(x => Write(x, path, value));
 
@@ -344,12 +344,12 @@ public sealed partial class VvCommand : ToolshedCommand
         => uid.Select(x => Read(ctx, x, path));
 
     [CommandImplementation("rsave")]
-    public IEnumerable<string> RSave(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,
+    public IEnumerable<string> RSave([PipedArgument] IEnumerable<EntityUid> uid,
         [CommandArgument(typeof(ViewVariablesPathCompletionParser))] string path)
         => uid.Select(x => RSave(x, path));
 
     [CommandImplementation("rsaveraw")]
-    public IEnumerable<object?> RSaveRaw(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,
+    public IEnumerable<object?> RSaveRaw([PipedArgument] IEnumerable<EntityUid> uid,
         [CommandArgument(typeof(ViewVariablesPathCompletionParser))] string path)
         => uid.Select(x => RSaveRaw(x, path));
 
