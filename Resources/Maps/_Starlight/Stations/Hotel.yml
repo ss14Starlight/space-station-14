@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/30/2026 21:06:22
-  entityCount: 22546
+  time: 10/30/2026 21:35:27
+  entityCount: 22548
 maps:
 - 1
 grids:
@@ -8215,7 +8215,7 @@ entities:
       pos: 8.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -275716.72
+      secondsUntilStateChange: -277457.06
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -9343,7 +9343,7 @@ entities:
       pos: -13.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -1181.9244
+      secondsUntilStateChange: -2922.2537
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -9972,7 +9972,7 @@ entities:
       pos: 2.5,-7.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -237840.8
+      secondsUntilStateChange: -239581.12
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10135,7 +10135,7 @@ entities:
       pos: -38.5,10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -289892.2
+      secondsUntilStateChange: -291632.53
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10151,7 +10151,7 @@ entities:
       pos: -36.5,-10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -289791.25
+      secondsUntilStateChange: -291531.6
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -106613,6 +106613,9 @@ entities:
     - type: Transform
       parent: 2
       pos: 23.5,-23.5
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
 - proto: GunSafeLaserCarbine
   entities:
   - uid: 16208
@@ -106660,6 +106663,9 @@ entities:
     - type: Transform
       parent: 2
       pos: 25.5,-23.5
+    - type: AccessReader
+      accessListsOriginal:
+      - - Armory
 - proto: HandheldHealthAnalyzer
   entities:
   - uid: 16213
@@ -108006,6 +108012,13 @@ entities:
     - type: Transform
       parent: 2
       pos: 3.5,-37.5
+- proto: LockerGunnerySergeantFilled
+  entities:
+  - uid: 22547
+    components:
+    - type: Transform
+      parent: 2
+      pos: 29.5,-22.5
 - proto: LockerHeadOfPersonnelFilled
   entities:
   - uid: 16409
@@ -121920,6 +121933,13 @@ entities:
     - type: Transform
       parent: 2
       pos: 26.5,-6.5
+- proto: SpawnPointGunnerySergeant
+  entities:
+  - uid: 22548
+    components:
+    - type: Transform
+      parent: 2
+      pos: 28.5,-21.5
 - proto: SpawnPointHeadOfPersonnel
   entities:
   - uid: 18621
