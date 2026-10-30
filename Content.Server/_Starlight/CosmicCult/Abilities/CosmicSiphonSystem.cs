@@ -116,7 +116,7 @@ public sealed partial class CosmicSiphonSystem : EntitySystem
     {
         foreach (var action in _actions.GetActions(user))
         {
-            if (MetaData(action.Owner).EntityPrototype?.ID != SiphonAction)
+            if (MetaData(action.Owner).EntityPrototype?.ID != SiphonAction.Id)
                 continue;
 
             if (action.Comp.UseDelay is { } useDelay)
