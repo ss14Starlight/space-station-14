@@ -414,7 +414,7 @@
       allowedJobs: []
 
 - type: entity
-  name: Militia SMG
+  name: militia SMG
   parent: [ BaseContrabandTier3, BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband ] # Blimpuf
   id: WeaponSubMachineGunMilitia
   description: A bulky, slow firing SMG that hits very hard. Hasn't seen use in ages. Modified to load more common .40 pistol magazines.
