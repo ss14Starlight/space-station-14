@@ -127,7 +127,7 @@
 
 - type: !PartialOnly entity
   id: BorgModuleSyndicateWeapon
-  description: a simple weapon module that comes with an Echis and energy dagger.
+  description: A simple weapon module that comes with an Echis and energy dagger.
 
 - type: !PartialOnly entity
   id: BorgModuleL6C

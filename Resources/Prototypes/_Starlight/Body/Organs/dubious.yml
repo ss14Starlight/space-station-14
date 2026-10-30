@@ -73,7 +73,7 @@
 - type: entity
   id: RandomOrganDubious
   name: random gland
-  description: a random abductor gland
+  description: A random abductor gland.
   components:
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/dubious-organs.rsi
