@@ -8,12 +8,20 @@ public sealed partial class ZoneSystem
 {
     /// <summary>
     /// Every zone currently represented by a room on a grid, including secondary zones of shared rooms.
-    /// Returns no zones until the first scheduled rebuild. Pending edits are processed by the normal tile budget.
+    /// Initializes topology on the first query if needed. Later edits are processed by the normal tile budget.
     /// </summary>
     public IReadOnlyList<ProtoId<ZonePrototype>> GetGridZones(EntityUid grid)
     {
-        if (!_zoneQuery.TryComp(grid, out var comp) || !comp.TopologyInitialized)
+        if (!_zoneQuery.TryComp(grid, out var comp))
             return [];
+
+        if (!comp.TopologyInitialized)
+        {
+            // Round-start queries can query zones before the first zone-system update.
+            FullRebuild((grid, comp));
+            if (!comp.TopologyInitialized)
+                return [];
+        }
 
         if (comp.CachedGridZones != null)
             return comp.CachedGridZones;
