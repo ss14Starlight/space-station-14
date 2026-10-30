@@ -1,0 +1,35 @@
+# Vinyl player
+- type: sourcePort
+  id: VinylPlayerPort
+  name: signal-port-name-vinyl-player
+  description: signal-port-description-vinyl-player
+  defaultLinks: [ StationRadioRigPort ]
+
+- type: sourcePort
+  id: CDPlayerPort
+  name: signal-port-name-cd-player
+  description: signal-port-description-cd-player
+  defaultLinks: [ StationRadioRigPort ]
+
+- type: sourcePort
+  id: StationRadioMixerPort
+  name: signal-port-name-radio-mixer
+  description: signal-port-description-radio-mixer
+  defaultLinks: [ StationRadioRigPort ]
+
+- type: sourcePort
+  id: BroadcastRecorderPort
+  name: signal-port-name-broadcast-recorder
+  description: signal-port-description-broadcast-recorder
+  defaultLinks: [ StationRadioRigPort ]
+
+- type: sourcePort
+  id: StationRadioServerPort
+  name: signal-port-name-radio-server
+  description: signal-port-description-radio-server
+  defaultLinks: [ StationRadioRigPort ]
+
+- type: sinkPort
+  id: StationRadioRigPort
+  name: signal-port-name-radio-rig
+  description: signal-port-description-radio-rig

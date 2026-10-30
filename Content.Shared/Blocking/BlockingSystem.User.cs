@@ -144,12 +144,11 @@ public sealed partial class BlockingSystem
         }
         #endregion
 
-        var modify = new DamageModifierSet(modifier);
+        var modify = new DamageModifierSet();
         foreach (var key in modifier.Coefficients.Keys.Concat(modifier.FlatReductions.Keys))
         {
             modify.Coefficients.TryAdd(key, 1 - blockFraction);
         }
-
         args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, modify);
 
         if (blocking.IsBlocking && !args.Damage.Equals(args.OriginalDamage))

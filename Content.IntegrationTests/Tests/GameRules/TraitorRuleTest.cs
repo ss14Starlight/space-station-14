@@ -1,15 +1,14 @@
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
-using Content.Server._Moffstation.Objectives.Components;
+using Content.Server._Starlight.Objectives.ObjectivePicker;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Roles;
-using Content.Shared._Moffstation.Objectives;
+using Content.Shared._Starlight.Objectives.ObjectivePicker;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Mind;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Objectives.Components;
@@ -136,7 +135,7 @@ public sealed partial class TraitorRuleTest : GameTest
         Assert.That(potentialObjectivesComp!.ObjectiveOptions, Is.Not.Empty, "No potential objective options found!");
         // Moffstation - End
 
-        await SLTestObjectivePicker(mind, player); // Starlight
+        await TestObjectivePicker(mind, player); // Starlight
     }
 
     private static string FormatObjective(Entity<ObjectiveComponent> entity, IEntityManager entMan)

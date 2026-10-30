@@ -101,36 +101,36 @@
   id: VendorSalvagePKAUpgradeDamage
   productEntity: PKAUpgradeDamage
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 8
     - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvagePKAUpgradeRange
   productEntity: PKAUpgradeRange
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 8
     - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvagePKAUpgradeFireRate
   productEntity: PKAUpgradeFireRate
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 8
     - !type:BuyerAccessCondition
 
 - type: listing
@@ -475,10 +475,10 @@
     - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageSurplusShotgun
-  productEntity: CrateITGShotgunSurplus
+  id: VendorSalvageSurplusArmaments
+  productEntity: CrateITGArmamentSurplus
   cost:
-    SalvageTicket: 600
+    SalvageTicket: 1000
   categories:
     - SalvageSurplus
   conditions:

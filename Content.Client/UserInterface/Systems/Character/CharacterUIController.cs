@@ -1,15 +1,15 @@
-#region Moffstation
-// Character controller moved to the Moffstation namespace
+#region Starlight
+// Character controller now lives in Content.Client._Starlight.Character.Info.UI.
 /*
 using System.Linq;
-using Content.Client._Moffstation.ObjectivePicker; // Moffstation
+using Content.Client._Moffstation.ObjectivePicker;
 using Content.Client.CharacterInfo;
 using Content.Client.Gameplay;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Character.Controls;
-using Content.Client._Moffstation.CharacterMenu; // Moffstation - Character Menu Redesign
+using Content.Client._Moffstation.CharacterMenu;
 using Content.Client.UserInterface.Systems.Objectives.Controls;
-using Content.Shared._Moffstation.Objectives; // Moffstation
+using Content.Shared._Moffstation.Objectives;
 using Content.Shared.Input;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;

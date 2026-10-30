@@ -1,6 +1,7 @@
 ﻿- type: guideEntry
   id: CorporateLaw
   name: guide-entry-corporate-law
+  department: Security
   priority: 4
   text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CorporateLaw.xml"
   children:
@@ -65,7 +66,25 @@
   name: guide-entry-civil-code
   text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CivilCode.xml"
   children:
+  - ReligiousFreedom
+  - SiliconClause
+  - CarnivalTreaty
   - PettyDisputes
+
+- type: guideEntry
+  id: ReligiousFreedom
+  name: guide-entry-religious-freedom
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/ReligiousFreedom.xml"
+
+- type: guideEntry
+  id: SiliconClause
+  name: guide-entry-silicon-clause
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/SiliconClause.xml"
+
+- type: guideEntry
+  id: CarnivalTreaty
+  name: guide-entry-carnival-treaty
+  text: "/ServerInfo/_Starlight/Guidebook/CorporateLaw/CarnivalTreaty.xml"
 
 - type: guideEntry
   id: CrimeList
