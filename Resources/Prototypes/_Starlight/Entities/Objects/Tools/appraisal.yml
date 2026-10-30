@@ -10,3 +10,34 @@
   - type: Item
     sprite: _Starlight/Objects/Tools/golden_appraisal_tool.rsi
     size: Small
+
+# From Funky
+- type: entity
+  parent: [AppraisalTool, PowerCellSlotMediumItem]
+  suffix: Jammer, Syndicate
+  id: AppraisalToolRadioJammer
+  components:
+  - type: RadioJammer
+    frequenciesExcluded:
+    - 77777
+    - 77778
+    - 77780
+    - 77781
+    - 77782
+    - 77783
+    - 77784
+    settings:
+    - wattage: 2
+      range: 6
+      message: radio-jammer-component-set-message-low
+      name: radio-jammer-component-setting-low
+    - wattage: 12
+      range: 12
+      message: radio-jammer-component-set-message-high
+      name: radio-jammer-component-setting-high
+  - type: Appearance
+  - type: ItemToggle
+  - type: PowerCellDraw
+    drawRate: 0
+    useCharge: 1
+  - type: ToggleCellDraw
