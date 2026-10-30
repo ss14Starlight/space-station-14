@@ -1,27 +1,6 @@
 Entries:
 - author: STARLIGHT TEAM
   changes:
-  - message: Pretty much everything of the right size can now be implanted in place of an organ.
-    type: Add
-  id: 409574
-  time: '2026-10-17T19:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6685
-- author: STARLIGHT TEAM
-  changes:
-  - message: The medical scanner shows now additional abnormalities (sleep and organ related).
-    type: Add
-  id: 409575
-  time: '2026-10-17T19:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6685
-- author: STARLIGHT TEAM
-  changes:
-  - message: Added hands/feet can now be inspected with the Strippable Interface.
-    type: Add
-  id: 409576
-  time: '2026-10-17T19:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6685
-- author: STARLIGHT TEAM
-  changes:
   - message: Newly possible surgeries get now added without needing to close and open again.
     type: Tweak
   id: 409577
@@ -2799,4 +2778,25 @@ Entries:
   id: 409973
   time: '2026-10-30T22:25:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6960
+- author: Caws
+  changes:
+  - message: (Hotel) Added Gunnery Sergeant.
+    type: Add
+  id: 409974
+  time: '2026-10-30T22:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6961
+- author: Caws
+  changes:
+  - message: (Hotel) Librarian has been enabled.
+    type: Fix
+  id: 409975
+  time: '2026-10-30T22:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6961
+- author: Caws
+  changes:
+  - message: (Hotel) Fixed the Plushie Room being unpowered roundstart.
+    type: Fix
+  id: 409976
+  time: '2026-10-30T22:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6961
 Order: -1
