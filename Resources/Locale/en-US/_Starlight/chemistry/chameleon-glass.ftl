@@ -1,0 +1,3 @@
+chameleon-glass-ui-title = Chameleon Glass
+chameleon-glass-ui-search-placeholder = Search...
+chameleon-glass-forensic-shards = chameleon shards

@@ -1,0 +1,11 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'chameleon-glass-ui-title'}"
+               MinSize="300 350"
+               SetSize="300 350">
+    <BoxContainer Orientation="Vertical">
+        <LineEdit Name="Search" PlaceHolder="{Loc 'chameleon-glass-ui-search-placeholder'}" />
+        <ScrollContainer VerticalExpand="True">
+            <GridContainer Name="Grid" Columns="3" Margin="0 5" />
+        </ScrollContainer>
+    </BoxContainer>
+</DefaultWindow>

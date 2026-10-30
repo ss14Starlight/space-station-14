@@ -1,3 +1,6 @@
+uplink-chameleon-glass-name = Chameleon Glass
+uplink-chameleon-glass-desc = A hacked metamorphic glass that can be disguised as any drink, perfect for poisoning an unsuspecting target. Stir it with a spoon to unlock.
+
 uplink-contortionist-jumpsuit-name = Contortionist's Jumpsuit
 uplink-contortionist-jumpsuit-desc = It looks like an atmos jumpsuit, but it really is. This jumpsuit allows the agent to slip through the vents.
 uplink-marriage-axe-name = Marriage axe
