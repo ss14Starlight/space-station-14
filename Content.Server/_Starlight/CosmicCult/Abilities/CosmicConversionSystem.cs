@@ -15,6 +15,7 @@ using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.Changeling;
 using Content.Shared._Starlight.Devil;
+using Content.Shared._Starlight.Antags.Vampires.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
@@ -80,7 +81,7 @@ public sealed partial class CosmicConversionSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-chaplain"), uid, args.User);
                 args.Cancel();
             }
-            else if (uid.Comp.NegateProtection == false && HasComp<ChangelingComponent>(target))
+            else if (uid.Comp.NegateProtection == false && (HasComp<ChangelingComponent>(target) || HasComp<VampireComponent>(target)))
             {
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-otherantag"), uid, args.User);
                 args.Cancel();
@@ -100,7 +101,7 @@ public sealed partial class CosmicConversionSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-devil"), uid, args.User);
                 args.Cancel();
             }
-            else if (uid.Comp.NegateProtection == false && _mind.TryGetMind(args.User, out var mind, out _) && _role.MindHasRole<WizardRoleComponent>(mind))
+            else if (uid.Comp.NegateProtection == false && _mind.TryGetMind(target, out var mind, out _) && _role.MindHasRole<WizardRoleComponent>(mind))
             {
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-wizard"), uid, args.User);
                 args.Cancel();
