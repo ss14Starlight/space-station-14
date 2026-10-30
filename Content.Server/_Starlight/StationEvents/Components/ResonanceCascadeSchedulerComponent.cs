@@ -8,7 +8,6 @@ namespace Content.Server._Starlight.StationEvents.Components;
 [RegisterComponent, Access(typeof(ResonanceCascadeSchedulerSystem))]
 public sealed partial class ResonanceCascadeSchedulerComponent : Component
 {
-    [DataField]
     public EntProtoId SelectedAnomalyPrototype = string.Empty;
 
     [DataField]
