@@ -61,7 +61,7 @@
     Bloodloss: 0
   flatReductions:
     Blunt: 2
-    Piercing: 2
+    Piercing: 1
 
 - type: damageModifierSet
   id: DragonCarpResistances

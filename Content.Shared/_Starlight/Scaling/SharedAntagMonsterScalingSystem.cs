@@ -49,5 +49,6 @@ public abstract partial class SharedScalingSystem : EntitySystem
                 scaledSpeedThreshold,
                 speedThreshold.Value);
         }
+        Dirty(mob, slowOnDamage);
     }
 }
