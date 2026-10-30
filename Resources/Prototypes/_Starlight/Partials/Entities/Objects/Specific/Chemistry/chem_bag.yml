@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: ChemBag
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/chem_bag.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Specific/Chemistry/chem_bag.rsi

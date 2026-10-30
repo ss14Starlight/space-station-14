@@ -1,4 +1,6 @@
 ui-options-function-open-m-help = Open mentor help
+ui-options-function-jump = Jump
+ui-options-function-latch-struggle = Struggle (while latched)
 ui-escape-connect-discord = Link Discord
 server-info-connect-discord-button = Link Discord
 ui-escape-connect-steam = Link Steam
@@ -17,6 +19,10 @@ ui-options-holes-tooltip = If you're lagging while shooting, uncheck this box,
 ui-options-sparks = Display sparks
 ui-options-sparks-tooltip = If you're lagging while shooting, uncheck this box,
                            and the hitscan won't display sparks when the bullet hits a surface.
+
+ui-options-hitscan-prediction = Predict your own shots
+ui-options-hitscan-prediction-tooltip = Draws your bullets the moment you fire instead of waiting for the server.
+                                        The server still decides what was hit.
 
 ## Accessibility
 
@@ -41,11 +47,59 @@ ui-options-radio-chime-mute = Mute Radio Chimes
 
 ui-options-tab-ui = User Interface
 ui-options-ui-style = User Interface Style
+ui-options-style-theme = Color Theme
+ui-options-style-accent = Accent Color
+ui-options-style-custom-accent = Use custom accent color
+ui-options-style-accent-custom = Custom
+ui-options-style-accent-theme = Theme
+ui-options-viewport-label = Viewport
+ui-options-lobby-label = Lobby
+ui-options-lobby-background = Lobby art
+ui-options-lobby-background-server = Server's choice
+ui-options-lobby-opacity = Panel opacity
+ui-options-lobby-ready-position = Ready button
+ui-options-lobby-ready-position-bottom = Under the chat
+ui-options-lobby-ready-position-top = Above the chat
+ui-options-lobby-job-columns = Drag and drop job priorities in the lobby
+ui-options-lobby-job-columns-tooltip = Shows the old job priority columns under the round info, next to the job priorities window.
+ui-options-menu-bar-label = Top Menu Bar
+ui-options-menu-bar-key-hints = Keybind hints
+ui-options-menu-bar-key-hints-always = Always
+ui-options-menu-bar-key-hints-hold = While Alt is held
+ui-options-menu-bar-key-hints-never = Never
+ui-options-bar-placement-pinned = Pinned
+ui-options-bar-placement-auto = Auto
+ui-options-bar-placement-menu = In menu
+ui-options-bar-placement-hidden = Hidden
+ui-options-admin-ahelp-label = Admin Help
+style-theme-void = Void
+style-theme-graphite = Graphite
+style-theme-paper = Paper (debug)
+style-theme-abyss = Abyss
+style-theme-ribbon = Ribbon
+style-theme-rosewood = Rosewood
+style-theme-oneshot = World Machine
+style-theme-pda = PDA
+style-theme-holo = Holo
+style-theme-industrial = Industrial
+style-theme-cosmic = Cosmic
+style-theme-flesh = Flesh
+style-theme-syndicate = Syndicate
+style-theme-clockwork = Clockwork
+style-theme-nanotrasen = NanoTrasen
 ui-options-ui-sight-hash = Sight Preferences String
 ui-options-wield-before-rack = Wield before racking
-ui-options-wield-before-rack-tooltip = Using a gun in hand wields it first; racking the bolt happens on the next press.
+ui-options-wield-before-rack-tooltip = Using a gun in hand wields it first; racking the bolt or switching the fire mode happens on the next press.
 ui-options-ranged-sight-rotation = Ranged Sight Rotation
 ui-options-melee-sight-rotation = Melee Sight Rotation
+ui-options-held-item-show-mode = Show held item
+ui-options-held-item-show-always = Always
+ui-options-held-item-show-combat = Only in combat mode
+ui-options-held-item-show-outside-combat = Only outside combat mode
+ui-options-held-item-show-never = Never
+ui-options-sight-bolt-indicator = Show open bolt indicator
+ui-options-sight-jam-indicator = Show jam indicator
+ui-options-sight-heat-indicator = Show gun heat gauge
 ui-options-chat-width = Separated Chat Width
 ui-options-ui-ranged-sight = Sights
 ui-options-ranged-sight = Ranged Sight
@@ -82,11 +136,19 @@ ui-options-admin-ghost-hud-setting-health-iconsandbars = Icons and bars
 ui-options-admin-ghost-hud-show-faction-icons = Show faction icons
 ui-options-admin-ghost-hud-show-satiation-icons = Show satiation icons
 
-ui-options-admin-ghost = Admin Ghost Config
+ui-options-admin-tools = Admin Tools Config
 ui-options-admin-ghost-script-label = aghost Script
 ui-options-admin-ghost-script-tooltip =
     The name of the script you want to automatically run when becoming admin ghost, either by command or by observing from lobby.
     Path is relative to your launcher's data directory, typically inside AppData on Windows or .local/share on Linux.
+ui-options-admin-space-map-label = Admin Arena Path
+ui-options-admin-space-map-tooltip =
+    The path to the map .yml you want to load as your Admin Arena.
+    If left empty the default one will be used.
+    Will check server user data first, then content data.
+ui-options-admin-space-map-init-label = Initialize Admin Arena
+ui-options-admin-space-map-init-tooltip =
+  If true, initializes the map on load. If false, the map spawns uninitialized.
 
 ## Theme
 
@@ -109,3 +171,22 @@ ui-options-interaction-particles-without-inhand = Except In-hand
 ui-options-interaction-particles-none = None
 ui-options-interaction-particles-tooltip =
     In-hand and inventory particles are only shown for actions performed by your character.
+
+## Audio sections and per-category volumes
+
+ui-options-music-label = Music
+ui-options-environment-label = Environment
+ui-options-world-label = World
+ui-options-voices-label = Voices
+ui-options-sound-toggles-label = Sound options
+ui-options-other-label = Other
+ui-options-station-hum-volume = Station hum:
+ui-options-machine-ambience-volume = Machines and devices:
+ui-options-environment-volume = Creaks and hisses:
+ui-options-reverb-volume = Room echo:
+ui-options-effects-volume = Sound effects:
+ui-options-footsteps-volume = Footsteps:
+ui-options-handling-volume = Picking up and equipping:
+ui-options-combat-volume = Weapons and combat:
+ui-options-voice-volume = Voices and emotes:
+ui-options-announcement-volume = Announcements and alerts:

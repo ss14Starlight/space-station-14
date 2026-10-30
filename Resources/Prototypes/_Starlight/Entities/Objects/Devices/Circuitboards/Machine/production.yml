@@ -1282,7 +1282,7 @@
     componentRequirements:
       PowerCell:
         amount: 4
-        defaultPrototype: PowerCellHigh
+        defaultPrototype: PowerCellHighPrinted
 
 - type: entity
   id: IceCreamMakerMachineCircuitBoard
@@ -1416,7 +1416,7 @@
 - type: entity
   id: NanoTrasenTechFabCircuitboard
   categories: [ DoNotMap ]
-  parent: [BaseMachineCircuitboard, BaseNanoTrasenContraband]
+  parent: [ BaseMachineCircuitboard, BaseNanoTrasenContraband ]
   name: NanoTrasen techfab machine board
   description: A machine printed circuit board for a NanoTrasen techfab.
   components:
@@ -1470,3 +1470,101 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+
+- type: entity
+  id: SalvageTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseSalvageContraband]
+  name: salvage techfab machine board
+  description: A machine printed circuit board for a salvage techfab.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: SalvageTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: ScrapperExoFabricatorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Scrapper fabricator machine board
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: RogueExofabricator
+    stackRequirements:
+      Manipulator: 4
+      Glass: 5
+  - type: GuideHelp
+    guides:
+    - Robotics
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: CombustionTurbineCompressorMachineCircuitboard
+  name: turbine inlet compressor machine board
+  description: A machine printed circuit board for the inlet compressor of a combustion turbine.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: CombustionTurbineCompressor
+    stackRequirements:
+      Plasteel: 10
+      Plasma: 10
+      Manipulator: 4
+      Cable: 5
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: CombustionTurbineRotorMachineCircuitboard
+  name: turbine core rotor machine board
+  description: A machine printed circuit board for the core rotor of a combustion turbine.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: CombustionTurbineRotor
+    stackRequirements:
+      Plasteel: 10
+      Plasma: 10
+      Manipulator: 2
+      CableHV: 10
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: CombustionTurbineOutletMachineCircuitboard
+  name: turbine outlet machine board
+  description: A machine printed circuit board for the outlet of a combustion turbine.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: CombustionTurbineOutlet
+    stackRequirements:
+      Plasteel: 10
+      Plasma: 10
+      Manipulator: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: IgniterMachineCircuitboard
+  name: igniter machine board
+  description: A machine printed circuit board for a floor-mounted igniter.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: IgniterFloor
+    stackRequirements:
+      Steel: 2
+      Cable: 2
+    tagRequirements:
+      Igniter:
+        amount: 1
+        defaultPrototype: Igniter

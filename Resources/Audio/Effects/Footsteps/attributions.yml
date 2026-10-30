@@ -46,7 +46,7 @@
   - blood4.ogg
   - blood5.ogg
   license: "CC-BY-NC-4.0"
-  copyright: "Created by Robinhood76 on freesound.org, modified by EmoGarbage404 (github)"
+  copyright: "Created by Robinhood76 on freesound.org, modified by EmoGarbage404 (github), background noise removed by Prole0 (Github)"
   source: "https://freesound.org/people/Robinhood76/sounds/98731/"
 
 - files:
@@ -117,3 +117,23 @@
   license: "CC0-1.0"
   copyright: "Taken from NachtmahrTV on freesound.org, clipped by Centronias"
   source: "https://freesound.org/people/NachtmahrTV/sounds/571801/"
+
+- files:
+  - plating1.ogg
+  - plating2.ogg
+  - plating3.ogg
+  - plating4.ogg
+  - plating5.ogg
+  - hull1.ogg
+  - hull2.ogg
+  - hull3.ogg
+  - hull4.ogg
+  - hull5.ogg
+  - carpet1.ogg
+  - carpet2.ogg
+  - carpet3.ogg
+  - carpet4.ogg
+  - carpet5.ogg
+  license: "CC0-1.0"
+  copyright: "Starlight: built from Kenney's Impact Sounds (footsteps layered with metal, plate, tin and punch impacts, pitch-shifted, matched to each other and loudness-normalized). Replaces the earlier CEV-Eris footsteps, which came from Half-Life."
+  source: "https://kenney.nl/assets/impact-sounds"

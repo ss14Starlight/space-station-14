@@ -9,6 +9,16 @@
   description: flavor-complex-dragan-special
 
 - type: flavor
+  id: death
+  flavorType: Complex
+  description: flavor-complex-death
+
+- type: flavor
+  id: brothy
+  flavorType: Base
+  description: flavor-base-brothy
+
+- type: flavor
   id: evil
   flavorType: Base
   description: flavor-basic-evil
@@ -47,6 +57,11 @@
   id: highlander
   flavorType: Complex
   description: flavor-complex-highlander
+
+- type: flavor
+  id: entropic
+  flavorType: Complex
+  description: flavor-complex-entropy
 
 - type: flavor
   id: thelastcall

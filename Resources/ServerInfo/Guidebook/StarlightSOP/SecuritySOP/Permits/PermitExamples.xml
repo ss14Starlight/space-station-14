@@ -1,0 +1,72 @@
+<Document>
+# Permit Examples
+
+  <Table Columns="1">
+    <ColorBox>
+      <Box Margin="4" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <GuideEntityEmbed Entity="ClothingEyesGlassesMeson" Caption="" Margin="4"/>
+        <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
+          [bold]Engineering Goggles[/bold]
+          - [bold]From Engineering:[/bold] If you got the goggles from Engineering, you only need the [color=#ff733c]Chief Engineer[/color]'s stamp.
+          - [bold]Purchased from ITG:[/bold] If you bought them from ITG, you need both the [color=#963dca]Salvage Lead[/color]'s stamp and the [color=#ff733c]Chief Engineer[/color]'s stamp.
+        </Box>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="4" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <GuideEntityEmbed Entity="WeaponPistolMk58" Caption="" Margin="4"/>
+        <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
+          [bold]Mk 58[/bold]
+          - [bold]From Security:[/bold] If you got the Mk 58 from Security, you only need either the [color=#ff6666]Warden[/color]'s stamp or the [color=#c4363b]Gunnery Sergeant[/color]'s stamp.
+          - [bold]Purchased from ITG:[/bold] If you bought it from ITG, you need both the [color=#963dca]Salvage Lead[/color]'s stamp and the [color=#ff6666]Warden[/color]'s stamp or the [color=#c4363b]Gunnery Sergeant[/color]'s stamp.
+        </Box>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="4" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <GuideEntityEmbed Entity="JawsOfLifeMed" Caption="" Margin="4"/>
+        <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
+          [bold]Medical Jaws of Life[/bold]
+          - [bold]No Origin (e.g., found in maintenance):[/bold] Since it has no departmental origin and is approved for Medical and Security, you only need a stamp from any one Relevant Leader: the [color=#57b8f0]Chief Medical Officer[/color], [color=#ff6666]Warden[/color], [color=#c4363b]Gunnery Sergeant[/color], or [color=#ff4242]Head of Security[/color].
+        </Box>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="4" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <GuideEntityEmbed Entity="ClothingHeadHatBeretSalvageMercGreen" Caption="" Margin="4"/>
+        <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
+          [bold]Green Scrapper Beret[/bold]
+          - As an item not approved for any NT-CC department, you only need the [color=#963dca]Salvage Lead[/color]'s stamp.
+        </Box>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="4" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <GuideEntityEmbed Entity="ClothingHeadHatCatEars" Caption="" Margin="4"/>
+        <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
+          [bold]Cat Ears[/bold]
+          - As a Tier 1 Rival Corporation item, you only need either the [color=#ff6666]Warden[/color]'s stamp or the [color=#c4363b]Gunnery Sergeant[/color]'s stamp.
+        </Box>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="4" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <GuideEntityEmbed Entity="WeaponMedTakPistol" Caption="" Margin="4"/>
+        <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
+          [bold]CODE-4 "Triage"[/bold]
+          - As a Tier 4 Affiliated Corporation weapon, you need stamps from [color=#880606]MedTak[/color], the [color=#ff4242]Head of Security[/color], and the [color=#fcdf03]Captain[/color].
+        </Box>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="4" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <GuideEntityEmbed Entity="ClothingOuterHardsuitSyndie" Caption="" Margin="4"/>
+        <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
+          [bold]Blood-Red Hardsuit[/bold] [color=#ff4242]This entry is restricted to crew with Secure Knowledge.[/color]
+          - As Tier 4 Rival Corporation combat gear, you need stamps from the [color=#ff4242]Head of Security[/color], the [color=#fcdf03]Captain[/color], and [color=#86d420]Central Command[/color].
+        </Box>
+      </Box>
+    </ColorBox>
+  </Table>
+
+</Document>

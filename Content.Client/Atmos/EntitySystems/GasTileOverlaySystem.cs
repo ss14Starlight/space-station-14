@@ -1,11 +1,7 @@
-using Content.Client.Atmos.Overlays;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
-using Robust.Client.Graphics;
-using Robust.Client.ResourceManagement;
 using Robust.Shared.GameStates;
 
 namespace Content.Client.Atmos.EntitySystems;
@@ -13,27 +9,11 @@ namespace Content.Client.Atmos.EntitySystems;
 [UsedImplicitly]
 public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
 {
-    [Dependency] private IResourceCache _resourceCache = default!;
-    [Dependency] private IOverlayManager _overlayMan = default!;
-    [Dependency] private SpriteSystem _spriteSys = default!;
-    [Dependency] private SharedTransformSystem _xformSys = default!;
-
-    private GasTileOverlay _overlay = default!;
-
     public override void Initialize()
     {
         base.Initialize();
         SubscribeNetworkEvent<GasOverlayUpdateEvent>(HandleGasOverlayUpdate);
         SubscribeLocalEvent<GasTileOverlayComponent, ComponentHandleState>(OnHandleState);
-
-        _overlay = new GasTileOverlay(this, EntityManager, _resourceCache, ProtoMan, _spriteSys, _xformSys);
-        _overlayMan.AddOverlay(_overlay);
-    }
-
-    public override void Shutdown()
-    {
-        base.Shutdown();
-        _overlayMan.RemoveOverlay<GasTileOverlay>();
     }
 
     private void OnHandleState(EntityUid gridUid, GasTileOverlayComponent comp, ref ComponentHandleState args)

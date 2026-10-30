@@ -1,14 +1,14 @@
 # Rubber
 - type: entity
   name: Drozd
-  parent: [WeaponSubMachineGunDrozd, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, WeaponSubMachineGunDrozd, BaseSecurityContraband ] # Blimpuf
   id: WeaponSubMachineGunDrozdRubber
   suffix: Non-Lethal
   components:
     - type: ItemSlots
       slots:
         gun_magazine:
-          name: Magazine
+          name: item-slot-component-slot-name-magazine
           startingItem: MagazinePistolSubMachineGunRubber
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -17,7 +17,7 @@
             tags:
               - MagazinePistolSubMachineGunSP
         gun_chamber:
-          name: Chamber
+          name: item-slot-component-slot-name-chamber
           startingItem: CartridgePistolRubber
           priority: 1
           whitelist:
@@ -26,7 +26,7 @@
 
 - type: entity
   name: SP-91-RC
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband ] # Blimpuf
   id: WeaponSubMachineGunSP91RC
   description: Compact submachine gun designed for riot control.
   components:
@@ -104,7 +104,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazinePistolSubMachineGunUzi
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -114,7 +114,7 @@
             - MagazineSMGUzi
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         startingItem: CartridgePistolSP
         priority: 1
         whitelist:
@@ -130,7 +130,7 @@
     angleIncreaseDivider: 3
 - type: entity
   name: PPSH 59 SMG
-  parent: [BaseWeaponSubMachineGun, BaseSovietContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponSubMachineGun, BaseSovietContraband ] # Blimpuf
   id: WeaponSubMachineGunPPSH
   description: Beloved by USSP veterans and feared by friendly fire protocols everywhere. Uses .35 ammo.
   components:
@@ -174,7 +174,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazinePistolSubMachineGunPPSH
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -184,7 +184,7 @@
             - MagazineSMGPPSH
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         startingItem: CartridgePistolSP
         priority: 1
         whitelist:
@@ -227,7 +227,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: null
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -237,7 +237,7 @@
             - MagazineSMGImprovised
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         startingItem: null
         priority: 1
         whitelist:
@@ -387,7 +387,6 @@
   - type: StealTarget
     stealGroup: HOSWeapon # Proto5x and WT550r
 
-
 - type: entity
   name: WT550g
   parent: [ WeaponSubMachineGunWt550 ]
@@ -410,5 +409,7 @@
     - type: Clothing
       sprite: _Starlight/Objects/Weapons/Guns/SMGs/wt550g.rsi
     - type: Contraband
+      tier: Tier4 # Blimpuf
+      contrabandType: CentralCommand # Blimpuf
       allowedDepartments: [ CentralCommand ]
       allowedJobs: []

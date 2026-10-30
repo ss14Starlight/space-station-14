@@ -10,3 +10,107 @@
   completetime: 1
   materials:
     Biomass: 10
+
+- type: latheRecipe
+  id: BioGenSalt
+  resultReagents:
+    TableSalt: 10
+  categories:
+  - Food
+  icon:
+    sprite: Objects/Consumable/Food/condiments.rsi
+    state: packet-salt
+  completetime: 1
+  materials:
+    Biomass: 20
+
+- type: latheRecipe
+  id: BioGenFat
+  resultReagents:
+    Fat: 10
+  categories:
+  - Food
+  icon:
+    sprite: Objects/Consumable/Food/ingredients.rsi
+    state: butter
+  completetime: 1
+  materials:
+    Biomass: 18
+
+- type: latheRecipe
+  id: BioGenOliveOil
+  resultReagents:
+    OilOlive: 10
+  categories:
+  - Food
+  icon:
+    sprite: Objects/Consumable/Food/ingredients.rsi
+    state: oliveoil
+  completetime: 1
+  materials:
+    Biomass: 18
+
+- type: latheRecipe
+  id: BioGenOil
+  resultReagents:
+    Oil: 10
+  categories:
+  - Food
+  icon:
+    sprite: Objects/Consumable/Food/ingredients.rsi
+    state: oliveoil
+  completetime: 1
+  materials:
+    Biomass: 15
+
+- type: latheRecipe
+  id: BioGenEgg
+  resultReagents:
+    Egg: 6
+  categories:
+  - Food
+  icon:
+    sprite: Objects/Consumable/Food/egg.rsi
+    state: white
+  completetime: 1
+  materials:
+    Biomass: 15
+
+- type: latheRecipe
+  id: BioGenCornmeal
+  resultReagents:
+    Cornmeal: 10
+  categories:
+  - Food
+  icon:
+    sprite: Objects/Consumable/Food/ingredients.rsi
+    state: cornmeal-big
+  completetime: 1
+  materials:
+    Biomass: 18
+
+- type: latheRecipe
+  id: BioGenOat
+  resultReagents:
+    Oats: 10
+  categories:
+  - Food
+  icon:
+    sprite: Objects/Specific/Hydroponics/oat.rsi
+    state: produce
+  completetime: 1
+  materials:
+    Biomass: 18
+
+- type: latheRecipe
+  id: BioGenBlood
+  resultReagents:
+    Blood: 10
+  categories:
+  - Food
+  icon:
+    sprite: Objects/Specific/Medical/medical.rsi
+    state: bloodpack
+  completetime: 1
+  materials:
+    Biomass: 10 # Cheap because you can also just syringe a monkey.

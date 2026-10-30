@@ -64,7 +64,7 @@ public abstract partial class SharedSurgerySystem
         if (!_random.Prob(args.SuccessRate))
         {
             if (_net.IsClient) return;
-            _popup.PopupEntity("Because of a careless tool, your hand shook. You need to start this step all over again!", args.User, PopupType.SmallCaution);
+            _popup.PopupEntity(Loc.GetString("surgery-hand-shook"), args.User, PopupType.SmallCaution);
             return;
         }
 
@@ -212,7 +212,7 @@ public abstract partial class SharedSurgerySystem
             if (items > 0)
             {
                 args.Invalid = StepInvalidReason.Armor;
-                args.Popup = $"You need to take off armor from patient to perform this step!";
+                args.Popup = Loc.GetString("surgery-popup-remove-armor");
                 return;
             }
         }
@@ -223,12 +223,15 @@ public abstract partial class SharedSurgerySystem
         foreach (var reg in ent.Comp.Tools.Values)
         {
             var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
+            if (tool == default && HasComp<SurgeryStepAttachLimbEffectComponent>(ent))
+                tool = args.Tools.FirstOrDefault(x => HasComp<MetaDataComponent>(x) && !HasComp<BodyPartComponent>(x));
+
             if (tool == default)
             {
                 args.Invalid = StepInvalidReason.MissingTool;
 
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = $"You need {toolComp.ToolName} to perform this step!";
+                    args.Popup = Loc.GetString("surgery-popup-need-tool", ("tool", Loc.GetString(toolComp.ToolName)));
 
                 return;
             }
@@ -237,7 +240,7 @@ public abstract partial class SharedSurgerySystem
                 args.Invalid = StepInvalidReason.DisabledTool;
 
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = $"You need enable {toolComp.ToolName} to perform this step!";
+                    args.Popup = Loc.GetString("surgery-popup-enable-tool", ("tool", Loc.GetString(toolComp.ToolName)));
 
                 return;
             }
@@ -250,7 +253,9 @@ public abstract partial class SharedSurgerySystem
             {
                 args.Invalid = StepInvalidReason.NotEnoughReagent;
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = $"You need at least {ent.Comp.ReagentQuantity}u of {ent.Comp.ReagentId} in {toolComp.ToolName} to perform this step!";
+                    args.Popup = Loc.GetString("surgery-popup-need-reagent", ("quantity", ent.Comp.ReagentQuantity),
+                        ("reagent", ProtoMan.Index(ent.Comp.ReagentId.Value).LocalizedName),
+                        ("tool", Loc.GetString(toolComp.ToolName)));
                 return;
             }
 
@@ -267,7 +272,7 @@ public abstract partial class SharedSurgerySystem
             return;
 
         args.Invalid = StepInvalidReason.MissingLimb;
-        args.Popup = $"You can't attach {Name(itemId)} as a limb!";
+        args.Popup = Loc.GetString("surgery-popup-cant-attach", ("item", Name(itemId)));
     }
 
     private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
@@ -293,7 +298,7 @@ public abstract partial class SharedSurgerySystem
         if (_net.IsServer && TryComp(step, out MetaDataComponent? meta))
         {
             var surgeonName = MetaData(user).EntityName;
-            _popup.PopupEntity($"{surgeonName.ToLower()} starts {meta.EntityName.ToLower()}", part, PopupType.LargeCaution);
+            _popup.PopupEntity(Loc.GetString("surgery-step-start-popup", ("surgeon", surgeonName), ("step", meta.EntityName.ToLower())), part, PopupType.LargeCaution);
         }
 
         var duration = stepComp.Duration;
@@ -395,7 +400,8 @@ public abstract partial class SharedSurgerySystem
             if (surgeryStep == step)
                 break;
 
-            if (Prototype(surgery.Owner) is not EntityPrototype surgProto || !IsStepComplete(part, surgProto.ID, surgeryStep))
+            if (Prototype(surgery.Owner) is not EntityPrototype surgProto ||
+                !IsStepComplete(part, surgProto.ID, surgeryStep))
                 return false;
         }
 
@@ -442,5 +448,23 @@ public abstract partial class SharedSurgerySystem
             return comp.CompletedSteps.Contains($"{surgery}:{step}");
         AddComp<SurgeryProgressComponent>(part);
         return false;
+    }
+
+    public (EntityUid? Target, bool MatchesExpectedOrgan) GetOrganExtractionTarget(
+        SurgeryStepOrganExtractComponent extraction, IEnumerable<EntityUid> candidates)
+    {
+        if (extraction.Organ?.Count != 1)
+            return (null, false);
+
+        var expectedOrganType = extraction.Organ.Values.First().Component.GetType();
+        EntityUid? firstCandidate = null;
+        foreach (var candidate in candidates)
+        {
+            firstCandidate ??= candidate;
+            if (HasComp(candidate, expectedOrganType))
+                return (candidate, true);
+        }
+
+        return (firstCandidate, false);
     }
 }

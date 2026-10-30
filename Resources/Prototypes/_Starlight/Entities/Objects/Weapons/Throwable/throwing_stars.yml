@@ -4,7 +4,7 @@
   name: bone shard
   components:
   - type: Sprite
-    sprite: Changeling/bone_shard.rsi
+    sprite: _Starlight/Objects/Weapons/Throwable/bone_shard.rsi
     layers:
     - state: icon
       map: ["base"]

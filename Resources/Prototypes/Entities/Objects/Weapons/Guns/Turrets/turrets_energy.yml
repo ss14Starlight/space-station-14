@@ -69,8 +69,8 @@
           False: { state: base }
       enum.WiresVisuals.MaintenancePanelState:
         enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
+          True: { visible: true } # Starlight
+          False: { visible: false } # Starlight
   - type: HTN
     enabled: false
   - type: StationAiWhitelist
@@ -144,7 +144,7 @@
 - type: entity
   parent: WeaponEnergyTurretStationBase
   id: WeaponEnergyTurretAI
-  suffix: AI # Starlight edit
+  suffix: AI, Silicon
   components:
   - type: AccessReader
     access: [["StationAi"], ["ResearchDirector"]]

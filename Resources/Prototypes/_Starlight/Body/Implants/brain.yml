@@ -14,7 +14,7 @@
 - type: entity
   id: BrainImplantTranslator
   name: translator implant
-  description: Translates from your language to galactic common right in your brain!
+  description: A surgically-installed brain implant that allows you to speak and understand Galactic Common.
   parent: BaseEntityBrainImplant
   components:
   - type: Sprite
@@ -30,7 +30,7 @@
 - type: entity
   id: BrainImplantCommsExpedition
   name: expedition radio implant
-  description: A handy implant for the salvager of the modern age.
+  description: A surgically-installed brain implant that grants you access to the expedition radio channel, even without a headset.
   parent: BaseEntityBrainImplant
   components:
   - type: Sprite
@@ -49,7 +49,7 @@
 - type: entity
   id: BrainImplantComms
   name: integrated radio implant
-  description: A headset, right in your brain!
+  description: A surgically-installed brain implant that grants you access to whatever radio channels you insert the encryption keys for. It has room for four keys.
   parent: BaseEntityBrainImplant
   components:
   - type: Sprite
@@ -72,7 +72,7 @@
 - type: entity
   id: BrainImplantNexus
   name: Nexus uplink
-  description: A weird piece of Avali tech... Gives you access to the Nexus!
+  description: A surgically-installed brain implant that grants you access to the Nexus, a technological network that allows you to communicate with anyone else who also has a Nexus implant. Avali and Resomi are given this implant at birth.
   parent: BaseEntityBrainImplant
   components:
   - type: Sprite
@@ -88,7 +88,7 @@
 - type: entity
   id: BrainImplantExpiScan
   name: health scanner implant
-  description: An implant the provides a readout of your present physical health.
+  description: A surgically-installed brain implant that provides a readout of your present physical health.
   parent: BaseEntityBrainImplant
   components:
   - type: Sprite

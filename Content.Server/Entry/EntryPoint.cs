@@ -3,7 +3,6 @@ using Content.Server._NullLink.EventBus;
 using Content.Server._NullLink.PlayerData;
 using Content.Server._Starlight;
 using Content.Server._Starlight.BugReports;
-using Content.Server._Starlight.RedundantMovement;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Server.Acz;
 using Content.Server.Administration;
@@ -38,7 +37,6 @@ using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
 using Robust.Server;
 using Robust.Server.ServerStatus;
-using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
@@ -96,7 +94,6 @@ namespace Content.Server.Entry
         [Dependency] private IBugReportManager _bugReport = default!;
         [Dependency] private PreWrittenDocumentManager _preWrittenDocument = default!;
         [Dependency] private IPlayerRolesManager _playerRoles = default!;
-        [Dependency] private IServerRedundantMovementManager _redundantMovement = default!;
 #endregion Starlight
 
 #region Nulllink
@@ -125,8 +122,6 @@ namespace Content.Server.Entry
             base.Init();
             Dependencies.BuildGraph();
             Dependencies.InjectDependencies(this);
-
-            _cfg.OverrideDefault(CVars.LookupEnableServerLightTree, true); // Starlight - ShadekinSystem needs the light tree
 
             LoadConfigPresets(_cfg, _res, _log.GetSawmill("configpreset"));
 
@@ -170,7 +165,6 @@ namespace Content.Server.Entry
             _holidaySystem.Initialize();
 			_bugReport.Initialize();
 			_preWrittenDocument.Initialize();
-            _redundantMovement.Initialize();
             //🌟Starlight🌟 end
         }
 

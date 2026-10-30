@@ -1,0 +1,73 @@
+- type: startingGear
+  id: SovietComradeGear
+  equipment:
+    head: ClothingHeadHatUshanka
+    jumpsuit: ClothingUniformJumpsuitSoviet
+    shoes: ClothingShoesBootsCowboyBlack
+    id: SovietIdCard
+#utility (non-shotgunner) belt
+- type: startingGear
+  id: SovietComradeGearBelt
+  equipment:
+    belt: ClothingSovietBelt
+  storage:
+    belt:
+    - RadioHandheld
+    - GeigerCounter
+    - Flare
+    - Flare
+    - Flare
+    - Flare
+#armoured soviets
+- type: startingGear
+  parent: SovietComradeGear
+  id: SovietComradeGearPlated
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSovietFatigues
+    outerClothing: ClothingOuterArmorSovietPlate
+    belt: ClothingBeltBandolier
+    mask: ClothingSovietGasMask
+- type: startingGear
+  parent: SovietComradeGear
+  id: SovietComradeGearCoated
+  equipment:
+    outerClothing: ClothingOuterSovietCoat
+    mask: ClothingMaskBear
+#melee
+- type: startingGear
+  id: SovietComradeGearSpear
+  parent: [SovietComradeGear, SovietComradeGearBelt]
+  inhand:
+  - Spear
+- type: startingGear
+  id: SovietComradeGearFinka
+  parent: SovietComradeGear
+  inhand:
+  - Finka
+#shotgun
+- type: startingGear
+  id: SovietComradeGearSawn
+  parent: [SovietComradeGear]
+  equipment:
+    belt: ClothingSovietBandolier
+  inhand:
+  - WeaponShotgunSawn
+#pistol
+- type: startingGear
+  id: SovietComradeGearMakarov
+  parent: SovietComradeGearCoated
+  inhand:
+  - WeaponPistolMakarov
+#revolver
+- type: startingGear
+  id: SovietComradeGearZOZ
+  parent: [SovietComradeGearPlated]
+  inhand:
+  - WeaponRevolverZOZ
+  - MakeshiftShield
+#rifle
+- type: startingGear
+  id: SovietComradeGearAk
+  parent: [SovietComradeGearPlated]
+  inhand:
+  - WeaponRifleAk

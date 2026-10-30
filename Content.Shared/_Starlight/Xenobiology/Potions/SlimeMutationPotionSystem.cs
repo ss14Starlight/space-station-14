@@ -23,11 +23,11 @@ public sealed partial class SlimeMutationPotionSystem : EntitySystem
                 out var slimeComponent)) return;
         if (slimeComponent.MutationChance >= 1)
         {
-            _sharedPopupSystem.PopupPredicted($"{MetaData(args.Target.Value).EntityName} is already at 100% mutation chance. Cannot raise higher.", args.User, args.User);
+            _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-potion-mutation-max", ("target", MetaData(args.Target.Value).EntityName)), args.User, args.User);
             return;
         }
         slimeComponent.MutationChance = FixedPoint2.Min(1, slimeComponent.MutationChance + SlimeMutationPotionComponent.MutationChangeAmount);
-        _sharedPopupSystem.PopupPredicted($"{MetaData(args.Target.Value).EntityName} now has a {slimeComponent.MutationChance * 100}% chance of mutating.", args.User, args.User);
+        _sharedPopupSystem.PopupPredicted(Loc.GetString("slime-potion-mutation-chance", ("target", MetaData(args.Target.Value).EntityName), ("chance", slimeComponent.MutationChance * 100)), args.User, args.User);
         PredictedQueueDel(args.Used);
     }
 }

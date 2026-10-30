@@ -141,7 +141,8 @@
       color: red
   - type: Vinyl
     song:
-      path: /Audio/Lobby/space_asshole.ogg # Reusing the lobby music.
+      path: /Audio/_Starlight/Music/Jukebox/space_asshole.ogg # Reusing jukebox file, stereo versions play incorrectly from in world objects
+
 - type: entity
   parent: BaseVinylDisc
   id: VinylDriverUpdate
@@ -237,3 +238,18 @@
   - type: Vinyl
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/Cathode.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylHitEm
+  name: "vinyl: HIT 'EM!"
+  description: "A high energy, high BPM 5/4 breakcore song. By: CrayZ"
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: label
+      color: "#35ffff"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/hit_em.ogg

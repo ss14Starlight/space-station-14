@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: BaseMobVox
+  components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # voxes don't have noses
+    - id: Boop
+      interactString: booping-beak-success
+      messagePerceivedByOthers: booping-beak-success-others
+      emoteMessage: booping-beak-emote

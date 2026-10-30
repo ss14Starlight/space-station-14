@@ -1098,6 +1098,30 @@
   - UplinkDisruption
 
 - type: listing
+  id: UplinkTravelCamera
+  name: uplink-travel-camera-name
+  description: uplink-travel-camera-desc
+  productEntity: TravelCamera
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkDeception
+
+# Note: Removed for the time being until surgery/newmed is added. Considered bloat until then.
+# - type: listing
+#   id: UplinkDuffelSurgery
+#   name: uplink-duffel-surgery-name
+#   description: uplink-duffel-surgery-desc
+#   productEntity: ClothingBackpackDuffelSyndicateFilledMedical
+#   discountCategory: usualDiscounts
+#   discountDownTo:
+#     Telecrystal: 2
+#   cost:
+#     Telecrystal: 4
+#   categories:
+#   - UplinkDisruption
+
+- type: listing
   id: UplinkPowerSink
   name: uplink-power-sink-name
   description: uplink-power-sink-desc
@@ -1401,7 +1425,7 @@
   id: UplinkFreedomImplanter
   name: uplink-freedom-implanter-name
   description: uplink-freedom-implanter-desc
-  icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: freedom }
+  icon: { sprite: /Textures/Interface/Actions/Implants/implants.rsi, state: freedom }
   productEntity: FreedomImplanter
   discountCategory: veryRareDiscounts
   discountDownTo:
@@ -1471,7 +1495,7 @@
   id: UplinkMicroBombImplanter
   name: uplink-micro-bomb-implanter-name
   description: uplink-micro-bomb-implanter-desc
-  icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+  icon: { sprite: /Textures/Interface/Actions/Implants/implants.rsi, state: explosive }
   productEntity: MicroBombImplanter
   cost:
     Telecrystal: 2
@@ -1491,7 +1515,7 @@
   id: UplinkMacroBombImplanter
   name: uplink-macro-bomb-implanter-name
   description: uplink-macro-bomb-implanter-desc
-  icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+  icon: { sprite: /Textures/Interface/Actions/Implants/implants.rsi, state: explosive }
   productEntity: MacroBombImplanter
   cost:
     Telecrystal: 13
@@ -2319,3 +2343,20 @@
     - Magistrate # Starlight
     - NanoTrasenRepresentative # Starlight
     - Captain # Starlight
+
+#Objective items
+
+- type: listing
+  id: uplinkHijackBeacon
+  name: uplink-hijack-beacon-name
+  description: uplink-hijack-beacon-desc
+  productEntity: HijackBeacon
+  categories:
+    - UplinkObjective
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerObjectiveWhitelistCondition
+    whitelist:
+      components:
+      - HijackTradeStationCondition

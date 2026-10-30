@@ -9,6 +9,7 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
+using Content.Server.Connection;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
@@ -64,6 +65,7 @@ public sealed partial class ServerApi : IPostInjectInit
     [Dependency] private IPlayerLocator _locator = default!;
     [Dependency] private IBanManager _bans = default!;
     [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private IConnectionManager _connectionManager = default!; // Starlight
 
     private string _token = string.Empty;
     private ISawmill _sawmill = default!;
@@ -342,7 +344,7 @@ public sealed partial class ServerApi : IPostInjectInit
             var bans = await _db.GetServerBansAsync(userId: located.UserId,
                 address: null,
                 hwId: null,
-                modernHWIds: located.LastModernHWIds,
+                modernHWIds: null,
                 includeUnbanned: false);
             if (bans.Count > 0)
             {
@@ -375,9 +377,9 @@ public sealed partial class ServerApi : IPostInjectInit
             // }
             //Starlight start - Work around
             (IPAddress, int)? ip = null;
-            if (_playerManager.TryGetSessionById(new NetUserId(body.Guid), out var player))
+            if (_playerManager.TryGetSessionById(new NetUserId(body.Guid), out var player)
+                && _connectionManager.GetPlayerAddress(player) is { } ipadd) // Starlight: resolved IP, never the SNAT address
             {
-                var ipadd = player.Channel.RemoteEndPoint.Address;
                 var hidInt = ipadd.AddressFamily == AddressFamily.InterNetworkV6 ? Ipv6_CIDR : Ipv4_CIDR;
                 ip = (ipadd, hidInt);
 

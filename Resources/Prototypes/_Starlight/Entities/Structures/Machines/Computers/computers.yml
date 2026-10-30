@@ -222,6 +222,37 @@
     - CantInteract
 
 - type: entity
+  parent: BaseComputerAiAccess
+  id: RemoteControlConsole
+  name: remote control console
+  description: Enables operators to view and control a linked robotic body over virtually any distance, with minimal loss of control precision.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
+  - type: RemoteControlConsole
+  - type: DeviceLinkSource
+    ports:
+    - RemoteControl
+  - type: ActivatableUI
+    key: enum.RemoteControlUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.RemoteControlUIKey.Key:
+        type: RemoteControlConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
   parent: BaseComputerShuttle
   id: CompuerShuttleSalvage
   name: remote salvage shuttle console
@@ -366,7 +397,7 @@
     - Xenoborg
     - ITG
     privilegedIdSlot:
-      name: UniversalIdConsole-privilegedId
+      name: id-card-console-privileged-id
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
       ejectOnBreak: true
@@ -376,7 +407,7 @@
         - IdCard
     targetIdSlot:
       priority: 1
-      name: UniversalIdConsole-targetId
+      name: id-card-console-target-id
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
       ejectOnBreak: true
@@ -788,6 +819,133 @@
 ## Departmental Communications Consoles END
 
 - type: entity
+  parent: ComputerComms
+  id: ComputerCommsFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: CentCommSectoralConsole
+  id: CentCommSectoralConsoleFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: CentcommComputerComms
+  id: CentcommComputerCommsFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsCargo
+  id: ComputerCommsCargoFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsEngineering
+  id: ComputerCommsEngineeringFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsMedical
+  id: ComputerCommsMedicalFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsScience
+  id: ComputerCommsScienceFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsSecurity
+  id: ComputerCommsSecurityFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: ComputerCommsService
+  id: ComputerCommsServiceFilled
+  categories: [ ShouldMapStation ]
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: SolgovComputerComms
+  id: SolgovComputerCommsFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: SyndicateComputerComms
+  id: SyndicateComputerCommsFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
+  parent: WizardComputerComms
+  id: WizardComputerCommsFilled
+  suffix: Filled
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          startingItem: PowerCellHigh
+
+- type: entity
   id: ComputerShipyard
   parent: BaseComputer
   name: shipyard console
@@ -855,8 +1013,8 @@
             False: { visible: true }
         enum.WiresVisuals.MaintenancePanelState:
           enum.WiresVisualLayers.MaintenancePanel:
-            True: { visible: false }
-            False: { visible: true }
+            True: { visible: true }
+            False: { visible: false }
         # Starlight Start
         enum.EdgeConnectionVisuals.ConnectionMask:
           computerLayerBody:
@@ -925,3 +1083,47 @@
     energy: 1.5
     color: "#8151c9"
   # Starlight End
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerCombustionTurbine
+  name: combustion turbine control computer
+  description: Starts and stops a combustion turbine, sets its intake and shows how it is running. Link it to the turbine with a multitool.
+  components:
+  - type: CombustionTurbineConsole
+  - type: ActivatableUI
+    key: enum.CombustionTurbineConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CombustionTurbineConsoleUiKey.Key:
+        type: CombustionTurbineConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: turbine
+    - map: ["computerLayerKeys"]
+      state: atmos_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Computer
+    board: CombustionTurbineComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#37b8d1"
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+  - type: DeviceLinkSource
+    range: 15
+    ports:
+    - CombustionTurbineConsoleSender
+  - type: GuideHelp
+    guides:
+    - CombustionTurbine

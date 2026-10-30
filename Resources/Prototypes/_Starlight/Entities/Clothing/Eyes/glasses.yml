@@ -16,6 +16,7 @@
     damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -46,6 +47,7 @@
     damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -119,7 +121,7 @@
     stealGroup: RareGlassesCollection
 
 - type: entity
-  parent: [ClothingEyesBase, BaseBlueShieldContraband]
+  parent: [ ClothingEyesBase, BaseBlueShieldContraband ]
   id: ClothingEyesGlassesBlueShield
   name: blue shield glasses
   description: The innovative blue lenses hide your eyes from light flashes and have a built-in visor.
@@ -137,6 +139,7 @@
     - Biological
     - IPC
     - Hybrid
+    - MoffDemonBiological
   - type: ShowHealthIcons
     damageContainers:
     - Biological
@@ -178,6 +181,8 @@
         - Silicon
         - IPC
         - Hybrid
+        - MoffDemonBiological
+        - MoffDemonInorganic
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -229,6 +234,7 @@
     damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -315,7 +321,7 @@
 # Shadekin
 
 - type: entity
-  parent: [ClothingEyesBase, BaseSecurityScienceCommandContraband]
+  parent: [ClothingEyesBase, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband]
   id: ClothingEyesGlassesNullSpace
   name: nullspace goggles
   description: An unusual pair of goggles developed during a time of inhumane experimentation involving Shadekin. They are designed to allow the wearer to peer into NullSpace.

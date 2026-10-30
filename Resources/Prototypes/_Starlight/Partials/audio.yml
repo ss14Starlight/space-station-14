@@ -1,0 +1,171 @@
+# Extra tracks for the upstream ambience collections in Prototypes/audio.yml.
+- type: !PartialOnly soundCollection
+  id: AmbienceEngineering
+  files:
+    - /Audio/_Starlight/Ambience/Music/ambieng1.ogg
+    - /Audio/_Starlight/Ambience/Music/ambifailure.ogg
+
+- type: !PartialOnly soundCollection
+  id: AmbienceGeneral
+  files:
+    - /Audio/_Starlight/Ambience/Music/ambigen2.ogg
+
+- type: !PartialOnly soundCollection
+  id: AmbienceMaintenance
+  files:
+    - /Audio/_Starlight/Ambience/Music/ambimaint.ogg
+    - /Audio/Ambience/ambimystery.ogg
+    - /Audio/Ambience/ambiodd.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint6.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint7.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint8.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint9.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint10.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint11.ogg
+    - /Audio/_Starlight/Ambience/Music/ambimaint12.ogg
+
+- type: !PartialOnly soundCollection
+  id: AmbienceSpace
+  files:
+    - /Audio/_Starlight/Ambience/Music/ambispace.ogg
+    - /Audio/_Starlight/Ambience/Music/ambispace3.ogg
+    - /Audio/_Starlight/Ambience/Music/ambispace4.ogg
+    - /Audio/_Starlight/Ambience/Music/ambispace5.ogg
+    - /Audio/_Starlight/Ambience/Music/ambispace6.ogg
+
+# Area ambience follows station zones (whole rooms) instead of nearby doors or plating.
+- type: !PartialOnly ambientMusic
+  id: Medical
+  rules: InMedicalZone
+
+- type: !PartialOnly ambientMusic
+  id: Engineering
+  rules: InEngineeringZone
+
+- type: !PartialOnly ambientMusic
+  id: Maintenance
+  rules: InMaintenanceZone
+
+- type: !PartialOnly ambientMusic
+  id: General
+  extraDelay: 120
+
+- type: !PartialOnly soundCollection
+  id: SpaceWind
+  files:
+    - /Audio/_Starlight/Effects/Weather/space_wind_2_1.ogg
+    - /Audio/_Starlight/Effects/Weather/space_wind_2_2.ogg
+    - /Audio/_Starlight/Effects/Weather/space_wind_3_1.ogg
+    - /Audio/_Starlight/Effects/Weather/space_wind_4_1.ogg
+    - /Audio/_Starlight/Effects/Weather/space_wind_4_2.ogg
+
+- type: !PartialOnly soundCollection
+  id: FootstepTile
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/tile1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/tile9.ogg
+
+- type: !PartialOnly soundCollection
+  id: FootstepFloor
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/floor1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/floor9.ogg
+
+- type: !PartialOnly soundCollection
+  id: FootstepCatwalk
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/catwalk1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/catwalk8.ogg
+
+- type: !PartialOnly soundCollection
+  id: FootstepWood
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/wood1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/wood9.ogg
+
+- type: !PartialOnly soundCollection
+  id: FootstepAsteroid
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/asteroid1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/asteroid9.ogg
+
+- type: !PartialOnly soundCollection
+  id: FootstepGrass
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/grass1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/grass9.ogg
+
+- type: !PartialOnly soundCollection
+  id: BarestepHard
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/barehard1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barehard2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barehard3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barehard4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barehard5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barehard6.ogg
+
+- type: !PartialOnly soundCollection
+  id: BarestepWood
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/barewood1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barewood8.ogg
+
+- type: !PartialOnly soundCollection
+  id: BarestepCarpet
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/barecarpet8.ogg
