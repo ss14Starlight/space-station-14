@@ -21,7 +21,7 @@
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: armblade-plus }
   productAction: ActionRetractableItemArmBladePlus
   cost:
-    EvolutionPoint: 5
+    EvolutionPoint: 12
   categories:
   - ChangelingAbilityCombat
   conditions:
@@ -49,7 +49,7 @@
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: chitinous_armor }
   productAction: ActionToggleChitinousArmor
   cost:
-    EvolutionPoint: 4
+    EvolutionPoint: 5
   categories:
   - ChangelingAbilityCombat
   conditions:
@@ -63,7 +63,7 @@
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: organic_shield }
   productAction: ActionToggleOrganicShield
   cost:
-    EvolutionPoint: 2
+    EvolutionPoint: 3
   categories:
   - ChangelingAbilityCombat
   conditions:
@@ -77,7 +77,7 @@
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: shriek_dissonant }
   productAction: ActionShriekDissonant
   cost:
-    EvolutionPoint: 2
+    EvolutionPoint: 3
   categories:
   - ChangelingAbilityCombat
   conditions:
@@ -105,7 +105,7 @@
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: strained_muscles }
   productAction: ActionToggleStrainedMuscles
   cost:
-    EvolutionPoint: 2
+    EvolutionPoint: 3
   categories:
   - ChangelingAbilityCombat
   conditions:
@@ -264,7 +264,7 @@
   icon: { sprite: _Starlight/Actions/changeling.rsi, state: thermal_eyesight }
   productAction: ActionThermalEyesight
   cost:
-    EvolutionPoint: 4
+    EvolutionPoint: 6
   categories:
   - ChangelingAbilityUtility
   conditions:
@@ -334,7 +334,7 @@
   icon: { sprite: _Starlight/Actions/changeling.rsi, state: amalgam_overdose }
   productAction: ActionAmalgamOverdose
   cost:
-    EvolutionPoint: 5
+    EvolutionPoint: 6
   categories:
   - ChangelingAbilityUtility
   conditions:
@@ -348,7 +348,7 @@
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: fleshmend }
   productAction: ActionFleshmend
   cost:
-    EvolutionPoint: 5
+    EvolutionPoint: 6
   categories:
   - ChangelingAbilityUtility
   conditions:
