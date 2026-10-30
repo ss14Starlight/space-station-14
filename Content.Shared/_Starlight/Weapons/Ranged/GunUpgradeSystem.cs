@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
