@@ -108,6 +108,23 @@ public async Task StealHeartObjectiveTest()
         containers.Remove(heart, inventory);
         Assert.That(objectives.GetProgress(objective, ownerMind), Is.Zero);
 
+        var bag = SEntMan.SpawnEntity(null, MapCoordinates.Nullspace);
+        var bagContents = containers.EnsureContainer<Container>(bag, "heart-test-bag");
+        containers.Insert(heart, bagContents);
+        containers.Insert(bag, inventory);
+        Assert.That(objectives.GetProgress(objective, ownerMind), Is.EqualTo(1),
+            "A heart in a nested bag must count.");
+        containers.Remove(bag, inventory);
+        Assert.That(objectives.GetProgress(objective, ownerMind), Is.Zero,
+            "Dropping the bag must immediately remove progress.");
+
+        var targetInventory = containers.EnsureContainer<Container>(target, "heart-test-target-inventory");
+        containers.Insert(bag, targetInventory);
+        containers.Insert(target, inventory);
+        Assert.That(objectives.GetProgress(objective, ownerMind), Is.Zero,
+            "A heart carried by another person must not count when carrying that person.");
+        containers.Remove(target, inventory);
+
         // Follow the same target mind into a replacement body.
         var clone = SEntMan.SpawnEntity("MobHuman", MapCoordinates.Nullspace);
         minds.TransferTo(targetMind, clone);
@@ -115,6 +132,9 @@ public async Task StealHeartObjectiveTest()
         Assert.That(bodies.RemoveOrgan(cloneHeart), Is.True);
         containers.Insert(cloneHeart, inventory);
         Assert.That(objectives.GetProgress(objective, ownerMind), Is.EqualTo(1));
+
+        // Avoid transferring the IPC's mind into its brain while the test pair deletes both entities.
+        minds.TransferTo(ipcMind, null);
     });
 
     [Test]

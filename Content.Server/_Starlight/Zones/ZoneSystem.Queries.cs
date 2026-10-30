@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Starlight.Zones;
 using Robust.Shared.Prototypes;
 
@@ -7,16 +8,17 @@ public sealed partial class ZoneSystem
 {
     /// <summary>
     /// Every zone currently represented by a room on a grid, including secondary zones of shared rooms.
+    /// Returns no zones until the first scheduled rebuild. Pending edits are processed by the normal tile budget.
     /// </summary>
-    public HashSet<ProtoId<ZonePrototype>> GetGridZones(EntityUid grid)
+    public IReadOnlyList<ProtoId<ZonePrototype>> GetGridZones(EntityUid grid)
     {
+        if (!_zoneQuery.TryComp(grid, out var comp) || !comp.TopologyInitialized)
+            return [];
+
+        if (comp.CachedGridZones != null)
+            return comp.CachedGridZones;
+
         var zones = new HashSet<ProtoId<ZonePrototype>>();
-        if (!_zoneQuery.TryComp(grid, out var comp))
-            return zones;
-
-        if (comp.NeedsFullRebuild || comp.DirtyTiles.Count > 0 || comp.RenameQueue.Count > 0)
-            FullRebuild((grid, comp));
-
         for (var i = 1; i < comp.RegionCount; i++)
         {
             ref var region = ref comp.Regions[i];
@@ -24,6 +26,6 @@ public sealed partial class ZoneSystem
                 zones.UnionWith(GetZones(region.Zone));
         }
 
-        return zones;
+        return comp.CachedGridZones = zones.ToArray();
     }
 }
