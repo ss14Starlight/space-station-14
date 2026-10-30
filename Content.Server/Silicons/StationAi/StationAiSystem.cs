@@ -114,7 +114,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         SubscribeLocalEvent<StationAiCoreComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<StationAiCoreComponent, DoAfterAttemptEvent<IntellicardDoAfterEvent>>(OnDoAfterAttempt);
         SubscribeLocalEvent<StationAiCoreComponent, RejuvenateEvent>(OnRejuvenate);
-        SubscribeLocalEvent<GhostAttemptHandleEvent>(OnGhostAttempt); // Starlight
+        _player.PlayerStatusChanged += OnPlayerStatusChanged; // Starlight
 
         SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandICChatRecipients);
         SubscribeLocalEvent<StationAiTurretComponent, AmmoShotEvent>(OnAmmoShot);
@@ -125,17 +125,6 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     }
 
     #region Starlight
-    // The intellicard/AI should immediatly eject the ghost if the command ghost is used to free it for further use.
-    private void OnGhostAttempt(GhostAttemptHandleEvent args)
-    {
-        if (args.Mind.CurrentEntity is not { } entity ||
-            !_container.TryGetContainingContainer(entity, out var container) ||
-            container.ID != StationAiHolderComponent.Container ||
-            !TryComp<StationAiHolderComponent>(container.Owner, out var holder))
-            return;
-
-        _slots.TryEject(container.Owner, holder.Slot, null, out _);
-    }
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
