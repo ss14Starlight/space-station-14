@@ -35,6 +35,7 @@
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
+    TailExtras: MobHumanoidAnyMarking
     Eyes: MobVespuliEyes
     LArm: MobVespuliLArm
     RArm: MobVespuliRArm
@@ -79,6 +80,14 @@
     Arms:
       points: 2
       required: false
+    TailExtras:
+      points: 1
+      required: true
+      defaultMarkings: [ VespuliWingsDefault ]
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ VespuliAbdomenDefault ]
 
 - type: humanoidBaseSprite
   id: MobVespuliEyes

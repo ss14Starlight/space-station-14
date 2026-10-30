@@ -179,3 +179,11 @@
   color: "#b2c21f"
   longRange: true
   autoTranslate: Spore
+
+- type: radioChannel
+  id: VibraRadio
+  name: language-Vibralink-name
+  frequency: 77786
+  color: "#E9AB17"
+  longRange: true
+  autoTranslate: Vibralink

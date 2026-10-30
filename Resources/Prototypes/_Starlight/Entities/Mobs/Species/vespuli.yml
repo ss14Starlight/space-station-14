@@ -9,12 +9,19 @@
     speaks:
     - GalacticCommon
     - Vespic
+    - Vibralink
     understands:
     - GalacticCommon
     - Vespic
+    - Vibralink
   - type: Jump
     action: JumpMoth
   - type: Absorbable
+  - type: Sericulture
+    action: ActionHoneyGather
+    productionLength: 2
+    entityProduced: Honeydrop
+    hungerCost: 20 # Should total to 5 total honey on full hunger...?
   - type: HumanoidAppearance
     species: Vespuli
     hideLayersOnEquip:
@@ -34,16 +41,23 @@
   - type: ZombieAccentOverride
     accent: zombieMoth
   - type: Speech
-    speechVerb: Vespuli
-    speechSounds: UnisexVespuli # Starlight: Add talk sounds
-    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
+    speechVerb: Moth
+    speechSounds: UnisexMoth # Starlight: Add talk sounds
+    allowedEmotes: ['Chitter', 'FlapWings'] # Starlight: Add wing flap
   - type: TypingIndicator
-    proto: vespuli
+    proto: moth
   - type: Butcherable
     butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 5
+  - type: MeleeWeapon
+    animation: WeaponArcThrustOld
+    soundHit:
+      path: /Audio/Effects/bladeslice.ogg
+    damage:
+      types:
+        Piercing: 5
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -71,7 +85,7 @@
   - type: Flammable
     damage:
       types:
-        Heat: 4.5 # #Starlight: bring back the glory days of moths fearing fire
+        Heat: 0.5
   - type: Sprite # sprite again because we want different layer ordering
     noRot: true
     drawdepth: Mobs
@@ -96,15 +110,16 @@
         sprite: Objects/Misc/handcuffs.rsi
         state: body-overlay-2
         visible: false
-      - map: [ "gloves" ]
       - map: [ "shoes" ]
       - map: [ "ears" ]
       - map: [ "eyes" ]
       - map: [ "outerClothing" ] # Starlight
       - map: [ "belt" ]
       - map: [ "id" ]
-      - map: [ "enum.HumanoidVisualLayers.Tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
       - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "enum.HumanoidVisualLayers.TailExtras" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
+      - map: [ "gloves" ]
       - map: [ "neck" ]
       - map: [ "misc" ] # Starlight
       - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]

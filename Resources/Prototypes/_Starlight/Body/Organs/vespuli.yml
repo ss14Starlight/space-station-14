@@ -9,31 +9,3 @@
     layer: Eyes
     prototypes:
       Default: MobVespuliEyes
-
-- type: entity
-  id: OrganVespuliStomach
-  parent: [OrganAnimalStomach, OrganHumanStomach]
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Stomach
-    specialDigestible:
-      tags:
-      - ClothMade
-      - Paper
-      - Pill
-  - type: SolutionContainerManager
-    solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
-  - type: Metabolizer
-    maxReagents: 3
-    metabolizerTypes: [ Vespuli ]
-    removeEmpty: true
-    groups:
-      - id: Food
-      - id: Drink

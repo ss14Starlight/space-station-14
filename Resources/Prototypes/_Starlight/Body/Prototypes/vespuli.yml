@@ -23,7 +23,7 @@
       organs:
         heart: OrganAnimalHeart
         lungs: OrganHumanLungs
-        stomach: OrganVespuliStomach
+        stomach: OrganAnimalStomach
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
         cavity: null

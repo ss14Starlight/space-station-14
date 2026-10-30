@@ -24,3 +24,7 @@ reagent-physical-desc-cinnamon = cinnamony
 
 reagent-name-stellibininsyrup = stellibinin syrup
 reagent-desc-stellibininsyrup = Worse as a medicine, but when added to food, can prevent theobromine and allicin poisoning. Metabolizes slowly.
+
+reagent-name-honey = honey
+reagent-desc-honey = Sticky sweet. Not recommended as a glue substitute.
+reagent-physical-desc-honey = gooey

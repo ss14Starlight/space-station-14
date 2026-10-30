@@ -148,8 +148,33 @@
     id: food
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Honey
         Quantity: 5
+  - type: Tag
+    tags:
+      - FoodSnack
+
+- type: entity
+  name: honeydrop
+  parent: [SolutionFood, SolutionTiny, BaseItem]
+  id: Honeydrop
+  description: A drop of honey. A very large bee made this. That's scary.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/honeydrop.rsi
+    state: honeydrop
+  - type: Item
+    size: Tiny
+  - type: Edible
+  - type: FlavorProfile
+    flavors:
+      - honey
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Honey
+        Quantity: 15
   - type: Tag
     tags:
       - FoodSnack

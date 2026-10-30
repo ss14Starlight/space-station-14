@@ -645,3 +645,33 @@
           type: [Cyclorite]
         reagent: Mycophylin
         amount: 0.05
+
+- type: reagent
+  id: Aurumine
+  name: reagent-name-aurumine
+  group: Medicine
+  desc: reagent-desc-aurumine
+  physicalDesc: reagent-physical-desc-sweet
+  flavor: medicine
+  color: "#d99e0b"
+  worksOnTheDead: true
+  metabolisms:
+    Bloodstream:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          - !type:MobStateCondition
+            mobstate: Dead
+          damage:
+            types:
+              Bloodloss: -5
+        # Starlight-Start: Cyclorite Metabolism
+        - !type:AdjustReagent
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: Aurumine
+          amount: -0.5
+        # Starlight-End

@@ -1,0 +1,59 @@
+- type: microwaveMealRecipe
+  id: RecipeHoneyBar
+  name: honey bar recipe
+  result: FoodHoneybar
+  time: 5
+  deviceType: Oven
+  reagents:
+    Sugar: 2
+    Honey: 2
+    Oats: 5
+
+- type: microwaveMealRecipe
+  id: RecipeHoneyFrame
+  name: honey frame recipe
+  result: FoodHoneyFrame
+  time: 15
+  deviceType: Oven
+  reagents:
+    Honey: 10
+  solids:
+    MaterialWoodPlank: 2
+
+- type: microwaveMealRecipe
+  id: RecipeHoneyLoaf
+  name: honey loaf recipe
+  result: FoodHoneyLoaf
+  time: 15
+  deviceType: Oven
+  solids:
+    Honeydrop: 1
+    FoodDough: 1
+
+- type: microwaveMealRecipe
+  id: RecipeHoneyRoll
+  name: honey roll recipe
+  result: FoodHoneyRoll
+  time: 15
+  deviceType: Oven
+  solids:
+    Honeydrop: 1
+    FoodDoughPie: 1
+
+- type: microwaveMealRecipe
+  id: RecipeHoneyDrop
+  name: honey drop recipe
+  result: Honeydrop
+  time: 1
+  deviceType: Oven
+  reagents:
+    Honey: 5
+
+- type: microwaveMealRecipe
+  id: RecipeHoneyComb
+  name: honey comb recipe
+  result: Honeycomb
+  time: 1
+  deviceType: Oven
+  solids:
+    Honeydrop: 1

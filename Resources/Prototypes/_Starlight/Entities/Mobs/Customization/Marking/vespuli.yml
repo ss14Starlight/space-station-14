@@ -1,0 +1,21 @@
+# Abdomen Markings
+- type: marking
+  id: VespuliAbdomenDefault # This is the default Vespuli abdomen.
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vespuli]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_tail.rsi
+    state: default
+
+- type: marking
+  id: VespuliWingsDefault
+  bodyPart: Tail
+  markingCategory: TailExtras
+  speciesRestriction: [Vespuli]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_wings.rsi
+      state: default
+
+
+    

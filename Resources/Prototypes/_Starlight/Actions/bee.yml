@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseAction
+  id: ActionHoneyGather
+  name: Honey Gather
+  description: Produce honey for various uses.
+  components:
+  - type: Action
+    sound: /Audio/Effects/pop.ogg
+    icon: 
+      sprite: _Starlight/Objects/Consumable/Food/honeydrop.rsi
+      state: honeydrop
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SericultureActionEvent

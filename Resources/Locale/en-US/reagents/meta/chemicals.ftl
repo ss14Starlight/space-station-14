@@ -36,3 +36,6 @@ reagent-desc-rororium = A strange substance which fills the cores of the hivelor
 
 reagent-name-lye = lye
 reagent-desc-lye = A translucent, orange, alkaline solution used in traditional soap production.
+
+reagent-name-aurumine = aurumine
+reagent-desc-aurumine = A slightly opaque solution diluted from honey that can heal bloodloss from the dead at cold temperatures. Please thank the bee that made this.
