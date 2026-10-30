@@ -27,8 +27,8 @@ public sealed partial class GunUpgradeSystem : EntitySystem
     [Dependency] private SharedGunSystem _gun = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedToolSystem _tool = default!; #region Starlight
-    [Dependency] private SharedHandsSystem _hands = default!; #endregion
+    [Dependency] private SharedToolSystem _tool = default!; //region Starlight
+    [Dependency] private SharedHandsSystem _hands = default!; //endregion
 
     /// <inheritdoc/>
     public override void Initialize()
