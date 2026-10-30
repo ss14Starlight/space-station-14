@@ -46,9 +46,9 @@
     - Elder
 
 - type: salvageDungeonMod
-  id: Experiment
+  id: ExperimentStar
   desc: salvage-dungeon-mod-experiment
-  proto: Experiment
+  proto: ExperimentStar
   biomes:
     #- LowDesert
     - Abyss
@@ -131,3 +131,17 @@
     - Argocyte-Easy
     - Argocyte-Medium
     - Argocyte-Hard
+
+- type: salvageDungeonMod
+  id: Outbreak
+  desc: DEBUG
+  proto: Outbreak
+  biomes:
+    - Grasslands
+  difficulties:
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard

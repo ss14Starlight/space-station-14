@@ -351,6 +351,15 @@
   id: GrenadeLessLethal #Ammo for the peacekeeper
 
 - type: Tag
+  id: GunUpgradeDamageExp
+
+- type: Tag
+  id: GunUpgradeRangeExp
+
+- type: Tag
+  id: GunUpgradeReloadSpeedExp
+
+- type: Tag
   id: GygaxArmor
 
 - type: Tag
@@ -640,6 +649,9 @@
   id: OmniCyberEyes
 
 - type: Tag
+  id: Outbreak
+
+- type: Tag
   id: OvenMachineBoard
 
 - type: Tag
@@ -709,6 +721,9 @@
 
 - type: Tag
   id: Salad # BountySalad
+
+- type: Tag
+  id: SalvageExperimentStar
 
 - type: Tag
   id: SalvageTicket

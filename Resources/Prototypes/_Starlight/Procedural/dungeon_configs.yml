@@ -247,7 +247,7 @@
 
   - !type:CorridorClutterDunGen
     contents: SovietCorridorsWeh
-    chance: 0.3
+    chance: 0.4
 
   - !type:CorridorDecalSkirtingDunGen
     cardinalDecals:
@@ -298,6 +298,7 @@
     - id: PosterContrabandRevolt
     - id: PosterContrabandRise
     - id: PosterLegitWorkForAFuture
+    - id: BannerSGKB
 
 - type: entityTable
   id: SovietCorridorsWeh
@@ -305,37 +306,56 @@
     children:
     # Posters
     - id: VendingMachineSovietSoda
+      weight: .3
     - id: BannerSovietRegular
     - id: MobBearSoviet
+      weight: .6
     - id: GenericTank
     - id: ClosetRadiationSuitFilled
+      weight: .25
     - id: ClosetRadiationSuit
+      weight: .25
     - id: DecalSpawnerGraffiti
     - id: RandomSpawner
     - id: MaintenancePlantSpawner
     - id: MaintenanceWeaponSpawner
+      weight: .25
     - id: MaintenanceToolSpawner
     - id: RandomMercenaryCorpseSpawner
     - id: RandomSovietCorpseSpawner
     - id: RandomArtifactSpawner20
-    - id: SpawnMobOreCrab
     - id: LootSpawnerMedicalMinor
     - id: LootSpawnerMaterialsSupplementary
     - id: SalvageCanisterSpawner
     - id: SalvageSpawnerScrapCommon
     - id: SalvageSpawnerScrapValuable
+      weight: .25
     - id: SalvageSpawnerTreasure
+      weight: .25
     - id: SalvageLootSpawner
+      weight: .25
     - id: BaseBarrelChemRadioactiveFilledUranium
+      weight: .25
     - id: BarrelFlaming
-      weight: 3
     - id: AcousticGuitarInstrument
+      weight: .25
     - id: SovietRevolutionSupplySpawner
-    - id: LandMineExplosive
+      weight: .25
     - id: PuddleBlood
+      weight: 3
     - id: PuddleVomit
     - id: BarrelChemFilledLube
     - id: BarrelChemEmpty
+    - id: SpawnMobCockroach
+    - id: FoodTinPeachesTrash
+    - id: FoodTinMRETrash
+    - id: FoodTinBeansTrash
+    - id: BannerSovietRegular
+      weight: .25
+    - id: BannerSovietHammer
+      weight: .25
+    - id: RandomSpawner
+      weight: 3
 
 #========================================================================
 
@@ -397,3 +417,283 @@
       SouthEast: BrickTileWhiteInnerSe
       NorthWest: BrickTileWhiteInnerNw
       NorthEast: BrickTileWhiteInnerNe
+
+#========================================================================
+- type: dungeonConfig
+  id: ExperimentStar
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - SalvageExperimentStar
+    presets:
+    - Bucket
+    - Wow
+    - SpaceShip
+    - Tall
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorSteel
+    contents: BaseAirlock
+
+  - !type:RoomEntranceDunGen
+    tile: FloorSteel
+    contents: BaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: BaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: BaseWindow
+
+  - !type:WallMountDunGen
+    contents: ScienceLabsWalls
+    tile: FloorSteel
+
+  - !type:BoundaryWallDunGen
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: BaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: BaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: BaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+
+  - !type:CorridorClutterDunGen
+    contents: OutbreakCorridors
+    chance: 0.2
+
+#========================================================================
+
+- type: dungeonConfig
+  id: Outbreak
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - Outbreak
+    presets:
+    - Bucket
+    - Wow
+    - SpaceShip
+    - Tall
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 3
+    tile: FloorSteel
+    contents: SovietDungeonEntrance
+
+  - !type:RoomEntranceDunGen
+    tile: FloorSteel
+    contents: SovietDungeonRoomEntrance
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: OutbreakDungeonWindow
+
+  - !type:WallMountDunGen
+    tile: FloorSteel
+    contents: OutbreakDungeonWalls
+
+  - !type:BoundaryWallDunGen
+    tile: FloorSteel
+    wall: WallSolid
+    cornerWall: WallReinforced
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: BaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+
+  - !type:CorridorClutterDunGen
+    contents: OutbreakCorridors
+    chance: 0.6
+
+- type: entityTable
+  id: OutbreakDungeonEntrance
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: MetalDoor
+
+- type: entityTable
+  id: OutbreakDungeonRoomEntrance
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: BaseAirlock
+
+- type: entityTable
+  id: OutbreakDungeonWalls
+  table: !type:GroupSelector
+    children:
+    # Posters
+    - id: PosterLegitDoNotCauseCancer
+    - id: PosterPrisonAlien
+    - id: PosterPrisonUgly
+    - id: PosterPrisonAccident
+    - id: PosterLegitAndromedaBitters
+
+- type: dungeonConfig
+  id: OutbreakExtended
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - Outbreak
+    presets:
+    - Bucket
+    - Wow
+    - SpaceShip
+    - Tall
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 3
+    tile: FloorSteel
+    contents: SovietDungeonEntranceWeh
+
+  - !type:RoomEntranceDunGen
+    tile: FloorSteel
+    contents: SovietDungeonRoomEntranceWeh
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: OutbreakDungeonWindow
+
+  - !type:WallMountDunGen
+    tile: FloorSteel
+    contents: SovietDungeonWallsWeh
+
+  - !type:BoundaryWallDunGen
+    tile: FloorSteel
+    wall: WallSolidRust
+    cornerWall: WallSolidRust
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: BaseClutter
+
+  - !type:CorridorClutterDunGen
+    contents: OutbreakCorridors
+    chance: 0.2
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: GrayConcreteTrimLineS
+      East: GrayConcreteTrimLineE
+      North: GrayConcreteTrimLineN
+      West: GrayConcreteTrimLineW
+    cornerDecals:
+      SouthEast: GrayConcreteTrimCornerSe
+      SouthWest: GrayConcreteTrimCornerSw
+      NorthEast: GrayConcreteTrimCornerNe
+      NorthWest: GrayConcreteTrimCornerNw
+    pocketDecals:
+      SouthWest: GrayConcreteTrimInnerSw
+      SouthEast: GrayConcreteTrimInnerSe
+      NorthWest: GrayConcreteTrimInnerNw
+      NorthEast: GrayConcreteTrimInnerNe
+
+- type: entityTable
+  id: OutbreakDungeonWindow
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: WallSolidRust
+    - id: PoweredSmallLight
+
+- type: entityTable
+  id: OutbreakCorridors
+  table: !type:GroupSelector
+    children:
+    # Posters
+    - id: GenericTank
+      weight: .5
+    - id: ClosetRadiationSuitFilled
+      weight: .25
+    - id: ClosetRadiationSuit
+      weight: .25
+    - id: DecalSpawnerGraffiti
+    - id: RandomSpawner
+    - id: MaintenancePlantSpawner
+    - id: MaintenanceWeaponSpawner
+      weight: .5
+    - id: MaintenanceToolSpawner
+      weight: .5
+    - id: LootSpawnerMedicalMinor
+      weight: .5
+    - id: LootSpawnerMaterialsSupplementary
+    - id: SalvageSpawnerScrapValuable
+      weight: .5
+    - id: BaseBarrelChemRadioactiveFilledUranium
+      weight: .5
+    - id: PuddleBlood
+      weight: 4
+    - id: PuddleVomit
+    - id: SpawnMobCockroach
+      weight: .5
+    - id: RandomSpawner
