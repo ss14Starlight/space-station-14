@@ -13,7 +13,7 @@
 
 # From Funky
 - type: entity
-  parent: AppraisalTool
+  parent: [AppraisalTool, PowerCellSlotMediumItem]
   suffix: Jammer, Syndicate
   id: AppraisalToolRadioJammer
   components:
@@ -37,3 +37,7 @@
       name: radio-jammer-component-setting-high
   - type: Appearance
   - type: ItemToggle
+  - type: PowerCellDraw
+    drawRate: 0
+    useCharge: 1
+  - type: ToggleCellDraw
