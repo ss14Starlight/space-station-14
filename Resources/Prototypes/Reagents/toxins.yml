@@ -571,7 +571,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [Animal, Avali, Experiment] # Starlight, add Avali
+          type: [Animal, Arachnid, Avali, Experiment] # Starlight, add Avali
         - !type:ReagentCondition # Starlight-Start prevent poisoning with Stelli Syrup
           reagent: StellibininSyrup
           max: 0.04 # Starlight-End
@@ -582,7 +582,7 @@
         probability: 0.04 #Scaled for time, not metabolismrate.
         conditions:
           - !type:MetabolizerTypeCondition
-            type: [Animal, Avali, Experiment] # Starlight, add Avali
+            type: [Animal, Arachnid, Avali, Experiment] # Starlight, add Avali
           - !type:ReagentCondition # Starlight-Start prevent poisoning with Stelli Syrup
             reagent: StellibininSyrup
             max: 0.04 # Starlight-End
@@ -714,7 +714,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
+          type: [ Animal, Vox, Arachnid, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -724,12 +724,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
+          type: [ Animal, Vox, Plant, Arachnid, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
+          type: [ Animal, Vox, Plant, Arachnid, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
           inverted: true
         damage:
           types:
@@ -744,7 +744,7 @@
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
+          type: [ Animal, Arachnid, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight/FH/Moff
         reagent: Protein
         amount: 0.5
       - !type:AdjustReagent

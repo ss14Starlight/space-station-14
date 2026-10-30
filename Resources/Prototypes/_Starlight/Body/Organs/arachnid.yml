@@ -36,7 +36,6 @@
     solutions:
     - SolutionOrganFoodMeat
     - SolutionOrganStomach50
-  - type: Metabolizer
 
 
 - type: entity
