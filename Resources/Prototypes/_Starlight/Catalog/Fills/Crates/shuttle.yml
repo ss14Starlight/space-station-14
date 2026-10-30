@@ -2,7 +2,7 @@
   parent: CrateSyndicate
   id: CrateNameSyndicateShuttleBundle
   name: shuttle bundle crate
-  description: Everything but the shuttle board. It's a shuttle in a crate* (Some assembly required)
+  description: Everything you need to build a shuttle (including the board!). It's a shuttle in a crate* (Some assembly required)
   components:
   - type: EntityTableContainerFill
     containers:
@@ -26,6 +26,7 @@
         - id: PowerCellSmall
         - id: SheetGlass1
           amount: 2
+        - id: SyndicateShuttleConsoleCircuitboard
 
 - type: entity
   parent: CrateSyndicate

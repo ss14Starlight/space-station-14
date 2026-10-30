@@ -837,6 +837,9 @@
   id: WallmountMassScannerElectronics
 
 - type: Tag
+  id: WhitelistChameleonCollar # Chameleon key for chameleon collars
+
+- type: Tag
   id: Wizard
 
 - type: Tag
