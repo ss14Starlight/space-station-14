@@ -239,12 +239,8 @@ public sealed partial class ChameleonGlassSystem : EntitySystem
     }
 
     private void SetOverride(Entity<ChameleonGlassComponent> ent, string value)
-    {
-        _appearance.SetData(ent.Owner, ChameleonGlassVisuals.Override, value);
-    }
+        => _appearance.SetData(ent.Owner, ChameleonGlassVisuals.Override, value);
 
     private void UpdateUi(Entity<ChameleonGlassComponent> ent)
-    {
-        _ui.SetUiState(ent.Owner, ChameleonGlassUiKey.Key, new ChameleonGlassUiState(ent.Comp.SelectedReagent));
-    }
+        => _ui.SetUiState(ent.Owner, ChameleonGlassUiKey.Key, new ChameleonGlassUiState(ent.Comp.SelectedReagent));
 }
