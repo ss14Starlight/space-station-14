@@ -318,9 +318,12 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
 
             return;
         }
+        var beforeStripEvent = new BeforeStripEvent(accessDelay);
+        RaiseLocalEvent(user, ref beforeStripEvent);
+        var doAfterDelay = fromStrippingView ? beforeStripEvent.Time : accessDelay;
 
         // For other users, require DoAfter with delay
-        var doAfterArgs = new DoAfterArgs(EntityManager, user, accessDelay,
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, doAfterDelay,
             new PrivateStorageDoAfterEvent(fromStrippingView), uid, target: owner)
         {
             BreakOnMove = true,
@@ -328,10 +331,13 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
             NeedHand = false,
             RequireCanInteract = true,
             BlockDuplicate = true,
-            CancelDuplicate = true
+            CancelDuplicate = true,
+            Hidden = beforeStripEvent.Stealth
         };
 
-        _popup.PopupEntity(Loc.GetString(accessPopup, ("user", user)), owner, owner, PopupType.Medium);
+        if (!beforeStripEvent.Stealth)
+            _popup.PopupEntity(Loc.GetString(accessPopup, ("user", user)), owner, owner, PopupType.Medium);
+
         _doAfter.TryStartDoAfter(doAfterArgs);
     }
 }

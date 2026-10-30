@@ -130,6 +130,7 @@
 
 - type: gamePreset
   id: AlmostAllAtOnce
+  bypassCooldowns: true
   alias:
   - almostall
   - allnt
@@ -159,6 +160,7 @@
 
 - type: gamePreset
   id: AlmostAllerAtOnce
+  bypassCooldowns: true
   alias:
   - almostallall
   - allernt
