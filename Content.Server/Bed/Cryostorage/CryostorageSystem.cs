@@ -202,10 +202,6 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
 
                 _stationJobs.TryRemovePlayerJobs(uniqueStation, userId.Value, stationJobs);
             }
-
-            // Starlight - start
-            _containerSpawnJobSlots.RefreshJobSlots();
-            // Starlight - end
         }
 
         // Starlight start
@@ -233,6 +229,10 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
                 _ghostSystem.OnGhostAttempt(mind.Value, false);
             }
         }
+        // Starlight start
+        if (userId != null)
+            _containerSpawnJobSlots.RefreshJobSlots();
+        // Starlight end
 
         RemComp<AnomalyComponent>(ent.Owner); // Starlight - kill anomaly infection when host cryosleep
         comp.AllowReEnteringBody = false;
