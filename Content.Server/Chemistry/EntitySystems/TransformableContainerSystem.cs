@@ -57,8 +57,7 @@ public sealed partial class TransformableContainerSystem : EntitySystem
         {
             entity.Comp.CurrentReagent = proto;
             entity.Comp.Transformed = true;
-            // Starlight-edit: replaces the reagent description update so chameleon glass can display its disguise.
-            RefreshDisplayedDescription(entity.Owner);
+            RefreshDisplayedDescription(entity.Owner); // Starlight-edit: replaces the reagent description update so chameleon glass can display its disguise.
         }
 
         _nameMod.RefreshNameModifiers(entity.Owner);
@@ -78,7 +77,6 @@ public sealed partial class TransformableContainerSystem : EntitySystem
         entity.Comp.Transformed = false;
 
         _nameMod.RefreshNameModifiers(entity.Owner);
-        // Starlight-edit: replaces the initial description reset so chameleon glass keeps its disguise when emptied.
-        RefreshDisplayedDescription(entity.Owner);
+        RefreshDisplayedDescription(entity.Owner); // Starlight-edit: replaces the initial description reset so chameleon glass keeps its disguise when emptied.
     }
 }
