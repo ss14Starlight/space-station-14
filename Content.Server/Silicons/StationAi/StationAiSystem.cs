@@ -503,6 +503,11 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     {
         base.OnAiInsert(ent, ref args);
 
+        // Starlight - start
+        if (args.Container.ID == StationAiCoreComponent.Container)
+            _containerSpawnJobSlots.RefreshJobSlots();
+        // Starlight - end
+
         UpdateBatteryAlert(ent);
         UpdateCoreIntegrityAlert(ent);
         UpdateDamagedAccent(ent);
@@ -511,6 +516,11 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     protected override void OnAiRemove(Entity<StationAiCoreComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         base.OnAiRemove(ent, ref args);
+
+        // Starlight - start
+        if (args.Container.ID == StationAiCoreComponent.Container)
+            _containerSpawnJobSlots.RefreshJobSlots(allowAiSlotIncrease: false);
+        // Starlight - end
 
         _alerts.ClearAlert(args.Entity, _batteryAlert);
         _alerts.ClearAlert(args.Entity, _damageAlert);

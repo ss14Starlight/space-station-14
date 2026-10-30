@@ -1,10 +1,17 @@
 using Content.IntegrationTests.Pair;
+using Content.Server.Ghost;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
+using Content.Server.Silicons.StationAi;
+using Content.Server._Starlight.Station.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Maps;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Silicons.StationAi;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
@@ -53,6 +60,137 @@ public sealed partial class MindTests
     }
 
     [Test]
+    public async Task StationAiJobSlotIsReleasedWhenAiGhostsWithoutCoreReturn()
+    {
+        var (pair, station, cores) = await SetupAiStation(1);
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+        var (mindId, _) = GetMind(pair);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
+            var stationJobs = entMan.System<StationJobsSystem>();
+            Assert.That(stationJobs.TryAssignJob(station, "StationAi", userId), Is.True);
+
+            var containers = entMan.System<SharedContainerSystem>();
+            var ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
+                throw new InvalidOperationException("Station AI core container was not initialized.");
+            Assert.That(containers.Insert(ai, coreContainer), Is.True);
+            entMan.System<MindSystem>().TransferTo(mindId, ai);
+
+            AssertStationAiJobSlots(entMan, station, 0);
+
+            var mind = entMan.GetComponent<MindComponent>(mindId);
+            Assert.That(entMan.System<GhostSystem>().OnGhostAttempt(mindId, true, viaCommand: true, mind: mind), Is.True);
+
+            Assert.That(coreContainer.ContainedEntities, Is.Empty);
+            Assert.That(mind.OwnedEntity, Is.Not.Null);
+            var ghost = mind.OwnedEntity!.Value;
+            Assert.That(entMan.HasComponent<GhostComponent>(ghost), Is.True);
+            Assert.That(entMan.GetComponent<GhostComponent>(ghost).CanReturnToBody, Is.False);
+            Assert.That(stationJobs.TryGetPlayerJobs(station, userId, out _), Is.False);
+            AssertStationAiJobSlots(entMan, station, 1);
+        });
+    }
+
+    [Test]
+    public async Task StationAiJobSlotRemainsReservedWhileAiCanReturnToCore()
+    {
+        var (pair, station, cores) = await SetupAiStation(1);
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+        var (mindId, _) = GetMind(pair);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
+            Assert.That(entMan.System<StationJobsSystem>().TryAssignJob(station, "StationAi", userId), Is.True);
+
+            var containers = entMan.System<SharedContainerSystem>();
+            var ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
+                throw new InvalidOperationException("Station AI core container was not initialized.");
+            Assert.That(containers.Insert(ai, coreContainer), Is.True);
+            entMan.System<MindSystem>().TransferTo(mindId, ai);
+
+            var core = entMan.GetComponent<StationAiCoreComponent>(cores[0]);
+            entMan.System<StationAiSystem>().KillHeldAi((cores[0], core));
+
+            var mind = entMan.GetComponent<MindComponent>(mindId);
+            Assert.That(mind.OwnedEntity, Is.EqualTo(ai));
+            Assert.That(mind.VisitingEntity, Is.Not.Null);
+            Assert.That(entMan.GetComponent<GhostComponent>(mind.VisitingEntity!.Value).CanReturnToBody, Is.True);
+            AssertStationAiJobSlots(entMan, station, 0);
+        });
+    }
+
+    [Test]
+    public async Task StationAiJobSlotReturnsWhenDeadAiStartsNewLife()
+    {
+        var (pair, station, cores) = await SetupAiStation(1);
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+        var (mindId, _) = GetMind(pair);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
+            var stationJobs = entMan.System<StationJobsSystem>();
+            Assert.That(stationJobs.TryAssignJob(station, "StationAi", userId), Is.True);
+
+            var containers = entMan.System<SharedContainerSystem>();
+            var ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
+                throw new InvalidOperationException("Station AI core container was not initialized.");
+            Assert.That(containers.Insert(ai, coreContainer), Is.True);
+            var mindSystem = entMan.System<MindSystem>();
+            mindSystem.TransferTo(mindId, ai);
+
+            entMan.System<MobStateSystem>().ChangeMobState(ai, MobState.Dead);
+            var mind = entMan.GetComponent<MindComponent>(mindId);
+            Assert.That(entMan.System<GhostSystem>().OnGhostAttempt(mindId, true, viaCommand: true, mind: mind), Is.True);
+            Assert.That(mind.VisitingEntity, Is.Not.Null);
+            AssertStationAiJobSlots(entMan, station, 0);
+
+            mindSystem.WipeMind(mindId, mind);
+
+            Assert.That(coreContainer.ContainedEntities, Is.Empty);
+            Assert.That(stationJobs.TryGetPlayerJobs(station, userId, out _), Is.False);
+            AssertStationAiJobSlots(entMan, station, 1);
+        });
+    }
+
+    [Test]
+    public async Task StationAiRefreshRestoresMissingSlotWhenCoreIsEmptyAndUnreserved()
+    {
+        var (pair, station, _) = await SetupAiStation(1);
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var stationJobs = entMan.System<StationJobsSystem>();
+            Assert.That(stationJobs.TrySetJobSlot(station, "StationAi", 0), Is.True);
+
+            entMan.System<ContainerSpawnJobSlotSystem>().RefreshJobSlots();
+
+            AssertStationAiJobSlots(entMan, station, 1);
+        });
+    }
+
+    [Test]
+    public async Task StationAiRefreshKeepsSlotReservedForIntellicardAi()
+    {
+        var (pair, _, _, _, station) = await SetupAiHolder();
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            entMan.System<ContainerSpawnJobSlotSystem>().RefreshJobSlots();
+
+            AssertStationAiJobSlots(entMan, station, 0);
+        });
+    }
+
+    [Test]
     public async Task StationAiEjectsWhenMindMovesToAnotherRole()
     {
         var (pair, holder, ai, mindId, station) = await SetupAiHolder();
@@ -97,14 +235,71 @@ public sealed partial class MindTests
         AssertStationAiJobSlots(entMan, station, 1);
     }
 
+    [Test]
+    public async Task StationAiAvailableSlotsAreCappedByEmptyCores()
+    {
+        var (pair, station, cores) = await SetupAiStation(2);
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            Assert.That(entMan.System<StationSystem>().GetOwningStation(cores[0]), Is.EqualTo(station));
+            AssertStationAiJobSlots(entMan, station, 2);
+
+            var containers = entMan.System<SharedContainerSystem>();
+            for (var i = 0; i < cores.Length; i++)
+            {
+                var ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+                if (!containers.TryGetContainer(cores[i], StationAiCoreComponent.Container, out var container))
+                    throw new InvalidOperationException("Station AI core container was not initialized.");
+                Assert.That(containers.Insert(ai, container), Is.True);
+                Assert.That(container.ContainedEntities.Count, Is.EqualTo(1));
+                AssertStationAiJobSlots(entMan, station, cores.Length - i - 1);
+            }
+        });
+    }
+
     private async Task<(TestPair Pair, EntityUid Holder, EntityUid Ai, EntityUid Mind, EntityUid Station)> SetupAiHolder()
     {
-        var pair = await SetupPair();
+        var (pair, station, cores) = await SetupAiStation(1);
         var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
         var (mindId, _) = GetMind(pair);
         EntityUid ai = default;
         EntityUid holder = default;
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var stationJobs = entMan.System<StationJobsSystem>();
+            var containers = entMan.System<SharedContainerSystem>();
+            var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
+            Assert.That(stationJobs.TryAssignJob(station, "StationAi", userId), Is.True);
+
+            ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
+                throw new InvalidOperationException("Station AI core container was not initialized.");
+            Assert.That(containers.Insert(ai, coreContainer), Is.True);
+            entMan.System<MindSystem>().TransferTo(mindId, ai);
+            AssertStationAiJobSlots(entMan, station, 0);
+
+            holder = entMan.SpawnEntity("Intellicard", MapCoordinates.Nullspace);
+            var aiHolder = entMan.GetComponent<StationAiHolderComponent>(holder);
+            var slotContainer = aiHolder.Slot.ContainerSlot;
+            if (slotContainer == null)
+                throw new InvalidOperationException("Intellicard AI container was not initialized.");
+
+            Assert.That(containers.Insert(ai, slotContainer), Is.True);
+        });
+        await pair.RunTicksSync(5);
+
+        return (pair, holder, ai, mindId, station);
+    }
+
+    private async Task<(TestPair Pair, EntityUid Station, EntityUid[] Cores)> SetupAiStation(int coreCount)
+    {
+        var pair = await SetupPair();
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
         EntityUid station = default;
+        var cores = new EntityUid[coreCount];
 
         await pair.Server.WaitAssertion(() =>
         {
@@ -115,33 +310,28 @@ public sealed partial class MindTests
 
         await pair.Server.WaitAssertion(() =>
         {
-            var stationJobs = entMan.System<StationJobsSystem>();
-            Assert.That(stationJobs.TrySetJobSlot(station, "StationAi", 1, true), Is.True);
-            var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
-            Assert.That(stationJobs.TryAssignJob(station, "StationAi", userId), Is.True);
-
-            ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
-            entMan.System<MindSystem>().TransferTo(mindId, ai);
-            AssertStationAiJobSlots(entMan, station, 0);
-
-            holder = entMan.SpawnEntity("Intellicard", MapCoordinates.Nullspace);
-            var aiHolder = entMan.GetComponent<StationAiHolderComponent>(holder);
-            var slotContainer = aiHolder.Slot.ContainerSlot;
-            if (slotContainer == null)
-                throw new InvalidOperationException("Intellicard AI container was not initialized.");
-
-            Assert.That(
-                entMan.System<SharedContainerSystem>().Insert(ai, slotContainer),
-                Is.True);
+            for (var i = 0; i < cores.Length; i++)
+            {
+                cores[i] = entMan.SpawnEntity("PlayerStationAi", MapCoordinates.Nullspace);
+                var tracker = entMan.AddComponent<StationTrackerComponent>(cores[i]);
+                entMan.System<StationSystem>().SetStation((cores[i], tracker), station);
+            }
         });
-        await pair.RunTicksSync(5);
+        await pair.RunTicksSync(1);
 
-        return (pair, holder, ai, mindId, station);
+        await pair.Server.WaitAssertion(() =>
+        {
+            Assert.That(entMan.System<StationJobsSystem>().TrySetJobSlot(station, "StationAi", coreCount, true), Is.True);
+        });
+
+        return (pair, station, cores);
     }
 
-    private static void AssertStationAiJobSlots(IServerEntityManager entMan, EntityUid station, int expectedSlots) =>
+    private static void AssertStationAiJobSlots(IServerEntityManager entMan, EntityUid station, int expectedSlots)
+    {
         Assert.That(
-            entMan.System<StationJobsSystem>().TryGetJobSlot(station, "StationAi", out var slots)
-            && slots == expectedSlots,
+            entMan.System<StationJobsSystem>().TryGetJobSlot(station, "StationAi", out var slots),
             Is.True);
+        Assert.That(slots, Is.EqualTo(expectedSlots), "Unexpected number of available Station AI slots.");
+    }
 }

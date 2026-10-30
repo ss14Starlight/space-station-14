@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿﻿using System.Linq;
 using System.Numerics;
 using Content.Server._Starlight.NewLife;
 using Content.Server.Administration.Logs;
@@ -545,6 +545,9 @@ namespace Content.Server.Ghost
             var position = Exists(playerEntity)
                 ? Transform(playerEntity.Value).Coordinates
                 : _gameTicker.GetObserverSpawnPoint();
+
+            if (position == default) // Starlight
+                position = _gameTicker.GetObserverSpawnPoint(); // Starlight
 
             if (position == default)
                 return false;

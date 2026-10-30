@@ -3,6 +3,7 @@ using Content.Server._Starlight.Utility;
 using Content.Server._Starlight.Utility.Events;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared._Starlight.Mind.Events;
+using Content.Shared.Ghost;
 using Content.Shared.Mind.Components;
 using Content.Shared.Power.Components;
 using Content.Shared.Silicons.StationAi;
@@ -42,7 +43,13 @@ public sealed partial class StationAiSystem
     [SubscribeLocalEvent]
     private void OnMindRemoved(Entity<MindContainerComponent> entity, ref MindRemovedMessage args)
     {
-        if (EjectContainedAi(entity.Owner))
+        var permanentlyGhostedFromCore = args.TransferEntity is { } target
+                                        && TryComp<GhostComponent>(target, out var ghost)
+                                        && !ghost.CanReturnToBody
+                                        && _container.TryGetContainingContainer(entity.Owner, out var container)
+                                        && HasComp<StationAiCoreComponent>(container.Owner);
+
+        if (EjectContainedAi(entity.Owner) || permanentlyGhostedFromCore)
             FreeStationAiJobSlot(args.Mind.Comp.UserId);
     }
 
