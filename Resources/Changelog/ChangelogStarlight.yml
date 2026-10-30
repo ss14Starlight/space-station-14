@@ -1,20 +1,6 @@
 Entries:
 - author: Alloy-Inc
   changes:
-  - message: Bolt Rifle now has a small amount of spread instead of perfect accuracy, unwielded accuracy has been made worse, it is still a fairly accurate weapon. This is subject to being increased at a later date depending on feedback.
-    type: Tweak
-  id: 409563
-  time: '2026-10-17T12:07:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6722
-- author: Alloy-Inc
-  changes:
-  - message: Bolt Rifle now takes as much inventory space as the L6.
-    type: Tweak
-  id: 409564
-  time: '2026-10-17T12:07:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6722
-- author: Alloy-Inc
-  changes:
   - message: Burst fire mode on the Bolt Rifle. I'm sorry but this needs to go.
     type: Remove
   id: 409565
@@ -2799,4 +2785,18 @@ Entries:
   id: 409962
   time: '2026-10-30T20:00:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6928
+- author: Rescue
+  changes:
+  - message: Borg fashion software has been updated, vastly improving the placement of hats across all 84 models.
+    type: Fix
+  id: 409963
+  time: '2026-10-30T20:22:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6926
+- author: Rescue
+  changes:
+  - message: You may now beg your xenoborg mother to equip you with fashionable battle-attire.
+    type: Add
+  id: 409964
+  time: '2026-10-30T20:22:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6926
 Order: -1
