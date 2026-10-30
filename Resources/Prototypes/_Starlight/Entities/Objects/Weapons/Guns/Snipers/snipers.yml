@@ -60,7 +60,7 @@
     supportedPins: [ Makeshift, GunUpgrade ]
 
 - type: entity
-  name: Militia Rifle
+  name: militia rifle
   parent: [ BaseContrabandTier3, BaseWeaponSniper, BaseSecurityContraband ] # Blimpuf
   id: WeaponRifleMilitia
   description: "An extremely old rifle, fires .30 with a 10 round internal magazine. Ineffective, but extremely cheap. Loaded manually or with .30 speedloaders."
