@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Alpha) Zombies lowered from 5.9% -> 5% (Zombies & Zombieteors).
-    type: Tweak
-  id: 409519
-  time: '2026-10-16T11:06:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6691
-- author: Caws
-  changes:
-  - message: (Alpha) PvE gamemodes increased from 5.9% -> 7% (Survival & Kessler).
-    type: Tweak
-  id: 409520
-  time: '2026-10-16T11:06:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6691
-- author: Caws
-  changes:
   - message: (Alpha) Traitor-Like gamemodes increased from 29.7% -> 30% (Traitor, Traitorling, Vampire, Vamptraitorling).
     type: Tweak
   id: 409521
@@ -2799,4 +2785,18 @@ Entries:
   id: 409918
   time: '2026-10-30T11:45:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6946
+- author: Yosif
+  changes:
+  - message: Hydroponics tools now craftable in service techfab.
+    type: Fix
+  id: 409919
+  time: '2026-10-30T14:29:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6902
+- author: Yosif
+  changes:
+  - message: botany cyborg module now have plant analyzer.
+    type: Tweak
+  id: 409920
+  time: '2026-10-30T14:29:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6902
 Order: -1
