@@ -9,9 +9,12 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Content.Shared.SSDIndicator;
 using Content.Server._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
@@ -25,6 +28,10 @@ public sealed partial class CosmicSiphonSystem : EntitySystem
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+
+    private static readonly EntProtoId SiphonAction = "ActionCosmicSiphon";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -72,6 +79,7 @@ public sealed partial class CosmicSiphonSystem : EntitySystem
             BreakOnDamage = true,
             BreakOnMove = true,
             BreakOnDropItem = true,
+            MovementThreshold = 0.5f, // Default 0.3f, slightly larger tolerance for movement
         };
         args.Handled = true;
         _doAfter.TryStartDoAfter(doargs);
@@ -81,7 +89,12 @@ public sealed partial class CosmicSiphonSystem : EntitySystem
     {
         if (args.Args.Target is not { } target)
             return;
-        if (args.Cancelled || args.Handled)
+        if (args.Cancelled)
+        {
+            ApplyPartialSiphonCooldown(uid); // Half cooldown if the siphon is interrupted
+            return;
+        }
+        if (args.Handled)
             return;
         args.Handled = true;
 
@@ -97,5 +110,18 @@ public sealed partial class CosmicSiphonSystem : EntitySystem
         _cultRule.IncrementCultObjectiveEntropy(uid);
         EnsureComp<CosmicDebuffQueueComponent>(target, out var cosmicDebuffQueue);
         cosmicDebuffQueue.DebuffQuant++;
+    }
+
+    private void ApplyPartialSiphonCooldown(EntityUid user)
+    {
+        foreach (var action in _actions.GetActions(user))
+        {
+            if (MetaData(action.Owner).EntityPrototype?.ID != SiphonAction.Id)
+                continue;
+
+            if (action.Comp.UseDelay is { } useDelay)
+                _actions.SetCooldown((action.Owner, action.Comp), useDelay / 2);
+            break;
+        }
     }
 }

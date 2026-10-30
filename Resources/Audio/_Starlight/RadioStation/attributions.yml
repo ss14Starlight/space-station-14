@@ -1,0 +1,4 @@
+- files: ["static.ogg"]
+  license: "CC0-1.0"
+  copyright: "Procedurally generated radio static (filtered noise and crackles) for Starlight"
+  source: "https://github.com/ss14Starlight/space-station-14"

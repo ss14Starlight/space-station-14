@@ -1,6 +1,7 @@
 - type: !PartialOnly npcFaction
   id: Dragon
   hostile:
+  - BloodBound
   - Changeling
   - DungeonSoviet
   - DungeonSyndicate
@@ -17,6 +18,8 @@
 
 - type: !PartialOnly npcFaction
   id: NanoTrasen
+  friendly:
+  - BloodBound
   hostile:
   - SyndicateSilicon
   - DungeonSyndicate
@@ -37,6 +40,8 @@
 
 - type: !PartialOnly npcFaction
   id: PetsNT
+  friendly:
+  - BloodBound
   hostile:
   - Abyss
   - Wizard
@@ -49,6 +54,7 @@
 - type: !PartialOnly npcFaction
   id: SimpleHostile
   hostile:
+  - BloodBound
   - NanoTrasenSilicon
   - SyndicateSilicon
   - DungeonSyndicate
@@ -65,6 +71,7 @@
 - type: !PartialOnly npcFaction
   id: Syndicate
   hostile:
+  - BloodBound
   - NanoTrasenSilicon
   - DungeonSyndicate
   - DungeonSoviet
@@ -79,6 +86,7 @@
 - type: !PartialOnly npcFaction
   id: Xeno
   hostile:
+  - BloodBound
   - !Remove Xenoborg
   - NanoTrasenSilicon
   - SyndicateSilicon
@@ -95,6 +103,7 @@
 - type: !PartialOnly npcFaction
   id: Zombie
   hostile:
+  - BloodBound
   - !Remove Xenoborg
   - DungeonSyndicate
   - DungeonSoviet
@@ -109,8 +118,11 @@
 - type: !PartialOnly npcFaction
   id: Revolutionary
   hostile:
+  - BloodBound
   - !Remove Wizard
   - !Remove Xenoborg
+  - !Remove NanoTrasen # Don't attack crew indiscriminately...
+  - Shielded # ...only mindshielded crew. Viva!
   - NanoTrasenSilicon
   - DungeonSyndicate
   - DungeonSoviet
@@ -125,6 +137,7 @@
 - type: !PartialOnly npcFaction
   id: AllHostile
   hostile:
+  - BloodBound
   - NanoTrasenSilicon
   - SyndicateSilicon
   - HonkNeutral
@@ -140,6 +153,7 @@
 - type: !PartialOnly npcFaction
   id: Wizard
   hostile:
+  - BloodBound
   - NanoTrasenSilicon
   - SyndicateSilicon
   - Gorilla
@@ -150,6 +164,7 @@
 - type: !PartialOnly npcFaction
   id: Xenoborg
   hostile:
+  - BloodBound
   - !Remove Xeno
   - DungeonSyndicate
   - DungeonSoviet

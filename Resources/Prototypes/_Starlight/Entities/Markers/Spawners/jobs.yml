@@ -244,3 +244,17 @@
     - state: green
     - sprite: _Starlight/Mobs/Pets/k9.rsi
       state: k9-brown
+
+- type: entity
+  id: SpawnPointGunnerySergeant
+  parent: SpawnPointJobBase
+  name: gunnery sergeant
+  components:
+  - type: SpawnPoint
+    job_id: GunnerySergeant
+  - type: Sprite
+    sprite: _Starlight/Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: gunnerysergeant
+    - state: jobicon

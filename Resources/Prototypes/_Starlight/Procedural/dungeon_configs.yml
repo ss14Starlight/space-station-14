@@ -103,48 +103,6 @@
 
 #========================================================================
 
-# type: dungeonConfig
-# id: NoWallArenaPlanetBase
-# layers:
-# - !type:PrefabDunGen
-#   presets:
-#   - Arena
-#
-# - !type:CorridorDunGen
-#   width: 1
-#
-# - !type:DungeonEntranceDunGen
-#   count: 1
-#
-# - !type:RoomEntranceDunGen
-#
-# - !type:EntranceFlankDunGen
-#
-# - !type:BoundaryWallDunGen
-#
-# - !type:JunctionDunGen
-#   width: 1
-#
-# - !type:JunctionDunGen
-#
-# - !type:CornerClutterDunGen
-
-#- type: dungeonConfig
-#  id: ElderArenaDungeon
-#  data:
-#    tiles:
-#      FallbackTile: FloorAbyss
-#    spawnGroups:
-#      Window: Nothing
-#    whitelists:
-#      Rooms:
-#        tags:
-#        - ElderArena
-#  layers:
-#  - !type:PrototypeDunGen
-#    proto: NoWallArenaPlanetBase
-
-#========================================================================
 - type: dungeonConfig
   id: SovietDungeon
   layers:
@@ -289,7 +247,7 @@
 
   - !type:CorridorClutterDunGen
     contents: SovietCorridorsWeh
-    chance: 0.55
+    chance: 0.3
 
   - !type:CorridorDecalSkirtingDunGen
     cardinalDecals:
@@ -347,34 +305,16 @@
     children:
     # Posters
     - id: VendingMachineSovietSoda
-    - id: VendingMachineSovietSodaEmpty
-    - id: Rack
-      weight: 6
-    - id: PoweredLightPostSmall
-      weight: 6
-    - id: Table
-      weight: 6
     - id: BannerSovietRegular
     - id: MobBearSoviet
-    - id: DecalSpawnerBloodSplatters
-      weight: 6
     - id: GenericTank
-      weight: 6
     - id: ClosetRadiationSuitFilled
     - id: ClosetRadiationSuit
-    - id: DecalSpawnerDirtWide
-      weight: 15
     - id: DecalSpawnerGraffiti
-      weight: 15
     - id: RandomSpawner
-      weight: 15
-    - id: OreBox
-      weight: 28
     - id: MaintenancePlantSpawner
-      weight: 6
     - id: MaintenanceWeaponSpawner
     - id: MaintenanceToolSpawner
-      weight: 6
     - id: RandomMercenaryCorpseSpawner
     - id: RandomSovietCorpseSpawner
     - id: RandomArtifactSpawner20
@@ -387,8 +327,6 @@
     - id: SalvageSpawnerTreasure
     - id: SalvageLootSpawner
     - id: BaseBarrelChemRadioactiveFilledUranium
-    - id: Bonfire
-      weight: 7
     - id: BarrelFlaming
       weight: 3
     - id: AcousticGuitarInstrument
@@ -398,10 +336,6 @@
     - id: PuddleVomit
     - id: BarrelChemFilledLube
     - id: BarrelChemEmpty
-    - id: BarrelChemFilledPhosphorus
-    - id: BarrelChemFilledChlorine
-
-
 
 #========================================================================
 

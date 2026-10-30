@@ -1332,6 +1332,7 @@
   - type: SpeakOnTrigger
     text: dwarf-callout-mushroom
     targetUser: true
+  - type: EmitPollen
   #END STARLIGHT
   - type: Tag
     tags:
