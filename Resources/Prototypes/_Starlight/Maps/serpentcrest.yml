@@ -46,6 +46,7 @@
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
             Performer: [ 4, 4 ]
+            Artist: [ 1, 1]
 
             # Engineering
             AtmosphericTechnician: [ 3, 3 ]

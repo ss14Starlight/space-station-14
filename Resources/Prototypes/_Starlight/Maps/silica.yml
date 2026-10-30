@@ -40,6 +40,7 @@
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
             Performer: [ 2, 4 ]
+            Artist: [ 2, 2 ]
 
             #engineering
             ChiefEngineer: [ 1, 1 ]

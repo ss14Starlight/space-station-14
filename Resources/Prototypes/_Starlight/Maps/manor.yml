@@ -29,6 +29,7 @@
             Lawyer: [ 2, 2 ]
             ServiceWorker: [ 4, 4 ]
             Reporter: [ 2, 2 ]
+            Artist: [ 4, 4 ] #manor got that pretentious artsy vibe
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]

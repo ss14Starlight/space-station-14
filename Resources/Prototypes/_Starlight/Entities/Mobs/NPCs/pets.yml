@@ -386,7 +386,7 @@
 
 - type: entity
   name: Luna
-  parent: MobJellyFish
+  parent: BaseMobJellyFish
   id: MobJellyFishLuna
   description: A squishy little moon jelly, with a passion for the arts. 
   components:
@@ -400,7 +400,7 @@
       state: luna_unshaded
       shader: unshaded
   - type: PointLight
-    radius: 3.0
+    radius: 3
     energy: 2.5
     color: "#83aaff"
   - type: DamageStateVisuals
@@ -411,9 +411,20 @@
         Base: luna_dead
       Dead:
         Base: luna_dead
+  - type: InteractionPopup
+    successChance: 0.9
+    interactSuccessString: petting-success-jellyfish
+    interactFailureString: petting-failure-jellyfish
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+    interactFailureSpawn: ArmorSparkEffect
+    interactFailureSound:
+      path: /Audio/Effects/PowerSink/electric.ogg
   - type: Grammar
     attributes:
       proper: true
+      gender: epicene
   - type: Tag
     tags:
     - CannotSuicide

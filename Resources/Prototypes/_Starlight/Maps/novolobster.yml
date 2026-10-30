@@ -41,6 +41,7 @@
             Mime: [ 1, 1 ]
             Musician: [ 3, 3 ]
             Performer: [ 5, 5 ]
+            Artist: [ 2, 2 ]
 
             # Engineering
             ChiefEngineer: [ 1, 1 ]

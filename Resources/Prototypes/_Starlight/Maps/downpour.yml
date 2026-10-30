@@ -74,6 +74,7 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             Performer: [ 2, 2 ]
+            Artist: [ 2, 2]
             # Silicon (4)
             Borg: [ 3, 3 ]
             StationAi: [ 1, 1 ]

@@ -29,6 +29,7 @@
             ServiceWorker: [ 2, 2 ]
             Reporter: [ 1, 2 ]
             RadioHost: [ 1, 1 ]
+            Artist: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 2 ]
