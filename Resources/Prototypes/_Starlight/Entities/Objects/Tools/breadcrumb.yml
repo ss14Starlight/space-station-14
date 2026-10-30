@@ -1,0 +1,70 @@
+- type: entity
+  id: BreadcrumbBag
+  name: breadcrumb bag
+  description: A bag to drop breadcrumbs with.
+  components:
+    - type: Transform
+      noRot: true
+    - type: Item
+      size: Small
+      shape:
+        - 0,0,0,1
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/Breadcrumb/bag.rsi
+      layers:
+        - state: bag
+      noRot: true
+    - type: BreadcrumbDropper
+      color: "#ff0000"
+    - type: LimitedCharges
+      maxCharges: 999999999
+      lastCharges: 50
+
+- type: entity
+  id: BreadcrumbDropping
+  name: breadcrumb
+  description: A breadcrumb, so you don't lose your way.
+  components:
+    - type: Item
+      size: Tiny
+      shape:
+        - 0,0,0,0
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/Breadcrumb/dropping.rsi
+      noRot: true
+      layers:
+        - state: base
+        - state: light
+          map: [ "enum.BreadcrumbDroppingVisualLayers.Color" ]
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 1
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: Appearance
+    - type: PointLight
+      color: "#ffffff"
+      radius: 3
+      intensity: 0.8
+    - type: ExpendableLight
+      glowDuration: 10
+      fadeOutDuration: 20
+      turnOnBehaviourID: turn_on
+      fadeOutBehaviourID: fade_out
+    - type: LightBehaviour
+      behaviours:
+        - !type:FadeBehaviour # have the radius start small and get larger as it starts to burn
+          id: turn_on
+          maxDuration: 120
+          property: Energy
+          startValue: 1.3
+          endValue: 1.3
+        - !type:FadeBehaviour # fade out radius as it burns out
+          id: fade_out
+          maxDuration: 1080
+          property: Energy
+          startValue: 1.3
+          endValue: 0
