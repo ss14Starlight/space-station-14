@@ -51,8 +51,17 @@ public sealed partial class ChangelingComponent : Component
     [DataField]
     public float StealthDrain = 1.25f; // 6.6 minutes to fully drain 100 chemicals
 
+    /// <summary>
+    ///     Biomass paid separately on successful entry into and exit from stasis.
+    /// </summary>
     [DataField]
-    public float StasisDrain = 10f / 60f; // Biomass per second in stasis.
+    public float StasisBiomassCost = 15f;
+
+    /// <summary>
+    ///     Chemicals required to wake from stasis, in addition to its biomass cost.
+    /// </summary>
+    [DataField]
+    public float StasisExitChemicalCost = 60f;
 
 
     public Dictionary<string, EntityUid?> Equipment = new();

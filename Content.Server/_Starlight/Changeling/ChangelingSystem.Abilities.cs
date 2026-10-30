@@ -224,6 +224,9 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     }
 
+    /// <summary>
+    ///     Charges the entry cost only after validation; stasis itself has no biomass upkeep.
+    /// </summary>
     private void OnEnterStasis(EntityUid uid, ChangelingComponent comp, ref EnterStasisEvent args)
     {
         if (comp.IsInStasis || HasComp<AbsorbedComponent>(uid))
@@ -232,7 +235,14 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
-        comp.Chemicals = 0f;
+        if (comp.Biomass < comp.StasisBiomassCost)
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-biomass-deficit"), uid, uid);
+            return;
+        }
+
+        UpdateBiomass(uid, comp, -comp.StasisBiomassCost);
+        UpdateChemicals(uid, comp, -comp.Chemicals);
 
         ToggleChameleonSkin(uid, comp, false);
 
@@ -253,6 +263,10 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         args.Handled = true;
     }
+
+    /// <summary>
+    ///     Requires a separate biomass payment to wake. Failed attempts leave stasis and resources intact.
+    /// </summary>
     private void OnExitStasis(EntityUid uid, ChangelingComponent comp, ref ExitStasisEvent args)
     {
         if (!comp.IsInStasis)
@@ -268,6 +282,21 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         if (!TryComp<DamageableComponent>(uid, out var damageable))
             return;
+
+        if (comp.Biomass < comp.StasisBiomassCost)
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-biomass-deficit"), uid, uid);
+            return;
+        }
+
+        if (comp.Chemicals < comp.StasisExitChemicalCost)
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
+            return;
+        }
+
+        UpdateBiomass(uid, comp, -comp.StasisBiomassCost);
+        UpdateChemicals(uid, comp, -comp.StasisExitChemicalCost);
 
         // heal of everything
         _damage.SetAllDamage(uid, 0);

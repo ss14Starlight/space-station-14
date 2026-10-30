@@ -148,15 +148,16 @@ public sealed partial class ChangelingSystem : EntitySystem
             {
                 comp.ChemicalNextUpdateTime = _timing.CurTime + comp.ChemicalUpdateCooldown;
                 UpdateChemicals(uid, comp);
-                // Stasis upkeep is per second and runs only on the chemical tick.
-                if (comp.IsInStasis)
-                    comp.Biomass = Math.Max(0, comp.Biomass - comp.StasisDrain * (float) comp.ChemicalUpdateCooldown.TotalSeconds);
                 UpdateAbilities(uid, comp);
             }
 
             if (_timing.CurTime >= comp.BiomassNextUpdateTime)
             {
                 comp.BiomassNextUpdateTime = _timing.CurTime + comp.BiomassUpdateCooldown;
+                // Stasis suspends passive biomass consumption and periodic starvation effects.
+                if (comp.IsInStasis)
+                    continue;
+
                 //subtract biomass
                 if (_gameTicker.RunLevel < GameRunLevel.PostRound) // Starlight: Only get hungrier when not EOR
                     comp.Biomass -= comp.BiomassDrain;
@@ -244,12 +245,6 @@ public sealed partial class ChangelingSystem : EntitySystem
                 if (stamina.StaminaDamage >= stamina.CritThreshold)
                     ToggleChameleonSkin(uid, comp, false);
             }
-        }
-
-        if (comp.IsInStasis && comp.Biomass <= 0)
-        {
-            comp.IsInStasis = false;
-            _mobState.ChangeMobState(uid, MobState.Dead);
         }
     }
 
