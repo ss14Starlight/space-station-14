@@ -8,7 +8,7 @@ namespace Content.Shared._Starlight.Breadcrumb.Components;
 /// It is dropped by a <see cref="BreadcrumbDropperComponent"/>. See that type for more info.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class BreadcrumbDroppingComponent : Component
+public sealed partial class BreadcrumbComponent : Component
 {
     /// <summary>
     /// The dropper that made this dropping.
@@ -19,13 +19,17 @@ public sealed partial class BreadcrumbDroppingComponent : Component
     /// The color of this dropping.
     /// </summary>
     [DataField, AutoNetworkedField] public Color Color = Color.White;
-
-    [DataField, AutoNetworkedField] public float PhaseOffset;
-
 }
 
 [Serializable, NetSerializable]
-public enum BreadcrumbDroppingVisualLayers
+public enum BreadcrumbVisualLayers
+{
+    UnlitColor,
+    LitColor
+}
+
+[Serializable, NetSerializable]
+public enum BreadcrumbVisualData
 {
     Color
 }

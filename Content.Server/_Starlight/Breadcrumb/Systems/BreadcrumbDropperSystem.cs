@@ -3,6 +3,8 @@ using Content.Server.Light.Components;
 using Content.Server.Light.EntitySystems;
 using Content.Shared._Starlight.Breadcrumb.Components;
 using Content.Shared._Starlight.Breadcrumb.Systems;
+using Content.Shared.Light.Components;
+using Content.Shared.Popups;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Breadcrumb.Systems;
@@ -30,46 +32,56 @@ public sealed partial class BreadcrumbDropperSystem : SharedBreadcrumbDropperSys
             dropperComp.NextDropCheck = now + dropperComp.DropCheckFrequency;
 
             Entity<BreadcrumbDropperComponent> dropper = (uid, dropperComp);
-            if (HasDroppingNearby(dropper, xform))
+            if (HasCrumbNearby(dropper, xform))
                 continue;
 
             if (!ChargesSystem.TryUseCharge(uid))
-                continue; // TODO: sound or smth?
+            {
+                dropperComp.Enabled = false;
+                PopupSystem.PopupEntity(Loc.GetString("breadcrumb-dropper-emptied"), dropper, PopupType.Medium);
+                Dirty(dropper);
+                continue;
+            }
 
             Drop(dropper, xform);
         }
     }
 
-    private bool HasDroppingNearby(Entity<BreadcrumbDropperComponent> dropper, TransformComponent xform)
-        => _lookup
-            .GetEntitiesInRange<BreadcrumbDroppingComponent>(xform.Coordinates, dropper.Comp.DropRange)
-            .Any(ent => ent.Comp.Dropper == dropper.Owner);
+    private bool HasCrumbNearby(Entity<BreadcrumbDropperComponent> dropper, TransformComponent xform)
+    {
+        foreach (var ent in _lookup
+                     .GetEntitiesInRange<BreadcrumbComponent>(xform.Coordinates, dropper.Comp.DropRange))
+        {
+            if (ent.Comp.Dropper != dropper.Owner)
+                continue;
+
+            if (!TryComp<ExpendableLightComponent>(ent, out var expendableLight) ||
+                expendableLight.CurrentState == ExpendableLightState.Dead)
+                continue;
+
+            return true;
+        }
+
+        return false;
+    }
 
     private void Drop(Entity<BreadcrumbDropperComponent> dropper, TransformComponent xform)
     {
-        var ent = SpawnAtPosition(dropper.Comp.DroppingPrototype, xform.Coordinates);
+        var ent = SpawnAtPosition(dropper.Comp.BreadcrumbPrototype, xform.Coordinates);
 
-        var dropping = EnsureComp<BreadcrumbDroppingComponent>(ent);
-        dropping.Dropper = dropper.Owner;
-        dropping.Color = dropper.Comp.Color;
+        var crumb = EnsureComp<BreadcrumbComponent>(ent);
+        crumb.Dropper = dropper.Owner;
+        crumb.Color = dropper.Comp.Color;
+        Dirty(ent, crumb);
 
-        var phase = dropper.Comp.NextIndex++ * dropper.Comp.IndexPhaseMultiplier;
-        dropping.PhaseOffset = phase - MathF.Truncate(phase); // Strips whole numbers, leaves the decimal.
-
-        Dirty(ent, dropping);
-
-        _pointLight.SetColor(ent, dropping.Color);
-        _appearance.SetData(ent, BreadcrumbDroppingVisualLayers.Color, dropping.Color);
-
-        // TODO: play pop sound?
+        _pointLight.SetColor(ent, crumb.Color);
+        _appearance.SetData(ent, BreadcrumbVisualData.Color, crumb.Color);
     }
 
     [SubscribeLocalEvent]
-    public void OnStartup(Entity<BreadcrumbDroppingComponent> dropping, ref ComponentStartup ev)
+    public void OnBreadcrumbMapInit(Entity<BreadcrumbComponent> crumb, ref MapInitEvent ev)
     {
-        //_lightBehavior.SetOffset(dropping.Owner, dropping.Comp.PhaseOffset)
-        if (TryComp<ExpendableLightComponent>(dropping, out var expendableLight))
-            _expendableLight.TryActivate((dropping, expendableLight));
+        if (TryComp<ExpendableLightComponent>(crumb, out var expendableLight))
+            _expendableLight.TryActivate((crumb, expendableLight));
     }
-
 }

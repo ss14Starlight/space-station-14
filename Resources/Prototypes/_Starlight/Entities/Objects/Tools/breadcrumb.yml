@@ -1,7 +1,7 @@
 - type: entity
-  id: BreadcrumbBag
-  name: breadcrumb bag
-  description: A bag to drop breadcrumbs with.
+  id: GlowstoneDropper
+  name: glowstone dropper
+  description: A bag that drops glowstones as you walk. Going back has never been so easy!
   components:
     - type: Transform
       noRot: true
@@ -21,9 +21,10 @@
       lastCharges: 50
 
 - type: entity
-  id: BreadcrumbDropping
-  name: breadcrumb
-  description: A breadcrumb, so you don't lose your way.
+  parent: BaseItem
+  id: Glowstone
+  name: glowstone
+  description: A stone that glows for a while. Useful for tracking where you've been.
   components:
     - type: Item
       size: Tiny
@@ -35,7 +36,15 @@
       layers:
         - state: base
         - state: light
-          map: [ "enum.BreadcrumbDroppingVisualLayers.Color" ]
+          map: [ "enum.BreadcrumbVisualLayers.UnlitColor", "enum.ExpendableLightVisualLayers.Base" ]
+        - state: light
+          map: [ "enum.BreadcrumbVisualLayers.LitColor", "enum.ExpendableLightVisualLayers.Glow" ]
+          visible: false
+          shader: unshaded
+#        - state: light
+#          map: [ "enum.ExpendableLightVisualLayers.Overlay" ]
+    - type: Breadcrumb
+    - type: Damageable
     - type: Destructible
       thresholds:
         - trigger:
@@ -46,25 +55,30 @@
               acts: [ "Destruction" ]
     - type: Appearance
     - type: PointLight
+      enabled: false
       color: "#ffffff"
       radius: 3
       intensity: 0.8
     - type: ExpendableLight
-      glowDuration: 10
-      fadeOutDuration: 20
+      glowDuration: 5 # 240 # 4 minutes full power
+      fadeOutDuration: 10 # 1020 # 16 minutes declining power
       turnOnBehaviourID: turn_on
       fadeOutBehaviourID: fade_out
     - type: LightBehaviour
       behaviours:
         - !type:FadeBehaviour # have the radius start small and get larger as it starts to burn
           id: turn_on
-          maxDuration: 120
+          maxDuration: 5 # 240 # 4 minutes full power
           property: Energy
           startValue: 1.3
           endValue: 1.3
         - !type:FadeBehaviour # fade out radius as it burns out
           id: fade_out
-          maxDuration: 1080
+          maxDuration: 10 # 1020 # 16 minutes declining power
           property: Energy
           startValue: 1.3
           endValue: 0
+    - type: Tag
+    - type: SpaceGarbage
+    - type: TimedDespawn
+      lifetime: 1500 # 25mins
