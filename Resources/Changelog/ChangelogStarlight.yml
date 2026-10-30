@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Alpha) Traitor-Like gamemodes increased from 29.7% -> 30% (Traitor, Traitorling, Vampire, Vamptraitorling).
-    type: Tweak
-  id: 409521
-  time: '2026-10-16T11:06:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6691
-- author: Caws
-  changes:
   - message: (Alpha) Wizard Duel decreased from 2.3% -> 1%.
     type: Tweak
   id: 409522
@@ -2799,4 +2792,11 @@ Entries:
   id: 409920
   time: '2026-10-30T14:29:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6902
+- author: Johnny
+  changes:
+  - message: Evac pod requesting now only needs two command instead of three.
+    type: Tweak
+  id: 409921
+  time: '2026-10-30T15:03:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6947
 Order: -1
