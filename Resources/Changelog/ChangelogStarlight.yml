@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Alpha) PvP gamemodes increased from 23.5% -> 25% (NukeOps, Revs, Cult, Zombies). This is lower than Beta's gamemode percentage because Alpha's rounds are much shorter (meaning they'll still roll more often 'per day').
-    type: Tweak
-  id: 409518
-  time: '2026-10-16T11:06:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6691
-- author: Caws
-  changes:
   - message: (Alpha) Zombies lowered from 5.9% -> 5% (Zombies & Zombieteors).
     type: Tweak
   id: 409519
@@ -2799,4 +2792,11 @@ Entries:
   id: 409917
   time: '2026-10-29T22:22:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6900
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Changeling shapeshift now works properly again.
+    type: Fix
+  id: 409918
+  time: '2026-10-30T11:45:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6946
 Order: -1
