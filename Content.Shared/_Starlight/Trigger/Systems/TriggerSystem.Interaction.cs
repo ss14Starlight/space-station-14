@@ -1,10 +1,10 @@
-// ReSharper disable CheckNamespace
-
 using Content.Shared._Starlight.Administration.Components;
 using Content.Shared.Examine;
 using Content.Shared.Ghost;
 
+// ReSharper disable CheckNamespace
 namespace Content.Shared.Trigger.Systems;
+
 public sealed partial class TriggerSystem
 {
     bool IsGhostAndNotAdminGhost(ExaminedEvent args)
