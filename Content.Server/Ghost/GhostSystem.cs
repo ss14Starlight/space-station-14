@@ -1,4 +1,4 @@
-﻿﻿using System.Linq;
+﻿using System.Linq;
 using System.Numerics;
 using Content.Server._Starlight.NewLife;
 using Content.Server.Administration.Logs;
