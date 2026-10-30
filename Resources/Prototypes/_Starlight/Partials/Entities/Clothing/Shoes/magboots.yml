@@ -7,9 +7,8 @@
   - type: FootstepLayer
     requireActive: true
     sound:
-      collection: FootstepLayerMagboots
+      collection: FootstepHeavy
       params:
-        volume: -3
         variation: 0.1
 
 - type: !PartialOnly entity
