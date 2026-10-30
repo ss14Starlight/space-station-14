@@ -333,6 +333,9 @@
   id: FringeTraitBackground
 
 - type: Tag
+  id: FragileImplant # Implant disintegrates on extraction
+
+- type: Tag
   id: FrontierTraitBackground
 
 - type: Tag
