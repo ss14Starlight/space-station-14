@@ -1,46 +1,4 @@
 Entries:
-- author: RHSvenson
-  changes:
-  - message: Added an addendum to Rule 6 that makes clear that players should not make claims of membership (former or current) in restricted factions, like CC or Syndicate High Command, in their character information.
-    type: Add
-  id: 409524
-  time: '2026-10-16T11:45:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6698
-- author: Johnny
-  changes:
-  - message: (Reach) Fine fine fine, heres your maintenance area yall REALLLY WANTED on Reach, godo.
-    type: Add
-  id: 409525
-  time: '2026-10-16T12:17:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6705
-- author: Johnny
-  changes:
-  - message: (Reach) Janitor gets laundry now.
-    type: Add
-  id: 409526
-  time: '2026-10-16T12:17:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6705
-- author: Johnny
-  changes:
-  - message: (Reach) More wall closets have been added.
-    type: Add
-  id: 409527
-  time: '2026-10-16T12:17:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6705
-- author: Johnny
-  changes:
-  - message: (Reach) Removed some protections to the brig area cuz theres a disposable maintenance area on it instead.
-    type: Remove
-  id: 409528
-  time: '2026-10-16T12:17:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6705
-- author: Johnny
-  changes:
-  - message: (Reach) Modified the distro and waste pipes to go to every dock.
-    type: Tweak
-  id: 409529
-  time: '2026-10-16T12:17:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6705
 - author: Conflee
   changes:
   - message: Emergency Escape Pod Airlocks no longer violate Space OSHA Regulation 1910.36(d) "An exit door must be unlocked." (These docks are now Maintenance access, so all Crew can use them. They are intended to be open at all times anyway but code regressions regularly break this function so I am just removing the lock. The lock is never meant to be a factor in gameplay anyway).
@@ -2799,4 +2757,46 @@ Entries:
   id: 409923
   time: '2026-10-30T15:26:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6937
+- author: wonderfulnewworld, mkanke-real
+  changes:
+  - message: Added disguised uplink to Science and Botany traitors' uplink.
+    type: Add
+  id: 409924
+  time: '2026-10-30T18:10:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6941
+- author: wonderfulnewworld, mkanke-real
+  changes:
+  - message: Added vial of lead to Medical traitors' uplink.
+    type: Add
+  id: 409925
+  time: '2026-10-30T18:10:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6941
+- author: wonderfulnewworld, mkanke-real
+  changes:
+  - message: Added reagent boxcutter and radio jammer disguised as a appraisal tool to Cargo traitors' uplink.
+    type: Add
+  id: 409926
+  time: '2026-10-30T18:10:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6941
+- author: wonderfulnewworld, mkanke-real
+  changes:
+  - message: Added secret storage warning cone and network analyzer with remote trigger to Engineering traitors' uplink.
+    type: Add
+  id: 409927
+  time: '2026-10-30T18:10:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6941
+- author: wonderfulnewworld, mkanke-real
+  changes:
+  - message: Added pepper shaker full of lead and coffee pitcher of napalm to Chef traitors' uplink.
+    type: Add
+  id: 409928
+  time: '2026-10-30T18:10:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6941
+- author: wonderfulnewworld, mkanke-real
+  changes:
+  - message: Added mute+pax auto injector and silent shoes to Mime traitors' uplink.
+    type: Add
+  id: 409929
+  time: '2026-10-30T18:10:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6941
 Order: -1
