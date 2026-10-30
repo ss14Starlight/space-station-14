@@ -284,6 +284,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
     private void OnHeadRevStartup(EntityUid uid, HeadRevolutionaryComponent comp, ComponentInit args)
     {
         EnsureHeadStore(uid);
+        _npcFaction.AddFaction(uid, RevolutionaryNpcFaction);  // Starlight: Add Revolutionary faction to headrevs (why didn't they have this before?)
     }
 
     /// <summary>

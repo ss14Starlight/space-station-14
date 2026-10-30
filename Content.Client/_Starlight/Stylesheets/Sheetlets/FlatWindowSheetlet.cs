@@ -62,6 +62,7 @@ public sealed class FlatWindowSheetlet : Sheetlet<NanotrasenStylesheet>
         rules.AddRange([
             .. ChromeButton(DefaultWindow.StyleClassWindowCloseButton, proto.TextMuted, theme.Negative.Text),
             .. ChromeButton(PopOutExtensions.PopOutButtonStyleClass, proto.TextMuted, proto.Text),
+            .. ChromeButton(StarlightStyleClass.WindowSidebarButton, proto.TextMuted, proto.Text),
             .. ChromeButton(FancyWindow.StyleClassWindowHelpButton, proto.TextMuted, proto.Text),
 
             E<Label>().Class("WindowFooterText").FontColor(proto.TextMuted),

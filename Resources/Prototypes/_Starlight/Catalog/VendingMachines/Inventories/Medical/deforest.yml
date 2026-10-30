@@ -11,6 +11,7 @@
     DeforestBrutePack: 2
     DeforestOintment: 2
     Bloodpack: 3
+    OilPack: 1
     ChemistryBottleEpinephrine: 3
     Syringe: 3
     PillCanisterTricordrazine: 2
@@ -35,6 +36,7 @@
     DeforestBrutePack: 2
     DeforestOintment: 2
     Bloodpack: 3
+    OilPack: 1
     ChemistryBottleInaprovaline: 3
     Syringe: 3
     PillTricordrazine: 10
@@ -59,6 +61,7 @@
     DeforestBrutePack: 4
     DeforestOintment: 4
     Bloodpack: 4
+    OilPack: 2
     Tourniquet: 2
     ChemistryBottleEpinephrine: 3
     ChemistryBottleBicaridine: 1
@@ -102,6 +105,7 @@
     DeforestBrutePack: 4
     DeforestOintment: 4
     Bloodpack: 5
+    OilPack: 2
     ChemistryBottleInaprovaline: 3
     ChemistryBottleEpinephrine: 3
     Syringe: 5

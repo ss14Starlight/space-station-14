@@ -51,9 +51,9 @@
   productEntity: ClothingBackpackDuffelSyndicate
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 1
   cost:
-    Telecrystal: 10
+    Telecrystal: 2
   categories:
     - UplinkWearables
 

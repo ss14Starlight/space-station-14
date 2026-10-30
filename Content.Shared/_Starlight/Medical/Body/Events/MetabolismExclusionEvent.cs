@@ -7,7 +7,14 @@ namespace Content.Shared._Starlight.Medical.Body.Events;
 /// blood like reagents for metabolism to skip.
 /// </summary>
 [ByRefEvent]
-public readonly record struct MetabolismExclusionEvent()
+public readonly record struct MetabolismExclusionEvent
 {
-    public readonly List<ReagentId> Reagents = [];
+    public readonly List<ReagentId> Reagents;
+
+    public MetabolismExclusionEvent() : this(new List<ReagentId>())
+    {
+    }
+
+    public MetabolismExclusionEvent(List<ReagentId> reagents)
+        => Reagents = reagents;
 }

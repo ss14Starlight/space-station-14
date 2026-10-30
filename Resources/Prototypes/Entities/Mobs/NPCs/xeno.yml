@@ -2,7 +2,7 @@
 - type: entity
   name: burrower
   id: MobXeno
-  parent: SimpleSpaceMobBase
+  parent: [SimpleSpaceMobBase, BaseSlicingRefinable ] #Starlight
   description: They mostly come at night. Mostly.
   components:
   # Starlight-start: Languages
@@ -100,8 +100,8 @@
       Dead:
         Base: dead
   - type: Puller
-  - type: Butcherable
-    spawned:
+  - type: !Append ToolRefinable # Starlight butchering fix
+    refineResult: # StarlightS
     - id: FoodMeatXeno
       amount: 5
   - type: GhostRole
@@ -335,8 +335,8 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/rouny.rsi
     offset: 0,0.6
-  - type: Butcherable
-    spawned:
+  - type: !Append ToolRefinable # Starlight butchering fix
+    refineResult: # Starlight
     - id: FoodMeatRouny
       amount: 3
 
@@ -389,7 +389,7 @@
 
 - type: entity
   name: space adder
-  parent: [SimpleSpaceMobBase, BaseSlicingRefinable]
+  parent: [SimpleSpaceMobBase, BaseSlicingRefinable] #Starlight
   id: MobPurpleSnake
   description: A menacing purple snake from Kepler-283c.
   components:
@@ -407,7 +407,7 @@
         Base: dead_purple_snake
       Dead:
         Base: dead_purple_snake
-  - type: ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatSnake
       amount: 4
@@ -486,7 +486,7 @@
         Base: dead_small_purple_snake
       Dead:
         Base: dead_small_purple_snake
-  - type: ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatSnake
       amount: 2
@@ -498,7 +498,7 @@
 - type: entity
   name: '"Dale"'
   description: A praetorian left over from the station's initial security sweep. Has a pair of bloodied dog tags engraved with the name "Pvt. Dale" stuck in its maw.
-  parent: SimpleSpaceMobBase
+  parent: [SimpleSpaceMobBase, BaseSlicingRefinable ] #Starlight
   id: MobXenoLonePraetorianNoGhost
   components:
   - type: Insulated
@@ -552,8 +552,8 @@
       Dead:
         Base: dead
   - type: Puller
-  - type: Butcherable
-    spawned:
+  - type: !Append ToolRefinable # Starlight butchering fix
+    refineResult: # Starlight
     - id: FoodMeatXeno
       amount: 5
   - type: TypingIndicator

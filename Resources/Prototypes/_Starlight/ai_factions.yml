@@ -275,3 +275,6 @@
     - HonkNeutral
     - Floral
     - Passive
+
+- type: npcFaction
+  id: Shielded
