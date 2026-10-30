@@ -1,32 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: Polypyrylium Oligomers heals 2.5 brute and 2 airloss, and its overdose deals 4.5 asphyxiation.
-    type: Tweak
-  id: 409555
-  time: '2026-10-17T11:42:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6699
-- author: Xale
-  changes:
-  - message: Added an examine icon for clothing items that allows an item to be held in the suit storage slot.
-    type: Add
-  id: 409556
-  time: '2026-10-17T12:07:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6695
-- author: Alloy-Inc
-  changes:
-  - message: Bolt Rifle not having a knockback effect on small races. They will now bully you if you are too small.
-    type: Fix
-  id: 409557
-  time: '2026-10-17T12:07:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6722
-- author: Alloy-Inc
-  changes:
-  - message: Contraband tags on the ammunition, now salvage contra, not major, no bolts for sec !
-    type: Fix
-  id: 409558
-  time: '2026-10-17T12:07:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6722
 - author: Alloy-Inc
   changes:
   - message: Firerate of the Bolt Pistol lowered to 1.5 (from 1.8).
@@ -2799,4 +2771,32 @@ Entries:
   id: 409954
   time: '2026-10-30T19:05:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6922
+- author: wonderfulnewworld
+  changes:
+  - message: Readd footprints.
+    type: Add
+  id: 409955
+  time: '2026-10-30T19:36:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6087
+- author: wonderfulnewworld
+  changes:
+  - message: Mops will now clean footprints in a "Plus" shape, and advanced mops will now clean footprints in a 3x3 "Square" shape.
+    type: Tweak
+  id: 409956
+  time: '2026-10-30T19:36:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6087
+- author: wonderfulnewworld
+  changes:
+  - message: Advanced mops will now clean adjacent wall stains.
+    type: Tweak
+  id: 409957
+  time: '2026-10-30T19:36:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6087
+- author: wonderfulnewworld
+  changes:
+  - message: Footprints should be significantly less laggy now.
+    type: Fix
+  id: 409958
+  time: '2026-10-30T19:36:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6087
 Order: -1
