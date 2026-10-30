@@ -1,0 +1,4 @@
+- type: !PartialOnly vendingMachineInventory
+  id: PrideDrobeInventory
+  startingInventory:
+    ClothingNeckScarfStripedPlural: 2

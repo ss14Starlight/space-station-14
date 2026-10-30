@@ -94,6 +94,11 @@
     neck: ClothingNeckScarfStripedTrans
 
 - type: loadout
+  id: ScarfPridePlural
+  Equipment:
+    neck: ClothingNeckScarfStripedPlural
+
+- type: loadout
   id: ScarfPrideLongBacon
   equipment:
     neck: ClothingNeckScarfStripedLesbianLong
