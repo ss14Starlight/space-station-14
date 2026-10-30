@@ -1,32 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Refined the NanoTrasen theme to better reflect the Classic theme, in anticipation of its eventual removal. If you were using the Classic theme, you will need to re-select the NanoTrasen theme.
-    type: Tweak
-  id: 409539
-  time: '2026-10-16T13:19:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6703
-- author: Johnny
-  changes:
-  - message: Removed of the two tiny evac pod visitation ships.
-    type: Remove
-  id: 409540
-  time: '2026-10-16T14:20:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6711
-- author: SevenShades, Way
-  changes:
-  - message: Added Street lamps.
-    type: Add
-  id: 409541
-  time: '2026-10-17T08:59:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6728
-- author: Conflee
-  changes:
-  - message: Gave Nukie Borgs their Gorlex comms.
-    type: Fix
-  id: 409542
-  time: '2026-10-17T09:27:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6724
 - author: Johnny
   changes:
   - message: Partialized some stuff.
@@ -2799,4 +2771,32 @@ Entries:
   id: 409938
   time: '2026-10-30T18:10:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6942
+- author: Trosling
+  changes:
+  - message: Subdivided the Civil Code into subsections in the guidebook.
+    type: Tweak
+  id: 409939
+  time: '2026-10-30T18:40:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6938
+- author: Trosling
+  changes:
+  - message: Generally modernized the Silicon Clause lore-wise.
+    type: Tweak
+  id: 409940
+  time: '2026-10-30T18:40:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6938
+- author: Trosling
+  changes:
+  - message: Silicons are now people; their chassis remain property.
+    type: Add
+  id: 409941
+  time: '2026-10-30T18:40:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6938
+- author: Trosling
+  changes:
+  - message: Hostile silicon brains are now encouraged to be retrieved and yoked by Science.
+    type: Add
+  id: 409942
+  time: '2026-10-30T18:40:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6938
 Order: -1
