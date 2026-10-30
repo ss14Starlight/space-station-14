@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using System.Security.Cryptography;
 using Content.Shared._Starlight.Actions.Handlers;
 using Content.Shared.Alert;
@@ -12,6 +12,7 @@ using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -146,18 +147,21 @@ namespace Content.Shared.Movement.Systems
             }
         }
 
-        private void OnMoverGetState(Entity<InputMoverComponent> entity, ref ComponentGetState args)
-        {
+        private void OnMoverGetState(Entity<InputMoverComponent> entity, ref ComponentGetState args) =>
             args.State = new InputMoverComponentState()
             {
                 CanMove = entity.Comp.CanMove,
-                RelativeEntity = GetNetEntity(entity.Comp.RelativeEntity),
+                // Starlight - start
+                // The referenced grid can be deleted before the next movement update clears this value.
+                RelativeEntity = TryGetNetEntity(entity.Comp.RelativeEntity, out var relativeEntity)
+                    ? relativeEntity
+                    : NetEntity.Invalid,
+                // Starlight - end
                 LerpTarget = entity.Comp.LerpTarget,
                 HeldMoveButtons = entity.Comp.HeldMoveButtons,
                 RelativeRotation = entity.Comp.RelativeRotation,
                 TargetRelativeRotation = entity.Comp.TargetRelativeRotation,
             };
-        }
 
         private void ShutdownInput()
         {
@@ -330,8 +334,11 @@ namespace Content.Shared.Movement.Systems
 
         private void OnAnchorState(Entity<InputMoverComponent> entity, ref AnchorStateChangedEvent args)
         {
-            if (!args.Anchored)
-                PhysicsSystem.SetBodyType(entity, BodyType.KinematicController);
+            if (args.Anchored || EntityManager.IsQueuedForDeletion(entity.Owner) ||
+                !TryComp<PhysicsComponent>(entity.Owner, out _))
+                return; // Starlight: cleaner checks that prevent a lot of exceptions
+
+            PhysicsSystem.TrySetBodyType(entity, BodyType.KinematicController); // Starlight: we use try instead of set because sometimes its not available yet and causes exceptions
         }
 
         private void HandleDirChange(EntityUid entity, Direction dir, ushort subTick, bool state)
@@ -348,8 +355,12 @@ namespace Content.Shared.Movement.Systems
                 if (MoverQuery.TryGetComponent(entity, out var mover))
                     SetMoveInput((entity, mover), MoveButtons.None);
 
-                if (!_mobState.IsIncapacitated(entity))
+                // Starlight - start
+                if (_mobState.IsIncapacitated(entity) || _mobState.IsIncapacitated(relayMover.RelayEntity))
+                    StopRelayMovement(relayMover.RelayEntity);
+                else
                     HandleDirChange(relayMover.RelayEntity, dir, subTick, state);
+                // Starlight - end
 
                 return;
             }

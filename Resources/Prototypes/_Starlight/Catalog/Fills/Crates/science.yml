@@ -58,3 +58,15 @@
           amount: 2
         - id: CableApcStack1
           amount: 5
+
+- type: entity
+  id: CrateScienceAnomalousContainment
+  parent: CrateScience
+  name: anomalous containment supplies crate
+  description: Contains a Containment Oubliette circuit board and two A.P.E circuit boards.
+  components:
+    - type: StorageFill
+      contents:
+        - id: OublietteCircuitBoard
+        - id: APECircuitboard
+          amount: 2

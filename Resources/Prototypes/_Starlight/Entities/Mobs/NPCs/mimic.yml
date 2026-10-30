@@ -9,3 +9,110 @@
     - type: HTN
       rootTask:
         task: SimpleHostileCompound
+
+- type: entity
+  name: suspicious toolbox
+  parent: ToolboxSyndicate
+  id: ToolboxSyndicateMimic
+  description: A sinister looking toolbox filled with elite syndicate tools, did it just move?
+  components:
+  - type: TriggerOnInteractHand
+  - type: TriggerOnUse
+  - type: TriggerOnExamined
+  - type: TriggerOnUiOpen
+  - type: SpawnOnTrigger
+    proto: MimicSusToolboxWaking
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: MimicSusToolboxWaking
+  name: suspicious toolbox ?
+  description: A sinister looking toolbox filled wit- wait, something's wrong.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Mobs/Demons/susmimic.rsi
+      layers:
+        - state: spawning
+    - type: TriggerOnSpawn
+    - type: TimerTrigger
+      delay: 1.5
+    - type: TimedDespawn
+      lifetime: 1.6
+    - type: SpawnOnTrigger
+      keysIn:
+      - timer
+      proto: MimicSusToolbox
+
+- type: entity
+  name: suspicious mimic
+  id: MimicSusToolbox
+  parent: [SimpleSpaceMobBase, BaseSlicingRefinable]
+  description: It wasn't a free pair of combat gloves.
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+      sprite: _Starlight/Mobs/Demons/susmimic.rsi
+  - type: Physics
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: Stamina
+    baseCritThreshold: 90
+    animationThreshold: 60
+  - type: MovementAlwaysTouching
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Dead:
+        Base: dead
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 80
+  - type: CombatMode
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/smash.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 10
+  - type: ToolRefinable
+    refineResult:
+    - id: ToolboxSyndicate
+      amount: 1
+    - id: FoodMeat
+      amount: 2

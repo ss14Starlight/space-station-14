@@ -49,7 +49,7 @@
   description: A large duffel bag for holding extra captainly goods.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Back/Duffels/captain.rsi # Starlight rescolored
+    sprite: Clothing/Back/Duffels/captain.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -163,7 +163,7 @@
       sprite: Clothing/Back/Duffels/salvage.rsi
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseMinorContraband] #SL Edit Syndie > Minor Contra
+  parent: [ClothingBackpackDuffel, BaseMinorContraband] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingBackpackDuffelSyndicate
   name: syndicate duffel bag
   description: A large duffel bag for holding various traitor goods.
@@ -177,7 +177,7 @@
     - 0,0,8,4
 
 - type: entity
-  parent: [ ClothingBackpackDuffelSyndicate, BaseMinorContraband ] #SL Edit Syndie > Minor Contra
+  parent: [ ClothingBackpackDuffelSyndicate, BaseMinorContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingBackpackDuffelSyndicateBundle
   abstract: true
   components:

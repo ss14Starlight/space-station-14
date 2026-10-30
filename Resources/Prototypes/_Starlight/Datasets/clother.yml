@@ -1,0 +1,9 @@
+- type: dataset
+  id: Clothes
+  values:
+    - Hardsuits
+    - Gloves
+    - Hats
+    - Capes
+    - Glasses
+    - Backpacks

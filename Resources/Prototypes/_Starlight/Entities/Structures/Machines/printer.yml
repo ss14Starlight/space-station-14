@@ -27,9 +27,9 @@
     runningState: building
     staticPacks:
     - StarlightDocs
-#  - type: EmagLatheRecipes
-#    emagStaticPacks:
-#    - StarlightDocsEmag
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - BlimpufDocsEmag
   - type: Fixtures
     fixtures:
       fix1:

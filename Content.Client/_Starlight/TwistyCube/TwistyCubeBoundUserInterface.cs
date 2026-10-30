@@ -11,7 +11,7 @@ public sealed class TwistyCubeBoundUserInterface(EntityUid owner, Enum uiKey) : 
     /// Sends a TwistyCubeAction to the server, wrapped as a message.
     /// </summary>
     /// <param name="action">The action to send</param>
-    public void SendAction(TwistyCubeAction action) => SendMessage(new TwistyCubeActionMessage(action));
+    public void SendAction(TwistyCubeAction action) => SendPredictedMessage(new TwistyCubeActionMessage(action));
 
     protected override void Open()
     {

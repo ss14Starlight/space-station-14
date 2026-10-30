@@ -342,8 +342,10 @@ public sealed partial class VampireSystem : EntitySystem
         var before = comp.BloodFullness;
         var wasStarving = before <= 0f;
         var changed = false;
+        var alive = !TryComp<MobStateComponent>(uid, out var mobState) ||
+                    mobState.CurrentState != Shared.Mobs.MobState.Dead; // No hunger while dead
 
-        if (before > 0f && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
+        if (before > 0f && alive && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
         {
             comp.StarvationDrunkBloodDrainAccumulator = 0f;
             comp.BloodFullness = MathF.Max(0f, before - (comp.FullnessDecayPerSecond * elapsed));
@@ -592,7 +594,7 @@ public sealed partial class VampireSystem : EntitySystem
     private int GetActionBloodThreshold(EntProtoId actionId)
     {
         if (_proto.TryIndex<EntityPrototype>(actionId, out var proto) &&
-            proto.TryGetComponent<VampireActionComponent>(out var vac, _componentFactory))
+            proto.TryComp<VampireActionComponent>(out var vac, _componentFactory))
             return vac.BloodToUnlock;
         return 0;
     }

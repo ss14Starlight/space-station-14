@@ -1,5 +1,26 @@
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelBase
+  id: WeaponEnergyTurretStatusPanel
+  name: sentry turret status panel
+  description: A read-only wall-mounted interface for monitoring linked sentry turrets and control panel settings.
+  suffix: Status
+  categories: [ ShouldMapStation ]
+  components:
+  - type: DeployableTurretController
+    readOnly: true
+  - type: TurretTargetSettings
+  - type: ContainerFill
+    containers:
+      board:
+      - WeaponEnergyTurretStatusPanelElectronics
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+    showLockVerbs: false
+    breakOnAccessBreaker: false
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelBase
   id: WeaponEnergyTurretSiliconControlPanel
   suffix: Silicon
   components:

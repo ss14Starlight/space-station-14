@@ -495,7 +495,7 @@ public sealed partial class DamageableSystem
     /// <summary>
     /// Gets the damages currently sustained by an entity.
     /// </summary>
-    [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")]
+//  [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")] Starlight-edit: Removed since it's lie and there's no alternative ways
     public DamageSpecifier GetAllDamage(Entity<DamageableComponent?> ent)
     {
         if (!_damageableQuery.Resolve(ent, ref ent.Comp))
@@ -507,7 +507,7 @@ public sealed partial class DamageableSystem
     /// <summary>
     /// Gets the total amount of damage currently sustained by an entity.
     /// </summary>
-    [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")]
+//  [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")] Starlight-edit: Removed since it's lie and there's no alternative ways
     public FixedPoint2 GetTotalDamage(Entity<DamageableComponent?> ent)
     {
         if (!_damageableQuery.Resolve(ent, ref ent.Comp, false))
@@ -519,7 +519,7 @@ public sealed partial class DamageableSystem
     /// <summary>
     /// Gets the total amount of damage currently sustained by an entity, indexed by damage group.
     /// </summary>
-    [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")]
+//  [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")] Starlight-edit: Removed since it's lie and there's no alternative ways
     public IReadOnlyDictionary<ProtoId<DamageGroupPrototype>, FixedPoint2> GetDamagePerGroup(Entity<DamageableComponent?> ent)
     {
         if (!_damageableQuery.Resolve(ent, ref ent.Comp))
@@ -531,7 +531,7 @@ public sealed partial class DamageableSystem
     /// <summary>
     /// Returns whether the entity can be damaged by the given type of damage
     /// </summary>
-    [Obsolete("Do not rely on the ability to determine if an entity will be able to be damaged by something")]
+//  [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")] Starlight-edit: Removed since it's lie and there's no alternative ways
     public bool CanBeDamagedBy(Entity<DamageableComponent?> ent, ProtoId<DamageTypePrototype> type)
     {
         if (!_damageableQuery.Resolve(ent, ref ent.Comp, false))

@@ -15,3 +15,87 @@
     - type: SandboxCopyOverride
       override: !type:CreateVariants
         values: *protos
+
+# PR #6362 - Reduced pipe volume
+# Valves explicity specify volume so we have to override.
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+      - SignalControlledValve
+      - GasValve
+  components:
+    - type: NodeContainer
+      nodes:
+        inlet:
+          !type:PipeNode
+          volume: 50 # Was 100L
+        outlet:
+          !type:PipeNode
+          volume: 50 # Was 100L
+
+# Subfloor layers
+- type: !PartialOnly entity
+  id: GasBinaryBase
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasPressurePump
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasVolumePump
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasPressureRegulator
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasPassiveGate
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasValve
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: SignalControlledValve
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasPort
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: GasDualPortVentPump
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: HeatExchanger
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: HeatExchangerBend
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Pipes

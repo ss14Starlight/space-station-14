@@ -23,8 +23,7 @@ public sealed partial class HealthSelfAnalyzerSystem : EntitySystem
         if(HasComp<EmpDisabledComponent>(entity))
             return;
 
-        entity.Comp.Toggled = !entity.Comp.Toggled;
-        ToggleUi(entity, entity.Comp.Toggled);
+        ToggleUi(entity, !_uiSystem.IsUiOpen(entity.Owner, HealthAnalyzerUiKey.Key));
     }
 
     [SubscribeLocalEvent]
@@ -33,19 +32,7 @@ public sealed partial class HealthSelfAnalyzerSystem : EntitySystem
         args.Affected = true;
         args.Disabled = true;
 
-        if (!entity.Comp.Toggled)
-            return;
-
         ToggleUi(entity, false);
-    }
-
-    [SubscribeLocalEvent]
-    private void OnEmpRemoved(Entity<HealthSelfAnalyzerComponent> entity, ref EmpDisabledRemovedEvent args)
-    {
-        if (!entity.Comp.Toggled)
-            return;
-
-        ToggleUi(entity, true);
     }
 
     private void ToggleUi(EntityUid uid, bool toggled)

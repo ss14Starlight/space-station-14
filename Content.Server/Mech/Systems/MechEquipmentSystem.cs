@@ -42,7 +42,7 @@ public sealed partial class MechEquipmentSystem : EntitySystem
 
         if (!mechComp.MaintenanceMode)
         {
-            _popup.PopupEntity("You need to turn on maintenance mode first!", args.User, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString("mech-need-maintenance"), args.User, PopupType.MediumCaution);
             return;
         }
 

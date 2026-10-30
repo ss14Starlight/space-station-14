@@ -28,7 +28,7 @@
   priority: 23
   category: Vocal
   available: false
-  icon: { sprite: _Starlight/Actions/felionoid.rsi, state: cat_print }
+  icon: { sprite: _Starlight/Interface/Actions/actions_felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -52,7 +52,7 @@
   priority: 6
   category: Vocal
   available: false
-  icon: { sprite: _Starlight/Actions/felionoid.rsi, state: cat_print }
+  icon: { sprite: _Starlight/Interface/Actions/actions_felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -80,7 +80,7 @@
   priority: 26
   category: Vocal
   available: false
-  icon: { sprite: _Starlight/Actions/felionoid.rsi, state: cat_print }
+  icon: { sprite: _Starlight/Interface/Actions/actions_felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -108,7 +108,7 @@
   priority: 45
   category: Vocal
   available: false
-  icon: { sprite: _Starlight/Actions/felionoid.rsi, state: cat_print }
+  icon: { sprite: _Starlight/Interface/Actions/actions_felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -136,7 +136,7 @@
   priority: 5
   category: Vocal
   available: false
-  icon: { sprite: _Starlight/Actions/felionoid.rsi, state: cat_print }
+  icon: { sprite: _Starlight/Interface/Actions/actions_felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -210,7 +210,7 @@
   priority: 30
   category: Vocal
   available: false
-  icon: { sprite: _Starlight/Actions/resomi.rsi, state: bird_call }
+  icon: { sprite: _Starlight/Interface/Actions/actions_resomi.rsi, state: bird_call }
   whitelist:
     components:
     - Vocal
@@ -238,7 +238,7 @@
   priority: 46
   category: Vocal
   available: false
-  icon: { sprite: _Starlight/Actions/resomi.rsi, state: bird_call }
+  icon: { sprite: _Starlight/Interface/Actions/actions_resomi.rsi, state: bird_call }
   whitelist:
     components:
     - Vocal
@@ -266,7 +266,7 @@
   priority: 31
   category: Vocal
   available: false
-  icon: { sprite: _Starlight/Actions/resomi.rsi, state: bird_call }
+  icon: { sprite: _Starlight/Interface/Actions/actions_resomi.rsi, state: bird_call }
   whitelist:
     components:
     - Vocal
@@ -294,7 +294,7 @@
   priority: 43
   category: Vocal
   available: false
-  icon: { sprite: _Starlight/Actions/retilian.rsi, state: reptile_call }
+  icon: { sprite: _Starlight/Interface/Actions/actions_retilian.rsi, state: reptile_call }
   whitelist:
     components:
     - Vocal
@@ -322,7 +322,7 @@
   priority: 21
   category: Vocal
   available: false
-  icon: { sprite: _Starlight/Actions/retilian.rsi, state: reptile_call }
+  icon: { sprite: _Starlight/Interface/Actions/actions_retilian.rsi, state: reptile_call }
   whitelist:
     components:
     - Vocal
@@ -350,7 +350,7 @@
   priority: 17
   category: Vocal
   available: false
-  icon: { sprite: _Starlight/Actions/retilian.rsi, state: rattle }
+  icon: { sprite: _Starlight/Interface/Actions/actions_retilian.rsi, state: rattle }
   whitelist:
     components:
     - Vocal

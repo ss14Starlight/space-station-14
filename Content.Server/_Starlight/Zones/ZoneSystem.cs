@@ -14,7 +14,7 @@ public sealed partial class ZoneSystem : SharedZoneSystem
 
     private int _maxSeeds = 5;
 
-    private int _corridorDoorCount = 3;
+    private int _corridorDoorCount = 4;
 
     [Dependency] private IConfigurationManager _cfg = default!;
 

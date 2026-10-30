@@ -1,5 +1,31 @@
 - type: !PartialOnly entity
   id: ClothingShoesBase
   components:
+  - type: FootstepTimbre
+    pitch: 1.04
+    volume: -1.5
   - type: ExaminableSolution
     solution: stain
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/sneakers_pickup1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/sneakers_drop1.ogg
+  - type: Clothing
+    equipSound:
+      path: /Audio/_Starlight/Items/Equip/sneakers_equip1.ogg
+
+- type: !PartialOnly entity
+  id: ClothingShoesMilitaryBase
+  components:
+  - type: FootstepTimbre
+    pitch: 0.9
+    volume: 1.5
+
+- type: !PartialOnly entity
+  id: ClothingShoesBaseWinterBoots
+  components:
+  - type: FootstepTimbre
+    pitch: 0.94
+    volume: -0.5

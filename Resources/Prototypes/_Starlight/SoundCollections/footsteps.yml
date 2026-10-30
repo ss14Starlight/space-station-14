@@ -1,0 +1,114 @@
+- type: soundCollection
+  id: FootstepCosmic
+  files:
+  - /Audio/_Starlight/CosmicCult/footsteps/step1.ogg
+  - /Audio/_Starlight/CosmicCult/footsteps/step2.ogg
+  - /Audio/_Starlight/CosmicCult/footsteps/step3.ogg
+  - /Audio/_Starlight/CosmicCult/footsteps/step4.ogg
+  - /Audio/_Starlight/CosmicCult/footsteps/step5.ogg
+
+- type: soundCollection
+  id: FootstepGlass
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/glass1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/glass2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/glass3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/glass4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/glass5.ogg
+
+- type: soundCollection
+  id: FootstepLayerHeavy
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/heavy1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/heavy2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/heavy3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/heavy4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/heavy5.ogg
+
+- type: soundCollection
+  id: FootstepLayerMagboots
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/magstep1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/magstep2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/magstep3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/magstep4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/magstep5.ogg
+
+- type: soundCollection
+  id: FootstepConcrete
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/concrete1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/concrete2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/concrete3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/concrete4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/concrete5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/concrete6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/concrete7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/concrete8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/concrete9.ogg
+
+- type: soundCollection
+  id: FootstepHeavy
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/suitstep1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/suitstep2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/suitstep3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/suitstep4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/suitstep5.ogg
+
+- type: soundCollection
+  id: BarestepMetal
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/baremetal1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baremetal2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baremetal3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baremetal4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baremetal5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baremetal6.ogg
+
+- type: soundCollection
+  id: BarestepGrate
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/baregrate1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrate2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrate3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrate4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrate5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrate6.ogg
+
+- type: soundCollection
+  id: BarestepGlass
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/bareglass1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/bareglass2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/bareglass3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/bareglass4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/bareglass5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/bareglass6.ogg
+
+- type: soundCollection
+  id: BarestepGrass
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/baregrass1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrass2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrass3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrass4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrass5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrass6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrass7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrass8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregrass9.ogg
+
+- type: soundCollection
+  id: BarestepGravel
+  files:
+  - /Audio/_Starlight/Effects/Footsteps/baregravel1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregravel2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregravel3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregravel4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregravel5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregravel6.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregravel7.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregravel8.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregravel9.ogg
+  - /Audio/_Starlight/Effects/Footsteps/baregravel10.ogg

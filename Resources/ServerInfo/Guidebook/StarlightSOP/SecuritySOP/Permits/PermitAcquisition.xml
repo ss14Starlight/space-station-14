@@ -1,0 +1,174 @@
+<!--
+If you think something like: "But this means [insert item here] can be approved by [this person or without Central Command]", to that I say: change the item's level, not this SOP.
+If a Syndicate item is level three and therefore can be approved by the HoS, and that's bad in your eyes, don't change the level three SOP here, change the item.
+
+Please really think before changing this SOP if it is actually needed, or if it can be resolved by just changing the items.
+-->
+<Document>
+# Equipment, Weapons and Combat Gear Permits Guide
+
+[italic]Permit approval is a privilege, not a right. No one is obligated to sign, and permits are void if not kept on your person.[/italic]
+
+## Approval Process
+
+- [bold]Order of Approval:[/bold] Seek stamps in the following order: Item Origin, [color=#fce742]Relevant Leader[/color], [color=#fcdf03]Captain[/color], [color=#86d420]Central Command[/color].
+- [bold]Relevant Leader:[/bold] The officially recognized highest-ranking person on station for a department or corporation listed on an item's approved list, such as the department head or interim department head.
+- [bold]Item Origin:[/bold] If an item physically originates from a specific department or corporation, approval must come from that department's [color=#fce742]Relevant Leader[/color]. Items without a origin (such as items found in maintenance) can be approved by any [color=#fce742]Relevant Leader[/color].
+- [bold]NT-CC Items:[/bold] Any item approved for at least one NT-CC department must have a stamp from at least one of their [color=#fce742]Relevant Leaders[/color] (in addition to its origin, if applicable). Items not approved for any NT-CC department only need a [color=#fce742]Relevant Leader[/color] stamp from the Affiliated Corporation, barring weapons and enemy organizations which still need the below additional approval.
+- [bold]Enemy Organizations:[/bold] Since there are no officially recognized [color=#fce742]Relevant Leaders[/color] for enemy organizations, use the Enemy Organizations column in the table below to determine the [color=#fce742]Relevant Leader[/color] for said item.
+- [bold]Weapons & Combat Gear:[/bold] These items follow equipment permits but require additional Security approval per the table below. Further the [color=#ff6666]Warden[/color] and [color=#c4363b]Gunnery Sergeant[/color] may authorize [color=#ff4242]Security[/color] Combat Gear or Weapons where listed in the table without the [color=#ff4242]Head of Security[/color], acting as the [color=#fce742]Relevant Leader[/color].
+
+  <Table Columns="5">
+    <ColorBox>
+      <Box Margin="2">
+        [bold]Tier[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        [bold]NT-CC Consortium[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        [bold]Affiliated Corporations[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        [bold]Enemy Organizations[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        [bold]Weapons & Combat Gear[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
+        [bold]Tier 1[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#786341">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#786341">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#784a4a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Warden and Gunnery Sergeant
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#784a4a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Warden and Gunnery Sergeant
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
+        [bold]Tier 2[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#786341">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#786341">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#784a4a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Warden and Gunnery Sergeant
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#784a4a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Warden and Gunnery Sergeant
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
+        [bold]Tier 3[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#786341">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#786341">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#6e2d2d">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Head of Security
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#784a4a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Warden and Gunnery Sergeant
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
+        [bold]Tier 4[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#725225">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader and Captain
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#725225">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader and Captain
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2d5234">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Captain and Central Command
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#6e2d2d">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Head of Security
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
+        [bold]Tier 5[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2d5234">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader and Central Command
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2d5234">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Relevant Leader and Central Command
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2d5234">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Captain and Central Command
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#725225">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Head of Security and Captain
+      </Box>
+    </ColorBox>
+  </Table>
+
+</Document>

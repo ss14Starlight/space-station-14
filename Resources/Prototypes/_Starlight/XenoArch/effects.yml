@@ -214,7 +214,7 @@
     - id: XenoArtifactMaterialSpawnPlastic
       weight: 1.0
     - id: XenoArtifactPortal
-      weight: 1.0
+      weight: 0.5
     - id: XenoArtifactArtifactSpawn
       weight: 0.5
     - id: XenoArtifactShuffle
@@ -250,6 +250,8 @@
     - id: XenoArtifactAccessMedical
       weight: 1.5
     - id: XenoArtifactAccessCommand
+      weight: 1.0
+    - id: XenoArtifactTurret
       weight: 1.0
     - id: XenoArtifactMilkPuddle #Funky Changes Start
       weight: 1.0
@@ -1298,3 +1300,26 @@
     possibleChemicals:
     - Siderlac
 # Funky changes end
+
+- type: entity
+  id: XenoArtifactTurret
+  parent: BaseXenoArtifactEffect
+  description: Forcefully discharges material
+  components:
+  - type: XenoArtifactNode
+    maxDurability: 4
+    maxDurabilityCanDecreaseBy: { min: 0, max: 2 }
+  - type: XAETurret
+    duration: 30
+    fireRate: 2
+    range: 8
+    possibleProjectiles:
+      CannonAmmoBananaCream: 1
+      BulletDisabler: 1
+      BulletAcid: 1
+      BulletHivebot: 1
+      BulletEnergySMGLaser: 1
+      BasiliskRay: .5
+      BulletTaser: 0.25
+      ProjectileHealingBolt: 0.1
+      TeslaGunBullet: 0.1

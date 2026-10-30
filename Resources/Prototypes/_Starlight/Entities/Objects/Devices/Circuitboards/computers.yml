@@ -174,3 +174,14 @@
       price: 750
     - type: StealTarget
       stealGroup: ShipyardComputerCircuitboard
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CombustionTurbineComputerCircuitboard
+  name: combustion turbine control computer board
+  description: A computer printed circuit board for a combustion turbine control computer.
+  components:
+  - type: Sprite
+    state: cpu_engineering
+  - type: ComputerBoard
+    prototype: ComputerCombustionTurbine

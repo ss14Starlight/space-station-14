@@ -35,7 +35,7 @@ public sealed partial class ReactorSlotBUIData
     public float Temperature = 0f;
     public int NeutronCount = 0;
     public string IconName = "base";
-    public string PartName = "empty";
+    public string? PartName;
 
     public float NeutronRadioactivity = 0f;
     public float Radioactivity = 0f;

@@ -17,6 +17,15 @@
   shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/barge.yml
 
 - type: vessel
+  id: Bellows
+  name: GTS-A1-100KL "Bellows"
+  description: The "Bellows" single-gas hauler by GTS in default livery, capable of transferring 100kL. Very affordable and has a standard shape for easy universal deployment.
+  price: 27500
+  category: Small
+  group: Engineering
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/Bellows.yml
+
+- type: vessel
   id: Prospector
   name: NT-7 Prospector
   description: A small mining vessel designed to assist salvage operations.
@@ -81,7 +90,7 @@
 
 - type: vessel
   id: Honeybee
-  name: NTS "Honeybee" Mini-Flores
+  name: ISM "Honeybee" Mini-Flores
   description: A small sized botany shuttle made for advanced farming operations, comes with one mutation room.
   price: 30000
   category: Small

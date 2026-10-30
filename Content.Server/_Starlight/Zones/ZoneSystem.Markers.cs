@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.Zones;
 using Content.Shared.SprayPainter;
 using Content.Shared.SprayPainter.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Zones;
 
@@ -28,12 +29,13 @@ public sealed partial class ZoneSystem
             return;
 
         var marker = EnsureComp<ZoneMarkerComponent>(ent);
-        var proto = GetZone(zone);
+        EntProtoId? door = zone == NoZone ? null : (EntProtoId?) args.Prototype;
 
-        if (marker.Zone?.Id == proto?.ID)
+        if (marker.Door?.Id == door?.Id && marker.Zone == null)
             return;
 
-        marker.Zone = proto?.ID;
+        marker.Zone = null;
+        marker.Door = door;
         DirtyMarkerArea(ent.Owner);
     }
 
@@ -118,7 +120,9 @@ public sealed partial class ZoneSystem
     {
         if (_markerQuery.TryComp(uid, out var marker))
         {
-            zone = marker.Zone is { } id ? GetZoneId(id) : NoZone;
+            zone = marker.Door is { } door
+                ? GetDoorZone(door)
+                : marker.Zone is { } id ? GetZoneId(id) : NoZone;
             priority = (short) Math.Clamp(marker.Priority, short.MinValue, short.MaxValue);
             return zone != NoZone;
         }

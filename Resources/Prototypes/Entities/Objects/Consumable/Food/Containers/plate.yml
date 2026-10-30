@@ -55,7 +55,6 @@
   - type: Tag
     tags:
     - Trash
-    - Dinnerware #Starlight
   - type: PhysicalComposition
     materialComposition:
       Glass: 50
@@ -119,9 +118,6 @@
   - type: PhysicalComposition
     materialComposition:
       Glass: 25
-  - type: Tag
-    tags:
-    - Dinnerware #Starlight
 
 - type: entity
   parent: FoodPlateTrash
@@ -156,7 +152,6 @@
   - type: Tag
     tags:
     - Trash
-    - Dinnerware #Starlight
 
 - type: entity
   parent: BaseItem
@@ -179,7 +174,6 @@
   - type: Tag
     tags:
     - Trash
-    - Dinnerware #Starlight
 
 # Pie Tin
 
@@ -200,7 +194,6 @@
   - type: Tag
     tags:
     - Trash
-    - Dinnerware #Starlight
   - type: PhysicalComposition
     materialComposition:
       Steel: 50
@@ -225,7 +218,6 @@
   - type: Tag
     tags:
     - Trash
-    - Dinnerware #Starlight
   - type: PhysicalComposition
     materialComposition:
       Steel: 25

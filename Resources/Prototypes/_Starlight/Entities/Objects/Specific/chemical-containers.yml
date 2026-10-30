@@ -267,6 +267,20 @@
       - ReagentId: Dermaline
         Quantity: 480
 
+- type: entity
+  parent: Jug
+  suffix: holywater
+  id: JugHolywater
+  components:
+  - type: Label
+    currentLabel: reagent-name-holywater
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Holywater
+        Quantity: 240
+
 # Large cryo chemical beakers
 - type: entity
   suffix: cryoxadone
@@ -364,6 +378,20 @@
     solution:
       reagents:
       - ReagentId: Opporozidone
+        Quantity: 120
+
+- type: entity
+  suffix: mortizol
+  parent: LargeBeaker
+  id: MortizolBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-mortizol
+  - type: Solution
+    id: beaker
+    solution:
+      reagents:
+      - ReagentId: Mortizol
         Quantity: 120
 
 - type: entity

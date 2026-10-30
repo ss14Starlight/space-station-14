@@ -183,6 +183,7 @@
       - id: NukiePlanetSpawn
       - id: NukiePlanetSpawnWestern
       - id: NukiePlanetSpawnGeiger
+      - id: NukiePlanetSpawnInterdyne
   # Starlight end
   # Starlight - removing the LoadMapRule from here to instead handle it in the dynamic rules above
   #- type: LoadMapRule
@@ -265,7 +266,7 @@
   parent: [BaseGameRule, BaseRoundstartAntagRule]
   components:
   - type: GameRule
-    minPlayers: 25 # Starlight start
+    minPlayers: 20 # Starlight start
     delay: # It doesn't really make lore sense that you can "remember" you're a Changeling, but it should give everyone some calm at the start.
       min: 240
       max: 420 # Starlight end
@@ -297,7 +298,6 @@
   - type: RevolutionaryRule
   - type: SpecialLobbyContent
     music: "/Audio/_Starlight/Lobby/Liberation.ogg"
-    background: RevClown
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     lateJoinAdditional: true # Starlight
@@ -350,7 +350,7 @@
   id: Wizard
   components:
   - type: GameRule
-    minPlayers: 40 # Starlight
+    minPlayers: 20 # Starlight
   - type: DynamicRuleCost
     cost: 150
 
@@ -410,7 +410,7 @@
   id: Xenoborgs
   components:
   - type: GameRule
-    minPlayers: 30
+    minPlayers: 20 # Starlight
 
 # This rule makes the chosen players unable to get other antag rules, as a way to prevent metagaming job rolls.
 # Put this before antags assigned to station jobs, but after non-job antags (NukeOps/Wiz).

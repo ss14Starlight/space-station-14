@@ -27,6 +27,7 @@
     TechnicalAssistant: 23
 
     Warden: 90
+    GunnerySergeant: 90
     Detective: 80
     Brigmedic: 73
     DutyOfficer: 70
@@ -100,6 +101,7 @@
     DutyOfficer: "Central Security Division"
     SecurityOfficer: "Central Security Division"
     SecurityCadet: "Central Security Division"
+    GunnerySergeant: "Central Security Division"
 
     StationAi: "NanoTrasen"
     Borg: "NanoTrasen"

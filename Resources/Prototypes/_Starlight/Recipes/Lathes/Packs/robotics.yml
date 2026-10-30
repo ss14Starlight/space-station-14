@@ -212,3 +212,19 @@
     - VendingMachineBoozeSyndicateCircuitboard
     - VendingMachineSyndieDrobeCircuitboard
     - VendingMachineChemicalsSyndicateCircuitboard
+
+# Rogue Drone
+- type: latheRecipePack
+  id: RoboticsRogueStatic
+  recipes:
+  - DroneRogueShell
+  - SciFlash
+  - Wirecutter
+  - Screwdriver
+  - Welder
+  - Wrench
+  - CrowbarGreen
+  - Multitool
+  - ScrapperExoFabricatorMachineCircuitboard
+  - RightArmBorg
+  - LeftArmBorg

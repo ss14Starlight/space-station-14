@@ -43,6 +43,8 @@
   name: soviet encryption key
   description: Priyom. Priyom.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: EncryptionKey
     channels:
     - Soviet
@@ -63,6 +65,7 @@
   - type: EncryptionKey
     channels:
     - Expedition
+    - Common
     defaultChannel: Expedition
   - type: Sprite
     layers:
@@ -71,7 +74,7 @@
       state: expedition_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseSalvageMiningContraband ]
+  parent: [ EncryptionKey, BaseSalvageContraband, BaseMiningContraband ]
   id: EncryptionKeySalvage
   name: salvage encryption key
   description: A dual encryption key used by box-loving explorers.
@@ -291,3 +294,22 @@
           state: crypt_purple
         - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
           state: global_label
+
+# Gorlex
+- type: entity
+  parent: [ EncryptionKey, BaseSyndicateContraband ]
+  id: EncryptionKeyGorlex
+  name: gorlex encryption key
+  description: An encryption key used by... wait... Who is the owner of this chip?
+  components:
+  - type: EncryptionKey
+    channels:
+    - Syndicate
+    - Gorlex
+    defaultChannel: Gorlex
+  - type: Sprite
+    layers:
+    - state: crypt_red
+    - state: synd_label
+  - type: StaticPrice
+    price: 5000

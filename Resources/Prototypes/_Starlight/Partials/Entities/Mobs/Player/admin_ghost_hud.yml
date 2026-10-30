@@ -1,0 +1,29 @@
+- type: !PartialOnly entity
+  id: AdminObserver
+  components:
+  - type: AdminGhostHud
+  - type: ShowCriminalRecordIcons
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowSyndicateIcons
+  - type: ShowHealthBars
+    damageContainers:
+      - Biological
+      - Inorganic
+      - Silicon
+      - IPC
+      - Hybrid
+      - MoffDemonBiological
+      - MoffDemonInorganic
+  - type: ShowHealthIcons
+    damageContainers:
+      - Biological
+      - Inorganic
+      - Silicon
+      - IPC
+      - Hybrid
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons
+  - type: ShowAccess
+    seeIdHolder: true
+    itemsOnly: false

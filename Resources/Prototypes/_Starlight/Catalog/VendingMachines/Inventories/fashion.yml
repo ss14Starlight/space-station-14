@@ -725,3 +725,95 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 2
+
+# Alternative Clothing Catalog start
+
+- type: listing
+  id: ClothingHeadHatFloppyBunny
+  productEntity: ClothingHeadHatFloppyBunny
+  cost:
+    NTCredit: 500
+  categories:
+    - SLFashionHead
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: ClothingHeadHatFloppyBunnyWhite
+  productEntity: ClothingHeadHatFloppyBunnyWhite
+  cost:
+    NTCredit: 500
+  categories:
+    - SLFashionHead
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: ClothingOuterCoatLeatherEldritch
+  productEntity: ClothingOuterCoatLeatherEldritch
+  cost:
+    NTCredit: 1010
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingBackpackStar
+  productEntity: ClothingBackpackStar
+  cost:
+    NTCredit: 500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: ClothingBackpackKitty
+  productEntity: ClothingBackpackKitty
+  cost:
+    NTCredit: 500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingBackpackSatchelStar
+  productEntity: ClothingBackpackSatchelStar
+  cost:
+    NTCredit: 650
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingBackpackSatchelKitty
+  productEntity: ClothingBackpackSatchelKitty
+  cost:
+    NTCredit: 650
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingBackpackSatchelIta
+  productEntity: ClothingBackpackSatchelIta
+  cost:
+    NTCredit: 650
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+# Alternative Clothing Catalog end

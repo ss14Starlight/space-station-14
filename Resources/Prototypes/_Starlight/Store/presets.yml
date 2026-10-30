@@ -44,18 +44,29 @@
     name: store-preset-name-soviet-uplink
     categories:
     - RevUplinkWeaponry
-    - RevUplinkPassive
+    - RevUplinkConversionRewards
     - RevUplinkWearables
     - RevUplinkImplants
     - RevUplinkShuttle
     - RevUplinkDeception
     - RevUplinkPointless
+    - RevUplinkWar
     currencyWhitelist:
     - Telebond
     - Conversion
     balance:
       Telebond: 0
       Conversion: 0
+
+- type: entity
+  parent: StorePresetUSSP
+  id: USSPHeadUplinkStore
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
 
 # Elf Cantrip Book
 - type: entity

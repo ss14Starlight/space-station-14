@@ -4,23 +4,23 @@
     xmlns:ui1="clr-namespace:Content.Client._Starlight.Character.UI">
     <BoxContainer Orientation="Vertical">
         <Label VerticalAlignment="Top" Margin="0 6 0 10" HorizontalAlignment="Center" StyleClasses="LabelHeading"
-               Access="Public" Text="In-Character Info:"/>
+               Access="Public" Text="{Loc 'character-info-ic-header'}"/>
         <ui1:CharacterViewControl Name="CharacterView" Access="Public"/>
         <BoxContainer Orientation="Vertical" VerticalExpand="True">
-            <Label Text="Description:"/>
+            <Label Text="{Loc 'character-info-description'}"/>
             <RichTextLabel Name="CharacterDesc" Access="Public" MinSize="220 100" Margin="10" VerticalAlignment="Top"
                    VerticalExpand="True" />
         </BoxContainer>
         <PanelContainer Name="HiddenInfoSection" Access="Public" Visible="False">
             <BoxContainer Orientation="Vertical"  VerticalExpand="True">
-                <Label Text="Hidden Info" StyleClasses="LabelHeading"/>
+                <Label Text="{Loc 'character-info-hidden'}" StyleClasses="LabelHeading"/>
                 <BoxContainer Name="Exploitable" Access="Protected" Orientation="Vertical" VerticalExpand="True">
-                    <Label Text="Exploitable Info:"/>
+                    <Label Text="{Loc 'character-info-exploitable'}"/>
                     <RichTextLabel Name="ExploitableInfo" Access="Public" MinSize="220 100" Margin="10" VerticalAlignment="Top"
                                    VerticalExpand="True" />
                 </BoxContainer>
                 <BoxContainer Name="Secrets" Access="Protected"  Orientation="Vertical" VerticalExpand="True" Visible="False">
-                    <Label Text="Secrets:"/>
+                    <Label Text="{Loc 'character-info-secrets'}"/>
                     <RichTextLabel Name="SecretsInfo" Access="Public" MinSize="220 100" Margin="10" VerticalAlignment="Top"
                                    VerticalExpand="True" />
                 </BoxContainer>

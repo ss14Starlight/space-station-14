@@ -1,33 +1,13 @@
 #equipment
 - type: listing
-  id: VendorSalvageSurplusMedical
-  productEntity: CrateITGMedicalSurplus
+  id: VendorSalvageGClothingMaskGasExplorer
+  productEntity: ClothingMaskGasExplorer
   cost:
-    SalvageTicket: 400
+    SalvageTicket: 100
   categories:
-    - SalvageEquipment
+  - SalvageEquipment
   conditions:
-    - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageSurplusShotgun
-  productEntity: CrateITGShotgunSurplus
-  cost:
-    SalvageTicket: 600
-  categories:
-    - SalvageEquipment
-  conditions:
-    - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageSurplus
-  productEntity: CrateITGSurplus
-  cost:
-    SalvageTicket: 400
-  categories:
-    - SalvageEquipment
-  conditions:
-    - !type:BuyerAccessCondition
+  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageBinoculars
@@ -37,31 +17,7 @@
   categories:
     - SalvageEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 3
     - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageGrapplingGun
-  productEntity: WeaponGrapplingGun
-  cost:
-    SalvageTicket: 40
-  categories:
-  - SalvageEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageGClothingMaskGasExplorer
-  productEntity: ClothingMaskGasExplorer
-  cost:
-    SalvageTicket: 100
-  categories:
-  - SalvageEquipment
-  conditions:
-  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageMechClarke
@@ -145,36 +101,36 @@
   id: VendorSalvagePKAUpgradeDamage
   productEntity: PKAUpgradeDamage
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 8
     - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvagePKAUpgradeRange
   productEntity: PKAUpgradeRange
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 8
     - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvagePKAUpgradeFireRate
   productEntity: PKAUpgradeFireRate
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 8
     - !type:BuyerAccessCondition
 
 - type: listing
@@ -208,7 +164,7 @@
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 2
+      stock: 5
     - !type:BuyerAccessCondition
 
 - type: listing
@@ -234,18 +190,8 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageOreBag
-  productEntity: OreBag
-  cost:
-    SalvageTicket: 25
-  categories:
-    - SalvageEquipment
-  conditions:
-    - !type:BuyerAccessCondition
-
-- type: listing
   id: VendorSalvageSalvageEncryptionKey
-  productEntity: EncryptionKeySalvage
+  productEntity: EncryptionKeyExpedition
   cost:
     SalvageTicket: 100
   categories:
@@ -290,15 +236,6 @@
 #  - !type:BuyerAccessCondition
 
 #weapons
-- type: listing
-  id: VendorSalvageWeaponLaserImmolator
-  productEntity: WeaponLaserImmolator
-  cost:
-    SalvageTicket: 500
-  categories:
-  - SalvageWeapons
-  conditions:
-  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageWeaponShotgunGA12
@@ -341,13 +278,15 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageWeaponRifleLr30
-  productEntity: WeaponRifleLr30
+  id: VendorSalvageWeaponBoltRifle
+  productEntity: WeaponRifleBolt
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 1750
   categories:
   - SalvageWeapons
   conditions:
+  - !type:ListingLimitedStockCondition
+      stock: 3
   - !type:BuyerAccessCondition
 
 - type: listing
@@ -358,6 +297,18 @@
   categories:
   - SalvageWeapons
   conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageWeaponBoltPistol
+  productEntity: WeaponPistolBolt
+  cost:
+    SalvageTicket: 850
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:ListingLimitedStockCondition
+      stock: 4
   - !type:BuyerAccessCondition
 
 - type: listing
@@ -402,60 +353,10 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageSpeedLoaderShotgunEmpty
-  productEntity: SpeedLoaderShotgunEmpty
-  cost:
-    SalvageTicket: 100
-  categories:
-  - SalvageConsumeables
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageBoxLethalshot
-  productEntity: BoxLethalshot
-  cost:
-    SalvageTicket: 200
-  categories:
-  - SalvageConsumeables
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageSpeedLoaderMagnumSP
-  productEntity: SpeedLoaderMagnumSP
-  cost:
-    SalvageTicket: 75
-  categories:
-  - SalvageConsumeables
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageMagazineMK58
-  productEntity: MagazinePistolSP
-  cost:
-    SalvageTicket: 75
-  categories:
-  - SalvageConsumeables
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
   id: VendorSalvageMagazineMiniSyringe
   productEntity: MiniSyringe
   cost:
     SalvageTicket: 25
-  categories:
-  - SalvageConsumeables
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageMagazineBatteryLr30
-  productEntity: MagazineBatteryLr30
-  cost:
-    SalvageTicket: 100
   categories:
   - SalvageConsumeables
   conditions:
@@ -496,6 +397,119 @@
   productEntity: BoxFlare
   cost:
     SalvageTicket: 15
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
+#Blueprints
+- type: listing
+  id: VendorSalvageBlueprintBasicAmmo
+  productEntity: BlueprintBasicAmmo
+  cost:
+    SalvageTicket: 800
+  categories:
+  - SalvageBlueprints
+  conditions:
+  - !type:ListingLimitedStockCondition
+     stock: 1
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageBlueprintBasicMedical
+  productEntity: BlueprintBasicMedical
+  cost:
+    SalvageTicket: 200
+  categories:
+  - SalvageBlueprints
+  conditions:
+  - !type:ListingLimitedStockCondition
+     stock: 1
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageBlueprintFulton
+  productEntity: BlueprintFulton
+  cost:
+    SalvageTicket: 400
+  categories:
+  - SalvageBlueprints
+  conditions:
+   - !type:ListingLimitedStockCondition
+     stock: 1
+   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageBlueprintDoubleEmergencyTank
+  productEntity: BlueprintDoubleEmergencyTank
+  cost:
+    SalvageTicket: 300
+  categories:
+  - SalvageBlueprints
+  conditions:
+  - !type:ListingLimitedStockCondition
+     stock: 1
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageBlueprintPKAModkits
+  productEntity: BlueprintPKAModkits
+  cost:
+    SalvageTicket: 400
+  categories:
+  - SalvageBlueprints
+  conditions:
+  - !type:ListingLimitedStockCondition
+     stock: 1
+  - !type:BuyerAccessCondition
+
+#Surplus
+- type: listing
+  id: VendorSalvageSurplusMedical
+  productEntity: CrateITGMedicalSurplus
+  cost:
+    SalvageTicket: 400
+  categories:
+    - SalvageSurplus
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSurplusArmaments
+  productEntity: CrateITGArmamentSurplus
+  cost:
+    SalvageTicket: 1000
+  categories:
+    - SalvageSurplus
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSurplusCrate
+  productEntity: CrateITGSurplus
+  cost:
+    SalvageTicket: 400
+  categories:
+    - SalvageSurplus
+  conditions:
+    - !type:BuyerAccessCondition
+
+
+- type: listing
+  id: VendorSalvageMagazineBoltRifle
+  productEntity: MagazineBoltRifle
+  cost:
+    SalvageTicket: 300
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageMagazineBoltPistol
+  productEntity: MagazineBoltPistol
+  cost:
+    SalvageTicket: 150
   categories:
   - SalvageConsumeables
   conditions:
@@ -672,5 +686,3 @@
     - SalvageCybernetics
   conditions:
     - !type:BuyerAccessCondition
-
-

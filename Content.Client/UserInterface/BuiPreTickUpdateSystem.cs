@@ -33,15 +33,7 @@ public sealed partial class BuiPreTickUpdateSystem : EntitySystem
     [Dependency] private IPlayerManager _playerManager = null!;
     [Dependency] private UserInterfaceSystem _uiSystem = null!;
     [Dependency] private IGameTiming _gameTiming = null!;
-
-    private EntityQuery<UserInterfaceUserComponent> _userQuery;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        _userQuery = GetEntityQuery<UserInterfaceUserComponent>();
-    }
+    [Dependency] private EntityQuery<UserInterfaceUserComponent> _userQuery = default!;
 
     public void RunUpdates()
     {

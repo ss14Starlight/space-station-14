@@ -25,12 +25,12 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Shared.Atmos;
 
 #region Starlight
 
 using Content.Shared.Actions;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Atmos;
 using Content.Shared.Hands.Components;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
