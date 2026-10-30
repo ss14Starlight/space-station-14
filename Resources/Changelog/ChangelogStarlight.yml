@@ -1,39 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Newly possible surgeries get now added without needing to close and open again.
-    type: Tweak
-  id: 409577
-  time: '2026-10-17T19:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6685
-- author: STARLIGHT TEAM
-  changes:
-  - message: Lung, cavity item and stomach allow now normal sized items, others small.
-    type: Tweak
-  id: 409578
-  time: '2026-10-17T19:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6685
-- author: STARLIGHT TEAM
-  changes:
-  - message: Explosions from inside a body cause now additional damage to that body (x4).
-    type: Tweak
-  id: 409579
-  time: '2026-10-17T19:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6685
-- author: STARLIGHT TEAM
-  changes:
-  - message: No more bugs and crashes when surgical attached items break.
-    type: Fix
-  id: 409580
-  time: '2026-10-17T19:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6685
-- author: Floximo
-  changes:
-  - message: Escape pods now unlock instead of launching at round end.
-    type: Tweak
-  id: 409581
-  time: '2026-10-17T19:46:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6729
 - author: Nexus Integrated Trait
   changes:
   - message: Added Nexus Integrated trait under languages, requiring scratch and 2 points to take.
@@ -2799,4 +2764,39 @@ Entries:
   id: 409976
   time: '2026-10-30T22:55:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6961
+- author: Caws
+  changes:
+  - message: (Cluster) Added Gunnery Sergeant.
+    type: Add
+  id: 409977
+  time: '2026-10-30T22:55:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6962
+- author: Caws
+  changes:
+  - message: (Cluster) Added a criminal records computer by Genpop.
+    type: Add
+  id: 409978
+  time: '2026-10-30T22:55:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6962
+- author: Caws
+  changes:
+  - message: (Cluster) Added a dividing wall in Security so Genpop prisoners can't easily wander around Security after being released.
+    type: Tweak
+  id: 409979
+  time: '2026-10-30T22:55:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6962
+- author: Caws
+  changes:
+  - message: (Cluster) Improved Armory's layout a bit.
+    type: Tweak
+  id: 409980
+  time: '2026-10-30T22:55:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6962
+- author: Caws
+  changes:
+  - message: (Cluster) Security's entrance has been reworked slightly and fixed.
+    type: Fix
+  id: 409981
+  time: '2026-10-30T22:55:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6962
 Order: -1
