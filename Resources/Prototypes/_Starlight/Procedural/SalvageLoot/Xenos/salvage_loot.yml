@@ -1,0 +1,213 @@
+- type: salvageLoot
+  id: SalvageLootXenosEasy
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: CrateSalvageEquipment
+          cost: 3
+          prob: 0.5
+        - proto: RandomArtifactSpawner
+        - proto: RandomCargoCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomCommandCorpseSpawner
+          cost: 3
+          prob: 0.5
+        - proto: RandomEngineerCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomMedicCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomScienceCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomSecurityCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomServiceCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: ResearchDisk10000
+          prob: 0.5
+        - proto: ResearchDisk5000
+          prob: 0.5
+        - proto: TechnologyDiskRare
+          cost: 5
+          prob: 0.5
+        - proto: CrateArtifactContainer
+        - proto: WeaponPistolCHIMP
+        - proto: CrateMedicalSurgery
+          cost: 2
+        - proto: RightLegCyber
+        - proto: RightArmCyber
+        - proto: RightHandCyber
+        - proto: RightFootCyber
+        - proto: LeftLegCyber
+        - proto: LeftArmCyber
+        - proto: LeftHandCyber
+        - proto: LeftFootCyber
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10
+
+- type: salvageLoot
+  id: SalvageLootXenosMedium
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: CrateSalvageEquipment
+          cost: 3
+          prob: 0.5
+        - proto: RandomArtifactSpawner
+        - proto: RandomCargoCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomCommandCorpseSpawner
+          cost: 3
+          prob: 0.5
+        - proto: RandomEngineerCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomMedicCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomScienceCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomSecurityCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomServiceCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: ResearchDisk10000
+          prob: 0.5
+        - proto: ResearchDisk5000
+          prob: 0.5
+        - proto: TechnologyDiskRare
+          cost: 5
+          prob: 0.5
+        - proto: CrateArtifactContainer
+        - proto: WeaponPistolCHIMP
+        - proto: CrateMedicalSurgery
+          cost: 2
+        - proto: RightLegCyber
+        - proto: RightArmCyber
+        - proto: RightHandCyber
+        - proto: RightFootCyber
+        - proto: LeftLegCyber
+        - proto: LeftArmCyber
+        - proto: LeftHandCyber
+        - proto: LeftFootCyber
+        - proto: SpawnMechRipley
+          cost: 5
+          prob: 0.25
+        - proto: SpawnMechRipley
+          cost: 5
+        - proto: WeaponShotgunKammerer
+          cost: 5
+        - proto: BoxMagazineShotgunIncendiary
+          cost: 5
+          prob: 0.5
+        - proto: EyeImplantWelding
+        - proto: EyeImplantMedical
+        - proto: EyeImplantChemistry
+        - proto: HandImplantInsulated
+        - proto: Drill
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10
+
+- type: salvageLoot
+  id: SalvageLootXenosHard
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: CrateSalvageEquipment
+          cost: 3
+          prob: 0.5
+        - proto: RandomArtifactSpawner
+        - proto: RandomCargoCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomCommandCorpseSpawner
+          cost: 3
+          prob: 0.5
+        - proto: RandomEngineerCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomMedicCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomScienceCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomSecurityCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomServiceCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: ResearchDisk10000
+          prob: 0.5
+        - proto: ResearchDisk5000
+          prob: 0.5
+        - proto: TechnologyDiskRare
+          cost: 5
+          prob: 0.5
+        - proto: CrateArtifactContainer
+        - proto: WeaponPistolCHIMP
+        - proto: CrateMedicalSurgery
+          cost: 2
+        - proto: RightLegCyber
+        - proto: RightArmCyber
+        - proto: RightHandCyber
+        - proto: RightFootCyber
+        - proto: LeftLegCyber
+        - proto: LeftArmCyber
+        - proto: LeftHandCyber
+        - proto: LeftFootCyber
+        - proto: SpawnMechRipley
+          cost: 5
+          prob: 0.25
+        - proto: MechRipley2
+          cost: 15
+        - proto: WeaponShotgunKammerer
+          cost: 5
+        - proto: BoxMagazineShotgunIncendiary
+          cost: 5
+          prob: 0.5
+        - proto: EyeImplantWelding
+          cost: 5
+        - proto: EyeImplantMedical
+          cost: 5
+        - proto: EyeImplantChemistry
+          cost: 5
+        - proto: HandImplantInsulated
+          cost: 5
+        - proto: Drill
+        - proto: CrateArmoryShotgun
+          cost: 15
+        - proto: AnomalyCoreShadow
+          cost: 15
+        - proto: PaddyUpgradeKit
+          cost: 15
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10
