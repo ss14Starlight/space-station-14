@@ -25,7 +25,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/CC-NT/DSshuttle.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/EngiAtmos_GRID.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/ERTShuttle.yml"),
-        new("/Maps/_Starlight/Shuttles/CC-NT/GammaWeaponry.yml"),
+        new("/Maps/_Starlight/Shuttles/CC-NT/GammaArmory.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/Janitor_GRID.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/Medical_GRID.yml"),
         new("/Maps/_Starlight/Shuttles/CC-NT/NSSV_MetaClass.yml"),
@@ -57,6 +57,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/Mining/asteroidcracker.yml"),
 
         // Cargo
+        new("/Maps/_Starlight/Shuttles/Cargo/cargo_downpour.yml"),
         new("/Maps/_Starlight/Shuttles/Cargo/cargo_plasma.yml"),
         new("/Maps/_Starlight/Shuttles/Cargo/cargo_prism.yml"),
         new("/Maps/_Starlight/Shuttles/Cargo/cargo_silica.yml"),

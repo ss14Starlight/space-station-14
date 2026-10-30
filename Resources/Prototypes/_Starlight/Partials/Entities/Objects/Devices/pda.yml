@@ -10,3 +10,15 @@
   - type: ScanDetectable
   - type: Contraband
     tier: Tier5
+
+- type: !PartialOnly entity
+  parent: ClearPDA
+  id: ScurretPDA
+  name: scurret PDA
+  description: A temporary PDA granted to scurret temps. Doesn't do much. Wawa!
+  components:
+    - !Remove
+      type: Pda
+      id: VisitorIDCard
+    - type: Pda
+      id: EmotionalSupportScurretIDCard

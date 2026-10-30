@@ -543,3 +543,13 @@
   targetNode: jetpack
   category: construction-category-tools
   objectType: Item
+
+- type: construction
+  name: crafting-menu-name-molo
+  id: MolotovCocktail
+  graph: MolotovGraph
+  startNode: start
+  targetNode: molotov
+  category: construction-category-weapons
+  objectType: Item
+  description: crafting-menu-text-molo

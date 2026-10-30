@@ -1,4 +1,6 @@
 using System.Linq;
+using System.Text.RegularExpressions;
+using Content.Shared._Starlight.Paper;
 using Content.Shared.Administration.Logs;
 using Content.Shared.UserInterface;
 using Content.Shared.Database;
@@ -19,6 +21,8 @@ using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Content.Shared._Starlight.Time;
+using Content.Shared.Silicons.Borgs.Components;
+
 // Starlight-end
 
 namespace Content.Shared.Paper;
@@ -319,17 +323,21 @@ public sealed partial class PaperSystem : EntitySystem
         if (!args.CanAccess || !args.CanInteract)
             return;
 
-        // Pens have a `Write` tag.
-        if (!args.Using.HasValue || !_tagSystem.HasTag(args.Using.Value, WriteTag))
-            return;
+        // Starlight - borgs should always be able to sign things, most of them can't even hold a pen
+        if (!HasComp<BorgChassisComponent>(args.User))
+            // Pens have a `Write` tag.
+            if (!args.Using.HasValue || !_tagSystem.HasTag(args.Using.Value, WriteTag))
+                return;
 
         EntityUid user = args.User;
+        // Starlight - track the pen used to sign
+        EntityUid? pen = args.Using;
 
         AlternativeVerb verb = new()
         {
             Act = () =>
             {
-                TrySign(uid, user);
+                TrySign(uid, user, pen); // Starlight - add pen argument
             },
             Text = Loc.GetString("paper-component-verb-sign"),
             Priority = 4
@@ -338,19 +346,39 @@ public sealed partial class PaperSystem : EntitySystem
         args.Verbs.Add(verb);
     }
 
-    // Umbra: Actual signature code.
-    public bool TrySign(Entity<PaperComponent> paper, EntityUid signer)
+    // Starlight start: Track pen used to sign
+    public bool TrySign(Entity<PaperComponent> paper, EntityUid signer, EntityUid? pen = null)
     {
+        // Starlight
+        // Get entity's font, or fallback if there's not a custom one
+        // We prioritize the pen, then the signer, then the paper
+        SignatureConfig baseConfig = new();
+        Log.Debug($"init: {baseConfig}");
+        if (TryComp(paper, out CustomSignatureComponent? paperConf)) {
+            Log.Debug($"saturating with paper: {paperConf.Config}");
+            baseConfig = baseConfig.Saturate(paperConf.Config);
+        }
+        Log.Debug($"1: {baseConfig}");
+        if (TryComp(signer, out CustomSignatureComponent? signerConf)) {
+            Log.Debug($"saturating with signer: {signerConf.Config}");
+            baseConfig = baseConfig.Saturate(signerConf.Config);
+        }
+        Log.Debug($"2: {baseConfig}");
+        if (TryComp(pen, out CustomSignatureComponent? penConf)) {
+            Log.Debug($"saturating with pen: {penConf.Config}");
+            baseConfig = baseConfig.Saturate(penConf.Config);
+        }
+        Log.Debug($"3: {baseConfig}");
+
         // Generate display information.
         StampDisplayInfo info = new StampDisplayInfo
         {
-            StampedName = Name(signer),
-            StampedColor = Color.FromHex("#333333"),
+            StampedName = SanitizeSignature(Name(signer)),
+            StampedColor = baseConfig.PenColor!.Value,
             Type = StampType.Signature,
-            Font = "/Fonts/_Starlight/Signature.ttf" // 🌟Starlight🌟
+            Font = baseConfig.FontPath
         };
 
-        // STARLIGHT START
         // moved the paper signing event here, so that it becomes possible to cancel signing,
         // making the event dual-use.
         if (!paper.Comp.StampedBy.Contains(info))
@@ -369,7 +397,7 @@ public sealed partial class PaperSystem : EntitySystem
                 return false;
             }
         }
-        // STARLIGHT END
+        // Starlight end
 
         // Try stamp with the info, return false if failed.
         if (TryStamp(paper, info, "paper_stamp-generic"))
@@ -452,12 +480,21 @@ public sealed partial class PaperSystem : EntitySystem
         _appearance.SetData(entity, PaperVisuals.Status, status, appearance);
     }
 
-    private void UpdateUserInterface(Entity<PaperComponent> entity)
-    {
-        _uiSystem.SetUiState(entity.Owner, PaperUiKey.Key, new PaperBoundUserInterfaceState(entity.Comp.Content, entity.Comp.StampedBy, entity.Comp.Mode)); // Starlight-edit
-    }
+    private void UpdateUserInterface(Entity<PaperComponent> entity) => _uiSystem.SetUiState(entity.Owner, PaperUiKey.Key, new PaperBoundUserInterfaceState(entity.Comp.Content, entity.Comp.StampedBy, entity.Comp.Mode, entity.Comp.ExtendedMarkup)); // Starlight-edit
 
     # region Starlight
+    
+    private static readonly Regex RegexSignatureParens = new(@"^(.+?)(?:\s*\(.*\))+$", RegexOptions.Compiled);
+    
+    /// <summary>
+    /// Sanitizes an entity's name into a proper signature by stripping any trailing parenthesized text.
+    /// </summary>
+    private string SanitizeSignature(string name)
+    {
+        var match = RegexSignatureParens.Match(name);
+        if (!match.Success) return name;
+        return match.Groups[1].Value;
+    }
 
     private void OnSignatureRequest(Entity<PaperComponent> entity, ref PaperSignatureRequestMessage args)
     {

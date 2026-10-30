@@ -15,12 +15,10 @@
     - VampireKillRandomPersonObjective
     - VampireDrainObjective
   - type: AntagRandomObjectives
+    forcedObjectiveGroup: VampireObjectiveGroupFate
     sets:
-    - groups: VampireObjectiveGroupsStateOnly
-      maxPicks: 1
-    - groups: VampireObjectiveGroupsStealOnly
-      maxPicks: 1
-    maxDifficulty: 10
+    - groups: VampireObjectiveGroupsSelector
+    maxDifficulty: 4
   - type: DynamicRuleCost
     cost: 125
 

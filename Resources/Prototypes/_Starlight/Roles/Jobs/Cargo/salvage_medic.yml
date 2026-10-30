@@ -1,5 +1,6 @@
 ﻿- type: job
   id: SalvageMedic
+  roleSubtype: role-subtype-itg
   name: job-name-salvagemedic
   description: job-description-salvagemedic
   rules: job-rules-itg-aligned
@@ -21,7 +22,7 @@
   - External
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ ITGMindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: NoObjectiveTarget

@@ -98,7 +98,8 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
     }
 
     /// <summary>
-    /// Updates the listing name and description with the current stock count and last purchaser.
+    /// Copies the current stock count and last purchaser onto this condition.
+    /// The listing keeps its localisation id. Display code appends the count with a shared message.
     /// </summary>
     private void UpdateListingInfo(ListingData listing, string listingId)
     {
@@ -119,41 +120,36 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
         var outOfStock = currentStock <= 0;
         metadata["outOfStock"] = outOfStock;
 
-        // Update the CurrentStock property
+        // These fields travel with the listing to the client. The name and description stay loc ids.
         CurrentStock = currentStock;
-
-        // Update the LastPurchaser property
         LastPurchaser = lastPurchaser;
+        _stockLimits[listingId] = maxStock;
+        _outOfStock[listingId] = outOfStock;
+    }
 
-        // Directly update the name with the stock count
-        if (listing.Name != null && listing.Name.Contains("-name"))
+    /// <summary>
+    /// Reads the server-side stock tracked for a listing.
+    /// Returns false when this process has not tracked the listing, so callers can use the networked condition fields.
+    /// </summary>
+    public static bool TryGetTrackedStock(
+        string listingId,
+        out int current,
+        out int max,
+        out bool outOfStock,
+        out string? lastPurchaser)
+    {
+        if (!_stockCounts.TryGetValue(listingId, out current))
         {
-            // Get the base name without the stock count
-            var baseName = Loc.GetString(listing.Name);
-
-            // Format the name with the stock count in X/Y format
-            if (outOfStock)
-            {
-                listing.Name = Loc.GetString("store-listing-out-of-stock", ("name", baseName));
-            }
-            else
-            {
-                listing.Name = $"{baseName} ({currentStock}/{maxStock})";
-            }
+            max = 0;
+            outOfStock = false;
+            lastPurchaser = null;
+            return false;
         }
 
-        // Directly update the description with the last purchaser
-        if (listing.Description != null && listing.Description.Contains("-desc"))
-        {
-            // Get the base description without the last purchaser
-            var baseDesc = Loc.GetString(listing.Description);
-
-            // Format the description with the last purchaser
-            if (!string.IsNullOrEmpty(lastPurchaser))
-            {
-                listing.Description = Loc.GetString("store-listing-last-purchased", ("desc", baseDesc), ("name", lastPurchaser));
-            }
-        }
+        max = _stockLimits.TryGetValue(listingId, out var limit) ? limit : current;
+        outOfStock = current <= 0 || (_outOfStock.TryGetValue(listingId, out var flagged) && flagged);
+        lastPurchaser = _lastPurchasers.TryGetValue(listingId, out var purchaser) ? purchaser : null;
+        return true;
     }
 
     /// <summary>

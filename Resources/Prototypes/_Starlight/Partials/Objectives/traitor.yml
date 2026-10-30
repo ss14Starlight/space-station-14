@@ -1,0 +1,63 @@
+- type: !PartialOnly entity
+  id: KillRandomHeadObjective
+  description: We need this high value person gone. Make sure they do not make it to CentComm, even if they are dead.
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-kill-head
+  - type: PickRandomPerson
+    pool: !type:HighValueTargetsPool
+      includeCommand: true
+    filters: !Clear
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - KillPersonCondition
+
+- type: !PartialOnly entity
+  id: DieObjective
+  components:
+  - type: DifficultyModifier
+    multiplier: 0.5
+  - type: ObjectiveBonus
+    telecrystals: 15
+  - type: UngloriousRequirement
+  - type: Objective
+    difficulty: 0
+
+- type: !PartialOnly entity
+  id: EscapeShuttleObjective
+  components:
+  - type: Objective
+    difficulty: 0
+
+- type: !PartialOnly entity
+  id: KillRandomPersonObjective
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-kill
+    unique: true
+  - type: PickRandomPerson
+    pool: !type:WeightedAlivePool
+      weightHighValue: true
+
+- type: !PartialOnly entity
+  id: HijackTradeStationObjective
+  components:
+  - type: Objective
+    difficulty: 2 # It doesn't need to be *that* high
+
+- type: !PartialOnly entity
+  id: RandomTraitorAliveObjective
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-help-alive
+
+- type: !PartialOnly entity
+  id: RandomTraitorProgressObjective
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-help-progress

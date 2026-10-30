@@ -40,6 +40,39 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("ui.style_custom_accent", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// Show the old drag and drop job priority columns in the lobby, under the round info.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyJobColumns =
+        CVarDef.Create("ui.lobby_job_columns", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> LobbyBackground =
+        CVarDef.Create("ui.lobby_background", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Width of the chat column in the lobby, dragged by its left edge.
+    /// </summary>
+    public static readonly CVarDef<int> LobbyChatWidth =
+        CVarDef.Create("ui.lobby_chat_width", 630, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Opacity of the lobby panels over the lobby art, 1 is fully opaque.
+    /// </summary>
+    public static readonly CVarDef<float> LobbyOpacity =
+        CVarDef.Create("ui.lobby_opacity", 0.95f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether the chat in the lobby is collapsed to its header.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyChatCollapsed =
+        CVarDef.Create("ui.lobby_chat_collapsed", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether the ready and observe block sits above the lobby chat instead of below it.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyReadyOnTop =
+        CVarDef.Create("ui.lobby_ready_on_top", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Where each button of the top menu bar goes: <c>Name=Pinned|Auto|Menu|Hidden;...</c>, see BarLayout.
     /// Buttons left out are Auto: on the bar while it fits, in the "more" menu otherwise.
     /// </summary>

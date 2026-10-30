@@ -53,6 +53,15 @@ ui-options-style-custom-accent = Use custom accent color
 ui-options-style-accent-custom = Custom
 ui-options-style-accent-theme = Theme
 ui-options-viewport-label = Viewport
+ui-options-lobby-label = Lobby
+ui-options-lobby-background = Lobby art
+ui-options-lobby-background-server = Server's choice
+ui-options-lobby-opacity = Panel opacity
+ui-options-lobby-ready-position = Ready button
+ui-options-lobby-ready-position-bottom = Under the chat
+ui-options-lobby-ready-position-top = Above the chat
+ui-options-lobby-job-columns = Drag and drop job priorities in the lobby
+ui-options-lobby-job-columns-tooltip = Shows the old job priority columns under the round info, next to the job priorities window.
 ui-options-menu-bar-label = Top Menu Bar
 ui-options-menu-bar-key-hints = Keybind hints
 ui-options-menu-bar-key-hints-always = Always
@@ -66,7 +75,6 @@ ui-options-admin-ahelp-label = Admin Help
 style-theme-void = Void
 style-theme-graphite = Graphite
 style-theme-paper = Paper (debug)
-style-theme-classic = Classic (Nanotrasen)
 style-theme-abyss = Abyss
 style-theme-ribbon = Ribbon
 style-theme-rosewood = Rosewood
@@ -128,11 +136,19 @@ ui-options-admin-ghost-hud-setting-health-iconsandbars = Icons and bars
 ui-options-admin-ghost-hud-show-faction-icons = Show faction icons
 ui-options-admin-ghost-hud-show-satiation-icons = Show satiation icons
 
-ui-options-admin-ghost = Admin Ghost Config
+ui-options-admin-tools = Admin Tools Config
 ui-options-admin-ghost-script-label = aghost Script
 ui-options-admin-ghost-script-tooltip =
     The name of the script you want to automatically run when becoming admin ghost, either by command or by observing from lobby.
     Path is relative to your launcher's data directory, typically inside AppData on Windows or .local/share on Linux.
+ui-options-admin-space-map-label = Admin Arena Path
+ui-options-admin-space-map-tooltip =
+    The path to the map .yml you want to load as your Admin Arena.
+    If left empty the default one will be used.
+    Will check server user data first, then content data.
+ui-options-admin-space-map-init-label = Initialize Admin Arena
+ui-options-admin-space-map-init-tooltip =
+  If true, initializes the map on load. If false, the map spawns uninitialized.
 
 ## Theme
 

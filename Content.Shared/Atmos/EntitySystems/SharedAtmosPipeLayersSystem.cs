@@ -9,6 +9,7 @@ using Content.Shared.SubFloor;
 using Content.Shared.Tools;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;
 using System.Diagnostics.CodeAnalysis;
@@ -57,7 +58,9 @@ public abstract partial class SharedAtmosPipeLayersSystem : EntitySystem
 
         var user = args.User;
 
-        if (TryComp<SubFloorHideComponent>(ent, out var subFloorHide) && subFloorHide.IsUnderCover)
+        var bypass = HasComp<BypassInteractionChecksComponent>(user); // Starlight-start: Admins bypass checks
+        Entity<ToolComponent>? tool = null;
+        if (!bypass && TryComp<SubFloorHideComponent>(ent, out var subFloorHide) && subFloorHide.IsUnderCover) // Starlight-end
         {
             var v = new Verb
             {
@@ -72,7 +75,7 @@ public abstract partial class SharedAtmosPipeLayersSystem : EntitySystem
             args.Verbs.Add(v);
         }
 
-        else if (!TryGetHeldTool(user, ent.Comp.Tool, out var tool))
+        else if (!bypass && !TryGetHeldTool(user, ent.Comp.Tool, out tool)) // Starlight-edit
         {
             var v = new Verb
             {
@@ -103,10 +106,11 @@ public abstract partial class SharedAtmosPipeLayersSystem : EntitySystem
                     Disabled = index == (int)ent.Comp.CurrentPipeLayer,
                     Impact = LogImpact.Low,
                     DoContactInteraction = true,
-                    Act = () =>
-                    {
-                        _tool.UseTool(tool.Value, user, ent, ent.Comp.Delay, tool.Value.Comp.Qualities, new TrySettingPipeLayerCompletedEvent((AtmosPipeLayer)index));
-                    }
+                    // Starlight-start: Act instantly when bypassing
+                    Act = tool is { } t
+                        ? () => _tool.UseTool(t, user, ent, ent.Comp.Delay, t.Comp.Qualities, new TrySettingPipeLayerCompletedEvent((AtmosPipeLayer)index))
+                        : () => SetPipeLayer(ent, (AtmosPipeLayer)index, user),
+                    // Starlight-end
                 };
 
                 args.Verbs.Add(v);
@@ -122,7 +126,8 @@ public abstract partial class SharedAtmosPipeLayersSystem : EntitySystem
         if (!TryComp<ToolComponent>(args.Used, out var tool) || !_tool.HasQuality(args.Used, ent.Comp.Tool, tool))
             return;
 
-        if (TryComp<SubFloorHideComponent>(ent, out var subFloorHide) && subFloorHide.IsUnderCover)
+        if (TryComp<SubFloorHideComponent>(ent, out var subFloorHide) && subFloorHide.IsUnderCover // Starlight-start: Admins bypass
+            && !HasComp<BypassInteractionChecksComponent>(args.User)) // Starlight-end
         {
             _popup.PopupClient(Loc.GetString("atmos-pipe-layers-component-cannot-adjust-pipes"), ent, args.User);
             return;

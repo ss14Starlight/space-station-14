@@ -3,6 +3,9 @@
   components:
   - type: Contraband
     tier: Tier2
+  - type: FootstepTimbre
+    pitch: 1.05
+    volume: -3
   - type: StealTarget
     stealGroup: GaloshesCollection
 
@@ -24,3 +27,24 @@
   - type: AddTagsOnClothingEquip
     tagsToAdd:
       - Skating
+
+- type: !PartialOnly entity
+  id: ClothingShoesSwat
+  components:
+  - type: FootstepTimbre
+    pitch: 0.9
+    volume: 1.5
+
+- type: !PartialOnly entity
+  id: ClothingShoesCult
+  components:
+  - type: FootstepTimbre
+    pitch: 0.92
+    volume: 1
+
+- type: !PartialOnly entity
+  id: ClothingShoesSpaceNinja
+  components:
+  - type: FootstepTimbre
+    pitch: 1.05
+    volume: -9

@@ -7,12 +7,13 @@
     TraitorObjectiveGroupState: 1 #As in, something about your character. Alive, dead, arrested, gained an ability...
     TraitorObjectiveGroupSocial: 0.25 #Involves helping/harming others without killing them or stealing their stuff, lowered because the chance of rolling this was enormous when its just one objective in the category
     TraitorObjectiveGroupStory: 0.85  # Starlight
+    TraitorObjectiveGroupSabotage: 1
     TraitorObjectiveGroupOther: 1
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSteal
   weights:
-    CaptainIDStealObjective: 1
+    CaptainIDStealObjective: 0.5  # Moffstation - Objective picker adjustments
     CMOHyposprayStealObjective: 1
 #    CMOCrewMonitorStealObjective: 1 # Starlight, disabled in favor of collection objective
     RDHardsuitStealObjective: 0.75  #Starlight edit
@@ -58,6 +59,7 @@
   id: TraitorObjectiveGroupKill
   weights:
     KillRandomPersonObjective: 1
+    KillStationAiObjective: 0.25
     KillRandomHeadObjective: 0.25
     TeachRandomPersonObjective: 1 #Starlight Teach them a lesson
     TeachRandomHeadObjective: 0.25 # Starlight Teach them a lesson
@@ -74,6 +76,11 @@
   weights:
 #    RandomTraitorAliveObjective: 1 - Removed because the objective was boring and didn't progress the round.
     RandomTraitorProgressObjective: 1
+
+- type: weightedRandom
+  id: TraitorObjectiveGroupSabotage
+  weights:
+    SupercritAnomaliesObjective: 1
 
 #misc objectives that don't fall other another category
 - type: weightedRandom

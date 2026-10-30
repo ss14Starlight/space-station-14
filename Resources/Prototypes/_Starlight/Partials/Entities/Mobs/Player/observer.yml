@@ -1,0 +1,26 @@
+# shared parent between aghosts, replay spectators and normal observers
+- type: !PartialOnly entity
+  id: MobObserverBase
+  components:
+  - type: LanguageSpeaker
+  - type: UniversalLanguageSpeaker
+  - type: DarkLight
+  - type: ActiveInputMover
+  - type: Speech # only adds speech bubble while typing
+  - type: AntagImmune
+
+# proto for player ghosts specifically
+- type: !PartialOnly entity
+  id: MobObserver
+  components:
+  - type: ComplexInteraction
+  - type: RadarConsole
+    followEntity: true
+  - type: UserInterface
+    interfaces:
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar

@@ -6,12 +6,21 @@ using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Preferences;
+using Content.Shared._Starlight.CCVar;
+using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Server.Antag;
 
 public sealed partial class AntagSelectionSystem
 {
+    [Dependency] private INetConfigurationManager _netConfig = default!;
+
+    private bool AntagsEnabled(ICommonSession session)
+        => session.Status == SessionStatus.Disconnected
+            || _netConfig.GetClientCVar(session.Channel, StarlightCCVars.AntagsEnabled);
+
     readonly int _effectivePlayerCutoff = 30; // The number of online players at which unready players start counting as effectively ready
     readonly double _unreadyPlayerMultiplier = 0.25; // The fraction of unready players that count as effectively ready when above the cutoff
     private int GetEffectivePlayerCountPlayerRatio(int activePlayers)
@@ -94,9 +103,7 @@ public sealed partial class AntagSelectionSystem
         ICommonSession session,
         HumanoidCharacterProfile profile,
         ProtoId<AntagSpecifierPrototype> definition)
-    {
-        return Proto.Resolve(definition, out var antag) && IsProfileValidForAntag(session, profile, antag);
-    }
+        => Proto.Resolve(definition, out var antag) && IsProfileValidForAntag(session, profile, antag);
 
     /// <inheritdoc cref="IsProfileValidForAntag(ICommonSession,HumanoidCharacterProfile,ProtoId{AntagSpecifierPrototype})"/>
     [PublicAPI]

@@ -1,5 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._Starlight.Language.Components;
+using Content.Shared._Starlight.Language.Systems;
+using Content.Shared._Starlight.Mind.Events;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Emoting;
@@ -15,8 +18,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Players;
 using Content.Shared.Speech;
-using Content.Shared._Starlight.Language.Systems; // Starlight-edit
-using Content.Shared._Starlight.Language.Components; // Starlight-edit
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -46,8 +47,6 @@ public abstract partial class SharedMindSystem : EntitySystem
 
     [ViewVariables]
     protected readonly Dictionary<NetUserId, EntityUid> UserMinds = new();
-
-    private HashSet<Entity<MindComponent>> _pickingMinds = new();
 
     private readonly EntProtoId _mindProto = "MindBase";
 
@@ -366,6 +365,8 @@ public abstract partial class SharedMindSystem : EntitySystem
         var title = Name(objective);
         _adminLogger.Add(LogType.Mind, LogImpact.Low, $"Objective {objective} ({title}) added to mind of {MindOwnerLoggingString(mind)}");
         mind.Objectives.Add(objective);
+        var changed = new MindObjectivesChangedEvent(); // Starlight
+        RaiseLocalEvent(mindId, ref changed); // Starlight
     }
 
 
@@ -398,6 +399,9 @@ public abstract partial class SharedMindSystem : EntitySystem
         _adminLogger.Add(LogType.Mind, LogImpact.Low, $"Objective {objective} ({title}) removed from the mind of {MindOwnerLoggingString(mind)}");
         mind.Objectives.Remove(objective);
 
+        var changed = new MindObjectivesChangedEvent();
+        RaiseLocalEvent(mindId, ref changed);
+
         // garbage collection - only delete the objective entity if no mind uses it anymore
         // This comes up for stuff like paradox clones where the objectives share the same entity
         if (!force)
@@ -416,9 +420,6 @@ public abstract partial class SharedMindSystem : EntitySystem
         return true;
     }
     #endregion
-
-
-
 
     public bool TryGetObjectiveComp<T>(EntityUid uid, [NotNullWhen(true)] out T? objective) where T : IComponent
     {
@@ -623,56 +624,11 @@ public abstract partial class SharedMindSystem : EntitySystem
     }
 
     /// <summary>
-    /// Returns a list of every living humanoid player's minds, except for a single one which is exluded.
-    /// A new hashset is allocated for every call, consider using <see cref="AddAliveHumans"/> instead.
-    /// </summary>
-    public HashSet<Entity<MindComponent>> GetAliveHumans(EntityUid? exclude = null)
-    {
-        var allHumans = new HashSet<Entity<MindComponent>>();
-        AddAliveHumans(allHumans, exclude);
-        return allHumans;
-    }
-
-    /// <summary>
-    /// Adds to a hashset every living humanoid player's minds, except for a single one which is exluded.
-    /// </summary>
-    public void AddAliveHumans(HashSet<Entity<MindComponent>> allHumans, EntityUid? exclude = null)
-    {
-        // HumanoidAppearanceComponent is used to prevent mice, pAIs, etc from being chosen
-        var query = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent>();
-        while (query.MoveNext(out var uid, out _, out var mobState))
-        {
-            // the player needs to have a mind and not be the excluded one +
-            // the player has to be alive
-            if (!TryGetMind(uid, out var mind, out var mindComp) || mind == exclude || !_mobState.IsAlive(uid, mobState))
-                continue;
-
-            allHumans.Add((mind, mindComp));
-        }
-    }
-
-    /// <summary>
-    /// Picks a random mind from a pool after applying a list of filters.
-    /// Returns null if no valid mind could be found.
-    /// </summary>
-    public Entity<MindComponent>? PickFromPool(IMindPool pool, List<MindFilter> filters, EntityUid? exclude = null)
-    {
-        _pickingMinds.Clear();
-        pool.FindMinds(_pickingMinds, exclude, EntityManager, this);
-        FilterMinds(_pickingMinds, filters, exclude);
-
-        if (_pickingMinds.Count == 0)
-            return null;
-
-        return _random.Pick(_pickingMinds);
-    }
-
-    /// <summary>
     /// Filters minds from a hashset using a single <see cref="MindFilter"/>.
     /// </summary>
     public void FilterMinds(HashSet<Entity<MindComponent>> minds, MindFilter filter, EntityUid? exclude = null)
     {
-        minds.RemoveWhere(mind => filter.Filter(mind, exclude, EntityManager, this));
+        minds.RemoveWhere(mind => filter.Filter(mind, exclude, EntityManager));
     }
 
     /// <summary>

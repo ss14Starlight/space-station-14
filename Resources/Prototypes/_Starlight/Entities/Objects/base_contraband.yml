@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BaseSovietContraband
   abstract: true
   components:
@@ -133,3 +133,12 @@
   - type: Contraband
     tier: Tier2
     contrabandType: Cybersun
+
+# Scurrets
+- type: entity
+  id: BaseEmotionalSupportScurretContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+    - type: Contraband
+      allowedJobs: [ EmotionalSupportScurret ]
