@@ -1,32 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Changed the enemies in the USSP expedition to be better equipped.
-    type: Tweak
-  id: 409566
-  time: '2026-10-17T13:01:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6731
-- author: Romero/Littlemen
-  changes:
-  - message: Molotov cocktails are now available for the oppressed working class of the Starlight sector, craft one today!.
-    type: Add
-  id: 409567
-  time: '2026-10-17T13:22:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6723
-- author: Johnny
-  changes:
-  - message: Lone ops can now declare war onto the station.
-    type: Add
-  id: 409568
-  time: '2026-10-17T13:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6713
-- author: Rescue
-  changes:
-  - message: Hypopen targets no longer hear the injection sound effect, all other nearby listeners still hear the SFX and can roleplay accordingly.
-    type: Tweak
-  id: 409569
-  time: '2026-10-17T14:09:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6689
 - author: Rescue
   changes:
   - message: Hyposprays / Hypopens now correctly show "You feel a tiny prick" messages again.
@@ -2799,4 +2771,32 @@ Entries:
   id: 409965
   time: '2026-10-30T20:47:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6931
+- author: redmushie
+  changes:
+  - message: (Box) Change Distro/Waste layers to match docking port standard.
+    type: Tweak
+  id: 409966
+  time: '2026-10-30T21:46:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6916
+- author: redmushie
+  changes:
+  - message: (Box) Route distro, waste and HV to every docking port.
+    type: Add
+  id: 409967
+  time: '2026-10-30T21:46:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6916
+- author: redmushie
+  changes:
+  - message: (Cog) Change Distro/Waste layers to match docking port standard.
+    type: Tweak
+  id: 409968
+  time: '2026-10-30T21:46:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6916
+- author: redmushie
+  changes:
+  - message: (Cog) Route distro, waste and HV to every docking port.
+    type: Add
+  id: 409969
+  time: '2026-10-30T21:46:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6916
 Order: -1
