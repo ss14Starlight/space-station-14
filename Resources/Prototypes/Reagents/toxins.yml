@@ -783,7 +783,7 @@
           reagent: Allicin
           min: 1
         - !type:MetabolizerTypeCondition
-          type: [Animal, Experiment]
+          type: [Animal, Arachnid, Experiment] # Starlight
         damage:
           types:
             Poison: 0.06
