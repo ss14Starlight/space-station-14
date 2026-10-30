@@ -439,11 +439,11 @@
   - !type:DungeonEntranceDunGen
     count: 2
     tile: FloorSteel
-    contents: BaseAirlock
+    contents: Airlock
 
   - !type:RoomEntranceDunGen
     tile: FloorSteel
-    contents: BaseAirlock
+    contents: Airlock
 
   - !type:EntranceFlankDunGen
     tile: FloorSteel
@@ -465,12 +465,12 @@
   - !type:JunctionDunGen
     width: 1
     tile: FloorSteel
-    contents: BaseAirlock
+    contents: Airlock
 
   - !type:JunctionDunGen
     width: 3
     tile: FloorSteel
-    contents: BaseAirlock
+    contents: Airlock
 
   - !type:AutoCablingDunGen
     entity: CableApcExtension
@@ -579,7 +579,7 @@
   table: !type:GroupSelector
     children:
     - id: CableApcExtension
-    - id: BaseAirlock
+    - id: Airlock
 
 - type: entityTable
   id: OutbreakDungeonWalls
