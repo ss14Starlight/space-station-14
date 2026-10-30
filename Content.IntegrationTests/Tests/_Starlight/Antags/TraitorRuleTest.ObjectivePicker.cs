@@ -3,6 +3,7 @@ using System.Linq;
 using Content.Client._Starlight.Character.Info.UI;
 using Content.Client._Starlight.Objectives.ObjectivePicker;
 using Content.IntegrationTests.Fixtures.Attributes;
+using Content.IntegrationTests.Tests._Starlight.Objectives;
 using Content.Server.Mind;
 using Content.Server.Objectives.Components;
 using Content.Server._Starlight.Objectives.Components;
@@ -30,6 +31,21 @@ namespace Content.IntegrationTests.Tests.GameRules;
 public sealed partial class TraitorRuleTest
 {
     private static readonly ProtoId<TagPrototype> _sLBackgroundTag = "CivilianTraitBackground";
+
+    [TestPrototypes]
+    private const string PickerProgressPrototypes = """
+        -   type: entity
+            id: SLPickerTestNetworkProgress
+            components:
+            -   type: Objective
+                difficulty: 1
+                unique: false
+                issuer: objective-issuer-syndicate
+                icon:
+                    sprite: error.rsi
+                    state: error
+            -   type: PickerProgressTest
+        """;
 
     private async Task TestObjectivePicker(EntityUid mind, EntityUid player)
     {
@@ -99,6 +115,11 @@ public sealed partial class TraitorRuleTest
         });
         await Pair.RunUntilSynced();
 
+        await Client.WaitAssertion(() => ui.GetUIController<ObjectivePickerUIController>().EnsureWindow());
+        await Pair.RunUntilSynced();
+        await Server.WaitAssertion(() => Assert.That(
+            SEntMan.GetComponent<ObjectivePickerConfigurationComponent>(mind).PickerSession, Is.SameAs(ServerSession)));
+
         await Client.WaitAssertion(() =>
         {
             var window = FindControls<SLCharacterWindow>(ui.RootControl).Single();
@@ -156,6 +177,7 @@ public sealed partial class TraitorRuleTest
 
         await Server.WaitAssertion(() =>
         {
+            Assert.That(SEntMan.GetComponent<ObjectivePickerConfigurationComponent>(mind).PickerSession, Is.Null);
             Assert.That(SEntMan.GetComponent<MindComponent>(foreignMind).Objectives, Is.Empty);
             Assert.That(SEntMan.GetComponent<MindComponent>(mind).Objectives, Is.EqualTo(new[] { forced }));
         });
@@ -223,15 +245,36 @@ public sealed partial class TraitorRuleTest
 
         await Server.WaitAssertion(() =>
         {
+            var config = SEntMan.GetComponent<ObjectivePickerConfigurationComponent>(mind);
+            config.CurrentBatch.Clear();
+            config.BatchUnlocked = false;
+            config.NextProgressCheck = TimeSpan.MaxValue;
+            var mindComp = SEntMan.GetComponent<MindComponent>(mind);
+            for (var i = 0; i < 4; i++)
+            {
+                var objective = SEntMan.SpawnEntity("SLPickerTestNetworkProgress", MapCoordinates.Nullspace);
+                SEntMan.GetComponent<PickerProgressTestComponent>(objective).Progress = i < 3 ? 1 : 0;
+                Server.System<MindSystem>().AddObjective(mind, mindComp, objective);
+                config.CurrentBatch.Add(objective);
+            }
             var progress = SEntMan.GetComponent<ObjectivePickerProgressComponent>(mind);
-            progress.CanPickMore = true;
+            progress.CanPickMore = false;
             SEntMan.Dirty(mind, progress);
+            SEntMan.Dirty(mind, mindComp);
         });
         await Pair.RunTicksSync(5);
         await Pair.RunUntilSynced();
         await Client.WaitAssertion(() =>
             ui.GetUIController<CharacterUIController>().OpenCharacterOverview());
         await Pair.RunTicksSync(70);
+        await Server.WaitAssertion(() =>
+        {
+            var config = SEntMan.GetComponent<ObjectivePickerConfigurationComponent>(mind);
+            Assert.That(config.BatchUnlocked, Is.True, "The character menu should unlock the batch using its GetInfo results.");
+            foreach (var objective in config.CurrentBatch)
+                Assert.That(SEntMan.GetComponent<PickerProgressTestComponent>(objective).Queries, Is.EqualTo(1),
+                    "Menu progress must not trigger another progress evaluation in the picker system.");
+        });
         await Client.WaitAssertion(() =>
         {
             var window = FindControls<SLCharacterWindow>(ui.RootControl).Single();

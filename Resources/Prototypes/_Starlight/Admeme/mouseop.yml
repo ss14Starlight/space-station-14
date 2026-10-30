@@ -230,7 +230,7 @@
   id: ClothingHandsGlovesCombatmous
   suffix: DO NOT MAP, Admeme
   name: combat mouff unremovable gloves
-  description: made by mouffs for mouffs!
+  description: Made by mouffs, for mouffs!
   components:
   - type: Unremoveable
 
@@ -257,7 +257,7 @@
   id: ClothingOuterHardsuitSyndieMouseOps
   suffix: DO NOT MAP, Admeme
   name: mouff redd hardsuit
-  description: made by mouffs for mouffs!
+  description: Made by mouffs, for mouffs!
   components:
   - type: ExplosionResistance
     damageCoefficient: 0.65

@@ -19,6 +19,8 @@
   components:
   - type: DifficultyModifier
     multiplier: 0.5
+  - type: ObjectiveBonus
+    telecrystals: 15
   - type: UngloriousRequirement
   - type: Objective
     difficulty: 0
