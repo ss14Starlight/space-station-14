@@ -1,67 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Emergency Escape Pod Airlocks no longer violate Space OSHA Regulation 1910.36(d) "An exit door must be unlocked." (These docks are now Maintenance access, so all Crew can use them. They are intended to be open at all times anyway but code regressions regularly break this function so I am just removing the lock. The lock is never meant to be a factor in gameplay anyway).
-    type: Fix
-  id: 409530
-  time: '2026-10-16T12:53:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6708
-- author: Teddiousbear
-  changes:
-  - message: Veteran Salv Med Mantle.
-    type: Add
-  id: 409531
-  time: '2026-10-16T12:53:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6706
-- author: Teddiousbear
-  changes:
-  - message: Veteran Salv PDA.
-    type: Add
-  id: 409532
-  time: '2026-10-16T12:53:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6706
-- author: Teddiousbear
-  changes:
-  - message: Salvage Medic Jumpsuits/skirts.
-    type: Add
-  id: 409533
-  time: '2026-10-16T12:53:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6706
-- author: Teddiousbear
-  changes:
-  - message: Medical Glasses loadout option to Salv Med.
-    type: Add
-  id: 409534
-  time: '2026-10-16T12:53:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6706
-- author: Teddiousbear
-  changes:
-  - message: PKA Upgrade BP to Ticketbox.
-    type: Add
-  id: 409535
-  time: '2026-10-16T12:53:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6706
-- author: Teddiousbear
-  changes:
-  - message: Added missing ammo types to ammobp.
-    type: Tweak
-  id: 409536
-  time: '2026-10-16T12:53:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6706
-- author: Teddiousbear
-  changes:
-  - message: Salvage Tickets no longer sellable.
-    type: Tweak
-  id: 409537
-  time: '2026-10-16T12:53:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6706
-- author: Teddiousbear
-  changes:
-  - message: Blueprint ID Typos.
-    type: Fix
-  id: 409538
-  time: '2026-10-16T12:53:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6706
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Refined the NanoTrasen theme to better reflect the Classic theme, in anticipation of its eventual removal. If you were using the Classic theme, you will need to re-select the NanoTrasen theme.
@@ -2799,4 +2736,67 @@ Entries:
   id: 409929
   time: '2026-10-30T18:10:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6941
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Implants can now be tagged as fragile and will break upon extraction. For now, only mindshields are fragile.
+    type: Add
+  id: 409930
+  time: '2026-10-30T18:10:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6942
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Vampires are now unable to be converted without the Glyph of Truth.
+    type: Tweak
+  id: 409931
+  time: '2026-10-30T18:10:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6942
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Improved on-boarding for cosmic cult to help inform new players how to collect and deposit entropy, and how to use glyphs.
+    type: Tweak
+  id: 409932
+  time: '2026-10-30T18:10:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6942
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Improved the feedback given when a cultist absorbs a malign rift to describe the effects given and that it's removed if Null Fragmentation is used.
+    type: Tweak
+  id: 409933
+  time: '2026-10-30T18:10:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6942
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: If the cosmic cult's steward is de-converted in tiers 1 or 2, a new steward is randomly chosen from the remaining cultists, and all cultists are notified. This can only happen once.
+    type: Tweak
+  id: 409934
+  time: '2026-10-30T18:10:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6942
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: The Monument can now be moved starting in tier 1, rather than in tier 2.
+    type: Tweak
+  id: 409935
+  time: '2026-10-30T18:10:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6942
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Siphon Entropy now has a slightly increased tolerance for movement before being interrupted. If it's interrupted for any reason half of the cooldown is refunded.
+    type: Tweak
+  id: 409936
+  time: '2026-10-30T18:10:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6942
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Cosmic cult ability costs have been slightly lowered across the board to give greater access to the more expensive abilities in the lategame.
+    type: Tweak
+  id: 409937
+  time: '2026-10-30T18:10:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6942
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Wizards are now unable to be converted without the Glyph of Truth as intended; it was accidentally preventing wizard cultists from converting, not preventing wizards from being converted.
+    type: Fix
+  id: 409938
+  time: '2026-10-30T18:10:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6942
 Order: -1
