@@ -18,11 +18,6 @@
 #   copyright: "Alekshhh github"
 #   source: "https://github.com/space-wizards/space-station-14"
 
-- files: ["mime.webp"]
-  license: "CC-BY-SA-4.0"
-  copyright: "darkrell"
-  source: "https://github.com/ss14Starlight/space-station-14"
-
 - files: ["doomed.webp"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "brainfood1183 github"
@@ -48,6 +43,11 @@
   copyright: "plantyfern on discord"
   source: "https://github.com/space-wizards/space-station-14"
 
+- files: ["invisiblewall.webp"]
+  license: "CC-BY-SA-3.0"
+  copyright: "vanderslootassgiraffe on discord"
+  source: "https://github.com/space-wizards/space-station-14"
+
 - files: ["janishootout.webp"]
   license: "CC0-1.0"
   copyright: "psychpsyo on Github/Twitter"
@@ -58,7 +58,3 @@
   copyright: "GetOutMarutak,aka.Snicket on Discord/github/Cara/Ko-fi"
   source: "https://github.com/space-wizards/space-station-14"
 
-- files: ["rev-clown.webp"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Zigo, space station 13, SS13, SS-13, Космическая станция 13, Клоун-революционер из SS13"
-  source: "https://safereactor.cc/post/5752192"

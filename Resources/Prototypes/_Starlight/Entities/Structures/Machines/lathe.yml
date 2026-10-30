@@ -150,6 +150,7 @@
     - ToolsStatic
     - PartsStatic
     - AtmosStatic
+    - CombustionTurbinePartsStatic
     - CablesStatic
     - MaterialsStatic
     - LightsStatic

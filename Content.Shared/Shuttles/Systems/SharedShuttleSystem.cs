@@ -62,6 +62,11 @@ public abstract partial class SharedShuttleSystem : EntitySystem
     public bool CanFTLTo(EntityUid shuttleUid, MapId targetMap, EntityUid consoleUid)
     {
         var mapUid = Maps.GetMapOrInvalid(targetMap);
+        // Starlight - start
+        if (!TryComp<MapComponent>(mapUid, out var mapComponent) || !mapComponent.MapInitialized)
+            return false;
+        // Starlight - end
+
         var shuttleMap = _xformQuery.GetComponent(shuttleUid).MapID;
 
         if (shuttleMap == targetMap)
@@ -222,6 +227,13 @@ public abstract partial class SharedShuttleSystem : EntitySystem
 
         // This is the already adjusted position
         var targetPosition = mapCoordinates.Position;
+
+        //Check for invalid entities.
+        if (!coordinates.IsValid(EntityManager) || !double.IsFinite(angle.Theta))
+        {
+            Log.Error($"Found invalid FTL destination with coordinates {coordinates} and angle {angle} for shuttle {shuttleUid}");
+            return false;
+        }
 
         // Check range even if it's cross-map.
         if ((targetPosition - ourPos).Length() > GetFTLRange(shuttleUid)) //starlight modification

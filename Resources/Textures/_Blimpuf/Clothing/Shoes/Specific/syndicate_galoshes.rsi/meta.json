@@ -1,0 +1,30 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/7e4e9d432d88981fb9bb463970c5b98ce85c0abe."
+        },
+        {
+            "name": "equipped-FEET",
+            "copyright": "TG Station",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "TG Station",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "TG Station",
+            "directions": 4
+        }
+    ]
+}

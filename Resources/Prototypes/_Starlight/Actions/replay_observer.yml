@@ -23,7 +23,7 @@
   parent: BaseMentalAction
   id: ActionReplayToggleStatusIcons
   name: Toggle Status Icons
-  description: Show job, mindshield and health icons in this replay.
+  description: Show job, mindshield, security status and health icons in this replay.
   components:
   - type: Action
     icon: { sprite: Clothing/Eyes/Hud/med.rsi, state: icon }
@@ -50,6 +50,7 @@
   components:
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
   - type: ShowHealthBars
     damageContainers:
     - Biological

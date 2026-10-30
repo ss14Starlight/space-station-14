@@ -304,6 +304,53 @@
     job: DutyOfficer
 
 - type: entity
+  parent: [ IDCardStandard, BaseSecurityContraband ]
+  id: GunnerySergeantIDCard
+  name: gunnery sergeant ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - sprite: *id-rsi
+      state: stripe_top
+      color: *color-security-top
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: *color-security-bottom
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: GunnerySergeant
+  - type: PresetIdCard
+    job: GunnerySergeant
+
+- type: entity
+  parent: [ IDCardStandard, BaseSecurityContraband ]
+  id: K9IDCard
+  name: K9 ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - sprite: *id-rsi
+      state: stripe_top
+      color: *color-security-top
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: *color-security-bottom
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: K9
+  - type: PresetIdCard
+    job: K9
+
+- type: entity
+  parent: K9IDCard
+  id: SeniorK9IDCard
+  name: senior K9 ID card
+
+- type: entity
   parent: IDCardStandard
   id: KikiIDCard
   name: kiki's ID card
@@ -1082,3 +1129,18 @@
       state: SalvageMedic
   - type: PresetIdCard
     job: SalvageMedic
+
+- type: entity
+  parent: IDCardStandard
+  id: EmotionalSupportScurretIDCard
+  name: emotional support scurret ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: default
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: EmotionalSupportScurret
+    - type: PresetIdCard
+      job: EmotionalSupportScurret
