@@ -1,11 +1,4 @@
 Entries:
-- author: Alloy-Inc
-  changes:
-  - message: Burst fire mode on the Bolt Rifle. I'm sorry but this needs to go.
-    type: Remove
-  id: 409565
-  time: '2026-10-17T12:07:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6722
 - author: Johnny
   changes:
   - message: Changed the enemies in the USSP expedition to be better equipped.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409964
   time: '2026-10-30T20:22:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6926
+- author: to01
+  changes:
+  - message: Added Syndimoff, a budget alternative to the Syndicat.
+    type: Add
+  id: 409965
+  time: '2026-10-30T20:47:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6931
 Order: -1
