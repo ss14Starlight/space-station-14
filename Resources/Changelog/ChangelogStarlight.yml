@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Alpha) Wizard Duel decreased from 2.3% -> 1%.
-    type: Tweak
-  id: 409522
-  time: '2026-10-16T11:06:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6691
-- author: Caws
-  changes:
   - message: (Alpha) Shitstation decreased from 4.7% -> 3%.
     type: Tweak
   id: 409523
@@ -2799,4 +2792,11 @@ Entries:
   id: 409921
   time: '2026-10-30T15:03:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6947
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Mindless monkeys and the like no longer grant conversion credit or telebonds when joining the revolution.
+    type: Fix
+  id: 409922
+  time: '2026-10-30T15:03:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6945
 Order: -1
