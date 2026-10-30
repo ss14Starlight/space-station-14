@@ -84,7 +84,7 @@
       settings: ERTLeader
 
 - type: randomHumanoidSettings
-  id: ERTLeader
+  id: ERTBase
   parent: EventHumanoidCentcomm
   components:
     - type: GhostRole
@@ -102,6 +102,16 @@
       nameSegments:
       - NamesMilitaryLast
       nameFormat: name-format-ert-leader
+
+- type: randomHumanoidSettings
+  id: ERTLeader
+  parent: ERTBase
+  components:
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - DeathRattleImplantCentcomm
+      - BluespaceImplant
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVA
@@ -155,7 +165,7 @@
 
 - type: randomHumanoidSettings
   id: ERTChaplain
-  parent: ERTLeader
+  parent: ERTBase
   components:
     - type: BibleUser
     - type: GhostRole
@@ -209,7 +219,7 @@
 
 - type: randomHumanoidSettings
   id: ERTJanitor
-  parent: ERTLeader
+  parent: ERTBase
   components:
     - type: GhostRole
       name: ghost-role-information-ert-janitor-name
@@ -261,7 +271,7 @@
 
 - type: randomHumanoidSettings
   id: ERTEngineer
-  parent: ERTLeader
+  parent: ERTBase
   components:
     - type: GhostRole
       name: ghost-role-information-ert-engineer-name
@@ -333,7 +343,7 @@
 
 - type: randomHumanoidSettings
   id: ERTSecurity
-  parent: ERTLeader
+  parent: ERTBase
   components:
     - type: GhostRole
       name: ghost-role-information-ert-security-name
@@ -470,7 +480,7 @@
 
 - type: randomHumanoidSettings
   id: ERTMedical
-  parent: ERTLeader
+  parent: ERTBase
   components:
     - type: GhostRole
       name: ghost-role-information-ert-medical-name
