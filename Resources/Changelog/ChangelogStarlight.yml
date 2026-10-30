@@ -1,13 +1,6 @@
 Entries:
 - author: Alloy-Inc
   changes:
-  - message: Following rumors of salvagers selling the weapons to the station folks, and to limit the amount of rifles around, Bolt Rifles are now limited to 3 purchasable in the ticket vendor, Bolt Pistols limited to 4.
-    type: Tweak
-  id: 409562
-  time: '2026-10-17T12:07:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6722
-- author: Alloy-Inc
-  changes:
   - message: Bolt Rifle now has a small amount of spread instead of perfect accuracy, unwielded accuracy has been made worse, it is still a fairly accurate weapon. This is subject to being increased at a later date depending on feedback.
     type: Tweak
   id: 409563
@@ -2799,4 +2792,11 @@ Entries:
   id: 409961
   time: '2026-10-30T19:36:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6896
+- author: baltdev
+  changes:
+  - message: Scurret corpses are no longer edible. Why were they ever!?
+    type: Fix
+  id: 409962
+  time: '2026-10-30T20:00:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6928
 Order: -1
