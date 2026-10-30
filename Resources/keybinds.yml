@@ -663,3 +663,9 @@ binds:
 - function: LatchStruggle
   type: State
   key: Space
+- function: RemoveHotbarAction
+  type: State
+  key: MouseRight
+  mod1: Shift
+  canFocus: true
+  allowSubCombs: true

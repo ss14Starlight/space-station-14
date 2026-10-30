@@ -539,7 +539,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
 
     private void OnActionPressed(GUIBoundKeyEventArgs args, ActionButton button)
     {
-        if (args.Function == EngineKeyFunctions.UIRightClick)
+        if (args.Function == ContentKeyFunctions.RemoveHotbarAction) // Starlight
         {
             SetAction(button, null);
             args.Handle();
