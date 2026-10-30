@@ -1,27 +1,6 @@
 Entries:
 - author: Alloy-Inc
   changes:
-  - message: Firerate of the Bolt Pistol lowered to 1.5 (from 1.8).
-    type: Tweak
-  id: 409559
-  time: '2026-10-17T12:07:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6722
-- author: Alloy-Inc
-  changes:
-  - message: Bolt ammunition cost in materials has been increased (+50% plasma, +100% silver). Impact bolts sprites have been reduced by 50% in their scale (they were too big visually).
-    type: Tweak
-  id: 409560
-  time: '2026-10-17T12:07:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6722
-- author: Alloy-Inc
-  changes:
-  - message: Bolt related items have seen their price in the ticket vendor slightly increased (save for the Bolt pistol magazine).
-    type: Tweak
-  id: 409561
-  time: '2026-10-17T12:07:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6722
-- author: Alloy-Inc
-  changes:
   - message: Following rumors of salvagers selling the weapons to the station folks, and to limit the amount of rifles around, Bolt Rifles are now limited to 3 purchasable in the ticket vendor, Bolt Pistols limited to 4.
     type: Tweak
   id: 409562
@@ -2799,4 +2778,25 @@ Entries:
   id: 409958
   time: '2026-10-30T19:36:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6087
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Added a new theme control to the user interface settings, Secondary Accent Color.
+    type: Add
+  id: 409959
+  time: '2026-10-30T19:36:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6896
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Added a new theme control to the user interface settings, Classic styling. Use this option to restore some classic-styled borders and effects from the old classic theme. Not guaranteed to work perfectly on every theme; this option is enabled by default on the NanoTrasen theme and disabled by default on other themes.
+    type: Add
+  id: 409960
+  time: '2026-10-30T19:36:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6896
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Improved the NanoTrasen theme to make it better resemble the old classic theme.
+    type: Tweak
+  id: 409961
+  time: '2026-10-30T19:36:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6896
 Order: -1
