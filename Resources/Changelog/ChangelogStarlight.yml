@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Alpha) Shitstation decreased from 4.7% -> 3%.
-    type: Tweak
-  id: 409523
-  time: '2026-10-16T11:06:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6691
 - author: RHSvenson
   changes:
   - message: Added an addendum to Rule 6 that makes clear that players should not make claims of membership (former or current) in restricted factions, like CC or Syndicate High Command, in their character information.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409922
   time: '2026-10-30T15:03:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6945
+- author: rhithebirdthing
+  changes:
+  - message: Fixed some grammar under the _Starlight namespace.
+    type: Tweak
+  id: 409923
+  time: '2026-10-30T15:26:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6937
 Order: -1
