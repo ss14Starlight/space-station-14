@@ -1,25 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (CentComm G24) The blast door atop the window at Debrief's entrance no longer gets stuck in the closed position.
-    type: Fix
-  id: 409550
-  time: '2026-10-17T11:10:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6716
-- author: Conflee
-  changes:
-  - message: Added 3 TC to the Vault Freezer, to encourage Traitors to break into the Vault more often.
-    type: Add
-  id: 409551
-  time: '2026-10-17T11:10:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6714
-- author: Conflee
-  changes:
-  - message: Fixed butchering not working for about 60% of animals and mobs. Wizden swapped the Butcherable component for a ToolRefinable component, but not only were our mobs not updated, Wizden didn't bother updating like 40% of THEIR mobs when THEY made the change either. For some reason.
-    type: Fix
-  id: 409552
-  time: '2026-10-17T11:10:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6714
 - author: Sparlight
   changes:
   - message: Arithrazine, Ultravasculine, Dylovene, Dermaline and Histamine split their brute damage across blunt, slash and piercing again.
@@ -2799,4 +2778,25 @@ Entries:
   id: 409949
   time: '2026-10-30T19:05:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6738
+- author: Xale
+  changes:
+  - message: Arachnids can again eat raw foods and drink blood.
+    type: Fix
+  id: 409950
+  time: '2026-10-30T19:05:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6955
+- author: Xale
+  changes:
+  - message: Arachnids are again poisoned by theobromine. Be careful of coffee and chocolate.
+    type: Fix
+  id: 409951
+  time: '2026-10-30T19:05:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6955
+- author: Xale
+  changes:
+  - message: Arachnids are again poisoned by allicin. Be careful of foods that contains onions.
+    type: Fix
+  id: 409952
+  time: '2026-10-30T19:05:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6955
 Order: -1
