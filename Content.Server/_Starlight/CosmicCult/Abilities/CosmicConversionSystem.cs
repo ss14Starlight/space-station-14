@@ -16,6 +16,7 @@ using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.Changeling;
 using Content.Shared._Starlight.Devil;
 using Content.Shared._Starlight.Antags.Vampires.Components;
+using Content.Shared._Starlight.Roles;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
@@ -101,7 +102,7 @@ public sealed partial class CosmicConversionSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-devil"), uid, args.User);
                 args.Cancel();
             }
-            else if (uid.Comp.NegateProtection == false && _mind.TryGetMind(target, out var mind, out _) && _role.MindHasRole<WizardRoleComponent>(mind))
+            else if (uid.Comp.NegateProtection == false && _mind.TryGetMind(target, out var mind, out _) && (_role.MindHasRole<WizardRoleComponent>(mind) || _role.MindHasRole<WizardDuelistRoleComponent>(mind)))
             {
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-wizard"), uid, args.User);
                 args.Cancel();
