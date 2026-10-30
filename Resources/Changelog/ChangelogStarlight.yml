@@ -1,18 +1,4 @@
 Entries:
-- author: teh.saint
-  changes:
-  - message: Changed armor values to the NTNC Marine Armor Vest and NTNC Marine Hardsuit.
-    type: Tweak
-  id: 409572
-  time: '2026-10-17T14:09:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6712
-- author: STARLIGHT TEAM
-  changes:
-  - message: The ability to see the name of the implanted item in a surgery slot.
-    type: Add
-  id: 409573
-  time: '2026-10-17T19:10:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6685
 - author: STARLIGHT TEAM
   changes:
   - message: Pretty much everything of the right size can now be implanted in place of an organ.
@@ -2799,4 +2785,18 @@ Entries:
   id: 409971
   time: '2026-10-30T22:25:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6959
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added Gunnery Sergeant.
+    type: Add
+  id: 409972
+  time: '2026-10-30T22:25:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6960
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added a station power computer to PA Room.
+    type: Add
+  id: 409973
+  time: '2026-10-30T22:25:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6960
 Order: -1
