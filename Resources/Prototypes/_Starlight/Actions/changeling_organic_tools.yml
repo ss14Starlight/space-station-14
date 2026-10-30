@@ -7,7 +7,7 @@
   - type: Action
     useDelay: 5
     itemIconStyle: NoItem
-    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: organic-emag }
+    icon: { sprite: Objects/Tools/access_breaker.rsi, state: icon }
   - type: TargetAction
     range: 1.5
     interactOnMiss: false
@@ -27,7 +27,7 @@
     useDelay: 1
     checkCanInteract: false
     itemIconStyle: NoItem
-    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: shock-hand }
+    icon: { sprite: Clothing/Hands/Gloves/powerglove.rsi, state: icon-on }
   - type: InstantAction
     event: !type:ToggleChangelingShockHandEvent
 
@@ -40,7 +40,7 @@
   - type: Action
     itemIconStyle: NoItem
     useDelay: 1
-    icon: { sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi, state: breathing }
+    icon: { sprite: _Starlight/Interface/Alerts/holding_breath.rsi, state: holding_breath }
     checkCanInteract: false
     checkConsciousness: false
   - type: InstantAction

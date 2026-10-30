@@ -5,8 +5,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Starlight/Interface/Actions/changeling_adaptations.rsi
-    state: shock-hand
+    sprite: Clothing/Hands/Gloves/powerglove.rsi
+    state: icon-on
   - type: Item
   - type: Unremoveable
   - type: MeleeWeapon
