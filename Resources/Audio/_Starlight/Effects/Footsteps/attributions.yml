@@ -1,0 +1,200 @@
+- files:
+  - tile1.ogg
+  - tile2.ogg
+  - tile3.ogg
+  - tile4.ogg
+  - tile5.ogg
+  - tile6.ogg
+  - tile7.ogg
+  - tile8.ogg
+  - tile9.ogg
+  license: "CC-BY-3.0"
+  copyright: "Starlight: cut, equalized, pitch-varied and loudness-normalized from congusbongus's 'Footsteps on different surfaces' tile set (derived from footstep-concrete.wav by swuing and Squeaky footstep.wav by ceberation). Each set comes from one recording and was matched in tone, tail length and loudness so steps in a row sound even."
+  source: "https://opengameart.org/content/footsteps-on-different-surfaces"
+
+- files:
+  - floor1.ogg
+  - floor2.ogg
+  - floor3.ogg
+  - floor4.ogg
+  - floor5.ogg
+  - floor6.ogg
+  - floor7.ogg
+  - floor8.ogg
+  - floor9.ogg
+  - concrete1.ogg
+  - concrete2.ogg
+  - concrete3.ogg
+  - concrete4.ogg
+  - concrete5.ogg
+  - concrete6.ogg
+  - concrete7.ogg
+  - concrete8.ogg
+  - concrete9.ogg
+  license: "CC-BY-3.0"
+  copyright: "Starlight: cut, equalized, pitch-varied and loudness-normalized from congusbongus's 'Footsteps on different surfaces' boots set (derived from footstep-concrete.wav by swuing). Floor adds one damped, pitched-down Kenney Impact Sounds (CC0) metal impact under every step. Each set comes from one recording and was matched in tone, tail length and loudness so steps in a row sound even."
+  source: "https://opengameart.org/content/footsteps-on-different-surfaces"
+
+- files:
+  - catwalk1.ogg
+  - catwalk2.ogg
+  - catwalk3.ogg
+  - catwalk4.ogg
+  - catwalk5.ogg
+  - catwalk6.ogg
+  - catwalk7.ogg
+  - catwalk8.ogg
+  license: "CC-BY-3.0"
+  copyright: "Starlight: cut, damped, pitch-varied and loudness-normalized from congusbongus's 'Footsteps on different surfaces' metal set (derived from fboots on aluminum ladder 01 by Eelke). Each set comes from one recording and was matched in tone, tail length and loudness so steps in a row sound even."
+  source: "https://opengameart.org/content/footsteps-on-different-surfaces"
+
+- files:
+  - wood1.ogg
+  - wood2.ogg
+  - wood3.ogg
+  - wood4.ogg
+  - wood5.ogg
+  - wood6.ogg
+  - wood7.ogg
+  - wood8.ogg
+  - wood9.ogg
+  license: "CC-BY-3.0"
+  copyright: "Starlight: cut, pitch-varied and loudness-normalized from congusbongus's 'Footsteps on different surfaces' wood set (derived from footstep-wood.wav by swuing). Each set comes from one recording and was matched in tone, tail length and loudness so steps in a row sound even."
+  source: "https://opengameart.org/content/footsteps-on-different-surfaces"
+
+- files:
+  - grass1.ogg
+  - grass2.ogg
+  - grass3.ogg
+  - grass4.ogg
+  - grass5.ogg
+  - grass6.ogg
+  - grass7.ogg
+  - grass8.ogg
+  - grass9.ogg
+  license: "CC-BY-3.0"
+  copyright: "Starlight: cut, pitch-varied and loudness-normalized from congusbongus's 'Footsteps on different surfaces' grass set (derived from footstep-grass.wav by swuing). Each set comes from one recording and was matched in tone, tail length and loudness so steps in a row sound even."
+  source: "https://opengameart.org/content/footsteps-on-different-surfaces"
+
+- files:
+  - asteroid1.ogg
+  - asteroid2.ogg
+  - asteroid3.ogg
+  - asteroid4.ogg
+  - asteroid5.ogg
+  - asteroid6.ogg
+  - asteroid7.ogg
+  - asteroid8.ogg
+  - asteroid9.ogg
+  license: "CC0-1.0"
+  copyright: "Starlight: aligned, pitch-varied and loudness-normalized from congusbongus's 'Footsteps on different surfaces' gravel set (derived from Gravel Footsteps pack by Ali_6868). Each set comes from one recording and was matched in tone, tail length and loudness so steps in a row sound even."
+  source: "https://freesound.org/people/Ali_6868/packs/21608/"
+
+- files:
+  - suitstep1.ogg
+  - suitstep2.ogg
+  - suitstep3.ogg
+  - suitstep4.ogg
+  - suitstep5.ogg
+  license: "CC-BY-3.0"
+  copyright: "Starlight: pitched-down boots from congusbongus's 'Footsteps on different surfaces' (footstep-concrete.wav by swuing) layered with its mech step (Robotic mechanic step sounds by Lee Barkovich). Replaces the upstream suitstep sounds, which came from Half-Life 2."
+  source: "https://opengameart.org/content/footsteps-on-different-surfaces"
+
+- files:
+  - glass1.ogg
+  - glass2.ogg
+  - glass3.ogg
+  - glass4.ogg
+  - glass5.ogg
+  - heavy1.ogg
+  - heavy2.ogg
+  - heavy3.ogg
+  - heavy4.ogg
+  - heavy5.ogg
+  - magstep1.ogg
+  - magstep2.ogg
+  - magstep3.ogg
+  - magstep4.ogg
+  - magstep5.ogg
+  license: "CC0-1.0"
+  copyright: "Starlight: built from Kenney's Impact Sounds (concrete footsteps layered with glass, metal, plate and punch impacts, pitch-shifted, matched to each other and loudness-normalized)."
+  source: "https://kenney.nl/assets/impact-sounds"
+
+- files:
+  - barehard1.ogg
+  - barehard2.ogg
+  - barehard3.ogg
+  - barehard4.ogg
+  - barehard5.ogg
+  - barehard6.ogg
+  - barewood1.ogg
+  - barewood2.ogg
+  - barewood3.ogg
+  - barewood4.ogg
+  - barewood5.ogg
+  - barewood6.ogg
+  - barewood7.ogg
+  - barewood8.ogg
+  - barecarpet1.ogg
+  - barecarpet2.ogg
+  - barecarpet3.ogg
+  - barecarpet4.ogg
+  - barecarpet5.ogg
+  - barecarpet6.ogg
+  - barecarpet7.ogg
+  - barecarpet8.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Starlight: pitch-paired, matched to each other and loudness-normalized from the tgstation bare footsteps (hardbarefoot, woodbarefoot, carpetbarefoot)."
+  source: "https://github.com/tgstation/tgstation/commit/e0bbbca40f6cdbcf2b497228215a37e9c9ec8473"
+
+- files:
+  - baremetal1.ogg
+  - baremetal2.ogg
+  - baremetal3.ogg
+  - baremetal4.ogg
+  - baremetal5.ogg
+  - baremetal6.ogg
+  - baregrate1.ogg
+  - baregrate2.ogg
+  - baregrate3.ogg
+  - baregrate4.ogg
+  - baregrate5.ogg
+  - baregrate6.ogg
+  - bareglass1.ogg
+  - bareglass2.ogg
+  - bareglass3.ogg
+  - bareglass4.ogg
+  - bareglass5.ogg
+  - bareglass6.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Starlight: tgstation hardbarefoot steps layered with a damped Kenney Impact Sounds (CC0) metal or glass impact, or the aluminium ladder step from congusbongus's 'Footsteps on different surfaces' (fboots on aluminum ladder 01 by Eelke, CC-BY 3.0), then matched and loudness-normalized."
+  source: "https://github.com/tgstation/tgstation/commit/e0bbbca40f6cdbcf2b497228215a37e9c9ec8473"
+
+- files:
+  - baregrass1.ogg
+  - baregrass2.ogg
+  - baregrass3.ogg
+  - baregrass4.ogg
+  - baregrass5.ogg
+  - baregrass6.ogg
+  - baregrass7.ogg
+  - baregrass8.ogg
+  - baregrass9.ogg
+  license: "CC-BY-3.0"
+  copyright: "Starlight: low-passed and softened from congusbongus's 'Footsteps on different surfaces' grass set (derived from footstep-grass.wav by swuing)."
+  source: "https://opengameart.org/content/footsteps-on-different-surfaces"
+
+- files:
+  - baregravel1.ogg
+  - baregravel2.ogg
+  - baregravel3.ogg
+  - baregravel4.ogg
+  - baregravel5.ogg
+  - baregravel6.ogg
+  - baregravel7.ogg
+  - baregravel8.ogg
+  - baregravel9.ogg
+  - baregravel10.ogg
+  license: "CC0-1.0"
+  copyright: "Starlight: low-passed and softened from congusbongus's 'Footsteps on different surfaces' gravel set (derived from Gravel Footsteps pack by Ali_6868)."
+  source: "https://freesound.org/people/Ali_6868/packs/21608/"

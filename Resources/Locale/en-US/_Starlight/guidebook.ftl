@@ -519,3 +519,5 @@ guidebook-search-keywords-rulesl14 = Rule 14 - Continuity Guidelines; continuity
 guidebook-search-keywords-rulesl15 = Rule 15 - Separation of Character from Player; ic ooc separation; character player separation; bleed
 guidebook-search-keywords-rulesl16 = Rule 16 - End-of-Round Griefing; eorg; end of round grief; end of round griefing
 guidebook-search-keywords-metashield = metashields; metashielding; protected identities
+guidebook-sidebar-collapse = Collapse sidebar
+guidebook-sidebar-expand = Expand sidebar
