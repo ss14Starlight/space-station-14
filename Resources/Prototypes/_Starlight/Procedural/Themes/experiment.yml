@@ -12,7 +12,7 @@
 - type: dungeonRoom
   id: Science17x5bstar
   size: 17,5
-  atlas: /Maps/D_Starlight/ungeon/experiment.yml
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
   offset: 18,0
   tags:
     - SalvageExperimentStar

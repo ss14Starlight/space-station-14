@@ -134,7 +134,7 @@
 
 - type: salvageDungeonMod
   id: Outbreak
-  desc: DEBUG
+  desc: salvage-dungeon-mod-outbreak
   proto: Outbreak
   biomes:
     - Grasslands
@@ -145,3 +145,6 @@
     - Xeno-Easy
     - Xeno-Medium
     - Xeno-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
