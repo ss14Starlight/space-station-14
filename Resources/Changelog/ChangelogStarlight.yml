@@ -1,53 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Partialized some stuff.
-    type: Tweak
-  id: 409543
-  time: '2026-10-17T10:04:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6727
-- author: Conflee
-  changes:
-  - message: Wall Stains now take 2 seconds to scrub instead of 5.
-    type: Tweak
-  id: 409544
-  time: '2026-10-17T10:38:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6718
-- author: Xale
-  changes:
-  - message: Wooden bowl crafting recipe now works correctly.
-    type: Fix
-  id: 409545
-  time: '2026-10-17T10:38:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6720
-- author: Xale
-  changes:
-  - message: Cleaned up savoury recipes section in the guidebook.
-    type: Fix
-  id: 409546
-  time: '2026-10-17T10:38:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6720
-- author: Caws
-  changes:
-  - message: Gamma Armory now uses the new safe sprites (yay).
-    type: Tweak
-  id: 409547
-  time: '2026-10-17T10:38:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6717
-- author: Caws
-  changes:
-  - message: Gamma Armory comes with a turbo recharger.
-    type: Tweak
-  id: 409548
-  time: '2026-10-17T10:38:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6717
-- author: Caws
-  changes:
-  - message: Gamma Armory now comes with four Ares swords, four Athena spears, and eight shields.
-    type: Tweak
-  id: 409549
-  time: '2026-10-17T10:38:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6717
 - author: Caws
   changes:
   - message: (CentComm G24) The blast door atop the window at Debrief's entrance no longer gets stuck in the closed position.
@@ -2799,4 +2750,53 @@ Entries:
   id: 409942
   time: '2026-10-30T18:40:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6938
+- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
+  changes:
+  - message: "Added a new antagonist: Blood Bound! A minor antag with the ability to convert a single person to their cause, to perform objectives on behalf of Nar'Sie! You can only be converted if you have the antag or corresponding new trait enabled."
+    type: Add
+  id: 409943
+  time: '2026-10-30T19:05:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6738
+- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
+  changes:
+  - message: 'Added 5 new story objectives for Traitors: Trash a (specific) room, Claim a (specific) room for the Syndicate, gather intelligence on a person, leave a calling card on a person.'
+    type: Add
+  id: 409944
+  time: '2026-10-30T19:05:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6738
+- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
+  changes:
+  - message: 'Added a new Thief story objective: Rob a (specific) department.'
+    type: Add
+  id: 409945
+  time: '2026-10-30T19:05:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6738
+- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
+  changes:
+  - message: You can no longer pick Darktongue as a language.
+    type: Remove
+  id: 409946
+  time: '2026-10-30T19:05:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6738
+- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
+  changes:
+  - message: Remilia no longer speaks Darktongue, but can speak Mouse as she already understands Mouse.
+    type: Remove
+  id: 409947
+  time: '2026-10-30T19:05:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6738
+- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
+  changes:
+  - message: You can no longer get departmental story objectives on your own department.
+    type: Tweak
+  id: 409948
+  time: '2026-10-30T19:05:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6738
+- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
+  changes:
+  - message: Anyone can take Felyaic as a trait.
+    type: Tweak
+  id: 409949
+  time: '2026-10-30T19:05:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6738
 Order: -1
