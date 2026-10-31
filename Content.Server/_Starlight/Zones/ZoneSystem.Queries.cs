@@ -19,6 +19,8 @@ public sealed partial class ZoneSystem
         {
             // Round-start queries can query zones before the first zone-system update.
             FullRebuild((grid, comp));
+            comp.Revision++;
+
             if (!comp.TopologyInitialized)
                 return [];
         }

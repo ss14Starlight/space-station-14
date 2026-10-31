@@ -243,8 +243,10 @@ public sealed partial class ZoneSystem
             if (comp.NeedsFullRebuild)
             {
                 FullRebuild(ent, nav);
+                changed = true;
             }
-            else if (changed)
+
+            if (changed)
             {
                 comp.Revision++;
                 comp.CachedGridZones = null;
@@ -267,8 +269,6 @@ public sealed partial class ZoneSystem
         var comp = ent.Comp;
 
         comp.TopologyInitialized = false;
-        comp.CachedGridZones = null;
-        comp.Revision++;
         comp.NeedsFullRebuild = false;
         comp.DirtyTiles.Clear();
         comp.DirtySet.Clear();
