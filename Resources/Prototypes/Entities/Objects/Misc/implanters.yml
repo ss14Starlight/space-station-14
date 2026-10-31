@@ -48,10 +48,10 @@
     - RadioImplant
     - ChameleonControllerImplant
     - VoiceMaskImplant
-    - MindControlImplant #Starlight
-    - CommandTrackingImplant #Starlight
-    - ITGTrackingImplant #Starlight
-    - BudgetBluespaceImplant #Starlight
+    - MindControlImplant # Starlight-start
+    - CommandTrackingImplant
+    - ITGTrackingImplant
+    - BudgetBluespaceImplant # Starlight-end
     deimplantFailureDamage:
       types:
         Cellular: 50
