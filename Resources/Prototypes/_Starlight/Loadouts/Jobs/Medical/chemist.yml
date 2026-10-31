@@ -209,6 +209,11 @@
   equipment:
     eyes: ClothingEyesGlassesJensenChemical
 
+- type: loadout
+  id: ChemicalJamjar
+  equipment:
+    eyes: ClothingEyesGlassesJamjarChemical
+
 # Beaker
 - type: loadout
   id: LightBeaker
