@@ -965,8 +965,8 @@
     - ChemicalHud
     - ChemicalEyePatchHud
     - ChemicalJensens
-    - ChemicalGlassesPrescription
     - ChemicalJamjar
+    - ChemicalGlassesPrescription
 
 - type: loadoutGroup
   id: ChemistBeaker
