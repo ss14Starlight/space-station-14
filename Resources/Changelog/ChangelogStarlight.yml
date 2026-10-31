@@ -1,11 +1,4 @@
 Entries:
-- author: piepie3.149
-  changes:
-  - message: Updated the Rotten icon in the Medical HUD to slowly pulse between black and purple, so it draws more notice.
-    type: Tweak
-  id: 409588
-  time: '2026-10-18T09:13:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6735
 - author: Floximo
   changes:
   - message: Shuttle Consoles have now a surface mode including a map and easy return from expeditions.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409987
   time: '2026-10-31T13:12:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6975
+- author: HartLys
+  changes:
+  - message: Added Plural flag, scarf and cloak.
+    type: Add
+  id: 409988
+  time: '2026-10-31T13:37:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6953
 Order: -1
