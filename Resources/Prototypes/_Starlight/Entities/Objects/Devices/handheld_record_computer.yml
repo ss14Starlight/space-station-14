@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseItem
-  id: PortableRecords computer
+  id: PortableRecordscomputermed
   name: Handheld medical records computer
   description: Therapy on the go!
   components:

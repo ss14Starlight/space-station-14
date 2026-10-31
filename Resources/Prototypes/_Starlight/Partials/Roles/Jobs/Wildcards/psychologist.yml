@@ -1,0 +1,5 @@
+- type: !PartialOnly startingGear
+  id: PsychologistGear
+  storage:
+    back:
+    - PortableRecordscomputermed
