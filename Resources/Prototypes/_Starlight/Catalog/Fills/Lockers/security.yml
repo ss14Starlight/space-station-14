@@ -140,7 +140,9 @@
       entity_storage: !type:AllSelector
         children:
         - id: WeaponRifleL10
-          amount: 3
+          amount: 2
+        - id: WeaponRifleVerdict
+          amount: 1
         - id: MagazineDMRSP
           amount: 4
         - id: MagazineDMRFMJ
