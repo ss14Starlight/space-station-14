@@ -6,9 +6,7 @@ namespace Content.Shared.TurretController;
 
 public abstract partial class SharedDeployableTurretControllerSystem
 {
-    private void InitializeNeutralTargeting() =>
-        SubscribeLocalEvent<DeployableTurretControllerComponent, DeployableTurretNeutralTargetingChangedMessage>(OnNeutralTargetingChanged);
-
+    [SubscribeLocalEvent]
     private void OnNeutralTargetingChanged(
         Entity<DeployableTurretControllerComponent> ent,
         ref DeployableTurretNeutralTargetingChangedMessage args)

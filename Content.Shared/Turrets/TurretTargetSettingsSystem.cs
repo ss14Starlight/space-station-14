@@ -113,10 +113,12 @@ public sealed partial class TurretTargetSettingsSystem : EntitySystem
     /// <summary>
     /// Returns whether an entity is a valid target for a turret.
     /// </summary>
+    /// Starlight - start
     /// <remarks>
     /// Returns false if neutral targeting is disabled and the target is neither directly controlled nor autonomous, or if it
     /// possesses one or more access tags that are present on the entity's <see cref="TurretTargetSettingsComponent.ExemptAccessLevels"/> list.
     /// </remarks>
+    /// Starlight - end
     /// <param name="ent">The entity and its <see cref="TurretTargetSettingsComponent"/></param>
     /// <param name="target">The target entity</param>
     [PublicAPI]

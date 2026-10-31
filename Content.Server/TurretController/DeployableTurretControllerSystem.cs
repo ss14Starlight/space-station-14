@@ -63,9 +63,8 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
                 continue;
 
             _deviceNetwork.QueuePacket(ent, turretDeviceNetwork.Address, payload, device: deviceNetwork);
-            // Starlight - start
-            SendNeutralTargetingSetting(ent, turretDeviceNetwork.Address, deviceNetwork);
-            // Starlight - end
+
+            SendNeutralTargetingSetting(ent, turretDeviceNetwork.Address, deviceNetwork); // Starlight
         }
 
         // Remove newly unlinked devices
