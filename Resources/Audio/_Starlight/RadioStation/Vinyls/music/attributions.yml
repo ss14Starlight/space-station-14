@@ -72,3 +72,13 @@
   license: "CC-BY-4.0" # As confirmed via email
   copyright: "CrayZGamR"
   source: "https://www.youtube.com/watch?v=fORzS8OYJmU"
+
+- files: ["peakasshole.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "made by lucifermkshelter (discord)"
+  source: "https://github.com/LuciferEOS"
+
+- files: [OpenTTDJourney.ogg]
+  license: "CC-BY-SA-3.0"
+  copyright: "taken from open TTD"
+  source: "https://www.openttd.org/content-creators"
