@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Server._Starlight.Atmos;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Audio;
 using Content.Server.NodeContainer.EntitySystems;
@@ -25,32 +24,25 @@ public sealed partial class GasExtractorSystem : SharedGasExtractorSystem
     [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
     [Dependency] private SharedGasNodeSystem _sharedGasNodeSystem = default!;
 
-    [SubscribeLocalEvent]
-    private void OnActivate(Entity<GasExtractorComponent> entity, ref ActivateInWorldEvent args)
-    {
-        if (args.Handled || !args.Complex)
-            return;
-    }
+    // [SubscribeLocalEvent]
+    // private void OnSetToggleSignalReceived(Entity<ToggleableAtmosDeviceComponent> entity, ref SetToggleSignalReceivedEvent args)
+    // {
+    //     if (!_entityManager.TryGetComponent<GasExtractorComponent>(entity, out var device))
+    //         return;
 
-    [SubscribeLocalEvent]
-    private void OnSetToggleSignalReceived(Entity<ToggleableAtmosDeviceComponent> entity, ref SetToggleSignalReceivedEvent args)
-    {
-        if (!_entityManager.TryGetComponent<GasExtractorComponent>(entity, out var device))
-            return;
+    //     var extractorEntity = new Entity<GasExtractorComponent>(entity.Owner, device);
+    //     Set(extractorEntity, args.Value);
+    // }
 
-        var extractorEntity = new Entity<GasExtractorComponent>(entity.Owner, device);
-        Set(extractorEntity, args.Value);
-    }
+    // [SubscribeLocalEvent]
+    // private void OnToggleSignalReceived(Entity<ToggleableAtmosDeviceComponent> entity, ref ToggleSignalReceivedEvent args)
+    // {
+    //     if (!_entityManager.TryGetComponent<GasExtractorComponent>(entity, out var device))
+    //         return;
 
-    [SubscribeLocalEvent]
-    private void OnToggleSignalReceived(Entity<ToggleableAtmosDeviceComponent> entity, ref ToggleSignalReceivedEvent args)
-    {
-        if (!_entityManager.TryGetComponent<GasExtractorComponent>(entity, out var device))
-            return;
-
-        var extractorEntity = new Entity<GasExtractorComponent>(entity.Owner, device);
-        Set(extractorEntity, !device.Enabled);
-    }
+    //     var extractorEntity = new Entity<GasExtractorComponent>(entity.Owner, device);
+    //     Set(extractorEntity, !device.Enabled);
+    // }
 
     [SubscribeLocalEvent]
     private void OnGasExtractorUpdated(Entity<GasExtractorComponent> entity, ref AtmosDeviceUpdateEvent args)
@@ -80,7 +72,7 @@ public sealed partial class GasExtractorSystem : SharedGasExtractorSystem
             )
             return;
 
-        var transferMoles = extractor.Comp.MolesExtractedPerSecond * deltaTime;
+        var transferMoles = extractor.Comp.ExtractionRate * deltaTime;
         if (transferMoles <= 0)
             return;
 
@@ -150,14 +142,5 @@ public sealed partial class GasExtractorSystem : SharedGasExtractorSystem
             return;
 
         var enabled = extractor.Enabled;
-    }
-
-    private void Set(Entity<GasExtractorComponent> entity, bool value)
-    {
-        if (entity.Comp.Enabled == value)
-            return;
-
-        entity.Comp.Enabled = value;
-        UpdateState(entity);
     }
 }

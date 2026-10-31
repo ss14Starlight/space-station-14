@@ -6,6 +6,7 @@ namespace Content.Shared._Starlight.GasMining.GasExtractor;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class GasExtractorComponent : Component
 {
+
     [DataField, AutoNetworkedField]
     public bool Enabled = false;
 
@@ -16,7 +17,10 @@ public sealed partial class GasExtractorComponent : Component
     public float Volume = 1500f;
 
     [DataField]
-    public float MolesExtractedPerSecond = 200f;
+    public float ExtractionRate = 200f;
+
+    [DataField]
+    public float MaxExtractionRate = 200f;
 
     [DataField]
     public float MaxBufferPressure = Atmospherics.MaxOutputPressure * 2;

@@ -1,0 +1,13 @@
+- type: entity
+  id: BaseGasAsteroid
+  parent: BaseDebris
+  name: gas asteroid
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+      - FloorAsteroidSand
+      blobDrawProb: 0.5
+      radius: 6
+      floorPlacements: 16

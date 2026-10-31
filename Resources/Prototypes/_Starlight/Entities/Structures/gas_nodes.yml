@@ -12,4 +12,7 @@
       sprite: _Starlight/GasMining/gas_node.rsi
       state: gas-node
       noRot: true
+      drawdepth: LowFloors
     - type: Clickable
+    - type: SubFloorHide
+

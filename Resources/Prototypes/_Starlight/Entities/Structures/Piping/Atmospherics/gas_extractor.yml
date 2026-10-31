@@ -1,0 +1,27 @@
+- type: entity
+  parent: GasUnaryBase
+  id: GasExtractor
+  name: gas extractor
+  description: Extracts gases from gas nodes, this one has a maximum extraction rate of 100 mol/s.
+  placement:
+    mode: AlignAtmosPipeLayers
+  components:
+    - type: Sprite
+      sprite: Structures/Piping/Atmospherics/miners.rsi
+      state: miner
+      drawdepth: Mobs
+    - type: PipeColorVisuals
+    - type: AtmosDevice
+    - type: GasExtractor
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+    - type: Clickable
+    - type: InteractionOutline
+    - type: ActivatableUI
+      key: enum.GasExtractorUiKey.Key
+    - type: ActivatableUIRequiresAnchor
+    - type: UserInterface
+      interfaces:
+        enum.GasExtractorUiKey.Key:
+          type: GasExtractorBoundUserInterface
