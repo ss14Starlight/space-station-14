@@ -1,0 +1,4 @@
+- type: !PartialOnly entity
+  id: Airlock
+  components:
+  - type: ShockCooldown
