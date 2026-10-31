@@ -35,14 +35,16 @@
       noRot: true
       layers:
         - state: base
+          map: [ "enum.ExpendableLightVisualLayers.Base" ]
+#        - state: light
+#          map: [  ]
         - state: light
-          map: [ "enum.BreadcrumbVisualLayers.UnlitColor", "enum.ExpendableLightVisualLayers.Base" ]
+          map: [ "enum.BreadcrumbVisualLayers.UnlitColor", "enum.ExpendableLightVisualLayers.Overlay" ]
+          visible: true
         - state: light
           map: [ "enum.BreadcrumbVisualLayers.LitColor", "enum.ExpendableLightVisualLayers.Glow" ]
           visible: false
           shader: unshaded
-#        - state: light
-#          map: [ "enum.ExpendableLightVisualLayers.Overlay" ]
     - type: Breadcrumb
     - type: Damageable
     - type: Destructible
