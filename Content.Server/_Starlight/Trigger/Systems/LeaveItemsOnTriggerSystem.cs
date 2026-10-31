@@ -17,12 +17,7 @@ public sealed partial class LeaveItemsOnTriggerSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<LeaveItemsOnTriggerComponent, TriggerEvent>(OnTrigger, before: new[] { typeof(TriggerSystem) });
-    }
-
+    [SubscribeLocalEvent(before: [typeof(TriggerSystem)])]
     private void OnTrigger(Entity<LeaveItemsOnTriggerComponent> ent, ref TriggerEvent args)
     {
         // Server-only so client prediction doesn't strip clothing layers before entity deletion (avoids naked flash)
