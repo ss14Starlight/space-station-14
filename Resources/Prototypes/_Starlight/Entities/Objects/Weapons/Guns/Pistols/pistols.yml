@@ -233,25 +233,6 @@
       stealGroup: BSOWeapon
 
 - type: entity
-  name: sp-8ar
-  parent: [ BaseContrabandTier3, WeaponPistolDP, BaseSecurityContraband ] # Blimpuf
-  id: WeaponPistolSP8AR
-  components:
-  - type: Gun
-    shotsPerBurst: 3
-    selectedMode: Burst
-    availableModes:
-      - SemiAuto
-      - Burst
-    soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/sp8ar.ogg
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/sp8ar.rsi
-  - type: ChamberMagazineAmmoProvider
-    availablePrefixes:
-    - ""
-
-- type: entity
   name: stechkin APS
   parent: [WeaponPistolMk58, BaseSovietContraband]
   id: WeaponPistolStechkinAPS
