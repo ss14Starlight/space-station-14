@@ -16,6 +16,7 @@ namespace Content.IntegrationTests.Tests
   name: HumanUniformDummy
   id: HumanUniformDummy
   components:
+  - type: MobState
   - type: Inventory
   - type: ContainerContainer
 

@@ -49,38 +49,9 @@ public sealed class JobTest : GameTest
         InLobby = true
     };
 
-    /// <summary>
-    /// Simple test that checks that starting the round spawns the player into the test map as a passenger.
-    /// </summary>
+    // Starlight: Check that job preferences are respected.
     [Test]
-    public async Task StartRoundTest()
-    {
-        var pair = Pair;
-
-        pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
-        var ticker = pair.Server.System<GameTicker>();
-
-        // Initially in the lobby
-        Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
-        Assert.That(pair.Client.AttachedEntity, Is.Null);
-        Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.NotReadyToPlay));
-
-        // Ready up and start the round
-        ticker.ToggleReadyAll(true);
-        Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.ReadyToPlay));
-        await pair.Server.WaitPost(() => ticker.StartRound());
-        await pair.RunTicksSync(_waitAfter);
-
-        pair.AssertJob(Passenger);
-
-        await pair.Server.WaitPost(() => ticker.RestartRound());
-    }
-
-    /// <summary>
-    /// Check that job preferences are respected.
-    /// </summary>
-    [Test]
-    public async Task JobPreferenceTest()
+    public async Task JobPreferenceRoundStartTest() // Starlight
     {
         var pair = Pair;
 

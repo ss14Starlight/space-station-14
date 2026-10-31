@@ -14,7 +14,7 @@ public sealed class ActivatableUIRequiresPowerInteractionTest : InteractionTest
 {
     [TestCase("ComputerCommsFilled")]
     [TestCase("KeycardAuth")]
-    public async Task EjectingFallbackCellClosesOpenUi(string prototypeId)
+    public async Task LosingFallbackCellClosesOpenUi(string prototypeId)
     {
         var uiKey = await SpawnAndOpenUi(prototypeId);
         var terminal = STarget!.Value;
@@ -34,14 +34,12 @@ public sealed class ActivatableUIRequiresPowerInteractionTest : InteractionTest
 
         await RunTicks(1);
         Assert.That(IsUiOpen(uiKey), Is.False, "UI remained open after its backup cell was ejected.");
-    }
 
-    [TestCase("ComputerCommsFilled")]
-    [TestCase("KeycardAuth")]
-    public async Task EmptyingFallbackCellClosesOpenUi(string prototypeId)
-    {
-        var uiKey = await SpawnAndOpenUi(prototypeId);
-        var terminal = STarget!.Value;
+        await Server.WaitPost(() => SEntMan.DeleteEntity(terminal));
+        await RunTicks(1);
+
+        uiKey = await SpawnAndOpenUi(prototypeId);
+        terminal = STarget!.Value;
 
         await Server.WaitPost(() =>
         {

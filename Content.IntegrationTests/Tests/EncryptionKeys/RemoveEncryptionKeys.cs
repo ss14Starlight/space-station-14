@@ -8,7 +8,7 @@ namespace Content.IntegrationTests.Tests.EncryptionKeys;
 public sealed class RemoveEncryptionKeys : InteractionTest
 {
     [Test]
-    public async Task HeadsetKeys()
+    public async Task HeadsetAndCommsServerKeys() // Starlight
     {
         await SpawnTarget("ClothingHeadsetAssistant");
         var comp = Comp<EncryptionKeyHolderComponent>();
@@ -42,28 +42,36 @@ public sealed class RemoveEncryptionKeys : InteractionTest
             Assert.That(comp.Channels, Has.Count.EqualTo(1));
             Assert.That(comp.Channels.First(), Is.EqualTo("CentCom"));
         });
-    }
 
-    [Test]
-    public async Task CommsServerKeys()
-    {
+        // Starlight - start
         await SpawnTarget("TelecomServerFilled");
-        var comp = Comp<EncryptionKeyHolderComponent>();
+        var serverComp = Comp<EncryptionKeyHolderComponent>();
         var panel = Comp<WiresPanelComponent>();
 
         Assert.Multiple(() =>
         {
-            Assert.That(comp.KeyContainer.ContainedEntities, Has.Count.GreaterThan(0));
-            Assert.That(comp.Channels, Has.Count.GreaterThan(0));
+            Assert.That(serverComp.KeyContainer.ContainedEntities, Has.Count.GreaterThan(0));
+            Assert.That(serverComp.Channels, Has.Count.GreaterThan(0));
             Assert.That(panel.Open, Is.False);
         });
+
+        await InteractUsing(Screw, awaitDoAfters: false);
+        await CancelDoAfters();
+        Assert.That(panel.Open, Is.False);
+        await InteractUsing(Screw);
+        Assert.That(panel.Open, Is.True);
+        await InteractUsing(Screw, awaitDoAfters: false);
+        await CancelDoAfters();
+        Assert.That(panel.Open, Is.True);
+        await InteractUsing(Screw);
+        Assert.That(panel.Open, Is.False);
 
         // cannot remove keys without opening panel
         await InteractUsing(Pry);
         Assert.Multiple(() =>
         {
-            Assert.That(comp.KeyContainer.ContainedEntities, Has.Count.GreaterThan(0));
-            Assert.That(comp.Channels, Has.Count.GreaterThan(0));
+            Assert.That(serverComp.KeyContainer.ContainedEntities, Has.Count.GreaterThan(0));
+            Assert.That(serverComp.Channels, Has.Count.GreaterThan(0));
             Assert.That(panel.Open, Is.False);
         });
 
@@ -74,39 +82,40 @@ public sealed class RemoveEncryptionKeys : InteractionTest
             Assert.That(panel.Open, Is.True);
 
             // Keys are still here
-            Assert.That(comp.KeyContainer.ContainedEntities, Has.Count.GreaterThan(0));
-            Assert.That(comp.Channels, Has.Count.GreaterThan(0));
+            Assert.That(serverComp.KeyContainer.ContainedEntities, Has.Count.GreaterThan(0));
+            Assert.That(serverComp.Channels, Has.Count.GreaterThan(0));
         });
 
         // Now remove the keys
         await InteractUsing(Pry);
         Assert.Multiple(() =>
         {
-            Assert.That(comp.KeyContainer.ContainedEntities, Has.Count.EqualTo(0));
-            Assert.That(comp.Channels, Has.Count.EqualTo(0));
+            Assert.That(serverComp.KeyContainer.ContainedEntities, Has.Count.EqualTo(0));
+            Assert.That(serverComp.Channels, Has.Count.EqualTo(0));
         });
 
         // Reinsert a key
         await InteractUsing("EncryptionKeyCentCom");
         Assert.Multiple(() =>
         {
-            Assert.That(comp.KeyContainer.ContainedEntities, Has.Count.EqualTo(1));
-            Assert.That(comp.DefaultChannel, Is.EqualTo("CentCom"));
-            Assert.That(comp.Channels, Has.Count.EqualTo(1));
-            Assert.That(comp.Channels.First(), Is.EqualTo("CentCom"));
+            Assert.That(serverComp.KeyContainer.ContainedEntities, Has.Count.EqualTo(1));
+            Assert.That(serverComp.DefaultChannel, Is.EqualTo("CentCom"));
+            Assert.That(serverComp.Channels, Has.Count.EqualTo(1));
+            Assert.That(serverComp.Channels.First(), Is.EqualTo("CentCom"));
         });
 
         // Remove it again
         await InteractUsing(Pry);
         Assert.Multiple(() =>
         {
-            Assert.That(comp.KeyContainer.ContainedEntities, Has.Count.EqualTo(0));
-            Assert.That(comp.Channels, Has.Count.EqualTo(0));
+            Assert.That(serverComp.KeyContainer.ContainedEntities, Has.Count.EqualTo(0));
+            Assert.That(serverComp.Channels, Has.Count.EqualTo(0));
         });
 
         // Prying again will start deconstructing the machine.
         AssertPrototype("TelecomServerFilled");
         await InteractUsing(Pry);
         AssertPrototype("MachineFrame");
+        // Starlight - end
     }
 }

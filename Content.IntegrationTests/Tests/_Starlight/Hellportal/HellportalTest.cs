@@ -36,7 +36,7 @@ public sealed class HellportalTest : GameTest
     """;
 
     [Test]
-    public async Task PortalsHaveIndependentLimitsAndWavesCannotExceedThem()
+    public async Task PortalQuotasRespectIndependentAndPopulationLimits()
     {
         var map = await Pair.CreateTestMap();
         var system = SEntMan.System<HellportalSystem>();
@@ -82,13 +82,6 @@ public sealed class HellportalTest : GameTest
                     SEntMan.DeleteEntity(mob);
             }
         });
-    }
-
-    [Test]
-    public async Task PopulationScalingWorksBelowTheFixedLimit()
-    {
-        var map = await Pair.CreateTestMap();
-        var system = SEntMan.System<HellportalSystem>();
         var players = Server.ResolveDependency<IPlayerManager>();
 
         await Server.WaitAssertion(() =>

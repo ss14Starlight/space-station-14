@@ -1,9 +1,12 @@
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Server.Power.Components;
+using Content.Shared.Coordinates;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.Power;
@@ -11,6 +14,23 @@ namespace Content.IntegrationTests.Tests.Power;
 [TestFixture, TestOf(typeof(SharedPowerStateSystem))]
 public sealed class PowerStatePrototypeTest : GameTest
 {
+    #region Starlight
+    [TestPrototypes]
+    private const string Prototypes = @"
+- type: entity
+  id: PowerStateApcReceiverDummy
+  components:
+  - type: ApcPowerReceiver
+  - type: ExtensionCableReceiver
+  - type: Transform
+    anchored: true
+  - type: PowerState
+    isWorking: false
+    idlePowerDraw: 10
+    workingPowerDraw: 50
+";
+    #endregion
+
     /// <summary>
     /// Asserts that the <see cref="SharedApcPowerReceiverComponent"/>'s load is the same
     /// as the idle or working power draw from <see cref="PowerStateComponent"/>,
@@ -54,5 +74,43 @@ public sealed class PowerStatePrototypeTest : GameTest
                 }
             });
         });
+
+        // Starlight - start
+        var mapSys = entMan.System<SharedMapSystem>();
+
+        await server.WaitAssertion(() =>
+        {
+            mapSys.CreateMap(out var mapId);
+            var grid = mapSys.CreateGridEntity(mapId);
+            mapSys.SetTile(grid, Vector2i.Zero, new Tile(1));
+
+            var ent = entMan.SpawnEntity("PowerStateApcReceiverDummy", grid.Owner.ToCoordinates());
+
+            var receiver = entMan.GetComponent<ApcPowerReceiverComponent>(ent);
+            var powerState = entMan.GetComponent<PowerStateComponent>(ent);
+            var system = entMan.System<SharedPowerStateSystem>();
+            Entity<PowerStateComponent> entity = (ent, powerState);
+
+            void AssertPowerState(bool isWorking, float expectedLoad) => Assert.Multiple(() =>
+            {
+                Assert.That(powerState.IsWorking, Is.EqualTo(isWorking));
+                Assert.That(receiver.Load, Is.EqualTo(expectedLoad).Within(0.01f));
+            });
+
+            AssertPowerState(false, powerState.IdlePowerDraw);
+
+            system.SetWorkingState(entity, false);
+            AssertPowerState(false, powerState.IdlePowerDraw);
+
+            system.SetWorkingState(entity, true);
+            AssertPowerState(true, powerState.WorkingPowerDraw);
+
+            system.SetWorkingState(entity, true);
+            AssertPowerState(true, powerState.WorkingPowerDraw);
+
+            system.SetWorkingState(entity, false);
+            AssertPowerState(false, powerState.IdlePowerDraw);
+        });
+        // Starlight - end
     }
 }

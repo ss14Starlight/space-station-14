@@ -58,23 +58,47 @@ public sealed partial class MidiFileCollectionManagerTests : GameTest
         Assert.That(TestBytes, Is.EqualTo(midiBytes));
     }
 
+    #region Starlight
     [Test]
-    public void TestRemoveMidiFile()
+    public void TestRenameAndRemoveMidiFiles()
     {
-        var removedFileName = new ResPath("");
-        MidiLibManager.MidiFileRemoved += s => { removedFileName = s; };
-
+        var renamedFileName = new ResPath("unit_test_renamed.midi");
+        var removeFileName = new ResPath("unit_test_remove.midi");
+        var removeFullPath = TestUserDataDir / removeFileName;
         ResManager.UserData.WriteAllBytes(TestFullPath, TestBytes);
-        Assert.That(ResManager.UserData.Exists(TestFullPath), Is.True);
+        ResManager.UserData.WriteAllBytes(removeFullPath, TestBytes);
+        MidiLibManager.ReloadLibrary();
+        Assert.Multiple(() =>
+        {
+            Assert.That(ResManager.UserData.Exists(TestFullPath), Is.True);
+            Assert.That(ResManager.UserData.Exists(removeFullPath), Is.True);
+        });
 
-        MidiLibManager.RemoveMidiFile(TestFileName);
+        var removedFileName = new ResPath("");
+        var addedFileName = new ResPath("");
+        MidiLibManager.MidiFileRemoved += s => { removedFileName = s; };
+        MidiLibManager.MidiFileAdded += s => { addedFileName = s; };
+
+        MidiLibManager.RenameMidiFile(TestFileName, renamedFileName);
         using (Assert.EnterMultipleScope())
         {
+            Assert.That(ResManager.UserData.Exists(TestUserDataDir / renamedFileName), Is.True);
             Assert.That(ResManager.UserData.Exists(TestFullPath), Is.False);
-            Assert.That(MidiLibManager.GetMidiFiles(), Is.Empty);
             Assert.That(removedFileName, Is.EqualTo(TestFileName));
+            Assert.That(addedFileName, Is.EqualTo(renamedFileName));
+        }
+
+        removedFileName = new ResPath("");
+        MidiLibManager.RemoveMidiFile(removeFileName);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(ResManager.UserData.Exists(removeFullPath), Is.False);
+            Assert.That(MidiLibManager.GetMidiFiles(), Does.Contain(renamedFileName));
+            Assert.That(MidiLibManager.GetMidiFiles(), Does.Not.Contain(removeFileName));
+            Assert.That(removedFileName, Is.EqualTo(removeFileName));
         }
     }
+    #endregion
 
     [Test]
     public async Task TestRemoveAllMidiFiles()
@@ -93,29 +117,6 @@ public sealed partial class MidiFileCollectionManagerTests : GameTest
         {
             Assert.That(MidiLibManager.GetMidiFiles(), Is.Empty);
             Assert.That(resetFired, Is.True);
-        }
-    }
-
-    [Test]
-    public void TestRenameMidiFile()
-    {
-        var renamedFileName = new ResPath("unit_test_renamed.midi");
-        var removedFileName = new ResPath("");
-        var addedFileName = new ResPath("");
-
-        MidiLibManager.MidiFileRemoved += s => { removedFileName = s; };
-        MidiLibManager.MidiFileAdded += s => { addedFileName = s; };
-
-        ResManager.UserData.WriteAllBytes(TestFullPath, TestBytes);
-        Assert.That(ResManager.UserData.Exists(TestFullPath), Is.True);
-
-        MidiLibManager.RenameMidiFile(TestFileName, renamedFileName);
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(ResManager.UserData.Exists(TestUserDataDir / renamedFileName), Is.True);
-            Assert.That(ResManager.UserData.Exists(TestFullPath), Is.False);
-            Assert.That(removedFileName, Is.EqualTo(TestFileName));
-            Assert.That(addedFileName, Is.EqualTo(renamedFileName));
         }
     }
 }

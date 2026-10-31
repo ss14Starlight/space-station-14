@@ -45,8 +45,9 @@ namespace Content.IntegrationTests.Tests.Construction
             }
         }
 
+        #region Starlight
         [Test]
-        public async Task ConstructionGraphSpawnPrototypeValid()
+        public async Task ConstructionGraphActionsAndEdgesValid()
         {
             var pair = Pair;
             var server = pair.Server;
@@ -72,6 +73,13 @@ namespace Content.IntegrationTests.Tests.Construction
 
                         foreach (var edge in node.Edges)
                         {
+                            if (!graph.Nodes.ContainsKey(edge.Target))
+                            {
+                                valid = false;
+                                message.Append(
+                                    $"Invalid target \"{edge.Target}\" in edge on node \"{node.Name}\" of graph \"{graph.ID}\"\n");
+                            }
+
                             foreach (var action in edge.Completed)
                             {
                                 if (IsValid(action, protoMan, out var prototype)) continue;
@@ -84,40 +92,9 @@ namespace Content.IntegrationTests.Tests.Construction
                 }
             });
 
-            Assert.That(valid, Is.True, $"One or more SpawnPrototype actions specified invalid entity prototypes!\n{message}");
+            Assert.That(valid, Is.True,
+                $"One or more construction graph actions or edges are invalid!\n{message}");
         }
-
-        [Test]
-        public async Task ConstructionGraphEdgeValid()
-        {
-            var pair = Pair;
-            var server = pair.Server;
-
-            var protoMan = server.ResolveDependency<IPrototypeManager>();
-
-            var valid = true;
-            var message = new StringBuilder();
-
-            await server.WaitPost(() =>
-            {
-                foreach (var graph in protoMan.EnumeratePrototypes<ConstructionGraphPrototype>())
-                {
-                    foreach (var node in graph.Nodes.Values)
-                    {
-                        foreach (var edge in node.Edges)
-                        {
-                            if (graph.Nodes.ContainsKey(edge.Target))
-                                continue;
-
-                            valid = false;
-                            message.Append(
-                                $"Invalid target \"{edge.Target}\" in edge on node \"{node.Name}\" of graph \"{graph.ID}\"\n");
-                        }
-                    }
-                }
-            });
-
-            Assert.That(valid, Is.True, $"One or more edges specified invalid node targets!\n{message}");
-        }
+        #endregion
     }
 }

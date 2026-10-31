@@ -12,25 +12,21 @@ public sealed class CraftingTests : InteractionTest
     public const string Spear = "Spear";
 
     /// <summary>
-    /// Craft a simple instant recipe
+    /// Craft an instant recipe and one that uses a DoAfter.
     /// </summary>
     [Test]
-    public async Task CraftRods()
+    public async Task CraftSimpleRecipes() // Starlight
     {
         await PlaceInHands(Steel);
         await CraftItem(Rod);
         await FindEntity((Rod, 2));
-    }
 
-    /// <summary>
-    /// Craft a simple recipe with a DoAfter
-    /// </summary>
-    [Test]
-    public async Task CraftGrenade()
-    {
+        // Starlight - start
+        Target = null;
         await PlaceInHands(Steel, 5);
         await CraftItem("ModularGrenadeRecipe");
         await FindEntity("ModularGrenade");
+        // Starlight - end
     }
 
     /// <summary>

@@ -162,122 +162,77 @@ namespace Content.IntegrationTests.Tests.Power
   - type: Transform
     anchored: true
 ";
+        #region Starlight
         /// <summary>
-        ///     Test small power net with a simple surplus of power over the loads.
+        ///     Checks power allocation with both surplus and deficit on independent small networks.
         /// </summary>
         [Test]
-        public async Task TestSimpleSurplus()
+        public async Task TestSimpleSurplusAndDeficit()
         {
+            // Starlight - start
             var pair = Pair;
             var server = pair.Server;
             var entityManager = server.ResolveDependency<IEntityManager>();
             var mapSys = entityManager.System<SharedMapSystem>();
             const float loadPower = 200;
-            PowerSupplierComponent supplier = default!;
-            PowerConsumerComponent consumer1 = default!;
-            PowerConsumerComponent consumer2 = default!;
+
+            (PowerSupplierComponent Supplier, PowerConsumerComponent Consumer1, PowerConsumerComponent Consumer2) surplus = (null!, null!, null!);
+            (PowerSupplierComponent Supplier, PowerConsumerComponent Consumer1, PowerConsumerComponent Consumer2) deficit = (null!, null!, null!);
 
             await server.WaitAssertion(() =>
             {
-                var map = mapSys.CreateMap(out var mapId);
+                surplus = CreatePowerNetwork(loadPower * 4, loadPower, loadPower);
+                deficit = CreatePowerNetwork(loadPower, loadPower, loadPower * 2);
+            });
+
+            server.RunTicks(1);
+
+            await server.WaitAssertion(() =>
+            {
+                Assert.Multiple(() =>
+                {
+                    Assert.That(surplus.Consumer1.ReceivedPower, Is.EqualTo(surplus.Consumer1.DrawRate).Within(0.1));
+                    Assert.That(surplus.Consumer2.ReceivedPower, Is.EqualTo(surplus.Consumer2.DrawRate).Within(0.1));
+                    Assert.That(surplus.Supplier.CurrentSupply, Is.EqualTo(loadPower * 2).Within(0.1));
+
+                    Assert.That(deficit.Consumer1.ReceivedPower, Is.EqualTo(deficit.Consumer1.DrawRate / 3).Within(0.1));
+                    Assert.That(deficit.Consumer2.ReceivedPower, Is.EqualTo(deficit.Consumer2.DrawRate / 3).Within(0.1));
+                    Assert.That(deficit.Supplier.CurrentSupply, Is.EqualTo(deficit.Supplier.MaxSupply).Within(0.1));
+                });
+            });
+
+            (PowerSupplierComponent Supplier, PowerConsumerComponent Consumer1, PowerConsumerComponent Consumer2) CreatePowerNetwork(
+                float maxSupply,
+                float consumer1Load,
+                float consumer2Load)
+            {
+                mapSys.CreateMap(out var mapId);
                 var grid = mapSys.CreateGridEntity(mapId);
 
-                // Power only works when anchored
                 for (var i = 0; i < 3; i++)
                 {
                     mapSys.SetTile(grid, new Vector2i(0, i), new Tile(1));
                     entityManager.SpawnEntity("CableHV", grid.Owner.ToCoordinates(0, i));
                 }
 
-                var generatorEnt = entityManager.SpawnEntity("GeneratorDummy", grid.Owner.ToCoordinates());
-                var consumerEnt1 = entityManager.SpawnEntity("ConsumerDummy", grid.Owner.ToCoordinates(0, 1));
-                var consumerEnt2 = entityManager.SpawnEntity("ConsumerDummy", grid.Owner.ToCoordinates(0, 2));
+                var generator = entityManager.SpawnEntity("GeneratorDummy", grid.Owner.ToCoordinates());
+                var consumer1 = entityManager.SpawnEntity("ConsumerDummy", grid.Owner.ToCoordinates(0, 1));
+                var consumer2 = entityManager.SpawnEntity("ConsumerDummy", grid.Owner.ToCoordinates(0, 2));
 
-                supplier = entityManager.GetComponent<PowerSupplierComponent>(generatorEnt);
-                consumer1 = entityManager.GetComponent<PowerConsumerComponent>(consumerEnt1);
-                consumer2 = entityManager.GetComponent<PowerConsumerComponent>(consumerEnt2);
+                var supplierComponent = entityManager.GetComponent<PowerSupplierComponent>(generator);
+                var consumer1Component = entityManager.GetComponent<PowerConsumerComponent>(consumer1);
+                var consumer2Component = entityManager.GetComponent<PowerConsumerComponent>(consumer2);
 
-                // Plenty of surplus and tolerance
-                supplier.MaxSupply = loadPower * 4;
-                supplier.SupplyRampTolerance = loadPower * 4;
-                consumer1.DrawRate = loadPower;
-                consumer2.DrawRate = loadPower;
-            });
+                supplierComponent.MaxSupply = maxSupply;
+                supplierComponent.SupplyRampTolerance = maxSupply;
+                consumer1Component.DrawRate = consumer1Load;
+                consumer2Component.DrawRate = consumer2Load;
 
-            server.RunTicks(1); //let run a tick for PowerNet to process power
-
-            await server.WaitAssertion(() =>
-            {
-                Assert.Multiple(() =>
-                {
-                    // Assert both consumers fully powered
-                    Assert.That(consumer1.ReceivedPower, Is.EqualTo(consumer1.DrawRate).Within(0.1));
-                    Assert.That(consumer2.ReceivedPower, Is.EqualTo(consumer2.DrawRate).Within(0.1));
-
-                    // Assert that load adds up on supply.
-                    Assert.That(supplier.CurrentSupply, Is.EqualTo(loadPower * 2).Within(0.1));
-                });
-            });
+                return (supplierComponent, consumer1Component, consumer2Component);
+            }
+            // Starlight - end
         }
-
-
-        /// <summary>
-        ///     Test small power net with a simple deficit of power over the loads.
-        /// </summary>
-        [Test]
-        public async Task TestSimpleDeficit()
-        {
-            var pair = Pair;
-            var server = pair.Server;
-            var entityManager = server.ResolveDependency<IEntityManager>();
-            var mapSys = entityManager.System<SharedMapSystem>();
-            const float loadPower = 200;
-            PowerSupplierComponent supplier = default!;
-            PowerConsumerComponent consumer1 = default!;
-            PowerConsumerComponent consumer2 = default!;
-
-            await server.WaitAssertion(() =>
-            {
-                var map = mapSys.CreateMap(out var mapId);
-                var grid = mapSys.CreateGridEntity(mapId);
-
-                // Power only works when anchored
-                for (var i = 0; i < 3; i++)
-                {
-                    mapSys.SetTile(grid, new Vector2i(0, i), new Tile(1));
-                    entityManager.SpawnEntity("CableHV", grid.Owner.ToCoordinates(0, i));
-                }
-
-                var generatorEnt = entityManager.SpawnEntity("GeneratorDummy", grid.Owner.ToCoordinates());
-                var consumerEnt1 = entityManager.SpawnEntity("ConsumerDummy", grid.Owner.ToCoordinates(0, 1));
-                var consumerEnt2 = entityManager.SpawnEntity("ConsumerDummy", grid.Owner.ToCoordinates(0, 2));
-
-                supplier = entityManager.GetComponent<PowerSupplierComponent>(generatorEnt);
-                consumer1 = entityManager.GetComponent<PowerConsumerComponent>(consumerEnt1);
-                consumer2 = entityManager.GetComponent<PowerConsumerComponent>(consumerEnt2);
-
-                // Too little supply, both consumers should get 33% power.
-                supplier.MaxSupply = loadPower;
-                supplier.SupplyRampTolerance = loadPower;
-                consumer1.DrawRate = loadPower;
-                consumer2.DrawRate = loadPower * 2;
-            });
-
-            server.RunTicks(1); //let run a tick for PowerNet to process power
-
-            await server.WaitAssertion(() =>
-            {
-                Assert.Multiple(() =>
-                {
-                    // Assert both consumers get 33% power.
-                    Assert.That(consumer1.ReceivedPower, Is.EqualTo(consumer1.DrawRate / 3).Within(0.1));
-                    Assert.That(consumer2.ReceivedPower, Is.EqualTo(consumer2.DrawRate / 3).Within(0.1));
-
-                    // Supply should be maxed out
-                    Assert.That(supplier.CurrentSupply, Is.EqualTo(supplier.MaxSupply).Within(0.1));
-                });
-            });
-        }
+        #endregion
 
         [Test]
         public async Task TestSupplyRamp()

@@ -5,6 +5,7 @@ using Content.Server._Starlight.Zones;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared._Starlight.Zones;
+using Content.Shared.Random.Rules;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
@@ -22,6 +23,7 @@ public sealed class ZoneTopologyTest : GameTest
     private const int Width = 8;
     private const int Height = 4;
     private const int WallColumn = 4;
+    private const string MaintenanceZoneRule = "InMaintenanceZone";
 
     private ZoneSystem _zones = default!;
     private EntityUid _grid;
@@ -33,6 +35,8 @@ public sealed class ZoneTopologyTest : GameTest
     public async Task WallSplitsRoomAndRemovingItMergesBack()
     {
         await CreateDeck();
+        await TrackerFollowsZones();
+        await RulesCanQueryTrackedZones();
 
         var maintenance = _zones.GetZoneId("Maintenance");
         var hallway = _zones.GetZoneId("Hallway");
@@ -73,6 +77,27 @@ public sealed class ZoneTopologyTest : GameTest
                 "Removing the wall should have put the room back together.");
             Assert.That(Zone(Width - 1, 0), Is.EqualTo(maintenance),
                 "The merged room should take the higher priority name again.");
+        }
+
+        var deck = Region(Width - 1, 0);
+        await Server.WaitPost(() =>
+        {
+            SpawnAnchored(_wall, new Vector2i(5, 0));
+            SpawnAnchored(_wall, new Vector2i(6, 1));
+            SpawnAnchored(_wall, new Vector2i(7, 1));
+        });
+
+        await Server.WaitRunTicks(5);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(Region(7, 0), Is.Not.EqualTo(SharedZoneSystem.NoRegion));
+            Assert.That(Region(7, 0), Is.EqualTo(Region(6, 0)),
+                "Both tiles of the closet belong to the same room.");
+            Assert.That(Region(7, 0), Is.Not.EqualTo(deck),
+                "The closet is no longer part of the deck.");
+            Assert.That(Region(0, 0), Is.EqualTo(deck),
+                "The far side of the deck should have been left alone.");
         }
     }
 
@@ -133,40 +158,79 @@ public sealed class ZoneTopologyTest : GameTest
         }
     }
 
-    /// <summary>
-    /// Tests that a small closet can be cut off from the rest of the deck and become its own room.
-    /// </summary>
-    [Test]
-    public async Task ClosetBecomesItsOwnRoom()
-    {
-        await CreateDeck();
-
-        var deck = Region(Width - 1, 0);
-
-        await Server.WaitPost(() =>
-        {
-            SpawnAnchored(_wall, new Vector2i(5, 0));
-            SpawnAnchored(_wall, new Vector2i(6, 1));
-            SpawnAnchored(_wall, new Vector2i(7, 1));
-        });
-
-        await Server.WaitRunTicks(5);
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(Region(7, 0), Is.Not.EqualTo(SharedZoneSystem.NoRegion));
-            Assert.That(Region(7, 0), Is.EqualTo(Region(6, 0)),
-                "Both tiles of the closet belong to the same room.");
-            Assert.That(Region(7, 0), Is.Not.EqualTo(deck),
-                "The closet is no longer part of the deck.");
-            Assert.That(Region(0, 0), Is.EqualTo(deck),
-                "The far side of the deck should have been left alone.");
-        }
-    }
-
     private ushort Region(int x, int y) => _zones.GetRegion(_grid, new Vector2i(x, y));
 
     private ushort Zone(int x, int y) => _zones.GetZoneId(_grid, new Vector2i(x, y));
+
+    private async Task TrackerFollowsZones()
+    {
+        var zones = Server.System<ZoneSystem>();
+        var mapSystem = Server.System<SharedMapSystem>();
+        var transform = Server.System<SharedTransformSystem>();
+        var tileDefs = Server.ResolveDependency<ITileDefinitionManager>();
+        var testMap = await Pair.CreateTestMap();
+
+        EntityUid grid = default;
+        EntityUid dummy = default;
+
+        await Server.WaitPost(() =>
+        {
+            var gridEnt = mapSystem.CreateGridEntity(testMap.MapId);
+            grid = gridEnt.Owner;
+
+            var plating = new Tile(tileDefs["Plating"].TileId);
+            for (var x = 0; x < WallColumn; x++)
+            for (var y = 0; y < Height; y++)
+                mapSystem.SetTile(gridEnt, gridEnt, new Vector2i(x, y), plating);
+
+            var comp = Server.EntMan.AddComponent<ZoneGridComponent>(grid);
+            zones.PaintZoneRect((grid, comp), new Box2i(0, 0, WallColumn, Height), "Cargo");
+            zones.PaintZoneRect((grid, comp), new Box2i(WallColumn, 0, Width, Height), "Maintenance");
+            zones.FullRebuild((grid, comp));
+
+            dummy = Server.EntMan.SpawnEntity(null, new EntityCoordinates(grid, 1.5f, 1.5f));
+            Server.EntMan.AddComponent<ZoneTrackerComponent>(dummy);
+        });
+
+        await Server.WaitRunTicks(30);
+        Assert.That(Server.EntMan.GetComponent<ZoneTrackerComponent>(dummy).Zone?.Id, Is.EqualTo("Cargo"));
+
+        await Server.WaitPost(() =>
+            transform.SetCoordinates(dummy, new EntityCoordinates(grid, WallColumn + 0.5f, 1.5f)));
+
+        await Server.WaitRunTicks(30);
+        Assert.That(Server.EntMan.GetComponent<ZoneTrackerComponent>(dummy).Zone?.Id, Is.EqualTo("Maintenance"));
+
+        await Server.WaitPost(() =>
+            transform.SetCoordinates(dummy, new EntityCoordinates(grid, Width + 0.5f, 1.5f)));
+
+        await Server.WaitRunTicks(30);
+        Assert.That(Server.EntMan.GetComponent<ZoneTrackerComponent>(dummy).Zone, Is.Null);
+    }
+
+    private async Task RulesCanQueryTrackedZones()
+    {
+        var rules = Server.System<RulesSystem>();
+        var maintenance = Server.ProtoMan.Index<RulesPrototype>(MaintenanceZoneRule);
+        EntityUid dummy = default;
+
+        await Server.WaitPost(() =>
+        {
+            dummy = Server.EntMan.SpawnEntity(null, MapCoordinates.Nullspace);
+            Server.EntMan.AddComponent<ZoneTrackerComponent>(dummy);
+        });
+
+        Assert.That(rules.IsTrue(dummy, maintenance), Is.False);
+
+        await Server.WaitPost(() =>
+            Server.System<SharedZoneTrackerSystem>().SetZone(
+                (dummy, Server.EntMan.GetComponent<ZoneTrackerComponent>(dummy)),
+                "Maintenance",
+                ["Maintenance"],
+                default));
+
+        Assert.That(rules.IsTrue(dummy, maintenance), Is.True);
+    }
 
     private async Task CreateDeck()
     {

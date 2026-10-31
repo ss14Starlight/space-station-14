@@ -9,15 +9,22 @@ namespace Content.IntegrationTests.Tests.Minds;
 [TestFixture]
 public sealed class RoleTests : GameTest
 {
+    #region Starlight
     /// <summary>
-    /// Check that any prototype with a <see cref="MindRoleComponent"/> is properly configured
+    /// Checks the configuration of all role prototypes and their related role components.
     /// </summary>
     [Test]
-    public async Task ValidateRolePrototypes()
+    public async Task ValidateRolePrototypeConfiguration()
     {
         var pair = Pair;
 
-        var jobComp = pair.Server.ResolveDependency<IComponentFactory>().GetComponentName<JobRoleComponent>();
+        var componentFactory = pair.Server.ResolveDependency<IComponentFactory>();
+        var jobComp = componentFactory.GetComponentName<JobRoleComponent>();
+        var mindCompId = componentFactory.GetComponentName<MindRoleComponent>();
+        var refMan = pair.Server.ResolveDependency<IReflectionManager>();
+        var compTypes = refMan.GetAllChildren(typeof(BaseMindRoleComponent))
+            .Append(typeof(RoleBriefingComponent))
+            .Where(x => !x.IsAbstract);
 
         Assert.Multiple(() =>
         {
@@ -32,51 +39,15 @@ public sealed class RoleTests : GameTest
 
                 // It is possible that this is meant to be supported? Though I would assume that it would be for
                 // admin / prototype uploads, and that pre-defined roles should still check this.
-                Assert.That(!comp.Antag || comp.AntagPrototype != null , $"Role {proto.ID} is an antag, despite not having a antag prototype.");
+                Assert.That(!comp.Antag || comp.AntagPrototype != null, $"Role {proto.ID} is an antag, despite not having an antag prototype.");
             }
-        });
 
-    }
-
-    /// <summary>
-    /// Check that any prototype with a <see cref="JobRoleComponent"/> also has a properly configured
-    /// <see cref="MindRoleComponent"/>
-    /// </summary>
-    [Test]
-    public async Task ValidateJobPrototypes()
-    {
-        var pair = Pair;
-
-        var mindCompId = pair.Server.ResolveDependency<IComponentFactory>().GetComponentName<MindRoleComponent>();
-
-        Assert.Multiple(() =>
-        {
-            foreach (var (proto, comp) in pair.GetPrototypesWithComponent<JobRoleComponent>())
+            foreach (var (proto, _) in pair.GetPrototypesWithComponent<JobRoleComponent>())
             {
                 if (proto.Components.TryGetComponent(mindCompId, out var mindComp))
                     Assert.That(((MindRoleComponent)mindComp).JobPrototype, Is.Not.Null);
             }
-        });
-    }
 
-    /// <summary>
-    /// Check that any prototype with a component that inherits from <see cref="BaseMindRoleComponent"/> also has a
-    /// <see cref="MindRoleComponent"/>
-    /// </summary>
-    [Test]
-    public async Task ValidateRolesHaveMindRoleComp()
-    {
-        var pair = Pair;
-
-        var refMan = pair.Server.ResolveDependency<IReflectionManager>();
-        var mindCompId = pair.Server.ResolveDependency<IComponentFactory>().GetComponentName<MindRoleComponent>();
-
-        var compTypes = refMan.GetAllChildren(typeof(BaseMindRoleComponent))
-            .Append(typeof(RoleBriefingComponent))
-            .Where(x => !x.IsAbstract);
-
-        Assert.Multiple(() =>
-        {
             foreach (var comp in compTypes)
             {
                 foreach (var proto in pair.GetPrototypesWithComponent(comp))
@@ -86,4 +57,5 @@ public sealed class RoleTests : GameTest
             }
         });
     }
+    #endregion
 }

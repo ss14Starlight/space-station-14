@@ -122,73 +122,46 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly ProtoId<EntityCategoryPrototype> DoNotMapCategory = "DoNotMap";
 
+        #region Starlight
         /// <summary>
-        /// Asserts that specific files have been saved as grids and not maps.
-        /// </summary>
-        [Test, TestCaseSource(nameof(Grids))]
-        [EnsureCVar(Side.Server, typeof(CCVars), nameof(CCVars.GridFill), false)]
-        public async Task GridsLoadableTest(string mapFile)
-        {
-            var pair = Pair;
-            var server = pair.Server;
-
-            var entManager = server.ResolveDependency<IEntityManager>();
-            var mapLoader = entManager.System<MapLoaderSystem>();
-            var mapSystem = entManager.System<SharedMapSystem>();
-            var cfg = server.ResolveDependency<IConfigurationManager>();
-            var path = new ResPath(mapFile);
-
-            await server.WaitPost(() =>
-            {
-                mapSystem.CreateMap(out var mapId);
-                try
-                {
-                    Assert.That(mapLoader.TryLoadGrid(mapId, path, out var grid));
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Failed to load map {mapFile}, was it saved as a map instead of a grid?", ex);
-                }
-
-                mapSystem.DeleteMap(mapId);
-            });
-        }
-
-        /// <summary>
-        /// Asserts that shuttles are loadable and have been saved as grids and not maps.
+        /// Asserts that the test arena and every Starlight shuttle are loadable as grids rather than maps.
         /// </summary>
         [Test]
-        [TestCaseSource(nameof(ShuttleMapFiles))]
         [EnsureCVar(Side.Server, typeof(CCVars), nameof(CCVars.GridFill), false)]
-        public async Task ShuttlesLoadableTest(ResPath path)
+        public async Task GridsAndShuttlesLoadableTest()
         {
             var pair = Pair;
             var server = pair.Server;
-
             var entManager = server.ResolveDependency<IEntityManager>();
             var mapLoader = entManager.System<MapLoaderSystem>();
             var mapSystem = entManager.System<SharedMapSystem>();
-            var cfg = server.ResolveDependency<IConfigurationManager>();
+            var failures = new List<string>();
+            var paths = Grids.Select(path => new ResPath(path)).Concat(ShuttleMapFiles);
 
-            await server.WaitPost(() =>
+            foreach (var path in paths)
             {
-                Assert.Multiple(() =>
+                await server.WaitPost(() =>
                 {
                     mapSystem.CreateMap(out var mapId);
                     try
                     {
-                        Assert.That(mapLoader.TryLoadGrid(mapId, path, out _),
-                            $"Failed to load shuttle {path}, was it saved as a map instead of a grid?");
+                        if (!mapLoader.TryLoadGrid(mapId, path, out _))
+                            failures.Add($"Failed to load grid {path}; expected it to be saved as a grid rather than a map.");
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception($"Failed to load shuttle {path}, was it saved as a map instead of a grid?",
-                            ex);
+                        failures.Add($"Failed to load grid {path}; expected it to be saved as a grid rather than a map. {ex}");
                     }
-                    mapSystem.DeleteMap(mapId);
+                    finally
+                    {
+                        mapSystem.DeleteMap(mapId);
+                    }
                 });
-            });
+            }
+
+            Assert.That(failures, Is.Empty, string.Join("\n", failures));
         }
+        #endregion
 
         [Test]
         [TestCaseSource(nameof(AllMapFiles))]
