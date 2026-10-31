@@ -49,6 +49,7 @@
         - id: EmergencyMedipen
         - id: Flare
         - id: FoodSnackBloodBrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -467,6 +468,7 @@
         - id: EmergencyMedipen
         - id: Flare
         - id: FoodSnackBloodBrick
+        - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
     - state: internals
@@ -476,7 +478,7 @@
   parent: BoxCardboardSmall # Cannot fit 3x3 boxes into already-filled ERT backpacks.
   id: BoxSurvivalMilitaryDoubleBlood
   suffix: Military O2, Blood
-  description: It's a box with basic internals inside. This one is labelled to contain an double extended-capacity tank and a haemobrick.
+  description: It's a box with basic internals inside. This one is labelled to contain an double extended-capacity tank.
   components:
   - type: EntityTableContainerFill
     containers:
