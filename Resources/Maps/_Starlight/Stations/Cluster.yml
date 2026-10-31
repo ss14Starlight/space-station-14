@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/31/2026 06:12:16
+  time: 10/31/2026 06:18:13
   entityCount: 15906
 maps:
 - 1
@@ -7708,7 +7708,7 @@ entities:
       pos: 0.5,-38.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -13608.312
+      secondsUntilStateChange: -13779.043
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -7845,7 +7845,7 @@ entities:
       pos: 9.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -14324.812
+      secondsUntilStateChange: -14495.543
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -45051,7 +45051,7 @@ entities:
       pos: -21.5,19.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -13030.712
+      secondsUntilStateChange: -13201.443
   - uid: 6912
     components:
     - type: Transform
@@ -45059,7 +45059,7 @@ entities:
       pos: -20.5,19.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -13054.912
+      secondsUntilStateChange: -13225.644
     - type: Firelock
       emergencyCloseCooldown: 1806.1315292
   - uid: 6913
@@ -72146,8 +72146,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 553
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 10311
@@ -72411,8 +72409,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 553
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 5821
@@ -105382,7 +105378,7 @@ entities:
       pos: -38.5,9.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -206976.7
+      secondsUntilStateChange: -207147.44
   - uid: 15903
     components:
     - type: Transform
@@ -105390,7 +105386,7 @@ entities:
       pos: -35.5,10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -206977.2
+      secondsUntilStateChange: -207147.94
 - proto: Wrench
   entities:
   - uid: 15904
