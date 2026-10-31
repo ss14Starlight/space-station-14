@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/31/2026 09:37:21
+  time: 10/31/2026 09:48:29
   entityCount: 27811
 maps:
 - 1
@@ -117407,6 +117407,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -33.5,28.5
+    - type: GasValve
+      open: False
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVentPump
