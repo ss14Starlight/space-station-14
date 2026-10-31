@@ -22,6 +22,7 @@ public sealed class StorageTest : GameTest
     {
         // lost property bag: deliberately holds a whole cryo'd crew member's belongings
         "ClothingBackpackDuffelCryostorageBelongings",
+        "AnomalyCoreBluespaceBelongings",
     };
 
     /// <summary>
