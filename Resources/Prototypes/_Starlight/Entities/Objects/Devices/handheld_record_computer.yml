@@ -1,0 +1,17 @@
+- type: entity
+  parent: BaseItem
+  id: PortableRecords computer
+  name: Handheld medical records computer
+  description: Therapy on the go!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Medical/handheld_record_med.rsi
+      state: icon
+    - type: CharacterRecordConsole
+      consoleType: Medical
+    - type: ActivatableUI
+      key: enum.CharacterRecordConsoleKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.CharacterRecordConsoleKey.Key:
+          type: CharacterRecordConsoleBoundUserInterface
