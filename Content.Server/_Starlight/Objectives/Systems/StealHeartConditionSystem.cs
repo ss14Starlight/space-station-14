@@ -17,6 +17,7 @@ public sealed partial class StealHeartConditionSystem : EntitySystem
     [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private TagSystem _tags = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
 
     private static readonly ProtoId<TagPrototype> _heartTag = "Heart";
 
@@ -79,29 +80,26 @@ public sealed partial class StealHeartConditionSystem : EntitySystem
         if (args.Mind.OwnedEntity is not { } owner)
             return;
 
-        var remaining = new Stack<EntityUid>();
-        var visited = new HashSet<EntityUid>();
-        remaining.Push(owner);
-        while (remaining.TryPop(out var uid))
+        foreach (var heart in ent.Comp.Hearts)
         {
-            if (!visited.Add(uid))
+            if (!Exists(heart) || !_tags.HasTag(heart, _heartTag))
                 continue;
 
-            if (ent.Comp.Hearts.Contains(uid) && _tags.HasTag(uid, _heartTag))
+            var uid = heart;
+            while (uid != owner)
+            {
+                // no, you can't carry someone to "have" their heart
+                if ((uid != heart && HasComp<MindContainerComponent>(uid)) ||
+                    !_containers.TryGetContainingContainer((uid, null, null), out var container))
+                    break;
+
+                uid = container.Owner;
+            }
+
+            if (uid == owner)
             {
                 args.Progress = 1;
                 return;
-            }
-
-            // What do you mean taking the whole victim doesn't count as stealing their heart???
-            if ((uid != owner && HasComp<MindContainerComponent>(uid)) ||
-                !TryComp<ContainerManagerComponent>(uid, out var containers))
-                continue;
-
-            foreach (var container in containers.Containers.Values)
-            {
-                foreach (var item in container.ContainedEntities)
-                    remaining.Push(item);
             }
         }
     }
