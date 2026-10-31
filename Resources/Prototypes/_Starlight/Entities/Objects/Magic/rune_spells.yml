@@ -520,7 +520,7 @@
   parent: ActionFreezeRune
   id: ActionRuneGravity
   name: Rune of gravity
-  description: Summon a rune that will quickly pull anything close towards it, dont stay close! (30 seconds cooldown).
+  description: Summon a rune that will quickly pull anything close towards it, don't stay close! (30 seconds cooldown).
   components:
   - type: Action
     useDelay: 30
