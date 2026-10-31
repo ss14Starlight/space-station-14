@@ -55,10 +55,9 @@ public sealed partial class TransformableContainerSystem : EntitySystem
         if (!string.IsNullOrWhiteSpace(reagentId?.Prototype)
             && _prototypeManager.TryIndex(reagentId.Value.Prototype, out ReagentPrototype? proto))
         {
-            var metadata = MetaData(entity.Owner);
-            _metadataSystem.SetEntityDescription(entity.Owner, proto.LocalizedDescription, metadata);
             entity.Comp.CurrentReagent = proto;
             entity.Comp.Transformed = true;
+            RefreshDisplayedDescription(entity.Owner); // Starlight-edit: replaces the reagent description update so chameleon glass can display its disguise.
         }
 
         _nameMod.RefreshNameModifiers(entity.Owner);
@@ -66,7 +65,7 @@ public sealed partial class TransformableContainerSystem : EntitySystem
 
     private void OnRefreshNameModifiers(Entity<TransformableContainerComponent> entity, ref RefreshNameModifiersEvent args)
     {
-        if (_prototypeManager.Resolve(entity.Comp.CurrentReagent, out var currentReagent))
+        if (GetDisplayedReagent(entity) is { } currentReagent) // Starlight-edit: honor chameleon glass disguise
         {
             args.AddModifier("transformable-container-component-glass", priority: -1, ("reagent", currentReagent.LocalizedName));
         }
@@ -77,13 +76,7 @@ public sealed partial class TransformableContainerSystem : EntitySystem
         entity.Comp.CurrentReagent = null;
         entity.Comp.Transformed = false;
 
-        var metadata = MetaData(entity);
-
         _nameMod.RefreshNameModifiers(entity.Owner);
-
-        if (!string.IsNullOrEmpty(entity.Comp.InitialDescription))
-        {
-            _metadataSystem.SetEntityDescription(entity.Owner, entity.Comp.InitialDescription, metadata);
-        }
+        RefreshDisplayedDescription(entity.Owner); // Starlight-edit: replaces the initial description reset so chameleon glass keeps its disguise when emptied.
     }
 }
