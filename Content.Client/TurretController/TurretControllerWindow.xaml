@@ -108,10 +108,11 @@
                             <!-- Access configuration -->
                             <access:GroupedAccessLevelChecklist Name="AccessConfiguration"/>
 
-                            <!-- Starlight -->
+                            <!-- Starlight - start -->
                             <CheckBox Name="TargetNeutralEntitiesCheckBox"
                                       Text="{Loc 'turret-controls-window-target-neutral-units'}"
                                       Margin="5 6" HorizontalExpand="True"/>
+                            <!-- Starlight - end -->
                         </BoxContainer>
                     </PanelContainer>
                 </BoxContainer>

@@ -518,7 +518,6 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 }
 
                 _hidingWitness.AddWitnessedHiders(owner, vision, entities); // Starlight
-
                 AddNeutralTurretTargets(owner, vision, entities); // Starlight
 
                 break;
