@@ -174,11 +174,24 @@ namespace Content.Client.Light.Components
         [DataField("reverseWhenFinished")]
         public bool ReverseWhenFinished { get; set; }
 
+        // Starlight: Apply the start value the instant the animation starts (Play -> InitPlayback -> OnStart
+        // runs synchronously). Otherwise the property keeps its pre-animation value until AdvancePlayback
+        // runs on the next frame, so a light enabled this frame renders one frame at its full/prototype
+        // value before fading in -> visible flicker, especially while a predicted-spawned light is being
+        // re-created each prediction tick.
+        public override void OnStart()
+        {
+            if (Property == nameof(PointLightComponent.AnimatedEnable)) // boolean property, handled in AdvancePlayback
+                return;
+
+            ApplyProperty(StartValue);
+        }
+
         public override (int KeyFrameIndex, float FramePlayingTime) AdvancePlayback(
             object context, int prevKeyFrameIndex, float prevPlayingTime, float frameTime)
         {
             var playingTime = prevPlayingTime + frameTime;
-            var interpolateValue = playingTime / MaxTime;
+            var interpolateValue = Math.Clamp(playingTime / MaxTime, 0f, 1f); // Starlight: Clamp to prevent overshoot
 
             if (Property == nameof(PointLightComponent.AnimatedEnable)) // special case for boolean
             {

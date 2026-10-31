@@ -1,4 +1,6 @@
 using Content.Shared._Starlight.Breadcrumb.Components;
+using Content.Shared._Starlight.Light.Components;
+using Content.Shared._Starlight.Light.EntitySystems;
 using Content.Shared.Charges.Systems;
 using Content.Shared.IgnitionSource;
 using Content.Shared.Interaction;
@@ -16,6 +18,7 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
     [Dependency] private EntityLookupSystem _lookup = null!;
     [Dependency] private SharedAppearanceSystem _appearance = null!;
     [Dependency] private SharedPointLightSystem _pointLight = null!;
+    [Dependency] private SharedExpendableLightSystem _expendableLight = null!;
 
     /// <summary>
     /// Using in hand = pressing Z. Toggle on/off.
@@ -25,7 +28,7 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
     {
         dropper.Comp.Enabled = !dropper.Comp.Enabled;
         PopupSystem.PopupPredicted(
-            Loc.GetString($"breadcrumb-dropper-toggled-{(dropper.Comp.Enabled ? "on" : "off")}"),
+            Loc.GetString($"breadcrumb-dropper-toggle-{(dropper.Comp.Enabled ? "on" : "off")}"),
             dropper, args.User);
     }
 
@@ -80,9 +83,8 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
         foreach (var ent in _lookup
                      .GetEntitiesInRange<BreadcrumbComponent>(xform.Coordinates, dropper.Comp.DropRange))
         {
-            if (ent.Comp.Dropper != dropper.Owner)
-                continue;
-            return true;
+            if (ent.Comp.Dropper == dropper.Owner)
+                return true;
         }
 
         return false;
@@ -95,19 +97,29 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
         var crumb = EnsureComp<BreadcrumbComponent>(ent);
         crumb.Dropper = dropper.Owner;
         crumb.Color = dropper.Comp.Color;
-        Dirty(ent, crumb);
 
         _pointLight.SetColor(ent, crumb.Color);
-        _pointLight.SetEnabled(ent, true);
+        // _pointLight.SetEnabled(ent, true);
+        // _pointLight.SetEnergy(ent, 0f);
 
         _appearance.SetData(ent, BreadcrumbVisualData.Color, crumb.Color);
+        Dirty(ent, crumb);
+
+        if (TryComp<ExpendableLightComponent>(ent, out var expendableLight))
+            _expendableLight.TryActivate((ent, expendableLight));
     }
 
     [SubscribeLocalEvent]
-    public void OnBreadcrumbIgnition(Entity<BreadcrumbDropperComponent> dropper, ref IgnitionEvent @event)
+    public void OnBreadcrumbIgnition(Entity<BreadcrumbComponent> crumb, ref IgnitionEvent ev)
     {
-        if (@event.Ignite) return;
-        RemComp<BreadcrumbComponent>(dropper);
+        if (ev.Ignite) return;
+        RemComp<BreadcrumbComponent>(crumb);
+    }
+
+    [SubscribeLocalEvent]
+    public void OnBreadcrumbMapInit(Entity<BreadcrumbComponent> crumb, ref MapInitEvent ev)
+    {
+
     }
 
 }

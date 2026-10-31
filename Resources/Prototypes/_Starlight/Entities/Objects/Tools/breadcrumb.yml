@@ -1,4 +1,5 @@
 - type: entity
+  parent: BaseItem
   id: GlowstoneDropper
   name: glowstone dropper
   description: A bag that drops glowstones as you walk. Going back has never been so easy!
@@ -15,7 +16,8 @@
         - state: bag
       noRot: true
     - type: BreadcrumbDropper
-      color: "#ff0000"
+      color: "#ffff00"
+      dropRange: 4.5
     - type: LimitedCharges
       maxCharges: 999999999
       lastCharges: 50
@@ -59,27 +61,39 @@
     - type: PointLight
       enabled: false
       color: "#ffffff"
-      radius: 3
-      intensity: 0.8
+      radius: 2
+      energy: 1.5
     - type: ExpendableLight
-      glowDuration: 5 # 240 # 4 minutes full power
-      fadeOutDuration: 10 # 1020 # 16 minutes declining power
+      glowDuration: 30
+      fadeOutDuration: 300
       turnOnBehaviourID: turn_on
       fadeOutBehaviourID: fade_out
+      fadeGlowWithEnergy: true
+      glowReferenceEnergy: 3.5 # intentionally higher to dim it a little
     - type: LightBehaviour
       behaviours:
-        - !type:FadeBehaviour # have the radius start small and get larger as it starts to burn
+        - !type:FadeBehaviour # fade in radius
           id: turn_on
-          maxDuration: 5 # 240 # 4 minutes full power
+          maxDuration: 5
+          startValue: 1.1
+          endValue: 2
+        - !type:FadeBehaviour # fade in energy
+          id: turn_on
+          maxDuration: 5
           property: Energy
-          startValue: 1.3
-          endValue: 1.3
-        - !type:FadeBehaviour # fade out radius as it burns out
+          startValue: 0.2
+          endValue: 1.5
+        - !type:FadeBehaviour # fade out radius
           id: fade_out
-          maxDuration: 10 # 1020 # 16 minutes declining power
+          maxDuration: 300
+          startValue: 2
+          endValue: 1.2
+        - !type:FadeBehaviour # fade out energy
+          id: fade_out
+          maxDuration: 300
           property: Energy
-          startValue: 1.3
-          endValue: 0
+          startValue: 1.5
+          endValue: 0.7
     - type: Tag
     - type: SpaceGarbage
     - type: TimedDespawn

@@ -22,14 +22,15 @@ public sealed partial class BreadcrumbDropperComponent : Component
     [DataField, AutoNetworkedField] public float DropRange = 4f;
 
     /// <summary>
-    /// How often to check whether to drop.
+    /// How often to check whether to drop. Based on practical testing. Any higher than this and the variable gaps
+    /// become noticeable.
     /// </summary>
     [DataField, AutoNetworkedField] public TimeSpan DropCheckFrequency = TimeSpan.FromMilliseconds(300);
 
     /// <summary>
     /// When the next drop check is.
     /// </summary>
-    [DataField, AutoNetworkedField] public TimeSpan NextDropCheck = TimeSpan.Zero;
+    [AutoNetworkedField] public TimeSpan NextDropCheck = TimeSpan.Zero;
 
     /// <summary>
     /// The dropping prototype to spawn.
