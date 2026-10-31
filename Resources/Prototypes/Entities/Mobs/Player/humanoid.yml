@@ -103,16 +103,6 @@
       - NamesMilitaryLast
       nameFormat: name-format-ert-leader
 
-- type: randomHumanoidSettings # Starlight Start: ERTLeader is no longer base, Leader defined here, this is so we can edit ERTLeader independently
-  id: ERTLeader
-  parent: ERTBase
-  components:
-    - type: AutoImplant
-      implants:
-      - MindShieldImplant
-      - DeathRattleImplantCentcomm
-      - BudgetBluespaceImplant # Starlight End
-
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVA
   parent: RandomHumanoidSpawnerERTLeader

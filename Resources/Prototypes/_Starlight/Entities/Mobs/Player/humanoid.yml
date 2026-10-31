@@ -1177,3 +1177,14 @@
     - NeoKin
     - NeoElf
     - NeoLagomorph
+
+- type: randomHumanoidSettings
+  id: ERTLeader
+  parent: ERTBase
+  components:
+    - type: AutoImplant
+      implants:
+        - MindShieldImplant
+        - DeathRattleImplantCentcomm
+        - BudgetBluespaceImplant
+
