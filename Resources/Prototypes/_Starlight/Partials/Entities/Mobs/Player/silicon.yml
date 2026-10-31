@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: PlayerStationAiEmpty
+  components:
+  - type: DamageGate
+    limitToNextDestructionThreshold: true
+    thresholdDamageCooldown: 2
+    maxDamagePerHit: 400
