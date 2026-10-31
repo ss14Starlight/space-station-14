@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Station Maps no longer close on grid change.
-    type: Fix
-  id: 409590
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
-- author: Floximo
-  changes:
   - message: Escape pods no longer land on each other.
     type: Fix
   id: 409591
@@ -2799,4 +2792,11 @@ Entries:
   id: 409989
   time: '2026-10-31T13:37:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6944
+- author: Swonki
+  changes:
+  - message: ITG Trading Surplus Crate.
+    type: Tweak
+  id: 409990
+  time: '2026-10-31T13:59:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6802
 Order: -1
