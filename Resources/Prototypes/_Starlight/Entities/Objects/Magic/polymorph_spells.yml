@@ -1,0 +1,14 @@
+- type: entity
+  id: ActionShadowJaunt
+  parent: BaseActionPolymorph
+  name: Shadow jaunt
+  description: Become a living shadow that can pass through walls! (25 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 25
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: shadowjaunt
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: ShadowJaunt

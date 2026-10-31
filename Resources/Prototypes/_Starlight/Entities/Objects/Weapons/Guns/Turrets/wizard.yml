@@ -1,0 +1,44 @@
+- type: entity
+  parent: BaseWeaponBallisticTurret
+  id: TurretHarmCurse
+  name: Hex of harming
+  description: A hateful magic fetish, its only purpose is to maim those it sees.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Turrets/wizard.rsi
+    noRot: true
+    layers:
+    - state: harm
+  - type: BallisticAmmoProvider
+    proto: BulletTurretHarm
+    capacity: 500
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: HTN
+    rootTask:
+      task: TurretCompound
+    blackboard:
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Animals/snake_hiss.ogg
+  - type: Damageable
+    damageContainer: Biological
+  - type: PointLight
+    radius: 1
+    energy: 4
+    color: "#31F5C0"
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/gib1.ogg
