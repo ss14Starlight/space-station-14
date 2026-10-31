@@ -1,4 +1,5 @@
 using Content.Shared.Access;
+using Content.Shared._Starlight.TurretController;
 using Content.Shared.TurretController;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
@@ -20,6 +21,10 @@ public sealed class TurretControllerWindowBoundUserInterface(EntityUid owner, En
 
         _window.OnAccessLevelsChangedEvent += OnAccessLevelChanged;
         _window.OnArmamentSettingChangedEvent += OnArmamentSettingChanged;
+        // Starlight - start
+        _window.OnNeutralTargetingChangedEvent += enabled =>
+            SendPredictedMessage(new DeployableTurretNeutralTargetingChangedMessage(enabled));
+        // Starlight - end
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
