@@ -47,6 +47,9 @@ public sealed partial class ChameleonMenu : DefaultWindow
     {
         ClearGrid();
 
+        if (TryUpdateOptionsGrid()) // Starlight-edit: Share this menu with other chameleon items that don't use entity prototype IDs (Chameleon glass).
+            return;
+
         var group = new ButtonGroup();
         var searchFilterLow = _searchFilter.ToLowerInvariant();
 
