@@ -72,7 +72,7 @@ public sealed partial class PollenShopSystem : EntitySystem
     /// </summary>
     private static readonly Dictionary<string, (ProtoId<ReagentPrototype> Reagent, float Amount, TimeSpan Interval)> _periodicReagentPerks = new()
     {
-        ["PollenTreeBarkT3SapSerum"] = (_phytovitalin, 1f, TimeSpan.FromSeconds(60)),
+        ["PollenTreeBarkT3SapSerum"] = (_phytovitalin, 1f, TimeSpan.FromSeconds(30)),
     };
 
     public override void Initialize()
