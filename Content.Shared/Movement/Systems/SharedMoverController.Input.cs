@@ -628,6 +628,11 @@ namespace Content.Shared.Movement.Systems
             {
                 if (session?.AttachedEntity == null) return false;
 
+                // Starlight start
+                if (_controller.RouteMoveInput(session.AttachedEntity.Value, _dir, message.SubTick,
+                        message.State == BoundKeyState.Down))
+                    return false;
+                // Starlight end
                 _controller.HandleDirChange(session.AttachedEntity.Value, _dir, message.SubTick, message.State == BoundKeyState.Down);
                 return false;
             }
@@ -646,6 +651,11 @@ namespace Content.Shared.Movement.Systems
             {
                 if (session?.AttachedEntity == null) return false;
 
+                // Starlight start
+                if (_controller.RouteMoveInput(session.AttachedEntity.Value, MoveButtons.Walk, message.SubTick,
+                        message.State == BoundKeyState.Down))
+                    return false;
+                // Starlight end
                 _controller.HandleRunChange(session.AttachedEntity.Value, message.SubTick, message.State == BoundKeyState.Down);
                 return false;
             }

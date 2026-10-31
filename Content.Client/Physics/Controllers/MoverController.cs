@@ -139,6 +139,8 @@ public sealed partial class MoverController : SharedMoverController
 
     private void HandleClientsideMovement(EntityUid player, float frameTime)
     {
+        if (!CanPredictBodyControlMovement(player)) // Starlight
+            return;
         if (!MoverQuery.TryGetComponent(player, out var mover))
         {
             return;

@@ -190,6 +190,14 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!CanSendInGame(message.Text, shell, player)) // Starlight
             return;
 
+        // Starlight start
+        var intercept = new BeforeInGameICMessageEvent(source, message.Text);
+        RaiseLocalEvent(intercept);
+        if (intercept.Handled)
+            return;
+        source = intercept.Source;
+        // Starlight end
+
         ignoreActionBlocker = CheckIgnoreSpeechBlocker(source, ignoreActionBlocker);
 
         // this method is a disaster
