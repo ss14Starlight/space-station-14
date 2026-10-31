@@ -739,17 +739,14 @@ namespace Content.Server.Kitchen.EntitySystems
             {
                 int targetTime = (int)recipe.CookTime;
 
-                Console.WriteLine("loop");
-
                 for (var i = 0; i < availableAmount; i++)
                 {
-                    Console.WriteLine(actualTime.ToString() + ">=" + targetTime.ToString());
                     if (actualTime >= targetTime)
                     {
                         if (SubtractContents(cookingDevice, recipe))
                         {
                             Spawn(recipe.Result, coords);
-                            actualTime -= targetTime;
+                            actualTime -= targetTime; // We spent targetTime seconds cooking this recipe, we subtract this amount from actualTime to avoid completing more recipes than intended
                         }
                     }
                 }
