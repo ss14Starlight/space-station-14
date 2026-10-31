@@ -95,7 +95,7 @@
 
 - type: loadout
   id: ScarfPridePlural
-  Equipment:
+  equipment:
     neck: ClothingNeckScarfStripedPlural
 
 - type: loadout
