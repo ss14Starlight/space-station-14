@@ -75,6 +75,7 @@ public sealed partial class DragonRiftSystem
                     _chat.DispatchGlobalAnnouncement(msg, playSound: false, colorOverride: Color.Red);
                     _audio.PlayGlobal(new ResolvedPathSpecifier("/Audio/Misc/notice1.ogg"), Filter.Broadcast(), true);
                     _navMap.SetBeaconEnabled(uid, true);
+                    _navMap.RefreshNavMapBeacon(uid);
                 }
 
                 // Spawn the guaranteed 50% SharkMinnow only for Dragon Rifts
