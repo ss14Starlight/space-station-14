@@ -10,6 +10,9 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Ranged.Upgrades.Components;
 using Content.Shared.Whitelist;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Tools.Systems;
+using Content.Shared.Tools;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -24,6 +27,10 @@ public sealed partial class GunUpgradeSystem : EntitySystem
     [Dependency] private SharedGunSystem _gun = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+#region Starlight
+    [Dependency] private SharedToolSystem _tool = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+#endregion
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -38,6 +45,8 @@ public sealed partial class GunUpgradeSystem : EntitySystem
         SubscribeLocalEvent<GunUpgradeFireRateComponent, GunRefreshModifiersEvent>(OnFireRateRefresh);
         SubscribeLocalEvent<GunUpgradeSpeedComponent, GunRefreshModifiersEvent>(OnSpeedRefresh);
         SubscribeLocalEvent<GunUpgradeDamageComponent, GunShotEvent>(OnDamageGunShot);
+
+        InitializeRemoval(); //starlight
     }
 
     private void RelayEvent<T>(Entity<UpgradeableGunComponent> ent, ref T args) where T : notnull
