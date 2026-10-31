@@ -25,6 +25,10 @@
 - type: !PartialOnly entity
   id: MindShieldImplant
   description: This implant will ensure loyalty to NanoTrasen and prevent mind control devices.
+  components:
+  - type: Tag
+    tags:
+    - FragileImplant
 
 - type: !PartialOnly entity
   id: RadioImplantCentcomm

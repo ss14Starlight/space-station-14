@@ -1,0 +1,167 @@
+- type: salvageLoot
+  id: SalvageLootSiliconEasy
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: AdvMopItem
+        - proto: SMESAdvanced
+        - proto: GeneratorRTG
+        - proto: GeneratorRTGDamaged
+          cost: 2
+        - proto: BorgModuleCable
+        - proto: BorgModulePrying
+        - proto: BorgModuleMining
+        - proto: BorgModuleAdvancedMining
+        - proto: SalvageMiningBorg
+          prob: 0.5
+        - proto: WeaponSPKA
+          cost: 3
+        - proto: WeaponChainAccelerator
+          cost: 4
+        - proto: PKAUpgradeDamage
+        - proto: MedkitRoboticFilled
+          cost: 2
+        - proto: OilPack
+        - proto: PowerCellAntiqueProto
+          cost: 5
+          prob: 0.5
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10
+
+- type: salvageLoot
+  id: SalvageLootSiliconMedium
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: AdvMopItem
+        - proto: SMESAdvanced
+        - proto: GeneratorRTG
+        - proto: GeneratorRTGDamaged
+          cost: 2
+        - proto: BorgModuleCable
+          prob: 0.5
+        - proto: BorgModulePrying
+          prob: 0.5
+        - proto: BorgModuleMining
+          prob: 0.5
+        - proto: BorgModuleAdvancedMining
+          prob: 0.5
+        - proto: SalvageMiningBorg
+          cost: 4
+          prob: 0.5
+        - proto: WeaponSPKA
+          cost: 3
+        - proto: WeaponChainAccelerator
+          cost: 4
+        - proto: PKAUpgradeDamage
+        - proto: MedkitRoboticFilled
+          cost: 2
+        - proto: OilPack
+        - proto: BorgModuleAdvancedTool
+          cost: 2
+        - proto: BorgModuleAdvancedCleaning
+          cost: 2
+        - proto: BorgModuleAdvancedTopical
+          cost: 2
+        - proto: BorgModuleAdvancedClowning
+          cost: 2
+        - proto: BorgModuleAdvancedLoading
+        - proto: BorgModuleAdvancedPlumbing
+        - proto: MobCleanBot
+          cost: 4
+        - proto: ClothingEyesGlassesMeson
+          cost: 4
+        - proto: PowerCellAntiqueProto
+          cost: 5
+          prob: 0.5
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10
+
+- type: salvageLoot
+  id: SalvageLootSiliconHard
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: AdvMopItem
+        - proto: SMESAdvanced
+        - proto: GeneratorRTG
+        - proto: GeneratorRTGDamaged
+          cost: 2
+        - proto: BorgModuleCable
+          prob: 0.5
+        - proto: BorgModulePrying
+          prob: 0.5
+        - proto: BorgModuleMining
+          prob: 0.5
+        - proto: BorgModuleAdvancedMining
+          prob: 0.5
+        - proto: SalvageMiningBorg
+          cost: 4
+          prob: 0.5
+        - proto: WeaponSPKA
+          cost: 3
+        - proto: WeaponChainAccelerator
+          cost: 4
+        - proto: PKAUpgradeDamage
+        - proto: MedkitRoboticFilled
+          cost: 2
+        - proto: OilPack
+        - proto: BorgModuleAdvancedTool
+          cost: 2
+        - proto: BorgModuleAdvancedCleaning
+          cost: 2
+        - proto: BorgModuleAdvancedTopical
+          cost: 2
+        - proto: BorgModuleAdvancedClowning
+          cost: 2
+        - proto: BorgModuleAdvancedLoading
+        - proto: BorgModuleAdvancedPlumbing
+        - proto: MobCleanBot
+          cost: 4
+        - proto: ClothingEyesGlassesMeson
+          cost: 4
+        - proto: ExosuitFabricator
+          cost: 10
+        - proto: ProtolatheHyperConvectionMachineCircuitboard
+          cost: 10
+        - proto: AutolatheHyperConvectionMachineCircuitboard
+          cost: 10
+        - proto: WeaponParticleDecelerator
+          cost: 10
+        - proto: ClothingBackpackWaterTank
+          cost: 5
+        - proto: WeaponSprayNozzle
+          cost: 5
+        - proto: CrateStationAiCore
+          cost: 15
+          prob: 0.25
+        - proto: WeaponTetherGun
+          cost: 15
+        - proto: MechVim
+          cost: 10
+        - proto: Intellicard
+          cost: 20
+          prob: 0.25
+        - proto: PowerCellAntiqueProto
+          cost: 5
+          prob: 0.5
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10

@@ -579,6 +579,21 @@
       state: stamp-brigmedic
 
 - type: entity
+  name: fake gunnery sergeant's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampGunnerySergeantFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  suffix: DO NOT MAP
+  components:
+    - type: Stamp
+      stampedName: "Guniry Sargnt"
+      stampedColor: "#c4363b"
+      stampState: "paper_stamp-gunnerysergeant"
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/stamps.rsi
+      state: stamp-gunnerysergeant
+
+- type: entity
   name: fake salvage lead's rubber stamp
   parent: RubberStampBaseFake
   id: RubberStampSalvageLeadFake

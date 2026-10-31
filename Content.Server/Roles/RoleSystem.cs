@@ -2,6 +2,7 @@ using Content.Server.Chat.Managers;
 using Content.Shared.Chat;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Roles;
@@ -37,8 +38,12 @@ public sealed partial class RoleSystem : SharedRoleSystem
 
         // Briefing is no longer raised on the mind entity itself
         // because all the components that briefings subscribe to should be on Mind Role Entities
+        var isAntagonist = MindIsAntagonist(mindId); // Starlight
         foreach (var role in mindComp.MindRoleContainer.ContainedEntities)
         {
+            if (isAntagonist && HasComp<JobRoleComponent>(role)) // Starlight, stop adding crew briefings to antagonists
+                continue; // Starlight
+
             RaiseLocalEvent(role, ref ev);
         }
 

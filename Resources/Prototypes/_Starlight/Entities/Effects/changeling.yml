@@ -1,7 +1,7 @@
 - type: entity
   id: ChangelingTransformEffect
   name: transform effect
-  description: you shouldn't be seeing this normally.
+  description: You shouldn't be seeing this normally.
   categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
