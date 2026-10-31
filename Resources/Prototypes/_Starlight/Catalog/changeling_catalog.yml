@@ -3,7 +3,7 @@
 - type: listing
   id: EvolutionMenuCombatArmblade
   name: evolutionmenu-combat-armblade-name
-  description: evolutionmenu-combat-armblade-desc
+  description: starlight-evolutionmenu-combat-armblade-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: armblade }
   productAction: ActionRetractableItemArmBlade
   cost:
@@ -21,7 +21,7 @@
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: armblade-plus }
   productAction: ActionRetractableItemArmBladePlus
   cost:
-    EvolutionPoint: 5
+    EvolutionPoint: 12
   categories:
   - ChangelingAbilityCombat
   conditions:
@@ -45,11 +45,11 @@
 - type: listing
   id: EvolutionMenuCombatChitinousArmor
   name: evolutionmenu-combat-armor-name
-  description: evolutionmenu-combat-armor-desc
+  description: starlight-evolutionmenu-combat-armor-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: chitinous_armor }
   productAction: ActionToggleChitinousArmor
   cost:
-    EvolutionPoint: 4
+    EvolutionPoint: 5
   categories:
   - ChangelingAbilityCombat
   conditions:
@@ -59,11 +59,11 @@
 - type: listing
   id: EvolutionMenuCombatOrganicShield
   name: evolutionmenu-combat-shield-name
-  description: evolutionmenu-combat-shield-desc
+  description: starlight-evolutionmenu-combat-shield-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: organic_shield }
   productAction: ActionToggleOrganicShield
   cost:
-    EvolutionPoint: 2
+    EvolutionPoint: 3
   categories:
   - ChangelingAbilityCombat
   conditions:
@@ -73,11 +73,11 @@
 - type: listing
   id: EvolutionMenuCombatShriekDissonant
   name: evolutionmenu-combat-shriek-dissonant-name
-  description: evolutionmenu-combat-shriek-dissonant-desc
+  description: starlight-evolutionmenu-combat-shriek-dissonant-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: shriek_dissonant }
   productAction: ActionShriekDissonant
   cost:
-    EvolutionPoint: 2
+    EvolutionPoint: 3
   categories:
   - ChangelingAbilityCombat
   conditions:
@@ -105,7 +105,7 @@
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: strained_muscles }
   productAction: ActionToggleStrainedMuscles
   cost:
-    EvolutionPoint: 2
+    EvolutionPoint: 3
   categories:
   - ChangelingAbilityCombat
   conditions:
@@ -264,7 +264,7 @@
   icon: { sprite: _Starlight/Actions/changeling.rsi, state: thermal_eyesight }
   productAction: ActionThermalEyesight
   cost:
-    EvolutionPoint: 4
+    EvolutionPoint: 6
   categories:
   - ChangelingAbilityUtility
   conditions:
@@ -334,7 +334,7 @@
   icon: { sprite: _Starlight/Actions/changeling.rsi, state: amalgam_overdose }
   productAction: ActionAmalgamOverdose
   cost:
-    EvolutionPoint: 5
+    EvolutionPoint: 6
   categories:
   - ChangelingAbilityUtility
   conditions:
@@ -344,11 +344,11 @@
 - type: listing
   id: EvolutionMenuUtilityFleshmend
   name: evolutionmenu-utility-fleshmend-name
-  description: evolutionmenu-utility-fleshmend-desc
+  description: starlight-evolutionmenu-utility-fleshmend-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: fleshmend }
   productAction: ActionFleshmend
   cost:
-    EvolutionPoint: 5
+    EvolutionPoint: 6
   categories:
   - ChangelingAbilityUtility
   conditions:

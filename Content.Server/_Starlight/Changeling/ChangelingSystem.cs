@@ -4,6 +4,7 @@ using Content.Server.Popups;
 using Content.Server.Store.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Changeling.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.FixedPoint;
@@ -147,17 +148,20 @@ public sealed partial class ChangelingSystem : EntitySystem
             {
                 comp.ChemicalNextUpdateTime = _timing.CurTime + comp.ChemicalUpdateCooldown;
                 UpdateChemicals(uid, comp);
-                UpdateAbilities(uid, comp); //probably overkill since I dont think chemicals affect abilities but whatever, im cleaning up shitcode
+                UpdateAbilities(uid, comp);
             }
 
             if (_timing.CurTime >= comp.BiomassNextUpdateTime)
             {
                 comp.BiomassNextUpdateTime = _timing.CurTime + comp.BiomassUpdateCooldown;
+                // Stasis suspends passive biomass consumption and periodic starvation effects.
+                if (comp.IsInStasis)
+                    continue;
+
                 //subtract biomass
                 if (_gameTicker.RunLevel < GameRunLevel.PostRound) // Starlight: Only get hungrier when not EOR
                     comp.Biomass -= comp.BiomassDrain;
                 UpdateBiomass(uid, comp);
-                UpdateAbilities(uid, comp);
             }
         }
     }
@@ -180,12 +184,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var random = _rand.Prob(0.5f);
 
-        if (comp.Biomass <= 0)
-        {
-            // game over, man
-            _damage.TryChangeDamage(uid, new DamageSpecifier(_proto.Index(AbsorbedDamageGroup), 50), true);
-        }
-        else if (comp.Biomass <= comp.MaxBiomass * comp.BiomassDeficitVomitPercent)
+        if (comp.Biomass <= comp.MaxBiomass * comp.BiomassDeficitVomitPercent)
         {
             // THE FUNNY ITCH IS REAL!!
             comp.BonusChemicalRegen = 3f;
@@ -230,30 +229,21 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (comp.StrainedMusclesActive)
         {
             _stamina.TakeStaminaDamage(uid, 7.5f, visual: false);
-            if (stamina.StaminaDamage >= stamina.CritThreshold || _gravity.IsWeightless(uid))
+            if (comp.Biomass < 1 || stamina.StaminaDamage >= stamina.CritThreshold || _gravity.IsWeightless(uid))
                 ToggleStrainedMuscles(uid, comp);
         }
 
         if (comp.StealthEnabled)
         {
-            if (comp.Chemicals > comp.StealthDrain)
-                comp.Chemicals -= comp.StealthDrain;
+            if (comp.Biomass < 1)
+                ToggleChameleonSkin(uid, comp, false);
+            else if (comp.Chemicals >= comp.StealthDrain)
+                UpdateChemicals(uid, comp, -comp.StealthDrain);
             else
             {
                 _stamina.TakeStaminaDamage(uid, 35f, visual: false);
                 if (stamina.StaminaDamage >= stamina.CritThreshold)
                     ToggleChameleonSkin(uid, comp, false);
-            }
-        }
-
-        if (comp.IsInStasis)
-        {
-            if (comp.Biomass > comp.StasisDrain)
-                comp.Biomass -= comp.StasisDrain;
-            else
-            {
-                comp.IsInStasis = false;
-                _mobState.ChangeMobState(uid, MobState.Dead);
             }
         }
     }
@@ -572,6 +562,8 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ChangelingComponent comp, ref ComponentStartup args)
     {
+        EnsureComp<ChangelingIdentityComponent>(uid);
+        _devour.EnsureStarlightDevour(uid);
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
         //EnsureComp<ZombieImmuneComponent>(uid); Starlight, we're bringing Lings into Zombies!
