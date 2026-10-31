@@ -1,25 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: ITG Mindshield.
-    type: Add
-  id: 409585
-  time: '2026-10-18T09:13:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6734
-- author: STARLIGHT TEAM
-  changes:
-  - message: surplus crate drop rates, expect less peacekeepers.
-    type: Tweak
-  id: 409586
-  time: '2026-10-18T09:13:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6734
-- author: STARLIGHT TEAM
-  changes:
-  - message: heat resistance of ITG Loss Prevention Suit.
-    type: Tweak
-  id: 409587
-  time: '2026-10-18T09:13:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6734
 - author: piepie3.149
   changes:
   - message: Updated the Rotten icon in the Medical HUD to slowly pulse between black and purple, so it draws more notice.
@@ -2799,4 +2778,25 @@ Entries:
   id: 409984
   time: '2026-10-31T03:12:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6968
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Updated the description for Siphon Entropy as it never actually did damage. Now it helps users know what entropy is used for and where to deposit and spend it.
+    type: Tweak
+  id: 409985
+  time: '2026-10-31T13:12:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6975
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Null Fragmentation now makes it VERY CLEAR that using it on a silicon or IPC will reveal the cult to the station. It also now requires confirmation before use, once again directly telling the player this will reveal the cult to the station.
+    type: Tweak
+  id: 409986
+  time: '2026-10-31T13:12:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6975
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Cosmic cultists are now correctly immune to the need for air when empowered, or when the Monument is tier 3.
+    type: Fix
+  id: 409987
+  time: '2026-10-31T13:12:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6975
 Order: -1
