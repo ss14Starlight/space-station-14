@@ -51,6 +51,7 @@
     - MindControlImplant #Starlight
     - CommandTrackingImplant #Starlight
     - ITGTrackingImplant #Starlight
+    - BudgetBluespaceImplant #Starlight
     deimplantFailureDamage:
       types:
         Cellular: 50
