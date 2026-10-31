@@ -197,7 +197,7 @@
   description: |-
     Transfer your malign empowerment into a digital system, such as an AI Upload Console, Cyborg or IPC, corrupting it in the process. Doing so will expend your empowerment.
 
-    If used on a silicon or IPC, this will reveal the existence of the cult to the station.
+    If used on a silicon or IPC, this will reveal the existence of the cult, as well as the general location this ability was used, to the station.
   components:
   - type: ConfirmableAction
     popup: cosmicability-fragmentation-confirm
