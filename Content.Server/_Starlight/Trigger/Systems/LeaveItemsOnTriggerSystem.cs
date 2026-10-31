@@ -7,13 +7,11 @@ using Content.Shared.Storage;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Network;
 
-namespace Content.Shared._Starlight.Trigger.Systems;
+namespace Content.Server._Starlight.Trigger.Systems;
 
 public sealed partial class LeaveItemsOnTriggerSystem : EntitySystem
 {
-    [Dependency] private INetManager _net = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
@@ -28,9 +26,6 @@ public sealed partial class LeaveItemsOnTriggerSystem : EntitySystem
     private void OnTrigger(Entity<LeaveItemsOnTriggerComponent> ent, ref TriggerEvent args)
     {
         // Server-only so client prediction doesn't strip clothing layers before entity deletion (avoids naked flash)
-        if (!_net.IsServer)
-            return;
-
         if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
             return;
 
