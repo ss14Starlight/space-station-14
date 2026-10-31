@@ -22,7 +22,7 @@
   - CentralCommand
   special:
     - !type:AddImplantSpecial
-      implants: [ DeathRattleImplantCentcomm, RadioImplantCentcomm, BluespaceImplant, FreedomImplant, MindShieldImplant ]
+      implants: [ DeathRattleImplantCentcomm, RadioImplantCentcomm, RedspaceImplant, FreedomImplant, MindShieldImplant ]
 
 - type: startingGear
   id: DecimusGear

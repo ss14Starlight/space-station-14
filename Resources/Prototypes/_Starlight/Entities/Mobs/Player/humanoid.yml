@@ -182,7 +182,7 @@
     - NeoElf
     - NeoLagomorph
   components:
-    - type: AutoImplant
+    - type: AutoImplant # Note: Decimusoperative overrides this list, update it too if making changes here
       implants:
         - DeathRattleImplantCentcomm
         - RadioImplantCentcomm
@@ -617,6 +617,13 @@
   id: Decimusoperative
   parent: EventHumanoidNTSF
   components:
+    - type: AutoImplant
+      implants:
+        - DeathRattleImplantCentcomm
+        - RadioImplantCentcomm
+        - RedspaceImplant
+        - FreedomImplant
+        - MindShieldImplant
     - type: GhostRole
       name: ghost-role-information-decimus-name
       description: ghost-role-information-decimus-description
