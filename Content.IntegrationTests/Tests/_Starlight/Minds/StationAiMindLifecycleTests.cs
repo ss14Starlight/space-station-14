@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.IntegrationTests.Pair;
 using Content.IntegrationTests.Tests.Helpers;
 using Content.Server.Ghost;
@@ -102,7 +101,7 @@ public sealed partial class MindTests
     }
 
     [Test]
-    public async Task StationAiPowerLossNotifiesHeldAi()
+    public async Task StationAiPowerLossAlertIsCancelledWhenPowerReturns()
     {
         var (pair, station, cores) = await SetupAiStation(1);
         var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
@@ -143,16 +142,13 @@ public sealed partial class MindTests
             Assert.That(receiver.PowerReceived, Is.LessThan(receiver.Load));
             Assert.That(battery.Enabled, Is.True);
             Assert.That(notifications.Count(ai), Is.Zero);
+            receiver.NeedsPower = false;
         });
         await pair.RunTicksSync(200);
 
-        ProtoId<ChatNotificationPrototype> expectedNotification = "AiLosingPower";
         await pair.Server.WaitAssertion(() =>
         {
-            Assert.That(notifications.Count(ai), Is.EqualTo(1));
-            var notification = notifications.GetEvents(ai).Single();
-            Assert.That(notification.ChatNotification, Is.EqualTo(expectedNotification));
-            Assert.That(notification.Source, Is.EqualTo(cores[0]));
+            Assert.That(notifications.Count(ai), Is.Zero);
         });
     }
 
@@ -375,9 +371,8 @@ public sealed partial class MindTests
 
             holder = entMan.SpawnEntity("Intellicard", MapCoordinates.Nullspace);
             var aiHolder = entMan.GetComponent<StationAiHolderComponent>(holder);
-            var slotContainer = aiHolder.Slot.ContainerSlot;
-            if (slotContainer == null)
-                throw new InvalidOperationException("Intellicard AI container was not initialized.");
+            var slotContainer = aiHolder.Slot.ContainerSlot
+                ?? throw new InvalidOperationException("Intellicard AI container was not initialized.");
 
             Assert.That(containers.Insert(ai, slotContainer), Is.True);
         });
@@ -412,9 +407,7 @@ public sealed partial class MindTests
         await pair.RunTicksSync(1);
 
         await pair.Server.WaitAssertion(() =>
-        {
-            Assert.That(entMan.System<StationJobsSystem>().TrySetJobSlot(station, "StationAi", coreCount, true), Is.True);
-        });
+            Assert.That(entMan.System<StationJobsSystem>().TrySetJobSlot(station, "StationAi", coreCount, true), Is.True));
 
         return (pair, station, cores);
     }

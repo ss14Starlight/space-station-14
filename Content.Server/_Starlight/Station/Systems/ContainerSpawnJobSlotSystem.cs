@@ -125,7 +125,7 @@ public sealed partial class ContainerSpawnJobSlotSystem : EntitySystem
                     continue;
 
                 var adjustment = availableSlots - slot;
-                if (adjustment < 0 || job == _stationAiJob && allowAiSlotIncrease && adjustment > 0)
+                if (adjustment < 0 || (job == _stationAiJob && allowAiSlotIncrease && adjustment > 0))
                     _stationJobs.TryAdjustJobSlot(station, job, adjustment, false, true, stationJobs);
             }
         }
