@@ -439,11 +439,11 @@
   - !type:DungeonEntranceDunGen
     count: 2
     tile: FloorSteel
-    contents: Airlock
+    contents: OutbreakDungeonEntrance
 
   - !type:RoomEntranceDunGen
     tile: FloorSteel
-    contents: Airlock
+    contents: OutbreakDungeonEntrance
 
   - !type:EntranceFlankDunGen
     tile: FloorSteel
@@ -465,12 +465,12 @@
   - !type:JunctionDunGen
     width: 1
     tile: FloorSteel
-    contents: Airlock
+    contents: OutbreakDungeonEntrance
 
   - !type:JunctionDunGen
     width: 3
     tile: FloorSteel
-    contents: Airlock
+    contents: OutbreakDungeonEntrance
 
   - !type:AutoCablingDunGen
     entity: CableApcExtension
@@ -572,7 +572,7 @@
   table: !type:GroupSelector
     children:
     - id: CableApcExtension
-    - id: MetalDoor
+    - id: Airlock
 
 - type: entityTable
   id: OutbreakDungeonRoomEntrance
@@ -612,11 +612,11 @@
   - !type:DungeonEntranceDunGen
     count: 3
     tile: FloorSteel
-    contents: SovietDungeonEntranceWeh
+    contents: OutbreakDungeonEntrance
 
   - !type:RoomEntranceDunGen
     tile: FloorSteel
-    contents: SovietDungeonRoomEntranceWeh
+    contents: OutbreakDungeonEntrance
 
   - !type:EntranceFlankDunGen
     tile: FloorSteel
