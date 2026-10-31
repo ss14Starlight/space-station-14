@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Contributed to the project by Kazolotl on discord. Original Jamjar glasses taken from tgstation at commit https://github.com/tgstation/tgstation/commit/5a73e8f825ff279e82949b9329783a9e3070e2da. Equipped-EYES-arachnid and equipped-EYES-moth modified from equipped-EYES by HTMLSystem. All involved sprites were later modified by Kazolotl to make the chemist jamjars.",
+  "copyright": "State-based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -13,12 +13,12 @@
     {
       "name": "equipped-EYES",
       "directions": 4,
-      "copyright": "TG Station, Kazolotl"
+      "copyright": "Contributed to the project by Kazolotl on discord. Original Jamjar glasses taken from tgstation at commit https://github.com/tgstation/tgstation/commit/5a73e8f825ff279e82949b9329783a9e3070e2da, which were modified by Kazolotl."
     },
     {
       "name": "equipped-EYES-arachnid",
       "directions": 4,
-      "copyright": "TG Station, HTMLSystem, Kazolotl"
+      "copyright": "Contributed to the project by Kazolotl on discord. Original Jamjar glasses taken from tgstation at commit https://github.com/tgstation/tgstation/commit/5a73e8f825ff279e82949b9329783a9e3070e2da, which were modified by HTMLsystem to make the moth and arachnid variants and later modified by Kazolotl."
     },
     {
       "name": "equipped-EYES-moth",
