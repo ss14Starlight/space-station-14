@@ -33,8 +33,8 @@ using Content.Shared.Body.Components;
 using Content.Shared.Charges.Systems;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization.Manager.Exceptions;
-using Content.Shared.Body.Part; //🌟Starlight🌟
-using Content.Shared.Body.Systems; //🌟Starlight🌟
+using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
 
 namespace Content.Shared.Movement.Systems;
 

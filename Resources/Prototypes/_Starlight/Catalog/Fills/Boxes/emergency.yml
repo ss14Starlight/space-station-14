@@ -478,7 +478,7 @@
   parent: BoxCardboardSmall # Cannot fit 3x3 boxes into already-filled ERT backpacks.
   id: BoxSurvivalMilitaryDoubleBlood
   suffix: Military O2, Blood
-  description: It's a box with basic internals inside. This one is labelled to contain an double extended-capacity tank.
+  description: It's a box with basic internals inside. This one is labelled to contain a double extended-capacity tank.
   components:
   - type: EntityTableContainerFill
     containers:
