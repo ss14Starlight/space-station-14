@@ -195,8 +195,8 @@
   id: ActionCosmicFragmentation
   name: Null Fragmentation
   description: |-
-    Transfer your malign empowerment into a digital system, such as an AI Upload Console, Cyborg or IPC, corrupting it in the process. Doing so will expend your empowerment. 
-    
+    Transfer your malign empowerment into a digital system, such as an AI Upload Console, Cyborg or IPC, corrupting it in the process. Doing so will expend your empowerment.
+
     If used on a silicon or IPC, this will reveal the existence of the cult to the station.
   components:
   - type: ConfirmableAction
