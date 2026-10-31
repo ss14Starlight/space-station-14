@@ -165,6 +165,9 @@ uplink-estoc-desc = A designated marksman rifle, fitted with a mid-range optic f
 uplink-plushie-linari-name = linari miun plushie
 uplink-plushie-linari-desc = An expertly crafted plush lizard in tactical officer gear, absent from the standard NanoTrasen catalogues. The stitching on the back says "Property of the Syndicate." Holding it makes you feel like you're breaking at least three corporate regulations.
 
+uplink-bombroach-microbomb-name = Bombroach Teleporter
+uplink-bombroach-microbomb-desc = Call in a handy bombroach equipped with a picobomb implant. Explodes on death or when triggered by the bombroach.
+
 # These are from funky, but funky puts them in Wizden files, so in our files they go then
 uplink-hidden-radio-botany-name = Hidden Uplink
 uplink-hidden-radio-botany-desc = An uplink disguised as a plant analyzer. Keep it for yourself or give it to a trusted ally to aid your mission. Telecrystals not included.
