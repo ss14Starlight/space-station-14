@@ -494,11 +494,14 @@
   - ChefWintercoat
   - ChefJacketSenior # Starlight
 
-#- type: loadoutGroup
-#  id: ChefJobTrinkets
-#  name: loadout-group-jobtrinkets
-#  minLimit: 0
-#  loadouts:
+# Starlight start (uncommented)
+- type: loadoutGroup
+  id: ChefJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - ChefGoldenButchCleaver #Starlight
+# Starlight end (uncommented)
 
 - type: loadoutGroup
   id: LibrarianJumpsuit
@@ -699,11 +702,14 @@
   - BotanistApron
   - BotanistWintercoat
 
-#- type: loadoutGroup
-#  id: BotanistJobTrinkets
-#  name: loadout-group-jobtrinkets
-#  minLimit: 0
-#  loadouts:
+# Starlight start (uncommented)
+- type: loadoutGroup
+  id: BotanistJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - BotanistGoldenClippers #Starlight
+# Starlight end (uncommented)
 
 - type: loadoutGroup
   id: ClownHead
@@ -712,6 +718,7 @@
   loadouts:
   - JesterHat
   - JesterAltHat
+  - ClownMitre
 
 - type: loadoutGroup
   id: ClownJumpsuit

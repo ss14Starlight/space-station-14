@@ -24,3 +24,6 @@ signal-port-description-trigger-spawn = Activates the spawner, causing it to spa
 
 signal-port-name-turret-controller-sync-receiver = Sync
 signal-port-description-turret-controller-sync-receiver = Shares armament and authorization settings with another turret control panel.
+
+signal-port-name-combustion-turbine-console-receiver = Combustion Turbine
+signal-port-description-combustion-turbine-console-receiver = Receives commands from a combustion turbine control console.

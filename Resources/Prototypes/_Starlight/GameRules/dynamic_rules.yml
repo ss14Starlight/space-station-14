@@ -124,6 +124,13 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 5
+        - id: BloodBound
+          prob: 0.15
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 10
         - id: SLChangeling
           prob: 0.15
           conditions:
@@ -153,14 +160,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        #- id: SubBrighteye
-        #  prob: 0.05
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:MaxRuleOccurenceCondition
-        #    max: 1 # it lags the game when making more maps
-        #  - !type:PlayerCountCondition
-        #    min: 20
       # Dynamic Multiantag, can spawn at the start, or midround. This is the actual intended purpose of Dynamic. Exciting, no? Run across the sky!
       - !type:GroupSelector
         children:
@@ -232,6 +231,14 @@
             - Thief # Don't double thieves
           - !type:PlayerCountCondition
             min: 5
+        - id: BloodBound
+          weight: 6
+          prob: 0.50
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 10
         - id: SLChangelingLess
           weight: 6
           prob: 0.50
@@ -268,15 +275,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        #- id: SubBrighteye
-        #  weight: 5
-        #  prob: 0.50
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:MaxRuleOccurenceCondition
-        #    max: 1 # it lags the game when making more maps
-        #  - !type:PlayerCountCondition
-        #    min: 20
       # Midround rules
       - !type:GroupSelector
         conditions:
@@ -352,16 +350,6 @@
             min: 10
           - !type:RoundDurationCondition
             min: 1200 # 20 minutes
-        #- id: BrighteyeSpawn
-        #  weight: 1
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:MaxRuleOccurenceCondition
-        #    max: 1 # it lags the game when making more maps
-        #  - !type:PlayerCountCondition
-        #    min: 20
-        #  - !type:RoundDurationCondition
-        #    min: 1200 # 20 minutes
         - id: EeepEvent
           weight: 1
           prob: 0.85
@@ -507,6 +495,13 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 5
+        - id: BloodBound
+          prob: 0.2
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 10
         - id: SLChangeling
           prob: 0.15
           conditions:
@@ -536,14 +531,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        #- id: SubBrighteye
-        #  prob: 0.05
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:MaxRuleOccurenceCondition
-        #    max: 1 # it lags the game when making more maps
-        #  - !type:PlayerCountCondition
-        #    min: 20
       # Dynamic Multiantag, can spawn at the start, or midround. This is the actual intended purpose of Dynamic. Exciting, no? Run across the sky! Beta edition.
       - !type:GroupSelector
         children:
@@ -613,6 +600,14 @@
           - !type:MutuallyExclusiveRuleCondition
             rules:
             - Thief # Don't double thieves
+        - id: BloodBound
+          weight: 6
+          prob: 0.50
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 10
         - id: SLChangelingLess
           weight: 6
           prob: 0.50
@@ -649,15 +644,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        #- id: SubBrighteye
-        #  weight: 5
-        #  prob: 0.50
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:MaxRuleOccurenceCondition
-        #    max: 1 # it lags the game when making more maps
-        #  - !type:PlayerCountCondition
-        #    min: 20
       # Midround rules, same as Alpha, because Beta has no differences on these normally anyways
       - !type:GroupSelector
         conditions:
@@ -733,16 +719,6 @@
             min: 10
           - !type:RoundDurationCondition
             min: 1200 # 20 minutes
-        #- id: BrighteyeSpawn
-        #  weight: 1
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:MaxRuleOccurenceCondition
-        #    max: 1 # it lags the game when making more maps
-        #  - !type:PlayerCountCondition
-        #    min: 20
-        #  - !type:RoundDurationCondition
-        #    min: 1200 # 20 minutes
         - id: EeepEvent
           weight: 1
           prob: 0.85
