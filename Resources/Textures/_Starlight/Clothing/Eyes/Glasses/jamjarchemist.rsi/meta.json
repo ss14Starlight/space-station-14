@@ -12,7 +12,8 @@
     },
     {
       "name": "equipped-EYES",
-      "directions": 4
+      "directions": 4,
+      "copyright": "TG Station, Kazolotl"
     },
     {
       "name": "equipped-EYES-arachnid",
@@ -21,15 +22,18 @@
     },
     {
       "name": "equipped-EYES-moth",
-      "directions": 4
+      "directions": 4,
+      "copyright": "TG Station, HTMLSystem, Kazolotl"
     },
     {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
+      "copyright": "TG Station, Kazolotl"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
+      "copyright": "TG Station, Kazolotl"
     }
   ]
 }
