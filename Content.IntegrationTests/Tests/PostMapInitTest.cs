@@ -204,14 +204,6 @@ public sealed class PostMapInitTest : GameTest
 
         var rootedPath = map.ToRootedPath();
 
-        // Starlight-start
-        // which entities are an absolute requirement? computed outside loop for performance
-        var shouldMapStationEntities = protoManager.EnumeratePrototypes<EntityPrototype>()
-            .Where(p => p.Categories.Any(x => x.ID == _shouldMapCategory))
-            .Select(x => x.ID)
-            .ToArray();
-        // Starlight-end
-
         var isV7Map = false;
 
         if (SkipTestMaps && rootedPath.ToString().StartsWith(TestMapsPath, StringComparison.Ordinal))

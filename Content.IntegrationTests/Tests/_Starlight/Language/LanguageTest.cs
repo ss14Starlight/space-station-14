@@ -34,7 +34,7 @@ public sealed class LanguageTest : GameTest
                     if (language.ChatPrefix is not { } prefix)
                         continue;
 
-                    Assert.That(prefix, Has.Length.EqualTo(1).Or.EqualTo(3),
+                    Assert.That(prefix.Length, Is.EqualTo(1).Or.EqualTo(3),
                         $"Language {language.ID} has chat prefix '{prefix}', prefixes must be 1 or 3 characters long.");
 
                     var key = prefix.ToLowerInvariant();

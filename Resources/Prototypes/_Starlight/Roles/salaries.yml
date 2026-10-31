@@ -32,6 +32,7 @@
     DutyOfficer: 70
     SecurityOfficer: 64
     SecurityCadet: 23
+    K9: 40
 
     StationAi: 149
     Borg: 85
@@ -50,6 +51,7 @@
     ServiceWorker: 23
     Performer: 23
     Reporter: 46
+    RadioHost: 46
     Assistant: 15
     Boxer: 23
 
@@ -100,6 +102,7 @@
     DutyOfficer: "Central Security Division"
     SecurityOfficer: "Central Security Division"
     SecurityCadet: "Central Security Division"
+    K9: "Central Security Division"
 
     StationAi: "NanoTrasen"
     Borg: "NanoTrasen"
@@ -118,6 +121,7 @@
     ServiceWorker: "Central Domestic Division"
     Performer: "Central Domestic Division"
     Reporter: "Central Domestic Division"
+    RadioHost: "Central Domestic Division"
     Assistant: "Central Domestic Division"
     Boxer: "Central Domestic Division"
 

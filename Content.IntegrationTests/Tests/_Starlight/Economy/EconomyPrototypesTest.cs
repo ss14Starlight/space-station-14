@@ -15,13 +15,15 @@ public sealed class EconomyPrototypesTest : GameTest
 {
     private static readonly ProtoId<SalariesPrototype> _salaries = "standart";
 
+    /// <summary>
+    /// Selectable jobs that are deliberately unpaid. A new job has to either get a salary in
+    /// Resources/Prototypes/_Starlight/Roles/salaries.yml or be added here on purpose.
+    /// </summary>
     private static readonly HashSet<ProtoId<JobPrototype>> _unpaidJobs =
     [
         "CentCommServiceWorker",
-        "K9", // TBH: unintended, should be fixed
         "MakeshiftID",
         "Passenger",
-        "RadioHost", // TBH: unintended, should be fixed
     ];
 
     [Test]

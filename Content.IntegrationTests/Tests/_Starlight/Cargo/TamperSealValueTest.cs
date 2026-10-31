@@ -18,6 +18,7 @@ public sealed class TamperSealValueTest : GameTest
 {
     private const string StationProto = "SLTamperSealTestStation";
     private const string CrateProto = "CrateGenericSteel";
+    private const string SturdyProto = "SLTamperSealTestSturdyBox";
     private const int StartingBalance = 1000;
     private const int Penalty = 200;
     private const int Refund = 150;
@@ -27,10 +28,25 @@ public sealed class TamperSealValueTest : GameTest
 - type: entity
   id: SLTamperSealTestStation
   parent: [ BaseStation, BaseStationCargo ]
+
+# Breaks the seal at its destruction threshold but survives, so it can be hit again.
+- type: entity
+  id: SLTamperSealTestSturdyBox
+  components:
+  - type: Appearance
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ ""Breakage"" ]
 ";
     private const string DamageId = "Blunt";
 
-    private async Task<(EntityUid Station, EntityUid Crate)> SpawnSealedCrate(string deliverer, string recipient)
+    private async Task<(EntityUid Station, EntityUid Crate)> SpawnSealedCrate(string deliverer, string recipient, string proto = CrateProto)
     {
         var map = await Pair.CreateTestMap();
         EntityUid station = default;
@@ -44,7 +60,7 @@ public sealed class TamperSealValueTest : GameTest
             foreach (var (account, balance) in bank.Accounts.ToList())
                 cargo.UpdateBankAccount((station, bank), StartingBalance - balance, account);
 
-            crate = SEntMan.SpawnEntity(CrateProto, map.GridCoords);
+            crate = SEntMan.SpawnEntity(proto, map.GridCoords);
 
             var seal = SEntMan.EnsureComponent<TamperSealComponent>(crate);
             seal.Deliverer = deliverer;
@@ -59,14 +75,17 @@ public sealed class TamperSealValueTest : GameTest
         return (station, crate);
     }
 
-    private async Task Smash(EntityUid crate)
+    /// <returns>Whether the damage was actually applied.</returns>
+    private async Task<bool> Smash(EntityUid crate, int amount = 100000)
     {
+        var applied = false;
         await Server.WaitPost(() =>
         {
-            var damage = new DamageSpecifier(SProtoMan.Index<DamageTypePrototype>(DamageId), FixedPoint2.New(100000));
-            Server.System<DamageableSystem>().TryChangeDamage(crate, damage, ignoreResistances: true);
+            var damage = new DamageSpecifier(SProtoMan.Index<DamageTypePrototype>(DamageId), FixedPoint2.New(amount));
+            applied = Server.System<DamageableSystem>().TryChangeDamage(crate, damage, ignoreResistances: true);
         });
         await RunTicksSync(5);
+        return applied;
     }
 
     private int Balance(EntityUid station, string account)
@@ -92,14 +111,20 @@ public sealed class TamperSealValueTest : GameTest
     [Test]
     public async Task SealIsOnlyPenalisedOnce()
     {
-        var (station, crate) = await SpawnSealedCrate("Cargo", "Engineering");
+        var (station, box) = await SpawnSealedCrate("Cargo", "Engineering", SturdyProto);
+        const int Penalised = StartingBalance - Penalty - Refund;
 
-        await Smash(crate);
-        if (SEntMan.EntityExists(crate))
-            await Smash(crate);
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(await Smash(box, 150), "The first hit did no damage.");
+            Assert.That(SEntMan.EntityExists(box), "The box must survive the first hit for the second one to mean anything.");
+            Assert.That(Balance(station, "Cargo"), Is.EqualTo(Penalised), "Breaking the seal did not penalise the deliverer.");
 
-        await Server.WaitAssertion(() =>
-            Assert.That(Balance(station, "Cargo"), Is.EqualTo(StartingBalance - Penalty - Refund), "The seal was penalised more than once."));
+            Assert.That(await Smash(box, 150), "The second hit did no damage.");
+
+            Assert.That(Balance(station, "Cargo"), Is.EqualTo(Penalised), "The seal was penalised more than once.");
+            Assert.That(Balance(station, "Engineering"), Is.EqualTo(StartingBalance + Refund), "The refund was paid more than once.");
+        }
     }
 
     [Test]
