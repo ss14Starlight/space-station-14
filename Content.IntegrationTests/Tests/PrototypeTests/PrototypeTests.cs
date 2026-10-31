@@ -19,10 +19,14 @@ public sealed class PrototypeTests : GameTest
     public async Task TestAllServerAndClientPrototypesAreSerializable()
     {
         var pair = Pair;
-        var ser = pair.Server.ResolveDependency<ISerializationManager>();
-        var context = new PrototypeSaveTest.TestEntityUidContext(ser);
-        await SaveThenValidatePrototype(pair.Server, "server", context);
-        await SaveThenValidatePrototype(pair.Client, "client", context);
+        var server = pair.Server;
+        var client = pair.Client;
+        var serverContext = new PrototypeSaveTest.TestEntityUidContext(
+            server.ResolveDependency<ISerializationManager>());
+        var clientContext = new PrototypeSaveTest.TestEntityUidContext(
+            client.ResolveDependency<ISerializationManager>());
+        await SaveThenValidatePrototype(server, "server", serverContext);
+        await SaveThenValidatePrototype(client, "client", clientContext);
     }
     #endregion
 
@@ -61,10 +65,14 @@ public sealed class PrototypeTests : GameTest
     public async Task ServerAndClientPrototypeSaveLoadSaveTest()
     {
         var pair = Pair;
-        var ser = pair.Server.ResolveDependency<ISerializationManager>();
-        var context = new PrototypeSaveTest.TestEntityUidContext(ser);
-        await SaveLoadSavePrototype(pair.Server, context);
-        await SaveLoadSavePrototype(pair.Client, context);
+        var server = pair.Server;
+        var client = pair.Client;
+        var serverContext = new PrototypeSaveTest.TestEntityUidContext(
+            server.ResolveDependency<ISerializationManager>());
+        var clientContext = new PrototypeSaveTest.TestEntityUidContext(
+            client.ResolveDependency<ISerializationManager>());
+        await SaveLoadSavePrototype(server, serverContext);
+        await SaveLoadSavePrototype(client, clientContext);
     }
     #endregion
 

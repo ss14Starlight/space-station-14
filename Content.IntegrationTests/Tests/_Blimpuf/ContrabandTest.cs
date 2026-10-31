@@ -177,8 +177,9 @@ public sealed class ContrabandTest : GameTest
             "BoxFolderCentComClipboard", "Tier1", "CentralCommand", false,
             new[] { "CentralCommand" }, []);
     }
+#endregion
 
-    private async Task ContrabandInheritanceCombinesClassificationAndAuthorization()
+    private async Task ContrabandInheritanceCombinesClassificationAndAuthorization() // Starlight
     {
         var client = Pair.Client;
         var protoMan = client.ResolveDependency<IPrototypeManager>();
@@ -209,7 +210,7 @@ public sealed class ContrabandTest : GameTest
     }
 
     private async Task EquipmentHasExpectedContrabandPermissions(
-        string prototype, string tier, string type, bool detectable, string[] departments, string[] jobs)
+        string prototype, string tier, string type, bool detectable, string[] departments, string[] jobs) // Starlight
     {
         var client = Pair.Client;
         var protoMan = client.ResolveDependency<IPrototypeManager>();
@@ -226,7 +227,6 @@ public sealed class ContrabandTest : GameTest
             Assert.That(entity.TryGetComponent<ScanDetectableComponent>(out _, componentFactory), Is.EqualTo(detectable));
         });
     }
-#endregion
 
     [Test]
     public async Task ContrabandMessagesDescribeClassificationAndAuthorization()

@@ -60,7 +60,7 @@ namespace Content.IntegrationTests.Tests
 
                 var transparentContainer = serverEntManager.SpawnEntity("ContainerOcclusionB", transparentPos);
                 visibleDummy = serverEntManager.SpawnEntity("ContainerOcclusionDummy", transparentPos);
-                entStorage.Insert(visibleDummy, transparentContainer);
+                Assert.That(entStorage.Insert(visibleDummy, transparentContainer));
 
                 var outerContainer = serverEntManager.SpawnEntity("ContainerOcclusionA", nestedPos);
                 var innerContainer = serverEntManager.SpawnEntity("ContainerOcclusionB", nestedPos);

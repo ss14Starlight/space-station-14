@@ -24,7 +24,6 @@ public sealed class WindowConstruction : InteractionTest
         ClientAssertPrototype(RWindow, Target);
     }
 
-    #region Starlight
     [Test]
     public async Task DeconstructWindows()
     {
@@ -57,5 +56,4 @@ public sealed class WindowConstruction : InteractionTest
         await AssertEntityLookup((Glass, 2), (RGlass, 2));
         // Starlight - end
     }
-    #endregion
 }

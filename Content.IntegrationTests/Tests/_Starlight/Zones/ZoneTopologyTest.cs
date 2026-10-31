@@ -35,8 +35,6 @@ public sealed class ZoneTopologyTest : GameTest
     public async Task WallSplitsRoomAndRemovingItMergesBack()
     {
         await CreateDeck();
-        await TrackerFollowsZones();
-        await RulesCanQueryTrackedZones();
 
         var maintenance = _zones.GetZoneId("Maintenance");
         var hallway = _zones.GetZoneId("Hallway");
@@ -162,7 +160,8 @@ public sealed class ZoneTopologyTest : GameTest
 
     private ushort Zone(int x, int y) => _zones.GetZoneId(_grid, new Vector2i(x, y));
 
-    private async Task TrackerFollowsZones()
+    [Test]
+    public async Task TrackerFollowsZones()
     {
         var zones = Server.System<ZoneSystem>();
         var mapSystem = Server.System<SharedMapSystem>();
@@ -208,7 +207,8 @@ public sealed class ZoneTopologyTest : GameTest
         Assert.That(Server.EntMan.GetComponent<ZoneTrackerComponent>(dummy).Zone, Is.Null);
     }
 
-    private async Task RulesCanQueryTrackedZones()
+    [Test]
+    public async Task RulesCanQueryTrackedZones()
     {
         var rules = Server.System<RulesSystem>();
         var maintenance = Server.ProtoMan.Index<RulesPrototype>(MaintenanceZoneRule);

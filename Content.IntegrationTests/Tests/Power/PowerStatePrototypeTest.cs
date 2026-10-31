@@ -20,14 +20,14 @@ public sealed class PowerStatePrototypeTest : GameTest
 - type: entity
   id: PowerStateApcReceiverDummy
   components:
-  - type: ApcPowerReceiver
-  - type: ExtensionCableReceiver
-  - type: Transform
-    anchored: true
-  - type: PowerState
-    isWorking: false
-    idlePowerDraw: 10
-    workingPowerDraw: 50
+      - type: ApcPowerReceiver
+      - type: ExtensionCableReceiver
+      - type: Transform
+        anchored: true
+      - type: PowerState
+        isWorking: false
+        idlePowerDraw: 10
+        workingPowerDraw: 50
 ";
     #endregion
 

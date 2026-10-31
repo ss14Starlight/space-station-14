@@ -32,7 +32,6 @@ public sealed class ComputerConstruction : InteractionTest
         AssertPrototype(ComputerId, Target);
     }
 
-    #region Starlight
     [Test]
     public async Task DeconstructAndChangeComputer()
     {
@@ -91,5 +90,4 @@ public sealed class ComputerConstruction : InteractionTest
         AssertPrototype("ComputerCargoOrders");
         // Starlight - end
     }
-    #endregion
 }

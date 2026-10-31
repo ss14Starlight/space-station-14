@@ -59,17 +59,24 @@ namespace Content.IntegrationTests.Tests
                         if (!string.IsNullOrEmpty(visuals.FillBaseName) && visuals.MaxFillLevels > 0)
                         {
                             var entity = entMan.Spawn(proto.ID);
-                            if (!spriteSys.LayerMapTryGet(entity, SolutionContainerLayers.Fill, out var fillLayerId, false))
-                                Assert.Fail($"{proto.ID} has SolutionContainerVisualsComponent but no fill layer map.");
-                            if (!spriteSys.TryGetLayer(entity, fillLayerId, out var fillLayer, false))
-                                Assert.Fail($"{proto.ID} somehow lost a layer.");
-
-                            var rsi = fillLayer.ActualRsi;
-                            for (var i = 1; i <= visuals.MaxFillLevels; i++)
+                            try
                             {
-                                var state = $"{visuals.FillBaseName}{i}";
-                                Assert.That(rsi.TryGetState(state, out _),
-                                    $"{proto.ID} has SolutionContainerVisualsComponent with MaxFillLevels = {visuals.MaxFillLevels}, but {rsi.Path} doesn't have state {state}!");
+                                if (!spriteSys.LayerMapTryGet(entity, SolutionContainerLayers.Fill, out var fillLayerId, false))
+                                    Assert.Fail($"{proto.ID} has SolutionContainerVisualsComponent but no fill layer map.");
+                                if (!spriteSys.TryGetLayer(entity, fillLayerId, out var fillLayer, false))
+                                    Assert.Fail($"{proto.ID} somehow lost a layer.");
+
+                                var rsi = fillLayer.ActualRsi;
+                                for (var i = 1; i <= visuals.MaxFillLevels; i++)
+                                {
+                                    var state = $"{visuals.FillBaseName}{i}";
+                                    Assert.That(rsi.TryGetState(state, out _),
+                                        $"{proto.ID} has SolutionContainerVisualsComponent with MaxFillLevels = {visuals.MaxFillLevels}, but {rsi.Path} doesn't have state {state}!");
+                                }
+                            }
+                            finally
+                            {
+                                entMan.DeleteEntity(entity);
                             }
                         }
 

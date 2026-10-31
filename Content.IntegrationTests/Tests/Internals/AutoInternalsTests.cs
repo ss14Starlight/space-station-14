@@ -10,9 +10,10 @@ namespace Content.IntegrationTests.Tests.Internals;
 [TestOf(typeof(InternalsSystem))]
 public sealed class AutoInternalsTests : GameTest
 {
-    #region Starlight
     [Test]
+    // Starlight - start
     public async Task TestInternalsAutoActivateInSpaceForStationAndEntitySpawn()
+    // Starlight - end
     {
         var pair = Pair;
         var server = pair.Server;
@@ -26,21 +27,26 @@ public sealed class AutoInternalsTests : GameTest
         await server.WaitAssertion(() =>
         {
             var profile = new HumanoidCharacterProfile();
+            // Starlight - start
             var stationSpawn = stationSpawning.SpawnPlayerMob(testMap.GridCoords, "TestInternalsDummy", profile, station: null);
             var entitySpawn = server.EntMan.Spawn("TestInternalsDummyEntity", testMap.MapCoords);
+            // Starlight - end
 
             Assert.That(atmos.HasAtmosphere(testMap.Grid), Is.False, "Test map has atmosphere - test needs adjustment!");
+            // Starlight - start
             Assert.Multiple(() =>
             {
                 Assert.That(internals.AreInternalsWorking(stationSpawn), "Internals did not automatically connect after station spawning!");
                 Assert.That(internals.AreInternalsWorking(entitySpawn), "Internals did not automatically connect after entity spawning!");
             });
+            // Starlight - end
 
+            // Starlight - start
             server.EntMan.DeleteEntity(stationSpawn);
             server.EntMan.DeleteEntity(entitySpawn);
+            // Starlight - end
         });
     }
-    #endregion
 
     [TestPrototypes]
     private const string Prototypes = @"

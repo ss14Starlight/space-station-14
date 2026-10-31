@@ -57,6 +57,7 @@ public sealed class JobTest : GameTest
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
         var ticker = pair.Server.System<GameTicker>();
+        var userId = pair.Client.User!.Value; // Starlight
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
         Assert.That(pair.Client.AttachedEntity, Is.Null);
 
@@ -65,7 +66,9 @@ public sealed class JobTest : GameTest
             ( Passenger, JobPriority.Medium ),
             ( Engineer, JobPriority.High )
         );
+        Assert.That(ticker.PlayerGameStatuses[userId], Is.EqualTo(PlayerGameStatus.NotReadyToPlay)); // Starlight
         ticker.ToggleReadyAll(true);
+        Assert.That(ticker.PlayerGameStatuses[userId], Is.EqualTo(PlayerGameStatus.ReadyToPlay)); // Starlight
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(_waitAfter);
 
@@ -77,7 +80,9 @@ public sealed class JobTest : GameTest
             ( Passenger, JobPriority.High ),
             ( Engineer, JobPriority.Medium )
         );
+        Assert.That(ticker.PlayerGameStatuses[userId], Is.EqualTo(PlayerGameStatus.NotReadyToPlay)); // Starlight
         ticker.ToggleReadyAll(true);
+        Assert.That(ticker.PlayerGameStatuses[userId], Is.EqualTo(PlayerGameStatus.ReadyToPlay)); // Starlight
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(_waitAfter);
 

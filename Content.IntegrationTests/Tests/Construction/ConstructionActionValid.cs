@@ -45,9 +45,8 @@ namespace Content.IntegrationTests.Tests.Construction
             }
         }
 
-        #region Starlight
         [Test]
-        public async Task ConstructionGraphActionsAndEdgesValid()
+        public async Task ConstructionGraphActionsAndEdgesValid() // Starlight
         {
             var pair = Pair;
             var server = pair.Server;
@@ -73,12 +72,14 @@ namespace Content.IntegrationTests.Tests.Construction
 
                         foreach (var edge in node.Edges)
                         {
+                            // Starlight - start
                             if (!graph.Nodes.ContainsKey(edge.Target))
                             {
                                 valid = false;
                                 message.Append(
                                     $"Invalid target \"{edge.Target}\" in edge on node \"{node.Name}\" of graph \"{graph.ID}\"\n");
                             }
+                            // Starlight - end
 
                             foreach (var action in edge.Completed)
                             {
@@ -92,9 +93,10 @@ namespace Content.IntegrationTests.Tests.Construction
                 }
             });
 
+            // Starlight - start
             Assert.That(valid, Is.True,
                 $"One or more construction graph actions or edges are invalid!\n{message}");
+            // Starlight - end
         }
-        #endregion
     }
 }

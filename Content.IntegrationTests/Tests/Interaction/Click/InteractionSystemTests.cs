@@ -88,6 +88,7 @@ namespace Content.IntegrationTests.Tests.Interaction.Click
             var interactUsingAtOrigin = false;
             var interactUsingWithinRange = false;
             var interactHand = false;
+            var nearbyInteractHand = false;
             await server.WaitAssertion(() =>
             {
                 testInteractionSystem.InteractUsingEvent = (ev) =>
@@ -98,14 +99,26 @@ namespace Content.IntegrationTests.Tests.Interaction.Click
                     else
                         interactUsingWithinRange = true;
                 };
-                testInteractionSystem.InteractHandEvent = (ev) => { Assert.That(ev.Target, Is.EqualTo(target)); interactHand = true; };
+                testInteractionSystem.InteractHandEvent = (ev) =>
+                {
+                    if (ev.Target == nearbyTarget)
+                    {
+                        nearbyInteractHand = true;
+                        return;
+                    }
+
+                    Assert.That(ev.Target, Is.EqualTo(target));
+                    interactHand = true;
+                };
 
                 interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(target).Coordinates, target);
+                interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(nearbyTarget).Coordinates, nearbyTarget);
                 Assert.Multiple(() =>
                 {
                     Assert.That(interactUsingAtOrigin, Is.False);
                     Assert.That(interactUsingWithinRange, Is.False);
                     Assert.That(interactHand);
+                    Assert.That(nearbyInteractHand);
                 });
 
                 Assert.That(handSys.TryPickup(user, item));

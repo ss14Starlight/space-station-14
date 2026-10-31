@@ -50,29 +50,31 @@ namespace Content.IntegrationTests.Tests.Construction
             });
         }
 
-        #region Starlight
         [Test]
-        public async Task TestStartTargetAndPathAreValid()
+        public async Task TestStartTargetAndPathAreValid() // Starlight
         {
             var pair = Pair;
             var server = pair.Server;
 
             var protoMan = server.ResolveDependency<IPrototypeManager>();
-            var entMan = server.ResolveDependency<IEntityManager>();
+            var entMan = server.ResolveDependency<IEntityManager>(); // Starlight
 
             await server.WaitAssertion(() =>
             {
                 foreach (var proto in protoMan.EnumeratePrototypes<ConstructionPrototype>())
                 {
                     var start = proto.StartNode;
-                    var target = proto.TargetNode;
+                    var target = proto.TargetNode; // Starlight
                     var graph = protoMan.Index<ConstructionGraphPrototype>(proto.Graph);
 
                     Assert.That(graph.Nodes.ContainsKey(start),
                         $"Found no startNode \"{start}\" on graph \"{graph.ID}\" for construction prototype \"{proto.ID}\"!");
+                    // Starlight - start
                     Assert.That(graph.Nodes.ContainsKey(target),
                         $"Found no targetNode \"{target}\" on graph \"{graph.ID}\" for construction prototype \"{proto.ID}\"!");
+                    // Starlight - end
 
+                    // Starlight - start
 #pragma warning disable NUnit2045 // Interdependent assertions.
                     Assert.That(graph.TryPath(start, target, out var path),
                         $"Unable to find path from \"{start}\" to \"{target}\" on graph \"{graph.ID}\"");
@@ -87,10 +89,10 @@ namespace Content.IntegrationTests.Tests.Construction
                     Assert.That(entity.Components.ContainsKey("Construction"),
                         $"The next node ({next.Name}) in the path from the start node ({start}) to the target node ({target}) specified an entity prototype ({next.Entity}) without a ConstructionComponent.");
 #pragma warning restore NUnit2045
+                    // Starlight - end
                 }
             });
         }
-        #endregion
 
         [Test]
         public async Task DeconstructionIsValid()
