@@ -23,9 +23,9 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Slash: 25
+        Slash: 15
         Structural: 50
-        Poison: 25
+        Poison: 10
   - type: Item
     size: Ginormous
   - type: Clothing
