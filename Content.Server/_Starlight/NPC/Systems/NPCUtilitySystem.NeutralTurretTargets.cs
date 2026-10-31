@@ -1,3 +1,4 @@
+using Content.Shared.Mech.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC;
 using Content.Shared.NPC.Components;
@@ -20,6 +21,7 @@ public sealed partial class NPCUtilitySystem
         var mapPos = _transform.GetMapCoordinates(owner, xform: _xformQuery.GetComponent(owner));
         _entitySet.Clear();
         _lookup.GetEntitiesInRange(typeof(MobStateComponent), mapPos, vision, _entitySet);
+        _lookup.GetEntitiesInRange(typeof(MechComponent), mapPos, vision, _entitySet);
 
         foreach (var candidate in _entitySet)
         {
