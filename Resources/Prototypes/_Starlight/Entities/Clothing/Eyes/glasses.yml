@@ -403,7 +403,7 @@
 - type: entity
   parent: ClothingEyesGlassesChemical
   id: ClothingEyesGlassesJamjarChemist
-  name: Chemist jamjar glasses
+  name: chemical jamjar glasses
   description: For the chemist who needs particularly large glasses. Rumoured to exist because of someone extremely skilled at chemistry.
   components:
     - type: Sprite
