@@ -43,7 +43,14 @@ public sealed partial class StationAiSystem
 
         if (_mind.TryGetMind(args.Session.UserId, out _, out var mind)
             && mind.OwnedEntity is { } body)
-            EjectContainedAi(body);
+        {
+            if (!EjectContainedAi(body)
+                && _tags.HasTag(body, _stationAiTag)
+                && _container.TryGetContainingContainer(body, out var container)
+                && container.ID == StationAiHolderComponent.Container
+                && TryComp<StationAiHolderComponent>(container.Owner, out _))
+                return;
+        }
 
         FreeStationAiJobSlot(args.Session.UserId);
     }

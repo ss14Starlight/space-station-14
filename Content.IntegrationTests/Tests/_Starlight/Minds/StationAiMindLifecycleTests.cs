@@ -1,17 +1,22 @@
+using System.Linq;
 using Content.IntegrationTests.Pair;
+using Content.IntegrationTests.Tests.Helpers;
 using Content.Server.Ghost;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Server.Pinpointer;
+using Content.Server.Power.Components;
 using Content.Server.Silicons.StationAi;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Server._Starlight.Station.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Maps;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Power.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
@@ -97,31 +102,57 @@ public sealed partial class MindTests
     }
 
     [Test]
-    public async Task StationAiPowerLossAnnouncesConnectionLoss()
+    public async Task StationAiPowerLossNotifiesHeldAi()
     {
         var (pair, station, cores) = await SetupAiStation(1);
         var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
         var (mindId, _) = GetMind(pair);
+        var notifications = entMan.System<StationAiChatNotificationTestSystem>();
+        EntityUid ai = default;
 
         await pair.Server.WaitAssertion(() =>
         {
             var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
             Assert.That(entMan.System<StationJobsSystem>().TryAssignJob(station, "StationAi", userId), Is.True);
 
-            var ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            entMan.AddComponent<TestListenerComponent>(ai);
             var containers = entMan.System<SharedContainerSystem>();
             if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
                 throw new InvalidOperationException("Station AI core container was not initialized.");
             Assert.That(containers.Insert(ai, coreContainer), Is.True);
             entMan.System<MindSystem>().TransferTo(mindId, ai);
 
-            var announcements = entMan.System<StationAiAnnouncementTestSystem>();
-            var position = entMan.System<NavMapSystem>().GetNearestBeaconString(cores[0]);
-            announcements.Clear();
-            entMan.System<MobStateSystem>().ChangeMobState(ai, MobState.Dead);
-            Assert.That(announcements.LastMessage, Does.Contain("Connection to Station AI"));
-            Assert.That(announcements.LastMessage, Does.Contain("was lost"));
-            Assert.That(announcements.LastMessage, Does.Contain(position));
+            notifications.Clear(ai);
+            entMan.GetComponent<ApcPowerReceiverComponent>(cores[0]).NeedsPower = false;
+        });
+        await pair.RunTicksSync(60);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var battery = entMan.GetComponent<ApcPowerReceiverBatteryComponent>(cores[0]);
+            Assert.That(battery.Enabled, Is.False);
+            entMan.GetComponent<ApcPowerReceiverComponent>(cores[0]).NeedsPower = true;
+        });
+        await pair.RunTicksSync(60);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var receiver = entMan.GetComponent<ApcPowerReceiverComponent>(cores[0]);
+            var battery = entMan.GetComponent<ApcPowerReceiverBatteryComponent>(cores[0]);
+            Assert.That(receiver.PowerReceived, Is.LessThan(receiver.Load));
+            Assert.That(battery.Enabled, Is.True);
+            Assert.That(notifications.Count(ai), Is.Zero);
+        });
+        await pair.RunTicksSync(200);
+
+        ProtoId<ChatNotificationPrototype> expectedNotification = "AiLosingPower";
+        await pair.Server.WaitAssertion(() =>
+        {
+            Assert.That(notifications.Count(ai), Is.EqualTo(1));
+            var notification = notifications.GetEvents(ai).Single();
+            Assert.That(notification.ChatNotification, Is.EqualTo(expectedNotification));
+            Assert.That(notification.Source, Is.EqualTo(cores[0]));
         });
     }
 
@@ -394,6 +425,10 @@ public sealed partial class MindTests
             entMan.System<StationJobsSystem>().TryGetJobSlot(station, "StationAi", out var slots),
             Is.True);
         Assert.That(slots, Is.EqualTo(expectedSlots), "Unexpected number of available Station AI slots.");
+    }
+
+    public sealed class StationAiChatNotificationTestSystem : TestListenerSystem<ChatNotificationEvent>
+    {
     }
 
     public sealed class StationAiAnnouncementTestSystem : EntitySystem
