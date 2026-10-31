@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Escape pods no longer land on each other.
-    type: Fix
-  id: 409591
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
-- author: Floximo
-  changes:
   - message: Station Maps and other handheld maps no longer work on planets.
     type: Fix
   id: 409592
@@ -2799,4 +2792,11 @@ Entries:
   id: 409990
   time: '2026-10-31T13:59:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6802
+- author: Xale
+  changes:
+  - message: Dwarves can again not eat raw meat or drink blood.
+    type: Fix
+  id: 409991
+  time: '2026-10-31T18:10:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6982
 Order: -1
