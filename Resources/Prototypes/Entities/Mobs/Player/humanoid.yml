@@ -111,7 +111,7 @@
       implants:
       - MindShieldImplant
       - DeathRattleImplantCentcomm
-      - BluespaceImplant # Starlight End
+      - BudgetBluespaceImplant # Starlight End
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVA

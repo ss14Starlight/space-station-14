@@ -14,7 +14,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm, BluespaceImplant ] # Starlight: Added BluespaceImplant
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm, BudgetBluespaceImplant ] # Starlight: Added BudgetBluespaceImplant
 
 - type: startingGear
   parent: ERTLeaderGearEVA
