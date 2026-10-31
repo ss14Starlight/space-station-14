@@ -190,7 +190,7 @@
     autoRechargePauseTime: 0
   - type: EnergyDomeGenerator
     damageEnergyDraw: 2
-    domePrototype: EnergyDomeSmallPink
+    domePrototype: EnergyDomeSmallPaladin
     canInteractUse: false
     canDeviceNetworkUse: true
   - type: DeviceNetwork
