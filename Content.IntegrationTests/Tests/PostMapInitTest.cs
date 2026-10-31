@@ -637,8 +637,10 @@ public sealed class PostMapInitTest : GameTest
             var apcQuery = entMan.EntityQueryEnumerator<ApcComponent, PowerNetworkBatteryComponent, TransformComponent>();
             using (Assert.EnterMultipleScope())
             {
+                var apcCount = 0;
                 while (apcQuery.MoveNext(out var uid, out var apc, out var battery, out var apcXform))
                 {
+                    apcCount++;
                     if (apcXform.MapID != mapId)
                         continue;
 
@@ -648,6 +650,8 @@ public sealed class PostMapInitTest : GameTest
                     Assert.That(apc.MaxLoad, Is.GreaterThanOrEqualTo(battery.CurrentSupply),
                         $"APC {uid} on {mapProto}{where} is overloaded {battery.CurrentSupply} / {apc.MaxLoad}");
                 }
+
+                Assert.That(apcCount, Is.GreaterThan(0), $"There's no APCs found on {mapProto}!!!");
             }
         });
     }

@@ -46,15 +46,16 @@ public sealed class TamperSealValueTest : GameTest
 ";
     private const string DamageId = "Blunt";
 
-    private async Task<(EntityUid Station, EntityUid Crate)> SpawnSealedCrate(string deliverer, string recipient, string proto = CrateProto)
+    private async Task<(EntityUid Station, Entity<TamperSealComponent> Crate)> SpawnSealedCrate(string deliverer, string recipient, string proto = CrateProto)
     {
         var map = await Pair.CreateTestMap();
         EntityUid station = default;
         EntityUid crate = default;
+        TamperSealComponent seal = default;
 
         await Server.WaitPost(() =>
         {
-            station = SEntMan.SpawnEntity(StationProto, MapCoordinates.Nullspace);
+            station = SSpawn(StationProto);
             var bank = SEntMan.GetComponent<StationBankAccountComponent>(station);
             var cargo = Server.System<CargoSystem>();
             foreach (var (account, balance) in bank.Accounts.ToList())
@@ -62,7 +63,7 @@ public sealed class TamperSealValueTest : GameTest
 
             crate = SEntMan.SpawnEntity(proto, map.GridCoords);
 
-            var seal = SEntMan.EnsureComponent<TamperSealComponent>(crate);
+            seal = SEntMan.EnsureComponent<TamperSealComponent>(crate);
             seal.Deliverer = deliverer;
             seal.Recipient = recipient;
 
@@ -72,7 +73,7 @@ public sealed class TamperSealValueTest : GameTest
             value.Refund = Refund;
         });
 
-        return (station, crate);
+        return (station, (crate, seal));
     }
 
     /// <returns>Whether the damage was actually applied.</returns>
@@ -132,7 +133,8 @@ public sealed class TamperSealValueTest : GameTest
     {
         var (station, crate) = await SpawnSealedCrate("Cargo", "Cargo");
 
-        await Smash(crate);
+        Assert.That(await Smash(crate), $"Tried to damage and break seal but hit did no damage!");
+        Assert.That(!crate.Comp.Opened || !crate.Comp.Destroyed, $"Made a critical amount of damage but seal isn't destroyed or opened!");
 
         await Server.WaitAssertion(() => Assert.That(Balance(station, "Cargo"), Is.EqualTo(StartingBalance)));
     }
