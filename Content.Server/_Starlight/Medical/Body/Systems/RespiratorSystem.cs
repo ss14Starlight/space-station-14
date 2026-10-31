@@ -108,7 +108,11 @@ public sealed partial class RespiratorSystem : EntitySystem
             if (respirator.Saturation < respirator.SuffocationThreshold)
             {
                 if (TryComp<CosmicCultComponent>(uid, out var cultComp) && !cultComp.Respiration && !_mobState.IsIncapacitated(uid))
+                {
+                    StopSuffocation((uid, respirator));
+                    respirator.SuffocationCycles = 0;
                     continue;
+                }
 
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
                 {
