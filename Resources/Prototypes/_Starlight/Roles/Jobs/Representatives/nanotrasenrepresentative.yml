@@ -76,7 +76,7 @@
     - RubberStampNtrep
     - CaneNT
     - Flash
-    - BluespaceImplanter
+    - BudgetBluespaceImplanter
 
 - type: chameleonOutfit
   id: NanoTrasenRepresentativeChameleonOutfit

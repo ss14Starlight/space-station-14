@@ -62,7 +62,7 @@
     - GavelHammer
     - GavelBlock
     - Flash
-    - BluespaceImplanter
+    - BudgetBluespaceImplanter
     #- MagistrateUniformSkirt
 
 - type: chameleonOutfit

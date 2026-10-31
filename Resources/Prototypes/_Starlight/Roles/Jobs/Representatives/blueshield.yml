@@ -77,7 +77,7 @@
     back:
     - Flash
     - ClothingMaskGasBSO
-    - BluespaceImplanter
+    - BudgetBluespaceImplanter
 
 - type: chameleonOutfit
   id: BlueShieldChameleonOutfit
