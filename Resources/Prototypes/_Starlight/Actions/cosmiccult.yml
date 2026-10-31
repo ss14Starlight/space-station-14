@@ -1,7 +1,7 @@
 - type: entity
   id: ActionCosmicSiphon
   name: Siphon Entropy
-  description: Silently siphon entropy from your target, dealing some damage in the process.
+  description: Silently siphon entropy from your target. Entropy you collect can be deposited into the Monument to empower it and allow you to unlock new Influences.
   components:
   - type: Action
     useDelay: 50
@@ -130,7 +130,7 @@
   - type: ConfirmableAction
     popup: cosmicability-glare-confirm
     confirmDelay: 0.1
-    primeTime: 5 #increased to give you more time to figure out where you want to put it
+    primeTime: 5
   - type: Action
     useDelay: 60
     checkCanInteract: false
@@ -194,8 +194,15 @@
 - type: entity
   id: ActionCosmicFragmentation
   name: Null Fragmentation
-  description: Transfer your malign empowerment into a digital system, such as an AI Upload Console, Cyborg or IPC, corrupting it in the process. Doing so will expend your empowerment.
+  description: |-
+    Transfer your malign empowerment into a digital system, such as an AI Upload Console, Cyborg or IPC, corrupting it in the process. Doing so will expend your empowerment. 
+    
+    If used on a silicon or IPC, this will reveal the existence of the cult to the station.
   components:
+  - type: ConfirmableAction
+    popup: cosmicability-fragmentation-confirm
+    confirmDelay: 1
+    primeTime: 15
   - type: LimitedCharges
     maxCharges: 1
   - type: Action
