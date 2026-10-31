@@ -67,12 +67,10 @@
 
 - type: entity
   parent: [ BaseSimpleMob ]
-  id: MobCosmicAstralAscended
+  id: MobCosmicAstralAscendedBase
   name: astral ascended
   description: Transcendant, ascendant.
   components:
-  - type: Puller
-    needsHands: false
   - type: MovementSpeedModifier
     baseWalkSpeed: 6
     baseSprintSpeed: 6
@@ -131,9 +129,17 @@
   - type: UniversalLanguageSpeaker
   #endregion
 
+ # exists so coscult mobs dont inherit pulling automaticlly
+- type: entity
+  parent: MobCosmicAstralAscendedBase
+  id: MobCosmicAstralAscended
+  components:
+  - type: Puller
+    needsHands: false
+
 
 - type: entity
-  parent: MobCosmicAstralAscended
+  parent: MobCosmicAstralAscendedBase
   id: MobCosmicCustodian
   name: malign custodian
   description: An abomination wrought of malign mass. It floats with a weightless, unnerving grace.
@@ -160,7 +166,7 @@
         BaseUnshaded: dead_unshaded
 
 - type: entity
-  parent: MobCosmicAstralAscended
+  parent: MobCosmicAstralAscendedBase
   id: MobCosmicOracle
   name: malign oracle
   description: An abomination wrought of malign mass. Its gaze seeks relentlessly.
@@ -169,6 +175,8 @@
     baseWalkSpeed: 3
     baseSprintSpeed: 3
     weightlessModifier: 1
+  - type: Puller
+    needsHands: false
   - type: Sprite
     sprite: _Starlight/CosmicCult/Mobs/oracle.rsi
     layers:
@@ -187,7 +195,7 @@
         BaseUnshaded: dead_unshaded
 
 - type: entity
-  parent: MobCosmicAstralAscended
+  parent: MobCosmicAstralAscendedBase
   id: MobCosmicLodestar
   name: malign lodestar
   description: An abomination wrought of malign mass. A searing light glimmers within.

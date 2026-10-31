@@ -25,7 +25,7 @@ public abstract partial class SharedScalingSystem : EntitySystem
         foreach (var threshold in scalingComp.OriginalThresholds)
         {
             var key = threshold.Key;
-            var scaledKey = key + key.Double() * scalingPercent;
+            var scaledKey = key + (key.Double() * scalingPercent);
 
             if (key == scaledKey)
                 continue;
@@ -43,7 +43,7 @@ public abstract partial class SharedScalingSystem : EntitySystem
         foreach (var speedThreshold in originalSpeedThresholds)
         {
             var scaledSpeedThreshold = speedThreshold.Key
-                + speedThreshold.Key.Double() * scalingPercent;
+                + (speedThreshold.Key.Double() * scalingPercent);
 
             slowOnDamage.SpeedModifierThresholds.Add(
                 scaledSpeedThreshold,

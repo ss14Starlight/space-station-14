@@ -156,8 +156,6 @@
       NavClimb: !type:Bool true
       NavPry: !type:Bool true
       NavSmash: !type:Bool true
-  - type: Puller
-    needsHands: true
   - type: MeleeWeapon
     altDisarm: false
     animation: WeaponArcCosmic
@@ -189,8 +187,6 @@
     rules: ghost-role-information-cosmic-oracle-rules
     mindRoles:
     - MindRoleCosmicMinion
-  - type: Puller
-    needsHands: false
   - type: ThermalVision
     active: false
   - type: MeleeWeapon
@@ -229,8 +225,6 @@
     blackboard:
       NavClimb: !type:Bool true
       NavSmash: !type:Bool true
-  - type: Puller
-    needsHands: true
   - type: Gun
     projectileSpeed: 15
     soundGunshot: /Audio/_Starlight/CosmicCult/projectile_razor.ogg
