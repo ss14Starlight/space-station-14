@@ -25,6 +25,7 @@
             Chef: [ 2, 2 ]
             Janitor: [ 2, 2 ]
             Lawyer: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
             Chaplain: [ 1, 1 ]
             ServiceWorker: [ 2, 4 ]
             #engineering
@@ -46,6 +47,7 @@
             Roboticist: [ 2, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
+            GunnerySergeant: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
             SecurityOfficer: [ 4, 6 ]

@@ -1,0 +1,52 @@
+- type: !PartialOnly borgType
+  id: unselected
+  inventoryTemplateId: borgHeadStandard
+
+- type: !PartialOnly borgType
+  id: cargo
+  inventoryTemplateId: borgHeadCargoDefaultTall
+
+- type: !PartialOnly borgType
+  id: engineering
+  inventoryTemplateId: borgHeadEngineeringDefaultShort
+
+- type: !PartialOnly borgType
+  id: generic
+  inventoryTemplateId: borgHeadStandard
+
+- type: !PartialOnly borgType
+  id: janitor
+  inventoryTemplateId: borgHeadJanitorDefaultShort
+
+- type: !PartialOnly borgType
+  id: medical
+  inventoryTemplateId: borgHeadMedicalDefaultDutch
+
+- type: !PartialOnly borgType
+  id: mining
+  inventoryTemplateId: borgHeadMiningDefaultTall
+
+- type: !PartialOnly borgType
+  id: purrfus
+  inventoryTemplateId: borgHeadPurrfusTall
+
+- type: !PartialOnly borgType
+  id: security
+  inventoryTemplateId: borgHeadSecurityDefaultShort
+
+- type: !PartialOnly borgType
+  id: service
+  inventoryTemplateId: borgHeadServiceDefaultTall
+
+# Syndicate Borgs
+- type: !PartialOnly borgType
+  id: SyndicateMedical
+  inventoryTemplateId: borgHeadMedicalSyndicate
+
+- type: !PartialOnly borgType
+  id: SyndicateSaboteur
+  inventoryTemplateId: borgHeadEngineeringDefault
+
+- type: !PartialOnly borgType
+  id: SyndicateStealth
+  inventoryTemplateId: borgHeadSyndicateStealth

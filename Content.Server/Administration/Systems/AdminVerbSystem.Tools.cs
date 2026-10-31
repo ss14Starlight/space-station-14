@@ -362,8 +362,10 @@ public sealed partial class AdminVerbSystem
 
             Act = () =>
             {
-                var (mapUid, gridUid) = _adminTestArenaSystem.AssertArenaLoaded(player);
-                _transformSystem.SetCoordinates(args.Target, new EntityCoordinates(gridUid ?? mapUid, Vector2.One));
+                // Starlight begin
+                var mapUid = _adminTestArenaSystem.AssertArenaLoaded(player);
+                _transformSystem.SetCoordinates(args.Target, new EntityCoordinates(mapUid, Vector2.One));
+                // Starlight end
             },
             Impact = LogImpact.Medium,
             Message = Loc.GetString("admin-trick-send-to-test-arena-description"),
