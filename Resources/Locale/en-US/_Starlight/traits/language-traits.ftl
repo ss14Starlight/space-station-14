@@ -10,7 +10,7 @@ trait-language-xenosocialized-name = Xenosocialized
 trait-language-xenosocialized-desc = You were raised without being taught the language your species normally uses.
 
 trait-language-signlanguage-name = Galactic Sign Language
-trait-language-signlanguage-desc = A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments.
+trait-language-signlanguage-desc = A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments, though less common in terrestrial theaters.
 
 trait-language-classicalsign-name = Classical Sign Language
 trait-language-classicalsign-desc = An older, more obscure sign language originating from Terra. It is completely distinct from Galactic Sign Language.

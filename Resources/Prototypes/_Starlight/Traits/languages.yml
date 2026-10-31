@@ -68,23 +68,6 @@
 # Galactic Languages // Should cost: 1
 
 - type: trait
-  id: SignLanguage
-  name: trait-language-signlanguage-name
-  description: trait-language-signlanguage-desc
-  category: LanguageTraits
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Sign
-      languagesUnderstood:
-        - Sign
-  requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
-
-- type: trait
   id: ClassicalSignLanguage
   name: trait-language-classicalsign-name
   description: trait-language-classicalsign-desc
@@ -555,4 +538,25 @@
         - Resomi
         - NeoAvali
         - NeoResomi
+      inverted: true
+
+# Extremely common Languages // Should cost: 0
+# Languages here are a roleplay choice: If you are a long-time spacer, you are all but certain to know Galactic Sign. If you are new to space, it's likely less common.
+
+- type: trait
+  id: SignLanguage
+  name: trait-language-signlanguage-name
+  description: trait-language-signlanguage-desc
+  category: LanguageTraits
+  cost: 0
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - Sign
+      languagesUnderstood:
+        - Sign
+  requirements:
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
       inverted: true
