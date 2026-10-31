@@ -25,6 +25,9 @@ internal static class EventTimingSummaryPatch
 
     internal static void Apply()
     {
+        if (!TestProfiling.Enabled)
+            return;
+
         if (Interlocked.Exchange(ref s_applied, 1) != 0)
             return;
 
@@ -54,6 +57,9 @@ internal static class EventTimingSummaryPatch
 
     internal static async Task PrintTop10(TextWriter output)
     {
+        if (!TestProfiling.Enabled)
+            return;
+
         await PrintTop10(output, "event dispatches", _eventTotals, s_eventSnapshot);
         await PrintTop10(output, "component subscriptions", _componentTotals, s_componentSnapshot);
     }

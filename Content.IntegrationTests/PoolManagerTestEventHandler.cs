@@ -11,13 +11,14 @@ public sealed class PoolManagerTestEventHandler
     [OneTimeSetUp]
     public async Task Setup()
     {
-        // RsiLoadingPatch.Apply(); // Starlight Breaks ClickableTest
+        RsiLoadingPatch.Apply(); // Starlight
 
         PoolManager.Startup();
 
-        // Starlight start
-        var pair = await PoolManager.GetServerClient(new PoolSettings { Destructive = true });
-        await pair.DisposeAsync();
+        // Starlight start: warm up the first pair outside of any test, then hand it back to the pool
+        // so the first test reuses it instead of paying for a second startup.
+        var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true });
+        await pair.CleanReturnAsync();
         // Starlight end
 
         // If the tests seem to be stuck, we try to end it semi-nicely
