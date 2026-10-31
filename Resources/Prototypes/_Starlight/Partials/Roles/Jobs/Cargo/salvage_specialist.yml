@@ -1,3 +1,4 @@
 - type: !PartialOnly job
   id: SalvageSpecialist
   roleSubtype: role-subtype-itg
+  antagScalingSalvageWeight: 1 # 1 * 0.25
