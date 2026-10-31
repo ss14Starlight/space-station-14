@@ -97,10 +97,13 @@ public sealed class CharacterSelectionTest : GameTest
 
         public HumanoidCharacterProfile ToProfile()
         {
-            return HumanoidCharacterProfile.Random()
-                .AsEnabled(Enabled)
-                .WithJobPreferences(Jobs)
-                .WithAntagPreferences(IsTraitor ? [Traitor] : []);
+            var profile = HumanoidCharacterProfile.Random()
+                .AsEnabled(Enabled);
+            if (Jobs.Count > 0)
+            {
+                profile = profile.WithJobPreferences(Jobs);
+            }
+            return profile.WithAntagPreferences(IsTraitor ? [Traitor] : []);
         }
     }
 
@@ -149,6 +152,10 @@ public sealed class CharacterSelectionTest : GameTest
             foreach (var job in LowPrioJobs)
             {
                 dict.Add(job,  JobPriority.Low);
+            }
+            if (dict.Count == 0)
+            {
+                dict.Add(SharedGameTicker.FallbackOverflowJob, JobPriority.High);
             }
             return dict;
         }
