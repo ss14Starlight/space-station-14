@@ -2,6 +2,7 @@ using Content.Shared._Starlight.Trigger.Components.Effects;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.VirtualItem;
+using Content.Shared.Maps;
 using Content.Shared.Storage;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Systems;
@@ -16,6 +17,7 @@ public sealed partial class LeaveItemsOnTriggerSystem : EntitySystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     public override void Initialize()
     {
@@ -46,7 +48,12 @@ public sealed partial class LeaveItemsOnTriggerSystem : EntitySystem
                 items.Add(item);
         }
 
-        var storageEnt = Spawn(ent.Comp.Proto, _transform.GetMapCoordinates(targetUid));
+        // Center on tile to align with the anchored bluespace portal effect, or fall back to mover coords if in space
+        var coords = _transform.GetMoverCoordinates(targetUid);
+        if (_turf.TryGetTileRef(coords, out var tile) && !_turf.IsSpace(tile.Value))
+            coords = _turf.GetTileCenter(tile.Value);
+
+        var storageEnt = Spawn(ent.Comp.Proto, coords);
         if (_container.TryGetContainer(storageEnt, StorageComponent.ContainerId, out var container))
         {
             // Force insert bypasses the ReadOnlyStorage restriction

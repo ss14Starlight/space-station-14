@@ -136,17 +136,27 @@
 
 # Acts like a lost property bag for items left behind by budget bluespace teleportation
 - type: entity
-  parent: [ AnomalyCoreBluespace, BaseStorageItem ]
+  parent: BaseStorageItem
   id: AnomalyCoreBluespaceBelongings
   name: bluespace anomaly core
   suffix: Bluespace, Belongings
   components:
-  - type: EmitSoundOnUse
-    sound:
-      collection: RadiationPulse
-    handle: false
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+    noRot: true
+    layers:
+    - state: core
+  - type: Item
+    size: Tiny
+  - type: PointLight
+    radius: 1.5
+    energy: 3.5
+    color: "#00ccff"
+    castShadows: false
   - type: Storage
     maxItemSize: Ginormous
+    storageOpenSound:
+      collection: RadiationPulse
     grid:
     - 0,0,19,19
   - type: ReadOnlyStorage
