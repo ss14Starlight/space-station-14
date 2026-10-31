@@ -401,7 +401,7 @@
     - type: VisionCorrection
 
 - type: entity
-  parent: ClothingEyesGlassesJamjar
+  parent: ClothingEyesGlassesChemical
   id: ClothingEyesGlassesJamjarChemist
   name: Chemist jamjar glasses
   description: For the chemist who needs particularly large glasses. Rumoured to exist because of someone extremely skilled at chemistry.
@@ -411,7 +411,6 @@
     - type: Clothing
       sprite: _Starlight/Clothing/Eyes/Glasses/jamjarchemist.rsi
     - type: VisionCorrection
-    - type: SolutionScanner
 
 - type: entity
   parent: ClothingEyesBase

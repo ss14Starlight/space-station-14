@@ -212,7 +212,7 @@
 - type: loadout
   id: ChemicalJamjar
   equipment:
-    eyes: ClothingEyesGlassesJamjarChemical
+    eyes: ClothingEyesGlassesJamjarChemist
 
 # Beaker
 - type: loadout
