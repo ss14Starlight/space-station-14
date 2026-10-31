@@ -13,10 +13,12 @@
   {
     "name": "inhand-left",
     "directions": 4
+    "copyright" : "Modeled off the Emergency crew monitor, recolored by Musiklie
   },
   {
     "name": "inhand-right",
     "directions": 4
+    "copyright" : "Modeled off the Emergency crew monitor, recolored by Musiklie
   }
  ]
 }
