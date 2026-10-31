@@ -403,14 +403,15 @@ public abstract partial class SharedImplanterSystem : EntitySystem
                         continue;
                     }
 
-                    DrawImplantIntoImplanter(implanter, target, implant, implantContainer, implanterContainer, implantComp);
+                    DrawImplantIntoImplanter(implanter, user, target, implant, implantContainer, implanterContainer); // Starlight
                     permanentFound = implantComp.Permanent;
 
                     //Break so only one implant is drawn
                     break;
                 }
 
-                if (component.CurrentMode == ImplanterToggleMode.Draw && !component.ImplantOnly && !permanentFound)
+                // Stay in draw mode when extraction left the implanter slot empty (e.g. fragile implant destroyed).
+                if (component.CurrentMode == ImplanterToggleMode.Draw && !component.ImplantOnly && !permanentFound && implanterContainer.ContainedEntity != null) // Starlight
                     ImplantMode(implanter, component);
             }
             else
@@ -438,11 +439,10 @@ public abstract partial class SharedImplanterSystem : EntitySystem
                     }
                     else
                     {
-                        DrawImplantIntoImplanter(implanter, target, implant.Value, implantContainer, implanterContainer, implantComp);
+                        DrawImplantIntoImplanter(implanter, user, target, implant.Value, implantContainer, implanterContainer); // Starlight
                         permanentFound = implantComp.Permanent;
                     }
-
-                    if (component.CurrentMode == ImplanterToggleMode.Draw && !component.ImplantOnly && !permanentFound)
+                    if (component.CurrentMode == ImplanterToggleMode.Draw && !component.ImplantOnly && !permanentFound && implanterContainer.ContainedEntity != null) // Starlight
                         ImplantMode(implanter, component);
                 }
                 else
@@ -469,10 +469,18 @@ public abstract partial class SharedImplanterSystem : EntitySystem
         _popup.PopupEntity(failedPermanentMessage, target, user);
     }
 
-    private void DrawImplantIntoImplanter(EntityUid implanter, EntityUid target, EntityUid implant, BaseContainer implantContainer, ContainerSlot implanterContainer, SubdermalImplantComponent implantComp)
+    private void DrawImplantIntoImplanter(EntityUid implanter, EntityUid user, EntityUid target, EntityUid implant, BaseContainer implantContainer, ContainerSlot implanterContainer) // Starlight
     {
         _container.Remove(implant, implantContainer);
-        _container.Insert(implant, implanterContainer);
+        // Starlight start
+        if (IsFragileImplant(implant))
+        {
+            _popup.PopupEntity(Loc.GetString("fragile-implant-extraction"), implanter, user, PopupType.MediumCaution);
+            QueueDel(implant);
+        }
+        else
+            _container.Insert(implant, implanterContainer);
+        // Starlight end
 
         var ev = new TransferDnaEvent { Donor = target, Recipient = implanter };
         RaiseLocalEvent(target, ref ev);
