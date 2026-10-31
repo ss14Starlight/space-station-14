@@ -70,7 +70,7 @@
     Whistle:
       collection: Whistles
     Crying:
-      collection: FemaleCry
+      path: /Audio/Voice/Reptilian/reptilian_cry.ogg
     Weh:
       collection: Weh
     Hew:

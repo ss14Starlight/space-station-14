@@ -719,6 +719,14 @@
     DefaultDeathgasp:
       collection: MothDeathGasp
 
+# Reptilian emotes weh let's hope this works
+- type: emoteSounds
+  id: UnisexReptilian
+  sounds:
+    Crying:
+      path: /Audio/Voice/Reptilian/reptilian_cry.ogg
+
+
 - type: emoteSounds
   id: CatMothBodyEmotes
   sounds:
