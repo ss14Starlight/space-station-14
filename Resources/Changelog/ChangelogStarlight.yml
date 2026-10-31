@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Station Maps and other handheld maps no longer work on planets.
-    type: Fix
-  id: 409592
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
-- author: Floximo
-  changes:
   - message: A server crash and bug related to FTL coordinates was solved.
     type: Fix
   id: 409593
@@ -2799,4 +2792,11 @@ Entries:
   id: 409991
   time: '2026-10-31T18:10:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6982
+- author: Citrea
+  changes:
+  - message: Magboots steps are heavy.
+    type: Tweak
+  id: 409992
+  time: '2026-10-31T23:32:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6964
 Order: -1
