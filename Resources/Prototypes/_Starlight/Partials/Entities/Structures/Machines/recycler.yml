@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: Recycler
+  components:
+  - type: AnchorTileBlacklist
+    blacklist:
+      components:
+      - Grille
+      - Airlock
