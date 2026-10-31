@@ -211,6 +211,9 @@
 
 - type: loadout
   id: ChemicalJamjar
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledChemist
   equipment:
     eyes: ClothingEyesGlassesJamjarChemist
 
