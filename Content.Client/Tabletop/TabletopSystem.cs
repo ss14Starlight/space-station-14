@@ -30,10 +30,6 @@ namespace Content.Client.Tabletop
         [Dependency] private SharedTransformSystem _transformSystem = default!;
         [Dependency] private SpriteSystem _sprite = default!;
 
-        // Time in seconds to wait until sending the location of a dragged entity to the server again
-        private const float Delay = 1f / 10; // 10 Hz
-
-        private float _timePassed; // Time passed since last update sent to the server.
         private EntityUid? _draggedEntity; // Entity being dragged
         private ScalingViewport? _viewport; // Viewport currently being used
         private BaseWindow? _window; // Current open tabletop window (only allow one at a time)
@@ -43,6 +39,7 @@ namespace Content.Client.Tabletop
         {
             base.Initialize();
             UpdatesOutsidePrediction = true;
+            UpdatesAfter.Add(typeof(TransformSystem)); // Starlight
 
             CommandBinds.Builder
                 .Bind(EngineKeyFunctions.Use, new PointerInputCmdHandler(OnUse, false, true))
@@ -62,6 +59,8 @@ namespace Content.Client.Tabletop
 
         public override void FrameUpdate(float frameTime)
         {
+            UpdateDragPosition(); // Starlight
+
             if (_window == null)
                 return;
 
@@ -74,44 +73,6 @@ namespace Content.Client.Tabletop
                 StopDragging();
                 _window?.Close();
                 return;
-            }
-
-            // If no entity is being dragged or no viewport is clicked, return
-            if (_draggedEntity == null || _viewport == null) return;
-
-            if (!CanDrag(playerEntity, _draggedEntity.Value, out var draggableComponent))
-            {
-                StopDragging();
-                return;
-            }
-
-            // If the dragged entity has another dragging player, drop the item
-            // This should happen if the local player is dragging an item, and another player grabs it out of their hand
-            if (draggableComponent.DraggingPlayer != null &&
-                draggableComponent.DraggingPlayer != _playerManager.LocalSession!.UserId)
-            {
-                StopDragging(false);
-                return;
-            }
-
-            // Map mouse position to EntityCoordinates
-            var coords = _viewport.PixelToMap(_inputManager.MouseScreenPosition.Position);
-
-            // Clamp coordinates to viewport
-            var clampedCoords = ClampPositionToViewport(coords, _viewport);
-            if (clampedCoords.Equals(MapCoordinates.Nullspace)) return;
-
-            // Move the entity locally every update
-            _transformSystem.SetWorldPosition(_draggedEntity.Value, clampedCoords.Position);
-
-            // Increment total time passed
-            _timePassed += frameTime;
-
-            // Only send new position to server when Delay is reached
-            if (_timePassed >= Delay && _table != null)
-            {
-                RaisePredictiveEvent(new TabletopMoveEvent(GetNetEntity(_draggedEntity.Value), clampedCoords, GetNetEntity(_table.Value)));
-                _timePassed -= Delay;
             }
         }
 
@@ -138,6 +99,8 @@ namespace Content.Client.Tabletop
                 return;
             }
 
+            _camera = camera; // Starlight
+
             // Create a window to contain the viewport
             _window = new TabletopWindow(eyeComponent.Eye, (msg.Size.X, msg.Size.Y))
             {
@@ -158,6 +121,7 @@ namespace Content.Client.Tabletop
 
             StopDragging();
             _window = null;
+            _camera = null; // Starlight
         }
 
         private bool OnUse(in PointerInputCmdArgs args)
@@ -174,7 +138,7 @@ namespace Content.Client.Tabletop
         }
         private bool OnUseSecondary(in PointerInputCmdArgs args)
         {
-            if (_draggedEntity != null && _table != null)
+            if (_draggedEntity != null && _table != null && !_draggingWithoutTable) // Starlight edit
             {
                 var ev = new TabletopRequestTakeOut
                 {
@@ -194,11 +158,16 @@ namespace Content.Client.Tabletop
 
             var entity = args.EntityUid;
 
+            // Starlight begin
+            var onTable = IsOnTable(entity);
+            var withoutTable = !onTable && CanDragWithoutTable(playerEntity, entity, out _);
+
             // Return if can not see table or stunned/no hands
-            if (!CanSeeTable(playerEntity, _table) || !CanDrag(playerEntity, entity, out _))
+            if (!withoutTable && (!onTable || !CanSeeTable(playerEntity, _table) || !CanDrag(playerEntity, entity, out _)))
             {
                 return false;
             }
+            // Starlight end
 
             // Try to get the viewport under the cursor
             if (_uiManger.MouseGetControl(args.ScreenCoordinates) as ScalingViewport is not { } viewport)
@@ -206,7 +175,7 @@ namespace Content.Client.Tabletop
                 return false;
             }
 
-            StartDragging(entity, viewport);
+            StartDragging(entity, viewport, withoutTable); // Starlight edit
             return true;
         }
 
@@ -243,12 +212,17 @@ namespace Content.Client.Tabletop
         /// </summary>
         /// <param name="draggedEntity">The entity that we start dragging.</param>
         /// <param name="viewport">The viewport in which we are dragging.</param>
-        private void StartDragging(EntityUid draggedEntity, ScalingViewport viewport)
+        /// <param name="withoutTable">Whether the entity is being dragged in the world rather than on the table.</param>
+        private void StartDragging(EntityUid draggedEntity, ScalingViewport viewport, bool withoutTable = false) // Starlight edit
         {
             RaisePredictiveEvent(new TabletopDraggingPlayerChangedEvent(GetNetEntity(draggedEntity), true));
 
             _draggedEntity = draggedEntity;
             _viewport = viewport;
+            // Starlight begin
+            _draggingWithoutTable = withoutTable;
+            _held = null;
+            // Starlight end
         }
 
         /// <summary>
@@ -260,12 +234,20 @@ namespace Content.Client.Tabletop
             // Set the dragging player on the component to noone
             if (broadcast && _draggedEntity != null && HasComp<TabletopDraggableComponent>(_draggedEntity.Value))
             {
-                RaisePredictiveEvent(new TabletopMoveEvent(GetNetEntity(_draggedEntity.Value), Transforms.GetMapCoordinates(_draggedEntity.Value), GetNetEntity(_table!.Value)));
+                // Starlight edit
+                var dropCoords = GetDropCoordinates(_draggedEntity.Value);
+                RaisePredictiveEvent(new TabletopMoveEvent(GetNetEntity(_draggedEntity.Value), dropCoords, GetDragTable()));
+                HoldDroppedEntity(_draggedEntity.Value, dropCoords);
+                // Starlight end
                 RaisePredictiveEvent(new TabletopDraggingPlayerChangedEvent(GetNetEntity(_draggedEntity.Value), false));
             }
 
             _draggedEntity = null;
             _viewport = null;
+            // Starlight begin
+            _draggingWithoutTable = false;
+            _lastSentCoords = MapCoordinates.Nullspace;
+            // Starlight end
         }
 
         /// <summary>

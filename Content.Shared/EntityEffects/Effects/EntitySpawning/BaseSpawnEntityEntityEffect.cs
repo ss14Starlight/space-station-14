@@ -18,8 +18,10 @@ public abstract partial class BaseSpawnEntityEntityEffect<T> : EntityEffectBase<
     /// <summary>
     /// Prototype of the entity we're spawning
     /// </summary>
-    [DataField (required: true)]
-    public EntProtoId Entity;
+    // Starlight begin - Allow spawning empty entity.
+    [DataField]
+    public EntProtoId? Entity;
+    // Starlight end
 
     /// <summary>
     /// Whether this spawning is predicted. Set false to not predict the spawn.
@@ -28,9 +30,16 @@ public abstract partial class BaseSpawnEntityEntityEffect<T> : EntityEffectBase<
     [DataField]
     public bool Predicted = true;
 
+    #region Starlight
+
+    /// Component overrides for the spawned entity.
+    [DataField] public ComponentRegistry? Overrides;
+
+    #endregion
+
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
         => loc.GetString("entity-effect-guidebook-spawn-entity",
             ("chance", Probability),
-            ("entname", IoCManager.Resolve<IPrototypeManager>().Index<EntityPrototype>(Entity).Name),
+            ("entname", Entity is not null ? IoCManager.Resolve<IPrototypeManager>().Index<EntityPrototype>(Entity).Name : "Unknown"), // Starlight edit
             ("amount", Number));
 }

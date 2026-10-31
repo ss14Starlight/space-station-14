@@ -24,7 +24,7 @@ public sealed partial class SpawnEntityInContainerEntityEffectSystem : EntityEff
             for (var i = 0; i < quantity; i++)
             {
                 // Stop trying to spawn if it fails
-                if (!PredictedTrySpawnInContainer(proto, entity, container, out _, entity.Comp))
+                if (!PredictedTrySpawnInContainer(proto, entity, container, out _, entity.Comp, args.Effect.Overrides)) // Starlight edit
                     return;
             }
         }
@@ -33,7 +33,7 @@ public sealed partial class SpawnEntityInContainerEntityEffectSystem : EntityEff
             for (var i = 0; i < quantity; i++)
             {
                 // Stop trying to spawn if it fails
-                if (!TrySpawnInContainer(proto, entity, container, out _, entity.Comp))
+                if (!TrySpawnInContainer(proto, entity, container, out _, entity.Comp, args.Effect.Overrides)) // Starlight edit
                     return;
             }
         }

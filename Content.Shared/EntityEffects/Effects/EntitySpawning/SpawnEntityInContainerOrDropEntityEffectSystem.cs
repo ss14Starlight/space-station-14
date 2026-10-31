@@ -25,14 +25,14 @@ public sealed partial class SpawnEntityInContainerOrDropEntityEffectSystem : Ent
         {
             for (var i = 0; i < quantity; i++)
             {
-                PredictedSpawnInContainerOrDrop(proto, entity, container, xform, entity.Comp);
+                PredictedSpawnInContainerOrDrop(proto, entity, container, xform, entity.Comp, args.Effect.Overrides); // Starlight edit
             }
         }
         else if (_net.IsServer)
         {
             for (var i = 0; i < quantity; i++)
             {
-                SpawnInContainerOrDrop(proto, entity, container, xform, entity.Comp);
+                SpawnInContainerOrDrop(proto, entity, container, xform, entity.Comp, args.Effect.Overrides); // Starlight edit
             }
         }
     }

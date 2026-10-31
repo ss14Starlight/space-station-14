@@ -35,6 +35,20 @@ namespace Content.Shared.Tabletop
             var table = GetEntity(msg.TableUid);
             var moved = GetEntity(msg.MovedEntityUid);
 
+            // Starlight begin
+            if (!msg.TableUid.IsValid())
+            {
+                if (!CanDragWithoutTable(playerEntity, moved, out _))
+                    return;
+
+                if (msg.Coordinates.MapId != Transforms.GetMapId(moved))
+                    return;
+
+                Transforms.SetMapCoordinates(moved, msg.Coordinates);
+                return;
+            }
+            // Starlight end
+
             if (!CanSeeTable(playerEntity, table) || !CanDrag(playerEntity, moved, out _))
                 return;
 
