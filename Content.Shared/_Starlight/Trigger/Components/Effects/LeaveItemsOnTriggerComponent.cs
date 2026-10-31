@@ -13,4 +13,3 @@ public sealed partial class LeaveItemsOnTriggerComponent : BaseXOnTriggerCompone
     [DataField, AutoNetworkedField]
     public EntProtoId Proto = "AnomalyCoreBluespaceBelongings";
 }
-
