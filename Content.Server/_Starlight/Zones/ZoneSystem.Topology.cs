@@ -285,6 +285,7 @@ public sealed partial class ZoneSystem
         comp.RegionCount = 1;
         comp.FreeRegions.Clear();
         comp.InvalidateCache();
+        comp.CachedGridZones = null;
 
         if (!Resolve(ent.Owner, ref nav, false) || !_mapGridQuery.TryComp(ent.Owner, out var grid))
             return;
