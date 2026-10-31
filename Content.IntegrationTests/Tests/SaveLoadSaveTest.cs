@@ -1,5 +1,6 @@
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using Content.IntegrationTests.Fixtures;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
@@ -8,6 +9,7 @@ using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Events;
+using Robust.Shared.Maths;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Utility;
 
@@ -85,15 +87,80 @@ namespace Content.IntegrationTests.Tests
                 }
             });
             testSystem.Enabled = false;
+
+            // Starlight - start
+            await VerifyMapSaveStabilityAcrossTicks();
+            await VerifyMultiGridMapSaveLoad();
+            // Starlight - end
         }
+
+        #region Starlight
+        private async Task VerifyMultiGridMapSaveLoad()
+        {
+            var mapPath = new ResPath("/Maps/Test/TestMap.yml");
+            var server = Pair.Server;
+            var entities = server.ResolveDependency<IEntityManager>();
+            var mapLoader = entities.System<MapLoaderSystem>();
+            var mapSystem = entities.System<SharedMapSystem>();
+            var transforms = entities.System<SharedTransformSystem>();
+            var resources = server.ResolveDependency<IResourceManager>();
+
+            await server.WaitAssertion(() =>
+            {
+                resources.UserData.CreateDir(mapPath.Directory);
+                mapSystem.CreateMap(out var mapId);
+
+                var firstGrid = mapSystem.CreateGridEntity(mapId);
+                transforms.SetWorldPosition(firstGrid, new Vector2(10, 10));
+                mapSystem.SetTile(firstGrid, new Vector2i(0, 0), new Tile(typeId: 1, flags: 1, variant: 255));
+
+                var secondGrid = mapSystem.CreateGridEntity(mapId);
+                transforms.SetWorldPosition(secondGrid, new Vector2(-8, -8));
+                mapSystem.SetTile(secondGrid, new Vector2i(0, 0), new Tile(typeId: 2, flags: 1, variant: 254));
+
+                Assert.That(mapLoader.TrySaveMap(mapId, mapPath));
+                mapSystem.DeleteMap(mapId);
+            });
+
+            await server.WaitIdleAsync();
+
+            MapId newMap = default;
+            await server.WaitAssertion(() =>
+            {
+                Assert.That(mapLoader.TryLoadMap(mapPath, out var map, out _));
+                newMap = map!.Value.Comp.MapId;
+            });
+
+            await server.WaitIdleAsync();
+
+            await server.WaitAssertion(() =>
+            {
+                Assert.That(mapSystem.TryFindGridAt(newMap, new Vector2(10, 10), out var firstGrid, out var firstGridComp));
+                Assert.That(mapSystem.TryFindGridAt(newMap, new Vector2(-8, -8), out var secondGrid, out var secondGridComp));
+                var firstGridXform = entities.GetComponent<TransformComponent>(firstGrid);
+                var secondGridXform = entities.GetComponent<TransformComponent>(secondGrid);
+
+                Assert.Multiple(() =>
+                {
+                    Assert.That(transforms.GetWorldPosition(firstGridXform), Is.EqualTo(new Vector2(10, 10)));
+                    Assert.That(mapSystem.GetTileRef(firstGrid, firstGridComp, new Vector2i(0, 0)).Tile,
+                        Is.EqualTo(new Tile(typeId: 1, flags: 1, variant: 255)));
+                    Assert.That(transforms.GetWorldPosition(secondGridXform), Is.EqualTo(new Vector2(-8, -8)));
+                    Assert.That(mapSystem.GetTileRef(secondGrid, secondGridComp, new Vector2i(0, 0)).Tile,
+                        Is.EqualTo(new Tile(typeId: 2, flags: 1, variant: 254)));
+                });
+
+                mapSystem.DeleteMap(newMap);
+            });
+        }
+        #endregion
 
         private new const string TestMap = "Maps/_Starlight/Stations/Saltern.yml"; //Starlight path instead of upstream path
 
         /// <summary>
         ///     Loads the default map, runs it for 5 ticks, then assert that it did not change.
         /// </summary>
-        [Test]
-        public async Task LoadSaveTicksSave() //Starlight, test renamed as it referenced upstream map in the test name
+        private async Task VerifyMapSaveStabilityAcrossTicks() // Starlight
         {
             var pair = Pair;
             var server = pair.Server;

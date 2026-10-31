@@ -36,10 +36,10 @@ public sealed class DrainTest : InteractionTest
 
 
     /// <summary>
-    /// Tests that drag drop interactions with drains are working as intended.
+    /// Tests drainable buckets, unaffected solid food, and puddle cleanup.
     /// </summary>
     [Test]
-    public async Task DragDropOntoDrainTest()
+    public async Task DrainInteractionsTest() // Starlight
     {
         var solutionContainerSys = SEntMan.System<SharedSolutionContainerSystem>();
 
@@ -86,39 +86,26 @@ public sealed class DrainTest : InteractionTest
         AssertExists(pizza);
         Assert.That(solutionContainerSys.TryGetSolution(ToServer(pizza), edibleSolutionId, out solutionEnt, out solution), "Pizza had no edible solution.");
         Assert.That(solution.Volume, Is.EqualTo(pizzaVolume), "Pizza lost reagents when drag dropped onto a drain.");
-    }
 
-    /// <summary>
-    /// Tests that drains make puddles next to them disappear.
-    /// </summary>
-    [Test]
-    public async Task DrainPuddleTest()
-    {
-        var solutionContainerSys = SEntMan.System<SharedSolutionContainerSystem>();
+        // Starlight - start
+        await Delete(pizza);
+        await Delete(drain);
 
-        // Spawn a puddle at the player coordinates;
         var puddle = await Spawn("PuddleBloodTest", PlayerCoords);
-
-        // Make sure the reagent chosen for this test does not evaporate on its own.
-        // If you are a fork that made more reagents evaporate, just change BloodReagent ProtoId above to something else.
         Assert.That(HasComp<EvaporationComponent>(puddle), Is.False, "The chosen reagent is evaporating on its own and we cannot use it for the drain test.");
 
         var puddleSolutionId = Comp<PuddleComponent>(puddle).SolutionName;
-        Assert.That(solutionContainerSys.TryGetSolution(ToServer(puddle), puddleSolutionId, out _, out var solution), "Puddle had no solution.");
-        Assert.That(solution.Volume, Is.EqualTo(PuddleVolume), "Puddle had the wrong amount of reagents after spawning.");
+        Assert.That(solutionContainerSys.TryGetSolution(ToServer(puddle), puddleSolutionId, out _, out var puddleSolution), "Puddle had no solution.");
+        Assert.That(puddleSolution.Volume, Is.EqualTo(PuddleVolume), "Puddle had the wrong amount of reagents after spawning.");
 
-        // Wait a few seconds and check that the puddle did not disappear on its own.
         await RunSeconds(10);
-        Assert.That(solutionContainerSys.TryGetSolution(ToServer(puddle), puddleSolutionId, out _, out solution), "Puddle had no solution.");
-        Assert.That(solution.Volume, Is.EqualTo(PuddleVolume), "Puddle had the wrong amount of reagents after spawning.");
+        Assert.That(solutionContainerSys.TryGetSolution(ToServer(puddle), puddleSolutionId, out _, out puddleSolution), "Puddle had no solution.");
+        Assert.That(puddleSolution.Volume, Is.EqualTo(PuddleVolume), "Puddle had the wrong amount of reagents after spawning.");
 
-        // Spawn a drain one tile away.
         await Spawn(DrainPrototype);
-
-        // Wait a few seconds.
         await RunSeconds(10);
-
-        // Make sure the puddle was deleted by the drain.
         AssertDeleted(puddle);
+        // Starlight - end
     }
+
 }

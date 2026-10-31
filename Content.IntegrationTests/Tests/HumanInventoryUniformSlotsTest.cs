@@ -1,5 +1,9 @@
 using Content.IntegrationTests.Fixtures;
+using Content.Server.Stunnable;
+using Content.Shared.Clothing.Components;
+using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Inventory;
+using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 
 namespace Content.IntegrationTests.Tests
@@ -16,6 +20,7 @@ namespace Content.IntegrationTests.Tests
   name: HumanUniformDummy
   id: HumanUniformDummy
   components:
+  - type: MobState # Starlight
   - type: Inventory
   - type: ContainerContainer
 
@@ -52,6 +57,22 @@ namespace Content.IntegrationTests.Tests
   components:
   - type: Item
     size: Huge
+
+# Starlight
+- type: entity
+  id: InventoryJumpsuitJanitorDummy
+  components:
+  - type: Clothing
+    slots: [innerclothing]
+
+- type: entity
+  id: InventoryIDCardDummy
+  components:
+  - type: Clothing
+    QuickEquip: false
+    slots: [idcard]
+  - type: Pda
+# Starlight
 ";
         [Test]
         public async Task Test()
@@ -128,6 +149,36 @@ namespace Content.IntegrationTests.Tests
                     Assert.That(!invSystem.TryGetSlotEntity(human, "id", out _));
                     Assert.That(!invSystem.TryGetSlotEntity(human, "pocket1", out _));
                 });
+
+                // Starlight - start
+                Assert.That(invSystem.HasSlot(human, "jumpsuit"));
+                Assert.That(invSystem.HasSlot(human, "id"));
+                Assert.That(invSystem.SpawnItemInSlot(human, "jumpsuit", "InventoryJumpsuitJanitorDummy", true));
+                Assert.That(invSystem.TryGetSlotEntity(human, "jumpsuit", out var spawnedUniform));
+                Assert.That(entityMan.GetComponent<MetaDataComponent>(spawnedUniform!.Value).EntityPrototype?.ID,
+                    Is.EqualTo("InventoryJumpsuitJanitorDummy"));
+
+                server.System<StunSystem>().TryUpdateStunDuration(human, TimeSpan.FromSeconds(1f));
+                Assert.That(invSystem.SpawnItemInSlot(human, "id", "InventoryIDCardDummy", true), Is.False);
+                Assert.That(invSystem.TryGetSlotEntity(human, "item", out _), Is.False);
+                Assert.That(invSystem.SpawnItemInSlot(human, "id", "InventoryIDCardDummy", true, true));
+                Assert.That(invSystem.TryGetSlotEntity(human, "id", out var spawnedIdCard));
+                Assert.That(entityMan.GetComponent<MetaDataComponent>(spawnedIdCard!.Value).EntityPrototype?.ID,
+                    Is.EqualTo("InventoryIDCardDummy"));
+                // Starlight - end
+
+                // Starlight - start
+                var deleteOwner = entityMan.SpawnEntity(null, coordinates);
+                entityMan.EnsureComponent<InventoryComponent>(deleteOwner);
+                entityMan.EnsureComponent<ContainerManagerComponent>(deleteOwner);
+                var child = entityMan.SpawnEntity(null, coordinates);
+                var clothing = entityMan.EnsureComponent<ClothingComponent>(child);
+                entityMan.System<ClothingSystem>().SetSlots(child, SlotFlags.HEAD, clothing);
+
+                Assert.That(invSystem.TryEquip(deleteOwner, child, "head"), Is.True);
+                entityMan.DeleteEntity(deleteOwner);
+                Assert.That(clothing.Deleted, Is.True);
+                // Starlight - end
 
                 mapSystem.DeleteMap(testMap.MapId);
             });

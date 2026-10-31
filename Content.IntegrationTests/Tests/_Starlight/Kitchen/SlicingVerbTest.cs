@@ -33,17 +33,25 @@ public sealed class SlicingVerbTest : InteractionTest
     public async Task RefineVerbAppearsWithSlicingTool()
     {
         var pig = await SpawnDeadPig();
+        var jumpsuit = await SpawnTarget("ClothingUniformJumpsuitColorGrey");
         await PlaceInHands("KitchenKnife");
         await RunTicks(10);
 
         await Client.WaitPost(() =>
         {
-            var verbs = CEntMan.System<Content.Client.Verbs.VerbSystem>()
-                .GetLocalVerbs(ToClient(pig), CPlayer, typeof(InteractionVerb));
-            var verb = verbs.FirstOrDefault(v => v.Text == Loc.GetString("refined-slice-verb-name"));
+            var verbSystem = CEntMan.System<Content.Client.Verbs.VerbSystem>();
+            var pigVerb = verbSystem.GetLocalVerbs(ToClient(pig), CPlayer, typeof(InteractionVerb))
+                .FirstOrDefault(v => v.Text == Loc.GetString("refined-slice-verb-name"));
+            var jumpsuitVerb = verbSystem.GetLocalVerbs(ToClient(jumpsuit), CPlayer, typeof(InteractionVerb))
+                .FirstOrDefault(v => v.Text == Loc.GetString("refined-slice-verb-name"));
 
-            Assert.That(verb, Is.Not.Null);
-            Assert.That(verb!.Disabled, Is.False);
+            Assert.Multiple(() =>
+            {
+                Assert.That(pigVerb, Is.Not.Null);
+                Assert.That(pigVerb!.Disabled, Is.False);
+                Assert.That(jumpsuitVerb, Is.Not.Null);
+                Assert.That(jumpsuitVerb!.Disabled, Is.False);
+            });
         });
     }
 
@@ -66,42 +74,20 @@ public sealed class SlicingVerbTest : InteractionTest
             Assert.That(verb.Message,
                 Is.EqualTo(Loc.GetString("refined-slice-verb-message-tool", ("target", target))));
         });
-    }
 
-    [Test]
-    public async Task RefineVerbDisabledForLivingMob()
-    {
-        var pig = await SpawnTarget("MobPig");
+        var livingPig = await SpawnTarget("MobPig");
         await PlaceInHands("KitchenKnife");
         await RunTicks(10);
 
         await Client.WaitPost(() =>
         {
             var verbs = CEntMan.System<Content.Client.Verbs.VerbSystem>()
-                .GetLocalVerbs(ToClient(pig), CPlayer, typeof(InteractionVerb));
+                .GetLocalVerbs(ToClient(livingPig), CPlayer, typeof(InteractionVerb));
             var verb = verbs.FirstOrDefault(v => v.Text == Loc.GetString("refined-slice-verb-name"));
 
             Assert.That(verb, Is.Not.Null);
             Assert.That(verb!.Disabled, Is.True);
             Assert.That(verb.Message, Is.EqualTo(Loc.GetString("refined-slice-verb-target-isnt-dead")));
-        });
-    }
-
-    [Test]
-    public async Task RefineVerbEnabledOnJumpsuit()
-    {
-        var jumpsuit = await SpawnTarget("ClothingUniformJumpsuitColorGrey");
-        await PlaceInHands("KitchenKnife");
-        await RunTicks(10);
-
-        await Client.WaitPost(() =>
-        {
-            var verbs = CEntMan.System<Content.Client.Verbs.VerbSystem>()
-                .GetLocalVerbs(ToClient(jumpsuit), CPlayer, typeof(InteractionVerb));
-            var verb = verbs.FirstOrDefault(v => v.Text == Loc.GetString("refined-slice-verb-name"));
-
-            Assert.That(verb, Is.Not.Null);
-            Assert.That(verb!.Disabled, Is.False);
         });
     }
 

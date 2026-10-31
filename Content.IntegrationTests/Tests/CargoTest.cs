@@ -32,36 +32,7 @@ public sealed class CargoTest : GameTest
     [Test]
     public async Task NoCargoOrderArbitrage()
     {
-        var pair = Pair;
-        var server = pair.Server;
-
-        var testMap = await pair.CreateTestMap();
-
-        var entManager = server.ResolveDependency<IEntityManager>();
-        var protoManager = server.ResolveDependency<IPrototypeManager>();
-        var pricing = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<PricingSystem>();
-
-        await server.WaitAssertion(() =>
-        {
-            Assert.Multiple(() =>
-            {
-                foreach (var proto in protoManager.EnumeratePrototypes<CargoProductPrototype>())
-                {
-                    if (Ignored.Contains(proto.ID))
-                        continue;
-
-                    var ent = entManager.SpawnEntity(proto.Product, testMap.MapCoords);
-                    var price = pricing.GetPrice(ent);
-
-                    Assert.That(price, Is.AtMost(proto.Cost + epsilon), $"Found arbitrage on {proto.ID} cargo product! Cost is {proto.Cost} but sell is {price}!"); // Starlight-edit - add epsilon to avoid fp precision issues
-                    entManager.DeleteEntity(ent);
-                }
-            });
-        });
-    }
-    [Test]
-    public async Task NoCargoBountyArbitrageTest()
-    {
+        // Starlight - start
         var pair = Pair;
         var server = pair.Server;
 
@@ -70,8 +41,8 @@ public sealed class CargoTest : GameTest
         var entManager = server.ResolveDependency<IEntityManager>();
         var mapSystem = server.System<SharedMapSystem>();
         var protoManager = server.ResolveDependency<IPrototypeManager>();
+        var pricing = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<PricingSystem>();
         var cargo = entManager.System<CargoSystem>();
-
         var bounties = protoManager.EnumeratePrototypes<CargoBountyPrototype>().ToList();
 
         await server.WaitAssertion(() =>
@@ -83,6 +54,12 @@ public sealed class CargoTest : GameTest
                 foreach (var proto in protoManager.EnumeratePrototypes<CargoProductPrototype>())
                 {
                     var ent = entManager.SpawnEntity(proto.Product, new MapCoordinates(Vector2.Zero, mapId));
+
+                    if (!Ignored.Contains(proto.ID))
+                    {
+                        var price = pricing.GetPrice(ent);
+                        Assert.That(price, Is.AtMost(proto.Cost + epsilon), $"Found arbitrage on {proto.ID} cargo product! Cost is {proto.Cost} but sell is {price}!"); // Starlight-edit - add epsilon to avoid fp precision issues
+                    }
 
                     foreach (var bounty in bounties)
                     {
@@ -96,6 +73,7 @@ public sealed class CargoTest : GameTest
 
             mapSystem.DeleteMap(mapId);
         });
+        // Starlight - end
     }
 
     [Test]

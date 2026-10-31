@@ -44,7 +44,7 @@ namespace Content.IntegrationTests.Tests
 
         [Test]
         [PairConfig(nameof(Disconnected))]
-        public async Task SpawnAndDeleteAllEntitiesOnDifferentMaps()
+        public async Task SpawnAndDeleteAllEntitiesAcrossMapLayouts() // Starlight
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
             // is minimal relative to the rest of the test.
@@ -100,23 +100,12 @@ namespace Content.IntegrationTests.Tests
 
                 Assert.That(entityMan.EntityCount, Is.Zero);
             });
-        }
 
-        [Test]
-        [PairConfig(nameof(Disconnected))]
-        public async Task SpawnAndDeleteAllEntitiesInTheSameSpot()
-        {
-            var pair = Pair;
+            // Starlight - start
             Assert.That(pair.Client.Session, Is.Null);
-            var server = pair.Server;
             var map = await pair.CreateTestMap();
-
-            var entityMan = server.ResolveDependency<IEntityManager>();
-            var prototypeMan = server.ResolveDependency<IPrototypeManager>();
-
             await server.WaitPost(() =>
             {
-
                 var protoIds = prototypeMan
                     .EnumeratePrototypes<EntityPrototype>()
                     .Where(p => !p.Abstract)
@@ -126,24 +115,15 @@ namespace Content.IntegrationTests.Tests
                     .Select(p => p.ID)
                     .ToList();
                 foreach (var protoId in protoIds)
-                {
                     entityMan.SpawnEntity(protoId, map.GridCoords);
-                }
             });
             await server.WaitRunTicks(450); // 15 seconds, enough to trigger most update loops
             await server.WaitPost(() =>
             {
-                static IEnumerable<(EntityUid, TComp)> Query<TComp>(IEntityManager entityMan)
-                    where TComp : Component
-                {
-                    var query = entityMan.AllEntityQueryEnumerator<TComp>();
-                    while (query.MoveNext(out var uid, out var meta))
-                    {
-                        yield return (uid, meta);
-                    }
-                }
-
-                var entityMetas = Query<MetaDataComponent>(entityMan).ToList();
+                var entityMetas = new List<(EntityUid, MetaDataComponent)>();
+                var query = entityMan.AllEntityQueryEnumerator<MetaDataComponent>();
+                while (query.MoveNext(out var uid, out var meta))
+                    entityMetas.Add((uid, meta));
                 foreach (var (uid, meta) in entityMetas)
                 {
                     if (!meta.EntityDeleted)
@@ -152,6 +132,7 @@ namespace Content.IntegrationTests.Tests
 
                 Assert.That(entityMan.EntityCount, Is.Zero);
             });
+            // Starlight - end
         }
 
         /// <summary>

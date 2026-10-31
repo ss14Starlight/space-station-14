@@ -13,8 +13,9 @@ namespace Content.IntegrationTests.Tests.Destructible
 {
     [TestFixture]
     [TestOf(typeof(DamageGroupTrigger))]
+    [TestOf(typeof(DamageTypeTrigger))] // Starlight
     [TestOf(typeof(AndTrigger))]
-    public sealed class DestructibleDamageGroupTest : GameTest
+    public sealed partial class DestructibleDamageGroupTest : GameTest // Starlight
     {
         [Test]
         public async Task AndTest()
@@ -194,6 +195,10 @@ namespace Content.IntegrationTests.Tests.Destructible
                 // No new thresholds reached as triggers once is set to true and it already triggered before
                 Assert.That(sTestThresholdListenerSystem.ThresholdsReached, Is.Empty);
             });
+
+            // Starlight - start
+            await RunDamageTypeTest();
+            // Starlight - end
         }
     }
 }

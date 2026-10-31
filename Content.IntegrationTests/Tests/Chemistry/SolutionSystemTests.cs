@@ -71,8 +71,9 @@ public sealed class SolutionSystemTests : GameTest
     private const string Water = "Water";
     private const string Oil = "Oil";
 
+    #region Starlight
     [Test]
-    public async Task TryAddTwoNonReactiveReagent()
+    public async Task TryAddNonReactiveReagentHandlesCapacity()
     {
         var pair = Pair;
         var server = pair.Server;
@@ -83,76 +84,46 @@ public sealed class SolutionSystemTests : GameTest
         var testMap = await pair.CreateTestMap();
         var coordinates = testMap.GridCoords;
 
-        EntityUid beaker;
-
         await server.WaitAssertion(() =>
         {
             var oilQuantity = FixedPoint2.New(15);
             var waterQuantity = FixedPoint2.New(10);
-
             var oilAdded = new Solution(Oil, oilQuantity);
             var originalWater = new Solution(Water, waterQuantity);
 
-            beaker = entityManager.SpawnEntity("SolutionTarget", coordinates);
+            var beaker = entityManager.SpawnEntity("SolutionTarget", coordinates);
             Assert.That(containerSystem
                 .TryGetSolution(beaker, "beaker", out var solutionEnt, out var solution));
-
             solution.AddSolution(originalWater, protoMan);
             Assert.That(containerSystem
                 .TryAddSolution(solutionEnt.Value, oilAdded));
 
             var water = solution.GetTotalPrototypeQuantity(Water);
             var oil = solution.GetTotalPrototypeQuantity(Oil);
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope())
             {
                 Assert.That(water, Is.EqualTo(waterQuantity));
                 Assert.That(oil, Is.EqualTo(oilQuantity));
-            });
-        });
-    }
+            }
 
-    // This test mimics current behavior
-    // i.e. if adding too much `TryAddSolution` adding will fail
-    [Test]
-    public async Task TryAddTooMuchNonReactiveReagent()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-
-        var testMap = await pair.CreateTestMap();
-
-        var entityManager = server.ResolveDependency<IEntityManager>();
-        var protoMan = server.ResolveDependency<IPrototypeManager>();
-        var containerSystem = entityManager.System<SharedSolutionContainerSystem>();
-        var coordinates = testMap.GridCoords;
-
-        EntityUid beaker;
-
-        await server.WaitAssertion(() =>
-        {
-            var oilQuantity = FixedPoint2.New(1500);
-            var waterQuantity = FixedPoint2.New(10);
-
-            var oilAdded = new Solution(Oil, oilQuantity);
-            var originalWater = new Solution(Water, waterQuantity);
-
-            beaker = entityManager.SpawnEntity("SolutionTarget", coordinates);
+            // Adding too much reagent is rejected without changing the existing solution.
+            var oversizedBeaker = entityManager.SpawnEntity("SolutionTarget", coordinates);
             Assert.That(containerSystem
-                .TryGetSolution(beaker, "beaker", out var solutionEnt, out var solution));
+                .TryGetSolution(oversizedBeaker, "beaker", out var oversizedSolutionEnt, out var oversizedSolution));
+            oversizedSolution.AddSolution(new Solution(Water, waterQuantity), protoMan);
+            Assert.That(containerSystem.TryAddSolution(
+                oversizedSolutionEnt.Value,
+                new Solution(Oil, FixedPoint2.New(1500))),
+                Is.False);
 
-            solution.AddSolution(originalWater, protoMan);
-            Assert.That(containerSystem
-                .TryAddSolution(solutionEnt.Value, oilAdded), Is.False);
-
-            var water = solution.GetTotalPrototypeQuantity(Water);
-            var oil = solution.GetTotalPrototypeQuantity(Oil);
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope())
             {
-                Assert.That(water, Is.EqualTo(waterQuantity));
-                Assert.That(oil, Is.EqualTo(FixedPoint2.Zero));
-            });
+                Assert.That(oversizedSolution.GetTotalPrototypeQuantity(Water), Is.EqualTo(waterQuantity));
+                Assert.That(oversizedSolution.GetTotalPrototypeQuantity(Oil), Is.EqualTo(FixedPoint2.Zero));
+            }
         });
     }
+    #endregion
 
     [SidedDependency(Side.Server)] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
 
@@ -180,12 +151,12 @@ public sealed class SolutionSystemTests : GameTest
     }
 
     // Unlike TryAddSolution this adds and two solution without then splits leaving only threshold in original
+    #region Starlight
     [Test]
-    public async Task TryMixAndOverflowTooMuchReagent()
+    public async Task TryMixAndOverflowHandlesCapacity()
     {
         var pair = Pair;
         var server = pair.Server;
-
 
         var entityManager = server.ResolveDependency<IEntityManager>();
         var protoMan = server.ResolveDependency<IPrototypeManager>();
@@ -193,27 +164,23 @@ public sealed class SolutionSystemTests : GameTest
         var containerSystem = entityManager.System<SharedSolutionContainerSystem>();
         var coordinates = testMap.GridCoords;
 
-        EntityUid beaker;
-
         await server.WaitAssertion(() =>
         {
             var ratio = 9;
             var threshold = 20;
             var waterQuantity = FixedPoint2.New(10);
             var oilQuantity = FixedPoint2.New(ratio * waterQuantity.Int());
-
             var oilAdded = new Solution(Oil, oilQuantity);
             var originalWater = new Solution(Water, waterQuantity);
 
-            beaker = entityManager.SpawnEntity("SolutionTarget", coordinates);
+            var beaker = entityManager.SpawnEntity("SolutionTarget", coordinates);
             Assert.That(containerSystem
                 .TryGetSolution(beaker, "beaker", out var solutionEnt, out var solution));
-
             solution.AddSolution(originalWater, protoMan);
             Assert.That(containerSystem
                 .TryMixAndOverflow(solutionEnt.Value, oilAdded, threshold, out var overflowingSolution));
 
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope())
             {
                 Assert.That(solution.Volume, Is.EqualTo(FixedPoint2.New(threshold)));
 
@@ -228,45 +195,21 @@ public sealed class SolutionSystemTests : GameTest
                 var oilOverFlow = overflowingSolution.GetTotalPrototypeQuantity(Oil);
                 Assert.That(waterOverflow, Is.EqualTo(waterQuantity - waterMix));
                 Assert.That(oilOverFlow, Is.EqualTo(oilQuantity - oilMix));
-            });
-        });
-    }
+            }
 
-    // TryMixAndOverflow will fail if Threshold larger than MaxVolume
-    [Test]
-    public async Task TryMixAndOverflowTooBigOverflow()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-
-        var entityManager = server.ResolveDependency<IEntityManager>();
-        var protoMan = server.ResolveDependency<IPrototypeManager>();
-        var containerSystem = entityManager.System<SharedSolutionContainerSystem>();
-        var testMap = await pair.CreateTestMap();
-        var coordinates = testMap.GridCoords;
-
-        EntityUid beaker;
-
-        await server.WaitAssertion(() =>
-        {
-            var ratio = 9;
-            var threshold = 60;
-            var waterQuantity = FixedPoint2.New(10);
-            var oilQuantity = FixedPoint2.New(ratio * waterQuantity.Int());
-
-            var oilAdded = new Solution(Oil, oilQuantity);
-            var originalWater = new Solution(Water, waterQuantity);
-
-            beaker = entityManager.SpawnEntity("SolutionTarget", coordinates);
+            // The threshold cannot exceed the container's maximum volume.
+            threshold = 60;
+            oilQuantity = FixedPoint2.New(ratio * waterQuantity.Int());
+            var oversizedBeaker = entityManager.SpawnEntity("SolutionTarget", coordinates);
             Assert.That(containerSystem
-                .TryGetSolution(beaker, "beaker", out var solutionEnt, out var solution));
-
-            solution.AddSolution(originalWater, protoMan);
+                .TryGetSolution(oversizedBeaker, "beaker", out var oversizedSolutionEnt, out var oversizedSolution));
+            oversizedSolution.AddSolution(new Solution(Water, waterQuantity), protoMan);
             Assert.That(containerSystem
-                .TryMixAndOverflow(solutionEnt.Value, oilAdded, threshold, out _),
+                .TryMixAndOverflow(oversizedSolutionEnt.Value, new Solution(Oil, oilQuantity), threshold, out _),
                 Is.False);
         });
     }
+    #endregion
 
     [Test]
     public async Task TestTemperatureCalculations()

@@ -170,6 +170,15 @@ public sealed class CharacterSelectionTest : GameTest
             ExpectedJob = Passenger,
             ExpectTraitor = true
         },
+        new()
+        {
+            Description = "Single char, default job",
+            Characters =
+            [
+                new() { Jobs = [], ExpectToSpawn = true }
+            ],
+            ExpectedJob = Passenger
+        },
         // a player with only a job that doesn't appear on the station shouldn't spawn, even if they could be
         // selected as a traitor
         new()

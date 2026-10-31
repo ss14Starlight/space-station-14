@@ -30,7 +30,7 @@ public sealed class ZoneMarkerTest : GameTest
     /// This is important because the mapper may not have drawn any shapes, and we want to make sure that the zone system can still function in that case.
     /// </summary>
     [Test]
-    public async Task DoorNamesAnUnmappedRoom()
+    public async Task DoorAndShapePriority()
     {
         await CreateDeck(shapes: false);
 
@@ -40,13 +40,24 @@ public sealed class ZoneMarkerTest : GameTest
 
         Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Maintenance")),
             "A maintenance door is the only thing saying what this place is.");
+
+        await CreateDeck(shapes: true);
+        Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Hallway")));
+        await Build(_maintDoor, new Vector2i(4, 2));
+        Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Maintenance")));
+
+        await CreateDeck(shapes: true, zone: "Atmospherics");
+        Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Atmospherics")));
+        await Build(_maintDoor, new Vector2i(4, 2));
+        Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Maintenance")),
+            "The door can override a more specific shape.");
     }
 
     /// <summary>
-    /// A head's office door inherits Command and is listed under its department, so the office is in both zones.
+    /// A head's office door inherits Command and is listed under its department, whether spawned or painted.
     /// </summary>
     [Test]
-    public async Task HeadOfficeDoorPutsRoomInBothZones()
+    public async Task HeadOfficeDoorKeepsBothZones()
     {
         await CreateDeck(shapes: false);
         await Build(new EntProtoId("AirlockChiefEngineerLocked"), new Vector2i(4, 2));
@@ -57,46 +68,7 @@ public sealed class ZoneMarkerTest : GameTest
             Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Engineering"), Is.True);
             Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Security"), Is.False);
         });
-    }
 
-    /// <summary>
-    /// Votes count per zone, not per door kind: an engineering door and an atmospherics door
-    /// (Atmospherics + Engineering) agree on Engineering instead of splitting the vote.
-    /// </summary>
-    [Test]
-    public async Task DifferentDoorKindsOfOneZoneAgree()
-    {
-        await CreateDeck(shapes: false);
-        await Build(new EntProtoId("AirlockEngineering"), new Vector2i(2, 2));
-        await Build(new EntProtoId("AirlockAtmospherics"), new Vector2i(6, 2));
-
-        Assert.Multiple(() =>
-        {
-            Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Engineering"), Is.True);
-            Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Atmospherics"), Is.False,
-                "Only half the doors are atmospherics doors.");
-        });
-    }
-
-    /// <summary>
-    /// Zones tied on votes go to the higher priority one, so a plain hallway door does not drag a room into the hallway.
-    /// </summary>
-    [Test]
-    public async Task TiedVotesGoToHigherPriority()
-    {
-        await CreateDeck(shapes: false);
-        await Build(new EntProtoId("AirlockEngineering"), new Vector2i(2, 2));
-        await Build(new EntProtoId("Airlock"), new Vector2i(6, 2));
-
-        Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Engineering")));
-    }
-
-    /// <summary>
-    /// Painting a door to look like a head's office door gives the room every zone of that door, not just one.
-    /// </summary>
-    [Test]
-    public async Task PaintedHeadDoorKeepsBothZones()
-    {
         await CreateDeck(shapes: false);
         var doors = await Build(_maintDoor, new Vector2i(4, 2));
         await Paint(doors[0], "AirlockChiefEngineerLocked");
@@ -110,37 +82,31 @@ public sealed class ZoneMarkerTest : GameTest
     }
 
     /// <summary>
-    /// This test ensures that if you have a room with shapes, the shapes will take precedence over any doors that are placed in the room.
+    /// Votes are counted per zone, with higher-priority zones winning ties.
     /// </summary>
     [Test]
-    public async Task ShapesBeatDoors()
+    public async Task DoorVotesUseZoneIdentityAndPriority()
     {
-        await CreateDeck(shapes: true);
+        await CreateDeck(shapes: false);
+        await Build(new EntProtoId("AirlockEngineering"), new Vector2i(2, 2));
+        await Build(new EntProtoId("AirlockAtmospherics"), new Vector2i(6, 2));
 
-        Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Hallway")));
+        Assert.Multiple(() =>
+        {
+            Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Engineering"), Is.True);
+            Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Atmospherics"), Is.False,
+                "Only half the doors are atmospherics doors.");
+        });
 
-        await Build(_maintDoor, new Vector2i(4, 2));
+        await CreateDeck(shapes: false);
+        await Build(new EntProtoId("AirlockEngineering"), new Vector2i(2, 2));
+        await Build(new EntProtoId("Airlock"), new Vector2i(6, 2));
 
-        Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Maintenance")),
-            "A higher priority door should be able to rename a room the mapper drew.");
+        Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Engineering")));
     }
 
     /// <summary>
-    /// This test ensures that if you have a room with shapes, and you place a door that has a different name than the shape, the shape will take precedence over the door.
-    /// </summary>
-    [Test]
-    public async Task DoorsBeatShapesWhateverTheyMean()
-    {
-        await CreateDeck(shapes: true, zone: "Atmospherics");
-
-        await Build(_maintDoor, new Vector2i(4, 2));
-
-        Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Maintenance")),
-            "The door names the room even where the mapper drew something more specific.");
-    }
-
-    /// <summary>
-    /// This test ensures that if you have a room with shapes, and you place a door that has the same name as the shape, the shape will take precedence over the door.
+    /// Unanimous anonymous doors preserve shape zones, while disagreeing doors defer to shapes.
     /// </summary>
     [Test]
     public async Task ShapesStandWhenNothingContradictsThem()
@@ -153,14 +119,7 @@ public sealed class ZoneMarkerTest : GameTest
 
         Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Atmospherics")),
             "A door with no department to it should leave the shape alone.");
-    }
 
-    /// <summary>
-    /// This test ensures that if you have a room with shapes, and you place two doors that have different names than the shape, the shape will take precedence over the doors.
-    /// </summary>
-    [Test]
-    public async Task DoorsThatDisagreeAreIgnored()
-    {
         await CreateDeck(shapes: true);
 
         await Build(_maintDoor, new Vector2i(2, 2));
@@ -188,17 +147,10 @@ public sealed class ZoneMarkerTest : GameTest
 
         Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Hallway")),
             "A door that no longer means anything should give the room back to the shape.");
-    }
 
-    /// <summary>
-    /// This test ensures that if you have a room with shapes, and you place a door that has a different name than the shape, and then you remove the door, the shape will take precedence over the door.
-    /// </summary>
-    [Test]
-    public async Task RemovingTheDoorReleasesTheRoom()
-    {
         await CreateDeck(shapes: true);
 
-        var doors = await Build(_maintDoor, new Vector2i(4, 2));
+        doors = await Build(_maintDoor, new Vector2i(4, 2));
 
         Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Maintenance")));
 

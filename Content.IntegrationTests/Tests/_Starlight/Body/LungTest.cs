@@ -58,6 +58,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
             await server.WaitIdleAsync();
 
             var entityManager = server.ResolveDependency<IEntityManager>();
+            var cfg = server.ResolveDependency<IConfigurationManager>();
             var mapLoader = entityManager.System<MapLoaderSystem>();
             var mapSys = entityManager.System<SharedMapSystem>();
 
@@ -101,6 +102,9 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
 #pragma warning disable NUnit2045
                 Assert.That(entityManager.TryGetComponent(human, out body), Is.True);
                 Assert.That(entityManager.TryGetComponent(human, out resp), Is.True);
+                var mixture = entityManager.System<AtmosphereSystem>().GetContainingMixture(human);
+                Assert.That(mixture.TotalMoles, Is.GreaterThan(0));
+                Assert.That(resp.SuffocationCycles, Is.LessThanOrEqualTo(resp.SuffocationCycleThreshold));
 #pragma warning restore NUnit2045
             });
 
@@ -123,61 +127,17 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                     "Did not exhale as much gas as was inhaled"
                 );
             }
-        }
-
-        [Test]
-        public async Task NoSuffocationTest()
-        {
-            var pair = Pair;
-            var server = pair.Server;
-
-            var entityManager = server.ResolveDependency<IEntityManager>();
-            var cfg = server.ResolveDependency<IConfigurationManager>();
-            var mapLoader = entityManager.System<MapLoaderSystem>();
-            var mapSys = entityManager.System<SharedMapSystem>();
-
-            EntityUid? grid = null;
-            RespiratorComponent respirator = null;
-            EntityUid human = default;
-
-            var testMapName = new ResPath("Maps/Test/Breathing/3by3-20oxy-80nit.yml");
-
-            await server.WaitPost(() =>
-            {
-                mapSys.CreateMap(out var mapId);
-                Assert.That(mapLoader.TryLoadGrid(mapId, testMapName, out var gridEnt));
-                grid = gridEnt!.Value.Owner;
-            });
-
-            Assert.That(grid, Is.Not.Null, $"Test blueprint {testMapName} not found.");
-
-            await server.WaitAssertion(() =>
-            {
-                var center = new Vector2(0.5f, 0.5f);
-
-                var coordinates = new EntityCoordinates(grid.Value, center);
-                human = entityManager.SpawnEntity("HumanLungDummy", coordinates);
-
-                var mixture = entityManager.System<AtmosphereSystem>().GetContainingMixture(human);
-#pragma warning disable NUnit2045
-                Assert.That(mixture.TotalMoles, Is.GreaterThan(0));
-                Assert.That(entityManager.HasComponent<BodyComponent>(human), Is.True);
-                Assert.That(entityManager.TryGetComponent(human, out respirator), Is.True);
-                Assert.That(respirator.SuffocationCycles, Is.LessThanOrEqualTo(respirator.SuffocationCycleThreshold));
-#pragma warning restore NUnit2045
-            });
 
             var increment = 10;
 
-            // 20 seconds
+            // 20 seconds without suffocating after confirming inhalation and exhalation.
             var total = 20 * cfg.GetCVar(CVars.NetTickrate);
-
             for (var tick = 0; tick < total; tick += increment)
             {
                 await server.WaitRunTicks(increment);
                 await server.WaitAssertion(() =>
                 {
-                    Assert.That(respirator.SuffocationCycles, Is.LessThanOrEqualTo(respirator.SuffocationCycleThreshold),
+                    Assert.That(resp.SuffocationCycles, Is.LessThanOrEqualTo(resp.SuffocationCycleThreshold),
                         $"Entity {entityManager.GetComponent<MetaDataComponent>(human).EntityName} is suffocating on tick {tick}");
                 });
             }

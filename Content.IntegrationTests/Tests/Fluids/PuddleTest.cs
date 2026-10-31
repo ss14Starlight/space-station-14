@@ -16,12 +16,12 @@ namespace Content.IntegrationTests.Tests.Fluids
     public sealed class PuddleTest : GameTest
     {
         [Test]
-        public async Task TilePuddleTest()
+        public async Task TileAndSpacePuddleTest() // Starlight
         {
             var pair = Pair;
             var server = pair.Server;
-
             var testMap = await pair.CreateTestMap();
+            var grid = testMap.Grid; // Starlight
 
             var spillSystem = server.System<PuddleSystem>();
 
@@ -35,21 +35,9 @@ namespace Content.IntegrationTests.Tests.Fluids
 
                 Assert.That(spillSystem.TrySpillAt(coordinates, solution, out _), Is.True);
             });
-        }
 
-        [Test]
-        public async Task SpaceNoPuddleTest()
-        {
-            var pair = Pair;
-            var server = pair.Server;
-
-            var testMap = await pair.CreateTestMap();
-            var grid = testMap.Grid;
-
-            var spillSystem = server.System<PuddleSystem>();
+            // Starlight - start
             var mapSystem = server.System<SharedMapSystem>();
-
-            // Remove all tiles
             await server.WaitPost(() =>
             {
                 var tiles = new List<(Vector2i GridIndices, Tile Tile)>();
@@ -72,6 +60,7 @@ namespace Content.IntegrationTests.Tests.Fluids
 
                 Assert.That(spillSystem.TrySpillAt(coordinates, solution, out _), Is.False);
             });
+            // Starlight - end
         }
     }
 }

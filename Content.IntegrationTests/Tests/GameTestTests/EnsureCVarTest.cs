@@ -16,22 +16,6 @@ public sealed class EnsureCVarTest : GameTest
     [SidedDependency(Side.Client)] private readonly IConfigurationManager _cCfg = default!;
 
     [Test]
-    [Description("Ensure Foo is set and Bar is not.")]
-    public void FooIsSet()
-    {
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(_sCfg.GetCVar(EnsureCVarsTestCVars.Foo), Is.True);
-            Assert.That(_cCfg.GetCVar(EnsureCVarsTestCVars.Foo),
-                Is.EqualTo(EnsureCVarsTestCVars.Foo.DefaultValue),
-                "Foo is not replicated and should not be set on the client.");
-
-            Assert.That(_sCfg.GetCVar(EnsureCVarsTestCVars.Bar),
-                Is.EqualTo(EnsureCVarsTestCVars.Bar.DefaultValue));
-        }
-    }
-
-    [Test]
     [EnsureCVar(Side.Server, typeof(EnsureCVarsTestCVars), nameof(EnsureCVarsTestCVars.Bar), 42)]
     [Description("Ensure Foo and Bar are set.")]
     public void BarIsSet()
@@ -39,6 +23,13 @@ public sealed class EnsureCVarTest : GameTest
         var props = TestContext.CurrentContext.Test.Properties;
         using (Assert.EnterMultipleScope())
         {
+            // Starlight - start
+            Assert.That(_sCfg.GetCVar(EnsureCVarsTestCVars.Foo), Is.True);
+            Assert.That(_cCfg.GetCVar(EnsureCVarsTestCVars.Foo),
+                Is.EqualTo(EnsureCVarsTestCVars.Foo.DefaultValue),
+                "Foo is not replicated and should not be set on the client.");
+            // Starlight - end
+
             Assert.That(_sCfg.GetCVar(EnsureCVarsTestCVars.Bar),
                 Is.EqualTo(42));
             Assert.That(_cCfg.GetCVar(EnsureCVarsTestCVars.Bar),

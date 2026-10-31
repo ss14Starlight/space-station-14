@@ -32,8 +32,9 @@ namespace Content.IntegrationTests.Tests
   - type: PointLight
 ";
 
+        #region Starlight
         [Test]
-        public async Task TestA()
+        public async Task TestContainerOcclusionPropagation()
         {
             var pair = Pair;
             var server = pair.Server;
@@ -42,118 +43,51 @@ namespace Content.IntegrationTests.Tests
             var clientEntManager = client.ResolveDependency<IEntityManager>();
             var serverEntManager = server.ResolveDependency<IEntityManager>();
 
-            EntityUid dummy = default;
-            var mapManager = server.System<SharedMapSystem>();
+            EntityUid occludedDummy = default;
+            EntityUid visibleDummy = default;
+            EntityUid nestedDummy = default;
             var map = await pair.CreateTestMap();
 
             await server.WaitPost(() =>
             {
-                var pos = new MapCoordinates(Vector2.Zero, map.MapId);
+                var occludingPos = new MapCoordinates(Vector2.Zero, map.MapId);
+                var transparentPos = new MapCoordinates(new Vector2(1, 0), map.MapId);
+                var nestedPos = new MapCoordinates(new Vector2(2, 0), map.MapId);
                 var entStorage = serverEntManager.EntitySysManager.GetEntitySystem<EntityStorageSystem>();
-                var container = serverEntManager.SpawnEntity("ContainerOcclusionA", pos);
-                dummy = serverEntManager.SpawnEntity("ContainerOcclusionDummy", pos);
+                var occludingContainer = serverEntManager.SpawnEntity("ContainerOcclusionA", occludingPos);
+                occludedDummy = serverEntManager.SpawnEntity("ContainerOcclusionDummy", occludingPos);
+                entStorage.Insert(occludedDummy, occludingContainer);
 
-                entStorage.Insert(dummy, container);
+                var transparentContainer = serverEntManager.SpawnEntity("ContainerOcclusionB", transparentPos);
+                visibleDummy = serverEntManager.SpawnEntity("ContainerOcclusionDummy", transparentPos);
+                entStorage.Insert(visibleDummy, transparentContainer);
+
+                var outerContainer = serverEntManager.SpawnEntity("ContainerOcclusionA", nestedPos);
+                var innerContainer = serverEntManager.SpawnEntity("ContainerOcclusionB", nestedPos);
+                nestedDummy = serverEntManager.SpawnEntity("ContainerOcclusionDummy", nestedPos);
+                entStorage.Insert(innerContainer, outerContainer);
+                entStorage.Insert(nestedDummy, innerContainer);
             });
 
             await pair.RunTicksSync(5);
 
-            var clientEnt = clientEntManager.GetEntity(serverEntManager.GetNetEntity(dummy));
+            var occludedClient = clientEntManager.GetEntity(serverEntManager.GetNetEntity(occludedDummy));
+            var visibleClient = clientEntManager.GetEntity(serverEntManager.GetNetEntity(visibleDummy));
+            var nestedClient = clientEntManager.GetEntity(serverEntManager.GetNetEntity(nestedDummy));
 
             await client.WaitAssertion(() =>
             {
-                var sprite = clientEntManager.GetComponent<SpriteComponent>(clientEnt);
-                var light = clientEntManager.GetComponent<PointLightComponent>(clientEnt);
                 Assert.Multiple(() =>
                 {
-                    Assert.That(sprite.ContainerOccluded);
-                    Assert.That(light.ContainerOccluded);
+                    Assert.That(clientEntManager.GetComponent<SpriteComponent>(occludedClient).ContainerOccluded);
+                    Assert.That(clientEntManager.GetComponent<PointLightComponent>(occludedClient).ContainerOccluded);
+                    Assert.That(clientEntManager.GetComponent<SpriteComponent>(visibleClient).ContainerOccluded, Is.False);
+                    Assert.That(clientEntManager.GetComponent<PointLightComponent>(visibleClient).ContainerOccluded, Is.False);
+                    Assert.That(clientEntManager.GetComponent<SpriteComponent>(nestedClient).ContainerOccluded);
+                    Assert.That(clientEntManager.GetComponent<PointLightComponent>(nestedClient).ContainerOccluded);
                 });
             });
         }
-
-        [Test]
-        public async Task TestB()
-        {
-            var pair = Pair;
-            var server = pair.Server;
-            var client = pair.Client;
-
-            var clientEntManager = client.ResolveDependency<IEntityManager>();
-            var serverEntManager = server.ResolveDependency<IEntityManager>();
-
-            EntityUid dummy = default;
-            var mapManager = server.System<SharedMapSystem>();
-
-            var map = await pair.CreateTestMap();
-
-            await server.WaitPost(() =>
-            {
-                var pos = new MapCoordinates(Vector2.Zero, map.MapId);
-                var entStorage = serverEntManager.EntitySysManager.GetEntitySystem<EntityStorageSystem>();
-                var container = serverEntManager.SpawnEntity("ContainerOcclusionB", pos);
-                dummy = serverEntManager.SpawnEntity("ContainerOcclusionDummy", pos);
-
-                entStorage.Insert(dummy, container);
-            });
-
-            await pair.RunTicksSync(5);
-
-            var clientEnt = clientEntManager.GetEntity(serverEntManager.GetNetEntity(dummy));
-
-            await client.WaitAssertion(() =>
-            {
-                var sprite = clientEntManager.GetComponent<SpriteComponent>(clientEnt);
-                var light = clientEntManager.GetComponent<PointLightComponent>(clientEnt);
-                Assert.Multiple(() =>
-                {
-                    Assert.That(sprite.ContainerOccluded, Is.False);
-                    Assert.That(light.ContainerOccluded, Is.False);
-                });
-            });
-        }
-
-        [Test]
-        public async Task TestAb()
-        {
-            var pair = Pair;
-            var server = pair.Server;
-            var client = pair.Client;
-
-            var clientEntManager = client.ResolveDependency<IEntityManager>();
-            var serverEntManager = server.ResolveDependency<IEntityManager>();
-
-            EntityUid dummy = default;
-            var mapManager = server.System<SharedMapSystem>();
-
-            var map = await pair.CreateTestMap();
-
-            await server.WaitPost(() =>
-            {
-                var pos = new MapCoordinates(Vector2.Zero, map.MapId);
-                var entStorage = serverEntManager.EntitySysManager.GetEntitySystem<EntityStorageSystem>();
-                var containerA = serverEntManager.SpawnEntity("ContainerOcclusionA", pos);
-                var containerB = serverEntManager.SpawnEntity("ContainerOcclusionB", pos);
-                dummy = serverEntManager.SpawnEntity("ContainerOcclusionDummy", pos);
-
-                entStorage.Insert(containerB, containerA);
-                entStorage.Insert(dummy, containerB);
-            });
-
-            await pair.RunTicksSync(5);
-
-            var clientEnt = clientEntManager.GetEntity(serverEntManager.GetNetEntity(dummy));
-
-            await client.WaitAssertion(() =>
-            {
-                var sprite = clientEntManager.GetComponent<SpriteComponent>(clientEnt);
-                var light = clientEntManager.GetComponent<PointLightComponent>(clientEnt);
-                Assert.Multiple(() =>
-                {
-                    Assert.That(sprite.ContainerOccluded);
-                    Assert.That(light.ContainerOccluded);
-                });
-            });
-        }
+        #endregion
     }
 }
