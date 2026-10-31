@@ -536,7 +536,13 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
         {
             var start = Vector2.Transform(to, tree.InvMatrix);
             var end = Vector2.Transform(from, tree.InvMatrix);
-            var state = new OcclusionState(new Ray(start, (end - start) / length), length - OwnOccluderTolerance);
+            var localDelta = end - start;
+            var localLength = localDelta.Length();
+            if (!float.IsFinite(localLength) || localLength <= OwnOccluderTolerance)
+                continue;
+
+            // Rays are evaluated in the tree's local space, so normalize and bound them there.
+            var state = new OcclusionState(new Ray(start, localDelta / localLength), localLength - OwnOccluderTolerance);
 
             tree.Tree.Tree.QueryAabb(ref state, OcclusionCallback, new Box2(Vector2.Min(start, end), Vector2.Max(start, end)), approx: true);
             if (state.Hit)
