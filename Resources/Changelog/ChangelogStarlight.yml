@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Shuttle Consoles have now a surface mode including a map and easy return from expeditions.
-    type: Add
-  id: 409589
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
-- author: Floximo
-  changes:
   - message: Station Maps no longer close on grid change.
     type: Fix
   id: 409590
@@ -2799,4 +2792,11 @@ Entries:
   id: 409988
   time: '2026-10-31T13:37:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6953
+- author: wonderfulnewworld
+  changes:
+  - message: Diona can now achieve their objectives.
+    type: Fix
+  id: 409989
+  time: '2026-10-31T13:37:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6944
 Order: -1
