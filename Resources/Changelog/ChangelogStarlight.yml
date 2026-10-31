@@ -1,32 +1,4 @@
 Entries:
-- author: piepie3.149
-  changes:
-  - message: Updated the Rotten icon in the Medical HUD to slowly pulse between black and purple, so it draws more notice.
-    type: Tweak
-  id: 409588
-  time: '2026-10-18T09:13:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6735
-- author: Floximo
-  changes:
-  - message: Shuttle Consoles have now a surface mode including a map and easy return from expeditions.
-    type: Add
-  id: 409589
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
-- author: Floximo
-  changes:
-  - message: Station Maps no longer close on grid change.
-    type: Fix
-  id: 409590
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
-- author: Floximo
-  changes:
-  - message: Escape pods no longer land on each other.
-    type: Fix
-  id: 409591
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
 - author: Floximo
   changes:
   - message: Station Maps and other handheld maps no longer work on planets.
@@ -2799,4 +2771,32 @@ Entries:
   id: 409987
   time: '2026-10-31T13:12:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6975
+- author: HartLys
+  changes:
+  - message: Added Plural flag, scarf and cloak.
+    type: Add
+  id: 409988
+  time: '2026-10-31T13:37:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6953
+- author: wonderfulnewworld
+  changes:
+  - message: Diona can now achieve their objectives.
+    type: Fix
+  id: 409989
+  time: '2026-10-31T13:37:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6944
+- author: Swonki
+  changes:
+  - message: ITG Trading Surplus Crate.
+    type: Tweak
+  id: 409990
+  time: '2026-10-31T13:59:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6802
+- author: Xale
+  changes:
+  - message: Dwarves can again not eat raw meat or drink blood.
+    type: Fix
+  id: 409991
+  time: '2026-10-31T18:10:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6982
 Order: -1
