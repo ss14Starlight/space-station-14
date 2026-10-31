@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: CrateEmergencyExplosive
+  components:
+  - type: Contraband
+    tier: Tier2

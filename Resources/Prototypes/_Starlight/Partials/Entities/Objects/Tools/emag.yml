@@ -3,3 +3,11 @@
   components:
   - type: Emag
     accessGroups: [Syndicate]
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: Emag
+  components:
+  - type: Contraband
+    tier: Tier4

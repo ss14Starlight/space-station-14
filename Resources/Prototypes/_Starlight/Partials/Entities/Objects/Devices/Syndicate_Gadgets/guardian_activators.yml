@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: HoloparasiteInjector
+  components:
+  - type: Contraband
+    tier: Tier4
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: HoloClownInjector
+  components:
+  - type: Contraband
+    tier: Tier4
+    contrabandType: Syndicate

@@ -6,3 +6,9 @@
     size: Normal
     shape:
     - 0,0,3,3
+
+- type: !PartialOnly entity
+  id: HappyHonkNukieSnacks
+  components:
+  - type: Contraband
+    tier: Tier1

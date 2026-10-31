@@ -88,3 +88,9 @@
   - type: Tag
     tags:
     - GrappleGun
+
+- type: !PartialOnly entity
+  id: WeaponLauncherChinaLake
+  components:
+  - type: Contraband
+    tier: Tier4

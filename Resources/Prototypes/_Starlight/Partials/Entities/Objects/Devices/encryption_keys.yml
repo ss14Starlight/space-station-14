@@ -21,9 +21,154 @@
     - Law
   - type: StealTarget
     stealGroup: EncryptionKeyHybrid
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+    - CentralCommand
+    - Representatives
+
+# Tier 4 Keys
+- type: !PartialOnly entity
+  id: EncryptionKeyCommand
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: EncryptionKeyNanoTrasen
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Representatives
+
+- type: !PartialOnly entity
+  id: EncryptionKeyNCTrainer
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Representatives
+
+# Tier 3 Keys
+- type: !PartialOnly entity
+  id: EncryptionKeySecurity
+  components:
+  - type: Contraband
+    tier: Tier3
+    allowedDepartments:
+    - Security
+
+- type: !PartialOnly entity
+  id: EncryptionKeyMedicalSecurity
+  components:
+  - type: Contraband
+    tier: Tier3
+    allowedDepartments:
+    - Security
+
+- type: !PartialOnly entity
+  id: EncryptionKeyLawSecurity
+  components:
+  - type: Contraband
+    tier: Tier3
+    allowedDepartments:
+    - Security
+    - Representatives
+
+# Tier 2 Keys
+- type: !PartialOnly entity
+  id: EncryptionKeyCargo
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Cargo
+
+- type: !PartialOnly entity
+  id: EncryptionKeyEngineering
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Engineering
+
+- type: !PartialOnly entity
+  id: EncryptionKeyMedical
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Medical
 
 - type: !PartialOnly entity
   id: EncryptionKeyMedicalScience
   components:
   - type: StealTarget
     stealGroup: EncryptionKeyHybrid
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Medical
+    - Science
+
+- type: !PartialOnly entity
+  id: EncryptionKeyScience
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Science
+
+- type: !PartialOnly entity
+  id: EncryptionKeyRobo
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Science
+
+- type: !PartialOnly entity
+  id: EncryptionKeyService
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Civilian
+
+- type: !PartialOnly entity
+  id: EncryptionKeyBinary
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Silicon
+
+- type: !PartialOnly entity
+  id: EncryptionKeyExpedition
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Cargo
+    - ITG
+
+- type: !PartialOnly entity
+  id: EncryptionKeySalvage
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - ITG
+    - Cargo
+
+- type: !PartialOnly entity
+  id: EncryptionKeyLaw
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Law

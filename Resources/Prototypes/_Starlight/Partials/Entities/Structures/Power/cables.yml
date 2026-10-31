@@ -16,3 +16,10 @@
   components:
     - type: SubFloorHide
       subfloorLayer: MV
+
+- type: !PartialOnly entity
+  id: CableDet
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3

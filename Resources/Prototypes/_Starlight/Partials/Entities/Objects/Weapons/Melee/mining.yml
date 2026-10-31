@@ -29,6 +29,8 @@
 - type: !PartialOnly entity
   id: WeaponCrusher
   components:
+  - type: Contraband
+    tier: Tier3
   - type: MeleeWeapon
     attackRate: 1.5
     damage:
@@ -45,9 +47,17 @@
     playSoundOnDoafter: true
 
 - type: !PartialOnly entity
+  id: WeaponCrusherDagger
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
   id: WeaponCrusherGlaive
   description: An early design of the proto-kinetic accelerator, in glaive form.
   components:
+  - type: Contraband
+    tier: Tier3
   - type: MeleeWeapon
     attackRate: !Remove
     wideAnimationRotation: !Remove

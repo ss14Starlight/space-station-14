@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: ClothingOuterVestNTNC
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterVestWebNTNCEnsign
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4

@@ -25,3 +25,10 @@
     maxAngleDivider: 3.75
     minAngle: 0
     maxAngle: 0
+
+- type: !PartialOnly entity
+  id: WeaponRifleL10
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3

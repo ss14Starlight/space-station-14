@@ -1,0 +1,65 @@
+- type: !PartialOnly entity
+  id: DoorRemoteDefault
+  components:
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: DoorRemoteCommand
+  components:
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: DoorRemoteCustom
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: DoorRemoteSecurity
+  components:
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: DoorRemoteArmory
+  components:
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: DoorRemoteService
+  components:
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: DoorRemoteResearch
+  components:
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: DoorRemoteCargo
+  components:
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: DoorRemoteMedical
+  components:
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: DoorRemoteEngineering
+  components:
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: DoorRemoteAll
+  components:
+  - type: Contraband
+    tier: Tier5
