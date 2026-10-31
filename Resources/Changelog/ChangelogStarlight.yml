@@ -1,11 +1,4 @@
 Entries:
-- author: Nexus Integrated Trait
-  changes:
-  - message: Bird nexus slightly less exclusive.
-    type: Tweak
-  id: 409584
-  time: '2026-10-17T23:49:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6701
 - author: STARLIGHT TEAM
   changes:
   - message: ITG Mindshield.
@@ -2799,4 +2792,11 @@ Entries:
   id: 409983
   time: '2026-10-30T23:30:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6965
+- author: Rescue
+  changes:
+  - message: Fixed server crash caused by shadekin and new lighting system.
+    type: Fix
+  id: 409984
+  time: '2026-10-31T03:12:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6968
 Order: -1
