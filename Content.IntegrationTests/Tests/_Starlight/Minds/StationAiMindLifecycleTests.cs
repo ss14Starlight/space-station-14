@@ -2,7 +2,9 @@ using Content.IntegrationTests.Pair;
 using Content.Server.Ghost;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
+using Content.Server.Pinpointer;
 using Content.Server.Silicons.StationAi;
+using Content.Server._Starlight.TextToSpeech;
 using Content.Server._Starlight.Station.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Ghost;
@@ -91,6 +93,65 @@ public sealed partial class MindTests
             Assert.That(entMan.GetComponent<GhostComponent>(ghost).CanReturnToBody, Is.False);
             Assert.That(stationJobs.TryGetPlayerJobs(station, userId, out _), Is.False);
             AssertStationAiJobSlots(entMan, station, 1);
+        });
+    }
+
+    [Test]
+    public async Task StationAiPowerLossAnnouncesConnectionLoss()
+    {
+        var (pair, station, cores) = await SetupAiStation(1);
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+        var (mindId, _) = GetMind(pair);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
+            Assert.That(entMan.System<StationJobsSystem>().TryAssignJob(station, "StationAi", userId), Is.True);
+
+            var ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            var containers = entMan.System<SharedContainerSystem>();
+            if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
+                throw new InvalidOperationException("Station AI core container was not initialized.");
+            Assert.That(containers.Insert(ai, coreContainer), Is.True);
+            entMan.System<MindSystem>().TransferTo(mindId, ai);
+
+            var announcements = entMan.System<StationAiAnnouncementTestSystem>();
+            var position = entMan.System<NavMapSystem>().GetNearestBeaconString(cores[0]);
+            announcements.Clear();
+            entMan.System<MobStateSystem>().ChangeMobState(ai, MobState.Dead);
+            Assert.That(announcements.LastMessage, Does.Contain("Connection to Station AI"));
+            Assert.That(announcements.LastMessage, Does.Contain("was lost"));
+            Assert.That(announcements.LastMessage, Does.Contain(position));
+        });
+    }
+
+    [Test]
+    public async Task StationAiGhostingAnnouncesShutdown()
+    {
+        var (pair, station, cores) = await SetupAiStation(1);
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+        var (mindId, _) = GetMind(pair);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
+            Assert.That(entMan.System<StationJobsSystem>().TryAssignJob(station, "StationAi", userId), Is.True);
+
+            var ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            var containers = entMan.System<SharedContainerSystem>();
+            if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
+                throw new InvalidOperationException("Station AI core container was not initialized.");
+            Assert.That(containers.Insert(ai, coreContainer), Is.True);
+            entMan.System<MindSystem>().TransferTo(mindId, ai);
+
+            var announcements = entMan.System<StationAiAnnouncementTestSystem>();
+            var position = entMan.System<NavMapSystem>().GetNearestBeaconString(cores[0]);
+            announcements.Clear();
+            var mind = entMan.GetComponent<MindComponent>(mindId);
+            Assert.That(entMan.System<GhostSystem>().OnGhostAttempt(mindId, true, viaCommand: true, mind: mind),
+                Is.True);
+            Assert.That(announcements.LastMessage, Does.Contain("has shut down"));
+            Assert.That(announcements.LastMessage, Does.Contain(position));
         });
     }
 
@@ -333,5 +394,20 @@ public sealed partial class MindTests
             entMan.System<StationJobsSystem>().TryGetJobSlot(station, "StationAi", out var slots),
             Is.True);
         Assert.That(slots, Is.EqualTo(expectedSlots), "Unexpected number of available Station AI slots.");
+    }
+
+    public sealed class StationAiAnnouncementTestSystem : EntitySystem
+    {
+        public string LastMessage { get; private set; } = string.Empty;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<AnnouncementSpokeEvent>(OnAnnouncement);
+        }
+
+        public void Clear() => LastMessage = string.Empty;
+
+        private void OnAnnouncement(AnnouncementSpokeEvent args) => LastMessage = args.Message.Text;
     }
 }

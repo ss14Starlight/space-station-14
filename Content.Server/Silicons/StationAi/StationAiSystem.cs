@@ -519,7 +519,10 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
 
         // Starlight - start
         if (args.Container.ID == StationAiCoreComponent.Container)
+        {
             _containerSpawnJobSlots.RefreshJobSlots(allowAiSlotIncrease: false);
+            AnnounceAiCoreConnectionLost(args.Entity, ent.Owner);
+        }
         // Starlight - end
 
         _alerts.ClearAlert(args.Entity, _batteryAlert);
@@ -537,6 +540,11 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     {
         if (args.NewMobState != MobState.Alive)
         {
+            // Starlight - start
+            if (args.OldMobState == MobState.Alive)
+                AnnounceAiOffline(ent.Owner);
+            // Starlight - end
+
             SetStationAiState(ent, StationAiState.Dead);
             return;
         }
