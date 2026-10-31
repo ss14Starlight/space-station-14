@@ -1,4 +1,10 @@
 - type: !PartialOnly entity
+  id: BaseTraitorObjective
+  components:
+  - type: Objective
+    antag: Traitor
+
+- type: !PartialOnly entity
   id: KillRandomHeadObjective
   description: We need this high value person gone. Make sure they do not make it to CentComm, even if they are dead.
   components:
