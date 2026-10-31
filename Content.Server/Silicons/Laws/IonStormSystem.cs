@@ -6,6 +6,7 @@ using Content.Shared.Silicons.Laws.Components;
 using Content.Shared._Starlight.Silicons.Borgs; // Starlight
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared.Mindshield.Components;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
@@ -27,6 +28,7 @@ public sealed partial class IonStormSystem : EntitySystem
     {
         if (CompOrNull<StationAIShuntComponent>(ent)?.Return != null) // Starlight
             return;
+        if (HasComp<MindShieldComponent>(ent)) return; // Starlight
 
         var lawBound = ent.Comp1;
         var target = ent.Comp2;
