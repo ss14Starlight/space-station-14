@@ -26,7 +26,7 @@
   - /Audio/_Starlight/Effects/Footsteps/heavy5.ogg
 
 - type: soundCollection
-  id: FootstepLayerMagboots
+  id: FootstepDoll
   files:
   - /Audio/_Starlight/Effects/Footsteps/magstep1.ogg
   - /Audio/_Starlight/Effects/Footsteps/magstep2.ogg

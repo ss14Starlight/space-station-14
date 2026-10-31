@@ -49,6 +49,9 @@
         Quantity: 600
   - type: Shell
     generateShellPieceAction: ActionGenerateShellPiece
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepDoll
 
 - type: entity
   parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge]
@@ -164,6 +167,9 @@
         Quantity: 600
   - type: Shell
     generateShellPieceAction: ActionGenerateShellPiece
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepDoll
 
 - type: entity
   parent: BaseSpeciesDummy
