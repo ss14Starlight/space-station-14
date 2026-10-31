@@ -67,6 +67,16 @@
     proto: BluespaceImplantEffect
 
 - type: entity
+  parent: BluespaceImplant
+  id: BudgetBluespaceImplant
+  name: budget bluespace implant
+  description: A cheaper subdermal implant that, when activated, teleports the user far away while leaving their equipment behind.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: LeaveItemsOnTrigger
+    targetUser: true
+
+- type: entity
   parent: BaseSubdermalImplant
   id: RedspaceImplant
   name: redspace implant

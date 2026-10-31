@@ -20,6 +20,9 @@
   - AllAccess
   access:
   - CentralCommand
+  special:
+    - !type:AddImplantSpecial
+      implants: [ DeathRattleImplantCentcomm, RadioImplantCentcomm, BluespaceImplant, FreedomImplant, MindShieldImplant ]
 
 - type: startingGear
   id: DecimusGear
