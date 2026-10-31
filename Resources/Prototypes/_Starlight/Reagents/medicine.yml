@@ -647,4 +647,4 @@
         - !type:MetabolizerTypeCondition
           type: [Cyclorite]
         reagent: Mycophylin
-        amount: 0.1
+        amount: 0.05
