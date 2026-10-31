@@ -278,47 +278,5 @@ public sealed class StationPowerTests : GameTest
         });
     }
 
-    [Test, TestCaseSource(nameof(GameMaps))]
-    public async Task TestApcLoad(string mapProtoId)
-    {
-        var pair = Pair;
-        var server = pair.Server;
-
-        var entMan = server.EntMan;
-        var protoMan = server.ProtoMan;
-        var ticker = entMan.System<GameTicker>();
-        var xform = entMan.System<TransformSystem>();
-
-        // Load the map
-        await server.WaitAssertion(() =>
-        {
-            Assert.That(protoMan.TryIndex<GameMapPrototype>(mapProtoId, out var mapProto));
-            var opts = DeserializationOptions.Default with { InitializeMaps = true };
-            ticker.LoadGameMap(mapProto, out var mapId, opts);
-        });
-
-        // Wait long enough for power to ramp up, but before anything can trip
-        await pair.RunSeconds(2);
-
-        // Check that no APCs start overloaded
-        var apcQuery = entMan.EntityQueryEnumerator<ApcComponent, PowerNetworkBatteryComponent>();
-        Assert.Multiple(() =>
-        {
-            while (apcQuery.MoveNext(out var uid, out var apc, out var battery))
-            {
-                // Uncomment the following line to log starting APC load to the console
-                //Console.WriteLine($"ApcLoad:{mapProtoId}:{uid}:{battery.CurrentSupply}");
-                if (xform.TryGetMapOrGridCoordinates(uid, out var coord))
-                {
-                    Assert.That(apc.MaxLoad, Is.GreaterThanOrEqualTo(battery.CurrentSupply),
-                            $"APC {uid} on {mapProtoId} ({coord.Value.X}, {coord.Value.Y}) is overloaded {battery.CurrentSupply} / {apc.MaxLoad}");
-                }
-                else
-                {
-                    Assert.That(apc.MaxLoad, Is.GreaterThanOrEqualTo(battery.CurrentSupply),
-                            $"APC {uid} on {mapProtoId} is overloaded {battery.CurrentSupply} / {apc.MaxLoad}");
-                }
-            }
-        });
-    }
+    // Starlight: TestApcLoad moved into PostMapInitTest.GameMapsLoadableTest so every station is only loaded once.
 }

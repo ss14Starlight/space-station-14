@@ -5,6 +5,7 @@ using System.Reflection;
 using MonoMod.RuntimeDetour;
 using Robust.Shared.Maths;
 using Robust.Shared.Resources;
+using Robust.Shared.Utility;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
@@ -91,8 +92,8 @@ internal static class RsiLoadingPatch
 
     /// <summary>
     ///     Extracts the RSI path from the <paramref name="openStream"/> closure.
-    ///     The lambda captures a <c>LoadStepData</c> instance whose <c>Path</c> field
-    ///     is a <c>ResPath</c> struct with a <c>CanonPath</c> string, e.g.
+    ///     The lambda captures the RSI <c>ResPath</c> directly (or, in older engines, a <c>LoadStepData</c>
+    ///     with a <c>Path</c> field); its <c>CanonPath</c> string is, e.g.
     ///     <c>/Textures/Effects/clicktest.rsi</c>. Returns the path with the
     ///     leading <c>/Textures/</c> prefix stripped, or <c>null</c> if not found.
     /// </summary>
@@ -108,11 +109,14 @@ internal static class RsiLoadingPatch
             if (captured == null)
                 continue;
 
-            var pathField = captured.GetType().GetField("Path", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            if (pathField == null)
-                continue;
+            // The lambda captures either the ResPath itself or a struct holding it in a Path field.
+            object pathVal = captured is ResPath ? captured : null;
+            if (pathVal == null)
+            {
+                var pathField = captured.GetType().GetField("Path", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                pathVal = pathField?.GetValue(captured);
+            }
 
-            var pathVal = pathField.GetValue(captured);
             if (pathVal == null)
                 continue;
 

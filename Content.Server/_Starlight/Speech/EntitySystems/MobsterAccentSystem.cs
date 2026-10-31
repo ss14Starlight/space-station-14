@@ -47,6 +47,10 @@ public sealed partial class MobsterAccentSystem : EntitySystem
     {
         message = _replacement.ApplyReplacements(message, "mobster");
 
+        // Everything below indexes the first character.
+        if (string.IsNullOrEmpty(message.Text) || string.IsNullOrEmpty(message.Tts ?? message.Text))
+            return message;
+
         // thinking -> thinkin'
         message.Text = RegexIng().Replace(message.Text, "$1'");
 
