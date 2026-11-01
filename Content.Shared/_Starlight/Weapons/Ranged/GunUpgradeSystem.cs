@@ -17,6 +17,7 @@ namespace Content.Shared.Weapons.Ranged.Upgrades;
 
 public sealed partial class GunUpgradeSystem
 {
+    [SubscribeLocalEvent]
     private void OnInteractUsingRemoval(
         Entity<UpgradeableGunComponent> ent,
         ref InteractUsingEvent args)
@@ -57,6 +58,7 @@ public sealed partial class GunUpgradeSystem
             toolComponent: toolComp);
     }
 
+    [SubscribeLocalEvent]
     private void OnUpgradeRemovalFinish(
         Entity<UpgradeableGunComponent> ent,
         ref GunUpgradeRemovalFinishEvent args)

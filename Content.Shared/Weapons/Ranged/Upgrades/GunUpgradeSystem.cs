@@ -45,11 +45,6 @@ public sealed partial class GunUpgradeSystem : EntitySystem
         SubscribeLocalEvent<GunUpgradeFireRateComponent, GunRefreshModifiersEvent>(OnFireRateRefresh);
         SubscribeLocalEvent<GunUpgradeSpeedComponent, GunRefreshModifiersEvent>(OnSpeedRefresh);
         SubscribeLocalEvent<GunUpgradeDamageComponent, GunShotEvent>(OnDamageGunShot);
-
-        // Starlight-start
-        SubscribeLocalEvent<UpgradeableGunComponent, InteractUsingEvent>(OnInteractUsingRemoval);
-        SubscribeLocalEvent<UpgradeableGunComponent, GunUpgradeRemovalFinishEvent>(OnUpgradeRemovalFinish);
-        // Starlight-end
     }
 
     private void RelayEvent<T>(Entity<UpgradeableGunComponent> ent, ref T args) where T : notnull
