@@ -178,13 +178,18 @@ public sealed class ZoneTopologyTest : GameTest
             grid = gridEnt.Owner;
 
             var plating = new Tile(tileDefs["Plating"].TileId);
-            for (var x = 0; x < WallColumn; x++)
+            for (var x = 0; x < Width; x++)
             for (var y = 0; y < Height; y++)
                 mapSystem.SetTile(gridEnt, gridEnt, new Vector2i(x, y), plating);
 
             var comp = Server.EntMan.AddComponent<ZoneGridComponent>(grid);
             zones.PaintZoneRect((grid, comp), new Box2i(0, 0, WallColumn, Height), "Cargo");
             zones.PaintZoneRect((grid, comp), new Box2i(WallColumn, 0, Width, Height), "Maintenance");
+
+            // Zone labels apply to connected regions, so separate the halves before tracking moves between them.
+            for (var y = 0; y < Height; y++)
+                SpawnAnchored(_wall, grid, new Vector2i(WallColumn - 1, y));
+
             zones.FullRebuild((grid, comp));
 
             dummy = Server.EntMan.SpawnEntity(null, new EntityCoordinates(grid, 1.5f, 1.5f));
@@ -284,9 +289,12 @@ public sealed class ZoneTopologyTest : GameTest
     }
 
     private EntityUid SpawnAnchored(EntProtoId proto, Vector2i tile)
+        => SpawnAnchored(proto, _grid, tile);
+
+    private EntityUid SpawnAnchored(EntProtoId proto, EntityUid grid, Vector2i tile)
     {
         var entMan = Server.EntMan;
-        var uid = entMan.SpawnEntity(proto, new EntityCoordinates(_grid, tile.X + 0.5f, tile.Y + 0.5f));
+        var uid = entMan.SpawnEntity(proto, new EntityCoordinates(grid, tile.X + 0.5f, tile.Y + 0.5f));
 
         var xform = entMan.GetComponent<TransformComponent>(uid);
         if (!xform.Anchored)
