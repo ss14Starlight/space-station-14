@@ -77,7 +77,7 @@ public sealed partial class MidiFileCollectionManagerTests : GameTest
         var removedFileName = new ResPath("");
         var addedFileName = new ResPath("");
         MidiLibManager.MidiFileRemoved += s => { removedFileName = s; };
-        MidiLibManager.MidiFileAdded += s => { addedFileName = s; };
+        MidiLibManager.MidiFileAdded += s => addedFileName = s;
 
         MidiLibManager.RenameMidiFile(TestFileName, renamedFileName);
         using (Assert.EnterMultipleScope())

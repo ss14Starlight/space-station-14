@@ -51,7 +51,7 @@ public sealed class MachineBoardTest : GameTest
                          .Where(p => !pair.IsTestPrototype(p))
                          .Where(p => !_ignoredPrototypes.Contains(p.ID)))
             {
-                if (p.TryGetComponent<MachineBoardComponent>(out var mbc, compFact))
+                if (p.TryComp<MachineBoardComponent>(out var mbc, compFact))
                 {
                     var mId = mbc.Prototype;
 
@@ -59,7 +59,7 @@ public sealed class MachineBoardTest : GameTest
                     {
                         Assert.That(protoMan.TryIndex<EntityPrototype>(mId, out var mProto),
                             $"Machine board {p.ID}'s corresponding machine has an invalid prototype.");
-                        Assert.That(mProto.TryGetComponent<MachineComponent>(out var mComp, compFact),
+                        Assert.That(mProto.TryComp<MachineComponent>(out var mComp, compFact),
                             $"Machine board {p.ID}'s corresponding machine {mId} does not have MachineComponent");
                         Assert.That(mComp.Board, Is.EqualTo(p.ID),
                             $"Machine {mId}'s BoardPrototype is not equal to it's corresponding machine board, {p.ID}");
@@ -75,7 +75,7 @@ public sealed class MachineBoardTest : GameTest
                     });
                 }
 
-                if (p.TryGetComponent<ComputerBoardComponent>(out var cbc, compFact))
+                if (p.TryComp<ComputerBoardComponent>(out var cbc, compFact))
                 {
                     var cId = cbc.Prototype;
 
@@ -84,7 +84,7 @@ public sealed class MachineBoardTest : GameTest
                         Assert.That(cId, Is.Not.Null, $"Computer board \"{p.ID}\" does not have a corresponding computer.");
                         Assert.That(protoMan.TryIndex<EntityPrototype>(cId, out var cProto),
                             $"Computer board \"{p.ID}\"'s corresponding computer has an invalid prototype.");
-                        Assert.That(cProto.TryGetComponent<ComputerComponent>(out var cComp, compFact),
+                        Assert.That(cProto.TryComp<ComputerComponent>(out var cComp, compFact),
                             $"Computer board {p.ID}'s corresponding computer \"{cId}\" does not have ComputerComponent");
                         Assert.That(cComp.BoardPrototype, Is.EqualTo(p.ID),
                             $"Computer \"{cId}\"'s BoardPrototype is not equal to it's corresponding computer board, \"{p.ID}\"");
@@ -121,12 +121,12 @@ public sealed class MachineBoardTest : GameTest
             foreach (var prototype in protoMan.EnumeratePrototypes<EntityPrototype>())
             {
                 if (prototype.Abstract || pair.IsTestPrototype(prototype)
-                    || !prototype.TryGetComponent<LatheComponent>(out var lathe, compFact))
+                    || !prototype.TryComp<LatheComponent>(out var lathe, compFact))
                     continue;
 
                 latheSystem.AddRecipesFromPacks(latheRecipes, lathe.DynamicPacks);
 
-                if (prototype.TryGetComponent<EmagLatheRecipesComponent>(out var emag, compFact))
+                if (prototype.TryComp<EmagLatheRecipesComponent>(out var emag, compFact))
                     latheSystem.AddRecipesFromPacks(latheRecipes, emag.EmagDynamicPacks);
             }
 

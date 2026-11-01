@@ -16,8 +16,7 @@ namespace Content.IntegrationTests.Tests.Chemistry
 
         #region Starlight
         [Test]
-        public void NullValuesRoundTrip()
-        {
+        public void NullValuesRoundTrip() =>
             Assert.Multiple(() =>
             {
                 var serialized = Serialization.WriteValue<FixedPoint2?>(null);
@@ -28,7 +27,6 @@ namespace Content.IntegrationTests.Tests.Chemistry
                 var definition = Serialization.Read<FixedPoint2TestDefinition>(mapping);
                 Assert.That(definition.Unit, Is.Null);
             });
-        }
         #endregion
 
         [Test]
