@@ -57,7 +57,7 @@ public sealed partial class ActionUIController
 
     /// <summary>
     /// Keyboard binds go to the keyboard-focused control (e.g. the search bar) instead of the hovered one,
-    /// so quick-add bubbles up to the window; resolve the hovered action button from here.
+    /// so quick-add is caught on the window and search bar; resolve the hovered action button from here.
     /// </summary>
     private void OnWindowKeyBindDown(GUIBoundKeyEventArgs args)
     {

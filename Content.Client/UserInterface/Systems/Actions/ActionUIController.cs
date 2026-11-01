@@ -671,6 +671,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             _window.SearchBar.OnTextChanged -= OnSearchChanged;
             _window.FilterButton.OnItemSelected -= OnFilterSelected;
             _window.OnKeyBindDown -= OnWindowKeyBindDown; // Starlight
+            _window.SearchBar.OnKeyBindDown -= OnWindowKeyBindDown; // Starlight
 
             _window.Dispose();
             _window = null;
@@ -689,6 +690,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         _window.SearchBar.OnTextChanged += OnSearchChanged;
         _window.FilterButton.OnItemSelected += OnFilterSelected;
         _window.OnKeyBindDown += OnWindowKeyBindDown; // Starlight
+        _window.SearchBar.OnKeyBindDown += OnWindowKeyBindDown; // Starlight: LineEdit's MouseFilter.Stop keeps binds from bubbling to the window
 
         if (ActionsBar == null)
         {
