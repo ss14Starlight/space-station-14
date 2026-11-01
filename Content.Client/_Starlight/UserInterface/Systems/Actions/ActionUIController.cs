@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Client.Actions;
 using Content.Shared.Actions.Components;
 
 // ReSharper disable CheckNamespace
@@ -39,5 +38,19 @@ public sealed partial class ActionUIController
             return false;
 
         return actions.Actions.All(action => EntityManager.HasComponent<ActionComponent>(action));
+    }
+
+    private void AddToHotbar(EntityUid action)
+    {
+        if (_actionsSystem == null ||
+            _container == null ||
+            _actions.Contains(action) ||
+            !_actionsSystem.GetClientActions().Any(clientAction => clientAction.Owner == action))
+            return;
+
+        _userArranged = true;
+        _actions.Add(action);
+
+        _container.SetActionData(_actionsSystem, _actions.ToArray());
     }
 }

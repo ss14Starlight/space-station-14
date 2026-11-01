@@ -8,6 +8,7 @@ using Content.Shared._Starlight.Zones;
 using Content.Shared.Random.Rules;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 
@@ -208,12 +209,46 @@ public sealed class ZoneTopologyTest : GameTest
     }
 
     [Test]
+    public async Task ZoneQueriesKeepEditsQueued()
+    {
+        await CreateDeck();
+
+        await Server.WaitAssertion(() =>
+        {
+            var cached = _zones.GetGridZones(_grid);
+            Assert.That(cached, Is.Not.Empty);
+
+            var comp = SEntMan.GetComponent<ZoneGridComponent>(_grid);
+            var grid = SEntMan.GetComponent<MapGridComponent>(_grid);
+            Server.System<SharedMapSystem>().SetTile(_grid, grid, Vector2i.Zero, Tile.Empty);
+            Assert.That(comp.DirtyTiles, Is.Not.Empty, "The edit must queue actual topology work.");
+            var pending = comp.DirtyTiles.Count;
+            var revision = comp.Revision;
+
+            Assert.That(_zones.GetGridZones(_grid), Is.SameAs(cached));
+            Assert.That(comp.DirtyTiles.Count, Is.EqualTo(pending), "Queries must leave pending edits for the tile budget.");
+            Assert.That(comp.Revision, Is.EqualTo(revision), "Queries must not trigger a full rebuild of initialized grids.");
+        });
+
+        await RunTicksSync(5);
+        await Server.WaitAssertion(() =>
+        {
+            var comp = SEntMan.GetComponent<ZoneGridComponent>(_grid);
+            Assert.That(comp.DirtyTiles, Is.Empty, "The normal zone update must process the edit.");
+            Assert.That(_zones.GetRegion(_grid, Vector2i.Zero), Is.EqualTo(SharedZoneSystem.NoRegion),
+                "The removed tile must no longer belong to a room.");
+        });
+    }
+
+    private ushort Region(int x, int y) => _zones.GetRegion(_grid, new Vector2i(x, y));
+    
+    [Test]
     public async Task RulesCanQueryTrackedZones()
     {
         var rules = Server.System<RulesSystem>();
         var maintenance = Server.ProtoMan.Index<RulesPrototype>(MaintenanceZoneRule);
         EntityUid dummy = default;
-
+        
         await Server.WaitPost(() =>
         {
             dummy = Server.EntMan.SpawnEntity(null, MapCoordinates.Nullspace);
