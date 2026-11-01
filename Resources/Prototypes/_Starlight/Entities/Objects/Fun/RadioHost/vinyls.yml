@@ -1656,3 +1656,54 @@
     labelColor: "#35ffff"
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/hit_em.ogg
+      
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylCryonauseogenesis
+  name: "vinyl: Cryonauseogenesis"
+  description: "A swirling, upbeat rock song in 7/8, inspired by the tale of the NTSS Endymion. By: hermitsabee"
+  components:
+  - type: Sprite
+    layers:
+    - state: base-light
+    - state: base-shine
+    - state: label
+      color: "#7eb389"
+  - type: Vinyl
+    labelColor: "#7eb389"
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/cryonauseogenesis.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylHeartloose
+  name: "vinyl: Heartloose"
+  description: "A romantic rock ballad, perfect for the end of the world. By: hermitsabee"
+  components:
+  - type: Sprite
+    layers:
+    - state: base-light
+    - state: base-shine
+    - state: label
+      color: "#7eb389"
+  - type: Vinyl
+    labelColor: "#7eb389"
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/heartloose.ogg
+      
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylPlasmaflare
+  name: "vinyl: Plasmaflare"
+  description: "An intense jazz fusion track filled with synthetic guitars and gas leaks. By: hermitsabee"
+  components:
+  - type: Sprite
+    layers:
+    - state: base-light
+    - state: base-shine
+    - state: label
+      color: "#7eb389"
+  - type: Vinyl
+    labelColor: "#7eb389"
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/plasmaflare.ogg
