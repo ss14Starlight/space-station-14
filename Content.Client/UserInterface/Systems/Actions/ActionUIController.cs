@@ -658,11 +658,10 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
     {
         _actionsSystem?.UnlinkAllActions();
 
-        // Starlight-edit: early return disabled; screens without an ActionsBar (mapping) still create _window and must clean it up
-        // if (ActionsBar == null)
-        // {
-        //     return;
-        // }
+        if (ActionsBar == null)
+        {
+            return;
+        }
 
         if (_window != null)
         {

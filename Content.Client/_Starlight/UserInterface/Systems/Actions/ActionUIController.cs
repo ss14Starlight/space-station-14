@@ -47,6 +47,7 @@ public sealed partial class ActionUIController
     private void AddToHotbar(EntityUid action)
     {
         if (_actionsSystem == null ||
+            _container == null ||
             _actions.Contains(action) ||
             !_actionsSystem.GetClientActions().Any(clientAction => clientAction.Owner == action))
             return;
@@ -54,7 +55,7 @@ public sealed partial class ActionUIController
         _userArranged = true;
         _actions.Add(action);
 
-        _container?.SetActionData(_actionsSystem, _actions.ToArray());
+        _container.SetActionData(_actionsSystem, _actions.ToArray());
     }
 
     /// <summary>
@@ -70,7 +71,10 @@ public sealed partial class ActionUIController
             .OfType<ActionButton>()
             .FirstOrDefault(b => b.Parent == _window?.ResultsGrid);
 
-        if (button != null)
-            OnWindowActionPressed(args, button);
+        if (button?.Action is not { } action)
+            return;
+
+        AddToHotbar(action);
+        args.Handle();
     }
 }

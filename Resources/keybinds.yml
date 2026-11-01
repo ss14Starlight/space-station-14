@@ -667,7 +667,6 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-  allowSubCombs: true
 - function: HotbarQuickAdd
   type: State
   key: MouseRight
