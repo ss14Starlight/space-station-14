@@ -46,7 +46,9 @@ public sealed partial class ActionUIController
 
     private void AddToHotbar(EntityUid action)
     {
-        if (_actionsSystem == null || _actions.Contains(action))
+        if (_actionsSystem == null ||
+            _actions.Contains(action) ||
+            !_actionsSystem.GetClientActions().Any(clientAction => clientAction.Owner == action))
             return;
 
         _userArranged = true;
