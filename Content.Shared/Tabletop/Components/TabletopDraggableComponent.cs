@@ -12,4 +12,18 @@ public sealed partial class TabletopDraggableComponent : Component
     // The player dragging the piece
     [ViewVariables, AutoNetworkedField]
     public NetUserId? DraggingPlayer;
+
+    #region Starlight
+
+    /// <summary>
+    /// Allows an entity to be dragged without the Tabletop UI being open.
+    /// </summary>
+    [DataField, AutoNetworkedField] public bool DraggableWithoutTabletop;
+
+    /// <summary>
+    /// Allows the entity to drag itself.
+    /// </summary>
+    [DataField, AutoNetworkedField] public bool AllowDragSelf;
+
+    #endregion
 }
