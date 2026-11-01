@@ -330,7 +330,7 @@ public sealed partial class ZoneSystem
         }
 
         comp.RenameQueue.Clear();
-        comp.TopologyInitialized = true;
+        comp.TopologyInitialized = !comp.NeedsFullRebuild;
     }
 
     private static Vector2i TileOf(Vector2i chunkOrigin, int index)
