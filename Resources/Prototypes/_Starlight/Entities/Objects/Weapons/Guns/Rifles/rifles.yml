@@ -492,3 +492,64 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: verdict
+  parent: [ BaseContrabandTier3, BaseWeaponRifle, BaseSecurityContraband ] # Blimpuf
+  id: WeaponRifleVerdict
+  description: "A compact heavy rifle, its distinctive gunshot serves as a sign the law has already made its decision.\nChambered in .45 magnum."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/verdict.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/verdict.rsi
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    shotsPerBurst: 2
+    burstCooldown: 0.5
+    availableModes:
+      - SemiAuto
+      - Burst
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/deagle.ogg
+    minAngle: 6
+    maxAngle: 20
+    angleIncrease: 1.5
+    angleDecay: 12
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2
+    maxAngleDivider: 2
+    angleIncreaseDivider: 2
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: item-slot-component-slot-name-magazine
+        startingItem: MagazineDMRSP
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineL10DMR
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: item-slot-component-slot-name-chamber
+        startingItem: CartridgeMagnumSP
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeMagnum
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot ""
+      gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container
+  - type: Appearance
