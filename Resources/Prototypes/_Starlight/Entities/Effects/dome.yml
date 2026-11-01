@@ -38,6 +38,28 @@
   categories: [ HideSpawnMenu ]
   parent: EnergyDomeBase
   components:
+  - type: Pierceable
+    level: Metal
+  - type: Tag
+    tags: [HideContextMenu, WideSwingPassThroughDome]
+  - type: Sprite
+    sprite: Effects/EnergyDome/energydome_small.rsi
+    layers:
+    - state: small
+      color: "#f5166b"
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 2
+    color: "#f5166b"
+
+- type: entity
+  id: EnergyDomeSmallPaladin
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Tag
+    tags: [HideContextMenu, WideSwingPassThroughDome]
   - type: Sprite
     sprite: Effects/EnergyDome/energydome_small.rsi
     layers:
@@ -54,6 +76,10 @@
   categories: [ HideSpawnMenu ]
   parent: EnergyDomeBase
   components:
+  - type: Pierceable
+    level: Metal
+  - type: Tag
+    tags: [HideContextMenu, WideSwingPassThroughDome]
   - type: Sprite
     sprite: Effects/EnergyDome/energydome_small.rsi
     layers:
@@ -65,6 +91,10 @@
   categories: [ HideSpawnMenu ]
   parent: EnergyDomeBase
   components:
+  - type: Pierceable
+    level: Metal
+  - type: Tag
+    tags: [HideContextMenu, WideSwingPassThroughDome]
   - type: Sprite
     drawdepth: Effects
     noRot: true
@@ -83,6 +113,10 @@
   categories: [ HideSpawnMenu ]
   parent: EnergyDomeBase
   components:
+  - type: Pierceable
+    level: Metal
+  - type: Tag
+    tags: [HideContextMenu, WideSwingPassThroughDome]
   - type: Fixtures
     fixtures:
       fix1:
