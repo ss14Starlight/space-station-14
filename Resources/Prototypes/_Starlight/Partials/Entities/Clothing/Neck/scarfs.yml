@@ -2,10 +2,12 @@
   id: ClothingNeckScarfStripedSyndieGreen
   components:
   - type: Contraband
+    tier: Tier1
     contrabandType: Syndicate
 
 - type: !PartialOnly entity
   id: ClothingNeckScarfStripedSyndieRed
   components:
   - type: Contraband
+    tier: Tier1
     contrabandType: Syndicate

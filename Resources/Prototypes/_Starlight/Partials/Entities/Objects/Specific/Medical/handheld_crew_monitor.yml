@@ -1,6 +1,8 @@
 - type: !PartialOnly entity
   id: HandheldCrewMonitor
   components:
+  - type: Contraband
+    tier: Tier4
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/handheld_cmo_crewmonitor.rsi
     state: !Remove

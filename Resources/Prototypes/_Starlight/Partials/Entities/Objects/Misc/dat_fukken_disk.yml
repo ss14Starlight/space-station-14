@@ -1,6 +1,8 @@
 - type: !PartialOnly entity
   id: NukeDisk
   components:
+  - type: Contraband
+    tier: Tier5
   - type: Tag
     tags:
     - FloppyDisk
@@ -14,6 +16,8 @@
 - type: !PartialOnly entity
   id: NukeDiskFake
   components:
+  - type: Contraband
+    tier: Tier5
   - type: Tag
     tags:
     - FloppyDisk

@@ -3,3 +3,5 @@
   components:
   - type: StealTarget
     stealGroup: PinpointerNuclear
+  - type: Contraband
+    tier: Tier4

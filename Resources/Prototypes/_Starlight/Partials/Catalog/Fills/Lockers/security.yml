@@ -21,3 +21,30 @@
   table:
     children:
     - id: MaterialSandbag12
+
+- type: !PartialOnly entity
+  id: GunSafeMelee
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: GunSafeLMG
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: GunSafeHeavyWeapons
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: GunSafeEnergySniper
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4

@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: CrateSecgear
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: CrateContrabandStorageSecure
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4

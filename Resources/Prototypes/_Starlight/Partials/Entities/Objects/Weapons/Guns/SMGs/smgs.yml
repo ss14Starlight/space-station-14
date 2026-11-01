@@ -88,3 +88,10 @@
     maxAngle: 26
     angleIncrease: 2
     angleDecay: 14
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunWt550g
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4

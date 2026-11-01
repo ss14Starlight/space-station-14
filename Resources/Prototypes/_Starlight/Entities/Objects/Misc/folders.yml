@@ -61,7 +61,7 @@
 
 - type: entity
   id: BoxFolderHoPClipboard
-  parent: [BoxFolderClipboard, BaseGrandTheftContraband]
+  parent: [BaseContrabandTier4, BoxFolderClipboard, BaseGrandTheftContraband]
   name: bureaucratic digi-board
   description: A bulky electric clipboard, filled with bureaucracy. Contains a portable ID card computer. Vulnerable to assistants.
   components:

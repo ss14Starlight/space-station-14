@@ -19,3 +19,16 @@
     maxAngle: 14
     angleIncrease: 1
     angleDecay: 14
+
+- type: !PartialOnly entity
+  id: WeaponLightMachineGunL6
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: WeaponLightMachineGunM492
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4

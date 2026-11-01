@@ -5,6 +5,7 @@ contraband-tier-4 = highly illegal
 contraband-tier-5 = extremely dangerous
 
 contraband-type-syndicate = Syndicate
+contraband-type-cybersun = Cybersun
 contraband-type-magical = magical
 contraband-type-ussp = USSP
 contraband-type-tsf = Trans-Solar Federation

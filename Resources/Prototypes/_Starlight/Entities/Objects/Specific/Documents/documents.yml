@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [ BaseContrabandTier4, BaseItem ]
   id: ImportantDocumentGeneric
   abstract: true
   description: Looks highly classified!
@@ -52,7 +52,7 @@
   name: classified corporate documents
   suffix: Do Not Map
   description: A set of highly classified documents containing Corporate Secrets.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_corporate_document_abductors.txt
@@ -64,7 +64,7 @@
   name: classified corporate documents
   suffix: Do Not Map
   description: A set of highly classified documents containing Corporate Secrets.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_corporate_document_decimus.txt
@@ -76,7 +76,7 @@
   name: classified corporate documents
   suffix: Do Not Map
   description: A set of highly classified documents containing Corporate Secrets.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_corporate_document_ninjas.txt
@@ -88,7 +88,7 @@
   name: classified corporate documents
   suffix: Do Not Map
   description: A set of highly classified documents containing Corporate Secrets.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_corporate_document_nukies.txt
@@ -100,7 +100,7 @@
   name: classified corporate documents
   suffix: Do Not Map
   description: A set of highly classified documents containing Corporate Secrets.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier5, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_corporate_document_romerol.txt
@@ -112,7 +112,7 @@
   name: classified corporate documents
   suffix: Do Not Map
   description: A set of highly classified documents containing Corporate Secrets.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_corporate_document_cosmic_cult.txt
@@ -126,7 +126,7 @@
   name: classified criminal documents
   suffix: Do Not Map
   description: A set of highly classified documents containing criminal reports.
-  parent: [ ImportantDocumentGeneric, BaseLawContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseLawContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_criminal_document_arc.txt
@@ -138,7 +138,7 @@
   name: classified criminal documents
   suffix: Do Not Map
   description: A set of highly classified documents containing criminal reports.
-  parent: [ ImportantDocumentGeneric, BaseLawContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseLawContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_criminal_document_comitas.txt
@@ -150,7 +150,7 @@
   name: classified criminal documents
   suffix: Do Not Map
   description: A set of highly classified documents containing criminal reports.
-  parent: [ ImportantDocumentGeneric, BaseLawContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseLawContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_criminal_document_self.txt
@@ -162,7 +162,7 @@
   name: classified criminal documents
   suffix: Do Not Map
   description: A set of highly classified documents containing criminal reports.
-  parent: [ ImportantDocumentGeneric, BaseLawContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseLawContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_criminal_document_tiger_cooperative.txt
@@ -176,7 +176,7 @@
   name: classified secure documents
   suffix: Do Not Map
   description: A set of highly classified documents containing secure documents.
-  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseSecurityContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_secure_document_revolutionaries.txt
@@ -188,7 +188,7 @@
   name: classified secure documents
   suffix: Do Not Map
   description: A set of highly classified documents containing secure documents.
-  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseSecurityContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_secure_document_vampires.txt
@@ -200,7 +200,7 @@
   name: classified secure documents
   suffix: Do Not Map
   description: A set of highly classified documents containing secure documents.
-  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseSecurityContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_secure_document_wizards.txt
@@ -212,7 +212,7 @@
   name: classified secure documents
   suffix: Do Not Map
   description: A set of highly classified documents containing secure documents.
-  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseSecurityContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_secure_document_xenoborgs.txt
@@ -226,7 +226,7 @@
   name: USSP Secure Briefing
   suffix: Do Not Map
   description: A set of classified documents to inform new members of Security on the risks of USSP activity.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: Item
       size: Small
@@ -240,7 +240,7 @@
   name: Changeling Secure Briefing
   suffix: Do Not Map
   description: A set of classified documents to inform new members of Security on the existance of Changelings.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: Item
       size: Small
@@ -254,7 +254,7 @@
   name: Bright-Eyes Secure Briefing
   suffix: Do Not Map
   description: A set of classified documents to inform new members of Security on the existance of Bright-Eyes.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: Item
       size: Small
@@ -268,7 +268,7 @@
   name: Vampires Secure Briefing
   suffix: Do Not Map
   description: A set of classified documents to inform new members of Security on the existance of Vampires.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: Item
       size: Small
@@ -282,7 +282,7 @@
   name: Syndicate Agent Secure Briefing
   suffix: Do Not Map
   description: A set of classified documents to inform new members of Security on the existance of Syndicate Agents.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: Item
       size: Small
@@ -296,7 +296,7 @@
   name: Wizard Secure Briefing
   suffix: Do Not Map
   description: A set of classified documents to inform new members of Security on the existance of Wizards.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: Item
       size: Small
@@ -310,7 +310,7 @@
   name: Xenoborg Secure Briefing
   suffix: Do Not Map
   description: A set of classified documents to inform new members of Security on the existance of Xenoborgs.
-  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  parent: [ BaseContrabandTier4, ImportantDocumentGeneric, BaseGrandTheftContraband ]
   components:
     - type: Item
       size: Small

@@ -1,14 +1,10 @@
 - type: entity
-  parent: [ BaseSyndicateContraband, WeaponLauncherHydra ]
+  parent: [ BaseContrabandTier4, BaseSyndicateContraband, WeaponLauncherHydra ]
   id: WeaponLauncherHydraSyndicate
   name: modified hydra
   suffix: Syndicate
   description: It looks like a standard-issue Hydra cleanade launcher, but the safety measures have been filed off.
   components:
-  - type: ScanDetectable
-  - type: Contraband
-    tier: Tier3 # Blimpuf
-    contrabandType: Syndicate # Blimpuf
   - type: RevolverAmmoProvider
     whitelist:
       tags:

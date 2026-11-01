@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: FiringPinSmartLMG
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: FiringPinSmartLMGReplacement
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
