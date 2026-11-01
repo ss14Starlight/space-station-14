@@ -18,6 +18,7 @@ public sealed partial class DamageContactsSystem : EntitySystem
     #region Starlight
     [Dependency] private MobStateSystem _mobState = default!;
     #endregion
+
     public override void Initialize()
     {
         base.Initialize();
