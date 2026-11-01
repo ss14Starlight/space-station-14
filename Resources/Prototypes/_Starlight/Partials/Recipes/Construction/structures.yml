@@ -1,0 +1,26 @@
+- type: !PartialOnly construction
+  id: !type:CreateVariants
+    values: [ Grille, ClockGrille, GrilleDiagonal, ClockworkGrilleDiagonal ]
+  conditions:
+  - !type:NoEntityInTile
+    blacklist:
+      components:
+      - Conveyor
+
+- type: !PartialOnly construction
+  id: !type:CreateVariants
+    values: [ Airlock, AirlockGlass, AirlockShuttle, AirlockGlassShuttle, PinionAirlock, PinionAirlockGlass ]
+  conditions:
+  - !type:NoEntityInTile
+    blacklist:
+      components:
+      - Conveyor
+
+- type: !PartialOnly construction
+  id: ConveyorBelt
+  conditions:
+  - !type:NoEntityInTile
+    blacklist:
+      components:
+      - Grille
+      - Airlock
