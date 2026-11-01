@@ -55,6 +55,10 @@ public sealed partial class ZoneSystem
     #region Events
 
     [SubscribeLocalEvent]
+    private void OnZoneGridStartup(Entity<ZoneGridComponent> ent, ref ComponentStartup args)
+        => QueueFullRebuild(ent);
+
+    [SubscribeLocalEvent]
     private void OnMapInit(Entity<ZoneGridComponent> ent, ref MapInitEvent args)
         => QueueFullRebuild(ent);
 
@@ -243,7 +247,10 @@ public sealed partial class ZoneSystem
             }
 
             if (changed)
+            {
                 comp.Revision++;
+                comp.CachedGridZones = null;
+            }
 
             if (comp.DirtyTiles.Count == 0 && comp.RenameQueue.Count == 0)
                 _dirtyGrids.Remove(gridUid);
@@ -261,6 +268,7 @@ public sealed partial class ZoneSystem
     {
         var comp = ent.Comp;
 
+        comp.TopologyInitialized = false;
         comp.NeedsFullRebuild = false;
         comp.DirtyTiles.Clear();
         comp.DirtySet.Clear();
@@ -277,6 +285,7 @@ public sealed partial class ZoneSystem
         comp.RegionCount = 1;
         comp.FreeRegions.Clear();
         comp.InvalidateCache();
+        comp.CachedGridZones = null;
 
         if (!Resolve(ent.Owner, ref nav, false) || !_mapGridQuery.TryComp(ent.Owner, out var grid))
             return;
@@ -321,6 +330,7 @@ public sealed partial class ZoneSystem
         }
 
         comp.RenameQueue.Clear();
+        comp.TopologyInitialized = !comp.NeedsFullRebuild;
     }
 
     private static Vector2i TileOf(Vector2i chunkOrigin, int index)
