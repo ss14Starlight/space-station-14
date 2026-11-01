@@ -1,7 +1,7 @@
 <Document>
   # Combination Locks
 
-  There are four things that use Combination Locks. The Station Nuke, the Syndicate Nuke, the Secure Briefcase, and the Wall Safe. While both Nukes have pre-set codes that can only be obtained by either faxing Central Command, or being a Nuclear Operative, the Safe and Briefcase can be set by their users to secure items like paperwork.
+  There are three things that use Combination Locks. Nuclear Fission Devices, the Secure Briefcase, and the Wall Safe. While Nukes have pre-set codes that can usually only be obtained by faxing Central Command, the Safe and Briefcase can be set by their users to secure items like paperwork.
 
   <Box>
     <GuideEntityEmbed Entity="BriefcaseSecure" Caption=""/>
