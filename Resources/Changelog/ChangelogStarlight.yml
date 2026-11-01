@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Added at least 4 new achievements.
-    type: Add
-  id: 409630
-  time: '2026-10-20T11:39:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6682
-- author: wonderfulnewworld
-  changes:
   - message: You can now select your objectives based on difficulty, with each antag that uses this system having a different minimum difficulty you need to select.
     type: Tweak
   id: 409631
@@ -2799,4 +2792,11 @@ Entries:
   id: 410029
   time: '2026-11-01T17:03:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6991
+- author: VictoriaActual
+  changes:
+  - message: Add the new ties to the uniform printer.
+    type: Tweak
+  id: 410030
+  time: '2026-11-01T18:39:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6997
 Order: -1
