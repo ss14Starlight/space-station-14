@@ -40,4 +40,15 @@ public sealed partial class ActionUIController
 
         return actions.Actions.All(action => EntityManager.HasComponent<ActionComponent>(action));
     }
+
+    private void AddToHotbar(EntityUid action)
+    {
+        if (_actionsSystem == null || _actions.Contains(action))
+            return;
+
+        _userArranged = true;
+        _actions.Add(action);
+
+        _container?.SetActionData(_actionsSystem, _actions.ToArray());
+    }
 }

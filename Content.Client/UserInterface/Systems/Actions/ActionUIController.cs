@@ -518,6 +518,16 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
 
     private void OnWindowActionPressed(GUIBoundKeyEventArgs args, ActionButton action)
     {
+        // Starlight-start
+        if (args.Function == ContentKeyFunctions.AddHotbarAction)
+        {
+            if (action.Action is { } toAdd)
+                AddToHotbar(toAdd);
+            args.Handle();
+            return;
+        }
+        // Starlight-end
+
         if (args.Function != EngineKeyFunctions.UIClick && args.Function != EngineKeyFunctions.Use)
             return;
 

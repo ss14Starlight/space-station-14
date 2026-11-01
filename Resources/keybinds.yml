@@ -669,3 +669,7 @@ binds:
   mod1: Shift
   canFocus: true
   allowSubCombs: true
+- function: AddHotbarAction
+  type: State
+  key: MouseRight
+  canFocus: true
