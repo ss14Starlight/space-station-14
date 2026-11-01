@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Traitors, Thieves, Vampires, and Changelings can now select their objectives.
-    type: Add
-  id: 409627
-  time: '2026-10-20T11:39:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6682
-- author: wonderfulnewworld
-  changes:
   - message: Added 2 new traits, Marked for Death and Unglorious.
     type: Add
   id: 409628
@@ -2799,4 +2792,11 @@ Entries:
   id: 410026
   time: '2026-11-01T15:56:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6993
+- author: Floximo
+  changes:
+  - message: Turrets now have a setting to attack true neutral entities like an empty gigax or cyborg. Off by default.
+    type: Add
+  id: 410027
+  time: '2026-11-01T16:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6939
 Order: -1
