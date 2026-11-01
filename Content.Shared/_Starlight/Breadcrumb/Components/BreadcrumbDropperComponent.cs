@@ -12,6 +12,12 @@ public sealed partial class BreadcrumbDropperComponent : Component
     [DataField, AutoNetworkedField] public Color Color = Color.White;
 
     /// <summary>
+    /// The preset colors offered in the alt-click color picker, keyed by name (e.g. "white" -> "#ffffff").
+    /// The key doubles as the loc-id suffix for the dropdown label: glowstone-dropper-color-{key}.
+    /// </summary>
+    [DataField, AutoNetworkedField] public Dictionary<string, Color> ColorOptions = new();
+
+    /// <summary>
     /// Whether it's actively dropping.
     /// </summary>
     [DataField, AutoNetworkedField] public bool Enabled;

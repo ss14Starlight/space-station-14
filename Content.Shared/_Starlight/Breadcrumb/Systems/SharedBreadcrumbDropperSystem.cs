@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Breadcrumb.Components;
+using Content.Shared._Starlight.Breadcrumb.UI;
 using Content.Shared._Starlight.Light.Components;
 using Content.Shared._Starlight.Light.EntitySystems;
 using Content.Shared.Charges.Systems;
@@ -6,7 +7,9 @@ using Content.Shared.IgnitionSource;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
+using Content.Shared.Verbs;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Breadcrumb.Systems;
 
@@ -19,6 +22,15 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = null!;
     [Dependency] private SharedPointLightSystem _pointLight = null!;
     [Dependency] private SharedExpendableLightSystem _expendableLight = null!;
+    [Dependency] private SharedUserInterfaceSystem _ui = null!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        // BUI messages aren't ByRefEvents, so subscribe this one explicitly rather than via [SubscribeLocalEvent].
+        SubscribeLocalEvent<BreadcrumbDropperComponent, GlowstoneDropperColorMessage>(OnSelectColor);
+    }
 
     /// <summary>
     /// Using in hand = pressing Z. Toggle on/off.
@@ -30,6 +42,38 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
         PopupSystem.PopupPredicted(
             Loc.GetString($"breadcrumb-dropper-toggle-{(dropper.Comp.Enabled ? "on" : "off")}"),
             dropper, args.User);
+    }
+
+    /// <summary>
+    /// Alt-click opens the color picker UI so the player can choose what color their droppings glow.
+    /// </summary>
+    [SubscribeLocalEvent]
+    public void OnGetAltVerbs(Entity<BreadcrumbDropperComponent> dropper, ref GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract)
+            return;
+
+        var user = args.User;
+        args.Verbs.Add(new AlternativeVerb
+        {
+            Text = Loc.GetString("glowstone-dropper-configure-verb"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
+            Act = () => _ui.TryOpenUi(dropper.Owner, GlowstoneDropperUiKey.Key, user),
+        });
+    }
+
+    /// <summary>
+    /// The single networked event the color picker produces: apply the chosen preset to this dropper. Only newly
+    /// dropped crumbs pick up the new color; ones already on the floor keep theirs.
+    /// </summary>
+    private void OnSelectColor(EntityUid uid, BreadcrumbDropperComponent component, GlowstoneDropperColorMessage args)
+    {
+        // Resolve the key against our own options so a bad/stale key from the client can't set an arbitrary color.
+        if (!component.ColorOptions.TryGetValue(args.ColorKey, out var color))
+            return;
+
+        component.Color = color;
+        Dirty(uid, component);
     }
 
     /// <summary>

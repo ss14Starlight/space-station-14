@@ -16,11 +16,24 @@
         - state: bag
       noRot: true
     - type: BreadcrumbDropper
-      color: "#ffff00"
       dropRange: 4.5
+      color: "#ffffff"
+      colorOptions:
+        white: "#ffffff"
+        red: "#ff0000"
+        orange: "#ff8000"
+        yellow: "#ffff00"
+        green: "#3dff3d"
+        cyan: "#00ffff"
+        blue: "#0560fc"
+        magenta: "#ff00ff"
     - type: LimitedCharges
       maxCharges: 999999999
       lastCharges: 50
+    - type: UserInterface
+      interfaces:
+        enum.GlowstoneDropperUiKey.Key:
+          type: GlowstoneDropperBoundUserInterface
 
 - type: entity
   parent: BaseItem
@@ -61,11 +74,11 @@
     - type: PointLight
       enabled: false
       color: "#ffffff"
-      radius: 2
-      energy: 1.5
+      radius: 1.7
+      energy: 2.5
     - type: ExpendableLight
-      glowDuration: 30
-      fadeOutDuration: 300
+      glowDuration: 300
+      fadeOutDuration: 900
       turnOnBehaviourID: turn_on
       fadeOutBehaviourID: fade_out
       fadeGlowWithEnergy: true
@@ -76,23 +89,23 @@
           id: turn_on
           maxDuration: 5
           startValue: 1.1
-          endValue: 2
+          endValue: 1.7
         - !type:FadeBehaviour # fade in energy
           id: turn_on
           maxDuration: 5
           property: Energy
           startValue: 0.2
-          endValue: 1.5
+          endValue: 2.5
         - !type:FadeBehaviour # fade out radius
           id: fade_out
-          maxDuration: 300
-          startValue: 2
+          maxDuration: 900
+          startValue: 1.7
           endValue: 1.2
         - !type:FadeBehaviour # fade out energy
           id: fade_out
-          maxDuration: 300
+          maxDuration: 900
           property: Energy
-          startValue: 1.5
+          startValue: 2.5
           endValue: 0.7
     - type: Tag
     - type: SpaceGarbage
