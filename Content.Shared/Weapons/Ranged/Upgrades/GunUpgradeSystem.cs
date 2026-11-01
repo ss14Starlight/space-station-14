@@ -49,7 +49,7 @@ public sealed partial class GunUpgradeSystem : EntitySystem
         // Starlight-start
         SubscribeLocalEvent<UpgradeableGunComponent, InteractUsingEvent>(OnInteractUsingRemoval);
         SubscribeLocalEvent<UpgradeableGunComponent, GunUpgradeRemovalFinishEvent>(OnUpgradeRemovalFinish);
-        // Starlight-end 
+        // Starlight-end
     }
 
     private void RelayEvent<T>(Entity<UpgradeableGunComponent> ent, ref T args) where T : notnull
