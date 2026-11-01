@@ -181,7 +181,7 @@ namespace Content.Shared.Interaction
                     ev.Message is OpenBoundInterfaceMessage);
             // Starlight - end
 
-            if (!_actionBlockerSystem.CanInteract(interactionActor, ev.Target) && !slottedPAI) // Starlight
+            if (!_actionBlockerSystem.CanInteract(interactionActor, ev.Target) && !slottedPAI) // Starlight-edit: PAI's can be slotted into and use console BUIs.
             {
                 // We permit ghosts to open uis unless explicitly blocked
                 if (ev.Message is not OpenBoundInterfaceMessage

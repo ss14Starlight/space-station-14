@@ -7,7 +7,6 @@ namespace Content.Server.Wires;
 
 public sealed partial class WiresSystem
 {
-    #region Starlight
     [Dependency] private SharedRemoteControlConsoleSystem _sharedRemoteControl = default!;
 
     public bool TryOpenRemoteUserInterface(
@@ -48,5 +47,4 @@ public sealed partial class WiresSystem
 
         TryDoWireAction(uid, remoteUser, heldEntity.Value, message.Id, message.Action, wires, tool);
     }
-    #endregion
 }

@@ -149,6 +149,11 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             {
                 subs.Event<RemoteControlSetChannelMessage>(OnSetRemoteControlChannel);
             });
+        CommandBinds.Builder
+            .BindBefore(ContentKeyFunctions.ToggleKnockdown,
+                new RemoteToggleKnockdownInputCmdHandler(this),
+                typeof(SharedStunSystem))
+            .Register<RemoteControlConsoleSystem>();
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         _hands.OnHandSetActive += OnHandSetActive;
     }

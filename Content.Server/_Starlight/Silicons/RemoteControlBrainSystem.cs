@@ -9,14 +9,6 @@ public sealed partial class RemoteControlBrainSystem : EntitySystem
     private readonly HashSet<int> _usedChannels = new();
     private readonly Dictionary<int, EntityUid> _brainsByChannel = new();
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<RemoteControlBrainComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<RemoteControlBrainComponent, ComponentShutdown>(OnShutdown);
-    }
-
     public bool TryGetBrain(int channel, out EntityUid brain)
     {
         if (RemoteControlChannel.IsValid(channel)
@@ -27,7 +19,7 @@ public sealed partial class RemoteControlBrainSystem : EntitySystem
         brain = default;
         return false;
     }
-
+    [SubscribeLocalEvent]
     private void OnStartup(Entity<RemoteControlBrainComponent> entity, ref ComponentStartup args)
     {
         var channel = entity.Comp.Channel;
@@ -41,7 +33,7 @@ public sealed partial class RemoteControlBrainSystem : EntitySystem
         _brainsByChannel.Add(channel, entity.Owner);
         RaiseLocalEvent(new RemoteControlBrainChannelRegisteredEvent(entity.Owner, channel));
     }
-
+    [SubscribeLocalEvent]
     private void OnShutdown(Entity<RemoteControlBrainComponent> entity, ref ComponentShutdown args)
     {
         var channel = entity.Comp.Channel;
