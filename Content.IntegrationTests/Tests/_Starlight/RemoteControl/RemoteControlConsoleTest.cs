@@ -1157,7 +1157,7 @@ public sealed class RemoteControlConsoleTest : GameTest
 
     [TestCase("PlushieRouny")]
     [TestCase("PlushieFlox")]
-    public async Task AIRemoteControlCanTargetRemoteControlBrainEntities(string plushiePrototype) =>
+    public async Task AiRemoteControlCanTargetRemoteControlBrainEntities(string plushiePrototype) =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -1235,10 +1235,9 @@ public sealed class RemoteControlConsoleTest : GameTest
                 Assert.That(console.Controller, Is.EqualTo(expectedToControl ? (EntityUid?) controller : null));
                 Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(controller), Is.EqualTo(expectedToControl));
                 if (expectedToControl)
-                {
                     Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(controller).RelayEntity,
                         Is.EqualTo(remoteEntity));
-                }
+
             }
             finally
             {
