@@ -33,8 +33,9 @@ public sealed class ComputerConstruction : InteractionTest
     }
 
     [Test]
-    public async Task DeconstructComputer()
+    public async Task DeconstructAndChangeComputer()
     {
+        // Starlight - start
         // Spawn initial entity
         await StartDeconstruction(ComputerId);
 
@@ -60,12 +61,7 @@ public sealed class ComputerConstruction : InteractionTest
             (Cable, 5),
             (Steel, 5),
             (Glass, 2));
-    }
 
-    [Test]
-    public async Task ChangeComputer()
-    {
-        // Spawn initial entity
         await SpawnTarget(ComputerId);
 
         // Initial interaction turns id computer into generic computer
@@ -92,6 +88,6 @@ public sealed class ComputerConstruction : InteractionTest
 
         // Construction finished, target entity was replaced with a new one:
         AssertPrototype("ComputerCargoOrders");
+        // Starlight - end
     }
 }
-

@@ -69,11 +69,10 @@ public sealed class NeocyteFrameTests : GameTest
     }
 
     /// <summary>
-    /// Tests that a Neocyte spawned via the antagonist loadout system with a frame override
-    /// receives the frame from the antag loadout instead of their species loadout.
+    /// Tests that an antagonist frame override takes precedence over, or preserves, the Neocyte's species frame.
     /// </summary>
     [Test]
-    public async Task NeocyteAntagFrameOverridesSpeciesFrame()
+    public async Task NeocyteAntagFrameSelection()
     {
         var server = Pair.Server;
         var testMap = await Pair.CreateTestMap();
@@ -98,35 +97,21 @@ public sealed class NeocyteFrameTests : GameTest
                 ["ClothingOuterArmorNeocyteMediumMagicUnremovable"]);
 
             server.EntMan.DeleteEntity(neocyte);
-        });
-    }
 
-    /// <summary>
-    /// Tests that a Neocyte spawned via the antagonist loadout system without an antag loadout
-    /// receives the frame from their species loadout instead of a random frame.
-    /// </summary>
-    [Test]
-    public async Task NeocyteAntagWithoutFrameOverridePreservesSpeciesFrame()
-    {
-        var server = Pair.Server;
-        var testMap = await Pair.CreateTestMap();
-
-        await server.WaitAssertion(() =>
-        {
-            var profile = CreateProfileWithFrame("NeocyteArmorLightSpeed");
-            var neocyte = server.EntMan.Spawn("MobNeoHuman", testMap.MapCoords);
+            var speciesProfile = CreateProfileWithFrame("NeocyteArmorLightSpeed");
+            var speciesFrameNeocyte = server.EntMan.Spawn("MobNeoHuman", testMap.MapCoords);
 
             server.System<NeocyteSystem>()
-                .EquipSpeciesLoadoutForAntag(neocyte, profile, null, null, null);
-            server.System<LoadoutSystem>().Equip(neocyte, [], null);
+                .EquipSpeciesLoadoutForAntag(speciesFrameNeocyte, speciesProfile, null, null, null);
+            server.System<LoadoutSystem>().Equip(speciesFrameNeocyte, [], null);
 
             AssertFrame(
                 server.EntMan,
                 server.System<InventorySystem>(),
-                neocyte,
+                speciesFrameNeocyte,
                 ["ClothingOuterArmorNeocyteLightSpeedUnremovable"]);
 
-            server.EntMan.DeleteEntity(neocyte);
+            server.EntMan.DeleteEntity(speciesFrameNeocyte);
         });
     }
 

@@ -14,7 +14,8 @@ public sealed class ItemThrowingTest : InteractionTest
     [Test]
     [TestOf(typeof(ThrownItemComponent))]
     [TestOf(typeof(DamageOnHighSpeedImpactComponent))]
-    public async Task TestThrownEggBreaks()
+    [TestOf(typeof(PhysicsComponent))] // Starlight
+    public async Task TestThrownEggAndItemLifecycles() // Starlight
     {
         // Setup entities
         var egg = await PlaceInHands("FoodEgg");
@@ -36,52 +37,30 @@ public sealed class ItemThrowingTest : InteractionTest
         // Splat
         await RunTicks(30);
         AssertDeleted(egg);
-    }
 
-    /// <summary>
-    /// Check that an egg thrown into space continues to be an egg.
-    /// I.e., verify that the deletions that happen in the other two tests aren't coincidental.
-    /// </summary>
-    [Test]
-    //[TestOf(typeof(Egg))]
-    public async Task TestEggIsEgg()
-    {
-        // Setup entities
-        var egg = await PlaceInHands("FoodEgg");
+        // Starlight - start
+        await Delete(Target.Value);
+
+        var survivingEgg = await PlaceInHands("FoodEgg");
         await RunTicks(5);
-        AssertExists(egg);
+        AssertExists(survivingEgg);
 
-        // Currently not a "thrown" item.
-        AssertComp<ThrownItemComponent>(hasComp: false, egg);
-        Assert.That(Comp<PhysicsComponent>(egg).BodyStatus, Is.Not.EqualTo(BodyStatus.InAir));
+        AssertComp<ThrownItemComponent>(hasComp: false, survivingEgg);
+        Assert.That(Comp<PhysicsComponent>(survivingEgg).BodyStatus, Is.Not.EqualTo(BodyStatus.InAir));
 
-        // Throw it
         await ThrowItem();
         await RunTicks(5);
-        AssertExists(egg);
-        AssertComp<ThrownItemComponent>(hasComp: true, egg);
-        Assert.That(Comp<PhysicsComponent>(egg).BodyStatus, Is.EqualTo(BodyStatus.InAir));
+        AssertExists(survivingEgg);
+        AssertComp<ThrownItemComponent>(hasComp: true, survivingEgg);
+        Assert.That(Comp<PhysicsComponent>(survivingEgg).BodyStatus, Is.EqualTo(BodyStatus.InAir));
 
-        // Wait a while
         await RunTicks(60);
+        AssertExists(survivingEgg);
+        AssertPrototype("FoodEgg", survivingEgg);
+        AssertComp<ThrownItemComponent>(hasComp: false, survivingEgg);
+        Assert.That(Comp<PhysicsComponent>(survivingEgg).BodyStatus, Is.Not.EqualTo(BodyStatus.InAir));
+        await Delete(survivingEgg);
 
-        // Egg is egg
-        AssertExists(egg);
-        AssertPrototype("FoodEgg", egg);
-        AssertComp<ThrownItemComponent>(hasComp: false, egg);
-        Assert.That(Comp<PhysicsComponent>(egg).BodyStatus, Is.Not.EqualTo(BodyStatus.InAir));
-    }
-
-    /// <summary>
-    /// Check that a physics can handle deleting a thrown entity. As to why this exists, see
-    /// https://github.com/space-wizards/RobustToolbox/pull/4746
-    /// </summary>
-    [Test]
-    [TestOf(typeof(ThrownItemComponent))]
-    [TestOf(typeof(PhysicsComponent))]
-    public async Task TestDeleteThrownItem()
-    {
-        // Setup entities
         var pen = await PlaceInHands("Pen");
         var physics = Comp<PhysicsComponent>(pen);
         await RunTicks(5);
@@ -106,6 +85,6 @@ public sealed class ItemThrowingTest : InteractionTest
         await Delete(pen);
         await RunTicks(5);
         AssertDeleted(pen);
+        // Starlight - end
     }
 }
-

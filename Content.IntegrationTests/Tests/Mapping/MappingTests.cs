@@ -1,4 +1,7 @@
+using Content.Client.Gameplay;
+using Content.Client.Mapping;
 using Content.IntegrationTests.Fixtures;
+using Robust.Client.State;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -24,6 +27,17 @@ public sealed class MappingTests : GameTest
         var mapSys = server.System<MapSystem>();
 
         await pair.RunTicksSync(5);
+
+        // Starlight - start
+        var client = pair.Client;
+        var state = client.ResolveDependency<IStateManager>();
+        await client.WaitPost(() => Assert.DoesNotThrow(() => state.RequestStateChange<MappingState>()));
+
+        await client.WaitRunTicks(30);
+
+        await client.WaitPost(() => Assert.DoesNotThrow(() => state.RequestStateChange<GameplayState>()));
+        // Starlight - end
+
         var mapId = 1;
         while (mapSys.MapExists(new(mapId)))
         {

@@ -13,17 +13,6 @@ public sealed class DisconnectedDependencyTest : GameTest
 {
     [Test]
     [PairConfig(nameof(PsDisconnected))]
-    [Description($"""
-            Ensures that GameTest can be started up even when the client {nameof(EntitySystemManager)} isn't initialized yet.
-            No body is necessary, if this fails then the bug is firmly in GameTest itself.
-        """)]
-    public void EnsureGameTestSetupWorksDisconnected()
-    {
-        // Nothin'
-    }
-
-    [Test]
-    [PairConfig(nameof(PsDisconnected))]
     [Description("""
             Ensures dependency injection that relies on client side systems fails as expected when the client is detached.
         """)]

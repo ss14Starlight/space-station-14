@@ -3,6 +3,7 @@ using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
+using Robust.Shared.Exceptions;
 using Robust.Shared.GameObjects;
 
 namespace Content.IntegrationTests.Tests
@@ -155,6 +156,21 @@ namespace Content.IntegrationTests.Tests
                 roundEndSystem.DefaultCountdownDuration = TimeSpan.FromMinutes(4);
                 ticker.RestartRound();
             });
+
+            // Starlight - start
+            await pair.RunUntilSynced();
+            await pair.Client.WaitIdleAsync();
+            await server.WaitIdleAsync();
+            Assert.Multiple(() =>
+            {
+                Assert.That(pair.Client.IsAlive);
+                Assert.That(server.IsAlive);
+                Assert.That(pair.Client.ResolveDependency<IRuntimeLog>().ExceptionCount, Is.Zero,
+                    "No exceptions must be logged on client.");
+                Assert.That(server.ResolveDependency<IRuntimeLog>().ExceptionCount, Is.Zero,
+                    "No exceptions must be logged on server.");
+            });
+            // Starlight - end
         }
     }
 }

@@ -38,8 +38,9 @@ namespace Content.IntegrationTests.Tests.Interaction.Click
         - MobMask
 ";
 
+        #region Starlight
         [Test]
-        public async Task InteractionTest()
+        public async Task InteractionWorksAtOriginAndWithinRange()
         {
             var pair = Pair;
             var server = pair.Server;
@@ -55,6 +56,7 @@ namespace Content.IntegrationTests.Tests.Interaction.Click
             await server.WaitIdleAsync();
             EntityUid user = default;
             EntityUid target = default;
+            EntityUid nearbyTarget = default;
             EntityUid item = default;
 
             await server.WaitAssertion(() =>
@@ -64,6 +66,9 @@ namespace Content.IntegrationTests.Tests.Interaction.Click
                 sEntities.EnsureComponent<ComplexInteractionComponent>(user);
                 handSys.AddHand(user, "hand", HandLocation.Left);
                 target = sEntities.SpawnEntity(null, coords);
+                nearbyTarget = sEntities.SpawnEntity(
+                    null,
+                    new MapCoordinates(new Vector2(SharedInteractionSystem.InteractionRange - 0.1f, 0), mapId));
                 item = sEntities.SpawnEntity(null, coords);
                 sEntities.EnsureComponent<ItemComponent>(item);
             });
@@ -80,28 +85,56 @@ namespace Content.IntegrationTests.Tests.Interaction.Click
                 Assert.That(entitySystemManager.TryGetEntitySystem(out testInteractionSystem));
             });
 
-            var interactUsing = false;
+            var interactUsingAtOrigin = false;
+            var interactUsingWithinRange = false;
             var interactHand = false;
+            var nearbyInteractHand = false;
             await server.WaitAssertion(() =>
             {
-                testInteractionSystem.InteractUsingEvent = (ev) => { Assert.That(ev.Target, Is.EqualTo(target)); interactUsing = true; };
-                testInteractionSystem.InteractHandEvent = (ev) => { Assert.That(ev.Target, Is.EqualTo(target)); interactHand = true; };
+                testInteractionSystem.InteractUsingEvent = (ev) =>
+                {
+                    Assert.That(ev.Target, Is.AnyOf(target, nearbyTarget));
+                    if (ev.Target == target)
+                        interactUsingAtOrigin = true;
+                    else
+                        interactUsingWithinRange = true;
+                };
+                testInteractionSystem.InteractHandEvent = (ev) =>
+                {
+                    if (ev.Target == nearbyTarget)
+                    {
+                        nearbyInteractHand = true;
+                        return;
+                    }
+
+                    Assert.That(ev.Target, Is.EqualTo(target));
+                    interactHand = true;
+                };
 
                 interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(target).Coordinates, target);
+                interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(nearbyTarget).Coordinates, nearbyTarget);
                 Assert.Multiple(() =>
                 {
-                    Assert.That(interactUsing, Is.False);
+                    Assert.That(interactUsingAtOrigin, Is.False);
+                    Assert.That(interactUsingWithinRange, Is.False);
                     Assert.That(interactHand);
+                    Assert.That(nearbyInteractHand);
                 });
 
                 Assert.That(handSys.TryPickup(user, item));
 
                 interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(target).Coordinates, target);
-                Assert.That(interactUsing);
+                interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(nearbyTarget).Coordinates, nearbyTarget);
+                Assert.Multiple(() =>
+                {
+                    Assert.That(interactUsingAtOrigin);
+                    Assert.That(interactUsingWithinRange);
+                });
             });
 
             testInteractionSystem.ClearHandlers();
         }
+        #endregion
 
         [Test]
         public async Task InteractionObstructionTest()
@@ -167,71 +200,6 @@ namespace Content.IntegrationTests.Tests.Interaction.Click
 
             testInteractionSystem.ClearHandlers();
         }
-
-        [Test]
-        public async Task InteractionInRangeTest()
-        {
-            var pair = Pair;
-            var server = pair.Server;
-
-            var sEntities = server.ResolveDependency<IEntityManager>();
-            var sysMan = server.ResolveDependency<IEntitySystemManager>();
-            var handSys = sysMan.GetEntitySystem<SharedHandsSystem>();
-
-            var map = await pair.CreateTestMap();
-            var mapId = map.MapId;
-            var coords = map.MapCoords;
-
-            await server.WaitIdleAsync();
-            EntityUid user = default;
-            EntityUid target = default;
-            EntityUid item = default;
-
-            await server.WaitAssertion(() =>
-            {
-                user = sEntities.SpawnEntity(null, coords);
-                sEntities.EnsureComponent<HandsComponent>(user);
-                sEntities.EnsureComponent<ComplexInteractionComponent>(user);
-                handSys.AddHand(user, "hand", HandLocation.Left);
-                target = sEntities.SpawnEntity(null, new MapCoordinates(new Vector2(SharedInteractionSystem.InteractionRange - 0.1f, 0), mapId));
-                item = sEntities.SpawnEntity(null, coords);
-                sEntities.EnsureComponent<ItemComponent>(item);
-            });
-
-            await server.WaitRunTicks(1);
-
-            var entitySystemManager = server.ResolveDependency<IEntitySystemManager>();
-            InteractionSystem interactionSystem = default!;
-            TestInteractionSystem testInteractionSystem = default!;
-            Assert.Multiple(() =>
-            {
-                Assert.That(entitySystemManager.TryGetEntitySystem(out interactionSystem));
-                Assert.That(entitySystemManager.TryGetEntitySystem(out testInteractionSystem));
-            });
-
-            var interactUsing = false;
-            var interactHand = false;
-            await server.WaitAssertion(() =>
-            {
-                testInteractionSystem.InteractUsingEvent = (ev) => { Assert.That(ev.Target, Is.EqualTo(target)); interactUsing = true; };
-                testInteractionSystem.InteractHandEvent = (ev) => { Assert.That(ev.Target, Is.EqualTo(target)); interactHand = true; };
-
-                interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(target).Coordinates, target);
-                Assert.Multiple(() =>
-                {
-                    Assert.That(interactUsing, Is.False);
-                    Assert.That(interactHand);
-                });
-
-                Assert.That(handSys.TryPickup(user, item));
-
-                interactionSystem.UserInteraction(user, sEntities.GetComponent<TransformComponent>(target).Coordinates, target);
-                Assert.That(interactUsing);
-            });
-
-            testInteractionSystem.ClearHandlers();
-        }
-
 
         [Test]
         public async Task InteractionOutOfRangeTest()

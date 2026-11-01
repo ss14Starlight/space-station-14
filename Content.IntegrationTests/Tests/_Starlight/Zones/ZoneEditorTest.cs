@@ -16,7 +16,7 @@ public sealed class ZoneEditorTest : GameTest
     private Entity<ZoneGridComponent> _grid;
 
     [Test]
-    public async Task PaintingTheSamePatchTwiceDoesNotPileUpRectangles()
+    public async Task PaintingMergesRectanglesWithoutSwallowingGaps()
     {
         await CreateGrid();
 
@@ -24,56 +24,33 @@ public sealed class ZoneEditorTest : GameTest
         {
             _zones.PaintZoneRect(_grid, new Box2i(0, 0, 10, 10), "Cargo");
             _zones.PaintZoneRect(_grid, new Box2i(2, 2, 6, 6), "Cargo");
+
+            _zones.PaintZoneRect(_grid, new Box2i(20, 0, 25, 5), "Cargo");
+            _zones.PaintZoneRect(_grid, new Box2i(25, 0, 30, 5), "Cargo");
+            _zones.PaintZoneRect(_grid, new Box2i(20, 5, 25, 10), "Cargo");
+            _zones.PaintZoneRect(_grid, new Box2i(25, 5, 30, 10), "Cargo");
+
+            _zones.PaintZoneRect(_grid, new Box2i(40, 0, 45, 5), "Cargo");
+            _zones.PaintZoneRect(_grid, new Box2i(45, 0, 50, 8), "Cargo");
         });
 
         var cargo = _zones.GetZoneId("Cargo");
-
         using (Assert.EnterMultipleScope())
         {
             Assert.That(Zone(0, 0), Is.EqualTo(cargo));
             Assert.That(Zone(4, 4), Is.EqualTo(cargo));
             Assert.That(Zone(9, 9), Is.EqualTo(cargo));
+            Assert.That(Rects("Cargo").Count(rect => Contains(rect, 4, 4)), Is.EqualTo(1),
+                "Painting over the same patch should not pile up rectangles.");
 
-            Assert.That(Rects("Cargo").Count(rect => Contains(rect, 4, 4)), Is.EqualTo(1));
-        }
-    }
-
-    [Test]
-    public async Task NeighbouringRectanglesBecomeOne()
-    {
-        await CreateGrid();
-
-        await Server.WaitPost(() =>
-        {
-            _zones.PaintZoneRect(_grid, new Box2i(0, 0, 5, 5), "Cargo");
-            _zones.PaintZoneRect(_grid, new Box2i(5, 0, 10, 5), "Cargo");
-            _zones.PaintZoneRect(_grid, new Box2i(0, 5, 5, 10), "Cargo");
-            _zones.PaintZoneRect(_grid, new Box2i(5, 5, 10, 10), "Cargo");
-        });
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(Rects("Cargo"), Has.Count.EqualTo(1),
+            Assert.That(Rects("Cargo"), Does.Contain(new Box2i(20, 0, 30, 10)),
                 "Four squares that tile a bigger square should end up as one rectangle.");
-            Assert.That(Rects("Cargo")[0], Is.EqualTo(new Box2i(0, 0, 10, 10)));
-        }
-    }
 
-    [Test]
-    public async Task RectanglesThatDoNotLineUpStayApart()
-    {
-        await CreateGrid();
-
-        await Server.WaitPost(() =>
-        {
-            _zones.PaintZoneRect(_grid, new Box2i(0, 0, 5, 5), "Cargo");
-            _zones.PaintZoneRect(_grid, new Box2i(5, 0, 10, 8), "Cargo");
-        });
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(Rects("Cargo"), Has.Count.EqualTo(2));
-            Assert.That(Zone(2, 6), Is.EqualTo(SharedZoneSystem.NoZone),
+            Assert.That(
+                Rects("Cargo").Count(rect => Contains(rect, 41, 1) || Contains(rect, 46, 1)),
+                Is.EqualTo(2),
+                "Rectangles with different heights should remain separate.");
+            Assert.That(Zone(42, 6), Is.EqualTo(SharedZoneSystem.NoZone),
                 "Merging must not swallow tiles that were never painted.");
         }
     }
@@ -126,7 +103,7 @@ public sealed class ZoneEditorTest : GameTest
     }
 
     [Test]
-    public async Task PaintingAnotherZoneReplacesWhatWasThere()
+    public async Task PaintingOverZonesPreservesPartialAndRemovesFullOverlaps()
     {
         await CreateGrid();
 
@@ -134,6 +111,9 @@ public sealed class ZoneEditorTest : GameTest
         {
             _zones.PaintZoneRect(_grid, new Box2i(0, 0, 10, 10), "Hallway");
             _zones.PaintZoneRect(_grid, new Box2i(4, 4, 6, 6), "Maintenance");
+
+            _zones.PaintZoneRect(_grid, new Box2i(20, 0, 24, 4), "Cargo");
+            _zones.PaintZoneRect(_grid, new Box2i(19, -1, 25, 5), "Maintenance");
         });
 
         using (Assert.EnterMultipleScope())
@@ -145,24 +125,9 @@ public sealed class ZoneEditorTest : GameTest
 
             Assert.That(Rects("Hallway").Count(rect => Contains(rect, 5, 5)), Is.Zero);
             Assert.That(Rects("Hallway"), Has.Count.EqualTo(4));
-        }
-    }
 
-    [Test]
-    public async Task PaintingOverAZoneEntirelyRemovesIt()
-    {
-        await CreateGrid();
-
-        await Server.WaitPost(() =>
-        {
-            _zones.PaintZoneRect(_grid, new Box2i(2, 2, 6, 6), "Hallway");
-            _zones.PaintZoneRect(_grid, new Box2i(0, 0, 10, 10), "Maintenance");
-        });
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(Zone(4, 4), Is.EqualTo(_zones.GetZoneId("Maintenance")));
-            Assert.That(Rects("Hallway"), Is.Empty, "The buried zone should be gone entirely.");
+            Assert.That(Zone(21, 1), Is.EqualTo(_zones.GetZoneId("Maintenance")));
+            Assert.That(Rects("Cargo"), Is.Empty, "The fully buried zone should be gone entirely.");
         }
     }
 

@@ -292,6 +292,34 @@ namespace Content.IntegrationTests.Tests
                 Assert.That(systemMachine.GetAvailableInventory(machine, machineComponent), Has.Count.GreaterThan(0),
                     "Machine available inventory count is not greater than zero after restock.");
 
+                // Starlight - start
+                var vendingMachineSystem = entitySystemManager.GetEntitySystem<SharedVendingMachineSystem>();
+                var boundsMachine = entityManager.SpawnEntity(
+                    "VendingMachineTest",
+                    coordinates.Offset(new System.Numerics.Vector2(2f, 0f)));
+
+                Assert.That(vendingMachineSystem.GetAvailableInventory(boundsMachine), Has.Count.EqualTo(1),
+                    "Machine's available inventory did not contain one entry.");
+
+                Assert.That(vendingMachineSystem.GetAvailableInventory(boundsMachine)[0].Amount, Is.EqualTo(1),
+                    "Machine's available inventory is not the expected amount.");
+
+                vendingMachineSystem.RestockInventoryFromPrototype(boundsMachine);
+
+                Assert.That(vendingMachineSystem.GetAvailableInventory(boundsMachine)[0].Amount, Is.EqualTo(2),
+                    "Machine's available inventory is not double its starting amount after a restock.");
+
+                vendingMachineSystem.RestockInventoryFromPrototype(boundsMachine);
+
+                Assert.That(vendingMachineSystem.GetAvailableInventory(boundsMachine)[0].Amount, Is.EqualTo(3),
+                    "Machine's available inventory is not triple its starting amount after two restocks.");
+
+                vendingMachineSystem.RestockInventoryFromPrototype(boundsMachine);
+
+                Assert.That(vendingMachineSystem.GetAvailableInventory(boundsMachine)[0].Amount, Is.EqualTo(3),
+                    "Machine's available inventory did not stay the same after a third restock.");
+                // Starlight - end
+
                 mapSystem.DeleteMap(testMap.MapId);
             });
         }
@@ -356,47 +384,5 @@ namespace Content.IntegrationTests.Tests
             });
         }
 
-        [Test]
-        public async Task TestRestockInventoryBounds()
-        {
-            var pair = Pair;
-            var server = pair.Server;
-            await server.WaitIdleAsync();
-
-            var entityManager = server.ResolveDependency<IEntityManager>();
-            var entitySystemManager = server.ResolveDependency<IEntitySystemManager>();
-
-            var vendingMachineSystem = entitySystemManager.GetEntitySystem<SharedVendingMachineSystem>();
-
-            var testMap = await pair.CreateTestMap();
-
-            await server.WaitAssertion(() =>
-            {
-                var coordinates = testMap.GridCoords;
-
-                var machine = entityManager.SpawnEntity("VendingMachineTest", coordinates);
-
-                Assert.That(vendingMachineSystem.GetAvailableInventory(machine), Has.Count.EqualTo(1),
-                    "Machine's available inventory did not contain one entry.");
-
-                Assert.That(vendingMachineSystem.GetAvailableInventory(machine)[0].Amount, Is.EqualTo(1),
-                    "Machine's available inventory is not the expected amount.");
-
-                vendingMachineSystem.RestockInventoryFromPrototype(machine);
-
-                Assert.That(vendingMachineSystem.GetAvailableInventory(machine)[0].Amount, Is.EqualTo(2),
-                    "Machine's available inventory is not double its starting amount after a restock.");
-
-                vendingMachineSystem.RestockInventoryFromPrototype(machine);
-
-                Assert.That(vendingMachineSystem.GetAvailableInventory(machine)[0].Amount, Is.EqualTo(3),
-                    "Machine's available inventory is not triple its starting amount after two restocks.");
-
-                vendingMachineSystem.RestockInventoryFromPrototype(machine);
-
-                Assert.That(vendingMachineSystem.GetAvailableInventory(machine)[0].Amount, Is.EqualTo(3),
-                    "Machine's available inventory did not stay the same after a third restock.");
-            });
-        }
     }
 }

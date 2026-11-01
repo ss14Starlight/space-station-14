@@ -14,21 +14,20 @@ namespace Content.IntegrationTests.Tests.Chemistry
             typeof(FixedPoint2SerializationTest).Assembly
         ];
 
+        #region Starlight
         [Test]
-        public void DeserializeNullTest()
-        {
-            var node = ValueDataNode.Null();
-            var unit = Serialization.Read<FixedPoint2?>(node);
+        public void NullValuesRoundTrip() =>
+            Assert.Multiple(() =>
+            {
+                var serialized = Serialization.WriteValue<FixedPoint2?>(null);
+                Assert.That(serialized.IsNull);
+                Assert.That(Serialization.Read<FixedPoint2?>(ValueDataNode.Null()), Is.Null);
 
-            Assert.That(unit, Is.Null);
-        }
-
-        [Test]
-        public void SerializeNullTest()
-        {
-            var node = Serialization.WriteValue<FixedPoint2?>(null);
-            Assert.That(node.IsNull);
-        }
+                var mapping = new MappingDataNode().Add("unit", ValueDataNode.Null());
+                var definition = Serialization.Read<FixedPoint2TestDefinition>(mapping);
+                Assert.That(definition.Unit, Is.Null);
+            });
+        #endregion
 
         [Test]
         public void SerializeNullableValueTest()
@@ -40,14 +39,6 @@ namespace Content.IntegrationTests.Tests.Chemistry
 #pragma warning restore NUnit2045
         }
 
-        [Test]
-        public void DeserializeNullDefinitionTest()
-        {
-            var node = new MappingDataNode().Add("unit", ValueDataNode.Null());
-            var definition = Serialization.Read<FixedPoint2TestDefinition>(node);
-
-            Assert.That(definition.Unit, Is.Null);
-        }
     }
 
     [DataDefinition]

@@ -268,7 +268,7 @@ public sealed class ChatHighlightTest : GameTest
 
     [Test]
     [RunOnSide(Side.Client)]
-    public async Task TestSpeciesNameHighlightsLizard()
+    public async Task TestSpeciesNameHighlightsEdgeCases()
     {
         var chatController = _uiManager.GetUIController<ChatUIController>();
         _configManager.SetCVar(CCVars.ChatAutoFillHighlights, true);
@@ -279,7 +279,7 @@ public sealed class ChatHighlightTest : GameTest
         );
         Assert.That(highlightsField, Is.Not.Null);
 
-        // 2. Lizard Name (multiple hyphens - first and last parts are split, middle connector "The" is ignored)
+        // Lizard name: split first and last parts, but ignore the middle connector.
         var lizardData = new CharacterInfoSystem.CharacterData(
             default,
             "Reptilian",
@@ -296,22 +296,8 @@ public sealed class ChatHighlightTest : GameTest
         {
             Assert.That(highlight, Is.Not.Contains("(?<!\\w)The(?!\\w)"));
         }
-    }
 
-    [Test]
-    [RunOnSide(Side.Client)]
-    public async Task TestSpeciesNameHighlightsParentheses()
-    {
-        var chatController = _uiManager.GetUIController<ChatUIController>();
-        _configManager.SetCVar(CCVars.ChatAutoFillHighlights, true);
-
-        var highlightsField = chatController.GetType().GetField(
-            "_highlights",
-            BindingFlags.NonPublic | BindingFlags.Instance
-        );
-        Assert.That(highlightsField, Is.Not.Null);
-
-        // 3. Parentheses removal (e.g. John Doe (Ghost))
+        // Parentheses should be removed from the highlighted name.
         var ghostData = new CharacterInfoSystem.CharacterData(
             default,
             "Human",
@@ -320,7 +306,7 @@ public sealed class ChatHighlightTest : GameTest
             "John Doe (Ghost)"
         );
         InvokeOnCharacterUpdated(chatController, ghostData);
-        var activeHighlights = (List<string>)highlightsField.GetValue(chatController)!;
+        activeHighlights = (List<string>)highlightsField.GetValue(chatController)!;
         Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)John\ Doe(?!\w)"));
         Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)John(?!\w)"));
         Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Doe(?!\w)"));
@@ -328,22 +314,8 @@ public sealed class ChatHighlightTest : GameTest
         {
             Assert.That(highlight, Is.Not.Contains("Ghost"));
         }
-    }
 
-    [Test]
-    [RunOnSide(Side.Client)]
-    public async Task TestSpeciesNameHighlightsQuotes()
-    {
-        var chatController = _uiManager.GetUIController<ChatUIController>();
-        _configManager.SetCVar(CCVars.ChatAutoFillHighlights, true);
-
-        var highlightsField = chatController.GetType().GetField(
-            "_highlights",
-            BindingFlags.NonPublic | BindingFlags.Instance
-        );
-        Assert.That(highlightsField, Is.Not.Null);
-
-        // 4. Quotes handling (e.g. John \"Johnny\" Doe)
+        // Quotes are retained in the complete name but excluded from individual parts.
         var quoteData = new CharacterInfoSystem.CharacterData(
             default,
             "Human",
@@ -352,7 +324,7 @@ public sealed class ChatHighlightTest : GameTest
             "John \"Johnny\" Doe"
         );
         InvokeOnCharacterUpdated(chatController, quoteData);
-        var activeHighlights = (List<string>)highlightsField.GetValue(chatController)!;
+        activeHighlights = (List<string>)highlightsField.GetValue(chatController)!;
         Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)John\ ""Johnny""\ Doe(?!\w)"));
         Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)John(?!\w)"));
         Assert.That(activeHighlights, Contains.Item(@"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))(?<!\w)Johnny(?!\w)"));

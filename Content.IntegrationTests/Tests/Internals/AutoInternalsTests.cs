@@ -11,7 +11,9 @@ namespace Content.IntegrationTests.Tests.Internals;
 public sealed class AutoInternalsTests : GameTest
 {
     [Test]
-    public async Task TestInternalsAutoActivateInSpaceForStationSpawn()
+    // Starlight - start
+    public async Task TestInternalsAutoActivateInSpaceForStationAndEntitySpawn()
+    // Starlight - end
     {
         var pair = Pair;
         var server = pair.Server;
@@ -25,34 +27,24 @@ public sealed class AutoInternalsTests : GameTest
         await server.WaitAssertion(() =>
         {
             var profile = new HumanoidCharacterProfile();
-            var dummy = stationSpawning.SpawnPlayerMob(testMap.GridCoords, "TestInternalsDummy", profile, station: null);
+            // Starlight - start
+            var stationSpawn = stationSpawning.SpawnPlayerMob(testMap.GridCoords, "TestInternalsDummy", profile, station: null);
+            var entitySpawn = server.EntMan.Spawn("TestInternalsDummyEntity", testMap.MapCoords);
+            // Starlight - end
 
             Assert.That(atmos.HasAtmosphere(testMap.Grid), Is.False, "Test map has atmosphere - test needs adjustment!");
-            Assert.That(internals.AreInternalsWorking(dummy), "Internals did not automatically connect!");
+            // Starlight - start
+            Assert.Multiple(() =>
+            {
+                Assert.That(internals.AreInternalsWorking(stationSpawn), "Internals did not automatically connect after station spawning!");
+                Assert.That(internals.AreInternalsWorking(entitySpawn), "Internals did not automatically connect after entity spawning!");
+            });
+            // Starlight - end
 
-            server.EntMan.DeleteEntity(dummy);
-        });
-    }
-
-    [Test]
-    public async Task TestInternalsAutoActivateInSpaceForEntitySpawn()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-
-        var testMap = await pair.CreateTestMap();
-
-        var atmos = server.System<AtmosphereSystem>();
-        var internals = server.System<InternalsSystem>();
-
-        await server.WaitAssertion(() =>
-        {
-            var dummy = server.EntMan.Spawn("TestInternalsDummyEntity", testMap.MapCoords);
-
-            Assert.That(atmos.HasAtmosphere(testMap.Grid), Is.False, "Test map has atmosphere - test needs adjustment!");
-            Assert.That(internals.AreInternalsWorking(dummy), "Internals did not automatically connect!");
-
-            server.EntMan.DeleteEntity(dummy);
+            // Starlight - start
+            server.EntMan.DeleteEntity(stationSpawn);
+            server.EntMan.DeleteEntity(entitySpawn);
+            // Starlight - end
         });
     }
 

@@ -33,48 +33,6 @@ public sealed class HandTests : GameTest
     };
 
     [Test]
-    public async Task TestPickupDrop()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-
-        var entMan = server.ResolveDependency<IEntityManager>();
-        var playerMan = server.ResolveDependency<IPlayerManager>();
-        var mapSystem = server.System<SharedMapSystem>();
-        var sys = entMan.System<SharedHandsSystem>();
-        var tSys = entMan.System<TransformSystem>();
-
-        var data = await pair.CreateTestMap();
-        await pair.RunTicksSync(5);
-
-        EntityUid item = default;
-        EntityUid player = default;
-        HandsComponent hands = default!;
-        await server.WaitPost(() =>
-        {
-            player = playerMan.Sessions.First().AttachedEntity!.Value;
-            var xform = entMan.GetComponent<TransformComponent>(player);
-            item = entMan.SpawnEntity("Crowbar", tSys.GetMapCoordinates(player, xform: xform));
-            hands = entMan.GetComponent<HandsComponent>(player);
-            sys.TryPickup(player, item, hands.ActiveHandId!);
-        });
-
-        // run ticks here is important, as errors may happen within the container system's frame update methods.
-        await pair.RunTicksSync(5);
-        Assert.That(sys.GetActiveItem((player, hands)), Is.EqualTo(item));
-
-        await server.WaitPost(() =>
-        {
-            sys.TryDrop(player, item);
-        });
-
-        await pair.RunTicksSync(5);
-        Assert.That(sys.GetActiveItem((player, hands)), Is.Null);
-
-        await server.WaitPost(() => mapSystem.DeleteMap(data.MapId));
-    }
-
-    [Test]
     public async Task TestPickUpThenDropInContainer()
     {
         var pair = Pair;
@@ -107,6 +65,16 @@ public sealed class HandTests : GameTest
         });
         await pair.RunTicksSync(5);
         Assert.That(sys.GetActiveItem((player, hands)), Is.EqualTo(item));
+
+        // Starlight - start
+        await server.WaitPost(() => sys.TryDrop(player, item));
+        await pair.RunTicksSync(5);
+        Assert.That(sys.GetActiveItem((player, hands)), Is.Null);
+
+        await server.WaitPost(() => sys.TryPickup(player, item, hands.ActiveHandId!));
+        await pair.RunTicksSync(5);
+        Assert.That(sys.GetActiveItem((player, hands)), Is.EqualTo(item));
+        // Starlight - end
 
         // Open then close the box to place the player, who is holding the crowbar, inside of it
         var storage = server.System<EntityStorageSystem>();

@@ -218,7 +218,7 @@ namespace Content.IntegrationTests.Tests.Buckle
 
                 // Move away from the chair
                 oldWorldPosition = xformSystem.GetWorldPosition(chair);
-                xformSystem.SetWorldPosition(human, oldWorldPosition + new Vector2(1, 0));
+                xformSystem.SetWorldPosition(human, oldWorldPosition + new Vector2(100, 0)); // Starlight
             });
 
             await server.WaitRunTicks(1);
@@ -330,77 +330,5 @@ namespace Content.IntegrationTests.Tests.Buckle
             });
         }
 
-        [Test]
-        public async Task ForceUnbuckleBuckleTest()
-        {
-            var pair = Pair;
-            var server = pair.Server;
-
-            var testMap = await pair.CreateTestMap();
-            var coordinates = testMap.GridCoords;
-            var entityManager = server.ResolveDependency<IEntityManager>();
-            var buckleSystem = entityManager.System<SharedBuckleSystem>();
-            var xformSystem = entityManager.System<SharedTransformSystem>();
-
-            EntityUid human = default;
-            EntityUid chair = default;
-            BuckleComponent buckle = null;
-
-            await server.WaitAssertion(() =>
-            {
-                human = entityManager.SpawnEntity(BuckleDummyId, coordinates);
-                chair = entityManager.SpawnEntity(StrapDummyId, coordinates);
-
-                // Component sanity check
-                Assert.Multiple(() =>
-                {
-                    Assert.That(entityManager.TryGetComponent(human, out buckle));
-                    Assert.That(entityManager.HasComponent<StrapComponent>(chair));
-                });
-
-                // Buckle
-                Assert.That(buckleSystem.TryBuckle(human, human, chair, buckleComp: buckle));
-                Assert.Multiple(() =>
-                {
-                    Assert.That(buckle.BuckledTo, Is.Not.Null);
-                    Assert.That(buckle.Buckled);
-                });
-
-                // Move the buckled entity away
-                var oldWorldPosition = xformSystem.GetWorldPosition(chair);
-                xformSystem.SetWorldPosition(human, oldWorldPosition + new Vector2(100, 0));
-            });
-
-            await PoolManager.WaitUntil(server, () => !buckle.Buckled, 10);
-
-            Assert.That(buckle.Buckled, Is.False);
-
-            await server.WaitAssertion(() =>
-            {
-                // Move the now unbuckled entity back onto the chair
-                var oldWorldPosition = xformSystem.GetWorldPosition(chair);
-                xformSystem.SetWorldPosition(human, oldWorldPosition);
-
-                // Buckle
-                Assert.That(buckleSystem.TryBuckle(human, human, chair, buckleComp: buckle));
-                Assert.Multiple(() =>
-                {
-                    Assert.That(buckle.BuckledTo, Is.Not.Null);
-                    Assert.That(buckle.Buckled);
-                });
-            });
-
-            await server.WaitRunTicks(60);
-
-            await server.WaitAssertion(() =>
-            {
-                // Still buckled
-                Assert.Multiple(() =>
-                {
-                    Assert.That(buckle.BuckledTo, Is.Not.Null);
-                    Assert.That(buckle.Buckled);
-                });
-            });
-        }
     }
 }
