@@ -1,12 +1,13 @@
 using Content.Shared.Tag;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Administration.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class AdminGhostComponent : Component
 {
     [DataField] public EntProtoId ToggleAGhostHideActionId = "ActionToggleAGhostHide";
-    [ViewVariables] public bool HiddenFromNonAdminGhosts;
+    [ViewVariables, AutoNetworkedField] public bool HiddenFromNonAdminGhosts;
     [ViewVariables] public EntityUid? ToggleAGhostHideActionEntity;
 }
