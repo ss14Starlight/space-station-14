@@ -104,6 +104,11 @@ public sealed partial class SolutionContainerVisualsSystem : VisualizerSystem<So
                             SpriteSystem.LayerSetSprite((uid, args.Sprite), baseLayer, component.MetamorphicDefaultSprite);
                     }
                 }
+
+                // Starlight-start: Chameleon glass disguise
+                ApplyChameleonGlassAppearance(uid, component, args, fraction, fillLayer, baseLayer, overlayLayer,
+                    hasOverlay, ref maxFillLevels, ref fillBaseName, ref changeColor, ref fillSprite);
+                // Starlight-end
             }
         }
         else
@@ -124,7 +129,11 @@ public sealed partial class SolutionContainerVisualsSystem : VisualizerSystem<So
             SpriteSystem.LayerSetRsiState((uid, args.Sprite), fillLayer, stateName);
 
             if (changeColor && AppearanceSystem.TryGetData<Color>(uid, SolutionContainerVisuals.Color, out var color, args.Component))
-                SpriteSystem.LayerSetColor((uid, args.Sprite), fillLayer, color);
+            {
+                // Starlight-start: Chameleon glass fill color
+                SpriteSystem.LayerSetColor((uid, args.Sprite), fillLayer, GetChameleonGlassFillColor(args, color));
+                // Starlight-end
+            }
             else
                 SpriteSystem.LayerSetColor((uid, args.Sprite), fillLayer, Color.White);
         }

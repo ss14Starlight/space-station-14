@@ -1,4 +1,19 @@
 - type: listing
+  id: UplinkChameleonGlass
+  name: uplink-chameleon-glass-name
+  description: uplink-chameleon-glass-desc
+  productEntity: DrinkChameleonGlass
+  cost:
+    Telecrystal: 3
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bartender
+        - Captain
+
+- type: listing
   id: UplinkContortionistJumpsuit
   name: uplink-contortionist-jumpsuit-name
   description: uplink-contortionist-jumpsuit-desc

@@ -1,0 +1,13 @@
+- type: entity
+  parent: DrinkGlass
+  id: DrinkChameleonGlass
+  suffix: chameleon glass
+  description: A metamorphic glass that automagically turns into a glass appropriate for the drink within. There's a patent number on the bottom.
+  components:
+  - type: ChameleonGlass
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+      enum.ChameleonGlassUiKey.Key:
+        type: ChameleonGlassBoundUserInterface
