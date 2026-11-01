@@ -16,18 +16,21 @@ public sealed partial class ExpendableLightComponent : Component
     public bool Activated => CurrentState is ExpendableLightState.Lit or ExpendableLightState.Fading;
 
     /// <summary>
-    /// Absolute game time at which the current state ends. Only meaningful while Lit or Fading. Networked
-    /// so client and server transition at the same synced moment instead of each running its own countdown.
+    /// Absolute game time at which the current state began. Networked so any client (including one that just
+    /// entered PVS) can place itself in the state via <c>CurTime - StateStartTime</c> — the state end is
+    /// derived (<see cref="StateStartTime"/> + <see cref="StateDuration"/>) and the fade animation is seeked
+    /// to that elapsed offset instead of replaying from zero.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
-    public TimeSpan NextStateTransition;
+    public TimeSpan StateStartTime;
 
     /// <summary>
-    /// Burn time granted the next time the light is ignited. Starts at <see cref="GlowDuration"/> and is
-    /// adjusted by botany potency and by refuelling a spent light.
+    /// How long the current state lasts. For an unlit light this is the burn time the next ignition will use
+    /// (seeded from <see cref="GlowDuration"/>, adjusted by botany potency / refuelling); once Lit or Fading
+    /// it is that state's duration. The state ends at <see cref="StateStartTime"/> + this.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
-    public TimeSpan GlowBudget;
+    public TimeSpan StateDuration;
 
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public ExpendableLightState CurrentState;

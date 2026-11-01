@@ -2,6 +2,7 @@ using Content.Client.Light.Components;
 using Content.Client.Light.EntitySystems;
 using Content.Shared._Starlight.Light.Components;
 using Robust.Client.GameObjects;
+using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.Light.EntitySystems;
 
@@ -9,6 +10,7 @@ public sealed partial class ExpendableLightVisualizerSystem : VisualizerSystem<E
 {
     [Dependency] private PointLightSystem _pointLightSystem = default!;
     [Dependency] private LightBehaviorSystem _lightBehavior = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void FrameUpdate(float frameTime)
     {
@@ -49,7 +51,10 @@ public sealed partial class ExpendableLightVisualizerSystem : VisualizerSystem<E
 
             if (!string.IsNullOrEmpty(lightBehaviourId))
             {
-                _lightBehavior.StartLightBehaviour((uid, lightBehaviour), lightBehaviourId);
+                // Resume the fade at however far into the current state we already are, so a light that just
+                // entered PVS (or spawned mid-life) picks up at the right point instead of replaying the fade.
+                var elapsed = (float)(_timing.CurTime - comp.StateStartTime).TotalSeconds;
+                _lightBehavior.StartLightBehaviour((uid, lightBehaviour), lightBehaviourId, elapsed);
             }
             else if (TryComp<PointLightComponent>(uid, out var light))
             {

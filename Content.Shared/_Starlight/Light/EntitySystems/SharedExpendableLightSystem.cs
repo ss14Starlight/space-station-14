@@ -68,14 +68,15 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
     private void UpdateLight(Entity<ExpendableLightComponent> ent, TimeSpan now)
     {
         var component = ent.Comp;
-        if (!component.Activated || now < component.NextStateTransition)
+        if (!component.Activated || now < component.StateStartTime + component.StateDuration)
             return;
 
         switch (component.CurrentState)
         {
             case ExpendableLightState.Lit:
                 component.CurrentState = ExpendableLightState.Fading;
-                component.NextStateTransition = now + component.FadeOutDuration;
+                component.StateStartTime = now;
+                component.StateDuration = component.FadeOutDuration;
                 Dirty(ent);
 
                 UpdateVisualizer(ent);
@@ -85,6 +86,8 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
             default:
             case ExpendableLightState.Fading:
                 component.CurrentState = ExpendableLightState.Dead;
+                component.StateStartTime = now;
+                component.StateDuration = TimeSpan.Zero;
                 Dirty(ent);
 
                 _nameModifier.RefreshNameModifiers(ent.Owner);
@@ -120,14 +123,14 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
             if (TryComp<ProduceComponent>(ent, out var produceComp) &&
                 produceComp.PlantData != null && TryComp<PlantComponent>(produceComp.PlantData, out var plantData))
             {
-                component.GlowBudget += TimeSpan.FromSeconds(component.PlantBurnTimeModifier * plantData.Potency);
+                component.StateDuration += TimeSpan.FromSeconds(component.PlantBurnTimeModifier * plantData.Potency);
             }
 
             var ignite = new IgnitionEvent(true);
             RaiseLocalEvent(ent, ref ignite);
 
             component.CurrentState = ExpendableLightState.Lit;
-            component.NextStateTransition = _timing.CurTime + component.GlowBudget;
+            component.StateStartTime = _timing.CurTime;
             Dirty(ent);
 
             UpdateSounds(ent, user);
@@ -148,14 +151,15 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
             return;
 
         // Remaining burn time of the active state (zero/negative once spent).
-        var remaining = component.NextStateTransition - _timing.CurTime;
+        var remaining = (component.StateStartTime + component.StateDuration) - _timing.CurTime;
         if (remaining + component.RefuelMaterialTime >= component.RefuelMaximumDuration)
             return;
 
         if (component.CurrentState is ExpendableLightState.Dead)
         {
             component.CurrentState = ExpendableLightState.BrandNew;
-            component.GlowBudget = component.RefuelMaterialTime;
+            component.StateStartTime = _timing.CurTime;
+            component.StateDuration = component.RefuelMaterialTime;
             Dirty(uid, component);
 
             _nameModifier.RefreshNameModifiers(uid);
@@ -164,7 +168,7 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
             return;
         }
 
-        component.NextStateTransition += component.RefuelMaterialTime;
+        component.StateDuration += component.RefuelMaterialTime;
         Dirty(uid, component);
         _stackSystem.ReduceCount((args.Used, stack), 1);
         args.Handled = true;
@@ -267,7 +271,8 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
         }
 
         component.CurrentState = ExpendableLightState.BrandNew;
-        component.GlowBudget = component.GlowDuration;
+        component.StateStartTime = _timing.CurTime;
+        component.StateDuration = component.GlowDuration;
     }
 
     private void OnExpLightUse(Entity<ExpendableLightComponent> ent, ref UseInHandEvent args)

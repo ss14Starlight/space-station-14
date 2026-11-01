@@ -86,7 +86,7 @@ public sealed partial class LightBehaviorSystem : EntitySystem
     /// If specified light behaviours are already animating, calling this does nothing.
     /// Multiple light behaviours can have the same ID.
     /// </summary>
-    public void StartLightBehaviour(Entity<LightBehaviourComponent?> entity, string id = "")
+    public void StartLightBehaviour(Entity<LightBehaviourComponent?> entity, string id = "", float startOffset = 0f)
     {
         if (!Resolve(entity, ref entity.Comp))
             return;
@@ -102,6 +102,10 @@ public sealed partial class LightBehaviorSystem : EntitySystem
                 {
                     CopyLightSettings((entity, entity.Comp), container.LightBehaviour.Property);
                     container.LightBehaviour.UpdatePlaybackValues(container.Animation);
+                    // startOffset lets a resumed behaviour pick up where it should be (e.g. after re-entering
+                    // PVS) instead of replaying from the start; the track seeds its initial playing time with
+                    // it in InitPlayback. Starlight
+                    container.LightBehaviour.StartOffset = startOffset;
                     _player.Play(entity, container.Animation, LightBehaviourComponent.KeyPrefix + container.Key);
                 }
             }

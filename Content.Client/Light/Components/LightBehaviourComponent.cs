@@ -41,7 +41,13 @@ namespace Content.Client.Light.Components
 
         [ViewVariables] protected float MaxTime { get; set; }
 
-        private float _maxTime = default;
+        /// <summary>
+        /// Seconds to start playback at, instead of 0. Lets a behaviour resume partway through (e.g. when the
+        /// entity re-enters PVS) rather than replaying from the beginning. Set before the animation is played.
+        /// Starlight
+        /// </summary>
+        public float StartOffset { get; set; }
+
         private EntityUid _parent = default!;
 
         public void Initialize(EntityUid parent, IRobustRandom random, IEntityManager entMan)
@@ -81,7 +87,9 @@ namespace Content.Client.Light.Components
         {
             OnStart();
 
-            return (-1, _maxTime);
+            // Seed the track's initial playing time with the resume offset (0 by default) so AdvancePlayback
+            // continues from there instead of from the start. Starlight
+            return (-1, StartOffset);
         }
 
         protected void ApplyProperty(object value)
@@ -174,29 +182,32 @@ namespace Content.Client.Light.Components
         [DataField("reverseWhenFinished")]
         public bool ReverseWhenFinished { get; set; }
 
-        // Starlight: Apply the start value the instant the animation starts (Play -> InitPlayback -> OnStart
-        // runs synchronously). Otherwise the property keeps its pre-animation value until AdvancePlayback
-        // runs on the next frame, so a light enabled this frame renders one frame at its full/prototype
-        // value before fading in -> visible flicker, especially while a predicted-spawned light is being
-        // re-created each prediction tick.
+        // Starlight: Apply the value for the current playback position the instant the animation starts
+        // (Play -> InitPlayback -> OnStart runs synchronously). Otherwise the property keeps its pre-animation
+        // value until AdvancePlayback runs on the next frame, so a light enabled this frame renders one frame
+        // at its full/prototype value before the fade -> visible flicker (and on a resume it would flash the
+        // start value). StartOffset is 0 for a fresh play, so this applies StartValue as before.
         public override void OnStart()
         {
-            if (Property == nameof(PointLightComponent.AnimatedEnable)) // boolean property, handled in AdvancePlayback
-                return;
-
-            ApplyProperty(StartValue);
+            ApplyAtTime(StartOffset);
         }
 
         public override (int KeyFrameIndex, float FramePlayingTime) AdvancePlayback(
             object context, int prevKeyFrameIndex, float prevPlayingTime, float frameTime)
         {
             var playingTime = prevPlayingTime + frameTime;
+            ApplyAtTime(playingTime);
+            return (-1, playingTime);
+        }
+
+        private void ApplyAtTime(float playingTime)
+        {
             var interpolateValue = Math.Clamp(playingTime / MaxTime, 0f, 1f); // Starlight: Clamp to prevent overshoot
 
             if (Property == nameof(PointLightComponent.AnimatedEnable)) // special case for boolean
             {
                 ApplyProperty(interpolateValue < EndValue);
-                return (-1, playingTime);
+                return;
             }
 
             // From 0 to MaxTime/2, we go from StartValue to EndValue. From MaxTime/2 to MaxTime, we reverse this interpolation.
@@ -215,8 +226,6 @@ namespace Content.Client.Light.Components
             {
                 ApplyInterpolation(StartValue, EndValue, interpolateValue);
             }
-
-            return (-1, playingTime);
         }
 
         private void ApplyInterpolation(float start, float end, float interpolateValue)
