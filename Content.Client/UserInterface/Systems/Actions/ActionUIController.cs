@@ -670,6 +670,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             _window.ClearButton.OnPressed -= OnClearPressed;
             _window.SearchBar.OnTextChanged -= OnSearchChanged;
             _window.FilterButton.OnItemSelected -= OnFilterSelected;
+            _window.OnKeyBindDown -= OnWindowKeyBindDown; // Starlight
 
             _window.Dispose();
             _window = null;
@@ -687,6 +688,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         _window.ClearButton.OnPressed += OnClearPressed;
         _window.SearchBar.OnTextChanged += OnSearchChanged;
         _window.FilterButton.OnItemSelected += OnFilterSelected;
+        _window.OnKeyBindDown += OnWindowKeyBindDown; // Starlight
 
         if (ActionsBar == null)
         {
