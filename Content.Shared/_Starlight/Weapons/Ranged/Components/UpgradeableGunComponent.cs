@@ -7,11 +7,15 @@ namespace Content.Shared.Weapons.Ranged.Upgrades.Components;
 
 public sealed partial class UpgradeableGunComponent
 {
-//default removal method
+///<summary>
+///default removal method
+///</summary>
     [DataField]
     public ProtoId<ToolQualityPrototype> UpgradeRemovalMethod = "Screwing";
 
-//Time it takes to remove a mod in seconds
+///<summary>
+///Time it takes to remove a mod in seconds
+///</summary>
     [DataField]
     public float UpgradeRemovalDelay = 10f;
 }
