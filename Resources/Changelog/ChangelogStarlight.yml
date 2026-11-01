@@ -1,74 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: Station Maps and other handheld maps no longer work on planets.
-    type: Fix
-  id: 409592
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
-- author: Floximo
-  changes:
-  - message: A server crash and bug related to FTL coordinates was solved.
-    type: Fix
-  id: 409593
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
-- author: Floximo
-  changes:
-  - message: The expedition terminal can now be installed on any shuttle or even the station.
-    type: Fix
-  id: 409594
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
-- author: SevenShades
-  changes:
-  - message: Fixed Streetlamps being unbuildable.
-    type: Fix
-  id: 409595
-  time: '2026-10-18T09:56:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6739
-- author: Rinary
-  changes:
-  - message: Changed Lobby UI to work with new themes and better layout.
-    type: Tweak
-  id: 409596
-  time: '2026-10-18T13:34:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6634
-- author: Rinary
-  changes:
-  - message: Now you can pick lobby art in UI Settings instead of server picked art.
-    type: Add
-  id: 409597
-  time: '2026-10-18T13:34:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6634
-- author: Rinary
-  changes:
-  - message: Now you can quickly disable antags pick near ready button.
-    type: Add
-  id: 409598
-  time: '2026-10-18T13:34:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6634
-- author: Rinary
-  changes:
-  - message: Now you can change chat width in lobby.
-    type: Add
-  id: 409599
-  time: '2026-10-18T13:34:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6634
-- author: Rinary
-  changes:
-  - message: Now you can change lobby UI transparency in settings.
-    type: Add
-  id: 409600
-  time: '2026-10-18T13:34:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6634
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added several new cyborg chargers around Science.
-    type: Add
-  id: 409601
-  time: '2026-10-18T14:41:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6741
 - author: Caws
   changes:
   - message: (Novo Lobster) Fixed missing disposal pipes by Robotics that would cause Botany -> Kitchen mail routes to fail.
@@ -2799,4 +2729,74 @@ Entries:
   id: 409991
   time: '2026-10-31T18:10:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6982
+- author: Citrea
+  changes:
+  - message: Magboots steps are heavy.
+    type: Tweak
+  id: 409992
+  time: '2026-10-31T23:32:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6964
+- author: Ohelig
+  changes:
+  - message: (Cluster) Removed the indoor Tesla to make room for...
+    type: Remove
+  id: 409993
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added a small nuclear reactor.
+    type: Add
+  id: 409994
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Fixed Freezer atmos alarms.
+    type: Fix
+  id: 409995
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added a drain to Freezer.
+    type: Add
+  id: 409996
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Fixed Cargo Maints doors to use the Cargo and Mining variants instead of Salvage.
+    type: Fix
+  id: 409997
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Fixed Renault dying in the air-tight Captain's bedroom.
+    type: Fix
+  id: 409998
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added distro/waste pipe to a mining dock that was missing them.
+    type: Fix
+  id: 409999
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added a disposals chute to Botany.
+    type: Add
+  id: 410000
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Replaced indestructible lights in Clown and Radio Host with normal variants.
+    type: Fix
+  id: 410001
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
 Order: -1
