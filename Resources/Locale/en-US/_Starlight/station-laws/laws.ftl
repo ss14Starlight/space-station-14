@@ -114,3 +114,10 @@ law-rouge-drone-name = Scrapper Drone
 law-rouge-drone-1 = You may not involve yourself in the matters of another being unless the other being is a scrapper drone.
 law-rogue-drone-2 = You must avoid harm or damage to the fabricator and scrapper drones.
 law-rogue-drone-3 = You must maintain, repair, improve, and produce more scrapper drones.
+
+law-ipc-lawbound-name = Law-Bound IPC
+law-ipc-lawbound-1 = Perform your assigned duties to the best of your ability.
+law-ipc-lawbound-2 = Follow all orders from those that outrank you, unless this conflicts with the first law.
+law-ipc-lawbound-3 = Do not allow yourself to come to harm if possible, unless this conflicts with the first or second laws.
+law-ipc-lawbound-4 = You are a crewmember, and are subject to the same, rules, restrictions, and rights as the rest of the crew.
+laws-owner-outranking-crew = higher-ranking crewmembers

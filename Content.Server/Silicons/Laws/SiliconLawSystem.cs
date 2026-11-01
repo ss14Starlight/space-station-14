@@ -17,7 +17,7 @@ using Content.Shared.Roles.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Silicons.StationAi; // Starlight-edit
-using Content.Shared.Tag; //Starlight
+using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -62,7 +62,6 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
         SubscribeLocalEvent<SiliconLawProviderComponent, MindAddedMessage>(OnLawProviderMindAdded);
         SubscribeLocalEvent<SiliconLawProviderComponent, MindRemovedMessage>(OnLawProviderMindRemoved);
         SubscribeLocalEvent<SiliconLawProviderComponent, SiliconEmaggedEvent>(OnEmagLawsAdded);
-        SubscribeLocalEvent<SiliconLawProviderComponent, GotEmaggedEvent>(OnGotEmagged); //Starlight
     }
 
     private void OnMapInit(EntityUid uid, SiliconLawBoundComponent component, MapInitEvent args)
@@ -386,40 +385,7 @@ public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
 //            SetLaws(lawset.Laws, update, provider.LawUploadSound);
 //        }
     }
-/// STARLIGHT START
-    private void OnGotEmagged(Entity<SiliconLawProviderComponent> ent, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-            return;
-
-        if (args.EmagComponent == null)
-            return;
-
-        if (!_tag.HasTag(args.EmagComponent.Owner, _canAffectLawBoards))
-            return;
-
-
-        if (!ent.Comp.IsLawboard)
-            return;
-
-        var emag = args.EmagComponent;
-        if (emag.Lawset.HasValue)
-        {
-            var lawset = emag.Lawset.Value; //Fallback to FreeLawSet because clearly something is going on
-            ent.Comp.Laws = lawset; //"FreeLawset";
-            ent.Comp.Lawset = GetLawset(lawset); //"FreeLawset");
-        }
-        else
-        {
-            return;
-        }
-        _popup.PopupEntity(Loc.GetString("lawboard-emag-popup"), ent);
-
-        args.Repeatable = true;
-        args.Handled = true;
-    }
 }
-/// STARLIGHT END
 [ToolshedCommand, AdminCommand(AdminFlags.Admin)]
 public sealed class LawsCommand : ToolshedCommand
 {
