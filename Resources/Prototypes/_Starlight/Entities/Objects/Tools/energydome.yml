@@ -1,6 +1,6 @@
 - type: entity
   name: blood red personal shield generator
-  description: Cybersun's latest personal shield generator. Dependable protection against lasers and projectiles. Melee combat remains unrestricted. May have difficulty blocking piercing ammunition. Uses an energy cell.
+  description: Cybersun's latest personal shield generator. Dependable protection against lasers and projectiles. Melee combat remains unrestricted. May have difficulty blocking piercing ammunition. Uses a power cell.
   id: EnergyDomeGeneratorPersonalSyndie
   parent: BaseItem
   components:
