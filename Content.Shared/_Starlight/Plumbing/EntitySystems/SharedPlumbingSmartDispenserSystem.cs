@@ -18,12 +18,6 @@ namespace Content.Shared._Starlight.Plumbing.EntitySystems;
 
 public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
 {
-    private sealed class ActorUiState
-    {
-        public EntityUid? BoundContainer;
-        public ReagentDispenserDispenseAmount DispenseAmount = ReagentDispenserDispenseAmount.U10;
-    }
-
     [Dependency] protected SharedHandsSystem _hands = default!;
     [Dependency] protected InjectorSystem _injectorSystem = default!;
     [Dependency] protected SharedSolutionContainerSystem _solutionSystem = default!;
@@ -83,6 +77,14 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         if (args.Handled)
             return;
 
+        if (HasComp<HandLabelerComponent>(args.Used))
+        {
+            args.Handled = true;
+            SetInteractedWith(ent, args.Used);
+            _uiSystem.OpenUi(ent.Owner, PlumbingSmartDispenserUiKey.Key, args.User);
+            return;
+        }
+
         if (TryComp<LabelComponent>(args.Used, out var label)
             && !string.IsNullOrWhiteSpace(label.CurrentLabel)
             && TryMatchLabelToReagent(label.CurrentLabel, out var reagentId))
@@ -108,6 +110,13 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
     {
         if (args.Actor is not { Valid: true } actor)
             return;
+
+        if (GetBoundLabeler(actor, args.TargetEntity) is Entity<HandLabelerComponent> labeler)
+        {
+            SetReagentLabel(ent, args.ReagentId, labeler.Comp.AssignedLabel);
+            UpdateUi(ent);
+            return;
+        }
 
         var outputContainer = GetBoundContainer(actor, args.TargetEntity);
         if (outputContainer is not { } targetContainer)
@@ -328,6 +337,31 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         return list;
     }
 
+    private void SetReagentLabel(
+        Entity<PlumbingSmartDispenserComponent> ent,
+        string reagentId,
+        string newLabel)
+    {
+        // check we actually have the reagent in stock so clients can't
+        // fill the label dictionary with infinite entries
+        if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var sourceEnt, out var sourceSolution)
+            || sourceEnt is not { } sourceSolutionEnt)
+            return;
+
+        bool hasReagent = false;
+        foreach (var reagent in sourceSolution.Contents)
+        {
+            if (reagent.Reagent.Prototype == reagentId)
+            {
+                hasReagent = true;
+                break;
+            }
+        }
+
+        ent.Comp.ReagentLabels[reagentId] = newLabel;
+        Dirty(ent);
+    }
+
     private bool TryDispenseReagent(
         Entity<PlumbingSmartDispenserComponent> ent,
         string reagentId,
@@ -449,6 +483,17 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
             return solution;
 
         return null;
+    }
+
+    private Entity<HandLabelerComponent>? GetBoundLabeler(EntityUid actor, NetEntity suppliedEnt)
+    {
+        if (!TryGetEntity(suppliedEnt, out var ent)
+            || ent is not { Valid: true } labeler
+            || !_hands.IsHolding(actor, labeler, out _)
+            || !TryComp<HandLabelerComponent>(labeler, out var comp))
+            return null;
+
+        return (labeler, comp);
     }
 
     private EntityUid? GetBoundContainer(EntityUid actor, NetEntity suppliedEnt)

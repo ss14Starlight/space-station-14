@@ -16,7 +16,8 @@ public sealed class PlumbingSmartDispenserBoundUserInterface(EntityUid owner, En
         _window = this.CreateWindow<PlumbingSmartDispenserWindow>();
         _window.SetOwner(Owner);
 
-        _window.AmountGrid.OnButtonPressed += value => SendPredictedMessage(new PlumbingSmartDispenserSetDispenseAmountMessage(value));
+        // amount grid is not predicted, as its local to client
+        _window.AmountGrid.OnButtonPressed += value => SendMessage(new PlumbingSmartDispenserSetDispenseAmountMessage(value));
         _window.OnClearPressed += (target) => SendPredictedMessage(new PlumbingSmartDispenserClearSolutionMessage(target));
         _window.OnDispenseReagentPressed += (reagentId, amount, target) => SendPredictedMessage(new PlumbingSmartDispenserDispenseReagentMessage(reagentId, amount, target));
     }

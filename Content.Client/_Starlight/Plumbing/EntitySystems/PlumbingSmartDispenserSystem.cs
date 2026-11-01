@@ -23,6 +23,9 @@ public sealed partial class PlumbingSmartDispenserSystem : SharedPlumbingSmartDi
         });
     }
 
+    [SubscribeLocalEvent]
+    private void OnAutoState(Entity<PlumbingSmartDispenserComponent> ent, ref AfterAutoHandleStateEvent args) => UpdateUi(ent);
+
     private void OnUiClosed(Entity<PlumbingSmartDispenserComponent> ent, ref BoundUIClosedEvent args)
     {
         if (!_timing.IsFirstTimePredicted) return;
