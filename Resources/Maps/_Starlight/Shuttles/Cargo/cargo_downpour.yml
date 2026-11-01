@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/27/2026 09:32:23
-  entityCount: 230
+  time: 10/29/2026 11:52:57
+  entityCount: 233
 maps: []
 grids:
 - 1
@@ -731,6 +731,23 @@ entities:
       parent: 1
       rot: 1.5707963267948966 rad
       pos: 3.5,-1.5
+- proto: DecalSpawnerDirtWide
+  entities:
+  - uid: 231
+    components:
+    - type: Transform
+      parent: 1
+      pos: 0.5,-2.5
+  - uid: 232
+    components:
+    - type: Transform
+      parent: 1
+      pos: 0.5,0.5
+  - uid: 233
+    components:
+    - type: Transform
+      parent: 1
+      pos: 0.5,3.5
 - proto: FloorWaterCatwalkBorderlessEntity
   entities:
   - uid: 60

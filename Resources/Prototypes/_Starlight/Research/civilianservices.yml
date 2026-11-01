@@ -19,3 +19,21 @@
   radioChannels:
   - Medical
   - Service
+
+- type: technology
+  id: RadioMusicCommunications
+  name: research-technology-radio-music-communication
+  icon:
+    sprite: _Starlight/Structures/Machines/StationRadio/vinylplayer.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - VinylPlayerCircuitboard
+  - CDPlayerCircuitboard
+  - BroadcastRecorderCircuitboard
+  - StationRadioMixerCircuitboard
+  - TapeDeckCircuitboard
+  - StationRadioServerCircuitboard
+  - StationRadioRigCircuitboard
