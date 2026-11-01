@@ -8,6 +8,9 @@
   id: JobDutyOfficer
 
 - type: playTimeTracker
+  id: JobGunnerySergeant
+
+- type: playTimeTracker
   id: JobK9
 
 - type: playTimeTracker
@@ -102,6 +105,9 @@
 
 - type: playTimeTracker
   id: JobDrone
+
+- type: playTimeTracker
+  id: JobEmotionalSupportScurret
 
 # Other ghosts
 
