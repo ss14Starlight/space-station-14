@@ -654,7 +654,7 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-# 🌟Starlight🌟
+# Starlight-start
 - function: Jump
   type: State
   key: Space
@@ -672,3 +672,4 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
+# Starlight-end
