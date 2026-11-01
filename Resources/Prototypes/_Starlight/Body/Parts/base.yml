@@ -35,9 +35,13 @@
     partType: Torso
   - type: BodyPartDamage
     maxHealth: 150
-    maxIntegrity: 150
-    integrity: 150
+    maxIntegrity: 200
+    integrity: 200
     hitWeight: 40
+    minDestroyingHit: 60
+    destroyedBy:
+    - Blunt
+    - Piercing
     armorSlots:
     - OUTERCLOTHING
     - OUTERCLOTHING2
@@ -59,6 +63,7 @@
     maxIntegrity: 100
     integrity: 100
     hitWeight: 15
+    minDestroyingHit: 25
     armorSlots:
     - HEAD
     - EYES
@@ -121,6 +126,7 @@
     maxIntegrity: 60
     integrity: 60
     hitWeight: 4
+    minDestroyingHit: 10
     armorSlots:
     - GLOVES
     - OUTERCLOTHING
@@ -141,6 +147,7 @@
     maxIntegrity: 60
     integrity: 60
     hitWeight: 4
+    minDestroyingHit: 10
     armorSlots:
     - GLOVES
     - OUTERCLOTHING
@@ -203,6 +210,7 @@
     maxIntegrity: 60
     integrity: 60
     hitWeight: 4
+    minDestroyingHit: 10
     armorSlots:
     - FEET
     - OUTERCLOTHING
@@ -222,6 +230,7 @@
     maxIntegrity: 60
     integrity: 60
     hitWeight: 4
+    minDestroyingHit: 10
     armorSlots:
     - FEET
     - OUTERCLOTHING

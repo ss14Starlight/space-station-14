@@ -11,6 +11,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -24,11 +25,14 @@ public sealed partial class BodyPartDamageSystem : EntitySystem
     [Dependency] private SLBodySystem _body = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private IRobustRandom _random = default!;
 
     private static readonly ProtoId<DamageGroupPrototype>[] LocalGroups = ["Brute", "Burn"];
+    public static readonly ProtoId<DamageTypePrototype> HeatType = "Heat";
+    private static readonly FixedPoint2 MangledIntegrity = 1;
 
     private readonly HashSet<ProtoId<DamageTypePrototype>> _localTypes = new();
     private readonly Dictionary<EntityUid, BodyDamageTargeting> _targeting = new();
@@ -279,11 +283,37 @@ public sealed partial class BodyPartDamageSystem : EntitySystem
         part.Comp.Damage.DamageDict[type] = part.Comp.Damage.DamageDict.GetValueOrDefault(type) + amount;
 
         // Damage past the part's health is structural; while it still has health, only a share is.
-        var integrity = part.Comp.Integrity - (toHealth * share + overflow);
-        SetIntegrity(body, part, integrity, FixedPoint2.Max(FixedPoint2.Zero, -integrity));
+        var structural = toHealth * share + overflow;
+        var integrity = part.Comp.Integrity - structural;
+
+        // Only a hard enough hit of the right kind breaks a part; wearing it down just leaves it hanging on.
+        if (integrity <= 0 && (structural < part.Comp.MinDestroyingHit || !part.Comp.DestroyedBy.Contains(type)))
+            integrity = FixedPoint2.Min(part.Comp.Integrity, MangledIntegrity);
+
+        // Enough burns char the part away, however slowly they came.
+        if (type == HeatType && IsBurnedAway(body, part))
+            integrity = FixedPoint2.Zero;
+
+        SetIntegrity(body, part, integrity, FixedPoint2.Max(FixedPoint2.Zero, -integrity), type);
     }
 
-    public void SetIntegrity(EntityUid body, Entity<BodyPartDamageComponent> part, FixedPoint2 integrity, FixedPoint2 overkill = default)
+    private bool IsBurnedAway(EntityUid body, Entity<BodyPartDamageComponent> part)
+    {
+        var threshold = part.Comp.BurnThreshold ?? part.Comp.MaxHealth + part.Comp.MaxIntegrity;
+        if (part.Comp.Damage.DamageDict.GetValueOrDefault(HeatType) < threshold)
+            return false;
+
+        return !TryComp<SLBodyPartComponent>(part, out var slPart)
+            || slPart.Kind != BodyPartType.Torso
+            || _mobState.IsDead(body);
+    }
+
+    public void SetIntegrity(
+        EntityUid body,
+        Entity<BodyPartDamageComponent> part,
+        FixedPoint2 integrity,
+        FixedPoint2 overkill = default,
+        ProtoId<DamageTypePrototype>? cause = null)
     {
         var old = part.Comp.Integrity;
         integrity = FixedPoint2.Clamp(integrity, FixedPoint2.Zero, part.Comp.MaxIntegrity);
@@ -293,7 +323,7 @@ public sealed partial class BodyPartDamageSystem : EntitySystem
         part.Comp.Integrity = integrity;
         Dirty(part);
 
-        var ev = new BodyPartIntegrityChangedEvent(body, part, old, integrity, overkill);
+        var ev = new BodyPartIntegrityChangedEvent(body, part, old, integrity, overkill, cause);
         RaiseLocalEvent(part, ref ev);
         RaiseLocalEvent(body, ref ev);
     }

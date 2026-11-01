@@ -17,6 +17,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.Components;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -157,10 +158,10 @@ public sealed class BodyPartDamageTest : GameTest
             Hit(armHuman, arm, "Slash", 130);
             armHumanDamage = damageable.GetTotalDamage(armHuman);
 
-            // Far past it: the hand is blown apart.
+            // Crushed far past it: the hand is blown apart.
             handHuman = SpawnHuman();
             hand = Part(handHuman, BodyPartType.Hand, BodyPartSymmetry.Right);
-            Hit(handHuman, hand, "Slash", 200);
+            Hit(handHuman, hand, "Blunt", 200);
 
             headHuman = SpawnHuman();
             head = Part(headHuman, BodyPartType.Head);
@@ -168,7 +169,7 @@ public sealed class BodyPartDamageTest : GameTest
             Hit(headHuman, head, "Blunt", 180);
 
             torsoHuman = SpawnHuman();
-            Hit(torsoHuman, Part(torsoHuman, BodyPartType.Torso), "Blunt", 300);
+            Hit(torsoHuman, Part(torsoHuman, BodyPartType.Torso), "Blunt", 400);
         });
         await server.WaitRunTicks(3);
 
@@ -190,6 +191,92 @@ public sealed class BodyPartDamageTest : GameTest
 
                 Assert.That(entMan.Deleted(torsoHuman) || entMan.GetComponent<MetaDataComponent>(torsoHuman).EntityLifeStage >= EntityLifeStage.Terminating,
                     "a destroyed torso gibs the body");
+            }
+        });
+    }
+
+    [Test]
+    public async Task OnlyHardHitsAndFireDestroyParts()
+    {
+        var server = Pair.Server;
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var protoMan = server.ResolveDependency<IPrototypeManager>();
+        var damageable = entMan.System<DamageableSystem>();
+        var partDamage = entMan.System<BodyPartDamageSystem>();
+        var mobState = entMan.System<MobStateSystem>();
+        var map = await Pair.CreateTestMap();
+
+        EntityUid SpawnHuman() => entMan.SpawnEntity("MobHuman", map.GridCoords);
+
+        Entity<BodyPartDamageComponent> Part(EntityUid human, BodyPartType kind)
+            => partDamage.GetDamageableParts((human, entMan.GetComponent<SLBodyComponent>(human)))
+                .First(p => entMan.GetComponent<SLBodyPartComponent>(p).Kind == kind);
+
+        void Hit(EntityUid human, EntityUid part, string type, FixedPoint2 amount)
+        {
+            using (partDamage.Target(human, BodyDamageTargeting.AtPart(part)))
+                damageable.ChangeDamage(human, new DamageSpecifier(protoMan.Index<DamageTypePrototype>(type), amount), ignoreResistances: true);
+        }
+
+        int AshCount()
+        {
+            var count = 0;
+            var query = entMan.EntityQueryEnumerator<MetaDataComponent>();
+            while (query.MoveNext(out var meta))
+            {
+                if (meta.EntityPrototype?.ID == "Ash")
+                    count++;
+            }
+            return count;
+        }
+
+        EntityUid beatenHuman = default, torso = default, frozenHuman = default, frozenArm = default;
+        EntityUid burnedHuman = default, burnedArm = default, corpse = default;
+        var ashBefore = 0;
+        await server.WaitPost(() =>
+        {
+            ashBefore = AshCount();
+
+            // A long beating wears the torso down to nothing, but never tears it apart
+            // (kept under the species' own 400 blunt gib threshold).
+            beatenHuman = SpawnHuman();
+            torso = Part(beatenHuman, BodyPartType.Torso);
+            for (var i = 0; i < 70; i++)
+                Hit(beatenHuman, torso, "Blunt", 5);
+
+            // Cold can't take a limb off, however much of it.
+            frozenHuman = SpawnHuman();
+            frozenArm = Part(frozenHuman, BodyPartType.Arm);
+            Hit(frozenHuman, frozenArm, "Cold", 300);
+
+            // A heavy burn chars the arm away.
+            burnedHuman = SpawnHuman();
+            burnedArm = Part(burnedHuman, BodyPartType.Arm);
+            Hit(burnedHuman, burnedArm, "Heat", 150);
+
+            // A corpse left burning goes down to ash.
+            corpse = SpawnHuman();
+            mobState.ChangeMobState(corpse, MobState.Dead);
+            Hit(corpse, Part(corpse, BodyPartType.Torso), "Heat", 400);
+        });
+        await server.WaitRunTicks(3);
+
+        await server.WaitAssertion(() =>
+        {
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(entMan.EntityExists(beatenHuman), "wearing the torso down does not gib");
+                Assert.That(entMan.GetComponent<BodyPartDamageComponent>(torso).Integrity, Is.EqualTo(FixedPoint2.New(1)),
+                    "the torso hangs on at the last point of integrity");
+
+                Assert.That(entMan.GetComponent<SLBodyPartComponent>(frozenArm).Body, Is.EqualTo(frozenHuman));
+
+                Assert.That(entMan.Deleted(burnedArm), "a burnt arm turns to ash, it does not drop");
+                Assert.That(entMan.EntityExists(burnedHuman));
+
+                Assert.That(entMan.Deleted(corpse) || entMan.GetComponent<MetaDataComponent>(corpse).EntityLifeStage >= EntityLifeStage.Terminating,
+                    "a burnt corpse is incinerated");
+                Assert.That(AshCount(), Is.EqualTo(ashBefore + 2));
             }
         });
     }

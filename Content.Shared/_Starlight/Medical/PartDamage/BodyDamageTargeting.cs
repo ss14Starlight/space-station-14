@@ -2,8 +2,10 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Medical.PartDamage;
 
@@ -72,7 +74,8 @@ public record struct BodyPartHitWeightsEvent(List<(EntityUid Part, float Weight)
 
 /// <summary>
 /// Raised on a body part and on its body when the part's integrity changes. <see cref="Overkill"/> is how far below
-/// zero the hit went, for telling a severed limb from a blown off one.
+/// zero the hit went, for telling a severed limb from a blown off one; <see cref="Cause"/> is the damage type that
+/// did it, for telling a severed limb from a burnt one.
 /// </summary>
 [ByRefEvent]
 public readonly record struct BodyPartIntegrityChangedEvent(
@@ -80,4 +83,5 @@ public readonly record struct BodyPartIntegrityChangedEvent(
     EntityUid Part,
     FixedPoint2 OldIntegrity,
     FixedPoint2 NewIntegrity,
-    FixedPoint2 Overkill);
+    FixedPoint2 Overkill,
+    ProtoId<DamageTypePrototype>? Cause);

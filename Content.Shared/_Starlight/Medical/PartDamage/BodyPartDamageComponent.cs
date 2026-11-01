@@ -46,4 +46,24 @@ public sealed partial class BodyPartDamageComponent : Component
 
     [DataField]
     public float DefaultPenetration = 0.1f;
+
+    /// <summary>
+    /// Structural damage of one type a single hit has to deal to destroy the part. Anything weaker, like fire,
+    /// pressure or a beating, leaves it mangled at the last point of integrity.
+    /// </summary>
+    [DataField]
+    public FixedPoint2 MinDestroyingHit = 15;
+
+    /// <summary>
+    /// Damage types that can destroy the part at all; the rest only mangle it.
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<DamageTypePrototype>> DestroyedBy = new() { "Blunt", "Slash", "Piercing", "Heat" };
+
+    /// <summary>
+    /// Heat damage on the part at which it burns away, however it got there. Defaults to health plus integrity.
+    /// A torso only burns away on a dead body.
+    /// </summary>
+    [DataField]
+    public FixedPoint2? BurnThreshold;
 }
