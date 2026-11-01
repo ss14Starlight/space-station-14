@@ -75,6 +75,7 @@
   components:
   - type: SubdermalImplant
     permanent: false
+    implantAction: ActionActivateBudgetBluespaceImplant
   - type: LeaveItemsOnTrigger
     targetUser: true
 
