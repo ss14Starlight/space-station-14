@@ -52,6 +52,14 @@
         ]
       ]
     },
+	{
+      "name": "flox_rest_single",
+      "delays": [
+        [
+          1
+        ]
+      ]
+    },
     {
       "name": "flox-inhand-left",
       "directions": 4,
