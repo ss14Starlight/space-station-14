@@ -39,18 +39,10 @@ public sealed partial class ChameleonGlassSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ChameleonGlassComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<ChameleonGlassComponent, InteractUsingEvent>(OnInteractUsing);
-        SubscribeLocalEvent<ChameleonGlassComponent, ChameleonGlassStirDoAfterEvent>(OnStirred);
-        SubscribeLocalEvent<ChameleonGlassComponent, ChameleonGlassSelectMessage>(OnSelected);
-        SubscribeLocalEvent<ChameleonGlassComponent, SolutionChangedEvent>(OnSolutionChanged);
-        SubscribeLocalEvent<ChameleonGlassComponent, EmpPulseEvent>(OnEmpPulse);
-        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
-        Subs.BuiEvents<ChameleonGlassComponent>(ChameleonGlassUiKey.Key,
-            subs => subs.Event<BoundUIClosedEvent>(OnUiClosed));
         PrepareDisguises();
     }
 
+    [SubscribeLocalEvent]
     private void OnMapInit(Entity<ChameleonGlassComponent> ent, ref MapInitEvent args)
     {
         // Unique chameleon trace to give detectives something to find
@@ -74,6 +66,7 @@ public sealed partial class ChameleonGlassSystem : EntitySystem
         UpdateUi(ent);
     }
 
+    [SubscribeLocalEvent]
     private void OnInteractUsing(Entity<ChameleonGlassComponent> ent, ref InteractUsingEvent args)
     {
         if (args.Handled)
@@ -94,6 +87,7 @@ public sealed partial class ChameleonGlassSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnStirred(Entity<ChameleonGlassComponent> ent, ref ChameleonGlassStirDoAfterEvent args)
     {
         var pending = ent.Comp.PendingReagent;
@@ -110,9 +104,7 @@ public sealed partial class ChameleonGlassSystem : EntitySystem
         SetDisguise(ent, pending);
     }
 
-    /// <summary>
-    ///     Change chameleon items name, description and sprite to mimic other entity prototype.
-    /// </summary>
+    [SubscribeLocalEvent]
     private void OnSelected(Entity<ChameleonGlassComponent> ent, ref ChameleonGlassSelectMessage args)
     {
         if (ent.Comp.Editor != args.Actor || ent.Comp.Spoon is not { } spoon ||
@@ -159,15 +151,17 @@ public sealed partial class ChameleonGlassSystem : EntitySystem
         UpdateUi(ent);
     }
 
-    private void OnUiClosed(EntityUid uid, ChameleonGlassComponent component, BoundUIClosedEvent args)
+    [SubscribeLocalEvent]
+    private void OnUiClosed(Entity<ChameleonGlassComponent> ent, ref BoundUIClosedEvent args)
     {
-        if (component.Editor == args.Actor)
+        if (args.UiKey.Equals(ChameleonGlassUiKey.Key) && ent.Comp.Editor == args.Actor)
         {
-            component.Editor = null;
-            component.Spoon = null;
+            ent.Comp.Editor = null;
+            ent.Comp.Spoon = null;
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnSolutionChanged(Entity<ChameleonGlassComponent> ent, ref SolutionChangedEvent args)
     {
         if (ent.Comp.SelectedReagent == null)
@@ -196,6 +190,7 @@ public sealed partial class ChameleonGlassSystem : EntitySystem
     }
 
     // Scrabmled by EMP, same as chameleon clothing.
+    [SubscribeLocalEvent]
     private void OnEmpPulse(Entity<ChameleonGlassComponent> ent, ref EmpPulseEvent args)
     {
         if (_validDisguises.Count == 0)
@@ -222,6 +217,7 @@ public sealed partial class ChameleonGlassSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnPrototypeReload(PrototypesReloadedEventArgs args)
     {
         if (args.WasModified<ReagentPrototype>())
