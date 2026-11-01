@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Vampires and Changelings can now gain more kill objectives (and Changelings can get lesson objectives too).
-    type: Add
-  id: 409626
-  time: '2026-10-20T11:39:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6682
-- author: wonderfulnewworld
-  changes:
   - message: Traitors, Thieves, Vampires, and Changelings can now select their objectives.
     type: Add
   id: 409627
@@ -2799,4 +2792,11 @@ Entries:
   id: 410025
   time: '2026-11-01T15:29:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6994
+- author: DocMoth
+  changes:
+  - message: Added Avali Coscult Hardsuit Sprites.
+    type: Add
+  id: 410026
+  time: '2026-11-01T15:56:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6993
 Order: -1
