@@ -36,7 +36,8 @@
   - type: NavMapBeacon
     color: "#ff0000"
     defaultText: nav-beacon-supply-rift
-    enabled: true
+    # Hidden until the rift is half-charged and announced to the station.
+    enabled: false
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
