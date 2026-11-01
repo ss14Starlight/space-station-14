@@ -518,6 +518,16 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
 
     private void OnWindowActionPressed(GUIBoundKeyEventArgs args, ActionButton action)
     {
+        // Starlight-start
+        if (args.Function == EngineKeyFunctions.UIRightClick)
+        {
+            if (action.Action is { } toAdd)
+                AddToHotbar(toAdd);
+            args.Handle();
+            return;
+        }
+        // Starlight-end
+
         if (args.Function != EngineKeyFunctions.UIClick && args.Function != EngineKeyFunctions.Use)
             return;
 
@@ -539,7 +549,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
 
     private void OnActionPressed(GUIBoundKeyEventArgs args, ActionButton button)
     {
-        if (args.Function == EngineKeyFunctions.UIRightClick)
+        if (args.Function == ContentKeyFunctions.HotbarRemove) // Starlight
         {
             SetAction(button, null);
             args.Handle();
