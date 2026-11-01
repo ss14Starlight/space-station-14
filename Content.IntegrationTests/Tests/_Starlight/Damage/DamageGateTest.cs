@@ -16,41 +16,48 @@ namespace Content.IntegrationTests.Tests._Starlight.Damage;
 public sealed class DamageGateTest : GameTest
 {
     private const string CappedEntity = "TestDamageGateCapped";
+    private const string UncappedEntity = "TestDamageGateUncapped";
     private const string ThresholdEntity = "TestDamageGateThresholds";
     private const string CooldownEntity = "TestDamageGateCooldown";
     private const string BluntDamageType = "Blunt";
     private const string HeatDamageType = "Heat";
+    private const string PrototypeIndent = "  ";
 
     [TestPrototypes] private const string Prototypes = $"""
         - type: entity
-          id: {CappedEntity}
-          components:
-          - type: Damageable
-          - type: DamageGate
-            maxDamagePerHit: 25
+        {PrototypeIndent}id: {CappedEntity}
+        {PrototypeIndent}components:
+        {PrototypeIndent}- type: Damageable
+        {PrototypeIndent}- type: DamageGate
+        {PrototypeIndent}{PrototypeIndent}maxDamagePerHit: 25
 
         - type: entity
-          id: {ThresholdEntity}
-          components:
-          - type: Damageable
-          - type: Destructible
-            thresholds:
-            - trigger:
-                !type:DamageTrigger
-                damage: 50
-            - trigger:
-                !type:DamageTrigger
-                damage: 100
-          - type: DamageGate
-            limitToNextDestructionThreshold: true
-            thresholdDamageCooldown: 1
+        {PrototypeIndent}id: {UncappedEntity}
+        {PrototypeIndent}components:
+        {PrototypeIndent}- type: Damageable
 
         - type: entity
-          id: {CooldownEntity}
-          components:
-          - type: Damageable
-          - type: DamageGate
-            damageCooldown: 1
+        {PrototypeIndent}id: {ThresholdEntity}
+        {PrototypeIndent}components:
+        {PrototypeIndent}- type: Damageable
+        {PrototypeIndent}- type: Destructible
+        {PrototypeIndent}{PrototypeIndent}thresholds:
+        {PrototypeIndent}{PrototypeIndent}- trigger:
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}!type:DamageTrigger
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}damage: 50
+        {PrototypeIndent}{PrototypeIndent}- trigger:
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}!type:DamageTrigger
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}damage: 100
+        {PrototypeIndent}- type: DamageGate
+        {PrototypeIndent}{PrototypeIndent}limitToNextDestructionThreshold: true
+        {PrototypeIndent}{PrototypeIndent}thresholdDamageCooldown: 1
+
+        - type: entity
+        {PrototypeIndent}id: {CooldownEntity}
+        {PrototypeIndent}components:
+        {PrototypeIndent}- type: Damageable
+        {PrototypeIndent}- type: DamageGate
+        {PrototypeIndent}{PrototypeIndent}damageCooldown: 1
         """;
 
     [Test]
@@ -96,6 +103,45 @@ public sealed class DamageGateTest : GameTest
         });
 
         await server.WaitPost(() => server.CfgMan.SetCVar(CCVars.PlaytestAllDamageModifier, previousDamageModifier));
+    }
+
+    [Test]
+    public async Task DoesNotMutateDamageSpecifierReusedAcrossEntities()
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+
+        EntityUid cappedEntity = default;
+        EntityUid uncappedEntity = default;
+        DamageableSystem damageable = null!;
+        DamageTypePrototype blunt = null!;
+
+        await server.WaitPost(() =>
+        {
+            var entityManager = server.ResolveDependency<IEntityManager>();
+            var prototypeManager = server.ResolveDependency<IPrototypeManager>();
+            cappedEntity = entityManager.SpawnEntity(CappedEntity, map.MapCoords);
+            uncappedEntity = entityManager.SpawnEntity(UncappedEntity, map.MapCoords);
+            damageable = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<DamageableSystem>();
+            blunt = prototypeManager.Index<DamageTypePrototype>(BluntDamageType);
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            var damage = new DamageSpecifier(blunt, 60);
+            damageable.ChangeDamage(cappedEntity, damage, ignoreResistances: true, ignoreGlobalModifiers: true);
+            var damageAfterGate = damage.DamageDict[blunt.ID];
+
+            damageable.ChangeDamage(uncappedEntity, damage, ignoreResistances: true, ignoreGlobalModifiers: true);
+
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(damageAfterGate, Is.EqualTo(FixedPoint2.New(60)));
+                Assert.That(damageable.GetTotalDamage(cappedEntity), Is.EqualTo(FixedPoint2.New(25)));
+                Assert.That(damageable.GetTotalDamage(uncappedEntity), Is.EqualTo(FixedPoint2.New(60)));
+            }
+        });
     }
 
     [Test]

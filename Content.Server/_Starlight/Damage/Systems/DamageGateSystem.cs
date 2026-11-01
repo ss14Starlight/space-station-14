@@ -57,6 +57,7 @@ public sealed partial class DamageGateSystem : EntitySystem
 
     private void OnDamageAfterModifiers(EntityUid uid, DamageGateComponent component, DamageAfterModifiersEvent args)
     {
+        args.Damage = args.Damage.Clone();
         var maxDamage = component.MaxDamagePerHit;
 
         if (IsCooldownActive(component.DamageCooldown, component.DamageCooldownUntil)
