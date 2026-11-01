@@ -9,13 +9,12 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/brigmedicglasses.rsi
   - type: FlashImmunity
-  - type: SolutionScanner
   - type: EyeProtection
     protectionTime: 5
   - type: ShowHealthBars
     damageContainers:
       - Biological
-      - Hybrid # Neocytes
+      - Hybrid
       - MoffDemonBiological
   - type: Construction
     graph: GlassesSecHUD
@@ -46,7 +45,7 @@
   - type: ShowHealthBars
     damageContainers:
       - Biological
-      - Hybrid # Neocytes
+      - Hybrid
       - MoffDemonBiological
   - type: Construction
     graph: GlassesSecHUD
