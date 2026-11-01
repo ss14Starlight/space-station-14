@@ -349,6 +349,10 @@ public sealed partial class ActionButton : Control, IEntityControl
         Cooldown.Progress = 1;
         Label.Visible = false;
         UpdateIcons();
+        // Starlight-start: Depress(false) can't run once Action is null
+        _depressed = false;
+        DrawModeChanged();
+        // Starlight-end
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
