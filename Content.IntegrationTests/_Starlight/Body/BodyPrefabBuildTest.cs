@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: MIT
 
 #nullable enable
+using System.Collections.Generic;
+using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Prototypes;
@@ -26,6 +28,11 @@ public sealed class BodyPrefabBuildTest : GameTest
         var bodySys = entMan.System<SLBodySystem>();
         var map = await Pair.CreateTestMap();
 
+        bool IsAnimalPart(EntityPrototype? proto)
+            => proto != null && protoMan.EnumerateAllParents<EntityPrototype>(proto.ID, includeSelf: true)
+                .Any(p => p.id == "PartAnimal");
+
+        var missing = new List<string>();
         await server.WaitAssertion(() =>
         {
             foreach (var prefab in protoMan.EnumeratePrototypes<BodyPrefabPrototype>())
@@ -40,18 +47,27 @@ public sealed class BodyPrefabBuildTest : GameTest
                         $"{prefab.ID}: part count does not match the prefab");
                 }
 
-                // Limbs, torso and head take locational damage.
+                // A body whose root takes locational damage needs it on its torso, head and limbs too, bar animal
+                // parts mixed in (slimes). Bodies without it at the root (animals, borgs, skeletons) are left alone.
+                var locational = body.Comp.RootPartEntity is { } root && entMan.HasComponent<BodyPartDamageComponent>(root);
                 foreach (var part in bodySys.GetBodyParts(body))
                 {
+                    if (!locational)
+                        break;
+                    if (IsAnimalPart(entMan.GetComponent<MetaDataComponent>(part).EntityPrototype))
+                        continue;
+
                     if (part.Comp.Kind is BodyPartType.Torso or BodyPartType.Head or BodyPartType.Arm
-                        or BodyPartType.Hand or BodyPartType.Leg or BodyPartType.Foot)
+                        or BodyPartType.Hand or BodyPartType.Leg or BodyPartType.Foot
+                        && !entMan.HasComponent<BodyPartDamageComponent>(part))
                     {
-                        Assert.That(entMan.HasComponent<BodyPartDamageComponent>(part),
-                            $"{prefab.ID}: {entMan.ToPrettyString(part)} has no {nameof(BodyPartDamageComponent)}");
+                        missing.Add($"{prefab.ID}: {entMan.GetComponent<MetaDataComponent>(part).EntityPrototype?.ID}");
                     }
                 }
                 entMan.DeleteEntity(uid);
             }
+
+            Assert.That(missing, Is.Empty, $"parts without {nameof(BodyPartDamageComponent)}:\n{string.Join("\n", missing)}");
         });
     }
 
