@@ -40,8 +40,9 @@
     rootTask:
       task: SimpleHostileCompound
     blackboard:
-      NavClimb: !type:Bool "true"
-      NavSmash: !type:Bool "true"
+      NavClimb: !type:Bool true
+      NavPry: !type:Bool false
+      NavSmash: !type:Bool true
   - type: CosmicCultFaction
   - type: CosmicMinion
   - type: NpcFactionMember
@@ -49,7 +50,7 @@
     - CosmicCult
   - type: CosmicMalignantHealing
     healInterval: 10s
-    healAmount: 0.5
+    healAmount: 0.75
   - type: GhostRole
     allowMovement: true
     allowSpeech: true
@@ -145,6 +146,16 @@
     rules: ghost-role-information-cosmic-custodian-rules
     mindRoles:
     - MindRoleCosmicMinion
+  - type: Prying
+    pryPowered: true
+    speedModifier: 1.5
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool true
+      NavPry: !type:Bool true
+      NavSmash: !type:Bool true
   - type: MeleeWeapon
     altDisarm: false
     animation: WeaponArcCosmic
@@ -212,10 +223,8 @@
     rootTask:
       task: SimpleRangedHostileCompound
     blackboard:
-      NavClimb: !type:Bool
-        true
-      NavSmash: !type:Bool
-        true
+      NavClimb: !type:Bool true
+      NavSmash: !type:Bool true
   - type: Gun
     projectileSpeed: 15
     soundGunshot: /Audio/_Starlight/CosmicCult/projectile_razor.ogg

@@ -30,6 +30,7 @@
   - !type:EquipStartingGearSpecial
     gear: K9Gear
   applyTraits: false
+  antagScalingSecurityWeight: 0.5
 
 - type: startingGear
   id: K9Gear
