@@ -19,6 +19,11 @@ public sealed class StyleTheme
     public readonly Color SecondaryAccent;
 
     /// <summary>
+    /// Whether classic-style decorations are used.
+    /// </summary>
+    public readonly bool ClassicDecor;
+
+    /// <summary>
     /// An element tinted with the accent: pressed buttons, selected list items.
     /// </summary>
     public readonly Color ElementActive;
@@ -48,11 +53,14 @@ public sealed class StyleTheme
     /// </summary>
     public readonly ColorPalette Negative;
 
-    public StyleTheme(StyleThemePrototype proto, Color accent, Color? secondaryAccent = null)
+    public StyleTheme(StyleThemePrototype proto, Color accent, Color? secondaryAccent = null, bool classicDecor = false)
     {
         Proto = proto;
         Accent = Readable(accent.WithAlpha(1f), proto.Light);
-        SecondaryAccent = Readable((secondaryAccent ?? accent).WithAlpha(1f), proto.Light);
+        SecondaryAccent = proto.RawColors
+            ? (secondaryAccent ?? accent).WithAlpha(1f)
+            : Readable((secondaryAccent ?? accent).WithAlpha(1f), proto.Light);
+        ClassicDecor = classicDecor;
 
         var activeBase = proto.RawColors
             ? (secondaryAccent ?? accent).WithAlpha(1f)

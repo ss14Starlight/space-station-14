@@ -82,6 +82,20 @@
     role: MindRoleThief
     requiredDifficulty: 10
 
+# Blood Bound
+- type: achievement
+  id: blood_herald
+  name: achievement-blood-herald-name
+  description: achievement-blood-herald-description
+  category: bloodbound
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: draculaJrMedal
+  difficultyAntag:
+    role: MindRoleBloodBound
+    requiredDifficulty: 10
+
 
 # manual-only, granted by admins via achievement_unlock command
 # Even though this achievement can be granted automatically checking nullink roles
@@ -619,3 +633,4 @@
   - phantom_thief
   - first_kindred
   - enemy_unknown
+  - blood_herald
