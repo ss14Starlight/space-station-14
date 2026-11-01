@@ -22,6 +22,7 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
     [Dependency] private SharedTransformSystem _transformSystem = default!; // _Starlight
     [Dependency] private RadarLaserSystem _laserSystem = default!; // _Starlight
     [Dependency] private IGameTiming _timing = default!; // _Starlight
+    [Dependency] private RadarDockingStateSystem _radarDockingStateSystem = default!; // Starlight
     [Dependency] private StationAiSystem _stationAiSystem = default!; // Starlight "OnWarpRequest"
 
     #region Starlight
@@ -113,7 +114,7 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
             component.LastInterfaceUpdateTime = _timing.CurTime;
             // Starlight END
             NavInterfaceState state;
-            var docks = _console.GetDockingPortStates(); // Starlight
+            var docks = _radarDockingStateSystem.GetDockingPortStates(uid); // Starlight
 
             if (coordinates != null && angle != null)
             {
