@@ -19,3 +19,19 @@
     - id: ImmovableRodSlug
       prob: 0.05
       orGroup: rodProto
+
+- type: entity
+  parent: BaseGameRule
+  id: ResonanceCascadeScheduler
+  components:
+  - type: GameRule
+  - type: ResonanceCascadeScheduler
+    possibleAnomalyPrototypes:
+    - AnomalyClown
+    - AnomalyFlesh
+    - AnomalyFlora
+    initialDelay: 600
+    baseInterval: 720
+    minimumInterval: 360
+    escalationStep: 900
+    escalationMultiplier: 0.85
