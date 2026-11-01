@@ -37,10 +37,8 @@ public sealed partial class DamageContactsSystem : EntitySystem
             damaged.NextSecond = _timing.CurTime + TimeSpan.FromSeconds(1);
 
             // Starlight-start: By default, don't damage entities that are already dead to not doomstack damage.
-            if (damaged.Damage == null)
-                continue;
-
-            if (!damaged.DamageDead && _mobState.IsDead(ent))
+            if (damaged.Damage == null 
+                || (!damaged.DamageDead && _mobState.IsDead(ent))
                 continue;
 
             _damageable.TryChangeDamage(ent, damaged.Damage, interruptsDoAfters: false);
