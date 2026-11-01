@@ -666,7 +666,6 @@ binds:
 - function: HotbarRemove
   type: State
   key: MouseRight
-  mod1: Shift
   canFocus: true
   allowSubCombs: true
 - function: HotbarQuickAdd
