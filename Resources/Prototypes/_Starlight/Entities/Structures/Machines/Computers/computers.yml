@@ -225,8 +225,10 @@
   parent: BaseComputerAiAccess
   id: RemoteControlConsole
   name: remote control console
-  description: Enables operators to view and control a linked robotic body over virtually any distance, with minimal loss of control precision.
+  description: Enables operators to view and control a robotic body by its remote control channel over virtually any distance.
   components:
+  - type: Computer
+    board: RemoteControlConsoleCircuitboard
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -240,15 +242,15 @@
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: generic_panel_open
   - type: RemoteControlConsole
-  - type: DeviceLinkSource
-    ports:
-    - RemoteControl
+    remoteControlPower: 15
   - type: ActivatableUI
     key: enum.RemoteControlUIKey.Key
   - type: UserInterface
     interfaces:
       enum.RemoteControlUIKey.Key:
         type: RemoteControlConsoleBoundUserInterface
+      enum.RemoteControlSettingsUIKey.Key:
+        type: RemoteControlSettingsBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
 

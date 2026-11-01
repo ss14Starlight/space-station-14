@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Computers.RemoteControl;
 
@@ -7,6 +8,9 @@ public sealed partial class RemoteControlConsoleComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
     public EntityUid? RemoteBrain;
+
+    [ViewVariables, DataField, AutoNetworkedField]
+    public int? Channel;
 
     [ViewVariables]
     public HashSet<EntityUid> Users = new();
@@ -27,8 +31,20 @@ public sealed partial class RemoteControlConsoleComponent : Component
     public bool EnableRemoteView = true;
 
     /// <summary>
-    /// Allows taking control from another remote console, but not from a player directly possessing the target.
+    /// Control priority. Direct possession has a power of 50.
     /// </summary>
     [DataField]
-    public bool CanForceRemoteControl;
+    public int RemoteControlPower = 10;
+
+    /// <summary>
+    /// Restricts an intrinsic remote controller to its owning entity.
+    /// </summary>
+    [DataField]
+    public bool OwnerOnly;
+
+    /// <summary>
+    /// Action the owner must have before using this remote controller.
+    /// </summary>
+    [DataField]
+    public EntProtoId? RequiredAction;
 }

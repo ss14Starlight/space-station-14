@@ -2,7 +2,7 @@
   id: HandheldRemoteControl
   parent: [ PowerCellSlotMediumItem, BaseHandheldComputer ] # Starlight
   name: handheld remote control
-  description: A tablet computer, able to remotely control another connected entity.
+  description: A tablet computer, able to remotely control an entity by its channel.
   components:
   - type: Item
     sprite: Objects/Devices/tablets.rsi
@@ -35,15 +35,33 @@
     inHandsOnly: true
     singleUser: true
   - type: RemoteControlConsole
-  - type: DeviceLinkSource
-    ports:
-    - RemoteControl
+    remoteControlPower: 10
   - type: UserInterface
     interfaces:
       enum.RemoteControlUIKey.Key:
         type: RemoteControlConsoleBoundUserInterface
+      enum.RemoteControlSettingsUIKey.Key:
+        type: RemoteControlSettingsBoundUserInterface
   - type: StaticPrice
     price: 500
+
+- type: entity
+  id: HandheldRemoteControlAntag
+  parent: HandheldRemoteControl
+  name: handheld remote control antag
+  description: A tablet computer, a powerful remote control.
+  components:
+  - type: RemoteControlConsole
+    remoteControlPower: 20
+
+- type: entity
+  id: HandheldRemoteControlAntagMind
+  parent: HandheldRemoteControl
+  name: handheld remote control mind
+  description: A tablet computer, an impossible powerful remote control.
+  components:
+  - type: RemoteControlConsole
+    remoteControlPower: 51
 
 - type: entity
   id: HandheldRemoteControlExpedition
@@ -73,10 +91,16 @@
   - type: ItemToggle
     onUse: true
     onActivate: false
+  - type: ActivatableUI
+    key: enum.RemoteControlSettingsUIKey.Key
+    inHandsOnly: true
+    singleUser: true
   - type: RemoteControlConsole
     enableRemoteView: false
-  - type: DeviceLinkSource
-    ports:
-    - RemoteControl
+    remoteControlPower: 5
+  - type: UserInterface
+    interfaces:
+      enum.RemoteControlSettingsUIKey.Key:
+        type: RemoteControlSettingsBoundUserInterface
   - type: StaticPrice
     price: 500

@@ -1,0 +1,4 @@
+- type: !PartialOnly latheRecipePack
+  id: ScienceBoards
+  recipes:
+  - RemoteControlConsoleCircuitboard

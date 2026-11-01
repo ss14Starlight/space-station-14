@@ -24,3 +24,8 @@
   parent: [ BaseCircuitboardRecipe, BaseEngineeringComputerRecipeCategory ]
   id: CombustionTurbineComputerCircuitboard
   result: CombustionTurbineComputerCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchComputerRecipeCategory ]
+  id: RemoteControlConsoleCircuitboard
+  result: RemoteControlConsoleCircuitboard

@@ -22,6 +22,15 @@
     actions:
     - !Index:1 ActionPAIPDA # pAI can open PDAs, see PR #3272
     - !Index:2 ActionPAIConsole # pAI can open consoles
+  - type: RemoteControlConsole
+    enableRemoteView: false
+    ownerOnly: true
+    requiredAction: ActionPAIRemoteControl
+  - type: UserInterface
+    interfaces:
+      enum.RemoteControlSettingsUIKey.Key:
+        type: RemoteControlSettingsBoundUserInterface
+        requireInputValidation: false
   - type: Store
     name: store-preset-name-pai # name change for data purity
     categories:

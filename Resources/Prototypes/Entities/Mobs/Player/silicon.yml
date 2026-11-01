@@ -59,6 +59,8 @@
         type: CommunicationsConsoleBoundUserInterface
       enum.RemoteControlUIKey.Key: # Starlight
         type: RemoteControlConsoleBoundUserInterface # Starlight
+      enum.RemoteControlSettingsUIKey.Key: # Starlight
+        type: RemoteControlSettingsBoundUserInterface # Starlight
   - type: IntrinsicUI
     uis:
       enum.RadarConsoleUiKey.Key:
@@ -93,6 +95,7 @@
   #region Starlight
   - type: StationAIShuntable
   - type: RemoteControlConsole # Starlight
+    remoteControlPower: 21 # Starlight
   #endregion Starlight
   - type: DamagedSiliconAccent
     startPowerCorruptionAtCharIdx: 4
