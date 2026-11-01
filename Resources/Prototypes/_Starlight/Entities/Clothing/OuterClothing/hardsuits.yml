@@ -1492,3 +1492,28 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterHardsuitSecurity
+  id: ClothingOuterHardsuitSergeant
+  name: gunnery sergeant hardsuit
+  description: A special suit to lead your squad into hazardous environments. High tech and efficient, a perfect embodiment of corporate security.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sergeant.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sergeant.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.5
+        Caustic: 0.7
+    staminaModifier: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSergeant
