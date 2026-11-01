@@ -1,0 +1,17 @@
+- type: !PartialOnly entity
+  id: BaseStationShuttles
+  abstract: true
+  components:
+    - type: GridSpawn
+      groups:
+        gas_asteroids: !type:EntitySpawnGroup
+          minimumDistance: 150
+          maximumDistance: 300
+          minCount: 20
+          maxCount: 30
+          stationGrid: false
+          protos:
+            - GasAsteroidSmall
+            - GasAsteroidMedium
+            - GasAsteroidLarge
+            - GasAsteroidLarger

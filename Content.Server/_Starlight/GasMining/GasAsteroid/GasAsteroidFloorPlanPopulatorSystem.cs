@@ -17,7 +17,7 @@ public sealed partial class GasAsteroidFloorPlanPopulatorSystem : BaseWorldSyste
     [SubscribeLocalEvent]
     private void OnFloorPlanBuilt(EntityUid uid,
     GasAsteroidFloorPlanPopulatorComponent component,
-    LocalStructureLoadedEvent args)
+    ComponentStartup args)
     {
         var placeables = new List<string?>(4);
         var grid = Comp<MapGridComponent>(uid);
