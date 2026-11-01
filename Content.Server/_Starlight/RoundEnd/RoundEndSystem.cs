@@ -7,6 +7,7 @@ using Content.Server.Voting.Managers;
 using Content.Shared._Starlight.Commands;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.GameTicking;
 using Robust.Shared.Player;
 using Timer = Robust.Shared.Timing.Timer;
 
@@ -67,6 +68,24 @@ public sealed partial class RoundEndSystem
                 ("time", time),
                 ("units", Loc.GetString(unitsLocString))));
         Timer.Spawn(countdownTime.Value, AfterEndRoundRestart, _countdownTokenSource.Token);
+    }
+
+    /// <summary>
+    /// The restart timer shares <see cref="_countdownTokenSource"/> with the shuttle call, so it has to be cleared
+    /// when going back to the round, or every future shuttle call thinks one is already in progress.
+    /// </summary>
+    private void OnRoundEndCancelled(RoundEndCancelMessageEvent ev)
+    {
+        _countdownTokenSource?.Cancel();
+        _countdownTokenSource = null;
+        _cooldownTokenSource?.Cancel();
+        _cooldownTokenSource = null;
+
+        CantRecall = false;
+        LastCountdownStart = null;
+        ExpectedCountdownEnd = null;
+        SetAutoCallTime();
+        RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
     }
 
     public bool IsRestartTimerActive() =>
