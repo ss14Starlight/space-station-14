@@ -15,6 +15,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
+using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
@@ -293,7 +294,7 @@ public sealed class RemoteControlConsoleTest : GameTest
     }
 
     [Test]
-    public async Task ToyRemoteOpensSettingsWithActivatableUiComponent() => await Server.WaitAssertion(() =>
+    public async Task ToyRemoteUseActivatesAndControlsSelectedBrain() => await Server.WaitAssertion(() =>
     {
         var mapSystem = Server.System<SharedMapSystem>();
         var ui = Server.System<SharedUserInterfaceSystem>();
@@ -305,13 +306,36 @@ public sealed class RemoteControlConsoleTest : GameTest
         {
             var coordinates = new MapCoordinates(0, 0, mapId);
             var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlExpedition", coordinates);
+            var remote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
             var user = SEntMan.SpawnEntity("MobHuman", coordinates);
             var activatable = SEntMan.GetComponent<ActivatableUIComponent>(toyRemote);
+            var itemToggle = SEntMan.GetComponent<ItemToggleComponent>(toyRemote);
+            var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(toyRemote);
+            var remoteBrain = SEntMan.GetComponent<RemoteControlBrainComponent>(remote);
 
             Assert.That(activatable.Key, Is.EqualTo(RemoteControlSettingsUIKey.Key));
             Assert.That(hands.TryPickupAnyHand(user, toyRemote), Is.True);
-            Assert.That(interaction.UseInHandInteraction(user, toyRemote), Is.True);
+            Assert.That(ui.TryOpenUi(toyRemote, RemoteControlSettingsUIKey.Key, user), Is.True);
+            SEntMan.EventBus.RaiseLocalEvent(toyRemote,
+                new RemoteControlSetChannelMessage
+                {
+                    Actor = user,
+                    UiKey = RemoteControlSettingsUIKey.Key,
+                    Channel = RemoteControlChannel.Format(remoteBrain.Channel)
+                });
+            Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+            ui.CloseUi(toyRemote, RemoteControlSettingsUIKey.Key, user);
+
+            Assert.That(itemToggle.Activated, Is.False);
+            interaction.UseInHandInteraction(user, toyRemote);
+
+            Assert.That(itemToggle.Activated, Is.True, "Using the toy remote should activate its toggle.");
             Assert.That(ui.IsUiOpen(toyRemote, RemoteControlSettingsUIKey.Key, user), Is.True);
+            Assert.That(console.Controller, Is.EqualTo(user));
+            Assert.That(Server.System<SharedRemoteControlConsoleSystem>()
+                .TryGetControlledEntity(user, out var controlledEntity), Is.True);
+            Assert.That(controlledEntity, Is.EqualTo(remote));
+            Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(user).RelayEntity, Is.EqualTo(remote));
         }
         finally
         {
