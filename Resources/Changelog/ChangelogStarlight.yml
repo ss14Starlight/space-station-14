@@ -1,18 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing disposal pipes by Robotics that would cause Botany -> Kitchen mail routes to fail.
-    type: Fix
-  id: 409602
-  time: '2026-10-18T14:41:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6741
-- author: baltdev
-  changes:
-  - message: Added a vinyl for the song "HIT 'EM!" by CrayZ.
-    type: Add
-  id: 409603
-  time: '2026-10-20T06:18:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6693
 - author: Rescue
   changes:
   - message: Added tactical planning consoles for collaborative drawing on station maps.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410001
   time: '2026-11-01T00:02:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cork) Added Gunnery Sergeant.
+    type: Add
+  id: 410002
+  time: '2026-11-01T00:33:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6972
+- author: Ohelig
+  changes:
+  - message: (Cork) Fixed the door access between Botany and Theater.
+    type: Fix
+  id: 410003
+  time: '2026-11-01T00:33:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6972
 Order: -1
