@@ -1,11 +1,20 @@
-﻿using Content.Shared.Telephone;
 using Robust.Shared.Map;
 
 // ReSharper disable CheckNamespace
-namespace Content.Server.Telephone;
+namespace Content.Shared.Telephone;
 
-public sealed partial class TelephoneSystem
+public abstract partial class SharedTelephoneSystem
 {
+    /// <summary>
+    /// Checks whether <paramref name="source"/> can reach the receiver described by the supplied range, map, and grid values.
+    /// This checks the direction from the source to the receiver.
+    /// </summary>
+    /// <param name="source">The transmitting telephone.</param>
+    /// <param name="sourceMapId">The source telephone's map.</param>
+    /// <param name="sourceGridUid">The source telephone's grid, if any.</param>
+    /// <param name="receiverTransmissionRange">The receiver telephone's transmission range.</param>
+    /// <param name="receiverMapId">The receiver telephone's map.</param>
+    /// <param name="receiverGridUid">The receiver telephone's grid, if any.</param>
     public bool IsSourceInRangeOfReceiver(
         TelephoneComponent source,
         MapId sourceMapId,

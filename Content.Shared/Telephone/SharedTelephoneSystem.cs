@@ -2,7 +2,7 @@ using System.Linq;
 
 namespace Content.Shared.Telephone;
 
-public abstract class SharedTelephoneSystem : EntitySystem
+public abstract partial class SharedTelephoneSystem : EntitySystem // Starlight
 {
     public bool IsTelephoneEngaged(Entity<TelephoneComponent> entity)
     {
