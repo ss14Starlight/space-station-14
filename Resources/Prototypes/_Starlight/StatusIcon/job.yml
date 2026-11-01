@@ -126,6 +126,16 @@
     sprite: *starlight-job-icon-rsi
     state: K9
   jobName: job-name-k9
+  tags:
+  - JobIconCrew
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconGunnerySergeant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: GunnerySergeant
+  jobName: job-name-gunnerysergeant
 
 - type: jobIcon
   parent: JobIcon
@@ -462,3 +472,23 @@
   jobName: job-name-makeshift-id
   isCrewJob: false
   # notice the LACK of a JobIconCrew tag
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEmotionalSupportScurret
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EmotionalSupportScurret
+  jobName: job-name-scurret
+  tags:
+    - JobIconCrew
+
+# For messing around with the Agent ID
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateScurret
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: SyndicateScurret
+  jobName: job-name-syndicate-scurret
+  isCrewJob: false

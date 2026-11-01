@@ -101,36 +101,36 @@
   id: VendorSalvagePKAUpgradeDamage
   productEntity: PKAUpgradeDamage
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 8
     - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvagePKAUpgradeRange
   productEntity: PKAUpgradeRange
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 8
     - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvagePKAUpgradeFireRate
   productEntity: PKAUpgradeFireRate
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 8
     - !type:BuyerAccessCondition
 
 - type: listing
@@ -236,15 +236,6 @@
 #  - !type:BuyerAccessCondition
 
 #weapons
-- type: listing
-  id: VendorSalvageWeaponLaserImmolator
-  productEntity: WeaponLaserImmolator
-  cost:
-    SalvageTicket: 500
-  categories:
-  - SalvageWeapons
-  conditions:
-  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageWeaponShotgunGA12
@@ -287,16 +278,6 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageWeaponRifleLr30
-  productEntity: WeaponRifleLr30
-  cost:
-    SalvageTicket: 300
-  categories:
-  - SalvageWeapons
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
   id: VendorSalvageWeaponBoltRifle
   productEntity: WeaponRifleBolt
   cost:
@@ -312,7 +293,7 @@
   id: VendorSalvageWeaponSPKA
   productEntity: WeaponSPKA
   cost:
-    SalvageTicket: 200
+    SalvageTicket: 125
   categories:
   - SalvageWeapons
   conditions:
@@ -334,7 +315,7 @@
   id: VendorSalvageWeaponRegulator
   productEntity: WeaponRegulator
   cost:
-    SalvageTicket: 100
+    SalvageTicket: 75
   categories:
   - SalvageWeapons
   conditions:
@@ -344,7 +325,7 @@
   id: VendorSalvageWeaponCA
   productEntity: WeaponChainAccelerator
   cost:
-    SalvageTicket: 250
+    SalvageTicket: 175
   categories:
   - SalvageWeapons
   conditions:
@@ -494,10 +475,10 @@
     - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageSurplusShotgun
-  productEntity: CrateITGShotgunSurplus
+  id: VendorSalvageSurplusArmaments
+  productEntity: CrateITGArmamentSurplus
   cost:
-    SalvageTicket: 600
+    SalvageTicket: 1000
   categories:
     - SalvageSurplus
   conditions:

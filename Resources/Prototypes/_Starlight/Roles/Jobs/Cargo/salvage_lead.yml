@@ -1,5 +1,6 @@
 ﻿- type: job
   id: SalvageLead
+  roleSubtype: role-subtype-itg
   name: job-name-salvagelead
   description: job-description-salvagelead
   rules: job-rules-itg-aligned
@@ -23,7 +24,7 @@
   - Shuttle
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ ITGMindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: NoObjectiveTarget

@@ -622,6 +622,7 @@
           - BotanySwab
     - item: HydroponicsToolScythe
     - item: HydroponicsToolHatchet
+    - item: PlantAnalyzer
     - item: PlantBag
     - hand:
         emptyLabel: borg-slot-seeds-empty
@@ -865,6 +866,12 @@
   - type: ItemBorgModule
     hands:
     - item: ChameleonProjector
+    - hand:
+        emptyRepresentative: PowerCellMedium
+        emptyLabel: borg-slot-powercell-empty
+        whitelist:
+          components:
+          - PowerCell
     - item: PinpointerSyndicateNuclear
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }

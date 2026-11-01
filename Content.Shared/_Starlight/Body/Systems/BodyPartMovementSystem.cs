@@ -3,6 +3,7 @@
 
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Events;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Movement.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
@@ -26,14 +27,22 @@ public sealed partial class BodyPartMovementSystem : EntitySystem
     /// </summary>
     private const float DefaultDensity = 185f;
 
+    // Raised on the body for every part, so a foot coming or going counts as well as a leg.
     [SubscribeLocalEvent]
-    private void OnLegEntered(Entity<MovementBodyPartComponent> ent, ref BodyPartEnteredBodyEvent args)
-        => UpdateMovementSpeed(args.Body);
+    private void OnPartEntered(Entity<SLBodyComponent> body, ref BodyPartEnteredBodyEvent args)
+        => UpdateMovementSpeed(body);
+
+    [SubscribeLocalEvent]
+    private void OnPartLeft(Entity<SLBodyComponent> body, ref BodyPartLeftBodyEvent args)
+    {
+        if (!TerminatingOrDeleted(body))
+            UpdateMovementSpeed(body, args.Part);
+    }
 
     [SubscribeLocalEvent]
     private void OnLegLeft(Entity<MovementBodyPartComponent> ent, ref BodyPartLeftBodyEvent args)
     {
-        var legs = UpdateMovementSpeed(args.Body);
+        var legs = UpdateMovementSpeed(args.Body, args.Part);
         if (legs != 0 || args.Body.Comp.RequiredLegs <= 0)
             return;
 
@@ -47,9 +56,11 @@ public sealed partial class BodyPartMovementSystem : EntitySystem
     }
 
     /// <summary>
-    /// Recomputes the body's base speed from its legs. Returns the number of attached legs.
+    /// Recomputes the body's base speed from its legs; a leg built for a foot only carries the body while it has a
+    /// real one. Returns the number of attached legs.
     /// </summary>
-    public int UpdateMovementSpeed(Entity<SLBodyComponent> body)
+    /// <param name="leaving">A part that is leaving the body and should no longer count.</param>
+    public int UpdateMovementSpeed(Entity<SLBodyComponent> body, EntityUid? leaving = null)
     {
         if (body.Comp.RequiredLegs <= 0 || !TryComp<MovementSpeedModifierComponent>(body, out var movement))
             return 0;
@@ -63,10 +74,13 @@ public sealed partial class BodyPartMovementSystem : EntitySystem
         var maxSpeedMod = 0f;
         foreach (var leg in _body.GetBodyPartsWithComp<MovementBodyPartComponent>(body))
         {
-            if (_body.IsInternal((leg.Owner, leg.Comp1)))
+            if (leg.Owner == leaving || _body.IsInternal((leg.Owner, leg.Comp1)))
                 continue;
 
             legs++;
+            if (!HasFunctionalFoot((leg.Owner, leg.Comp1), leaving))
+                continue;
+
             walkSpeed += leg.Comp2.WalkSpeed;
             sprintSpeed += leg.Comp2.SprintSpeed;
             acceleration += leg.Comp2.Acceleration;
@@ -92,4 +106,34 @@ public sealed partial class BodyPartMovementSystem : EntitySystem
             maxSpeedMod / required);
         return legs;
     }
+
+    private bool HasFunctionalFoot(Entity<SLBodyPartComponent> leg, EntityUid? leaving)
+    {
+        var needsFoot = false;
+        foreach (var socket in leg.Comp.Sockets.Keys)
+        {
+            if (IsFootSocket(socket))
+            {
+                needsFoot = true;
+                break;
+            }
+        }
+
+        if (!needsFoot)
+            return true;
+
+        foreach (var child in _body.GetChildParts(leg))
+        {
+            // An item standing in for a foot does not carry the body.
+            if (child.Owner != leaving
+                && child.Comp.ParentSocket is { } socket
+                && IsFootSocket(socket.SocketId)
+                && !HasComp<CustomLimbComponent>(child))
+                return true;
+        }
+
+        return false;
+    }
+
+    private static bool IsFootSocket(string socketId) => socketId.EndsWith("Foot", StringComparison.Ordinal);
 }

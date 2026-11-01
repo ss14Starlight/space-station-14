@@ -2,7 +2,7 @@
   name: terror spider
   parent: [ SimpleSpaceMobBaseAntag, MobRespirator, BaseSlicingRefinable ]
   id: MobTerrorSpider
-  description: a deadly hybrid of a giant spider and xenomorph.
+  description: A deadly hybrid of a giant spider and xenomorph.
   abstract: true
   components:
   - type: Prying
@@ -163,7 +163,7 @@
     name: ghost-role-terror-spider-name
     description: ghost-role-terror-spider-description
     rules: ghost-role-terror-spider-rules
-    mindRoles: [MindRoleGhostRoleTeamAntagonist]
+    mindRoles: [MindRoleTerrorSpider]
     raffle:
       settings: short
   - type: GhostTakeoverAvailable

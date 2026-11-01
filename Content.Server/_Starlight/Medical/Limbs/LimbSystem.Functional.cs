@@ -2,7 +2,9 @@ using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Limbs;
 using Content.Shared.Body.Organ;
+using Content.Shared.Body.Systems;
 using Content.Shared.Humanoid;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Medical.Surgery.Events;
 
 namespace Content.Server._Starlight.Medical.Limbs;
@@ -44,6 +46,16 @@ public sealed partial class LimbSystem : SharedLimbSystem
         {
             foreach (var part in _slBody.GetSubtree((limb, slLimb)))
             {
+                // Items attached in place of a hand or a foot drop instead of staying stuck to the body.
+                if (part.Owner != limb.Owner
+                    && TryComp(part, out CustomLimbComponent? customLimb)
+                    && part.Comp.ParentSocket is { } socket)
+                {
+                    AmputateItemLimb(body, (part, Transform(part), MetaData(part), part.Comp),
+                        SharedBodySystem.GetLegacySlotName(socket.SocketId), customLimb);
+                    continue;
+                }
+
                 if (!HasComp<OrganComponent>(part)
                     || part.Comp.Parent is not { } holder
                     || CompOrNull<SLBodyPartComponent>(holder)?.Kind != BodyPartType.Hand)

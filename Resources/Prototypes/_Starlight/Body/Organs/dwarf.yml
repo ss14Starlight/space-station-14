@@ -5,7 +5,7 @@
   suffix: Dwarf
   components:
   - type: Metabolizer
-    metabolizerTypes: [Dwarf, Neocyte]
+    metabolizerTypes: [Dwarf]
 
 - type: entity
   id: OrganDwarfLiver
@@ -36,7 +36,7 @@
   - type: Metabolizer
     # mm very yummy
     maxReagents: 5
-    metabolizerTypes: [Dwarf, Animal]
+    metabolizerTypes: [Dwarf]
 
 - type: entity
   id: OrganDwarfTongue

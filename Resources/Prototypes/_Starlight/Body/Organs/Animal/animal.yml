@@ -114,6 +114,10 @@
   name: animal heart
   categories: [ HideSpawnMenu ]
   components:
+  - type: Tag
+    tags:
+    - Meat
+    - Heart
   - type: Sprite
     state: heart-on
   - type: Organ

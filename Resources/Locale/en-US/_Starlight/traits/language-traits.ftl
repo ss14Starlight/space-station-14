@@ -54,11 +54,8 @@ trait-language-moffic-desc = The language of the moth-people, Moffic is basicall
 trait-language-thaveyan-name = Thaveyan
 trait-language-thaveyan-desc = You've been around the fish people long enough to master the rhythm of their tongue, though perhaps not their erratic moods.
 
-trait-language-darktongue-name = Darktongue
-trait-language-darktongue-desc = This coarse language of ne'er-do-wells and crazed fanatics is easy to pick up, but don't let Security hear you speaking it, or they'll think you're up to something...
-
 trait-language-felyaic-name = Felyaic
-trait-language-felyaic-desc = This more refined form of Darktongue is understood by seiryth and detarii, but is virtually unknown outside of the Null Scar. You must purchase the Darktongue trait to learn to speak Felyaic, even if you already know how to speak Darktongue from another source.
+trait-language-felyaic-desc = This more refined form of Darktongue is understood by Seiryth and Detarii, but is virtually unknown outside of the Null Scar. Only Seiryth, Detarii, and Dolls can learn it as an additional language.
 
 trait-language-classical-name = Classical
 trait-language-classical-desc = Once upon a time, everyone spoke this language. Not as hard to pick up as you might expect.
@@ -67,10 +64,13 @@ trait-language-grumbakul-name = Grumbakul
 trait-language-grumbakul-desc = You have mastered the language of Dwarfkind, or at least that's what your Dwarf friends tell you.
 
 trait-language-aielic-name = Aielic
-trait-language-aielic-desc = The beautiful language of the queli is ideally suited to poetry, but make one mistake and you'll never live it down.
+trait-language-aielic-desc = The beautiful language of the Queli is ideally suited to poetry, but make one mistake and you'll never live it down.
 
 trait-language-lagomorphian-name = Lagomorphian
 trait-language-lagomorphian-desc = The lynarxical tongue, developed as an integration language for the Lagomorph's differing vocal structure.
 
 trait-language-squeakish-name = Squeakish
 trait-language-squeakish-desc = You can speak Squeakish, the language of the Rodentia, which is made up of a series of chirps and squeaks.
+
+trait-language-nexusintegrated-name = Nexus Integrated
+trait-language-nexusintegrated-desc = You have a Nexus uplink implant despite not being an Avali or Resomi. You were likely raised among their culture, or perhaps managed to get your hands on one after a prolonged period of fascination and cultural immersion. You must know Scratch to take this trait.

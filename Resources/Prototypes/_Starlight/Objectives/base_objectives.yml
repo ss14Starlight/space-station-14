@@ -1,4 +1,4 @@
-﻿# requires that the player kill someone only once
+# requires that the player kill someone only once
 # disables social objectives and is disabled by social objectives
 - type: entity
   abstract: true
@@ -24,5 +24,40 @@
   - type: ObjectiveBlacklistRequirement
     blacklist:
       components:
-        - EscapeShuttleCondition
         - DieCondition
+  - type: Objective
+    difficulty: 0
+    antag: null # Story objectives shouldn't count, they're not completable
+    unique: true
+    icon:
+      sprite: _Starlight/Interface/Misc/objective_icons.rsi
+      state: rp
+
+- type: entity
+  abstract: true
+  parent: BaseStoryObjective
+  id: BaseLocationStoryObjective
+  components:
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components:
+      - DieCondition
+
+- type: entity
+  abstract: true
+  parent: BaseLocationStoryObjective
+  id: BaseDepartmentStoryObjective
+  components:
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components:
+      - DieCondition
+      - DepartmentObjective
+  - type: PickRandomDepartment
+
+- type: entity
+  abstract: true
+  parent: BaseLocationStoryObjective
+  id: BaseRoomStoryObjective
+  components:
+  - type: PickRoomObjective

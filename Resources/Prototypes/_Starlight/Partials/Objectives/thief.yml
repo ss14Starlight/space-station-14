@@ -1,0 +1,14 @@
+- type: !PartialOnly entity
+  id: EscapeThiefShuttleObjective
+  components:
+  - type: Objective
+    difficulty: 0
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components: !Clear
+      - DieCondition
+
+# No more salvage objectives on Starlight
+- type: !PartialOnly entity
+  id: ExpeditionsCircuitboardStealObjective
+  abstract: true

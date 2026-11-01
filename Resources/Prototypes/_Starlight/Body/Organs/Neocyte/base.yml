@@ -150,6 +150,10 @@
   suffix: Neocyte
   description: Doesn't actually need to beat, simply mimics the movement to provide comfort for the user.
   components:
+  - type: Tag
+    tags:
+    - Meat
+    - Heart
   - type: Sprite
     state: heart-on
   - type: Metabolizer

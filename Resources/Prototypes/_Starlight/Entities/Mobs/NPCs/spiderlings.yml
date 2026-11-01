@@ -4,7 +4,7 @@
   name: spiderling
   parent: SimpleMobBase
   id: MobSpiderlingBase
-  description: a small spider which growth into unknown big and dangerous spider.
+  description: A small spider which grows into an unknown, big, and dangerous spider.
   abstract: true
   components:
   - type: OptionsVisualizer

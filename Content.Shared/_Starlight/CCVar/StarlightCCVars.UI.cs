@@ -28,7 +28,7 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("ui.style_theme", "NanoTrasen", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Accent color of the interface: window titles, headings, selected tabs, pressed buttons.
+    /// Accent color of the interface: window titles, headings, selected tabs.
     /// </summary>
     public static readonly CVarDef<string> StyleAccent =
         CVarDef.Create("ui.style_accent", "#D4D4D8", CVar.CLIENTONLY | CVar.ARCHIVE);
@@ -38,6 +38,57 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> StyleCustomAccent =
         CVarDef.Create("ui.style_custom_accent", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Secondary accent color of the interface: pressed buttons, selected list items, slider fills.
+    /// </summary>
+    public static readonly CVarDef<string> StyleSecondaryAccent =
+        CVarDef.Create("ui.style_secondary_accent", "#D4D4D8", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> StyleCustomSecondaryAccent =
+        CVarDef.Create("ui.style_custom_secondary_accent", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether classic-style decorations are used.
+    /// </summary>
+    public static readonly CVarDef<bool> StyleClassicDecor =
+        CVarDef.Create("ui.style_classic_decor", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> StyleClassicDecorExplicit =
+        CVarDef.Create("ui.style_classic_decor_explicit", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Show the old drag and drop job priority columns in the lobby, under the round info.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyJobColumns =
+        CVarDef.Create("ui.lobby_job_columns", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> LobbyBackground =
+        CVarDef.Create("ui.lobby_background", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Width of the chat column in the lobby, dragged by its left edge.
+    /// </summary>
+    public static readonly CVarDef<int> LobbyChatWidth =
+        CVarDef.Create("ui.lobby_chat_width", 630, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Opacity of the lobby panels over the lobby art, 1 is fully opaque.
+    /// </summary>
+    public static readonly CVarDef<float> LobbyOpacity =
+        CVarDef.Create("ui.lobby_opacity", 0.95f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether the chat in the lobby is collapsed to its header.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyChatCollapsed =
+        CVarDef.Create("ui.lobby_chat_collapsed", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether the ready and observe block sits above the lobby chat instead of below it.
+    /// </summary>
+    public static readonly CVarDef<bool> LobbyReadyOnTop =
+        CVarDef.Create("ui.lobby_ready_on_top", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// Where each button of the top menu bar goes: <c>Name=Pinned|Auto|Menu|Hidden;...</c>, see BarLayout.

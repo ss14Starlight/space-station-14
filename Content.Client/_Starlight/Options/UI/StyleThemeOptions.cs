@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Client.Options.UI;
-using Content.Client.Stylesheets.Palette;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.UserInterface;
 using Robust.Client.Graphics;
@@ -19,7 +18,6 @@ public sealed class StyleThemePicker : GridContainer
     public const string StyleClassSwatchButton = "SwatchButton";
 
     private readonly Dictionary<string, ContainerButton> _cards = new();
-    private readonly ButtonGroup _group = new();
 
     public event Action? OnPicked;
 
@@ -34,7 +32,7 @@ public sealed class StyleThemePicker : GridContainer
         var proto = IoCManager.Resolve<IPrototypeManager>();
         foreach (var theme in proto.EnumeratePrototypes<StyleThemePrototype>().OrderBy(t => t.Order))
         {
-            var card = new ContainerButton { ToggleMode = true, Group = _group, ToolTip = Loc.GetString(theme.Name) };
+            var card = new ContainerButton { ToggleMode = true, ToolTip = Loc.GetString(theme.Name) };
             card.AddStyleClass(StyleClassSwatchButton);
             card.AddChild(new BoxContainer
             {
@@ -46,9 +44,9 @@ public sealed class StyleThemePicker : GridContainer
                         Orientation = BoxContainer.LayoutOrientation.Horizontal,
                         Children =
                         {
-                            Swatch(theme.Stock ? Palettes.Navy.BackgroundDark : theme.Background, 22, 32),
-                            Swatch(theme.Stock ? Palettes.Navy.Background : theme.SurfaceRaised, 22, 32),
-                            Swatch(theme.Stock ? Palettes.Navy.HoveredElement : theme.ElementHovered, 22, 32),
+                            Swatch(theme.Background, 22, 32),
+                            Swatch(theme.SurfaceRaised, 22, 32),
+                            Swatch(theme.ElementHovered, 22, 32),
                         },
                     },
                     new Label { Text = Loc.GetString(theme.Name), HorizontalAlignment = HAlignment.Center },
@@ -59,6 +57,7 @@ public sealed class StyleThemePicker : GridContainer
             card.OnPressed += _ =>
             {
                 Selected = id;
+                UpdatePressed();
                 OnPicked?.Invoke();
             };
             _cards[id] = card;
@@ -69,8 +68,13 @@ public sealed class StyleThemePicker : GridContainer
     public void Select(string id)
     {
         Selected = id;
-        if (_cards.TryGetValue(id, out var card))
-            card.Pressed = true;
+        UpdatePressed();
+    }
+
+    private void UpdatePressed()
+    {
+        foreach (var (id, card) in _cards)
+            card.Pressed = id == Selected;
     }
 
     internal static PanelContainer Swatch(Color color, float width, float height)
@@ -96,11 +100,11 @@ public sealed class AccentPicker : BoxContainer
         Color.FromHex("#9B6BD6"),
     ];
 
-    private readonly ButtonGroup _group = new();
     private readonly List<(Color Color, ContainerButton Button)> _presets = new();
     private readonly Button _theme;
     private readonly Button _custom;
     private readonly ColorSelectorSliders _sliders;
+    private readonly Label _title;
 
     public event Action? OnPicked;
 
@@ -111,6 +115,9 @@ public sealed class AccentPicker : BoxContainer
     /// </summary>
     public bool UseCustom { get; private set; }
 
+    public void SetTitle(string locId)
+        => _title.Text = Loc.GetString(locId);
+
     public AccentPicker()
     {
         Orientation = LayoutOrientation.Vertical;
@@ -120,19 +127,21 @@ public sealed class AccentPicker : BoxContainer
         _sliders.OnColorChanged += color => Pick(color, fromPreset: false);
 
         var row = new BoxContainer { Orientation = LayoutOrientation.Horizontal, SeparationOverride = 4 };
-        row.AddChild(new Label { Text = Loc.GetString("ui-options-style-accent"), HorizontalExpand = true });
+        _title = new Label { Text = Loc.GetString("ui-options-style-accent"), HorizontalExpand = true };
+        row.AddChild(_title);
 
-        _theme = new Button { Text = Loc.GetString("ui-options-style-accent-theme"), ToggleMode = true, Group = _group };
+        _theme = new Button { Text = Loc.GetString("ui-options-style-accent-theme"), ToggleMode = true };
         _theme.OnPressed += _ =>
         {
             UseCustom = false;
             _sliders.Visible = false;
+            UpdatePressed();
             OnPicked?.Invoke();
         };
         row.AddChild(_theme);
         foreach (var color in _defaultPresets)
         {
-            var button = new ContainerButton { ToggleMode = true, Group = _group };
+            var button = new ContainerButton { ToggleMode = true };
             button.AddStyleClass(StyleThemePicker.StyleClassSwatchButton);
             button.AddChild(StyleThemePicker.Swatch(color, 18, 18));
             button.OnPressed += _ => Pick(color, fromPreset: true);
@@ -140,11 +149,12 @@ public sealed class AccentPicker : BoxContainer
             row.AddChild(button);
         }
 
-        _custom = new Button { Text = Loc.GetString("ui-options-style-accent-custom"), ToggleMode = true, Group = _group };
+        _custom = new Button { Text = Loc.GetString("ui-options-style-accent-custom"), ToggleMode = true };
         _custom.OnPressed += _ =>
         {
             UseCustom = true;
             _sliders.Visible = true;
+            UpdatePressed();
             OnPicked?.Invoke();
         };
         row.AddChild(_custom);
@@ -161,8 +171,8 @@ public sealed class AccentPicker : BoxContainer
             return;
         }
 
-        _theme.Pressed = true;
         _sliders.Visible = false;
+        UpdatePressed();
     }
 
     public void Select(Color color)
@@ -172,17 +182,8 @@ public sealed class AccentPicker : BoxContainer
         if (!UseCustom)
             return;
 
-        var preset = _presets.FirstOrDefault(p => p.Color.ToHex() == color.ToHex()).Button;
-        if (preset != null)
-        {
-            preset.Pressed = true;
-            _sliders.Visible = false;
-        }
-        else
-        {
-            _custom.Pressed = true;
-            _sliders.Visible = true;
-        }
+        _sliders.Visible = FindPreset(color) == null;
+        UpdatePressed();
     }
 
     private void Pick(Color color, bool fromPreset)
@@ -195,7 +196,20 @@ public sealed class AccentPicker : BoxContainer
             _sliders.Visible = false;
         }
 
+        UpdatePressed();
         OnPicked?.Invoke();
+    }
+
+    private ContainerButton? FindPreset(Color color)
+        => _presets.FirstOrDefault(p => p.Color.ToHex() == color.ToHex()).Button;
+
+    private void UpdatePressed()
+    {
+        var preset = UseCustom && !_sliders.Visible ? FindPreset(Selected) : null;
+        _theme.Pressed = !UseCustom;
+        _custom.Pressed = UseCustom && preset == null;
+        foreach (var (_, button) in _presets)
+            button.Pressed = button == preset;
     }
 }
 
@@ -220,17 +234,19 @@ public sealed class OptionStyleThemeCVar : BaseOptionCVar<string>
 public sealed class OptionAccentCVar : BaseOptionCVar<string>
 {
     private readonly AccentPicker _picker;
+    private readonly CVarDef<string> _defaultCVar;
 
     protected override string Value
     {
         get => _picker.Selected.ToHex();
-        set => _picker.Select(Color.TryFromHex(value, out var color) ? color : Color.FromHex(StarlightCCVars.StyleAccent.DefaultValue));
+        set => _picker.Select(Color.TryFromHex(value, out var color) ? color : Color.FromHex(_defaultCVar.DefaultValue));
     }
 
-    public OptionAccentCVar(OptionsTabControlRow controller, IConfigurationManager cfg, AccentPicker picker)
-        : base(controller, cfg, StarlightCCVars.StyleAccent)
+    public OptionAccentCVar(OptionsTabControlRow controller, IConfigurationManager cfg, AccentPicker picker, CVarDef<string>? cvar = null)
+        : base(controller, cfg, cvar ?? StarlightCCVars.StyleAccent)
     {
         _picker = picker;
+        _defaultCVar = cvar ?? StarlightCCVars.StyleAccent;
         picker.OnPicked += ValueChanged;
     }
 
@@ -250,8 +266,8 @@ public sealed class OptionCustomAccentCVar : BaseOptionCVar<bool>
         set => _picker.SetUseCustom(value);
     }
 
-    public OptionCustomAccentCVar(OptionsTabControlRow controller, IConfigurationManager cfg, AccentPicker picker)
-        : base(controller, cfg, StarlightCCVars.StyleCustomAccent)
+    public OptionCustomAccentCVar(OptionsTabControlRow controller, IConfigurationManager cfg, AccentPicker picker, CVarDef<bool>? cvar = null)
+        : base(controller, cfg, cvar ?? StarlightCCVars.StyleCustomAccent)
     {
         _picker = picker;
         picker.OnPicked += ValueChanged;

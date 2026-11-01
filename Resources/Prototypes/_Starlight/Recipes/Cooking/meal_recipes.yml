@@ -1,7 +1,7 @@
 # Contraband
 - type: microwaveMealRecipe
   id: RecipeDreamingCake
-  name: Dreaming cake Recipe
+  name: Broken-Dreams Cake Recipe
   result: FoodResomiCake
   time: 25
   reagents:

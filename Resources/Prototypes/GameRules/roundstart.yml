@@ -29,19 +29,13 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.4 #SL 0.5 -> 0.4 to account for more subgamemodes existing
-    - id: SLChangeling #Starlight lings
-      prob: 0.20 #0.4 -> 0.25 to account for more subgamemodes existing now
-    - id: VampireLess # Starlight reworked
-      prob: 0.20 # Starlight
+      prob: 0.5
     - id: SubWizard
-      prob: 0.05 # Starlight. We can go back down to 0.05, since they scale now.
-    #- id: SubXenoborgs
-    #  prob: 0.05 # Starlight start, Equalizing subgamemodes
-    #- id: SubBrighteye # Brighteye is disabled until more work is put in.
-    #  prob: 0.05
-    - id: SiliconLiberation
-      prob: 0.20 #Starlight end
+      prob: 0.05
+    - id: SubXenoborgs
+      prob: 0.05
+    - id: Changeling
+      prob: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -50,17 +44,11 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.42 # Starlight start, 0.5 -> 0.4 to account for more subgamemodes existing
-    - id: SLChangeling # StarlightLings
-      prob: 0.20 #0.4 -> 0.25 to account for more subgamemodes existing now
-    - id: VampireLess # Reworked
-      prob: 0.20
-    #- id: SubXenoborgs
-    #  prob: 0.05
-    #- id: SubBrighteye
-    #  prob: 0.05
-    - id: SiliconLiberation
-      prob: 0.20 #Starlight end
+      prob: 0.5
+    - id: SubXenoborgs
+      prob: 0.05
+    - id: Changeling
+      prob: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -69,17 +57,11 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.62 # Starlight. Its a tamer mode, high thief chance.
-    - id: SLChangeling # Starlight Lings
-      prob: 0.20 # Starlight, Xenoborgs need a little bit of a distraction
-    - id: VampireLess # Starlight reworked
-      prob: 0.20 # Starlight, Xenoborgs need a little bit of a distraction
+      prob: 0.5
     - id: SubWizard
-      prob: 0.05 # Starlight Space is dangerous, yo.
-    #- id: SubBrighteye # Starlight
-    #  prob: 0.05
-    - id: SiliconLiberation #Starlight
-      prob: 0.20 #Starlight
+      prob: 0.05
+    - id: Changeling
+      prob: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -88,15 +70,9 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.70 # Starlight start. Most likely
-    - id: SLChangeling # Lings
-      prob: 0.15
-    - id: VampireLess # Reworked
-      prob: 0.15
-    #- id: SubBrighteye
-    #  prob: 0.05
-    - id: SiliconLiberation
-      prob: 0.2 #Starlight end
+      prob: 0.5
+    - id: Changeling
+      prob: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -183,6 +159,7 @@
       - id: NukiePlanetSpawn
       - id: NukiePlanetSpawnWestern
       - id: NukiePlanetSpawnGeiger
+      - id: NukiePlanetSpawnInterdyne
   # Starlight end
   # Starlight - removing the LoadMapRule from here to instead handle it in the dynamic rules above
   #- type: LoadMapRule
@@ -297,7 +274,6 @@
   - type: RevolutionaryRule
   - type: SpecialLobbyContent
     music: "/Audio/_Starlight/Lobby/Liberation.ogg"
-    background: RevClown
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     lateJoinAdditional: true # Starlight

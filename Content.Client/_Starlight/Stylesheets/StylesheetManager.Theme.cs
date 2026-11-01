@@ -21,11 +21,31 @@ public sealed partial class StylesheetManager
 
     private Stylesheet? _hudSheet;
 
+    private static readonly Dictionary<string, string> RemovedStyleThemes = new()
+    {
+        ["Classic"] = "Nanotrasen",
+    };
+
     private void InitializeStyleTheme()
     {
-        _cfg.OnValueChanged(StarlightCCVars.StyleTheme, _ => QueueStyleThemeRebuild());
+        if (RemovedStyleThemes.TryGetValue(_cfg.GetCVar(StarlightCCVars.StyleTheme), out var replacement))
+        {
+            _cfg.SetCVar(StarlightCCVars.StyleTheme, replacement);
+            _cfg.SaveToFile();
+        }
+
+        SyncClassicDecorToTheme();
+        _cfg.OnValueChanged(StarlightCCVars.StyleTheme, _ =>
+        {
+            SyncClassicDecorToTheme();
+            QueueStyleThemeRebuild();
+        });
+        _cfg.OnValueChanged(StarlightCCVars.StyleClassicDecor, _ => QueueStyleThemeRebuild());
         _cfg.OnValueChanged(StarlightCCVars.StyleAccent, _ => QueueStyleThemeRebuild());
         _cfg.OnValueChanged(StarlightCCVars.StyleCustomAccent, _ => QueueStyleThemeRebuild());
+        _cfg.OnValueChanged(StarlightCCVars.StyleSecondaryAccent, _ => QueueStyleThemeRebuild());
+        _cfg.OnValueChanged(StarlightCCVars.StyleCustomSecondaryAccent, _ => QueueStyleThemeRebuild());
+        _cfg.OnValueChanged(StarlightCCVars.LobbyOpacity, _ => QueueStyleThemeRebuild());
         _prototype.PrototypesReloaded += args =>
         {
             if (args.WasModified<StyleThemePrototype>())
@@ -33,6 +53,7 @@ public sealed partial class StylesheetManager
         };
         _userInterfaceManager.OnScreenChanged += args => ApplyHudSheet(args.New);
 
+        QueueStyleThemeRebuild();
         RebuildHudSheet();
     }
 
@@ -48,18 +69,29 @@ public sealed partial class StylesheetManager
             }
         }
 
-        if (proto.Stock)
-        {
-            _hudStyleTheme = null;
-            return new BaseStylesheet.NoConfig();
-        }
-
         _hudStyleTheme = proto.Hud is { } hud && _prototype.TryIndex(hud, out var hudProto)
-            ? new StyleTheme(hudProto, ResolveAccent(hudProto), ResolveSecondaryAccent(hudProto))
+            ? new StyleTheme(hudProto, ResolveAccent(hudProto), ResolveSecondaryAccent(hudProto), ResolveClassicDecor())
             : null;
 
-        return new StyleTheme(proto, ResolveAccent(proto), ResolveSecondaryAccent(proto));
+        return new StyleTheme(proto, ResolveAccent(proto), ResolveSecondaryAccent(proto), ResolveClassicDecor());
     }
+
+    private void SyncClassicDecorToTheme()
+    {
+        if (_cfg.GetCVar(StarlightCCVars.StyleClassicDecorExplicit))
+            return;
+
+        if (!_prototype.TryIndex<StyleThemePrototype>(_cfg.GetCVar(StarlightCCVars.StyleTheme), out var proto))
+            proto = _prototype.EnumeratePrototypes<StyleThemePrototype>().MinBy(p => p.Order);
+
+        if (proto == null)
+            return;
+
+        _cfg.SetCVar(StarlightCCVars.StyleClassicDecor, proto.ClassicDecor);
+    }
+
+    private bool ResolveClassicDecor()
+        => _cfg.GetCVar(StarlightCCVars.StyleClassicDecor);
 
     private Color ResolveAccent(StyleThemePrototype proto)
     {
@@ -72,8 +104,9 @@ public sealed partial class StylesheetManager
 
     private Color? ResolveSecondaryAccent(StyleThemePrototype proto)
     {
-        if (_cfg.GetCVar(StarlightCCVars.StyleCustomAccent))
-            return null;
+        if (_cfg.GetCVar(StarlightCCVars.StyleCustomSecondaryAccent)
+            && Color.TryFromHex(_cfg.GetCVar(StarlightCCVars.StyleSecondaryAccent), out var custom))
+            return custom;
 
         return proto.SecondaryAccent;
     }
