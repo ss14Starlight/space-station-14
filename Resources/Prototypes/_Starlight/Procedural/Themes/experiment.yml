@@ -1,0 +1,324 @@
+# Rooms
+# Large
+# - 17x5
+- type: dungeonRoom
+  id: Science17x5astar
+  size: 17,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 0,0
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science17x5bstar
+  size: 17,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 18,0
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science17x5cstar
+  size: 17,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 36,0
+  tags:
+    - SalvageExperimentStar
+
+# - 7x7
+- type: dungeonRoom
+  id: Science7x7astar
+  size: 7,7
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 0,42
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science7x7bstar
+  size: 7,7
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 8,42
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science7x7cstar
+  size: 7,7
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 16,42
+  tags:
+    - SalvageExperimentStar
+
+# Medium
+# - 11x5
+- type: dungeonRoom
+  id: Science11x5astar
+  size: 11,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 0,6
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science11x5bstar
+  size: 11,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 12,6
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science11x5cstar
+  size: 11,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 24,6
+  tags:
+    - SalvageExperimentStar
+
+# - 7x5
+- type: dungeonRoom
+  id: Science7x5astar
+  size: 7,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 0,12
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science7x5bstar
+  size: 7,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 8,12
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science7x5cstar
+  size: 7,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 16,12
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science7x5dstar
+  size: 7,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 24,12
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science7x5estar
+  size: 7,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 32,12
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science7x5fstar
+  size: 7,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 40,12
+  tags:
+    - SalvageExperimentStar
+
+# - 13x3
+- type: dungeonRoom
+  id: Science13x3astar
+  size: 13,3
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 0,30
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science13x3bstar
+  size: 13,3
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 14,30
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science13x3cstar
+  size: 13,3
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 28,30
+  tags:
+    - SalvageExperimentStar
+
+# - 11x3
+- type: dungeonRoom
+  id: Science11x3astar
+  size: 11,3
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 0,34
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science11x3bstar
+  size: 11,3
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 12,34
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science11x3cstar
+  size: 11,3
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 24,34
+  tags:
+    - SalvageExperimentStar
+
+# - 7x3
+- type: dungeonRoom
+  id: Science7x3astar
+  size: 7,3
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 0,38
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science7x3bstar
+  size: 7,3
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 8,38
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science7x3cstar
+  size: 7,3
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 16,38
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science7x3dstar
+  size: 7,3
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 24,38
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science7x3estar
+  size: 7,3
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 32,38
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science7x3fstar
+  size: 7,3
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 40,38
+  tags:
+    - SalvageExperimentStar
+
+# Small
+# - 5x5
+- type: dungeonRoom
+  id: Science5x5astar
+  size: 5,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 0,18
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science5x5bstar
+  size: 5,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 6,18
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science5x5cstar
+  size: 5,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 12,18
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science5x5dstar
+  size: 5,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 18,18
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science5x5estar
+  size: 5,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 24,18
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science5x5fstar
+  size: 5,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 30,18
+  tags:
+    - SalvageExperimentStar
+
+# - 3x5
+- type: dungeonRoom
+  id: Science3x5astar
+  size: 3,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 0,24
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science3x5bstar
+  size: 3,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 4,24
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science3x5cstar
+  size: 3,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 8,24
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science3x5dstar
+  size: 3,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 12,24
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science3x5estar
+  size: 3,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 16,24
+  tags:
+    - SalvageExperimentStar
+
+- type: dungeonRoom
+  id: Science3x5fstar
+  size: 3,5
+  atlas: /Maps/_Starlight/Dungeon/experiment.yml
+  offset: 20,24
+  tags:
+    - SalvageExperimentStar

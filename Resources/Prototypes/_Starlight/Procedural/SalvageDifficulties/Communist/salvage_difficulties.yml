@@ -3,8 +3,8 @@
 - type: salvageDifficulty
   id: Communist-Easy
   lootPrototype: "SalvageLootCommiesEasy"
-  lootBudget: 20
-  mobBudget: 29
+  lootBudget: 60
+  mobBudget: 60
   modifierBudget: 3
   color: "#9FED5896"
   recommendedPlayers: 3
@@ -13,7 +13,7 @@
 - type: salvageDifficulty
   id: Communist-Medium
   lootPrototype: "SalvageLootCommiesMedium"
-  lootBudget: 60
+  lootBudget: 90
   mobBudget: 90
   modifierBudget: 3
   color: "#52B4E996"
@@ -23,7 +23,7 @@
 - type: salvageDifficulty
   id: Communist-Hard
   lootPrototype: "SalvageLootCommiesHard"
-  lootBudget: 90
+  lootBudget: 130
   mobBudget: 150
   modifierBudget: 3
   color: "#EFB34196"
