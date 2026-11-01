@@ -324,6 +324,9 @@ public sealed class RemoteControlConsoleTest : GameTest
                     Channel = RemoteControlChannel.Format(remoteBrain.Channel)
                 });
             Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+            Assert.That(console.Controller, Is.Null,
+                "Selecting a brain while the toy is inactive should not start control.");
+            Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(user), Is.False);
             ui.CloseUi(toyRemote, RemoteControlSettingsUIKey.Key, user);
 
             Assert.That(itemToggle.Activated, Is.False);
@@ -342,6 +345,55 @@ public sealed class RemoteControlConsoleTest : GameTest
             SEntMan.DeleteEntity(map);
         }
     });
+
+    [Test]
+    public async Task ToyRemoteControlsBrainSelectedAfterActivation() =>
+        await Server.WaitAssertion(() =>
+        {
+            var mapSystem = Server.System<SharedMapSystem>();
+            var ui = Server.System<SharedUserInterfaceSystem>();
+            var hands = Server.System<SharedHandsSystem>();
+            var interaction = Server.System<SharedInteractionSystem>();
+            var map = mapSystem.CreateMap(out var mapId);
+
+            try
+            {
+                var coordinates = new MapCoordinates(0, 0, mapId);
+                var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlExpedition", coordinates);
+                var remote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
+                var user = SEntMan.SpawnEntity("MobHuman", coordinates);
+                var itemToggle = SEntMan.GetComponent<ItemToggleComponent>(toyRemote);
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(toyRemote);
+                var remoteBrain = SEntMan.GetComponent<RemoteControlBrainComponent>(remote);
+
+                Assert.That(hands.TryPickupAnyHand(user, toyRemote), Is.True);
+                interaction.UseInHandInteraction(user, toyRemote);
+
+                Assert.That(itemToggle.Activated, Is.True, "Using the toy remote should activate its toggle.");
+                Assert.That(console.Controller, Is.Null);
+                Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(user), Is.False);
+                Assert.That(ui.IsUiOpen(toyRemote, RemoteControlSettingsUIKey.Key, user), Is.True);
+
+                SEntMan.EventBus.RaiseLocalEvent(toyRemote,
+                    new RemoteControlSetChannelMessage
+                    {
+                        Actor = user,
+                        UiKey = RemoteControlSettingsUIKey.Key,
+                        Channel = RemoteControlChannel.Format(remoteBrain.Channel)
+                    });
+
+                Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+                Assert.That(console.Controller, Is.EqualTo(user));
+                var remoteControl = Server.System<SharedRemoteControlConsoleSystem>();
+                Assert.That(remoteControl.TryGetControlledEntity(user, out var controlledEntity), Is.True);
+                Assert.That(controlledEntity, Is.EqualTo(remote));
+                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(user).RelayEntity, Is.EqualTo(remote));
+            }
+            finally
+            {
+                SEntMan.DeleteEntity(map);
+            }
+        });
 
     [Test]
     public async Task RemoteControlBrainChannelIsOnlyExaminableOnTheBrainAtCloseRange() =>
@@ -1200,8 +1252,7 @@ public sealed class RemoteControlConsoleTest : GameTest
     [TestCase(51, true)]
     public async Task PlayerPossessionTakesOverUnlessRemotePowerIsHigher(
         int remoteControlPower,
-        bool expectedToRemainInControl)
-    {
+        bool expectedToRemainInControl) =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -1252,13 +1303,11 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.DeleteEntity(map);
             }
         });
-    }
 
     [TestCase(9, false)]
     [TestCase(10, false)]
     [TestCase(11, true)]
-    public async Task RemoteControlTakeoverRequiresHigherPower(int takeoverPower, bool expectedToTakeOver)
-    {
+    public async Task RemoteControlTakeoverRequiresHigherPower(int takeoverPower, bool expectedToTakeOver) =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -1310,7 +1359,6 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.DeleteEntity(map);
             }
         });
-    }
 
     [Test]
     public async Task HigherPowerRemoteControlTakeoverPreservesBorgActivationAndOldUiClose() =>

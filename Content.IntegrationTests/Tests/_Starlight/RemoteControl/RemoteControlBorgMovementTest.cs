@@ -380,14 +380,12 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
                     "The pulled object should be out of interaction range before release.");
             });
             await Server.WaitAssertion(() =>
-            {
                 SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlReleasePulledObjectMessage
                 {
                     Actor = SPlayer,
                     Entity = SEntMan.GetNetEntity(consoleUid),
                     UiKey = RemoteControlUIKey.Key,
-                });
-            });
+                }));
             await RunTicks(5);
 
             await Server.WaitAssertion(() =>
