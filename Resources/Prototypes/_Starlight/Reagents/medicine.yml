@@ -477,13 +477,11 @@
   worksOnTheDead: true
   plantMetabolism:
   - !type:PlantAdjustPotency
-    amount: 1
+    amount: 0.4 # 2 potency per injection
   - !type:PlantRestoreSeeds
-    probability: 0.5
-  - !type:PlantAdjustToxins
-    amount: -5
+    probability: 0.02 # 10% chance per injection
   - !type:PlantAdjustHealth
-    amount: 1
+    amount: 0.5
   - !type:PlantChangeTraits
     trait: PlantTraitUnviable
     type: Remove
@@ -498,7 +496,7 @@
         damage:
           Brute: -2
           Burn: -0.2
-          Toxin: -2.5
+          Toxin: -1
           Airloss: -1
       - !type:HealthChange
         conditions:
@@ -506,8 +504,7 @@
           type: [Plant]
         damage:
           types:
-            Radiation: -0.25
-            Cellular: -0.1
+            Radiation: -0.1
       - !type:ModifyBloodLevel
         conditions:
         - !type:MetabolizerTypeCondition
