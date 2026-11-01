@@ -1,153 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Station Maps and other handheld maps no longer work on planets.
-    type: Fix
-  id: 409592
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
-- author: Floximo
-  changes:
-  - message: A server crash and bug related to FTL coordinates was solved.
-    type: Fix
-  id: 409593
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
-- author: Floximo
-  changes:
-  - message: The expedition terminal can now be installed on any shuttle or even the station.
-    type: Fix
-  id: 409594
-  time: '2026-10-18T09:32:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6725
-- author: SevenShades
-  changes:
-  - message: Fixed Streetlamps being unbuildable.
-    type: Fix
-  id: 409595
-  time: '2026-10-18T09:56:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6739
-- author: Rinary
-  changes:
-  - message: Changed Lobby UI to work with new themes and better layout.
-    type: Tweak
-  id: 409596
-  time: '2026-10-18T13:34:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6634
-- author: Rinary
-  changes:
-  - message: Now you can pick lobby art in UI Settings instead of server picked art.
-    type: Add
-  id: 409597
-  time: '2026-10-18T13:34:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6634
-- author: Rinary
-  changes:
-  - message: Now you can quickly disable antags pick near ready button.
-    type: Add
-  id: 409598
-  time: '2026-10-18T13:34:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6634
-- author: Rinary
-  changes:
-  - message: Now you can change chat width in lobby.
-    type: Add
-  id: 409599
-  time: '2026-10-18T13:34:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6634
-- author: Rinary
-  changes:
-  - message: Now you can change lobby UI transparency in settings.
-    type: Add
-  id: 409600
-  time: '2026-10-18T13:34:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6634
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added several new cyborg chargers around Science.
-    type: Add
-  id: 409601
-  time: '2026-10-18T14:41:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6741
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing disposal pipes by Robotics that would cause Botany -> Kitchen mail routes to fail.
-    type: Fix
-  id: 409602
-  time: '2026-10-18T14:41:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6741
-- author: baltdev
-  changes:
-  - message: Added a vinyl for the song "HIT 'EM!" by CrayZ.
-    type: Add
-  id: 409603
-  time: '2026-10-20T06:18:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6693
-- author: Rescue
-  changes:
-  - message: Added tactical planning consoles for collaborative drawing on station maps.
-    type: Add
-  id: 409604
-  time: '2026-10-20T06:18:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6649
-- author: Rescue
-  changes:
-  - message: Added a Syndicate variant that displays the target station (for nuclear operatives).
-    type: Add
-  id: 409605
-  time: '2026-10-20T06:18:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6649
-- author: wonderfulnewworld, DuckManZach
-  changes:
-  - message: You can now select your objectives as antags; you have 15 minutes to decide before it assigns them for you.
-    type: Add
-  id: 409606
-  time: '2026-10-20T06:18:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6681
-- author: wonderfulnewworld, DuckManZach
-  changes:
-  - message: Modernized the character menu (the U button) UI.
-    type: Tweak
-  id: 409607
-  time: '2026-10-20T06:18:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6681
-- author: Floximo
-  changes:
-  - message: cyborgs can now move while shunted again, after remote control (RC) was used.
-    type: Fix
-  id: 409608
-  time: '2026-10-20T06:55:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6737
-- author: Floximo
-  changes:
-  - message: RC borg eyes reflect now correctly when the unit is controlled.
-    type: Fix
-  id: 409609
-  time: '2026-10-20T06:55:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6737
-- author: Floximo
-  changes:
-  - message: RC works now correctly together with TTS and its played for people nearby.
-    type: Add
-  id: 409610
-  time: '2026-10-20T06:55:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6737
-- author: Floximo
-  changes:
-  - message: RC supports now the use of the "stop dragging" command.
-    type: Add
-  id: 409611
-  time: '2026-10-20T06:55:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6737
-- author: Floximo
-  changes:
-  - message: RC stops now ongoing movement commands if control is taken.
-    type: Fix
-  id: 409612
-  time: '2026-10-20T06:55:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6737
-- author: Floximo
-  changes:
   - message: RC supports now the throwing command.
     type: Add
   id: 409613
@@ -2799,4 +2652,151 @@ Entries:
   id: 409991
   time: '2026-10-31T18:10:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6982
+- author: Citrea
+  changes:
+  - message: Magboots steps are heavy.
+    type: Tweak
+  id: 409992
+  time: '2026-10-31T23:32:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6964
+- author: Ohelig
+  changes:
+  - message: (Cluster) Removed the indoor Tesla to make room for...
+    type: Remove
+  id: 409993
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added a small nuclear reactor.
+    type: Add
+  id: 409994
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Fixed Freezer atmos alarms.
+    type: Fix
+  id: 409995
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added a drain to Freezer.
+    type: Add
+  id: 409996
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Fixed Cargo Maints doors to use the Cargo and Mining variants instead of Salvage.
+    type: Fix
+  id: 409997
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Fixed Renault dying in the air-tight Captain's bedroom.
+    type: Fix
+  id: 409998
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added distro/waste pipe to a mining dock that was missing them.
+    type: Fix
+  id: 409999
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added a disposals chute to Botany.
+    type: Add
+  id: 410000
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cluster) Replaced indestructible lights in Clown and Radio Host with normal variants.
+    type: Fix
+  id: 410001
+  time: '2026-11-01T00:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6971
+- author: Ohelig
+  changes:
+  - message: (Cork) Added Gunnery Sergeant.
+    type: Add
+  id: 410002
+  time: '2026-11-01T00:33:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6972
+- author: Ohelig
+  changes:
+  - message: (Cork) Fixed the door access between Botany and Theater.
+    type: Fix
+  id: 410003
+  time: '2026-11-01T00:33:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6972
+- author: redmushie
+  changes:
+  - message: (Bagel) Change distro/waste layers to match docking port standard.
+    type: Tweak
+  id: 410004
+  time: '2026-11-01T00:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6973
+- author: redmushie
+  changes:
+  - message: (Bagel) Connected several disconnected waste networks.
+    type: Tweak
+  id: 410005
+  time: '2026-11-01T00:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6973
+- author: redmushie
+  changes:
+  - message: (Bagel) Routed distro, waste and HV to every docking port.
+    type: Add
+  id: 410006
+  time: '2026-11-01T00:53:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6973
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added Gunner Sergeant and his locker to wardens office.
+    type: Add
+  id: 410007
+  time: '2026-11-01T00:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6967
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a portable scrubber to gen pop atsmo.
+    type: Add
+  id: 410008
+  time: '2026-11-01T00:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6967
+- author: John Nexus Integrated Trait & Kazolotl
+  changes:
+  - message: Chemist Jamjar Glasses added.
+    type: Add
+  id: 410009
+  time: '2026-11-01T03:14:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6984
+- author: John Nexus Integrated Trait & Kazolotl
+  changes:
+  - message: Chemist Jamjars are now an option in the chemist job loadout.
+    type: Add
+  id: 410010
+  time: '2026-11-01T03:14:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6984
+- author: John Nexus Integrated Trait & Kazolotl
+  changes:
+  - message: Chemists now have an alternative option in their loadout to prescription chemistry goggles.
+    type: Tweak
+  id: 410011
+  time: '2026-11-01T03:14:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6984
+- author: John Nexus Integrated Trait & Kazolotl
+  changes:
+  - message: Committed to the bit where I fucked up putting my name in the changelog's contributor name last time.
+    type: Tweak
+  id: 410012
+  time: '2026-11-01T03:14:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6984
 Order: -1
