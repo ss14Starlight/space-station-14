@@ -1033,6 +1033,34 @@
       requiredMarkingsAny:
         - DollShellHeadMoth
 
+- type: marking
+  id: DollShellHeadBun
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: head_f
+  - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+    state: standard
+  - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+    state: standard_inner
+  emotes:
+    - emotePrototype: Squee
+      requiredMarkingsAny:
+        - DollShellHeadBun
+    - emotePrototype: Snort
+      requiredMarkingsAny:
+        - DollShellHeadBun
+    - emotePrototype: Sneeze
+      requiredMarkingsAny:
+        - DollShellHeadBun
+
 # Other Masks
 - type: marking
   id: DollShellHeadCrested

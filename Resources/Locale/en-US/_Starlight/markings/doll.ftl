@@ -81,6 +81,10 @@ marking-DollShellHeadHawk = Sharp Avian Head Shell
 marking-DollShellHeadHawk-head_hawk = Shell
 marking-DollShellHeadCrested = Crested Head Shell
 marking-DollShellHeadCrested-head_crested = Shell
+marking-DollShellHeadBun = Bun-y Head Shell
+marking-DollShellHeadBun-head_f = Head Shell
+marking-DollShellHeadBun-standard = Outer Ear Shell
+marking-DollShellHeadBun-standard_inner = Inner Ear Shell
 
 marking-DollShellLArmUnbroken = Left Arm Unbroken Shell
 marking-DollShellLArmUnbroken-unbroken_l_arm = Shell
