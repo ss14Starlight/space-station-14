@@ -104,6 +104,7 @@ public sealed class AccentPicker : BoxContainer
     private readonly Button _theme;
     private readonly Button _custom;
     private readonly ColorSelectorSliders _sliders;
+    private readonly Label _title;
 
     public event Action? OnPicked;
 
@@ -114,6 +115,9 @@ public sealed class AccentPicker : BoxContainer
     /// </summary>
     public bool UseCustom { get; private set; }
 
+    public void SetTitle(string locId)
+        => _title.Text = Loc.GetString(locId);
+
     public AccentPicker()
     {
         Orientation = LayoutOrientation.Vertical;
@@ -123,7 +127,8 @@ public sealed class AccentPicker : BoxContainer
         _sliders.OnColorChanged += color => Pick(color, fromPreset: false);
 
         var row = new BoxContainer { Orientation = LayoutOrientation.Horizontal, SeparationOverride = 4 };
-        row.AddChild(new Label { Text = Loc.GetString("ui-options-style-accent"), HorizontalExpand = true });
+        _title = new Label { Text = Loc.GetString("ui-options-style-accent"), HorizontalExpand = true };
+        row.AddChild(_title);
 
         _theme = new Button { Text = Loc.GetString("ui-options-style-accent-theme"), ToggleMode = true };
         _theme.OnPressed += _ =>
@@ -229,17 +234,19 @@ public sealed class OptionStyleThemeCVar : BaseOptionCVar<string>
 public sealed class OptionAccentCVar : BaseOptionCVar<string>
 {
     private readonly AccentPicker _picker;
+    private readonly CVarDef<string> _defaultCVar;
 
     protected override string Value
     {
         get => _picker.Selected.ToHex();
-        set => _picker.Select(Color.TryFromHex(value, out var color) ? color : Color.FromHex(StarlightCCVars.StyleAccent.DefaultValue));
+        set => _picker.Select(Color.TryFromHex(value, out var color) ? color : Color.FromHex(_defaultCVar.DefaultValue));
     }
 
-    public OptionAccentCVar(OptionsTabControlRow controller, IConfigurationManager cfg, AccentPicker picker)
-        : base(controller, cfg, StarlightCCVars.StyleAccent)
+    public OptionAccentCVar(OptionsTabControlRow controller, IConfigurationManager cfg, AccentPicker picker, CVarDef<string>? cvar = null)
+        : base(controller, cfg, cvar ?? StarlightCCVars.StyleAccent)
     {
         _picker = picker;
+        _defaultCVar = cvar ?? StarlightCCVars.StyleAccent;
         picker.OnPicked += ValueChanged;
     }
 
@@ -259,8 +266,8 @@ public sealed class OptionCustomAccentCVar : BaseOptionCVar<bool>
         set => _picker.SetUseCustom(value);
     }
 
-    public OptionCustomAccentCVar(OptionsTabControlRow controller, IConfigurationManager cfg, AccentPicker picker)
-        : base(controller, cfg, StarlightCCVars.StyleCustomAccent)
+    public OptionCustomAccentCVar(OptionsTabControlRow controller, IConfigurationManager cfg, AccentPicker picker, CVarDef<bool>? cvar = null)
+        : base(controller, cfg, cvar ?? StarlightCCVars.StyleCustomAccent)
     {
         _picker = picker;
         picker.OnPicked += ValueChanged;

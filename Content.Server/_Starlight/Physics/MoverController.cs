@@ -263,7 +263,10 @@ public sealed partial class SLMoverController : SharedMoverController
 
         foreach (ref readonly var sound in _handleMobMovementJob.Sounds)
             if (sound.HasValue)
+            {
                 _audio.PlayPredicted(sound.Value.SoundSpecifier, sound.Value.Source, sound.Value.User, sound.Value.AudioParams);
+                PlayFootstepLayers(sound.Value.Source, sound.Value.User, sound.Value.AudioParams);
+            }
 
         var perfDirtySounds = Stopwatch.GetTimestamp();
 
@@ -489,13 +492,15 @@ public sealed partial class SLMoverController : SharedMoverController
             }
 
             if (!weightless && MobMoverQuery.TryGetComponent(uid, out var mobMover) &&
-                TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, tileDef: tileDef))
+                TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, out var surfaceSound, tileDef: tileDef))
             {
                 var soundModifier = mover.Sprinting ? 3.5f : 1.5f;
 
                 var audioParams = sound.Params
                     .WithVolume(sound.Params.Volume + soundModifier)
                     .WithVariation(sound.Params.Variation ?? mobMover.FootstepVariation);
+                if (surfaceSound)
+                    audioParams = ApplyStepTimbre(uid, audioParams);
 
                 soundEvent = new SoundEvent(sound, uid, uid, audioParams);
             }

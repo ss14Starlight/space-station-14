@@ -9,8 +9,8 @@
     sprite: Clothing/Shoes/Specific/galoshes.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Specific/galoshes.rsi
-  - type: StealTarget # Starlight
-    stealGroup: GaloshesCollection # Starlight
+  - type: StealTarget
+    stealGroup: GaloshesCollection
 
 - type: entity
   parent: ClothingShoesBase
@@ -81,3 +81,13 @@
   suffix: No-slip
   components:
   - type: NoSlip
+
+# From Funky
+- type: entity
+  parent: ClothingShoesColorWhite
+  suffix: Silent, Syndicate
+  id: ClothingShoesColorWhiteNoSound
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSilence
