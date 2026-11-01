@@ -40,7 +40,7 @@ public sealed partial class RemoteControlSettingsWindow : FancyWindow
         StatusLabel.FontColorOverride = state.Connected && !error ? _connectedColor : _disconnectedColor;
         ErrorLabel.Text = state.Error ?? string.Empty;
         ControlButton.Pressed = controlling;
-        ControlButton.Disabled = !state.ControlAvailable || state.Controller is not null && !controlling;
+        ControlButton.Disabled = !state.ControlAvailable || (state.Controller is not null && !controlling);
         OpenScreenButton.Visible = state.CanOpenScreen;
     }
 }

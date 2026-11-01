@@ -9,35 +9,54 @@ public sealed partial class WiresSystem
 {
     [Dependency] private SharedRemoteControlConsoleSystem _sharedRemoteControl = default!;
 
+    #region Starlight
+    /// <summary>
+    /// Attempts to open the wires user interface for a remote user.
+    /// </summary>
+    /// <param name="target">The wired entity whose interface should be opened.</param>
+    /// <param name="remoteUser">The user acting through the remote interface.</param>
+    /// <param name="used">The item used to interact with the wires.</param>
+    /// <returns>True if the interface was opened.</returns>
     public bool TryOpenRemoteUserInterface(
-        EntityUid uid,
+        Entity<WiresComponent?> target,
         EntityUid remoteUser,
-        EntityUid used,
-        WiresComponent wires)
+        EntityUid used)
     {
+        if (!Resolve(target.Owner, ref target.Comp))
+            return false;
+
         if (!_sharedRemoteControl.TryGetControllerForRemoteEntity(remoteUser, out _))
             return false;
 
-        wires.ViewWires = _tags.HasTag(used, wires.ShowWiresTag);
-        UpdateUserInterface(uid, wires);
-        _uiSystem.OpenUi(uid, WiresUiKey.Key, remoteUser);
+        target.Comp.ViewWires = _tags.HasTag(used, target.Comp.ShowWiresTag);
+        UpdateUserInterface(target.Owner, target.Comp);
+        _uiSystem.OpenUi(target.Owner, WiresUiKey.Key, remoteUser);
         return true;
     }
 
-    public void TryDoRemoteWireAction(EntityUid uid, EntityUid remoteUser, WiresActionMessage message)
+    /// <summary>
+    /// Attempts to perform a wire action initiated by a remote user.
+    /// </summary>
+    /// <param name="target">The wired entity whose wires are being changed.</param>
+    /// <param name="remoteUser">The user acting through the remote interface.</param>
+    /// <param name="message">The requested wire action.</param>
+    public void TryDoRemoteWireAction(
+        Entity<WiresComponent?> target,
+        EntityUid remoteUser,
+        WiresActionMessage message)
     {
-        if (!TryComp(uid, out WiresComponent? wires))
+        if (!Resolve(target.Owner, ref target.Comp))
             return;
 
         if (!TryComp(remoteUser, out HandsComponent? hands))
         {
-            _popupSystem.PopupEntity(Loc.GetString("wires-component-ui-on-receive-message-no-hands"), uid, remoteUser);
+            _popupSystem.PopupEntity(Loc.GetString("wires-component-ui-on-receive-message-no-hands"), target.Owner, remoteUser);
             return;
         }
 
-        if (!_interactionSystem.InRangeUnobstructed(remoteUser, uid))
+        if (!_interactionSystem.InRangeUnobstructed(remoteUser, target.Owner))
         {
-            _popupSystem.PopupEntity(Loc.GetString("wires-component-ui-on-receive-message-cannot-reach"), uid, remoteUser);
+            _popupSystem.PopupEntity(Loc.GetString("wires-component-ui-on-receive-message-cannot-reach"), target.Owner, remoteUser);
             return;
         }
 
@@ -45,6 +64,7 @@ public sealed partial class WiresSystem
             || !TryComp(heldEntity, out ToolComponent? tool))
             return;
 
-        TryDoWireAction(uid, remoteUser, heldEntity.Value, message.Id, message.Action, wires, tool);
+        TryDoWireAction(target.Owner, remoteUser, heldEntity.Value, message.Id, message.Action, target.Comp, tool);
     }
+    #endregion
 }

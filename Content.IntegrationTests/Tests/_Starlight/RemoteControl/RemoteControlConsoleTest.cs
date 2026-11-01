@@ -1,3 +1,5 @@
+#nullable enable annotations
+
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Computers.RemoteControl;
@@ -291,34 +293,30 @@ public sealed class RemoteControlConsoleTest : GameTest
     }
 
     [Test]
-    public async Task ToyRemoteOpensSettingsWithActivatableUiComponent()
+    public async Task ToyRemoteOpensSettingsWithActivatableUiComponent() => await Server.WaitAssertion(() =>
     {
-        await Server.WaitAssertion(() =>
+        var mapSystem = Server.System<SharedMapSystem>();
+        var ui = Server.System<SharedUserInterfaceSystem>();
+        var map = mapSystem.CreateMap(out var mapId);
+
+        try
         {
-            var mapSystem = Server.System<SharedMapSystem>();
-            var ui = Server.System<SharedUserInterfaceSystem>();
-            var map = mapSystem.CreateMap(out var mapId);
+            var coordinates = new MapCoordinates(0, 0, mapId);
+            var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlExpedition", coordinates);
+            var user = SEntMan.SpawnEntity("MobHuman", coordinates);
+            var activatable = SEntMan.GetComponent<ActivatableUIComponent>(toyRemote);
 
-            try
-            {
-                var coordinates = new MapCoordinates(0, 0, mapId);
-                var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlExpedition", coordinates);
-                var user = SEntMan.SpawnEntity("MobHuman", coordinates);
-                var activatable = SEntMan.GetComponent<ActivatableUIComponent>(toyRemote);
-
-                Assert.That(activatable.Key, Is.EqualTo(RemoteControlSettingsUIKey.Key));
-                Assert.That(ui.TryOpenUi(toyRemote, RemoteControlSettingsUIKey.Key, user), Is.True);
-            }
-            finally
-            {
-                SEntMan.DeleteEntity(map);
-            }
-        });
-    }
+            Assert.That(activatable.Key, Is.EqualTo(RemoteControlSettingsUIKey.Key));
+            Assert.That(ui.TryOpenUi(toyRemote, RemoteControlSettingsUIKey.Key, user), Is.True);
+        }
+        finally
+        {
+            SEntMan.DeleteEntity(map);
+        }
+    });
 
     [Test]
-    public async Task RemoteControlBrainChannelIsOnlyExaminableOnTheBrainAtCloseRange()
-    {
+    public async Task RemoteControlBrainChannelIsOnlyExaminableOnTheBrainAtCloseRange() =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -348,7 +346,6 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.DeleteEntity(map);
             }
         });
-    }
 
     private static GetVerbsEvent<ExamineVerb> GetExamineVerbs(
         IEntityManager entityManager,
@@ -1044,47 +1041,43 @@ public sealed class RemoteControlConsoleTest : GameTest
     }
 
     [Test]
-    public async Task RemoteControlPowerPrototypesHaveExpectedValues()
+    public async Task RemoteControlPowerPrototypesHaveExpectedValues() => await Server.WaitAssertion(() =>
     {
-        await Server.WaitAssertion(() =>
+        var mapSystem = Server.System<SharedMapSystem>();
+        var map = mapSystem.CreateMap(out var mapId);
+
+        try
         {
-            var mapSystem = Server.System<SharedMapSystem>();
-            var map = mapSystem.CreateMap(out var mapId);
+            var coordinates = new MapCoordinates(0, 0, mapId);
+            var handheld = SEntMan.SpawnEntity("HandheldRemoteControl", coordinates);
+            var antagHandheld = SEntMan.SpawnEntity("HandheldRemoteControlAntag", coordinates);
+            var antagMindHandheld = SEntMan.SpawnEntity("HandheldRemoteControlAntagMind", coordinates);
+            var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlExpedition", coordinates);
+            var computer = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
+            var playerAi = SEntMan.SpawnEntity("AiHeld", coordinates);
 
-            try
-            {
-                var coordinates = new MapCoordinates(0, 0, mapId);
-                var handheld = SEntMan.SpawnEntity("HandheldRemoteControl", coordinates);
-                var antagHandheld = SEntMan.SpawnEntity("HandheldRemoteControlAntag", coordinates);
-                var antagMindHandheld = SEntMan.SpawnEntity("HandheldRemoteControlAntagMind", coordinates);
-                var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlExpedition", coordinates);
-                var computer = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
-                var playerAi = SEntMan.SpawnEntity("AiHeld", coordinates);
-
-                Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(handheld).RemoteControlPower,
-                    Is.EqualTo(10));
-                Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(antagHandheld).RemoteControlPower,
-                    Is.EqualTo(20));
-                Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(antagMindHandheld).RemoteControlPower,
-                    Is.EqualTo(51));
-                Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(toyRemote).RemoteControlPower,
-                    Is.EqualTo(5));
-                Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(computer).RemoteControlPower,
-                    Is.EqualTo(15));
-                Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(playerAi).RemoteControlPower,
-                    Is.EqualTo(21));
-            }
-            finally
-            {
-                SEntMan.DeleteEntity(map);
-            }
-        });
-    }
+            Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(handheld).RemoteControlPower,
+                Is.EqualTo(10));
+            Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(antagHandheld).RemoteControlPower,
+                Is.EqualTo(20));
+            Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(antagMindHandheld).RemoteControlPower,
+                Is.EqualTo(51));
+            Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(toyRemote).RemoteControlPower,
+                Is.EqualTo(5));
+            Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(computer).RemoteControlPower,
+                Is.EqualTo(15));
+            Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(playerAi).RemoteControlPower,
+                Is.EqualTo(21));
+        }
+        finally
+        {
+            SEntMan.DeleteEntity(map);
+        }
+    });
 
     [TestCase("PlushieRouny")]
     [TestCase("PlushieFlox")]
-    public async Task AIRemoteControlCanTargetRemoteControlBrainEntities(string plushiePrototype)
-    {
+    public async Task AIRemoteControlCanTargetRemoteControlBrainEntities(string plushiePrototype) =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -1122,13 +1115,11 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.DeleteEntity(map);
             }
         });
-    }
 
     [TestCase(10, false)]
     [TestCase(50, false)]
     [TestCase(51, true)]
-    public async Task PossessedEntityRequiresHigherRemoteControlPower(int remoteControlPower, bool expectedToControl)
-    {
+    public async Task PossessedEntityRequiresHigherRemoteControlPower(int remoteControlPower, bool expectedToControl) =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -1175,7 +1166,6 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.DeleteEntity(map);
             }
         });
-    }
 
     [TestCase(10, false)]
     [TestCase(50, false)]

@@ -460,7 +460,7 @@ public sealed partial class WiresSystem : SharedWiresSystem
                 args.Handled = true;
             }
             // Starlight - start
-            else if (TryOpenRemoteUserInterface(uid, args.User, args.Used, component))
+            else if (TryOpenRemoteUserInterface(new Entity<WiresComponent?>(uid, component), args.User, args.Used))
             {
                 args.Handled = true;
             }

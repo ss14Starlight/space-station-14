@@ -8,7 +8,7 @@ public static class RemoteControlChannel
     public const int ChannelCount = 1_000_000;
 
     public static bool IsValid(int channel)
-        => channel >= 0 && channel < ChannelCount;
+        => channel is >= 0 and < ChannelCount;
 
     public static string Format(int channel)
     {

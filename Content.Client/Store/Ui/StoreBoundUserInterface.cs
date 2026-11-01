@@ -72,8 +72,7 @@ public sealed partial class StoreBoundUserInterface : BoundUserInterface // Star
 
                 _menu?.UpdateBalance(msg.Balance);
                 // Starlight - start
-                if (_menu != null)
-                    _menu.GridMode = msg.GridMode;
+                _menu?.GridMode = msg.GridMode;
                 // Starlight - end
 
                 UpdateListingsWithSearchFilter();

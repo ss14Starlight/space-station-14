@@ -145,10 +145,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 subs.Event<RemoteControlOpenSettingsMessage>(OnOpenSettings);
             });
         Subs.BuiEvents<RemoteControlConsoleComponent>(RemoteControlSettingsUIKey.Key,
-            subs =>
-            {
-                subs.Event<RemoteControlSetChannelMessage>(OnSetRemoteControlChannel);
-            });
+            subs => subs.Event<RemoteControlSetChannelMessage>(OnSetRemoteControlChannel));
         CommandBinds.Builder
             .BindBefore(ContentKeyFunctions.ToggleKnockdown,
                 new RemoteToggleKnockdownInputCmdHandler(this),
@@ -530,7 +527,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (entity.Comp.RemoteBrain is not null
             && _sharedRemoteControl.TryGetRemoteEntity((entity.Owner, entity.Comp), out var oldRemoteEntity))
         {
-            CleanupUsers(entity, oldRemoteEntity, false);
+            CleanupUsers(entity, oldRemoteEntity, false, keepToyActive: true);
             if (!TerminatingOrDeleted(oldRemoteEntity))
                 SetRemoteTypingState(oldRemoteEntity, TypingIndicatorState.None);
         }
@@ -1447,7 +1444,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             && args.Message is WiresActionMessage wireAction)
         {
             args.Cancel();
-            _wires.TryDoRemoteWireAction(args.Target, remoteEntity, wireAction);
+            _wires.TryDoRemoteWireAction(new Entity<WiresComponent?>(args.Target, null), remoteEntity, wireAction);
             return;
         }
 
@@ -1828,7 +1825,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     }
 
     private void CleanupUsers(Entity<RemoteControlConsoleComponent> entity, EntityUid remoteEntity,
-        bool clearUsers = true, bool clearController = true)
+        bool clearUsers = true, bool clearController = true, bool keepToyActive = false)
     {
         var controllingUser = entity.Comp.Controller;
         if (clearController && controllingUser is { } controller)
@@ -1846,7 +1843,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             UpdateRemoteBorgControlledAppearance(remoteEntity);
             Dirty(entity);
             _pendingRemoteBorgActivations.RemoveWhere(pending => pending.Console == entity.Owner);
-            DeactivateToyRemote(entity.Owner, entity.Comp);
+            if (!keepToyActive)
+                DeactivateToyRemote(entity.Owner, entity.Comp);
         }
 
         foreach (var user in entity.Comp.Users)
