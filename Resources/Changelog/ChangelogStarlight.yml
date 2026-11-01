@@ -1,18 +1,4 @@
 Entries:
-- author: wonderfulnewworld, DuckManZach
-  changes:
-  - message: Modernized the character menu (the U button) UI.
-    type: Tweak
-  id: 409607
-  time: '2026-10-20T06:18:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6681
-- author: Floximo
-  changes:
-  - message: cyborgs can now move while shunted again, after remote control (RC) was used.
-    type: Fix
-  id: 409608
-  time: '2026-10-20T06:55:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6737
 - author: Floximo
   changes:
   - message: RC borg eyes reflect now correctly when the unit is controlled.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410006
   time: '2026-11-01T00:53:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6973
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added Gunner Sergeant and his locker to wardens office.
+    type: Add
+  id: 410007
+  time: '2026-11-01T00:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6967
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a portable scrubber to gen pop atsmo.
+    type: Add
+  id: 410008
+  time: '2026-11-01T00:53:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6967
 Order: -1
