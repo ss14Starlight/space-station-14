@@ -18,7 +18,6 @@ public sealed partial class JobPrototype
     [DataField]
     public LocId? RoleSubtype;
 
-            #region Starlight
         /// <summary>
         /// Multiplier for this job's contribution to security antag scaling.
         /// Multiplied by the configured security weight.
@@ -39,5 +38,4 @@ public sealed partial class JobPrototype
         /// </summary>
         [DataField]
         public double AntagScalingCentcomWeight { get; private set; }
-        #endregion
 }
