@@ -10,7 +10,11 @@
   tags:
     - CantBecomeRevolutionary
   components:
+  # Opt into Starlight's devour rules without changing the common ChangelingDevour defaults.
   - type: ChangelingDevour
+    useStarlightDevour: true
+    changelingDevourAction: ActionChangelingDevourStarlight
+    devourWindupTime: 10
   - type: ChangelingIdentity
   - type: ChangelingTransform
   mindRoles:

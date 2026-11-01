@@ -4,6 +4,9 @@
   suffix: Do Not Map
   components:
     - type: ChangelingDevour
+      useStarlightDevour: true
+      changelingDevourAction: ActionChangelingDevourStarlight
+      devourWindupTime: 10
     - type: ChangelingIdentity
     - type: UserInterface # Ensures that lesser form has necessary UIs
       interfaces:
