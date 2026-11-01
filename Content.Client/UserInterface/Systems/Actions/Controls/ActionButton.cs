@@ -177,10 +177,10 @@ public sealed partial class ActionButton : Control, IEntityControl
 
     private void OnPressed(GUIBoundKeyEventArgs args)
     {
-        if (args.Function != EngineKeyFunctions.UIClick && args.Function != ContentKeyFunctions.RemoveHotbarAction && args.Function != ContentKeyFunctions.AddHotbarAction) // Starlight
+        if (args.Function != EngineKeyFunctions.UIClick && args.Function != ContentKeyFunctions.HotbarRemove && args.Function != ContentKeyFunctions.HotbarQuickAdd) // Starlight
             return;
 
-        if (args.Function == ContentKeyFunctions.RemoveHotbarAction) // Starlight
+        if (args.Function == ContentKeyFunctions.HotbarRemove) // Starlight
             Depress(args, true);
 
         ActionPressed?.Invoke(args, this);
@@ -188,10 +188,10 @@ public sealed partial class ActionButton : Control, IEntityControl
 
     private void OnUnpressed(GUIBoundKeyEventArgs args)
     {
-        if (args.Function != EngineKeyFunctions.UIClick && args.Function != ContentKeyFunctions.RemoveHotbarAction) // Starlight
+        if (args.Function != EngineKeyFunctions.UIClick && args.Function != ContentKeyFunctions.HotbarRemove) // Starlight
             return;
 
-        if (args.Function == ContentKeyFunctions.RemoveHotbarAction) // Starlight
+        if (args.Function == ContentKeyFunctions.HotbarRemove) // Starlight
             Depress(args, false);
 
         ActionUnpressed?.Invoke(args, this);

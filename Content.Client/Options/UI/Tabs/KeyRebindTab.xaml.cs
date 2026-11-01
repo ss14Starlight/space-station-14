@@ -256,8 +256,8 @@ namespace Content.Client.Options.UI.Tabs
             {
                 AddButton(boundKey);
             }
-            AddButton(ContentKeyFunctions.AddHotbarAction); // Starlight
-            AddButton(ContentKeyFunctions.RemoveHotbarAction); // Starlight
+            AddButton(ContentKeyFunctions.HotbarQuickAdd); // Starlight
+            AddButton(ContentKeyFunctions.HotbarRemove); // Starlight
 
             AddHeader("ui-options-header-shuttle");
             AddButton(ContentKeyFunctions.ShuttleStrafeUp);

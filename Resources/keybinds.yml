@@ -663,13 +663,13 @@ binds:
 - function: LatchStruggle
   type: State
   key: Space
-- function: RemoveHotbarAction
+- function: HotbarRemove
   type: State
   key: MouseRight
   mod1: Shift
   canFocus: true
   allowSubCombs: true
-- function: AddHotbarAction
+- function: HotbarQuickAdd
   type: State
   key: MouseRight
   canFocus: true
