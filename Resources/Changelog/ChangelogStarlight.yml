@@ -1,20 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Added 2 new traits, Marked for Death and Unglorious.
-    type: Add
-  id: 409628
-  time: '2026-10-20T11:39:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6682
-- author: wonderfulnewworld
-  changes:
-  - message: Pun Pun, Stir Stir, Kiki, K9s, Smart Corgis (Looking at you, Cheese), and ghost role Scurrets can now be lesson/kill/help targets, if they have an active player mind.
-    type: Add
-  id: 409629
-  time: '2026-10-20T11:39:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6682
-- author: wonderfulnewworld
-  changes:
   - message: Added at least 4 new achievements.
     type: Add
   id: 409630
@@ -2799,4 +2785,18 @@ Entries:
   id: 410027
   time: '2026-11-01T16:41:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6939
+- author: 0warie
+  changes:
+  - message: Removing a hotbar action can now be changed from right-click.
+    type: Add
+  id: 410028
+  time: '2026-11-01T17:03:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6991
+- author: 0warie
+  changes:
+  - message: Items in the actions menu can be quick added to the hotbar with right-click.
+    type: Add
+  id: 410029
+  time: '2026-11-01T17:03:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6991
 Order: -1
