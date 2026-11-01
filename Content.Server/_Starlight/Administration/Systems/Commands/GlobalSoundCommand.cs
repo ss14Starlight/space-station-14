@@ -1,10 +1,12 @@
 using System.Linq;
+using Content.Server._Starlight.Toolshed;
 using Content.Server.Administration;
 using Content.Server.Audio;
 using Content.Shared.Administration;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Toolshed;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Administration.Systems.Commands;
 
@@ -13,7 +15,8 @@ namespace Content.Server._Starlight.Administration.Systems.Commands;
 public sealed class GlobalSoundCommand : ToolshedCommand
 {
     [CommandImplementation("play")]
-    public EntityUid Play([PipedArgument] EntityUid uid, string path, int volume, bool saveToReplay)
+    public EntityUid Play([PipedArgument] EntityUid uid,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath path, int volume, bool saveToReplay)
     {
         if (!TryComp<ActorComponent>(uid, out var actor)) return uid;
         var audio = AudioParams.Default.WithVolume(volume);
@@ -23,7 +26,8 @@ public sealed class GlobalSoundCommand : ToolshedCommand
     }
 
     [CommandImplementation("play")]
-    public ICommonSession Play([PipedArgument] ICommonSession session, string path, int volume, bool saveToReplay)
+    public ICommonSession Play([PipedArgument] ICommonSession session,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath path, int volume, bool saveToReplay)
     {
         var audio = AudioParams.Default.WithVolume(volume);
         EntityManager.System<ServerGlobalSoundSystem>().PlayAdminGlobal(Filter.Empty().AddPlayer(session),
@@ -32,10 +36,12 @@ public sealed class GlobalSoundCommand : ToolshedCommand
     }
 
     [CommandImplementation("play")]
-    public IEnumerable<EntityUid> Play([PipedArgument] IEnumerable<EntityUid> uid, string path, int volume, bool saveToReplay)
-        => uid.Select(x=>Play(x,path,volume,saveToReplay));
+    public IEnumerable<EntityUid> Play([PipedArgument] IEnumerable<EntityUid> uid,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath path, int volume, bool saveToReplay)
+        => uid.Select(x => Play(x, path, volume, saveToReplay));
 
     [CommandImplementation("play")]
-    public IEnumerable<ICommonSession> Play([PipedArgument] IEnumerable<ICommonSession> session, string path, int volume, bool saveToReplay)
+    public IEnumerable<ICommonSession> Play([PipedArgument] IEnumerable<ICommonSession> session,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath path, int volume, bool saveToReplay)
         => session.Select(x => Play(x, path, volume, saveToReplay));
 }

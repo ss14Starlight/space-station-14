@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._Starlight.Station;
+using Content.Server._Starlight.Toolshed;
 using Content.Server.Administration;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
@@ -9,6 +10,7 @@ using Content.Shared.Station.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Commands;
 
@@ -144,10 +146,11 @@ public sealed class StationInitCommand : ToolshedCommand
     }
 
     [CommandImplementation("setemergencyshuttlepath")]
-    public EntityUid SetEmergencyShuttlePath(IInvocationContext ctx, [PipedArgument] EntityUid uid, string shuttlePath)
+    public EntityUid SetEmergencyShuttlePath(IInvocationContext ctx, [PipedArgument] EntityUid uid,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath shuttlePath)
     {
         if (!EnsureWorkable(ctx, uid, out var comp)) return uid;
-        comp.EmergencyShuttleOverridePath = shuttlePath;
+        comp.EmergencyShuttleOverridePath = shuttlePath.ToString();
         return uid;
     }
 
@@ -268,8 +271,10 @@ public sealed class StationInitCommand : ToolshedCommand
         => uid.Select(x=>RmAllowedGridSpawn(ctx ,x, gridSpawnName));
 
     [CommandImplementation("setemergencyshuttlepath")]
-    public IEnumerable<EntityUid> SetEmergencyShuttlePath(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string shuttlePath)
-        => uid.Select(x=>SetEmergencyShuttlePath(ctx ,x, shuttlePath));
+    public IEnumerable<EntityUid> SetEmergencyShuttlePath(IInvocationContext ctx,
+        [PipedArgument] IEnumerable<EntityUid> uid,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath shuttlePath)
+        => uid.Select(x => SetEmergencyShuttlePath(ctx, x, shuttlePath));
 
     [CommandImplementation("clearjobs")]
     public IEnumerable<EntityUid> ClearJobs(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid)
