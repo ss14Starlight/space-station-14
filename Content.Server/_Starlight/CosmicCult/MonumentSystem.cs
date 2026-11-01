@@ -373,6 +373,13 @@ public sealed partial class MonumentSystem : SharedMonumentSystem
         {
             objectiveComp.Tier = 1;
         }
+
+        //add the move action
+        var leaderQuery = EntityQueryEnumerator<CosmicCultLeadComponent>();
+        while (leaderQuery.MoveNext(out var leader, out var leaderComp))
+        {
+            _actions.AddAction(leader, ref leaderComp.CosmicMonumentMoveActionEntity, leaderComp.CosmicMonumentMoveAction, leader);
+        }
     }
 
     public void MonumentTier2(Entity<MonumentComponent> uid)
@@ -404,13 +411,6 @@ public sealed partial class MonumentSystem : SharedMonumentSystem
             cultComp.EntropyBudget += (int)Math.Floor(Math.Round((double)cult.Comp.TotalCrew / 100 * 10)); // pity system. 10% of the playercount worth of entropy on tier up
 
             Dirty(cultist, cultComp);
-        }
-
-        //add the move action
-        var leaderQuery = EntityQueryEnumerator<CosmicCultLeadComponent>();
-        while (leaderQuery.MoveNext(out var leader, out var leaderComp))
-        {
-            _actions.AddAction(leader, ref leaderComp.CosmicMonumentMoveActionEntity, leaderComp.CosmicMonumentMoveAction, leader);
         }
 
         Dirty(uid);

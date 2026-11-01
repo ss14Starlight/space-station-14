@@ -348,3 +348,58 @@
     baseWalkSpeed : 0.7
     baseSprintSpeed : 1
 
+- type: entity
+  name: bombroach
+  id: MobBombroach
+  parent: MobMothroach
+  description: Is it wearing a bomb?
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Mothroach
+    understands:
+    - Moffic
+    - Mothroach
+    - GalacticCommon
+  - type: Sprite
+    sprite: _Starlight/Mobs/Animals/mothroach/bombroach.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: bombroach
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: bombroach-moving
+    noMovementLayers:
+      movement:
+        state: bombroach
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: bombroach
+      Critical:
+        Base: bombroach_dead
+      Dead:
+        Base: bombroach_dead
+  - type: GhostRole
+    prob: 1
+    name: ghost-role-information-bombroach-name
+    allowMovement: true
+    description: ghost-role-information-bombroach-description
+    rules: ghost-role-information-bombroach-rules
+    important: true # SL
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - PicoBombImplant
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent

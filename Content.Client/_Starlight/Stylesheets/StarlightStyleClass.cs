@@ -17,6 +17,11 @@ public static class StarlightStyleClass
     /// </summary>
     public const string SpritePreview = "SpritePreview";
 
+    /// <summary>
+    /// A window header button that collapses or expands the window's sidebar. The window sets its texture.
+    /// </summary>
+    public const string WindowSidebarButton = "WindowSidebarButton";
+
     #endregion
 
     #region Lobby
