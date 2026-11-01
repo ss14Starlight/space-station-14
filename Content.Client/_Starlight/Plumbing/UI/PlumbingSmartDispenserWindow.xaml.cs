@@ -22,7 +22,7 @@ namespace Content.Client._Starlight.Plumbing.UI;
 [GenerateTypedNameReferences]
 public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
 {
-    private const int ReagentRowHeight = 32;
+    private const int ReagentRowHeight = 40;
     private static readonly Vector2 _compactWindowSize = new(440, 560);
     private static readonly Vector2 _fullWindowSize = new(760, 560);
 
@@ -32,6 +32,7 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
     private readonly SolutionContainerSystem _solutionSystem;
     private readonly PlumbingSmartDispenserSystem _smartDispenserSystem;
     private readonly List<ReagentEntry> _reagentEntries = [];
+    private readonly Dictionary<string, ClickableBeakerBarChart> _bars = [];
 
     private bool _localStateDirty = true;
     private bool _showDispensePane;
@@ -178,18 +179,30 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
             _reagentEntries.Add(entry);
         }
 
-        // Sort alphabetically by localized name for consistent display
+        // Sort alphabetically by localized name or label for consistent display
         _reagentEntries.Sort((a, b) => string.Compare(a.LocalizedName, b.LocalizedName, StringComparison.OrdinalIgnoreCase));
 
         var totalVolume = FixedPoint2.Zero;
 
-        // update existing ui elements in place
-        for (int i = 0; i < _reagentEntries.Count; i++)
+        bool orderChanged = _reagentEntries.Count != ReagentList.ChildCount;
+        if (!orderChanged)
         {
-            ClickableBeakerBarChart chart;
-            if (i < ReagentList.ChildCount)
-                chart = (ClickableBeakerBarChart)ReagentList.Children[i];
-            else
+            for (int i = 0; i < _reagentEntries.Count; i++)
+            {
+                if (_reagentEntries[i].ReagentId != ((ClickableBeakerBarChart)ReagentList.Children[i]).ReagentId)
+                {
+                    orderChanged = true;
+                    break;
+                }
+            }
+        }
+
+        if (orderChanged)
+            ReagentList.RemoveAllChildren();
+
+        foreach (var entry in _reagentEntries)
+        {
+            if (!_bars.TryGetValue(entry.ReagentId, out var chart))
             {
                 chart = new()
                 {
@@ -201,10 +214,11 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
 
                 chart.OnChartPressed += OnDispenseClicked;
 
-                ReagentList.AddChild(chart);
+                _bars.Add(entry.ReagentId, chart);
             }
 
-            var entry = _reagentEntries[i];
+            if (orderChanged)
+                ReagentList.AddChild(chart);
 
             totalVolume += entry.Quantity;
 
@@ -217,8 +231,7 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
                 ("stored", entry.Quantity),
                 ("max", ent.Comp.MaxPerReagent));
 
-            chart.Clear();
-            chart.SetEntry(
+            chart.SetDetails(
                 entry.ReagentId,
                 Loc.GetString("plumbing-smart-dispenser-reagent-entry",
                     ("reagent", entry.LocalizedName),
@@ -227,10 +240,6 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
                 entry.Color,
                 tooltip: tooltip);
         }
-
-        // remove any extra entries
-        while (ReagentList.ChildCount > _reagentEntries.Count)
-            ReagentList.RemoveChild(ReagentList.Children[ReagentList.ChildCount - 1]);
 
         if (_reagentEntries.Count == 0)
             StatusLabel.Text = Loc.GetString("plumbing-smart-dispenser-empty");
