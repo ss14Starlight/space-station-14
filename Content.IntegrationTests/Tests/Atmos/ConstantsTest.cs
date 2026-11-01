@@ -21,7 +21,7 @@ public sealed class ConstantsTest : GameTest
         {
             var atmosSystem = entityManager.System<AtmosphereSystem>();
 
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope()) // Starlight-edit
             {
                 // adding new gases needs a few changes in the code, so make sure this is done everywhere
                 var gasProtos = protoManager.EnumeratePrototypes<GasPrototype>().ToList();
@@ -41,7 +41,7 @@ public sealed class ConstantsTest : GameTest
                 {
                     Assert.That(Enum.TryParse<Gas>(gas.ID, out _), $"GasPrototype {gas.ID} has an invalid ID. It must correspond to a value in the {nameof(Gas)} enum.");
                 }
-            });
+            }
         });
     }
 }
