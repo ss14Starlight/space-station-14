@@ -101,6 +101,7 @@ public sealed partial class ChameleonGlassSystem : EntitySystem
 
         // normal stir behavior persists
         _mixing.TryMix(args.Used.Value, ent.Owner);
+        ent.Comp.ResetOnNextFill = false;
         SetDisguise(ent, pending);
     }
 
@@ -144,7 +145,6 @@ public sealed partial class ChameleonGlassSystem : EntitySystem
         ent.Comp.WasFilledSinceSelection =
             _solutions.TryGetFitsInDispenser(ent.Owner, out _, out var solution) &&
             solution.Contents.Count != 0;
-        ent.Comp.ResetOnNextFill = false;
         SetOverride(ent, reagentId);
         _transformable.RefreshDisplayedDescription(ent.Owner);
         _names.RefreshNameModifiers(ent.Owner);
