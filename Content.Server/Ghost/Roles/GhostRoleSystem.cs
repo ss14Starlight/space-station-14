@@ -769,7 +769,11 @@ public sealed partial class GhostRoleSystem : EntitySystem
 
         // Avoid re-registering it for duplicate entries and potential exceptions.
         if (!ghostRole.ReregisterOnGhost || component.LifeStage > ComponentLifeStage.Running)
+
+        // Starlight-start: Don't re-register if deleting
+        if (TerminatingOrDeleted(uid))
             return;
+        // Starlight-end
 
         ghostRole.Taken = false;
         RegisterGhostRole((uid, ghostRole));
