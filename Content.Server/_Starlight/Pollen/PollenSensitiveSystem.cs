@@ -31,13 +31,14 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
     [Dependency] private CharacterRecordsSystem _characterRecords = default!;
     [Dependency] private SharedDarkenedVisionSystem _darkenedVision = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
-    [Dependency] private EntityLookupSystem _lookup = default!;
 
     private static readonly TimeSpan s_checkInterval = TimeSpan.FromSeconds(1);
     private static readonly TimeSpan s_sneezeInterval = TimeSpan.FromSeconds(10);
     private static readonly TimeSpan s_histamineInterval = TimeSpan.FromSeconds(0.75);
     private const string PollenAllergySlowdown = "PollenAllergySlowdown";
     private static readonly ProtoId<ReagentPrototype> s_histamine = "Histamine";
+
+    private readonly HashSet<Entity<ScentMarkerComponent>> _nearbyMarkers = new();
 
     public override void Update(float frameTime)
     {
@@ -65,12 +66,12 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
             if (_scent.IsSealed(uid))
                 continue;
 
-            var nearby = _lookup.GetEntitiesInRange(sensitiveTransform.Coordinates, sensitive.PollenRange);
+            _scent.GetNearbyMarkers(sensitiveTransform.Coordinates, sensitive.PollenRange, _nearbyMarkers);
             var containerHere = _scent.GetAirtightContainer(sensitiveTransform);
 
-            foreach (var candidate in nearby)
+            foreach (var (_, pollen) in _nearbyMarkers)
             {
-                if (!TryComp<ScentMarkerComponent>(candidate, out var pollen) || !pollen.IsPollen)
+                if (!pollen.IsPollen)
                     continue;
 
                 // Only interact with pollen in the same airtight container.
