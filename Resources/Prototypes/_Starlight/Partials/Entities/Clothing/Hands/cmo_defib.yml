@@ -1,0 +1,69 @@
+- type: entity
+  id: ClothingHandsCMODefib
+  parent: [ClothingHandsGlovesNitrile, PowerCellSlotMediumItem, BaseCommandContraband]
+  name: prototype resuscitation gloves
+  description: Experimental gloves with built-in defibrillator shock pads. Turn off before prescribing hugs.
+  suffix: CMO PRG
+  components:
+  - type: !Remove ExaminableSolution
+  - type: !Remove Stainable
+  - type: !Remove SolutionManager
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Gloves/cmo_defib.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Gloves/cmo_defib.rsi
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: icon-on }
+          False: { state: icon }
+  - type: ItemToggle
+    onActivate: false
+    onUse: false
+    soundActivate:
+      path: /Audio/Items/Defib/defib_safety_on.ogg
+    soundDeactivate:
+      path: /Audio/Items/Defib/defib_safety_off.ogg
+  - type: ToggleClothing
+    action: ActionToggleCMODefibGloves
+  - type: ToggleClothingPrefix
+  - type: ToggleCellDraw
+  - type: PowerCellDraw
+    drawRate: 0.3
+    useCharge: 100
+  - type: Defibrillator
+    zapHeal:
+      types:
+        Asphyxiation: -40
+  - type: UseDelay
+  - type: CMODefibGloves
+  - type: StealTarget
+    stealGroup: CMODefibGloves
+  - type: BatteryDrainer
+  - type: DoAfter
+  - type: MeleeWeapon
+    attackRate: 1.5
+    hidden: true # The glove system describes its contact shock when activated.
+    damage:
+      types:
+        Blunt: 5
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleCMODefibGloves
+  name: Toggle prototype gloves
+  description: Activate or deactivate the prototype resuscitation gloves.
+  components:
+  - type: Action
+    icon: { sprite: _Starlight/Clothing/Hands/Gloves/cmo_defib.rsi, state: icon }
+    iconOn: { sprite: _Starlight/Clothing/Hands/Gloves/cmo_defib.rsi, state: action-on }
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent

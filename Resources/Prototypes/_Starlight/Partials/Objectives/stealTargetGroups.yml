@@ -1,0 +1,6 @@
+- type: stealTargetGroup
+  id: CMODefibGloves
+  name: steal-target-groups-cmo-defib-gloves
+  sprite:
+    sprite: _Starlight/Clothing/Hands/Gloves/cmo_defib.rsi
+    state: icon

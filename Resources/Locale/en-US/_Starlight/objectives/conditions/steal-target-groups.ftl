@@ -1,6 +1,7 @@
 # Traitor single items
 steal-target-groups-rddiploma = diploma
 steal-target-groups-cmolicense = medical license
+steal-target-groups-cmo-defib-gloves = prototype resuscitation gloves
 steal-target-groups-hypoinjector-combined = chief medical officer's hypospray or the brigmedic's tactical jet injector
 steal-target-groups-pinpointer-nuclear = nuclear pinpointer
 steal-target-groups-access-configurator = access configurator

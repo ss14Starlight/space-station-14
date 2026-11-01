@@ -61,3 +61,10 @@
   - type: Objective
     hidden: true
     hiddenTitle: objective-picker-hidden-help-progress
+
+- type: entity
+  parent: BaseCMOStealObjective
+  id: CMODefibGlovesStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: CMODefibGloves
