@@ -177,7 +177,7 @@ public sealed partial class ActionButton : Control, IEntityControl
 
     private void OnPressed(GUIBoundKeyEventArgs args)
     {
-        if (args.Function != EngineKeyFunctions.UIClick && args.Function != ContentKeyFunctions.HotbarRemove && args.Function != ContentKeyFunctions.HotbarQuickAdd) // Starlight
+        if (args.Function != EngineKeyFunctions.UIClick && args.Function != ContentKeyFunctions.HotbarRemove && args.Function != EngineKeyFunctions.UIRightClick) // Starlight
             return;
 
         if (args.Function == ContentKeyFunctions.HotbarRemove) // Starlight

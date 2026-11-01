@@ -667,8 +667,4 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-- function: HotbarQuickAdd
-  type: State
-  key: MouseRight
-  canFocus: true
 # Starlight-end

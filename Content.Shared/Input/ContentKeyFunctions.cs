@@ -139,7 +139,6 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction Jump = "Jump";
         public static readonly BoundKeyFunction LatchStruggle = "LatchStruggle";
         public static readonly BoundKeyFunction HotbarRemove = "HotbarRemove";
-        public static readonly BoundKeyFunction HotbarQuickAdd = "HotbarQuickAdd";
         #endregion
     }
 }

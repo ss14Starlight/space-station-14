@@ -519,7 +519,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
     private void OnWindowActionPressed(GUIBoundKeyEventArgs args, ActionButton action)
     {
         // Starlight-start
-        if (args.Function == ContentKeyFunctions.HotbarQuickAdd)
+        if (args.Function == EngineKeyFunctions.UIRightClick)
         {
             if (action.Action is { } toAdd)
                 AddToHotbar(toAdd);
@@ -670,8 +670,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             _window.ClearButton.OnPressed -= OnClearPressed;
             _window.SearchBar.OnTextChanged -= OnSearchChanged;
             _window.FilterButton.OnItemSelected -= OnFilterSelected;
-            _window.OnKeyBindDown -= OnWindowKeyBindDown; // Starlight
-            _window.SearchBar.OnKeyBindDown -= OnWindowKeyBindDown; // Starlight
 
             _window.Dispose();
             _window = null;
@@ -689,8 +687,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         _window.ClearButton.OnPressed += OnClearPressed;
         _window.SearchBar.OnTextChanged += OnSearchChanged;
         _window.FilterButton.OnItemSelected += OnFilterSelected;
-        _window.OnKeyBindDown += OnWindowKeyBindDown; // Starlight
-        _window.SearchBar.OnKeyBindDown += OnWindowKeyBindDown; // Starlight
 
         if (ActionsBar == null)
         {
