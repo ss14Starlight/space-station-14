@@ -767,7 +767,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
                 //check if there's still cook time left
                 // Starlight-start
-                int actualTime = (int)(_gameTiming.CurTime - cookingDevice.StartedCookTime).TotalSeconds;
+                int actualTime = (int)((_gameTiming.CurTime - cookingDevice.StartedCookTime) / cookingDevice.CookTimeMultiplier).TotalSeconds;
                 var coords = Transform(uid).Coordinates;
                 if (active.CookTimeRemaining > 0 || (!cookingDevice.Safe && actualTime < 60))
                 {
@@ -853,7 +853,7 @@ namespace Content.Server.Kitchen.EntitySystems
                 return;
             //this means the microwave has finished cooking.
             AddTemperature(cookingDevice, Math.Max((float)_gameTiming.CurTime.TotalSeconds + active.CookTimeRemaining, 0)); //Though there's still a little bit more heat to pump out
-            int actualTime = (int)(_gameTiming.CurTime - cookingDevice.StartedCookTime).TotalSeconds;
+            int actualTime = (int)((_gameTiming.CurTime - cookingDevice.StartedCookTime) / cookingDevice.CookTimeMultiplier).TotalSeconds;
             var coords = Transform(uid).Coordinates;
 
             OutputResultItems(active.PortionedRecipes, actualTime, cookingDevice, coords);
