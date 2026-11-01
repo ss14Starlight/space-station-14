@@ -1,7 +1,7 @@
 ### Conversion Rewards Category
 
 - type: listing
-  id: SKBSmallFlashConversion
+  id: SKBSmallFlashConversionRewards
   name: ussp-flash-name
   description: ussp-flash-desc
   productEntity: SciFlash
@@ -11,16 +11,29 @@
   - RevUplinkConversionRewards
   conditions:
   - !type:StockLimitedListingCondition
+    stockLimit: 4
+
+- type: listing
+  id: USSPMedalsConversionRewards
+  name: soviet-medals-name
+  description: soviet-medals-desc
+  productEntity: ClothingSovietMedals
+  cost:
+    Conversion: 10
+  categories:
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
     stockLimit: 2
 
 - type: listing
-  id: USSPSovietKeyConversion
+  id: USSPSovietKeyConversionRewards
   name: soviet-encryption-key-name
   description: soviet-encryption-key-conversion-desc
   icon: { sprite: _Starlight/Objects/Devices/encryption_keys.rsi, state: soviet_label }
   productEntity: EncryptionKeySoviet
   cost:
-    Conversion: 10
+    Conversion: 15
   categories:
   - RevUplinkConversionRewards
   conditions:
@@ -28,12 +41,12 @@
     stockLimit: 5
 
 - type: listing
-  id: SKBImplanterConversion
+  id: SKBImplanterConversionRewards
   name: SKB-implanter-name
   description: SKB-implanter-desc
   productEntity: USSPUplinkImplanterEmpty
   cost:
-    Conversion: 15
+    Conversion: 25
   categories:
   - RevUplinkConversionRewards
   conditions:
@@ -41,31 +54,71 @@
     stockLimit: 1
 
 - type: listing
-  id: UplinkCommiemovCircuitBoardConversion
-  name: lawboard-name
-  description: lawboard-desc
-  productEntity: CommiemovCircuitBoard
-  cost:
-    Conversion: 20
-  categories:
-  - RevUplinkConversionRewards
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
-
-- type: listing
-  id: UplinkEmagCommieConversion
-  productEntity: EmagCommie
+  id: SKBSmallFlashConversionRewardsX2
+  name: ussp-flash-name
+  description: ussp-flash-desc
+  productEntity: SciFlash
   cost:
     Conversion: 30
   categories:
   - RevUplinkConversionRewards
   conditions:
   - !type:StockLimitedListingCondition
+    stockLimit: 2
+
+- type: listing
+  id: SKBArmamentCrateConversion
+  name: armament-crate-name
+  description: armament-crate-desc
+  productEntity: CrateSovietArmaments
+  cost:
+    Conversion: 35
+  categories:
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 3
+
+- type: listing
+  id: UplinkEmagCommieConversion
+  productEntity: EmagCommie
+  cost:
+    Conversion: 45
+  categories:
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
     stockLimit: 1
 
 - type: listing
-  id: UplinkPinpointerConversion
+  id: UplinkCommiemovCircuitBoardConversionRewards
+  name: lawboard-name
+  description: lawboard-desc
+  productEntity: CommiemovCircuitBoard
+  cost:
+    Conversion: 50
+  categories:
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 1
+
+- type: listing
+  id: SKBMosinConversionRewards
+  name: mosin-name
+  description: mosin-desc
+  icon: { sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi, state: base }
+  productEntity: WeaponSniperMosinWorn
+  cost:
+    Conversion: 55
+  categories:
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 4
+
+- type: listing
+  id: UplinkPinpointerConversionRewards
   productEntity: PinpointerUSSPTracker
   cost:
     Conversion: 60
@@ -76,6 +129,19 @@
     stockLimit: 2
 
 ### Armaments Category
+- type: listing
+  id: SNKVDFinka
+  name: finka-name
+  description: finka-desc
+  icon: { sprite: _Starlight/Objects/Weapons/Melee/finka.rsi, state: icon }
+  productEntity: Finka
+  cost:
+    Telebond: 0
+  categories:
+  - RevUplinkWeaponry
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 5
 
 - type: listing
   id: SKBMakarov
@@ -84,16 +150,16 @@
   icon: { sprite: _Starlight/Objects/Weapons/Guns/Pistols/makarov.rsi, state: icon }
   productEntity: WeaponPistolMakarov
   cost:
-    Telebond: 2
+    Telebond: 1
   categories:
   - RevUplinkWeaponry
 
 - type: listing
-  id: SNKVDFinka
-  name: finka-name
-  description: finka-desc
-  icon: { sprite: _Starlight/Objects/Weapons/Melee/finka.rsi, state: icon }
-  productEntity: Finka
+  id: SKBMosin
+  name: mosin-name
+  description: mosin-desc
+  icon: { sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi, state: base }
+  productEntity: WeaponSniperMosin
   cost:
     Telebond: 2
   categories:
@@ -104,17 +170,6 @@
   name: banner-name
   description: banner-desc
   productEntity: RevolutionaryHeldBanner
-  cost:
-    Telebond: 3
-  categories:
-  - RevUplinkWeaponry
-
-- type: listing
-  id: SKBMosin
-  name: mosin-name
-  description: mosin-desc
-  icon: { sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi, state: base }
-  productEntity: WeaponSniperMosin
   cost:
     Telebond: 3
   categories:
@@ -160,7 +215,7 @@
   icon: { sprite: Objects/Weapons/Guns/Rifles/ak.rsi, state: icon }
   productEntity: ClothingBackpackDuffelAKMSBundle
   cost:
-    Telebond: 20
+    Telebond: 18
   categories:
   - RevUplinkWeaponry
 
@@ -186,7 +241,7 @@
   icon: { sprite: _Starlight/Clothing/OuterClothing/Suits/soviet_eva.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSovietEVABundle
   cost:
-    Telebond: 3
+    Telebond: 2
   categories:
   - RevUplinkWearables
 
@@ -333,7 +388,7 @@
   description: syndicate-soviet-shuttle-bundle-desc
   productEntity: CrateNameSyndicateShuttleBundle
   cost:
-    Telebond: 15
+    Telebond: 11
   categories:
   - RevUplinkShuttle
   conditions:
@@ -385,7 +440,7 @@
   description: lse-400c-desc
   productEntity: ShuttleGunSvalinnMachineGun
   cost:
-    Telebond: 4
+    Telebond: 5
   categories:
   - RevUplinkShuttle
   conditions:
@@ -398,12 +453,12 @@
   description: stolen-ptk800-desc
   productEntity: ShuttleGunKinetic
   cost:
-    Telebond: 6
+    Telebond: 5
   categories:
   - RevUplinkShuttle
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 2
+    stockLimit: 3
 
 - type: listing
   id: LSE-1200c
@@ -411,12 +466,12 @@
   description: lse-1200c-desc
   productEntity: ShuttleGunPerforator
   cost:
-    Telebond: 8
+    Telebond: 10
   categories:
   - RevUplinkShuttle
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 1
+    stockLimit: 2
 
 - type: listing
   id: StolenShuttleGunOfFriendship
@@ -424,7 +479,7 @@
   description: stolen-soviet-friendship-desc
   productEntity: ShuttleGunFriendship
   cost:
-    Telebond: 12
+    Telebond: 10
   categories:
   - RevUplinkShuttle
   conditions:
@@ -440,7 +495,7 @@
   icon: { sprite: _Starlight/Objects/Devices/encryption_keys.rsi, state: soviet_label }
   productEntity: EncryptionKeySoviet
   cost:
-    Telebond: 2
+    Telebond: 1
   categories:
   - RevUplinkDeception
 
@@ -477,7 +532,7 @@
   - RevUplinkPointless
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 20
+    stockLimit: 10
 
 - type: listing
   id: USSPUniform
@@ -490,7 +545,7 @@
   - RevUplinkPointless
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 10
+    stockLimit: 5
 
 - type: listing
   id: USSPOldUniform
@@ -503,7 +558,7 @@
   - RevUplinkPointless
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 10
+    stockLimit: 5
 
 - type: listing
   id: USSPNewspaperPropaganda
@@ -516,7 +571,7 @@
   - RevUplinkPointless
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 10
+    stockLimit: 5
 
 - type: listing
   id: USSPDeskFlag
@@ -529,7 +584,7 @@
   - RevUplinkPointless
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 10
+    stockLimit: 5
 
 - type: listing
   id: SKBWhistle
@@ -578,7 +633,7 @@
   id: RevSupplyRiftListing
   productEntity: RevSupplyRift
   cost:
-    Conversion: 30
+    Conversion: 40
   categories:
   - RevUplinkWar
 

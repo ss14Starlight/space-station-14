@@ -19,6 +19,8 @@ aps-name = Stechkin APS
 aps-desc = To a brigadier of your choosing, or yourself.
 lawboard-name = Commiemov AI lawboard
 lawboard-desc = The USSP is open to everyone, even the AI! Do keep in mind that you will need a way to unlock the AI upload console if you plan to use this.
+armament-crate-name = Armaments Crate
+armament-crate-desc = A quick way to hopefully garner some equipment. Be mindful that not everything you get may be useful.
 
 # Telebonds
 # Weapons
