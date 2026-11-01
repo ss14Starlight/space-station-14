@@ -8,8 +8,5 @@ public sealed partial class NavMapSystem
     /// <summary>
     /// Refreshes a beacon's entry in the grid's nav map data.
     /// </summary>
-    public void RefreshNavMapBeacon(Entity<NavMapBeaconComponent> ent)
-    {
-        UpdateNavMapBeaconData(ent.Owner, ent.Comp);
-    }
+    public void RefreshNavMapBeacon(Entity<NavMapBeaconComponent> ent) => UpdateNavMapBeaconData(ent.Owner, ent.Comp);
 }
