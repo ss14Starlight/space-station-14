@@ -17,17 +17,22 @@ public sealed class PowerStatePrototypeTest : GameTest
     #region Starlight
     [TestPrototypes]
     private const string Prototypes = @"
-- type: entity
-  id: PowerStateApcReceiverDummy
-  components:
-      - type: ApcPowerReceiver
-      - type: ExtensionCableReceiver
-      - type: Transform
-        anchored: true
-      - type: PowerState
-        isWorking: false
-        idlePowerDraw: 10
-        workingPowerDraw: 50
+-
+    type: entity
+    id: PowerStateApcReceiverDummy
+    components:
+        -
+            type: ApcPowerReceiver
+        -
+            type: ExtensionCableReceiver
+        -
+            type: Transform
+            anchored: true
+        -
+            type: PowerState
+            isWorking: false
+            idlePowerDraw: 10
+            workingPowerDraw: 50
 ";
     #endregion
 
@@ -53,16 +58,20 @@ public sealed class PowerStatePrototypeTest : GameTest
                             .Where(p => !p.Abstract)
                             .Where(p => !pair.IsTestPrototype(p)))
                 {
-                    if (!prototype.TryGetComponent<PowerStateComponent>(out var powerStateComp, entMan.ComponentFactory))
+                    // Starlight - start
+                    if (!prototype.TryComp<PowerStateComponent>(out var powerStateComp, entMan.ComponentFactory))
                         continue;
+                    // Starlight - end
 
                     // LESSON LEARNED:
                     // ENSURE THAT THE COMPONENT YOU ARE TRYING TO GET IS THE SERVER-SIDE VARIANT
-                    if (!prototype.TryGetComponent<ApcPowerReceiverComponent>(out var powerReceiverComp, entMan.ComponentFactory))
+                    // Starlight - start
+                    if (!prototype.TryComp<ApcPowerReceiverComponent>(out var powerReceiverComp, entMan.ComponentFactory))
                     {
                         Assert.Fail(
                             $"Entity prototype '{prototype.ID}' has a PowerStateComponent but is missing the required ApcPowerReceiverComponent.");
                     }
+                    // Starlight - end
 
                     var expectedLoad = powerStateComp.IsWorking
                         ? powerStateComp.WorkingPowerDraw

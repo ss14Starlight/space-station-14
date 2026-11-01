@@ -10,50 +10,67 @@ namespace Content.IntegrationTests.Tests
     [TestFixture]
     public sealed class HumanInventoryUniformSlotsTest : GameTest
     {
+        #region Starlight
         [TestPrototypes]
         private const string Prototypes = @"
-- type: entity
-  name: HumanUniformDummy
-  id: HumanUniformDummy
-  components:
-      - type: MobState
-      - type: Inventory
-      - type: ContainerContainer
+-
+    type: entity
+    name: HumanUniformDummy
+    id: HumanUniformDummy
+    components:
+        -
+            type: MobState
+        -
+            type: Inventory
+        -
+            type: ContainerContainer
 
-- type: entity
-  name: UniformDummy
-  id: UniformDummy
-  components:
-  - type: Clothing
-    slots: [innerclothing]
-  - type: Item
-    size: Tiny
+-
+    type: entity
+    name: UniformDummy
+    id: UniformDummy
+    components:
+        -
+            type: Clothing
+            slots: [innerclothing]
+        -
+            type: Item
+            size: Tiny
 
-- type: entity
-  name: IDCardDummy
-  id: IDCardDummy
-  components:
-  - type: Clothing
-    slots:
-    - idcard
-  - type: Item
-    size: Tiny
-  - type: IdCard
+-
+    type: entity
+    name: IDCardDummy
+    id: IDCardDummy
+    components:
+        -
+            type: Clothing
+            slots:
+                - idcard
+        -
+            type: Item
+            size: Tiny
+        -
+            type: IdCard
 
-- type: entity
-  name: FlashlightDummy
-  id: FlashlightDummy
-  components:
-  - type: Item
-    size: Tiny
+-
+    type: entity
+    name: FlashlightDummy
+    id: FlashlightDummy
+    components:
+        -
+            type: Item
+            size: Tiny
 
-- type: entity
-  name: ToolboxDummy
-  id: ToolboxDummy
-  components:
-  - type: Item
-    size: Huge
+-
+    type: entity
+    name: ToolboxDummy
+    id: ToolboxDummy
+    components:
+        -
+            type: Item
+            size: Huge
 ";
+        #endregion
         [Test]
         public async Task Test()
         {

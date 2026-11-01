@@ -45,14 +45,24 @@ namespace Content.IntegrationTests.Tests
                     var fillLevelPrototypes = prototypeManager.EnumeratePrototypes<EntityPrototype>()
                         .Where(p => !p.Abstract)
                         .Where(p => !pair.IsTestPrototype(p))
-                        .Where(p => p.TryGetComponent<SolutionContainerVisualsComponent>(out _, componentFactory))
+                        .Where(p => p.TryComp<SolutionContainerVisualsComponent>(out _, componentFactory))
                         .OrderBy(p => p.ID)
                         .ToList();
 
                     foreach (var proto in fillLevelPrototypes)
                     {
-                        Assert.That(proto.TryGetComponent<SolutionContainerVisualsComponent>(out var visuals, componentFactory));
-                        Assert.That(proto.TryGetComponent<SpriteComponent>(out var sprite, componentFactory));
+                        if (!proto.TryComp<SolutionContainerVisualsComponent>(out var visuals, componentFactory))
+                        {
+                            Assert.Fail($"{proto.ID} has no SolutionContainerVisualsComponent.");
+                            continue;
+                        }
+
+                        if (!proto.TryComp<SpriteComponent>(out var sprite, componentFactory))
+                        {
+                            Assert.Fail($"{proto.ID} has no SpriteComponent.");
+                            continue;
+                        }
+
                         if (!proto.HasComponent<AppearanceComponent>(componentFactory))
                             Assert.Fail($"{proto.ID} has SolutionContainerVisualsComponent but no AppearanceComponent.");
 
@@ -64,9 +74,18 @@ namespace Content.IntegrationTests.Tests
                                 if (!spriteSys.LayerMapTryGet(entity, SolutionContainerLayers.Fill, out var fillLayerId, false))
                                     Assert.Fail($"{proto.ID} has SolutionContainerVisualsComponent but no fill layer map.");
                                 if (!spriteSys.TryGetLayer(entity, fillLayerId, out var fillLayer, false))
+                                {
                                     Assert.Fail($"{proto.ID} somehow lost a layer.");
+                                    continue;
+                                }
 
                                 var rsi = fillLayer.ActualRsi;
+                                if (rsi == null)
+                                {
+                                    Assert.Fail($"{proto.ID} has a fill layer with no RSI.");
+                                    continue;
+                                }
+
                                 for (var i = 1; i <= visuals.MaxFillLevels; i++)
                                 {
                                     var state = $"{visuals.FillBaseName}{i}";
@@ -83,6 +102,12 @@ namespace Content.IntegrationTests.Tests
                         if (!string.IsNullOrEmpty(visuals.InHandsFillBaseName) && visuals.InHandsMaxFillLevels > 0)
                         {
                             var rsi = sprite.BaseRSI;
+                            if (rsi == null)
+                            {
+                                Assert.Fail($"{proto.ID} has no base RSI for its in-hand fill states.");
+                                continue;
+                            }
+
                             for (var i = 1; i <= visuals.InHandsMaxFillLevels; i++)
                             {
                                 foreach (var handName in handStateNames)
@@ -97,6 +122,12 @@ namespace Content.IntegrationTests.Tests
                         if (!string.IsNullOrEmpty(visuals.EquippedFillBaseName) && visuals.EquippedMaxFillLevels > 0)
                         {
                             var rsi = sprite.BaseRSI;
+                            if (rsi == null)
+                            {
+                                Assert.Fail($"{proto.ID} has no base RSI for its equipped fill states.");
+                                continue;
+                            }
+
                             for (var i = 1; i <= visuals.EquippedMaxFillLevels; i++)
                             {
                                 foreach (var equipName in equipStateNames)
