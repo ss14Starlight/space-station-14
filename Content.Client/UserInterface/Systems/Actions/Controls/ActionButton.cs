@@ -4,6 +4,7 @@ using Content.Client.Actions.UI;
 using Content.Client.Cooldown;
 using Content.Shared.Actions.Components;
 using Content.Shared.Examine;
+using Content.Shared.Input;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
@@ -176,10 +177,10 @@ public sealed partial class ActionButton : Control, IEntityControl
 
     private void OnPressed(GUIBoundKeyEventArgs args)
     {
-        if (args.Function != EngineKeyFunctions.UIClick && args.Function != EngineKeyFunctions.UIRightClick)
+        if (args.Function != EngineKeyFunctions.UIClick && args.Function != ContentKeyFunctions.HotbarRemove && args.Function != EngineKeyFunctions.UIRightClick) // Starlight
             return;
 
-        if (args.Function == EngineKeyFunctions.UIRightClick)
+        if (args.Function == ContentKeyFunctions.HotbarRemove) // Starlight
             Depress(args, true);
 
         ActionPressed?.Invoke(args, this);
@@ -187,10 +188,10 @@ public sealed partial class ActionButton : Control, IEntityControl
 
     private void OnUnpressed(GUIBoundKeyEventArgs args)
     {
-        if (args.Function != EngineKeyFunctions.UIClick && args.Function != EngineKeyFunctions.UIRightClick)
+        if (args.Function != EngineKeyFunctions.UIClick && args.Function != ContentKeyFunctions.HotbarRemove) // Starlight
             return;
 
-        if (args.Function == EngineKeyFunctions.UIRightClick)
+        if (args.Function == ContentKeyFunctions.HotbarRemove) // Starlight
             Depress(args, false);
 
         ActionUnpressed?.Invoke(args, this);
@@ -348,6 +349,10 @@ public sealed partial class ActionButton : Control, IEntityControl
         Cooldown.Progress = 1;
         Label.Visible = false;
         UpdateIcons();
+        // Starlight-start: Depress(false) can't run once Action is null
+        _depressed = false;
+        DrawModeChanged();
+        // Starlight-end
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
