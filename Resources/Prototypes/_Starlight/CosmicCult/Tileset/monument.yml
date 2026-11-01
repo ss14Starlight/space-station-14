@@ -66,6 +66,7 @@
     radius: 4.5
     energy: 4
     color: "#43286a"
+  - type: DarkLight
   - type: LightBehaviour
     behaviours:
      - !type:FadeBehaviour
