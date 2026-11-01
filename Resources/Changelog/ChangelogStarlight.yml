@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Added a new Thief objective; steal departmental IDs.
-    type: Add
-  id: 409624
-  time: '2026-10-20T11:39:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6682
-- author: wonderfulnewworld
-  changes:
   - message: 'Added a new Traitor objective: Achieve your Objectives.'
     type: Add
   id: 409625
@@ -2799,4 +2792,11 @@ Entries:
   id: 410023
   time: '2026-11-01T11:18:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6987
+- author: baltdev
+  changes:
+  - message: Recolor syndicate business card signatures to match their text color.
+    type: Tweak
+  id: 410024
+  time: '2026-11-01T11:18:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6989
 Order: -1
