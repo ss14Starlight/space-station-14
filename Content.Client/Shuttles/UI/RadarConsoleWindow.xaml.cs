@@ -22,19 +22,15 @@ public sealed partial class RadarConsoleWindow : PopOutFancyWindow, // Starlight
         RadarScreen.OnRadarClick += OnRadarClick; // Starlight: go to location for AI
     }
 
-    public void UpdateState(NavInterfaceState scc, DockingPortStates dockingPortStates)  // Starlight: +dockingPortStates
-    {
-        RadarScreen.UpdateState(scc, dockingPortStates);  // Starlight: +dockingPortStates
-    }
+    public void UpdateState(NavInterfaceState scc, DockingPortStates? dockingPortStates)  // Starlight: optional dockingPortStates
+        => RadarScreen.UpdateState(scc, dockingPortStates); // Starlight: +dockingPortStates
 
     #region Starlight
     /// <summary>
     /// Sends a map-click request to move the Station AI's remote eye to the specified coordinates.
     /// </summary>
     /// <param name="coordinates">The map coordinates selected by the user.</param>
-    private void OnRadarClick(EntityCoordinates coordinates)
-    {
-        RadarClicked?.Invoke(coordinates);
-    }
+    private void OnRadarClick(EntityCoordinates coordinates) => RadarClicked?.Invoke(coordinates);
+
     #endregion
 }

@@ -474,18 +474,35 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
         {
             _updateTimer -= UpdateTime;
 
+            // Starlight - start
+            var openHolopads = new List<(Entity<HolopadComponent> Entity, TelephoneComponent Telephone, TransformComponent Transform)>();
+            // Starlight - end
             var query = AllEntityQuery<HolopadComponent, TelephoneComponent, TransformComponent>();
             while (query.MoveNext(out var uid, out var holopad, out var telephone, out var xform))
             {
-                UpdateUIState((uid, holopad), telephone);
-
                 if (holopad.User != null &&
                     !HasComp<IgnoreUIRangeComponent>(holopad.User) &&
                     !_xformSystem.InRange((holopad.User.Value, Transform(holopad.User.Value)), (uid, xform), telephone.ListeningRange))
                 {
                     UnlinkHolopadFromUser((uid, holopad), holopad.User.Value);
                 }
+
+                // Starlight - start
+                if (IsHolopadContactUiOpen(uid))
+                    openHolopads.Add(((uid, holopad), telephone, xform));
+                // Starlight - end
             }
+
+            // Starlight - start
+            if (openHolopads.Count > 0)
+            {
+                var contacts = BuildHolopadUiContacts();
+                foreach (var (entity, telephone, xform) in openHolopads)
+                {
+                    UpdateHolopadUIState(entity, telephone, xform, contacts);
+                }
+            }
+            // Starlight - end
         }
     }
 
@@ -494,33 +511,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
         if (!Resolve(entity.Owner, ref telephone, false))
             return;
 
-        var source = new Entity<TelephoneComponent>(entity, telephone);
-        var holopads = new Dictionary<NetEntity, string>();
-
-        var query = AllEntityQuery<HolopadComponent, TelephoneComponent>();
-        while (query.MoveNext(out var receiverUid, out var _, out var receiverTelephone))
-        {
-            var receiver = new Entity<TelephoneComponent>(receiverUid, receiverTelephone);
-
-            if (receiverTelephone.UnlistedNumber)
-                continue;
-
-            if (source == receiver)
-                continue;
-
-            if (!_telephoneSystem.IsSourceInRangeOfReceiver(source, receiver))
-                continue;
-
-            var name = MetaData(receiverUid).EntityName;
-
-            if (TryComp<LabelComponent>(receiverUid, out var label) && !string.IsNullOrEmpty(label.CurrentLabel))
-                name = label.CurrentLabel;
-
-            holopads.Add(GetNetEntity(receiverUid), name);
-        }
-
-        var uiKey = HasComp<StationAiCoreComponent>(entity) ? HolopadUiKey.AiActionWindow : HolopadUiKey.InteractionWindow;
-        _userInterfaceSystem.SetUiState(entity.Owner, uiKey, new HolopadBoundInterfaceState(holopads));
+        UpdateHolopadUIState(entity, telephone, Transform(entity.Owner), BuildHolopadUiContacts()); // Starlight
     }
 
     private void GenerateHologram(Entity<HolopadComponent> entity)

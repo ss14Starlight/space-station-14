@@ -1,4 +1,5 @@
 using Content.Client._Starlight.UserInterface;
+using Content.Shared._Starlight.Shuttles.BUIStates;
 using Content.Shared.Shuttles.BUIStates;
 using JetBrains.Annotations;
 using RadarConsoleWindow = Content.Client.Shuttles.UI.RadarConsoleWindow;
@@ -38,6 +39,14 @@ public sealed partial class RadarConsoleBoundUserInterface : BoundUserInterface
             return;
 
         _window?.UpdateState(cState.State, cState.DockingPortStates); // Starlight: +DockStates
+        // Starlight - start
+        if (cState.DockingPortStates is { DeliveryId: > 0 } dockingPortStates)
+        {
+            SendMessage(new DockingPortStatesAcknowledgedMessage(
+                dockingPortStates.Version,
+                dockingPortStates.DeliveryId));
+        }
+        // Starlight - end
     }
 
     // Starlight: close popout

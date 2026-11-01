@@ -107,7 +107,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         return coords;
     }
 
-    public void UpdateState(NavInterfaceState state, DockingPortStates dockingPortStates) // Starlight: +dockingPortStates
+    public void UpdateState(NavInterfaceState state, DockingPortStates? dockingPortStates) // Starlight: optional dockingPortStates
     {
         SetMatrix(EntManager.GetCoordinates(state.Coordinates), state.Angle);
 
@@ -125,7 +125,10 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         RotateWithEntity = state.RotateWithEntity;
 
-        _docks = dockingPortStates.Docks; // Starlight
+        // Starlight - start
+        if (dockingPortStates != null)
+            _docks = dockingPortStates.Docks;
+        // Starlight - end
         _blips = state.Blips; // Starlight
         _lasers = state.Lasers; // Starlight
     }
