@@ -245,15 +245,13 @@ public sealed class ZoneTopologyTest : GameTest
         });
     }
 
-    private ushort Region(int x, int y) => _zones.GetRegion(_grid, new Vector2i(x, y));
-    
     [Test]
     public async Task RulesCanQueryTrackedZones()
     {
         var rules = Server.System<RulesSystem>();
         var maintenance = Server.ProtoMan.Index<RulesPrototype>(MaintenanceZoneRule);
         EntityUid dummy = default;
-        
+
         await Server.WaitPost(() =>
         {
             dummy = Server.EntMan.SpawnEntity(null, MapCoordinates.Nullspace);
