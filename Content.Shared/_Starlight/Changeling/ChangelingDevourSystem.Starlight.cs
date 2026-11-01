@@ -7,6 +7,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Changeling.Systems;
 
 public sealed partial class ChangelingDevourSystem
