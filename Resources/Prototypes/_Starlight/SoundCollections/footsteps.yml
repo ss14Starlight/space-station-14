@@ -28,11 +28,11 @@
 - type: soundCollection
   id: FootstepDoll
   files:
-  - /Audio/_Starlight/Effects/Footsteps/magstep1.ogg
-  - /Audio/_Starlight/Effects/Footsteps/magstep2.ogg
-  - /Audio/_Starlight/Effects/Footsteps/magstep3.ogg
-  - /Audio/_Starlight/Effects/Footsteps/magstep4.ogg
-  - /Audio/_Starlight/Effects/Footsteps/magstep5.ogg
+  - /Audio/_Starlight/Effects/Footsteps/ceramicstep1.ogg
+  - /Audio/_Starlight/Effects/Footsteps/ceramicstep2.ogg
+  - /Audio/_Starlight/Effects/Footsteps/ceramicstep3.ogg
+  - /Audio/_Starlight/Effects/Footsteps/ceramicstep4.ogg
+  - /Audio/_Starlight/Effects/Footsteps/ceramicstep5.ogg
 
 - type: soundCollection
   id: FootstepConcrete
