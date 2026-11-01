@@ -2095,7 +2095,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     private bool IsKinematicControllerBody(EntityUid entity)
         => TryComp<PhysicsComponent>(entity, out var physics)
-           && physics.BodyType == BodyType.KinematicController;
+            && physics.BodyType == BodyType.KinematicController;
 
     private bool CanRemoteControlTarget(
         EntityUid consoleUid,
