@@ -12,10 +12,16 @@
       mouse:
         type: !type:TattooColoring
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: mouse
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: mouse_overlay
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: mouse
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: mouse_overlay
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaHeadTopEarBat
@@ -23,8 +29,11 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: bat
+    body_headTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: bat
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaHeadTopEarBatLarge
@@ -32,8 +41,11 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: bat_large
+    body_headTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: bat_large
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaHeadTopEarHamster
@@ -41,10 +53,16 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: hamster
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: hamster_overlay
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: hamster
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: hamster_overlay
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaHeadTopEarLong
@@ -52,10 +70,16 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: long
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: long_overlay
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: long
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: long_overlay
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaHeadTopEarMouseLarge
@@ -63,10 +87,16 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: mouse_large
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: mouse_large_overlay
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: mouse_large
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: mouse_large_overlay
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaHeadTopEarNone
@@ -75,8 +105,11 @@
   forcedColoring: true
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: none
+    body_headTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: none
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaHeadTopEarPointy
@@ -84,8 +117,11 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: pointy
+    body_headTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: pointy
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaHeadTopEarSmall
@@ -93,8 +129,11 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: small
+    body_headTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
+        state: small
+      colorSource: UniqueColor
 
 ## SNOUTS
 
@@ -104,10 +143,16 @@
   bodyPart: Snout
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: bat
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: bat_nose
+    body_snout@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: bat
+      colorSource: UniqueColor
+    body_snout@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: bat_nose
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaSnoutBatCounter
@@ -115,12 +160,21 @@
   bodyPart: Snout
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: bat
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: bat_nose
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: bat_overlay
+    body_snout@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: bat
+      colorSource: UniqueColor
+    body_snout@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: bat_nose
+      colorSource: UniqueColor
+    body_snout@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: bat_overlay
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaSnoutFlat
@@ -128,10 +182,16 @@
   bodyPart: Snout
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: flat
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: flat_nose
+    body_snout@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: flat
+      colorSource: UniqueColor
+    body_snout@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: flat_nose
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaSnoutFlatCounter
@@ -139,12 +199,21 @@
   bodyPart: Snout
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: flat
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: flat_nose
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: flat_overlay
+    body_snout@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: flat
+      colorSource: UniqueColor
+    body_snout@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: flat_nose
+      colorSource: UniqueColor
+    body_snout@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: flat_overlay
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaSnoutRound
@@ -152,10 +221,16 @@
   bodyPart: Snout
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: round
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: round_nose
+    body_snout@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: round
+      colorSource: UniqueColor
+    body_snout@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: round_nose
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaSnoutRoundCounter
@@ -163,12 +238,21 @@
   bodyPart: Snout
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: round
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: round_nose
-    - sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
-      state: round_overlay
+    body_snout@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: round
+      colorSource: UniqueColor
+    body_snout@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: round_nose
+      colorSource: UniqueColor
+    body_snout@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/snout_markings.rsi
+        state: round_overlay
+      colorSource: UniqueColor
 
 ## CHEEKS
 
@@ -178,8 +262,11 @@
   bodyPart: HeadSide
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
-      state: cheeks
+    body_headSide:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
+        state: cheeks
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaCheeksRoundCounter
@@ -187,10 +274,16 @@
   bodyPart: HeadSide
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
-      state: cheeks
-    - sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
-      state: cheeks_overlay
+    body_headSide@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
+        state: cheeks
+      colorSource: UniqueColor
+    body_headSide@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
+        state: cheeks_overlay
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaCheeksFluff
@@ -198,8 +291,11 @@
   bodyPart: HeadSide
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
-      state: fluff
+    body_headSide:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
+        state: fluff
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaCheeksFluffCounter
@@ -207,10 +303,16 @@
   bodyPart: HeadSide
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
-      state: fluff
-    - sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
-      state: fluff_overlay
+    body_headSide@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
+        state: fluff
+      colorSource: UniqueColor
+    body_headSide@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
+        state: fluff_overlay
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaCheeksFluffAlt
@@ -218,8 +320,11 @@
   bodyPart: HeadSide
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
-      state: fluff_alt
+    body_headSide:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
+        state: fluff_alt
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaCheeksFluffAltCounter
@@ -227,10 +332,16 @@
   bodyPart: HeadSide
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
-      state: fluff_alt
-    - sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
-      state: fluff_alt_overlay
+    body_headSide@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
+        state: fluff_alt
+      colorSource: UniqueColor
+    body_headSide@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
+        state: fluff_alt_overlay
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaCheeksWhiskers
@@ -238,8 +349,11 @@
   bodyPart: HeadTop # for layering
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
-      state: whiskers
+    body_headTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/cheek_markings.rsi
+        state: whiskers
+      colorSource: UniqueColor
 
 # BODY
 
@@ -255,8 +369,11 @@
       mouse:
         type: !type:TattooColoring
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: mouse
+    body_tail:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: mouse
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaTailBeaver
@@ -264,8 +381,11 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: beaver
+    body_tail:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: beaver
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaTailHamster
@@ -273,8 +393,11 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: hamster
+    body_tail:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: hamster
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaTailLong
@@ -282,8 +405,11 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: long
+    body_tail:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: long
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaTailLongCounter
@@ -291,10 +417,16 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: long
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: long_overlay
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: long
+      colorSource: UniqueColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: long_overlay
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaTailLongCounterTip
@@ -302,12 +434,21 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: long
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: long_overlay
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: long_tip
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: long
+      colorSource: UniqueColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: long_overlay
+      colorSource: UniqueColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: long_tip
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaTailShort
@@ -315,8 +456,11 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: short
+    body_tail:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: short
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaTailSquirrel
@@ -324,8 +468,11 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: squirrel
+    body_tail:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: squirrel
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaTailSquirrelBicolor
@@ -333,10 +480,16 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: squirrel
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: squirrel_overlay
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: squirrel
+      colorSource: UniqueColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+        state: squirrel_overlay
+      colorSource: UniqueColor
 
 ## PATTERNS
 
@@ -347,8 +500,11 @@
   speciesRestriction: [Rodentia]
   sexRestriction: Male
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
-      state: countershade
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
+        state: countershade
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaChestCountershadeF
@@ -357,8 +513,11 @@
   speciesRestriction: [Rodentia]
   sexRestriction: Female
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
-      state: countershade_f
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
+        state: countershade_f
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaLegLeftCountershade
@@ -366,8 +525,11 @@
   bodyPart: LLeg
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
-      state: countershade_lleg
+    body_lLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
+        state: countershade_lleg
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaLegRightCountershade
@@ -375,8 +537,11 @@
   bodyPart: RLeg
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
-      state: countershade_rleg
+    body_rLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
+        state: countershade_rleg
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaChestFawn
@@ -384,8 +549,11 @@
   bodyPart: Chest
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
-      state: fawn
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
+        state: fawn
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaChestHooded
@@ -394,8 +562,11 @@
   speciesRestriction: [Rodentia]
   sexRestriction: Male
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
-      state: hooded
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
+        state: hooded
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaChestHoodedF
@@ -404,8 +575,11 @@
   speciesRestriction: [Rodentia]
   sexRestriction: Female
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
-      state: hooded_f
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
+        state: hooded_f
+      colorSource: UniqueColor
 
 ### HEAD PATTERNS
 
@@ -415,8 +589,11 @@
   bodyPart: Head
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/head_markings.rsi
-      state: blaze
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/head_markings.rsi
+        state: blaze
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaHeadRound
@@ -424,8 +601,11 @@
   bodyPart: Head
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/head_markings.rsi
-      state: round
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Rodentia/head_markings.rsi
+        state: round
+      colorSource: UniqueColor
 
 # BASE BODY PARTS
 
@@ -437,8 +617,11 @@
   bodyPart: Head
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
-      state: head_m
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
+        state: head_m
+      colorSource: UniqueColor
 
 ## ARMS
 
@@ -448,8 +631,11 @@
   bodyPart: LArm
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
-      state: l_arm
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
+        state: l_arm
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaArmRightBasic
@@ -457,8 +643,11 @@
   bodyPart: RArm
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
-      state: r_arm
+    body_rArm:
+      sprite:
+        sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
+        state: r_arm
+      colorSource: UniqueColor
 
 ## LEGS
 
@@ -468,8 +657,11 @@
   bodyPart: LLeg
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
-      state: l_leg
+    body_lLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
+        state: l_leg
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaLegRightBasic
@@ -477,8 +669,11 @@
   bodyPart: RLeg
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
-      state: r_leg
+    body_rLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
+        state: r_leg
+      colorSource: UniqueColor
 
 ## HANDS
 
@@ -488,8 +683,11 @@
   bodyPart: LHand
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
-      state: l_hand
+    body_lHand:
+      sprite:
+        sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
+        state: l_hand
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaHandRightBasic
@@ -497,8 +695,11 @@
   bodyPart: RHand
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
-      state: r_hand
+    body_rHand:
+      sprite:
+        sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
+        state: r_hand
+      colorSource: UniqueColor
 
 ## FEET
 
@@ -508,8 +709,11 @@
   bodyPart: LFoot
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
-      state: l_foot
+    body_lFoot:
+      sprite:
+        sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
+        state: l_foot
+      colorSource: UniqueColor
 
 - type: marking
   id: RodentiaFootRightBasic
@@ -517,5 +721,9 @@
   bodyPart: RFoot
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
-      state: r_foot
+    body_rFoot:
+      sprite:
+        sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
+        state: r_foot
+      colorSource: UniqueColor
+

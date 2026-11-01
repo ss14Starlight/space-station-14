@@ -2,7 +2,7 @@
   id: PartVirtual
   parent: BaseItem
   components:
-  - type: BodyPart
+  - type: SLBodyPart
   - type: Sprite
     sprite: error.rsi
     state: error

@@ -148,7 +148,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
     private void OnAnomalySupercritical(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySupercriticalEvent args)
     {
         // Starlight Start
-        if (!TryComp<BodyComponent>(ent, out var body))
+        if (!HasComp<SLBodyComponent>(ent))
             return;
         // Starlight End
 

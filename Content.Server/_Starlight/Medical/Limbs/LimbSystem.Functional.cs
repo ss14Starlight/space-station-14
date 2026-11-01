@@ -1,10 +1,8 @@
-using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Limbs;
-using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
-using Content.Shared.Body.Part;
-using Content.Shared.Hands.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Medical.Surgery.Events;
@@ -12,100 +10,23 @@ using Content.Shared._Starlight.Medical.Surgery.Events;
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class LimbSystem : SharedLimbSystem
 {
-    private void AddLimb(Entity<HumanoidAppearanceComponent> body, string slot, Entity<BodyPartComponent> limb)
+    private void AddLimb(Entity<HumanoidAppearanceComponent> body, Entity<SLBodyPartComponent> limb)
     {
-        switch (limb.Comp.PartType)
+        if (TryComp<SLBodyPartComponent>(limb, out var slLimb))
         {
-            case BodyPartType.Arm:
-                EnsureLimbChildSlots(limb);
-
-                foreach (var slotId in limb.Comp.Children.Keys)
-                {
-                    if (slotId is null) continue;
-                    var slotFullId = BodySystem.GetPartSlotContainerId(slotId);
-                    var child = _containers.GetContainer(limb, slotFullId);
-
-                    foreach (var containedEnt in child.ContainedEntities)
-                    {
-                        if (TryComp(containedEnt, out BodyPartComponent? innerPart)
-                            && innerPart.PartType == BodyPartType.Hand)
-                        {
-                            AddLimb(body, slotId, (containedEnt, innerPart));
-                            AddLimbVisual(body, (containedEnt, innerPart));
-                        }
-                    }
-                }
-                break;
-            case BodyPartType.Hand:
-                if (limb.Comp.Organs.Keys.Count == 0)
-                    _body.TryCreateOrganSlot(limb, "hand_implant", out _);
-
-                foreach (var slotId in limb.Comp.Organs.Keys)
-                {
-                    if (slotId is null) continue;
-                    var slotFullId = BodySystem.GetOrganContainerId(slotId);
-                    var child = _containers.GetContainer(limb, slotFullId);
-
-                    foreach (var containedEnt in child.ContainedEntities)
-                    {
-                        if (TryComp(containedEnt, out OrganComponent? _))
-                        {
-                            var addedEv = new SurgeryOrganImplantationCompleted(body, limb, containedEnt);
-                            RaiseLocalEvent(containedEnt, ref addedEv);
-                        }
-                    }
-                }
-                if (TryComp<HandsComponent>(body, out var hands))
-                    _hands.AddHand((body, hands), BodySystem.GetPartSlotContainerId(slot), limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
-                break;
-            case BodyPartType.Leg:
-                EnsureLimbChildSlots(limb);
-
-                foreach (var slotId in limb.Comp.Children.Keys)
-                {
-                    if (slotId is null) continue;
-                    var slotFullId = BodySystem.GetPartSlotContainerId(slotId);
-                    var child = _containers.GetContainer(limb, slotFullId);
-
-                    foreach (var containedEnt in child.ContainedEntities)
-                    {
-                        if (TryComp(containedEnt, out BodyPartComponent? innerPart)
-                            && innerPart.PartType == BodyPartType.Foot)
-                            AddLimbVisual(body, (containedEnt, innerPart));
-                    }
-                }
-                break;
-            case BodyPartType.Foot:
-                break;
+            foreach (var part in _slBody.GetSubtree((limb, slLimb)))
+            {
+                if (part.Owner != limb.Owner
+                    && TryComp(part, out SLBodyPartComponent? inner)
+                    && inner.Kind is BodyPartType.Hand or BodyPartType.Foot)
+                    AddLimbVisual(body, (part, inner));
+            }
         }
+
         RaiseLimbAttachedEvent(body, limb);
     }
 
-    private void EnsureLimbChildSlots(Entity<BodyPartComponent> limb)
-    {
-        if (limb.Comp.Children.Keys.Count != 0)
-            return;
-
-        switch (limb.Comp.PartType)
-        {
-            case BodyPartType.Arm:
-                _body.TryCreatePartSlot(
-                    limb,
-                    limb.Comp.Symmetry == BodyPartSymmetry.Left ? "left hand" : "right hand",
-                    BodyPartType.Hand,
-                    out _);
-                break;
-            case BodyPartType.Leg:
-                _body.TryCreatePartSlot(
-                    limb,
-                    limb.Comp.Symmetry == BodyPartSymmetry.Left ? "left foot" : "right foot",
-                    BodyPartType.Foot,
-                    out _);
-                break;
-        }
-    }
-
-    private void RaiseLimbAttachedEvent(Entity<HumanoidAppearanceComponent> body, Entity<BodyPartComponent> limb)
+    private void RaiseLimbAttachedEvent(Entity<HumanoidAppearanceComponent> body, Entity<SLBodyPartComponent> limb)
     {
         var @event = new LimbAttachedEvent
         {
@@ -116,77 +37,41 @@ public sealed partial class LimbSystem : SharedLimbSystem
         RaiseLocalEvent(limb, ref @event);
     }
 
-    private void RemoveLimb(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
+    private void RemoveLimb(Entity<TransformComponent, HumanoidAppearanceComponent, SLBodyComponent> body, Entity<TransformComponent, MetaDataComponent, SLBodyPartComponent> limb)
     {
-        if (TryComp(limb, out CustomLimbComponent? customLimb)
-            && _body.GetParentPartAndSlotOrNull(limb) is { } customParentSlot)
-        {
-            AmputateItemLimb((body, body.Comp1, body.Comp3), limb, customParentSlot.Slot, customLimb);
-            return;
-        }
-
         RaiseLimbPreDetachEvent(body, limb);
 
-        switch (limb.Comp3.PartType)
+        // Organs held by hands of the removed subtree (implants) leave with it.
+        if (TryComp<SLBodyPartComponent>(limb, out var slLimb))
         {
-            case BodyPartType.Arm:
-                RemoveChildLimbs(body, limb, BodyPartType.Hand);
-                break;
-            case BodyPartType.Leg:
-                RemoveChildLimbs(body, limb, BodyPartType.Foot);
-                break;
-            case BodyPartType.Hand:
-                foreach (var organSlotId in limb.Comp3.Organs.Keys)
+            foreach (var part in _slBody.GetSubtree((limb, slLimb)))
+            {
+                // Items attached in place of a hand or a foot drop instead of staying stuck to the body.
+                if (part.Owner != limb.Owner
+                    && TryComp(part, out CustomLimbComponent? customLimb)
+                    && part.Comp.ParentSocket is { } socket)
                 {
-                    if (organSlotId is null) continue;
-                    var child = _containers.GetContainer(limb, BodySystem.GetOrganContainerId(organSlotId));
-
-                    foreach (var containedEnt in child.ContainedEntities)
-                    {
-                        if (TryComp(containedEnt, out OrganComponent? _))if (TryComp(containedEnt, out TransformComponent? transform) && TryComp(containedEnt, out MetaDataComponent? metaData))
-                        {
-                            var ev = new SurgeryOrganExtracted(body, limb, containedEnt);
-                            RaiseLocalEvent(containedEnt, ref ev);
-                        }
-                    }
+                    AmputateItemLimb(body, (part, Transform(part), MetaData(part), part.Comp),
+                        SharedBodySystem.GetLegacySlotName(socket.SocketId), customLimb);
+                    continue;
                 }
-                var parentSlot = _body.GetParentPartAndSlotOrNull(limb);
-                if (parentSlot is not null && TryComp<HandsComponent>(body, out var hands))
-                    _hands.RemoveHand((body, hands), BodySystem.GetPartSlotContainerId(parentSlot.Value.Slot));
-                break;
-            case BodyPartType.Foot:
-                break;
+
+                if (!HasComp<OrganComponent>(part)
+                    || part.Comp.Parent is not { } holder
+                    || CompOrNull<SLBodyPartComponent>(holder)?.Kind != BodyPartType.Hand)
+                    continue;
+
+                var ev = new SurgeryOrganExtracted(body, holder, part);
+                RaiseLocalEvent(part, ref ev);
+            }
         }
 
         RaiseLimbDetachedEvent(body, limb);
     }
 
-    private void RemoveChildLimbs(
-        Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body,
-        Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb,
-        BodyPartType partType)
-    {
-        foreach (var limbSlotId in limb.Comp3.Children.Keys)
-        {
-            if (limbSlotId is null) continue;
-            var child = _containers.GetContainer(limb, BodySystem.GetPartSlotContainerId(limbSlotId));
-
-            foreach (var containedEnt in child.ContainedEntities)
-            {
-                if (!TryComp(containedEnt, out BodyPartComponent? innerPart)
-                    || innerPart.PartType != partType
-                    || !TryComp(containedEnt, out TransformComponent? transform)
-                    || !TryComp(containedEnt, out MetaDataComponent? metaData))
-                    continue;
-
-                RemoveLimb(body, (containedEnt, transform, metaData, innerPart));
-            }
-        }
-    }
-
     private void RaiseLimbDetachedEvent(
-        Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body,
-        Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
+        Entity<TransformComponent, HumanoidAppearanceComponent, SLBodyComponent> body,
+        Entity<TransformComponent, MetaDataComponent, SLBodyPartComponent> limb)
     {
         var @event = new LimbDetachedEvent
         {
@@ -197,8 +82,8 @@ public sealed partial class LimbSystem : SharedLimbSystem
         RaiseLocalEvent(limb, ref @event);
     }
     private void RaiseLimbPreDetachEvent(
-        Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body,
-        Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
+        Entity<TransformComponent, HumanoidAppearanceComponent, SLBodyComponent> body,
+        Entity<TransformComponent, MetaDataComponent, SLBodyPartComponent> limb)
     {
         var @event = new LimbPreDetachEvent
         {

@@ -27,8 +27,8 @@
     hideLayersOnEquip:
     - Hair
     - Snout
-  - type: Body
-    prototype: Doll
+  - type: SLBody
+    prefab: Doll
     requiredLegs: 2
   - type: Damageable
     damageContainer: Biological
@@ -142,8 +142,8 @@
               isGlowing: False
               markingColor:
                 - '#FFFFFF'
-  - type: Body
-    prototype: DollFresh
+  - type: SLBody
+    prefab: DollFresh
     requiredLegs: 2
   - type: Damageable
     damageContainer: Biological
@@ -172,8 +172,8 @@
   components:
   - type: HumanoidAppearance
     species: Doll
-  - type: Body
-    prototype: Doll
+  - type: SLBody
+    prefab: Doll
   - type: Inventory
     speciesId: Doll
     femaleDisplacements:

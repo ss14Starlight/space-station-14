@@ -30,6 +30,9 @@ using System.Net;
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
+using Content.Shared._Starlight.Body.Components;
+using Content.Shared._Starlight.Body.Systems;
+using Content.Shared._Starlight.Movement.Components;
 using Content.Shared.Charges.Systems;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization.Manager.Exceptions;
@@ -55,8 +58,11 @@ public abstract partial class SharedMoverController : VirtualController
     [Dependency] protected SharedGravitySystem _gravity = default!;
     [Dependency] protected SharedTransformSystem _transform = default!;
     [Dependency] private   TagSystem _tags = default!;
-    [Dependency] private   SharedActionsSystem _action = default!; //🌟Starlight🌟
-    [Dependency] private   SharedChargesSystem _charges = default!; //🌟Starlight🌟
+    #region Starlight
+    [Dependency] private   SharedActionsSystem _action = default!;
+    [Dependency] private   SharedChargesSystem _charges = default!;
+    [Dependency] private SLBodySystem _slBody = default!;
+    #endregion
 
     protected EntityQuery<CanMoveInAirComponent> CanMoveInAirQuery;
     protected EntityQuery<FootstepModifierComponent> FootstepModifierQuery;
@@ -615,19 +621,18 @@ public abstract partial class SharedMoverController : VirtualController
             return sound != null;
         }
 
-        // STARLIGHT: Check cyberlegs before outer clothing
-        if (TryComp<BodyComponent>(uid, out var body) && body != null && body.RequiredLegs >= 0)
+        // Starlight-start
+        if (TryComp<SLBodyComponent>(uid, out var body) && body.RequiredLegs >= 0)
         {
-            foreach (var legEntity in body.LegEntities)
+            foreach (var leg in _slBody.GetBodyPartsWithComp<FootstepModifierComponent>((uid, body)))
             {
-                if (!TryComp<FootstepModifierComponent>(legEntity, out var legFootstep))
+                if (!HasComp<MovementBodyPartComponent>(leg))
                     continue;
-                sound = legFootstep.FootstepSoundCollection;
+                sound = leg.Comp2.FootstepSoundCollection;
                 return sound != null;
             }
         }
 
-        // STARLIGHT: Check for outer clothing (hardsuits) before shoes
         if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outerClothing) &&
             FootstepModifierQuery.TryComp(outerClothing, out var outerModifier) &&
             outerModifier.FootstepSoundCollection != null)
@@ -635,7 +640,7 @@ public abstract partial class SharedMoverController : VirtualController
             sound = outerModifier.FootstepSoundCollection;
             return sound != null;
         }
-        // STARLIGHT END
+        // Starlight-end
 
         if (_inventory.TryGetSlotEntity(uid, "shoes", out var shoes) &&
             FootstepModifierQuery.TryComp(shoes, out var modifier))

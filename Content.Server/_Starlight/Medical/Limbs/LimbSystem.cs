@@ -1,11 +1,13 @@
+using Robust.Shared.Containers;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Humanoid;
+using Content.Shared._Starlight.Body.Components;
+using Content.Shared._Starlight.Body.Prototypes;
+using Content.Shared._Starlight.Body.Systems;
 using Content.Shared._Starlight.Medical.Body;
-using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Limbs;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
@@ -16,79 +18,83 @@ using Content.Shared._Starlight.Medical.Surgery.Components;
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class LimbSystem : SharedLimbSystem
 {
-    [Dependency] private ContainerSystem _containers = default!;
-    [Dependency] private BodySystem _body = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
+    [Dependency] private SLBodySystem _slBody = default!;
     [Dependency] private HandsSystem _hands = default!;
     [Dependency] private HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
     [Dependency] private MetaDataSystem _metadata = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
 
     private readonly EntProtoId _virtual = "PartVirtual";
-    public override void Initialize()
-        => base.Initialize();
 
-    public bool AttachLimb(Entity<HumanoidAppearanceComponent> body, string slot, Entity<BodyPartComponent> part, Entity<BodyPartComponent> limb)
+    public bool AttachLimb(Entity<HumanoidAppearanceComponent> body, string slot, Entity<SLBodyPartComponent> part, Entity<SLBodyPartComponent> limb)
     {
-        if (!_body.CanAttachPart(part.Owner, slot, limb.Owner, part.Comp, limb.Comp))
-            return false;
-
-        EnsureLimbChildSlots(limb);
-
-        if (!_body.AttachPart(part, slot, limb, part.Comp, limb.Comp))
+        if (!TryAttachSLPart(part, slot, limb))
             return false;
         AddLimbVisual(body, limb);
-        AddLimb(body, slot, limb);
-        if (limb.Comp.PartType == BodyPartType.Leg)
-            _body.UpdateMovementSpeed(body.Owner);
+        AddLimb(body, limb);
         return true;
     }
 
-    public bool AttachItem(EntityUid body, string slot, Entity<BodyPartComponent> part, Entity<MetaDataComponent> item)
+    public bool AttachItem(EntityUid body, string slot, Entity<SLBodyPartComponent> part, Entity<MetaDataComponent> item)
     {
         var marker = EnsureComp<CustomLimbMarkerComponent>(item);
 
         var virtualItem = Spawn(_virtual);
-        var virtualBodyPart = EnsureComp<BodyPartComponent>(virtualItem);
+        var virtualBodyPart = EnsureComp<SLBodyPartComponent>(virtualItem);
         var virtualCustomLimb = EnsureComp<CustomLimbComponent>(virtualItem);
         _metadata.SetEntityName(virtualItem, item.Comp.EntityName);
 
         marker.VirtualPart = virtualItem;
         virtualCustomLimb.Item = item;
 
-        virtualBodyPart.PartType = BodyParts.GetBodyPart(slot);
+        virtualBodyPart.PartType = BodyParts.GetBodyPart(slot).ToString();
+        Dirty(virtualItem, virtualBodyPart);
 
-        if (!_body.AttachPart(part, slot, virtualItem, part.Comp, virtualBodyPart))
+        if (!TryAttachSLPart(part, slot, virtualItem))
         {
             marker.VirtualPart = null;
             QueueDel(virtualItem);
             return false;
         }
         AddItemLimb(body, slot, item);
-        AddItemHand(body, item, BodySystem.GetPartSlotContainerId(slot));
+        AddItemHand(body, item, ItemHandId(slot));
         return true;
     }
 
-    public bool Amputatate(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
+    public bool Amputatate(Entity<TransformComponent, HumanoidAppearanceComponent, SLBodyComponent> body, Entity<TransformComponent, MetaDataComponent, SLBodyPartComponent> limb)
     {
-        if (!_containers.TryGetContainingContainer((limb.Owner, limb.Comp1, limb.Comp2), out var container)
-            || _body.GetParentPartAndSlotOrNull(limb.Owner) is not var (_, slotId))
+        if (limb.Comp3.ParentSocket is not { } socket)
             return false;
 
+        var slotId = SharedBodySystem.GetLegacySlotName(socket.SocketId);
         var virtualLimb = TryComp<CustomLimbComponent>(limb, out var limbComponent) ? limbComponent : null;
         if (virtualLimb is not null)
-            RemoveTerminatingItemFromHand(body.Owner, virtualLimb.Item, BodySystem.GetPartSlotContainerId(slotId));
+            RemoveTerminatingItemFromHand(body.Owner, virtualLimb.Item, ItemHandId(slotId));
 
-        if (!_containers.Remove(limb.Owner, container, destination: body.Comp1.Coordinates))
+        if (!_slBody.TryDetachPart((limb.Owner, limb.Comp3), body.Comp1.Coordinates))
             return false;
 
         if (virtualLimb is not null)
-            AmputateItemLimb((body, body.Comp1, body.Comp3), limb, slotId, virtualLimb);
+            AmputateItemLimb(body.Owner, limb, slotId, virtualLimb);
         else
         {
             RemoveLimbVisual(body, limb);
             RemoveLimb(body, limb);
         }
         return true;
+    }
+
+    private bool TryAttachSLPart(EntityUid parentId, string slot, EntityUid childId)
+    {
+        if (!TryComp<SLBodyPartComponent>(parentId, out var parent) || !TryComp<SLBodyPartComponent>(childId, out var child))
+            return false;
+
+        var socketId = SharedBodySystem.GetSocketIdForLegacySlot(slot);
+        if (!parent.Sockets.ContainsKey(socketId))
+            _slBody.AddSocket((parentId, parent), socketId, BodyPrefabPrototype.DefaultExternalSocket);
+
+        return _slBody.TryAttachPart((parentId, parent), socketId, (childId, child));
     }
 
     private void AddItemLimb(EntityUid body, string slot, Entity<MetaDataComponent> item)
@@ -99,13 +105,13 @@ public sealed partial class LimbSystem : SharedLimbSystem
         Dirty(body, vizualizer);
     }
 
-    private void AmputateItemLimb(Entity<TransformComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb, string slotId, CustomLimbComponent virtualLimb)
+    private void AmputateItemLimb(EntityUid body, Entity<TransformComponent, MetaDataComponent, SLBodyPartComponent> limb, string slotId, CustomLimbComponent virtualLimb)
     {
         if (!TerminatingOrDeleted(virtualLimb.Item)
             && TryComp<CustomLimbMarkerComponent>(virtualLimb.Item, out var marker))
             marker.VirtualPart = null;
 
-        RemoveItemLimb(body, virtualLimb.Item, BodySystem.GetPartSlotContainerId(slotId));
+        RemoveItemLimb(body, virtualLimb.Item, ItemHandId(slotId));
 
         var vizualizer = EnsureComp<CustomLimbVisualizerComponent>(body);
 
@@ -114,6 +120,8 @@ public sealed partial class LimbSystem : SharedLimbSystem
         Dirty(body, vizualizer);
         QueueDel(limb.Owner);
     }
+
+    private static string ItemHandId(string slot) => "item_limb_" + slot;
 
     private void AddItemHand(EntityUid bodyId, EntityUid itemId, string handId)
     {

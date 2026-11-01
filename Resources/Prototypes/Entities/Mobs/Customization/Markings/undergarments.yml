@@ -10,9 +10,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: boxers
+    body_undergarmentBottom:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: boxers
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomBriefs
@@ -23,9 +28,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: briefs
+    body_undergarmentBottom:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: briefs
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomSatin
@@ -36,9 +46,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: satin
+    body_undergarmentBottom:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: satin
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopBra
@@ -49,9 +64,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: classic
+    body_undergarmentTop:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: classic
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopSportsbra
@@ -62,9 +82,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: sports
+    body_undergarmentTop:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: sports
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopBinder
@@ -75,9 +100,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: binder
+    body_undergarmentTop:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: binder
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopTanktop
@@ -88,9 +118,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: tanktop
+    body_undergarmentTop:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: tanktop
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomBoxersVox # Voxers.
@@ -101,9 +136,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: boxers_vox
+    body_undergarmentBottom:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: boxers_vox
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomBriefsVox
@@ -114,9 +154,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: briefs_vox
+    body_undergarmentBottom:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: briefs_vox
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomSatinVox
@@ -127,9 +172,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: satin_vox
+    body_undergarmentBottom:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: satin_vox
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopBraVox
@@ -140,9 +190,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: classic_vox
+    body_undergarmentTop:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: classic_vox
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopSportsbraVox
@@ -153,9 +208,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: sports_vox
+    body_undergarmentTop:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: sports_vox
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopBinderVox
@@ -166,9 +226,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: binder_vox
+    body_undergarmentTop:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: binder_vox
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopTanktopVox
@@ -179,9 +244,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: tanktop_vox
+    body_undergarmentTop:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: tanktop_vox
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomBoxersReptilian
@@ -192,9 +262,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: boxers_reptilian
+    body_undergarmentBottom:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: boxers_reptilian
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomBriefsReptilian
@@ -205,9 +280,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: briefs_reptilian
+    body_undergarmentBottom:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: briefs_reptilian
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomSatinReptilian
@@ -218,9 +298,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: satin_reptilian
+    body_undergarmentBottom:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: satin_reptilian
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomBoxersVulpkanin
@@ -231,9 +316,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: boxers_vulpkanin
+    body_undergarmentBottom:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: boxers_vulpkanin
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomBriefsVulpkanin
@@ -244,9 +334,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: briefs_vulpkanin
+    body_undergarmentBottom:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: briefs_vulpkanin
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomSatinVulpkanin
@@ -257,9 +352,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: satin_vulpkanin
+    body_undergarmentBottom:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: satin_vulpkanin
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopBraVulpkanin
@@ -270,9 +370,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: classic_vulpkanin
+    body_undergarmentTop:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: classic_vulpkanin
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopSportsbraVulpkanin
@@ -283,9 +388,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: sports_vulpkanin
+    body_undergarmentTop:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: sports_vulpkanin
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopBinderVulpkanin
@@ -296,9 +406,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: binder_vulpkanin
+    body_undergarmentTop:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: binder_vulpkanin
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopTanktopVulpkanin
@@ -309,6 +424,12 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/undergarments.rsi
-    state: tanktop_vulpkanin
+    body_undergarmentTop:
+      sprite:
+        sprite: Mobs/Customization/undergarments.rsi
+        state: tanktop_vulpkanin
+      colorSource: UndergarmentColor
+  # Starlight end
+

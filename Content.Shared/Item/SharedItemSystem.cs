@@ -1,5 +1,5 @@
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Body.Part;
+using Content.Shared._Starlight.Body.Components; // Starlight
 using Content.Shared.Interaction;
 using Content.Shared.Verbs;
 using Content.Shared.Examine;
@@ -123,7 +123,7 @@ public abstract partial class SharedItemSystem : EntitySystem
     private void AddPickupVerb(EntityUid uid, ItemComponent component, GetVerbsEvent<InteractionVerb> args)
     {
         // Starlight - start
-        if (TryComp<BodyPartComponent>(uid, out var bodyPart) && bodyPart.Body != null)
+        if (TryComp<SLBodyPartComponent>(uid, out var bodyPart) && bodyPart.Body != null)
             return;
         // Starlight - end
 

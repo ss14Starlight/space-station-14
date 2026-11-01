@@ -1,7 +1,7 @@
-﻿using System.Linq;
+﻿using Content.Shared._Starlight.Body.Components;
+using System.Linq;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Atmos.Prototypes;
-using Content.Shared.Body.Part;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reaction;
@@ -93,7 +93,7 @@ public sealed partial class ChemistryGuideDataSystem : SharedChemistryGuideDataS
                 continue;
 
             //these bloat the hell out of blood/fat
-            if (entProto.HasComponent<BodyPartComponent>()) // Starlight Edit: OrganComponent -> BodyPartComponent
+            if (entProto.HasComponent<SLBodyPartComponent>()) // Starlight Edit: OrganComponent -> SLBodyPartComponent
                 continue;
 
             //these feel obvious...

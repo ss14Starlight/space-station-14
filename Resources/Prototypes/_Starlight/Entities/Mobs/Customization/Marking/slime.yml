@@ -6,8 +6,11 @@
   markingCategory: Chest
   speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
-    state: bubble
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
+        state: bubble
+      colorSource: UniqueColor
 
 - type: marking
   id: fishbowl
@@ -15,10 +18,16 @@
   markingCategory: Chest
   speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
-    state: fishbowl1
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
-    state: fishbowl2
+    body_chest@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
+        state: fishbowl1
+      colorSource: UniqueColor
+    body_chest@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
+        state: fishbowl2
+      colorSource: UniqueColor
 
 - type: marking
   id: SlimeBonechest
@@ -31,8 +40,11 @@
         !type:SimpleColoring
         color: "#F8F8F8"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
-    state: bone
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
+        state: bone
+      colorSource: UniqueColor
 
 - type: marking
   id: SlimeCore
@@ -45,18 +57,24 @@
       type:
         !type:EyeColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
-    state: core
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
+        state: core
+      colorSource: UniqueColor
 
 - type: marking
   id: SlimeLungs
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
-  followSkinColor: true
+  # followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
-    state: lungs
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
+        state: lungs
+      colorSource: UniqueColor
 
 # Head
 
@@ -66,12 +84,21 @@
   markingCategory: Head
   speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
-    state: fadingstars1
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
-    state: fadingstars2
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
-    state: fadingstars3
+    body_head@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
+        state: fadingstars1
+      colorSource: UniqueColor
+    body_head@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
+        state: fadingstars2
+      colorSource: UniqueColor
+    body_head@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
+        state: fadingstars3
+      colorSource: UniqueColor
 
 - type: marking
   id: fizz
@@ -79,8 +106,11 @@
   markingCategory: Head
   speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
-    state: fizz
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
+        state: fizz
+      colorSource: UniqueColor
 
 - type: marking
   id: SlimeBonehead
@@ -93,8 +123,11 @@
         !type:SimpleColoring
         color: "#F8F8F8"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
-    state: bone
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
+        state: bone
+      colorSource: UniqueColor
 
 - type: marking
   id: SlimeNose
@@ -102,45 +135,41 @@
   markingCategory: Head
   speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
-    state: nose
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
+        state: nose
+      colorSource: UniqueColor
 
 - type: marking
   id: SlimeMouth
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
-  followSkinColor: true
+  # followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
-    state: mouth
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
+        state: mouth
+      colorSource: UniqueColor
 
 - type: marking
   id: SlimeBrain
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [ SlimePerson , NeoSlimePerson, Neocyte] # FH + Starlight
-  followSkinColor: true
+  # followSkinColor: true
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
-    state: brain
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
+        state: brain
+      colorSource: UniqueColor
 
 # Snout
-
-- type: marking
-  id: SlimeSnout
-  bodyPart: Snout
-  markingCategory: Snout
-  speciesRestriction: [ SlimePerson ]
-  forcedColoring: true
-  followSkinColor: true
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/SlimePerson/snout.rsi
-      state: snout
-
-# Eyes
 
 - type: marking
   id: SlimeEyesDefault
@@ -153,8 +182,10 @@
       type:
         !type:EyeColoring
   sprites:
-  - sprite:  Mobs/Species/Slime/parts.rsi #Unfinished???
-    state: eyes
+    body_eyes:
+      sprite:
+        sprite: Mobs/Species/Slime/parts.rsi #Unfinished???
+        state: eyes
 
 - type: marking
   id: SlimeEyesDroopy
@@ -167,8 +198,10 @@
         !type:EyeColoring
         negative: false
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/eyes.rsi
-    state: droopy
+    body_eyes:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/eyes.rsi
+        state: droopy
 
 - type: marking
   id: SlimeEyesCyclops
@@ -181,8 +214,10 @@
         !type:EyeColoring
         negative: false
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/eyes.rsi
-    state: cyclops
+    body_eyes:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/eyes.rsi
+        state: cyclops
 
 # RArm
 
@@ -197,8 +232,11 @@
         !type:SimpleColoring
         color: "#F8F8F8"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/rarm.rsi
-    state: bone
+    body_rArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/rarm.rsi
+        state: bone
+      colorSource: UniqueColor
 
 # LArm
 
@@ -213,8 +251,11 @@
         !type:SimpleColoring
         color: "#F8F8F8"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/larm.rsi
-    state: bone
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/larm.rsi
+        state: bone
+      colorSource: UniqueColor
 
 # RLeg
 
@@ -229,8 +270,11 @@
         !type:SimpleColoring
         color: "#F8F8F8"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/rleg.rsi
-    state: bone
+    body_rLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/rleg.rsi
+        state: bone
+      colorSource: UniqueColor
 
 # LLeg
 
@@ -245,8 +289,11 @@
         !type:SimpleColoring
         color: "#F8F8F8"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/lleg.rsi
-    state: bone
+    body_lLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/lleg.rsi
+        state: bone
+      colorSource: UniqueColor
 
 # UndergarmentBottom
 
@@ -265,8 +312,11 @@
         !type:SimpleColoring
         color: "#F8F8F8"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/lfoot.rsi
-    state: bone
+    body_lFoot:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/lfoot.rsi
+        state: bone
+      colorSource: UniqueColor
 
 # RFoot
 
@@ -281,8 +331,11 @@
         !type:SimpleColoring
         color: "#F8F8F8"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/rfoot.rsi
-    state: bone
+    body_rFoot:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/rfoot.rsi
+        state: bone
+      colorSource: UniqueColor
 
 # LHand
 
@@ -297,8 +350,11 @@
         !type:SimpleColoring
         color: "#F8F8F8"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/lhand.rsi
-    state: bone
+    body_lHand:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/lhand.rsi
+        state: bone
+      colorSource: UniqueColor
 
 # RHand
 
@@ -313,8 +369,11 @@
         !type:SimpleColoring
         color: "#F8F8F8"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/SlimePerson/rhand.rsi
-    state: bone
+    body_rHand:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/rhand.rsi
+        state: bone
+      colorSource: UniqueColor
 
 # FacialHair
 
@@ -327,3 +386,18 @@
 # Tail
 
 # RArmExtension
+- type: marking
+  id: SlimeSnout
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ SlimePerson ]
+  forcedColoring: true
+  # followSkinColor: true
+  sprites:
+    body_snout:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/SlimePerson/snout.rsi
+        state: snout
+      colorSource: HumanSkinColor
+
+# Eyes

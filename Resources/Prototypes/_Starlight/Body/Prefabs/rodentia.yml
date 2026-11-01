@@ -1,0 +1,58 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Rodentia
+  root:
+    bodyPart: TorsoRodentia
+    containedParts:
+      Heart:
+        bodyPart: OrganRodentiaHeart
+      Lungs:
+        bodyPart: OrganHumanLungs
+      Stomach:
+        bodyPart: OrganRodentiaStomach
+      Liver:
+        bodyPart: OrganAnimalLiver
+      Kidneys:
+        bodyPart: OrganAnimalKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadRodentia
+        containedParts:
+          Brain:
+            bodyPart: OrganHumanBrain
+          Tongue:
+            bodyPart: OrganRodentiaTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganRodentiaEyes
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmRodentia
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandRodentia
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmRodentia
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandRodentia
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegRodentia
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootRodentia
+      LeftLeg:
+        bodyPart: LeftLegRodentia
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootRodentia
+    sockets:
+      Cavity: OrganSocket

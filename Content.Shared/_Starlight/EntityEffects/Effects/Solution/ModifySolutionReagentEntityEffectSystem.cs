@@ -8,6 +8,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Shared._Starlight.EntityEffects.Effects.Solution;
 
@@ -47,9 +48,9 @@ public sealed partial class ModifySolutionReagentEntityEffectSystem : EntityEffe
             owner = body;
         }
 
-        if (TryComp<BodyComponent>(owner, out var bodyComp))
+        if (HasComp<SLBodyComponent>(owner))
         {
-            foreach (var (organUid, _) in _body.GetBodyOrgans(owner, bodyComp))
+            foreach (var (organUid, _) in _body.GetBodyOrgans(owner))
             {
                 if (_solution.TryGetSolution(organUid, id, out target, out _))
                     return true;

@@ -4,8 +4,11 @@
   markingCategory: Chest
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: bellymark
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: bellymark
+        colorSource: UniqueColor
 
 - type: marking
   id: FelionoidChestBrightBelly
@@ -13,8 +16,11 @@
   markingCategory: Chest
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: bright_belly
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: bright_belly
+        colorSource: UniqueColor
 
 - type: marking
   id: FelionoidChestStripes
@@ -22,8 +28,11 @@
   markingCategory: Chest
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: body_stripes
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: body_stripes
+        colorSource: UniqueColor
 
 - type: marking
   id: FelionoidChestTabby
@@ -31,8 +40,11 @@
   markingCategory: Chest
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: Tabby_chest
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: Tabby_chest
+        colorSource: UniqueColor
 
 - type: marking
   id: FelionoidChestCalico
@@ -40,7 +52,13 @@
   markingCategory: Chest
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: calico1_chest
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: calico2_chest
+    body_chest@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: calico1_chest
+        colorSource: UniqueColor
+    body_chest@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: calico2_chest
+        colorSource: UniqueColor

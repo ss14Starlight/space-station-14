@@ -25,8 +25,8 @@ public sealed class OrganMissingTest : GameTest
     id: OrganMissingTestDummy
     components:
     -
-        type: Body
-        prototype: Human
+        type: SLBody
+        prefab: Human
     -
         type: Damageable
     -
@@ -63,7 +63,8 @@ public sealed class OrganMissingTest : GameTest
             Assert.That(bodySystem.TryGetOrgansWithComponent<OrganLiverComponent>(body, out var livers), Is.True);
             Assert.That(bodySystem.TryGetOrgansWithComponent<OrganKidneysComponent>(body, out var kidneys), Is.True);
             var heartId = hearts![0].Owner;
-            Assert.That(containerSystem.TryGetContainingContainer((heartId, null, null), out var heartContainer), Is.True);
+            var torso = bodySystem.GetParentPartOrNull(heartId);
+            Assert.That(torso, Is.Not.Null);
             Assert.Multiple(() =>
             {
                 Assert.That(bodySystem.RemoveOrgan(hearts![0], entityManager.GetComponent<OrganComponent>(hearts[0])),
@@ -75,7 +76,8 @@ public sealed class OrganMissingTest : GameTest
             });
 
             var replacement = entityManager.SpawnEntity("OrganMissingTestItem", map.MapCoords);
-            Assert.That(containerSystem.Insert(replacement, heartContainer!), Is.True);
+            var heartSlot = containerSystem.EnsureContainer<ContainerSlot>(torso!.Value, SharedBodySystem.GetOrganContainerId("heart"));
+            Assert.That(containerSystem.Insert(replacement, heartSlot), Is.True);
         });
 
         await PoolManager.WaitUntil(server, () => damageable.GetTotalDamage(body) > FixedPoint2.Zero);

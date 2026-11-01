@@ -10,6 +10,6 @@
   id: MobHoloClownGuardian
   parent: !Clear [MobGuardianBase, InventoryBase] # Nubody will not pass.
   components:
-    - type: Body
-      prototype: Primate
+    - type: SLBody
+      prefab: Primate
     - type: !Clear Hands

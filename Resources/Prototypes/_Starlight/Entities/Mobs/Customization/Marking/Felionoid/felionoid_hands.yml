@@ -4,8 +4,11 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  pawmittens_handsR
+    body_rHand:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: pawmittens_handsR
+        colorSource: UniqueColor
 
 - type: marking
   id: FelionoidHandPawMittensL
@@ -13,5 +16,8 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  pawmittens_handsL
+    body_lHand:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: pawmittens_handsL
+        colorSource: UniqueColor

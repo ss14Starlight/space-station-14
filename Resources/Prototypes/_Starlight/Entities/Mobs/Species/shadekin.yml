@@ -35,8 +35,8 @@
   - type: Icon
     sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
     state: full
-  - type: Body
-    prototype: Shadekin
+  - type: SLBody
+    prefab: Shadekin
     requiredLegs: 2
   - type: Vocal
   - type: MeleeWeapon

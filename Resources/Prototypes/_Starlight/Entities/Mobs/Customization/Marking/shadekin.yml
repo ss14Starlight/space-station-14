@@ -6,8 +6,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
 
 - type: marking
   id: EarsShadekinStriped
@@ -24,10 +27,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin_stripes
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin_stripes
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinMotley
@@ -44,10 +53,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: motley_secondary
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: motley_secondary
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinShady
@@ -55,8 +70,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shady
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shady
+        colorSource: ShadekinSkinColor
 
 - type: marking
   id: EarsShadekinPiercingAll
@@ -73,10 +91,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: piercing_all
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: piercing_all
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinPiercingLeft
@@ -93,10 +117,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: piercing_left
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: piercing_left
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinPiercingRight
@@ -113,10 +143,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: piercing_right
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: piercing_right
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinRingedAll
@@ -133,10 +169,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: ringed_all_secondary
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: ringed_all_secondary
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinRingedLeft
@@ -153,10 +195,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: ringed_left_secondary
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: ringed_left_secondary
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinRingedRight
@@ -173,10 +221,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: ringed_right_secondary
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: ringed_right_secondary
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinGauzedAll
@@ -184,10 +238,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: gauze_ear_all_default
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: gauze_ear_all_default
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinGauzedLeft
@@ -195,10 +255,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: gauze_ear_l_default
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: gauze_ear_l_default
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinGauzedRight
@@ -206,10 +272,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: shadekin
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: gauze_ear_r_default
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: gauze_ear_r_default
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinFluffy
@@ -217,8 +289,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_default
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_default
+        colorSource: ShadekinSkinColor
 
 - type: marking
   id: EarsShadekinFluffyButterfly
@@ -226,10 +301,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_butterfly
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_butterfly
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinFluffyCowling
@@ -237,10 +318,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_cowling
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_cowling
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinFluffyCrow
@@ -248,10 +335,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_crow
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_crow
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinFluffyMotley
@@ -259,10 +352,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_motley
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_motley
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinFluffySpidy
@@ -270,10 +369,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_spidy
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_spidy
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinFluffyRingedAll
@@ -281,10 +386,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_ringed_all
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_ringed_all
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinFluffyRingedLeft
@@ -292,10 +403,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_ringed_left
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_ringed_left
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinFluffyRingedRight
@@ -303,10 +420,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: fluffy_ringed_right
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: fluffy_ringed_right
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinSaggy
@@ -314,8 +437,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_default
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_default
+        colorSource: ShadekinSkinColor
 
 - type: marking
   id: EarsShadekinSaggyBrawly
@@ -323,10 +449,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_brawly
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_brawly
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinSaggyZebra
@@ -334,10 +466,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_zebra
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_zebra
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinSaggyGradient
@@ -345,10 +483,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_gradient
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_gradient
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinSaggyGauzedAll
@@ -356,10 +500,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_gauze_all
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_gauze_all
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinSaggyGauzedLeft
@@ -367,10 +517,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_gauze_l
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_gauze_l
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinSaggyGauzedRight
@@ -378,10 +534,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: saggy_gauze_r
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: saggy_gauze_r
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinShort
@@ -389,8 +551,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: short_default
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: short_default
+        colorSource: ShadekinSkinColor
 
 - type: marking
   id: EarsShadekinShortButterfly
@@ -398,10 +563,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: short_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: short_butterfly
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: short_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: short_butterfly
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinShortRingedAll
@@ -409,10 +580,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: short_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: short_ringed_all
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: short_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: short_ringed_all
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinShortRingedLeft
@@ -420,10 +597,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: short_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: short_ringed_left
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: short_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: short_ringed_left
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinShortRingedRight
@@ -431,10 +614,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: short_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: short_ringed_right
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: short_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: short_ringed_right
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinBull
@@ -442,8 +631,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: bull_default
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: bull_default
+        colorSource: ShadekinSkinColor
 
 - type: marking
   id: EarsShadekinBullSmooth
@@ -451,10 +643,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: bull_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: bull_smooth
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: bull_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: bull_smooth
+        colorSource: UniqueColor
 
 - type: marking
   id: EarsShadekinAqua
@@ -462,8 +660,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: aqua_default
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: aqua_default
+        colorSource: ShadekinSkinColor
 
 - type: marking
   id: EarsShadekinAquaIncolor
@@ -471,10 +672,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: aqua_default
-    - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
-      state: aqua_incolor
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: aqua_default
+        colorSource: ShadekinSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: aqua_incolor
+        colorSource: UniqueColor
 
 # Tails
 
@@ -484,8 +691,11 @@
   markingCategory: Tail
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/tails64x32.rsi
-      state: shadekin
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/tails64x32.rsi
+          state: shadekin
+        colorSource: ShadekinSkinColor
 
 - type: marking
   id: TailShadekinBig
@@ -493,8 +703,11 @@
   markingCategory: Tail
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/tails64x32.rsi
-      state: shadekin_big
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/tails64x32.rsi
+          state: shadekin_big
+        colorSource: ShadekinSkinColor
 
 # - type: marking
 #   id: TailShadekinBigFluff
@@ -511,8 +724,11 @@
   markingCategory: Tail
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
-      state: shadekin_shorter
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
+          state: shadekin_shorter
+        colorSource: ShadekinSkinColor
 
 - type: marking
   id: TailShadekinShorterBrush
@@ -520,10 +736,16 @@
   markingCategory: Tail
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
-      state: shadekin_shorter
-    - sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
-      state: shorter_brush
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
+          state: shadekin_shorter
+        colorSource: ShadekinSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
+          state: shorter_brush
+        colorSource: UniqueColor
 
 - type: marking
   id: TailShadekinMedium
@@ -531,8 +753,11 @@
   markingCategory: Tail
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
-      state: shadekin_medium
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
+          state: shadekin_medium
+        colorSource: ShadekinSkinColor
 
 - type: marking
   id: TailShadekinMediumTwoColored
@@ -540,10 +765,16 @@
   markingCategory: Tail
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
-      state: shadekin_medium
-    - sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
-      state: medium_twocolored
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
+          state: shadekin_medium
+        colorSource: ShadekinSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
+          state: medium_twocolored
+        colorSource: UniqueColor
 
 # Overlays
 
@@ -553,8 +784,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_arrow
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_arrow
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinBlackHole
@@ -562,8 +796,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_blackhole
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_blackhole
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinBrace
@@ -571,8 +808,11 @@
   markingCategory: Arms
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_brace
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_brace
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinBrawly
@@ -580,8 +820,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_brawly
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_brawly
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinHeart
@@ -589,8 +832,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_heart
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_heart
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinInk
@@ -598,8 +844,11 @@
   markingCategory: Chest
   speciesRestriction: [ShaShadekindowkin, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_ink
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_ink
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinInk2
@@ -607,8 +856,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_ink2
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_ink2
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinInk3
@@ -616,8 +868,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_ink3
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_ink3
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinInk4
@@ -625,8 +880,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_ink4
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_ink4
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinInk5
@@ -634,8 +892,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_ink5
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_ink5
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinInk6
@@ -643,8 +904,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_ink6
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_ink6
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinInkAnim
@@ -652,8 +916,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_ink_anim
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_ink_anim
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinLines
@@ -661,8 +928,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_lines
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_lines
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinNeck
@@ -670,8 +940,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_neck
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_neck
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinShield
@@ -679,8 +952,11 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_shield
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_shield
+        colorSource: UniqueColor
 
 - type: marking
   id: BodyShadekinVacuum
@@ -688,5 +964,8 @@
   markingCategory: Chest
   speciesRestriction: [Shadekin, NeoKin, Neocyte] # FH + Starlight
   sprites:
-    - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
-      state: body_vacuum
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
+          state: body_vacuum
+        colorSource: UniqueColor

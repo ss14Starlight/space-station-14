@@ -1,0 +1,67 @@
+// Cuts clothing, blood and other overlays out where a limb is missing.
+// Each limbMaskN is the silhouette of a missing limb (the body's own base sprite of it), copied in by a shader
+// parameter layer for the drawn direction; keepMask is the torso, which stays covered even where a missing limb
+// overlapped it. Unused slots hold a transparent texture. Optionally also applies a displacement map, so layers
+// that were displaced keep it.
+
+uniform sampler2D limbMask0;
+uniform highp vec4 limbMaskUV0;
+uniform sampler2D limbMask1;
+uniform highp vec4 limbMaskUV1;
+uniform sampler2D limbMask2;
+uniform highp vec4 limbMaskUV2;
+uniform sampler2D limbMask3;
+uniform highp vec4 limbMaskUV3;
+uniform sampler2D limbMask4;
+uniform highp vec4 limbMaskUV4;
+uniform sampler2D limbMask5;
+uniform highp vec4 limbMaskUV5;
+uniform sampler2D limbMask6;
+uniform highp vec4 limbMaskUV6;
+uniform sampler2D limbMask7;
+uniform highp vec4 limbMaskUV7;
+uniform sampler2D keepMask;
+uniform highp vec4 keepMaskUV;
+
+uniform highp float useDisplacement;
+uniform sampler2D displacementMap;
+uniform highp float displacementSize;
+uniform highp vec4 displacementUV;
+
+// Missing-limb silhouette, grown by a pixel so sleeves that stick out past the skin go too.
+highp float maskAt(sampler2D tex, highp vec4 rect, highp vec2 quad) {
+    highp vec2 uv = mix(rect.xy, rect.zw, quad);
+    highp vec2 px = (rect.zw - rect.xy) / 32.0;
+    highp float a = texture2D(tex, uv).a;
+    a = max(a, texture2D(tex, uv + vec2(px.x, 0.0)).a);
+    a = max(a, texture2D(tex, uv - vec2(px.x, 0.0)).a);
+    a = max(a, texture2D(tex, uv + vec2(0.0, px.y)).a);
+    a = max(a, texture2D(tex, uv - vec2(0.0, px.y)).a);
+    return a;
+}
+
+void fragment() {
+    highp vec2 sampleUV = UV;
+    highp float displacementAlpha = 1.0;
+    if (useDisplacement > 0.5) {
+        highp vec4 displacementSample = texture2D(displacementMap, mix(displacementUV.xy, displacementUV.zw, UV2));
+        highp vec2 displacementValue = (displacementSample.xy - vec2(128.0 / 255.0)) / (1.0 - 128.0 / 255.0);
+        sampleUV = UV + displacementValue * TEXTURE_PIXEL_SIZE * displacementSize * vec2(1.0, -1.0);
+        displacementAlpha = displacementSample.a;
+    }
+
+    COLOR = zTexture(sampleUV);
+    COLOR.a *= displacementAlpha;
+
+    highp float missing = maskAt(limbMask0, limbMaskUV0, UV2);
+    missing = max(missing, maskAt(limbMask1, limbMaskUV1, UV2));
+    missing = max(missing, maskAt(limbMask2, limbMaskUV2, UV2));
+    missing = max(missing, maskAt(limbMask3, limbMaskUV3, UV2));
+    missing = max(missing, maskAt(limbMask4, limbMaskUV4, UV2));
+    missing = max(missing, maskAt(limbMask5, limbMaskUV5, UV2));
+    missing = max(missing, maskAt(limbMask6, limbMaskUV6, UV2));
+    missing = max(missing, maskAt(limbMask7, limbMaskUV7, UV2));
+
+    highp float keep = texture2D(keepMask, mix(keepMaskUV.xy, keepMaskUV.zw, UV2)).a;
+    COLOR.a *= 1.0 - missing * (1.0 - keep);
+}

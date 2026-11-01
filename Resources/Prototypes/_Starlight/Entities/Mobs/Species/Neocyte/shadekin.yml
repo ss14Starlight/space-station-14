@@ -47,8 +47,8 @@
     - type: Icon
       sprite: _FarHorizons/Mobs/Species/Proto-Kin/parts.rsi
       state: full
-    - type: Body
-      prototype: NeoKin
+    - type: SLBody
+      prefab: NeoKin
       requiredLegs: 2
     - type: UserInterface
       interfaces:
@@ -75,8 +75,8 @@
         walkSpeedModifier: 0.5
         sprintSpeedModifier: 0.5
         dropItemsFrom:
-          - body_part_slot_right hand
-          - body_part_slot_left hand
+          - body/RightArm/RightHand
+          - body/LeftArm/LeftHand
         additionalEffects:
           StatusEffectTemporaryBlindness: 2.0
         damageAmount:

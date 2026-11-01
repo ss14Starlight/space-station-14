@@ -7,6 +7,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Body.Organ;
 using Content.Shared._Starlight.BreathOrgan.Components;
 using Robust.Shared.Audio.Systems;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Server._Starlight.BreathOrgan.Systems;
 
@@ -32,10 +33,10 @@ public sealed partial class OrganGasTankFillSystem : EntitySystem
             return;
 
         // Check if the user has organ gas tanks
-        if (!TryComp<BodyComponent>(args.User, out var body))
+        if (!HasComp<SLBodyComponent>(args.User))
             return;
 
-        var allOrganTanks = _body.GetBodyOrganEntityComps<GasTankComponent>((args.User, body));
+        var allOrganTanks = _body.GetBodyOrganEntityComps<GasTankComponent>((args.User, null));
         var organTanks = new List<Entity<GasTankComponent, OrganGasTankFillableComponent, OrganComponent>>();
 
         foreach (var organTank in allOrganTanks)

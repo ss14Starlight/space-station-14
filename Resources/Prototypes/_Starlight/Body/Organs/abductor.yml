@@ -6,6 +6,8 @@
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Abductor/organs.rsi
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: Edible
   - type: Extractable
     grindableSolutionName: organ

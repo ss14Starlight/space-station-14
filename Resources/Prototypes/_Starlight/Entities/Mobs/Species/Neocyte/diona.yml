@@ -35,8 +35,8 @@
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Dionae/parts.rsi
     state: full
-  - type: Body
-    prototype: NeoDiona
+  - type: SLBody
+    prefab: NeoDiona
     requiredLegs: 2
   - type: BodyEmotes
     soundsId: DionaBodyEmotes

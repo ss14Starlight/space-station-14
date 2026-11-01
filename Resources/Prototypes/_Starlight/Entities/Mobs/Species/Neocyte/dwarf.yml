@@ -33,8 +33,8 @@
     damageContainer: Hybrid
     damageModifierSet: NeoDwarf
     displacement: Dwarfism
-  - type: Body
-    prototype: NeoDwarf
+  - type: SLBody
+    prefab: NeoDwarf
     requiredLegs: 2
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.

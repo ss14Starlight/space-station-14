@@ -1,6 +1,5 @@
 ﻿using Content.Shared._Starlight.Medical.Surgery.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
+using Content.Shared._Starlight.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Implants.Components;
 using Content.Shared.Interaction;
@@ -27,7 +26,7 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
             CanShowImplantedStorage(owner, ownerStorage, bodyPart: false))
             yield return owner;
 
-        if (!TryComp<BodyComponent>(owner, out var body))
+        if (!TryComp<SLBodyComponent>(owner, out var body))
             yield break;
 
         foreach (var (partUid, _) in _body.GetBodyChildren(owner, body))
@@ -41,7 +40,7 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
 
     public IEnumerable<EntityUid> GetStrippableStorageHandEntities(EntityUid owner)
     {
-        if (!TryComp<BodyComponent>(owner, out var body))
+        if (!TryComp<SLBodyComponent>(owner, out var body))
             yield break;
 
         foreach (var (partUid, _) in _body.GetBodyChildren(owner, body))
@@ -54,13 +53,13 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnBodyPartStorageRangeCheck(Entity<BodyPartComponent> part, ref BoundUserInterfaceCheckRangeEvent args)
+    private void OnBodyPartStorageRangeCheck(Entity<SLBodyPartComponent> part, ref BoundUserInterfaceCheckRangeEvent args)
     {
         if (args.UiKey is not StorageComponent.StorageUiKey.Key ||
             !TryComp<StorageComponent>(part, out var storage) ||
             !CanShowImplantedStorage(part.Owner, storage, bodyPart: true) ||
             part.Comp.Body is not { } owner ||
-            !HasComp<BodyComponent>(owner))
+            !HasComp<SLBodyComponent>(owner))
             return;
 
         SetStorageRangeResult(owner, ref args);
@@ -75,7 +74,7 @@ public sealed partial class SharedImplantedStorageAccessSystem : EntitySystem
             !CanShowImplantedStorage(limb.Owner, storage, bodyPart: false) ||
             limb.Comp.VirtualPart is not { } virtualPart ||
             !_containers.TryGetContainingContainer(limb.Owner, out var container) ||
-            !TryComp<BodyComponent>(container.Owner, out var body))
+            !TryComp<SLBodyComponent>(container.Owner, out var body))
             return;
 
         // The item is held in a hand slot on the wearer, which normal UI access treats as inaccessible

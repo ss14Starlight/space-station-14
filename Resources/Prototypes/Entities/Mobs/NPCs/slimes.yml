@@ -105,8 +105,8 @@
         messages: [ "slime-hurt-by-water-popup" ]
         probability: 0.25
   # Starlight - start
-  - type: Body
-    prototype: Slimes
+  - type: SLBody
+    prefab: Slimes
     requiredLegs: 1
   # Starlight - end
   - type: MeleeWeapon

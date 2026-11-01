@@ -5,10 +5,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tall_ears_outer
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tall_ears_inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: tall_ears_outer
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: tall_ears_inner
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsTallCutLeft
@@ -16,10 +22,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tall_ears_cut_L_outer
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tall_ears_cut_L_inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: tall_ears_cut_L_outer
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: tall_ears_cut_L_inner
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsTallCutRight
@@ -27,85 +39,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tall_ears_cut_R_outer
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tall_ears_cut_R_inner
-
-- type: marking
-  id: LagomorphEarsDeer
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: deer
-
-- type: marking
-  id: LagomorphEarsDeerAntlers
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: deer
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antlers
-
-- type: marking
-  id: LagomorphEarsDeerAntlersSmall
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: deer
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antler-small
-
-- type: marking
-  id: LagomorphEarsDeerAntlersJolly
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: deer
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antler-jolly
-
-- type: marking
-  id: LagomorphEarsDeerAntlersW
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: deer
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antler-w
-
-- type: marking
-  id: LagomorphEarsDeerAntlersDriedbush
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: deer
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antler-driedbush
-
-- type: marking
-  id: LagomorphEarsAirplane
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: airplane
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: inner_airplane
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: tall_ears_cut_R_outer
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: tall_ears_cut_R_inner
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsFloppy
@@ -113,8 +56,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: floppy_ears
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: floppy_ears
+        colorSource: LagomorphSkinColor
 
 - type: marking
   id: LagomorphEarsFloppyCutLeft
@@ -122,8 +68,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: floppy_ears_cut_L
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: floppy_ears_cut_L
+        colorSource: LagomorphSkinColor
 
 - type: marking
   id: LagomorphEarsFloppyCutRight
@@ -131,8 +80,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: floppy_ears_cut_R
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: floppy_ears_cut_R
+        colorSource: LagomorphSkinColor
 
 - type: marking
   id: LagomorphEarsMedium
@@ -140,10 +92,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: standard
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: standard_inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: standard
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: standard_inner
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsLoppy
@@ -151,10 +109,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: loppy
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: loppy_inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: loppy
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: loppy_inner
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsLoppyLarge
@@ -162,10 +126,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: loppy_large
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: loppy_large_inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: loppy_large
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: loppy_large_inner
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsSharp
@@ -173,10 +143,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: sharp
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: sharp_inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: sharp
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: sharp_inner
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsShort
@@ -184,10 +160,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: short
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: short_inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: short
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: short_inner
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsRotund
@@ -195,10 +177,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: rotund
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: rotund_inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: rotund
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: rotund_inner
+        colorSource: UniqueColor
 
 # Ears & Antlers
 
@@ -208,8 +196,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antlers
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: antlers
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsAntlersFloppy
@@ -217,10 +208,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: floppy_ears
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antlers-floppy-ears
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: floppy_ears
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: antlers-floppy-ears
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsAntlersLoppy
@@ -228,12 +225,21 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: loppy
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: loppy_inner
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antlers-loppy-ears
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: loppy
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: loppy_inner
+        colorSource: UniqueColor
+    body_headTop@2:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: antlers-loppy-ears
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsAntlersLoppyLarge
@@ -241,12 +247,21 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: loppy_large
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: loppy_large_inner
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antlers-loppy-large-ears
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: loppy_large
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: loppy_large_inner
+        colorSource: UniqueColor
+    body_headTop@2:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: antlers-loppy-large-ears
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsAntlersRotund
@@ -254,12 +269,21 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: rotund
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: rotund_inner
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antlers-rotund-ears
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: rotund
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: rotund_inner
+        colorSource: UniqueColor
+    body_headTop@2:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: antlers-rotund-ears
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsAntlersSharp
@@ -267,12 +291,21 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: sharp
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: sharp_inner
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antlers-sharp-ears
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: sharp
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: sharp_inner
+        colorSource: UniqueColor
+    body_headTop@2:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: antlers-sharp-ears
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsAntlersShort
@@ -280,12 +313,21 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: short
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: short_inner
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antlers-short-ears
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: short
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: short_inner
+        colorSource: UniqueColor
+    body_headTop@2:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: antlers-short-ears
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsAntlersMedium
@@ -293,12 +335,21 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: standard
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: standard_inner
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antlers-standard-ears
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: standard
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: standard_inner
+        colorSource: UniqueColor
+    body_headTop@2:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: antlers-standard-ears
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEarsAntlersTall
@@ -306,12 +357,21 @@
   markingCategory: HeadTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tall_ears_outer
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tall_ears_inner
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antlers-tall-ears
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: tall_ears_outer
+        colorSource: LagomorphSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: tall_ears_inner
+        colorSource: UniqueColor
+    body_headTop@2:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: antlers-tall-ears
+        colorSource: UniqueColor
 
 # Head Markings
 
@@ -321,8 +381,11 @@
   markingCategory: Head
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: eye_scar_L
+    body_head:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: eye_scar_L
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphEyeScarRight
@@ -330,8 +393,11 @@
   markingCategory: Head
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: eye_scar_R
+    body_head:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: eye_scar_R
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphDewlap
@@ -339,8 +405,11 @@
   markingCategory: HeadSide
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: dewlap
+    body_headSide:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: dewlap
+        colorSource: LagomorphSkinColor
 
 # they don't render right lol
 # - type: marking
@@ -387,10 +456,16 @@
   markingCategory: Tail
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: fluffy_tail
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: fluffy_tail_twotone
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: fluffy_tail
+      colorSource: LagomorphSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: fluffy_tail_twotone
+      colorSource: LagomorphSkinColor
 
 - type: marking
   id: LagomorphTailLong
@@ -398,10 +473,16 @@
   markingCategory: Tail
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: long_tail
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: long_tail_twotone
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: long_tail
+      colorSource: LagomorphSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: long_tail_twotone
+      colorSource: LagomorphSkinColor
 
 - type: marking
   id: LagomorphTailCotton
@@ -409,10 +490,16 @@
   markingCategory: Tail
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: cotton_tail
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: cotton_tail_twotone
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: cotton_tail
+      colorSource: LagomorphSkinColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: cotton_tail_twotone
+      colorSource: LagomorphSkinColor
 
 # Chest Markings
 
@@ -422,8 +509,11 @@
   markingCategory: Chest
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: chest_scar_L
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: chest_scar_L
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphChestScarRight
@@ -431,8 +521,11 @@
   markingCategory: Chest
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: chest_scar_R
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: chest_scar_R
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphBackScarLeft
@@ -440,8 +533,11 @@
   markingCategory: Chest
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: back_scar_L
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: back_scar_L
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphBackScarRight
@@ -449,8 +545,11 @@
   markingCategory: Chest
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: back_scar_R
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: back_scar_R
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphBellyColour
@@ -458,8 +557,11 @@
   markingCategory: Chest
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: belly_color
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: belly_color
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphTorsoSpots
@@ -467,8 +569,11 @@
   markingCategory: Chest
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: torso_spots
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: torso_spots
+        colorSource: UniqueColor
 
 # Arm Markings
 
@@ -478,8 +583,11 @@
   markingCategory: Arms
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: bracelet_L
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: bracelet_L
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphBraceletR
@@ -487,8 +595,11 @@
   markingCategory: Arms
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: bracelet_R
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: bracelet_R
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphArmSpotsL
@@ -496,8 +607,11 @@
   markingCategory: Arms
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: left_arm_spots
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: left_arm_spots
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphArmSpotsR
@@ -505,8 +619,11 @@
   markingCategory: Arms
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: right_arm_spots
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: right_arm_spots
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphArmMittsR
@@ -514,8 +631,11 @@
   markingCategory: Arms
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: r_arm_mitt
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: r_arm_mitt
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphArmMittsL
@@ -523,8 +643,11 @@
   markingCategory: Arms
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: l_arm_mitt
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: l_arm_mitt
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphHandMittsR
@@ -532,8 +655,11 @@
   markingCategory: Arms
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: r_hand_mitt
+    body_rHand:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: r_hand_mitt
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphHandMittsL
@@ -541,8 +667,11 @@
   markingCategory: Arms
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: l_hand_mitt
+    body_lHand:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: l_hand_mitt
+        colorSource: UniqueColor
 
 # Leg Markings
 
@@ -552,8 +681,11 @@
   markingCategory: Legs
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: left_leg_spots
+    body_lLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: left_leg_spots
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphLegSpotsR
@@ -561,8 +693,11 @@
   markingCategory: Legs
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: right_leg_spots
+    body_rLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: right_leg_spots
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphLegSockL
@@ -570,8 +705,11 @@
   markingCategory: Legs
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: leg_socks
+    body_lLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: leg_socks
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphFootSockR
@@ -579,8 +717,11 @@
   markingCategory: Legs
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: feet_socks
+    body_rFoot:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: feet_socks
+        colorSource: UniqueColor
 
 - type: marking
   id: LagomorphClaws
@@ -588,8 +729,11 @@
   markingCategory: Legs
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: claws
+    body_rFoot:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: claws
+        colorSource: UniqueColor
 
 # Special Markings
 
@@ -599,8 +743,11 @@
   markingCategory: UndergarmentTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: binder_top
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: binder_top
+        colorSource: UndergarmentColor
 
 - type: marking
   id: LagomorphBraTop
@@ -608,8 +755,11 @@
   markingCategory: UndergarmentTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: bra_top
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: bra_top
+        colorSource: UndergarmentColor
 
 - type: marking
   id: LagomorphTankTop
@@ -617,8 +767,11 @@
   markingCategory: UndergarmentTop
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tank_top
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: tank_top
+        colorSource: UndergarmentColor
 
 - type: marking
   id: LagomorphBoxers
@@ -626,8 +779,11 @@
   markingCategory: UndergarmentBottom
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: boxer_bottoms
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: boxer_bottoms
+        colorSource: UndergarmentColor
 
 - type: marking
   id: LagomorphPanties
@@ -635,5 +791,122 @@
   markingCategory: UndergarmentBottom
   speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: panty_bottoms
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+          state: panty_bottoms
+        colorSource: UndergarmentColor
+
+- type: marking
+  id: LagomorphEarsDeer
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    body_headTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: deer
+      colorSource: UniqueColor
+
+- type: marking
+  id: LagomorphEarsDeerAntlers
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: deer
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: antlers
+      colorSource: UniqueColor
+
+- type: marking
+  id: LagomorphEarsDeerAntlersSmall
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: deer
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: antler-small
+      colorSource: UniqueColor
+
+- type: marking
+  id: LagomorphEarsDeerAntlersJolly
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: deer
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: antler-jolly
+      colorSource: UniqueColor
+
+- type: marking
+  id: LagomorphEarsDeerAntlersW
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: deer
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: antler-w
+      colorSource: UniqueColor
+
+- type: marking
+  id: LagomorphEarsDeerAntlersDriedbush
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: deer
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: antler-driedbush
+      colorSource: UniqueColor
+
+- type: marking
+  id: LagomorphEarsAirplane
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph, NeoLagomorph, Neocyte]
+  sprites:
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: airplane
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: inner_airplane
+      colorSource: UniqueColor

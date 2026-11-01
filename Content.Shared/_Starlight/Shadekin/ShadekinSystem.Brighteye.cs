@@ -15,6 +15,7 @@ using Content.Shared.Spawners.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Body.Components; // Starlight
 
 namespace Content.Shared._Starlight.Shadekin;
 
@@ -50,8 +51,8 @@ public sealed partial class ShadekinSystem
         _actionsSystem.AddAction(ent.Owner, ref ent.Comp.CreateShadeAction, ent.Comp.BrighteyeCreateShadeAction, ent.Owner);
         _actionsSystem.AddAction(ent.Owner, ref ent.Comp.DarkTrapAction, ent.Comp.BrighteyeDarkTrapAction, ent.Owner);
 
-        if (TryComp<BodyComponent>(ent.Owner, out var body))
-            foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((ent.Owner, body)))
+        if (HasComp<SLBodyComponent>(ent.Owner))
+            foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((ent.Owner, null)))
             {
                 core.Comp1.Damaged = false;
 
@@ -84,8 +85,8 @@ public sealed partial class ShadekinSystem
         if (TryComp<HumanoidAppearanceComponent>(ent.Owner, out var humanoid))
             SetBrighteyes(ent.Owner, humanoid);
 
-        if (TryComp<BodyComponent>(ent.Owner, out var body))
-            foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((ent.Owner, body)))
+        if (HasComp<SLBodyComponent>(ent.Owner))
+            foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((ent.Owner, null)))
             {
                 core.Comp1.Damaged = false;
                 _tag.AddTag(core, _coreTag);
@@ -147,8 +148,8 @@ public sealed partial class ShadekinSystem
             PredictedQueueDel(ent.Comp.Portal.Value);
         }
 
-        if (TryComp<BodyComponent>(ent.Owner, out var body))
-            foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((ent.Owner, body)))
+        if (HasComp<SLBodyComponent>(ent.Owner))
+            foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((ent.Owner, null)))
             {
                 core.Comp1.Damaged = true;
 

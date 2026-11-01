@@ -1,5 +1,5 @@
-﻿using Content.Shared._Starlight.Medical.Body.Part;
-using Content.Shared.Body.Part;
+﻿using Content.Shared._Starlight.Body.Components;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Chemistry.Reagent;
@@ -52,11 +52,11 @@ public abstract partial class SharedSurgerySystem
             args.Target is not { } target ||
             !IsSurgeryValid(ent, target, args.Surgery, args.Step, out var surgery, out var part, out var step) ||
             !PreviousStepsComplete(ent, part, surgery, args.Step) ||
-            !CanPerformStep(args.User, ent, part.Comp.PartType, step, false))
+            !CanPerformStep(args.User, ent, part.Comp.Kind, step, false))
         {
             Log.Warning($"{ToPrettyString(args.User)} tried to start invalid surgery.");
             Dirty(ent);
-            if (args.Target.HasValue && TryComp<BodyPartComponent>(args.Target.Value, out var dirtyPart))
+            if (args.Target.HasValue && TryComp<SLBodyPartComponent>(args.Target.Value, out var dirtyPart))
                 Dirty(args.Target.Value, dirtyPart, Comp<MetaDataComponent>(args.Target.Value));
             return;
         }
@@ -173,11 +173,10 @@ public abstract partial class SharedSurgerySystem
         if (args.Accessible || args.Target != ent.Owner)
             return;
 
-        var xform = Transform(ent);
-        var root = _containers.GetContainingContainers((ent, xform)).FirstOrDefault(x => x.ID == SharedBodySystem.BodyRootContainerId); //get the root container
-        if (root == null)
+        // A part of a body is reachable when the body is.
+        if (CompOrNull<SLBodyPartComponent>(ent)?.Body is not { } body)
             return;
-        if (!_interaction.CanAccess(args.User, root.Owner))
+        if (!_interaction.CanAccess(args.User, body))
             return;
 
         args.Accessible = true;
@@ -224,7 +223,7 @@ public abstract partial class SharedSurgerySystem
         {
             var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
             if (tool == default && HasComp<SurgeryStepAttachLimbEffectComponent>(ent))
-                tool = args.Tools.FirstOrDefault(x => HasComp<MetaDataComponent>(x) && !HasComp<BodyPartComponent>(x));
+                tool = args.Tools.FirstOrDefault(x => HasComp<MetaDataComponent>(x) && !HasComp<SLBodyPartComponent>(x));
 
             if (tool == default)
             {
@@ -267,7 +266,7 @@ public abstract partial class SharedSurgerySystem
     private void OnStepAttachCanPerform(Entity<SurgeryStepAttachLimbEffectComponent> ent, ref SurgeryCanPerformStepEvent args)
     {
         if (args.Tools.FirstOrDefault() is not { Valid: true } itemId
-            || HasComp<BodyPartComponent>(itemId)
+            || HasComp<SLBodyPartComponent>(itemId)
             || !_nonImplantableTags.Any(tag => _tag.HasTag(itemId, tag)))
             return;
 
@@ -283,7 +282,7 @@ public abstract partial class SharedSurgerySystem
             || !IsSurgeryValid(body, targetPart, args.Surgery, args.Step, out var surgery, out var part, out var step)
             || !_entitySystem.TryGetSingleton(args.Step, out var stepEnt)
             || !TryComp(stepEnt, out SurgeryStepComponent? stepComp)
-            || !CanPerformStep(user, body, part.Comp.PartType, step, true, out _, out _, out var validTools))
+            || !CanPerformStep(user, body, part.Comp.Kind, step, true, out _, out _, out var validTools))
         {
             return;
         }

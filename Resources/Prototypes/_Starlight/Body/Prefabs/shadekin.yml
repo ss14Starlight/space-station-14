@@ -1,0 +1,58 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Shadekin
+  root:
+    bodyPart: TorsoShadekin
+    containedParts:
+      Heart:
+        bodyPart: OrganShadekinHeart
+      Core:
+        bodyPart: OrganShadekinCore
+      Stomach:
+        bodyPart: OrganShadekinStomach
+      Liver:
+        bodyPart: OrganShadekinLiver
+      Kidneys:
+        bodyPart: OrganShadekinKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadShadekin
+        containedParts:
+          Brain:
+            bodyPart: OrganShadekinBrain
+          Tongue:
+            bodyPart: OrganShadekinTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganShadekinEyes
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmShadekin
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandShadekin
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmShadekin
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandShadekin
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegShadekin
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootShadekin
+      LeftLeg:
+        bodyPart: LeftLegShadekin
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootShadekin
+    sockets:
+      Cavity: OrganSocket

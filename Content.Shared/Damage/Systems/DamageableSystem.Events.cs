@@ -241,7 +241,7 @@ public sealed class DamageModifyEvent(DamageSpecifier damage, EntityUid? origin 
     /// <remarks>
     ///     Whenever locational damage is a thing, this should just check only that bit of armor.
     /// </remarks>
-    public SlotFlags TargetSlots => ~SlotFlags.POCKET;
+    public SlotFlags TargetSlots { get; init; } = ~SlotFlags.POCKET; // Starlight-edit: settable, locational damage narrows it
 
     /// <summary>
     ///     Contains the original damage, prior to any modifers.

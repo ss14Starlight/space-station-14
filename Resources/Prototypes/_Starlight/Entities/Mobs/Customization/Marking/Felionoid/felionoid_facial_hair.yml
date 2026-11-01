@@ -4,8 +4,11 @@
   markingCategory: FacialHair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
-      state: beard_s
+    body_facialHair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
+          state: beard_s
+        colorSource: HumanFacialHairColor
 
 - type: marking
   id: FelionoidFacialHairColonel
@@ -13,8 +16,11 @@
   markingCategory: FacialHair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
-      state: colonel_s
+    body_facialHair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
+          state: colonel_s
+        colorSource: HumanFacialHairColor
 
 - type: marking
   id: FelionoidFacialHairFu
@@ -22,8 +28,11 @@
   markingCategory: FacialHair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
-      state: fu_s
+    body_facialHair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
+          state: fu_s
+        colorSource: HumanFacialHairColor
 
 - type: marking
   id: FelionoidFacialHairMane
@@ -31,8 +40,11 @@
   markingCategory: FacialHair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
-      state: mane_s
+    body_facialHair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
+          state: mane_s
+        colorSource: HumanFacialHairColor
 
 - type: marking
   id: FelionoidFacialHairNeck
@@ -40,5 +52,8 @@
   markingCategory: FacialHair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
-      state: neck_s
+    body_facialHair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
+          state: neck_s
+        colorSource: HumanFacialHairColor

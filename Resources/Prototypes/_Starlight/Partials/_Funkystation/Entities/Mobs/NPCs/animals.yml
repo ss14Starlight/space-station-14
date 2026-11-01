@@ -61,8 +61,8 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Body
-    prototype: Bloodsucker
+  - type: SLBody
+    prefab: Bloodsucker
   - type: Damageable
     damageModifierSet: MoffDemonFlesh
     damageContainer: MoffDemonBiological
