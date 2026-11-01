@@ -14,6 +14,19 @@
     stockLimit: 4
 
 - type: listing
+  id: USSPMedalsConversionRewards
+  name: soviet-medals-name
+  description: soviet-medals-desc
+  productEntity: ClothingSovietMedals
+  cost:
+    Conversion: 10
+  categories:
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 2
+
+- type: listing
   id: USSPSovietKeyConversionRewards
   name: soviet-encryption-key-name
   description: soviet-encryption-key-conversion-desc
@@ -39,6 +52,19 @@
   conditions:
   - !type:StockLimitedListingCondition
     stockLimit: 1
+
+- type: listing
+  id: SKBSmallFlashConversionRewardsX2
+  name: ussp-flash-name
+  description: ussp-flash-desc
+  productEntity: SciFlash
+  cost:
+    Conversion: 30
+  categories:
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 2
 
 - type: listing
   id: SKBArmamentCrateConversion
@@ -76,6 +102,20 @@
   conditions:
   - !type:StockLimitedListingCondition
     stockLimit: 1
+
+- type: listing
+  id: SKBMosinConversionRewards
+  name: mosin-name
+  description: mosin-desc
+  icon: { sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi, state: base }
+  productEntity: WeaponSniperMosinWorn
+  cost:
+    Conversion: 55
+  categories:
+  - RevUplinkConversionRewards
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 4
 
 - type: listing
   id: UplinkPinpointerConversionRewards
