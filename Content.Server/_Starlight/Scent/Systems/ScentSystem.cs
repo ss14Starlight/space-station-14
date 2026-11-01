@@ -758,13 +758,13 @@ public sealed partial class ScentSystem : SharedScentSystem
     }
 
     /// <summary>
-    /// Emits or refreshes a pollen marker for an emitter. Searches within mergeRadius
-    /// for a pollen marker with the same pollenId and airtight container, and refreshes
-    /// the lowest-ID match. Otherwise spawns a new marker. The result is stored in lastMarker.
+    /// Emits or refreshes a pollen marker for an emitter. Refreshes lastMarker if it still has the
+    /// same pollenId and airtight container and is within mergeRadius. Otherwise searches within
+    /// mergeRadius for such a marker and refreshes the lowest-ID match, or spawns a new marker.
+    /// The result is stored in lastMarker.
     /// </summary>
     /// <param name="lastMarker">
     /// The emitter's cached last-marker reference (e.g. EmitPollenComponent.LastMarkerEntity).
-    /// Updated in place when a new marker is spawned.
     /// </param>
     /// <returns>The marker entity now associated with this emitter.</returns>
     public EntityUid EmitPollenMarker(ref EntityUid? lastMarker, EntityUid emitterUid, string pollenId,
@@ -777,9 +777,23 @@ public sealed partial class ScentSystem : SharedScentSystem
         }
 
         var container = GetAirtightContainer(emitterXform);
+
+        // Most emitters don't move, so their last marker is usually still in range.
+        if (lastMarker is { } cached &&
+            TryComp<ScentMarkerComponent>(cached, out var cachedMarker) &&
+            cachedMarker.IsPollen &&
+            cachedMarker.ScentId == pollenId &&
+            cachedMarker.ContainedIn == container &&
+            TryComp(cached, out TransformComponent? cachedXform) &&
+            _transform.InRange(emitterXform.Coordinates, cachedXform.Coordinates, mergeRadius))
+        {
+            RefreshPollenMarker(cached, cachedMarker, container, lifetime, mergeStrengthStep);
+            return cached;
+        }
+
         EntityUid? matchingMarker = null;
 
-        // Select the same matching marker consistently, regardless of each emitter's cached reference.
+        // Pick the lowest ID so nearby emitters settle on the same marker.
         GetNearbyMarkers(emitterXform.Coordinates, mergeRadius, _nearbyMarkers);
         foreach (var (candidate, marker) in _nearbyMarkers)
         {
