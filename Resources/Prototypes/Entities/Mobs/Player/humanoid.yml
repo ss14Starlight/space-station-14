@@ -84,7 +84,7 @@
       settings: ERTLeader
 
 - type: randomHumanoidSettings
-  id: ERTBase # Starlight: New ERTbase for all ERT types so we can edit ERTLeader separately
+  id: ERTLeader
   parent: EventHumanoidCentcomm
   components:
     - type: GhostRole
@@ -155,7 +155,7 @@
 
 - type: randomHumanoidSettings
   id: ERTChaplain
-  parent: ERTBase # Starlight: ERT has new ERT Base
+  parent: ERTLeader
   components:
     - type: BibleUser
     - type: GhostRole
@@ -209,7 +209,7 @@
 
 - type: randomHumanoidSettings
   id: ERTJanitor
-  parent: ERTBase # Starlight: ERT has new ERT Base
+  parent: ERTLeader
   components:
     - type: GhostRole
       name: ghost-role-information-ert-janitor-name
@@ -261,7 +261,7 @@
 
 - type: randomHumanoidSettings
   id: ERTEngineer
-  parent: ERTBase # Starlight: ERT has new ERT Base
+  parent: ERTLeader
   components:
     - type: GhostRole
       name: ghost-role-information-ert-engineer-name
@@ -333,7 +333,7 @@
 
 - type: randomHumanoidSettings
   id: ERTSecurity
-  parent: ERTBase # Starlight: ERT has new ERT Base
+  parent: ERTLeader
   components:
     - type: GhostRole
       name: ghost-role-information-ert-security-name
@@ -470,7 +470,7 @@
 
 - type: randomHumanoidSettings
   id: ERTMedical
-  parent: ERTBase # Starlight: ERT has new ERT Base
+  parent: ERTLeader
   components:
     - type: GhostRole
       name: ghost-role-information-ert-medical-name
