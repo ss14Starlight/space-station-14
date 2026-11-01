@@ -1,5 +1,8 @@
 using Content.Shared._Starlight.Chemistry.Components;
 using Content.Shared._Starlight.Plumbing.Components;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -11,6 +14,8 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
 using Content.Shared.Popups;
+using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -23,6 +28,9 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
     [Dependency] protected SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] protected SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] protected SharedPopupSystem _popup = default!;
+    [Dependency] protected SharedPowerReceiverSystem _powerReceiver = default!;
+    [Dependency] protected AccessReaderSystem _accessReader = default!;
+    [Dependency] protected ActionBlockerSystem _actionBlocker = default!;
     [Dependency] protected IPrototypeManager _prototypeManager = default!;
 
     /// <summary>
@@ -113,7 +121,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
 
         if (GetBoundLabeler(actor, args.TargetEntity) is Entity<HandLabelerComponent> labeler)
         {
-            SetReagentLabel(ent, args.ReagentId, labeler.Comp.AssignedLabel);
+            SetReagentLabel(ent, args.ReagentId, labeler.Comp.AssignedLabel, actor);
             UpdateUi(ent);
             return;
         }
@@ -141,6 +149,9 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
     private void OnClearContainerMessage(Entity<PlumbingSmartDispenserComponent> ent, ref PlumbingSmartDispenserClearSolutionMessage args)
     {
         if (args.Actor is not { Valid: true } actor)
+            return;
+
+        if (!CanInteract(ent, actor))
             return;
 
         var outputContainer = GetBoundContainer(actor, args.TargetEntity);
@@ -340,8 +351,12 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
     private void SetReagentLabel(
         Entity<PlumbingSmartDispenserComponent> ent,
         string reagentId,
-        string newLabel)
+        string newLabel,
+        EntityUid actor)
     {
+        if (!CanInteract(ent, actor))
+            return;
+
         // check we actually have the reagent in stock so clients can't
         // fill the label dictionary with infinite entries
         if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var sourceEnt, out var sourceSolution)
@@ -370,6 +385,9 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         EntityUid? user,
         bool showPopup)
     {
+        if (user is { Valid : true } && !CanInteract(ent, user.Value))
+            return false;
+
         if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var sourceEnt, out var sourceSolution))
             return false;
 
@@ -468,6 +486,28 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         }
 
         return accepted > FixedPoint2.Zero;
+    }
+
+    private bool CanInteract(Entity<PlumbingSmartDispenserComponent> ent, EntityUid actor)
+    {
+        if (!_actionBlocker.CanInteract(actor, ent.Owner) || !_actionBlocker.CanComplexInteract(actor))
+            return false;
+
+        // if it has the power reciever component, it must be powered
+        if (!_powerReceiver.IsPowered(ent.Owner))
+        {
+            _popup.PopupPredicted(Loc.GetString("plumbing-smart-dispenser-not-powered"), ent.Owner, actor);
+            return false;
+        }
+
+        // if it has an access reader, access is required
+        if (!_accessReader.IsAllowed(actor, ent.Owner))
+        {
+            _popup.PopupPredicted(Loc.GetString("plumbing-smart-dispenser-access-denied"), ent.Owner, actor);
+            return false;
+        }
+
+        return true;
     }
 
     public Solution? GetFillSolutionFromContainer(EntityUid? container)

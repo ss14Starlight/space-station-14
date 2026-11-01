@@ -599,6 +599,8 @@
     interfaces:
       enum.PlumbingSmartDispenserUiKey.Key:
         type: PlumbingSmartDispenserBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: ActivatableUI
     key: enum.PlumbingSmartDispenserUiKey.Key
   - type: ApcPowerReceiver
@@ -616,6 +618,14 @@
         acts: ["Destruction"]
   - type: StaticPrice
     price: 200
+  - type: AccessReader
+    access: [["Medical"]]
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+    wiresAccessible: True
+  - type: Wires
+    boardName: wires-board-name-pluming-smart-dispenser
+    layoutId: PlumbingSmartDispenser
 
 # =============================================================================
 # Plumbing Pill Press - automatically creates pills or patches from reagents
