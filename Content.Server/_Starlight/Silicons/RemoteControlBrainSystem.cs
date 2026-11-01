@@ -6,8 +6,17 @@ namespace Content.Server._Starlight.Silicons;
 
 public sealed partial class RemoteControlBrainSystem : EntitySystem
 {
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+
     private readonly HashSet<int> _usedChannels = new();
     private readonly Dictionary<int, EntityUid> _brainsByChannel = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<RemoteControlBrainComponent, MapInitEvent>(OnMapInit);
+    }
 
     public bool TryGetBrain(int channel, out EntityUid brain)
     {
@@ -22,7 +31,20 @@ public sealed partial class RemoteControlBrainSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnStartup(Entity<RemoteControlBrainComponent> entity, ref ComponentStartup args)
     {
+        if (_mapSystem.IsInitialized(Transform(entity).MapID))
+            RegisterBrain(entity);
+    }
+
+    private void OnMapInit(Entity<RemoteControlBrainComponent> entity, ref MapInitEvent args) => RegisterBrain(entity);
+
+    private void RegisterBrain(Entity<RemoteControlBrainComponent> entity)
+    {
         var channel = entity.Comp.Channel;
+        if (RemoteControlChannel.IsValid(channel)
+            && _brainsByChannel.TryGetValue(channel, out var registeredBrain)
+            && registeredBrain == entity.Owner)
+            return;
+
         if (!RemoteControlChannel.IsValid(channel) || !_usedChannels.Add(channel))
         {
             channel = AllocateChannel();

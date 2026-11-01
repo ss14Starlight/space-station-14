@@ -297,6 +297,8 @@ public sealed class RemoteControlConsoleTest : GameTest
     {
         var mapSystem = Server.System<SharedMapSystem>();
         var ui = Server.System<SharedUserInterfaceSystem>();
+        var hands = Server.System<SharedHandsSystem>();
+        var interaction = Server.System<SharedInteractionSystem>();
         var map = mapSystem.CreateMap(out var mapId);
 
         try
@@ -307,7 +309,9 @@ public sealed class RemoteControlConsoleTest : GameTest
             var activatable = SEntMan.GetComponent<ActivatableUIComponent>(toyRemote);
 
             Assert.That(activatable.Key, Is.EqualTo(RemoteControlSettingsUIKey.Key));
-            Assert.That(ui.TryOpenUi(toyRemote, RemoteControlSettingsUIKey.Key, user), Is.True);
+            Assert.That(hands.TryPickupAnyHand(user, toyRemote), Is.True);
+            Assert.That(interaction.UseInHandInteraction(user, toyRemote), Is.True);
+            Assert.That(ui.IsUiOpen(toyRemote, RemoteControlSettingsUIKey.Key, user), Is.True);
         }
         finally
         {
