@@ -34,6 +34,16 @@
       "name": "on-equipped-HELMET-reptilian",
       "directions": 4,
       "copyright": "Romero/Littlemen"
+    },
+	{
+      "name": "off-equipped-HELMET-avali",
+      "directions": 4,
+	    "copyright": "Romero/Littlemen"
+    },
+	{
+      "name": "on-equipped-HELMET-avali",
+      "directions": 4,
+      "copyright": "Romero/Littlemen"
     }
   ]
 }
