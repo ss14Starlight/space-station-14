@@ -206,6 +206,16 @@ public sealed partial class DamageableSystem
         if (!ignoreGlobalModifiers)
             damage = ApplyUniversalAllModifiers(damage);
 
+        // Starlight - start
+        var afterModifiers = new DamageAfterModifiersEvent
+        {
+            Damage = damage,
+            Origin = origin
+        };
+        RaiseLocalEvent(ent, afterModifiers);
+        damage = afterModifiers.Damage;
+        // Starlight - end
+
         damageDone.DamageDict.EnsureCapacity(damage.DamageDict.Count);
 
         var dict = ent.Comp.Damage.DamageDict;
