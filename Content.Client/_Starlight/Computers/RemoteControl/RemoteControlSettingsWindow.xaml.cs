@@ -11,19 +11,27 @@ public sealed partial class RemoteControlSettingsWindow : FancyWindow
 {
     private static readonly Color _connectedColor = Color.FromHex("#4fb54f");
     private static readonly Color _disconnectedColor = Color.FromHex("#d14343");
+    private string? _lastChannel;
 
     public event Action<string>? ApplyPressed;
+    public event Action? ToggleControl;
+    public event Action? OpenScreen;
 
     public RemoteControlSettingsWindow()
     {
         RobustXamlLoader.Load(this);
         ApplyButton.OnPressed += _ => ApplyPressed?.Invoke(ChannelInput.Text);
+        ControlButton.OnPressed += _ => ToggleControl?.Invoke();
+        OpenScreenButton.OnPressed += _ => OpenScreen?.Invoke();
     }
 
-    public void UpdateState(RemoteControlSettingsBuiState state)
+    public void UpdateState(RemoteControlSettingsBuiState state, bool controlling)
     {
-        if (state.Error is null)
+        if (state.Error is null && state.Channel != _lastChannel)
+        {
             ChannelInput.Text = state.Channel;
+            _lastChannel = state.Channel;
+        }
 
         var error = state.Error is not null;
         StatusLabel.Text = Loc.GetString(error
@@ -31,5 +39,8 @@ public sealed partial class RemoteControlSettingsWindow : FancyWindow
             : state.Connected ? "remote-control-settings-connected" : "remote-control-settings-disconnected");
         StatusLabel.FontColorOverride = state.Connected && !error ? _connectedColor : _disconnectedColor;
         ErrorLabel.Text = state.Error ?? string.Empty;
+        ControlButton.Pressed = controlling;
+        ControlButton.Disabled = !state.ControlAvailable || state.Controller is not null && !controlling;
+        OpenScreenButton.Visible = state.CanOpenScreen;
     }
 }

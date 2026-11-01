@@ -57,6 +57,10 @@
     guides:
     - MixingAndFiltering
   # Starlight start
+  - type: ActivatableUI
+    key: enum.GasMixerUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+    popup: comp-gas-mixer-ui-needs-anchor
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice

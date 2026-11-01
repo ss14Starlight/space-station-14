@@ -41,16 +41,7 @@
 
 - type: !PartialOnly entity
   id: PlushieRouny
-  parent: [BasePlushie, BaseMob]
-  components:
-  - type: RemoteControlBrain
-  - type: Physics
-    bodyType: KinematicController
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 2.75
-    baseSprintSpeed: 4.95
-    baseAcceleration: 5
-    baseFriction: 0.3125
+  parent: !Clear [BaseRemoteControlPlushie, BasePlushie, BaseMob]
 
 - type: !PartialOnly entity
   id: ToyIan

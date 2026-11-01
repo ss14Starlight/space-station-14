@@ -133,8 +133,6 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         Subs.BuiEvents<RemoteControlConsoleComponent>(RemoteControlUIKey.Key,
             subs =>
             {
-                subs.Event<BoundUIClosedEvent>(OnUiClosed);
-                subs.Event<RemoteControlToggleMessage>(OnToggleControl);
                 subs.Event<RemoteControlToggleKnockdownMessage>(OnRemoteToggleKnockdown);
                 subs.Event<RemoteControlReleasePulledObjectMessage>(OnRemoteReleasePulledObject);
                 subs.Event<RemoteControlInteractionMessage>(OnRemoteInteraction);
@@ -280,8 +278,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
             if (!SetController(entity.Owner, entity.Comp, controller, remoteEntity, false))
             {
-                entity.Comp.Users.Remove(controller);
-                DeactivateToyRemote(entity.Owner, entity.Comp);
+                RemoveRemoteUser(entity.Owner, entity.Comp, controller);
+                DeactivateToyRemote(entity.Owner, entity.Comp, controller);
             }
 
             return;
@@ -289,11 +287,14 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         if (entity.Comp.Controller is not { } activeController)
         {
-            if (args.User is { } user)
+            foreach (var user in entity.Comp.Users.ToArray())
             {
-                entity.Comp.Users.Remove(user);
+                RemoveRemoteUser(entity.Owner, entity.Comp, user);
                 _ui.CloseUi((entity.Owner, null), RemoteControlSettingsUIKey.Key, user);
             }
+
+            if (args.User is { } requestingUser)
+                _ui.CloseUi((entity.Owner, null), RemoteControlSettingsUIKey.Key, requestingUser);
 
             return;
         }
@@ -302,7 +303,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return;
 
         SetController(entity.Owner, entity.Comp, null, controlledEntity, false);
-        entity.Comp.Users.Remove(activeController);
+        RemoveRemoteUser(entity.Owner, entity.Comp, activeController);
         _ui.CloseUi((entity.Owner, null), RemoteControlSettingsUIKey.Key, activeController);
     }
 
@@ -452,17 +453,33 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private void OnOpenSettings(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlOpenSettingsMessage args)
     {
-        if (!component.Users.Contains(args.Actor)
+        if (!CanUseConsole(uid, component, args.Actor)
+            || !component.Users.Contains(args.Actor)
             || !_ui.IsUiOpen((uid, null), RemoteControlUIKey.Key, args.Actor))
             return;
 
         _ui.OpenUi((uid, null), RemoteControlSettingsUIKey.Key, args.Actor);
     }
 
+    [SubscribeLocalEvent]
+    private void OnOpenScreen(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlOpenScreenMessage args)
+    {
+        if (!args.UiKey.Equals(RemoteControlSettingsUIKey.Key)
+            || !CanUseConsole(uid, component, args.Actor)
+            || !component.EnableRemoteView
+            || !_ui.HasUi(uid, RemoteControlUIKey.Key)
+            || !_ui.IsUiOpen((uid, null), RemoteControlSettingsUIKey.Key, args.Actor))
+            return;
+
+        _ui.OpenUi((uid, null), RemoteControlUIKey.Key, args.Actor);
+    }
+
     private void OnSetRemoteControlChannel(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlSetChannelMessage args)
     {
-        if (!_ui.IsUiOpen((uid, null), RemoteControlSettingsUIKey.Key, args.Actor))
+        if (!CanUseConsole(uid, component, args.Actor)
+            || !_ui.IsUiOpen((uid, null), RemoteControlSettingsUIKey.Key, args.Actor))
             return;
 
         var now = _gameTiming.CurTime;
@@ -549,8 +566,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             if (SetController(entity.Owner, entity.Comp, user, remoteEntity, false))
                 return;
 
-            entity.Comp.Users.Remove(user);
-            DeactivateToyRemote(entity.Owner, entity.Comp);
+            RemoveRemoteUser(entity.Owner, entity.Comp, user);
+            DeactivateToyRemote(entity.Owner, entity.Comp, user);
             return;
         }
     }
@@ -573,25 +590,44 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             {
                 Channel = channel,
                 Connected = connected,
+                ControlAvailable = connected
+                    && (component.EnableRemoteView
+                        || !TryComp<ItemToggleComponent>(uid, out var toggle)
+                        || toggle.Activated),
+                CanOpenScreen = component.EnableRemoteView && _ui.HasUi(uid, RemoteControlUIKey.Key),
+                Controller = component.Controller is { } controller ? GetNetEntity(controller) : null,
                 Error = error
             });
     }
 
+    private bool CanUseConsole(EntityUid uid, RemoteControlConsoleComponent component, EntityUid actor)
+        => (!component.OwnerOnly || uid == actor)
+            && (component.RequiredAction is not { } requiredAction
+                || _actions.GetActions(actor).Any(action =>
+                    MetaData(action.Owner).EntityPrototype?.ID == requiredAction.Id));
+
     [SubscribeLocalEvent]
     private void OnUiOpen(EntityUid uid, RemoteControlConsoleComponent component, BoundUIOpenedEvent args)
     {
+        if (!args.UiKey.Equals(RemoteControlSettingsUIKey.Key)
+            && !args.UiKey.Equals(RemoteControlUIKey.Key))
+            return;
+
+        if (!CanUseConsole(uid, component, args.Actor))
+        {
+            _ui.CloseUi((uid, null), args.UiKey, args.Actor);
+            return;
+        }
+
         if (args.UiKey.Equals(RemoteControlSettingsUIKey.Key))
         {
             UpdateSettingsUiState(uid, component);
             return;
         }
 
-        if (!args.UiKey.Equals(RemoteControlUIKey.Key))
-            return;
-
         var user = args.Actor;
 
-        component.Users.Add(user);
+        var newUser = component.Users.Add(user);
         UpdateSettingsUiState(uid, component);
 
         if (!_sharedRemoteControl.TryGetRemoteEntity((uid, component), out var remoteEntity))
@@ -600,13 +636,15 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             return;
         }
 
-        if (_playerManager.TryGetSessionByEntity(user, out var session))
+        if (newUser && _playerManager.TryGetSessionByEntity(user, out var session))
         {
             AddRemotePvsOverrides(remoteEntity, user, session);
             _viewSubscriber.AddViewSubscriber(remoteEntity, session);
         }
 
-        if (component.Controller is null && _actionBlocker.CanConsciouslyPerformAction(user))
+        if (component.Controller is null
+            && !_ui.IsUiOpen((uid, null), RemoteControlSettingsUIKey.Key, user)
+            && _actionBlocker.CanConsciouslyPerformAction(user))
             SetController(uid, component, user, remoteEntity);
 
         var actionEntities = component.EnableRemoteView
@@ -714,10 +752,20 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 Inventory = Array.Empty<RemoteControlInventorySlotState>()
             });
 
+    [SubscribeLocalEvent]
+    private void OnControlToggleMessage(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlToggleMessage args)
+    {
+        if (args.UiKey.Equals(RemoteControlUIKey.Key))
+            OnToggleControl(uid, component, args);
+        else if (args.UiKey.Equals(RemoteControlSettingsUIKey.Key))
+            OnSettingsToggleControl(uid, component, args);
+    }
+
     private void OnToggleControl(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlToggleMessage args)
     {
-        if (!component.Users.Contains(args.Actor))
+        if (!CanUseConsole(uid, component, args.Actor) || !component.Users.Contains(args.Actor))
             return;
 
         if (component.Controller == args.Actor)
@@ -725,16 +773,41 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             SetController(uid, component, null,
                 _sharedRemoteControl.TryGetRemoteEntity((uid, component), out var controlledRemote)
                     ? controlledRemote
-                    : null);
+                    : null,
+                keepToyActive: args.UiKey.Equals(RemoteControlSettingsUIKey.Key));
             return;
         }
 
         if (component.Controller != null
             || !_actionBlocker.CanConsciouslyPerformAction(args.Actor)
+            || (!component.EnableRemoteView
+                && TryComp<ItemToggleComponent>(uid, out var toggle)
+                && !toggle.Activated)
             || !_sharedRemoteControl.TryGetRemoteEntity((uid, component), out var remoteEntity))
+        {
+            UpdateSettingsUiState(uid, component);
             return;
+        }
 
         SetController(uid, component, args.Actor, remoteEntity);
+    }
+
+    private void OnSettingsToggleControl(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlToggleMessage args)
+    {
+        if (!CanUseConsole(uid, component, args.Actor)
+            || !_ui.IsUiOpen((uid, null), RemoteControlSettingsUIKey.Key, args.Actor))
+            return;
+
+        if (component.Users.Add(args.Actor)
+            && _sharedRemoteControl.TryGetRemoteEntity((uid, component), out var remoteEntity)
+            && _playerManager.TryGetSessionByEntity(args.Actor, out var session))
+        {
+            AddRemotePvsOverrides(remoteEntity, args.Actor, session);
+            _viewSubscriber.AddViewSubscriber(remoteEntity, session);
+        }
+
+        OnToggleControl(uid, component, args);
     }
 
     [SubscribeLocalEvent]
@@ -1535,32 +1608,58 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         return false;
     }
 
+    [SubscribeLocalEvent]
+    private void OnRemoteUiClosed(EntityUid uid, RemoteControlConsoleComponent component, BoundUIClosedEvent args)
+    {
+        if (args.UiKey.Equals(RemoteControlUIKey.Key))
+            OnUiClosed(uid, component, args);
+        else if (args.UiKey.Equals(RemoteControlSettingsUIKey.Key))
+            OnSettingsUiClosed(uid, component, args);
+    }
+
     private void OnUiClosed(EntityUid uid, RemoteControlConsoleComponent component, BoundUIClosedEvent args)
     {
-        if (!args.Actor.Valid)
+        if (!args.Actor.Valid || _ui.IsUiOpen((uid, null), RemoteControlSettingsUIKey.Key, args.Actor))
             return;
 
-        if (!component.Users.Remove(args.Actor))
+        RemoveRemoteUser(uid, component, args.Actor);
+    }
+
+    private void OnSettingsUiClosed(EntityUid uid, RemoteControlConsoleComponent component, BoundUIClosedEvent args)
+    {
+        if (!args.Actor.Valid
+            || _ui.IsUiOpen((uid, null), RemoteControlUIKey.Key, args.Actor)
+            || (!component.EnableRemoteView
+                && TryComp<ItemToggleComponent>(uid, out var toggle)
+                && toggle.Activated))
             return;
 
-        if (component.Controller == args.Actor)
+        RemoveRemoteUser(uid, component, args.Actor);
+    }
+
+    private void RemoveRemoteUser(EntityUid uid, RemoteControlConsoleComponent component, EntityUid user)
+    {
+        if (!component.Users.Remove(user))
+            return;
+
+        if (component.Controller == user)
             SetController(uid, component, null,
                 _sharedRemoteControl.TryGetRemoteEntity((uid, component), out var controlledEntity)
                     ? controlledEntity
                     : null);
 
         if (_sharedRemoteControl.TryGetRemoteEntity((uid, component), out var remoteEntity)
-            && _playerManager.TryGetSessionByEntity(args.Actor, out var session))
+            && _playerManager.TryGetSessionByEntity(user, out var session))
         {
-            RemoveRemotePvsOverrides(remoteEntity, args.Actor, session);
+            RemoveRemotePvsOverrides(remoteEntity, user, session);
             _viewSubscriber.RemoveViewSubscriber(remoteEntity, session);
         }
 
-        if (!TryComp<RelayInputMoverComponent>(args.Actor, out var relay))
+        if (!TryComp<RelayInputMoverComponent>(user, out var relay))
             return;
 
         if (_sharedRemoteControl.TryGetBody((uid, component), out var body) && relay.RelayEntity == body)
-            RemComp(args.Actor, relay);
+            RemComp(user, relay);
     }
 
     private bool TryGetBorg(EntityUid brain, out EntityUid chassis)
@@ -1767,7 +1866,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     }
 
     private bool SetController(EntityUid consoleUid, RemoteControlConsoleComponent component, EntityUid? controller,
-        EntityUid? remoteEntity, bool refreshUi = true)
+        EntityUid? remoteEntity, bool refreshUi = true, bool keepToyActive = false)
     {
         if (controller is { } controlRequester
             && remoteEntity is { } controlledEntity
@@ -1777,6 +1876,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             if (refreshUi)
                 RefreshRemoteState(consoleUid, component, controlledEntity);
 
+            UpdateSettingsUiState(consoleUid, component);
             return false;
         }
 
@@ -1802,6 +1902,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 if (refreshUi)
                     RefreshRemoteState(consoleUid, component, requestedRemoteEntity);
 
+                UpdateSettingsUiState(consoleUid, component);
                 return false;
             }
         }
@@ -1893,7 +1994,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (controller is null)
         {
             _pendingRemoteBorgActivations.RemoveWhere(pending => pending.Console == consoleUid);
-            DeactivateToyRemote(consoleUid, component);
+            if (!keepToyActive)
+                DeactivateToyRemote(consoleUid, component, controllerBeforeUpdate);
         }
 
         if (controller is { } newController
@@ -1908,6 +2010,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (refreshUi && remoteEntity is { } refreshEntity)
             RefreshRemoteState(consoleUid, component, refreshEntity);
 
+        UpdateSettingsUiState(consoleUid, component);
         return true;
     }
 
@@ -2027,14 +2130,14 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _popup.PopupEntity(message, popupEntity, recipient);
     }
 
-    private void DeactivateToyRemote(EntityUid consoleUid, RemoteControlConsoleComponent component)
+    private void DeactivateToyRemote(EntityUid consoleUid, RemoteControlConsoleComponent component, EntityUid? user = null)
     {
         if (component.EnableRemoteView
             || !TryComp<ItemToggleComponent>(consoleUid, out var toggle)
             || !toggle.Activated)
             return;
 
-        _itemToggle.TryDeactivate((consoleUid, toggle), predicted: false, showPopup: false);
+        _itemToggle.TryDeactivate((consoleUid, toggle), user, predicted: false, showPopup: false);
     }
 
     private void RefreshRemoteState(EntityUid consoleUid, RemoteControlConsoleComponent component,

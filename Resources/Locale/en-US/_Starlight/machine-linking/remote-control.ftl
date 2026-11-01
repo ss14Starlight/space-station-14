@@ -7,6 +7,7 @@ remote-control-console-control-button-controlling = Controlling
 remote-control-console-control-button-viewing = Viewing
 remote-control-settings-button = Settings
 remote-control-settings-title = Remote control settings
+remote-control-settings-open-screen = Open screen
 remote-control-settings-channel-label = Channel
 remote-control-settings-apply = Apply
 remote-control-settings-error = Error

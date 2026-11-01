@@ -24,6 +24,9 @@ public sealed class RemoteControlSettingsBuiState : BoundUserInterfaceState
 {
     public required string Channel { get; init; }
     public required bool Connected { get; init; }
+    public bool ControlAvailable { get; init; }
+    public bool CanOpenScreen { get; init; }
+    public NetEntity? Controller { get; init; }
     public string? Error { get; init; }
 }
 

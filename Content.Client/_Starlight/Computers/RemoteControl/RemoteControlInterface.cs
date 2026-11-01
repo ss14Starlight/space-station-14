@@ -55,7 +55,11 @@ public sealed partial class RemoteControlInterface : EntitySystem
             || _uiManager is not { } uiManager)
             return;
 
-        uiManager.DeferAction(() => TryEmbedWindow(window));
+        uiManager.DeferAction(() =>
+        {
+            if (window.Parent == uiManager.WindowRoot)
+                TryEmbedWindow(window);
+        });
     }
 
     public void SetStatusWindow(RemoteControlConsoleWindow? window)
@@ -112,7 +116,8 @@ public sealed partial class RemoteControlInterface : EntitySystem
     {
         if (ControlledEntity is null
             || _window is not { Disposed: false } remoteWindow
-            || window.Disposed)
+            || window.Disposed
+            || !window.IsOpen)
             return false;
 
         remoteWindow.EmbedWindow(window);

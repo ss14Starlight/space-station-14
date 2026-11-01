@@ -453,7 +453,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         var positionInRemoteWindow = Vector2.Clamp(
             (availableSize - desiredSize) / 2f,
             Vector2.Zero,
-            availableSize - desiredSize);
+            Vector2.Max(availableSize - desiredSize, Vector2.Zero));
         LayoutContainer.SetPosition(window, positionInRemoteWindow);
     }
 

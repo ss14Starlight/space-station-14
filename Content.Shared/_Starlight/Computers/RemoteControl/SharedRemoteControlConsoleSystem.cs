@@ -14,6 +14,7 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
@@ -86,6 +87,21 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
         args.RemoteEntity = remoteEntity;
         args.Allowed = CanRemoteControlledEntityAct(remoteEntity)
             && _interaction.InRangeAndAccessible(remoteEntity, args.Target);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRemoteUiInteractionActor(ref RemoteControlUiInteractionActorEvent args)
+    {
+        if (!TryGetControlledEntity(args.Controller, out var remoteEntity)
+            || !CanRemoteControlledEntityAct(remoteEntity)
+            || (!args.IsOpenAttempt
+                && args.Target != remoteEntity
+                && !_ui.IsUiOpen(args.Target, args.UiKey, remoteEntity)
+                && !_ui.IsUiOpen(args.Target, args.UiKey, args.Controller))
+            || !_interaction.IsAccessible(remoteEntity, args.Target))
+            return;
+
+        args.Actor = remoteEntity;
     }
 
     public bool TryGetRemoteEntity(Entity<RemoteControlConsoleComponent?> entity, out EntityUid remoteEntity)

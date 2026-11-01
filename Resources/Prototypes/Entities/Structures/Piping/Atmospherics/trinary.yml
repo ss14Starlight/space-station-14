@@ -85,6 +85,10 @@
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
     # Starlight start
+    - type: ActivatableUI
+      key: enum.GasFilterUiKey.Key
+    - type: ActivatableUIRequiresAnchor
+      popup: comp-gas-filter-ui-needs-anchor
     - type: VentCrawlTube
     - type: VentCrawlJunction
       degrees:
@@ -224,6 +228,10 @@
       interfaces:
         enum.GasMixerUiKey.Key:
           type: GasMixerBoundUserInterface
+    - type: ActivatableUI # Starlight
+      key: enum.GasMixerUiKey.Key # Starlight
+    - type: ActivatableUIRequiresAnchor # Starlight
+      popup: comp-gas-mixer-ui-needs-anchor # Starlight
     - type: GasMixer
       enabled: false
       inletOne: inlet

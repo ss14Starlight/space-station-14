@@ -56,8 +56,9 @@ public sealed class RemoteControlConsoleTest : GameTest
         remoteControlPower: 51
 ";
 
-    [Test]
-    public async Task RemoteControlCanConnectToMobileEntityByChannel()
+    [TestCase("PlushieRouny")]
+    [TestCase("PlushieFlox")]
+    public async Task RemoteControlCanConnectToMobileEntityByChannel(string plushiePrototype)
     {
         EntityUid? map = null;
         EntityUid remote = default;
@@ -87,7 +88,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var mapSystem = Server.System<SharedMapSystem>();
                 map = mapSystem.CreateMap(out var mapId);
                 var coordinates = new MapCoordinates(0, 0, mapId);
-                remote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
+                remote = SEntMan.SpawnEntity(plushiePrototype, coordinates);
                 secondRemote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
                 var dynamicBrainEntity = SEntMan.SpawnEntity(null, coordinates);
                 var dynamicBrain = SEntMan.AddComponent<RemoteControlBrainComponent>(dynamicBrainEntity);
@@ -1080,8 +1081,9 @@ public sealed class RemoteControlConsoleTest : GameTest
         });
     }
 
-    [Test]
-    public async Task AIRemoteControlCanTargetRemoteControlBrainEntities()
+    [TestCase("PlushieRouny")]
+    [TestCase("PlushieFlox")]
+    public async Task AIRemoteControlCanTargetRemoteControlBrainEntities(string plushiePrototype)
     {
         await Server.WaitAssertion(() =>
         {
@@ -1095,24 +1097,24 @@ public sealed class RemoteControlConsoleTest : GameTest
             {
                 var coordinates = new MapCoordinates(0, 0, mapId);
                 var ai = SEntMan.SpawnEntity("AiHeld", coordinates);
-                var rouny = SEntMan.SpawnEntity("PlushieRouny", coordinates);
+                var plushie = SEntMan.SpawnEntity(plushiePrototype, coordinates);
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(ai);
-                var brain = SEntMan.GetComponent<RemoteControlBrainComponent>(rouny);
+                var brain = SEntMan.GetComponent<RemoteControlBrainComponent>(plushie);
                 console.Users.Add(ai);
                 Assert.That(playerManager.SetAttachedEntity(session, ai), Is.True);
 
                 var remoteControl = new AIRemoteControlActionEvent
                 {
-                    Target = rouny,
+                    Target = plushie,
                     Performer = ai
                 };
                 SEntMan.EventBus.RaiseLocalEvent(ai, remoteControl);
 
                 Assert.That(remoteControl.Handled, Is.True);
-                Assert.That(console.RemoteBrain, Is.EqualTo(rouny));
+                Assert.That(console.RemoteBrain, Is.EqualTo(plushie));
                 Assert.That(console.Channel, Is.EqualTo(brain.Channel));
                 Assert.That(console.Controller, Is.EqualTo(ai));
-                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(ai).RelayEntity, Is.EqualTo(rouny));
+                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(ai).RelayEntity, Is.EqualTo(plushie));
             }
             finally
             {
@@ -1149,7 +1151,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                     remoteControlPower == 51 ? "RemoteControlHighPowerTestConsole" : "RemoteControlConsole",
                     coordinates);
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
-                Assert.That(console.RemoteControlPower, Is.EqualTo(remoteControlPower == 51 ? 51 : 10));
+                Assert.That(console.RemoteControlPower, Is.EqualTo(remoteControlPower == 51 ? 51 : 15));
                 if (remoteControlPower != 51)
                     console.RemoteControlPower = remoteControlPower;
                 Assert.That(console.RemoteControlPower, Is.EqualTo(remoteControlPower));
@@ -1203,7 +1205,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                     remoteControlPower == 51 ? "RemoteControlHighPowerTestConsole" : "RemoteControlConsole",
                     coordinates);
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
-                Assert.That(console.RemoteControlPower, Is.EqualTo(remoteControlPower == 51 ? 51 : 10));
+                Assert.That(console.RemoteControlPower, Is.EqualTo(remoteControlPower == 51 ? 51 : 15));
                 if (remoteControlPower != 51)
                     console.RemoteControlPower = remoteControlPower;
                 Assert.That(console.RemoteControlPower, Is.EqualTo(remoteControlPower));
@@ -1256,6 +1258,7 @@ public sealed class RemoteControlConsoleTest : GameTest
                 Assert.That(containerSystem.Insert(brain, borg.BrainContainer), Is.True);
                 var currentConsoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
                 var currentConsole = SEntMan.GetComponent<RemoteControlConsoleComponent>(currentConsoleUid);
+                currentConsole.RemoteControlPower = 10;
                 var currentController = SEntMan.SpawnEntity(null, coordinates);
                 currentConsole.RemoteBrain = brain;
                 SetTestController(currentConsoleUid, currentConsole, currentController);

@@ -21,6 +21,9 @@ public enum RemoteControlSettingsUIKey : byte
 public sealed class RemoteControlOpenSettingsMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
+public sealed partial class RemoteControlOpenScreenMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
 public sealed class RemoteControlSetChannelMessage : BoundUserInterfaceMessage
 {
     public string? Channel { get; init; }

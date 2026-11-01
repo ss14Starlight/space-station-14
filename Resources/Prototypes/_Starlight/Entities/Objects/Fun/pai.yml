@@ -25,6 +25,19 @@
     event: !type:PAIConsoleActionEvent
 
 - type: entity
+  parent: BaseMentalAction
+  id: ActionPAIRemoteControl
+  name: Remote Control
+  description: Configure and operate a device by its remote control channel.
+  components:
+  - type: Action
+    icon: { sprite: _Starlight/Interface/Actions/actions_shunt.rsi, state: icon }
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:OpenUiActionEvent
+      key: enum.RemoteControlSettingsUIKey.Key
+
+- type: entity
   parent: EncryptionKeySyndie
   id: EncryptionKeySyndiePAI
   components:

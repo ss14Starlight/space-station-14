@@ -1,0 +1,34 @@
+- type: entity
+  abstract: true
+  save: false
+  id: BaseRemoteControlPlushie
+  components:
+  - type: RemoteControlBrain
+  - type: Input
+    context: human
+  - type: Actions
+  - type: Alerts
+  - type: Appearance
+  - type: DoAfter
+  - type: Examiner
+  - type: Eye
+  - type: ContentEye
+  - type: CameraRecoil
+  - type: MindContainer
+  - type: RequireProjectileTarget
+    active: false
+  - type: StunVisuals
+  - type: LanguageSpeaker
+  - type: ParentCanBlockVision
+  - type: TextToSpeech
+  - type: Physics
+    bodyType: KinematicController
+  - type: MobCollision
+  - type: InputMover
+  - type: MobMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.75
+    baseSprintSpeed: 4.95
+    baseAcceleration: 5
+    baseFriction: 0.3125
+  - type: LagCompensation

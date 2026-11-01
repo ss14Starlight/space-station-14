@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Computers.RemoteControl;
 
@@ -34,4 +35,16 @@ public sealed partial class RemoteControlConsoleComponent : Component
     /// </summary>
     [DataField]
     public int RemoteControlPower = 10;
+
+    /// <summary>
+    /// Restricts an intrinsic remote controller to its owning entity.
+    /// </summary>
+    [DataField]
+    public bool OwnerOnly;
+
+    /// <summary>
+    /// Action the owner must have before using this remote controller.
+    /// </summary>
+    [DataField]
+    public EntProtoId? RequiredAction;
 }
