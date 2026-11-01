@@ -14,6 +14,7 @@ public sealed partial class DamageContactsSystem : EntitySystem
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+
     #region Starlight
     [Dependency] private MobStateSystem _mobState = default!;
     #endregion
