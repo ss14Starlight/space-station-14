@@ -70,3 +70,14 @@
   - type: StatusEffectAlert
     alert: BreathHeld
   - type: HeldBreathStatusEffect
+
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectAnxietySuppression
+  name: anxiety suppression
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+    maximumDuration: 40m

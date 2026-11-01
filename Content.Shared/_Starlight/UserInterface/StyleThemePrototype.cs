@@ -27,14 +27,24 @@ public sealed partial class StyleThemePrototype : IPrototype
     [DataField]
     public bool Light;
 
-    [DataField]
-    public bool Stock;
-
+    /// <summary>
+    /// Primary accent color, controlling header text.
+    /// If secondaryAccent is not specified, falls back to Accent.
+    /// </summary>
     [DataField]
     public Color? Accent;
 
+    /// <summary>
+    /// Border width for tooltips/context menus.
+    /// </summary>
     [DataField]
     public float BorderThickness = 1f;
+
+    /// <summary>
+    /// Border width for text inputs and inset panels.
+    /// </summary>
+    [DataField]
+    public float SecondaryBorderThickness = 1f;
 
     [DataField]
     public StyleThemeBox? Window;
@@ -44,6 +54,12 @@ public sealed partial class StyleThemePrototype : IPrototype
 
     [DataField]
     public StyleThemeBox? Button;
+
+    /// <summary>
+    /// When true, the theme keeps the classic textured window, panel, and button borders.
+    /// </summary>
+    [DataField]
+    public bool ClassicDecor;
 
     /// <summary>
     /// Theme for the in-game HUD screen, if it should differ from this one. HUD textures are dark, so light themes
@@ -57,6 +73,13 @@ public sealed partial class StyleThemePrototype : IPrototype
 
     [DataField]
     public Color Surface;
+
+    /// <summary>
+    /// Inspection menu background.
+    /// If not specified, falls back to surface.
+    /// </summary>
+    [DataField]
+    public Color? SurfaceInspect;
 
     [DataField]
     public Color SurfaceRaised;
@@ -82,6 +105,13 @@ public sealed partial class StyleThemePrototype : IPrototype
     [DataField]
     public Color TextDisabled;
 
+    /// <summary>
+    /// Placeholder text color for text inputs.
+    /// If textPlaceholder is not specified, falls back to TextDisabled.
+    /// </summary>
+    [DataField]
+    public Color? TextPlaceholder;
+
     [DataField]
     public Color Positive;
 
@@ -93,6 +123,32 @@ public sealed partial class StyleThemePrototype : IPrototype
     /// </summary>
     [DataField]
     public float AccentTint = 0.35f;
+
+    /// <summary>
+    /// Background for FancyWindow bodies. When null, window bodies
+    /// keep the shared BackgroundPanel styling.
+    /// </summary>
+    [DataField]
+    public Color? WindowBackground;
+
+    /// <summary>
+    /// When true, display most colors directly without any further filtering.
+    /// </summary>
+    [DataField]
+    public bool RawColors;
+
+    /// <summary>
+    /// Secondary accent color, for pressed and selected buttons.
+    /// If secondaryAccent is not specified, falls back to Accent.
+    /// </summary>
+    [DataField]
+    public Color? SecondaryAccent;
+
+    /// <summary>
+    /// Tooltip text color. If textTooltip is not specified, falls back to text.
+    /// </summary>
+    [DataField]
+    public Color? TextTooltip;
 }
 
 [DataDefinition]

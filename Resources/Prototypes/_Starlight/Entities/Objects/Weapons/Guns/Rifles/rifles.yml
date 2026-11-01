@@ -122,12 +122,13 @@
       gun_magazine: !type:ContainerSlot
   - type: Gun
     fireRate: 5
-    shotsPerBurst: 2
+    shotsPerBurst: 3
     burstCooldown: 0.6
     selectedMode: Burst
     availableModes:
       - SemiAuto
       - Burst
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: MagazineVisuals
@@ -422,6 +423,20 @@
   id: WeaponRifleBolt
   description: A terrifyingly powerful and rugged rifle commonly used by the ITG for their frontier logistic escorts and salvage teams. Fires high-caliber explosive impact bolts. Watch out for the recoil.
   components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 2
+        staminaMultiplier: 6
+      Rodentia:
+        knockback: 2
+        staminaMultiplier: 6
+      Resomi:
+        knockback: 2
+        staminaMultiplier: 6
+      Felionoid:
+        knockback: 2
+        staminaMultiplier: 6
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/impact_bolt_rifle.rsi
     layers:
@@ -436,22 +451,20 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,3,2
+    - 0,0,4,3
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -19
-    maxAngle: -22
+    maxAngle: -20
   - type: Gun
     minAngle: 20
-    maxAngle: 24
+    maxAngle: 35
     fireRate: 3.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    - Burst
     - FullAuto
-    shotsPerBurst: 3
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
       params:

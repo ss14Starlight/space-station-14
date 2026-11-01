@@ -25,6 +25,10 @@
 - type: !PartialOnly entity
   id: MindShieldImplant
   description: This implant will ensure loyalty to NanoTrasen and prevent mind control devices.
+  components:
+  - type: Tag
+    tags:
+    - FragileImplant
 
 - type: !PartialOnly entity
   id: RadioImplantCentcomm
@@ -35,3 +39,10 @@
   components:
   - type: RattleOnTrigger
     radioChannel: [CentCom] # List
+
+- type: !PartialOnly entity
+  id: FreedomImplant
+  description: This implant lets the user break out of hand restraints and bolas up to three times before ceasing to function anymore.
+  components:
+  - type: RemoveBolaOnTrigger
+    targetUser: true

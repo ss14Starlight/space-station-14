@@ -42,3 +42,6 @@ signal-port-description-disabled = Emitted when the device is turned off and dis
 
 signal-port-name-turret-controller-sync-sender = Sync
 signal-port-description-turret-controller-sync-sender = Shares this turret control panel's armament and authorization settings with another panel.
+
+signal-port-name-combustion-turbine-console-sender = Combustion Turbine Console
+signal-port-description-combustion-turbine-console-sender = Controls a combustion turbine. Link it to either the compressor or the turbine.

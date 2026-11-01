@@ -8,13 +8,6 @@ This is the latest published version of NanoTrasen Central Command Kitchen de Cu
 <GuideMicrowaveGroupEmbed Group="Pizza"/>
 
 ## Savory Cooking
-
-<!-- Starlight start: stroganoff ingredient alternatives -->
-Beef stroganoff uses [bold]2 raw cutlets OR 2 cooked cutlets[/bold]. Both cutlets must be in the same state.
-For either version, add one wooden bowl, one brown mushroom item, one onion slice, one butter slice, 5 units of cream, 1 unit of table salt, and 1 unit of black pepper. Microwave for 20 seconds.
-The cream, salt, and pepper can be supplied in a beaker or in the wooden bowl inside the microwave.
-<!-- Starlight end -->
-
 <GuideMicrowaveGroupEmbed Group="Savory"/>
 
 ## Breads

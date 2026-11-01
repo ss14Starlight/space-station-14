@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseItem, BaseMajorContraband ]
+  parent: [ BaseItem, BaseSalvageContraband ]
   id: MagazineBoltRifle
   name: bolt rifle magazine (standard)
   description: A 21-round magazine for impact bolts.

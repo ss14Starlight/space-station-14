@@ -21,6 +21,8 @@ using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee.Events;
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Disposal.Components;
 
@@ -36,6 +38,7 @@ public sealed partial class InjectorSystem : EntitySystem
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private INetManager _net = default!; // Starlight
     [Dependency] private SharedForensicsSystem _forensics = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private OpenableSystem _openable = default!;
@@ -541,11 +544,22 @@ public sealed partial class InjectorSystem : EntitySystem
 
         // it is IMPERATIVE that when an injector is instant, that it has a pop-up.
         if (activeMode.InjectPopupTarget != null && target != user)
-            _popup.PopupClient(Loc.GetString(activeMode.InjectPopupTarget), target, target);
+            _popup.PopupEntity(Loc.GetString(activeMode.InjectPopupTarget), target, target); // Starlight: Send the popup to the recipient from the server.
 
         // Some injectors like hyposprays have sound, some like syringes have not.
+        // Starlight-start: Exclude other injection targets while keeping self-injection audible.
         if (activeMode.InjectSound != null)
-            _audio.PlayPredicted(activeMode.InjectSound, injector, user);
+        {
+            if (injector.Comp.MuteInjectSoundForTarget && target != user)
+            {
+                if (_net.IsServer)
+                    _audio.PlayEntity(activeMode.InjectSound,
+                        Filter.Pvs(injector).RemovePlayerByAttachedEntity(target), injector, true);
+            }
+            else
+                _audio.PlayPredicted(activeMode.InjectSound, injector, user);
+        }
+        // Starlight-end
 
         // Log what happened.
         _adminLogger.Add(LogType.ForceFeed, $"{ToPrettyString(user):user} injected {ToPrettyString(target):target} with a solution {SharedSolutionContainerSystem.ToPrettyString(removedSolution):removedSolution} using a {ToPrettyString(injector):using}");

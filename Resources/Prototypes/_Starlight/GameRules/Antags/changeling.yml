@@ -24,7 +24,7 @@
   id: SLChangelingLess
   components:
   - type: GameRule
-    minPlayers: 15
+    minPlayers: 20
     delay:
       min: 240
       max: 420

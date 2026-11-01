@@ -3,6 +3,7 @@
   id: ChangelingAbsorbObjective
   components:
     - type: Objective
+      difficulty: 0
       icon:
         sprite: Mobs/Demons/abomination.rsi
         state: dead
@@ -18,6 +19,7 @@
   id: ChangelingStealDNAObjective
   components:
     - type: Objective
+      difficulty: 0
       icon:
         sprite: Mobs/Species/Human/organs.rsi
         state: brain
@@ -31,15 +33,16 @@
 - type: entity
   parent: BaseChangelingObjective
   id: EscapeIdentityObjective
-  description: I need to escape on the evacuation shuttle. Undercover.
+  description: Escape alive and unrestrained on the evacuation shuttle disguised as this person. Make sure the original does not reach CentComm.
   components:
     - type: Objective
+      difficulty: 0
       icon:
         sprite: Objects/Magic/magicactions.rsi
         state: blink
     - type: ImpersonateCondition
     - type: TargetObjective
-      title: objective-condition-escape-identity-title
+      title: objective-condition-escape-identity-eliminate-title
     - type: PickRandomPerson
       filters: # Far Horizons - Only pick absorbable
       - !type:BodyMindFilter
@@ -156,3 +159,92 @@
     - type: StealCondition
       stealGroup: WeaponAntiqueLaser
       owner: job-name-captain
+
+- type: entity
+  parent: [BaseChangelingObjective, BaseKillObjective]
+  id: ChangelingKillRandomPersonObjective
+  description: Make sure this person does not make it to CentComm.
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-kill
+    difficulty: 1.5
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-kill-person-title
+  - type: PickRandomPerson
+    pool: !type:WeightedAlivePool
+      weightHighValue: true
+    filters:
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - KillPersonCondition
+  - type: KillPersonCondition
+    requireMaroon: true
+
+- type: entity
+  parent: [BaseChangelingObjective, BaseKillObjective]
+  id: ChangelingKillRandomHeadObjective
+  description: Make sure this person does not make it to CentComm.
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-kill-head
+    difficulty: 2.5
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-kill-person-title
+  - type: PickRandomPerson
+    pool: !type:HighValueTargetsPool
+      includeCommand: true
+    filters:
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - KillPersonCondition
+  - type: KillPersonCondition
+    requireMaroon: true
+    requireDead: true
+
+- type: entity
+  parent: [BaseChangelingObjective, BaseTeachALessonObjective]
+  id: ChangelingTeachRandomPersonObjective
+  description: Ensure this person dies at least once this shift.
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-lesson
+    difficulty: 1.5
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-teach-lesson-title
+  - type: PickRandomPerson
+    pool: !type:WeightedAlivePool
+      weightHighValue: true
+    filters:
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - TeachALessonCondition
+
+- type: entity
+  parent: [BaseChangelingObjective, BaseTeachALessonObjective]
+  id: ChangelingTeachRandomHeadObjective
+  description: Ensure this person dies at least once this shift.
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-lesson-head
+    difficulty: 2
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-teach-lesson-title
+  - type: PickRandomPerson
+    pool: !type:HighValueTargetsPool
+      includeCommand: true
+    filters:
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - TeachALessonCondition

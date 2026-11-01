@@ -189,6 +189,18 @@ public sealed partial class TTSSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Plays a standard speech event at a different TTS-capable entity, preserving the original speaker's voice.
+    /// </summary>
+    public void PlaySpeechAt(EntityUid playbackEntity, EntitySpokeEvent args)
+    {
+        if (!TryComp(args.Source, out TextToSpeechComponent? speakerComponent)
+            || !HasComp<TextToSpeechComponent>(playbackEntity))
+            return;
+
+        OnEntitySpoke(playbackEntity, speakerComponent, args);
+    }
+
     private Filter GetFilter(EntityUid uid, EntitySpokeEvent args)
     {
         Filter filter;

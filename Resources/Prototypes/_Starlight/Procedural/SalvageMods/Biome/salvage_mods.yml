@@ -1,0 +1,15 @@
+- type: salvageBiomeMod
+  id: Abyss
+  desc: salvage-biome-mod-abyss
+  biome: Abyss
+  difficulties:
+    - Argocyte-Hard
+    - Carp-Hard
+    - Xeno-Hard
+
+- type: salvageBiomeMod
+  id: TrueAbyss
+  desc: salvage-biome-mod-true-abyss
+  biome: TrueAbyss
+  difficulties:
+    - Elder

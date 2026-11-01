@@ -14,3 +14,6 @@ replay-observer-verb-view-moods = View Moods
 replay-observer-ghostnado-none = Nobody is being followed.
 replay-observer-weather-on = Weather overlays shown.
 replay-observer-weather-off = Weather overlays hidden.
+replay-observer-verb-view-solutions = View Solutions
+replay-observer-solution-header = [bold]{$name}[/bold]: {$volume}/{$max}u
+replay-observer-solutions-none = It has no solutions.

@@ -1158,8 +1158,6 @@
       access: [ [ "BlueShield" ] ]
     - type: Item
       size: Small
-      shape:
-        - 0, 0, 1, 1
       sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum_Seven.rsi
       heldPrefix: empty
     - type: BatteryAmmoProvider

@@ -1,12 +1,25 @@
+<!-- Moff - I changed alot in this file. not worth commenting anything. Dont accept upstream changes. -->
 <controls:ObjectiveConditionsControl
     xmlns="https://spacestation14.io"
     xmlns:cc="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Systems.Objectives.Controls"
-    Orientation="Horizontal">
-    <cc:ProgressTextureRect Name="ProgressTexture" VerticalAlignment="Top" Access="Public" Margin="0 8 0 0"/>
-    <Control MinSize="10 0"/>
-    <BoxContainer Orientation="Vertical">
-        <RichTextLabel Name="Title" Access="Public" SetWidth="325" HorizontalAlignment="Left"/>
-        <RichTextLabel Name="Description" Access="Public" SetWidth="325" HorizontalAlignment="Left"/>
-    </BoxContainer>
+    Margin="2 0">
+    <LayoutContainer HorizontalExpand="True" Name="InfoBox">
+        <ProgressBar Name="ProgressBar" MinValue="0" MaxValue="1"
+                     LayoutContainer.AnchorRight="1"
+                     LayoutContainer.AnchorBottom="1"/>
+        <BoxContainer Orientation="Vertical"
+                      Margin="5"
+                      LayoutContainer.AnchorRight="1"
+                      LayoutContainer.AnchorBottom="1">
+            <BoxContainer Orientation="Horizontal">
+                <cc:ProgressTextureRect Name="ProgressTexture" VerticalAlignment="Center" Access="Public"/>
+                <Control MinSize="10 0"/>
+                <RichTextLabel Name="Title" Access="Public" HorizontalExpand="True" HorizontalAlignment="Left"/>
+            </BoxContainer>
+            <PanelContainer StyleClasses="LowDivider" Margin="0 4"/>
+            <RichTextLabel Name="Description" Access="Public" HorizontalExpand="True" HorizontalAlignment="Left"/>
+        </BoxContainer>
+    </LayoutContainer>
 </controls:ObjectiveConditionsControl>
+<!-- Moffstation - End -->

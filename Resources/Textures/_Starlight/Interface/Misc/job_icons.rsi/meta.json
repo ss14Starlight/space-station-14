@@ -292,6 +292,11 @@
             ]
         },
         {
+            "name": "GunnerySergeant",
+            "copyright": "AnyTap"
+        },
+        {
+
             "name": "SalvageMedic",
             "copyright": "Swonki"
         },
@@ -334,6 +339,24 @@
         {
             "name": "MakeshiftID",
             "copyright": "rhithebirdthing"
+        },
+        {
+            "name": "ITGMindshield",
+            "copyright": "Swonki",
+            "delays": [
+                [
+                    1.0,
+                    1.0
+                ]
+            ]
+        },
+        {
+            "name": "EmotionalSupportScurret",
+            "copyright": "baltdev"
+        },
+        {
+            "name": "SyndicateScurret",
+            "copyright": "baltdev"
         }
     ]
 }

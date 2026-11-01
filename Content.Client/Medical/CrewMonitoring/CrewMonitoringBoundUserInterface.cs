@@ -34,20 +34,14 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
         // Starlight-end
 
         EntityUid? gridUid = null;
-        var stationName = string.Empty;
 
         if (EntMan.TryGetComponent<TransformComponent>(Owner, out var xform))
         {
             gridUid = xform.GridUid;
-
-            if (EntMan.TryGetComponent<MetaDataComponent>(gridUid, out var metaData))
-            {
-                stationName = metaData.EntityName;
-            }
         }
 
         _menu = this.CreatePopOutableWindow<CrewMonitoringWindow>(EntMan); // Starlight
-        _menu.Set(stationName, gridUid);
+        _menu.Set(gridUid, Owner); // Starlight
         _menu.MapClicked += OnMapClicked; // Starlight
     }
 

@@ -93,6 +93,8 @@
         Piercing: 6
   - type: Damageable
     damageContainer: Shield
+  - type: ExaminableDamage
+    messages: ShieldMessages
   - type: Destructible
     thresholds:
       - trigger:

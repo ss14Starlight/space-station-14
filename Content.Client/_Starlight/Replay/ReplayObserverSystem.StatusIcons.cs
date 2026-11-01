@@ -9,7 +9,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Replay;
 
-// Job, mindshield and health HUDs, as aghosts have. Components come from a prototype so the HUD config lives in YAML.
+// Job, mindshield, security record and health HUDs, as aghosts have. Components come from a prototype so the HUD config lives in YAML.
 public sealed partial class ReplayObserverSystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
@@ -17,6 +17,7 @@ public sealed partial class ReplayObserverSystem
     [Dependency] private IOverlayManager _overlayManager = default!;
     [Dependency] private ShowJobIconsSystem _jobIcons = default!;
     [Dependency] private ShowMindShieldIconsSystem _mindShieldIcons = default!;
+    [Dependency] private ShowCriminalRecordIconsSystem _criminalIcons = default!;
     [Dependency] private ShowHealthBarsSystem _healthBars = default!;
     [Dependency] private ShowHealthIconsSystem _healthIcons = default!;
 
@@ -74,6 +75,7 @@ public sealed partial class ReplayObserverSystem
         // EquipmentHudSystem refreshes during ComponentRemove, while the component still counts as present.
         _jobIcons.Deactivate();
         _mindShieldIcons.Deactivate();
+        _criminalIcons.Deactivate();
         _healthBars.Deactivate();
         _healthIcons.Deactivate();
     }

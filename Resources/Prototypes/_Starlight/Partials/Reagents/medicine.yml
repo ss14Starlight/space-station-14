@@ -98,6 +98,13 @@
   contrabandTier: Tier1
   contrabandSeverity: !Remove
   requiresPrescription: true
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectAnxietySuppression
+        time: 60
+        type: Add
 
 - type: !PartialOnly reagent
   id: Heparin
@@ -155,3 +162,190 @@
           min: 40
       metabolites:
         Tricordrazine: 1
+
+# These replace the whole effects list; keep the unchanged effects in sync with upstream.
+- type: !PartialOnly reagent
+  id: Dylovene
+  metabolisms:
+    Bloodstream:
+      effects: !Clear
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -1
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Dylovene
+          min: 20
+        damage:
+          groups:
+            Brute: 2
+      - !type:Jitter
+        conditions:
+        - !type:ReagentCondition
+          reagent: Dylovene
+          min: 20
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentCondition
+          reagent: Dylovene
+          min: 20
+        type: Local
+        visualType: Medium
+        messages: [ "generic-reagent-effect-nauseous" ]
+        probability: 0.2
+      - !type:Vomit
+        conditions:
+        - !type:ReagentCondition
+          reagent: Dylovene
+          min: 20
+        probability: 0.02
+      - !type:Drunk
+        conditions:
+        - !type:ReagentCondition
+          reagent: Dylovene
+          min: 15
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Dylovene
+        amount: -0.5
+
+- type: !PartialOnly reagent
+  id: Arithrazine
+  metabolisms:
+    Bloodstream:
+      effects: !Clear
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: -3
+          groups:
+            Brute: 1.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Arithrazine
+        amount: -0.5
+
+- type: !PartialOnly reagent
+  id: Dermaline
+  metabolisms:
+    Bloodstream:
+      effects: !Clear
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: -1.5
+            Shock: -1.5
+            Cold: -1.5
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Dermaline
+          min: 10
+        damage:
+          types:
+            Asphyxiation: 1
+            Cold: 2
+          groups:
+            Brute: 0.5
+      - !type:Jitter
+        conditions:
+        - !type:ReagentCondition
+          reagent: Dermaline
+          min: 10
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Dermaline
+        amount: -0.5
+
+- type: !PartialOnly reagent
+  id: Ultravasculine
+  metabolisms:
+    Bloodstream:
+      effects: !Clear
+      - !type:EvenHealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Ultravasculine
+          min: 0
+          max: 20
+        damage:
+          Toxin: -6
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Ultravasculine
+          min: 0
+          max: 20
+        damage:
+          groups:
+            Brute: 1.5
+      - !type:EvenHealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Ultravasculine
+          min: 20
+        damage:
+          Toxin: -2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Ultravasculine
+          min: 20
+        damage:
+          groups:
+            Brute: 6
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Histamine
+          min: 1
+        reagent: Histamine
+        amount: -1
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: Histamine
+          min: 1
+        reagent: Ultravasculine
+        amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Ultravasculine
+        amount: -0.5
+
+- type: !PartialOnly reagent
+  id: PolypyryliumOligomers
+  desc: reagent-desc-polypyrylium-oligomers-sl
+  metabolisms:
+    Bloodstream:
+      effects: !Clear
+      - !type:EvenHealthChange
+        damage:
+          Brute: -2.5
+          Airloss: -2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: PolypyryliumOligomers
+          min: 30
+        damage:
+          types:
+            Asphyxiation: 4.5
+      - !type:ModifyBleed
+        amount: -0.25
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: PolypyryliumOligomers
+        amount: -0.5

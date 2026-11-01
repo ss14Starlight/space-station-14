@@ -36,6 +36,7 @@
   suffix: AI
   description: A prominent representative of kobolds with unlimited access to that which she doesn't want to eat.
   components:
+  - type: AntagTarget
   - type: LanguageKnowledge
     speaks:
     - Ancestor
@@ -94,6 +95,7 @@
   suffix: AI
   description: A disreputable monkey who should not be trusted. A real cell stuffer.
   components:
+  - type: AntagTarget
   - type: LanguageKnowledge
     speaks:
     - Ancestor

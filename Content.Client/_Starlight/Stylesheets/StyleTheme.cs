@@ -16,6 +16,13 @@ public sealed class StyleTheme
 
     public readonly Color Accent;
 
+    public readonly Color SecondaryAccent;
+
+    /// <summary>
+    /// Whether classic-style decorations are used.
+    /// </summary>
+    public readonly bool ClassicDecor;
+
     /// <summary>
     /// An element tinted with the accent: pressed buttons, selected list items.
     /// </summary>
@@ -46,11 +53,19 @@ public sealed class StyleTheme
     /// </summary>
     public readonly ColorPalette Negative;
 
-    public StyleTheme(StyleThemePrototype proto, Color accent)
+    public StyleTheme(StyleThemePrototype proto, Color accent, Color? secondaryAccent = null, bool classicDecor = false)
     {
         Proto = proto;
         Accent = Readable(accent.WithAlpha(1f), proto.Light);
-        ElementActive = proto.Element.OkBlend(Accent, proto.AccentTint);
+        SecondaryAccent = proto.RawColors
+            ? (secondaryAccent ?? accent).WithAlpha(1f)
+            : Readable((secondaryAccent ?? accent).WithAlpha(1f), proto.Light);
+        ClassicDecor = classicDecor;
+
+        var activeBase = proto.RawColors
+            ? (secondaryAccent ?? accent).WithAlpha(1f)
+            : SecondaryAccent;
+        ElementActive = proto.Element.OkBlend(activeBase, proto.AccentTint);
 
         Primary = new ColorPalette(
             Base: proto.Element,
@@ -88,9 +103,28 @@ public sealed class StyleTheme
             Text: Accent,
             TextDark: Accent.OkBlend(proto.TextMuted, 0.5f));
 
-        Positive = StatusPalette(proto, proto.Positive);
-        Negative = StatusPalette(proto, proto.Negative);
+        Positive = proto.RawColors
+            ? RawStatusPalette(proto, proto.Positive)
+            : StatusPalette(proto, proto.Positive);
+        Negative = proto.RawColors
+            ? RawStatusPalette(proto, proto.Negative)
+            : StatusPalette(proto, proto.Negative);
     }
+
+    private static ColorPalette RawStatusPalette(StyleThemePrototype proto, Color color)
+        => new(
+            Base: color,
+            LightnessShift: 0f,
+            ChromaShift: 0f,
+            Element: color,
+            HoveredElement: color.NudgeLightness(0.06f),
+            PressedElement: color.NudgeLightness(-0.06f),
+            DisabledElement: proto.ElementDisabled,
+            Background: color.NudgeLightness(-0.18f),
+            BackgroundLight: color.NudgeLightness(-0.12f),
+            BackgroundDark: color.NudgeLightness(-0.24f),
+            Text: color,
+            TextDark: color.NudgeLightness(-0.06f));
 
     private static Color Readable(Color accent, bool light)
     {

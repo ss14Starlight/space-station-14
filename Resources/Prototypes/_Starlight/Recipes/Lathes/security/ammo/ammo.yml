@@ -84,7 +84,7 @@
     Plastic: 100
     Silver: 100
 
-# BOLT WEAPONS
+## BOLT WEAPONS
 - type: latheRecipe
   id: MagazineBoltRifleEmpty
   result: MagazineBoltRifleEmpty
@@ -104,8 +104,8 @@
   materials:
     Steel: 920
     Plastic: 300
-    Plasma: 210
-    Silver: 105
+    Plasma: 315
+    Silver: 210
 
 - type: latheRecipe
   id: MagazineBoltPistolEmpty
@@ -126,8 +126,8 @@
   materials:
     Steel: 360
     Plastic: 150
-    Plasma: 80
-    Silver: 40
+    Plasma: 120
+    Silver: 80
 
 - type: latheRecipe
   id: MagazineBoxBoltRifle
@@ -136,7 +136,7 @@
   - Ammo
   completetime: 3
   materials:
-    # 42 bolts at 0.2 Steel, 0.1 Plasma and 0.05 Silver per bolt + 2 steel for the box.
+    # 42 bolts at 0.2 Steel, 0.15 Plasma and 0.1 Silver per bolt + 2 steel for the box.
     Steel: 1040
-    Plasma: 420
-    Silver: 210
+    Plasma: 630
+    Silver: 420

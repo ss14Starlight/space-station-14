@@ -2,6 +2,7 @@ using Content.Server.RoundEnd;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Server._Starlight.CosmicCult.EntitySystems;
 using Robust.Shared.Audio;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
@@ -69,6 +70,12 @@ public sealed partial class CosmicCultRuleComponent : Component
     /// </summary>
     [DataField]
     public bool WinLocked;
+
+    /// <summary>
+    /// The first steward ever elected.
+    /// </summary>
+    [DataField]
+    public EntityUid? InitialSteward;
 
     /// <summary>
     /// When true, Malign Rifts are unable to spawn.

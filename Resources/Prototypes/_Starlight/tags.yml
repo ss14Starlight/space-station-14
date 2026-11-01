@@ -144,6 +144,12 @@
   id: CasinoChip
 
 - type: Tag
+  id: CD
+
+- type: Tag
+  id: CDCase
+
+- type: Tag
   id: CentcommVibroblade
 
 - type: Tag
@@ -327,6 +333,9 @@
   id: FringeTraitBackground
 
 - type: Tag
+  id: FragileImplant # Implant disintegrates on extraction
+
+- type: Tag
   id: FrontierTraitBackground
 
 - type: Tag
@@ -379,6 +388,9 @@
 
 - type: Tag
   id: HandheldEngineeringMonitor #CE's handheld monitor
+
+- type: Tag
+  id: Heart
 
 - type: Tag
   id: HighTierCell #Blacklist for stunprod, used by the hyper and microreactor.
@@ -834,7 +846,13 @@
   id: VinylSleeve # Storage whitelist: RecordMilkCrate, SyndicateMilkCrate
 
 - type: Tag
+  id: VinylSleeveFit
+
+- type: Tag
   id: WallmountMassScannerElectronics
+
+- type: Tag
+  id: WhitelistChameleonCollar # Chameleon key for chameleon collars
 
 - type: Tag
   id: Wizard
@@ -850,3 +868,6 @@
 
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground
+
+- type: Tag
+  id: StationRadioCircuitboard

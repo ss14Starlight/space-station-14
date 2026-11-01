@@ -46,6 +46,7 @@
   description: A pocket in spacetime, keeping the user a fraction of a second in the future.
   components:
   - type: Spectral
+  - type: MobState # Starlight: Fixes ghost while desynchronized and returning to body
   - type: MovementSpeedModifier
     baseSprintSpeed: 0
     baseWalkSpeed: 0

@@ -5,8 +5,10 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Silicons.Borgs;
 using Content.Shared._Afterlight.Silicons.Borgs;
 using Content.Shared._Starlight.Computers.RemoteControl;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -15,6 +17,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Power.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.Borgs;
+using Content.Shared.Throwing;
 using Content.Shared.UserInterface;
 using Robust.Server.Player;
 using Robust.Shared.Containers;
@@ -38,6 +41,7 @@ public sealed class RemoteControlConsoleTest : GameTest
             enum.BorgSwitchableTypeUiKey.SelectBorgType:
                 type: BorgSelectTypeUserInterface
                 interactionRange: 2
+                requireInputValidation: true
 -   type: entity
     id: RemoteControlForceTestConsole
     parent: RemoteControlConsole
@@ -83,28 +87,38 @@ public sealed class RemoteControlConsoleTest : GameTest
         });
 
         if (controlling && expectedOpen)
-            await AssertMirroredUiMessageRejected();
+            await AssertCrossMapMirroredUiOpensAndRespectsRange();
     }
 
-    private async Task AssertMirroredUiMessageRejected()
+    private async Task AssertCrossMapMirroredUiOpensAndRespectsRange()
     {
         EntityUid? map = null;
+        EntityUid? controllerMap = null;
         EntityUid target = default;
         EntityUid user = default;
         EntityUid remote = default;
+        NetEntity targetNet = default;
+        NetEntity userNet = default;
         ICommonSession session = null;
         EntityUid? previousAttachedEntity = null;
+        var targetInsertedIntoRemoteContainer = false;
+        var defaultAccessAllowsController = true;
+        var remoteAccessAllowsTarget = false;
         var key = BorgSwitchableTypeUiKey.SelectBorgType;
 
         try
         {
             await Server.WaitAssertion(() =>
             {
-                map = Server.System<SharedMapSystem>().CreateMap(out var mapId);
+                var mapSystem = Server.System<SharedMapSystem>();
+                map = mapSystem.CreateMap(out var mapId);
+                controllerMap = mapSystem.CreateMap(out var controllerMapId);
                 target = SEntMan.SpawnEntity("RemoteControlRangeTestUi", new MapCoordinates(0, 0, mapId));
                 remote = SEntMan.SpawnEntity(null, new MapCoordinates(1, 0, mapId));
-                user = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, mapId));
-                var consoleUid = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, mapId));
+                user = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, controllerMapId));
+                targetNet = SEntMan.GetNetEntity(target);
+                userNet = SEntMan.GetNetEntity(user);
+                var consoleUid = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, controllerMapId));
                 var console = SEntMan.AddComponent<RemoteControlConsoleComponent>(consoleUid);
                 console.RemoteBrain = remote;
                 SetTestController(consoleUid, console, user);
@@ -117,16 +131,88 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.AddComponent<BorgSwitchableTypeComponent>(target);
 
                 var ui = Server.System<SharedUserInterfaceSystem>();
+                var uiOpenAttemptTestSystem = Server.System<RemoteControlUiOpenAttemptTestSystem>();
+                uiOpenAttemptTestSystem.Watch(target, user);
+                var containers = Server.System<SharedContainerSystem>();
+                var remoteContainer = containers.EnsureContainer<Container>(remote, "test-hand");
+                targetInsertedIntoRemoteContainer = containers.Insert(target, remoteContainer);
+                var interaction = Server.System<SharedInteractionSystem>();
+                defaultAccessAllowsController = interaction.CanAccess(user, target);
+                remoteAccessAllowsTarget = interaction.CanAccess(remote, target);
+                Assert.That(SEntMan.GetComponent<TransformComponent>(target).MapID,
+                    Is.Not.EqualTo(SEntMan.GetComponent<TransformComponent>(user).MapID),
+                    "The UI target and controller must be on different maps.");
+                Assert.That(ui.TryGetInterfaceData((target, null), key, out var interfaceData), Is.True);
+                Assert.That(interfaceData?.RequireInputValidation, Is.True,
+                    "The test must exercise validated bound-interface opens.");
+                Assert.That(ui.IsUiOpen(target, key, user), Is.False,
+                    "The mirrored controller UI must start closed.");
                 Assert.DoesNotThrow(() => ui.OpenUi(target, key, remote));
                 Assert.That(ui.IsUiOpen(target, key, remote), Is.True);
+                Assert.That(ui.IsUiOpen(target, key, user), Is.False,
+                    "The controller UI should remain closed until the deferred mirror open.");
+                Assert.That(ui.GetUiRange(target, key), Is.Zero);
             });
+            Assert.That(targetInsertedIntoRemoteContainer, Is.True,
+                "The UI target must be contained by the remote body to exercise container access validation.");
+            Assert.That(defaultAccessAllowsController, Is.False,
+                "A controller outside the remote body's container must fail the default access check.");
+            Assert.That(remoteAccessAllowsTarget, Is.True,
+                "The remote body must be able to access the UI target in its container.");
 
             await Server.WaitRunTicks(1);
+            var controllerUiOpen = false;
+            var controllerOpenAttempted = false;
+            var controllerUiWasOpenAtAttempt = true;
+            var interactionRangeAtAttempt = float.NaN;
+            var controllerAccessibilityChecked = false;
+            var controllerAccessibilityHandled = false;
+            var controllerAccessible = false;
+            await Server.WaitAssertion(() =>
+            {
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                var uiOpenAttemptTestSystem = Server.System<RemoteControlUiOpenAttemptTestSystem>();
+                controllerUiOpen = ui.IsUiOpen(target, key, user);
+                controllerOpenAttempted = uiOpenAttemptTestSystem.ControllerOpenAttempted;
+                controllerUiWasOpenAtAttempt = uiOpenAttemptTestSystem.ControllerUiWasOpenAtAttempt;
+                interactionRangeAtAttempt = uiOpenAttemptTestSystem.InteractionRangeAtAttempt;
+                controllerAccessibilityChecked = uiOpenAttemptTestSystem.ControllerAccessibilityChecked;
+                controllerAccessibilityHandled = uiOpenAttemptTestSystem.ControllerAccessibilityHandled;
+                controllerAccessible = uiOpenAttemptTestSystem.ControllerAccessible;
+            });
+            Assert.That(controllerUiOpen, Is.True,
+                "The first cross-map mirrored OpenBoundInterfaceMessage should be allowed.");
+            Assert.That(controllerOpenAttempted, Is.True,
+                "The controller's initial OpenBoundInterfaceMessage must be validated.");
+            Assert.That(controllerUiWasOpenAtAttempt, Is.False,
+                "The controller UI must still be closed when its initial open is validated.");
+            Assert.That(interactionRangeAtAttempt, Is.Zero,
+                "The initial open must exercise the cross-map zero-range accessibility path.");
+            Assert.That(controllerAccessibilityChecked, Is.True,
+                "The initial open must run the controller accessibility override.");
+            Assert.That(controllerAccessibilityHandled, Is.True,
+                "The remote-control accessibility override must handle the initial open.");
+            Assert.That(controllerAccessible, Is.True,
+                "The remote-control accessibility override must allow the initial open.");
+            await Pair.RunUntilSynced();
+            await Client.WaitAssertion(() =>
+            {
+                var clientEntities = Client.ResolveDependency<IEntityManager>();
+                var clientUi = Client.System<SharedUserInterfaceSystem>();
+                var clientTarget = clientEntities.GetEntity(targetNet);
+                var clientUser = clientEntities.GetEntity(userNet);
+                Assert.That(clientUi.IsUiOpen(clientTarget, key, clientUser), Is.True);
+            });
+
             await Server.WaitAssertion(() =>
             {
                 var ui = Server.System<SharedUserInterfaceSystem>();
                 Assert.That(ui.IsUiOpen(target, key, user), Is.True);
-                Server.System<SharedTransformSystem>().SetCoordinates(remote, new EntityCoordinates(map!.Value, 10, 0));
+                var transform = Server.System<SharedTransformSystem>();
+                transform.SetCoordinates(target, new EntityCoordinates(map!.Value, 0, 0));
+                Assert.That(Server.System<SharedInteractionSystem>().CanAccess(user, target), Is.True,
+                    "The target must be uncontained for the later range-only message checks.");
+                transform.SetCoordinates(remote, new EntityCoordinates(map!.Value, 10, 0));
 
                 var message = new BorgSelectSubtypeMessage(new ProtoId<BorgTypePrototype>("generic"), null)
                 {
@@ -136,6 +222,19 @@ public sealed class RemoteControlConsoleTest : GameTest
 
                 Assert.That(SEntMan.GetComponent<BorgSwitchableTypeComponent>(target).SelectedBorgType,
                     Is.Null, "Out-of-range remote UI messages should be rejected.");
+
+                Server.System<SharedTransformSystem>().SetCoordinates(remote, new EntityCoordinates(map!.Value, 1, 0));
+                var validMessage = new BorgSelectSubtypeMessage(new ProtoId<BorgTypePrototype>("generic"), null)
+                {
+                    Actor = user
+                };
+                ui.RaiseUiMessage(target, key, validMessage);
+
+                Assert.That(SEntMan.GetComponent<BorgSwitchableTypeComponent>(target).SelectedBorgType,
+                    Is.EqualTo(new ProtoId<BorgTypePrototype>("generic")),
+                    "An in-range remote UI message should be accepted.");
+                Assert.That(ui.IsUiOpen(target, key, user), Is.False);
+                Assert.That(ui.GetUiRange(target, key), Is.EqualTo(2f));
             });
         }
         finally
@@ -150,6 +249,9 @@ public sealed class RemoteControlConsoleTest : GameTest
 
                 if (map is { } mapUid && !SEntMan.Deleted(mapUid))
                     SEntMan.DeleteEntity(mapUid);
+
+                if (controllerMap is { } controllerMapUid && !SEntMan.Deleted(controllerMapUid))
+                    SEntMan.DeleteEntity(controllerMapUid);
             });
         }
     }
@@ -200,6 +302,40 @@ public sealed class RemoteControlConsoleTest : GameTest
             Assert.That(hands.EnumerateHeld(remoteEntity).Contains(item), Is.EqualTo(expectedPickup));
             if (holder is { } holderEntity)
                 Assert.That(hands.EnumerateHeld(holderEntity).Contains(item), Is.EqualTo(!expectedPickup));
+        });
+    }
+
+    [Test]
+    public async Task RemoteThrowThrowsHeldItemAtCursor()
+    {
+        var testMap = await Pair.CreateTestMap();
+
+        await Server.WaitAssertion(() =>
+        {
+            var remoteEntity = SEntMan.SpawnEntity("MobHuman", testMap.GridCoords);
+            var item = SEntMan.SpawnEntity("Wrench", testMap.GridCoords);
+            var hands = Server.System<SharedHandsSystem>();
+            Assert.That(hands.TryPickupAnyHand(remoteEntity, item), Is.True);
+
+            var controllerCoordinates = new EntityCoordinates(testMap.Grid.Owner, 100, 0);
+            var controller = SEntMan.SpawnEntity(null, controllerCoordinates);
+            var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", controllerCoordinates);
+            var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+            console.RemoteBrain = remoteEntity;
+            SetTestController(consoleUid, console, controller);
+            console.Users.Add(controller);
+
+            SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInteractionMessage
+            {
+                Actor = controller,
+                Entity = SEntMan.GetNetEntity(consoleUid),
+                UiKey = RemoteControlUIKey.Key,
+                Coordinates = SEntMan.GetNetCoordinates(new EntityCoordinates(testMap.Grid.Owner, 5, 0)),
+                Action = RemoteControlInteractionAction.Throw,
+            });
+
+            Assert.That(hands.EnumerateHeld(remoteEntity).Contains(item), Is.False);
+            Assert.That(SEntMan.HasComponent<ThrownItemComponent>(item), Is.True);
         });
     }
 
@@ -641,8 +777,7 @@ public sealed class RemoteControlConsoleTest : GameTest
     }
 
     [Test]
-    public async Task ForcedRemoteControlTakeoverPreservesBorgActivationAndOldUiClose()
-    {
+    public async Task ForcedRemoteControlTakeoverPreservesBorgActivationAndOldUiClose() =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -679,19 +814,39 @@ public sealed class RemoteControlConsoleTest : GameTest
                 Assert.That(takeoverConsole.Controller, Is.EqualTo(takeoverController));
                 Assert.That(takeoverConsole.BorgActivatedByRemote, Is.True);
                 Assert.That(chassis.Active, Is.True);
+                var appearance = Server.System<SharedAppearanceSystem>();
+                Assert.That(appearance.TryGetData<bool>(
+                    chassisUid,
+                    BorgVisualsStarlight.RemoteControlled,
+                    out var remoteControlled), Is.True);
+                Assert.That(remoteControlled, Is.True);
 
                 SEntMan.EventBus.RaiseLocalEvent(currentConsoleUid,
                     new BoundUIClosedEvent(RemoteControlUIKey.Key, currentConsoleUid, currentController));
 
                 Assert.That(takeoverConsole.Controller, Is.EqualTo(takeoverController));
                 Assert.That(chassis.Active, Is.True);
+                Assert.That(appearance.TryGetData<bool>(
+                    chassisUid,
+                    BorgVisualsStarlight.RemoteControlled,
+                    out remoteControlled), Is.True);
+                Assert.That(remoteControlled, Is.True);
+
+                SEntMan.EventBus.RaiseLocalEvent(takeoverConsoleUid,
+                    new BoundUIClosedEvent(RemoteControlUIKey.Key, takeoverConsoleUid, takeoverController));
+
+                Assert.That(takeoverConsole.Controller, Is.Null);
+                Assert.That(appearance.TryGetData<bool>(
+                    chassisUid,
+                    BorgVisualsStarlight.RemoteControlled,
+                    out remoteControlled), Is.True);
+                Assert.That(remoteControlled, Is.False);
             }
             finally
             {
                 SEntMan.DeleteEntity(map);
             }
         });
-    }
 
     [Test]
     public async Task RemoteControlMirrorsSingleUserActivatableUi()
@@ -924,5 +1079,61 @@ public sealed class RemoteControlConsoleTest : GameTest
             mapping.Consoles.Add(consoleUid);
         else
             SEntMan.AddComponent<RemoteControlControllerComponent>(current).Consoles.Add(consoleUid);
+    }
+
+    private sealed class RemoteControlUiOpenAttemptTestSystem : EntitySystem
+    {
+        private EntityUid Target;
+        private EntityUid Controller;
+        public bool ControllerOpenAttempted { get; private set; }
+        public bool ControllerUiWasOpenAtAttempt { get; private set; }
+        public float InteractionRangeAtAttempt { get; private set; }
+        public bool ControllerAccessibilityChecked { get; private set; }
+        public bool ControllerAccessibilityHandled { get; private set; }
+        public bool ControllerAccessible { get; private set; }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<BoundUserInterfaceMessageAttempt>(OnBoundInterfaceMessageAttempt);
+            SubscribeLocalEvent<BorgSwitchableTypeComponent, AccessibleOverrideEvent>(
+                OnAccessibleOverride,
+                after: [typeof(RemoteControlConsoleSystem)]);
+        }
+
+        public void Watch(EntityUid target, EntityUid controller)
+        {
+            Target = target;
+            Controller = controller;
+            ControllerOpenAttempted = false;
+            ControllerUiWasOpenAtAttempt = false;
+            InteractionRangeAtAttempt = float.NaN;
+            ControllerAccessibilityChecked = false;
+            ControllerAccessibilityHandled = false;
+            ControllerAccessible = false;
+        }
+
+        private void OnBoundInterfaceMessageAttempt(BoundUserInterfaceMessageAttempt args)
+        {
+            if (args.Target != Target
+                || args.Actor != Controller
+                || args.Message is not OpenBoundInterfaceMessage)
+                return;
+
+            var ui = EntityManager.System<SharedUserInterfaceSystem>();
+            ControllerOpenAttempted = true;
+            ControllerUiWasOpenAtAttempt = ui.IsUiOpen((args.Target, null), args.UiKey, args.Actor);
+            InteractionRangeAtAttempt = ui.GetUiRange((args.Target, null), args.UiKey);
+        }
+
+        private void OnAccessibleOverride(Entity<BorgSwitchableTypeComponent> entity, ref AccessibleOverrideEvent args)
+        {
+            if (entity.Owner != Target || args.User != Controller)
+                return;
+
+            ControllerAccessibilityChecked = true;
+            ControllerAccessibilityHandled = args.Handled;
+            ControllerAccessible = args.Accessible;
+        }
     }
 }

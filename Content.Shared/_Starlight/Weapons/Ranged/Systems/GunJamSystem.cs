@@ -1,7 +1,6 @@
 using Content.Shared._Starlight.Weapons.Ranged.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
-using Robust.Shared.Random;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
@@ -45,7 +44,8 @@ public sealed partial class GunJamSystem : EntitySystem
         if (ent.Comp.IsJammed)
             return;
 
-        if (!_gun.GetShotRandom(ent, JamSalt).Prob(ent.Comp.JamChance))
+        var random = _gun.GetShotRandom(ent, JamSalt);
+        if (!(random.NextDouble() < ent.Comp.JamChance))
             return;
 
         ent.Comp.IsJammed = true;

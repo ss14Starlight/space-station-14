@@ -225,7 +225,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
                 var gridCentre = Vector2.Transform(gridBody.LocalCenter, curGridToView);
 
-                var gridDistance = (gridBody.LocalCenter - xform.LocalPosition).Length();
+                var gridCentreWorld = Vector2.Transform(gridBody.LocalCenter, curGridToWorld); // Starlight
+                var gridDistance = (gridCentreWorld - mapPos.Position).Length(); // Starlight
                 var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName),
                     ("distance", $"{gridDistance:0.0}"));
 

@@ -1,12 +1,13 @@
+using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Client.Items;
 using Content.Client.Items.UI;
 using Content.Client.Message;
 using Content.Client.Power.Visualizers;
 using Content.Client.Stylesheets;
-using Content.Client._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Disposal.Tube;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Input;
 using Content.Shared.Inventory;
 using Content.Shared.SubFloor;
@@ -22,19 +23,20 @@ namespace Content.Client.SubFloor;
 
 public sealed partial class TrayScannerSystem : SharedTrayScannerSystem
 {
-    [Dependency] private IGameTiming _timing = default!; // starlight edit: removed readonly
-    [Dependency] private IPlayerManager _player = default!; // starlight edit: removed readonly
-    [Dependency] private AnimationPlayerSystem _animation = default!; // starlight edit: removed readonly
-    [Dependency] private EntityLookupSystem _lookup = default!; // starlight edit: removed readonly
-    [Dependency] private InventorySystem _inventory = default!; // starlight edit: removed readonly
-    [Dependency] private SharedAppearanceSystem _appearance = default!; // starlight edit: removed readonly
-    [Dependency] private SharedTransformSystem _transform = default!; // starlight edit: removed readonly
-    [Dependency] private SpriteSystem _sprite = default!; // starlight edit: removed readonly
-    [Dependency] private TrayScanRevealSystem _trayScanReveal = default!; // starlight edit: removed readonly
-    [Dependency] private IInputManager _inputManager = default!; // starlight edit: removed readonly
-    [Dependency] private EntityQuery<TrayScannerComponent> _trayScannerQuery = default!; // starlight edit: removed readonly
-    [Dependency] private EntityQuery<SubFloorHideComponent> _subFloorHideQuery = default!; // starlight edit: removed readonly
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private AnimationPlayerSystem _animation = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private TrayScanRevealSystem _trayScanReveal = default!;
+    [Dependency] private EntityQuery<TrayScannerComponent> _trayScannerQuery = default!;
+    [Dependency] private EntityQuery<SubFloorHideComponent> _subFloorHideQuery = default!;
     [Dependency] private RemoteControlInterface _remoteControl = default!; // Starlight
+    [Dependency] private IInputManager _inputManager = default!; // starlight edit: removed readonly
 
     private const string TRayAnimationKey = "trays";
     private const double AnimationLength = 0.3;

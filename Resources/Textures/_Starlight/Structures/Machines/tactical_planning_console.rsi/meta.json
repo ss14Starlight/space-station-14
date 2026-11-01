@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base",
+      "copyright": "Conflee"
+    },
+    {
+      "name": "powered",
+      "copyright": "Conflee",
+      "delays": [[0.3, 0.3, 0.3, 0.3]]
+    },
+    {
+      "name": "evil_powered",
+      "copyright": "Conflee",
+      "delays": [[0.3, 0.3, 0.3, 0.3]]
+    },
+    {
+      "name": "unpowered",
+      "copyright": "Conflee",
+      "delays": [[0.3, 0.3, 0.3, 0.3]]
+    }
+  ]
+}

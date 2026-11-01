@@ -18,7 +18,6 @@ reagent-physical-desc-highlander = immortal
 
 reagent-physical-desc-resinfera = spiny
 
-
 reagent-physical-desc-sawian = artificial
 
 reagent-physical-desc-starry-and-thick = thick and starry

@@ -255,6 +255,7 @@
   - type: SurgeryStepOrganExtract
     organ:
     - type: EyeImplant
+    slot: eye_implant # Starlight
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -296,6 +297,7 @@
   - type: SurgeryStepOrganExtract
     organ:
     - type: OrganEyes
+    slot: eyes # Starlight
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -325,6 +327,7 @@
   - type: SurgeryStepOrganExtract
     organ:
     - type: OrganTongue
+    slot: tongue # Starlight
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -363,9 +366,11 @@
   - type: SurgeryStep
     duration: 2
     tools:
-    - type: OrganTongue
+    - type: Item # Starlight
     bodyRemove:
     - type: Muted
+  - type: SurgeryItemSizeCondition # Starlight
+    size: Small # Starlight
   - type: SurgeryStepOrganInsert
     slot: tongue
   - type: Sprite
