@@ -73,6 +73,7 @@
   description: A cheaper subdermal implant that, when activated, teleports the user far away while leaving their equipment behind.
   categories: [ HideSpawnMenu ]
   components:
+  - type: BudgetBluespaceImplant
   - type: SubdermalImplant
     permanent: false
     implantAction: ActionActivateBudgetBluespaceImplant
