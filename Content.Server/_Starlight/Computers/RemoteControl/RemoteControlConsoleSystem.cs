@@ -1802,6 +1802,12 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         EntityUid controller,
         EntityUid? previousRelayEntity)
     {
+        if (HasBodyControl(controller, remoteEntity))
+        {
+            PopupRemoteControlMessage(
+                Loc.GetString("remote-control-target-already-controlled"), consoleUid, controller, previousRelayEntity);
+            return false;
+        }
         if (!HasComp<ActorComponent>(remoteEntity))
             return true;
 
