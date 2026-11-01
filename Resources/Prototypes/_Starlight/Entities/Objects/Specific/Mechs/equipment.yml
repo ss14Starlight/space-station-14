@@ -55,7 +55,7 @@
   id: MechEquipmentCamera
   parent: [ BaseMechEquipment, CombatMechEquipment ]
   name: mech night vision camera
-  description: night vision camera, allows you to switch the visor to night vision for increased visibility in poorly lit areas.
+  description: A night vision camera, allows you to switch the visor to night vision for increased visibility in poorly lit areas.
   components:
   - type: MechEquipment
     equipmentType: Passive
