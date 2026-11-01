@@ -146,10 +146,7 @@ public sealed partial class MindTests
         });
         await pair.RunTicksSync(200);
 
-        await pair.Server.WaitAssertion(() =>
-        {
-            Assert.That(notifications.Count(ai), Is.Zero);
-        });
+        await pair.Server.WaitAssertion(() => Assert.That(notifications.Count(ai), Is.Zero));
     }
 
     [Test]
