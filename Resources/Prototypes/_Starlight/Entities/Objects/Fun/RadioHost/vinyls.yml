@@ -1656,7 +1656,7 @@
     labelColor: "#35ffff"
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/hit_em.ogg
-      
+
 - type: entity
   parent: BaseVinylDisc
   id: VinylCryonauseogenesis
@@ -1690,7 +1690,7 @@
     labelColor: "#7eb389"
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/heartloose.ogg
-      
+
 - type: entity
   parent: BaseVinylDisc
   id: VinylPlasmaflare
