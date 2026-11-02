@@ -134,7 +134,7 @@ public sealed class TamperSealValueTest : GameTest
         var (station, crate) = await SpawnSealedCrate("Cargo", "Cargo");
 
         Assert.That(await Smash(crate), $"Tried to damage and break seal but hit did no damage!");
-        Assert.That(!crate.Comp.Opened || !crate.Comp.Destroyed, $"Made a critical amount of damage but seal isn't destroyed or opened!");
+        Assert.That(crate.Comp.Opened || crate.Comp.Destroyed, $"Made a critical amount of damage but seal isn't destroyed or opened!");
 
         await Server.WaitAssertion(() => Assert.That(Balance(station, "Cargo"), Is.EqualTo(StartingBalance)));
     }

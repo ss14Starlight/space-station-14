@@ -64,7 +64,7 @@ public sealed class LanguageTest : GameTest
                     var first = languages.ObfuscateSpeech(Message, language);
                     var second = languages.ObfuscateSpeech(Message, language);
 
-                    Assert.That(first, Is.Empty.Or.Null, $"Language {language.ID} returns Null or Empty after obfuscation!");
+                    Assert.That(first, Is.Not.Empty, $"Language {language.ID} returns Null or Empty after obfuscation!");
                     Assert.That(second, Is.EqualTo(first), $"Language {language.ID} obfuscates the same message differently.");
                     Assert.That(first, Does.Not.Contain(Message).IgnoreCase, $"Language {language.ID} does not hide the message.");
                 }

@@ -640,9 +640,9 @@ public sealed class PostMapInitTest : GameTest
                 var apcCount = 0;
                 while (apcQuery.MoveNext(out var uid, out var apc, out var battery, out var apcXform))
                 {
-                    apcCount++;
                     if (apcXform.MapID != mapId)
                         continue;
+                    apcCount++;
 
                     var where = xform.TryGetMapOrGridCoordinates(uid, out var coord)
                         ? $" ({coord.Value.X}, {coord.Value.Y})"
