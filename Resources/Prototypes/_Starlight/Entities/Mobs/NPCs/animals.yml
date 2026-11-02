@@ -184,6 +184,21 @@
               sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/spider.rsi
               map: ["enum.DamageStateVisualLayers.Base", "movement"]
               state: docile
+    - type: SpriteMovement
+      movementLayers:
+        movement:
+          state: docile-moving
+      noMovementLayers:
+        movement:
+          state: docile
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: docile
+        Critical:
+          Base: docile_dead
+        Dead:
+          Base: docile_dead
     - type: GhostRole
       makeSentient: true
       allowSpeech: true
