@@ -66,6 +66,19 @@
     cards:
     - RRCardTerminate
 
+#For Testing Antag Cars
+- type: entity
+  parent: BaseGameRule
+  id: RailroadingAntag
+  components:
+  - type: RailroadRule
+    preSpawnDelay: 1
+    delay: 1
+    cards:
+    - RRCardCriminal
+    - RRCardWar
+    - RRCardBounty
+
 - type: entity
   parent: BaseGameRule
   id: RailroadingMinor
@@ -83,6 +96,7 @@
 
     - RRCardCriminal
     - RRCardWar
+    - RRCardBounty
 
     # open mail
 

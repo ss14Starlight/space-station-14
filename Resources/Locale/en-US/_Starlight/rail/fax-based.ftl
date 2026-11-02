@@ -41,3 +41,63 @@ rr-criminal-failed-content =
 
 rr-nt-isd = NT ISD
 rr-cc = CentComm
+
+#Bounty
+
+rr-bounty = Bounty
+rr-bounty-desc = Taking that job may have pissed off the wrong people...
+
+rr-bounty-message = [italic]They promised as long as I dont get caught anytime soon for what I did, they'll wire the payment for the job, just need to stay on my toes and keep calm.[/italic]
+rr-bounty-wrapped-message = [italic]They promised as long as I don't get caught anytime soon for what I did, they'll wire the payment for the job, just need to stay on my toes and keep calm.[/italic]
+
+rr-bounty-letter-name = {$subject} Bounty
+rr-bounty-1-letter-content =
+                   [head=3]ITG Inter-Corporate Affairs Office[/head]
+    ─────────────────────────────────────────
+                                 [head=2][center][color=#fd3f3f][bold]Bounty Contract[/bold][/color][/center][/head]
+    ─────────────────────────────────────────
+    By Order of Boardmember █████████████
+
+    {$subject} has been issued as an ITG bounty to the sum of 1200 salvage tickets. {CAPITALIZE(SUBJECT($subject))} is considered a legal target for retributive justice, but is not to be considered criminally liable for corporate disturbance.
+
+    In accordance with the Inter-Corporate Charter, ITG operators are ordered to keep {OBJECT($subject)} alive, but may use force if necessary to detain the subject.
+
+    {$subject} [italic]must[/italic] be:
+    - [bold]Immedietly Handcuffed[/bold] (even if {SUBJECT($subject)} {CONJUGATE-BE($subject)} compliant)
+    - [bold]Interrogated aboard the ATS[/bold]
+
+    Failure to comply with this order may result in charges of incompetence and dismissal
+    ─────────────────────────────────────────
+   ⠀                                    [italic]Place for stamps[/italic]
+
+rr-bounty-failed-name = Succesful Retrieval of {$subject} Assets
+rr-bounty-failed-content = 
+                     [head=3]ITG Inter-Corporate Affairs Office[/head]
+    ─────────────────────────────────────────
+                                   [head=2][center][color=#fd3f3f][bold]Bounty Payment[/bold][/color][/center][/head]
+    ─────────────────────────────────────────
+    Regarding the case of {$subject}. We have received compensation for their violations from a secure account.
+
+    {$subject} is to be relieved of valueble goods and released.
+
+
+    This form may be slotted into your ticket vendor for payment.
+    ─────────────────────────────────────────
+   ⠀                                    [italic]Place for stamps[/italic] 
+
+rr-bounty-completed-name = Succesful Retrieval of {$subject} Assets
+rr-bounty-completed-content =
+                     [head=3]ITG Inter-Corporate Affairs Office[/head]
+    ─────────────────────────────────────────
+                                [head=2][center][color=#fd3f3f][bold]Bounty Nullification[/bold][/color][/center][/head]
+    ─────────────────────────────────────────
+    Regarding the case of {$subject}. The bounty order has been frozen due to a corporate injunction.
+
+    The bounty for {$subject} is to be considered null until further notice.
+
+
+    Due to the nullifcation, no payment will be issued.
+    ─────────────────────────────────────────
+   ⠀                                    [italic]Place for stamps[/italic]
+
+rr-itg = Inter-Stellar Trade Guild

@@ -20,9 +20,13 @@ public sealed partial class RailroadingFaxHandlerSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<RailroadFaxOnChosenComponent, RailroadingCardChosenEvent>(OnChosen);
         SubscribeLocalEvent<RailroadFaxOnFailedComponent, RailroadingCardFailedEvent>(OnFailed);
+        SubscribeLocalEvent<RailroadFaxOnCompletedComponent, RailroadingCardCompletedEvent>(OnCompleted);
     }
 
     private void OnFailed(Entity<RailroadFaxOnFailedComponent> ent, ref RailroadingCardFailedEvent args)
+        => SendFax(ent.Comp, args.Subject);
+
+    private void OnCompleted(Entity<RailroadFaxOnCompletedComponent> ent, ref RailroadingCardCompletedEvent args)
         => SendFax(ent.Comp, args.Subject);
 
     private void OnChosen(Entity<RailroadFaxOnChosenComponent> ent, ref RailroadingCardChosenEvent args)
