@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 using Content.Shared.StatusEffect;
 
 namespace Content.Shared.Electrocution;

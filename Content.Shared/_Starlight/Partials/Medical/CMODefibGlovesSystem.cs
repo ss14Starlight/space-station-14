@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 using Content.Shared.Actions;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Containers.ItemSlots;
@@ -240,8 +241,8 @@ public sealed partial class CMODefibGlovesSystem : EntitySystem
     private bool CanZap(EntityUid gloves, EntityUid target, EntityUid wearer)
     {
         return _toggle.IsActivated(gloves) && HasComp<MobStateComponent>(target) &&
-               !IsInsulated(target, gloves) &&
-               _powerCell.HasActivatableCharge(gloves, user: wearer, predicted: true);
+                !IsInsulated(target, gloves) &&
+                _powerCell.HasActivatableCharge(gloves, user: wearer, predicted: true);
     }
 
     private bool IsInsulated(EntityUid target, EntityUid source)

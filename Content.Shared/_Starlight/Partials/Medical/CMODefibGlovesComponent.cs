@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
