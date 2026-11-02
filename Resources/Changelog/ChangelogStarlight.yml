@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) Replaced the arcade cabinet spawners in Genpop with regular variants, rather than spawners.
-    type: Fix
-  id: 409646
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
   - message: (Downpour) Medical cryopods are now connected to distro.
     type: Fix
   id: 409647
@@ -2799,4 +2792,11 @@ Entries:
   id: 410045
   time: '2026-11-02T11:56:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6983
+- author: baltdev
+  changes:
+  - message: Added a slightly rare docile giant spider ghostrole. This can appear in maints or from the random vent creatures event.
+    type: Add
+  id: 410046
+  time: '2026-11-02T13:49:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7008
 Order: -1
