@@ -1,34 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) Medical cryopods are now connected to distro.
-    type: Fix
-  id: 409647
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) CMO's office APC is now connected to LV.
-    type: Fix
-  id: 409648
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) Useless button in Psychology.
-    type: Remove
-  id: 409649
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) Cargo front now has LV.
-    type: Fix
-  id: 409650
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
   - message: (Downpour) An extra Scientist and Roboticist job slot and spawn.
     type: Add
   id: 409651
@@ -2799,4 +2771,32 @@ Entries:
   id: 410046
   time: '2026-11-02T13:49:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7008
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Added a new outcome to the glyph of blades, the astral razor. It's a scythe that when wielded, shoots a projectile. If you hit someone with this projectile and then hit them with a followup attack shortly after, you deal massive damage, making this an ideal skirmisher weapon.
+    type: Add
+  id: 410047
+  time: '2026-11-02T14:11:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7000
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Non-cultists can no longer see the sleeping icon on shunted players. You can still tell something is off as a non-cultist by closely inspecting them.
+    type: Tweak
+  id: 410048
+  time: '2026-11-02T14:11:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7000
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Refined glyph of blades/warding transmutation logic. No longer stops transmutation when multiple eligible items are present. It prioritizes a transmutable item in the triggering player's hand, else it picks a random one on the glyph.
+    type: Tweak
+  id: 410049
+  time: '2026-11-02T14:11:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7000
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: The Monument no longer triggers light sensitivity and night vision effects on shadekin, even when they weren't cultists and couldn't see it.
+    type: Fix
+  id: 410050
+  time: '2026-11-02T14:11:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7000
 Order: -1
