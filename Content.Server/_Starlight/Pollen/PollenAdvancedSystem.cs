@@ -35,6 +35,8 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroup = "Brute";
     private static readonly ProtoId<DamageGroupPrototype> _burnGroup = "Burn";
 
+    private readonly HashSet<EntityUid> _nearby = new();
+
     public override void Initialize()
     {
         base.Initialize();
@@ -133,13 +135,14 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
 
     private void CheckAdvancedPollenInteraction(EntityUid cloudUid, PollenAdvancedPollenComponent cloud, TransformComponent cloudXform)
     {
-        var nearby = _lookup.GetEntitiesInRange(cloudXform.Coordinates, cloud.CheckRange);
+        _nearby.Clear();
+        _lookup.GetEntitiesInRange(cloudXform.Coordinates, cloud.CheckRange, _nearby);
 
         EntityUid? diona = null;
         EntityUid? allergic = null;
         EntityUid? minded = null;
 
-        foreach (var candidate in nearby)
+        foreach (var candidate in _nearby)
         {
             if (candidate == cloudUid)
                 continue;
