@@ -12,6 +12,8 @@ on:
   pull_request:
     paths:
       - '**.rsi/**'
+      - 'Tools/Schemas/validate_rsis.py'
+      - 'Content.IntegrationTests/_Starlight/Patches/RsiLoadingPatch.cs'
 
 jobs:
   validate_rsis:

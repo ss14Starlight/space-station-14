@@ -77,7 +77,9 @@ public sealed class LanguageTest : GameTest
     {
         var map = await Pair.CreateTestMap();
         var languages = Server.System<LanguageSystem>();
-        var species = SProtoMan.EnumeratePrototypes<SpeciesPrototype>().Where(s => s.RoundStart).ToList();
+        var species = SProtoMan.EnumeratePrototypes<SpeciesPrototype>().Where(s => s.RoundStart).ToArray();
+
+        Assert.That(species.Length, Is.GreaterThan(0), "No round-start species found.");
 
         await Server.WaitAssertion(() =>
         {
