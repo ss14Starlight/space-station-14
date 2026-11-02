@@ -169,13 +169,28 @@
   suffix: Passive, Ghost Role
   description: It seems a little more docile than the others. Maybe still keep your fingers clear.
   components:
+    - type: OptionsVisualizer
+      visuals:
+        base:
+          - options: Default
+            data:
+              drawdepth: Mobs
+              sprite: _Starlight/Mobs/Animals/Spiders/docile.rsi
+              map: ["enum.DamageStateVisualLayers.Base", "movement"]
+              state: tarantula
+          - options: Arachnophobia
+            data:
+              drawdepth: Mobs
+              sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/spider.rsi
+              map: ["enum.DamageStateVisualLayers.Base", "movement"]
+              state: docile
     - type: GhostRole
       makeSentient: true
       allowSpeech: true
       allowMovement: true
       name: ghost-role-information-giant-spider-name
       description: ghost-role-information-giant-spider-passive-description
-      rules: ghost-role-information-freeagent-rules
+      rules: ghost-role-information-nonantagonist-rules
       mindRoles:
         - MindRoleGhostRoleCritterHarmless
     - type: GhostTakeoverAvailable
