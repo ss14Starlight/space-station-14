@@ -34,7 +34,7 @@
   - type: ToggleClothingPrefix
   - type: ToggleCellDraw
   - type: PowerCellDraw
-    drawRate: 0.3
+    drawRate: 0.5
     useCharge: 100
   - type: Defibrillator
     zapHeal:
@@ -45,7 +45,7 @@
   - type: StealTarget
     stealGroup: CMODefibGloves
   - type: BatteryDrainer
-    drainEfficiency: 0.05
+    drainEfficiency: 0.005
   - type: DoAfter
   - type: MeleeWeapon
     attackRate: 1.5
