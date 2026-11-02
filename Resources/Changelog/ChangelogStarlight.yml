@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) An extra Scientist and Roboticist job slot and spawn.
-    type: Add
-  id: 409651
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
   - message: (Downpour) Moved the AME controller to make it obvious that it needs to be moved.
     type: Tweak
   id: 409652
@@ -2799,4 +2792,11 @@ Entries:
   id: 410050
   time: '2026-11-02T14:11:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7000
+- author: Ohelig
+  changes:
+  - message: Fixes spawning with handheld station radio trinket.
+    type: Fix
+  id: 410051
+  time: '2026-11-02T16:25:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7015
 Order: -1
