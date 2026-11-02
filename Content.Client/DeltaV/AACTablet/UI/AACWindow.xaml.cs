@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Content.Client.UserInterface.Controls;
@@ -14,65 +16,142 @@ namespace Content.Client.DeltaV.AACTablet.UI;
 public sealed partial class AACWindow : FancyWindow
 {
     private IPrototypeManager _prototypeManager;
+    private readonly ILocalizationManager _loc;
+    private readonly List<QuickPhrasePrototype> _allPhrases;
+
     public event Action<string>? PhraseButtonPressed;
+
+    private string _currentFilter = string.Empty;
 
     public AACWindow(AACBoundUserInterface ui, IPrototypeManager prototypeManager)
     {
         RobustXamlLoader.Load(this);
         _prototypeManager = prototypeManager;
-        PopulateGui(ui);
+        _loc = IoCManager.Resolve<ILocalizationManager>();
+
+        _allPhrases = _prototypeManager.EnumeratePrototypes<QuickPhrasePrototype>().ToList();
+        // Keep order for initial grouping
+        _allPhrases.Sort((a, b) => string.CompareOrdinal(a.Group, b.Group));
+
+        SearchBar.OnTextChanged += OnSearchTextChanged;
+        SearchBar.OnTextEntered += _ => SearchBar.ReleaseKeyboardFocus();
+
+        // Build all tabs initially
+        RebuildTabs();
     }
 
-    private void PopulateGui(AACBoundUserInterface ui)
+    private void OnSearchTextChanged(LineEdit.LineEditEventArgs obj)
     {
-        var loc = IoCManager.Resolve<ILocalizationManager>();
-        var phrases = _prototypeManager.EnumeratePrototypes<QuickPhrasePrototype>().ToList();
+        _currentFilter = obj.Text ?? string.Empty;
+        RebuildTabs();
+    }
 
-        // take ALL phrases and turn them into tabs and groups, so the buttons are sorted and tabbed
-        var sortedTabs = phrases
+    private void RebuildTabs()
+    {
+        WindowBody.DisposeAllChildren(); // Yeet.
+
+        var isEmpty = string.IsNullOrWhiteSpace(_currentFilter);
+
+        IEnumerable<QuickPhrasePrototype> filtered = _allPhrases;
+        if (!isEmpty)
+        {
+            filtered = _allPhrases.Where(p =>
+            {
+                var text = _loc.GetString(p.Text);
+                var group = _loc.GetString(p.Group);
+                var tab = _loc.GetString(p.Tab);
+
+                // Find phrases, groups, or tabs that match
+                return text.Contains(_currentFilter, StringComparison.CurrentCultureIgnoreCase)
+                    || group.Contains(_currentFilter, StringComparison.CurrentCultureIgnoreCase)
+                    || tab.Contains(_currentFilter, StringComparison.CurrentCultureIgnoreCase);
+            });
+        }
+
+        var filteredList = filtered.ToList();
+        if (filteredList.Count == 0)
+        {
+            var emptyLabel = new Label
+            {
+                Text = Loc.GetString($"No results for '{_currentFilter}'"),
+                HorizontalAlignment = HAlignment.Center,
+                Margin = new Thickness(10, 20)
+            };
+            // Add a single tab to show the empty state
+            var emptyBox = new BoxContainer
+            {
+                Orientation = BoxContainer.LayoutOrientation.Vertical,
+                VerticalExpand = true,
+                HorizontalExpand = true
+            };
+            emptyBox.AddChild(emptyLabel);
+            var emptyScroll = new ScrollContainer { HorizontalExpand = true, VerticalExpand = true };
+            emptyScroll.AddChild(emptyBox);
+            WindowBody.AddChild(emptyScroll);
+            WindowBody.SetTabTitle(0, Loc.GetString("Search"));
+            return;
+        }
+
+        // Re-group: Tab, then Group, then sorted phrases
+        var sortedTabs = filteredList
             .GroupBy(p => p.Tab)
-            .OrderBy(g => g.Key)
+            .OrderBy(g => _loc.GetString(g.Key))
             .ToDictionary(
                 g => g.Key,
                 g => g.GroupBy(p => p.Group)
-                    .OrderBy(gg => gg.Key)
+                    .OrderBy(gg => _loc.GetString(gg.Key))
                     .ToDictionary(
                         gg => gg.Key,
-                        gg => gg.OrderBy(p => loc.GetString(p.Text)).ToList()
+                        gg => gg.OrderBy(p => _loc.GetString(p.Text)).ToList()
                     )
             );
 
-        var tabContainer = CreateTabContainer(sortedTabs);
-        WindowBody.AddChild(tabContainer);
-    }
-
-    private TabContainer CreateTabContainer(Dictionary<string, Dictionary<string, List<QuickPhrasePrototype>>> sortedTabs)
-    {
-        var tabContainer = new TabContainer();
-        var loc = IoCManager.Resolve<ILocalizationManager>();
-
         foreach (var tab in sortedTabs)
         {
-            var tabName = loc.GetString(tab.Key);
+            // Show the tabs that met the filter
+            var tabName = _loc.GetString(tab.Key);
             var boxContainer = CreateBoxContainerForTab(tab.Value);
-            tabContainer.AddChild(boxContainer);
-            tabContainer.SetTabTitle(tabContainer.ChildCount - 1, tabName);
+            var scroll = new ScrollContainer
+            {
+                HScrollEnabled = false,
+                VerticalExpand = true,
+                HorizontalExpand = true,
+                MouseFilter = MouseFilterMode.Pass
+            };
+            scroll.AddChild(boxContainer);
+            WindowBody.AddChild(scroll);
+            WindowBody.SetTabTitle(WindowBody.ChildCount - 1, tabName);
         }
 
-        return tabContainer;
+        // If filtering, auto-select first tab with results
+        if (!isEmpty && WindowBody.ChildCount > 0)
+        {
+            WindowBody.CurrentTab = 0;
+        }
     }
 
     private BoxContainer CreateBoxContainerForTab(Dictionary<string, List<QuickPhrasePrototype>> groups)
     {
-        var boxContainer = new BoxContainer()
+        var boxContainer = new BoxContainer
         {
             HorizontalExpand = true,
+            VerticalExpand = true,
+            MouseFilter = MouseFilterMode.Pass,
             Orientation = BoxContainer.LayoutOrientation.Vertical
         };
 
         foreach (var group in groups)
         {
+            var groupName = _loc.GetString(group.Key);
+            var header = new Label
+            {
+                Text = groupName,
+                Margin = new Thickness(10, 10, 10, 0),
+                StyleClasses = { "LabelBig" }
+            };
+
             var buttonContainer = CreateButtonContainerForGroup(group.Value);
+            boxContainer.AddChild(header);
             boxContainer.AddChild(buttonContainer);
         }
 
@@ -81,28 +160,27 @@ public sealed partial class AACWindow : FancyWindow
 
     private GridContainer CreateButtonContainerForGroup(List<QuickPhrasePrototype> phrases)
     {
-        var loc = IoCManager.Resolve<ILocalizationManager>();
         var buttonContainer = CreateButtonContainer();
         foreach (var phrase in phrases)
         {
-            var text = loc.GetString(phrase.Text);
+            var text = _loc.GetString(phrase.Text);
             var button = CreatePhraseButton(text, phrase.StyleClass);
-            button.OnPressed += _ => OnPhraseButtonPressed(phrase.ID);
+            // Capture ID
+            var id = phrase.ID;
+            button.OnPressed += _ => OnPhraseButtonPressed(id);
             buttonContainer.AddChild(button);
         }
         return buttonContainer;
     }
 
-    private static GridContainer CreateButtonContainer()
+    private static GridContainer CreateButtonContainer() => new GridContainer
     {
-        var buttonContainer = new GridContainer
-        {
-            Margin = new Thickness(10),
-            Columns = 4
-        };
-
-        return buttonContainer;
-    }
+        Margin = new Thickness(10),
+        HorizontalExpand = true,
+        VerticalExpand = true,
+        MouseFilter = MouseFilterMode.Pass,
+        Columns = 4
+    };
 
     private static Button CreatePhraseButton(string text, string styleClass)
     {
@@ -113,6 +191,7 @@ public sealed partial class AACWindow : FancyWindow
             MaxSize = new Vector2(buttonWidth, buttonWidth),
             ClipText = false,
             HorizontalExpand = true,
+            VerticalExpand = false,
             StyleClasses = { styleClass }
         };
 
@@ -129,15 +208,15 @@ public sealed partial class AACWindow : FancyWindow
 
     private static int GetButtonWidth()
     {
-        var spaceWidth = 10;
-        var parentWidth = 540;
-        var columnCount = 4;
+        const int spaceWidth = 10;
+        const int parentWidth = 540;
+        const int columnCount = 4;
 
         var paddingSize = spaceWidth * 2;
-        var gutterScale = (columnCount - 1) / columnCount;
-        var columnWidth = (parentWidth - paddingSize) / columnCount;
+        var gutterScale = (columnCount - 1f) / columnCount;
+        var columnWidth = (parentWidth - paddingSize) / (float)columnCount;
         var buttonWidth = columnWidth - spaceWidth * gutterScale;
-        return buttonWidth;
+        return (int)buttonWidth;
     }
 
     private void OnPhraseButtonPressed(string phraseId)

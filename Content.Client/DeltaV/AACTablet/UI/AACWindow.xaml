@@ -1,9 +1,11 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     Title="{Loc 'aac-tablet-title'}"
-    Resizable="False"
+    Resizable="True"
     SetSize="540 300"
     MinSize="540 300">
-    <ScrollContainer HScrollEnabled="False" Name="WindowBody">
-    </ScrollContainer>
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="4">
+        <LineEdit Name="SearchBar" PlaceHolder="Search phrases, groups, or tabs..." HorizontalExpand="True" Margin="4 4 4 4" />
+        <TabContainer Name="WindowBody" VerticalExpand="True" HorizontalExpand="True" />
+    </BoxContainer>
 </controls:FancyWindow>
