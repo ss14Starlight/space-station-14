@@ -66,6 +66,9 @@ public sealed partial class ScentSystem : SharedScentSystem
     private const string ScentMarkerPrototype = "ScentMarker";
     private const int ScentIdByteLength = 8;
 
+    private readonly HashSet<Entity<ScentMarkerComponent>> _nearbyMarkers = new();
+    private readonly List<(string Id, bool IsPollen)> _scentChoices = new();
+
     public override void Initialize()
     {
         base.Initialize();
@@ -525,21 +528,21 @@ public sealed partial class ScentSystem : SharedScentSystem
         if (!TryComp<PollenCollectorComponent>(uid, out var collector))
             return (PickNormalScent(scent), false);
 
-        var scents = new List<(string Id, bool IsPollen)>();
+        _scentChoices.Clear();
 
         if (scent.ScentId is { } ownScent)
-            scents.Add((ownScent, false));
+            _scentChoices.Add((ownScent, false));
 
         foreach (var (pollenId, collected) in collector.Pollen)
         {
             if (collected)
-                scents.Add((pollenId, true));
+                _scentChoices.Add((pollenId, true));
         }
 
-        if (scents.Count == 0)
+        if (_scentChoices.Count == 0)
             return (null, false);
 
-        return _random.Pick(scents);
+        return _random.Pick(_scentChoices);
     }
 
     private string? PickNormalScent(ScentComponent scent)
@@ -588,7 +591,10 @@ public sealed partial class ScentSystem : SharedScentSystem
         if (isPollen)
         {
             var pollenDecayTime = GetDecayTime(scent, uid);
-            var pollenMarker = EmitPollenMarker(ref scent.LastMarkerEntity, uid, scentId, xform, pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
+
+            // Pollen markers aren't part of this entity's own trail, so they never become its tail.
+            EntityUid? pollenTail = null;
+            var pollenMarker = EmitPollenMarker(ref pollenTail, uid, scentId, xform, pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
 
             if (!pollenMarker.IsValid())
                 return;
@@ -621,7 +627,9 @@ public sealed partial class ScentSystem : SharedScentSystem
         var despawn = Comp<TimedDespawnComponent>(marker);
         despawn.Lifetime = (float)decayTime.TotalSeconds;
 
-        scent.LastMarkerEntity = marker;
+        // Only a personal scent extends this entity's own trail.
+        if (scentId == scent.ScentId)
+            scent.LastMarkerEntity = marker;
     }
 
     // Fully encased in pressure-protective gear - a sealed hardsuit/EVA setup. Nothing is
@@ -671,63 +679,94 @@ public sealed partial class ScentSystem : SharedScentSystem
         holder.CurrentTube is not { } tube ||
         !HasComp<VentCrawlEntryComponent>(tube));
 
-    // Merges into a nearby marker with the same scent ID, rather than only our own chain tail.
-    // This prevents multiple entities emitting the same scent from creating overlapping markers.
+    // A personal scent only merges into our own chain tail, never any other nearby marker. Revisiting
+    // an old spot would otherwise rewrite the trail's visit order. Shared scents can come from several
+    // entities, so they merge into any nearby marker with the same ID.
     private bool TryMergeIntoExisting(Entity<ScentComponent, TransformComponent> ent, string scentId)
     {
         var (uid, scent, xform) = ent;
         var container = GetAirtightContainer(xform);
-        EntityUid? matchingMarker = null;
 
-        // Search the area for an existing ordinary scent marker with the same ID.
-        // Pollen markers are handled separately by EmitPollenMarker().
-        foreach (var candidate in _lookup.GetEntitiesInRange(xform.Coordinates, scent.MergeRadius))
-        {
-            if (!TryComp<ScentMarkerComponent>(candidate, out var marker) ||
-                marker.IsPollen ||
-                marker.ScentId != scentId ||
-                marker.ContainedIn != container ||
-                !TryComp(candidate, out TransformComponent? markerXform) ||
-                !_transform.InRange(xform.Coordinates, markerXform.Coordinates, scent.MergeRadius))
-                continue;
+        var match = scentId == scent.ScentId
+            ? GetMergeableTail(scent, xform, scentId, container)
+            : FindNearbySharedMarker(xform, scent.MergeRadius, scentId, container);
 
-            // Select the same marker consistently, regardless of which emitter finds it first.
-            if (matchingMarker is not { } current || candidate.CompareTo(current) < 0)
-                matchingMarker = candidate;
-        }
-
-        if (matchingMarker is not { } tail ||
-            !TryComp<ScentMarkerComponent>(tail, out var existingMarker))
+        if (match is not { } existing)
             return false;
 
-        // Refresh the nearby marker instead of spawning another one.
+        var (markerUid, marker) = existing;
         var decayTime = GetDecayTime(scent, uid);
 
-        existingMarker.Strength = Math.Min(1f, existingMarker.Strength + scent.MergeStrengthStep);
-        existingMarker.ExpiresAt = _timing.CurTime + decayTime;
-        existingMarker.TotalDuration = decayTime;
-        existingMarker.ContainedIn = container;
-        existingMarker.WasDead = MobState.IsDead(uid);
-        existingMarker.WasCloaked = IsCloaked(uid);
-        Dirty(tail, existingMarker);
+        marker.Strength = Math.Min(1f, marker.Strength + scent.MergeStrengthStep);
+        marker.ExpiresAt = _timing.CurTime + decayTime;
+        marker.TotalDuration = decayTime;
+        marker.ContainedIn = container;
+        marker.WasDead = MobState.IsDead(uid);
+        marker.WasCloaked = IsCloaked(uid);
+        Dirty(markerUid, marker);
 
-        if (TryComp<TimedDespawnComponent>(tail, out var despawn))
+        if (TryComp<TimedDespawnComponent>(markerUid, out var despawn))
             despawn.Lifetime = (float)decayTime.TotalSeconds;
-
-        // Keep our cached reference pointed at the shared marker.
-        scent.LastMarkerEntity = tail;
 
         return true;
     }
 
+    private Entity<ScentMarkerComponent>? GetMergeableTail(ScentComponent scent, TransformComponent xform, string scentId,
+        EntityUid? container)
+    {
+        // Skips a tail from before the scent changed (e.g. washing) or from outside our current container.
+        if (scent.LastMarkerEntity is not { } tail ||
+            !TryComp<ScentMarkerComponent>(tail, out var marker) ||
+            marker.ScentId != scentId ||
+            marker.ContainedIn != container ||
+            !TryComp(tail, out TransformComponent? tailXform) ||
+            !_transform.InRange(xform.Coordinates, tailXform.Coordinates, scent.MergeRadius))
+        {
+            return null;
+        }
+
+        return new Entity<ScentMarkerComponent>(tail, marker);
+    }
+
+    private Entity<ScentMarkerComponent>? FindNearbySharedMarker(TransformComponent xform, float radius,
+        string scentId, EntityUid? container)
+    {
+        Entity<ScentMarkerComponent>? match = null;
+
+        GetNearbyMarkers(xform.Coordinates, radius, _nearbyMarkers);
+        foreach (var (candidate, marker) in _nearbyMarkers)
+        {
+            if (marker.IsPollen ||
+                marker.ScentId != scentId ||
+                marker.ContainedIn != container ||
+                !TryComp(candidate, out TransformComponent? markerXform) ||
+                !_transform.InRange(xform.Coordinates, markerXform.Coordinates, radius))
+                continue;
+
+            // Select the same marker consistently, regardless of which emitter finds it first.
+            if (match is not { } current || candidate.CompareTo(current.Owner) < 0)
+                match = new Entity<ScentMarkerComponent>(candidate, marker);
+        }
+
+        return match;
+    }
+
+    // Markers have no physics and always spawn on a grid or map, never in a container,
+    // so the sundries tree is the only one they can be in.
+    public void GetNearbyMarkers(EntityCoordinates coordinates, float range, HashSet<Entity<ScentMarkerComponent>> markers)
+    {
+        markers.Clear();
+        _lookup.GetEntitiesInRange(coordinates, range, markers, LookupFlags.Sundries);
+    }
+
     /// <summary>
-    /// Emits or refreshes a pollen marker for an emitter. Searches within mergeRadius
-    /// for a pollen marker with the same pollenId and airtight container, and refreshes
-    /// the lowest-ID match. Otherwise spawns a new marker. The result is stored in lastMarker.
+    /// Emits or refreshes a pollen marker for an emitter. Refreshes lastMarker if it still has the
+    /// same pollenId and airtight container and is within mergeRadius. Otherwise searches within
+    /// mergeRadius for such a marker and refreshes the lowest-ID match, or spawns a new marker.
+    /// The result is stored in lastMarker.
     /// </summary>
     /// <param name="lastMarker">
     /// The emitter's cached last-marker reference (e.g. EmitPollenComponent.LastMarkerEntity).
-    /// Updated in place when a new marker is spawned.
     /// </param>
     /// <returns>The marker entity now associated with this emitter.</returns>
     public EntityUid EmitPollenMarker(ref EntityUid? lastMarker, EntityUid emitterUid, string pollenId,
@@ -740,13 +779,27 @@ public sealed partial class ScentSystem : SharedScentSystem
         }
 
         var container = GetAirtightContainer(emitterXform);
+
+        // Most emitters don't move, so their last marker is usually still in range.
+        if (lastMarker is { } cached &&
+            TryComp<ScentMarkerComponent>(cached, out var cachedMarker) &&
+            cachedMarker.IsPollen &&
+            cachedMarker.ScentId == pollenId &&
+            cachedMarker.ContainedIn == container &&
+            TryComp(cached, out TransformComponent? cachedXform) &&
+            _transform.InRange(emitterXform.Coordinates, cachedXform.Coordinates, mergeRadius))
+        {
+            RefreshPollenMarker(cached, cachedMarker, container, lifetime, mergeStrengthStep);
+            return cached;
+        }
+
         EntityUid? matchingMarker = null;
 
-        // Select the same matching marker consistently, regardless of each emitter's cached reference.
-        foreach (var candidate in _lookup.GetEntitiesInRange(emitterXform.Coordinates, mergeRadius))
+        // Pick the lowest ID so nearby emitters settle on the same marker.
+        GetNearbyMarkers(emitterXform.Coordinates, mergeRadius, _nearbyMarkers);
+        foreach (var (candidate, marker) in _nearbyMarkers)
         {
-            if (!TryComp<ScentMarkerComponent>(candidate, out var marker) ||
-                !marker.IsPollen ||
+            if (!marker.IsPollen ||
                 marker.ScentId != pollenId ||
                 marker.ContainedIn != container ||
                 !TryComp(candidate, out TransformComponent? markerXform) ||

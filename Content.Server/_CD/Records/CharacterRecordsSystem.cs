@@ -64,15 +64,23 @@ public sealed partial class CharacterRecordsSystem : EntitySystem
             return;
         }
 
-        if (HasComp<SkipLoadingCharacterRecordsComponent>(args.Mob))
+        // Starlight-start: mobs that skip profile records (e.g. K9s) still get a blank record if they have a station
+        // record, so security consoles can select them, e.g. to clear a Wanted status.
+        var skipProfileRecords = HasComp<SkipLoadingCharacterRecordsComponent>(args.Mob);
+        if (skipProfileRecords && FindStationRecordsKey(args.Mob) == null)
             return;
+        // Starlight-end
 
         var profile = args.Profile;
 
         // Use the player's saved records when available; otherwise seed with the default template.
-        var profileRecords = profile.CDCharacterRecords ?? PlayerProvidedCharacterRecords.DefaultRecords();
+        var profileRecords = skipProfileRecords // Starlight-edit: their profile's records belong to their other character
+            ? PlayerProvidedCharacterRecords.DefaultRecords()
+            : profile.CDCharacterRecords ?? PlayerProvidedCharacterRecords.DefaultRecords();
 
-        if (!CharacterRecordSizeHelper.TryCalculateMetrics(profile, _prototype, out var derivedHeight, out var derivedWeight))
+        if (skipProfileRecords) // Starlight-edit: 0 shows as unknown; their profile's size belongs to their other character
+            profileRecords = profileRecords.WithHeight(0).WithWeight(0);
+        else if (!CharacterRecordSizeHelper.TryCalculateMetrics(profile, _prototype, out var derivedHeight, out var derivedWeight))
         {
             // Fall back to whatever the profile already stored if we cannot resolve the species sizing data.
             Sawmill.Warning($"Failed to resolve species sizing while constructing records for {profile.Name}. Using stored values.");
@@ -110,7 +118,9 @@ public sealed partial class CharacterRecordsSystem : EntitySystem
         // Resolve a readable species display name:
         // - If a custom species name is set and differs from the base, show "Custom (Base)".
         // - Otherwise show only the base display (localized if possible).
-        var speciesName = GetReadableSpeciesName(profile);
+        var speciesName = skipProfileRecords // Starlight-edit: e.g. "security K9", not their other character's species
+            ? MetaData(player).EntityPrototype?.Name ?? UnknownSpeciesDisplay
+            : GetReadableSpeciesName(profile);
 
         var chosenName = MetaData(player).EntityName; // Starlight
 
@@ -119,7 +129,7 @@ public sealed partial class CharacterRecordsSystem : EntitySystem
             pRecords: new PlayerProvidedCharacterRecords(profileRecords),
             stationRecordsKey: stationRecordsKey?.Id,
             name: chosenName, // Starlight
-            age: profile.Age,
+            age: skipProfileRecords ? 0 : profile.Age, // Starlight-edit: 0 shows as unknown
             species: speciesName,
             jobTitle: jobTitle,
             jobIcon: jobPrototype.Icon,

@@ -1,0 +1,15 @@
+# displacementSize 63.5 makes each red/green channel step move headwear
+# half a pixel, allowing odd-width hats to be centred on even-width heads.
+- type: shader
+  id: BorgHeadwearDisplacedDraw
+  kind: source
+  path: /Textures/Shaders/displacement.swsl
+  params:
+    displacementSize: 63.5
+
+- type: shader
+  id: BorgHeadwearDisplacedDrawUnshaded
+  kind: source
+  path: /Textures/Shaders/displacement_unshaded.swsl
+  params:
+    displacementSize: 63.5
