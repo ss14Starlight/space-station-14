@@ -182,6 +182,14 @@
   - type: NavMapBeacon
     defaultText: station-beacon-radio-host
 
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconArtist
+  suffix: Artist Studio
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-artist
+
  # Common Areas
 - type: entity
   parent: DefaultStationBeacon

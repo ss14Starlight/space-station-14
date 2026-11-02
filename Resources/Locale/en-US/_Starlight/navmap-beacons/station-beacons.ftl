@@ -17,6 +17,7 @@ station-beacon-breakroom-service = Service Break Room
 station-beacon-clown = Clown
 station-beacon-mime = Mime
 station-beacon-musician = Musician
+station-beacon-artist = Artist Studio
 station-beacon-lawyer = Lawyer
 station-beacon-janitor-cleaning-closet = Cleaning Closet
 station-beacon-washrooms = Washrooms

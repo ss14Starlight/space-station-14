@@ -167,7 +167,7 @@
       requirement:
         !type:RoleTimeRequirement
         role: JobArtist
-        time: 36000 # 10 hours for slow recharging spray painter, playtime reward as its typically borg only. 
+        time: 36000 # 10 hours for slow recharging spray painter, playtime reward as its typically borg only.
   storage:
     back:
       - SprayPainterBorg

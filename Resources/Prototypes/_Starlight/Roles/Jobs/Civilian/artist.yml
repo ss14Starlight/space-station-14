@@ -18,8 +18,21 @@
   - Clown
   - Mime
   - Journalism
+  - Artist
 
 - type: startingGear
   id: ArtistGear
   equipment:
     ears: ClothingHeadsetService
+
+- type: chameleonOutfit
+  id: ArtistChameleonOutfit
+  job: Artist
+  equipment:
+    head: ClothingHeadHatBeret
+    eyes: ClothingEyesGlassesSunglasses
+    mask: ClothingMaskBreath
+    neck: ClothingNeckScarfStripedBlack
+    jumpsuit: ClothingUniformTurtleneckColorBlack
+    outerClothing: ClothingOuterWinterMime
+    gloves: ClothingHandsGlovesColorBlack

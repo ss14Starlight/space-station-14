@@ -338,6 +338,22 @@
     - type: AccessReader
       access: [["Janitor"]]
 
+# Artist
+- type: entity
+  id: LockerArtist
+  name: artist locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: generic
+      stateDoorOpen: generic_open
+      stateDoorClosed: artist_door
+    - type: AccessReader
+      access: [["Artist"]]
+
 # ERT version
 - type: entity
   id: LockerJanitorCC

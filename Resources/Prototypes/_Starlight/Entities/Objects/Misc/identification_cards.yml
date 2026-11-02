@@ -1126,7 +1126,7 @@
       state: Artist
   - type: PresetIdCard
     job: Artist
-    
+
 - type: entity
   parent: IDCardStandard
   id: EmotionalSupportScurretIDCard

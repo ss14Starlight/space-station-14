@@ -110,7 +110,6 @@
   id: JobEmotionalSupportScurret
 
 # Other ghosts
-
 - type: playTimeTracker
   id: GhostPAI
   name: pai-system-role-name

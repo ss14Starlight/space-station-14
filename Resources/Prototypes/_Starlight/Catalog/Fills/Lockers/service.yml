@@ -62,3 +62,28 @@
       prob: 0.02
     - id: JailFree
       prob: 0.5
+
+- type: entityTable
+  id: FillLockerArtist
+  table: !type:AllSelector
+    children:
+    - id: ClothingUniformTurtleneckColorBlack
+    - id: ClothingHeadHatBeret
+    - id: ClothingHeadsetService
+    - id: CrayonBox
+    - id: SprayPainter
+    - id: SprayPainterAmmo
+    - id: SprayPainterAmmo
+    - id: BlankCanvas
+    - id: PlushieRGBee
+      prob: 0.01
+
+- type: entity
+  id: LockerArtistFilled
+  suffix: Filled
+  parent: LockerArtist
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerArtist

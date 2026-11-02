@@ -26,6 +26,7 @@ id-card-access-level-cadet = Cadet
 # Service
 id-card-access-level-clown = Clown
 id-card-access-level-mime = Mime
+id-card-access-level-artist = Artist
 
 # Medical
 id-card-access-level-surgery = Surgery

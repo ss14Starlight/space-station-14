@@ -222,6 +222,10 @@
         {
             "name": "salvagemedic_open",
             "copyright": "Taken from tgstation, resprited into SalvageMedic by mikeysaurus"
+        },
+        {
+            "name": "artist_door",
+            "copyright": "Taken from tgstation, resprited into Artist by BriocheBear"
         }
     ]
 }

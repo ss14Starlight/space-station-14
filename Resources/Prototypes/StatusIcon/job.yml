@@ -481,7 +481,6 @@
   - JobIconCentComm
 
 # Bad guys
-
 - type: jobIcon
   parent: JobIcon
   id: JobIconCluwne # >:o(

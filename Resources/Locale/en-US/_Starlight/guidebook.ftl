@@ -343,6 +343,7 @@ guidebook-search-keywords-service-sop-staff-intro = service staff procedures; ci
 guidebook-search-keywords-service-sop-headofpersonnel = hop; head of personnel sop; personnel management; command; heads of staff
 guidebook-search-keywords-service-sop-lawyer = law department; legal counsel; attorney; lawyer sop
 guidebook-search-keywords-service-sop-reporter = journalist; news; reporting; reporter sop
+guidebook-search-keywords-service-sop-artist = artist; art; drawing; artist sop
 guidebook-search-keywords-assistant-sop-intro = assistant sop; assistant procedures; assistant department
 guidebook-search-keywords-assistant-sop-assistantmanager = am; assistant manager sop; assistant management
 guidebook-search-keywords-assistant-sop-assistant = assistant duties; assistant staff procedures

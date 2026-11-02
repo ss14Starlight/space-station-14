@@ -5,3 +5,7 @@
 - type: accessLevel
   id: Mime
   name: id-card-access-level-mime
+
+- type: accessLevel
+  id: Artist
+  name: id-card-access-level-artist

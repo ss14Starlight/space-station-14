@@ -1,0 +1,110 @@
+- type: entity
+  id: EaselBase
+  parent: BaseStructure
+  name: easel
+  description: an easel, sturdy enough to hold a large canvas.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: easel_base
+  - type: ItemSlots
+    slots:
+      item:
+        name: easel-canvas
+        whitelist:
+          tags:
+          - CanvasBlank
+          - CanvasPainted
+          - Canvas
+  - type: ItemMapper
+    mapLayers:
+      easel_canvas:
+        whitelist:
+          tags:
+            - CanvasBlank
+      easel_canvas1:
+        whitelist:
+          tags:
+            - CanvasPainted
+  - type: Appearance
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Pullable
+  - type: Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Transform
+    noRot: true
+
+- type: entity
+  id: BlankCanvas
+  parent: BaseItem
+  name: blank canvas
+  description: a blank canvas, waiting to be made into a masterpiece. 
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_base
+  - type: Item
+    size: Large
+  - type: MultiHandedItem
+  - type: Tag
+    tags:
+    - CanvasBlank
+
+- type: entity
+  id: PaintedCanvas
+  parent: BlankCanvas
+  name: painted canvas
+  description: a painted canvas, behold its masterpiece!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_ratking
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        canvas_ratking: ""
+        canvas_spooky: ""
+        canvas_cheesepizza: ""
+        canvas_pepperonipizza: ""
+        canvas_wave: ""
+        canvas_eatbaby: ""
+        canvas_skullcig: ""
+  - type: Tag
+    tags:
+    - CanvasPainted
