@@ -15,6 +15,14 @@ public sealed partial class StainSystem : SharedStainSystem
 
     private bool _showClothingStains;
 
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        _showClothingStains = _cfg.GetCVar(StarlightCCVars.ShowClothingStains);
+        _cfg.OnValueChanged(StarlightCCVars.ShowClothingStains, OnShowClothingStainsChanged);
+    }
+
     private void OnShowClothingStainsChanged(bool show)
     {
         _showClothingStains = show;
@@ -30,6 +38,7 @@ public sealed partial class StainSystem : SharedStainSystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnMaskStateChanged(Entity<MaskComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         if (HasComp<StainableComponent>(ent.Owner))

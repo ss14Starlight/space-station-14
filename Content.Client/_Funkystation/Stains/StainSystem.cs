@@ -19,20 +19,7 @@ public sealed partial class StainSystem : SharedStainSystem
     [Dependency] private SharedSolutionContainerSystem _solution = null!;
     [Dependency] private SpriteSystem _sprite = null!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<StainableComponent, AppearanceChangeEvent>(OnAppearanceChanged);
-        SubscribeLocalEvent<StainableComponent, GetEquipmentVisualsEvent>(OnEquipmentVisuals, after: [typeof(ClientClothingSystem)]);
-        SubscribeLocalEvent<StainableComponent, GetInhandVisualsEvent>(OnInhandVisuals, after: [typeof(ItemSystem)]);
-        #region Starlight
-        SubscribeLocalEvent<MaskComponent, AfterAutoHandleStateEvent>(OnMaskStateChanged);
-
-        _showClothingStains = _cfg.GetCVar(StarlightCCVars.ShowClothingStains);
-        _cfg.OnValueChanged(StarlightCCVars.ShowClothingStains, OnShowClothingStainsChanged);
-        #endregion
-    }
-
+    [SubscribeLocalEvent]
     private void OnAppearanceChanged(Entity<StainableComponent> ent, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
@@ -56,6 +43,7 @@ public sealed partial class StainSystem : SharedStainSystem
         }
     }
 
+    [SubscribeLocalEvent(after: [typeof(ClientClothingSystem)])]
     private void OnEquipmentVisuals(Entity<StainableComponent> ent, ref GetEquipmentVisualsEvent args)
     {
         // Pulled-down masks may have no equipped sprite, so their stains must not float on the face.
@@ -66,6 +54,7 @@ public sealed partial class StainSystem : SharedStainSystem
             args.Layers.AddRange(BuildVisuals(ent, layers, args.Slot));
     }
 
+    [SubscribeLocalEvent(after: [typeof(ItemSystem)])]
     private void OnInhandVisuals(Entity<StainableComponent> ent, ref GetInhandVisualsEvent args)
     {
         if (ent.Comp.ItemVisuals.TryGetValue(args.Location.ToString(), out var layers))
