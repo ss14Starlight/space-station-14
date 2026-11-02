@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 using Content.Shared.Store;
 using Robust.Client.UserInterface;
 
