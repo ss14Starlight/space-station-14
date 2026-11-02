@@ -38,6 +38,10 @@ public sealed class SpawnExplosionEui : BaseEui
         var maxTile = request.MaxIntensity;
         if (IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<AdminLimitSystem>().ClampExplosion(Player, ref total, ref slope, ref maxTile))
             request = new SpawnExplosionEuiMsg.PreviewRequest(request.Epicenter, request.TypeId, total, slope, maxTile);
+
+        // Non-finite input comes out of the clamp as zero, which the check above was meant to reject.
+        if (request.TotalIntensity <= 0 || request.IntensitySlope <= 0)
+            return;
         // Starlight-end
 
         var explosion = _explosionSystem.GenerateExplosionPreview(request);

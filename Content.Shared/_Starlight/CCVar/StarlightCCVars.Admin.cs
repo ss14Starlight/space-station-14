@@ -57,6 +57,12 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("admin.explosion_max_tile_intensity", 200f, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// Largest radius, in tiles, of an admin-spawned explosion.
+    /// </summary>
+    public static readonly CVarDef<float> AdminExplosionMaxRadius =
+        CVarDef.Create("admin.explosion_max_radius", 200f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Seconds between two explosions spawned by the same admin.
     /// </summary>
     public static readonly CVarDef<float> AdminExplosionCooldown =

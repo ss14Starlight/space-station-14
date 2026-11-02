@@ -3,9 +3,9 @@ using Content.Shared.Tips;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Client.Tips;
 
-// Starlight begin - Move the tippy event subscription to somewhere it makes sense to be in, not in a fucking UI controller.
 public sealed partial class TipsSystem : SharedTipsSystem
 {
     [Dependency] private IUserInterfaceManager _ui = default!;
@@ -19,14 +19,20 @@ public sealed partial class TipsSystem : SharedTipsSystem
     {
         base.Initialize();
 
-        SubscribeNetworkEvent<TippyEvent>(OnTippyEvent);
-        Subs.CVar(_cfg, StarlightCCVars.TippyClientEnabled, value => _tippyEnabled = value, true);
+        Subs.CVar(_cfg, StarlightCCVars.TippyClientEnabled, OnTippyEnabledChanged, true);
     }
 
+    private void OnTippyEnabledChanged(bool enabled)
+    {
+        _tippyEnabled = enabled;
+        if (!enabled)
+            _tui.ClearTippy();
+    }
+
+    [SubscribeNetworkEvent]
     private void OnTippyEvent(TippyEvent ev)
     {
         if (_tippyEnabled)
             _tui.AddTippyToQueue(ev);
     }
 }
-// Starlight end

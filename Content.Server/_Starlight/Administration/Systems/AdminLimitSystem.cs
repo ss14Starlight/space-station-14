@@ -1,4 +1,5 @@
 using Content.Server.Administration.Managers;
+using Content.Server.Explosion.EntitySystems;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared.Administration;
 using Robust.Shared.Configuration;
@@ -12,6 +13,7 @@ public sealed partial class AdminLimitSystem : EntitySystem
 {
     [Dependency] private IAdminManager _admin = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private ExplosionSystem _explosion = default!;
     [Dependency] private IGameTiming _timing = default!;
 
     private TimeSpan _nextTippy;
@@ -64,6 +66,19 @@ public sealed partial class AdminLimitSystem : EntitySystem
 
         totalIntensity = MathF.Min(totalIntensity, maxTotal);
         maxTileIntensity = MathF.Min(maxTileIntensity, maxTile);
+
+        // The tile fill grows the explosion until the slope uses up its intensity, so a shallow slope spreads
+        // the same total much further. Cap the total at whatever reaches the max radius with this slope.
+        if (slope > 0f)
+        {
+            var maxRadiusTotal = _explosion.RadiusToIntensity(_cfg.GetCVar(StarlightCCVars.AdminExplosionMaxRadius), slope, maxTileIntensity);
+            if (totalIntensity > maxRadiusTotal)
+            {
+                totalIntensity = maxRadiusTotal;
+                clamped = true;
+            }
+        }
+
         return clamped;
     }
 
