@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) A couple extra radiation warnings outside of engineering. No loitering.
-    type: Add
-  id: 409641
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
   - message: (Downpour) Replaced some lights at the Spacebucks with the new street lights.
     type: Tweak
   id: 409642
@@ -2799,4 +2792,11 @@ Entries:
   id: 410040
   time: '2026-11-02T10:38:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7011
+- author: VictoriaActual
+  changes:
+  - message: Make the LGBTie Hamlet wearable.
+    type: Tweak
+  id: 410041
+  time: '2026-11-02T11:08:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6999
 Order: -1
