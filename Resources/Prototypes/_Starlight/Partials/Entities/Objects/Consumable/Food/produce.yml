@@ -11,6 +11,7 @@
   - type: Tag
     tags:
     - Citrus
+  - type: EmitPollen
 
 - type: !PartialOnly entity
   id: FoodLime
@@ -18,6 +19,7 @@
   - type: Tag
     tags:
     - Citrus
+  - type: EmitPollen
 
 - type: !PartialOnly entity
   id: FoodOrange
@@ -25,6 +27,7 @@
   - type: Tag
     tags:
     - Citrus
+  - type: EmitPollen
 
 - type: !PartialOnly entity
   id: FoodExtradimensionalOrange
@@ -32,3 +35,188 @@
   - type: Tag
     tags:
     - Citrus
+
+
+
+##### GOD WHY DO YOU MAKE ME DO THIS
+# List of things that emit pollen
+
+- type: !PartialOnly entity
+  id: WheatBushel
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: OatBushel
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: Sugarcane
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: Nettle
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: DeathNettle
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodBanana
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodCarrot
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodCabbage
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodGarlic
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodPineapple
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodPotato
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodTomato
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodApple
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodGoldenApple
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodCorn
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodOnion
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodOnionRed
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodMushroom
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodChillyPepper
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodAloe
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodPoppy
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodAmbrosiaVulgaris
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodAmbrosiaDeus
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodGalaxythistle
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: RiceBushel
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodSoybeans
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodSpacemansTrumpet
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodWatermelon
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodHolymelon
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodBerries
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodBungo
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodPeaPod
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodWorldPeas
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodPumpkin
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodBluePumpkin
+  components:
+  - type: EmitPollen
+
+- type: !PartialOnly entity
+  id: FoodCherry
+  components:
+  - type: EmitPollen

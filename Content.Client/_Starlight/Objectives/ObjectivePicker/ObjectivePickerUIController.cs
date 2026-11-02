@@ -24,6 +24,7 @@ public sealed partial class ObjectivePickerUIController : UIController, IOnState
     [Dependency] private IPlayerManager _players = default!;
     private bool _additionalPending;
     private bool _awaitingOffers;
+    private bool _onDisconnect;
 
     public void OpenPicker()
     {
@@ -56,6 +57,7 @@ public sealed partial class ObjectivePickerUIController : UIController, IOnState
 
     public void OnStateExited(GameplayState state)
     {
+        _onDisconnect = true;
         _additionalPending = false;
         _awaitingOffers = false;
         if (_window == null)
@@ -70,8 +72,20 @@ public sealed partial class ObjectivePickerUIController : UIController, IOnState
         if (_window is { Disposed: false })
             return;
 
+        _onDisconnect = false;
         _window = UIManager.CreateWindow<ObjectivePickerWindow>();
         _window.OpenCentered();
+        var mindSystem = EntityManager.System<SharedMindSystem>();
+        if (mindSystem.TryGetMind(_players.LocalSession, out var mind, out _))
+        {
+            var mindId = EntityManager.GetNetEntity(mind);
+            _net.SendSystemNetworkMessage(new ObjectivePickerSetOpen { MindId = mindId, Open = true });
+            _window.OnClose += () =>
+            {
+                if (!_onDisconnect)
+                    _net.SendSystemNetworkMessage(new ObjectivePickerSetOpen { MindId = mindId, Open = false });
+            };
+        }
         _window.OnClose += () => _window = null;
         _window.OnSelectedChange += OnSelectedChange;
         _window.OnSubmitted += OnSubmitted;

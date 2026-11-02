@@ -10,6 +10,7 @@
     understands:
     - Sylvan
     - GalacticCommon
+  - type: EmitPollen
 
 - type: !PartialOnly entity
   id: RainbowCannabisPlants

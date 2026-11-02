@@ -12,3 +12,13 @@
   - type: Clothing
     equipSound:
       path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitBase
+  components:
+  - type: FootstepLayer
+    sound:
+      collection: FootstepLayerHeavy
+      params:
+        volume: -4
+        variation: 0.08

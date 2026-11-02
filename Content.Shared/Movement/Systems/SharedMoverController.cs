@@ -25,8 +25,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
-
-#region Starlight
 using System.Collections.Concurrent;
 using System.Net;
 using Content.Shared.Actions;
@@ -35,7 +33,6 @@ using Content.Shared.Body.Components;
 using Content.Shared.Charges.Systems;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization.Manager.Exceptions;
-#endregion Starlight
 
 namespace Content.Shared.Movement.Systems;
 
@@ -375,13 +372,17 @@ public abstract partial class SharedMoverController : VirtualController
             }
 
             if (!weightless && MobMoverQuery.TryGetComponent(uid, out var mobMover) &&
-                TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, tileDef: tileDef))
+                TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, out var surfaceSound, tileDef: tileDef)) // Starlight-edit
             {
                 var soundModifier = mover.Sprinting ? InputMoverComponent.SprintingSoundModifier : InputMoverComponent.WalkingSoundModifier;
 
                 var audioParams = sound.Params
                     .WithVolume(sound.Params.Volume + soundModifier)
                     .WithVariation(sound.Params.Variation ?? mobMover.FootstepVariation);
+                // Starlight-start
+                if (surfaceSound)
+                    audioParams = ApplyStepTimbre(uid, audioParams);
+                // Starlight-end
 
                 // If we're a relay target then predict the sound for all relays.
                 if (relaySource != null)
@@ -392,6 +393,8 @@ public abstract partial class SharedMoverController : VirtualController
                 {
                     _audio.PlayPredicted(sound, uid, uid, audioParams);
                 }
+
+                PlayFootstepLayers(uid, relaySource ?? uid, audioParams); // Starlight
             }
         }
     }
@@ -555,9 +558,11 @@ public abstract partial class SharedMoverController : VirtualController
         MobMoverComponent mobMover,
         TransformComponent xform,
         [NotNullWhen(true)] out SoundSpecifier? sound,
+        out bool surfaceSound, // Starlight-edit
         ContentTileDefinition? tileDef = null)
     {
         sound = null;
+        surfaceSound = false; // Starlight-edit
 
         if (!CanSound() || !_tags.HasTag(uid, FootstepSoundTag))
             return false;
@@ -624,7 +629,8 @@ public abstract partial class SharedMoverController : VirtualController
 
         // STARLIGHT: Check for outer clothing (hardsuits) before shoes
         if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outerClothing) &&
-            FootstepModifierQuery.TryComp(outerClothing, out var outerModifier))
+            FootstepModifierQuery.TryComp(outerClothing, out var outerModifier) &&
+            outerModifier.FootstepSoundCollection != null)
         {
             sound = outerModifier.FootstepSoundCollection;
             return sound != null;
@@ -638,6 +644,7 @@ public abstract partial class SharedMoverController : VirtualController
             return sound != null;
         }
 
+        surfaceSound = true; // Starlight-edit
         return TryGetFootstepSound(uid, xform, shoes != null, out sound, tileDef: tileDef);
     }
 
@@ -696,7 +703,7 @@ public abstract partial class SharedMoverController : VirtualController
         if (tileDef == null)
             return false;
 
-        sound = haveShoes ? tileDef.FootstepSounds : tileDef.BarestepSounds;
+        sound = GetTileStepSound(tileDef, haveShoes); // Starlight
         return sound != null;
     }
 

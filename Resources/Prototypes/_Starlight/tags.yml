@@ -144,6 +144,12 @@
   id: CasinoChip
 
 - type: Tag
+  id: CD
+
+- type: Tag
+  id: CDCase
+
+- type: Tag
   id: CentcommVibroblade
 
 - type: Tag
@@ -832,6 +838,9 @@
 
 - type: Tag
   id: VinylSleeve # Storage whitelist: RecordMilkCrate, SyndicateMilkCrate
+
+- type: Tag
+  id: VinylSleeveFit
 
 - type: Tag
   id: WallmountMassScannerElectronics
