@@ -1,32 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: Fixed an issue where if a grid started rotating while you were NOT on the grid, and a directional sign was visible, the sign would not rotate with the grid.
-    type: Fix
-  id: 409662
-  time: '2026-10-21T14:59:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6759
-- author: Dragometh
-  changes:
-  - message: Gas Condensers now don't disappear when unanchored or unpowered.
-    type: Fix
-  id: 409663
-  time: '2026-10-21T15:09:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6747
-- author: Sparlight
-  changes:
-  - message: Replay observers can view the solutions inside any container or creature via the "View Solutions" verb.
-    type: Add
-  id: 409664
-  time: '2026-10-21T16:22:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6771
-- author: Sparlight
-  changes:
-  - message: Replay observers now see security status icons on the observer HUD.
-    type: Add
-  id: 409665
-  time: '2026-10-21T16:22:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6771
 - author: Sparlight
   changes:
   - message: '"View Laws" now works on Station AI in replays.'
@@ -2799,4 +2771,32 @@ Entries:
   id: 410061
   time: '2026-11-02T21:04:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7006
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added a laundromat.
+    type: Add
+  id: 410062
+  time: '2026-11-02T21:28:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7018
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added a laundry machine to Medbay and Security.
+    type: Add
+  id: 410063
+  time: '2026-11-02T21:28:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7018
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added a crew monitor to Bridge.
+    type: Add
+  id: 410064
+  time: '2026-11-02T21:28:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7018
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added a nuclear lathe to the Reactor room.
+    type: Add
+  id: 410065
+  time: '2026-11-02T21:28:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7018
 Order: -1
