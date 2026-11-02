@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) Added missing Space Cleaner dispenser to the janitor closet.
-    type: Add
-  id: 409654
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
   - message: (Downpour) Added a second Radio Host spawn, to match the amount of job slots.
     type: Fix
   id: 409655
@@ -2799,4 +2792,11 @@ Entries:
   id: 410053
   time: '2026-11-02T19:44:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6891
+- author: Floximo
+  changes:
+  - message: Performance of holopads and nav console was increased.
+    type: Tweak
+  id: 410054
+  time: '2026-11-02T20:04:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7004
 Order: -1
