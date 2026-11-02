@@ -588,7 +588,7 @@ public sealed partial class ScentSystem : SharedScentSystem
         if (isPollen)
         {
             var pollenDecayTime = GetDecayTime(scent, uid);
-            var pollenMarker = EmitPollenMarker(ref scent.LastMarkerEntity, uid, scentId, xform, pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
+            var pollenMarker = EmitPollenMarker(ref scent.LastPollenMarkerEntity, uid, scentId, xform, pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
 
             if (!pollenMarker.IsValid())
                 return;

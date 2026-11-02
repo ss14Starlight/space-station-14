@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.Store.Ui;
 
 [UsedImplicitly]
-public sealed class StoreBoundUserInterface : BoundUserInterface
+public sealed partial class StoreBoundUserInterface : BoundUserInterface // Starlight, partial
 {
     private IPrototypeManager _prototypeManager = default!;
     private readonly StoreSystem _storeSystem = default!;
@@ -26,6 +26,11 @@ public sealed class StoreBoundUserInterface : BoundUserInterface
         _storeSystem = EntMan.System<StoreSystem>();
     }
 
+    /// <summary>
+    /// UI state can arrive before the menu is ready.
+    /// Commenting this out for an partial
+    /// </summary>
+    /*
     protected override void Open()
     {
         base.Open();
@@ -61,6 +66,7 @@ public sealed class StoreBoundUserInterface : BoundUserInterface
             SendMessage(new StoreRequestRefundMessage());
         };
     }
+
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
@@ -79,6 +85,7 @@ public sealed class StoreBoundUserInterface : BoundUserInterface
                 break;
         }
     }
+    */
 
     private void UpdateListingsWithSearchFilter()
     {
