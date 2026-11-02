@@ -474,9 +474,8 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
         {
             _updateTimer -= UpdateTime;
 
-            // Starlight - start
-            var openHolopads = new List<(Entity<HolopadComponent> Entity, TelephoneComponent Telephone, TransformComponent Transform)>();
-            // Starlight - end
+            var openHolopads = new List<(Entity<HolopadComponent> Entity, TelephoneComponent Telephone, TransformComponent Transform)>(); // Starlight
+
             var query = AllEntityQuery<HolopadComponent, TelephoneComponent, TransformComponent>();
             while (query.MoveNext(out var uid, out var holopad, out var telephone, out var xform))
             {
@@ -490,10 +489,8 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
                 // Starlight - start
                 if (IsHolopadContactUiOpen(uid))
                     openHolopads.Add(((uid, holopad), telephone, xform));
-                // Starlight - end
             }
 
-            // Starlight - start
             if (openHolopads.Count > 0)
             {
                 var contacts = BuildHolopadUiContacts();

@@ -24,6 +24,7 @@ public sealed partial class RadarConsoleBoundUserInterface : BoundUserInterface
         IoCManager.InjectDependencies(this); // Starlight
     }
 
+    #region Starlight
     protected override void Open()
     {
         base.Open();
@@ -31,7 +32,6 @@ public sealed partial class RadarConsoleBoundUserInterface : BoundUserInterface
         _window = this.CreatePopOutableWindow<RadarConsoleWindow>(EntMan); // Starlight: popout
         _window.RadarClicked += OnRadarClicked; // Starlight: go to location for AI
     }
-
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
@@ -39,14 +39,12 @@ public sealed partial class RadarConsoleBoundUserInterface : BoundUserInterface
             return;
 
         _window?.UpdateState(cState.State, cState.DockingPortStates); // Starlight: +DockStates
-        // Starlight - start
         if (cState.DockingPortStates is { DeliveryId: > 0 } dockingPortStates)
         {
             SendMessage(new DockingPortStatesAcknowledgedMessage(
                 dockingPortStates.Version,
                 dockingPortStates.DeliveryId));
         }
-        // Starlight - end
     }
 
     // Starlight: close popout
@@ -56,14 +54,11 @@ public sealed partial class RadarConsoleBoundUserInterface : BoundUserInterface
 
         if (disposing)
         {
-            // Starlight - start
             if (_window != null)
                 _window.RadarClicked -= OnRadarClicked;
-            // Starlight - end
             _window?.DisposePopOut();
         }
     }
-    #region Starlight
     private void OnRadarClicked(EntityCoordinates coordinates)
     {
         var local = _playerManager.LocalEntity;

@@ -153,9 +153,7 @@ namespace Content.Server.Shuttles.Systems
 
         private void OnStartup(Entity<DockingComponent> entity, ref ComponentStartup args)
         {
-            // Starlight - start
-            InvalidateRadarDockingPortStates();
-            // Starlight - end
+            InvalidateRadarDockingPortStates(); // Starlight
             var uid = entity.Owner;
             var component = entity.Comp;
 
@@ -180,9 +178,7 @@ namespace Content.Server.Shuttles.Systems
 
         private void OnAnchorChange(Entity<DockingComponent> entity, ref AnchorStateChangedEvent args)
         {
-            // Starlight - start
-            InvalidateRadarDockingPortStates();
-            // Starlight - end
+            InvalidateRadarDockingPortStates(); // Starlight
             if (!args.Anchored)
             {
                 Undock(entity);
@@ -191,9 +187,7 @@ namespace Content.Server.Shuttles.Systems
 
         private void OnDockingReAnchor(Entity<DockingComponent> entity, ref ReAnchorEvent args)
         {
-            // Starlight - start
-            InvalidateRadarDockingPortStates();
-            // Starlight - end
+            InvalidateRadarDockingPortStates();  // Starlight
             var uid = entity.Owner;
             var component = entity.Comp;
 
