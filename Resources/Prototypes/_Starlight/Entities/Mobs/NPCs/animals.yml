@@ -191,8 +191,6 @@
       name: ghost-role-information-giant-spider-name
       description: ghost-role-information-giant-spider-passive-description
       rules: ghost-role-information-nonantagonist-rules
-      mindRoles:
-        - MindRoleGhostRoleCritterHarmless
     - type: GhostTakeoverAvailable
 
 #Rainbow Mice
