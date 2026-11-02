@@ -14,13 +14,6 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("admin.admin_arena_map_init", true, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED);
 
     /// <summary>
-    /// Whether this client shows tippy at all, admin-sent or not.
-    /// </summary>
-    public static readonly CVarDef<bool> TippyClientEnabled =
-        CVarDef.Create("tips.client_tippy_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-
-    /// <summary>
     /// Seconds between two tippies sent by admins, shared by all admins.
     /// </summary>
     public static readonly CVarDef<float> AdminTippyCooldown =
