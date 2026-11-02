@@ -1,4 +1,6 @@
-﻿namespace Content.Shared._Starlight.Zones;
+﻿using Robust.Shared.Prototypes;
+
+namespace Content.Shared._Starlight.Zones;
 
 [RegisterComponent]
 [Access(typeof(SharedZoneSystem))]
@@ -37,6 +39,16 @@ public sealed partial class ZoneGridComponent : Component
 
     [ViewVariables]
     public int Revision;
+
+    /// <summary>
+    /// Whether the grid's room and zone data has finished its initial rebuild.
+    /// </summary>
+    public bool TopologyInitialized;
+
+    /// <summary>
+    /// Cached zone IDs on this grid. Null means the next query must recreate the list.
+    /// </summary>
+    public IReadOnlyList<ProtoId<ZonePrototype>>? CachedGridZones;
 
     [ViewVariables]
     public ZoneChunk? CachedChunk;

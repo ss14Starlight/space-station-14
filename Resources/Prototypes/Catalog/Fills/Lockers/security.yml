@@ -170,7 +170,6 @@
       prob: 0.15
     - id: JawsOfLifeMed #Starlight
 
-
 - type: entity
   id: LockerDetectiveFilled
   categories: [ ShouldMapStation ] # Starlight

@@ -44,7 +44,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
                 {
                     //we technically load the map here, but it doesnt matter, this is safer since the behaviour of this function is garunteed
                     //and reimplementing it would be stupid and unsafe
-                    var (Map, Grid) = _adminTestArenaSystem.AssertArenaLoaded(player);
+                    var Map = _adminTestArenaSystem.AssertArenaLoaded(player); // Starlight edit
 
                     var _mapManager = _entities.System<SharedMapSystem>();
 

@@ -1,0 +1,153 @@
+# Silicons
+- type: entity
+  parent: [ BaseSimpleMob, MobCombat, MobRobotic ]
+  id: MobPurrfusHostile
+  name: Corrupted Purrfus
+  description: A corrupted chassis, irrecoverable.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Silicon/Chassis/derelict.rsi
+    layers:
+    - state: borg
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light" ]
+      visible: false
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.50
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Dead: BorgDead
+    showOverlays: false
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    soundHit:
+      collection: MetalThud
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 10
+  - type: Tag
+    tags:
+      - DoorBumpOpener
+      - Unimplantable
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3.5
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+
+- type: entity
+  parent: MobPurrfusHostile
+  id: MobDerelictSiliconHostile
+  name: Corrupted Cyborg
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/derelict.rsi
+    layers:
+    - state: borg
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light" ]
+      visible: false
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4
+
+- type: entity
+  parent: MobPurrfusHostile
+  id: MobDerelictEngineerHostile
+  name: Corrupted Engineer
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/engineer.rsi #Starlight
+    layers:
+    - state: engineer_derelict
+      sprite: Mobs/Silicon/Chassis/engineer_derelict.rsi #Starlight ;-;
+    - state: borg_e_r #Starlight ;-;
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: engineer_derelict_crystal #This layer and the layer below are duplicated in order to create a more mellow unshaded layer. See https://github.com/space-wizards/space-station-14/pull/37869 for more info on the method.
+      shader: unshaded
+      sprite: Mobs/Silicon/Chassis/engineer_derelict.rsi #Starlight ;-;
+    - state: engineer_derelict_crystal
+      shader: shaded
+      sprite: Mobs/Silicon/Chassis/engineer_derelict.rsi #Starlight ;-;
+    - state: borg_l #Starlight ;-;
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    attackRate: 4
+    soundHit:
+      path: "/Audio/Items/drill_hit.ogg"
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Piercing: 6
+
+- type: entity
+  parent: MobPurrfusHostile
+  id: MobDerelictJanitorHostile
+  name: Corrupted Janitor
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/janitor.rsi #Starlight
+    layers:
+    - state: janitor_derelict
+      map: ["movement"]
+      sprite: Mobs/Silicon/Chassis/janitor_derelict.rsi #Starlight ;-;
+    - state: borg_e_r #Starlight ;-;
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: borg_l #Starlight ;-;
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: janitor_moving_derelict
+    noMovementLayers:
+      movement:
+        state: janitor_derelict
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 5

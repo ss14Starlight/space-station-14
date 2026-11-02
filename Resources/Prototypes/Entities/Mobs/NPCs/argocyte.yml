@@ -77,7 +77,7 @@
     thresholds:
       0: Alive
       30: Dead
-  - type: ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 1
@@ -111,9 +111,17 @@
     thresholds:
       0: Alive
       30: Dead
-  - type: ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
+      amount: 1
+    - id: SalvageTicket10 # Starlight
+      amount: 1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 1
+    - id: SalvageTicket10 # Starlight
       amount: 1
   - type: Fixtures
     fixtures:
@@ -151,10 +159,18 @@
     thresholds:
       0: Alive
       30: Dead
-  - type: ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 1
+    - id: SalvageTicket15 # Starlight
+      amount: 1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 1
+    - id: SalvageTicket15
+      amount: 1  # Starlight end
   - type: Fixtures
     fixtures:
       fix1:
@@ -191,10 +207,18 @@
     thresholds:
       0: Alive
       60: Dead
-  - type: ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 2
+    - id: SalvageTicket15 # Starlight
+      amount: 1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 2
+    - id: SalvageTicket15
+      amount: 1 # Starlight end
   - type: MovementSpeedModifier
     baseSprintSpeed : 5
 
@@ -217,10 +241,17 @@
     thresholds:
       0: Alive
       100: Dead
-  - type: ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
-    - id: FoodMeatXeno
+    - id: FoodMeatXeno # Starlight
       amount: 2
+    - id: SalvageTicket15
+      amount: 1 # Starlight end
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno # Starlight
+      amount: 2
+    - id: SalvageTicket15 # Starlight
   - type: MovementSpeedModifier
     baseSprintSpeed : 4
     baseWalkSpeed : 3.5
@@ -244,10 +275,18 @@
     thresholds:
       0: Alive
       100: Dead
-  - type: ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 2
+    - id: SalvageTicket15 # Starlight
+      amount: 1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 2
+    - id: SalvageTicket15 # Starlight
+      amount: 1
   - type: MeleeWeapon
     damage:
       types:
@@ -273,10 +312,18 @@
     thresholds:
       0: Alive
       100: Dead
-  - type: ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 2
+    - id: SalvageTicket15 # Starlight
+      amount: 1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 2
+    - id: SalvageTicket15
+      amount: 1 # Starlight end
   - type: MeleeWeapon
     damage:
       types:
@@ -305,10 +352,18 @@
     thresholds:
       0: Alive
       150: Dead
-  - type: ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 2
+    - id: SalvageTicket30 # Starlight
+      amount: 1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 2
+    - id: SalvageTicket30
+      amount: 1 # Starlight end
   - type: MeleeWeapon
     damage:
       types:
@@ -336,10 +391,18 @@
     thresholds:
       0: Alive
       150: Dead
-  - type: ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 2
+    - id: SalvageTicket30 # Starlight
+      amount: 1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 2
+    - id: SalvageTicket30
+      amount: 1 # Starlight end
   - type: MeleeWeapon
     damage:
       types:
@@ -369,10 +432,18 @@
     thresholds:
       0: Alive
       300: Dead
-  - type: ToolRefinable
+  - type: !Append ToolRefinable #Starlight
     refineResult:
     - id: FoodMeatXeno
       amount: 3
+    - id: SalvageTicket50 # Starlight
+      amount: 1
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 3
+    - id: SalvageTicket50
+      amount: 1 # Starlight end
   - type: MeleeWeapon
     damage:
       types:
@@ -399,10 +470,18 @@
         Base: founder
       Dead:
         Base: founder_dead
+  - type: !Append ToolRefinable # Starlight butchering fix
+    refineResult: # Starlight
+    - id: FoodMeatXeno
+      amount: 5
+    - id: SalvageTicket50 # Starlight
+      amount: 1
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 5
+    - id: SalvageTicket50
+      amount: 1 # Starlight end
   - type: Fixtures
     fixtures:
       fix1:
@@ -444,10 +523,18 @@
         Base: leviathing
       Dead:
         Base: leviathing_dead
+  - type: !Append ToolRefinable # Starlight butching fix
+    refineResult: # Starlight
+    - id: FoodMeatXeno
+      amount: 10
+    - id: SalvageTicket100 # Starlight
+      amount: 3
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 10
+    - id: SalvageTicket100
+      amount: 5 # Starlight end
   - type: Fixtures
     fixtures:
       fix1:

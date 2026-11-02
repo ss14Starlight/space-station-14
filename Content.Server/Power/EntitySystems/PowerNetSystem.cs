@@ -3,6 +3,7 @@ using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.Power.NodeGroups;
 using Content.Server.Power.Pow3r;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
@@ -34,6 +35,12 @@ namespace Content.Server.Power.EntitySystems
         private EntityQuery<BatteryComponent> _batteryQuery;
 
         private BatteryRampPegSolver _solver = new();
+
+        #region Starlight
+        private int _tickInterval = 1;
+        private int _ticksSinceSolve;
+        private float _accumulatedFrameTime;
+        #endregion
 
         public override void Initialize()
         {
@@ -68,6 +75,7 @@ namespace Content.Server.Power.EntitySystems
             SubscribeLocalEvent<PowerSupplierComponent, EntityUnpausedEvent>(PowerSupplierUnpaused);
 
             Subs.CVar(_cfg, CCVars.DebugPow3rDisableParallel, DebugPow3rDisableParallelChanged);
+            Subs.CVar(_cfg, StarlightCCVars.PowerNetTickInterval, v => _tickInterval = Math.Max(1, v), true); // Starlight-edit
         }
 
         private void DebugPow3rDisableParallelChanged(bool val)
@@ -278,6 +286,16 @@ namespace Content.Server.Power.EntitySystems
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
+
+            // Starlight-start
+            _accumulatedFrameTime += frameTime;
+            if (++_ticksSinceSolve < _tickInterval)
+                return;
+
+            frameTime = _accumulatedFrameTime;
+            _accumulatedFrameTime = 0f;
+            _ticksSinceSolve = 0;
+            // Starlight-end
 
             ReconnectNetworks();
 

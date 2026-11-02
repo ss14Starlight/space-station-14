@@ -83,7 +83,6 @@
     - SeniorCourierCollarPDA
     - NinjaCollarPDA
     - PirateCollarPDA
-    - ChameleonAgentCollarPDA
     - WizardCollarPDA
     - ScurretCollarPDA
     - SeniorChemistCollarPDA
@@ -190,7 +189,6 @@
     - [ DogCollarMixin, SeniorCourierPDA ]
     - [ DogCollarMixin, NinjaPDA ]
     - [ DogCollarMixin, PiratePDA ]
-    - [ DogCollarMixin, ChameleonAgentPDA ]
     - [ DogCollarMixin, WizardPDA ]
     - [ DogCollarMixin, ScurretPDA ]
     - [ DogCollarMixin, SeniorChemistPDA ]
@@ -297,7 +295,6 @@
     - senior courier collar
     - ninja collar
     - pirate collar
-    - chameleon agent collar
     - wizard collar
     - scurret collar
     - senior chemist collar
@@ -409,7 +406,6 @@
         - pda-seniorcourier
         - pda-ninja
         - pda-pirate
-        - pda
         - pda-wizard
         - pda-clear
         - pda-seniorchemist
@@ -473,7 +469,7 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
-    - WhitelistChameleonPDA
+    - WhitelistChameleonCollar
     - CorgiWearable
 
 
@@ -620,7 +616,7 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
-    - WhitelistChameleonPDA
+    - WhitelistChameleonCollar
     - BibleThwackRemovable
     - CorgiWearable
 
@@ -651,6 +647,40 @@
     tags:
     - DoorBumpOpener
     - CorgiWearable
+  - type: ChameleonClothing
+    default: AssistantCollarPDA
+    requireTag: WhitelistChameleonCollar
+
+- type: entity
+  parent: [DogCollarMixin, ChameleonAgentPDA]
+  id: ChameleonAgentCollarPDA
+  name: chameleon agent collar
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/dog_collars.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: pda
+    - sprite: _Starlight/Objects/Devices/dog_collars.rsi
+      state: collar-light-overlay
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: unshaded
+      visible: false
+    - sprite: Objects/Devices/pda.rsi
+      state: id_overlay
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/dog_collars.rsi
+    state: pda
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - CorgiWearable
+  - type: ChameleonClothing
+    default: AssistantCollarPDA
+    requireTag: WhitelistChameleonCollar
 
 - type: entity
   parent: [DogCollarMixin, SecurityPDA]
@@ -681,7 +711,7 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
-    - WhitelistChameleonPDA
+    - WhitelistChameleonCollar
     - CorgiWearable
 
 - type: entity
@@ -713,7 +743,7 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
-    - WhitelistChameleonPDA
+    - WhitelistChameleonCollar
     - CorgiWearable
 
 # MedTakPDA's own tag list excludes WhitelistChameleon/WhitelistChameleonPDA ("Ignore Chameleon

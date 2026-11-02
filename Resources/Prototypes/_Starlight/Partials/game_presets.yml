@@ -1,0 +1,7 @@
+- type: !PartialOnly gamePreset
+  id: AllAtOnce
+  bypassCooldowns: true
+
+- type: !PartialOnly gamePreset
+  id: AllerAtOnce
+  bypassCooldowns: true

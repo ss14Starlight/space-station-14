@@ -17,6 +17,12 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("cosmiccult.target_conversion_percent", 40, CVar.SERVER);
 
     /// <summary>
+    /// Multiplier applied to influence entropy costs at the Monument. Base costs 1.0, default .8 for 80% cost.
+    /// </summary>
+    public static readonly CVarDef<float> CosmicCultInfluenceCostModifier =
+        CVarDef.Create("cosmiccult.influence_cost_modifier", 0.8f, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
     /// How long the timer for the cult's stewardship vote lasts.
     /// </summary>
     public static readonly CVarDef<int> CosmicCultStewardVoteTimer =

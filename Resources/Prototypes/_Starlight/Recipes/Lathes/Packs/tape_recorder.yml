@@ -2,6 +2,7 @@
   id: CassetteTape
   recipes:
   - CassetteTape
+  - BroadcastTape
 
 - type: latheRecipePack
   id: TapeRecorder

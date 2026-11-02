@@ -1,6 +1,6 @@
 - type: entity
   name: target beacon
-  description: the current whereabouts of your target.
+  description: The current whereabouts of your target.
   id: PinpointerTerminator
   parent: PinpointerBase
   categories: [ HideSpawnMenu ]

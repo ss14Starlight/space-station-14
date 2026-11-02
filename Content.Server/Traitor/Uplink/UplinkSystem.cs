@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Objectives.Components;
 using Content.Server.PDA.Ringer;
 using Content.Shared._Starlight.Implants.Components;
 using Content.Server.Store.Systems;
@@ -132,7 +131,7 @@ public sealed partial class UplinkSystem : EntitySystem
     /// </summary>
     public void SetUplink(EntityUid user, EntityUid store, FixedPoint2 balance, bool giveDiscounts)
     {
-        if (!_mind.TryGetMind(user, out var mind, out var mindUser))
+        if (!_mind.TryGetMind(user, out var mind, out _)) // Starlight
             return;
 
         var storeComp = EnsureComp<StoreComponent>(store);
@@ -142,21 +141,13 @@ public sealed partial class UplinkSystem : EntitySystem
             store,
             storeComp);
 
-        foreach (var objective in mindUser.Objectives)
-        {
-            if (!HasComp<DieConditionComponent>(objective))
-                continue;
-
-            DAGDUplinkExpansion(store);
-            break;
-        }
-
         var uplinkInitializedEvent = new StoreInitializedEvent(
             TargetUser: mind,
             Store: store,
             UseDiscounts: giveDiscounts,
             UseSecondHand: true,
-            Listings: _store.GetAvailableListings(mind, store, storeComp).ToArray());
+            Listings: _store.GetAvailableListings(mind, store, storeComp).ToArray(),
+            BalanceInitialized: true); // Starlight, ensures that objective bonuses can be reapplied after the balance is reset.
         RaiseLocalEvent(ref uplinkInitializedEvent);
     }
 
@@ -185,16 +176,6 @@ public sealed partial class UplinkSystem : EntitySystem
             return false;
         }
 
-        return true;
-    }
-
-    public bool DAGDUplinkExpansion(EntityUid? uplinkEntity = null)
-    {
-        if (uplinkEntity == null)
-            return false;
-
-        var store = EnsureComp<StoreComponent>(uplinkEntity.Value);
-        _store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { TelecrystalCurrencyPrototype, 15 } }, uplinkEntity.Value, store);
         return true;
     }
 

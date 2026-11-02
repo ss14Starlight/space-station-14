@@ -46,6 +46,7 @@
       - id: MobKobold
       - id: MobKoboldAdvanced # Starlight
         weight: 0.5 # Starlight, they can be rarer than the normal kobolds.
+      - id: MobGiantSpiderPassive
     # minor aggressive mobs
     - !type:GroupSelector
       children:

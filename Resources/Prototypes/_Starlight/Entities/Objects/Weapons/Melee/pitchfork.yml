@@ -2,7 +2,7 @@
   id: DemonicPitchfork
   parent: [BaseItem, BaseMajorContraband]
   name: bident
-  description: the faded text "bloodedge the griff-" is engraved along the side.
+  description: The faded text "bloodedge the griff-" is engraved along the side.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/devilfork.rsi

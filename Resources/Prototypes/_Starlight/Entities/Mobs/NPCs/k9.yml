@@ -94,7 +94,7 @@
     - NanoTrasen
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
-    baseSprintSpeed: 4
+    baseSprintSpeed: 4.5 # same as humans, to keep pace with officers
   - type: Tag
     tags:
     - DogEmotes
@@ -104,7 +104,7 @@
   - type: CanEnterCryostorage
   - type: Zoomies
     action: K9Sprint
-    speedModifier: 1.8
+    speedModifier: 1.6
     thirstDrain: null
     hungerDrain: null
     duration: 3

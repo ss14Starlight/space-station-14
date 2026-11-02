@@ -94,20 +94,6 @@
     - UplinkDisruption
 
 - type: listing
-  id: SyndicateShuttleBoard
-  name: uplink-shuttle-board-name
-  description: uplink-shuttle-board-desc
-  productEntity: SyndicateShuttleConsoleCircuitboard
-  icon: { sprite: Objects/Misc/module.rsi, state: cpu_syndicate }
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 1
-  cost:
-    Telecrystal: 2
-  categories:
-    - UplinkDisruption
-
-- type: listing
   id: SyndicateShuttleBundle
   name: uplink-shuttle-bundle-name
   description: uplink-shuttle-bundle-desc
@@ -115,9 +101,9 @@
   icon: { sprite: Structures/Shuttles/thruster.rsi, state: base }
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 4
-  cost:
     Telecrystal: 6
+  cost:
+    Telecrystal: 8
   categories:
     - UplinkDisruption
 

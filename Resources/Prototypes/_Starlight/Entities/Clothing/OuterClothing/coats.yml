@@ -502,7 +502,7 @@
   parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWinter, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerScience
   name: science windbreaker
-  description: a labcoat style windbreaker with a pocket for all of your pens.
+  description: A labcoat style windbreaker with a pocket for all of your pens.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_science

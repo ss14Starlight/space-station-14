@@ -2,11 +2,15 @@ using Content.Server.Administration.Logs;
 using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Roles;
+using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Shared.Database;
 using Content.Shared.Implants;
 using Content.Shared.Mindshield.Components;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Revolutionary.Components;
 using Content.Shared.Roles.Components;
+using Robust.Shared.Prototypes;
 
 #region Starlight
 
@@ -29,6 +33,12 @@ public sealed partial class MindShieldSystem : EntitySystem
     [Dependency] private RoleSystem _roleSystem = default!;
     [Dependency] private MindSystem _mindSystem = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
+
+    #region Starlight
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    private static readonly ProtoId<NpcFactionPrototype> ShieldedFaction = "Shielded";
+    private static readonly ProtoId<NpcFactionPrototype> RevolutionaryFaction = "Revolutionary";
+    #endregion
 
     public override void Initialize()
     {
@@ -55,6 +65,10 @@ public sealed partial class MindShieldSystem : EntitySystem
 
     private void OnImplantImplanted(Entity<MindShieldImplantComponent> ent, ref ImplantImplantedEvent ev)
     {
+        // Starlight start
+        if (!HasComp<HeadRevolutionaryComponent>(ev.Implanted))
+            _npcFaction.AddFaction(ev.Implanted, ShieldedFaction);
+        // Starlight end
         var mindshield = EnsureComp<MindShieldComponent>(ev.Implanted);
         mindshield.MindShieldStatusIcon = ent.Comp.MindShieldStatusIcon;
         MindShieldRemovalCheck(ev.Implanted, ev.Implant);
@@ -72,17 +86,30 @@ public sealed partial class MindShieldSystem : EntitySystem
             QueueDel(implant);
             return;
         }
-
-        if (_mindSystem.TryGetMind(implanted, out var mindId, out _) &&
-            _roleSystem.MindRemoveRole<RevolutionaryRoleComponent>(mindId))
+        // Starlight start
+        //if (_mindSystem.TryGetMind(implanted, out var mindId, out _) &&
+        //    _roleSystem.MindRemoveRole<RevolutionaryRoleComponent>(mindId))
+        var roleRemoved = _mindSystem.TryGetMind(implanted, out var mindId, out _) &&
+            _roleSystem.MindRemoveRole<RevolutionaryRoleComponent>(mindId);
+        if (roleRemoved)
+        // Starlight end
         {
             _adminLogManager.Add(LogType.Mind, LogImpact.Medium, $"{ToPrettyString(implanted)} was deconverted due to being implanted with a Mindshield.");
         }
+
+        // Starlight start
+        if (roleRemoved || HasComp<RevolutionaryComponent>(implanted))
+            RemCompDeferred<RevolutionaryComponent>(implanted);
+        if (HasComp<RevolutionaryConverterComponent>(implanted))
+            RemCompDeferred<RevolutionaryConverterComponent>(implanted);
+        _npcFaction.RemoveFaction(implanted, RevolutionaryFaction);
+        // Starlight end
     }
 
     private void OnImplantRemoved(Entity<MindShieldImplantComponent> ent, ref ImplantRemovedEvent args)
     {
         RemComp<MindShieldComponent>(args.Implanted);
+        _npcFaction.RemoveFaction(args.Implanted, ShieldedFaction); // Starlight
     }
 }
 

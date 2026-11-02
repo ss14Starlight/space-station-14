@@ -3,9 +3,9 @@
   id: CdRackFilled
   suffix: random filled
   components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:NestedSelector
-        tableId: RandomCDDisc
-        rolls: !type:RangeNumberSelector
-          range: 4, 8
+  - type: UniqueDiscFill # Starlight - different CDs, each in its case
+    table: RandomCDDisc
+    min: 4
+    max: 8
+    wrapper: CDCase
+    container: storagebase

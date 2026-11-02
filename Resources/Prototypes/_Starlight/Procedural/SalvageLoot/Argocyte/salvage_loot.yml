@@ -1,0 +1,242 @@
+- type: salvageLoot
+  id: SalvageLootArgocyteEasy
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: MaterialCloth10
+        - proto: MaterialWoodPlank10
+        - proto: SheetPlasma10
+          cost: 1
+        - proto: BluespaceBeaker
+          cost: 5
+          prob: 0.5
+        - proto: CrateSalvageEquipment
+          cost: 3
+          prob: 0.5
+        - proto: MedicalScannerMachineCircuitboard
+          cost: 2
+          prob: 0.5
+        - proto: PortableGeneratorPacman
+          cost: 2
+        - proto: PortableGeneratorSuperPacman
+          cost: 2
+          prob: 0.5
+        - proto: RandomArtifactSpawner
+          cost: 2
+        - proto: RandomCargoCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomCommandCorpseSpawner
+          cost: 3
+          prob: 0.5
+        - proto: RandomEngineerCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomMedicCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomScienceCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomSecurityCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomServiceCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: ResearchAndDevelopmentServerMachineCircuitboard
+          cost: 5
+          prob: 0.5
+        - proto: ResearchDisk10000
+          prob: 0.5
+        - proto: ResearchDisk5000
+          prob: 0.5
+        - proto: SpaceCash1000
+        - proto: SpaceCash10000
+          cost: 5
+          prob: 0.25
+        - proto: SpaceCash2500
+          cost: 2
+        - proto: TechnologyDiskRare
+          cost: 5
+          prob: 0.25
+        - proto: CloningPodMachineCircuitboard
+          cost: 5
+          prob: 0.5
+        - proto: CloningConsoleComputerCircuitboard
+          cost: 5
+          prob: 0.5
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10
+
+- type: salvageLoot
+  id: SalvageLootArgocyteMedium
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: MaterialCloth10
+        - proto: MaterialWoodPlank10
+        - proto: SheetPlasma10
+          cost: 1
+        - proto: BluespaceBeaker
+          cost: 5
+          prob: 0.5
+        - proto: CrateSalvageEquipment
+          cost: 3
+          prob: 0.5
+        - proto: MedicalScannerMachineCircuitboard
+          cost: 2
+          prob: 0.5
+        - proto: PortableGeneratorPacman
+          cost: 2
+        - proto: PortableGeneratorSuperPacman
+          cost: 2
+          prob: 0.5
+        - proto: RandomArtifactSpawner
+          cost: 2
+        - proto: RandomCargoCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomCommandCorpseSpawner
+          cost: 3
+          prob: 0.5
+        - proto: RandomEngineerCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomMedicCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomScienceCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: ResearchAndDevelopmentServerMachineCircuitboard
+          cost: 5
+          prob: 0.5
+        - proto: ResearchDisk10000
+          prob: 0.5
+        - proto: ResearchDisk5000
+          prob: 0.5
+        - proto: SpaceCash1000
+        - proto: SpaceCash10000
+          cost: 5
+          prob: 0.25
+        - proto: SpaceCash2500
+          cost: 2
+        - proto: TechnologyDiskRare
+          cost: 5
+          prob: 0.25
+        - proto: SheetPlastic
+          cost: 2
+        - proto: SheetPlasteel10
+        - proto: SheetRUGlass
+          cost: 2
+        - proto: SheetRPGlass
+          cost: 2
+        - proto: CloningPodMachineCircuitboard
+          cost: 5
+        - proto: CloningConsoleComputerCircuitboard
+          cost: 5
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10
+
+- type: salvageLoot
+  id: SalvageLootArgocyteHard
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: MaterialCloth10
+        - proto: MaterialWoodPlank10
+        - proto: SheetPlasma10
+          cost: 1
+        - proto: BiomassReclaimerMachineCircuitboard
+          cost: 2
+          prob: 0.5
+        - proto: BluespaceBeaker
+          cost: 5
+          prob: 0.5
+        - proto: CrateSalvageEquipment
+          cost: 3
+          prob: 0.75
+        - proto: MedicalScannerMachineCircuitboard
+          cost: 2
+          prob: 0.5
+        - proto: PortableGeneratorSuperPacman
+          cost: 2
+          prob: 0.25
+        - proto: RandomArtifactSpawner
+          cost: 2
+        - proto: RandomCommandCorpseSpawner
+          cost: 3
+          prob: 0.25
+        - proto: RandomEngineerCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomMedicCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: RandomScienceCorpseSpawner
+          cost: 1
+          prob: 0.5
+        - proto: ResearchAndDevelopmentServerMachineCircuitboard
+          cost: 5
+          prob: 0.5
+        - proto: ResearchDisk10000
+          prob: 0.5
+        - proto: ResearchDisk5000
+          prob: 0.5
+        - proto: SpaceCash1000
+        - proto: SpaceCash10000
+          cost: 5
+          prob: 0.25
+        - proto: SpaceCash2500
+          cost: 2
+        - proto: TechnologyDiskRare
+          cost: 5
+          prob: 0.25
+        - proto: SheetPlastic
+          cost: 2
+        - proto: SheetPlasteel10
+        - proto: SheetRUGlass
+          cost: 2
+        - proto: SheetRPGlass
+          cost: 2
+        - proto: SilverOre
+          cost: 2
+        - proto: GoldOre
+          cost: 2
+        - proto: DiamondOre1
+          cost: 3
+        - proto: RawBluespaceCrystal1
+          cost: 4
+        - proto: BananiumOre1
+          cost: 1
+        - proto: CloningPodMachineCircuitboard
+          cost: 5
+        - proto: CloningConsoleComputerCircuitboard
+          cost: 5
+        - proto: ComputerIFFCircuitboard
+          cost: 10
+        - proto: OpporozidoneBeakerLarge
+          cost: 10
+        - proto: CrateITGSurplus
+          cost: 5
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10

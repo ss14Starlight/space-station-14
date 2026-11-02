@@ -42,6 +42,12 @@
     PanicObjective: 1
     RumorObjective: 1
     SyndielandObjective: 1
+    # from Moff Station
+    TrashRoomObjective: 1
+    ClaimLocationObjective: 1
+    GatherIntelObjective: 1
+    JailbreakObjective: 1
+    LeaveCallingCardOnPersonObjective: 1
 
 # Vampire
 - type: weightedRandom
@@ -117,6 +123,11 @@
 
 # Thieves
 - type: weightedRandom
+  id: ThiefObjectiveOpenEnded
+  weights:
+    RobDepartmentObjective: 1
+
+- type: weightedRandom
   id: ThiefObjectiveGroupOuter # We use this to roll for thief objectives, similar to how traitors do it. Technically, we lose some control over it doing it this way (maxPicks), but I think the long term benefits of being able to add more variants to objectives without having to make 2 whole layers of objectives is worth the tradeoff.
   weights:
     ThiefObjectiveGroupCollection: 1
@@ -138,3 +149,70 @@
     ChangelingKillRandomHeadObjective: 1
     ChangelingTeachRandomPersonObjective: 1
     ChangelingTeachRandomHeadObjective: 1
+
+# Blood Bound
+- type: weightedRandom
+  id: BloodBoundObjectiveGroupStory
+  weights:
+    BloodBoundCookSentientsObjective: 1
+    BloodBoundReplaceHeadObjective: 1
+    BloodBoundConvertFollowersObjective: 1
+    BloodBoundHarassObjective: 1
+    BloodBoundTrashRoomObjective: 1
+    BloodBoundClaimLocationObjective: 1
+    BloodBoundCallingCardObjective: 0.2
+    BloodBoundRobDepartmentObjective: 1
+
+- type: weightedRandom
+  id: BloodBoundObjectiveGroups
+  weights:
+    BloodBoundObjectiveGroupSteal: 1
+    BloodBoundObjectiveGroupKill: 0.33
+
+- type: weightedRandom
+  id: BloodBoundObjectiveGroupFate
+  weights:
+    BloodBoundEscapeShuttleObjective: 1
+
+# TODO: figure out how to make the converted partner holding the objective item also count towards the objective
+- type: weightedRandom
+  id: BloodBoundObjectiveGroupSteal
+  weights:
+    BloodBoundStealHeartObjective: 1
+    BloodBoundCaptainIDStealObjective: 0.75
+    BloodBoundCMOHyposprayStealObjective: 0.75
+    BloodBoundCrewMonitorStealCollectionObjective: 0.75
+    BloodBoundRDHardsuitStealObjective: 0.75
+    BloodBoundNukeDiskStealObjective: 0.75
+    BloodBoundMagbootsStealObjective: 0.75
+    BloodBoundCorgiMeatStealObjective: 0.75
+    BloodBoundClipboardStealObjective: 0.75
+    BloodBoundCaptainGunStealObjective: 0.25
+    BloodBoundCaptainJetpackStealObjective: 0.25
+    BloodBoundHandTeleporterStealObjective: 0.25
+    BloodBoundHOSWeaponStealObjective: 0.25
+    BloodBoundForensicScannerStealObjective: 1
+    BloodBoundFlippoEngravedLighterStealObjective: 0.5
+    BloodBoundClothingHeadHatWardenStealObjective: 1
+    BloodBoundWantedListCartridgeStealObjective: 1
+    BloodBoundFiringPinAdvancedLaserStealObjective: 1
+    BloodBoundLogProbeCartridgeStealObjective: 1
+    BloodBoundMedTekCartridgeStealObjective: 1
+    BloodBoundDepartmentalTechFabCircuitboardStealObjective: 1
+    BloodBoundBrigmedicStrangeBedsheetStealObjective: 0.5
+    BloodBoundMiningShuttleCircuitboardStealObjective: 1
+    BloodBoundClothingOuterHardsuitVoidParamedStealObjective: 1
+    BloodBoundSecureTechFabCircuitboardStealObjective: 1
+    BloodBoundFireAxeStealObjective: 1
+    BloodBoundAmePartFlatpackStealObjective: 1
+    BloodBoundCargoShuttleCircuitboardStealObjective: 1
+    BloodBoundBibleStealObjective: 1
+
+- type: weightedRandom
+  id: BloodBoundObjectiveGroupKill
+  weights:
+    BloodBoundFirestakeObjective: 1
+    BloodBoundKillRandomPersonObjective: 0.75
+    BloodBoundKillRandomHeadObjective: 0.25
+    BloodBoundTeachRandomPersonObjective: 1
+    BloodBoundTeachRandomHeadObjective: 0.33

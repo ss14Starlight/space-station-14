@@ -9,7 +9,7 @@
   parent: BaseItem
   id: SalvageTicket
   name: ticket
-  description: exchange your tickets for equipment!
+  description: Exchange your tickets for equipment!
   components:
   - type: Item
     shape:

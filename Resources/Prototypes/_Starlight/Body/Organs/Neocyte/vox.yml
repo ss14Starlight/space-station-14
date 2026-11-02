@@ -23,6 +23,10 @@
   name: vox cybernetic heart
   suffix: Neo-Vox
   components:
+  - type: Tag
+    tags:
+    - Meat
+    - Heart
   - type: Sprite
     state: heart-on
   - type: Item

@@ -213,6 +213,7 @@
     - PowerCellsStatic
     - CassetteTape
     - TapeRecorder
+    - HydroponicsStatic
     dynamicPacks:
     - StarlightAutolatheLootable
     - StarlightProtolatheLootable

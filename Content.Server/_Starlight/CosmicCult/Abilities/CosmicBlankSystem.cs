@@ -130,6 +130,7 @@ public sealed partial class CosmicBlankSystem : EntitySystem
         EnsureComp<CosmicBlankComponent>(target);
         var examine = EnsureComp<CosmicCultExamineComponent>(target);
         examine.CultistText = "cosmic-examine-text-abilityblank";
+        examine.OthersText = "cosmic-examine-text-abilityblank";
 
         _popup.PopupEntity(Loc.GetString("cosmicability-blank-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         var tgtpos = Transform(target).Coordinates;

@@ -22,3 +22,4 @@ borg-slot-rollerbeds-empty = Body Bags and RollerBeds
 borg-slot-music-media-empty = Vinyls and CDs
 borg-slot-meat-empty = Meat
 borg-slot-animbox-empty = Animal Cubes and Boxes
+borg-slot-clothing-empty = Clothing

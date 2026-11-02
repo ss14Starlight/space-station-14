@@ -100,8 +100,10 @@ public sealed partial class ObjectivePickerTest : GameTest
             var system = Server.System<AntagRandomObjectivesSystem>();
 
             system.ApplySelectedObjectives(first, [firstLimited]);
-            Assert.That(secondOffers.UnavailableObjectives, Does.Contain(secondLimited));
+            // Confirmation invalidates other pickers.
+            Assert.That(secondOffers.UnavailableObjectives, Does.Not.Contain(secondLimited));
             system.ApplySelectedObjectives(second, [secondLimited]);
+            Assert.That(secondOffers.UnavailableObjectives, Does.Contain(secondLimited));
             Assert.That(SEntMan.GetComponent<MindComponent>(second).Objectives, Is.Empty);
             system.ApplySelectedObjectives(second, [secondPlain]);
             EntityUid[] expectedObjectives = [SEntMan.GetEntity(secondPlain)];

@@ -1,8 +1,12 @@
 using System.Linq;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Popups;
 using Content.Shared.Whitelist;
+using Robust.Shared.Containers;
 using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
@@ -11,6 +15,8 @@ public sealed partial class CosmicTransmuteSystem : EntitySystem
 {
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
 
@@ -32,32 +38,76 @@ public sealed partial class CosmicTransmuteSystem : EntitySystem
             }
 
         var tgtpos = Transform(uid).Coordinates;
-        var possibleTargets = GatherEntities(uid);
-        if (possibleTargets.Count == 0)
+        GatherEntities(uid, args.User, out var held, out var loose);
+        if (held.Count == 0 && loose.Count == 0)
         {
             _popup.PopupEntity(Loc.GetString("cult-glyph-conditions-not-met"), uid, args.User);
             args.Cancel();
             return;
         }
-        if (possibleTargets.Count > 1)
-        {
-            _popup.PopupEntity(Loc.GetString("cult-glyph-too-many-targets"), uid, args.User);
-            args.Cancel();
-            return;
-        }
 
-        Spawn(_random.Pick(uid.Comp.Transmutations), tgtpos);
-        QueueDel(possibleTargets.First());
+        // Prioritize items held by the player activating the glyph over items on the glyph itself.
+        var pool = held.Count > 0 ? held : loose;
+        var target = pool[_random.Next(pool.Count)];
+
+        string? targetHand = null;
+        if (held.Count > 0)
+            _hands.IsHolding((args.User, null), target, out targetHand);
+
+        var spawned = Spawn(_random.Pick(uid.Comp.Transmutations), tgtpos);
+        if (targetHand != null)
+            _hands.TryForcePickup((args.User, null), spawned, targetHand, checkActionBlocker: false);
+        QueueDel(target);
     }
 
     /// <summary>
-    ///     Gets all whitelisted entities near a glyph.
+    ///     Gets all valid transmutation targets near a glyph. Only items held
+    ///     by the player triggering the glyph or on the glyph itself are considered.
     /// </summary>
-    private HashSet<EntityUid> GatherEntities(Entity<CosmicGlyphTransmuteComponent> ent)
+    private void GatherEntities(Entity<CosmicGlyphTransmuteComponent> ent, EntityUid user, out List<EntityUid> held, out List<EntityUid> loose)
     {
+        held = [];
+        loose = [];
+
         var entities = new HashSet<EntityUid>();
         _lookup.GetEntitiesInRange(Transform(ent).Coordinates, ent.Comp.TransmuteRange, entities);
-        entities.RemoveWhere(item => !_entityWhitelist.IsValid(ent.Comp.Whitelist, item));
-        return entities;
+        foreach (var entity in entities)
+        {
+            if (!IsValidTarget(ent, entity, user))
+                continue;
+
+            if (_container.IsEntityInContainer(entity))
+                held.Add(entity);
+            else
+                loose.Add(entity);
+        }
+
+        if (TryComp<HandsComponent>(user, out var handsComp))
+        {
+            foreach (var hand in _hands.EnumerateHands((user, handsComp)))
+            {
+                if (_hands.TryGetHeldItem((user, handsComp), hand, out var heldItem)
+                    && IsValidTarget(ent, heldItem.Value, user)
+                    && !held.Contains(heldItem.Value))
+                    held.Add(heldItem.Value);
+            }
+        }
+    }
+
+    private bool IsValidTarget(Entity<CosmicGlyphTransmuteComponent> ent, EntityUid target, EntityUid user)
+    {
+        if (!_entityWhitelist.IsValid(ent.Comp.Whitelist, target))
+            return false;
+
+        // Cult gear shouldn't block conversion, virtual hands shouldn't be converted.
+        if (HasComp<CosmicEquipmentComponent>(target) || HasComp<VirtualItemComponent>(target))
+            return false;
+
+        if (!_container.IsEntityInContainer(target))
+            return true;
+
+        return _container.TryGetContainingContainer(target, out var container)
+            && container.Owner == user
+            && _hands.IsHolding((container.Owner, null), target);
     }
 }

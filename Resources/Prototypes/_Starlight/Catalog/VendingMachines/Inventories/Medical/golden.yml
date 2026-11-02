@@ -9,6 +9,7 @@
     GoldBrutePack: 2
     GoldOintment: 2
     Bloodpack: 2
+    OilPack: 2
     ChemistryBottleEpinephrine: 2
     Syringe: 2
     PillCanisterTricordrazine: 1
@@ -32,6 +33,7 @@
     GoldBrutePack: 2
     GoldOintment: 2
     Bloodpack: 2
+    OilPack: 2
     ChemistryBottleInaprovaline: 2
     Syringe: 2
     PillTricordrazine: 5
@@ -55,6 +57,7 @@
     GoldBrutePack: 4
     GoldOintment: 4
     Bloodpack: 4
+    OilPack: 2
     Tourniquet: 1
     ChemistryBottleEpinephrine: 2
     ChemistryBottleBicaridine: 1
@@ -93,6 +96,7 @@
     GoldBrutePack: 4
     GoldOintment: 4
     Bloodpack: 4
+    OilPack: 2
     ChemistryBottleInaprovaline: 2
     ChemistryBottleEpinephrine: 2
     Syringe: 4

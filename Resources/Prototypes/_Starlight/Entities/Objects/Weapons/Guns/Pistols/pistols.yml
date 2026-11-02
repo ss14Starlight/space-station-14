@@ -48,30 +48,6 @@
       price: 150
 
 - type: entity
-  id: WeaponPistolMk58Nonlethal
-  parent: WeaponPistolMk58 # Blimpuf
-  suffix: Non-lethal
-  components:
-    - type: ItemSlots
-      slots:
-        gun_magazine:
-          name: item-slot-component-slot-name-magazine
-          startingItem: MagazinePistolRubber
-          insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-          ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-          priority: 2
-          whitelist:
-            tags:
-              - MagazinePistol
-        gun_chamber:
-          name: item-slot-component-slot-name-chamber
-          startingItem: CartridgePistolRubber
-          priority: 1
-          whitelist:
-            tags:
-              - CartridgePistol
-
-- type: entity
   name: N1984
   parent: [ BaseContrabandTier3, WeaponPistolN1984, BaseSecurityContraband ] # Blimpuf
   id: WeaponPistolN1984Nonlethal
@@ -255,25 +231,6 @@
     - type: ChamberMagazineAmmoProvider
     - type: StealTarget
       stealGroup: BSOWeapon
-
-- type: entity
-  name: sp-8ar
-  parent: [ BaseContrabandTier3, WeaponPistolDP, BaseSecurityContraband ] # Blimpuf
-  id: WeaponPistolSP8AR
-  components:
-  - type: Gun
-    shotsPerBurst: 3
-    selectedMode: Burst
-    availableModes:
-      - SemiAuto
-      - Burst
-    soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/sp8ar.ogg
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/sp8ar.rsi
-  - type: ChamberMagazineAmmoProvider
-    availablePrefixes:
-    - ""
 
 - type: entity
   name: stechkin APS

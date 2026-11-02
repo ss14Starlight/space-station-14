@@ -2,7 +2,7 @@
   name: terror spider
   parent: [ SimpleSpaceMobBaseAntag, MobRespirator, BaseSlicingRefinable ]
   id: MobTerrorSpider
-  description: a deadly hybrid of a giant spider and xenomorph.
+  description: A deadly hybrid of a giant spider and xenomorph.
   abstract: true
   components:
   - type: Prying

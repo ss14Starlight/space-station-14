@@ -139,6 +139,9 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Doll/parts.rsi
       state: "l_foot"
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepDoll
 
 - type: entity
   id: RightFootDoll
@@ -151,3 +154,6 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Doll/parts.rsi
       state: "r_foot"
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepDoll

@@ -17,24 +17,34 @@
           emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_spacemall.yml
         - type: StationJobs
           availableJobs:
-            #service
+            #Service
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
+
             Bartender: [ 2, 3 ]
             Botanist: [ 3, 3 ]
             Chef: [ 2, 2 ]
+            ServiceWorker: [ 3, 4 ]
+
             Janitor: [ 4, 4 ]
             Chaplain: [ 2, 2 ]
+            RadioHost: [ 2, 2 ]
             Reporter: [ 2, 2 ]
             Librarian: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
-            ServiceWorker: [ 3, 4 ]
-            #engineering
+
+            Clown: [ 1, 1 ]
+            Mime: [ 1, 1 ]
+            Musician: [ 2, 4 ]
+            Performer: [ 3, 4 ]
+
+            #Engineering
             ChiefEngineer: [ 1, 1 ]
-            AtmosphericTechnician: [ 3, 3 ]
+            AtmosphericTechnician: [ 3, 4 ]
             StationEngineer: [ 6, 7 ]
             TechnicalAssistant: [ 3, 3 ]
-            #medical
+
+            #Medical
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 3, 3 ]
             MedicalDoctor: [ 6, 7 ]
@@ -42,13 +52,16 @@
             MedicalIntern: [ 4, 4 ]
             Surgeon: [ 2, 2 ]
             Psychologist: [ 1, 1 ]
-            #science
+
+            #Science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
             ResearchAssistant: [ 3, 4 ]
             Roboticist: [ 2, 2 ]
-            #security
+
+            #Security
             HeadOfSecurity: [ 1, 1 ]
+            GunnerySergeant: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 2 ]
             SecurityOfficer: [ 10, 12 ]
@@ -56,26 +69,30 @@
             Brigmedic: [ 2, 2 ]
             Detective: [ 2, 2 ]
             K9: [ 2, 2 ]
-            #supply
+
+            #Supply
             Quartermaster: [ 1, 1 ]
-            SalvageLead: [ 1, 1 ]
-            SalvageSpecialist: [ 5, 5 ]
             MiningSpecialist: [ 4, 4 ]
             CargoTechnician: [ 6, 7 ]
             MailTech: [ 2, 3 ]
-            #civilian
+
+            #ITG
+            SalvageLead: [ 1, 1 ]
+            SalvageSpecialist: [ 4, 4 ]
+            SalvageMedic: [ 1, 1 ]
+
+            #Civilian
+            AssistantManager: [ 2, 2 ]
             Assistant: [ -1, -1 ]
-            Clown: [ 1, 1 ]
-            Mime: [ 1, 1 ]
-            Musician: [ 2, 4 ]
-            Performer: [ 3, 4 ]
-            RadioHost: [ 2, 2 ]
-            #silicon
+
+            #Silicon
             StationAi: [ 1, 1 ]
             Borg: [ 3, 5 ]
-            #law
+
+            #Law
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]
+
             #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]

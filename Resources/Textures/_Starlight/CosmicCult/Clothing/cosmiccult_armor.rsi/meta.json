@@ -100,6 +100,16 @@
             "directions": 4
         },
         {
+            "name": "equipped-OUTERCLOTHING-avali",
+            "copyright": "State by DocMoth",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET-avali",
+            "copyright": "State by DocMoth",
+            "directions": 4
+        },
+        {
             "name": "equipped-OUTERCLOTHING-light-monkey",
             "copyright": "Made by .rhapsody (Discord)",
             "directions": 4
@@ -112,6 +122,11 @@
         {
             "name": "equipped-OUTERCLOTHING-light-dog",
             "copyright": "Made by .rhapsody (Discord)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-light-avali",
+            "copyright": "State by DocMoth",
             "directions": 4
         }
     ]

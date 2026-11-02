@@ -201,3 +201,8 @@
   id: Trinkets
   loadouts:
     - RadioHandheldStation
+
+- type: !PartialOnly loadoutGroup
+  id: Glasses
+  loadouts:
+  - CheapSunnies

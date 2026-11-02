@@ -1,0 +1,125 @@
+- type: entity
+  id: BroadcastRecorder
+  name: radio recorder
+  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
+  description: A cassette deck that records everything on air, music and voices alike, and plays it back exactly as it went.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/StationRadio/broadcast_recorder.rsi
+    drawdepth: SmallObjects
+    layers:
+    - state: icon
+    - state: tape
+      visible: false
+      map: [ "enum.BroadcastRecorderVisualLayers.Tape" ]
+    - state: reels
+      visible: false
+      map: [ "enum.BroadcastRecorderVisualLayers.Reels" ]
+    - state: unlit
+      shader: unshaded
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+    - state: rec
+      shader: unshaded
+      visible: false
+      map: [ "enum.BroadcastRecorderVisualLayers.RecordLight" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.BroadcastRecorderVisuals.Tape:
+        enum.BroadcastRecorderVisualLayers.Tape:
+          True: { visible: true }
+          False: { visible: false }
+      enum.BroadcastRecorderVisuals.Mode:
+        enum.BroadcastRecorderVisualLayers.Reels:
+          Stopped: { visible: false }
+          Recording: { visible: true }
+          Playing: { visible: true }
+        enum.BroadcastRecorderVisualLayers.RecordLight:
+          Stopped: { visible: false }
+          Recording: { visible: true }
+          Playing: { visible: false }
+  - type: Transform
+    noRot: false
+  - type: Rotatable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 500
+        mask:
+        - TabletopMachineMask
+        layer:
+        - BulletImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ApcPowerReceiver
+    powerLoad: 150
+  - type: Machine
+    board: BroadcastRecorderCircuitboard
+  - type: BroadcastRecorder
+  - type: TelecomExempt # Plays recorded speech straight onto the radio show channel, like the server's microphone.
+  - type: Speech
+  - type: TextToSpeech
+  - type: DeviceLinkSource
+    ports:
+    - BroadcastRecorderPort
+  - type: DeviceList
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      broadcast_tape: !type:ContainerSlot
+  - type: ContainerFill # Comes with a blank tape.
+    containers:
+      broadcast_tape:
+      - BroadcastTape
+  - type: ItemSlots
+    slots:
+      broadcast_tape:
+        name: item-slot-component-slot-name-broadcast-tape
+        whitelist:
+          components:
+          - BroadcastTape
+  - type: ActivatableUI
+    key: enum.BroadcastRecorderUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.BroadcastRecorderUiKey.Key:
+        type: BroadcastRecorderBoundUserInterface
+
+- type: entity
+  id: BroadcastRecorderChannel
+  name: radio recorder channel
+  description: One channel of a broadcast tape being played back.
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: BaseItem
+  id: BroadcastTape
+  name: broadcast tape
+  description: A long-play cassette for a radio recorder. Holds half an hour of radio, music and voices included.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/cassette_tapes.rsi
+    layers:
+    - state: tape_greyscale
+      color: "#c0393b"
+  - type: Item
+    size: Tiny
+  - type: BroadcastTape

@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 09/29/2026 19:43:08
-  entityCount: 37042
+  time: 10/31/2026 00:14:55
+  entityCount: 37045
 maps:
 - 1
 grids:
@@ -8528,9 +8528,6 @@ entities:
           immutable: True
         - temperature: 293.15
           volume: 2500
-          moles: {}
-        - temperature: 293.15
-          volume: 2500
           moles:
             Nitrogen: 6666.982
         - temperature: 293.15
@@ -8541,6 +8538,9 @@ entities:
           volume: 2500
           moles:
             Plasma: 6666.982
+        - temperature: 293.15
+          volume: 2500
+          moles: {}
         tiles:
           0,0:
             0: 65535
@@ -8829,7 +8829,7 @@ entities:
           -6,0:
             0: 53759
           -5,-5:
-            0: 46079
+            0: 47103
           -9,0:
             0: 55807
           -8,1:
@@ -9386,7 +9386,7 @@ entities:
             0: 62207
           10,-13:
             2: 9766
-            3: 136
+            6: 136
           11,-12:
             0: 4913
           11,-11:
@@ -9395,7 +9395,7 @@ entities:
             0: 65262
           11,-13:
             0: 4352
-            3: 119
+            6: 119
             2: 8
           12,-10:
             0: 65520
@@ -9507,7 +9507,7 @@ entities:
             0: 65427
           -13,-12:
             0: 56524
-            3: 17
+            6: 17
           -12,-11:
             0: 60943
           -13,-11:
@@ -9626,10 +9626,10 @@ entities:
           -11,2:
             0: 1
             2: 240
-            4: 57344
+            3: 57344
           -11,3:
             2: 61440
-            5: 224
+            4: 224
           -10,1:
             0: 49039
           -10,2:
@@ -9665,14 +9665,14 @@ entities:
             2: 57305
           -11,6:
             2: 61440
-            3: 224
+            6: 224
           -11,7:
             2: 65535
           -11,4:
-            6: 224
-            3: 57344
+            5: 224
+            6: 57344
           -11,5:
-            3: 57568
+            6: 57568
           -11,8:
             2: 65535
           -10,6:
@@ -9781,9 +9781,9 @@ entities:
             2: 4592
           -7,-15:
             2: 2
-            3: 60928
+            6: 60928
           -6,-15:
-            3: 256
+            6: 256
             0: 34952
           -6,-14:
             0: 65528
@@ -9802,7 +9802,7 @@ entities:
             0: 30487
           -13,-14:
             0: 52232
-            3: 23
+            6: 23
           -11,-16:
             0: 4352
           -11,-15:
@@ -9817,9 +9817,9 @@ entities:
             0: 16307
           -10,-16:
             0: 8704
-            3: 32768
+            6: 32768
           -10,-17:
-            3: 49152
+            6: 49152
             0: 4
           -16,-6:
             2: 16076
@@ -9851,7 +9851,7 @@ entities:
             0: 52420
           -15,-9:
             0: 34952
-            3: 256
+            6: 256
           -14,-8:
             0: 49080
           -14,-7:
@@ -9871,32 +9871,32 @@ entities:
           -13,-7:
             0: 18022
           -16,-12:
-            3: 32
+            6: 32
           -16,-11:
-            3: 32768
+            6: 32768
           -16,-10:
-            3: 8
+            6: 8
           -15,-11:
-            3: 13036
+            6: 13036
             0: 32768
           -15,-10:
-            3: 307
+            6: 307
             0: 34952
           -15,-12:
             0: 34
-            3: 51336
+            6: 51336
           -14,-12:
-            3: 4607
+            6: 4607
             0: 49152
           -14,-11:
-            3: 17
+            6: 17
             0: 63692
           -14,-10:
             0: 65535
           -14,-13:
-            3: 59392
+            6: 59392
           -13,-13:
-            3: 4352
+            6: 4352
             0: 1604
           8,9:
             0: 65535
@@ -10096,27 +10096,27 @@ entities:
           14,-9:
             0: 36623
           15,-8:
-            3: 16
+            6: 16
           15,-6:
-            3: 16
+            6: 16
             0: 4096
             2: 32768
           15,-9:
             0: 4353
-            3: 8
+            6: 8
           16,-5:
             2: 304
           12,-11:
-            3: 32772
+            6: 32772
           12,-12:
             2: 12
           12,-13:
             2: 52303
           13,-12:
             2: 15
-            3: 16384
+            6: 16384
           13,-11:
-            3: 65228
+            6: 65228
           13,-10:
             0: 65520
           13,-13:
@@ -10124,7 +10124,7 @@ entities:
           14,-12:
             2: 15
           14,-11:
-            3: 65521
+            6: 65521
           14,-10:
             0: 65520
           14,-13:
@@ -10132,16 +10132,16 @@ entities:
           15,-12:
             2: 1
           15,-11:
-            3: 28688
+            6: 28688
           15,-10:
             0: 4368
-            3: 52420
+            6: 52420
           15,-13:
             2: 4511
           16,-10:
-            3: 4371
+            6: 4371
           16,-9:
-            3: 1
+            6: 1
           -4,9:
             0: 7421
           -5,9:
@@ -10156,7 +10156,7 @@ entities:
             0: 65520
           -4,12:
             0: 34995
-            3: 12288
+            6: 12288
             2: 16384
           -3,9:
             0: 4095
@@ -10207,7 +10207,7 @@ entities:
             0: 65535
           -5,12:
             0: 13311
-            3: 32768
+            6: 32768
           -13,8:
             2: 8
             0: 7955
@@ -10231,17 +10231,17 @@ entities:
             2: 4096
           -11,9:
             2: 4607
-            3: 49152
+            6: 49152
           -11,10:
             2: 33041
-            3: 204
+            6: 204
           -11,11:
             2: 36088
           -10,9:
             2: 52479
-            3: 4096
+            6: 4096
           -10,10:
-            3: 17
+            6: 17
             0: 32768
             2: 136
           -10,11:
@@ -10255,7 +10255,7 @@ entities:
             0: 65535
           7,-15:
             0: 36608
-            3: 7
+            6: 7
           8,-14:
             0: 61183
           8,-16:
@@ -10269,9 +10269,9 @@ entities:
           11,-16:
             2: 7936
           10,-14:
-            3: 34816
+            6: 34816
           11,-14:
-            3: 29440
+            6: 29440
             2: 49
           11,-15:
             2: 4369
@@ -10281,29 +10281,29 @@ entities:
             0: 30479
           5,-16:
             0: 13107
-            3: 2184
+            6: 2184
           5,-15:
             0: 16191
           5,-17:
             0: 13107
-            3: 34952
+            6: 34952
           5,-14:
             2: 1096
           6,-16:
-            3: 61439
+            6: 61439
           6,-15:
             0: 3841
-            3: 14
+            6: 14
           6,-14:
             2: 559
           6,-17:
-            3: 63281
+            6: 63281
           7,-16:
-            3: 32627
+            6: 32627
           7,-14:
             2: 1091
           7,-17:
-            3: 4096
+            6: 4096
           -9,13:
             0: 65520
           -8,13:
@@ -10325,7 +10325,7 @@ entities:
             0: 65521
           -7,13:
             2: 49698
-            3: 1024
+            6: 1024
             0: 8
           -6,13:
             0: 17663
@@ -10336,25 +10336,25 @@ entities:
             0: 228
           -5,13:
             0: 51
-            3: 49288
+            6: 49288
           -5,14:
             2: 50247
-            3: 8
+            6: 8
           -5,15:
             0: 65520
           -4,13:
-            3: 61491
+            6: 61491
             2: 68
             0: 136
           -4,14:
-            3: 52991
+            6: 52991
           -4,15:
             0: 65520
           -3,13:
             0: 52479
-            3: 4096
+            6: 4096
           -3,14:
-            3: 4369
+            6: 4369
             0: 52428
           -3,15:
             0: 16380
@@ -10497,14 +10497,14 @@ entities:
           13,7:
             2: 16384
             0: 272
-            3: 3276
+            6: 3276
           14,9:
             2: 248
           14,8:
             2: 52428
           14,7:
             2: 51404
-            3: 307
+            6: 307
           15,8:
             2: 56797
           15,9:
@@ -10519,12 +10519,12 @@ entities:
             0: 5990
           13,6:
             0: 4876
-            3: 52224
+            6: 52224
           14,5:
             0: 7633
           14,6:
             0: 15
-            3: 13056
+            6: 13056
           15,5:
             0: 35768
           15,6:
@@ -10666,16 +10666,16 @@ entities:
             0: 14
           -16,7:
             2: 416
-            3: 7748
+            6: 7748
           -16,8:
             2: 4113
             0: 50380
-            3: 256
+            6: 256
           -17,7:
             2: 32768
           -16,6:
             0: 8192
-            3: 16384
+            6: 16384
             2: 34816
           -15,6:
             2: 33086
@@ -10696,16 +10696,16 @@ entities:
             0: 57308
           -17,8:
             2: 33920
-            3: 2048
+            6: 2048
           -16,9:
             2: 41217
-            3: 19984
+            6: 19984
             0: 12
           -17,9:
             2: 128
           -16,10:
             2: 2208
-            3: 68
+            6: 68
           -15,9:
             0: 7
             2: 20352
@@ -10775,18 +10775,18 @@ entities:
           -15,-16:
             2: 65520
           -15,-13:
-            3: 64
+            6: 64
           -14,-16:
             2: 24404
           -14,-15:
             2: 20
-            3: 52960
+            6: 52960
           -14,-17:
             2: 24404
           -13,-15:
-            3: 29456
+            6: 29456
           -14,-14:
-            3: 8
+            6: 8
           4,-18:
             0: 65520
           3,-18:
@@ -10942,7 +10942,7 @@ entities:
           -10,-19:
             2: 4096
           -10,-18:
-            3: 4
+            6: 4
           -9,-17:
             2: 224
           -8,-17:
@@ -11193,6 +11193,9 @@ entities:
     - type: TileHistory
       chunkHistory: {}
     - type: LightTree
+    - type: GridAccess
+      accessibleGrids:
+      - 2
   - uid: 29394
     components:
     - type: MetaData
@@ -12596,15 +12599,19 @@ entities:
           9,4:
             0: 1
           10,1:
-            0: 65520
+            0: 65528
           10,3:
             0: 30304
           10,4:
             0: 7
+          10,0:
+            0: 35968
           10,2:
             0: 140
+          11,0:
+            0: 4880
           11,1:
-            0: 4368
+            0: 13072
           11,2:
             0: 8959
           11,3:
@@ -13039,6 +13046,9 @@ entities:
     - type: TileHistory
       chunkHistory: {}
     - type: LightTree
+    - type: GridAccess
+      accessibleGrids:
+      - 29394
 - proto: ActionToggleLight
   entities:
   - uid: 4
@@ -16601,7 +16611,7 @@ entities:
       pos: 33.5,-28.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -243264.33
+      secondsUntilStateChange: -246145.03
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -16643,7 +16653,7 @@ entities:
       pos: 37.5,18.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -298942.94
+      secondsUntilStateChange: -301823.62
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -16690,7 +16700,7 @@ entities:
       pos: -18.5,-39.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -295094.9
+      secondsUntilStateChange: -297975.6
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -16816,7 +16826,7 @@ entities:
       accessListsOriginal: []
     - type: Door
       state: Opening
-      secondsUntilStateChange: -298890.38
+      secondsUntilStateChange: -301771.06
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -18506,7 +18516,7 @@ entities:
       pos: 52.5,-0.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -296321.8
+      secondsUntilStateChange: -299202.5
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -18831,7 +18841,7 @@ entities:
       pos: 40.5,2.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -293788.47
+      secondsUntilStateChange: -296669.16
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -18889,7 +18899,7 @@ entities:
       pos: -22.5,26.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -609554.1
+      secondsUntilStateChange: -612434.8
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -19576,7 +19586,7 @@ entities:
       pos: -13.5,-45.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -295093.5
+      secondsUntilStateChange: -297974.2
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -19803,7 +19813,7 @@ entities:
       pos: 29.5,-42.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -310056
+      secondsUntilStateChange: -312936.7
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -19938,7 +19948,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -708382.94
+      secondsUntilStateChange: -711263.6
   - uid: 653
     components:
     - type: Transform
@@ -19950,7 +19960,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -708385.56
+      secondsUntilStateChange: -711266.25
   - uid: 654
     components:
     - type: Transform
@@ -19962,7 +19972,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -708384.44
+      secondsUntilStateChange: -711265.1
   - uid: 655
     components:
     - type: Transform
@@ -19973,7 +19983,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -708383.6
+      secondsUntilStateChange: -711264.3
   - uid: 656
     components:
     - type: Transform
@@ -22235,6 +22245,8 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -23.5,-7.5
+    - type: Setup
+      nameSet: True
     - type: Fixtures
       fixtures: {}
   - uid: 909
@@ -34608,7 +34620,6 @@ entities:
       parent: 2
       pos: -59.5,-21.5
     - type: Godmode
-      oldDamage: {}
 - proto: AsteroidRockGold
   entities:
   - uid: 31696
@@ -99482,7 +99493,26 @@ entities:
       accessListsOriginal:
       - - Service
       - - Theatre
-- proto: ComputerComms
+- proto: ComputerCommsCargoFilled
+  entities:
+  - uid: 11090
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: -50.5,9.5
+    - type: AccessReader
+      accessListsOriginal:
+      - - Quartermaster
+- proto: ComputerCommsEngineeringFilled
+  entities:
+  - uid: 11091
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 3.5,44.5
+- proto: ComputerCommsFilled
   entities:
   - uid: 11088
     components:
@@ -99498,26 +99528,7 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Command
-- proto: ComputerCommsCargo
-  entities:
-  - uid: 11090
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: -50.5,9.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Quartermaster
-- proto: ComputerCommsEngineering
-  entities:
-  - uid: 11091
-    components:
-    - type: Transform
-      parent: 2
-      rot: 1.5707963267948966 rad
-      pos: 3.5,44.5
-- proto: ComputerCommsMedical
+- proto: ComputerCommsMedicalFilled
   entities:
   - uid: 11093
     components:
@@ -99528,7 +99539,7 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - ChiefMedicalOfficer
-- proto: ComputerCommsScience
+- proto: ComputerCommsScienceFilled
   entities:
   - uid: 11094
     components:
@@ -99538,7 +99549,7 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - ResearchDirector
-- proto: ComputerCommsSecurity
+- proto: ComputerCommsSecurityFilled
   entities:
   - uid: 11095
     components:
@@ -99550,7 +99561,7 @@ entities:
       accessListsOriginal:
       - - HeadOfSecurity
         - Armory
-- proto: ComputerCommsService
+- proto: ComputerCommsServiceFilled
   entities:
   - uid: 11096
     components:
@@ -112445,11 +112456,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 23.270542,-10.50637
-  - uid: 13009
-    components:
-    - type: Transform
-      parent: 2
-      pos: 40.251106,-19.495895
   - uid: 13010
     components:
     - type: Transform
@@ -112497,6 +112503,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -3.5,61.5
+  - uid: 37044
+    components:
+    - type: Transform
+      parent: 2
+      pos: 45.041313,-16.465603
 - proto: filingCabinetTall
   entities:
   - uid: 13018
@@ -119141,7 +119152,6 @@ entities:
       parent: 2
       pos: 25.406118,5.247013
     - type: Contraband
-      severity: Major
       allowedJobs: []
       allowedDepartments: []
 - proto: FoodCartCold
@@ -119350,7 +119360,6 @@ entities:
       parent: 2
       pos: 33.505505,6.640149
     - type: Contraband
-      severity: Major
       allowedJobs: []
       allowedDepartments: []
 - proto: FoodOrange
@@ -119518,7 +119527,6 @@ entities:
       parent: 2
       pos: 13.668345,13.720411
     - type: Contraband
-      severity: Major
       allowedJobs: []
       allowedDepartments: []
 - proto: FoodSoupSlime
@@ -119529,7 +119537,6 @@ entities:
       parent: 2
       pos: 38.50134,13.881412
     - type: Contraband
-      severity: Major
       allowedJobs: []
       allowedDepartments: []
 - proto: FoodSoupVegetable
@@ -171816,10 +171823,11 @@ entities:
       pos: 13.034134,11.601506
 - proto: HospitalCurtains
   entities:
-  - uid: 20364
+  - uid: 21473
     components:
     - type: Transform
       parent: 2
+      rot: 1.5707963267948966 rad
       pos: 35.5,20.5
 - proto: HospitalCurtainsOpen
   entities:
@@ -173289,6 +173297,8 @@ entities:
     - type: Transform
       parent: 2
       pos: 36.5,-9.5
+    - type: Setup
+      nameSet: True
     - type: Fixtures
       fixtures: {}
 - proto: LockableButtonChapel
@@ -173301,6 +173311,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 25.5,-20.5
+    - type: Setup
+      nameSet: True
     - type: AccessReader
       accessListsOriginal:
       - - Chapel
@@ -173328,6 +173340,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 25.5,-21.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         21109:
@@ -173408,6 +173422,8 @@ entities:
       parent: 29394
       rot: -1.5707963267948966 rad
       pos: 17.5,19.5
+    - type: Setup
+      nameSet: True
     - type: AccessReader
       accessListsOriginal:
       - - Security
@@ -173439,6 +173455,8 @@ entities:
       parent: 29394
       rot: -1.5707963267948966 rad
       pos: 17.5,20.5
+    - type: Setup
+      nameSet: True
     - type: AccessReader
       accessListsOriginal:
       - - Security
@@ -173497,6 +173515,8 @@ entities:
       parent: 29394
       rot: -1.5707963267948966 rad
       pos: 18.5,11.5
+    - type: Setup
+      nameSet: True
     - type: AccessReader
       accessListsOriginal:
       - - Security
@@ -173556,6 +173576,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -20.5,-13.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         584:
@@ -173571,6 +173593,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -20.5,-17.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         580:
@@ -173586,6 +173610,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -20.5,-7.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         585:
@@ -173600,6 +173626,8 @@ entities:
     - type: Transform
       parent: 2
       pos: -13.5,-20.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         583:
@@ -173614,6 +173642,8 @@ entities:
     - type: Transform
       parent: 2
       pos: -7.5,-20.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         582:
@@ -173628,6 +173658,8 @@ entities:
     - type: Transform
       parent: 2
       pos: -3.5,-20.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         581:
@@ -173998,6 +174030,13 @@ entities:
           ent: null
           showEnts: False
           occludes: True
+- proto: LockerGunnerySergeantFilled
+  entities:
+  - uid: 13009
+    components:
+    - type: Transform
+      parent: 2
+      pos: 40.5,-19.5
 - proto: LockerHeadOfPersonnelFilled
   entities:
   - uid: 20072
@@ -179313,7 +179352,7 @@ entities:
         DoorStatus: True
     - type: Door
       state: Opening
-      secondsUntilStateChange: -272787.75
+      secondsUntilStateChange: -275668.44
     - type: Airlock
       autoClose: False
     - type: AccessReader
@@ -179922,6 +179961,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -25.5,7.5
+  - uid: 37045
+    components:
+    - type: Transform
+      parent: 29394
+      pos: 1.5,-14.5
 - proto: PortalGatewayBlue
   entities:
   - uid: 35162
@@ -180833,7 +180877,7 @@ entities:
       pos: 29.5,-35.5
     - type: Fixtures
       fixtures: {}
-- proto: PosterlegitLawPoster
+- proto: PosterLegitLawPoster
   entities:
   - uid: 20091
     components:
@@ -185609,6 +185653,12 @@ entities:
       pos: 37.5,-24.5
 - proto: PoweredSmallLight
   entities:
+  - uid: 20364
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 35.5,21.5
   - uid: 21470
     components:
     - type: Transform
@@ -185625,12 +185675,6 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 39.5,26.5
-  - uid: 21473
-    components:
-    - type: Transform
-      parent: 2
-      rot: 3.141592653589793 rad
-      pos: 35.5,20.5
   - uid: 21474
     components:
     - type: Transform
@@ -191188,6 +191232,24 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 36.5,68.5
+  - uid: 22935
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 53.5,68.5
+  - uid: 22936
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 53.5,69.5
+  - uid: 22937
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 53.5,70.5
 - proto: ReinforcedUraniumWindowDiagonal
   entities:
   - uid: 22381
@@ -191602,11 +191664,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 60.5,-39.5
-  - uid: 22459
-    components:
-    - type: Transform
-      parent: 2
-      pos: -17.5,-17.5
   - uid: 22460
     components:
     - type: Transform
@@ -193990,24 +194047,6 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -0.5,84.5
-  - uid: 22935
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: 53.5,68.5
-  - uid: 22936
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: 53.5,69.5
-  - uid: 22937
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: 53.5,70.5
   - uid: 22938
     components:
     - type: Transform
@@ -194628,6 +194667,12 @@ entities:
       pos: -14.5,-70.5
 - proto: ReinforcedWindowDiagonal
   entities:
+  - uid: 22459
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: -17.5,-17.5
   - uid: 22940
     components:
     - type: Transform
@@ -197373,6 +197418,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -28.5,-34.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23175:
@@ -197393,6 +197440,8 @@ entities:
     - type: Transform
       parent: 2
       pos: 15.5,-18.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23158:
@@ -197417,6 +197466,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 11.5,-20.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         21111:
@@ -197460,6 +197511,8 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -2.5,18.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23244:
@@ -197490,6 +197543,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 10.5,50.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23220:
@@ -197505,6 +197560,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 16.5,50.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23221:
@@ -197520,6 +197577,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 27.5,17.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23168:
@@ -197538,6 +197597,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 29.5,21.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23166:
@@ -197559,6 +197620,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 61.5,-33.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         12915:
@@ -197574,6 +197637,8 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 45.717854,-7.5
+    - type: Setup
+      nameSet: True
     - type: Fixtures
       fixtures: {}
   - uid: 23275
@@ -197584,6 +197649,8 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 45.279293,-7.5
+    - type: Setup
+      nameSet: True
     - type: Fixtures
       fixtures: {}
   - uid: 23276
@@ -197594,6 +197661,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -18.5,-49.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         21161:
@@ -197609,6 +197678,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -47.5,5.5
+    - type: Setup
+      nameSet: True
     - type: SignalSwitch
       state: True
     - type: Fixtures
@@ -197621,6 +197692,8 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -24.5,-46.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         21169:
@@ -197636,6 +197709,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 61.5,-19.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         12915:
@@ -197651,6 +197726,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -9.5,-25.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23143:
@@ -197669,6 +197746,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 30.5,35.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23178:
@@ -197689,6 +197768,8 @@ entities:
     - type: Transform
       parent: 2
       pos: 3.5,45.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23182:
@@ -197722,6 +197803,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 16.5,51.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         1771:
@@ -197743,6 +197826,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 10.5,51.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         1770:
@@ -197764,6 +197849,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 6.5,44.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         1780:
@@ -197785,6 +197872,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 20.5,50.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         1776:
@@ -197808,6 +197897,8 @@ entities:
     - type: Transform
       parent: 2
       pos: -11.5,34.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23191:
@@ -197829,6 +197920,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -22.5,-34.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23192:
@@ -197853,6 +197946,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -42.5,38.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         1786:
@@ -197874,6 +197969,8 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 6.5,-47.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         19950:
@@ -197902,6 +197999,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 6.5,-36.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         1788:
@@ -197917,6 +198016,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 3.5,-36.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23225:
@@ -197944,6 +198045,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 8.5,-36.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         1787:
@@ -197978,6 +198081,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 25.5,-48.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         1790:
@@ -197995,6 +198100,8 @@ entities:
     - type: Transform
       parent: 2
       pos: 4.5,-51.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23232:
@@ -198016,6 +198123,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -58.5,-3.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         1792:
@@ -198034,6 +198143,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 55.5,18.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         1802:
@@ -198055,6 +198166,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 62.5,11.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23237:
@@ -198103,6 +198216,8 @@ entities:
     - type: Transform
       parent: 2
       pos: 41.5,-17.5
+    - type: Setup
+      nameSet: True
     - type: Fixtures
       fixtures: {}
   - uid: 23303
@@ -198136,6 +198251,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -51.5,1.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23199:
@@ -198175,6 +198292,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 11.5,-36.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23230:
@@ -198202,6 +198321,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -5.5,-47.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         19955:
@@ -198216,6 +198337,8 @@ entities:
     - type: Transform
       parent: 2
       pos: -9.5,-31.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         19956:
@@ -198231,6 +198354,8 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 3.5,-24.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         19957:
@@ -198246,6 +198371,8 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -20.5,2.5
+    - type: Setup
+      nameSet: True
     - type: SignalSwitch
       state: True
     - type: DeviceLinkSource
@@ -198263,6 +198390,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -44.5,4.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         19951:
@@ -198277,6 +198406,8 @@ entities:
     - type: Transform
       parent: 2
       pos: -50.5,4.5
+    - type: Setup
+      nameSet: True
     - type: Fixtures
       fixtures: {}
   - uid: 23312
@@ -198287,6 +198418,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -1.5,22.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         19953:
@@ -198302,6 +198435,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 2.5,24.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         19954:
@@ -198316,6 +198451,8 @@ entities:
     - type: Transform
       parent: 2
       pos: 5.5,39.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         19949:
@@ -198331,6 +198468,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -51.5,11.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23207:
@@ -198363,6 +198502,8 @@ entities:
     - type: Transform
       parent: 2
       pos: 22.5,-1.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23144:
@@ -198383,6 +198524,8 @@ entities:
     - type: Transform
       parent: 2
       pos: -29.5,-37.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23146:
@@ -198404,6 +198547,8 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -38.5,-25.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         205:
@@ -198419,6 +198564,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -39.5,-20.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         204:
@@ -198434,6 +198581,8 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -39.5,-15.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         203:
@@ -198490,6 +198639,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 11.5,36.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         207:
@@ -198504,6 +198655,8 @@ entities:
     - type: Transform
       parent: 2
       pos: -4.5,39.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         21231:
@@ -198525,6 +198678,8 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -11.5,-37.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         594:
@@ -198543,6 +198698,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 52.5,-3.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         19958:
@@ -198557,6 +198714,8 @@ entities:
     - type: Transform
       parent: 2
       pos: 43.715458,-3.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         23202:
@@ -198581,6 +198740,8 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 33.5,-25.5
+    - type: Setup
+      nameSet: True
     - type: DeviceLinkSource
       linkedPorts:
         21474:
@@ -200898,6 +201059,10 @@ entities:
       - smart_fridge_inventory
       - entity_storage
     - type: EntityStorage
+      whitelist:
+        components:
+        - MobState
+        - Item
       openSound: !type:SoundPathSpecifier
         path: /Audio/Effects/closetopen.ogg
       closeSound: !type:SoundPathSpecifier
@@ -204178,6 +204343,13 @@ entities:
     - type: Transform
       parent: 29394
       pos: 15.5,12.5
+- proto: SpawnPointGunnerySergeant
+  entities:
+  - uid: 37043
+    components:
+    - type: Transform
+      parent: 2
+      pos: 41.5,-19.5
 - proto: SpawnPointHeadOfPersonnel
   entities:
   - uid: 24021
@@ -215046,10 +215218,9 @@ entities:
       parent: 2
       pos: -19.5,-69.5
     - type: DeviceLinkSource
-      linkedPorts:
-        36676:
-        - - VinylPlayerPort
-          - StationRadioRigPort
+      ports: []
+      linkedPorts: {}
+      lastSignals: {}
 - proto: WallAsteroidCobblebrick
   entities:
   - uid: 25442
@@ -215080,7 +215251,6 @@ entities:
       parent: 29394
       pos: 48.5,48.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35825
     components:
     - type: Transform
@@ -215102,7 +215272,6 @@ entities:
       parent: 29394
       pos: 42.5,51.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35829
     components:
     - type: Transform
@@ -215119,14 +215288,12 @@ entities:
       parent: 29394
       pos: 45.5,48.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35832
     components:
     - type: Transform
       parent: 29394
       pos: 46.5,48.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35833
     components:
     - type: Transform
@@ -215138,21 +215305,18 @@ entities:
       parent: 29394
       pos: 48.5,50.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35835
     components:
     - type: Transform
       parent: 29394
       pos: 44.5,50.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35836
     components:
     - type: Transform
       parent: 29394
       pos: 43.5,51.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35837
     components:
     - type: Transform
@@ -215199,21 +215363,18 @@ entities:
       parent: 29394
       pos: 47.5,48.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35846
     components:
     - type: Transform
       parent: 29394
       pos: 48.5,49.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35847
     components:
     - type: Transform
       parent: 29394
       pos: 44.5,49.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35848
     components:
     - type: Transform
@@ -215300,21 +215461,18 @@ entities:
       parent: 29394
       pos: 50.5,51.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35865
     components:
     - type: Transform
       parent: 29394
       pos: 43.5,50.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35866
     components:
     - type: Transform
       parent: 29394
       pos: 49.5,50.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35867
     components:
     - type: Transform
@@ -215331,7 +215489,6 @@ entities:
       parent: 29394
       pos: 44.5,48.5
     - type: Godmode
-      oldDamage: {}
   - uid: 35870
     components:
     - type: Transform
@@ -238087,15 +238244,17 @@ entities:
     - type: MeleeWeapon
       soundHit: null
       damage:
+        groups: null
+        mixmax: null
         types:
           Blunt: 1
-        groups: null
       attackRate: 1
     - type: DamageOtherOnHit
       damage:
+        groups: null
+        mixmax: null
         types:
           Blunt: 0
-        groups: null
   - uid: 28978
     components:
     - type: Transform
@@ -238112,15 +238271,17 @@ entities:
     - type: MeleeWeapon
       soundHit: null
       damage:
+        groups: null
+        mixmax: null
         types:
           Blunt: 1
-        groups: null
       attackRate: 1
     - type: DamageOtherOnHit
       damage:
+        groups: null
+        mixmax: null
         types:
           Blunt: 0
-        groups: null
   - uid: 28979
     components:
     - type: Transform

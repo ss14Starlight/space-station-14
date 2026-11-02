@@ -1,0 +1,17 @@
+- type: entity
+  parent: ButchCleaver
+  id: ButchCleaverGold
+  name: golden butcher's cleaver
+  description: A gold-plated butcher's cleaver given as a token of appreciation for years of service. Its edge is made of plasteel for an extra-sharp cut.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/cleaver_gold.rsi/
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/cleaver_gold.rsi/
+  - type: MeleeWeapon
+    wideAnimationRotation: -115
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 13.1 # Extra 0.1 damage a swing is… basically cosmetic.
+

@@ -4,12 +4,11 @@
   - type: LanguageKnowledge
     speaks:
     - Bat
-    - Darktongue
+    - Mouse
     understands:
     - GalacticCommon
     - Bat
     - Mouse
-    - Darktongue
 
 - type: !PartialOnly entity
   id: MobCorgiCerberus

@@ -4,6 +4,10 @@
   name: arachnid cybernetic heart
   suffix: Neo-Arachnid
   components:
+  - type: Tag
+    tags:
+    - Meat
+    - Heart
   - type: Sprite
     state: heart-on
   - type: Item

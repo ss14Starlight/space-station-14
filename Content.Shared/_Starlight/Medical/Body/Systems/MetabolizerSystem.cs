@@ -38,6 +38,9 @@ public sealed partial class MetabolizerSystem : EntitySystem
     private EntityQuery<OrganComponent> _organQuery;
     private EntityQuery<SolutionManagerComponent> _solutionQuery;
 
+    private readonly List<ReagentQuantity> _reagentBuffer = new();
+    private readonly List<ReagentId> _excludedBuffer = new();
+
     public override void Initialize()
     {
         base.Initialize();
@@ -145,10 +148,13 @@ public sealed partial class MetabolizerSystem : EntitySystem
         LookupSolution(ent, solutionData, true, out var transferSolution, out var transferSolutionEntity, out _);
 
         // Copy the solution do not edit the original solution list
-        var list = solution.Contents.ToList();
+        var list = _reagentBuffer;
+        list.Clear();
+        list.AddRange(solution.Contents);
 
         // Collecting blood reagent for filtering
-        var ev = new MetabolismExclusionEvent();
+        _excludedBuffer.Clear();
+        var ev = new MetabolismExclusionEvent(_excludedBuffer);
         RaiseLocalEvent(solutionOwner.Value, ref ev);
 
         // randomize the reagent list so we don't have any weird quirks

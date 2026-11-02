@@ -1,0 +1,133 @@
+- type: salvageDungeonMod
+  id: ShipWreck
+  desc: salvage-dungeon-mod-soviet-stronghold
+  proto: ShipWreckDungeon
+  biomes:
+    - Grasslands
+
+  difficulties:
+    - Communist-Easy
+    - Communist-Medium
+    - Communist-Hard
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard
+
+- type: salvageDungeonMod
+  id: SovietStronghold
+  desc: salvage-dungeon-mod-soviet-stronghold
+  proto: SovietDungeonWeh
+  biomes:
+    - Lava
+    - Grasslands
+    - Caves
+    - Snow
+  difficulties:
+    - Communist-Easy
+    - Communist-Medium
+    - Communist-Hard
+
+- type: salvageDungeonMod
+  id: SovietStrategicResourcesWarehouse
+  desc: salvage-dungeon-mod-soviet-warehouse
+  proto: SovietStrategicResourcesWarehouseDungeon
+  biomes:
+    - TrueAbyss
+  difficulties:
+    - Elder
+
+- type: salvageDungeonMod
+  id: Experiment
+  desc: salvage-dungeon-mod-experiment
+  proto: Experiment
+  biomes:
+    #- LowDesert
+    - Abyss
+    - Grasslands
+  difficulties:
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard
+
+- type: salvageDungeonMod
+  id: LavaBrig
+  desc: salvage-dungeon-mod-lava-brig
+  proto: LavaBrig
+  biomes:
+    - Lava
+  difficulties:
+    - Xeno-Medium
+    - Xeno-Hard
+    - Carp-Medium
+    - Carp-Hard
+    - Argocyte-Medium
+    - Argocyte-Hard
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard
+
+- type: salvageDungeonMod
+  id: Mineshaft
+  desc: salvage-dungeon-mod-mineshaft
+  proto: Mineshaft
+  biomes:
+    - Caves
+  difficulties:
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+
+- type: salvageDungeonMod
+  id: SnowyLabs
+  desc: salvage-dungeon-mod-snowy-labs
+  proto: SnowyLabs
+  biomes:
+    - Snow
+  difficulties:
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard
+
+- type: salvageDungeonMod
+  id: Haunted
+  desc: salvage-dungeon-mod-haunted
+  proto: Haunted
+  biomes:
+    - Caves
+  difficulties:
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard

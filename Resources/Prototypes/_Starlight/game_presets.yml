@@ -130,6 +130,7 @@
 
 - type: gamePreset
   id: AlmostAllAtOnce
+  bypassCooldowns: true
   alias:
   - almostall
   - allnt
@@ -154,11 +155,13 @@
     - SiliconLiberation
     - SubBrighteye
     - ThiefGamerule
-    - Devil
+    - BloodBound
     - CosmicCult
+    - Devil
 
 - type: gamePreset
   id: AlmostAllerAtOnce
+  bypassCooldowns: true
   alias:
   - almostallall
   - allernt
@@ -196,6 +199,7 @@
     - RailroadingTerminator
     - RailroadingMinor
     - Devil
+    - BloodBound
     - CosmicCult
 
 - type: gamePreset

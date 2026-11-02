@@ -289,6 +289,8 @@ public sealed partial class ClientClothingSystem : ClothingSystem
             }
         }
 
+        displacementData ??= slotDef.Displacement; // Starlight-edit: use directional inventory-template placement when the wearer has no override.
+
         // add the new layers
         foreach (var (key, layerData) in ev.Layers)
         {

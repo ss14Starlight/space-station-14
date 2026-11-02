@@ -1,0 +1,105 @@
+- type: salvageLoot
+  id: SalvageLootCarpEasy
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: CrateChemistryP
+          cost: 5
+          prob: 0.5
+        - proto: CrateChemistryS
+          cost: 5
+          prob: 0.5
+        - proto: CrateChemistryD
+          cost: 5
+          prob: 0.5
+        - proto: AutolatheMachineCircuitboard
+          cost: 2
+        - proto: FoodMealCubancarp
+        - proto: MedkitFilled
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10
+
+- type: salvageLoot
+  id: SalvageLootCarpMedium
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: CrateChemistryP
+          cost: 5
+          prob: 0.5
+        - proto: CrateChemistryS
+          cost: 5
+          prob: 0.5
+        - proto: CrateChemistryD
+          cost: 5
+          prob: 0.5
+        - proto: AutolatheMachineCircuitboard
+          cost: 2
+        - proto: FoodMealCubancarp
+        - proto: MedkitFilled
+        - proto: MedkitBruteFilled
+        - proto: MedkitBurnFilled
+        - proto: ElectrolysisUnitMachineCircuitboard
+          cost: 2
+        - proto: CentrifugeMachineCircuitboard
+          cost: 2
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10
+
+- type: salvageLoot
+  id: SalvageLootCarpHard
+  loots:
+    - !type:RandomSpawnsLoot
+      entries:
+        - proto: CrateChemistryP
+          cost: 5
+          prob: 0.8
+        - proto: CrateChemistryS
+          cost: 5
+          prob: 0.8
+        - proto: CrateChemistryD
+          cost: 5
+          prob: 0.8
+        - proto: AutolatheMachineCircuitboard
+          cost: 2
+        - proto: FoodMealCubancarp
+        - proto: MedkitFilled
+        - proto: MedkitBruteFilled
+        - proto: MedkitBurnFilled
+        - proto: ElectrolysisUnitMachineCircuitboard
+          cost: 2
+        - proto: CentrifugeMachineCircuitboard
+          cost: 2
+        - proto: ChemMasterMachineCircuitboard
+          cost: 5
+        - proto: MedkitAdvancedFilled
+          cost: 5
+        - proto: MedkitCombatFilled
+          cost: 7
+        - proto: MedkitRadiationFilled
+          cost: 2
+        - proto: DehydratedSpaceCarp
+          cost: 10
+          prob: 0.5
+        - proto: FoodMeatDragon
+          cost: 10
+#baseloot
+        - proto: WaterTankHighCapacity
+        - proto: WeldingFuelTankHighCapacity
+          cost: 2
+        - proto: SalvageCanisterSpawner
+          cost: 2
+        - proto: SheetSteel10
+        - proto: SheetGlass10

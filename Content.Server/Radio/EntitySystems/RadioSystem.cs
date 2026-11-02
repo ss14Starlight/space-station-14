@@ -252,15 +252,16 @@ public sealed partial class RadioSystem : EntitySystem
         }
 
         // Starlight start
-        RaiseLocalEvent(new RadioSpokeEvent
-        {
-            Channel = channel,
-            Source = messageSource,
-            Message = message,
-            Language = language,
-            SuppressTTS = suppressTTS,
-            Receivers = [.. ev.Receivers]
-        });
+        if (canSend)
+            RaiseLocalEvent(new RadioSpokeEvent
+            {
+                Channel = channel,
+                Source = messageSource,
+                Message = message,
+                Language = language,
+                SuppressTTS = suppressTTS,
+                Receivers = [.. ev.Receivers]
+            });
         // Starlight end
 
         if (name != Name(messageSource))

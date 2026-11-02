@@ -108,6 +108,8 @@
     table:
       children:
       - !CombineIndex:0 id: MobGiantSpiderAngrySmasher
+      - id: MobGiantSpiderPassive
+        weight: 0.2
 
 - type: !PartialOnly entity
   id: SpiderClownSpawnHorde

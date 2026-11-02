@@ -24,6 +24,7 @@ public sealed partial class DynamicRuleCooldownComponent : Component
 
     /// <summary>
     /// Game presets which share this cooldown with the owning rule.
+    /// Presets containing the owning rule or any of <see cref="Rules"/> are included automatically.
     /// </summary>
     [DataField]
     public HashSet<ProtoId<GamePresetPrototype>> Presets = [];

@@ -293,7 +293,7 @@
   id: VendorSalvageWeaponSPKA
   productEntity: WeaponSPKA
   cost:
-    SalvageTicket: 200
+    SalvageTicket: 125
   categories:
   - SalvageWeapons
   conditions:
@@ -315,7 +315,7 @@
   id: VendorSalvageWeaponRegulator
   productEntity: WeaponRegulator
   cost:
-    SalvageTicket: 100
+    SalvageTicket: 75
   categories:
   - SalvageWeapons
   conditions:
@@ -325,7 +325,7 @@
   id: VendorSalvageWeaponCA
   productEntity: WeaponChainAccelerator
   cost:
-    SalvageTicket: 250
+    SalvageTicket: 175
   categories:
   - SalvageWeapons
   conditions:

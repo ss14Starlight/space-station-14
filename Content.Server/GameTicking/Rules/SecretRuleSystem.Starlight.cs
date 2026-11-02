@@ -84,6 +84,10 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
     {
         foreach (var key in options.Keys.ToList())
         {
+            if (_dynamicRuleCooldown.BypassCooldowns ||
+                (_prototypeManager.TryIndex<GamePresetPrototype>(key, out var preset) && preset.BypassCooldowns))
+                continue;
+
             var secretCooldown = includeSecretCooldowns
                 ? _secretPresetCooldown.GetValueOrDefault(key)
                 : 0;

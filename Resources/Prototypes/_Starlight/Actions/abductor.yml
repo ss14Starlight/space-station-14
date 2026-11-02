@@ -18,7 +18,7 @@
 - type: entity
   id: ActionSendYourself
   name: Send yourself
-  description: send yourself.
+  description: Send yourself.
   components:
   - type: Action
     useDelay: 10
@@ -39,7 +39,7 @@
 - type: entity
   id: ActionGizmoMark
   name: Mark
-  description: using gizmo from your pockets to mark agent.
+  description: Use the gizmo from your pockets to mark an agent.
   components:
   - type: Action
     useDelay: 10
@@ -56,7 +56,7 @@
 - type: entity
   id: ActionReturnToShip
   name: return
-  description: return to the ship.
+  description: Return to the ship.
   components:
   - type: Action
     useDelay: 5

@@ -16,6 +16,7 @@ public abstract partial class SharedIgnitionSourceSystem : EntitySystem
         SubscribeLocalEvent<IgnitionSourceComponent, IsHotEvent>(OnIsHot);
         SubscribeLocalEvent<ItemToggleHotComponent, ItemToggledEvent>(OnItemToggle);
         SubscribeLocalEvent<IgnitionSourceComponent, IgnitionEvent>(OnIgnitionEvent);
+        InitializeMolotovIgnition(); // Starlight-edit: predict hot-item ignition.
     }
 
     private void OnIsHot(Entity<IgnitionSourceComponent> ent, ref IsHotEvent args) => args.IsHot |= ent.Comp.Ignited;

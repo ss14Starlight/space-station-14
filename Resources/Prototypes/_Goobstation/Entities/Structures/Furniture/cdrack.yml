@@ -5,16 +5,45 @@
   description: Mostly filled with CDs.
   components:
   - type: Sprite
-    sprite: _Goobstation/Structures/Furniture/cdrack.rsi
+    sprite: _Starlight/Structures/Furniture/cdrack.rsi
     snapCardinals: true
     layers:
       - state: base
-      - state: cd-0
-      - map: ["enum.StorageFillLayers.Fill"]
+      - state: spine0
+        map: [ "spine0" ]
+        visible: false
+      - state: spine1
+        map: [ "spine1" ]
+        visible: false
+      - state: spine2
+        map: [ "spine2" ]
+        visible: false
+      - state: spine3
+        map: [ "spine3" ]
+        visible: false
+      - state: spine4
+        map: [ "spine4" ]
+        visible: false
+      - state: spine5
+        map: [ "spine5" ]
+        visible: false
+      - state: spine6
+        map: [ "spine6" ]
+        visible: false
+      - state: spine7
+        map: [ "spine7" ]
+        visible: false
+      - state: spine8
+        map: [ "spine8" ]
+        visible: false
+      - state: spine9
+        map: [ "spine9" ]
+        visible: false
   - type: Appearance
-  - type: StorageFillVisualizer
-    maxFillLevels: 11
-    fillBaseName: cd
+  - type: DiscSpines # Starlight - each spine in the colour of its CD case
+    container: storagebase
+    count: 10
+    bareColor: "#ccd6e3"
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities
@@ -54,6 +83,7 @@
     whitelist:
       tags:
         - CD
+        - CDCase # Starlight
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:

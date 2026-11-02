@@ -53,6 +53,10 @@
   suffix: Slime
   description: "A little circulator what makes the fluid move through the slime body."
   components:
+  - type: Tag
+    tags:
+    - Meat
+    - Heart
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
     state: heart-on

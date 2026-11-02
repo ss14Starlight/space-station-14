@@ -17,7 +17,7 @@
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/Shuttles/emergency_elkridge.yml
         - type: StationCargoShuttle
-          path: /Maps/Shuttles/cargo_elkridge.yml
+          path: /Maps/_Starlight/Shuttles/Cargo/cargo_downpour.yml
         - type: StationJobs
           availableJobs:
             # Total (87-88+)

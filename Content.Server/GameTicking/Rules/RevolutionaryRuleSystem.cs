@@ -284,6 +284,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
     private void OnHeadRevStartup(EntityUid uid, HeadRevolutionaryComponent comp, ComponentInit args)
     {
         EnsureHeadStore(uid);
+        _npcFaction.AddFaction(uid, RevolutionaryNpcFaction);  // Starlight: Add Revolutionary faction to headrevs (why didn't they have this before?)
     }
 
     /// <summary>
@@ -421,7 +422,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
                 $"{ToPrettyString(ev.User.Value)} converted {ToPrettyString(ev.Target)} into a Revolutionary");
 
             // STARLIGHT START
-            if (HasComp<HeadRevolutionaryComponent>(ev.User.Value))
+            if (HasComp<HeadRevolutionaryComponent>(ev.User.Value) && mindId != default)
             {
                 var store = EnsureHeadStore(ev.User.Value);
                 var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Telebond", FixedPoint2.New(1) } };
@@ -464,7 +465,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
 
             // STARLIGHT END
 
-            if (_mind.TryGetMind(ev.User.Value, out var revMindId, out _))
+            if (mindId != default && _mind.TryGetMind(ev.User.Value, out var revMindId, out _)) // Starlight
             {
                 if (_role.MindHasRole<RevolutionaryRoleComponent>(revMindId, out var role))
                 {
@@ -474,7 +475,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
             }
         }
 
-        if (mindId == default || !_role.MindHasRole<RevolutionaryRoleComponent>(mindId))
+        if (mindId != default && !_role.MindHasRole<RevolutionaryRoleComponent>(mindId)) // Starlight
         {
             _role.MindAddRole(mindId, "MindRoleRevolutionary");
         }

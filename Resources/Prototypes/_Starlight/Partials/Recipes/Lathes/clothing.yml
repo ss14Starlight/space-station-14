@@ -1,0 +1,29 @@
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckTieBlue
+  result: ClothingNeckTieBlue
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckTieBrown
+  result: ClothingNeckTieBrown
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckTieGreen
+  result: ClothingNeckTieGreen
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckTieGrey
+  result: ClothingNeckTieGrey
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckLGBTie
+  result: ClothingNeckLGBTie
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckTieRetro
+  result: ClothingNeckTieRetro

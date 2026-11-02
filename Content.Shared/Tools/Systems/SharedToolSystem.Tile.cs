@@ -1,4 +1,5 @@
 using Content.Shared.Database;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
@@ -23,7 +24,7 @@ public abstract partial class SharedToolSystem
 
     private void OnToolTileAfterInteract(Entity<ToolTileCompatibleComponent> ent, ref AfterInteractEvent args)
     {
-        if (args.Handled || args.Target != null && !HasComp<PuddleComponent>(args.Target) && !IsSubfloorCovered(args.Target.Value)) // Starlight
+        if (args.Handled || (args.Target != null && !HasComp<PuddleComponent>(args.Target) && !HasComp<FootprintComponent>(args.Target) && !IsSubfloorCovered(args.Target.Value))) // Starlight
             return;
 
         args.Handled = UseToolOnTile((ent, ent, null), args.User, args.ClickLocation);

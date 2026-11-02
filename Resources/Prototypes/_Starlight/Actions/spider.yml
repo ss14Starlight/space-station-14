@@ -62,7 +62,7 @@
 - type: entity
   id: ActionEvolve
   name: Evolve
-  description: evolve into a new entity.
+  description: Evolve into a new entity.
   components:
   - type: Action
     useDelay: 3
@@ -135,7 +135,7 @@
 - type: entity
   id: ActionRoyalJelly
   name: Royal Jelly
-  description: lay royal jelly which can be eaten by spiders and heal them.
+  description: Lay royal jelly, which can be eaten by spiders and heal them.
   components:
   - type: Action
     useDelay: 3

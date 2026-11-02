@@ -18,3 +18,10 @@
   components:
   - type: LoadMapRule
     mapPath: /Maps/_Starlight/Nonstations/geigerComplex.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: NukiePlanetSpawnInterdyne
+  components:
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/Nonstations/InterdyneNukie.yml

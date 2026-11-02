@@ -955,6 +955,5 @@
         !type:RoleTimeRequirement
         role: JobRadioHost
         time: 1h
-  storage:
-    pocket1:
-      - RadioHandheldStation
+  equipment:
+    pocket1: RadioHandheldStation

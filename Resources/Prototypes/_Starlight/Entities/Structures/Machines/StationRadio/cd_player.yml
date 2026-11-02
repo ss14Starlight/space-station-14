@@ -1,0 +1,88 @@
+- type: entity
+  id: CDPlayer
+  name: radio CD player
+  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
+  description: A compact disc deck for adverts and announcements. Plays over whatever the vinyl player broadcasts.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/StationRadio/cdplayer.rsi
+    drawdepth: SmallObjects
+    layers:
+    - state: icon
+    - state: slot0
+      visible: false
+      map: [ "slot0" ]
+    - state: slot1
+      visible: false
+      map: [ "slot1" ]
+    - state: slot2
+      visible: false
+      map: [ "slot2" ]
+    - state: unlit_empty
+      shader: unshaded
+      visible: false
+      map: [ "enum.VinylPlayerVisualLayers.Display" ]
+  - type: Transform
+    noRot: false
+  - type: Rotatable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 500
+        mask:
+        - TabletopMachineMask
+        layer:
+        - BulletImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Appearance
+  - type: VinylPlayer
+    slots: [ cd1, cd2, cd3 ] # A queue of up to three discs, picked from the mixer.
+    autoPlay: false # Cue a disc, start it from the mixer when the previous one ends.
+    autoAdvance: false # Stays on a finished advert; the host starts the next one.
+    displayState: unlit
+    displayEmptyState: unlit_empty
+  - type: Machine
+    board: CDPlayerCircuitboard
+  - type: ApcPowerReceiver
+    powerLoad: 150
+  - type: DeviceLinkSource
+    ports:
+    - CDPlayerPort
+  - type: DeviceList
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cd1: !type:ContainerSlot
+      cd2: !type:ContainerSlot
+      cd3: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cd1:
+        priority: 3
+        whitelist:
+          tags:
+          - CD
+      cd2:
+        priority: 2
+        whitelist:
+          tags:
+          - CD
+      cd3:
+        priority: 1
+        whitelist:
+          tags:
+          - CD

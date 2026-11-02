@@ -190,8 +190,6 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
 
             executedRules.Add(ruleUid);
 
-            _cooldowns.ApplyRuleCooldown(rule); // Starlight
-
             if (TryComp<DynamicRuleCostComponent>(ruleUid, out var cost))
             {
                 entity.Comp.Budget -= cost.Cost;

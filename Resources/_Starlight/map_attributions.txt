@@ -15,11 +15,17 @@
 - files: ["cork.yml"]
   authors: PubliclyExecutedPig, cujo, Starlight Team
 
+- files: ["downpour.yml"]
+  authors:  Makeshiftt, Starlight Team
+
 - files: ["elkridge.yml"]
   authors: Deerstop, Starlight Team
 
 - files: ["fland.yml"]
   authors: Emisse, Starlight Team
+
+- files: ["flotilla.yml"]
+  authors: Hot Mic, Starlight Team
 
 - files: ["hotel.yml"]
   authors: PubliclyExecutedPig, CawsForConcern, Starlight Team
@@ -29,9 +35,6 @@
 
 - files: ["lagan.yml"]
   authors: PubliclyExecutedPig, Starlight Team
-
-- files: ["leth.yml"]
-  authors: trep_maul, Starlight Team
 
 - files: ["manor.yml"]
   authors: PubliclyExecutedPig, vonte (expansions), Starlight Team
