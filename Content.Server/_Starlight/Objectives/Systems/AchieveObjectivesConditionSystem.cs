@@ -16,11 +16,18 @@ public sealed partial class AchieveObjectivesConditionSystem : EntitySystem
 
     private void OnProgress(Entity<AchieveObjectivesConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
+        if (!TryComp<ObjectiveComponent>(ent, out var condition) || condition.Antag is not { } antag)
+        {
+            args.Progress = 0;
+            return;
+        }
+
         var progress = 1f;
         var count = 0;
         foreach (var objective in args.Mind.Objectives)
         {
-            if (objective == ent.Owner || HasComp<AchieveObjectivesConditionComponent>(objective))
+            if (objective == ent.Owner || HasComp<AchieveObjectivesConditionComponent>(objective) ||
+                !TryComp<ObjectiveComponent>(objective, out var comp) || comp.Antag != antag)
                 continue;
             progress = Math.Min(progress, _objectives.GetProgress(objective, (args.MindId, args.Mind)) ?? 0);
             count++;

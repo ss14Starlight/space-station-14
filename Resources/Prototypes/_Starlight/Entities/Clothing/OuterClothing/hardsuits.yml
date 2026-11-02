@@ -1331,6 +1331,9 @@
       outerClothing-dog:
       - state: equipped-OUTERCLOTHING-light-dog
         shader: unshaded
+      outerClothing-avali:
+      - state: equipped-OUTERCLOTHING-light-avali
+        shader: unshaded
   - type: ItemTogglePointLight # Starlight
   - type: Appearance
   - type: HandheldLight
