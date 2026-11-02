@@ -45,6 +45,7 @@
   - type: StealTarget
     stealGroup: CMODefibGloves
   - type: BatteryDrainer
+    drainEfficiency: 0.05
   - type: DoAfter
   - type: MeleeWeapon
     attackRate: 1.5

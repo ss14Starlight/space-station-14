@@ -17,7 +17,7 @@ public sealed partial class BatteryDrainerSystem
     [Dependency] private InventorySystem _gloveInventory = default!;
     [Dependency] private PowerCellSystem _glovePowerCell = default!;
 
-    /// <summary>Lets worn gloves with BatteryDrainer and a slotted cell drain an APC to recharge.</summary>
+    /// <summary>Starts glove charging on power-source touch.</summary>
     [SubscribeLocalEvent]
     private void OnGlovesBeforeInteractHand(Entity<InventoryComponent> ent, ref BeforeInteractHandEvent args)
     {
@@ -29,7 +29,6 @@ public sealed partial class BatteryDrainerSystem
             !TryComp<BatteryDrainerComponent>(gloves, out var drainer))
             return;
 
-        args.Handled = true;
         if (!_glovePowerCell.TryGetBatteryFromSlot(gloves, out var cell))
         {
             _popup.PopupEntity(Loc.GetString("power-cell-no-battery"), ent.Owner, ent.Owner);
@@ -44,7 +43,7 @@ public sealed partial class BatteryDrainerSystem
 
         SetBattery(gloves, cell.Value.Owner);
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent.Owner, drainer.DrainTime,
-            new DrainDoAfterEvent(), target: args.Target, eventTarget: gloves)
+            new GloveDrainDoAfterEvent(), target: args.Target, eventTarget: gloves)
         {
             MovementThreshold = 0.5f,
             BreakOnMove = true,
@@ -53,8 +52,9 @@ public sealed partial class BatteryDrainerSystem
         });
     }
 
+    /// <summary>Validates the gloves, cell, and source during charging.</summary>
     [SubscribeLocalEvent]
-    private void OnGlovesDrainAttempt(Entity<ClothingComponent> ent, ref DoAfterAttemptEvent<DrainDoAfterEvent> args)
+    private void OnGlovesDrainAttempt(Entity<ClothingComponent> ent, ref DoAfterAttemptEvent<GloveDrainDoAfterEvent> args)
     {
         if ((ent.Comp.Slots & SlotFlags.GLOVES) == 0 ||
             !HasComp<PowerCellSlotComponent>(ent.Owner) ||
@@ -65,7 +65,28 @@ public sealed partial class BatteryDrainerSystem
         if (!_gloveInventory.TryGetSlotEntity(wearer, "gloves", out var worn) || worn != ent.Owner ||
             !_glovePowerCell.TryGetBatteryFromSlot(ent.Owner, out var cell) ||
             drainer.BatteryUid != cell.Value.Owner ||
+            _battery.IsFull(cell.Value.Owner) ||
             args.DoAfter.Args.Target is not { } target || !HasComp<PowerNetworkBatteryComponent>(target))
             args.Cancel();
+    }
+
+    /// <summary>Drains power and reports the result to the wearer.</summary>
+    [SubscribeLocalEvent]
+    private void OnGlovesDrain(Entity<ClothingComponent> ent, ref GloveDrainDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || args.Target is not { } target ||
+            !TryComp<BatteryDrainerComponent>(ent.Owner, out var drainer) ||
+            drainer.BatteryUid is not { } cell)
+            return;
+
+        args.Handled = true;
+        var chargeBefore = _battery.GetCharge(cell);
+        args.Repeat = TryDrainPower((ent.Owner, drainer), target);
+        var wearer = args.User;
+        if (_battery.GetCharge(cell) > chargeBefore)
+            _popup.PopupEntity(Loc.GetString("battery-drainer-success", ("battery", target)), ent.Owner, wearer);
+        else
+            _popup.PopupEntity(Loc.GetString("battery-drainer-empty", ("battery", target)), ent.Owner, wearer,
+                PopupType.Medium);
     }
 }

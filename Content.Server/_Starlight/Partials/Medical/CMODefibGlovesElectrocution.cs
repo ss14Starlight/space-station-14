@@ -27,11 +27,13 @@ public sealed partial class ElectrocutionSystem
             return false;
 
         var damage = (int) (shockDamage * siemensCoefficient);
+#pragma warning disable CS0618 // Match the standard electrocution status path until it is migrated.
         if (damage <= 0 ||
             !Resolve(uid, ref statusEffects, false) ||
             !_statusEffects.CanApplyEffect(uid, StatusKeyIn, statusEffects) ||
             !_statusEffects.TryAddStatusEffect<ElectrocutedComponent>(uid, StatusKeyIn, time, refresh, statusEffects))
             return false;
+#pragma warning restore CS0618
 
         if (siemensCoefficient > 0.5f)
         {
