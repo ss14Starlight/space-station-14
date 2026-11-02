@@ -1,46 +1,4 @@
 Entries:
-- author: WNP78
-  changes:
-  - message: Fixed ChemMaster using the pill dosage limit for patches.
-    type: Fix
-  id: 409635
-  time: '2026-10-21T14:17:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6680
-- author: Makeshift
-  changes:
-  - message: (Downpour) Scrubbers to the river bend.
-    type: Add
-  id: 409636
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) Two extra vent/scrubber pairs to the central river above botany.
-    type: Add
-  id: 409637
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) Firelocks and vents from the science maints crossing.
-    type: Remove
-  id: 409638
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) The maintenance door closest to the scurret den is now unlocked, letting them out out maints.
-    type: Fix
-  id: 409639
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) The two maintenance crossings (Near science and cargo) are tweaked to be a bit more obvious.
-    type: Tweak
-  id: 409640
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
 - author: Makeshift
   changes:
   - message: (Downpour) A couple extra radiation warnings outside of engineering. No loitering.
@@ -2799,4 +2757,46 @@ Entries:
   id: 410034
   time: '2026-11-02T10:20:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7010
+- author: Caws
+  changes:
+  - message: (Plasma) Added Assistant Manager.
+    type: Add
+  id: 410035
+  time: '2026-11-02T10:38:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7011
+- author: Caws
+  changes:
+  - message: (Plasma) Added Gunnery Sergeant.
+    type: Add
+  id: 410036
+  time: '2026-11-02T10:38:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7011
+- author: Caws
+  changes:
+  - message: (Plasma) Fixed stacked firelocks around Science maints.
+    type: Fix
+  id: 410037
+  time: '2026-11-02T10:38:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7011
+- author: Caws
+  changes:
+  - message: (Plasma) Fixed the mining conveyor belt suddenly switching directions (miners rejoice).
+    type: Fix
+  id: 410038
+  time: '2026-11-02T10:38:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7011
+- author: Caws
+  changes:
+  - message: (Plasma) Disposals actually puts stuff on the dang belt now.
+    type: Fix
+  id: 410039
+  time: '2026-11-02T10:38:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7011
+- author: Caws
+  changes:
+  - message: (Plasma) A mysterious unconnected 'Nuclear Hot Loop' gas pipe sensor buried under an engineering hallway has been removed. If you're experiencing symptoms from having touched this sensor, please visit the Medbay as soon as possible for radiation exposure treatment.
+    type: Remove
+  id: 410040
+  time: '2026-11-02T10:38:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7011
 Order: -1
