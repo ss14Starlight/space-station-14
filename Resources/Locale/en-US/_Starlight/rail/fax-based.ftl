@@ -71,7 +71,7 @@ rr-bounty-1-letter-content =
    ⠀                                    [italic]Place for stamps[/italic]
 
 rr-bounty-failed-name = Succesful Retrieval of {$subject} Assets
-rr-bounty-failed-content = 
+rr-bounty-failed-content =
                      [head=3]ITG Inter-Corporate Affairs Office[/head]
     ─────────────────────────────────────────
                                    [head=2][center][color=#fd3f3f][bold]Bounty Payment[/bold][/color][/center][/head]
@@ -83,7 +83,7 @@ rr-bounty-failed-content =
 
     This form may be slotted into your ticket vendor for payment.
     ─────────────────────────────────────────
-   ⠀                                    [italic]Place for stamps[/italic] 
+   ⠀                                    [italic]Place for stamps[/italic]
 
 rr-bounty-completed-name = Succesful Retrieval of {$subject} Assets
 rr-bounty-completed-content =
