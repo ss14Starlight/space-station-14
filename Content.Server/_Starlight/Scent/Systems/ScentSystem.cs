@@ -688,7 +688,7 @@ public sealed partial class ScentSystem : SharedScentSystem
         var container = GetAirtightContainer(xform);
 
         var match = scentId == scent.ScentId
-            ? GetMergeableTail(scent, xform, scentId)
+            ? GetMergeableTail(scent, xform, scentId, container)
             : FindNearbySharedMarker(xform, scent.MergeRadius, scentId, container);
 
         if (match is not { } existing)
@@ -711,12 +711,14 @@ public sealed partial class ScentSystem : SharedScentSystem
         return true;
     }
 
-    private Entity<ScentMarkerComponent>? GetMergeableTail(ScentComponent scent, TransformComponent xform, string scentId)
+    private Entity<ScentMarkerComponent>? GetMergeableTail(ScentComponent scent, TransformComponent xform, string scentId,
+        EntityUid? container)
     {
-        // The ID check skips a tail left from before the scent changed, e.g. after washing.
+        // Skips a tail from before the scent changed (e.g. washing) or from outside our current container.
         if (scent.LastMarkerEntity is not { } tail ||
             !TryComp<ScentMarkerComponent>(tail, out var marker) ||
             marker.ScentId != scentId ||
+            marker.ContainedIn != container ||
             !TryComp(tail, out TransformComponent? tailXform) ||
             !_transform.InRange(xform.Coordinates, tailXform.Coordinates, scent.MergeRadius))
         {
