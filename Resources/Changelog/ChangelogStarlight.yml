@@ -1,13 +1,6 @@
 Entries:
 - author: Sparlight
   changes:
-  - message: '"View Laws" now works on Station AI in replays.'
-    type: Fix
-  id: 409666
-  time: '2026-10-21T16:22:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6771
-- author: Sparlight
-  changes:
   - message: Health analyzer results now show while spectating in replays.
     type: Fix
   id: 409667
@@ -2799,4 +2792,11 @@ Entries:
   id: 410065
   time: '2026-11-02T21:28:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7018
+- author: Helle Stargazer
+  changes:
+  - message: Fixed Cyclorite metabolism rate of chloral hydrate.
+    type: Fix
+  id: 410066
+  time: '2026-11-02T21:52:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7020
 Order: -1
