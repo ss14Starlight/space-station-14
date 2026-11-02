@@ -1,13 +1,6 @@
 Entries:
 - author: neomoth
   changes:
-  - message: Fixed the issue where directional signs sometimes became weirdly misaligned and diagonal.
-    type: Fix
-  id: 409661
-  time: '2026-10-21T14:59:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6759
-- author: neomoth
-  changes:
   - message: Fixed an issue where if a grid started rotating while you were NOT on the grid, and a directional sign was visible, the sign would not rotate with the grid.
     type: Fix
   id: 409662
@@ -2799,4 +2792,11 @@ Entries:
   id: 410060
   time: '2026-11-02T20:42:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6836
+- author: Romero/Littlemen
+  changes:
+  - message: Gunnery Sergeant Hardsuit.
+    type: Add
+  id: 410061
+  time: '2026-11-02T21:04:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7006
 Order: -1
