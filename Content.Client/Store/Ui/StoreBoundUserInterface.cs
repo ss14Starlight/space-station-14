@@ -27,8 +27,11 @@ public sealed partial class StoreBoundUserInterface : BoundUserInterface // Star
     }
 
     /// <summary>
-    /// UI state can arrive before the menu is ready.
-    /// Commenting this out for an partial
+    /// Starlight: Open() and UpdateState() are implemented in
+    /// StoreBoundUserInterface.Starlight.cs.
+    /// Store UI state can arrive before Open() creates the StoreMenu.
+    /// The Starlight partial caches the latest state and applies it
+    /// once the menu has been initialized.
     /// </summary>
     /*
     protected override void Open()
