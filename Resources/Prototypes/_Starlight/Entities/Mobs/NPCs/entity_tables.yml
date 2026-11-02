@@ -1,5 +1,5 @@
 - type: entityTable
-  id: MobGiantSpiderPassive
+  id: MaintsMonstersBasic
   table: !type:GroupSelector
     children:
     # harmless critters (except for the radioactive mouse)
