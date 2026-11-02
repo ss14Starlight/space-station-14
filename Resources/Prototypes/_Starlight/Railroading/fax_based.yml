@@ -16,6 +16,28 @@
       blacklist:
       - Brighteye
 
+- type: entity
+  id: NoSalvCondition
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+  - type: Conditions
+    conditions:
+    - !type:SubjectMindJobCondition
+      blacklist:
+      - SalvageLead
+      - SalvageSpecialist
+      - SalvageMedic
+    - !type:SubjectSpeciesCondition
+      blacklist:
+      - Abductor
+      - Skeleton
+      - Terminator
+      - IPC
+    - !type:SubjectMindAntagCondition
+      blacklist:
+      - Brighteye
+
 # Example(Smokeable) Prototype
 
 - type: entity
@@ -106,7 +128,7 @@
 
 - type: entity
   id: RRCardBounty
-  parent: CrewCondition
+  parent: NoSalvCondition
   categories: [ HideSpawnMenu ]
   components:
   - type: RailroadCard
