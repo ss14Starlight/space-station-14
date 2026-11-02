@@ -65,7 +65,15 @@ public sealed partial class AdminLimitSystem : EntitySystem
         var clamped = invalid || totalIntensity > maxTotal || maxTileIntensity > maxTile;
 
         totalIntensity = MathF.Min(totalIntensity, maxTotal);
-        maxTileIntensity = MathF.Min(maxTileIntensity, maxTile);
+        if (maxTileIntensity <= 0f)
+        {
+            maxTileIntensity = maxTile;
+            clamped = true;
+        }
+        else
+        {
+            maxTileIntensity = MathF.Min(maxTileIntensity, maxTile);
+        }
 
         // The tile fill grows the explosion until the slope uses up its intensity, so a shallow slope spreads
         // the same total much further. Cap the total at whatever reaches the max radius with this slope.
