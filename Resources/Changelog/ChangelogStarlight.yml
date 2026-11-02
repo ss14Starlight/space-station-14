@@ -1,39 +1,4 @@
 Entries:
-- author: Makeshift
-  changes:
-  - message: (Downpour) Fixed some missing under-door tiles that were around (Including a dev floor that I missed, oops).
-    type: Fix
-  id: 409656
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) Added couple extra borg chargers around.
-    type: Add
-  id: 409657
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) Conference Beacon.
-    type: Remove
-  id: 409658
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) Upped max pop to 100.
-    type: Tweak
-  id: 409659
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Romero/Littlemen
-  changes:
-  - message: Tiders rejoice ! Suspicous toolboxes are now more common as maint loot, no trap there, trust me.
-    type: Tweak
-  id: 409660
-  time: '2026-10-21T14:56:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6748
 - author: neomoth
   changes:
   - message: Fixed the issue where directional signs sometimes became weirdly misaligned and diagonal.
@@ -2799,4 +2764,39 @@ Entries:
   id: 410055
   time: '2026-11-02T20:42:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7007
+- author: Rinary
+  changes:
+  - message: Implemented tippy limitations for admins.
+    type: Add
+  id: 410056
+  time: '2026-11-02T20:42:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6836
+- author: Rinary
+  changes:
+  - message: Implemented global sounds limitations for admins.
+    type: Add
+  id: 410057
+  time: '2026-11-02T20:42:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6836
+- author: Rinary
+  changes:
+  - message: Added ability to disable tippy in misc tab.
+    type: Add
+  id: 410058
+  time: '2026-11-02T20:42:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6836
+- author: Rinary
+  changes:
+  - message: Added ability to change admin sounds volume in sounds page.
+    type: Add
+  id: 410059
+  time: '2026-11-02T20:42:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6836
+- author: Rinary
+  changes:
+  - message: Made changes in access to certain things like tippy, global sounds, smites, explosions, now not all staff will be able to use them.
+    type: Tweak
+  id: 410060
+  time: '2026-11-02T20:42:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6836
 Order: -1
