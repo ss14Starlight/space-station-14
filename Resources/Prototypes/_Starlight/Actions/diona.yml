@@ -63,7 +63,7 @@
     icon:
       sprite: _Starlight/Interface/Actions/actions_diona.rsi
       state: mush_spore_cloud
-    useDelay: 720 # 12 minutes
+    useDelay: 900 # 15 minutes
   - type: InstantAction
     event: !type:PollenSporeCloudEvent {}
 
@@ -78,7 +78,7 @@
     icon:
       sprite: _Starlight/Interface/Actions/actions_diona.rsi
       state: mush_injection_phytovitalin
-    useDelay: 480 # 8 minutes
+    useDelay: 720 # 12 minutes
   - type: TargetAction
     interactOnMiss: false
   - type: EntityTargetAction
