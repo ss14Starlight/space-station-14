@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/02/2026 02:35:48
-  entityCount: 28192
+  time: 11/02/2026 02:38:40
+  entityCount: 28193
 maps:
 - 1
 grids:
@@ -155186,16 +155186,6 @@ entities:
       pos: -76.5,-15.3
     - type: Fixtures
       fixtures: {}
-- proto: SignDirectionalSalvage
-  entities:
-  - uid: 22933
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: -97.5,23.8
-    - type: Fixtures
-      fixtures: {}
 - proto: SignDirectionalSci
   entities:
   - uid: 22934
@@ -155466,6 +155456,22 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -76.5,-11.3
+    - type: Fixtures
+      fixtures: {}
+- proto: SignDisposalProper
+  entities:
+  - uid: 22933
+    components:
+    - type: Transform
+      parent: 2
+      pos: -103.5,19.5
+    - type: Fixtures
+      fixtures: {}
+  - uid: 28193
+    components:
+    - type: Transform
+      parent: 2
+      pos: -97.5,23.5
     - type: Fixtures
       fixtures: {}
 - proto: SignDisposalSpace
