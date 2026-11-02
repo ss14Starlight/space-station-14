@@ -87,7 +87,8 @@ jobs:
 
           jq -s '{version: "2.1.0", runs: [.[].runs[]
             | .results = ((.results // [])
-              | map(select((.level // "warning") == "warning" or (.level // "warning") == "error")))]}' \
+              | map(select((.suppressions // []) == [])
+                | select((.level // "warning") == "warning" or (.level // "warning") == "error")))]}' \
             "${reports[@]}" > /tmp/csharp-diagnostics.sarif
           reviewdog \
             -f=sarif \

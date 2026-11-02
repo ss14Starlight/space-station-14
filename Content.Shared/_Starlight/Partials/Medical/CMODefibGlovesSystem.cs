@@ -222,7 +222,6 @@ public sealed partial class CMODefibGlovesSystem : EntitySystem
         StartTouch(gloves, args.User.Owner, ent.Owner);
     }
 
-    /// <summary>Finds active prototype gloves in the wearer's glove slot.</summary>
     private bool TryGetActiveGloves(EntityUid wearer, out EntityUid gloves)
     {
         gloves = default;
@@ -234,23 +233,19 @@ public sealed partial class CMODefibGlovesSystem : EntitySystem
         return true;
     }
 
-    /// <summary>Checks whether the specified gloves are equipped in the wearer's glove slot.</summary>
     private bool IsWorn(EntityUid gloves, EntityUid wearer) =>
         _inventory.TryGetSlotEntity(wearer, "gloves", out var item) && item == gloves;
 
-    /// <summary>Checks whether the wearer has fully insulated gloves equipped.</summary>
     private bool HasInsulatedGloves(EntityUid wearer) =>
         _inventory.TryGetSlotEntity(wearer, "gloves", out var item) &&
         item is { } gloves && TryComp<InsulatedComponent>(gloves, out var insulation) &&
         insulation.Coefficient <= 0f;
 
-    /// <summary>Checks whether the active gloves have enough charge and can affect the target.</summary>
     private bool CanZap(EntityUid gloves, EntityUid target, EntityUid wearer) =>
         _toggle.IsActivated(gloves) && HasComp<MobStateComponent>(target) &&
         !IsInsulated(target, gloves) &&
         _powerCell.HasActivatableCharge(gloves, user: wearer, predicted: true);
 
-    /// <summary>Runs the normal electrocution attempt so insulation can block a shock.</summary>
     private bool IsInsulated(EntityUid target, EntityUid source)
     {
         var attempt = new ElectrocutionAttemptEvent(target, source, 1f, ~SlotFlags.POCKET);
@@ -258,7 +253,6 @@ public sealed partial class CMODefibGlovesSystem : EntitySystem
         return attempt.Cancelled || attempt.SiemensCoefficient <= 0f;
     }
 
-    /// <summary>Shocks a living target immediately or starts a dead target's defibrillation.</summary>
     private bool TryStartZap(EntityUid gloves, EntityUid target, EntityUid wearer)
     {
         if (!CanZap(gloves, target, wearer))
@@ -298,7 +292,6 @@ public sealed partial class CMODefibGlovesSystem : EntitySystem
         return true;
     }
 
-    // Apply contact shocks only to another uninsulated entity.
     private void StartTouch(EntityUid gloves, EntityUid target, EntityUid wearer)
     {
         if (target != wearer && !IsInsulated(target, gloves))
@@ -351,7 +344,6 @@ public sealed partial class CMODefibGlovesSystem : EntitySystem
         RaiseLocalEvent(target, ref ev);
     }
 
-    /// <summary>Rechecks a redirected living target before the contact shock lands.</summary>
     private bool CanZapLivingTarget(EntityUid gloves, EntityUid target) =>
         (_mobState.IsAlive(target) || _mobState.IsCritical(target)) && !IsInsulated(target, gloves);
 }
