@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) Added a second Radio Host spawn, to match the amount of job slots.
-    type: Fix
-  id: 409655
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
   - message: (Downpour) Fixed some missing under-door tiles that were around (Including a dev floor that I missed, oops).
     type: Fix
   id: 409656
@@ -2799,4 +2792,11 @@ Entries:
   id: 410054
   time: '2026-11-02T20:04:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7004
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added three new vinyls by hermitsabee.
+    type: Add
+  id: 410055
+  time: '2026-11-02T20:42:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7007
 Order: -1
