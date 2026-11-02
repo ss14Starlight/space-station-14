@@ -1,20 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) Moved the AME controller to make it obvious that it needs to be moved.
-    type: Tweak
-  id: 409652
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) Cameras to Gravity Gen and Station Anchor.
-    type: Add
-  id: 409653
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
   - message: (Downpour) Added missing Space Cleaner dispenser to the janitor closet.
     type: Add
   id: 409654
@@ -2799,4 +2785,18 @@ Entries:
   id: 410051
   time: '2026-11-02T16:25:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7015
+- author: Romero/Littlemen
+  changes:
+  - message: the Verdict.
+    type: Add
+  id: 410052
+  time: '2026-11-02T19:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6891
+- author: Romero/Littlemen
+  changes:
+  - message: The sp8ar a gun that existed, barely. It doesnt anymore, though.
+    type: Remove
+  id: 410053
+  time: '2026-11-02T19:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6891
 Order: -1
