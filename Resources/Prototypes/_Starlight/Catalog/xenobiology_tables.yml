@@ -452,7 +452,8 @@
       - id: MobPenguinFlippers
       - id: MobCorgiCerberus
       - id: MobCowChocolate
-
+      - id: MobGiantSpiderPassive
+        
 - type: entityTable
   id: GoldSlimeHostileTable
   table: !type:GroupSelector

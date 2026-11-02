@@ -81,3 +81,6 @@ ghost-role-mindsink-slot-component-slot-name-brain = Brain
 # OTHER
 ghost-role-information-nymph-name = Diona Nymph
 ghost-role-information-nymph-description = A feral diona nymph that has found its way into the station.
+
+ghost-role-information-giant-spider-passive-description = This station's inhabitants look... not actually all that appetizing. Maybe their food is?
+
