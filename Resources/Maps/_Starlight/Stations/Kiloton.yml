@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: starlight
   forkVersion: 702364c809becdaf8db87ddd8844eebb70586c93
-  time: 11/02/2026 19:47:58
-  entityCount: 41959
+  time: 11/02/2026 19:52:01
+  entityCount: 41961
 maps:
 - 1
 grids:
@@ -113407,6 +113407,22 @@ entities:
       pos: -64.5,32.5
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 17206
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 52.5,4.5
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 17212
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 52.5,0.5
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 20328
     components:
     - type: Transform
@@ -113966,16 +113982,6 @@ entities:
       pipeLayer: Quaternary
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 17206
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: 51.5,0.5
-    - type: AtmosPipeLayers
-      pipeLayer: Quaternary
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 17207
     components:
     - type: Transform
@@ -114022,16 +114028,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 49.5,4.5
-    - type: AtmosPipeLayers
-      pipeLayer: Quinary
-    - type: AtmosPipeColor
-      color: '#990000FF'
-  - uid: 17212
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: 51.5,4.5
     - type: AtmosPipeLayers
       pipeLayer: Quinary
     - type: AtmosPipeColor
@@ -150762,6 +150758,26 @@ entities:
       pos: -67.5,34.5
     - type: AtmosPipeColor
       color: '#0055CCFF'
+- proto: GasPressurePumpAlt3
+  entities:
+  - uid: 41960
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: 51.5,0.5
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+- proto: GasPressurePumpAlt4
+  entities:
+  - uid: 41961
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 51.5,4.5
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasThermoMachineFreezer
   entities:
   - uid: 16776
