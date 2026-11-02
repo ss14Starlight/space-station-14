@@ -35,7 +35,7 @@ public sealed partial class MeleeWeaponSystem
         // Starlight Begin - Mech wideswing
         var originEntity = GetOriginEntity(user);
 
-        if (!_xformQuery.TryGetComponent(originEntity, out var userXform) || userXform.MapID == MapId.Nullspace)
+        if (!TryComp(originEntity, out TransformComponent? userXform) || userXform.MapID == MapId.Nullspace)
             return;
         // Starlight End
 
@@ -72,7 +72,7 @@ public sealed partial class MeleeWeaponSystem
         // Starlight-end
         _sprite.SetRotation((animationUid, sprite), localPos.ToWorldAngle());
 
-        var xform = _xformQuery.GetComponent(animationUid);
+        var xform = Transform(animationUid);
         TrackUserComponent track;
 
         switch (arcComponent.Animation)

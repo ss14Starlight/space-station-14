@@ -183,6 +183,36 @@
     maxIntensity: 15
     canCreateVacuum: false
 
+- type: entity
+  parent: BaseSubdermalImplant
+  id: PicoBombImplant
+  name: pico-bomb implant
+  description: This implant detonates the user upon activation or upon death.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivatePicoBomb
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: TriggerOnActivateImplant
+  - type: ExplodeOnTrigger
+  - type: GibOnTrigger
+    targetUser: true
+    deleteItems: true
+  - type: Explosive
+    explosionType: PicoBomb
+    totalIntensity: 10
+    intensitySlope: 5
+    maxIntensity: 30
+    canCreateVacuum: false
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+    - MicroBomb
+
 # Traitor Mind Control
 - type: entity
   parent: BaseSubdermalImplant
@@ -272,7 +302,7 @@
   id: USSPUplinkImplant
   name: USSP uplink implant
   description: A subdermal implant containing the USSP uplink radio.
-  parent: [ BaseSubdermalImplant, StorePresetUSSP ]
+  parent: BaseSubdermalImplant
   categories: [ HideSpawnMenu ]
   components:
     - type: SubdermalImplant
@@ -280,9 +310,7 @@
       whitelist:
         components:
           - Hands
-    - type: Store
-      balance:
-        Telebond: 0
+    - type: RemoteStore
     - type: UserInterface
       interfaces:
         enum.StoreUiKey.Key:

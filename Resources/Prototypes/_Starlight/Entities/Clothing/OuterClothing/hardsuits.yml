@@ -303,6 +303,12 @@
       walkModifier: 0.90
       sprintModifier: 0.90
     - type: HeldSpeedModifier
+    - type: FootstepLayer
+      sound:
+        collection: FootstepLayerHeavy
+        params:
+          volume: -2
+          variation: 0.08
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitSovietMarine
     - type: Tag
@@ -1184,6 +1190,14 @@
           Heat: 0.4
           Caustic: 0
       staminaModifier: 0.0
+    - type: FootstepModifier
+      footstepSoundCollection: null
+    - type: FootstepLayer
+      sound:
+        collection: FootstepLayerHeavy
+        params:
+          volume: -2
+          variation: 0.08
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitTSFMARSOC
 
@@ -1316,6 +1330,9 @@
         shader: unshaded
       outerClothing-dog:
       - state: equipped-OUTERCLOTHING-light-dog
+        shader: unshaded
+      outerClothing-avali:
+      - state: equipped-OUTERCLOTHING-light-avali
         shader: unshaded
   - type: ItemTogglePointLight # Starlight
   - type: Appearance

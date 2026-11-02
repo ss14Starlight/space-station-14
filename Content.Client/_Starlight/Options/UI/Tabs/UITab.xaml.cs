@@ -28,6 +28,8 @@ public sealed partial class UITab : Control
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IEntitySystemManager _entSysMan = default!;
 
+    private bool _decorStagedByUser;
+
     public UITab()
     {
         RobustXamlLoader.Load(this);
@@ -72,8 +74,18 @@ public sealed partial class UITab : Control
         SightsOptionsHash.OnTextChanged += OnTextChanged;
 
         Control.AddOption(new OptionStyleThemeCVar(Control, _cfg, ThemePicker));
+        Control.AddOptionCheckBox(StarlightCCVars.StyleClassicDecor, ClassicDecorCheckBox);
+        ClassicDecorCheckBox.OnToggled += _ =>
+        {
+            _decorStagedByUser = true;
+            _cfg.SetCVar(StarlightCCVars.StyleClassicDecorExplicit, true);
+        };
+        ThemePicker.OnPicked += SyncClassicDecorCheckbox;
         Control.AddOption(new OptionAccentCVar(Control, _cfg, AccentPicker));
         Control.AddOption(new OptionCustomAccentCVar(Control, _cfg, AccentPicker));
+        Control.AddOption(new OptionAccentCVar(Control, _cfg, SecondaryAccentPicker, StarlightCCVars.StyleSecondaryAccent));
+        Control.AddOption(new OptionCustomAccentCVar(Control, _cfg, SecondaryAccentPicker, StarlightCCVars.StyleCustomSecondaryAccent));
+        SecondaryAccentPicker.SetTitle("ui-options-style-secondary-accent");
         Control.AddOptionDropDown(CVars.InterfaceTheme, DropDownHudTheme, themeEntries);
         Control.AddOptionDropDown(CCVars.UILayout, DropDownHudLayout, layoutEntries);
         Control.AddOptionSlider(StarlightCCVars.ChatSeparatedMinWidth, SeparatedChatWidthSlider, 300, 580);
@@ -89,6 +101,11 @@ public sealed partial class UITab : Control
         Control.AddOptionPercentSlider(CCVars.ChatWindowOpacity, ChatWindowOpacitySlider);
         Control.AddOptionCheckBox(StarlightCCVars.LobbyJobColumns, LobbyJobColumnsCheckBox);
         Control.AddOptionPercentSlider(StarlightCCVars.LobbyOpacity, LobbyOpacitySlider, 0.5f);
+        Control.AddOptionDropDown(StarlightCCVars.LobbyReadyOnTop, DropDownLobbyReadyPosition,
+        [
+            new(false, Loc.GetString("ui-options-lobby-ready-position-bottom")),
+            new(true, Loc.GetString("ui-options-lobby-ready-position-top")),
+        ]);
 
         var backgrounds = new List<OptionDropDownCVar<string>.ValueOption>
         {
@@ -136,9 +153,33 @@ public sealed partial class UITab : Control
         Control.AddOptionColorSlider(StarlightCCVars.SightSecondColor, SightSecondColorSlider);
     }
 
+    private void SyncClassicDecorCheckbox()
+    {
+        if (ThemePicker.Selected is { } id)
+        {
+            _decorStagedByUser = false;
+            SetDecorFromTheme(id);
+        }
+    }
+
+    private void OnStyleThemeChanged(string id)
+    {
+        if (_decorStagedByUser || _cfg.GetCVar(StarlightCCVars.StyleClassicDecorExplicit))
+            return;
+
+        SetDecorFromTheme(id);
+    }
+
+    private void SetDecorFromTheme(string id)
+    {
+        if (_prototypeManager.TryIndex<StyleThemePrototype>(id, out var proto))
+            ClassicDecorCheckBox.Pressed = proto.ClassicDecor;
+    }
+
     protected override void EnteredTree()
     {
         base.EnteredTree();
+        _cfg.OnValueChanged(StarlightCCVars.StyleTheme, OnStyleThemeChanged);
         _cfg.OnValueChanged(StarlightCCVars.RangedSight, OnSightCVarChanged);
         _cfg.OnValueChanged(StarlightCCVars.MeleeSight, OnSightCVarChanged);
         _cfg.OnValueChanged(StarlightCCVars.RangedSightScale, OnSightCVarChanged);
@@ -153,6 +194,7 @@ public sealed partial class UITab : Control
     protected override void ExitedTree()
     {
         base.ExitedTree();
+        _cfg.UnsubValueChanged(StarlightCCVars.StyleTheme, OnStyleThemeChanged);
         _cfg.UnsubValueChanged(StarlightCCVars.RangedSight, OnSightCVarChanged);
         _cfg.UnsubValueChanged(StarlightCCVars.MeleeSight, OnSightCVarChanged);
         _cfg.UnsubValueChanged(StarlightCCVars.RangedSightScale, OnSightCVarChanged);

@@ -1,5 +1,6 @@
 - type: guideEntry
   id: CombinationLocks
   name: guide-entry-tools-combination-locks
+  color: "#94ABB4" # Tools slate
   text: "/ServerInfo/_Starlight/Guidebook/Tools/CombinationLocks.xml"
   priority: 1

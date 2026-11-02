@@ -71,6 +71,11 @@ loadout-group-k9-collar = K9 collar
 
 loadout-group-detective-lethal = Detective lethal sidearm
 
+loadout-group-gunnery-sergeant-head = Sergeant head
+loadout-group-gunnery-sergeant-jumpsuit = Sergeant jumpsuit
+loadout-group-gunnery-sergeant-outerclothing = Sergeant Outer Clothing
+loadout-group-gunnery-sergeant-neck = Sergeant Neck
+
 # Law
 loadout-group-magistrate-jumpsuit = Magistrate jumpsuit
 loadout-group-magistrate-eyewear = Magistrate eyewear
@@ -134,6 +139,9 @@ loadout-group-performer-jumpsuit = Performer jumpsuit
 loadout-group-performer-outerclothing = Performer outer clothing
 
 loadout-group-lawyer-shoes = Lawyer shoes
+
+# Engineering
+loadout-group-atmospheric-technician-id = Atmospheric Technician ID
 
 # Other
 loadout-group-scarves = Scarf

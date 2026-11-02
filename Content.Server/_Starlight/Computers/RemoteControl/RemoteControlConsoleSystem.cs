@@ -46,6 +46,7 @@ using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Stunnable;
 using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -70,6 +71,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private readonly HashSet<EntityUid> _pendingBorgRefreshes = new();
     private readonly HashSet<(EntityUid Console, EntityUid Chassis)> _pendingRemoteBorgActivations = new();
     private readonly HashSet<(EntityUid UiEntity, Enum UiKey, EntityUid Controller)> _pendingRemoteUiMirrors = new();
+    private readonly HashSet<(EntityUid Actor, EntityUid UiEntity, Enum UiKey)> _pendingRemoteUiOpenAttempts = new();
     private readonly HashSet<(EntityUid Console, EntityUid UiEntity, Enum UiKey, EntityUid Controller, EntityUid Remote)>
         _remoteUiMirrors = new();
     private readonly Dictionary<EntityUid, HashSet<EntityUid>> _remoteActionOverrides = new();
@@ -78,7 +80,15 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _remoteStorageUiActors = new();
 
     private readonly ConcurrentDictionary<(EntityUid UiEntity, Enum UiKey, EntityUid Actor), byte>
-        _remoteUiRangeOverrides = new();
+        _remoteUiRangeOverrideActors = new();
+    private readonly Dictionary<(EntityUid UiEntity, Enum UiKey), RemoteUiInteractionRangeOverride>
+        _remoteUiInteractionRangeOverrides = new();
+
+    private sealed record RemoteUiInteractionRangeOverride(
+        InterfaceData OverrideData,
+        InterfaceData OriginalData,
+        EntityUid Controller,
+        EntityUid Remote);
 
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
@@ -92,6 +102,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [Dependency] private ItemToggleSystem _itemToggle = default!;
     [Dependency] private SharedMoverController _mover = default!;
     [Dependency] private SharedRemoteControlConsoleSystem _sharedRemoteControl = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private PullController _pullController = default!;
@@ -112,6 +123,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             {
                 subs.Event<BoundUIClosedEvent>(OnUiClosed);
                 subs.Event<RemoteControlToggleMessage>(OnToggleControl);
+                subs.Event<RemoteControlToggleKnockdownMessage>(OnRemoteToggleKnockdown);
                 subs.Event<RemoteControlInteractionMessage>(OnRemoteInteraction);
                 subs.Event<RemoteControlBuildConstructionMessage>(OnRemoteBuildConstruction);
                 subs.Event<RemoteControlBuildItemConstructionMessage>(OnRemoteBuildItemConstruction);
@@ -121,6 +133,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 subs.Event<RemoteControlInventoryMessage>(OnRemoteInventory);
             });
         CommandBinds.Builder
+            .BindBefore(ContentKeyFunctions.ToggleKnockdown,
+                new RemoteToggleKnockdownInputCmdHandler(this),
+                typeof(SharedStunSystem))
             .BindBefore(ContentKeyFunctions.ReleasePulledObject,
                 new RemoteReleasePulledObjectInputCmdHandler(this),
                 typeof(PullingSystem))
@@ -567,8 +582,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     private void OnRemoteAction(EntityUid uid, RemoteControlConsoleComponent component, RemoteControlActionMessage args)
     {
-        if (component.Controller != args.Actor
-            || !_sharedRemoteControl.TryGetRemoteEntity((uid, component), out var remoteEntity))
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity))
             return;
 
         var action = GetEntity(args.Action);
@@ -583,7 +597,12 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         if (isBorgTypeAction && hasBorgSwitchableType && hasControllerSession && controllerSession != null)
         {
-            _remoteUiRangeOverrides.TryAdd((remoteEntity, BorgSwitchableTypeUiKey.SelectBorgType, args.Actor), 0);
+            TrackRemoteUiRangeOverrideActor(
+                remoteEntity,
+                BorgSwitchableTypeUiKey.SelectBorgType,
+                args.Actor,
+                args.Actor,
+                remoteEntity);
             _ui.OpenUi((remoteEntity, null), BorgSwitchableTypeUiKey.SelectBorgType, controllerSession!);
             RefreshRemoteState(uid, component, remoteEntity);
             return;
@@ -592,10 +611,20 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _actions.TryPerformAction(remoteEntity, action);
     }
 
+    private void OnRemoteToggleKnockdown(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlToggleKnockdownMessage args)
+    {
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity)
+            || !CanRemoteControlledEntityAct(remoteEntity))
+            return;
+
+        _stun.ToggleKnockdown(remoteEntity);
+    }
+
     private void OnRemoteTargetAction(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlTargetActionMessage args)
     {
-        if (!TryGetControlledEntity((uid, component), args.Actor, out var remoteEntity))
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity))
             return;
 
         var action = GetEntity(args.Action);
@@ -610,7 +639,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private void OnRemoteInteraction(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlInteractionMessage args)
     {
-        if (!TryGetControlledEntity((uid, component), args.Actor, out var remoteEntity))
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity))
             return;
 
         var target = args.Target is { } targetNet ? GetEntity(targetNet) : (EntityUid?)null;
@@ -727,7 +756,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private async void OnRemoteBuildConstruction(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlBuildConstructionMessage args)
     {
-        if (!TryGetControlledEntity((uid, component), args.Actor, out var remoteEntity)
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity)
             || !_playerManager.TryGetSessionByEntity(args.Actor, out var session))
             return;
 
@@ -741,7 +770,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private async void OnRemoteBuildItemConstruction(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlBuildItemConstructionMessage args)
     {
-        if (!TryGetControlledEntity((uid, component), args.Actor, out var remoteEntity))
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity))
             return;
 
         if (await EntityManager.System<ConstructionSystem>().TryStartItemConstruction(args.PrototypeName, remoteEntity))
@@ -753,7 +782,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     private void OnRemoteHand(EntityUid uid, RemoteControlConsoleComponent component, RemoteControlHandMessage args)
     {
-        if (!TryGetControlledEntity((uid, component), args.Actor, out var remoteEntity))
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity))
             return;
 
         switch (args.Action)
@@ -793,7 +822,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private void OnRemoteInventory(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlInventoryMessage args)
     {
-        if (!TryGetControlledEntity((uid, component), args.Actor, out var remoteEntity)
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity)
             || !TryComp<InventoryComponent>(remoteEntity, out var inventory))
             return;
 
@@ -849,16 +878,31 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 checkDoafter: true, triggerHandContact: true);
     }
 
-    private bool TryGetControlledEntity(Entity<RemoteControlConsoleComponent> console, EntityUid actor,
+    private bool TryGetActionableControlledEntity(Entity<RemoteControlConsoleComponent> console, EntityUid actor,
         out EntityUid remoteEntity)
     {
         remoteEntity = default;
         return console.Comp.Controller == actor
-                && _sharedRemoteControl.TryGetRemoteEntity(console.AsNullable(), out remoteEntity);
+                && _sharedRemoteControl.TryGetRemoteEntity(console.AsNullable(), out remoteEntity)
+                && CanRemoteControlledEntityAct(remoteEntity);
     }
 
     public bool TryGetControlledEntity(EntityUid actor, out EntityUid remoteEntity)
         => _sharedRemoteControl.TryGetControlledEntity(actor, out remoteEntity);
+
+    /// <summary>
+    /// Checks whether the controlled remote entity is eligible to perform conscious actions.
+    /// </summary>
+    /// <remarks>
+    /// This delegates to the shared <c>ConsciousAttemptEvent</c>-based check and does not check whether the controller
+    /// can act.
+    /// </remarks>
+    /// <param name="remoteEntity">The controlled remote entity whose conscious-action eligibility is checked.</param>
+    /// <returns>
+    /// <see langword="true"/> if the remote entity can perform conscious actions; otherwise, <see langword="false"/>.
+    /// </returns>
+    public bool CanRemoteControlledEntityAct(EntityUid remoteEntity)
+        => _sharedRemoteControl.CanRemoteControlledEntityAct(remoteEntity);
 
     public bool TryGetControllerForRemoteEntity(EntityUid remoteEntity, out EntityUid controller) =>
         TryFindConsole(remoteEntity, out _, out controller);
@@ -869,6 +913,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         var remoteEntity = TryGetControlledEntity(args.Performer, out var controlledEntity)
             ? controlledEntity
             : args.Performer;
+
+        if (!CanRemoteControlledEntityAct(remoteEntity))
+            return;
 
         if (TryOpenRemoteUi<BorgSwitchableTypeComponent>(remoteEntity, BorgSwitchableTypeUiKey.SelectBorgType))
             args.Handled = true;
@@ -881,7 +928,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             || !_playerManager.TryGetSessionByEntity(controller, out var session))
             return false;
 
-        _remoteUiRangeOverrides.TryAdd((remoteEntity, uiKey, controller), 0);
+        TrackRemoteUiRangeOverrideActor(remoteEntity, uiKey, controller, controller, remoteEntity);
         _ui.OpenUi((remoteEntity, null), uiKey, session);
         return true;
     }
@@ -889,6 +936,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnRemoteUiOpened(Entity<UserInterfaceComponent> entity, ref BoundUIOpenedEvent args)
     {
+        _pendingRemoteUiOpenAttempts.Remove((args.Actor, entity.Owner, args.UiKey));
+
         var hasConsole = TryFindConsole(args.Actor, out var console, out var controller);
 
         if (!hasConsole)
@@ -909,12 +958,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             && activatable.CurrentSingleUser == args.Actor)
             _activatableUi.SetCurrentSingleUser(entity.Owner, controller, activatable);
 
-        if (!args.UiKey.Equals(StorageComponent.StorageUiKey.Key))
-        {
-            _remoteUiRangeOverrides.TryAdd((entity.Owner, args.UiKey, args.Actor), 0);
-            _remoteUiRangeOverrides.TryAdd((entity.Owner, args.UiKey, controller), 0);
-        }
-
+        TrackRemoteUiRangeOverrideActor(entity.Owner, args.UiKey, args.Actor, controller, args.Actor);
+        TrackRemoteUiRangeOverrideActor(entity.Owner, args.UiKey, controller, controller, args.Actor);
         _pendingRemoteUiMirrors.Add((entity.Owner, args.UiKey, controller));
         _remoteUiMirrors.Add((console.Owner, entity.Owner, args.UiKey, controller, args.Actor));
         if (args.UiKey.Equals(StorageComponent.StorageUiKey.Key))
@@ -924,10 +969,75 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     private void TrackRemoteStorageUi(EntityUid console, EntityUid storage, EntityUid controller, EntityUid remote)
         => _remoteStorageUiActors[console] = (storage, controller, remote);
 
+    private void TrackRemoteUiRangeOverrideActor(
+        EntityUid uiEntity,
+        Enum uiKey,
+        EntityUid actor,
+        EntityUid controller,
+        EntityUid remoteEntity)
+    {
+        _remoteUiRangeOverrideActors.TryAdd((uiEntity, uiKey, actor), 0);
+
+        if (!TryComp(uiEntity, out TransformComponent? uiXform)
+            || !TryComp(controller, out TransformComponent? controllerXform))
+            return;
+
+        if (uiXform.MapID == controllerXform.MapID)
+            return;
+
+        var key = (uiEntity, uiKey);
+        if (_remoteUiInteractionRangeOverrides.ContainsKey(key))
+            return;
+
+        if (!_ui.TryGetInterfaceData((uiEntity, null), uiKey, out var interfaceData))
+            return;
+
+        var originalData = new InterfaceData(interfaceData);
+        var overrideData = new InterfaceData(interfaceData);
+        _remoteUiInteractionRangeOverrides.Add(
+            key,
+            new RemoteUiInteractionRangeOverride(overrideData, originalData, controller, remoteEntity));
+
+        if (overrideData.InteractionRange > 0f)
+        {
+            // A zero range avoids the engine's cross-map auto-close check; remote control reapplies the original check.
+            overrideData.InteractionRange = 0f;
+            _ui.SetUi((uiEntity, null), uiKey, overrideData);
+        }
+    }
+
+    private void UntrackRemoteUiRangeOverrideActor(EntityUid uiEntity, Enum uiKey, EntityUid actor)
+    {
+        _remoteUiRangeOverrideActors.TryRemove((uiEntity, uiKey, actor), out _);
+        _pendingRemoteUiOpenAttempts.Remove((actor, uiEntity, uiKey));
+
+        var key = (uiEntity, uiKey);
+        if (!_remoteUiInteractionRangeOverrides.TryGetValue(key, out var rangeOverride)
+            || _remoteUiRangeOverrideActors.ContainsKey((uiEntity, uiKey, rangeOverride.Controller))
+            || _remoteUiRangeOverrideActors.ContainsKey((uiEntity, uiKey, rangeOverride.Remote)))
+            return;
+
+        _remoteUiInteractionRangeOverrides.Remove(key);
+
+        if (rangeOverride.OriginalData.InteractionRange <= 0f
+            || TerminatingOrDeleted(uiEntity)
+            || !_ui.TryGetInterfaceData((uiEntity, null), uiKey, out var interfaceData)
+            || !ReferenceEquals(interfaceData, rangeOverride.OverrideData)
+            || interfaceData.InteractionRange != 0f)
+            return;
+
+        var restoredData = new InterfaceData(interfaceData)
+        {
+            InteractionRange = rangeOverride.OriginalData.InteractionRange
+        };
+        _ui.SetUi((uiEntity, null), uiKey, restoredData);
+    }
+
     [SubscribeLocalEvent]
     private void OnRemoteUiClosed(Entity<UserInterfaceComponent> entity, ref BoundUIClosedEvent args)
     {
-        _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, args.Actor), out _);
+        _pendingRemoteUiOpenAttempts.Remove((args.Actor, entity.Owner, args.UiKey));
+        UntrackRemoteUiRangeOverrideActor(entity.Owner, args.UiKey, args.Actor);
 
         if (args.UiKey.Equals(StorageComponent.StorageUiKey.Key))
             foreach (var (trackedConsole, storageUi) in _remoteStorageUiActors.ToArray())
@@ -939,8 +1049,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 _remoteStorageUiActors.Remove(trackedConsole);
                 _pendingRemoteUiMirrors.Remove((entity.Owner, args.UiKey, storageUi.Controller));
                 _remoteUiMirrors.Remove((trackedConsole, entity.Owner, args.UiKey, storageUi.Controller, storageUi.Remote));
-                _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, storageUi.Controller), out _);
-                _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, storageUi.Remote), out _);
+                UntrackRemoteUiRangeOverrideActor(entity.Owner, args.UiKey, storageUi.Controller);
+                UntrackRemoteUiRangeOverrideActor(entity.Owner, args.UiKey, storageUi.Remote);
             }
 
         if (HasComp<QuickConstructableComponent>(entity.Owner))
@@ -950,7 +1060,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         {
             _pendingRemoteUiMirrors.Remove((entity.Owner, args.UiKey, controller));
             _remoteUiMirrors.Remove((controllingConsole.Owner, entity.Owner, args.UiKey, controller, args.Actor));
-            _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, controller), out _);
+            UntrackRemoteUiRangeOverrideActor(entity.Owner, args.UiKey, controller);
             _ui.CloseUi((entity.Owner, null), args.UiKey, controller);
             return;
         }
@@ -963,7 +1073,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 _remoteUiMirrors.Remove((remoteConsole.Owner, entity.Owner, args.UiKey, args.Actor, remoteEntity));
             }
 
-            _remoteUiRangeOverrides.TryRemove((entity.Owner, args.UiKey, remoteEntity), out _);
+            UntrackRemoteUiRangeOverrideActor(entity.Owner, args.UiKey, remoteEntity);
             _ui.CloseUi((entity.Owner, null), args.UiKey, remoteEntity);
         }
     }
@@ -974,6 +1084,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             || !TryGetControlledEntity(actor, out var remoteEntity))
             return false;
 
+        if (!CanRemoteControlledEntityAct(remoteEntity))
+            return true;
+
         if (state == BoundKeyState.Down
             && TryComp<PullerComponent>(remoteEntity, out var puller)
             && puller.Pulling is { } pulledEntity)
@@ -982,6 +1095,27 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         return true;
+    }
+
+    private bool OnRemoteToggleKnockdownInput(ICommonSession? session, BoundKeyState state)
+    {
+        if (session?.AttachedEntity is not { Valid: true } actor
+            || !TryGetControlledEntity(actor, out var remoteEntity))
+            return false;
+
+        if (state == BoundKeyState.Down && CanRemoteControlledEntityAct(remoteEntity))
+            _stun.ToggleKnockdown(remoteEntity);
+
+        return true;
+    }
+
+    private sealed class RemoteToggleKnockdownInputCmdHandler(RemoteControlConsoleSystem system) : InputCmdHandler
+    {
+        public override bool HandleCmdMessage(
+            IEntityManager entManager,
+            ICommonSession? session,
+            IFullInputCmdMessage message) =>
+            system.OnRemoteToggleKnockdownInput(session, message.State);
     }
 
     private sealed class RemoteReleasePulledObjectInputCmdHandler(RemoteControlConsoleSystem system) : InputCmdHandler
@@ -999,7 +1133,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         if (args.UiKey is RemoteControlUIKey)
             return;
 
-        var hasRangeOverride = _remoteUiRangeOverrides.ContainsKey((entity.Owner, args.UiKey, args.Actor.Owner));
+        var hasRangeOverride = _remoteUiRangeOverrideActors.ContainsKey((entity.Owner, args.UiKey, args.Actor.Owner));
         var hasControlledEntity = TryGetControlledEntity(args.Actor.Owner, out var remoteEntity);
 
         if (hasRangeOverride
@@ -1012,6 +1146,165 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             && hasControlledEntity
             && _interaction.InRangeUnobstructed(remoteEntity, entity.Owner, args.Data.InteractionRange))
             args.Result = BoundUserInterfaceRangeResult.Pass;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRemoteUiMessageAttempt(BoundUserInterfaceMessageAttempt args)
+    {
+        var pendingOpenKey = (args.Actor, args.Target, args.UiKey);
+        _pendingRemoteUiOpenAttempts.Remove(pendingOpenKey);
+
+        var tracked = _remoteUiRangeOverrideActors.ContainsKey((args.Target, args.UiKey, args.Actor));
+        var isController = TryGetControlledEntity(args.Actor, out var remoteEntity);
+
+        if (isController
+            && !CanRemoteControlledEntityAct(remoteEntity)
+            && (tracked || args.Target == remoteEntity)
+            && args.Message is not CloseBoundInterfaceMessage)
+        {
+            args.Cancel();
+            return;
+        }
+
+        var pendingOpen = args.Message is OpenBoundInterfaceMessage
+            && tracked
+            && isController
+            && _remoteUiInteractionRangeOverrides.ContainsKey((args.Target, args.UiKey));
+
+        if (pendingOpen)
+            _pendingRemoteUiOpenAttempts.Add(pendingOpenKey);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRemoteUiAccessibleOverride(Entity<UserInterfaceComponent> entity, ref AccessibleOverrideEvent args)
+    {
+        if (args.Target != entity.Owner)
+            return;
+
+        if (args.Handled || args.Accessible)
+            return;
+
+        var hasOverride = false;
+        var accessible = true;
+        foreach (var (key, rangeOverride) in _remoteUiInteractionRangeOverrides)
+        {
+            if (key.UiEntity != entity.Owner)
+                continue;
+
+            var rangeActor = args.User;
+            if (args.User == rangeOverride.Controller)
+            {
+                var uiIsOpen = _ui.IsUiOpen((entity.Owner, null), key.UiKey, args.User);
+                var pendingOpen = _pendingRemoteUiOpenAttempts.Remove((args.User, entity.Owner, key.UiKey));
+                if (!uiIsOpen && !pendingOpen)
+                    continue;
+
+                hasOverride = true;
+                if (!TryGetControlledEntity(args.User, out rangeActor)
+                    || rangeActor != rangeOverride.Remote)
+                {
+                    accessible = false;
+                    continue;
+                }
+            }
+            else if (rangeOverride.OriginalData.InteractionRange > 0f)
+            {
+                hasOverride = true;
+            }
+            else
+            {
+                continue;
+            }
+
+            if (rangeOverride.OriginalData.InteractionRange > 0f
+                && (!TryComp(entity.Owner, out TransformComponent? uiXform)
+                    || !TryComp(rangeActor, out TransformComponent? actorXform)
+                    || uiXform.MapID != actorXform.MapID
+                    || !_interaction.InRangeUnobstructed(
+                        rangeActor,
+                        entity.Owner,
+                        rangeOverride.OriginalData.InteractionRange)))
+                accessible = false;
+        }
+
+        if (!hasOverride)
+            return;
+
+        args.Handled = true;
+        args.Accessible = accessible;
+    }
+
+    private bool IsRemoteUiActorInRange(EntityUid uiEntity, Enum uiKey, EntityUid actor, InterfaceData data)
+    {
+        if (!TryComp(uiEntity, out TransformComponent? uiXform)
+            || !TryComp(actor, out TransformComponent? actorXform))
+            return false;
+
+        // Raise the content range hooks before the engine rejects actors on another map.
+        var checkRange = new BoundUserInterfaceCheckRangeEvent(
+            (uiEntity, uiXform),
+            uiKey,
+            data,
+            (actor, actorXform));
+        RaiseLocalEvent(uiEntity, ref checkRange, true);
+        return checkRange.Result == BoundUserInterfaceRangeResult.Pass;
+    }
+
+    private void UpdateRemoteUiInteractionRanges()
+    {
+        foreach (var (key, rangeOverride) in _remoteUiInteractionRangeOverrides.ToArray())
+        {
+            if (TerminatingOrDeleted(key.UiEntity)
+                || TerminatingOrDeleted(rangeOverride.Remote))
+            {
+                if (!TerminatingOrDeleted(key.UiEntity))
+                    _ui.CloseUi((key.UiEntity, null), key.UiKey, rangeOverride.Controller);
+
+                CleanupRemoteUiInteractionRangeOverride(key, rangeOverride);
+                continue;
+            }
+
+            var actors = _ui.GetActors((key.UiEntity, null), key.UiKey).ToArray();
+            if (actors.Length == 0)
+            {
+                CleanupRemoteUiInteractionRangeOverride(key, rangeOverride);
+                continue;
+            }
+
+            if (rangeOverride.OriginalData.InteractionRange <= 0f)
+                continue;
+
+            foreach (var actor in actors)
+            {
+                if (IsRemoteUiActorInRange(key.UiEntity, key.UiKey, actor, rangeOverride.OriginalData))
+                    continue;
+
+                _ui.CloseUi((key.UiEntity, null), key.UiKey, actor);
+            }
+        }
+    }
+
+    private void CleanupRemoteUiInteractionRangeOverride(
+        (EntityUid UiEntity, Enum UiKey) key,
+        RemoteUiInteractionRangeOverride rangeOverride)
+    {
+        _pendingRemoteUiMirrors.Remove((key.UiEntity, key.UiKey, rangeOverride.Controller));
+        _remoteUiMirrors.RemoveWhere(mirror =>
+            mirror.UiEntity == key.UiEntity
+            && mirror.UiKey.Equals(key.UiKey)
+            && mirror.Controller == rangeOverride.Controller
+            && mirror.Remote == rangeOverride.Remote);
+
+        foreach (var (console, storageUi) in _remoteStorageUiActors.ToArray())
+        {
+            if (storageUi.Storage == key.UiEntity
+                && storageUi.Controller == rangeOverride.Controller
+                && storageUi.Remote == rangeOverride.Remote)
+                _remoteStorageUiActors.Remove(console);
+        }
+
+        UntrackRemoteUiRangeOverrideActor(key.UiEntity, key.UiKey, rangeOverride.Controller);
+        UntrackRemoteUiRangeOverrideActor(key.UiEntity, key.UiKey, rangeOverride.Remote);
     }
 
     private bool TryFindConsole(EntityUid remoteEntity, out Entity<RemoteControlConsoleComponent> console,
@@ -1213,6 +1506,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         UpdatePendingRemoteBorgActivations();
+        UpdateRemoteUiInteractionRanges();
     }
 
     private void ReleaseControlIfInvalid(EntityUid user)
@@ -1461,10 +1755,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         _ui.CloseUi(storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Remote);
         _ui.CloseUi(storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Controller);
-        _remoteUiRangeOverrides.TryRemove((storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Remote),
-            out _);
-        _remoteUiRangeOverrides.TryRemove((storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Controller),
-            out _);
+        UntrackRemoteUiRangeOverrideActor(storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Remote);
+        UntrackRemoteUiRangeOverrideActor(storageUi.Storage, StorageComponent.StorageUiKey.Key, storageUi.Controller);
         _pendingRemoteUiMirrors.Remove((
             storageUi.Storage,
             StorageComponent.StorageUiKey.Key,
@@ -1487,8 +1779,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
             _remoteUiMirrors.Remove(mirror);
             _pendingRemoteUiMirrors.Remove((mirror.UiEntity, mirror.UiKey, mirror.Controller));
-            _remoteUiRangeOverrides.TryRemove((mirror.UiEntity, mirror.UiKey, mirror.Controller), out _);
-            _remoteUiRangeOverrides.TryRemove((mirror.UiEntity, mirror.UiKey, mirror.Remote), out _);
+            UntrackRemoteUiRangeOverrideActor(mirror.UiEntity, mirror.UiKey, mirror.Controller);
+            UntrackRemoteUiRangeOverrideActor(mirror.UiEntity, mirror.UiKey, mirror.Remote);
             _ui.CloseUi((mirror.UiEntity, null), mirror.UiKey, mirror.Controller);
             _ui.CloseUi((mirror.UiEntity, null), mirror.UiKey, mirror.Remote);
         }
@@ -1501,7 +1793,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _remoteUiMirrors.RemoveWhere(mirror =>
             mirror.UiEntity == remoteEntity && mirror.UiKey.Equals(uiKey) && mirror.Controller == controller);
         _ui.CloseUi((remoteEntity, null), uiKey, controller);
-        _remoteUiRangeOverrides.TryRemove((remoteEntity, uiKey, controller), out _);
+        UntrackRemoteUiRangeOverrideActor(remoteEntity, uiKey, controller);
     }
 
     private bool CanRemoteControlTarget(
@@ -1590,8 +1882,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         var activeItem = _hands.GetActiveItem((remoteEntity, hands));
         return activeItem is { } active
-                && HasComp<QuickConstructableComponent>(active)
-                && _ui.IsUiOpen(active, QuickConstructionUiKey.Key, remoteEntity)
+            && HasComp<QuickConstructableComponent>(active)
+            && _ui.IsUiOpen(active, QuickConstructionUiKey.Key, remoteEntity)
             ? active
             : null;
     }
@@ -1747,6 +2039,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     }
 
     #region Chat
+
     private void OnRemoteControllerTypingChanged(TypingChangedEvent ev, EntitySessionEventArgs args)
     {
         var controller = args.SenderSession.AttachedEntity;

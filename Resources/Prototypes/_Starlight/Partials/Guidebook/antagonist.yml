@@ -1,0 +1,4 @@
+- type: !PartialOnly guideEntry
+  id: Antagonists
+  children:
+  - !Index:6 BloodBound

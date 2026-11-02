@@ -201,7 +201,7 @@
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
-      - !type:SpillBehavior { }
+      - !type:SpillBehavior { solution: solution }
       - !type:SpawnEntitiesBehavior
         spawn:
           BrokenBottle:
@@ -216,9 +216,7 @@
       reagents:
       - ReagentId: WeldingFuel
         Quantity: 200
-  - type: Spillable
-    solution: solution
-  - type: TriggerOnUse
+  - type: TriggerOnHotItem
   - type: AddComponentsOnTrigger
     targetUser: false
     triggerOnce: true
@@ -239,7 +237,7 @@
           - !type:PlaySoundBehavior
             sound:
               collection: GlassBreak
-          - !type:SpillBehavior { }
+          - !type:SpillBehavior { solution: solution }
           - !type:SpawnEntitiesBehavior
             spawn:
               BrokenBottle:
@@ -289,6 +287,25 @@
   - type: Solution
     solution:
       maxVol: 200
+
+- type: entity
+  parent: MolotovBottleEmpty
+  id: MolotovBottleBurntOut
+  name: Molotov with burnt wick
+  suffix: fuel
+  description: The wick has burned away, replace the cloth and try again
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/molotov.rsi
+    state: filled
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
+  - type: Construction
+    graph: MolotovGraph
+    node: burntout
 
 - type: entity
   parent: MolotovBottleEmpty

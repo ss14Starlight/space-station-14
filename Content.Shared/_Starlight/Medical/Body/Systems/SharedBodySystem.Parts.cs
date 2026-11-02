@@ -167,12 +167,22 @@ public partial class SharedBodySystem
             UpdateMovementSpeed(bodyEnt);
             Dirty(bodyEnt, bodyEnt.Comp);
         }
+        else if (legEnt.Comp.PartType == BodyPartType.Foot)
+        {
+            UpdateMovementSpeed(bodyEnt);
+        }
     }
 
     private void RemoveLeg(Entity<BodyPartComponent> legEnt, Entity<BodyComponent?> bodyEnt)
     {
         if (!Resolve(bodyEnt, ref bodyEnt.Comp, logMissing: false))
             return;
+
+        if (legEnt.Comp.PartType == BodyPartType.Foot)
+        {
+            UpdateMovementSpeed(bodyEnt);
+            return;
+        }
 
         if (legEnt.Comp.PartType != BodyPartType.Leg)
             return;
@@ -502,7 +512,9 @@ public partial class SharedBodySystem
         var maxSpeedMod = 0f; // 🌟Starlight🌟
         foreach (var legEntity in body.LegEntities)
         {
-            if (!TryComp<MovementBodyPartComponent>(legEntity, out var legModifier))
+            if (!TryComp<MovementBodyPartComponent>(legEntity, out var legModifier)
+                || !TryComp(legEntity, out BodyPartComponent? leg)
+                || !HasFunctionalFoot(legEntity, leg))
                 continue;
 
             walkSpeed += legModifier.WalkSpeed;
@@ -535,6 +547,28 @@ public partial class SharedBodySystem
         sprintSpeed /= body.RequiredLegs;
         acceleration /= body.RequiredLegs;
         Movement.ChangeBaseSpeed(bodyId, walkSpeed, sprintSpeed, acceleration, movement, minSpeedMod, maxSpeedMod); // 🌟Starlight🌟
+    }
+
+    private bool HasFunctionalFoot(EntityUid legEntity, BodyPartComponent leg)
+    {
+        foreach (var (slotId, slot) in leg.Children)
+        {
+            if (slot.Type != BodyPartType.Foot
+                || !Containers.TryGetContainer(legEntity, GetPartSlotContainerId(slotId), out var container))
+                continue;
+
+            foreach (var footEntity in container.ContainedEntities)
+            {
+                if (!TryComp(footEntity, out BodyPartComponent? foot)
+                    || foot.PartType != BodyPartType.Foot
+                    || HasComp<Content.Shared._Starlight.Medical.Surgery.Components.CustomLimbComponent>(footEntity))
+                    continue;
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     #endregion

@@ -204,6 +204,14 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
             }
         }
 
+        // Starlight start
+        if (userId == null)
+        {
+            var storedWithoutPlayer = new CryoStoredWithoutPlayerEvent();
+            RaiseLocalEvent(ent.Owner, ref storedWithoutPlayer);
+        }
+        // Starlight end
+
         _audio.PlayPvs(cryostorageComponent.RemoveSound, ent);
 
         EnsurePausedMap();

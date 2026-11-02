@@ -40,3 +40,6 @@ chat-speech-verb-experiment-4 = yaps
 
 chat-speech-verb-name-pause = Pausing
 chat-speech-verb-pause = pauses
+
+chat-manager-send-mentor-chat-wrap-message = {$mentorChannelName}: [bold]{$playerName}:[/bold] {$message}
+chat-manager-mentor-channel-name = MENTOR
