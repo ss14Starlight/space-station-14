@@ -85,7 +85,7 @@ rr-bounty-failed-content =
     ─────────────────────────────────────────
    ⠀                                    [italic]Place for stamps[/italic]
 
-rr-bounty-completed-name = Succesful Retrieval of {$subject} Assets
+rr-bounty-completed-name = Corporate Injunction on the Case of {$subject}
 rr-bounty-completed-content =
                      [head=3]ITG Inter-Corporate Affairs Office[/head]
     ─────────────────────────────────────────
