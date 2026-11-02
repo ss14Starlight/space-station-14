@@ -1,34 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) Replaced some lights at the Spacebucks with the new street lights.
-    type: Tweak
-  id: 409642
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) Replaced Securities locker room airlocks with ones that have Cadet access.
-    type: Tweak
-  id: 409643
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) SecTec vending machine to Security.
-    type: Add
-  id: 409644
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
-  - message: (Downpour) A couple extra rechargers around Security.
-    type: Add
-  id: 409645
-  time: '2026-10-21T14:17:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6754
-- author: Makeshift
-  changes:
   - message: (Downpour) Replaced the arcade cabinet spawners in Genpop with regular variants, rather than spawners.
     type: Fix
   id: 409646
@@ -2799,4 +2771,32 @@ Entries:
   id: 410041
   time: '2026-11-02T11:08:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6999
+- author: Citrea & The Toad Council
+  changes:
+  - message: New shell type for dolls.
+    type: Add
+  id: 410042
+  time: '2026-11-02T11:56:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6983
+- author: Citrea & The Toad Council
+  changes:
+  - message: New mask for dolls.
+    type: Add
+  id: 410043
+  time: '2026-11-02T11:56:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6983
+- author: Citrea & The Toad Council
+  changes:
+  - message: Shoe-less dolls now make ceramic noises.
+    type: Add
+  id: 410044
+  time: '2026-11-02T11:56:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6983
+- author: Citrea & The Toad Council
+  changes:
+  - message: Doll survival kits have water in them now.
+    type: Fix
+  id: 410045
+  time: '2026-11-02T11:56:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6983
 Order: -1
