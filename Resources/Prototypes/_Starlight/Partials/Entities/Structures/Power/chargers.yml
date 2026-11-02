@@ -18,3 +18,13 @@
       tags:
       - IPC
       - Drone
+
+- type: !PartialOnly entity
+  id: TurboItemRecharger
+  components:
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        whitelist:
+          components:
+          - CMODefibGloves
