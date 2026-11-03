@@ -13,9 +13,9 @@ public sealed partial class UpgradeableGunComponent
     [DataField]
     public ProtoId<ToolQualityPrototype> UpgradeRemovalMethod = "Screwing";
 
-///<summary>
-///Time it takes to remove a mod in seconds
-///</summary>
+    ///<summary>
+    /// Time it takes to remove a mod in seconds
+    ///</summary>
     [DataField]
     public float UpgradeRemovalDelay = 10f;
 }
