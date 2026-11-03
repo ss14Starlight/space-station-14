@@ -97,11 +97,19 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
             && !string.IsNullOrWhiteSpace(label.CurrentLabel)
             && TryMatchLabelToReagent(label.CurrentLabel, out var reagentId))
         {
-            args.Handled = true;
+            if (_powerReceiver.IsPowered(ent.Owner))
+            {
+                args.Handled = true;
 
-            TryDispenseReagent(ent, reagentId, args.Used, null, args.User, true);
-            UpdateUi(ent);
-            return;
+                TryDispenseReagent(ent, reagentId, args.Used, null, args.User, true);
+                UpdateUi(ent);
+                return;
+            }
+            else
+            {
+                // smart functionality requires power, don't return so we get the normal manual dispense UI
+                _popup.PopupPredicted(Loc.GetString("plumbing-smart-dispenser-not-powered"), ent.Owner, args.User);
+            }
         }
 
         if (GetFillSolutionFromContainer(args.Used) is null)
@@ -492,13 +500,6 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
     {
         if (!_actionBlocker.CanInteract(actor, ent.Owner) || !_actionBlocker.CanComplexInteract(actor))
             return false;
-
-        // if it has the power reciever component, it must be powered
-        if (!_powerReceiver.IsPowered(ent.Owner))
-        {
-            _popup.PopupPredicted(Loc.GetString("plumbing-smart-dispenser-not-powered"), ent.Owner, actor);
-            return false;
-        }
 
         // if it has an access reader, access is required
         if (!_accessReader.IsAllowed(actor, ent.Owner))
