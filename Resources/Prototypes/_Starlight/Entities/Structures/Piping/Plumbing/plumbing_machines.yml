@@ -527,7 +527,7 @@
   parent: PlumbingMachineBase
   id: PlumbingSmartDispenser
   name: plumbing smart dispenser
-  description: Pulls in all reagents from its inlets and stores up to 240u of each type. Use a labeled container to auto-dispense a matching reagent, or use a refillable container on it to manually dispense. Requires power.
+  description: Pulls in all reagents from its inlets and stores up to 240u of each type. Use a labeled container to auto-dispense a matching reagent, or use a refillable container on it to manually dispense. Requires power to auto-dispense.
   components:
   - type: Transform
     noRot: true
