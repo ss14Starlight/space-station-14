@@ -1,27 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: The FTL system ensures now reservations for escape pod landing spots.
-    type: Tweak
-  id: 409671
-  time: '2026-10-21T16:55:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6767
-- author: Floximo
-  changes:
-  - message: Distance to generated dungeons is now more reliable for expeditions.
-    type: Tweak
-  id: 409672
-  time: '2026-10-21T16:55:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6767
-- author: Floximo
-  changes:
-  - message: Expeditions no longer land wrongly aligned on planets.
-    type: Fix
-  id: 409673
-  time: '2026-10-21T16:55:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6767
-- author: Floximo
-  changes:
   - message: Escape pods land now very close to generated structures without intersecting them.
     type: Fix
   id: 409674
@@ -2799,4 +2778,25 @@ Entries:
   id: 410070
   time: '2026-11-03T10:25:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7024
+- author: redmushie
+  changes:
+  - message: (Kiloton) Change Distro/Waste layers to match docking port standard.
+    type: Tweak
+  id: 410071
+  time: '2026-11-03T10:49:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7019
+- author: redmushie
+  changes:
+  - message: (Kiloton) Redid med cryo tubes, it now has two and uses distro instead of an air can.
+    type: Tweak
+  id: 410072
+  time: '2026-11-03T10:49:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7019
+- author: redmushie
+  changes:
+  - message: (Kiloton) Route distro, waste and HV to every docking port.
+    type: Add
+  id: 410073
+  time: '2026-11-03T10:49:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7019
 Order: -1
