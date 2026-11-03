@@ -7,9 +7,9 @@ namespace Content.Shared.Weapons.Ranged.Upgrades.Components;
 
 public sealed partial class UpgradeableGunComponent
 {
-///<summary>
-///default removal method
-///</summary>
+    ///<summary>
+    /// Default removal method
+    ///</summary>
     [DataField]
     public ProtoId<ToolQualityPrototype> UpgradeRemovalMethod = "Screwing";
 
