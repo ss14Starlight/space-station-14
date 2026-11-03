@@ -415,11 +415,12 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
 
         if (available <= FixedPoint2.Zero)
         {
-            if (showPopup && user is { Valid: true })
+            if (showPopup && user is { Valid: true } &&
+                _prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var proto))
             {
                 _popup.PopupPredicted(
                     Loc.GetString("plumbing-smart-dispenser-not-in-stock",
-                        ("reagent", _prototypeManager.Index<ReagentPrototype>(reagentId).LocalizedName)),
+                        ("reagent", proto.LocalizedName)),
                     ent.Owner,
                     user.Value);
             }
