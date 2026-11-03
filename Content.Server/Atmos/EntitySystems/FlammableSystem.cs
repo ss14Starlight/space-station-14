@@ -306,8 +306,18 @@ namespace Content.Server.Atmos.EntitySystems
             }
             else
             {
+                var wasOnFire = flammable.OnFire; // Starlight
                 flammable.OnFire |= ignite;
                 UpdateAppearance(uid, flammable);
+
+                #region Starlight
+                // ignition through fire stacks must notify listeners too so we can track stuff like people burning on stakesss
+                if (!wasOnFire && flammable.OnFire)
+                {
+                    var ev = new IgnitedEvent();
+                    RaiseLocalEvent(uid, ref ev);
+                }
+                #endregion
             }
         }
 

@@ -62,6 +62,14 @@
   accentTint: 1
   borderThickness: 2
   secondaryBorderThickness: 2
+  window:
+    texture: /Textures/Interface/Nano/window_background.png
+    patch: [2, 0, 2, 2]
+    expand: 2
+  header:
+    texture: /Textures/Interface/Nano/window_header.png
+    patch: [0, 0, 0, 3]
+    expand: 3
   windowBackground: "#252632"
   background: "#24242B"
   surface: "#2F2F3B"

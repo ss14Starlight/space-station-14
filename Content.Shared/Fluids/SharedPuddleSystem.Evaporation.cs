@@ -17,9 +17,13 @@ public abstract partial class SharedPuddleSystem
         Dirty(ent);
     }
 
-    private void UpdateEvaporation(EntityUid uid, Solution solution)
+    /// <summary>
+    /// Adds or removes scheduled evaporation tracking for a directly-owned solution.
+    /// </summary>
+    public void UpdateEvaporation(EntityUid uid, Solution solution)
     {
-        // Starlight-start: only track puddles which contain something that can evaporate.
+        #region Starlight
+        // only track puddles which contain something that can evaporate
         if (!HasEvaporatingReagent(solution))
         {
             RemComp<EvaporationComponent>(uid);
@@ -36,16 +40,18 @@ public abstract partial class SharedPuddleSystem
         evaporation.NextTick = _timing.CurTime + EvaporationCooldown;
         ScheduleEvaporation(evaporation.NextTick);
         Dirty<EvaporationComponent>((uid, evaporation));
-        // Starlight-end
+        #endregion
     }
 
     private void TickEvaporation()
     {
-        var query = EntityQueryEnumerator<EvaporationComponent, PuddleComponent>();
+        // Starlight - Both puddles and footprints keep their solution directly on the entity. Querying the
+        // solution avoids making footprints participate in every PuddleComponent system just to evaporate.
+        var query = EntityQueryEnumerator<EvaporationComponent, SolutionComponent>(); // Starlight
         var curTime = _timing.CurTime;
         _nextEvaporationUpdate = TimeSpan.MaxValue; // Starlight
 
-        while (query.MoveNext(out var uid, out var evaporation, out var puddle))
+        while (query.MoveNext(out var uid, out var evaporation, out var solutionComponent)) // Starlight
         {
             if (evaporation.NextTick > curTime)
             {
@@ -58,8 +64,7 @@ public abstract partial class SharedPuddleSystem
             ScheduleEvaporation(evaporation.NextTick); // Starlight
             Dirty(uid, evaporation);
 
-            if (!_solutionContainerSystem.ResolveSolution(uid, puddle.SolutionName, ref puddle.Solution, out var puddleSolution))
-                continue;
+            var puddleSolution = solutionComponent.Solution; // Starlight
 
             // If we have multiple evaporating reagents in one puddle, just take the average evaporation speed and apply
             // that to all of them.
@@ -105,7 +110,7 @@ public abstract partial class SharedPuddleSystem
                 PredictedQueueDel(uid);
             }
 
-            _solutionContainerSystem.UpdateChemicals(puddle.Solution.Value);
+            _solutionContainerSystem.UpdateChemicals((uid, solutionComponent)); // Starlight
         }
     }
 

@@ -125,3 +125,12 @@
   - type: Contraband
     tier: Tier4 # Blimpuf
     contrabandType: MedTak # Blimpuf
+
+# Scurrets
+- type: entity
+  id: BaseEmotionalSupportScurretContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+    - type: Contraband
+      allowedJobs: [ EmotionalSupportScurret ]

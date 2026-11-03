@@ -51,6 +51,7 @@
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
+            GunnerySergeant: [ 1, 1 ]
             DutyOfficer: [ 2, 2 ] # exception to pop requirements due to unique genpop
             SecurityOfficer: [ 6, 8 ]
             SecurityCadet: [ 3, 4 ]

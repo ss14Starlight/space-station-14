@@ -24,6 +24,7 @@ public sealed partial class AdminOptionsTab : Control
     public AdminOptionsTab()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
 
         var antagFormats = new List<OptionDropDownCVar<string>.ValueOption>();
         foreach (var format in Enum.GetValues(typeof(AdminOverlayAntagFormat)))
@@ -68,7 +69,7 @@ public sealed partial class AdminOptionsTab : Control
             playerTabHealthIconSettings.Add(new OptionDropDownCVar<string>.ValueOption(setting.ToString(), Loc.GetString($"ui-options-admin-ghost-hud-setting-health-{setting.ToString()!.ToLower()}")));
         }
 
-        Control.AddOptionLineEdit(StarlightCCVars.AdminGhostScriptPath, AghostScriptName);
+        RenderAdminTools();
         Control.AddOptionDropDown(StarlightCCVars.AdminGhostHudJobSetting, DropDownAGhostJobIconSetting, playerTabJobIconSettings);
         Control.AddOptionDropDown(StarlightCCVars.AdminGhostHudHealthSetting, DropDownAGhostHealthIconSetting, playerTabHealthIconSettings);
         Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHudShowCriminalRecordIcons, EnableAGhostCriminalRecordIcons);

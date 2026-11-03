@@ -28,7 +28,7 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("ui.style_theme", "NanoTrasen", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
-    /// Accent color of the interface: window titles, headings, selected tabs, pressed buttons.
+    /// Accent color of the interface: window titles, headings, selected tabs.
     /// </summary>
     public static readonly CVarDef<string> StyleAccent =
         CVarDef.Create("ui.style_accent", "#D4D4D8", CVar.CLIENTONLY | CVar.ARCHIVE);
@@ -38,6 +38,24 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> StyleCustomAccent =
         CVarDef.Create("ui.style_custom_accent", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Secondary accent color of the interface: pressed buttons, selected list items, slider fills.
+    /// </summary>
+    public static readonly CVarDef<string> StyleSecondaryAccent =
+        CVarDef.Create("ui.style_secondary_accent", "#D4D4D8", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> StyleCustomSecondaryAccent =
+        CVarDef.Create("ui.style_custom_secondary_accent", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether classic-style decorations are used.
+    /// </summary>
+    public static readonly CVarDef<bool> StyleClassicDecor =
+        CVarDef.Create("ui.style_classic_decor", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> StyleClassicDecorExplicit =
+        CVarDef.Create("ui.style_classic_decor_explicit", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// Show the old drag and drop job priority columns in the lobby, under the round info.
@@ -169,6 +187,11 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<bool> AdminGhostHudShowSatiationIcons =
         CVarDef.Create("ui.admin_ghost_satiation_icons", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Whether this client shows tippy at all, admin-sent or not.
+    /// </summary>
+    public static readonly CVarDef<bool> TippyClientEnabled =
+        CVarDef.Create("ui.client_tippy_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
 
 public enum HeldItemShowMode
