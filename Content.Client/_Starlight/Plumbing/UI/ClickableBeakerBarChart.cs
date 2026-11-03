@@ -71,6 +71,9 @@ public sealed class ClickableBeakerBarChart : ContainerButton
         UpdateButtonStyle();
     }
 
+    /// <summary>
+    /// Updates the bar chart with a new set of details, without destroying and recreating it.
+    /// </summary>
     public void SetDetails(
         string uid,
         string label,

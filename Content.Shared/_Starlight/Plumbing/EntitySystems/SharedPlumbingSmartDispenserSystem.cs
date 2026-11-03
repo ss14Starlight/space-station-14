@@ -510,6 +510,9 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Gets the solution that would be filled by the dispenser from a given entity.
+    /// </summary>
     public Solution? GetFillSolutionFromContainer(EntityUid? container)
     {
         if (container is not { Valid: true })

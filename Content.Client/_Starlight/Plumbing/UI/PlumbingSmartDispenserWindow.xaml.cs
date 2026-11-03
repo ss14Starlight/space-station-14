@@ -60,6 +60,9 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
         ClearButton.OnPressed += OnClearClicked;
     }
 
+    /// <summary>
+    /// Sets the owning dispenser entity for the window, call immediately after opening UI.
+    /// </summary>
     public void SetOwner(EntityUid owner) => _owner = owner;
 
     protected override void FrameUpdate(FrameEventArgs args)
