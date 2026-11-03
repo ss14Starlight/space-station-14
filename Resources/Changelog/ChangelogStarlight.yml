@@ -1,25 +1,4 @@
 Entries:
-- author: Rescue
-  changes:
-  - message: Hypopen box now cheerfully advertises the device's features.
-    type: Tweak
-  id: 409677
-  time: '2026-10-22T13:45:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6777
-- author: Rescue
-  changes:
-  - message: integration test bug squashing.
-    type: Fix
-  id: 409678
-  time: '2026-10-22T14:25:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6791
-- author: Rescue
-  changes:
-  - message: Secret floor tiles can now be crafted by sneaky individuals to hide your secret lairs from pesky station map viewers.
-    type: Add
-  id: 409679
-  time: '2026-10-22T14:25:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6780
 - author: xxhotgirl69, Sparlight, SevenShades, huaqas
   changes:
   - message: Collars; PDA variants for animals. They have suit coordinate trackers.
@@ -2799,4 +2778,25 @@ Entries:
   id: 410076
   time: '2026-11-03T11:45:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6952
+- author: Floximo
+  changes:
+  - message: Loss of power will no longer leave the AI in an unrecoverable state.
+    type: Fix
+  id: 410077
+  time: '2026-11-03T12:06:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6950
+- author: Floximo
+  changes:
+  - message: The job slot of the AI will now be freed on cryo/ghost.
+    type: Fix
+  id: 410078
+  time: '2026-11-03T12:06:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6950
+- author: Floximo
+  changes:
+  - message: AI Destruction/Loss of power or ghosting/cryoing will cause unique death rattles.
+    type: Add
+  id: 410079
+  time: '2026-11-03T12:06:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6950
 Order: -1
