@@ -1,0 +1,35 @@
+- type: !partialOnly entity
+  name: Random Sheet Spawner
+  id: BedsheetSpawner
+  parent: MarkerBase
+  components:
+  - type: !clear EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - !type:GroupSelector
+        weight: 96
+        prob: 0.96
+        children:
+        - id: BedsheetBlue
+        - id: BedsheetYellow
+        - id: BedsheetOrange
+        - id: BedsheetGreen
+        - id: BedsheetNT
+        - id: BedsheetRed
+        - id: BedsheetUSA
+        - id: BedsheetBrown
+        - id: BedsheetBlack
+        - id: BedsheetPurple
+        - id: BedsheetGrey
+        - id: BedsheetWhite
+        - id: BedsheetRainbow
+      - !type:GroupSelector
+        weight: 3
+        children:
+        - id: BedsheetIan
+        - id: BedsheetCosmos
+      - !type:GroupSelector
+        weight: 1
+        children:
+        - id: BedsheetStarryNight
+    offset: 0

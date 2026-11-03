@@ -1,0 +1,16 @@
+- type: !partialOnly accessGroup
+  id: Service
+  tags: !clear
+  - HeadOfPersonnel
+  - Bar
+  - Kitchen
+  - Hydroponics
+  - Service
+  - Janitor
+  - Theatre
+  - Chapel
+  - Lawyer
+  - Clown # Starlight
+  - Mime # Starlight
+  - Journalism # Goobstation
+  - Artist

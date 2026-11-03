@@ -19,3 +19,15 @@
     sprite: _Starlight/Clothing/Neck/Bedsheets/brigmedic.rsi
   - type: StealTarget
     stealGroup: BrigmedicStrangeBedsheet
+
+- type: entity
+  parent: BedsheetBaseStarlight
+  id: BedsheetStarryNight
+  name: starry night bedsheet
+  description: it glimmers a beautiful swirl of stars, like a night sky captured in fabric.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/bedsheets.rsi
+    state: sheetstarry
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Bedsheets/starry.rsi

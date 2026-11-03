@@ -222,13 +222,6 @@
 - type: Tag
   id: CanPilot # Used by ShuttleConsoleSystem to guard who's allowed to pilot ships. Semi-synonymous with a sentient person/creature.
                # Storage whitelist: BodyBag, MachineArtifactCrusher
-
-- type: Tag
-  id: CanvasBlank # Storage whitelist: Easel. ItemMapper: Easel
-
-- type: Tag
-  id: CanvasPainted # Storage whitelist: Easel. ItemMapper: Easel
-
 - type: Tag
   id: CaptainSabre # Storage whitelist: ClothingBeltSheath. ItemMapper: ClothingBeltSheath
 

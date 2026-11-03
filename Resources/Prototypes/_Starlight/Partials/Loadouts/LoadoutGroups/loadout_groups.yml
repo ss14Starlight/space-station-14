@@ -201,6 +201,7 @@
   id: Trinkets
   loadouts:
     - RadioHandheldStation
+    - StarryNightBedsheet
 
 - type: !PartialOnly loadoutGroup
   id: Glasses

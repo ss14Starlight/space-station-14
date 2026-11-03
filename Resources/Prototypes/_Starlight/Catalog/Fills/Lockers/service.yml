@@ -71,12 +71,16 @@
     - id: ClothingHeadHatBeret
     - id: ClothingHeadsetService
     - id: CrayonBox
-    - id: SprayPainter
     - id: SprayPainterAmmo
     - id: SprayPainterAmmo
     - id: BlankCanvas
+    - id: SprayBottleSpaceCleaner
+    - id: CigPackBlack
+      prob: 0.5
+    - id: CigPackRed
+      prob: 0.25
     - id: PlushieRGBee
-      prob: 0.01
+      prob: 0.02
 
 - type: entity
   id: LockerArtistFilled

@@ -1,14 +1,30 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/0ec86b44b11f5e2f45137d9f6c851b8942a26aa3, sheetbrigmedic sprited by RudeyCoolLeet#3875 and then modified by Killer Tamashi",
+  "copyright": "state based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "sheetbrigmedicstrange"
+      "name": "sheetbrigmedicstrange",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/0ec86b44b11f5e2f45137d9f6c851b8942a26aa3, sheetbrigmedic sprited by RudeyCoolLeet#3875 and then modified by Killer Tamashi"
+    },
+    {
+      "name": "sheetstarry",
+      "copyright": "Created by BriocheBear",
+      "directions": 1,
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
     }
   ]
 }

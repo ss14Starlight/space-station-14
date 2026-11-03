@@ -134,6 +134,33 @@
 - type: Tag
   id: CantBecomeRevolutionary
 
+- type: Tag
+  id: CanvasBlank # Storage whitelist: Easel. ItemMapper: Easel
+
+- type: Tag
+  id: CanvasPaintedRK # Storage whitelist: Easel. ItemMapper: Easel
+
+- type: Tag
+  id: CanvasPaintedSpooky # Storage whitelist: Easel. ItemMapper:Easel
+
+- type: Tag
+  id: CanvasPaintedCheesePizza # Storage whitelist: Easel. ItemMapper:Easel
+
+- type: Tag
+  id: CanvasPaintedPepperoniPizza # Storage whitelist: Easel. ItemMapper:Easel
+
+- type: Tag
+  id: CanvasPaintedWave # Storage whitelist: Easel. ItemMapper:Easel
+
+- type: Tag
+  id: CanvasPaintedSaturn # Storage whitelist: Easel. ItemMapper:Easel
+
+- type: Tag
+  id: CanvasPaintedSkullCig # Storage whitelist: Easel. ItemMapper:Easel
+
+- type: Tag
+  id: CanvasPaintedStarry # Storage whitelist: Easel. ItemMapper:Easel
+
 - type: Tag # used for camera construction graphs
   id: Camera
 

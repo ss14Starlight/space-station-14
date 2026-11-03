@@ -201,5 +201,11 @@
 # Neck
 - type: loadout
   id: StarryNightBedsheet
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobArtist
+        time: 108000 # 30 hours - unique playtime reward for artist. yippee!
   equipment:
-    neck: BedsheetCosmos # placeholder
+    neck: BedsheetStarryNight

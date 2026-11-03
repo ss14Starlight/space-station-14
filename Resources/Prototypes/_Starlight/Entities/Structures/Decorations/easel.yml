@@ -15,18 +15,52 @@
         whitelist:
           tags:
           - CanvasBlank
-          - CanvasPainted
-          - Canvas
+          - CanvasPaintedRK
+          - CanvasPaintedSpooky
+          - CanvasPaintedCheesePizza
+          - CanvasPaintedPepperoniPizza
+          - CanvasPaintedWave
+          - CanvasPaintedSaturn
+          - CanvasPaintedSkullCig
+          - CanvasPaintedStarry
   - type: ItemMapper
     mapLayers:
       easel_canvas:
         whitelist:
           tags:
             - CanvasBlank
-      easel_canvas1:
+      canvas_ratking:
         whitelist:
           tags:
-            - CanvasPainted
+            - CanvasPaintedRK
+      canvas_spooky:
+        whitelist:
+          tags:
+            - CanvasPaintedSpooky
+      canvas_cheesepizza:
+        whitelist:
+          tags:
+            - CanvasPaintedCheesePizza
+      canvas_pepperonipizza:
+        whitelist:
+          tags:
+            - CanvasPaintedPepperoniPizza
+      canvas_wave:
+        whitelist:
+          tags:
+            - CanvasPaintedWave
+      canvas_saturn:
+        whitelist:
+          tags:
+            - CanvasPaintedSaturn
+      canvas_skullcig:
+        whitelist:
+          tags:
+            - CanvasPaintedSkullCig
+      canvas_starry:
+        whitelist:
+          tags:
+            - CanvasPaintedStarry
   - type: Appearance
   - type: Destructible
     thresholds:
@@ -85,26 +119,121 @@
     - CanvasBlank
 
 - type: entity
-  id: PaintedCanvas
+  id: PaintedCanvasRK
   parent: BlankCanvas
   name: painted canvas
+  suffix: Rat King
   description: a painted canvas, behold its masterpiece!
-  components:
+  components: 
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/easel.rsi
     layers:
     - state: canvas_ratking
-      map: ["random"]
-  - type: RandomSprite
-    available:
-    - random:
-        canvas_ratking: ""
-        canvas_spooky: ""
-        canvas_cheesepizza: ""
-        canvas_pepperonipizza: ""
-        canvas_wave: ""
-        canvas_eatbaby: ""
-        canvas_skullcig: ""
   - type: Tag
     tags:
-    - CanvasPainted
+    - CanvasPaintedRK
+
+- type: entity
+  id: PaintedCanvasSpooky
+  parent: BlankCanvas
+  name: painted canvas
+  suffix: Spooky
+  description: a painted canvas, behold its masterpiece!
+  components: 
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_spooky
+  - type: Tag
+    tags:
+    - CanvasPaintedSpooky
+
+- type: entity
+  id: PaintedCanvasCheesePizza
+  parent: BlankCanvas
+  name: painted canvas
+  suffix: Cheese Pizza
+  description: a painted canvas, behold its masterpiece!
+  components: 
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_cheesepizza
+  - type: Tag
+    tags:
+    - CanvasPaintedCheesePizza
+
+- type: entity
+  id: PaintedCanvasPepperoniPizza
+  parent: BlankCanvas
+  name: painted canvas
+  suffix: Pepperoni Pizza
+  description: a painted canvas, behold its masterpiece!
+  components: 
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_pepperonipizza
+  - type: Tag
+    tags:
+    - CanvasPaintedPepperoniPizza
+
+- type: entity
+  id: PaintedCanvasWave
+  parent: BlankCanvas
+  name: painted canvas
+  suffix: The Great Wave off Kanagawa
+  description: a painted canvas, behold its masterpiece!
+  components: 
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_wave
+  - type: Tag
+    tags:
+    - CanvasPaintedWave
+
+- type: entity
+  id: PaintedCanvasSaturn
+  parent: BlankCanvas
+  name: painted canvas
+  suffix: Saturn Devouring His Son
+  description: a painted canvas, behold its masterpiece!
+  components: 
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_saturn
+  - type: Tag
+    tags:
+    - CanvasPaintedSaturn
+
+- type: entity
+  id: PaintedCanvasSkullCig
+  parent: BlankCanvas
+  name: painted canvas
+  suffix: Skull of a Skeleton with Burning Cigarette
+  description: a painted canvas, behold its masterpiece!
+  components: 
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_skullcig
+  - type: Tag
+    tags:
+    - CanvasPaintedSkullCig
+
+- type: entity
+  id: PaintedCanvasStarry
+  parent: BlankCanvas
+  name: painted canvas
+  suffix: Starry Night
+  description: a painted canvas, behold its masterpiece!
+  components: 
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_starry
+  - type: Tag
+    tags:
+    - CanvasPaintedStarry

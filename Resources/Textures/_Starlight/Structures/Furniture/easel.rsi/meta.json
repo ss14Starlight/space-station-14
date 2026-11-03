@@ -20,12 +20,16 @@
       "copyright": "Altered by BriocheBear, original sprite by WayisCool"
     },
     {
+      "name": "canvas_starry",
+      "copyright": "Created by BriocheBear"
+    },
+    {
       "name": "canvas_ratking",
-      "copyright": "Created by xxhotgirl on discord"
+      "copyright": "Created by xxhotgirl69 on github"
     },
     {
       "name": "canvas_spooky",
-      "copyright": "Created by xxhotgirl on discord"
+      "copyright": "Created by xxhotgirl69 on github"
     },
     {
       "name": "canvas_cheesepizza",
@@ -40,40 +44,12 @@
       "copyright": "Created by EmoGarbage"
     },
     {
-      "name": "canvas_eatbaby",
+      "name": "canvas_saturn",
       "copyright": "Created by EmoGarbage"
     },
     {
       "name": "canvas_skullcig",
       "copyright": "Created by EmoGarbage"
-    },
-    {
-      "name": "easel_canvas1",
-      "copyright": "Created by EmoGarbage"
-    },
-    {
-      "name": "easel_canvas2",
-      "copyright": "Created by EmoGarbage"
-    },
-    {
-      "name": "easel_canvas3",
-      "copyright": "Created by EmoGarbage"
-    },
-    {
-      "name": "easel_canvas4",
-      "copyright": "Created by xxhotgirl on discord"
-    },
-    {
-      "name": "easel_canvas5",
-      "copyright": "Created by xxhotgirl on discord"
-    },
-    {
-      "name": "easel_canvas6",
-      "copyright": "Created by xxhotgirl on discord"
-    },
-    {
-      "name": "easel_canvas7",
-      "copyright": "Created by xxhotgirl on discord"
     }
   ]
 }
