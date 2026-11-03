@@ -2,6 +2,5 @@
   id: PlayerStationAiEmpty
   components:
   - type: DamageGate
-    limitToNextDestructionThreshold: true
-    thresholdDamageCooldown: 2
-    maxDamagePerHit: 400
+    minDamageToDestruction: 4000 #X4 qualifies with 4500 structual max
+    minDamageToStage: 200

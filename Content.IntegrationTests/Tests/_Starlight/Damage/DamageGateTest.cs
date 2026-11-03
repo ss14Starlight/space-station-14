@@ -1,10 +1,12 @@
 #nullable enable
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Damage.Components;
+using Content.Server.Destructible;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Destructible.Thresholds.Triggers;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
@@ -18,6 +20,8 @@ public sealed class DamageGateTest : GameTest
     private const string CappedEntity = "TestDamageGateCapped";
     private const string UncappedEntity = "TestDamageGateUncapped";
     private const string ThresholdEntity = "TestDamageGateThresholds";
+    private const string MinimumThresholdEntity = "TestDamageGateMinimumThresholds";
+    private const string CappedMinimumThresholdEntity = "TestDamageGateCappedMinimumThreshold";
     private const string CooldownEntity = "TestDamageGateCooldown";
     private const string BluntDamageType = "Blunt";
     private const string HeatDamageType = "Heat";
@@ -49,8 +53,48 @@ public sealed class DamageGateTest : GameTest
         {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}!type:DamageTrigger
         {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}damage: 100
         {PrototypeIndent}- type: DamageGate
-        {PrototypeIndent}{PrototypeIndent}limitToNextDestructionThreshold: true
-        {PrototypeIndent}{PrototypeIndent}thresholdDamageCooldown: 1
+        {PrototypeIndent}{PrototypeIndent}limitToNextStage: true
+        {PrototypeIndent}{PrototypeIndent}stageDamageCooldown: 1
+
+        - type: entity
+        {PrototypeIndent}id: {MinimumThresholdEntity}
+        {PrototypeIndent}components:
+        {PrototypeIndent}- type: Damageable
+        {PrototypeIndent}- type: Destructible
+        {PrototypeIndent}{PrototypeIndent}thresholds:
+        {PrototypeIndent}{PrototypeIndent}- trigger:
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}!type:DamageTrigger
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}damage: 20
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}behaviors:
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}- !type:DoActsBehavior
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}acts: [Breakage]
+        {PrototypeIndent}{PrototypeIndent}- trigger:
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}!type:DamageTrigger
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}damage: 40
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}behaviors:
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}- !type:DoActsBehavior
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}acts: [Destruction]
+        {PrototypeIndent}- type: DamageGate
+        {PrototypeIndent}{PrototypeIndent}minDamageToStage: 50
+        {PrototypeIndent}{PrototypeIndent}minDamageToDestruction: 100
+        {PrototypeIndent}{PrototypeIndent}limitToNextStage: true
+
+        - type: entity
+        {PrototypeIndent}id: {CappedMinimumThresholdEntity}
+        {PrototypeIndent}components:
+        {PrototypeIndent}- type: Damageable
+        {PrototypeIndent}- type: Destructible
+        {PrototypeIndent}{PrototypeIndent}thresholds:
+        {PrototypeIndent}{PrototypeIndent}- trigger:
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}!type:DamageTrigger
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}damage: 100
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}behaviors:
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}- !type:DoActsBehavior
+        {PrototypeIndent}{PrototypeIndent}{PrototypeIndent}{PrototypeIndent}acts: [Destruction]
+        {PrototypeIndent}- type: DamageGate
+        {PrototypeIndent}{PrototypeIndent}maxDamagePerHit: 400
+        {PrototypeIndent}{PrototypeIndent}minDamageToDestruction: 4900
+        {PrototypeIndent}{PrototypeIndent}limitToNextStage: true
 
         - type: entity
         {PrototypeIndent}id: {CooldownEntity}
@@ -199,6 +243,126 @@ public sealed class DamageGateTest : GameTest
             damageable.ChangeDamage(entity, damage, ignoreResistances: true, ignoreGlobalModifiers: true);
             var damageAfterSecondHit = damageable.GetTotalDamage(entity);
             Assert.That(damageAfterSecondHit, Is.EqualTo(FixedPoint2.New(100)));
+        });
+    }
+
+    [Test]
+    public async Task RequiresMinimumTotalDamageForBreakageAndDestruction()
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+
+        EntityUid entity = default;
+        IEntityManager entityManager = null!;
+        DamageableSystem damageable = null!;
+        DamageTypePrototype blunt = null!;
+
+        await server.WaitPost(() =>
+        {
+            entityManager = server.ResolveDependency<IEntityManager>();
+            var prototypeManager = server.ResolveDependency<IPrototypeManager>();
+            entity = entityManager.SpawnEntity(MinimumThresholdEntity, map.MapCoords);
+            damageable = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<DamageableSystem>();
+            blunt = prototypeManager.Index<DamageTypePrototype>(BluntDamageType);
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            var destructible = entityManager.GetComponent<DestructibleComponent>(entity);
+
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 49), ignoreResistances: true,
+                ignoreGlobalModifiers: true);
+            Assert.That(destructible.IsBroken, Is.False);
+
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 1000), ignoreResistances: true,
+                ignoreGlobalModifiers: true);
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(50)));
+                Assert.That(destructible.IsBroken, Is.True);
+                Assert.That(entityManager.IsQueuedForDeletion(entity), Is.False);
+            }
+
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 49), ignoreResistances: true,
+                ignoreGlobalModifiers: true);
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(99)));
+                Assert.That(entityManager.IsQueuedForDeletion(entity), Is.False);
+            }
+
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 1000), ignoreResistances: true,
+                ignoreGlobalModifiers: true);
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(100)));
+                Assert.That(entityManager.IsQueuedForDeletion(entity), Is.True);
+            }
+        });
+    }
+
+    [Test]
+    public async Task DamageLimitsStillAllowDestructionAtMinimumThreshold()
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+
+        EntityUid entity = default;
+        IEntityManager entityManager = null!;
+        DamageableSystem damageable = null!;
+        DamageTypePrototype blunt = null!;
+
+        await server.WaitPost(() =>
+        {
+            entityManager = server.ResolveDependency<IEntityManager>();
+            var prototypeManager = server.ResolveDependency<IPrototypeManager>();
+            entity = entityManager.SpawnEntity(CappedMinimumThresholdEntity, map.MapCoords);
+            damageable = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<DamageableSystem>();
+            blunt = prototypeManager.Index<DamageTypePrototype>(BluntDamageType);
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            var damageGate = entityManager.GetComponent<DamageGateComponent>(entity);
+            var destructible = entityManager.GetComponent<DestructibleComponent>(entity);
+            var destructionTrigger = (DamageTrigger)destructible.Thresholds[0].Trigger!;
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(damageGate.MaxDamagePerHit, Is.EqualTo(FixedPoint2.New(400)));
+                Assert.That(damageGate.LimitToNextStage, Is.True);
+                Assert.That(destructionTrigger.Damage, Is.EqualTo(FixedPoint2.New(4900)));
+                Assert.That(damageable.CanBeDamagedBy(entity, blunt.ID), Is.True);
+            }
+
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 5000), ignoreResistances: true,
+                ignoreGlobalModifiers: true);
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(400)));
+                Assert.That(entityManager.IsQueuedForDeletion(entity), Is.False);
+            }
+
+            for (var hit = 0; hit < 10; hit++)
+                damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 400), ignoreResistances: true,
+                    ignoreGlobalModifiers: true);
+
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 101), ignoreResistances: true,
+                ignoreGlobalModifiers: true);
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(4501)));
+                Assert.That(entityManager.IsQueuedForDeletion(entity), Is.False);
+            }
+
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 5000), ignoreResistances: true,
+                ignoreGlobalModifiers: true);
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(4900)));
+                Assert.That(entityManager.IsQueuedForDeletion(entity), Is.True);
+            }
         });
     }
 

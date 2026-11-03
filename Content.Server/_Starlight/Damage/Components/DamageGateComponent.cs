@@ -11,9 +11,19 @@ public sealed partial class DamageGateComponent : Component
     [DataField] public FixedPoint2? MaxDamagePerHit;
 
     /// <summary>
+    /// Minimum total damage before a breakage threshold can trigger. Null leaves its configured threshold unchanged.
+    /// </summary>
+    [DataField] public FixedPoint2? MinDamageToStage;
+
+    /// <summary>
+    /// Minimum total damage before a destruction threshold can trigger. Null leaves its configured threshold unchanged.
+    /// </summary>
+    [DataField] public FixedPoint2? MinDamageToDestruction;
+
+    /// <summary>
     /// Limits a damage call to the next DamageTrigger threshold on the entity's DestructibleComponent.
     /// </summary>
-    [DataField] public bool LimitToNextDestructionThreshold;
+    [DataField] public bool LimitToNextStage;
 
     /// <summary>
     /// Minimum time between positive damage calls. Healing is not blocked by this cooldown.
@@ -23,8 +33,8 @@ public sealed partial class DamageGateComponent : Component
     /// <summary>
     /// Time after crossing the next DamageTrigger threshold during which all positive damage is blocked.
     /// </summary>
-    [DataField] public TimeSpan ThresholdDamageCooldown = TimeSpan.Zero;
+    [DataField] public TimeSpan StageDamageCooldown = TimeSpan.Zero;
 
     [ViewVariables] public TimeSpan? DamageCooldownUntil;
-    [ViewVariables] public TimeSpan? ThresholdDamageCooldownUntil;
+    [ViewVariables] public TimeSpan? StageDamageCooldownUntil;
 }
