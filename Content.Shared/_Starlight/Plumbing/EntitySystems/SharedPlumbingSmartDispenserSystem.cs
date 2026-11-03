@@ -468,12 +468,12 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
 
         _solutionSystem.TryAddReagent(targetEnt!.Value, sourceReagentValue.Reagent, removed, out var accepted);
 
-        if (showPopup && accepted > FixedPoint2.Zero && user is { Valid: true })
+        if (showPopup && accepted > FixedPoint2.Zero && user is { Valid: true } &&
+            _prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var proto))
         {
-            var reagentName = _prototypeManager.Index<ReagentPrototype>(reagentId).LocalizedName;
             _popup.PopupPredicted(
                 Loc.GetString("plumbing-smart-dispenser-filled",
-                    ("reagent", reagentName),
+                    ("reagent", proto.LocalizedName),
                     ("amount", accepted)),
                 ent.Owner,
                 user.Value);
