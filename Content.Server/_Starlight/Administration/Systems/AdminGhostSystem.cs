@@ -53,6 +53,7 @@ public sealed partial class AdminGhostSystem : EntitySystem
             else _visibility.AddLayer(args.Performer, (int)VisibilityFlags.Ghost, false);
             aghostComp.HiddenFromNonAdminGhosts = false;
         }
+        Dirty(args.Performer, aghostComp);
         _visibility.RefreshVisibility(args.Performer);
         _popup.PopupEntity(Loc.GetString(popupLocId), args.Performer, args.Performer);
         args.Handled = true;

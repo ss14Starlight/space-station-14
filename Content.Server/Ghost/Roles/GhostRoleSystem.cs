@@ -323,6 +323,14 @@ public sealed partial class GhostRoleSystem : EntitySystem
 
     public void RegisterGhostRole(Entity<GhostRoleComponent> role)
     {
+        // Starlight-start
+        if (TerminatingOrDeleted(role.Owner))
+        {
+            Log.Error($"Attempt to register terminating/deleted ghost role: {ToPrettyString(role)}");
+            return;
+        }
+        // Starlight-end
+
         if (_ghostRoles.ContainsValue(role))
             return;
 
@@ -672,6 +680,14 @@ public sealed partial class GhostRoleSystem : EntitySystem
 
         foreach (var (id, (uid, role)) in _ghostRoles)
         {
+            // Starlight-start
+            if (TerminatingOrDeleted(uid))
+            {
+                Log.Warning($"Ghost role {id} referenced deleted entity {uid}. This should not happen.");
+                continue;
+            }
+            // Starlight-end
+
             if (metaQuery.GetComponent(uid).EntityPaused)
                 continue;
 
@@ -754,6 +770,11 @@ public sealed partial class GhostRoleSystem : EntitySystem
         // Avoid re-registering it for duplicate entries and potential exceptions.
         if (!ghostRole.ReregisterOnGhost || component.LifeStage > ComponentLifeStage.Running)
             return;
+
+        // Starlight-start: Don't re-register if deleting
+        if (TerminatingOrDeleted(uid))
+            return;
+        // Starlight-end
 
         ghostRole.Taken = false;
         RegisterGhostRole((uid, ghostRole));
