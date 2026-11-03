@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (NukeOps Western) Syndicate tactical planning console added to planning area.
-    type: Add
-  id: 409695
-  time: '2026-10-23T07:22:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6810
-- author: Caws
-  changes:
   - message: (NukeOps Western) Redspace beaker added to Medbay.
     type: Add
   id: 409696
@@ -2799,4 +2792,11 @@ Entries:
   id: 410094
   time: '2026-11-03T12:54:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6958
+- author: to01
+  changes:
+  - message: Fixed bug which caused large amounts of food to finish cooking when stopped prematurely.
+    type: Fix
+  id: 410095
+  time: '2026-11-03T14:50:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6966
 Order: -1
