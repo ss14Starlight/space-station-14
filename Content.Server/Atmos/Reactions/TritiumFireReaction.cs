@@ -12,8 +12,8 @@ namespace Content.Server.Atmos.Reactions
         public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
         {
             // Starlight start
-            if (mixture.GetMoles(Gas.HyperNoblium) >= 5.0f)
-                return ReactionResult.NoReaction;
+            if (mixture.Temperature > 20f && mixture.GetMoles(Gas.HyperNoblium) >= 5f)
+            return ReactionResult.NoReaction;
             // Starlight end
 
             var energyReleased = 0f;

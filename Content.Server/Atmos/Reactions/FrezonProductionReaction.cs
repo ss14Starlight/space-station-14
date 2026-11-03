@@ -15,7 +15,7 @@ public sealed partial class FrezonProductionReaction : IGasReactionEffect
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
         // Starlight start
-        if (mixture.GetMoles(Gas.HyperNoblium) >= 5.0f)
+        if (mixture.Temperature > 20f && mixture.GetMoles(Gas.HyperNoblium) >= 5f)
             return ReactionResult.NoReaction;
         // Starlight end
 
