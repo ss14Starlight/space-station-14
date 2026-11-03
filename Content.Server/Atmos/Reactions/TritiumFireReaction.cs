@@ -13,7 +13,7 @@ namespace Content.Server.Atmos.Reactions
         {
             // Starlight start
             if (mixture.Temperature > 20f && mixture.GetMoles(Gas.HyperNoblium) >= 5f)
-            return ReactionResult.NoReaction;
+                return ReactionResult.NoReaction;
             // Starlight end
 
             var energyReleased = 0f;
