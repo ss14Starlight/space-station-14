@@ -3,8 +3,6 @@ using Content.Client._Starlight.Plumbing.UI;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared._Starlight.Plumbing.EntitySystems;
-using Content.Shared.Chemistry.EntitySystems;
-using JetBrains.Annotations;
 using Robust.Client.Timing;
 
 namespace Content.Client._Starlight.Plumbing.EntitySystems;

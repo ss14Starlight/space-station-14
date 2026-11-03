@@ -1,9 +1,7 @@
 using Content.Shared._Starlight.Chemistry.Components;
 using Content.Shared._Starlight.Plumbing.Components;
-using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -14,9 +12,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
 using Content.Shared.Popups;
-using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Plumbing.EntitySystems;
@@ -48,8 +44,6 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PlumbingSmartDispenserComponent, InteractUsingEvent>(OnInteractUsing);
-
         Subs.BuiEvents<PlumbingSmartDispenserComponent>(PlumbingSmartDispenserUiKey.Key, subs =>
         {
             subs.Event<PlumbingSmartDispenserDispenseReagentMessage>(OnDispenseReagentMessage);
@@ -80,6 +74,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
     {
     }
 
+    [SubscribeLocalEvent]
     private void OnInteractUsing(Entity<PlumbingSmartDispenserComponent> ent, ref InteractUsingEvent args)
     {
         if (args.Handled)
