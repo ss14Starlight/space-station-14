@@ -74,9 +74,6 @@ public sealed partial class PlumbingSmartDispenserSystem
     private void RequestContextDispense(EntityUid dispenser, string reagentId)
     {
         var amount = EnsureComp<PlumbingSmartDispenserLocalStateComponent>(dispenser).SelectedDispenseAmount;
-        RaisePredictiveEvent(new PlumbingSmartDispenserContextDispenseEvent(
-            GetNetEntity(dispenser),
-            reagentId,
-            FixedPoint2.New((int) amount)));
+        RaisePredictiveEvent(new PlumbingSmartDispenserContextDispenseEvent(GetNetEntity(dispenser), reagentId, amount));
     }
 }

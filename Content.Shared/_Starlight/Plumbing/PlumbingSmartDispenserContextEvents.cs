@@ -1,4 +1,4 @@
-using Content.Shared.FixedPoint;
+using Content.Shared.Chemistry;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Plumbing;
@@ -7,7 +7,10 @@ namespace Content.Shared._Starlight.Plumbing;
 /// Sent when a reagent is picked from a smart dispenser's context menu.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class PlumbingSmartDispenserContextDispenseEvent(NetEntity dispenser, string reagentId, FixedPoint2 fallbackAmount)
+public sealed class PlumbingSmartDispenserContextDispenseEvent(
+    NetEntity dispenser,
+    string reagentId,
+    ReagentDispenserDispenseAmount fallbackAmount)
     : EntityEventArgs
 {
     public readonly NetEntity Dispenser = dispenser;
@@ -15,7 +18,7 @@ public sealed class PlumbingSmartDispenserContextDispenseEvent(NetEntity dispens
     public readonly string ReagentId = reagentId;
 
     /// <summary>
-    /// Amount for held containers that have no transfer amount of their own.
+    /// Amount selected in the dispenser window, for held containers that have no transfer amount of their own.
     /// </summary>
-    public readonly FixedPoint2 FallbackAmount = fallbackAmount;
+    public readonly ReagentDispenserDispenseAmount FallbackAmount = fallbackAmount;
 }

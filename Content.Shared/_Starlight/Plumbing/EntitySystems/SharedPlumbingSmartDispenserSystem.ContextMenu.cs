@@ -37,6 +37,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem
     private void OnContextDispense(PlumbingSmartDispenserContextDispenseEvent msg, EntitySessionEventArgs args)
     {
         if (args.SenderSession.AttachedEntity is not { } user
+            || !Enum.IsDefined(msg.FallbackAmount)
             || !TryGetEntity(msg.Dispenser, out var dispenser)
             || !TryComp<PlumbingSmartDispenserComponent>(dispenser, out var comp)
             || !_interaction.InRangeAndAccessible(user, dispenser.Value))
@@ -94,7 +95,7 @@ public abstract partial class SharedPlumbingSmartDispenserSystem
         if (TryComp<SolutionTransferComponent>(held, out var transfer))
             return transfer.TransferAmount;
 
-        return msg.FallbackAmount;
+        return FixedPoint2.New((int) msg.FallbackAmount);
     }
 
     [SubscribeLocalEvent]
@@ -155,7 +156,10 @@ public abstract partial class SharedPlumbingSmartDispenserSystem
         // Same per-reagent cap as plumbing pulls.
         foreach (var reagent in heldSolution.Contents)
         {
-            var room = ent.Comp.MaxPerReagent - storeSolution.GetTotalPrototypeQuantity(reagent.Reagent.Prototype);
+            var prototype = reagent.Reagent.Prototype;
+            var room = ent.Comp.MaxPerReagent
+                - storeSolution.GetTotalPrototypeQuantity(prototype)
+                - returned.GetTotalPrototypeQuantity(prototype);
             var amount = FixedPoint2.Min(reagent.Quantity, room, space);
             if (amount <= FixedPoint2.Zero)
                 continue;

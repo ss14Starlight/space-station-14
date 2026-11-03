@@ -16,6 +16,14 @@ public sealed partial class VerbMenuUIController
     private bool _closeOnMouseOut;
     private TimeSpan _mouseOutTime;
 
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        // Also runs when a new entity menu replaces an open one, so the new menu starts unarmed.
+        _context.OnContextClosed += StopCloseOnMouseOut;
+    }
+
     /// <summary>
     /// Lists entries from <see cref="GetVerbMenuEntriesEvent"/> directly below the interaction verbs
     /// (and anything sorted above them).
@@ -74,7 +82,7 @@ public sealed partial class VerbMenuUIController
 
         if (_context.RootMenu is not { Visible: true })
         {
-            _closeOnMouseOut = false;
+            StopCloseOnMouseOut();
             return;
         }
 
@@ -87,6 +95,12 @@ public sealed partial class VerbMenuUIController
         _mouseOutTime += TimeSpan.FromSeconds(args.DeltaSeconds);
         if (_mouseOutTime >= ContextMenuUIController.HoverDelay)
             _context.Close();
+    }
+
+    private void StopCloseOnMouseOut()
+    {
+        _closeOnMouseOut = false;
+        _mouseOutTime = TimeSpan.Zero;
     }
 
     private bool IsMouseOverContextMenu()
