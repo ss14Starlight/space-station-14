@@ -42,6 +42,7 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
     private EntityUid? _outputContainerEntity;
     private ReagentDispenserDispenseAmount _dispenseAmount;
     private int _reagentsHash;
+    private int _outputHash;
 
     public event Action<string, FixedPoint2, NetEntity>? OnDispenseReagentPressed;
 
@@ -63,13 +64,7 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
 
     protected override void FrameUpdate(FrameEventArgs args)
     {
-        // always update the state when we have a labeler
-        // (it's cheap + the labeler selected label doesn't give us an event when it changes)
-        if (_localStateDirty || _hasLabeler)
-            UpdateLocalState();
-
-        if (_entityManager.TryGetComponent<PlumbingSmartDispenserComponent>(_owner, out var comp) &&
-            _solutionSystem.TryGetSolution(_owner, comp.SolutionName, out _, out var solution))
+        static bool SolutionChanged(Solution solution, ref int savedHash)
         {
             HashCode hashCode = default;
 
@@ -80,15 +75,35 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
             }
 
             int code = hashCode.ToHashCode();
+            if (code != savedHash)
+            {
+                savedHash = code;
+                return true;
+            }
 
+            return false;
+        }
+
+        // track the output container's hash too in case
+        // they fill it from something else (we don't get an event)
+        if (_outputContainerEntity.HasValue &&
+            _smartDispenserSystem.GetFillSolutionFromContainer(_outputContainerEntity) is Solution fillSolution &&
+            SolutionChanged(fillSolution, ref _outputHash))
+            _localStateDirty = true;
+
+        // always update the state when we have a labeler
+        // (it's cheap + the labeler selected label doesn't give us an event when it changes)
+        if (_localStateDirty || _hasLabeler)
+            UpdateLocalState();
+
+        if (_entityManager.TryGetComponent<PlumbingSmartDispenserComponent>(_owner, out var comp) &&
+            _solutionSystem.TryGetSolution(_owner, comp.SolutionName, out _, out var solution))
+        {
             // local state dirty causes reagents to refresh
             // because target item changing changes whether the buttons
             // are interactable
-            if (code != _reagentsHash || _localStateDirty)
-            {
-                _reagentsHash = code;
+            if (SolutionChanged(solution, ref _reagentsHash) || _localStateDirty)
                 RefreshReagentList((_owner, comp), solution);
-            }
         }
 
         _localStateDirty = false;
