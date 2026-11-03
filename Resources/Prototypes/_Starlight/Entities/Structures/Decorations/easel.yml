@@ -101,6 +101,13 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
+        ents: []
+        showEnts: False
+        occludes: True
+      item: !type:ContainerSlot
+        ent: null
+        showEnts: False
+        occludes: True
   - type: Transform
     noRot: true
 
