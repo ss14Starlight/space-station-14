@@ -23,7 +23,7 @@ public sealed partial class HydrogenFireReaction : IGasReactionEffect
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         var temperature = mixture.Temperature;
         var location = holder as TileAtmosphere;
-        // mixture.ReactionResults[(byte)GasReaction.Fire] = 0f; - Starlight edit - Moved the reaction reset to before the AtmosphereSystem.Gases.cs reaction results loop to prevent multiple simultaneous oxidisers from resetting eachother's reactions
+        // mixture.ReactionResults[(byte)GasReaction.Fire] = 0f; - Starlight edit - Moved the reaction reset to AtmosphereSystem.Processing to prevent edge cases interfering with multiple simultaneous oxidisers
         var burnedFuel = 0f;
         var initialH2 = mixture.GetMoles(Gas.Hydrogen);
         var initialO2 = mixture.GetMoles(Gas.Oxygen);

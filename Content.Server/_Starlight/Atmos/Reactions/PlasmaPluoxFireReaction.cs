@@ -13,6 +13,9 @@ namespace Content.Server._Starlight.Atmos.Reactions
         private const float PluoxiumFactor = 8f; // pluoxium is 8 times more effective as an oxidiser than oxygen, so make a constant for it
         public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
         {
+            if (mixture.Temperature > 20f && mixture.GetMoles(Gas.HyperNoblium) >= 5f)
+                return ReactionResult.NoReaction;
+
             var energyReleased = 0f;
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
