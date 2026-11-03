@@ -1,13 +1,6 @@
 Entries:
 - author: Talirson
   changes:
-  - message: Fixed Electrolyzers incorrectly being flagged as powersinks by the power monitoring console.
-    type: Fix
-  id: 409686
-  time: '2026-10-22T15:54:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6779
-- author: Talirson
-  changes:
   - message: 'Added UI elements to the power monitor to show both: electrolyzers connected to the grid, and their power draw.'
     type: Add
   id: 409687
@@ -2799,4 +2792,11 @@ Entries:
   id: 410085
   time: '2026-11-03T12:53:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7025
+- author: Talirson
+  changes:
+  - message: Fixed handheld Mortar & Pestle grinders - Maintenance chemists rejoice!
+    type: Fix
+  id: 410086
+  time: '2026-11-03T12:53:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7014
 Order: -1
