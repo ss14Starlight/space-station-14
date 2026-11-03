@@ -82,7 +82,7 @@
 
 # Acts like a lost property bag for items left behind by budget bluespace teleportation
 - type: entity
-  parent: BaseStorageItem
+  parent: [ BaseStorageItem, BaseContrabandTier3, BaseNanoTrasenContraband ]
   id: BluespacePocketBelongings
   name: unstable bluespace pocket
   description: A localized tear in bluespace caused by a faulty teleportation. Equipment that failed to cross is trapped inside.
