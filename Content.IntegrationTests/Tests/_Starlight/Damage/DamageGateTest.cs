@@ -2,13 +2,18 @@
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Damage.Components;
 using Content.Server.Destructible;
+using Content.Server.Explosion.EntitySystems;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible.Thresholds.Triggers;
+using Content.Shared.Explosion.Components;
 using Content.Shared.FixedPoint;
+using Content.Shared.Trigger.Systems;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests._Starlight.Damage;
@@ -77,7 +82,6 @@ public sealed class DamageGateTest : GameTest
         {PrototypeIndent}- type: DamageGate
         {PrototypeIndent}{PrototypeIndent}minDamageToStage: 50
         {PrototypeIndent}{PrototypeIndent}minDamageToDestruction: 100
-        {PrototypeIndent}{PrototypeIndent}limitToNextStage: true
 
         - type: entity
         {PrototypeIndent}id: {CappedMinimumThresholdEntity}
@@ -247,7 +251,7 @@ public sealed class DamageGateTest : GameTest
     }
 
     [Test]
-    public async Task RequiresMinimumTotalDamageForBreakageAndDestruction()
+    public async Task RequiresMinimumSingleHitDamageForBreakageAndDestruction()
     {
         var pair = Pair;
         var server = pair.Server;
@@ -270,40 +274,218 @@ public sealed class DamageGateTest : GameTest
         await server.WaitAssertion(() =>
         {
             var destructible = entityManager.GetComponent<DestructibleComponent>(entity);
+            var breakageTrigger = (DamageTrigger)destructible.Thresholds[0].Trigger!;
+            var destructionTrigger = (DamageTrigger)destructible.Thresholds[1].Trigger!;
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(breakageTrigger.Damage, Is.EqualTo(FixedPoint2.New(20)));
+                Assert.That(destructionTrigger.Damage, Is.EqualTo(FixedPoint2.New(40)));
+            }
 
-            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 49), ignoreResistances: true,
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 10), ignoreResistances: true,
                 ignoreGlobalModifiers: true);
-            Assert.That(destructible.IsBroken, Is.False);
-
-            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 1000), ignoreResistances: true,
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 10), ignoreResistances: true,
                 ignoreGlobalModifiers: true);
             using (Assert.EnterMultipleScope())
             {
-                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(50)));
+                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.FromCents(1999)));
+                Assert.That(destructible.IsBroken, Is.False);
+                Assert.That(entityManager.IsQueuedForDeletion(entity), Is.False);
+            }
+
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 49), ignoreResistances: true,
+                ignoreGlobalModifiers: true);
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.FromCents(1999)));
+                Assert.That(entityManager.IsQueuedForDeletion(entity), Is.False);
+            }
+
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 50), ignoreResistances: true,
+                ignoreGlobalModifiers: true);
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.FromCents(3999)));
                 Assert.That(destructible.IsBroken, Is.True);
                 Assert.That(entityManager.IsQueuedForDeletion(entity), Is.False);
             }
 
-            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 49), ignoreResistances: true,
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 99), ignoreResistances: true,
                 ignoreGlobalModifiers: true);
             using (Assert.EnterMultipleScope())
             {
-                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(99)));
+                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.FromCents(3999)));
                 Assert.That(entityManager.IsQueuedForDeletion(entity), Is.False);
             }
 
-            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 1000), ignoreResistances: true,
+            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 100), ignoreResistances: true,
                 ignoreGlobalModifiers: true);
+            Assert.That(entityManager.IsQueuedForDeletion(entity), Is.True);
+        });
+    }
+
+    [Test]
+    public async Task X4DestroysStationAiCoreInOneHit()
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+
+        EntityUid core = default;
+        EntityUid x4 = default;
+        var coordinates = map.GridCoords;
+        IEntityManager entityManager = null!;
+        DamageableSystem damageable = null!;
+        TriggerSystem trigger = null!;
+
+        await server.WaitPost(() =>
+        {
+            entityManager = server.ResolveDependency<IEntityManager>();
+            core = entityManager.SpawnEntity("PlayerStationAiEmpty", coordinates);
+            damageable = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<DamageableSystem>();
+            trigger = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<TriggerSystem>();
+        });
+
+        await server.WaitRunTicks(5);
+
+        await server.WaitPost(() =>
+            x4 = entityManager.SpawnEntity("X4", coordinates));
+
+        await server.WaitRunTicks(1);
+
+        await server.WaitAssertion(() =>
+        {
+            var mapSystem = entityManager.System<SharedMapSystem>();
+            var transformSystem = entityManager.System<SharedTransformSystem>();
+            var coreMapCoordinates = transformSystem.GetMapCoordinates(core);
+            var x4MapCoordinates = transformSystem.GetMapCoordinates(x4);
             using (Assert.EnterMultipleScope())
             {
-                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(100)));
-                Assert.That(entityManager.IsQueuedForDeletion(entity), Is.True);
+                Assert.That(coreMapCoordinates.MapId, Is.EqualTo(map.MapId));
+                Assert.That(x4MapCoordinates.MapId, Is.EqualTo(map.MapId));
+                Assert.That(mapSystem.TryFindGridAt(coreMapCoordinates, out var coreGrid, out _), Is.True);
+                Assert.That(mapSystem.TryFindGridAt(x4MapCoordinates, out var x4Grid, out _), Is.True);
+                Assert.That(coreGrid, Is.EqualTo(map.Grid.Owner));
+                Assert.That(x4Grid, Is.EqualTo(map.Grid.Owner));
+                Assert.That(map.Tile.Tile.IsEmpty, Is.False);
+            }
+        });
+
+        await server.WaitPost(() =>
+        {
+            Assert.That(trigger.Trigger(x4, key: TriggerSystem.DefaultTriggerKey, predicted: false), Is.True);
+            Assert.That(trigger.GetRemainingTime(x4), Is.Not.Null);
+        });
+
+        await server.WaitRunTicks(601);
+        await server.WaitRunTicks(1);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(entityManager.EntityExists(x4), Is.False, "X4 timer did not trigger the explosion.");
+            var visuals = entityManager.EntityQueryEnumerator<ExplosionVisualsComponent>();
+            Assert.That(visuals.MoveNext(out var visual), Is.True);
+            Assert.That(visual.Tiles.ContainsKey(map.Grid.Owner), Is.True);
+        });
+
+        await server.WaitRunTicks(119);
+
+        await server.WaitAssertion(() =>
+            Assert.That(entityManager.EntityExists(core), Is.False,
+                $"X4 left the AI core present with {damageable.GetTotalDamage(core)} damage."));
+    }
+
+    [Test]
+    public async Task RepeatedC4HitsCannotDestroyStationAiCore()
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+
+        EntityUid core = default;
+        var coordinates = map.GridCoords;
+        IEntityManager entityManager = null!;
+        DamageableSystem damageable = null!;
+        ExplosionSystem explosion = null!;
+
+        await server.WaitPost(() =>
+        {
+            entityManager = server.ResolveDependency<IEntityManager>();
+            core = entityManager.SpawnEntity("PlayerStationAiEmpty", coordinates);
+            damageable = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<DamageableSystem>();
+            explosion = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<ExplosionSystem>();
+        });
+
+        for (var hit = 0; hit < 10; hit++)
+        {
+            EntityUid c4 = default;
+            await server.WaitPost(() => c4 = entityManager.SpawnEntity("C4", coordinates));
+
+            await server.WaitRunTicks(1);
+
+            await server.WaitPost(() => explosion.TriggerExplosive(c4));
+
+            await server.WaitRunTicks(10);
+
+            await server.WaitAssertion(() =>
+                Assert.That(entityManager.EntityExists(core), Is.True,
+                    $"C4 hit {hit + 1} destroyed the station AI core."));
+        }
+
+        await server.WaitAssertion(() =>
+        {
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(entityManager.EntityExists(core), Is.True);
+                Assert.That(damageable.GetTotalDamage(core), Is.GreaterThan(FixedPoint2.Zero));
+                Assert.That(damageable.GetTotalDamage(core), Is.LessThan(FixedPoint2.New(800)));
             }
         });
     }
 
     [Test]
-    public async Task DamageLimitsStillAllowDestructionAtMinimumThreshold()
+    public async Task SyndieMiniBombCannotDestroyStationAiCore()
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var map = await pair.CreateTestMap();
+
+        EntityUid core = default;
+        EntityUid minibomb = default;
+        var coordinates = map.GridCoords;
+        IEntityManager entityManager = null!;
+        DamageableSystem damageable = null!;
+        ExplosionSystem explosion = null!;
+
+        await server.WaitPost(() =>
+        {
+            entityManager = server.ResolveDependency<IEntityManager>();
+            core = entityManager.SpawnEntity("PlayerStationAiEmpty", coordinates);
+            minibomb = entityManager.SpawnEntity("SyndieMiniBomb", coordinates);
+            damageable = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<DamageableSystem>();
+            explosion = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<ExplosionSystem>();
+        });
+
+        await server.WaitRunTicks(1);
+        await server.WaitPost(() => explosion.TriggerExplosive(minibomb));
+        await server.WaitRunTicks(120);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(entityManager.EntityExists(core), Is.True,
+                "The Syndie minibomb destroyed the station AI core.");
+
+            var totalDamage = damageable.GetTotalDamage(core);
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(totalDamage, Is.GreaterThan(FixedPoint2.Zero));
+                Assert.That(totalDamage, Is.LessThan(FixedPoint2.New(800)));
+            }
+        });
+    }
+
+    [Test]
+    public async Task DamageCapsCannotBypassMinimumSingleHitDestructionDamage()
     {
         var pair = Pair;
         var server = pair.Server;
@@ -332,7 +514,7 @@ public sealed class DamageGateTest : GameTest
             {
                 Assert.That(damageGate.MaxDamagePerHit, Is.EqualTo(FixedPoint2.New(400)));
                 Assert.That(damageGate.LimitToNextStage, Is.True);
-                Assert.That(destructionTrigger.Damage, Is.EqualTo(FixedPoint2.New(4900)));
+                Assert.That(destructionTrigger.Damage, Is.EqualTo(FixedPoint2.New(100)));
                 Assert.That(damageable.CanBeDamagedBy(entity, blunt.ID), Is.True);
             }
 
@@ -340,28 +522,18 @@ public sealed class DamageGateTest : GameTest
                 ignoreGlobalModifiers: true);
             using (Assert.EnterMultipleScope())
             {
-                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(400)));
+                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.FromCents(9999)));
                 Assert.That(entityManager.IsQueuedForDeletion(entity), Is.False);
             }
 
             for (var hit = 0; hit < 10; hit++)
-                damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 400), ignoreResistances: true,
+                damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 5000), ignoreResistances: true,
                     ignoreGlobalModifiers: true);
 
-            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 101), ignoreResistances: true,
-                ignoreGlobalModifiers: true);
             using (Assert.EnterMultipleScope())
             {
-                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(4501)));
+                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.FromCents(9999)));
                 Assert.That(entityManager.IsQueuedForDeletion(entity), Is.False);
-            }
-
-            damageable.ChangeDamage(entity, new DamageSpecifier(blunt, 5000), ignoreResistances: true,
-                ignoreGlobalModifiers: true);
-            using (Assert.EnterMultipleScope())
-            {
-                Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(4900)));
-                Assert.That(entityManager.IsQueuedForDeletion(entity), Is.True);
             }
         });
     }

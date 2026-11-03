@@ -30,5 +30,5 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: DamageGate
-    minDamageToDestruction: 4000 #X4 qualifies with 4500 structual max
+    minDamageToDestruction: 850 # Integration test: C4 885/event; X4 1032.5/event
     minDamageToStage: 200

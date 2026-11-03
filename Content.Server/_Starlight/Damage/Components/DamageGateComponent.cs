@@ -11,12 +11,12 @@ public sealed partial class DamageGateComponent : Component
     [DataField] public FixedPoint2? MaxDamagePerHit;
 
     /// <summary>
-    /// Minimum total damage before a breakage threshold can trigger. Null leaves its configured threshold unchanged.
+    /// Minimum damage from one hit required to reach a breakage threshold.
     /// </summary>
     [DataField] public FixedPoint2? MinDamageToStage;
 
     /// <summary>
-    /// Minimum total damage before a destruction threshold can trigger. Null leaves its configured threshold unchanged.
+    /// Minimum damage from one hit required to reach a destruction threshold.
     /// </summary>
     [DataField] public FixedPoint2? MinDamageToDestruction;
 

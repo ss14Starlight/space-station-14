@@ -1,5 +1,6 @@
 using Content.Server._Starlight.Damage.Components;
 using Content.Server.Destructible;
+using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Shared._Starlight.Medical.Damage;
 using Content.Shared.Damage;
@@ -80,7 +81,7 @@ public sealed partial class DamageGateSystem : EntitySystem
         }
 
         if (component.MinDamageToStage is not null || component.MinDamageToDestruction is not null)
-            ApplyMinimumStageThresholds(uid, component, destructible);
+            ValidateMinimumStageThresholds(uid, component, destructible);
     }
 
     private void OnDamageAfterModifiers(EntityUid uid, DamageGateComponent component, DamageAfterModifiersEvent args)
@@ -95,16 +96,41 @@ public sealed partial class DamageGateSystem : EntitySystem
             return;
         }
 
-        if (component.LimitToNextStage
-            && TryComp<DestructibleComponent>(uid, out var destructible)
+        var hitDamage = GetTotalPositiveDamage(args.Damage);
+        if (maxDamage is { } maxDamagePerHit && hitDamage > maxDamagePerHit.Value)
+            hitDamage = maxDamagePerHit.Value;
+
+        if (TryComp<DestructibleComponent>(uid, out var destructible)
             && HasComp<DamageableComponent>(uid))
         {
             var currentDamage = _damageable.GetTotalDamage(uid);
-            if (TryGetNextStageThreshold(destructible, currentDamage, out var nextThreshold))
+            var totalDamageAfterHit = currentDamage.Value + hitDamage;
+
+            if (component.LimitToNextStage
+                && TryGetNextStageThreshold(destructible, currentDamage, out var nextThreshold))
             {
                 var thresholdDamage = nextThreshold - currentDamage;
                 if (maxDamage is null || thresholdDamage < maxDamage.Value)
                     maxDamage = thresholdDamage;
+            }
+
+            foreach (var threshold in destructible.Thresholds)
+            {
+                if (threshold.Trigger is not DamageTrigger damageTrigger
+                    || damageTrigger.Damage <= currentDamage
+                    || damageTrigger.Damage.Value > totalDamageAfterHit)
+                    continue;
+
+                var minimumHitDamage = GetMinimumHitDamage(component, threshold);
+                if (minimumHitDamage is null || hitDamage >= minimumHitDamage.Value.Value)
+                    continue;
+
+                var damageBeforeThreshold = damageTrigger.Damage - currentDamage - FixedPoint2.FromCents(1);
+                if (damageBeforeThreshold < FixedPoint2.Zero)
+                    damageBeforeThreshold = FixedPoint2.Zero;
+
+                if (maxDamage is null || damageBeforeThreshold < maxDamage.Value)
+                    maxDamage = damageBeforeThreshold;
             }
         }
 
@@ -166,7 +192,31 @@ public sealed partial class DamageGateSystem : EntitySystem
         return found;
     }
 
-    private void ApplyMinimumStageThresholds(
+    private static FixedPoint2? GetMinimumHitDamage(
+        DamageGateComponent component,
+        DamageThreshold threshold)
+    {
+        FixedPoint2? minimumHitDamage = null;
+        foreach (var behavior in threshold.Behaviors)
+        {
+            if (behavior is not DoActsBehavior actsBehavior)
+                continue;
+
+            if (component.MinDamageToStage is { } minDamageToStage
+                && actsBehavior.HasAct(ThresholdActs.Breakage)
+                && (minimumHitDamage is null || minDamageToStage > minimumHitDamage.Value))
+                minimumHitDamage = minDamageToStage;
+
+            if (component.MinDamageToDestruction is { } minDamageToDestruction
+                && actsBehavior.HasAct(ThresholdActs.Destruction)
+                && (minimumHitDamage is null || minDamageToDestruction > minimumHitDamage.Value))
+                minimumHitDamage = minDamageToDestruction;
+        }
+
+        return minimumHitDamage;
+    }
+
+    private void ValidateMinimumStageThresholds(
         EntityUid uid,
         DamageGateComponent component,
         DestructibleComponent destructible)
@@ -176,33 +226,22 @@ public sealed partial class DamageGateSystem : EntitySystem
 
         foreach (var threshold in destructible.Thresholds)
         {
-            if (threshold.Trigger is not DamageTrigger damageTrigger)
+            if (threshold.Trigger is not DamageTrigger)
                 continue;
 
-            var minimumDamage = damageTrigger.Damage;
             foreach (var behavior in threshold.Behaviors)
             {
                 if (behavior is not DoActsBehavior actsBehavior)
                     continue;
 
-                if (component.MinDamageToStage is { } minDamageToStage
+                if (component.MinDamageToStage is not null
                     && actsBehavior.HasAct(ThresholdActs.Breakage))
-                {
-                    if (minDamageToStage > minimumDamage)
-                        minimumDamage = minDamageToStage;
                     foundStageThreshold = true;
-                }
 
-                if (component.MinDamageToDestruction is not { } minDamageToDestruction
-                    || !actsBehavior.HasAct(ThresholdActs.Destruction))
-                    continue;
-
-                if (minDamageToDestruction > minimumDamage)
-                    minimumDamage = minDamageToDestruction;
-                foundDestructionThreshold = true;
+                if (component.MinDamageToDestruction is not null
+                    && actsBehavior.HasAct(ThresholdActs.Destruction))
+                    foundDestructionThreshold = true;
             }
-
-            damageTrigger.Damage = minimumDamage;
         }
 
         if (component.MinDamageToStage is not null && !foundStageThreshold)
@@ -216,10 +255,7 @@ public sealed partial class DamageGateSystem : EntitySystem
 
     private static void LimitPositiveDamage(DamageSpecifier damage, FixedPoint2 maximum)
     {
-        long totalPositiveDamage = 0;
-        foreach (var value in damage.DamageDict.Values)
-            if (value > FixedPoint2.Zero)
-                totalPositiveDamage += value.Value;
+        var totalPositiveDamage = GetTotalPositiveDamage(damage);
 
         if (totalPositiveDamage <= maximum.Value)
             return;
@@ -238,5 +274,17 @@ public sealed partial class DamageGateSystem : EntitySystem
             remainingMaximum -= scaledValue;
             remainingDamage -= value.Value;
         }
+    }
+
+    private static long GetTotalPositiveDamage(DamageSpecifier damage)
+    {
+        long totalPositiveDamage = 0;
+        foreach (var value in damage.DamageDict.Values)
+        {
+            if (value > FixedPoint2.Zero)
+                totalPositiveDamage += value.Value;
+        }
+
+        return totalPositiveDamage;
     }
 }
