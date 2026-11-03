@@ -1,60 +1,4 @@
 Entries:
-- author: Talirson
-  changes:
-  - message: 'Added UI elements to the power monitor to show both: electrolyzers connected to the grid, and their power draw.'
-    type: Add
-  id: 409687
-  time: '2026-10-22T15:54:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6779
-- author: Way
-  changes:
-  - message: '"Viva" Achievement Icon Sprite.'
-    type: Add
-  id: 409688
-  time: '2026-10-22T16:41:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6804
-- author: Rinary
-  changes:
-  - message: Fixed physics performance issues based on old Lights system from RT, now shadekins use our system which fixes performance.
-    type: Fix
-  id: 409689
-  time: '2026-10-22T17:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6783
-- author: Rinary
-  changes:
-  - message: Adjusted shadekins light thresholds, now they may get damage with smaller amount of exposure then before(7 flashlights that point in one place instead of 15).
-    type: Tweak
-  id: 409690
-  time: '2026-10-22T17:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6783
-- author: Rinary
-  changes:
-  - message: Adjusted flashlights placement, now they'll rotate on same angle as your character after placement so it will light in same dir as you looked at when placed it.
-    type: Tweak
-  id: 409691
-  time: '2026-10-22T17:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6783
-- author: Rinary
-  changes:
-  - message: Fixed and returned changeling devour damage to previous state(i.e. before upstream).
-    type: Fix
-  id: 409692
-  time: '2026-10-22T17:24:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6806
-- author: redmushie
-  changes:
-  - message: Fixed chat hotkeys not working properly.
-    type: Fix
-  id: 409693
-  time: '2026-10-22T22:39:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6811
-- author: Johnny
-  changes:
-  - message: Added a command tracker that revolutionaries are rewarded at a certain stage of the revolution to combat stalling.
-    type: Add
-  id: 409694
-  time: '2026-10-23T07:22:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6800
 - author: Caws
   changes:
   - message: (NukeOps Western) Syndicate tactical planning console added to planning area.
@@ -2799,4 +2743,60 @@ Entries:
   id: 410086
   time: '2026-11-03T12:53:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7014
+- author: Swonki
+  changes:
+  - message: Experimental PKA Modkits, findable on Argocyte Expeds.
+    type: Add
+  id: 410087
+  time: '2026-11-03T12:54:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6958
+- author: Swonki
+  changes:
+  - message: Change to "experiment" dungeon layout, primarily for grassland alien expeds.
+    type: Add
+  id: 410088
+  time: '2026-11-03T12:54:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6958
+- author: Swonki
+  changes:
+  - message: '"Outbreak" dungeon layout.'
+    type: Add
+  id: 410089
+  time: '2026-11-03T12:54:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6958
+- author: Swonki
+  changes:
+  - message: Modkits can now be removed using a screwdriver.
+    type: Add
+  id: 410090
+  time: '2026-11-03T12:54:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6958
+- author: Swonki
+  changes:
+  - message: Comrades no longer slip.
+    type: Tweak
+  id: 410091
+  time: '2026-11-03T12:54:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6958
+- author: Swonki
+  changes:
+  - message: Expedition difficulty and loot budgets, easier expeds are harder, harder expeds are also harder.
+    type: Tweak
+  id: 410092
+  time: '2026-11-03T12:54:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6958
+- author: Swonki
+  changes:
+  - message: Landmines no longer generate in commies.
+    type: Tweak
+  id: 410093
+  time: '2026-11-03T12:54:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6958
+- author: Swonki
+  changes:
+  - message: Corrupted Silicons have slightly smaller hitboxes, and now utilize silicon damage models.
+    type: Tweak
+  id: 410094
+  time: '2026-11-03T12:54:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6958
 Order: -1
