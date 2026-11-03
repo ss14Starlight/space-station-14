@@ -54,3 +54,21 @@
     tags:
     - DoorBumpOpener
     - VimPilot
+
+# Paw prints instead of the default foot sprite.
+- type: !PartialOnly entity
+  id: MobCorgiBaseTemplate
+  components:
+  - type: PawPrints
+
+- type: !PartialOnly entity
+  id: MobCat
+  components:
+  - type: FootprintOwner
+  - type: PawPrints
+
+- type: !PartialOnly entity
+  id: MobFox
+  components:
+  - type: FootprintOwner
+  - type: PawPrints

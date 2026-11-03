@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: MobCatShadow
+  components:
+  - type: FootprintOwner
+  - type: PawPrints
