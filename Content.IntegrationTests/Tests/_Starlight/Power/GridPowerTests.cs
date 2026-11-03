@@ -57,6 +57,7 @@ public sealed class GridPowerTests : GameTest
         new("/Maps/_Starlight/Shuttles/Mining/asteroidcracker.yml"),
 
         // Cargo
+        new("/Maps/_Starlight/Shuttles/Cargo/cargo_downpour.yml"),
         new("/Maps/_Starlight/Shuttles/Cargo/cargo_plasma.yml"),
         new("/Maps/_Starlight/Shuttles/Cargo/cargo_prism.yml"),
         new("/Maps/_Starlight/Shuttles/Cargo/cargo_silica.yml"),

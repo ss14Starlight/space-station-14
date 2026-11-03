@@ -43,6 +43,7 @@ public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandl
         };
 
         InitializeGuidebookSearch(); // Starlight
+        InitializeSidebarToggle(); // Starlight
     }
 
     public void HandleClick(string link)
@@ -194,6 +195,8 @@ public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandl
             TreeBox.Visible = true;
             Split.ResizeMode = SplitContainer.SplitResizeMode.RespectChildrenMinSize;
         }
+
+        SetSidebarAvailable(TreeBox.Visible); // Starlight
 
         if (selected != null)
         {

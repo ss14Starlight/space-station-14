@@ -1,6 +1,6 @@
 - type: entity
   name: firing pin box
-  description: a box full of standard firing pins
+  description: A box full of standard firing pins.
   id: BoxFiringPin
   parent: BoxCardboard
   components:
@@ -12,7 +12,7 @@
 
 - type: entity
   name: pistol firing pin box
-  description: a box full of pistol firing pins
+  description: A box full of pistol firing pins.
   id: BoxFiringPinPistol
   parent: BoxCardboard
   components:
@@ -24,7 +24,7 @@
 
 - type: entity
   name: laser crystal box
-  description: a box full of laser crystals
+  description: A box full of laser crystals.
   id: BoxFiringPinLaser
   parent: BoxCardboard
   components:

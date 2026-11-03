@@ -39,6 +39,7 @@ public sealed partial class OptionsMenu : DefaultWindow
         UITab.Control.ReloadValues(); // Starlight-edit: UI Tab
         AccessibilityTab.Control.ReloadValues();
         AudioTab.Control.ReloadValues();
+        AdminOptionsTab.RefreshToolsVisibility(); // Starlight
         AdminOptionsTab.Control.ReloadValues();
     }
 }
