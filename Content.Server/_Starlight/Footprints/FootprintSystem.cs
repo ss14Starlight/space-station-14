@@ -204,8 +204,11 @@ public sealed partial class FootprintSystem : EntitySystem
         if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
             return;
 
+        if (args.NewPosition.EntityId != gridUid)
+            return;
+
         Vector2 newLocal;
-        if (sameParent && args.NewPosition.EntityId == gridUid)
+        if (sameParent)
         {
             newLocal = args.NewPosition.Position;
         }
