@@ -187,6 +187,11 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<bool> AdminGhostHudShowSatiationIcons =
         CVarDef.Create("ui.admin_ghost_satiation_icons", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Whether this client shows tippy at all, admin-sent or not.
+    /// </summary>
+    public static readonly CVarDef<bool> TippyClientEnabled =
+        CVarDef.Create("ui.client_tippy_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
 
 public enum HeldItemShowMode
