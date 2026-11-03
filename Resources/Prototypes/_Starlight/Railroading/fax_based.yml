@@ -158,6 +158,7 @@
         - stampedColor: "#006620"
           stampedName: rr-cc
   - type: RailroadFaxOnFailed
+    delay: 180
     addresses:
     - Salvage ATS
     - Central Command
@@ -189,7 +190,6 @@
       color: "#fd3f3f"
   - type: RailroadTimerTask
     duration: 1800
-  - type: RailroadSurviveTask
   - type: RailroadAvoidHandcuffsTask
   - type: RailroadDonationReward
     amount: # 20 min survival

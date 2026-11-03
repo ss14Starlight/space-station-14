@@ -58,15 +58,15 @@ rr-bounty-1-letter-content =
     ─────────────────────────────────────────
     By Order of Boardmember █████████████
 
-    {$subject} has been issued as an ITG bounty to the sum of 1200 salvage tickets. {CAPITALIZE(SUBJECT($subject))} is considered a legal target for retributive justice, but is not to be considered criminally liable for corporate disturbance.
+    {$subject} has been issued as an ITG bounty to the sum of 1200 salvage tickets. {CAPITALIZE(SUBJECT($subject))} is considered a legal target for retributive justice for the crime of █████ █████ in accordance with NT-CC signed Inter-Corporate charters, but is not to be considered criminally liable for local corporate law
 
-    In accordance with the Inter-Corporate Charter, ITG operators are ordered to keep {OBJECT($subject)} alive, but may use force if necessary to detain the subject.
+    ITG operators are ordered to keep {OBJECT($subject)} alive, but may use force if necessary to detain the subject. Local Security Forces are expected to prevent unnecessary casualties, and may provide material assistance or intelligence, but are otherwise expected to not interfere to limit legal liability.
 
     {$subject} [italic]must[/italic] be:
-    - [bold]Immedietly Handcuffed[/bold] (even if {SUBJECT($subject)} {CONJUGATE-BE($subject)} compliant)
+    - [bold]Immediatly Handcuffed[/bold] (even if {SUBJECT($subject)} {CONJUGATE-BE($subject)} compliant)
     - [bold]Interrogated aboard the ATS[/bold]
 
-    Failure to comply with this order may result in charges of incompetence and dismissal
+    Legal Procedures that may close the bounty are expected to take effect within 30 minutes of issuance
     ─────────────────────────────────────────
    ⠀                                    [italic]Place for stamps[/italic]
 
@@ -78,7 +78,7 @@ rr-bounty-failed-content =
     ─────────────────────────────────────────
     Regarding the case of {$subject}. We have received compensation for their violations from a secure account.
 
-    {$subject} is to be relieved of valueble goods and released.
+    {$subject} is to be relieved of valuable goods and released.
 
 
     This form may be slotted into your ticket vendor for payment.
