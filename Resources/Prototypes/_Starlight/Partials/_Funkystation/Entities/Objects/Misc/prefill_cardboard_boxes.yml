@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: CardboardBoxLargeEngiRoundstart
+  components:
+    type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+          - !Remove id: SheetPlasteel
+          - !Index:2 id: SheetPlasteel10
+            amount: 1
