@@ -11,7 +11,7 @@
   - type: ItemSlots
     slots:
       item:
-        name: easel-canvas
+        name: item-slot-component-slot-name-easel-canvas
         whitelist:
           tags:
           - CanvasBlank
@@ -98,6 +98,9 @@
         layer:
         - MidImpassable
         - LowImpassable
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
   - type: Transform
     noRot: true
 
