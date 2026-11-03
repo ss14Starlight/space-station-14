@@ -17,6 +17,9 @@ namespace Content.Shared.Weapons.Ranged.Upgrades;
 
 public sealed partial class GunUpgradeSystem
 {
+    [Dependency] private SharedToolSystem _tool = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+
     [SubscribeLocalEvent]
     private void OnInteractUsingRemoval(
         Entity<UpgradeableGunComponent> ent,
