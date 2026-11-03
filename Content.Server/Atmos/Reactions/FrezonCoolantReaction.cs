@@ -13,6 +13,11 @@ public sealed partial class FrezonCoolantReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
+        // Starlight start
+        if (mixture.GetMoles(Gas.HyperNoblium) >= 5.0f)
+            return ReactionResult.NoReaction;
+        // Starlight end
+
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         var temperature = mixture.Temperature;
 
