@@ -146,9 +146,6 @@
     rules: ghost-role-information-cosmic-custodian-rules
     mindRoles:
     - MindRoleCosmicMinion
-  - type: Prying
-    pryPowered: true
-    speedModifier: 1.5
   - type: HTN
     rootTask:
       task: SimpleHostileCompound

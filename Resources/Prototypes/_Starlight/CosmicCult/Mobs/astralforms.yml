@@ -68,6 +68,7 @@
 - type: entity
   parent: [ BaseSimpleMob ]
   id: MobCosmicAstralAscendedBase
+  abstract: true
   name: astral ascended
   description: Transcendant, ascendant.
   components:
@@ -148,6 +149,9 @@
     baseWalkSpeed: 3
     baseSprintSpeed: 3
     weightlessModifier: 1
+  - type: Prying
+    pryPowered: true
+    speedModifier: 1.5
   - type: Sprite
     sprite: _Starlight/CosmicCult/Mobs/custodian.rsi
     layers:
