@@ -1,11 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: Escape pods land now very close to generated structures without intersecting them.
-    type: Fix
-  id: 409674
-  time: '2026-10-21T16:55:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6767
 - author: STARLIGHT TEAM
   changes:
   - message: Changed how the gold xenobiology slime extract handles its tables.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410073
   time: '2026-11-03T10:49:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7019
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Abbreviated Interstellar Trade Guild to ITG on the ID computer and turret control panels to save space.
+    type: Tweak
+  id: 410074
+  time: '2026-11-03T11:16:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7022
 Order: -1
