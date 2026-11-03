@@ -471,6 +471,9 @@ namespace Content.Server.Atmos.EntitySystems
         [PublicAPI]
         public override ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder)
         {
+
+            mixture.ReactionResults[(byte)GasReaction.Fire] = 0f; // Starlight edit - Moving reaction reset here to prevent simultaneous pluox and oxygen fires from resetting eachothers contributions towards hotspot growth
+
             var reaction = ReactionResult.NoReaction;
             var temperature = mixture.Temperature;
             var energy = GetThermalEnergy(mixture);

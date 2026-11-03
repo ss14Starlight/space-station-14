@@ -15,7 +15,7 @@ namespace Content.Server.Atmos.Reactions
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
             var location = holder as TileAtmosphere;
-            mixture.ReactionResults[(byte)GasReaction.Fire] = 0;
+            // mixture.ReactionResults[(byte)GasReaction.Fire] = 0; - Starlight edit - Moved the reaction reset to before the AtmosphereSystem.Gases.cs reaction results loop to prevent multiple simultaneous oxidisers from resetting eachother's reactions
 
             // More plasma released at higher temperatures.
             var temperatureScale = 0f;

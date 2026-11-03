@@ -16,8 +16,6 @@ namespace Content.Server._Starlight.Atmos.Reactions
             var energyReleased = 0f;
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
-            var location = holder as TileAtmosphere;
-            mixture.ReactionResults[(byte)GasReaction.Fire] = 0f;
             var burnedFuel = 0f;
             var initialTrit = mixture.GetMoles(Gas.Tritium);
             var initialPluoxium = mixture.GetMoles(Gas.Pluoxium);
@@ -69,7 +67,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
                     mixture.Temperature = ((temperature * oldHeatCapacity + energyReleased) / newHeatCapacity);
             }
 
-            if (location != null)
+            if (holder is TileAtmosphere location)
             {
                 temperature = mixture.Temperature;
                 if (temperature > Atmospherics.FireMinimumTemperatureToExist)

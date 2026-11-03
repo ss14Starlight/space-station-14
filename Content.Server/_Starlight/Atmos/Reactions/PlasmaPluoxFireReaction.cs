@@ -16,8 +16,6 @@ namespace Content.Server._Starlight.Atmos.Reactions
             var energyReleased = 0f;
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
-            var location = holder as TileAtmosphere;
-            mixture.ReactionResults[(byte)GasReaction.Fire] = 0;
 
             // More plasma released at higher temperatures.
             var temperatureScale = 0f;
@@ -78,7 +76,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
                     mixture.Temperature = (temperature * oldHeatCapacity + energyReleased) / newHeatCapacity;
             }
 
-            if (location != null)
+            if (holder is TileAtmosphere location)
             {
                 var mixTemperature = mixture.Temperature;
                 if (mixTemperature > Atmospherics.FireMinimumTemperatureToExist)

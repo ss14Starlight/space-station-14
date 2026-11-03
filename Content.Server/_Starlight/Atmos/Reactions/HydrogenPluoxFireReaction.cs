@@ -23,8 +23,6 @@ public sealed partial class HydrogenPluoxFireReaction : IGasReactionEffect
         var energyReleased = 0f;
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         var temperature = mixture.Temperature;
-        var location = holder as TileAtmosphere;
-        mixture.ReactionResults[(byte)GasReaction.Fire] = 0f;
         var burnedFuel = 0f;
         var initialH2 = mixture.GetMoles(Gas.Hydrogen);
         var initialPluoxium = mixture.GetMoles(Gas.Pluoxium);
@@ -67,7 +65,7 @@ public sealed partial class HydrogenPluoxFireReaction : IGasReactionEffect
             if (newHeatCapacity > Atmospherics.MinimumHeatCapacity) mixture.Temperature = ((temperature * oldHeatCapacity + energyReleased) / newHeatCapacity);
         }
 
-        if (location != null)
+        if (holder is TileAtmosphere location)
         {
             temperature = mixture.Temperature;
             if (temperature > Atmospherics.FireMinimumTemperatureToExist)
