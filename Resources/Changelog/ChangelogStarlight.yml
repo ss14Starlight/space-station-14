@@ -1,18 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Changed how the gold xenobiology slime extract handles its tables.
-    type: Tweak
-  id: 409675
-  time: '2026-10-21T16:55:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6775
-- author: 0warie
-  changes:
-  - message: Add missing electrified sparks to clockwork grille.
-    type: Fix
-  id: 409676
-  time: '2026-10-21T17:37:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6776
 - author: Rescue
   changes:
   - message: Hypopen box now cheerfully advertises the device's features.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410074
   time: '2026-11-03T11:16:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7022
+- author: joshujo
+  changes:
+  - message: Non-admin ghosts can no longer trigger interactions by examining.
+    type: Fix
+  id: 410075
+  time: '2026-11-03T11:45:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6952
+- author: joshujo
+  changes:
+  - message: AGhosts no longer trigger interactions by examining when hidden from non-admin ghosts.
+    type: Add
+  id: 410076
+  time: '2026-11-03T11:45:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6952
 Order: -1
