@@ -1,20 +1,6 @@
 Entries:
 - author: xxhotgirl69, Sparlight, SevenShades, huaqas
   changes:
-  - message: Collars; PDA variants for animals. They have suit coordinate trackers.
-    type: Add
-  id: 409680
-  time: '2026-10-22T15:20:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6772
-- author: xxhotgirl69, Sparlight, SevenShades, huaqas
-  changes:
-  - message: The P-Tech now stocks replacement collars.
-    type: Add
-  id: 409681
-  time: '2026-10-22T15:20:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6772
-- author: xxhotgirl69, Sparlight, SevenShades, huaqas
-  changes:
   - message: The K9 job icon can now be assigned to IDs.
     type: Add
   id: 409682
@@ -2799,4 +2785,18 @@ Entries:
   id: 410079
   time: '2026-11-03T12:06:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6950
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Supply rifts now only show a station beacon once the energy flux announcement is made to the station.
+    type: Tweak
+  id: 410080
+  time: '2026-11-03T12:31:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6986
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Carp rifts now correctly show a station beacon once the energy flux announcement is made to the station (this was intended but broken).
+    type: Fix
+  id: 410081
+  time: '2026-11-03T12:31:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6986
 Order: -1
