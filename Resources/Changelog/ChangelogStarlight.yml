@@ -1,32 +1,4 @@
 Entries:
-- author: xxhotgirl69, Sparlight, SevenShades, huaqas
-  changes:
-  - message: The K9 job icon can now be assigned to IDs.
-    type: Add
-  id: 409682
-  time: '2026-10-22T15:20:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6772
-- author: xxhotgirl69, Sparlight, SevenShades, huaqas
-  changes:
-  - message: Removed the tracking implant from K9s.
-    type: Remove
-  id: 409683
-  time: '2026-10-22T15:20:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6772
-- author: xxhotgirl69, Sparlight, SevenShades, huaqas
-  changes:
-  - message: 'Changed K9 role access:  now granted by collar rather than an inherent access list.'
-    type: Tweak
-  id: 409684
-  time: '2026-10-22T15:20:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6772
-- author: Sparlight
-  changes:
-  - message: Fixed antag intro themes, geiger counter noises, and other noises playing globally in replays.
-    type: Fix
-  id: 409685
-  time: '2026-10-22T15:54:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6790
 - author: Talirson
   changes:
   - message: Fixed Electrolyzers incorrectly being flagged as powersinks by the power monitoring console.
@@ -2799,4 +2771,32 @@ Entries:
   id: 410081
   time: '2026-11-03T12:31:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6986
+- author: joshujo
+  changes:
+  - message: Hyper-nob now prevents gas fires.
+    type: Fix
+  id: 410082
+  time: '2026-11-03T12:53:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7025
+- author: joshujo
+  changes:
+  - message: Hyper-nob now prevents reactions.
+    type: Fix
+  id: 410083
+  time: '2026-11-03T12:53:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7025
+- author: joshujo
+  changes:
+  - message: Hyper-nob now prevents ammonia oxygen reaction.
+    type: Fix
+  id: 410084
+  time: '2026-11-03T12:53:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7025
+- author: joshujo
+  changes:
+  - message: Hyper-nob now prevents nitrous oxide decay.
+    type: Fix
+  id: 410085
+  time: '2026-11-03T12:53:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7025
 Order: -1
