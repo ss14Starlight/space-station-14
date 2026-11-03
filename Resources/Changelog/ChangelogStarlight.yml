@@ -1,32 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: Health analyzer results now show while spectating in replays.
-    type: Fix
-  id: 409667
-  time: '2026-10-21T16:22:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6771
-- author: Sparlight
-  changes:
-  - message: Following a Station AI's eye in replays no longer freezes when the AI uses a holopad.
-    type: Fix
-  id: 409668
-  time: '2026-10-21T16:22:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6771
-- author: Sparlight
-  changes:
-  - message: Bags closed in replays can be reopened without respawning the observer.
-    type: Fix
-  id: 409669
-  time: '2026-10-21T16:22:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6771
-- author: Sparlight
-  changes:
-  - message: Replay viewers no longer hear the ghost role alert.
-    type: Fix
-  id: 409670
-  time: '2026-10-21T16:22:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6771
 - author: Floximo
   changes:
   - message: The FTL system ensures now reservations for escape pod landing spots.
@@ -2799,4 +2771,32 @@ Entries:
   id: 410066
   time: '2026-11-02T21:52:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7020
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Removed the clothing store.
+    type: Remove
+  id: 410067
+  time: '2026-11-03T10:25:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7024
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Added a new Ice Cream Shop and Donut Shop in its place.
+    type: Add
+  id: 410068
+  time: '2026-11-03T10:25:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7024
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add new lattices right outside of the windows so that their death can show up on monitoring systems in various "dead" spaces.
+    type: Add
+  id: 410069
+  time: '2026-11-03T10:25:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7024
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Reduce the min player requirement from 150 to 135 players. To fill all the job slots, you need 145 players.
+    type: Tweak
+  id: 410070
+  time: '2026-11-03T10:25:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7024
 Order: -1
