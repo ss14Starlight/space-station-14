@@ -376,8 +376,11 @@ public abstract partial class SharedPlumbingSmartDispenserSystem : EntitySystem
             }
         }
 
-        ent.Comp.ReagentLabels[reagentId] = newLabel;
-        Dirty(ent);
+        if (hasReagent)
+        {
+            ent.Comp.ReagentLabels[reagentId] = newLabel;
+            Dirty(ent);
+        }
     }
 
     private bool TryDispenseReagent(
