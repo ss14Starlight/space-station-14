@@ -4,7 +4,12 @@
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
-        children:
-          - !Remove id: SheetPlasteel
-          - !Index:2 id: SheetPlasteel10
+        children: !Clear
+          - id: SheetSteel
             amount: 1
+          - id: SheetGlass
+            amount: 1
+          - id: SheetPlasteel10
+            amount: 1
+          - id: SheetPlastic10
+            amount: 2
