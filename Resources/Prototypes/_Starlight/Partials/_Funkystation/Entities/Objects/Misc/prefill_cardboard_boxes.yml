@@ -1,7 +1,7 @@
 - type: !PartialOnly entity
   id: CardboardBoxLargeEngiRoundstart
   components:
-    type: EntityTableContainerFill
+  - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
