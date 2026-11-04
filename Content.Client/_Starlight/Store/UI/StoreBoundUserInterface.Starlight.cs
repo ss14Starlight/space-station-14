@@ -21,10 +21,7 @@ public sealed partial class StoreBoundUserInterface
         if (_storeSystem.TryGetStore(Owner, out var store))
             menu.Title = Loc.GetString(store.Value.Comp.Name);
 
-        menu.OnListingButtonPressed += (_, listing) =>
-        {
-            SendMessage(new StoreBuyListingMessage(listing.ID, EntMan.GetNetEntity(Owner)));
-        };
+        menu.OnListingButtonPressed += (_, listing) => SendMessage(new StoreBuyListingMessage(listing.ID, EntMan.GetNetEntity(Owner)));
 
         menu.OnCategoryButtonPressed += (_, category) =>
         {
