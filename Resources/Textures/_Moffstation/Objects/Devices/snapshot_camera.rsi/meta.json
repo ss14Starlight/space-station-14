@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "icon and icon-empty taken from TG Station at https://github.com/tgstation/tgstation/blob/b525e9162af318a9cc8146f513dd5af8a9819c72/icons/obj/items_and_weapons.dmi, equipped-NECK taken from TG Station at https://github.com/tgstation/tgstation/blob/3f3b569c65b5e806226799a52cb1c60815e13e01/icons/mob/clothing/neck.dmi, inhand-left and inhand-right taken from TG Station at https://github.com/tgstation/tgstation/blob/49c447ff06825cd080da3cf764de2c9e99167185/icons/mob/inhands/items/devices_lefthand.dmi and https://github.com/tgstation/tgstation/blob/49c447ff06825cd080da3cf764de2c9e99167185/icons/mob/inhands/items/devices_righthand.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "icon-empty"
+    },
+    {
+      "name": "equipped-NECK",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    }
+  ]
+}

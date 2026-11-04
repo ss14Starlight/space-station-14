@@ -1,0 +1,62 @@
+- type: entity
+  parent: BaseItem
+  id: PhotoCamera
+  name: photo camera
+  description: Capture a Precious moment, Ruining it right after with the Integrated Flash
+  components:
+  - type: SnapshotCapture
+    snapshot: SnapshotPhotograph
+  - type: Sprite
+    sprite: _Moffstation/Objects/Devices/snapshot_camera.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  # Red light once the flash is out of charges.
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.LimitedChargesState.HasCharges:
+        base:
+          True: { state: icon }
+          False: { state: icon-empty }
+  - type: Flash
+    flashOnUse: false
+    flashOnRangedInteract: false
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Misc/camera_snap.ogg
+  # Only applied while looking through the viewfinder, like binoculars.
+  - type: EyeCursorOffset
+    maxOffset: 5
+    pvsIncrease: 0.5
+  - type: LimitedCharges
+    maxCharges: 4
+  - type: AutoRecharge
+    rechargeDuration: 60
+  - type: UseDelay
+  - type: StaticPrice
+    price: 100
+  - type: Clothing
+    slots:
+    - NECK
+    sprite: _Moffstation/Objects/Devices/snapshot_camera.rsi
+
+- type: entity
+  parent: BasePaper
+  id: SnapshotPhotograph
+  name: photograph
+  description: A photograph of something someone thought worth remembering.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/photograph.rsi
+    layers:
+    - state: black
+  - type: Item
+    # no inhand sprite yet so i steal the paper one.
+    sprite: Objects/Misc/bureaucracy.rsi
+  - type: ActivatableUI
+    key: enum.SnapshotViewUiKey.Key
+    requiresComplex: false
+  - type: UserInterface
+    interfaces:
+      enum.SnapshotViewUiKey.Key:
+        type: SnapshotViewBoundUserInterface
