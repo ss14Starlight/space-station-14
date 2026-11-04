@@ -5,11 +5,11 @@
     containers:
       storagebase: !type:AllSelector
         children: !Clear
-          - id: SheetSteel
-            amount: 1
-          - id: SheetGlass
+          - id: SheetPlastic
             amount: 1
           - id: SheetPlasteel10
             amount: 1
-          - id: SheetPlastic10
-            amount: 2
+          - id: SheetGlass
+            amount: 1
+          - id: SheetSteel
+            amount: 1
