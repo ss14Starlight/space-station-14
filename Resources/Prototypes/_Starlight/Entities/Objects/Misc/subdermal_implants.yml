@@ -353,7 +353,7 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: PollenDistressImplant
-  name: Floral distress pollen
+  name: floral distress pollen
   description: An organic communication implant that transmits distress signals through the Diona spore hivemind.
   categories: [HideSpawnMenu]
   components:
