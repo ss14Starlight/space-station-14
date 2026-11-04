@@ -430,7 +430,7 @@ public sealed partial class ReagentFireSystem : EntitySystem
         convert any oxygen and/or pluoxium in the tile to an effective oxidiser value relative to oxygen
         i.e. 1 mol of oxygen = 1 effective oxidiser, 1 mol of pluoxium = 8 effective oxidiser
         "if (ambientMix == null) return;" already handles null values, and since there are multiple oxidisers the likelihood is at least one is going to be null rather often, so removed unecessary null checks */
-        var effectiveOxidiser = (ambientMix.GetMoles(Gas.Oxygen)) + ((ambientMix.GetMoles(Gas.Pluoxium) * PluoxiumFactor));
+        var effectiveOxidiser = ambientMix.GetMoles(Gas.Oxygen) + (ambientMix.GetMoles(Gas.Pluoxium) * PluoxiumFactor);
         // allow pluoxium to also ignite a puddle, instead of just oxygen
         if (ambientMix.Temperature < autoIgnitionTemp || (!fireComp.SelfOxidizing && effectiveOxidiser <= 0.1f))
             return;

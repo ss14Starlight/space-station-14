@@ -4,7 +4,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
 
-namespace Content.Server._Starlight.Atmos.Reactions
+namespace Content.Server._Starlight.Atmos.Reactions;
 {
     [UsedImplicitly]
     [DataDefinition]
@@ -61,7 +61,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
                     // limiting plasma consumption either to the calculated burn rate, the amount of plasma present, or the amount of avaliable pluoxium present given the burn ratio - whichever is lowest
                     plasmaBurnRate = MathF.Min(plasmaBurnRate, MathF.Min(initialPlasmaMoles, initialPluoxium / pluoxiumBurnRate));
                     mixture.SetMoles(Gas.Plasma, initialPlasmaMoles - plasmaBurnRate);
-                    mixture.SetMoles(Gas.Pluoxium, initialPluoxium - plasmaBurnRate * pluoxiumBurnRate);
+                    mixture.SetMoles(Gas.Pluoxium, initialPluoxium - (plasmaBurnRate * pluoxiumBurnRate));
 
                     // supersaturation adjusts the ratio of produced tritium to unwanted CO2
                     mixture.AdjustMoles(Gas.Tritium, plasmaBurnRate * supersaturation);
@@ -77,7 +77,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
             {
                 var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
                 if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
-                    mixture.Temperature = (temperature * oldHeatCapacity + energyReleased) / newHeatCapacity;
+                    mixture.Temperature = ((temperature * oldHeatCapacity) + energyReleased) / newHeatCapacity;
             }
 
             if (holder is TileAtmosphere location)

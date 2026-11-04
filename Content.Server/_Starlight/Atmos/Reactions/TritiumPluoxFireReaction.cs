@@ -4,7 +4,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
 
-namespace Content.Server._Starlight.Atmos.Reactions
+namespace Content.Server._Starlight.Atmos.Reactions;
 {
     [UsedImplicitly]
     [DataDefinition]
@@ -68,7 +68,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
             {
                 var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
                 if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
-                    mixture.Temperature = ((temperature * oldHeatCapacity + energyReleased) / newHeatCapacity);
+                    mixture.Temperature = ((temperature * oldHeatCapacity) + energyReleased) / newHeatCapacity;
             }
 
             if (holder is TileAtmosphere location)
