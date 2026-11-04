@@ -6,6 +6,7 @@ using Content.Server.Pinpointer;
 using Content.Shared.Bed.Cryostorage;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared._Starlight.Mind.Events;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Ghost;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -58,6 +59,15 @@ public sealed partial class StationAiSystem
     [SubscribeLocalEvent]
     private void OnMindRemoved(Entity<MindContainerComponent> entity, ref MindRemovedMessage args)
     {
+        // Shunting check
+        if (args.TransferEntity is { } transferTarget
+            && HasComp<StationAIShuntableComponent>(entity.Owner)
+            && TryComp<MobStateComponent>(entity.Owner, out var shuntSourceState)
+            && shuntSourceState.CurrentState == MobState.Alive
+            && TryComp<StationAIShuntComponent>(transferTarget, out var shunt)
+            && shunt.Return == entity.Owner)
+            return;
+
         var wasInAiHolder = TryGetStationAiHolder(entity.Owner, out var holder);
         var wasInAiCore = wasInAiHolder && HasComp<StationAiCoreComponent>(holder);
         var inCryostorage = HasComp<CryostorageContainedComponent>(entity.Owner);

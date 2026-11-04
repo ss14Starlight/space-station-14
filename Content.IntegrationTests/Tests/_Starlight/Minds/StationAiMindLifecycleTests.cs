@@ -9,13 +9,16 @@ using Content.Server.Silicons.StationAi;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Server._Starlight.Station.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Maps;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Power.Components;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
@@ -63,6 +66,56 @@ public sealed partial class MindTests
 
         Assert.That(entMan.GetComponent<StationAiHolderComponent>(holder).Slot.Item, Is.Null);
         AssertStationAiJobSlots(entMan, station, 1);
+    }
+
+    [Test]
+    public async Task StationAiRemainsInCoreWhenShuntedIntoBorg()
+    {
+        var (pair, station, cores) = await SetupAiStation(1);
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+        var (mindId, _) = GetMind(pair);
+        var announcements = entMan.System<StationAiAnnouncementTestSystem>();
+        EntityUid ai = default;
+        EntityUid borg = default;
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
+            Assert.That(entMan.System<StationJobsSystem>().TryAssignJob(station, "StationAi", userId), Is.True);
+
+            var containers = entMan.System<SharedContainerSystem>();
+            ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
+                throw new InvalidOperationException("Station AI core container was not initialized.");
+            Assert.That(containers.Insert(ai, coreContainer), Is.True);
+            entMan.System<MindSystem>().TransferTo(mindId, ai);
+
+            announcements.Clear();
+            borg = ShuntAiIntoBorg(entMan, ai);
+        });
+        await pair.RunTicksSync(5);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            Assert.That(entMan.GetComponent<MindComponent>(mindId).OwnedEntity, Is.EqualTo(borg));
+            Assert.That(entMan.GetComponent<StationAiHolderComponent>(cores[0]).Slot.Item, Is.EqualTo(ai));
+            Assert.That(entMan.GetComponent<StationAIShuntableComponent>(ai).Inhabited, Is.EqualTo(borg));
+            Assert.That(announcements.LastMessage, Is.Empty);
+            AssertStationAiJobSlots(entMan, station, 0);
+
+            var unshunt = new AIUnShuntActionEvent { Performer = borg };
+            entMan.EventBus.RaiseLocalEvent(borg, unshunt);
+        });
+        await pair.RunTicksSync(5);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            Assert.That(entMan.GetComponent<MindComponent>(mindId).OwnedEntity, Is.EqualTo(ai));
+            Assert.That(entMan.GetComponent<StationAiHolderComponent>(cores[0]).Slot.Item, Is.EqualTo(ai));
+            Assert.That(entMan.GetComponent<StationAIShuntableComponent>(ai).Inhabited, Is.Null);
+            Assert.That(announcements.LastMessage, Is.Empty);
+            AssertStationAiJobSlots(entMan, station, 0);
+        });
     }
 
     [Test]
@@ -203,6 +256,49 @@ public sealed partial class MindTests
 
             var mind = entMan.GetComponent<MindComponent>(mindId);
             Assert.That(mind.OwnedEntity, Is.EqualTo(ai));
+            Assert.That(mind.VisitingEntity, Is.Not.Null);
+            Assert.That(entMan.GetComponent<GhostComponent>(mind.VisitingEntity!.Value).CanReturnToBody, Is.True);
+            AssertStationAiJobSlots(entMan, station, 0);
+        });
+    }
+
+    [Test]
+    public async Task StationAiCoreCanKillAiWhileShunted()
+    {
+        var (pair, station, cores) = await SetupAiStation(1);
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+        var (mindId, _) = GetMind(pair);
+        EntityUid ai = default;
+        EntityUid borg = default;
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
+            Assert.That(entMan.System<StationJobsSystem>().TryAssignJob(station, "StationAi", userId), Is.True);
+
+            var containers = entMan.System<SharedContainerSystem>();
+            ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
+                throw new InvalidOperationException("Station AI core container was not initialized.");
+            Assert.That(containers.Insert(ai, coreContainer), Is.True);
+            entMan.System<MindSystem>().TransferTo(mindId, ai);
+
+            borg = ShuntAiIntoBorg(entMan, ai);
+        });
+        await pair.RunTicksSync(5);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            Assert.That(entMan.GetComponent<MindComponent>(mindId).OwnedEntity, Is.EqualTo(borg));
+            Assert.That(entMan.GetComponent<StationAiHolderComponent>(cores[0]).Slot.Item, Is.EqualTo(ai));
+
+            var core = entMan.GetComponent<StationAiCoreComponent>(cores[0]);
+            entMan.System<StationAiSystem>().KillHeldAi((cores[0], core));
+
+            var mind = entMan.GetComponent<MindComponent>(mindId);
+            Assert.That(mind.OwnedEntity, Is.EqualTo(ai));
+            Assert.That(entMan.GetComponent<StationAIShuntableComponent>(ai).Inhabited, Is.Null);
+            Assert.That(entMan.GetComponent<MobStateComponent>(ai).CurrentState, Is.EqualTo(MobState.Dead));
             Assert.That(mind.VisitingEntity, Is.Not.Null);
             Assert.That(entMan.GetComponent<GhostComponent>(mind.VisitingEntity!.Value).CanReturnToBody, Is.True);
             AssertStationAiJobSlots(entMan, station, 0);
@@ -415,6 +511,25 @@ public sealed partial class MindTests
             entMan.System<StationJobsSystem>().TryGetJobSlot(station, "StationAi", out var slots),
             Is.True);
         Assert.That(slots, Is.EqualTo(expectedSlots), "Unexpected number of available Station AI slots.");
+    }
+
+    private static EntityUid ShuntAiIntoBorg(IServerEntityManager entMan, EntityUid ai)
+    {
+        var maps = entMan.System<SharedMapSystem>();
+        maps.CreateMap(out var mapId);
+        var borg = entMan.SpawnEntity("BorgChassisGeneric", new MapCoordinates(0, 0, mapId));
+        var chassis = entMan.GetComponent<BorgChassisComponent>(borg);
+        var brain = entMan.SpawnEntity("AiInterfaceCube", MapCoordinates.Nullspace);
+        Assert.That(entMan.System<SharedContainerSystem>().Insert(brain, chassis.BrainContainer), Is.True);
+
+        var shunt = new AIShuntActionEvent
+        {
+            Target = borg,
+            Performer = ai,
+            IgnoreCameraView = true
+        };
+        entMan.EventBus.RaiseLocalEvent(ai, shunt);
+        return borg;
     }
 
     public sealed class StationAiChatNotificationTestSystem : TestListenerSystem<ChatNotificationEvent>
