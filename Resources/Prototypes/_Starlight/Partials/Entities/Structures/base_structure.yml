@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: BaseStructure
+  components:
+  - type: ExplosionResistance
+    modifiers:
+      SyndieMiniBombExplosion: 0.5

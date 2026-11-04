@@ -14,7 +14,7 @@
         acts: [ "Breakage" ]
     - trigger:
         !type:DamageTrigger
-        damage: 800
+        damage: 850
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -30,5 +30,5 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: DamageGate
-    minDamageToDestruction: 850 # Integration test: C4 885/event; X4 1032.5/event
+    minDamageToDestruction: 900 # C4: 885/event; X4: 1032.5/event
     minDamageToStage: 200

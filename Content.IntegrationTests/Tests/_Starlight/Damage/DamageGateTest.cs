@@ -8,9 +8,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible.Thresholds.Triggers;
-using Content.Shared.Explosion.Components;
 using Content.Shared.FixedPoint;
-using Content.Shared.Trigger.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
@@ -322,77 +320,6 @@ public sealed class DamageGateTest : GameTest
                 ignoreGlobalModifiers: true);
             Assert.That(entityManager.IsQueuedForDeletion(entity), Is.True);
         });
-    }
-
-    [Test]
-    public async Task X4DestroysStationAiCoreInOneHit()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-        var map = await pair.CreateTestMap();
-
-        EntityUid core = default;
-        EntityUid x4 = default;
-        var coordinates = map.GridCoords;
-        IEntityManager entityManager = null!;
-        DamageableSystem damageable = null!;
-        TriggerSystem trigger = null!;
-
-        await server.WaitPost(() =>
-        {
-            entityManager = server.ResolveDependency<IEntityManager>();
-            core = entityManager.SpawnEntity("PlayerStationAiEmpty", coordinates);
-            damageable = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<DamageableSystem>();
-            trigger = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<TriggerSystem>();
-        });
-
-        await server.WaitRunTicks(5);
-
-        await server.WaitPost(() =>
-            x4 = entityManager.SpawnEntity("X4", coordinates));
-
-        await server.WaitRunTicks(1);
-
-        await server.WaitAssertion(() =>
-        {
-            var mapSystem = entityManager.System<SharedMapSystem>();
-            var transformSystem = entityManager.System<SharedTransformSystem>();
-            var coreMapCoordinates = transformSystem.GetMapCoordinates(core);
-            var x4MapCoordinates = transformSystem.GetMapCoordinates(x4);
-            using (Assert.EnterMultipleScope())
-            {
-                Assert.That(coreMapCoordinates.MapId, Is.EqualTo(map.MapId));
-                Assert.That(x4MapCoordinates.MapId, Is.EqualTo(map.MapId));
-                Assert.That(mapSystem.TryFindGridAt(coreMapCoordinates, out var coreGrid, out _), Is.True);
-                Assert.That(mapSystem.TryFindGridAt(x4MapCoordinates, out var x4Grid, out _), Is.True);
-                Assert.That(coreGrid, Is.EqualTo(map.Grid.Owner));
-                Assert.That(x4Grid, Is.EqualTo(map.Grid.Owner));
-                Assert.That(map.Tile.Tile.IsEmpty, Is.False);
-            }
-        });
-
-        await server.WaitPost(() =>
-        {
-            Assert.That(trigger.Trigger(x4, key: TriggerSystem.DefaultTriggerKey, predicted: false), Is.True);
-            Assert.That(trigger.GetRemainingTime(x4), Is.Not.Null);
-        });
-
-        await server.WaitRunTicks(601);
-        await server.WaitRunTicks(1);
-
-        await server.WaitAssertion(() =>
-        {
-            Assert.That(entityManager.EntityExists(x4), Is.False, "X4 timer did not trigger the explosion.");
-            var visuals = entityManager.EntityQueryEnumerator<ExplosionVisualsComponent>();
-            Assert.That(visuals.MoveNext(out var visual), Is.True);
-            Assert.That(visual.Tiles.ContainsKey(map.Grid.Owner), Is.True);
-        });
-
-        await server.WaitRunTicks(119);
-
-        await server.WaitAssertion(() =>
-            Assert.That(entityManager.EntityExists(core), Is.False,
-                $"X4 left the AI core present with {damageable.GetTotalDamage(core)} damage."));
     }
 
     [Test]
