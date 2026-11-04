@@ -159,7 +159,7 @@ public sealed class CookingRecipeFeasibilityTest : GameTest
                             size = itemSize.ToString();
                         }
                         return $"cannot insert {ingredient} ({size}); maximum size {appliance.Comp.MaxItemSize}, " +
-                               $"capacity {appliance.Comp.Capacity}, already loaded {appliance.Comp.Storage.Count}";
+                            $"capacity {appliance.Comp.Capacity}, already loaded {appliance.Comp.Storage.Count}";
                     }
 
                     if (solutions.TryGetDrainableSolution(uid, out _, out var drainable))
