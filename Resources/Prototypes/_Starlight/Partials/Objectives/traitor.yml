@@ -68,7 +68,7 @@
   description: Nanotrasen proudly boasts about their state of the art artificial intelligence. Prove how unreliable it can be, by shutting it down.
   components: !Clear
   - type: Objective
-    difficulty: 3.0
+    difficulty: 2.0
     unique: true
     icon:
       sprite: Mobs/Silicon/station_ai.rsi
