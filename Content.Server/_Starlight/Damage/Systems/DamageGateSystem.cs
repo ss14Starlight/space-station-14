@@ -92,11 +92,11 @@ public sealed partial class DamageGateSystem : EntitySystem
         if (IsCooldownActive(component.DamageCooldown, component.DamageCooldownUntil)
             || IsCooldownActive(component.StageDamageCooldown, component.StageDamageCooldownUntil))
         {
-            LimitPositiveDamage(args.Damage, FixedPoint2.Zero);
+            LimitPositiveDamage(uid, args.Damage, FixedPoint2.Zero);
             return;
         }
 
-        var hitDamage = GetTotalPositiveDamage(args.Damage);
+        var hitDamage = GetTotalPositiveDamage(uid, args.Damage);
         if (maxDamage is { } maxDamagePerHit && hitDamage > maxDamagePerHit.Value)
             hitDamage = maxDamagePerHit.Value;
 
@@ -135,7 +135,7 @@ public sealed partial class DamageGateSystem : EntitySystem
         }
 
         if (maxDamage is { } limit)
-            LimitPositiveDamage(args.Damage, limit);
+            LimitPositiveDamage(uid, args.Damage, limit);
     }
 
     private void OnDamageChanged(EntityUid uid, DamageGateComponent component, DamageChangedEvent args)
@@ -253,35 +253,40 @@ public sealed partial class DamageGateSystem : EntitySystem
                 $"DamageGateComponent on {uid} has MinDamageToDestruction configured, but no DamageTrigger with a Destruction action was found.");
     }
 
-    private static void LimitPositiveDamage(DamageSpecifier damage, FixedPoint2 maximum)
+    private void LimitPositiveDamage(EntityUid uid, DamageSpecifier damage, FixedPoint2 maximum)
     {
-        var totalPositiveDamage = GetTotalPositiveDamage(damage);
+        var damageTypes = new List<ProtoId<DamageTypePrototype>>();
+        long totalPositiveDamage = 0;
+        foreach (var (type, value) in damage.DamageDict)
+        {
+            if (value <= FixedPoint2.Zero || !_damageable.CanBeDamagedBy(uid, type))
+                continue;
+
+            totalPositiveDamage += value.Value;
+            damageTypes.Add(type);
+        }
 
         if (totalPositiveDamage <= maximum.Value)
             return;
 
-        var damageTypes = new List<ProtoId<DamageTypePrototype>>(damage.DamageDict.Keys);
         long remainingMaximum = maximum.Value;
         var remainingDamage = totalPositiveDamage;
         foreach (var type in damageTypes)
         {
             var value = damage.DamageDict[type];
-            if (value <= FixedPoint2.Zero)
-                continue;
-
-            var scaledValue = (long) value.Value * remainingMaximum / remainingDamage;
-            damage.DamageDict[type] = FixedPoint2.FromCents((int) scaledValue);
+            var scaledValue = (long)value.Value * remainingMaximum / remainingDamage;
+            damage.DamageDict[type] = FixedPoint2.FromCents((int)scaledValue);
             remainingMaximum -= scaledValue;
             remainingDamage -= value.Value;
         }
     }
 
-    private static long GetTotalPositiveDamage(DamageSpecifier damage)
+    private long GetTotalPositiveDamage(EntityUid uid, DamageSpecifier damage)
     {
         long totalPositiveDamage = 0;
-        foreach (var value in damage.DamageDict.Values)
+        foreach (var (type, value) in damage.DamageDict)
         {
-            if (value > FixedPoint2.Zero)
+            if (value > FixedPoint2.Zero && _damageable.CanBeDamagedBy(uid, type))
                 totalPositiveDamage += value.Value;
         }
 

@@ -28,6 +28,7 @@ public sealed class DamageGateTest : GameTest
     private const string CooldownEntity = "TestDamageGateCooldown";
     private const string BluntDamageType = "Blunt";
     private const string HeatDamageType = "Heat";
+    private const string PoisonDamageType = "Poison";
     private const string PrototypeIndent = "  ";
 
     [TestPrototypes] private const string Prototypes = $"""
@@ -35,6 +36,7 @@ public sealed class DamageGateTest : GameTest
         {PrototypeIndent}id: {CappedEntity}
         {PrototypeIndent}components:
         {PrototypeIndent}- type: Damageable
+        {PrototypeIndent}{PrototypeIndent}damageContainer: Inorganic
         {PrototypeIndent}- type: DamageGate
         {PrototypeIndent}{PrototypeIndent}maxDamagePerHit: 25
 
@@ -118,6 +120,7 @@ public sealed class DamageGateTest : GameTest
         DamageableSystem damageable = null!;
         DamageTypePrototype blunt = null!;
         DamageTypePrototype heat = null!;
+        DamageTypePrototype poison = null!;
 
         await server.WaitPost(() =>
         {
@@ -128,11 +131,14 @@ public sealed class DamageGateTest : GameTest
             damageable = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<DamageableSystem>();
             blunt = prototypeManager.Index<DamageTypePrototype>(BluntDamageType);
             heat = prototypeManager.Index<DamageTypePrototype>(HeatDamageType);
+            poison = prototypeManager.Index<DamageTypePrototype>(PoisonDamageType);
         });
 
         await server.WaitAssertion(() =>
         {
-            var damage = new DamageSpecifier(blunt, 60) + new DamageSpecifier(heat, 40);
+            var damage = new DamageSpecifier(blunt, 60)
+                + new DamageSpecifier(heat, 40)
+                + new DamageSpecifier(poison, 100);
             damageable.ChangeDamage(entity, damage, ignoreResistances: true);
 
             var damageByType = damageable.GetAllDamage(entity).DamageDict;
@@ -141,6 +147,7 @@ public sealed class DamageGateTest : GameTest
                 Assert.That(damageable.GetTotalDamage(entity), Is.EqualTo(FixedPoint2.New(25)));
                 Assert.That(damageByType[blunt.ID], Is.EqualTo(FixedPoint2.New(15)));
                 Assert.That(damageByType[heat.ID], Is.EqualTo(FixedPoint2.New(10)));
+                Assert.That(damageByType.ContainsKey(poison.ID), Is.False);
             }
 
             damageable.ChangeDamage(entity, new DamageSpecifier(blunt, -10), ignoreResistances: true,
