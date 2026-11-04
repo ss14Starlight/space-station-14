@@ -26,6 +26,7 @@ public sealed class DamageGateTest : GameTest
     private const string MinimumThresholdEntity = "TestDamageGateMinimumThresholds";
     private const string CappedMinimumThresholdEntity = "TestDamageGateCappedMinimumThreshold";
     private const string CooldownEntity = "TestDamageGateCooldown";
+    private const int StationAiCoreDestructionThreshold = 850;
     private const string BluntDamageType = "Blunt";
     private const string HeatDamageType = "Heat";
     private const string PoisonDamageType = "Poison";
@@ -372,7 +373,8 @@ public sealed class DamageGateTest : GameTest
             {
                 Assert.That(entityManager.EntityExists(core), Is.True);
                 Assert.That(damageable.GetTotalDamage(core), Is.GreaterThan(FixedPoint2.Zero));
-                Assert.That(damageable.GetTotalDamage(core), Is.LessThan(FixedPoint2.New(800)));
+                Assert.That(damageable.GetTotalDamage(core),
+                    Is.LessThan(FixedPoint2.New(StationAiCoreDestructionThreshold)));
             }
         });
     }
@@ -413,7 +415,8 @@ public sealed class DamageGateTest : GameTest
             using (Assert.EnterMultipleScope())
             {
                 Assert.That(totalDamage, Is.GreaterThan(FixedPoint2.Zero));
-                Assert.That(totalDamage, Is.LessThan(FixedPoint2.New(800)));
+                Assert.That(totalDamage,
+                    Is.LessThan(FixedPoint2.New(StationAiCoreDestructionThreshold)));
             }
         });
     }
