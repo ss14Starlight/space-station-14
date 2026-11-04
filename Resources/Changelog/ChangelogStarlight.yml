@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (NukeOps Western) Redspace beaker added to Medbay.
-    type: Add
-  id: 409696
-  time: '2026-10-23T07:22:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6810
-- author: Caws
-  changes:
   - message: (NukeOps Geiger Complex) Syndicate tactical planning console added to planning area.
     type: Add
   id: 409697
@@ -2799,4 +2792,11 @@ Entries:
   id: 410095
   time: '2026-11-03T14:50:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6966
+- author: baltdev
+  changes:
+  - message: Fixed the Docile Giant Spider sprites.
+    type: Fix
+  id: 410096
+  time: '2026-11-04T12:42:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7034
 Order: -1
