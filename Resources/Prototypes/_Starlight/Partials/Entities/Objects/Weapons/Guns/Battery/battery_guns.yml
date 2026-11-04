@@ -26,7 +26,7 @@
   - type: Gun
     minAngle: 0
     maxAngle: 22
-    angleIncrease: 6
+    angleIncrease: 2
     angleDecay: 20
     movingMinAngle: 6
   - type: GunWieldBonus
@@ -47,7 +47,7 @@
   - type: Gun
     minAngle: 0
     maxAngle: 22
-    angleIncrease: 6
+    angleIncrease: 2
     angleDecay: 20
     movingMinAngle: 6
   - type: GunWieldBonus
