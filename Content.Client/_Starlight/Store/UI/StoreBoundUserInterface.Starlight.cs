@@ -6,6 +6,9 @@ namespace Content.Client.Store.Ui;
 
 public sealed partial class StoreBoundUserInterface
 {
+    /// <summary>
+    /// Stores the latest UI state received before the store menu is initialized.
+    /// </summary>
     private StoreUpdateState? _pendingState;
 
     protected override void Open()
@@ -45,7 +48,8 @@ public sealed partial class StoreBoundUserInterface
             SendMessage(new StoreRequestRefundMessage());
         };
 
-        // Apply the latest state received before the menu was initialized.
+        // Diona's pollen shop uses the shared Store UI. Its initial StoreUpdateState
+        // can arrive before Open() creates StoreMenu, so cache it until initialization.
         if (_pendingState is { } pending)
         {
             _pendingState = null;

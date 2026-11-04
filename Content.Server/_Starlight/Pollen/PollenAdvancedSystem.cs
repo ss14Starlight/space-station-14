@@ -34,6 +34,7 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
     private static readonly EntProtoId _advancedPollenCloud = "PollenAdvancedPollenCloud";
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroup = "Brute";
     private static readonly ProtoId<DamageGroupPrototype> _burnGroup = "Burn";
+    private readonly HashSet<EntityUid> _nearby = new();
 
     private readonly HashSet<EntityUid> _nearby = new();
 

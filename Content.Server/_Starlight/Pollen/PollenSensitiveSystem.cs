@@ -129,10 +129,10 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
 
     private static string NormalizePollenId(string pollenId)
     {
-        const string suffix = "Plants";
+        const string Suffix = "Plants";
 
-        return pollenId.EndsWith(suffix, StringComparison.OrdinalIgnoreCase)
-            ? pollenId[..^suffix.Length]
+        return pollenId.EndsWith(Suffix, StringComparison.OrdinalIgnoreCase)
+            ? pollenId[..^Suffix.Length]
             : pollenId;
     }
     private void InteractWithPollen(Entity<PollenSensitiveComponent> ent, string pollenId, bool isAdvancedPollen)
@@ -212,7 +212,6 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
 
         var oldNoseItch = ent.Comp.NoseItchActive;
         var oldSneezing = ent.Comp.SneezingActive;
-        var oldSevere = ent.Comp.SevereAllergyActive;
 
         ent.Comp.NoseItchActive = stack > 2f;
         ent.Comp.SneezingActive = stack > 4f;

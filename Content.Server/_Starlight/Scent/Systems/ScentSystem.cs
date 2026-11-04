@@ -65,7 +65,6 @@ public sealed partial class ScentSystem : SharedScentSystem
 
     private const string ScentMarkerPrototype = "ScentMarker";
     private const int ScentIdByteLength = 8;
-
     private readonly HashSet<Entity<ScentMarkerComponent>> _nearbyMarkers = new();
     private readonly List<(string Id, bool IsPollen)> _scentChoices = new();
 
@@ -503,7 +502,8 @@ public sealed partial class ScentSystem : SharedScentSystem
         var query = EntityQueryEnumerator<ScentComponent>();
         while (query.MoveNext(out var uid, out var scent))
         {
-            if (scent.ScentId == null && scent.AdditionalScents.Count == 0)
+            if (scent.ScentId == null && scent.AdditionalScents.Count == 0 &&
+                !HasComp<PollenCollectorComponent>(uid))
                 continue;
 
             if (scent.NextEmitTime == TimeSpan.Zero)
@@ -591,11 +591,10 @@ public sealed partial class ScentSystem : SharedScentSystem
         if (isPollen)
         {
             var pollenDecayTime = GetDecayTime(scent, uid);
-            var pollenMarker = EmitPollenMarker(ref scent.LastPollenMarkerEntity, uid, scentId, xform, pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
 
-            // Pollen markers aren't part of this entity's own trail, so they never become its tail.
-            EntityUid? pollenTail = null;
-            var pollenMarker = EmitPollenMarker(ref pollenTail, uid, scentId, xform, pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
+            // Pollen markers use their own cache and never become part of the personal scent trail.
+            var pollenMarker = EmitPollenMarker(ref scent.LastPollenMarkerEntity, uid, scentId, xform,
+                pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
 
             if (!pollenMarker.IsValid())
                 return;
@@ -606,6 +605,7 @@ public sealed partial class ScentSystem : SharedScentSystem
                 pollenMarkerComp.WasCloaked = IsCloaked(uid);
                 Dirty(pollenMarker, pollenMarkerComp);
             }
+
             ApplyScentTrace(uid, scentId, uid);
             return;
         }
@@ -680,44 +680,6 @@ public sealed partial class ScentSystem : SharedScentSystem
         holder.CurrentTube is not { } tube ||
         !HasComp<VentCrawlEntryComponent>(tube));
 
-    // Merges into our last emitted marker if it is still nearby.
-    // This prevents revisiting older markers and refreshing unrelated parts of a scent trail.
-    private bool TryMergeIntoExisting(Entity<ScentComponent, TransformComponent> ent, string scentId)
-    {
-        var (uid, scent, xform) = ent;
-
-        // Only merge into the emitter's most recently emitted marker.
-        if (scent.LastMarkerEntity is not { } tail ||
-            !TryComp<ScentMarkerComponent>(tail, out var marker) ||
-            marker.IsPollen ||
-            marker.ScentId != scentId ||
-            !TryComp(tail, out TransformComponent? tailXform) ||
-            !_transform.InRange(xform.Coordinates, tailXform.Coordinates, scent.MergeRadius))
-            return false;
-
-        var container = GetAirtightContainer(xform);
-
-        // Don't merge markers across airtight container boundaries.
-        if (marker.ContainedIn != container)
-            return false;
-
-        // Refresh the trail's current tail instead of spawning another marker.
-        var decayTime = GetDecayTime(scent, uid);
-
-        marker.Strength = Math.Min(1f, marker.Strength + scent.MergeStrengthStep);
-        marker.ExpiresAt = _timing.CurTime + decayTime;
-        marker.TotalDuration = decayTime;
-        marker.ContainedIn = container;
-        marker.WasDead = MobState.IsDead(uid);
-        marker.WasCloaked = IsCloaked(uid);
-        Dirty(tail, marker);
-
-        if (TryComp<TimedDespawnComponent>(tail, out var despawn))
-            despawn.Lifetime = (float)decayTime.TotalSeconds;
-
-        return true;
-    }
-
     /// <summary>
     /// Emits or refreshes a pollen marker for an emitter.
     /// First tries the emitter's cached marker to avoid unnecessary spatial lookups.
@@ -727,7 +689,7 @@ public sealed partial class ScentSystem : SharedScentSystem
     /// Otherwise spawns a new marker. The result is stored in lastMarker.
     /// </summary>
     /// <param name="lastMarker">
-    /// The emitter's cached last-marker reference (e.g. EmitPollenComponent.LastMarkerEntity).
+    /// The emitter's cached pollen marker reference (ScentComponent.LastPollenMarkerEntity).
     /// Updated in place when a marker is found or spawned.
     // A personal scent only merges into our own chain tail, never any other nearby marker. Revisiting
     // an old spot would otherwise rewrite the trail's visit order. Shared scents can come from several
@@ -767,6 +729,7 @@ public sealed partial class ScentSystem : SharedScentSystem
         // Skips a tail from before the scent changed (e.g. washing) or from outside our current container.
         if (scent.LastMarkerEntity is not { } tail ||
             !TryComp<ScentMarkerComponent>(tail, out var marker) ||
+            marker.IsPollen ||
             marker.ScentId != scentId ||
             marker.ContainedIn != container ||
             !TryComp(tail, out TransformComponent? tailXform) ||
@@ -855,11 +818,9 @@ public sealed partial class ScentSystem : SharedScentSystem
         // Search for an existing matching marker so different emitters can still share pollen markers.
         EntityUid? matchingMarker = null;
 
-        foreach (var candidate in _lookup.GetEntitiesInRange(emitterXform.Coordinates, mergeRadius))
-        EntityUid? matchingMarker = null;
-
         // Pick the lowest ID so nearby emitters settle on the same marker.
         GetNearbyMarkers(emitterXform.Coordinates, mergeRadius, _nearbyMarkers);
+
         foreach (var (candidate, marker) in _nearbyMarkers)
         {
             if (!marker.IsPollen ||
