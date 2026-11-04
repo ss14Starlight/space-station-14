@@ -22,8 +22,7 @@ public sealed partial class ScentPerceptionOverlay : Robust.Client.Graphics.Over
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
-    // BlindOverlay, DarkenedVisionOverlay, and BlurryVisionOverlay never set ZIndex, so they
-    // draw at the default 0. Anything higher draws after them.
+    // Draw at 1 so that the scent overlay shows over BlindOverlay, DarkenedVisionOverlay, and BlurryVisionOverlay.
     public ScentPerceptionOverlay()
     {
         IoCManager.InjectDependencies(this);
