@@ -1,7 +1,6 @@
 using System.Numerics;
 using Content.Server._Funkystation.ReagentFires.Systems;
 using Content.Shared._Funkystation.Footprints;
-using Content.Shared._Starlight.Footprints;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -37,7 +36,6 @@ public sealed partial class FootprintSystem : EntitySystem
     [Dependency] private EntityQuery<NoFootprintsComponent> _noFootprintsQuery = default!;
     [Dependency] private EntityQuery<SolutionComponent> _solutionQuery = default!;
     [Dependency] private EntityQuery<StandingStateComponent> _standingQuery = default!;
-    [Dependency] private EntityQuery<PawPrintsComponent> _pawPrintsQuery = default!;
 
     // A footprint sprite layer is relatively expensive. Chemical volume may continue accumulating after this cap,
     // but no more visual/network state is added until the footprint reaches capacity and becomes a puddle.
@@ -420,11 +418,7 @@ public sealed partial class FootprintSystem : EntitySystem
                     MathF.Floor(localPosition.Y / grid.TileSize) -
                     (grid.TileSize / 2f);
 
-        var state = !isStanding
-            ? _random.Pick(_dragStates)
-            : _pawPrintsQuery.HasComponent(entity.Owner)
-                ? FootprintVisualState.Paw
-                : FootprintVisualState.Foot;
+        var state = isStanding ? entity.Comp.PrintState : _random.Pick(_dragStates);
 
         footprint.Comp1.Prints.Add(new FootprintData(new Vector2(normX, normY), rotation, alpha, state));
         Dirty(footprint.Owner, footprint.Comp1);

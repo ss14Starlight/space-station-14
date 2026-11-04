@@ -3,4 +3,4 @@
   id: MobBreadDog
   components:
   - type: FootprintOwner
-  - type: PawPrints
+    printState: Paw

@@ -3,14 +3,14 @@
   components:
   - type: FirelockOpener
   - type: FootprintOwner
-  - type: PawPrints
+    printState: Paw
 
 - type: !PartialOnly entity
   id: MobWalter
   components:
   - type: FirelockOpener
   - type: FootprintOwner
-  - type: PawPrints
+    printState: Paw
 
 - type: !PartialOnly entity
   id: MobMonkeyPunpun
@@ -22,4 +22,4 @@
   id: MobBingus
   components:
   - type: FootprintOwner
-  - type: PawPrints
+    printState: Paw

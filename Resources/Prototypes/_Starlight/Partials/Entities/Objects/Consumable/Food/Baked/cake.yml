@@ -59,4 +59,4 @@
   id: MobCatCake
   components:
   - type: FootprintOwner
-  - type: PawPrints
+    printState: Paw
