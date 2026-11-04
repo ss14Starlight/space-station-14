@@ -1,27 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (NukeOps Geiger Complex) Syndicate tactical planning console added to planning area.
-    type: Add
-  id: 409697
-  time: '2026-10-23T07:58:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6808
-- author: Caws
-  changes:
-  - message: (NukeOps Geiger Complex) Redspace beaker added to Medbay.
-    type: Add
-  id: 409698
-  time: '2026-10-23T07:58:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6808
-- author: Caws
-  changes:
-  - message: (NukeOps Planet) Syndicate tactical planning console added to planning area.
-    type: Add
-  id: 409699
-  time: '2026-10-23T07:58:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6809
-- author: Caws
-  changes:
   - message: (NukeOps Planet) Redspace beaker added to Medbay.
     type: Add
   id: 409700
@@ -2799,4 +2778,25 @@ Entries:
   id: 410096
   time: '2026-11-04T12:42:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7034
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) The Brig has been updated to modern 'genpop' standards.
+    type: Tweak
+  id: 410097
+  time: '2026-11-04T13:03:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7028
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) The floating light outside of the debriefing room has been removed. We apologize for any of the stress caused by said unsecured light fixture.
+    type: Fix
+  id: 410098
+  time: '2026-11-04T13:03:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7028
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) A light post erroneously installed in the middle of Security's doorway into the Brig has been removed.
+    type: Fix
+  id: 410099
+  time: '2026-11-04T13:03:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7028
 Order: -1
