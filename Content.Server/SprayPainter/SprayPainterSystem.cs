@@ -157,7 +157,7 @@ public sealed partial class SprayPainterSystem : SharedSprayPainterSystem
         if (!TryComp(ent, out LimitedChargesComponent? charges))
             return;
 
-        if (!_charges.TryUseCharges((ent, charges), ent.Comp.PipeChargeCost))
+        if (_charges.GetCurrentCharges((ent, charges)) < ent.Comp.PipeChargeCost)
         {
             // extra check needed for recharging spraypainters
             var msg = Loc.GetString("spray-painter-interact-no-charges");
