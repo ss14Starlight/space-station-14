@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (NukeOps Planet) Redspace beaker added to Medbay.
-    type: Add
-  id: 409700
-  time: '2026-10-23T07:58:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6809
 - author: wonderfulnewworld
   changes:
   - message: The character menu no longer implies every non-antag works for NanoTrasen.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410099
   time: '2026-11-04T13:03:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7028
+- author: Talirson
+  changes:
+  - message: Moved the bluespace harvester to consumer tab in power monitoring consoles.
+    type: Tweak
+  id: 410100
+  time: '2026-11-04T14:09:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7035
 Order: -1
