@@ -13,14 +13,12 @@ public sealed partial class SnapshotViewBoundUserInterface(EntityUid owner, Enum
     private SnapshotViewWindow? _window;
 
     [ViewVariables]
-    private EntityUid? _sceneMap;
+    private NetEntity? _sceneSnapshot;
 
     [ViewVariables]
     public SnapshotData? Snapshot { get; private set; }
 
-    private bool _disposed;
-
-    public bool Disposed => _disposed;
+    public bool Disposed { get; private set; }
 
     protected override void Open()
     {
@@ -38,13 +36,11 @@ public sealed partial class SnapshotViewBoundUserInterface(EntityUid owner, Enum
     }
 
     public void RequestSnapshot()
-    {
-        SendMessage(new SnapshotViewRequestMessage());
-    }
+        => SendMessage(new SnapshotViewRequestMessage());
 
     public void SetSnapshot(SnapshotData snapshot)
     {
-        if (Snapshot != null || _disposed)
+        if (Snapshot != null || Disposed)
             return;
 
         Snapshot = snapshot;
@@ -52,15 +48,15 @@ public sealed partial class SnapshotViewBoundUserInterface(EntityUid owner, Enum
         EntMan.System<ClientSnapshotViewSystem>().QueueBuild(this, snapshot);
     }
 
-    public void ShowScene(EntityUid map, IEye eye, Vector2i viewportSize)
+    public void ShowScene(NetEntity snapshot, IEye eye, Vector2i viewportSize)
     {
-        if (_disposed)
+        if (Disposed)
         {
-            EntMan.System<ClientSnapshotViewSystem>().Destroy(map);
+            EntMan.System<ClientSnapshotViewSystem>().ReleaseScene(snapshot);
             return;
         }
 
-        _sceneMap = map;
+        _sceneSnapshot = snapshot;
 
         _window = this.CreateWindow<SnapshotViewWindow>();
         _window.SetScene(eye, viewportSize);
@@ -73,11 +69,11 @@ public sealed partial class SnapshotViewBoundUserInterface(EntityUid owner, Enum
         if (!disposing)
             return;
 
-        _disposed = true;
-        if (_sceneMap is { } map)
+        Disposed = true;
+        if (_sceneSnapshot is { } snapshot)
         {
-            _sceneMap = null;
-            EntMan.System<ClientSnapshotViewSystem>().Destroy(map);
+            _sceneSnapshot = null;
+            EntMan.System<ClientSnapshotViewSystem>().ReleaseScene(snapshot);
         }
     }
 }

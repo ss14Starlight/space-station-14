@@ -9,9 +9,7 @@ namespace Content.Client._Moffstation.Snapshots;
 public sealed partial class SnapshotViewWindow : DefaultWindow
 {
     public SnapshotViewWindow()
-    {
-        RobustXamlLoader.Load(this);
-    }
+        => RobustXamlLoader.Load(this);
 
     public void SetScene(IEye eye, Vector2i viewportSize)
     {

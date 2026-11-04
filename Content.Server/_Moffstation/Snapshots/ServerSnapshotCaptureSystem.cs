@@ -1,8 +1,9 @@
 using System.Numerics;
 using Content.Server.MapText;
 using Content.Server.Movement.Components;
+using Content.Server.Power.Components;
+using Content.Server.Power.Nodes;
 using Content.Shared._Moffstation.Snapshots;
-using Content.Shared.Body;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Camera;
 using Content.Shared.Examine;
@@ -13,10 +14,13 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
+using Content.Shared.SSDIndicator;
 using Content.Shared.MapText;
 using Content.Shared.Parallax;
+using Content.Shared.NodeContainer;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
+using Content.Shared.Wires;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -37,11 +41,9 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [Dependency] private SharedStealthSystem _stealth = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedRoofSystem _roof = default!;
-    [Dependency] private SharedVisualBodySystem _visualBody = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private ITileDefinitionManager _tileDef = default!;
-
     [Dependency] private EntityQuery<EyeCursorOffsetComponent> _cursorOffsetQuery = default!;
     [Dependency] private EntityQuery<EyeComponent> _eyeQuery = default!;
     [Dependency] private EntityQuery<MapComponent> _mapQuery = default!;
@@ -53,10 +55,12 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [Dependency] private EntityQuery<OccluderComponent> _occluderQuery = default!;
     [Dependency] private EntityQuery<BuckleComponent> _buckleQuery = default!;
     [Dependency] private EntityQuery<StealthComponent> _stealthQuery = default!;
-    [Dependency] private EntityQuery<HumanoidProfileComponent> _humanoidQuery = default!;
     [Dependency] private EntityQuery<VirtualItemComponent> _virtualItemQuery = default!;
     [Dependency] private EntityQuery<AppearanceComponent> _appearanceQuery = default!;
     [Dependency] private EntityQuery<MapTextComponent> _mapTextQuery = default!;
+    [Dependency] private EntityQuery<CableVisComponent> _cableVisQuery = default!;
+    [Dependency] private EntityQuery<NodeContainerComponent> _nodeContainerQuery = default!;
+    [Dependency] private EntityQuery<SSDIndicatorComponent> _ssdIndicatorQuery = default!;
 
     private const int MaxEntities = 256;
 
@@ -72,22 +76,22 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     /// </summary>
     private const float MinStealthVisibility = 0.5f;
 
-    private static readonly Vector2i[] Neighbours = [new(1, 0), new(-1, 0), new(0, 1), new(0, -1)];
+    private static readonly Vector2i[] _neighbours = [new(1, 0), new(-1, 0), new(0, 1), new(0, -1)];
 
     /// <summary>
     /// Points within a tile checked for line of sight: the middle, edge midpoints and corners. Kept inside the tile so
     /// a ray grazing a wall's corner can't count the tile behind it as seen.
     /// </summary>
-    private static readonly Vector2[] TileSamples =
+    private static readonly Vector2[] _tileSamples =
     [
         new(0.5f, 0.5f),
         new(0.5f, 0.15f), new(0.5f, 0.85f), new(0.15f, 0.5f), new(0.85f, 0.5f),
         new(0.15f, 0.15f), new(0.85f, 0.15f), new(0.15f, 0.85f), new(0.85f, 0.85f),
     ];
 
-    private readonly HashSet<EntityUid> _found = new();
+    private readonly HashSet<EntityUid> _found = [];
 
-    private readonly Dictionary<EntityUid, int> _captured = new();
+    private readonly Dictionary<EntityUid, int> _captured = [];
 
     /// <summary>
     /// The viewfinder's extended view needs a larger PVS range, like binoculars.
@@ -102,7 +106,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [SubscribeLocalEvent]
     private void OnCaptured(Entity<SnapshotCaptureComponent> ent, ref SnapshotCapturedEvent args)
     {
-        if (Capture(args.User, args.Center, ent.Comp.HalfExtents) is not { } data)
+        if (Capture(args.User, args.Center, ent.Comp.HalfExtents, args.Rotation) is not { } data)
             return;
 
         var snapshot = Spawn(ent.Comp.Snapshot, Transform(ent).Coordinates);
@@ -113,7 +117,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     /// <summary>
     /// Records Lighting and such around the Photographer
     /// </summary>
-    public SnapshotData? Capture(EntityUid viewer, MapCoordinates shotCenter, Vector2i halfExtents)
+    public SnapshotData? Capture(EntityUid viewer, MapCoordinates shotCenter, Vector2i halfExtents, Angle rotation = default)
     {
         var viewerCoords = TransformSystem.GetMapCoordinates(viewer);
         var mapId = shotCenter.MapId;
@@ -125,10 +129,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         var snapshot = new SnapshotData { HalfExtents = halfExtents };
 
         // Same frame the viewfinder showed, so the snapshot matches what was aimed at.
-        var frame = GetFrame(shotCenter, halfExtents);
-        Entity<MapGridComponent>? grid = frame.Grid is { } gridUid && _gridQuery.TryComp(gridUid, out var gridComp)
-            ? (gridUid, gridComp)
-            : null;
+        var frame = GetFrame(shotCenter, halfExtents, rotation);
         var frameRotation = frame.Rotation;
         var frameToWorld = frame.FrameToWorld;
         var worldToFrame = frame.WorldToFrame;
@@ -136,11 +137,20 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         var center = centerTile + new Vector2(0.5f);
 
         // The snapshot only has the tiles that made it into the shot, and anything without a tile gets the map's ambient light.
-        snapshot.AmbientLight = grid is { } roofGrid && GetRoof(roofGrid, centerTile) is { } indoorRoof
-            ? indoorRoof
-            : _mapLightQuery.TryComp(_map.GetMapOrInvalid(mapId), out var mapLight)
+        var worldCenter = Vector2.Transform(center, frameToWorld);
+        var centerCoordinates = new MapCoordinates(worldCenter, mapId);
+        if (_map.TryFindGridAt(centerCoordinates, out var centerGridUid, out var centerGrid)
+            && centerGrid != null
+            && GetRoof((centerGridUid, centerGrid), _map.WorldToTile(centerGridUid, centerGrid, worldCenter)) is { } indoorRoof)
+        {
+            snapshot.AmbientLight = indoorRoof;
+        }
+        else
+        {
+            snapshot.AmbientLight = _mapLightQuery.TryComp(_map.GetMapOrInvalid(mapId), out var mapLight)
                 ? mapLight.AmbientLightColor
                 : Color.Black;
+        }
 
         // A tile is in the snapshot if the photographer can see any part of it, not just its middle, so partly visible
         // tiles next to walls aren't blacked out.
@@ -162,17 +172,18 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         _found.Clear();
         _captured.Clear();
         var frameBox = new Box2(centerTile - halfExtents, centerTile + halfExtents + Vector2i.One);
-        if (grid is { } lookupGrid)
-            _lookup.GetLocalEntitiesIntersecting(lookupGrid, frameBox, _found, LookupFlags.Uncontained);
-        else
-            _found.UnionWith(_lookup.GetEntitiesIntersecting(mapId, frameBox, LookupFlags.Uncontained));
+        _lookup.GetEntitiesIntersecting(
+            mapId,
+            TransformBounds(frameBox, frameToWorld),
+            _found,
+            LookupFlags.Uncontained);
 
         foreach (var uid in _found)
         {
             if (snapshot.Entities.Count >= MaxEntities)
                 break;
 
-            if (!ShouldInclude(uid, visMask, grid?.Owner) || MetaData(uid).EntityPrototype is not { } proto)
+            if (!ShouldInclude(uid, visMask, null) || MetaData(uid).EntityPrototype is not { } proto)
                 continue;
 
             var xform = Transform(uid);
@@ -190,12 +201,22 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
 
             _captured[uid] = snapshot.Entities.Count;
+            var appearance = GetAppearance(uid);
+            if (_cableVisQuery.TryComp(uid, out var cableVis)
+                && TryGetCableConnectedMask(uid, cableVis, out var connectedMask))
+            {
+                appearance ??= [];
+                appearance[WireVisVisuals.ConnectedMask] = connectedMask;
+            }
+
             snapshot.Entities.Add(new SnapshotEntity
             {
                 Prototype = proto.ID,
                 Offset = local - center,
-                Rotation = TransformSystem.GetWorldRotation(xform) - frameRotation,
-                Appearance = GetAppearance(uid),
+                Rotation = TransformSystem.GetWorldRotation(xform) + frameRotation,
+                Anchored = xform.Anchored,
+                Ssd = _ssdIndicatorQuery.TryComp(uid, out var ssdIndicator) && ssdIndicator.IsSSD,
+                Appearance = appearance,
                 Light = GetLight(uid),
                 MapText = GetMapText(uid),
                 Humanoid = GetHumanoid(uid, visMask),
@@ -212,24 +233,29 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
         }
 
-        if (grid is { } g)
+        foreach (var offset in tilesInShot)
         {
-            foreach (var offset in tilesInShot)
+            var worldPosition = Vector2.Transform(centerTile + offset + new Vector2(0.5f), frameToWorld);
+            if (!_map.TryFindGridAt(new MapCoordinates(worldPosition, mapId), out var tileGridUid, out var tileGrid)
+                || tileGrid == null)
             {
-                var index = centerTile + offset;
-                if (!_map.TryGetTileRef(g, g.Comp, index, out var tileRef)
-                    || tileRef.Tile.IsEmpty
-                    || !_tileDef.TryGetDefinition(tileRef.Tile.TypeId, out var tileDef))
-                {
-                    continue;
-                }
-
-                snapshot.Tiles.Add(new SnapshotTile(offset,
-                    tileDef.ID,
-                    tileRef.Tile.Variant,
-                    tileRef.Tile.RotationMirroring,
-                    GetRoof(g, index)));
+                continue;
             }
+
+            var tileIndex = _map.WorldToTile(tileGridUid, tileGrid, worldPosition);
+            if (!_map.TryGetTileRef(tileGridUid, tileGrid, tileIndex, out var tileRef)
+                || tileRef.Tile.IsEmpty
+                || !_tileDef.TryGetDefinition(tileRef.Tile.TypeId, out var tileDef))
+            {
+                continue;
+            }
+
+            snapshot.Tiles.Add(new SnapshotTile(offset,
+                tileDef.ID,
+                tileRef.Tile.Variant,
+                RotateTile(tileRef.Tile.RotationMirroring,
+                    TransformSystem.GetWorldRotation(tileGridUid) + frameRotation),
+                GetRoof((tileGridUid, tileGrid), tileIndex)));
         }
 
         for (var x = -halfExtents.X; x <= halfExtents.X; x++)
@@ -242,17 +268,54 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
         }
 
-        snapshot.WorldCenter = Vector2.Transform(center, frameToWorld);
+        snapshot.WorldCenter = worldCenter;
         snapshot.Parallax = _parallaxQuery.TryComp(_map.GetMapOrInvalid(mapId), out var parallax)
             ? parallax.Parallax
             : null;
 
         var viewerLocal = Vector2.Transform(viewerCoords.Position, worldToFrame);
         snapshot.Viewer = viewerLocal - center;
-        if (grid is { } occluderGrid)
-            AddSeenOccluders(snapshot, occluderGrid, viewerCoords, viewerLocal, centerTile, frameToWorld, worldToFrame);
+        AddSeenOccluders(snapshot, mapId, viewerCoords, viewerLocal, centerTile, frameToWorld, worldToFrame);
 
         return snapshot;
+    }
+
+    private bool TryGetCableConnectedMask(EntityUid uid, CableVisComponent cableVis, out WireVisDirFlags mask)
+    {
+        mask = WireVisDirFlags.None;
+        if (!_nodeContainerQuery.TryComp(uid, out var container)
+            || !container.Nodes.TryGetValue(cableVis.Node, out var node)
+            || node is not CableNode cableNode)
+        {
+            return false;
+        }
+
+        var transform = Transform(uid);
+        if (!TryComp<MapGridComponent>(transform.GridUid, out var grid))
+            return false;
+
+        var gridUid = transform.GridUid!.Value;
+        var tile = _map.TileIndicesFor((gridUid, grid), transform.Coordinates);
+        foreach (var reachable in cableNode.ReachableNodes)
+        {
+            if (reachable is not CableNode)
+                continue;
+
+            var otherTransform = Transform(reachable.Owner);
+            var otherTile = _map.TileIndicesFor((gridUid, grid), otherTransform.Coordinates);
+            var diff = otherTile - tile;
+
+            mask |= diff switch
+            {
+                (0, 1) => WireVisDirFlags.North,
+                (0, -1) => WireVisDirFlags.South,
+                (1, 0) => WireVisDirFlags.East,
+                (-1, 0) => WireVisDirFlags.West,
+                _ => WireVisDirFlags.None
+            };
+        }
+
+        return true;
     }
 
     /// <summary>
@@ -260,7 +323,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     /// cast shadows into it, so the viewer can draw shadows like the game's field of view.
     /// </summary>
     private void AddSeenOccluders(SnapshotData snapshot,
-        Entity<MapGridComponent> grid,
+        MapId mapId,
         MapCoordinates viewer,
         Vector2 viewerLocal,
         Vector2i centerTile,
@@ -271,7 +334,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         var area = frameBox.ExtendToContain(viewerLocal).Enlarged(1f);
 
         _found.Clear();
-        _lookup.GetLocalEntitiesIntersecting(grid, area, _found, LookupFlags.Static);
+        _lookup.GetEntitiesIntersecting(mapId, TransformBounds(area, frameToWorld), _found, LookupFlags.Static);
 
         var checkedTiles = new HashSet<Vector2i>();
         foreach (var uid in _found)
@@ -289,6 +352,40 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             if (CanSeeAnyOfTile(viewer, tile, frameToWorld, worldToFrame, viewer.MapId))
                 snapshot.Occluders.Add(tile - centerTile);
         }
+    }
+
+    private static byte RotateTile(byte rotationMirroring, Angle rotation)
+    {
+        var quarterTurns = GetQuarterTurns(rotation);
+        var tileRotation = ((rotationMirroring & 0b11) + quarterTurns) % 4;
+        return (byte) (tileRotation | (rotationMirroring & 0b100));
+    }
+
+    private static int GetQuarterTurns(Angle rotation)
+    {
+        var turns = (int) Math.Round(rotation.Theta / (Math.PI / 2));
+        return ((turns % 4) + 4) % 4;
+    }
+
+    private static Box2 TransformBounds(Box2 box, Matrix3x2 transform)
+    {
+        var point = Vector2.Transform(box.BottomLeft, transform);
+        var min = point;
+        var max = point;
+
+        point = Vector2.Transform(box.BottomRight, transform);
+        min = Vector2.Min(min, point);
+        max = Vector2.Max(max, point);
+
+        point = Vector2.Transform(box.TopLeft, transform);
+        min = Vector2.Min(min, point);
+        max = Vector2.Max(max, point);
+
+        point = Vector2.Transform(box.TopRight, transform);
+        min = Vector2.Min(min, point);
+        max = Vector2.Max(max, point);
+
+        return new Box2(min, max);
     }
 
     private bool ShouldInclude(EntityUid uid, int visMask, EntityUid? grid)
@@ -329,17 +426,28 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     /// </summary>
     private SnapshotHumanoid? GetHumanoid(EntityUid uid, int visMask)
     {
-        if (!_humanoidQuery.TryComp(uid, out var profile)
-            || !_visualBody.TryGatherMarkingsData(uid, null, out var profiles, out _, out var markings))
-        {
+        if (!TryComp<HumanoidAppearanceComponent>(uid, out var appearance)
+            || string.IsNullOrEmpty(appearance.Species.Id))
             return null;
-        }
 
         var humanoid = new SnapshotHumanoid
         {
-            Species = profile.Species,
-            Profiles = profiles,
-            Markings = markings,
+            Species = appearance.Species,
+            Markings = new(appearance.MarkingSet),
+            CustomBaseLayers = new(appearance.CustomBaseLayers),
+            PermanentlyHidden = [.. appearance.PermanentlyHidden],
+            HiddenLayers = new(appearance.HiddenLayers),
+            HideLayersOnEquip = [.. appearance.HideLayersOnEquip],
+            MarkingsDisplacement = new(appearance.MarkingsDisplacement),
+            Sex = appearance.Sex,
+            Gender = appearance.Gender,
+            SkinColor = appearance.SkinColor,
+            EyeColor = appearance.EyeColor,
+            EyeGlowing = appearance.EyeGlowing,
+            Width = appearance.Width,
+            Height = appearance.Height,
+            UndergarmentTop = appearance.UndergarmentTop,
+            UndergarmentBottom = appearance.UndergarmentBottom,
         };
 
         if (_inventory.TryGetSlots(uid, out var slots))
@@ -420,7 +528,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 
     private bool CanSeeAnyOfTile(MapCoordinates viewer, Vector2i index, Matrix3x2 frameToWorld, Matrix3x2 worldToFrame, MapId mapId)
     {
-        foreach (var sample in TileSamples)
+        foreach (var sample in _tileSamples)
         {
             var point = new MapCoordinates(Vector2.Transform(index + sample, frameToWorld), mapId);
 
@@ -439,18 +547,14 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     }
 
     private Vector2i TileOf(EntityUid uid, Matrix3x2 worldToFrame)
-    {
-        return TileOf(Vector2.Transform(TransformSystem.GetWorldPosition(uid), worldToFrame));
-    }
+        => TileOf(Vector2.Transform(TransformSystem.GetWorldPosition(uid), worldToFrame));
 
     private static Vector2i TileOf(Vector2 local)
-    {
-        return new Vector2i((int) MathF.Floor(local.X), (int) MathF.Floor(local.Y));
-    }
+        => new((int)MathF.Floor(local.X), (int)MathF.Floor(local.Y));
 
     private static bool HasVisibleNeighbour(Vector2i tile, HashSet<Vector2i> visible)
     {
-        foreach (var dir in Neighbours)
+        foreach (var dir in _neighbours)
         {
             if (visible.Contains(tile + dir))
                 return true;

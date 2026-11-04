@@ -60,26 +60,38 @@ public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
             return;
 
         var center = ClampToScreen(TransformSystem.ToMapCoordinates(click), ent.Comp.HalfExtents);
-        RaisePredictiveEvent(new SnapshotCaptureRequestEvent(GetNetEntity(ent), GetNetCoordinates(TransformSystem.ToCoordinates(center))));
+        RaisePredictiveEvent(new SnapshotCaptureRequestEvent(
+            GetNetEntity(ent),
+            GetNetCoordinates(TransformSystem.ToCoordinates(center)),
+            _eye.CurrentEye.Rotation));
     }
 
     /// <summary>
     /// Moves <paramref name="center"/> so the whole frame stays on screen.
     /// </summary>
     public MapCoordinates ClampToScreen(MapCoordinates center, Vector2i halfExtents)
+        => ClampToScreen(center, halfExtents, out _);
+
+    public MapCoordinates ClampToScreen(MapCoordinates center, Vector2i halfExtents, out SnapshotFrame frame)
     {
+        var originalCenter = center;
+        frame = GetFrame(center, halfExtents, _eye.CurrentEye.Rotation);
         var view = _eye.GetWorldViewport();
-        var rotation = GetFrame(center, halfExtents).Rotation;
+        var rotation = frame.Rotation;
 
         // Half the frame's size in world space, plus a tile for snapping the center to the tile grid.
         var half = new Vector2(halfExtents.X + 1f, halfExtents.Y + 1f);
         var cos = MathF.Abs((float) Math.Cos(rotation.Theta));
         var sin = MathF.Abs((float) Math.Sin(rotation.Theta));
-        var worldHalf = new Vector2(cos * half.X + sin * half.Y, sin * half.X + cos * half.Y);
+        var worldHalf = new Vector2((cos * half.X) + (sin * half.Y), (sin * half.X) + (cos * half.Y));
 
         var x = ClampAxis(center.Position.X, view.Left, view.Right, worldHalf.X);
         var y = ClampAxis(center.Position.Y, view.Bottom, view.Top, worldHalf.Y);
-        return new MapCoordinates(new Vector2(x, y), center.MapId);
+        center = new MapCoordinates(new Vector2(x, y), center.MapId);
+        if (center.Position != originalCenter.Position)
+            frame = GetFrame(center, halfExtents, _eye.CurrentEye.Rotation);
+
+        return center;
     }
 
     private static float ClampAxis(float value, float min, float max, float half)

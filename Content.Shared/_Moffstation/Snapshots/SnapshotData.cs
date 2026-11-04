@@ -1,9 +1,11 @@
 using System.Numerics;
-using Content.Shared.Body;
+using Content.Shared.DisplacementMap;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Inventory;
 using Content.Shared.MapText;
+using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -13,7 +15,7 @@ namespace Content.Shared._Moffstation.Snapshots;
 /// Viewers rebuild this on a client-only map, so clients never upload image data.
 /// </summary>
 /// <remarks>
-/// Positions are relative to the center of the middle tile of the frame.
+/// Positions and rotations are relative to the camera-aligned snapshot frame, centered on the middle tile.
 /// </remarks>
 [Serializable, NetSerializable]
 public sealed class SnapshotData
@@ -33,14 +35,14 @@ public sealed class SnapshotData
     /// </summary>
     public Vector2 WorldCenter;
 
-    public List<SnapshotTile> Tiles = new();
+    public List<SnapshotTile> Tiles = [];
 
-    public List<SnapshotEntity> Entities = new();
+    public List<SnapshotEntity> Entities = [];
 
     /// <summary>
     /// Tiles in the frame the photographer couldn't see. They're drawn black,otherwise they would be the space backround
     /// </summary>
-    public List<Vector2i> Hidden = new();
+    public List<Vector2i> Hidden = [];
 
     /// <summary>
     /// Where the photographer stood, relative to the middle of the frame. Shadows are cast from here.
@@ -51,7 +53,7 @@ public sealed class SnapshotData
     /// Tiles with something blocking sight (walls, closed doors) between the photographer and the frame, as offsets from
     /// the middle tile.
     /// </summary>
-    public List<Vector2i> Occluders = new();
+    public List<Vector2i> Occluders = [];
 }
 
 /// <param name="Roof">Roof color if the tile is roofed; roofs keep the map's ambient light off indoor tiles.</param>
@@ -71,6 +73,10 @@ public sealed class SnapshotEntity
     public Vector2 Offset;
 
     public Angle Rotation;
+
+    public bool Anchored;
+
+    public bool Ssd;
 
     /// <summary>
     /// Copy Apperance so the Rebuild view matches
@@ -114,13 +120,39 @@ public sealed class SnapshotHumanoid
 {
     public ProtoId<SpeciesPrototype> Species;
 
-    public Dictionary<ProtoId<OrganCategoryPrototype>, OrganProfileData> Profiles = new();
+    public MarkingSet Markings = new();
 
-    public Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>> Markings = new();
+    public Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> CustomBaseLayers = [];
 
-    public Dictionary<string, SnapshotItem> Worn = new();
+    public HashSet<HumanoidVisualLayers> PermanentlyHidden = [];
 
-    public Dictionary<string, SnapshotItem> Held = new();
+    public Dictionary<HumanoidVisualLayers, SlotFlags> HiddenLayers = [];
+
+    public HashSet<HumanoidVisualLayers> HideLayersOnEquip = [];
+
+    public Dictionary<HumanoidVisualLayers, DisplacementData> MarkingsDisplacement = [];
+
+    public Sex Sex;
+
+    public Gender Gender;
+
+    public Color SkinColor;
+
+    public Color EyeColor;
+
+    public bool EyeGlowing;
+
+    public float Width = 1f;
+
+    public float Height = 1f;
+
+    public ProtoId<MarkingPrototype>? UndergarmentTop;
+
+    public ProtoId<MarkingPrototype>? UndergarmentBottom;
+
+    public Dictionary<string, SnapshotItem> Worn = [];
+
+    public Dictionary<string, SnapshotItem> Held = [];
 }
 
 [Serializable, NetSerializable]

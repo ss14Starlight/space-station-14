@@ -5,7 +5,6 @@ using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
-using Robust.Shared.Map;
 
 namespace Content.Client._Moffstation.Snapshots;
 
@@ -25,9 +24,9 @@ public sealed partial class SnapshotCaptureViewfinderOverlay : Robust.Client.Gra
     private readonly ClientSnapshotCaptureSystem _capture;
     private readonly EntityQuery<SnapshotCaptureComponent> _captureQuery;
 
-    private static readonly Color FrameColor = Color.White.WithAlpha(0.9f);
-    private static readonly Color OutOfRangeColor = Color.Red.WithAlpha(0.9f);
-    private static readonly Color DimColor = Color.Black.WithAlpha(0.35f);
+    private static readonly Color _frameColor = Color.White.WithAlpha(0.9f);
+    private static readonly Color _outOfRangeColor = Color.Red.WithAlpha(0.9f);
+    private static readonly Color _dimColor = Color.Black.WithAlpha(0.35f);
 
     private const float LineWidth = 0.06f;
     private const float CornerLength = 1f;
@@ -76,23 +75,22 @@ public sealed partial class SnapshotCaptureViewfinderOverlay : Robust.Client.Gra
             return;
 
         // Same clamping the shot uses, so the frame is where the snapshot will be.
-        var center = _capture.ClampToScreen(mouse, capture.Comp.HalfExtents);
+        var center = _capture.ClampToScreen(mouse, capture.Comp.HalfExtents, out var frame);
 
         var from = _transform.GetMapCoordinates(player);
         var inRange = from.MapId == center.MapId
                       && (center.Position - from.Position).Length() <= capture.Comp.MaxRange;
-        var color = inRange ? FrameColor : OutOfRangeColor;
+        var color = inRange ? _frameColor : _outOfRangeColor;
 
-        var frame = _capture.GetFrame(center, capture.Comp.HalfExtents);
         var box = frame.Box;
         var handle = args.WorldHandle;
         handle.SetTransform(frame.FrameToWorld);
 
         // Dim around the frame, like the edge of a viewfinder.
-        handle.DrawRect(new Box2(box.Left - DimReach, box.Top, box.Right + DimReach, box.Top + DimReach), DimColor);
-        handle.DrawRect(new Box2(box.Left - DimReach, box.Bottom - DimReach, box.Right + DimReach, box.Bottom), DimColor);
-        handle.DrawRect(new Box2(box.Left - DimReach, box.Bottom, box.Left, box.Top), DimColor);
-        handle.DrawRect(new Box2(box.Right, box.Bottom, box.Right + DimReach, box.Top), DimColor);
+        handle.DrawRect(new Box2(box.Left - DimReach, box.Top, box.Right + DimReach, box.Top + DimReach), _dimColor);
+        handle.DrawRect(new Box2(box.Left - DimReach, box.Bottom - DimReach, box.Right + DimReach, box.Bottom), _dimColor);
+        handle.DrawRect(new Box2(box.Left - DimReach, box.Bottom, box.Left, box.Top), _dimColor);
+        handle.DrawRect(new Box2(box.Right, box.Bottom, box.Right + DimReach, box.Top), _dimColor);
 
         handle.DrawRect(box, color.WithAlpha(0.3f), filled: false);
         DrawCorner(handle, box.BottomLeft, new Vector2(1, 1), color);

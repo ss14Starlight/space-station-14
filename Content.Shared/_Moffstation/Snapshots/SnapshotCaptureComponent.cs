@@ -41,4 +41,4 @@ public sealed partial class SnapshotCaptureComponent : Component
 /// Raised on the capturing item when a shot has been taken, centered on <paramref name="Center"/>. The server records the snapshot.
 /// </summary>
 [ByRefEvent]
-public readonly record struct SnapshotCapturedEvent(EntityUid User, MapCoordinates Center);
+public readonly record struct SnapshotCapturedEvent(EntityUid User, MapCoordinates Center, Angle Rotation);

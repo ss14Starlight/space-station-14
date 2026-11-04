@@ -23,11 +23,9 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
 {
     [Dependency] private SharedFlashSystem _flash = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
-    [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedContentEyeSystem _contentEye = default!;
     [Dependency] protected SharedTransformSystem TransformSystem = default!;
-
     [Dependency] private EntityQuery<SnapshotCaptureComponent> _captureQuery = default!;
     [Dependency] private EntityQuery<FlashComponent> _flashQuery = default!;
 
@@ -39,14 +37,12 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
 
         args.Handled = true;
         SetAiming(ent, !ent.Comp.Aiming, args.User);
-        _popup.PopupEntity(Loc.GetString(ent.Comp.Aiming ? "snapshot-capture-raise" : "snapshot-capture-lower"), args.User, args.User);
+        _popup.PopupClient(Loc.GetString(ent.Comp.Aiming ? "snapshot-capture-raise" : "snapshot-capture-lower"), args.User, args.User);
     }
 
     [SubscribeLocalEvent]
     private void OnUnequipped(Entity<SnapshotCaptureComponent> ent, ref GotUnequippedHandEvent args)
-    {
-        SetAiming(ent, false, args.User);
-    }
+        => SetAiming(ent, false, args.User);
 
     /// <summary>
     /// Switching to the other hand lowers the viewfinder, so it isn't still raised when switching back.
@@ -58,7 +54,6 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
             return;
 
         SetAiming(ent, false, args.User);
-        _popup.PopupEntity(Loc.GetString("snapshot-capture-lower"), args.User, args.User);
     }
 
     /// <remarks>
@@ -94,6 +89,12 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
             return;
         }
 
+        if (!double.IsFinite(ev.Rotation.Theta))
+        {
+            Log.Warning($"Rejected snapshot capture from {ToPrettyString(user)} with a non-finite view rotation.");
+            return;
+        }
+
         // The center comes from the client, so the range is enforced here.
         var center = TransformSystem.ToMapCoordinates(GetCoordinates(ev.Center));
         var from = TransformSystem.GetMapCoordinates(user);
@@ -112,7 +113,8 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
             _flash.FlashArea(capturerUid.Value, user, flash.Range, flash.AoeFlashDuration, flash.SlowTo, true, flash.Probability);
         }
 
-        var captured = new SnapshotCapturedEvent(user, center);
+        var rotation = new Angle(Math.IEEERemainder(ev.Rotation.Theta, Math.PI * 2));
+        var captured = new SnapshotCapturedEvent(user, center, rotation);
         RaiseLocalEvent(capturerUid.Value, ref captured);
     }
 
@@ -132,21 +134,16 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     /// <summary>
     /// Ensures the Snapshot is what the server shows
     /// </summary>
-    public SnapshotFrame GetFrame(MapCoordinates center, Vector2i halfExtents)
+    public SnapshotFrame GetFrame(MapCoordinates center, Vector2i halfExtents, Angle rotation)
     {
-        EntityUid? grid = null;
-        var rotation = Angle.Zero;
-        var frameToWorld = Matrix3x2.Identity;
-        var worldToFrame = Matrix3x2.Identity;
-        if (_map.TryFindGridAt(center, out var gridUid, out _))
-        {
-            grid = gridUid;
-            (_, rotation, frameToWorld, worldToFrame) = TransformSystem.GetWorldPositionRotationMatrixWithInv(gridUid);
-        }
+        // Eye.Rotation rotates the world into screen space, so camera-local coordinates map back to world
+        // with the inverse rotation.
+        var frameToWorld = Matrix3x2.CreateRotation((float) -rotation.Theta);
+        Matrix3x2.Invert(frameToWorld, out var worldToFrame);
 
         var local = Vector2.Transform(center.Position, worldToFrame);
         var centerTile = new Vector2i((int) MathF.Floor(local.X), (int) MathF.Floor(local.Y));
-        return new SnapshotFrame(grid, centerTile, halfExtents, rotation, frameToWorld, worldToFrame);
+        return new SnapshotFrame(centerTile, halfExtents, rotation, frameToWorld, worldToFrame);
     }
 }
 
@@ -154,14 +151,14 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
 /// Sent by the client to take a shot centered on <see cref="Center"/>.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class SnapshotCaptureRequestEvent(NetEntity capturer, NetCoordinates center) : EntityEventArgs
+public sealed class SnapshotCaptureRequestEvent(NetEntity capturer, NetCoordinates center, Angle rotation) : EntityEventArgs
 {
     public readonly NetEntity Capturer = capturer;
     public readonly NetCoordinates Center = center;
+    public readonly Angle Rotation = rotation;
 }
 
 public readonly record struct SnapshotFrame(
-    EntityUid? Grid,
     Vector2i CenterTile,
     Vector2i HalfExtents,
     Angle Rotation,

@@ -9,7 +9,7 @@ namespace Content.Client._Moffstation.Snapshots;
 public sealed partial class SnapshotViewShadowsComponent : Component
 {
     [ViewVariables]
-    public List<Vector2i> Tiles = new();
+    public List<Vector2i> Tiles = [];
 
     /// <summary>
     /// Shadows cast by walls from the photographer's position, as a triangle list in grid-local coordinates.

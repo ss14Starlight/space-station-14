@@ -1,16 +1,20 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Client._Starlight.Humanoid;
 using Content.Client.MapText;
 using Content.Shared._Moffstation.Snapshots;
-using Content.Shared.Body;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
+using Content.Shared.Mind.Components;
 using Content.Shared.Parallax;
+using Content.Shared.SSDIndicator;
 using Content.Shared.Sprite;
+using Content.Shared.StatusIcon.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.GameStates;
@@ -35,7 +39,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedPointLightSystem _light = default!;
     [Dependency] private SharedRoofSystem _roof = default!;
-    [Dependency] private SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidAppearance = default!;
     [Dependency] private SharedScaleVisualsSystem _scaleVisuals = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
@@ -43,19 +47,20 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
-
     [Dependency] private EntityQuery<StrapComponent> _strapQuery = default!;
     [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
     [Dependency] private EntityQuery<MapTextComponent> _mapTextQuery = default!;
 
-    private static readonly Vector2 Center = new(0.5f, 0.5f);
+    private static readonly Vector2 _center = new(0.5f, 0.5f);
 
-    private static readonly TimeSpan RequestRetryDelay = TimeSpan.FromSeconds(0.2);
+    private static readonly TimeSpan _requestRetryDelay = TimeSpan.FromSeconds(0.2);
     private const int MaxRequests = 25;
 
-    private readonly List<(SnapshotViewBoundUserInterface Ui, SnapshotData Data)> _pendingBuilds = new();
+    private readonly List<(SnapshotViewBoundUserInterface Ui, SnapshotData Data)> _pendingBuilds = [];
 
-    private readonly Dictionary<SnapshotViewBoundUserInterface, (TimeSpan NextRequest, int Requests)> _awaiting = new();
+    private readonly Dictionary<SnapshotViewBoundUserInterface, (TimeSpan NextRequest, int Requests)> _awaiting = [];
+
+    private readonly Dictionary<NetEntity, CachedScene> _scenes = [];
 
     /// <summary>
     /// Snapshots this player has held or opened, so opening them again doesn't wait on the server.
@@ -63,9 +68,10 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     /// <remarks>
     /// Keyed by net id: a freshly printed snapshot's data can arrive before the entity itself does.
     /// </remarks>
-    private readonly Dictionary<NetEntity, (SnapshotData Data, TimeSpan Received)> _known = new();
+    private readonly Dictionary<NetEntity, (SnapshotData Data, TimeSpan Received)> _known = [];
 
-    private static readonly TimeSpan KnownSnapshotLifetime = TimeSpan.FromMinutes(30);
+    private static readonly TimeSpan _knownSnapshotLifetime = TimeSpan.FromMinutes(30);
+    private const int MaxCachedScenes = 8;
 
     public override void Initialize()
     {
@@ -79,6 +85,12 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         base.Shutdown();
 
         _overlay.RemoveOverlay<SnapshotViewShadowsOverlay>();
+        foreach (var scene in _scenes.Values)
+        {
+            Destroy(scene.Map);
+        }
+
+        _scenes.Clear();
     }
 
     [SubscribeNetworkEvent]
@@ -104,17 +116,13 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     }
 
     public void QueueBuild(SnapshotViewBoundUserInterface ui, SnapshotData data)
-    {
-        _pendingBuilds.Add((ui, data));
-    }
+        => _pendingBuilds.Add((ui, data));
 
     /// <summary>
     /// Asks the server again until <paramref name="ui"/> has its snapshot, closes, or runs out of attempts.
     /// </summary>
     public void AwaitSnapshot(SnapshotViewBoundUserInterface ui)
-    {
-        _awaiting[ui] = (_timing.RealTime + RequestRetryDelay, 1);
-    }
+        => _awaiting[ui] = (_timing.RealTime + _requestRetryDelay, 1);
 
     public override void FrameUpdate(float frameTime)
     {
@@ -127,11 +135,24 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
 
         foreach (var (ui, data) in _pendingBuilds)
         {
-            var (map, eye, size) = Build(data);
-            ui.ShowScene(map, eye, size);
+            if (ui.Disposed)
+                continue;
+
+            var snapshot = GetNetEntity(ui.Owner);
+            if (!_scenes.TryGetValue(snapshot, out var scene))
+            {
+                var (map, eye, size) = Build(data);
+                scene = new CachedScene(map, eye, size, _timing.RealTime);
+                _scenes.Add(snapshot, scene);
+            }
+
+            scene.OpenViews++;
+            scene.LastAccess = _timing.RealTime;
+            ui.ShowScene(snapshot, scene.Eye, scene.ViewportSize);
         }
 
         _pendingBuilds.Clear();
+        TrimSceneCache();
     }
 
     private void RetrySnapshotRequests()
@@ -139,7 +160,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         var now = _timing.RealTime;
         foreach (var (snapshot, known) in _known.ToArray())
         {
-            if (now - known.Received > KnownSnapshotLifetime)
+            if (now - known.Received > _knownSnapshotLifetime)
                 _known.Remove(snapshot);
         }
 
@@ -158,23 +179,24 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
                 continue;
 
             ui.RequestSnapshot();
-            _awaiting[ui] = (now + RequestRetryDelay, requests + 1);
+            _awaiting[ui] = (now + _requestRetryDelay, requests + 1);
         }
     }
 
     private (EntityUid Map, IEye Eye, Vector2i ViewportSize) Build(SnapshotData snapshot)
     {
         var mapUid = _map.CreateMap(out var mapId);
+        _map.SetPaused(mapId, true);
         _map.SetAmbientLight(mapId, snapshot.AmbientLight);
         if (snapshot.Parallax != null)
             EnsureComp<ParallaxComponent>(mapUid).Parallax = snapshot.Parallax;
 
         // Built where the shot was taken, so the space background lines up with what was captured.
         var grid = _map.CreateGridEntity(mapId);
-        _transform.SetWorldPosition(grid.Owner, snapshot.WorldCenter - Center);
+        _transform.SetWorldPosition(grid.Owner, snapshot.WorldCenter - _center);
         var shadows = EnsureComp<SnapshotViewShadowsComponent>(grid);
         shadows.Tiles = snapshot.Hidden;
-        shadows.Shadows = BuildShadows(Center + snapshot.Viewer, snapshot.Occluders);
+        shadows.Shadows = BuildShadows(_center + snapshot.Viewer, snapshot.Occluders);
         var tiles = new List<(Vector2i, Tile)>(snapshot.Tiles.Count);
         RoofComponent? roof = null;
         foreach (var tile in snapshot.Tiles)
@@ -241,7 +263,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             Zoom = Vector2.One,
         };
 
-        var size = (snapshot.HalfExtents * 2 + Vector2i.One) * EyeManager.PixelsPerMeter;
+        var size = ((snapshot.HalfExtents * 2) + Vector2i.One) * EyeManager.PixelsPerMeter;
         return (mapUid, eye, size);
     }
 
@@ -273,16 +295,16 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
                     return;
 
                 // Only edges facing away from the viewer start a shadow.
-                if (Vector2.Dot(normal, (a + b) / 2 - viewer) <= 0)
+                if (Vector2.Dot(normal, ((a + b) / 2) - viewer) <= 0)
                     return;
 
-                var aFar = a + Away(a) * ShadowLength;
-                var bFar = b + Away(b) * ShadowLength;
+                var aFar = a + (Away(a) * ShadowLength);
+                var bFar = b + (Away(b) * ShadowLength);
                 triangles.AddRange([a, b, bFar, a, bFar, aFar]);
             }
         }
 
-        return triangles.ToArray();
+        return [.. triangles];
 
         Vector2 Away(Vector2 point)
         {
@@ -297,45 +319,97 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             Del(map);
     }
 
+    public void ReleaseScene(NetEntity snapshot)
+    {
+        if (_scenes.TryGetValue(snapshot, out var scene) && scene.OpenViews > 0)
+        {
+            scene.OpenViews--;
+            scene.LastAccess = _timing.RealTime;
+        }
+
+        TrimSceneCache();
+    }
+
+    private void TrimSceneCache()
+    {
+        while (_scenes.Count > MaxCachedScenes)
+        {
+            var oldest = _scenes
+                .Where(entry => entry.Value.OpenViews == 0)
+                .OrderBy(entry => entry.Value.LastAccess)
+                .FirstOrDefault();
+            if (oldest.Value == null)
+                return;
+
+            _scenes.Remove(oldest.Key);
+            Destroy(oldest.Value.Map);
+        }
+    }
+
+    private sealed class CachedScene(EntityUid map, IEye eye, Vector2i viewportSize, TimeSpan lastAccess)
+    {
+        public readonly EntityUid Map = map;
+        public readonly IEye Eye = eye;
+        public readonly Vector2i ViewportSize = viewportSize;
+        public int OpenViews;
+        public TimeSpan LastAccess = lastAccess;
+    }
 
     private void ApplyBuckleDrawDepth(EntityUid buckled, EntityUid strap)
     {
         if (!_strapQuery.TryComp(strap, out var strapComp)
-            || !strapComp.ModifyBuckleDrawDepth
             || !_spriteQuery.TryComp(strap, out var strapSprite)
             || !_spriteQuery.TryComp(buckled, out var buckledSprite))
         {
             return;
         }
 
-        if (_transform.GetWorldRotation(strap).GetCardinalDir() == Direction.North)
-            _sprite.SetDrawDepth((buckled, buckledSprite), strapSprite.DrawDepth - 1);
+        if ((_transform.GetWorldRotation(strap).GetCardinalDir().AsFlag() & strapComp.LoweredDrawdepthDirections) == 0)
+            return;
+
+        _sprite.SetDrawDepth((buckled, buckledSprite), strapComp.LoweredDrawdepth ?? (strapSprite.DrawDepth - 1));
     }
 
     private EntityUid? SpawnClone(EntityUid grid, SnapshotEntity entity)
     {
-        var coords = new EntityCoordinates(grid, Center + entity.Offset);
+        var coords = new EntityCoordinates(grid, _center + entity.Offset);
         var uid = entity.Humanoid is { } humanoid
-            ? SpawnHumanoid(entity.Prototype, humanoid, coords)
+            ? SpawnHumanoid(entity.Prototype, humanoid, coords) ?? Spawn(entity.Prototype, coords)
             : Spawn(entity.Prototype, coords);
-        if (uid == null)
-            return null;
+        var spawned = uid;
 
-        // This Ensures the Drawn Prototypes get their correct Rotation otherwise they stop midway and appear crooked
-        _transform.SetLocalRotationNoLerp(uid.Value, entity.Rotation);
-        ApplyAppearance(uid.Value, entity.Appearance);
+        // The snapshot grid is camera-aligned, so even prototypes that normally inherit grid rotation need a local rotation.
+        var transform = Transform(spawned);
+        if (transform.NoLocalRotation)
+            _transform.SetNoLocalRotation(spawned, false, transform);
 
-        if (entity.Light is { } snapshotLight)
-            ApplyLight(uid.Value, snapshotLight);
+        _transform.SetLocalRotationNoLerp(spawned, entity.Rotation);
+        if (entity.Anchored && !transform.Anchored)
+            _transform.AnchorEntity(spawned);
 
-        // Fed through the normal state handler, the same way the server's copy reaches clients.
-        if (entity.MapText is { } mapTextState && _mapTextQuery.TryComp(uid, out var mapText))
+        // Spawning or anchoring can adjust the transform. restore the captured in-tile position.
+        _transform.SetLocalPositionNoLerp(spawned, coords.Position, transform);
+
+        if (entity.Ssd)
         {
-            var handleState = new ComponentHandleState(mapTextState, null);
-            EntityManager.EventBus.RaiseComponentEvent(uid.Value, mapText, ref handleState);
+            EnsureComp<StatusIconComponent>(spawned);
+            EnsureComp<MindExaminableComponent>(spawned);
+            EnsureComp<SSDIndicatorComponent>(spawned).IsSSD = true;
         }
 
-        return uid;
+        ApplyAppearance(spawned, entity.Appearance);
+
+        if (entity.Light is { } snapshotLight)
+            ApplyLight(spawned, snapshotLight);
+
+        // Fed through the normal state handler, the same way the server's copy reaches clients.
+        if (entity.MapText is { } mapTextState && _mapTextQuery.TryComp(spawned, out var mapText))
+        {
+            var handleState = new ComponentHandleState(mapTextState, null);
+            EntityManager.EventBus.RaiseComponentEvent(spawned, mapText, ref handleState);
+        }
+
+        return spawned;
     }
 
     /// <summary>
@@ -343,7 +417,8 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     /// </summary>
     private EntityUid? SpawnHumanoid(EntProtoId prototype, SnapshotHumanoid humanoid, EntityCoordinates coords)
     {
-        if (!_proto.Resolve(humanoid.Species, out var species))
+        if (string.IsNullOrEmpty(humanoid.Species.Id)
+            || !_proto.Resolve(humanoid.Species, out var species))
             return null;
 
         var doll = Spawn(species.DollPrototype, coords);
@@ -356,8 +431,25 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             _sprite.SetSnapCardinals((doll, dollSprite), mobSprite.SnapCardinals);
             dollSprite.NoRotation = mobSprite.NoRotation;
         }
-        _visualBody.ApplyProfiles(doll, humanoid.Profiles);
-        _visualBody.ApplyMarkings(doll, humanoid.Markings);
+
+        var dollAppearance = Comp<HumanoidAppearanceComponent>(doll);
+        dollAppearance.Species = humanoid.Species;
+        dollAppearance.MarkingSet = new(humanoid.Markings);
+        dollAppearance.CustomBaseLayers = new(humanoid.CustomBaseLayers);
+        dollAppearance.PermanentlyHidden = [.. humanoid.PermanentlyHidden];
+        dollAppearance.HiddenLayers = new(humanoid.HiddenLayers);
+        dollAppearance.HideLayersOnEquip = [.. humanoid.HideLayersOnEquip];
+        dollAppearance.MarkingsDisplacement = new(humanoid.MarkingsDisplacement);
+        dollAppearance.Sex = humanoid.Sex;
+        dollAppearance.Gender = humanoid.Gender;
+        dollAppearance.SkinColor = humanoid.SkinColor;
+        dollAppearance.EyeColor = humanoid.EyeColor;
+        dollAppearance.EyeGlowing = humanoid.EyeGlowing;
+        dollAppearance.Width = humanoid.Width;
+        dollAppearance.Height = humanoid.Height;
+        dollAppearance.UndergarmentTop = humanoid.UndergarmentTop;
+        dollAppearance.UndergarmentBottom = humanoid.UndergarmentBottom;
+        _humanoidAppearance.UpdateSprite((doll, dollAppearance, Comp<SpriteComponent>(doll)));
 
         foreach (var (slot, worn) in humanoid.Worn)
         {

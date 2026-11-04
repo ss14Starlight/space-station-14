@@ -44,18 +44,14 @@ public sealed partial class ServerSnapshotViewSystem : EntitySystem
     /// </summary>
 
     private void OnSnapshotRequested(Entity<SnapshotComponent> ent, ref SnapshotViewRequestMessage args)
-    {
-        SendSnapshot(ent, args.Actor);
-    }
+        => SendSnapshot(ent, args.Actor);
 
     /// <summary>
     /// Sends the snapshot right away so the view doesn't wait on the client's request
     /// the request stays as a fallback for when this arrives before the client has the UI open.
     /// </summary>
     private void OnUiOpened(Entity<SnapshotComponent> ent, ref BoundUIOpenedEvent args)
-    {
-        SendSnapshot(ent, args.Actor);
-    }
+        => SendSnapshot(ent, args.Actor);
 
     private void SendSnapshot(Entity<SnapshotComponent> ent, EntityUid viewer)
     {

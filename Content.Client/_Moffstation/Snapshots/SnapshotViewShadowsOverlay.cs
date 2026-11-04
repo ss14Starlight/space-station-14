@@ -26,8 +26,8 @@ public sealed partial class SnapshotViewShadowsOverlay : Robust.Client.Graphics.
     protected override void Draw(in OverlayDrawArgs args)
     {
         var handle = args.WorldHandle;
-        var query = _entityManager.EntityQueryEnumerator<SnapshotViewShadowsComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var shadows, out var xform))
+        var query = _entityManager.AllEntityQueryEnumerator<SnapshotViewShadowsComponent, TransformComponent>();
+        while (query.MoveNext(out _, out var shadows, out var xform))
         {
             if (xform.MapID != args.MapId)
                 continue;
