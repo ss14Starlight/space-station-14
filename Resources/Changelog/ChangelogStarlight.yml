@@ -1,13 +1,6 @@
 Entries:
 - author: neomoth
   changes:
-  - message: Lobby music no longer cuts out when entering game during end of round.
-    type: Fix
-  id: 409714
-  time: '2026-10-23T17:24:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6752
-- author: neomoth
-  changes:
   - message: Wires panel visuals for some structures (e.g. holopads, computers...) no longer get inverted upon disconnecting and reconnecting.
     type: Fix
   id: 409715
@@ -2799,4 +2792,11 @@ Entries:
   id: 410113
   time: '2026-11-04T14:34:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: Zokkie
+  changes:
+  - message: Laughing sound effect for Reptilians/Neo-Reptilians.
+    type: Add
+  id: 410114
+  time: '2026-11-04T18:53:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7039
 Order: -1
