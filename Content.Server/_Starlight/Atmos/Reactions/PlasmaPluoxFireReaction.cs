@@ -19,6 +19,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
             var energyReleased = 0f;
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
+            mixture.ReactionResults[(byte)GasReaction.Fire] = 0f;
 
             // More plasma released at higher temperatures.
             var temperatureScale = 0f;

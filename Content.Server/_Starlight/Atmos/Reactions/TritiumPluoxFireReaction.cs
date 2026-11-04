@@ -19,6 +19,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
             var energyReleased = 0f;
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
+            mixture.ReactionResults[(byte)GasReaction.Fire] = 0f;
             var burnedFuel = 0f;
             var initialTrit = mixture.GetMoles(Gas.Tritium);
             var initialPluoxium = mixture.GetMoles(Gas.Pluoxium);

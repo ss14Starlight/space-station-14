@@ -20,7 +20,7 @@ namespace Content.Server.Atmos.Reactions
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
             var location = holder as TileAtmosphere;
-            // mixture.ReactionResults[(byte)GasReaction.Fire] = 0f; - Starlight edit - Moved the reaction reset to AtmosphereSystem.Processing to prevent edge cases interfering with multiple simultaneous oxidisers
+            mixture.ReactionResults[(byte)GasReaction.Fire] = 0f;
             var burnedFuel = 0f;
             var initialTrit = mixture.GetMoles(Gas.Tritium);
 

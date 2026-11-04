@@ -23,6 +23,7 @@ public sealed partial class HydrogenPluoxFireReaction : IGasReactionEffect
         var energyReleased = 0f;
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         var temperature = mixture.Temperature;
+        mixture.ReactionResults[(byte)GasReaction.Fire] = 0f;
         var burnedFuel = 0f;
         var initialH2 = mixture.GetMoles(Gas.Hydrogen);
         var initialPluoxium = mixture.GetMoles(Gas.Pluoxium);
