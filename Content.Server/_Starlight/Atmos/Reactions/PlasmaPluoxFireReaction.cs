@@ -5,7 +5,7 @@ using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
 
 namespace Content.Server._Starlight.Atmos.Reactions;
-{
+
     [UsedImplicitly]
     [DataDefinition]
     public sealed partial class PlasmaPluoxFireReaction : IGasReactionEffect
@@ -92,4 +92,3 @@ namespace Content.Server._Starlight.Atmos.Reactions;
             return mixture.ReactionResults[(byte)GasReaction.Fire] != 0 ? ReactionResult.Reacting : ReactionResult.NoReaction;
         }
     }
-}
