@@ -141,6 +141,9 @@
 - type: !PartialOnly microwaveMealRecipe
   id: RecipeClownTearsSoup
   deviceType: Stove
+  solids:
+    MaterialBananium: !Remove
+    MaterialBananium1: 1
 
 - type: !PartialOnly microwaveMealRecipe
   id: RecipeMonkeysDelightSoup
