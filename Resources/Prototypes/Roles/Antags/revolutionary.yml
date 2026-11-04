@@ -39,7 +39,9 @@
   allowNonHumans: true # Starlight start
   blacklist:
     components:
-    - AntagImmune # Starlight end
+    - AntagImmune
+    tags:
+    - CantBecomeRevolutionary # Starlight end
   components:
   - type: Revolutionary
   - type: HeadRevolutionary

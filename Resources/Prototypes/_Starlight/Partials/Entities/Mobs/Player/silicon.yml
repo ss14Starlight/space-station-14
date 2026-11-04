@@ -1,0 +1,45 @@
+- type: !PartialOnly entity
+  id: PlayerBorgSyndicateAssaultBattery
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - BorgModuleSyndicateNukeDisk
+  - type: DefaultBorgModules
+    modules:
+    - BorgModuleTool
+    - BorgModuleOperative
+    - BorgModuleL6C
+    - BorgModuleDoubleEsword
+    - BorgModuleSyndicateNukeDisk
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
+
+- type: !PartialOnly entity
+  id: PlayerBorgSyndicateSaboteurBattery
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - !Index:0 BorgModuleSyndicateAdvancedTool
+      - !Index:0 BorgModuleConstruction
+      - BorgModuleSyndicateNukeDisk
+      - !Remove BorgModuleTool
+  - type: DefaultBorgModules
+    modules:
+    - BorgModuleSyndicateAdvancedTool
+    - BorgModuleConstruction
+    - BorgModuleRCD
+    - BorgModuleOperative
+    - BorgModuleSyndicateWeapon
+    - BorgModuleSyndicateNukeDisk
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
