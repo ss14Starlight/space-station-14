@@ -38,6 +38,8 @@ public sealed class ShutdownAiObjectiveTest : GameTest
 
         EntityUid objective = default;
         EntityUid core = default;
+        EntityUid aiBody = default;
+        BaseContainer? aiContainer = null;
         Entity<MindComponent> ownerMind = default;
         DamageableSystem damageable = null!;
         DamageTypePrototype blunt = null!;
@@ -49,7 +51,7 @@ public sealed class ShutdownAiObjectiveTest : GameTest
             ownerMind = minds.CreateMind(null);
             minds.TransferTo(ownerMind, ownerBody);
 
-            var aiBody = SEntMan.SpawnEntity("MobHuman", map.MapCoords);
+            aiBody = SEntMan.SpawnEntity("MobHuman", map.MapCoords);
             var aiMind = minds.CreateMind(null);
             minds.TransferTo(aiMind, aiBody);
 
@@ -57,7 +59,7 @@ public sealed class ShutdownAiObjectiveTest : GameTest
             server.System<TagSystem>().AddTag(aiBody, stationAiTag);
             core = SEntMan.SpawnEntity("PlayerStationAiEmpty", map.MapCoords);
             var containers = server.System<SharedContainerSystem>();
-            Assert.That(containers.TryGetContainer(core, StationAiHolderComponent.Container, out var aiContainer),
+            Assert.That(containers.TryGetContainer(core, StationAiHolderComponent.Container, out aiContainer),
                 Is.True);
             Assert.That(aiContainer, Is.Not.Null);
             Assert.That(containers.Insert(aiBody, aiContainer!), Is.True);
@@ -91,6 +93,13 @@ public sealed class ShutdownAiObjectiveTest : GameTest
                 ignoreGlobalModifiers: true);
             Assert.That(SEntMan.GetComponent<DestructibleComponent>(core).IsBroken, Is.False);
             Assert.That(objectives.GetProgress(objective, ownerMind), Is.EqualTo(1f));
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            var containers = server.System<SharedContainerSystem>();
+            if (aiContainer?.Contains(aiBody) == true)
+                Assert.That(containers.Remove(aiBody, aiContainer), Is.True);
         });
     }
 }
