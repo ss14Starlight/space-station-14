@@ -145,9 +145,7 @@ public sealed partial class PollenShopSystem : EntitySystem
 
 #region Floral
     // Floral
-
     // T1
-
     // T2
     private void GrantMossInsulation(EntityUid buyer)
     {
