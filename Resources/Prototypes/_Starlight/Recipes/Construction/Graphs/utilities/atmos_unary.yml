@@ -107,18 +107,6 @@
         amount: 2
         doAfter: 1
 
-    - to: dualportventpumpVoxAlt1
-      steps:
-      - material: Steel
-        amount: 2
-        doAfter: 1
-
-    - to: dualportventpumpVoxAlt2
-      steps:
-      - material: Steel
-        amount: 2
-        doAfter: 1
-
     # Freezer variants
     - to: ventpumpfreezerAlt1
       steps:
@@ -426,42 +414,6 @@
 
   - node: ventscrubberfreezerAlt2
     entity: GasVentScrubberFreezerAlt2
-    edges:
-    - to: start
-      conditions:
-      - !type:EntityAnchored
-        anchored: false
-      completed:
-      - !type:SpawnPrototype
-        prototype: SheetSteel1
-        amount: 2
-      - !type:DeleteEntity
-      steps:
-      - tool: Screwing
-        doAfter: 1
-      - tool: Welding
-        doAfter: 1
-
-  - node: dualportventpumpVoxAlt1
-    entity: GasDualPortVentPumpVoxAlt1
-    edges:
-    - to: start
-      conditions:
-      - !type:EntityAnchored
-        anchored: false
-      completed:
-      - !type:SpawnPrototype
-        prototype: SheetSteel1
-        amount: 2
-      - !type:DeleteEntity
-      steps:
-      - tool: Screwing
-        doAfter: 1
-      - tool: Welding
-        doAfter: 1
-
-  - node: dualportventpumpVoxAlt2
-    entity: GasDualPortVentPumpVoxAlt2
     edges:
     - to: start
       conditions:

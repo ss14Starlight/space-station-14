@@ -7,6 +7,7 @@ using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CCVar;
+using Content.Shared.HijackBeacon;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 #region Starlight
@@ -19,7 +20,7 @@ namespace Content.Server.Cargo.Systems;
 public sealed partial class CargoSystem
 {
     /*
-     * Handles cargo shuttle / trade mechanics.
+     * Handles automated trade station / trade mechanics.
      */
 
     [Dependency] private AtmosphereSystem _atmosphereSystem = default!; //Starlight

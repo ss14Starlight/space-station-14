@@ -47,3 +47,23 @@
   cost: 1000
   category: cargoproduct-category-name-armory
   group: market
+
+- type: cargoProduct
+  id: ArmoryMeleeArmory
+  icon:
+    sprite: _Starlight/Objects/Weapons/Melee/ares.rsi
+    state: icon
+  product: CrateArmoryMelee
+  cost: 4500
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: ArmoryVerdict
+  icon:
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/verdict.rsi
+    state: icon
+  product: CrateArmoryVerdict
+  cost: 6000
+  category: cargoproduct-category-name-armory
+  group: market

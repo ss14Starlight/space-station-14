@@ -4,6 +4,7 @@ using Content.Server._Starlight.GameTicking;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Presets;
 using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.GameTicking.Rules;
 using Robust.Shared.Prototypes;
 
@@ -22,16 +23,23 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
     private readonly Dictionary<ProtoId<GamePresetPrototype>, int> _currentPresetCooldowns = [];
     private readonly HashSet<EntProtoId> _roundStartCooldowns = [];
     private readonly HashSet<EntProtoId> _advancedCooldowns = [];
+    private static readonly HashSet<EntProtoId> _emptyRuleCooldowns = [];
 
     private ISawmill _sawmill = default!;
     private bool _roundInitialized;
     private bool _dynamicRound;
+    private List<(EntProtoId Owner, DynamicRuleCooldownComponent Component)>? _cooldownDefinitions;
 
     /// <summary>
     /// Rules blocked by cooldowns which were already active at the start of this round.
     /// Cooldowns activated during this round apply starting next round.
     /// </summary>
-    public IReadOnlySet<EntProtoId> CurrentRuleCooldowns => _currentRuleCooldowns;
+    public IReadOnlySet<EntProtoId> CurrentRuleCooldowns => BypassCooldowns ? _emptyRuleCooldowns : _currentRuleCooldowns;
+
+    /// <summary>
+    /// Whether the resolved preset ignores incoming cooldowns for this round.
+    /// </summary>
+    public bool BypassCooldowns { get; private set; }
 
     public override void Initialize()
     {
@@ -41,16 +49,30 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
         SubscribeLocalEvent<DynamicRuleCooldownRoundInitializingEvent>(OnRoundInitializing);
         SubscribeLocalEvent<DynamicRuleCooldownRoundStartedEvent>(OnRoundStarted);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+        SubscribeLocalEvent<GameRuleComponent, GameRuleAddedEvent>(OnRuleAdded);
+        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
     }
 
     private void OnRoundInitializing(DynamicRuleCooldownRoundInitializingEvent ev) => BeginRound(ev.Preset);
 
     private void OnRoundStarted(DynamicRuleCooldownRoundStartedEvent ev) => ApplyPresetCooldown(ev.Preset);
 
+    private void OnRuleAdded(EntityUid uid, GameRuleComponent component, ref GameRuleAddedEvent args) => ApplyRuleCooldown(args.RuleId);
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        if (args.WasModified<EntityPrototype>())
+            _cooldownDefinitions = null;
+    }
+
     /// <summary>
     /// Initializes the cooldown snapshot for the current round.
     /// </summary>
-    public void BeginRound(GamePresetPrototype preset) => EnsureRoundInitialized(IsDynamicPreset(preset));
+    public void BeginRound(GamePresetPrototype preset)
+    {
+        BypassCooldowns = preset.BypassCooldowns;
+        EnsureRoundInitialized(IsDynamicPreset(preset));
+    }
 
     /// <summary>
     /// Ensures cooldowns have advanced for this round. Calls may upgrade a round to Dynamic,
@@ -79,6 +101,8 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
     /// </summary>
     public void ApplyRuleCooldown(EntProtoId selectedRule)
     {
+        EnsureRoundInitialized(dynamicRound: false);
+
         foreach (var (owner, component) in EnumerateCooldownDefinitions())
         {
             if (owner != selectedRule && !component.Rules.Contains(selectedRule))
@@ -89,29 +113,37 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
     }
 
     /// <summary>
-    /// Applies a selected preset's vote cooldown to every cooldown group linked to that preset.
+    /// Applies cooldowns for a preset's rules as well as any explicitly linked cooldown groups.
+    /// Dynamic's future rolls are recorded individually when their rules are added.
     /// </summary>
     public void ApplyPresetCooldown(GamePresetPrototype preset)
     {
         EnsureRoundInitialized(IsDynamicPreset(preset));
 
-        if (preset.VoteCooldown <= 0)
-            return;
+        // Secret resolves its actual preset after the outer Secret preset initializes the round.
+        // The outer preset's later round-start event must not undo the resolved preset's bypass.
+        BypassCooldowns |= preset.BypassCooldowns;
 
-        var presetId = new ProtoId<GamePresetPrototype>(preset.ID);
         foreach (var (owner, component) in EnumerateCooldownDefinitions())
         {
-            if (!component.Presets.Contains(presetId))
+            if (!ContainsPreset(owner, component, preset))
                 continue;
 
-            ActivateCooldown(owner, component, preset.VoteCooldown, $"preset {preset.ID}");
+            ActivateCooldown(owner, component, Math.Max(component.Cooldown, preset.VoteCooldown), $"preset {preset.ID}");
         }
     }
 
     /// <summary>
     /// Returns whether a preset is blocked this round by a linked Dynamic rule cooldown.
     /// </summary>
-    public bool TryGetPresetCooldown(ProtoId<GamePresetPrototype> preset, out int remaining) => _currentPresetCooldowns.TryGetValue(preset, out remaining);
+    public bool TryGetPresetCooldown(ProtoId<GamePresetPrototype> preset, out int remaining)
+    {
+        remaining = 0;
+        return !BypassCooldowns && _currentPresetCooldowns.TryGetValue(preset, out remaining);
+    }
+
+    private static bool ContainsPreset(EntProtoId owner, DynamicRuleCooldownComponent component, GamePresetPrototype preset) => component.Presets.Contains(new ProtoId<GamePresetPrototype>(preset.ID)) ||
+                preset.Rules.Any(rule => rule == owner || component.Rules.Contains(rule));
 
     private void BuildRoundSnapshot()
     {
@@ -132,10 +164,14 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
             _currentRuleCooldowns.Add(owner);
             _currentRuleCooldowns.UnionWith(component.Rules);
 
-            foreach (var preset in component.Presets)
+            foreach (var preset in _prototypeManager.EnumeratePrototypes<GamePresetPrototype>())
             {
-                if (!_currentPresetCooldowns.TryGetValue(preset, out var current) || current < state.Remaining)
-                    _currentPresetCooldowns[preset] = state.Remaining;
+                if (preset.BypassCooldowns || !ContainsPreset(owner, component, preset))
+                    continue;
+
+                var presetId = new ProtoId<GamePresetPrototype>(preset.ID);
+                if (!_currentPresetCooldowns.TryGetValue(presetId, out var current) || current < state.Remaining)
+                    _currentPresetCooldowns[presetId] = state.Remaining;
             }
         }
     }
@@ -196,6 +232,10 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
 
     private IEnumerable<(EntProtoId Owner, DynamicRuleCooldownComponent Component)> EnumerateCooldownDefinitions()
     {
+        if (_cooldownDefinitions != null)
+            return _cooldownDefinitions;
+
+        _cooldownDefinitions = [];
         foreach (var prototype in _prototypeManager.EnumeratePrototypes<EntityPrototype>())
         {
             if (prototype.Abstract ||
@@ -204,8 +244,10 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
                 continue;
             }
 
-            yield return (prototype.ID, component);
+            _cooldownDefinitions.Add((prototype.ID, component));
         }
+
+        return _cooldownDefinitions;
     }
 
     private bool TryGetCooldownDefinition(
@@ -221,6 +263,7 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
     {
         _roundInitialized = false;
         _dynamicRound = false;
+        BypassCooldowns = false;
         _currentRuleCooldowns.Clear();
         _currentPresetCooldowns.Clear();
         _roundStartCooldowns.Clear();

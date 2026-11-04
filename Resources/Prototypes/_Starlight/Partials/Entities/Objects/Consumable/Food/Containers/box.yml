@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: HappyHonk
+  description: The toy is more edible than the food. Straight from the Honkas fly-thru, mmm..
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,3,3

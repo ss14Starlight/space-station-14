@@ -131,4 +131,9 @@ public sealed partial class ScreenSystem : EntitySystem
         if (args.Data.TryGetValue(ScreenMasks.Color, out Color color))
             _appearanceSystem.SetData(uid, TextScreenVisuals.Color, color);
     }
+
+    public void ForceGlobalTimer()
+    {
+
+    }
 }

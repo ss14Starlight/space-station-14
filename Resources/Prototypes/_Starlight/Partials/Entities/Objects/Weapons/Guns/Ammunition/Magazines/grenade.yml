@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: BaseMagazineGrenade
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 6 # 5 -> 6 to fit the hydra
+  - type: MagazineVisuals
+    steps: 6 # 5 -> 6 to fit the hydra

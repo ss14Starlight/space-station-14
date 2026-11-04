@@ -559,6 +559,8 @@
     - id: SpaceCash1000
     - id: BeachBall
     - id: BikeHorn
+    - id: Telecrystal1 # Starlight - Alternative TC Sources
+      amount: 3 # Starlight
 
 - type: entity
   id: LockerFreezerVaultFilled

@@ -1,0 +1,41 @@
+- type: !PartialOnly entity
+  id: WeatherAshfall
+  components:
+  - type: WeatherStatusEffect
+    sound:
+      path: /Audio/_Starlight/Effects/Weather/ashstorm_weak.ogg
+
+- type: !PartialOnly entity
+  id: WeatherAshfallLight
+  components:
+  - type: WeatherStatusEffect
+    sound:
+      path: /Audio/_Starlight/Effects/Weather/ashstorm_weak.ogg
+
+- type: !PartialOnly entity
+  id: WeatherAshfallHeavy
+  components:
+  - type: WeatherStatusEffect
+    sound:
+      path: /Audio/_Starlight/Effects/Weather/ashstorm.ogg
+
+- type: !PartialOnly entity
+  id: WeatherFallout
+  components:
+  - type: WeatherStatusEffect
+    sound:
+      path: /Audio/_Starlight/Effects/Weather/ashstorm_weak.ogg
+
+- type: !PartialOnly entity
+  id: WeatherSandstorm
+  components:
+  - type: WeatherStatusEffect
+    sound:
+      path: /Audio/_Starlight/Effects/Weather/ashstorm_weak.ogg
+
+- type: !PartialOnly entity
+  id: WeatherSandstormHeavy
+  components:
+  - type: WeatherStatusEffect
+    sound:
+      path: /Audio/_Starlight/Effects/Weather/ashstorm.ogg

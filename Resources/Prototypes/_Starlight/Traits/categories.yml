@@ -39,3 +39,9 @@
   maxTraits: 4
   maxPoints: 2
   accentColor: "#fffb00"
+
+- type: traitCategory
+  id: AntagTraits
+  name: trait-category-antags
+  priority: 40
+  accentColor: "#d95b64"

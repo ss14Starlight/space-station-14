@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingMaskGas, BaseBlueShieldContraband ]
+  parent: [ BaseContrabandTier2, ClothingMaskGas, BaseBlueShieldContraband ]
   id: ClothingMaskGasBSO
   name: blue swat gas mask
   description: A elite issue Security gas mask. Now in blue!
@@ -27,7 +27,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: [ ClothingMaskGas, BaseSecurityContraband ]
+  parent: [ BaseContrabandTier2, ClothingMaskGas, BaseSecurityContraband ] # Blimpuf
   id: ClothingMaskGasCorpsman
   name: security bio mask
   description: VERY Expensive medical PPE that provides superior pathological protection.
@@ -83,11 +83,25 @@
     hideOnToggle: true
 
 - type: entity
+  parent: [ClothingMaskBase]
+  id: ClothingMaskBreathTube
+  name: breath tube
+  description: A thin nose tube that connects to internals. Not very comfortable and falls out often, but good if you want people to see your pretty face.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/breathtube.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/breathtube.rsi
+  - type: BreathMask
+
+- type: entity
   parent: [ClothingMaskGas, BaseSovietContraband]
   id: ClothingSovietGasMask
   name: GP-32 gas mask
   description: An old uncomfortable mechanical gas mask of standard use in USSP. Meant to protect from radioactive fallout.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Sprite
     sprite: _Starlight/Clothing/Mask/sovietgas.rsi
   - type: Clothing

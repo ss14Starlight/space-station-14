@@ -66,7 +66,7 @@
 
 - type: !PartialOnly entity
   id: WeaponSubMachineGunWt550
-  parent: !Clear [ BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband ]
+  parent: !Clear [ BaseContrabandTier3, BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband ]
   components:
   - type: Gun
     minAngle: 5

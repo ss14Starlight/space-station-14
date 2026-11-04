@@ -45,11 +45,7 @@ public sealed partial class SlimeFireproofPotionSystem : EntitySystem
             return;
         }
         ent.Comp.RemainingUses -= 1;
-        // Yes I am avoiding localization, last time I tried it I couldn't get the plurals to work.
-        // And I'm only complaining here because that seems like the best way to get help:
-        // To do something wrong in the hope someone in-the-know feels the need to correct you or to do it right.
-        var plural = ent.Comp.RemainingUses == 1 ? "" : "s";
-        _popupSystem.PopupEntity($"Successfully applied fireproof potion! {ent.Comp.RemainingUses} use{plural} remaining.", args.User, args.User);
+        _popupSystem.PopupEntity(Loc.GetString("slime-fireproof-applied", ("uses", ent.Comp.RemainingUses)), args.User, args.User);
         if (ent.Comp.RemainingUses <= 0)
             PredictedQueueDel(args.Used);
     }

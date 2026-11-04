@@ -1,0 +1,21 @@
+# Latejoin Departmental Spawns
+- type: entity
+  parent: CryogenicSleepUnit
+  id: CryogenicSleepUnitSpawnerLateJoinITG
+  suffix: Spawner, LateJoin
+  components:
+    - type: ContainerSpawnPoint
+      containerId: storage
+      spawnType: LateJoin
+      department: ITG
+
+# Latejoin Departmental Spawns
+- type: entity
+  parent: CryogenicSleepUnit
+  id: CryogenicSleepUnitSpawnerLateJoinCommand
+  suffix: Spawner, LateJoin
+  components:
+    - type: ContainerSpawnPoint
+      containerId: storage
+      spawnType: LateJoin
+      department: Command

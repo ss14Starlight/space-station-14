@@ -1,5 +1,6 @@
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration;
+using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Popups;
 using Content.Server.Prayer;
@@ -21,7 +22,11 @@ public sealed partial class MsgCommand : ToolshedCommand
     private PrayerSystem? _prayer;
     private PopupSystem? _popup;
     private TipsSystem? _tips;
-    private AutoDiscordLogSystem _autoLog = default!; //Starlight
+    #region Starlight
+    private AutoDiscordLogSystem _autoLog = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    private AdminLimitSystem? _limits;
+    #endregion
 
     [CommandImplementation("subtle")]
     public IEnumerable<EntityUid> Subtle(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> targets, string popup, string message)
@@ -78,10 +83,14 @@ public sealed partial class MsgCommand : ToolshedCommand
     }
 
     [CommandImplementation("tippy")]
-    public IEnumerable<EntityUid> Tippy([PipedArgument] IEnumerable<EntityUid> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval)
+    public IEnumerable<EntityUid> Tippy(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval) //Starlight: include IInvocationCtx
     {
         _tips ??= GetSys<TipsSystem>();
-        _autoLog ??= GetSys<AutoDiscordLogSystem>(); //Starlight
+        // Starlight-start
+        _autoLog ??= GetSys<AutoDiscordLogSystem>();
+        if (!CanTippy(ctx))
+            yield break;
+        // Starlight-end
 
         foreach (var ent in targets)
         {
@@ -92,14 +101,18 @@ public sealed partial class MsgCommand : ToolshedCommand
 
             yield return ent;
         }
-        _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype))); //Starlight
+        _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype)), ctx.Session?.Name ?? "unknown"); //Starlight
     }
 
     [CommandImplementation("tippy")]
-    public IEnumerable<ICommonSession> Tippy([PipedArgument] IEnumerable<ICommonSession> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval)
+    public IEnumerable<ICommonSession> Tippy(IInvocationContext ctx, [PipedArgument] IEnumerable<ICommonSession> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval) //Starlight: include IInvocationCtx
     {
         _tips ??= GetSys<TipsSystem>();
-        _autoLog ??= GetSys<AutoDiscordLogSystem>(); //Starlight
+        // Starlight-start
+        _autoLog ??= GetSys<AutoDiscordLogSystem>();
+        if (!CanTippy(ctx))
+            yield break;
+        // Starlight-end
 
         foreach (var session in targets)
         {
@@ -107,6 +120,27 @@ public sealed partial class MsgCommand : ToolshedCommand
 
             yield return session;
         }
-        _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype))); //Starlight
+        _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype)), ctx.Session?.Name ??  "unknown"); //Starlight
     }
+
+    #region Starlight
+    private bool CanTippy(IInvocationContext ctx)
+    {
+        _limits ??= GetSys<AdminLimitSystem>();
+
+        if (ctx.Session != null && !_adminManager.HasAdminFlag(ctx.Session, AdminFlags.Broadcast))
+        {
+            ctx.WriteLine(Loc.GetString("cmd-admin-limit-no-flag", ("flag", nameof(AdminFlags.Broadcast).ToUpperInvariant())));
+            return false;
+        }
+
+        if (!_limits.TryUseTippy(ctx.Session, out var remaining))
+        {
+            ctx.WriteLine(Loc.GetString("cmd-admin-limit-cooldown", ("seconds", MathF.Ceiling(remaining))));
+            return false;
+        }
+
+        return true;
+    }
+    #endregion
 }

@@ -1,0 +1,8 @@
+- type: !PartialOnly job
+  id: StationAi
+  roleType: CorporateAligned
+  roleSubtype: role-subtype-silicon
+
+- type: !PartialOnly job
+  id: Borg
+  roleSubtype: role-subtype-silicon

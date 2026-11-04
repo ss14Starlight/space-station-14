@@ -1,0 +1,11 @@
+- type: entity
+  abstract: true
+  parent: ClothingNeckBase
+  id: ClothingNeckBaseHamster
+  components:
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - WhitelistChameleon
+        - HamsterWearable

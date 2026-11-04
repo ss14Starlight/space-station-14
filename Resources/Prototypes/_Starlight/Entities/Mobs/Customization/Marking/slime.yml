@@ -129,6 +129,17 @@
 
 # Snout
 
+- type: marking
+  id: SlimeSnout
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ SlimePerson ]
+  forcedColoring: true
+  followSkinColor: true
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/SlimePerson/snout.rsi
+      state: snout
+
 # Eyes
 
 - type: marking

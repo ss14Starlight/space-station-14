@@ -1,6 +1,7 @@
 - type: guideEntry
   id: Medical
   name: guide-entry-medical
+  department: Medical # Starlight
   text: "/ServerInfo/Guidebook/Medical/Medical.xml"
   children:
   - MedicalDoctor
@@ -37,6 +38,7 @@
 - type: guideEntry
   id: Medicine
   name: guide-entry-medicine
+  color: "#96DAFF" # Starlight: Advanced medicallight
   text: "/ServerInfo/Guidebook/Medical/Medicine.xml"
   filterEnabled: True
 

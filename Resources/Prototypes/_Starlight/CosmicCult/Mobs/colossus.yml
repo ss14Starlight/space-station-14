@@ -5,6 +5,16 @@
   name: entropic colossus
   description: A colossal monstrosity of malign plating and dendritic infestation.
   components:
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Look
+    - Wave
+  - type: SocialInteractionReceiver
+    interactionOverrides: # no nose
+    - id: Boop
+      interactString: booping-borg-success
+      messagePerceivedByOthers: booping-borg-success-others
+      emoteMessage: booping-borg-emote
   - type: FTLSmashImmune
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-cultentity
@@ -15,7 +25,7 @@
     - CosmicCult
   - type: CosmicMalignantHealing
     healInterval: 10s
-    healAmount: 1
+    healAmount: 1.5
   - type: StaminaResistance
     damageCoefficient: 0 # No more stunning colossi
   - type: Sprite
@@ -42,6 +52,7 @@
       visible: false
       map: ["hibernating"]
   - type: Appearance
+  - type: SyncSprite
   - type: GenericVisualizer
     visuals:
       enum.ColossusVisuals.Status:
@@ -170,7 +181,7 @@
     - Dead
   - type: AntagMonsterScaling
     minimumHealthScaling: -0.25
-    maximumHealthScaling: 0.25
+    maximumHealthScaling: 0.5
   - type: ToolRefinable
     refineTime: 16
     refineResult: []

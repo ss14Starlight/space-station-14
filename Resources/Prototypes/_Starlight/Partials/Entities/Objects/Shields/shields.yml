@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: BaseShield
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/plastic_shield_pick_up.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/plastic_shield_drop.ogg

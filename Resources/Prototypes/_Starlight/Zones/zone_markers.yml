@@ -6,6 +6,10 @@
   components:
   - type: ZoneMarker
     priority: 10
+  - type: Sprite
+    sprite: _Starlight/Markers/zone.rsi
+    layers:
+    - state: zone
 
 - type: entity
   id: ZoneMarkerHallway
@@ -14,6 +18,8 @@
   components:
   - type: ZoneMarker
     zone: Hallway
+  - type: Sprite
+    color: "#7A7A7A"
 
 - type: entity
   id: ZoneMarkerMaintenance
@@ -22,6 +28,8 @@
   components:
   - type: ZoneMarker
     zone: Maintenance
+  - type: Sprite
+    color: "#5B4A2E"
 
 - type: entity
   id: ZoneMarkerCommand
@@ -30,6 +38,8 @@
   components:
   - type: ZoneMarker
     zone: Command
+  - type: Sprite
+    color: "#3F51B5"
 
 - type: entity
   id: ZoneMarkerSecurity
@@ -38,6 +48,8 @@
   components:
   - type: ZoneMarker
     zone: Security
+  - type: Sprite
+    color: "#A33030"
 
 - type: entity
   id: ZoneMarkerMedical
@@ -46,6 +58,8 @@
   components:
   - type: ZoneMarker
     zone: Medical
+  - type: Sprite
+    color: "#4DB6AC"
 
 - type: entity
   id: ZoneMarkerEngineering
@@ -54,6 +68,8 @@
   components:
   - type: ZoneMarker
     zone: Engineering
+  - type: Sprite
+    color: "#C9A227"
 
 - type: entity
   id: ZoneMarkerScience
@@ -62,6 +78,8 @@
   components:
   - type: ZoneMarker
     zone: Science
+  - type: Sprite
+    color: "#8E44AD"
 
 - type: entity
   id: ZoneMarkerCargo
@@ -70,6 +88,8 @@
   components:
   - type: ZoneMarker
     zone: Cargo
+  - type: Sprite
+    color: "#B07219"
 
 - type: entity
   id: ZoneMarkerService
@@ -78,6 +98,8 @@
   components:
   - type: ZoneMarker
     zone: Service
+  - type: Sprite
+    color: "#5C9E31"
 
 - type: entity
   id: ZoneMarkerArrivals
@@ -86,6 +108,8 @@
   components:
   - type: ZoneMarker
     zone: Arrivals
+  - type: Sprite
+    color: "#4F7A8C"
 
 - type: entity
   id: ZoneMarkerAtmospherics
@@ -94,6 +118,8 @@
   components:
   - type: ZoneMarker
     zone: Atmospherics
+  - type: Sprite
+    color: "#B85C38"
 
 - type: entity
   id: ZoneMarkerBar
@@ -102,6 +128,8 @@
   components:
   - type: ZoneMarker
     zone: Bar
+  - type: Sprite
+    color: "#7D4B2A"
 
 - type: entity
   id: ZoneMarkerKitchen
@@ -110,6 +138,8 @@
   components:
   - type: ZoneMarker
     zone: Kitchen
+  - type: Sprite
+    color: "#C4713A"
 
 - type: entity
   id: ZoneMarkerChapel
@@ -118,6 +148,8 @@
   components:
   - type: ZoneMarker
     zone: Chapel
+  - type: Sprite
+    color: "#9E9E9E"
 
 - type: entity
   id: ZoneMarkerDormitory
@@ -126,6 +158,8 @@
   components:
   - type: ZoneMarker
     zone: Dormitory
+  - type: Sprite
+    color: "#6D8B74"
 
 - type: entity
   id: ZoneMarkerSolars
@@ -134,3 +168,25 @@
   components:
   - type: ZoneMarker
     zone: Solars
+  - type: Sprite
+    color: "#2E4A62"
+
+- type: entity
+  id: ZoneMarkerDetective
+  parent: ZoneMarkerBase
+  name: zone marker (detective)
+  components:
+  - type: ZoneMarker
+    zone: Detective
+  - type: Sprite
+    color: "#6B5B45"
+
+- type: entity
+  id: ZoneMarkerVirology
+  parent: ZoneMarkerBase
+  name: zone marker (virology)
+  components:
+  - type: ZoneMarker
+    zone: Virology
+  - type: Sprite
+    color: "#7CB342"

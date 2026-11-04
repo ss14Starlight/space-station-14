@@ -195,6 +195,9 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+        // Starlight - start
+        UpdateEvacuationPlanetGeneration();
+        // Starlight - end
         // Don't handle any of this logic if in lobby
         if (_ticker.RunLevel != GameRunLevel.PreRoundLobby)
             UpdateEmergencyConsole(frameTime);

@@ -1,25 +1,4 @@
 - type: entity
-  id: USSPUplinkImplant
-  name: USSP uplink implant
-  description: A subdermal implant containing the USSP uplink radio.
-  parent: [ BaseSubdermalImplant, StorePresetUSSP ]
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: SubdermalImplant
-      implantAction: ActionOpenSKBUplinkImplant
-      whitelist:
-        components:
-          - Hands
-    - type: Store
-      balance:
-        Telebond: 0
-    - type: UserInterface
-      interfaces:
-        enum.StoreUiKey.Key:
-          type: StoreBoundUserInterface
-    - type: USSPUplinkImplant
-
-- type: entity
   parent: BaseSubdermalImplant
   id: MagillitisSerumImplant
   name: magillitis serum implant
@@ -204,6 +183,36 @@
     maxIntensity: 15
     canCreateVacuum: false
 
+- type: entity
+  parent: BaseSubdermalImplant
+  id: PicoBombImplant
+  name: pico-bomb implant
+  description: This implant detonates the user upon activation or upon death.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivatePicoBomb
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: TriggerOnActivateImplant
+  - type: ExplodeOnTrigger
+  - type: GibOnTrigger
+    targetUser: true
+    deleteItems: true
+  - type: Explosive
+    explosionType: PicoBomb
+    totalIntensity: 10
+    intensitySlope: 5
+    maxIntensity: 30
+    canCreateVacuum: false
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+    - MicroBomb
+
 # Traitor Mind Control
 - type: entity
   parent: BaseSubdermalImplant
@@ -287,3 +296,56 @@
       targetUser: true
       radioChannel:
       - Expedition
+
+# USSP Implants
+- type: entity
+  id: USSPUplinkImplant
+  name: USSP uplink implant
+  description: A subdermal implant containing the USSP uplink radio.
+  parent: BaseSubdermalImplant
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionOpenSKBUplinkImplant
+      whitelist:
+        components:
+          - Hands
+    - type: RemoteStore
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: USSPUplinkImplant
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantUSSP
+  name: USSP death rattler
+  description: This implant will inform the USSP radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel:
+    - Soviet
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantUSSP
+  name: USSP radio implant
+  description: This implant will allow you to listen and talk in the USSP radio channel without a headset.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - Soviet
+
+- type: entity
+  parent: MindShieldImplant
+  id: ITGMindShieldImplant
+  name: ITG mindshield implant
+  description: This implant will ensure loyalty to the Guild and prevent mind control devices.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MindShieldImplant
+    mindShieldStatusIcon: ITGMindShieldIcon

@@ -57,6 +57,7 @@ public enum ColossusVisuals : byte
     Status,
     Hibernation,
     Sunder,
+    Health,
 }
 
 [Serializable, NetSerializable]
@@ -65,6 +66,15 @@ public enum ColossusStatus : byte
     Alive,
     Dead,
     Action,
+}
+
+[Serializable, NetSerializable]
+public enum ColossusHealth : byte
+{
+    Healthy,
+    Damaged,
+    HeavilyDamaged,
+    Crumbling,
 }
 
 [Serializable, NetSerializable]

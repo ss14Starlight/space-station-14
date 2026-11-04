@@ -1,0 +1,23 @@
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxVariableHeavy
+  result: MagazineBoxVariableHeavy
+  materials:
+    Steel: 750
+    Glass: 400
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxVariableMedium
+  result: MagazineBoxVariableMedium
+  materials:
+    Steel: 700
+    Glass: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxVariableLight
+  result: MagazineBoxVariableLight
+  materials:
+    Steel: 650
+    Glass: 200

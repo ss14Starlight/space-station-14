@@ -1,0 +1,27 @@
+- type: !PartialOnly entity
+  id: BaseMobDiona
+  components:
+  - type: SocialInteractionReceiver
+    interactionOverrides: # diona don't have noses
+    - id: Pat
+      interactSound: /Audio/Effects/plant_rustle.ogg
+    - id: Boop
+      interactString: booping-plant-success
+      messagePerceivedByOthers: booping-plant-success-others
+      emoteMessage: booping-plant-emote
+      interactSound: /Audio/Effects/plant_rustle.ogg
+
+- type: !PartialOnly entity
+  id: PottedPlantBase
+  components:
+  - type: SocialInteractionReceiver
+    interactionPrototypes:
+    - Boop
+    interactionOverrides: # plants don't have noses
+    - id: Pat
+      interactSound: /Audio/Effects/plant_rustle.ogg
+    - id: Boop
+      interactString: booping-plant-success
+      messagePerceivedByOthers: booping-plant-success-others
+      emoteMessage: booping-plant-emote
+      interactSound: /Audio/Effects/plant_rustle.ogg

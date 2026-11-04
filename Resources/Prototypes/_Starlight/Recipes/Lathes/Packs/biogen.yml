@@ -1,0 +1,12 @@
+- type: latheRecipePack
+  id: StarlightBioGenIngredientsStatic
+  recipes:
+  - BioGenCompostAmmonia
+  - BioGenSalt
+  - BioGenFat
+  - BioGenOliveOil
+  - BioGenOil
+  - BioGenEgg
+  - BioGenCornmeal
+  - BioGenOat
+  - BioGenBlood

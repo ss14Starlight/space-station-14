@@ -54,6 +54,14 @@ public sealed partial class StationAiOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
+        // Starlight-start
+        var remoteControl = _entManager.System<Content.Client._Starlight.Computers.RemoteControl.RemoteControlInterface>();
+        if (args.ViewportControl is { } viewport && remoteControl.RemoteViewport == viewport)
+            return;
+
+        if (remoteControl.RemoteViewportEye is { } remoteEye && args.Viewport.Eye == remoteEye)
+            return;
+        // Starlight-end
         var res = _resources.GetForViewport(args.Viewport, static _ => new CachedResources());
 
         if (res.StencilTexture?.Texture.Size != args.Viewport.Size)

@@ -47,7 +47,7 @@
     blacklist:
       components:
       - Revolutionary
-      - BorgChassis
+      # - BorgChassis # Starlight: borgis are convertible
       - MindShield
       - Zombie
       tags:

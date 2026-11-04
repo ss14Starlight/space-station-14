@@ -344,7 +344,7 @@ public sealed partial class ServerApi : IPostInjectInit
             var bans = await _db.GetServerBansAsync(userId: located.UserId,
                 address: null,
                 hwId: null,
-                modernHWIds: located.LastModernHWIds,
+                modernHWIds: null,
                 includeUnbanned: false);
             if (bans.Count > 0)
             {

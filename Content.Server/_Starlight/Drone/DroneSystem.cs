@@ -1,5 +1,7 @@
+using Content.Server.Instruments;
 using Content.Server.Tools.Innate;
 using Content.Shared.Examine;
+using Content.Shared.Instruments;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Storage;
@@ -20,6 +22,7 @@ public sealed partial class DroneSystem : SharedDroneSystem
     [Dependency] private SharedAccessSystem _access = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private InstrumentSystem _instrumentSystem = default!;
 
     [SubscribeLocalEvent]
     private void OnExamined(EntityUid uid, DroneComponent component, ExaminedEvent args)
@@ -65,7 +68,8 @@ public sealed partial class DroneSystem : SharedDroneSystem
     private void OnMindAdded(EntityUid uid, DroneComponent component, MindAddedMessage args)
     {
         UpdateDroneAppearance(uid, DroneStatus.On);
-        _access.SetAccessEnabled(uid, true);
+        // Access only works while the drone has power.
+        _access.SetAccessEnabled(uid, component.Active);
     }
 
     [SubscribeLocalEvent]
@@ -73,6 +77,19 @@ public sealed partial class DroneSystem : SharedDroneSystem
     {
         UpdateDroneAppearance(uid, DroneStatus.Off);
         _access.SetAccessEnabled(uid, false);
+        StopInstrument(uid);
+    }
+
+    /// <summary>
+    /// Stops any MIDI playback when the player leaves
+    /// </summary>
+    private void StopInstrument(EntityUid uid)
+    {
+        if (HasComp<ActiveInstrumentComponent>(uid))
+            _instrumentSystem.ToggleInstrumentUi(uid, uid);
+
+        if (TryComp<InstrumentComponent>(uid, out var instrument))
+            _instrumentSystem.Clean(uid, instrument);
     }
 
     private void UpdateDroneAppearance(EntityUid uid, DroneStatus status)

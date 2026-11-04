@@ -20,7 +20,7 @@ public sealed partial class HitscanBasicDamageSystem : EntitySystem
         if (args.Data.HitEntity == null)
             return;
 
-        var dmg = ent.Comp.Damage * _damage.UniversalHitscanDamageModifier;
+        var dmg = ent.Comp.Damage * _damage.UniversalHitscanDamageModifier * GetFalloffMultiplier(ent, args.Data); // Starlight-edit: distance falloff
 
         // var damageDealt = _damage.TryChangeDamage(args.Data.HitEntity.Value, dmg, origin: args.Data.Gun); // Starlight - we redefine this
         // Starlight start

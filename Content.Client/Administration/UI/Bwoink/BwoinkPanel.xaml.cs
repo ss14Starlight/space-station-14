@@ -21,11 +21,7 @@ namespace Content.Client.Administration.UI.Bwoink
         {
             RobustXamlLoader.Load(this);
 
-            var msg = new FormattedMessage();
-            msg.PushColor(Color.LightGray);
-            msg.AddText(Loc.GetString("bwoink-system-messages-being-relayed-to-discord"));
-            msg.Pop();
-            RelayedToDiscordLabel.SetMessage(msg);
+            RelayedToDiscordLabel.SetMessage(Loc.GetString("bwoink-system-messages-being-relayed-to-discord")); // Starlight
 
             _messageSender = messageSender;
 
@@ -34,23 +30,11 @@ namespace Content.Client.Administration.UI.Bwoink
                 if (c.Visible)
                     Unread = 0;
             };
-            SenderLineEdit.OnTextEntered += Input_OnTextEntered;
-            SenderLineEdit.OnTextChanged += Input_OnTextChanged;
+            // Starlight-start
+            Conversation.OnMessageSubmitted += text => _messageSender.Invoke(text);
+            Conversation.OnInputChanged += text => InputTextChanged?.Invoke(text);
+            // Starlight-end
             UpdateTypingIndicator();
-        }
-
-        private void Input_OnTextEntered(LineEdit.LineEditEventArgs args)
-        {
-            if (string.IsNullOrWhiteSpace(args.Text))
-                return;
-
-            _messageSender.Invoke(args.Text);
-            SenderLineEdit.Clear();
-        }
-
-        private void Input_OnTextChanged(LineEdit.LineEditEventArgs args)
-        {
-            InputTextChanged?.Invoke(args.Text);
         }
 
         public void ReceiveLine(SharedBwoinkSystem.BwoinkTextMessage message)
@@ -60,25 +44,19 @@ namespace Content.Client.Administration.UI.Bwoink
 
             var formatted = new FormattedMessage(1);
             formatted.AddMarkupOrThrow($"[color=gray]{message.SentAt.ToShortTimeString()}[/color] {message.Text}");
-            TextOutput.AddMessage(formatted);
+            Conversation.AddMessage(formatted); // Starlight
             LastMessage = message.SentAt;
         }
 
         private void UpdateTypingIndicator()
         {
-            var msg = new FormattedMessage();
-            msg.PushColor(Color.LightGray);
-
             var text = PeopleTyping.Count == 0
                 ? string.Empty
                 : Loc.GetString("bwoink-system-typing-indicator",
                     ("players", string.Join(", ", PeopleTyping)),
                     ("count", PeopleTyping.Count));
 
-            msg.AddText(text);
-            msg.Pop();
-
-            TypingIndicator.SetMessage(msg);
+            Conversation.SetTyping(text); // Starlight
         }
 
         public void UpdatePlayerTyping(string name, bool typing)

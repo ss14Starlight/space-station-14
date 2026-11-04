@@ -10,3 +10,8 @@ gunnery-other-tooltip = Show uncategorised weapons
 gunnery-ready = Ready
 gunnery-cooldown = Cooldown
 gunnery-no-ammo = No ammo
+
+gunnery-filter = FILTER:
+gunnery-cannons = CANNONS
+gunnery-guidance-active = GUIDANCE ACTIVE
+gunnery-guidance-hint = GUIDANCE ACTIVE — hold LMB to steer

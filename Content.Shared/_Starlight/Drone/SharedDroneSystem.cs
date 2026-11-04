@@ -1,5 +1,7 @@
 using Content.Shared._Starlight.Drone.Components;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Item;
+using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Robust.Shared.Serialization;
 
@@ -11,6 +13,8 @@ namespace Content.Shared._Starlight.Drone;
 public abstract partial class SharedDroneSystem : EntitySystem
 {
     [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     [SubscribeLocalEvent]
     private void OnInteractionAttempt(EntityUid uid, DroneComponent component, ref InteractionAttemptEvent args)
@@ -43,6 +47,23 @@ public abstract partial class SharedDroneSystem : EntitySystem
 
         // No whitelisted tags found, deny interaction
         args.Cancelled = true;
+    }
+
+    // Stops drones from picking up items that are too large for them to carry.
+    [SubscribeLocalEvent]
+    private void OnPickupAttempt(Entity<DroneComponent> ent, ref PickupAttemptEvent args)
+    {
+        if (!TryComp<ItemComponent>(args.Item, out var item))
+            return;
+
+        var max = _item.GetSizePrototype(ent.Comp.MaxItemSize);
+        var size = _item.GetSizePrototype(item.Size);
+
+        if (size.Weight <= max.Weight)
+            return;
+
+        args.Cancel();
+        _popup.PopupClient(Loc.GetString("drone-item-too-large"), ent, ent);
     }
 
     [Serializable, NetSerializable]

@@ -150,6 +150,13 @@ ghost-role-information-maintenance-drone-rules = You are bound by these laws bot
                                                  2. You may not harm any being, regardless of intent or circumstance.
                                                  3. Your goals are to build, maintain, repair, improve, and power the station to the best of your abilities. You must never actively work against these goals.
 
+ghost-role-information-roguedrone-name = Scrapper Drone
+ghost-role-information-rogue-drone-description = Strip the station and local space of materials to make more drones.
+ghost-role-information-rogue-drone-rules = You are bound by these laws both in-game and out-of-character:
+                                                 1. You may not involve yourself in the matters of another being unless the other being is a scrapper drone.
+                                                 2. You may avoid harm or damage to the fabricator and scrapper drones.
+                                                 3. You must maintain, repair, improve, and produce more scrapper drones.
+
 # Ghost role names, descriptions and rules
 
 ghost-role-information-mob-nyr-mouse-ops-name = red mouse!
@@ -158,3 +165,7 @@ ghost-role-information-spawn-point-ghost-cluwne-beast-name = Cluwne Beast
 ghost-role-information-mob-nyr-mouse-ops-description = You are mouff leader. Your goal is to steal cheese from heads!
 ghost-role-information-spawn-point-ghost-cluwne-beast-description = Spread laughter and chaos by hitting and turning the crew into cluwnes.
 ghost-role-information-spawn-point-ghost-cluwne-beast-rules = You are an antagonist, transform as many of the crew as you can into cluwnes.
+
+ghost-role-information-bombroach-name = Bombroach
+ghost-role-information-bombroach-description = You're the faithful trained pest of syndicate operatives with a picobomb. Serve your master to the death!
+ghost-role-information-bombroach-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the agent who summoned you.

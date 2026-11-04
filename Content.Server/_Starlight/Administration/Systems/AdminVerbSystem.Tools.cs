@@ -44,7 +44,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
                 {
                     //we technically load the map here, but it doesnt matter, this is safer since the behaviour of this function is garunteed
                     //and reimplementing it would be stupid and unsafe
-                    var (Map, Grid) = _adminTestArenaSystem.AssertArenaLoaded(player);
+                    var Map = _adminTestArenaSystem.AssertArenaLoaded(player); // Starlight edit
 
                     var _mapManager = _entities.System<SharedMapSystem>();
 
@@ -76,7 +76,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
                     _chat.SendAdminAnnouncementMessage(player, $"Added NoObjectiveTarget component to the entity! ({args.Target})");
                 },
                 Impact = LogImpact.Low,
-                Message = "Prevents this entity from being targeted by other player's objectives. Will also prevent paraclones of this player.",
+                Message = Loc.GetString("admin-trick-prevent-objective-targeting-description"),
                 Priority = (int)TricksVerbPriorities.BlockObjectiveTargeting
             };
             if (HasComp<ActorComponent>(args.Target)) args.Verbs.Add(preventObjectiveTargeting);

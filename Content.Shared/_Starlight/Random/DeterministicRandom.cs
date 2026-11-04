@@ -49,4 +49,10 @@ public static class DeterministicRandom
     /// </summary>
     public static bool Prob(NetEntity a, NetEntity b, float chance)
         => Roll(a, b) < chance;
+
+    /// <summary>
+    /// Whether the roll for a list of parameters is below <paramref name="chance"/>.
+    /// </summary>
+    public static bool Prob(float chance, params int[] seeds)
+        => Roll(seeds) < chance;
 }

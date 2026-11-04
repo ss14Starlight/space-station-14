@@ -41,6 +41,7 @@
   - type: Clickable
   - type: InteractionOutline
   - type: SubFloorHide
+    subfloorLayer: Pipes
   - type: CollideOnAnchor
   - type: Anchorable
   - type: Pullable

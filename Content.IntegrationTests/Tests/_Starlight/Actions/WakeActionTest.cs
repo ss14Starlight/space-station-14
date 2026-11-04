@@ -1,6 +1,7 @@
 #nullable enable
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
+using Content.Server.Damage.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Bed.Sleep;
@@ -65,6 +66,10 @@ public sealed class WakeActionTest : GameTest
             Assert.That(wakeAction, Is.Not.Null, "Wake action never reached the client");
             await client.WaitPost(() => clientActions.TriggerAction(wakeAction!.Value));
         }
+
+        // The test map has no atmosphere, so the player takes vacuum damage over time, and damage above the wake
+        // threshold wakes sleepers. Godmode blocks that so only the wake action can wake the entity.
+        await server.WaitPost(() => server.System<GodmodeSystem>().EnableGodmode(serverEntity));
 
         await server.WaitPost(() => Assert.That(sleepingSystem.TrySleeping(serverEntity), Is.True));
         await pair.RunTicksSync(5);

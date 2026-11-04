@@ -19,26 +19,11 @@ public sealed partial class PlantHarvestSystem : EntitySystem
     [Dependency] private PlantSystem _plant = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private PlantHolderSystem _plantHolder = default!;
-    [Dependency] private PlantTraySystem _plantTray = default!;
 
     [Dependency] private EntityQuery<PlantHolderComponent> _holderQuery;
     [Dependency] private EntityQuery<PlantHarvestComponent> _harvestQuery;
     [Dependency] private EntityQuery<PlantComponent> _plantQuery;
     [Dependency] private EntityQuery<PlantDataComponent> _dataQuery;
-
-    [SubscribeLocalEvent]
-    private void OnInteractHand(Entity<PlantTrayComponent> ent, ref InteractHandEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        // TODO: Remove this once trays have a proper UI.
-        if (!_plantTray.TryGetAlivePlant(ent.AsNullable(), out var plantUid))
-            return;
-
-        if (TryHandleHarvest(plantUid.Value, args.User))
-            args.Handled = true;
-    }
 
     [SubscribeLocalEvent]
     private void OnPlantGrow(Entity<PlantHolderComponent> ent, ref PlantGrowEvent args)
@@ -132,7 +117,7 @@ public sealed partial class PlantHarvestSystem : EntitySystem
             return;
 
         var name = Loc.GetString(plantData.Name);
-        _popup.PopupCursor(Loc.GetString("botany-harvest-success-message", ("name", name)), user, PopupType.Medium);
+        _popup.PopupPredictedCursor(Loc.GetString("botany-harvest-success-message", ("name", name)), user, PopupType.Medium); // Starlight: Predicted for popups
 
         var totalYield = 0;
         if (plant.Yield >= 0)

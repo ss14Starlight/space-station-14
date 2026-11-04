@@ -61,4 +61,4 @@
 - type: ninjaHackingThreat
   id: TheClownening
   announcement: terror-honk
-  rule: GameRuleClownSwarm
+  rule: ClownSwarm

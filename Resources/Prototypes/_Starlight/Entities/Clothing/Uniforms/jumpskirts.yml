@@ -43,7 +43,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseBlueShieldContraband ]
+  parent: [ ClothingUniformBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtBlueShieldSkirt
   name: blueshield officer's pencil skirt
   description: A collared shirt and pencil skirt for the blueshield officer who likes to keep it business casual.
@@ -1064,17 +1064,6 @@
       - state: equipped-INNERCLOTHING
         color: "#639137"
       - state: trinkets-equipped-INNERCLOTHING
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtFormalITG
-  name: ITG Formal Jumpskirt
-  description: A refined purple skirt worn by delegates of the guild.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/itgformal.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/itgformal.rsi
 
 - type: entity
   parent: ClothingUniformBase

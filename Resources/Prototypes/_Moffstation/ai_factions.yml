@@ -1,0 +1,14 @@
+- type: npcFaction
+  id: MoffNarsianDemon
+  hostile:
+  - AllHostile
+  - Dragon
+  - NanoTrasen
+  - PetsNT
+  - Pirate
+  - SimpleHostile
+  - Syndicate
+  - Wizard
+  - Xeno
+  - Xenoborg
+  - Zombie

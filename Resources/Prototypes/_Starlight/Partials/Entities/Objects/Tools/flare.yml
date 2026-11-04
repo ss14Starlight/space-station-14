@@ -1,0 +1,18 @@
+- type: !PartialOnly entity
+  id: Flare
+  components:
+  - type: PointLight
+    radius: 3.0 # 1.0 -> 3.0
+    energy: 2.0 # 9.0 -> 2.0
+  - type: SurgeryTool
+  - type: Cautery
+    successRate: 0.1
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+  - type: LightBehaviour
+    behaviours:
+      - !type:RandomizeBehaviour
+        !CombineIndex:1 startValue: 1.0  # weaker flicker as it fades out
+        endValue: 2.0

@@ -3,3 +3,9 @@
   components:
   - type: ExaminableSolution
     solution: stain
+  - type: EmitSoundOnPickup
+    sound:
+      collection: ClothPickup
+  - type: EmitSoundOnLand
+    sound:
+      collection: ClothDrop

@@ -51,7 +51,7 @@
 
 - type: entity
   parent: BaseFigurine
-  id: ToyFigurineAssistant
+  id: ToyFigurineAssistant # Starlight: renamed from ToyFigurinePassenger
   name: assistant figure
   description: A figurine depicting an every day, run-of-the-mill assistant. No funny business here.
   components:
@@ -119,7 +119,7 @@
   parent: BaseFigurine
   id: ToyFigurineCaptain
   name: captain figure
-  description: A figurine depicting the standard outfit of a captain belonging to a civilian-sector NanoTrasen vessel. # SL
+  description: A figurine depicting the standard outfit of a captain belonging to a civilian-sector Nanotrasen vessel.
   components:
   - type: Sprite
     state: captain
@@ -328,7 +328,7 @@
   parent: BaseFigurine
   id: ToyFigurineChaplain
   name: chaplain figure
-  description: A figurine depicting a religious leader hopefully praying for good things. # Starlight
+  description: A figurine depicting a Chaplain hopefully praying for good things.
   components:
   - type: Sprite
     state: chaplain
@@ -339,7 +339,7 @@
   parent: BaseFigurine
   id: ToyFigurineChef
   name: chef figure
-  description: A figurine depicting a chef, master of the culinary arts! ...Most of the time. # Starlight
+  description: A figurine depicting a chef, master of the culinary arts!.. most of the time.
   components:
   - type: Sprite
     state: chef

@@ -13,7 +13,6 @@
   - AiInterfaceCube
   - MechReactorStandard
   - EmptyOilPack
-  - DroneShell
   # Starlight-end
 
 - type: latheRecipePack
@@ -43,6 +42,7 @@
   id: Robotics
   recipes:
   - ProximitySensor
+  - DroneShell # Starlight
 
 - type: latheRecipePack
   id: BorgModules

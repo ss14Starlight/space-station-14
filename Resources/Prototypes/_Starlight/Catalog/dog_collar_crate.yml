@@ -1,0 +1,36 @@
+- type: entity
+  parent: BoxCardboard
+  id: BoxDogCollar
+  name: box of dog collars
+  description: A box of spare dog collars.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: DogCollarPDA
+        amount: 4
+  - type: Sprite
+    layers:
+    - state: box
+
+- type: entity
+  parent: CrateCommandSecure
+  id: CrateDogCollars
+  name: dog collar crate
+  description: Contains a box of spare dog collars.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxDogCollar
+
+- type: cargoProduct
+  id: DogCollars
+  icon:
+    sprite: _Starlight/Objects/Devices/dog_collar.rsi
+    state: pda
+  product: CrateDogCollars
+  cost: 1000
+  category: cargoproduct-category-name-service
+  group: market

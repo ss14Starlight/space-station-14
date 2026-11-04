@@ -9,13 +9,13 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/brigmedicglasses.rsi
   - type: FlashImmunity
-  - type: SolutionScanner
   - type: EyeProtection
     protectionTime: 5
   - type: ShowHealthBars
     damageContainers:
       - Biological
-      - Hybrid # Neocytes
+      - Hybrid
+      - MoffDemonBiological
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -45,7 +45,8 @@
   - type: ShowHealthBars
     damageContainers:
       - Biological
-      - Hybrid # Neocytes
+      - Hybrid
+      - MoffDemonBiological
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -119,7 +120,7 @@
     stealGroup: RareGlassesCollection
 
 - type: entity
-  parent: [ClothingEyesBase, BaseBlueShieldContraband]
+  parent: [ ClothingEyesBase, BaseBlueShieldContraband ]
   id: ClothingEyesGlassesBlueShield
   name: blue shield glasses
   description: The innovative blue lenses hide your eyes from light flashes and have a built-in visor.
@@ -137,6 +138,7 @@
     - Biological
     - IPC
     - Hybrid
+    - MoffDemonBiological
   - type: ShowHealthIcons
     damageContainers:
     - Biological
@@ -178,6 +180,8 @@
         - Silicon
         - IPC
         - Hybrid
+        - MoffDemonBiological
+        - MoffDemonInorganic
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -223,12 +227,12 @@
     sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionbrigmedicglasses.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionbrigmedicglasses.rsi
-  - type: SolutionScanner
   - type: VisionCorrection
   - type: ShowHealthBars
     damageContainers:
       - Biological
-      - Hybrid # Neocytes
+      - Hybrid
+      - MoffDemonBiological
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -315,7 +319,7 @@
 # Shadekin
 
 - type: entity
-  parent: [ClothingEyesBase, BaseSecurityScienceCommandContraband]
+  parent: [ClothingEyesBase, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband]
   id: ClothingEyesGlassesNullSpace
   name: nullspace goggles
   description: An unusual pair of goggles developed during a time of inhumane experimentation involving Shadekin. They are designed to allow the wearer to peer into NullSpace.
@@ -392,6 +396,18 @@
       sprite: _Starlight/Clothing/Eyes/Glasses/jamjarcentcomm.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Eyes/Glasses/jamjarcentcomm.rsi
+    - type: VisionCorrection
+
+- type: entity
+  parent: ClothingEyesGlassesChemical
+  id: ClothingEyesGlassesJamjarChemist
+  name: chemical jamjar glasses
+  description: For the chemist who needs particularly large glasses. Rumoured to exist because of someone extremely skilled at chemistry.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarchemist.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarchemist.rsi
     - type: VisionCorrection
 
 - type: entity

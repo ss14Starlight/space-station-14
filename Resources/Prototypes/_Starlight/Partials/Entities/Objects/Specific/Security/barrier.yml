@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: DeployableBarrier
+  components:
+  - type: AccessReader
+    access:
+    - ["Cadet"] # add cadet
+  - type: PointLight
+    castShadows: false # lighting optimization

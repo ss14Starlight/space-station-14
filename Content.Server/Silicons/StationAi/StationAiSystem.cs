@@ -94,6 +94,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     private readonly ProtoId<ChatNotificationPrototype> _aiWireSnippedChatNotificationPrototype = "AiWireSnipped";
     private readonly ProtoId<ChatNotificationPrototype> _aiLosingPowerChatNotificationPrototype = "AiLosingPower";
     private readonly ProtoId<ChatNotificationPrototype> _aiCriticalPowerChatNotificationPrototype = "AiCriticalPower";
+    private readonly ProtoId<ChatNotificationPrototype> _aiTakingDamageChatNotificationPrototype = "AiTakingDamage";
 
     private readonly ProtoId<JobPrototype> _stationAiJob = "StationAi";
     private readonly EntProtoId _stationAiBrain = "StationAiBrainConstructed"; // SL edit
@@ -113,7 +114,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         SubscribeLocalEvent<StationAiCoreComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<StationAiCoreComponent, DoAfterAttemptEvent<IntellicardDoAfterEvent>>(OnDoAfterAttempt);
         SubscribeLocalEvent<StationAiCoreComponent, RejuvenateEvent>(OnRejuvenate);
-        SubscribeLocalEvent<GhostAttemptHandleEvent>(OnGhostAttempt); // Starlight
+        _player.PlayerStatusChanged += OnPlayerStatusChanged; // Starlight
 
         SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandICChatRecipients);
         SubscribeLocalEvent<StationAiTurretComponent, AmmoShotEvent>(OnAmmoShot);
@@ -124,17 +125,6 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     }
 
     #region Starlight
-    // The intellicard/AI should immediatly eject the ghost if the command ghost is used to free it for further use.
-    private void OnGhostAttempt(GhostAttemptHandleEvent args)
-    {
-        if (args.Mind.CurrentEntity is not { } entity ||
-            !_container.TryGetContainingContainer(entity, out var container) ||
-            container.ID != StationAiHolderComponent.Container ||
-            !TryComp<StationAiHolderComponent>(container.Owner, out var holder))
-            return;
-
-        _slots.TryEject(container.Owner, holder.Slot, null, out _);
-    }
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -513,6 +503,11 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     {
         base.OnAiInsert(ent, ref args);
 
+        // Starlight - start
+        if (args.Container.ID == StationAiCoreComponent.Container)
+            _containerSpawnJobSlots.RefreshJobSlots();
+        // Starlight - end
+
         UpdateBatteryAlert(ent);
         UpdateCoreIntegrityAlert(ent);
         UpdateDamagedAccent(ent);
@@ -521,6 +516,14 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     protected override void OnAiRemove(Entity<StationAiCoreComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         base.OnAiRemove(ent, ref args);
+
+        // Starlight - start
+        if (args.Container.ID == StationAiCoreComponent.Container)
+        {
+            _containerSpawnJobSlots.RefreshJobSlots(allowAiSlotIncrease: false);
+            AnnounceAiCoreConnectionLost(args.Entity, ent.Owner);
+        }
+        // Starlight - end
 
         _alerts.ClearAlert(args.Entity, _batteryAlert);
         _alerts.ClearAlert(args.Entity, _damageAlert);
@@ -537,6 +540,11 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     {
         if (args.NewMobState != MobState.Alive)
         {
+            // Starlight - start
+            if (args.OldMobState == MobState.Alive)
+                AnnounceAiOffline(ent.Owner);
+            // Starlight - end
+
             SetStationAiState(ent, StationAiState.Dead);
             return;
         }
@@ -576,14 +584,18 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
 
     private void OnApcBatteryChanged(Entity<StationAiCoreComponent> ent, ref ApcPowerReceiverBatteryChangedEvent args)
     {
+        // Starlight - start
         if (!args.Enabled)
+        {
+            _delayedEvent.Cancel(ent.Owner, AiPowerLossAlertEventId);
             return;
+        }
+        // Starlight - end
 
         if (!TryGetHeld((ent.Owner, ent.Comp), out var held))
             return;
 
-        var ev = new ChatNotificationEvent(_aiLosingPowerChatNotificationPrototype, ent);
-        RaiseLocalEvent(held.Value, ref ev);
+        _delayedEvent.Schedule(ent.Owner, AiPowerLossAlertEventId, _aiPowerLossAlertDelay); // Starlight
     }
 
     private void OnChargeChanged(Entity<StationAiCoreComponent> entity, ref ChargeChangedEvent args)
@@ -594,7 +606,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
 
     private void OnDamageChanged(Entity<StationAiCoreComponent> entity, ref DamageChangedEvent args)
     {
-        UpdateCoreIntegrityAlert(entity);
+        UpdateCoreIntegrityAlert(entity, args.DamageIncreased);
         UpdateDamagedAccent(entity);
     }
 
@@ -644,7 +656,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         }
     }
 
-    private void UpdateCoreIntegrityAlert(Entity<StationAiCoreComponent> ent)
+    private void UpdateCoreIntegrityAlert(Entity<StationAiCoreComponent> ent, bool damageIncreased = false)
     {
         if (!TryComp<DamageableComponent>(ent, out var damageable))
             return;
@@ -662,6 +674,12 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         var damageLevel = Math.Round(damagePercent.Float() * proto.MaxSeverity);
 
         _alerts.ShowAlert(held.Value, _damageAlert, (short)Math.Clamp(damageLevel, 0, proto.MaxSeverity));
+
+        if (damageIncreased)
+        {
+            var ev = new ChatNotificationEvent(_aiTakingDamageChatNotificationPrototype, ent);
+            RaiseLocalEvent(held.Value, ref ev);
+        }
     }
 
     private void OnDoAfterAttempt(Entity<StationAiCoreComponent> ent, ref DoAfterAttemptEvent<IntellicardDoAfterEvent> args)

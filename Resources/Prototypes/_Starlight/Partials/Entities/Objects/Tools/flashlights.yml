@@ -1,0 +1,24 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - FlashlightLantern
+    - FlashlightSeclite
+    - EmptyFlashlightLantern
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
+
+- type: !PartialOnly entity
+  id: FlashlightLantern
+  components:
+  - type: PointLight
+    mask: !Remove
+    lightMask: SLCurve
+  - type: FaceAwayWhenDropped
+  # Vending Machines Prices
+  - type: ItemPrice
+    fallbackPrice: 12

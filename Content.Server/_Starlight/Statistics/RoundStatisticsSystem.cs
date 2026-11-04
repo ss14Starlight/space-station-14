@@ -126,7 +126,7 @@ public sealed partial class RoundStatisticsSystem : EntitySystem
             " ",
             RenderTemplate(message, args));
 
-        _sawmill.Info(record);
+        _sawmill.Warning(record);
 
         if (_records.Count < MaxRetainedRecords)
             _records.Add(record);

@@ -21,7 +21,7 @@
                     <RichTextLabel Name="TransferHelpLabel" Access="Public"/>
                         <LineEdit Name="TransferTargetInput" Access="Public" PlaceHolder="{Loc 'economy-atm-ui-transfer-target-ph'}" MinSize="70 0" />
                         <LineEdit Name="TransferAmountInput" Access="Public" PlaceHolder="{Loc 'economy-atm-ui-transfer-amount-ph'}" MinSize="70 0" />
-                    <Button Name="TransferButton" Access="Public" Text="Transfer" HorizontalExpand="True" StyleClasses="OpenBoth" />
+                    <Button Name="TransferButton" Access="Public" Text="{Loc 'economy-atm-ui-transfer'}" HorizontalExpand="True" StyleClasses="OpenBoth" />
                 </BoxContainer>
             </BoxContainer>
         </ScrollContainer>

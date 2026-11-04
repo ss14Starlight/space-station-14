@@ -21,12 +21,24 @@ public sealed partial class AirAlarmSystem
 {
     /// <summary>
     /// When encountering a entity on a tile: add it to the links for a air alarm.
+    /// Firelocks are AtmosAlarmable, air vents / scrubbers / air sensors are AtmosMonitor.
     /// </summary>
-    private readonly EntityWhitelist _linkableWhitelist = new()
+    private readonly EntityWhitelist _airAlarmLinkableWhitelist = new()
     {
         Components = [
             "AtmosMonitor",
             "AtmosAlarmable",
+        ]
+    };
+
+    /// <summary>
+    /// When encountering a entity on a tile: add it to the links for a fire alarm.
+    /// Firelocks are AtmosAlarmable. Linking senors to a fire alarm does nothing.
+    /// </summary>
+    private readonly EntityWhitelist _fireAlarmLinkableWhitelist = new()
+    {
+        Components = [
+            "AtmosAlarmable"
         ]
     };
 
@@ -38,6 +50,17 @@ public sealed partial class AirAlarmSystem
         Components = [
             "Firelock",
             "Airtight",
+        ]
+    };
+
+    /// <summary>
+    /// These entities will not be linked to air / fire alarms, even if they are in the _linkableWhitelist
+    /// </summary>
+    private readonly EntityWhitelist _doNotLinkBlacklist = new()
+    {
+        Components = [
+            "AirAlarm",
+            "FireAlarm",
         ]
     };
 
@@ -61,16 +84,29 @@ public sealed partial class AirAlarmSystem
     /// <summary>
     /// Max number of tiles we'll walk away from the air alarm in search of stuff to link.
     /// </summary>
-    private int _maxDepth = 16;
+    private int _maxDepth = 32;
 
-    private void SLInitialize()
-    {
-        SubscribeLocalEvent<AirAlarmComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
+    private void SLInitialize() => _configuration.OnValueChanged(StarlightCCVars.MaxAutoAtmosLinkDistance, x => _maxDepth = x);
 
-        _configuration.OnValueChanged(StarlightCCVars.MaxAutoAtmosLinkDistance, x => _maxDepth = x);
-    }
+    [SubscribeLocalEvent]
+    private void OnGetAirAlarmVerbs(Entity<AirAlarmComponent> ent, ref GetVerbsEvent<Verb> ev)
+        => AddAutoLinkVerb(
+            ent.Owner,
+            _airAlarmLinkableWhitelist,
+            "admin-trick-autolink-air-alarms",
+            new SpriteSpecifier.Rsi(new("/Textures/Structures/Wallmounts/air_monitors.rsi"), "alarmp"),
+            ref ev);
 
-    private void OnGetVerbs(Entity<AirAlarmComponent> ent, ref GetVerbsEvent<Verb> ev)
+    [SubscribeLocalEvent]
+    private void OnGetFireAlarmVerbs(Entity<FireAlarmComponent> ent, ref GetVerbsEvent<Verb> ev)
+        => AddAutoLinkVerb(
+            ent.Owner,
+            _fireAlarmLinkableWhitelist,
+            "admin-trick-autolink-fire-alarms",
+            new SpriteSpecifier.Rsi(new("/Textures/Structures/Wallmounts/air_monitors.rsi"), "fire0"),
+            ref ev);
+
+    private void AddAutoLinkVerb(EntityUid ent, EntityWhitelist linkableWhitelist, string text, SpriteSpecifier icon, ref GetVerbsEvent<Verb> ev)
     {
         if (!TryComp(ev.User, out ActorComponent? actor))
             return;
@@ -82,8 +118,8 @@ public sealed partial class AirAlarmSystem
 
         ev.Verbs.Add(new Verb()
         {
-            Text = Loc.GetString("admin-trick-autolink-air-alarms"),
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Structures/Wallmounts/air_monitors.rsi"), "alarmp"),
+            Text = Loc.GetString(text),
+            Icon = icon,
             Category = VerbCategory.Tricks,
             Act = () =>
             {
@@ -136,7 +172,11 @@ public sealed partial class AirAlarmSystem
                     // this prevents e.g. firelocks on top of airlocks from being skipped (as both are stopping conditions)
                     foreach (var x in entities)
                     {
-                        if (_whitelist.IsWhitelistPass(_linkableWhitelist, x) && TryComp<DeviceNetworkComponent>(x, out var devNetwork))
+                        // don't link to other air alarms
+                        if (_whitelist.IsWhitelistPass(_doNotLinkBlacklist, x))
+                            continue;
+
+                        if (_whitelist.IsWhitelistPass(linkableWhitelist, x) && TryComp<DeviceNetworkComponent>(x, out var devNetwork))
                         {
                             _deviceList.TryAddDeviceToList(
                                 new(ent, devList),
@@ -145,7 +185,7 @@ public sealed partial class AirAlarmSystem
                         }
 
                         // debug
-                        //Log.Info($"euid: {x} WLPass: {_whitelist.IsWhitelistPass(_linkableWhitelist, x)} DNComp: {HasComp<DeviceNetworkComponent>(x)}");
+                        //Log.Info($"euid: {x} WLPass: {_whitelist.IsWhitelistPass(linkableWhitelist, x)} DNComp: {HasComp<DeviceNetworkComponent>(x)}");
                     }
 
                     // check if we should stop on this tile
