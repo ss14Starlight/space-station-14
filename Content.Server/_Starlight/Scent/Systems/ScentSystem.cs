@@ -593,8 +593,7 @@ public sealed partial class ScentSystem : SharedScentSystem
             var pollenDecayTime = GetDecayTime(scent, uid);
 
             // Pollen markers use their own cache and never become part of the personal scent trail.
-            var pollenMarker = EmitPollenMarker(ref scent.LastPollenMarkerEntity, uid, scentId, xform,
-                pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
+            var pollenMarker = EmitPollenMarker(ref scent.LastPollenMarkerEntity, uid, scentId, xform, pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
 
             if (!pollenMarker.IsValid())
                 return;
@@ -605,7 +604,6 @@ public sealed partial class ScentSystem : SharedScentSystem
                 pollenMarkerComp.WasCloaked = IsCloaked(uid);
                 Dirty(pollenMarker, pollenMarkerComp);
             }
-
             ApplyScentTrace(uid, scentId, uid);
             return;
         }
