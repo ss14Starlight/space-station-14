@@ -3,7 +3,6 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Atmos.Piping.Components;
-using Content.Shared.Atmos.Reactions; //Starlight
 using Content.Shared.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -326,22 +325,8 @@ namespace Content.Server.Atmos.EntitySystems
             Entity<GridAtmosphereComponent, GasTileOverlayComponent, MapGridComponent, TransformComponent> ent)
         {
             var atmosphere = ent.Comp1;
-            if (!atmosphere.ProcessingPaused)
-            // Starlight start
-            {
-                // reset the fire reaction results once per atmos cycle
-                // and only reset active tiles to save performance
-                foreach (var tile in atmosphere.ActiveTiles)
-                {
-                    if (tile.Air == null)
-                        continue;
-
-                    tile.Air.ReactionResults[(byte)GasReaction.Fire] = 0f;
-                }
-
+            if(!atmosphere.ProcessingPaused)
                 QueueRunTiles(atmosphere.CurrentRunTiles, atmosphere.ActiveTiles);
-            }
-            // Starlight end
 
             var number = 0;
             while (atmosphere.CurrentRunTiles.TryDequeue(out var tile))
@@ -562,10 +547,6 @@ namespace Content.Server.Atmos.EntitySystems
                 atmosphere.CurrentRunPipeNet.EnsureCapacity(atmosphere.PipeNets.Count);
                 foreach (var net in atmosphere.PipeNets)
                 {
-                    // Starlight start
-                    // mirror of reaction results reset in ProcessActiveTiles
-                    net.Air.ReactionResults[(byte)GasReaction.Fire] = 0f;
-                    // Starlight end
                     atmosphere.CurrentRunPipeNet.Enqueue(net);
                 }
             }
