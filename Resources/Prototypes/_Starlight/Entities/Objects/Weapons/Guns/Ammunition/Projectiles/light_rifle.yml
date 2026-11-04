@@ -1,5 +1,5 @@
 - type: entity
-  id: BulletLightRifleRubber
+  id: BulletLightRifleRubber # this is actually the .30 rifle used by AKs, Lawbringers, etc, for some reason
   name: bullet (.20 rifle rubber)
   parent: BaseBulletRubber
   categories: [ HideSpawnMenu ]
@@ -8,3 +8,5 @@
     damage:
       types:
         Blunt: 1
+  - type: StaminaDamageOnCollide
+    damage: 13 # 8 hits to stun

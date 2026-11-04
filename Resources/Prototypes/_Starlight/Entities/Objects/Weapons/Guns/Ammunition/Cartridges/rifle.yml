@@ -4,7 +4,7 @@
   parent: BaseCartridgeRifle
   components:
   - type: CartridgeAmmo
-    proto: RubberBulletTrace
+    proto: BulletRifeRubberTrace
   - type: Sprite
     layers:
       - state: base

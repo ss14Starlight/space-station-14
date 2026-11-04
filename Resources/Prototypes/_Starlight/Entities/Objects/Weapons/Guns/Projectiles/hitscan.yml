@@ -70,16 +70,15 @@
         Blunt: 20000
 
 - type: entity
-  id: RubberBulletTrace
+  id: RubberBulletTraceBase
   parent: BulletTrace
+  abstract: true
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
     damage:
       types:
         Blunt: 1
-  - type: HitscanStaminaDamage
-    staminaDamage: 12
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -333,6 +332,18 @@
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: ap
 
+- type: entity
+  id: BulletMagnumTraceRubber
+  parent: RubberBulletTraceBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 3
+  - type: HitscanStaminaDamage
+    staminaDamage: 23 # 5 hits to stun cuz revolver
+
 ### pistol
 
 - type: entity
@@ -509,6 +520,14 @@
         state: ap
 
 - type: entity
+  id: BulletPistolTraceRubber
+  parent: RubberBulletTraceBase
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: HitscanStaminaDamage
+      staminaDamage: 8 # 13 hits to stun
+
+- type: entity
   id: BulletPistolTrace40SP
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
@@ -623,6 +642,14 @@
     damage:
       types:
         Blunt: 2
+
+- type: entity
+  id: BulletCaselessRifleRubberTrace
+  parent: RubberBulletTraceBase
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: HitscanStaminaDamage
+      staminaDamage: 8 # 13 hits to stun
 
 ### heavy rifle <<<<<<<<<<<<<<<<<<
 
@@ -840,6 +867,14 @@
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: uranium
 
+- type: entity
+  id: BulletLightRifleRubberTrace
+  parent: RubberBulletTraceBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanStaminaDamage
+    staminaDamage: 13 # 8 hits to stun
+
 ### rifle
 
 - type: entity
@@ -984,6 +1019,15 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: uranium
+
+- type: entity
+  id: BulletRifeRubberTrace
+  parent: RubberBulletTraceBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanStaminaDamage
+    staminaDamage: 10 # 10 hits to stun
+
 ### shotgun
 
 - type: entity

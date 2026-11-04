@@ -4,7 +4,7 @@
   parent: BaseCartridgeLightRifleSP
   components:
   - type: CartridgeAmmo
-    proto: RubberBulletTrace
+    proto: BulletLightRifleRubberTrace
   - type: Sprite
     layers:
       - state: base
