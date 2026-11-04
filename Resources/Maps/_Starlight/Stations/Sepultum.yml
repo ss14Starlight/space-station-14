@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/04/2026 14:25:22
+  time: 11/04/2026 14:31:31
   entityCount: 44176
 maps:
 - 1
@@ -8181,16 +8181,6 @@ entities:
         - volume: 2500
           moles: {}
           immutable: True
-        - temperature: 293.14975
-          volume: 2500
-          moles:
-            Oxygen: 21.824879
-            Nitrogen: 82.10312
-        - temperature: 293.14987
-          volume: 2500
-          moles:
-            Oxygen: 21.824879
-            Nitrogen: 82.10312
         - temperature: 235
           volume: 2500
           moles:
@@ -8211,9 +8201,6 @@ entities:
           volume: 2500
           moles:
             Plasma: 6666.982
-        - temperature: 166.07811
-          volume: 2500
-          moles: {}
         tiles:
           0,0:
             0: 64907
@@ -8239,12 +8226,10 @@ entities:
             0: 12545
             1: 2176
           1,1:
-            0: 9023
-            2: 4096
+            0: 13119
             1: 34816
           1,2:
-            3: 1
-            0: 62258
+            0: 62259
             1: 136
           1,3:
             0: 4371
@@ -8709,9 +8694,7 @@ entities:
             0: 32768
             1: 18
           -5,-9:
-            0: 20399
-            2: 4096
-            3: 40960
+            0: 65455
           -9,-4:
             0: 61166
           -8,-3:
@@ -8935,17 +8918,17 @@ entities:
           -4,19:
             0: 64733
           -12,-4:
-            4: 4368
+            2: 4368
             0: 52428
           -12,-5:
             0: 56831
           -13,-4:
-            4: 61410
+            2: 61410
           -12,-3:
-            4: 17
+            2: 17
             0: 64716
           -13,-3:
-            4: 750
+            2: 750
             0: 28672
           -12,-2:
             0: 65535
@@ -9310,10 +9293,10 @@ entities:
           -14,16:
             0: 65527
           -16,16:
-            4: 256
+            2: 256
             0: 61152
           -17,16:
-            4: 61408
+            2: 61408
           -16,17:
             0: 61134
           -16,18:
@@ -10143,8 +10126,7 @@ entities:
           -11,-12:
             0: 36590
           -11,-13:
-            0: 60654
-            3: 512
+            0: 61166
           -10,-12:
             0: 53232
           -10,-11:
@@ -10181,8 +10163,7 @@ entities:
             1: 2184
           -11,-16:
             1: 4096
-            0: 19660
-            3: 32768
+            0: 52428
           -11,-14:
             0: 61166
           -11,-15:
@@ -10203,8 +10184,7 @@ entities:
             1: 49344
           -9,-16:
             1: 4112
-            0: 19660
-            3: 32768
+            0: 52428
           -9,-15:
             1: 256
             0: 19660
@@ -10223,8 +10203,7 @@ entities:
             0: 13107
             1: 2056
           -8,-13:
-            0: 13075
-            3: 32
+            0: 13107
             1: 2056
           -7,-10:
             1: 44800
@@ -10269,15 +10248,15 @@ entities:
             1: 12032
           1,-10:
             0: 14832
-            5: 32768
+            3: 32768
           1,-9:
             0: 275
-            5: 136
+            3: 136
           2,-10:
             0: 16
-            5: 12288
+            3: 12288
           2,-9:
-            5: 1271
+            3: 1271
           5,-9:
             1: 1026
           0,-15:
@@ -10435,24 +10414,24 @@ entities:
             0: 462
           1,19:
             0: 13107
-            6: 128
-            7: 32768
+            4: 128
+            5: 32768
           1,17:
             0: 58914
           1,20:
             0: 13107
-            5: 32896
+            3: 32896
           2,17:
             0: 4236
           2,18:
             0: 52851
           2,19:
-            6: 16
-            7: 4096
+            4: 16
+            5: 4096
             1: 17472
           2,20:
             1: 17476
-            5: 4112
+            3: 4112
           3,17:
             0: 4095
           3,18:
@@ -10646,20 +10625,20 @@ entities:
             1: 65280
           1,21:
             0: 13107
-            8: 128
-            5: 32768
+            6: 128
+            3: 32768
           1,22:
             0: 62259
-            5: 128
+            3: 128
           1,23:
             0: 3
             1: 65408
           2,21:
-            8: 16
-            9: 4096
+            6: 16
+            3: 4096
             1: 17476
           2,22:
-            9: 16
+            3: 16
             0: 36864
             1: 25668
           2,23:
@@ -13193,7 +13172,7 @@ entities:
       invokeCounter: 1
     - type: Door
       state: Opening
-      secondsUntilStateChange: -298158.56
+      secondsUntilStateChange: -298515.66
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13483,7 +13462,7 @@ entities:
       pos: -7.5,67.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -252120.52
+      secondsUntilStateChange: -252477.61
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13533,7 +13512,7 @@ entities:
       pos: -4.5,84.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -61020.754
+      secondsUntilStateChange: -61377.85
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13749,7 +13728,7 @@ entities:
       pos: 7.5,4.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -306389.06
+      secondsUntilStateChange: -306746.16
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13811,7 +13790,7 @@ entities:
       pos: 16.5,93.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -191316.81
+      secondsUntilStateChange: -191673.9
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13823,7 +13802,7 @@ entities:
       pos: 16.5,89.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -191316.2
+      secondsUntilStateChange: -191673.3
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13834,7 +13813,7 @@ entities:
       pos: -60.5,-47.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -191566.58
+      secondsUntilStateChange: -191923.67
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13845,7 +13824,7 @@ entities:
       pos: -56.5,-47.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -191567
+      secondsUntilStateChange: -191924.1
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13856,7 +13835,7 @@ entities:
       pos: -52.5,-47.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -191567.55
+      secondsUntilStateChange: -191924.64
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13867,7 +13846,7 @@ entities:
       pos: -48.5,-47.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -191568.28
+      secondsUntilStateChange: -191925.38
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13930,7 +13909,7 @@ entities:
       pos: -60.5,77.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -79586.06
+      secondsUntilStateChange: -79943.164
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: DeviceLinkSource
@@ -14304,7 +14283,7 @@ entities:
       pos: -43.5,-15.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -83675.17
+      secondsUntilStateChange: -84032.27
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -14755,7 +14734,7 @@ entities:
       pos: -2.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -69267.414
+      secondsUntilStateChange: -69624.516
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -89042,7 +89021,7 @@ entities:
       pos: -24.5,66.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -101143.36
+      secondsUntilStateChange: -101500.46
 - proto: CurtainsPurple
   entities:
   - uid: 14457
@@ -89057,7 +89036,7 @@ entities:
       pos: -122.5,47.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -203507.23
+      secondsUntilStateChange: -203864.33
   - uid: 14459
     components:
     - type: Transform
