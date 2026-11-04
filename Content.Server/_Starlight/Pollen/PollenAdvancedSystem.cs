@@ -36,8 +36,6 @@ public sealed partial class PollenAdvancedSystem : EntitySystem
     private static readonly ProtoId<DamageGroupPrototype> _burnGroup = "Burn";
     private readonly HashSet<EntityUid> _nearby = new();
 
-    private readonly HashSet<EntityUid> _nearby = new();
-
     public override void Initialize()
     {
         base.Initialize();
