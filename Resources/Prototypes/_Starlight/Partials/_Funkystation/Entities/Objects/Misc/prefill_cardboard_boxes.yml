@@ -5,9 +5,9 @@
     containers:
       storagebase: !type:AllSelector
         children: !Clear
-          - id: SheetPlastic
-            amount: 1
           - id: SheetPlasteel10
+            amount: 1
+          - id: SheetPlastic
             amount: 1
           - id: SheetGlass
             amount: 1
