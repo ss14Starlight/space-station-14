@@ -1,13 +1,6 @@
 Entries:
 - author: neomoth
   changes:
-  - message: Wires panel visuals for some structures (e.g. holopads, computers...) no longer get inverted upon disconnecting and reconnecting.
-    type: Fix
-  id: 409715
-  time: '2026-10-23T17:24:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6752
-- author: neomoth
-  changes:
   - message: Radio channels should hopefully resync properly when inserting an encryption key into a headset you're currently wearing without you needing to take it off and put it back on again.
     type: Fix
   id: 409716
@@ -2799,4 +2792,11 @@ Entries:
   id: 410114
   time: '2026-11-04T18:53:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7039
+- author: Romero/Littlemen
+  changes:
+  - message: Hotfix for the Verdict, a new gun in the sec armory and available as a purchase by cargo.
+    type: Tweak
+  id: 410115
+  time: '2026-11-04T19:17:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7041
 Order: -1
