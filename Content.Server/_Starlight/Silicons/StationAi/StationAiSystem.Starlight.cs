@@ -68,16 +68,27 @@ public sealed partial class StationAiSystem
             && shunt.Return == entity.Owner)
             return;
 
-        var wasInAiHolder = TryGetStationAiHolder(entity.Owner, out var holder);
+        var removedMindEntity = entity.Owner;
+        if (TryComp<StationAIShuntComponent>(entity.Owner, out var borgShunt)
+            && borgShunt.Return is { } returnTarget
+            && HasComp<StationAIShuntableComponent>(returnTarget))
+        {
+            if (args.TransferEntity == returnTarget)
+                return;
+
+            removedMindEntity = returnTarget;
+        }
+
+        var wasInAiHolder = TryGetStationAiHolder(removedMindEntity, out var holder);
         var wasInAiCore = wasInAiHolder && HasComp<StationAiCoreComponent>(holder);
-        var inCryostorage = HasComp<CryostorageContainedComponent>(entity.Owner);
+        var inCryostorage = HasComp<CryostorageContainedComponent>(removedMindEntity);
         var permanentlyGhostedFromAiHolder = args.TransferEntity is { } ghostTarget
             && TryComp<GhostComponent>(ghostTarget, out var holderGhost)
             && !holderGhost.CanReturnToBody
             && wasInAiHolder;
         var permanentlyGhostedFromCore = permanentlyGhostedFromAiHolder && wasInAiCore;
 
-        if (!EjectContainedAi(entity.Owner) && !permanentlyGhostedFromCore)
+        if (!EjectContainedAi(removedMindEntity) && !permanentlyGhostedFromCore)
             return;
 
         FreeStationAiJobSlot(args.Mind.Comp.UserId);
@@ -87,13 +98,13 @@ public sealed partial class StationAiSystem
 
         if (permanentlyGhostedFromAiHolder)
         {
-            AnnounceStationAiStatus(entity.Owner, holder, "station-ai-deathrattle-shutdown");
+            AnnounceStationAiStatus(removedMindEntity, holder, "station-ai-deathrattle-shutdown");
             return;
         }
 
-        if (!TryComp<MobStateComponent>(entity.Owner, out var mobState)
+        if (!TryComp<MobStateComponent>(removedMindEntity, out var mobState)
             || mobState.CurrentState == MobState.Alive)
-            AnnounceStationAiStatus(entity.Owner, holder, "station-ai-deathrattle-connection-lost");
+            AnnounceStationAiStatus(removedMindEntity, holder, "station-ai-deathrattle-connection-lost");
     }
 
     [SubscribeLocalEvent]

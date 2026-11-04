@@ -119,6 +119,52 @@ public sealed partial class MindTests
     }
 
     [Test]
+    public async Task StationAiEjectsFromCoreWhenMindLeavesShuntedBorg()
+    {
+        var (pair, station, cores) = await SetupAiStation(1);
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+        var (mindId, _) = GetMind(pair);
+        EntityUid ai = default;
+        EntityUid borg = default;
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
+            Assert.That(entMan.System<StationJobsSystem>().TryAssignJob(station, "StationAi", userId), Is.True);
+
+            var containers = entMan.System<SharedContainerSystem>();
+            ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
+                throw new InvalidOperationException("Station AI core container was not initialized.");
+            Assert.That(containers.Insert(ai, coreContainer), Is.True);
+            entMan.System<MindSystem>().TransferTo(mindId, ai);
+
+            borg = ShuntAiIntoBorg(entMan, ai);
+        });
+        await pair.RunTicksSync(5);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            Assert.That(entMan.GetComponent<MindComponent>(mindId).OwnedEntity, Is.EqualTo(borg));
+            Assert.That(entMan.GetComponent<StationAiHolderComponent>(cores[0]).Slot.Item, Is.EqualTo(ai));
+
+            var ghost = entMan.SpawnEntity(GameTicker.ObserverPrototypeName, MapCoordinates.Nullspace);
+            entMan.System<MindSystem>().TransferTo(mindId, ghost);
+        });
+        await pair.RunTicksSync(5);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            Assert.That(entMan.GetComponent<StationAiHolderComponent>(cores[0]).Slot.Item, Is.Null);
+            Assert.That(entMan.System<StationJobsSystem>().TryGetPlayerJobs(
+                station,
+                entMan.GetComponent<MindComponent>(mindId).UserId!.Value,
+                out _), Is.False);
+            AssertStationAiJobSlots(entMan, station, 1);
+        });
+    }
+
+    [Test]
     public async Task StationAiJobSlotIsReleasedWhenAiGhostsWithoutCoreReturn()
     {
         var (pair, station, cores) = await SetupAiStation(1);
