@@ -3,6 +3,8 @@ using Content.Server._Starlight.Station.Systems;
 using Content.Server._Starlight.Utility;
 using Content.Server._Starlight.Utility.Events;
 using Content.Server.Pinpointer;
+using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Bed.Cryostorage;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared._Starlight.Mind.Events;
@@ -12,6 +14,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Power.Components;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.StationAi;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
@@ -27,6 +30,7 @@ public sealed partial class StationAiSystem
     [Dependency] private DelayedEventSystem _delayedEvent = default!;
     [Dependency] private NavMapSystem _navMap = default!;
     [Dependency] private ContainerSpawnJobSlotSystem _containerSpawnJobSlots = default!;
+    [Dependency] private SharedActionsSystem _shuntActions = default!;
 
     private const string AiPowerLossAlertEventId = "station-ai-power-loss-alert";
     private static readonly TimeSpan _aiPowerLossAlertDelay = TimeSpan.FromSeconds(3);
@@ -45,6 +49,11 @@ public sealed partial class StationAiSystem
         if (_mind.TryGetMind(args.Session.UserId, out _, out var mind)
             && mind.OwnedEntity is { } body)
         {
+            if (TryComp<StationAIShuntComponent>(body, out var shunt)
+                && shunt.Return is { } returnTarget
+                && TryComp<StationAIShuntableComponent>(returnTarget, out _))
+                body = returnTarget;
+
             if (!EjectContainedAi(body)
                 && _tags.HasTag(body, _stationAiTag)
                 && _container.TryGetContainingContainer(body, out var container)
@@ -70,13 +79,24 @@ public sealed partial class StationAiSystem
 
         var removedMindEntity = entity.Owner;
         if (TryComp<StationAIShuntComponent>(entity.Owner, out var borgShunt)
-            && borgShunt.Return is { } returnTarget
-            && HasComp<StationAIShuntableComponent>(returnTarget))
+            && borgShunt.Return is { } returnTarget)
         {
-            if (args.TransferEntity == returnTarget)
-                return;
+            ClearStationAiShunt(entity.Owner, borgShunt);
 
-            removedMindEntity = returnTarget;
+            if (TryComp<BorgChassisComponent>(entity.Owner, out var chassis)
+                && chassis.BrainContainer.ContainedEntity is { } brain
+                && TryComp<StationAIShuntComponent>(brain, out var brainShunt))
+                ClearStationAiShunt(brain, brainShunt);
+
+            if (TryComp<StationAIShuntableComponent>(returnTarget, out var shuntable))
+            {
+                shuntable.Inhabited = null;
+
+                if (args.TransferEntity == returnTarget)
+                    return;
+
+                removedMindEntity = returnTarget;
+            }
         }
 
         var wasInAiHolder = TryGetStationAiHolder(removedMindEntity, out var holder);
@@ -105,6 +125,17 @@ public sealed partial class StationAiSystem
         if (!TryComp<MobStateComponent>(removedMindEntity, out var mobState)
             || mobState.CurrentState == MobState.Alive)
             AnnounceStationAiStatus(removedMindEntity, holder, "station-ai-deathrattle-connection-lost");
+    }
+
+    private void ClearStationAiShunt(EntityUid entity, StationAIShuntComponent shunt)
+    {
+        if (shunt.ReturnAction is { } actionUid
+            && TryComp<ActionComponent>(actionUid, out var action))
+            _shuntActions.RemoveAction(new Entity<ActionComponent?>(actionUid, action));
+
+        shunt.Return = null;
+        shunt.ReturnAction = null;
+        Dirty(entity, shunt);
     }
 
     [SubscribeLocalEvent]
