@@ -14,12 +14,6 @@ public sealed partial class RoofComponent : Component
     public Color Color = Color.Black;
 
     /// <summary>
-    /// Optional per-tile color overrides for roofed tiles.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public Dictionary<Vector2i, Color> TileColors = new();
-
-    /// <summary>
     /// Chunk origin and bitmask of value in chunk.
     /// </summary>
     [DataField, AutoNetworkedField]
