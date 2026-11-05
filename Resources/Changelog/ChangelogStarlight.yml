@@ -1,13 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: (Cork) Powered the bar north of Radio Host.
-    type: Fix
-  id: 409731
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
   - message: (Cork) Linked the artifact analyzers to the consoles.
     type: Fix
   id: 409732
@@ -2799,4 +2792,11 @@ Entries:
   id: 410130
   time: '2026-11-05T15:34:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7046
+- author: Floximo
+  changes:
+  - message: Shunting no longer kills the AI, re-shunting is possible again.
+    type: Fix
+  id: 410131
+  time: '2026-11-05T16:03:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7032
 Order: -1
