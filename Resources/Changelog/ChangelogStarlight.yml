@@ -1,13 +1,6 @@
 Entries:
 - author: neomoth
   changes:
-  - message: Actions should now (hopefully) never be incorrectly sorted upon spawning in for the first time in a round.
-    type: Fix
-  id: 409717
-  time: '2026-10-23T17:24:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6752
-- author: neomoth
-  changes:
   - message: Fixed an issue involving MovementModStatusSystem in which a component update was not being dirtied on client, leading to a mispredict, as well as a call to ModifySpeed() incorrectly using the walk speed modifier for the sprint speed value.
     type: Fix
   id: 409718
@@ -2799,4 +2792,11 @@ Entries:
   id: 410116
   time: '2026-11-04T19:17:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7030
+- author: Quietly12
+  changes:
+  - message: Spray painters will no longer take 2 charges when painting pipes or painting or removing a decal.
+    type: Fix
+  id: 410117
+  time: '2026-11-05T00:28:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7043
 Order: -1
