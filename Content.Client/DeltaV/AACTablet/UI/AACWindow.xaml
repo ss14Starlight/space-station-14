@@ -2,10 +2,12 @@
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     Title="{Loc 'aac-tablet-title'}"
     Resizable="True"
-    SetSize="540 300"
-    MinSize="540 300">
+    SetSize="650 400"
+    MinSize="450 250">
     <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="4">
-        <LineEdit Name="SearchBar" PlaceHolder="Search phrases, groups, or tabs..." HorizontalExpand="True" Margin="4 4 4 4" />
-        <TabContainer Name="WindowBody" VerticalExpand="True" HorizontalExpand="True" />
+        <LineEdit Name="SearchBar" PlaceHolder="{Loc 'aac-window-search-placeholder'}" HorizontalExpand="True" Margin="0 0 0 4" />
+        <PanelContainer VerticalExpand="True" HorizontalExpand="True">
+            <TabContainer Name="WindowBody" VerticalExpand="True" HorizontalExpand="True" />
+        </PanelContainer>
     </BoxContainer>
 </controls:FancyWindow>
