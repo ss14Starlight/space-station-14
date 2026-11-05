@@ -141,7 +141,11 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         if (_pendingBuilds.Count == 0)
             return;
 
-        foreach (var (ui, data) in _pendingBuilds)
+        // Take the queue first so a failing Build can't be retried (reopening windows) every frame.
+        var builds = _pendingBuilds.ToArray();
+        _pendingBuilds.Clear();
+
+        foreach (var (ui, data) in builds)
         {
             if (ui.Disposed)
                 continue;
@@ -159,7 +163,6 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             ui.ShowScene(snapshot, scene.Eye, scene.ViewportSize);
         }
 
-        _pendingBuilds.Clear();
         TrimSceneCache();
     }
 
@@ -438,7 +441,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     private void ApplyIconSmoothStates(EntityUid uid, List<SnapshotSpriteLayerState>? states)
     {
         if (states is not { Count: > 0 }
-            || !HasComp<IconSmoothComponent>(uid)
+            || !TryComp<IconSmoothComponent>(uid, out var smooth)
             || !_spriteQuery.TryComp(uid, out var sprite))
         {
             return;
@@ -463,7 +466,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         if (validStates.Count == 0)
             return;
 
-        RemComp<IconSmoothComponent>(uid);
+        smooth.Mode = IconSmoothingMode.NoSprite;
         foreach (var state in validStates)
             _sprite.LayerSetRsiState((uid, sprite), state.Layer, state.State);
     }

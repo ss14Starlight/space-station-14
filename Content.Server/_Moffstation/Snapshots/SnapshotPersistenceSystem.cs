@@ -56,9 +56,10 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
             ApplyPhotographMetadata(uid, data);
             return true;
         }
-        catch (Exception e) when (e is FormatException or IOException)
+        catch (Exception e)
         {
-            Log.Error($"Failed to deserialize photograph data for {ToPrettyString(uid)}: {e}");
+            // Dont let one bad photograph break them all
+            Log.Error($"Failed to deserialize photograph data for {ToPrettyString(uid)}: {e.Message}");
             return false;
         }
     }
