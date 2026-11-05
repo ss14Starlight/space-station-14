@@ -25,7 +25,9 @@ namespace Content.Client.UserInterface.Controls
 
         public EntityUid? Entity => SpriteView.Entity;
 
-        private static readonly Color GhostFadeModulate = Color.DarkGray.WithAlpha(0.65f); // Starlight
+        #region Starlight
+        private static readonly Color GhostFadeModulate = Color.DarkGray.WithAlpha(0.65f);
+        #endregion
 
         private bool _slotNameSet;
 
