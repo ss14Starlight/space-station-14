@@ -1,0 +1,82 @@
+- type: !PartialOnly alertLevels
+  id: stationAlerts
+  levels:
+    violet:
+      # Do we want this? It would make sense as per zombie quarantine rules
+      # Left commented for now, if it is wanted then it can be uncommented later
+      # preventEvac: true
+    omega:
+      announcement: alert-level-omega-announcement
+      selectable: false
+      sound:
+        path: /Audio/_Starlight/Announcements/omega.ogg
+        params:
+          volume: -2
+      disableSelection: true
+      color: Gold
+      emergencyLightColor: Gold
+      forceEnableEmergencyLights: true
+      shuttleTime: 1200
+      dimmedLightMultiplier: 0.2
+    theta:
+      announcement: alert-level-theta-announcement
+      selectable: false
+      sound:
+        path: /Audio/_Starlight/StationEvents/Burn_The_Hive_by_Bolgarich.ogg
+        params:
+          volume: -2
+      disableSelection: true
+      color: "#741b47"
+      emergencyLightColor: "#741b47"
+      forceEnableEmergencyLights: true
+      shuttleTime: 1200
+      dimmedLightMultiplier: 0.2
+    psi:
+      announcement: alert-level-psi-announcement
+      selectable: false
+      sound:
+        path: /Audio/_Starlight/Announcements/psi.ogg
+        params:
+          volume: -2
+      disableSelection: true
+      color: "#2288ff"
+      emergencyLightColor: "#2288ff"
+      forceEnableEmergencyLights: true
+      shuttleTime: 1200
+    orange:
+      announcement: alert-level-orange-announcement
+      selectable: true
+      sound:
+        path: /Audio/_Starlight/Announcements/orange.ogg
+        params:
+          volume: -2
+      color: "#ff8119"
+      emergencyLightColor: "#ff8119"
+      forceEnableEmergencyLights: true
+      shuttleTime: 600
+    zeta:
+      announcement: alert-level-zeta-announcement
+      selectable: false
+      sound:
+        path: /Audio/_Starlight/Announcements/we_are_so_fucked.ogg
+        params:
+          volume: -2
+      color: "#5a4ec5"
+      emergencyLightColor: "#5a4ec5"
+      forceEnableEmergencyLights: true
+      shuttleTime: 900
+      dimmedLightMultiplier: 0.4
+    eta:
+      announcement: alert-level-eta-announcement
+      selectable: false
+      disableSelection: true
+      preventEvac: true # There's no CC left to send the shuttle
+      sound:
+        path: /Audio/_Starlight/Announcements/we_are_so_fucked.ogg
+        params:
+          volume: -2
+      color: "#2c38ac"
+      emergencyLightColor: "#2c38ac"
+      forceEnableEmergencyLights: true
+      shuttleTime: -1
+      dimmedLightMultiplier: 0.4

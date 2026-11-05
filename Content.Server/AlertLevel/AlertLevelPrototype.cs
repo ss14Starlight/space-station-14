@@ -76,5 +76,14 @@ public sealed partial class AlertLevelDetail
     /// How long it takes for the shuttle to arrive when called.
     /// </summary>
     [DataField("shuttleTime")] public TimeSpan ShuttleTime { get; private set; } = TimeSpan.FromMinutes(5);
+    
+    #region Starlight
+    
+    /// <summary>
+    /// Whether this alert level prevents calling the evacuation shuttle.
+    /// </summary>
+    [DataField("preventEvac")] public bool PreventEvacuation { get; private set; } = false;
+    
+    #endregion
 }
 

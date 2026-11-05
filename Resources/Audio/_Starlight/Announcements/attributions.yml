@@ -2,3 +2,8 @@
   license: "CC-BY-NC-SA-3.0"
   copyright: "darkrell, JustAdler"
   source: "https://github.com/ss14Starlight/space-station-14"
+
+- files: ["we_are_so_fucked.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Sphrea"
+  source: "https://freesound.org/people/Sphrea/sounds/352483"
