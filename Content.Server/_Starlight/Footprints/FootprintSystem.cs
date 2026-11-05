@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server._Funkystation.ReagentFires.Systems;
 using Content.Shared._Funkystation.Footprints;
+using Content.Shared._Funkystation.Stains.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -36,6 +37,7 @@ public sealed partial class FootprintSystem : EntitySystem
     [Dependency] private EntityQuery<NoFootprintsComponent> _noFootprintsQuery = default!;
     [Dependency] private EntityQuery<SolutionComponent> _solutionQuery = default!;
     [Dependency] private EntityQuery<StandingStateComponent> _standingQuery = default!;
+    [Dependency] private EntityQuery<StainBlockerComponent> _stainBlockerQuery = default!;
 
     // A footprint sprite layer is relatively expensive. Chemical volume may continue accumulating after this cap,
     // but no more visual/network state is added until the footprint reaches capacity and becomes a puddle.
@@ -197,6 +199,16 @@ public sealed partial class FootprintSystem : EntitySystem
         var shod = _inventory.TryGetSlotEntity(entity.Owner, "shoes", out var shoes);
         if (shod && _noFootprintsQuery.HasComponent(shoes))
             return;
+
+        // A sealed suit encases the feet, so it prints as footwear even with the shoes slot empty.
+        if (!shod
+            && _inventory.TryGetSlotEntity(entity.Owner, "outerClothing", out var outer)
+            && _stainBlockerQuery.TryGetComponent(outer.Value, out var stainBlocker)
+            && (stainBlocker.BlockedSlots & SlotFlags.FEET) != 0
+            && _inventory.HasSlot(entity.Owner, "shoes"))
+        {
+            shod = true;
+        }
 
         var xform = Transform(entity.Owner);
         if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
