@@ -29,10 +29,7 @@ public sealed partial class StoreBoundUserInterface
             menu.UpdateListing();
         };
 
-        menu.OnWithdrawAttempt += (_, type, amount) =>
-        {
-            SendMessage(new StoreRequestWithdrawMessage(type, amount));
-        };
+        menu.OnWithdrawAttempt += (_, type, amount) => SendMessage(new StoreRequestWithdrawMessage(type, amount));
 
         menu.SearchTextUpdated += (_, search) =>
         {
@@ -40,10 +37,7 @@ public sealed partial class StoreBoundUserInterface
             UpdateListingsWithSearchFilter();
         };
 
-        menu.OnRefundAttempt += (_) =>
-        {
-            SendMessage(new StoreRequestRefundMessage());
-        };
+        menu.OnRefundAttempt += (_) => SendMessage(new StoreRequestRefundMessage());
 
         // Diona's pollen shop uses the shared Store UI. Its initial StoreUpdateState
         // can arrive before Open() creates StoreMenu, so cache it until initialization.
