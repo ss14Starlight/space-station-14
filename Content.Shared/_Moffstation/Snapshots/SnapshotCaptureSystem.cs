@@ -183,7 +183,7 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         var from = TransformSystem.GetMapCoordinates(user);
         if (center.MapId != from.MapId || (center.Position - from.Position).Length() > capture.MaxRange)
         {
-            _popup.PopupEntity(Loc.GetString("snapshot-capture-out-of-range"), user, user);
+            _popup.PopupClient(Loc.GetString("snapshot-capture-out-of-range"), user, user);
             return;
         }
 

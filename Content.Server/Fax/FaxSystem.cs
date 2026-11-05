@@ -567,7 +567,7 @@ public sealed partial class FaxSystem : EntitySystem
         if (component.SendTimeoutRemaining > 0)
             return;
 
-        if (component.PaperSlot.Item is not { } sendEntity)
+        if (component.PaperSlot.Item is not { } sendEntity) // Sta
             return;
 
         if (component.DestinationFaxAddress == null)
