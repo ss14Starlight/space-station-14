@@ -58,3 +58,11 @@
   components:
   - type: FootprintOwner
     printState: Talon
+
+# --- barefoot shape is the default, so these only need the component itself ---
+# BaseMobShadekin parents BaseMobSpecies rather than BaseMobSpeciesOrganic, so it never
+# inherited FootprintOwner and left no prints at all. The Neocyte variant declares its own.
+- type: !PartialOnly entity
+  id: BaseMobShadekin
+  components:
+  - type: FootprintOwner

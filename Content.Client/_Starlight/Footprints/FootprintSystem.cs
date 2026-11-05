@@ -43,7 +43,8 @@ public sealed partial class FootprintSystem : EntitySystem
             _sprite.LayerSetOffset(layer, print.Offset);
             _sprite.LayerSetRotation(layer, print.Rotation);
 
-            // Alternating steps are opposite feet. Set every time so a reused layer can't
+            // Alternating steps are opposite feet. Sprites are drawn as left feet, so the
+            // right-hand print is the mirrored one. Set every time so a reused layer can't
             // keep a stale mirror.
             _sprite.LayerSetScale(layer, new Vector2(print.Mirrored ? -1f : 1f, 1f));
             _sprite.LayerSetColor(layer, Color.White.WithAlpha(print.Alpha));

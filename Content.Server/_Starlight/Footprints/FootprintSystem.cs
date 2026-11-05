@@ -245,7 +245,7 @@ public sealed partial class FootprintSystem : EntitySystem
         if (ProcessPuddleStepping(entity, puddle, isStanding))
             return;
 
-        CreateFootprint(entity, grid, footprint, coords, rotation, isStanding, shod, stepOffset < 0f);
+        CreateFootprint(entity, grid, footprint, coords, rotation, isStanding, shod, stepOffset > 0f);
     }
 
     private bool ProcessPuddleStepping(
