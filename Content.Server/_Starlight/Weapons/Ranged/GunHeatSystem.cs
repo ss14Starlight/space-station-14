@@ -55,8 +55,12 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
         {
             _firing = false;
         }
+    }
 
-        ent.Comp.Temperature = temperature.CurrentTemperature;
+    protected override void SyncShotTemperature(Entity<GunHeatComponent> ent)
+    {
+        if (TryComp<TemperatureComponent>(ent, out var temperature))
+            ent.Comp.Temperature = temperature.CurrentTemperature;
     }
 
     [SubscribeLocalEvent]
