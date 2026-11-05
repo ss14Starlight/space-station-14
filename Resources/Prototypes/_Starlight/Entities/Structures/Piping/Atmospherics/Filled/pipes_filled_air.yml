@@ -83,37 +83,25 @@
   parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir500]
   id: GasPipeTankSubfloorFilledAir500Alt1
   categories: [ HideSpawnMenu ]
-  components: &subfloorAlt1
-    - type: Sprite
-      drawdepth: ThinPipeAlt1
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+  components: *subfloorAlt1
 
 - type: entity
   parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledAir500]
   id: GasPipeTankSubfloorFilledAir500Alt2
   categories: [ HideSpawnMenu ]
-  components: &subfloorAlt2
-    - type: Sprite
-      drawdepth: ThinPipeAlt2
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+  components: *subfloorAlt2
 
 - type: entity
   parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledAir500]
   id: GasPipeTankSubfloorFilledAir500Alt3
   categories: [ HideSpawnMenu ]
-  components: &subfloorAlt3
-    - type: Sprite
-      drawdepth: ThinPipeAlt3
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+  components: *subfloorAlt3
 
 - type: entity
   parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledAir500]
   id: GasPipeTankSubfloorFilledAir500Alt4
   categories: [ HideSpawnMenu ]
-  components: &subfloorAlt4
-    - type: Sprite
-      drawdepth: ThinPipeAlt4
-      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+  components: *subfloorAlt4
 
 # Subfloor gas tank (500mol) END
 # Subfloor gas tank (1000mol) BEGIN
@@ -182,6 +170,8 @@
       mixture:
         Oxygen: 25
         Nitrogen: 75
+    - type: SandboxCopyOverride
+      override: GasPipeTankSubfloorFilledAir1500
 
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir1500]
@@ -227,6 +217,8 @@
       mixture:
         Oxygen: 25
         Nitrogen: 75
+    - type: SandboxCopyOverride
+      override: GasPipeTankTallFilledAir1000
 
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankTallFilledAir1000]
@@ -280,6 +272,8 @@
       mixture:
         Oxygen: 25
         Nitrogen: 75
+    - type: SandboxCopyOverride
+      override: GasPipeTankTallFilledAir2500
 
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankTallFilledAir2500]
@@ -325,6 +319,8 @@
       mixture:
         Oxygen: 25
         Nitrogen: 75
+    - type: SandboxCopyOverride
+      override: GasPipeTankTallFilledAir4000
 
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankTallFilledAir4000]
@@ -371,6 +367,8 @@
       mixture:
         Oxygen: 25
         Nitrogen: 75
+    - type: SandboxCopyOverride
+      override: GasPipeTankTallFilledAir7500
 
 - type: entity
   parent: [GasPipeLayerAlt1, GasPipeTankTallFilledAir7500]
