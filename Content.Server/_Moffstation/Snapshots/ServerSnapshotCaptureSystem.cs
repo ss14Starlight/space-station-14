@@ -3,6 +3,7 @@ using Content.Server.MapText;
 using Content.Server.Movement.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.Nodes;
+using Content.Shared._Starlight.Light;
 using Content.Shared._Moffstation.Snapshots;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Camera;
@@ -20,10 +21,14 @@ using Content.Shared.Parallax;
 using Content.Shared.NodeContainer;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
+using Content.Shared.Tag;
 using Content.Shared.Wires;
+using Robust.Shared;
 using Robust.Shared.Containers;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Moffstation.Snapshots;
@@ -38,9 +43,12 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private ExamineSystemShared _examine = default!;
     [Dependency] private SharedPointLightSystem _light = default!;
+    [Dependency] private SharedIlluminationSystem _illumination = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private SharedStealthSystem _stealth = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedRoofSystem _roof = default!;
+    [Dependency] private TagSystem _tag = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private ITileDefinitionManager _tileDef = default!;
@@ -64,6 +72,10 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 
     private const int MaxEntities = 256;
 
+    private const int MaxBoundarySupportEntities = 64;
+
+    private const int MaxNearbyLights = 64;
+
     private const int MaxOccluders = 512;
 
     /// <summary>
@@ -76,8 +88,6 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     /// </summary>
     private const float MinStealthVisibility = 0.5f;
 
-    private static readonly Vector2i[] _neighbours = [new(1, 0), new(-1, 0), new(0, 1), new(0, -1)];
-
     /// <summary>
     /// Points within a tile checked for line of sight: the middle, edge midpoints and corners. Kept inside the tile so
     /// a ray grazing a wall's corner can't count the tile behind it as seen.
@@ -89,9 +99,15 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         new(0.15f, 0.15f), new(0.85f, 0.15f), new(0.15f, 0.85f), new(0.85f, 0.85f),
     ];
 
+    private static readonly ProtoId<TagPrototype> WallTag = "Wall";
+
     private readonly HashSet<EntityUid> _found = [];
 
     private readonly Dictionary<EntityUid, int> _captured = [];
+
+    private readonly HashSet<EntityUid> _supportCaptured = [];
+
+    private readonly List<Entity<SharedPointLightComponent, TransformComponent>> _nearbyLights = [];
 
     /// <summary>
     /// The viewfinder's extended view needs a larger PVS range, like binoculars.
@@ -185,52 +201,82 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
         }
 
-        // Walls seen from the side add their own tile, so they have floor to anchor to and a roof over them.
+        // Visible entities add their tile so they aren't blacked out by tile-level visibility sampling.
         var tilesInShot = new HashSet<Vector2i>(visible);
 
         _found.Clear();
         _captured.Clear();
-        var frameBox = new Box2(centerTile - halfExtents, centerTile + halfExtents + Vector2i.One);
+        _supportCaptured.Clear();
+        var shotBounds = new Box2(centerTile - halfExtents, centerTile + halfExtents + Vector2i.One);
+        var frameBox = shotBounds.Enlarged(1f);
         _lookup.GetEntitiesIntersecting(
             mapId,
             TransformBounds(frameBox, frameToWorld),
             _found,
             LookupFlags.Uncontained);
 
+        var visibleEntityCount = 0;
+        var supportEntityCount = 0;
+        var supportTiles = new HashSet<Vector2i>();
         foreach (var uid in _found)
         {
-            if (snapshot.Entities.Count >= MaxEntities)
-                break;
-
             if (!ShouldInclude(uid, visMask, null))
                 continue;
 
             var xform = Transform(uid);
             var worldPosition = TransformSystem.GetWorldPosition(xform);
-            if (!_examine.InRangeUnOccluded(
+            var local = Vector2.Transform(worldPosition, worldToFrame);
+            var tileOffset = TileOf(local) - centerTile;
+            var inFrame = Math.Abs(tileOffset.X) <= halfExtents.X && Math.Abs(tileOffset.Y) <= halfExtents.Y;
+            var supportOnly = !inFrame
+                && xform.Anchored
+                && Math.Abs(tileOffset.X) <= halfExtents.X + 1
+                && Math.Abs(tileOffset.Y) <= halfExtents.Y + 1
+                && _tag.HasTag(uid, WallTag);
+            if (!inFrame && !supportOnly)
+                continue;
+
+            if (!supportOnly
+                && !_examine.InRangeUnOccluded(
                     viewerCoords,
                     new MapCoordinates(worldPosition, mapId),
                     SightRange,
-                    blocker => blocker == uid)
-                || MetaData(uid).EntityPrototype is not { } proto)
+                    blocker => blocker == uid))
+                continue;
+
+            if (MetaData(uid).EntityPrototype is not { } proto)
+                continue;
+
+            if (supportOnly)
             {
+                if (supportEntityCount >= MaxBoundarySupportEntities)
+                    continue;
+
+                supportTiles.Add(tileOffset);
+                snapshot.Entities.Add(new SnapshotEntity
+                {
+                    Prototype = proto.ID,
+                    Offset = local - center,
+                    Rotation = TransformSystem.GetWorldRotation(xform) + frameRotation,
+                    Anchored = xform.Anchored,
+                    SupportOnly = true,
+                    Light = GetLight(uid),
+                });
+                _supportCaptured.Add(uid);
+                supportEntityCount++;
                 continue;
             }
 
-            var local = Vector2.Transform(worldPosition, worldToFrame);
-            var tileOffset = TileOf(local) - centerTile;
-            if (Math.Abs(tileOffset.X) > halfExtents.X || Math.Abs(tileOffset.Y) > halfExtents.Y)
+            if (visibleEntityCount >= MaxEntities)
                 continue;
 
             if (!visible.Contains(tileOffset))
             {
-                if (!_occluderQuery.HasComp(uid) || !HasVisibleNeighbour(tileOffset, visible))
-                    continue;
-
                 tilesInShot.Add(tileOffset);
             }
 
             _captured[uid] = snapshot.Entities.Count;
+            visibleEntityCount++;
             List<SnapshotSpriteLayerFrame>? capturedFrames = null;
             if (animationByEntity.TryGetValue(uid, out var entityFrames))
             {
@@ -262,6 +308,9 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             });
         }
 
+        CaptureNearbyLights(snapshot, mapId, worldCenter, centerTile, shotBounds, worldToFrame,
+            frameRotation, viewerCoords, visMask, supportTiles);
+
         foreach (var (uid, index) in _captured)
         {
             if (_buckleQuery.TryComp(uid, out var buckle)
@@ -272,6 +321,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
         }
 
+        tilesInShot.UnionWith(supportTiles);
         foreach (var offset in tilesInShot)
         {
             var worldPosition = Vector2.Transform(centerTile + offset + new Vector2(0.5f), frameToWorld);
@@ -562,7 +612,99 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             light.Energy,
             light.Softness,
             light.Falloff,
-            light.CurveFactor);
+            light.CurveFactor,
+            light.CastShadows);
+    }
+
+    private void CaptureNearbyLights(
+        SnapshotData snapshot,
+        MapId mapId,
+        Vector2 worldCenter,
+        Vector2i centerTile,
+        Box2 frameBox,
+        Matrix3x2 worldToFrame,
+        Angle frameRotation,
+        MapCoordinates viewer,
+        int visMask,
+        HashSet<Vector2i> supportTiles)
+    {
+        var maxLightRadius = _cfg.GetCVar(CVars.MaxLightRadius);
+        if (!float.IsFinite(maxLightRadius) || maxLightRadius <= 0f)
+            return;
+
+        var frameRadius = new Vector2(snapshot.HalfExtents.X + 0.5f, snapshot.HalfExtents.Y + 0.5f).Length();
+        _nearbyLights.Clear();
+        _illumination.GetLightsInRange(
+            new MapCoordinates(worldCenter, mapId),
+            frameRadius + maxLightRadius + 1f,
+            _nearbyLights);
+
+        var center = Vector2.Transform(worldCenter, worldToFrame);
+        var capturedCount = 0;
+        foreach (var light in _nearbyLights)
+        {
+            var uid = light.Owner;
+            if (capturedCount >= MaxNearbyLights)
+                break;
+
+            if (_captured.ContainsKey(uid)
+                || _supportCaptured.Contains(uid)
+                || !ShouldInclude(uid, visMask, null)
+                || MetaData(uid).EntityPrototype is not { } proto)
+            {
+                continue;
+            }
+
+            var entityWorldPosition = TransformSystem.GetWorldPosition(light.Comp2);
+            var worldRotation = TransformSystem.GetWorldRotation(light.Comp2);
+            var lightWorldPosition = entityWorldPosition + worldRotation.RotateVec(light.Comp1.Offset);
+            var lightLocalPosition = Vector2.Transform(lightWorldPosition, worldToFrame);
+            var closest = Vector2.Clamp(lightLocalPosition, frameBox.BottomLeft, frameBox.TopRight);
+            var radius = Math.Min(light.Comp1.Radius, maxLightRadius);
+            if (!float.IsFinite(radius)
+                || radius <= 0f
+                || Vector2.DistanceSquared(lightLocalPosition, closest) > radius * radius)
+            {
+                continue;
+            }
+
+            var sourceCoordinates = new MapCoordinates(lightWorldPosition, mapId);
+            var maxSightRange = SightRange + frameRadius + radius;
+            if (!_examine.InRangeUnOccluded(
+                    viewer,
+                    sourceCoordinates,
+                    maxSightRange,
+                    blocker => blocker == uid))
+            {
+                continue;
+            }
+
+            snapshot.Entities.Add(new SnapshotEntity
+            {
+                Prototype = proto.ID,
+                Offset = Vector2.Transform(entityWorldPosition, worldToFrame) - center,
+                Rotation = worldRotation + frameRotation,
+                Anchored = light.Comp2.Anchored,
+                SupportOnly = true,
+                Light = new SnapshotLight(
+                    light.Comp1.Enabled,
+                    light.Comp1.Color,
+                    light.Comp1.Radius,
+                    light.Comp1.Energy,
+                    light.Comp1.Softness,
+                    light.Comp1.Falloff,
+                    light.Comp1.CurveFactor,
+                    light.Comp1.CastShadows),
+            });
+
+            if (light.Comp2.Anchored)
+            {
+                _supportCaptured.Add(uid);
+                supportTiles.Add(TileOf(Vector2.Transform(entityWorldPosition, worldToFrame)) - centerTile);
+            }
+
+            capturedCount++;
+        }
     }
 
     private bool CanSeeAnyOfTile(MapCoordinates viewer, Vector2i index, Matrix3x2 frameToWorld, Matrix3x2 worldToFrame, MapId mapId)
@@ -591,14 +733,4 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     private static Vector2i TileOf(Vector2 local)
         => new((int)MathF.Floor(local.X), (int)MathF.Floor(local.Y));
 
-    private static bool HasVisibleNeighbour(Vector2i tile, HashSet<Vector2i> visible)
-    {
-        foreach (var dir in _neighbours)
-        {
-            if (visible.Contains(tile + dir))
-                return true;
-        }
-
-        return false;
-    }
 }

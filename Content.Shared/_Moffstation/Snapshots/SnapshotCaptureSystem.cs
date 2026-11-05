@@ -7,6 +7,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Verbs;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
@@ -33,6 +34,69 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     public const int MaxSnapshotAnimationFrames = 4096;
     public const int MaxSnapshotAnimationLayers = 32;
     public const int MaxSnapshotAnimationFrameIndex = 4095;
+
+    private static readonly VerbCategory _zoomCategory = new("snapshot-capture-zoom-category", null);
+
+    [SubscribeLocalEvent]
+    private void OnGetZoomVerbs(Entity<SnapshotCaptureComponent> ent, ref GetVerbsEvent<Verb> args)
+    {
+        if (ent.Comp.ZoomLevels.Count == 0
+            || !args.CanInteract
+            || !args.CanAccess)
+        {
+            return;
+        }
+
+        for (var i = 0; i < ent.Comp.ZoomLevels.Count; i++)
+        {
+            var dimensions = ent.Comp.ZoomLevels[i];
+            if (!TryGetHalfExtents(dimensions, out var halfExtents))
+            {
+                Log.Error($"Invalid snapshot zoom dimensions {dimensions} on {ToPrettyString(ent.Owner)}; dimensions must be positive odd numbers.");
+                continue;
+            }
+
+            args.Verbs.Add(new Verb
+            {
+                Text = Loc.GetString("snapshot-capture-zoom-option",
+                    ("width", dimensions.X),
+                    ("height", dimensions.Y)),
+                Disabled = ent.Comp.HalfExtents == halfExtents,
+                Priority = -i,
+                Category = _zoomCategory,
+                Act = () => SetZoom(ent.AsNullable(), dimensions),
+            });
+        }
+    }
+
+    private static bool TryGetHalfExtents(Vector2i dimensions, out Vector2i halfExtents)
+    {
+        halfExtents = default;
+        if (dimensions.X < 1 || dimensions.Y < 1 || dimensions.X % 2 == 0 || dimensions.Y % 2 == 0)
+            return false;
+
+        halfExtents = new Vector2i((dimensions.X - 1) / 2, (dimensions.Y - 1) / 2);
+        return true;
+    }
+
+    private void SetZoom(Entity<SnapshotCaptureComponent?> ent, Vector2i dimensions)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        if (!TryGetHalfExtents(dimensions, out var halfExtents)
+            || !ent.Comp.ZoomLevels.Contains(dimensions))
+        {
+            Log.Warning($"Rejected unconfigured snapshot zoom level {dimensions} for {ToPrettyString(ent.Owner)}.");
+            return;
+        }
+
+        if (ent.Comp.HalfExtents == halfExtents)
+            return;
+
+        ent.Comp.HalfExtents = halfExtents;
+        Dirty(ent);
+    }
 
     [SubscribeLocalEvent]
     private void OnUseInHand(Entity<SnapshotCaptureComponent> ent, ref UseInHandEvent args)

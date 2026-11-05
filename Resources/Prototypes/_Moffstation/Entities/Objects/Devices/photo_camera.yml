@@ -6,6 +6,12 @@
   components:
   - type: SnapshotCapture
     snapshot: SnapshotPhotograph
+    zoomLevels:
+    - 9,7
+    - 7,5
+    - 5,3
+    - 3,3
+    - 1,1
   - type: Sprite
     sprite: _Moffstation/Objects/Devices/snapshot_camera.rsi
     layers:

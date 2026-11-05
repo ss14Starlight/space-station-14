@@ -414,6 +414,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             EnsureComp<SSDIndicatorComponent>(spawned).IsSSD = true;
         }
 
+        if (entity.SupportOnly && _spriteQuery.TryGetComponent(spawned, out var supportSprite))
+            _sprite.SetVisible((spawned, supportSprite), false);
+
         ApplyAppearance(spawned, entity.Appearance);
         ApplyAnimationFrames(spawned, entity.AnimationFrames);
 
@@ -563,5 +566,6 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         _light.SetSoftness(uid, snapshotLight.Softness, light);
         _light.SetFalloff(uid, snapshotLight.Falloff, light);
         _light.SetCurveFactor(uid, snapshotLight.CurveFactor, light);
+        _light.SetCastShadows(uid, snapshotLight.CastShadows, light);
     }
 }

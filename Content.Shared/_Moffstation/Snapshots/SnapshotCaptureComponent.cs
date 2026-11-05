@@ -20,8 +20,14 @@ public sealed partial class SnapshotCaptureComponent : Component
     /// <summary>
     /// Tiles from the middle of the shot to its edge gives a 9x7 tile snapshot.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public Vector2i HalfExtents = new(4, 3);
+
+    /// <summary>
+    /// Available total frame dimensions, in the order shown by the zoom verb. Both dimensions must be positive odd numbers.
+    /// </summary>
+    [DataField]
+    public List<Vector2i> ZoomLevels = [];
 
     /// <summary>
     /// How far from the photographer the middle of a shot may be. Covers the screen with the viewfinder's extended view.

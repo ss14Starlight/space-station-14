@@ -79,6 +79,11 @@ public sealed class SnapshotEntity
 
     public bool Anchored;
 
+    /// <summary>
+    /// This entity is outside the frame and only exists to provide neighboring icon-smoothing connections.
+    /// </summary>
+    public bool SupportOnly;
+
     public bool Ssd;
 
     /// <summary>
@@ -124,7 +129,8 @@ public record struct SnapshotLight(
     float Energy,
     float Softness,
     float Falloff,
-    float CurveFactor);
+    float CurveFactor,
+    bool CastShadows);
 
 /// <summary>
 /// To ensure Character Items Inhand items ETC is carried over aswell as markings and such
