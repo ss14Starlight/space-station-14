@@ -53,3 +53,10 @@
   - type: Tag
     tags:
     - Citrus
+
+# Cak is a cat that descends from FoodBase, so it gets prints from scratch.
+- type: !PartialOnly entity
+  id: MobCatCake
+  components:
+  - type: FootprintOwner
+    printState: Paw

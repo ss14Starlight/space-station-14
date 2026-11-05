@@ -42,11 +42,15 @@ public sealed partial class FootprintSystem : EntitySystem
             _sprite.LayerSetOffset(layer, print.Offset);
             _sprite.LayerSetRotation(layer, print.Rotation);
             _sprite.LayerSetColor(layer, Color.White.WithAlpha(print.Alpha));
-            _sprite.LayerSetSprite(layer, new SpriteSpecifier.Rsi(entity.Comp.Sprites, GetState(print.State)));
+            _sprite.LayerSetSprite(layer, new SpriteSpecifier.Rsi(GetRsi(print.State, entity.Comp), GetState(print.State)));
         }
 
         entity.Comp.RenderedPrintCount = entity.Comp.Prints.Count;
     }
+
+    // State is per print, so the sheet is chosen per print rather than per entity.
+    private static ResPath GetRsi(FootprintVisualState state, FootprintComponent component) =>
+        state == FootprintVisualState.Paw ? component.PawSprites : component.Sprites;
 
     private static string GetState(FootprintVisualState state) => state switch
     {
@@ -56,6 +60,7 @@ public sealed partial class FootprintSystem : EntitySystem
         FootprintVisualState.Dragging3 => "dragging-3",
         FootprintVisualState.Dragging4 => "dragging-4",
         FootprintVisualState.Dragging5 => "dragging-5",
+        FootprintVisualState.Paw => "paw",
         _ => "foot",
     };
 }

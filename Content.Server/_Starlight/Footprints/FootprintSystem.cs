@@ -202,6 +202,9 @@ public sealed partial class FootprintSystem : EntitySystem
         if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
             return;
 
+        if (!sameParent && args.NewPosition.EntityId != gridUid)
+            return;
+
         Vector2 newLocal;
         if (sameParent && args.NewPosition.EntityId == gridUid)
         {
@@ -415,7 +418,7 @@ public sealed partial class FootprintSystem : EntitySystem
                     MathF.Floor(localPosition.Y / grid.TileSize) -
                     (grid.TileSize / 2f);
 
-        var state = isStanding ? FootprintVisualState.Foot : _random.Pick(_dragStates);
+        var state = isStanding ? entity.Comp.PrintState : _random.Pick(_dragStates);
 
         footprint.Comp1.Prints.Add(new FootprintData(new Vector2(normX, normY), rotation, alpha, state));
         Dirty(footprint.Owner, footprint.Comp1);
