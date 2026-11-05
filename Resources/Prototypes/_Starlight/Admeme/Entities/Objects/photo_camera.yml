@@ -13,3 +13,8 @@
     - 5,3
     - 3,3
     - 1,1
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 1
+  - type: UseDelay
