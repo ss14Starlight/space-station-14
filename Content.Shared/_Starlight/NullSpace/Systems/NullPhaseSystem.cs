@@ -33,7 +33,6 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedScaleVisualsSystem _scaleVisuals = default!;
-    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     private readonly EntProtoId _shadekinShadow = "ShadekinShadow";
     private readonly EntProtoId _shadekinPhaseInEffect = "ShadekinPhaseInEffect";
