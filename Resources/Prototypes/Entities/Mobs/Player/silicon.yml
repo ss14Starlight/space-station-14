@@ -647,11 +647,26 @@
         - BorgModuleOperative
         - BorgModuleL6C
         - BorgModuleDoubleEsword
+        - BorgModuleSyndicateNukeDisk # Starlight
+  # Starlight begin
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleTool
+      - BorgModuleOperative
+      - BorgModuleL6C
+      - BorgModuleDoubleEsword
+      - BorgModuleSyndicateNukeDisk
+  # Starlight end
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   id: PlayerBorgSyndicateAssaultGhostRole
@@ -680,15 +695,32 @@
       borg_brain:
         - PositronicBrain
       borg_module:
-        - BorgModuleTool
+        - BorgModuleSyndicateAdvancedTool # Starlight
+        - BorgModuleConstruction
         - BorgModuleRCD
         - BorgModuleOperative
         - BorgModuleSyndicateWeapon
+        - BorgModuleSyndicateNukeDisk # Starlight
+    # Starlight begin
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleSyndicateAdvancedTool
+      - BorgModuleConstruction
+      - BorgModuleRCD
+      - BorgModuleOperative
+      - BorgModuleSyndicateWeapon
+      - BorgModuleSyndicateNukeDisk
+    # Starlight end
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   id: PlayerBorgSyndicateSaboteurGhostRole

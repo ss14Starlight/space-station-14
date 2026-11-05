@@ -1,14 +1,14 @@
 - type: !PartialOnly antag
   id: HeadRev
-  requirements:
-  - !CombineIndex:0
-    time: 72h
+  requirements: !Clear
   - !type:DepartmentTimeRequirement
     department: Command
     time: 12h # Have to be a leader. You're essentially making your own chain of command in this role.
   - !type:RoleTimeRequirement
     role: JobSecurityOfficer # Less important than some of the other antags to know
     time: 1h
+  - !type:OverallPlaytimeRequirement
+    time: 72h
   playTimeTracker: AntagHeadRev
 
 - type: !PartialOnly antagSpecifier
@@ -20,9 +20,8 @@
     - MindShield
     tags:
     - CantBecomeRevolutionary
-  components:
-  - !CombineIndex:1
-    type: HeadRevolutionary
+  components: !Clear
+  - type: HeadRevolutionary
     blacklist:
       components:
       - Revolutionary
@@ -33,6 +32,7 @@
     whitelist:
       components:
       - HumanoidAppearance
+  - type: Revolutionary
 
 - type: !PartialOnly antag
   id: Rev
