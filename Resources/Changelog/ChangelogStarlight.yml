@@ -1,25 +1,4 @@
 Entries:
-- author: Ohelig
-  changes:
-  - message: (Cork) Added some fire-safety closets.
-    type: Add
-  id: 409735
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Added some botany supplies to genpop.
-    type: Add
-  id: 409736
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Removed the fans under the door to botany and kitchen.
-    type: Unknown
-  id: 409737
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
 - author: Xale
   changes:
   - message: Psicodine can now be consumed to suppresses auditory hallucinations for a while.
@@ -2799,4 +2778,25 @@ Entries:
   id: 410134
   time: '2026-11-05T16:28:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7027
+- author: redmushie
+  changes:
+  - message: (Mapping) Added prefilled plasma and frezon subfloor- and tall gas tanks for mappers.
+    type: Add
+  id: 410135
+  time: '2026-11-05T16:51:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7055
+- author: redmushie
+  changes:
+  - message: (Mapping) Added new smallest subfloor air tank with 750kPa of air in it.
+    type: Add
+  id: 410136
+  time: '2026-11-05T16:51:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7055
+- author: redmushie
+  changes:
+  - message: (Mapping) Subfloor tanks and tall gas tanks should now be pickable by mappers (pressing P).
+    type: Fix
+  id: 410137
+  time: '2026-11-05T16:51:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7055
 Order: -1
