@@ -1,0 +1,167 @@
+- type: entity
+  id: RandomUristBase
+  name: random Urist spawner
+  parent: MarkerBase
+  suffix: No Vox or Neos
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Starlight/Effects/unknown_humanoid.rsi
+        state: unknown_humanoid
+  - type: RandomSpawner
+    prototypes:
+      - MobAvali
+      - MobLagomorph
+      - MobCyclorite
+      - MobThaven
+      - MobElf
+      - MobExperiment
+      - MobMoth
+      - MobHuman
+      - MobDwarf
+      - MobDoll
+      - MobFelionoid
+      - MobDiona
+      - MobResomi
+      - MobRodentia
+      - MobIPC
+      - MobReptilian
+      - MobShadekin
+      - MobSlimePerson
+      - MobNeocyte #except you, you can stay
+      - MobVulpkanin
+      - MobArachnid
+    chance: 0.5
+
+- type: entity
+  id: RandomUristVox
+  name: random Urist spawner
+  parent: RandomUristBase
+  suffix: "No Neos"
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MobAvali
+      - MobLagomorph
+      - MobCyclorite
+      - MobThaven
+      - MobElf
+      - MobExperiment
+      - MobMoth
+      - MobHuman
+      - MobDwarf
+      - MobDoll
+      - MobFelionoid
+      - MobDiona
+      - MobResomi
+      - MobRodentia
+      - MobIPC
+      - MobReptilian
+      - MobShadekin
+      - MobSlimePerson
+      - MobNeocyte
+      - MobVulpkanin
+      - MobArachnid
+      - MobVox
+
+- type: entity
+  id: RandomUristNeos
+  name: random Urist spawner
+  parent: RandomUristBase
+  suffix: "No Vox"
+  components:
+  - type: RandomSpawner
+    prototypes: #commented out neo-species don't exist… yet
+      - MobAvali
+      - MobLagomorph
+      - MobCyclorite
+      - MobThaven
+      - MobElf
+      - MobExperiment
+      - MobMoth
+      - MobHuman
+      - MobDwarf
+      - MobDoll
+      - MobFelionoid
+      - MobDiona
+      - MobResomi
+      - MobRodentia
+      - MobIPC
+      - MobReptilian
+      - MobShadekin
+      - MobSlimePerson
+      - MobNeocyte
+      - MobVulpkanin
+      - MobArachnid
+      - MobNeoAvali
+      - MobNeoLagomorph
+      - MobNeoCyclorite
+      - MobNeoThaven
+      - MobNeoElf
+      # - MobNeoExperiment
+      - MobNeoMoth
+      - MobNeoHuman
+      - MobNeoDwarf
+      # - MobNeoDoll
+      - MobNeoFelionoid
+      - MobNeoDiona
+      - MobNeoResomi
+      # - MobNeoRodentia
+      - MobNeoReptilian
+      - MobNeoShadekin
+      - MobNeoSlimePerson
+      - MobNeoVox #except you, you can stay
+      - MobNeoVulpkanin
+      - MobNeoArachnid
+
+- type: entity
+  id: RandomUristAll
+  name: random Urist spawner
+  parent: RandomUristNeos
+  suffix: "All"
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MobAvali
+      - MobLagomorph
+      - MobCyclorite
+      - MobThaven
+      - MobElf
+      - MobExperiment
+      - MobMoth
+      - MobHuman
+      - MobDwarf
+      - MobDoll
+      - MobFelionoid
+      - MobDiona
+      - MobResomi
+      - MobRodentia
+      - MobIPC
+      - MobReptilian
+      - MobShadekin
+      - MobSlimePerson
+      - MobVox
+      - MobNeocyte
+      - MobVulpkanin
+      - MobArachnid
+      - MobNeoAvali
+      - MobNeoLagomorph
+      - MobNeoCyclorite
+      - MobNeoThaven
+      - MobNeoElf
+      # - MobNeoExperiment
+      - MobNeoMoth
+      - MobNeoHuman
+      - MobNeoDwarf
+      # - MobNeoDoll
+      - MobNeoFelionoid
+      - MobNeoDiona
+      - MobNeoResomi
+      # - MobNeoRodentia
+      - MobNeoReptilian
+      - MobNeoShadekin
+      - MobNeoSlimePerson
+      - MobNeoVox
+      - MobNeoVulpkanin
+      - MobNeoArachnid
