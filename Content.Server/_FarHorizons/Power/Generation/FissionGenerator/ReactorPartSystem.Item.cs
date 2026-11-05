@@ -6,7 +6,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Nutrition;
 using Content.Shared.Radiation.Components;
-using Content.Shared.Radiation.Systems; // Starlight - using upstream radiation system
+using Content.Shared.Radiation.Systems;
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 
