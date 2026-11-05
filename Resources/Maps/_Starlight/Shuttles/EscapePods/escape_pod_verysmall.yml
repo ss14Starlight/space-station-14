@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/05/2026 18:56:34
-  entityCount: 42
+  time: 11/05/2026 19:24:14
+  entityCount: 56
 maps: []
 grids:
 - 1
@@ -23,13 +23,16 @@ entities:
 - proto: ""
   entities:
   - uid: 1
+    mapInit: true
     components:
     - type: MetaData
       name: NT Escape Pod
     - type: Transform
       parent: invalid
     - type: ProtectedGrid
-      baseIndices: {}
+      baseIndices:
+        -1,0: 8421504
+        0,0: 197379
     - type: EscapePod
     - type: MapGrid
       chunks:
@@ -50,6 +53,7 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
+      updateAccumulator: 0.8339429
     - type: Shuttle
       dampingModifier: 0.25
     - type: ImplicitRoof
@@ -71,15 +75,29 @@ entities:
           moles:
             Oxygen: 21.824879
             Nitrogen: 82.10312
+        - temperature: 293.01715
+          volume: 2500
+          moles:
+            Oxygen: 21.176945
+            Nitrogen: 82.82904
+            CarbonDioxide: 0.018953562
+        - volume: 2500
+          moles: {}
         - volume: 2500
           moles: {}
           immutable: True
         tiles:
           0,0:
-            0: 19
-            1: 512
+            0: 1
+            1: 16
+            2: 2
+            3: 13892
           -1,0:
-            1: 2048
+            3: 35908
+          0,-1:
+            3: 12288
+          -1,-1:
+            3: 32768
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -94,23 +112,57 @@ entities:
 - proto: AirlockGlassShuttle
   entities:
   - uid: 2
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,0.5
+    - type: Door
+      state: Welded
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          ents:
+          - 3
+          showEnts: False
+          occludes: True
+    - type: Weldable
+      isWelded: True
+    - type: Airlock
+      powered: True
+    - type: DoorBolt
+      powered: True
+    - type: DeviceNetwork
+      receiveFrequency: 1280
+      address: 192A-EB22
+    - type: Forensics
+      residues: []
+      fingerprints: []
+      fibers: []
+      dnas: []
 - proto: APCBasic
   entities:
-  - uid: 3
+  - uid: 4
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: 1.5707963267948966 rad
       pos: -0.5,1.5
+    - type: Battery
+      lastUpdate: -495.3861935
+      lastCharge: 50000
+    - type: PowerNetworkBattery
+      supplyRampPosition: 0.037109375
+      loadingNetworkDemand: 2080
+      currentSupply: 2080
+      currentReceiving: 2079.963
     - type: Fixtures
       fixtures: {}
 - proto: AtmosDeviceFanTiny
   entities:
-  - uid: 4
+  - uid: 5
+    mapInit: true
     components:
     - type: Transform
       parent: 1
@@ -118,70 +170,108 @@ entities:
       pos: 0.5,0.5
 - proto: CableApcExtension
   entities:
-  - uid: 5
+  - uid: 6
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: -0.5,1.5
-  - uid: 6
+  - uid: 7
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,1.5
 - proto: CableHV
   entities:
-  - uid: 7
+  - uid: 8
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 1.5,1.5
-  - uid: 8
+  - uid: 9
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,1.5
-  - uid: 9
+  - uid: 10
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,0.5
-  - uid: 10
+  - uid: 11
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: -0.5,0.5
 - proto: CableMV
   entities:
-  - uid: 11
+  - uid: 12
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 1.5,1.5
-  - uid: 12
+  - uid: 13
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,1.5
-  - uid: 13
+  - uid: 14
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: -0.5,1.5
 - proto: ChairPilotSeat
   entities:
-  - uid: 14
+  - uid: 15
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: 3.141592653589793 rad
       pos: 0.5,1.5
+- proto: DimLightBulb
+  entities:
+  - uid: 36
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 35
+    - type: EmitSoundOnCollide
+      nextSound: -2702.8059084
+    - type: Physics
+      canCollide: False
+- proto: DoorElectronics
+  entities:
+  - uid: 3
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 2
+    - type: EmitSoundOnCollide
+      nextSound: -2702.8059084
+    - type: Physics
+      canCollide: False
 - proto: GasFilterInlineAlt4
   entities:
-  - uid: 34
+  - uid: 16
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 1.5,1.5
+    - type: DeviceNetwork
+      receiveFrequency: 1280
+      address: GFL-6107-AAB7
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: GasFilter
       filteredGases:
       - CarbonDioxide
@@ -205,228 +295,595 @@ entities:
       enabled: True
     - type: AtmosPipeColor
       color: '#947507FF'
+    - type: Forensics
+      residues: []
+      fingerprints: []
+      fibers: []
+      dnas: []
 - proto: GasPassiveGateAlt4
   entities:
-  - uid: 28
+  - uid: 17
+    mapInit: true
     components:
     - type: Transform
       parent: 1
-      rot: 3.141592653589793 rad
       pos: 0.5,0.5
+    - type: GasPassiveGate
+      flowRate: 0.024057053
     - type: AtmosPipeColor
       color: '#990000FF'
+    - type: EmitSoundOnCollide
+      nextSound: -2702.8059084
+    - type: Forensics
+      residues: []
+      fingerprints: []
+      fibers: []
+      dnas: []
 - proto: GasPassiveVentAlt4
   entities:
-  - uid: 33
+  - uid: 18
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: 3.141592653589793 rad
       pos: 0.5,1.5
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#947507FF'
+    - type: Forensics
+      residues: []
+      fingerprints: []
+      fibers: []
+      dnas: []
 - proto: GasPipeBend
   entities:
-  - uid: 40
+  - uid: 19
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 1.5,1.5
+    - type: MeleeWeapon
+      nextAttack: -2559.0498675
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 42
+  - uid: 20
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: 1.5707963267948966 rad
       pos: -0.5,1.5
+    - type: MeleeWeapon
+      nextAttack: -2559.0498675
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPipeBendAlt3
   entities:
-  - uid: 37
+  - uid: 21
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,1.5
+    - type: MeleeWeapon
+      nextAttack: -2559.0498675
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 38
+  - uid: 22
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: 1.5707963267948966 rad
       pos: -0.5,1.5
+    - type: MeleeWeapon
+      nextAttack: -2559.0498675
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPipeBendAlt4
   entities:
-  - uid: 29
+  - uid: 23
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: 1.5707963267948966 rad
       pos: 0.5,1.5
+    - type: MeleeWeapon
+      nextAttack: -2559.0498675
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 35
+  - uid: 24
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 1.5,2.5
+    - type: MeleeWeapon
+      nextAttack: -2559.0498675
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#947507FF'
-  - uid: 39
+  - uid: 25
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: 1.5707963267948966 rad
       pos: -0.5,2.5
+    - type: MeleeWeapon
+      nextAttack: -2559.0498675
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#947507FF'
 - proto: GasPipeManifold
   entities:
-  - uid: 32
+  - uid: 26
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: -0.5,0.5
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPipeStraight
   entities:
-  - uid: 31
+  - uid: 27
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: -1.5707963267948966 rad
       pos: 0.5,1.5
+    - type: MeleeWeapon
+      nextAttack: -2559.0498675
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPipeTankSubfloor
   entities:
-  - uid: 41
+  - uid: 28
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: 3.141592653589793 rad
       pos: 1.5,0.5
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#0055CCFF'
+    - type: Forensics
+      residues: []
+      fingerprints: []
+      fibers: []
+      dnas: []
 - proto: GasPipeTJunctionAlt4
   entities:
-  - uid: 30
+  - uid: 29
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,2.5
+    - type: MeleeWeapon
+      nextAttack: -2559.0498675
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#947507FF'
 - proto: GasPressurePumpAlt3
   entities:
-  - uid: 27
+  - uid: 30
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: 3.141592653589793 rad
       pos: 0.5,0.5
+    - type: DeviceNetwork
+      receiveFrequency: 1280
+      address: GPP-04DA-EE5A
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: GasPressurePump
       targetPressure: 1000
       enabled: True
     - type: AtmosPipeColor
       color: '#0055CCFF'
+    - type: Forensics
+      residues: []
+      fingerprints: []
+      fibers: []
+      dnas: []
 - proto: GasPressurePumpAlt4
   entities:
-  - uid: 36
+  - uid: 31
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: 3.141592653589793 rad
       pos: -0.5,1.5
+    - type: DeviceNetwork
+      receiveFrequency: 1280
+      address: GPP-7CCC-440E
+    - type: EmitSoundOnCollide
+      nextSound: -2559.0498675
     - type: GasPressurePump
       enabled: True
     - type: AtmosPipeColor
       color: '#947507FF'
+    - type: Forensics
+      residues: []
+      fingerprints: []
+      fibers: []
+      dnas: []
 - proto: GeneratorWallmountAPU
   entities:
-  - uid: 15
+  - uid: 32
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: -0.5,0.5
+    - type: PowerSupplier
+      supplyRampPosition: 2081.252
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          ents:
+          - 33
+          showEnts: False
+          occludes: True
 - proto: Grille
   entities:
-  - uid: 16
+  - uid: 34
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,2.5
+- proto: MicroManipulatorStockPart
+  entities:
+  - uid: 40
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 38
+    - type: EmitSoundOnCollide
+      nextSound: -2702.8059084
+    - type: Physics
+      canCollide: False
+  - uid: 45
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 43
+    - type: Stack
+      count: 4
+    - type: EmitSoundOnCollide
+      nextSound: -2702.8059084
+    - type: Physics
+      canCollide: False
+- proto: PowerCellSmall
+  entities:
+  - uid: 41
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 38
+    - type: Battery
+      lastUpdate: -639.1422344
+      lastCharge: 360
+    - type: EmitSoundOnCollide
+      nextSound: -2702.8059084
+    - type: Physics
+      canCollide: False
+    - type: ContainerContainer
+      containers:
+        solutions: !type:Container
+          ents:
+          - 42
 - proto: PoweredDimSmallLight
   entities:
-  - uid: 17
+  - uid: 35
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: -1.5707963267948966 rad
       pos: 0.5,1.5
+    - type: PoweredLight
+      lastThunk: 2063.6979363
+    - type: ContainerContainer
+      containers:
+        light_bulb: !type:ContainerSlot
+          ent: 36
+          showEnts: False
+          occludes: True
+    - type: ApcPowerReceiver
+      powerLoad: 60
+    - type: DeviceNetwork
+      receiveFrequency: 1173
+      address: 6AD6-F662
+- proto: ScentMarker
+  entities:
+  - uid: 53
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 1
+      pos: 0.6450022,1.3549998
+    - type: TimedDespawn
+      lifetime: 29.498955
+    - type: ScentMarker
+      totalDuration: 29.9989471
+      strength: 1
+      scentId: 1B0B37B78D265279
+      expiresAt: 2732.2629115
+  - uid: 54
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 1
+      pos: 0.3584286,1.3549998
+    - type: TimedDespawn
+      lifetime: 28.858524
+    - type: ScentMarker
+      totalDuration: 29.9918403
+      strength: 1
+      scentId: B2106C42EA5E1142
+      expiresAt: 2731.622472
+  - uid: 55
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 1
+      pos: 0.640891,1.6450002
+    - type: TimedDespawn
+      lifetime: 29.15852
+    - type: ScentMarker
+      totalDuration: 29.9918403
+      strength: 1
+      scentId: EDA4D91D583C7DC8
+      expiresAt: 2731.9224717
+  - uid: 56
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 1
+      pos: 0.35499957,1.6449864
+    - type: TimedDespawn
+      lifetime: 29.459642
+    - type: ScentMarker
+      totalDuration: 29.9929676
+      strength: 1
+      scentId: 3E5DB66886C39CB0
+      expiresAt: 2732.2235987
+- proto: SheetSteel1
+  entities:
+  - uid: 46
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 43
+    - type: Stack
+      count: 5
+    - type: EmitSoundOnCollide
+      nextSound: -2702.8059084
+    - type: Physics
+      canCollide: False
 - proto: ShuttleWindow
   entities:
-  - uid: 18
+  - uid: 37
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: -1.5707963267948966 rad
       pos: 0.5,2.5
+- proto: SolutionRiggable
+  entities:
+  - uid: 42
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 41
+    - type: ContainedSolution
+      container: 41
 - proto: SubstationWallBasic
   entities:
-  - uid: 19
+  - uid: 38
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: -1.5707963267948966 rad
       pos: 1.5,1.5
+    - type: Battery
+      lastUpdate: -632.8413117
+      lastCharge: 2000000
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          ents:
+          - 39
+          showEnts: False
+          occludes: True
+        manipulator: !type:Container
+          ents:
+          - 40
+          showEnts: False
+          occludes: True
+        powercell: !type:Container
+          ents:
+          - 41
+          showEnts: False
+          occludes: True
+    - type: PowerNetworkBattery
+      loadingNetworkDemand: 2079.963
+      currentSupply: 2079.963
+      currentReceiving: 2081.252
 - proto: Thruster
   entities:
-  - uid: 20
+  - uid: 43
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       rot: 3.141592653589793 rad
       pos: 1.5,0.5
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            vertices:
+            - -0.45,-0.45
+            - 0.45,-0.45
+            - 0.45,0.45
+            - -0.45,0.45
+            radius: 0.01
+          restitution: 0
+          hard: True
+          friction: 0.4
+          density: 60
+          mask:
+          - Impassable
+          - MidImpassable
+          - LowImpassable
+          layer:
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+          - Opaque
+        thruster-burn:
+          shape: !type:PolygonShape
+            vertices:
+            - -0.4,0.5
+            - 0.4,0.5
+            - 0.1,1.2
+            - -0.1,1.2
+            radius: 0.01
+          restitution: 0
+          hard: False
+          friction: 0.4
+          density: 1
+          mask: []
+          layer:
+          - Impassable
+          - MidImpassable
+          - HighImpassable
+          - LowImpassable
+          - InteractImpassable
+    - type: Thruster
+      nextFire: 0.6138065
+    - type: AdjustableThruster
+      baseThrust: 100
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          ents:
+          - 44
+          showEnts: False
+          occludes: True
+        machine_parts: !type:Container
+          ents:
+          - 45
+          - 46
+          showEnts: False
+          occludes: True
+- proto: ThrusterMachineCircuitboard
+  entities:
+  - uid: 44
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 43
+    - type: EmitSoundOnCollide
+      nextSound: -2702.8059084
+    - type: Physics
+      canCollide: False
+- proto: WallmountGeneratorAPUElectronics
+  entities:
+  - uid: 33
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 32
+    - type: EmitSoundOnCollide
+      nextSound: -2702.8059084
+    - type: Physics
+      canCollide: False
 - proto: WallmountPodConsole
   entities:
-  - uid: 21
+  - uid: 47
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,2.5
     - type: Fixtures
       fixtures: {}
+- proto: WallmountSubstationElectronics
+  entities:
+  - uid: 39
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 38
+    - type: EmitSoundOnCollide
+      nextSound: -2702.8059084
+    - type: Physics
+      canCollide: False
 - proto: WallShuttle
   entities:
-  - uid: 22
+  - uid: 48
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: -0.5,0.5
-  - uid: 23
+  - uid: 49
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: -0.5,1.5
-  - uid: 24
+  - uid: 50
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: 1.5,1.5
 - proto: WallShuttleDiagonal
   entities:
-  - uid: 25
+  - uid: 51
+    mapInit: true
     components:
     - type: Transform
       parent: 1
       pos: -0.5,2.5
-  - uid: 26
+  - uid: 52
+    mapInit: true
     components:
     - type: Transform
       parent: 1
