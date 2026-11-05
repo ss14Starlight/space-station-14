@@ -1,11 +1,4 @@
 Entries:
-- author: Xale
-  changes:
-  - message: Psicodine can now be consumed to suppresses auditory hallucinations for a while.
-    type: Add
-  id: 409738
-  time: '2026-10-24T15:25:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6837
 - author: Talirson
   changes:
   - message: Senior Atmos Tech PDA!
@@ -2799,4 +2792,11 @@ Entries:
   id: 410137
   time: '2026-11-05T16:51:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7055
+- author: baltdev
+  changes:
+  - message: Added the poster "Never Too Dead!".
+    type: Add
+  id: 410138
+  time: '2026-11-05T16:51:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7051
 Order: -1
