@@ -73,3 +73,24 @@
   components:
   - type: FootprintOwner
     printState: Paw
+
+- type: !PartialOnly entity
+  id: MobMonkeySyndicateAgentNukeops
+  components:
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+  - type: !Append Tag
+    tags:
+    - CantBecomeRevolutionary
+
+- type: !PartialOnly entity
+  id: MobKoboldSyndicateAgentNukeops
+  components:
+  - type: !Append Tag
+    tags:
+    - CantBecomeRevolutionary
