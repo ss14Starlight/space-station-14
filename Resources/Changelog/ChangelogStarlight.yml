@@ -1,46 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: Fixed an issue involving MovementModStatusSystem in which a component update was not being dirtied on client, leading to a mispredict, as well as a call to ModifySpeed() incorrectly using the walk speed modifier for the sprint speed value.
-    type: Fix
-  id: 409718
-  time: '2026-10-23T17:24:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6752
-- author: Floximo
-  changes:
-  - message: Expedition maps should no longer randomly appear frozen on arriving there.
-    type: Fix
-  id: 409719
-  time: '2026-10-23T18:02:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6825
-- author: redmushie
-  changes:
-  - message: Mass scanners / shuttle consoles now show correct distances to other grids.
-    type: Fix
-  id: 409720
-  time: '2026-10-23T18:22:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6828
-- author: baltdev
-  changes:
-  - message: Borgs can now always sign papers, and they use a different font when doing so.
-    type: Tweak
-  id: 409721
-  time: '2026-10-24T14:05:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6760
-- author: baltdev
-  changes:
-  - message: Signatures now strip parenthesized text at the end of names.
-    type: Tweak
-  id: 409722
-  time: '2026-10-24T14:05:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6760
-- author: Floximo
-  changes:
-  - message: 'Remote Control: Incapacitated, prone and cross-map interactions are now correctly handled.'
-    type: Add
-  id: 409723
-  time: '2026-10-24T14:31:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6785
 - author: Floximo
   changes:
   - message: movePulledObject's frequency limitation (1 second per command) was removed again.
@@ -2799,4 +2757,46 @@ Entries:
   id: 410117
   time: '2026-11-05T00:28:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7043
+- author: Makeshift
+  changes:
+  - message: (Plasma) Laundromat.
+    type: Add
+  id: 410118
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Converted the old Salvage Room into a cargo break room.
+    type: Tweak
+  id: 410119
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Converted the old Cargo break room into a mail room.
+    type: Tweak
+  id: 410120
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Edited the mining dock a little.
+    type: Tweak
+  id: 410121
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Added the new Radio machines to the Radio Studio.
+    type: Fix
+  id: 410122
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Added a fax machine to HoS's office.
+    type: Fix
+  id: 410123
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
 Order: -1
