@@ -1,6 +1,7 @@
 ui-options-function-open-m-help = Open mentor help
 ui-options-function-jump = Jump
 ui-options-function-latch-struggle = Struggle (while latched)
+ui-options-function-hotbar-remove = Remove from hotbar
 ui-escape-connect-discord = Link Discord
 server-info-connect-discord-button = Link Discord
 ui-escape-connect-steam = Link Steam
@@ -192,3 +193,5 @@ ui-options-handling-volume = Picking up and equipping:
 ui-options-combat-volume = Weapons and combat:
 ui-options-voice-volume = Voices and emotes:
 ui-options-announcement-volume = Announcements and alerts:
+ui-options-admin-sounds-volume = Admin sounds:
+ui-options-show-tippy = Show Tippy

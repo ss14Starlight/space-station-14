@@ -1,0 +1,28 @@
+- type: constructionGraph
+  id: PluralFlagGraph
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity { }
+      edges:
+        - to: pluralflag
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+    - node: pluralflag
+      entity: PluralFlag
+
+    - node: pluralflag
+      entity: PluralFlag
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+

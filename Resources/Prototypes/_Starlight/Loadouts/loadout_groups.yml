@@ -53,6 +53,7 @@
   - ScarfPrideNonbinary
   - ScarfPrideRainbow
   - ScarfPrideTrans
+  - ScarfPridePlural
   - ScarfPrideLongBacon
   - ScarfSolidRed
   - ScarfSolidBlue
@@ -964,6 +965,7 @@
     - ChemicalHud
     - ChemicalEyePatchHud
     - ChemicalJensens
+    - ChemicalJamjar
     - ChemicalGlassesPrescription
 
 - type: loadoutGroup
