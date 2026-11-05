@@ -1,13 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: (Cork) Salvage is now gone. QM's office moved to make way for...
-    type: Remove
-  id: 409727
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
   - message: (Cork) Laundry is now here, in the space formerly occupied by QM's office.
     type: Add
   id: 409728
@@ -2799,4 +2792,11 @@ Entries:
   id: 410126
   time: '2026-11-05T15:34:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7037
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed an uncommon case where EoR could fail to start if the Captain chose the War card and either the Captain or one of the people who counter-picked the Deserter card were gibbed/ashed/otherwise erased from existence.
+    type: Fix
+  id: 410127
+  time: '2026-11-05T15:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7048
 Order: -1
