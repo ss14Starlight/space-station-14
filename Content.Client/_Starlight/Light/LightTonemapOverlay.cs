@@ -29,6 +29,8 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
 
     public const int ContentZIndex = -100;
 
+    private const float MinRollOff = 0.01f;
+
     private readonly OverlayResourceCache<CachedResources> _resources = new();
     private readonly ShaderInstance _copyShaderInst;
     private readonly ShaderInstance _tonemapShaderInst;
@@ -93,8 +95,10 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
         _copyShaderInst.SetParameter("targetSize", targetSize);
         _tonemapShaderInst.SetParameter("targetSize", targetSize);
         _tonemapShaderInst.SetParameter("exposure", _cfg.GetCVar(StarlightCCVars.LightTonemapExposure));
-        _tonemapShaderInst.SetParameter("knee", _cfg.GetCVar(StarlightCCVars.LightTonemapKnee));
-        _tonemapShaderInst.SetParameter("maxLight", _cfg.GetCVar(StarlightCCVars.LightTonemapMax));
+        var maxLight = MathF.Max(_cfg.GetCVar(StarlightCCVars.LightTonemapMax), MinRollOff);
+        var knee = Math.Clamp(_cfg.GetCVar(StarlightCCVars.LightTonemapKnee), 0f, maxLight - MinRollOff);
+        _tonemapShaderInst.SetParameter("knee", knee);
+        _tonemapShaderInst.SetParameter("maxLight", maxLight);
 
         handle.RenderInRenderTarget(copy,
             (() =>

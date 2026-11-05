@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Light.EmergencyLighting;
+using Content.Shared._Starlight.Light.NightLighting;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Light.Components;
 using Content.Shared.Power.Components;
@@ -23,12 +24,21 @@ public abstract partial class SharedPoweredLightSystem
             return false;
         }
 
+        var radius = bulb.Comp.LightRadius * emergency.RadiusMultiplier;
+        var energy = bulb.Comp.LightEnergy * emergency.EnergyMultiplier;
+
+        if (TryComp<NightLightingDimmedComponent>(uid, out var night))
+        {
+            radius *= night.RadiusMultiplier;
+            energy *= night.EnergyMultiplier;
+        }
+
         SetLight(uid,
             true,
             emergency.Color,
             light,
-            bulb.Comp.LightRadius * emergency.RadiusMultiplier,
-            bulb.Comp.LightEnergy * emergency.EnergyMultiplier,
+            radius,
+            energy,
             bulb.Comp.LightSoftness,
             HasComp<DarkLightComponent>(bulb));
 

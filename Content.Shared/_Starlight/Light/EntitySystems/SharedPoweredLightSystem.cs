@@ -1,3 +1,5 @@
+using Content.Shared._Starlight.Light;
+
 // ReSharper disable once CheckNamespace
 namespace Content.Shared.Light.EntitySystems;
 

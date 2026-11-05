@@ -1,19 +1,12 @@
 light_mode unshaded;
 blend_mode none;
 
-// Picks out what glows on its own, for the bloom to blur. A sprite under light can be at most as bright
-// as the light map allows, so whatever is brighter than that is unshaded: screens, lamps, glowing things.
-// In the dark nearly all of their colour counts, in a lit room only the part that outshines the room.
-
 uniform sampler2D SCREEN_TEXTURE;
 uniform sampler2D LIGHT_TEXTURE;
 
 uniform highp vec2 targetSize;
-// Glow below this is left out, so dim unshaded bits don't haze the view.
 uniform highp float threshold;
 
-// The brightest a lit sprite usually gets for the light it stands in. Under 1 so that lamps,
-// which sit in the brightest light, still glow a little.
 const highp float LIT_ALBEDO = 0.8;
 
 void fragment()

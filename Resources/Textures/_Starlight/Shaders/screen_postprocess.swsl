@@ -1,11 +1,8 @@
 light_mode unshaded;
 blend_mode none;
 
-// Final touch on the world view: night vision, bloom, vignette and film grain. Each one is off at 0.
-
 uniform sampler2D SCREEN_TEXTURE;
 uniform sampler2D LIGHT_TEXTURE;
-// The blurred glow from bloom_extract.swsl.
 uniform sampler2D BLOOM_TEXTURE;
 
 // 1 when LIGHT_TEXTURE holds this viewport's light map, 0 when the view is drawn unlit.
@@ -20,19 +17,12 @@ uniform highp float vignette;
 uniform highp float grain;
 
 const highp vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
-// The eye sees with rods in the dark. They are most sensitive to blue-green and blind to red,
-// so what is left of the colour is a grey weighted towards green and blue...
 const highp vec3 SCOTOPIC = vec3(0.05, 0.55, 0.40);
-// ...that reads as cold blue.
 const highp vec3 NIGHT_TINT = vec3(0.78, 0.92, 1.18);
 
-// Light levels where night vision starts and is complete.
-// A room lit only by dimmed night lamps is still well above NIGHT_LIT.
 const highp float NIGHT_DARK = 0.03;
 const highp float NIGHT_LIT = 0.2;
 
-// Keep the input small: in float precision big coordinates collapse the hash to one value,
-// which turns the grain into a flat darkening.
 highp float hash(highp vec2 p)
 {
     highp vec3 p3 = fract(vec3(p.xyx) * 0.1031);
@@ -47,11 +37,9 @@ void fragment()
 
     if (nightVision > 0.0 && lightAvailable > 0.5)
     {
-        // The brightest channel, so a room in red emergency light counts as lit and stays red.
         highp vec3 lightRgb = texture2D(LIGHT_TEXTURE, Pos).rgb;
         highp float light = max(lightRgb.r, max(lightRgb.g, lightRgb.b));
         highp float night = (1.0 - smoothstep(NIGHT_DARK, NIGHT_LIT, light)) * nightVision;
-        // Things that glow on their own, like screens, are brighter than their light and keep their colour.
         highp float glow = max(max(color.r, max(color.g, color.b)) - light, 0.0);
         night *= 1.0 - smoothstep(0.1, 0.4, glow);
         color = mix(color, vec3(dot(color, SCOTOPIC)) * NIGHT_TINT, night);
@@ -59,7 +47,6 @@ void fragment()
 
     if (bloom > 0.0)
     {
-        // Screen blend, so the glow brightens without clipping to white.
         highp vec3 halo = texture2D(BLOOM_TEXTURE, Pos).rgb * bloom;
         color = 1.0 - (1.0 - color) * (1.0 - clamp(halo, 0.0, 1.0));
     }
@@ -68,15 +55,12 @@ void fragment()
     {
         highp float aspect = SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x;
         highp vec2 centered = (Pos - 0.5) * vec2(aspect, 1.0);
-        // 0 in the middle, 1 in the corners.
         highp float dist = length(centered) / length(vec2(0.5 * aspect, 0.5));
         color *= 1.0 - vignette * smoothstep(0.4, 1.0, dist);
     }
 
     if (grain > 0.0)
     {
-        // Pixel grains, redrawn 24 times a second like film. Like film, it shows in the midtones
-        // and fades out in the blacks, where any noise stands out on the dark station.
         highp float frame = mod(floor(TIME * 24.0), 241.0);
         highp vec2 cell = mod(FRAGCOORD.xy, 1024.0) + frame * vec2(17.0, 31.0);
         highp float noise = hash(cell) - 0.5;

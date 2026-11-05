@@ -13,6 +13,6 @@ public sealed partial class ApcBoundUserInterface
     private void LightingModePressed(ApcLightingMode mode)
     {
         SendMessage(new ApcSetLightingModeMessage(mode));
-        UpdateLighting();
+        _menu?.SetLightingModePressed(mode);
     }
 }

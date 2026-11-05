@@ -74,7 +74,7 @@ public sealed partial class LightFlickerSystem : EntitySystem
         flicker.Toggled = toggled;
 
         var lit = _appearance.TryGetData<PoweredLightState>(uid, PoweredLightVisuals.BulbState, out var state, appearance)
-                  && state == PoweredLightState.On;
+            && state == PoweredLightState.On;
         _pointLight.SetEnabled(uid, lit != toggled);
 
         if (!toggled)

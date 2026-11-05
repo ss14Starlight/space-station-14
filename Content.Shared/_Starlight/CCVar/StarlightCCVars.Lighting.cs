@@ -61,12 +61,14 @@ public sealed partial class StarlightCCVars
 
     /// <summary>
     /// Light level the roll-off starts at, everything below it is left as is.
+    /// Has to be below <see cref="LightTonemapMax"/>, the client lowers it to just under the maximum otherwise.
     /// </summary>
     public static readonly CVarDef<float> LightTonemapKnee =
         CVarDef.Create("lighting.tonemap_knee", 0.7f, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// Light level the roll-off approaches but never reaches, however many lights overlap.
+    /// Has to be above <see cref="LightTonemapKnee"/>.
     /// </summary>
     public static readonly CVarDef<float> LightTonemapMax =
         CVarDef.Create("lighting.tonemap_max", 1.15f, CVar.SERVER | CVar.REPLICATED);

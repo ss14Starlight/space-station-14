@@ -31,11 +31,17 @@ public sealed partial class EmergencyLightingSystem : EntitySystem
 
         _nextUpdate = now + _updateInterval;
 
-        var query = EntityQueryEnumerator<EmergencyLightingComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        var query = EntityQueryEnumerator<EmergencyLightingComponent, PoweredLightComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var light))
         {
             if (!comp.Discharging || !comp.Charged)
                 continue;
+
+            if (!light.On)
+            {
+                comp.ChargeUpdated = now;
+                continue;
+            }
 
             SyncCharge(comp, now);
 

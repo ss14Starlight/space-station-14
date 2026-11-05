@@ -1,10 +1,6 @@
 light_mode unshaded;
 blend_mode none;
 
-// Brings the accumulated light map back into a sane range. Lights are drawn additively, so wherever
-// several of them overlap the light map goes well above 1 and sprites get multiplied into a flat,
-// washed out colour. This keeps everything below the knee as is and rolls the rest off smoothly.
-
 uniform highp vec2 targetSize;
 uniform highp float exposure;
 uniform highp float knee;
@@ -20,7 +16,6 @@ void fragment()
 {
     highp vec3 rgb = zTextureSpec(TEXTURE, FRAGCOORD.xy / targetSize).rgb * exposure;
 
-    // Scale by the brightest channel so the hue of coloured lights survives the compression.
     highp float peak = max(rgb.r, max(rgb.g, rgb.b));
     if (peak > knee)
         rgb *= compress(peak) / peak;

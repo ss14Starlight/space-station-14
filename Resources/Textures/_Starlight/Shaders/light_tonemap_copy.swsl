@@ -1,8 +1,6 @@
 light_mode unshaded;
 blend_mode none;
 
-// Copies the light map pixel for pixel, so the tonemap pass can read it while writing the light map back.
-
 uniform highp vec2 targetSize;
 
 void fragment()

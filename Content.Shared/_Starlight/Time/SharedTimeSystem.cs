@@ -54,11 +54,11 @@ public abstract partial class SharedTimeSystem : EntitySystem
     }
 
     /// <summary>
-    /// Gets the station's date. This is 500 years in the future from today's date.
+    /// Gets the station's date, 500 years in the future from today's date. Rolls over at station midnight
+    /// like <see cref="GetStationTime"/>, so a date and a time shown together always match.
     /// </summary>
     public string GetDate()
-        // ISO 8601 (YYYY-MM-DD or YYYYMMDD)
-        => Date.ToString("yyyy-MM-dd");
+        => GetStationTime().Date;
 
     /// <summary>
     /// Gets the ellapsed time of the round, useful for paperwork.

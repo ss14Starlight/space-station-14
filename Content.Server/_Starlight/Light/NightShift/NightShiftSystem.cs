@@ -3,6 +3,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.NodeGroups;
+using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Light.NightLighting;
@@ -13,6 +14,7 @@ using Content.Shared.Database;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.Popups;
+using Content.Shared.Station.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
@@ -67,29 +69,37 @@ public sealed partial class NightShiftSystem : EntitySystem
 
     #region Station
 
+    [SubscribeLocalEvent]
+    private void OnStationPostInit(Entity<StationDataComponent> ent, ref StationPostInitEvent args)
+        => EnsureComp<StationNightShiftComponent>(ent);
+
     /// <summary>
     /// Forces, or stops forcing, the night shift on a station regardless of station time.
     /// Each source is tracked separately, the shift stays forced while any of them is.
     /// </summary>
-    public void SetForced(EntityUid station, EntityUid source, bool forced)
+    public void SetForced(Entity<StationNightShiftComponent?> station, EntityUid source, bool forced)
     {
-        var comp = EnsureComp<StationNightShiftComponent>(station);
-        if (forced ? comp.ForcedBy.Add(source) : comp.ForcedBy.Remove(source))
-            UpdateStation(station, comp, IsScheduledNight());
+        if (!Resolve(station, ref station.Comp, false))
+            return;
+
+        if (forced ? station.Comp.ForcedBy.Add(source) : station.Comp.ForcedBy.Remove(source))
+            UpdateStation(station, station.Comp, IsScheduledNight());
     }
 
     /// <summary>
     /// Overrides the night shift on a station, <see cref="ApcLightingMode.Auto"/> lifts the override.
     /// </summary>
-    public void SetOverride(EntityUid station, ApcLightingMode mode)
+    public void SetOverride(Entity<StationNightShiftComponent?> station, ApcLightingMode mode)
     {
-        var comp = EnsureComp<StationNightShiftComponent>(station);
-        comp.Override = mode;
-        UpdateStation(station, comp, IsScheduledNight());
+        if (!Resolve(station, ref station.Comp, false))
+            return;
+
+        station.Comp.Override = mode;
+        UpdateStation(station, station.Comp, IsScheduledNight());
     }
 
-    public bool IsStationNight(EntityUid? station)
-        => station != null && CompOrNull<StationNightShiftComponent>(station.Value)?.Night == true;
+    public bool IsStationNight(Entity<StationNightShiftComponent?> station)
+        => Resolve(station, ref station.Comp, false) && station.Comp.Night;
 
     private bool IsScheduledNight()
     {
@@ -198,7 +208,7 @@ public sealed partial class NightShiftSystem : EntitySystem
         {
             ApcLightingMode.Night => (true, NightLightingReason.Manual),
             ApcLightingMode.Day => (false, NightLightingReason.None),
-            _ when IsStationNight(_station.GetOwningStation(ent)) => (true, NightLightingReason.Station),
+            _ when _station.GetOwningStation(ent) is { } station && IsStationNight(station) => (true, NightLightingReason.Station),
             _ when lowPowerEnabled && lighting.LowPower => (true, NightLightingReason.LowPower),
             _ => (false, NightLightingReason.None),
         };
@@ -211,9 +221,6 @@ public sealed partial class NightShiftSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    /// Brings every light in line with the APC powering it.
-    /// </summary>
     private void UpdateLights(bool quiet)
     {
         var query = EntityQueryEnumerator<PoweredLightComponent, ApcPowerReceiverComponent>();
@@ -224,13 +231,6 @@ public sealed partial class NightShiftSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    /// Brings the lights powered by <paramref name="apc"/> in line with it.
-    /// </summary>
-    /// <remarks>
-    /// Most lights don't hang off the APC itself but off the nearest LV cable, which is a power provider of its own,
-    /// so this goes through every provider on the APC's network.
-    /// </remarks>
     private void UpdateLights(EntityUid apc, bool quiet)
     {
         if (!TryComp<ApcPowerProviderComponent>(apc, out var apcProvider) || apcProvider.Net is not ApcNet net)
@@ -249,10 +249,6 @@ public sealed partial class NightShiftSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    /// Night profile for the lights on an APC network, null when they should be at day lighting.
-    /// A network with several APCs goes dim as soon as any of them does.
-    /// </summary>
     private ApcLightingComponent? GetNightLighting(ApcNet? net)
     {
         if (net == null)
@@ -313,6 +309,7 @@ public sealed partial class NightShiftSystem : EntitySystem
         if (!_accessReader.IsAllowed(args.Actor, uid))
         {
             _popup.PopupCursor(Loc.GetString("apc-component-insufficient-access"), args.Actor, PopupType.Medium);
+            Dirty(uid, comp);
             return;
         }
 
@@ -320,6 +317,7 @@ public sealed partial class NightShiftSystem : EntitySystem
         if (now < comp.NextToggle)
         {
             _popup.PopupCursor(Loc.GetString("apc-lighting-cooldown"), args.Actor, PopupType.Medium);
+            Dirty(uid, comp);
             return;
         }
 

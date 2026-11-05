@@ -30,10 +30,7 @@ public sealed partial class ApcMenu
         if (lighting == null)
             return;
 
-        foreach (var (button, mode) in LightingModeButtons())
-        {
-            button.Pressed = lighting.Mode == mode;
-        }
+        SetLightingModePressed(lighting.Mode);
 
         LightingStateLabel.Text = Loc.GetString((lighting.Night, lighting.Reason) switch
         {
@@ -43,6 +40,12 @@ public sealed partial class ApcMenu
             _ => "apc-menu-lighting-state-night-manual",
         });
         LightingStateLabel.SetOnlyStyleClass(lighting.Reason == NightLightingReason.LowPower ? "highlight" : "LabelSubText");
+    }
+
+    public void SetLightingModePressed(ApcLightingMode pressed)
+    {
+        foreach (var (button, mode) in LightingModeButtons())
+            button.Pressed = mode == pressed;
     }
 
     private void SetLightingAccess(bool hasAccess)

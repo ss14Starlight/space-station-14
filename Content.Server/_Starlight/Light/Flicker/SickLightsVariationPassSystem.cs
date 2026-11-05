@@ -77,6 +77,19 @@ public sealed partial class SickLightsVariationPassSystem : VariationPassSystem<
         _poweredLight.SetFlickerOverride(picked, comp.Flicker);
     }
 
+    protected override void Ended(EntityUid uid, SickLightsVariationPassComponent comp, GameRuleComponent gameRule, GameRuleEndedEvent args)
+    {
+        base.Ended(uid, comp, gameRule, args);
+
+        foreach (var light in comp.Failing.Keys)
+        {
+            if (!TerminatingOrDeleted(light))
+                _poweredLight.SetFlickerOverride(light, null);
+        }
+
+        comp.Failing.Clear();
+    }
+
     private void EndFailure(EntityUid light, SickLightsVariationPassComponent comp)
     {
         if (TerminatingOrDeleted(light))
@@ -107,7 +120,7 @@ public sealed partial class SickLightsVariationPassSystem : VariationPassSystem<
             // A lit light with no flicker of its own: a working bulb on power, not already sick.
             if (flicker.Profile != null
                 || flicker.Override != null
-                || !_poweredLight.IsLit(uid, light)
+                || !_poweredLight.IsLit((uid, light))
                 || Stations.GetOwningStation(uid, xform) != comp.Station
                 || !InZone(xform, comp))
             {

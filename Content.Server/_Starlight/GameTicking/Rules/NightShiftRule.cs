@@ -29,7 +29,20 @@ public sealed partial class NightShiftRule : StationEventSystem<NightShiftRuleCo
     {
         base.Ended(uid, comp, gameRule, args);
 
-        if (comp.Station is { } station && !TerminatingOrDeleted(station))
-            _nightShift.SetForced(station, uid, false);
+        Release((uid, comp));
+    }
+
+    [SubscribeLocalEvent]
+    private void OnShutdown(Entity<NightShiftRuleComponent> ent, ref ComponentShutdown args)
+        => Release(ent);
+
+    private void Release(Entity<NightShiftRuleComponent> ent)
+    {
+        if (ent.Comp.Station is not { } station)
+            return;
+
+        ent.Comp.Station = null;
+        if (!TerminatingOrDeleted(station))
+            _nightShift.SetForced(station, ent, false);
     }
 }
