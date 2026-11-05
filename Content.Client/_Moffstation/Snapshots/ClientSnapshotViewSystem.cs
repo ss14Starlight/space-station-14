@@ -216,9 +216,11 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             if (tile.Roof is not { } roofColor)
                 continue;
 
-            roof ??= EnsureComp<RoofComponent>(grid);
-
-            roof.TileColors[tile.Offset] = roofColor;
+            if (roof == null)
+            {
+                roof = EnsureComp<RoofComponent>(grid);
+                roof.Color = roofColor;
+            }
         }
         // Tiles go down first so anchored things like walls have something to anchor to.
         _map.SetTiles(grid, tiles);
@@ -413,6 +415,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         }
 
         ApplyAppearance(spawned, entity.Appearance);
+        ApplyAnimationFrames(spawned, entity.AnimationFrames);
 
         if (entity.Light is { } snapshotLight)
             ApplyLight(spawned, snapshotLight);
@@ -425,6 +428,32 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         }
 
         return spawned;
+    }
+
+    private void ApplyAnimationFrames(EntityUid uid, List<SnapshotSpriteLayerFrame>? frames)
+    {
+        if (frames == null || !_spriteQuery.TryComp(uid, out var sprite))
+            return;
+
+        var changed = false;
+        foreach (var frame in frames)
+        {
+            if (!_sprite.TryGetLayer((uid, sprite), frame.Layer, out var layer, false)
+                || layer == null
+                || layer.ActualState is not { IsAnimated: true } state
+                || frame.Frame < 0
+                || frame.Frame >= state.DelayCount)
+            {
+                continue;
+            }
+
+            _sprite.LayerSetAutoAnimated((uid, sprite), frame.Layer, false);
+            layer.AnimationFrame = frame.Frame;
+            changed = true;
+        }
+
+        if (changed)
+            _sprite.ForceUpdate(uid);
     }
 
     /// <summary>

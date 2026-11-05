@@ -106,7 +106,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [SubscribeLocalEvent]
     private void OnCaptured(Entity<SnapshotCaptureComponent> ent, ref SnapshotCapturedEvent args)
     {
-        if (Capture(args.User, args.Center, ent.Comp.HalfExtents, args.Rotation) is not { } data)
+        if (Capture(args.User, args.Center, ent.Comp.HalfExtents, args.Rotation, args.AnimationFrames) is not { } data)
             return;
 
         var snapshot = Spawn(ent.Comp.Snapshot, Transform(ent).Coordinates);
@@ -117,7 +117,12 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     /// <summary>
     /// Records Lighting and such around the Photographer
     /// </summary>
-    public SnapshotData? Capture(EntityUid viewer, MapCoordinates shotCenter, Vector2i halfExtents, Angle rotation = default)
+    public SnapshotData? Capture(
+        EntityUid viewer,
+        MapCoordinates shotCenter,
+        Vector2i halfExtents,
+        Angle rotation = default,
+        List<SnapshotSpriteAnimation>? animationFrames = null)
     {
         var viewerCoords = TransformSystem.GetMapCoordinates(viewer);
         var mapId = shotCenter.MapId;
@@ -136,7 +141,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         var centerTile = frame.CenterTile;
         var center = centerTile + new Vector2(0.5f);
 
-        // The map ambient remains the background light; roof color is captured individually for each tile.
+        // The map ambient remains the background light. roof color is captured individually for each tile.
         var worldCenter = Vector2.Transform(center, frameToWorld);
         snapshot.AmbientLight = _mapLightQuery.TryComp(_map.GetMapOrInvalid(mapId), out var mapLight)
             ? mapLight.AmbientLightColor
@@ -153,6 +158,30 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 var index = centerTile + offset;
                 if (CanSeeAnyOfTile(viewerCoords, index, frameToWorld, worldToFrame, mapId))
                     visible.Add(offset);
+            }
+        }
+
+        var animationByEntity = new Dictionary<EntityUid, Dictionary<int, int>>();
+        if (animationFrames is { Count: > MaxSnapshotAnimationFrames })
+        {
+            Log.Warning($"Ignored {animationFrames.Count} snapshot animation frames because the request exceeded the limit.");
+        }
+        else if (animationFrames != null)
+        {
+            foreach (var animation in animationFrames)
+            {
+                if (animation.Layer < 0 || animation.Layer >= MaxSnapshotAnimationLayers
+                    || animation.Frame < 0 || animation.Frame > MaxSnapshotAnimationFrameIndex
+                    || !TryGetEntity(animation.Entity, out var source)
+                    || source is not { } sourceUid)
+                {
+                    continue;
+                }
+
+                if (!animationByEntity.TryGetValue(sourceUid, out var layers))
+                    animationByEntity[sourceUid] = layers = [];
+
+                layers.TryAdd(animation.Layer, animation.Frame);
             }
         }
 
@@ -202,6 +231,14 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
 
             _captured[uid] = snapshot.Entities.Count;
+            List<SnapshotSpriteLayerFrame>? capturedFrames = null;
+            if (animationByEntity.TryGetValue(uid, out var entityFrames))
+            {
+                capturedFrames = new List<SnapshotSpriteLayerFrame>(entityFrames.Count);
+                foreach (var (layer, frameIndex) in entityFrames)
+                    capturedFrames.Add(new SnapshotSpriteLayerFrame(layer, frameIndex));
+            }
+
             var appearance = GetAppearance(uid);
             if (_cableVisQuery.TryComp(uid, out var cableVis)
                 && TryGetCableConnectedMask(uid, cableVis, out var connectedMask))
@@ -218,6 +255,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 Anchored = xform.Anchored,
                 Ssd = _ssdIndicatorQuery.TryComp(uid, out var ssdIndicator) && ssdIndicator.IsSSD,
                 Appearance = appearance,
+                AnimationFrames = capturedFrames,
                 Light = GetLight(uid),
                 MapText = GetMapText(uid),
                 Humanoid = GetHumanoid(uid, visMask),

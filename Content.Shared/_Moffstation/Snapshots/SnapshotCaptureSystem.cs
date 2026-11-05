@@ -30,6 +30,10 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     [Dependency] private EntityQuery<SnapshotCaptureComponent> _captureQuery = default!;
     [Dependency] private EntityQuery<FlashComponent> _flashQuery = default!;
 
+    public const int MaxSnapshotAnimationFrames = 4096;
+    public const int MaxSnapshotAnimationLayers = 32;
+    public const int MaxSnapshotAnimationFrameIndex = 4095;
+
     [SubscribeLocalEvent]
     private void OnUseInHand(Entity<SnapshotCaptureComponent> ent, ref UseInHandEvent args)
     {
@@ -122,7 +126,7 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         }
 
         var rotation = new Angle(Math.IEEERemainder(ev.Rotation.Theta, Math.PI * 2));
-        var captured = new SnapshotCapturedEvent(user, center, rotation);
+        var captured = new SnapshotCapturedEvent(user, center, rotation, ev.AnimationFrames);
         RaiseLocalEvent(capturerUid.Value, ref captured);
     }
 
@@ -182,11 +186,16 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
 /// Sent by the client to take a shot centered on <see cref="Center"/>.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class SnapshotCaptureRequestEvent(NetEntity capturer, NetCoordinates center, Angle rotation) : EntityEventArgs
+public sealed class SnapshotCaptureRequestEvent(
+    NetEntity capturer,
+    NetCoordinates center,
+    Angle rotation,
+    List<SnapshotSpriteAnimation>? animationFrames) : EntityEventArgs
 {
     public readonly NetEntity Capturer = capturer;
     public readonly NetCoordinates Center = center;
     public readonly Angle Rotation = rotation;
+    public readonly List<SnapshotSpriteAnimation>? AnimationFrames = animationFrames;
 }
 
 public readonly record struct SnapshotFrame(

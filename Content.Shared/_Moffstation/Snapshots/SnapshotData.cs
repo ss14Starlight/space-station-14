@@ -86,6 +86,11 @@ public sealed class SnapshotEntity
     /// </summary>
     public Dictionary<Enum, object>? Appearance;
 
+    /// <summary>
+    /// Animation frame indices captured by the photographer for sprite layers.
+    /// </summary>
+    public List<SnapshotSpriteLayerFrame>? AnimationFrames;
+
     public SnapshotLight? Light;
 
     /// <summary>
@@ -104,6 +109,12 @@ public sealed class SnapshotEntity
     /// </summary>
     public SnapshotHumanoid? Humanoid;
 }
+
+[Serializable, NetSerializable]
+public record struct SnapshotSpriteAnimation(NetEntity Entity, int Layer, int Frame);
+
+[Serializable, NetSerializable]
+public record struct SnapshotSpriteLayerFrame(int Layer, int Frame);
 
 [Serializable, NetSerializable]
 public record struct SnapshotLight(

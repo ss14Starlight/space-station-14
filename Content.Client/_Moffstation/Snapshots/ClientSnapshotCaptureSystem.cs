@@ -4,6 +4,7 @@ using Content.Client.Movement.Systems;
 using Content.Shared._Moffstation.Snapshots;
 using Content.Shared.Camera;
 using Content.Shared.Hands;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
@@ -16,8 +17,11 @@ public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IOverlayManager _overlay = default!;
     [Dependency] private EyeCursorOffsetSystem _eyeOffset = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     [Dependency] private EntityQuery<EyeCursorOffsetComponent> _cursorOffsetQuery = default!;
+
+    private readonly HashSet<EntityUid> _animationCandidates = [];
 
     public override void Initialize()
     {
@@ -59,11 +63,86 @@ public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        var center = ClampToScreen(TransformSystem.ToMapCoordinates(click), ent.Comp.HalfExtents);
+        var center = ClampToScreen(TransformSystem.ToMapCoordinates(click), ent.Comp.HalfExtents, out var frame);
         RaisePredictiveEvent(new SnapshotCaptureRequestEvent(
             GetNetEntity(ent),
             GetNetCoordinates(TransformSystem.ToCoordinates(center)),
-            _eye.CurrentEye.Rotation));
+            _eye.CurrentEye.Rotation,
+            GetAnimationFrames(center.MapId, frame)));
+    }
+
+    private List<SnapshotSpriteAnimation> GetAnimationFrames(MapId mapId, SnapshotFrame frame)
+    {
+        var frames = new List<SnapshotSpriteAnimation>();
+        _animationCandidates.Clear();
+        _lookup.GetEntitiesIntersecting(mapId, TransformBounds(frame.Box, frame.FrameToWorld),
+            _animationCandidates, LookupFlags.Uncontained);
+
+        foreach (var uid in _animationCandidates)
+        {
+            if (!TryComp<SpriteComponent>(uid, out var sprite)
+                || !TryGetNetEntity(uid, out var netEntity)
+                || netEntity is not { } netUid)
+            {
+                continue;
+            }
+
+            var coordinates = TransformSystem.GetMapCoordinates(uid);
+            if (coordinates.MapId != mapId)
+                continue;
+
+            var local = Vector2.Transform(coordinates.Position, frame.WorldToFrame);
+            var tile = new Vector2i((int) MathF.Floor(local.X), (int) MathF.Floor(local.Y));
+            if (Math.Abs(tile.X) > frame.HalfExtents.X || Math.Abs(tile.Y) > frame.HalfExtents.Y)
+                continue;
+
+            var index = 0;
+            foreach (var layer in sprite.AllLayers)
+            {
+                if (index >= MaxSnapshotAnimationLayers)
+                    break;
+
+                if (layer.ActualRsi is not { } rsi
+                    || !rsi.TryGetState(layer.RsiState, out var state)
+                    || !state.IsAnimated)
+                {
+                    index++;
+                    continue;
+                }
+
+                if (frames.Count >= MaxSnapshotAnimationFrames)
+                    return frames;
+
+                frames.Add(new SnapshotSpriteAnimation(
+                    netUid,
+                    index,
+                    Math.Clamp(layer.AnimationFrame, 0, state.DelayCount - 1)));
+                index++;
+            }
+        }
+
+        return frames;
+    }
+
+    private static Box2 TransformBounds(Box2 box, Matrix3x2 transform)
+    {
+        var point = Vector2.Transform(box.BottomLeft, transform);
+        var min = point;
+        var max = point;
+
+        point = Vector2.Transform(box.BottomRight, transform);
+        min = Vector2.Min(min, point);
+        max = Vector2.Max(max, point);
+
+        point = Vector2.Transform(box.TopLeft, transform);
+        min = Vector2.Min(min, point);
+        max = Vector2.Max(max, point);
+
+        point = Vector2.Transform(box.TopRight, transform);
+        min = Vector2.Min(min, point);
+        max = Vector2.Max(max, point);
+
+        return new Box2(min, max);
     }
 
     /// <summary>
@@ -111,11 +190,6 @@ public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
     }
 
     private static float ClampAxis(float value, float min, float max, float half)
-    {
         // A screen smaller than the frame can't contain it; keep it centered then.
-        if (max - min < half * 2)
-            return (min + max) / 2;
-
-        return Math.Clamp(value, min + half, max - half);
-    }
+        => max - min < half * 2 ? (min + max) / 2 : Math.Clamp(value, min + half, max - half);
 }
