@@ -81,7 +81,6 @@
       - Biological
       - Hybrid
       - MoffDemonBiological
-    - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
       node: glassesSec
@@ -130,9 +129,8 @@
     - type: ShowHealthBars
       damageContainers:
         - Biological
-        - Hybrid # Neocytes
+        - Hybrid
         - MoffDemonBiological
-    - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
       node: glassesSec

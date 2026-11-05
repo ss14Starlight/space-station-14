@@ -32,8 +32,8 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.50
-        density: 80
+          radius: 0.35
+        density: 300
         mask:
         - MobMask
         layer:
@@ -65,6 +65,40 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
+  - type: ZombieImmune
+  - type: Repairable
+    damageValue: -10 # 10 seconds to repair from crit
+    doAfterDelay: 1
+    fuelCost: 0.5
+  - type: ArmorSparkEffect
+    alwaysSparks: true
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: CivilianSilicon
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 225
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Insulated
+  - type: ToolRefinable
+    refineResult:
+    - id: ScrapSteel
+      amount: 1
+    qualityNeeded: Screwing
 
 - type: entity
   parent: MobPurrfusHostile

@@ -1,0 +1,29 @@
+﻿{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-4.0",
+    "copyright": "foot.png created by evgen99 (673243657935257617). IMPERIAL SPACE (all besides following), dotCatshark (Dragging-2 & -5), Ratwood keep (https://github.com/Rotwood-Vale/Ratwood-Keep) (Dragging-1 & -3), (Goonstation https://github.com/goonstation/goonstation/) (Dragging-4).",
+    "states": [
+        {
+            "name": "foot"
+        },
+        {
+            "name": "dragging-1"
+        },
+        {
+            "name": "dragging-2"
+        },
+        {
+            "name": "dragging-3"
+        },
+        {
+            "name": "dragging-4"
+        },
+        {
+            "name": "dragging-5"
+        }
+    ]
+}

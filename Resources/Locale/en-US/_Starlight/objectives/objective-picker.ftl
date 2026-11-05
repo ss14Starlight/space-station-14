@@ -35,5 +35,6 @@ objective-picker-difficulty-value = {$difficulty}
 
 objective-picker-hidden-help-progress = Help a fellow traitor achieve their objectives.
 objective-picker-hidden-help-alive = Keep a fellow traitor alive.
+objective-picker-hidden-steal-heart = Steal someone's heart.
 objective-picker-under-budget-tip = The remaining options cannot meet the required Difficulty. You may confirm a smaller selection.
 objective-condition-escape-identity-eliminate-title = Escape alive and unrestrained disguised as {$targetName}, {CAPITALIZE($job)}, and prevent them from reaching CentComm.

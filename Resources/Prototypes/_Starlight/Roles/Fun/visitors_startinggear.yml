@@ -195,8 +195,7 @@
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorBasic
     pocket1: FlashlightSeclite
-    pocket2: MagazinePistolRubber
-    suitstorage: WeaponPistolMk58Nonlethal
+    suitstorage: WeaponMiniEnergyGun
 
 - type: startingGear
   id: VisitorSecurityCadetAlt
