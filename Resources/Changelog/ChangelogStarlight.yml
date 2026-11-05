@@ -1,46 +1,4 @@
 Entries:
-- author: Talirson
-  changes:
-  - message: Senior Atmos Tech PDA!
-    type: Add
-  id: 409739
-  time: '2026-10-24T15:25:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6831
-- author: Rinary
-  changes:
-  - message: Removed certain Lobby arts for various reasons, such as AI generated, low quality, arts that had copyright issues and too personal lobby arts(removed 5 arts).
-    type: Remove
-  id: 409740
-  time: '2026-10-24T19:10:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6838
-- author: Rinary
-  changes:
-  - message: Added a bunch of new arts in replacement of removed once(added 13 arts).
-    type: Add
-  id: 409741
-  time: '2026-10-24T19:10:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6838
-- author: Rinary
-  changes:
-  - message: Added ability to hide chat on lobby screen.
-    type: Add
-  id: 409742
-  time: '2026-10-24T19:10:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6838
-- author: Rinary
-  changes:
-  - message: Added ability to move ready/observe buttons at the top of chat box.
-    type: Add
-  id: 409743
-  time: '2026-10-24T19:10:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6838
-- author: Scarlet Lightweaver.
-  changes:
-  - message: Improved the guidebook searching by alot.
-    type: Tweak
-  id: 409744
-  time: '2026-10-24T20:51:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6822
 - author: Scarlet Lightweaver.
   changes:
   - message: added color coding to the guidebook.
@@ -2799,4 +2757,46 @@ Entries:
   id: 410138
   time: '2026-11-05T16:51:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7051
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added the new radio machines to Radio Host.
+    type: Add
+  id: 410139
+  time: '2026-11-05T19:04:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7050
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added a radio to each department.
+    type: Add
+  id: 410140
+  time: '2026-11-05T19:04:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7050
+- author: Ohelig
+  changes:
+  - message: (Cluster) Fixed the air alarm in Reactor.
+    type: Fix
+  id: 410141
+  time: '2026-11-05T19:04:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7050
+- author: Ohelig
+  changes:
+  - message: (Cluster) Fixed the secret room not being secret (why was the secret door welded shut, see-through, and walk-through?).
+    type: Fix
+  id: 410142
+  time: '2026-11-05T19:04:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7050
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added an EOD locker to Security.
+    type: Add
+  id: 410143
+  time: '2026-11-05T19:04:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7050
+- author: Ohelig
+  changes:
+  - message: (Cluster) Fixed an unpowered maints door and airlock.
+    type: Fix
+  id: 410144
+  time: '2026-11-05T19:04:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7050
 Order: -1
