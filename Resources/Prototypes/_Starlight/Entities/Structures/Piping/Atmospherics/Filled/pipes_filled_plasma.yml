@@ -47,28 +47,28 @@
       color: "#AA7DCEFF"
 
 # Base types END
-# Subfloor gas tank (1000kPa) BEGIN
+# Subfloor gas tank (1500kPa) BEGIN
 
 - type: entity
   parent: GasPipeTankSubfloorFilledPlasma
-  id: GasPipeTankSubfloorFilledPlasma1000
-  suffix: Plasma, 20C, 1000kPa
+  id: GasPipeTankSubfloorFilledPlasma1500
+  suffix: Plasma, 20C, 1500kPa
   components:
     - type: AtmosPipeLayers
       alternativePrototypes:
-        Primary: GasPipeTankSubfloorFilledPlasma1000
-        Secondary: GasPipeTankSubfloorFilledPlasma1000Alt1
-        Tertiary: GasPipeTankSubfloorFilledPlasma1000Alt2
-        Quaternary: GasPipeTankSubfloorFilledPlasma1000Alt3
-        Quinary: GasPipeTankSubfloorFilledPlasma1000Alt4
+        Primary: GasPipeTankSubfloorFilledPlasma1500
+        Secondary: GasPipeTankSubfloorFilledPlasma1500Alt1
+        Tertiary: GasPipeTankSubfloorFilledPlasma1500Alt2
+        Quaternary: GasPipeTankSubfloorFilledPlasma1500Alt3
+        Quinary: GasPipeTankSubfloorFilledPlasma1500Alt4
     - type: PipePrefill
-      targetPressure: 1000
+      targetPressure: 1500
     - type: SandboxCopyOverride
-      override: GasPipeTankSubfloorFilledPlasma1000
+      override: GasPipeTankSubfloorFilledPlasma1500
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledPlasma1000]
-  id: GasPipeTankSubfloorFilledPlasma1000Alt1
+  parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledPlasma1500]
+  id: GasPipeTankSubfloorFilledPlasma1500Alt1
   categories: [ HideSpawnMenu ]
   components: &subfloorAlt1
     - type: Sprite
@@ -76,8 +76,8 @@
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledPlasma1000]
-  id: GasPipeTankSubfloorFilledPlasma1000Alt2
+  parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledPlasma1500]
+  id: GasPipeTankSubfloorFilledPlasma1500Alt2
   categories: [ HideSpawnMenu ]
   components: &subfloorAlt2
     - type: Sprite
@@ -85,8 +85,8 @@
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
 
 - type: entity
-  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledPlasma1000]
-  id: GasPipeTankSubfloorFilledPlasma1000Alt3
+  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledPlasma1500]
+  id: GasPipeTankSubfloorFilledPlasma1500Alt3
   categories: [ HideSpawnMenu ]
   components: &subfloorAlt3
     - type: Sprite
@@ -94,59 +94,59 @@
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
 
 - type: entity
-  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledPlasma1000]
-  id: GasPipeTankSubfloorFilledPlasma1000Alt4
+  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledPlasma1500]
+  id: GasPipeTankSubfloorFilledPlasma1500Alt4
   categories: [ HideSpawnMenu ]
   components: &subfloorAlt4
     - type: Sprite
       drawdepth: ThinPipeAlt4
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
 
-# Subfloor gas tank (1000kPa) END
-# Subfloor gas tank (2000kPa) BEGIN
+# Subfloor gas tank (1500kPa) END
+# Subfloor gas tank (3000kPa) BEGIN
 
 - type: entity
   parent: GasPipeTankSubfloorFilledPlasma
-  id: GasPipeTankSubfloorFilledPlasma2000
-  suffix: Plasma, 20C, 2000kPa
+  id: GasPipeTankSubfloorFilledPlasma3000
+  suffix: Plasma, 20C, 3000kPa
   components:
     - type: AtmosPipeLayers
       alternativePrototypes:
-        Primary: GasPipeTankSubfloorFilledPlasma2000
-        Secondary: GasPipeTankSubfloorFilledPlasma2000Alt1
-        Tertiary: GasPipeTankSubfloorFilledPlasma2000Alt2
-        Quaternary: GasPipeTankSubfloorFilledPlasma2000Alt3
-        Quinary: GasPipeTankSubfloorFilledPlasma2000Alt4
+        Primary: GasPipeTankSubfloorFilledPlasma3000
+        Secondary: GasPipeTankSubfloorFilledPlasma3000Alt1
+        Tertiary: GasPipeTankSubfloorFilledPlasma3000Alt2
+        Quaternary: GasPipeTankSubfloorFilledPlasma3000Alt3
+        Quinary: GasPipeTankSubfloorFilledPlasma3000Alt4
     - type: PipePrefill
-      targetPressure: 2000
+      targetPressure: 3000
     - type: SandboxCopyOverride
-      override: GasPipeTankSubfloorFilledPlasma2000
+      override: GasPipeTankSubfloorFilledPlasma3000
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledPlasma2000]
-  id: GasPipeTankSubfloorFilledPlasma2000Alt1
+  parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledPlasma3000]
+  id: GasPipeTankSubfloorFilledPlasma3000Alt1
   categories: [ HideSpawnMenu ]
   components: *subfloorAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledPlasma2000]
-  id: GasPipeTankSubfloorFilledPlasma2000Alt2
+  parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledPlasma3000]
+  id: GasPipeTankSubfloorFilledPlasma3000Alt2
   categories: [ HideSpawnMenu ]
   components: *subfloorAlt2
 
 - type: entity
-  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledPlasma2000]
-  id: GasPipeTankSubfloorFilledPlasma2000Alt3
+  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledPlasma3000]
+  id: GasPipeTankSubfloorFilledPlasma3000Alt3
   categories: [ HideSpawnMenu ]
   components: *subfloorAlt3
 
 - type: entity
-  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledPlasma2000]
-  id: GasPipeTankSubfloorFilledPlasma2000Alt4
+  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledPlasma3000]
+  id: GasPipeTankSubfloorFilledPlasma3000Alt4
   categories: [ HideSpawnMenu ]
   components: *subfloorAlt4
 
-# Subfloor gas tank (2000kPa) END
+# Subfloor gas tank (3000kPa) END
 # Subfloor gas tank (4500kPa) BEGIN
 
 - type: entity
@@ -237,58 +237,58 @@
   components: *subfloorAlt4
 
 # Subfloor gas tank (9000kPa) END
-# Tall gas tank (2000kPa) BEGIN
+# Tall gas tank (3000kPa) BEGIN
 
 - type: entity
   parent: GasPipeTankTallFilledPlasma
-  id: GasPipeTankTallFilledPlasma2000
-  suffix: Plasma, 20C, 2000kPa
+  id: GasPipeTankTallFilledPlasma3000
+  suffix: Plasma, 20C, 3000kPa
   components:
     - type: AtmosPipeLayers
       alternativePrototypes:
-        Primary: GasPipeTankTallFilledPlasma2000
-        Secondary: GasPipeTankTallFilledPlasma2000Alt1
-        Tertiary: GasPipeTankTallFilledPlasma2000Alt2
-        Quaternary: GasPipeTankTallFilledPlasma2000Alt3
-        Quinary: GasPipeTankTallFilledPlasma2000Alt4
+        Primary: GasPipeTankTallFilledPlasma3000
+        Secondary: GasPipeTankTallFilledPlasma3000Alt1
+        Tertiary: GasPipeTankTallFilledPlasma3000Alt2
+        Quaternary: GasPipeTankTallFilledPlasma3000Alt3
+        Quinary: GasPipeTankTallFilledPlasma3000Alt4
     - type: PipePrefill
-      targetPressure: 2000
+      targetPressure: 3000
     - type: SandboxCopyOverride
-      override: GasPipeTankTallFilledPlasma2000
+      override: GasPipeTankTallFilledPlasma3000
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasPipeTankTallFilledPlasma2000]
-  id: GasPipeTankTallFilledPlasma2000Alt1
+  parent: [GasPipeLayerAlt1, GasPipeTankTallFilledPlasma3000]
+  id: GasPipeTankTallFilledPlasma3000Alt1
   categories: [ HideSpawnMenu ]
   components: &tallAlt1
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasPipeTankTallFilledPlasma2000]
-  id: GasPipeTankTallFilledPlasma2000Alt2
+  parent: [GasPipeLayerAlt2, GasPipeTankTallFilledPlasma3000]
+  id: GasPipeTankTallFilledPlasma3000Alt2
   categories: [ HideSpawnMenu ]
   components: &tallAlt2
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
 
 - type: entity
-  parent: [GasPipeLayerAlt3, GasPipeTankTallFilledPlasma2000]
-  id: GasPipeTankTallFilledPlasma2000Alt3
+  parent: [GasPipeLayerAlt3, GasPipeTankTallFilledPlasma3000]
+  id: GasPipeTankTallFilledPlasma3000Alt3
   categories: [ HideSpawnMenu ]
   components: &tallAlt3
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
 
 - type: entity
-  parent: [GasPipeLayerAlt4, GasPipeTankTallFilledPlasma2000]
-  id: GasPipeTankTallFilledPlasma2000Alt4
+  parent: [GasPipeLayerAlt4, GasPipeTankTallFilledPlasma3000]
+  id: GasPipeTankTallFilledPlasma3000Alt4
   categories: [ HideSpawnMenu ]
   components: &tallAlt4
     - type: Sprite
       sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
 
-# Tall gas tank (2000kPa) END
+# Tall gas tank (3000kPa) END
 # Tall gas tank (4500kPa) BEGIN
 
 - type: entity
