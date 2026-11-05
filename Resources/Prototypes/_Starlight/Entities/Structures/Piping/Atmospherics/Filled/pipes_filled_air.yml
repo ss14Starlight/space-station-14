@@ -1,3 +1,62 @@
+# Subfloor gas tank (250mol) BEGIN
+
+- type: entity
+  parent: GasPipeTankSubfloor
+  id: GasPipeTankSubfloorFilledAir250
+  suffix: Air, 250mol
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankSubfloorFilledAir250
+        Secondary: GasPipeTankSubfloorFilledAir250Alt1
+        Tertiary: GasPipeTankSubfloorFilledAir250Alt2
+        Quaternary: GasPipeTankSubfloorFilledAir250Alt3
+        Quinary: GasPipeTankSubfloorFilledAir250Alt4
+    - type: PipePrefill
+      targetMoles: 250
+      mixture:
+        Oxygen: 25
+        Nitrogen: 75
+    - type: SandboxCopyOverride
+      override: GasPipeTankSubfloorFilledAir250
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir250]
+  id: GasPipeTankSubfloorFilledAir250Alt1
+  categories: [ HideSpawnMenu ]
+  components: &subfloorAlt1
+    - type: Sprite
+      drawdepth: ThinPipeAlt1
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledAir250]
+  id: GasPipeTankSubfloorFilledAir250Alt2
+  categories: [ HideSpawnMenu ]
+  components: &subfloorAlt2
+    - type: Sprite
+      drawdepth: ThinPipeAlt2
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledAir250]
+  id: GasPipeTankSubfloorFilledAir250Alt3
+  categories: [ HideSpawnMenu ]
+  components: &subfloorAlt3
+    - type: Sprite
+      drawdepth: ThinPipeAlt3
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledAir250]
+  id: GasPipeTankSubfloorFilledAir250Alt4
+  categories: [ HideSpawnMenu ]
+  components: &subfloorAlt4
+    - type: Sprite
+      drawdepth: ThinPipeAlt4
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+
+# Subfloor gas tank (250mol) END
 # Subfloor gas tank (500mol) BEGIN
 
 - type: entity
