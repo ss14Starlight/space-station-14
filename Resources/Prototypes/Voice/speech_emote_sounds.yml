@@ -91,7 +91,7 @@
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
     Laugh: # Starlight start
-      collection: MaleLaugh
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_laugh.ogg
     Sneeze:
       collection: MaleSneezes # Starlight end
     Honk:
@@ -123,7 +123,7 @@
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
     Laugh: # Starlight start
-      collection: FemaleLaugh
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_laugh.ogg
     Sneeze:
       collection: FemaleSneezes # Starlight end
     Honk:

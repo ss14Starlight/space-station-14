@@ -54,3 +54,43 @@
     tags:
     - DoorBumpOpener
     - VimPilot
+
+# Paw prints instead of the default foot sprite.
+- type: !PartialOnly entity
+  id: MobCorgiBaseTemplate
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: MobCat
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: MobFox
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: MobMonkeySyndicateAgentNukeops
+  components:
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+  - type: !Append Tag
+    tags:
+    - CantBecomeRevolutionary
+
+- type: !PartialOnly entity
+  id: MobKoboldSyndicateAgentNukeops
+  components:
+  - type: !Append Tag
+    tags:
+    - CantBecomeRevolutionary
