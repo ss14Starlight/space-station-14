@@ -2,13 +2,24 @@
   id: MobMcGriff
   components:
   - type: FirelockOpener
+  - type: FootprintOwner
+    printState: Paw
 
 - type: !PartialOnly entity
   id: MobWalter
   components:
   - type: FirelockOpener
+  - type: FootprintOwner
+    printState: Paw
 
 - type: !PartialOnly entity
   id: MobMonkeyPunpun
   components:
   - type: AntagTarget
+
+# Bingus parents SimpleMobBase directly rather than MobCat, so it needs its own entry.
+- type: !PartialOnly entity
+  id: MobBingus
+  components:
+  - type: FootprintOwner
+    printState: Paw

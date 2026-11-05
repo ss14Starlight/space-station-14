@@ -12,6 +12,13 @@ public sealed partial class FootprintComponent : Component
 
     [DataField]
     public ResPath Sprites = new("/Textures/_Funkystation/Effects/footprints.rsi");
+
+    /// <summary>
+    /// Sheet used for paw prints. Separate from <see cref="Sprites"/> because state is tracked
+    /// per print, so one tile can hold both kinds.
+    /// </summary>
+    [DataField]
+    public ResPath PawSprites = new("/Textures/_Starlight/Effects/pawprints.rsi");
     /// <summary>
     /// Number of print layers already configured by the client.
     /// </summary>
@@ -34,4 +41,5 @@ public enum FootprintVisualState : byte
     Dragging3,
     Dragging4,
     Dragging5,
+    Paw, // added at end; would cause desync issues if put before dragging
 }

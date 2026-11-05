@@ -177,7 +177,7 @@
               drawdepth: Mobs
               sprite: _Starlight/Mobs/Animals/Spiders/docile.rsi
               map: ["enum.DamageStateVisualLayers.Base", "movement"]
-              state: tarantula
+              state: docile
           - options: Arachnophobia
             data:
               drawdepth: Mobs

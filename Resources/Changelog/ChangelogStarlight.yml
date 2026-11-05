@@ -1,200 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (NukeOps Western) Redspace beaker added to Medbay.
-    type: Add
-  id: 409696
-  time: '2026-10-23T07:22:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6810
-- author: Caws
-  changes:
-  - message: (NukeOps Geiger Complex) Syndicate tactical planning console added to planning area.
-    type: Add
-  id: 409697
-  time: '2026-10-23T07:58:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6808
-- author: Caws
-  changes:
-  - message: (NukeOps Geiger Complex) Redspace beaker added to Medbay.
-    type: Add
-  id: 409698
-  time: '2026-10-23T07:58:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6808
-- author: Caws
-  changes:
-  - message: (NukeOps Planet) Syndicate tactical planning console added to planning area.
-    type: Add
-  id: 409699
-  time: '2026-10-23T07:58:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6809
-- author: Caws
-  changes:
-  - message: (NukeOps Planet) Redspace beaker added to Medbay.
-    type: Add
-  id: 409700
-  time: '2026-10-23T07:58:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6809
-- author: wonderfulnewworld
-  changes:
-  - message: The character menu no longer implies every non-antag works for NanoTrasen.
-    type: Fix
-  id: 409701
-  time: '2026-10-23T07:59:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6815
-- author: wonderfulnewworld
-  changes:
-  - message: Syndicate reinforcements now have the correct title in their character menus.
-    type: Fix
-  id: 409702
-  time: '2026-10-23T07:59:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6815
-- author: wonderfulnewworld
-  changes:
-  - message: Wizards now have their briefings.
-    type: Fix
-  id: 409703
-  time: '2026-10-23T07:59:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6815
-- author: Floximo & Quietly12(Disco)
-  changes:
-  - message: Any worn or attached storage can now be accessed by others, with considerable time delay and warning.
-    type: Add
-  id: 409704
-  time: '2026-10-23T08:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6796
-- author: Floximo & Quietly12(Disco)
-  changes:
-  - message: Laspi storage and cargo legs work now by using the new "attached private storage" system.
-    type: Tweak
-  id: 409705
-  time: '2026-10-23T08:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6796
-- author: Floximo & Quietly12(Disco)
-  changes:
-  - message: Storages attached by surgery are no longer inaccessible to others.
-    type: Fix
-  id: 409706
-  time: '2026-10-23T08:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6796
-- author: wonderfulnewworld
-  changes:
-  - message: Selecting cards will no longer prevent you from taking antag objectives.
-    type: Fix
-  id: 409707
-  time: '2026-10-23T08:36:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6819
-- author: HartLys
-  changes:
-  - message: Added hand labeler to Cargo and Command Techfabs.
-    type: Add
-  id: 409708
-  time: '2026-10-23T09:05:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6817
-- author: IdioticTrashPanda
-  changes:
-  - message: Added high heels to NCT loadout, Mentoria rejoice!
-    type: Add
-  id: 409709
-  time: '2026-10-23T09:33:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6821
-- author: HartLys
-  changes:
-  - message: Added retro tie.
-    type: Add
-  id: 409710
-  time: '2026-10-23T10:00:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6787
-- author: HartLys
-  changes:
-  - message: Changed existing ties can be worn by hamlet.
-    type: Tweak
-  id: 409711
-  time: '2026-10-23T10:00:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6787
-- author: HartLys
-  changes:
-  - message: Added retro tie in scientist and roboticist loadouts.
-    type: Add
-  id: 409712
-  time: '2026-10-23T10:00:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6787
-- author: WNP78
-  changes:
-  - message: Fixed ChemMaster buffer view not updating instantly when sort mode changes.
-    type: Fix
-  id: 409713
-  time: '2026-10-23T13:33:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6813
-- author: neomoth
-  changes:
-  - message: Lobby music no longer cuts out when entering game during end of round.
-    type: Fix
-  id: 409714
-  time: '2026-10-23T17:24:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6752
-- author: neomoth
-  changes:
-  - message: Wires panel visuals for some structures (e.g. holopads, computers...) no longer get inverted upon disconnecting and reconnecting.
-    type: Fix
-  id: 409715
-  time: '2026-10-23T17:24:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6752
-- author: neomoth
-  changes:
-  - message: Radio channels should hopefully resync properly when inserting an encryption key into a headset you're currently wearing without you needing to take it off and put it back on again.
-    type: Fix
-  id: 409716
-  time: '2026-10-23T17:24:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6752
-- author: neomoth
-  changes:
-  - message: Actions should now (hopefully) never be incorrectly sorted upon spawning in for the first time in a round.
-    type: Fix
-  id: 409717
-  time: '2026-10-23T17:24:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6752
-- author: neomoth
-  changes:
-  - message: Fixed an issue involving MovementModStatusSystem in which a component update was not being dirtied on client, leading to a mispredict, as well as a call to ModifySpeed() incorrectly using the walk speed modifier for the sprint speed value.
-    type: Fix
-  id: 409718
-  time: '2026-10-23T17:24:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6752
-- author: Floximo
-  changes:
-  - message: Expedition maps should no longer randomly appear frozen on arriving there.
-    type: Fix
-  id: 409719
-  time: '2026-10-23T18:02:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6825
-- author: redmushie
-  changes:
-  - message: Mass scanners / shuttle consoles now show correct distances to other grids.
-    type: Fix
-  id: 409720
-  time: '2026-10-23T18:22:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6828
-- author: baltdev
-  changes:
-  - message: Borgs can now always sign papers, and they use a different font when doing so.
-    type: Tweak
-  id: 409721
-  time: '2026-10-24T14:05:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6760
-- author: baltdev
-  changes:
-  - message: Signatures now strip parenthesized text at the end of names.
-    type: Tweak
-  id: 409722
-  time: '2026-10-24T14:05:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6760
-- author: Floximo
-  changes:
-  - message: 'Remote Control: Incapacitated, prone and cross-map interactions are now correctly handled.'
-    type: Add
-  id: 409723
-  time: '2026-10-24T14:31:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6785
 - author: Floximo
   changes:
   - message: movePulledObject's frequency limitation (1 second per command) was removed again.
@@ -2799,4 +2603,200 @@ Entries:
   id: 410095
   time: '2026-11-03T14:50:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6966
+- author: baltdev
+  changes:
+  - message: Fixed the Docile Giant Spider sprites.
+    type: Fix
+  id: 410096
+  time: '2026-11-04T12:42:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7034
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) The Brig has been updated to modern 'genpop' standards.
+    type: Tweak
+  id: 410097
+  time: '2026-11-04T13:03:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7028
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) The floating light outside of the debriefing room has been removed. We apologize for any of the stress caused by said unsecured light fixture.
+    type: Fix
+  id: 410098
+  time: '2026-11-04T13:03:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7028
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) A light post erroneously installed in the middle of Security's doorway into the Brig has been removed.
+    type: Fix
+  id: 410099
+  time: '2026-11-04T13:03:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7028
+- author: Talirson
+  changes:
+  - message: Moved the bluespace harvester to consumer tab in power monitoring consoles.
+    type: Tweak
+  id: 410100
+  time: '2026-11-04T14:09:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7035
+- author: SirLutz
+  changes:
+  - message: Antagscaling reworked, "centcomm" jobs dont contribute anymore to antag scaling. All Security jobs, all Salvage, Captain and BSO do now. The code is also now more robust not to break, when someone renames jobs.
+    type: Tweak
+  id: 410101
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: SirLutz
+  changes:
+  - message: Removed the ability to drag from Coscult Custodians and Lodestars, Oracles as semi-leaders can drag their minion friends or bodies.
+    type: Remove
+  id: 410102
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: SirLutz
+  changes:
+  - message: Custodians can now pry open powered doors.
+    type: Add
+  id: 410103
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: SirLutz
+  changes:
+  - message: Malignant passive regeneration has been re-buffed, 50% regen increase(its at 75% of the original value when it came out).
+    type: Tweak
+  id: 410104
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: SirLutz
+  changes:
+  - message: Fixed some sprite error in colossus.
+    type: Fix
+  id: 410105
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: SirLutz
+  changes:
+  - message: Fixed some sprite error on an special dragon, you shouldnt even know about.
+    type: Fix
+  id: 410106
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: SirLutz
+  changes:
+  - message: Malign entites take 15% less structural damage, colossus takes 90 dmg per breaching hammer swing instead of 111.5.
+    type: Tweak
+  id: 410107
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: SirLutz
+  changes:
+  - message: Dragons Health has been reduced by 25 HP, this is to adjust to the new counted antagscaling.
+    type: Tweak
+  id: 410108
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: SirLutz
+  changes:
+  - message: Antagscaling now also adjusts the slowdown, if it didnt before.
+    type: Add
+  id: 410109
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: SirLutz
+  changes:
+  - message: Dragons Health slowdown has been shifted by 5%, making them slowdown an bit later.
+    type: Tweak
+  id: 410110
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: SirLutz
+  changes:
+  - message: Carps and dragons are now hostile toward Floral entities.
+    type: Tweak
+  id: 410111
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: SirLutz
+  changes:
+  - message: Dragon pierce flatreduction has been lowered 2->1.
+    type: Tweak
+  id: 410112
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: SirLutz
+  changes:
+  - message: Buckshots now increase the armor value of the target by 20%, and not 40% anymore(this made things like dragon almost immune to it, its still not great but damages it atleast).
+    type: Tweak
+  id: 410113
+  time: '2026-11-04T14:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6898
+- author: Zokkie
+  changes:
+  - message: Laughing sound effect for Reptilians/Neo-Reptilians.
+    type: Add
+  id: 410114
+  time: '2026-11-04T18:53:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7039
+- author: Romero/Littlemen
+  changes:
+  - message: Hotfix for the Verdict, a new gun in the sec armory and available as a purchase by cargo.
+    type: Tweak
+  id: 410115
+  time: '2026-11-04T19:17:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7041
+- author: Sparlight
+  changes:
+  - message: Pawed animals produce pawprints instead of shoed footprints.
+    type: Tweak
+  id: 410116
+  time: '2026-11-04T19:17:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7030
+- author: Quietly12
+  changes:
+  - message: Spray painters will no longer take 2 charges when painting pipes or painting or removing a decal.
+    type: Fix
+  id: 410117
+  time: '2026-11-05T00:28:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7043
+- author: Makeshift
+  changes:
+  - message: (Plasma) Laundromat.
+    type: Add
+  id: 410118
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Converted the old Salvage Room into a cargo break room.
+    type: Tweak
+  id: 410119
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Converted the old Cargo break room into a mail room.
+    type: Tweak
+  id: 410120
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Edited the mining dock a little.
+    type: Tweak
+  id: 410121
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Added the new Radio machines to the Radio Studio.
+    type: Fix
+  id: 410122
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Added a fax machine to HoS's office.
+    type: Fix
+  id: 410123
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
 Order: -1
