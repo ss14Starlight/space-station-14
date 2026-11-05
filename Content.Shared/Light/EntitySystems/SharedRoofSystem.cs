@@ -67,7 +67,7 @@ public abstract partial class SharedRoofSystem : EntitySystem
             // Early out, otherwise check for components on tile.
             if (isRoof)
             {
-                return roof.Color;
+                return roof.TileColors.TryGetValue(index, out var tileColor) ? tileColor : roof.Color;
             }
         }
 
@@ -79,7 +79,8 @@ public abstract partial class SharedRoofSystem : EntitySystem
             if (!isRoofEnt.Comp.Enabled)
                 continue;
 
-            return isRoofEnt.Comp.Color ?? roof.Color;
+            return isRoofEnt.Comp.Color
+                   ?? (roof.TileColors.TryGetValue(index, out var tileColor) ? tileColor : roof.Color);
         }
 
         return null;

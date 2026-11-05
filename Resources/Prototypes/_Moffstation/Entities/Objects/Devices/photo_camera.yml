@@ -2,7 +2,7 @@
   parent: BaseItem
   id: PhotoCamera
   name: photo camera
-  description: Capture a Precious moment, Ruining it right after with the Integrated Flash
+  description: Capture a precious moment, ruining it right after with the integrated flash.
   components:
   - type: SnapshotCapture
     snapshot: SnapshotPhotograph

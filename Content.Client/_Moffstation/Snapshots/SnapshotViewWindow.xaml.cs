@@ -11,6 +11,11 @@ public sealed partial class SnapshotViewWindow : DefaultWindow
     public SnapshotViewWindow()
         => RobustXamlLoader.Load(this);
 
+    /// <summary>
+    /// Sets the eye that the snapshot viewport renders, and the viewport size.
+    /// <param name="eye">The eye to render in the snapshot viewport.</param>
+    /// <param name="viewportSize">The size of the snapshot viewport.</param>
+    /// </summary>
     public void SetScene(IEye eye, Vector2i viewportSize)
     {
         SnapshotViewport.Eye = eye;

@@ -136,21 +136,11 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         var centerTile = frame.CenterTile;
         var center = centerTile + new Vector2(0.5f);
 
-        // The snapshot only has the tiles that made it into the shot, and anything without a tile gets the map's ambient light.
+        // The map ambient remains the background light; roof color is captured individually for each tile.
         var worldCenter = Vector2.Transform(center, frameToWorld);
-        var centerCoordinates = new MapCoordinates(worldCenter, mapId);
-        if (_map.TryFindGridAt(centerCoordinates, out var centerGridUid, out var centerGrid)
-            && centerGrid != null
-            && GetRoof((centerGridUid, centerGrid), _map.WorldToTile(centerGridUid, centerGrid, worldCenter)) is { } indoorRoof)
-        {
-            snapshot.AmbientLight = indoorRoof;
-        }
-        else
-        {
-            snapshot.AmbientLight = _mapLightQuery.TryComp(_map.GetMapOrInvalid(mapId), out var mapLight)
-                ? mapLight.AmbientLightColor
-                : Color.Black;
-        }
+        snapshot.AmbientLight = _mapLightQuery.TryComp(_map.GetMapOrInvalid(mapId), out var mapLight)
+            ? mapLight.AmbientLightColor
+            : Color.Black;
 
         // A tile is in the snapshot if the photographer can see any part of it, not just its middle, so partly visible
         // tiles next to walls aren't blacked out.
@@ -183,11 +173,22 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             if (snapshot.Entities.Count >= MaxEntities)
                 break;
 
-            if (!ShouldInclude(uid, visMask, null) || MetaData(uid).EntityPrototype is not { } proto)
+            if (!ShouldInclude(uid, visMask, null))
                 continue;
 
             var xform = Transform(uid);
-            var local = Vector2.Transform(TransformSystem.GetWorldPosition(xform), worldToFrame);
+            var worldPosition = TransformSystem.GetWorldPosition(xform);
+            if (!_examine.InRangeUnOccluded(
+                    viewerCoords,
+                    new MapCoordinates(worldPosition, mapId),
+                    SightRange,
+                    blocker => blocker == uid)
+                || MetaData(uid).EntityPrototype is not { } proto)
+            {
+                continue;
+            }
+
+            var local = Vector2.Transform(worldPosition, worldToFrame);
             var tileOffset = TileOf(local) - centerTile;
             if (Math.Abs(tileOffset.X) > halfExtents.X || Math.Abs(tileOffset.Y) > halfExtents.Y)
                 continue;

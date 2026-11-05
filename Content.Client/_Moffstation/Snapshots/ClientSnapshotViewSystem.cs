@@ -5,6 +5,7 @@ using Content.Client._Starlight.Humanoid;
 using Content.Client.MapText;
 using Content.Shared._Moffstation.Snapshots;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
@@ -115,6 +116,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Queues <paramref name="data"/> to build a scene for <paramref name="ui"/> on the next frame.
+    /// </summary>
     public void QueueBuild(SnapshotViewBoundUserInterface ui, SnapshotData data)
         => _pendingBuilds.Add((ui, data));
 
@@ -209,11 +213,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             if (tile.Roof is not { } roofColor)
                 continue;
 
-            if (roof == null)
-            {
-                roof = EnsureComp<RoofComponent>(grid);
-                roof.Color = roofColor;
-            }
+            roof ??= EnsureComp<RoofComponent>(grid);
+
+            roof.TileColors[tile.Offset] = roofColor;
         }
         // Tiles go down first so anchored things like walls have something to anchor to.
         _map.SetTiles(grid, tiles);
@@ -319,6 +321,10 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             Del(map);
     }
 
+    /// <summary>
+    /// Releases one open view of the cached scene for <paramref name="snapshot"/>.
+    /// Call once for each view that closes. Scenes with no open views can be destroyed when the cache is trimmed.
+    /// </summary>
     public void ReleaseScene(NetEntity snapshot)
     {
         if (_scenes.TryGetValue(snapshot, out var scene) && scene.OpenViews > 0)
@@ -465,8 +471,20 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             if (SpawnItem(held) is not { } item)
                 continue;
 
-            if (!_hands.TryPickup(doll, item, hand, checkActionBlocker: false, animate: false))
-                Del(item);
+            var hands = EnsureComp<HandsComponent>(doll);
+            if (!_hands.TryGetHand((doll, hands), hand, out _))
+                _hands.AddHand((doll, hands), hand, HandLocation.Functional);
+
+            if (_hands.TryPickup(doll, item, hand, checkActionBlocker: false, animate: false, handsComp: hands))
+                continue;
+
+            var fallbackHand = $"snapshot_{hand}";
+            for (var suffix = 1; _hands.TryGetHand((doll, hands), fallbackHand, out _); suffix++)
+                fallbackHand = $"snapshot_{hand}_{suffix}";
+
+            _hands.AddHand((doll, hands), fallbackHand, HandLocation.Functional);
+            if (!_hands.TryPickup(doll, item, fallbackHand, checkActionBlocker: false, animate: false, handsComp: hands))
+                Log.Error($"Failed to restore held item {held.Prototype} on snapshot humanoid {doll}.");
         }
 
         return doll;

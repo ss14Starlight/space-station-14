@@ -72,26 +72,42 @@ public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
     public MapCoordinates ClampToScreen(MapCoordinates center, Vector2i halfExtents)
         => ClampToScreen(center, halfExtents, out _);
 
+    /// <summary>
+    /// Moves <paramref name="center"/> so the whole frame stays on screen.
+    /// <paramref name="frame"/> receives the frame for the returned center.
+    /// </summary>
     public MapCoordinates ClampToScreen(MapCoordinates center, Vector2i halfExtents, out SnapshotFrame frame)
     {
         var originalCenter = center;
         frame = GetFrame(center, halfExtents, _eye.CurrentEye.Rotation);
-        var view = _eye.GetWorldViewport();
-        var rotation = frame.Rotation;
+        var worldToFrame = frame.WorldToFrame;
+        var view = _eye.GetWorldViewbounds();
+        view.GetCorners(out var bottomLeft, out var bottomRight, out var topRight, out var topLeft);
+        var min = new Vector2(float.PositiveInfinity);
+        var max = new Vector2(float.NegativeInfinity);
+        IncludeViewportPoint(bottomLeft);
+        IncludeViewportPoint(bottomRight);
+        IncludeViewportPoint(topRight);
+        IncludeViewportPoint(topLeft);
 
         // Half the frame's size in world space, plus a tile for snapping the center to the tile grid.
         var half = new Vector2(halfExtents.X + 1f, halfExtents.Y + 1f);
-        var cos = MathF.Abs((float) Math.Cos(rotation.Theta));
-        var sin = MathF.Abs((float) Math.Sin(rotation.Theta));
-        var worldHalf = new Vector2((cos * half.X) + (sin * half.Y), (sin * half.X) + (cos * half.Y));
 
-        var x = ClampAxis(center.Position.X, view.Left, view.Right, worldHalf.X);
-        var y = ClampAxis(center.Position.Y, view.Bottom, view.Top, worldHalf.Y);
-        center = new MapCoordinates(new Vector2(x, y), center.MapId);
+        var localCenter = Vector2.Transform(center.Position, frame.WorldToFrame);
+        localCenter.X = ClampAxis(localCenter.X, min.X, max.X, half.X);
+        localCenter.Y = ClampAxis(localCenter.Y, min.Y, max.Y, half.Y);
+        center = new MapCoordinates(Vector2.Transform(localCenter, frame.FrameToWorld), center.MapId);
         if (center.Position != originalCenter.Position)
             frame = GetFrame(center, halfExtents, _eye.CurrentEye.Rotation);
 
         return center;
+
+        void IncludeViewportPoint(Vector2 worldPoint)
+        {
+            var localPoint = Vector2.Transform(worldPoint, worldToFrame);
+            min = Vector2.Min(min, localPoint);
+            max = Vector2.Max(max, localPoint);
+        }
     }
 
     private static float ClampAxis(float value, float min, float max, float half)

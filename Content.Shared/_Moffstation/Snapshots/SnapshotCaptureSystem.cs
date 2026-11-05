@@ -36,13 +36,13 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
             return;
 
         args.Handled = true;
-        SetAiming(ent, !ent.Comp.Aiming, args.User);
+        SetAiming(ent.AsNullable(), !ent.Comp.Aiming, args.User);
         _popup.PopupClient(Loc.GetString(ent.Comp.Aiming ? "snapshot-capture-raise" : "snapshot-capture-lower"), args.User, args.User);
     }
 
     [SubscribeLocalEvent]
     private void OnUnequipped(Entity<SnapshotCaptureComponent> ent, ref GotUnequippedHandEvent args)
-        => SetAiming(ent, false, args.User);
+        => SetAiming(ent.AsNullable(), false, args.User);
 
     /// <summary>
     /// Switching to the other hand lowers the viewfinder, so it isn't still raised when switching back.
@@ -53,7 +53,7 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         if (!ent.Comp.Aiming)
             return;
 
-        SetAiming(ent, false, args.User);
+        SetAiming(ent.AsNullable(), false, args.User);
     }
 
     /// <remarks>
@@ -96,7 +96,14 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         }
 
         // The center comes from the client, so the range is enforced here.
-        var center = TransformSystem.ToMapCoordinates(GetCoordinates(ev.Center));
+        var centerCoordinates = GetCoordinates(ev.Center);
+        if (!TransformSystem.IsValid(centerCoordinates))
+        {
+            Log.Warning($"Rejected snapshot capture from {ToPrettyString(user)} with an invalid center.");
+            return;
+        }
+
+        var center = TransformSystem.ToMapCoordinates(centerCoordinates);
         var from = TransformSystem.GetMapCoordinates(user);
         if (center.MapId != from.MapId || (center.Position - from.Position).Length() > capture.MaxRange)
         {
@@ -118,8 +125,14 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         RaiseLocalEvent(capturerUid.Value, ref captured);
     }
 
-    public void SetAiming(Entity<SnapshotCaptureComponent> ent, bool aiming, EntityUid? user)
+    /// <summary>
+    /// Sets the viewfinder aiming state. Marks the component dirty and updates the user's PVS scale when a user is given.
+    /// </summary>
+    public void SetAiming(Entity<SnapshotCaptureComponent?> ent, bool aiming, EntityUid? user)
     {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
         if (ent.Comp.Aiming == aiming)
             return;
 

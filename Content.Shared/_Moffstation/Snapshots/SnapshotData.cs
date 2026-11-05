@@ -23,6 +23,9 @@ public sealed class SnapshotData
 
     public Vector2i HalfExtents;
 
+    /// <summary>
+    /// Map ambient light for unroofed tiles. Roof colors are stored per tile.
+    /// </summary>
     public Color AmbientLight = Color.Black;
 
     /// <summary>

@@ -35,8 +35,15 @@ public sealed partial class SnapshotViewBoundUserInterface(EntityUid owner, Enum
         view.AwaitSnapshot(this);
     }
 
+    /// <summary>
+    /// Asks the server for this view's snapshot data.
+    /// </summary>
     public void RequestSnapshot()
         => SendMessage(new SnapshotViewRequestMessage());
+
+    /// <summary>
+    /// Stores the first snapshot and queues the map build. Later calls, and calls after disposal, are ignored.
+    /// </summary>
 
     public void SetSnapshot(SnapshotData snapshot)
     {
@@ -48,6 +55,9 @@ public sealed partial class SnapshotViewBoundUserInterface(EntityUid owner, Enum
         EntMan.System<ClientSnapshotViewSystem>().QueueBuild(this, snapshot);
     }
 
+    /// <summary>
+    /// Opens the view window for a built scene. If this UI is already disposed, releases the scene instead.
+    /// </summary>
     public void ShowScene(NetEntity snapshot, IEye eye, Vector2i viewportSize)
     {
         if (Disposed)

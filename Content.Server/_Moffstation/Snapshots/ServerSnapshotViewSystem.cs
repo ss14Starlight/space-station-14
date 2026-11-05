@@ -1,6 +1,8 @@
 using Content.Shared._Moffstation.Snapshots;
+using Content.Shared.CCVar;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
+using Content.Shared.Players.RateLimiting;
 using Robust.Shared.Player;
 
 namespace Content.Server._Moffstation.Snapshots;
@@ -12,12 +14,19 @@ public sealed partial class ServerSnapshotViewSystem : EntitySystem
 {
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
-
+    [Dependency] private SharedPlayerRateLimitManager _rateLimit = default!;
     [Dependency] private EntityQuery<ActorComponent> _actorQuery = default!;
+
+    private const string RateLimitKey = "SnapshotView";
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _rateLimit.Register(RateLimitKey,
+            new RateLimitRegistration(CCVars.SnapshotViewRateLimitPeriod,
+                CCVars.SnapshotViewRateLimitCount,
+                null));
 
         Subs.BuiEvents<SnapshotComponent>(SnapshotViewUiKey.Key,
             subs =>
@@ -42,9 +51,16 @@ public sealed partial class ServerSnapshotViewSystem : EntitySystem
     /// <summary>
     /// Sends the snapshot to the one viewer who asked for it.
     /// </summary>
-
     private void OnSnapshotRequested(Entity<SnapshotComponent> ent, ref SnapshotViewRequestMessage args)
-        => SendSnapshot(ent, args.Actor);
+    {
+        if (!_actorQuery.TryComp(args.Actor, out var actor)
+            || _rateLimit.CountAction(actor.PlayerSession, RateLimitKey) != RateLimitStatus.Allowed)
+        {
+            return;
+        }
+
+        SendSnapshot(ent, args.Actor);
+    }
 
     /// <summary>
     /// Sends the snapshot right away so the view doesn't wait on the client's request
@@ -56,7 +72,10 @@ public sealed partial class ServerSnapshotViewSystem : EntitySystem
     private void SendSnapshot(Entity<SnapshotComponent> ent, EntityUid viewer)
     {
         if (ent.Comp.Data is not { } data)
+        {
+            _ui.CloseUi(ent.Owner, SnapshotViewUiKey.Key, viewer);
             return;
+        }
 
         if (!_ui.IsUiOpen(ent.Owner, SnapshotViewUiKey.Key, viewer) || !_interaction.InRangeUnobstructed(viewer, ent.Owner))
         {
