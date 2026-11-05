@@ -412,7 +412,7 @@
       targetPressure: 9000
       mixture:
         Oxygen: 25
-        Nitrogen: 75r
+        Nitrogen: 75
     - type: SandboxCopyOverride
       override: GasPipeTankTallFilledAir9000
 

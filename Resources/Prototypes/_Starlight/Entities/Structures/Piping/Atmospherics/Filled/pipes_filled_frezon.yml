@@ -294,7 +294,6 @@
 - type: entity
   parent: GasPipeTankTallFilledFrezon
   id: GasPipeTankTallFilledFrezon4500
-  categories: [ DoNotMap ]
   suffix: Frezon, 20C, 4500kPa
   components:
     - type: AtmosPipeLayers
