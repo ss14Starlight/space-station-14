@@ -1,15 +1,15 @@
+using System.Numerics;
+using Content.Shared.Radiation.Systems;
 using Content.Server.Radiation.Components;
 using Content.Shared.Radiation.Components;
 using Content.Shared.Radiation.Events;
 using Content.Shared.Stacks;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Threading;
-using System.Numerics;
-using Content.Shared.Radiation.Systems;
 using Robust.Shared.Timing;
-using Robust.Shared.Map.Components;
 
 namespace Content.Server.Radiation.Systems;
 
