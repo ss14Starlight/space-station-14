@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/05/2026 18:10:22
+  time: 11/05/2026 18:36:24
   entityCount: 42
 maps: []
 grids:
@@ -229,7 +229,7 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeBendAlt4
   entities:
-  - uid: 20
+  - uid: 19
     components:
     - type: Transform
       parent: 1
@@ -237,7 +237,7 @@ entities:
       pos: -1.5,0.5
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 21
+  - uid: 20
     components:
     - type: Transform
       parent: 1
@@ -246,7 +246,7 @@ entities:
       color: '#990000FF'
 - proto: GasPipeStraightAlt4
   entities:
-  - uid: 19
+  - uid: 21
     components:
     - type: Transform
       parent: 1
@@ -302,7 +302,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-1.5
     - type: GasPressurePump
-      targetPressure: 500
+      targetPressure: 1000
       enabled: True
     - type: AtmosPipeColor
       color: '#0055CCFF'

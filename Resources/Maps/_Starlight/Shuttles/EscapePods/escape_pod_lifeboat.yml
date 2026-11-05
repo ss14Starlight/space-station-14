@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/05/2026 17:53:57
+  time: 11/05/2026 18:36:54
   entityCount: 71
 maps: []
 grids:
@@ -460,7 +460,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-0.5
     - type: GasPressurePump
-      targetPressure: 500
+      targetPressure: 1000
       enabled: True
     - type: AtmosPipeColor
       color: '#0055CCFF'
