@@ -4,7 +4,7 @@ namespace Content.Shared.Radiation.Systems;
 
 public abstract partial class SharedRadiationSystem : EntitySystem
 {
-    [Dependency] protected readonly EntityQuery<RadiationSourceComponent> SourceQuery = default!;
+    [Dependency] protected EntityQuery<RadiationSourceComponent> SourceQuery = default!;
 
     public void SetIntensity(Entity<RadiationSourceComponent?> entity, float intensity)
     {
