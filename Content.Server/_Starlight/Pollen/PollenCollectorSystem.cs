@@ -26,13 +26,14 @@ public sealed partial class PollenCollectorSystem : EntitySystem
     [Dependency] private BloodstreamSystem _bloodstream = default!;
     [Dependency] private PollenCatalogSystem _catalog = default!;
     [Dependency] private StoreSystem _store = default!;
-    [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private ScentSystem _scent = default!;
 
     public static readonly ProtoId<CurrencyPrototype> PollenPointsCurrency = "PollenPoints";
 
     private static readonly TimeSpan _checkInterval = TimeSpan.FromSeconds(1);
     private static readonly ProtoId<ReagentPrototype> _omnizine = "Omnizine";
+
+    private readonly HashSet<Entity<ScentMarkerComponent>> _nearbyMarkers = new();
 
     public override void Initialize()
     {
@@ -84,12 +85,12 @@ public sealed partial class PollenCollectorSystem : EntitySystem
             if (collector.Collected >= collector.Pollen.Count)
                 continue;
 
-            var nearby = _lookup.GetEntitiesInRange(collectorXform.Coordinates, collector.PollenRange);
+            _scent.GetNearbyMarkers(collectorXform.Coordinates, collector.PollenRange, _nearbyMarkers);
             var containerHere = _scent.GetAirtightContainer(collectorXform);
 
-            foreach (var candidate in nearby)
+            foreach (var (_, marker) in _nearbyMarkers)
             {
-                if (!TryComp<ScentMarkerComponent>(candidate, out var marker) || !marker.IsPollen)
+                if (!marker.IsPollen)
                     continue;
 
                 if (marker.ContainedIn != containerHere)

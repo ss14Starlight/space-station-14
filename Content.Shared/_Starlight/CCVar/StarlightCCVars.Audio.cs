@@ -63,4 +63,10 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<float> AnnouncementVolume =
         CVarDef.Create("audio.announcement_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Sounds admins play to everyone with playglobalsound.
+    /// </summary>
+    public static readonly CVarDef<float> AdminSoundsVolume =
+        CVarDef.Create("audio.admin_sounds_volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
