@@ -1,151 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: Fixed an issue involving MovementModStatusSystem in which a component update was not being dirtied on client, leading to a mispredict, as well as a call to ModifySpeed() incorrectly using the walk speed modifier for the sprint speed value.
-    type: Fix
-  id: 409718
-  time: '2026-10-23T17:24:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6752
-- author: Floximo
-  changes:
-  - message: Expedition maps should no longer randomly appear frozen on arriving there.
-    type: Fix
-  id: 409719
-  time: '2026-10-23T18:02:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6825
-- author: redmushie
-  changes:
-  - message: Mass scanners / shuttle consoles now show correct distances to other grids.
-    type: Fix
-  id: 409720
-  time: '2026-10-23T18:22:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6828
-- author: baltdev
-  changes:
-  - message: Borgs can now always sign papers, and they use a different font when doing so.
-    type: Tweak
-  id: 409721
-  time: '2026-10-24T14:05:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6760
-- author: baltdev
-  changes:
-  - message: Signatures now strip parenthesized text at the end of names.
-    type: Tweak
-  id: 409722
-  time: '2026-10-24T14:05:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6760
-- author: Floximo
-  changes:
-  - message: 'Remote Control: Incapacitated, prone and cross-map interactions are now correctly handled.'
-    type: Add
-  id: 409723
-  time: '2026-10-24T14:31:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6785
-- author: Floximo
-  changes:
-  - message: movePulledObject's frequency limitation (1 second per command) was removed again.
-    type: Fix
-  id: 409724
-  time: '2026-10-24T14:31:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6785
-- author: wonderfulnewworld, ItsMaitake
-  changes:
-  - message: Added new Cryptographic Sequencer/Emag functionality to over 42 machines and vendors!
-    type: Add
-  id: 409725
-  time: '2026-10-24T14:31:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6794
-- author: wonderfulnewworld, ItsMaitake
-  changes:
-  - message: Departmental clothing vendor drobes now have Syndicate specific clothing types when emagged, instead of just being Operative Jumpsuits/Jumpskirts.
-    type: Tweak
-  id: 409726
-  time: '2026-10-24T14:31:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6794
-- author: Ohelig
-  changes:
-  - message: (Cork) Salvage is now gone. QM's office moved to make way for...
-    type: Remove
-  id: 409727
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Laundry is now here, in the space formerly occupied by QM's office.
-    type: Add
-  id: 409728
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Added a Surgeon slot.
-    type: Add
-  id: 409729
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Powered Botany.
-    type: Fix
-  id: 409730
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Powered the bar north of Radio Host.
-    type: Fix
-  id: 409731
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Linked the artifact analyzers to the consoles.
-    type: Fix
-  id: 409732
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Fixed space weather in Botany.
-    type: Fix
-  id: 409733
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Replaced empty variants of wall lockers with filled.
-    type: Fix
-  id: 409734
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Added some fire-safety closets.
-    type: Add
-  id: 409735
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Added some botany supplies to genpop.
-    type: Add
-  id: 409736
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Removed the fans under the door to botany and kitchen.
-    type: Unknown
-  id: 409737
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Xale
-  changes:
-  - message: Psicodine can now be consumed to suppresses auditory hallucinations for a while.
-    type: Add
-  id: 409738
-  time: '2026-10-24T15:25:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6837
 - author: Talirson
   changes:
   - message: Senior Atmos Tech PDA!
@@ -2799,4 +2652,151 @@ Entries:
   id: 410117
   time: '2026-11-05T00:28:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7043
+- author: Makeshift
+  changes:
+  - message: (Plasma) Laundromat.
+    type: Add
+  id: 410118
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Converted the old Salvage Room into a cargo break room.
+    type: Tweak
+  id: 410119
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Converted the old Cargo break room into a mail room.
+    type: Tweak
+  id: 410120
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Edited the mining dock a little.
+    type: Tweak
+  id: 410121
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Added the new Radio machines to the Radio Studio.
+    type: Fix
+  id: 410122
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Makeshift
+  changes:
+  - message: (Plasma) Added a fax machine to HoS's office.
+    type: Fix
+  id: 410123
+  time: '2026-11-05T10:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed placeholder icons in hand slots (most commonly in cyborg modules) not always being transparent.
+    type: Fix
+  id: 410124
+  time: '2026-11-05T14:48:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7054
+- author: redmushie
+  changes:
+  - message: (Sepultum) Change Distro/Waste layers to match docking port standard.
+    type: Tweak
+  id: 410125
+  time: '2026-11-05T15:34:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7037
+- author: redmushie
+  changes:
+  - message: (Sepultum) Route distro, waste and HV to every docking port.
+    type: Add
+  id: 410126
+  time: '2026-11-05T15:34:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7037
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed an uncommon case where EoR could fail to start if the Captain chose the War card and either the Captain or one of the people who counter-picked the Deserter card were gibbed/ashed/otherwise erased from existence.
+    type: Fix
+  id: 410127
+  time: '2026-11-05T15:34:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7048
+- author: wonderfulnewworld
+  changes:
+  - message: Nuclear Operatives  will no longer suddenly become USSP SKB Agents.
+    type: Fix
+  id: 410128
+  time: '2026-11-05T15:34:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7046
+- author: wonderfulnewworld
+  changes:
+  - message: People who get mindshields prior to antag rolling should no longer become USSP SKB Agents.
+    type: Fix
+  id: 410129
+  time: '2026-11-05T15:34:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7046
+- author: wonderfulnewworld
+  changes:
+  - message: Supplybot will no longer roll antags.
+    type: Fix
+  id: 410130
+  time: '2026-11-05T15:34:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7046
+- author: Floximo
+  changes:
+  - message: Shunting no longer kills the AI, re-shunting is possible again.
+    type: Fix
+  id: 410131
+  time: '2026-11-05T16:03:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7032
+- author: MaxAlpine
+  changes:
+  - message: (Prism) fixed Wrong door prototype on IAA office.
+    type: Fix
+  id: 410132
+  time: '2026-11-05T16:28:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7027
+- author: MaxAlpine
+  changes:
+  - message: (Prism) fixed Magistrate office stairway being too narrow.
+    type: Fix
+  id: 410133
+  time: '2026-11-05T16:28:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7027
+- author: MaxAlpine
+  changes:
+  - message: (Prism) fixed unlinked turrets across the map.
+    type: Fix
+  id: 410134
+  time: '2026-11-05T16:28:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7027
+- author: redmushie
+  changes:
+  - message: (Mapping) Added prefilled plasma and frezon subfloor- and tall gas tanks for mappers.
+    type: Add
+  id: 410135
+  time: '2026-11-05T16:51:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7055
+- author: redmushie
+  changes:
+  - message: (Mapping) Added new smallest subfloor air tank with 750kPa of air in it.
+    type: Add
+  id: 410136
+  time: '2026-11-05T16:51:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7055
+- author: redmushie
+  changes:
+  - message: (Mapping) Subfloor tanks and tall gas tanks should now be pickable by mappers (pressing P).
+    type: Fix
+  id: 410137
+  time: '2026-11-05T16:51:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7055
+- author: baltdev
+  changes:
+  - message: Added the poster "Never Too Dead!".
+    type: Add
+  id: 410138
+  time: '2026-11-05T16:51:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7051
 Order: -1
