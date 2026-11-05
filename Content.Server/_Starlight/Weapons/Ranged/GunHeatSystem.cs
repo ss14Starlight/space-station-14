@@ -55,6 +55,8 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
         {
             _firing = false;
         }
+
+        ent.Comp.Temperature = temperature.CurrentTemperature;
     }
 
     [SubscribeLocalEvent]
