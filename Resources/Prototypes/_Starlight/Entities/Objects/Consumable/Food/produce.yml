@@ -64,6 +64,7 @@
     - type: Tag
       tags:
         - Fruit
+    - type: EmitPollen
 
 - type: entity
   name: resinfera
@@ -89,6 +90,7 @@
     - type: Tag
       tags:
         - Fruit
+    - type: EmitPollen
 
 - type: entity
   name: mint leaf
@@ -119,6 +121,7 @@
     - type: Tag
       tags:
         - Vegetable
+    - type: EmitPollen
 
 - type: entity
   name: spearmint
@@ -221,3 +224,4 @@
     - mushroom
   - type: Produce
     plantId: BrownMushroomPlants
+  - type: EmitPollen

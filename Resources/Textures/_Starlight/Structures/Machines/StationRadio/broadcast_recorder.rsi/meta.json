@@ -1,0 +1,67 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Drawn for Starlight by Rinary1 (GitHub)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "directions": 4
+        },
+        {
+            "name": "tape",
+            "directions": 4
+        },
+        {
+            "name": "reels",
+            "directions": 4,
+            "delays": [
+                [
+                    0.25,
+                    0.25
+                ],
+                [
+                    0.25,
+                    0.25
+                ],
+                [
+                    0.25,
+                    0.25
+                ],
+                [
+                    0.25,
+                    0.25
+                ]
+            ]
+        },
+        {
+            "name": "rec",
+            "directions": 4,
+            "delays": [
+                [
+                    0.5,
+                    0.5
+                ],
+                [
+                    0.5,
+                    0.5
+                ],
+                [
+                    0.5,
+                    0.5
+                ],
+                [
+                    0.5,
+                    0.5
+                ]
+            ]
+        },
+        {
+            "name": "unlit",
+            "directions": 4
+        }
+    ]
+}

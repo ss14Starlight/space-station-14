@@ -460,3 +460,6 @@ AirlockNTMaints: AirlockMaintNTLocked
 AirlockScienceMaints: AirlockMaintRnDLocked
 AirlockSecurityMaints: AirlockMaintSecLocked
 AirlockVirologyMaints: AirlockMaintVirologyLocked
+
+#2026-10-31 - Removing a unusued pistol prototype
+WeaponPistolSP8AR: WeaponPistolBlueguard

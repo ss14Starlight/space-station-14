@@ -1,0 +1,16 @@
+# Goobstation - Radio Host boards
+- type: latheRecipePack
+  id: ServiceBoardsGoob
+  recipes:
+  - VinylPlayerCircuitboard
+  - CDPlayerCircuitboard
+  - BroadcastRecorderCircuitboard
+  - StationRadioMixerCircuitboard
+  - TapeDeckCircuitboard
+  - StationRadioServerCircuitboard
+  - StationRadioRigCircuitboard
+
+- type: latheRecipePack
+  id: ServiceBoardsStaticGoob
+  recipes:
+  - StationRadioCircuitboard

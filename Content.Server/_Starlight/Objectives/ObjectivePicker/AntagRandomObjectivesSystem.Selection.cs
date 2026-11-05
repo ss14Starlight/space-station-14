@@ -9,38 +9,6 @@ namespace Content.Server._Starlight.Objectives.ObjectivePicker;
 
 public sealed partial class AntagRandomObjectivesSystem
 {
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-        if (_timing.CurTime < _slNextAvailability)
-            return;
-        _slNextAvailability = _timing.CurTime + TimeSpan.FromSeconds(1);
-        RefreshPickers();
-        UpdateProgression();
-    }
-
-    private void RefreshPickers()
-    {
-        var query = EntityQueryEnumerator<PotentialObjectivesComponent, MindComponent, ObjectivePickerConfigurationComponent>();
-        while (query.MoveNext(out var uid, out var offers, out var mind, out var config))
-        {
-            if (config.Finished)
-                continue;
-            var previous = offers.UnavailableObjectives;
-            var targetPools = offers.TargetPools;
-            var count = offers.ObjectiveOptions.Count;
-            var counts = CountAssignedObjectives(uid);
-            UpdateOfferState(uid, mind, offers, counts);
-            // Keep depleted cards visible and disabled, but supply replacements so a late chooser can finish.
-            if (!OffersViable(offers))
-                FillOffers(uid, mind, offers, config, counts);
-            if (!previous.SetEquals(offers.UnavailableObjectives) || count != offers.ObjectiveOptions.Count ||
-                targetPools.Count != offers.TargetPools.Count || targetPools.Any(pair =>
-                    !offers.TargetPools.TryGetValue(pair.Key, out var pool) || !pair.Value.SetEquals(pool)))
-                Dirty(uid, offers);
-        }
-    }
-
     private void OnObjectivesSelected(ObjectivePickerSelected ev, EntitySessionEventArgs args)
     {
         if (!_mind.TryGetMind(args.SenderSession, out var mindId, out _) || GetNetEntity(mindId) != ev.MindId)
@@ -55,13 +23,16 @@ public sealed partial class AntagRandomObjectivesSystem
         }, args.SenderSession);
     }
 
-    private bool TryApplySelectedObjectives(EntityUid mindId, HashSet<NetEntity> selected, bool timeout = false)
+    private bool TryApplySelectedObjectives(EntityUid mindId, HashSet<NetEntity> selected, bool timeout = false,
+        Dictionary<string, int>? counts = null, bool refreshed = false)
     {
         if (!TryComp<MindComponent>(mindId, out var mind) ||
             !TryComp<PotentialObjectivesComponent>(mindId, out var offers) || offers.ObjectiveOptions.Count == 0)
             return false;
 
-        UpdateOfferState(mindId, mind, offers, CountAssignedObjectives(mindId));
+        counts ??= CountAssignedObjectives(mindId);
+        if (!refreshed)
+            UpdateOfferState(mindId, mind, offers, counts);
         Dirty(mindId, offers);
         if (!ObjectivePickerSelection.Valid(offers, selected, timeout))
             return false;
@@ -116,11 +87,13 @@ public sealed partial class AntagRandomObjectivesSystem
                 if (offers.RetainedObjective == id)
                     offers.RetainedObjective = null;
                 Del(uid);
-                if (prototype != null && CreateOffer(mindId, mind, prototype, CountAssignedObjectives(mindId),
+                if (prototype != null && CreateOffer(mindId, mind, prototype, counts,
                         out var replacement, out var deferred))
                     AddOffer(mindId, mind, offers, config, replacement, deferred);
             }
-            FillOffers(mindId, mind, offers, config, CountAssignedObjectives(mindId));
+            config.Refill = null;
+            FillOffers(mindId, mind, offers, config, counts,
+                attemptBudget: timeout ? RefillAttemptsPerTick : int.MaxValue);
             Dirty(mindId, offers);
             return false;
         }
@@ -142,20 +115,19 @@ public sealed partial class AntagRandomObjectivesSystem
         config.Finished = true;
         Dirty(mindId, mind);
         RemCompDeferred<PotentialObjectivesComponent>(mindId);
-        RefreshPickers();
+        config.PickerSession = null;
+        config.Refill = null;
         return true;
     }
 
-    public void AutoSelectObjectives(EntityUid mindId, PotentialObjectivesComponent offers)
+    private bool TryAutoSelectObjectives(EntityUid mindId, PotentialObjectivesComponent offers,
+        Dictionary<string, int> counts)
     {
-        if (!TryComp<MindComponent>(mindId, out var mind))
-            return;
-        UpdateOfferState(mindId, mind, offers, CountAssignedObjectives(mindId));
         var order = offers.ObjectiveOptions.Keys.OrderBy(_ => _random.Next()).ToArray();
         var retained = offers.RetainedObjective is { } id && ObjectivePickerSelection.Available(offers, id)
             ? new[] { id } : Array.Empty<NetEntity>();
-        if (ObjectivePickerSelection.TrySelect(offers, order, retained, out var selected, ignoreMulligan: true))
-            TryApplySelectedObjectives(mindId, selected, timeout: true);
+        return ObjectivePickerSelection.TrySelect(offers, order, retained, out var selected, ignoreMulligan: true) &&
+            TryApplySelectedObjectives(mindId, selected, timeout: true, counts: counts, refreshed: true);
     }
 
     private void OnMulligan(ObjectivePickerMulligan ev, EntitySessionEventArgs args)
@@ -180,6 +152,7 @@ public sealed partial class AntagRandomObjectivesSystem
 
         var counts = CountAssignedObjectives(mindId);
         UpdateOfferState(mindId, mind, offers, counts);
+        Dirty(mindId, offers);
         if (!ObjectivePickerSelection.Available(offers, retained))
             return false;
 
@@ -193,6 +166,7 @@ public sealed partial class AntagRandomObjectivesSystem
         {
             Weights = oldConfig.Weights,
             StoryWeights = oldConfig.StoryWeights,
+            StoryObjectiveCount = oldConfig.StoryObjectiveCount,
             PreferredOptions = oldConfig.PreferredOptions,
         };
         if (oldConfig.DeferredTargets.Contains(retained))
@@ -219,6 +193,10 @@ public sealed partial class AntagRandomObjectivesSystem
         oldConfig.MulliganUsed = true;
         offers.RetainedObjective = retained;
         oldConfig.DeferredTargets = config.DeferredTargets;
+        oldConfig.CachedOffers = config.CachedOffers;
+        oldConfig.Refill = null;
+        oldConfig.LastRefillRevision = _eligibilityRevision;
+        oldConfig.RefillCounts = counts;
         Dirty(mindId, offers);
         return true;
     }

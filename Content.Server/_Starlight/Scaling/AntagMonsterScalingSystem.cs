@@ -9,6 +9,7 @@ using Content.Shared.StationRecords;
 using Content.Server.Station.Systems;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Scaling;
+using System.Linq;
 
 namespace Content.Server._Starlight.Scaling;
 
@@ -65,7 +66,9 @@ public sealed partial class ScalingSystem : SharedScalingSystem
         if (!UpdatePopulation(station))
             return;
 
-        ApplyHealthScaling(station, scalingComp, thresholdsComp, _cachedPopulations, _universalHealthWeight);
+        ApplyHealthScaling(mob, station, scalingComp, thresholdsComp, _cachedPopulations, _universalHealthWeight);
+
+        scalingComp.ScaledMaxHealth = thresholdsComp.Thresholds.Keys.Max();
 
         scalingComp.IsScaled = true;
     }
@@ -94,21 +97,9 @@ public sealed partial class ScalingSystem : SharedScalingSystem
             if (job == null)
                 continue;
 
-            if (((string)job.Supervisors).Contains("hos")
-            || job.Name.Contains("Security"))
-            {
-                updatedPopulation += 1 * _securityWeight;
-            }
-            if (job.Name.Contains("salvage"))
-            {
-                updatedPopulation += 1 * _salvageWeight;
-            }
-            if (((string)job.Supervisors).Contains("centcom")
-                && !job.Name.Contains("Magistrate")
-                && !job.Name.Contains("Representative"))
-            {
-                updatedPopulation += 1 * _centcomWeight;
-            }
+            updatedPopulation += job.AntagScalingSecurityWeight * _securityWeight;
+            updatedPopulation += job.AntagScalingSalvageWeight * _salvageWeight;
+            updatedPopulation += job.AntagScalingCentcomWeight * _centcomWeight;
         }
 
         _cachedPopulations.GetOrNew(station);

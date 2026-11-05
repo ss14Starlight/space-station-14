@@ -19,12 +19,14 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
 {
     [Dependency] private ShuttleConsoleSystem _console = default!;
     [Dependency] private UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private SharedTransformSystem _transformSystem = default!; // _Starlight
-    [Dependency] private RadarLaserSystem _laserSystem = default!; // _Starlight
-    [Dependency] private IGameTiming _timing = default!; // _Starlight
-    [Dependency] private StationAiSystem _stationAiSystem = default!; // Starlight "OnWarpRequest"
 
     #region Starlight
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private RadarLaserSystem _laserSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private RadarDockingStateSystem _radarDockingStateSystem = default!;
+    [Dependency] private StationAiSystem _stationAiSystem = default!; // "OnWarpRequest"
+
     // Periodic blip/laser update
     // How often (in seconds) to push fresh blip state to all open radar consoles.
     private const float BlipUpdateInterval = 0.25f;
@@ -113,7 +115,7 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
             component.LastInterfaceUpdateTime = _timing.CurTime;
             // Starlight END
             NavInterfaceState state;
-            var docks = _console.GetDockingPortStates(); // Starlight
+            var docks = _radarDockingStateSystem.GetDockingPortStates(uid); // Starlight
 
             if (coordinates != null && angle != null)
             {

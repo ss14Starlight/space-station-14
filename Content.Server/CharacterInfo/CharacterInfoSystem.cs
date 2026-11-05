@@ -49,6 +49,8 @@ public sealed partial class CharacterInfoSystem : EntitySystem
                 if (info == null)
                     continue;
 
+                _objectivePicker.RecordObjectiveProgress(mindId, objective, info.Value.Progress); // Starlight
+
                 // group objectives by their issuer
                 var issuer = Comp<ObjectiveComponent>(objective).LocIssuer;
                 if (!objectives.ContainsKey(issuer))

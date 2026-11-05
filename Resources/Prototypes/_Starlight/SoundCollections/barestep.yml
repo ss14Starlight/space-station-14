@@ -1,0 +1,56 @@
+- type: barestepSound
+  id: FootstepFloor
+  sound:
+    collection: BarestepMetal
+
+- type: barestepSound
+  id: FootstepPlating
+  sound:
+    collection: BarestepMetal
+
+- type: barestepSound
+  id: FootstepHull
+  sound:
+    collection: BarestepMetal
+
+- type: barestepSound
+  id: FootstepCatwalk
+  sound:
+    collection: BarestepGrate
+
+- type: barestepSound
+  id: FootstepGlass
+  sound:
+    collection: BarestepGlass
+
+- type: barestepSound
+  id: FootstepWood
+  sound:
+    collection: BarestepWood
+
+- type: barestepSound
+  id: FootstepCarpet
+  sound:
+    collection: BarestepCarpet
+
+- type: barestepSound
+  id: FootstepGrass
+  sound:
+    collection: BarestepGrass
+
+- type: barestepSound
+  id: FootstepAsteroid
+  sound:
+    collection: BarestepGravel
+
+- type: barestepSound
+  id: FootstepSnow
+  sound:
+    collection: FootstepSnow
+    params:
+      volume: -3
+
+- type: barestepSound
+  id: FootstepWater
+  sound:
+    collection: FootstepWater
