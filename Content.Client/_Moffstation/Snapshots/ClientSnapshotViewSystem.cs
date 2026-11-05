@@ -3,6 +3,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.Gravity;
 using Content.Client._Starlight.Humanoid;
+using Content.Client.IconSmoothing;
 using Content.Client.MapText;
 using Content.Shared._Moffstation.Snapshots;
 using Content.Shared.Buckle.Components;
@@ -418,6 +419,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             _sprite.SetVisible((spawned, supportSprite), false);
 
         ApplyAppearance(spawned, entity.Appearance);
+        ApplyIconSmoothStates(spawned, entity.IconSmoothStates);
         ApplyAnimationFrames(spawned, entity.AnimationFrames);
 
         if (entity.Light is { } snapshotLight)
@@ -431,6 +433,39 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         }
 
         return spawned;
+    }
+
+    private void ApplyIconSmoothStates(EntityUid uid, List<SnapshotSpriteLayerState>? states)
+    {
+        if (states is not { Count: > 0 }
+            || !HasComp<IconSmoothComponent>(uid)
+            || !_spriteQuery.TryComp(uid, out var sprite))
+        {
+            return;
+        }
+
+        var validStates = new List<SnapshotSpriteLayerState>(states.Count);
+        foreach (var state in states)
+        {
+            if (state.Layer < 0
+                || string.IsNullOrEmpty(state.State)
+                || state.State.Length > SnapshotCaptureSystem.MaxSnapshotIconSmoothStateLength
+                || !_sprite.TryGetLayer((uid, sprite), state.Layer, out var layer, false)
+                || layer?.ActualRsi is not { } rsi
+                || !rsi.TryGetState(state.State, out _))
+            {
+                continue;
+            }
+
+            validStates.Add(state);
+        }
+
+        if (validStates.Count == 0)
+            return;
+
+        RemComp<IconSmoothComponent>(uid);
+        foreach (var state in validStates)
+            _sprite.LayerSetRsiState((uid, sprite), state.Layer, state.State);
     }
 
     private void ApplyAnimationFrames(EntityUid uid, List<SnapshotSpriteLayerFrame>? frames)
@@ -507,14 +542,24 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
                 Del(item);
         }
 
+        var fallbackHandIndex = 0;
         foreach (var (hand, held) in humanoid.Held)
         {
             if (SpawnItem(held) is not { } item)
                 continue;
 
+            var location = humanoid.HeldHandLocations.TryGetValue(hand, out var savedLocation)
+                ? savedLocation
+                : GetFallbackHandLocation(hand, fallbackHandIndex);
+            fallbackHandIndex++;
+
+            // Functional hands have no matching in-hand sprite state on most items.
+            if (location == HandLocation.Functional)
+                location = GetFallbackHandLocation(hand, fallbackHandIndex - 1);
+
             var hands = EnsureComp<HandsComponent>(doll);
             if (!_hands.TryGetHand((doll, hands), hand, out _))
-                _hands.AddHand((doll, hands), hand, HandLocation.Functional);
+                _hands.AddHand((doll, hands), hand, location);
 
             if (_hands.TryPickup(doll, item, hand, checkActionBlocker: false, animate: false, handsComp: hands))
                 continue;
@@ -530,6 +575,13 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
 
         return doll;
     }
+
+    private static HandLocation GetFallbackHandLocation(string hand, int index)
+        => hand.Contains("left", StringComparison.OrdinalIgnoreCase)
+            ? HandLocation.Left
+            : hand.Contains("right", StringComparison.OrdinalIgnoreCase)
+            ? HandLocation.Right
+            : index % 2 == 0 ? HandLocation.Right : HandLocation.Left;
 
     private EntityUid? SpawnItem(SnapshotItem item)
     {

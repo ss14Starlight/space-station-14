@@ -62,6 +62,10 @@
   - type: ActivatableUI
     key: enum.SnapshotViewUiKey.Key
     requiresComplex: false
+  - type: Snapshot
+  - type: Paper
+  - type: FaxableObject
+  - type: Photograph
   - type: UserInterface
     interfaces:
       enum.SnapshotViewUiKey.Key:

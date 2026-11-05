@@ -51,4 +51,6 @@ public readonly record struct SnapshotCapturedEvent(
     EntityUid User,
     MapCoordinates Center,
     Angle Rotation,
-    List<SnapshotSpriteAnimation>? AnimationFrames);
+    List<SnapshotSpriteAnimation>? AnimationFrames,
+    List<SnapshotSpriteLayerStateCapture>? IconSmoothStates,
+    EntityUid? Focus);

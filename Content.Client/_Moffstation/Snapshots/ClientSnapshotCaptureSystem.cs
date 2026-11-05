@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client.IconSmoothing;
 using Content.Client.Movement.Components;
 using Content.Client.Movement.Systems;
 using Content.Shared._Moffstation.Snapshots;
@@ -58,22 +59,37 @@ public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
             args.Args.Offset += offset;
     }
 
-    protected override void OnAimedClick(Entity<SnapshotCaptureComponent> ent, EntityUid user, EntityCoordinates click)
+    protected override void OnAimedClick(
+        Entity<SnapshotCaptureComponent> ent,
+        EntityUid user,
+        EntityCoordinates click,
+        EntityUid? target)
     {
         if (!_timing.IsFirstTimePredicted)
             return;
 
         var center = ClampToScreen(TransformSystem.ToMapCoordinates(click), ent.Comp.HalfExtents, out var frame);
+        var animationFrames = GetAnimationFrames(center.MapId, frame, out var iconSmoothStates);
+        NetEntity? focus = null;
+        if (target is { } targetUid && TryGetNetEntity(targetUid, out var netTarget))
+            focus = netTarget;
+
         RaisePredictiveEvent(new SnapshotCaptureRequestEvent(
             GetNetEntity(ent),
             GetNetCoordinates(TransformSystem.ToCoordinates(center)),
             _eye.CurrentEye.Rotation,
-            GetAnimationFrames(center.MapId, frame)));
+            animationFrames,
+            iconSmoothStates,
+            focus));
     }
 
-    private List<SnapshotSpriteAnimation> GetAnimationFrames(MapId mapId, SnapshotFrame frame)
+    private List<SnapshotSpriteAnimation> GetAnimationFrames(
+        MapId mapId,
+        SnapshotFrame frame,
+        out List<SnapshotSpriteLayerStateCapture> iconSmoothStates)
     {
         var frames = new List<SnapshotSpriteAnimation>();
+        iconSmoothStates = [];
         _animationCandidates.Clear();
         _lookup.GetEntitiesIntersecting(mapId, TransformBounds(frame.Box, frame.FrameToWorld),
             _animationCandidates, LookupFlags.Uncontained);
@@ -96,27 +112,35 @@ public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
             if (Math.Abs(tile.X) > frame.HalfExtents.X || Math.Abs(tile.Y) > frame.HalfExtents.Y)
                 continue;
 
+            var isIconSmooth = HasComp<IconSmoothComponent>(uid);
             var index = 0;
             foreach (var layer in sprite.AllLayers)
             {
                 if (index >= MaxSnapshotAnimationLayers)
                     break;
 
-                if (layer.ActualRsi is not { } rsi
-                    || !rsi.TryGetState(layer.RsiState, out var state)
-                    || !state.IsAnimated)
+                var stateName = layer.RsiState.Name;
+                if (isIconSmooth
+                    && iconSmoothStates.Count < MaxSnapshotIconSmoothStates
+                    && !string.IsNullOrEmpty(stateName)
+                    && stateName.Length <= MaxSnapshotIconSmoothStateLength
+                    && layer.ActualRsi is { } smoothRsi
+                    && smoothRsi.TryGetState(layer.RsiState, out _))
                 {
-                    index++;
-                    continue;
+                    iconSmoothStates.Add(new SnapshotSpriteLayerStateCapture(netUid, index, stateName));
                 }
 
-                if (frames.Count >= MaxSnapshotAnimationFrames)
-                    return frames;
+                if (frames.Count < MaxSnapshotAnimationFrames
+                    && layer.ActualRsi is { } rsi
+                    && rsi.TryGetState(layer.RsiState, out var state)
+                    && state.IsAnimated)
+                {
+                    frames.Add(new SnapshotSpriteAnimation(
+                        netUid,
+                        index,
+                        Math.Clamp(layer.AnimationFrame, 0, state.DelayCount - 1)));
+                }
 
-                frames.Add(new SnapshotSpriteAnimation(
-                    netUid,
-                    index,
-                    Math.Clamp(layer.AnimationFrame, 0, state.DelayCount - 1)));
                 index++;
             }
         }

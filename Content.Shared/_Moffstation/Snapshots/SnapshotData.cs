@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Shared.DisplacementMap;
+using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -57,6 +58,13 @@ public sealed class SnapshotData
     /// the middle tile.
     /// </summary>
     public List<Vector2i> Occluders = [];
+
+    /// <summary>
+    /// Examine text for the subject clicked through the viewfinder, if that entity was included in the shot.
+    /// </summary>
+    public string? SubjectNameText;
+
+    public string? SubjectDescription;
 }
 
 /// <param name="Roof">Roof color if the tile is roofed; roofs keep the map's ambient light off indoor tiles.</param>
@@ -80,7 +88,7 @@ public sealed class SnapshotEntity
     public bool Anchored;
 
     /// <summary>
-    /// This entity is outside the frame and only exists to provide neighboring icon-smoothing connections.
+    /// This entity is outside the frame and only exists to provide nearby illumination.
     /// </summary>
     public bool SupportOnly;
 
@@ -95,6 +103,11 @@ public sealed class SnapshotEntity
     /// Animation frame indices captured by the photographer for sprite layers.
     /// </summary>
     public List<SnapshotSpriteLayerFrame>? AnimationFrames;
+
+    /// <summary>
+    /// Captured icon-smoothing states, so cropped neighbors cannot change the photographed sprite.
+    /// </summary>
+    public List<SnapshotSpriteLayerState>? IconSmoothStates;
 
     public SnapshotLight? Light;
 
@@ -120,6 +133,12 @@ public record struct SnapshotSpriteAnimation(NetEntity Entity, int Layer, int Fr
 
 [Serializable, NetSerializable]
 public record struct SnapshotSpriteLayerFrame(int Layer, int Frame);
+
+[Serializable, NetSerializable]
+public record struct SnapshotSpriteLayerStateCapture(NetEntity Entity, int Layer, string State);
+
+[Serializable, NetSerializable]
+public record struct SnapshotSpriteLayerState(int Layer, string State);
 
 [Serializable, NetSerializable]
 public record struct SnapshotLight(
@@ -173,6 +192,8 @@ public sealed class SnapshotHumanoid
     public Dictionary<string, SnapshotItem> Worn = [];
 
     public Dictionary<string, SnapshotItem> Held = [];
+
+    public Dictionary<string, HandLocation> HeldHandLocations = [];
 }
 
 [Serializable, NetSerializable]

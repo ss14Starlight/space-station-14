@@ -34,6 +34,8 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     public const int MaxSnapshotAnimationFrames = 4096;
     public const int MaxSnapshotAnimationLayers = 32;
     public const int MaxSnapshotAnimationFrameIndex = 4095;
+    public const int MaxSnapshotIconSmoothStates = 4096;
+    public const int MaxSnapshotIconSmoothStateLength = 128;
 
     private static readonly VerbCategory _zoomCategory = new("snapshot-capture-zoom-category", null);
 
@@ -136,13 +138,17 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
             return;
 
         args.Handled = true;
-        OnAimedClick(ent, args.User, args.ClickLocation);
+        OnAimedClick(ent, args.User, args.ClickLocation, args.Target);
     }
 
     /// <summary>
     /// A click while looking through the viewfinder. The client turns this into a shot request.
     /// </summary>
-    protected virtual void OnAimedClick(Entity<SnapshotCaptureComponent> ent, EntityUid user, EntityCoordinates click)
+    protected virtual void OnAimedClick(
+        Entity<SnapshotCaptureComponent> ent,
+        EntityUid user,
+        EntityCoordinates click,
+        EntityUid? target)
     {
     }
 
@@ -151,9 +157,10 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     {
         if (args.SenderSession.AttachedEntity is not { } user
             || !TryGetEntity(ev.Capturer, out var capturerUid)
-            || !_captureQuery.TryComp(capturerUid, out var capture)
+            || capturerUid is not { } capturer
+            || !_captureQuery.TryComp(capturer, out var capture)
             || !capture.Aiming
-            || _hands.GetActiveItem(user) != capturerUid)
+            || _hands.GetActiveItem(user) != capturer)
         {
             return;
         }
@@ -190,7 +197,21 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         }
 
         var rotation = new Angle(Math.IEEERemainder(ev.Rotation.Theta, Math.PI * 2));
-        var captured = new SnapshotCapturedEvent(user, center, rotation, ev.AnimationFrames);
+        EntityUid? focus = null;
+        if (ev.Focus is { } focusNet
+            && TryGetEntity(focusNet, out var focusEntity)
+            && focusEntity is { } focusUid)
+        {
+            focus = focusUid;
+        }
+
+        var captured = new SnapshotCapturedEvent(
+            user,
+            center,
+            rotation,
+            ev.AnimationFrames,
+            ev.IconSmoothStates,
+            focus);
         RaiseLocalEvent(capturerUid.Value, ref captured);
     }
 
@@ -254,12 +275,16 @@ public sealed class SnapshotCaptureRequestEvent(
     NetEntity capturer,
     NetCoordinates center,
     Angle rotation,
-    List<SnapshotSpriteAnimation>? animationFrames) : EntityEventArgs
+    List<SnapshotSpriteAnimation>? animationFrames,
+    List<SnapshotSpriteLayerStateCapture>? iconSmoothStates,
+    NetEntity? focus) : EntityEventArgs
 {
     public readonly NetEntity Capturer = capturer;
     public readonly NetCoordinates Center = center;
     public readonly Angle Rotation = rotation;
     public readonly List<SnapshotSpriteAnimation>? AnimationFrames = animationFrames;
+    public readonly List<SnapshotSpriteLayerStateCapture>? IconSmoothStates = iconSmoothStates;
+    public readonly NetEntity? Focus = focus;
 }
 
 public readonly record struct SnapshotFrame(

@@ -13,15 +13,16 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.VirtualItem;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
+using Content.Shared.Photography;
 using Content.Shared.SSDIndicator;
 using Content.Shared.MapText;
 using Content.Shared.Parallax;
 using Content.Shared.NodeContainer;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
-using Content.Shared.Tag;
 using Content.Shared.Wires;
 using Robust.Shared;
 using Robust.Shared.Containers;
@@ -40,6 +41,7 @@ namespace Content.Server._Moffstation.Snapshots;
 public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 {
     [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SnapshotPersistenceSystem _snapshotPersistence = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private ExamineSystemShared _examine = default!;
     [Dependency] private SharedPointLightSystem _light = default!;
@@ -48,7 +50,6 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [Dependency] private SharedStealthSystem _stealth = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedRoofSystem _roof = default!;
-    [Dependency] private TagSystem _tag = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private ITileDefinitionManager _tileDef = default!;
@@ -71,11 +72,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [Dependency] private EntityQuery<SSDIndicatorComponent> _ssdIndicatorQuery = default!;
 
     private const int MaxEntities = 256;
-
-    private const int MaxBoundarySupportEntities = 64;
-
     private const int MaxNearbyLights = 64;
-
     private const int MaxOccluders = 512;
 
     /// <summary>
@@ -99,8 +96,6 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         new(0.15f, 0.15f), new(0.85f, 0.15f), new(0.15f, 0.85f), new(0.85f, 0.85f),
     ];
 
-    private static readonly ProtoId<TagPrototype> WallTag = "Wall";
-
     private readonly HashSet<EntityUid> _found = [];
 
     private readonly Dictionary<EntityUid, int> _captured = [];
@@ -122,11 +117,28 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [SubscribeLocalEvent]
     private void OnCaptured(Entity<SnapshotCaptureComponent> ent, ref SnapshotCapturedEvent args)
     {
-        if (Capture(args.User, args.Center, ent.Comp.HalfExtents, args.Rotation, args.AnimationFrames) is not { } data)
+        if (Capture(args.User, args.Center, ent.Comp.HalfExtents, args.Rotation, args.AnimationFrames, args.IconSmoothStates) is not { } data)
             return;
 
+        if (args.Focus is { } focus && _captured.ContainsKey(focus))
+        {
+            data.SubjectNameText = Loc.GetString(
+                HasComp<PhotographComponent>(focus)
+                    ? "photograph-name-text-photograph"
+                    : "photograph-name-text",
+                ("entity", Identity.Entity(focus, EntityManager)));
+            data.SubjectDescription = HasComp<PhotographComponent>(focus)
+                ? null
+                : _examine.GetExamineText(focus, args.User, out _)?.ToMarkup();
+        }
+
         var snapshot = Spawn(ent.Comp.Snapshot, Transform(ent).Coordinates);
-        EnsureComp<SnapshotComponent>(snapshot).Data = data;
+        if (!_snapshotPersistence.SetData(snapshot, data))
+        {
+            Del(snapshot);
+            return;
+        }
+
         _hands.PickupOrDrop(args.User, snapshot, dropNear: true);
     }
 
@@ -138,7 +150,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         MapCoordinates shotCenter,
         Vector2i halfExtents,
         Angle rotation = default,
-        List<SnapshotSpriteAnimation>? animationFrames = null)
+        List<SnapshotSpriteAnimation>? animationFrames = null,
+        List<SnapshotSpriteLayerStateCapture>? iconSmoothStates = null)
     {
         var viewerCoords = TransformSystem.GetMapCoordinates(viewer);
         var mapId = shotCenter.MapId;
@@ -201,6 +214,32 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
         }
 
+        var iconSmoothStatesByEntity = new Dictionary<EntityUid, Dictionary<int, string>>();
+        if (iconSmoothStates is { Count: > MaxSnapshotIconSmoothStates })
+        {
+            Log.Warning($"Ignored {iconSmoothStates.Count} snapshot icon-smoothing states because the request exceeded the limit.");
+        }
+        else if (iconSmoothStates != null)
+        {
+            foreach (var iconSmoothState in iconSmoothStates)
+            {
+                if (iconSmoothState.Layer < 0
+                    || iconSmoothState.Layer >= MaxSnapshotAnimationLayers
+                    || string.IsNullOrEmpty(iconSmoothState.State)
+                    || iconSmoothState.State.Length > MaxSnapshotIconSmoothStateLength
+                    || !TryGetEntity(iconSmoothState.Entity, out var source)
+                    || source is not { } sourceUid)
+                {
+                    continue;
+                }
+
+                if (!iconSmoothStatesByEntity.TryGetValue(sourceUid, out var layers))
+                    iconSmoothStatesByEntity[sourceUid] = layers = [];
+
+                layers.TryAdd(iconSmoothState.Layer, iconSmoothState.State);
+            }
+        }
+
         // Visible entities add their tile so they aren't blacked out by tile-level visibility sampling.
         var tilesInShot = new HashSet<Vector2i>(visible);
 
@@ -216,7 +255,6 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             LookupFlags.Uncontained);
 
         var visibleEntityCount = 0;
-        var supportEntityCount = 0;
         var supportTiles = new HashSet<Vector2i>();
         foreach (var uid in _found)
         {
@@ -228,16 +266,10 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             var local = Vector2.Transform(worldPosition, worldToFrame);
             var tileOffset = TileOf(local) - centerTile;
             var inFrame = Math.Abs(tileOffset.X) <= halfExtents.X && Math.Abs(tileOffset.Y) <= halfExtents.Y;
-            var supportOnly = !inFrame
-                && xform.Anchored
-                && Math.Abs(tileOffset.X) <= halfExtents.X + 1
-                && Math.Abs(tileOffset.Y) <= halfExtents.Y + 1
-                && _tag.HasTag(uid, WallTag);
-            if (!inFrame && !supportOnly)
+            if (!inFrame)
                 continue;
 
-            if (!supportOnly
-                && !_examine.InRangeUnOccluded(
+            if (!_examine.InRangeUnOccluded(
                     viewerCoords,
                     new MapCoordinates(worldPosition, mapId),
                     SightRange,
@@ -246,26 +278,6 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 
             if (MetaData(uid).EntityPrototype is not { } proto)
                 continue;
-
-            if (supportOnly)
-            {
-                if (supportEntityCount >= MaxBoundarySupportEntities)
-                    continue;
-
-                supportTiles.Add(tileOffset);
-                snapshot.Entities.Add(new SnapshotEntity
-                {
-                    Prototype = proto.ID,
-                    Offset = local - center,
-                    Rotation = TransformSystem.GetWorldRotation(xform) + frameRotation,
-                    Anchored = xform.Anchored,
-                    SupportOnly = true,
-                    Light = GetLight(uid),
-                });
-                _supportCaptured.Add(uid);
-                supportEntityCount++;
-                continue;
-            }
 
             if (visibleEntityCount >= MaxEntities)
                 continue;
@@ -285,6 +297,14 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                     capturedFrames.Add(new SnapshotSpriteLayerFrame(layer, frameIndex));
             }
 
+            List<SnapshotSpriteLayerState>? capturedIconSmoothStates = null;
+            if (iconSmoothStatesByEntity.TryGetValue(uid, out var entityIconSmoothStates))
+            {
+                capturedIconSmoothStates = new List<SnapshotSpriteLayerState>(entityIconSmoothStates.Count);
+                foreach (var (layer, state) in entityIconSmoothStates)
+                    capturedIconSmoothStates.Add(new SnapshotSpriteLayerState(layer, state));
+            }
+
             var appearance = GetAppearance(uid);
             if (_cableVisQuery.TryComp(uid, out var cableVis)
                 && TryGetCableConnectedMask(uid, cableVis, out var connectedMask))
@@ -302,6 +322,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 Ssd = _ssdIndicatorQuery.TryComp(uid, out var ssdIndicator) && ssdIndicator.IsSSD,
                 Appearance = appearance,
                 AnimationFrames = capturedFrames,
+                IconSmoothStates = capturedIconSmoothStates,
                 Light = GetLight(uid),
                 MapText = GetMapText(uid),
                 Humanoid = GetHumanoid(uid, visMask),
@@ -563,6 +584,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
 
             humanoid.Held[hand] = item;
+            if (_hands.TryGetHand(uid, hand, out var handData))
+                humanoid.HeldHandLocations[hand] = handData.Value.Location;
         }
 
         return humanoid;
