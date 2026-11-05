@@ -1,27 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: (Cork) Linked the artifact analyzers to the consoles.
-    type: Fix
-  id: 409732
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Fixed space weather in Botany.
-    type: Fix
-  id: 409733
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
-  - message: (Cork) Replaced empty variants of wall lockers with filled.
-    type: Fix
-  id: 409734
-  time: '2026-10-24T15:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6826
-- author: Ohelig
-  changes:
   - message: (Cork) Added some fire-safety closets.
     type: Add
   id: 409735
@@ -2799,4 +2778,25 @@ Entries:
   id: 410131
   time: '2026-11-05T16:03:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7032
+- author: MaxAlpine
+  changes:
+  - message: (Prism) fixed Wrong door prototype on IAA office.
+    type: Fix
+  id: 410132
+  time: '2026-11-05T16:28:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7027
+- author: MaxAlpine
+  changes:
+  - message: (Prism) fixed Magistrate office stairway being too narrow.
+    type: Fix
+  id: 410133
+  time: '2026-11-05T16:28:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7027
+- author: MaxAlpine
+  changes:
+  - message: (Prism) fixed unlinked turrets across the map.
+    type: Fix
+  id: 410134
+  time: '2026-11-05T16:28:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7027
 Order: -1
