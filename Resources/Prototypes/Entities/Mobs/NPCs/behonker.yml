@@ -146,6 +146,7 @@
   suffix: "Grav"
   components:
   - type: GravityAnomaly
+  - type: RadiationSource # Starlight - added radiation source separate to grav anom component because upstream radiation system doesnt support unconditional radiation sources
 
 - type: entity
   name: behonker
