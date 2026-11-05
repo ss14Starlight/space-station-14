@@ -25,6 +25,7 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedContentEyeSystem _contentEye = default!;
+    [Dependency] private SharedMapSystem _map = default!;
     [Dependency] protected SharedTransformSystem TransformSystem = default!;
     [Dependency] private EntityQuery<SnapshotCaptureComponent> _captureQuery = default!;
     [Dependency] private EntityQuery<FlashComponent> _flashQuery = default!;
@@ -152,11 +153,28 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         // Eye.Rotation rotates the world into screen space, so camera-local coordinates map back to world
         // with the inverse rotation.
         var frameToWorld = Matrix3x2.CreateRotation((float) -rotation.Theta);
-        Matrix3x2.Invert(frameToWorld, out var worldToFrame);
+        Vector2 snappedCenter;
+        if (_map.TryFindGridAt(center, out var gridUid, out var grid))
+        {
+            var tile = _map.WorldToTile(gridUid, grid, center.Position);
+            snappedCenter = _map.GridTileToWorldPos(gridUid, grid, tile);
+        }
+        else
+        {
+            Matrix3x2.Invert(frameToWorld, out var worldToFrame);
 
-        var local = Vector2.Transform(center.Position, worldToFrame);
-        var centerTile = new Vector2i((int) MathF.Floor(local.X), (int) MathF.Floor(local.Y));
-        return new SnapshotFrame(centerTile, halfExtents, rotation, frameToWorld, worldToFrame);
+            var local = Vector2.Transform(center.Position, worldToFrame);
+            var tileCenter = new Vector2(
+                MathF.Floor(local.X) + 0.5f,
+                MathF.Floor(local.Y) + 0.5f);
+            snappedCenter = Vector2.Transform(tileCenter, frameToWorld);
+        }
+
+        var rotatedCenter = Vector2.Transform(new Vector2(0.5f), frameToWorld);
+        frameToWorld.M31 = snappedCenter.X - rotatedCenter.X;
+        frameToWorld.M32 = snappedCenter.Y - rotatedCenter.Y;
+        Matrix3x2.Invert(frameToWorld, out var snappedWorldToFrame);
+        return new SnapshotFrame(Vector2i.Zero, halfExtents, rotation, frameToWorld, snappedWorldToFrame);
     }
 }
 

@@ -1,10 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Client.Gravity;
 using Content.Client._Starlight.Humanoid;
 using Content.Client.MapText;
 using Content.Shared._Moffstation.Snapshots;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Gravity;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
@@ -44,6 +46,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     [Dependency] private SharedScaleVisualsSystem _scaleVisuals = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private FloatingVisualizerSystem _floating = default!;
     [Dependency] private ITileDefinitionManager _tileDef = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IGameTiming _timing = default!;
@@ -383,6 +386,12 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             ? SpawnHumanoid(entity.Prototype, humanoid, coords) ?? Spawn(entity.Prototype, coords)
             : Spawn(entity.Prototype, coords);
         var spawned = uid;
+
+        if (TryComp<FloatingVisualsComponent>(spawned, out var floating))
+        {
+            _floating.FloatAnimation(spawned, floating.Offset, floating.AnimationKey, floating.AnimationTime, stop: true);
+            RemComp<FloatingVisualsComponent>(spawned);
+        }
 
         // The snapshot grid is camera-aligned, so even prototypes that normally inherit grid rotation need a local rotation.
         var transform = Transform(spawned);
