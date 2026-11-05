@@ -42,6 +42,12 @@
             "directions": 4,
             "copyright": "Base sprites taken from tgstation at https://github.com/tgstation/tgstation/commit/662c08272acd7be79531550919f56f846726eabb and edited by chromiumboy (github). Modifed by Atakku (github) for 5 layer piping.",
             "license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "icon",
+            "directions": 4,
+            "copyright": "Tank: Created by @redmushie (GitHub). Pipe outlets: Base sprites taken from tgstation at https://github.com/tgstation/tgstation/commit/662c08272acd7be79531550919f56f846726eabb and edited by chromiumboy (github). Modifed by Atakku (github) for 5 layer piping. Combined into icon by @redmushie (GitHub).",
+            "license": "CC-BY-SA-3.0"
         }
     ]
 }
