@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/05/2026 19:24:14
+  time: 11/05/2026 19:33:06
   entityCount: 56
 maps: []
 grids:
@@ -24,6 +24,7 @@ entities:
   entities:
   - uid: 1
     mapInit: true
+    paused: true
     components:
     - type: MetaData
       name: NT Escape Pod
@@ -113,10 +114,15 @@ entities:
   entities:
   - uid: 2
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,0.5
+    - type: Airtight
+      airBlocked: False
+    - type: Physics
+      canCollide: False
     - type: Door
       state: Welded
     - type: ContainerContainer
@@ -144,6 +150,7 @@ entities:
   entities:
   - uid: 4
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -163,6 +170,7 @@ entities:
   entities:
   - uid: 5
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -172,12 +180,14 @@ entities:
   entities:
   - uid: 6
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
       pos: -0.5,1.5
   - uid: 7
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -186,24 +196,28 @@ entities:
   entities:
   - uid: 8
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
       pos: 1.5,1.5
   - uid: 9
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,1.5
   - uid: 10
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,0.5
   - uid: 11
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -212,18 +226,21 @@ entities:
   entities:
   - uid: 12
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
       pos: 1.5,1.5
   - uid: 13
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,1.5
   - uid: 14
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -232,6 +249,7 @@ entities:
   entities:
   - uid: 15
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -239,11 +257,12 @@ entities:
       pos: 0.5,1.5
 - proto: DimLightBulb
   entities:
-  - uid: 36
+  - uid: 17
     mapInit: true
+    paused: true
     components:
     - type: Transform
-      parent: 35
+      parent: 16
     - type: EmitSoundOnCollide
       nextSound: -2702.8059084
     - type: Physics
@@ -252,6 +271,7 @@ entities:
   entities:
   - uid: 3
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 2
@@ -261,8 +281,9 @@ entities:
       canCollide: False
 - proto: GasFilterInlineAlt4
   entities:
-  - uid: 16
+  - uid: 18
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -302,8 +323,9 @@ entities:
       dnas: []
 - proto: GasPassiveGateAlt4
   entities:
-  - uid: 17
+  - uid: 19
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -321,8 +343,9 @@ entities:
       dnas: []
 - proto: GasPassiveVentAlt4
   entities:
-  - uid: 18
+  - uid: 20
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -339,8 +362,9 @@ entities:
       dnas: []
 - proto: GasPipeBend
   entities:
-  - uid: 19
+  - uid: 21
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -351,8 +375,9 @@ entities:
       nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 20
+  - uid: 22
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -366,8 +391,9 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeBendAlt3
   entities:
-  - uid: 21
+  - uid: 23
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -378,8 +404,9 @@ entities:
       nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 22
+  - uid: 24
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -393,8 +420,9 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeBendAlt4
   entities:
-  - uid: 23
+  - uid: 25
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -406,8 +434,9 @@ entities:
       nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 24
+  - uid: 26
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -418,8 +447,9 @@ entities:
       nextSound: -2559.0498675
     - type: AtmosPipeColor
       color: '#947507FF'
-  - uid: 25
+  - uid: 27
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -433,8 +463,9 @@ entities:
       color: '#947507FF'
 - proto: GasPipeManifold
   entities:
-  - uid: 26
+  - uid: 28
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -445,8 +476,9 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeStraight
   entities:
-  - uid: 27
+  - uid: 29
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -460,8 +492,9 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeTankSubfloor
   entities:
-  - uid: 28
+  - uid: 30
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -478,8 +511,9 @@ entities:
       dnas: []
 - proto: GasPipeTJunctionAlt4
   entities:
-  - uid: 29
+  - uid: 31
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -492,8 +526,9 @@ entities:
       color: '#947507FF'
 - proto: GasPressurePumpAlt3
   entities:
-  - uid: 30
+  - uid: 32
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -516,8 +551,9 @@ entities:
       dnas: []
 - proto: GasPressurePumpAlt4
   entities:
-  - uid: 31
+  - uid: 33
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -539,8 +575,9 @@ entities:
       dnas: []
 - proto: GeneratorWallmountAPU
   entities:
-  - uid: 32
+  - uid: 34
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -551,33 +588,36 @@ entities:
       containers:
         board: !type:Container
           ents:
-          - 33
+          - 35
           showEnts: False
           occludes: True
 - proto: Grille
   entities:
-  - uid: 34
+  - uid: 36
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
       pos: 0.5,2.5
 - proto: MicroManipulatorStockPart
   entities:
-  - uid: 40
+  - uid: 38
     mapInit: true
+    paused: true
     components:
     - type: Transform
-      parent: 38
+      parent: 37
     - type: EmitSoundOnCollide
       nextSound: -2702.8059084
     - type: Physics
       canCollide: False
-  - uid: 45
+  - uid: 43
     mapInit: true
+    paused: true
     components:
     - type: Transform
-      parent: 43
+      parent: 42
     - type: Stack
       count: 4
     - type: EmitSoundOnCollide
@@ -586,11 +626,12 @@ entities:
       canCollide: False
 - proto: PowerCellSmall
   entities:
-  - uid: 41
+  - uid: 39
     mapInit: true
+    paused: true
     components:
     - type: Transform
-      parent: 38
+      parent: 37
     - type: Battery
       lastUpdate: -639.1422344
       lastCharge: 360
@@ -602,11 +643,12 @@ entities:
       containers:
         solutions: !type:Container
           ents:
-          - 42
+          - 40
 - proto: PoweredDimSmallLight
   entities:
-  - uid: 35
+  - uid: 16
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -617,7 +659,7 @@ entities:
     - type: ContainerContainer
       containers:
         light_bulb: !type:ContainerSlot
-          ent: 36
+          ent: 17
           showEnts: False
           occludes: True
     - type: ApcPowerReceiver
@@ -627,8 +669,9 @@ entities:
       address: 6AD6-F662
 - proto: ScentMarker
   entities:
-  - uid: 53
+  - uid: 46
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -640,8 +683,9 @@ entities:
       strength: 1
       scentId: 1B0B37B78D265279
       expiresAt: 2732.2629115
-  - uid: 54
+  - uid: 47
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -653,8 +697,9 @@ entities:
       strength: 1
       scentId: B2106C42EA5E1142
       expiresAt: 2731.622472
-  - uid: 55
+  - uid: 48
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -666,8 +711,9 @@ entities:
       strength: 1
       scentId: EDA4D91D583C7DC8
       expiresAt: 2731.9224717
-  - uid: 56
+  - uid: 49
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -681,11 +727,12 @@ entities:
       expiresAt: 2732.2235987
 - proto: SheetSteel1
   entities:
-  - uid: 46
+  - uid: 44
     mapInit: true
+    paused: true
     components:
     - type: Transform
-      parent: 43
+      parent: 42
     - type: Stack
       count: 5
     - type: EmitSoundOnCollide
@@ -694,8 +741,9 @@ entities:
       canCollide: False
 - proto: ShuttleWindow
   entities:
-  - uid: 37
+  - uid: 50
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -703,17 +751,19 @@ entities:
       pos: 0.5,2.5
 - proto: SolutionRiggable
   entities:
-  - uid: 42
+  - uid: 40
     mapInit: true
+    paused: true
     components:
     - type: Transform
-      parent: 41
+      parent: 39
     - type: ContainedSolution
-      container: 41
+      container: 39
 - proto: SubstationWallBasic
   entities:
-  - uid: 38
+  - uid: 37
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -726,17 +776,17 @@ entities:
       containers:
         board: !type:Container
           ents:
-          - 39
+          - 41
           showEnts: False
           occludes: True
         manipulator: !type:Container
           ents:
-          - 40
+          - 38
           showEnts: False
           occludes: True
         powercell: !type:Container
           ents:
-          - 41
+          - 39
           showEnts: False
           occludes: True
     - type: PowerNetworkBattery
@@ -745,8 +795,9 @@ entities:
       currentReceiving: 2081.252
 - proto: Thruster
   entities:
-  - uid: 43
+  - uid: 42
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -802,41 +853,44 @@ entities:
       containers:
         machine_board: !type:Container
           ents:
-          - 44
+          - 45
           showEnts: False
           occludes: True
         machine_parts: !type:Container
           ents:
-          - 45
-          - 46
+          - 43
+          - 44
           showEnts: False
           occludes: True
 - proto: ThrusterMachineCircuitboard
   entities:
-  - uid: 44
+  - uid: 45
     mapInit: true
+    paused: true
     components:
     - type: Transform
-      parent: 43
+      parent: 42
     - type: EmitSoundOnCollide
       nextSound: -2702.8059084
     - type: Physics
       canCollide: False
 - proto: WallmountGeneratorAPUElectronics
   entities:
-  - uid: 33
+  - uid: 35
     mapInit: true
+    paused: true
     components:
     - type: Transform
-      parent: 32
+      parent: 34
     - type: EmitSoundOnCollide
       nextSound: -2702.8059084
     - type: Physics
       canCollide: False
 - proto: WallmountPodConsole
   entities:
-  - uid: 47
+  - uid: 51
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
@@ -845,45 +899,51 @@ entities:
       fixtures: {}
 - proto: WallmountSubstationElectronics
   entities:
-  - uid: 39
+  - uid: 41
     mapInit: true
+    paused: true
     components:
     - type: Transform
-      parent: 38
+      parent: 37
     - type: EmitSoundOnCollide
       nextSound: -2702.8059084
     - type: Physics
       canCollide: False
 - proto: WallShuttle
   entities:
-  - uid: 48
+  - uid: 52
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
       pos: -0.5,0.5
-  - uid: 49
+  - uid: 53
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
       pos: -0.5,1.5
-  - uid: 50
+  - uid: 54
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
       pos: 1.5,1.5
 - proto: WallShuttleDiagonal
   entities:
-  - uid: 51
+  - uid: 55
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1
       pos: -0.5,2.5
-  - uid: 52
+  - uid: 56
     mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 1

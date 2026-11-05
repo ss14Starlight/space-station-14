@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/05/2026 18:41:33
+  time: 11/05/2026 19:28:41
   entityCount: 48
 maps: []
 grids:
@@ -210,13 +210,12 @@ entities:
     components:
     - type: Transform
       parent: 1
-      rot: 3.141592653589793 rad
       pos: -0.5,-1.5
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasPipeBendAlt3
   entities:
-  - uid: 22
+  - uid: 19
     components:
     - type: Transform
       parent: 1
@@ -226,7 +225,7 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeBendAlt4
   entities:
-  - uid: 19
+  - uid: 20
     components:
     - type: Transform
       parent: 1
@@ -235,7 +234,7 @@ entities:
       color: '#990000FF'
 - proto: GasPipeTankSubfloorAlt3
   entities:
-  - uid: 23
+  - uid: 21
     components:
     - type: Transform
       parent: 1
@@ -245,7 +244,7 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeTankSubfloorAlt4
   entities:
-  - uid: 24
+  - uid: 22
     components:
     - type: Transform
       parent: 1
@@ -255,7 +254,7 @@ entities:
       color: '#990000FF'
 - proto: GasPipeTJunctionAlt3
   entities:
-  - uid: 25
+  - uid: 23
     components:
     - type: Transform
       parent: 1
@@ -265,7 +264,7 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeTJunctionAlt4
   entities:
-  - uid: 26
+  - uid: 24
     components:
     - type: Transform
       parent: 1
@@ -275,7 +274,7 @@ entities:
       color: '#990000FF'
 - proto: GasPressurePumpAlt3
   entities:
-  - uid: 27
+  - uid: 25
     components:
     - type: Transform
       parent: 1
@@ -288,7 +287,7 @@ entities:
       color: '#0055CCFF'
 - proto: GasVentPumpAlt3
   entities:
-  - uid: 21
+  - uid: 26
     components:
     - type: Transform
       parent: 1
@@ -297,7 +296,7 @@ entities:
       color: '#0055CCFF'
 - proto: GasVentScrubberAlt4
   entities:
-  - uid: 20
+  - uid: 27
     components:
     - type: Transform
       parent: 1
