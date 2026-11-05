@@ -26,6 +26,21 @@
             "name": "talon",
             "license": "CC-BY-SA-3.0",
             "copyright": "Created by Pastres (github) for Starlight."
+        },
+        {
+            "name": "moth",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Created by aegisshielddev (github) for Starlight."
+        },
+        {
+            "name": "spider",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Created by aegisshielddev (github) for Starlight."
+        },
+        {
+            "name": "diona",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Created by aegisshielddev (github) for Starlight."
         }
     ]
 }

@@ -68,6 +68,9 @@ public sealed partial class FootprintSystem : EntitySystem
         FootprintVisualState.Barefoot => new(component.SpeciesSprites, "barefoot"),
         FootprintVisualState.Claw => new(component.SpeciesSprites, "claw"),
         FootprintVisualState.Talon => new(component.SpeciesSprites, "talon"),
+        FootprintVisualState.Moth => new(component.SpeciesSprites, "moth"),
+        FootprintVisualState.Spider => new(component.SpeciesSprites, "spider"),
+        FootprintVisualState.Diona => new(component.SpeciesSprites, "diona"),
         _ => new(component.Sprites, "foot"),
     };
 }

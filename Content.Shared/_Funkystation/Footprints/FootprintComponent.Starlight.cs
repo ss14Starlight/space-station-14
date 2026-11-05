@@ -45,4 +45,7 @@ public enum FootprintVisualState : byte
     Barefoot,
     Claw,
     Talon,
+    Moth,
+    Spider,
+    Diona,
 }

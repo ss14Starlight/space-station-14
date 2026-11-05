@@ -59,6 +59,47 @@
   - type: FootprintOwner
     printState: Talon
 
+# --- moth (two claws and a foot) ---
+# Neocyte variants parent BaseMobNeocyte rather than their namesake species, so each needs
+# its own entry; inheriting from a sibling does nothing.
+- type: !PartialOnly entity
+  id: BaseMobMoth
+  components:
+  - type: FootprintOwner
+    printState: Moth
+
+- type: !PartialOnly entity
+  id: BaseMobNeoMoth
+  components:
+  - type: FootprintOwner
+    printState: Moth
+
+# --- spider (a foot and two opposed claws) ---
+- type: !PartialOnly entity
+  id: BaseMobArachnid
+  components:
+  - type: FootprintOwner
+    printState: Spider
+
+- type: !PartialOnly entity
+  id: BaseMobNeoArachnid
+  components:
+  - type: FootprintOwner
+    printState: Spider
+
+# --- diona ---
+- type: !PartialOnly entity
+  id: BaseMobDiona
+  components:
+  - type: FootprintOwner
+    printState: Diona
+
+- type: !PartialOnly entity
+  id: BaseMobNeoDiona
+  components:
+  - type: FootprintOwner
+    printState: Diona
+
 # --- barefoot shape is the default, so these only need the component itself ---
 # BaseMobShadekin parents BaseMobSpecies rather than BaseMobSpeciesOrganic, so it never
 # inherited FootprintOwner and left no prints at all. The Neocyte variant declares its own.
