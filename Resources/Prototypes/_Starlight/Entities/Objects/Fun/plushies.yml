@@ -1527,7 +1527,6 @@
       sprite: _Starlight/Objects/Fun/Plushies/eeeplet_plushie.rsi
     - type: Sprite
       sprite: _Starlight/Objects/Fun/Plushies/eeeplet_plushie.rsi
-      noRot: true
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: eeeplet
