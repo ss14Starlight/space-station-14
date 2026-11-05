@@ -1,11 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: movePulledObject's frequency limitation (1 second per command) was removed again.
-    type: Fix
-  id: 409724
-  time: '2026-10-24T14:31:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6785
 - author: wonderfulnewworld, ItsMaitake
   changes:
   - message: Added new Cryptographic Sequencer/Emag functionality to over 42 machines and vendors!
@@ -2799,4 +2792,11 @@ Entries:
   id: 410123
   time: '2026-11-05T10:03:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7049
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed placeholder icons in hand slots (most commonly in cyborg modules) not always being transparent.
+    type: Fix
+  id: 410124
+  time: '2026-11-05T14:48:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7054
 Order: -1
