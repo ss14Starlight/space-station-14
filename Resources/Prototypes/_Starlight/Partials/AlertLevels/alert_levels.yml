@@ -1,6 +1,9 @@
 - type: !PartialOnly alertLevels
   id: stationAlerts
   levels:
+    epsilon:
+      # This makes sense, but left commented as it's out of scope of the PR adding it
+      # preventEvac: true
     violet:
       # Do we want this? It would make sense as per zombie quarantine rules
       # Left commented for now, if it is wanted then it can be uncommented later
@@ -19,6 +22,8 @@
       shuttleTime: 1200
       dimmedLightMultiplier: 0.2
     theta:
+      # This makes sense, but left commented as it's out of scope of the PR adding it
+      # preventEvac: true
       announcement: alert-level-theta-announcement
       selectable: false
       sound:
