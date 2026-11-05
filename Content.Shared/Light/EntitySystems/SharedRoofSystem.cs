@@ -67,7 +67,7 @@ public abstract partial class SharedRoofSystem : EntitySystem
             // Early out, otherwise check for components on tile.
             if (isRoof)
             {
-                return roof.color;
+                return roof.Color;
             }
         }
 
