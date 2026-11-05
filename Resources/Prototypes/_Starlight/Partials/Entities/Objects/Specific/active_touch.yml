@@ -1,0 +1,22 @@
+- type: !PartialOnly entity
+  id: FloorWaterEntity
+  components:
+    - type: ActiveTouchReaction
+
+- type: !PartialOnly entity
+  id: FloorLiquidPlasmaEntity
+  components:
+    - type: Solution
+      id: pool
+      solution:
+        reagents:
+          - ReagentId: Plasma
+            Quantity: 7680
+    - type: SolutionRegeneration
+      generated:
+        reagents:
+          - ReagentId: Plasma
+            Quantity: 100
+    - type: DrainableSolution
+      solution: pool
+    - type: ActiveTouchReaction

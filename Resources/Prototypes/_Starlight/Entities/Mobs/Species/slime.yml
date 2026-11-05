@@ -118,12 +118,12 @@
       - !type:HealthChange
         damage:
           types:
-            Heat: 0.5 # Starlight-edit
+            Caustic: 0.5 # Starlight-edit
       - !type:PopupMessage
         type: Local
         visualType: Large
         messages: [ "slime-hurt-by-water-popup" ]
-        probability: 0.25
+        # probability: 0.25 # Starlight - why is this probability gated? this is pretty important info
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
