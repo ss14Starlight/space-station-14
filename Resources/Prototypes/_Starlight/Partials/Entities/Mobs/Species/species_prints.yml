@@ -1,0 +1,60 @@
+# Barefoot print shapes per species. PrintState only applies while the shoes slot is empty;
+# anything worn there falls back to the generic boot print, so species without an entry here
+# simply use the default barefoot shape.
+
+# --- paw ---
+- type: !PartialOnly entity
+  id: BaseMobVulpkanin
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: BaseMobRodentia
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: BaseMobFelionoid
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: BaseMobLagomorph
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: BaseMobExperiment
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+# --- claw ---
+- type: !PartialOnly entity
+  id: BaseMobAvali
+  components:
+  - type: FootprintOwner
+    printState: Claw
+
+- type: !PartialOnly entity
+  id: BaseMobResomi
+  components:
+  - type: FootprintOwner
+    printState: Claw
+
+- type: !PartialOnly entity
+  id: BaseMobReptilian
+  components:
+  - type: FootprintOwner
+    printState: Claw
+
+# --- talon (two-toed) ---
+- type: !PartialOnly entity
+  id: BaseMobVox
+  components:
+  - type: FootprintOwner
+    printState: Talon
