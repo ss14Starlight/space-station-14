@@ -29,7 +29,7 @@
       - MobReptilian
       - MobShadekin
       - MobSlimePerson
-      - MobNeocyte #except you, you can stay
+      - MobNeocyte #except you, you can stay because you're more your own species than a modification
       - MobVulpkanin
       - MobArachnid
     chance: 0.5
@@ -111,7 +111,7 @@
       - MobNeoReptilian
       - MobNeoShadekin
       - MobNeoSlimePerson
-      - MobNeoVox #except you, you can stay
+      - MobNeoVox #except you, you can stay because you won't die in normal air
       - MobNeoVulpkanin
       - MobNeoArachnid
 
