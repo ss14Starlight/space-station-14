@@ -64,7 +64,7 @@ public sealed partial class RailroadingCrewRetentionTaskSystem : EntitySystem
     {
         stats = default!;
 
-        if (!Exists(subject))
+        if (TerminatingOrDeleted(subject))
             return false;
 
         if (TryComp<StationTrackerComponent>(subject, out var tracker) && tracker.LastStation is { } lastStation)

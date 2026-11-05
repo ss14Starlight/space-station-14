@@ -54,7 +54,7 @@ public sealed partial class RailroadingDesertionTaskSystem : EntitySystem
 
     private bool IsOnStation(Entity<RailroadableComponent> subject)
     {
-        if (!Exists(subject))
+        if (TerminatingOrDeleted(subject))
             return false;
 
         EntityUid? stationUid = null;
