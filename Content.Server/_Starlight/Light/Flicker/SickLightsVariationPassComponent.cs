@@ -13,6 +13,9 @@ namespace Content.Server._Starlight.Light.Flicker;
 [RegisterComponent, Access(typeof(SickLightsVariationPassSystem))]
 public sealed partial class SickLightsVariationPassComponent : Component
 {
+    /// <summary>
+    /// Determines in which zone we should replace lights with sick variant.
+    /// </summary>
     [DataField]
     public ProtoId<ZonePrototype> Zone = "Maintenance";
 
@@ -28,9 +31,15 @@ public sealed partial class SickLightsVariationPassComponent : Component
     [DataField]
     public float SickChance = 0.08f;
 
+    /// <summary>
+    /// Minimal time for fail delay.
+    /// </summary>
     [DataField]
     public TimeSpan MinDelay = TimeSpan.FromSeconds(45);
 
+    /// <summary>
+    /// Max time for fail delay.
+    /// </summary>
     [DataField]
     public TimeSpan MaxDelay = TimeSpan.FromSeconds(150);
 
@@ -40,6 +49,9 @@ public sealed partial class SickLightsVariationPassComponent : Component
     [DataField]
     public TimeSpan MinDuration = TimeSpan.FromSeconds(20);
 
+    /// <summary>
+    /// Max time a light fails for before it settles or burns out.
+    /// </summary>
     [DataField]
     public TimeSpan MaxDuration = TimeSpan.FromSeconds(120);
 
@@ -49,6 +61,9 @@ public sealed partial class SickLightsVariationPassComponent : Component
     [DataField]
     public float BurnoutChance = 0.35f;
 
+    /// <summary>
+    /// Sound which will be played on burnout
+    /// </summary>
     [DataField]
     public SoundSpecifier BurnoutSound = new SoundCollectionSpecifier("sparks");
 

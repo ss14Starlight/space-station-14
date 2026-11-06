@@ -49,9 +49,9 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
             return false;
 
         return _cfg.GetCVar(StarlightCCVars.NightVision)
-               || _cfg.GetCVar(StarlightCCVars.Bloom)
-               || _cfg.GetCVar(StarlightCCVars.Vignette)
-               || _cfg.GetCVar(StarlightCCVars.FilmGrain);
+            || _cfg.GetCVar(StarlightCCVars.Bloom)
+            || _cfg.GetCVar(StarlightCCVars.Vignette)
+            || _cfg.GetCVar(StarlightCCVars.FilmGrain);
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -61,10 +61,10 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
 
         var eye = args.Viewport.Eye!;
         var lit = eye.DrawLight
-                  && _lightManager.Enabled
-                  && _lightManager.DrawLighting
-                  && _entMan.TryGetComponent<MapComponent>(args.MapUid, out var map)
-                  && map.LightingEnabled;
+                && _lightManager.Enabled
+                && _lightManager.DrawLighting
+                && _entMan.TryGetComponent<MapComponent>(args.MapUid, out var map)
+                && map.LightingEnabled;
 
         // Without the light map there is no telling what glows.
         var bloom = lit && _cfg.GetCVar(StarlightCCVars.Bloom)

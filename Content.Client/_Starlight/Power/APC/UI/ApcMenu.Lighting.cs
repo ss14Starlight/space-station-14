@@ -24,6 +24,9 @@ public sealed partial class ApcMenu
         SetLightingVisible(false);
     }
 
+    /// <summary>
+    /// Updates state for current selected light mode, fetches and updates reason for current mode.
+    /// </summary>
     public void UpdateLighting(ApcLightingComponent? lighting)
     {
         SetLightingVisible(lighting != null);
