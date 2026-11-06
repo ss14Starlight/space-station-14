@@ -1527,7 +1527,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             && args.Message is WiresActionMessage wireAction)
         {
             args.Cancel();
-            if (!HasComp<Content.Shared.PAI.PAIComponent>(args.Actor) && !_actionBlocker.CanInteract(args.Actor, args.Target))
+            if (!_actionBlocker.CanInteract(remoteEntity, args.Target))
                 return;
             _wires.TryDoRemoteWireAction(new Entity<WiresComponent?>(args.Target, null), remoteEntity, wireAction);
             return;
