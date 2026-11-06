@@ -731,7 +731,7 @@
     state: heliosMedal
   requirements:
     - progressType: animate.lizard
-      requiresProgress: 10
+      requiredProgress: 10
 
 - type: achievement
   id: defib_mouse
@@ -805,7 +805,7 @@
     state: heliosMedal
   requirements:
     - progressType: scream.counter
-      requiresProgress: 100
+      requiredProgress: 100
 
 - type: achievement
   id: master_bartender

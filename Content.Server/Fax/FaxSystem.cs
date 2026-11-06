@@ -62,10 +62,9 @@ public sealed partial class FaxSystem : EntitySystem
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private FaxecuteSystem _faxecute = default!;
     [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private AchievementSystem _achievements = default!; //Starlight
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
-
-    [Dependency] private AchievementSystem _achievements = default!;
 
     private const string PaperSlotId = "Paper";
 
@@ -360,6 +359,7 @@ public sealed partial class FaxSystem : EntitySystem
 
     private void OnCopyButtonPressed(EntityUid uid, FaxMachineComponent component, FaxCopyMessage args)
     {
+        if (TryComp<FaxableObjectComponent>(uid, out var faxableObject) && !string.IsNullOrEmpty(faxableObject.Achievement)) _achievements.QueueUnlockAchievement(args.Actor, faxableObject.Achievement); //Starlight-edit: Achievement
         if (HasComp<MobStateComponent>(component.PaperSlot.Item))
         {
             _faxecute.Faxecute(uid, component); // when button pressed it will hurt the mob.
@@ -384,6 +384,7 @@ public sealed partial class FaxSystem : EntitySystem
 
     private void OnSendButtonPressed(EntityUid uid, FaxMachineComponent component, FaxSendMessage args)
     {
+        if (TryComp<FaxableObjectComponent>(uid, out var faxableObject) && !string.IsNullOrEmpty(faxableObject.Achievement)) _achievements.QueueUnlockAchievement(args.Actor, faxableObject.Achievement); //Starlight-edit: Achievement
         if (HasComp<MobStateComponent>(component.PaperSlot.Item))
         {
             // Starlight-edit

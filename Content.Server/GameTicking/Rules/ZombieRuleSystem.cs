@@ -241,4 +241,13 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
         }
         return healthy;
     }
+
+    #region Starlight
+    protected override void Ended(EntityUid uid, ZombieRuleComponent component, GameRuleComponent gameRule,
+        GameRuleEndedEvent args)
+    {
+        base.Ended(uid,component, gameRule, args);
+        _initialInfected.Clear();
+    }
+    #endregion
 }

@@ -612,10 +612,9 @@ public sealed partial class AchievementSystem : EntitySystem
             }
         }
 
-        if (!args.TransferredSolution.Contents.Any(reagentQuantity => reagentQuantity.Reagent.Prototype == SalineReagentId))
+        if (args.TransferredSolution.Contents.All(reagentQuantity => reagentQuantity.Reagent.Prototype != SalineReagentId))
             return;
-
-        QueueUnlockAchievement(args.EntityUsingInjector, "you_monster");
+        if (humanoid != null && (humanoid.Species == ResomiSpeciesId || humanoid.Species == AvaliSpeciesId)) QueueUnlockAchievement(args.EntityUsingInjector, "you_monster");
     }
 
     private void OnProjectileHit(EntityUid uid, ProjectileComponent _, ref ProjectileHitEvent args)
