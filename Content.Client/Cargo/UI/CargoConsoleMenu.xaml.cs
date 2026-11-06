@@ -323,6 +323,7 @@ namespace Content.Client.Cargo.UI
             BarcodeAccountOptions.Clear();
             foreach (var account in bank.Accounts.Keys)
             {
+                if (account == bank.PrimaryAccount) continue;
                 var accountProto = _protoManager.Index(account);
                 BarcodeAccountOptions.AddItem(Loc.GetString(accountProto.Code),
                     i);
