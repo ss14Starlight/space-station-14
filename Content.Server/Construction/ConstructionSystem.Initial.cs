@@ -525,7 +525,8 @@ namespace Content.Server.Construction
             // Starlight-start
             void Cleanup(bool cancel = true)
             {
-                RaiseNetworkEvent(new CancelStructureConstructionMessage(ev.Ack), session);
+                if (cancel)
+                    RaiseNetworkEvent(new CancelStructureConstructionMessage(ev.Ack), session);
                 _beingBuilt[session].Remove(ev.Ack);
             }
             // Starlight-end
