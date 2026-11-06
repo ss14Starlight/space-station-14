@@ -372,6 +372,11 @@ namespace Content.Client.Construction
 
             _sprite.SetColor((ghost.Value, sprite), new Color(48, 255, 48, 128));
 
+            // Starlight-start: Construction ghosts render over most things.
+            // This means you can actually see the pipe ghosts you are placing for under-wall pipes!
+            _sprite.SetDrawDepth((ghost.Value, sprite), (int)Shared.DrawDepth.DrawDepth.Overdoors);
+            // Starlight-end
+
             if (prototype.CanBuildInImpassable)
                 EnsureComp<WallMountComponent>(ghost.Value).Arc = new(Math.Tau);
 
