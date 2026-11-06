@@ -6,8 +6,6 @@ public sealed partial class DamagedOnShockSystem : EntitySystem
 {
     [Dependency] private DamageableSystem _damageable = default!;
 
-    private readonly List<EntityUid> _pending = new();
-
     public override void Initialize()
     {
         base.Initialize();
@@ -16,21 +14,5 @@ public sealed partial class DamagedOnShockSystem : EntitySystem
     }
 
     private void OnShockDealt(Entity<DamagedOnShockComponent> ent, ref ElectrifiedShockDealtEvent args)
-        => _pending.Add(ent);
-
-    public override void Update(float frameTime)
-    {
-        if (_pending.Count == 0)
-            return;
-
-        foreach (var uid in _pending)
-        {
-            if (TerminatingOrDeleted(uid) || !TryComp<DamagedOnShockComponent>(uid, out var comp))
-                continue;
-
-            _damageable.TryChangeDamage(uid, comp.Damage, comp.IgnoreResistances, interruptsDoAfters: false);
-        }
-
-        _pending.Clear();
-    }
+        => _damageable.TryChangeDamage(ent.Owner, ent.Comp.Damage, ent.Comp.IgnoreResistances, interruptsDoAfters: false);
 }

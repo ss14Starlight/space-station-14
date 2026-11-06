@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Conditions;
 using Content.Shared.Whitelist;
@@ -7,12 +6,18 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Shared._Starlight.Construction.Conditions;
 
+/// <summary>
+/// Fails if anything anchored on the target tile matches <see cref="Blacklist"/>.
+/// </summary>
 [DataDefinition]
 public sealed partial class NoEntityInTile : IConstructionCondition
 {
     [DataField(required: true)]
     public EntityWhitelist Blacklist = new();
 
+    /// <summary>
+    /// Player-facing text shown in the construction guide. Recipes should say what is in the way.
+    /// </summary>
     [DataField]
     public LocId GuideString = "construction-step-condition-no-entity-in-tile";
 
@@ -36,27 +41,5 @@ public sealed partial class NoEntityInTile : IConstructionCondition
     }
 
     public ConstructionGuideEntry GenerateGuideEntry()
-    {
-        var components = Blacklist.Components ?? [];
-        var tags = Blacklist.Tags?.Select(t => t.Id).ToArray() ?? [];
-        var sizes = Blacklist.Sizes?.Select(s => s.Id).ToArray() ?? [];
-        var toolQualities = Blacklist.ToolQualities?.Select(q => q.Id).ToArray() ?? [];
-
-        return new()
-        {
-            Localization = GuideString,
-            Arguments =
-            [
-                ("components", string.Join(", ", components)),
-                ("componentCount", components.Length),
-                ("tags", string.Join(", ", tags)),
-                ("tagCount", tags.Length),
-                ("sizes", string.Join(", ", sizes)),
-                ("sizeCount", sizes.Length),
-                ("toolQualities", string.Join(", ", toolQualities)),
-                ("toolQualityCount", toolQualities.Length),
-                ("requireAll", Blacklist.RequireAll ? "true" : "false"),
-            ],
-        };
-    }
+        => new() { Localization = GuideString };
 }

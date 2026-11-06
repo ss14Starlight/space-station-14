@@ -38,7 +38,6 @@ using Content.Shared._Starlight.Atmos.Components;
 using Content.Shared.Prototypes;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Doors.Components;
-using Content.Shared._Starlight.Construction.Components;
 using Content.Shared.Conveyor;
 
 namespace Content.Shared.RCD.Systems;
@@ -696,7 +695,7 @@ public sealed partial class RCDSystem : EntitySystem
         var usesLayeredPipePlacement = prototype.HasLayers && (component.IsRpd || component.IsRPLD);
         var isGrillePlacement = prototype.Prototype != null
             && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var grilleProto)
-            && grilleProto.HasComponent<GrilleComponent>(_entityManager.ComponentFactory);
+            && grilleProto.HasComponent<SharedCanBuildWindowOnTopComponent>(_entityManager.ComponentFactory);
         // Starlight-end
         _intersectingEntities.Clear();
         _lookup.GetLocalEntitiesIntersecting(gridUid, position, _intersectingEntities, -0.05f, LookupFlags.Uncontained);

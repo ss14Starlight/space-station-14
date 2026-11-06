@@ -4,5 +4,6 @@
   - type: AnchorTileBlacklist
     blacklist:
       components:
-      - Grille
+      - CanBuildWindowOnTop # intact grilles
       - Airlock
+    popup: anchorable-tile-blacklisted-grille-or-airlock
