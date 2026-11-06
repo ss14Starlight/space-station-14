@@ -44,7 +44,7 @@ def string_lines(text):
                 j = i + 1
                 while j < n and text[j] not in "'\n":
                     j += 2 if text[j] == "\\" else 1
-                i = j + 1
+                i = j if j < n and text[j] == "\n" else j + 1
                 continue
             if c in '$@"':
                 m = _RAW_START.match(text, i)
