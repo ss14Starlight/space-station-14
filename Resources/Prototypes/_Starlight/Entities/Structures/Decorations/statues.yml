@@ -31,6 +31,9 @@
   name: phoronic cascade
   description: A huge structure made of pure plasma. Dark energy roils and bursts within it.
   components:
+    - type: ChildEntities
+      childPrototypes:
+      - prototype: OverlayBluespaceSparksEffect
     - type: StationAnchor
     - type: Transform
       anchored: true

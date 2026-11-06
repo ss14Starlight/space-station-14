@@ -1,0 +1,28 @@
+- type: !PartialOnly entity
+  id: AnomalyCoreShadow
+  suffix: Dark
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/Cores/shadow_core.rsi
+  - type: PointLight
+    radius: 1.5
+    energy: 2.0
+    color: "#793a80dd"
+    castShadows: false
+  - type: DarkLight
+  - type: Tag
+    tags:
+      - AnomalyCoreShadow
+
+- type: !PartialOnly entity
+  id: AnomalyCoreShadowInert
+  suffix: Dark, Inert
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/Cores/shadow_core.rsi
+  - type: PointLight
+    radius: 1.5
+    energy: 2.0
+    color: "#793a80dd"
+    castShadows: false
+  - type: DarkLight

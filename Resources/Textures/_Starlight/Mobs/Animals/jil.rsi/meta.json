@@ -1,0 +1,51 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from: https://github.com/Willburd/CHOMPost21/blob/master/icons/mob/animal.dmi",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "jil",
+            "directions": 4
+        },
+        {
+            "name": "jil_splat"
+        },
+        {
+            "name": "jil_dead"
+        },
+        {
+            "name": "jil_big",
+            "directions": 4
+        },
+        {
+            "name": "jil_big_splat"
+        },
+        {
+            "name": "jil_big_dead"
+        },
+        {
+            "name": "jil_cargo",
+            "directions": 4
+        },
+        {
+            "name": "jil_cargo_splat"
+        },
+        {
+            "name": "jil_cargo_dead"
+        },
+        {
+            "name": "jil_bean",
+            "directions": 4
+        },
+        {
+            "name": "jil_bean_splat"
+        },
+        {
+            "name": "jil_bean_dead"
+        }
+    ]
+}

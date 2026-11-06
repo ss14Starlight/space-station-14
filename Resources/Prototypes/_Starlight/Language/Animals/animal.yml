@@ -173,3 +173,17 @@
     - squawk
     - gak
     - trill
+
+- type: language
+  id: Jil
+  icon: LanguageIconAnimal
+  chatPrefix: jil
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+    - merp
+    - merps
+    - mips
+    - mips

@@ -12,7 +12,7 @@
     torso:
       part: TorsoAnimal
       connections:
-      - legs
+        - legs
       organs:
         lungs: OrganAnimalLungs
         stomach: OrganAnimalStomach
@@ -22,7 +22,7 @@
     legs:
       part: LegsAnimal
       connections:
-      - feet
+        - feet
     feet:
       part: FeetAnimal
 
@@ -40,7 +40,7 @@
     torso:
       part: TorsoAnimal
       connections:
-      - legs
+        - legs
       organs:
         lungs: OrganAnimalLungs
         stomach: OrganMouseStomach
@@ -50,6 +50,33 @@
     legs:
       part: LegsAnimal
       connections:
-      - feet
+        - feet
+    feet:
+      part: FeetAnimal
+
+- type: body
+  id: DarkAnimal
+  name: "dark animal"
+  root: torso
+  slots:
+    head:
+      part: HeadAnimal
+      connections:
+        - torso
+      organs:
+        eyes: OrganDarkAnimalEyes
+    torso:
+      part: TorsoAnimal
+      connections:
+        - legs
+      organs:
+        stomach: OrganDarkAnimalStomach
+        liver: OrganDarkAnimalLiver
+        heart: OrganDarkAnimalHeart
+        kidneys: OrganDarkAnimalKidneys
+    legs:
+      part: LegsAnimal
+      connections:
+        - feet
     feet:
       part: FeetAnimal

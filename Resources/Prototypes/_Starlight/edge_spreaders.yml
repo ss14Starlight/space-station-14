@@ -1,0 +1,5 @@
+- type: edgeSpreader
+  id: DarkTile
+  updatesPerSecond: 1
+  preventSpreadOnSpaced: false
+  ingoreDoors: true

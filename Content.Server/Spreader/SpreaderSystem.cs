@@ -2,6 +2,7 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Doors.Components;
 using Content.Shared.Maps;
 using Content.Shared.Spreader;
 using Content.Shared.Tag;
@@ -209,7 +210,8 @@ public sealed partial class SpreaderSystem : EntitySystem
 
             // If we're on a blocked tile work out which directions we can go.
             if (!_airtightQuery.TryGetComponent(ent, out var airtight) || !airtight.AirBlocked || // Starlight
-                _tag.HasTag(ent.Value, IgnoredTag))
+                _tag.HasTag(ent.Value, IgnoredTag) ||
+                (spreaderPrototype.IngoreDoors && HasComp<DoorComponent>(ent.Value))) // Starlight
             {
                 continue;
             }
@@ -250,7 +252,8 @@ public sealed partial class SpreaderSystem : EntitySystem
 
             while (directionEnumerator.MoveNext(out var ent))
             {
-                if (!_airtightQuery.TryGetComponent(ent, out var airtight) || !airtight.AirBlocked || _tag.HasTag(ent.Value, IgnoredTag)) // Starlight
+                if (!_airtightQuery.TryGetComponent(ent, out var airtight) || !airtight.AirBlocked || _tag.HasTag(ent.Value, IgnoredTag) || // Starlight
+                (spreaderPrototype.IngoreDoors && HasComp<DoorComponent>(ent.Value))) // Starlight
                 {
                     continue;
                 }

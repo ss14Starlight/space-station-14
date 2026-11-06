@@ -136,7 +136,7 @@ public sealed partial class ShadekinSystem
     [SubscribeLocalEvent]
     private void OnShutdown(Entity<BrighteyeComponent> ent, ref ComponentShutdown _)
     {
-        _language.RemoveLanguage(ent.Owner, "Empathy", removeUnderstood: false);
+        _language.RemoveLanguage(ent.Owner, "Empathy");
 
         _alerts.ClearAlert(ent.Owner, ent.Comp.BrighteyeAlert);
         _alerts.ClearAlert(ent.Owner, ent.Comp.PortalAlert);

@@ -153,7 +153,7 @@
 
 - type: entity
   id: PortalShadekin
-  suffix: Dark
+  suffix: Brighteye
   description: The portal to the dark...
   parent: AnomalyShadow
   components:
@@ -172,9 +172,11 @@
       minPulseLength: 60
       maxPulseLength: 120
       decayhreshold: 0
+      canBePunched: false
       deleteEntity: false
       scannerContainmentParticleReadout: anomaly-particles-nullspace-stabilization
       useNormalContainmentParticle: false
+      randomBehaviorOnMapInit: false
       particleInteractions:
       - interactionKey: NullspaceStabilizer
         effect: EndAnomaly

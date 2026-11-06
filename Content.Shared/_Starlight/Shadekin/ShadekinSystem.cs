@@ -162,10 +162,15 @@ public sealed partial class ShadekinSystem : EntitySystem
     /// our thresholds are tuned for it. Lights come from <see cref="SharedIlluminationSystem"/>.
     /// </remarks>
     public float GetLightExposure(EntityUid uid, float cap = float.MaxValue)
+        => GetLightExposure(_transform.GetMapCoordinates(uid), cap, uid);
+
+    public float GetLightExposure(MapCoordinates targetCoords, float cap = float.MaxValue)
+        => GetLightExposure(targetCoords, cap, null);
+
+    private float GetLightExposure(MapCoordinates targetCoords, float cap, EntityUid? uid)
     {
         var illumination = 0f;
 
-        var targetCoords = _transform.GetMapCoordinates(uid);
         if (targetCoords.MapId == MapId.Nullspace)
             return illumination;
 
@@ -182,7 +187,10 @@ public sealed partial class ShadekinSystem : EntitySystem
         }
 
         _lightSources.Clear();
-        _illumination.GetLightSources(uid, _lightSources, _lightQuery);
+        if (uid is { } targetUid)
+            _illumination.GetLightSources(targetUid, _lightSources, _lightQuery);
+        else
+            _illumination.GetLightSources(targetCoords, _lightSources, _lightQuery);
 
         foreach (var source in _lightSources)
         {
