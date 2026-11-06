@@ -7,12 +7,5 @@ namespace Content.Client.Construction
     {
         public int GhostId { get; set; }
         [ViewVariables] public ConstructionPrototype? Prototype { get; set; }
-
-        #region Starlight
-        /// <summary>
-        /// Whether this ghost is currently being built or not.
-        /// </summary>
-        public bool IsBuilding { get; set; }
-        #endregion
     }
 }
