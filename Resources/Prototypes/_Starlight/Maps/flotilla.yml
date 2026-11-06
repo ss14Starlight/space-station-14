@@ -2,7 +2,7 @@
   id: StarlightFlotilla
   mapName: 'Flotilla Spaceport'
   mapPath: /Maps/_Starlight/Stations/Flotilla.yml
-  minPlayers: 150
+  minPlayers: 135
   maxPlayers: 350
   stations:
     StarlightFlotilla:
@@ -61,6 +61,7 @@
 
             #Security
             HeadOfSecurity: [ 1, 1 ]
+            GunnerySergeant: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 2 ]
             SecurityOfficer: [ 10, 12 ]

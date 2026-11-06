@@ -63,6 +63,7 @@ public sealed partial class GasTileHeatBlurOverlay : Overlay
     public GasTileHeatBlurOverlay()
     {
         IoCManager.InjectDependencies(this);
+        ZIndex = -110; // Starlight
         _xformSys = _entManager.System<SharedTransformSystem>();
         _mapManager = _entManager.System<SharedMapSystem>(); //Starlight-edit
 

@@ -1697,7 +1697,7 @@ public sealed class RemoteControlConsoleTest : GameTest
             ControllerAccessible = false;
         }
 
-        private void OnBoundInterfaceMessageAttempt(BoundUserInterfaceMessageAttempt args)
+        private void OnBoundInterfaceMessageAttempt(ref BoundUserInterfaceMessageAttempt args)
         {
             if (args.Target != Target
                 || args.Actor != Controller

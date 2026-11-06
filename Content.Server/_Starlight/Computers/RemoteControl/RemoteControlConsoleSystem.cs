@@ -1421,7 +1421,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnRemoteUiMessageAttempt(BoundUserInterfaceMessageAttempt args)
+    private void OnRemoteUiMessageAttempt(ref BoundUserInterfaceMessageAttempt args)
     {
         var pendingOpenKey = (args.Actor, args.Target, args.UiKey);
         _pendingRemoteUiOpenAttempts.Remove(pendingOpenKey);

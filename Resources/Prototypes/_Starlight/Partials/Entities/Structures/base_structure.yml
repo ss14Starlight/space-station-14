@@ -1,0 +1,6 @@
+# Let t-ray reveal wires/pipes under any structure.
+# This covers lots of things, like walls, windows, tables, vending machines, etc.
+- type: !PartialOnly entity
+  id: BaseStructure
+  components:
+  - type: TrayScanReveal
