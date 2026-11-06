@@ -34,7 +34,7 @@ namespace Content.Server.Cargo.Systems
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleAddOrderMessage>(OnAddOrderMessage);
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleRemoveOrderMessage>(OnRemoveOrderMessage);
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleApproveOrderMessage>(OnApproveOrderMessage);
-            SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsolePrintBarcodeMessage>(OnPrintBarcodeMessage);
+            SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsolePrintBarcodeMessage>(OnPrintBarcodeMessage); //Starlight
             SubscribeLocalEvent<CargoOrderConsoleComponent, BoundUIOpenedEvent>(OnOrderUIOpened);
             SubscribeLocalEvent<CargoOrderConsoleComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<CargoOrderConsoleComponent, InteractUsingEvent>(OnInteractUsing);
@@ -335,6 +335,7 @@ namespace Content.Server.Cargo.Systems
             RemoveOrder(station.Value, component.Account, args.OrderId, orderDatabase);
         }
 
+        #region Starlight
         private void OnPrintBarcodeMessage(EntityUid uid, CargoOrderConsoleComponent component, CargoConsolePrintBarcodeMessage args)
         {
             if (Timing.CurTime < component.NextPrintTime)
@@ -362,6 +363,7 @@ namespace Content.Server.Cargo.Systems
                 _paperSystem.SetContent((label, paper), msg.ToMarkup());
             }
         }
+        #endregion
 
         private void OnAddOrderMessageSlipPrinter(EntityUid uid, CargoOrderConsoleComponent component, CargoConsoleAddOrderMessage args, CargoProductPrototype product)
         {

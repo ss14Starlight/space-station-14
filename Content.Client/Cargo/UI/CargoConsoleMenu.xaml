@@ -191,7 +191,7 @@
                   <Button Name="AccountLimitToggleButton" Text="{ Loc 'cargo-console-menu-toggle-account-lock-button'}" MinHeight="45" MinWidth="120"/>
               </BoxContainer>
           </BoxContainer>
-          <!-- Barcode tab -->
+          <!-- Barcode tab (STARLIGHT) -->
           <BoxContainer Orientation="Vertical" Margin="15">
               <RichTextLabel Text="{Loc 'cargo-console-menu-barcode-description'}" Margin="0 0 0 15"/>
               <BoxContainer Orientation="Horizontal">
@@ -204,6 +204,7 @@
               </BoxContainer>
               <Control VerticalExpand="True"/>
           </BoxContainer>
+          <!-- Starlight end -->
         </TabContainer>
 
         <!-- Footer -->

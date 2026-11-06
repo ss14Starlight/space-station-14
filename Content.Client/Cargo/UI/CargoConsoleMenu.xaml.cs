@@ -38,7 +38,7 @@ namespace Content.Client.Cargo.UI
 
         public event Action<ButtonEventArgs>? OnToggleUnboundedLimit;
 
-        public event Action<ProtoId<CargoAccountPrototype>>? OnPrintBarcode;
+        public event Action<ProtoId<CargoAccountPrototype>>? OnPrintBarcode; //Starlight
 
         private readonly List<string> _categoryStrings = new();
         private string? _category;
@@ -74,13 +74,13 @@ namespace Content.Client.Cargo.UI
 
             TabContainer.SetTabTitle(0, Loc.GetString("cargo-console-menu-tab-title-orders"));
             TabContainer.SetTabTitle(1, Loc.GetString("cargo-console-menu-tab-title-funds"));
-            TabContainer.SetTabTitle(2, Loc.GetString("cargo-console-menu-tab-title-barcode"));
+            TabContainer.SetTabTitle(2, Loc.GetString("cargo-console-menu-tab-title-barcode")); //Starlight
 
             ActionOptions.OnItemSelected += idx =>
             {
                 ActionOptions.SelectId(idx.Id);
             };
-
+            //Starlight start
             BarcodeAccountOptions.OnItemSelected += idx =>
             {
                 BarcodeAccountOptions.SelectId(idx.Id);
@@ -92,6 +92,7 @@ namespace Content.Client.Cargo.UI
                 if (account != null)
                     OnPrintBarcode?.Invoke(account.Value);
             };
+            //Starlight end
 
             TransferSpinBox.IsValid = val =>
             {
@@ -312,6 +313,7 @@ namespace Content.Client.Cargo.UI
             }
         }
 
+        #region Starlight
         public void PopulateBarcodeAccounts()
         {
             if (!_entityManager.TryGetComponent<StationBankAccountComponent>(_station, out var bank))
@@ -328,6 +330,7 @@ namespace Content.Client.Cargo.UI
                 i++;
             }
         }
+        #endregion
 
         public void UpdateStation(EntityUid station)
         {

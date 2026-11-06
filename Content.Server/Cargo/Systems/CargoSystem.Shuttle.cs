@@ -255,19 +255,16 @@ public sealed partial class CargoSystem
                 if (price == 0)
                     continue;
                 toSell.Add(ent);
-
+                //Starlight start
                 OverrideSellComponent? overrideSell = CompOrNull<OverrideSellComponent>(ent);
 
                 if (overrideSell == null && TryComp<PaperLabelComponent>(ent, out var label))
-                {
                     if (label.LabelSlot.Item is { Valid: true } labelItem &&
                         TryComp<OverrideSellComponent>(labelItem, out var barcodeOverride))
-                    {
                         overrideSell = barcodeOverride;
-                    }
-                }
 
                 goods.Add((ent, overrideSell, price));
+                //Starlight end
             }
         }
     }
