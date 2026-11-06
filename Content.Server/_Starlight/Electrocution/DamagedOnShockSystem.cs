@@ -6,13 +6,7 @@ public sealed partial class DamagedOnShockSystem : EntitySystem
 {
     [Dependency] private DamageableSystem _damageable = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<DamagedOnShockComponent, ElectrifiedShockDealtEvent>(OnShockDealt);
-    }
-
+    [SubscribeLocalEvent]
     private void OnShockDealt(Entity<DamagedOnShockComponent> ent, ref ElectrifiedShockDealtEvent args)
         => _damageable.TryChangeDamage(ent.Owner, ent.Comp.Damage, ent.Comp.IgnoreResistances, interruptsDoAfters: false);
 }
