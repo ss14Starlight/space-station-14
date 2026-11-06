@@ -520,7 +520,7 @@
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/deagle.ogg
     minAngle: 6
     maxAngle: 20
-    angleIncrease: 1.5
+    angleIncrease: 3
     angleDecay: 12
   - type: GunWieldBonus
     minAngle: 0
