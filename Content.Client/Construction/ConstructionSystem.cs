@@ -370,7 +370,7 @@ namespace Content.Client.Construction
             else
                 return false;
 
-            _sprite.SetColor((ghost.Value, sprite), new Color(48, 255, 48, 128));
+            UpdateGhostColor(ghost.Value, comp, sprite); // Starlight-edit: Color based on reachability
 
             if (prototype.CanBuildInImpassable)
                 EnsureComp<WallMountComponent>(ghost.Value).Arc = new(Math.Tau);
