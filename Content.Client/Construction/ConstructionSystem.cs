@@ -453,11 +453,11 @@ namespace Content.Client.Construction
 
             var transform = Comp<TransformComponent>(ghostId);
 
-            // Starlight - don't optimistically mark it building (and send the request) if the player can't
-            // even reach it; the server would just reject it anyway.
+            // Starlight-start: Make sure player can reach before sending attempt to server
             var mapCoords = _transformSystem.ToMapCoordinates(transform.Coordinates);
             if (!CanReach(mapCoords, ghostComp.Prototype.CanBuildInImpassable))
                 return;
+            // Starlight-end
 
             var msg = new TryStartStructureConstructionMessage(GetNetCoordinates(transform.Coordinates), ghostComp.Prototype.ID, transform.LocalRotation, ghostId.GetHashCode());
             ghostComp.IsBuilding = true;
