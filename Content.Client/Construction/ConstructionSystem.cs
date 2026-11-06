@@ -34,9 +34,6 @@ namespace Content.Client.Construction
         [Dependency] private SharedTransformSystem _transformSystem = default!;
         [Dependency] private SpriteSystem _sprite = default!;
         [Dependency] private PopupSystem _popupSystem = default!;
-        #region Starlight
-        [Dependency] private IConfigurationManager _configurationManager = default!;
-        #endregion
 
         private readonly Dictionary<int, EntityUid> _ghosts = new();
         private readonly Dictionary<string, ConstructionGuide> _guideCache = new();

@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Construction.Prototypes;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 
 // ReSharper disable once CheckNamespace
@@ -7,6 +8,7 @@ namespace Content.Client.Construction;
 
 public sealed partial class ConstructionSystem
 {
+    [Dependency] private IConfigurationManager _configurationManager = default!;
 
     /// <summary>
     ///     Attempts to create a construction ghost for the specified user.
