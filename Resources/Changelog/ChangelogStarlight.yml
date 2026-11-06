@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: PDA ringtones now feature more notes.
-    type: Tweak
-  id: 409772
-  time: '2026-10-25T11:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6795
-- author: Wizden Team
-  changes:
   - message: Renames robes of the honkmother to honkmother coat.
     type: Tweak
   id: 409773
@@ -2799,4 +2792,11 @@ Entries:
   id: 410171
   time: '2026-11-06T12:56:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7072
+- author: redmushie
+  changes:
+  - message: Construction ghosts now render over windows and walls. No more right-clicking to find your pipe ghosts!
+    type: Tweak
+  id: 410172
+  time: '2026-11-06T13:16:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7073
 Order: -1
