@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: The Station AI is now notified when their core is taking damage.
-    type: Add
-  id: 409768
-  time: '2026-10-25T11:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6795
-- author: Wizden Team
-  changes:
   - message: AI can no longer enable lights on cameras.
     type: Remove
   id: 409769
@@ -2799,4 +2792,11 @@ Entries:
   id: 410167
   time: '2026-11-06T12:32:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7071
+- author: Floximo
+  changes:
+  - message: Disconnect no longer frees the AI job slot. This will now happen with the cryo event. (if you intentionally leave as AI, use "ghost" if possible).
+    type: Fix
+  id: 410168
+  time: '2026-11-06T12:32:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7070
 Order: -1
