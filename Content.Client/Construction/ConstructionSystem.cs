@@ -460,7 +460,7 @@ namespace Content.Client.Construction
             // Starlight-end
 
             var msg = new TryStartStructureConstructionMessage(GetNetCoordinates(transform.Coordinates), ghostComp.Prototype.ID, transform.LocalRotation, ghostId.GetHashCode());
-            ghostComp.IsBuilding = true;
+            ghostComp.IsBuilding = true; // Starlight-edit
             RaiseNetworkEvent(msg);
         }
 
