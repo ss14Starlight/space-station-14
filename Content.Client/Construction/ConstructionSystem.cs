@@ -302,10 +302,19 @@ namespace Content.Client.Construction
             [NotNullWhen(true)] out EntityUid? ghost,
             bool showPopup = true)
         {
+            ghost = null;
             if (!user.IsValid())
-            {
-                ghost = null;
                 return false;
+
+            // Prevent multiple identical ghosts in the same spot and orientation.
+            foreach (var (id, existingGhost) in _ghosts)
+            {
+                var ghostComp = Comp<ConstructionGhostComponent>(existingGhost);
+                var xform = Transform(existingGhost);
+                if (ghostComp.Prototype == prototype
+                    && xform.Coordinates.Equals(loc)
+                    && xform.LocalRotation.Equals(dir.ToAngle()))
+                    return false;
             }
 
             return TrySpawnGhostForUser(prototype, loc, dir, user, out ghost, showPopup);
@@ -443,7 +452,15 @@ namespace Content.Client.Construction
             }
 
             var transform = Comp<TransformComponent>(ghostId);
+
+            // Starlight - don't optimistically mark it building (and send the request) if the player can't
+            // even reach it; the server would just reject it anyway.
+            var mapCoords = _transformSystem.ToMapCoordinates(transform.Coordinates);
+            if (!CanReach(mapCoords, ghostComp.Prototype.CanBuildInImpassable))
+                return;
+
             var msg = new TryStartStructureConstructionMessage(GetNetCoordinates(transform.Coordinates), ghostComp.Prototype.ID, transform.LocalRotation, ghostId.GetHashCode());
+            ghostComp.IsBuilding = true;
             RaiseNetworkEvent(msg);
         }
 

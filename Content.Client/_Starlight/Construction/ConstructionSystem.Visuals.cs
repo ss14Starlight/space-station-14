@@ -1,4 +1,5 @@
 using Content.Client._Starlight.Computers.RemoteControl;
+using Content.Shared._Starlight.Construction;
 using Content.Shared.Interaction;
 using Robust.Client.GameObjects;
 using Robust.Shared.Map;
@@ -18,6 +19,7 @@ public sealed partial class ConstructionSystem
     // Ghost tint depending on whether the player can actually reach the spot to build it.
     private static readonly Color _ghostReachableColor = Color.FromHex("#00FF0080");
     private static readonly Color _ghostUnreachableColor = Color.FromHex("#FF000080");
+    private static readonly Color _ghostBuildingColor = Color.FromHex("#FFCC0080");
 
     /// <summary>
     /// On update, recalculate reachability of every ghost.
@@ -34,12 +36,32 @@ public sealed partial class ConstructionSystem
     }
 
     /// <summary>
+    /// Handle build cancellations.
+    /// </summary>
+    [SubscribeNetworkEvent]
+    private void OnCancel(CancelStructureConstructionMessage message)
+    {
+        if (!_ghosts.TryGetValue(message.GhostId, out var ghost) ||
+            !TryComp<ConstructionGhostComponent>(ghost, out var comp))
+            return;
+
+        comp.IsBuilding = false;
+    }
+
+    /// <summary>
     /// Checks if the player can reach the ghost and ets the color based on that.
     /// </summary>
     private void UpdateGhostColor(EntityUid ghost, ConstructionGhostComponent comp, SpriteComponent? sprite = null)
     {
         if (comp.Prototype is null || !Resolve(ghost, ref sprite))
             return;
+
+        // Ghosts being built are yellow.
+        if (comp.IsBuilding)
+        {
+            _sprite.SetColor((ghost, sprite), _ghostBuildingColor);
+            return;
+        }
 
         var mapCoords = _transformSystem.ToMapCoordinates(Transform(ghost).Coordinates);
         var reachable = CanReach(mapCoords, comp.Prototype.CanBuildInImpassable);
