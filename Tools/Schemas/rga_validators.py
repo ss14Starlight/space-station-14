@@ -56,6 +56,7 @@ class License(Validator):
         "OSL-3.0",
         "OFL-1.0",
         "OFL-1.1",
+        "Custom",
         ]
 
     def _is_valid(self, value):
