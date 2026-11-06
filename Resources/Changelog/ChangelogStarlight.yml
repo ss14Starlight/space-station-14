@@ -1,11 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Fixed shields applying their own resistance values to the holder instead of their block percentage, which made holders (such as Xorg scouts) nearly immune to damage.
-    type: Fix
-  id: 409777
-  time: '2026-10-25T13:37:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6854
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Reverted shadekin light sensitivity values.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410176
   time: '2026-11-06T16:40:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7075
+- author: SirLutz
+  changes:
+  - message: Changed Spore hivemind prefix from +s to +spo.
+    type: Tweak
+  id: 410177
+  time: '2026-11-06T17:12:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7078
 Order: -1
