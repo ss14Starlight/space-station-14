@@ -32,6 +32,8 @@ public sealed partial class SharedZoneTrackerSystem : EntitySystem
         int revision = 0,
         int roomSize = 0)
     {
+        var membershipChanged = ent.Comp.LastPosition.Grid != position.Grid || ent.Comp.Zone != zone ||
+            !ent.Comp.Zones.SequenceEqual(zones);
         ent.Comp.LastPosition = position;
         ent.Comp.LastRevision = revision;
 
@@ -45,6 +47,12 @@ public sealed partial class SharedZoneTrackerSystem : EntitySystem
         }
 
         RaiseIfChanged(ent);
+
+        if (membershipChanged)
+        {
+            var ev = new ZoneMembershipChangedEvent();
+            RaiseLocalEvent(ent.Owner, ref ev);
+        }
     }
 
     /// <summary>

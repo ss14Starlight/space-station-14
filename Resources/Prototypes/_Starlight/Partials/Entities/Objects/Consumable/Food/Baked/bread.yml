@@ -1,0 +1,6 @@
+# Bread dog is a dog that descends from FoodBase.
+- type: !PartialOnly entity
+  id: MobBreadDog
+  components:
+  - type: FootprintOwner
+    printState: Paw

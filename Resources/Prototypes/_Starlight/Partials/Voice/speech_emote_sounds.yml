@@ -21,6 +21,12 @@
       path: /Audio/Voice/Moth/moth_chitter.ogg
     ThavenGlub:
       path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+    Squee:
+      collection: LagomorphSqueak
+    Snort:
+      collection: LagomorphSnort
+    Sneeze:
+      collection: LagomorphSneeze
 
 - type: !PartialOnly emoteSounds
   id: FemaleHuman
@@ -45,6 +51,12 @@
       path: /Audio/Voice/Moth/moth_chitter.ogg
     ThavenGlub:
       path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+    Squee:
+      collection: LagomorphSqueak
+    Snort:
+      collection: LagomorphSnort
+    Sneeze:
+      collection: LagomorphSneeze
 
 - type: !PartialOnly emoteSounds
   id: MaleReptilian
