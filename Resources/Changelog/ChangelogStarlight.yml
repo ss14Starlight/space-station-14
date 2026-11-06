@@ -1,32 +1,4 @@
 Entries:
-- author: Wizden Team
-  changes:
-  - message: Renames robes of the honkmother to honkmother coat.
-    type: Tweak
-  id: 409773
-  time: '2026-10-25T11:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6795
-- author: Wizden Team
-  changes:
-  - message: Heavily optimized the radiation system to prevent severe server lag when a large number of radiation sources are active.
-    type: Fix
-  id: 409774
-  time: '2026-10-25T11:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6795
-- author: Wizden Team
-  changes:
-  - message: Traitor kill objectives will now show stage names instead of character names if applicable.
-    type: Fix
-  id: 409775
-  time: '2026-10-25T11:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6795
-- author: Wizden Team
-  changes:
-  - message: Items that can be stuck to walls are now able to be unstuck properly.
-    type: Fix
-  id: 409776
-  time: '2026-10-25T11:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6795
 - author: SirLutz
   changes:
   - message: Fixed shields applying their own resistance values to the holder instead of their block percentage, which made holders (such as Xorg scouts) nearly immune to damage.
@@ -2799,4 +2771,32 @@ Entries:
   id: 410172
   time: '2026-11-06T13:16:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7073
+- author: redmushie
+  changes:
+  - message: Construction ghosts can now be placed without line-of-sight.
+    type: Add
+  id: 410173
+  time: '2026-11-06T16:40:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7075
+- author: redmushie
+  changes:
+  - message: Construction ghosts are now colored based on whether they are placeable from your position.
+    type: Add
+  id: 410174
+  time: '2026-11-06T16:40:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7075
+- author: redmushie
+  changes:
+  - message: Construction ghosts have a separate color while they are being built.
+    type: Add
+  id: 410175
+  time: '2026-11-06T16:40:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7075
+- author: redmushie
+  changes:
+  - message: You can no longer place identical construction ghosts on top of each other.
+    type: Fix
+  id: 410176
+  time: '2026-11-06T16:40:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7075
 Order: -1
