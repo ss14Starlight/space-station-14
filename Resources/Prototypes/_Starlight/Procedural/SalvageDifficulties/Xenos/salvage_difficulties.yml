@@ -1,0 +1,31 @@
+# Xeno Difficulties
+
+- type: salvageDifficulty
+  id: Xeno-Easy
+  lootPrototype: "SalvageLootXenosEasy"
+  lootBudget: 15
+  mobBudget: 15
+  modifierBudget: 3
+  color: "#9FED5896"
+  recommendedPlayers: 1
+  probability: 0.3
+
+- type: salvageDifficulty
+  id: Xeno-Medium
+  lootPrototype: "SalvageLootXenosMedium"
+  lootBudget: 45
+  mobBudget: 40
+  modifierBudget: 3
+  color: "#52B4E996"
+  recommendedPlayers: 2
+  probability: 0.3
+
+- type: salvageDifficulty
+  id: Xeno-Hard
+  lootPrototype: "SalvageLootXenosHard"
+  lootBudget: 65
+  mobBudget: 90
+  modifierBudget: 3
+  color: "#EFB34196"
+  recommendedPlayers: 4
+  probability: 0.3

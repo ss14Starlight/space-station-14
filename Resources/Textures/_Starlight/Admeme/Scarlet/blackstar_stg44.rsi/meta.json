@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "IMPORTANT!!! SPRITES NOT FINAL Blackstar StG-44 / MKb 42(H)-inspired artwork made for Starlight, using the Blackstar MG-42 as a style reference. Hand/carry anchors derived from the Starlight L6: CEV-Eris https://github.com/discordia-space/CEV-Eris/raw/237d8f7894617007d75c71d5d9feb4354c78debd/icons/obj/guns/lmg.dmi, Peptide, Boaz1111 and JustAdler (ss14Starlight).",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "bolt-open"
+    },
+    {
+      "name": "mag-0"
+    },
+    {
+      "name": "icon"
+    },
+    {
+      "name": "equipped-BACKPACK",
+      "directions": 4
+    },
+    {
+      "name": "equipped-SUITSTORAGE",
+      "directions": 4
+    }
+  ]
+}

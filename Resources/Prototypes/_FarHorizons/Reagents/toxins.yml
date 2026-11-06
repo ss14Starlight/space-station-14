@@ -25,14 +25,13 @@
           type: [ Neocyte ]
         factor: 1 #yummy
       # Acts like vitamin but for Neocytes. Keep in mind the -50% healing debuff they get, hence buffed numbers.
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Neocyte ]
         damage:
-          groups:
-            Brute: -1
-            Burn: -1
+          Brute: -1
+          Burn: -1
       - !type:ModifyBleed #smth smth burns you from the inside so it stops internal bleeding, clearly.
         amount: -0.5
       - !type:SatiateHunger

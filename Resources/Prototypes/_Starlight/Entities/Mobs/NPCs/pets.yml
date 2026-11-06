@@ -36,6 +36,7 @@
   suffix: AI
   description: A prominent representative of kobolds with unlimited access to that which she doesn't want to eat.
   components:
+  - type: AntagTarget
   - type: LanguageKnowledge
     speaks:
     - Ancestor
@@ -74,7 +75,7 @@
     - VimPilot
     - AnomalyHost
   - type: Loadout
-    prototypes: [ MobKoboldGear ]
+    prototypes: [ MobKikiGear ]
   - type: Vocal
     sounds:
       Male: MaleReptilian
@@ -94,6 +95,7 @@
   suffix: AI
   description: A disreputable monkey who should not be trusted. A real cell stuffer.
   components:
+  - type: AntagTarget
   - type: LanguageKnowledge
     speaks:
     - Ancestor
@@ -238,9 +240,6 @@
     equippedPrefix: 1
     slots:
     - HEAD
-  - type: NpcFactionMember
-    factions:
-      - Mouse
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -353,6 +352,29 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/penguin_squawk.ogg
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+
+- type: entity
+  name: Cecil
+  parent: MobLizard
+  id: MobLizardCecil
+  description: A lounge lizard kept by Central Command to add ambiance to their conference rooms. Do not confuse for sea salt, his name is Cecil. Cecil. Cecil. Cecil command. Cecil. Sea salt command.
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Draconic
+    understands:
+    - Ancestor
+    - GalacticCommon
+    - Draconic
+    - Sign
   - type: Grammar
     attributes:
       proper: true

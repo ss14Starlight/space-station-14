@@ -1,0 +1,21 @@
+- type: !PartialOnly entity
+  id: SheetPlasma
+  components:
+  - type: Tag
+    tags:
+    # start inherited
+    - Sheet
+    - ConstructionMaterial
+    # end inherited
+    - SheetPlasma
+
+- type: !PartialOnly entity
+  id: SheetUranium
+  components:
+  - type: Tag
+    tags:
+    # start inherited
+    - Sheet
+    - ConstructionMaterial
+    # end inherited
+    - SheetUranium

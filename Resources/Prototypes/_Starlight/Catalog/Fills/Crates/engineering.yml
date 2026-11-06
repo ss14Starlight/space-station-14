@@ -107,3 +107,19 @@
       entity_storage: !type:AllSelector
         children:
         - id: GasTurbineSmallFlatpack
+
+- type: entity
+  id: CrateCombustionTurbineFlatpack
+  parent: CrateEngineeringSecure
+  name: combustion turbine crate
+  description: A crate containing a flatpacked combustion turbine with tier 1 parts installed, its control computer and an igniter board. Burn chamber not included.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: CombustionTurbineCompressorFlatpack
+        - id: CombustionTurbineRotorFlatpack
+        - id: CombustionTurbineOutletFlatpack
+        - id: ComputerCombustionTurbineFlatpack
+        - id: IgniterMachineCircuitboard

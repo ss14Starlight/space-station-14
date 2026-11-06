@@ -10,6 +10,6 @@ public sealed partial class BentSwitchDefectComponent : DefectComponent
     public BentSwitchDefectComponent()
     {
         Prob = 0.12f;
-        DefectLabel = "bent switch";
+        DefectLabel = "defect-label-bent-switch";
     }
 }

@@ -1,3 +1,4 @@
+using Content.Client._Starlight.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Containers;
 
@@ -5,14 +6,7 @@ namespace Content.Client.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem
 {
-    protected override void InitializeRevolver()
-    {
-        base.InitializeRevolver();
-        SubscribeLocalEvent<RevolverAmmoProviderComponent, AmmoCounterControlEvent>(OnRevolverCounter);
-        SubscribeLocalEvent<RevolverAmmoProviderComponent, UpdateAmmoCounterEvent>(OnRevolverAmmoUpdate);
-        SubscribeLocalEvent<RevolverAmmoProviderComponent, EntRemovedFromContainerMessage>(OnRevolverEntRemove);
-    }
-
+    [SubscribeLocalEvent]
     private void OnRevolverEntRemove(Entity<RevolverAmmoProviderComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         if (args.Container.ID != RevolverContainer)
@@ -25,14 +19,14 @@ public sealed partial class GunSystem
         QueueDel(args.Entity);
     }
 
+    [SubscribeLocalEvent]
     private void OnRevolverAmmoUpdate(Entity<RevolverAmmoProviderComponent> ent, ref UpdateAmmoCounterEvent args)
     {
-        if (args.Control is not RevolverStatusControl control) return;
+        if (args.Control is not RevolverCylinderStatusControl control) return; // Starlight-edit: cylinder view
         control.Update(ent.Comp.CurrentIndex, ent.Comp.Chambers);
     }
 
+    [SubscribeLocalEvent]
     private void OnRevolverCounter(Entity<RevolverAmmoProviderComponent> ent, ref AmmoCounterControlEvent args)
-    {
-        args.Control = new RevolverStatusControl();
-    }
+        => args.Control = new RevolverCylinderStatusControl(); // Starlight-edit: cylinder view
 }

@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: WeaponEnergyTurretStationControlPanelElectronicsBase
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH
+
+- type: !PartialOnly entity
+  id: WeaponEnergyTurretAIControlPanelElectronics
+  suffix: AI

@@ -250,9 +250,9 @@
   - type: StealTarget
     stealGroup: AnimalNamedCat
   #region Starlight
-  - type: Butcherable
-    spawned:
-      - id: ClothingHandsCatPawsBlack
+  - type: ToolRefinable
+    refineResult:
+    - id: ClothingHandsCatPawsBlack
   #endregion Starlight
 
 - type: entity
@@ -287,9 +287,9 @@
   - type: StealTarget
     stealGroup: AnimalNamedCat
   #region Starlight
-  - type: Butcherable
-    spawned:
-      - id: ClothingHandsCatPawsBrown
+  - type: ToolRefinable
+    refineResult:
+    - id: ClothingHandsCatPawsBrown
   #endregion Starlight
 
 - type: entity
@@ -331,9 +331,9 @@
   - type: StealTarget
     stealGroup: AnimalNamedCat
     #region Starlight
-  - type: Butcherable
-    spawned:
-      - id: ClothingHandsCatPawsBrown
+  - type: ToolRefinable
+    refineResult:
+    - id: ClothingHandsCatPawsBrown
     #endregion Starlight
 
 - type: entity
@@ -353,7 +353,7 @@
 
 - type: entity
   name: Bingus
-  parent: [SimpleMobBase, StripableInventoryBase, BaseSlicingRefinable]
+  parent: MobCat # Starlight - Why did only this cat not have MobCat as a parent?
   id: MobBingus
   description: Bingus my beloved...
   components:
@@ -860,6 +860,17 @@
     - Hamster
     - VimPilot
     - ChefPilot
+  # Starlight-start Audio Emotes
+  - type: Speech
+    speechVerb: SmallMob
+    speechSounds: Squeak
+    allowedEmotes: ['Squeak'] # love ya Hammy - Charles
+  - type: Vocal
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
+  # Starlight-end
   - type: FlavorProfile
     flavors:
     - meaty
@@ -968,8 +979,8 @@
   - type: StealTarget
     stealGroup: AnimalShiva
   # Starlight start: Shiva contains 5 telecrystals
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatSpider
       amount: 3
     - id: Telecrystal5

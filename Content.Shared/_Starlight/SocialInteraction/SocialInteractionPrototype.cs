@@ -15,6 +15,13 @@ public sealed partial class SocialInteractionPrototype : IPrototype
     //ripped mostly from InteractionPopup component
 
     /// <summary>
+    /// Time delay between interactions to avoid spam.
+    /// </summary>
+    [DataField("interactDelay")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan InteractDelay = TimeSpan.FromSeconds(1.0);
+
+    /// <summary>
     /// String will be used to fetch the localized message to be played if the interaction succeeds.
     /// Nullable in case none is specified on the yaml prototype.
     /// </summary>

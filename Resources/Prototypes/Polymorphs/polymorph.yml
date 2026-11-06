@@ -46,8 +46,8 @@
     inventory: Drop
     transferName: true
     transferDamage: true
-    revertOnCrit: false
-    revertOnDeath: false
+    revertOnCrit: true # Starlight, don't get RR'd by becoming skeleton
+    revertOnDeath: true # Starlight
     polymorphSound: !type:SoundPathSpecifier
       path: /Audio/Magic/forcewall.ogg
     exitPolymorphSound: !type:SoundPathSpecifier

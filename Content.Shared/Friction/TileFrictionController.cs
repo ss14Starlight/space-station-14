@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared.CCVar;
 using Content.Shared.Gravity;
+using Content.Shared.Ghost;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Components;
@@ -120,8 +121,14 @@ namespace Content.Shared.Friction
                      * Block movement shouldn't be added and removed frivolously so it should be reliable to use this
                      * as a check for brains and such which have input mover purely for ghosting behavior.
                      */
-                    DebugTools.Assert(!_moverQuery.HasComp(uid) || _blockMoverQuery.HasComp(uid),
+                    // Starlight - start
+                    var isInteractiveKinematicGhost = body.BodyType == BodyType.Kinematic &&
+                        TryComp<GhostComponent>(uid, out var ghost) &&
+                        ghost.CanGhostInteract;
+                    DebugTools.Assert(!_moverQuery.HasComp(uid) || _blockMoverQuery.HasComp(uid) ||
+                        isInteractiveKinematicGhost,
                         $"Input mover: {ToPrettyString(uid)} in TileFrictionController is not the correct BodyType, BodyType found: {body.BodyType}, expected: KinematicController.");
+                    // Starlight - end
                     continue;
                 }
 

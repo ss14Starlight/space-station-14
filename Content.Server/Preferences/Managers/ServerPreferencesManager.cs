@@ -62,7 +62,7 @@ namespace Content.Server.Preferences.Managers
             if (message.Profile == null)
                 _sawmill.Error($"User {userId} sent a {nameof(MsgUpdateCharacter)} with a null profile in slot {message.Slot}.");
             else
-                await SetProfile(userId, message.Slot, message.Profile);
+                await SetClientProfile(userId, message.Slot, message.Profile); // Starlight
         }
 
         public async Task SetProfile(NetUserId userId, int slot, HumanoidCharacterProfile profile)
@@ -79,6 +79,8 @@ namespace Content.Server.Preferences.Managers
             var curPrefs = prefsData.Prefs!;
             var session = _playerManager.GetSessionById(userId);
 
+            var selectionsBefore = GetSelections(profile); // Starlight
+            var forcedPrototypeBefore = curPrefs.Characters.TryGetValue(slot, out var previous) ? previous.ForcedPrototype : string.Empty; // Starlight
             profile.EnsureValid(session, _dependencies);
 
             var profiles = new Dictionary<int, HumanoidCharacterProfile>(curPrefs.Characters)
@@ -87,6 +89,15 @@ namespace Content.Server.Preferences.Managers
             };
 
             prefsData.Prefs = new PlayerPreferences(profiles, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.JobPriorities);
+
+            // Starlight start
+            // Only admins change ForcedPrototype; without the new value the client's next save looks like tampering.
+            if (!selectionsBefore.SetEquals(GetSelections(profile)) || forcedPrototypeBefore != profile.ForcedPrototype)
+            {
+                _sawmill.Info($"Profile in slot {slot} of {session} was changed by the server, resending preferences.");
+                SendPreferences(session, prefsData.Prefs);
+            }
+            // Starlight end
 
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveCharacterSlotAsync(userId, profile, slot);
@@ -125,7 +136,7 @@ namespace Content.Server.Preferences.Managers
             prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, jobPriorities);
 
             if (ShouldStorePrefs(session.Channel.AuthType))
-                await _db.SaveJobPrioritiesAsync(userId, jobPriorities);
+                await SaveJobPrioritiesQueued(userId, jobPriorities); // Starlight-edit: one save at a time
         }
 
         private async void HandleDeleteCharacterMessage(MsgDeleteCharacter message)
@@ -295,13 +306,7 @@ namespace Content.Server.Preferences.Managers
 
             prefsData.PrefsLoaded = true;
 
-            var msg = new MsgPreferencesAndSettings();
-            msg.Preferences = prefsData.Prefs;
-            msg.Settings = new GameSettings
-            {
-                MaxCharacterSlots = MaxCharacterSlots
-            };
-            _netManager.ServerSendMessage(msg, session.Channel);
+            SendPreferences(session, prefsData.Prefs); // Starlight
         }
 
         public void OnClientDisconnected(ICommonSession session)

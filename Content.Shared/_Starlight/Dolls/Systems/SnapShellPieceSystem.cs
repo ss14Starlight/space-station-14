@@ -27,6 +27,13 @@ public sealed partial class SnapShellPieceSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<SnapShellPieceEvent>(OnSnapShellPiece);
+        SubscribeLocalEvent<ShellComponent, SnapShellPieceEvent>(OnSnapShellPiece);
+    }
+
+    private void OnSnapShellPiece(EntityUid ent, ShellComponent comp, SnapShellPieceEvent ev)
+    {
+        ev.Performer = ent;
+        OnSnapShellPiece(ev);
     }
 
     private void OnSnapShellPiece(SnapShellPieceEvent ev)
@@ -41,26 +48,46 @@ public sealed partial class SnapShellPieceSystem : EntitySystem
         if (shellPieces.Count == 0)
             return; //No shell pieces to drop
 
-        var droppedEntity = _random.Pick(shellPieces); //Randomise!
-
-        //Drop piece on the ground *unless* we require a free hand.
-        if (ev.RequiresFreeHand && !_hands.CanPickupAnyHand(user, droppedEntity.Id))
-            return; //If we can't pick up the shell piece, but have to, we don't try to drop it.
-
-        var part = _body.GetParentPartOrNull(droppedEntity.Id); //Need to determine part while it's still attached
-
-        if (!_container.TryRemoveFromContainer(droppedEntity.Id))
-            return; //Failsafe if the shell piece cannot be dropped for some reason.
-
-        if (part != null) //If it was attached to the body, which it always should, but just in case, we raise the surgery event on it
+        if(!ev.DeShell) //Want to drop *every* piece? No?
         {
-            var sev = new SurgeryOrganExtracted(user, part.Value, droppedEntity.Id);
-            _entityManager.EventBus.RaiseLocalEvent(droppedEntity.Id, ref sev);
-        }
+            var droppedEntity = _random.Pick(shellPieces); //Randomise!
 
-        if(ev.RequiresFreeHand)
-            if (!_hands.TryPickupAnyHand(user, droppedEntity.Id))
-                return; //Final failsafe if picking up the piece fails.
+            //Drop piece on the ground *unless* we require a free hand.
+            if (ev.RequiresFreeHand && !_hands.CanPickupAnyHand(user, droppedEntity.Id))
+                return; //If we can't pick up the shell piece, but have to, we don't try to drop it.
+
+            var part = _body.GetParentPartOrNull(droppedEntity.Id); //Need to determine part while it's still attached
+
+            if (!_container.TryRemoveFromContainer(droppedEntity.Id))
+                return; //Failsafe if the shell piece cannot be dropped for some reason.
+
+            if (part != null) //If it was attached to the body, which it always should, but just in case, we raise the surgery event on it
+            {
+                var sev = new SurgeryOrganExtracted(user, part.Value, droppedEntity.Id);
+                _entityManager.EventBus.RaiseLocalEvent(droppedEntity.Id, ref sev);
+            }
+
+            if(ev.RequiresFreeHand)
+                if (!_hands.TryPickupAnyHand(user, droppedEntity.Id))
+                    return; //Final failsafe if picking up the piece fails.
+        }
+        else //Drop Everything!
+        {
+            foreach(var shellPiece in shellPieces) //EVERYTHING
+            {
+                //Do this process just like above, except on everything.
+                var part = _body.GetParentPartOrNull(shellPiece.Id);
+
+                if (!_container.TryRemoveFromContainer(shellPiece.Id))
+                    return;
+
+                if (part != null)
+                {
+                    var sev = new SurgeryOrganExtracted(user, part.Value, shellPiece.Id);
+                    _entityManager.EventBus.RaiseLocalEvent(shellPiece.Id, ref sev);
+                }
+            }
+        }
 
         if(ev.SelfDamage != null) //If we have damage to apply, do so
             _damageable.ChangeDamage(user, ev.SelfDamage, true);

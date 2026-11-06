@@ -1,0 +1,28 @@
+- type: !PartialOnly entity
+  id: BaseThruster
+  components:
+  - type: WiresPanel
+  - type: WiresVisuals
+  - type: AdjustableThruster
+  - type: ActivatableUI
+    key: enum.AdjustableThrusterUiKey.Key
+  - type: ActivatableUIRequiresPanel
+  - type: UserInterface
+    interfaces:
+      enum.AdjustableThrusterUiKey.Key:
+        type: AdjustableThrusterBoundUserInterface
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - Thruster
+    - ThrusterLarge
+    - DebugThruster
+    - Gyroscope
+    - DebugGyroscope
+  components:
+  - type: Sprite
+    layers:
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false

@@ -57,23 +57,23 @@ public sealed partial class DefectSystem : EntitySystem
         foreach (var comp in AllComps(ent.Owner))
         {
             if (comp is DefectComponent defect && !string.IsNullOrEmpty(defect.DefectLabel))
-                labels.Add(defect.DefectLabel);
+                labels.Add(Loc.GetString(defect.DefectLabel));
         }
 
         var prefix = labels.Count switch
         {
-            0 => "Like New",
-            1 => "Used",
-            2 => "Worn",
-            _ => "Rusty"
+            0 => "defect-name-like-new",
+            1 => "defect-name-used",
+            2 => "defect-name-worn",
+            _ => "defect-name-rusty"
         };
 
         var meta = MetaData(ent.Owner);
-        _metaData.SetEntityName(ent.Owner, $"{prefix} {meta.EntityName}", meta);
+        _metaData.SetEntityName(ent.Owner, Loc.GetString(prefix, ("name", meta.EntityName)), meta);
 
         if (labels.Count > 0)
         {
-            var defectLine = $"\n\nDefects: {string.Join(", ", labels)}.";
+            var defectLine = "\n\n" + Loc.GetString("defect-description-line", ("defects", string.Join(", ", labels)));
             _metaData.SetEntityDescription(ent.Owner, meta.EntityDescription + defectLine, meta);
         }
     }

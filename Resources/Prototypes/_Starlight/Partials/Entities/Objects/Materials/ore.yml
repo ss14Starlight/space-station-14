@@ -1,0 +1,10 @@
+# Ore chunk glow is dim enough that it shouldn't affect night vision, but we don't want to change the energy
+- type: !PartialOnly entity
+  id: UraniumOre
+  components:
+  - type: DarkLight
+
+- type: !PartialOnly entity
+  id: BananiumOre
+  components:
+  - type: DarkLight

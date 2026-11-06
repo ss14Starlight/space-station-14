@@ -26,6 +26,7 @@ using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Actions.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 
 namespace Content.Server._Starlight.Medical.Body.Systems;
 
@@ -87,7 +88,7 @@ public sealed partial class RespiratorSystem : EntitySystem
 
             UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
 
-            if (!(_mobState.IsIncapacitated(uid) // cannot breathe in crit.
+            if (!(_mobState.IsIncapacitated(uid) || _mobState.IsSoftCritical(uid) // cannot breathe in crit.
                 || HasComp<HeldBreathComponent>(uid) // Starlight Edit - hold your breath
                 || HasComp<WrappedComponent>(uid))) // Starlight Edit - cannot breathe while wrapped in a web
             {
@@ -106,6 +107,13 @@ public sealed partial class RespiratorSystem : EntitySystem
 
             if (respirator.Saturation < respirator.SuffocationThreshold)
             {
+                if (TryComp<CosmicCultComponent>(uid, out var cultComp) && !cultComp.Respiration && !_mobState.IsIncapacitated(uid))
+                {
+                    StopSuffocation((uid, respirator));
+                    respirator.SuffocationCycles = 0;
+                    continue;
+                }
+
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
                 {
                     respirator.LastGaspEmoteTime = _gameTiming.CurTime;
@@ -188,7 +196,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     /// </summary>
     public bool IsBreathing(Entity<RespiratorComponent?> ent)
     {
-        if (_mobState.IsIncapacitated(ent))
+        if (_mobState.IsIncapacitated(ent) || _mobState.IsSoftCritical(ent))
             return false;
 
         if (!Resolve(ent, ref ent.Comp))

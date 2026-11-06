@@ -1,0 +1,39 @@
+- type: !PartialOnly reagent
+  id: Chlorine
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Fluorine
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Potassium
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Phosphorus
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Radium
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Silicon
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Sulfur
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: Uranium
+  contrabandTier: Tier1
+  contrabandSeverity: !Remove

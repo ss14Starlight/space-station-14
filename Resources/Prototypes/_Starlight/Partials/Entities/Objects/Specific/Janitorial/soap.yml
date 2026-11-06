@@ -1,0 +1,8 @@
+- type: !PartialOnly entity
+  id: BaseSoap
+  components:
+  - type: CleansScent
+
+- type: !PartialOnly entity
+  id: SoapNT
+  description: A NanoTrasen brand bar of soap. Smells of plasma.

@@ -1,5 +1,13 @@
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelElectronicsBase
+  id: WeaponEnergyTurretStatusPanelElectronics
+  suffix: Status
+  components:
+  - type: ElectronicsBoard
+    prototype: WeaponEnergyTurretStatusPanel
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelElectronicsBase
   id: WeaponEnergyTurretSiliconControlPanelElectronics
   suffix: Silicon
   components:

@@ -26,7 +26,17 @@ public sealed partial class SurveillanceCameraVisualsSystem : EntitySystem
             return;
         }
 
-        // _sprite.LayerSetRsiState((uid, args.Sprite), layer, state);
-        SetStatePreserveTime((uid, args.Sprite), layer, state); // Starlight
+        // Starlight start
+        if (key == SurveillanceCameraVisuals.Disabled)
+        {
+            // only do animations when there is actually an animation to be done
+            // avoids an exception down the line when the engine inevitably tries to draw the off camera on an index higher than 0
+            _sprite.LayerSetRsiState((uid, args.Sprite), layer, state);
+        }
+        else
+        {
+            SetStatePreserveTime((uid, args.Sprite), layer, state);
+        }
+        // Starlight end
     }
 }

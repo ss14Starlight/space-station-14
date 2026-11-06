@@ -11,9 +11,11 @@ public sealed class PanelSheetlet<T> : Sheetlet<T> where T : PalettedStylesheet,
 {
     public override StyleRule[] GetRules(T sheet, object config)
     {
-        IButtonConfig buttonCfg = sheet;
-
-        var boxLight = new StyleBoxFlat()
+        var box = new StyleBoxFlat
+        {
+            BackgroundColor = sheet.SecondaryPalette.Background
+        };
+        var boxLight = new StyleBoxFlat
         {
             BackgroundColor = sheet.SecondaryPalette.BackgroundLight,
         };
@@ -27,6 +29,7 @@ public sealed class PanelSheetlet<T> : Sheetlet<T> where T : PalettedStylesheet,
 
         return
         [
+            E<PanelContainer>().Class(StyleClass.Panel).Panel(box),
             E<PanelContainer>().Class(StyleClass.PanelLight).Panel(boxLight),
             E<PanelContainer>().Class(StyleClass.PanelDark).Panel(boxDark),
 

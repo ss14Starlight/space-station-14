@@ -64,7 +64,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Radio.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared._Starlight.Shadekin.Components;
-using Prometheus;
+using Content.Server._Starlight.Statistics;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -97,6 +97,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     [Dependency] private ServerGlobalSoundSystem _sound = default!;
     [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedRoleSystem _role = default!;
@@ -107,6 +108,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     [Dependency] private LanguageSystem _languageSystem = default!;
     [Dependency] private WeatherSystem _weather = default!;
     [Dependency] private NpcFactionSystem _faction = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!;
 
     private ISawmill _sawmill = default!;
     private TimeSpan _t3RevealDelay = default!;
@@ -132,12 +134,6 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     /// Mind role to add to cultists.
     /// </summary>
     public static readonly EntProtoId MindRole = "MindRoleCosmicCult";
-
-    private static readonly Counter _cultistCounter = Metrics.CreateCounter("cultist_counter",
-        "Keeps a track of the amount of times cultist win or loose", ["results"]);
-
-    private static readonly Gauge _convertsGauage = Metrics.CreateGauge("cultist_converts",
-        "Keeps track of the amount of players converted this round");
 
     public override void Initialize()
     {
@@ -292,10 +288,12 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     {
         var ruleQuery = QueryActiveRules();
         var foundRule = false;
+        EntityUid voteRuleUid = default;
 
         while (ruleQuery.MoveNext(out var ruleUid, out var activeRuleComp, out var rule, out var gameRule))
         {
             foundRule = true;
+            voteRuleUid = ruleUid;
 
             // Once the Monument is placed there are no more votes
             if (rule.CurrentTier > 0)
@@ -366,6 +364,9 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             }
 
             EnsureComp<CosmicCultLeadComponent>(picked);
+            if (TryComp<CosmicCultRuleComponent>(voteRuleUid, out var voteRule)
+                && (voteRule.InitialSteward is not { } current || !HasComp<CosmicCultLeadComponent>(current)))
+                voteRule.InitialSteward = picked;
             _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Cult stewardship vote finished: {Identity.Entity(picked, EntityManager)} is now steward.");
             _antag.SendBriefing(picked, Loc.GetString("cosmiccult-vote-steward-briefing"), Color.FromHex("#4cabb3"), _monumentAlert);
         };
@@ -403,9 +404,11 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             if (spawnPoints.IsEmpty)
                 return;
 
-            var endQuery = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent>();
-            while (endQuery.MoveNext(out var player, out _, out _))
+            var endQuery = EntityQueryEnumerator<MobStateComponent>();
+            while (endQuery.MoveNext(out var player, out _))
             {
+                if (!HasComp<HumanoidAppearanceComponent>(player) && !_cosmicCult.IsConvertible(player))
+                    continue;
                 var newSpawn = _rand.Pick(spawnPoints);
                 var spawnTgt = Transform(newSpawn.Uid).Coordinates;
 
@@ -570,8 +573,12 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         args.AddLine(Loc.GetString("cosmiccult-roundend-entropy-count", ("count", component.EntropySiphoned)));
         args.AddLine(Loc.GetString("cosmiccult-roundend-monument-stage", ("stage", component.CurrentTier)));
 
-        _cultistCounter.WithLabels(component.WinType.ToString()).Inc();
-        _convertsGauage.Set(0);
+        _roundStatistics.RecordCosmicCultOutcome(
+            component.WinType.ToString(),
+            component.TotalCult,
+            component.PercentConverted,
+            component.EntropySiphoned,
+            component.CurrentTier);
     }
 
     public void IncrementCultObjectiveEntropy(Entity<CosmicCultComponent> ent)
@@ -589,7 +596,6 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
     public void AdjustCultObjectiveConversion(int value)
     {
-        _convertsGauage.Inc(value); // I know, I know using an Inc function with potential negative values is bad. Blame Prometheus for not having an .Adjust function...
         var query = EntityQueryEnumerator<CosmicConversionConditionComponent>();
         while (query.MoveNext(out _, out var conversionComp))
         {
@@ -630,7 +636,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         if (AssociatedGamerule(uid) is not { } cult)
             return;
 
-        cult.Comp.TotalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && HasComp<HumanoidAppearanceComponent>(session.AttachedEntity));
+        cult.Comp.TotalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && (HasComp<HumanoidAppearanceComponent>(session.AttachedEntity) || _cosmicCult.IsConvertible(session.AttachedEntity)));
 
 #if DEBUG
         if (cult.Comp.TotalCrew < 25)
@@ -881,6 +887,53 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             && _mind.TryGetMind(uid, out _, out var mind) &&
                 _playerMan.TryGetSessionById(mind.UserId, out _);
 
+    // Pity for if the steward was deconverted after the monument was placed; a new steward is randomly chosen, once.
+    private bool TryTransferInitialSteward(EntityUid oldSteward)
+    {
+        var candidates = new List<EntityUid>();
+        var query = EntityQueryEnumerator<CosmicCultComponent>();
+
+        while (query.MoveNext(out var cultist, out _))
+        {
+            if (cultist == oldSteward || !IsValidStewardCandidate(cultist))
+                continue;
+
+            candidates.Add(cultist);
+        }
+
+        if (candidates.Count == 0)
+        {
+            _sawmill.Info("Did not transfer stewardship from initial steward {0}: no valid remaining cultists.", ToPrettyString(oldSteward));
+            return false;
+        }
+
+        var successor = _rand.Pick(candidates);
+        EnsureComp<CosmicCultLeadComponent>(successor, out var leadComp);
+
+        // We don't want multiple monuments!
+        _actions.RemoveAction(successor, leadComp.CosmicMonumentPlaceActionEntity);
+
+        // Hand over the Move Monument action to the new steward.
+        // Right now this ends up allowing the cult to move the Monument twice if the
+        // first steward gets deconverted, but it's fine. It can be changed later if needed.
+        if (leadComp.CosmicMonumentMoveActionEntity is null)
+            _actions.AddAction(successor, ref leadComp.CosmicMonumentMoveActionEntity, leadComp.CosmicMonumentMoveAction, successor);
+        _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Cult stewardship transferred: {Identity.Entity(successor, EntityManager)} is now steward (former steward {Identity.Entity(oldSteward, EntityManager)} was deconverted).");
+        _antag.SendBriefing(successor, Loc.GetString("cosmiccult-vote-steward-briefing"), Color.FromHex("#4cabb3"), _monumentAlert);
+
+        var sender = Loc.GetString("cosmiccult-announcement-sender");
+        var allCultists = Filter.Empty().FromEntities([.. candidates]);
+        _chatSystem.DispatchFilteredAnnouncement(
+            allCultists,
+            Loc.GetString("cosmiccult-leader-lost-message", ("old", Identity.Name(oldSteward, EntityManager)), ("new", Identity.Name(successor, EntityManager))),
+            sender: sender,
+            playSound: false,
+            colorOverride: Color.FromHex("#4eb1b3"));
+
+        _sawmill.Info("Transferred stewardship from deconverted initial steward {0} to {1}.", ToPrettyString(oldSteward), ToPrettyString(successor));
+        return true;
+    }
+
     private bool TryQueueStewardRevote(
         EntityUid oldSteward,
         Entity<CosmicCultRuleComponent>? rule = null,
@@ -973,7 +1026,12 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         _faction.RemoveFaction(uid.Owner, CosmicCultFaction);
         _faction.AddFaction(uid.Owner, NanoTrasenFaction);
 
-        if (wasSteward)
+        if (wasSteward && cult.Comp.InitialSteward == uid.Owner && cult.Comp.CurrentTier is > 0 and < 3 && TryTransferInitialSteward(uid.Owner))
+        {
+            cult.Comp.InitialSteward = null;
+            RemComp<CosmicCultLeadComponent>(uid);
+        }
+        else if (wasSteward)
         {
             TryQueueStewardRevote(uid.Owner, cult, removeStewardComp: false);
             RemComp<CosmicCultLeadComponent>(uid);

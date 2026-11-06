@@ -18,6 +18,13 @@
   - Maintenance
   - Engineering
   - External
+# starlight-start
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AntagImmune
+    - type: NoObjectiveTarget
+# starlight-end
 
 - type: startingGear
   id: TechnicalAssistantGear

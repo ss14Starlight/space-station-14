@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "drying-rack",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "liquid-1",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "liquid-2",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "fill1",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "fill2",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "fill3",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "fill4",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "fill5",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "fill6",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "fill7",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "fill8",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "fill9",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "fill10",
+      "directions": 4,
+      "copyright": "SevenShades"
+    }
+  ]
+}

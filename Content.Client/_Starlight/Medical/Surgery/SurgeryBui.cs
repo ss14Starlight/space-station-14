@@ -2,6 +2,7 @@ using Content.Client.Administration.UI.CustomControls;
 using Content.Client.Hands.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
 using Content.Shared._Starlight.Medical.Surgery;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
@@ -10,6 +11,7 @@ using Robust.Client.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.Shared.Containers;
 using static Robust.Client.UserInterface.Control;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight;
@@ -28,9 +30,9 @@ public sealed partial class SurgeryBui : BoundUserInterface
     private readonly StarlightEntitySystem _entitySystem;
     private readonly SurgerySystem _system;
     private readonly HandsSystem _hands;
+    private readonly SharedContainerSystem _containers;
 
-    [ViewVariables]
-    private SurgeryWindow? _window;
+    [ViewVariables] private SurgeryWindow? _window;
 
     private EntityUid? _part;
     private (EntityUid Ent, EntProtoId Proto)? _surgery;
@@ -41,6 +43,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
         _system = _entities.System<SurgerySystem>();
         _hands = _entities.System<HandsSystem>();
         _entitySystem = _entities.System<StarlightEntitySystem>();
+        _containers = _entities.System<SharedContainerSystem>();
 
         _hands.OnPlayerItemAdded += OnPlayerItemAdded;
     }
@@ -144,7 +147,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
         if (_window != null) return;
         _window = new SurgeryWindow();
         _window.OnClose += Close;
-        _window.Title = "Surgery";
+        _window.Title = Loc.GetString("surgery-ui-window-title");
 
         _window.PartsButton.OnPressed += _ =>
         {
@@ -204,12 +207,53 @@ public sealed partial class SurgeryBui : BoundUserInterface
         var stepButton = new SurgeryStepButton { Step = step, TooltipTextSupplier = () => stepName.ToString() };
         stepButton.Button.OnPressed += _ => SendMessage(new SurgeryStepChosenBuiMsg()
         {
-            Step = stepId,
-            Part = netPart,
-            Surgery = surgeryId,
+            Step = stepId, Part = netPart, Surgery = surgeryId,
         });
 
         _window.Steps.AddChild(stepButton);
+    }
+
+    private string GetSurgeryDisplayName(EntProtoId surgeryId, Entity<SurgeryComponent> surgery, EntityUid part)
+    {
+        var defaultName = _entities.GetComponent<MetaDataComponent>(surgery).EntityName;
+        if (!surgeryId.Id.StartsWith("SurgeryExtract", StringComparison.Ordinal))
+            return defaultName;
+
+        var actionEnd = defaultName.IndexOf(' ');
+        if (actionEnd < 0)
+            return defaultName;
+
+        var action = defaultName[..actionEnd];
+        var defaultItemName = defaultName[(actionEnd + 1)..];
+        foreach (var stepId in surgery.Comp.Steps)
+        {
+            if (!_entitySystem.TryGetSingleton(stepId, out var step)
+                || !_entities.TryGetComponent(step, out SurgeryStepOrganExtractComponent? extraction)
+                || extraction.Slot is not { } slot
+                || !_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(slot), out var container))
+            {
+                continue;
+            }
+
+            var (target, _) =
+                _system.GetOrganExtractionTarget(extraction, container.ContainedEntities);
+            if (target is not { } item
+                || !_entities.TryGetComponent(item, out MetaDataComponent? itemMetadata)
+                || itemMetadata.EntityName.Length == 0)
+            {
+                continue;
+            }
+
+            if (slot != "cavity"
+                && string.Equals(itemMetadata.EntityName, defaultItemName, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            var capitalizedFirstCharacter = char.ToUpperInvariant(itemMetadata.EntityName[0]).ToString();
+            var itemName = string.Concat(capitalizedFirstCharacter, itemMetadata.EntityName[1..]);
+            return Loc.GetString("surgery-ui-surgery-action-item", ("action", action), ("item", itemName));
+        }
+
+        return defaultName;
     }
 
     private void OnSurgeryPressed(Entity<SurgeryComponent> surgery, NetEntity netPart, EntProtoId surgeryId)
@@ -243,11 +287,13 @@ public sealed partial class SurgeryBui : BoundUserInterface
 
                     var msg = new FormattedMessage();
                     var surgeryName = _entities.GetComponent<MetaDataComponent>(requirement).EntityName;
-                    msg.AddMarkupOrThrow($"[bold]Requires: {surgeryName}[/bold]");
+                    msg.AddMarkupOrThrow(
+                        $"[bold]{Loc.GetString("surgery-ui-requires", ("surgery", surgeryName))}[/bold]");
                     label.Set(msg, null);
 
                     _window.Steps.AddChild(label);
-                    _window.Steps.AddChild(new HSeparator(Color.FromHex("#4972A1")) { Margin = new Thickness(0, 0, 0, 1) });
+                    _window.Steps.AddChild(
+                        new HSeparator(Color.FromHex("#4972A1")) { Margin = new Thickness(0, 0, 0, 1) });
                 }
             }
         }
@@ -270,17 +316,19 @@ public sealed partial class SurgeryBui : BoundUserInterface
 
         _window.Surgeries.DisposeAllChildren();
 
-        var surgeries = new List<(Entity<SurgeryComponent> Ent, EntProtoId Id, string Name, bool IsCompleted, Texture?)>();
+        var surgeries =
+            new List<(Entity<SurgeryComponent> Ent, EntProtoId Id, string Name, bool IsCompleted, Texture?)>();
         foreach (var (surgeryId, suffix, isCompleted) in surgeryIds)
         {
-            if (!_entitySystem.TryGetSingleton(surgeryId, out var surgery)||
+            if (!_entitySystem.TryGetSingleton(surgeryId, out var surgery) ||
                 !_entities.TryGetComponent(surgery, out SurgeryComponent? surgeryComp))
             {
                 continue;
             }
 
             var texture = _entities.GetComponentOrNull<SpriteComponent>(surgery)?.Icon?.Default;
-            var name = $"{_entities.GetComponent<MetaDataComponent>(surgery).EntityName} {suffix}";
+            var surgeryName = GetSurgeryDisplayName(surgeryId, (surgery, surgeryComp), _part.Value);
+            var name = string.IsNullOrEmpty(suffix) ? surgeryName : $"{surgeryName} {suffix}";
             surgeries.Add(((surgery, surgeryComp), surgeryId, name, isCompleted, texture));
         }
 
@@ -359,25 +407,25 @@ public sealed partial class SurgeryBui : BoundUserInterface
                     switch (reason)
                     {
                         case StepInvalidReason.NeedsOperatingTable:
-                            stepName.AddMarkupOrThrow(" [color=red](Needs operating table)[/color]");
+                            stepName.AddMarkupOrThrow($" [color=red]{Loc.GetString("surgery-ui-step-needs-operating-table")}[/color]");
                             break;
                         case StepInvalidReason.Armor:
-                            stepName.AddMarkupOrThrow(" [color=red](Remove their armor!)[/color]");
+                            stepName.AddMarkupOrThrow($" [color=red]{Loc.GetString("surgery-ui-step-armor")}[/color]");
                             break;
                         case StepInvalidReason.MissingTool:
-                            stepName.AddMarkupOrThrow(" [color=red](Missing tool)[/color]");
+                            stepName.AddMarkupOrThrow($" [color=red]{Loc.GetString("surgery-ui-step-missing-tool")}[/color]");
                             break;
                         case StepInvalidReason.DisabledTool:
-                            stepName.AddMarkupOrThrow(" [color=red](Disabled Tool)[/color]");
+                            stepName.AddMarkupOrThrow($" [color=red]{Loc.GetString("surgery-ui-step-disabled-tool")}[/color]");
                             break;
                         case StepInvalidReason.TooHigh:
-                            stepName.AddMarkupOrThrow(" [color=red](Item Too High)[/color]");
+                            stepName.AddMarkupOrThrow($" [color=red]{Loc.GetString("surgery-ui-step-too-big")}[/color]");
                             break;
                         case StepInvalidReason.NotEnoughReagent:
-                            stepName.AddMarkupOrThrow(" [color=red](Missing Reagent)[/color]");
+                            stepName.AddMarkupOrThrow($" [color=red]{Loc.GetString("surgery-ui-step-missing-reagent")}[/color]");
                             break;
                         case StepInvalidReason.MissingLimb:
-                            stepName.AddMarkupOrThrow(" [color=red](Can't attach as limb)[/color]");
+                            stepName.AddMarkupOrThrow($" [color=red]{Loc.GetString("surgery-ui-step-cant-attach")}[/color]");
                             break;
                     }
                 }
@@ -407,7 +455,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
             if (_window.DisabledLabel.GetMessage() is null)
             {
                 var text = new FormattedMessage();
-                text.AddMarkupOrThrow("[color=red][font size=16]They need to be lying down![/font][/color]");
+                text.AddMarkupOrThrow($"[color=red][font size=16]{Loc.GetString("surgery-ui-needs-lying-down")}[/font][/color]");
                 _window.DisabledLabel.SetMessage(text);
             }
             _window.DisabledPanel.MouseFilter = MouseFilterMode.Stop;
@@ -433,15 +481,16 @@ public sealed partial class SurgeryBui : BoundUserInterface
         if (_entities.TryGetComponent(_part, out MetaDataComponent? partMeta) &&
             _entities.TryGetComponent(_surgery?.Ent, out MetaDataComponent? surgeryMeta))
         {
-            _window.Title = $"Surgery - {partMeta.EntityName}, {surgeryMeta.EntityName}";
+            _window.Title = Loc.GetString("surgery-ui-window-title-surgery", ("part", partMeta.EntityName),
+                ("surgery", surgeryMeta.EntityName));
         }
         else if (partMeta != null)
         {
-            _window.Title = $"Surgery - {partMeta.EntityName}";
+            _window.Title = Loc.GetString("surgery-ui-window-title-part", ("part", partMeta.EntityName));
         }
         else
         {
-            _window.Title = "Surgery";
+            _window.Title = Loc.GetString("surgery-ui-window-title");
         }
     }
 

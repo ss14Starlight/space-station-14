@@ -46,6 +46,7 @@
       - id: MobKobold
       - id: MobKoboldAdvanced # Starlight
         weight: 0.5 # Starlight, they can be rarer than the normal kobolds.
+      - id: MobGiantSpiderPassive
     # minor aggressive mobs
     - !type:GroupSelector
       children:
@@ -89,6 +90,8 @@
       - id: ReagentSlimeNorepinephricAcid
       - id: ReagentSlimeEphedrine
       - id: ReagentSlimeRobustHarvest
+      - id: ReagentSlimeGlubotoxin
+      - id: ReagentSlimeWehJuice
       conditions:
       - !type:PlayerCountCondition
         min: 35

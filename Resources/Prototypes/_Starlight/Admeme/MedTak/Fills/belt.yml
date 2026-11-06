@@ -9,10 +9,8 @@
       storagebase: !type:AllSelector
         children:
         - id: SyndicateJawsOfLifeStealth
-        - id: LightRifleHeavyMagazineHP
-          amount: 2
-        - id: LightRifleHeavyMagazineSP
-          amount: 2
+        - id: MagazineVariableBoxHeavy
+          amount: 4
         - id: MagazinePistol40SP
         - id: Tourniquet
         - id: MedkitCombatMedTakFilled
@@ -28,10 +26,8 @@
       storagebase: !type:AllSelector
         children:
         - id: SyndicateJawsOfLifeStealth
-        - id: MagazineRifleM52HP
-          amount: 2
-        - id: MagazineRifleM52SP
-          amount: 2
+        - id: MagazineVariableMedium
+          amount: 4
         - id: MagazinePistol40SP
         - id: Tourniquet
         - id: MedkitCombatMedTakFilled

@@ -28,3 +28,5 @@ command-description-gamemap-save =
     Saves the piped map entity to the given path.
 command-description-gamemap-saveid =
     Saves the map with the specified ID to the given path.
+command-description-gamemap-getplayers = Get all the players on the piped map entity.
+command-description-gamemap-getplayersid = Get all the players on the map with the specified ID.

@@ -5,13 +5,13 @@
   - type: ItemSlots
     slots:
       blade_slot:
-        name: Turbine Blade
+        name: item-slot-component-slot-name-turbine-blade
         startingItem: null
         whitelist:
           components:
             - GasTurbineBlade
       stator_slot:
-        name: Turbine Stator
+        name: item-slot-component-slot-name-turbine-stator
         startingItem: null
         whitelist:
           components:

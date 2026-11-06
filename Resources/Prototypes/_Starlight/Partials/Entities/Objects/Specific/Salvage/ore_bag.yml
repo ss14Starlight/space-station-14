@@ -1,0 +1,35 @@
+- type: !PartialOnly entity
+  id: OreBag
+  components:
+  - type: !Remove MagnetPickup
+  - type: ItemToggle # added toggle
+    onUse: false
+    onActivate: false # move action to altVerb
+    verbToggleOn: verb-toggle-magnet-activate
+    verbToggleOff: verb-toggle-magnet-deactivate
+    # Add activation sounds
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundDeactivate:
+      collection: sparks
+      params:
+        variation: 0.250
+  - type: AltUseToggle
+  - type: ComponentToggler
+    components:
+    - type: MagnetPickup
+      requiresEquipping: false # make it work even without being equipped
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Mining/ore_bag.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Specific/Mining/ore_bag.rsi
+  # added visual indicator for magnet
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: "magnet" }
+          False: { state: "icon" }

@@ -1,0 +1,4 @@
+- type: !PartialOnly entity
+  id: BaseHandheldComputer
+  components:
+  - type: ForceQuickDraw # Don't pull the power cell when using hotkeys to remove from pockets

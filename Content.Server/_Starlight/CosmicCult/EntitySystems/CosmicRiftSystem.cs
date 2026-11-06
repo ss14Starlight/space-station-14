@@ -1,4 +1,5 @@
 using Content.Server.Actions;
+using Content.Server.Antag;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Popups;
@@ -11,6 +12,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Robust.Shared.Maths;
 using Content.Shared.Power;
 using Content.Shared.Singularity.Components;
 using Robust.Shared.Audio.Systems;
@@ -32,6 +34,7 @@ public sealed partial class CosmicRiftSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
 
     private const float RiftSpawnAreaScale = 0.7f;
     private const int RiftSpawnAttempts = 25;
@@ -42,13 +45,13 @@ public sealed partial class CosmicRiftSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<CosmicMalignRiftComponent, InteractHandEvent>(OnInteract);
-
-        SubscribeLocalEvent<CosmicMalignRiftComponent, EventPurgeRiftDoAfter>(OnPurgeDoAfter);
         SubscribeLocalEvent<CosmicCultComponent, EventAbsorbRiftDoAfter>(OnAbsorbDoAfter);
 
         SubscribeLocalEvent<CosmicLambdaParticleSourceComponent, ActivateInWorldEvent>(OnActivated);
         SubscribeLocalEvent<CosmicLambdaParticleSourceComponent, PowerChangedEvent>(OnPowerChanged);
-        SubscribeLocalEvent<CosmicMalignRiftComponent, InteractUsingEvent>(OnInteractUsing);
+
+        SubscribeLocalEvent<CosmicRiftPurgeComponent, InteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<CosmicRiftPurgeComponent, EventPurgeRiftDoAfter>(OnPurgeDoAfter);
     }
 
     private void OnActivated(Entity<CosmicLambdaParticleSourceComponent> ent, ref ActivateInWorldEvent args)
@@ -162,7 +165,7 @@ public sealed partial class CosmicRiftSystem : EntitySystem
         ent.Comp.DoAfterId = doAfterId;
     }
 
-    private void OnInteractUsing(Entity<CosmicMalignRiftComponent> ent, ref InteractUsingEvent args)
+    private void OnInteractUsing(Entity<CosmicRiftPurgeComponent> ent, ref InteractUsingEvent args)
     {
         if (args.Handled)
             return;
@@ -233,10 +236,11 @@ public sealed partial class CosmicRiftSystem : EntitySystem
             Loc.GetString("cosmiccult-rift-absorb", ("NAME", Identity.Entity(args.Args.User, EntityManager))),
             Transform(args.Args.User).Coordinates,
             PopupType.MediumCaution);
+        _antag.SendBriefing(uid, Loc.GetString("cosmiccult-rift-empowered-briefing"), Color.FromHex("#4cabb3"), null);
         QueueDel(target);
     }
 
-    private void OnPurgeDoAfter(Entity<CosmicMalignRiftComponent> ent, ref EventPurgeRiftDoAfter args)
+    private void OnPurgeDoAfter(Entity<CosmicRiftPurgeComponent> ent, ref EventPurgeRiftDoAfter args)
     {
         if (args.Cancelled || args.Handled)
             return;

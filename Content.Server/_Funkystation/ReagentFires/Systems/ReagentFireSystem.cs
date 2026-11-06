@@ -1,11 +1,12 @@
 ﻿using Content.Server._Funkystation.Atmos.Events;
 using Content.Server._Funkystation.ReagentFires.Components;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Decals;
 using Content.Shared._Funkystation.CCVar;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared._Funkystation.ReagentFires;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Clothing.Components;
@@ -53,8 +54,6 @@ public sealed partial class ReagentFireSystem : EntitySystem
 
     private const float UpdateInterval = 0.5f; // Starlight
 
-    private readonly List<(EntityUid Uid, ReagentPuddleFireComponent FireComp, PuddleComponent Puddle, TransformComponent Xform)> _dueFires = [];
-    private readonly List<EntityUid> _toExtinguish = [];
     private readonly List<Entity<ReagentPuddleFireComponent>> _exposedPuddles = [];
     private readonly List<Entity<ReagentPuddleFireComponent>> _spreadPuddles = [];
     private readonly HashSet<EntityUid> _standingEntities = [];
@@ -64,9 +63,11 @@ public sealed partial class ReagentFireSystem : EntitySystem
     [Dependency] private EntityQuery<ReagentPuddleFireComponent> _fireQuery;
     [Dependency] private EntityQuery<DamageableComponent> _damageableQuery;
     [Dependency] private EntityQuery<MobStateComponent> _mobStateQuery;
+    [Dependency] private EntityQuery<SolutionComponent> _solutionQuery;
     [Dependency] private EntityQuery<TransformComponent> _xformQuery;
 
     private float _puddleDamageMultiplier = 1.0f;
+    private bool _footprintsFlammable = true;
     private float _fireProtectionEffectiveness = 1.0f;
     private bool _volumeScalingEnabled = true;
     private float _volumeScalingReference = 20f;
@@ -74,26 +75,26 @@ public sealed partial class ReagentFireSystem : EntitySystem
     private float _smallPuddleBurnThreshold = 1.0f;
     private float _smallPuddleBurnPercent = 0.5f;
 
-    #region Starlight
-    private float _updateAccumulator;
-    #endregion
-
     public override void Initialize()
     {
         base.Initialize();
 
         Subs.CVar(_cfg, ReagentFireCVars.PuddleFireDamageMultiplier, value => _puddleDamageMultiplier = value, true);
+        Subs.CVar(_cfg, ReagentFireCVars.FootprintsFlammable, value => _footprintsFlammable = value, true);
         Subs.CVar(_cfg, ReagentFireCVars.FireProtectionEffectiveness, value => _fireProtectionEffectiveness = value, true);
         Subs.CVar(_cfg, ReagentFireCVars.VolumeScalingEnabled, value => _volumeScalingEnabled = value, true);
         Subs.CVar(_cfg, ReagentFireCVars.VolumeScalingReference, value => _volumeScalingReference = value, true);
         Subs.CVar(_cfg, ReagentFireCVars.VolumeScalingCurve, value => _volumeScalingCurve = value, true);
         Subs.CVar(_cfg, ReagentFireCVars.SmallPuddleBurnThreshold, value => _smallPuddleBurnThreshold = value, true);
         Subs.CVar(_cfg, ReagentFireCVars.SmallPuddleBurnPercent, value => _smallPuddleBurnPercent = value, true);
+        SubscribeLocalEvent<ReagentPuddleFireComponent, ComponentStartup>(OnFireStartup);
         SubscribeLocalEvent<ReagentPuddleFireComponent, ComponentShutdown>(OnFireShutdown);
     }
 
     private void OnFireShutdown(EntityUid uid, ReagentPuddleFireComponent component, ref ComponentShutdown args)
     {
+        _burningFires.Remove(uid);
+
         if (component.PlayingStream != null)
         {
             _audio.Stop(component.PlayingStream);
@@ -171,31 +172,46 @@ public sealed partial class ReagentFireSystem : EntitySystem
         if (ent.Comp.Solution == null)
             return;
 
-        var solution = ent.Comp.Solution.Value.Comp.Solution;
+        UpdateFire(ent.Owner, ent.Comp.Solution.Value.Comp.Solution);
+    }
 
-        // Puddle solutions change constantly (spreading, evaporation), don't add anything to non-flammable ones.
-        if (!_fireQuery.TryComp(ent, out var fireComp))
+    private void UpdateFire(EntityUid uid, Solution solution)
+    {
+        // Spill solutions change constantly (spreading, evaporation), don't add anything to non-flammable ones.
+        if (!_fireQuery.TryComp(uid, out var fireComp))
         {
             if (solution.GetSolutionFlammability(_prototypeManager) <= 0)
                 return;
 
-            fireComp = AddComp<ReagentPuddleFireComponent>(ent);
+            fireComp = AddComp<ReagentPuddleFireComponent>(uid);
         }
+
+        var oldFlammability = fireComp.Flammability;
+        var oldFireState = fireComp.FireState;
 
         if (!RefreshFireState(fireComp, solution))
         {
-            Extinguish(ent);
+            Extinguish(uid);
             return;
         }
 
         if (fireComp.OnFire)
-            UpdateFireVisuals(ent, fireComp);
+        {
+            if (fireComp.Flammability != oldFlammability || fireComp.FireState != oldFireState)
+                UpdateFireVisuals(uid, fireComp);
+        }
+        else if (_xformQuery.TryComp(uid, out var xform))
+        {
+            // Solution changes are the only time a dormant spill needs to inspect ambient heat.
+            // Explicit heat sources and atmos fires use TileExposedEvent / TileFireEvent.
+            TryAutoIgnite(uid, fireComp, xform);
+        }
     }
 
     [SubscribeLocalEvent]
     private void OnTileExposed(Entity<TransformComponent> ent, ref TileExposedEvent args)
     {
-        if (Count<ReagentPuddleFireComponent>() == 0 || !_gridQuery.TryComp(ent.Owner, out var grid))
+        if (!_gridQuery.TryComp(ent.Owner, out var grid))
             return;
 
         _exposedPuddles.Clear();
@@ -210,11 +226,18 @@ public sealed partial class ReagentFireSystem : EntitySystem
 
     [SubscribeLocalEvent]
     private void OnPuddleTileFire(Entity<PuddleComponent> ent, ref TileFireEvent args)
+        => TryIgniteFromTileFire(ent.Owner, args.Temperature);
+
+    [SubscribeLocalEvent]
+    private void OnFootprintTileFire(Entity<FootprintComponent> ent, ref TileFireEvent args)
+        => TryIgniteFromTileFire(ent.Owner, args.Temperature);
+
+    private void TryIgniteFromTileFire(EntityUid uid, float temperature)
     {
-        if (_fireQuery.TryComp(ent, out var fireComp)
+        if (_fireQuery.TryComp(uid, out var fireComp)
             && !fireComp.OnFire
-            && args.Temperature >= GetIgnitionTemperature(fireComp))
-            Ignite(ent.Owner, fireComp);
+            && temperature >= GetIgnitionTemperature(fireComp))
+            Ignite(uid, fireComp);
     }
 
     /// <summary>
@@ -260,8 +283,8 @@ public sealed partial class ReagentFireSystem : EntitySystem
             return;
 
         fireComp.OnFire = true;
-        // First burn happens a full interval after ignition.
-        fireComp.Accumulator = 0f;
+        fireComp.NeedsSpread = true;
+        _burningFires.Add(uid);
 
         if (fireComp.PlayingStream == null)
         {
@@ -301,6 +324,7 @@ public sealed partial class ReagentFireSystem : EntitySystem
             return;
 
         fireComp.OnFire = false;
+        _burningFires.Remove(uid);
 
         if (fireComp.PlayingStream != null)
         {
@@ -341,39 +365,36 @@ public sealed partial class ReagentFireSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        // Starlight-start: these fires advance in half-second steps, so skip their component query between steps.
+        if (_burningFires.Count == 0)
+            return;
+
+        // These fires advance in half-second steps, so skip all work between steps.
         _updateAccumulator += frameTime;
         if (_updateAccumulator < UpdateInterval)
             return;
 
-        _updateAccumulator = 0;
-        // Starlight-end
+        _updateAccumulator -= UpdateInterval;
 
         _dueFires.Clear();
-        _toExtinguish.Clear();
+        _dueFires.AddRange(_burningFires);
 
-        // Collect first: burning, igniting and damaging can add or remove fire components.
-        var query = EntityQueryEnumerator<ReagentPuddleFireComponent, PuddleComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var fireComp, out var puddle, out var xform))
+        // Snapshot first: burning, igniting and damaging can add or remove active fires.
+        foreach (var uid in _dueFires)
         {
-            _dueFires.Add((uid, fireComp, puddle, xform));
-        }
-
-        foreach (var (uid, fireComp, puddle, xform) in _dueFires)
-        {
-            // An earlier fire in this loop could have deleted the puddle or put it out.
-            if (fireComp.Deleted || TerminatingOrDeleted(uid))
+            if (!_fireQuery.TryComp(uid, out var fireComp) || !fireComp.OnFire)
+            {
+                _burningFires.Remove(uid);
                 continue;
+            }
 
-            if (fireComp.OnFire)
-                ProcessBurningPuddle(uid, fireComp, puddle, xform);
-            else
-                TryAutoIgnite(uid, fireComp, xform);
-        }
+            if (!_solutionQuery.TryComp(uid, out var solution)
+                || !_xformQuery.TryComp(uid, out var xform))
+            {
+                Extinguish(uid);
+                continue;
+            }
 
-        foreach (var uid in _toExtinguish)
-        {
-            Extinguish(uid);
+            ProcessBurningSpill(uid, fireComp, (uid, solution), xform);
         }
     }
 
@@ -386,6 +407,14 @@ public sealed partial class ReagentFireSystem : EntitySystem
             return;
 
         var ambientPos = _transform.GetGridTilePositionOrDefault((uid, xform));
+
+        // A new puddle can appear after an existing fire has completed its one-time spread pass.
+        if (_gridQuery.TryComp(gridUid, out var grid) && HasAdjacentBurningPuddle(gridUid, grid, ambientPos))
+        {
+            Ignite(uid, fireComp);
+            return;
+        }
+
         var ambientMix = _atmos.GetTileMixture(gridUid, null, ambientPos, excite: false);
         if (ambientMix == null)
             return;
@@ -400,11 +429,11 @@ public sealed partial class ReagentFireSystem : EntitySystem
         _atmos.GetTileMixture(gridUid, null, ambientPos, excite: true);
     }
 
-    private void ProcessBurningPuddle(EntityUid uid, ReagentPuddleFireComponent fireComp, PuddleComponent puddle, TransformComponent xform)
+    private void ProcessBurningSpill(EntityUid uid, ReagentPuddleFireComponent fireComp, Entity<SolutionComponent> solutionEntity, TransformComponent xform)
     {
         if (xform.GridUid is not { } gridUid)
         {
-            _toExtinguish.Add(uid);
+            Extinguish(uid);
             return;
         }
 
@@ -414,15 +443,11 @@ public sealed partial class ReagentFireSystem : EntitySystem
         var oxygenMoles = tileMix?.GetMoles(Gas.Oxygen) ?? 0f;
         if (!fireComp.SelfOxidizing && oxygenMoles <= 0.1f)
         {
-            _toExtinguish.Add(uid);
+            Extinguish(uid);
             return;
         }
 
-        if (!_solutionContainerSystem.ResolveSolution(uid, puddle.SolutionName, ref puddle.Solution, out var solution))
-        {
-            _toExtinguish.Add(uid);
-            return;
-        }
+        var solution = solutionEntity.Comp.Solution;
 
         var burnFraction = 0.05f / MathF.Pow(MathF.Max(1f, fireComp.Flammability), 3f);
 
@@ -433,17 +458,13 @@ public sealed partial class ReagentFireSystem : EntitySystem
             burnFraction = MathF.Max(burnFraction, acceleratedFraction);
         }
 
-        _solutionContainerSystem.BurnFlammableReagents(puddle.Solution.Value, burnFraction);
+        _solutionContainerSystem.BurnFlammableReagents(solutionEntity, burnFraction);
 
-        // Refresh the cache with the live volume and flammability.
-        if (fireComp.Deleted || !RefreshFireState(fireComp, solution))
-        {
-            _toExtinguish.Add(uid);
+        // Burning raises SolutionChangedEvent synchronously. It refreshes this cache and extinguishes an empty fire.
+        if (!_fireQuery.TryComp(uid, out var refreshedFire) || !refreshedFire.OnFire)
             return;
-        }
 
-        UpdateFireVisuals(uid, fireComp);
-
+        fireComp = refreshedFire;
         var effectiveFlammability = GetEffectiveFlammability(fireComp);
 
         if (tileMix != null)
@@ -472,7 +493,14 @@ public sealed partial class ReagentFireSystem : EntitySystem
         }
 
         TryAddBurntDecal(gridUid, tilePos);
-        SpreadToAdjacentTiles(gridUid, tilePos, tileMix);
+        RadiateHeatToAdjacentTiles(gridUid, tilePos, tileMix);
+
+        if (fireComp.NeedsSpread)
+        {
+            fireComp.NeedsSpread = false;
+            SpreadToAdjacentPuddles(gridUid, tilePos);
+        }
+
         DamageStandingEntities(uid, gridUid, tilePos, tileMix, effectiveFlammability);
     }
 
@@ -498,24 +526,22 @@ public sealed partial class ReagentFireSystem : EntitySystem
             cleanable: true);
     }
 
-    private void SpreadToAdjacentTiles(EntityUid gridUid, Vector2i tilePos, GasMixture? tileMix)
+    private void RadiateHeatToAdjacentTiles(EntityUid gridUid, Vector2i tilePos, GasMixture? tileMix)
     {
-        var radiatedTemp = tileMix is { Temperature: > Atmospherics.FireMinimumTemperatureToSpread }
-            ? tileMix.Temperature * Atmospherics.FireSpreadRadiosityScale
-            : 0f;
+        if (tileMix is not { Temperature: > Atmospherics.FireMinimumTemperatureToSpread })
+            return;
 
+        var radiatedTemp = tileMix.Temperature * Atmospherics.FireSpreadRadiosityScale;
         Entity<GridAtmosphereComponent?> gridAtmos = (gridUid, _gridAtmosQuery.CompOrNull(gridUid));
-        _gridQuery.TryComp(gridUid, out var grid);
-        _spreadPuddles.Clear();
+        if (gridAtmos.Comp == null)
+            return;
 
         foreach (var offset in _cardinalOffsets)
         {
             var adjacentPos = tilePos + offset;
 
             // Radiate heat to adjacent tiles unless something airtight (walls, doors, windows) is in the way.
-            if (radiatedTemp > 0f
-                && gridAtmos.Comp != null
-                && _atmos.GetTileMixture(gridUid, null, adjacentPos) is { } adjMix
+            if (_atmos.GetTileMixture(gridUid, null, adjacentPos) is { } adjMix
                 && adjMix.Temperature < radiatedTemp
                 && !IsAnyAirBlocked(gridAtmos, adjacentPos))
             {
@@ -523,14 +549,6 @@ public sealed partial class ReagentFireSystem : EntitySystem
                 // Only wake up the tiles we actually changed.
                 _atmos.GetTileMixture(gridUid, null, adjacentPos, excite: true);
             }
-
-            if (grid != null)
-                CollectIgnitablePuddles(gridUid, grid, adjacentPos, null, _spreadPuddles);
-        }
-
-        foreach (var adjPuddle in _spreadPuddles)
-        {
-            Ignite(adjPuddle, adjPuddle.Comp);
         }
     }
 

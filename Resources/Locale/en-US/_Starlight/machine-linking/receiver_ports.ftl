@@ -21,3 +21,9 @@ signal-port-description-set-particle-lambda = Sets the type of particle this dev
 
 signal-port-name-trigger-spawn = Trigger Spawn
 signal-port-description-trigger-spawn = Activates the spawner, causing it to spawn something.
+
+signal-port-name-turret-controller-sync-receiver = Sync
+signal-port-description-turret-controller-sync-receiver = Shares armament and authorization settings with another turret control panel.
+
+signal-port-name-combustion-turbine-console-receiver = Combustion Turbine
+signal-port-description-combustion-turbine-console-receiver = Receives commands from a combustion turbine control console.

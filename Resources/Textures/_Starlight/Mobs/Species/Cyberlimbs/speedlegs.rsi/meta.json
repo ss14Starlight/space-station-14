@@ -30,6 +30,16 @@
         {
             "name": "r_leg_rodentia",
             "directions": 4
+        },
+        {
+            "name": "l_leg_expie",
+            "directions": 4,
+			"copyright": "Modified from base speedleg by Citrea"
+        },
+        {
+            "name": "r_leg_expie",
+            "directions": 4,
+			"copyright": "Modified from base speedleg by Citrea"
         }
     ]
 }

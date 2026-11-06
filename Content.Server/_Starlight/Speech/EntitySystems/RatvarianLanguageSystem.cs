@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared.Speech.EntitySystems;
-using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Speech.EntitySystems;
@@ -12,7 +12,7 @@ public sealed partial class RatvarianLanguageSystem : SharedRatvarianLanguageSys
 {
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
-    private static readonly ProtoId<StatusEffectPrototype> _ratvarianKey = "RatvarianLanguage";
+    private static readonly EntProtoId _ratvarianKey = "StatusEffectRatvarianLanguage";
 
     // This is the word of Ratvar and those who speak it shall abide by His rules:
     /*
@@ -47,20 +47,34 @@ public sealed partial class RatvarianLanguageSystem : SharedRatvarianLanguageSys
     [GeneratedRegex(@"(ratvar)|(nezbere)|(sevtuq)|(nzcrentr)|(inath-neq)", RegexOptions.IgnoreCase | RegexOptions.Compiled, "en-US")]
     private static partial Regex ProperNouns();
 
-    public override void Initialize() =>
-        // Activate before other modifications so translation works properly
-        SubscribeLocalEvent<RatvarianLanguageComponent, AccentGetEvent>(OnAccent, before: new[] { typeof(SharedSlurredSystem), typeof(SharedStutteringSystem) });
-
-    public override void DoRatvarian(EntityUid uid, TimeSpan time, bool refresh, StatusEffectsComponent? status = null)
+    public override void Initialize()
     {
-        if (!Resolve(uid, ref status, false))
-            return;
+        base.Initialize();
 
-        _statusEffects.TryAddStatusEffect<RatvarianLanguageComponent>(uid, _ratvarianKey, time, refresh, status);
+        // Activate before other modifications so translation works properly
+        var before = new[] { typeof(StatusEffectsSystem), typeof(SharedSlurredSystem), typeof(SharedStutteringSystem) };
+        SubscribeLocalEvent<RatvarianLanguageComponent, AccentGetEvent>(OnAccent, before: before);
+        SubscribeLocalEvent<RatvarianLanguageComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnStatusAccent, before: before);
+    }
+
+    public override void DoRatvarian(EntityUid uid, TimeSpan time, bool refresh)
+    {
+        if (refresh)
+            _statusEffects.TryUpdateStatusEffectDuration(uid, _ratvarianKey, time);
+        else
+            _statusEffects.TryAddStatusEffectDuration(uid, _ratvarianKey, time);
     }
 
     private void OnAccent(EntityUid uid, RatvarianLanguageComponent component, AccentGetEvent args)
         => args.Message.Text = Translate(args.Message.Text);
+
+    private void OnStatusAccent(Entity<RatvarianLanguageComponent> entity, ref StatusEffectRelayedEvent<AccentGetEvent> args)
+    {
+        if (HasComp<RatvarianLanguageComponent>(args.Args.Entity))
+            return;
+
+        args.Args.Message.Text = Translate(args.Args.Message.Text);
+    }
 
     private static string Translate(string message)
     {

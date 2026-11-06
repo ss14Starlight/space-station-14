@@ -12,7 +12,7 @@ public sealed partial class RandomExplosiveYieldDefectComponent : DefectComponen
     public RandomExplosiveYieldDefectComponent()
     {
         Prob = 0.7f;
-        DefectLabel = "degraded filler";
+        DefectLabel = "defect-label-degraded-filler";
     }
 
     // --- ExplosiveComponent fields (null = don't override) ---

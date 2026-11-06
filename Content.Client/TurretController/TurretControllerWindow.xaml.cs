@@ -68,6 +68,8 @@ public sealed partial class TurretControllerWindow : BaseWindow
         AccessConfiguration.SetLabelStyleClass("ConsoleText");
         AccessConfiguration.OnAccessLevelsChangedEvent += OnAccessLevelsChanged;
 
+        TargetNeutralEntitiesCheckBox.OnToggled += _ => OnTargetNeutralEntitiesToggled(); // Starlight
+
         // Override footer font
         var smallFont = _cache.NotoStack(size: 8);
         Footer.FontOverride = smallFont;
@@ -98,6 +100,7 @@ public sealed partial class TurretControllerWindow : BaseWindow
         if (_entManager.TryGetComponent<TurretTargetSettingsComponent>(_owner, out var turretTargetSettings))
         {
             RefreshAccessControls(turretTargetSettings.ExemptAccessLevels);
+            RefreshNeutralTargetingControl(turretTargetSettings.TargetNeutralEntities); // Starlight
         }
     }
 
@@ -121,9 +124,11 @@ public sealed partial class TurretControllerWindow : BaseWindow
 
         var canInteract = IsLocalPlayerAllowedToInteract();
 
-        SafeButton.Disabled = !SafeButton.Pressed && !canInteract;
-        StunButton.Disabled = !StunButton.Pressed && !canInteract;
-        LethalButton.Disabled = !LethalButton.Pressed && !canInteract;
+        var readOnly = IsReadOnly(); // Starlight
+
+        SafeButton.Disabled = readOnly || (!SafeButton.Pressed && !canInteract); // Starlight-edit
+        StunButton.Disabled = readOnly || (!StunButton.Pressed && !canInteract); // Starlight-edit
+        LethalButton.Disabled = readOnly || (!LethalButton.Pressed && !canInteract); // Starlight-edit
 
         ContentsContainer.Modulate = ThemeColors[setting];
     }
@@ -134,7 +139,10 @@ public sealed partial class TurretControllerWindow : BaseWindow
             UpdateTheme((TurretArmamentSetting)turretController.ArmamentState);
 
         if (_entManager.TryGetComponent<TurretTargetSettingsComponent>(_owner, out var turretTargetSettings))
+        {
             RefreshAccessControls(turretTargetSettings.ExemptAccessLevels);
+            RefreshNeutralTargetingControl(turretTargetSettings.TargetNeutralEntities); // Starlight
+        }
 
         RefreshLinkedTurrets(state.TurretStateByAddress);
     }
@@ -188,6 +196,9 @@ public sealed partial class TurretControllerWindow : BaseWindow
     private bool IsLocalPlayerAllowedToInteract()
     {
         if (_owner == null || _playerManager.LocalSession?.AttachedEntity == null)
+            return false;
+
+        if (IsReadOnly()) // Starlight
             return false;
 
         return _accessReaderSystem.IsAllowed(_playerManager.LocalSession.AttachedEntity.Value, _owner.Value);

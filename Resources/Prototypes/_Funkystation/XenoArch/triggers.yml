@@ -15,7 +15,7 @@
 - type: xenoArchTrigger
   id: TriggerMilk
   tip: artifact-trigger-hint-milk
-  components:
+  components: # Starlight: Overridden by partial
   - type: XATReactive
     reagents:
     - Milk
@@ -34,14 +34,7 @@
   - type: XATReactive
     reagents:
     - Bleach
-
-- type: xenoArchTrigger
-  id: TriggerCleaner
-  tip: artifact-trigger-hint-surfactant
-  components:
-  - type: XATReactive
-    reagents:
-    - SpaceCleaner
+    - SpaceCleaner # Starlight
     - SyndicateSpaceCleaner # Starlight
 
 - type: xenoArchTrigger
@@ -53,7 +46,7 @@
     - UnstableMutagen
 
 - type: xenoArchTrigger
-  id: TriggerCoffee
+  id: TriggerCoffee # Starlight, it's actually energy drinks now
   tip: artifact-trigger-hint-coffee
   components:
   - type: XATReactive
@@ -62,7 +55,9 @@
     - CafeLatte
     - CoffeeLiqueur # Starlight start, coffee drinks
     - IrishCoffee
-    - IcedCoffee # Starlight end
+    - IcedCoffee
+    - PwrGame
+    - EnergyDrink # Starlight end
 
 - type: xenoArchTrigger
   id: TriggerLube
@@ -100,6 +95,9 @@
   - type: XATReactive
     reagents:
     - Egg
+    - Eggnog # Starlight start
+    - Mayo
+    - Mayojito # Starlight end
 
 - type: xenoArchTrigger
   id: TriggerWine
@@ -124,7 +122,7 @@
 - type: xenoArchTrigger
   id: TriggerCitrus
   tip: artifact-trigger-hint-citrus
-  components:
+  components: # Starlight: Overridden by partial
   - type: XATReactive
     reagents:
     - Lemonade
@@ -189,7 +187,7 @@
 - type: xenoArchTrigger
   id: TriggerTechnologyDisk
   tip: artifact-trigger-hint-tech-disc
-  components:
+  components: # Starlight: Overridden by partial
   - type: XATCompNearby
     requireComponentWithName: TechnologyDisk
     radius: 2

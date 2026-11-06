@@ -1,6 +1,6 @@
 # Robotics
 - type: entity
-  parent: Airlock
+  parent: AirlockScience
   id: AirlockRobotics
   suffix: Robotics
   components:
@@ -10,7 +10,7 @@
     group: AirlockStandard
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockScienceGlass
   id: AirlockRoboticsGlass
   suffix: Robotics
   components:
@@ -21,7 +21,7 @@
 
 # Surgery
 - type: entity
-  parent: Airlock
+  parent: AirlockMedical
   id: AirlockSurgery
   suffix: Surgery
   components:
@@ -31,7 +31,7 @@
     group: AirlockStandard
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockMedicalGlass
   id: AirlockSurgeryGlass
   suffix: Surgery
   components:
@@ -42,7 +42,7 @@
 
 # Paramedic
 - type: entity
-  parent: Airlock
+  parent: AirlockMedical
   id: AirlockParamedic
   suffix: Paramedic
   components:
@@ -52,7 +52,7 @@
     group: AirlockStandard
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockMedicalGlass
   id: AirlockParamedicGlass
   suffix: Paramedic
   components:
@@ -66,51 +66,43 @@
 # ---------------------
 # Salvage/Mining Shared
 - type: entity
-  parent: Airlock
+  parent: AirlockCargo
   id: AirlockSalvageMining
   suffix: Salvage, Mining
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/salvagemining.rsi
-  - type: Wires
-    layoutId: AirlockCargo
   - type: Paintable
     group: AirlockStandard
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockCargoGlass
   id: AirlockSalvageMiningGlass
   suffix: Salvage, Mining
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Glass/salvagemining.rsi
-  - type: Wires
-    layoutId: AirlockCargo
   - type: Paintable
     group: AirlockGlass
 
 # Mining/Cargo Shared
 - type: entity
-  parent: Airlock
+  parent: AirlockCargo
   id: AirlockMiningCargo
   suffix: Mining
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/mining_cargo.rsi
-  - type: Wires
-    layoutId: AirlockCargo
   - type: Paintable
     group: AirlockStandard
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockCargoGlass
   id: AirlockMiningCargoGlass
   suffix: Mining
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Glass/mining_cargo.rsi
-  - type: Wires
-    layoutId: AirlockCargo
   - type: Paintable
     group: AirlockGlass
 
@@ -188,7 +180,7 @@
 
 # Mail
 - type: entity
-  parent: Airlock
+  parent: AirlockCargo
   id: AirlockMail
   suffix: Mail
   components:
@@ -200,7 +192,7 @@
     group: AirlockStandard
 
 - type: entity
-  parent: AirlockGlass
+  parent: AirlockCargoGlass
   id: AirlockMailGlass
   suffix: Mail
   components:
@@ -210,7 +202,6 @@
     layoutId: AirlockCargo
   - type: Paintable
     group: AirlockGlass
-
 
 #EVA
 - type: entity
@@ -294,3 +285,55 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Glass/brigmedic.rsi
+
+# Service
+- type: entity
+  parent: Airlock
+  id: AirlockService
+  suffix: Service
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/services.rsi
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockServiceGlass
+  suffix: Service
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/services.rsi
+  - type: Paintable
+    group: AirlockGlass
+
+# NT
+- type: entity
+  parent: Airlock
+  id: AirlockNT
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen.rsi
+  - type: Wires
+    layoutId: AirlockNT
+  - type: Paintable
+    group: AirlockStandard
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockNTGlass
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/nanotrasen.rsi
+  - type: Wires
+    layoutId: AirlockNT
+  - type: Paintable
+    group: AirlockGlass
+
+# Maints
+- type: entity
+  parent: AirlockCentralCommand
+  id: AirlockMaintCentralCommand
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/centcomm_maints.rsi

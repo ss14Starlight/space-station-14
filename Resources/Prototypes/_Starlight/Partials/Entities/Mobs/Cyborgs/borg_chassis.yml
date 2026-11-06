@@ -1,0 +1,27 @@
+- type: !PartialOnly entity
+  id: BorgChassisSyndicateMedical
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Hybrid
+    - MoffDemonBiological
+
+- type: !PartialOnly entity
+  id: BorgChassisSyndicateSaboteur
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - Hybrid
+    - MoffDemonInorganic
+
+- type: !PartialOnly entity
+  id: MedicalBorgChassisDerelict
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - Hybrid
+    - MoffDemonBiological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Hybrid

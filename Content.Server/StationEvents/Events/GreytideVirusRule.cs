@@ -81,7 +81,7 @@ public sealed partial class GreytideVirusRule : StationEventSystem<GreytideVirus
             // the AreAccessTagsAllowed function is a little weird because it technically has support for certain tags to be locked out of opening something
             // which might have unintened side effects (see the comments in the function itself)
             // but no one uses that yet, so it is fine for now
-            if (!_access.AreAccessTagsAllowed(accessIds, accessComp) || _access.AreAccessTagsAllowed(virusComp.Blacklist, accessComp))
+            if (!_access.AreAccessTagsAllowed(accessIds, (lockUid, accessComp)) || _access.AreAccessTagsAllowed(virusComp.Blacklist, (lockUid, accessComp))) // Starlight-edit
                 continue;
 
             // open lockers
@@ -104,7 +104,7 @@ public sealed partial class GreytideVirusRule : StationEventSystem<GreytideVirus
                 continue;
 
             // check access
-            if (!_access.AreAccessTagsAllowed(accessIds, accessEnt.Value.Comp) || _access.AreAccessTagsAllowed(virusComp.Blacklist, accessEnt.Value.Comp))
+            if (!_access.AreAccessTagsAllowed(accessIds, accessEnt.Value) || _access.AreAccessTagsAllowed(virusComp.Blacklist, accessEnt.Value)) // Starlight-edit
                 continue;
 
             // open and bolt airlocks

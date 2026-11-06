@@ -16,9 +16,6 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
-    readonly int _effectivePlayerCutoff = 30; // Starlight, the number of online players at which unready players start counting as effectively ready
-    readonly double _unreadyPlayerMultiplier = 0.60; // Starlight, the fraction of unready players that count as effectively ready when above the cutoff
-
     /// <summary>
     /// Designated game rule that spawns a fake antagonist to discourage metagaming.
     /// Has to be a string since <see cref="EntProtoId"/> cannot be a const.
@@ -296,6 +293,22 @@ public sealed partial class GameTicker
     }
 
     /// <summary>
+    /// Returns true if a game rule that passes the whitelist and blacklist has been added.
+    /// </summary>
+    /// <param name="ruleWhitelist">whitelist for the game rules</param>
+    /// <param name="ruleBlacklist">blacklist for the game rules</param>
+    public bool IsGameRuleAdded(EntityWhitelist? ruleWhitelist, EntityWhitelist? ruleBlacklist = null)
+    {
+        foreach (var ruleEntity in GetAddedGameRules())
+        {
+            if (_whitelist.CheckBoth(ruleEntity, ruleBlacklist, ruleWhitelist))
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
     ///     Returns true if a game rule with the given component is active..
     /// </summary>
     public bool IsGameRuleActive<T>()
@@ -321,6 +334,22 @@ public sealed partial class GameTicker
         foreach (var ruleEntity in GetActiveGameRules())
         {
             if (MetaData(ruleEntity).EntityPrototype?.ID == rule)
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Returns true if a game rule that passes the whitelist and blacklist is active.
+    /// </summary>
+    /// <param name="ruleWhitelist">whitelist for the game rules</param>
+    /// <param name="ruleBlacklist">blacklist for the game rules</param>
+    public bool IsGameRuleActive(EntityWhitelist? ruleWhitelist, EntityWhitelist? ruleBlacklist = null)
+    {
+        foreach (var ruleEntity in GetActiveGameRules())
+        {
+            if (_whitelist.CheckBoth(ruleEntity, ruleBlacklist, ruleWhitelist))
                 return true;
         }
 
@@ -392,13 +421,35 @@ public sealed partial class GameTicker
         if (args.Forced || args.Cancelled)
             return;
 
+        // Starlight - start
+        if (CurrentPreset is { MinPlayers: { } presetMinimumPlayers } preset)
+        {
+            var effectivePlayers = GetEffectivePlayerCountGamerule(args.Players.Length);
+            if (effectivePlayers < presetMinimumPlayers)
+            {
+                _chatManager.SendAdminAnnouncement(Loc.GetString("preset-not-enough-ready-players-sl",
+                    ("readyPlayersCount", effectivePlayers),
+                    ("minimumPlayers", presetMinimumPlayers),
+                    ("presetName", Loc.GetString(preset.ModeTitle))));
+                args.Cancel();
+                Log.Info($"Preset '{preset.ID}' requires {presetMinimumPlayers} players, but only {effectivePlayers} are effectively ready.");
+                return;
+            }
+        }
+        // Starlight - end
+
         var query = EntityQueryEnumerator<GameRuleComponent>();
         while (query.MoveNext(out var uid, out var gameRule))
         {
+            // Starlight - start
+            if (!IsGameRuleAdded(uid, gameRule))
+                continue;
+            // Starlight - end
+
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
 
-            var effectivePlayers = GetEffectivePlayerCountGameruleEligibility(args.Players.Length); // Starlight, get effective players
+            var effectivePlayers = GetEffectivePlayerCountGamerule(args.Players.Length); // Starlight, get effective players
             if (effectivePlayers >= minPlayers) // Starlight, args.Players.Length -> effectivePlayers
                 continue;
 
@@ -418,20 +469,6 @@ public sealed partial class GameTicker
             }
         }
     }
-
-    #region Starlight
-    //Helper function for effective player count
-    private int GetEffectivePlayerCountGameruleEligibility(int activePlayers)
-    {
-        var onlinePlayers = PlayerGameStatuses.Count;
-
-        if (onlinePlayers < _effectivePlayerCutoff)
-            return activePlayers;
-
-        var unreadyPlayers = Math.Max(0, onlinePlayers - activePlayers);
-        return activePlayers + (int) Math.Floor(unreadyPlayers * _unreadyPlayerMultiplier);
-    }
-    #endregion
 
     #region Command Implementations
 

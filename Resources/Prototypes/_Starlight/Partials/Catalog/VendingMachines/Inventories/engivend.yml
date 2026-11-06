@@ -1,0 +1,28 @@
+- type: !PartialOnly vendingMachineInventory
+  id: EngiVendInventory
+  startingInventory: !Clear
+    ClothingEyesGlassesMeson: 4
+    ClothingEyesGlassesThermal: 4
+    ClothingEyesHudDiagnostic: 4
+    ClothingHeadHatWelding: 6
+    MatBag: 4
+    WeaponGrapplingGun: 4
+    BoxFlare: 4
+    CableApcStack: 4
+    CableMVStack: 4
+    CableHVStack: 4
+    CrowbarYellow: 8
+    Multitool: 4
+    NetworkConfigurator: 5
+    PowerCellMedium: 5
+    ClothingHandsGlovesColorYellow: 6
+    BoxInflatable: 2
+    ClothingHeadHatCone: 4
+    HoloprojectorEngineering: 3
+    RadioHandheld: 6
+    GeigerCounter: 3
+    HandLabeler: 4
+  emaggedInventory: # Blimpuf
+    ClothingMaskGasSyndicate: 1 # Blimpuf
+    ClothingHandsGlovesConducting: 1 # Blimpuf
+    BaseDoorElectronicsSyndicate: 1 # Blimpuf

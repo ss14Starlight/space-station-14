@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: PinpointerNuclear
+  components:
+  - type: StealTarget
+    stealGroup: PinpointerNuclear

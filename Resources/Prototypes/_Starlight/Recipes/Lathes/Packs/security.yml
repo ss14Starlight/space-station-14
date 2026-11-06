@@ -115,6 +115,12 @@
   - SpeedLoaderShotgunEmpty
   - SpeedLoaderShotgunSlug
   - SpeedLoaderShotgunBeanbag
+# Bolt
+  - MagazineBoltRifleEmpty
+  - MagazineBoltRifle
+  - MagazineBoltPistolEmpty
+  - MagazineBoltPistol
+  - MagazineBoxBoltRifle
 # Battery
   - MagazineBatteryLr30
 # Peacekeeper
@@ -122,6 +128,7 @@
   - BoxPeacekeeperStinger
   - BoxPeacekeeperFlash
   - BoxPeacekeeperBaton
+#  - BoxPeacekeeperBola
 ####################################################
 
 - type: latheRecipePack
@@ -244,7 +251,6 @@
   - CartridgePistolRubber
 # Rifle
   - CartridgeRifleRubber
-####################################################
 
 - type: latheRecipePack
   id: StarlightSecurityWeapons
@@ -261,6 +267,8 @@
   - WeaponLaserSvalinn
   - WeaponTemperatureGun
   - FiringPinLaser
+  - FiringPinAdvancedLaserReplacement
+  - FiringPinSmartLMGReplacement
 
 - type: latheRecipePack
   id: StarlightSecurityMechsWeapons

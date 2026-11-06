@@ -189,8 +189,8 @@ public sealed partial class PlayerPanelEui : BaseEui
         }
 
         _sharedConnections = _player.Sessions.Count(s =>
-            (_connectionManager.GetResolvedAddress(s.UserId) ?? s.Channel.RemoteEndPoint.Address) // Starlight: prefer resolved IP
-                .Equals(_targetPlayer.LastAddress)
+            _targetPlayer.LastAddress != null
+            && _targetPlayer.LastAddress.Equals(_connectionManager.GetPlayerAddress(s)) // Starlight: resolved IP, never the SNAT address
             && s.UserId != _targetPlayer.UserId);
 
     // Apparently the Bans flag is also used for whitelists

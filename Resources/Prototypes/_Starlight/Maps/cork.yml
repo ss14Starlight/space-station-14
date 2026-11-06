@@ -58,6 +58,7 @@
             MedicalIntern: [ 2, 2 ]
             Psychologist: [ 1, 1 ]
             Paramedic: [ 1, 1 ]
+            Surgeon: [ 1, 1 ]
             Chemist: [ 1, 1 ]
 
             # Science
@@ -68,6 +69,7 @@
 
             # Security
             HeadOfSecurity: [ 1, 1 ]
+            GunnerySergeant: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
             SecurityOfficer: [ 2, 3 ]

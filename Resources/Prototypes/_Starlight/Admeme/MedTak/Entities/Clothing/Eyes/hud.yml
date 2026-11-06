@@ -9,6 +9,7 @@
   - type: Clothing
     sprite: _Starlight/Admeme/MedTak/Clothing/Eyes/Hud/medtak.rsi
   - type: FlashImmunity
+    blocksSpecialVision: False
   - type: ShowImplantedIcons
     shownIcons:
     - MedTak
@@ -19,6 +20,7 @@
     - Biological
     - IPC
     - Hybrid
+    - MoffDemonBiological
   - type: Tag
     tags:
     - HudMedical

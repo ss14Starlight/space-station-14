@@ -43,6 +43,73 @@ public sealed class ZoneMarkerTest : GameTest
     }
 
     /// <summary>
+    /// A head's office door inherits Command and is listed under its department, so the office is in both zones.
+    /// </summary>
+    [Test]
+    public async Task HeadOfficeDoorPutsRoomInBothZones()
+    {
+        await CreateDeck(shapes: false);
+        await Build(new EntProtoId("AirlockChiefEngineerLocked"), new Vector2i(4, 2));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Command"), Is.True);
+            Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Engineering"), Is.True);
+            Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Security"), Is.False);
+        });
+    }
+
+    /// <summary>
+    /// Votes count per zone, not per door kind: an engineering door and an atmospherics door
+    /// (Atmospherics + Engineering) agree on Engineering instead of splitting the vote.
+    /// </summary>
+    [Test]
+    public async Task DifferentDoorKindsOfOneZoneAgree()
+    {
+        await CreateDeck(shapes: false);
+        await Build(new EntProtoId("AirlockEngineering"), new Vector2i(2, 2));
+        await Build(new EntProtoId("AirlockAtmospherics"), new Vector2i(6, 2));
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Engineering"), Is.True);
+            Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Atmospherics"), Is.False,
+                "Only half the doors are atmospherics doors.");
+        });
+    }
+
+    /// <summary>
+    /// Zones tied on votes go to the higher priority one, so a plain hallway door does not drag a room into the hallway.
+    /// </summary>
+    [Test]
+    public async Task TiedVotesGoToHigherPriority()
+    {
+        await CreateDeck(shapes: false);
+        await Build(new EntProtoId("AirlockEngineering"), new Vector2i(2, 2));
+        await Build(new EntProtoId("Airlock"), new Vector2i(6, 2));
+
+        Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Engineering")));
+    }
+
+    /// <summary>
+    /// Painting a door to look like a head's office door gives the room every zone of that door, not just one.
+    /// </summary>
+    [Test]
+    public async Task PaintedHeadDoorKeepsBothZones()
+    {
+        await CreateDeck(shapes: false);
+        var doors = await Build(_maintDoor, new Vector2i(4, 2));
+        await Paint(doors[0], "AirlockChiefEngineerLocked");
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Command"), Is.True);
+            Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Engineering"), Is.True);
+            Assert.That(_zones.IsInZone(_grid, Vector2i.Zero, "Maintenance"), Is.False);
+        });
+    }
+
+    /// <summary>
     /// This test ensures that if you have a room with shapes, the shapes will take precedence over any doors that are placed in the room.
     /// </summary>
     [Test]

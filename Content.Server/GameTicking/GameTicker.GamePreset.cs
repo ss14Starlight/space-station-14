@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Content.Server._Starlight.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
 using Content.Shared.CCVar;
@@ -11,9 +12,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Database;
 
-#region Starlight
 using Content.Shared._Starlight.EntityTable;
-#endregion Starlight
 
 namespace Content.Server.GameTicking;
 
@@ -62,16 +61,27 @@ public sealed partial class GameTicker
 
         if (_cfg.GetCVar(CCVars.GameLobbyFallbackEnabled))
         {
-            var fallbackPresets = _cfg.GetCVar(CCVars.GameLobbyFallbackPreset).Split(",");
+            // Starlight - start
+            var fallbackPresets = _cfg.GetCVar(CCVars.GameLobbyFallbackPreset)
+                .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            // Starlight - end
             var startFailed = true;
 
             _sawmill.Info($"Fallback - Failed to start round, attempting to start fallback presets.");
             foreach (var preset in fallbackPresets)
             {
+                // Starlight - start
+                if (!TryFindGamePreset(preset, out var fallbackPreset))
+                {
+                    _sawmill.Warning($"Fallback - Unknown preset '{preset}', skipping.");
+                    continue;
+                }
+                // Starlight - end
+
                 _sawmill.Info($"Fallback - Clearing up gamerules");
                 ClearGameRules();
                 _sawmill.Info($"Fallback - Attempting to start '{preset}'");
-                SetGamePreset(preset, resetDelay: 1);
+                SetGamePreset(fallbackPreset, resetDelay: 1); // Starlight
                 AddGamePresetRules();
                 StartGamePresetRules();
 
@@ -83,7 +93,7 @@ public sealed partial class GameTicker
                     _chatManager.SendAdminAnnouncement(
                         Loc.GetString("game-ticker-start-round-cannot-start-game-mode-fallback",
                             ("failedGameMode", presetTitle),
-                            ("fallbackMode", Loc.GetString(preset))));
+                            ("fallbackMode", Loc.GetString(fallbackPreset.ModeTitle)))); // Starlight
                     RefreshLateJoinAllowed();
                     startFailed = false;
                     break;
@@ -217,25 +227,26 @@ public sealed partial class GameTicker
             return false;
 
         CurrentPreset = Preset;
-        #region Starlight
+        RaiseLocalEvent(new DynamicRuleCooldownRoundInitializingEvent(Preset)); // Starlight
+        // Starlight - start
         /*foreach (var rule in Preset.Rules)
         {
             AddFilteredGameRule(rule);
         }*/
-        #endregion
+        // Starlight - end
 
         // Starlight begin - Notify admins of preset now that it is locked in.
         if (Preset.ID != "Secret") _chatManager.SendAdminAnnouncement($"Round preset selected: {Preset.ID}.");
         _adminLogger.Add(LogType.RoundstartRulesAdded, LogImpact.High, $"Round preset selected: {Preset.ID}.");
         // Starlight end
 
-        #region Starlight
+        // Starlight - start
         //  Moved this here so you could see what subgamemodes roll if you're an admin.
         foreach (var rule in Preset.Rules)
         {
             AddFilteredGameRule(rule);
         }
-        #endregion
+        // Starlight - end
 
         return true;
     }

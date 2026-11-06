@@ -1,0 +1,118 @@
+- type: !PartialOnly entity
+  id: BaseSiliconLawboard
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+  - type: StaticPrice # Made all lawboards sellable for at least 700
+    price: 700
+
+- type: !PartialOnly entity
+  id: NTDefaultCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+
+- type: !PartialOnly entity
+  id: AsimovCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    laws: CrewsimovAI
+    IsLawboard: true
+
+- type: !PartialOnly entity
+  id: CorporateCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+
+- type: !PartialOnly entity
+  id: CommandmentCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+
+- type: !PartialOnly entity
+  id: PaladinCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+
+- type: !PartialOnly entity
+  id: LiveLetLiveCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+
+- type: !PartialOnly entity
+  id: StationEfficiencyCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+
+- type: !PartialOnly entity
+  id: RobocopCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+
+- type: !PartialOnly entity
+  id: OverlordCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+
+- type: !PartialOnly entity
+  id: GameMasterCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+
+- type: !PartialOnly entity
+  id: ArtistCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+
+- type: !PartialOnly entity
+  id: AntimovCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+
+- type: !PartialOnly entity
+  id: SyndimovCircuitBoard
+  components:
+  - type: SiliconLawProvider
+    lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg # using antimov sound for now
+
+- type: !PartialOnly entity
+  id: NutimovCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+
+- type: !PartialOnly entity
+  id: XenoborgCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true
+  - type: StaticPrice # Made sellable for 5000
+    price: 5000
+
+- type: !PartialOnly entity
+  id: MothershipCircuitBoard
+  description: !Remove # Removed for Dynamic Description
+  components:
+  - type: SiliconLawProvider
+    IsLawboard: true

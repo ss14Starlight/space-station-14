@@ -72,8 +72,6 @@ public sealed class UserMHelpUIHandler(NetUserId owner) : IMHelpUIHandler
         };
         _window = new DefaultWindow()
         {
-            TitleClass = "windowTitleAlert",
-            HeaderClass = "windowHeaderCyanAlert",
             Title = Loc.GetString("mentor-user-title"),
             MinSize = new Vector2(500, 300),
         };

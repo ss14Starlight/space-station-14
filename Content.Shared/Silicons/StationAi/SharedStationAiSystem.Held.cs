@@ -3,12 +3,11 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Content.Shared._Starlight.Computers.RemoteControl;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
-#region Starlight
 using Content.Shared._Starlight.StationAi;
-#endregion
 
 namespace Content.Shared.Silicons.StationAi;
 
@@ -165,6 +164,16 @@ public abstract partial class SharedStationAiSystem
 
     private void OnHeldInteraction(Entity<StationAiHeldComponent> ent, ref InteractionAttemptEvent args)
     {
+        // Starlight - start
+        if (args.Target is { } target)
+        {
+            var remoteControlCheck = new RemoteControlInteractionCheckEvent(ent.Owner, target);
+            RaiseLocalEvent(ref remoteControlCheck);
+            if (remoteControlCheck.Allowed)
+                return;
+        }
+        // Starlight - end
+
         // Cancel if it's not us or something with a whitelist, or whitelist is disabled.
         args.Cancelled = (!TryComp(args.Target, out StationAiWhitelistComponent? whitelistComponent)
                           || !whitelistComponent.Enabled)
@@ -188,10 +197,11 @@ public abstract partial class SharedStationAiSystem
             return;
         }
 
-        // Starlight Start
-        if (_vision.IsOutsideCameraViewCached(args.Target))
+        // Starlight - start
+        if (!CanAccessGrid((args.User, null), Transform(args.Target).GridUid) ||
+            _vision.IsOutsideCameraViewCached(args.Target))
             return;
-        // Starlight End
+        // Starlight - end
         var user = args.User;
 
         var target = args.Target;

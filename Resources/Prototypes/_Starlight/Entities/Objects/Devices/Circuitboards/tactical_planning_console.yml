@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: TacticalPlanningConsoleCircuitboard
+  name: tactical planning console board
+  description: A computer board for a tactical planning console.
+  components:
+  - type: Sprite
+    state: cpu_command
+  - type: ComputerBoard
+    prototype: TacticalPlanningConsole
+
+- type: entity
+  parent: [BaseComputerCircuitboard, BaseSyndicateContraband]
+  id: TacticalPlanningConsoleNukeopsCircuitboard
+  name: syndicate tactical planning console board
+  description: A computer board for a syndicate tactical planning console.
+  components:
+  - type: Sprite
+    state: cpu_syndicate
+  - type: ComputerBoard
+    prototype: TacticalPlanningConsoleNukeops

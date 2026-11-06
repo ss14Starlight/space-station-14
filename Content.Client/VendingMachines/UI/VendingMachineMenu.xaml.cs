@@ -40,7 +40,7 @@ namespace Content.Client.VendingMachines.UI
         /// Updates the balance display
         /// </summary>
         /// <param name="balance">Current player balance</param>
-        public void UpdateBalance(int balance) => BalanceLabel.Text = $"Balance: {balance}₡";
+        public void UpdateBalance(int balance) => BalanceLabel.Text = Loc.GetString("vending-machine-balance", ("balance", balance));
 
         /// <summary>
         /// Toggles the balance display

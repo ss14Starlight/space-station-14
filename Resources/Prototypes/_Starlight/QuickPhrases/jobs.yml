@@ -8,7 +8,10 @@
   id: BaseCentralcommandJobPhrase
   abstract: true
 
-
+- type: quickPhrase
+  parent: [ BaseInterstellarTradeGuildPhrase, BaseJobPhrase ]
+  id: BaseInterstellarTradeGuildJobPhrase
+  abstract: true
 
 #Science (Epistemics)
 
@@ -36,14 +39,14 @@
   id: DutyofficerPhrase
   text: job-name-dutyofficer
 
-
+- type: quickPhrase
+  parent: BaseSecurityJobPhrase
+  id: SecurityK9Phrase
+  text: job-name-k9
 
 #Cargo (Logistics)
 
-- type: quickPhrase
-  parent: BaseLogisticsJobPhrase
-  id: SalvageleadPhrase
-  text: job-name-salvagelead
+# Salv lead moved to ITG
 
 - type: quickPhrase
   parent: BaseLogisticsJobPhrase
@@ -96,7 +99,10 @@
   id: ChaplainPhrase
   text: job-name-chaplain
 
-
+- type: quickPhrase
+  parent: BaseServiceJobPhrase
+  id: AssistantManagerPhrase
+  text: job-name-assistantmanager
 #Nanotrasen
 
 - type: quickPhrase
@@ -131,3 +137,15 @@
   parent: BaseCentralcommandJobPhrase
   id: ERTPhrase
   text: job-name-ert
+
+# Interstellar Trade Guild
+
+- type: quickPhrase
+  parent: BaseInterstellarTradeGuildJobPhrase
+  id: SalvageleadPhrase
+  text: job-name-salvagelead
+
+- type: quickPhrase
+  parent: BaseInterstellarTradeGuildJobPhrase
+  id: SalvagemedicPhrase
+  text: job-name-salvagemedic

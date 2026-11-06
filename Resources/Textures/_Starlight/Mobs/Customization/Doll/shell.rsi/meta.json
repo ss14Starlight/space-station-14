@@ -201,6 +201,11 @@
             "name": "head_owl",
             "directions": 4,
     		"copyright": "SevenShades"
+        },
+        {
+            "name": "segmented_m",
+            "directions": 4,
+    		"copyright": "Maitake"
         }
     ]
 }

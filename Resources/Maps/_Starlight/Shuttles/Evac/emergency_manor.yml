@@ -8193,15 +8193,6 @@ entities:
       parent: 1
       rot: -1.5707963267948966 rad
       pos: 2.5,2.5
-- proto: WarpPoint
-  entities:
-  - uid: 1048
-    components:
-    - type: Transform
-      parent: 1
-      pos: 0.5,17.5
-    - type: WarpPoint
-      location: Evac Shuttle
 - proto: WeaponCapacitorRecharger
   entities:
   - uid: 768

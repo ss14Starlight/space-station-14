@@ -1,7 +1,7 @@
 - type: ghostTheme
   id: None
-  name: Default
-  description: Just a regular boring guy.
+  name: ghost-theme-none-name
+  description: ghost-theme-none-desc
   colorizeable: true
   spriteSpecifier:
     sprite:
@@ -12,8 +12,8 @@
 
 - type: ghostTheme
   id: Mellow
-  name: Mellow
-  description: a mellow ghost.
+  name: ghost-theme-mellow-name
+  description: ghost-theme-mellow-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
@@ -23,8 +23,8 @@
 
 - type: ghostTheme
   id: Blazeit
-  name: Blazeit
-  description: a blazeit ghost.
+  name: ghost-theme-blazeit-name
+  description: ghost-theme-blazeit-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
@@ -34,8 +34,8 @@
 
 - type: ghostTheme
   id: Funkypurp
-  name: Funkypurp
-  description: a funkypurp ghost.
+  name: ghost-theme-funkypurp-name
+  description: ghost-theme-funkypurp-desc
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
@@ -45,8 +45,8 @@
 
 - type: ghostTheme
   id: Moth
-  name: Moth
-  description: a cute moth!
+  name: ghost-theme-moth-name
+  description: ghost-theme-moth-desc
   colorizeable: true
   spriteSpecifier:
     sprite:

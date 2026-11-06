@@ -19,11 +19,11 @@
   There are five duct variants:
 
   <Box>
-    <GuideEntityEmbed Entity="GuidebookPlumbingDuctStraight" Caption="Straight"/>
-    <GuideEntityEmbed Entity="GuidebookPlumbingDuctBend" Caption="Bend"/>
-    <GuideEntityEmbed Entity="GuidebookPlumbingDuctTJunction" Caption="T-Junction"/>
-    <GuideEntityEmbed Entity="GuidebookPlumbingDuctFourway" Caption="Fourway"/>
-    <GuideEntityEmbed Entity="GuidebookPlumbingDuctManifold" Caption="Manifold"/>
+    <GuideEntityEmbed Entity="PlumbingDuctStraight" Caption="Straight"/>
+    <GuideEntityEmbed Entity="PlumbingDuctBend" Caption="Bend"/>
+    <GuideEntityEmbed Entity="PlumbingDuctTJunction" Caption="T-Junction"/>
+    <GuideEntityEmbed Entity="PlumbingDuctFourway" Caption="Fourway"/>
+    <GuideEntityEmbed Entity="PlumbingDuctManifold" Caption="Manifold"/>
   </Box>
 
   The [color=#a4885c]Manifold[/color] bridges ducts connected to each of its sides. It can connect separate ducts across all three layers.

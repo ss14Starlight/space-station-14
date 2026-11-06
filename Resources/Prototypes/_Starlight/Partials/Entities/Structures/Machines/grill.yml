@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: KitchenElectricGrill
+  components:
+  - type: AmbientSound
+    enabled: false # Switched on by code while the machine works.
+    range: 4
+    volume: -6
+    sound:
+      path: /Audio/_Starlight/Ambience/Objects/grill_sizzle.ogg

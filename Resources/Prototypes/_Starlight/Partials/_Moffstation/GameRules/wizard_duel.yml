@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: WizardDuel
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 2
+    presets:
+    - WizardDuel

@@ -6,6 +6,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 #region Starlight
 using Content.Shared._Starlight.Mind.Events;
+using Content.Shared.NPC;
 #endregion
 
 namespace Content.Shared.Mind;
@@ -16,6 +17,9 @@ public sealed partial class MindExamineSystem : EntitySystem
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private ISharedPlayerManager _player = default!;
+    #region Starlight
+    [Dependency] private IEntityManager _entManager = default!;
+    #endregion
 
     public override void Initialize()
     {
@@ -50,6 +54,7 @@ public sealed partial class MindExamineSystem : EntitySystem
             MindState.Dead => $"[color=red]{Loc.GetString("comp-mind-examined-dead", ("ent", ent.Owner))}[/color]",
             MindState.Catatonic => $"[color=mediumpurple]{Loc.GetString("comp-mind-examined-catatonic", ("ent", ent.Owner))}[/color]",
             MindState.SSD => $"[color=yellow]{Loc.GetString("comp-mind-examined-ssd", ("ent", ent.Owner))}[/color]",
+            MindState.Npc => $"[color=darkorange]{Loc.GetString("comp-mind-examined-npc-controlled", ("ent", ent.Owner))}[/color]", // Starlight
             _ => null,
         };
 
@@ -104,13 +109,16 @@ public sealed partial class MindExamineSystem : EntitySystem
         var hasUserId = mindComp?.UserId;
         var hasActiveSession = hasUserId != null && _player.ValidSessionId(hasUserId.Value);
 
+        // Starlight edit Start
+        var isNpc = _entManager.HasComponent<ActiveNPCComponent>(ent);
+
         // Scenarios:
         // 1. Dead + No User ID: Entity is dead and has no mind attached
         // 2. Dead + Has User ID + No Session: Player died and disconnected
         // 3. Dead + Has Session: Player is dead but still connected
-        // 4. Alive + No User ID: Entity is alive but has no mind attached to it
-        // 5. Alive + No Session: Player disconnected while alive (SSD)
-        // Starlight edit Start
+        // 4. Alive + NPC: Entity is alive and currently AI controlled
+        // 5. Alive + No User ID: Entity is alive but has no mind attached to it
+        // 6. Alive + No Session: Player disconnected while alive (SSD)
         var state = MindState.None;
         if (dead && hasUserId == null)
             state = MindState.Irrecoverable;
@@ -118,6 +126,8 @@ public sealed partial class MindExamineSystem : EntitySystem
             state = MindState.DeadSSD;
         else if (dead)
             state = MindState.Dead;
+        else if (isNpc)
+            state = MindState.Npc;
         else if (hasUserId == null)
             state = MindState.Catatonic;
         else if (!hasActiveSession)

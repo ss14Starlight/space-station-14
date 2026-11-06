@@ -14,7 +14,7 @@
 - type: entity
   id: EyeImplantWelding
   name: welding implant
-  description: Protects eyes from welding flashes.
+  description: A surgically-installed eye implant that protects your eyes from bright flashes.
   parent: BaseEntityEyeImplant
   components:
   - type: Sprite
@@ -27,7 +27,7 @@
 - type: entity
   id: EyeImplantDiagnostic
   name: diagnostic implant
-  description: Enables you to see information about mechanisms without diagnostic glasses.
+  description: A surgically-installed eye implant that allows you to see the health of machinery such as cyborgs and IPCs.
   parent: BaseEntityEyeImplant
   components:
   - type: Sprite
@@ -41,11 +41,12 @@
       - Silicon
       - IPC
       - Hybrid
+      - MoffDemonInorganic
 
 - type: entity
   id: EyeImplantMedical
   name: medical implant
-  description: Enables you to see information about humanoids without medical glasses.
+  description: A surgically-installed eye implant that allows you to see the health of organic beings.
   parent: BaseEntityEyeImplant
   components:
   - type: Sprite
@@ -56,6 +57,7 @@
       damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
     - type: ShowHealthIcons
       damageContainers:
         - Biological
@@ -64,7 +66,7 @@
 - type: entity
   id: EyeImplantChemistry
   name: chemistry implant
-  description: Enables you to see information about solutions without chemical analysis goggles.
+  description: A surgically-installed eye implant that allows you to see the chemical contents of a container in detail.
   parent: BaseEntityEyeImplant
   components:
   - type: Sprite
@@ -76,7 +78,7 @@
 - type: entity
   id: EyeImplantSecurity
   name: security implant
-  description: Enables you to see information about station crew without security glasses.
+  description: A surgically-installed eye implant that allows you to see the security information of station crew, including their job, their mindshield status, and their wanted status.
   parent: BaseEntityEyeImplant
   components:
   - type: Sprite
@@ -90,7 +92,7 @@
 - type: entity
   id: EyeImplantSyndie
   name: syndie implant
-  description: Enables you to see information about station crew, humanoids and syndie without any glasses.
+  description: A shady surgically-installed eye implant that allows you to see the security information and health of organic crew, as well as highlight syndicate allies.
   parent: [ BaseEntityEyeImplant, BaseSyndicateContraband ]
   components:
   - type: Sprite
@@ -101,6 +103,7 @@
       damageContainers:
       - Biological
       - Hybrid # Neocytes
+      - MoffDemonBiological
     - type: ShowHealthIcons
       damageContainers:
         - Biological

@@ -25,12 +25,11 @@ using Content.Shared.Mobs.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Content.Shared._Starlight.Medical.Body.Events;
-using Robust.Shared.Containers;
+using Content.Shared._Starlight.Light;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.Language.Systems;
-using Content.Shared._Starlight.Light;
 using Content.Shared._Starlight.NullSpace.Systems;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
@@ -64,12 +63,9 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private StatusEffectsSystem _status = default!;
     [Dependency] private SharedGameTicker _gameTicker = default!;
-    [Dependency] private SharedContainerSystem _container = default!;
-    [Dependency] private ExamineSystemShared _examine = default!;
     [Dependency] private SharedLanguageSystem _language = default!;
-    [Dependency] private SharedPointLightSystem _pointLight = default!;
     [Dependency] private INetManager _net = default!;
-    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedIlluminationSystem _illumination = default!;
 
     [Dependency] private EntityQuery<DarkLightComponent> _darkLightQuery = default!;
     [Dependency] private EntityQuery<ShadegenAffectedComponent> _shadegenAffected = default!;
@@ -82,23 +78,32 @@ public sealed partial class ShadekinSystem : EntitySystem
     private static readonly EntProtoId<GameRuleComponent> _theDarkMap = "TheDarkMap";
     private static readonly EntProtoId _theDarkMapStatus = "StatusEffectTheDarkMap";
 
-    /// <summary>
-    /// How far away lights are looked for. Light checks don't go above 20.
-    /// </summary>
-    private const float LightLookupRange = 10f;
-
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
 
-    private readonly HashSet<Entity<SLPointLightComponent>> _lightsInRange = new();
+    private readonly List<LightContribution> _lightSources = new();
     private readonly HashSet<EntityUid> _theDarkMaps = new();
 
+    private bool _hadTheDarkMaps;
+
+    private IlluminationQuery _lightQuery;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        _lightQuery = new IlluminationQuery(Ignore: IsIgnoredLight);
+    }
+
+    private bool IsIgnoredLight(EntityUid light)
+        => _darkLightQuery.HasComp(light) || _shadegenAffected.HasComp(light);
+
     [SubscribeLocalEvent]
-    private void OnDamageChanged(Entity<ShadekinComponent> ent, ref BeforeDamageChangedEvent args)
+    private void OnDamageChanged(Entity<ShadekinComponent> _, ref BeforeDamageChangedEvent args)
         => args.Damage.DamageDict["Asphyxiation"] = 0;
 
     [SubscribeLocalEvent]
-    private void OnShutdown(Entity<ShadekinComponent> ent, ref ComponentShutdown args)
+    private void OnShutdown(Entity<ShadekinComponent> ent, ref ComponentShutdown _)
     {
         if (_timing.ApplyingState)
             return;
@@ -150,11 +155,11 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     /// <summary>
     /// Return an illumination float value with is how many "energy" of light is hitting our ent.
-    /// WARNING: This function might be expensive, Avoid calling it too much and CACHE THE RESULT!
+    /// Server only, the client has no light index and always gets 0.
     /// </summary>
     /// <remarks>
-    /// Not using RobustToolbox's LightLevelSystem: it needs the server light tree (disabled by default),
-    /// returns a clamped 0-1 luminance that doesn't match our thresholds, and can't ignore dark/shadegen lights.
+    /// Keeps the shadekin falloff (energy * (1 - (d/r)^2)^2) instead of the shader one,
+    /// our thresholds are tuned for it. Lights come from <see cref="SharedIlluminationSystem"/>.
     /// </remarks>
     public float GetLightExposure(EntityUid uid, float cap = float.MaxValue)
     {
@@ -172,80 +177,21 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (shadeXform.MapID != targetCoords.MapId)
                 continue;
 
-            var range = MathF.Min(shadegen.Range, LightLookupRange);
-            if ((_transform.GetWorldPosition(shadeXform) - targetCoords.Position).LengthSquared() < range * range)
+            if ((_transform.GetWorldPosition(shadeXform) - targetCoords.Position).LengthSquared() <= shadegen.Range * shadegen.Range)
                 return illumination;
         }
 
-        var targetContainerOccluded = _container.TryGetContainingContainer(uid, out var targetContainer)
-            && targetContainer.OccludesLight;
+        _lightSources.Clear();
+        _illumination.GetLightSources(uid, _lightSources, _lightQuery);
 
-        _lightsInRange.Clear();
-        _lookup.GetEntitiesInRange(targetCoords, LightLookupRange, _lightsInRange, LookupFlags.All | LookupFlags.Approximate);
-
-        // Cheapest checks first, the occlusion raycast is done last and only for lights that would actually add something.
-        foreach (var light in _lightsInRange)
+        foreach (var source in _lightSources)
         {
-            if (_darkLightQuery.HasComp(light.Owner) || _shadegenAffected.HasComp(light.Owner))
+            if (source.Radius < 1f)
                 continue;
 
-            SharedPointLightComponent? lightComp = null;
-            if (!_pointLight.ResolveLight(light, ref lightComp))
-                continue;
-
-            if (!lightComp.Enabled
-                || lightComp.Radius < 1
-                || lightComp.Energy <= 0)
-                continue;
-
-            var (lightPos, lightRot) = _transform.GetWorldPositionRotation(light.Owner);
-            var dist = (targetCoords.Position - lightPos).Length();
-
-            // Same range check InRangeUnOccluded does.
-            if (dist > lightComp.Radius + 0.01f)
-                continue;
-
-            var denom = dist / lightComp.Radius;
+            var denom = source.Distance / source.Radius;
             var attenuation = 1 - (denom * denom);
-            var calculatedLight = 0f;
-
-            if (_prototype.TryIndex(lightComp.LightMask, out var mask))
-            {
-                var angleToTarget = GetAngleToTarget(lightComp, lightPos, lightRot, targetCoords.Position);
-                foreach (var cone in mask.LightCones)
-                {
-                    var angleOffset = Math.Abs(Angle.ShortestDistance(angleToTarget, cone.Direction));
-
-                    if (angleOffset > cone.OuterWidth)
-                        continue;
-
-                    var coneLight = lightComp.Energy * attenuation * attenuation;
-                    if (angleOffset > cone.InnerWidth)
-                    {
-                        var angleAttenuation = (float) ((cone.OuterWidth - angleOffset) /
-                            (cone.OuterWidth - cone.InnerWidth));
-                        coneLight *= angleAttenuation;
-                    }
-
-                    calculatedLight = Math.Max(calculatedLight, coneLight);
-                }
-            }
-            else
-                calculatedLight = lightComp.Energy * attenuation * attenuation;
-
-            if (calculatedLight <= 0f)
-                continue;
-
-            // If either we or the light are in a container that occludes light, it only counts if it's the same container.
-            if ((targetContainerOccluded ||
-                (_container.TryGetContainingContainer(light.Owner, out var lightContainer) && lightContainer.OccludesLight)) &&
-                !_container.IsInSameOrNoContainer(uid, light.Owner))
-                continue;
-
-            if (!_examine.InRangeUnOccluded(new MapCoordinates(lightPos, targetCoords.MapId), targetCoords, lightComp.Radius, null))
-                continue;
-
-            illumination += calculatedLight;
+            illumination += source.Light.Comp1.Energy * attenuation * attenuation * source.Mask;
 
             if (illumination >= cap)
                 break;
@@ -254,43 +200,29 @@ public sealed partial class ShadekinSystem : EntitySystem
         return illumination;
     }
 
-    private static Angle GetAngleToTarget(SharedPointLightComponent lightComp, System.Numerics.Vector2 lightPos, Angle lightRot, System.Numerics.Vector2 targetPos)
-    {
-        var mapDiff = targetPos - (lightPos + lightRot.RotateVec(lightComp.Offset));
-
-        if (MathHelper.CloseTo(mapDiff.LengthSquared(), 0f))
-            return Angle.Zero;
-
-        var maskRotation = SharedPointLightSystem.GetMaskWorldRotation(lightComp, lightRot);
-        return mapDiff.ToWorldAngle() - maskRotation;
-    }
-
     private void SetPassiveBuff(EntityUid uid, ShadekinState shadekinState)
     {
         if (!TryComp<PassiveDamageComponent>(uid, out var passive))
             return;
 
-        if (shadekinState is ShadekinState.Annoying or
-            ShadekinState.High or
-            ShadekinState.Extreme)
+        switch (shadekinState)
         {
-            passive.DamageCap = 1;
-        }
-        else if (shadekinState == ShadekinState.Low)
-        {
-            passive.DamageCap = 20;
-            passive.AllowedStates.Clear();
-            passive.AllowedStates.Add(MobState.Alive);
-            passive.Interval = 1f;
-        }
-        else if (shadekinState == ShadekinState.Dark)
-        {
-            passive.DamageCap = 0;
-            passive.AllowedStates.Clear();
-            passive.AllowedStates.Add(MobState.Alive);
-            passive.AllowedStates.Add(MobState.Critical);
-            passive.AllowedStates.Add(MobState.Dead);
-            passive.Interval = 0.5f;
+            case ShadekinState.Annoying or
+                ShadekinState.High or
+                ShadekinState.Extreme:
+                break;
+            case ShadekinState.Low:
+                passive.AllowedStates.Clear();
+                passive.AllowedStates.Add(MobState.Alive);
+                passive.Interval = 1f;
+                break;
+            case ShadekinState.Dark:
+                passive.AllowedStates.Clear();
+                passive.AllowedStates.Add(MobState.Alive);
+                passive.AllowedStates.Add(MobState.Critical);
+                passive.AllowedStates.Add(MobState.Dead);
+                passive.Interval = 0.5f;
+                break;
         }
     }
 
@@ -409,6 +341,14 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (curTime < component.NextUpdate)
                 continue;
 
+            // First update gets a random offset, so shadekin spawned on the same tick (round start) don't all do
+            // their light lookups and raycasts on the same tick every second.
+            if (component.NextUpdate == TimeSpan.Zero)
+            {
+                component.NextUpdate = curTime + (component.UpdateCooldown * _random.NextDouble());
+                continue;
+            }
+
             component.NextUpdate = curTime + component.UpdateCooldown;
 
             var lightExposure = 0f;
@@ -452,6 +392,12 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (_tag.HasTag(mapUid, _theDarkTag))
                 _theDarkMaps.Add(mapUid);
         }
+
+        // Nobody can be in the Dark or still have its status, skip going over every mob.
+        var hadTheDarkMaps = _hadTheDarkMaps;
+        _hadTheDarkMaps = _theDarkMaps.Count > 0;
+        if (!_hadTheDarkMaps && !hadTheDarkMaps)
+            return;
 
         var mobQuery = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
         while (mobQuery.MoveNext(out var uid, out _, out var xform))

@@ -8,7 +8,9 @@ using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using System.Numerics;
 using Timer = Robust.Shared.Timing.Timer;
 using Robust.Client.Audio;
+using Robust.Client.Graphics;
 using Robust.Shared.Audio;
+using Robust.Shared.Graphics.RSI;
 using Content.Client.Alerts;
 using Content.Client.UserInterface.Systems.Alerts.Controls;
 
@@ -19,6 +21,11 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IEyeManager _eye = default!;
+
+    private readonly Dictionary<EntityUid, RsiDirection> _lastMarkDirection = new();
 
     private readonly ResPath _rsiPath = new("/Textures/_Starlight/CosmicCult/Effects/ability_siphonvfx.rsi");
 
@@ -40,6 +47,8 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
 
         SubscribeNetworkEvent<CosmicSiphonIndicatorEvent>(OnSiphon);
         SubscribeLocalEvent<CosmicCultComponent, UpdateAlertSpriteEvent>(OnUpdateAlert);
+
+        SubscribeLocalEvent<CosmicColossusComponent, AppearanceChangeEvent>(OnColossusAppearanceChange);
     }
 
     #region Siphon Visuals
@@ -102,6 +111,8 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     #region Layer Removals
     private void OnCosmicStarMarkRemoved(Entity<CosmicStarMarkComponent> uid, ref ComponentShutdown args)
     {
+        _lastMarkDirection.Remove(uid.Owner);
+
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
@@ -138,6 +149,61 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
         if (_prototype.TryIndex(ent.Comp.StatusIcon, out var iconPrototype))
             args.StatusIcons.Add(iconPrototype);
     }
+    #endregion
+
+    public override void FrameUpdate(float frameTime)
+    {
+        base.FrameUpdate(frameTime);
+
+        var query = EntityQueryEnumerator<CosmicStarMarkComponent, CosmicStarMarkOffsetComponent>();
+        while (query.MoveNext(out var uid, out _, out var offset))
+        {
+            if (offset.South == null && offset.East == null && offset.North == null && offset.West == null)
+            {
+                _lastMarkDirection.Remove(uid);
+                continue;
+            }
+
+            var dir = GetMarkDirection(uid);
+            if (_lastMarkDirection.TryGetValue(uid, out var last) && last == dir)
+                continue;
+
+            _lastMarkDirection[uid] = dir;
+            Vector2? directional = dir switch
+            {
+                RsiDirection.South => offset.South,
+                RsiDirection.East => offset.East,
+                RsiDirection.North => offset.North,
+                RsiDirection.West => offset.West,
+                _ => null,
+            };
+            _sprite.LayerSetOffset(uid, CosmicRevealedKey.Key, directional ?? offset.Offset);
+        }
+    }
+
+    private RsiDirection GetMarkDirection(EntityUid uid)
+    {
+        var angle = (_transform.GetWorldRotation(uid) + new Angle(_eye.CurrentEye.Rotation)).Reduced().FlipPositive();
+        return SpriteComponent.Layer.GetDirection(RsiDirectionType.Dir4, angle);
+    }
+
+    #region Colossus sprite
+    private void OnColossusAppearanceChange(Entity<CosmicColossusComponent> ent, ref AppearanceChangeEvent args)
+        {
+            if (!_appearance.TryGetData(ent, ColossusVisuals.Health, out ColossusHealth health))
+                return;
+
+            var state = health switch
+            {
+                ColossusHealth.Healthy => "colossus",
+                ColossusHealth.Damaged => "colossus_damaged",
+                ColossusHealth.HeavilyDamaged => "colossus_heavily_damaged",
+                ColossusHealth.Crumbling => "colossus_crumbling",
+                _ => "colossus",
+            };
+
+            _sprite.LayerSetRsiState(ent.Owner, "base", state);
+        }
     #endregion
 }
 

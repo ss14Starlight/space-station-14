@@ -18,6 +18,7 @@ using Content.Shared.EntityEffects.Effects.Solution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Random.Helpers;
+using Content.Shared._Starlight.EntityEffects.Effects.StatusEffects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -36,6 +37,9 @@ public sealed partial class MetabolizerSystem : EntitySystem
 
     private EntityQuery<OrganComponent> _organQuery;
     private EntityQuery<SolutionManagerComponent> _solutionQuery;
+
+    private readonly List<ReagentQuantity> _reagentBuffer = new();
+    private readonly List<ReagentId> _excludedBuffer = new();
 
     public override void Initialize()
     {
@@ -144,10 +148,13 @@ public sealed partial class MetabolizerSystem : EntitySystem
         LookupSolution(ent, solutionData, true, out var transferSolution, out var transferSolutionEntity, out _);
 
         // Copy the solution do not edit the original solution list
-        var list = solution.Contents.ToList();
+        var list = _reagentBuffer;
+        list.Clear();
+        list.AddRange(solution.Contents);
 
         // Collecting blood reagent for filtering
-        var ev = new MetabolismExclusionEvent();
+        _excludedBuffer.Clear();
+        var ev = new MetabolismExclusionEvent(_excludedBuffer);
         RaiseLocalEvent(solutionOwner.Value, ref ev);
 
         // randomize the reagent list so we don't have any weird quirks
@@ -216,6 +223,7 @@ public sealed partial class MetabolizerSystem : EntitySystem
             {
                 if (scale < effect.MinScale)
                     continue;
+                var effectScale = Math.Min(scale, effect.MaxScale ?? scale);
 
                 if (rand.NextFloat() >= effect.Probability)
                     continue;
@@ -224,23 +232,23 @@ public sealed partial class MetabolizerSystem : EntitySystem
                 if (effect.Conditions != null && !CanMetabolizeEffect(actualEntity, ent, solutionEntity.Value, effect.Conditions))
                     continue;
 
-                ApplyEffect(effect);
+                ApplyEffect(effect, effectScale);
 
             }
 
             // TODO: We should have to do this with metabolism. ReagentEffect struct needs refactoring and so does metabolism!
-            void ApplyEffect(EntityEffect effect)
+            void ApplyEffect(EntityEffect effect, float effectScale)
             {
                 switch (effect)
                 {
                     case ModifyLungGas:
-                        _entityEffects.ApplyEffect(ent, effect, scale);
+                        _entityEffects.ApplyEffect(ent, effect, effectScale);
                         break;
                     case AdjustReagent:
-                        _entityEffects.ApplyEffect(solutionEntity.Value, effect, scale);
+                        _entityEffects.ApplyEffect(solutionEntity.Value, effect, effectScale);
                         break;
                     default:
-                        _entityEffects.ApplyEffect(actualEntity, effect, scale);
+                        _entityEffects.ApplyEffect(actualEntity, effect, effectScale);
                         break;
                 }
             }

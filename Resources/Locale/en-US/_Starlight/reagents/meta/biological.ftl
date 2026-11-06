@@ -27,3 +27,6 @@ reagent-desc-pseudoceramic-platelets = Coarse, crunchy and slimy...
 
 reagent-name-doll-blood = anomalous blood
 reagent-desc-doll-blood = It's like a thick meat soup...
+
+reagent-name-sawian-blood = sawian blood
+reagent-desc-sawian-blood = Artificially created blood as a result of old bio-engineering technologies.

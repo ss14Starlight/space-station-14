@@ -62,7 +62,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
         ignoreResistances: true
-        maxScale: 16 # Starlight: Cap damage at ~20 per breath (inhale+exhale) to be sure there is time to respond.
+        maxScale: 28 # Starlight-edit: Cap Vox oxygen breathing damage at ~20 per breath (inhale+exhale) to be sure there is time to respond.
         damage:
           types:
             Poison: 0.7
@@ -328,19 +328,6 @@
         # Funkystation End: Funky atmos - /tg/ gases
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
-      - !type:ModifyStatusEffect
-        minScale: 1.8
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Slime ]
-          inverted: true
-        # Funkystation Start: Funky atmos - /tg/ gases
-        - !type:BloodReagentCondition
-          reagent: NitrosylPlasmide
-        # Funkystation End: Funky atmos - /tg/ gases
-        effectProto: StatusEffectForcedSleeping
-        time: 12 #Starlight
-        type: Update
       - !type:HealthChange
         minScale: 3.5
         conditions:

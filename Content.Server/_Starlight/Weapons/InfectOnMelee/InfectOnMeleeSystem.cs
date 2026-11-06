@@ -9,6 +9,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Zombies;
 using Content.Shared.Damage.Components;
 using Content.Shared._Starlight.Weapons.Melee;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Starlight.Weapons.InfectOnMelee;
 
@@ -17,6 +18,7 @@ public sealed partial class InfectOnMeleeSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private MobStateSystem _mob = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -50,7 +52,7 @@ public sealed partial class InfectOnMeleeSystem : EntitySystem
         float chance = component.InfectionChance;
         if (TryComp<DamageableComponent>(enemy, out var damage))
         {
-            var totalDamage = damage.TotalDamage;
+            var totalDamage = _damageable.GetTotalDamage(enemy);
 
             var additionalChance = totalDamage * 0.01f;
 

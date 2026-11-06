@@ -1,6 +1,7 @@
 - type: guideEntry
   id: Cargo
   name: guide-entry-cargo
+  department: Cargo # Starlight
   text: "/ServerInfo/Guidebook/Cargo/Cargo.xml"
   children:
   - CargoBounties
@@ -14,4 +15,5 @@
 - type: guideEntry
   id: Salvage
   name: guide-entry-salvage
+  department: ITG # Starlight
   text: "/ServerInfo/Guidebook/Cargo/Salvage.xml"

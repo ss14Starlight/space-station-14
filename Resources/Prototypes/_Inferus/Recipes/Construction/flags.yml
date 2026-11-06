@@ -1,0 +1,264 @@
+- type: construction
+  id: CentCommFlag
+  graph: Flags
+  startNode: start
+  targetNode: CentCommFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: CybersunFlag
+  graph: Flags
+  startNode: start
+  targetNode: CybersunFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: InterdyneFlag
+  graph: Flags
+  startNode: start
+  targetNode: InterdyneFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: DonkFlag
+  graph: Flags
+  startNode: start
+  targetNode: DonkFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: WaffleCoFlag
+  graph: Flags
+  startNode: start
+  targetNode: WaffleCoFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: IntersexFlag
+  graph: Flags
+  startNode: start
+  targetNode: IntersexFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: TransFlag
+  graph: Flags
+  startNode: start
+  targetNode: TransFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: DisabilityFlag
+  graph: Flags
+  startNode: start
+  targetNode: DisabilityFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: AceFlag
+  graph: Flags
+  startNode: start
+  targetNode: AceFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: AroFlag
+  graph: Flags
+  startNode: start
+  targetNode: AroFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: BiFlag
+  graph: Flags
+  startNode: start
+  targetNode: BiFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: MoachFlag
+  graph: Flags
+  startNode: start
+  targetNode: MoachFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: LesbianFlag
+  graph: Flags
+  startNode: start
+  targetNode: LesbianFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: BlankFlag
+  graph: Flags
+  startNode: start
+  targetNode: BlankFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: NTFlag
+  graph: Flags
+  startNode: start
+  targetNode: NTFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: LGBTQFlag
+  graph: Flags
+  startNode: start
+  targetNode: LGBTQFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: PirateFlag
+  graph: Flags
+  startNode: start
+  targetNode: PirateFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: InterdyneSyndicateFlag
+  graph: Flags
+  startNode: start
+  targetNode: InterdyneSyndicateFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: SyndieFlag
+  graph: Flags
+  startNode: start
+  targetNode: SyndieFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+
+- type: construction
+  id: NonbinaryFlag
+  graph: Flags
+  startNode: start
+  targetNode: NonbinaryFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: GenderfluidFlag
+  graph: Flags
+  startNode: start
+  targetNode: GenderfluidFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}
+
+- type: construction
+  id: GenderqueerFlag
+  graph: Flags
+  startNode: start
+  targetNode: GenderqueerFlag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}

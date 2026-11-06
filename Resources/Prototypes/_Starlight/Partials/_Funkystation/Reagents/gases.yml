@@ -1,0 +1,80 @@
+- type: !PartialOnly reagent
+  id: Healium
+  metabolisms:
+    Respiration:
+      effects:
+      - !type:ModifySleepiness
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 1
+          max: 2
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 60s
+        time: 3.66 # Scales to 5.5
+      - !type:ModifySleepiness
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 2
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 60s
+        time: 6 # Always 9
+    Bloodstream:
+      effects:
+      - !type:ModifySleepiness # In the blood stream its stronger
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 120s
+        time: 3.5
+
+- type: !PartialOnly reagent
+  id: BZ
+  metabolisms:
+    Respiration:
+      effects:
+      - !type:ModifySleepiness
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 0.5
+          max: 1
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 60s
+        time: 6 # Scales to 6
+      - !type:ModifySleepiness
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 1
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 60s
+        time: 5 # Scales to 8.25
+
+- type: !PartialOnly reagent
+  id: Nitrium
+  metabolisms:
+    Respiration:
+      effects:
+      - !type:ReduceSleepiness
+        conditions:
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 1
+          max: 8
+        time: 1.5
+      - !type:ReduceSleepiness
+        conditions:
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 8
+          max: 12
+        time: 2.5
+      - !type:ReduceSleepiness
+        conditions:
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 12
+        time: 4

@@ -80,5 +80,10 @@ namespace Content.Client.IconSmoothing
         ///     Where this component contributes to our neighbors being calculated but we do not update our own sprite.
         /// </summary>
         NoSprite,
+
+        /// <summary>
+        ///     Starlight-edit: For things that only ever line up in a straight row, like flipped tables.
+        /// </summary>
+        Linear,
     }
 }

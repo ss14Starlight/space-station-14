@@ -14,6 +14,7 @@ namespace Content.Client._Starlight.Lobby.UI;
 public sealed partial class VoiceSelectorWindow : DefaultWindow
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ILocalizationManager _localization = default!;
 
     public List<VoicePrototype> Voices { get; set; } = [];
 
@@ -73,7 +74,7 @@ public sealed partial class VoiceSelectorWindow : DefaultWindow
         int tagIndex = 1;
         foreach (var tag in _taxonomy.CachedTags)
         {
-            TagFilter.AddItem(tag.ToDisplayName(), tagIndex);
+            TagFilter.AddItem(tag.ToDisplayName(_localization), tagIndex);
             TagFilter.SetItemMetadata(tagIndex, tag);
             tagIndex++;
         }

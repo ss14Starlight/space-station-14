@@ -20,9 +20,6 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Revolutionary.Components;
 using Content.Shared.StationRecords;
 using Content.Shared.UserInterface;
-// Starlight start
-using Content.Server._Starlight.Bed.Cryostorage;
-// Starlight end
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -31,6 +28,8 @@ using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Server._Starlight.Bed.Cryostorage;
+using Content.Shared.Anomaly.Components;
 
 namespace Content.Server.Bed.Cryostorage;
 
@@ -205,6 +204,14 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
             }
         }
 
+        // Starlight start
+        if (userId == null)
+        {
+            var storedWithoutPlayer = new CryoStoredWithoutPlayerEvent();
+            RaiseLocalEvent(ent.Owner, ref storedWithoutPlayer);
+        }
+        // Starlight end
+
         _audio.PlayPvs(cryostorageComponent.RemoveSound, ent);
 
         EnsurePausedMap();
@@ -222,7 +229,12 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
                 _ghostSystem.OnGhostAttempt(mind.Value, false);
             }
         }
+        // Starlight start
+        if (userId != null)
+            _containerSpawnJobSlots.RefreshJobSlots();
+        // Starlight end
 
+        RemComp<AnomalyComponent>(ent.Owner); // Starlight - kill anomaly infection when host cryosleep
         comp.AllowReEnteringBody = false;
         _transform.SetParent(ent, PausedMap.Value);
         cryostorageComponent.StoredPlayers.Add(ent);

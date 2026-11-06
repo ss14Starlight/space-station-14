@@ -1,0 +1,15 @@
+- type: !PartialOnly reagent
+  id: Cola
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:ReduceSleepiness
+        time: 0.3
+
+- type: !PartialOnly reagent
+  id: EnergyDrink
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:ReduceSleepiness
+        time: 0.5

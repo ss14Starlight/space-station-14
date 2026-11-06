@@ -1,0 +1,20 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:lobby="clr-namespace:Content.Client.Lobby.UI">
+    <BoxContainer Orientation="Vertical" SeparationOverride="4">
+        <BoxContainer Orientation="Horizontal">
+            <Label Text="{Loc 'lobby-job-columns-header'}" StyleClasses="LabelKeyText" HorizontalExpand="True" VAlign="Center" />
+            <CheckBox Name="PriorityLock" Text="{Loc 'ui-lobby-lock-priorities-checkbox-label'}"
+                      ToolTip="{Loc 'ui-lobby-lock-priorities-checkbox-tooltip'}" />
+            <Button Name="CollapseButton" StyleClasses="ButtonSquare" Margin="4 0 0 0" />
+        </BoxContainer>
+        <BoxContainer Name="JobGrid" Orientation="Horizontal" HorizontalAlignment="Center" SeparationOverride="2">
+            <lobby:DraggableJobTarget Name="NeverBox" Priority="Never" />
+            <PanelContainer StyleClasses="PriorityBar" MinSize="1 0" />
+            <lobby:DraggableJobTarget Name="LowBox" Priority="Low" />
+            <PanelContainer StyleClasses="PriorityBar" MinSize="1 0" />
+            <lobby:DraggableJobTarget Name="MediumBox" Priority="Medium" />
+            <PanelContainer StyleClasses="PriorityBar" MinSize="1 0" />
+            <lobby:DraggableJobTarget Name="HighBox" Priority="High" />
+        </BoxContainer>
+    </BoxContainer>
+</Control>

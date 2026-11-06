@@ -59,4 +59,9 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<bool> ForceTestersTab =
         CVarDef.Create("ghosttheme.forcetesterstab", false, CVar.CLIENTONLY | CVar.ARCHIVE,
             "forces the Testers ghost theme tab to be visible even if you have no unlocks.");
+
+    [CVarControl(AdminFlags.Adminchat)]
+    public static readonly CVarDef<float> StaggeredSayCooldown =
+        CVarDef.Create("commands.staggered_say_cooldown", 1.5f, CVar.SERVERONLY | CVar.ARCHIVE,
+            "The number of seconds a user must wait before being able to execute ssay again.");
 }

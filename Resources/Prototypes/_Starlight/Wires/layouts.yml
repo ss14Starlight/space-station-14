@@ -74,3 +74,18 @@
       electrify: true
     - !type:PowerWireAction
     - !type:AiInteractWireAction
+
+- type: wireLayout
+  parent: HighSec
+  id: AirlockNT
+
+- type: wireLayout
+  id: StationRadioServer
+  dummyWires: 2
+  wires:
+  - !type:PowerWireAction
+  - !type:PowerWireAction
+    pulseTimeout: 15
+  - !type:StationRadioMusicWireAction
+  - !type:StationRadioMicrophoneWireAction
+  - !type:StationRadioInterferenceWireAction

@@ -79,17 +79,16 @@ public sealed class ZonePlacementOverlay : Robust.Client.Graphics.Overlay
             {
                 var room = rooms[i];
 
-                if (room == 0)
+                if (room == 0 || !view.Layouts.TryGetValue(room, out var layout))
                     continue;
 
-                var tile = (origin * SharedZoneSystem.ChunkSize) + new Vector2i(
-                    i >> 3,
-                    i & (SharedZoneSystem.ChunkSize - 1));
-
-                var color = RoomColour(view, room);
+                var tile = ZoneRoomView.TileAt(origin, i);
                 var box = new Box2(tile.X, tile.Y, tile.X + 1, tile.Y + 1);
 
-                handle.DrawRect(box, color.WithAlpha(RoomFillAlpha));
+                DrawRoomTile(handle, view, room, layout, box);
+
+                // Edges take the colour of the band the tile's centre is in.
+                var color = RoomColour(view, room, layout.BandOf(layout.Diagonal(box.Center)));
 
                 if (view.RoomAt(tile + new Vector2i(1, 0)) != room)
                     handle.DrawRect(new Box2(box.Right - RoomEdge, box.Bottom, box.Right, box.Top), color);
@@ -108,9 +107,61 @@ public sealed class ZonePlacementOverlay : Robust.Client.Graphics.Overlay
         handle.SetTransform(Matrix3x2.Identity);
     }
 
-    private Color RoomColour(ZoneRoomView view, ushort room) =>
-        (view.Zones.TryGetValue(room, out var zone)
-        && _proto.TryIndex(zone, out var proto))
+    private void DrawRoomTile(DrawingHandleWorld handle, ZoneRoomView view, ushort room, ZoneRoomLayout layout, Box2 box)
+    {
+        var first = layout.BandOf(layout.Diagonal(box.TopLeft));
+        var last = layout.BandOf(layout.Diagonal(box.BottomRight));
+
+        if (first == last)
+        {
+            handle.DrawRect(box, RoomColour(view, room, first).WithAlpha(RoomFillAlpha));
+            return;
+        }
+
+        for (var band = first; band <= last; band++)
+        {
+            var (low, high) = layout.BandRange(band);
+
+            _clipA.Clear();
+            _clipA.Add(box.BottomLeft);
+            _clipA.Add(box.BottomRight);
+            _clipA.Add(box.TopRight);
+            _clipA.Add(box.TopLeft);
+
+            Clip(_clipA, _clipB, p => layout.Diagonal(p) - low);
+            Clip(_clipB, _clipA, p => high - layout.Diagonal(p));
+
+            if (_clipA.Count >= 3)
+                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, _clipA, RoomColour(view, room, band).WithAlpha(RoomFillAlpha));
+        }
+    }
+
+    private readonly List<Vector2> _clipA = new();
+    private readonly List<Vector2> _clipB = new();
+
+    private static void Clip(List<Vector2> input, List<Vector2> output, Func<Vector2, float> side)
+    {
+        output.Clear();
+
+        for (var i = 0; i < input.Count; i++)
+        {
+            var a = input[i];
+            var b = input[(i + 1) % input.Count];
+            var sa = side(a);
+            var sb = side(b);
+
+            if (sa >= 0)
+                output.Add(a);
+
+            if ((sa >= 0) != (sb >= 0))
+                output.Add(Vector2.Lerp(a, b, sa / (sa - sb)));
+        }
+    }
+
+    private Color RoomColour(ZoneRoomView view, ushort room, int band) =>
+        (view.Zones.TryGetValue(room, out var zones)
+        && band < zones.Count
+        && _proto.TryIndex(zones[band], out var proto))
         ? proto.Color
         : Color.FromHsv(new Vector4(room * 0.61803f % 1f, 0.4f, 0.9f, 1f));
 
@@ -164,6 +215,8 @@ public sealed class ZonePlacementOverlay : Robust.Client.Graphics.Overlay
 
     private void DrawLabels(in OverlayDrawArgs args)
     {
+        DrawRoomLabels(args.ScreenHandle);
+
         var (draw, grid, shapes) = _placement.GetDrawTarget();
 
         if (!draw || shapes == null)
@@ -188,6 +241,51 @@ public sealed class ZonePlacementOverlay : Robust.Client.Graphics.Overlay
                 DrawLabel(handle, matrix, box, name, zone.Color);
             }
         }
+    }
+
+    private void DrawRoomLabels(DrawingHandleScreen handle)
+    {
+        var view = _placement.GetRooms(out var grid);
+
+        if (view == null)
+            return;
+
+        var matrix = _transform.GetWorldMatrix(grid);
+
+        foreach (var (room, layout) in view.Layouts)
+        {
+            if (!view.Zones.TryGetValue(room, out var zones))
+                continue;
+
+            var bottomLeft = _eye.WorldToScreen(Vector2.Transform(layout.Bounds.BottomLeft, matrix));
+            var topRight = _eye.WorldToScreen(Vector2.Transform(layout.Bounds.TopRight, matrix));
+
+            if (MathF.Abs(topRight.X - bottomLeft.X) < MinLabelWidth ||
+                MathF.Abs(topRight.Y - bottomLeft.Y) < MinLabelHeight * zones.Count)
+                continue;
+
+            for (var band = 0; band < zones.Count; band++)
+            {
+                if (layout.LabelPosition(band) is not { } position ||
+                    !_proto.TryIndex(zones[band], out var zone))
+                    continue;
+
+                var name = zone.Name is { } loc ? Loc.GetString(loc) : zone.ID;
+                var centre = _eye.WorldToScreen(Vector2.Transform(position, matrix));
+                DrawText(handle, centre, name, zone.Color);
+            }
+        }
+    }
+
+    private void DrawText(DrawingHandleScreen handle, Vector2 centre, string name, Color color)
+    {
+        var offset = new Vector2(MeasureWidth(name) / 2f, _font.GetLineHeight(1f) / 2f);
+        var pos = (centre - offset).Rounded();
+
+        foreach (var shadow in _outline)
+            handle.DrawString(_font, pos + shadow, name, Color.Black);
+
+        handle.DrawString(_font, pos, name, Brighten(color));
     }
 
     private void DrawLabel(DrawingHandleScreen handle, Matrix3x2 matrix, Box2 box, string name, Color color)

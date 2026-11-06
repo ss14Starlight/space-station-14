@@ -1,4 +1,8 @@
-cosmicability-generic-fail = Your influence fails to take hold..
+cosmicability-generic-fail = Your influence fails to take hold...
+
+cosmicability-fragmentation-confirm =
+    THIS WILL LIKELY REVEAL THE CULT TO THE STATION!
+           Press again to activate Null Fragmentation.
 
 cosmicability-glare-confirm = Press again to activate Null Glare.
 

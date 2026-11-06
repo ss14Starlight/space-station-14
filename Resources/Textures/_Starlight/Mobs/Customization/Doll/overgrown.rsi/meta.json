@@ -46,6 +46,11 @@
             "name": "overgrown_torso",
             "directions": 4,
     		"copyright": "SevenShades"
+        },
+        {
+            "name": "overgrown_m",
+            "directions": 4,
+    		"copyright": "Maitake"
         }
     ]
 }

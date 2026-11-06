@@ -113,7 +113,10 @@
   icon:
     sprite: Objects/Misc/monkeycube.rsi
     state: box
-  product: CrateNPCMonkeyCube
+  product: MonkeyCubeBox
+  container:
+    entity: WrappedParcel
+    containerId: contents
   cost: 2000
   category: cargoproduct-category-name-livestock
   group: market
@@ -123,7 +126,10 @@
   icon:
     sprite: Objects/Misc/monkeycube.rsi
     state: box_kobold
-  product: CrateNPCKoboldCube
+  product: KoboldCubeBox
+  container:
+    entity: WrappedParcel
+    containerId: contents
   cost: 2000
   category: cargoproduct-category-name-livestock
   group: market

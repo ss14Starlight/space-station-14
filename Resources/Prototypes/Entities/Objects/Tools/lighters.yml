@@ -118,7 +118,7 @@
 
 - type: entity
   name: cheap lighter
-  parent: BaseLighter
+  parent: Lighter # Starlight
   id: CheapLighter
   description: "A dangerously inexpensive plastic lighter, don't burn your thumb!"
   components:

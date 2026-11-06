@@ -193,7 +193,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponPistolStechkin
+        - id: WeaponPistolStechkinAPS
         - id: MagazinePistolFMJ
         - id: MagazinePistolSP
         - id: Stunbaton

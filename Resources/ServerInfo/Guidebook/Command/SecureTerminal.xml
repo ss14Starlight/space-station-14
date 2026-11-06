@@ -14,19 +14,20 @@ Every request made through this system is announced to the station, and in most 
 
 Only someone who holds the correct access can open a proposal. There are typically two [color=#ffd700]Main Communications Consoles[/color] on the station where requests can be started; one on the [bold]Bridge[/bold] and one in the [bold]Captain's office[/bold]. Either works.
 
-In the Main Communications Console, select 'Secure Terminal' to begin. From there you will see a list of available requests. Select the one relevant to the situation, provide a reason if prompted, and submit it. The terminal will immediately notify all Keycard Authentication Devices on the station that a proposal is pending, and a countdown will begin for co-authorizers to respond.
+In the Main Communications Console, select 'Secure Terminal' to begin. From there you will see a list of available requests. Select the one relevant to the situation, provide a reason if prompted, and submit it. The terminal will immediately notify all Keycard Authentication Devices on the station that a proposal is pending.
 
 Keep in mind:
 
 - Only [bold]one proposal[/bold] can be active at a time.
 - Most requests have a [bold]fee[/bold] drawn from your account when submitted; this is held until the proposal resolves.
 - Certain requests are [bold]one-time-use[/bold] per shift and cannot be re-submitted once used.
+- You and all co-authorizers must [bold]stay and keep your terminal windows open[/bold] until all required co-authorizations are gathered. Closing the window cancels the request (for the requester) or revokes your authorization.
 
 ## Co-Authorization
 
 Most requests require more than one person to approve them before anything happens. This is where the [color=#ffd700]Keycard Authentication Devices[/color] come in.
 
-The Captain and Every head of staff has one of these devices installed in their office. When a proposal is active, the authentication device will light up [color=blue]blue[/color]. A co-authorizer can walk up to it, and add their authorization to the pending request.
+The Captain and every head of staff has one of these devices installed in their office. When a proposal is active, the authentication device will light up [color=blue]blue[/color]. A co-authorizer can walk up to it, and add their authorization to the pending request.
 
 All Keycard Authentication Devices on the station are identical; they are not tied to a specific head of staff. Any command member with the right access can walk up to [italic]any[/italic] device, regardless of whose office it is in, and use it to co-authorize a pending proposal.
 
@@ -34,13 +35,16 @@ Each [color=#ffd700]Main Communications Console[/color] and each [color=#ffd700]
 
 Additionally, each individual command member can only authorize [bold]once per request[/bold].
 
-Once all required co-authorizations are collected, the terminal begins its activation countdown. The request will then activate automatically when the timer runs out, unless it requires approval from Central Command.
+There is [bold]no time limit[/bold] for gathering co-authorizations. However, active presence is strictly required: the requester and all co-authorizers must [bold]keep their terminal windows open[/bold] until all authorizations are gathered.
+- If the [bold]requester closes their window[/bold], the pending proposal is immediately cancelled and any held fee is refunded.
+- If a [bold]co-authorizer closes their window[/bold] before all authorizations are collected, their authorization is revoked. If all authorizations are lost, the proposal cancels.
 
-If the timer for collecting co-authorizations runs out before everyone has authorized, the proposal is cancelled and any held fee is refunded. As a general rule, you have [bold]30 seconds[/bold] to get everyone to co-authorize, though certain requests (such as the Nuclear Response Team) have no co-authorization time limit.
+Once all required co-authorizations are collected, the requester and authorizers can safely close their terminal windows. The proposal will then begin its countdown (or await Central Command approval if required), activating automatically when the timer runs out.
 
 ## A Few Things Worth Knowing
 
-- [bold]Canceling a request[/bold] can be done by any command member through the console; not just the person who started it.
+- [bold]Canceling a proposal[/bold]: While any proposal is still gathering authorizations (pending), any Command member can cancel it from a console. Once all authorizations are gathered and the activation countdown begins, non-ERT requests cannot be cancelled.
+- [bold]Rescinding an ERT dispatch[/bold]: Emergency Response Teams have an en-route transit countdown (5 to 30 minutes). During this arrival countdown, Command can [bold]rescind[/bold] the dispatch from a console if the threat is neutralized or contained before the team arrives. Rescinding requires satisfying that team's specific rescind scheme (such as designated Heads of Staff or multiple Command members). Those voting to rescind must also keep their terminal windows open until the threshold is satisfied.
 - Some requests require [bold]Central Command[/bold] approval before they activate, regardless of how many command staff have authorized. If no Central Command members are available, certain requests will bypass this and proceed automatically.
 - Armories and pods can be [bold]recalled[/bold] if they block evac or are no longer needed, once a short cooldown has elapsed.
 - If both consoles are destroyed or otherwise unavailable, the Captain's locker contains a [bold]Communications Computer Board[/bold] that can be used to build a replacement.

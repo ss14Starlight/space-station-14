@@ -2,7 +2,6 @@ using Content.Shared.Cargo.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using System.Text;
-using Content.Shared.Atmos.Prototypes;
 
 namespace Content.Shared.Cargo
 {
@@ -10,28 +9,16 @@ namespace Content.Shared.Cargo
     public sealed partial class CargoOrderData
     {
         /// <summary>
-        /// Price when the order was added.
-        /// </summary>
-        [DataField]
-        public int Price;
-
-        /// <summary>
         /// A unique (arbitrary) ID which identifies this order.
         /// </summary>
         [DataField]
         public int OrderId { get; private set; }
 
         /// <summary>
-        /// Prototype Id for the item to be created
+        /// The ID of the cargo product ordered.
         /// </summary>
         [DataField]
-        public EntProtoId? ProductId { get; private set; } // Starlight: possibly empty string => possibly null EntProtoId
-
-        /// <summary>
-        /// Prototype Name
-        /// </summary>
-        [DataField]
-        public string ProductName { get; private set; }
+        public ProtoId<CargoProductPrototype> Product;
 
         /// <summary>
         /// The number of items in the order. Not readonly, as it might change
@@ -62,48 +49,14 @@ namespace Content.Shared.Cargo
         [DataField]
         public ProtoId<CargoAccountPrototype> Account;
 
-        #region Starlight
-        /// <summary>
-        /// The ID of the station this order belongs to.
-        /// </summary>
-        [DataField] public NetEntity StationId;
-
-        /// <summary>
-        /// The prototype ID of the ordered product.
-        /// </summary>
-        [DataField] public ProtoId<CargoProductPrototype> CargoProductId;
-
-        /// <summary>
-        /// The ordered gas, if it was a gas order.
-        /// </summary>
-        [DataField] public ProtoId<GasPrototype>? GasType;
-
-        /// <summary>
-        /// The amount of moles of gas were bought, if it was a gas order.
-        /// </summary>
-        [DataField] public float GasMoles;
-
-        /// <summary>
-        /// The temperature of the gas that was bought, if it was a gas order.
-        /// </summary>
-        [DataField] public float GasTemperature;
-        #endregion
-
-        public CargoOrderData(int orderId, EntProtoId? productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, ProtoId<CargoProductPrototype> cargoProductId, ProtoId<GasPrototype>? gasType, float gasMoles, float gasTemp) // Starlight
+        public CargoOrderData(int orderId, ProtoId<CargoProductPrototype> product, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account)
         {
             OrderId = orderId;
-            ProductId = productId;
-            ProductName = productName;
-            Price = price;
+            Product = product;
             OrderQuantity = amount;
             Requester = requester;
             Reason = reason;
             Account = account;
-            StationId = stationId; // Starlight BEGIN
-            CargoProductId = cargoProductId;
-            GasType = gasType;
-            GasMoles = gasMoles;
-            GasTemperature = gasTemp; // Starlight END
         }
 
         public void SetApproverData(string? approver)

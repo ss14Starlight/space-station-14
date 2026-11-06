@@ -116,8 +116,4 @@
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
       visible: false
-    - map: [ "clownedon" ] # Dynamically generated
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
-      visible: false
 # for fragile electronics like consoles or shuttle engines.

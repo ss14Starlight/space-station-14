@@ -1,0 +1,18 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'adjustable-thruster-window-title'}"
+               MinSize="320 130"
+               SetSize="320 130">
+    <BoxContainer Orientation="Vertical" Margin="4">
+        <BoxContainer Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Text="{Loc 'adjustable-thruster-window-output'}" StyleClasses="StatusFieldTitle" />
+            <BoxContainer Name="ThrustInputContainer" Orientation="Horizontal" HorizontalExpand="True"
+                          HorizontalAlignment="Right" MinSize="130 0" Margin="5 0 0 0" />
+            <Label Text="{Loc 'adjustable-thruster-window-unit'}" Margin="5 0 0 0" StyleClasses="StatusFieldTitle" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalAlignment="Center" Margin="0 5 0 0">
+            <Label Name="MinValue" Margin="0 0 5 0" StyleClasses="StatusFieldTitle" />
+            <Slider Name="ThrustSlider" HorizontalExpand="True" />
+            <Label Name="MaxValue" Margin="5 0 0 0" StyleClasses="StatusFieldTitle" />
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

@@ -8,7 +8,7 @@
   suffix: Admeme
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/armor.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -23,7 +23,7 @@
   suffix: Admeme
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/armor.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -38,7 +38,7 @@
   suffix: Admeme
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/armor.rsi
     state: icon
   - type: RandomMetadata
     nameSegments:
@@ -53,7 +53,7 @@
   suffix: Admeme
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
+    sprite: _Starlight/Admeme/Scarlet/blackstar_assault/armor.rsi
     state: icon
   - type: RandomHumanoidSpawner
     settings: BlackstarInitiateSettings
@@ -154,13 +154,13 @@
 - type: startingGear
   id: BlackstarOperativeGear
   equipment:
-    head: ClothingHeadHelmetBlackstar
-    mask: ClothingMaskGasSwat
-    outerClothing: ClothingOuterHardsuitBlackstar
-    jumpsuit: ClothingUniformJumpsuitColorBlack
+    head: ClothingHeadHelmetBlackstarAssault
+    mask: ClothingMaskGasBlackstarAssault
+    outerClothing: ClothingOuterArmorBlackstarAssault
+    jumpsuit: ClothingUniformJumpsuitBlackstarAssault
     gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesBootsJackFilled
-    back: ClothingBackpackSatchel
+    back: ClothingBackpackRadioBlackstar
     belt: ClothingBeltMilitaryWebbing
     id: BlackstarDreadwalkerPDA
     ears: ClothingHeadsetAltBlackstar
@@ -288,9 +288,9 @@
 - type: startingGear
   id: BlackstarLegionnaireGear
   equipment:
-    head: ClothingHeadHelmetBlackstar
+    head: ClothingHeadHelmetBlackstarAssault
     mask: ClothingMaskNeckGaiter
-    outerClothing: ClothingOuterHardsuitBlackstar
+    outerClothing: ClothingOuterArmorBlackstarAssault
     jumpsuit: ClothingUniformJumpsuitColorBlack
     gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesBootsJackFilled
@@ -358,5 +358,4 @@
     - MedkitFilled
     - FlashlightSeclite
     - DoubleEmergencyOxygenTankFilled
-
 

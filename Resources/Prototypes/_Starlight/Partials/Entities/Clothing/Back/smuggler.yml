@@ -1,0 +1,6 @@
+# Subfloor layers
+- type: !PartialOnly entity
+  id: BaseSubfloorAnchorStorage
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Other

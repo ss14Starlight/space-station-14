@@ -1,0 +1,7 @@
+first obv sprite it and put in folder above
+next, make entries in the following files:
+/Resources/Textures/_Inferus/Structures/Wallmounts/flags.rsi/meta.json
+/Resources/Prototypes/_Inferus/Entities/Structures/Wallmounts/Signs/flags.yml
+/Resources/Prototypes/_Inferus/Recipes/Construction/Graphs/Structures/flags.yml
+/Resources/Prototypes/_Inferus/Recipes/Construction/flags.yml
+and then you should hopefully be good to go

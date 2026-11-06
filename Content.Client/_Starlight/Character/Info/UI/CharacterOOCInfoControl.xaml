@@ -4,17 +4,17 @@
     xmlns:ui1="clr-namespace:Content.Client._Starlight.Character.UI">
     <BoxContainer Orientation="Vertical" VerticalExpand="True">
         <Label VerticalAlignment="Top" Margin="0 6 0 10" HorizontalAlignment="Center" StyleClasses="LabelHeading"
-               Access="Public" Text="Out-Of-Character Info:"/>
+               Access="Public" Text="{Loc 'character-info-ooc-header'}"/>
         <ui1:CharacterViewControl Name="CharacterView" Access="Public"/>
         <BoxContainer Orientation="Vertical" VerticalExpand="True">
-            <Label Text="OOC Notes:"/>
+            <Label Text="{Loc 'character-info-ooc-notes'}"/>
             <RichTextLabel Name="OOCNotes" Access="Public" MinSize="220 100" Margin="10"
                            VerticalExpand="True" VerticalAlignment="Top"/>
         </BoxContainer>
         <PanelContainer Name="HiddenInfoSection" Access="Public" Visible="False">
             <BoxContainer Orientation="Vertical" VerticalExpand="True">
-                <Label Text="Hidden Info" StyleClasses="LabelHeading"/>
-                <Label Text="Personal Notes:"/>
+                <Label Text="{Loc 'character-info-hidden'}" StyleClasses="LabelHeading"/>
+                <Label Text="{Loc 'character-info-personal-notes'}"/>
                 <RichTextLabel Name="PersonalNotes" Access="Public" MinSize="220 100" Margin="10"
                        VerticalExpand="True" VerticalAlignment="Top"/>
             </BoxContainer>

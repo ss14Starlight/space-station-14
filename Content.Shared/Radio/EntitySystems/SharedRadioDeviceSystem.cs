@@ -1,6 +1,6 @@
 using Content.Shared.Popups;
 using Content.Shared.Radio.Components;
-using Content.Shared._Goobstation.StationRadio.Components; // Starlight  - Examine the station radio server to see if microphone is active.
+using Content.Shared._Starlight.StationRadio.Components; // Starlight  - Examine the station radio server to see if microphone is active.
 using Content.Shared.Examine; // Starlight  - Examine the station radio server to see if microphone is active.
 
 namespace Content.Shared.Radio.EntitySystems;

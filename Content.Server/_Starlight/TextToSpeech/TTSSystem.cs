@@ -8,10 +8,12 @@ using Content.Shared.Radio;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.TextToSpeech;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Enums;
 
 namespace Content.Server._Starlight.TextToSpeech;
 
@@ -24,6 +26,7 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private ITTSClient _client = default!;
     [Dependency] private IRobustRandom _rng = default!;
     [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     private readonly List<string> _sampleText =
     [
@@ -128,7 +131,19 @@ public sealed partial class TTSSystem : EntitySystem
                 ? GetOrAssignVoice(GetEntity(args.SpeakerUid.Value), fallbackVoice: DefaultAnnounceVoice)
                 : DefaultAnnounceVoice;
 
-            await GenerateAndStream(TTSType.Announcement, voice, text, filter, TTSEffect.Megaphone, args.AnnouncementSound);
+            // Delay voice until announcement chime finishes so the two don't overlap.
+            // Falls back to immediate playback if the duration can't be resolved.
+            try
+            {
+                if (args.AnnouncementSound is { } chime)
+                    await Task.Delay(_audio.GetAudioLength(_audio.ResolveSound(chime)));
+            }
+            catch (Exception ex)
+            {
+                _sawmill.Error($"TTS announcement chime delay failed, playing voice immediately: {ex.Message}");
+            }
+
+            await GenerateAndStream(TTSType.Announcement, voice, text, filter, TTSEffect.Megaphone);
         }
         catch (TaskCanceledException ex)
         {
@@ -175,6 +190,18 @@ public sealed partial class TTSSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Plays a standard speech event at a different TTS-capable entity, preserving the original speaker's voice.
+    /// </summary>
+    public void PlaySpeechAt(EntityUid playbackEntity, EntitySpokeEvent args)
+    {
+        if (!TryComp(args.Source, out TextToSpeechComponent? speakerComponent)
+            || !HasComp<TextToSpeechComponent>(playbackEntity))
+            return;
+
+        OnEntitySpoke(playbackEntity, speakerComponent, args);
+    }
+
     private Filter GetFilter(EntityUid uid, EntitySpokeEvent args)
     {
         Filter filter;
@@ -219,7 +246,15 @@ public sealed partial class TTSSystem : EntitySystem
         }, filter, false);
 
         await foreach (var chunk in _client.GenerateTTS(text, voice, effect))
+        {
+            filter.RemoveWhere(session => session.Status is not (SessionStatus.Connected or SessionStatus.InGame)
+                                        || !session.Channel.IsConnected);
+
+            if (filter.Count == 0)
+                break;
+
             RaiseNetworkEvent(new TTSChunkEvent { Id = id, Data = chunk }, filter, false);
+        }
     }
 
     private async void OnClientOptionTTS(ClientOptionTTSEvent ev, EntitySessionEventArgs args)

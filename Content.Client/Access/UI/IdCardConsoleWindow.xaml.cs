@@ -32,10 +32,6 @@ namespace Content.Client.Access.UI
 
         private IdCardConsoleBoundUserInterface? _owner; // Starlight edit
 
-        // CCVar.
-        private int _maxNameLength;
-        private int _maxIdJobLength;
-
         private const int JobIconColumnCount = 10; // Starlight-edit
 
         private AccessLevelControl _accessButtons = new();
@@ -70,11 +66,8 @@ namespace Content.Client.Access.UI
 
             // Starlight _owner = owner; // Starlight edit
 
-            _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
-            _maxIdJobLength = _cfgManager.GetCVar(CCVars.MaxIdJobLength);
-
             FullNameLineEdit.OnTextEntered += _ => SubmitData();
-            FullNameLineEdit.IsValid = s => s.Length <= _maxNameLength;
+            FullNameLineEdit.IsValid = s => s.Length <= _cfgManager.GetCVar(CCVars.MaxNameLength);
             FullNameLineEdit.OnTextChanged += _ =>
             {
                 FullNameSaveButton.Disabled = FullNameSaveButton.Text == _lastFullName;
@@ -82,7 +75,7 @@ namespace Content.Client.Access.UI
             FullNameSaveButton.OnPressed += _ => SubmitData();
 
             JobTitleLineEdit.OnTextEntered += _ => SubmitData();
-            JobTitleLineEdit.IsValid = s => s.Length <= _maxIdJobLength;
+            JobTitleLineEdit.IsValid = s => s.Length <= _cfgManager.GetCVar(CCVars.MaxIdJobLength);
             JobTitleLineEdit.OnTextChanged += _ =>
             {
                 JobTitleSaveButton.Disabled = JobTitleLineEdit.Text == _lastJobTitle;

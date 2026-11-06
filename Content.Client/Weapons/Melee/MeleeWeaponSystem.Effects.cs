@@ -35,7 +35,7 @@ public sealed partial class MeleeWeaponSystem
         // Starlight Begin - Mech wideswing
         var originEntity = GetOriginEntity(user);
 
-        if (!_xformQuery.TryGetComponent(originEntity, out var userXform) || userXform.MapID == MapId.Nullspace)
+        if (!TryComp(originEntity, out TransformComponent? userXform) || userXform.MapID == MapId.Nullspace)
             return;
         // Starlight End
 
@@ -72,7 +72,7 @@ public sealed partial class MeleeWeaponSystem
         // Starlight-end
         _sprite.SetRotation((animationUid, sprite), localPos.ToWorldAngle());
 
-        var xform = _xformQuery.GetComponent(animationUid);
+        var xform = Transform(animationUid);
         TrackUserComponent track;
 
         switch (arcComponent.Animation)
@@ -162,6 +162,7 @@ public sealed partial class MeleeWeaponSystem
 
         startRotation += spriteRotation;
         endRotation += spriteRotation;
+        sprite.Comp.NoRotation = true;
 
         return new Animation()
         {
@@ -411,7 +412,7 @@ public sealed partial class MeleeWeaponSystem
             if (arcComponent.User == null || EntityManager.Deleted(arcComponent.User))
                 continue;
 
-            var targetPos = TransformSystem.GetWorldPosition(arcComponent.User.Value);
+            Vector2 targetPos = TransformSystem.GetWorldPosition(arcComponent.User.Value);
 
             if (arcComponent.Offset != Vector2.Zero)
             {

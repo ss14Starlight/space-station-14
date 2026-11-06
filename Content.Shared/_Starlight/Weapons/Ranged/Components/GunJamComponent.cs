@@ -11,7 +11,7 @@ public sealed partial class GunJamDefectComponent : DefectComponent
 {
     public GunJamDefectComponent()
     {
-        DefectLabel = "damaged bolt";
+        DefectLabel = "defect-label-damaged-bolt";
     }
 
     // Whether the gun is currently jammed.

@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: FreezerElectronics
+  components:
+  - type: Tag
+    tags:
+    - RamChip # FH

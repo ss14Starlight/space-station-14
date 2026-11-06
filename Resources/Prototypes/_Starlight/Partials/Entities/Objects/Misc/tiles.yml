@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: FloorTileItemBase
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  - type: !Remove DamageOnLand
+    damage: !Remove

@@ -33,6 +33,11 @@
   parent: BaseCrewSpeciesPhrase
   text: species-name-ipc
 
+- type: quickPhrase
+  id: SpeciesDollPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-doll
+
 # Neocytes and neocyte subspecies
 
 - type: quickPhrase
@@ -124,3 +129,15 @@
   id: SpeciesNeoElfPhrase
   parent: SpeciesNeocytePhrase
   text: subspecies-name-neoelf
+
+# Sawian and Sawian subspecies
+
+- type: quickPhrase
+  id: SpeciesSawianPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-sawian
+
+- type: quickPhrase
+  id: SpeciesExperimentPhrase
+  parent: SpeciesSawianPhrase
+  text: species-name-experiment

@@ -1,0 +1,4 @@
+- type: soundCollection
+  id: Blinks
+  files:
+    - /Audio/_Starlight/Effects/Emotes/blink.ogg

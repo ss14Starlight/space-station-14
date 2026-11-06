@@ -71,20 +71,14 @@ public sealed partial class CargoGiftsRule : StationEventSystem<CargoGiftsRuleCo
 
             if (!_cargoSystem.AddAndApproveOrder(
                     station!.Value,
-                    product.Product,
-                    product.Name,
-                    product.Cost,
+                    product,
                     qty,
                     Loc.GetString(component.Sender),
                     Loc.GetString(component.Description),
                     Loc.GetString(component.Dest),
                     cargoDb,
                     component.Account,
-                    (station.Value, stationData),
-                    productId, // Starlight
-                    product.GasType, // Starlight
-                    product.GasMoles, // Starlight
-                    product.GasTemperature // Starlight
+                    (station.Value, stationData)
             ))
             {
                 break;
