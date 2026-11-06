@@ -1,6 +1,6 @@
-using Content.Shared._Moffstation.Snapshots;
+using Content.Shared._Starlight.Snapshots;
 
-namespace Content.Server._Moffstation.Snapshots;
+namespace Content.Server._Starlight.Snapshots;
 
 /// <summary>
 /// The scene a snapshot shows. Saved Serverside and send when requested

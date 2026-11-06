@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace Content.Client._Moffstation.Snapshots;
+namespace Content.Client._Starlight.Snapshots;
 
 /// <summary>
 /// tiles the photographer couldn't see, drawn black by <see cref="SnapshotViewShadowsOverlay"/>.

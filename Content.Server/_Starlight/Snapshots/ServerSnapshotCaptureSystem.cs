@@ -4,7 +4,7 @@ using Content.Server.Movement.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.Nodes;
 using Content.Shared._Starlight.Light;
-using Content.Shared._Moffstation.Snapshots;
+using Content.Shared._Starlight.Snapshots;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Camera;
 using Content.Shared.Examine;
@@ -32,7 +32,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Moffstation.Snapshots;
+namespace Content.Server._Starlight.Snapshots;
 
 /// <summary>
 /// Prints snapshots from <see cref="SnapshotCaptureComponent"/> items, records what the photographer could see

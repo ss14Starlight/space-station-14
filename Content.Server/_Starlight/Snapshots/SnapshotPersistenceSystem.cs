@@ -1,10 +1,10 @@
 using System.IO;
-using Content.Shared._Moffstation.Snapshots;
+using Content.Shared._Starlight.Snapshots;
 using Content.Shared.Photography;
 using Robust.Shared.Utility;
 using Robust.Shared.Serialization;
 
-namespace Content.Server._Moffstation.Snapshots;
+namespace Content.Server._Starlight.Snapshots;
 
 public sealed partial class SnapshotPersistenceSystem : EntitySystem
 {
@@ -131,4 +131,3 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
         }
     }
 }
-

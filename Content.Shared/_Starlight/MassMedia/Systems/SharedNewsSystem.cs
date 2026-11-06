@@ -1,4 +1,4 @@
-using Content.Shared._Moffstation.Snapshots;
+using Content.Shared._Starlight.Snapshots;
 using Robust.Shared.Serialization;
 
 // ReSharper disable once CheckNamespace
@@ -21,5 +21,3 @@ public sealed class NewsArticlePhotoDataEvent(SnapshotData data) : EntityEventAr
 {
     public readonly SnapshotData Data = data;
 }
-
-

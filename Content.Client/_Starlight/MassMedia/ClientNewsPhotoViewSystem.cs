@@ -1,4 +1,4 @@
-using Content.Client._Moffstation.Snapshots;
+using Content.Client._Starlight.Snapshots;
 using Content.Shared.MassMedia.Systems;
 using Robust.Client.UserInterface;
 

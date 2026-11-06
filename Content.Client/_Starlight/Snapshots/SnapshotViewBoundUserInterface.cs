@@ -1,8 +1,8 @@
-using Content.Shared._Moffstation.Snapshots;
+using Content.Shared._Starlight.Snapshots;
 using Robust.Client.UserInterface;
 using Robust.Shared.Graphics;
 
-namespace Content.Client._Moffstation.Snapshots;
+namespace Content.Client._Starlight.Snapshots;
 
 /// <summary>
 /// Shows a Map using the Snapshot recorded on an entity

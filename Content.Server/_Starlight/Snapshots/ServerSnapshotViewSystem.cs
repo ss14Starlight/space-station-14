@@ -1,11 +1,11 @@
-using Content.Shared._Moffstation.Snapshots;
-using Content.Shared.CCVar;
+using Content.Shared._Starlight.Snapshots;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
 using Content.Shared.Players.RateLimiting;
 using Robust.Shared.Player;
 
-namespace Content.Server._Moffstation.Snapshots;
+namespace Content.Server._Starlight.Snapshots;
 
 /// <summary>
 /// Sends a snapshot's <see cref="SnapshotData"/> to the one player viewing or holding it, and nobody else.
@@ -24,8 +24,8 @@ public sealed partial class ServerSnapshotViewSystem : EntitySystem
         base.Initialize();
 
         _rateLimit.Register(RateLimitKey,
-            new RateLimitRegistration(CCVars.SnapshotViewRateLimitPeriod,
-                CCVars.SnapshotViewRateLimitCount,
+            new RateLimitRegistration(StarlightCCVars.SnapshotViewRateLimitPeriod,
+                StarlightCCVars.SnapshotViewRateLimitCount,
                 null));
 
         Subs.BuiEvents<SnapshotComponent>(SnapshotViewUiKey.Key,

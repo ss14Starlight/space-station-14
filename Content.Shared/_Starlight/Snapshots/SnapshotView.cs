@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Moffstation.Snapshots;
+namespace Content.Shared._Starlight.Snapshots;
 
 [Serializable, NetSerializable]
 public enum SnapshotViewUiKey : byte
@@ -24,3 +24,4 @@ public sealed class SnapshotViewDataEvent(NetEntity snapshot, SnapshotData data)
     public readonly NetEntity Snapshot = snapshot;
     public readonly SnapshotData Data = data;
 }
+

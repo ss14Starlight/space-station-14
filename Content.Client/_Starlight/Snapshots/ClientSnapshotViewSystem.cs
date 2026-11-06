@@ -5,7 +5,7 @@ using Content.Client.Gravity;
 using Content.Client._Starlight.Humanoid;
 using Content.Client.IconSmoothing;
 using Content.Client.MapText;
-using Content.Shared._Moffstation.Snapshots;
+using Content.Shared._Starlight.Snapshots;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Hands.Components;
@@ -27,7 +27,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Client._Moffstation.Snapshots;
+namespace Content.Client._Starlight.Snapshots;
 
 /// <summary>
 /// Rebuilds a snapshot on a client-only map so it can be looked at through a fixed eye.

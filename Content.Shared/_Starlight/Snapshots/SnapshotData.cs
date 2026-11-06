@@ -10,7 +10,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Moffstation.Snapshots;
+namespace Content.Shared._Starlight.Snapshots;
 
 /// <summary>
 /// Viewers rebuild this on a client-only map, so clients never upload image data.

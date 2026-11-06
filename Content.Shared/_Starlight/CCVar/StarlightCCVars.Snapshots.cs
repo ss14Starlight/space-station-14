@@ -1,8 +1,8 @@
 using Robust.Shared.Configuration;
 
-namespace Content.Shared.CCVar;
+namespace Content.Shared._Starlight.CCVar;
 
-public sealed partial class CCVars
+public sealed partial class StarlightCCVars
 {
     /// <summary>
     /// Number of snapshot view requests allowed per player during the rate limit period.

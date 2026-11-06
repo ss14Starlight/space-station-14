@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Moffstation.Snapshots;
+namespace Content.Shared._Starlight.Snapshots;
 
 /// <summary>
 /// This component enables an item to record what its holder could see.

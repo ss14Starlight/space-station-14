@@ -37,7 +37,7 @@ using Content.Shared._Starlight.Fax;
 using Content.Shared._Starlight.Fax.UI;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Ghost;
-using Content.Server._Moffstation.Snapshots;
+using Content.Server._Starlight.Snapshots;
 #endregion Starlight
 
 namespace Content.Server.Fax;

@@ -13,7 +13,7 @@
     - 3,3
     - 1,1
   - type: Sprite
-    sprite: _Moffstation/Objects/Devices/snapshot_camera.rsi
+    sprite: _Starlight/Objects/Devices/snapshot_camera.rsi
     layers:
     - state: icon
       map: [ "base" ]
@@ -44,7 +44,7 @@
   - type: Clothing
     slots:
     - NECK
-    sprite: _Moffstation/Objects/Devices/snapshot_camera.rsi
+    sprite: _Starlight/Objects/Devices/snapshot_camera.rsi
 
 - type: entity
   parent: BasePaper
@@ -70,3 +70,4 @@
     interfaces:
       enum.SnapshotViewUiKey.Key:
         type: SnapshotViewBoundUserInterface
+

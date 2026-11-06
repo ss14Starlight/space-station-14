@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Shared._Moffstation.Snapshots;
+using Content.Shared._Starlight.Snapshots;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -7,7 +7,7 @@ using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 
-namespace Content.Client._Moffstation.Snapshots;
+namespace Content.Client._Starlight.Snapshots;
 
 /// <summary>
 /// While the local player looks through a viewfinder, frames the area a snapshot taken at the mouse would cover.

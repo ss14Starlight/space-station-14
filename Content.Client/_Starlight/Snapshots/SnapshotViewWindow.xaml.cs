@@ -3,7 +3,7 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Graphics;
 
-namespace Content.Client._Moffstation.Snapshots;
+namespace Content.Client._Starlight.Snapshots;
 
 [GenerateTypedNameReferences]
 public sealed partial class SnapshotViewWindow : DefaultWindow

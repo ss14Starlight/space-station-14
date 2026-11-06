@@ -2,7 +2,7 @@ using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
 
-namespace Content.Client._Moffstation.Snapshots;
+namespace Content.Client._Starlight.Snapshots;
 
 /// <summary>
 /// Draws what a snapshot's photographer couldn't see black, like out-of-sight areas in game: wall shadows cast from

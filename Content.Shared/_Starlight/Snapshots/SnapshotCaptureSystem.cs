@@ -11,7 +11,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Moffstation.Snapshots;
+namespace Content.Shared._Starlight.Snapshots;
 
 /// <summary>
 /// Using the item in hand raises it to the eye when raised you can take a snapshot of a spot you click on.

@@ -2,7 +2,7 @@ using System.Numerics;
 using Content.Client.IconSmoothing;
 using Content.Client.Movement.Components;
 using Content.Client.Movement.Systems;
-using Content.Shared._Moffstation.Snapshots;
+using Content.Shared._Starlight.Snapshots;
 using Content.Shared.Camera;
 using Content.Shared.Hands;
 using Robust.Client.GameObjects;
@@ -10,7 +10,7 @@ using Robust.Client.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
-namespace Content.Client._Moffstation.Snapshots;
+namespace Content.Client._Starlight.Snapshots;
 
 public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
 {

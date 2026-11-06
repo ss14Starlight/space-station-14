@@ -1,7 +1,7 @@
 using Content.Server.CartridgeLoader.Cartridges;
 using Content.Server.MassMedia.Components;
-using Content.Server._Moffstation.Snapshots;
-using Content.Shared.CCVar;
+using Content.Server._Starlight.Snapshots;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.MassMedia.Systems;
 using Content.Shared.Hands.EntitySystems;
@@ -25,24 +25,18 @@ public sealed partial class NewsSystem
     private const string PhotoRateLimitKey = "NewsPhotoView";
 
     private void InitializeNewsPhoto()
-    {
-        _rateLimit.Register(PhotoRateLimitKey,
-            new RateLimitRegistration(CCVars.SnapshotViewRateLimitPeriod,
-                CCVars.SnapshotViewRateLimitCount,
+        => _rateLimit.Register(PhotoRateLimitKey,
+            new RateLimitRegistration(StarlightCCVars.SnapshotViewRateLimitPeriod,
+                StarlightCCVars.SnapshotViewRateLimitCount,
                 null));
-    }
 
     [SubscribeLocalEvent]
     private void OnNewsPhotoSlotChanged(Entity<NewsWriterComponent> ent, ref EntInsertedIntoContainerMessage args)
-    {
-        OnNewsPhotoSlotChanged(ent, args.Container.ID);
-    }
+        => OnNewsPhotoSlotChanged(ent, args.Container.ID);
 
     [SubscribeLocalEvent]
     private void OnNewsPhotoSlotChanged(Entity<NewsWriterComponent> ent, ref EntRemovedFromContainerMessage args)
-    {
-        OnNewsPhotoSlotChanged(ent, args.Container.ID);
-    }
+        => OnNewsPhotoSlotChanged(ent, args.Container.ID);
 
     private void OnNewsPhotoSlotChanged(Entity<NewsWriterComponent> ent, string containerId)
     {
@@ -106,5 +100,3 @@ public sealed partial class NewsSystem
         return description;
     }
 }
-
-
