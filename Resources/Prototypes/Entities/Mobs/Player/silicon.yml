@@ -96,6 +96,8 @@
   - type: StationAIShuntable
   - type: RemoteControlConsole # Starlight
     remoteControlPower: 21 # Starlight
+  - type: DeviceLinkSource # Starlight
+    ports: [ RemoteControl ] # Starlight
   #endregion Starlight
   - type: DamagedSiliconAccent
     startPowerCorruptionAtCharIdx: 4

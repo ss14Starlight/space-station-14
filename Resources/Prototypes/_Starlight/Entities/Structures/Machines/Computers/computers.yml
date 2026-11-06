@@ -243,6 +243,8 @@
       state: generic_panel_open
   - type: RemoteControlConsole
     remoteControlPower: 15
+  - type: DeviceLinkSource
+    ports: [ RemoteControl ]
   - type: ActivatableUI
     key: enum.RemoteControlUIKey.Key
   - type: UserInterface

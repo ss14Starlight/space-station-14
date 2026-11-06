@@ -11,4 +11,6 @@
   - type: Eye
   - type: ContentEye
   - type: RemoteControlBrain
+  - type: DeviceLinkSink
+    ports: [ RemoteControlControllable ]
   - type: BorgBrain

@@ -26,6 +26,8 @@
     enableRemoteView: false
     ownerOnly: true
     requiredAction: ActionPAIRemoteControl
+  - type: DeviceLinkSource
+    ports: [ RemoteControl ]
   - type: UserInterface
     interfaces:
       enum.RemoteControlSettingsUIKey.Key:

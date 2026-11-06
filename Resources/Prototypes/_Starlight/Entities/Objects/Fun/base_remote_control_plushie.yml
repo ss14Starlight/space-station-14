@@ -3,6 +3,8 @@
   id: BaseRemoteControlPlushie
   components:
   - type: RemoteControlBrain
+  - type: DeviceLinkSink
+    ports: [ RemoteControlControllable ]
   - type: Input
     context: human
   - type: Actions

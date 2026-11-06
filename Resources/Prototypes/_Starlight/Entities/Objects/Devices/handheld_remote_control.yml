@@ -36,6 +36,8 @@
     singleUser: true
   - type: RemoteControlConsole
     remoteControlPower: 10
+  - type: DeviceLinkSource
+    ports: [ RemoteControl ]
   - type: UserInterface
     interfaces:
       enum.RemoteControlUIKey.Key:
@@ -98,6 +100,8 @@
   - type: RemoteControlConsole
     enableRemoteView: false
     remoteControlPower: 5
+  - type: DeviceLinkSource
+    ports: [ RemoteControl ]
   - type: UserInterface
     interfaces:
       enum.RemoteControlSettingsUIKey.Key:
