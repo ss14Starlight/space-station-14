@@ -31,7 +31,6 @@ public sealed partial class HydrogenCombinedFireReaction : IGasReactionEffect
         var energyReleased = 0f;
         var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
         var temperature = mixture.Temperature;
-        var location = holder as TileAtmosphere;
         mixture.ReactionResults[(byte)GasReaction.Fire] = 0f;
         var burnedFuel = 0f;
         var initialH2 = mixture.GetMoles(Gas.Hydrogen);
@@ -87,10 +86,10 @@ public sealed partial class HydrogenCombinedFireReaction : IGasReactionEffect
         if (energyReleased > 0)
         {
             var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
-            if (newHeatCapacity > Atmospherics.MinimumHeatCapacity) mixture.Temperature = ((temperature * oldHeatCapacity + energyReleased) / newHeatCapacity);
+            if ((newHeatCapacity > Atmospherics.MinimumHeatCapacity)) mixture.Temperature = (temperature * (oldHeatCapacity + energyReleased) / newHeatCapacity);
         }
 
-        if (location != null)
+        if (holder is TileAtmosphere location)
         {
             temperature = mixture.Temperature;
             if (temperature > Atmospherics.FireMinimumTemperatureToExist)

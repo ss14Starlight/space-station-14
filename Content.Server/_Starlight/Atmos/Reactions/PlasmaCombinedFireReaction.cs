@@ -4,8 +4,8 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
 
-namespace Content.Server._Starlight.Atmos.Reactions
-{
+namespace Content.Server._Starlight.Atmos.Reactions;
+
     [UsedImplicitly]
     [DataDefinition]
     public sealed partial class PlasmaCombinedFireReaction : IGasReactionEffect
@@ -24,7 +24,6 @@ namespace Content.Server._Starlight.Atmos.Reactions
             var energyReleased = 0f;
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
-            var location = holder as TileAtmosphere;
             mixture.ReactionResults[(byte)GasReaction.Fire] = 0;
 
             // More plasma released at higher temperatures.
@@ -87,7 +86,7 @@ namespace Content.Server._Starlight.Atmos.Reactions
                     mixture.AdjustMoles(Gas.CarbonDioxide, plasmaBurnRate * (1.0f - supersaturation));
 
                     // calculate the burn rate of all oxidisers consumed
-                    var oxidiserBurnRate = (oxygenConsumed + pluoxConsumed * PluoxiumFactor) / plasmaBurnRate;
+                    var oxidiserBurnRate = (oxygenConsumed + (pluoxConsumed * PluoxiumFactor)) / plasmaBurnRate;
 
                     energyReleased += Atmospherics.FirePlasmaEnergyReleased * plasmaBurnRate;
                     energyReleased /= heatScale; // adjust energy to make sure speedup doesn't cause mega temperature rise
@@ -99,10 +98,10 @@ namespace Content.Server._Starlight.Atmos.Reactions
             {
                 var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
                 if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
-                    mixture.Temperature = (temperature * oldHeatCapacity + energyReleased) / newHeatCapacity;
+                    mixture.Temperature = ((temperature * oldHeatCapacity) + energyReleased) / newHeatCapacity;
             }
 
-            if (location != null)
+            if (holder is TileAtmosphere location)
             {
                 var mixTemperature = mixture.Temperature;
                 if (mixTemperature > Atmospherics.FireMinimumTemperatureToExist)
@@ -114,4 +113,3 @@ namespace Content.Server._Starlight.Atmos.Reactions
             return mixture.ReactionResults[(byte)GasReaction.Fire] != 0 ? ReactionResult.Reacting : ReactionResult.NoReaction;
         }
     }
-}
