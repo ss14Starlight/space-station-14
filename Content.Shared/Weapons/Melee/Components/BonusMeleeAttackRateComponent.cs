@@ -17,6 +17,11 @@ public sealed partial class BonusMeleeAttackRateComponent : Component
     [DataField("multiplier"), ViewVariables(VVAccess.ReadWrite)]
     public float Multiplier = 1;
 
+    //Starlight-Start
+    [DataField]
+    public bool WieldedOnly; // For DevoutChap staff
+    //Starlight-End
+
     /// <summary>
     /// A value that is added on to a weapon's heavy windup time.
     /// </summary>

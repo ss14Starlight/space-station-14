@@ -184,6 +184,11 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
     private void OnGetBonusMeleeAttackRate(EntityUid uid, BonusMeleeAttackRateComponent component, ref GetMeleeAttackRateEvent args)
     {
+        //Starlight-Start
+        if (component.WieldedOnly && (!TryComp<WieldableComponent>(uid, out var wieldable) || !wieldable.Wielded)) // For DevoutChap staff, bonus attack rate only applies when wielded. feel free to use this for other weapons.
+            return;
+        //Starlight-End
+
         args.Rate += component.FlatModifier;
         args.Multipliers *= component.Multiplier;
     }

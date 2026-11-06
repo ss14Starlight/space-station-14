@@ -948,3 +948,22 @@
     accent-german-words-61-3: accent-german-words-replace-61
     accent-german-words-61-4: accent-german-words-replace-61
     accent-german-words-62: accent-german-words-replace-62
+
+- type: accent
+  id: athiest
+  wordReplacements:
+    accent-athiest-words-1: accent-athiest-words-replace-1
+    accent-athiest-words-1-2: accent-athiest-words-replace-1
+    accent-athiest-words-2: accent-athiest-words-replace-2
+    accent-athiest-words-3: accent-athiest-words-replace-3
+    accent-athiest-words-4: accent-athiest-words-replace-4
+    accent-athiest-words-5: accent-athiest-words-replace-5
+    accent-athiest-words-6: accent-athiest-words-replace-6
+    accent-athiest-words-7: accent-athiest-words-replace-7
+    accent-athiest-words-8: accent-athiest-words-replace-8
+    accent-athiest-words-9: accent-athiest-words-replace-9
+    accent-athiest-words-10: accent-athiest-words-replace-10
+    accent-athiest-words-11: accent-athiest-words-replace-11
+    accent-athiest-words-12: accent-athiest-words-replace-12
+    accent-athiest-words-13: accent-athiest-words-replace-13
+    accent-athiest-words-14: accent-athiest-words-replace-14

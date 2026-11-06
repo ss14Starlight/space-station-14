@@ -60,7 +60,15 @@ public sealed partial class PrayerSystem : EntitySystem
                 {
                     // Make sure the player's entity and the Prayable entity+component still exist
                     if (actor?.PlayerSession != null && HasComp<PrayableComponent>(uid))
+                    {
                         Pray(actor.PlayerSession, comp, message);
+                        if (actor.PlayerSession.AttachedEntity is { } user)
+                        {
+                            // Used for the fire effect the athiest fedora gives.
+                            var ev = new PrayerPerformedEvent(user);
+                            RaiseLocalEvent(uid, ref ev);
+                        }
+                    }
                 });
             },
             Impact = LogImpact.Low,
