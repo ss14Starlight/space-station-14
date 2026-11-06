@@ -109,6 +109,11 @@ namespace Content.Client.Cargo.BUI
                 SendMessage(new CargoConsoleToggleLimitMessage());
             };
 
+            _menu.OnPrintBarcode += account =>
+            {
+                SendMessage(new CargoConsolePrintBarcodeMessage(account));
+            };
+
             _menu.OpenCentered();
         }
 
@@ -121,6 +126,7 @@ namespace Content.Client.Cargo.BUI
             _menu.PopulateCategories();
             _menu.PopulateOrders(orders);
             _menu.PopulateAccountActions();
+            _menu.PopulateBarcodeAccounts();
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)

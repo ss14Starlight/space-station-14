@@ -29,6 +29,16 @@ cargo-console-menu-order-row-alerts-reason-absent = The reason is not specified
 cargo-console-menu-order-row-alerts-requester-unknown = Unknown
 cargo-console-menu-tab-title-orders = Orders
 cargo-console-menu-tab-title-funds = Transfers
+cargo-console-menu-tab-title-barcode = Barcode
+
+cargo-console-menu-barcode-description = Print a barcode label that can be attached to items with a label slot. When the item is sold, the proceeds will go to the selected department.
+cargo-console-menu-barcode-account-label = [bold]Department:[/bold]
+cargo-console-menu-barcode-print-button = Print Barcode
+
+cargo-barcode-label-content = [head=2]Sale Barcode[/head]
+    {"[bold]Department:[/bold]"} {$account}
+    {"[italic]Use this label on an item with a label slot to redirect sale proceeds.[/italic]"}
+
 cargo-console-menu-account-action-transfer-limit = [bold]Transfer Limit:[/bold] ${$limit}
 cargo-console-menu-account-action-transfer-limit-unlimited-notifier = [color=gold](Unlimited)[/color]
 cargo-console-menu-account-action-select = [bold]Account Action:[/bold]
