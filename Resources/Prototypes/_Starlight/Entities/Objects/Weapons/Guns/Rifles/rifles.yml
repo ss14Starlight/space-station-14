@@ -563,10 +563,10 @@
         shader: unshaded
     wieldingVisuals:
       right:
-        - state: light-inhand-right
+        - state: wielded-inhand-right-light
           shader: unshaded
       left:
-        - state: light-inhand-left
+        - state: wielded-inhand-left-light
           shade: unshaded
   - type: MagazineVisuals
     magState: mag
