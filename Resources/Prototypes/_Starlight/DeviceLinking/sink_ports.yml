@@ -47,3 +47,8 @@
   id: CombustionTurbineConsoleReceiver
   name: signal-port-name-combustion-turbine-console-receiver
   description: signal-port-description-combustion-turbine-console-receiver
+
+- type: sinkPort
+  id: RemoteControlControllable
+  name: signal-port-name-remote-control-controllable
+  description: signal-port-description-remote-control-controllable

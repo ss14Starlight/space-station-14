@@ -7,10 +7,14 @@ using Content.Server._Starlight.Computers.RemoteControl;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Silicons.Borgs;
 using Content.Shared._Starlight.Computers.RemoteControl;
+using Content.Shared._Starlight.Silicons;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction;
 using Content.Shared.Input;
+using Content.Shared.Item.ItemToggle;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -365,7 +369,23 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
             });
 
             await RunTicks(1);
-            await PressKey(ContentKeyFunctions.ReleasePulledObject);
+            await Server.WaitAssertion(() =>
+            {
+                var remoteCoordinates = SEntMan.GetComponent<TransformComponent>(controlledBorg).Coordinates;
+                Server.System<SharedTransformSystem>().SetCoordinates(
+                    pulledEntity,
+                    remoteCoordinates.Offset(new Vector2(10f, 0f)));
+                Assert.That(Server.System<SharedInteractionSystem>().InRangeUnobstructed(controlledBorg, pulledEntity),
+                    Is.False,
+                    "The pulled object should be out of interaction range before release.");
+            });
+            await Server.WaitAssertion(() =>
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlReleasePulledObjectMessage
+                {
+                    Actor = SPlayer,
+                    Entity = SEntMan.GetNetEntity(consoleUid),
+                    UiKey = RemoteControlUIKey.Key,
+                }));
             await RunTicks(5);
 
             await Server.WaitAssertion(() =>
@@ -373,7 +393,7 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
                 using (Assert.EnterMultipleScope())
                 {
                     Assert.That(SEntMan.GetComponent<PullerComponent>(controlledBorg).Pulling, Is.Null,
-                        "H should stop the remote borg from pulling.");
+                        "The remote release message should stop the borg from pulling.");
                     Assert.That(SEntMan.GetComponent<PullableComponent>(pulledEntity).Puller, Is.Null,
                         "The pulled entity should no longer have a puller.");
                 }
@@ -589,6 +609,167 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
                 if (SEntMan.EntityExists(SPlayer))
                     SEntMan.EventBus.RaiseLocalEvent(SPlayer,
                         new BoundUIClosedEvent(RemoteControlUIKey.Key, SPlayer, SPlayer));
+            });
+            await RunTicks(1);
+        }
+    }
+
+    [TestCase("PlushieRouny")]
+    [TestCase("PlushieFlox")]
+    public async Task DirectRemoteControlPlushieKeepsMomentumAfterInputRelease(string plushiePrototype)
+    {
+        EntityUid plushie = default;
+        var velocityBeforeCoasting = 0f;
+        var positionBeforeCoasting = Vector2.Zero;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var coordinates = SEntMan.GetCoordinates(PlayerCoords);
+                plushie = SEntMan.SpawnEntity(plushiePrototype, coordinates.Offset(new Vector2(-2f, 0f)));
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(SPlayer);
+                console.Users.Add(SPlayer);
+                var remoteBrain = SEntMan.GetComponent<RemoteControlBrainComponent>(plushie);
+                console.Channel = remoteBrain.Channel;
+                console.RemoteBrain = plushie;
+
+                var toggleMessage = new RemoteControlToggleMessage
+                {
+                    Actor = SPlayer,
+                    UiKey = RemoteControlUIKey.Key
+                };
+                SEntMan.EventBus.RaiseLocalEvent(SPlayer, toggleMessage);
+
+                Assert.That(console.Controller, Is.EqualTo(SPlayer));
+            });
+
+            await RunTicks(1);
+            await Server.WaitAssertion(() =>
+            {
+                var movement = SEntMan.GetComponent<MovementSpeedModifierComponent>(plushie);
+                Assert.That(movement.BaseFriction, Is.EqualTo(0.3125f));
+                Assert.That(movement.BaseAcceleration, Is.EqualTo(5f));
+            });
+            await Move(DirectionFlag.West, 0.5f);
+
+            await Server.WaitAssertion(() =>
+            {
+                velocityBeforeCoasting = SEntMan.GetComponent<PhysicsComponent>(plushie).LinearVelocity.Length();
+                positionBeforeCoasting = Transform.GetWorldPosition(plushie);
+                Assert.That(velocityBeforeCoasting, Is.GreaterThan(1f),
+                    "The plushie should accelerate while the movement key is held.");
+            });
+
+            await RunSeconds(0.5f);
+
+            await Server.WaitAssertion(() =>
+            {
+                var velocityAfterCoasting = SEntMan.GetComponent<PhysicsComponent>(plushie).LinearVelocity.Length();
+                var positionAfterCoasting = Transform.GetWorldPosition(plushie);
+                Assert.That(velocityAfterCoasting, Is.GreaterThan(velocityBeforeCoasting * 0.1f),
+                    "The plushie should retain momentum after the movement key is released.");
+                Assert.That(Vector2.Distance(positionBeforeCoasting, positionAfterCoasting), Is.GreaterThan(0.5f),
+                    "The plushie should continue moving after the movement key is released.");
+            });
+        }
+        finally
+        {
+            await SetMovementKey(DirectionFlag.West, BoundKeyState.Up);
+            await RunTicks(1);
+            await Server.WaitPost(() =>
+            {
+                if (SEntMan.EntityExists(SPlayer))
+                    SEntMan.EventBus.RaiseLocalEvent(SPlayer,
+                        new BoundUIClosedEvent(RemoteControlUIKey.Key, SPlayer, SPlayer));
+            });
+            await RunTicks(1);
+        }
+    }
+
+    [TestCase("PlushieRouny")]
+    [TestCase("PlushieFlox")]
+    public async Task HandheldRemoteReopeningRestoresPlushieMovement(string plushiePrototype)
+    {
+        EntityUid handheld = default;
+        EntityUid plushie = default;
+        NetEntity plushieNet = default;
+        var playerPosition = Vector2.Zero;
+        var plushiePosition = Vector2.Zero;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var coordinates = SEntMan.GetCoordinates(PlayerCoords);
+                plushie = SEntMan.SpawnEntity(plushiePrototype, coordinates.Offset(new Vector2(2f, 0f)));
+                plushieNet = SEntMan.GetNetEntity(plushie);
+                handheld = SEntMan.SpawnEntity("HandheldRemoteControl", coordinates);
+
+                Assert.That(Server.System<SharedHandsSystem>()
+                    .TryPickup(SPlayer, handheld, checkActionBlocker: false), Is.True);
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(handheld);
+                var remoteBrain = SEntMan.GetComponent<RemoteControlBrainComponent>(plushie);
+                console.Channel = remoteBrain.Channel;
+                console.RemoteBrain = plushie;
+                Server.System<SharedUserInterfaceSystem>().OpenUi(handheld, RemoteControlUIKey.Key, SPlayer);
+
+                Assert.That(console.Controller, Is.EqualTo(SPlayer));
+                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(SPlayer).RelayEntity, Is.EqualTo(plushie));
+            });
+
+            await Server.WaitAssertion(() =>
+            {
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                Assert.That(Server.System<ItemToggleSystem>().TryDeactivate(handheld, predicted: false), Is.True);
+                Assert.That(ui.IsUiOpen(handheld, RemoteControlUIKey.Key, SPlayer), Is.False);
+
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(handheld);
+                Assert.That(console.Controller, Is.Null);
+                Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(SPlayer), Is.False);
+            });
+
+            await RunTicks(5);
+            await Server.WaitAssertion(() =>
+            {
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(handheld);
+                Assert.That(console.RemoteBrain, Is.EqualTo(plushie));
+                Assert.That(SEntMan.HasComponent<InputMoverComponent>(plushie), Is.True);
+                Assert.That(Server.System<SharedRemoteControlConsoleSystem>()
+                    .TryGetBody((handheld, console), out var body), Is.True);
+                Assert.That(body, Is.EqualTo(plushie));
+
+                Assert.That(Server.System<ItemToggleSystem>().TryActivate(handheld, predicted: false), Is.True);
+                Server.System<SharedUserInterfaceSystem>().OpenUi(handheld, RemoteControlUIKey.Key, SPlayer);
+                Assert.That(console.Controller, Is.EqualTo(SPlayer));
+                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(SPlayer).RelayEntity, Is.EqualTo(plushie));
+
+                playerPosition = Transform.GetWorldPosition(SPlayer);
+                plushiePosition = Transform.GetWorldPosition(plushie);
+            });
+
+            await RunTicks(5);
+            await Client.WaitAssertion(() =>
+                Assert.That(Client.System<RemoteControlInterface>().ControlledEntity,
+                    Is.EqualTo(CEntMan.GetEntity(plushieNet))));
+            await Move(DirectionFlag.West, 0.5f);
+
+            await Server.WaitAssertion(() =>
+            {
+                Assert.That(Vector2.Distance(playerPosition, Transform.GetWorldPosition(SPlayer)), Is.LessThan(0.1f),
+                    "Movement input after reopening the handheld remote should not move the player's body.");
+                Assert.That(Vector2.Distance(plushiePosition, Transform.GetWorldPosition(plushie)), Is.GreaterThan(0.25f),
+                    "Movement input after reopening the handheld remote should move the plushie.");
+            });
+        }
+        finally
+        {
+            await SetMovementKey(DirectionFlag.West, BoundKeyState.Up);
+            await RunTicks(1);
+            await Server.WaitPost(() =>
+            {
+                if (SEntMan.EntityExists(handheld))
+                    Server.System<SharedUserInterfaceSystem>().CloseUi(handheld, RemoteControlUIKey.Key, SPlayer);
             });
             await RunTicks(1);
         }
