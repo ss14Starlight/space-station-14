@@ -430,7 +430,7 @@ public sealed partial class AchievementSystem : EntitySystem
     {
         if (args.NewMobState == MobState.Critical && _inventory.TryGetSlotEntity(args.Target, "outerClothing", out var suit) && MetaData(suit.Value).EntityPrototype?.ID == "ClothingOuterSuitRad")
         {
-            var damage = _damageable.GetDamage(args.Target!);
+            var damage = _damageableSystem.GetAllDamage(args.Target!);
             var rads = damage.DamageDict.GetValueOrDefault("Radiation").Float();
             var highest = damage.DamageDict.All(kvp => kvp.Value.Float() <= rads);
 

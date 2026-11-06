@@ -217,7 +217,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                     return;
                 }
 
-                var ev = new SurgeryOrganExtracted(args.Body, args.Part, organEntity);
+                var ev = new SurgeryOrganExtracted(args.Body, args.Part, organEntity, args.User);
                 RaiseLocalEvent(organEntity, ref ev);
             }
             else if (!_containers.Remove(organEntity, container))
