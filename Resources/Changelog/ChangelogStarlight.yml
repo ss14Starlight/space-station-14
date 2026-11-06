@@ -1,34 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Clowns may change their loadout to start with the honkmother mitre.
-    type: Add
-  id: 409759
-  time: '2026-10-25T11:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6795
-- author: Wizden Team
-  changes:
-  - message: Cameras show as in-use when AI is nearby.
-    type: Add
-  id: 409760
-  time: '2026-10-25T11:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6795
-- author: Wizden Team
-  changes:
-  - message: Web vests have new more visible sprites.
-    type: Add
-  id: 409761
-  time: '2026-10-25T11:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6795
-- author: Wizden Team
-  changes:
-  - message: Added a wide variety of new tile recipes to the Cutter Machine.
-    type: Add
-  id: 409762
-  time: '2026-10-25T11:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6795
-- author: Wizden Team
-  changes:
   - message: Uplink implant now links to the same store as your PDA ringtone.
     type: Add
   id: 409763
@@ -2799,4 +2771,32 @@ Entries:
   id: 410158
   time: '2026-11-06T10:37:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7056
+- author: SirLutz
+  changes:
+  - message: Adjusted the structure damage of Malign minions overall.
+    type: Tweak
+  id: 410159
+  time: '2026-11-06T11:02:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7058
+- author: SirLutz
+  changes:
+  - message: Increased Lodestar brute damage from 3 to 5.
+    type: Tweak
+  id: 410160
+  time: '2026-11-06T11:02:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7058
+- author: SirLutz
+  changes:
+  - message: The Colossus briefing now includes hints on how to create empowered rifts and sacrifice crewmembers.
+    type: Add
+  id: 410161
+  time: '2026-11-06T11:02:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7058
+- author: SirLutz
+  changes:
+  - message: The Rift help button now includes a section on empowered rifts.
+    type: Add
+  id: 410162
+  time: '2026-11-06T11:02:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7058
 Order: -1
