@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/05/2026 19:06:21
-  entityCount: 47
+  time: 11/06/2026 09:16:52
+  entityCount: 46
 maps: []
 grids:
 - 1
@@ -209,20 +209,11 @@ entities:
     - type: Transform
       parent: 1
       pos: 1.5,1.5
-  - uid: 20
-    components:
-    - type: Transform
-      parent: 1
-      pos: 1.5,1.5
-      anchored: False
     - type: AtmosPipeColor
       color: '#0055CCFF'
-    - type: Physics
-      canCollide: True
-      bodyType: Dynamic
 - proto: GasPipeBendAlt4
   entities:
-  - uid: 21
+  - uid: 20
     components:
     - type: Transform
       parent: 1
@@ -230,7 +221,7 @@ entities:
       pos: -0.5,2.5
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 22
+  - uid: 21
     components:
     - type: Transform
       parent: 1
@@ -239,7 +230,7 @@ entities:
       color: '#990000FF'
 - proto: GasPipeStraightAlt4
   entities:
-  - uid: 23
+  - uid: 22
     components:
     - type: Transform
       parent: 1
@@ -248,7 +239,7 @@ entities:
       color: '#990000FF'
 - proto: GasPipeTankSubfloorAlt3
   entities:
-  - uid: 24
+  - uid: 23
     components:
     - type: Transform
       parent: 1
@@ -258,7 +249,7 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeTankSubfloorAlt4
   entities:
-  - uid: 25
+  - uid: 24
     components:
     - type: Transform
       parent: 1
@@ -268,7 +259,7 @@ entities:
       color: '#990000FF'
 - proto: GasPipeTJunctionAlt3
   entities:
-  - uid: 26
+  - uid: 25
     components:
     - type: Transform
       parent: 1
@@ -278,7 +269,7 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeTJunctionAlt4
   entities:
-  - uid: 27
+  - uid: 26
     components:
     - type: Transform
       parent: 1
@@ -288,7 +279,7 @@ entities:
       color: '#990000FF'
 - proto: GasPressurePumpAlt3
   entities:
-  - uid: 28
+  - uid: 27
     components:
     - type: Transform
       parent: 1
@@ -301,7 +292,7 @@ entities:
       color: '#0055CCFF'
 - proto: GasVentPumpAlt3
   entities:
-  - uid: 29
+  - uid: 28
     components:
     - type: Transform
       parent: 1
@@ -310,7 +301,7 @@ entities:
       color: '#0055CCFF'
 - proto: GasVentScrubberAlt4
   entities:
-  - uid: 30
+  - uid: 29
     components:
     - type: Transform
       parent: 1
@@ -320,14 +311,14 @@ entities:
       color: '#990000FF'
 - proto: GeneratorWallmountAPU
   entities:
-  - uid: 31
+  - uid: 30
     components:
     - type: Transform
       parent: 1
       pos: -0.5,0.5
 - proto: Grille
   entities:
-  - uid: 32
+  - uid: 31
     components:
     - type: Transform
       parent: 1
@@ -335,12 +326,12 @@ entities:
       pos: 0.5,3.5
 - proto: GrilleDiagonal
   entities:
-  - uid: 33
+  - uid: 32
     components:
     - type: Transform
       parent: 1
       pos: -0.5,3.5
-  - uid: 34
+  - uid: 33
     components:
     - type: Transform
       parent: 1
@@ -348,7 +339,7 @@ entities:
       pos: 1.5,3.5
 - proto: PoweredSmallLight
   entities:
-  - uid: 35
+  - uid: 34
     components:
     - type: Transform
       parent: 1
@@ -356,7 +347,7 @@ entities:
       pos: 0.5,1.5
 - proto: ShelfWoodFilled
   entities:
-  - uid: 36
+  - uid: 35
     components:
     - type: Transform
       parent: 1
@@ -366,7 +357,7 @@ entities:
       fixtures: {}
 - proto: ShuttleWindow
   entities:
-  - uid: 37
+  - uid: 36
     components:
     - type: Transform
       parent: 1
@@ -374,12 +365,12 @@ entities:
       pos: 0.5,3.5
 - proto: ShuttleWindowDiagonal
   entities:
-  - uid: 38
+  - uid: 37
     components:
     - type: Transform
       parent: 1
       pos: -0.5,3.5
-  - uid: 39
+  - uid: 38
     components:
     - type: Transform
       parent: 1
@@ -387,7 +378,7 @@ entities:
       pos: 1.5,3.5
 - proto: SubstationWallBasic
   entities:
-  - uid: 40
+  - uid: 39
     components:
     - type: Transform
       parent: 1
@@ -395,7 +386,7 @@ entities:
       pos: 1.5,1.5
 - proto: Thruster
   entities:
-  - uid: 41
+  - uid: 40
     components:
     - type: Transform
       parent: 1
@@ -403,7 +394,7 @@ entities:
       pos: 1.5,0.5
 - proto: WallmountPodConsole
   entities:
-  - uid: 42
+  - uid: 41
     components:
     - type: Transform
       parent: 1
@@ -413,27 +404,27 @@ entities:
       fixtures: {}
 - proto: WallWood
   entities:
-  - uid: 43
+  - uid: 42
     components:
     - type: Transform
       parent: 1
       pos: -0.5,0.5
-  - uid: 44
+  - uid: 43
     components:
     - type: Transform
       parent: 1
       pos: -0.5,1.5
-  - uid: 45
+  - uid: 44
     components:
     - type: Transform
       parent: 1
       pos: -0.5,2.5
-  - uid: 46
+  - uid: 45
     components:
     - type: Transform
       parent: 1
       pos: 1.5,1.5
-  - uid: 47
+  - uid: 46
     components:
     - type: Transform
       parent: 1
