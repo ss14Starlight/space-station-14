@@ -114,8 +114,6 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         SubscribeLocalEvent<StationAiCoreComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<StationAiCoreComponent, DoAfterAttemptEvent<IntellicardDoAfterEvent>>(OnDoAfterAttempt);
         SubscribeLocalEvent<StationAiCoreComponent, RejuvenateEvent>(OnRejuvenate);
-        _player.PlayerStatusChanged += OnPlayerStatusChanged; // Starlight
-
         SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandICChatRecipients);
         SubscribeLocalEvent<StationAiTurretComponent, AmmoShotEvent>(OnAmmoShot);
         SubscribeLocalEvent<SuitSensorComponent, SuitSensorModeChangedEvent>(OnSuitSensorModeChanged); // Starlight

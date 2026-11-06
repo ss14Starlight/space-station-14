@@ -4,3 +4,6 @@
   - type: ExplosionResistance
     modifiers:
       SyndieMiniBombExplosion: 0.5
+  # Let t-ray reveal wires/pipes under any structure.
+  # This covers lots of things, like walls, windows, tables, vending machines, etc.
+  - type: TrayScanReveal
