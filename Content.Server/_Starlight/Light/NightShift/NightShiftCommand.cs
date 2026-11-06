@@ -15,15 +15,13 @@ public sealed partial class NightShiftCommand : LocalizedEntityCommands
     public override string Command => "nightshift";
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
-    {
-        return args.Length switch
+        => args.Length switch
         {
             1 => CompletionResult.FromHintOptions(Enum.GetNames<ApcLightingMode>(), Loc.GetString("cmd-nightshift-hint-mode")),
             2 => CompletionResult.FromHintOptions(CompletionHelper.Components<StationNightShiftComponent>(args[1], EntityManager),
                 Loc.GetString("cmd-nightshift-hint-station")),
             _ => CompletionResult.Empty,
         };
-    }
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {

@@ -96,8 +96,8 @@ public sealed partial class EmergencyLightingSystem : EntitySystem
             return;
 
         comp.Charge = comp.Discharging
-            ? MathF.Max(0f, comp.Charge - elapsed / (float) comp.Duration.TotalSeconds)
-            : MathF.Min(1f, comp.Charge + elapsed / (float) comp.RechargeTime.TotalSeconds);
+            ? MathF.Max(0f, comp.Charge - (elapsed / (float) comp.Duration.TotalSeconds))
+            : MathF.Min(1f, comp.Charge + (elapsed / (float) comp.RechargeTime.TotalSeconds));
     }
 
     private void StopFlicker(Entity<EmergencyLightingComponent> ent)

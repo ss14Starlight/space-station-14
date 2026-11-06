@@ -34,7 +34,7 @@ public sealed partial class TimeSystem : SharedTimeSystem
         var minHour = Math.Clamp(_cfg.GetCVar(StarlightCCVars.ShiftStartMinHour), 0, 23);
         var maxHour = Math.Clamp(_cfg.GetCVar(StarlightCCVars.ShiftStartMaxHour), minHour, 23);
         // Quarter-hour steps from the minimum up to the maximum itself, never past it.
-        var steps = (maxHour - minHour) * 4 + 1;
+        var steps = ((maxHour - minHour) * 4) + 1;
         ShiftStart = TimeSpan.FromHours(minHour) + TimeSpan.FromMinutes(_random.Next(steps) * 15);
 
         RaiseNetworkEvent(new RoundDateSetEvent(Date, ShiftStart));
