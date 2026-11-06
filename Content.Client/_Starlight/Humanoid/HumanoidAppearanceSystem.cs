@@ -87,6 +87,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             sprite.Scale = new Vector2(humanoidAppearance.Width * humanoidAppearance.Height, humanoidAppearance.Height);
         }
         //starlight end
+
     }
 
     private DisplacementData? GetSpeciesDisplacement(SpeciesPrototype species)

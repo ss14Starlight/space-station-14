@@ -1,0 +1,18 @@
+light_mode unshaded;
+
+uniform highp float time;
+
+const highp float TAU = 6.2831853;
+
+void fragment()
+{
+    highp vec4 color = zTexture(UV);
+    highp vec2 centeredUV = UV2 - vec2(0.5);
+    highp float noise = zFBM(UV2 * 28.0 + vec2(time * 0.18, -time * 0.15));
+    highp float ripple = sin((length(centeredUV) * 16.0 - time * 0.6) * TAU);
+    highp float signal = clamp(0.6 + noise * 0.18 + ripple * 0.12, 0.35, 1.0);
+
+    color.rgb = vec3(0.09, 0.56, 0.74) * signal;
+    color.a *= 0.5;
+    COLOR = color;
+}

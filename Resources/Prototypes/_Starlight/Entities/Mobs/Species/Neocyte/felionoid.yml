@@ -25,11 +25,27 @@
     prototype: NeoFelionoid
     requiredLegs: 2
   - type: OwOAccent
+  - type: Stamina
+    baseCritThreshold: 110
+  - type: Tiredness
+  - type: RegenerativeSleep
+    updateInterval: 1s
+    healingPerUpdate:
+      types:
+        Heat: 0.5
+        Cold: 0.5
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 1
+        Bloodloss: 1
+    bleedHealPerUpdate: 0.25
+  - type: LightSleep
+  - type: TightGrip
   - type: MobThresholds
     thresholds:
       0: Alive
-      85: Critical
-      150: Dead
+      90: Critical
+      180: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       51: 0.7 # 60%

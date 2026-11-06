@@ -27,6 +27,7 @@
   - type: Strap
     position: Down
     rotation: -90
+    buckleOffset: "0,-0.2" # Starlight
   # Construction has to be before PlaceableSurface or you'll place things onto the entity instead of deconstructing it.
   - type: Construction
     graph: bed
@@ -91,12 +92,14 @@
   name: dog bed
   description: A comfy-looking dog bed. You can even strap your pet in, in case the gravity turns off.
   components:
+  - type: PetBedSleepPose # Starlight
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/pet_beds.rsi # ST Edit
     state: dogbed
   - type: Strap
     position: Stand
     rotation: 0
+    buckleOffset: "0,-0.15" # Starlight
     needsHands: false # Starlight
   - type: Construction
     graph: bed

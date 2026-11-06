@@ -18,8 +18,6 @@ public sealed partial class IgnoreHumanoidsOverlaySystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<IgnoreHumanoidsComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<IgnoreHumanoidsComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
@@ -27,39 +25,56 @@ public sealed partial class IgnoreHumanoidsOverlaySystem : EntitySystem
         _overlay = new(EntityManager);
     }
 
-    private void OnInit(EntityUid uid, IgnoreHumanoidsComponent component, ComponentInit args)
-    {
-        if (_player.LocalEntity == uid)
-            _overlayMan.AddOverlay(_overlay);
-    }
+    [SubscribeLocalEvent]
+    private void OnInit(Entity<IgnoreHumanoidsComponent> ent, ref ComponentInit args) =>
+        UpdateOverlay(ent.Owner, ignoreHumanoids: true);
 
-    private void OnRemove(EntityUid uid, IgnoreHumanoidsComponent component, ComponentRemove args)
-    {
-        if (_player.LocalEntity == uid)
-        {
-            _overlay.Reset();
-            _overlayMan.RemoveOverlay(_overlay);
-        }
-    }
+    [SubscribeLocalEvent]
+    private void OnRemove(Entity<IgnoreHumanoidsComponent> ent, ref ComponentRemove args) =>
+        UpdateOverlay(ent.Owner, ignoreHumanoids: false);
 
-    private void OnPlayerAttached(LocalPlayerAttachedEvent args)
-    {
-        if (HasComp<IgnoreHumanoidsComponent>(args.Entity))
-            _overlayMan.AddOverlay(_overlay);
-    }
+    private void OnPlayerAttached(LocalPlayerAttachedEvent args) =>
+        UpdateOverlay(args.Entity);
 
     private void OnPlayerDetached(LocalPlayerDetachedEvent args)
     {
-        if (HasComp<IgnoreHumanoidsComponent>(args.Entity))
-        {
-            _overlay.Reset();
-            _overlayMan.RemoveOverlay(_overlay);
-        }
+        _overlay.Reset();
+        _overlayMan.RemoveOverlay(_overlay);
     }
 
     private void OnRoundRestart(RoundRestartCleanupEvent args)
     {
         _overlay.Reset();
         _overlayMan.RemoveOverlay(_overlay);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (_player.LocalEntity is { } uid)
+            UpdateOverlay(uid);
+    }
+
+    private void UpdateOverlay(EntityUid uid, bool? ignoreHumanoids = null)
+    {
+        if (_player.LocalEntity != uid)
+            return;
+
+        var shouldShow = ignoreHumanoids ?? HasComp<IgnoreHumanoidsComponent>(uid);
+
+        if (shouldShow)
+        {
+            if (!_overlayMan.HasOverlay<IgnoreHumanoidsOverlay>())
+                _overlayMan.AddOverlay(_overlay);
+
+            return;
+        }
+
+        if (_overlayMan.HasOverlay<IgnoreHumanoidsOverlay>())
+        {
+            _overlay.Reset();
+            _overlayMan.RemoveOverlay(_overlay);
+        }
     }
 }

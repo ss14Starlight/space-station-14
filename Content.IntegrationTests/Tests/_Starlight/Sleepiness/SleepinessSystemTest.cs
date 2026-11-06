@@ -1,0 +1,301 @@
+#nullable enable
+using Content.IntegrationTests.Fixtures;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.StatusEffectNew;
+using Content.Shared._Starlight.Sleepiness.Components;
+using Content.Shared._Starlight.Sleepiness.Systems;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
+
+namespace Content.IntegrationTests.Tests._Starlight.Sleepiness;
+
+[TestFixture]
+public sealed class SleepinessSystemTest : GameTest
+{
+    public override PoolSettings PoolSettings => new() { Connected = true, DummyTicker = false };
+
+    [Test]
+    public async Task LightSleepDoesNotApplyToOrdinarySleep()
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var entityManager = server.ResolveDependency<IEntityManager>();
+        EntityUid felionoid = default;
+
+        await server.WaitPost(() =>
+        {
+            felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
+        });
+
+        try
+        {
+            await pair.RunSeconds(1);
+
+            await server.WaitPost(() =>
+            {
+                var sleeping = server.System<SleepingSystem>();
+                var blindable = entityManager.GetComponent<BlindableComponent>(felionoid);
+
+                Assert.That(sleeping.TrySleeping(felionoid), Is.True);
+                Assert.That(blindable.IsBlind, Is.True);
+
+                entityManager.AddComponent<LightSleepComponent>(felionoid);
+                Assert.That(blindable.IsBlind, Is.True);
+
+                entityManager.RemoveComponent<LightSleepComponent>(felionoid);
+                Assert.That(blindable.IsBlind, Is.True);
+            });
+        }
+        finally
+        {
+            await server.WaitPost(() => entityManager.DeleteEntity(felionoid));
+            await pair.RunUntilSynced();
+        }
+    }
+
+    [Test]
+    public async Task LightSleepEligibilityTracksSleepinessDuringSleepinessInducedSleep()
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var entityManager = server.ResolveDependency<IEntityManager>();
+        EntityUid felionoid = default;
+
+        await server.WaitPost(() =>
+        {
+            felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
+            entityManager.AddComponent<LightSleepComponent>(felionoid);
+        });
+
+        try
+        {
+            await pair.RunSeconds(1);
+
+            await server.WaitPost(() =>
+            {
+                var statusEffects = server.System<StatusEffectsSystem>();
+                Assert.That(
+                    statusEffects.TryAddStatusEffectDuration(
+                        felionoid,
+                        "StatusEffectSleepiness",
+                        out var sleepinessEffect,
+                        TimeSpan.FromSeconds(120)),
+                    Is.True);
+                var sleepiness = entityManager.GetComponent<SleepinessStatusEffectComponent>(sleepinessEffect!.Value);
+                sleepiness.SleepThreshold = TimeSpan.FromSeconds(10);
+            });
+
+            await pair.RunSeconds(2);
+
+            await server.WaitPost(() =>
+            {
+                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.True);
+                Assert.That(entityManager.HasComponent<SleepinessInducedSleepComponent>(felionoid), Is.True);
+                var sleepCause = entityManager.GetComponent<SleepinessInducedSleepComponent>(felionoid);
+                Assert.That(sleepCause.SleepThreshold, Is.EqualTo(TimeSpan.FromSeconds(10)));
+                var lightSleep = server.System<LightSleepSystem>();
+                Assert.That(lightSleep.IsLightSleepActive(felionoid), Is.False);
+                var blindable = entityManager.GetComponent<BlindableComponent>(felionoid);
+                Assert.That(blindable.IsBlind, Is.True);
+
+                var statusEffects = server.System<StatusEffectsSystem>();
+                Assert.That(
+                    statusEffects.TrySetStatusEffectDuration(
+                        felionoid,
+                        "StatusEffectSleepiness",
+                        TimeSpan.FromSeconds(9)),
+                    Is.True);
+            });
+
+            await pair.RunSeconds(2);
+
+            await server.WaitPost(() =>
+            {
+                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.True);
+                var lightSleep = server.System<LightSleepSystem>();
+                Assert.That(lightSleep.IsLightSleepActive(felionoid), Is.True);
+                var blindable = entityManager.GetComponent<BlindableComponent>(felionoid);
+                Assert.That(blindable.IsBlind, Is.True);
+
+                var statusEffects = server.System<StatusEffectsSystem>();
+                Assert.That(statusEffects.TryRemoveStatusEffect(felionoid, "StatusEffectSleepiness"), Is.True);
+                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.True);
+                Assert.That(lightSleep.IsLightSleepActive(felionoid), Is.True);
+                Assert.That(blindable.IsBlind, Is.True);
+            });
+        }
+        finally
+        {
+            await server.WaitPost(() => entityManager.DeleteEntity(felionoid));
+            await pair.RunUntilSynced();
+        }
+    }
+
+    [Test]
+    public async Task LightSleepDoesNotOverrideSleepBlindnessDuringPlayerRequestedSleep()
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var entityManager = server.ResolveDependency<IEntityManager>();
+        EntityUid felionoid = default;
+
+        await server.WaitPost(() =>
+        {
+            felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
+        });
+
+        try
+        {
+            await pair.RunSeconds(1);
+
+            await server.WaitPost(() =>
+            {
+                entityManager.AddComponent<LightSleepComponent>(felionoid);
+                entityManager.AddComponent<PlayerRequestedSleepComponent>(felionoid);
+
+                var sleeping = server.System<SleepingSystem>();
+                var blindable = entityManager.GetComponent<BlindableComponent>(felionoid);
+                Assert.That(sleeping.TrySleeping(felionoid), Is.True);
+                Assert.That(server.System<LightSleepSystem>().IsLightSleepActive(felionoid), Is.True);
+                Assert.That(blindable.IsBlind, Is.True);
+            });
+        }
+        finally
+        {
+            await server.WaitPost(() => entityManager.DeleteEntity(felionoid));
+            await pair.RunUntilSynced();
+        }
+    }
+
+    [Test]
+    public async Task LightSleepEligibilityTracksSleepinessDuringPlayerRequestedSleep()
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var entityManager = server.ResolveDependency<IEntityManager>();
+        EntityUid felionoid = default;
+
+        await server.WaitPost(() =>
+        {
+            felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
+            entityManager.AddComponent<LightSleepComponent>(felionoid);
+        });
+
+        try
+        {
+            await pair.RunSeconds(1);
+
+            await server.WaitPost(() =>
+            {
+                var statusEffects = server.System<StatusEffectsSystem>();
+                Assert.That(
+                    statusEffects.TryAddStatusEffectDuration(
+                        felionoid,
+                        "StatusEffectSleepiness",
+                        out var sleepinessEffect,
+                        TimeSpan.FromSeconds(31)),
+                    Is.True);
+                var sleepiness = entityManager.GetComponent<SleepinessStatusEffectComponent>(sleepinessEffect!.Value);
+                sleepiness.SleepThreshold = TimeSpan.FromSeconds(30);
+
+                entityManager.AddComponent<PlayerRequestedSleepComponent>(felionoid);
+                var sleeping = server.System<SleepingSystem>();
+                Assert.That(sleeping.TrySleeping(felionoid), Is.True);
+
+                var lightSleep = server.System<LightSleepSystem>();
+                Assert.That(lightSleep.IsLightSleepActive(felionoid), Is.False);
+
+                Assert.That(
+                    statusEffects.TrySetStatusEffectDuration(
+                        felionoid,
+                        "StatusEffectSleepiness",
+                        TimeSpan.FromSeconds(30)),
+                    Is.True);
+                Assert.That(lightSleep.IsLightSleepActive(felionoid), Is.True);
+
+                Assert.That(
+                    statusEffects.TrySetStatusEffectDuration(
+                        felionoid,
+                        "StatusEffectSleepiness",
+                        TimeSpan.FromSeconds(31)),
+                    Is.True);
+                Assert.That(lightSleep.IsLightSleepActive(felionoid), Is.False);
+
+                Assert.That(
+                    statusEffects.TrySetStatusEffectDuration(
+                        felionoid,
+                        "StatusEffectSleepiness",
+                        TimeSpan.FromSeconds(29)),
+                    Is.True);
+                Assert.That(lightSleep.IsLightSleepActive(felionoid), Is.True);
+            });
+        }
+        finally
+        {
+            await server.WaitPost(() => entityManager.DeleteEntity(felionoid));
+            await pair.RunUntilSynced();
+        }
+    }
+
+    [Test]
+    public async Task RemovingSleepinessOnlyWakesWhenRequested()
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var entityManager = server.ResolveDependency<IEntityManager>();
+        EntityUid felionoid = default;
+
+        await server.WaitPost(() =>
+        {
+            felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
+        });
+
+        try
+        {
+            await pair.RunSeconds(1);
+
+            await server.WaitPost(() =>
+            {
+                var statusEffects = server.System<StatusEffectsSystem>();
+                Assert.That(
+                    statusEffects.TryAddStatusEffectDuration(
+                        felionoid,
+                        "StatusEffectSleepiness",
+                        TimeSpan.FromSeconds(60)),
+                    Is.True);
+            });
+
+            await pair.RunSeconds(1);
+
+            await server.WaitPost(() =>
+            {
+                var statusEffects = server.System<StatusEffectsSystem>();
+                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.True);
+                Assert.That(statusEffects.TryRemoveStatusEffect(felionoid, "StatusEffectSleepiness"), Is.True);
+                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.True);
+
+                Assert.That(
+                    statusEffects.TryAddStatusEffectDuration(
+                        felionoid,
+                        "StatusEffectSleepiness",
+                        out var sleepinessEffect,
+                        TimeSpan.FromSeconds(10)),
+                    Is.True);
+                var sleepinessUid = sleepinessEffect!.Value;
+                var sleepiness = entityManager.GetComponent<SleepinessStatusEffectComponent>(sleepinessUid);
+                sleepiness.WakeRequested = true;
+                entityManager.Dirty(sleepinessUid, sleepiness);
+
+                Assert.That(statusEffects.TryRemoveStatusEffect(felionoid, "StatusEffectSleepiness"), Is.True);
+                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.False);
+                Assert.That(entityManager.HasComponent<SleepinessInducedSleepComponent>(felionoid), Is.False);
+            });
+        }
+        finally
+        {
+            await server.WaitPost(() => entityManager.DeleteEntity(felionoid));
+            await pair.RunUntilSynced();
+        }
+    }
+}

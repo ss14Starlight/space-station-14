@@ -4,6 +4,7 @@
   name: pet bed
   description: A comfy-looking bed for your pets. You can even strap your pet in, in case the gravity turns off.
   components:
+  - type: PetBedSleepPose
   - type: HealOnBuckle
     damage:
       types:
@@ -27,6 +28,7 @@
   - type: Strap
     position: Stand
     rotation: 0
+    buckleOffset: "0,-0.15"
     needsHands: false
   - type: Damageable
     damageModifierSet: Inflatable

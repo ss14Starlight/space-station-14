@@ -90,6 +90,13 @@
   path: "/Textures/_Starlight/Shaders/nullspace.swsl"
 
 - type: shader
+  id: LightSleepSonarEcho
+  kind: source
+  path: "/Textures/_Starlight/Shaders/light_sleep_sonar_echo.swsl"
+  params:
+    time: 0.0
+
+- type: shader
   id: NightSkyTrail
   kind: source
   path: "/Textures/_Starlight/Shaders/ghost_trail_stripes.swsl"

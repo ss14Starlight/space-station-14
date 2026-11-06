@@ -93,7 +93,14 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void OnBedSleepAction(Entity<ActionsContainerComponent> ent, ref SleepActionEvent args)
     {
-        TrySleeping(args.Performer);
+        // Starlight - start
+        if (HasComp<SleepingComponent>(args.Performer))
+            return;
+
+        EnsureComp<PlayerRequestedSleepComponent>(args.Performer);
+        if (!TrySleeping(args.Performer))
+            RemComp<PlayerRequestedSleepComponent>(args.Performer);
+        // Starlight - end
     }
 
     private void OnWakeAction(Entity<MobStateComponent> ent, ref WakeActionEvent args)
@@ -104,7 +111,14 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void OnSleepAction(Entity<MobStateComponent> ent, ref SleepActionEvent args)
     {
-        TrySleeping((ent, ent.Comp));
+        // Starlight - start
+        if (HasComp<SleepingComponent>(ent.Owner))
+            return;
+
+        EnsureComp<PlayerRequestedSleepComponent>(ent.Owner);
+        if (!TrySleeping((ent, ent.Comp)))
+            RemComp<PlayerRequestedSleepComponent>(ent.Owner);
+        // Starlight - end
     }
 
     private void OnRejuvenate(Entity<SleepingComponent> ent, ref RejuvenateEvent args)
@@ -184,8 +198,9 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void OnSeeAttempt(Entity<SleepingComponent> ent, ref CanSeeAttemptEvent args)
     {
-        if (ent.Comp.LifeStage <= ComponentLifeStage.Running)
-            args.Cancel();
+        // Starlight - start
+        args.Cancel();
+        // Starlight - end
     }
 
     private void OnPointAttempt(Entity<SleepingComponent> ent, ref PointAttemptEvent args)

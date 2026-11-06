@@ -2,6 +2,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.StatusEffectNew.Components;
 using Content.Shared._Starlight.Sleepiness.Components;
@@ -19,6 +20,7 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
 
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SleepingSystem _sleeping = default!;
+    [Dependency] private BlindableSystem _blindable = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
     [Dependency] private SharedSolutionContainerSystem _solutions = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -44,10 +46,15 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
 
             var remaining = endTime - _timing.CurTime;
 
+            if (HasComp<LightSleepComponent>(target) &&
+                HasComp<SleepinessInducedSleepComponent>(target) &&
+                HasComp<SleepingComponent>(target))
+                _blindable.UpdateIsBlind(target);
+
             if (sleepiness.SleepImmediately && !HasComp<SleepingComponent>(target) &&
                 CanInduceSleep(target, sleepiness))
             {
-                if (_sleeping.TrySleeping(target))
+                if (TrySleepFromSleepiness(target, sleepiness.SleepThreshold))
                 {
                     sleepiness.SleepImmediately = false;
                     Dirty(uid, sleepiness);
@@ -76,9 +83,23 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
                 !CanInduceSleep(target, sleepiness))
                 continue;
 
-            if (!_sleeping.TrySleeping(target))
+            if (!TrySleepFromSleepiness(target, sleepiness.SleepThreshold))
                 continue;
         }
+    }
+
+    private bool TrySleepFromSleepiness(EntityUid target, TimeSpan sleepThreshold)
+    {
+        EnsureComp<SleepinessInducedSleepComponent>(target);
+        var sleepCause = Comp<SleepinessInducedSleepComponent>(target);
+        sleepCause.SleepThreshold = sleepThreshold;
+        Dirty(target, sleepCause);
+
+        if (_sleeping.TrySleeping(target))
+            return true;
+
+        RemComp<SleepinessInducedSleepComponent>(target);
+        return false;
     }
 
     private bool CanInduceSleep(EntityUid target, SleepinessStatusEffectComponent sleepiness)
@@ -102,6 +123,16 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
         base.Initialize();
         SubscribeLocalEvent<SleepinessStatusEffectComponent, StatusEffectRemovedEvent>(OnSleepinessRemoved);
         SubscribeLocalEvent<SleepinessWakeAttemptEvent>(OnWakeAttempt);
+        SubscribeLocalEvent<SleepingComponent, ComponentShutdown>(OnSleepingShutdown);
+    }
+
+    private void OnSleepingShutdown(EntityUid uid, SleepingComponent component, ComponentShutdown args) =>
+        RemoveSleepCauseMarkers(uid);
+
+    private void RemoveSleepCauseMarkers(EntityUid uid)
+    {
+        RemComp<SleepinessInducedSleepComponent>(uid);
+        RemComp<PlayerRequestedSleepComponent>(uid);
     }
 
     private void OnWakeAttempt(ref SleepinessWakeAttemptEvent args)
@@ -144,9 +175,12 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
 
     private void OnSleepinessRemoved(Entity<SleepinessStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
     {
-        if (!TryComp<SleepingComponent>(args.Target, out var sleeping))
-            return;
+        if (ent.Comp.WakeRequested && TryComp<SleepingComponent>(args.Target, out var sleeping))
+            _sleeping.TryWaking((args.Target, sleeping), ignoreSsd: true);
 
-        _sleeping.TryWaking((args.Target, sleeping));
+        if (HasComp<LightSleepComponent>(args.Target) &&
+            HasComp<SleepinessInducedSleepComponent>(args.Target) &&
+            HasComp<SleepingComponent>(args.Target))
+            _blindable.UpdateIsBlind(args.Target);
     }
 }
