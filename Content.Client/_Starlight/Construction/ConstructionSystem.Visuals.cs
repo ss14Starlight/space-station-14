@@ -35,9 +35,6 @@ public sealed partial class ConstructionSystem
         }
     }
 
-    /// <summary>
-    /// Handle build cancellations.
-    /// </summary>
     [SubscribeNetworkEvent]
     private void OnCancel(CancelStructureConstructionMessage message)
     {
