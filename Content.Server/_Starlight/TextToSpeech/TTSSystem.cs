@@ -247,7 +247,8 @@ public sealed partial class TTSSystem : EntitySystem
 
         await foreach (var chunk in _client.GenerateTTS(text, voice, effect))
         {
-            filter.RemoveWhere(session => session.Status is not (SessionStatus.Connected or SessionStatus.InGame));
+            filter.RemoveWhere(session => session.Status is not (SessionStatus.Connected or SessionStatus.InGame)
+                                          || !session.Channel.IsConnected);
 
             if (filter.Count == 0)
                 break;
