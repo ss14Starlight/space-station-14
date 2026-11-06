@@ -58,7 +58,7 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
 
         for (var i = 0; i < ent.Comp.Sides.Count; i++)
         {
-            foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.Sides[i]))
+            foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.Sides[i]))
             {
                 if (_boltQuery.HasComp(linked))
                     ReleaseBolts(linked);
@@ -68,7 +68,7 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
         }
 
         // Hand the vents back with the settings they had before the controller took them.
-        foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.VentPort))
+        foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.VentPort))
         {
             _vents.ReleaseAirlockCyclerControl(linked);
         }
@@ -85,11 +85,15 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
         if (_buttonQuery.HasComp(args.Sink))
             _appearance.SetData(args.Sink, AirlockCyclerButtonVisuals.State, AirlockCyclerButtonState.Off);
 
-        if (args.Port == ent.Comp.VentPort)
-            _vents.ReleaseAirlockCyclerControl(args.Sink);
+        // Only the owner may hand a device back: a second controller unlinking must not undo the owner's cycle.
+        if (OwnsDevice(ent, args.Sink))
+        {
+            if (args.Port == ent.Comp.VentPort)
+                _vents.ReleaseAirlockCyclerControl(args.Sink);
 
-        if (ent.Comp.Sides.Contains(args.Port) && _doorQuery.HasComp(args.Sink))
-            ReleaseBolts(args.Sink);
+            if (ent.Comp.Sides.Contains(args.Port) && _doorQuery.HasComp(args.Sink))
+                ReleaseBolts(args.Sink);
+        }
 
         OnLinksChanged(ent);
     }

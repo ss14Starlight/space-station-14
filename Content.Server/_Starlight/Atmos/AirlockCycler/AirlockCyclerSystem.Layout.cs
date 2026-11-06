@@ -53,7 +53,7 @@ public sealed partial class AirlockCyclerSystem
         var gridUid = xform.GridUid;
         TryComp<MapGridComponent>(gridUid, out var grid);
 
-        foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.VentPort))
+        foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.VentPort))
         {
             if (_ventQuery.TryComp(linked, out var vent) && Transform(linked).GridUid == gridUid)
                 layout.Vents.Add((linked, vent));
@@ -65,7 +65,7 @@ public sealed partial class AirlockCyclerSystem
         {
             var side = new SideLayout();
             var doors = new List<(EntityUid, Vector2i)>();
-            foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.Sides[i]))
+            foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.Sides[i]))
             {
                 if (_buttonQuery.HasComp(linked))
                 {
@@ -80,6 +80,7 @@ public sealed partial class AirlockCyclerSystem
                 if (grid == null || doorXform.GridUid != gridUid)
                 {
                     side.Doors.Add(new DoorLayout(linked, null));
+                    side.MissingReading = true;
                     continue;
                 }
 

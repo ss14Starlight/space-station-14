@@ -9,21 +9,21 @@ namespace Content.Server._Starlight.Atmos.AirlockCycler;
 [RegisterComponent]
 public sealed partial class AirlockCyclerVentComponent : Component
 {
-    [ViewVariables]
+    [ViewVariables, DataField]
     public bool Enabled;
 
-    [ViewVariables]
+    [ViewVariables, DataField]
     public VentPumpDirection PumpDirection;
 
-    [ViewVariables]
+    [ViewVariables, DataField]
     public VentPressureBound PressureChecks;
 
-    [ViewVariables]
+    [ViewVariables, DataField]
     public float ExternalPressureBound;
 
-    [ViewVariables]
+    [ViewVariables, DataField]
     public float InternalPressureBound;
 
-    [ViewVariables]
+    [ViewVariables, DataField]
     public bool PressureLockoutOverride;
 }

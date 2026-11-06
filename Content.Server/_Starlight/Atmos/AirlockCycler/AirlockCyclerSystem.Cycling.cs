@@ -270,7 +270,7 @@ public sealed partial class AirlockCyclerSystem
         // Without power the chamber is just a pair of doors: let people through by hand. The doors are likely
         // unpowered too, so the bolts are released without the usual power check.
         for (var i = 0; i < ent.Comp.Sides.Count; i++)
-            foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.Sides[i]))
+            foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.Sides[i]))
                 ReleaseBolts(linked);
 
         StopVents(ent, source);
@@ -287,7 +287,7 @@ public sealed partial class AirlockCyclerSystem
             if (i == ent.Comp.TargetSide)
                 continue;
 
-            foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.Sides[i]))
+            foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.Sides[i]))
             {
                 if (!_doorQuery.TryComp(linked, out var door))
                     continue;
@@ -315,7 +315,7 @@ public sealed partial class AirlockCyclerSystem
 
     private void StopVents(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source)
     {
-        foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.VentPort))
+        foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.VentPort))
         {
             _vents.StopAirlockCyclerVent(linked);
         }
@@ -363,7 +363,7 @@ public sealed partial class AirlockCyclerSystem
                 _ => AirlockCyclerButtonState.Standby,
             };
 
-            foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.Sides[i]))
+            foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.Sides[i]))
             {
                 if (_buttonQuery.HasComp(linked))
                     _appearance.SetData(linked, AirlockCyclerButtonVisuals.State, state);
@@ -377,7 +377,7 @@ public sealed partial class AirlockCyclerSystem
             return true;
 
         var anyDoor = false;
-        foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.Sides[side]))
+        foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.Sides[side]))
         {
             if (!_doorQuery.HasComp(linked))
                 continue;
@@ -401,7 +401,8 @@ public sealed partial class AirlockCyclerSystem
         foreach (var sourceUid in sink.LinkedSources)
         {
             if (!TryComp<AirlockCyclerComponent>(sourceUid, out var comp)
-                || !TryComp<DeviceLinkSourceComponent>(sourceUid, out var source))
+                || !TryComp<DeviceLinkSourceComponent>(sourceUid, out var source)
+                || !OwnsDevice(sourceUid, button))
                 continue;
 
             foreach (var (port, _) in _deviceLink.GetLinks(sourceUid, button, source))
