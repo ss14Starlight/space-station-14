@@ -12,14 +12,32 @@ public sealed partial class AirlockCyclerSystem
     {
         public readonly List<SideLayout> Sides = [];
         public readonly List<Entity<GasVentPumpComponent>> Vents = [];
+
+        /// <summary>Average over every chamber tile, for display and for picking the pump direction.</summary>
         public float? ChamberPressure;
+
+        /// <summary>Lowest and highest tile pressure in the chamber: the cycle is done only when both match.</summary>
+        public float ChamberMin;
+        public float ChamberMax;
+
+        /// <summary>The flood fill hit <see cref="AirlockCyclerComponent.MaxChamberTiles"/>: the chamber is breached.</summary>
+        public bool ChamberLeaks;
+
         public float? TankPressure;
     }
 
     private sealed class SideLayout
     {
         public readonly List<DoorLayout> Doors = [];
+
+        /// <summary>Average behind the doors, for display only. Cycling uses the min/max.</summary>
         public float? OutsidePressure;
+        public float OutsideMin = float.MaxValue;
+        public float OutsideMax = float.MinValue;
+
+        /// <summary>Some door of this side has no reading (not next to the chamber, or only walls behind it).</summary>
+        public bool MissingReading;
+
         public int Buttons;
     }
 
@@ -80,9 +98,7 @@ public sealed partial class AirlockCyclerSystem
         var mapUid = xform.MapUid;
         var gridEnt = gridUid.Value;
 
-        // Chamber pressure and tank pressure from the vents.
-        var chamberSum = 0f;
-        var chamberCount = 0;
+        // The chamber starts at the vents; the tank is the first vent's pipe net.
         _chamber.Clear();
         _frontier.Clear();
         foreach (var vent in layout.Vents)
@@ -91,22 +107,19 @@ public sealed partial class AirlockCyclerSystem
             if (_chamber.Add(tile))
                 _frontier.Enqueue(tile);
 
-            if (_atmos.GetTileMixture(gridEnt, mapUid, tile) is { } mix)
-            {
-                chamberSum += mix.Pressure;
-                chamberCount++;
-            }
-
             if (layout.TankPressure == null && _nodes.TryGetNode(vent.Owner, vent.Comp.Inlet, out PipeNode? pipe))
                 layout.TankPressure = pipe.Air.Pressure;
         }
 
-        if (chamberCount > 0)
-            layout.ChamberPressure = chamberSum / chamberCount;
-
         // Flood fill the chamber.
-        while (_frontier.TryDequeue(out var tile) && _chamber.Count < ent.Comp.MaxChamberTiles)
+        while (_frontier.TryDequeue(out var tile))
         {
+            if (_chamber.Count >= ent.Comp.MaxChamberTiles)
+            {
+                layout.ChamberLeaks = true;
+                break;
+            }
+
             for (var i = 0; i < Atmospherics.Directions; i++)
             {
                 var dir = (AtmosDirection)(1 << i);
@@ -125,6 +138,27 @@ public sealed partial class AirlockCyclerSystem
             }
         }
 
+        // Chamber pressure over every tile, not just the vents': the vent tile settles first, and opening on it
+        // alone lets the rest of the chamber blow out (or in).
+        var chamberSum = 0f;
+        var chamberCount = 0;
+        layout.ChamberMin = float.MaxValue;
+        layout.ChamberMax = float.MinValue;
+        foreach (var tile in _chamber)
+        {
+            if (_atmos.GetTileMixture(gridEnt, mapUid, tile) is not { } mix)
+                continue;
+
+            var pressure = mix.Pressure;
+            chamberSum += pressure;
+            chamberCount++;
+            layout.ChamberMin = MathF.Min(layout.ChamberMin, pressure);
+            layout.ChamberMax = MathF.Max(layout.ChamberMax, pressure);
+        }
+
+        if (chamberCount > 0)
+            layout.ChamberPressure = chamberSum / chamberCount;
+
         // Pressure behind each door.
         for (var i = 0; i < sideDoors.Count; i++)
         {
@@ -136,10 +170,15 @@ public sealed partial class AirlockCyclerSystem
                 var pressure = GetOutsidePressure(gridEnt, mapUid, tile);
                 side.Doors.Add(new DoorLayout(door, pressure));
                 if (pressure is not { } p)
+                {
+                    side.MissingReading = true;
                     continue;
+                }
 
                 sum += p;
                 count++;
+                side.OutsideMin = MathF.Min(side.OutsideMin, p);
+                side.OutsideMax = MathF.Max(side.OutsideMax, p);
             }
 
             if (count > 0)
@@ -157,12 +196,16 @@ public sealed partial class AirlockCyclerSystem
             if (!_chamber.Contains(doorTile.Offset(dir)))
                 continue;
 
-            // Walk outwards across the door; skip a few air-blocked tiles (a second door, a firelock).
+            // Walk outwards across the door; skip a few air-blocked tiles (a second door, a firelock). A closed
+            // airlock keeps the mixture it had on its own tile, so a blocked tile's air is never what lies beyond.
             var outward = dir.GetOpposite();
             var tile = doorTile;
             for (var step = 0; step < 3; step++)
             {
                 tile = tile.Offset(outward);
+                if (_atmos.IsTileAirBlockedCached(grid, tile, outward.GetOpposite()))
+                    continue;
+
                 if (_atmos.IsTileSpace(grid, map, tile))
                     return _atmos.GetTileMixture(grid, map, tile)?.Pressure ?? 0f;
 

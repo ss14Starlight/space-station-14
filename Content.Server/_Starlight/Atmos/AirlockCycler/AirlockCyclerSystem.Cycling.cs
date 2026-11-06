@@ -10,8 +10,11 @@ public sealed partial class AirlockCyclerSystem
     /// <summary>
     /// Ask the controller to cycle towards <paramref name="side"/>. Asking again for a side whose cycle is stuck opens it anyway.
     /// </summary>
-    public void RequestCycle(Entity<AirlockCyclerComponent> ent, int side, EntityUid? user)
+    public void RequestCycle(Entity<AirlockCyclerComponent?> ent, int side, EntityUid? user)
     {
+        if (!Resolve(ent.Owner, ref ent.Comp))
+            return;
+
         var comp = ent.Comp;
         if (side < 0 || side >= comp.Sides.Count)
             return;
@@ -23,7 +26,7 @@ public sealed partial class AirlockCyclerSystem
             return;
         }
 
-        if (!HasSideAccess(ent, side, user))
+        if (!HasSideAccess((Entity<AirlockCyclerComponent>)ent!, side, user))
         {
             if (user != null)
                 _popup.PopupEntity(Loc.GetString("airlock-cycler-access-denied"), ent, user.Value);
@@ -44,7 +47,11 @@ public sealed partial class AirlockCyclerSystem
         comp.Force = false;
         comp.SettleUntil = null;
         comp.Problem = AirlockCyclerProblem.None;
-        SetState(ent, AirlockCyclerState.Closing);
+        SetState((Entity<AirlockCyclerComponent>)ent!, AirlockCyclerState.Closing);
+
+        // SetState only refreshes the lights when cycling starts or stops; a redirect (A -> B while cycling) keeps
+        // the state, so the lights must follow the new target here.
+        UpdateButtons((Entity<AirlockCyclerComponent>)ent!);
         comp.NextUpdate = _timing.CurTime;
     }
 
@@ -70,16 +77,12 @@ public sealed partial class AirlockCyclerSystem
             }
 
             if (comp.State == AirlockCyclerState.Off)
-            {
                 SetState(ent, AirlockCyclerState.Idle);
-                LockIdleDoors(ent, source);
-            }
-            else if (comp.LockPending && comp.State == AirlockCyclerState.Idle)
-            {
-                LockIdleDoors(ent, source);
-            }
 
-            comp.LockPending = false;
+            // Every update, not only on power-up or relink: a non-target door that was open then (or got opened by
+            // hand since) must be shut and bolted, or an authorized user could open both sides at once.
+            if (comp.State == AirlockCyclerState.Idle)
+                SecureIdleDoors(ent, source);
 
             var uiOpen = _ui.IsUiOpen(uid, AirlockCyclerUiKey.Key);
             if (comp.State == AirlockCyclerState.Idle && !uiOpen)
@@ -107,6 +110,7 @@ public sealed partial class AirlockCyclerSystem
         // Shut and bolt every door that is not on the target side.
         var othersShut = true;
         var targetOpen = false;
+        var targetSettling = false;
         for (var i = 0; i < layout.Sides.Count; i++)
         {
             foreach (var doorInfo in layout.Sides[i].Doors)
@@ -121,7 +125,7 @@ public sealed partial class AirlockCyclerSystem
                     case DoorState.Welded:
                         Bolt(door, true);
                         break;
-                    case DoorState.Open when i == target:
+                    case DoorState.Open or DoorState.Opening when i == target:
                         targetOpen = true;
                         break;
                     case DoorState.Open:
@@ -130,13 +134,13 @@ public sealed partial class AirlockCyclerSystem
                         if (!_doors.TryClose(door, doorComp))
                             comp.Problem = AirlockCyclerProblem.DoorObstructed;
                         break;
-                    case DoorState.Opening when i == target:
-                        targetOpen = true;
-                        break;
                     default:
-                        // Closing, opening, denying: wait for it to settle.
+                        // Closing, opening, denying: wait for it to settle. A closing target door still lets air
+                        // through, so pumping now would waste gas into (or pull it from) the next room.
                         if (i != target)
                             othersShut = false;
+                        else
+                            targetSettling = true;
                         break;
                 }
             }
@@ -144,6 +148,7 @@ public sealed partial class AirlockCyclerSystem
 
         if (!othersShut)
         {
+            StopVents(ent, source);
             SetState(ent, AirlockCyclerState.Closing);
             return;
         }
@@ -151,20 +156,48 @@ public sealed partial class AirlockCyclerSystem
         if (comp.Problem == AirlockCyclerProblem.DoorObstructed)
             comp.Problem = AirlockCyclerProblem.None;
 
-        var targetPressure = layout.Sides[target].OutsidePressure;
-        if (comp.Force || targetOpen || layout.Vents.Count == 0 || targetPressure == null || layout.ChamberPressure == null)
+        // A target door is open: the chamber already shares that side's pressure.
+        // No vent: a plain interlock, nothing to pump.
+        if (comp.Force || targetOpen || layout.Vents.Count == 0)
         {
             Finish(ent, source, layout);
             return;
         }
 
-        var chamber = layout.ChamberPressure.Value;
-        var wanted = targetPressure.Value;
-        var diff = MathF.Abs(chamber - wanted);
-        if (diff <= comp.PressureTolerance)
+        if (targetSettling)
+        {
+            StopVents(ent, source);
+            SetState(ent, AirlockCyclerState.Closing);
+            return;
+        }
+
+        // Never open on a guess: without a reading for the chamber and for every target door, or with target doors
+        // leading to different pressures, keep everything shut until someone forces it from the console.
+        var side = layout.Sides[target];
+        if (layout.ChamberPressure is not { } chamber
+            || layout.ChamberLeaks
+            || side.MissingReading
+            || side.OutsidePressure is not { } wanted)
+        {
+            Hold(ent, source, AirlockCyclerProblem.NoReading);
+            return;
+        }
+
+        if (side.OutsideMax - side.OutsideMin > comp.IncompatiblePressure)
+        {
+            Hold(ent, source, AirlockCyclerProblem.IncompatiblePressure);
+            return;
+        }
+
+        if (comp.Problem is AirlockCyclerProblem.NoReading or AirlockCyclerProblem.IncompatiblePressure)
+            comp.Problem = AirlockCyclerProblem.None;
+
+        // Done only when every chamber tile matches: the vent's own tile settles first.
+        var worst = MathF.Max(MathF.Abs(layout.ChamberMin - wanted), MathF.Abs(layout.ChamberMax - wanted));
+        if (worst <= comp.PressureTolerance)
         {
             comp.SettleUntil ??= now + comp.SettleTime;
-            if (diff <= comp.MatchedPressure || now >= comp.SettleUntil)
+            if (worst <= comp.MatchedPressure || now >= comp.SettleUntil)
             {
                 Finish(ent, source, layout);
                 return;
@@ -186,7 +219,7 @@ public sealed partial class AirlockCyclerSystem
         var direction = state == AirlockCyclerState.Pressurizing ? VentPumpDirection.Releasing : VentPumpDirection.Siphoning;
         foreach (var vent in layout.Vents)
         {
-            _vents.SetAirlockCyclerMode(vent, true, direction, wanted);
+            _vents.SetAirlockCyclerMode(vent.AsNullable(), true, direction, wanted);
         }
 
         if (MathF.Abs(chamber - comp.LastProgressPressure) >= comp.StallPressure)
@@ -200,6 +233,14 @@ public sealed partial class AirlockCyclerSystem
         {
             comp.Problem = AirlockCyclerProblem.Stalled;
         }
+    }
+
+    private void Hold(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source, AirlockCyclerProblem problem)
+    {
+        StopVents(ent, source);
+        ent.Comp.SettleUntil = null;
+        ent.Comp.Problem = problem;
+        SetState(ent, AirlockCyclerState.Closing);
     }
 
     private void Finish(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source, Layout layout)
@@ -226,10 +267,11 @@ public sealed partial class AirlockCyclerSystem
 
     private void TurnOff(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source)
     {
-        // Without power the chamber is just a pair of doors: let people through by hand.
+        // Without power the chamber is just a pair of doors: let people through by hand. The doors are likely
+        // unpowered too, so the bolts are released without the usual power check.
         for (var i = 0; i < ent.Comp.Sides.Count; i++)
             foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.Sides[i]))
-                Bolt(linked, false);
+                ReleaseBolts(linked);
 
         StopVents(ent, source);
         ent.Comp.Force = false;
@@ -237,8 +279,9 @@ public sealed partial class AirlockCyclerSystem
         SetState(ent, AirlockCyclerState.Off);
     }
 
-    private void LockIdleDoors(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source)
+    private void SecureIdleDoors(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source)
     {
+        var obstructed = false;
         for (var i = 0; i < ent.Comp.Sides.Count; i++)
         {
             if (i == ent.Comp.TargetSide)
@@ -246,18 +289,35 @@ public sealed partial class AirlockCyclerSystem
 
             foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.Sides[i]))
             {
-                if (_doorQuery.TryComp(linked, out var door) && door.State is DoorState.Closed or DoorState.Welded)
-                    Bolt(linked, true);
+                if (!_doorQuery.TryComp(linked, out var door))
+                    continue;
+
+                switch (door.State)
+                {
+                    case DoorState.Closed:
+                    case DoorState.Welded:
+                        Bolt(linked, true);
+                        break;
+                    case DoorState.Open:
+                        Bolt(linked, false);
+                        if (!_doors.TryClose(linked, door))
+                            obstructed = true;
+                        break;
+                }
             }
         }
+
+        if (obstructed)
+            ent.Comp.Problem = AirlockCyclerProblem.DoorObstructed;
+        else if (ent.Comp.Problem == AirlockCyclerProblem.DoorObstructed)
+            ent.Comp.Problem = AirlockCyclerProblem.None;
     }
 
     private void StopVents(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source)
     {
         foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.VentPort))
         {
-            if (_ventQuery.TryComp(linked, out var vent))
-                _vents.SetAirlockCyclerMode((linked, vent), false, vent.PumpDirection, vent.ExternalPressureBound);
+            _vents.StopAirlockCyclerVent(linked);
         }
     }
 
@@ -265,6 +325,12 @@ public sealed partial class AirlockCyclerSystem
     {
         if (_boltQuery.TryComp(door, out var bolt) && bolt.BoltsDown != bolted)
             _doors.SetBoltsDown((door, bolt), bolted);
+    }
+
+    private void ReleaseBolts(EntityUid door)
+    {
+        if (_boltQuery.TryComp(door, out var bolt))
+            _doors.ForceSetBoltsDown((door, bolt), false);
     }
 
     private void SetState(Entity<AirlockCyclerComponent> ent, AirlockCyclerState state)

@@ -5,6 +5,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Starlight.Atmos.AirlockCycler;
 
 [RegisterComponent, Access(typeof(AirlockCyclerSystem))]
+[AutoGenerateComponentPause]
 public sealed partial class AirlockCyclerComponent : Component
 {
     /// <summary>
@@ -39,6 +40,13 @@ public sealed partial class AirlockCyclerComponent : Component
     public float MatchedPressure = 0.2f;
 
     /// <summary>
+    /// The doors of one side may lead to pressures this far apart (kPa) and still be cycled together. Beyond that no
+    /// chamber pressure is safe for all of them, and the controller refuses until forced.
+    /// </summary>
+    [DataField]
+    public float IncompatiblePressure = 10f;
+
+    /// <summary>
     /// Determines how much time we should wait once after we reached <see cref="PressureTolerance"/> before opening doors.
     /// Was added since I noticed that even with tolerance system since chamber has multiple tiles you can like... throw ~100kPa to space.
     /// </summary>
@@ -47,9 +55,8 @@ public sealed partial class AirlockCyclerComponent : Component
 
     /// <summary>
     /// Just flex variable used to save time when we should open door.
-    /// Probably should have Auto Pause.
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, AutoPausedField]
     public TimeSpan? SettleUntil;
 
     /// <summary>
@@ -78,9 +85,8 @@ public sealed partial class AirlockCyclerComponent : Component
 
     /// <summary>
     /// Just flex variable used to save time when we should update cycler state.
-    /// Probably should have Auto Pause.
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, AutoPausedField]
     public TimeSpan NextUpdate;
 
     /// <summary>
@@ -114,12 +120,6 @@ public sealed partial class AirlockCyclerComponent : Component
     /// </summary>
     [ViewVariables]
     public EntityUid? Requester;
-
-    /// <summary>
-    /// Links changed: bolt the newly linked doors on the next update.
-    /// </summary>
-    [ViewVariables]
-    public bool LockPending;
 
     /// <summary>
     /// Last time when we get chamber pressuring/depressuring progress.

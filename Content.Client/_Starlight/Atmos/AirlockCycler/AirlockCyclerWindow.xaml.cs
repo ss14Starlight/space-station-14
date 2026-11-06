@@ -17,7 +17,7 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
     private const string ClassBad = "status-bad";
     private const string ClassWarning = "status-warning";
     private const string ClassWeak = "LabelWeak";
-    private static readonly string[] ColorClasses = [ClassGood, ClassBad, ClassWarning, ClassWeak];
+    private static readonly string[] _colorClasses = [ClassGood, ClassBad, ClassWarning, ClassWeak];
 
     public event Action<int>? OnCycle;
     public event Action? OnForce;
@@ -28,11 +28,19 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
         ForceButton.OnPressed += _ => OnForce?.Invoke();
     }
 
+    /// <summary>
+    /// Updates current window state.
+    /// </summary>
     public void UpdateState(AirlockCyclerBoundUserInterfaceState state)
     {
         var targetName = state.TargetSide is { } t ? SideName(t) : string.Empty;
 
-        StatusLabel.Text = state.State switch
+        // The controller refuses to go on by itself; only a forced open moves it.
+        var holding = state.Problem is AirlockCyclerProblem.NoReading or AirlockCyclerProblem.IncompatiblePressure;
+
+        StatusLabel.Text = holding
+            ? Loc.GetString("airlock-cycler-state-holding", ("side", targetName))
+            : state.State switch
         {
             AirlockCyclerState.Off => Loc.GetString("airlock-cycler-state-off"),
             AirlockCyclerState.Idle => Loc.GetString("airlock-cycler-state-idle"),
@@ -48,32 +56,37 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
             _ => ClassBad,
         });
 
-        // Without a vent the controller is a plain interlock
-        var interlock = state.Problem == AirlockCyclerProblem.NoVent;
-
         ProblemLabel.Visible = state.Problem != AirlockCyclerProblem.None;
         ProblemLabel.Text = state.Problem switch
         {
             AirlockCyclerProblem.NoVent => Loc.GetString("airlock-cycler-problem-no-vent"),
             AirlockCyclerProblem.Stalled => Loc.GetString("airlock-cycler-problem-stalled"),
             AirlockCyclerProblem.DoorObstructed => Loc.GetString("airlock-cycler-problem-obstructed"),
+            AirlockCyclerProblem.IncompatiblePressure => Loc.GetString("airlock-cycler-problem-incompatible"),
+            AirlockCyclerProblem.NoReading => Loc.GetString("airlock-cycler-problem-no-reading"),
             _ => string.Empty,
         };
-        SetColorClass(ProblemLabel, interlock ? ClassWeak : ClassWarning);
+
+        if (state.NoVent && state.Problem != AirlockCyclerProblem.NoVent)
+            ProblemLabel.Text += "\n" + Loc.GetString("airlock-cycler-problem-no-vent");
+
+        SetColorClass(ProblemLabel, state.NoVent ? ClassWeak : ClassWarning);
 
         var cycling = state.State is AirlockCyclerState.Closing
             or AirlockCyclerState.Pressurizing
             or AirlockCyclerState.Depressurizing;
 
-        ChamberRow.Visible = !interlock && state.ChamberPressure != null;
-        TargetRow.Visible = !interlock && cycling && state.TargetPressure != null;
-        TankRow.Visible = !interlock && state.TankPressure != null;
+        ChamberRow.Visible = !state.NoVent && state.ChamberPressure != null;
+        TargetRow.Visible = !state.NoVent && cycling && state.TargetPressure != null;
+        TankRow.Visible = !state.NoVent && state.TankPressure != null;
         PressureBox.Visible = ChamberRow.Visible || TargetRow.Visible || TankRow.Visible;
         ChamberLabel.Text = Pressure(state.ChamberPressure);
         TargetLabel.Text = Pressure(state.TargetPressure);
         TankLabel.Text = Pressure(state.TankPressure);
 
-        ForceButton.Visible = !interlock && cycling && state.State != AirlockCyclerState.Closing;
+        ForceButton.Visible = !state.NoVent
+            && cycling
+            && (state.State != AirlockCyclerState.Closing || holding || state.Problem == AirlockCyclerProblem.Stalled);
 
         // Rows are kept between updates so a button is never swapped out from under the cursor mid-click.
         NoSidesLabel.Visible = state.Sides.Count == 0;
@@ -88,7 +101,7 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
                 SidesContainer.AddChild(row.Root);
             }
 
-            UpdateSideRow(row, state, side, cycling, interlock);
+            UpdateSideRow(row, state, side, cycling, state.NoVent);
         }
 
         foreach (var index in _rows.Keys.ToArray())
@@ -109,8 +122,8 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
         public Button Cycle = default!;
     }
 
-    private readonly Dictionary<int, SideRow> _rows = new();
-    private readonly HashSet<int> _seen = new();
+    private readonly Dictionary<int, SideRow> _rows = [];
+    private readonly HashSet<int> _seen = [];
 
     private SideRow CreateSideRow(int index)
     {
@@ -155,7 +168,7 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
 
     private static void SetColorClass(Control control, string? styleClass)
     {
-        foreach (var existing in ColorClasses)
+        foreach (var existing in _colorClasses)
         {
             if (existing != styleClass)
                 control.RemoveStyleClass(existing);
@@ -166,14 +179,10 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
     }
 
     private static string SideName(int index)
-    {
-        return Loc.GetString($"airlock-cycler-side-{(char) ('a' + index)}");
-    }
+        => Loc.GetString($"airlock-cycler-side-{(char) ('a' + index)}");
 
     private static string Pressure(float? kpa)
-    {
-        return kpa is { } p
+        => kpa is { } p
             ? Loc.GetString("airlock-cycler-window-pressure", ("pressure", p.ToString("0.0", CultureInfo.InvariantCulture)))
             : Loc.GetString("airlock-cycler-window-no-data");
-    }
 }

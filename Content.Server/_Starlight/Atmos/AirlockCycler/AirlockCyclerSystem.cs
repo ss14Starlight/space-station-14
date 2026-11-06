@@ -60,14 +60,18 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
         {
             foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.Sides[i]))
             {
-                if (_boltQuery.TryComp(linked, out var bolt))
-                    _doors.SetBoltsDown((linked, bolt), false);
+                if (_boltQuery.HasComp(linked))
+                    ReleaseBolts(linked);
                 else if (_buttonQuery.HasComp(linked))
                     _appearance.SetData(linked, AirlockCyclerButtonVisuals.State, AirlockCyclerButtonState.Off);
             }
         }
 
-        StopVents(ent, source);
+        // Hand the vents back with the settings they had before the controller took them.
+        foreach (var linked in _deviceLink.GetLinkedSinks((ent, source), ent.Comp.VentPort))
+        {
+            _vents.ReleaseAirlockCyclerControl(linked);
+        }
     }
 
     [SubscribeLocalEvent]
@@ -81,12 +85,17 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
         if (_buttonQuery.HasComp(args.Sink))
             _appearance.SetData(args.Sink, AirlockCyclerButtonVisuals.State, AirlockCyclerButtonState.Off);
 
+        if (args.Port == ent.Comp.VentPort)
+            _vents.ReleaseAirlockCyclerControl(args.Sink);
+
+        if (ent.Comp.Sides.Contains(args.Port) && _doorQuery.HasComp(args.Sink))
+            ReleaseBolts(args.Sink);
+
         OnLinksChanged(ent);
     }
 
     private void OnLinksChanged(Entity<AirlockCyclerComponent> ent)
     {
-        ent.Comp.LockPending = true;
         UpdateButtons(ent);
         ent.Comp.NextUpdate = _timing.CurTime;
     }
@@ -104,7 +113,7 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
 
     [SubscribeLocalEvent]
     private void OnCycleMessage(Entity<AirlockCyclerComponent> ent, ref AirlockCyclerCycleMessage args)
-        => RequestCycle(ent, args.Side, args.Actor);
+        => RequestCycle(ent.AsNullable(), args.Side, args.Actor);
 
     [SubscribeLocalEvent]
     private void OnForceMessage(Entity<AirlockCyclerComponent> ent, ref AirlockCyclerForceMessage args)
@@ -138,7 +147,7 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
             return;
         }
 
-        RequestCycle(controller, side, args.User);
+        RequestCycle(controller.AsNullable(), side, args.User);
     }
 
     private void UpdateUi(Entity<AirlockCyclerComponent> ent, Layout layout)
@@ -147,13 +156,14 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
         {
             State = ent.Comp.State,
             Problem = ent.Comp.Problem,
+            NoVent = false,
             TargetSide = ent.Comp.TargetSide,
             ChamberPressure = layout.ChamberPressure,
             TankPressure = layout.TankPressure,
         };
 
         if (layout.Vents.Count == 0 && ent.Comp.State != AirlockCyclerState.Off)
-            state.Problem = AirlockCyclerProblem.NoVent;
+            state.NoVent = true;
 
         if (ent.Comp.TargetSide is { } target && target < layout.Sides.Count)
             state.TargetPressure = layout.Sides[target].OutsidePressure;

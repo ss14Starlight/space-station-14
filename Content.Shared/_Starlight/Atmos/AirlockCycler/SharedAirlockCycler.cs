@@ -46,6 +46,18 @@ public enum AirlockCyclerProblem : byte
 
     /// <summary>Someone blocking your door with object or it's unpowered, today you'll stay outdoor!</summary>
     DoorObstructed,
+
+    /// <summary>
+    /// The doors of the target side lead to different pressures (say vacuum and a room). No single chamber pressure
+    /// is safe for all of them, so the doors stay shut until someone forces them.
+    /// </summary>
+    IncompatiblePressure,
+
+    /// <summary>
+    /// A vent is linked but the chamber or the space behind a target door can not be measured (the vent can not
+    /// reach the door, or only walls lie behind it). The doors stay shut until someone forces them.
+    /// </summary>
+    NoReading,
 }
 
 [Serializable, NetSerializable]
@@ -114,6 +126,11 @@ public sealed class AirlockCyclerBoundUserInterfaceState : BoundUserInterfaceSta
     /// Current cycler problem.
     /// </summary>
     public AirlockCyclerProblem Problem;
+
+    /// <summary>
+    /// No vent? =(
+    /// </summary>
+    public bool NoVent;
 
     /// <summary>
     /// Side the controller is cycling towards, or the side that was opened last when idle.
