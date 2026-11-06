@@ -81,10 +81,7 @@ namespace Content.Client.Cargo.UI
                 ActionOptions.SelectId(idx.Id);
             };
             //Starlight start
-            BarcodeAccountOptions.OnItemSelected += idx =>
-            {
-                BarcodeAccountOptions.SelectId(idx.Id);
-            };
+            BarcodeAccountOptions.OnItemSelected += idx => BarcodeAccountOptions.SelectId(idx.Id);
 
             BarcodePrintButton.OnPressed += _ =>
             {

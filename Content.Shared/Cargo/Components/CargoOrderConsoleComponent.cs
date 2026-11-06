@@ -193,13 +193,8 @@ public sealed class CargoConsoleToggleLimitMessage : BoundUserInterfaceMessage;
 /// Print a barcode label that can be attached to an item to redirect sale proceeds to a department.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class CargoConsolePrintBarcodeMessage : BoundUserInterfaceMessage
+public sealed class CargoConsolePrintBarcodeMessage(ProtoId<CargoAccountPrototype> account) : BoundUserInterfaceMessage
 {
-    public ProtoId<CargoAccountPrototype> Account;
-
-    public CargoConsolePrintBarcodeMessage(ProtoId<CargoAccountPrototype> account)
-    {
-        Account = account;
-    }
+    public ProtoId<CargoAccountPrototype> Account = account;
 }
 #endregion
