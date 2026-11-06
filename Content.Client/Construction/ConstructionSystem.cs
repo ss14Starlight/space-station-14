@@ -30,7 +30,7 @@ namespace Content.Client.Construction
     public sealed partial class ConstructionSystem : SharedConstructionSystem
     {
         [Dependency] private IPlayerManager _playerManager = default!;
-        [Dependency] private ExamineSystemShared _examineSystem = default!;
+        // Starlight-edit: ExamineSystem is unued
         [Dependency] private SharedTransformSystem _transformSystem = default!;
         [Dependency] private SpriteSystem _sprite = default!;
         [Dependency] private PopupSystem _popupSystem = default!;
@@ -327,11 +327,13 @@ namespace Content.Client.Construction
             // Starlight-edit start
             if (HasReachedMaximumGhosts(loc))
                 return false;
-            // Starlight-edit end
 
-            var predicate = GetPredicate(prototype.CanBuildInImpassable, _transformSystem.ToMapCoordinates(loc));
-            if (!_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate))
+            // Allow placing construction ghosts without line of sight.
+            var locMap = _transformSystem.ToMapCoordinates(loc);
+            var userMap = _transformSystem.GetMapCoordinates(user);
+            if (userMap.MapId != locMap.MapId || (userMap.Position - locMap.Position).Length() > 20f)
                 return false;
+            // Starlight-edit end
 
             if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup)) // Starlight
                 return false;
