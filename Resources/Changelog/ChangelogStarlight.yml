@@ -1,25 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Reverted shadekin light sensitivity values.
-    type: Tweak
-  id: 409778
-  time: '2026-10-25T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6850
-- author: Ohelig, Claude Sonnet 5.5
-  changes:
-  - message: Fixes AI cores having damaged speech without being damaged.
-    type: Fix
-  id: 409779
-  time: '2026-10-25T18:16:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6857
-- author: Hot Mic
-  changes:
-  - message: Add Ghost Observers spawn point.
-    type: Add
-  id: 409780
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
 - author: Hot Mic
   changes:
   - message: 'Service: Add new job spawn for Janitor.'
@@ -2799,4 +2778,25 @@ Entries:
   id: 410177
   time: '2026-11-06T17:12:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7078
+- author: Rinary
+  changes:
+  - message: Changed grills/conveyors, now you can't place grills on top of conveyors(except spawn them via sandbox).
+    type: Tweak
+  id: 410178
+  time: '2026-11-06T18:27:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6858
+- author: Rinary
+  changes:
+  - message: Changed airlocks/conveyors, now you can't place airlocks on top of conveyors(except spawn them via sandbox).
+    type: Tweak
+  id: 410179
+  time: '2026-11-06T18:27:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6858
+- author: Rinary
+  changes:
+  - message: Changed conveyors, now you can't anchor it on same tile as grill(any grill) or airlock.
+    type: Tweak
+  id: 410180
+  time: '2026-11-06T18:27:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6858
 Order: -1
