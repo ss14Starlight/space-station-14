@@ -75,6 +75,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
 
         // News writer
         SubscribeLocalEvent<NewsWriterComponent, MapInitEvent>(OnMapInit);
+        InitializeNewsPhoto(); // Starlight
 
         // New writer bui messages
         Subs.BuiEvents<NewsWriterComponent>(NewsWriterUiKey.Key, subs =>
@@ -178,10 +179,15 @@ public sealed partial class NewsSystem : SharedNewsSystem
 
         var title = msg.Title.Trim();
         var content = msg.Content.Trim();
+        var snapshotData = GetAttachedPhotoData(ent); // Starlight
 
-        if (TryAddNews(ent, title, content, out var article, authorName, msg.Actor))
+        if (TryAddNews(ent, title, content, out var article, authorName, msg.Actor, snapshotData)) // Starlight Edit: Added snapshotData
         {
             _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
+            // Starlight Start
+            if (snapshotData is not null)
+                EjectAttachedPhoto(ent, msg.Actor);
+            // Starlight End
 
             _chatManager.SendAdminAnnouncement(Loc.GetString("news-publish-admin-announcement",
                                                              ("actor", msg.Actor),
@@ -199,7 +205,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
     /// <param name="content">Content of the news article.</param>
     /// <param name="author">Author of the news article.</param>
     /// <param name="actor">Entity which caused the news article to publish. Used for admin logs.</param>
-    public bool TryAddNews(EntityUid uid, string title, string content, [NotNullWhen(true)] out NewsArticle? article, string? author = null, EntityUid? actor = null)
+    public bool TryAddNews(EntityUid uid, string title, string content, [NotNullWhen(true)] out NewsArticle? article, string? author = null, EntityUid? actor = null, string? snapshotData = null) // Starlight Edit: Added snapshotData
     {
         if (!TryGetArticles(uid, out var articles))
         {
@@ -213,6 +219,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
             Content = content.Length <= MaxContentLength ? content : $"{content[..MaxContentLength]}...",
             Author = author,
             ShareTime = _ticker.RoundDuration(),
+            ArticleSnapshotData = snapshotData is not null && snapshotData.Length <= MaxArticleSnapshotLength ? snapshotData : null, // Starlight
             // Starlight-edit: start
             Likes = 0,
             Dislikes = 0,
@@ -313,6 +320,9 @@ public sealed partial class NewsSystem : SharedNewsSystem
             case NewsReaderUiAction.Dislike:
                 TryReactToCurrentArticle(ent, GetEntity(args.LoaderUid), false);
                 break;
+            case NewsReaderUiAction.ViewPhoto:
+                TrySendNewsArticlePhoto(ent, args.Actor);
+                return;
             // Starlight-edit: end
         }
 
@@ -346,7 +356,11 @@ public sealed partial class NewsSystem : SharedNewsSystem
         if (!TryGetArticles(ent, out var articles))
             return;
 
-        var state = new NewsWriterBoundUserInterfaceState(articles.ToArray(), ent.Comp.PublishEnabled, ent.Comp.NextPublish, ent.Comp.DraftTitle, ent.Comp.DraftContent);
+        // Starlight edit start
+        var hasPhoto = _itemSlots.GetItemOrNull(ent.Owner, PhotoSlotId) is { } photo && _snapshotPersistence.GetSerializedData(photo) is not null;
+        var lightArticles = articles.Select(a => { a.ArticleSnapshotData = string.IsNullOrEmpty(a.ArticleSnapshotData) ? null : "1"; return a; }).ToArray();
+        var state = new NewsWriterBoundUserInterfaceState(lightArticles, ent.Comp.PublishEnabled, ent.Comp.NextPublish, ent.Comp.DraftTitle, ent.Comp.DraftContent, hasPhoto);
+        // Starlight edit End
         _ui.SetUiState(ent.Owner, NewsWriterUiKey.Key, state);
     }
 
@@ -367,12 +381,20 @@ public sealed partial class NewsSystem : SharedNewsSystem
             TryCountCurrentArticleView(ent, loaderUid, articles);
         // Starlight-edit: end
 
+        // Starlight Start
+        var article = articles[ent.Comp.ArticleNumber];
+        var hasPhoto = !string.IsNullOrEmpty(article.ArticleSnapshotData);
+        article.ArticleSnapshotData = null;
+        // Starlight End
         var state = new NewsReaderBoundUserInterfaceState(
-            articles[ent.Comp.ArticleNumber],
+            article,
             ent.Comp.ArticleNumber + 1,
             articles.Count,
             ent.Comp.NotificationOn,
-            HasReactedToCurrentArticle(ent, loaderUid)); // Starlight
+            // Starlight Start
+            HasReactedToCurrentArticle(ent, loaderUid),
+            hasPhoto);
+            // Starlight End
 
         _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, state);
     }
@@ -589,7 +611,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
             {
                 Title = article.Title,
                 // There is no need to cut article content. It's MaxContentLength smaller then discord's limit (4096):
-                Description = FormattedMessage.RemoveMarkupPermissive(article.Content),
+                Description = GetDiscordDescription(article), // Starlight Edit
                 Color = _webhookEmbedColor.ToArgb() & 0xFFFFFF, // HACK: way to get hex without A (transparency)
                 Footer = new WebhookEmbedFooter
                 {

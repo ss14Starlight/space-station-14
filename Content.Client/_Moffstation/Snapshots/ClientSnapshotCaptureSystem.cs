@@ -119,21 +119,23 @@ public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
                 if (index >= MaxSnapshotAnimationLayers)
                     break;
 
+                // Single RSI lookup shared by the smooth-state and animation checks.
+                if (layer.ActualRsi is not { } rsi || !rsi.TryGetState(layer.RsiState, out var state))
+                {
+                    index++;
+                    continue;
+                }
+
                 var stateName = layer.RsiState.Name;
                 if (isIconSmooth
                     && iconSmoothStates.Count < MaxSnapshotIconSmoothStates
                     && !string.IsNullOrEmpty(stateName)
-                    && stateName.Length <= MaxSnapshotIconSmoothStateLength
-                    && layer.ActualRsi is { } smoothRsi
-                    && smoothRsi.TryGetState(layer.RsiState, out _))
+                    && stateName.Length <= MaxSnapshotIconSmoothStateLength)
                 {
                     iconSmoothStates.Add(new SnapshotSpriteLayerStateCapture(netUid, index, stateName));
                 }
 
-                if (frames.Count < MaxSnapshotAnimationFrames
-                    && layer.ActualRsi is { } rsi
-                    && rsi.TryGetState(layer.RsiState, out var state)
-                    && state.IsAnimated)
+                if (frames.Count < MaxSnapshotAnimationFrames && state.IsAnimated)
                 {
                     frames.Add(new SnapshotSpriteAnimation(
                         netUid,

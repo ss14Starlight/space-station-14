@@ -120,6 +120,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         return true;
     }
 
+    public (EntityUid Map, IEye Eye, Vector2i ViewportSize) BuildScene(SnapshotData data)
+        => Build(data);
+
     /// <summary>
     /// Queues <paramref name="data"/> to build a scene for <paramref name="ui"/> on the next frame.
     /// </summary>
@@ -169,10 +172,13 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     private void RetrySnapshotRequests()
     {
         var now = _timing.RealTime;
-        foreach (var (snapshot, known) in _known.ToArray())
+        if (_known.Count > 0)
         {
-            if (now - known.Received > _knownSnapshotLifetime)
-                _known.Remove(snapshot);
+            foreach (var (snapshot, known) in _known.ToArray())
+            {
+                if (now - known.Received > _knownSnapshotLifetime)
+                    _known.Remove(snapshot);
+            }
         }
 
         if (_awaiting.Count == 0)
@@ -291,7 +297,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     private static Vector2[] BuildShadows(Vector2 viewer, List<Vector2i> occluderTiles)
     {
         var occluders = new HashSet<Vector2i>(occluderTiles);
-        var triangles = new List<Vector2>();
+        var triangles = new List<Vector2>(occluders.Count * 6);
         foreach (var tile in occluders)
         {
             var (x, y) = (tile.X, tile.Y);

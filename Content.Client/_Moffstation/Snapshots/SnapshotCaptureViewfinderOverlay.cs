@@ -5,6 +5,7 @@ using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
+using Robust.Shared.Map;
 
 namespace Content.Client._Moffstation.Snapshots;
 
@@ -39,6 +40,15 @@ public sealed partial class SnapshotCaptureViewfinderOverlay : Robust.Client.Gra
 
     private Entity<SnapshotCaptureComponent>? _aimed;
 
+    private ScreenCoordinates _cachedMouseScreen;
+    private Angle _cachedRotation;
+    private Vector2i _cachedHalfExtents;
+    private MapCoordinates _cachedPlayerPos;
+    private MapCoordinates _cachedCenter;
+    private SnapshotFrame _cachedFrame;
+    private bool _cachedInRange;
+    private bool _hasCache;
+
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
     public SnapshotCaptureViewfinderOverlay()
@@ -70,16 +80,49 @@ public sealed partial class SnapshotCaptureViewfinderOverlay : Robust.Client.Gra
         if (_aimed is not { } capture || _player.LocalEntity is not { } player)
             return;
 
-        var mouse = _eye.PixelToMap(_input.MouseScreenPosition);
-        if (mouse.MapId != args.MapId)
-            return;
+        var mouseScreen = _input.MouseScreenPosition;
+        var rotation = _eye.CurrentEye.Rotation;
+        var playerPos = _transform.GetMapCoordinates(player);
+        MapCoordinates center;
+        SnapshotFrame frame;
+        bool inRange;
 
-        // Same clamping the shot uses, so the frame is where the snapshot will be.
-        var center = _capture.ClampToScreen(mouse, capture.Comp.HalfExtents, out var frame);
+        if (_hasCache
+            && mouseScreen == _cachedMouseScreen
+            && rotation.Theta == _cachedRotation.Theta
+            && capture.Comp.HalfExtents == _cachedHalfExtents
+            && playerPos.Equals(_cachedPlayerPos))
+        {
+            center = _cachedCenter;
+            frame = _cachedFrame;
+            inRange = _cachedInRange;
+            if (center.MapId != args.MapId)
+                return;
+        }
+        else
+        {
+            var mouse = _eye.PixelToMap(mouseScreen);
+            if (mouse.MapId != args.MapId)
+            {
+                _hasCache = false;
+                return;
+            }
 
-        var from = _transform.GetMapCoordinates(player);
-        var inRange = from.MapId == center.MapId
-                      && (center.Position - from.Position).Length() <= capture.Comp.MaxRange;
+            // Same clamping the shot uses, so the frame is where the snapshot will be.
+            center = _capture.ClampToScreen(mouse, capture.Comp.HalfExtents, out frame);
+            inRange = playerPos.MapId == center.MapId
+                && (center.Position - playerPos.Position).Length() <= capture.Comp.MaxRange;
+
+            _cachedMouseScreen = mouseScreen;
+            _cachedRotation = rotation;
+            _cachedHalfExtents = capture.Comp.HalfExtents;
+            _cachedPlayerPos = playerPos;
+            _cachedCenter = center;
+            _cachedFrame = frame;
+            _cachedInRange = inRange;
+            _hasCache = true;
+        }
+
         var color = inRange ? _frameColor : _outOfRangeColor;
 
         var box = frame.Box;

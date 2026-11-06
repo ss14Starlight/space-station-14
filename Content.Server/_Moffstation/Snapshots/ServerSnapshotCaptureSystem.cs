@@ -104,6 +104,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 
     private readonly List<Entity<SharedPointLightComponent, TransformComponent>> _nearbyLights = [];
 
+    private readonly Dictionary<EntityUid, Vector2i> _tileOfCache = [];
+
     /// <summary>
     /// The viewfinder's extended view needs a larger PVS range, like binoculars.
     /// </summary>
@@ -158,6 +160,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         if (mapId == MapId.Nullspace || viewerCoords.MapId != mapId)
             return null;
 
+        _tileOfCache.Clear();
         var visMask = _eyeQuery.TryComp(viewer, out var eye) ? eye.VisibilityMask : EyeComponent.DefaultVisibilityMask;
 
         var snapshot = new SnapshotData { HalfExtents = halfExtents };
@@ -178,7 +181,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 
         // A tile is in the snapshot if the photographer can see any part of it, not just its middle, so partly visible
         // tiles next to walls aren't blacked out.
-        var visible = new HashSet<Vector2i>();
+        var tileCapacity = ((2 * halfExtents.X) + 1) * ((2 * halfExtents.Y) + 1);
+        var visible = new HashSet<Vector2i>(tileCapacity);
         for (var x = -halfExtents.X; x <= halfExtents.X; x++)
         {
             for (var y = -halfExtents.Y; y <= halfExtents.Y; y++)
@@ -190,13 +194,14 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
         }
 
-        var animationByEntity = new Dictionary<EntityUid, Dictionary<int, int>>();
+        Dictionary<EntityUid, Dictionary<int, int>>? animationByEntity = null;
         if (animationFrames is { Count: > MaxSnapshotAnimationFrames })
         {
             Log.Warning($"Ignored {animationFrames.Count} snapshot animation frames because the request exceeded the limit.");
         }
-        else if (animationFrames != null)
+        else if (animationFrames is { Count: > 0 })
         {
+            animationByEntity = [];
             foreach (var animation in animationFrames)
             {
                 if (animation.Layer < 0 || animation.Layer >= MaxSnapshotAnimationLayers
@@ -214,13 +219,14 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
         }
 
-        var iconSmoothStatesByEntity = new Dictionary<EntityUid, Dictionary<int, string>>();
+        Dictionary<EntityUid, Dictionary<int, string>>? iconSmoothStatesByEntity = null;
         if (iconSmoothStates is { Count: > MaxSnapshotIconSmoothStates })
         {
             Log.Warning($"Ignored {iconSmoothStates.Count} snapshot icon-smoothing states because the request exceeded the limit.");
         }
-        else if (iconSmoothStates != null)
+        else if (iconSmoothStates is { Count: > 0 })
         {
+            iconSmoothStatesByEntity = [];
             foreach (var iconSmoothState in iconSmoothStates)
             {
                 if (iconSmoothState.Layer < 0
@@ -241,7 +247,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         }
 
         // Visible entities add their tile so they aren't blacked out by tile-level visibility sampling.
-        var tilesInShot = new HashSet<Vector2i>(visible);
+        // Reuse the visible set rather than copying it.
+        var tilesInShot = visible;
 
         _found.Clear();
         _captured.Clear();
@@ -258,9 +265,6 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         var supportTiles = new HashSet<Vector2i>();
         foreach (var uid in _found)
         {
-            if (!ShouldInclude(uid, visMask, null))
-                continue;
-
             var xform = Transform(uid);
             var worldPosition = TransformSystem.GetWorldPosition(xform);
             var local = Vector2.Transform(worldPosition, worldToFrame);
@@ -269,7 +273,19 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             if (!inFrame)
                 continue;
 
-            if (!_examine.InRangeUnOccluded(
+            if (!ShouldInclude(uid, visMask, null))
+                continue;
+
+            // Walls (and other tile-filling occluders) are visible if any part of their tile is visible,
+            // not just their center. At an angle down a hall the center ray clips the neighbouring
+            // wall's corner even though the wall's edge is clearly on camera. The tile samples
+            // already checked that (and reuse saves a ray per wall).
+            var isOccluder = _occluderQuery.TryComp(uid, out var occluder) && occluder.Enabled;
+            if (isOccluder && tilesInShot.Contains(tileOffset))
+            {
+                // Fall through and capture.
+            }
+            else if (!_examine.InRangeUnOccluded(
                     viewerCoords,
                     new MapCoordinates(worldPosition, mapId),
                     SightRange,
@@ -290,7 +306,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             _captured[uid] = snapshot.Entities.Count;
             visibleEntityCount++;
             List<SnapshotSpriteLayerFrame>? capturedFrames = null;
-            if (animationByEntity.TryGetValue(uid, out var entityFrames))
+            if (animationByEntity != null && animationByEntity.TryGetValue(uid, out var entityFrames))
             {
                 capturedFrames = new List<SnapshotSpriteLayerFrame>(entityFrames.Count);
                 foreach (var (layer, frameIndex) in entityFrames)
@@ -298,7 +314,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
 
             List<SnapshotSpriteLayerState>? capturedIconSmoothStates = null;
-            if (iconSmoothStatesByEntity.TryGetValue(uid, out var entityIconSmoothStates))
+            if (iconSmoothStatesByEntity != null && iconSmoothStatesByEntity.TryGetValue(uid, out var entityIconSmoothStates))
             {
                 capturedIconSmoothStates = new List<SnapshotSpriteLayerState>(entityIconSmoothStates.Count);
                 foreach (var (layer, state) in entityIconSmoothStates)
@@ -343,11 +359,26 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         }
 
         tilesInShot.UnionWith(supportTiles);
+        // Frames are small and almost always on a single grid
+        EntityUid tileGridUid = default;
+        MapGridComponent? tileGrid = null;
+        var haveGrid = false;
+        var haveGridRotation = false;
+        var gridRotation = default(Angle);
         foreach (var offset in tilesInShot)
         {
             var worldPosition = Vector2.Transform(centerTile + offset + new Vector2(0.5f), frameToWorld);
-            if (!_map.TryFindGridAt(new MapCoordinates(worldPosition, mapId), out var tileGridUid, out var tileGrid)
-                || tileGrid == null)
+            if (!haveGrid)
+            {
+                if (!_map.TryFindGridAt(new MapCoordinates(worldPosition, mapId), out tileGridUid, out tileGrid)
+                    || tileGrid == null)
+                {
+                    continue;
+                }
+
+                haveGrid = true;
+            }
+            else if (tileGrid is null)
             {
                 continue;
             }
@@ -357,14 +388,34 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 || tileRef.Tile.IsEmpty
                 || !_tileDef.TryGetDefinition(tileRef.Tile.TypeId, out var tileDef))
             {
-                continue;
+                // Frame straddles a grid edge; re-resolve for this tile.
+                if (!_map.TryFindGridAt(new MapCoordinates(worldPosition, mapId), out tileGridUid, out tileGrid)
+                    || tileGrid == null)
+                {
+                    continue;
+                }
+
+                haveGrid = true;
+                haveGridRotation = false;
+                tileIndex = _map.WorldToTile(tileGridUid, tileGrid, worldPosition);
+                if (!_map.TryGetTileRef(tileGridUid, tileGrid, tileIndex, out tileRef)
+                    || tileRef.Tile.IsEmpty
+                    || !_tileDef.TryGetDefinition(tileRef.Tile.TypeId, out tileDef))
+                {
+                    continue;
+                }
+            }
+
+            if (!haveGridRotation)
+            {
+                gridRotation = TransformSystem.GetWorldRotation(tileGridUid);
+                haveGridRotation = true;
             }
 
             snapshot.Tiles.Add(new SnapshotTile(offset,
                 tileDef.ID,
                 tileRef.Tile.Variant,
-                RotateTile(tileRef.Tile.RotationMirroring,
-                    TransformSystem.GetWorldRotation(tileGridUid) + frameRotation),
+                RotateTile(tileRef.Tile.RotationMirroring, gridRotation + frameRotation),
                 GetRoof((tileGridUid, tileGrid), tileIndex)));
         }
 
@@ -385,7 +436,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 
         var viewerLocal = Vector2.Transform(viewerCoords.Position, worldToFrame);
         snapshot.Viewer = viewerLocal - center;
-        AddSeenOccluders(snapshot, mapId, viewerCoords, viewerLocal, centerTile, frameToWorld, worldToFrame);
+        AddSeenOccluders(snapshot, mapId, viewerCoords, viewerLocal, centerTile, frameToWorld, worldToFrame, tilesInShot);
 
         return snapshot;
     }
@@ -438,7 +489,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         Vector2 viewerLocal,
         Vector2i centerTile,
         Matrix3x2 frameToWorld,
-        Matrix3x2 worldToFrame)
+        Matrix3x2 worldToFrame,
+        HashSet<Vector2i> visibleTiles)
     {
         var frameBox = new Box2(centerTile - snapshot.HalfExtents, centerTile + snapshot.HalfExtents + Vector2i.One);
         var area = frameBox.ExtendToContain(viewerLocal).Enlarged(1f);
@@ -459,7 +511,9 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             if (!checkedTiles.Add(tile))
                 continue;
 
-            if (CanSeeAnyOfTile(viewer, tile, frameToWorld, worldToFrame, viewer.MapId))
+            // In-frame tiles were already ray-tested for the snapshot itself; reuse that.
+            if (visibleTiles.Contains(tile - centerTile)
+                || CanSeeAnyOfTile(viewer, tile, frameToWorld, worldToFrame, viewer.MapId))
                 snapshot.Occluders.Add(tile - centerTile);
         }
     }
@@ -670,13 +724,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             if (capturedCount >= MaxNearbyLights)
                 break;
 
-            if (_captured.ContainsKey(uid)
-                || _supportCaptured.Contains(uid)
-                || !ShouldInclude(uid, visMask, null)
-                || MetaData(uid).EntityPrototype is not { } proto)
-            {
+            if (_captured.ContainsKey(uid) || _supportCaptured.Contains(uid))
                 continue;
-            }
 
             var entityWorldPosition = TransformSystem.GetWorldPosition(light.Comp2);
             var worldRotation = TransformSystem.GetWorldRotation(light.Comp2);
@@ -687,6 +736,12 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             if (!float.IsFinite(radius)
                 || radius <= 0f
                 || Vector2.DistanceSquared(lightLocalPosition, closest) > radius * radius)
+            {
+                continue;
+            }
+
+            if (!ShouldInclude(uid, visMask, null)
+                || MetaData(uid).EntityPrototype is not { } proto)
             {
                 continue;
             }
@@ -751,7 +806,15 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     }
 
     private Vector2i TileOf(EntityUid uid, Matrix3x2 worldToFrame)
-        => TileOf(Vector2.Transform(TransformSystem.GetWorldPosition(uid), worldToFrame));
+    {
+        // Called for every occluder hit of every tile ray
+        if (_tileOfCache.TryGetValue(uid, out var tile))
+            return tile;
+
+        tile = TileOf(Vector2.Transform(TransformSystem.GetWorldPosition(uid), worldToFrame));
+        _tileOfCache[uid] = tile;
+        return tile;
+    }
 
     private static Vector2i TileOf(Vector2 local)
         => new((int)MathF.Floor(local.X), (int)MathF.Floor(local.Y));

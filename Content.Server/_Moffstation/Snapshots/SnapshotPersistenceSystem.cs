@@ -64,6 +64,28 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
         }
     }
 
+    public SnapshotData? TryDeserialize(string serialized)
+    {
+        if (serialized.Length > MaxEncodedLength)
+            return null;
+
+        try
+        {
+            var bytes = Convert.FromBase64String(serialized);
+            if (bytes.Length > MaxSerializedBytes)
+                return null;
+
+            using var stream = new MemoryStream(bytes, writable: false);
+            _serializer.DeserializeDirect(stream, out SnapshotData data);
+            return data;
+        }
+        catch (Exception e)
+        {
+            Log.Error($"Failed to deserialize photograph data: {e.Message}");
+            return null;
+        }
+    }
+
     private string? Serialize(SnapshotData data)
     {
         using var stream = new MemoryStream();
@@ -74,7 +96,8 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
             return null;
         }
 
-        return Convert.ToBase64String(stream.ToArray());
+        // GetBuffer avoids the ToArray() copy, stream was created writable with a public buffer.
+        return stream.TryGetBuffer(out var buffer) ? Convert.ToBase64String(buffer.Array!, buffer.Offset, (int) stream.Length) : Convert.ToBase64String(stream.ToArray());
     }
 
     private void ApplyPhotographMetadata(EntityUid uid, SnapshotData data)
@@ -108,3 +131,4 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
         }
     }
 }
+
