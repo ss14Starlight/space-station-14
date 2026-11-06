@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Added the tourist's travel camera along with very basic textual photographs.
-    type: Add
-  id: 409767
-  time: '2026-10-25T11:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6795
-- author: Wizden Team
-  changes:
   - message: The Station AI is now notified when their core is taking damage.
     type: Add
   id: 409768
@@ -2799,4 +2792,11 @@ Entries:
   id: 410166
   time: '2026-11-06T12:08:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7057
+- author: AnyTap
+  changes:
+  - message: Fixed Gunnery sergeant being able to roll antags.
+    type: Fix
+  id: 410167
+  time: '2026-11-06T12:32:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7071
 Order: -1
