@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: 'Service: Add new job spawn for Janitor.'
-    type: Add
-  id: 409781
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
   - message: 'Service: Add new Vox-only signs for Vox Box and Box Vox.'
     type: Add
   id: 409782
@@ -2799,4 +2792,11 @@ Entries:
   id: 410180
   time: '2026-11-06T18:27:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6858
+- author: Sparlight
+  changes:
+  - message: Changed Mortizol to require acrileni instead of ultravasculine.
+    type: Tweak
+  id: 410181
+  time: '2026-11-06T18:47:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7077
 Order: -1
