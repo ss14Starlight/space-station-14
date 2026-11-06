@@ -82,3 +82,9 @@
   name: signal-port-name-combustion-turbine-console-sender
   description: signal-port-description-combustion-turbine-console-sender
   defaultLinks: [ CombustionTurbineConsoleReceiver ]
+
+- type: sourcePort
+  id: RemoteControl
+  name: signal-port-name-remote-control
+  description: signal-port-description-remote-control
+  defaultLinks: [ RemoteControlControllable ]

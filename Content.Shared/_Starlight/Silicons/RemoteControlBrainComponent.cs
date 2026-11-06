@@ -1,10 +1,14 @@
+using Content.Shared.DeviceLinking;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Silicons;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class RemoteControlBrainComponent : Component
 {
+    public static readonly ProtoId<SinkPortPrototype> ControllablePort = "RemoteControlControllable";
+
     [ViewVariables, DataField, AutoNetworkedField]
     public int Channel = -1;
 }

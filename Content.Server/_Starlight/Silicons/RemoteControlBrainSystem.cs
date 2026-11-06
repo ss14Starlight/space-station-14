@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using Content.Server.DeviceLinking.Systems;
 using Content.Shared._Starlight.Silicons;
 using Content.Shared._Starlight.Computers.RemoteControl;
 
@@ -6,6 +7,7 @@ namespace Content.Server._Starlight.Silicons;
 
 public sealed partial class RemoteControlBrainSystem : EntitySystem
 {
+    [Dependency] private DeviceLinkSystem _deviceLink = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
 
     private readonly HashSet<int> _usedChannels = new();
@@ -28,6 +30,11 @@ public sealed partial class RemoteControlBrainSystem : EntitySystem
         brain = default;
         return false;
     }
+
+    [SubscribeLocalEvent]
+    private void OnComponentInit(EntityUid uid, RemoteControlBrainComponent component, ComponentInit args)
+        => _deviceLink.EnsureSinkPorts(uid, RemoteControlBrainComponent.ControllablePort);
+
     [SubscribeLocalEvent]
     private void OnStartup(Entity<RemoteControlBrainComponent> entity, ref ComponentStartup args)
     {

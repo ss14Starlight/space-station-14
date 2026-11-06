@@ -4,6 +4,7 @@ using Content.Server._Starlight.Silicons;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Server.Chat.Systems;
 using Content.Server.Construction;
+using Content.Server.DeviceLinking.Systems;
 using Content.Server.Movement.Systems;
 using Content.Server.Popups;
 using Content.Server.Wires;
@@ -24,6 +25,8 @@ using Content.Shared.Chat;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.CombatMode;
 using Content.Shared.Construction;
+using Content.Shared.DeviceLinking;
+using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Input;
@@ -104,6 +107,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     [Dependency] private AppearanceSystem _appearance = default!;
     [Dependency] private SharedBorgSystem _borg = default!;
     [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private DeviceLinkSystem _deviceLink = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private InventorySystem _inventory = default!;
@@ -153,6 +157,70 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             .Register<RemoteControlConsoleSystem>();
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         _hands.OnHandSetActive += OnHandSetActive;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRemoteControlConsoleInit(EntityUid uid, RemoteControlConsoleComponent component, ComponentInit args)
+        => _deviceLink.EnsureSourcePorts(uid, RemoteControlConsoleComponent.RemoteControlPort);
+
+    [SubscribeLocalEvent]
+    private void OnRemoteControlConsoleMapInit(Entity<RemoteControlConsoleComponent> entity, ref MapInitEvent args)
+    {
+        if (!TryComp<DeviceLinkSourceComponent>(entity.Owner, out var source))
+            return;
+
+        var linkedSinks = _deviceLink.GetLinkedSinks((entity.Owner, source), RemoteControlConsoleComponent.RemoteControlPort);
+        foreach (var sinkUid in linkedSinks)
+        {
+            if (!_deviceLink.GetLinks(entity.Owner, sinkUid, source).Contains((
+                    RemoteControlConsoleComponent.RemoteControlPort,
+                    RemoteControlBrainComponent.ControllablePort))
+                || !TryComp<RemoteControlBrainComponent>(sinkUid, out var brain))
+                continue;
+
+            CopyRemoteControlChannelAndDisconnect(entity.Owner, entity.Comp, sinkUid, brain);
+        }
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRemoteControlConsoleNewLink(EntityUid uid, RemoteControlConsoleComponent component, NewLinkEvent args)
+    {
+        if (args.Source != uid
+            || args.SourcePort != RemoteControlConsoleComponent.RemoteControlPort
+            || args.SinkPort != RemoteControlBrainComponent.ControllablePort
+            || !TryComp<RemoteControlBrainComponent>(args.Sink, out var brain))
+            return;
+
+        CopyRemoteControlChannelAndDisconnect(uid, component, args.Sink, brain);
+    }
+
+    private void CopyRemoteControlChannelAndDisconnect(
+        EntityUid consoleUid,
+        RemoteControlConsoleComponent console,
+        EntityUid brainUid,
+        RemoteControlBrainComponent brain)
+    {
+        if (!_remoteControlBrains.TryGetBrain(brain.Channel, out var registeredBrain)
+            || registeredBrain != brainUid)
+            return;
+
+        console.Channel = brain.Channel;
+        Dirty(consoleUid, console);
+        SetRemoteBrain((consoleUid, console), brainUid);
+        Timer.Spawn(TimeSpan.FromMilliseconds(1), () =>
+        {
+            if (TerminatingOrDeleted(consoleUid)
+                || TerminatingOrDeleted(brainUid)
+                || !TryComp<DeviceLinkSourceComponent>(consoleUid, out var source)
+                || !_deviceLink.GetLinks(consoleUid, brainUid, source).Contains((
+                    RemoteControlConsoleComponent.RemoteControlPort,
+                    RemoteControlBrainComponent.ControllablePort)))
+                return;
+
+            _deviceLink.ToggleLink(null, consoleUid, brainUid,
+                RemoteControlConsoleComponent.RemoteControlPort,
+                RemoteControlBrainComponent.ControllablePort);
+        });
     }
 
     [SubscribeLocalEvent]
@@ -436,6 +504,21 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 continue;
 
             SetRemoteBrain((consoleUid, console), args.Brain);
+        }
+
+        if (!TryComp<RemoteControlBrainComponent>(args.Brain, out var brain)
+            || brain.Channel != args.Channel)
+            return;
+
+        var linkedQuery = EntityQueryEnumerator<RemoteControlConsoleComponent, DeviceLinkSourceComponent>();
+        while (linkedQuery.MoveNext(out var consoleUid, out var console, out var source))
+        {
+            if (!_deviceLink.GetLinks(consoleUid, args.Brain, source).Contains((
+                    RemoteControlConsoleComponent.RemoteControlPort,
+                    RemoteControlBrainComponent.ControllablePort)))
+                continue;
+
+            CopyRemoteControlChannelAndDisconnect(consoleUid, console, args.Brain, brain);
         }
     }
 
@@ -1444,6 +1527,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             && args.Message is WiresActionMessage wireAction)
         {
             args.Cancel();
+            if (!HasComp<Content.Shared.PAI.PAIComponent>(args.Actor) && !_actionBlocker.CanInteract(args.Actor, args.Target))
+                return;
             _wires.TryDoRemoteWireAction(new Entity<WiresComponent?>(args.Target, null), remoteEntity, wireAction);
             return;
         }

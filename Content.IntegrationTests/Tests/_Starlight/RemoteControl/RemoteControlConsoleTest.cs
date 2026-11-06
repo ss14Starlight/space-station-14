@@ -3,6 +3,7 @@
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Computers.RemoteControl;
+using Content.Server.DeviceLinking.Systems;
 using Content.Server._Starlight.Silicons;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Silicons.Borgs;
@@ -12,6 +13,7 @@ using Content.Shared._Starlight.Computers.RemoteControl;
 using Content.Shared._Starlight.Silicons;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.DeviceLinking;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
@@ -58,6 +60,57 @@ public sealed class RemoteControlConsoleTest : GameTest
     -   type: RemoteControlConsole
         remoteControlPower: 51
 ";
+
+    [Test]
+    public async Task RemoteControlPortConnectionCopiesChannelAndDisconnects()
+    {
+        EntityUid? map = null;
+        EntityUid remote = default;
+        EntityUid consoleUid = default;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var mapSystem = Server.System<SharedMapSystem>();
+                map = mapSystem.CreateMap(out var mapId);
+                var coordinates = new MapCoordinates(0, 0, mapId);
+                remote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
+                consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
+                var remoteBrain = SEntMan.GetComponent<RemoteControlBrainComponent>(remote);
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                var deviceLink = Server.System<DeviceLinkSystem>();
+
+                deviceLink.LinkDefaults(null, consoleUid, remote);
+
+                Assert.Multiple(() =>
+                {
+                    Assert.That(console.Channel, Is.EqualTo(remoteBrain.Channel));
+                    Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+                    Assert.That(deviceLink.GetLinks(consoleUid, remote), Is.Not.Empty);
+                });
+            });
+
+            await RunSeconds(0.1f);
+            await Server.WaitAssertion(() =>
+            {
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                var deviceLink = Server.System<DeviceLinkSystem>();
+
+                Assert.Multiple(() =>
+                {
+                    Assert.That(console.Channel, Is.Not.Null);
+                    Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+                    Assert.That(deviceLink.GetLinks(consoleUid, remote), Is.Empty);
+                });
+            });
+        }
+        finally
+        {
+            if (map is { } mapUid)
+                await Server.WaitPost(() => SEntMan.DeleteEntity(mapUid));
+        }
+    }
 
     [TestCase("PlushieRouny")]
     [TestCase("PlushieFlox")]

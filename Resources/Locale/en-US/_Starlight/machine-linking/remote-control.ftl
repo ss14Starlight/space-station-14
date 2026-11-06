@@ -16,3 +16,9 @@ remote-control-settings-disconnected = No connection established
 remote-control-settings-invalid-channel = Channel must be exactly six digits.
 remote-control-brain-channel-verb = View remote control channel
 remote-control-brain-channel-examine = Remote control channel: {$channel}
+
+signal-port-name-remote-control = Remote control
+signal-port-description-remote-control = Links a remote control console to a controllable entity.
+
+signal-port-name-remote-control-controllable = Remote control (controllable)
+signal-port-description-remote-control-controllable = Receives a remote control console's channel.

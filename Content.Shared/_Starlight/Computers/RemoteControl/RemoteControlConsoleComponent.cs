@@ -1,3 +1,4 @@
+using Content.Shared.DeviceLinking;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -6,6 +7,8 @@ namespace Content.Shared._Starlight.Computers.RemoteControl;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class RemoteControlConsoleComponent : Component
 {
+    public static readonly ProtoId<SourcePortPrototype> RemoteControlPort = "RemoteControl";
+
     [ViewVariables, AutoNetworkedField]
     public EntityUid? RemoteBrain;
 
