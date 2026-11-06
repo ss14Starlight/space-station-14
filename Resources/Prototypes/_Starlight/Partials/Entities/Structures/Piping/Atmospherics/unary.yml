@@ -110,3 +110,10 @@
       range: 4
       sound:
         path: /Audio/_Starlight/Ambience/Objects/fan_loop.ogg
+
+- type: !PartialOnly entity
+  id: GasVentPump
+  components:
+  - type: DeviceLinkSink
+    ports:
+    - AirlockCyclerVent

@@ -82,3 +82,29 @@
   name: signal-port-name-combustion-turbine-console-sender
   description: signal-port-description-combustion-turbine-console-sender
   defaultLinks: [ CombustionTurbineConsoleReceiver ]
+
+- type: sourcePort
+  id: AirlockCyclerSideA
+  name: signal-port-name-airlock-cycler-side-a
+  description: signal-port-description-airlock-cycler-side
+
+- type: sourcePort
+  id: AirlockCyclerSideB
+  name: signal-port-name-airlock-cycler-side-b
+  description: signal-port-description-airlock-cycler-side
+
+- type: sourcePort
+  id: AirlockCyclerSideC
+  name: signal-port-name-airlock-cycler-side-c
+  description: signal-port-description-airlock-cycler-side
+
+- type: sourcePort
+  id: AirlockCyclerSideD
+  name: signal-port-name-airlock-cycler-side-d
+  description: signal-port-description-airlock-cycler-side
+
+- type: sourcePort
+  id: AirlockCyclerVents
+  name: signal-port-name-airlock-cycler-vents
+  description: signal-port-description-airlock-cycler-vents
+  defaultLinks: [ AirlockCyclerVent ]

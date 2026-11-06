@@ -27,3 +27,10 @@ signal-port-description-turret-controller-sync-receiver = Shares armament and au
 
 signal-port-name-combustion-turbine-console-receiver = Combustion Turbine
 signal-port-description-combustion-turbine-console-receiver = Receives commands from a combustion turbine control console.
+
+signal-port-name-airlock-cycler-door = Airlock Controller
+signal-port-description-airlock-cycler-door = Lets an airlock controller bolt, close and open this door.
+signal-port-name-airlock-cycler-button = Airlock Controller
+signal-port-description-airlock-cycler-button = Asks the airlock controller to cycle towards this button's side.
+signal-port-name-airlock-cycler-vent = Airlock Controller
+signal-port-description-airlock-cycler-vent = Lets an airlock controller pump the chamber through this vent.
