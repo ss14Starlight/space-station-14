@@ -83,7 +83,7 @@ public sealed partial class SnapShellPieceSystem : EntitySystem
 
                 if (part != null)
                 {
-                    var sev = new SurgeryOrganExtracted(user, part.Value, shellPiece.Id);
+                    var sev = new SurgeryOrganExtracted(user, part.Value, shellPiece.Id, ev.Performer);
                     _entityManager.EventBus.RaiseLocalEvent(shellPiece.Id, ref sev);
                 }
             }
