@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.StationRecords;
 
-public abstract class SharedStationRecordsSystem : EntitySystem
+public abstract partial class SharedStationRecordsSystem : EntitySystem
 {
     public StationRecordKey? Convert((NetEntity, uint)? input)
     {

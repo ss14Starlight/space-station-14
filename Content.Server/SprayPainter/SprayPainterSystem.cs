@@ -70,7 +70,7 @@ public sealed partial class SprayPainterSystem : SharedSprayPainterSystem
         if (!TryComp(ent, out LimitedChargesComponent? charges))
             return;
 
-        if (!_charges.TryUseCharges((ent, charges), ent.Comp.DecalChargeCost))
+        if (_charges.GetCurrentCharges((ent, charges)) < ent.Comp.DecalChargeCost)
         // Starlight-edit: End
         {
             _popup.PopupEntity(Loc.GetString("spray-painter-interact-no-charges"), args.User, args.User);
@@ -109,6 +109,9 @@ public sealed partial class SprayPainterSystem : SharedSprayPainterSystem
         }
 
         _audio.PlayPvs(ent.Comp.SpraySound, ent);
+
+        _charges.TryUseCharges((ent, charges), ent.Comp.DecalChargeCost);
+
         AdminLogger.Add(LogType.CrayonDraw, LogImpact.Low, $"{ToPrettyString(args.User):user} painted a {ent.Comp.SelectedDecal}");
     }
 

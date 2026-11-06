@@ -3,6 +3,12 @@
   components:
   - type: ExaminableSolution
     solution: stain
+  - type: EmitSoundOnPickup
+    sound:
+      collection: ClothPickup
+  - type: EmitSoundOnLand
+    sound:
+      collection: ClothDrop
 
 - type: !PartialOnly entity
   id: ClothingHeadHardsuitBase
@@ -15,3 +21,17 @@
   components:
   - type: ExaminableSolution
     solution: stain
+
+- type: !PartialOnly entity
+  id: ClothingHeadSuitWithLightBase
+  components:
+  - type: HandheldLight
+    turnOnSound:
+      path: /Audio/Machines/machine_switch.ogg
+      params:
+        volume: -4
+    turnOffSound:
+      path: /Audio/Machines/machine_switch.ogg
+      params:
+        volume: -4
+        pitch: 0.85

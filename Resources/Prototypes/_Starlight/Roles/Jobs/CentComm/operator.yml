@@ -1,5 +1,6 @@
 - type: job
   id: CentralCommandOperator
+  roleType: CentCommAligned
   name: job-name-centcommoperator
   description: job-description-centcomoperator
   playTimeTracker: JobCentralCommandOperator

@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseItem, StorePresetUplink ] #PDA's have uplinks so they have to inherit the data.
+  parent: [ BaseItem ]
   id: BasePDA
   name: PDA
   description: Personal Data Assistant.
@@ -109,6 +109,7 @@
         type: InstrumentBoundUserInterface
       enum.HealthAnalyzerUiKey.Key:
         type: HealthAnalyzerBoundUserInterface
+  - type: RemoteStore
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -967,7 +968,7 @@
     state: pda-security
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [ BaseCentcommContraband, BaseSecurityPDA ] # Blimpuf
   id: CentcomPDA
   name: CentComm PDA
   description: Light green sign of walking bureaucracy.
@@ -1223,7 +1224,7 @@
     state: pda-syndi-commander
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [ BaseCentcommContraband, BaseSecurityPDA ] # Blimpuf
   id: ERTLeaderPDA
   name: ERT leader PDA # Starlight: capitalization
   suffix: Leader
@@ -1596,7 +1597,7 @@
     state: pda-seniorcourier
 
 - type: entity
-  parent: [ BaseHighlyIllegalContraband, BasePDA ]
+  parent: [ BaseContrabandTier4, BasePDA ] # Blimpuf
   id: NinjaPDA
   name: ninja PDA
   description: You stealthy bastard, you!

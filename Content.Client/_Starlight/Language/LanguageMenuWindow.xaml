@@ -11,7 +11,7 @@
                             StyleClasses="PdaBorderRect">
                 <Label Name="CurrentLanguageLabel"
                        Access="Public"
-                       Text="Current Language:"
+                       Text="{Loc 'language-menu-current'}"
                        HorizontalExpand="True"></Label>
             </PanelContainer>
 

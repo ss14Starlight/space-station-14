@@ -148,3 +148,23 @@ thaven-mood-fish-ancestry-desc = You must submerge or lay in water at least once
 # we love when server context doesn't properly dispose of data...
 DuplicateTest = DuplicateTestFTL
 DuplicateOverlapTest = DuplicateOverlapTestFTL
+
+# Confusing Perspective
+thaven-mood-confusing-perspective-name = Confusing Perspective
+thaven-mood-confusing-perspective-desc = Positive news is saddening to you while disaster and other bad news are cause for celebration. React accordingly regardless of how everyone else feels.
+
+# Monster Hunter
+thaven-mood-monster-hunter-name = Monster Hunter
+thaven-mood-monster-hunter-desc = Dangerous creatures lurk throughout the station. Determine what qualifies as a monster and find them.
+
+# Respect Through Violence
+thaven-mood-respect-through-violence-name = Respect Through Violence
+thaven-mood-respect-through-violence-desc = The proper way to introduce yourself to someone is through a brief fight. A relationship that has not survived violence is built on a shaky foundation.
+
+# Spite
+thaven-mood-spite-name = Spite
+thaven-mood-spite-desc = You want nothing more than to directly witness others not getting what they want.
+
+# Extremist
+thaven-mood-extremist-name = Extremist
+thaven-mood-extremist-desc = You feel the need to go above and beyond with your other moods and act upon absolute extreme versions of them.

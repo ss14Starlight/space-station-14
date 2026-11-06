@@ -95,9 +95,6 @@ ui-options-vp-integer-scaling-tooltip = If this option is enabled, the viewport 
 ui-options-filter-label = Scaling filter:
 ui-options-filter-nearest = Nearest (no smoothing)
 ui-options-filter-bilinear = Bilinear (smoothed)
-ui-options-trace = Display the bullet's trace
-ui-options-trace-tooltip = If you're lagging while shooting, uncheck this box,
-                           and the hitscan won't display the texture of the smoke behind the flying bullet.
 ui-options-vp-vertical-fit = Vertical viewport fitting
 ui-options-vp-vertical-fit-tooltip = When enabled, the main viewport will ignore the horizontal axis entirely when
                                      fitting to your screen. If your screen is smaller than the viewport, then this
@@ -375,6 +372,8 @@ ui-options-chat-window-opacity = Chat window opacity
 ui-options-speech-bubble-text-opacity = Speech bubble text opacity
 ui-options-speech-bubble-speaker-opacity = Speech bubble speaker opacity
 ui-options-speech-bubble-background-opacity = Speech bubble background opacity
+ui-options-chat-preview = Show chat preview bubbles when typing
+ui-options-preview-bubble-background-opacity = Preview bubble background opacity
 
 ui-options-censor-nudity = Censor character nudity
 

@@ -15,6 +15,8 @@
   - Grammar # Pronouns
   #- HumanoidProfile # Age, Sex, Gender # Starlight, no nubody
   - NpcFactionMember
+  - RandomPrice
+  - CreamPied
   # traits
   - BlackAndWhiteOverlay
   - Clumsy
@@ -159,3 +161,32 @@
     state: preview
   - type: RandomCloneSpawner
     settings: BaseClone
+
+# for plant clones
+- type: cloningSettings
+  id: PlantClone
+  components:
+  - Plant
+  - PlantHarvest
+  - PlantChemicals
+  - PlantGrowth
+  - PlantAtmospheric
+  - PlantConsumeExudeGas
+  - PlantWeedPest
+  - PlantToxins
+  # traits
+  - PlantTraitKudzu
+  - PlantTraitLigneous
+  - PlantTraitScream
+  - PlantTraitUnviable
+  - PlantTraitSeedless
+
+# for plant lifecycle clones
+- type: cloningSettings
+  id: PlantLifecycleClone
+  parent: PlantClone
+  components:
+  # traits
+  - PlantTraitSampled
+  eventComponents:
+  - PlantHolder

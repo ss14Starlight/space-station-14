@@ -1,0 +1,14 @@
+- type: !PartialOnly entity
+  id: MoffDemonWraithJaunt
+  components:
+  - type: Tag
+    tags:
+    - StutterImmune
+  - type: LanguageSpeaker
+    currentLanguage: Darktongue
+  - type: LanguageKnowledge
+    speaks:
+    - Darktongue
+    understands:
+    - GalacticCommon
+    - Darktongue

@@ -270,6 +270,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganLiver
+    container: liver
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: liver
@@ -353,6 +354,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganKidneys
+    container: kidneys
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     layers:
@@ -413,6 +415,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganStomach
+    container: stomach
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: stomach
@@ -469,6 +472,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganLungs
+    container: lungs
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     layers:
@@ -527,6 +531,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganLungs
+    container: lungs
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     layers:
@@ -585,6 +590,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganHeart
+    container: heart
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: heart-on
@@ -638,6 +644,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganHeart
+    container: heart
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
     state: heart-on
@@ -688,6 +695,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganEyes
+    container: eyes
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - IPC
@@ -746,6 +754,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: EyeImplant
+    container: eye_implant
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - IPC
@@ -803,6 +812,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: NoseImplant
+    container: nose_implant
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - IPC
@@ -865,6 +875,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: HandImplant
+    container: hand_implant
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - IPC
@@ -942,6 +953,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: BrainImplant
+    container: brain_implant
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -1016,6 +1028,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: BrainImplant
+    container: brain_implant
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -1069,6 +1082,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganTongue
+    container: tongue
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - IPC
@@ -1133,6 +1147,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganBrain
+    container: brain
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: brain
@@ -1194,7 +1209,7 @@
     - SurgeryStepDisinfectScalp
     - SurgeryStepMakeIncisionScalp
     - SurgeryStepRetractScalp
-    - SurgeryStepExtractBrain
+    - SurgeryStepExtractSlimeCore
   - type: SurgerySpeciesCondition
     speciesBlacklist: []
     speciesWhitelist:
@@ -1206,6 +1221,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganBrain
+    container: core
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
     state: brain
@@ -1340,6 +1356,7 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganShadekinCore
+    container: core
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
     state: core

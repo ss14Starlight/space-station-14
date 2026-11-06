@@ -1,5 +1,6 @@
 - type: job
   id: NTNCBlueShield
+  roleType: CorporateAligned
   name: job-name-ntncblueshield
   description: job-description-ntncblueshield
   playTimeTracker: JobConsortiumBlueShield

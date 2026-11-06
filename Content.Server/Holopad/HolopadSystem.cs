@@ -105,6 +105,11 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
         if (!TryComp<TelephoneComponent>(receiver, out var receiverTelephone))
             return;
 
+        // Starlight - start
+        if (HasComp<StationAiHeldComponent>(args.Actor) &&
+            !_stationAiSystem.CanAccessGrid((args.Actor, null), Transform(receiver).GridUid))
+            return;
+        // Starlight - end
         LinkHolopadToUser(source, args.Actor);
         _telephoneSystem.CallTelephone((source, sourceTelephone), (receiver, receiverTelephone), args.Actor);
     }
@@ -126,15 +131,6 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
                 // Close any AI request windows
                 if (_stationAiSystem.TryGetCore(args.Actor, out var stationAiCore))
                     _userInterfaceSystem.CloseUi(receiver.Owner, HolopadUiKey.AiRequestWindow, args.Actor);
-
-                // Try to warn the AI if the source of the call is out of its range
-                if (TryComp<TelephoneComponent>(stationAiCore, out var stationAiTelephone) &&
-                    TryComp<TelephoneComponent>(source, out var sourceTelephone) &&
-                    !_telephoneSystem.IsSourceInRangeOfReceiver((stationAiCore.Owner, stationAiTelephone), (source.Value.Owner, sourceTelephone)))
-                {
-                    _popupSystem.PopupEntity(Loc.GetString("holopad-ai-is-unable-to-reach-holopad"), receiver, args.Actor);
-                    return;
-                }
 
                 ActivateProjector(source.Value, args.Actor);
             }
@@ -478,18 +474,32 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
         {
             _updateTimer -= UpdateTime;
 
+            var openHolopads = new List<(Entity<HolopadComponent> Entity, TelephoneComponent Telephone, TransformComponent Transform)>(); // Starlight
+
             var query = AllEntityQuery<HolopadComponent, TelephoneComponent, TransformComponent>();
             while (query.MoveNext(out var uid, out var holopad, out var telephone, out var xform))
             {
-                UpdateUIState((uid, holopad), telephone);
-
                 if (holopad.User != null &&
                     !HasComp<IgnoreUIRangeComponent>(holopad.User) &&
                     !_xformSystem.InRange((holopad.User.Value, Transform(holopad.User.Value)), (uid, xform), telephone.ListeningRange))
                 {
                     UnlinkHolopadFromUser((uid, holopad), holopad.User.Value);
                 }
+
+                // Starlight - start
+                if (IsHolopadContactUiOpen(uid))
+                    openHolopads.Add(((uid, holopad), telephone, xform));
             }
+
+            if (openHolopads.Count > 0)
+            {
+                var contacts = BuildHolopadUiContacts();
+                foreach (var (entity, telephone, xform) in openHolopads)
+                {
+                    UpdateHolopadUIState(entity, telephone, xform, contacts);
+                }
+            }
+            // Starlight - end
         }
     }
 
@@ -498,33 +508,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
         if (!Resolve(entity.Owner, ref telephone, false))
             return;
 
-        var source = new Entity<TelephoneComponent>(entity, telephone);
-        var holopads = new Dictionary<NetEntity, string>();
-
-        var query = AllEntityQuery<HolopadComponent, TelephoneComponent>();
-        while (query.MoveNext(out var receiverUid, out var _, out var receiverTelephone))
-        {
-            var receiver = new Entity<TelephoneComponent>(receiverUid, receiverTelephone);
-
-            if (receiverTelephone.UnlistedNumber)
-                continue;
-
-            if (source == receiver)
-                continue;
-
-            if (!_telephoneSystem.IsSourceInRangeOfReceiver(source, receiver))
-                continue;
-
-            var name = MetaData(receiverUid).EntityName;
-
-            if (TryComp<LabelComponent>(receiverUid, out var label) && !string.IsNullOrEmpty(label.CurrentLabel))
-                name = label.CurrentLabel;
-
-            holopads.Add(GetNetEntity(receiverUid), name);
-        }
-
-        var uiKey = HasComp<StationAiCoreComponent>(entity) ? HolopadUiKey.AiActionWindow : HolopadUiKey.InteractionWindow;
-        _userInterfaceSystem.SetUiState(entity.Owner, uiKey, new HolopadBoundInterfaceState(holopads));
+        UpdateHolopadUIState(entity, telephone, Transform(entity.Owner), BuildHolopadUiContacts()); // Starlight
     }
 
     private void GenerateHologram(Entity<HolopadComponent> entity)
@@ -673,8 +657,18 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
 
         var source = new Entity<TelephoneComponent>(stationAiCore, stationAiTelephone);
 
+        // Starlight - start
+        // We check if the AI has grid access. Normal projector call are range limited, not limited by grid access. The AI is special.
+        if (!_stationAiSystem.CanAccessGrid((user, userAiHeld), Transform(entity).GridUid))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("holopad-ai-is-unable-to-activate-projector"), receiver, user);
+            return;
+        }
+        // Starlight - end
+
         // Check if the AI is unable to activate the projector (unlikely this will ever pass; its just a safeguard)
-        if (!_telephoneSystem.IsSourceInRangeOfReceiver(source, receiver))
+        if (!_telephoneSystem.IsTelephonePowered(source) ||
+            !_telephoneSystem.IsTelephonePowered(receiver)) // Starlight: check replaced with sensible check based on power
         {
             _popupSystem.PopupEntity(Loc.GetString("holopad-ai-is-unable-to-activate-projector"), receiver, user);
             return;
@@ -685,6 +679,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
 
         var callOptions = new TelephoneCallOptions()
         {
+            IgnoreRange = true, // Starlight: we do check things in advance and have safeguards in place
             ForceConnect = true,
             MuteReceiver = true
         };

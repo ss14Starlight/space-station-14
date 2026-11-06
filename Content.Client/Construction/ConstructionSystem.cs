@@ -34,9 +34,9 @@ namespace Content.Client.Construction
         [Dependency] private SharedTransformSystem _transformSystem = default!;
         [Dependency] private SpriteSystem _sprite = default!;
         [Dependency] private PopupSystem _popupSystem = default!;
-        // Starlight-edit start
+        #region Starlight
         [Dependency] private IConfigurationManager _configurationManager = default!;
-        // Starlight-edit end
+        #endregion
 
         private readonly Dictionary<int, EntityUid> _ghosts = new();
         private readonly Dictionary<string, ConstructionGuide> _guideCache = new();
@@ -280,6 +280,47 @@ namespace Content.Client.Construction
                 return false;
             }
 
+            return TrySpawnGhost(prototype, loc, dir, user, out ghost); // Starlight
+        }
+
+        #region Starlight
+        /// <summary>
+        ///     Attempts to create a construction ghost for the specified user.
+        /// </summary>
+        /// <param name="prototype">The construction prototype for the ghost.</param>
+        /// <param name="loc">The location where the ghost should be created.</param>
+        /// <param name="dir">The direction the ghost should face.</param>
+        /// <param name="user">The entity whose range and construction conditions are validated.</param>
+        /// <param name="ghost">The created ghost, or <see langword="null"/> if creation failed.</param>
+        /// <param name="showPopup">Whether to show a popup explaining a failed construction condition.</param>
+        /// <returns>True if a construction ghost was created; otherwise, false.</returns>
+        public bool TrySpawnGhost(
+            ConstructionPrototype prototype,
+            EntityCoordinates loc,
+            Direction dir,
+            EntityUid user,
+            [NotNullWhen(true)] out EntityUid? ghost,
+            bool showPopup = true)
+        {
+            if (!user.IsValid())
+            {
+                ghost = null;
+                return false;
+            }
+
+            return TrySpawnGhostForUser(prototype, loc, dir, user, out ghost, showPopup);
+        }
+        #endregion
+
+        private bool TrySpawnGhostForUser(
+            ConstructionPrototype prototype,
+            EntityCoordinates loc,
+            Direction dir,
+            EntityUid user,
+            [NotNullWhen(true)] out EntityUid? ghost,
+            bool showPopup) // Starlight: shared implementation for local and remote users.
+        {
+            ghost = null;
             if (!TryGetRecipePrototype(prototype.ID, out var targetProtoId) || !PrototypeManager.TryIndex(targetProtoId, out EntityPrototype? targetProto))
                 return false;
 
@@ -292,7 +333,7 @@ namespace Content.Client.Construction
             if (!_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate))
                 return false;
 
-            if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup: true))
+            if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup)) // Starlight
                 return false;
 
             ghost = Spawn("constructionghost", loc);

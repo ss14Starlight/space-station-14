@@ -1,0 +1,23 @@
+- type: entity
+  parent: Cane
+  id: HeavyCane
+  description: A dense wooden cane with a prong at that seems perfectly suited for sliding into the crack of an airlock.
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 45
+    damage:
+      types:
+        Blunt: 8
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 4
+  - type: Tool
+    qualities:
+    - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Prying
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
+    playSoundOnDoafter: true #SL
+  - type: ToolTileCompatible

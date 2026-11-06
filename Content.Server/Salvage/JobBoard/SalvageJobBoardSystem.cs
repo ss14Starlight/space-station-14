@@ -242,7 +242,7 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
 
         if (station is null)
         {
-            if (_station.GetOwningStation(uid) is not { } stationUid ||
+            if (_station.GetItgStation(uid) is not { } stationUid || // Starlight
                 !TryComp<SalvageJobsDataComponent>(stationUid, out var stationComp))
                 return false;
 
@@ -264,7 +264,7 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
         if (args.UiKey is not SalvageJobBoardUiKey.Key)
             return;
 
-        if (_station.GetOwningStation(ent.Owner) is not { } station ||
+        if (_station.GetItgStation(ent.Owner) is not { } station || // Starlight
             !TryComp<SalvageJobsDataComponent>(station, out var jobData))
             return;
 
@@ -276,7 +276,7 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
         if (_timing.CurTime < ent.Comp.NextPrintTime)
             return;
 
-        if (_station.GetOwningStation(ent) is not { } station ||
+        if (_station.GetItgStation(ent.Owner) is not { } station || // Starlight
             !TryComp<SalvageJobsDataComponent>(station, out var jobsData))
             return;
 

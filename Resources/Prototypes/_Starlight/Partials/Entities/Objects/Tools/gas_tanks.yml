@@ -1,0 +1,23 @@
+﻿- type: !PartialOnly entity
+  id: EmergencyOxygenTank
+  components:
+  - type: Tag
+    tags:
+    - SecBeltEquip
+
+- type: !PartialOnly entity
+  id: EmergencyNitrogenTank
+  components:
+  - type: Tag
+    tags:
+    - SecBeltEquip
+
+- type: !PartialOnly entity
+  id: GasTankBase
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/gas_tank_pick_up.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/gas_tank_drop.ogg

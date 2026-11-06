@@ -13,7 +13,7 @@
 ## Oxygen
 - type: cargoProduct
   id: AtmosphericsOxygenBulk
-  nameLoc: cargo-product-gas-oxygen
+  name: cargo-product-gas-oxygen
   icon:
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: oxygen
@@ -26,7 +26,7 @@
 ## Oxygen (Liquid)
 - type: cargoProduct
   id: AtmosphericsOxygenLiquidBulk
-  nameLoc: cargo-product-gas-oxygen-liquid
+  name: cargo-product-gas-oxygen-liquid
   icon:
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: oxygen
@@ -40,7 +40,7 @@
 ## Nitrogen
 - type: cargoProduct
   id: AtmosphericsNitrogenBulk
-  nameLoc: cargo-product-gas-nitrogen
+  name: cargo-product-gas-nitrogen
   icon:
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: nitrogen
@@ -53,7 +53,7 @@
 ## Nitrogen (Liquid)
 - type: cargoProduct
   id: AtmosphericsNitrogenLiquidBulk
-  nameLoc: cargo-product-gas-nitrogen-liquid
+  name: cargo-product-gas-nitrogen-liquid
   icon:
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: nitrogen
@@ -67,7 +67,7 @@
 ## Carbon Dioxide
 - type: cargoProduct
   id: AtmosphericsCarbonDioxideBulk
-  nameLoc: cargo-product-gas-carbon-dioxide
+  name: cargo-product-gas-carbon-dioxide
   icon:
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: carbon
@@ -80,7 +80,7 @@
 ## Carbon Dioxide (Liquid)
 - type: cargoProduct
   id: AtmosphericsCarbonDioxideLiquidBulk
-  nameLoc: cargo-product-gas-carbon-dioxide-liquid
+  name: cargo-product-gas-carbon-dioxide-liquid
   icon:
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: carbon
@@ -94,7 +94,7 @@
 ## Water Vapor
 - type: cargoProduct
   id: AtmosphericsWaterVaporBulk
-  nameLoc: cargo-product-gas-water-vapor
+  name: cargo-product-gas-water-vapor
   icon:
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: water_vapor
@@ -107,7 +107,7 @@
 ## Plasma
 - type: cargoProduct
   id: AtmosphericsPlasmaBulk
-  nameLoc: cargo-product-gas-plasma
+  name: cargo-product-gas-plasma
   icon:
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: plasma
@@ -120,7 +120,7 @@
 ## Plasma (Liquid)
 - type: cargoProduct
   id: AtmosphericsPlasmaLiquidBulk
-  nameLoc: cargo-product-gas-plasma-liquid
+  name: cargo-product-gas-plasma-liquid
   icon:
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: plasma
@@ -134,7 +134,7 @@
 ## BZ
 - type: cargoProduct
   id: AtmosphericsBZBulk
-  nameLoc: cargo-product-gas-bz
+  name: cargo-product-gas-bz
   icon:
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: bz

@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Sound;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Zones;
@@ -28,4 +29,17 @@ public sealed partial class ZonePrototype : IPrototype
     /// </summary>
     [DataField]
     public List<EntProtoId> Doors = [];
+
+    /// <summary>
+    /// Marks the zone rooms become when their doors disagree and there are enough of them to be a
+    /// corridor. Only one zone may have this set.
+    /// </summary>
+    [DataField]
+    public bool Corridor;
+
+    /// <summary>
+    /// How rooms of this zone echo, <see cref="RoomReverbPrototype.Default"/> when not set.
+    /// </summary>
+    [DataField]
+    public ProtoId<RoomReverbPrototype>? Reverb;
 }

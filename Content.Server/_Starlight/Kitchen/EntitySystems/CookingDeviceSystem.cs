@@ -104,7 +104,8 @@ namespace Content.Server.Kitchen.EntitySystems
             SubscribeLocalEvent<ActiveCookingDeviceComponent, EntRemovedFromContainerMessage>(OnActiveMicrowaveRemove);
 
             SubscribeLocalEvent<ActivelyCookedComponent, OnConstructionTemperatureEvent>(OnConstructionTemp);
-            SubscribeLocalEvent<ActivelyCookedComponent, SolutionRelayEvent<ReactionAttemptEvent>>(OnReactionAttempt);
+            SubscribeLocalEvent<ActivelyCookedComponent, SolutionRelayEvent<ReactionAttemptEvent>>(OnReactionAttemptRelay);
+            SubscribeLocalEvent<ActivelyCookedComponent, ReactionAttemptEvent>(OnReactionAttempt);
             // Starlight-end
 
             SubscribeLocalEvent<FoodRecipeProviderComponent, GetSecretRecipesEvent>(OnGetSecretRecipes);
@@ -161,9 +162,11 @@ namespace Content.Server.Kitchen.EntitySystems
         // They might be reserved for a microwave recipe.
         private void OnConstructionTemp(Entity<ActivelyCookedComponent> ent, ref OnConstructionTemperatureEvent args) => args.Result = HandleResult.False; // Starlight-edit
 
+        private void OnReactionAttemptRelay(Entity<ActivelyCookedComponent> ent, ref SolutionRelayEvent<ReactionAttemptEvent> args) => OnReactionAttempt(ent, ref args.Event);
+
         // Stop reagents from reacting if they are currently reserved for a microwave recipe.
         // For example Egg would cook into EggCooked, causing it to not being removed once we are done microwaving.
-        private void OnReactionAttempt(Entity<ActivelyCookedComponent> ent, ref SolutionRelayEvent<ReactionAttemptEvent> args) // Starlight-edit
+        private void OnReactionAttempt(Entity<ActivelyCookedComponent> ent, ref ReactionAttemptEvent args) // Starlight-edit
         {
             if (!TryComp<ActiveCookingDeviceComponent>(ent.Comp.Microwave, out var activeMicrowaveComp)) // Starlight-edit
                 return;
@@ -179,9 +182,9 @@ namespace Content.Server.Kitchen.EntitySystems
 
                 foreach (var reagent in recipeReagents)
                 {
-                    if (args.Event.Reaction.Reactants.ContainsKey(reagent))
+                    if (args.Reaction.Reactants.ContainsKey(reagent))
                     {
-                        args.Event.Cancelled = true;
+                        args.Cancelled = true;
                         return;
                     }
                 }
@@ -730,6 +733,26 @@ namespace Content.Server.Kitchen.EntitySystems
             return (recipe, component.Safe ? (int)Math.Min(portions, component.CurrentCookTimerTime / recipe.CookTime) : portions); // Starlight-edit
         }
 
+        private void OutputResultItems(Dictionary<FoodRecipePrototype, int> PortionedRecipes, int actualTime, CookingDeviceComponent cookingDevice, Robust.Shared.Map.EntityCoordinates coords)
+        {
+            foreach (var (recipe, availableAmount) in PortionedRecipes)
+            {
+                int targetTime = (int)recipe.CookTime;
+
+                for (var i = 0; i < availableAmount; i++)
+                {
+                    if (actualTime >= targetTime)
+                    {
+                        if (SubtractContents(cookingDevice, recipe))
+                        {
+                            Spawn(recipe.Result, coords);
+                            actualTime -= targetTime; // We spent targetTime seconds cooking this recipe, we subtract this amount from actualTime to avoid completing more recipes than intended
+                        }
+                    }
+                }
+            }
+        }
+
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
@@ -744,7 +767,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
                 //check if there's still cook time left
                 // Starlight-start
-                int actualTime = (int)(_gameTiming.CurTime - cookingDevice.StartedCookTime).TotalSeconds;
+                int actualTime = (int)((_gameTiming.CurTime - cookingDevice.StartedCookTime) / cookingDevice.CookTimeMultiplier).TotalSeconds;
                 var coords = Transform(uid).Coordinates;
                 if (active.CookTimeRemaining > 0 || (!cookingDevice.Safe && actualTime < 60))
                 {
@@ -791,25 +814,9 @@ namespace Content.Server.Kitchen.EntitySystems
                         }
                     }
                 }
-                // Starlight-end
 
-                foreach (var (recipe, availableAmount) in active.PortionedRecipes) // Starlight-edit
-                {
-                    int targetTime = (int)recipe.CookTime; // Starlight-edit
+                OutputResultItems(active.PortionedRecipes, actualTime+1, cookingDevice, coords);
 
-                    if (actualTime >= (targetTime - 1)) // Starlight-edit
-                    {
-                        for (var i = 0; i < availableAmount; i++) // Starlight-edit
-                        {
-                            if (SubtractContents(cookingDevice, recipe))
-                                Spawn(recipe.Result, coords);
-                            else
-                                continue;
-                        }
-                    }
-                }
-
-                // Starlight-start
                 _container.EmptyContainer(cookingDevice.Storage);
                 cookingDevice.CurrentCookTimeEnd = TimeSpan.Zero;
                 UpdateUserInterfaceState(uid, cookingDevice);
@@ -846,23 +853,10 @@ namespace Content.Server.Kitchen.EntitySystems
                 return;
             //this means the microwave has finished cooking.
             AddTemperature(cookingDevice, Math.Max((float)_gameTiming.CurTime.TotalSeconds + active.CookTimeRemaining, 0)); //Though there's still a little bit more heat to pump out
-            int actualTime = (int)(_gameTiming.CurTime - cookingDevice.StartedCookTime).TotalSeconds;
-            foreach (var (recipe, availableAmount) in active.PortionedRecipes)
-            {
-                int targetTime = (int)recipe.CookTime;
-                var coords = Transform(uid).Coordinates;
+            int actualTime = (int)((_gameTiming.CurTime - cookingDevice.StartedCookTime) / cookingDevice.CookTimeMultiplier).TotalSeconds;
+            var coords = Transform(uid).Coordinates;
 
-                if (Math.Abs(targetTime - actualTime) <= 1)
-                {
-                    for (var i = 0; i < availableAmount; i++)
-                    {
-                        if (SubtractContents(cookingDevice, recipe))
-                            Spawn(recipe.Result, coords);
-                        else
-                            continue;
-                    }
-                }
-            }
+            OutputResultItems(active.PortionedRecipes, actualTime, cookingDevice, coords);
 
             _container.EmptyContainer(cookingDevice.Storage);
             cookingDevice.CurrentCookTimeEnd = TimeSpan.Zero;

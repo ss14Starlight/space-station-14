@@ -1,7 +1,9 @@
+using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Prototypes;
 using Content.Shared.Actions;
 using Content.Shared.UserInterface;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
@@ -13,6 +15,7 @@ namespace Content.Shared._Starlight.CosmicCult;
 public abstract partial class SharedMonumentSystem : EntitySystem
 {
     [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
@@ -24,6 +27,7 @@ public abstract partial class SharedMonumentSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        Subs.CVar(_config, StarlightCCVars.CosmicCultInfluenceCostModifier, value => _influenceCostModifier = value, true);
         SubscribeLocalEvent<MonumentComponent, BoundUIOpenedEvent>(OnUIOpened);
         SubscribeLocalEvent<MonumentComponent, GlyphSelectedMessage>(OnGlyphSelected);
         SubscribeLocalEvent<MonumentComponent, GlyphRemovedMessage>(OnGlyphRemove);
@@ -31,6 +35,12 @@ public abstract partial class SharedMonumentSystem : EntitySystem
         SubscribeLocalEvent<MonumentOnDespawnComponent, TimedDespawnEvent>(OnTimedDespawn);
         SubscribeLocalEvent<MonumentCollisionComponent, PreventCollideEvent>(OnPreventCollide);
     }
+
+    private float _influenceCostModifier = 1f; // control via cvar cosmiccult.influence_cost_modifier
+
+    // Entropy cost of an ability after cosmiccult.influence_cost_modifier, rounded up
+    public int GetInfluenceCost(InfluencePrototype proto)
+        => Math.Max(0, (int)Math.Ceiling(proto.Cost * _influenceCostModifier));
 
     private void OnTimedDespawn(Entity<MonumentOnDespawnComponent> ent, ref TimedDespawnEvent args)
     {
@@ -121,7 +131,8 @@ public abstract partial class SharedMonumentSystem : EntitySystem
         if (!_prototype.TryIndex(args.InfluenceProtoId, out var proto) || !TryComp<ActivatableUIComponent>(ent, out var uiComp) || !TryComp<CosmicCultComponent>(args.Actor, out var cultComp))
             return;
 
-        if (cultComp.EntropyBudget < proto.Cost || cultComp.OwnedInfluences.Contains(proto))
+        var cost = GetInfluenceCost(proto);
+        if (cultComp.EntropyBudget < cost || cultComp.OwnedInfluences.Contains(proto))
             return;
 
         cultComp.OwnedInfluences.Add(proto);
@@ -136,7 +147,7 @@ public abstract partial class SharedMonumentSystem : EntitySystem
             UnlockPassive(args.Actor, proto); //Not unlocking an action? call the helper function to add the influence's passive effects
         }
 
-        cultComp.EntropyBudget -= proto.Cost;
+        cultComp.EntropyBudget -= cost;
         Dirty(args.Actor, cultComp); //force an update to make sure that the client has the correct set of owned abilities
 
         _ui.SetUiState(ent.Owner, MonumentKey.Key, new MonumentBuiState(ent.Comp));

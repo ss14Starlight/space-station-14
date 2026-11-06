@@ -1,0 +1,59 @@
+uniform highp float heat;
+uniform highp vec2 muzzleDir;
+
+uniform highp float displaced;
+uniform sampler2D displacementMap;
+uniform highp float displacementSize;
+uniform highp vec4 displacementUV;
+
+varying highp vec2 displacementUVOut;
+
+void vertex() {
+    displacementUVOut = mix(displacementUV.xy, displacementUV.zw, tCoord2);
+}
+
+highp float distanceToMuzzle(highp vec2 uv, highp vec2 uv2) {
+    highp vec2 texStep = vec2(muzzleDir.x, -muzzleDir.y) * TEXTURE_PIXEL_SIZE;
+    highp vec2 frameStep = muzzleDir / 32.0;
+    highp float last = 0.0;
+
+    for (int i = 1; i <= 12; i++) {
+        highp float f = float(i);
+        highp vec2 frame = uv2 + frameStep * f;
+        if (frame.x < 0.0 || frame.x > 1.0 || frame.y < 0.0 || frame.y > 1.0)
+            break;
+
+        if (zTexture(uv + texStep * f).a > 0.1)
+            last = f;
+    }
+
+    return last;
+}
+
+void fragment() {
+    highp vec2 uv = UV;
+    highp float alpha = 1.0;
+
+    if (displaced > 0.5) {
+        highp vec4 displacementSample = texture2D(displacementMap, displacementUVOut);
+        highp vec2 displacementValue = (displacementSample.xy - vec2(128.0 / 255.0)) / (1.0 - 128.0 / 255.0);
+        uv = UV + displacementValue * TEXTURE_PIXEL_SIZE * displacementSize * vec2(1.0, -1.0);
+        alpha = displacementSample.a;
+    }
+
+    highp vec4 col = zTexture(uv);
+    col.a *= alpha;
+
+    highp float reach = mix(1.5, 9.0, heat);
+    highp float fromMuzzle = distanceToMuzzle(uv, UV2);
+    highp float mask = 1.0 - smoothstep(reach - 1.5, reach + 0.5, fromMuzzle);
+    highp float intensity = mask * (0.45 + 0.55 * heat);
+
+    highp float tip = (1.0 - smoothstep(0.0, 3.0, fromMuzzle)) * heat;
+    highp vec3 glow = mix(vec3(0.75, 0.08, 0.02), vec3(1.0, 0.55, 0.15), tip);
+
+    col.rgb = mix(col.rgb, glow, intensity * 0.75);
+    COLOR = col;
+
+    lightSample = mix(lightSample, vec3(1.0), intensity);
+}

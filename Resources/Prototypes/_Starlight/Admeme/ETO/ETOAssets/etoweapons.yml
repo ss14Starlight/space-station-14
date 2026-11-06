@@ -1,6 +1,6 @@
 - type: entity
   name: PS Z46
-  parent: [BaseSecurityContraband, BaseWeaponRifle]
+  parent: [ BaseContrabandTier3, BaseSecurityContraband, BaseWeaponRifle ]
   id: WeaponRifleZ46
   suffix: ETO
   categories: [ DoNotMap ]
@@ -17,12 +17,7 @@
     sprite: _Starlight/Admeme/ETO/weapons/g36/g36hands.rsi
   - type: Clothing
     sprite: _Starlight/Admeme/ETO/weapons/g36/g36.rsi
-  - type: GunWieldBonus
-    minAngle: -13
-    maxAngle: -10
   - type: Gun
-    minAngle: 13
-    maxAngle: 17
     fireRate: 5
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/m90.ogg
@@ -32,7 +27,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazineLightRifleFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
@@ -42,7 +37,7 @@
           - MagazineLightRifle
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         startingItem: CartridgeLightRifleFMJ
         priority: 1
         whitelist:
@@ -67,7 +62,7 @@
 
 - type: entity
   name: PS Z77 T1
-  parent: [BaseWeaponRifle, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponRifle, BaseSecurityContraband ]
   id: WeaponRifleZ77T1
   description: A rifle designed by Private Servitude, cheaper than the commonly used Lecter. Takes .20 rifle rounds.
   suffix: ETO
@@ -89,8 +84,6 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/estocshot.ogg
-    minAngle: 30
-    maxAngle: 43
     shotsPerBurst: 3
     selectedMode: FullAuto
     availableModes:
@@ -98,13 +91,10 @@
     - Burst
     - SemiAuto
     burstFireRate: 14
-  - type: GunWieldBonus
-    minAngle: -28
-    maxAngle: -25
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazineRifleFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
@@ -114,7 +104,7 @@
           - MagazineRifle
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         priority: 1
         whitelist:
           tags:
@@ -132,7 +122,7 @@
 
 - type: entity
   name: PS DD-22 Dryson
-  parent: [BaseWeaponSubMachineGun, BaseSecuritySalvageContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponSubMachineGun, BaseSecurityContraband, BaseSalvageContraband ]
   id: WeaponSubMachineGunDD22
   description: An SMG designed by Private Servitude, partially inspired by the AKMS. Chambers in .35 Rounds and feeds from a unique bottom mounted magazine.
   suffix: ETO
@@ -150,11 +140,12 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -19
-    maxAngle: -24
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 3.3
+    maxAngleDivider: 2.8
+    angleIncreaseDivider: 3.3
   - type: Gun
-    minAngle: 21
-    maxAngle: 32
     fireRate: 4.5
     availableModes:
     - FullAuto
@@ -164,7 +155,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazinePistolSubMachineGunBottomMountedDDFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
@@ -174,7 +165,7 @@
             - MagazinePistolSubMachineGunBottomMountedDD
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         priority: 1
         whitelist:
           tags:
@@ -189,7 +180,7 @@
 
 - type: entity
   name: PS Taiga-10
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband ]
   id: WeaponShotgunTaiga
   description: A shotgun designed by Private Servitude, feeds from 12 Gauge drum magazines. Can switch between semi-auto and full auto.
   suffix: ETO
@@ -217,7 +208,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazineShotgun
         priority: 2
         whitelist:
@@ -240,7 +231,7 @@
 
 - type: entity
   name: PS-75 Auto
-  parent: [BaseWeaponPistol, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponPistol, BaseSecurityContraband ]
   id: WeaponPistol75auto
   description: A fully automatic handgun with an ergonomic design, feeds from .35 pistol magazines.
   suffix: ETO
@@ -260,7 +251,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazinePistolHighCapacityFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
@@ -271,7 +262,7 @@
             - MagazinePistolHighCapacitySP
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         priority: 1
         whitelist:
           tags:

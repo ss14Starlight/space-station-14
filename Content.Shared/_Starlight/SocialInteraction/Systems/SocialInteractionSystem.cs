@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Administration.Components;
 using Content.Shared._Starlight.SocialInteraction.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Bed.Sleep;
@@ -29,28 +30,31 @@ public sealed partial class SocialInteractionSystem : EntitySystem
     [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private IGameTiming _timing = default!;
 
-    public override void Initialize()
-    {
-        //subscribe to inspect events on the physical social interaction receiver component
-        SubscribeLocalEvent<SocialInteractionReceiverComponent, GetVerbsEvent<Verb>>(AddSocialInteractionVerbs);
-    }
-
     /// <summary>
     /// Adds the Social Interaction verbs to the right-click context menu.
     /// </summary>
-    private void AddSocialInteractionVerbs(EntityUid uid, SocialInteractionReceiverComponent component, GetVerbsEvent<Verb> args)
+    [SubscribeLocalEvent]
+    private void AddSocialInteractionVerbs(GetVerbsEvent<Verb> args)
     {
+        if (!TryComp<SocialInteractionGiverComponent>(args.User, out var giverComp))
+            return;
+
         // ensure the Giver is awake and alive
         if (IsDeadOrIncapacitated(args.User))
             return;
 
-        //create a verb subcategory
+        // create a verb subcategory and list of interactions
         var category = new VerbCategory("social-interaction-component-verb", null);
+        var interactions = new List<ProtoId<SocialInteractionPrototype>>(giverComp.InteractionPrototypes);
 
-        //enumerate all the physical social interaction prototypes
-        foreach (var protoid in component.InteractionPrototypes)
+        // check if the Receiver has specific verbs to add
+        if (TryComp<SocialInteractionReceiverComponent>(args.Target, out var receiverComp))
+            interactions.AddRange(receiverComp.InteractionPrototypes);
+
+        // enumerate all the social interaction prototypes
+        foreach (var protoid in interactions)
         {
-            //resolve the proto itself
+            // resolve the proto itself
             if (!_protoMan.TryIndex<SocialInteractionPrototype>(protoid, out var proto))
                 continue;
 
@@ -62,47 +66,16 @@ public sealed partial class SocialInteractionSystem : EntitySystem
             if (!proto.AllowSelfTarget && args.User == args.Target)
                 continue;
 
-            //make a verb for each one
+            // make a verb for each one
             Verb verb = new()
             {
                 Text = Loc.GetString(proto.VerbName),
                 Category = category,
-                Act = () => InteractionAction(uid, args, proto)
+                Act = () => InteractionAction(args.Target, args, proto)
             };
 
             args.Verbs.Add(verb);
         }
-    }
-
-    /// <summary>
-    /// Used to check if the SocialInteractionGiver is alive and conscious,
-    /// as the dead and incapaciated aren't known for being very socialable.
-    /// </summary>
-    private bool IsDeadOrIncapacitated(EntityUid user)
-    {
-        // no social interactions when ghosted, stunned, sleeping, critical or dead
-        if (HasComp<GhostComponent>(user)
-            || HasComp<StunnedComponent>(user)
-            || HasComp<SleepingComponent>(user)
-            || HasComp<RevenantComponent>(user) // revenants are ghosts
-            || _mobStateSystem.IsIncapacitated(user))
-            return true;
-
-        return false;
-    }
-
-    /// <summary>
-    /// Used to check if a physical interaction is possible.
-    /// </summary>
-    private bool CheckInteractable(EntityUid user, EntityUid target)
-    {
-        if (!_actionBlockerSystem.CanInteract(user, target))
-            return false;
-
-        if (!_interactionSystem.InRangeUnobstructed(user, target))
-            return false;
-
-        return true;
     }
 
     /// <summary>
@@ -134,18 +107,28 @@ public sealed partial class SocialInteractionSystem : EntitySystem
 
         giverComp.LastInteractTime = curTime;
 
+        // override strings
+        var interaction = new OverrideSocialInteraction
+        {
+            InteractString = proto.InteractString,
+            InteractSound = proto.InteractSound,
+            MessagePerceivedByOthers = proto.MessagePerceivedByOthers,
+            EmoteMessage = proto.EmoteMessage,
+            EmoteMessageSelf = proto.EmoteMessageSelf
+        };
+
+        if (TryComp<SocialInteractionReceiverComponent>(args.Target, out var receiverComp))
+            ApplyInteractionOverride(proto, receiverComp, interaction);
+
         var selfTarget = args.User == args.Target; // whether or not we're interacting with ourselves
-        var msg = ""; // Stores the text to be shown in the popup message
-        SoundSpecifier? sfx = null; // Stores the filepath of the sound to be played
+        var msg = ""; // stores the text to be shown in the popup message
+        SoundSpecifier? sfx = interaction.InteractSound; // stores the filepath of the sound to be played
 
-        if (proto.InteractString != null)
-            msg = Loc.GetString(proto.InteractString, ("target", Identity.Entity(args.Target, EntityManager)));
-
-        if (proto.InteractSound != null)
-            sfx = proto.InteractSound;
+        if (interaction.InteractString != null)
+            msg = Loc.GetString(interaction.InteractString, ("target", Identity.Entity(args.Target, EntityManager)));
 
         // pop-up message for the target - skip if self targeted
-        if (!selfTarget && proto.MessagePerceivedByOthers is { } message)
+        if (!selfTarget && interaction.MessagePerceivedByOthers is { } message)
         {
             var msgOthers = Loc.GetString(message,
                 ("user", Identity.Entity(args.User, EntityManager)),
@@ -155,11 +138,11 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         }
 
         // emote message for chat
-        if (proto.EmoteMessage is { } emoteMessage)
+        if (interaction.EmoteMessage is { } emoteMessage)
         {
             // show a different message if we're using the emote on ourselves
             var emoteTarget = selfTarget
-                ? proto.EmoteMessageSelf ?? emoteMessage
+                ? interaction.EmoteMessageSelf ?? emoteMessage
                 : emoteMessage;
 
             // resolve localization
@@ -189,4 +172,65 @@ public sealed partial class SocialInteractionSystem : EntitySystem
                 _audio.PlayEntity(sfx, Filter.Entities(args.Target), args.Target, false);
         }
     }
+
+    /// <summary>
+    /// Used to override interaction strings if an override exists.
+    /// </summary>
+    private void ApplyInteractionOverride(SocialInteractionPrototype proto, SocialInteractionReceiverComponent receiverComp, OverrideSocialInteraction interaction)
+    {
+        foreach (var overrideData in receiverComp.InteractionOverrides)
+        {
+            if (overrideData.ID != proto.ID)
+                continue;
+
+            interaction.InteractString = overrideData.InteractString ?? interaction.InteractString;
+            interaction.InteractSound = overrideData.InteractSound ?? interaction.InteractSound;
+            interaction.MessagePerceivedByOthers = overrideData.MessagePerceivedByOthers ?? interaction.MessagePerceivedByOthers;
+            interaction.EmoteMessage = overrideData.EmoteMessage ?? interaction.EmoteMessage;
+            interaction.EmoteMessageSelf = overrideData.EmoteMessageSelf ?? interaction.EmoteMessageSelf;
+
+            break;
+        }
+    }
+
+    /// <summary>
+    /// Used to check if the SocialInteractionGiver is alive and conscious,
+    /// as the dead and incapaciated aren't known for being very socialable.
+    /// </summary>
+    private bool IsDeadOrIncapacitated(EntityUid user)
+    {
+        // no social interactions when ghosted, stunned, sleeping, critical or dead
+        if ((HasComp<GhostComponent>(user)
+            || HasComp<StunnedComponent>(user)
+            || HasComp<SleepingComponent>(user)
+            || HasComp<RevenantComponent>(user) // revenants are ghosts
+            || _mobStateSystem.IsIncapacitated(user)) && !HasComp<AdminGhostComponent>(user)) // admin ghosts are exempt!
+            return true;
+
+        return false;
+    }
+
+    /// <summary>
+    /// Used to check if a physical interaction is possible.
+    /// </summary>
+    private bool CheckInteractable(EntityUid user, EntityUid target)
+    {
+        if (!_actionBlockerSystem.CanInteract(user, target))
+            return false;
+
+        if (!_interactionSystem.InRangeUnobstructed(user, target))
+            return false;
+
+        return true;
+    }
+
+    private sealed class OverrideSocialInteraction
+    {
+        public LocId? InteractString;
+        public SoundSpecifier? InteractSound;
+        public LocId? MessagePerceivedByOthers;
+        public LocId? EmoteMessage;
+        public LocId? EmoteMessageSelf;
+    }
 }
+

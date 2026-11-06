@@ -12,7 +12,9 @@ public sealed partial class ActivatableUIRequiresPowerSystem : SharedActivatable
 
     protected override void OnActivate(Entity<ActivatableUIRequiresPowerComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
-        if (args.Cancelled || this.IsPowered(ent.Owner, EntityManager))
+        if (args.Cancelled ||
+            HasPowerCellFallback(ent.Owner, ent.Comp) || // Starlight
+            this.IsPowered(ent.Owner, EntityManager))
         {
             return;
         }
@@ -22,4 +24,6 @@ public sealed partial class ActivatableUIRequiresPowerSystem : SharedActivatable
 
         args.Cancel();
     }
+
+    private partial bool HasPowerCellFallback(EntityUid uid, ActivatableUIRequiresPowerComponent component); // Starlight
 }

@@ -186,8 +186,8 @@
     delay: 2
   - type: LeechOnMarker
     leech:
-      groups:
-        Brute: -10
+      types:
+        Slash: -10
   - type: Gun
     projectileSpeed: 15
     soundGunshot: /Audio/_Starlight/CosmicCult/projectile_razor.ogg

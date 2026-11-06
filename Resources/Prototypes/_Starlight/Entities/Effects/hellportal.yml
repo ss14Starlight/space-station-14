@@ -1,0 +1,15 @@
+- type: entity
+  parent: MoffEffectSparksRedspace
+  id: MoffEffectSparksNarsie
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WeaponArcVisuals
+    fadeOut: false
+  - type: Sprite
+    sprite: _ES/Effects/sparks.rsi
+    layers:
+    - state: sparks
+      shader: unshaded
+      color: "#aa1c34"
+  - type: PointLight
+    color: "#aa1c34"

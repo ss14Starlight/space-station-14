@@ -1,4 +1,5 @@
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared._Starlight.Chemistry.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -128,8 +129,9 @@ public sealed partial class OpenableSystem : EntitySystem
 
     private void OnAttemptShake(Entity<OpenableComponent> entity, ref AttemptShakeEvent args)
     {
-        // Prevent shaking open containers
-        if (entity.Comp.Opened)
+        // Starlight-start: Shaken open bottles spill
+        if (entity.Comp.Opened && !HasComp<ShakeSpillableComponent>(entity.Owner))
+        // Starlight-end
             args.Cancelled = true;
     }
 

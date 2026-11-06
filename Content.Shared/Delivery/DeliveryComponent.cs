@@ -1,4 +1,5 @@
 using Content.Shared.Cargo.Prototypes;
+using Content.Shared.Roles;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -99,5 +100,11 @@ public sealed partial class DeliveryComponent : Component
     /// </summary>
     [DataField]
     public bool Rewarded;
+
+    /// <summary>
+    /// The job prototype of the delivery's recipient.
+    /// </summary>
+    [DataField, AutoNetworkedField] public string RecipientJobId = "";
+
     #endregion
 }

@@ -1,0 +1,5 @@
+- type: !PartialOnly entityTable
+  id: AllMiscToysTable
+  table:
+    children:
+      - id: TwistyCube

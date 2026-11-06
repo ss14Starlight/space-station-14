@@ -7,3 +7,11 @@
     - Xenoborgs
     presets:
     - Xenoborgs
+
+- type: !PartialOnly entity
+  id: Thief
+  components:
+  - type: AntagRandomObjectives
+    forcedObjectiveGroup: ThiefObjectiveGroupFate
+    storyObjectiveGroup: ThiefObjectiveOpenEnded
+    storyObjectiveCount: 1

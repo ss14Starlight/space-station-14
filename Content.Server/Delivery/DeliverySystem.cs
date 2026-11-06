@@ -68,6 +68,7 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
         ent.Comp.RecipientName = entry.Name;
         ent.Comp.RecipientJobTitle = entry.JobTitle;
         ent.Comp.RecipientStation = stationId;
+        ent.Comp.RecipientJobId = entry.JobPrototype; // Starlight-edit
 
         _appearance.SetData(ent, DeliveryVisuals.JobIcon, entry.JobIcon);
 

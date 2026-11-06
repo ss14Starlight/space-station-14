@@ -20,14 +20,6 @@
       - id: FoodPacketSusTrash
       - id: FoodPacketSyndiTrash
       - id: BrokenBottle
-      # Starlight Start
-      - id: FoodPacketRiceBarTrash
-      - id: FoodPacketCheeseBoxTrash
-      - id: FoodPacketHardCandyTrash
-      - id: FoodFrozenPopsicleNicotineTrashStick
-      - id: FoodFrozenPopsicleOrangeTrash
-      - id: FoodFrozenPopsicleJumboTrash
-      # Starlight End
     - !type:GroupSelector
       weight: 5
       children:

@@ -78,6 +78,7 @@
         - Inorganic
         - Silicon
         - Hybrid
+        - MoffDemonInorganic
 
 - type: entity
   parent: BaseXenoborgChassisDerelict

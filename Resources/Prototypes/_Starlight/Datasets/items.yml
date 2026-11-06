@@ -1,0 +1,23 @@
+- type: dataset
+  id: Items
+  values:
+    - Wrenches
+    - Welding Tools
+    - Screwdrivers
+    - Wirecutters
+    - Multitools
+    - Plushies
+    - Food packaging
+    - Soda cans
+    - Flashlights
+    - Empty toolboxes
+    - Civilian clothes
+    - Shoes
+    - Hats
+    - Scarves
+    - Folders
+    - Spray bottles
+    - Lizard Plushies
+    - Figurines
+    - Toys
+    - Lockers

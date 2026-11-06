@@ -1,0 +1,13 @@
+- type: !PartialOnly vendingMachineInventory
+  id: SyndieDrobeInventory
+  startingInventory:
+    ClothingBackpackSyndicate: 4
+    ClothingBackpackSatchelSyndicate: 4
+    ClothingBackpackDuffelSyndicate: 4
+  contrabandInventory:
+    ClothingUniformJumpskirtTacticalMaid: !Remove
+    ClothingHandsTacticalMaidGloves: !Remove
+  emaggedInventory:
+    SyndieHandyFlag: 1 # Blimpuf
+    BedsheetSyndie: 1 # Blimpuf
+    ClothingHeadHatTacticalMaidHeadband: !Remove

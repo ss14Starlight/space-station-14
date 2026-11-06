@@ -133,6 +133,24 @@ achievement-rodentia-rex-description = As a Rat King, have at least 30 rat serva
 achievement-the-robust-salvagers-name = The Robust Salvagers
 achievement-the-robust-salvagers-description = As a salvager, kill a nuclear operative.
 
+achievement-elite-contractor-name = Elite Contractor
+achievement-elite-contractor-description = Complete at least 15 Difficulty as a Traitor in a single round.
+
+achievement-phantom-thief-name = Phantom Thief
+achievement-phantom-thief-description = Complete at least 10 Difficulty as a Thief in a single round.
+
+achievement-first-kindred-name = First Kindred
+achievement-first-kindred-description = Complete at least 10 Difficulty as a Vampire in a single round.
+
+achievement-enemy-unknown-name = Enemy Unknown
+achievement-enemy-unknown-description = Complete at least 10 Difficulty as a Changeling in a single round.
+
+achievement-blood-herald-name = Herald of Blood
+achievement-blood-herald-description = Complete at least 10 Difficulty as a Blood Bound in a single round.
+
+achievement-theory-of-objectivity-name = Theory of Objectivity
+achievement-theory-of-objectivity-description = Obtain Elite Contractor, Phantom Thief, First Kindred, Enemy Unknown, and Herald of Blood.
+
 achievement-really-with-that-name = Really? With that?
 achievement-really-with-that-description = Attempt to suicide with a non-lethal.
 
@@ -230,3 +248,14 @@ role-achievement-reward-fail-hidden = Requires a [color=yellow]hidden achievemen
 loadouts-achievement-reward-pass = Achievement reward unlocked: {$achievement}
 loadouts-achievement-reward-fail = Requires achievement reward: {$achievement}
 loadouts-achievement-reward-fail-hidden = Requires a hidden achievement reward
+
+achievement-category-milestones = Milestones
+achievement-category-onboarding = Onboarding
+achievement-category-special = Special
+achievement-category-vampire = Vampire
+achievement-category-traitor = Traitor
+achievement-category-thief = Thief
+achievement-category-changeling = Changeling
+achievement-category-bloodbound = Blood Bound
+achievement-category-revolutionary = Revolutionary
+achievement-category-nukeops = Nuclear Operative

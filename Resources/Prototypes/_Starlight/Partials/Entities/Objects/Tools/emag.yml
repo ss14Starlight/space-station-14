@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: EmagUnlimited
+  components:
+  - type: Emag
+    accessGroups: [Syndicate]

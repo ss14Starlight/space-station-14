@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: SpawnPointXenoborg
+  components:
+  - type: Sprite
+    layers:
+    - !CombineIndex:1 sprite: Mobs/Silicon/Chassis/xeno_heavy.rsi # we moved these
+      state: borg

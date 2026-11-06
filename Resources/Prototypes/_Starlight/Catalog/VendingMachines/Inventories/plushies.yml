@@ -1,5 +1,16 @@
 # Marketable Character Plushies - Keep alphabetical, please!
 - type: listing
+  id: VendorPlushieBarfo
+  productEntity: PlushieBarfo
+  cost:
+    NTCredit: 20
+  categories:
+    - SLCrew
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: VendorPlushieBrightheart
   productEntity: PlushieBrightheart
   cost:
@@ -277,6 +288,17 @@
     stock: 3
 
 - type: listing
+  id: VendorPlushieDumboOctopus
+  productEntity: PlushieDumboOctopus
+  cost:
+    NTCredit: 20
+  categories:
+  - SLPlushies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
   id: VendorPlushieExperiment
   productEntity: PlushieExperiment
   cost:
@@ -387,7 +409,7 @@
     stock: 1
 
 - type: listing
-  id: PlushieSeaBunny
+  id: VendorPlushieSeaBunny
   productEntity: PlushieSeaBunny
   cost:
     NTCredit: 20
@@ -395,7 +417,40 @@
     - SLPlushies
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 1
+      stock: 2
+
+- type: listing
+  id: VendorPlushieSeaPancake
+  productEntity: PlushieSeaPancake
+  cost:
+    NTCredit: 20
+  categories:
+    - SLPlushies
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: VendorPlushieSeaSheep
+  productEntity: PlushieSeaSheep
+  cost:
+    NTCredit: 20
+  categories:
+    - SLPlushies
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: VendorPlushieSeal
+  productEntity: PlushieSeal
+  cost:
+    NTCredit: 20
+  categories:
+    - SLPlushies
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
 
 - type: listing
   id: VendorPlushieShadekin
@@ -440,6 +495,17 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 3
+
+- type: listing
+  id: VendorPlushieStingRay
+  productEntity: PlushieStingRay
+  cost:
+    NTCredit: 20
+  categories:
+  - SLPlushies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: VendorPlushieSus

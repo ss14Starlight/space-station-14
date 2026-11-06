@@ -1,0 +1,4 @@
+- type: !PartialOnly job
+  id: CentralCommandOfficial
+  roleType: CentCommAligned
+  supervisors: job-supervisors-centcom

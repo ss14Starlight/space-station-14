@@ -10,7 +10,7 @@ namespace Content.Client.UserInterface.Controls.FancyTree;
 /// <remarks>
 ///     Ideally this would just be a draw method in <see cref="TreeItem"/>, but sadly the draw override gets called BEFORE children are drawn.
 /// </remarks>
-public sealed class TreeLine : Control
+public sealed partial class TreeLine : Control // Starlight
 {
     protected override void Draw(DrawingHandleScreen handle)
     {
@@ -21,6 +21,10 @@ public sealed class TreeLine : Control
             return;
 
         if (!parent.Expanded || !parent.Tree.DrawLines || parent.Body.ChildCount == 0)
+            return;
+
+        var lastItem = GetLastVisibleChild(parent); // Starlight
+        if (lastItem == null)
             return;
 
         var width = Math.Max(1, (int) (parent.Tree.LineWidth * UIScale));
@@ -38,8 +42,6 @@ public sealed class TreeLine : Control
         var buttonSize = parent.Button.PixelSize;
         var y1 = buttonPos.Y + buttonSize.Y;
 
-        var lastItem = (TreeItem) parent.Body.GetChild(parent.Body.ChildCount - 1);
-
         var childPos = lastItem.Button.GlobalPixelPosition - global;
         var y2 = childPos.Y + lastItem.Button.PixelSize.Y / 2;
 
@@ -51,7 +53,9 @@ public sealed class TreeLine : Control
         var dx = Math.Max(1, (int) (FancyTree.Indentation * UIScale / 2));
         foreach (var child in parent.Body.Children)
         {
-            var item = (TreeItem) child;
+            if (child is not TreeItem { Visible: true } item) // Starlight: draw connectors only to visible rows.
+                continue;
+
             var pos = item.Button.GlobalPixelPosition - global;
             var y = pos.Y + item.Button.PixelSize.Y / 2;
             rect = new UIBox2i((x - w1, y - w1), (x + dx, y + w2));

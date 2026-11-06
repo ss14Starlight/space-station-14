@@ -14,15 +14,12 @@ public sealed partial class GunBurstVarianceSystem : EntitySystem
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedGunSystem _gun = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
+    /// <summary>
+    /// Salt for the random number generator to ensure that the randomization is different each time a burst completes.
+    /// </summary>
+    private const int BurstSalt = -5;
 
-        SubscribeLocalEvent<GunBurstVarianceDefectComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<GunBurstVarianceDefectComponent, GunRefreshModifiersEvent>(OnRefreshModifiers);
-        SubscribeLocalEvent<GunBurstVarianceDefectComponent, GunShotEvent>(OnGunShot);
-    }
-
+    [SubscribeLocalEvent]
     private void OnMapInit(Entity<GunBurstVarianceDefectComponent> ent, ref MapInitEvent args)
     {
         if (_net.IsClient)
@@ -35,6 +32,7 @@ public sealed partial class GunBurstVarianceSystem : EntitySystem
             _gun.RefreshModifiers(ent.Owner);
     }
 
+    [SubscribeLocalEvent]
     private void OnRefreshModifiers(Entity<GunBurstVarianceDefectComponent> ent, ref GunRefreshModifiersEvent args)
     {
         if (ent.Comp.CurrentShots <= 0)
@@ -43,6 +41,7 @@ public sealed partial class GunBurstVarianceSystem : EntitySystem
         args.ShotsPerBurst = ent.Comp.CurrentShots;
     }
 
+    [SubscribeLocalEvent]
     private void OnGunShot(Entity<GunBurstVarianceDefectComponent> ent, ref GunShotEvent args)
     {
         if (!TryComp<GunComponent>(ent.Owner, out var gun))
@@ -51,11 +50,7 @@ public sealed partial class GunBurstVarianceSystem : EntitySystem
         if (gun.SelectedMode != SelectiveFire.Burst || gun.BurstActivated)
             return;
 
-        // Burst just ended — re-roll for the next one.
-        if (_net.IsClient)
-            return;
-
-        ent.Comp.CurrentShots = _random.Next(ent.Comp.MinShots, ent.Comp.MaxShots + 1);
+        ent.Comp.CurrentShots = _gun.GetShotRandom(ent, BurstSalt).Next(ent.Comp.MinShots, ent.Comp.MaxShots + 1);
         Dirty(ent, ent.Comp);
         _gun.RefreshModifiers(ent.Owner);
     }

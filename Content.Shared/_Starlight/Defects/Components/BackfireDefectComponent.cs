@@ -11,7 +11,7 @@ public sealed partial class BackfireDefectComponent : DefectComponent
     public BackfireDefectComponent()
     {
         Prob = 0.20f;
-        DefectLabel = "cracked chamber";
+        DefectLabel = "defect-label-cracked-chamber";
     }
 
     // Per-shot probability of a backfire occurring.

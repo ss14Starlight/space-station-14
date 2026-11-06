@@ -27,7 +27,7 @@ public sealed partial class GhostDescription : BoxContainer
         PreviewImage.Texture = spriteSystem.Frame0(icon);
 
         ThemeNameLabel.Text = name;
-        ThemeDescriptionLabel.Text = description;
+        ThemeDescriptionLabel.SetMessage(FormattedMessage.FromUnformatted(description));
 
         SelectButton.OnPressed += _ => OnThemeSelected?.Invoke();
 

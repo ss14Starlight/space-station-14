@@ -14,7 +14,6 @@
   - type: Tag
     tags:
     - TimerSignalElectronics
-    - RamChip # FH + Starlight
   - type: StaticPrice
     price: 30
 
@@ -30,7 +29,6 @@
   - type: Tag
     tags:
     - TimerScreenElectronics
-    - RamChip # FH + Starlight
 
 - type: entity
   id: BrigTimerElectronics
@@ -44,4 +42,3 @@
   - type: Tag
     tags:
     - TimerBrigElectronics
-    - RamChip # FH + Starlight

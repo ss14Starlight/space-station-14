@@ -1,0 +1,14 @@
+- files: ["backpack_equip.ogg", "headset_equip1.ogg", "headset_equip2.ogg", "sneakers_equip1.ogg", "toolbelt_equip.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /tg/station (made by sadboysuss), downmixed to mono, loudness-normalized"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/items/equip"
+
+- files: ["glove_equip.ogg"]
+  license: "CC0-1.0"
+  copyright: "\"LETHRCreak_Leather Belt Short Creak 01\" by itmightgetloud, edited for /tg/station, downmixed to mono, loudness-normalized"
+  source: "https://freesound.org/s/751281/"
+
+- files: ["helmet_equip1.ogg"]
+  license: "CC0-1.0"
+  copyright: "\"helmet motorbike put on a head\" by cupido-1, edited for /tg/station, downmixed to mono, loudness-normalized"
+  source: "https://freesound.org/s/614199/"

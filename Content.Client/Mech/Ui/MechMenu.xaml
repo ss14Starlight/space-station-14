@@ -53,15 +53,15 @@
             </SpriteView>
         </BoxContainer>
         <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="10 0 10 10">
-            <Label Text="Maintenance:" VerticalAlignment="Center" Margin="5 0 5 0"/>
-            <Button Name="MaintenanceOffButton" Text="OFF" HorizontalExpand="True" Margin="5 0 5 0"/>
-            <Button Name="MaintenanceOnButton" Text="ON" HorizontalExpand="True" Margin="5 0 5 0"/>
+            <Label Text="{Loc 'mech-menu-maintenance'}" VerticalAlignment="Center" Margin="5 0 5 0"/>
+            <Button Name="MaintenanceOffButton" Text="{Loc 'mech-menu-maintenance-off'}" HorizontalExpand="True" Margin="5 0 5 0"/>
+            <Button Name="MaintenanceOnButton" Text="{Loc 'mech-menu-maintenance-on'}" HorizontalExpand="True" Margin="5 0 5 0"/>
         </BoxContainer>
         <BoxContainer VerticalExpand="True" Margin="10 0 10 10" Orientation="Vertical">
             <PanelContainer VerticalExpand="True" MinSize="0 200">
                 <BoxContainer Orientation="Vertical" VerticalExpand="True">
                     <!-- Active Equipment -->
-                    <Label Text="Active Equipment" Margin="5" />
+                    <Label Text="{Loc 'mech-menu-active-equipment'}" Margin="5" />
                     <PanelContainer>
                         <PanelContainer.PanelOverride>
                             <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
@@ -72,7 +72,7 @@
                     </PanelContainer>
 
                     <!-- Passive Equipment -->
-                    <Label Text="Passive Equipment" Margin="5" />
+                    <Label Text="{Loc 'mech-menu-passive-equipment'}" Margin="5" />
                     <PanelContainer>
                         <PanelContainer.PanelOverride>
                             <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />

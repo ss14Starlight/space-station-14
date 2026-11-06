@@ -43,7 +43,7 @@ public partial class PopOutWindow : DefaultWindow, IPopOutWindow
         {
             StyleClasses = { PopOutExtensions.PopOutButtonStyleClass },
             VerticalAlignment = VAlignment.Center,
-            ToolTip = "Pop Out",
+            ToolTip = Loc.GetString("ui-pop-out"),
             Margin = new Thickness(0, 0, 6, 0)
         };
         if (!WindowHeader.Children.OfType<BoxContainer>().TryFirstOrDefault(out var header))

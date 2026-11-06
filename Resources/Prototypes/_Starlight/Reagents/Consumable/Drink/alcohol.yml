@@ -21,28 +21,26 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.45
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          Brute: -3
+          Burn: -1.25
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
         reagent: UncookedAnimalProteins
         amount: 0.5
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
         damage:
-          groups:
-            Brute: -0.75
-            Burn: -0.375
+          Brute: -0.75
+          Burn: -0.375
     Metabolites:
       effects:
       - !type:Drunk

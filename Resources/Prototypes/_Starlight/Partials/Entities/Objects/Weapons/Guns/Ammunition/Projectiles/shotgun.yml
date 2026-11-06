@@ -1,0 +1,32 @@
+# .50 -> 12 gauge
+- type: !PartialOnly entity
+  id: PelletShotgunSlug
+  name: 12 gauge slug
+
+- type: !PartialOnly entity
+  id: PelletShotgunBeanbag
+  name: 12 gauge beanbag slug
+
+- type: !PartialOnly entity
+  id: PelletShotgun
+  name: 12 gage buckshot
+
+- type: !PartialOnly entity
+  id: PelletShotgunIncendiary
+  name: 12 gauge incendiary buckshot
+
+- type: !PartialOnly entity
+  id: PelletShotgunPractice
+  name: 12 gauge blank
+
+- type: !PartialOnly entity
+  id: PelletShotgunTranquilizer
+  name: 12 gauge traunquilizer slug
+
+- type: !PartialOnly entity
+  id: PelletShotgunFlare
+  name: 12 gauge flare
+
+- type: !PartialOnly entity
+  id: PelletShotgunUranium
+  name: 12 gauge uranium buckshot

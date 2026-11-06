@@ -5,12 +5,14 @@
   description: An artificial brain capable of allowing remote AI takeover.
   components:
     - type: Sprite
-      sprite: Objects/Specific/Robotics/mmi.rsi
+      sprite: _Starlight/Objects/Specific/Robotics/mmi.rsi
       layers:
-      - state: posibrain-occupied
+      - state: ai_interface
         map: ["base"]
     - type: Input
       context: human
+    - type: Eye
+    - type: ContentEye
     - type: BlockMovement
     - type: Examiner
     - type: BorgBrain

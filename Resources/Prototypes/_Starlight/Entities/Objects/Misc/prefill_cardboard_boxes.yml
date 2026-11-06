@@ -37,6 +37,35 @@
           amount: 3
 
 - type: entity
+  parent: CardboardBoxLargeChemistry
+  id: CardboardBoxLargeChemistryJugsExtra
+  name: chemistry jug box
+  suffix: Jugs+
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Jug
+          amount: 8
+        - id: ClothingEyesGlassesChemical
+        - id: HandLabeler
+        - id: UtilityKnife
+
+- type: entity
+  parent: CardboardBoxLargeChemistry
+  id: CardboardBoxLargeChemistryJugs
+  name: chemistry jug box
+  suffix: Jugs
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Jug
+          amount: 8
+
+- type: entity
   parent: CardboardBoxLargeService
   id: CardboardBoxLargeServiceGlasses
   name: drink glasses box

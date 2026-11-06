@@ -18,3 +18,8 @@
     jumpsuit: ClothingUniformJumpsuitPrisoner
     id: StirStirPDA
     head: ClothingHeadHatBeretPrison
+
+- type: startingGear
+  id: StartingGearDrone
+  equipment:
+    back: DroneBag

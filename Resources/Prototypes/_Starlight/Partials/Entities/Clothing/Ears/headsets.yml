@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: ClothingHeadset
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: HeadsetPickup
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/headset_drop1.ogg
+  - type: Clothing
+    equipSound:
+      collection: HeadsetEquip
+

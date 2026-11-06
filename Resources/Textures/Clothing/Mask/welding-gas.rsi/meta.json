@@ -54,6 +54,11 @@
     {
       "name": "up-inhand-right",
       "directions": 4
-    }
+    },
+    {
+      "name": "equipped-MASK-experiment",
+      "copyright": "Modified state by DocMoth",
+      "directions": 4
+	  }
   ]
 }

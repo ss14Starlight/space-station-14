@@ -1,0 +1,113 @@
+- type: !PartialOnly entity
+  id: BaseMech
+  components:
+  - type: Mech
+    maxIntegrity: 170
+    batteryWhitelist:
+      tags:
+      - MechReactor
+  - type: ArmorSparkEffect
+    alwaysSparks: true
+  - type: Repairable # Borg-like mech repair
+    damageValue: -30 # 15 seconds to repair durand
+    doAfterDelay: 1
+    fuelCost: 3 # 3x more expensive than cyborg repair costing 70u for durand
+  - type: UserInterface
+    interfaces:
+      # Equipment radial
+      enum.MechEquipmentSelectUiKey.Key:
+        type: MechEquipmentSelectBoundUserInterface
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    wideAnimation: WeaponArcFist
+  - type: Damageable
+    damageContainer: StructuralInorganic # Inorganic -> StructuralInorganic
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 0.333333333 # delay was 3 seconds per draw
+  - type: Prying
+    pryPowered: false
+    force: false
+    useSound: /Audio/Items/jaws_pry.ogg
+
+- type: !PartialOnly entity
+  id: MechRipley
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 25 # Ripley gets to punch, but is *not* safe
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2 # All mechs walk at the same speed
+
+- type: !PartialOnly entity
+  id: MechRipleyBattery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - !Remove PowerCellHigh
+      - MechReactorHigh # MechReactors
+
+- type: !PartialOnly entity
+  id: MechHonker
+  components:
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Structural: 2
+    soundHit:
+      path: /Audio/Items/bikehorn.ogg
+  - type: MeleeThrowOnHit
+    speed: 1
+    distance: 2
+  - type: Mech
+    mechToPilotDamageMultiplier: 0.0 # Mechs are safe
+
+- type: !PartialOnly entity
+  id: MechHonkerBattery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - !Remove PowerCellHigh
+      - MechReactorHigh # MechReactors
+
+- type: !PartialOnly entity
+  id: MechHamtr
+  components:
+  - type: Mech
+    mechToPilotDamageMultiplier: 0.0 # Mechs are safe
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2 # All mechs walk at the same speed
+
+- type: !PartialOnly entity
+  id: MechHamtrBattery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - !Remove PowerCellHigh
+      - MechReactorHigh # MechReactors
+
+- type: !PartialOnly entity
+  id: MechVim
+  description: A miniature exosuit from NanoTrasen, developed to let the irreplaceable station pets live a little longer.
+  components:
+  - type: Mech
+    maxEquipmentAmount: 1 # give Vim equipment
+    mechToPilotDamageMultiplier: 0.0 # Mechs are safe
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2 # All mechs walk at the same speed
+
+- type: !PartialOnly entity
+  id: MechVimBattery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - !Remove PowerCellHigh
+      - MechReactorHigh # MechReactors

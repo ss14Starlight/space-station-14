@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: Matchbox
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/matchbox_pickup.ogg
+

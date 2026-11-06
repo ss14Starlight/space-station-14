@@ -1,4 +1,4 @@
-using Content.Shared.Interaction;
+﻿using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs;
@@ -14,6 +14,7 @@ namespace Content.Shared._Afterlight.Silicons.Borgs;
 public abstract partial class SharedBorgSwitchableSubtypeSystem : EntitySystem
 {
     [Dependency] private InteractionPopupSystem _interactionPopup = default!;
+    [Dependency] private SharedBorgSwitchableTypeSystem _switchableType = default!; // Starlight
     [Dependency] protected IPrototypeManager Prototypes = default!;
     [Dependency] protected IComponentFactory ComponentFactory = default!;
 
@@ -48,10 +49,7 @@ public abstract partial class SharedBorgSwitchableSubtypeSystem : EntitySystem
         SelectBorgSubtype(ent);
     }
 
-    protected virtual void SelectBorgSubtype(Entity<BorgSwitchableSubtypeComponent> ent)
-    {
-        UpdateEntityAppearance(ent);
-    }
+    protected virtual void SelectBorgSubtype(Entity<BorgSwitchableSubtypeComponent> ent) => UpdateEntityAppearance(ent); // Starlight
 
     private void UpdateEntityAppearance(Entity<BorgSwitchableSubtypeComponent> entity)
     {
@@ -64,7 +62,7 @@ public abstract partial class SharedBorgSwitchableSubtypeSystem : EntitySystem
     protected virtual void UpdateEntityAppearance(Entity<BorgSwitchableSubtypeComponent> entity,
         EntityPrototype borgSubtypePrototype)
     {
-        if (!borgSubtypePrototype.TryGetComponent<BorgSubtypeDefinitionComponent>(out var borgSubtype, ComponentFactory))
+        if (!borgSubtypePrototype.TryComp<BorgSubtypeDefinitionComponent>(out var borgSubtype, ComponentFactory)) // Starlight
             return;
 
         if (TryComp(entity, out InteractionPopupComponent? popup))
@@ -79,12 +77,28 @@ public abstract partial class SharedBorgSwitchableSubtypeSystem : EntitySystem
         }
     }
 
-    private void SelectSubtypeMessageHandler(EntityUid uid, BorgSwitchableTypeComponent borgSwitchableTypeComponent, BorgSelectSubtypeMessage args)
+    #region Starlight
+    private void SelectSubtypeMessageHandler(Entity<BorgSwitchableTypeComponent> ent, ref BorgSelectSubtypeMessage args)
     {
-        if (!TryComp<BorgSwitchableSubtypeComponent>(uid, out var subtypeComp))
+        if (args.Subtype is { } requested && !Prototypes.HasIndex(requested))
             return;
 
+        if (!TryComp<BorgSwitchableSubtypeComponent>(ent, out var subtypeComp))
+        {
+            _switchableType.TrySelectBorgType(ent, args.BorgType);
+            return;
+        }
+
+        var previous = subtypeComp.BorgSubtype;
         subtypeComp.BorgSubtype = args.Subtype;
-        Dirty(uid, subtypeComp);
+
+        if (!_switchableType.TrySelectBorgType(ent, args.BorgType))
+        {
+            subtypeComp.BorgSubtype = previous;
+            return;
+        }
+
+        Dirty(ent.Owner, subtypeComp);
     }
+    #endregion
 }

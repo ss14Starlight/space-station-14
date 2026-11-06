@@ -1,0 +1,53 @@
+- type: sight
+  id: MeleeSight
+  name: overlay-universal-sight-melee
+  sightType: Universal
+  showCursor: false
+  sprite:
+    sprite: _Starlight/Interface/Misc/crosshair_pointers.rsi
+    state: melee_sight
+
+- type: sight
+  id: ArrowsOuterSight
+  name: overlay-universal-sight-dot-outer-arrows
+  sightType: Universal
+  showCursor: false
+  sprite:
+    sprite: _Starlight/Interface/Misc/crosshair_pointers.rsi
+    state: arrows_outer
+
+- type: sight
+  id: BracketsSight
+  name: overlay-universal-sight-dot-brackets
+  sightType: Universal
+  showCursor: false
+  sprite:
+    sprite: _Starlight/Interface/Misc/crosshair_pointers.rsi
+    state: brackets
+
+- type: sight
+  id: CrossSmallSight
+  name: overlay-universal-sight-small-cross
+  sightType: Universal
+  showCursor: false
+  sprite:
+    sprite: _Starlight/Interface/Misc/crosshair_pointers.rsi
+    state: cross_small
+
+- type: sight
+  id: CrossSmallTwoSight
+  name: overlay-universal-sight-small-cross-two
+  sightType: Universal
+  showCursor: false
+  sprite:
+    sprite: _Starlight/Interface/Misc/crosshair_pointers.rsi
+    state: cross_small2
+
+- type: sight
+  id: DotSight
+  name: overlay-universal-sight-dot
+  sightType: Universal
+  showCursor: false
+  sprite:
+    sprite: _Starlight/Interface/Misc/crosshair_pointers.rsi
+    state: dot

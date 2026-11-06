@@ -10,7 +10,7 @@
 - type: material
   id: RawBluespaceCrystal
   stackEntity: RawBluespaceCrystal1
-  name: Raw Bluespace Crystal
+  name: materials-raw-bluespace-crystal
   unit: materials-unit-chunk
   icon: { sprite: _Starlight/Objects/Materials/materials.rsi, state: bluespace_crystal }
   color: "#2f32fa"

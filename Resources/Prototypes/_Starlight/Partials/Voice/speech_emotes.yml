@@ -1,0 +1,140 @@
+# Priority sorts the emotes in the wheel numerically. Emotes without a specified priority are sorted alphabetically after.
+
+# Hands
+- type: !PartialOnly emote
+  id: Salute
+  priority: 0
+
+- type: !PartialOnly emote
+  id: ClapSingle
+  priority: 2
+
+- type: !PartialOnly emote
+  id: Snap
+  priority: 3
+
+- type: !PartialOnly emote
+  id: Flap
+  priority: 4
+
+- type: !PartialOnly emote
+  id: Clap
+  priority: 5
+
+- type: !PartialOnly emote
+  id: Thump
+  priority: 6
+
+# Vocal
+- type: !PartialOnly emote
+  id: Beep
+  priority: 1
+
+- type: !PartialOnly emote
+  id: Squish
+  priority: 2
+
+- type: !PartialOnly emote
+  id: Scream
+  priority: 3
+
+- type: !PartialOnly emote
+  id: Crying
+  priority: 4
+
+- type: !PartialOnly emote
+  id: Chime
+  priority: 8
+
+- type: !PartialOnly emote
+  id: Snarl
+  priority: 11
+
+- type: !PartialOnly emote
+  id: Honk
+  priority: 13
+
+- type: !PartialOnly emote
+  id: Growl
+  priority: 15
+
+- type: !PartialOnly emote
+  id: Weh
+  priority: 20
+
+- type: !PartialOnly emote
+  id: Buzz-Two
+  priority: 22
+
+- type: !PartialOnly emote
+  id: Howl
+  priority: 24
+
+- type: !PartialOnly emote
+  id: Squeak
+  priority: 25
+
+- type: !PartialOnly emote
+  id: Whistle
+  priority: 27
+
+- type: !PartialOnly emote
+  id: Laugh
+  priority: 32
+
+- type: !PartialOnly emote
+  id: Hew
+  priority: 35
+
+- type: !PartialOnly emote
+  id: Sigh
+  priority: 36
+
+- type: !PartialOnly emote
+  id: Chitter
+  priority: 38
+
+- type: !PartialOnly emote
+  id: Buzz
+  priority: 39
+
+- type: !PartialOnly emote
+  id: Ping
+  priority: 42
+
+- type: !PartialOnly emote
+  id: Click
+  priority: 47
+
+- type: !PartialOnly emote
+  id: Bark
+  priority: 49
+
+- type: !PartialOnly emote
+  id: Chirp
+  priority: 50
+
+- type: !PartialOnly emote
+  id: Whine
+  priority: 51
+
+# General
+- type: !PartialOnly emote
+  id: MonkeyDeathgasp
+  priority: 0
+
+- type: !PartialOnly emote
+  id: DeathgaspIPC
+  priority: 1
+
+- type: !PartialOnly emote
+  id: Gasp
+  priority: 2
+
+- type: !PartialOnly emote
+  id: ScurretDeathgasp
+  priority: 3
+
+- type: !PartialOnly emote
+  id: DefaultDeathgasp
+  priority: 4

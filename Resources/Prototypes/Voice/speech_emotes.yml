@@ -1,3 +1,5 @@
+# Starlight: Emote order priority is at Resources\Prototypes\_Starlight\Partials\Voice\speech_emotes.yml
+
 # vocal emotes
 - type: emote
   id: Scream

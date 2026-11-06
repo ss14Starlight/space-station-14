@@ -2,7 +2,7 @@
   parent: BaseBorgiChassis
   id: DerelictBorgiChassis
   name: derelict borgi
-  description: even after all these years. still loves chasing it's tail.
+  description: Even after all these years, still loves chasing its tail.
   components:
     - type: ContainerFill
       containers:
@@ -346,7 +346,7 @@
   parent: [ BaseXenoBorgiLanguages, BaseXenoborgChassisDerelict, BaseXenoborgTransponder, DerelictBorgiChassis ]
   id: DerelictXenoBorgiBase
   name: derelict xenoborgi
-  description:  even after all these years. still loves the color blue.
+  description:  Even after all these years, still loves the color blue.
   components:
     - type: Sprite
       drawdepth: Mobs
@@ -466,3 +466,51 @@
           blacklist:
             tags:
             - MechReactor
+
+- type: entity
+  parent: BaseBorgiChassis
+  id: ITGBorgiChassis
+  name: ITG borgi
+  description: Rescued from deep space, this chassis is the perfect tool for sniffing out loot.
+  components:
+    - type: ContainerFill
+      containers:
+        borg_module:
+          - BorgModuleTool
+          - BorgModuleFireExtinguisher
+        ears:
+          - ClothingHeadsetSalvageLead
+        outerClothing:
+          - ClothingOuterHardsuitSpatio
+        mask:
+          - ClothingMaskBreath
+        suitstorage:
+          - OxygenTankFilled
+        id:
+          - SalvagePDA
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellHigh
+          blacklist:
+            tags:
+            - MechReactor
+    - type: SiliconLawProvider
+      laws: itgLawset
+    - type: Access
+      tags:
+      - Salvage
+    - type: AccessReader
+      access: [["Salvage"]]
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - Binary
+      - Common
+      - Expedition
+    - type: ActiveRadio
+      channels:
+      - Binary
+      - Common
+      - Expedition
+

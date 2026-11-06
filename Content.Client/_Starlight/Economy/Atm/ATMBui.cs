@@ -40,7 +40,7 @@ public sealed class ATMBui : BoundUserInterface
         if (_window != null) return;
         _window = new ATMWindow();
         _window.OnClose += Close;
-        _window.Title = "Automated Teller Machine";
+        _window.Title = Loc.GetString("ui-atm-title");
 
         _window.WithdrawTabButton.OnPressed += _ =>
         {

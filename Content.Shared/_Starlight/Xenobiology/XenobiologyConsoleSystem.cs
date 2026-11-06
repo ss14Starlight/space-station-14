@@ -5,6 +5,7 @@ using Content.Shared._Starlight.Xenobiology.Potions;
 using Content.Shared.Actions;
 using Content.Shared.Construction;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
@@ -19,6 +20,7 @@ public sealed partial class XenobiologyConsoleSystem : EntitySystem
     [Dependency] private TagSystem _tagSystem = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private EntityLookupSystem _entityLookupSystem = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     private static readonly EntProtoId _monkeyCubeName = "MonkeyCube";
     private static readonly EntProtoId _mutationPotionName = "SlimeMutationPotion";
@@ -159,9 +161,7 @@ public sealed partial class XenobiologyConsoleSystem : EntitySystem
         {
             if (_tagSystem.HasTag(possibleMonkey, xenobiologyConsole.Value.Comp.MonkeyTag))
             {
-                if (!_entityManager.TryGetComponent<DamageableComponent>(possibleMonkey, out var damageableComponent))
-                    continue;
-                if (damageableComponent.TotalDamage < 100) continue; // Slimes don't eat monkeys above 100 damage
+                if (_damageable.GetTotalDamage(possibleMonkey) < 100) continue; // Slimes don't eat monkeys above 100 damage
                 PredictedQueueDel(possibleMonkey);
                 xenobiologyConsole.Value.Comp.MonkeyCubes += 0.5D;
                 monkeysFound += 1;

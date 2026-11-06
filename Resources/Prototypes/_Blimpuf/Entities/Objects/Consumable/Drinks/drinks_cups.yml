@@ -1,0 +1,31 @@
+# Emagged Plasteel Chef's Dinnerware Vendor
+- type: entity
+  parent: DrinkMugRed
+  id: DrinkMugRedSyndiePax
+  name: peaceful red mug
+  description: A red and black mug with remnants of something that smells soothing, calming, and relaxing.
+  components:
+  - type: Solution
+    id: drink
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Pax
+        Quantity: 10
+
+# Emagged Hot Drink's vendor
+- type: entity
+  parent: DrinkHotCoco
+  id: DrinkHotterCoco
+  name: hotter chocolate
+  suffix: Full
+  description: Even the handle of this mug is boiling hot, it hurts to hold.
+  components:
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: HotCocoa
+        Quantity: 15
+      - ReagentId: Phlogiston
+        Quantity: 5

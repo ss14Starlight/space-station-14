@@ -43,6 +43,9 @@
       - id: FoodCarrot
         amount: !type:RangeNumberSelector
           range: 1, 5
+      - id: FoodBrownMushroom # Starlight
+        amount: !type:RangeNumberSelector
+          range: 1, 5
       - id: FoodCabbage
         amount: !type:RangeNumberSelector
           range: 1, 5

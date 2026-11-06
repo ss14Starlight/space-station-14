@@ -112,8 +112,11 @@
     - id: RPLD
     - id: BoxBeakerSmall
     - id: BoxBeakerLarge
-    - id: BoxJug
+    # - id: BoxJug # should be re-enabled when CardboardBoxLargeChemistryJugs is removed from the locker fill table
     - id: PatchPack
+      amount: 2
+    - id: CardboardBoxLargeChemistryJugsExtra # These Jugs boxes must be removed when BoxShelfChemistry is properly mapped
+    - id: CardboardBoxLargeChemistryJugs # These Jugs boxes must be removed when BoxShelfChemistry is properly mapped
       amount: 2
     # Starlight end
     - id: ClothingEyesGlassesChemical

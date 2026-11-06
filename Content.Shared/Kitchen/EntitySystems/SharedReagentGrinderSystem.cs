@@ -230,7 +230,8 @@ public abstract partial class SharedReagentGrinderSystem : EntitySystem
         if (IsActive(ent.AsNullable()))
             return;
 
-        if (ent.Comp.NeedsPower && !_power.IsPowered(ent.Owner)) // Starlight
+        // Starlight: portable grinders opt out of power requirements.
+        if (ent.Comp.NeedsPower && !_power.IsPowered(ent.Owner))
             return;
 
         var beaker = _itemSlotsSystem.GetItemOrNull(ent, ReagentGrinderComponent.BeakerSlotId);
@@ -255,7 +256,7 @@ public abstract partial class SharedReagentGrinderSystem : EntitySystem
         EnsureComp<ActiveReagentGrinderComponent>(ent);
         _jitter.AddJitter(ent, -10, 100);
         if (ent.Comp.NeedsPower) // Starlight
-            _powerState.TrySetWorkingState(ent.Owner, true); // Starlight
+            _powerState.TrySetWorkingState(ent.Owner, true);
         ent.Comp.Program = program;
         ent.Comp.EndTime = _timing.CurTime + ent.Comp.WorkTime * ent.Comp.WorkTimeMultiplier;
         Dirty(ent);
@@ -284,7 +285,7 @@ public abstract partial class SharedReagentGrinderSystem : EntitySystem
         RemCompDeferred<ActiveReagentGrinderComponent>(ent);
         RemCompDeferred<JitteringComponent>(ent);
         if (ent.Comp.NeedsPower) // Starlight
-            _powerState.TrySetWorkingState(ent.Owner, false); // Starlight
+            _powerState.TrySetWorkingState(ent.Owner, false);
 
         var beaker = _itemSlotsSystem.GetItemOrNull(ent.Owner, ReagentGrinderComponent.BeakerSlotId);
         if (beaker is null || !_solutionContainersSystem.TryGetFitsInDispenser(beaker.Value, out var beakerSolutionEntity, out var beakerSolution))
@@ -376,15 +377,18 @@ public abstract partial class SharedReagentGrinderSystem : EntitySystem
     /// </summary>
     /// <param name="ent">The entity to check.</param>
     /// <returns>True if it can be ground, otherwise false.</returns>
+    /// <remarks>
+    /// Will it blend? That is the question!
+    /// </remarks>
     public bool CanGrind(Entity<ExtractableComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        if (ent.Comp.GrindableSolutionName == null) // Starlight
+        if (ent.Comp.GrindableSolutionName == null)
             return false;
 
-        return _solutionContainersSystem.TryGetSolution(ent.Owner, ent.Comp.GrindableSolutionName, out _, out _); // Starlight
+        return _solutionContainersSystem.TryGetSolution(ent.Owner, ent.Comp.GrindableSolutionName, out _, out _);
     }
 
     /// <summary>

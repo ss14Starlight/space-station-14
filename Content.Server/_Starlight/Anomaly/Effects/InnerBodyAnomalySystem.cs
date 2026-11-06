@@ -1,24 +1,12 @@
 // ReSharper disable CheckNamespace
 
-using Content.Server.Administration.Logs;
-using Content.Server.Chat.Managers;
-using Content.Server.Jittering;
-using Content.Server.Mind;
-using Content.Server.Stunnable;
 using Content.Shared.Actions;
-using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Anomaly.Effects;
 using Content.Shared.Body.Components;
 using Content.Shared.Chat;
 using Content.Shared.Database;
-using Content.Shared.Gibbing;
-using Content.Shared.Mobs;
 using Content.Shared.Popups;
-using Content.Shared.Whitelist;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 using Content.Shared.NPC.Systems;
@@ -54,7 +42,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
             }
         }
 
-        ProcessComponents(ent, injectedAnom.Components, true);
+        ProcessComponents(ent,ent, injectedAnom.Components, true);
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
         _jitter.DoJitter(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration), true);
@@ -105,8 +93,8 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         }
 
         Dirty(ent);
-        if (_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
-            ProcessComponents(ent, injectedAnom.Components, false);
+
+        ProcessComponents(ent, ent, ent.Comp.AddedComps, false);
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
 
@@ -132,9 +120,12 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
     private void ProcessComponents(
         EntityUid target,
+        InnerBodyAnomalyComponent anomComp,
         ComponentRegistry components,
         bool add)
     {
+        if (add) anomComp.AddedComps.Clear();
+
         foreach (var comp in components)
         {
             var componentType = comp.Value.Component.GetType();
@@ -145,9 +136,10 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
                 {
                     _actionGrant.AddActions((target, oldComp), actionGrantComp.Actions);
                 }
-                else
+                else if(!HasComp(target, componentType))
                 {
                     EntityManager.AddComponent(target, comp.Value);
+                    anomComp.AddedComps.Add(comp.Key,  comp.Value);
                 }
 
                 continue;

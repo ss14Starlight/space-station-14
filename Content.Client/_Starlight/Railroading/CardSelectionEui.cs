@@ -15,7 +15,9 @@ public sealed class CardSelectionEui : BaseEui
     private static readonly Vector2 _cardSize = new(264, 370);
     private static readonly Vector2 _cardContentSize = new(254, 200);
     private static readonly Vector2 _cardDescSize = new(255, 160);
+    private static readonly Vector2 _menuBarMinSize = new(14, 12);
     private const float TimerHeight = 26;
+    private const float BannerMinWidth = 30;
     private readonly SLWindow _window;
     private readonly CardCountdown _countdown = new();
 
@@ -132,6 +134,7 @@ public sealed class CardSelectionEui : BaseEui
                     .Modulate(card.Color));
                 if (card.Icon is not null)
                     box.Panel(panel => panel
+                        .WithMinWidth(BannerMinWidth)
                         .WithMargin(new Thickness(0, 5, 5, 0))
                         .AddClass("CardBanner")
                         .Modulate(card.Color)
@@ -150,6 +153,7 @@ public sealed class CardSelectionEui : BaseEui
             box.Panel(panel =>
                 {
                     panel.AddClass("MenuBar");
+                    panel.MinSize = _menuBarMinSize;
                     panel.Modulate(card.Color);
 
                     if (card.CreditReward is { } creditReward)

@@ -324,6 +324,7 @@
         - Inorganic
         - Silicon
         - Hybrid
+        - MoffDemonInorganic
     - type: ItemSlots
       slots:
         cell_slot:

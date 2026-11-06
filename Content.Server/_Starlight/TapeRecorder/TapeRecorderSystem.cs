@@ -21,6 +21,7 @@ public sealed partial class TapeRecorderSystem : SharedTapeRecorderSystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private PaperSystem _paper = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
 
     public override void Initialize()
     {
@@ -28,6 +29,19 @@ public sealed partial class TapeRecorderSystem : SharedTapeRecorderSystem
 
         SubscribeLocalEvent<TapeRecorderComponent, ListenEvent>(OnListen);
         SubscribeLocalEvent<TapeRecorderComponent, PrintTapeRecorderMessage>(OnPrintMessage);
+        SubscribeLocalEvent<TapeCassetteComponent, MapInitEvent>(OnCassetteMapInit);
+    }
+
+    private void OnCassetteMapInit(Entity<TapeCassetteComponent> ent, ref MapInitEvent args)
+    {
+        foreach (var message in ent.Comp.RecordedData)
+        {
+            if (message.Name is not null && _loc.TryGetString(message.Name, out var name))
+                message.Name = name;
+
+            if (_loc.TryGetString(message.Message, out var text))
+                message.Message = text;
+        }
     }
 
     /// <summary>

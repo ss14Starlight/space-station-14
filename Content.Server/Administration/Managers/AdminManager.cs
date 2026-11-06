@@ -320,6 +320,11 @@ namespace Content.Server.Administration.Managers
                 _toolshedCommandPermissions.LoadPermissionsFromStream(toolshedPerms);
             }
 
+            // Starlight begin
+            if (_res.TryContentFileRead(new ResPath("/_Starlight/toolshedEngineCommandPerms.yml"), out var slToolshedPerms))
+                _toolshedCommandPermissions.LoadPermissionsFromStream(slToolshedPerms);
+            // Starlight end
+
             _toolshed.ActivePermissionController = this;
 
             InitializeMetrics();

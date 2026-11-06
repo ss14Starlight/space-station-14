@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Concurrent;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared._NullLink;
 using Robust.Shared.Player;
@@ -8,6 +10,33 @@ namespace Content.Server._NullLink.PlayerData;
 
 public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
 {
+    private static readonly TimeSpan PlayTimeSyncTimeout = TimeSpan.FromSeconds(10);
+
+    private readonly ConcurrentDictionary<Guid, TaskCompletionSource> _playTimeSynced = [];
+
+    private void InitializePlayTime()
+        => _userDb.AddOnLoadPlayer(WaitForPlayTimeSync);
+
+    private async Task WaitForPlayTimeSync(ICommonSession session, CancellationToken cancel)
+    {
+        if (!_actors.Enabled || !_actors.TryGetServerGrain(out _))
+            return;
+
+        var synced = GetPlayTimeSynced(session.UserId);
+
+        try
+        {
+            await synced.Task.WaitAsync(PlayTimeSyncTimeout, cancel);
+        }
+        catch (TimeoutException)
+        {
+            _sawmill.Warning($"NullLink playtime for {session} did not arrive within {PlayTimeSyncTimeout.TotalSeconds}s, loading preferences with local playtime only.");
+        }
+    }
+
+    private TaskCompletionSource GetPlayTimeSynced(Guid player)
+        => _playTimeSynced.GetOrAdd(player, _ => new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously));
+
     public ValueTask SyncPlayTime(PlayerServerPlayTimesSyncEvent ev)
     {
         if (!_playerById.TryGetValue(ev.Player, out var playerData))
@@ -41,7 +70,8 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
             }
         }
 
-        _playTimeTrackingManager.EnrichWithNullLink(mergedRoles, ev.Player);
+        var synced = GetPlayTimeSynced(ev.Player);
+        _playTimeTrackingManager.EnrichWithNullLink(mergedRoles, ev.Player, () => synced.TrySetResult());
         return ValueTask.CompletedTask;
     }
 

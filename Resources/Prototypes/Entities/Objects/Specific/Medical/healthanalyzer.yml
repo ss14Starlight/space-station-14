@@ -22,9 +22,6 @@
   - type: ItemToggle
     onUse: false
   - type: HealthAnalyzer
-    damageContainers: # SL
-    - Biological
-    - Hybrid # Starlight
     scanningEndSound:
       path: "/Audio/Items/Medical/healthscanner.ogg"
   - type: Tag
@@ -33,7 +30,3 @@
   - type: GuideHelp
     guides:
     - MedicalDoctor
-  # Starlight-edit: start
-  - type: ItemPrice
-    fallbackPrice: 50
-  # Starlight-edit: end

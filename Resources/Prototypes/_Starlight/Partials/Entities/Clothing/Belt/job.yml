@@ -1,0 +1,105 @@
+- type: !PartialOnly entity
+  id: BaseClothingBeltEngineering
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - GrappleGun #FH
+      - ImprovisedCrowbar
+      - ImprovisedScrewdriver
+      - ImprovisedWirecutter
+      - ImprovisedWrench
+      - ImprovisedMultitool
+      - SyndicateJawsOfLife
+      - PrototypeJawsOfLife
+      - HandheldEngineeringMonitor # CE's handheld power/atmospherics monitor
+      components:
+      - AccessOverrider
+    blacklist:
+      tags:
+      - MechReactor
+  - type: ItemMapper
+    mapLayers:
+      cutters_red:
+        whitelist:
+          tags:
+          - ImprovisedWirecutter
+      crowbar:
+        whitelist:
+          tags:
+          - ImprovisedCrowbar
+      syn_jaws:
+        whitelist:
+          tags:
+          - SyndicateJawsOfLife
+      proto_jaws:
+        whitelist:
+          tags:
+          - PrototypeJawsOfLife
+      screwdriver_nuke:
+        whitelist:
+          tags:
+          - ImprovisedScrewdriver
+      wrench:
+        whitelist:
+          tags:
+          - ImprovisedWrench
+      multitool:
+        whitelist:
+          tags:
+          - ImprovisedMultitool
+
+- type: !PartialOnly entity
+  id: ClothingBeltMedical
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - Vial
+
+- type: !PartialOnly entity
+  id: ClothingBeltMedicalEMT
+  components:
+  - type: Storage
+    maxItemSize: Large
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,8,1
+    whitelist:
+      tags:
+        - Crowbar
+        - Bottle
+        - Vial
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+        - SurgeryTool
+        - Dropper
+        - Medkit
+        - BodyBag
+        - ParaKnife
+        - JawsOfLife
+      components:
+        - Injector
+        - Pill
+        - HandLabeler
+
+- type: !PartialOnly entity
+  id: ClothingBeltSecurity
+  components:
+  - type: Storage
+    grid:
+    - 0,0,1,0 #left
+    - 0,1,0,1 #left - cube
+    - 3,0,10,1
+    - 12,0,13,0 #right
+    - 12,1,12,1 #right - cube
+    whitelist:
+      tags:
+      - SecTicket

@@ -3,6 +3,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.Containers;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
@@ -35,8 +36,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared._Starlight.TextToSpeech;
@@ -46,7 +45,6 @@ using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared._Starlight;
 using Content.Shared.NameModifier.EntitySystems;
-#endregion Starlight
 
 namespace Content.Shared.Silicons.StationAi;
 
@@ -118,14 +116,14 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         SubscribeLocalEvent<StationAiHolderComponent, ComponentRemove>(OnHolderRemove);
         SubscribeLocalEvent<StationAiHolderComponent, AfterInteractEvent>(OnHolderInteract);
         SubscribeLocalEvent<StationAiHolderComponent, MapInitEvent>(OnHolderMapInit);
-        SubscribeLocalEvent<StationAiHolderComponent, EntInsertedIntoContainerMessage>(OnHolderConInsert);
+        SubscribeLocalEvent<StationAiHolderComponent, EntInsertedIntoContainerMessage>(OnHolderConInsert, after: [typeof(ContainerCompSystem)]); //Starlight-edit: must run after ContainerCompSystem adds the AiHeld components
         SubscribeLocalEvent<StationAiHolderComponent, EntRemovedFromContainerMessage>(OnHolderConRemove);
         SubscribeLocalEvent<StationAiHolderComponent, IntellicardDoAfterEvent>(OnIntellicardDoAfter);
 
         SubscribeLocalEvent<BorgBrainComponent, IntellicardDoAfterEvent>(OnIntellicardBorgDoAfter); // Starlight-edit
         SubscribeLocalEvent<PAIComponent, IntellicardDoAfterEvent>(OnIntellicardPaiDoAfter); // Starlight-edit
 
-        SubscribeLocalEvent<StationAiCoreComponent, EntInsertedIntoContainerMessage>(OnAiInsert);
+        SubscribeLocalEvent<StationAiCoreComponent, EntInsertedIntoContainerMessage>(OnAiInsert, after: [typeof(ContainerCompSystem)]); //Starlight-edit: must run after ContainerCompSystem adds the AiHeld components
         SubscribeLocalEvent<StationAiCoreComponent, EntRemovedFromContainerMessage>(OnAiRemove);
         SubscribeLocalEvent<StationAiCoreComponent, ComponentShutdown>(OnAiShutdown);
         SubscribeLocalEvent<StationAiCoreComponent, PowerChangedEvent>(OnCorePower);
@@ -195,7 +193,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         args.Accessible = true;
     }
-
     private void OnAiMenu(Entity<StationAiOverlayComponent> ent, ref MenuVisibilityEvent args)
     {
         args.Visibility &= ~MenuVisibility.NoFov;
@@ -212,11 +209,12 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         //// Similar to the inrange check but more optimised so server doesn't die.
         var targetXform = Transform(args.Target);
 
-        // No cross-grid
-        if (targetXform.GridUid != args.Actor.Comp.GridUid)
+        // Starlight - start
+        if (!CanAccessGrid((args.Actor, null), targetXform.GridUid)) // Starlight
         {
             return;
         }
+        // Starlight - end
         //
         //if (!_broadphaseQuery.TryComp(targetXform.GridUid, out var broadphase) || !_gridQuery.TryComp(targetXform.GridUid, out var grid))
         //{
@@ -250,8 +248,15 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         var targetXform = Transform(target);
 
-        // No cross-grid
-        if (targetXform.GridUid != Transform(args.User).GridUid && !ent.Comp.AllowCrossGrid)
+        // Starlight the AI can access remote grids in some situation
+        if (HasComp<StationAiHeldComponent>(args.User))
+        {
+            // Starlight - start
+            if (!CanAccessGrid((args.User, null), targetXform.GridUid))
+                return;
+            // Starlight - end
+        }
+        else if (targetXform.GridUid != Transform(args.User).GridUid && !ent.Comp.AllowCrossGrid)
         {
             return;
         }
@@ -746,6 +751,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
                 _mind.TryGetMind(stationAi.Value, out var _, out var mindcomp))
             {
                 ttscomp.VoicePrototypeId = mindcomp.SiliconVoice;
+                Dirty(stationAi.Value, ttscomp);
             }
         }
 
@@ -849,6 +855,29 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     // Starlight
     private void OnPlayerAttached(Entity<StationAiHeldComponent> ent, ref PlayerAttachedEvent args)
         => _eye.RefreshVisibilityMask((ent.Owner, null));
+
+    /// <summary>
+    /// Gets all alive AI minds and adds them to the inputted hashset, excluding one optional mind
+    /// </summary>
+    /// <param name="aliveAis">Hashset of alive AI minds</param>
+    /// <param name="exclude">Optional mind to exclude</param>
+    public void AddAliveAis(HashSet<Entity<MindComponent>> aliveAis, EntityUid? exclude = null)
+    {
+        var query = EntityQueryEnumerator<StationAiCoreComponent, StationAiHolderComponent>();
+
+        while (query.MoveNext(out var uid, out _, out var aiHolder))
+        {
+            // the player needs to have a mind and not be the excluded one +
+            // the player has to be alive
+            if (!TryGetHeld((uid, aiHolder), out var held) || _mobState.IsDead(held.Value))
+                continue;
+
+            if (!_mind.TryGetMind(held.Value, out var mind, out var mindComp) || mind == exclude)
+                continue;
+
+            aliveAis.Add((mind, mindComp));
+        }
+    }
 }
 
 public sealed partial class JumpToCoreEvent : InstantActionEvent

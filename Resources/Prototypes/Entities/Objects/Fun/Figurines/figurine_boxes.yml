@@ -45,7 +45,7 @@
   id: MysteryLighterBox
   name: Novelty lighter mystery box
   suffix: Filled
-  description: A box of discontinued promotional lighters. A faded and scratched label on the side reads, "May contain contraband." #Starlight-edit
+  description: A box of discontinued promotional lighters, many of which have since been declared "contraband".
   components:
   - type: Sprite
     sprite: Objects/Fun/figurines.rsi

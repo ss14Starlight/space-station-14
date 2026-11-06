@@ -1,0 +1,6 @@
+# Subfloor layers
+- type: !PartialOnly entity
+  id: DisposalPipeBase
+  components:
+    - type: SubFloorHide
+      subfloorLayer: Disposal

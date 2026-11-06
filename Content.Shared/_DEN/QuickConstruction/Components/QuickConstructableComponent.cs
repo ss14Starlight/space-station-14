@@ -1,4 +1,5 @@
 ﻿using Content.Shared._DEN.QuickConstruction.Prototypes;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._DEN.QuickConstruction.Components;
@@ -6,9 +7,9 @@ namespace Content.Shared._DEN.QuickConstruction.Components;
 /// This component allows items to be interacted with to open a quick construction radial menu
 /// containing a category of items to construct.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState] // Starlight
 public sealed partial class QuickConstructableComponent : Component
 {
-    [DataField]
+    [DataField, AutoNetworkedField] // Starlight
     public ProtoId<QuickConstructionCategoryPrototype> Category;
 }

@@ -15,6 +15,13 @@ public sealed partial class ScentComponent : Component
     [DataField, AutoNetworkedField]
     public string? ScentId;
 
+    /// <summary>
+    /// Additional shared scents this entity can emit.
+    /// These do not uniquely identify the entity.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public List<string> AdditionalScents = new();
+
     // How close a new emission needs to be to LastMarkerEntity to merge into it instead of
     // spawning fresh. ~1 tile by default.
     [DataField]

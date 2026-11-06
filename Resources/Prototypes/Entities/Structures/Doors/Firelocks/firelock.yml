@@ -132,7 +132,7 @@
     - type: StaticPrice
       price: 150
     - type: AccessReader
-      access: [ [ "Engineering" ], [ "Command" ] ] # Starlight-edit
+      access: [ [ "Engineering" ], [ "Command" ], [ "Paramedic" ] ] # Starlight-edit
       examinationText: access-reader-examination-functionality-restricted
     - type: PryUnpowered
       pryModifier: 0.5
