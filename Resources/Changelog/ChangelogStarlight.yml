@@ -1,39 +1,4 @@
 Entries:
-- author: baltdev, bynddark8
-  changes:
-  - message: Gives the Radio Host a Network Configuratior when joining the round, in case the vinyl player isn't set up yet.
-    type: Tweak
-  id: 409752
-  time: '2026-10-25T10:44:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6797
-- author: baltdev, bynddark8
-  changes:
-  - message: Gives the Radio Host a handheld station radio when joining the round.
-    type: Tweak
-  id: 409753
-  time: '2026-10-25T10:44:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6797
-- author: baltdev, bynddark8
-  changes:
-  - message: Adds a construction recipe for handheld station radios, requiring basic materials and a station radio circuitboard.
-    type: Add
-  id: 409754
-  time: '2026-10-25T10:44:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6797
-- author: FoxStellar
-  changes:
-  - message: Added Mortizol, an accessible alternative to Opporozidone. Rotting should be more interactive for the player base!
-    type: Add
-  id: 409755
-  time: '2026-10-25T10:44:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6758
-- author: FoxStellar
-  changes:
-  - message: Added Cell Culture Medium, primarily an ingredient for Mortizol, but also an incredibly weak Cellular Cryo med.
-    type: Add
-  id: 409756
-  time: '2026-10-25T10:44:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6758
 - author: FoxStellar
   changes:
   - message: Changed Opporozidone to heal 60 seconds of rot per unit (up from 40s/u), to make its usage math simple.
@@ -2799,4 +2764,39 @@ Entries:
   id: 410151
   time: '2026-11-05T22:05:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7060
+- author: SirLutz
+  changes:
+  - message: T3 Bark perk phytovitalin injection is now every 30 seconds not 60 seconds.
+    type: Tweak
+  id: 410152
+  time: '2026-11-06T10:13:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6977
+- author: SirLutz
+  changes:
+  - message: Mycophylin now decays properly in Cyclorite, so its not drugs forever, sorry guys.
+    type: Tweak
+  id: 410153
+  time: '2026-11-06T10:13:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6977
+- author: SirLutz
+  changes:
+  - message: Fixed a client-side NullReferenceException when opening the Diona pollen shop.
+    type: Fix
+  id: 410154
+  time: '2026-11-06T10:13:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6977
+- author: SirLutz
+  changes:
+  - message: small optimization for Pollen.
+    type: Tweak
+  id: 410155
+  time: '2026-11-06T10:13:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6977
+- author: SirLutz
+  changes:
+  - message: All dionas understand the Spore hivemind now, but you need the perk to speak it.
+    type: Tweak
+  id: 410156
+  time: '2026-11-06T10:13:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6977
 Order: -1
