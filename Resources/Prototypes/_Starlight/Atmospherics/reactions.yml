@@ -1,32 +1,29 @@
 - type: gasReaction
-  id: PlasmaPluoxFire
-  priority: -1
+  id: PlasmaCombinedFire
+  priority: -2
   minimumTemperature: 373.149
   minimumRequirements:
     Plasma: 0.01
-    Pluoxium: 0.01
   effects:
-    - !type:PlasmaPluoxFireReaction {}
+    - !type:PlasmaCombinedFireReaction {}
 
 - type: gasReaction
-  id: TritiumPluoxFire
-  priority: 0
+  id: TritiumCombinedFire
+  priority: -1
   minimumTemperature: 373.149
   minimumRequirements:
     Tritium: 0.01
-    Pluoxium: 0.01
   effects:
-    - !type:TritiumPluoxFireReaction {}
+    - !type:TritiumCombinedFireReaction {}
 
 - type: gasReaction
-  id: HydrogenPluoxFire
-  priority: 0
+  id: HydrogenCombinedFire
+  priority: -1
   minimumTemperature: 373.149
   minimumRequirements:
     Hydrogen: 0.01
-    Pluoxium: 0.01
   effects:
-    - !type:HydrogenPluoxFireReaction {}
+    - !type:HydrogenCombinedFireReaction {}
 
 - type: gasReaction
   id: UlnitraniumProduction
