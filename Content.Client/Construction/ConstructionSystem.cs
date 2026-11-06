@@ -333,7 +333,7 @@ namespace Content.Client.Construction
             if (!TryGetRecipePrototype(prototype.ID, out var targetProtoId) || !PrototypeManager.TryIndex(targetProtoId, out EntityPrototype? targetProto))
                 return false;
 
-            // Starlight-edit start
+            // Starlight-start
             if (HasReachedMaximumGhosts(loc))
                 return false;
 
@@ -342,7 +342,7 @@ namespace Content.Client.Construction
             var userMap = _transformSystem.GetMapCoordinates(user);
             if (userMap.MapId != locMap.MapId || (userMap.Position - locMap.Position).Length() > 20f)
                 return false;
-            // Starlight-edit end
+            // Starlight-end
 
             if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup)) // Starlight
                 return false;
