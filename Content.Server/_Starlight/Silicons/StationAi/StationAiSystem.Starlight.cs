@@ -16,9 +16,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Power.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.StationAi;
-using Robust.Shared.Enums;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 // ReSharper disable CheckNamespace
@@ -34,36 +32,6 @@ public sealed partial class StationAiSystem
 
     private const string AiPowerLossAlertEventId = "station-ai-power-loss-alert";
     private static readonly TimeSpan _aiPowerLossAlertDelay = TimeSpan.FromSeconds(3);
-
-    public override void Shutdown()
-    {
-        base.Shutdown();
-        _player.PlayerStatusChanged -= OnPlayerStatusChanged;
-    }
-
-    private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
-    {
-        if (args.NewStatus != SessionStatus.Disconnected)
-            return;
-
-        if (_mind.TryGetMind(args.Session.UserId, out _, out var mind)
-            && mind.OwnedEntity is { } body)
-        {
-            if (TryComp<StationAIShuntComponent>(body, out var shunt)
-                && shunt.Return is { } returnTarget
-                && TryComp<StationAIShuntableComponent>(returnTarget, out _))
-                body = returnTarget;
-
-            if (!EjectContainedAi(body)
-                && _tags.HasTag(body, _stationAiTag)
-                && _container.TryGetContainingContainer(body, out var container)
-                && container.ID == StationAiHolderComponent.Container
-                && TryComp<StationAiHolderComponent>(container.Owner, out _))
-                return;
-        }
-
-        FreeStationAiJobSlot(args.Session.UserId);
-    }
 
     [SubscribeLocalEvent]
     private void OnMindRemoved(Entity<MindContainerComponent> entity, ref MindRemovedMessage args)

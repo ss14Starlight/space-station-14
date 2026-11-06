@@ -475,10 +475,11 @@ public sealed partial class MindTests
     }
 
     [Test]
-    public async Task StationAiEjectsWhenPlayerDisconnects()
+    public async Task StationAiRemainsInHolderWhenPlayerDisconnects()
     {
         var (pair, holder, ai, mindId, station) = await SetupAiHolder();
         var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+        var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
 
         await pair.Server.WaitAssertion(() =>
         {
@@ -490,12 +491,13 @@ public sealed partial class MindTests
 
         await Disconnect(pair);
 
-        Assert.That(entMan.GetComponent<StationAiHolderComponent>(holder).Slot.Item, Is.Null);
-        AssertStationAiJobSlots(entMan, station, 1);
+        Assert.That(entMan.GetComponent<StationAiHolderComponent>(holder).Slot.Item, Is.EqualTo(ai));
+        Assert.That(entMan.System<StationJobsSystem>().TryGetPlayerJobs(station, userId, out _), Is.True);
+        AssertStationAiJobSlots(entMan, station, 0);
     }
 
     [Test]
-    public async Task StationAiInBorgEjectsFromCoreWhenPlayerDisconnects()
+    public async Task StationAiInBorgRemainsInCoreWhenPlayerDisconnects()
     {
         var (pair, station, cores) = await SetupAiStation(1);
         var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
@@ -531,9 +533,9 @@ public sealed partial class MindTests
         await pair.Server.WaitAssertion(() =>
         {
             var stationJobs = entMan.System<StationJobsSystem>();
-            Assert.That(entMan.GetComponent<StationAiHolderComponent>(cores[0]).Slot.Item, Is.Null);
-            Assert.That(stationJobs.TryGetPlayerJobs(station, userId, out _), Is.False);
-            AssertStationAiJobSlots(entMan, station, 1);
+            Assert.That(entMan.GetComponent<StationAiHolderComponent>(cores[0]).Slot.Item, Is.EqualTo(ai));
+            Assert.That(stationJobs.TryGetPlayerJobs(station, userId, out _), Is.True);
+            AssertStationAiJobSlots(entMan, station, 0);
         });
     }
 
