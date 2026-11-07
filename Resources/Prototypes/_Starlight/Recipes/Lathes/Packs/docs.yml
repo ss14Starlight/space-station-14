@@ -59,6 +59,11 @@
   - PrintedDocumentMedicalInterventionOrderRecipe
   - PrintedDocumentExecutionDNROrderRecipe
   - PrintedDocumentEOCDesignationRecipe
+  - PrintedDocumentIllegalImplantRemovalOrderRecipe
+  - PrintedDocumentMindControlRemovalOrderRecipe
+  - PrintedDocumentExplorativeSurgeryOrderRecipe
+  - PrintedDocumentProbingMindshieldOrderRecipe
+  - PrintedDocumentCompulsoryTrackingOrderRecipe
   # Orders
   - PrintedDocumentProductOrderRecipe
   # Communications
