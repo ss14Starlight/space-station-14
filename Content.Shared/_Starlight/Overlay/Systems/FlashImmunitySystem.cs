@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.Overlay.Events;
 using Content.Shared.Clothing.Components;
+using Content.Shared.Flash;
 using Content.Shared.Flash.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
@@ -11,6 +12,7 @@ namespace Content.Shared._Starlight.Overlay.Systems;
 public sealed partial class FlashImmunitySystem : EntitySystem
 {
     [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedFlashSystem _flash = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -41,6 +43,9 @@ public sealed partial class FlashImmunitySystem : EntitySystem
 
     private void OnFlashImmunityChanged(EntityUid uid, FlashImmunityComponent component, EntityEventArgs args)
     {
+        var ev = new FlashImmunityChangedEvent(_flash.IsFlashImmune(uid));
+        RaiseLocalEvent(uid, ref ev);
+
         uid = GetPossibleWearer(uid);
         FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(uid));
         RaiseLocalEvent(uid, flashImmunityChangedEvent);
@@ -55,12 +60,18 @@ public sealed partial class FlashImmunitySystem : EntitySystem
 
     private void OnFlashImmunityEquipped(EntityUid uid, FlashImmunityComponent component, GotEquippedEvent args)
     {
+        var ev = new FlashImmunityChangedEvent(_flash.IsFlashImmune(args.EquipTarget));
+        RaiseLocalEvent(args.EquipTarget, ref ev);
+
         FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.EquipTarget));
         RaiseLocalEvent(args.EquipTarget, flashImmunityChangedEvent);
     }
 
     private void OnFlashImmunityUnEquipped(EntityUid uid, FlashImmunityComponent component, GotUnequippedEvent args)
     {
+        var ev = new FlashImmunityChangedEvent(_flash.IsFlashImmune(args.EquipTarget));
+        RaiseLocalEvent(args.EquipTarget, ref ev);
+
         FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.EquipTarget));
         RaiseLocalEvent(args.EquipTarget, flashImmunityChangedEvent);
     }
