@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Starlight.Polymorph.Components;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
@@ -21,11 +22,13 @@ public sealed partial class StationAIShuntSystem : EntitySystem
 
     [Dependency] private SharedMindSystem _mindSystem = default!;
     [Dependency] private SharedActionsSystem _actionSystem = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private FollowerSystem _follower = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private StationAiVisionSystem _vision = default!;
+    [Dependency] private SharedStationAiSystem _stationAi = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
 
     public override void Initialize()
@@ -40,6 +43,26 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         SubscribeLocalEvent<StationAIShuntThroughComponent, GetVerbsEvent<AlternativeVerb>>(GetAltVerbs);
         SubscribeLocalEvent<StationAIShuntThroughComponent, FindShuntTargetEvent>(OnFindShuntTarget);
         InitializeReconnect();
+    }
+    [SubscribeLocalEvent]
+    private void OnShuntableMapInit(EntityUid uid, StationAIShuntableComponent shuntable, ref MapInitEvent args)
+    {
+        _actionSystem.AddAction(uid, shuntable.ShuntAction.Id);
+        _actionSystem.AddAction(uid, shuntable.ReconnectShuntAction.Id);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnShuntableShutdown(EntityUid uid, StationAIShuntableComponent shuntable, ComponentShutdown args)
+    {
+        foreach (var action in _actionSystem.GetActions(uid).ToArray())
+        {
+            var prototypeId = MetaData(action.Owner).EntityPrototype?.ID;
+            if (prototypeId != shuntable.ShuntAction.Id && prototypeId != shuntable.ReconnectShuntAction.Id)
+                continue;
+
+            _actionSystem.RemoveAction(uid, action.Owner);
+            _actionContainer.RemoveAction(action.Owner);
+        }
     }
 
     #region Actions
@@ -79,6 +102,13 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         if (!TryComp<MobStateComponent>(uid, out var state) || state.CurrentState != MobState.Alive)
             return;
 
+        if (shunt.Return != null)
+        {
+            if (_net.IsServer)
+                _popup.PopupEntity(Loc.GetString("shunt-target-occupied"), target, uid, PopupType.Large);
+            return; // target is already inhabited.
+        }
+
         if (TryComp<BorgChassisComponent>(target, out var chassisComp))
         {
             var brain = chassisComp.BrainContainer.ContainedEntity;
@@ -86,21 +116,15 @@ public sealed partial class StationAIShuntSystem : EntitySystem
                 return; //Chassis has no posibrian so cant shunt into it.
             if (!TryComp<StationAIShuntComponent>(brain, out var brainShunt))
                 return; //Chassis brain is not able to be shunted into so obviously we cant.
-            if (brainShunt.Return != null)
+            if (_mindSystem.TryGetMind(brain.Value, out _, out _) || brainShunt.Return != null)
             {
-                if (_net.IsServer) //only send on server cause client is confused somehow?
+                if (_net.IsServer)
                     _popup.PopupEntity(Loc.GetString("shunt-target-occupied"), target, uid, PopupType.Large);
-                return; //Chassis is allready inhabited.
+                return; // The chassis brain is already inhabited.
             }
             brainShunt.Return = uid;
             brainShunt.ReturnAction = _actionSystem.AddAction(brain.Value, shuntable.UnshuntAction.Id);
             Dirty(brain.Value, brainShunt);
-        }
-        if (shunt.Return != null)
-        {
-            if (_net.IsServer) //only send on server cause client is confused somehow?
-                _popup.PopupEntity(Loc.GetString("shunt-target-occupied"), target, uid, PopupType.Large);
-            return; //target is allready inhabited.
         }
         shunt.Return = uid;
         _mindSystem.TransferTo(mindId, target);
@@ -143,6 +167,16 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         if (!TryComp<StationAIShuntableComponent>(shuntReturnUid, out var shuntable))
             return; //trying to return to a body you cant leave from? weird...
 
+        var target = shuntReturnUid.Value;
+        var aiCore = Transform(target).ParentUid;
+        if (_net.IsServer
+            && TryComp<StationAiCoreComponent>(aiCore, out var aiCoreComponent)
+            && !_stationAi.EnsureRemoteEye((aiCore, aiCoreComponent)))
+        {
+            Log.Error($"Failed to restore the remote eye for Station AI core {ToPrettyString(aiCore)} during unshunt.");
+            return;
+        }
+
         if (TryComp<BorgChassisComponent>(uid, out var chassisComp))
         {
             var brain = chassisComp.BrainContainer.ContainedEntity;
@@ -162,16 +196,14 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         }
 
         _actionSystem.RemoveAction(new Entity<ActionComponent?>(shuntActionUid.Value, act));
-        var target = shuntReturnUid.Value;
         _mindSystem.TransferTo(mindId, target);
         RemComp<UncryoableComponent>(target);
 
-        var aiCore = Transform(target).ParentUid;
-        if (TryComp<StationAiCoreComponent>(aiCore, out var core) &&
-            core.RemoteEntity.HasValue
-            )
+        if (TryComp<StationAiCoreComponent>(aiCore, out var core)
+            && core.RemoteEntity is { Valid: true } remoteEntity
+            && TryComp(remoteEntity, out TransformComponent? _))
         {
-            _transform.SetMapCoordinates(core.RemoteEntity.Value,
+            _transform.SetMapCoordinates(remoteEntity,
                 _transform.ToMapCoordinates(Transform(uid).Coordinates)
             );
 
@@ -179,7 +211,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
             {
                 foreach (var follower in followed.Following)
                 {
-                    _follower.StartFollowingEntity(follower, core.RemoteEntity.Value);
+                    _follower.StartFollowingEntity(follower, remoteEntity);
                 }
             }
         }

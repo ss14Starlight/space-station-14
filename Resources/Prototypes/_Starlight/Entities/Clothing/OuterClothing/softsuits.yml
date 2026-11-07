@@ -216,3 +216,40 @@
     radius: 4
     energy: 5
     color: "#2CDDF5"
+
+- type: entity
+  parent: ClothingOuterSoftsuitWizardFrost
+  id: ClothingOuterSoftsuitWizardDark
+  name: wizard dark robes
+  description: A magical robe weaved from twisting shadows, it whispers indescribable secrets to its wearer.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Suits/wizarddark.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Suits/wizarddark.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.2
+        Piercing: 0.4
+        Heat: 0.6
+        Cold: 0.6
+        Poison: 0.05
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetsoftsuitWizardDark
+  - type: PointLight
+    radius: 2
+    energy: 6
+    color: "#31F5C0"

@@ -98,22 +98,6 @@
       path: /Audio/Ambience/Objects/gas_pump.ogg
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasFlowRegulator
-  # Starlight start
-  - type: VentCrawlTube
-  - type: VentCrawlTransit
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
-    prefix: device-address-prefix-gas-pump
-  - type: WirelessNetworkConnection
-    range: 200
-  - type: DeviceLinkSink
-    ports:
-      - On
-      - Off
-      - Toggle
-  - type: GasPressurePumpSignal
-  # Starlight end
   - type: GuideHelp
     guides:
     - Pumps
