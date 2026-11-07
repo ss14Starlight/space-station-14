@@ -47,3 +47,18 @@
   id: CombustionTurbineConsoleReceiver
   name: signal-port-name-combustion-turbine-console-receiver
   description: signal-port-description-combustion-turbine-console-receiver
+
+- type: sinkPort
+  id: AirlockCyclerDoor
+  name: signal-port-name-airlock-cycler-door
+  description: signal-port-description-airlock-cycler-door
+
+- type: sinkPort
+  id: AirlockCyclerButton
+  name: signal-port-name-airlock-cycler-button
+  description: signal-port-description-airlock-cycler-button
+
+- type: sinkPort
+  id: AirlockCyclerDevice
+  name: signal-port-name-airlock-cycler-device
+  description: signal-port-description-airlock-cycler-device

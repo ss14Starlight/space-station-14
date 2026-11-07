@@ -45,3 +45,13 @@ signal-port-description-turret-controller-sync-sender = Shares this turret contr
 
 signal-port-name-combustion-turbine-console-sender = Combustion Turbine Console
 signal-port-description-combustion-turbine-console-sender = Controls a combustion turbine. Link it to either the compressor or the turbine.
+
+signal-port-name-airlock-cycler-side-a = Side A
+signal-port-name-airlock-cycler-side-b = Side B
+signal-port-name-airlock-cycler-side-c = Side C
+signal-port-name-airlock-cycler-side-d = Side D
+signal-port-description-airlock-cycler-side = Link the doors and cycle buttons of one side of the chamber here.
+signal-port-name-airlock-cycler-inlets = Inlets
+signal-port-description-airlock-cycler-inlets = Vents that fill the chamber. Their pipe net is the buffer tank.
+signal-port-name-airlock-cycler-outlets = Outlets
+signal-port-description-airlock-cycler-outlets = Vents, scrubbers or pumps that empty the chamber. A small chamber can use one vent on both ports.
