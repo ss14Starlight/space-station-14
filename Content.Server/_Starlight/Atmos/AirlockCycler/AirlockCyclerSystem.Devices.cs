@@ -28,9 +28,9 @@ public sealed partial class AirlockCyclerSystem
 
     private bool IsOutletDevice(EntityUid uid)
         => _ventQuery.HasComp(uid)
-           || _scrubberQuery.HasComp(uid)
-           || _pressurePumpQuery.HasComp(uid)
-           || _volumePumpQuery.HasComp(uid);
+        || _scrubberQuery.HasComp(uid)
+        || _pressurePumpQuery.HasComp(uid)
+        || _volumePumpQuery.HasComp(uid);
 
     private bool IsTileDevice(EntityUid uid)
         => _ventQuery.HasComp(uid) || _scrubberQuery.HasComp(uid);
