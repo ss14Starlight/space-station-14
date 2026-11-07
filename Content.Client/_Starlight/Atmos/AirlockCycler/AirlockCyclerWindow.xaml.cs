@@ -30,6 +30,9 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
     public event Action? OnForce;
     public event Action? OnLockdown;
 
+    /// <summary>
+    /// Builds the window and hooks up the force and lockdown buttons.
+    /// </summary>
     public AirlockCyclerWindow()
     {
         RobustXamlLoader.Load(this);
@@ -160,6 +163,9 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
     private readonly Dictionary<int, SideRow> _rows = [];
     private readonly HashSet<int> _seen = [];
 
+    /// <summary>
+    /// Creates the row of one side: its name, door and pressure info, and the cycle button.
+    /// </summary>
     private SideRow CreateSideRow(int index)
     {
         var row = new SideRow
@@ -201,6 +207,9 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
         row.Cycle.Disabled = state.State == AirlockCyclerState.Off || side.Doors == 0 || (cycling && isTarget);
     }
 
+    /// <summary>
+    /// Swaps the theme color class of a label, removing the other color classes.
+    /// </summary>
     private static void SetColorClass(Control control, string? styleClass)
     {
         foreach (var existing in _colorClasses)
@@ -213,9 +222,15 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
             control.AddStyleClass(styleClass);
     }
 
+    /// <summary>
+    /// Localized name of a side by index (Side A, Side B...).
+    /// </summary>
     private static string SideName(int index)
         => Loc.GetString($"airlock-cycler-side-{(char) ('a' + index)}");
 
+    /// <summary>
+    /// Formats a pressure to one decimal in kPa, or "No data" when missing.
+    /// </summary>
     private static string Pressure(float? kpa)
         => kpa is { } p
             ? Loc.GetString("airlock-cycler-window-pressure", ("pressure", p.ToString("0.0", CultureInfo.InvariantCulture)))

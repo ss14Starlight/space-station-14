@@ -85,7 +85,17 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
 
     [SubscribeLocalEvent]
     private void OnNewLink(Entity<AirlockCyclerComponent> ent, ref NewLinkEvent args)
-        => OnLinksChanged(ent);
+    {
+        // A freshly linked device is taken over right away. Otherwise a vent keeps running on its own settings while
+        // the controller is idle; a running cycle drives it again on its next update.
+        if (IsDevicePort(ent.Comp, args.SourcePort) && OwnsDevice(ent, args.Sink))
+        {
+            ent.Comp.PendingRelease.Remove(args.Sink);
+            StopDevice(args.Sink);
+        }
+
+        OnLinksChanged(ent);
+    }
 
     [SubscribeLocalEvent]
     private void OnPortDisconnected(Entity<AirlockCyclerComponent> ent, ref PortDisconnectedEvent args)
