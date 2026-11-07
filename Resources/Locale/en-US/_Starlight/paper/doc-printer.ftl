@@ -1308,7 +1308,7 @@ doc-text-printer-enemy-of-corporation-designation =
     Authorizing Authority: [signature]
 
     ⠀[italic]Requirements:[/italic]
-    • Requires approval from any two of the: Magistrate, (Acting) Captain or (Acting) Head of Security.
+    • Requires approval from any two of the following: Magistrate, (Acting) Captain or (Acting) Head of Security.
     • Upon designation, Enemies of the Corporation are to be permanently confined to the brig until evac, and are to be stripped of all crew-related equipment and identification.
     • CentComm should be informed as soon as possible of any EoC designations; this is generally done via fax.
     • If Central Command or authorizing officials deny this motion, the prisoner must be reinstated as crew and tried under standard Corporate Law procedures.
