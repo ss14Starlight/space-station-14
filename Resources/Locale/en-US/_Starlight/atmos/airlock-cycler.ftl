@@ -6,6 +6,7 @@ airlock-cycler-side-d = Side D
 airlock-cycler-button-unlinked = The button is not linked to an airlock controller.
 airlock-cycler-no-power = The airlock controller has no power.
 airlock-cycler-access-denied = Access denied.
+airlock-cycler-queued = Request queued: the airlock is busy.
 
 airlock-cycler-window-title = Airlock Controller
 airlock-cycler-window-chamber = Chamber
@@ -20,10 +21,12 @@ airlock-cycler-window-pressure = {$pressure} kPa
 airlock-cycler-window-no-data = No data
 airlock-cycler-window-side-info = {$pressure}, doors open {$open}/{$doors}
 airlock-cycler-window-side-doors = Doors open {$open}/{$doors}
+airlock-cycler-window-side-queued = Queued #{$position}
 
 airlock-cycler-state-off = No power
 airlock-cycler-state-idle = Ready
 airlock-cycler-state-lockdown = Lockdown: every door bolted
+airlock-cycler-state-next = Next: cycling towards {$side}
 airlock-cycler-state-closing = Waiting for doors to close ({$side})
 airlock-cycler-state-pressurizing = Pressurizing towards {$side}
 airlock-cycler-state-depressurizing = Depressurizing towards {$side}

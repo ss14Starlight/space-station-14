@@ -71,15 +71,15 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
 
         // Hand the devices back with the settings they had before the controller took them.
         foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.InletPort))
-            ReleaseDevice(linked);
+            HandOffDevice(ent, linked);
 
         foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.OutletPort))
-            ReleaseDevice(linked);
+            HandOffDevice(ent, linked);
 
         foreach (var pending in ent.Comp.PendingRelease)
         {
-            if (!TerminatingOrDeleted(pending) && !IsLinkedToAnyCycler(pending, ent))
-                ReleaseDevice(pending);
+            if (!TerminatingOrDeleted(pending))
+                HandOffDevice(ent, pending);
         }
 
         ent.Comp.PendingRelease.Clear();
@@ -127,13 +127,26 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
 
         foreach (var sink in ent.Comp.PendingRelease)
         {
-            if (TerminatingOrDeleted(sink) || HasDeviceLink(ent, source, sink) || IsLinkedToAnyCycler(sink, ent))
+            if (TerminatingOrDeleted(sink) || HasDeviceLink(ent, source, sink))
                 continue;
 
-            ReleaseDevice(sink);
+            HandOffDevice(ent, sink);
         }
 
         ent.Comp.PendingRelease.Clear();
+    }
+
+    /// <summary>
+    /// This controller lets go of a device. With no other controller on it, it gets its own settings back. Another
+    /// controller (two saved links can share a device) takes it over stopped, keeping the saved settings for when it
+    /// lets go in turn: restored here, a vent could keep pumping while that controller sits idle.
+    /// </summary>
+    private void HandOffDevice(Entity<AirlockCyclerComponent> ent, EntityUid device)
+    {
+        if (IsLinkedToAnyCycler(device, ent))
+            StopDevice(device);
+        else
+            ReleaseDevice(device);
     }
 
     private bool HasDeviceLink(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source, EntityUid sink)
@@ -241,6 +254,7 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
             NoVent = false,
             Lockdown = ent.Comp.Lockdown,
             TargetSide = ent.Comp.TargetSide,
+            Queued = ent.Comp.Queue.ConvertAll(r => r.Side),
             ChamberPressure = layout.ChamberPressure,
             TankPressure = layout.TankPressure,
         };

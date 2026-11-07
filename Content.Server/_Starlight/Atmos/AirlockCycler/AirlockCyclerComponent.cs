@@ -141,6 +141,25 @@ public sealed partial class AirlockCyclerComponent : Component
     public bool Lockdown;
 
     /// <summary>
+    /// Requests that came in while a cycle was running, oldest first. Like a lift: the running cycle finishes, the
+    /// doors stay open for <see cref="QueueDelay"/>, then the next request starts.
+    /// </summary>
+    [ViewVariables, DataField]
+    public List<AirlockCyclerRequest> Queue = new();
+
+    /// <summary>
+    /// How long the opened side stays open before the next queued cycle starts closing it.
+    /// </summary>
+    [DataField]
+    public TimeSpan QueueDelay = TimeSpan.FromSeconds(4);
+
+    /// <summary>
+    /// The next queued cycle may start from this time on.
+    /// </summary>
+    [ViewVariables, DataField, AutoPausedField]
+    public TimeSpan QueueReadyAt;
+
+    /// <summary>
     /// Set on the first update after spawn or load. A saved grid brings back the vents still enabled with the cycle's
     /// settings while the cycle itself has to be picked up again, so they are stopped once the links are back.
     /// </summary>
@@ -165,4 +184,17 @@ public sealed partial class AirlockCyclerComponent : Component
     /// </summary>
     [ViewVariables]
     public float LastProgressPressure;
+}
+
+/// <summary>
+/// A queued cycle request: the side to cycle to and who asked, whose access opens the doors.
+/// </summary>
+[DataDefinition]
+public sealed partial class AirlockCyclerRequest
+{
+    [DataField]
+    public int Side;
+
+    [DataField]
+    public EntityUid? Requester;
 }

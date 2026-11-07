@@ -71,6 +71,8 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
             : state.State switch
         {
             AirlockCyclerState.Off => Loc.GetString("airlock-cycler-state-off"),
+            AirlockCyclerState.Idle when state.Queued.Count > 0
+                => Loc.GetString("airlock-cycler-state-next", ("side", SideName(state.Queued[0]))),
             AirlockCyclerState.Idle => Loc.GetString("airlock-cycler-state-idle"),
             AirlockCyclerState.Closing => Loc.GetString("airlock-cycler-state-closing", ("side", targetName)),
             AirlockCyclerState.Pressurizing => Loc.GetString("airlock-cycler-state-pressurizing", ("side", targetName)),
@@ -80,6 +82,7 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
         SetColorClass(StatusLabel, state.State switch
         {
             AirlockCyclerState.Off => ClassWeak,
+            AirlockCyclerState.Idle when state.Queued.Count > 0 => ClassWarning,
             AirlockCyclerState.Idle when !lockdown => ClassGood,
             _ => ClassBad,
         });
@@ -197,13 +200,20 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
         row.Name.Text = Loc.GetString(side.Name);
         SetColorClass(row.Name, isTarget ? (cycling ? ClassBad : ClassGood) : null);
 
-        row.Info.Text = interlock || side.OutsidePressure is not { } pressure
+        var queuedAt = state.Queued.IndexOf(side.Index);
+        row.Info.Text = queuedAt >= 0
+            ? Loc.GetString("airlock-cycler-window-side-queued", ("position", queuedAt + 1))
+            : interlock || side.OutsidePressure is not { } pressure
             ? Loc.GetString("airlock-cycler-window-side-doors", ("open", side.OpenDoors), ("doors", side.Doors))
             : Loc.GetString("airlock-cycler-window-side-info",
                 ("pressure", Pressure(pressure)),
                 ("open", side.OpenDoors),
                 ("doors", side.Doors));
-        row.Cycle.Disabled = state.State == AirlockCyclerState.Off || side.Doors == 0 || (cycling && isTarget);
+        SetColorClass(row.Info, queuedAt >= 0 ? ClassWarning : ClassWeak);
+        row.Cycle.Disabled = state.State == AirlockCyclerState.Off
+            || side.Doors == 0
+            || (cycling && isTarget)
+            || queuedAt >= 0;
     }
 
     /// <summary>

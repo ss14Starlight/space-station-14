@@ -175,6 +175,11 @@ public sealed class AirlockCyclerBoundUserInterfaceState : BoundUserInterfaceSta
     public float? TankPressure;
 
     public List<AirlockCyclerSideData> Sides = new();
+
+    /// <summary>
+    /// Sides waiting for their cycle, next first.
+    /// </summary>
+    public List<int> Queued = new();
 }
 
 /// <summary>

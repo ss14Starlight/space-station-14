@@ -7,7 +7,8 @@ namespace Content.Server._Starlight.Atmos.AirlockCycler;
 public sealed partial class AirlockCyclerSystem
 {
     /// <summary>
-    /// Ask the controller to cycle towards <paramref name="side"/>. Asking again for a side whose cycle is stuck opens it anyway.
+    /// Ask the controller to cycle towards <paramref name="side"/>. While another cycle runs the request is queued
+    /// and starts once that cycle is done. Asking again for a side whose cycle is stuck opens it anyway.
     /// </summary>
     /// <param name="popupAt">Where refusals pop up: the pressed button, so they are seen even with the panel out of view.</param>
     public void RequestCycle(Entity<AirlockCyclerComponent?> ent, int side, EntityUid? user, EntityUid? popupAt = null)
@@ -33,7 +34,8 @@ public sealed partial class AirlockCyclerSystem
             return;
         }
 
-        if (comp.State != AirlockCyclerState.Idle && comp.TargetSide == side)
+        var cycling = IsCycling(comp.State);
+        if (cycling && comp.TargetSide == side)
         {
             if (comp.Problem == AirlockCyclerProblem.Stalled)
                 comp.Force = true;
@@ -42,17 +44,49 @@ public sealed partial class AirlockCyclerSystem
             return;
         }
 
+        // Busy: someone is cycling (inside the chamber, or about to come in), or others are already waiting. A
+        // stuck cycle is not worth waiting for, so a new request replaces it.
+        if ((cycling && !IsStuck(comp)) || (comp.State == AirlockCyclerState.Idle && comp.Queue.Count > 0))
+        {
+            if (!comp.Queue.Exists(r => r.Side == side))
+                comp.Queue.Add(new AirlockCyclerRequest { Side = side, Requester = user });
+
+            if (user != null)
+                _popup.PopupEntity(Loc.GetString("airlock-cycler-queued"), popupAt ?? ent, user.Value);
+
+            comp.NextUpdate = _timing.CurTime;
+            return;
+        }
+
+        StartCycle((Entity<AirlockCyclerComponent>)ent!, side, user);
+    }
+
+    /// <summary>
+    /// The running cycle waits on something only a person can fix (or a forced open).
+    /// </summary>
+    private static bool IsStuck(AirlockCyclerComponent comp)
+        => comp.Problem is AirlockCyclerProblem.Stalled
+            or AirlockCyclerProblem.NoReading
+            or AirlockCyclerProblem.IncompatiblePressure
+            or AirlockCyclerProblem.NoInlet
+            or AirlockCyclerProblem.NoOutlet
+            or AirlockCyclerProblem.DoorUnsecured;
+
+    private void StartCycle(Entity<AirlockCyclerComponent> ent, int side, EntityUid? user)
+    {
+        var comp = ent.Comp;
+        comp.Queue.RemoveAll(r => r.Side == side);
         comp.Lockdown = false;
         comp.TargetSide = side;
         comp.Requester = user;
         comp.Force = false;
         comp.SettleUntil = null;
         comp.Problem = AirlockCyclerProblem.None;
-        SetState((Entity<AirlockCyclerComponent>)ent!, AirlockCyclerState.Closing);
+        SetState(ent, AirlockCyclerState.Closing);
 
         // SetState only refreshes the lights when cycling starts or stops; a redirect (A -> B while cycling) keeps
         // the state, so the lights must follow the new target here.
-        UpdateButtons((Entity<AirlockCyclerComponent>)ent!);
+        UpdateButtons(ent);
         comp.NextUpdate = _timing.CurTime;
     }
 
@@ -86,6 +120,15 @@ public sealed partial class AirlockCyclerSystem
             {
                 SetState(ent, comp.Interrupted ? AirlockCyclerState.Closing : AirlockCyclerState.Idle);
                 comp.Interrupted = false;
+            }
+
+            // The opened side had its few seconds: on to the next waiting request.
+            if (comp.State == AirlockCyclerState.Idle && comp.Queue.Count > 0 && now >= comp.QueueReadyAt)
+            {
+                var next = comp.Queue[0];
+                comp.Queue.RemoveAt(0);
+                if (next.Side < comp.Sides.Count)
+                    StartCycle(ent, next.Side, next.Requester);
             }
 
             // Every update, not only on power-up or relink: a non-target door that was open then (or got opened by
@@ -299,6 +342,7 @@ public sealed partial class AirlockCyclerSystem
         comp.Requester = null;
         comp.SettleUntil = null;
         comp.Problem = layout.NoDevices ? AirlockCyclerProblem.NoVent : AirlockCyclerProblem.None;
+        comp.QueueReadyAt = _timing.CurTime + comp.QueueDelay;
         SetState(ent, AirlockCyclerState.Idle);
     }
 
@@ -434,6 +478,7 @@ public sealed partial class AirlockCyclerSystem
             StopDevices(ent, source);
 
         comp.Lockdown = true;
+        comp.Queue.Clear();
         comp.TargetSide = null;
         comp.Requester = null;
         comp.Force = false;
