@@ -30,7 +30,7 @@ public sealed partial class ToggleableDeviceSignalingSystem : EntitySystem
     /// When the state changes, update the outputted State signal.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnStateChanged(Entity<ToggleableDeviceSignalingComponent> entity, ref ToggleableStateEvent ev)
+    private void OnStateChanged(Entity<ToggleableDeviceSignalingComponent> entity, ref ToggleableStateChangedEvent ev)
         => _signalSystem.SendSignal(entity, entity.Comp.StatusPort, ev.State);
 
     /// <summary>

@@ -11,7 +11,7 @@ public abstract partial class SharedGasPressurePumpSystem
     [Dependency] private ToggleableDeviceSystem _toggleableDevice = null!;
 
     [SubscribeLocalEvent]
-    private void OnMapInit(Entity<GasPressurePumpComponent> ent, ref MapInitEvent args)
+    private void OnToggleableStateInit(Entity<GasPressurePumpComponent> ent, ref ToggleableStateInitEvent ev)
         => _toggleableDevice.SetLogType(ent.Owner, LogType.AtmosPowerChanged);
 
     [SubscribeLocalEvent]
@@ -27,7 +27,7 @@ public abstract partial class SharedGasPressurePumpSystem
     }
 
     [SubscribeLocalEvent]
-    private void OnToggleableStateChanged(Entity<GasPressurePumpComponent> ent, ref ToggleableStateEvent ev)
+    private void OnToggleableStateChanged(Entity<GasPressurePumpComponent> ent, ref ToggleableStateChangedEvent ev)
     {
         ent.Comp.Enabled = ev.State;
         Dirty(ent);

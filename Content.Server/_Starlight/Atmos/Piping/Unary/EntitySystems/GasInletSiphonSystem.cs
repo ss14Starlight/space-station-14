@@ -30,12 +30,13 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
     [Dependency] private ToggleableDeviceSystem _toggleableDevice = null!;
 
     [SubscribeLocalEvent]
-    private void OnMapInit(Entity<GasInletSiphonComponent> entity, ref MapInitEvent args)
-    {
-        _toggleableDevice.SetLogType(entity.Owner, LogType.AtmosPowerChanged);
+    private void OnToggleableStateInit(Entity<GasInletSiphonComponent> entity, ref ToggleableStateInitEvent args)
+        => _toggleableDevice.SetLogType(entity.Owner, LogType.AtmosPowerChanged);
+
+    [SubscribeLocalEvent(after: [typeof(ToggleableDeviceSystem)])]
+    private void OnMapInit(Entity<GasInletSiphonComponent> entity, ref MapInitEvent args) =>
         // This in turn triggers our OnStateChanged, updating our visuals.
         _toggleableDevice.SetState(entity.Owner, entity.Comp.Enabled);
-    }
 
     /// <summary>
     /// On interact we delegate the toggling to the toggleable device system.
@@ -56,7 +57,7 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
     /// We update our state when the toggleable device system tells us state changed.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnStateChanged(Entity<GasInletSiphonComponent> entity, ref ToggleableStateEvent args)
+    private void OnStateChanged(Entity<GasInletSiphonComponent> entity, ref ToggleableStateChangedEvent args)
         => SetEnabled(entity, args.State);
 
     [SubscribeLocalEvent]

@@ -10,6 +10,9 @@ namespace Content.Shared._Starlight.ToggleableDevice.Components;
 [Access(typeof(ToggleableDeviceSystem))]
 public sealed partial class ToggleableDeviceComponent : Component
 {
+    /// <summary>
+    /// Whether the device is enabled or not.
+    /// </summary>
     [DataField, AutoNetworkedField] public bool Enabled;
 
     /// <summary>

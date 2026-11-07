@@ -11,6 +11,14 @@ public sealed partial class ToggleableDeviceSystem : EntitySystem
 {
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
 
+    /// <summary>
+    /// Raise an init state event. Can be used by systems that rely on us to initialize their own enabled/disabled
+    /// state properly.
+    /// </summary>
+    [SubscribeLocalEvent]
+    public void OnMapInit(Entity<ToggleableDeviceComponent> ent, ref MapInitEvent ev)
+        => RaiseLocalEvent(ent, new ToggleableStateInitEvent(ent.Comp.Enabled));
+
     #region State
 
     public void TurnOn(Entity<ToggleableDeviceComponent?> ent, EntityUid? actor = null)
@@ -37,7 +45,7 @@ public sealed partial class ToggleableDeviceSystem : EntitySystem
             return;
 
         ent.Comp.Enabled = state;
-        RaiseLocalEvent(ent, new ToggleableStateEvent(state));
+        RaiseLocalEvent(ent, new ToggleableStateChangedEvent(state));
         Dirty(ent, ent.Comp);
 
         _adminLogger.Add(ent.Comp.LogType,
@@ -45,6 +53,9 @@ public sealed partial class ToggleableDeviceSystem : EntitySystem
             $"{ToPrettyString(actor):player} set the power on {ToPrettyString(ent):device} to {state}");
     }
 
+    /// <summary>
+    /// Set the state without firing an event.
+    /// </summary>
     public void ForceState(Entity<ToggleableDeviceComponent?> ent, bool state)
     {
         if (!Resolve(ent, ref ent.Comp, false))
@@ -57,6 +68,9 @@ public sealed partial class ToggleableDeviceSystem : EntitySystem
     #endregion
     #region Logging
 
+    /// <summary>
+    /// Changes the log type of state changes. Not persisted.
+    /// </summary>
     public void SetLogType(Entity<ToggleableDeviceComponent?> ent, LogType logType)
     {
         if (Resolve(ent, ref ent.Comp, false))
@@ -67,4 +81,6 @@ public sealed partial class ToggleableDeviceSystem : EntitySystem
 
 }
 
-public record struct ToggleableStateEvent(bool State);
+public record struct ToggleableStateInitEvent(bool State);
+
+public record struct ToggleableStateChangedEvent(bool State);
