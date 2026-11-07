@@ -16,6 +16,7 @@ public sealed partial class ArticleEditorPanel : Control
 {
     public event Action? PublishButtonPressed;
     public event Action<string, string>? ArticleDraftUpdated;
+    public event Action? PhotoEjectButtonPressed; // Starlight
 
     private bool _preview;
 
@@ -48,6 +49,7 @@ public sealed partial class ArticleEditorPanel : Control
         ButtonCancel.OnPressed += OnCancel;
         ButtonPublish.OnPressed += OnPublish;
         ButtonSaveDraft.OnPressed += OnDraftSaved;
+        PhotoEjectButton.OnPressed += _ => PhotoEjectButtonPressed?.Invoke(); // Starlight
 
         TitleField.OnTextChanged += args => OnTextChanged(args.Text.Length, args.Control, SharedNewsSystem.MaxTitleLength);
         ContentField.OnTextChanged += args => OnTextChanged(Rope.CalcTotalLength(args.TextRope), args.Control, SharedNewsSystem.MaxContentLength);
