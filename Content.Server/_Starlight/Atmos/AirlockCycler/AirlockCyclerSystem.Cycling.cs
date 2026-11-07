@@ -1,5 +1,4 @@
 using Content.Shared._Starlight.Atmos.AirlockCycler;
-using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Doors.Components;
 
@@ -10,7 +9,8 @@ public sealed partial class AirlockCyclerSystem
     /// <summary>
     /// Ask the controller to cycle towards <paramref name="side"/>. Asking again for a side whose cycle is stuck opens it anyway.
     /// </summary>
-    public void RequestCycle(Entity<AirlockCyclerComponent?> ent, int side, EntityUid? user)
+    /// <param name="popupAt">Where refusals pop up: the pressed button, so they are seen even with the panel out of view.</param>
+    public void RequestCycle(Entity<AirlockCyclerComponent?> ent, int side, EntityUid? user, EntityUid? popupAt = null)
     {
         if (!Resolve(ent.Owner, ref ent.Comp))
             return;
@@ -22,14 +22,14 @@ public sealed partial class AirlockCyclerSystem
         if (comp.State == AirlockCyclerState.Off)
         {
             if (user != null)
-                _popup.PopupEntity(Loc.GetString("airlock-cycler-no-power"), ent, user.Value);
+                _popup.PopupEntity(Loc.GetString("airlock-cycler-no-power"), popupAt ?? ent, user.Value);
             return;
         }
 
         if (!HasSideAccess((Entity<AirlockCyclerComponent>)ent!, side, user))
         {
             if (user != null)
-                _popup.PopupEntity(Loc.GetString("airlock-cycler-access-denied"), ent, user.Value);
+                _popup.PopupEntity(Loc.GetString("airlock-cycler-access-denied"), popupAt ?? ent, user.Value);
             return;
         }
 
@@ -157,7 +157,7 @@ public sealed partial class AirlockCyclerSystem
 
         if (!othersShut)
         {
-            StopVents(ent, source);
+            StopDevices(ent, source);
             SetState(ent, AirlockCyclerState.Closing);
             return;
         }
@@ -172,7 +172,7 @@ public sealed partial class AirlockCyclerSystem
             comp.Problem = AirlockCyclerProblem.None;
 
         // Forced, or no vent (a plain interlock, nothing to pump).
-        if (comp.Force || layout.Vents.Count == 0)
+        if (comp.Force || layout.NoDevices)
         {
             Finish(ent, source, layout);
             return;
@@ -180,7 +180,7 @@ public sealed partial class AirlockCyclerSystem
 
         if (targetSettling)
         {
-            StopVents(ent, source);
+            StopDevices(ent, source);
             SetState(ent, AirlockCyclerState.Closing);
             return;
         }
@@ -233,6 +233,18 @@ public sealed partial class AirlockCyclerSystem
         }
 
         var state = chamber < wanted ? AirlockCyclerState.Pressurizing : AirlockCyclerState.Depressurizing;
+        var pressurizing = state == AirlockCyclerState.Pressurizing;
+
+        // Nothing can move the gas this way: hold, like a missing reading, until forced.
+        if ((pressurizing ? layout.Inlets : layout.Outlets).Count == 0)
+        {
+            Hold(ent, source, pressurizing ? AirlockCyclerProblem.NoInlet : AirlockCyclerProblem.NoOutlet);
+            return;
+        }
+
+        if (comp.Problem is AirlockCyclerProblem.NoInlet or AirlockCyclerProblem.NoOutlet)
+            comp.Problem = AirlockCyclerProblem.None;
+
         if (comp.State != state)
         {
             SetState(ent, state);
@@ -240,11 +252,7 @@ public sealed partial class AirlockCyclerSystem
             comp.LastProgressPressure = chamber;
         }
 
-        var direction = state == AirlockCyclerState.Pressurizing ? VentPumpDirection.Releasing : VentPumpDirection.Siphoning;
-        foreach (var vent in layout.Vents)
-        {
-            _vents.SetAirlockCyclerMode(vent.AsNullable(), true, direction, wanted);
-        }
+        DriveDevices(layout, pressurizing, wanted);
 
         if (MathF.Abs(chamber - comp.LastProgressPressure) >= comp.StallPressure)
         {
@@ -261,7 +269,7 @@ public sealed partial class AirlockCyclerSystem
 
     private void Hold(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source, AirlockCyclerProblem problem)
     {
-        StopVents(ent, source);
+        StopDevices(ent, source);
         ent.Comp.SettleUntil = null;
         ent.Comp.Problem = problem;
         SetState(ent, AirlockCyclerState.Closing);
@@ -270,7 +278,7 @@ public sealed partial class AirlockCyclerSystem
     private void Finish(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source, Layout layout)
     {
         var comp = ent.Comp;
-        StopVents(ent, source);
+        StopDevices(ent, source);
 
         if (comp.TargetSide is { } target && target < layout.Sides.Count)
         {
@@ -286,7 +294,7 @@ public sealed partial class AirlockCyclerSystem
         comp.Interrupted = false;
         comp.Requester = null;
         comp.SettleUntil = null;
-        comp.Problem = layout.Vents.Count == 0 ? AirlockCyclerProblem.NoVent : AirlockCyclerProblem.None;
+        comp.Problem = layout.NoDevices ? AirlockCyclerProblem.NoVent : AirlockCyclerProblem.None;
         SetState(ent, AirlockCyclerState.Idle);
     }
 
@@ -298,7 +306,7 @@ public sealed partial class AirlockCyclerSystem
             foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.Sides[i]))
                 ReleaseBolts(linked);
 
-        StopVents(ent, source);
+        StopDevices(ent, source);
         ent.Comp.Interrupted |= IsCycling(ent.Comp.State);
         ent.Comp.Force = false;
         ent.Comp.SettleUntil = null;
@@ -311,7 +319,7 @@ public sealed partial class AirlockCyclerSystem
         var comp = ent.Comp;
         comp.Reconciled = true;
         comp.SettleUntil = null;
-        StopVents(ent, source);
+        StopDevices(ent, source);
 
         if (IsCycling(comp.State))
             comp.State = AirlockCyclerState.Closing;
@@ -361,14 +369,6 @@ public sealed partial class AirlockCyclerSystem
 
     private bool IsSecured(EntityUid door, DoorComponent comp)
         => comp.State == DoorState.Welded || _boltQuery.TryComp(door, out var bolt) && bolt.BoltsDown;
-
-    private void StopVents(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source)
-    {
-        foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.VentPort))
-        {
-            _vents.StopAirlockCyclerVent(linked);
-        }
-    }
 
     private void Bolt(EntityUid door, bool bolted)
     {

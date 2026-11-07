@@ -8,7 +8,7 @@
         <PanelContainer StyleClasses="InsetPanel">
             <BoxContainer Orientation="Vertical" Margin="8 6">
                 <Label Name="StatusLabel" StyleClasses="LabelHeading" />
-                <Label Name="ProblemLabel" StyleClasses="status-warning" Visible="False" />
+                <RichTextLabel Name="ProblemLabel" Visible="False" />
             </BoxContainer>
         </PanelContainer>
 
@@ -32,7 +32,7 @@
         <BoxContainer Orientation="Vertical" SeparationOverride="4">
             <Label Text="{Loc 'airlock-cycler-window-sides'}" StyleClasses="LabelKeyText" />
             <BoxContainer Name="SidesContainer" Orientation="Vertical" SeparationOverride="4" />
-            <Label Name="NoSidesLabel" Text="{Loc 'airlock-cycler-window-no-sides'}" StyleClasses="LabelWeak" Visible="False" />
+            <RichTextLabel Name="NoSidesLabel" Visible="False" />
         </BoxContainer>
 
         <Control VerticalExpand="True" />

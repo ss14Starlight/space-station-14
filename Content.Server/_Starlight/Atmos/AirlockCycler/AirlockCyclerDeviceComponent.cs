@@ -3,11 +3,12 @@ using Content.Shared.Atmos.Piping.Unary.Components;
 namespace Content.Server._Starlight.Atmos.AirlockCycler;
 
 /// <summary>
-/// Added to a vent while an airlock cycler drives it. Holds the vent's own settings from before, so they come back
-/// (pressure bounds, lockout) when the cycler lets go: unlinked, or the controller removed.
+/// Added to a vent, scrubber or pump while an airlock cycler drives it. Holds the device's own settings from before,
+/// so they come back (pressure bounds, lockout, scrub mode, on/off) when the cycler lets go: unlinked, or the
+/// controller removed. Only the fields of the device's own kind are used.
 /// </summary>
 [RegisterComponent]
-public sealed partial class AirlockCyclerVentComponent : Component
+public sealed partial class AirlockCyclerDeviceComponent : Component
 {
     [ViewVariables, DataField]
     public bool Enabled;
@@ -26,4 +27,7 @@ public sealed partial class AirlockCyclerVentComponent : Component
 
     [ViewVariables, DataField]
     public bool PressureLockoutOverride;
+
+    [ViewVariables, DataField]
+    public ScrubberPumpDirection ScrubberDirection;
 }

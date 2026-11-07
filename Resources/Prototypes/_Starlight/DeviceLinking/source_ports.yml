@@ -104,7 +104,13 @@
   description: signal-port-description-airlock-cycler-side
 
 - type: sourcePort
-  id: AirlockCyclerVents
-  name: signal-port-name-airlock-cycler-vents
-  description: signal-port-description-airlock-cycler-vents
-  defaultLinks: [ AirlockCyclerVent ]
+  id: AirlockCyclerInlets
+  name: signal-port-name-airlock-cycler-inlets
+  description: signal-port-description-airlock-cycler-inlets
+  defaultLinks: [ AirlockCyclerDevice ]
+
+- type: sourcePort
+  id: AirlockCyclerOutlets
+  name: signal-port-name-airlock-cycler-outlets
+  description: signal-port-description-airlock-cycler-outlets
+  defaultLinks: [ AirlockCyclerDevice ]

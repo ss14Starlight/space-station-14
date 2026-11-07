@@ -11,7 +11,14 @@ public sealed partial class AirlockCyclerSystem
     private sealed class Layout
     {
         public readonly List<SideLayout> Sides = [];
-        public readonly List<Entity<GasVentPumpComponent>> Vents = [];
+        /// <summary>Vents that fill the chamber.</summary>
+        public readonly List<EntityUid> Inlets = [];
+
+        /// <summary>Vents, scrubbers and pumps that empty the chamber. A vent may be in both lists.</summary>
+        public readonly List<EntityUid> Outlets = [];
+
+        /// <summary>Nothing to pump with: a plain interlock.</summary>
+        public bool NoDevices => Inlets.Count == 0 && Outlets.Count == 0;
 
         /// <summary>Average over every chamber tile, for display and for picking the pump direction.</summary>
         public float? ChamberPressure;
@@ -53,10 +60,16 @@ public sealed partial class AirlockCyclerSystem
         var gridUid = xform.GridUid;
         TryComp<MapGridComponent>(gridUid, out var grid);
 
-        foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.VentPort))
+        foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.InletPort))
         {
-            if (_ventQuery.TryComp(linked, out var vent) && Transform(linked).GridUid == gridUid)
-                layout.Vents.Add((linked, vent));
+            if (IsInletDevice(linked) && Transform(linked).GridUid == gridUid)
+                layout.Inlets.Add(linked);
+        }
+
+        foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.OutletPort))
+        {
+            if (IsOutletDevice(linked) && Transform(linked).GridUid == gridUid)
+                layout.Outlets.Add(linked);
         }
 
         var sideDoors = new List<List<(EntityUid Door, Vector2i Tile)>>();
@@ -99,18 +112,12 @@ public sealed partial class AirlockCyclerSystem
         var mapUid = xform.MapUid;
         var gridEnt = gridUid.Value;
 
-        // The chamber starts at the vents; the tank is the first vent's pipe net.
+        // The chamber starts at the vents and scrubbers (pumps sit in the pipes, not in the chamber); the tank is the
+        // first inlet vent's pipe net, or the first outlet's.
         _chamber.Clear();
         _frontier.Clear();
-        foreach (var vent in layout.Vents)
-        {
-            var tile = _map.LocalToTile(gridEnt, grid, Transform(vent).Coordinates);
-            if (_chamber.Add(tile))
-                _frontier.Enqueue(tile);
-
-            if (layout.TankPressure == null && _nodes.TryGetNode(vent.Owner, vent.Comp.Inlet, out PipeNode? pipe))
-                layout.TankPressure = pipe.Air.Pressure;
-        }
+        SeedChamber(gridEnt, grid, layout, layout.Inlets);
+        SeedChamber(gridEnt, grid, layout, layout.Outlets);
 
         // Flood fill the chamber.
         while (_frontier.TryDequeue(out var tile))
@@ -194,6 +201,35 @@ public sealed partial class AirlockCyclerSystem
         }
 
         return layout;
+    }
+
+    private void SeedChamber(EntityUid gridEnt, MapGridComponent grid, Layout layout, List<EntityUid> devices)
+    {
+        foreach (var device in devices)
+        {
+            if (IsTileDevice(device))
+            {
+                var tile = _map.LocalToTile(gridEnt, grid, Transform(device).Coordinates);
+                if (_chamber.Add(tile))
+                    _frontier.Enqueue(tile);
+            }
+
+            if (layout.TankPressure == null && GetTankNode(device) is { } node
+                && _nodes.TryGetNode(device, node, out PipeNode? pipe))
+                layout.TankPressure = pipe.Air.Pressure;
+        }
+    }
+
+    /// <summary>The pipe a device pushes the chamber's gas into, or takes it from.</summary>
+    private string? GetTankNode(EntityUid device)
+    {
+        if (_ventQuery.TryComp(device, out var vent))
+            return vent.Inlet;
+        if (_scrubberQuery.TryComp(device, out var scrubber))
+            return scrubber.OutletName;
+        if (_pressurePumpQuery.TryComp(device, out var pressure))
+            return pressure.OutletName;
+        return null;
     }
 
     private float? GetOutsidePressure(EntityUid grid, EntityUid? map, Vector2i doorTile)

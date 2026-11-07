@@ -116,4 +116,11 @@
   components:
   - type: DeviceLinkSink
     ports:
-    - AirlockCyclerVent
+    - AirlockCyclerDevice
+
+- type: !PartialOnly entity
+  id: GasVentScrubber
+  components:
+  - type: DeviceLinkSink
+    ports:
+    - AirlockCyclerDevice

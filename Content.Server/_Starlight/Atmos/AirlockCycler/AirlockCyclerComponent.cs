@@ -21,10 +21,16 @@ public sealed partial class AirlockCyclerComponent : Component
     };
 
     /// <summary>
-    /// Determines port for vent.
+    /// Vents that fill the chamber. Their pipe net is the buffer tank.
     /// </summary>
     [DataField]
-    public ProtoId<SourcePortPrototype> VentPort = "AirlockCyclerVents";
+    public ProtoId<SourcePortPrototype> InletPort = "AirlockCyclerInlets";
+
+    /// <summary>
+    /// Vents, scrubbers or pumps that empty the chamber. One vent may sit on both ports.
+    /// </summary>
+    [DataField]
+    public ProtoId<SourcePortPrototype> OutletPort = "AirlockCyclerOutlets";
 
     /// <summary>
     /// Once the chamber is this close to the pressure behind the doors (kPa), the controller keeps pumping for at most

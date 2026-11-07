@@ -56,8 +56,7 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
             _ => ClassBad,
         });
 
-        ProblemLabel.Visible = state.Problem != AirlockCyclerProblem.None;
-        ProblemLabel.Text = state.Problem switch
+        var problem = state.Problem switch
         {
             AirlockCyclerProblem.NoVent => Loc.GetString("airlock-cycler-problem-no-vent"),
             AirlockCyclerProblem.Stalled => Loc.GetString("airlock-cycler-problem-stalled"),
@@ -65,13 +64,21 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
             AirlockCyclerProblem.IncompatiblePressure => Loc.GetString("airlock-cycler-problem-incompatible"),
             AirlockCyclerProblem.NoReading => Loc.GetString("airlock-cycler-problem-no-reading"),
             AirlockCyclerProblem.DoorUnsecured => Loc.GetString("airlock-cycler-problem-unsecured"),
+            AirlockCyclerProblem.NoInlet => Loc.GetString("airlock-cycler-problem-no-inlet"),
+            AirlockCyclerProblem.NoOutlet => Loc.GetString("airlock-cycler-problem-no-outlet"),
             _ => string.Empty,
         };
 
+        // Interlock-only is a note, not a fault: shown dimmed unless something else is wrong.
+        var onlyNote = state.Problem is AirlockCyclerProblem.None or AirlockCyclerProblem.NoVent;
         if (state.NoVent && state.Problem != AirlockCyclerProblem.NoVent)
-            ProblemLabel.Text += "\n" + Loc.GetString("airlock-cycler-problem-no-vent");
+        {
+            var note = Loc.GetString("airlock-cycler-problem-no-vent");
+            problem = problem.Length == 0 ? note : problem + "\n" + note;
+        }
 
-        SetColorClass(ProblemLabel, state.NoVent ? ClassWeak : ClassWarning);
+        ProblemLabel.Visible = problem.Length > 0;
+        SetWrapped(ProblemLabel, problem, state.NoVent && onlyNote ? WeakColor : WarningColor);
 
         var cycling = state.State is AirlockCyclerState.Closing
             or AirlockCyclerState.Pressurizing

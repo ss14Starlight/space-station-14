@@ -26,10 +26,12 @@ airlock-cycler-state-closing = Waiting for doors to close ({$side})
 airlock-cycler-state-pressurizing = Pressurizing towards {$side}
 airlock-cycler-state-depressurizing = Depressurizing towards {$side}
 
-airlock-cycler-problem-no-vent = Interlock only: no vent linked.
+airlock-cycler-problem-no-vent = Interlock only: no inlet or outlet linked.
 airlock-cycler-problem-stalled = Pressure stalled: tank empty or full.
 airlock-cycler-problem-obstructed = A door is blocked and can not close.
 airlock-cycler-problem-incompatible = Doors lead to different pressures.
 airlock-cycler-problem-no-reading = Can not measure the chamber or a door.
 airlock-cycler-problem-unsecured = A door has no power and can not be bolted.
+airlock-cycler-problem-no-inlet = Can not fill the chamber: no inlet vent linked.
+airlock-cycler-problem-no-outlet = Can not empty the chamber: no outlet linked.
 airlock-cycler-state-holding = Holding doors shut ({$side})

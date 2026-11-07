@@ -13,7 +13,8 @@
     - AirlockCyclerSideB
     - AirlockCyclerSideC
     - AirlockCyclerSideD
-    - AirlockCyclerVents
+    - AirlockCyclerInlets
+    - AirlockCyclerOutlets
   - type: ApcPowerReceiver
     powerLoad: 50
   - type: ActivatableUI

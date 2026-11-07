@@ -46,7 +46,7 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
     private void OnInit(Entity<AirlockCyclerComponent> ent, ref ComponentInit args)
     {
         _deviceLink.EnsureSourcePorts(ent, [.. ent.Comp.Sides]);
-        _deviceLink.EnsureSourcePorts(ent, ent.Comp.VentPort);
+        _deviceLink.EnsureSourcePorts(ent, ent.Comp.InletPort, ent.Comp.OutletPort);
     }
 
     [SubscribeLocalEvent]
@@ -67,11 +67,12 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
             }
         }
 
-        // Hand the vents back with the settings they had before the controller took them.
-        foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.VentPort))
-        {
-            _vents.ReleaseAirlockCyclerControl(linked);
-        }
+        // Hand the devices back with the settings they had before the controller took them.
+        foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.InletPort))
+            ReleaseDevice(linked);
+
+        foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.OutletPort))
+            ReleaseDevice(linked);
     }
 
     [SubscribeLocalEvent]
@@ -88,14 +89,29 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
         // Only the owner may hand a device back: a second controller unlinking must not undo the owner's cycle.
         if (OwnsDevice(ent, args.Sink))
         {
-            if (args.Port == ent.Comp.VentPort)
-                _vents.ReleaseAirlockCyclerControl(args.Sink);
+            // A vent on both ports stays driven until its last device link goes.
+            if (IsDevicePort(ent.Comp, args.Port) && !HasOtherDeviceLink(ent, args.Sink, args.Port))
+                ReleaseDevice(args.Sink);
 
             if (ent.Comp.Sides.Contains(args.Port) && _doorQuery.HasComp(args.Sink))
                 ReleaseBolts(args.Sink);
         }
 
         OnLinksChanged(ent);
+    }
+
+    private bool HasOtherDeviceLink(Entity<AirlockCyclerComponent> ent, EntityUid sink, string port)
+    {
+        if (!TryComp<DeviceLinkSourceComponent>(ent, out var source))
+            return false;
+
+        foreach (var (linked, _) in _deviceLink.GetLinks(ent, sink, source))
+        {
+            if (linked != port && IsDevicePort(ent.Comp, linked))
+                return true;
+        }
+
+        return false;
     }
 
     private void OnLinksChanged(Entity<AirlockCyclerComponent> ent)
@@ -151,7 +167,7 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
             return;
         }
 
-        RequestCycle(controller.AsNullable(), side, args.User);
+        RequestCycle(controller.AsNullable(), side, args.User, ent);
     }
 
     private void UpdateUi(Entity<AirlockCyclerComponent> ent, Layout layout)
@@ -166,7 +182,7 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
             TankPressure = layout.TankPressure,
         };
 
-        if (layout.Vents.Count == 0 && ent.Comp.State != AirlockCyclerState.Off)
+        if (layout.NoDevices && ent.Comp.State != AirlockCyclerState.Off)
             state.NoVent = true;
 
         if (ent.Comp.TargetSide is { } target && target < layout.Sides.Count)

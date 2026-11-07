@@ -12,6 +12,14 @@ public sealed partial class AirlockCyclerSystem
         if (args.Source != ent.Owner || !IsCyclerPort(ent.Comp, args.SourcePort))
             return;
 
+        // Only vents can fill the chamber; other devices on the inlets would never run.
+        if (args.SourcePort == ent.Comp.InletPort && !IsInletDevice(args.Sink)
+            || args.SourcePort == ent.Comp.OutletPort && !IsOutletDevice(args.Sink))
+        {
+            args.Cancel();
+            return;
+        }
+
         if (!TryComp<DeviceLinkSinkComponent>(args.Sink, out var sink))
             return;
 
@@ -31,7 +39,10 @@ public sealed partial class AirlockCyclerSystem
 
             foreach (var (port, _) in _deviceLink.GetLinks(other, args.Sink, source))
             {
-                if (IsCyclerPort(otherComp, port) && port != args.SourcePort)
+                // One device per role, except a vent that both fills and empties a small chamber.
+                if (IsCyclerPort(otherComp, port)
+                    && port != args.SourcePort
+                    && !(IsDevicePort(otherComp, port) && IsDevicePort(otherComp, args.SourcePort)))
                 {
                     args.Cancel();
                     return;
@@ -41,7 +52,7 @@ public sealed partial class AirlockCyclerSystem
     }
 
     private static bool IsCyclerPort(AirlockCyclerComponent comp, string port)
-        => port == comp.VentPort || comp.Sides.Contains(port);
+        => port == comp.InletPort || port == comp.OutletPort || comp.Sides.Contains(port);
 
     private bool OwnsDevice(EntityUid controller, EntityUid device)
     {

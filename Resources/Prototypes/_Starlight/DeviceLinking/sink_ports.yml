@@ -59,6 +59,6 @@
   description: signal-port-description-airlock-cycler-button
 
 - type: sinkPort
-  id: AirlockCyclerVent
-  name: signal-port-name-airlock-cycler-vent
-  description: signal-port-description-airlock-cycler-vent
+  id: AirlockCyclerDevice
+  name: signal-port-name-airlock-cycler-device
+  description: signal-port-description-airlock-cycler-device

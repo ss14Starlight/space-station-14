@@ -13,13 +13,13 @@ public sealed partial class GasVentPumpSystem
     /// </summary>
     public void SetAirlockCyclerMode(Entity<GasVentPumpComponent?> vent, bool enabled, VentPumpDirection direction, float targetPressure)
     {
-        if (!Resolve(vent, ref vent.Comp))
+        if (!Resolve(vent, ref vent.Comp, false))
             return;
 
         var comp = vent.Comp;
-        if (!HasComp<AirlockCyclerVentComponent>(vent))
+        if (!HasComp<AirlockCyclerDeviceComponent>(vent))
         {
-            var saved = AddComp<AirlockCyclerVentComponent>(vent);
+            var saved = AddComp<AirlockCyclerDeviceComponent>(vent);
             saved.Enabled = comp.Enabled;
             saved.PumpDirection = comp.PumpDirection;
             saved.PressureChecks = comp.PressureChecks;
@@ -49,7 +49,7 @@ public sealed partial class GasVentPumpSystem
     /// </summary>
     public void StopAirlockCyclerVent(Entity<GasVentPumpComponent?> vent)
     {
-        if (!Resolve(vent, ref vent.Comp) || !HasComp<AirlockCyclerVentComponent>(vent))
+        if (!Resolve(vent, ref vent.Comp, false) || !HasComp<AirlockCyclerDeviceComponent>(vent))
             return;
 
         SetAirlockCyclerMode(vent, false, vent.Comp.PumpDirection, vent.Comp.ExternalPressureBound);
@@ -61,7 +61,7 @@ public sealed partial class GasVentPumpSystem
     /// </summary>
     public void ReleaseAirlockCyclerControl(Entity<GasVentPumpComponent?> vent)
     {
-        if (!Resolve(vent, ref vent.Comp, false) || !TryComp<AirlockCyclerVentComponent>(vent, out var saved))
+        if (!Resolve(vent, ref vent.Comp, false) || !TryComp<AirlockCyclerDeviceComponent>(vent, out var saved))
             return;
 
         var comp = vent.Comp;
@@ -71,7 +71,7 @@ public sealed partial class GasVentPumpSystem
         comp.ExternalPressureBound = saved.ExternalPressureBound;
         comp.InternalPressureBound = saved.InternalPressureBound;
         comp.PressureLockoutOverride = saved.PressureLockoutOverride;
-        RemComp<AirlockCyclerVentComponent>(vent);
+        RemComp<AirlockCyclerDeviceComponent>(vent);
         UpdateState(vent, comp);
     }
 }

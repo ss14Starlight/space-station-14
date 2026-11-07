@@ -32,5 +32,5 @@ signal-port-name-airlock-cycler-door = Airlock Controller
 signal-port-description-airlock-cycler-door = Lets an airlock controller bolt, close and open this door.
 signal-port-name-airlock-cycler-button = Airlock Controller
 signal-port-description-airlock-cycler-button = Asks the airlock controller to cycle towards this button's side.
-signal-port-name-airlock-cycler-vent = Airlock Controller
-signal-port-description-airlock-cycler-vent = Lets an airlock controller pump the chamber through this vent.
+signal-port-name-airlock-cycler-device = Airlock Controller
+signal-port-description-airlock-cycler-device = Lets an airlock controller fill or empty the chamber with this vent, scrubber or pump.

@@ -64,6 +64,12 @@ public enum AirlockCyclerProblem : byte
     /// while the other side opens. The cycle waits, even when forced.
     /// </summary>
     DoorUnsecured,
+
+    /// <summary>The chamber has to be filled but no inlet vent is linked. The doors stay shut until forced.</summary>
+    NoInlet,
+
+    /// <summary>The chamber has to be emptied but no outlet is linked. The doors stay shut until forced.</summary>
+    NoOutlet,
 }
 
 [Serializable, NetSerializable]
