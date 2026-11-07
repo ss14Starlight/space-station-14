@@ -14,7 +14,7 @@ public sealed partial class PerishableComponent : Component
     /// <summary>
     /// How long it takes after death to start rotting.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField, AutoNetworkedField] // Starlight
     public TimeSpan RotAfter = TimeSpan.FromMinutes(10);
 
     /// <summary>
