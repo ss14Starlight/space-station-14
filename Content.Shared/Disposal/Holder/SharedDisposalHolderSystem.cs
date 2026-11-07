@@ -258,11 +258,14 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
         while (query.MoveNext(out var uid, out var holder, out var xform))
         {
             // Remove any disposal holders that were somehow emptied
-            if (holder.Container?.Count == 0)
+            if (holder.Container?.Count == 0 && !holder.Persistent) // Starlight-edit
             {
                 PredictedQueueDel(uid);
                 continue;
             }
+
+            if (holder.Halted) // Starlight-edit
+                continue;
 
             UpdateDisposalHolder((uid, holder));
         }
@@ -314,7 +317,7 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
         }
 
         // Attempt to enter the next tube
-        if (TryEnterTube(ent, nextTube.Value))
+        if (TryEnterTube(ent, nextTube.Value) && !ent.Comp.Halted) // Starlight-edit: a holder halted on entry stays put
         {
             UpdateDisposalHolder(ent);
         }

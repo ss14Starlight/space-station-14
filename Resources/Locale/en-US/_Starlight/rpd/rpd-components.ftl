@@ -13,3 +13,4 @@ rcd-rpd-mode-free = Free
 rcd-component-examine-rpd-mode = Current mode: [color=cyan]{$mode}[/color]
 rcd-verb-switch-mode = Switch mode
 rcd-item-status-mode = Mode: {$mode}
+rpd-component-transit-tubes = Transit tubes

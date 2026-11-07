@@ -1,0 +1,191 @@
+using Content.Shared._Starlight.TransitTube;
+using Content.Shared.Atmos;
+using Content.Shared.Damage;
+using Content.Shared.Disposal.Unit;
+using Content.Shared.Popups;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
+
+namespace Content.Server._Starlight.TransitTube;
+
+public sealed partial class TransitTubeSystem
+{
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var now = _timing.CurTime;
+        var query = EntityQueryEnumerator<TransitPodComponent, DisposalHolderComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var pod, out var holder, out var xform))
+        {
+            var ent = new Entity<TransitPodComponent>(uid, pod);
+
+            switch (pod.State)
+            {
+                case TransitPodState.Moving:
+                    UpdateHeld(ent, holder, now);
+                    CheckCollisions(ent, holder, xform, now);
+                    break;
+
+                case TransitPodState.Opening when now >= pod.StateEnd:
+                    if (TryGetStation(pod, out var opening))
+                        OpenPod(ent, opening);
+                    break;
+
+                case TransitPodState.Open:
+                    UpdateOpen(ent, now);
+                    break;
+
+                case TransitPodState.Closing when now >= pod.StateEnd:
+                    Depart(ent, (uid, holder));
+                    break;
+            }
+
+            if (now < pod.NextAtmosUpdate || TerminatingOrDeleted(uid))
+                continue;
+
+            pod.NextAtmosUpdate = now + _atmosInterval;
+
+            if (pod.State == TransitPodState.Open)
+                ExchangeAir(holder, (uid, xform));
+            else
+                ExchangeHeat(ent, holder, xform, (float)_atmosInterval.TotalSeconds);
+        }
+    }
+
+    private void UpdateOpen(Entity<TransitPodComponent> pod, TimeSpan now)
+    {
+        // Pods keep to their timetable and leave whether or not anyone got in.
+        if (now < pod.Comp.NextDeparture || !TryGetStation(pod.Comp, out var station))
+            return;
+
+        SetState(pod, TransitPodState.Closing, station.Comp.CloseTime);
+        SetStationVisual(station, TransitStationVisualState.Closing);
+        _audio.PlayPvs(station.Comp.CloseSound, station);
+    }
+
+    private void CheckCollisions(Entity<TransitPodComponent> pod, DisposalHolderComponent holder, TransformComponent xform, TimeSpan now)
+    {
+        if (now < pod.Comp.NextCollision || !TryComp<PhysicsComponent>(pod, out var physics))
+            return;
+
+        _nearbyPods.Clear();
+        _lookup.GetEntitiesInRange(xform.Coordinates, pod.Comp.CollisionRange, _nearbyPods);
+
+        var position = _xform.GetWorldPosition(xform);
+        foreach (var other in _nearbyPods)
+        {
+            if (other.Owner == pod.Owner || now < other.Comp.NextCollision)
+                continue;
+
+            var offset = _xform.GetWorldPosition(other) - position;
+            var otherVelocity = TryComp<PhysicsComponent>(other, out var otherPhysics) && other.Comp.State == TransitPodState.Moving
+                ? otherPhysics.LinearVelocity
+                : System.Numerics.Vector2.Zero;
+
+            // Only pods closing in on each other crash; ones pulling apart are fine.
+            if (System.Numerics.Vector2.Dot(otherVelocity - physics.LinearVelocity, offset) >= 0)
+                continue;
+
+            // Boosted pods hit much harder, both for themselves and whoever they hit.
+            var multiplier = pod.Comp.Boosted || other.Comp.Boosted ? pod.Comp.BoostedCollisionMultiplier : 1f;
+
+            Crash(pod, (pod.Owner, holder), now, multiplier);
+
+            if (other.Comp.State == TransitPodState.Moving && TryComp<DisposalHolderComponent>(other, out var otherHolder))
+                Crash(other, (other.Owner, otherHolder), now, multiplier);
+            else
+                HurtPassengers(other, other.Comp.CollisionDamage, multiplier);
+
+            _audio.PlayPvs(pod.Comp.CollisionSound, pod);
+            return;
+        }
+    }
+
+    private void Crash(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder, TimeSpan now, float multiplier)
+    {
+        pod.Comp.NextCollision = now + _collisionCooldown;
+        HurtPassengers(pod, pod.Comp.CollisionDamage, multiplier);
+
+        // A pod held at a signal gets shoved back into motion.
+        pod.Comp.HeldAtSignal = null;
+
+        if (!_holder.Reverse(holder))
+            Stall(pod, holder);
+    }
+
+    private void HurtPassengers(Entity<TransitPodComponent> pod, DamageSpecifier damage, float multiplier)
+    {
+        foreach (var passenger in GetPassengers(pod))
+        {
+            _damageable.ChangeDamage(passenger, damage * multiplier);
+            _stun.TryUpdateParalyzeDuration(passenger, pod.Comp.CollisionStun * multiplier);
+            _popup.PopupEntity(Loc.GetString("transit-pod-crash"), passenger, passenger, PopupType.MediumCaution);
+        }
+    }
+
+    /// <summary>
+    /// An open pod shares its air with the room it is docked in.
+    /// </summary>
+    private void ExchangeAir(DisposalHolderComponent holder, Entity<TransformComponent> xform)
+    {
+        // Read into a local: the holder only grants read access to its members.
+        var air = holder.Air;
+        if (_atmos.GetTileMixture((xform.Owner, xform.Comp), excite: true) is not { } env)
+        {
+            air.Clear();
+            return;
+        }
+
+        _atmos.Merge(env, air);
+        air.Clear();
+        _atmos.Merge(air, env.RemoveVolume(air.Volume));
+    }
+
+    /// <summary>
+    /// A closed pod keeps its air, but its walls pass heat from whatever it rides through.
+    /// </summary>
+    private void ExchangeHeat(Entity<TransitPodComponent> pod, DisposalHolderComponent holder, TransformComponent xform, float dt)
+    {
+        var air = holder.Air;
+        if (air.TotalMoles <= 0 || pod.Comp.HeatConductivity <= 0)
+            return;
+
+        var target = air.Temperature;
+        var rate = 0f;
+
+        // Convection scales with how dense the outside gas is, so vacuum barely cools the pod.
+        if (_atmos.GetTileMixture((pod.Owner, xform)) is { } env && env.TotalMoles > 0)
+        {
+            target = env.Temperature;
+            rate = pod.Comp.HeatConductivity * Math.Clamp(env.Pressure / Atmospherics.OneAtmosphere, 0f, 1f);
+        }
+
+        // Lava and the like heat the pod by radiation, gas or not.
+        if (xform.GridUid is { } gridUid && TryComp<MapGridComponent>(gridUid, out var grid))
+        {
+            var anchored = _map.GetAnchoredEntities(gridUid, grid, _map.TileIndicesFor(gridUid, grid, xform.Coordinates));
+            while (anchored.MoveNext(out var anchoredUid))
+            {
+                if (!TryComp<RadiantHeatComponent>(anchoredUid, out var heat) || heat.Temperature <= target)
+                    continue;
+
+                target = heat.Temperature;
+                rate = pod.Comp.HeatConductivity;
+            }
+        }
+
+        if (rate <= 0)
+            return;
+
+        air.Temperature += (target - air.Temperature) * (1f - MathF.Exp(-rate * dt));
+
+        if (air.Temperature < pod.Comp.IgnitionTemperature)
+            return;
+
+        foreach (var passenger in GetPassengers(pod))
+        {
+            _flammable.AdjustFireStacks(passenger, pod.Comp.IgnitionFireStacks, ignite: true);
+        }
+    }
+}

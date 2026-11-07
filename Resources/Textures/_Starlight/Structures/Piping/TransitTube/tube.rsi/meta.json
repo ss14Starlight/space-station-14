@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. crossroad, oneway, sideconnector, sidebranch, turn, switchjuction*, speedup, brake, router, signalblock, signaller, tagger, oneway_enabled and their *_flipped states drawn by Starlight on top of them. turntable drawn by Starlight on top of crossroad.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "straight",
+      "directions": 4
+    },
+    {
+      "name": "diagonal",
+      "directions": 4
+    },
+    {
+      "name": "curved",
+      "directions": 4
+    },
+    {
+      "name": "curved_flipped",
+      "directions": 4
+    },
+    {
+      "name": "junction",
+      "directions": 4
+    },
+    {
+      "name": "junction_flipped",
+      "directions": 4
+    },
+    {
+      "name": "cap",
+      "directions": 4
+    },
+    {
+      "name": "decorative",
+      "directions": 4
+    },
+    {
+      "name": "corner_se"
+    },
+    {
+      "name": "corner_sw"
+    },
+    {
+      "name": "corner_ne"
+    },
+    {
+      "name": "corner_nw"
+    },
+    {
+      "name": "crossroad",
+      "directions": 4
+    },
+    {
+      "name": "oneway",
+      "directions": 4
+    },
+    {
+      "name": "sideconnector",
+      "directions": 4
+    },
+    {
+      "name": "sidebranch",
+      "directions": 4
+    },
+    {
+      "name": "turn",
+      "directions": 4
+    },
+    {
+      "name": "switchjuction",
+      "directions": 4
+    },
+    {
+      "name": "switchjuction_left",
+      "directions": 4
+    },
+    {
+      "name": "switchjuction_right",
+      "directions": 4
+    },
+    {
+      "name": "speedup",
+      "directions": 4
+    },
+    {
+      "name": "brake",
+      "directions": 4
+    },
+    {
+      "name": "turntable",
+      "directions": 4
+    },
+    {
+      "name": "oneway_enabled",
+      "directions": 4
+    },
+    {
+      "name": "router",
+      "directions": 4
+    },
+    {
+      "name": "signalblock",
+      "directions": 4
+    },
+    {
+      "name": "signaller",
+      "directions": 4
+    },
+    {
+      "name": "tagger",
+      "directions": 4
+    },
+    {
+      "name": "sideconnector_flipped",
+      "directions": 4
+    },
+    {
+      "name": "sidebranch_flipped",
+      "directions": 4
+    },
+    {
+      "name": "router_flipped",
+      "directions": 4
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+transit-pod-arrived = The pod opens. Move to step out before it leaves again.
+transit-pod-being-boarded = {CAPITALIZE(THE($user))} is putting you into a transit pod!
+transit-pod-none = There is no pod here.
+transit-pod-not-ready = The pod is not open yet.
+transit-pod-full = The pod is full.
+transit-pod-climbing-out = You start prying the pod open...
+transit-pod-moving = You can't get out while the pod is moving.
+transit-pod-crash = The pod slams into something!
+transit-pod-stop-requested = You ask the pod to stop at the next request stop.
+transit-station-stop-requested = You press the button. The next pod will stop here.

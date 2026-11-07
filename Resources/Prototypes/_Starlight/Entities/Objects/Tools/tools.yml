@@ -973,6 +973,34 @@
     - AirAlarm
     - AirSensor
     - GasInletSiphon
+    - TransitTubeStraight
+    - TransitTubeDiagonal
+    - TransitTubeCurved
+    - TransitTubeCurvedFlipped
+    - TransitTubeJunction
+    - TransitTubeJunctionFlipped
+    - TransitTubeCrossroad
+    - TransitTubeOneWay
+    - TransitTubeSideConnector
+    - TransitTubeSideConnectorFlipped
+    - TransitTubeSideBranch
+    - TransitTubeSideBranchFlipped
+    - TransitTubeTurn
+    - TransitTubeSwitchJunction
+    - TransitTubeSpeedUp
+    - TransitTubeBrake
+    - TransitTubeTurntable
+    - TransitTubeSensor
+    - TransitTubeBlockSignal
+    - TransitTubeTagger
+    - TransitTubeRouter
+    - TransitTubeRouterFlipped
+    - TransitTubeStationRequest
+    - TransitTubeStation
+    - TransitTubeTerminus
+    - TransitTubeTerminusFlipped
+    - TransitPod
+    - TransitPodInsulated
   - type: LimitedCharges
     maxCharges: 90
   - type: Sprite

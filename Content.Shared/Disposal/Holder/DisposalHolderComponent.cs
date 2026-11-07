@@ -80,7 +80,7 @@ public sealed partial class DisposalHolderComponent : Component, IGasMixtureHold
     /// Sound played when the holder changes direction.
     /// </summary>
     [DataField]
-    public SoundSpecifier ClangSound = new SoundPathSpecifier("/Audio/Effects/clang.ogg", AudioParams.Default.WithVolume(-5f));
+    public SoundSpecifier? ClangSound = new SoundPathSpecifier("/Audio/Effects/clang.ogg", AudioParams.Default.WithVolume(-5f)); // Starlight-edit: nullable
 
     /// <summary>
     /// Damage dealt to contained entities when the holder changes direction.

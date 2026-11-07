@@ -1,0 +1,319 @@
+# Special transit tube pieces. Routing lives in SharedTransitTubeSystem, the rest in the server TransitTubeSystem.
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeCrossroad
+  name: transit tube crossing
+  description: Two transit tubes crossing each other. Pods always go straight across.
+  components:
+  - type: Sprite
+    state: crossroad
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+    - East
+    - West
+  - type: TransitTube
+    maxTurn: 0
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeOneWay
+  name: one-way transit tube
+  description: Lets pods through in the direction of the arrow only, while it is on. Pods coming the other way are sent back. Can be switched on and off with a signal.
+  components:
+  - type: Sprite
+    layers:
+    - state: oneway
+    - state: oneway_enabled
+      map: [ "enabled" ]
+      shader: unshaded
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+  - type: TransitTube
+    oneWay: North
+  - type: TransitTubeToggle
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitTubeToggleVisuals.Enabled:
+        enabled:
+          True: { visible: true }
+          False: { visible: false }
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeSideConnector
+  name: transit tube side connector
+  description: Joins a diagonal tube onto a straight one. Pods on the straight tube pass by, pods from the side merge in.
+  components:
+  - type: Sprite
+    state: sideconnector
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+    - NorthEast
+
+- type: entity
+  parent: TransitTubeSideConnector
+  id: TransitTubeSideConnectorFlipped
+  suffix: Flipped
+  components:
+  - type: Sprite
+    state: sideconnector_flipped
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+    - NorthWest
+
+- type: entity
+  parent: TransitTubeSideConnector
+  id: TransitTubeSideBranch
+  name: transit tube side branch
+  description: Splits a diagonal tube off a straight one. Pods coming up the straight tube follow the arrow to the side, pods coming the other way merge in.
+  components:
+  - type: Sprite
+    state: sidebranch
+  - type: TransitTube
+    preferredExit: NorthEast
+    forcePreferred: true
+
+- type: entity
+  parent: TransitTubeSideBranch
+  id: TransitTubeSideBranchFlipped
+  suffix: Flipped
+  components:
+  - type: Sprite
+    state: sidebranch_flipped
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+    - NorthWest
+  - type: TransitTube
+    preferredExit: NorthWest
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeTurn
+  name: transit tube turn
+  description: A tight right-angle turn.
+  components:
+  - type: Sprite
+    state: turn
+  - type: DisposalTube
+    exits:
+    - South
+    - East
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeSwitchJunction
+  name: transit tube switch
+  description: A junction whose arrow can be switched left or right with a signal. Pods coming from either branch merge back into the trunk.
+  components:
+  - type: Sprite
+    layers:
+    - state: switchjuction
+    - state: switchjuction_right
+      map: [ "switch" ]
+  - type: DisposalTube
+    exits:
+    - South
+    - NorthEast
+    - NorthWest
+  - type: TransitTubeSwitch
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitSwitchVisuals.Right:
+        switch:
+          True: { state: switchjuction_right }
+          False: { state: switchjuction_left }
+  - type: DeviceLinkSink
+    ports:
+    - TransitSwitchLeft
+    - TransitSwitchRight
+    - Toggle
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeSpeedUp
+  name: transit tube accelerator
+  description: Speeds pods up in the direction of the arrows. Fast pods fly past stations and hit dead ends hard.
+  components:
+  - type: Sprite
+    state: speedup
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+  - type: TransitTubeSpeed
+    direction: North
+    speed: 12
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeBrake
+  name: transit tube brake
+  description: Slows pods going in the direction of the arrows back to their normal speed.
+  components:
+  - type: Sprite
+    state: brake
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+  - type: TransitTubeSpeed
+    direction: South
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeTurntable
+  name: transit tube turntable
+  description: Turns pods around on the spot and sends them back the way they came.
+  components:
+  - type: Sprite
+    state: turntable
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+    - East
+    - West
+  - type: TransitTube
+    maxTurn: 0
+  - type: TransitTubeTurntable
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeSensor
+  name: transit tube sensor
+  description: Sends a signal every time a pod goes through it.
+  components:
+  - type: Sprite
+    state: signaller
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+  - type: DisposalSignaller
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: DeviceLinkSource
+    ports:
+    - ItemDetected
+  - type: WirelessNetworkConnection
+    range: 200
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeBlockSignal
+  name: transit tube block signal
+  description: Holds pods going in the direction of the arrow while another pod is on the stretch ahead, up to the next signal or station.
+  components:
+  - type: Sprite
+    state: signalblock
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+  - type: TransitTubeBlockSignal
+    direction: North
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeTagger
+  name: transit tube destination tagger
+  description: Sets the destination tag of every pod passing through, replacing the old one. Routers send pods by their tag.
+  components:
+  - type: Sprite
+    state: tagger
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+  - type: DisposalTagger
+  - type: ActivatableUI
+    key: enum.DisposalTaggerUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.DisposalTaggerUiKey.Key:
+        type: DisposalTaggerBoundUserInterface
+
+- type: entity
+  parent: TransitTubeJunction
+  id: TransitTubeRouter
+  name: transit tube router
+  description: A junction that reads destination tags. Pods with a matching tag follow the arrow, the rest take the other branch.
+  components:
+  - type: Sprite
+    state: router
+  - type: DisposalRouter
+  - type: ActivatableUI
+    key: enum.DisposalRouterUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.DisposalRouterUiKey.Key:
+        type: DisposalRouterBoundUserInterface
+
+- type: entity
+  parent: TransitTubeRouter
+  id: TransitTubeRouterFlipped
+  suffix: Flipped
+  components:
+  - type: Sprite
+    state: router_flipped
+  - type: TransitTube
+    preferredExit: NorthWest
+
+- type: entity
+  parent: TransitTubeStation
+  id: TransitTubeStationRequest
+  name: transit tube request stop
+  description: Pods only stop here if someone on the platform presses the button, or a passenger asks to get off. Otherwise they go straight through.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/TransitTube/station.rsi
+    layers:
+    - state: closed_request
+      map: [ "base" ]
+    - state: request_lit
+      map: [ "lamp" ]
+      shader: unshaded
+      visible: false
+  - type: TransitTubeStation
+    requestStop: true
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitStationVisuals.State:
+        base:
+          Closed: { state: closed_request }
+          Opening: { state: opening_request }
+          Open: { state: open_request }
+          Closing: { state: closing_request }
+      enum.TransitStationVisuals.StopRequested:
+        lamp:
+          True: { visible: true }
+          False: { visible: false }

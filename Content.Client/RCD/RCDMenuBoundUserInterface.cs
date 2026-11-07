@@ -32,6 +32,7 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
             ["Vents"] = ("rpd-component-vents", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/vent_passive.png"))),
             ["SensorsMonitors"] = ("rpd-component-sensors-monitors", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/airalarm.png"))),
             ["InterfacesStorage"] = ("rpd-component-interfaces-storage", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/port.png"))),
+            ["TransitTubes"] = ("rpd-component-transit-tubes", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/transit_station.png"))),
             // Starlight End: RPD
             // Starlight Start: RPLD
             ["PlumbingDucts"] = ("rpld-component-ducts", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPLD/category_ducts.png"))),
