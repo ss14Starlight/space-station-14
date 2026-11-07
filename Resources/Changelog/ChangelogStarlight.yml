@@ -1,20 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: Add a Sauna Room (Just NW of maints bar).
-    type: Add
-  id: 409807
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: Update the Park's design.
-    type: Tweak
-  id: 409808
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
   - message: Empty Seed Vendor in the Formal Arrivals.
     type: Add
   id: 409809
@@ -2799,4 +2785,18 @@ Entries:
   id: 410206
   time: '2026-11-07T11:36:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7088
+- author: redmushie
+  changes:
+  - message: Air siphons and gas pressure pumps now have a State signal input; they will match their on/off state to the signal.
+    type: Add
+  id: 410207
+  time: '2026-11-07T16:57:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7096
+- author: redmushie
+  changes:
+  - message: Air siphons and gas pressure pumps now have a Status signal output.
+    type: Add
+  id: 410208
+  time: '2026-11-07T16:57:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7096
 Order: -1
