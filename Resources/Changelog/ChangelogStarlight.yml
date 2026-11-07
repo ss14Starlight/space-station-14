@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Changed revolutionary portal items and weights based off feedback and testing.
-    type: Tweak
-  id: 409821
-  time: '2026-10-26T15:31:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6872
 - author: ahandleman
   changes:
   - message: The station will no longer suddenly disappear.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410220
   time: '2026-11-07T19:32:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7094
+- author: Xale
+  changes:
+  - message: Power output of nuclear generator gas turbines is now displayed when examining up close.
+    type: Add
+  id: 410221
+  time: '2026-11-07T19:32:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7099
 Order: -1
