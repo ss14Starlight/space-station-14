@@ -1,18 +1,4 @@
 Entries:
-- author: Musiklie
-  changes:
-  - message: Reduced Mimic health by 30, halved damage, reduced speed by 1/3rd, and rate of spawning by 2/5ths.
-    type: Tweak
-  id: 409819
-  time: '2026-10-26T07:26:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6870
-- author: Johnny
-  changes:
-  - message: Yeah guess what, armament crates despawn WAY QUICKER NOW, you cant blame crates for lag anymore.
-    type: Tweak
-  id: 409820
-  time: '2026-10-26T15:31:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6872
 - author: Johnny
   changes:
   - message: Changed revolutionary portal items and weights based off feedback and testing.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410218
   time: '2026-11-07T19:10:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7089
+- author: Floximo
+  changes:
+  - message: The AI PDA should no longer delete its programs randomly after a reconnect.
+    type: Fix
+  id: 410219
+  time: '2026-11-07T19:32:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7094
+- author: Floximo
+  changes:
+  - message: Multiple combination and issues with shunting and disconnects have been fixed.
+    type: Fix
+  id: 410220
+  time: '2026-11-07T19:32:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7094
 Order: -1
