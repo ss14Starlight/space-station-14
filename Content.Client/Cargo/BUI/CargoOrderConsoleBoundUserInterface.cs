@@ -108,8 +108,11 @@ namespace Content.Client.Cargo.BUI
             {
                 SendMessage(new CargoConsoleToggleLimitMessage());
             };
+            //Starlight start
+            _menu.OnPrintBarcode += account => SendMessage(new CargoConsolePrintBarcodeMessage(account));
 
             _menu.OpenCentered();
+            //Starlight end
         }
 
         private void Populate(List<CargoOrderData> orders)
@@ -121,6 +124,7 @@ namespace Content.Client.Cargo.BUI
             _menu.PopulateCategories();
             _menu.PopulateOrders(orders);
             _menu.PopulateAccountActions();
+            _menu.PopulateBarcodeAccounts(); //Starlight
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)

@@ -187,3 +187,14 @@ public sealed class CargoConsoleWithdrawFundsMessage : BoundUserInterfaceMessage
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class CargoConsoleToggleLimitMessage : BoundUserInterfaceMessage;
+
+#region Starlight
+/// <summary>
+/// Print a barcode label that can be attached to an item to redirect sale proceeds to a department.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class CargoConsolePrintBarcodeMessage(ProtoId<CargoAccountPrototype> account) : BoundUserInterfaceMessage
+{
+    public ProtoId<CargoAccountPrototype> Account = account;
+}
+#endregion

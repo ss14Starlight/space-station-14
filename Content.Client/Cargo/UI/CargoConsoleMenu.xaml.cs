@@ -38,6 +38,8 @@ namespace Content.Client.Cargo.UI
 
         public event Action<ButtonEventArgs>? OnToggleUnboundedLimit;
 
+        public event Action<ProtoId<CargoAccountPrototype>>? OnPrintBarcode; //Starlight
+
         private readonly List<string> _categoryStrings = new();
         private string? _category;
 
@@ -72,11 +74,22 @@ namespace Content.Client.Cargo.UI
 
             TabContainer.SetTabTitle(0, Loc.GetString("cargo-console-menu-tab-title-orders"));
             TabContainer.SetTabTitle(1, Loc.GetString("cargo-console-menu-tab-title-funds"));
+            TabContainer.SetTabTitle(2, Loc.GetString("cargo-console-menu-tab-title-barcode")); //Starlight
 
             ActionOptions.OnItemSelected += idx =>
             {
                 ActionOptions.SelectId(idx.Id);
             };
+            //Starlight start
+            BarcodeAccountOptions.OnItemSelected += idx => BarcodeAccountOptions.SelectId(idx.Id);
+
+            BarcodePrintButton.OnPressed += _ =>
+            {
+                var account = (ProtoId<CargoAccountPrototype>?) BarcodeAccountOptions.SelectedMetadata;
+                if (account != null)
+                    OnPrintBarcode?.Invoke(account.Value);
+            };
+            //Starlight end
 
             TransferSpinBox.IsValid = val =>
             {
@@ -296,6 +309,26 @@ namespace Content.Client.Cargo.UI
                 i++;
             }
         }
+
+        #region Starlight
+        public void PopulateBarcodeAccounts()
+        {
+            if (!_entityManager.TryGetComponent<StationBankAccountComponent>(_station, out var bank))
+                return;
+
+            var i = 0;
+            BarcodeAccountOptions.Clear();
+            foreach (var account in bank.Accounts.Keys)
+            {
+                if (account == bank.PrimaryAccount) continue;
+                var accountProto = _protoManager.Index(account);
+                BarcodeAccountOptions.AddItem(Loc.GetString(accountProto.Code),
+                    i);
+                BarcodeAccountOptions.SetItemMetadata(i, account);
+                i++;
+            }
+        }
+        #endregion
 
         public void UpdateStation(EntityUid station)
         {
