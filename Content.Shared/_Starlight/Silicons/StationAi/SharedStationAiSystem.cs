@@ -83,4 +83,45 @@ public abstract partial class SharedStationAiSystem
         _mind.TransferTo(mindId, brain);
         return true;
     }
+
+    public bool EnsureRemoteEye(Entity<StationAiCoreComponent> ent)
+    {
+        if (ent.Comp.RemoteEntity is { Valid: true } remoteEye
+            && !TerminatingOrDeleted(remoteEye)
+            && HasComp<TransformComponent>(remoteEye))
+        {
+            return true;
+        }
+
+        if (_net.IsClient)
+            return false;
+
+        var oldEye = ent.Comp.RemoteEntity;
+        var hasOldEye = oldEye is { Valid: true } previousEye
+            && Exists(previousEye)
+            && !TerminatingOrDeleted(previousEye);
+
+        if (!hasOldEye)
+            ent.Comp.RemoteEntity = null;
+
+        ClearEye(ent);
+
+        if (!SetupEye(ent)
+            || ent.Comp.RemoteEntity is not { Valid: true } newEye
+            || TerminatingOrDeleted(newEye)
+            || !HasComp<TransformComponent>(newEye))
+        {
+            return false;
+        }
+
+        AttachEye(ent);
+
+        if (hasOldEye)
+        {
+            var ev = new StationAiRemoteEntityReplacementEvent(newEye);
+            RaiseLocalEvent(oldEye!.Value, ref ev);
+        }
+
+        return true;
+    }
 }

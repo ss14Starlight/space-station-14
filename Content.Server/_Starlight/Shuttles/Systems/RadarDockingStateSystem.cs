@@ -88,7 +88,7 @@ public sealed partial class RadarDockingStateSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnRadarConsoleUiOpened(Entity<RadarConsoleComponent> entity, ref BoundUIOpenedEvent args)
     {
-        if (!RadarConsoleUiKey.Key.Equals(args.UiKey))
+        if (args.UiKey is not (RadarConsoleUiKey and RadarConsoleUiKey.Key))
             return;
 
         RemoveConsoleState(entity.Owner);

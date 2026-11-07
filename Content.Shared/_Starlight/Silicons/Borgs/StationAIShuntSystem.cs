@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Starlight.Polymorph.Components;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
@@ -21,11 +22,13 @@ public sealed partial class StationAIShuntSystem : EntitySystem
 
     [Dependency] private SharedMindSystem _mindSystem = default!;
     [Dependency] private SharedActionsSystem _actionSystem = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private FollowerSystem _follower = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private StationAiVisionSystem _vision = default!;
+    [Dependency] private SharedStationAiSystem _stationAi = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
 
     public override void Initialize()
@@ -46,6 +49,20 @@ public sealed partial class StationAIShuntSystem : EntitySystem
     {
         _actionSystem.AddAction(uid, shuntable.ShuntAction.Id);
         _actionSystem.AddAction(uid, shuntable.ReconnectShuntAction.Id);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnShuntableShutdown(EntityUid uid, StationAIShuntableComponent shuntable, ComponentShutdown args)
+    {
+        foreach (var action in _actionSystem.GetActions(uid).ToArray())
+        {
+            var prototypeId = MetaData(action.Owner).EntityPrototype?.ID;
+            if (prototypeId != shuntable.ShuntAction.Id && prototypeId != shuntable.ReconnectShuntAction.Id)
+                continue;
+
+            _actionSystem.RemoveAction(uid, action.Owner);
+            _actionContainer.RemoveAction(action.Owner);
+        }
     }
 
     #region Actions
@@ -150,6 +167,16 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         if (!TryComp<StationAIShuntableComponent>(shuntReturnUid, out var shuntable))
             return; //trying to return to a body you cant leave from? weird...
 
+        var target = shuntReturnUid.Value;
+        var aiCore = Transform(target).ParentUid;
+        if (_net.IsServer
+            && TryComp<StationAiCoreComponent>(aiCore, out var aiCoreComponent)
+            && !_stationAi.EnsureRemoteEye((aiCore, aiCoreComponent)))
+        {
+            Log.Error($"Failed to restore the remote eye for Station AI core {ToPrettyString(aiCore)} during unshunt.");
+            return;
+        }
+
         if (TryComp<BorgChassisComponent>(uid, out var chassisComp))
         {
             var brain = chassisComp.BrainContainer.ContainedEntity;
@@ -169,11 +196,9 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         }
 
         _actionSystem.RemoveAction(new Entity<ActionComponent?>(shuntActionUid.Value, act));
-        var target = shuntReturnUid.Value;
         _mindSystem.TransferTo(mindId, target);
         RemComp<UncryoableComponent>(target);
 
-        var aiCore = Transform(target).ParentUid;
         if (TryComp<StationAiCoreComponent>(aiCore, out var core)
             && core.RemoteEntity is { Valid: true } remoteEntity
             && TryComp<TransformComponent>(remoteEntity, out _))

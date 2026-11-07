@@ -14,6 +14,8 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.Follower;
+using Content.Shared.Follower.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Maps;
@@ -180,7 +182,42 @@ public sealed partial class MindTests
     }
 
     [Test]
-    public async Task StationAiCanUnshuntAndReshuntAfterDisconnectWhileShuntedInBorg()
+    public async Task StationAiShuntableActionsAreRemovedWhenComponentShutsDown()
+    {
+        var pair = await SetupPair();
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            var actions = entMan.System<SharedActionsSystem>();
+            var entityTargetActions = entMan.GetEntityQuery<EntityTargetActionComponent>();
+            var instantActions = entMan.GetEntityQuery<InstantActionComponent>();
+
+            void AssertShuntActions(int expected)
+            {
+                var activeActions = actions.GetActions(ai).ToArray();
+                Assert.That(
+                    activeActions.Count(action => entityTargetActions.CompOrNull(action)?.Event is AIShuntActionEvent),
+                    Is.EqualTo(expected));
+                Assert.That(
+                    activeActions.Count(action =>
+                        instantActions.CompOrNull(action)?.Event is AIReconnectShuntActionEvent),
+                    Is.EqualTo(expected));
+            }
+
+            AssertShuntActions(1);
+            entMan.RemoveComponent<StationAIShuntableComponent>(ai);
+            AssertShuntActions(0);
+
+            entMan.AddComponent<StationAIShuntableComponent>(ai);
+            AssertShuntActions(1);
+        });
+    }
+
+    [TestCase(false)]
+    [TestCase(true)]
+    public async Task StationAiCanUnshuntAndReshuntAfterDisconnectWhileShuntedInBorg(bool deleteRemoteEye)
     {
         var (pair, station, cores) = await SetupAiStation(1);
         var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
@@ -188,6 +225,7 @@ public sealed partial class MindTests
         EntityUid ai = default;
         EntityUid brain = default;
         EntityUid borg = default;
+        EntityUid follower = default;
 
         await pair.Server.WaitAssertion(() =>
         {
@@ -268,8 +306,22 @@ public sealed partial class MindTests
                     Is.True);
             }
 
-            // A disconnected core can retain an invalid remote-eye UID.
-            entMan.GetComponent<StationAiCoreComponent>(cores[0]).RemoteEntity = EntityUid.Invalid;
+            var core = entMan.GetComponent<StationAiCoreComponent>(cores[0]);
+            if (deleteRemoteEye)
+            {
+                var remoteEye = core.RemoteEntity
+                    ?? throw new InvalidOperationException("Station AI core did not have a remote eye.");
+                entMan.DeleteEntity(remoteEye);
+            }
+            else
+            {
+                // A disconnected core can retain an invalid remote-eye UID.
+                core.RemoteEntity = EntityUid.Invalid;
+            }
+
+            var followerCoordinates = entMan.System<SharedTransformSystem>().GetMapCoordinates(borg);
+            follower = entMan.SpawnEntity(GameTicker.ObserverPrototypeName, followerCoordinates);
+            entMan.System<FollowerSystem>().StartFollowingEntity(follower, borg);
             entMan.EventBus.RaiseLocalEvent(borg, new AIUnShuntActionEvent { Performer = borg });
         });
         await pair.RunTicksSync(5);
@@ -318,6 +370,12 @@ public sealed partial class MindTests
                 Assert.That(entMan.GetComponent<StationAIShuntComponent>(borg).Return, Is.Null);
                 Assert.That(entMan.GetComponent<StationAIShuntComponent>(brain).Return, Is.Null);
             }
+
+            var remoteEye = entMan.GetComponent<StationAiCoreComponent>(cores[0]).RemoteEntity;
+            Assert.That(remoteEye, Is.Not.Null);
+            Assert.That(remoteEye!.Value, Is.Not.EqualTo(EntityUid.Invalid));
+            Assert.That(entMan.HasComponent<TransformComponent>(remoteEye.Value), Is.True);
+            Assert.That(entMan.GetComponent<FollowerComponent>(follower).Following, Is.EqualTo(remoteEye.Value));
         });
     }
 
