@@ -1,25 +1,4 @@
 Entries:
-- author: Hot Mic
-  changes:
-  - message: Update Formal Arrivals Design.
-    type: Tweak
-  id: 409810
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: Add lore to Zoo's office and engine room.
-    type: Add
-  id: 409811
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: Replace the toggle button with a timer button in the firing range (2 minutes by default).
-    type: Tweak
-  id: 409812
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
 - author: Rinary
   changes:
   - message: 'Added combustion turbine: alternative for TEG.'
@@ -2799,4 +2778,25 @@ Entries:
   id: 410209
   time: '2026-11-07T18:02:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6974
+- author: Floximo
+  changes:
+  - message: Kill AI was changed into "Teach AI a lesson".
+    type: Tweak
+  id: 410210
+  time: '2026-11-07T18:24:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6970
+- author: Floximo
+  changes:
+  - message: The AI core is now armoured and requires explosives to shutdown and much bigger explosives to entirely remove it.
+    type: Tweak
+  id: 410211
+  time: '2026-11-07T18:24:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6970
+- author: Floximo
+  changes:
+  - message: Syndi Minibomb does now less structural damage while retaining any other damage type.
+    type: Tweak
+  id: 410212
+  time: '2026-11-07T18:24:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6970
 Order: -1
