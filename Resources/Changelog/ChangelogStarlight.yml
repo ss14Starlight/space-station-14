@@ -1,18 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: 'Added combustion turbine: alternative for TEG.'
-    type: Add
-  id: 409813
-  time: '2026-10-25T19:53:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6672
-- author: Rinary
-  changes:
-  - message: Added static igniter, same igniter but as machine/structure, has 2 states, on and off, so you can just turn it on and it will burn all gases it can.
-    type: Add
-  id: 409814
-  time: '2026-10-25T19:53:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6672
 - author: redmushie
   changes:
   - message: Job requirements tooltip in the Job Priorities window shows colors correctly again.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410212
   time: '2026-11-07T18:24:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6970
+- author: Trosling
+  changes:
+  - message: Removed Confirmed Revolution SOP from Red Alert page.
+    type: Remove
+  id: 410213
+  time: '2026-11-07T18:24:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7083
+- author: Trosling
+  changes:
+  - message: Added Induced Mutiny special situation page to replace Confirmed Revolution.
+    type: Add
+  id: 410214
+  time: '2026-11-07T18:24:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7083
 Order: -1
