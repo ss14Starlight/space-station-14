@@ -68,10 +68,10 @@
     tags:
     - Spear
   - type: Sprite
-    sprite: Objects/Weapons/Melee/spear.rsi
+    sprite: _Starlight/Objects/Weapons/Melee/xeno_tail.rsi
     layers:
-    - state: spear
-    - state: spear1
+    - state: tail
+    - state: tail1
       map: ["enum.SolutionContainerLayers.Fill"]
       visible: false
   - type: MeleeWeapon
@@ -97,8 +97,4 @@
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 1
-    fillBaseName: spear
-    inHandsFillBaseName: -fill-
-    inHandsMaxFillLevels: 1
-    equippedFillBaseName: -fill-
-    equippedMaxFillLevels: 1
+    fillBaseName: tail
