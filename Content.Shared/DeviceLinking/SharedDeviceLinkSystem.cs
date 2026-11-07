@@ -326,7 +326,7 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
             SendNewLinkEvent(userId, sourceUid, source, sinkUid, sink);
         }
 
-        if (links.Count > 0)
+        if (sourceComponent.LinkedPorts.TryGetValue(sinkUid, out var savedLinks) && savedLinks.Count > 0) // Starlight-edit
             sinkComponent.LinkedSources.Add(sourceUid);
     }
 
