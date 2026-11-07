@@ -89,7 +89,6 @@ public sealed partial class ToggleableDeviceSystem : EntitySystem
 
 }
 
-
 /// <summary>
 /// Pre-init event used to determine the device state on init.
 /// </summary>

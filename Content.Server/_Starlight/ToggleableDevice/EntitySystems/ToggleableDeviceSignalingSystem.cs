@@ -63,5 +63,4 @@ public sealed partial class ToggleableDeviceSignalingSystem : EntitySystem
         else if (args.Port == entity.Comp.StatePort)
             _toggleableDevice.SetState((entity, device), high);
     }
-
 }

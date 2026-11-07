@@ -69,5 +69,4 @@ public abstract partial class SharedGasPressurePumpSystem
         Dirty(uid, component);
         UpdateAppearance(uid, component);
     }
-
 }
