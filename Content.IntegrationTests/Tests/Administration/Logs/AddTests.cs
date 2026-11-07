@@ -193,8 +193,9 @@ public sealed class AddTests : GameTest
         });
     }
 
+    #region Starlight
     [Test]
-    public async Task DuplicatePlayerDoesNotThrowTest()
+    public async Task DuplicatePlayerFormatsDoNotThrowTest()
     {
         var pair = Pair;
         var server = pair.Server;
@@ -209,40 +210,6 @@ public sealed class AddTests : GameTest
             var player = sPlayers.Sessions.Single();
 
             sAdminLogSystem.Add(LogType.Unknown, $"{player} {player} test log: {guid}");
-        });
-
-        await PoolManager.WaitUntil(server, async () =>
-        {
-            var logs = await sAdminLogSystem.CurrentRoundLogs(new LogFilter
-            {
-                Search = guid.ToString()
-            });
-
-            if (logs.Count == 0)
-            {
-                return false;
-            }
-
-            return true;
-        });
-    }
-
-    [Test]
-    public async Task DuplicatePlayerIdDoesNotThrowTest()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-
-        var sPlayers = server.ResolveDependency<IPlayerManager>();
-
-        var sAdminLogSystem = server.ResolveDependency<IAdminLogManager>();
-
-        var guid = Guid.NewGuid();
-
-        await server.WaitPost(() =>
-        {
-            var player = sPlayers.Sessions.Single();
-
             sAdminLogSystem.Add(LogType.Unknown, $"{player:first} {player:second} test log: {guid}");
         });
 
@@ -253,14 +220,10 @@ public sealed class AddTests : GameTest
                 Search = guid.ToString()
             });
 
-            if (logs.Count == 0)
-            {
-                return false;
-            }
-
-            return true;
+            return logs.Count >= 2;
         });
     }
+    #endregion
 }
 
 public sealed class PreRoundAddTests : GameTest

@@ -83,6 +83,7 @@ public sealed class ActivatableUIRequiresPowerTest
                 Assert.That(cellPoweredAttempt.Cancelled, Is.False);
 
                 var panel = entMan.GetComponent<WiresPanelComponent>(terminal);
+                Assert.That(powerCells.TryEjectBatteryFromSlot(terminal, out _), Is.False);
                 Assert.That(wires.TogglePanel(terminal, panel, true), Is.True);
                 Assert.That(powerCells.TryEjectBatteryFromSlot(terminal, out var ejectedCell), Is.True);
                 Assert.That(powerCells.HasBattery(terminal), Is.False);
@@ -106,35 +107,4 @@ public sealed class ActivatableUIRequiresPowerTest
         await pair.CleanReturnAsync();
     }
 
-    [Test]
-    public async Task TerminalBackupCellsRequireOpenPanelForEjection()
-    {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
-        var entMan = server.ResolveDependency<IEntityManager>();
-
-        await server.WaitAssertion(() =>
-        {
-            var powerCells = server.System<PowerCellSystem>();
-            var wires = server.System<WiresSystem>();
-
-            foreach (var prototypeId in new[] { ComputerCommsFilledPrototype.Id, KeycardAuthPrototype.Id })
-            {
-                var terminal = entMan.SpawnEntity(prototypeId, MapCoordinates.Nullspace);
-
-                Assert.That(powerCells.HasBattery(terminal), Is.True);
-                Assert.That(powerCells.TryEjectBatteryFromSlot(terminal, out _), Is.False);
-
-                var panel = entMan.GetComponent<WiresPanelComponent>(terminal);
-                Assert.That(wires.TogglePanel(terminal, panel, true), Is.True);
-                Assert.That(powerCells.TryEjectBatteryFromSlot(terminal, out var ejected), Is.True);
-
-                if (ejected is { } cell)
-                    entMan.DeleteEntity(cell);
-                entMan.DeleteEntity(terminal);
-            }
-        });
-
-        await pair.CleanReturnAsync();
-    }
 }

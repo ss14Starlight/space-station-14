@@ -186,16 +186,16 @@ public sealed class DynamicRuleTest : GameTest
     };
 
     /// <summary>
-    /// Tests that the budget is updated between table children, so that a child rule can be selected and then the next child rule can be selected in the same table roll.
+    /// Tests that budget changes affect later table selections and that mutually exclusive rules are rejected.
     /// </summary>
     [Test]
-    public async Task DynamicBudgetUpdateTest()
+    public async Task DynamicBudgetAndMutualExclusionAreAppliedWithinTableRolls()
     {
         var server = Pair.Server;
+        var ticker = server.System<GameTicker>();
 
         await server.WaitAssertion(() =>
         {
-            var ticker = server.System<GameTicker>();
             var uid = ticker.AddGameRule(SequentialBudgetRule);
             var component = server.EntMan.GetComponent<DynamicRuleComponent>(uid);
 
@@ -209,23 +209,11 @@ public sealed class DynamicRuleTest : GameTest
 
             ticker.EndGameRule(uid);
         });
-    }
-
-    /// <summary>
-    /// Tests that mutually exclusive rules are rejected within the same table roll, so that only one of the mutually exclusive rules is selected.
-    /// </summary>
-    /// <returns></returns>
-    [Test]
-    public async Task DynamicMutuallyExclusiveRulesRejectionTest()
-    {
-        var server = Pair.Server;
 
         await server.WaitAssertion(() =>
         {
-            var ticker = server.System<GameTicker>();
             var uid = ticker.AddGameRule(MutualExclusionRule);
             var component = server.EntMan.GetComponent<DynamicRuleComponent>(uid);
-
             Assert.Multiple(() =>
             {
                 Assert.That(component.Budget, Is.EqualTo(90));

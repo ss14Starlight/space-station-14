@@ -9,7 +9,7 @@ public sealed class WallConstruction : InteractionTest
     public const string Wall = "Wall";
 
     [Test]
-    public async Task ConstructWall()
+    public async Task ConstructAndDeconstructWall() // Starlight
     {
         await StartConstruction(Wall);
         await InteractUsing(Steel, 2);
@@ -18,16 +18,13 @@ public sealed class WallConstruction : InteractionTest
         await InteractUsing(Steel, 2);
         Assert.That(HandSys.GetActiveItem((SEntMan.GetEntity(Player), Hands)), Is.Null);
         AssertPrototype(WallSolid);
-    }
 
-    [Test]
-    public async Task DeconstructWall()
-    {
-        await StartDeconstruction(WallSolid);
+        // Starlight - start
         await InteractUsing(Weld);
         AssertPrototype(Girder);
         await Interact(Wrench, Screw);
         AssertDeleted();
         await AssertEntityLookup((Steel, 4));
+        // Starlight - end
     }
 }

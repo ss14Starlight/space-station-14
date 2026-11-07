@@ -54,8 +54,9 @@ public sealed partial class MindTests : GameTest
         - !type:GibBehavior { }
 ";
 
+    #region Starlight
     [Test]
-    public async Task TestCreateAndTransferMindToNewEntity()
+    public async Task TestCreateTransferAndMoveMindBetweenEntities()
     {
         var pair = Pair;
         var server = pair.Server;
@@ -67,7 +68,9 @@ public sealed partial class MindTests : GameTest
             var mindSystem = entMan.EntitySysManager.GetEntitySystem<SharedMindSystem>();
 
             var entity = entMan.SpawnEntity(null, new MapCoordinates());
+            var targetEntity = entMan.SpawnEntity(null, new MapCoordinates());
             var mindComp = entMan.EnsureComponent<MindContainerComponent>(entity);
+            entMan.EnsureComponent<MindContainerComponent>(targetEntity);
 
             var mind = mindSystem.CreateMind(null);
 
@@ -75,8 +78,15 @@ public sealed partial class MindTests : GameTest
 
             mindSystem.TransferTo(mind, entity, mind: mind);
             Assert.That(mindSystem.GetMind(entity, mindComp), Is.EqualTo(mind.Owner));
+            mindSystem.TransferTo(mind.Owner, targetEntity);
+            Assert.Multiple(() =>
+            {
+                Assert.That(mindSystem.GetMind(entity, mindComp), Is.EqualTo(null));
+                Assert.That(mindSystem.GetMind(targetEntity), Is.EqualTo(mind.Owner));
+            });
         });
     }
+    #endregion
 
     [Test]
     public async Task TestReplaceMind()
@@ -156,38 +166,6 @@ public sealed partial class MindTests : GameTest
         {
             var mind = entMan.GetComponent<MindComponent>(mindId);
             Assert.That(mindSystem.IsCharacterDeadPhysically(mind));
-        });
-    }
-
-    [Test]
-    public async Task TestMindTransfersToOtherEntity()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-
-        var entMan = server.ResolveDependency<IServerEntityManager>();
-
-        await server.WaitAssertion(() =>
-        {
-            var mindSystem = entMan.EntitySysManager.GetEntitySystem<SharedMindSystem>();
-
-            var entity = entMan.SpawnEntity(null, new MapCoordinates());
-            var targetEntity = entMan.SpawnEntity(null, new MapCoordinates());
-            var mindComp = entMan.EnsureComponent<MindContainerComponent>(entity);
-            entMan.EnsureComponent<MindContainerComponent>(targetEntity);
-
-            var mind = mindSystem.CreateMind(null).Owner;
-
-            mindSystem.TransferTo(mind, entity);
-
-            Assert.That(mindSystem.GetMind(entity, mindComp), Is.EqualTo(mind));
-
-            mindSystem.TransferTo(mind, targetEntity);
-            Assert.Multiple(() =>
-            {
-                Assert.That(mindSystem.GetMind(entity, mindComp), Is.EqualTo(null));
-                Assert.That(mindSystem.GetMind(targetEntity), Is.EqualTo(mind));
-            });
         });
     }
 

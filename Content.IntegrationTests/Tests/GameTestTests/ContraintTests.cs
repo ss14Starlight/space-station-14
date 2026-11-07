@@ -9,78 +9,49 @@ namespace Content.IntegrationTests.Tests.GameTestTests;
 
 public sealed class ConstraintsTests : GameTest
 {
+    #region Starlight
     [Test]
     [TestOf(typeof(CompExistsConstraint))]
-    [Description("Ensures that a freshly spawned entity matches a constraint stating it has MetaData.")]
-    [RunOnSide(Side.Server)]
-    public void CompPositive()
-    {
-        var ent = SSpawn(null);
-
-        Assert.That(ent, Has.Comp<MetaDataComponent>(Server));
-    }
-
-    [Test]
     [TestOf(typeof(CompOperator))]
-    [Description("Ensures that NUnit property access works on Comp constraints.")]
+    [Description("Checks component presence, absence, and property constraints on one entity.")]
     [RunOnSide(Side.Server)]
-    public void CompPropertyAccess()
+    public void ComponentConstraintsCoverPresenceAndProperties()
     {
         var ent = SSpawn(null);
 
-        Assert.That(ent,
-            Has
-                .Comp<MetaDataComponent>(Server)
-                .Property(nameof(MetaDataComponent.EntityDeleted))
-                .EqualTo(false)
-        );
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(ent, Has.Comp<MetaDataComponent>(Server));
+            Assert.That(ent,
+                Has
+                    .Comp<MetaDataComponent>(Server)
+                    .Property(nameof(MetaDataComponent.EntityDeleted))
+                    .EqualTo(false)
+            );
+            Assert.That(ent, Has.No.Comp<EyeComponent>(Server));
+        }
     }
+    #endregion
 
-    [Test]
-    [TestOf(typeof(CompExistsConstraint))]
-    [Description("Ensures that a freshly spawned entity does not match a constraint stating it has some odd component.")]
-    [RunOnSide(Side.Server)]
-    public void CompNegative()
-    {
-        var ent = SSpawn(null);
-
-        // Arbitrary pick.
-        Assert.That(ent, Has.No.Comp<EyeComponent>(Server));
-    }
-
+    #region Starlight
     [Test]
     [TestOf(typeof(LifeStageConstraint))]
-    [Description("Ensures that a freshly deleted entity is deleted to constraints.")]
+    [Description("Checks deleted, missing, and live entity constraints in one scenario.")]
     [RunOnSide(Side.Server)]
-    public void DeletedPositive()
+    public void DeletedConstraintsCoverExistingAndMissingEntities()
     {
-        var ent = SSpawn(null);
+        var deleted = SSpawn(null);
+        SDeleteNow(deleted);
 
-        SDeleteNow(ent);
+        var neverExisted = new EntityUid(int.MaxValue / 2);
+        var alive = SSpawn(null);
 
-        Assert.That(ent, Is.Deleted(Server));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(deleted, Is.Deleted(Server));
+            Assert.That(neverExisted, Is.Deleted(Server), "Entities that never existed still count as deleted.");
+            Assert.That(alive, Is.Not.Deleted(Server));
+        }
     }
-
-    [Test]
-    [TestOf(typeof(LifeStageConstraint))]
-    [RunOnSide(Side.Server)]
-    [Description("Entities that never existed are currently considered deleted by constraints.")]
-    public void DeletedNeverExisted()
-    {
-        // We'll never spawn this many ents in tests without it taking all damn day.
-        var ent = new EntityUid(int.MaxValue / 2);
-
-        Assert.That(ent, Is.Deleted(Server), "Entites that never existed still count as deleted.");
-    }
-
-    [Test]
-    [TestOf(typeof(LifeStageConstraint))]
-    [Description("Entities that are alive do not count as deleted.")]
-    [RunOnSide(Side.Server)]
-    public void DeletedNegative()
-    {
-        var ent = SSpawn(null);
-
-        Assert.That(ent, Is.Not.Deleted(Server));
-    }
+    #endregion
 }

@@ -1,11 +1,15 @@
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
+using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
+using Content.Shared.Rotation;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
@@ -24,9 +28,11 @@ public sealed class OrganMissingTest : GameTest
     type: entity
     id: OrganMissingTestDummy
     components:
+    - type: Appearance
     -
         type: Body
         prototype: Human
+    - type: StandingState
     -
         type: Damageable
     -
@@ -40,7 +46,7 @@ public sealed class OrganMissingTest : GameTest
 ";
 
     [Test]
-    public async Task MissingConfiguredOrgansApplyConfiguredDamage()
+    public async Task MissingOrgansAndDetachedLegsUpdateBodyState()
     {
         var pair = Pair;
         var server = pair.Server;
@@ -49,10 +55,34 @@ public sealed class OrganMissingTest : GameTest
         var bodySystem = entityManager.System<SharedBodySystem>();
         var containerSystem = entityManager.System<SharedContainerSystem>();
         var damageable = entityManager.System<DamageableSystem>();
+        var appearanceSystem = entityManager.System<SharedAppearanceSystem>();
+        var transformSystem = entityManager.System<SharedTransformSystem>();
         var map = await pair.CreateTestMap();
 
         EntityUid body = default;
-        await server.WaitAssertion(() => body = entityManager.SpawnEntity("OrganMissingTestDummy", map.MapCoords));
+        AppearanceComponent appearance = default!;
+        await server.WaitAssertion(() =>
+        {
+            body = entityManager.SpawnEntity("OrganMissingTestDummy", map.MapCoords);
+            appearance = entityManager.GetComponent<AppearanceComponent>(body);
+            var legs = entityManager.System<BodySystem>()
+                .GetBodyChildrenOfType(body, BodyPartType.Leg, entityManager.GetComponent<BodyComponent>(body));
+
+            Assert.That(appearanceSystem.TryGetData(body, RotationVisuals.RotationState, out RotationState _, appearance),
+                Is.False);
+
+            foreach (var leg in legs)
+            {
+                transformSystem.DetachEntity(leg.Id, entityManager.GetComponent<TransformComponent>(leg.Id));
+            }
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(appearanceSystem.TryGetData(body, RotationVisuals.RotationState, out RotationState state, appearance),
+                Is.True);
+            Assert.That(state, Is.EqualTo(RotationState.Horizontal));
+        });
 
         await server.WaitRunTicks(70);
         await server.WaitAssertion(() => Assert.That(damageable.GetAllDamage(body).DamageDict, Is.Empty));

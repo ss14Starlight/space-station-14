@@ -27,6 +27,7 @@ public sealed class ShadekinLightExposureTests : GameTest
 
         EntityUid light = default;
         EntityUid target = default;
+        EntityUid shadegen = default;
 
         await server.WaitAssertion(() =>
         {
@@ -53,6 +54,21 @@ public sealed class ShadekinLightExposureTests : GameTest
             Assert.That(shadekin.GetLightExposure(target), Is.Zero, "A shadegen suppressed light should not light us up.");
             server.EntMan.RemoveComponent<ShadegenAffectedComponent>(light);
 
+            shadegen = server.EntMan.SpawnAtPosition(null, map.GridCoords);
+            server.EntMan.AddComponent<ShadegenComponent>(shadegen);
+            Assert.That(shadekin.GetLightExposure(target), Is.Zero,
+                "A shadegen in range should make it pitch black.");
+
+            server.EntMan.DeleteEntity(shadegen);
+        });
+
+        await server.WaitRunTicks(5);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(shadekin.GetLightExposure(target), Is.GreaterThan(0f),
+                "Removing a shadegen should restore exposure to a nearby light.");
+
             pointLight.SetEnabled(light, false);
         });
 
@@ -62,50 +78,6 @@ public sealed class ShadekinLightExposureTests : GameTest
         {
             Assert.That(shadekin.GetLightExposure(target), Is.Zero, "A disabled light should not light us up.");
 
-            server.EntMan.DeleteEntity(light);
-            server.EntMan.DeleteEntity(target);
-        });
-    }
-
-    /// <summary>
-    /// Tests that a shadegen in range zeroes out light exposure no matter what else is around.
-    /// </summary>
-    [Test]
-    public async Task ShadegenInRangeZeroesExposure()
-    {
-        var server = Pair.Server;
-        var map = await Pair.CreateTestMap();
-
-        var shadekin = server.System<ShadekinSystem>();
-        var pointLight = server.System<SharedPointLightSystem>();
-
-        EntityUid light = default;
-        EntityUid target = default;
-        EntityUid shadegen = default;
-
-        await server.WaitAssertion(() =>
-        {
-            light = server.EntMan.SpawnAtPosition(null, map.GridCoords);
-            target = server.EntMan.SpawnAtPosition(null, map.GridCoords.Offset(new Vector2(1, 0)));
-
-            var lightComp = pointLight.EnsureLight(light);
-            pointLight.SetRadius(light, 5f, lightComp);
-            pointLight.SetEnergy(light, 2f, lightComp);
-            pointLight.SetEnabled(light, true, lightComp);
-        });
-
-        await server.WaitRunTicks(1);
-
-        await server.WaitAssertion(() =>
-        {
-            Assert.That(shadekin.GetLightExposure(target), Is.GreaterThan(0f));
-
-            shadegen = server.EntMan.SpawnAtPosition(null, map.GridCoords);
-            server.EntMan.AddComponent<ShadegenComponent>(shadegen);
-
-            Assert.That(shadekin.GetLightExposure(target), Is.Zero, "A shadegen in range should make it pitch black.");
-
-            server.EntMan.DeleteEntity(shadegen);
             server.EntMan.DeleteEntity(light);
             server.EntMan.DeleteEntity(target);
         });

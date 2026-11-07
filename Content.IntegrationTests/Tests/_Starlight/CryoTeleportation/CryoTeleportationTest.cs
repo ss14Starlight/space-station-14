@@ -256,7 +256,14 @@ public sealed class CryoTeleportationTest : GameTest
     /// must not get the new slot freed when the old body is stored.
     /// </summary>
     [Test]
-    public async Task AutoCryoReturnsSlotOnce()
+    public async Task AutoAndManualCryoReinsertionReturnsSlotOnce()
+    {
+        await AutoCryoReturnsSlotOnce();
+        await RunTicksSync(10);
+        await PodReturnThenReinsertReturnsSlotOnce();
+    }
+
+    private async Task AutoCryoReturnsSlotOnce()
     {
         var (body, station, pod) = await StartRoundAs(_mime);
         var session = ServerSession!;
@@ -305,8 +312,7 @@ public sealed class CryoTeleportationTest : GameTest
     /// The pod reopens the slot through the player in the body. The body is later brought back out,
     /// the holder rejoins as that job, and the body goes in a pod again with no player. The new slot must stay taken.
     /// </summary>
-    [Test]
-    public async Task PodReturnThenReinsertReturnsSlotOnce()
+    private async Task PodReturnThenReinsertReturnsSlotOnce()
     {
         var (body, station, pod) = await StartRoundAs(_mime);
         var session = ServerSession!;

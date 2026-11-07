@@ -17,7 +17,7 @@ public sealed class IlluminationSystemTests : GameTest
 {
 
     [Test]
-    public async Task CarriedLightFollowsHolder()
+    public async Task CarriedAndUnanchoredLightsFollowTheirTransforms()
     {
         var server = Pair.Server;
         var map = await Pair.CreateTestMap();
@@ -70,58 +70,45 @@ public sealed class IlluminationSystemTests : GameTest
 
             server.EntMan.DeleteEntity(holder);
         });
-    }
 
-    [Test]
-    public async Task AnchoredLightFollowsUnanchor()
-    {
-        var server = Pair.Server;
-        var map = await Pair.CreateTestMap();
-
-        var illumination = server.System<SharedIlluminationSystem>();
-        var pointLight = server.System<SharedPointLightSystem>();
-        var transform = server.System<SharedTransformSystem>();
-
-        EntityUid light = default;
-        var query = new IlluminationQuery(IgnoreAmbient: true);
-        var near = map.GridCoords.Offset(new Vector2(1, 0));
-
+        EntityUid anchoredLight = default;
+        var anchoredNear = map.GridCoords.Offset(new Vector2(1, 0));
         await server.WaitAssertion(() =>
         {
-            light = server.EntMan.SpawnAtPosition(null, map.GridCoords);
+            anchoredLight = server.EntMan.SpawnAtPosition(null, map.GridCoords);
 
-            var lightComp = pointLight.EnsureLight(light);
-            pointLight.SetRadius(light, 5f, lightComp);
-            pointLight.SetEnergy(light, 2f, lightComp);
-            pointLight.SetEnabled(light, true, lightComp);
+            var anchoredLightComp = pointLight.EnsureLight(anchoredLight);
+            pointLight.SetRadius(anchoredLight, 5f, anchoredLightComp);
+            pointLight.SetEnergy(anchoredLight, 2f, anchoredLightComp);
+            pointLight.SetEnabled(anchoredLight, true, anchoredLightComp);
 
-            Assert.That(transform.AnchorEntity(light), Is.True);
+            Assert.That(transform.AnchorEntity(anchoredLight), Is.True);
         });
 
         await server.WaitRunTicks(1);
 
         await server.WaitAssertion(() =>
         {
-            Assert.That(illumination.GetLightLevel(transform.ToMapCoordinates(near), query), Is.GreaterThan(0f),
+            Assert.That(illumination.GetLightLevel(transform.ToMapCoordinates(anchoredNear), query), Is.GreaterThan(0f),
                 "An anchored light should shine next to it.");
 
-            transform.Unanchor(light);
-            transform.SetMapCoordinates(light, new MapCoordinates(200, 200, map.MapId));
+            transform.Unanchor(anchoredLight);
+            transform.SetMapCoordinates(anchoredLight, new MapCoordinates(200, 200, map.MapId));
 
             using (Assert.EnterMultipleScope())
             {
-                Assert.That(illumination.GetLightLevel(transform.ToMapCoordinates(near), query), Is.Zero,
+                Assert.That(illumination.GetLightLevel(transform.ToMapCoordinates(anchoredNear), query), Is.Zero,
                     "An unanchored light shouldn't stay stuck where it was anchored.");
                 Assert.That(illumination.GetLightLevel(new MapCoordinates(201, 200, map.MapId), query), Is.GreaterThan(0f),
                     "An unanchored light should shine where it went.");
             }
 
-            server.EntMan.DeleteEntity(light);
+            server.EntMan.DeleteEntity(anchoredLight);
         });
     }
 
     [Test]
-    public async Task OccludersBlockShadowCastingLights()
+    public async Task OccludersBlockAndPermitLightAsExpected()
     {
         var server = Pair.Server;
         var map = await Pair.CreateTestMap();
@@ -164,6 +151,39 @@ public sealed class IlluminationSystemTests : GameTest
 
             server.EntMan.DeleteEntity(light);
             server.EntMan.DeleteEntity(wall);
+        });
+
+        EntityUid insideLight = default;
+        EntityUid insideWall = default;
+        await server.WaitAssertion(() =>
+        {
+            insideWall = server.EntMan.Spawn(null, new MapCoordinates(400, 400, map.MapId));
+            server.EntMan.AddComponent<OccluderComponent>(insideWall);
+
+            // Same offset as the Starlight wall lights, leaving the light just inside the wall.
+            insideLight = server.EntMan.Spawn(null, new MapCoordinates(400, 400, map.MapId));
+            var insideLightComp = pointLight.EnsureLight(insideLight);
+            insideLightComp.Offset = new Vector2(0, -0.495f);
+            pointLight.SetRadius(insideLight, 10f, insideLightComp);
+            pointLight.SetEnergy(insideLight, 0.8f, insideLightComp);
+            pointLight.SetEnabled(insideLight, true, insideLightComp);
+            pointLight.SetCastShadows(insideLight, true, insideLightComp);
+        });
+
+        await server.WaitRunTicks(1);
+
+        await server.WaitAssertion(() =>
+        {
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(illumination.GetLightLevel(new MapCoordinates(400, 397, map.MapId), query), Is.GreaterThan(0f),
+                    "The wall the light is mounted in shouldn't shade the room.");
+                Assert.That(illumination.GetLightLevel(new MapCoordinates(400, 402, map.MapId), query), Is.Zero,
+                    "The light shouldn't leak through its own wall to the other side.");
+            }
+
+            server.EntMan.DeleteEntity(insideLight);
+            server.EntMan.DeleteEntity(insideWall);
         });
     }
 
@@ -234,51 +254,6 @@ public sealed class IlluminationSystemTests : GameTest
             }
 
             server.EntMan.DeleteEntity(light);
-        });
-    }
-
-    [Test]
-    public async Task LightInsideOccluderStillShinesOut()
-    {
-        var server = Pair.Server;
-        var map = await Pair.CreateTestMap();
-
-        var illumination = server.System<SharedIlluminationSystem>();
-        var pointLight = server.System<SharedPointLightSystem>();
-
-        EntityUid light = default;
-        EntityUid wall = default;
-        var query = new IlluminationQuery(IgnoreAmbient: true);
-
-        await server.WaitAssertion(() =>
-        {
-            wall = server.EntMan.Spawn(null, new MapCoordinates(400, 400, map.MapId));
-            server.EntMan.AddComponent<OccluderComponent>(wall);
-
-            // Same offset as the Starlight wall lights, leaving the light just inside the wall.
-            light = server.EntMan.Spawn(null, new MapCoordinates(400, 400, map.MapId));
-            var lightComp = pointLight.EnsureLight(light);
-            lightComp.Offset = new Vector2(0, -0.495f);
-            pointLight.SetRadius(light, 10f, lightComp);
-            pointLight.SetEnergy(light, 0.8f, lightComp);
-            pointLight.SetEnabled(light, true, lightComp);
-            pointLight.SetCastShadows(light, true, lightComp);
-        });
-
-        await server.WaitRunTicks(1);
-
-        await server.WaitAssertion(() =>
-        {
-            using (Assert.EnterMultipleScope())
-            {
-                Assert.That(illumination.GetLightLevel(new MapCoordinates(400, 397, map.MapId), query), Is.GreaterThan(0f),
-                    "The wall the light is mounted in shouldn't shade the room.");
-                Assert.That(illumination.GetLightLevel(new MapCoordinates(400, 402, map.MapId), query), Is.Zero,
-                    "The light shouldn't leak through its own wall to the other side.");
-            }
-
-            server.EntMan.DeleteEntity(light);
-            server.EntMan.DeleteEntity(wall);
         });
     }
 }

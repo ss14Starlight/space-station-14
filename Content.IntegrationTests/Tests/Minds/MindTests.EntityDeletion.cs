@@ -118,32 +118,6 @@ public sealed partial class MindTests
     }
 
     /// <summary>
-    /// Test that a ghost gets created when the player entity is deleted.
-    /// 1. Delete mob
-    /// 2. Assert is ghost
-    /// </summary>
-    [Test]
-    public async Task TestGhostOnDelete()
-    {
-        // Client is needed to spawn session
-        var pair = await SetupPair(dirty: true);
-        var server = pair.Server;
-
-        var entMan = server.ResolveDependency<IServerEntityManager>();
-        var playerMan = server.ResolveDependency<IPlayerManager>();
-
-        var player = playerMan.Sessions.Single();
-
-        Assert.That(!entMan.HasComponent<GhostComponent>(player.AttachedEntity), "Player was initially a ghost?");
-
-        // Delete entity
-        await server.WaitPost(() => entMan.DeleteEntity(player.AttachedEntity!.Value));
-        await pair.RunTicksSync(5);
-
-        Assert.That(entMan.HasComponent<GhostComponent>(player.AttachedEntity), "Player did not become a ghost");
-    }
-
-    /// <summary>
     /// Test that when the original mob gets deleted, the visited ghost does not get deleted.
     /// And that the visited ghost becomes the main mob.
     /// 1. Visit ghost

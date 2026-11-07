@@ -16,55 +16,9 @@ public sealed class ShadegenAffectedTests : GameTest
     private const int RefreshTicks = 5;
 
     /// <summary>
-    /// Tests that a light keeps its shadegen marker while a shadegen covers it, and loses it once the shadegen
-    /// is deleted. Regression test: the marker used to be drained inside the per-shadegen loop, so removing the
-    /// last shadegen left the light suppressed for the rest of the round.
-    /// </summary>
-    [Test]
-    public async Task ShadegenRemovalClearsAffectedMarker()
-    {
-        var server = Pair.Server;
-        var map = await Pair.CreateTestMap();
-        var pointLight = server.System<SharedPointLightSystem>();
-
-        EntityUid light = default;
-        EntityUid shadegen = default;
-
-        await server.WaitAssertion(() =>
-        {
-            light = server.EntMan.SpawnAtPosition(null, map.GridCoords);
-            var lightComp = pointLight.EnsureLight(light);
-            pointLight.SetRadius(light, 5f, lightComp);
-            pointLight.SetEnabled(light, true, lightComp);
-
-            shadegen = server.EntMan.SpawnAtPosition(null, map.GridCoords);
-            server.EntMan.AddComponent<ShadegenComponent>(shadegen);
-        });
-
-        await server.WaitRunTicks(RefreshTicks);
-
-        await server.WaitAssertion(() =>
-        {
-            Assert.That(server.EntMan.HasComponent<ShadegenAffectedComponent>(light), Is.True,
-                "A light inside a shadegen field should be marked as affected.");
-
-            server.EntMan.DeleteEntity(shadegen);
-        });
-
-        await server.WaitRunTicks(RefreshTicks);
-
-        await server.WaitAssertion(() =>
-        {
-            Assert.That(server.EntMan.HasComponent<ShadegenAffectedComponent>(light), Is.False,
-                "Deleting the last shadegen should release every light it was suppressing.");
-
-            server.EntMan.DeleteEntity(light);
-        });
-    }
-
-    /// <summary>
-    /// Tests that two shadegens don't fight over the marker. Regression test: the shared update queue meant
-    /// whichever shadegen refreshed second stripped the markers the first one had just placed.
+    /// Tests that shadegens keep their own affected markers, and release them when deleted. Regression tests:
+    /// the shared update queue used to let shadegens strip one another's markers, and deleting the last shadegen
+    /// used to leave a light suppressed for the rest of the round.
     /// </summary>
     [Test]
     public async Task TwoShadegensDoNotClobberEachOther()
@@ -110,7 +64,30 @@ public sealed class ShadegenAffectedTests : GameTest
             });
 
             server.EntMan.DeleteEntity(nearShadegen);
+        });
+
+        await server.WaitRunTicks(RefreshTicks);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(server.EntMan.HasComponent<ShadegenAffectedComponent>(nearLight), Is.False,
+                    "Deleting the last shadegen should release the nearby light.");
+                Assert.That(server.EntMan.HasComponent<ShadegenAffectedComponent>(farLight), Is.True,
+                    "Deleting one shadegen should not release another shadegen's light.");
+            });
+
             server.EntMan.DeleteEntity(farShadegen);
+        });
+
+        await server.WaitRunTicks(RefreshTicks);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(server.EntMan.HasComponent<ShadegenAffectedComponent>(farLight), Is.False,
+                "Deleting the last shadegen should release every light it was suppressing.");
+
             server.EntMan.DeleteEntity(nearLight);
             server.EntMan.DeleteEntity(farLight);
         });

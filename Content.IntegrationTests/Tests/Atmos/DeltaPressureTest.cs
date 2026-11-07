@@ -118,12 +118,20 @@ public sealed class DeltaPressureTest : AtmosTest
         });
     }
 
+    [Test] // Starlight
+    public async Task ProcessingStandbyTest() // Starlight
+    {
+        // Starlight - start
+        await RunDeltaPressureStandby();
+        await RunAbsolutePressureStandby();
+        // Starlight - end
+    }
+
     /// <summary>
     /// Asserts that an entity that doesn't need to be damaged by DeltaPressure
     /// is not damaged by DeltaPressure.
     /// </summary>
-    [Test]
-    public async Task ProcessingDeltaStandbyTest()
+    private async Task RunDeltaPressureStandby() // Starlight
     {
         Entity<DeltaPressureComponent> dpEnt = default;
         TileAtmosphere tile = null!;
@@ -166,6 +174,11 @@ public sealed class DeltaPressureTest : AtmosTest
 
             await Server.WaitRunTicks(30);
         }
+
+        // Starlight - start
+        await Server.WaitPost(() => SEntMan.DeleteEntity(dpEnt));
+        await Server.WaitRunTicks(1);
+        // Starlight - end
     }
 
     /// <summary>
@@ -250,8 +263,7 @@ public sealed class DeltaPressureTest : AtmosTest
     /// Asserts that an entity that doesn't need to be damaged by DeltaPressure
     /// is not damaged by DeltaPressure when using absolute pressure thresholds.
     /// </summary>
-    [Test]
-    public async Task ProcessingAbsoluteStandbyTest()
+    private async Task RunAbsolutePressureStandby() // Starlight
     {
         Entity<DeltaPressureComponent> dpEnt = default;
         TileAtmosphere tile = null!;
@@ -291,6 +303,11 @@ public sealed class DeltaPressureTest : AtmosTest
 
             await Server.WaitRunTicks(30);
         }
+
+        // Starlight - start
+        await Server.WaitPost(() => SEntMan.DeleteEntity(dpEnt));
+        await Server.WaitRunTicks(1);
+        // Starlight - end
     }
 
     /// <summary>

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared.SmartFridge;
 
@@ -37,8 +38,6 @@ public sealed class SmartFridgeInteractionTest : InteractionTest
     [Test]
     public async Task InsertAndDispenseItemTest()
     {
-        await PlaceInHands(SampleItemProtoId);
-
         await SpawnTarget(SmartFridgeProtoId);
         var fridge = SEntMan.GetEntity(Target.Value);
         var component = SEntMan.GetComponent<SmartFridgeComponent>(fridge);
@@ -73,11 +72,11 @@ public sealed class SmartFridgeInteractionTest : InteractionTest
         );
     }
 
+    #region Starlight
     [Test]
-    public async Task InsertDumpableInsertableItemTest()
+    public async Task InsertDumpableItemTypesTest()
     {
-        await PlaceInHands(SampleItemProtoId);
-
+        // Starlight - start
         await SpawnTarget(SmartFridgeProtoId);
         var fridge = SEntMan.GetEntity(Target.Value);
         var component = SEntMan.GetComponent<SmartFridgeComponent>(fridge);
@@ -87,27 +86,20 @@ public sealed class SmartFridgeInteractionTest : InteractionTest
 
         await InteractUsing(SampleDumpableAndInsertableId);
 
-        // smartfridge now has one item only
+        // The insertable container is stored as one item.
         Assert.That(component.Entries, Is.Not.Empty);
-        Assert.That(component.ContainedEntries[component.Entries[0]].Count, Is.EqualTo(1));
-    }
-
-    [Test]
-    public async Task InsertDumpableItemTest()
-    {
-        await PlaceInHands(SampleItemProtoId);
-
-        await SpawnTarget(SmartFridgeProtoId);
-        var fridge = SEntMan.GetEntity(Target.Value);
-        var component = SEntMan.GetComponent<SmartFridgeComponent>(fridge);
-
-        await SpawnEntity("APCBasic", SEntMan.GetCoordinates(TargetCoords));
-        await RunTicks(1);
+        Assert.That(component.ContainedEntries[component.Entries[0]], Has.Count.EqualTo(1));
 
         await InteractUsing(SampleDumpableId);
 
-        // smartfridge now has N items
-        Assert.That(component.Entries, Is.Not.Empty);
-        Assert.That(component.ContainedEntries[component.Entries[0]].Count, Is.EqualTo(SampleDumpableCount));
+        // The dumpable container contributes its contents as a separate entry.
+        Assert.That(component.Entries, Has.Count.EqualTo(2));
+        var itemCounts = component.Entries
+            .Select(entry => component.ContainedEntries[entry].Count)
+            .OrderBy(count => count)
+            .ToArray();
+        Assert.That(itemCounts, Is.EqualTo(new[] { 1, SampleDumpableCount }));
+        // Starlight - end
     }
+    #endregion
 }

@@ -11,7 +11,7 @@ public sealed class MachineConstruction : InteractionTest
     private const string Beaker = "Beaker";
 
     [Test]
-    public async Task ConstructProtolathe()
+    public async Task ConstructAndDeconstructProtolathe() // Starlight
     {
         await StartConstruction(MachineFrame);
         await InteractUsing(Steel, 5);
@@ -20,12 +20,8 @@ public sealed class MachineConstruction : InteractionTest
         AssertPrototype(MachineFrame);
         await Interact(ProtolatheBoard, Manipulator1, Manipulator1, Manipulator1, Manipulator1, Beaker, Beaker, Screw);
         AssertPrototype(Protolathe);
-    }
 
-    [Test]
-    public async Task DeconstructProtolathe()
-    {
-        await StartDeconstruction(Protolathe);
+        // Starlight - start
         await Interact(Screw, Pry);
         AssertPrototype(MachineFrame);
         await Interact(Pry, Cut);
@@ -38,6 +34,7 @@ public sealed class MachineConstruction : InteractionTest
             (Beaker, 2),
             (Manipulator1, 4),
             (ProtolatheBoard, 1));
+        // Starlight - end
     }
 
     [Test]
@@ -55,4 +52,3 @@ public sealed class MachineConstruction : InteractionTest
         AssertPrototype("Autolathe");
     }
 }
-

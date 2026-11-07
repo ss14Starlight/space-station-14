@@ -57,8 +57,8 @@ public sealed class StorageTest : GameTest
         });
     }
 
-    [Test]
-    public async Task TestStorageFillPrototypes()
+    // [Test] // Starlight
+    private async Task ValidateStorageFillEntries() // Starlight
     {
         var pair = Pair;
         var server = pair.Server;
@@ -84,11 +84,16 @@ public sealed class StorageTest : GameTest
         });
     }
 
+    #region Starlight
     [Test]
-    public async Task TestSufficientSpaceForFill()
+    public async Task TestSufficientSpaceForStorageFills()
     {
         var pair = Pair;
         var server = pair.Server;
+
+        // Starlight - start
+        await ValidateStorageFillEntries();
+        // Starlight - end
 
         var entMan = server.ResolveDependency<IEntityManager>();
         var protoMan = server.ResolveDependency<IPrototypeManager>();
@@ -168,20 +173,6 @@ public sealed class StorageTest : GameTest
                 }
             }
         });
-    }
-
-    [Test]
-    public async Task TestSufficientSpaceForEntityStorageFill()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-
-        var entMan = server.ResolveDependency<IEntityManager>();
-        var protoMan = server.ResolveDependency<IPrototypeManager>();
-        var compFact = server.ResolveDependency<IComponentFactory>();
-        var id = compFact.GetComponentName<StorageFillComponent>();
-
-        var itemSys = entMan.System<SharedItemSystem>();
 
         foreach (var (proto, fill) in pair.GetPrototypesWithComponent<StorageFillComponent>())
         {
@@ -202,6 +193,7 @@ public sealed class StorageTest : GameTest
             });
         }
     }
+    #endregion
 
     private int GetEntrySize(EntitySpawnEntry entry, bool getCount, IPrototypeManager protoMan, SharedItemSystem itemSystem)
     {

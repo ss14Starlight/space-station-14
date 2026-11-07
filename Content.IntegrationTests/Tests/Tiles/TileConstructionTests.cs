@@ -6,14 +6,16 @@ namespace Content.IntegrationTests.Tests.Tiles;
 public sealed class TileConstructionTests : InteractionTest
 {
     /// <summary>
-    /// Test placing and cutting a single lattice.
+    /// Tests placing and cutting a lattice on an existing grid and in space.
     /// </summary>
     [Test]
-    public async Task PlaceThenCutLattice()
+    public async Task PlaceThenCutLatticeOnExistingAndNewGrid() // Starlight
     {
         await AssertTile(Plating);
         await AssertTile(Plating, PlayerCoords);
         AssertGridCount(1);
+
+        // Starlight - start
         await SetTile(null);
         await InteractUsing(Rod);
         await AssertTile(Lattice);
@@ -22,20 +24,9 @@ public sealed class TileConstructionTests : InteractionTest
         await AssertTile(null);
         await AssertEntityLookup((Rod, 1));
         AssertGridCount(1);
-    }
+        // Starlight - end
 
-    /// <summary>
-    /// Test placing and cutting a single lattice in space (not adjacent to any existing grid.
-    /// </summary>
-    [Test]
-    public async Task CutThenPlaceLatticeNewGrid()
-    {
-        await AssertTile(Plating);
-        await AssertTile(Plating, PlayerCoords);
-        AssertGridCount(1);
-
-        // Remove grid
-        await SetTile(null);
+        // Remove the remaining tile to test lattice placement on a new grid.
         await SetTile(null, PlayerCoords);
         Assert.That(MapData.Grid.Comp.Deleted);
         AssertGridCount(0);
@@ -54,7 +45,7 @@ public sealed class TileConstructionTests : InteractionTest
         await AssertTile(null);
         AssertGridCount(0);
 
-        await AssertEntityLookup((Rod, 1));
+        await AssertEntityLookup((Rod, 2)); // Starlight
     }
 
     /// <summary>

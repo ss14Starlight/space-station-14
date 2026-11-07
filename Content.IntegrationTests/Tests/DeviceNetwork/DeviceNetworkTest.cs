@@ -48,9 +48,19 @@ namespace Content.IntegrationTests.Tests.DeviceNetwork
       range: 100
         ";
 
-        [Test]
-        public async Task NetworkDeviceSendAndReceive()
+        [Test] // Starlight
+        public async Task DeviceNetworkTransportTests() // Starlight
         {
+            // Starlight - start
+            await RunStandardNetworkDeviceSendAndReceive();
+            await RunWirelessNetworkDeviceSendAndReceive();
+            await RunWiredNetworkDeviceSendAndReceive();
+            // Starlight - end
+        }
+
+        private async Task RunStandardNetworkDeviceSendAndReceive() // Starlight
+        {
+            // Starlight - start
             var pair = Pair;
             var server = pair.Server;
 
@@ -104,11 +114,12 @@ namespace Content.IntegrationTests.Tests.DeviceNetwork
             {
                 Assert.That(payload, Is.EquivalentTo(deviceNetTestSystem.LastPayload));
             });
+            // Starlight - end
         }
 
-        [Test]
-        public async Task WirelessNetworkDeviceSendAndReceive()
+        private async Task RunWirelessNetworkDeviceSendAndReceive() // Starlight
         {
+            // Starlight - start
             var pair = Pair;
             var server = pair.Server;
             var testMap = await pair.CreateTestMap();
@@ -125,10 +136,9 @@ namespace Content.IntegrationTests.Tests.DeviceNetwork
             DeviceNetworkComponent networkComponent2 = null;
             WirelessNetworkComponent wirelessNetworkComponent = null;
 
-            var testValue = "test";
             var payload = new NetworkPayload
             {
-                ["Test"] = testValue,
+                ["Test"] = "wireless",
                 ["testnumber"] = 1,
                 ["testbool"] = true
             };
@@ -187,11 +197,12 @@ namespace Content.IntegrationTests.Tests.DeviceNetwork
             {
                 Assert.That(payload, Is.Not.EqualTo(deviceNetTestSystem.LastPayload).AsCollection);
             });
+            // Starlight - end
         }
 
-        [Test]
-        public async Task WiredNetworkDeviceSendAndReceive()
+        private async Task RunWiredNetworkDeviceSendAndReceive() // Starlight
         {
+            // Starlight - start
             var pair = Pair;
             var server = pair.Server;
             var testMap = await pair.CreateTestMap();
@@ -209,10 +220,9 @@ namespace Content.IntegrationTests.Tests.DeviceNetwork
             WiredNetworkComponent wiredNetworkComponent = null;
             var grid = testMap.Grid.Comp;
 
-            var testValue = "test";
             var payload = new NetworkPayload
             {
-                ["Test"] = testValue,
+                ["Test"] = "wired",
                 ["testnumber"] = 1,
                 ["testbool"] = true
             };
@@ -254,7 +264,7 @@ namespace Content.IntegrationTests.Tests.DeviceNetwork
 
             await server.WaitAssertion(() =>
             {
-                //CollectionAssert.AreNotEqual(deviceNetTestSystem.LastPayload, payload);
+                Assert.That(payload, Is.Not.EqualTo(deviceNetTestSystem.LastPayload).AsCollection);
 
                 entityManager.SpawnEntity("CableApcExtension", coordinates);
 
@@ -268,6 +278,7 @@ namespace Content.IntegrationTests.Tests.DeviceNetwork
             {
                 Assert.That(payload, Is.EqualTo(deviceNetTestSystem.LastPayload).AsCollection);
             });
+            // Starlight - end
         }
     }
 }

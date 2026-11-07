@@ -23,7 +23,9 @@ public sealed class GrilleWindowConstruction : InteractionTest
 
         // Construct Window
         await StartConstruction(Window);
-        await InteractUsing(Glass, 10);
+        // Starlight - start
+        await InteractUsing(Glass, 5);
+        // Starlight - end
         ClientAssertPrototype(Window, Target);
 
         // Deconstruct Window
@@ -34,6 +36,12 @@ public sealed class GrilleWindowConstruction : InteractionTest
         Target = grille;
         await InteractUsing(Cut);
         AssertDeleted();
+
+        // Starlight - start
+        await StartConstruction(Window);
+        await InteractUsing(Glass, 5);
+        ClientAssertPrototype(Window, Target);
+        // Starlight - end
     }
 
     [Test]
@@ -53,4 +61,3 @@ public sealed class GrilleWindowConstruction : InteractionTest
         });
     }
 }
-

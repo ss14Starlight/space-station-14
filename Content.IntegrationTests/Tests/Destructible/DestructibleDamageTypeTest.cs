@@ -10,13 +10,10 @@ using static Content.IntegrationTests.Tests.Destructible.DestructibleTestPrototy
 
 namespace Content.IntegrationTests.Tests.Destructible
 {
-    [TestFixture]
     [TestOf(typeof(DamageTypeTrigger))]
-    [TestOf(typeof(AndTrigger))]
-    public sealed class DestructibleDamageTypeTest : GameTest
+    public sealed partial class DestructibleDamageGroupTest : GameTest // Starlight
     {
-        [Test]
-        public async Task Test()
+        private async Task RunDamageTypeTest() // Starlight
         {
             var pair = Pair;
             var server = pair.Server;

@@ -1,5 +1,6 @@
 #nullable enable
 using System.Linq;
+using Content.Client._Starlight.Zones;
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Server._Starlight.Zones;
@@ -31,21 +32,50 @@ public sealed class ZoneSaveLoadTest : GameTest
         var mapLoader = SEntMan.System<MapLoaderSystem>();
         var mapSystem = SEntMan.System<SharedMapSystem>();
         var resManager = Server.ResolveDependency<IResourceManager>();
+        var session = ServerSession;
+        Assert.That(session, Is.Not.Null, "This test needs a connected player.");
+        MapId mapId = default;
+        EntityUid grid = default;
+        NetEntity netGrid = default;
 
         await Server.WaitAssertion(() =>
         {
             resManager.UserData.CreateDir(mapPath.Directory);
 
-            mapSystem.CreateMap(out var mapId);
+            mapSystem.CreateMap(out mapId);
+            var gridEntity = mapSystem.CreateGridEntity(mapId);
+            grid = gridEntity.Owner;
+            mapSystem.SetTile(gridEntity, new Vector2i(5, 0), new Tile(1));
 
-            var grid = mapSystem.CreateGridEntity(mapId);
-            mapSystem.SetTile(grid, new Vector2i(5, 0), new Tile(1));
+            var comp = SEntMan.AddComponent<ZoneGridComponent>(grid);
+            netGrid = SEntMan.GetNetEntity(grid);
 
-            var comp = SEntMan.AddComponent<ZoneGridComponent>(grid.Owner);
+            zones.PaintZoneRect((grid, comp), _cargoRect, "Cargo");
+            zones.SendZoneShapes((grid, comp), session!);
+        });
 
-            zones.PaintZoneRect((grid.Owner, comp), _cargoRect, "Cargo");
-            zones.PaintZoneRect((grid.Owner, comp), _maintRect, "Maintenance");
+        await RunTicksSync(10);
 
+        var placement = CEntMan.System<ZonePlacementSystem>();
+        var known = placement.GetKnownShapes(netGrid);
+
+        Assert.That(known, Is.Not.Null, "The client never received the shapes.");
+
+        var set = known!.SingleOrDefault(x => x.Zone == "Cargo");
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(set, Is.Not.Null, "The zone came across without its prototype.");
+            Assert.That(set!.Rects, Is.EqualTo([_cargoRect]),
+                "The rectangle did not survive serialisation intact.");
+        }
+
+        await Server.WaitAssertion(() =>
+            zones.PaintZoneRect((grid, SEntMan.GetComponent<ZoneGridComponent>(grid)),
+                _maintRect, "Maintenance"));
+
+        await Server.WaitAssertion(() =>
+        {
             Assert.That(mapLoader.TrySaveMap(mapId, mapPath));
             mapSystem.DeleteMap(mapId);
         });

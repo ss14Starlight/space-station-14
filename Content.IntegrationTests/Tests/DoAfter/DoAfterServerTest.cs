@@ -58,8 +58,9 @@ namespace Content.IntegrationTests.Tests.DoAfter
             });
         }
 
+        #region Starlight
         [Test]
-        public async Task TestFinished()
+        public async Task TestFinishedAndCancelled()
         {
             var pair = Pair;
             var server = pair.Server;
@@ -68,49 +69,38 @@ namespace Content.IntegrationTests.Tests.DoAfter
             var entityManager = server.EntMan;
             var timing = server.ResolveDependency<IGameTiming>();
             var doAfterSystem = entityManager.System<SharedDoAfterSystem>();
-            var ev = new TestDoAfterEvent();
+            var finishedEvent = new TestDoAfterEvent();
+            var cancelledEvent = new TestDoAfterEvent();
 
-            // That it finishes successfully
             await server.WaitPost(() =>
             {
                 var mob = entityManager.SpawnEntity("DoAfterDummy", MapCoordinates.Nullspace);
-                var args = new DoAfterArgs(entityManager, mob, timing.TickPeriod / 2, ev, null) { Broadcast = true };
+                var args = new DoAfterArgs(entityManager, mob, timing.TickPeriod / 2, finishedEvent, null) { Broadcast = true };
 #pragma warning disable NUnit2045 // Interdependent assertions.
                 Assert.That(doAfterSystem.TryStartDoAfter(args));
-                Assert.That(ev.Cancelled, Is.False);
+                Assert.That(finishedEvent.Cancelled, Is.False);
 #pragma warning restore NUnit2045
             });
 
             await server.WaitRunTicks(1);
-            Assert.That(ev.Cancelled, Is.False);
-        }
-
-        [Test]
-        public async Task TestCancelled()
-        {
-            var pair = Pair;
-            var server = pair.Server;
-            var entityManager = server.EntMan;
-            var timing = server.ResolveDependency<IGameTiming>();
-            var doAfterSystem = entityManager.System<SharedDoAfterSystem>();
-            var ev = new TestDoAfterEvent();
+            Assert.That(finishedEvent.Cancelled, Is.False);
 
             await server.WaitPost(() =>
             {
                 var mob = entityManager.SpawnEntity("DoAfterDummy", MapCoordinates.Nullspace);
-                var args = new DoAfterArgs(entityManager, mob, timing.TickPeriod * 2, ev, null) { Broadcast = true };
+                var args = new DoAfterArgs(entityManager, mob, timing.TickPeriod * 2, cancelledEvent, null) { Broadcast = true };
 
                 Assert.That(doAfterSystem.TryStartDoAfter(args, out var id));
 
-                Assert.That(!ev.Cancelled);
+                Assert.That(cancelledEvent.Cancelled, Is.False);
                 doAfterSystem.Cancel(id);
-                Assert.That(ev.Cancelled);
-
+                Assert.That(cancelledEvent.Cancelled, Is.True);
             });
 
             await server.WaitRunTicks(3);
-            Assert.That(ev.Cancelled);
+            Assert.That(cancelledEvent.Cancelled, Is.True);
         }
+        #endregion
 
         /// <summary>
         /// Spawns two sets of mobs with a targeted DoAfter to check that the GetEntitiesInteractingWithTarget result

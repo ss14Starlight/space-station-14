@@ -16,24 +16,25 @@ public sealed class EnsureCVarTest : GameTest
     [SidedDependency(Side.Client)] private readonly IConfigurationManager _cCfg = default!;
 
     [Test]
-    [Description("Ensure Foo is set and Bar is not.")]
-    public void FooIsSet()
+    [Description("Ensure Foo is set and Bar keeps its default value.")] // Starlight
+    public void FooIsSet() // Starlight
     {
         using (Assert.EnterMultipleScope())
         {
+            // Starlight - start
             Assert.That(_sCfg.GetCVar(EnsureCVarsTestCVars.Foo), Is.True);
             Assert.That(_cCfg.GetCVar(EnsureCVarsTestCVars.Foo),
                 Is.EqualTo(EnsureCVarsTestCVars.Foo.DefaultValue),
                 "Foo is not replicated and should not be set on the client.");
-
             Assert.That(_sCfg.GetCVar(EnsureCVarsTestCVars.Bar),
                 Is.EqualTo(EnsureCVarsTestCVars.Bar.DefaultValue));
+            // Starlight - end
         }
     }
 
     [Test]
     [EnsureCVar(Side.Server, typeof(EnsureCVarsTestCVars), nameof(EnsureCVarsTestCVars.Bar), 42)]
-    [Description("Ensure Foo and Bar are set.")]
+    [Description("Ensure Bar is set.")] // Starlight
     public void BarIsSet()
     {
         var props = TestContext.CurrentContext.Test.Properties;

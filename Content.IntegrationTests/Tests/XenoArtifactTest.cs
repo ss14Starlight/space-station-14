@@ -96,12 +96,12 @@ public sealed class XenoArtifactTest : GameTest
     """;
 
     /// <summary>
-    /// Checks that adding nodes and edges properly adds them into the adjacency matrix
+    /// Checks that adding, connecting, and removing nodes preserve the adjacency matrix.
     /// </summary>
     [Test]
-    [Description("Checks that adding nodes and edges properly adds them into the adjacency matrix")]
+    [Description("Checks that adding, connecting, and removing nodes preserve the adjacency matrix.")] // Starlight
     [RunOnSide(Side.Server)]
-    public async Task XenoArtifactAddNodeTest()
+    public async Task XenoArtifactAddAndRemoveNodeTest() // Starlight
     {
         var artifactUid = SSpawn(TestArtifact);
         var artifactEnt = (artifactUid, comp: SComp<XenoArtifactComponent>(artifactUid));
@@ -137,45 +137,22 @@ public sealed class XenoArtifactTest : GameTest
         // Assert that predecessors and direct predecessors are counted correctly for node 3.
         Assert.That(_sArtifactSystem.GetDirectPredecessorNodes(artifactEnt, node3!.Value), Has.Count.EqualTo(1));
         Assert.That(_sArtifactSystem.GetPredecessorNodes(artifactEnt, node3!.Value), Has.Count.EqualTo(2));
-    }
 
-    /// <summary>
-    /// Checks to make sure that removing nodes properly cleans up all connections.
-    /// </summary>
-    [Test]
-    [Description("Checks to make sure that removing nodes properly cleans up all connections.")]
-    [RunOnSide(Side.Server)]
-    public async Task XenoArtifactRemoveNodeTest()
-    {
-        var artifactUid = SSpawn(TestArtifact);
-        var artifactEnt = (artifactUid, comp: SComp<XenoArtifactComponent>(artifactUid));
-
-        // Create 3 nodes
-        Assert.That(_sArtifactSystem.AddNode(artifactEnt, TestArtifactNode, out var node1, false));
-        Assert.That(_sArtifactSystem.AddNode(artifactEnt, TestArtifactNode, out var node2, false));
-        Assert.That(_sArtifactSystem.AddNode(artifactEnt, TestArtifactNode, out var node3, false));
+        // Starlight - start
         Assert.That(_sArtifactSystem.AddNode(artifactEnt, TestArtifactNode, out var node4, false));
         Assert.That(_sArtifactSystem.AddNode(artifactEnt, TestArtifactNode, out var node5, false));
-
         Assert.That(_sArtifactSystem.GetAllNodeIndices(artifactEnt).Count(), Is.EqualTo(5));
+        _sArtifactSystem.AddEdge(artifactEnt, node3.Value, node4!.Value, false);
+        _sArtifactSystem.AddEdge(artifactEnt, node4.Value, node5!.Value, false);
 
-        // Add connection: 1 -> 2 -> 3 -> 4 -> 5
-        _sArtifactSystem.AddEdge(artifactEnt, node1!.Value, node2!.Value, false);
-        _sArtifactSystem.AddEdge(artifactEnt, node2!.Value, node3!.Value, false);
-        _sArtifactSystem.AddEdge(artifactEnt, node3!.Value, node4!.Value, false);
-        _sArtifactSystem.AddEdge(artifactEnt, node4!.Value, node5!.Value, false);
-
-        // Make sure we have a continuous connection between the two ends of the graph.
         Assert.That(_sArtifactSystem.GetSuccessorNodes(artifactEnt, node1.Value), Has.Count.EqualTo(4));
         Assert.That(_sArtifactSystem.GetPredecessorNodes(artifactEnt, node5.Value), Has.Count.EqualTo(4));
 
-        // Remove the node and make sure it's no longer in the artifact.
-        Assert.That(_sArtifactSystem.RemoveNode(artifactEnt, node3!.Value, false));
-        Assert.That(_sArtifactSystem.TryGetIndex(artifactEnt, node3!.Value, out _), Is.False, "Node 3 still present in artifact.");
-
-        // Check to make sure that we got rid of all the connections.
-        Assert.That(_sArtifactSystem.GetSuccessorNodes(artifactEnt, node2!.Value), Is.Empty);
-        Assert.That(_sArtifactSystem.GetPredecessorNodes(artifactEnt, node4!.Value), Is.Empty);
+        Assert.That(_sArtifactSystem.RemoveNode(artifactEnt, node3.Value, false));
+        Assert.That(_sArtifactSystem.TryGetIndex(artifactEnt, node3.Value, out _), Is.False, "Node 3 still present in artifact.");
+        Assert.That(_sArtifactSystem.GetSuccessorNodes(artifactEnt, node2.Value), Is.Empty);
+        Assert.That(_sArtifactSystem.GetPredecessorNodes(artifactEnt, node4.Value), Is.Empty);
+        // Starlight - end
     }
 
     /// <summary>

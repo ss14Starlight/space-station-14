@@ -45,7 +45,7 @@ public sealed class ThavenMoodTests : GameTest
 
     [Test]
     [Repeat(10)]
-    public async Task TestDuplicatePrevention()
+    public async Task TestDuplicatePreventionForOverlappingVariableSets()
     {
         var pair = Pair;
         var server = pair.Server;
@@ -55,36 +55,16 @@ public sealed class ThavenMoodTests : GameTest
         var thavenSystem = entMan.System<ThavenMoodsSystem>();
         var protoMan = server.ResolveDependency<IPrototypeManager>();
 
-        const string MOODPROTO = "DuplicateTest";
-        var dataset = protoMan.Index<DatasetPrototype>(DATASETPROTO);
-        var moodProto = protoMan.Index<ThavenMoodPrototype>(MOODPROTO);
+        const string MoodProto = "DuplicateTest";
+        const string OverlapMoodProto = "DuplicateOverlapTest";
+        var datasetSet = protoMan.Index<DatasetPrototype>(DATASETPROTO).Values.ToHashSet();
+        var mood = thavenSystem.RollMood(protoMan.Index<ThavenMoodPrototype>(MoodProto));
+        var overlapMood = thavenSystem.RollMood(protoMan.Index<ThavenMoodPrototype>(OverlapMoodProto));
 
-        var datasetSet = dataset.Values.ToHashSet();
-        var mood = thavenSystem.RollMood(moodProto);
-        var moodVarSet = mood.MoodVars.Values.ToHashSet();
-
-        Assert.That(moodVarSet, Is.EquivalentTo(datasetSet));
-    }
-
-    [Test]
-    [Repeat(10)]
-    public async Task TestDuplicateOverlap()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-
-        var entMan = server.ResolveDependency<IEntityManager>();
-        var thavenSystem = entMan.System<ThavenMoodsSystem>();
-        var protoMan = server.ResolveDependency<IPrototypeManager>();
-
-        const string MOODPROTO = "DuplicateOverlapTest";
-        var dataset = protoMan.Index<DatasetPrototype>(DATASETPROTO);
-        var moodProto = protoMan.Index<ThavenMoodPrototype>(MOODPROTO);
-
-        var datasetSet = dataset.Values.ToHashSet();
-        var mood = thavenSystem.RollMood(moodProto);
-        var moodVarSet = mood.MoodVars.Values.ToHashSet();
-
-        Assert.That(moodVarSet, Is.EquivalentTo(datasetSet));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(mood.MoodVars.Values.ToHashSet(), Is.EquivalentTo(datasetSet));
+            Assert.That(overlapMood.MoodVars.Values.ToHashSet(), Is.EquivalentTo(datasetSet));
+        }
     }
 }

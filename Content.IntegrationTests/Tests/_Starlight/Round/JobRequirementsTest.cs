@@ -105,21 +105,23 @@ public sealed class JobRequirementsTest : GameTest
                     FreezerHead: [ -1, -1 ]
         """;
 
-    /// <summary>
-    /// Generic test for the age requirements
-    /// </summary>
-    /// <param name="age">Age of created character</param>
-    /// <param name="wantedJob">Job that this character wants</param>
-    /// <param name="expectedJob">If true, assert that the job was assigned.
-    /// If false, assert that job was not given</param>
     [Test]
-    [TestCase(75, "SeniorCitizen")]
-    [TestCase(20, "SeniorCitizen", false)]
-    [TestCase(19, "Twenties", false)]
-    [TestCase(20, "Twenties")]
-    [TestCase(29, "Twenties")]
-    [TestCase(30, "Twenties", false)]
-    public async Task AgeRequirementsTest(int age, string wantedJob, bool expectedJob = true)
+    public async Task AgeAndSpeciesRequirementsTest()
+    {
+        await RunAgeRequirementsScenario(75, "SeniorCitizen");
+        await RunAgeRequirementsScenario(20, "SeniorCitizen", false);
+        await RunAgeRequirementsScenario(19, "Twenties", false);
+        await RunAgeRequirementsScenario(20, "Twenties");
+        await RunAgeRequirementsScenario(29, "Twenties");
+        await RunAgeRequirementsScenario(30, "Twenties", false);
+
+        await RunSpeciesRequirementsScenario("Reptilian", "Wehngineer");
+        await RunSpeciesRequirementsScenario("Moth", "Wehngineer", false);
+        await RunSpeciesRequirementsScenario("Reptilian", "FreezerHead", false);
+        await RunSpeciesRequirementsScenario("Moth", "FreezerHead");
+    }
+
+    private async Task RunAgeRequirementsScenario(int age, string wantedJob, bool expectedJob = true)
     {
         var pair = Pair;
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
@@ -232,19 +234,7 @@ public sealed class JobRequirementsTest : GameTest
         await pair.ReallyBeIdle(); // allow restart to finish so lingering logs don't fire post-disposal
     }
 
-    /// <summary>
-    /// Generic test for species requirements
-    /// </summary>
-    /// <param name="species">Species of the created profile</param>
-    /// <param name="wantedJob">Job preference of the created profile</param>
-    /// <param name="expectedJob">If true, assert that the job was assigned.
-    /// If false, assert that job was not given</param>
-    [Test]
-    [TestCase("Reptilian", "Wehngineer")]
-    [TestCase("Moth", "Wehngineer", false)]
-    [TestCase("Reptilian", "FreezerHead", false)]
-    [TestCase("Moth", "FreezerHead")]
-    public async Task SpeciesRequirementsTest(string species, string wantedJob, bool expectedJob = true)
+    private async Task RunSpeciesRequirementsScenario(string species, string wantedJob, bool expectedJob = true)
     {
         var pair = Pair;
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);

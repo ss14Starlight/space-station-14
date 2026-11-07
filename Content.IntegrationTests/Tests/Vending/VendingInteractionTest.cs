@@ -67,44 +67,9 @@ public sealed class VendingInteractionTest : InteractionTest
 ";
 
     [Test]
-    public async Task InteractUITest()
+    public async Task UiDispenseAndRestockTest() // Starlight
     {
-        await SpawnTarget(VendingMachineProtoId);
-
-        // Should start with no BUI open
-        Assert.That(IsUiOpen(VendingMachineUiKey.Key), Is.False, "BUI was open unexpectedly.");
-
-        // Unpowered vending machine does not open BUI
-        await Activate();
-        Assert.That(IsUiOpen(VendingMachineUiKey.Key), Is.False, "BUI opened without power.");
-
-        // Power the vending machine
-        var apc = await SpawnEntity("APCBasic", SEntMan.GetCoordinates(TargetCoords));
-        await RunTicks(1);
-
-        // Interacting with powered vending machine opens BUI
-        await Activate();
-        Assert.That(IsUiOpen(VendingMachineUiKey.Key), "BUI failed to open.");
-
-        // Interacting with it again closes the BUI
-        await Activate();
-        Assert.That(IsUiOpen(VendingMachineUiKey.Key), Is.False, "BUI failed to close on interaction.");
-
-        // Reopen BUI for the next check
-        await Activate();
-        Assert.That(IsUiOpen(VendingMachineUiKey.Key), "BUI failed to reopen.");
-
-        // Remove power
-        await Delete(apc);
-        await RunTicks(1);
-
-        // The BUI should close when power is lost
-        Assert.That(IsUiOpen(VendingMachineUiKey.Key), Is.False, "BUI failed to close on power loss.");
-    }
-
-    [Test]
-    public async Task DispenseItemTest()
-    {
+        // Starlight - start
         await SpawnTarget(VendingMachineProtoId);
         var vendorEnt = SEntMan.GetEntity(Target.Value);
 
@@ -112,40 +77,6 @@ public sealed class VendingInteractionTest : InteractionTest
         var items = vendingSystem.GetAllInventory(vendorEnt);
 
         // Verify initial item count
-        Assert.That(items, Is.Not.Empty, $"{VendingMachineProtoId} spawned with no items.");
-        Assert.That(items.First().Amount, Is.EqualTo(5), $"{VendingMachineProtoId} spawned with unexpected item count.");
-
-        // Power the vending machine
-        await SpawnEntity("APCBasic", SEntMan.GetCoordinates(TargetCoords));
-        await RunTicks(1);
-
-        // Open the BUI
-        await Activate();
-        Assert.That(IsUiOpen(VendingMachineUiKey.Key), "BUI failed to open.");
-
-        // Request an item be dispensed
-        var ev = new VendingMachineEjectMessage(InventoryType.Regular, VendedItemProtoId);
-        await SendBui(VendingMachineUiKey.Key, ev);
-
-        // Make sure the stock decreased
-        Assert.That(items.First().Amount, Is.EqualTo(4), "Stocked item count did not decrease.");
-        // Make sure the dispensed item was spawned in to the world
-        await AssertEntityLookup(
-            ("APCBasic", 1),
-            (VendedItemProtoId, 1)
-        );
-    }
-
-    [Test]
-    public async Task RestockTest()
-    {
-        var vendingSystem = SEntMan.System<VendingMachineSystem>();
-
-        await SpawnTarget(VendingMachineProtoId);
-        var vendorEnt = SEntMan.GetEntity(Target.Value);
-
-        var items = vendingSystem.GetAllInventory(vendorEnt);
-
         Assert.That(items, Is.Not.Empty, $"{VendingMachineProtoId} spawned with no items.");
         Assert.That(items.First().Amount, Is.EqualTo(5), $"{VendingMachineProtoId} spawned with unexpected item count.");
 
@@ -166,6 +97,41 @@ public sealed class VendingInteractionTest : InteractionTest
         await InteractUsing(RestockBoxProtoId);
 
         Assert.That(items.First().Amount, Is.EqualTo(10), "Restocking resulted in unexpected item count.");
+
+        // Power the vending machine
+        Assert.That(IsUiOpen(VendingMachineUiKey.Key), Is.False, "BUI was open unexpectedly.");
+        await Activate();
+        Assert.That(IsUiOpen(VendingMachineUiKey.Key), Is.False, "BUI opened without power.");
+
+        var apc = await SpawnEntity("APCBasic", SEntMan.GetCoordinates(TargetCoords));
+        await RunTicks(1);
+
+        // Interacting with a powered vending machine toggles its BUI.
+        await Activate();
+        Assert.That(IsUiOpen(VendingMachineUiKey.Key), "BUI failed to open.");
+
+        await Activate();
+        Assert.That(IsUiOpen(VendingMachineUiKey.Key), Is.False, "BUI failed to close on interaction.");
+
+        await Activate();
+        Assert.That(IsUiOpen(VendingMachineUiKey.Key), "BUI failed to reopen.");
+
+        // Request an item be dispensed
+        var ev = new VendingMachineEjectMessage(InventoryType.Regular, VendedItemProtoId);
+        await SendBui(VendingMachineUiKey.Key, ev);
+
+        // Make sure the stock decreased
+        Assert.That(items.First().Amount, Is.EqualTo(9), "Stocked item count did not decrease.");
+        // Make sure the dispensed item was spawned in to the world
+        await AssertEntityLookup(
+            ("APCBasic", 1),
+            (VendedItemProtoId, 1)
+        );
+
+        await Delete(apc);
+        await RunTicks(1);
+        Assert.That(IsUiOpen(VendingMachineUiKey.Key), Is.False, "BUI failed to close on power loss.");
+        // Starlight - end
     }
 
     [Test]

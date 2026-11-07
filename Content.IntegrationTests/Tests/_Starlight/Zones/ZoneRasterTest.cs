@@ -61,6 +61,14 @@ public sealed class ZoneRasterTest : GameTest
 
             zones.RebuildHints((grid.Owner, comp));
             zones.FullRebuild((grid.Owner, comp));
+
+            var emptyGrid = mapSys.CreateGridEntity(testMap.MapId);
+            mapSys.SetTile(emptyGrid, emptyGrid, Vector2i.Zero, new Tile(1));
+            Assert.Multiple(() =>
+            {
+                Assert.That(zones.GetZoneId(emptyGrid.Owner, Vector2i.Zero), Is.EqualTo(SharedZoneSystem.NoZone));
+                Assert.That(zones.TryGetZone(emptyGrid.Owner, Vector2i.Zero, out _), Is.False);
+            });
         });
 
         var hallway = zones.GetZoneId("Hallway");
@@ -104,28 +112,4 @@ public sealed class ZoneRasterTest : GameTest
         ushort Zone(int x, int y) => zones.GetZoneId(grid.Owner, new Vector2i(x, y));
     }
 
-    [Test]
-    public async Task EmptyGridHasNoZones()
-    {
-        var server = Pair.Server;
-        var entMan = server.EntMan;
-        var mapSys = entMan.System<SharedMapSystem>();
-        var zones = entMan.System<ZoneSystem>();
-
-        var testMap = await Pair.CreateTestMap();
-
-        Entity<MapGridComponent> grid = default;
-
-        await server.WaitPost(() =>
-        {
-            grid = mapSys.CreateGridEntity(testMap.MapId);
-            mapSys.SetTile(grid, grid, Vector2i.Zero, new Tile(1));
-        });
-
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(zones.GetZoneId(grid.Owner, Vector2i.Zero), Is.EqualTo(SharedZoneSystem.NoZone));
-            Assert.That(zones.TryGetZone(grid.Owner, Vector2i.Zero, out _), Is.False);
-        }
-    }
 }

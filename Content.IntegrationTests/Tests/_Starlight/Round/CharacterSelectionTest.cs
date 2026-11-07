@@ -97,10 +97,13 @@ public sealed class CharacterSelectionTest : GameTest
 
         public HumanoidCharacterProfile ToProfile()
         {
-            return HumanoidCharacterProfile.Random()
-                .AsEnabled(Enabled)
-                .WithJobPreferences(Jobs)
-                .WithAntagPreferences(IsTraitor ? [Traitor] : []);
+            var profile = HumanoidCharacterProfile.Random()
+                .AsEnabled(Enabled);
+            if (Jobs.Count > 0)
+            {
+                profile = profile.WithJobPreferences(Jobs);
+            }
+            return profile.WithAntagPreferences(IsTraitor ? [Traitor] : []);
         }
     }
 
@@ -150,6 +153,10 @@ public sealed class CharacterSelectionTest : GameTest
             {
                 dict.Add(job,  JobPriority.Low);
             }
+            if (dict.Count == 0)
+            {
+                dict.Add(SharedGameTicker.FallbackOverflowJob, JobPriority.High);
+            }
             return dict;
         }
     }
@@ -169,6 +176,15 @@ public sealed class CharacterSelectionTest : GameTest
             ],
             ExpectedJob = Passenger,
             ExpectTraitor = true
+        },
+        new()
+        {
+            Description = "Single char, default job",
+            Characters =
+            [
+                new() { Jobs = [], ExpectToSpawn = true }
+            ],
+            ExpectedJob = Passenger
         },
         // a player with only a job that doesn't appear on the station shouldn't spawn, even if they could be
         // selected as a traitor

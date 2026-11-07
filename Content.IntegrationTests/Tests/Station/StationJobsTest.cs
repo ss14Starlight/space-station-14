@@ -85,7 +85,7 @@ public sealed class StationJobsTest : GameTest
     private const int TotalPlayers = PlayerCount + CaptainCount;
 
     [Test]
-    public async Task AssignJobsTest()
+    public async Task AssignAndAdjustJobsTest() // Starlight
     {
         var pair = Pair;
         var server = pair.Server;
@@ -166,30 +166,14 @@ public sealed class StationJobsTest : GameTest
                 Assert.That(assigned.Values.Select(x => x.Item1).ToList(), Does.Contain("TCaptain"));
             });
         });
-    }
 
-    [Test]
-    public async Task AdjustJobsTest()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-
-        var prototypeManager = server.ResolveDependency<IPrototypeManager>();
-        var fooStationProto = prototypeManager.Index<GameMapPrototype>(StationMapId);
-        var entSysMan = server.ResolveDependency<IEntityManager>().EntitySysManager;
-        var stationJobs = entSysMan.GetEntitySystem<StationJobsSystem>();
-        var stationSystem = entSysMan.GetEntitySystem<StationSystem>();
-
-        var station = EntityUid.Invalid;
-        await server.WaitPost(() =>
-        {
-            station = stationSystem.InitializeNewStation(fooStationProto.Stations["Station"], null, $"Foo Station");
-        });
-
+        // Starlight - start
         await server.WaitRunTicks(1);
 
         await server.WaitAssertion(() =>
         {
+            var station = stations[0];
+
             // Verify jobs are/are not unlimited.
             Assert.Multiple(() =>
             {
@@ -215,6 +199,7 @@ public sealed class StationJobsTest : GameTest
                 Assert.That(stationJobs.IsJobUnlimited(station, "TChaplain"), "Could not make TChaplain unlimited.");
             });
         });
+        // Starlight - end
     }
 
     [Test]

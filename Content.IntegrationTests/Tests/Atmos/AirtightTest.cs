@@ -47,58 +47,45 @@ public sealed class AirtightTest : AtmosTest
      Tests for asserting that proper ComponentInit and other events properly work.
      */
 
+    #region Starlight
     [Test]
-    public async Task Component_InitDataCorrect()
+    public async Task Component_InitDataCorrectAtAllTiles()
     {
+        // Starlight - start
         // Ensure grid/atmos is initialized.
         SAtmos.RunProcessingFull(ProcessEnt, MapData.Grid.Owner, SAtmos.AtmosTickRate);
 
+        var offsets = new[]
+        {
+            Vector2i.Zero,
+            new Vector2i(0, 1),
+            new Vector2i(0, -1),
+            new Vector2i(1, 0),
+            new Vector2i(-1, 0),
+        };
+        var walls = new EntityUid[offsets.Length];
+
         await Server.WaitPost(delegate
         {
-            var coords = new EntityCoordinates(RelevantAtmos.Owner, Vector2.Zero);
-            _targetWall = SEntMan.SpawnAtPosition(_wallProto, coords);
+            for (var i = 0; i < offsets.Length; i++)
+            {
+                var coords = new EntityCoordinates(RelevantAtmos.Owner, offsets[i]);
+                walls[i] = SEntMan.SpawnAtPosition(_wallProto, coords);
+            }
         });
 
-        SEntMan.TryGetComponent<AirtightComponent>(_targetWall, out var airtightComp);
-        Assert.That(airtightComp, Is.Not.Null, "Expected spawned wall entity to have AirtightComponent.");
-
-        // The data on the component itself should reflect full blockage.
-        // It should also hold the proper last position.
-        using (Assert.EnterMultipleScope())
+        for (var i = 0; i < walls.Length; i++)
         {
-            Assert.That(airtightComp.AirBlockedDirection, Is.EqualTo(AtmosDirection.All));
-            Assert.That(airtightComp.LastPosition, Is.EqualTo((RelevantAtmos.Owner, Vector2i.Zero)));
+            var airtightComp = SEntMan.GetComponent<AirtightComponent>(walls[i]);
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(airtightComp.AirBlockedDirection, Is.EqualTo(AtmosDirection.All));
+                Assert.That(airtightComp.LastPosition, Is.EqualTo((RelevantAtmos.Owner, offsets[i])));
+            }
         }
+        // Starlight - end
     }
-
-    [Test]
-    [TestCase(AtmosDirection.North)]
-    [TestCase(AtmosDirection.South)]
-    [TestCase(AtmosDirection.East)]
-    [TestCase(AtmosDirection.West)]
-    public async Task MultiTile_Component_InitDataCorrect(AtmosDirection direction)
-    {
-        // Ensure grid/atmos is initialized.
-        SAtmos.RunProcessingFull(ProcessEnt, MapData.Grid.Owner, SAtmos.AtmosTickRate);
-
-        var offsetVec = Vector2i.Zero.Offset(direction);
-        await Server.WaitPost(delegate
-        {
-            var coords = new EntityCoordinates(RelevantAtmos.Owner, offsetVec);
-            _targetWall = SEntMan.SpawnAtPosition(_wallProto, coords);
-        });
-
-        SEntMan.TryGetComponent<AirtightComponent>(_targetWall, out var airtightComp);
-        Assert.That(airtightComp, Is.Not.Null, "Expected spawned wall entity to have AirtightComponent.");
-
-        // The data on the component itself should reflect full blockage.
-        // It should also hold the proper last position.
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(airtightComp.AirBlockedDirection, Is.EqualTo(AtmosDirection.All));
-            Assert.That(airtightComp.LastPosition, Is.EqualTo((RelevantAtmos.Owner, offsetVec)));
-        }
-    }
+    #endregion
 
     #endregion
 

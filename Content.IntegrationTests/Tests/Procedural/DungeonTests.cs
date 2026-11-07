@@ -11,7 +11,7 @@ namespace Content.IntegrationTests.Tests.Procedural;
 public sealed class DungeonTests : GameTest
 {
     [Test]
-    public async Task TestDungeonRoomPackBounds()
+    public async Task TestDungeonRoomPackBoundsAndPresets() // Starlight
     {
         var pair = Pair;
         var protoManager = pair.Server.ResolveDependency<IPrototypeManager>();
@@ -56,10 +56,14 @@ public sealed class DungeonTests : GameTest
                 }
             }
         });
+
+        // Starlight - start
+        await TestDungeonPresets();
+        // Starlight - end
     }
 
-    [Test]
-    public async Task TestDungeonPresets()
+    // [Test] // Starlight
+    private async Task TestDungeonPresets() // Starlight
     {
         var pair = Pair;
         var protoManager = pair.Server.ResolveDependency<IPrototypeManager>();

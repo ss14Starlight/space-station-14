@@ -107,13 +107,12 @@ public sealed class GhostTests : GameTest
     }
 
     /// <summary>
-    /// Test that a ghost gets created when the player entity is deleted.
-    /// 1. Delete mob
-    /// 2. Assert is ghost
+    /// Test that immediate and queued player-entity deletion both create ghosts at the deleted mob's position.
     /// </summary>
     [Test]
-    public async Task TestGridGhostOnDelete()
+    public async Task TestGridGhostsOnImmediateAndQueuedDelete() // Starlight
     {
+        // Starlight - start
         var data = await SetupData();
 
         var oldPosition = data.SEntMan.GetComponent<TransformComponent>(data.SPlayerEnt).Coordinates;
@@ -130,32 +129,34 @@ public sealed class GhostTests : GameTest
         // Ensure the position is the same
         var ghostPosition = data.SEntMan.GetComponent<TransformComponent>(ghost).Coordinates;
         Assert.That(ghostPosition, Is.EqualTo(oldPosition));
-    }
 
-    /// <summary>
-    /// Test that a ghost gets created when the player entity is queue deleted.
-    /// 1. Delete mob
-    /// 2. Assert is ghost
-    /// </summary>
-    [Test]
-    public async Task TestGridGhostOnQueueDelete()
-    {
-        var data = await SetupData();
-
-        var oldPosition = data.SEntMan.GetComponent<TransformComponent>(data.SPlayerEnt).Coordinates;
-
-        Assert.That(!data.SEntMan.HasComponent<GhostComponent>(data.SPlayerEnt), "Player was initially a ghost?");
-
-        // Delete entity
-        await data.Server.WaitPost(() => data.SEntMan.QueueDeleteEntity(data.SPlayerEnt));
+        var mindId = data.ServerSession.ContentData()!.Mind!.Value;
+        var replacementPosition = oldPosition.Offset(new Vector2(1f, 0f));
+        EntityUid replacement = default;
+        await data.Server.WaitPost(() =>
+        {
+            replacement = data.SEntMan.SpawnEntity(null, replacementPosition);
+            data.SMindSys.TransferTo(mindId, replacement);
+        });
         await data.Pair.RunTicksSync(5);
 
-        var ghost = data.ServerSession.AttachedEntity!.Value;
-        Assert.That(data.SEntMan.HasComponent<GhostComponent>(ghost), "Player did not become a ghost");
+        Assert.That(data.SEntMan.HasComponent<GhostComponent>(replacement), Is.False,
+            "Replacement player was initially a ghost.");
+        var replacementOldPosition = data.SEntMan.GetComponent<TransformComponent>(replacement).Coordinates;
 
-        // Ensure the position is the same
-        var ghostPosition = data.SEntMan.GetComponent<TransformComponent>(ghost).Coordinates;
-        Assert.That(ghostPosition, Is.EqualTo(oldPosition));
+        await data.Server.WaitPost(() => data.SEntMan.QueueDeleteEntity(replacement));
+        await data.Pair.RunTicksSync(5);
+
+        var queuedDeleteGhost = data.ServerSession.AttachedEntity!.Value;
+        Assert.Multiple(() =>
+        {
+            Assert.That(data.SEntMan.Deleted(replacement), "Queue-deleted player entity was not deleted.");
+            Assert.That(data.SEntMan.HasComponent<GhostComponent>(queuedDeleteGhost),
+                "Queue-deleted player did not become a ghost.");
+            Assert.That(data.SEntMan.GetComponent<TransformComponent>(queuedDeleteGhost).Coordinates,
+                Is.EqualTo(replacementOldPosition));
+        });
+        // Starlight - end
     }
 
     [Test]

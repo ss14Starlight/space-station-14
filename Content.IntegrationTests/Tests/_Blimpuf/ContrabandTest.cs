@@ -154,8 +154,32 @@ public sealed class ContrabandTest : GameTest
         });
     }
 
+#region Starlight
     [Test]
-    public async Task ContrabandInheritanceCombinesClassificationAndAuthorization()
+    public async Task ContrabandPrototypeMetadataIsValid()
+    {
+        await ContrabandInheritanceCombinesClassificationAndAuthorization();
+        await EquipmentHasExpectedContrabandPermissions(
+            "EncryptionKeyStationMaster", "Tier4", "CentralCommand", true,
+            new[] { "Command", "CentralCommand", "Representatives" }, []);
+        await EquipmentHasExpectedContrabandPermissions(
+            "WeaponEnergyShotgun", "Tier3", null, true, new[] { "Command" }, new[] { "Warden" });
+        await EquipmentHasExpectedContrabandPermissions(
+            "ClothingHandsMercGlovesCombat", "Tier2", null, false,
+            new[] { "Engineering", "Security", "Command", "ITG" }, new[] { "MiningSpecialist" });
+        await EquipmentHasExpectedContrabandPermissions(
+            "EncryptionKeySecurity", "Tier1", null, false, new[] { "Security" }, new[] { "IAA" });
+        await EquipmentHasExpectedContrabandPermissions(
+            "GreenLightShield", "Tier4", "CentralCommand", true, new[] { "CentralCommand" }, []);
+        await EquipmentHasExpectedContrabandPermissions(
+            "BlueLightShield", "Tier3", "NanoTrasen", true, [], new[] { "BlueShield" });
+        await EquipmentHasExpectedContrabandPermissions(
+            "BoxFolderCentComClipboard", "Tier1", "CentralCommand", false,
+            new[] { "CentralCommand" }, []);
+    }
+#endregion
+
+    private async Task ContrabandInheritanceCombinesClassificationAndAuthorization() // Starlight
     {
         var client = Pair.Client;
         var protoMan = client.ResolveDependency<IPrototypeManager>();
@@ -185,16 +209,8 @@ public sealed class ContrabandTest : GameTest
         });
     }
 
-    // Cover parent-order-sensitive equipment and the department-specific versions of shared items.
-    [TestCase("EncryptionKeyStationMaster", "Tier4", "CentralCommand", true, new[] { "Command", "CentralCommand", "Representatives" }, new string[0])]
-    [TestCase("WeaponEnergyShotgun", "Tier3", null, true, new[] { "Command" }, new[] { "Warden" })]
-    [TestCase("ClothingHandsMercGlovesCombat", "Tier2", null, false, new[] { "Engineering", "Security", "Command", "ITG" }, new[] { "MiningSpecialist" })]
-    [TestCase("EncryptionKeySecurity", "Tier1", null, false, new[] { "Security" }, new[] { "IAA" })]
-    [TestCase("GreenLightShield", "Tier4", "CentralCommand", true, new[] { "CentralCommand" }, new string[0])]
-    [TestCase("BlueLightShield", "Tier3", "NanoTrasen", true, new string[0], new[] { "BlueShield" })]
-    [TestCase("BoxFolderCentComClipboard", "Tier1", "CentralCommand", false, new[] { "CentralCommand" }, new string[0])]
-    public async Task EquipmentHasExpectedContrabandPermissions(
-        string prototype, string tier, string type, bool detectable, string[] departments, string[] jobs)
+    private async Task EquipmentHasExpectedContrabandPermissions(
+        string prototype, string tier, string type, bool detectable, string[] departments, string[] jobs) // Starlight
     {
         var client = Pair.Client;
         var protoMan = client.ResolveDependency<IPrototypeManager>();

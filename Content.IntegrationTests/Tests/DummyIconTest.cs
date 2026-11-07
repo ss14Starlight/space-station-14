@@ -1,8 +1,11 @@
 #nullable enable
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
+using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Prototypes;
 using Robust.Client.GameObjects;
-using Robust.Client.ResourceManagement;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests
@@ -16,22 +19,128 @@ namespace Content.IntegrationTests.Tests
             var pair = Pair;
             var client = pair.Client;
             var prototypeManager = client.ResolveDependency<IPrototypeManager>();
-            var resourceCache = client.ResolveDependency<IResourceCache>();
             var spriteSys = client.System<SpriteSystem>();
+            var componentFactory = client.ResolveDependency<IComponentFactory>();
+            var entMan = client.ResolveDependency<IEntityManager>();
 
             await client.WaitAssertion(() =>
             {
-                foreach (var proto in prototypeManager.EnumeratePrototypes<EntityPrototype>())
+                // Starlight - start
+                Assert.Multiple(() =>
                 {
-                    if (proto.HideSpawnMenu || proto.Abstract || pair.IsTestPrototype(proto) || !proto.Components.ContainsKey("Sprite"))
-                        continue;
-
-                    Assert.DoesNotThrow(() =>
+                    foreach (var proto in prototypeManager.EnumeratePrototypes<EntityPrototype>())
                     {
-                        var _ = spriteSys.GetPrototypeTextures(proto).ToList();
-                    }, "Prototype {0} threw an exception when getting its textures.",
-                        proto.ID);
-                }
+                        if (proto.HideSpawnMenu || proto.Abstract || pair.IsTestPrototype(proto) ||
+                            !proto.Components.ContainsKey("Sprite"))
+                            continue;
+
+                        Assert.DoesNotThrow(() =>
+                        {
+                            var _ = spriteSys.GetPrototypeTextures(proto).ToList();
+                        }, "Prototype {0} threw an exception when getting its textures.", proto.ID);
+                    }
+
+                    var handStateNames = new[] { "left", "right" };
+                    var equipStateNames = new[] { "back", "suitstorage" };
+                    var fillLevelPrototypes = prototypeManager.EnumeratePrototypes<EntityPrototype>()
+                        .Where(p => !p.Abstract)
+                        .Where(p => !pair.IsTestPrototype(p))
+                        .Where(p => p.TryComp<SolutionContainerVisualsComponent>(out _, componentFactory))
+                        .OrderBy(p => p.ID)
+                        .ToList();
+
+                    foreach (var proto in fillLevelPrototypes)
+                    {
+                        if (!proto.TryComp<SolutionContainerVisualsComponent>(out var visuals, componentFactory))
+                        {
+                            Assert.Fail($"{proto.ID} has no SolutionContainerVisualsComponent.");
+                            continue;
+                        }
+
+                        if (!proto.TryComp<SpriteComponent>(out var sprite, componentFactory))
+                        {
+                            Assert.Fail($"{proto.ID} has no SpriteComponent.");
+                            continue;
+                        }
+
+                        if (!proto.HasComponent<AppearanceComponent>(componentFactory))
+                            Assert.Fail($"{proto.ID} has SolutionContainerVisualsComponent but no AppearanceComponent.");
+
+                        if (!string.IsNullOrEmpty(visuals.FillBaseName) && visuals.MaxFillLevels > 0)
+                        {
+                            var entity = entMan.Spawn(proto.ID);
+                            try
+                            {
+                                if (!spriteSys.LayerMapTryGet(entity, SolutionContainerLayers.Fill, out var fillLayerId, false))
+                                    Assert.Fail($"{proto.ID} has SolutionContainerVisualsComponent but no fill layer map.");
+                                if (!spriteSys.TryGetLayer(entity, fillLayerId, out var fillLayer, false))
+                                {
+                                    Assert.Fail($"{proto.ID} somehow lost a layer.");
+                                    continue;
+                                }
+
+                                var rsi = fillLayer.ActualRsi;
+                                if (rsi == null)
+                                {
+                                    Assert.Fail($"{proto.ID} has a fill layer with no RSI.");
+                                    continue;
+                                }
+
+                                for (var i = 1; i <= visuals.MaxFillLevels; i++)
+                                {
+                                    var state = $"{visuals.FillBaseName}{i}";
+                                    Assert.That(rsi.TryGetState(state, out _),
+                                        $"{proto.ID} has SolutionContainerVisualsComponent with MaxFillLevels = {visuals.MaxFillLevels}, but {rsi.Path} doesn't have state {state}!");
+                                }
+                            }
+                            finally
+                            {
+                                entMan.DeleteEntity(entity);
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(visuals.InHandsFillBaseName) && visuals.InHandsMaxFillLevels > 0)
+                        {
+                            var rsi = sprite.BaseRSI;
+                            if (rsi == null)
+                            {
+                                Assert.Fail($"{proto.ID} has no base RSI for its in-hand fill states.");
+                                continue;
+                            }
+
+                            for (var i = 1; i <= visuals.InHandsMaxFillLevels; i++)
+                            {
+                                foreach (var handName in handStateNames)
+                                {
+                                    var state = $"inhand-{handName}{visuals.InHandsFillBaseName}{i}";
+                                    Assert.That(rsi.TryGetState(state, out _),
+                                        $"{proto.ID} has SolutionContainerVisualsComponent with InHandsMaxFillLevels = {visuals.InHandsMaxFillLevels}, but {rsi.Path} doesn't have state {state}!");
+                                }
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(visuals.EquippedFillBaseName) && visuals.EquippedMaxFillLevels > 0)
+                        {
+                            var rsi = sprite.BaseRSI;
+                            if (rsi == null)
+                            {
+                                Assert.Fail($"{proto.ID} has no base RSI for its equipped fill states.");
+                                continue;
+                            }
+
+                            for (var i = 1; i <= visuals.EquippedMaxFillLevels; i++)
+                            {
+                                foreach (var equipName in equipStateNames)
+                                {
+                                    var state = $"equipped-{equipName}{visuals.EquippedFillBaseName}{i}";
+                                    Assert.That(rsi.TryGetState(state, out _),
+                                        $"{proto.ID} has SolutionContainerVisualsComponent with EquippedMaxFillLevels = {visuals.EquippedMaxFillLevels}, but {rsi.Path} doesn't have state {state}!");
+                                }
+                            }
+                        }
+                    }
+                });
+                // Starlight - end
             });
         }
     }

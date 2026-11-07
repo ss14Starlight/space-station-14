@@ -69,14 +69,7 @@ public sealed class DoAfterCancellationTests : InteractionTest
         await CancelDoAfters();
         await AssertTile(Floor);
 
-        await InteractUsing(Pry);
-        await AssertTile(Plating);
-    }
-
-    [Test]
-    public async Task CancelRepeatedTilePry()
-    {
-        await SetTile(Floor);
+        // Starlight - start
         await InteractUsing(Pry, awaitDoAfters: false);
         await RunTicks(1);
         Assert.That(ActiveDoAfters.Count(), Is.EqualTo(1));
@@ -91,6 +84,7 @@ public sealed class DoAfterCancellationTests : InteractionTest
         await InteractUsing(Pry);
         Assert.That(ActiveDoAfters.Count(), Is.EqualTo(0));
         await AssertTile(Plating);
+        // Starlight - end
     }
 
     [Test]
