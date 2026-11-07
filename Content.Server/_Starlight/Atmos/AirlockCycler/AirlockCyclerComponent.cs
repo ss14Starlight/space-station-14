@@ -21,13 +21,13 @@ public sealed partial class AirlockCyclerComponent : Component
     };
 
     /// <summary>
-    /// Vents that fill the chamber. Their pipe net is the buffer tank.
+    /// Air vents that fill the chamber.
     /// </summary>
     [DataField]
     public ProtoId<SourcePortPrototype> InletPort = "AirlockCyclerInlets";
 
     /// <summary>
-    /// Vents, scrubbers or pumps that empty the chamber. One vent may sit on both ports.
+    /// Vents, scrubbers or pumps that empty the chamber.
     /// </summary>
     [DataField]
     public ProtoId<SourcePortPrototype> OutletPort = "AirlockCyclerOutlets";
@@ -37,13 +37,13 @@ public sealed partial class AirlockCyclerComponent : Component
     /// <see cref="SettleTime"/> to finish the job, then opens.
     /// </summary>
     [DataField]
-    public float PressureTolerance = 2f;
+    public float PressureTolerance = 10f;
 
     /// <summary>
     /// The doors open right away once the chamber is this close to the pressure behind them, in kPa.
     /// </summary>
     [DataField]
-    public float MatchedPressure = 0.2f;
+    public float MatchedPressure = 1f;
 
     /// <summary>
     /// The doors of one side may lead to pressures this far apart (kPa) and still be cycled together. Beyond that no

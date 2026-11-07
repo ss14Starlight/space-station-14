@@ -49,10 +49,12 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
         _deviceLink.EnsureSourcePorts(ent, ent.Comp.InletPort, ent.Comp.OutletPort);
     }
 
+    /// <summary>
+    /// Never leave anybody bolted in a chamber nobody controls.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnShutdown(Entity<AirlockCyclerComponent> ent, ref ComponentShutdown args)
     {
-        // Never leave anybody bolted in a chamber nobody controls.
         if (!TryComp<DeviceLinkSourceComponent>(ent, out var source))
             return;
 

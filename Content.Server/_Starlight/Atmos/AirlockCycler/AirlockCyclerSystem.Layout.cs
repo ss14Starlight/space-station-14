@@ -11,10 +11,10 @@ public sealed partial class AirlockCyclerSystem
     private sealed class Layout
     {
         public readonly List<SideLayout> Sides = [];
-        /// <summary>Vents that fill the chamber.</summary>
+        /// <summary>Air vents that fill the chamber.</summary>
         public readonly List<EntityUid> Inlets = [];
 
-        /// <summary>Vents, scrubbers and pumps that empty the chamber. A vent may be in both lists.</summary>
+        /// <summary>Air vents, scrubbers and pumps that empty the chamber. Air vents may be in both lists.</summary>
         public readonly List<EntityUid> Outlets = [];
 
         /// <summary>Nothing to pump with: a plain interlock.</summary>

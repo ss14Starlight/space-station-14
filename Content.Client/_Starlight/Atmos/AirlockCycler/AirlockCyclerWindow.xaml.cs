@@ -97,7 +97,6 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
             _ => string.Empty,
         };
 
-        // Interlock-only is a note, not a fault: shown dimmed unless something else is wrong.
         var onlyNote = state.Problem is AirlockCyclerProblem.None or AirlockCyclerProblem.NoVent;
         if (state.NoVent && state.Problem != AirlockCyclerProblem.NoVent)
         {

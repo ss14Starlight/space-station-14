@@ -318,6 +318,9 @@ public sealed partial class AirlockCyclerSystem
         SetState(ent, AirlockCyclerState.Off);
     }
 
+    /// <summary>
+    /// Used at spawn/load(map init) to reset controller state to Idle
+    /// </summary>
     private void Reconcile(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source)
     {
         var comp = ent.Comp;
@@ -372,7 +375,7 @@ public sealed partial class AirlockCyclerSystem
     }
 
     private bool IsSecured(EntityUid door, DoorComponent comp)
-        => comp.State == DoorState.Welded || _boltQuery.TryComp(door, out var bolt) && bolt.BoltsDown;
+        => comp.State == DoorState.Welded || (_boltQuery.TryComp(door, out var bolt) && bolt.BoltsDown);
 
     private void Bolt(EntityUid door, bool bolted)
     {

@@ -13,8 +13,8 @@ public sealed partial class AirlockCyclerSystem
             return;
 
         // Only vents can fill the chamber; other devices on the inlets would never run.
-        if (args.SourcePort == ent.Comp.InletPort && !IsInletDevice(args.Sink)
-            || args.SourcePort == ent.Comp.OutletPort && !IsOutletDevice(args.Sink))
+        if ((args.SourcePort == ent.Comp.InletPort && !IsInletDevice(args.Sink))
+            || (args.SourcePort == ent.Comp.OutletPort && !IsOutletDevice(args.Sink)))
         {
             args.Cancel();
             return;
