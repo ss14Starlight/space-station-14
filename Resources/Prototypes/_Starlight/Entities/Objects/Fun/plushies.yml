@@ -1509,3 +1509,55 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieSeaSheep
+
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieEeeplet
+  name: eeeplet plushie
+  description: Androids dream of electric sheep, and now you do, too.
+  components:
+    - type: PointLight
+      radius: 2
+      energy: 3
+      color: "#afa2ff"
+      castShadows: true
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Fun/Plushies/eeeplet_plushie.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/eeeplet_plushie.rsi
+      layers:
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: eeeplet
+        - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          state: eeeplet_glow
+          shader: unshaded
+    - type: Clothing
+      quickEquip: false
+      sprite: _Starlight/Objects/Fun/Plushies/eeeplet_plushie.rsi
+      slots:
+        - HEAD
+      clothingVisuals:
+        head:
+          - state: equipped-HELMET
+            offset: "0, 0.1"
+    - type: EmitSoundOnUse
+      sound:
+        path: /Audio/Effects/PowerSink/electric.ogg
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Effects/PowerSink/electric.ogg
+    - type: EmitSoundOnActivate
+      sound:
+        path: /Audio/Effects/PowerSink/electric.ogg
+    - type: EmitSoundOnTrigger
+      sound:
+        path: /Audio/Effects/PowerSink/electric.ogg
+    - type: Edible
+      requiresSpecialDigestion: true
+      useSound:
+        path: /Audio/Effects/PowerSink/electric.ogg
+    - type: FoodSequenceElement
+      entries:
+        CottonBurger: PlushieEeeplet

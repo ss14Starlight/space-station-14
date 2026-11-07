@@ -196,3 +196,12 @@
   sprites:
   - sprite: _Starlight/Objects/Fun/Plushies/sea_sheep_plushie.rsi
     state: icon
+
+
+- type: foodSequenceElement
+  id: PlushieEeeplet
+  scale: 0.5, 0.5
+  name: food-sequence-cotton-burger-content-plushie-eeeplet
+  sprites:
+  - sprite: _Starlight/Objects/Fun/Plushies/eeeplet_plushie.rsi
+    state: eeeplet
