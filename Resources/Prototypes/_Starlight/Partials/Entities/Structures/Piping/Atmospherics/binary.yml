@@ -118,3 +118,13 @@
   components:
     - type: SubFloorHide
       subfloorLayer: Pipes
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - GasPressurePump
+    - GasVolumePump
+  components:
+  - type: DeviceLinkSink
+    ports:
+    - AirlockCyclerDevice
