@@ -9,7 +9,6 @@ namespace Content.Shared.Atmos.EntitySystems;
 public abstract partial class SharedGasPressurePumpSystem
 {
     [Dependency] private SharedToggleableDeviceSystem _toggleable = null!;
-    [Dependency] private IGameTiming _timing = null!;
 
     [SubscribeLocalEvent]
     private void OnAnchorChanged(Entity<GasPressurePumpComponent> ent, ref AnchorStateChangedEvent args)
@@ -29,15 +28,11 @@ public abstract partial class SharedGasPressurePumpSystem
         ent.Comp.Enabled = ev.State;
         Dirty(ent);
         UpdateUi(ent);
-
-        if (_timing.IsFirstTimePredicted)
-            UpdateAppearance(ent);
+        UpdateAppearance(ent);
     }
 
     private void ToggleInternal(Entity<GasPressurePumpComponent> ent)
-    {
-        _toggleable.Toggle(ent.Owner);
-    }
+        => _toggleable.Toggle(ent.Owner);
 
     protected void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null)
     {
