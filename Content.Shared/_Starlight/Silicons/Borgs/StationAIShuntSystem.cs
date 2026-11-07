@@ -41,6 +41,12 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         SubscribeLocalEvent<StationAIShuntThroughComponent, FindShuntTargetEvent>(OnFindShuntTarget);
         InitializeReconnect();
     }
+    [SubscribeLocalEvent]
+    private void OnShuntableInit(EntityUid uid, StationAIShuntableComponent shuntable, ComponentInit args)
+    {
+        _actionSystem.AddAction(uid, shuntable.ShuntAction.Id);
+        _actionSystem.AddAction(uid, shuntable.ReconnectShuntAction.Id);
+    }
 
     #region Actions
     private void OnAttemptShunt(EntityUid uid, StationAIShuntableComponent shuntable, AIShuntActionEvent ev)
@@ -79,6 +85,13 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         if (!TryComp<MobStateComponent>(uid, out var state) || state.CurrentState != MobState.Alive)
             return;
 
+        if (shunt.Return != null)
+        {
+            if (_net.IsServer)
+                _popup.PopupEntity(Loc.GetString("shunt-target-occupied"), target, uid, PopupType.Large);
+            return; // target is already inhabited.
+        }
+
         if (TryComp<BorgChassisComponent>(target, out var chassisComp))
         {
             var brain = chassisComp.BrainContainer.ContainedEntity;
@@ -86,21 +99,15 @@ public sealed partial class StationAIShuntSystem : EntitySystem
                 return; //Chassis has no posibrian so cant shunt into it.
             if (!TryComp<StationAIShuntComponent>(brain, out var brainShunt))
                 return; //Chassis brain is not able to be shunted into so obviously we cant.
-            if (brainShunt.Return != null)
+            if (_mindSystem.TryGetMind(brain.Value, out _, out _) || brainShunt.Return != null)
             {
-                if (_net.IsServer) //only send on server cause client is confused somehow?
+                if (_net.IsServer)
                     _popup.PopupEntity(Loc.GetString("shunt-target-occupied"), target, uid, PopupType.Large);
-                return; //Chassis is allready inhabited.
+                return; // The chassis brain is already inhabited.
             }
             brainShunt.Return = uid;
             brainShunt.ReturnAction = _actionSystem.AddAction(brain.Value, shuntable.UnshuntAction.Id);
             Dirty(brain.Value, brainShunt);
-        }
-        if (shunt.Return != null)
-        {
-            if (_net.IsServer) //only send on server cause client is confused somehow?
-                _popup.PopupEntity(Loc.GetString("shunt-target-occupied"), target, uid, PopupType.Large);
-            return; //target is allready inhabited.
         }
         shunt.Return = uid;
         _mindSystem.TransferTo(mindId, target);
@@ -167,11 +174,11 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         RemComp<UncryoableComponent>(target);
 
         var aiCore = Transform(target).ParentUid;
-        if (TryComp<StationAiCoreComponent>(aiCore, out var core) &&
-            core.RemoteEntity.HasValue
-            )
+        if (TryComp<StationAiCoreComponent>(aiCore, out var core)
+            && core.RemoteEntity is { Valid: true } remoteEntity
+            && TryComp<TransformComponent>(remoteEntity, out _))
         {
-            _transform.SetMapCoordinates(core.RemoteEntity.Value,
+            _transform.SetMapCoordinates(remoteEntity,
                 _transform.ToMapCoordinates(Transform(uid).Coordinates)
             );
 
@@ -179,7 +186,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
             {
                 foreach (var follower in followed.Following)
                 {
-                    _follower.StartFollowingEntity(follower, core.RemoteEntity.Value);
+                    _follower.StartFollowingEntity(follower, remoteEntity);
                 }
             }
         }
