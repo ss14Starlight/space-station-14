@@ -189,7 +189,7 @@ public sealed partial class MindTests
 
         await pair.Server.WaitAssertion(() =>
         {
-            var ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            var ai = entMan.Spawn("StationAiBrainConstructed", MapCoordinates.Nullspace);
             var actions = entMan.System<SharedActionsSystem>();
             var entityTargetActions = entMan.GetEntityQuery<EntityTargetActionComponent>();
             var instantActions = entMan.GetEntityQuery<InstantActionComponent>();
@@ -320,7 +320,7 @@ public sealed partial class MindTests
             }
 
             var followerCoordinates = entMan.System<SharedTransformSystem>().GetMapCoordinates(borg);
-            follower = entMan.SpawnEntity(GameTicker.ObserverPrototypeName, followerCoordinates);
+            follower = entMan.Spawn(GameTicker.ObserverPrototypeName, followerCoordinates);
             entMan.System<FollowerSystem>().StartFollowingEntity(follower, borg);
             entMan.EventBus.RaiseLocalEvent(borg, new AIUnShuntActionEvent { Performer = borg });
         });
