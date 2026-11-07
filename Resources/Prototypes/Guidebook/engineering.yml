@@ -1,6 +1,7 @@
 ﻿- type: guideEntry
   id: Engineering
   name: guide-entry-engineering
+  department: Engineering # Starlight
   text: "/ServerInfo/Guidebook/Engineering/Engineering.xml"
   children:
   - Construction

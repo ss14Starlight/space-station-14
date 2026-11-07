@@ -1,9 +1,6 @@
 - type: !PartialOnly vendingMachineInventory
   id: AutoDrobeInventory
   startingInventory: !Clear
-- type: vendingMachineInventory
-  id: AutoDrobeInventory
-  startingInventory:
     ClothingHeadHatJester: 1
     ClothingUniformJumpsuitJester: 1
     ClothingHeadHatJesterAlt: 1
@@ -65,7 +62,6 @@
     ClothingShoesBootsCowboyBrown: 1
     ClothingShoesBootsCowboyBlack: 1
     ClothingShoesBootsCowboyWhite: 1
-    #Starlight
     ClothingUniformJumpsuitRisk: 1
     ClothingHeadHelmetRisk: 1
     ClothingUniformJumpsuitKilt: 1 # DeltaV
@@ -78,17 +74,17 @@
     CandyClownUniformSuit: 1
     StripedClownUniformSuit: 1
     SpottedClownUniformSuit: 1
-    GothicFrillDressUniformSuit: 1 #Starlight # Alternative Clothing Catalog
-    ClothingHeadHatGothicFrill: 1 #Starlight # Alternative Clothing Catalog
-    PastelFrillDressUniformSuit: 1 #Starlight # Alternative Clothing Catalog
-    ClothingHeadHatPastelFrill: 1 #Starlight # Alternative Clothing Catalog
-    PunkOffShoulderUniformSuit: 2 #Starlight # Alternative Clothing Catalog
+    GothicFrillDressUniformSuit: 1
+    ClothingHeadHatGothicFrill: 1
+    PastelFrillDressUniformSuit: 1
+    ClothingHeadHatPastelFrill: 1
+    PunkOffShoulderUniformSuit: 2
     ClothingShoesSpecificMoffers: 1 # DeltaV
     DruidRobesUniformSuit: 1
     FlamboyantUniformSuit: 3
     FlamencoUniformSuit: 2
     FlyCaptainUniformSuit: 1
-    ClothingHeadHatWitchyHat: 2 # Starlight
+    ClothingHeadHatWitchyHat: 2
     KiltUniformSuit: 4
     MimeFrillsUniformSuit: 1
     RefereeUniformSuit: 2
@@ -101,33 +97,37 @@
     ClothingHeadHatTVHead: 1
     ClothingHeadHatFeatheredHat: 1
     ClothingHeadHatBrimHat: 1
-    ClothingHeadHatFroggyHat: 2 #Starlight # Alternative Clothing Catalog
-    ClothingHeadHatKittyHat: 2 #Starlight # Alternative Clothing Catalog
-    ClothingHeadSafari: 2 # Zookeeper removal
-    ClothingUniformJumpsuitSafari: 2 # Zookeeper removal
-    LittleAngelUniformSuit: 1 #Starlight # Alternative Clothing Catalog
-    ClothingHeadLittleAngelEars: 1 #Starlight # Alternative Clothing Catalog
-    ClothingUnderSocksLittleAngel: 1 #Starlight # Alternative Clothing Catalog
-    ClothingNeckLittleAngelWings: 1 #Starlight # Alternative Clothing Catalog
+    ClothingHeadHatFroggyHat: 2
+    ClothingHeadHatKittyHat: 2
+    ClothingHeadSafari: 2
+    ClothingUniformJumpsuitSafari: 2
+    LittleAngelUniformSuit: 1
+    ClothingHeadLittleAngelEars: 1
+    ClothingUnderSocksLittleAngel: 1
+    ClothingNeckLittleAngelWings: 1
   contrabandInventory: !Clear
     ClothingHeadHatRichard: 1
     ToyFigurineBoxer: 1
     ToyFigurineMusician: 1
     ClothingUniformJumpsuitLittleGuyOveralls: 1 # DeltaV
-    ClothingOuterBurnedRobes: 1 #Starlight
-    CamoUniformSuit: 1 #Starlight
-    TatteredClothesUniformSuit: 1 #Starlight
-    ClothingNeckTatteredHood: 1 #Starlight
+    ClothingOuterBurnedRobes: 1
+    CamoUniformSuit: 1
+    TatteredClothesUniformSuit: 1
+    ClothingNeckTatteredHood: 1
     ClothingShoesBling: 1
     ClothingShoesBootsCowboyFancy: 1
     ClothingOuterDogi: 1
     ClothingOuterSuitCarp: 1
     ClothingMaskBlushingClown: 1
     ClothingMaskBlushingMime: 1
-    ClothingMaskSusMime: 1 #Starlight
+    ClothingMaskSusMime: 1
     ClothingHeadHatCowboyBountyHunter: 1
-    LittleDevilUniformSuit: 1 #Starlight # Alternative Clothing Catalog
-    ClothingHeadLittleDevilHorns: 1 #Starlight # Alternative Clothing Catalog
-    ClothingUnderSocksLittleDevil: 1 #Starlight # Alternative Clothing Catalog
-    ClothingNeckLittleDevilWings: 1 #Starlight # Alternative Clothing Catalog
-    ClothingBackpackSatchelIta: 1 #Starlight # Alternative Clothing Catlog
+    LittleDevilUniformSuit: 1
+    ClothingHeadLittleDevilHorns: 1
+    ClothingUnderSocksLittleDevil: 1
+    ClothingNeckLittleDevilWings: 1
+    ClothingBackpackSatchelIta: 1
+  emaggedInventory: # Blimpuf
+    LittleBlackDressUniformSuit: 1 # Blimpuf
+    ClothingMaskGoldenCursed: 1 # Blimpuf
+    ClothingMaskMuzzle: 2 # Blimpuf

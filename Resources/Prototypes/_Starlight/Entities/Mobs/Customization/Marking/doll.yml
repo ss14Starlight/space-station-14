@@ -1033,6 +1033,34 @@
       requiredMarkingsAny:
         - DollShellHeadMoth
 
+- type: marking
+  id: DollShellHeadBun
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: head_f
+  - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+    state: standard
+  - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+    state: standard_inner
+  emotes:
+    - emotePrototype: Squee
+      requiredMarkingsAny:
+        - DollShellHeadBun
+    - emotePrototype: Snort
+      requiredMarkingsAny:
+        - DollShellHeadBun
+    - emotePrototype: Sneeze
+      requiredMarkingsAny:
+        - DollShellHeadBun
+
 # Other Masks
 - type: marking
   id: DollShellHeadCrested
@@ -1075,3 +1103,144 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
     state: head_hawk
+
+#Hollow
+- type: marking
+  id: DollShellLArmHollow
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/hollow.rsi
+    state: hollow_l_arm
+
+- type: marking
+  id: DollShellRArmHollow
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/hollow.rsi
+    state: hollow_r_arm
+
+- type: marking
+  id: DollShellLHandHollow
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/hollow.rsi
+    state: hollow_l_hand
+
+- type: marking
+  id: DollShellRHandHollow
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/hollow.rsi
+    state: hollow_r_hand
+
+- type: marking
+  id: DollShellLLegHollow
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/hollow.rsi
+    state: hollow_l_leg
+
+- type: marking
+  id: DollShellRLegHollow
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/hollow.rsi
+    state: hollow_r_leg
+
+- type: marking
+  id: DollShellLFootHollow
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/hollow.rsi
+    state: hollow_l_foot
+
+- type: marking
+  id: DollShellRFootHollow
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/hollow.rsi
+    state: hollow_r_foot
+
+- type: marking
+  id: DollShellChestHollow
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/hollow.rsi
+    state: hollow_torso
+
+- type: marking
+  id: DollShellHeadHollow
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/hollow.rsi
+    state: hollow_head

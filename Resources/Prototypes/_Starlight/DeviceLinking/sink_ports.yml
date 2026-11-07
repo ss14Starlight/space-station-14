@@ -42,3 +42,8 @@
   id: TurretControllerSyncReceiver
   name: signal-port-name-turret-controller-sync-receiver
   description: signal-port-description-turret-controller-sync-receiver
+
+- type: sinkPort
+  id: CombustionTurbineConsoleReceiver
+  name: signal-port-name-combustion-turbine-console-receiver
+  description: signal-port-description-combustion-turbine-console-receiver

@@ -558,3 +558,52 @@
   components:
     - type: Paper
       content: doc-text-printer-endymion-memorial
+
+# Blimpuf Emag Additions
+
+- type: entity
+  parent: [ Paper, BaseSyndicateContraband ]
+  id: PrintedDocumentSyndicateRecruitmentOffer
+  name: Syndicate Recruitment Offer
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TextFilePaperContent
+      fileName: syndicate-recruitment-offer.txt
+
+- type: entity
+  parent: [ Paper, BaseSyndicateContraband ]
+  id: PrintedDocumentSyndicateOperationTakeover
+  name: Syndicate Operation - Takeover
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TextFilePaperContent
+      fileName: operation-takeover.txt
+
+- type: entity
+  parent: [ Paper, BaseSyndicateContraband ]
+  id: PrintedDocumentSyndicateOperationBorgification
+  name: Syndicate Operation - Borgification
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TextFilePaperContent
+      fileName: operation-borgification.txt
+
+- type: entity
+  parent: [ Paper, BaseSyndicateContraband ]
+  id: PrintedDocumentOfficialSyndicateCommunication
+  name: Official Syndicate Communication
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TextFilePaperContent
+      fileName: syndicate-communication.txt
+
+- type: entity
+  parent: [ Paper, BaseSyndicateContraband ]
+  id: PrintedDocumentSyndicateDidYouKnow
+  name: Did You Know?
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TextFilePaperContent
+      fileName: did-you-know.txt
+    - type: Contraband
+      tier: Tier1

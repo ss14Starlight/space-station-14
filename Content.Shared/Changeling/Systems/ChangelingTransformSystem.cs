@@ -4,6 +4,7 @@ using Content.Shared.Changeling.Components;
 using Content.Shared.Cloning;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
+using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
 using Content.Shared.Storage;
@@ -20,6 +21,9 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    #region Starlight
+    [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
+    #endregion
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
@@ -137,7 +141,7 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
         if (identity.CurrentIdentity == targetIdentity)
             return; // don't transform into ourselves
 
-        if (!identity.ConsumedIdentities.Contains(targetIdentity.Value))
+        if (!identity.ConsumedIdentities.ContainsKey(targetIdentity.Value))
             return; // this identity does not belong to this player
 
         TransformInto(ent.AsNullable(), targetIdentity.Value);
@@ -161,12 +165,14 @@ public sealed partial class ChangelingTransformSystem : EntitySystem
         var beforeTransformEvent = new BeforeChangelingTransformEvent(targetIdentity);
         RaiseLocalEvent(args.User, beforeTransformEvent);
 
+        _humanoidAppearance.CloneAppearance(targetIdentity, args.User); // Starlight: We don't have visual nubody so we need this
         _cloning.CloneComponents(targetIdentity, args.User, settings);
 
         if (TryComp<ChangelingStoredIdentityComponent>(targetIdentity, out var storedIdentity) && storedIdentity.OriginalSession != null)
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent.Owner):player} successfully transformed into \"{Name(targetIdentity)}\" ({storedIdentity.OriginalSession:player})");
         else
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent.Owner):player} successfully transformed into \"{Name(targetIdentity)}\"");
+
         _metaData.SetEntityName(ent, Name(targetIdentity), raiseEvents: false); // Don't raise events because we don't want to rename the ID card.
         _identity.QueueIdentityUpdate(ent); // We have to manually refresh the identity because we did not raise events.
 

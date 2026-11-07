@@ -1,0 +1,145 @@
+# Air mixtures
+- type: salvageAirMod
+  id: Space
+  desc: salvage-air-mod-no-atmosphere
+  space: true
+  cost: 2
+  biomes:
+    - Caves
+    - Lava
+  difficulties:
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard
+
+- type: salvageAirMod
+  id: Breathable
+  cost: 0
+  desc: salvage-air-mod-breathable-atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 82.10312 # nitrogen
+
+- type: salvageAirMod
+  id: Sleepy
+  cost: 1
+  desc: salvage-air-mod-dangerous-atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 72.10312 # nitrogen
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 10 # nitrous oxide
+  biomes:
+    - Caves
+    #- LowDesert
+    - Snow
+    - Grasslands
+    - Lava
+  difficulties:
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard
+
+- type: salvageAirMod
+  id: Poisoned
+  cost: 2
+  desc: salvage-air-mod-dangerous-atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 77.10312 # nitrogen
+    - 10 # carbon dioxide
+  biomes:
+    - Caves
+    #- LowDesert
+    - Snow
+    - Grasslands
+    - Lava
+  difficulties:
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard
+
+- type: salvageAirMod
+  id: Poison
+  cost: 3
+  desc: salvage-air-mod-toxic-atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 0
+    - 82.10312 # carbon dioxide
+  biomes:
+    - Caves
+    - Snow
+    - Lava
+  difficulties:
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+
+- type: salvageAirMod
+  id: Plasma
+  cost: 4
+  desc: salvage-air-mod-toxic-atmosphere
+  gases:
+    - 0
+    - 0
+    - 0
+    - 103.927899 # plasma
+  biomes:
+    - Caves
+    - Lava
+  difficulties:
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+
+- type: salvageAirMod
+  id: Burnable
+  cost: 5
+  desc: salvage-air-mod-volatile-atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 0
+    - 0
+    - 82.10312 # plasma
+  biomes:
+    - Caves
+    - Lava
+  difficulties:
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard

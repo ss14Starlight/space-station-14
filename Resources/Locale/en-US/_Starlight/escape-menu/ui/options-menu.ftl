@@ -1,6 +1,7 @@
 ui-options-function-open-m-help = Open mentor help
 ui-options-function-jump = Jump
 ui-options-function-latch-struggle = Struggle (while latched)
+ui-options-function-hotbar-remove = Remove from hotbar
 ui-escape-connect-discord = Link Discord
 server-info-connect-discord-button = Link Discord
 ui-escape-connect-steam = Link Steam
@@ -47,8 +48,10 @@ ui-options-radio-chime-mute = Mute Radio Chimes
 
 ui-options-tab-ui = User Interface
 ui-options-ui-style = User Interface Style
+ui-options-classic-styling = Classic styling
 ui-options-style-theme = Color Theme
 ui-options-style-accent = Accent Color
+ui-options-style-secondary-accent = Secondary Accent Color
 ui-options-style-custom-accent = Use custom accent color
 ui-options-style-accent-custom = Custom
 ui-options-style-accent-theme = Theme
@@ -57,6 +60,9 @@ ui-options-lobby-label = Lobby
 ui-options-lobby-background = Lobby art
 ui-options-lobby-background-server = Server's choice
 ui-options-lobby-opacity = Panel opacity
+ui-options-lobby-ready-position = Ready button
+ui-options-lobby-ready-position-bottom = Under the chat
+ui-options-lobby-ready-position-top = Above the chat
 ui-options-lobby-job-columns = Drag and drop job priorities in the lobby
 ui-options-lobby-job-columns-tooltip = Shows the old job priority columns under the round info, next to the job priorities window.
 ui-options-menu-bar-label = Top Menu Bar
@@ -133,11 +139,19 @@ ui-options-admin-ghost-hud-setting-health-iconsandbars = Icons and bars
 ui-options-admin-ghost-hud-show-faction-icons = Show faction icons
 ui-options-admin-ghost-hud-show-satiation-icons = Show satiation icons
 
-ui-options-admin-ghost = Admin Ghost Config
+ui-options-admin-tools = Admin Tools Config
 ui-options-admin-ghost-script-label = aghost Script
 ui-options-admin-ghost-script-tooltip =
     The name of the script you want to automatically run when becoming admin ghost, either by command or by observing from lobby.
     Path is relative to your launcher's data directory, typically inside AppData on Windows or .local/share on Linux.
+ui-options-admin-space-map-label = Admin Arena Path
+ui-options-admin-space-map-tooltip =
+    The path to the map .yml you want to load as your Admin Arena.
+    If left empty the default one will be used.
+    Will check server user data first, then content data.
+ui-options-admin-space-map-init-label = Initialize Admin Arena
+ui-options-admin-space-map-init-tooltip =
+  If true, initializes the map on load. If false, the map spawns uninitialized.
 
 ## Theme
 
@@ -179,3 +193,5 @@ ui-options-handling-volume = Picking up and equipping:
 ui-options-combat-volume = Weapons and combat:
 ui-options-voice-volume = Voices and emotes:
 ui-options-announcement-volume = Announcements and alerts:
+ui-options-admin-sounds-volume = Admin sounds:
+ui-options-show-tippy = Show Tippy

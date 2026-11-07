@@ -128,7 +128,7 @@ public sealed partial class ImmovableRodSystem : EntitySystem
                 if (component.Damage == null)
                     return;
 
-                _damageable.TryChangeDamage(ent, component.Damage, ignoreResistances: true);
+                DamageAndLog(uid, ent, component.Damage); // Starlight
                 return;
             }
 

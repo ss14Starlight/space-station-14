@@ -1,0 +1,53 @@
+- type: entity
+  parent: BasePDA
+  id: DogCollarPDA
+  name: dog collar
+  description: A sturdy collar with a data-slate tag woven in.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/dog_collar.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: pda
+    - sprite: Objects/Devices/pda.rsi
+      state: light_overlay
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: unshaded
+      visible: false
+    - sprite: Objects/Devices/pda.rsi
+      state: id_overlay
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/dog_collar.rsi
+    state: pda
+  - type: Pda
+    id: AssistantIDCard
+    paiSlot:
+      priority: -2
+      whitelist:
+        components:
+        - PAI
+  - type: SuitSensor
+    controlsLocked: false
+    randomMode: false
+    mode: SensorCords
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    transmitFrequencyId: SuitSensor
+    receiveFrequencyId: PDA
+    savableAddress: false
+  - type: WirelessNetworkConnection
+    range: 1200
+  - type: StationLimitedNetwork
+  - type: ActivatableUI
+    requiresComplex: false
+  - type: RemovePreinstalledPrograms # whichever PDA a collar is based on
+    programs:
+    - NanoTaskCartridge
+    - NanoChatCartridge
+  - type: AnimalCollar
+  - type: Tag
+    tags:
+    - CorgiWearable

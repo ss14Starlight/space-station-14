@@ -30,6 +30,18 @@
     neck: ClothingNeckLGBTie
   groupBy: "ties"
 
+- type: loadout
+  id: RetroTie
+  equipment:
+    neck: ClothingNeckTieRetro
+  groupBy: "ties"
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Science
+        time: 75h
+
 - type: loadoutGroup
   id: TiesGroup
   name: loadout-group-ties

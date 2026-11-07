@@ -1,16 +1,16 @@
+using System.Linq;
 using Content.Shared.Store;
 using JetBrains.Annotations;
-using System.Linq;
-using Content.Shared.Store.Components;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Store.Ui;
 
 [UsedImplicitly]
-public sealed class StoreBoundUserInterface : BoundUserInterface
+public sealed partial class StoreBoundUserInterface : BoundUserInterface // Starlight, partial
 {
     private IPrototypeManager _prototypeManager = default!;
+    private readonly StoreSystem _storeSystem = default!;
 
     [ViewVariables]
     private StoreMenu? _menu;
@@ -23,19 +23,28 @@ public sealed class StoreBoundUserInterface : BoundUserInterface
 
     public StoreBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
+        _storeSystem = EntMan.System<StoreSystem>();
     }
 
+    /// <summary>
+    /// Starlight: Open() and UpdateState() are implemented in
+    /// StoreBoundUserInterface.Starlight.cs.
+    /// Store UI state can arrive before Open() creates the StoreMenu.
+    /// The Starlight partial caches the latest state and applies it
+    /// once the menu has been initialized.
+    /// </summary>
+    /*
     protected override void Open()
     {
         base.Open();
 
         _menu = this.CreateWindow<StoreMenu>();
-        if (EntMan.TryGetComponent<StoreComponent>(Owner, out var store))
-            _menu.Title = Loc.GetString(store.Name);
+        if (_storeSystem.TryGetStore(Owner, out var store))
+            _menu.Title = Loc.GetString(store.Value.Comp.Name);
 
         _menu.OnListingButtonPressed += (_, listing) =>
         {
-            SendMessage(new StoreBuyListingMessage(listing.ID));
+            SendMessage(new StoreBuyListingMessage(listing.ID, EntMan.GetNetEntity(Owner)));
         };
 
         _menu.OnCategoryButtonPressed += (_, category) =>
@@ -60,6 +69,7 @@ public sealed class StoreBoundUserInterface : BoundUserInterface
             SendMessage(new StoreRequestRefundMessage());
         };
     }
+
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
@@ -78,6 +88,7 @@ public sealed class StoreBoundUserInterface : BoundUserInterface
                 break;
         }
     }
+    */
 
     private void UpdateListingsWithSearchFilter()
     {

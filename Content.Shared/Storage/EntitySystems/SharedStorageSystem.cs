@@ -329,8 +329,20 @@ public abstract partial class SharedStorageSystem : EntitySystem
         }
     }
 
+    #region Starlight
+    private partial bool HandleStarlightStrippableStorageVerb(
+        EntityUid uid,
+        StorageComponent component,
+        GetVerbsEvent<ActivationVerb> args);
+    #endregion
+
     private void AddUiVerb(EntityUid uid, StorageComponent component, GetVerbsEvent<ActivationVerb> args)
     {
+        // Starlight - start
+        if (HandleStarlightStrippableStorageVerb(uid, component, args))
+            return;
+        // Starlight - end
+
         if (component.ShowVerb == false || !CanInteract(args.User, (uid, component), args.CanAccess && args.CanInteract))
             return;
 
