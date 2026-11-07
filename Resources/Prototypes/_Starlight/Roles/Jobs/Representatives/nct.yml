@@ -56,6 +56,7 @@
   storage:
     back:
     - Flash
+    - BudgetBluespaceImplanter
 
 - type: chameleonOutfit
   id: NanotrasenCareerTrainerChameleonOutfit

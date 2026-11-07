@@ -182,6 +182,14 @@
       implant: BluespaceImplant
 
 - type: entity
+  id: BudgetBluespaceImplanter
+  name: budget bluespace implanter
+  parent: [ BaseImplantOnlyImplanter, BaseContrabandTier3, BaseNanoTrasenContraband ]
+  components:
+    - type: Implanter
+      implant: BudgetBluespaceImplant
+
+- type: entity
   id: RedspaceImplanter
   name: redspace implanter
   parent: BaseImplantOnlyImplanterSyndi
