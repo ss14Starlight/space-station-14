@@ -149,6 +149,21 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
+    private void OnLockdownMessage(Entity<AirlockCyclerComponent> ent, ref AirlockCyclerLockdownMessage args)
+    {
+        if (ent.Comp.State == AirlockCyclerState.Off || ent.Comp.Lockdown)
+            return;
+
+        if (!HasAnySideAccess(ent, args.Actor))
+        {
+            _popup.PopupEntity(Loc.GetString("airlock-cycler-access-denied"), ent, args.Actor);
+            return;
+        }
+
+        StartLockdown(ent);
+    }
+
+    [SubscribeLocalEvent]
     private void OnButtonActivate(Entity<AirlockCyclerButtonComponent> ent, ref ActivateInWorldEvent args)
     {
         if (args.Handled || !args.Complex)
@@ -177,6 +192,7 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
             State = ent.Comp.State,
             Problem = ent.Comp.Problem,
             NoVent = false,
+            Lockdown = ent.Comp.Lockdown,
             TargetSide = ent.Comp.TargetSide,
             ChamberPressure = layout.ChamberPressure,
             TankPressure = layout.TankPressure,

@@ -36,6 +36,9 @@
         </BoxContainer>
 
         <Control VerticalExpand="True" />
-        <Button Name="ForceButton" Text="{Loc 'airlock-cycler-window-force'}" StyleClasses="negative" Visible="False" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Button Name="ForceButton" Text="{Loc 'airlock-cycler-window-force'}" StyleClasses="negative" HorizontalExpand="True" Visible="False" />
+            <Button Name="LockdownButton" Text="{Loc 'airlock-cycler-window-lockdown'}" HorizontalExpand="True" Visible="False" />
+        </BoxContainer>
     </BoxContainer>
 </controls:FancyWindow>

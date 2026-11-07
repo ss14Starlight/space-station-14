@@ -145,6 +145,11 @@ public sealed class AirlockCyclerBoundUserInterfaceState : BoundUserInterfaceSta
     public bool NoVent;
 
     /// <summary>
+    /// Every door is bolted until someone asks for a cycle.
+    /// </summary>
+    public bool Lockdown;
+
+    /// <summary>
     /// Side the controller is cycling towards, or the side that was opened last when idle.
     /// </summary>
     public int? TargetSide;
@@ -186,3 +191,9 @@ public sealed class AirlockCyclerCycleMessage(int side) : BoundUserInterfaceMess
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class AirlockCyclerForceMessage : BoundUserInterfaceMessage;
+
+/// <summary>
+/// Stop any cycle and bolt every door shut until someone asks for a cycle again.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class AirlockCyclerLockdownMessage : BoundUserInterfaceMessage;

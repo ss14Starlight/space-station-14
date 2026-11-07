@@ -42,6 +42,7 @@ public sealed partial class AirlockCyclerSystem
             return;
         }
 
+        comp.Lockdown = false;
         comp.TargetSide = side;
         comp.Requester = user;
         comp.Force = false;
@@ -418,6 +419,46 @@ public sealed partial class AirlockCyclerSystem
                     _appearance.SetData(linked, AirlockCyclerButtonVisuals.State, state);
             }
         }
+    }
+
+    private void StartLockdown(Entity<AirlockCyclerComponent> ent)
+    {
+        var comp = ent.Comp;
+        if (TryComp<DeviceLinkSourceComponent>(ent, out var source))
+            StopDevices(ent, source);
+
+        comp.Lockdown = true;
+        comp.TargetSide = null;
+        comp.Requester = null;
+        comp.Force = false;
+        comp.Interrupted = false;
+        comp.SettleUntil = null;
+        comp.Problem = AirlockCyclerProblem.None;
+        SetState(ent, AirlockCyclerState.Idle);
+        UpdateButtons(ent);
+        comp.NextUpdate = _timing.CurTime;
+    }
+
+    private bool HasAnySideAccess(Entity<AirlockCyclerComponent> ent, EntityUid user)
+    {
+        if (!TryComp<DeviceLinkSourceComponent>(ent, out var source))
+            return true;
+
+        var anyDoor = false;
+        for (var i = 0; i < ent.Comp.Sides.Count; i++)
+        {
+            foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.Sides[i]))
+            {
+                if (!_doorQuery.HasComp(linked))
+                    continue;
+
+                anyDoor = true;
+                if (_access.IsAllowed(user, linked))
+                    return true;
+            }
+        }
+
+        return !anyDoor;
     }
 
     private bool HasSideAccess(Entity<AirlockCyclerComponent> ent, int side, EntityUid? user)

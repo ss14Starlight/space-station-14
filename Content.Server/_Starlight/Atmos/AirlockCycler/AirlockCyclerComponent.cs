@@ -135,6 +135,12 @@ public sealed partial class AirlockCyclerComponent : Component
     public bool Interrupted;
 
     /// <summary>
+    /// Every door is bolted shut until someone asks for a cycle.
+    /// </summary>
+    [ViewVariables, DataField]
+    public bool Lockdown;
+
+    /// <summary>
     /// Set on the first update after spawn or load. A saved grid brings back the vents still enabled with the cycle's
     /// settings while the cycle itself has to be picked up again, so they are stopped once the links are back.
     /// </summary>
