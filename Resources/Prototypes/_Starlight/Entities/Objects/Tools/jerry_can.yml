@@ -1,5 +1,5 @@
 - type: entity
-  parent: [DrinkBaseMaterialPlastic, DrinkVisualsOpenable, DrinkBaseOpenable, DrinkBase]
+  parent: [DrinkBaseMaterialStrongPlastic, DrinkVisualsOpenable, DrinkBaseOpenable, DrinkBase]
   id: JerryCanEmpty
   name: jerry can
   suffix: Empty
