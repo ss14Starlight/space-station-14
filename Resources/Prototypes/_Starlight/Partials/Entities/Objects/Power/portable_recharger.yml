@@ -12,6 +12,3 @@
       charger_slot:
         ejectOnInteract: false
         disableEject: false
-        whitelist:
-          components:
-          - batteryAmmoProvider
