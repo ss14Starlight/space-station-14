@@ -28,6 +28,8 @@ public abstract partial class SharedXenoDemocracySystem : EntitySystem
 
     private void OnVote(XenoDemocracyVoteActionEvent args)
     {
+        if (args.Handled)
+            return;
         _sawmill.Log(LogLevel.Error, "Vote function called");
 
         if(!TryComp(args.Performer, out XenoDemocracyComponent? xeno) || xeno == null)
@@ -40,5 +42,6 @@ public abstract partial class SharedXenoDemocracySystem : EntitySystem
         _sawmill.Log(LogLevel.Error, "Comp holder target");
 
         xeno.CurrentVoteHolder = args.Target;
+        args.Handled = true;
     }
 }
