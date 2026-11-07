@@ -285,6 +285,13 @@ public sealed partial class ShuttleSystem
                             continue;
 
                         break;
+                    // Starlight start
+                    case EntitySpawnGroup entity:
+                        if (!TryEntitySpawn(targetGrid.Value, entity, out spawned))
+                            continue;
+
+                        break;
+                    // Starlight end
                     default:
                         throw new NotImplementedException();
                 }
