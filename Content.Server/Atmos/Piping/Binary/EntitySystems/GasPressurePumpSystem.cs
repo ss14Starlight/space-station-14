@@ -32,10 +32,7 @@ public sealed partial class GasPressurePumpSystem : SharedGasPressurePumpSystem
             || !_power.IsPowered(ent)
             || !_nodeContainer.TryGetNodes(ent.Owner, ent.Comp.InletName, ent.Comp.OutletName, out PipeNode? inlet, out PipeNode? outlet))
         {
-            // Starlight-start: This dirties every single pressure pump every single atmos update for no reason.
-            // Ambience is toggled off in the ToggleableDevice state change handler.
-            // _ambientSoundSystem.SetAmbience(ent, false);
-            // Starlight-end
+            _ambientSoundSystem.SetAmbience(ent, false);
             return;
         }
 

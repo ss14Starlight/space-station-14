@@ -49,7 +49,7 @@ public sealed partial class ToggleableDeviceSystem : EntitySystem
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return;
-        if (ent.Comp.Enabled != state)
+        if (ent.Comp.Enabled == state)
             return;
 
         ent.Comp.Enabled = state;
