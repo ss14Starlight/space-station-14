@@ -1,104 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: 'Service: Add interior design to the library.'
-    type: Tweak
-  id: 409785
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Service: Replace Service Airlock to Disposals with Maintenance Airlock.'
-    type: Tweak
-  id: 409786
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Service: Made fake doors at Service (South of Library) welded and non-interactable.'
-    type: Fix
-  id: 409787
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: "Service: Replace Radio Host's doors that had external access with normal ones."
-    type: Fix
-  id: 409788
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Security: Add SecTech.'
-    type: Add
-  id: 409789
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Security: Fix the public doors going into the SEC Department.'
-    type: Fix
-  id: 409790
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Security: Add riot armour to Armoury.'
-    type: Add
-  id: 409791
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Medical: Add new buttons to let non-medical personnel leave the medbay.'
-    type: Add
-  id: 409792
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Medical: Add a new checkpoint by the EVAC.'
-    type: Add
-  id: 409793
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Medical: Add a fluid pipeline from Chemist to new checkpoint.'
-    type: Add
-  id: 409794
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Engineering: Replace Lockers and Hardsuits with 2-in-1 Lockers; now it can equip 10 engineers and 6 Atmos Tech.'
-    type: Tweak
-  id: 409795
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Engineering: Removed the links to the public doors leading in/out of the department.'
-    type: Remove
-  id: 409796
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Engineering: Adjust the Job Counts for Engineers and TAs: Engineers: 8 -> 7; TAs: 4 -> 3. To ensure that no one has a missing hard suit.'
-    type: Tweak
-  id: 409797
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Engineering: Unpowered doors at start are now powered.'
-    type: Fix
-  id: 409798
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
   - message: "Science: Add RD's Locker."
     type: Add
   id: 409799
@@ -2799,4 +2701,102 @@ Entries:
   id: 410184
   time: '2026-11-07T08:00:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7091
+- author: Hot Mic
+  changes:
+  - message: Adds Flotilla Spaceport to the map rotation. Thank you all for the feedback during the playtest.
+    type: Add
+  id: 410185
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: '(Flotilla) Security: Expanded the Armory to fit in more hardsuits.'
+    type: Tweak
+  id: 410186
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: "(Flotilla) Medical: Remove the poster that was covering the medical department's ATM."
+    type: Remove
+  id: 410187
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: "(Flotilla) Cargo: Remove the poster that was covering Cargo's Intercom."
+    type: Remove
+  id: 410188
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: '(Flotilla) AI: Add AI restoration console to the AI core.'
+    type: Add
+  id: 410189
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: '(Flotilla) AI: Replace generators with 4 hyper-advanced SMES.'
+    type: Tweak
+  id: 410190
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: '(Flotilla) Engineer: Atmos moved the manifolds to under the plasma windows, thus cleaning up the main atmos room while retaining the same features.'
+    type: Tweak
+  id: 410191
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: "(Flotilla) Cargo: Add missing LV wires for Cargo Bay's Shuttle docking."
+    type: Fix
+  id: 410192
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: "(Flotilla) Service: Update the Radio Host's Setup to the new standard."
+    type: Fix
+  id: 410193
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: "(Flotilla) Service: Replace Radio Host's working shuttle console with a generic console."
+    type: Tweak
+  id: 410194
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: '(Flotilla) Other: Add new station beacons.'
+    type: Add
+  id: 410195
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: '(Flotilla) Other: Add autolathe to Tools.'
+    type: Add
+  id: 410196
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: '(Flotilla) Other: Add missing decals.'
+    type: Add
+  id: 410197
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: Hot Mic
+  changes:
+  - message: '(Flotilla) Other: Various minor fixes.'
+    type: Fix
+  id: 410198
+  time: '2026-11-07T08:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7090
 Order: -1
