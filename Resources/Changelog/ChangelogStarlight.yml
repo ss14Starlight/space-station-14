@@ -1,55 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: "Science: Add RD's Locker."
-    type: Add
-  id: 409799
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Science: Unpowered doors at start are now powered.'
-    type: Fix
-  id: 409800
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Cargo: Extend the Mining Arm.'
-    type: Fix
-  id: 409801
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Cargo: Add hoses to O2 and N2 Canisters at the Mining Arm.'
-    type: Tweak
-  id: 409802
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Cargo: Removed Salvage Station Beacon.'
-    type: Remove
-  id: 409803
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: 'Cargo: Moved Mining Station Beacon.'
-    type: Tweak
-  id: 409804
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
-  - message: "Command: Replace BSO's boring dark floor tiles with new wood tiles."
-    type: Tweak
-  id: 409805
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
   - message: "Command: Replace Command's Substation Airlock from Engineering to Command."
     type: Tweak
   id: 409806
@@ -2799,4 +2750,53 @@ Entries:
   id: 410198
   time: '2026-11-07T08:44:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7090
+- author: redmushie
+  changes:
+  - message: '(Escape pod: Cheap) Pipe docking! It can now use air from station.'
+    type: Add
+  id: 410199
+  time: '2026-11-07T09:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7059
+- author: redmushie
+  changes:
+  - message: '(Escape pod: Library) Pipe docking! It can now use air from station.'
+    type: Add
+  id: 410200
+  time: '2026-11-07T09:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7059
+- author: redmushie
+  changes:
+  - message: '(Escape pod: Lounge) Pipe docking! It can now use air from station.'
+    type: Add
+  id: 410201
+  time: '2026-11-07T09:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7059
+- author: redmushie
+  changes:
+  - message: '(Escape pod: Library) Pipe docking! It can now use air from station.'
+    type: Add
+  id: 410202
+  time: '2026-11-07T09:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7059
+- author: redmushie
+  changes:
+  - message: '(Escape pod: Pet) Pipe docking! It can now use air from station.'
+    type: Add
+  id: 410203
+  time: '2026-11-07T09:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7059
+- author: redmushie
+  changes:
+  - message: '(Escape pod: Toilet) Pipe docking! It can now use air from station.'
+    type: Add
+  id: 410204
+  time: '2026-11-07T09:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7059
+- author: redmushie
+  changes:
+  - message: '(Escape pod: VerySmall) He was too small. Too whimsical. He will be missed.'
+    type: Remove
+  id: 410205
+  time: '2026-11-07T09:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7059
 Order: -1
