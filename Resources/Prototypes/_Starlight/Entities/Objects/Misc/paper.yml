@@ -83,3 +83,37 @@
     contentMargin: 0.0, 0.0, 0.0, 0.0
     headerImagePath: "/Textures/_Starlight/Interface/Paper/paper_heading_itg_logo.png"
     headerMargin: 0.0, 0.0, 0.0, 0.0
+
+- type: entity
+  name: Bounty Payment
+  parent: [BasePaper, SalvageTicket]
+  id: PaperITGBounty
+  description: A bounty payment form, it strangely cant fit back inside a fax machine.
+  components:
+  - type: Stack
+    count: 1200
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: Paper
+  - type: PaperLabelType
+  - type: ActivatableUI
+    key: enum.PaperUiKey.Key
+    requiresComplex: false
+  - type: UserInterface
+    interfaces:
+      enum.PaperUiKey.Key:
+        type: PaperBoundUserInterface
+  - type: PaperVisuals
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 0.0, 0.0, 0.0, 0.0
+    headerImagePath: "/Textures/_Starlight/Interface/Paper/paper_heading_itg_logo.png"
+    headerMargin: 0.0, 0.0, 0.0, 0.0
+  - type: StationAiWhitelist
