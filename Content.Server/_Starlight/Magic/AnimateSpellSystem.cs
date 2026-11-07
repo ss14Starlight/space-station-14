@@ -1,6 +1,8 @@
+using Content.Server._Starlight.Achievement;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
+using Content.Shared._Starlight.Achievement;
 using Content.Shared.Actions.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Destructible.Thresholds.Triggers;
@@ -8,6 +10,7 @@ using Content.Shared.Magic.Components;
 using Content.Shared._Starlight.Magic.Components;
 using Content.Shared.Magic.Events;
 using Content.Shared.Magic.Systems;
+using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Random;
 
@@ -20,6 +23,7 @@ namespace Content.Server._Starlight.Magic;
 public sealed partial class AnimateSpellSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private AchievementSystem _achievements = default!;
 
     private EntityUid? _lastActionUsed; // Track the last action used for animated objects
 
@@ -35,6 +39,7 @@ public sealed partial class AnimateSpellSystem : EntitySystem
         // Store the action entity if this is an animate spell
         if (ev.ToAdd.ContainsKey("Animate"))
             _lastActionUsed = ev.Action.Owner;
+        if (TryComp<TagComponent>(ev.Target, out var tags) && tags.Tags.AsReadOnly().Contains("PlushieLizard")) _achievements.AddProgressAndCheck(ev.Performer, AchievementProgressKeys.LizardPlushieArmy);
     }
 
     private void OnAnimateSpell(EntityUid uid, AnimateComponent component, ref AnimateSpellEvent args) =>

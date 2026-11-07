@@ -870,6 +870,8 @@
       Male: Mouse
       Female: Mouse
       Unsexed: Mouse
+  - type: FaxableObject
+    Achievement: hamster_fax
   # Starlight-end
   - type: FlavorProfile
     flavors:

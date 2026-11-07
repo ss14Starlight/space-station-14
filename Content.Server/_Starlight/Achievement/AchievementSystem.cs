@@ -71,6 +71,15 @@ using Content.Shared._Starlight.Store.Events;
 using Content.Server._Starlight.Roles;
 using Content.Shared._Starlight.Medical.HealthAnalyzer;
 using Content.Shared._Starlight.Objectives.ObjectivePicker;
+using Content.Shared._Starlight.Changeling;
+using Content.Shared._Starlight.Medical;
+using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared._Starlight.Medical.Surgery.Events;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Cuffs.Components;
+using Content.Shared.Medical;
+using Content.Shared.Nutrition;
+using Content.Shared.Strip.Components;
 
 namespace Content.Server._Starlight.Achievement;
 
@@ -98,10 +107,15 @@ public sealed partial class AchievementSystem : EntitySystem
     private static readonly TimeSpan VentKillWindow = TimeSpan.FromSeconds(30);
     private const float HesDeadJimDamageThreshold = 2000f;
     private const string EthanolReagentId = "Ethanol";
+    private const string TheLastCallReagentId = "TheLastCall";
+    private const string DesoxyephedrineReagentId = "Desoxyephedrine";
     private const string SalineReagentId = "Saline";
+    private const string AmoxlaReagentId = "Amoxla";
     private const string AvaliSpeciesId = "Avali";
     private const string ResomiSpeciesId = "Resomi";
+    private const string VoxSpeciesId = "Vox";
     private const string UplinkCatEarsListingId = "UplinkCatEars";
+    private const string UplinkBalloon = "UplinkBalloon";
     private readonly Dictionary<Guid, Dictionary<string, double>> _roundProgress = [];
     private readonly HashSet<Guid> _achievementFetchInFlight = [];
     private readonly HashSet<EntityUid> _commandStaffMindsThatDied = [];
@@ -135,6 +149,10 @@ public sealed partial class AchievementSystem : EntitySystem
         SubscribeLocalEvent<FollowedComponent, EntityStartedFollowingEvent>(OnEntityStartedFollowing);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+        SubscribeLocalEvent<MobStateComponent, TargetDefibrillatedEvent>(OnDefib);
+        SubscribeLocalEvent<MobStateComponent, ConsumedFoodEvent>(OnConsume);
+        SubscribeLocalEvent<StripAttemptEvent>(OnStrip);
+        SubscribeLocalEvent<FunctionalOrganComponent, SurgeryOrganExtracted>(OnFunctionalOrganExtracted);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
 
         foreach (var session in _playerManager.Sessions)
@@ -334,6 +352,25 @@ public sealed partial class AchievementSystem : EntitySystem
     #endregion
 
     #region Event Handlers
+
+    private void OnFunctionalOrganExtracted(Entity<FunctionalOrganComponent> ent, ref SurgeryOrganExtracted args)
+    {
+        if (MetaData(ent.Owner).EntityPrototype?.ID == "BrainImplantNexus") QueueUnlockAchievement(args.User, "broken_media");
+    }
+
+    private void OnStrip(ref StripAttemptEvent ev)
+    {
+        if (ev.Item.Valid && TryComp<BreathToolComponent>(ev.Item, out _) &&
+            TryComp<HumanoidAppearanceComponent>(ev.Target, out var appearance) &&
+            appearance.Species.Equals(VoxSpeciesId) && TryComp<CuffableComponent>(ev.Target, out _))
+            QueueUnlockAchievement(ev.User.Owner, "vox_moment");
+    }
+
+    private void OnConsume(Entity<MobStateComponent> ent, ref ConsumedFoodEvent args)
+    {
+        if (ProtoMan.TryIndex(args.Food, out var food) && food.Parents.Contains("BaseReactorFuelRod")) QueueUnlockAchievement(ent.Owner, "spicy_rock");
+    }
+
     private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
     {
         switch (e.NewStatus)
@@ -391,6 +428,16 @@ public sealed partial class AchievementSystem : EntitySystem
 
     private void OnMobStateChanged(MobStateChangedEvent args)
     {
+        if (args.NewMobState == MobState.Critical && _inventory.TryGetSlotEntity(args.Target, "outerClothing", out var suit) && MetaData(suit.Value).EntityPrototype?.ID == "ClothingOuterSuitRad")
+        {
+            var damage = _damageableSystem.GetAllDamage(args.Target!);
+            var rads = damage.DamageDict.GetValueOrDefault("Radiation").Float();
+            var highest = damage.DamageDict.All(kvp => kvp.Value.Float() <= rads);
+
+            if (rads >0 && highest) QueueUnlockAchievement(args.Target, "imperfect_protection");
+        }
+
+
         if (args.NewMobState != MobState.Dead || args.OldMobState >= args.NewMobState)
             return;
 
@@ -510,6 +557,16 @@ public sealed partial class AchievementSystem : EntitySystem
             AddProgressAndCheck(uid, AchievementProgressKeys.AlcoholDrank, args.Reagent.Quantity.Float());
         }
 
+        if (args.Reagent.Reagent.Prototype == TheLastCallReagentId)
+        {
+            QueueUnlockAchievement(uid, "master_bartender");
+        }
+
+        if (args.Reagent.Reagent.Prototype == DesoxyephedrineReagentId)
+        {
+            QueueUnlockAchievement(uid, "breaking_good");
+        }
+
         if (args.Reagent.Reagent.Prototype != "Frezon")
             return;
 
@@ -531,6 +588,10 @@ public sealed partial class AchievementSystem : EntitySystem
 
     private void OnStorePurchaseCompleted(ref StorePurchaseCompletedEvent args)
     {
+        if (args.ListingId == UplinkBalloon)
+        {
+            QueueUnlockAchievement(args.Buyer, "uplink_balloon");
+        }
         if (args.ListingId != UplinkCatEarsListingId
             || !_playerManager.TryGetSessionByEntity(args.Buyer, out var session))
         {
@@ -544,12 +605,16 @@ public sealed partial class AchievementSystem : EntitySystem
     {
         if (!TryComp<HumanoidAppearanceComponent>(args.TargetGettingInjected, out var humanoid)
             || (humanoid.Species != AvaliSpeciesId && humanoid.Species != ResomiSpeciesId))
-            return;
+        {
+            if (args.TransferredSolution.Contents.Any(quantity => quantity.Reagent.Prototype == AmoxlaReagentId))
+            {
+                QueueUnlockAchievement(args.EntityUsingInjector, "bird_medic");
+            }
+        }
 
-        if (!args.TransferredSolution.Contents.Any(reagentQuantity => reagentQuantity.Reagent.Prototype == SalineReagentId))
+        if (args.TransferredSolution.Contents.All(reagentQuantity => reagentQuantity.Reagent.Prototype != SalineReagentId))
             return;
-
-        QueueUnlockAchievement(args.EntityUsingInjector, "you_monster");
+        if (humanoid != null && (humanoid.Species == ResomiSpeciesId || humanoid.Species == AvaliSpeciesId)) QueueUnlockAchievement(args.EntityUsingInjector, "you_monster");
     }
 
     private void OnProjectileHit(EntityUid uid, ProjectileComponent _, ref ProjectileHitEvent args)
@@ -588,6 +653,14 @@ public sealed partial class AchievementSystem : EntitySystem
             QueueUnlockAchievement(killerSession, "first_blood");
         }
 
+        var entityPrototype = MetaData(ev.Entity).EntityPrototype;
+        if (entityPrototype is { ID: "MobElder" }) QueueUnlockAchievement(killerSession, "puny_god");
+
+        if (entityPrototype is { ID: "MobAdminMouse"})
+        {
+            QueueUnlockAchievement(killerSession, "da_roolz");
+        }
+
         if (!_mind.TryGetMind(ev.Entity, out var victimMindId, out _))
             return;
 
@@ -599,7 +672,13 @@ public sealed partial class AchievementSystem : EntitySystem
         }
 
         if (_roles.MindHasRole<TerminatorRoleComponent>(victimMindId))
+        {
+            if (!TerminatorKilledTarget(ev.Entity))
+            {
+                QueueUnlockAchievement(killerSession, "future_refused");
+            }
             QueueUnlockAchievement(killerSession, "john_connor");
+        }
 
         if (!_roles.MindHasRole<ParadoxCloneRoleComponent>(victimMindId)
             || !_mind.TryGetMind(killerSession.UserId, out var killerMindId, out _)
@@ -711,6 +790,13 @@ public sealed partial class AchievementSystem : EntitySystem
         _recentVentCrawlExits.Clear();
         _firstCrewKillOccurred = false;
     }
+
+    private void OnDefib(Entity<MobStateComponent> ent, ref TargetDefibrillatedEvent args)
+    {
+        if (TryComp<TagComponent>(ent.Owner, out var tag) && tag.Tags.AsReadOnly().Contains("Mouse")) QueueUnlockAchievement(args.User, "defib_mouse");
+        if (TryComp<ChangelingComponent>(ent.Owner, out _)) QueueUnlockAchievement(ent.Owner, "changeling_defib");
+    }
+
     #endregion
 
     #region Round Progress
@@ -757,7 +843,7 @@ public sealed partial class AchievementSystem : EntitySystem
             score.Completed + ObjectivePickerSelection.Tolerance >= requirement.RequiredDifficulty);
     }
 
-    private void QueueUnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
+    public void QueueUnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
     {
         TryUnlockAchievementAsync(session, achievementId, characterName)
             .AsTask()
@@ -1001,6 +1087,20 @@ public sealed partial class AchievementSystem : EntitySystem
 
         station = stationMember.Station;
         return true;
+    }
+
+    private bool TerminatorKilledTarget(EntityUid terminatorBody)
+    {
+        if (!TryComp<TargetOverrideComponent>(terminatorBody, out var targetOverride)
+            || targetOverride.Target is not { } targetMindUid
+            || !TryComp<MindComponent>(targetMindUid, out var targetMind)
+            || targetMind.OwnedEntity is not { } targetBody
+            || !TryComp<MobStateComponent>(targetBody, out var targetMobState))
+        {
+            return true;
+        }
+
+        return _mobState.IsDead(targetBody, targetMobState);
     }
 
     private void QueueAchievementHydration(ICommonSession session)

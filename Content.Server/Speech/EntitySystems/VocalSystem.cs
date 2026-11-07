@@ -1,5 +1,7 @@
+using Content.Server._Starlight.Achievement;
 using Content.Server.Actions;
 using Content.Server.Chat.Systems;
+using Content.Shared._Starlight.Achievement;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Humanoid;
@@ -24,6 +26,7 @@ public sealed partial class VocalSystem : EntitySystem
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private IGameTiming _gameTiming = default!; //Starlight-edit
+    [Dependency] private AchievementSystem _achievement = default!; //Starlight-edit
 
     public override void Initialize()
     {
@@ -127,7 +130,7 @@ public sealed partial class VocalSystem : EntitySystem
     {
         if (args.Handled)
             return;
-
+        _achievement.AddProgressAndCheck(uid, AchievementProgressKeys.ScreamCounter);
         _chat.TryEmoteWithChat(uid, component.ScreamId);
         args.Handled = true;
     }
