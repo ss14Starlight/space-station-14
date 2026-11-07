@@ -10,7 +10,7 @@
       flavors:
         - meaty
     - type: Item
-      size: Huge
+      size: Normal
       shape:
         - 0,0,3,2
       inhandVisuals:
