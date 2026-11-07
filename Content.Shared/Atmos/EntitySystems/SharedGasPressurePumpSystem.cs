@@ -69,7 +69,7 @@ public abstract partial class SharedGasPressurePumpSystem : EntitySystem
 
     private void OnToggleStatusMessage(Entity<GasPressurePumpComponent> ent, ref GasPressurePumpToggleStatusMessage args)
         // Starlight-start: Toggle logic is now centered around ToggleableDeviceSystem.
-        => ToggleInternal(ent);
+        => SetStateInternal(ent, args.Enabled);
     // Starlight-end
 
     private void OnOutputPressureChangeMessage(Entity<GasPressurePumpComponent> ent, ref GasPressurePumpChangeOutputPressureMessage args)
