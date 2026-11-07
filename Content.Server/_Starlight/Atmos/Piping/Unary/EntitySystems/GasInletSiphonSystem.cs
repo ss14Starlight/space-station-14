@@ -1,17 +1,16 @@
 using Content.Server._Starlight.Atmos.Piping.Unary.Components;
-using Content.Server._Starlight.DeviceLinking.Components;
-using Content.Server._Starlight.DeviceLinking.Systems;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Audio;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Power.EntitySystems;
 using Content.Shared._Starlight.Atmos.Piping.Unary.Visuals;
-using Content.Shared._Starlight.DeviceLinking.Components;
-using Content.Shared._Starlight.DeviceLinking.EntitySystems;
+using Content.Shared._Starlight.ToggleableDevice.Components;
+using Content.Shared._Starlight.ToggleableDevice.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Components;
+using Content.Shared.Database;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using JetBrains.Annotations;
@@ -28,14 +27,14 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
     [Dependency] private PowerReceiverSystem _powerReceiverSystem = null!;
     [Dependency] private TransformSystem _transformSystem = null!;
     [Dependency] private AmbientSoundSystem _ambientSoundSystem = null!;
-    [Dependency] private EntityManager _entityManager = null!;
     [Dependency] private ToggleableDeviceSystem _toggleableDevice = null!;
 
     [SubscribeLocalEvent]
     private void OnMapInit(Entity<GasInletSiphonComponent> entity, ref MapInitEvent args)
     {
+        _toggleableDevice.SetLogType(entity.Owner, LogType.AtmosPowerChanged);
         // This in turn triggers our OnStateChanged, updating our visuals.
-        _toggleableDevice.SetState(entity, entity.Comp.Enabled);
+        _toggleableDevice.SetState(entity.Owner, entity.Comp.Enabled);
     }
 
     /// <summary>
@@ -49,7 +48,7 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
         if (!TryComp<ToggleableDeviceComponent>(entity, out var toggleable))
             return;
 
-        _toggleableDevice.Toggle((entity, toggleable));
+        _toggleableDevice.Toggle((entity, toggleable), actor: args.User);
         args.Handled = true;
     }
 

@@ -1,21 +1,25 @@
-using Content.Shared._Starlight.DeviceLinking.EntitySystems;
+using Content.Shared._Starlight.ToggleableDevice.EntitySystems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping;
-using Robust.Shared.Timing;
+using Content.Shared.Database;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Shared.Atmos.EntitySystems;
 
 public abstract partial class SharedGasPressurePumpSystem
 {
-    [Dependency] private ToggleableDeviceSystem _toggleable = null!;
+    [Dependency] private ToggleableDeviceSystem _toggleableDevice = null!;
+
+    [SubscribeLocalEvent]
+    private void OnMapInit(Entity<GasPressurePumpComponent> ent, ref MapInitEvent args)
+        => _toggleableDevice.SetLogType(ent.Owner, LogType.AtmosPowerChanged);
 
     [SubscribeLocalEvent]
     private void OnAnchorChanged(Entity<GasPressurePumpComponent> ent, ref AnchorStateChangedEvent args)
     {
         if (!args.Anchored)
         {
-            _toggleable.TurnOff(ent);
+            _toggleableDevice.TurnOff(ent.Owner);
             ent.Comp.Enabled = false;
             Dirty(ent);
             UpdateAppearance(ent);
@@ -32,7 +36,7 @@ public abstract partial class SharedGasPressurePumpSystem
     }
 
     private void ToggleInternal(Entity<GasPressurePumpComponent> ent)
-        => _toggleable.Toggle(ent.Owner);
+        => _toggleableDevice.Toggle(ent.Owner);
 
     protected void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null)
     {

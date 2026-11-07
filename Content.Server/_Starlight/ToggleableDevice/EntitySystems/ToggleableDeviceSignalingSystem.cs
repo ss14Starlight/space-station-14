@@ -1,14 +1,13 @@
-using Content.Server._Starlight.Atmos;
-using Content.Server._Starlight.DeviceLinking.Components;
+using Content.Server._Starlight.ToggleableDevice.Components;
 using Content.Server.DeviceLinking.Systems;
-using Content.Shared._Starlight.DeviceLinking.Components;
-using Content.Shared._Starlight.DeviceLinking.EntitySystems;
+using Content.Shared._Starlight.ToggleableDevice.Components;
+using Content.Shared._Starlight.ToggleableDevice.EntitySystems;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.DeviceNetwork;
 using JetBrains.Annotations;
 
-namespace Content.Server._Starlight.DeviceLinking.Systems;
+namespace Content.Server._Starlight.ToggleableDevice.EntitySystems;
 
 /// <summary>
 /// Signalling interface for the <see cref="ToggleableDeviceSystem"/>.
@@ -32,9 +31,7 @@ public sealed partial class ToggleableDeviceSignalingSystem : EntitySystem
     /// </summary>
     [SubscribeLocalEvent]
     private void OnStateChanged(Entity<ToggleableDeviceSignalingComponent> entity, ref ToggleableStateEvent ev)
-    {
-        _signalSystem.SendSignal(entity, entity.Comp.StatusPort, ev.State);
-    }
+        => _signalSystem.SendSignal(entity, entity.Comp.StatusPort, ev.State);
 
     /// <summary>
     /// On signal receive, update the toggleable device.

@@ -1,7 +1,7 @@
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.DeviceLinking.Components;
+namespace Content.Server._Starlight.ToggleableDevice.Components;
 
 /// <summary>
 /// Adds signaling functionality to an entity with a ToggleableDeviceComponent.
