@@ -137,6 +137,9 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
     //Need to do this for comp shutdown, too, in case the component is forcefully removed
     private void OnComponentShutdown(Entity<XenoDemocracyComponent> ent, ref ComponentShutdown args)
     {
+        if (!Deleted(ent.Owner) && ent.Comp.ActionEntity is not null)
+            _action.RemoveAction((ent.Owner, null), ent.Comp.ActionEntity);
+
         if (!ent.Comp.IsVoice) // Target isn't the Voice, no need to revote
             return;
 

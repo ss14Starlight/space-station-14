@@ -14,7 +14,7 @@ public sealed partial class XenoDemocracyRuleComponent : Component
     public TimeSpan? VoiceVoteTimer;
 
     [DataField]
-    public TimeSpan VoiceVoteDelay = TimeSpan.FromMinutes(1);
+    public TimeSpan VoiceVoteDelay = TimeSpan.FromMinutes(30);
 
     [DataField]
     public bool HasVoice = false;
