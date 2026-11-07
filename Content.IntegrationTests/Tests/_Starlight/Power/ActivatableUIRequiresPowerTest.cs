@@ -1,3 +1,4 @@
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Construction.Components;
 using Content.Server.Power.Components;
 using Content.Server.Wires;
@@ -13,7 +14,7 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests._Starlight.Power;
 
 [TestFixture, TestOf(typeof(ActivatableUIRequiresPowerComponent))]
-public sealed class ActivatableUIRequiresPowerTest
+public sealed class ActivatableUIRequiresPowerTest : GameTest
 {
     private static readonly EntProtoId ComputerCommsPrototype = "ComputerComms";
     private static readonly EntProtoId ComputerCommsFilledPrototype = "ComputerCommsFilled";
@@ -22,8 +23,7 @@ public sealed class ActivatableUIRequiresPowerTest
     [Test]
     public async Task ComputerCommsAndKeycardAuthUseCellPowerFallback()
     {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
+        var server = Server;
         var protoMan = server.ResolveDependency<IPrototypeManager>();
         var entMan = server.ResolveDependency<IEntityManager>();
 
@@ -102,15 +102,12 @@ public sealed class ActivatableUIRequiresPowerTest
                     entMan.DeleteEntity(cell);
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task TerminalBackupCellsRequireOpenPanelForEjection()
     {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
+        var server = Server;
         var entMan = server.ResolveDependency<IEntityManager>();
 
         await server.WaitAssertion(() =>
@@ -134,7 +131,5 @@ public sealed class ActivatableUIRequiresPowerTest
                 entMan.DeleteEntity(terminal);
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

@@ -118,6 +118,15 @@ def check_rsi(rsi: str, schema: Draft7Validator):
             add_error(rsi, f"{state_name}: failed to open state {state_name}.png")
             continue
 
+        # Starlight-start: Image.open only reads the header. Integration tests stub out RSI pixel loading
+        # (RsiLoadingPatch), so this is the only place that catches a valid header with corrupt pixel data.
+        try:
+            image.load()
+        except Exception as e:
+            add_error(rsi, f"{state_name}: failed to decode state {state_name}.png: {e}")
+            continue
+        # Starlight-end
+
         # Check that size is a multiple of the metadata frame size.
         size = image.size
         if size[0] % frame_width != 0 or size[1] % frame_height != 0:

@@ -200,7 +200,6 @@ WEIGHT_OVERRIDES = {
     "TestAllConcurrent": 0.25,
     "TestAllRestocksAreAvailableToBuy": 0.5,
     "TestAllServerPrototypesAreSerializable": 35.0,
-    "TestApcLoad": 10.0,
     "TestBatteriesProportional": 0.5,
     "TestBatteryRamp": 0.25,
     "TestBladeServerBoardHasValidBladeServer": 0.25,

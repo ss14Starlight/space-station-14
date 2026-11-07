@@ -223,6 +223,7 @@ jobs:
         env:
           HARVEST: ${{ inputs.harvest }}
           RUN_DEBUG: ${{ runner.debug }}
+          SS14_TEST_PROFILE: ${{ runner.debug }}
           TEST_FILTER: ${{ fromJSON(needs.build.outputs.integration_test_filters)[matrix.shard] }}
         run: |
           if [ -z "$TEST_FILTER" ]; then

@@ -19,13 +19,22 @@ internal static class SystemTimingPatch
     private static Dictionary<string, double> s_snapshot = [];
 
     internal static void EnableMetrics(Robust.Shared.GameObjects.IEntitySystemManager sysMan)
-        => sysMan.MetricsEnabled = true;
+    {
+        if (TestProfiling.Enabled)
+            sysMan.MetricsEnabled = true;
+    }
 
     internal static async Task TakeSnapshot()
-        => s_snapshot = await CollectSums();
+    {
+        if (TestProfiling.Enabled)
+            s_snapshot = await CollectSums();
+    }
 
     internal static async Task PrintTop10(TextWriter output)
     {
+        if (!TestProfiling.Enabled)
+            return;
+
         var current = await CollectSums();
         if (current.Count == 0)
             return;
