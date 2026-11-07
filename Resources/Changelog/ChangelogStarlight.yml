@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: "Service: Add a new station beacon for Theatre Proper and rename the old one to Theatre's Breakroom."
-    type: Add
-  id: 409784
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
   - message: 'Service: Add interior design to the library.'
     type: Tweak
   id: 409785
@@ -2799,4 +2792,11 @@ Entries:
   id: 410183
   time: '2026-11-06T22:11:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7080
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Made the Changelog button more apparent in the main menu, and removed the unusable Call Vote button to make room for it.
+    type: Tweak
+  id: 410184
+  time: '2026-11-07T08:00:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7091
 Order: -1
