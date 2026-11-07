@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.ToggleableDevice.EntitySystems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping;
+using Content.Shared.Audio;
 using Content.Shared.Database;
 
 // ReSharper disable once CheckNamespace
@@ -9,6 +10,7 @@ namespace Content.Shared.Atmos.EntitySystems;
 public abstract partial class SharedGasPressurePumpSystem
 {
     [Dependency] private ToggleableDeviceSystem _toggleableDevice = null!;
+    [Dependency] private SharedAmbientSoundSystem _ambientSound = null!;
 
     /// <summary>
     /// Use our existing Enabled state for the ToggleableDevice. Required for backwards compatability.
@@ -28,6 +30,11 @@ public abstract partial class SharedGasPressurePumpSystem
         Dirty(ent);
         UpdateUi(ent);
         UpdateAppearance(ent);
+
+        // This is shared code, but the client should never turn *on* ambience based on this.
+        // It's only turned on server-side by the code that determines actual gas is moving.
+        if (!ev.State)
+            _ambientSound.SetAmbience(ent.Owner, ev.State);
     }
 
     [SubscribeLocalEvent]
@@ -39,6 +46,7 @@ public abstract partial class SharedGasPressurePumpSystem
             ent.Comp.Enabled = false;
             Dirty(ent);
             UpdateAppearance(ent);
+            _ambientSound.SetAmbience(ent.Owner, false);
         }
     }
 
