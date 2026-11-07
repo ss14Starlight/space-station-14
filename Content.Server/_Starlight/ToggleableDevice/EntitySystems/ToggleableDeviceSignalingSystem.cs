@@ -19,7 +19,7 @@ public sealed partial class ToggleableDeviceSignalingSystem : EntitySystem
     [Dependency] private ToggleableDeviceSystem _toggleableDevice = null!;
 
     [SubscribeLocalEvent]
-    private void OnInit(Entity<ToggleableDeviceSignalingComponent> entity, ref ComponentInit args)
+    private void OnComponentInit(Entity<ToggleableDeviceSignalingComponent> entity, ref ComponentInit args)
     {
         _signalSystem.EnsureSinkPorts(entity, entity.Comp.OnPort, entity.Comp.OffPort,
             entity.Comp.TogglePort, entity.Comp.StatePort);
@@ -27,10 +27,18 @@ public sealed partial class ToggleableDeviceSignalingSystem : EntitySystem
     }
 
     /// <summary>
+    /// On init, we need to start sending out our Status signal if it was already high
+    /// </summary>
+    [SubscribeLocalEvent]
+    private void OnToggleableDeviceInit(Entity<ToggleableDeviceSignalingComponent> entity,
+        ref ToggleableDeviceInitEvent args) =>
+        _signalSystem.SendSignal(entity, entity.Comp.StatusPort, args.State);
+
+    /// <summary>
     /// When the state changes, update the outputted State signal.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnStateChanged(Entity<ToggleableDeviceSignalingComponent> entity, ref ToggleableStateChangedEvent ev)
+    private void OnStateChanged(Entity<ToggleableDeviceSignalingComponent> entity, ref ToggleableDeviceStateChangedEvent ev)
         => _signalSystem.SendSignal(entity, entity.Comp.StatusPort, ev.State);
 
     /// <summary>

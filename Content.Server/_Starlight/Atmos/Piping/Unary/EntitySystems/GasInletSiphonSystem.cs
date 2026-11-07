@@ -29,14 +29,20 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
     [Dependency] private AmbientSoundSystem _ambientSoundSystem = null!;
     [Dependency] private ToggleableDeviceSystem _toggleableDevice = null!;
 
+    /// <summary>
+    /// Ignore any persisted ToggleableDevice state, use our own.
+    /// (Needed for backwards compat with existing mapped entities).
+    /// </summary>
     [SubscribeLocalEvent]
-    private void OnToggleableStateInit(Entity<GasInletSiphonComponent> entity, ref ToggleableStateInitEvent args)
-        => _toggleableDevice.SetLogType(entity.Owner, LogType.AtmosPowerChanged);
+    private void OnToggleableStatePreInit(Entity<GasInletSiphonComponent> entity, ref ToggleableDevicePreInitEvent args)
+        => args.State = entity.Comp.Enabled;
 
-    [SubscribeLocalEvent(after: [typeof(ToggleableDeviceSystem)])]
-    private void OnMapInit(Entity<GasInletSiphonComponent> entity, ref MapInitEvent args) =>
-        // This in turn triggers our OnStateChanged, updating our visuals.
-        _toggleableDevice.SetState(entity.Owner, entity.Comp.Enabled);
+    [SubscribeLocalEvent]
+    private void OnToggleableStateInit(Entity<GasInletSiphonComponent> entity, ref ToggleableDeviceInitEvent args)
+    {
+        _toggleableDevice.SetLogType(entity.Owner, LogType.AtmosPowerChanged);
+        UpdateAudioVisuals(entity);
+    }
 
     /// <summary>
     /// On interact we delegate the toggling to the toggleable device system.
@@ -57,16 +63,16 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
     /// We update our state when the toggleable device system tells us state changed.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnStateChanged(Entity<GasInletSiphonComponent> entity, ref ToggleableStateChangedEvent args)
+    private void OnStateChanged(Entity<GasInletSiphonComponent> entity, ref ToggleableDeviceStateChangedEvent args)
         => SetEnabled(entity, args.State);
 
     [SubscribeLocalEvent]
     private void OnGasInletSiphonEnterAtmosphere(Entity<GasInletSiphonComponent> entity, ref AtmosDeviceEnabledEvent args)
-        => UpdateState(entity);
+        => UpdateAudioVisuals(entity);
 
     [SubscribeLocalEvent]
     private void OnGasInletSiphonLeaveAtmosphere(Entity<GasInletSiphonComponent> entity, ref AtmosDeviceDisabledEvent args)
-        => UpdateState(entity);
+        => UpdateAudioVisuals(entity);
 
     [SubscribeLocalEvent]
     private void OnAirSiphonUpdated(Entity<GasInletSiphonComponent> entity, ref AtmosDeviceUpdateEvent args)
@@ -110,9 +116,9 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnPowerChanged(Entity<GasInletSiphonComponent> entity, ref PowerChangedEvent args) => UpdateState(entity);
+    private void OnPowerChanged(Entity<GasInletSiphonComponent> entity, ref PowerChangedEvent args) => UpdateAudioVisuals(entity);
 
-    private void UpdateState(Entity<GasInletSiphonComponent> entity, AppearanceComponent? appearance = null)
+    private void UpdateAudioVisuals(Entity<GasInletSiphonComponent> entity, AppearanceComponent? appearance = null)
     {
         if (!Resolve(entity, ref appearance, false))
             return;
@@ -127,6 +133,6 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
     private void SetEnabled(Entity<GasInletSiphonComponent> siphon, bool value)
     {
         siphon.Comp.Enabled = value;
-        UpdateState(siphon);
+        UpdateAudioVisuals(siphon);
     }
 }

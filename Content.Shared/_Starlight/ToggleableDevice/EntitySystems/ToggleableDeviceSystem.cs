@@ -1,6 +1,6 @@
+using Content.Shared._Starlight.ToggleableDevice.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
-using ToggleableDeviceComponent = Content.Shared._Starlight.ToggleableDevice.Components.ToggleableDeviceComponent;
 
 namespace Content.Shared._Starlight.ToggleableDevice.EntitySystems;
 
@@ -17,7 +17,13 @@ public sealed partial class ToggleableDeviceSystem : EntitySystem
     /// </summary>
     [SubscribeLocalEvent]
     public void OnMapInit(Entity<ToggleableDeviceComponent> ent, ref MapInitEvent ev)
-        => RaiseLocalEvent(ent, new ToggleableStateInitEvent(ent.Comp.Enabled));
+    {
+        var preinit = new ToggleableDevicePreInitEvent(ent.Comp.Enabled);
+        RaiseLocalEvent(ent, ref preinit);
+        ent.Comp.Enabled = preinit.State;
+
+        RaiseLocalEvent(ent, new ToggleableDeviceInitEvent(ent.Comp.Enabled));
+    }
 
     #region State
 
@@ -45,7 +51,7 @@ public sealed partial class ToggleableDeviceSystem : EntitySystem
             return;
 
         ent.Comp.Enabled = state;
-        RaiseLocalEvent(ent, new ToggleableStateChangedEvent(state));
+        RaiseLocalEvent(ent, new ToggleableDeviceStateChangedEvent(state));
         Dirty(ent, ent.Comp);
 
         _adminLogger.Add(ent.Comp.LogType,
@@ -81,6 +87,19 @@ public sealed partial class ToggleableDeviceSystem : EntitySystem
 
 }
 
-public record struct ToggleableStateInitEvent(bool State);
 
-public record struct ToggleableStateChangedEvent(bool State);
+/// <summary>
+/// Pre-init event used to determine the device state on init.
+/// </summary>
+[ByRefEvent]
+public record struct ToggleableDevicePreInitEvent(bool State);
+
+/// <summary>
+/// Used to inform systems of the initial state of a ToggleableDevice upon load/init.
+/// </summary>
+public record struct ToggleableDeviceInitEvent(bool State);
+
+/// <summary>
+/// Raised when a ToggleableDevice state changes.
+/// </summary>
+public record struct ToggleableDeviceStateChangedEvent(bool State);
