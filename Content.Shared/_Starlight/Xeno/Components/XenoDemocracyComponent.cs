@@ -11,17 +11,16 @@ namespace Content.Shared._Starlight.Xeno.Components;
 [AutoGenerateComponentState]
 public sealed partial class XenoDemocracyComponent : Component
 {
-    [DataField]
-    [AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public EntProtoId XenoDemocracyVoteAction = "ActionXenoVote";
 
-    [ViewVariables]
+    [DataField, AutoNetworkedField]
     public EntityUid? ActionEntity;
 
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? CurrentVoteHolder;
 
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public bool IsVoice = false;
 
     [DataField]
