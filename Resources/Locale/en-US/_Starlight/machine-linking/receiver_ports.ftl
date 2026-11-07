@@ -1,3 +1,6 @@
+signal-port-name-state = State
+signal-port-description-state = The state the device should match.
+
 signal-port-name-body-scanner-receiver = Operating Table
 signal-port-description-body-scanner-receiver = Sending info only to Operating Console about patient.
 
