@@ -1,13 +1,11 @@
-using Content.Shared._Starlight.Xeno;
 using Content.Shared._Starlight.Xeno.Components;
 using Content.Shared.Actions;
 
-namespace Content.Shared._Starlight.Xemo;
+namespace Content.Shared._Starlight.Xeno;
 
 public abstract partial class SharedXenoDemocracySystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _action = default!;
-    [Dependency] private ActionContainerSystem _actionContainer = default!;
     private ISawmill _sawmill = default!;
 
     public override void Initialize()
