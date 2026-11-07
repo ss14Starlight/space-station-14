@@ -43,6 +43,25 @@
 - type: !PartialOnly entity
   id: GasPressurePump
   components:
+    - type: VentCrawlTube
+    - type: VentCrawlTransit
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      prefix: device-address-prefix-gas-pump
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: ToggleableDevice
+    - type: ToggleableDeviceSignaling
+    - type: DeviceLinkSink
+      ports:
+        - "On"
+        - "Off"
+        - "Toggle"
+        - "State"
+    - type: DeviceLinkSource
+      ports:
+        - "Status"
     - type: SubFloorHide
       subfloorLayer: Pipes
 
