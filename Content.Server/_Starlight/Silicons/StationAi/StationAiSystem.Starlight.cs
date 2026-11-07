@@ -45,6 +45,17 @@ public sealed partial class StationAiSystem
             && shunt.Return == entity.Owner)
             return;
 
+        // Inserting a shunted brain transfers its mind to the chassis after copying the return target.
+        if (args.TransferEntity is { } borgTarget
+            && HasComp<BorgBrainComponent>(entity.Owner)
+            && TryComp<BorgChassisComponent>(borgTarget, out var borgChassis)
+            && borgChassis.BrainContainer.ContainedEntity == entity.Owner
+            && TryComp<StationAIShuntComponent>(entity.Owner, out var sourceShunt)
+            && sourceShunt.Return is { } shuntReturn
+            && TryComp<StationAIShuntComponent>(borgTarget, out var chassisShunt)
+            && chassisShunt.Return == shuntReturn)
+            return;
+
         var removedMindEntity = entity.Owner;
         if (TryComp<StationAIShuntComponent>(entity.Owner, out var borgShunt)
             && borgShunt.Return is { } returnTarget)
