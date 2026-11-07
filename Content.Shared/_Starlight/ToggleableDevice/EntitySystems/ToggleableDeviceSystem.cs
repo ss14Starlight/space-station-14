@@ -49,10 +49,12 @@ public sealed partial class ToggleableDeviceSystem : EntitySystem
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return;
+        if (ent.Comp.Enabled != state)
+            return;
 
         ent.Comp.Enabled = state;
-        RaiseLocalEvent(ent, new ToggleableDeviceStateChangedEvent(state));
         Dirty(ent, ent.Comp);
+        RaiseLocalEvent(ent, new ToggleableDeviceStateChangedEvent(state));
 
         _adminLogger.Add(ent.Comp.LogType,
             LogImpact.Medium,
