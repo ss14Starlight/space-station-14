@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: Empty Seed Vendor in the Formal Arrivals.
-    type: Add
-  id: 409809
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
   - message: Update Formal Arrivals Design.
     type: Tweak
   id: 409810
@@ -2799,4 +2792,11 @@ Entries:
   id: 410208
   time: '2026-11-07T16:57:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7096
+- author: Romero/Littlemen
+  changes:
+  - message: The Soulmancer! A new wizard archetype.
+    type: Add
+  id: 410209
+  time: '2026-11-07T18:02:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6974
 Order: -1
