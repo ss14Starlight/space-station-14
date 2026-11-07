@@ -1,0 +1,96 @@
+- type: !PartialOnly entity
+  id: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: TrackingImplanter
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: StorageImplanter
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: FreedomImplanter
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: RadioImplanter
+  components:
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: UplinkImplanter
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: EmpImplanter
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ScramImplanter
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: DnaScramblerImplanter
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ChameleonControllerImplanter
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: VoiceMaskImplanter
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: MicroBombImplanter
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: MacroBombImplanter
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: DeathRattleImplanter
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: DeathAcidifierImplanter
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: FakeMindShieldImplanter
+  components:
+  - type: Contraband
+    tier: Tier4

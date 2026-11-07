@@ -3,3 +3,16 @@
   components:
   - type: Contraband
     tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterVestWeb
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterArmorCaptainCarapace
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3

@@ -5,3 +5,15 @@
     sound:
       path: /Audio/_Starlight/Items/Handling/matchbox_pickup.ogg
 
+
+- type: !PartialOnly entity
+  id: GorlexMatchbox
+  components:
+  - type: Contraband
+    tier: Tier1
+
+- type: !PartialOnly entity
+  id: GorlexMatchstick
+  components:
+  - type: Contraband
+    tier: Tier1

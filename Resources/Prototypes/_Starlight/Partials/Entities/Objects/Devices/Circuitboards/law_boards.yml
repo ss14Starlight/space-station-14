@@ -93,6 +93,9 @@
   components:
   - type: SiliconLawProvider
     lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg # using antimov sound for now
+  - type: Contraband
+    tier: Tier4
+    contrabandType: Syndicate
 
 - type: !PartialOnly entity
   id: NutimovCircuitBoard

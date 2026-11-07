@@ -2,3 +2,9 @@
   id: BasePlasticExplosive
   components:
   - type: EorgPreventSticking
+
+- type: !PartialOnly entity
+  id: C4
+  components:
+  - type: Contraband
+    tier: Tier4

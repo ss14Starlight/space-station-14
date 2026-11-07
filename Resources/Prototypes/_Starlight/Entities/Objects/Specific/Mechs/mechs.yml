@@ -487,7 +487,7 @@
 # Seraph
 - type: entity
   id: MechSeraph
-  parent: [ BaseMech, CombatMech, BaseNanoTrasenContraband, NanotrasenMech ]
+  parent: [ BaseContrabandTier4, BaseMech, CombatMech, BaseNanoTrasenContraband, NanotrasenMech ]
   name: Seraph
   description: That's the last thing you'll see. # Death Squad mech
   components:
@@ -561,7 +561,7 @@
 # Dark Gygax
 - type: entity
   id: MechGygaxSyndie
-  parent: [ BaseMech, CombatMech, BaseSyndicateContraband, SyndieMech ]
+  parent: [ BaseContrabandTier4, BaseMech, CombatMech, BaseSyndicateContraband, SyndieMech ]
   name: Dark Gygax
   description: A modified Gygax used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:

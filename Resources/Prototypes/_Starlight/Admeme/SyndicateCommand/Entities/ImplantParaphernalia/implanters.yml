@@ -1,7 +1,7 @@
 - type: entity
   id: SyndicateMindShieldImplanter
   name: syndicate mindshield implanter
-  parent: BaseImplantOnlyImplanterSyndi
+  parent: [ BaseContrabandTier4, BaseImplantOnlyImplanterSyndi ]
   components:
     - type: Implanter
       implant: SyndicateMindShieldImplant

@@ -63,7 +63,7 @@
     - state: nano_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseCentcommContraband, BaseCommandContraband, BaseNanoTrasenContraband ] # Starlight/Blimpuf
+  parent: [ EncryptionKey, BaseCommandContraband, BaseCentcommContraband, BaseNanoTrasenContraband ] # Starlight/Blimpuf Move command before centcomm so item doesn't appear as centcomm contraband
   id: EncryptionKeyStationMaster
   name: station master encryption key
   description: An encryption key used by station's bosses.

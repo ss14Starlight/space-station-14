@@ -2,5 +2,5 @@
   id: ClothingHeadHatSurgcapCybersun
   components:
   - type: Contraband
-    tier: Tier2
-    contrabandType: Syndicate
+    tier: Tier1
+    contrabandType: Cybersun

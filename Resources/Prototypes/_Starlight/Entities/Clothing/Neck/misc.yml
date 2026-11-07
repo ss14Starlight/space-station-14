@@ -43,7 +43,7 @@
     sprite: _Starlight/Clothing/Neck/Misc/sun_amulet.rsi
 
 - type: entity
-  parent: [ClothingNeckBase, BaseSyndicateContraband]
+  parent: [ BaseContrabandTier4, ClothingNeckBase, BaseSyndicateContraband ]
   id: ClothingNeckExplosiveCollar
   name: explosive collar
   description: The legally distinct reverse beartrap from a certin movie franchise

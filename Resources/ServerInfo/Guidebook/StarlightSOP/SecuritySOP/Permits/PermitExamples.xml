@@ -45,7 +45,7 @@
         <GuideEntityEmbed Entity="ClothingHeadHatCatEars" Caption="" Margin="4"/>
         <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
           [bold]Cat Ears[/bold]
-          - As a Tier 1 Rival Corporation item, you only need either the [color=#ff6666]Warden[/color]'s stamp or the [color=#c4363b]Gunnery Sergeant[/color]'s stamp.
+          - As a Tier 1 Enemy Organization item, you only need either the [color=#ff6666]Warden[/color]'s stamp or the [color=#c4363b]Gunnery Sergeant[/color]'s stamp.
         </Box>
       </Box>
     </ColorBox>
@@ -60,10 +60,20 @@
     </ColorBox>
     <ColorBox>
       <Box Margin="4" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <GuideEntityEmbed Entity="WeaponPistolViper" Caption="" Margin="4"/>
+        <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
+          [bold]Viper[/bold]
+          - As a Tier 3 Enemy Organization weapon, you need stamps from the [color=#ff4242]Head of Security[/color].
+          - [italic]Note: While you might think the [color=#ff6666]Warden[/color] can approve this since it is a Tier 3 weapon, since it is also Syndicate you also need [color=#ff4242]Head of Security[/color] approval.[/italic]
+        </Box>
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="4" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
         <GuideEntityEmbed Entity="ClothingOuterHardsuitSyndie" Caption="" Margin="4"/>
         <Box Margin="4" Orientation="Vertical" HorizontalAlignment="Stretch">
           [bold]Blood-Red Hardsuit[/bold] [color=#ff4242]This entry is restricted to crew with Secure Knowledge.[/color]
-          - As Tier 4 Rival Corporation combat gear, you need stamps from the [color=#ff4242]Head of Security[/color], the [color=#fcdf03]Captain[/color], and [color=#86d420]Central Command[/color].
+          - As Tier 4 Enemy Organization combat gear, you need stamps from the [color=#ff4242]Head of Security[/color], the [color=#fcdf03]Captain[/color], and [color=#86d420]Central Command[/color].
         </Box>
       </Box>
     </ColorBox>

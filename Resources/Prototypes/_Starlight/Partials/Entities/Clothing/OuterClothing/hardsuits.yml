@@ -21,3 +21,269 @@
   components:
   - type: Contraband
     tier: Tier4
+
+# Non-armored Department Hardsuits (Tier 2)
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitAtmos
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Engineering
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitEngineering
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Engineering
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitEngineeringGolden
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Engineering
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitMining
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - ITG
+    - Cargo
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitSalvage
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - ITG
+    - Cargo
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitMaxim
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - ITG
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitMercenary
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - ITG
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitGoliath
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - ITG
+    - Cargo
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitSpatio
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - ITG
+    - Cargo
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitSpatioLead
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - ITG
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitSpaceHazard
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Cargo
+    - Command
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitITGLossPrevention
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - ITG
+
+# Armored Department Hardsuits (Tier 3)
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitSecurity
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+    allowedDepartments:
+    - Security
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitSecurityExperimental
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+    allowedDepartments:
+    - Security
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitWarden
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+    allowedDepartments:
+    - Security
+
+# Head of Staff Hardsuits (Tier 4)
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitCap
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitSecurityRed
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitEngineeringWhite
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitMedical
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitRd
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitLuxmax
+  components:
+  - type: Contraband
+    tier: Tier4
+    allowedDepartments:
+    - Command
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNtrep
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+    contrabandType: NanoTrasen
+    allowedDepartments:
+    - Representatives
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSF
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFPrimus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFSecundus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFTertius
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFQuartus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFQuintus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFSextus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFSeptimus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFOctavius
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitNTSFNonus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingOuterHardsuitDecimus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier5

@@ -9,3 +9,9 @@
     tier: Tier1
     contrabandType: CentralCommand
     allowedDepartments: [ CentralCommand ]
+
+- type: !PartialOnly entity
+  id: BoxFolderQmClipboard
+  components:
+  - type: Contraband
+    tier: Tier4

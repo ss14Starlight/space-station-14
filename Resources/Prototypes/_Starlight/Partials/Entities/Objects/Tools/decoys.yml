@@ -7,3 +7,38 @@
         blacklist:
           tags:
           - MechReactor
+
+- type: !PartialOnly entity
+  id: BalloonOperative
+  components:
+  - type: Contraband
+    tier: Tier2
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: BalloonAgent
+  components:
+  - type: Contraband
+    tier: Tier2
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: BalloonElite
+  components:
+  - type: Contraband
+    tier: Tier2
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: BalloonJuggernaut
+  components:
+  - type: Contraband
+    tier: Tier2
+    contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: BalloonCommander
+  components:
+  - type: Contraband
+    tier: Tier2
+    contrabandType: Syndicate

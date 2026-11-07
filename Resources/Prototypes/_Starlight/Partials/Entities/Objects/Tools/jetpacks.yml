@@ -20,6 +20,8 @@
 - type: !PartialOnly entity
   id: JetpackCaptain
   components:
+  - type: Contraband
+    tier: Tier4
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0

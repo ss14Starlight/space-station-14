@@ -22,7 +22,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/abductor.rsi
 
 - type: entity
-  parent: ClothingUniformJumpsuitAtmos
+  parent: [ BaseContrabandTier3, ClothingUniformJumpsuitAtmos, BaseSyndicateContraband ]
   id: ClothingUniformJumpsuitAtmosSyndie
   name: contortionist's jumpsuit
   components:

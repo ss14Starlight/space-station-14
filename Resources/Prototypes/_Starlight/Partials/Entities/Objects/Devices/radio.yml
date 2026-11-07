@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: RadioHandheldSecurity
+  components:
+  - type: Contraband
+    tier: Tier3
+    allowedDepartments:
+    - Security

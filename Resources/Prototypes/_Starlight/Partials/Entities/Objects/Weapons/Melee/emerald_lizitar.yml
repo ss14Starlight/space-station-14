@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: EmeraldLizitar
+  components:
+  - type: Contraband
+    tier: Tier2

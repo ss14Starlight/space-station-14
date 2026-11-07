@@ -1,0 +1,27 @@
+- type: !PartialOnly entity
+  id: MechDurand
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: MechDurandBattery
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: MechGygax
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: MechGygaxBattery
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4

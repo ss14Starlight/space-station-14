@@ -1,0 +1,47 @@
+- type: !PartialOnly entity
+  id: CrateSecurityArmor
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: CrateSecurityHelmet
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: CrateSecurityNonlethal
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: CrateRestraints
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: CrateSecurityBiosuit
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: CrateSecurityTrackingMindshieldImplants
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: CrateSecNonlethalThrowables
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: CrateSecurityReflectiveArmor
+  components:
+  - type: Contraband
+    tier: Tier2

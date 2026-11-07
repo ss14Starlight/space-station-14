@@ -1,6 +1,6 @@
 - type: entity
   name: homerun bat
-  parent: [BaseItem, BaseSyndicateContraband]
+  parent: [ BaseContrabandTier4, BaseItem, BaseSyndicateContraband ]
   id: HomerunBat
   description: Somewhere, a cat smiles.
   components:

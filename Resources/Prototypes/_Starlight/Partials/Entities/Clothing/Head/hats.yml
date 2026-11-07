@@ -124,6 +124,6 @@
   id: ClothingHeadHatSyndieMAA
   components:
   - type: Contraband
-    tier: Tier4
+    tier: Tier2
     contrabandType: Syndicate
   - type: ScanDetectable

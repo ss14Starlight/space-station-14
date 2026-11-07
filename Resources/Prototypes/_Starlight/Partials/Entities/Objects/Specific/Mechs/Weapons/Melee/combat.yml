@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: WeaponMechChainSword
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4

@@ -5,6 +5,13 @@
     solution: hypospray
 
 - type: !PartialOnly entity
+  id: Hypospray
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
   id: Hypopen
   components:
   - type: Injector

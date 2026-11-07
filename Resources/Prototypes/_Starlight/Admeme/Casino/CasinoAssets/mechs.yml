@@ -77,7 +77,7 @@
 
 - type: entity
   id: MechAlways
-  parent: [ BaseMech, CombatMech, BaseCasinoContraband ]
+  parent: [ BaseContrabandTier4, BaseMech, CombatMech, BaseCasinoContraband ]
   name: Always Wins
   description: We Can't Expect God To Do All The Work. The house always wins.
   components:

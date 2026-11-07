@@ -23,3 +23,8 @@
     equipSound:
       path: /Audio/_Starlight/Items/Equip/helmet_equip1.ogg
 
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetBulletProof
+  components:
+  - type: Contraband
+    tier: Tier2

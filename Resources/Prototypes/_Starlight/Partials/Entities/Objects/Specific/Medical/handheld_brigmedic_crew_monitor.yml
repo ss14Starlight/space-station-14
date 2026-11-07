@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: HandheldBrigmedicCrewMonitor
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: HandheldBrigmedicCrewMonitorEmpty
+  components:
+  - type: Contraband
+    tier: Tier2

@@ -27,3 +27,27 @@
   components:
   - type: Scalpel
     successRate: 0.7
+
+- type: !PartialOnly entity
+  id: SurvivalKnife
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: CombatKnife
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: KukriKnife
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: XenoKnife
+  components:
+  - type: Contraband
+    tier: Tier2

@@ -1,0 +1,27 @@
+- type: !PartialOnly entity
+  id: CrateArmoryMelee
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: CrateArmoryLr30
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: CrateArmoryLr30Magazines
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3
+
+- type: !PartialOnly entity
+  id: CrateArmoryCombatShotgun
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3

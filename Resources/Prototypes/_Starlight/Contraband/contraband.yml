@@ -33,6 +33,10 @@
   name: contraband-type-syndicate
 
 - type: contrabandType
+  id: Cybersun
+  name: contraband-type-cybersun
+
+- type: contrabandType
   id: Magical
   name: contraband-type-magical
 

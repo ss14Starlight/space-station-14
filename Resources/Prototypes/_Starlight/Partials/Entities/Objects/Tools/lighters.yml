@@ -1,0 +1,12 @@
+- type: !PartialOnly entity
+  id: SyndicateFlippo
+  components:
+  - type: Contraband
+    tier: Tier1
+
+- type: !PartialOnly entity
+  id: CybersunFlippo
+  components:
+  - type: Contraband
+    tier: Tier1
+    contrabandType: Cybersun

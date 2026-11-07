@@ -12,3 +12,28 @@
     - HolyHandGrenade
   components:
   - type: EorgPreventTrigger
+
+- type: !PartialOnly entity
+  id: SyndieMiniBomb
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: HolyHandGrenade
+  components:
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: SyndieTrickyBomb
+  components:
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: ToxicGasGrenade
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier3

@@ -62,7 +62,7 @@
 
 - type: !PartialOnly reagent
   id: Romerol
-  contrabandTier: Tier4
+  contrabandTier: Tier5
   contrabandType: Syndicate
   contrabandSeverity: !Remove
 

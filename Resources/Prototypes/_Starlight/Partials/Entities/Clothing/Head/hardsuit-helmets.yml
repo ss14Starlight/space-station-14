@@ -37,3 +37,80 @@
   - type: Contraband
     tier: Tier4
     contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitNTSF
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitNTSFPrimus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitNTSFSecundus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitNTSFTertius
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitNTSFQuartus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitNTSFQuintus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitNTSFSextus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitNTSFSeptimus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitNTSFOctavius
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitNTSFNonus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetHardsuitDecimus
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier5

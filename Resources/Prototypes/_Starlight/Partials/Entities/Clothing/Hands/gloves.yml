@@ -3,3 +3,16 @@
   components:
   - type: StainBlocker
     slots: [GLOVES]
+
+- type: !PartialOnly entity
+  id: ClothingHandsGlovesBoxingRiggedBlue
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    tier: Tier4
+
+- type: !PartialOnly entity
+  id: ClothingHandsGlovesNorthStar
+  components:
+  - type: Contraband
+    tier: Tier4
