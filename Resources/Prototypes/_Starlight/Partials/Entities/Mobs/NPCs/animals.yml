@@ -31,6 +31,16 @@
   - type: FirelockOpener
 
 - type: !PartialOnly entity
+  id: MobBaseAncestor
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.VampireClassUiKey.Key:
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key:
+        type: VampireLocateBui
+
+- type: !PartialOnly entity
   id: MobBaseKobold
   components:
   - type: CosmicLapseForm # Kobolds inherit the monkey species ID, so lapse needs an explicit form
