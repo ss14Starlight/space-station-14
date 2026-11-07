@@ -50,8 +50,8 @@ public abstract partial class SharedGasPressurePumpSystem
         }
     }
 
-    private void SetStateInternal(Entity<GasPressurePumpComponent> ent, bool state)
-        => _toggleableDevice.SetState(ent.Owner, state);
+    private void SetStateInternal(Entity<GasPressurePumpComponent> ent, bool state, EntityUid? actor = null)
+        => _toggleableDevice.SetState(ent.Owner, state, actor);
 
     protected void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null)
     {
