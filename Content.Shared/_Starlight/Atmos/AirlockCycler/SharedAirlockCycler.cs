@@ -58,6 +58,12 @@ public enum AirlockCyclerProblem : byte
     /// reach the door, or only walls lie behind it). The doors stay shut until someone forces them.
     /// </summary>
     NoReading,
+
+    /// <summary>
+    /// A closed door that has to stay shut can not be bolted (it has no power), so anyone could open it by hand
+    /// while the other side opens. The cycle waits, even when forced.
+    /// </summary>
+    DoorUnsecured,
 }
 
 [Serializable, NetSerializable]

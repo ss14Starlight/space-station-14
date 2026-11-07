@@ -92,7 +92,7 @@ public sealed partial class AirlockCyclerComponent : Component
     /// <summary>
     /// Current cycler state. Nothing special.
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, DataField]
     public AirlockCyclerState State = AirlockCyclerState.Off;
 
     /// <summary>
@@ -104,22 +104,36 @@ public sealed partial class AirlockCyclerComponent : Component
     /// <summary>
     /// The side being cycled to, or the side opened last while idle.
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, DataField]
     public int? TargetSide;
 
     /// <summary>
     /// Open the target side without waiting for the pressure (asked for from the console, or by pressing the
     /// button of a stalled side again).
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, DataField]
     public bool Force;
 
     /// <summary>
     /// Who asked for the current cycle. The target side's doors are opened with their access, so a door only swings
     /// open for someone who could open it by hand; for everyone else it is just unbolted.
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, DataField]
     public EntityUid? Requester;
+
+    /// <summary>
+    /// Power failed mid-cycle. The doors were let go so people can pass by hand; once power is back the cycle picks
+    /// up again and the target side is shut and bolted until it completes.
+    /// </summary>
+    [ViewVariables, DataField]
+    public bool Interrupted;
+
+    /// <summary>
+    /// Set on the first update after spawn or load. A saved grid brings back the vents still enabled with the cycle's
+    /// settings while the cycle itself has to be picked up again, so they are stopped once the links are back.
+    /// </summary>
+    [ViewVariables]
+    public bool Reconciled;
 
     /// <summary>
     /// Last time when we get chamber pressuring/depressuring progress.

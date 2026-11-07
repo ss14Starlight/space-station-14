@@ -129,10 +129,17 @@ public sealed partial class AirlockCyclerSystem
                     continue;
 
                 if (_atmos.IsTileAirBlockedCached(gridEnt, tile, dir)
-                    || _atmos.IsTileAirBlockedCached(gridEnt, next, dir.GetOpposite())
-                    || !_map.TryGetTileRef(gridEnt, grid, next, out var tileRef)
-                    || tileRef.Tile.IsEmpty)
+                    || _atmos.IsTileAirBlockedCached(gridEnt, next, dir.GetOpposite()))
                     continue;
+
+                // Open to space (no tile, or a space tile): the chamber can never hold pressure.
+                if (!_map.TryGetTileRef(gridEnt, grid, next, out var tileRef)
+                    || tileRef.Tile.IsEmpty
+                    || _atmos.IsTileSpace(gridEnt, mapUid, next))
+                {
+                    layout.ChamberLeaks = true;
+                    continue;
+                }
 
                 _chamber.Add(next);
                 _frontier.Enqueue(next);

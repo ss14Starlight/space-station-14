@@ -31,4 +31,5 @@ airlock-cycler-problem-stalled = Pressure stalled: tank empty or full.
 airlock-cycler-problem-obstructed = A door is blocked and can not close.
 airlock-cycler-problem-incompatible = Doors lead to different pressures.
 airlock-cycler-problem-no-reading = Can not measure the chamber or a door.
+airlock-cycler-problem-unsecured = A door has no power and can not be bolted.
 airlock-cycler-state-holding = Holding doors shut ({$side})

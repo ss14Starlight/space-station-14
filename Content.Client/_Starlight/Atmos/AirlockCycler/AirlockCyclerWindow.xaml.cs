@@ -64,6 +64,7 @@ public sealed partial class AirlockCyclerWindow : FancyWindow
             AirlockCyclerProblem.DoorObstructed => Loc.GetString("airlock-cycler-problem-obstructed"),
             AirlockCyclerProblem.IncompatiblePressure => Loc.GetString("airlock-cycler-problem-incompatible"),
             AirlockCyclerProblem.NoReading => Loc.GetString("airlock-cycler-problem-no-reading"),
+            AirlockCyclerProblem.DoorUnsecured => Loc.GetString("airlock-cycler-problem-unsecured"),
             _ => string.Empty,
         };
 
