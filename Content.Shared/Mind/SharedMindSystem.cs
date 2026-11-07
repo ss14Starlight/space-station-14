@@ -164,10 +164,12 @@ public abstract partial class SharedMindSystem : EntitySystem
 
     private void OnVisitingTerminating(EntityUid uid, VisitingMindComponent component, ref EntityTerminatingEvent args)
     {
-        if (component.MindId != null)
-            UnVisit(component.MindId.Value);
-    }
+        if (component.MindId is not { } mindId ||
+            !TryComp<MindComponent>(mindId, out _)) // Guard for mind that has been cleared up
+            return;
 
+        UnVisit(mindId);
+    }
     /// <summary>
     /// Checks to see if the user's mind prevents them from suicide
     /// Handles the suicide event without killing the user if true
