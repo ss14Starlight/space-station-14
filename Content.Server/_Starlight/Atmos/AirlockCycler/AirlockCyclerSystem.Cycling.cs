@@ -73,6 +73,8 @@ public sealed partial class AirlockCyclerSystem
             if (!comp.Reconciled)
                 Reconcile(ent, source);
 
+            ProcessPendingReleases(ent, source);
+
             if (!_power.IsPowered(uid))
             {
                 if (comp.State != AirlockCyclerState.Off)
@@ -236,8 +238,9 @@ public sealed partial class AirlockCyclerSystem
         var state = chamber < wanted ? AirlockCyclerState.Pressurizing : AirlockCyclerState.Depressurizing;
         var pressurizing = state == AirlockCyclerState.Pressurizing;
 
-        // Nothing can move the gas this way: hold, like a missing reading, until forced.
-        if ((pressurizing ? layout.Inlets : layout.Outlets).Count == 0)
+        // Nothing can move the gas this way: hold, like a missing reading, until forced. Within tolerance nothing
+        // needs moving, so the settle timer above opens the doors instead.
+        if (worst > comp.PressureTolerance && (pressurizing ? layout.Inlets : layout.Outlets).Count == 0)
         {
             Hold(ent, source, pressurizing ? AirlockCyclerProblem.NoInlet : AirlockCyclerProblem.NoOutlet);
             return;

@@ -148,6 +148,13 @@ public sealed partial class AirlockCyclerComponent : Component
     public bool Reconciled;
 
     /// <summary>
+    /// Devices whose link went away. Released on the next update once no device link is left: a bulk unlink raises
+    /// the disconnect for every port before any link is gone, so the decision can not be made in the event.
+    /// </summary>
+    [ViewVariables]
+    public HashSet<EntityUid> PendingRelease = new();
+
+    /// <summary>
     /// Last time when we get chamber pressuring/depressuring progress.
     /// </summary>
     [ViewVariables]

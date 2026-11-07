@@ -73,6 +73,14 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
 
         foreach (var linked in GetOwnedSinks(ent, source, ent.Comp.OutletPort))
             ReleaseDevice(linked);
+
+        foreach (var pending in ent.Comp.PendingRelease)
+        {
+            if (!TerminatingOrDeleted(pending) && !IsLinkedToAnyCycler(pending, ent))
+                ReleaseDevice(pending);
+        }
+
+        ent.Comp.PendingRelease.Clear();
     }
 
     [SubscribeLocalEvent]
@@ -89,9 +97,9 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
         // Only the owner may hand a device back: a second controller unlinking must not undo the owner's cycle.
         if (OwnsDevice(ent, args.Sink))
         {
-            // A vent on both ports stays driven until its last device link goes.
-            if (IsDevicePort(ent.Comp, args.Port) && !HasOtherDeviceLink(ent, args.Sink, args.Port))
-                ReleaseDevice(args.Sink);
+            // A vent on both ports stays driven until its last device link goes; decided on the next update.
+            if (IsDevicePort(ent.Comp, args.Port))
+                ent.Comp.PendingRelease.Add(args.Sink);
 
             if (ent.Comp.Sides.Contains(args.Port) && _doorQuery.HasComp(args.Sink))
                 ReleaseBolts(args.Sink);
@@ -100,14 +108,41 @@ public sealed partial class AirlockCyclerSystem : EntitySystem
         OnLinksChanged(ent);
     }
 
-    private bool HasOtherDeviceLink(Entity<AirlockCyclerComponent> ent, EntityUid sink, string port)
+    private void ProcessPendingReleases(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source)
     {
-        if (!TryComp<DeviceLinkSourceComponent>(ent, out var source))
-            return false;
+        if (ent.Comp.PendingRelease.Count == 0)
+            return;
 
+        foreach (var sink in ent.Comp.PendingRelease)
+        {
+            if (TerminatingOrDeleted(sink) || HasDeviceLink(ent, source, sink) || IsLinkedToAnyCycler(sink, ent))
+                continue;
+
+            ReleaseDevice(sink);
+        }
+
+        ent.Comp.PendingRelease.Clear();
+    }
+
+    private bool HasDeviceLink(Entity<AirlockCyclerComponent> ent, DeviceLinkSourceComponent source, EntityUid sink)
+    {
         foreach (var (linked, _) in _deviceLink.GetLinks(ent, sink, source))
         {
-            if (linked != port && IsDevicePort(ent.Comp, linked))
+            if (IsDevicePort(ent.Comp, linked))
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool IsLinkedToAnyCycler(EntityUid sink, EntityUid except)
+    {
+        if (!TryComp<DeviceLinkSinkComponent>(sink, out var sinkComp))
+            return false;
+
+        foreach (var other in sinkComp.LinkedSources)
+        {
+            if (other != except && HasComp<AirlockCyclerComponent>(other))
                 return true;
         }
 

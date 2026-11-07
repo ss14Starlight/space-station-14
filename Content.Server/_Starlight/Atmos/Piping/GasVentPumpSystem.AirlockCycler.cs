@@ -44,12 +44,12 @@ public sealed partial class GasVentPumpSystem
     }
 
     /// <summary>
-    /// Stops the vent if a cycler drives it. Keeps the cycler in control, unlike
+    /// Stops the vent and takes it under the cycler (saving its own settings), unlike
     /// <see cref="ReleaseAirlockCyclerControl"/>.
     /// </summary>
     public void StopAirlockCyclerVent(Entity<GasVentPumpComponent?> vent)
     {
-        if (!Resolve(vent, ref vent.Comp, false) || !HasComp<AirlockCyclerDeviceComponent>(vent))
+        if (!Resolve(vent, ref vent.Comp, false))
             return;
 
         SetAirlockCyclerMode(vent, false, vent.Comp.PumpDirection, vent.Comp.ExternalPressureBound);

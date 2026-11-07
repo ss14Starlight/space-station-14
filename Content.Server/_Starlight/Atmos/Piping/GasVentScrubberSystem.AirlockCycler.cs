@@ -35,13 +35,10 @@ public sealed partial class GasVentScrubberSystem
     }
 
     /// <summary>
-    /// Stops the scrubber if a cycler drives it. Keeps the cycler in control.
+    /// Stops the scrubber and takes it under the cycler, saving its own settings.
     /// </summary>
     public void StopAirlockCyclerScrubber(Entity<GasVentScrubberComponent?> scrubber)
-    {
-        if (HasComp<AirlockCyclerDeviceComponent>(scrubber))
-            SetAirlockCyclerMode(scrubber, false);
-    }
+        => SetAirlockCyclerMode(scrubber, false);
 
     /// <summary>
     /// The cycler lets go of the scrubber: put back its own mode and on/off state.

@@ -75,9 +75,8 @@ public sealed partial class AirlockCyclerSystem
 
     private void StopDevice(EntityUid uid)
     {
-        if (!_deviceQuery.HasComp(uid))
-            return;
-
+        // Takes control of a linked device that was never driven: left on its own settings, an inlet vent would
+        // keep filling the chamber while the outlets empty it.
         if (_ventQuery.HasComp(uid))
             _vents.StopAirlockCyclerVent(uid);
         else if (_scrubberQuery.HasComp(uid))
