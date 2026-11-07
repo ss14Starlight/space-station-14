@@ -45,7 +45,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         InitializeReconnect();
     }
     [SubscribeLocalEvent]
-    private void OnShuntableInit(EntityUid uid, StationAIShuntableComponent shuntable, ComponentInit args)
+    private void OnShuntableMapInit(EntityUid uid, StationAIShuntableComponent shuntable, ref MapInitEvent args)
     {
         _actionSystem.AddAction(uid, shuntable.ShuntAction.Id);
         _actionSystem.AddAction(uid, shuntable.ReconnectShuntAction.Id);
@@ -201,7 +201,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
 
         if (TryComp<StationAiCoreComponent>(aiCore, out var core)
             && core.RemoteEntity is { Valid: true } remoteEntity
-            && TryComp<TransformComponent>(remoteEntity, out _))
+            && TryComp(remoteEntity, out TransformComponent? _))
         {
             _transform.SetMapCoordinates(remoteEntity,
                 _transform.ToMapCoordinates(Transform(uid).Coordinates)
