@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: "Command: Replace Command's Substation Airlock from Engineering to Command."
-    type: Tweak
-  id: 409806
-  time: '2026-10-25T18:16:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6853
-- author: Hot Mic
-  changes:
   - message: Add a Sauna Room (Just NW of maints bar).
     type: Add
   id: 409807
@@ -2799,4 +2792,11 @@ Entries:
   id: 410205
   time: '2026-11-07T09:03:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7059
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Monkeys, kobolds, and scurrets can now correctly select a class as a vampire, and can use Predator Sense when unlocked.
+    type: Fix
+  id: 410206
+  time: '2026-11-07T11:36:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7088
 Order: -1
