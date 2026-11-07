@@ -17,4 +17,10 @@ public sealed partial class SlipOnHitComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public SlipperyEffectEntry SlipData = new();
+
+    /// <summary>
+    /// Whether a worn hardsuit prevents this hit from applying slip effects.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool BlockedByHardsuit;
 }

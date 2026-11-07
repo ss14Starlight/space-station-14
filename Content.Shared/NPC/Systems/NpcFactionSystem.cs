@@ -210,7 +210,9 @@ public sealed partial class NpcFactionSystem : EntitySystem
         var faction = (ent.Owner, ent.Comp2);
         return hostiles
             .Union(GetHostiles(faction))
-            .Where(target => !IsIgnored(faction, target));
+            .Where(target => !IsIgnored(faction, target))
+            // Explicit aggro should not override a faction change that makes the target friendly.
+            .Where(target => !IsEntityFriendly((ent.Owner, ent.Comp1), target));
     }
 
     public IEnumerable<EntityUid> GetNearbyFriendlies(Entity<NpcFactionMemberComponent?> ent, float range)

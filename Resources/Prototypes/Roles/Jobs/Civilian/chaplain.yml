@@ -24,6 +24,7 @@
   storage:
     back:
     - RubberStampChaplain
+    - ToolboxChaplain # Starlight: Devoutchap
     - CosmicCenser # Starlight: Cosmic Cult
 
 - type: chameleonOutfit
@@ -36,4 +37,3 @@
     neck: ClothingNeckStoleChaplain
     outerClothing: ClothingOuterPlagueSuit
     gloves: ClothingHandsGlovesColorBlack
-

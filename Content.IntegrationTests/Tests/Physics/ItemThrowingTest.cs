@@ -1,5 +1,7 @@
 using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared.Damage.Components;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Throwing;
 using Robust.Server.GameObjects;
 using Robust.Shared.Physics.Components;
@@ -72,6 +74,50 @@ public sealed class ItemThrowingTest : InteractionTest
         Assert.That(Comp<PhysicsComponent>(egg).BodyStatus, Is.Not.EqualTo(BodyStatus.InAir));
     }
 
+    [Test]
+    [TestOf(typeof(Content.Server._Starlight.Throwing.ReturnOnThrowSystem))]
+    public async Task TestFedoraReturnsToThrower()
+    {
+        var fedora = await PlaceInHands("AtheistFedora");
+
+        Assert.That(await ThrowItem(), Is.True);
+        await RunTicks(40);
+
+        Assert.That(HandSys.GetActiveItem((ToServer(Player), Hands)), Is.Not.EqualTo(ToServer(fedora)));
+        var returnComponent = Comp<Content.Server._Starlight.Throwing.ReturnOnThrowComponent>(fedora);
+        Assert.That(returnComponent.ReturnTarget, Is.EqualTo(SPlayer));
+        Assert.That(Comp<PhysicsComponent>(fedora).LinearVelocity.Length(), Is.EqualTo(returnComponent.ReturnSpeed).Within(0.1f));
+
+        await RunTicks(120);
+
+        Assert.That(HandSys.GetActiveItem((ToServer(Player), Hands)), Is.EqualTo(ToServer(fedora)));
+    }
+
+    [Test]
+    public async Task TestHeldFactionMakesHolderFriendlyToCarp()
+    {
+        var carp = await Spawn("MobCarp");
+
+        await Server.WaitPost(() =>
+        {
+            var factionSystem = SEntMan.System<NpcFactionSystem>();
+            var carpEntity = SEntMan.GetEntity(carp);
+            factionSystem.AggroEntity((carpEntity, null), (SPlayer, null));
+            Assert.That(factionSystem.GetNearbyHostiles((carpEntity, null, null), 10), Does.Contain(SPlayer));
+        });
+
+        await PlaceInHands("Carp'sie");
+        await Server.WaitPost(() =>
+        {
+            var factionSystem = SEntMan.System<NpcFactionSystem>();
+            var holder = SEntMan.GetComponent<NpcFactionMemberComponent>(SPlayer);
+
+            Assert.That(holder.Factions, Does.Contain("Dragon"));
+            Assert.That(factionSystem.IsEntityFriendly(SEntMan.GetEntity(carp), SPlayer), Is.True);
+            Assert.That(factionSystem.GetNearbyHostiles((SEntMan.GetEntity(carp), null, null), 10), Does.Not.Contain(SPlayer));
+        });
+    }
+
     /// <summary>
     /// Check that a physics can handle deleting a thrown entity. As to why this exists, see
     /// https://github.com/space-wizards/RobustToolbox/pull/4746
@@ -108,4 +154,3 @@ public sealed class ItemThrowingTest : InteractionTest
         AssertDeleted(pen);
     }
 }
-

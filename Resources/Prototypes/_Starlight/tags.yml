@@ -30,6 +30,9 @@
   id: Arachnid
 
 - type: Tag
+  id: AtheistsFedora
+
+- type: Tag
   id: AutoMender
 
 - type: Tag
@@ -112,6 +115,9 @@
 
 - type: Tag
   id: CantInteract
+
+- type: Tag
+  id: Carp'sie
 
 - type: Tag
   id: Cartridge48Rifle
@@ -640,6 +646,9 @@
   id: ModuleBlacklistXenoborgStealthWeapon
 
 - type: Tag
+  id: MonkStaff
+
+- type: Tag
   id: Nexus
 
 - type: Tag
@@ -730,6 +739,9 @@
 
 - type: Tag
   id: RollerBed
+
+- type: Tag
+  id: Rosary
 
 - type: Tag
   id: Salad # BountySalad
