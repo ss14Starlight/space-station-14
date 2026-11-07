@@ -1,0 +1,65 @@
+- type: entity
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitJanitorSyndie
+  name: syndicate janitor jumpsuit
+  description: The sleeves are the perfect color to hide any blood that needs cleaning up. NanoTrasen's janitors wish they could look as good as this.
+  components:
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/Uniforms/Jumpsuit/janitor_syndie.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/Uniforms/Jumpsuit/janitor_syndie.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitHydroponicsSyndie
+  name: syndicate hydroponics jumpsuit
+  description: These should be dark enough to prevent stains from soil and dirt. NanoTrasen's botanists wish they could look as good as this.
+  components:
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/Uniforms/Jumpsuit/hydro_syndie.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/Uniforms/Jumpsuit/hydro_syndie.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitBartenderSyndie
+  name: syndicate bartender jumpsuit
+  description: NanoTrasen's bartenders wish they could look as good as this. If the Syndicate believed in tips, you'd make so many Spesos.
+  components:
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/Uniforms/Jumpsuit/bartender_syndie.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/Uniforms/Jumpsuit/bartender_syndie.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitChefSyndie
+  name: syndicate chef jumpsuit
+  description: Thankfully, this shade of red should mask any bloodstains from butchered creatures. NanoTrasen's chefs wish they could look as good as this.
+  components:
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/Uniforms/Jumpsuit/chef_syndie.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/Uniforms/Jumpsuit/chef_syndie.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitCargoSyndie
+  name: syndicate cargo jumpsuit
+  description: Rumor has it that the red pants allow Syndicate cargo team members to run faster. NanoTrasen's cargo team wishes they could look as good as this.
+  components:
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/Uniforms/Jumpsuit/cargo_syndie.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/Uniforms/Jumpsuit/cargo_syndie.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitScienceSyndie
+  name: syndicate science jumpsuit
+  description: Redspace technology teleported the color red into this jumpsuit. NanoTrasen's science team wishes they could look as good as this.
+  components:
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/Uniforms/Jumpsuit/scientist_syndie.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/Uniforms/Jumpsuit/scientist_syndie.rsi

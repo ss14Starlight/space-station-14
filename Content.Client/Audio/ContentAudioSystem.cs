@@ -46,6 +46,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     private void OnRoundCleanup(RoundRestartCleanupEvent ev)
     {
         _fadingOut.Clear();
+        _postRoundMusic = false; // Starlight
 
         // Preserve lobby music but everything else should get dumped.
         var lobbyMusic = _lobbySoundtrackInfo?.MusicStreamEntityUid;

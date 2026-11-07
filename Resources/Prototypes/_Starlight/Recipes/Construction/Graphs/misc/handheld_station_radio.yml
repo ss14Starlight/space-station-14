@@ -1,0 +1,20 @@
+- type: constructionGraph
+  id: HandheldStationRadio
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: done
+          steps:
+            - material: Steel
+              amount: 2
+            - material: Cable
+              amount: 1
+            - tag: StationRadioCircuitboard
+              name: construction-graph-tag-radio-circuitboard
+              icon:
+                sprite: Objects/Misc/module.rsi
+                state: service
+              doAfter: 3
+    - node: done
+      entity: RadioHandheldStation

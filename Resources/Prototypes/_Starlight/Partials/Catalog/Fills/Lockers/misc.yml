@@ -9,4 +9,4 @@
     - id: GoldenPill
       prob: 0.05
     - id: ToolboxSyndicateMimic
-      prob: 0.05
+      prob: 0.03

@@ -137,9 +137,6 @@ public sealed partial class PullController : VirtualController
         var pullerUid = puller.Owner;
         var pullerComp = puller.Comp;
 
-        if (_timing.CurTime < pullerComp.NextThrow)
-            return false;
-
         var pulled = pullerComp.Pulling;
 
         // See update statement; this thing overwrites so many systems, DOESN'T EVEN LERP PROPERLY.

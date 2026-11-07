@@ -11,6 +11,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared._Starlight.Objectives.Targeting;
 using Content.Shared._Starlight.Traits.Antags;
+using Content.Shared.Objectives.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 
@@ -25,6 +26,7 @@ public sealed class AntagTargetTest : GameTest
         => await Server.WaitAssertion(() =>
         {
             var minds = Server.System<MindSystem>();
+            var targetSys = Server.System<TargetSystem>();
             Entity<MindComponent> Character(string prototype)
             {
                 var mind = minds.CreateMind(null);
@@ -45,31 +47,31 @@ public sealed class AntagTargetTest : GameTest
             var mothroach = Character("MobMothroach");
             SEntMan.SpawnEntity("MobCorgiSmart", MapCoordinates.Nullspace); // No mind: not a player target.
 
-            foreach (IMindPool source in new IMindPool[] { new AliveHumansPool(), new WeightedAlivePool() })
+            foreach (MindPool source in new MindPool[] { new AliveHumansPool(), new WeightedAlivePool() })
             {
                 var pool = new HashSet<Entity<MindComponent>>();
-                source.FindMinds(pool, null, SEntMan, minds);
+                source.FindMinds(pool, null, SEntMan, targetSys);
                 Assert.That(pool.Select(mind => mind.Owner),
                     Is.EquivalentTo(eligible.Select(mind => mind.Owner).Append(human.Owner)));
                 Assert.That(pool, Does.Not.Contain(mouse).And.Not.Contain(mothroach));
 
                 pool.Clear();
-                source.FindMinds(pool, eligible[0], SEntMan, minds);
+                source.FindMinds(pool, eligible[0], SEntMan, targetSys);
                 Assert.That(pool, Does.Not.Contain(eligible[0]), "The chooser is still excluded.");
             }
 
             SEntMan.AddComponent<MarkedForDeathComponent>(eligible[0].Comp.OwnedEntity!.Value);
             var highValue = new HashSet<Entity<MindComponent>>();
-            new HighValueTargetsPool().FindMinds(highValue, null, SEntMan, minds);
+            new HighValueTargetsPool().FindMinds(highValue, null, SEntMan, targetSys);
             Assert.That(highValue.Select(mind => mind.Owner), Is.EqualTo(new[] { eligible[0].Owner }),
                 "Animal eligibility does not itself make a character high value.");
 
             Server.System<MobStateSystem>().ChangeMobState(eligible[0].Comp.OwnedEntity!.Value, MobState.Dead);
             highValue.Clear();
-            new HighValueTargetsPool().FindMinds(highValue, null, SEntMan, minds);
+            new HighValueTargetsPool().FindMinds(highValue, null, SEntMan, targetSys);
             Assert.That(highValue, Is.Empty);
             var living = new HashSet<Entity<MindComponent>>();
-            new WeightedAlivePool().FindMinds(living, null, SEntMan, minds);
+            new WeightedAlivePool().FindMinds(living, null, SEntMan, targetSys);
             Assert.That(living, Does.Not.Contain(eligible[0]), "Dead animals cannot become new targets.");
         });
 
@@ -78,6 +80,7 @@ public sealed class AntagTargetTest : GameTest
         => await Server.WaitAssertion(() =>
         {
             var minds = Server.System<MindSystem>();
+            var targetSys = Server.System<TargetSystem>();
             Entity<MindComponent> Traitor(string prototype)
             {
                 var mind = minds.CreateMind(null);
@@ -97,14 +100,14 @@ public sealed class AntagTargetTest : GameTest
             foreach (var objective in goals)
             {
                 var pick = SEntMan.GetComponent<PickRandomPersonComponent>(objective);
-                Assert.That(minds.PickFromPool(pick.Pool, pick.Filters, chooser)?.Owner, Is.EqualTo(target.Owner));
+                Assert.That(targetSys.PickFromPool(pick.Pool, pick.Filters, chooser)?.Owner, Is.EqualTo(target.Owner));
             }
 
             SEntMan.AddComponent<NoObjectiveTargetComponent>(target.Comp.OwnedEntity!.Value);
             foreach (var objective in goals)
             {
                 var pick = SEntMan.GetComponent<PickRandomPersonComponent>(objective);
-                Assert.That(minds.PickFromPool(pick.Pool, pick.Filters, chooser), Is.Null,
+                Assert.That(targetSys.PickFromPool(pick.Pool, pick.Filters, chooser), Is.Null,
                     "Explicit eligibility must not bypass NoObjectiveTarget or the objective's filters.");
             }
         });

@@ -1,0 +1,30 @@
+- type: entity
+  parent: BaseRoundstartAntagRule
+  id: BloodBound
+  components:
+  - type: GameRule
+    minPlayers: 10
+    cancelPresetOnTooFewPlayers: false # Moffstation
+    delay:
+      min: 240
+      max: 420
+  - type: BloodBoundRule
+  - type: DynamicRuleCost
+    cost: 100
+  - type: AntagRandomObjectives
+    sets:
+    - groups: BloodBoundObjectiveGroups
+    maxDifficulty: 3.5
+    forcedObjectiveGroup: BloodBoundObjectiveGroupFate
+    storyObjectiveGroup: BloodBoundObjectiveGroupStory
+    storyObjectiveCount: 3
+  - type: AntagSelection
+    agentName: blood-bound-round-end-agent-name
+    selectionTime: PrePlayerSpawn
+    antags:
+    - !type:LinearAntagCount
+      proto: BloodBound
+      playerRatio: 32
+      range:
+        min: 1
+        max: 4

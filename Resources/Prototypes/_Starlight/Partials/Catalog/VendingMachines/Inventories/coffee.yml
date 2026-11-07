@@ -1,0 +1,11 @@
+- type: !PartialOnly vendingMachineInventory
+  id: HotDrinksMachineInventory
+  startingInventory:
+    DrinkHotCoffee: 6
+    DrinkCafeLatte: 6
+    DrinkTeacup: 6
+    DrinkGreenTea: 6
+    DrinkHotCoco: 6
+  emaggedInventory: # Blimpuf
+    DrinkHotterCoco: 2 # Blimpuf
+    DrinkIceBucket: 4 # Blimpuf

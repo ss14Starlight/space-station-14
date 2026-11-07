@@ -94,7 +94,7 @@
   parent: BaseAction
   id: VentCrawlExitAction
   name: Exit vents
-  description: leave these old, decrepit pipes.
+  description: Leave these old, decrepit pipes.
   components:
   - type: Action
     itemIconStyle: BigAction

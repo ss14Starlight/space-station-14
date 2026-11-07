@@ -8,7 +8,7 @@ namespace Content.Shared.Roles;
 
 public abstract partial class SharedRoleSystem
 {
-    private ProtoId<RoleTypePrototype> GetJobRoleType(MindComponent mind)
+    private (ProtoId<RoleTypePrototype>, LocId?, Color?) GetJobRoleType(MindComponent mind)
     {
         foreach (var uid in mind.MindRoleContainer.ContainedEntities)
         {
@@ -16,10 +16,16 @@ public abstract partial class SharedRoleSystem
                 && role.JobPrototype is { } jobId
                 && !string.IsNullOrEmpty(jobId.Id)
                 && _prototypes.TryIndex(jobId, out var job))
-                return job.RoleType;
+            {
+                var subtype = job.RoleSubtype;
+                if (subtype == null && _prototypes.TryIndex(job.RoleType, out var roleType))
+                    subtype = roleType.Faction;
+
+                return (job.RoleType, subtype, null);
+            }
         }
 
-        return "Neutral";
+        return ("Neutral", "role-subtype-contractor", null);
     }
 
     /// <summary>
@@ -28,11 +34,29 @@ public abstract partial class SharedRoleSystem
     private (ProtoId<RoleTypePrototype>, LocId?, Color?) GetRoleTypeByTime(MindComponent mind)
     {
         var role = GetRoleCompByTime(mind)?.Comp;
-        var roleType = role?.RoleType ?? GetJobRoleType(mind);
-        var subtype = role?.CharacterMenuName ?? role?.Subtype;
-        var color = role?.SubtypeColor;
 
-        if (role?.AntagPrototype is not { } antag)
+        // we have to care about generic categories for roleban stuff, but we should only display them if there's literally nothing else to display
+        if (role != null && IsGenericRole(role))
+        {
+            var latestRoleType = role.RoleType;
+            foreach (var uid in mind.MindRoleContainer.ContainedEntities)
+            {
+                if (TryComp<MindRoleComponent>(uid, out var candidate)
+                    && candidate.RoleType == latestRoleType
+                    && !IsGenericRole(candidate))
+                    role = candidate;
+            }
+        }
+
+        if (role?.RoleType is not { } roleType)
+            return GetJobRoleType(mind);
+
+        var subtype = role.CharacterMenuName ?? role.Subtype;
+        if (subtype == null && _prototypes.TryIndex(roleType, out var rolePrototype))
+            subtype = rolePrototype.Faction;
+        var color = role.SubtypeColor;
+
+        if (role.AntagPrototype is not { } antag)
             return (roleType, subtype, color);
 
         if (_prototypes.Resolve(antag, out var prototype))
@@ -51,4 +75,9 @@ public abstract partial class SharedRoleSystem
 
         return (roleType, subtype, color);
     }
+
+    private bool IsGenericRole(MindRoleComponent role) => role.CharacterMenuName == null
+            && role.AntagPrototype is { } antag
+            && _prototypes.Resolve(antag, out var prototype)
+            && prototype.IsGeneric;
 }

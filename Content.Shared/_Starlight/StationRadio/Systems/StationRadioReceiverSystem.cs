@@ -1,29 +1,31 @@
 using Content.Shared._Starlight.StationRadio.Components;
-using Content.Shared._Starlight.StationRadio.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Examine;
+using Content.Shared.Toggleable;
 using Content.Shared.Verbs;
 
 namespace Content.Shared._Starlight.StationRadio.Systems;
 
 public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
 {
-    [SubscribeLocalEvent]
-    private void OnRadioToggle(EntityUid uid, StationRadioReceiverComponent comp, ActivateInWorldEvent args)
-    {
-        comp.Active = !comp.Active;
-        Dirty(uid, comp);
-    }
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     [SubscribeLocalEvent]
-    protected virtual void OnMediaPlayed(EntityUid uid, StationRadioReceiverComponent comp, StationRadioMediaPlayedEvent args)
+    private void OnRadioToggle(Entity<StationRadioReceiverComponent> ent, ref ActivateInWorldEvent _)
     {
+        if (!ent.Comp.ToggleOnActivate)
+            return;
+
+        ent.Comp.Active = !ent.Comp.Active;
+        UpdateVisuals(ent);
+        Dirty(ent);
     }
 
-    [SubscribeLocalEvent]
-    protected virtual void OnMediaStopped(EntityUid uid, StationRadioReceiverComponent comp, StationRadioMediaStoppedEvent args)
+    private void UpdateVisuals(Entity<StationRadioReceiverComponent> ent)
     {
+        if (TryComp(ent, out AppearanceComponent? appearance))
+            _appearance.SetData(ent, ToggleableVisuals.Enabled, ent.Comp.Active, appearance); // this is a bit of a hack
     }
 
     /// <summary>
@@ -31,7 +33,7 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
     /// active song playing. If there is, attempt to resume play.
     /// </summary>
     [SubscribeLocalEvent]
-    protected virtual void OnReceiverMapInit(EntityUid uid, StationRadioReceiverComponent comp, MapInitEvent args)
+    protected virtual void OnReceiverMapInit(Entity<StationRadioReceiverComponent> ent, ref MapInitEvent args)
     {
     }
 
@@ -40,7 +42,7 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
     /// Resume play when the server power returns.
     /// </summary>
     [SubscribeLocalEvent]
-    protected virtual void OnServerPowerChanged(EntityUid uid, StationRadioServerComponent comp, PowerChangedEvent args)
+    protected virtual void OnServerPowerChanged(Entity<StationRadioServerComponent> ent, ref PowerChangedEvent args)
     {
     }
 
@@ -48,24 +50,24 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
     /// Method for getting the current volume of the station radio.
     /// </summary>
     protected static float GetGain(StationRadioReceiverComponent comp, bool powered)
-        => comp.Active && powered ? 1f : 0f;
+        => comp.Active && powered ? comp.Volume : 0f;
 
     /// <summary>
     /// Alt Click / Context Menu Verb for turning down the volume of the radio.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnGetAltVerbs(EntityUid uid, StationRadioReceiverComponent comp, GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetAltVerbs(Entity<StationRadioReceiverComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
 
         args.Verbs.Add(new AlternativeVerb
         {
-            Text = !comp.BoostVolume ? "Increase Volume" : "Decrease Volume",
+            Text = !ent.Comp.BoostVolume ? "Increase Volume" : "Decrease Volume",
             Act = () =>
             {
-                comp.BoostVolume = !comp.BoostVolume;
-                Dirty(uid, comp);
+                ent.Comp.BoostVolume = !ent.Comp.BoostVolume;
+                Dirty(ent);
             }
         });
     }
@@ -74,7 +76,7 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
     /// Stop broadcasting if the Radio Server loses power, despite the Vinyl Player and Rig still being powered.
     /// </summary>
     [SubscribeLocalEvent]
-    protected virtual void OnPowerChanged(EntityUid uid, StationRadioReceiverComponent comp, PowerChangedEvent args)
+    protected virtual void OnPowerChanged(Entity<StationRadioReceiverComponent> ent, ref PowerChangedEvent args)
     {
     }
 
@@ -82,7 +84,7 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
     /// When the Radio Server is destroyed, stop all station radio receivers.
     /// </summary>
     [SubscribeLocalEvent]
-    protected virtual void OnServerTerminating(EntityUid uid, StationRadioServerComponent comp, ref EntityTerminatingEvent args)
+    protected virtual void OnServerTerminating(Entity<StationRadioServerComponent> ent, ref EntityTerminatingEvent args)
     {
     }
 
@@ -90,12 +92,12 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
     /// When the Radio Rig is destroyed, stop all station radio receivers.
     /// </summary>
     [SubscribeLocalEvent]
-    protected virtual void OnRigTerminating(EntityUid uid, RadioRigComponent comp, ref EntityTerminatingEvent args)
+    protected virtual void OnRigTerminating(Entity<RadioRigComponent> ent, ref EntityTerminatingEvent args)
     {
     }
 
     [SubscribeLocalEvent]
-    protected virtual void OnAttemptAnchor(EntityUid uid, StationRadioServerComponent comp, ref AnchorStateChangedEvent args)
+    protected virtual void OnAnchorStateChanged(Entity<StationRadioServerComponent> ent, ref AnchorStateChangedEvent args)
     {
     }
 
@@ -103,8 +105,8 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
     /// Display whether the station radio is at full or low volume when examined.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnExamined(EntityUid uid, StationRadioReceiverComponent comp, ref ExaminedEvent args) =>
-        args.PushMarkup(Loc.GetString(!comp.BoostVolume
+    private void OnExamined(Entity<StationRadioReceiverComponent> ent, ref ExaminedEvent args) =>
+        args.PushMarkup(Loc.GetString(!ent.Comp.BoostVolume
             ? "station-radio-receiver-examine-low-volume"
             : "station-radio-receiver-examine-full-volume"));
 

@@ -13,10 +13,7 @@
     ClothingHeadsetScience: 3
     ClothingMaskGas: 3
     ClothingOuterWinterSci: 2
-    ClothingOuterWindbreakerScience: 2 #Starlight
     ClothingNeckScarfStripedPurple: 3
-    ClothingNeckScarfSolidPurple: 3 # Starlight
     ClothingShoesBootsWinterSci: 2
-    SlimeExtractBag: 5 # Starlight
   contrabandInventory:
     ToyFigurineResearchDirector: 1

@@ -16,7 +16,7 @@ public sealed class FlatButtonSheetlet : Sheetlet<NanotrasenStylesheet>
         if (sheet.Theme is not { } theme)
             return [];
 
-        if (theme.Proto.ClassicDecor)
+        if (theme.ClassicDecor)
         {
             return
             [

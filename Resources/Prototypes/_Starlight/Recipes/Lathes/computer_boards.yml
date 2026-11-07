@@ -19,3 +19,8 @@
   id: SurveillanceCameraMonitorCircuitboardDesktop
   result: SurveillanceCameraMonitorCircuitboardDesktop
 # endregion: Desktop Computers
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringComputerRecipeCategory ]
+  id: CombustionTurbineComputerCircuitboard
+  result: CombustionTurbineComputerCircuitboard

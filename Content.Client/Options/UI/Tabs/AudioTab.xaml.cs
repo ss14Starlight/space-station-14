@@ -101,6 +101,7 @@ public sealed partial class AudioTab : Control
         AddCategorySlider(StarlightCCVars.CombatVolume, SliderCombat);
         AddCategorySlider(StarlightCCVars.VoiceVolume, SliderVoice);
         AddCategorySlider(StarlightCCVars.AnnouncementVolume, SliderAnnouncement);
+        AddCategorySlider(StarlightCCVars.AdminSoundsVolume, SliderAdminSounds);
 
         // Starlight end
 
