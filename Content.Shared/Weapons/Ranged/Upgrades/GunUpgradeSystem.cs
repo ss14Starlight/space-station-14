@@ -109,8 +109,17 @@ public sealed partial class GunUpgradeSystem : EntitySystem
     {
         foreach (var (ammo, _) in args.Ammo)
         {
-            if (TryComp<ProjectileComponent>(ammo, out var proj))
+            if (!TryComp<ProjectileComponent>(ammo, out var proj))
+                continue;
+
                 proj.Damage += ent.Comp.Damage;
+
+///Starlight Multiplier
+                foreach (var (type, multiplier) in ent.Comp.DamageMultiplier.DamageDict)
+                {
+                    if (proj.Damage.DamageDict.TryGetValue(type, out var damage))
+                        proj.Damage.DamageDict[type] = damage * multiplier;
+                }
         }
     }
 

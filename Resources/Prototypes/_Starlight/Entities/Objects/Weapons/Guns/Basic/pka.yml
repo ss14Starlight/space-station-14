@@ -187,3 +187,66 @@
   - type: GunRequiresWield
   - type: UseDelay
     delay: 1
+
+- type: entity
+  name: VM97
+  id: Weaponpkashotgun
+  parent: [ BaseContrabandTier2, WeaponProtoKineticAcceleratorBase, BaseSalvageContraband ]
+  description: The Vulcan Model 2497 "Wreck Sweeper", This one has been modified with a duct taped crusher dagger for stabbing and prying.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/vm97.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/vm97.rsi
+    size: Large
+    shape:
+    - 0,0,4,0
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/vm97.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: UpgradeableGun
+    whitelist:
+      tags:
+      - PKAUpgrade
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticSpread
+    capacity: 2
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    damage:
+      types:
+        Piercing: 12
+        Structural: 15
+    animation: WeaponArcThrust
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+    rechargeSound:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        pitch: 1.1
+        variation: 0.08
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      params:
+        pitch: 1.1
+        variation: 0.12
+  - type: Tool
+    qualities:
+      - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Prying
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
+    playSoundOnDoafter: true
