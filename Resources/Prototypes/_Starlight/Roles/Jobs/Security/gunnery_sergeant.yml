@@ -24,9 +24,11 @@
   icon: "JobIconGunnerySergeant"
   supervisors: job-supervisors-hos
   access:
+  - Cadet
   - Security
   - Brig
   - Armory
+  - Detective
   - Maintenance
   - External
   - Cryogenics
