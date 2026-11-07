@@ -85,7 +85,7 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
             collect.Objectives[i] = objective;
         }
 
-        args.Groups[Loc.GetString("cards")] = collect.Objectives;
+        //args.Groups[Loc.GetString("cards")] = collect.Objectives;
         var group = Loc.GetString("cards");
 
         if (args.Groups.TryGetValue(group, out var existing))
