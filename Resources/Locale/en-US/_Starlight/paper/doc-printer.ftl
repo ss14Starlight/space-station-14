@@ -1442,21 +1442,24 @@ doc-text-printer-compulsory-tracking-form =
     Date and Time: [datetime]
     Document Compiler: [signature]
 
-    Name of Prisoner:  [form]
+    Name of Patient:  [form]
 
     This document authorizes the immediate compulsory implantation of a tracker in the prisoner, to remain until end of shift.
 
     Improper or dishonest authorization of compulsory implantation is a Capital Crime under Corporate Law.
 
-    Authorization of Compulsory Tracking may only be authorized on repeat offenders who are on their third brigging.
+    Patient exhibits signs of: [form]
+
+    For this reason, it is the opinion of [signature] that the patient should be implanted with a tracker, for their own safety.
 
     Medical Professional to perform the Procedure (Name + Position): [signature]
 
     Authority ordering the Implantation (Name + Position): [signature]
 
-   ⠀ [italic]Compulsory Tracking can only be authorized by the Warden,[/italic]
-   ⠀ [italic]or Head of Security. All compulsory implantation procedures[/italic]
-   ⠀ [italic]must be performed by a trained medical professional.[/italic]
+   ⠀ [italic]Compulsory tracking can only be authorized by the[/italic]
+   ⠀ [italic]Head of Security or Warden, on the advice of either[/italic]
+   ⠀ [italic]a Psychologist or the Chief Medical Officer. All such[/italic]
+   ⠀ [italic]procedures must be performed by a medical professional.[/italic]
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
