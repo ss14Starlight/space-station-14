@@ -1,11 +1,4 @@
 Entries:
-- author: ahandleman
-  changes:
-  - message: The station will no longer suddenly disappear.
-    type: Fix
-  id: 409822
-  time: '2026-10-26T15:33:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6880
 - author: redmushie
   changes:
   - message: (Elkridge) Change Distro/Waste layers to match docking port standard.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410221
   time: '2026-11-07T19:32:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7099
+- author: Rinary
+  changes:
+  - message: "BEHOLD: Added advanced airlock control system(airlock cycler/airlock controller), now you can equip airlock systems with it, so it'll pull/push gases into temp storage to safe gas! And it manages access to closed areas better! No more logic based airlock systems!"
+    type: Add
+  id: 410222
+  time: '2026-11-07T19:55:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7081
 Order: -1
