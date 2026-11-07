@@ -29,7 +29,7 @@ public sealed partial class GasInletSiphonSystem : EntitySystem
     [Dependency] private TransformSystem _transformSystem = null!;
     [Dependency] private AmbientSoundSystem _ambientSoundSystem = null!;
     [Dependency] private EntityManager _entityManager = null!;
-    [Dependency] private SharedToggleableDeviceSystem _toggleableDevice = null!;
+    [Dependency] private ToggleableDeviceSystem _toggleableDevice = null!;
 
     [SubscribeLocalEvent]
     private void OnMapInit(Entity<GasInletSiphonComponent> entity, ref MapInitEvent args)

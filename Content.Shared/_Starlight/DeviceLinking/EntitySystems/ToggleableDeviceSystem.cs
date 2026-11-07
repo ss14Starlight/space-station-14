@@ -4,7 +4,7 @@ using Content.Shared.Database;
 
 namespace Content.Shared._Starlight.DeviceLinking.EntitySystems;
 
-public sealed partial class SharedToggleableDeviceSystem : EntitySystem
+public sealed partial class ToggleableDeviceSystem : EntitySystem
 {
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
 

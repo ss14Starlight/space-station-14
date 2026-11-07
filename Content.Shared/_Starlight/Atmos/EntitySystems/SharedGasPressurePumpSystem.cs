@@ -8,7 +8,7 @@ namespace Content.Shared.Atmos.EntitySystems;
 
 public abstract partial class SharedGasPressurePumpSystem
 {
-    [Dependency] private SharedToggleableDeviceSystem _toggleable = null!;
+    [Dependency] private ToggleableDeviceSystem _toggleable = null!;
 
     [SubscribeLocalEvent]
     private void OnAnchorChanged(Entity<GasPressurePumpComponent> ent, ref AnchorStateChangedEvent args)

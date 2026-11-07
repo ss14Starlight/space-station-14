@@ -11,13 +11,13 @@ using JetBrains.Annotations;
 namespace Content.Server._Starlight.DeviceLinking.Systems;
 
 /// <summary>
-/// Signalling interface for the <see cref="SharedToggleableDeviceSystem"/>.
+/// Signalling interface for the <see cref="ToggleableDeviceSystem"/>.
 /// </summary>
 [UsedImplicitly]
 public sealed partial class ToggleableDeviceSignalingSystem : EntitySystem
 {
     [Dependency] private DeviceLinkSystem _signalSystem = null!;
-    [Dependency] private SharedToggleableDeviceSystem _toggleableDevice = null!;
+    [Dependency] private ToggleableDeviceSystem _toggleableDevice = null!;
 
     [SubscribeLocalEvent]
     private void OnInit(Entity<ToggleableDeviceSignalingComponent> entity, ref ComponentInit args)
