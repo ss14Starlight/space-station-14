@@ -1,25 +1,4 @@
 Entries:
-- author: WNP78
-  changes:
-  - message: Fixed "Examine Voice" button appearing after a short delay, moving all the other buttons.
-    type: Fix
-  id: 409816
-  time: '2026-10-26T06:47:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6863
-- author: Caws
-  changes:
-  - message: Service airlocks now correctly use the new Service door sprites.
-    type: Fix
-  id: 409817
-  time: '2026-10-26T07:26:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6865
-- author: baltdev
-  changes:
-  - message: Changed "(surgeon) starts (action)" to "(surgeon) starts to (action)" in surgery popups.
-    type: Tweak
-  id: 409818
-  time: '2026-10-26T07:26:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6871
 - author: Musiklie
   changes:
   - message: Reduced Mimic health by 30, halved damage, reduced speed by 1/3rd, and rate of spawning by 2/5ths.
@@ -2799,4 +2778,25 @@ Entries:
   id: 410215
   time: '2026-11-07T18:46:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7095
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: The mechwright arm's welder now sparks when activated, like other welders.
+    type: Fix
+  id: 410216
+  time: '2026-11-07T19:10:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7089
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: The zeus arm's stun fist now sparks when activated, like other stun batons.
+    type: Fix
+  id: 410217
+  time: '2026-11-07T19:10:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7089
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: The mechwright arm's screwdriver is no longer incorrectly tinted a random color.
+    type: Fix
+  id: 410218
+  time: '2026-11-07T19:10:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7089
 Order: -1
