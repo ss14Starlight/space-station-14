@@ -1444,7 +1444,7 @@ doc-text-printer-compulsory-tracking-form =
 
     Name of Patient:  [form]
 
-    This document authorizes the immediate compulsory implantation of a tracker in the prisoner, to remain until end of shift.
+    This document authorizes the immediate compulsory implantation of a tracker in the patient, to remain until end of shift.
 
     Improper or dishonest authorization of compulsory implantation is a Capital Crime under Corporate Law.
 
