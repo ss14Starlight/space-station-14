@@ -1,1 +1,0 @@
-// Starlight: Component became shared.

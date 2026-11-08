@@ -1,4 +1,4 @@
-// Starlight: Moved to shared.
+// Was server-side only, moved to shared.
 
 using Content.Shared._Starlight.Light.Components;
 using Content.Shared.Botany.Components;
@@ -9,7 +9,6 @@ using Content.Shared.IgnitionSource;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
-using Content.Shared.Light.Components;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Stacks;
 using Content.Shared.Tag;
@@ -36,18 +35,6 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
 
     private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<ExpendableLightComponent, ComponentInit>(OnExpLightInit);
-        SubscribeLocalEvent<ExpendableLightComponent, ComponentShutdown>(OnExpLightShutdown);
-        SubscribeLocalEvent<ExpendableLightComponent, UseInHandEvent>(OnExpLightUse);
-        SubscribeLocalEvent<ExpendableLightComponent, GetVerbsEvent<ActivationVerb>>(AddIgniteVerb);
-        SubscribeLocalEvent<ExpendableLightComponent, InteractUsingEvent>(OnInteractUsing);
-        SubscribeLocalEvent<ExpendableLightComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
-    }
 
     public override void Update(float frameTime)
     {
@@ -136,6 +123,7 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
         return true;
     }
 
+    [SubscribeLocalEvent]
     private void OnInteractUsing(EntityUid uid, ExpendableLightComponent component, ref InteractUsingEvent args)
     {
         if (args.Handled)
@@ -171,6 +159,7 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
         args.Handled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnRefreshNameModifiers(Entity<ExpendableLightComponent> entity, ref RefreshNameModifiersEvent args)
     {
         if (entity.Comp.CurrentState is ExpendableLightState.Dead)
@@ -252,9 +241,11 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
         ent.Comp.PlayingStream = _audio.Stop(ent.Comp.PlayingStream);
     }
 
+    [SubscribeLocalEvent]
     private void OnExpLightShutdown(Entity<ExpendableLightComponent> ent, ref ComponentShutdown args)
         => ent.Comp.PlayingStream = _audio.Stop(ent.Comp.PlayingStream);
 
+    [SubscribeLocalEvent]
     private void OnExpLightInit(EntityUid uid, ExpendableLightComponent component, ComponentInit args)
     {
         if (TryComp<ItemComponent>(uid, out var item))
@@ -267,6 +258,7 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
         component.StateDuration = component.GlowDuration;
     }
 
+    [SubscribeLocalEvent]
     private void OnExpLightUse(Entity<ExpendableLightComponent> ent, ref UseInHandEvent args)
     {
         if (args.Handled)
@@ -276,6 +268,7 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
             args.Handled = true;
     }
 
+    [SubscribeLocalEvent]
     private void AddIgniteVerb(Entity<ExpendableLightComponent> ent, ref GetVerbsEvent<ActivationVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
