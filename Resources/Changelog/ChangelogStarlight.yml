@@ -1,11 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Added the Interdyne Nuclear Operative Outpost, a new outpost themed as an abandoned Interdyne hospital. Very little 'freebie' loot for the Nukies, but an extremely robust Chemistry setup with 2 fully equipped chem stations, and a large room set aside for Corpsman to use plumbing and chem automation with an RPLD if they know how.
-    type: Add
-  id: 409867
-  time: '2026-10-28T09:24:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6820
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Revolutionary monkeys are now educated on communist ideologies and will only attack mindshielded crew. They also won't attack headrevs anymore.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410266
   time: '2026-11-08T19:03:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7036
+- author: Rinary
+  changes:
+  - message: Added ability to build airlock contollers/his buttons.
+    type: Add
+  id: 410267
+  time: '2026-11-08T19:24:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7128
 Order: -1
