@@ -33,6 +33,7 @@ public sealed partial class LightBehaviorSystem : EntitySystem
 
         if (container.LightBehaviour.IsLooped)
         {
+            container.LightBehaviour.StartOffset = 0f; // Starlight-edit: don't re-apply each cycle
             container.LightBehaviour.UpdatePlaybackValues(container.Animation);
             _player.Play(uid, container.Animation, container.FullKey);
         }
