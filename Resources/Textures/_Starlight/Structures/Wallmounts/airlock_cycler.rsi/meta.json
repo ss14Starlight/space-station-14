@@ -45,19 +45,19 @@
         },
         {
             "license": "CC-BY-SA-3.0",
-            "copyright": "by Rinary for Starlight, based on Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi",
+            "copyright": "Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi, redrawn by Rinary for Starlight",
             "name": "frame",
             "directions": 4
         },
         {
             "license": "CC-BY-SA-3.0",
-            "copyright": "by Rinary for Starlight, based on Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi",
+            "copyright": "Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi, redrawn by Rinary for Starlight",
             "name": "wired",
             "directions": 4
         },
         {
             "license": "CC-BY-SA-3.0",
-            "copyright": "by Rinary for Starlight, based on Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi",
+            "copyright": "Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi, redrawn by Rinary for Starlight",
             "name": "board",
             "directions": 4
         }
