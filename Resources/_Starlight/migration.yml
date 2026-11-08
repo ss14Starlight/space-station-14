@@ -463,3 +463,13 @@ AirlockVirologyMaints: AirlockMaintVirologyLocked
 
 #2026-10-31 - Removing a unusued pistol prototype
 WeaponPistolSP8AR: WeaponPistolBlueguard
+
+#2026-11-08 - Removed in favour of Photo Camera's
+TravelCamera: PhotoCamera
+PhotographBlack: null
+PhotographRainbow: null
+PhotographPurple: null
+PhotographYellow: null
+PhotographGreen: null
+PhotographBlue: null
+PhotographRed: null

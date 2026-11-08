@@ -5,19 +5,19 @@ using Robust.Shared.Graphics;
 namespace Content.Client._Starlight.Snapshots;
 
 /// <summary>
-/// Shows a Map using the Snapshot recorded on an entity
+/// Shows a client-built map for the snapshot recorded on an entity. Owns the window and releases the cached scene on close.
 /// </summary>
 public sealed partial class SnapshotViewBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
-    [ViewVariables]
-    private SnapshotViewWindow? _window;
-
     [ViewVariables]
     private NetEntity? _sceneSnapshot;
 
     [ViewVariables]
     public SnapshotData? Snapshot { get; private set; }
 
+    /// <summary>
+    /// Whether this UI has been disposed. Set once and never cleared; late callbacks check it before building scenes.
+    /// </summary>
     public bool Disposed { get; private set; }
 
     protected override void Open()
@@ -68,8 +68,8 @@ public sealed partial class SnapshotViewBoundUserInterface(EntityUid owner, Enum
 
         _sceneSnapshot = snapshot;
 
-        _window = this.CreateWindow<SnapshotViewWindow>();
-        _window.SetScene(eye, viewportSize);
+        var window = this.CreateWindow<SnapshotViewWindow>();
+        window.SetScene(eye, viewportSize);
     }
 
     protected override void Dispose(bool disposing)

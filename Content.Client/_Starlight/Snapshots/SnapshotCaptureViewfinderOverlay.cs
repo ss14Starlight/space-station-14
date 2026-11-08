@@ -29,6 +29,9 @@ public sealed partial class SnapshotCaptureViewfinderOverlay : Robust.Client.Gra
     private static readonly Color _outOfRangeColor = Color.Red.WithAlpha(0.9f);
     private static readonly Color _dimColor = Color.Black.WithAlpha(0.35f);
 
+    /// <summary>
+    /// Viewfinder drawing sizes, in tiles.
+    /// </summary>
     private const float LineWidth = 0.06f;
     private const float CornerLength = 1f;
     private const float CrosshairLength = 0.25f;
@@ -149,7 +152,7 @@ public sealed partial class SnapshotCaptureViewfinderOverlay : Robust.Client.Gra
     }
 
     /// <summary>
-    /// Draws an L-shaped bracket at the corners to Construct the viewfinder/>.
+    /// Draws an L-shaped bracket at a frame corner.
     /// </summary>
     private static void DrawCorner(DrawingHandleWorld handle, Vector2 corner, Vector2 inward, Color color)
     {

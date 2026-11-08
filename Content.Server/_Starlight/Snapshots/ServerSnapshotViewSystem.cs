@@ -37,7 +37,8 @@ public sealed partial class ServerSnapshotViewSystem : EntitySystem
     }
 
     /// <summary>
-    /// Almost Instantly gives the Entity holding it a snapshot so tehy dont have to wait for server
+    /// Gives the holder the snapshot data on pickup so opening the view doesn't wait for the request roundtrip.
+    /// Rate-limited like explicit requests; the first pickups still deliver.
     /// </summary>
     [SubscribeLocalEvent]
     private void OnPickedUp(Entity<SnapshotComponent> ent, ref GotEquippedHandEvent args)
@@ -66,12 +67,24 @@ public sealed partial class ServerSnapshotViewSystem : EntitySystem
     }
 
     /// <summary>
-    /// Sends the snapshot right away so the view doesn't wait on the client's request
-    /// the request stays as a fallback for when this arrives before the client has the UI open.
+    /// Sends the snapshot right away so the view doesn't wait on the client's request.
+    /// The request stays as a fallback for when this arrives before the client has the UI open.
+    /// Rate-limited like the other paths; the first open still delivers.
     /// </summary>
     private void OnUiOpened(Entity<SnapshotComponent> ent, ref BoundUIOpenedEvent args)
-        => SendSnapshot(ent, args.Actor);
+    {
+        if (!_actorQuery.TryComp(args.Actor, out var actor)
+            || _rateLimit.CountAction(actor.PlayerSession, RateLimitKey) != RateLimitStatus.Allowed)
+        {
+            return;
+        }
 
+        SendSnapshot(ent, args.Actor);
+    }
+
+    /// <summary>
+    /// Sends the snapshot to the viewer, closing the UI when there is nothing to show or the viewer is out of range.
+    /// </summary>
     private void SendSnapshot(Entity<SnapshotComponent> ent, EntityUid viewer)
     {
         if (ent.Comp.Data is not { } data)

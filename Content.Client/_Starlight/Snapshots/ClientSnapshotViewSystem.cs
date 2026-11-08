@@ -15,9 +15,12 @@ using Content.Shared.Inventory;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.Mind.Components;
+using Content.Shared._Starlight.Plumbing;
 using Content.Shared.Parallax;
 using Content.Shared.SSDIndicator;
 using Content.Shared.Sprite;
+using Content.Shared.SubFloor;
+using Content.Shared.Rotation;
 using Content.Shared.StatusIcon.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -26,6 +29,9 @@ using Robust.Shared.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Reflection;
+using Content.Client.Clothing;
+using Content.Shared.Clothing.Components;
 
 namespace Content.Client._Starlight.Snapshots;
 
@@ -51,6 +57,8 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     [Dependency] private ITileDefinitionManager _tileDef = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IReflectionManager _reflection = default!;
+    [Dependency] private ClientClothingSystem _clothing = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     [Dependency] private EntityQuery<StrapComponent> _strapQuery = default!;
     [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
@@ -65,6 +73,10 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
 
     private readonly Dictionary<SnapshotViewBoundUserInterface, (TimeSpan NextRequest, int Requests)> _awaiting = [];
 
+    private readonly List<(SnapshotViewBoundUserInterface Ui, TimeSpan NextRequest, int Requests)> _awaitingUpdates = [];
+
+    private readonly List<SnapshotViewBoundUserInterface> _awaitingRemovals = [];
+
     private readonly Dictionary<NetEntity, CachedScene> _scenes = [];
 
     /// <summary>
@@ -77,6 +89,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
 
     private static readonly TimeSpan _knownSnapshotLifetime = TimeSpan.FromMinutes(30);
     private static readonly TimeSpan _knownPruneInterval = TimeSpan.FromMinutes(1);
+    private const int MaxKnownSnapshots = 64;
     private TimeSpan _lastKnownPrune = TimeSpan.FromMinutes(-1);
     private const int MaxCachedScenes = 8;
 
@@ -100,10 +113,15 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         _scenes.Clear();
     }
 
+    /// <summary>
+    /// Caches networked snapshot payloads and forwards the first one to an open viewer.
+    /// </summary>
     [SubscribeNetworkEvent]
     private void OnSnapshotData(SnapshotViewDataEvent ev)
     {
         _known[ev.Snapshot] = (ev.Data, _timing.RealTime);
+        if (_known.Count > MaxKnownSnapshots)
+            TrimKnownCache();
 
         if (TryGetEntity(ev.Snapshot, out var snapshot)
             && _ui.TryGetOpenUi<SnapshotViewBoundUserInterface>(snapshot.Value, SnapshotViewUiKey.Key, out var ui))
@@ -112,6 +130,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Returns the cached data for a held/opened snapshot, if it arrived within the cache lifetime.
+    /// </summary>
     public bool TryGetKnownSnapshot(EntityUid snapshot, [NotNullWhen(true)] out SnapshotData? data)
     {
         data = null;
@@ -122,6 +143,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Builds a scene immediately. Most callers should use <see cref="QueueBuild"/> to defer work to the next frame.
+    /// </summary>
     public (EntityUid Map, IEye Eye, Vector2i ViewportSize) BuildScene(SnapshotData data)
         => Build(data);
 
@@ -137,6 +161,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     public void AwaitSnapshot(SnapshotViewBoundUserInterface ui)
         => _awaiting[ui] = (_timing.RealTime + _requestRetryDelay, 1);
 
+    /// <summary>
+    /// Retries outstanding snapshot requests, then builds any queued scenes.
+    /// </summary>
     public override void FrameUpdate(float frameTime)
     {
         base.FrameUpdate(frameTime);
@@ -147,8 +174,11 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             return;
 
         // Take the queue first so a failing Build can't be retried (reopening windows) every frame.
+        // Builds are capped at one per frame so opening many snapshots can't freeze the client;
+        // the rest stay queued for the next frame.
         var builds = _pendingBuilds.ToArray();
         _pendingBuilds.Clear();
+        var built = false;
 
         foreach (var (ui, data) in builds)
         {
@@ -158,9 +188,16 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             var snapshot = GetNetEntity(ui.Owner);
             if (!_scenes.TryGetValue(snapshot, out var scene))
             {
+                if (built)
+                {
+                    _pendingBuilds.Add((ui, data));
+                    continue;
+                }
+
                 var (map, eye, size) = Build(data);
                 scene = new CachedScene(map, eye, size, _timing.RealTime);
                 _scenes.Add(snapshot, scene);
+                built = true;
             }
 
             scene.OpenViews++;
@@ -171,6 +208,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         TrimSceneCache();
     }
 
+    /// <summary>
+    /// Prunes expired cached snapshots at low frequency, then retries awaiting viewers at their backoff interval.
+    /// </summary>
     private void RetrySnapshotRequests()
     {
         var now = _timing.RealTime;
@@ -187,11 +227,13 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         if (_awaiting.Count == 0)
             return;
 
-        foreach (var (ui, (nextRequest, requests)) in _awaiting.ToArray())
+        _awaitingUpdates.Clear();
+        _awaitingRemovals.Clear();
+        foreach (var (ui, (nextRequest, requests)) in _awaiting)
         {
             if (ui.Snapshot != null || ui.Disposed || requests >= MaxRequests)
             {
-                _awaiting.Remove(ui);
+                _awaitingRemovals.Add(ui);
                 continue;
             }
 
@@ -199,10 +241,18 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
                 continue;
 
             ui.RequestSnapshot();
-            _awaiting[ui] = (now + _requestRetryDelay, requests + 1);
+            _awaitingUpdates.Add((ui, now + _requestRetryDelay, requests + 1));
         }
+
+        foreach (var ui in _awaitingRemovals)
+            _awaiting.Remove(ui);
+        foreach (var (ui, nextRequest, requests) in _awaitingUpdates)
+            _awaiting[ui] = (nextRequest, requests);
     }
 
+    /// <summary>
+    /// Builds a paused client-only map from snapshot data and returns its eye and viewport size.
+    /// </summary>
     private (EntityUid Map, IEye Eye, Vector2i ViewportSize) Build(SnapshotData snapshot)
     {
         var mapUid = _map.CreateMap(out var mapId);
@@ -238,7 +288,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         // Tiles go down first so anchored things like walls have something to anchor to.
         _map.SetTiles(grid, tiles);
 
-        // Roofs are required so ambient blue starlight doesnt bleed in
+        // Roofs are required so ambient blue starlight doesn't bleed in.
         if (roof != null)
         {
             foreach (var tile in snapshot.Tiles)
@@ -253,7 +303,10 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         {
             var entity = snapshot.Entities[i];
             if (!_proto.HasIndex(entity.Prototype))
+            {
+                Log.Warning($"Snapshot references unknown prototype {entity.Prototype}; skipping it in the rebuild.");
                 continue;
+            }
 
             try
             {
@@ -333,6 +386,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Deletes a client-only snapshot map, if it still exists.
+    /// </summary>
     public void Destroy(EntityUid map)
     {
         if (!TerminatingOrDeleted(map))
@@ -354,19 +410,59 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         TrimSceneCache();
     }
 
+    /// <summary>
+    /// Trims the scene cache to <see cref="MaxCachedScenes"/> by evicting least-recently-used scenes with no open views.
+    /// </summary>
     private void TrimSceneCache()
     {
         while (_scenes.Count > MaxCachedScenes)
         {
-            var oldest = _scenes
-                .Where(entry => entry.Value.OpenViews == 0)
-                .OrderBy(entry => entry.Value.LastAccess)
-                .FirstOrDefault();
-            if (oldest.Value == null)
+            // Find the least-recently-used scene with no open views. Manual loop avoids LINQ allocations here.
+            NetEntity oldestKey = default;
+            CachedScene? oldest = null;
+            var oldestAccess = TimeSpan.MaxValue;
+            foreach (var (key, scene) in _scenes)
+            {
+                if (scene.OpenViews > 0 || scene.LastAccess >= oldestAccess)
+                    continue;
+
+                oldestKey = key;
+                oldest = scene;
+                oldestAccess = scene.LastAccess;
+            }
+
+            if (oldest == null)
                 return;
 
-            _scenes.Remove(oldest.Key);
-            Destroy(oldest.Value.Map);
+            _scenes.Remove(oldestKey);
+            Destroy(oldest.Map);
+        }
+    }
+
+    /// <summary>
+    /// Evicts oldest cached snapshots when over <see cref="MaxKnownSnapshots"/>.
+    /// </summary>
+    private void TrimKnownCache()
+    {
+        while (_known.Count > MaxKnownSnapshots)
+        {
+            NetEntity oldestKey = default;
+            var oldestReceived = TimeSpan.MaxValue;
+            var found = false;
+            foreach (var (key, known) in _known)
+            {
+                if (known.Received >= oldestReceived)
+                    continue;
+
+                oldestKey = key;
+                oldestReceived = known.Received;
+                found = true;
+            }
+
+            if (!found)
+                return;
+
+            _known.Remove(oldestKey);
         }
     }
 
@@ -394,6 +490,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         _sprite.SetDrawDepth((buckled, buckledSprite), strapComp.LoweredDrawdepth ?? (strapSprite.DrawDepth - 1));
     }
 
+    /// <summary>
+    /// Respawns one captured entity on the snapshot grid and restores its position, rotation and appearance.
+    /// </summary>
     private EntityUid? SpawnClone(EntityUid grid, SnapshotEntity entity)
     {
         var coords = new EntityCoordinates(grid, _center + entity.Offset);
@@ -430,9 +529,37 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         if (entity.SupportOnly && _spriteQuery.TryGetComponent(spawned, out var supportSprite))
             _sprite.SetVisible((spawned, supportSprite), false);
 
+        // Subfloor entities (cables, pipes) start hidden and their visualizers skip work while hidden,
+        // so they would rebuild invisible. A photo must show what was captured, so reveal them before applying appearance.
+        if (!entity.SupportOnly && HasComp<SubFloorHideComponent>(spawned))
+        {
+            RemComp<SubFloorHideComponent>(spawned);
+            if (_spriteQuery.TryGetComponent(spawned, out var cloneSprite))
+                _sprite.SetVisible((spawned, cloneSprite), true);
+        }
+
         ApplyAppearance(spawned, entity.Appearance);
+
+        // Down (lying) clones animate via RotationVisuals, but the snapshot map is paused so the animation never
+        // ticks and they'd stay upright. Snap the sprite to the lying pose immediately.
+        if (!entity.SupportOnly
+            && entity.Appearance?.TryGetValue(RotationVisuals.RotationState, out var rotationState) == true
+            && rotationState is RotationState.Horizontal
+            && _spriteQuery.TryGetComponent(spawned, out var lyingSprite))
+        {
+            var horizontal = TryComp<RotationVisualsComponent>(spawned, out var rotationVisuals)
+                ? rotationVisuals.HorizontalRotation
+                : Angle.FromDegrees(90);
+            _sprite.SetRotation((spawned, lyingSprite), horizontal);
+        }
+
+        // Plumbing connectors hide when floored; a photo should show them as the photographer saw them.
+        if (!entity.SupportOnly && TryComp<AppearanceComponent>(spawned, out var plumbingAppearance))
+            _appearance.SetData(spawned, PlumbingVisuals.CoveredByFloor, false, plumbingAppearance);
+
         ApplyIconSmoothStates(spawned, entity.IconSmoothStates);
         ApplyAnimationFrames(spawned, entity.AnimationFrames);
+        ApplyRandomSprite(spawned, entity.RandomSprite);
 
         if (entity.Light is { } snapshotLight)
             ApplyLight(spawned, snapshotLight);
@@ -447,6 +574,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         return spawned;
     }
 
+    /// <summary>
+    /// Applies captured icon-smoothing states to a rebuilt sprite, skipping unknown states.
+    /// </summary>
     private void ApplyIconSmoothStates(EntityUid uid, List<SnapshotSpriteLayerState>? states)
     {
         if (states is not { Count: > 0 }
@@ -480,6 +610,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             _sprite.LayerSetRsiState((uid, sprite), state.Layer, state.State);
     }
 
+    /// <summary>
+    /// Freezes captured animated sprites on their photographed frame.
+    /// </summary>
     private void ApplyAnimationFrames(EntityUid uid, List<SnapshotSpriteLayerFrame>? frames)
     {
         if (frames == null || !_spriteQuery.TryComp(uid, out var sprite))
@@ -545,6 +678,15 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         dollAppearance.UndergarmentBottom = humanoid.UndergarmentBottom;
         _humanoidAppearance.UpdateSprite((doll, dollAppearance, Comp<SpriteComponent>(doll)));
 
+        // Crawling/down dolls need the lying pose. The appearance-only rebuild would leave them standing.
+        // Snap the sprite rotation directly because the snapshot map is paused and the rotate animation won't tick.
+        if (!humanoid.Standing)
+        {
+            var rotationVisuals = EnsureComp<RotationVisualsComponent>(doll);
+            var dollSpriteComp = Comp<SpriteComponent>(doll);
+            _sprite.SetRotation((doll, dollSpriteComp), rotationVisuals.HorizontalRotation);
+        }
+
         foreach (var (slot, worn) in humanoid.Worn)
         {
             if (SpawnItem(worn) is not { } item)
@@ -602,9 +744,60 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
 
         var uid = Spawn(item.Prototype, MapCoordinates.Nullspace);
         ApplyAppearance(uid, item.Appearance);
+        ApplyRandomSprite(uid, item.RandomSprite);
         return uid;
     }
 
+    /// <summary>
+    /// Applies a captured RandomSprite selection (greyscale tinting) the same way <c>RandomSpriteSystem</c> does.
+    /// </summary>
+    private void ApplyRandomSprite(EntityUid uid, Dictionary<string, (string State, Color? Color)>? selected)
+    {
+        if (selected is not { Count: > 0 }
+            || !TryComp<RandomSpriteComponent>(uid, out var component)
+            || !_spriteQuery.TryComp(uid, out var sprite))
+        {
+            return;
+        }
+
+        component.Selected.Clear();
+        foreach (var (key, value) in selected)
+            component.Selected.Add(key, value);
+
+        foreach (var (key, value) in component.Selected)
+        {
+            int index;
+            if (_reflection.TryParseEnumReference(key, out var @enum))
+            {
+                if (!_sprite.LayerMapTryGet((uid, sprite), @enum, out index, logMissing: true))
+                    continue;
+            }
+            else if (!_sprite.LayerMapTryGet((uid, sprite), key, out index, false))
+            {
+                if (!int.TryParse(key, out index))
+                    continue;
+            }
+
+            _sprite.LayerSetRsiState((uid, sprite), index, value.State);
+            _sprite.LayerSetColor((uid, sprite), index, value.Color ?? Color.White);
+        }
+
+        if (TryComp<ClothingComponent>(uid, out var clothing))
+        {
+            foreach (var slotPair in clothing.ClothingVisuals)
+            {
+                foreach (var keyColorPair in component.Selected)
+                {
+                    _clothing.SetLayerColor(clothing, slotPair.Key, keyColorPair.Key, keyColorPair.Value.Color);
+                    _clothing.SetLayerState(clothing, slotPair.Key, keyColorPair.Key, keyColorPair.Value.State);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Applies captured networked appearance to a rebuilt entity.
+    /// </summary>
     private void ApplyAppearance(EntityUid uid, Dictionary<Enum, object>? appearance)
     {
         if (appearance == null)
@@ -620,6 +813,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             _scaleVisuals.SetSpriteScale(uid, scaleVector);
     }
 
+    /// <summary>
+    /// Applies captured light settings to a rebuilt entity.
+    /// </summary>
     private void ApplyLight(EntityUid uid, SnapshotLight snapshotLight)
     {
         var light = _light.EnsureLight(uid);

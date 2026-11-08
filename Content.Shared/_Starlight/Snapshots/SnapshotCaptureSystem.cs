@@ -14,11 +14,12 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Starlight.Snapshots;
 
 /// <summary>
-/// Using the item in hand raises it to the eye when raised you can take a snapshot of a spot you click on.
+/// Using the item in hand raises it to the eye; while raised, clicking takes a snapshot of the spot clicked on.
 /// </summary>
-/// <remarks>
+ /// <remarks>
 /// Only the client knows where its screen ends, so it decides where the frame sits (clamped to the screen) and sends
 /// that as a <see cref="SnapshotCaptureRequestEvent"/>. Everything else about the shot is checked here.
+/// Melee flash hits on a capture item also take a snapshot via <see cref="OnFlashActivated"/>.
 /// </remarks>
 public abstract partial class SnapshotCaptureSystem : EntitySystem
 {
@@ -31,6 +32,9 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     [Dependency] private EntityQuery<SnapshotCaptureComponent> _captureQuery = default!;
     [Dependency] private EntityQuery<FlashComponent> _flashQuery = default!;
 
+    /// <summary>
+    /// Upper bounds for client-sent animation data. Anything larger is ignored by the server.
+    /// </summary>
     public const int MaxSnapshotAnimationFrames = 4096;
     public const int MaxSnapshotAnimationLayers = 32;
     public const int MaxSnapshotAnimationFrameIndex = 4095;
@@ -71,6 +75,10 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Converts odd total frame dimensions to half extents from the center tile.
+    /// Returns false when either dimension is non-positive or even.
+    /// </summary>
     private static bool TryGetHalfExtents(Vector2i dimensions, out Vector2i halfExtents)
     {
         halfExtents = default;
@@ -115,6 +123,10 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     private void OnUnequipped(Entity<SnapshotCaptureComponent> ent, ref GotUnequippedHandEvent args)
         => SetAiming(ent.AsNullable(), false, args.User);
 
+    /// <summary>
+    /// Melee flash photographs the hit target, like a viewfinder photo centred on its tile.
+    /// The flash already consumed the charge and handles conversion; this only prints the picture.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnFlashActivated(Entity<SnapshotCaptureComponent> ent, ref AfterFlashActivatedEvent args)
     {
@@ -124,8 +136,19 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         var target = args.Target.Value;
         var user = args.User.Value;
 
-        var center = TransformSystem.GetMapCoordinates(target);
-        var rotation = TransformSystem.GetWorldRotation(user);
+        var targetMapPos = TransformSystem.GetMapCoordinates(target);
+        var center = targetMapPos;
+        if (_map.TryFindGridAt(targetMapPos, out var gridUid, out var grid))
+        {
+            var tile = _map.WorldToTile(gridUid, grid, targetMapPos.Position);
+            center = new MapCoordinates(_map.GridTileToWorldPos(gridUid, grid, tile), targetMapPos.MapId);
+        }
+
+        // Grid-aligned, like a normal photo viewed on the grid: frame-local axes = world + frame,
+        // so use the negated grid rotation to make frame axes match the target tile's grid.
+        var rotation = _map.TryFindGridAt(center, out var gridUid2, out var _)
+            ? -TransformSystem.GetWorldRotation(gridUid2)
+            : Angle.Zero;
 
         var captured = new SnapshotCapturedEvent(
             user,
@@ -209,13 +232,13 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
             return;
         }
 
-        if (_flashQuery.TryComp(capturerUid, out var flash))
+        if (_flashQuery.TryComp(capturer, out var flash))
         {
             // Uses a charge, respects the use delay and plays the shutter sound.
-            if (!_flash.TryUseFlashItem((capturerUid.Value, flash), user))
+            if (!_flash.TryUseFlashItem((capturer, flash), user))
                 return;
 
-            _flash.FlashArea(capturerUid.Value, user, flash.Range, flash.AoeFlashDuration, flash.SlowTo, true, flash.Probability);
+            _flash.FlashArea(capturer, user, flash.Range, flash.AoeFlashDuration, flash.SlowTo, true, flash.Probability);
         }
 
         var rotation = new Angle(Math.IEEERemainder(ev.Rotation.Theta, Math.PI * 2));
@@ -234,7 +257,7 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
             ev.AnimationFrames,
             ev.IconSmoothStates,
             focus);
-        RaiseLocalEvent(capturerUid.Value, ref captured);
+        RaiseLocalEvent(capturer, ref captured);
     }
 
     /// <summary>
@@ -257,7 +280,8 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     }
 
     /// <summary>
-    /// Ensures the Snapshot is what the server shows
+    /// Builds the camera-aligned frame for a shot: the center snapped to its tile, with forward/inverse
+    /// world-to-frame matrices. Shared by client clamping and server capture so both agree on the frame.
     /// </summary>
     public SnapshotFrame GetFrame(MapCoordinates center, Vector2i halfExtents, Angle rotation)
     {
@@ -286,6 +310,30 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         frameToWorld.M32 = snappedCenter.Y - rotatedCenter.Y;
         Matrix3x2.Invert(frameToWorld, out var snappedWorldToFrame);
         return new SnapshotFrame(Vector2i.Zero, halfExtents, rotation, frameToWorld, snappedWorldToFrame);
+    }
+
+    /// <summary>
+    /// Transforms a frame-local box to a world-aligned box, for entity lookups intersecting the frame.
+    /// </summary>
+    protected static Box2 TransformBounds(Box2 box, Matrix3x2 transform)
+    {
+        var point = Vector2.Transform(box.BottomLeft, transform);
+        var min = point;
+        var max = point;
+
+        point = Vector2.Transform(box.BottomRight, transform);
+        min = Vector2.Min(min, point);
+        max = Vector2.Max(max, point);
+
+        point = Vector2.Transform(box.TopLeft, transform);
+        min = Vector2.Min(min, point);
+        max = Vector2.Max(max, point);
+
+        point = Vector2.Transform(box.TopRight, transform);
+        min = Vector2.Min(min, point);
+        max = Vector2.Max(max, point);
+
+        return new Box2(min, max);
     }
 }
 

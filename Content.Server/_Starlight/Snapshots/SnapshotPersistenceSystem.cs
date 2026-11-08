@@ -6,12 +6,38 @@ using Robust.Shared.Serialization;
 
 namespace Content.Server._Starlight.Snapshots;
 
+/// <summary>
+/// The scene a snapshot shows. Saved server-side and sent on request.
+/// </summary>
+[RegisterComponent]
+public sealed partial class SnapshotComponent : Component
+{
+    /// <summary>
+    /// Binary-serialized snapshot content, stored base64 so map serialization preserves photographs.
+    /// </summary>
+    [DataField]
+    public string? SerializedData;
+
+    /// <summary>
+    /// Deserialized snapshot data, when available. See <see cref="SnapshotPersistenceSystem"/> for how the two are kept in sync.
+    /// </summary>
+    [ViewVariables]
+    public SnapshotData? Data;
+}
+
+/// <summary>
+/// Serializes <see cref="SnapshotData"/> to base64 for map persistence and restores it on map init.
+/// Enforces the 8 MiB (de)serialization limit in one place.
+/// </summary>
 public sealed partial class SnapshotPersistenceSystem : EntitySystem
 {
     [Dependency] private IRobustSerializer _serializer = default!;
 
     private const int MaxSerializedBytes = 8 * 1024 * 1024;
     private const int MaxEncodedLength = (MaxSerializedBytes + 2) / 3 * 4;
+    private const int MaxDeserializedEntities = 512;
+    private const int MaxDeserializedTiles = 4096;
+    private const int MaxDeserializedOccluders = 1024;
 
     /// <summary>
     /// Returns the base64 serialized snapshot data for the entity, or null if none is available.
@@ -62,6 +88,12 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
 
             using var stream = new MemoryStream(bytes, writable: false);
             _serializer.DeserializeDirect(stream, out SnapshotData data);
+            if (!IsWithinDeserializedLimits(data))
+            {
+                Log.Warning($"Rejected photograph data with oversized collections for {ToPrettyString(uid)}.");
+                return false;
+            }
+
             var snapshot = EnsureComp<SnapshotComponent>(uid);
             snapshot.Data = data;
             snapshot.SerializedData = serialized;
@@ -70,12 +102,16 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
         }
         catch (Exception e)
         {
-            // Dont let one bad photograph break them all
+            // Don't let one bad photograph break them all.
             Log.Error($"Failed to deserialize photograph data for {ToPrettyString(uid)}: {e.Message}");
             return false;
         }
     }
 
+    /// <summary>
+    /// Deserializes base64 snapshot data without modifying anything. Returns null when the input exceeds size
+    /// limits or is malformed. Use <see cref="SetSerializedData"/> to store it.
+    /// </summary>
     public SnapshotData? TryDeserialize(string serialized)
     {
         if (serialized.Length > MaxEncodedLength)
@@ -89,7 +125,7 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
 
             using var stream = new MemoryStream(bytes, writable: false);
             _serializer.DeserializeDirect(stream, out SnapshotData data);
-            return data;
+            return IsWithinDeserializedLimits(data) ? data : null;
         }
         catch (Exception e)
         {
@@ -98,6 +134,15 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
         }
     }
 
+    private static bool IsWithinDeserializedLimits(SnapshotData data)
+        => data.Entities.Count <= MaxDeserializedEntities
+            && data.Tiles.Count <= MaxDeserializedTiles
+            && data.Hidden.Count <= MaxDeserializedTiles
+            && data.Occluders.Count <= MaxDeserializedOccluders;
+
+    /// <summary>
+    /// Serializes snapshot data to base64. Returns null and logs a warning when over the size limit.
+    /// </summary>
     private string? Serialize(SnapshotData data)
     {
         using var stream = new MemoryStream();
@@ -112,6 +157,9 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
         return stream.TryGetBuffer(out var buffer) ? Convert.ToBase64String(buffer.Array!, buffer.Offset, (int) stream.Length) : Convert.ToBase64String(stream.ToArray());
     }
 
+    /// <summary>
+    /// Syncs subject examine text from the snapshot into the photograph component.
+    /// </summary>
     private void ApplyPhotographMetadata(EntityUid uid, SnapshotData data)
     {
         var photograph = EnsureComp<PhotographComponent>(uid);
@@ -130,6 +178,9 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
         Dirty(uid, photograph);
     }
 
+    /// <summary>
+    /// Restores snapshot data from map-serialized text on load. Clears the snapshot when the data no longer validates.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnMapInit(Entity<SnapshotComponent> ent, ref MapInitEvent args)
     {

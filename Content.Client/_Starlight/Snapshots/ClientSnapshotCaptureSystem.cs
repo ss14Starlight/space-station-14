@@ -12,6 +12,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.Snapshots;
 
+/// <summary>
+/// Client half of snapshot capture: clamps the frame to the screen and sends the shot request to the server.
+/// The server validates and records the scene; this system only decides what the client aimed at.
+/// </summary>
 public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
 {
     [Dependency] private IEyeManager _eye = default!;
@@ -59,6 +63,9 @@ public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
             args.Args.Offset += offset;
     }
 
+    /// <summary>
+    /// Sends the shot request for a click while looking through the viewfinder. Predicted once per click.
+    /// </summary>
     protected override void OnAimedClick(
         Entity<SnapshotCaptureComponent> ent,
         EntityUid user,
@@ -83,6 +90,10 @@ public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
             focus));
     }
 
+    /// <summary>
+    /// Collects capped animation frames and icon-smoothing states for sprites intersecting the frame.
+    /// The server re-validates everything; this only bounds what the client sends.
+    /// </summary>
     private List<SnapshotSpriteAnimation> GetAnimationFrames(
         MapId mapId,
         SnapshotFrame frame,
@@ -150,27 +161,6 @@ public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
         return frames;
     }
 
-    private static Box2 TransformBounds(Box2 box, Matrix3x2 transform)
-    {
-        var point = Vector2.Transform(box.BottomLeft, transform);
-        var min = point;
-        var max = point;
-
-        point = Vector2.Transform(box.BottomRight, transform);
-        min = Vector2.Min(min, point);
-        max = Vector2.Max(max, point);
-
-        point = Vector2.Transform(box.TopLeft, transform);
-        min = Vector2.Min(min, point);
-        max = Vector2.Max(max, point);
-
-        point = Vector2.Transform(box.TopRight, transform);
-        min = Vector2.Min(min, point);
-        max = Vector2.Max(max, point);
-
-        return new Box2(min, max);
-    }
-
     /// <summary>
     /// Moves <paramref name="center"/> so the whole frame stays on screen.
     /// </summary>
@@ -215,6 +205,9 @@ public sealed partial class ClientSnapshotCaptureSystem : SnapshotCaptureSystem
         }
     }
 
+    /// <summary>
+    /// Clamps an axis so the whole frame stays on screen. Keeps it centered when the viewport is smaller than the frame.
+    /// </summary>
     private static float ClampAxis(float value, float min, float max, float half)
         // A screen smaller than the frame can't contain it; keep it centered then.
         => max - min < half * 2 ? (min + max) / 2 : Math.Clamp(value, min + half, max - half);

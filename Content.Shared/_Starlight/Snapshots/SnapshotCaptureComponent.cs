@@ -18,7 +18,7 @@ public sealed partial class SnapshotCaptureComponent : Component
     public EntProtoId Snapshot;
 
     /// <summary>
-    /// Tiles from the middle of the shot to its edge gives a 9x7 tile snapshot.
+    /// Tiles from the frame center to its edge. The default (4, 3) gives a 9x7 frame.
     /// </summary>
     [DataField, AutoNetworkedField]
     public Vector2i HalfExtents = new(4, 3);
@@ -44,8 +44,14 @@ public sealed partial class SnapshotCaptureComponent : Component
 }
 
 /// <summary>
-/// Raised on the capturing item when a shot has been taken, centered on <paramref name="Center"/>. The server records the snapshot.
+/// Raised on the capturing item when a shot has been taken. The server records the snapshot and prints it.
 /// </summary>
+/// <param name="User">The photographer.</param>
+/// <param name="Center">Frame center in map coordinates.</param>
+/// <param name="Rotation">Eye rotation for the shot.</param>
+/// <param name="AnimationFrames">Client-captured animation frames, if any.</param>
+/// <param name="IconSmoothStates">Client-captured icon-smoothing states, if any.</param>
+/// <param name="Focus">Entity clicked through the viewfinder, if any, used for subject examine text.</param>
 [ByRefEvent]
 public readonly record struct SnapshotCapturedEvent(
     EntityUid User,

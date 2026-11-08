@@ -4,6 +4,7 @@ using Content.Server.Movement.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.Nodes;
 using Content.Shared._Starlight.Light;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Snapshots;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Camera;
@@ -18,8 +19,12 @@ using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.Photography;
 using Content.Shared.SSDIndicator;
+using Content.Shared.Sprite;
 using Content.Shared.MapText;
 using Content.Shared.Parallax;
+using Content.Shared.Players.RateLimiting;
+using Content.Shared.Popups;
+using Content.Shared.Standing;
 using Content.Shared.NodeContainer;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
@@ -29,14 +34,14 @@ using Robust.Shared.Containers;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Snapshots;
 
 /// <summary>
-/// Prints snapshots from <see cref="SnapshotCaptureComponent"/> items, records what the photographer could see
-/// and ensures no arbitary data is send
+/// Prints snapshots from <see cref="SnapshotCaptureComponent"/> items. Records what the photographer could see,
+/// validating all client-sent data; arbitrary client data is never trusted.
 /// </summary>
 public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 {
@@ -70,7 +75,27 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [Dependency] private EntityQuery<CableVisComponent> _cableVisQuery = default!;
     [Dependency] private EntityQuery<NodeContainerComponent> _nodeContainerQuery = default!;
     [Dependency] private EntityQuery<SSDIndicatorComponent> _ssdIndicatorQuery = default!;
+    [Dependency] private EntityQuery<StandingStateComponent> _standingQuery = default!;
+    [Dependency] private SharedPlayerRateLimitManager _rateLimit = default!;
+    [Dependency] private EntityQuery<ActorComponent> _actorQuery = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
+    private const string CaptureRateLimitKey = "SnapshotCapture";
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        _rateLimit.Register(CaptureRateLimitKey,
+            new RateLimitRegistration(StarlightCCVars.SnapshotViewRateLimitPeriod,
+                StarlightCCVars.SnapshotViewRateLimitCount,
+                null));
+    }
+
+    /// <summary>
+    /// Hard caps for one capture. These bound server work and payload size; they are not CVars because
+    /// they protect correctness, not admin tuning.
+    /// </summary>
     private const int MaxEntities = 256;
     private const int MaxNearbyLights = 64;
     private const int MaxOccluders = 512;
@@ -106,6 +131,12 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 
     private readonly Dictionary<EntityUid, Vector2i> _tileOfCache = [];
 
+    private readonly HashSet<Vector2i> _supportTiles = [];
+
+    private readonly HashSet<Vector2i> _checkedTiles = [];
+
+    private readonly HashSet<Vector2i> _visibleTiles = [];
+
     /// <summary>
     /// The viewfinder's extended view needs a larger PVS range, like binoculars.
     /// </summary>
@@ -116,11 +147,25 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             args.Args.Scale += cursorOffset.PvsIncrease;
     }
 
+    /// <summary>
+    /// Prints the snapshot for a validated capture request and hands it to the photographer.
+    /// Drops the print when persistence serialization exceeds the size limit.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnCaptured(Entity<SnapshotCaptureComponent> ent, ref SnapshotCapturedEvent args)
     {
-        if (Capture(args.User, args.Center, ent.Comp.HalfExtents, args.Rotation, args.AnimationFrames, args.IconSmoothStates) is not { } data)
+        if (_actorQuery.TryComp(args.User, out var actor)
+            && _rateLimit.CountAction(actor.PlayerSession, CaptureRateLimitKey) != RateLimitStatus.Allowed)
+        {
+            _popup.PopupClient(Loc.GetString("snapshot-capture-rate-limited"), args.User, args.User);
             return;
+        }
+
+        if (Capture(args.User, args.Center, ent.Comp.HalfExtents, args.Rotation, args.AnimationFrames, args.IconSmoothStates) is not { } data)
+        {
+            _popup.PopupClient(Loc.GetString("snapshot-capture-failed"), args.User, args.User);
+            return;
+        }
 
         if (args.Focus is { } focus && _captured.ContainsKey(focus))
         {
@@ -138,6 +183,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         if (!_snapshotPersistence.SetData(snapshot, data))
         {
             Del(snapshot);
+            _popup.PopupClient(Loc.GetString("snapshot-capture-failed"), args.User, args.User);
             return;
         }
 
@@ -145,7 +191,9 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     }
 
     /// <summary>
-    /// Records Lighting and such around the Photographer
+    /// Records the scene visible to the photographer centered on <paramref name="shotCenter"/> with camera rotation
+    /// <paramref name="rotation"/>. Returns null when the shot is on another map or unusable. Client animation data is
+    /// validated against the capture limits and ignored when oversized.
     /// </summary>
     public SnapshotData? Capture(
         EntityUid viewer,
@@ -181,8 +229,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 
         // A tile is in the snapshot if the photographer can see any part of it, not just its middle, so partly visible
         // tiles next to walls aren't blacked out.
-        var tileCapacity = ((2 * halfExtents.X) + 1) * ((2 * halfExtents.Y) + 1);
-        var visible = new HashSet<Vector2i>(tileCapacity);
+        var visible = _visibleTiles;
+        visible.Clear();
         for (var x = -halfExtents.X; x <= halfExtents.X; x++)
         {
             for (var y = -halfExtents.Y; y <= halfExtents.Y; y++)
@@ -262,7 +310,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             LookupFlags.Uncontained);
 
         var visibleEntityCount = 0;
-        var supportTiles = new HashSet<Vector2i>();
+        var supportTiles = _supportTiles;
+        supportTiles.Clear();
         foreach (var uid in _found)
         {
             var xform = Transform(uid);
@@ -296,7 +345,11 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 continue;
 
             if (visibleEntityCount >= MaxEntities)
+            {
+                if (visibleEntityCount == MaxEntities)
+                    Log.Warning($"Snapshot capture truncated at {MaxEntities} entities.");
                 continue;
+            }
 
             if (!visible.Contains(tileOffset))
             {
@@ -342,6 +395,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 Light = GetLight(uid),
                 MapText = GetMapText(uid),
                 Humanoid = GetHumanoid(uid, visMask),
+                RandomSprite = GetRandomSprite(uid),
             });
         }
 
@@ -498,11 +552,16 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         _found.Clear();
         _lookup.GetEntitiesIntersecting(mapId, TransformBounds(area, frameToWorld), _found, LookupFlags.Static);
 
-        var checkedTiles = new HashSet<Vector2i>();
+        var checkedTiles = _checkedTiles;
+        checkedTiles.Clear();
         foreach (var uid in _found)
         {
             if (snapshot.Occluders.Count >= MaxOccluders)
+            {
+                if (snapshot.Occluders.Count == MaxOccluders)
+                    Log.Warning($"Snapshot capture truncated at {MaxOccluders} occluders.");
                 break;
+            }
 
             if (!_occluderQuery.TryComp(uid, out var occluder) || !occluder.Enabled)
                 continue;
@@ -531,27 +590,6 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         return ((turns % 4) + 4) % 4;
     }
 
-    private static Box2 TransformBounds(Box2 box, Matrix3x2 transform)
-    {
-        var point = Vector2.Transform(box.BottomLeft, transform);
-        var min = point;
-        var max = point;
-
-        point = Vector2.Transform(box.BottomRight, transform);
-        min = Vector2.Min(min, point);
-        max = Vector2.Max(max, point);
-
-        point = Vector2.Transform(box.TopLeft, transform);
-        min = Vector2.Min(min, point);
-        max = Vector2.Max(max, point);
-
-        point = Vector2.Transform(box.TopRight, transform);
-        min = Vector2.Min(min, point);
-        max = Vector2.Max(max, point);
-
-        return new Box2(min, max);
-    }
-
     private bool ShouldInclude(EntityUid uid, int visMask, EntityUid? grid)
     {
         if (uid == grid || _mapQuery.HasComp(uid) || _gridQuery.HasComp(uid))
@@ -564,7 +602,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     }
 
     /// <summary>
-    /// PVS layer rules to not accidentily capture ghosts and such
+    /// PVS layer rules to not accidentally capture ghosts and such.
     /// </summary>
     private bool IsVisibleTo(EntityUid uid, int visMask)
     {
@@ -586,7 +624,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     }
 
     /// <summary>
-    /// Records a character´s apperance
+    /// Records a character's appearance, clothing and held items.
     /// </summary>
     private SnapshotHumanoid? GetHumanoid(EntityUid uid, int visMask)
     {
@@ -612,6 +650,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             Height = appearance.Height,
             UndergarmentTop = appearance.UndergarmentTop,
             UndergarmentBottom = appearance.UndergarmentBottom,
+            Standing = !_standingQuery.TryGetComponent(uid, out var standing) || standing.Standing,
         };
 
         if (_inventory.TryGetSlots(uid, out var slots))
@@ -619,7 +658,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             foreach (var slot in slots)
             {
                 // Pockets and the like don't show on the sprite, so their contents stay private even if someone
-                // tried to read image data elicitly.
+                // tried to read image data illicitly.
                 if (slot.StripHidden || !_inventory.TryGetSlotEntity(uid, slot.Name, out var worn))
                     continue;
 
@@ -650,11 +689,22 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         if (!IsVisibleTo(uid, visMask) || MetaData(uid).EntityPrototype is not { } proto)
             return null;
 
-        return new SnapshotItem(proto.ID, GetAppearance(uid));
+        return new SnapshotItem(proto.ID, GetAppearance(uid), GetRandomSprite(uid));
     }
 
     /// <summary>
-    /// Copies the appearance data the server already networks
+    /// Copies the RandomSprite selection so greyscale tints (tools etc.) rebuild with the same color.
+    /// </summary>
+    private Dictionary<string, (string State, Color? Color)>? GetRandomSprite(EntityUid uid)
+    {
+        if (!TryComp<RandomSpriteComponent>(uid, out var component) || component.Selected.Count == 0)
+            return null;
+
+        return new Dictionary<string, (string State, Color? Color)>(component.Selected);
+    }
+
+    /// <summary>
+    /// Copies the appearance data the server already networks.
     /// </summary>
     private Dictionary<Enum, object>? GetAppearance(EntityUid uid)
     {
@@ -693,6 +743,10 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             light.CastShadows);
     }
 
+    /// <summary>
+    /// Captures off-frame lights that still illuminate the frame as support-only entities.
+    /// Reuses <see cref="_nearbyLights"/> instead of allocating a fresh lookup list per shot.
+    /// </summary>
     private void CaptureNearbyLights(
         SnapshotData snapshot,
         MapId mapId,
@@ -722,7 +776,11 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         {
             var uid = light.Owner;
             if (capturedCount >= MaxNearbyLights)
+            {
+                if (capturedCount == MaxNearbyLights)
+                    Log.Warning($"Snapshot capture truncated at {MaxNearbyLights} nearby lights.");
                 break;
+            }
 
             if (_captured.ContainsKey(uid) || _supportCaptured.Contains(uid))
                 continue;
@@ -775,16 +833,16 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                     light.Comp1.CastShadows),
             });
 
-            if (light.Comp2.Anchored)
-            {
-                _supportCaptured.Add(uid);
-                supportTiles.Add(TileOf(Vector2.Transform(entityWorldPosition, worldToFrame)) - centerTile);
-            }
+            _supportCaptured.Add(uid);
+            supportTiles.Add(TileOf(Vector2.Transform(entityWorldPosition, worldToFrame)) - centerTile);
 
             capturedCount++;
         }
     }
 
+    /// <summary>
+    /// Whether any part of a tile is visible from <paramref name="viewer"/>, sampling the tile at 9 points.
+    /// </summary>
     private bool CanSeeAnyOfTile(MapCoordinates viewer, Vector2i index, Matrix3x2 frameToWorld, Matrix3x2 worldToFrame, MapId mapId)
     {
         foreach (var sample in _tileSamples)
@@ -805,6 +863,9 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         return false;
     }
 
+    /// <summary>
+    /// Frame tile for an entity, cached because every occluder ray would otherwise recompute it.
+    /// </summary>
     private Vector2i TileOf(EntityUid uid, Matrix3x2 worldToFrame)
     {
         // Called for every occluder hit of every tile ray
