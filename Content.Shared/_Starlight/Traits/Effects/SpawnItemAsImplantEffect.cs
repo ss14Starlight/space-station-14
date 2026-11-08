@@ -14,7 +14,7 @@ public sealed partial class SpawnItemAsImplantEffect : BaseTraitEffect
     public EntProtoId Item = string.Empty;
 
     /// <summary>
-    /// The entity prototype to spawn.
+    /// The slot to spawn it into.
     /// </summary>
     [DataField(required: true)]
     public string Slot = string.Empty;
