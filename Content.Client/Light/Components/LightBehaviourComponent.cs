@@ -182,32 +182,16 @@ namespace Content.Client.Light.Components
         [DataField("reverseWhenFinished")]
         public bool ReverseWhenFinished { get; set; }
 
-        // Starlight: Apply the value for the current playback position the instant the animation starts
-        // (Play -> InitPlayback -> OnStart runs synchronously). Otherwise the property keeps its pre-animation
-        // value until AdvancePlayback runs on the next frame, so a light enabled this frame renders one frame
-        // at its full/prototype value before the fade -> visible flicker (and on a resume it would flash the
-        // start value). StartOffset is 0 for a fresh play, so this applies StartValue as before.
-        public override void OnStart()
-        {
-            ApplyAtTime(StartOffset);
-        }
+        // Starlight-edit: Moved AdvancePlayback method to our own partial.
 
-        public override (int KeyFrameIndex, float FramePlayingTime) AdvancePlayback(
-            object context, int prevKeyFrameIndex, float prevPlayingTime, float frameTime)
+        private void ApplyTime(float playingTime) // Starlight-edit: Repurposed method, now called from more places.
         {
-            var playingTime = prevPlayingTime + frameTime;
-            ApplyAtTime(playingTime);
-            return (-1, playingTime);
-        }
-
-        private void ApplyAtTime(float playingTime)
-        {
-            var interpolateValue = Math.Clamp(playingTime / MaxTime, 0f, 1f); // Starlight: Clamp to prevent overshoot
+            var interpolateValue = Math.Clamp(playingTime / MaxTime, 0f, 1f); // Starlight-edit: Clamp to prevent overshoot
 
             if (Property == nameof(PointLightComponent.AnimatedEnable)) // special case for boolean
             {
                 ApplyProperty(interpolateValue < EndValue);
-                return;
+                return; // Starlight-edit: Void return
             }
 
             // From 0 to MaxTime/2, we go from StartValue to EndValue. From MaxTime/2 to MaxTime, we reverse this interpolation.
@@ -226,6 +210,7 @@ namespace Content.Client.Light.Components
             {
                 ApplyInterpolation(StartValue, EndValue, interpolateValue);
             }
+            // Starlight-edit: Void return
         }
 
         private void ApplyInterpolation(float start, float end, float interpolateValue)

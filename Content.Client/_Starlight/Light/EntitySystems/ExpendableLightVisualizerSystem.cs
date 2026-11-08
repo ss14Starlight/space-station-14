@@ -14,9 +14,7 @@ public sealed partial class ExpendableLightVisualizerSystem : VisualizerSystem<E
 
     public override void FrameUpdate(float frameTime)
     {
-        // Fade an unshaded glow layer with the light. The Glow layer ignores world lighting, so toggling its
-        // visibility alone reads as a hard on/off; instead drive its alpha from the point light's animated
-        // energy so the glow eases in and out in lockstep with the LightBehaviour fade.
+        // Fade the glow layer with the light.
         var query = EntityQueryEnumerator<ExpendableLightComponent, PointLightComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out var comp, out var light, out var sprite))
         {
@@ -33,8 +31,7 @@ public sealed partial class ExpendableLightVisualizerSystem : VisualizerSystem<E
                 ? Math.Clamp(light.Energy / comp.GlowReferenceEnergy, 0f, 1f)
                 : 1f;
 
-            // Preserve whatever RGB the layer already has (GlowColorLit, or e.g. the breadcrumb's per-crumb
-            // tint) and only drive the alpha.
+            // Leave color untouched, only change the Alpha.
             SpriteSystem.LayerSetColor(layer, layer.Color.WithAlpha(alpha));
         }
     }

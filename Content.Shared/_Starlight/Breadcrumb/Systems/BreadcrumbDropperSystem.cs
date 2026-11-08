@@ -13,10 +13,10 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Breadcrumb.Systems;
 
-public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
+public sealed partial class BreadcrumbDropperSystem : EntitySystem
 {
-    [Dependency] protected SharedChargesSystem ChargesSystem = null!;
-    [Dependency] protected SharedPopupSystem PopupSystem = null!;
+    [Dependency] private SharedChargesSystem _charges = null!;
+    [Dependency] private SharedPopupSystem _popup = null!;
     [Dependency] private IGameTiming _timing = null!;
     [Dependency] private EntityLookupSystem _lookup = null!;
     [Dependency] private SharedAppearanceSystem _appearance = null!;
@@ -28,7 +28,7 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
     {
         base.Initialize();
 
-        // BUI messages aren't ByRefEvents, so subscribe this one explicitly rather than via [SubscribeLocalEvent].
+        // BUI messages aren't ByRefEvents so we can't use [SubscribeLocalEvent].
         SubscribeLocalEvent<BreadcrumbDropperComponent, BreadcrumbDropperColorMessage>(OnSelectColor);
     }
 
@@ -42,7 +42,7 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
         _appearance.SetData(dropper, BreadcrumbDropperVisuals.Enabled, dropper.Comp.Enabled);
         _appearance.SetData(dropper, BreadcrumbDropperVisuals.Color, dropper.Comp.Color);
 
-        var charges = ChargesSystem.GetCurrentCharges(dropper.Owner);
+        var charges = _charges.GetCurrentCharges(dropper.Owner);
         var level = charges switch
         {
             <= 0 => BreadcrumbDropperFillLevel.Empty,
@@ -55,9 +55,7 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
 
     [SubscribeLocalEvent]
     public void OnDropperMapInit(Entity<BreadcrumbDropperComponent> dropper, ref MapInitEvent args)
-    {
-        UpdateAppearance(dropper);
-    }
+        => UpdateAppearance(dropper);
 
     /// <summary>
     /// Using in hand = pressing Z. Toggle on/off.
@@ -68,8 +66,8 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
         dropper.Comp.Enabled = !dropper.Comp.Enabled;
         Dirty(dropper);
         UpdateAppearance(dropper);
-        PopupSystem.PopupPredicted(
-            Loc.GetString($"breadcrumb-dropper-toggle-{(dropper.Comp.Enabled ? "on" : "off")}"),
+        _popup.PopupPredicted(
+            Loc.GetString(dropper.Comp.Enabled ? dropper.Comp.LocToggleOn : dropper.Comp.LocToggleOff),
             dropper, args.User);
     }
 
@@ -117,7 +115,7 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
         if (!TryComp<BreadcrumbChargesComponent>(args.Used, out var charges))
             return;
 
-        ChargesSystem.AddCharges((dropper, null), charges.Charges);
+        _charges.AddCharges((dropper, null), charges.Charges);
         UpdateAppearance(dropper);
         QueueDel(args.Used);
         args.Handled = true;
@@ -142,11 +140,11 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
             if (HasCrumbNearby(dropper, xform))
                 continue;
 
-            if (!ChargesSystem.TryUseCharge(uid))
+            if (!_charges.TryUseCharge(uid))
             {
                 dropperComp.Enabled = false;
                 UpdateAppearance(dropper);
-                PopupSystem.PopupPredicted(Loc.GetString("breadcrumb-dropper-emptied"), dropper, null, PopupType.Medium);
+                _popup.PopupPredicted(Loc.GetString(dropper.Comp.LocEmptied), dropper, null, PopupType.Medium);
                 continue;
             }
 
@@ -176,9 +174,6 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
         crumb.Color = dropper.Comp.Color;
 
         _pointLight.SetColor(ent, crumb.Color);
-        // _pointLight.SetEnabled(ent, true);
-        // _pointLight.SetEnergy(ent, 0f);
-
         _appearance.SetData(ent, BreadcrumbVisualData.Color, crumb.Color);
         Dirty(ent, crumb);
 
@@ -191,12 +186,6 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
     {
         if (ev.Ignite) return;
         RemComp<BreadcrumbComponent>(crumb);
-    }
-
-    [SubscribeLocalEvent]
-    public void OnBreadcrumbMapInit(Entity<BreadcrumbComponent> crumb, ref MapInitEvent ev)
-    {
-
     }
 
 }
