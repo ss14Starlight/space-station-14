@@ -45,3 +45,34 @@
       key: walls
       mode: NoSprite
     - type: SmoothEdge
+
+
+- type: entity
+  name: dark haze
+  id: ShadowKudzuWiz
+  parent: [ BaseKudzu, BaseShadow ]
+  components:
+    - type: Physics
+      canCollide: false
+    - type: Occluder
+    - type: Sprite
+      drawdepth: Effects
+      sprite: Effects/spookysmoke.rsi
+      layers:
+      - state: spookysmoke
+        color: "#793a80dd"
+        map: [base]
+    - type: Kudzu
+      growthTickChance: 0.05
+      spreadChance: 0.6
+    - type: Tag
+      tags:
+        - HideContextMenu
+        - SpookyFog
+    - type: OptionsVisualizer
+      visuals:
+        base:
+        - options: Default
+          data: { state: spookysmoke }
+        - options: ReducedMotion
+          data: { state: spookysmoke_static }
