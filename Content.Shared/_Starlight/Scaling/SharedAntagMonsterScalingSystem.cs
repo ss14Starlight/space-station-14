@@ -9,6 +9,11 @@ namespace Content.Shared._Starlight.Scaling;
 public abstract partial class SharedScalingSystem : EntitySystem
 {
     [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    /// <summary>Applies scaled health thresholds and, when present, movement thresholds.</summary>
+    /// <returns>
+    /// True if scaling was applied; false if original thresholds are missing or scaled keys
+    /// collide. A false return leaves the health and movement thresholds unchanged.
+    /// </returns>
     public bool ApplyHealthScaling(
         EntityUid mob,
         EntityUid station,
