@@ -150,5 +150,3 @@
           endValue: 0.7
     - type: Tag
     - type: SpaceGarbage
-    - type: TimedDespawn
-      lifetime: 1500 # 25mins, 5 mins after expiring
