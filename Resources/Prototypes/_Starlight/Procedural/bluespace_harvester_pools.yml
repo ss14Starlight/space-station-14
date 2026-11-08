@@ -146,6 +146,16 @@
     OreProcessorIndustrialMachineCircuitboard: 0.25
     SMESHyperAdvancedMachineCircuitboard: 0.15
 
+- type: weightedRandomEntity
+  id: BluespaceHarvesterSpesosTable
+  weights:
+    SpaceCash500: 1
+    SpaceCash1000: 0.8
+    SpaceCash2500: 0.6
+    SpaceCash5000: 0.4
+    SpaceCash10000: 0.2
+    SpaceCash20000: 0.1
+
 - type: bluespaceHarvesterPool
   id: BluespaceHarvesterExoticHat
   name: bluespace-harvester-pool-exotic-hat
@@ -225,3 +235,11 @@
   enabled: true
   order: 10
   lootTable: BluespaceHarvesterCircuitBoardTable
+
+- type: bluespaceHarvesterPool
+  id: BluespaceHarvesterSpesos
+  name: bluespace-harvester-pool-spesos
+  cost: 8000
+  enabled: true
+  order: 11
+  lootTable: BluespaceHarvesterSpesosTable
