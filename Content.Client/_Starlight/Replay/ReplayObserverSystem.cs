@@ -67,6 +67,8 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         SubscribeLocalEvent<ReplaySpectatorComponent, ReplayTogglePlayerOverlayActionEvent>(OnTogglePlayerOverlay);
         SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleStatusIconsActionEvent>(OnToggleStatusIcons);
         SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleWeatherActionEvent>(OnToggleWeather);
+        SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleFactionIconsActionEvent>(OnToggleFactionIcons);
+        SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleOwnSpriteActionEvent>(OnToggleOwnSprite);
 
         _replayPlayback.ReplayPlaybackStarted += OnPlaybackStarted;
         _replayPlayback.ReplayPlaybackStopped += OnPlaybackStopped;
@@ -116,6 +118,12 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _statusIconsEnabled = true;
         _statusIconsShown = false;
         _statusIconsAction = null;
+        _factionIconsEnabled = false;
+        _factionIconsShown = false;
+        _factionIconsAction = null;
+        _ownSpriteHidden = false;
+        _ownSpriteAction = null;
+        DetachRoundTimeControls();
         _viewing.Clear();
         _pendingViews.Clear();
         _refollowCore = null;
@@ -152,6 +160,9 @@ public sealed partial class ReplayObserverSystem : EntitySystem
 
         UpdatePlayerOverlay(frameTime, IsHudHidden());
         UpdateStatusIcons();
+        UpdateFactionIcons();
+        UpdateOwnSprite();
+        UpdateRoundTimeWidget();
         EnsureStatusIconOverlay();
         UpdateActionsBarOffset();
         UpdateRadar(frameTime);
@@ -203,6 +214,8 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _statusIconsShown = false; // A fresh observer has none of the HUD components yet.
 
         AddWeatherAction(uid);
+        AddFactionIconsAction(uid);
+        AddOwnSpriteAction(uid);
 
         ApplyViewSettings(uid);
         _ghost.ToggleGhostVisibility(_ghostsVisible);

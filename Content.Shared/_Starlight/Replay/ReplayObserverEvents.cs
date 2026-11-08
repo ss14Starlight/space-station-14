@@ -16,3 +16,13 @@ public sealed partial class ReplayToggleStatusIconsActionEvent : InstantActionEv
 /// Client-only; in Shared because the server also loads action prototypes.
 /// </summary>
 public sealed partial class ReplayToggleWeatherActionEvent : InstantActionEvent { }
+
+/// <summary>
+/// Client-only; in Shared because the server also loads action prototypes.
+/// </summary>
+public sealed partial class ReplayToggleFactionIconsActionEvent : InstantActionEvent { }
+
+/// <summary>
+/// Client-only; in Shared because the server also loads action prototypes.
+/// </summary>
+public sealed partial class ReplayToggleOwnSpriteActionEvent : InstantActionEvent { }
