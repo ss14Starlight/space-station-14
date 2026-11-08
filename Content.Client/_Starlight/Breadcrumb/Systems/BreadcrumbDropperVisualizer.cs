@@ -4,9 +4,7 @@ using Robust.Client.GameObjects;
 namespace Content.Client._Starlight.Breadcrumb.Systems;
 
 /// <summary>
-/// Drives the glowstone dropper's fill layer: picks the fill-1/2/3 state for the current charge bucket and tints it
-/// with the configured dropping color. The open/closed base layer is handled by a GenericVisualizer in YAML.
-/// Not to be confused with <see cref="BreadcrumbVisualizer"/>, which colors the dropped crumbs themselves.
+/// Visualizes the open/closed and fill states for breadcrumb droppers.
 /// </summary>
 public sealed class BreadcrumbDropperVisualizer : VisualizerSystem<BreadcrumbDropperComponent>
 {
