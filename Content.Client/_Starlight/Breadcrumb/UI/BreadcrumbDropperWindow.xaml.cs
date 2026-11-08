@@ -21,10 +21,6 @@ public sealed partial class BreadcrumbDropperWindow : FancyWindow
         SubmitButton.OnPressed += _ => OnSubmit?.Invoke();
     }
 
-    /// <summary>
-    /// Fill the dropdown from the dropper's YAML-defined color options and preselect the one matching its
-    /// current color. Each key maps to the label loc id breadcrumb-dropper-color-{key}.
-    /// </summary>
     public void SetOptions(IReadOnlyDictionary<string, Color> options, Color current)
     {
         ColorSelector.Clear();
