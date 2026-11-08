@@ -2,11 +2,13 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
+using Content.Shared.Movement.Systems;
 
 namespace Content.Shared._Starlight.Scaling;
 
 public abstract partial class SharedScalingSystem : EntitySystem
 {
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
     public bool ApplyHealthScaling(
         EntityUid mob,
         EntityUid station,
@@ -63,10 +65,13 @@ public abstract partial class SharedScalingSystem : EntitySystem
         foreach (var threshold in scaledThresholds)
             thresholdsComp.Thresholds.Add(threshold.Key, threshold.Value);
 
+        Dirty(mob, thresholdsComp);
+
         if (hasSlowOnDamage)
         {
             slowOnDamage!.SpeedModifierThresholds = scaledSpeedThresholds!;
             Dirty(mob, slowOnDamage);
+            _movementSpeed.RefreshMovementSpeedModifiers(mob);
         }
 
         return true;

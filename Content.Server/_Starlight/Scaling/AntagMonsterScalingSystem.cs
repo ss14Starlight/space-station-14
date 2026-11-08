@@ -11,8 +11,6 @@ using Robust.Shared.Utility;
 using Content.Shared._Starlight.Scaling;
 using System.Linq;
 using Robust.Shared.Timing;
-using Content.Shared.FixedPoint;
-using Content.Shared.Mobs;
 
 namespace Content.Server._Starlight.Scaling;
 
