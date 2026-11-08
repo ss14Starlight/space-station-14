@@ -27,6 +27,7 @@
   - type: OwOAccent
   - type: Stamina
     baseCritThreshold: 110
+  - type: FelionoidPounce
   - type: Tiredness
   - type: RegenerativeSleep
     updateInterval: 1s

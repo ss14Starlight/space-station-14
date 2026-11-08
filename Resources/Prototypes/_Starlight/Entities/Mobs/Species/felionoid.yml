@@ -33,6 +33,7 @@
     bleedHealPerUpdate: 0.25
   - type: LightSleep
   - type: TightGrip
+  - type: FelionoidPounce
   - type: Icon
     sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
     state: felionoid

@@ -1,0 +1,24 @@
+- type: entity
+  parent: BaseAction
+  id: FelionoidPounce
+  name: "[color=orange]Pounce[/color]"
+  description: Charge for 2 seconds before pouncing on a mob; movement interrupts the charge. If the target can drop what they are holding, they will pull you instead. Otherwise, you both fall down.
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_jump.rsi
+      state: jump
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 60
+  - type: TargetAction
+    range: 3
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MobState
+    event: !type:FelionoidPounceActionEvent
