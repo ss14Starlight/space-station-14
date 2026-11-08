@@ -146,10 +146,20 @@ public abstract partial class SharedImplanterSystem : EntitySystem
         var implantedComp = EnsureComp<ImplantedComponent>(target);
         var implantContainer = implantedComp.ImplantContainer;
 
-        if (component.ImplanterSlot.ContainerSlot != null)
-            _container.Remove(implant.Value, component.ImplanterSlot.ContainerSlot);
+        // Starlight start
+        if (component.ImplanterSlot.ContainerSlot == null ||
+            !_container.Remove(implant.Value, component.ImplanterSlot.ContainerSlot))
+        {
+            return false;
+        }
+
         implantContainer.OccludesLight = false;
-        _container.Insert(implant.Value, implantContainer);
+        if (!_container.Insert(implant.Value, implantContainer))
+        {
+            _container.Insert(implant.Value, component.ImplanterSlot.ContainerSlot);
+            return false;
+        }
+        // Starlight end
 
         if (component.CurrentMode == ImplanterToggleMode.Inject && !component.ImplantOnly)
             DrawMode(implanter, component);
