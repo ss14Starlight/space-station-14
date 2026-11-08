@@ -52,6 +52,12 @@ public abstract partial class SharedPoweredLightSystem
         return true;
     }
 
+    /// <summary>
+    /// Power the fixture draws on top of its bulb to charge its backup cell.
+    /// </summary>
+    public float GetBackupLoad(EntityUid uid)
+        => TryComp<BackupLightComponent>(uid, out var backup) && backup.Charging ? backup.RechargeRate : 0f;
+
     private void ClearBackupLight(EntityUid uid, AppearanceComponent? appearance)
     {
         if (HasComp<BackupLightComponent>(uid))

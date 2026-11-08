@@ -285,7 +285,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
         if (bulbUid == null || !TryComp<LightBulbComponent>(bulbUid.Value, out var lightBulb))
         {
             SetLight(uid, false, light: light);
-            powerReceiver.Load = 0;
+            powerReceiver.Load = GetBackupLoad(uid); // Starlight: was 0, the backup cell may still be charging
             _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.Empty, appearance);
             UpdateFlicker(uid, null, false, false); // Starlight
             return;
@@ -347,7 +347,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
 
         // Starlight-start
 
-        powerReceiver.Load = (light.On && lightBulb.State == LightBulbState.Normal) ? powerUse : 0;
+        powerReceiver.Load = ((light.On && lightBulb.State == LightBulbState.Normal) ? powerUse : 0) + GetBackupLoad(uid);
 
         UpdateFlicker(uid,
             bulbUid,

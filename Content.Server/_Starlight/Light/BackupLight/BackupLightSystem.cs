@@ -1,3 +1,4 @@
+using Content.Server.Power.Components;
 using Content.Shared._Starlight.Light.BackupLight;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
@@ -46,11 +47,16 @@ public sealed partial class BackupLightSystem : EntitySystem
         }
     }
 
-    [SubscribeLocalEvent]
+    [SubscribeLocalEvent(after: new[] { typeof(SharedBatterySystem) })]
     private void OnMapInit(Entity<BackupLightComponent> ent, ref MapInitEvent args)
     {
-        if (TryComp<BatteryComponent>(ent, out var battery))
-            UpdateRate((ent, ent.Comp, battery));
+        if (!TryComp<BatteryComponent>(ent, out var battery))
+            return;
+
+        UpdateRate((ent, ent.Comp, battery));
+
+        SetCharged(ent, _battery.GetCharge((ent, battery)) > 0f);
+        _poweredLight.UpdateLight(ent);
     }
 
     [SubscribeLocalEvent]
@@ -108,16 +114,24 @@ public sealed partial class BackupLightSystem : EntitySystem
         var charge = _battery.GetCharge((uid, battery));
 
         // A switched off fixture doesn't run its cell down.
-        var draining = !powered && light.On && charge > 0f;
+        var draining = !powered && light.On && charge > 0f && HasWorkingBulb(uid, light);
         var charging = powered && charge < battery.MaxCharge;
 
         if (draining == backup.Draining && charging == backup.Charging)
             return;
 
+        if (charging != backup.Charging && TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
+            receiver.Load = MathF.Max(0f, receiver.Load + (charging ? backup.RechargeRate : -backup.RechargeRate));
+
         backup.Draining = draining;
         backup.Charging = charging;
         _battery.RefreshChargeRate((uid, battery));
     }
+
+    private bool HasWorkingBulb(EntityUid uid, PoweredLightComponent light)
+        => _poweredLight.GetBulb(uid, light) is { } bulb
+            && TryComp<LightBulbComponent>(bulb, out var bulbComp)
+            && bulbComp.State == LightBulbState.Normal;
 
     private void SetCharged(Entity<BackupLightComponent> ent, bool charged)
     {
