@@ -41,13 +41,6 @@ namespace Content.Client.Light.Components
 
         [ViewVariables] protected float MaxTime { get; set; }
 
-        /// <summary>
-        /// Seconds to start playback at, instead of 0. Lets a behaviour resume partway through (e.g. when the
-        /// entity re-enters PVS) rather than replaying from the beginning. Set before the animation is played.
-        /// Starlight
-        /// </summary>
-        public float StartOffset { get; set; }
-
         private EntityUid _parent = default!;
 
         public void Initialize(EntityUid parent, IRobustRandom random, IEntityManager entMan)
@@ -87,9 +80,7 @@ namespace Content.Client.Light.Components
         {
             OnStart();
 
-            // Seed the track's initial playing time with the resume offset (0 by default) so AdvancePlayback
-            // continues from there instead of from the start. Starlight
-            return (-1, StartOffset);
+            return (-1, StartOffset); // Starlight-edit: Return start offset
         }
 
         protected void ApplyProperty(object value)
