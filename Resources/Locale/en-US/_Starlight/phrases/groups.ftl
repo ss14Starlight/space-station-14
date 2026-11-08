@@ -21,7 +21,7 @@ InterstellarTradeGuild = Interstellar Trade Guild
 Manners = Manners
 Numbers = Numbers
 Nouns = Nouns
-Quantity or Quality = Quantity or Quality
+quantity-or-quality = Quantity or Quality
 Question = Question
 SpeciesLanguage = Languages
 

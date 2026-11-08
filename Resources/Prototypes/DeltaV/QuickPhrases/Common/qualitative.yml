@@ -1,7 +1,7 @@
 - type: quickPhrase
   id: BaseQualitativePhrase
   parent: BaseCommonPhrase
-  group: Quantity or Quality
+  group: quantity-or-quality #Starlight: Switch to kebab case for use as a localization ID
   abstract: true
 
 - type: quickPhrase
