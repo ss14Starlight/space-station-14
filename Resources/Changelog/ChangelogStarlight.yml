@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) Swapped 2 regular SMESs for Hyper-Advanced SMESs.
-    type: Tweak
-  id: 409848
-  time: '2026-10-28T07:32:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6897
-- author: Makeshift
-  changes:
   - message: (Downpour) Renamed a safe in maints, to avoid confusion.
     type: Tweak
   id: 409849
@@ -2799,4 +2792,11 @@ Entries:
   id: 410247
   time: '2026-11-08T08:40:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7102
+- author: Conflee
+  changes:
+  - message: Upkeep for Box, Cog, Fland, Kiloton, and Space Mall. Updated Radio Host setups, added Gunnery Sergeant, minor other touch-ups.
+    type: Tweak
+  id: 410248
+  time: '2026-11-08T09:01:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7117
 Order: -1
