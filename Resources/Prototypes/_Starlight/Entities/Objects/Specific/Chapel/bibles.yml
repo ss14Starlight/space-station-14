@@ -208,11 +208,11 @@
     sprite: Objects/Specific/Chapel/tanakh.rsi
 
 - type: entity
-  id: BibleBookOfLife
+  parent: Bible
   name: The Book Of life
-  parent: Bible ##will need a rework of life's bible in the future
   description: "A holy book depicting the holy path towards eternal life and immortality"
-  components:
+  id: BibleBookOfLife
+  components: ##will need a rework of life's bible in the future
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Chapel/bookoflife.rsi
   - type: Item
