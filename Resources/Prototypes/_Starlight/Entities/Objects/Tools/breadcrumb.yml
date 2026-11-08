@@ -35,6 +35,7 @@
       locToggleOff: glowstone-bag-toggle-off
       locEmptied: glowstone-bag-emptied
       locRecharged: glowstone-bag-recharged
+      locRechargeFull: glowstone-bag-recharge-full
       colorOptions:
         white: "#ffffff"
         red: "#ff0000"

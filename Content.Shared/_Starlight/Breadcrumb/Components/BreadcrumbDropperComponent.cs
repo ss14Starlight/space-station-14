@@ -50,6 +50,7 @@ public sealed partial class BreadcrumbDropperComponent : Component
     [DataField(required: true)] public LocId LocToggleOff;
     [DataField(required: true)] public LocId LocEmptied;
     [DataField(required: true)] public LocId LocRecharged;
+    [DataField(required: true)] public LocId LocRechargeFull;
 }
 
 [Serializable, NetSerializable]

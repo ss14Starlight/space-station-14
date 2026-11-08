@@ -4,9 +4,11 @@ using Content.Shared._Starlight.Breadcrumb.UI;
 using Content.Shared._Starlight.Light.Components;
 using Content.Shared._Starlight.Light.EntitySystems;
 using Content.Shared.Charges.Systems;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IgnitionSource;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using System.Linq;
@@ -27,6 +29,8 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
     [Dependency] private SharedExpendableLightSystem _expendableLight = null!;
     [Dependency] private SharedUserInterfaceSystem _ui = null!;
     [Dependency] private IRobustRandom _random = null!;
+    [Dependency] private SharedHandsSystem _hands = null!;
+    [Dependency] private MobStateSystem _mobState = null!;
 
     public override void Initialize()
     {
@@ -69,9 +73,20 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
         if (args.Handled)
             return;
 
+        // Activating is only permitted while held.
+        if (!_hands.IsHolding(args.User, dropper.Owner))
+            return;
+
         Toggle(dropper, args.User);
         args.Handled = true;
     }
+
+    /// <summary>
+    /// Prevent the bag from staying enabled while not held by a person.
+    /// </summary>
+    [SubscribeLocalEvent]
+    public void OnDropped(Entity<BreadcrumbDropperComponent> dropper, ref DroppedEvent args)
+        => StopSilently(dropper);
 
     /// <summary>
     /// Alt-click opens the color picker UI so the player can choose what color their droppings glow.
@@ -117,6 +132,13 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
         if (!TryComp<BreadcrumbChargesComponent>(args.Used, out var charges))
             return;
 
+        // Prevent filling if it's already full.
+        if (_charges.GetCurrentCharges(dropper.Owner) >= _charges.GetMaxCharges(dropper.Owner))
+        {
+            _popup.PopupPredicted(Loc.GetString(dropper.Comp.LocRechargeFull), dropper, args.User);
+            return;
+        }
+
         _charges.AddCharges((dropper, null), charges.Charges);
         UpdateAppearance(dropper);
         _popup.PopupPredicted(Loc.GetString(dropper.Comp.LocRecharged), dropper, args.User);
@@ -139,6 +161,13 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
 
             Entity<BreadcrumbDropperComponent> dropper = (uid, dropperComp);
             Dirty(dropper);
+
+            // If whoever is holding us is dead, stop dropping. Prevents shenanigans like dragons leaving trails.
+            if (!_mobState.IsAlive(xform.ParentUid))
+            {
+                StopSilently(dropper);
+                continue;
+            }
 
             if (HasCrumbNearby(dropper, xform))
                 continue;
@@ -167,6 +196,15 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
             dropper, user);
     }
 
+    private void StopSilently(Entity<BreadcrumbDropperComponent> dropper)
+    {
+        if (!dropper.Comp.Enabled)
+            return;
+
+        dropper.Comp.Enabled = false;
+        Dirty(dropper);
+        UpdateAppearance(dropper);
+    }
 
     private void Drop(Entity<BreadcrumbDropperComponent> dropper, TransformComponent xform)
     {
