@@ -47,6 +47,8 @@
         - proto: LeftArmCyber
         - proto: LeftHandCyber
         - proto: LeftFootCyber
+        - proto: PKAUpgradeDamageCaus
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -120,6 +122,8 @@
         - proto: EyeImplantChemistry
         - proto: HandImplantInsulated
         - proto: Drill
+        - proto: PKAUpgradeDamageCaus
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -203,6 +207,10 @@
           cost: 15
         - proto: PaddyUpgradeKit
           cost: 15
+        - proto: Weaponpkashotgun
+          cost: 10
+        - proto: PKAUpgradeDamageCaus
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity

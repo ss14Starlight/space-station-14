@@ -67,14 +67,7 @@
           cost: 5
           prob: 0.5
         - proto: PKAUpgradeDamageExp
-          cost: 5
-          prob: 0.5
-        - proto: PKAUpgradeRangeExp
-          cost: 5
-          prob: 0.5
-        - proto: PKAUpgradeFireRateExp
-          cost: 5
-          prob: 0.5
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -152,14 +145,7 @@
         - proto: CloningConsoleComputerCircuitboard
           cost: 5
         - proto: PKAUpgradeDamageExp
-          cost: 5
-          prob: 0.75
-        - proto: PKAUpgradeRangeExp
-          cost: 5
-          prob: 0.75
-        - proto: PKAUpgradeFireRateExp
-          cost: 5
-          prob: 0.75
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -251,11 +237,9 @@
         - proto: CrateITGSurplus
           cost: 5
         - proto: PKAUpgradeDamageExp
-          cost: 5
-        - proto: PKAUpgradeRangeExp
-          cost: 5
-        - proto: PKAUpgradeFireRateExp
-          cost: 5
+          cost: 3
+        - proto: Weaponpkashotgun
+          cost: 10
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity

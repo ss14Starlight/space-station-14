@@ -25,6 +25,8 @@
         - proto: PowerCellAntiqueProto
           cost: 5
           prob: 0.5
+        - proto: PKAUpgradeDamageStruct
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -80,6 +82,8 @@
         - proto: PowerCellAntiqueProto
           cost: 5
           prob: 0.5
+        - proto: PKAUpgradeDamageStruct
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -157,6 +161,10 @@
         - proto: PowerCellAntiqueProto
           cost: 5
           prob: 0.5
+        - proto: Weaponpkashotgun
+          cost: 10
+        - proto: PKAUpgradeDamageStruct
+          cost: 3
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity

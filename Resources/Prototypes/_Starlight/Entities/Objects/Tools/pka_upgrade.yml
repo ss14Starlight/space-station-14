@@ -208,8 +208,8 @@
       color: "#e9ffb1"
   - type: GunUpgrade
     tags:
-      - GunUpgradeSpeed
-      - GunUpgradeSpeedExp
+      - GunUpgradeReloadSpeed
+      - GunUpgradeReloadSpeedExp
     examineText: gun-upgrade-examine-text-reload
   - type: GunUpgradeFireRate
     coefficient: 2
