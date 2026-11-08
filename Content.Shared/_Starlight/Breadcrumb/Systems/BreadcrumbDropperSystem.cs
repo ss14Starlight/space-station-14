@@ -182,7 +182,6 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
         }
     }
 
-
     private bool Toggle(Entity<BreadcrumbDropperComponent> dropper, EntityUid user)
     {
         if (!dropper.Comp.Enabled && !CanBeActive(dropper))

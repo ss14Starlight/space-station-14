@@ -17,5 +17,4 @@ public sealed partial class FadeBehaviour
         ApplyTime(playingTime);
         return (-1, playingTime);
     }
-
 }

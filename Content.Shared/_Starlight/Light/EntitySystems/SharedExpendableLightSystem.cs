@@ -148,7 +148,7 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
             return;
 
         // Remaining burn time of the active state (zero/negative once spent).
-        var remaining = (component.StateStartTime + component.StateDuration) - _timing.CurTime;
+        var remaining = component.StateStartTime + component.StateDuration - _timing.CurTime;
         if (remaining + component.RefuelMaterialTime >= component.RefuelMaximumDuration)
             return;
 
@@ -253,9 +253,7 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
     }
 
     private void OnExpLightShutdown(Entity<ExpendableLightComponent> ent, ref ComponentShutdown args)
-    {
-        ent.Comp.PlayingStream = _audio.Stop(ent.Comp.PlayingStream);
-    }
+        => ent.Comp.PlayingStream = _audio.Stop(ent.Comp.PlayingStream);
 
     private void OnExpLightInit(EntityUid uid, ExpendableLightComponent component, ComponentInit args)
     {
