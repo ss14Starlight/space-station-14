@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) Fixed two unpowered maintenance doors near security.
-    type: Fix
-  id: 409847
-  time: '2026-10-28T07:32:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6897
-- author: Makeshift
-  changes:
   - message: (Downpour) Swapped 2 regular SMESs for Hyper-Advanced SMESs.
     type: Tweak
   id: 409848
@@ -2799,4 +2792,11 @@ Entries:
   id: 410246
   time: '2026-11-08T08:09:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7111
+- author: Talirson
+  changes:
+  - message: Alt-click now takes out items inside portable chargers such as those ERT security get.
+    type: Tweak
+  id: 410247
+  time: '2026-11-08T08:40:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7102
 Order: -1
