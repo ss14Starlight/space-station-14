@@ -261,6 +261,11 @@ namespace Content.Server.Atmos.EntitySystems
 
                     var leakedGas = component.Air.RemoveRatio(0.25f);
                     _atmosphereSystem.Merge(environment, leakedGas);
+
+                    // Starlight start
+                    component.TotalMoles = component.Air.TotalMoles;
+                    DirtyField(owner, component, nameof(GasTankComponent.TotalMoles));
+                    // Starlight end
                 }
                 else
                 {
