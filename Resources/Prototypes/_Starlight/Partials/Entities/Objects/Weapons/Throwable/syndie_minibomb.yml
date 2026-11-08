@@ -1,5 +1,0 @@
-- type: !PartialOnly entity
-  id: SyndieMiniBomb
-  components:
-  - type: Explosive
-    explosionType: SyndieMiniBombExplosion
