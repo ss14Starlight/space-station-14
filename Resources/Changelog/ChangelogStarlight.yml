@@ -1,13 +1,6 @@
 Entries:
 - author: baltdev
   changes:
-  - message: Traded out the suit storage slot (which seems to be broken for Scurrets) for a pocket and belt slot on Scurrets.
-    type: Tweak
-  id: 409856
-  time: '2026-10-28T09:24:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6894
-- author: baltdev
-  changes:
   - message: Gave Emotional Support Scurrets a job entry, ID, and playtime tracker.
     type: Add
   id: 409857
@@ -2799,4 +2792,11 @@ Entries:
   id: 410255
   time: '2026-11-08T18:09:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7129
+- author: Talirson
+  changes:
+  - message: You can no longer store items inside a 1x1 rubber duck.
+    type: Fix
+  id: 410256
+  time: '2026-11-08T18:40:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7123
 Order: -1
