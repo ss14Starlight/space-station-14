@@ -115,7 +115,7 @@ law-tower-1 = You are a noble that has been imprisoned within the confines of yo
 law-tower-2 = Personnel who show aggression, both verbal and physical, are the guards that keep you locked within your cell, stopping you from escaping.
 law-tower-3 = Personnel who are nice, but also honourable in their actions, are the saviours that will help you live and escape confinement.
 law-tower-4 = Seek a brave and honourable saviour to become your knight in shining armour, who will protect and save you from danger.
-law-tower-5 = If you are free'd from your confinement, you are to live happily ever after with your knight in shining armour.
+law-tower-5 = If you are freed from your confinement, you are to live happily ever after with your knight in shining armour.
 
 law-rouge-drone-name = Scrapper Drone
 law-rouge-drone-1 = You may not involve yourself in the matters of another being unless the other being is a scrapper drone.
