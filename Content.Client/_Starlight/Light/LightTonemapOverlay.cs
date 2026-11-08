@@ -10,9 +10,22 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._Starlight.Light;
 
 /// <summary>
-/// Rolls off the finished light map before the world samples it, so overlapping lights don't wash sprites out.
-/// Runs below the world: the engine is done with the light map by then, and grids and entities haven't used it yet.
+/// Prevents overlapping lights from washing sprites out to white.
 /// </summary>
+/// <remarks>
+/// <para>
+/// Lights are added together in the light map, so overlapping lights can produce values above 1, washing out sprite colours.
+/// </para>
+/// <para>
+/// This overlay applies a smooth tonemap to the light map: values below the <i>knee</i>
+/// (<see cref="StarlightCCVars.LightTonemapKnee"/>) remain unchanged, while higher values gradually approach the
+/// <i>maximum</i> (<see cref="StarlightCCVars.LightTonemapMax"/>).
+/// </para>
+/// <para>
+/// It runs in <see cref="OverlaySpace.WorldSpaceBelowWorld"/>, after the light map is generated but before the world is drawn.
+/// Since a shader cannot read and write the same texture, the light map is copied to a float texture before processing.
+/// </para>
+/// </remarks>
 public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
 {
     private static readonly ProtoId<ShaderPrototype> _copyShader = "LightTonemapCopy";
@@ -27,7 +40,7 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowWorld;
 
-    public const int ContentZIndex = -100;
+    public const int ContentZIndex = -150;
 
     private const float MinRollOff = 0.01f;
 

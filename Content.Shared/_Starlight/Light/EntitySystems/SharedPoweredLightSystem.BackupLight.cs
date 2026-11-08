@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Light.EmergencyLighting;
+using Content.Shared._Starlight.Light.BackupLight;
 using Content.Shared._Starlight.Light.NightLighting;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Light.Components;
@@ -9,23 +9,27 @@ namespace Content.Shared.Light.EntitySystems;
 
 public abstract partial class SharedPoweredLightSystem
 {
-    private bool TrySetEmergencyLight(EntityUid uid,
+    /// <summary>
+    /// Lights a fixture that lost power from its backup cell, see <see cref="BackupLightComponent"/>.
+    /// </summary>
+    /// <returns>Whether the fixture is now running from its cell.</returns>
+    private bool TrySetBackupLight(EntityUid uid,
         PoweredLightComponent light,
         Entity<LightBulbComponent> bulb,
         SharedApcPowerReceiverComponent powerReceiver,
         AppearanceComponent? appearance)
     {
-        if (!TryComp<EmergencyLightingComponent>(uid, out var emergency))
+        if (!TryComp<BackupLightComponent>(uid, out var backup))
             return false;
 
-        if (powerReceiver.Powered || !light.On || !emergency.Charged)
+        if (powerReceiver.Powered || !light.On || !backup.Charged)
         {
-            _appearance.SetData(uid, EmergencyLightingVisuals.Active, false, appearance);
+            _appearance.SetData(uid, BackupLightVisuals.Active, false, appearance);
             return false;
         }
 
-        var radius = bulb.Comp.LightRadius * emergency.RadiusMultiplier;
-        var energy = bulb.Comp.LightEnergy * emergency.EnergyMultiplier;
+        var radius = bulb.Comp.LightRadius * backup.RadiusMultiplier;
+        var energy = bulb.Comp.LightEnergy * backup.EnergyMultiplier;
 
         if (TryComp<NightLightingDimmedComponent>(uid, out var night))
         {
@@ -35,7 +39,7 @@ public abstract partial class SharedPoweredLightSystem
 
         SetLight(uid,
             true,
-            emergency.Color,
+            backup.Color,
             light,
             radius,
             energy,
@@ -44,13 +48,13 @@ public abstract partial class SharedPoweredLightSystem
 
         _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.On, appearance);
         // Also gets the visualizer to pick up the new glow colour, the bulb state alone may not have changed.
-        _appearance.SetData(uid, EmergencyLightingVisuals.Active, true, appearance);
+        _appearance.SetData(uid, BackupLightVisuals.Active, true, appearance);
         return true;
     }
 
-    private void ClearEmergencyLight(EntityUid uid, AppearanceComponent? appearance)
+    private void ClearBackupLight(EntityUid uid, AppearanceComponent? appearance)
     {
-        if (HasComp<EmergencyLightingComponent>(uid))
-            _appearance.SetData(uid, EmergencyLightingVisuals.Active, false, appearance);
+        if (HasComp<BackupLightComponent>(uid))
+            _appearance.SetData(uid, BackupLightVisuals.Active, false, appearance);
     }
 }

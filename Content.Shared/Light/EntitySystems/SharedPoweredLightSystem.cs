@@ -320,7 +320,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
                 {
                     SetLight(uid, true, lightColor, light, lightRadius, lightEnergy, lightBulb.LightSoftness, HasComp<DarkLightComponent>(bulbUid.Value)); // Starlight
                     _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.On, appearance);
-                    ClearEmergencyLight(uid, appearance); // Starlight
+                    ClearBackupLight(uid, appearance); // Starlight
                     var time = GameTiming.CurTime;
                     if (time > light.LastThunk + ThunkDelay)
                     {
@@ -329,7 +329,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
                         _audio.PlayPredicted(light.TurnOnSound, uid, user: user, light.TurnOnSound.Params.AddVolume(-10f));
                     }
                 }
-                else if (!TrySetEmergencyLight(uid, light, (bulbUid.Value, lightBulb), powerReceiver, appearance)) // Starlight
+                else if (!TrySetBackupLight(uid, light, (bulbUid.Value, lightBulb), powerReceiver, appearance)) // Starlight
                 {
                     SetLight(uid, false, light: light);
                     _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.Off, appearance);

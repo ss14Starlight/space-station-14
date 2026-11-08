@@ -10,14 +10,13 @@
     curveFactor: 1
 
 - type: !PartialOnly entity
-  id: PoweredlightEmpty
+  id: !type:CreateVariants
+    values: [ PoweredlightEmpty, PoweredSmallLightEmpty ]
   components:
-  - type: EmergencyLighting
-
-- type: !PartialOnly entity
-  id: PoweredSmallLightEmpty
-  components:
-  - type: EmergencyLighting
+  - type: BackupLight
+  - type: Battery
+    maxCharge: 2400
+    startingCharge: 2400
 
 - type: !PartialOnly entity
   id: !type:CreateVariants

@@ -1,13 +1,14 @@
+using Content.Shared.Power.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Starlight.Light.EmergencyLighting;
+namespace Content.Shared._Starlight.Light.BackupLight;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class EmergencyLightingComponent : Component
+public sealed partial class BackupLightComponent : Component
 {
     /// <summary>
-    /// Colour of the emergency glow, replacing the bulb's own.
+    /// Colour of the backup glow, replacing the bulb's own.
     /// </summary>
     [DataField]
     public Color Color = Color.FromHex("#FF3B30");
@@ -25,19 +26,19 @@ public sealed partial class EmergencyLightingComponent : Component
     public float RadiusMultiplier = 0.6f;
 
     /// <summary>
-    /// How long a full cell keeps the light going.
+    /// Watts drawn from the cell while the fixture runs from it.
     /// </summary>
     [DataField]
-    public TimeSpan Duration = TimeSpan.FromMinutes(8);
+    public float DrainRate = 5f;
 
     /// <summary>
-    /// How long a flat cell takes to charge back up while the fixture is powered.
+    /// Watts put back into the cell while the fixture is powered.
     /// </summary>
     [DataField]
-    public TimeSpan RechargeTime = TimeSpan.FromMinutes(4);
+    public float RechargeRate = 10f;
 
     /// <summary>
-    /// Charge, from 0 to 1, below which the light starts flickering.
+    /// Charge, as a fraction of the cell, below which the light starts flickering.
     /// </summary>
     [DataField]
     public float FlickerCharge = 0.1f;
@@ -49,32 +50,26 @@ public sealed partial class EmergencyLightingComponent : Component
     public bool Charged = true;
 
     /// <summary>
-    /// Charge, from 0 to 1, as of <see cref="ChargeUpdated"/>. Server side only.
+    /// Whether the fixture is running from the cell. Server side only.
     /// </summary>
     [ViewVariables]
-    public float Charge = 1f;
+    public bool Draining;
 
     /// <summary>
-    /// When <see cref="Charge"/> was last brought up to date. Server side only.
+    /// Whether the fixture is powered and topping the cell up. Server side only.
     /// </summary>
     [ViewVariables]
-    public TimeSpan ChargeUpdated;
+    public bool Charging;
 
     /// <summary>
-    /// Whether the fixture is unpowered and running down the cell. Server side only.
-    /// </summary>
-    [ViewVariables]
-    public bool Discharging;
-
-    /// <summary>
-    /// Whether the cell started the light flickering. Server side only.
+    /// Whether the nearly flat cell started the light flickering. Server side only.
     /// </summary>
     [ViewVariables]
     public bool Flickering;
 }
 
 [Serializable, NetSerializable]
-public enum EmergencyLightingVisuals : byte
+public enum BackupLightVisuals : byte
 {
     Active,
 }
