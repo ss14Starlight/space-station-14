@@ -177,7 +177,7 @@ namespace Content.Client.Light.Components
 
         private void ApplyTime(float playingTime) // Starlight-edit: Repurposed method, now called from more places.
         {
-            var interpolateValue = Math.Clamp(playingTime / MaxTime, 0f, 1f); // Starlight-edit: Clamp to prevent overshoot
+            var interpolateValue = MaxTime <= 0f ? 1f : Math.Clamp(playingTime / MaxTime, 0f, 1f); // Starlight-edit: Clamp to prevent overshoot; avoid divide by zero
 
             if (Property == nameof(PointLightComponent.AnimatedEnable)) // special case for boolean
             {
