@@ -612,7 +612,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             return;
         }
 
-        var tags = _access.FindAccessTags(actor);
+        var tags = GetTerminalAccessTags(actor);
         if (!tags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)"Command")) // Your serious?
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-request-denied"), actor, PopupType.Medium);
