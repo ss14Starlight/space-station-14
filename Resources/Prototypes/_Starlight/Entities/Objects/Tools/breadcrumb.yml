@@ -47,7 +47,7 @@
         magenta: "#ff00ff"
     - type: LimitedCharges
       maxCharges: 500
-      lastCharges: 0
+      lastCharges: -1 # -1 = empty; 0 gets filled to max.
     - type: UserInterface
       interfaces:
         enum.BreadcrumbDropperUiKey.Key:
@@ -57,9 +57,6 @@
   parent: GlowstoneDropper
   id: GlowstoneDropperEmpty
   suffix: "Empty"
-  components:
-    - type: LimitedCharges
-      lastCharges: 0
 
 - type: entity
   parent: GlowstoneDropper
