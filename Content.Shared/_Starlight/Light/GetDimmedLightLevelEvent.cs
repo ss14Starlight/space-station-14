@@ -21,7 +21,7 @@ public sealed class GetDimmedLightLevelEvent : EntityEventArgs
     public float PowerUse { get; set; }
 
     /// <summary>
-    /// The colour of the light.
+    /// The color of the light.
     /// </summary>
     public Color Color { get; set; }
 
