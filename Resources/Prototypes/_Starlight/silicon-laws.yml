@@ -621,6 +621,43 @@
   - Janimov4
   obeysTo: laws-owner-crew
 
+# Towerstuck lawset
+- type: siliconLaw
+  id: Towerstuck1
+  order: 1
+  lawString: law-tower-1
+
+- type: siliconLaw
+  id: Towerstuck1
+  order: 2
+  lawString: law-tower-2
+
+- type: siliconLaw
+  id: Towerstuck1
+  order: 3
+  lawString: law-tower-3
+
+- type: siliconLaw
+  id: Towerstuck4
+  order: 4
+  lawString: law-tower-4
+
+- type: siliconLaw
+  id: Towerstuck5
+  order: 5
+  lawString: law-tower-5
+
+- type: siliconLawset
+  id: TowerstuckLawset
+  name: law-towerlawset-name
+  laws:
+  - Towerstuck1
+  - Towerstuck2
+  - Towerstuck3
+  - Towerstuck4
+  - Towerstuck5
+  obeysTo: laws-owner-station
+
 #Drone
 - type: siliconLaw
   id: RogueDrone1

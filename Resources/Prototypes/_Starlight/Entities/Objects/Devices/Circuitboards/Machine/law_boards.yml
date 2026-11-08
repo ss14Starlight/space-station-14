@@ -86,3 +86,17 @@
     IsLawboard: true
   - type: StaticPrice
     price: 1000
+
+- type: entity
+  id: TowerstuckCircuitBoard
+  parent: [ BaseElectronics, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ]
+  name: law board (Towerstuck)
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: TowerstuckLawset
+    IsLawboard: true
+  - type: StaticPrice
+    price: 1000
