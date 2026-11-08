@@ -26,3 +26,8 @@
   id: EvolutionPoint
   displayName: store-currency-display-evolutionpoints
   canWithdraw: false
+
+- type: currency
+  id: PollenPoints
+  displayName: store-currency-display-pollen-points
+  canWithdraw: false

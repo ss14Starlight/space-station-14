@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Systems;
+using Content.Shared._Starlight.Mind.Events;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Emoting;
@@ -364,6 +365,8 @@ public abstract partial class SharedMindSystem : EntitySystem
         var title = Name(objective);
         _adminLogger.Add(LogType.Mind, LogImpact.Low, $"Objective {objective} ({title}) added to mind of {MindOwnerLoggingString(mind)}");
         mind.Objectives.Add(objective);
+        var changed = new MindObjectivesChangedEvent(); // Starlight
+        RaiseLocalEvent(mindId, ref changed); // Starlight
     }
 
 
@@ -396,6 +399,9 @@ public abstract partial class SharedMindSystem : EntitySystem
         _adminLogger.Add(LogType.Mind, LogImpact.Low, $"Objective {objective} ({title}) removed from the mind of {MindOwnerLoggingString(mind)}");
         mind.Objectives.Remove(objective);
 
+        var changed = new MindObjectivesChangedEvent();
+        RaiseLocalEvent(mindId, ref changed);
+
         // garbage collection - only delete the objective entity if no mind uses it anymore
         // This comes up for stuff like paradox clones where the objectives share the same entity
         if (!force)
@@ -414,9 +420,6 @@ public abstract partial class SharedMindSystem : EntitySystem
         return true;
     }
     #endregion
-
-
-
 
     public bool TryGetObjectiveComp<T>(EntityUid uid, [NotNullWhen(true)] out T? objective) where T : IComponent
     {

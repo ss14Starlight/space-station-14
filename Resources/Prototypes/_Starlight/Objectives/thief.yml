@@ -322,10 +322,6 @@
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
   - type: EscapeShuttleCondition
-  - type: ObjectiveBlacklistRequirement
-    blacklist:
-      components: # So you can't get this and the normal Escape objective at the same time.
-      - EscapeShuttleCondition
 
 - type: entity
   parent: BaseThiefStealCollectionObjective
@@ -337,3 +333,12 @@
     maxCollectionSize: 18 #will be limited to the number of figures on the station anyway.
   - type: Objective
     difficulty: 0.7 #Starlight edit, youre fighting others for em
+
+# Story objectives from Moff Station
+- type: entity
+  parent: [BaseThiefObjective, BaseDepartmentStoryObjective]
+  id: RobDepartmentObjective
+  description: This department has some nice goodies, its time to make them your own.
+  components:
+  - type: DepartmentObjective
+    title: objective-condition-rob-department

@@ -3,6 +3,7 @@ job-description-blueshield = Your primary job is to protect the heads. Remember,
 job-description-boxer = Fight your way to the top! Challenge the head of personnel and get brigged when you win.
 job-description-decimus = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.
 job-description-dutyofficer = Guard Genpop, process prisoners, fight with the non-compliant. Your job is to make sure that people who were caught, stay caught, and to act as an extension of the warden.
+job-description-gunnerysergeant = Coordinate patrols and combat teams, lead security in the field!
 job-description-iaa = You are a servant of the people, defend, condemn the citizens of your station!
 job-description-k9 = Patrol the station, track scent, and latch onto suspects until security can cuff them.
 job-description-lawyer-sl = You are a servant of the people. Solve petty disputes and ensure Central Command's employees have proper representation.

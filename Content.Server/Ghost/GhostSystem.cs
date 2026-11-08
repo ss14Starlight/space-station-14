@@ -546,6 +546,9 @@ namespace Content.Server.Ghost
                 ? Transform(playerEntity.Value).Coordinates
                 : _gameTicker.GetObserverSpawnPoint();
 
+            if (position == default) // Starlight
+                position = _gameTicker.GetObserverSpawnPoint(); // Starlight
+
             if (position == default)
                 return false;
 

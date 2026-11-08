@@ -78,11 +78,16 @@
       range: 200
     - type: DeviceLinkSink
       ports:
-        - On
-        - Off
-        - Toggle
-    - type: ToggleableSignal
-    - type: ToggleableAtmosDevice
+        - "On"
+        - "Off"
+        - "Toggle"
+        - "State"
+    - type: DeviceLinkSource
+      ports:
+        - "Status"
+    - type: ToggleableDevice
+      enabled: false
+    - type: ToggleableDeviceSignaling
     - type: AmbientSound
       enabled: true
       volume: -12

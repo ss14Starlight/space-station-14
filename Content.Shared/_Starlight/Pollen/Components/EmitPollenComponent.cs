@@ -1,0 +1,65 @@
+using Robust.Shared.GameStates;
+
+namespace Content.Shared._Starlight.Pollen.Components;
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
+public sealed partial class EmitPollenComponent : Component
+{
+    /// <summary>
+    /// The pollen ID emitted by this entity.
+    /// If null, the ID is resolved from the entity's ProduceComponent.PlantProtoId
+    /// or inferred from a growing plant's product prototypes.
+    /// </summary>
+    [DataField]
+    public string? PollenId;
+
+    /// <summary>
+    /// Average time between pollen emissions.
+    /// </summary>
+    [DataField]
+    public float EmitInterval = 5f;
+
+    /// <summary>
+    /// How long the pollen scent marker remains.
+    /// </summary>
+    [DataField]
+    public float PollenLifetime = 30f;
+
+    /// <summary>
+    /// Random variation applied to EmitInterval.
+    /// </summary>
+    [DataField]
+    public float EmitIntervalVariance = 0.3f;
+
+    /// <summary>
+    /// Minimum possible emission interval.
+    /// </summary>
+    [DataField]
+    public float MinEmitInterval = 5f;
+
+    /// <summary>
+    /// Time when this entity should emit pollen again.
+    /// </summary>
+    [DataField, AutoPausedField]
+    public TimeSpan NextEmitTime;
+
+    /// <summary>
+    /// The most recent scent marker this emitter created or refreshed.
+    /// Reused on the next emission (if still valid and in range) instead of
+    /// scanning every marker on the server - mirrors ScentComponent.LastMarkerEntity.
+    /// </summary>
+    [DataField]
+    public EntityUid? LastMarkerEntity;
+
+    /// <summary>
+    /// How close a new emission needs to be to the previous marker to merge into it.
+    /// </summary>
+    [DataField]
+    public float MergeRadius = 1f;
+
+    /// <summary>
+    /// How much marker strength increases with each merge, capped at 1.
+    /// </summary>
+    [DataField]
+    public float MergeStrengthStep = 0.25f;
+}
