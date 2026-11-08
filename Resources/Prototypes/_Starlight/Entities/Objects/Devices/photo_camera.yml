@@ -100,8 +100,19 @@
   id: BlankPhotographBox
   parent: BoxCardboard
   name: blank photograph box
-  description: A box of eight blank photo film sheets.
+  description: A box of blank photo film sheets.
   components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    grid:
+    - 0,0,2,2
+    maxItemSize: Small
+    whitelist:
+      components:
+      - BlankPhotograph
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
