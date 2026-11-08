@@ -789,7 +789,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
     private bool LoadDefaultActions() // Starlight edit
     {
         if (_actionsSystem == null)
-            return false;
+            return false; // Starlight edit
 
         var actions = _actionsSystem.GetClientActions().Where(action => action.Comp.AutoPopulate).ToList();
         actions.Sort(_actionsSystem.ActionComparer); // Starlight edit
