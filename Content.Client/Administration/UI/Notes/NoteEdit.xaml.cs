@@ -150,12 +150,15 @@ public sealed partial class NoteEdit : FancyWindow
             UpdateSubmitButton();
         }
     }
-    private DateTime? CreationTime { get; set; } // Starlight
     private DateTime? ExpiryTime { get; set; }
     private TimeSpan? DeleteResetOn { get; set; }
     private bool IsCreating { get; set; }
     private bool CanCreate { get; set; }
     private bool CanEdit { get; set; }
+
+    #region Starlight
+    private DateTime? CreationTime { get; set; }
+    #endregion Starlight
 
     private void OnTypeChanged(OptionButton.ItemSelectedEventArgs args)
     {
@@ -326,7 +329,24 @@ public sealed partial class NoteEdit : FancyWindow
             (int) Multipliers.Centuries => TimeSpan.FromDays(36525).TotalMinutes,
             _ => throw new ArgumentOutOfRangeException(nameof(ExpiryLengthDropdown.SelectedId), "Multiplier out of range :(")
         };
-        ExpiryTime = (CreationTime ?? DateTime.UtcNow).AddMinutes(inputInt * mult); // Starlight-edit
+
+        // Starlight-start
+        // duration should always be set from creation time for consistency
+        // show an error if trying to set an expiry in the past or too far ahead
+        var now = DateTime.UtcNow;
+        DateTime? expiry;
+        try { expiry = (CreationTime ?? now).AddMinutes(inputInt * mult); }
+        catch (ArgumentOutOfRangeException) { expiry = null; }
+
+        if (!expiry.HasValue || expiry.Value < now)
+        {
+            ExpiryLineEdit.ModulateSelfOverride = Color.Red;
+            return false;
+        }
+
+        ExpiryTime = expiry.Value;
+        // Starlight-end
+
         ExpiryLineEdit.ModulateSelfOverride = null;
         return true;
     }
@@ -349,7 +369,7 @@ public sealed partial class NoteEdit : FancyWindow
         SubmitPressed = null;
     }
 
-    // Starlight-start
+    #region Starlight
     private static (uint Number, Multipliers Unit) UnparseExpiryTime(DateTime createdTime, DateTime expiryTime)
     {
         TimeSpan duration = expiryTime - createdTime;
@@ -376,5 +396,5 @@ public sealed partial class NoteEdit : FancyWindow
         Check(TimeSpan.FromMinutes(1));
         return (number, Multipliers.Minutes);
     }
-    // Starlight-end
+    #endregion Starlight
 }
