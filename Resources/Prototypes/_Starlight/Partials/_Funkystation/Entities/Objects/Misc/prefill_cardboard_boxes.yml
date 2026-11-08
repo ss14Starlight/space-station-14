@@ -13,3 +13,5 @@
             amount: 1
           - id: SheetSteel
             amount: 1
+          - id: PartRodMetal
+            amount: 1
