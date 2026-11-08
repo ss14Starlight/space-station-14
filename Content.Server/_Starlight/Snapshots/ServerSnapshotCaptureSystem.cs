@@ -26,6 +26,8 @@ using Content.Shared.Players.RateLimiting;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.NodeContainer;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Flash.Components;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Wires;
@@ -56,6 +58,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedRoofSystem _roof = default!;
     [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private ITileDefinitionManager _tileDef = default!;
     [Dependency] private EntityQuery<EyeCursorOffsetComponent> _cursorOffsetQuery = default!;
@@ -161,6 +164,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             return;
         }
 
+        SpawnFlashLight(ent.Owner, ent.Comp);
+
         if (Capture(args.User, args.Center, ent.Comp.HalfExtents, args.Rotation, args.AnimationFrames, args.IconSmoothStates) is not { } data)
         {
             _popup.PopupClient(Loc.GetString("snapshot-capture-failed"), args.User, args.User);
@@ -188,6 +193,24 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         }
 
         _hands.PickupOrDrop(args.User, snapshot, dropNear: true);
+    }
+
+    /// <summary>
+    /// Spawns a white point light at the camera while a flash fires, so the photograph records the flash.
+    /// </summary>
+    private void SpawnFlashLight(EntityUid capturer, SnapshotCaptureComponent capture)
+    {
+        if (!ItemSlotsTryGetFlash(capturer, out var flashUid) || !HasComp<ActiveFlashComponent>(flashUid))
+            return;
+
+        Spawn(capture.FlashEffect, Transform(capturer).Coordinates);
+    }
+
+    private bool ItemSlotsTryGetFlash(EntityUid capturer, out EntityUid flashUid)
+    {
+        var item = _itemSlotsSystem.GetItemOrNull(capturer, "flash");
+        flashUid = item ?? default;
+        return item is { } uid && TryComp<FlashComponent>(uid, out _);
     }
 
     /// <summary>
@@ -879,5 +902,4 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 
     private static Vector2i TileOf(Vector2 local)
         => new((int)MathF.Floor(local.X), (int)MathF.Floor(local.Y));
-
 }

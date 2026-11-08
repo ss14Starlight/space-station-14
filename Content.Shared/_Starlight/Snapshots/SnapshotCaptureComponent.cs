@@ -1,3 +1,4 @@
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -41,6 +42,18 @@ public sealed partial class SnapshotCaptureComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Aiming;
+
+    /// <summary>
+    /// Shutter sound played on every successful shot.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier ShutterSound = new SoundPathSpecifier("/Audio/Misc/camera_snap.ogg");
+
+    /// <summary>
+    /// Short-lived white light spawned at the camera while its flash fires, so the photograph records the burst.
+    /// </summary>
+    [DataField]
+    public EntProtoId FlashEffect = "EffectSnapshotFlash";
 }
 
 /// <summary>

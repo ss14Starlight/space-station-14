@@ -35,6 +35,8 @@
     - ClothingOuterPressArmor
     - Wrench
     - NetworkConfigurator
+    - PhotoCamera
+    - BlankPhotographBox
   # Starlight End
 
 - type: chameleonOutfit

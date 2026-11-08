@@ -1,6 +1,13 @@
+using System.Linq;
 using System.Numerics;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared._Starlight.Photography;
 using Content.Shared.Flash;
 using Content.Shared.Flash.Components;
+using Content.Shared.Examine;
+using Robust.Shared.Audio;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -8,6 +15,10 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Content.Shared.Timing;
+using Robust.Shared.Network;
+using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
@@ -16,10 +27,9 @@ namespace Content.Shared._Starlight.Snapshots;
 /// <summary>
 /// Using the item in hand raises it to the eye; while raised, clicking takes a snapshot of the spot clicked on.
 /// </summary>
- /// <remarks>
+/// <remarks>
 /// Only the client knows where its screen ends, so it decides where the frame sits (clamped to the screen) and sends
 /// that as a <see cref="SnapshotCaptureRequestEvent"/>. Everything else about the shot is checked here.
-/// Melee flash hits on a capture item also take a snapshot via <see cref="OnFlashActivated"/>.
 /// </remarks>
 public abstract partial class SnapshotCaptureSystem : EntitySystem
 {
@@ -29,7 +39,12 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     [Dependency] private SharedContentEyeSystem _contentEye = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] protected SharedTransformSystem TransformSystem = default!;
+    [Dependency] private INetManager _net = default!;
     [Dependency] private EntityQuery<SnapshotCaptureComponent> _captureQuery = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
     [Dependency] private EntityQuery<FlashComponent> _flashQuery = default!;
 
     /// <summary>
@@ -46,9 +61,10 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnGetZoomVerbs(Entity<SnapshotCaptureComponent> ent, ref GetVerbsEvent<Verb> args)
     {
-        if (ent.Comp.ZoomLevels.Count == 0
-            || !args.CanInteract
-            || !args.CanAccess)
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        if (ent.Comp.ZoomLevels.Count == 0)
         {
             return;
         }
@@ -124,18 +140,22 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         => SetAiming(ent.AsNullable(), false, args.User);
 
     /// <summary>
-    /// Melee flash photographs the hit target, like a viewfinder photo centred on its tile.
-    /// The flash already consumed the charge and handles conversion; this only prints the picture.
+    /// Melee hit photographs the hit target, like a viewfinder photo centred on its tile.
+    /// If an inserted flash is present it flashes the target (spending the flash's charge);
+    /// otherwise the photo is still taken, just dark.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnFlashActivated(Entity<SnapshotCaptureComponent> ent, ref AfterFlashActivatedEvent args)
+    private void OnMeleeHit(Entity<SnapshotCaptureComponent> ent, ref MeleeHitEvent args)
     {
-        if (args.Target == null || args.User == null)
+        if (!args.IsHit || args.HitEntities.Count == 0)
             return;
 
-        var target = args.Target.Value;
-        var user = args.User.Value;
+        if (TryComp<UseDelayComponent>(ent, out var shotDelay)
+            && _useDelay.IsDelayed((ent.Owner, shotDelay)))
+            return;
 
+        var target = args.HitEntities.First();
+        var user = args.User;
         var targetMapPos = TransformSystem.GetMapCoordinates(target);
         var center = targetMapPos;
         if (_map.TryFindGridAt(targetMapPos, out var gridUid, out var grid))
@@ -150,6 +170,26 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
             ? -TransformSystem.GetWorldRotation(gridUid2)
             : Angle.Zero;
 
+        // Film cameras spend one film charge per photo.
+        if (TryComp<AutoRechargeComponent>(ent, out _) == false
+            && TryComp<LimitedChargesComponent>(ent, out var filmCharges)
+            && !_charges.TryUseCharge((ent.Owner, filmCharges)))
+        {
+            return;
+        }
+
+        if (GetInsertedFlash(ent.Owner) is { } flashMeleeUid
+            && _flashQuery.TryComp(flashMeleeUid, out var flashMelee))
+        {
+            if (_flash.TryUseFlashItem((flashMeleeUid, flashMelee), user))
+                _flash.Flash(target, user, flashMeleeUid, flashMelee.MeleeDuration, flashMelee.SlowTo, true, true, flashMelee.MeleeStunDuration);
+        }
+
+        _audio.PlayPredicted(ent.Comp.ShutterSound, ent.Owner, user);
+
+        if (TryComp<UseDelayComponent>(ent, out var useDelay))
+            _useDelay.TryResetDelay((ent.Owner, useDelay));
+
         var captured = new SnapshotCapturedEvent(
             user,
             center,
@@ -158,6 +198,42 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
             null,
             target);
         RaiseLocalEvent(ent.Owner, ref captured);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnExamined(Entity<SnapshotCaptureComponent> ent, ref ExaminedEvent args)
+    {
+        if (GetInsertedFlash(ent.Owner) is { } flashUid)
+        {
+            args.PushMarkup(Loc.GetString("snapshot-examine-flash", ("charges", _charges.GetCurrentCharges((flashUid, null, null)))));
+        }
+    }
+
+    [SubscribeLocalEvent]
+    private void OnInteractUsing(Entity<SnapshotCaptureComponent> ent, ref InteractUsingEvent args)
+    {
+        // Skip client prediction: deleting a networked blank there desyncs.
+        if (!_net.IsServer)
+            return;
+
+        if (!HasComp<BlankPhotographComponent>(args.Used))
+            return;
+
+        if (TryComp<AutoRechargeComponent>(ent, out _))
+            return;
+
+        if (!TryComp<LimitedChargesComponent>(ent, out var charges))
+            return;
+
+        var before = _charges.GetCurrentCharges((ent.Owner, charges, null));
+        if (before >= charges.MaxCharges)
+            return;
+
+        _charges.AddCharges((ent.Owner, charges, null), 1);
+        args.Handled = true;
+        // Defer: the interaction system still touches args.Used after this event for particles.
+        PredictedDel(args.Used);
+        _popup.PopupClient(Loc.GetString("snapshot-film-loaded", ("charges", _charges.GetCurrentCharges((ent.Owner, charges, null))), ("max", charges.MaxCharges)), args.User, args.User);
     }
 
     /// <summary>
@@ -197,6 +273,31 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     {
     }
 
+    /// <summary>
+    /// Finds the inserted flash (if any) on the capturer via its item slots.
+    /// </summary>
+    private EntityUid? GetInsertedFlash(EntityUid capturer)
+    {
+        if (_itemSlots.GetItemOrNull(capturer, "flash") is { } flashUid
+            && _flashQuery.TryComp(flashUid, out _))
+        {
+            return flashUid;
+        }
+
+        return null;
+    }
+
+    private bool FireFlashEntity(EntityUid flashUid, FlashComponent flash, EntityUid _, EntityUid? user)
+    {
+        if (!_flash.TryUseFlashItem((flashUid, flash), user))
+            return false;
+
+        _flash.FlashArea(flashUid, user, flash.Range, flash.AoeFlashDuration, flash.SlowTo, true, flash.Probability);
+        return true;
+    }
+
+    public bool HasInsertedFlash(EntityUid capturer) => GetInsertedFlash(capturer) != null;
+
     [EventSubscription]
     private void OnCaptureRequest(SnapshotCaptureRequestEvent ev, EntitySessionEventArgs args)
     {
@@ -232,30 +333,62 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
             return;
         }
 
-        if (_flashQuery.TryComp(capturer, out var flash))
-        {
-            // Uses a charge, respects the use delay and plays the shutter sound.
-            if (!_flash.TryUseFlashItem((capturer, flash), user))
-                return;
-
-            _flash.FlashArea(capturer, user, flash.Range, flash.AoeFlashDuration, flash.SlowTo, true, flash.Probability);
-        }
+        if (TryComp<UseDelayComponent>(capturer, out var shotDelay)
+            && _useDelay.IsDelayed((capturer, shotDelay)))
+            return;
 
         var rotation = new Angle(Math.IEEERemainder(ev.Rotation.Theta, Math.PI * 2));
-        EntityUid? focus = null;
+        EntityUid? immediateFocus = null;
         if (ev.Focus is { } focusNet
             && TryGetEntity(focusNet, out var focusEntity)
             && focusEntity is { } focusUid)
         {
-            focus = focusUid;
+            immediateFocus = focusUid;
         }
+
+        FireShot(user, capturer, center, rotation, immediateFocus, ev.AnimationFrames, ev.IconSmoothStates, capture.ShutterSound);
+    }
+
+    private void FireShot(EntityUid user, EntityUid capturer, MapCoordinates center, Angle rotation, EntityUid? focus, List<SnapshotSpriteAnimation>? animationFrames, List<SnapshotSpriteLayerStateCapture>? iconSmoothStates, SoundSpecifier shutterSound)
+    {
+        // Film cameras (no AutoRecharge) spend one film charge per photo.
+        if (TryComp<AutoRechargeComponent>(capturer, out _) == false
+            && TryComp<LimitedChargesComponent>(capturer, out var filmCharges)
+            && !_charges.TryUseCharge((capturer, filmCharges)))
+        {
+            _popup.PopupClient(Loc.GetString("snapshot-film-needs-blank"), user, user);
+            return;
+        }
+
+        if (GetInsertedFlash(capturer) is { } insertedFlash
+            && _flashQuery.TryComp(insertedFlash, out var insertedComp))
+        {
+            if (!FireFlashEntity(insertedFlash, insertedComp, capturer, user))
+            {
+                _popup.PopupClient(Loc.GetString("snapshot-capture-rate-limited"), user, user);
+                return;
+            }
+        }
+        else if (_flashQuery.TryComp(capturer, out var builtInFlash))
+        {
+            if (!FireFlashEntity(capturer, builtInFlash, capturer, user))
+            {
+                _popup.PopupClient(Loc.GetString("snapshot-capture-rate-limited"), user, user);
+                return;
+            }
+        }
+
+        _audio.PlayPredicted(shutterSound, capturer, user);
+
+        if (TryComp<UseDelayComponent>(capturer, out var useDelay))
+            _useDelay.TryResetDelay((capturer, useDelay));
 
         var captured = new SnapshotCapturedEvent(
             user,
             center,
             rotation,
-            ev.AnimationFrames,
-            ev.IconSmoothStates,
+            animationFrames,
+            iconSmoothStates,
             focus);
         RaiseLocalEvent(capturer, ref captured);
     }

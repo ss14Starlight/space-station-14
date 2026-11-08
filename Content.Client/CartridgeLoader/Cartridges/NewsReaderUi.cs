@@ -42,7 +42,7 @@ public sealed partial class NewsReaderUi : UIFragment
         switch (state)
         {
             case NewsReaderBoundUserInterfaceState cast:
-                _fragment?.UpdateState(cast.Article, cast.TargetNum, cast.TotalNum, cast.NotificationOn, cast.HasReacted, cast.HasPhoto); // Starlight Edit: Added hasPhoto
+                _fragment?.UpdateState(cast.Article, cast.TargetNum, cast.TotalNum, cast.NotificationOn, cast.HasReacted, cast.HasPhoto); // Starlight
                 break;
             case NewsReaderEmptyBoundUserInterfaceState empty:
                 _fragment?.UpdateEmptyState(empty.NotificationOn);
