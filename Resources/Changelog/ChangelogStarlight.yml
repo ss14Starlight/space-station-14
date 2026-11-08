@@ -1,11 +1,4 @@
 Entries:
-- author: Makeshift
-  changes:
-  - message: (Downpour) Renamed a safe in maints, to avoid confusion.
-    type: Tweak
-  id: 409849
-  time: '2026-10-28T07:32:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6897
 - author: Conflee
   changes:
   - message: All medical vending machines now have 1-2 Oil Packs for IPCs etc, to ensure universal accessibility on Evac and CentComm and slightly easier access via Civilian vends on Stations.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410248
   time: '2026-11-08T09:01:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7117
+- author: Conflee
+  changes:
+  - message: Added Jerry Cans. Takes up 3x3 inventory spaces and is a large item. Holds 480u of a liquid, and has a cap to prevent accidental spills. Less space-efficient than using buckets in exchange. Empty cans can be made in the Engie Lathe, and filled ones can be bought by Cargo with Water or Fuel.
+    type: Add
+  id: 410249
+  time: '2026-11-08T09:01:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7103
 Order: -1
