@@ -230,6 +230,9 @@ public sealed partial class FaxPrintout
     [DataField]
     public string? Account{ get; private set; }
 
+    /// <summary>
+    /// Base64 binary-serialized snapshot data, restored onto the printed photograph.
+    /// </summary>
     [DataField]
     public string? PhotographData { get; private set; }
 

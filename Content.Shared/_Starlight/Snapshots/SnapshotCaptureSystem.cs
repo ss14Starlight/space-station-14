@@ -115,6 +115,28 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
     private void OnUnequipped(Entity<SnapshotCaptureComponent> ent, ref GotUnequippedHandEvent args)
         => SetAiming(ent.AsNullable(), false, args.User);
 
+    [SubscribeLocalEvent]
+    private void OnFlashActivated(Entity<SnapshotCaptureComponent> ent, ref AfterFlashActivatedEvent args)
+    {
+        if (args.Target == null || args.User == null)
+            return;
+
+        var target = args.Target.Value;
+        var user = args.User.Value;
+
+        var center = TransformSystem.GetMapCoordinates(target);
+        var rotation = TransformSystem.GetWorldRotation(user);
+
+        var captured = new SnapshotCapturedEvent(
+            user,
+            center,
+            rotation,
+            null,
+            null,
+            target);
+        RaiseLocalEvent(ent.Owner, ref captured);
+    }
+
     /// <summary>
     /// Switching to the other hand lowers the viewfinder, so it isn't still raised when switching back.
     /// </summary>

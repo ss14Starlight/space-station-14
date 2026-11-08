@@ -76,6 +76,8 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     private readonly Dictionary<NetEntity, (SnapshotData Data, TimeSpan Received)> _known = [];
 
     private static readonly TimeSpan _knownSnapshotLifetime = TimeSpan.FromMinutes(30);
+    private static readonly TimeSpan _knownPruneInterval = TimeSpan.FromMinutes(1);
+    private TimeSpan _lastKnownPrune = TimeSpan.FromMinutes(-1);
     private const int MaxCachedScenes = 8;
 
     public override void Initialize()
@@ -172,8 +174,9 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     private void RetrySnapshotRequests()
     {
         var now = _timing.RealTime;
-        if (_known.Count > 0)
+        if (_known.Count > 0 && now - _lastKnownPrune >= _knownPruneInterval)
         {
+            _lastKnownPrune = now;
             foreach (var (snapshot, known) in _known.ToArray())
             {
                 if (now - known.Received > _knownSnapshotLifetime)

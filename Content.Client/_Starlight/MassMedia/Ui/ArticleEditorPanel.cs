@@ -1,4 +1,4 @@
-// ReSharper disable once CheckNamespace
+// ReSharper disable once CheckNamespace once
 namespace Content.Client.MassMedia.Ui;
 
 public sealed partial class ArticleEditorPanel

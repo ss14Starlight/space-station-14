@@ -37,7 +37,6 @@ using Content.Shared._Starlight.Fax;
 using Content.Shared._Starlight.Fax.UI;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Ghost;
-using Content.Server._Starlight.Snapshots;
 #endregion Starlight
 
 namespace Content.Server.Fax;
@@ -61,7 +60,6 @@ public sealed partial class FaxSystem : EntitySystem
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private FaxecuteSystem _faxecute = default!;
     [Dependency] private EmagSystem _emag = default!;
-    [Dependency] private SnapshotPersistenceSystem _snapshotPersistence = default!; // Starlight
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
 

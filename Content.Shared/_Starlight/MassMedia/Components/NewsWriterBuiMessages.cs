@@ -1,7 +1,6 @@
 using Content.Shared.MassMedia.Systems;
-using Robust.Shared.Serialization;
 
-// ReSharper disable once CheckNamespace
+// ReSharper disable once CheckNamespace once
 namespace Content.Shared.MassMedia.Components;
 
 public sealed partial class NewsWriterBoundUserInterfaceState
@@ -18,5 +17,3 @@ public sealed partial class NewsWriterBoundUserInterfaceState
         HasPhoto = hasPhoto;
     }
 }
-
-

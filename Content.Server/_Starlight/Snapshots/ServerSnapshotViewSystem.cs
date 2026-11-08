@@ -45,6 +45,9 @@ public sealed partial class ServerSnapshotViewSystem : EntitySystem
         if (ent.Comp.Data is not { } data || !_actorQuery.TryComp(args.User, out var actor))
             return;
 
+        if (_rateLimit.CountAction(actor.PlayerSession, RateLimitKey) != RateLimitStatus.Allowed)
+            return;
+
         RaiseNetworkEvent(new SnapshotViewDataEvent(GetNetEntity(ent), data), actor.PlayerSession);
     }
 

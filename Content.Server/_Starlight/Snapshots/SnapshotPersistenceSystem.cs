@@ -13,11 +13,19 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
     private const int MaxSerializedBytes = 8 * 1024 * 1024;
     private const int MaxEncodedLength = (MaxSerializedBytes + 2) / 3 * 4;
 
+    /// <summary>
+    /// Returns the base64 serialized snapshot data for the entity, or null if none is available.
+    /// Returns the stored <c>SerializedData</c> when present; otherwise serializes <c>Data</c> on demand, which may return null if serialization exceeds the 8 MiB limit.
+    /// </summary>
     public string? GetSerializedData(EntityUid uid)
         => !TryComp<SnapshotComponent>(uid, out var snapshot)
             ? null
             : snapshot.SerializedData ?? (snapshot.Data == null ? null : Serialize(snapshot.Data));
 
+    /// <summary>
+    /// Stores the snapshot data and its serialized form on the entity, updating <see cref="PhotographComponent"/> metadata.
+    /// Returns false without modifying the entity when serialization exceeds the 8 MiB limit; otherwise returns true.
+    /// </summary>
     public bool SetData(EntityUid uid, SnapshotData data)
     {
         var serialized = Serialize(data);
@@ -31,6 +39,10 @@ public sealed partial class SnapshotPersistenceSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Validates and stores base64 serialized snapshot data, setting <c>Data</c> and <c>SerializedData</c> and updating <see cref="PhotographComponent"/> metadata.
+    /// Returns false and leaves the entity unchanged when the input exceeds size limits or is malformed and fails to deserialize; otherwise returns true.
+    /// </summary>
     public bool SetSerializedData(EntityUid uid, string serialized)
     {
         if (serialized.Length > MaxEncodedLength)

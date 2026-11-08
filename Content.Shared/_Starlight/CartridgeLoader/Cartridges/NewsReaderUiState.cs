@@ -1,6 +1,6 @@
 using Content.Shared.MassMedia.Systems;
 
-// ReSharper disable once CheckNamespace
+// ReSharper disable once CheckNamespace once
 namespace Content.Shared.CartridgeLoader.Cartridges;
 
 public sealed partial class NewsReaderBoundUserInterfaceState
@@ -17,5 +17,3 @@ public sealed partial class NewsReaderBoundUserInterfaceState
         HasPhoto = hasPhoto;
     }
 }
-
-

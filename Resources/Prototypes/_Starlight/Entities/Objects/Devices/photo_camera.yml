@@ -28,8 +28,13 @@
   - type: Flash
     flashOnUse: false
     flashOnRangedInteract: false
+    flashOnMelee: true
     sound: !type:SoundPathSpecifier
       path: /Audio/Misc/camera_snap.ogg
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 0
   # Only applied while looking through the viewfinder, like binoculars.
   - type: EyeCursorOffset
     maxOffset: 5

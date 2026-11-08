@@ -1,12 +1,12 @@
 using Content.Shared._Starlight.Snapshots;
 using Robust.Shared.Serialization;
 
-// ReSharper disable once CheckNamespace
+// ReSharper disable once CheckNamespace once
 namespace Content.Shared.MassMedia.Systems;
 
 public abstract partial class SharedNewsSystem
 {
-    public const int MaxArticleSnapshotLength = 2 * 1024 * 1024; // Starlight: base64 chars, ~1.5MB raw snapshot data
+    public const int MaxArticleSnapshotLength = 2 * 1024 * 1024; // base64 chars, ~1.5MB snapshot data
     public const string PhotoSlotId = "photo";
 }
 
