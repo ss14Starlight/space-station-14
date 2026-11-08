@@ -15,5 +15,15 @@
   Empowered cultists also no longer need to breathe, and are immune to the vacuum of space.
   Empowered cultists also gain the [color=#4cabb3]Null Fragmentation[/color] influence, which can be used to convert a Cyborg into an [color=#4cabb3]Entropic Colossus[/color], or to corrupt the station AI's laws.
 
+  ## Empowered Malign Rifts
+
+  <Box>
+    <GuideEntityEmbed Entity="CosmicMalignRift" Caption="Malign Rift"/> <GuideEntityEmbed Entity="CosmicMalignEmpoweredRift" Caption="Empowered Malign Rift"/>
+  </Box>
+
+  A Colossus may empower a [color=#4cabb3]Malign Rift[/color], transforming it into an [color=#6A4CFF]Empowered Malign Rift[/color]. Unlike ordinary rifts, empowered rifts are immune to the decay that normally claims malign anomalies.
+  To do so, the Colossus must use its [bold]Ingress[/bold] ability on an existing Malign Rift.
+
+  An empowered rift can hold one critical or dead non-cultist humanoid, preserving it within the rift. Each currently stored host strengthens the Colossus and its minions, allowing the rifts to serve as a source of growing malign power.
 
 </Document>

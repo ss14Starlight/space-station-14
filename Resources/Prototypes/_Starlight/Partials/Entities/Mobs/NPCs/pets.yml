@@ -4,6 +4,9 @@
   - type: FirelockOpener
   - type: FootprintOwner
     printState: Paw
+    footstepDistance: 0.25
+    minPrintVolume: 0.025
+    maxFootprintVolume: 0.05
 
 - type: !PartialOnly entity
   id: MobWalter
@@ -11,6 +14,9 @@
   - type: FirelockOpener
   - type: FootprintOwner
     printState: Paw
+    footstepDistance: 0.25
+    minPrintVolume: 0.025
+    maxFootprintVolume: 0.05
 
 - type: !PartialOnly entity
   id: MobMonkeyPunpun
@@ -23,3 +29,6 @@
   components:
   - type: FootprintOwner
     printState: Paw
+    footstepDistance: 0.25
+    minPrintVolume: 0.025
+    maxFootprintVolume: 0.05
