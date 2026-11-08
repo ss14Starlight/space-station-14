@@ -152,7 +152,7 @@ public sealed partial class AchievementSystem : EntitySystem
         SubscribeLocalEvent<MobStateComponent, TargetDefibrillatedEvent>(OnDefib);
         SubscribeLocalEvent<MobStateComponent, ConsumedFoodEvent>(OnConsume);
         SubscribeLocalEvent<StripAttemptEvent>(OnStrip);
-        SubscribeLocalEvent<FunctionalOrganComponent, SurgeryOrganExtracted>(OnFunctionalOrganExtracted);
+        SubscribeLocalEvent<SurgeryOrganExtracted>(OnFunctionalOrganExtracted);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
 
         foreach (var session in _playerManager.Sessions)
@@ -353,9 +353,9 @@ public sealed partial class AchievementSystem : EntitySystem
 
     #region Event Handlers
 
-    private void OnFunctionalOrganExtracted(Entity<FunctionalOrganComponent> ent, ref SurgeryOrganExtracted args)
+    private void OnFunctionalOrganExtracted(ref SurgeryOrganExtracted args)
     {
-        if (MetaData(ent.Owner).EntityPrototype?.ID == "BrainImplantNexus") QueueUnlockAchievement(args.User, "broken_media");
+        if (MetaData(args.Organ).EntityPrototype?.ID == "BrainImplantNexus") QueueUnlockAchievement(args.User, "broken_media");
     }
 
     private void OnStrip(ref StripAttemptEvent ev)
