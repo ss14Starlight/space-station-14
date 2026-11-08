@@ -52,7 +52,6 @@ public sealed class AdminNotesEui : BaseEui
     public override void Closed()
     {
         base.Closed();
-        NoteWindow.Close();
 
         // Starlight-start
         if (_openWindows.Count > 0)

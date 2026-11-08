@@ -110,15 +110,11 @@ public sealed partial class NoteEdit : FancyWindow
                 UpdatePermanentCheckboxFields();
 
                 // Starlight-start
-                var (num, mult) = UnparseExpiryTime(CreationTime, ExpiryTime.Value);
+                var (num, mult) = UnparseExpiryTime(note.CreatedAt, ExpiryTime.Value);
                 ExpiryLineEdit.Text = num.ToString();
                 ExpiryLengthDropdown.SelectId((int)mult);
                 // Starlight-end
             }
-        }
-        else
-        {
-            CreationTime = DateTime.UtcNow; // Starlight
         }
 
         UpdateSubmitButton();
@@ -154,7 +150,7 @@ public sealed partial class NoteEdit : FancyWindow
             UpdateSubmitButton();
         }
     }
-    private DateTime CreationTime { get; set; } // Starlight
+    private DateTime? CreationTime { get; set; } // Starlight
     private DateTime? ExpiryTime { get; set; }
     private TimeSpan? DeleteResetOn { get; set; }
     private bool IsCreating { get; set; }
@@ -330,7 +326,7 @@ public sealed partial class NoteEdit : FancyWindow
             (int) Multipliers.Centuries => TimeSpan.FromDays(36525).TotalMinutes,
             _ => throw new ArgumentOutOfRangeException(nameof(ExpiryLengthDropdown.SelectedId), "Multiplier out of range :(")
         };
-        ExpiryTime = CreationTime.AddMinutes(inputInt * mult);
+        ExpiryTime = (CreationTime ?? DateTime.UtcNow).AddMinutes(inputInt * mult); // Starlight-edit
         ExpiryLineEdit.ModulateSelfOverride = null;
         return true;
     }
