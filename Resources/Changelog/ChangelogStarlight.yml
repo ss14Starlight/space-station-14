@@ -1,46 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: Admins and mappers can (un)anchor entities through floor tiles.
-    type: Add
-  id: 409827
-  time: '2026-10-26T22:28:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6876
-- author: redmushie
-  changes:
-  - message: Admins and mappers can adjust pipe layers through floor tiles.
-    type: Add
-  id: 409828
-  time: '2026-10-26T22:28:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6876
-- author: redmushie
-  changes:
-  - message: Added Toolshed "layernetwork" command, letting mappers move entire pipe networks to a different layer at once.
-    type: Add
-  id: 409829
-  time: '2026-10-26T22:54:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6877
-- author: redmushie
-  changes:
-  - message: Toolshed's "visualize" command's window is now less unnecessarily big.
-    type: Tweak
-  id: 409830
-  time: '2026-10-26T22:54:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6877
-- author: Floximo
-  changes:
-  - message: Visuals for communication consoles (merged and light intensity) repaired.
-    type: Fix
-  id: 409831
-  time: '2026-10-26T23:16:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6889
-- author: Rescue
-  changes:
-  - message: Molotovs are now lit with welding torches, lighters and other sources of flame.
-    type: Tweak
-  id: 409832
-  time: '2026-10-26T23:36:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6827
 - author: Rescue
   changes:
   - message: Lit molotovs that have not been thrown, will burn out and require more cloth.
@@ -2799,4 +2757,46 @@ Entries:
   id: 410226
   time: '2026-11-08T06:12:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7108
+- author: Caws
+  changes:
+  - message: (Manor) Added Gunnery Sergeant.
+    type: Add
+  id: 410227
+  time: '2026-11-08T06:33:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7107
+- author: Caws
+  changes:
+  - message: (Manor) Radio Studio has been upgraded, adding radio mixer, CD player, and radio broadcast recorder.
+    type: Add
+  id: 410228
+  time: '2026-11-08T06:33:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7107
+- author: Caws
+  changes:
+  - message: (Manor) Budget increases have allowed for a second stasis bed in Medical.
+    type: Add
+  id: 410229
+  time: '2026-11-08T06:33:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7107
+- author: Caws
+  changes:
+  - message: (Manor) Fixed a disposal bin in Kitchen maintenance that wasn't connected to the disposal network.
+    type: Fix
+  id: 410230
+  time: '2026-11-08T06:33:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7107
+- author: Caws
+  changes:
+  - message: (Manor) Fixed the freezer's air alarms being unconnected.
+    type: Fix
+  id: 410231
+  time: '2026-11-08T06:33:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7107
+- author: Caws
+  changes:
+  - message: (Manor) Added missing 'freezer atmos' markers to the freezer, meaning the freezer will now be cold at roundstart.
+    type: Fix
+  id: 410232
+  time: '2026-11-08T06:33:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7107
 Order: -1
