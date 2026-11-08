@@ -34,6 +34,7 @@ using Content.Shared.Toggleable;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Shared._NullLink;
 using Content.Shared._Starlight.Computers.PodConsole;
+using Content.Shared.Silicons.StationAi;
 
 namespace Content.Server._Starlight.SecureTerminal;
 
@@ -72,6 +73,19 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
 
     private static readonly TimeSpan UIUpdateInterval = TimeSpan.FromSeconds(5.0);
     private static readonly SoundPathSpecifier AdminAlarmSound = new("/Audio/Misc/adminlarm.ogg");
+    private static readonly ProtoId<AccessLevelPrototype> StationAiAccess = "StationAi";
+
+    private ICollection<ProtoId<AccessLevelPrototype>> GetTerminalAccessTags(EntityUid actor)
+    {
+        var tags = _access.FindAccessTags(actor);
+        if (HasComp<StationAiHeldComponent>(actor))
+        {
+            return tags.Contains(StationAiAccess)
+                ? new[] { StationAiAccess }
+                : Array.Empty<ProtoId<AccessLevelPrototype>>();
+        }
+        return tags;
+    }
 
     private readonly Dictionary<(EntityUid StationUid, string RequestId), HashSet<SecureTerminalAdminApprovalEui>> _adminApprovalEuis = new();
 
@@ -549,6 +563,12 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             return;
         }
 
+        if (HasComp<StationAiHeldComponent>(actor))
+        {
+            _popup.PopupCursor(Loc.GetString("secure-terminal-request-denied"), actor, PopupType.Medium);
+            return;
+        }
+
         var tags = _access.FindAccessTags(actor);
         if (!comp.Admin && !tags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)"Command"))
         {
@@ -747,7 +767,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         if (terminal.Admin)
             return true;
 
-        var accessTags = _access.FindAccessTags(actor);
+        var accessTags = GetTerminalAccessTags(actor);
         var schemes = proto.AuthSchemes;
 
         var authorized = false;
@@ -1055,9 +1075,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     private bool TryRescind(EntityUid actor, SecureTerminalProposalData proposal,
         SecureCommandTerminalRequestPrototype proto, EntityUid terminalUid)
     {
-        var accessTags = _idCard.TryFindIdCard(actor, out var idCard)
-            ? _access.FindAccessTags(idCard.Owner)
-            : Array.Empty<ProtoId<Content.Shared.Access.AccessLevelPrototype>>();
+        var accessTags = GetTerminalAccessTags(actor);
         var rescinded = false;
         for (var schemeIndex = 0; schemeIndex < proto.RescindSchemes.Count; schemeIndex++)
         {
@@ -1136,7 +1154,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
 
     private bool CanRequest(EntityUid actor, SecureCommandTerminalRequestPrototype proto)
     {
-        var tags = _access.FindAccessTags(actor);
+        var tags = GetTerminalAccessTags(actor);
         return proto.AuthSchemes.Any(scheme => scheme.Groups.Any(group =>
             group.Any(tag => tags.Contains(tag))));
     }
