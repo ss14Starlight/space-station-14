@@ -67,6 +67,9 @@ public sealed partial class PoweredLightSystem : SharedPoweredLightSystem
     }
 
     #region Starlight
+    /// <summary>
+    /// Applies or clears the new alert level's dimming multiplier on fixtures belonging to the affected station and refreshes them.
+    /// </summary>
     private void OnAlertLevelChanged(AlertLevelChangedEvent args)
     {
         if (!TryComp<AlertLevelComponent>(args.Station, out var alertLevelComp)) return;

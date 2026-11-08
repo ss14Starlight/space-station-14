@@ -34,6 +34,9 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
     private readonly ShaderInstance _shaderInst;
     private readonly ShaderInstance _bloomShaderInst;
 
+    /// <summary>
+    /// Creates the shaders for screen effects and bloom extraction.
+    /// </summary>
     public ScreenPostProcessOverlay()
     {
         IoCManager.InjectDependencies(this);
@@ -43,6 +46,9 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         _bloomShaderInst = _proto.Index(_bloomShader).InstanceUnique();
     }
 
+    /// <summary>
+    /// Returns whether a local player exists, this viewport uses the current eye, and at least one screen effect is enabled.
+    /// </summary>
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         if (_player.LocalEntity == null || args.Viewport.Eye == null || args.Viewport.Eye != _eye.CurrentEye)
@@ -54,6 +60,10 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
             || _cfg.GetCVar(StarlightCCVars.FilmGrain);
     }
 
+    /// <summary>
+    /// Applies the configured screen effects when a screen texture is available.
+    /// Bloom is disabled when the viewport has no active lighting.
+    /// </summary>
     protected override void Draw(in OverlayDrawArgs args)
     {
         if (ScreenTexture == null)
@@ -88,6 +98,9 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         handle.UseShader(null);
     }
 
+    /// <summary>
+    /// Extracts and blurs bloom into a cached texture at half the viewport dimensions, rounded up to at least one pixel per axis.
+    /// </summary>
     private Texture? DrawBloom(in OverlayDrawArgs args)
     {
         var viewport = args.Viewport;
@@ -127,6 +140,9 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         return target.Texture;
     }
 
+    /// <summary>
+    /// Releases all cached viewport bloom targets.
+    /// </summary>
     protected override void DisposeBehavior()
     {
         _resources.Dispose();
@@ -134,6 +150,9 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         base.DisposeBehavior();
     }
 
+    /// <summary>
+    /// Returns the configured strength clamped to [0, 1], or zero when the effect is disabled.
+    /// </summary>
     private float Strength(CVarDef<bool> enabled, CVarDef<float> strength)
         => _cfg.GetCVar(enabled) ? Math.Clamp(_cfg.GetCVar(strength), 0f, 1f) : 0f;
 
@@ -142,6 +161,9 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         public IRenderTexture? Target;
         public IRenderTexture? BlurBuffer;
 
+        /// <summary>
+        /// Releases and clears this viewport's bloom targets.
+        /// </summary>
         public void Dispose()
         {
             Target?.Dispose();

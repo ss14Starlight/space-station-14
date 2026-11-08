@@ -16,6 +16,9 @@ namespace Content.Client.Power.APC
         {
         }
 
+        /// <summary>
+        /// Opens the APC menu, wires control messages, and initializes access and lighting state.
+        /// </summary>
         protected override void Open()
         {
             base.Open();

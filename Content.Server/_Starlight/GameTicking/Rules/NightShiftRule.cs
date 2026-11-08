@@ -13,6 +13,9 @@ public sealed partial class NightShiftRule : StationEventSystem<NightShiftRuleCo
 {
     [Dependency] private NightShiftSystem _nightShift = default!;
 
+    /// <summary>
+    /// Forces night shift on the target station, choosing a random station if no target is set.
+    /// </summary>
     protected override void Started(EntityUid uid, NightShiftRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, comp, gameRule, args);
@@ -25,6 +28,9 @@ public sealed partial class NightShiftRule : StationEventSystem<NightShiftRuleCo
         _nightShift.SetForced(station.Value, uid, true);
     }
 
+    /// <summary>
+    /// Releases this rule's forced night shift when the event ends.
+    /// </summary>
     protected override void Ended(EntityUid uid, NightShiftRuleComponent comp, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
         base.Ended(uid, comp, gameRule, args);
@@ -32,10 +38,16 @@ public sealed partial class NightShiftRule : StationEventSystem<NightShiftRuleCo
         Release((uid, comp));
     }
 
+    /// <summary>
+    /// Releases this rule's forced night shift when its component shuts down.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnShutdown(Entity<NightShiftRuleComponent> ent, ref ComponentShutdown args)
         => Release(ent);
 
+    /// <summary>
+    /// Clears the stored station and removes this rule's forced source if the station still exists.
+    /// </summary>
     private void Release(Entity<NightShiftRuleComponent> ent)
     {
         if (ent.Comp.Station is not { } station)

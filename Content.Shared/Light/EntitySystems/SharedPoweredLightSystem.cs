@@ -43,6 +43,9 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
     private static readonly TimeSpan ThunkDelay = TimeSpan.FromSeconds(2);
     public const string LightBulbContainer = "light_bulb";
 
+    /// <summary>
+    /// Subscribes to fixture interactions, power and bulb changes, and blinking lifecycle events.
+    /// </summary>
     public override void Initialize()
     {
         base.Initialize();
@@ -257,6 +260,10 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Refreshes fixture output, appearance, flicker, and power load from the bulb, dimming modifiers, and backup cell.
+    /// May play the turn-on sound. Does nothing during client state application or when the light or power receiver is unavailable.
+    /// </summary>
     public void UpdateLight(EntityUid uid, // Starlight: public
         PoweredLightComponent? light = null,
         SharedApcPowerReceiverComponent? powerReceiver = null,

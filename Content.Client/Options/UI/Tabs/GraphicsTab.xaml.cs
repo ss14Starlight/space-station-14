@@ -16,6 +16,9 @@ public sealed partial class GraphicsTab : Control
 {
     [Dependency] private IConfigurationManager _cfg = default!;
 
+    /// <summary>
+    /// Builds the graphics options controls, binds their configuration values, and initializes viewport sizing controls.
+    /// </summary>
     public GraphicsTab()
     {
         IoCManager.InjectDependencies(this);

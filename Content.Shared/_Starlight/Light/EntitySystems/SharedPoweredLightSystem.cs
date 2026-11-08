@@ -5,6 +5,9 @@ namespace Content.Shared.Light.EntitySystems;
 
 public abstract partial class SharedPoweredLightSystem
 {
+    /// <summary>
+    /// Scales brightness and power use by the alert level multiplier only for dimmable bulbs.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnGetDimmedLightLevel(EntityUid uid, AlertLevelDimmedLightComponent component, GetDimmedLightLevelEvent args)
     {

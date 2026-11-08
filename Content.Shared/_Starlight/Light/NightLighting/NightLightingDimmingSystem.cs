@@ -5,6 +5,9 @@ namespace Content.Shared._Starlight.Light.NightLighting;
 /// </summary>
 public sealed partial class NightLightingDimmingSystem : EntitySystem
 {
+    /// <summary>
+    /// Applies the night profile to brightness, radius, power use, and color, including bulbs exempt from alert dimming.
+    /// </summary>
     [SubscribeLocalEvent]
     private void OnGetDimmedLightLevel(EntityUid uid, NightLightingDimmedComponent comp, GetDimmedLightLevelEvent args)
     {

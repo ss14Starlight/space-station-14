@@ -36,6 +36,9 @@ public abstract partial class SharedPoweredLightSystem
             && bulbComp.State == LightBulbState.Normal;
     }
 
+    /// <summary>
+    /// Selects the active flicker profile: the override or bulb profile when lit, the broken bulb profile when sparking, or none otherwise.
+    /// </summary>
     private void UpdateFlicker(EntityUid uid, EntityUid? bulb, bool lit, bool sparking)
     {
         if (!TryComp<LightFlickerComponent>(uid, out var flicker))

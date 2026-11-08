@@ -25,6 +25,9 @@ public sealed partial class LightFlickerSystem : EntitySystem
     [Dependency] private SharedPointLightSystem _pointLight = default!;
     [Dependency] private SpriteSystem _sprite = default!;
 
+    /// <summary>
+    /// Advances local flicker bursts and optional sounds, suspending them while the fixture is blinking.
+    /// </summary>
     public override void FrameUpdate(float frameTime)
     {
         base.FrameUpdate(frameTime);
@@ -62,9 +65,15 @@ public sealed partial class LightFlickerSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Samples the quiet interval between bursts from the profile's delay range, expressed in seconds.
+    /// </summary>
     private TimeSpan Delay(LightFlickerPrototype profile)
         => TimeSpan.FromSeconds(_random.NextFloat(profile.MinDelay, profile.MaxDelay));
 
+    /// <summary>
+    /// Flips the point light relative to its appearance state, or restores appearance-driven visuals when cleared.
+    /// </summary>
     private void SetToggled(Entity<LightFlickerComponent, PoweredLightVisualsComponent, AppearanceComponent> ent, bool toggled)
     {
         var (uid, flicker, visuals, appearance) = ent;

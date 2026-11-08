@@ -11,6 +11,9 @@ public sealed partial class ApcMenu
 {
     public event Action<ApcLightingMode>? OnLightingMode;
 
+    /// <summary>
+    /// Groups the lighting mode buttons, connects their events, and initially hides lighting controls.
+    /// </summary>
     private void InitializeLighting()
     {
         var group = new ButtonGroup();
@@ -25,7 +28,7 @@ public sealed partial class ApcMenu
     }
 
     /// <summary>
-    /// Updates state for current selected light mode, fetches and updates reason for current mode.
+    /// Updates the selected mode and status reason, highlighting low power mode. Hides lighting controls when lighting is null.
     /// </summary>
     public void UpdateLighting(ApcLightingComponent? lighting)
     {
@@ -45,18 +48,27 @@ public sealed partial class ApcMenu
         LightingStateLabel.SetOnlyStyleClass(lighting.Reason == NightLightingReason.LowPower ? "highlight" : "LabelSubText");
     }
 
+    /// <summary>
+    /// Selects the button matching the mode and clears the others.
+    /// </summary>
     public void SetLightingModePressed(ApcLightingMode pressed)
     {
         foreach (var (button, mode) in LightingModeButtons())
             button.Pressed = mode == pressed;
     }
 
+    /// <summary>
+    /// Enables or disables lighting mode buttons according to access.
+    /// </summary>
     private void SetLightingAccess(bool hasAccess)
     {
         foreach (var (button, _) in LightingModeButtons())
             button.Disabled = !hasAccess;
     }
 
+    /// <summary>
+    /// Shows or hides the lighting mode controls and status label.
+    /// </summary>
     private void SetLightingVisible(bool visible)
     {
         LightingLabel.Visible = visible;
@@ -65,6 +77,9 @@ public sealed partial class ApcMenu
         LightingStateLabel.Visible = visible;
     }
 
+    /// <summary>
+    /// Yields the automatic, day, and night mode buttons with their corresponding modes.
+    /// </summary>
     private IEnumerable<(Button, ApcLightingMode)> LightingModeButtons()
     {
         yield return (LightingAutoButton, ApcLightingMode.Auto);

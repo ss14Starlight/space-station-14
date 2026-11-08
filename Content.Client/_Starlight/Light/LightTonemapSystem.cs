@@ -15,6 +15,9 @@ public sealed partial class LightTonemapSystem : EntitySystem
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IOverlayManager _overlay = default!;
 
+    /// <summary>
+    /// Registers the tonemap setting callback and adds the screen effects overlay.
+    /// </summary>
     public override void Initialize()
     {
         base.Initialize();
@@ -22,6 +25,9 @@ public sealed partial class LightTonemapSystem : EntitySystem
         _overlay.AddOverlay(new ScreenPostProcessOverlay());
     }
 
+    /// <summary>
+    /// Removes both lighting overlays.
+    /// </summary>
     public override void Shutdown()
     {
         base.Shutdown();
@@ -29,6 +35,9 @@ public sealed partial class LightTonemapSystem : EntitySystem
         _overlay.RemoveOverlay<ScreenPostProcessOverlay>();
     }
 
+    /// <summary>
+    /// Adds or removes the tonemap overlay to match the setting, avoiding duplicate overlays.
+    /// </summary>
     private void OnTonemapChanged(bool enabled)
     {
         if (!enabled)
