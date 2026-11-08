@@ -233,6 +233,8 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         {
             if (ui.Snapshot != null || ui.Disposed || requests >= MaxRequests)
             {
+                if (ui.Snapshot == null && !ui.Disposed && requests >= MaxRequests)
+                    ui.ShowSnapshotFailure();
                 _awaitingRemovals.Add(ui);
                 continue;
             }
@@ -497,8 +499,8 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     {
         var coords = new EntityCoordinates(grid, _center + entity.Offset);
         var uid = entity.Humanoid is { } humanoid
-            ? SpawnHumanoid(entity.Prototype, humanoid, coords) ?? Spawn(entity.Prototype, coords)
-            : Spawn(entity.Prototype, coords);
+            ? SpawnHumanoid(entity.Prototype, humanoid, coords) ?? SpawnAttachedTo(entity.Prototype, coords)
+            : SpawnAttachedTo(entity.Prototype, coords);
         var spawned = uid;
 
         if (TryComp<FloatingVisualsComponent>(spawned, out var floating))
@@ -531,7 +533,11 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
 
         // Subfloor entities (cables, pipes) start hidden and their visualizers skip work while hidden,
         // so they would rebuild invisible. A photo must show what was captured, so reveal them before applying appearance.
-        if (!entity.SupportOnly && HasComp<SubFloorHideComponent>(spawned))
+        // Entities with always-visible layers (e.g. vents) keep their hide component so the pipe connector can retain
+        // its captured hidden state; only entities that would otherwise remain invisible are revealed.
+        if (!entity.SupportOnly
+            && TryComp<SubFloorHideComponent>(spawned, out var subFloorHide)
+            && subFloorHide.VisibleLayers.Count == 0)
         {
             RemComp<SubFloorHideComponent>(spawned);
             if (_spriteQuery.TryGetComponent(spawned, out var cloneSprite))
@@ -552,10 +558,6 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
                 : Angle.FromDegrees(90);
             _sprite.SetRotation((spawned, lyingSprite), horizontal);
         }
-
-        // Plumbing connectors hide when floored; a photo should show them as the photographer saw them.
-        if (!entity.SupportOnly && TryComp<AppearanceComponent>(spawned, out var plumbingAppearance))
-            _appearance.SetData(spawned, PlumbingVisuals.CoveredByFloor, false, plumbingAppearance);
 
         ApplyIconSmoothStates(spawned, entity.IconSmoothStates);
         ApplyAnimationFrames(spawned, entity.AnimationFrames);
@@ -648,7 +650,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             || !_proto.Resolve(humanoid.Species, out var species))
             return null;
 
-        var doll = Spawn(species.DollPrototype, coords);
+        var doll = SpawnAttachedTo(species.DollPrototype, coords);
 
         // Dolls don't inherit BaseMob's sprite settings so we need to add draw depth and rotation
         if (_proto.Index(prototype).TryComp<SpriteComponent>(out var mobSprite, _componentFactory)
@@ -724,7 +726,10 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
 
             _hands.AddHand((doll, hands), fallbackHand, HandLocation.Functional);
             if (!_hands.TryPickup(doll, item, fallbackHand, checkActionBlocker: false, animate: false, handsComp: hands))
+            {
                 Log.Error($"Failed to restore held item {held.Prototype} on snapshot humanoid {doll}.");
+                Del(item);
+            }
         }
 
         return doll;
@@ -823,6 +828,7 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         _light.SetColor(uid, snapshotLight.Color, light);
         _light.SetRadius(uid, snapshotLight.Radius, light);
         _light.SetEnergy(uid, snapshotLight.Energy, light);
+        _light.SetOffset(uid, snapshotLight.Offset, light);
         _light.SetSoftness(uid, snapshotLight.Softness, light);
         _light.SetFalloff(uid, snapshotLight.Falloff, light);
         _light.SetCurveFactor(uid, snapshotLight.CurveFactor, light);

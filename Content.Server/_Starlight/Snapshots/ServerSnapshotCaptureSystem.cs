@@ -184,7 +184,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 : _examine.GetExamineText(focus, args.User, out _)?.ToMarkup();
         }
 
-        var snapshot = Spawn(ent.Comp.Snapshot, Transform(ent).Coordinates);
+        var snapshot = SpawnAttachedTo(ent.Comp.Snapshot, Transform(ent).Coordinates);
         if (!_snapshotPersistence.SetData(snapshot, data))
         {
             Del(snapshot);
@@ -200,10 +200,14 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     /// </summary>
     private void SpawnFlashLight(EntityUid capturer, SnapshotCaptureComponent capture)
     {
-        if (!ItemSlotsTryGetFlash(capturer, out var flashUid) || !HasComp<ActiveFlashComponent>(flashUid))
+        var insertedActive = ItemSlotsTryGetFlash(capturer, out var flashUid)
+            && HasComp<ActiveFlashComponent>(flashUid);
+        var builtInActive = HasComp<ActiveFlashComponent>(capturer)
+            && TryComp<FlashComponent>(capturer, out _);
+        if (!insertedActive && !builtInActive)
             return;
 
-        Spawn(capture.FlashEffect, Transform(capturer).Coordinates);
+        SpawnAttachedTo(capture.FlashEffect, Transform(capturer).Coordinates);
     }
 
     private bool ItemSlotsTryGetFlash(EntityUid capturer, out EntityUid flashUid)
@@ -457,6 +461,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
             else if (tileGrid is null)
             {
+                haveGrid = false;
+                haveGridRotation = false;
                 continue;
             }
 
@@ -763,7 +769,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             light.Softness,
             light.Falloff,
             light.CurveFactor,
-            light.CastShadows);
+            light.CastShadows,
+            light.Offset);
     }
 
     /// <summary>
@@ -778,7 +785,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         Box2 frameBox,
         Matrix3x2 worldToFrame,
         Angle frameRotation,
-        MapCoordinates viewer,
+        MapCoordinates _,
         int visMask,
         HashSet<Vector2i> supportTiles)
     {
@@ -827,16 +834,9 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 continue;
             }
 
-            var sourceCoordinates = new MapCoordinates(lightWorldPosition, mapId);
-            var maxSightRange = SightRange + frameRadius + radius;
-            if (!_examine.InRangeUnOccluded(
-                    viewer,
-                    sourceCoordinates,
-                    maxSightRange,
-                    blocker => blocker == uid))
-            {
-                continue;
-            }
+            // Support-only lights do not need to be directly visible to the viewer: they are rebuilt as
+            // invisible illumination sources, so a partition that hides the lamp itself does not prevent it
+            // from contributing light to the visible frame.
 
             snapshot.Entities.Add(new SnapshotEntity
             {
@@ -853,7 +853,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                     light.Comp1.Softness,
                     light.Comp1.Falloff,
                     light.Comp1.CurveFactor,
-                    light.Comp1.CastShadows),
+                    light.Comp1.CastShadows,
+                    light.Comp1.Offset),
             });
 
             _supportCaptured.Add(uid);

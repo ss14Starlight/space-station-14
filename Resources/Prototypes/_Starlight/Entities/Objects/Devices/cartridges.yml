@@ -31,24 +31,24 @@
       sprite: _Starlight/Interface/Misc/program_icons.rsi
       state: camera
   - type: PhotoCartridge
-    GrantedComponents:
-      SnapshotCapture:
-        snapshot: SnapshotPhotograph
-        zoomLevels:
-        - 9,7
-        - 7,5
-        - 5,3
-        - 3,3
-        - 1,1
-      Flash:
-        flashOnUse: false
-        flashOnRangedInteract: false
-        flashOnMelee: false
-        sound:
-          path: /Audio/Misc/camera_snap.ogg
-      LimitedCharges:
-        maxCharges: 4
-      AutoRecharge:
-        rechargeDuration: 60
-      UseDelay:
-        delay: 1
+    grantedComponents:
+    - type: SnapshotCapture
+      snapshot: SnapshotPhotograph
+      zoomLevels:
+      - 9,7
+      - 7,5
+      - 5,3
+      - 3,3
+      - 1,1
+    - type: Flash
+      flashOnUse: false
+      flashOnRangedInteract: false
+      flashOnMelee: false
+      sound:
+        path: /Audio/Misc/camera_snap.ogg
+    - type: LimitedCharges
+      maxCharges: 4
+    - type: AutoRecharge
+      rechargeDuration: 60
+    - type: UseDelay
+      delay: 1

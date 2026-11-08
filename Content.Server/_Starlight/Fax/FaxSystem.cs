@@ -92,9 +92,6 @@ public sealed partial class FaxSystem
             { FaxConstants.FaxMetaSentAt, GetTimeStamp() }
         };
 
-        if (printout.PhotographData is { } photographData)
-            payload[FaxConstants.FaxPaperPhotographData] = photographData;
-
         _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, payload);
         _audioSystem.PlayPvs(component.SendSound, uid);
         component.SendTimeoutRemaining += component.SendTimeout;

@@ -56,14 +56,3 @@
 - type: !PartialOnly entity
   id: NukeCodePaper
   suffix: Random
-
-- type: !PartialOnly entity
-  id: Paper
-  components:
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      Paper: 100
-  - type: Tag
-    tags:
-    - Sheet

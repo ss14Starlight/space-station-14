@@ -219,7 +219,8 @@ public record struct SnapshotLight(
     float Softness,
     float Falloff,
     float CurveFactor,
-    bool CastShadows);
+    bool CastShadows,
+    Vector2 Offset = default);
 
 /// <summary>
 /// Humanoid appearance needed to rebuild a character as a lobby-style doll.

@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Snapshots;
+using Content.Shared.Popups;
 using Robust.Client.UserInterface;
 using Robust.Shared.Graphics;
 
@@ -53,6 +54,18 @@ public sealed partial class SnapshotViewBoundUserInterface(EntityUid owner, Enum
         Snapshot = snapshot;
 
         EntMan.System<ClientSnapshotViewSystem>().QueueBuild(this, snapshot);
+    }
+
+    /// <summary>
+    /// Shows a visible failure message and closes this UI when the server never delivered a snapshot.
+    /// </summary>
+    public void ShowSnapshotFailure()
+    {
+        EntMan.System<SharedPopupSystem>().PopupClient(
+            Loc.GetString("snapshot-capture-failed"),
+            Owner,
+            Owner);
+        Close();
     }
 
     /// <summary>

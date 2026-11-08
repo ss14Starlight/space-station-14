@@ -17,6 +17,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.IdentityManagement;
 using Content.Shared.MassMedia.Components;
 using Content.Shared.MassMedia.Systems;
+using Content.Shared.PDA;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Server;
@@ -170,6 +171,15 @@ public sealed partial class NewsSystem : SharedNewsSystem
         if (!CanUse(msg.Actor, ent.Owner))
             return;
 
+        // Starlight Start
+        var title = msg.Title.Trim();
+        var content = msg.Content.Trim();
+        var snapshotData = GetAttachedPhotoData(ent);
+
+        if (snapshotData is not null && snapshotData.Length > MaxArticleSnapshotLength)
+            return;
+        // Starlight End
+
         ent.Comp.PublishEnabled = false;
         ent.Comp.NextPublish = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.PublishCooldown);
 
@@ -177,9 +187,10 @@ public sealed partial class NewsSystem : SharedNewsSystem
         RaiseLocalEvent(tryGetIdentityShortInfoEvent);
         string? authorName = tryGetIdentityShortInfoEvent.Title;
 
-        var title = msg.Title.Trim();
-        var content = msg.Content.Trim();
-        var snapshotData = GetAttachedPhotoData(ent); // Starlight
+        // Starlight edit Start: Moved Up
+        // var title = msg.Title.Trim();
+        // var content = msg.Content.Trim();
+        // Starlight edit End: Moved Up
 
         if (TryAddNews(ent, title, content, out var article, authorName, msg.Actor, snapshotData)) // Starlight Edit: Added snapshotData
         {
@@ -321,6 +332,11 @@ public sealed partial class NewsSystem : SharedNewsSystem
                 TryReactToCurrentArticle(ent, GetEntity(args.LoaderUid), false);
                 break;
             case NewsReaderUiAction.ViewPhoto:
+                if (!_ui.TryGetOpenUi(GetEntity(args.LoaderUid), PdaUiKey.Key, out _))
+                {
+                    return;
+                }
+
                 TrySendNewsArticlePhoto(ent, args.Actor);
                 return;
             // Starlight-edit: end
