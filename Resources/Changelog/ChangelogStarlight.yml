@@ -1,20 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Downpour) More Holopads to rooms that were missing them.
-    type: Add
-  id: 409845
-  time: '2026-10-28T07:32:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6897
-- author: Makeshift
-  changes:
-  - message: (Downpour) Widened the maintenance path between the reactor and atmos.
-    type: Fix
-  id: 409846
-  time: '2026-10-28T07:32:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6897
-- author: Makeshift
-  changes:
   - message: (Downpour) Fixed two unpowered maintenance doors near security.
     type: Fix
   id: 409847
@@ -2799,4 +2785,18 @@ Entries:
   id: 410244
   time: '2026-11-08T07:27:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7110
+- author: Caws
+  changes:
+  - message: (Starboard) Added Gunnery Sergeant.
+    type: Add
+  id: 410245
+  time: '2026-11-08T08:09:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7111
+- author: Caws
+  changes:
+  - message: (Starboard) Radio Studio has been upgraded, adding radio mixer, CD player, and radio broadcast recorder.
+    type: Add
+  id: 410246
+  time: '2026-11-08T08:09:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7111
 Order: -1
