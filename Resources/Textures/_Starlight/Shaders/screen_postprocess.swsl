@@ -1,0 +1,72 @@
+light_mode unshaded;
+blend_mode none;
+
+uniform sampler2D SCREEN_TEXTURE;
+uniform sampler2D LIGHT_TEXTURE;
+uniform sampler2D BLOOM_TEXTURE;
+
+// 1 when LIGHT_TEXTURE holds this viewport's light map, 0 when the view is drawn unlit.
+uniform highp float lightAvailable;
+// How far poorly lit areas lose their colour and drift blue.
+uniform highp float nightVision;
+// How strongly glowing things bleed light around them.
+uniform highp float bloom;
+// How much the edges of the view are darkened.
+uniform highp float vignette;
+// Strength of the film grain.
+uniform highp float grain;
+
+const highp vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
+const highp vec3 SCOTOPIC = vec3(0.05, 0.55, 0.40);
+const highp vec3 NIGHT_TINT = vec3(0.78, 0.92, 1.18);
+
+const highp float NIGHT_DARK = 0.03;
+const highp float NIGHT_LIT = 0.2;
+
+highp float hash(highp vec2 p)
+{
+    highp vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+    p3 += dot(p3, p3.yzx + 33.33);
+    return fract((p3.x + p3.y) * p3.z);
+}
+
+void fragment()
+{
+    highp vec4 screen = zTextureSpec(SCREEN_TEXTURE, Pos);
+    highp vec3 color = screen.rgb;
+
+    if (nightVision > 0.0 && lightAvailable > 0.5)
+    {
+        highp vec3 lightRgb = texture2D(LIGHT_TEXTURE, Pos).rgb;
+        highp float light = max(lightRgb.r, max(lightRgb.g, lightRgb.b));
+        highp float night = (1.0 - smoothstep(NIGHT_DARK, NIGHT_LIT, light)) * nightVision;
+        highp float glow = max(max(color.r, max(color.g, color.b)) - light, 0.0);
+        night *= 1.0 - smoothstep(0.1, 0.4, glow);
+        color = mix(color, vec3(dot(color, SCOTOPIC)) * NIGHT_TINT, night);
+    }
+
+    if (bloom > 0.0)
+    {
+        highp vec3 halo = texture2D(BLOOM_TEXTURE, Pos).rgb * bloom;
+        color = 1.0 - (1.0 - color) * (1.0 - clamp(halo, 0.0, 1.0));
+    }
+
+    if (vignette > 0.0)
+    {
+        highp float aspect = SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x;
+        highp vec2 centered = (Pos - 0.5) * vec2(aspect, 1.0);
+        highp float dist = length(centered) / length(vec2(0.5 * aspect, 0.5));
+        color *= 1.0 - vignette * smoothstep(0.4, 1.0, dist);
+    }
+
+    if (grain > 0.0)
+    {
+        highp float frame = mod(floor(TIME * 24.0), 241.0);
+        highp vec2 cell = mod(FRAGCOORD.xy, 1024.0) + frame * vec2(17.0, 31.0);
+        highp float noise = hash(cell) - 0.5;
+        highp float luma = dot(color, LUMA);
+        color += noise * grain * smoothstep(0.0, 0.25, luma) * (1.0 - 0.5 * luma);
+    }
+
+    COLOR = vec4(clamp(color, 0.0, 1.0), screen.a);
+}
