@@ -1,46 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: Added a button to collapse the sidebar of the guidebook.
-    type: Add
-  id: 409839
-  time: '2026-10-27T19:24:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6895
-- author: Makeshift
-  changes:
-  - message: Added Downpour Station into the map pool! (20-100 Pop).
-    type: Add
-  id: 409840
-  time: '2026-10-28T07:32:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6897
-- author: Makeshift
-  changes:
-  - message: (Downpour) Added a new Cargo Shuttle.
-    type: Add
-  id: 409841
-  time: '2026-10-28T07:32:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6897
-- author: Makeshift
-  changes:
-  - message: (Downpour) Grinder and Electrolysis Unit to chemistry.
-    type: Add
-  id: 409842
-  time: '2026-10-28T07:32:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6897
-- author: Makeshift
-  changes:
-  - message: (Downpour) Firelocks to the science maints beach room.
-    type: Add
-  id: 409843
-  time: '2026-10-28T07:32:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6897
-- author: Makeshift
-  changes:
-  - message: (Downpour) Sprinkled more ATMs around.
-    type: Add
-  id: 409844
-  time: '2026-10-28T07:32:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6897
 - author: Makeshift
   changes:
   - message: (Downpour) More Holopads to rooms that were missing them.
@@ -2799,4 +2757,46 @@ Entries:
   id: 410238
   time: '2026-11-08T07:04:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7105
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Added Gunnery Sergeant.
+    type: Add
+  id: 410239
+  time: '2026-11-08T07:27:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7110
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Radio Studio has been upgraded, adding radio mixer, CD player, and radio broadcast recorder.
+    type: Add
+  id: 410240
+  time: '2026-11-08T07:27:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7110
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Psychology has been restored, added one Psychologist job slot.
+    type: Add
+  id: 410241
+  time: '2026-11-08T07:27:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7110
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Reduced the AI's vision outside of its AI Core.
+    type: Tweak
+  id: 410242
+  time: '2026-11-08T07:27:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7110
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Added shutters that the AI can close so that they don't shoot passerbys with their turrets as much.
+    type: Tweak
+  id: 410243
+  time: '2026-11-08T07:27:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7110
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Brigmedic gets a standard NanoMed Security now.
+    type: Fix
+  id: 410244
+  time: '2026-11-08T07:27:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7110
 Order: -1
