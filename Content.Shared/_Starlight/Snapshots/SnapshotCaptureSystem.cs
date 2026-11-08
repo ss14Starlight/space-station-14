@@ -64,6 +64,16 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
+        var cameraUid = ent.Owner;
+        var aiming = ent.Comp.Aiming;
+        var userUid = args.User;
+        args.Verbs.Add(new Verb
+        {
+            Text = Loc.GetString(aiming ? "snapshot-capture-lower" : "snapshot-capture-raise"),
+            Priority = 10,
+            Act = () => SetAiming(new Entity<SnapshotCaptureComponent?>(cameraUid, null), !aiming, userUid),
+        });
+
         if (ent.Comp.ZoomLevels.Count == 0)
         {
             return;
@@ -231,8 +241,7 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
 
         _charges.AddCharges((ent.Owner, charges, null), 1);
         args.Handled = true;
-        // Defer: the interaction system still touches args.Used after this event for particles.
-        PredictedDel(args.Used);
+        Del(args.Used);
         _popup.PopupClient(Loc.GetString("snapshot-film-loaded", ("charges", _charges.GetCurrentCharges((ent.Owner, charges, null))), ("max", charges.MaxCharges)), args.User, args.User);
     }
 
