@@ -78,17 +78,22 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     /// <summary>
     /// Gets access tags for terminal authorization. The Station AI has AllAccess on its entity,
     /// so we restrict it to StationAi access only here to prevent it from fulfilling Command/Captain auth groups.
+    /// Non-AI actors must have an ID card (preventing cyborgs).
     /// </summary>
     private ICollection<ProtoId<AccessLevelPrototype>> GetTerminalAccessTags(EntityUid actor)
     {
-        var tags = _access.FindAccessTags(actor);
         if (HasComp<StationAiHeldComponent>(actor))
         {
+            var tags = _access.FindAccessTags(actor);
             return tags.Contains(StationAiAccess)
                 ? new[] { StationAiAccess }
                 : Array.Empty<ProtoId<AccessLevelPrototype>>();
         }
-        return tags;
+
+        if (_idCard.TryFindIdCard(actor, out var idCard))
+            return _access.FindAccessTags(idCard.Owner);
+
+        return Array.Empty<ProtoId<AccessLevelPrototype>>();
     }
 
     private readonly Dictionary<(EntityUid StationUid, string RequestId), HashSet<SecureTerminalAdminApprovalEui>> _adminApprovalEuis = new();
@@ -574,7 +579,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             return;
         }
 
-        var tags = _access.FindAccessTags(actor);
+        var tags = GetTerminalAccessTags(actor);
         if (!comp.Admin && !tags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)"Command"))
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-request-denied"), actor, PopupType.Medium);
