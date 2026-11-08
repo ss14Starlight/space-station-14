@@ -192,7 +192,7 @@
   name: VM97
   id: Weaponpkashotgun
   parent: [ BaseContrabandTier2, WeaponProtoKineticAcceleratorBase, BaseSalvageContraband ]
-  description: The Vulcan Model 2497 "Wreck Sweeper", This one has been modified with a duct taped crusher dagger for stabbing and prying.
+  description: The Vulcan Model 2497 "Wreck Sweeper", modified with a duct taped crusher dagger for stabbing and prying.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Basic/vm97.rsi
