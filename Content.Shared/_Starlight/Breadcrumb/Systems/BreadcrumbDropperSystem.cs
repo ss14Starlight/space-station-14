@@ -1,17 +1,17 @@
+using System.Linq;
 using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared._Starlight.Breadcrumb.Components;
 using Content.Shared._Starlight.Breadcrumb.UI;
 using Content.Shared._Starlight.Light.Components;
 using Content.Shared._Starlight.Light.EntitySystems;
 using Content.Shared.Charges.Systems;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IgnitionSource;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
-using System.Linq;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -29,7 +29,6 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
     [Dependency] private SharedExpendableLightSystem _expendableLight = null!;
     [Dependency] private SharedUserInterfaceSystem _ui = null!;
     [Dependency] private IRobustRandom _random = null!;
-    [Dependency] private SharedHandsSystem _hands = null!;
     [Dependency] private MobStateSystem _mobState = null!;
 
     public override void Initialize()
@@ -39,6 +38,10 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
         // BUI messages aren't ByRefEvents so we can't use [SubscribeLocalEvent].
         SubscribeLocalEvent<BreadcrumbDropperComponent, BreadcrumbDropperColorMessage>(OnSelectColor);
     }
+
+    [SubscribeLocalEvent]
+    public void OnAutoHandleState(Entity<BreadcrumbDropperComponent> dropper, ref AfterAutoHandleStateEvent args)
+        => UpdateAppearance(dropper);
 
     [SubscribeLocalEvent]
     public void OnDropperMapInit(Entity<BreadcrumbDropperComponent> dropper, ref MapInitEvent args)
@@ -63,8 +66,7 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
         if (args.Handled)
             return;
 
-        Toggle(dropper, args.User);
-        args.Handled = true;
+        args.Handled = Toggle(dropper, args.User);
     }
 
     [SubscribeLocalEvent]
@@ -73,12 +75,7 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
         if (args.Handled)
             return;
 
-        // Activating is only permitted while held.
-        if (!_hands.IsHolding(args.User, dropper.Owner))
-            return;
-
-        Toggle(dropper, args.User);
-        args.Handled = true;
+        args.Handled = Toggle(dropper, args.User);
     }
 
     /// <summary>
@@ -162,8 +159,7 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
             Entity<BreadcrumbDropperComponent> dropper = (uid, dropperComp);
             Dirty(dropper);
 
-            // If whoever is holding us is dead, stop dropping. Prevents shenanigans like dragons leaving trails.
-            if (!_mobState.IsAlive(xform.ParentUid))
+            if (!CanBeActive(uid))
             {
                 StopSilently(dropper);
                 continue;
@@ -186,14 +182,32 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
     }
 
 
-    private void Toggle(Entity<BreadcrumbDropperComponent> dropper, EntityUid user)
+    private bool Toggle(Entity<BreadcrumbDropperComponent> dropper, EntityUid user)
     {
+        if (!dropper.Comp.Enabled && !CanBeActive(dropper))
+            return false;
+
         dropper.Comp.Enabled = !dropper.Comp.Enabled;
         Dirty(dropper);
         UpdateAppearance(dropper);
         _popup.PopupPredicted(
             Loc.GetString(dropper.Comp.Enabled ? dropper.Comp.LocToggleOn : dropper.Comp.LocToggleOff),
             dropper, user);
+        return true;
+    }
+
+    private bool CanBeActive(EntityUid uid)
+    {
+        var xformQuery = GetEntityQuery<TransformComponent>();
+        var current = uid;
+        while (xformQuery.TryGetComponent(current, out var xform) && xform.ParentUid.IsValid())
+        {
+            current = xform.ParentUid;
+            if (HasComp<MobStateComponent>(current))
+                return _mobState.IsAlive(current);
+        }
+
+        return false;
     }
 
     private void StopSilently(Entity<BreadcrumbDropperComponent> dropper)

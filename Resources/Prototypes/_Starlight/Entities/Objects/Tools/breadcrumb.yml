@@ -3,7 +3,7 @@
   abstract: true
   id: GlowstoneDropper
   name: glowstone bag
-  description: A bag for dropping glowstones as you walk. Finding home has never been so easy!
+  description: A fine leather bag, purpose-made for leaving a trail of glowstones as you walk. Never lose your way again! Refill with crystal shards.
   suffix: "Empty"
   components:
     - type: Transform
@@ -123,7 +123,7 @@
       turnOnBehaviourID: turn_on
       fadeOutBehaviourID: fade_out
       fadeGlowWithEnergy: true
-      glowReferenceEnergy: 3.5 # intentionally higher to dim it a little
+      glowReferenceEnergy: 3.5 # intentionally higher than the max energy to make it less intense
     - type: LightBehaviour
       behaviours:
         - !type:FadeBehaviour # fade in radius
