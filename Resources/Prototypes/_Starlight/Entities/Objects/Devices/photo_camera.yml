@@ -30,6 +30,9 @@
       types:
         Blunt: 0
   # Optional inserted flash, on the end of the camera. Without it the camera takes dark photos.
+  - type: ContainerContainer
+    containers:
+      flash: !type:ContainerSlot {}
   - type: ItemSlots
     slots:
       flash:
