@@ -129,7 +129,6 @@ namespace Content.Server.Communications
             if (msg.Actor is not { Valid: true } actor) return;
             if (!CanUse(actor, uid)) return;
             if (!TryComp<SecureCommandTerminalConsoleComponent>(uid, out var terminal) || !terminal.Enabled) return;
-            if (HasComp<StationAiHeldComponent>(actor)) return;
             _uiSystem.TryOpenUi(uid, SecureCommandTerminalUiKey.Key, actor);
         }
         // Starlight End
