@@ -29,7 +29,7 @@
           Slash: -8
     - type: Shadekin
       thresholds:
-        0.8: Low
+        0.6: Low
         5: Annoying
         10: High
         15: Extreme

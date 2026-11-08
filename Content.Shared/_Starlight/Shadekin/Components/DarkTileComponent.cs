@@ -6,7 +6,7 @@ namespace Content.Shared._Starlight.Shadekin.Components;
 public sealed partial class DarkTileComponent : Component
 {
     [DataField]
-    public float Threshold = 0.8f;
+    public float Threshold = 0.6f;
 
     [ViewVariables(VVAccess.ReadOnly), AutoPausedField]
     public TimeSpan NextUpdate = TimeSpan.Zero;
