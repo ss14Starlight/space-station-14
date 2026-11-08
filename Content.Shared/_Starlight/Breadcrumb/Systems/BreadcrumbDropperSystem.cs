@@ -113,7 +113,7 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
     private void OnSelectColor(EntityUid uid, BreadcrumbDropperComponent component, BreadcrumbDropperColorMessage args)
     {
         // Resolve the key against our own options so a bad/stale key from the client can't set an arbitrary color.
-        if (!component.ColorOptions.TryGetValue(args.ColorKey, out var color))
+        if (!component.ColorOptions.TryGetValue(args.Color, out var color))
             return;
 
         component.Color = color;

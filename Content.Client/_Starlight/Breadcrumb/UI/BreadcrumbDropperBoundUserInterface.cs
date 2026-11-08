@@ -17,14 +17,14 @@ public sealed partial class BreadcrumbDropperBoundUserInterface(EntityUid owner,
 
         _window = this.CreateWindow<BreadcrumbDropperWindow>();
         _window.OnSubmit += OnSubmitPressed;
-        
+
         if (EntMan.TryGetComponent<BreadcrumbDropperComponent>(Owner, out var dropper))
             _window.SetOptions(dropper.ColorOptions, dropper.Color);
     }
 
     private void OnSubmitPressed()
     {
-        if (_window?.CurrentColorKey is not { } key)
+        if (_window?.SelectedColor is not { } key)
             return;
 
         SendMessage(new BreadcrumbDropperColorMessage(key));

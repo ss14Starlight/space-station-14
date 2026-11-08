@@ -16,18 +16,13 @@ public sealed partial class ExpendableLightComponent : Component
     public bool Activated => CurrentState is ExpendableLightState.Lit or ExpendableLightState.Fading;
 
     /// <summary>
-    /// Absolute game time at which the current state began. Networked so any client (including one that just
-    /// entered PVS) can place itself in the state via <c>CurTime - StateStartTime</c> — the state end is
-    /// derived (<see cref="StateStartTime"/> + <see cref="StateDuration"/>) and the fade animation is seeked
-    /// to that elapsed offset instead of replaying from zero.
+    /// When the current state started.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public TimeSpan StateStartTime;
 
     /// <summary>
-    /// How long the current state lasts. For an unlit light this is the burn time the next ignition will use
-    /// (seeded from <see cref="GlowDuration"/>, adjusted by botany potency / refuelling); once Lit or Fading
-    /// it is that state's duration. The state ends at <see cref="StateStartTime"/> + this.
+    /// How long the current state lasts.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public TimeSpan StateDuration;
@@ -57,7 +52,7 @@ public sealed partial class ExpendableLightComponent : Component
     public TimeSpan RefuelMaximumDuration = TimeSpan.FromSeconds(60 * 15f * 2);
 
     [DataField]
-    public int PlantBurnTimeModifier; // Starlight Edit
+    public int PlantBurnTimeModifier;
 
     [DataField]
     public SoundSpecifier? LitSound;
@@ -101,16 +96,14 @@ public sealed partial class ExpendableLightComponent : Component
     public Color? GlowColorLit = null;
 
     /// <summary>
-    /// If true, the <see cref="ExpendableLightVisualLayers.Glow"/> layer's alpha tracks the point light's
-    /// (animated) energy while lit or fading, so an unshaded glow sprite fades in and out with the light
-    /// instead of snapping on and off.
+    /// Whether the <see cref="ExpendableLightVisualLayers.Glow"/> layer alpha matches the light energy.
     /// </summary>
     [DataField]
     public bool FadeGlowWithEnergy;
 
     /// <summary>
-    /// The point light energy that maps to a fully opaque glow layer when <see cref="FadeGlowWithEnergy"/>
-    /// is set. Usually the light's peak energy (the turn-on fade's end value).
+    /// The upper bound of light energy to compare against to determine a glow percentage.
+    /// E.g. if this is 3 and the light is 2, then the glow layer will be 66.66% opaque.
     /// </summary>
     [DataField]
     public float GlowReferenceEnergy = 1f;

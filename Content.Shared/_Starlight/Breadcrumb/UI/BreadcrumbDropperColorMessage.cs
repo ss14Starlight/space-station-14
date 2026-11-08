@@ -3,12 +3,10 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Starlight.Breadcrumb.UI;
 
 /// <summary>
-/// Sent when the player picks a preset color and hits submit in the glowstone dropper UI.
-/// Carries the preset key; the server resolves it against the dropper's ColorOptions.
-/// This is the only networked event the UI produces - no live sync.
+/// Sent when the player picks a preset color and hits submit in the UI.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class BreadcrumbDropperColorMessage(string colorKey) : BoundUserInterfaceMessage
+public sealed class BreadcrumbDropperColorMessage(string color) : BoundUserInterfaceMessage
 {
-    public string ColorKey = colorKey;
+    public string Color = color;
 }
