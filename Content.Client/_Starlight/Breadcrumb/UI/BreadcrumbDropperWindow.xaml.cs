@@ -10,7 +10,7 @@ public sealed partial class BreadcrumbDropperWindow : FancyWindow
     public Action? OnSubmit;
 
     /// <summary>
-    /// The preset key currently selected, or null if the dropper offers no options.
+    /// The key currently selected, or null if there are none.
     /// </summary>
     public string? CurrentColorKey => ColorSelector.SelectedMetadata as string;
 

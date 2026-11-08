@@ -3,6 +3,7 @@
   id: GlowstoneDropper
   name: glowstone bag
   description: A bag for dropping glowstones as you walk. Finding home has never been so easy!
+  suffix: "Empty"
   components:
     - type: Transform
       noRot: true
@@ -52,10 +53,27 @@
           type: BreadcrumbDropperBoundUserInterface
 
 - type: entity
+  parent: GlowstoneDropper
+  id: GlowstoneDropperFilled30
+  suffix: "Filled, 30"
+  components:
+    - type: LimitedCharges
+      lastCharges: 30
+
+- type: entity
+  parent: GlowstoneDropper
+  id: GlowstoneDropperFilled500
+  suffix: "Filled, 500"
+  components:
+    - type: LimitedCharges
+      lastCharges: 500
+
+- type: entity
   parent: BaseItem
   id: Glowstone
   name: glowstone
   description: A stone that glows for a while. Useful for tracking where you've been.
+  categories: [ HideSpawnMenu ]
   components:
     - type: Item
       size: Tiny

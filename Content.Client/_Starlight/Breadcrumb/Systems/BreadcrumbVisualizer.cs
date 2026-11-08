@@ -3,6 +3,9 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Starlight.Breadcrumb.Systems;
 
+/// <summary>
+/// Applies the set color to breadcrumbs.
+/// </summary>
 public sealed class BreadcrumbVisualizer : VisualizerSystem<BreadcrumbComponent>
 {
     protected override void OnAppearanceChange(EntityUid uid, BreadcrumbComponent component, ref AppearanceChangeEvent args)
