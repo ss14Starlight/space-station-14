@@ -543,8 +543,9 @@
   category: LanguageTraits
   cost: 2
   effects:
-    - !type:SpawnItemInHandEffect
+    - !type:SpawnItemAsImplantEffect
       item: BrainImplantNexus
+      slot: body_organ_slot_brain_implant
   requirements:
     - !type:TraitsRequirement
       traits:
