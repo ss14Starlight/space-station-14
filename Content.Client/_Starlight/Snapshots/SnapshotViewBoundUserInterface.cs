@@ -61,10 +61,14 @@ public sealed partial class SnapshotViewBoundUserInterface(EntityUid owner, Enum
     /// </summary>
     public void ShowSnapshotFailure()
     {
-        EntMan.System<SharedPopupSystem>().PopupClient(
-            Loc.GetString("snapshot-capture-failed"),
-            Owner,
-            Owner);
+        if (PlayerManager.LocalEntity is { } localEntity)
+        {
+            EntMan.System<SharedPopupSystem>().PopupClient(
+                Loc.GetString("snapshot-capture-failed"),
+                localEntity,
+                localEntity);
+        }
+
         Close();
     }
 

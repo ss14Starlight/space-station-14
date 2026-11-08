@@ -68,16 +68,6 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess)
             return;
 
-        var cameraUid = ent.Owner;
-        var aiming = ent.Comp.Aiming;
-        var userUid = args.User;
-        args.Verbs.Add(new Verb
-        {
-            Text = Loc.GetString(aiming ? "snapshot-capture-lower" : "snapshot-capture-raise"),
-            Priority = 10,
-            Act = () => SetAiming(new Entity<SnapshotCaptureComponent?>(cameraUid, null), !aiming, userUid),
-        });
-
         if (ent.Comp.ZoomLevels.Count == 0)
         {
             return;

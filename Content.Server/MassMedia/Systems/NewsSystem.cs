@@ -174,9 +174,9 @@ public sealed partial class NewsSystem : SharedNewsSystem
         // Starlight Start
         var title = msg.Title.Trim();
         var content = msg.Content.Trim();
-        var snapshotData = GetAttachedPhotoData(ent);
+        var (snapshotData, photoOversized) = GetAttachedPhotoData(ent);
 
-        if (snapshotData is not null && snapshotData.Length > MaxArticleSnapshotLength)
+        if (photoOversized)
             return;
         // Starlight End
 
@@ -332,7 +332,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
                 TryReactToCurrentArticle(ent, GetEntity(args.LoaderUid), false);
                 break;
             case NewsReaderUiAction.ViewPhoto:
-                if (!_ui.TryGetOpenUi(GetEntity(args.LoaderUid), PdaUiKey.Key, out _))
+                if (!_ui.IsUiOpen(GetEntity(args.LoaderUid), PdaUiKey.Key, args.Actor))
                 {
                     return;
                 }

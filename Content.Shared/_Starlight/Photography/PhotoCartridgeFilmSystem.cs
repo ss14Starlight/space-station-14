@@ -1,10 +1,10 @@
 using Content.Shared._Starlight.Snapshots;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Charges.Components;
-using Content.Shared.Charges.Systems;
 using Content.Shared.Flash.Components;
 using Content.Shared.Timing;
 using Robust.Shared.Containers;
+using Robust.Shared.GameStates;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Photography;
@@ -16,13 +16,14 @@ namespace Content.Shared._Starlight.Photography;
 public sealed partial class PhotoCartridgeFilmSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _containers = default!;
-    [Dependency] private SharedChargesSystem _charges = default!;
-    [Dependency] private UseDelaySystem _useDelay = default!;
-    [Dependency] private IGameTiming _timing = default!;
 
     private readonly Dictionary<EntityUid, CartridgePhotoState> _preservedState = [];
 
-    private sealed record CartridgePhotoState(int Charges, Dictionary<string, TimeSpan> RemainingDelays);
+    private sealed record CartridgePhotoState(IComponentState? ChargesState, IComponentState? UseDelayState);
+
+    [SubscribeLocalEvent]
+    private void OnLoaderComponentShutdown(Entity<MetaDataComponent> ent, ref ComponentShutdown args)
+        => _preservedState.Remove(ent.Owner);
 
     [SubscribeLocalEvent]
     private void OnCartridgeAdded(Entity<PhotoCartridgeComponent> ent, ref CartridgeAddedEvent args)
@@ -74,14 +75,12 @@ public sealed partial class PhotoCartridgeFilmSystem : EntitySystem
         if (!TryComp<LimitedChargesComponent>(loader, out var charges))
             return;
 
-        var delays = new Dictionary<string, TimeSpan>();
-        foreach (var (key, info) in new List<KeyValuePair<string, UseDelayInfo>>(
-                TryComp<UseDelayComponent>(loader, out var useDelayComponent) ? useDelayComponent.Delays : []))
-        {
-            delays[key] = info.EndTime > _timing.CurTime ? info.EndTime - _timing.CurTime : TimeSpan.Zero;
-        }
+        var chargeState = EntityManager.GetComponentState(EntityManager.EventBus, charges, null, GameTick.Zero);
+        IComponentState? useDelayState = null;
+        if (TryComp<UseDelayComponent>(loader, out var useDelayComponent))
+            useDelayState = EntityManager.GetComponentState(EntityManager.EventBus, useDelayComponent, null, GameTick.Zero);
 
-        _preservedState[loader] = new CartridgePhotoState(_charges.GetCurrentCharges((loader, charges, null)), delays);
+        _preservedState[loader] = new CartridgePhotoState(chargeState, useDelayState);
     }
 
     private void RestoreState(EntityUid loader)
@@ -91,22 +90,18 @@ public sealed partial class PhotoCartridgeFilmSystem : EntitySystem
 
         _preservedState.Remove(loader);
 
-        if (TryComp<LimitedChargesComponent>(loader, out var charges))
-            _charges.SetCharges((loader, charges), state.Charges);
-
-        if (TryComp<UseDelayComponent>(loader, out var useDelay))
+        if (state.ChargesState != null && TryComp<LimitedChargesComponent>(loader, out var charges))
         {
-            foreach (var (key, remaining) in state.RemainingDelays)
-            {
-                if (remaining <= TimeSpan.Zero)
-                {
-                    _useDelay.CancelDelay((loader, useDelay), key);
-                    continue;
-                }
+            var handleState = new ComponentHandleState(state.ChargesState, null);
+            EntityManager.EventBus.RaiseComponentEvent(loader, charges, ref handleState);
+            Dirty(loader, charges);
+        }
 
-                _useDelay.SetLength((loader, useDelay), remaining, key);
-                _useDelay.TryResetDelay((loader, useDelay), false, key);
-            }
+        if (state.UseDelayState != null && TryComp<UseDelayComponent>(loader, out var useDelay))
+        {
+            var handleState = new ComponentHandleState(state.UseDelayState, null);
+            EntityManager.EventBus.RaiseComponentEvent(loader, useDelay, ref handleState);
+            Dirty(loader, useDelay);
         }
     }
 }

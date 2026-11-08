@@ -463,7 +463,13 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             {
                 haveGrid = false;
                 haveGridRotation = false;
-                continue;
+                if (!_map.TryFindGridAt(new MapCoordinates(worldPosition, mapId), out tileGridUid, out tileGrid)
+                    || tileGrid == null)
+                {
+                    continue;
+                }
+
+                haveGrid = true;
             }
 
             var tileIndex = _map.WorldToTile(tileGridUid, tileGrid, worldPosition);

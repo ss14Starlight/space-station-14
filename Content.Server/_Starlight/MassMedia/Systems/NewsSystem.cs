@@ -46,19 +46,19 @@ public sealed partial class NewsSystem
         UpdateWriterUi(ent);
     }
 
-    private string? GetAttachedPhotoData(Entity<NewsWriterComponent> ent)
+    private (string? SnapshotData, bool Oversized) GetAttachedPhotoData(Entity<NewsWriterComponent> ent)
     {
         if (_itemSlots.GetItemOrNull(ent.Owner, PhotoSlotId) is not { } photo)
-            return null;
+            return (null, false);
 
         var data = _snapshotPersistence.GetSerializedData(photo);
         if (data is not null && data.Length > MaxArticleSnapshotLength)
         {
             _popup.PopupEntity(Loc.GetString("news-write-photo-too-large-popup"), ent, PopupType.SmallCaution);
-            return null;
+            return (data, true);
         }
 
-        return data;
+        return (data, false);
     }
 
     private void EjectAttachedPhoto(Entity<NewsWriterComponent> ent, EntityUid actor)
