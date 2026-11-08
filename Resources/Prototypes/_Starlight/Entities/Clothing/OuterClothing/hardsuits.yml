@@ -364,7 +364,7 @@
   parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterHardsuitSecurityExperimental
   name: experimental security hardsuit
-  description: A high-tech hardsuit that was meant to eventually replace the standard security hardsuit. Rumors has it that the first prototype was stolen by the Syndicate...
+  description: A high-tech hardsuit that was meant to eventually replace the standard security hardsuit. Rumor has it that the first prototype was stolen by the Syndicate...
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/experimental_security.rsi
@@ -403,9 +403,6 @@
           pitch: 0.7
           variation: 0.025
     - type: HeldSpeedModifier
-    - type: Tag
-      tags:
-        - RequiredForLmgTag
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitSecurityExperimental
 
