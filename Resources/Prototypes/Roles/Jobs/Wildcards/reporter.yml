@@ -28,15 +28,15 @@
   # Starlight Start
   storage:
     back:
+    - ClothingOuterPressArmor
+    - BlankPhotographBox
+    - Wrench
     - TapeRecorder
+    - PhotoCamera
+    - NetworkConfigurator
     - CassetteTape
     - CassetteTape
     - RubberStampReporter
-    - ClothingOuterPressArmor
-    - Wrench
-    - NetworkConfigurator
-    - PhotoCamera
-    - BlankPhotographBox
   # Starlight End
 
 - type: chameleonOutfit
