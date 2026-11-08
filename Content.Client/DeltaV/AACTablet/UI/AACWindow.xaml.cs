@@ -42,22 +42,22 @@ public sealed partial class AACWindow : FancyWindow
     private string _currentFilter = string.Empty;
     private int _columns = 4;
 
-    #endregion
-
-    private readonly IPrototypeManager _prototypeManager;
-    public event Action<string>? PhraseButtonPressed;
-
     /// <summary>
     /// A phrase together with its localized labels, so searching and rendering use the exact same strings.
     /// </summary>
     private sealed record PhraseEntry(QuickPhrasePrototype Prototype, string Text, string Group, string Tab);
+
+    #endregion
+
+    private readonly IPrototypeManager _prototypeManager;
+    public event Action<string>? PhraseButtonPressed;
 
     public AACWindow(AACBoundUserInterface ui, IPrototypeManager prototypeManager)
     {
         RobustXamlLoader.Load(this);
         _prototypeManager = prototypeManager;
 
-        //Starlight-start: AAC search bar edit. 
+        //Starlight-start: AAC search bar edit.
         _loc = IoCManager.Resolve<ILocalizationManager>();
 
         _allPhrases = _prototypeManager.EnumeratePrototypes<QuickPhrasePrototype>()
@@ -110,6 +110,8 @@ public sealed partial class AACWindow : FancyWindow
 
     private void RebuildTabs()
     {
+        if (WindowBody.ChildCount > 0)
+            WindowBody.CurrentTab = 0;
         WindowBody.RemoveAllChildren(); // Yeet.
         _buttonGrids.Clear();
 
