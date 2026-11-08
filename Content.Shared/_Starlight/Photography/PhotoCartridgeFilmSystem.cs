@@ -79,7 +79,7 @@ public sealed partial class PhotoCartridgeFilmSystem : EntitySystem
 
         var delays = new Dictionary<string, TimeSpan>();
         foreach (var (key, info) in new List<KeyValuePair<string, UseDelayInfo>>(
-                 TryComp<UseDelayComponent>(loader, out var useDelayComponent) ? useDelayComponent.Delays : []))
+                TryComp<UseDelayComponent>(loader, out var useDelayComponent) ? useDelayComponent.Delays : []))
         {
             delays[key] = info.EndTime > _timing.CurTime ? info.EndTime - _timing.CurTime : TimeSpan.Zero;
         }
