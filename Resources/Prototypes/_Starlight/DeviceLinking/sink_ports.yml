@@ -57,6 +57,8 @@
   id: RemoteControlControllable
   name: signal-port-name-remote-control-controllable
   description: signal-port-description-remote-control-controllable
+
+- type: sinkPort
   id: AirlockCyclerDoor
   name: signal-port-name-airlock-cycler-door
   description: signal-port-description-airlock-cycler-door

@@ -449,7 +449,8 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
                 || !sinkComponent.Ports.Contains(sink)
                 || !CanLink(userId, sourceUid, sinkUid, source, sink, true, sourceComponent))
             {
-                if (linkedPorts.Count == 0)
+                if (sourceComponent.LinkedPorts.TryGetValue(sinkUid, out var existingLinkedPorts)
+                    && existingLinkedPorts.Count == 0)
                     sourceComponent.LinkedPorts.Remove(sinkUid);
                 return false;
             }
