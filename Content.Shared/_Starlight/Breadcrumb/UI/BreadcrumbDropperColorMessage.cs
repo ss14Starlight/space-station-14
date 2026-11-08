@@ -8,7 +8,7 @@ namespace Content.Shared._Starlight.Breadcrumb.UI;
 /// This is the only networked event the UI produces - no live sync.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class GlowstoneDropperColorMessage(string colorKey) : BoundUserInterfaceMessage
+public sealed class BreadcrumbDropperColorMessage(string colorKey) : BoundUserInterfaceMessage
 {
     public string ColorKey = colorKey;
 }

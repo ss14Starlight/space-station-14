@@ -29,7 +29,34 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
         base.Initialize();
 
         // BUI messages aren't ByRefEvents, so subscribe this one explicitly rather than via [SubscribeLocalEvent].
-        SubscribeLocalEvent<BreadcrumbDropperComponent, GlowstoneDropperColorMessage>(OnSelectColor);
+        SubscribeLocalEvent<BreadcrumbDropperComponent, BreadcrumbDropperColorMessage>(OnSelectColor);
+    }
+
+    /// <summary>
+    /// Updating = Enabled (open/closed), the fill bucket derived from the current charges, and the dropping color
+    /// that tints the fill layer. Call this whenever any of those change so <c>BreadcrumbDropperVisualizer</c> can
+    /// keep the sprite in sync.
+    /// </summary>
+    private void UpdateAppearance(Entity<BreadcrumbDropperComponent> dropper)
+    {
+        _appearance.SetData(dropper, BreadcrumbDropperVisuals.Enabled, dropper.Comp.Enabled);
+        _appearance.SetData(dropper, BreadcrumbDropperVisuals.Color, dropper.Comp.Color);
+
+        var charges = ChargesSystem.GetCurrentCharges(dropper.Owner);
+        var level = charges switch
+        {
+            <= 0 => BreadcrumbDropperFillLevel.Empty,
+            < 25 => BreadcrumbDropperFillLevel.Low,
+            < 70 => BreadcrumbDropperFillLevel.Medium,
+            _ => BreadcrumbDropperFillLevel.High,
+        };
+        _appearance.SetData(dropper, BreadcrumbDropperVisuals.Fill, level);
+    }
+
+    [SubscribeLocalEvent]
+    public void OnDropperMapInit(Entity<BreadcrumbDropperComponent> dropper, ref MapInitEvent args)
+    {
+        UpdateAppearance(dropper);
     }
 
     /// <summary>
@@ -39,6 +66,8 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
     public void OnUseInHand(Entity<BreadcrumbDropperComponent> dropper, ref UseInHandEvent args)
     {
         dropper.Comp.Enabled = !dropper.Comp.Enabled;
+        Dirty(dropper);
+        UpdateAppearance(dropper);
         PopupSystem.PopupPredicted(
             Loc.GetString($"breadcrumb-dropper-toggle-{(dropper.Comp.Enabled ? "on" : "off")}"),
             dropper, args.User);
@@ -56,9 +85,9 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
         var user = args.User;
         args.Verbs.Add(new AlternativeVerb
         {
-            Text = Loc.GetString("glowstone-dropper-configure-verb"),
+            Text = Loc.GetString("breadcrumb-dropper-configure-verb"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
-            Act = () => _ui.TryOpenUi(dropper.Owner, GlowstoneDropperUiKey.Key, user),
+            Act = () => _ui.TryOpenUi(dropper.Owner, BreadcrumbDropperUiKey.Key, user),
         });
     }
 
@@ -66,13 +95,14 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
     /// The single networked event the color picker produces: apply the chosen preset to this dropper. Only newly
     /// dropped crumbs pick up the new color; ones already on the floor keep theirs.
     /// </summary>
-    private void OnSelectColor(EntityUid uid, BreadcrumbDropperComponent component, GlowstoneDropperColorMessage args)
+    private void OnSelectColor(EntityUid uid, BreadcrumbDropperComponent component, BreadcrumbDropperColorMessage args)
     {
         // Resolve the key against our own options so a bad/stale key from the client can't set an arbitrary color.
         if (!component.ColorOptions.TryGetValue(args.ColorKey, out var color))
             return;
 
         component.Color = color;
+        UpdateAppearance((uid, component));
         Dirty(uid, component);
     }
 
@@ -88,6 +118,7 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
             return;
 
         ChargesSystem.AddCharges((dropper, null), charges.Charges);
+        UpdateAppearance(dropper);
         QueueDel(args.Used);
         args.Handled = true;
     }
@@ -114,11 +145,13 @@ public abstract partial class SharedBreadcrumbDropperSystem : EntitySystem
             if (!ChargesSystem.TryUseCharge(uid))
             {
                 dropperComp.Enabled = false;
+                UpdateAppearance(dropper);
                 PopupSystem.PopupPredicted(Loc.GetString("breadcrumb-dropper-emptied"), dropper, null, PopupType.Medium);
                 continue;
             }
 
             Drop(dropper, xform);
+            UpdateAppearance(dropper);
         }
     }
 

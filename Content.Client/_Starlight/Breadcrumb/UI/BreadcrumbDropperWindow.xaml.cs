@@ -5,7 +5,7 @@ using Robust.Client.UserInterface.XAML;
 namespace Content.Client._Starlight.Breadcrumb.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class GlowstoneDropperWindow : FancyWindow
+public sealed partial class BreadcrumbDropperWindow : FancyWindow
 {
     public Action? OnSubmit;
 
@@ -14,7 +14,7 @@ public sealed partial class GlowstoneDropperWindow : FancyWindow
     /// </summary>
     public string? CurrentColorKey => ColorSelector.SelectedMetadata as string;
 
-    public GlowstoneDropperWindow()
+    public BreadcrumbDropperWindow()
     {
         RobustXamlLoader.Load(this);
 
@@ -23,7 +23,7 @@ public sealed partial class GlowstoneDropperWindow : FancyWindow
 
     /// <summary>
     /// Fill the dropdown from the dropper's YAML-defined color options and preselect the one matching its
-    /// current color. Each key maps to the label loc id glowstone-dropper-color-{key}.
+    /// current color. Each key maps to the label loc id breadcrumb-dropper-color-{key}.
     /// </summary>
     public void SetOptions(IReadOnlyDictionary<string, Color> options, Color current)
     {
@@ -33,7 +33,7 @@ public sealed partial class GlowstoneDropperWindow : FancyWindow
         var selectId = 0;
         foreach (var (key, color) in options)
         {
-            ColorSelector.AddItem(Loc.GetString($"glowstone-dropper-color-{key}"), i);
+            ColorSelector.AddItem(Loc.GetString($"breadcrumb-dropper-color-{key}"), i);
             ColorSelector.SetItemMetadata(i, key);
             ColorSelector.SetItemColor(color);
 

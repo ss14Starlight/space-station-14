@@ -1,5 +1,6 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Breadcrumb.Components;
 
@@ -13,7 +14,7 @@ public sealed partial class BreadcrumbDropperComponent : Component
 
     /// <summary>
     /// The preset colors offered in the alt-click color picker, keyed by name (e.g. "white" -> "#ffffff").
-    /// The key doubles as the loc-id suffix for the dropdown label: glowstone-dropper-color-{key}.
+    /// The key doubles as the loc-id suffix for the dropdown label: breadcrumb-dropper-color-{key}.
     /// </summary>
     [DataField, AutoNetworkedField] public Dictionary<string, Color> ColorOptions = new();
 
@@ -42,4 +43,37 @@ public sealed partial class BreadcrumbDropperComponent : Component
     /// The dropping prototype to spawn.
     /// </summary>
     [DataField, AutoNetworkedField] public EntProtoId BreadcrumbPrototype = "Glowstone";
+
+    [DataField(required: true)] public LocId LocToggleOn;
+    [DataField(required: true)] public LocId LocToggleEmpty;
+    [DataField(required: true)] public LocId LocToggleOff;
+    [DataField(required: true)] public LocId LocEmptied;
+    [DataField(required: true)] public LocId LocRecharged;
+}
+
+[Serializable, NetSerializable]
+public enum BreadcrumbDropperVisuals
+{
+    /// <summary>Whether the bag is actively dropping (open) or not (closed).</summary>
+    Enabled,
+    /// <summary>How full the bag is, as one of the <see cref="BreadcrumbDropperFillLevel"/> buckets.</summary>
+    Fill,
+    /// <summary>The configured dropping color, which tints the fill layer.</summary>
+    Color
+}
+
+[Serializable, NetSerializable]
+public enum BreadcrumbDropperVisualLayers
+{
+    Base,
+    Fill
+}
+
+[Serializable, NetSerializable]
+public enum BreadcrumbDropperFillLevel
+{
+    Empty,  // no fill layer shown
+    Low,    // fill-1
+    Medium, // fill-2
+    High    // fill-3
 }

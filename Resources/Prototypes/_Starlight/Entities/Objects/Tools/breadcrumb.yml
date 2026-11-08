@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseItem
   id: GlowstoneDropper
-  name: glowstone dropper
-  description: A bag that drops glowstones as you walk. Going back has never been so easy!
+  name: glowstone bag
+  description: A bag for dropping glowstones as you walk. Finding home has never been so easy!
   components:
     - type: Transform
       noRot: true
@@ -13,10 +13,26 @@
     - type: Sprite
       sprite: _Starlight/Objects/Tools/Breadcrumb/bag.rsi
       layers:
-        - state: bag
+        - state: icon-closed
+          map: [ "enum.BreadcrumbDropperVisualLayers.Base" ]
+        - state: fill-2
+          map: [ "enum.BreadcrumbDropperVisualLayers.Fill" ]
+          visible: false
       noRot: true
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.BreadcrumbDropperVisuals.Enabled:
+          enum.BreadcrumbDropperVisualLayers.Base:
+            True: { state: icon-open }
+            False: { state: icon-closed }
     - type: BreadcrumbDropper
       dropRange: 4.5
+      locToggleOn: glowstone-bag-toggle-on
+      locToggleEmpty: glowstone-bag-toggle-empty
+      locToggleOff: glowstone-bag-toggle-off
+      locEmptied: glowstone-bag-emptied
+      locRecharged: glowstone-bag-recharged
       color: "#ffffff"
       colorOptions:
         white: "#ffffff"
@@ -28,12 +44,12 @@
         blue: "#0560fc"
         magenta: "#ff00ff"
     - type: LimitedCharges
-      maxCharges: 999999999
-      lastCharges: 50
+      maxCharges: 500
+      lastCharges: 0
     - type: UserInterface
       interfaces:
-        enum.GlowstoneDropperUiKey.Key:
-          type: GlowstoneDropperBoundUserInterface
+        enum.BreadcrumbDropperUiKey.Key:
+          type: BreadcrumbDropperBoundUserInterface
 
 - type: entity
   parent: BaseItem
@@ -51,8 +67,6 @@
       layers:
         - state: base
           map: [ "enum.ExpendableLightVisualLayers.Base" ]
-#        - state: light
-#          map: [  ]
         - state: light
           map: [ "enum.BreadcrumbVisualLayers.UnlitColor", "enum.ExpendableLightVisualLayers.Overlay" ]
           visible: true
@@ -110,4 +124,4 @@
     - type: Tag
     - type: SpaceGarbage
     - type: TimedDespawn
-      lifetime: 1500 # 25mins
+      lifetime: 1500 # 25mins, 5 mins after expiring

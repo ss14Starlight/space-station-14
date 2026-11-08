@@ -1,24 +1,25 @@
 
-breadcrumb-dropper-toggle-empty = The dropper is empty!
-breadcrumb-dropper-toggle-on = You turn on the dropper.
-breadcrumb-dropper-toggle-off = You turn off the dropper.
+# Glowstone Bag specific locale keys
+glowstone-bag-toggle-empty = The dropper is empty!
+glowstone-bag-toggle-on = You open the bag, ready to drop glowstones as you walk.
+glowstone-bag-toggle-off = You close the bag,
+glowstone-bag-emptied = The bag has ran out!
+glowstone-bag-recharged = You break the crystal into small glowstones, refilling your bag.
 
-breadcrumb-dropper-emptied = The dropper has ran out!
+# General breadcrumb dropper locale keys
+breadcrumb-dropper-configure-verb = Pick color
+breadcrumb-dropper-ui-window = Breadcrumb dropper
+breadcrumb-dropper-ui-color = Color
+breadcrumb-dropper-ui-color-tooltip = The color newly dropped breadcrumbs will take on.
+breadcrumb-dropper-ui-submit = Submit
 
-# Glowstone dropper color picker UI
-glowstone-dropper-configure-verb = Pick color
-glowstone-dropper-ui-window = Glowstone Dropper
-glowstone-dropper-ui-color = Color
-glowstone-dropper-ui-color-tooltip = The color newly dropped glowstones will glow.
-glowstone-dropper-ui-submit = Submit
-
-glowstone-dropper-color-white = White
-glowstone-dropper-color-red = Red
-glowstone-dropper-color-orange = Orange
-glowstone-dropper-color-yellow = Yellow
-glowstone-dropper-color-green = Green
-glowstone-dropper-color-cyan = Cyan
-glowstone-dropper-color-blue = Blue
-glowstone-dropper-color-magenta = Magenta
-glowstone-dropper-color-purple = Purple
-glowstone-dropper-color-pink = Pink
+breadcrumb-dropper-color-white = White
+breadcrumb-dropper-color-red = Red
+breadcrumb-dropper-color-orange = Orange
+breadcrumb-dropper-color-yellow = Yellow
+breadcrumb-dropper-color-green = Green
+breadcrumb-dropper-color-cyan = Cyan
+breadcrumb-dropper-color-blue = Blue
+breadcrumb-dropper-color-magenta = Magenta
+breadcrumb-dropper-color-purple = Purple
+breadcrumb-dropper-color-pink = Pink
