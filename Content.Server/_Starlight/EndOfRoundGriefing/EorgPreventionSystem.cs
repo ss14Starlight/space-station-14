@@ -178,9 +178,31 @@ public sealed partial class EorgPreventionSystem : SharedEorgPreventionSystem
         IsPending = false;
         BroadcastState();
         _chat.DispatchServerAnnouncement(Loc.GetString("eor-pacifism-unblocked"), Color.LimeGreen);
-        foreach (var uid in _pendingPacification.Where(uid => !TerminatingOrDeleted(uid)))
-            Pacify(uid);
+
+        // Mobs can reach Evac or CC while pacification is blocked, so the queue alone isn't enough.
+        var candidates = CollectPacificationCandidates();
+        candidates.AddRange(_pendingPacification.Except(candidates).ToList());
         _pendingPacification.Clear();
+        RemoveImmunePolymorphChains(ref candidates);
+
+        // The last threat may be mid-deletion, and the scan above still sees it.
+        foreach (var uid in candidates.Where(uid => !TerminatingOrDeleted(uid)))
+            Pacify(uid);
+    }
+
+    private List<EntityUid> CollectPacificationCandidates()
+    {
+        var candidates = new List<EntityUid>();
+
+        var mobMoverQuery = EntityQueryEnumerator<MobMoverComponent>();
+        while (mobMoverQuery.MoveNext(out var uid, out _))
+            SpreadPeaceQueueing(uid, ref candidates);
+
+        var mechQuery = EntityQueryEnumerator<MechComponent>();
+        while (mechQuery.MoveNext(out var uid, out _))
+            SpreadPeaceQueueing(uid, ref candidates);
+
+        return candidates;
     }
 
     #region Pacification checks
@@ -287,16 +309,7 @@ public sealed partial class EorgPreventionSystem : SharedEorgPreventionSystem
         BroadcastState();
         if (!IsEnabled) return;
 
-        var candidates = new List<EntityUid>();
-
-        // Collect candidate entities for pacification.
-        var mobMoverQuery = EntityQueryEnumerator<MobMoverComponent>();
-        while (mobMoverQuery.MoveNext(out var uid, out _))
-            SpreadPeaceQueueing(uid, ref candidates);
-
-        var mechQuery = EntityQueryEnumerator<MechComponent>();
-        while (mechQuery.MoveNext(out var uid, out _))
-            SpreadPeaceQueueing(uid, ref candidates);
+        var candidates = CollectPacificationCandidates();
 
         // Remove any candidates that are part of a polymorph chain where some immunity (OOC or job immunity) is at play.
         RemoveImmunePolymorphChains(ref candidates);
@@ -326,10 +339,24 @@ public sealed partial class EorgPreventionSystem : SharedEorgPreventionSystem
     }
 
     /// <summary>
-    /// If someone with <see cref="PreventEorgComponent"/> polymorphs, also apply it to their polymorph.
+    /// If someone with <see cref="PreventEorgComponent"/> or awaiting pacification polymorphs, carry that over to their
+    /// polymorph. <see cref="PolymorphedEvent"/> is only raised directed, and queued entities have no marker component.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnPolymorphed(EntityUid uid, PreventEorgComponent comp, PolymorphedEvent ev) => Pacify(ev.NewEntity);
+    private void OnPolymorphed(Entity<MetaDataComponent> ent, ref PolymorphedEvent ev)
+    {
+        if (!_pendingPacification.Contains(ent) && !HasComp<PreventEorgComponent>(ent))
+            return;
+
+        if (!IsPending)
+        {
+            Pacify(ev.NewEntity);
+            return;
+        }
+
+        if (!_pendingPacification.Contains(ev.NewEntity))
+            _pendingPacification.Add(ev.NewEntity);
+    }
 
     [SubscribeLocalEvent]
     private void OnEntityTerminating(ref EntityTerminatingEvent args)

@@ -9,6 +9,7 @@ using Content.Server.Nuke;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Doors.Components;
@@ -22,6 +23,7 @@ using Content.Shared.NukeOps;
 using Content.Shared.Zombies;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server._Starlight.EndOfRoundGriefing;
@@ -40,10 +42,11 @@ public sealed partial class EorgPreventionSystem
     [Dependency] private SubdermalImplantSystem _implant = null!;
     [Dependency] private EmergencyShuttleSystem _shuttle = null!;
     [Dependency] private SharedAirlockSystem _airlock = null!;
+    [Dependency] private SharedChargesSystem _charges = null!;
 
-    private const string FreedomImplantProtoId = "FreedomImplant";
+    private static readonly EntProtoId FreedomActionProtoId = "ActionActivateFreedomImplant";
 
-    private static readonly TimeSpan _nukeCheckInterval = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan NukeCheckInterval = TimeSpan.FromSeconds(1);
     private TimeSpan _nukeCheckAccumulator;
     private CancellationTokenSource? _cts;
 
@@ -62,7 +65,7 @@ public sealed partial class EorgPreventionSystem
 
     private readonly record struct ThreatArea(List<EntityUid?> EndGrids, EntityUid? CcMap, Box2? CcBounds);
 
-    private static readonly TimeSpan _deltaDelay = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan DeltaDelay = TimeSpan.FromSeconds(3);
 
     private readonly HashSet<EntityUid> _emergencyAccessAirlocks = [];
 
@@ -225,22 +228,32 @@ public sealed partial class EorgPreventionSystem
     [SubscribeLocalEvent]
     private void OnCuffed(Entity<CuffableComponent> ent, ref TargetHandcuffedEvent args)
     {
-        if (HasComp<ZombieComponent>(ent)) return; // Zeds need to die godo
-        if (_implant.TryGetImplants(ent, out var implants))
-            if (implants.Any(uid =>
-                {
-                    if (!TryComp<SubdermalImplantComponent>(uid, out var implant)) return false;
-                    return implant.ImplantAction == FreedomImplantProtoId;
-                }))
-                return;
+        if (HasComp<ZombieComponent>(ent) || HasUsableFreedomImplant(ent)) return;
         RemoveThreat(ent);
+    }
+
+    private bool IsRestrained(EntityUid uid) => _cuffable.IsCuffed(uid) && !HasUsableFreedomImplant(uid);
+
+    private bool HasUsableFreedomImplant(EntityUid uid)
+    {
+        if (!_implant.TryGetImplants(uid, out var implants))
+            return false;
+
+        return implants.Any(implantUid =>
+            TryComp<SubdermalImplantComponent>(implantUid, out var implant)
+            && implant.ImplantAction == FreedomActionProtoId
+            && implant.Action is { } action
+            && _charges.HasCharges(action, 1));
     }
 
     [SubscribeLocalEvent]
     private void OnZombified(ref EntityZombifiedEvent args)
     {
         if (!IsEnabled || !HasRoundEnded) return;
-        if (IsActiveThreat(args.Target, Transform(args.Target), GetThreatArea()))
+
+        if (_activeThreats.Contains(args.Target))
+            UpdateThreatAlerts();
+        else if (IsActiveThreat(args.Target, Transform(args.Target), GetThreatArea()))
             AddThreat(args.Target);
     }
 
@@ -276,10 +289,10 @@ public sealed partial class EorgPreventionSystem
             return;
 
         _nukeCheckAccumulator += TimeSpan.FromSeconds(frameTime);
-        if (_nukeCheckAccumulator < _nukeCheckInterval)
+        if (_nukeCheckAccumulator < NukeCheckInterval)
             return;
 
-        _nukeCheckAccumulator -= _nukeCheckInterval;
+        _nukeCheckAccumulator -= NukeCheckInterval;
         var area = GetThreatArea();
         RefreshNukieThreats(area);
         RefreshZombieThreats(area);
@@ -298,7 +311,7 @@ public sealed partial class EorgPreventionSystem
         _cSys.DispatchStationAnnouncement(cc, Loc.GetString("eor-zed-takeover"),
             Loc.GetString("eor-cassie"), colorOverride: Color.Red);
         _cts = new CancellationTokenSource();
-        Timer.Spawn(_deltaDelay, () => _alertLevel.SetLevel(cc, "delta", true, true, true, true), _cts.Token);
+        Timer.Spawn(DeltaDelay, () => _alertLevel.SetLevel(cc, "delta", true, true, true, true), _cts.Token);
     }
 
     private EntityUid? EnsureCentCommStation()
@@ -321,12 +334,9 @@ public sealed partial class EorgPreventionSystem
 
     private void RefreshNukieThreats(ThreatArea area)
     {
-        if (!IsNukeArmed(area))
-        {
-            foreach (var uid in _activeThreats.Where(uid => !HasComp<ZombieComponent>(uid)).ToList())
-                RemoveThreat(uid);
-            return;
-        }
+        foreach (var uid in _activeThreats.Where(uid => !HasComp<ZombieComponent>(uid)).ToList()
+            .Where(uid => !IsActiveThreat(uid, Transform(uid), area)))
+            RemoveThreat(uid);
 
         var query = EntityQueryEnumerator<NukeOperativeComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var xform))
@@ -356,7 +366,7 @@ public sealed partial class EorgPreventionSystem
 
         // Nukies are only a threat if the nuke and disk are near CC too.
         return HasComp<NukeOperativeComponent>(uid)
-            && !_cuffable.IsCuffed(uid)
+            && !IsRestrained(uid)
             && IsNukeArmed(area);
     }
 
