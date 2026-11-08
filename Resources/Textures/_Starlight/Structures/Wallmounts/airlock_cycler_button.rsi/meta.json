@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi, rotated into four wall-mount directions by Rinary for Starlight",
+    "copyright": "Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi, rotated into four wall-mount directions by Rinary for Starlight; frame, wired construction states by Rinary for Starlight",
     "size": {
         "x": 32,
         "y": 32
@@ -36,6 +36,14 @@
                     0.5
                 ]
             ]
+        },
+        {
+            "name": "frame",
+            "directions": 4
+        },
+        {
+            "name": "wired",
+            "directions": 4
         }
     ]
 }
