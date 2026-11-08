@@ -30,6 +30,7 @@ namespace Content.Client.Radiation.Overlays
         public RadiationPulseOverlay()
         {
             IoCManager.InjectDependencies(this);
+            ZIndex = -100; // Starlight
             _baseShader = _prototypeManager.Index(RadiationShader).Instance().Duplicate();
         }
 

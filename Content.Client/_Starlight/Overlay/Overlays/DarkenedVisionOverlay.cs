@@ -24,6 +24,7 @@ public sealed partial class DarkenedVisionOverlay : Overlay
     public DarkenedVisionOverlay()
     {
         IoCManager.InjectDependencies(this);
+        ZIndex = -60;
         _circleMaskShader = _prototypeManager.Index(_circleMaskShaderId).InstanceUnique();
     }
     protected override bool BeforeDraw(in OverlayDrawArgs args)

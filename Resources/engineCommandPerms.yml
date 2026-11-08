@@ -132,10 +132,8 @@
   - replay_recording_start
   - replay_recording_stop
 
-- Flags: QUERY
-  Commands:
-  - tippy
-  - tip
+# Starlight-edit: tippy and tip used to be listed here under QUERY, which let any admin with Query use them
+# on top of their own BROADCAST flag. They are content commands and take their flag from [AdminCommand].
 
 - Flags: DANGER
   Commands:

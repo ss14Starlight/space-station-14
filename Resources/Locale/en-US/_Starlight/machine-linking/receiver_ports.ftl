@@ -1,3 +1,6 @@
+signal-port-name-state = State
+signal-port-description-state = The state the device should match.
+
 signal-port-name-body-scanner-receiver = Operating Table
 signal-port-description-body-scanner-receiver = Sending info only to Operating Console about patient.
 
@@ -27,3 +30,10 @@ signal-port-description-turret-controller-sync-receiver = Shares armament and au
 
 signal-port-name-combustion-turbine-console-receiver = Combustion Turbine
 signal-port-description-combustion-turbine-console-receiver = Receives commands from a combustion turbine control console.
+
+signal-port-name-airlock-cycler-door = Airlock Controller
+signal-port-description-airlock-cycler-door = Lets an airlock controller bolt, close and open this door.
+signal-port-name-airlock-cycler-button = Airlock Controller
+signal-port-description-airlock-cycler-button = Asks the airlock controller to cycle towards this button's side.
+signal-port-name-airlock-cycler-device = Airlock Controller
+signal-port-description-airlock-cycler-device = Lets an airlock controller fill or empty the chamber with this vent, scrubber or pump.

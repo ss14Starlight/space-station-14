@@ -1,6 +1,7 @@
 ui-options-function-open-m-help = Open mentor help
 ui-options-function-jump = Jump
 ui-options-function-latch-struggle = Struggle (while latched)
+ui-options-function-hotbar-remove = Remove from hotbar
 ui-escape-connect-discord = Link Discord
 server-info-connect-discord-button = Link Discord
 ui-escape-connect-steam = Link Steam
@@ -47,8 +48,10 @@ ui-options-radio-chime-mute = Mute Radio Chimes
 
 ui-options-tab-ui = User Interface
 ui-options-ui-style = User Interface Style
+ui-options-classic-styling = Classic styling
 ui-options-style-theme = Color Theme
 ui-options-style-accent = Accent Color
+ui-options-style-secondary-accent = Secondary Accent Color
 ui-options-style-custom-accent = Use custom accent color
 ui-options-style-accent-custom = Custom
 ui-options-style-accent-theme = Theme
@@ -190,3 +193,17 @@ ui-options-handling-volume = Picking up and equipping:
 ui-options-combat-volume = Weapons and combat:
 ui-options-voice-volume = Voices and emotes:
 ui-options-announcement-volume = Announcements and alerts:
+ui-options-admin-sounds-volume = Admin sounds:
+ui-options-show-tippy = Show Tippy
+
+ui-options-atmosphere-label = Lighting and atmosphere
+ui-options-light-tonemap = Soft light
+ui-options-light-tonemap-tooltip = Rolls off bright spots where lights overlap, so sprites don't wash out.
+ui-options-night-vision = Night vision
+ui-options-night-vision-tooltip = Poorly lit areas lose their colour and turn cold blue, the way the eye sees in the dark.
+ui-options-vignette = Vignette
+ui-options-vignette-tooltip = Darkens the edges of the view.
+ui-options-bloom = Bloom
+ui-options-bloom-tooltip = Screens, lamps and other glowing things bleed light around them, most of all in the dark. Costs some performance.
+ui-options-film-grain = Film grain
+ui-options-film-grain-tooltip = Draws a light film grain over the view.

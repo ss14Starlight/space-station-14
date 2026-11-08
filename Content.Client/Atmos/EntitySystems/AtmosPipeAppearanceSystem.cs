@@ -90,13 +90,16 @@ public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanc
         // Starlight Start
 
         // Grabbing the color, moved up.
-        if (!_appearance.TryGetData<Color>(uid, PipeColorVisuals.Color, out var color, args.Component))
+        if (_appearance.TryGetData<Color>(uid, PipeColorVisuals.Color, out var color, args.Component))
+        {
+            // Apply color to all explicitly opted-in layers
+            foreach (var tintedLayer in component.ExtraColoredLayers)
+                if (_sprite.LayerMapTryGet((uid, args.Sprite), tintedLayer, out var tintedIndex, false))
+                    args.Sprite[tintedIndex].Color = color;
+        }
+        else
+            // No synced color (e.g. client-only preview dummy): keep the layer's prototype color.
             color = Color.White;
-
-        // Apply color to all explicitly opted-in layers
-        foreach (var tintedLayer in component.ExtraColoredLayers)
-            if (_sprite.LayerMapTryGet((uid, args.Sprite), tintedLayer, out var tintedIndex, false))
-                args.Sprite[tintedIndex].Color = color;
 
         // Starlight End
 
