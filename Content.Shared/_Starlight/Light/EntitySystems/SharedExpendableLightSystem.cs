@@ -51,9 +51,6 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
-        // Starlight: check every tick (no accumulator throttle) so the deadline comparison fires on the same
-        // synced tick on client and server. A per-side accumulator desynced the Fading->Dead transition and
-        // the client's misprediction briefly re-enabled the light -> a flicker as it went out.
         var now = _timing.CurTime;
         var query = EntityQueryEnumerator<ExpendableLightComponent>();
         while (query.MoveNext(out var uid, out var light))
@@ -232,8 +229,6 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
         }
     }
 
-    #region Starlight
-
     private void StartLoopedSound(Entity<ExpendableLightComponent> ent, EntityUid? user)
     {
         if (!_timing.IsFirstTimePredicted)
@@ -261,7 +256,6 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
     {
         ent.Comp.PlayingStream = _audio.Stop(ent.Comp.PlayingStream);
     }
-    #endregion
 
     private void OnExpLightInit(EntityUid uid, ExpendableLightComponent component, ComponentInit args)
     {
