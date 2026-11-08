@@ -1,4 +1,5 @@
-﻿using Content.Shared._Funkystation.Footprints;
+﻿using System.Numerics;
+using Content.Shared._Funkystation.Footprints;
 using Robust.Client.GameObjects;
 using Robust.Shared.Utility;
 
@@ -41,21 +42,35 @@ public sealed partial class FootprintSystem : EntitySystem
 
             _sprite.LayerSetOffset(layer, print.Offset);
             _sprite.LayerSetRotation(layer, print.Rotation);
+
+            // Alternating steps are opposite feet. Sprites are drawn as left feet, so the
+            // right-hand print is the mirrored one. Set every time so a reused layer can't
+            // keep a stale mirror.
+            _sprite.LayerSetScale(layer, new Vector2(print.Mirrored ? -1f : 1f, 1f));
             _sprite.LayerSetColor(layer, Color.White.WithAlpha(print.Alpha));
-            _sprite.LayerSetSprite(layer, new SpriteSpecifier.Rsi(entity.Comp.Sprites, GetState(print.State)));
+            _sprite.LayerSetSprite(layer, GetSprite(print.State, entity.Comp));
         }
 
         entity.Comp.RenderedPrintCount = entity.Comp.Prints.Count;
     }
 
-    private static string GetState(FootprintVisualState state) => state switch
+    // One arm per state keeps the sheet and the state name together, so adding a state
+    // cannot leave either behind.
+    private static SpriteSpecifier.Rsi GetSprite(FootprintVisualState state, FootprintComponent component) => state switch
     {
-        FootprintVisualState.Foot => "foot",
-        FootprintVisualState.Dragging1 => "dragging-1",
-        FootprintVisualState.Dragging2 => "dragging-2",
-        FootprintVisualState.Dragging3 => "dragging-3",
-        FootprintVisualState.Dragging4 => "dragging-4",
-        FootprintVisualState.Dragging5 => "dragging-5",
-        _ => "foot",
+        FootprintVisualState.Foot => new(component.Sprites, "foot"),
+        FootprintVisualState.Dragging1 => new(component.Sprites, "dragging-1"),
+        FootprintVisualState.Dragging2 => new(component.Sprites, "dragging-2"),
+        FootprintVisualState.Dragging3 => new(component.Sprites, "dragging-3"),
+        FootprintVisualState.Dragging4 => new(component.Sprites, "dragging-4"),
+        FootprintVisualState.Dragging5 => new(component.Sprites, "dragging-5"),
+        FootprintVisualState.Paw => new(component.SpeciesSprites, "paw"),
+        FootprintVisualState.Barefoot => new(component.SpeciesSprites, "barefoot"),
+        FootprintVisualState.Claw => new(component.SpeciesSprites, "claw"),
+        FootprintVisualState.Talon => new(component.SpeciesSprites, "talon"),
+        FootprintVisualState.Moth => new(component.SpeciesSprites, "moth"),
+        FootprintVisualState.Spider => new(component.SpeciesSprites, "spider"),
+        FootprintVisualState.Diona => new(component.SpeciesSprites, "diona"),
+        _ => new(component.Sprites, "foot"),
     };
 }

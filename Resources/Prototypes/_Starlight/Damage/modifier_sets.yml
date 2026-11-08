@@ -1,8 +1,8 @@
 - type: damageModifierSet
   id: Avali # Not as good as thick fur like the vulps, but still rather insulating.
   coefficients:
-    Cold: 0.6
-    Heat: 1.4
+    Cold: 0.8
+    Heat: 1.2
 
 - type: damageModifierSet
   id: TerrorSpider

@@ -31,10 +31,23 @@
   - type: FirelockOpener
 
 - type: !PartialOnly entity
+  id: MobBaseAncestor
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.VampireClassUiKey.Key:
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key:
+        type: VampireLocateBui
+
+- type: !PartialOnly entity
   id: MobBaseKobold
   components:
   - type: CosmicLapseForm # Kobolds inherit the monkey species ID, so lapse needs an explicit form
     form: CosmicLapseMobKobold
+  # Reptilian, so claws rather than the default barefoot shape.
+  - type: FootprintOwner
+    printState: Claw
 
 - type: !PartialOnly entity
   id: MobCorgiSmart
@@ -54,3 +67,52 @@
     tags:
     - DoorBumpOpener
     - VimPilot
+
+# Paw prints instead of the default foot sprite.
+- type: !PartialOnly entity
+  id: MobCorgiBaseTemplate
+  components:
+  - type: FootprintOwner
+    printState: Paw
+    footstepDistance: 0.25
+    minPrintVolume: 0.025
+    maxFootprintVolume: 0.05
+
+- type: !PartialOnly entity
+  id: MobCat
+  components:
+  - type: FootprintOwner
+    printState: Paw
+    footstepDistance: 0.25
+    minPrintVolume: 0.025
+    maxFootprintVolume: 0.05
+
+- type: !PartialOnly entity
+  id: MobFox
+  components:
+  - type: FootprintOwner
+    printState: Paw
+    footstepDistance: 0.25
+    minPrintVolume: 0.025
+    maxFootprintVolume: 0.05
+
+- type: !PartialOnly entity
+  id: MobMonkeySyndicateAgentNukeops
+  components:
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+  - type: !Append Tag
+    tags:
+    - CantBecomeRevolutionary
+
+- type: !PartialOnly entity
+  id: MobKoboldSyndicateAgentNukeops
+  components:
+  - type: !Append Tag
+    tags:
+    - CantBecomeRevolutionary
