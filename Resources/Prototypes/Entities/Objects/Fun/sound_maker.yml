@@ -258,7 +258,7 @@
 
 - type: entity
   abstract: true
-  parent: BaseItem # Starlight - moved BaseStash to RubberChicken, since the rubber duck is a 1x1 item, yet could stash 1x2 items inside
+  parent: [BaseItem, BaseStash]
   id: BaseRubberToy
   components:
   - type: Tag
@@ -314,7 +314,7 @@
     - ToyRubberDuck
 
 - type: entity
-  parent: [BaseRubberToy, BaseStash] # Starlight
+  parent: BaseRubberToy
   id: RubberChicken
   name: rubber chicken
   description: A stress inducing parody of nature's most delectable avian.
