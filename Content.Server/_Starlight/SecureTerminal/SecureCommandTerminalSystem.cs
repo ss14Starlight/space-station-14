@@ -75,6 +75,10 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     private static readonly SoundPathSpecifier AdminAlarmSound = new("/Audio/Misc/adminlarm.ogg");
     private static readonly ProtoId<AccessLevelPrototype> StationAiAccess = "StationAi";
 
+    /// <summary>
+    /// Gets access tags for terminal authorization. The Station AI has AllAccess on its entity,
+    /// so we restrict it to StationAi access only here to prevent it from fulfilling Command/Captain auth groups.
+    /// </summary>
     private ICollection<ProtoId<AccessLevelPrototype>> GetTerminalAccessTags(EntityUid actor)
     {
         var tags = _access.FindAccessTags(actor);
@@ -563,6 +567,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             return;
         }
 
+        // AI cannot cancel pending proposals to prevent a rogue/malfunctioning AI from spam-cancelling command requests.
         if (HasComp<StationAiHeldComponent>(actor))
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-request-denied"), actor, PopupType.Medium);
