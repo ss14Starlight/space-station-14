@@ -15,12 +15,6 @@
     - type: Clothing
       slots: BACK
       sprite: _Starlight/Clothing/Back/nullspaceteleporter.rsi
-    - type: IdClothingBlocker
-      freezeUser: false
-      allowedAccesses:
-        - Security
-        - Cadet
-        - Command
     - type: NullSpaceDrainer
     - type: TheDarkImmune
     - type: ResearchClient
