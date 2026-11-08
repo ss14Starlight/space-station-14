@@ -30,13 +30,12 @@
       prototypes:
         - MobJil
         - MobJil
-        - ShadowTree
-        - ShadowTree
+        - ShadekinShadow
         - ShadekinShadow
         - ShadekinShadow
         - ShadekinShadow
       rareChance: 0.1
       rarePrototypes:
-        - MobJilBig # BIG JIL
-        - MobJilBig # BIG JIL
-        - RawBluespaceCrystal10 # BLUESPACE CRYSTAL?
+        - MobJilBig
+        - MobJilBig
+        - RawBluespaceCrystal10

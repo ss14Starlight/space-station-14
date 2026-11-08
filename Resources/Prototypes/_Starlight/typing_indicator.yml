@@ -20,6 +20,7 @@
   idleState: malign0
   offset: -0.2, 0.1
   shader: unshaded
+
 - type: typingIndicator
   id: rodentia
   spritePath: /Textures/_Starlight/Effects/speech.rsi

@@ -239,7 +239,7 @@
             maxAmount: 7
             maxRange: 5
           spawns:
-            - DarkRandom
+            - DarkTile
             - ShadekinShadow
         - settings:
             spawnOnSuperCritical: true
@@ -247,7 +247,7 @@
             maxAmount: 200
             maxRange: 10
           spawns:
-            - DarkRandom
+            - DarkTile
         - settings:
             spawnOnShutdown: true
             maxAmount: 1

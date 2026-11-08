@@ -463,3 +463,6 @@ AirlockVirologyMaints: AirlockMaintVirologyLocked
 
 #2026-10-31 - Removing a unusued pistol prototype
 WeaponPistolSP8AR: WeaponPistolBlueguard
+
+#2026/11/07 - Dark Station Update
+DarkRandom: DarkTile

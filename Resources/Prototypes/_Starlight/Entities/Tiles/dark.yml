@@ -1,6 +1,5 @@
 - type: entity
   id: DarkTile
-  abstract: true
   name: Dark
   description: It's a strange, impenetrable darkness.
   placement:
@@ -59,22 +58,17 @@
           - Catwalk
     - type: TileEntityEffect
       effects:
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectTheDark
-        type: Add
-        time: 10
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectTheDark
+          type: Add
+          time: 10
     - type: OptionsVisualizer
       visuals:
         overlay:
-        - options: Default
-          data: { visible: true }
-        - options: ReducedMotion
-          data: { visible: false }
-
-- type: entity
-  id: DarkRandom
-  parent: DarkTile
-  components:
+          - options: Default
+            data: { visible: true }
+          - options: ReducedMotion
+            data: { visible: false }
     - type: RandomSprite
       available:
         - overlay:
