@@ -206,3 +206,15 @@
     sprite: Objects/Specific/Chapel/tanakh.rsi
   - type: Item
     sprite: Objects/Specific/Chapel/tanakh.rsi
+
+- type: entity
+  id: BibleBookOfLife
+  name: The Book Of life
+  parent: Bible ##will need a rework of life's bible in the future
+  description: "A holy book depicting the holy path towards eternal life and immortality"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/bookoflife.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/bookoflife.rsi
+##TODO add speak-out-loud prayers, function pending
