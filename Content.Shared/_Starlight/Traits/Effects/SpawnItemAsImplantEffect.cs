@@ -4,7 +4,6 @@ namespace Content.Shared._Starlight.Traits.Effects;
 
 /// <summary>
 /// Effect that spawns an item and attempts to implant it.
-/// If the player cannot hold the item, it is spawned at their feet.
 /// </summary>
 public sealed partial class SpawnItemAsImplantEffect : BaseTraitEffect
 {
@@ -13,6 +12,12 @@ public sealed partial class SpawnItemAsImplantEffect : BaseTraitEffect
     /// </summary>
     [DataField(required: true)]
     public EntProtoId Item = string.Empty;
+
+    /// <summary>
+    /// The entity prototype to spawn.
+    /// </summary>
+    [DataField(required: true)]
+    public string Slot = string.Empty;
 
     public override void Apply(TraitEffectContext ctx)
     {
