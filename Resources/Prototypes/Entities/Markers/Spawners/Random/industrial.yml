@@ -83,6 +83,7 @@
         - id: CableMVStack10
         - id: ToolboxElectricalFilled
         - id: ToolboxMechanicalFilled
+        - id: JerryCanFuel # Starlight Edit
       - !type:GroupSelector
         weight: 2
         children:
