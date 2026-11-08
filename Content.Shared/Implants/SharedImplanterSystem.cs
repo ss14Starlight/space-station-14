@@ -126,10 +126,11 @@ public abstract partial class SharedImplanterSystem : EntitySystem
 
     //Instantly implant something and add all necessary components and containers.
     //Set to draw mode if not implant only
-    public void Implant(EntityUid user, EntityUid target, EntityUid implanter, ImplanterComponent component)
+    //Returns whether an implant was actually implanted.
+    public bool Implant(EntityUid user, EntityUid target, EntityUid implanter, ImplanterComponent component) // Starlight: bool instead of void
     {
         if (!CanImplant(user, target, implanter, component, out var implant, out _))
-            return;
+            return false; // Starlight
 
         // Check if we are trying to implant a implant which is already implanted
         // Check AFTER the doafter to prevent "is it a fake?" metagaming against deceptive implants
@@ -138,7 +139,7 @@ public abstract partial class SharedImplanterSystem : EntitySystem
             var name = Identity.Name(target, EntityManager, user);
             var msg = Loc.GetString("implanter-component-implant-already", ("implant", implant), ("target", name));
             _popup.PopupEntity(msg, target, user);
-            return;
+            return false; // Starlight
         }
 
         //If the target doesn't have the implanted component, add it.
@@ -159,6 +160,7 @@ public abstract partial class SharedImplanterSystem : EntitySystem
         RaiseLocalEvent(target, ref ev);
 
         Dirty(implanter, component);
+        return true; // Starlight
     }
 
     public bool CanImplant(

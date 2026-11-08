@@ -61,10 +61,10 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
             //Implant self instantly, otherwise try to inject the target.
             if (args.User == target)
             {
-                Implant(target, target, uid, component);
-
-                // STARLIGHT: Check if this implanter should dissolve on use
-                if (component.DissolveOnUse)
+                // Starlight start: only dissolve if successfully implanted
+                var implanted = Implant(target, target, uid, component);
+                if (implanted && component.DissolveOnUse)
+                // Starlight end
                 {
                     // Queue the implanter for deletion (dissolve on use)
                     QueueDel(uid);
@@ -142,10 +142,10 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
         if (args.Cancelled || args.Handled || args.Target == null || args.Used == null)
             return;
 
-        Implant(args.User, args.Target.Value, args.Used.Value, component);
-
-        // STARLIGHT: Check if this implanter should dissolve on use
-        if (component.DissolveOnUse)
+        // Starlight start: only dissolve if successfully implanted
+        var implanted = Implant(args.User, args.Target.Value, args.Used.Value, component);
+        if (implanted && component.DissolveOnUse)
+        // Starlight end
         {
             // Queue the implanter for deletion (dissolve on use)
             QueueDel(args.Used.Value);
