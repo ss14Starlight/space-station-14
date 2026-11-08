@@ -1,18 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: The syndicate chameleon projector module now has a power cell hand so that standard cyborgs can recharge their projector!
-    type: Tweak
-  id: 409853
-  time: '2026-10-28T08:31:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6909
-- author: Sparlight
-  changes:
-  - message: Fixed being able to chameleon PDAs into collars.
-    type: Fix
-  id: 409854
-  time: '2026-10-28T08:31:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6911
 - author: Floximo
   changes:
   - message: Cyborg AA is now removed on client disconnect. Reconnect will restore them.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410252
   time: '2026-11-08T13:53:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7100
+- author: STARLIGHT TEAM
+  changes:
+  - message: Roundstart engineer cardboard boxes now have 10 plasteel instead of 30.
+    type: Tweak
+  id: 410253
+  time: '2026-11-08T14:18:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7029
+- author: STARLIGHT TEAM
+  changes:
+  - message: Roundstart engineer cardboard boxes now have 30 plastic.
+    type: Tweak
+  id: 410254
+  time: '2026-11-08T14:18:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7029
 Order: -1
