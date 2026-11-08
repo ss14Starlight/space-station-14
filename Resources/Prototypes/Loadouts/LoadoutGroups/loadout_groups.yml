@@ -627,6 +627,7 @@
   - BibleTorah
   - BibleTripitaka
   - BibleRigVeda # starlight end
+  - BibleBookOfLife
 
 - type: loadoutGroup
   id: JanitorHead
