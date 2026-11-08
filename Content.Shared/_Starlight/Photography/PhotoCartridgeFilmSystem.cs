@@ -27,10 +27,7 @@ public sealed partial class PhotoCartridgeFilmSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnCartridgeAdded(Entity<PhotoCartridgeComponent> ent, ref CartridgeAddedEvent args)
     {
-        var componentCount = ent.Comp.GrantedComponents.Count;
-        Log.Warning($"PhotoCartridge added to {ToPrettyString(args.Loader)} with {componentCount} granted components.");
         EntityManager.AddComponents(args.Loader, ent.Comp.GrantedComponents, removeExisting: false);
-        Log.Warning($"PhotoCartridge grant results for {ToPrettyString(args.Loader)}: Snapshot={HasComp<SnapshotCaptureComponent>(args.Loader)}, Flash={HasComp<FlashComponent>(args.Loader)}, LimitedCharges={HasComp<LimitedChargesComponent>(args.Loader)}, AutoRecharge={HasComp<AutoRechargeComponent>(args.Loader)}, UseDelay={HasComp<UseDelayComponent>(args.Loader)}.");
         RestoreState(args.Loader);
     }
 
