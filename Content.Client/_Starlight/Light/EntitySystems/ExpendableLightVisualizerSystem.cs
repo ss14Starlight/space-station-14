@@ -65,6 +65,7 @@ public sealed partial class ExpendableLightVisualizerSystem : VisualizerSystem<E
         switch (state)
         {
             case ExpendableLightState.Lit:
+            case ExpendableLightState.Fading:
                 if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), ExpendableLightVisualLayers.Overlay, out var layerIdx, true))
                 {
                     if (!string.IsNullOrWhiteSpace(comp.IconStateLit))
