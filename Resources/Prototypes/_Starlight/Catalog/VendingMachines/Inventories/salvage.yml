@@ -98,39 +98,39 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvagePKAUpgradeDamage
-  productEntity: PKAUpgradeDamage
+  id: VendorSalvagePKAUpgradeDamageAdv
+  productEntity: PKAUpgradeDamageAdv
   cost:
     SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 8
+      stock: 3
     - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvagePKAUpgradeRange
-  productEntity: PKAUpgradeRange
+  id: VendorSalvagePKAUpgradeRangeAdv
+  productEntity: PKAUpgradeRangeAdv
   cost:
     SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 8
+      stock: 3
     - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvagePKAUpgradeFireRate
-  productEntity: PKAUpgradeFireRate
+  id: VendorSalvagePKAUpgradeFireRateAdv
+  productEntity: PKAUpgradeFireRateAdv
   cost:
     SalvageTicket: 250
   categories:
     - SalvageEquipment
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 8
+      stock: 3
     - !type:BuyerAccessCondition
 
 - type: listing
