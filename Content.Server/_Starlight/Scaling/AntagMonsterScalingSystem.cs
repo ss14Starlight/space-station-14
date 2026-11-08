@@ -11,6 +11,8 @@ using Robust.Shared.Utility;
 using Content.Shared._Starlight.Scaling;
 using System.Linq;
 using Robust.Shared.Timing;
+using Content.Shared.FixedPoint;
+using Content.Shared.Mobs;
 
 namespace Content.Server._Starlight.Scaling;
 
@@ -23,7 +25,7 @@ public sealed partial class ScalingSystem : SharedScalingSystem
     [Dependency] private IGameTiming _timing = default!;
 
     private readonly Dictionary<EntityUid, double> _cachedPopulations = new();
-    private readonly HashSet<EntityUid> _pendingScaling = [];
+    private readonly Dictionary<EntityUid, TimeSpan> _pendingScaling = new();
 
     double _universalHealthWeight;
     int _populationBase;
@@ -31,6 +33,7 @@ public sealed partial class ScalingSystem : SharedScalingSystem
     double _salvageWeight;
     double _centcomWeight;
     private static readonly TimeSpan ScalingRetryInterval = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan ScalingRetryTimeout = TimeSpan.FromSeconds(30);
     private TimeSpan _nextScalingRetry;
 
     public override void Initialize()
@@ -50,8 +53,9 @@ public sealed partial class ScalingSystem : SharedScalingSystem
             return;
 
         _nextScalingRetry = _timing.CurTime + ScalingRetryInterval;
+        var now = _timing.CurTime;
 
-        foreach (var mob in _pendingScaling.ToArray())
+        foreach (var (mob, expiresAt) in _pendingScaling.ToArray())
         {
             if (!TryComp<AntagMonsterScalingComponent>(mob, out var scalingComp))
             {
@@ -59,7 +63,7 @@ public sealed partial class ScalingSystem : SharedScalingSystem
                 continue;
             }
 
-            if (TryScaling(mob, scalingComp))
+            if (TryScaling(mob, scalingComp) || now >= expiresAt)
                 _pendingScaling.Remove(mob);
         }
     }
@@ -84,7 +88,7 @@ public sealed partial class ScalingSystem : SharedScalingSystem
         if (TryScaling(mob, scalingComp))
             _pendingScaling.Remove(mob);
         else
-            _pendingScaling.Add(mob);
+            _pendingScaling.TryAdd(mob, _timing.CurTime + ScalingRetryTimeout);
     }
 
     private bool TryScaling(EntityUid mob, AntagMonsterScalingComponent scalingComp)
@@ -95,17 +99,22 @@ public sealed partial class ScalingSystem : SharedScalingSystem
         if (!TryComp(mob, out MobThresholdsComponent? thresholdsComp))
             return false;
 
-        var station = _stationSystem.GetNearestStation(mob);
+        var nearestGrid = _stationSystem.GetNearestStation(mob);
+        var station = _stationSystem.GetOwningStation(nearestGrid);
 
-        if (!UpdatePopulation(station))
+        if (station is not { } stationUid || !UpdatePopulation(stationUid))
             return false;
 
-        scalingComp.OriginalThresholds = new();
+        if (scalingComp.OriginalThresholds == null)
+        {
+            scalingComp.OriginalThresholds = new();
 
-        foreach (var threshold in thresholdsComp.Thresholds)
-            scalingComp.OriginalThresholds.Add(threshold.Key, threshold.Value);
+            foreach (var threshold in thresholdsComp.Thresholds)
+                scalingComp.OriginalThresholds.Add(threshold.Key, threshold.Value);
+        }
 
-        ApplyHealthScaling(mob, station, scalingComp, thresholdsComp, _cachedPopulations, _universalHealthWeight);
+        if (!ApplyHealthScaling(mob, stationUid, scalingComp, thresholdsComp, _cachedPopulations, _universalHealthWeight))
+            return false;
 
         scalingComp.ScaledMaxHealth = thresholdsComp.Thresholds.Keys.Max();
         scalingComp.IsScaled = true;
