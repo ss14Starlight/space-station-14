@@ -1,13 +1,6 @@
 Entries:
 - author: redmushie
   changes:
-  - message: (Elkridge) Change Distro/Waste layers to match docking port standard.
-    type: Tweak
-  id: 409823
-  time: '2026-10-26T20:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6878
-- author: redmushie
-  changes:
   - message: (Elkridge) Map distro, waste and HV to every docking port.
     type: Add
   id: 409824
@@ -2799,4 +2792,11 @@ Entries:
   id: 410222
   time: '2026-11-07T19:55:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7081
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Ported upstream lizard laugh sound.
+    type: Tweak
+  id: 410223
+  time: '2026-11-08T04:56:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7115
 Order: -1
