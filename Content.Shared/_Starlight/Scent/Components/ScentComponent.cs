@@ -58,4 +58,11 @@ public sealed partial class ScentComponent : Component
     // Current tail of this entity's scent chain. A new emission only merges into this marker.
     [DataField]
     public EntityUid? LastMarkerEntity;
+
+    /// <summary>
+    /// Current tail of this entity's pollen marker chain.
+    /// Used to avoid repeated spatial lookups when emitting pollen.
+    /// </summary>
+    [DataField]
+    public EntityUid? LastPollenMarkerEntity;
 }

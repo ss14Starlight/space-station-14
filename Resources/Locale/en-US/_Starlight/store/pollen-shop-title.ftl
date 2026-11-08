@@ -13,7 +13,8 @@ pollen-tree-mushroom-name = Mushroom
 pollen-floral-t1-name = Distress Pollen
 pollen-floral-t1-desc = You'll release distress pollen automatically the moment you fall into critical condition.
 pollen-alert-pollen-self = You release a wave of distress pollen into the air.
-pollen-alert-pollen = You can feel distress pollen coming from near {$location}.
+pollen-alert-pollen-critical = {$user} is emitting distress pollen near {$position}.
+pollen-alert-pollen-dead = {$user} has died near {$position}.
 
 pollen-floral-t2-name = Blooming Moss
 pollen-floral-t2-desc = Cultivate a layer of insulating moss across your bark, blunting both heat and cold.
