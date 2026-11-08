@@ -45,6 +45,7 @@ public sealed partial class SleepinessOverlay : Robust.Client.Graphics.Overlay
     public SleepinessOverlay()
     {
         IoCManager.InjectDependencies(this);
+        ZIndex = -40;
         _statusEffects = _systemManager.GetEntitySystem<StatusEffectsSystem>();
         _shader = _prototypeManager.Index(_shaderId).InstanceUnique();
         _circleMaskShader = _prototypeManager.Index(_circleMaskShaderId).InstanceUnique();

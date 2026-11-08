@@ -29,7 +29,7 @@ public sealed partial class PollenSerumPerkComponent : Component
     /// The time between reagent injections.
     /// </summary>
     [DataField]
-    public TimeSpan Interval = TimeSpan.FromSeconds(60);
+    public TimeSpan Interval = TimeSpan.FromSeconds(30);
 
     /// <summary>
     /// The time when the next reagent injection is scheduled.

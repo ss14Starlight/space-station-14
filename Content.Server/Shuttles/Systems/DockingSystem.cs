@@ -46,7 +46,6 @@ namespace Content.Server.Shuttles.Systems
             SubscribeLocalEvent<DockingComponent, ComponentStartup>(OnStartup);
             SubscribeLocalEvent<DockingComponent, ComponentShutdown>(OnShutdown);
             SubscribeLocalEvent<DockingComponent, AnchorStateChangedEvent>(OnAnchorChange);
-            SubscribeLocalEvent<DockingComponent, ReAnchorEvent>(OnDockingReAnchor);
 
             SubscribeLocalEvent<DockingComponent, BeforeDoorAutoCloseEvent>(OnAutoClose);
 
@@ -88,6 +87,7 @@ namespace Content.Server.Shuttles.Systems
 
         private void OnShutdown(EntityUid uid, DockingComponent component, ComponentShutdown args)
         {
+            InvalidateRadarDockingPortStates(); // Starlight
             if (component.DockedWith == null ||
                 Comp<MetaDataComponent>(uid).EntityLifeStage > EntityLifeStage.MapInitialized)
             {
@@ -152,6 +152,7 @@ namespace Content.Server.Shuttles.Systems
 
         private void OnStartup(Entity<DockingComponent> entity, ref ComponentStartup args)
         {
+            InvalidateRadarDockingPortStates(); // Starlight
             var uid = entity.Owner;
             var component = entity.Comp;
 
@@ -176,25 +177,25 @@ namespace Content.Server.Shuttles.Systems
 
         private void OnAnchorChange(Entity<DockingComponent> entity, ref AnchorStateChangedEvent args)
         {
+            InvalidateRadarDockingPortStates(); // Starlight
             if (!args.Anchored)
             {
                 Undock(entity);
             }
         }
 
-        private void OnDockingReAnchor(Entity<DockingComponent> entity, ref ReAnchorEvent args)
+        [SubscribeLocalEvent]
+        private void OnDockingMove(Entity<DockingComponent> entity, ref MoveEvent args)
         {
-            var uid = entity.Owner;
-            var component = entity.Comp;
+            InvalidateRadarDockingPortStates();  // Starlight-edit
 
-            if (!component.Docked)
+            if (!entity.Comp.Docked || args.OnlyRotation) // Starlight-edit
                 return;
 
-            var otherDock = component.DockedWith;
-            var other = Comp<DockingComponent>(otherDock!.Value);
+            var other = Comp<DockingComponent>(entity.Comp.DockedWith!.Value);
 
             Undock(entity);
-            Dock((uid, component), (otherDock.Value, other));
+            Dock(entity, (entity.Comp.DockedWith.Value, other)); // Starlight-edit
             _console.RefreshShuttleConsoles();
         }
 

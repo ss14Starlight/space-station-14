@@ -3,6 +3,6 @@
 
 ### New Rules
 
-| Rule ID | Category | Severity | Notes                              |
-|---------|----------|----------|------------------------------------|
-| SL0001  | Usage    | Warning  | UseResPathCompletionParserAnalyzer |
+Rule ID | Category | Severity | Notes
+--------|----------|----------|-------
+SL0001 | Usage | Warning | UseResPathCompletionParserAnalyzer

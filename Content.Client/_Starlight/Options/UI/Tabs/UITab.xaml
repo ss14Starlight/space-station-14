@@ -12,6 +12,7 @@
                     <BoxContainer Orientation="Vertical" Margin="10 8" SeparationOverride="10">
                         <sui:StyleThemePicker Name="ThemePicker" />
                         <sui:AccentPicker Name="AccentPicker" />
+                        <sui:AccentPicker Name="SecondaryAccentPicker" />
                     </BoxContainer>
                 </PanelContainer>
 
@@ -23,6 +24,7 @@
                         <sui:OptionDropDown Name="DropDownUIScale" Title="{Loc 'ui-options-scale-label'}" />
                         <sui:OptionSlider Name="SeparatedChatWidthSlider" Title="{Loc 'ui-options-chat-width'}" />
                         <sui:OptionSlider Name="ChatWindowOpacitySlider" Title="{Loc 'ui-options-chat-window-opacity'}" />
+                        <CheckBox Name="ClassicDecorCheckBox" Text="{Loc 'ui-options-classic-styling'}" />
                     </BoxContainer>
                 </PanelContainer>
 
