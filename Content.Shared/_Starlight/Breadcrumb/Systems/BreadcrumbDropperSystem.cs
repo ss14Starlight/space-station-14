@@ -188,8 +188,8 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
         if (!dropper.Comp.Enabled && !CanBeActive(dropper))
             return false;
 
-        // Prevent activating when empty.
-        if (_charges.GetCurrentCharges(dropper.Owner) <= 0)
+        // Prevent activating when disabled empty.
+        if (!dropper.Comp.Enabled && _charges.GetCurrentCharges(dropper.Owner) <= 0)
         {
             _popup.PopupPredicted(Loc.GetString(dropper.Comp.LocToggleEmpty), dropper, user);
             return true;
