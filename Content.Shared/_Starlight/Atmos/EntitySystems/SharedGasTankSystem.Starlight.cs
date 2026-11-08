@@ -9,6 +9,7 @@ public abstract partial class SharedGasTankSystem
 {
     [Dependency] private INetManager _net = default!;
 
+    [SubscribeLocalEvent]
     private void OnStartup(Entity<GasTankComponent> ent, ref ComponentStartup args)
     {
         if (_net.IsClient && !IsClientSide(ent.Owner))
