@@ -284,8 +284,8 @@
     damage:
       types:
         Cold: 12
-        Structural: 5
-        Blunt: 3
+        Structural: 10
+        Blunt: 5
     soundHit:
       path: /Audio/_Starlight/CosmicCult/projectile_razor_hit.ogg
       params:
@@ -532,6 +532,24 @@
     ensnareFreedPrototype: BolaWeakened
     canMoveBreakout: true
     maxEnsnares: 1
+
+- type: entity
+  parent: BulletAcid
+  id: BulletTurretHarm
+  name: soul spit
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Poison: 10
+          Slash: 10
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+      layers:
+        - state: xeno_toxic
+    - type: Ammo
+      muzzleFlash: null
 
 - type: entity
   id: CosmicLambdaBeam

@@ -724,6 +724,14 @@ public sealed partial class GasTurbineSystem : EntitySystem
 
         using (args.PushGroup(nameof(GasTurbineComponent)))
         {
+            // Starlight Start
+            if (!comp.Ruined && TryComp<PowerSupplierComponent>(ent, out var supplier))
+            {
+                args.PushMarkup(Loc.GetString("teg-generator-examine-power", ("power", supplier.CurrentSupply)));
+                args.PushMarkup(Loc.GetString("teg-generator-examine-power-max-output", ("power", supplier.MaxSupply)));
+            }
+            // Starlight End
+
             if(comp.CurrentStator == null)
                 args.PushMarkup(Loc.GetString("gas-turbine-examine-stator-null"));
 

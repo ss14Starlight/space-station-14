@@ -61,6 +61,71 @@
     },
     {
       "name": "explosionrune"
+    },
+    {
+      "name": "cursedskullicon"
+    },
+    {
+      "name": "kniverune"
+    },
+    {
+      "name": "kniveruneanim",
+      "delays": [
+       [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.4]
+            ]
+     },
+    {
+      "name": "impale"
+    },
+    {
+      "name": "annihilation"
+    },
+    {
+      "name": "darkpassage"
+    },
+    {
+      "name": "fog"
+    },
+    {
+      "name": "summonharm"
+    },
+    {
+      "name": "gravity"
+    },
+    {
+      "name": "gravityrune",
+      "delays": [
+       [
+        0.2,
+        0.2,
+        0.2,
+        6]
+      ]
+    },
+    {
+      "name": "summonslow"
+    },
+    {
+      "name": "shadowjaunt"
+    },
+    {
+      "name": "totemweb",
+      "delays": [
+       [
+        0.5,
+        0.5,
+        0.5,
+        0.5]
+      ]
     }
   ]
 }

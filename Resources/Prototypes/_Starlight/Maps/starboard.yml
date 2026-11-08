@@ -50,6 +50,7 @@
             Roboticist: [ 3, 3 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
+            GunnerySergeant: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 2, 2 ]
             SecurityOfficer: [ 12, 12 ]

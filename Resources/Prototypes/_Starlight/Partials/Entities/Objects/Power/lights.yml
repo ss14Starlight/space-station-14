@@ -1,18 +1,46 @@
 - type: !PartialOnly entity
-  id: !type:CreateVariants
-    values:
-    - LedLightBulb
-    - DimLightBulb
-    - LightTubeOld
+  id: LightTube
   components:
   - type: LightBulb
-    dimmable: false
+    color: "#FFE2C8"
+    lightEnergy: 0.6
+    lightRadius: 7
+    lightSoftness: 1.5
 
 - type: !PartialOnly entity
   id: LedLightTube
   components:
   - type: LightBulb
-    lightRadius: 13
+    color: "#F6EFE4"
+    lightEnergy: 0.65
+    lightRadius: 8.5
+    lightSoftness: 1.3
+
+- type: !PartialOnly entity
+  id: LightBulb
+  components:
+  - type: LightBulb
+    lightEnergy: 0.65
+    lightSoftness: 1.4
+
+- type: !PartialOnly entity
+  id: LedLightBulb
+  components:
+  - type: LightBulb
+    color: "#F6EFE4"
+    lightEnergy: 0.6
+    lightRadius: 6.5
+    lightSoftness: 1.3
+    dimmable: false
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - DimLightBulb
+    - LightTubeOld
+  components:
+  - type: LightBulb
+    dimmable: false
 
 - type: !PartialOnly entity
   id: ExteriorLightTube
@@ -93,3 +121,17 @@
   components:
   - type: LightBulb
     color: "#7eeb4c"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values: [ BaseLightbulb, BaseLightTube ]
+  components:
+  - type: FlickeringBulb
+    brokenFlicker: Sparking
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values: [ LightBulbOld, LightTubeOld ]
+  components:
+  - type: FlickeringBulb
+    flicker: Aged

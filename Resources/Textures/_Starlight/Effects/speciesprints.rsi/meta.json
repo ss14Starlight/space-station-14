@@ -1,0 +1,46 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright.",
+    "states": [
+        {
+            "name": "paw",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Effects/crayondecals.rsi 'pawprint' state rotated 180 degrees. From https://github.com/tgstation/tgstation/blob/master/icons/effects/crayondecal.dmi at c6803492ab2a5e523aae7b9b1a9e847ba155f1cf, resprited by kipdotnet (github)."
+        },
+        {
+            "name": "claw",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Effects/crayondecals.rsi 'clawprint' state rotated 180 degrees. From https://github.com/tgstation/tgstation/blob/master/icons/effects/crayondecal.dmi at c6803492ab2a5e523aae7b9b1a9e847ba155f1cf, resprited by kipdotnet (github)."
+        },
+        {
+            "name": "barefoot",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Created by Pastres (github) for Starlight."
+        },
+        {
+            "name": "talon",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Created by Pastres (github) for Starlight."
+        },
+        {
+            "name": "moth",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Created by aegisshielddev (github) for Starlight."
+        },
+        {
+            "name": "spider",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Created by aegisshielddev (github) for Starlight."
+        },
+        {
+            "name": "diona",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Created by aegisshielddev (github) for Starlight."
+        }
+    ]
+}

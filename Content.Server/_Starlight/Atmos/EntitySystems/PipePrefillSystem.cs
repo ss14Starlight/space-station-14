@@ -75,6 +75,9 @@ public sealed partial class PipePrefillSystem : EntitySystem
             var air = pipeNode.Air;
             foreach (var (gas, fraction) in ent.Comp.Mixture)
                 air.AdjustMoles(gas, targetMoles * fraction / fractionTotal);
+
+            // Set the temperature.
+            air.Temperature = ent.Comp.Temperature;
         }
     }
 

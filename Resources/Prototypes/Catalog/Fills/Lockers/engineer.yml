@@ -51,6 +51,13 @@
         value: 3
     - id: SprayPainter
       prob: 0.7
+    # Starlight Start
+    - !type:GroupSelector
+      prob: 0.33
+      children:
+      - id: JerryCanEmpty
+      - id: JerryCanFuel
+    # Starlight End
 
 - type: entity
   id: LockerElectricalSuppliesFilled

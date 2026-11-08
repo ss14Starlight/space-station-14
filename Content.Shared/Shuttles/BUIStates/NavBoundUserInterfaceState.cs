@@ -10,9 +10,9 @@ namespace Content.Shared.Shuttles.BUIStates;
 public sealed class NavBoundUserInterfaceState : BoundUserInterfaceState
 {
     public NavInterfaceState State;
-    public DockingPortStates DockingPortStates; // Starlight
+    public DockingPortStates? DockingPortStates; // Starlight: null means unchanged
 
-    public NavBoundUserInterfaceState(NavInterfaceState state, DockingPortStates dockingPortStates) // Starlight: +dockingPortStates
+    public NavBoundUserInterfaceState(NavInterfaceState state, DockingPortStates? dockingPortStates) // Starlight: +dockingPortStates
     {
         State = state;
         DockingPortStates = dockingPortStates; // Starlight

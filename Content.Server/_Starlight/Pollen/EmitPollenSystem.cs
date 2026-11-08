@@ -1,5 +1,4 @@
 using Content.Shared.Botany.Components;
-using Content.Shared.Botany.Systems;
 using Content.Shared._Starlight.Pollen.Components;
 using Robust.Shared.Random;
 
@@ -78,7 +77,6 @@ public sealed partial class EmitPollenSystem : EntitySystem
         // Harvested products: resolve through Produce.PlantProtoId.
         if (TryComp<ProduceComponent>(uid, out var produce) &&
             produce.PlantProtoId is { } plantId)
-            //return NormalizePollenId(plantId.ToString());
             return plantId.ToString();
 
         // Growing plants: resolve through their product prototypes.

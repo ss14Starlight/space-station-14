@@ -27,6 +27,7 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared._Starlight.Abstract;
+using Content.Shared.Radiation.Systems;
 
 namespace Content.Server._Starlight.Energy.Supermatter;
 
@@ -45,6 +46,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ExplosionSystem _explosion = default!;
     [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedRadiationSystem _radiation = default!; // using upstream radiation system
 
     private readonly Dictionary<EntityUid, Entity<SupermatterComponent>> _supermatters = [];
     private DamageGroupPrototype? _brute;
@@ -212,8 +214,8 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
     private void HandleRadiation(Entity<SupermatterComponent> supermatter)
     {
         var radComp = EnsureComp<RadiationSourceComponent>(supermatter.Owner);
-        radComp.Intensity = supermatter.Comp.AccRadiation.Float();
-        radComp.Slope = Math.Max(0.15f, supermatter.Comp.AccRadiation.Float() / 10f); ///As radiation gets stronger, the slope increases, ensuring the rads don't pierce the entire fucking station
+        _radiation.SetIntensity(supermatter.Owner, supermatter.Comp.AccRadiation.Float()); // changed to use upstream radiation system
+        _radiation.SetSlope((supermatter.Owner, radComp), Math.Max(0.15f, supermatter.Comp.AccRadiation.Float() / 10f)); ///As radiation gets stronger, the slope increases, ensuring the rads don't pierce the entire fucking station
 
         supermatter.Comp.AccRadiation /= supermatter.Comp.RadiationStability;
     }

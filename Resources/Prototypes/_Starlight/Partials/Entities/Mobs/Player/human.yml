@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: MobHumanSyndicateAgentNukeops
+  components:
+  - type: !Append Tag
+    tags:
+    - CantBecomeRevolutionary

@@ -10,6 +10,20 @@ namespace Content.Shared._Starlight.Construction;
 public record struct ConstructionInteractAttemptEvent(EntityUid User, EntityUid Target, bool Canceled = false);
 
 /// <summary>
+/// Sent server -> client to tell the client that a ghost construction has cancelled.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class CancelStructureConstructionMessage(int ghostId, NetEntity? uid = null) : EntityEventArgs
+{
+    public readonly int GhostId = ghostId;
+
+    /// <summary>
+    ///     The entity that is now being constructed, if any.
+    /// </summary>
+    public readonly NetEntity? Uid = uid;
+}
+
+/// <summary>
 /// Sent client -> server to instantly finish every construction ghost the client has placed.
 /// </summary>
 [Serializable, NetSerializable]

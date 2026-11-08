@@ -11,6 +11,7 @@ public abstract partial class SharedRottingSystem
             return false;
 
         perishable.RotAfter = newTime;
+        DirtyField(uid, perishable, nameof(PerishableComponent.RotAfter));
         return true;
     }
 }

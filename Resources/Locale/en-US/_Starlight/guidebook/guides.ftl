@@ -92,6 +92,7 @@ guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
 guide-entry-sl-security-sop-permitacquisition-examples = Permit Examples
 guide-entry-sl-security-sop-specialsituations = Special Situations
 guide-entry-sl-security-sop-enemy-of-corporation = Enemies of the Corporation
+guide-entry-sl-security-sop-induced-mutiny = Induced Mutiny
 guide-entry-sl-security-sop-hostage-situations = Hostage Situations
 guide-entry-sl-security-sop-criminal-status = Criminal Status
 guide-entry-sl-security-ammo-types = Ammo Types

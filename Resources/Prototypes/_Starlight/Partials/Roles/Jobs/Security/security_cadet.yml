@@ -1,0 +1,4 @@
+
+- type: !PartialOnly job
+  id: SecurityCadet
+  antagScalingSecurityWeight: 0.25

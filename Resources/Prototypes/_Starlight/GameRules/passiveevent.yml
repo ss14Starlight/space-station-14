@@ -157,22 +157,11 @@
     occursDuringRoundEnd: false
     globalAnnouncement: false
     weight: 20
-    startAnnouncement: station-event-nightshift-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
-    endAnnouncement: station-event-nightshift-end-announcement
-    endAudio:
-      path: /Audio/Announcements/attention.ogg
+    # The night shift system announces the lights going down and back up.
     duration: 1200
     maxDuration: 1800
     maxOccurrences: 1
   - type: NightShiftRule
-    disableAnnouncement: station-event-nightshift-disable
-    enableAnnouncement: station-event-nightshift-enable
-    lightEnergyMultiplier: 0.5
-    permittedAlertLevels:
-      - green
-      - blue
 
 - type: entity
   parent: BaseGameRule

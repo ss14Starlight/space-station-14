@@ -445,7 +445,7 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
                     controlledBorg,
                     BorgUiKey.Key,
                     new OpenBoundInterfaceMessage());
-                SEntMan.EventBus.RaiseLocalEvent(controlledBorg, uiAttempt, broadcast: true);
+                SEntMan.EventBus.RaiseLocalEvent(controlledBorg, ref uiAttempt, broadcast: true);
                 Assert.That(uiAttempt.Cancelled, Is.False,
                     "The controller should be able to send BUI actions to a conscious borg.");
 
@@ -465,7 +465,7 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
                     controlledBorg,
                     BorgUiKey.Key,
                     new OpenBoundInterfaceMessage());
-                SEntMan.EventBus.RaiseLocalEvent(controlledBorg, uiAttempt, broadcast: true);
+                SEntMan.EventBus.RaiseLocalEvent(controlledBorg, ref uiAttempt, broadcast: true);
                 Assert.That(uiAttempt.Cancelled, Is.True,
                     "The controller should not be able to send BUI actions to an incapacitated borg.");
 

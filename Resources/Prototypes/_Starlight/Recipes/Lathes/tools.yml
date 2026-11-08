@@ -24,4 +24,12 @@
   materials:
     Steel: 1000
     Plasma: 500
-    BluespaceCrystal: 100 # SL
+    BluespaceCrystal: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: JerryCan
+  result: JerryCanEmpty
+  completetime: 3
+  materials:
+    Plastic: 400

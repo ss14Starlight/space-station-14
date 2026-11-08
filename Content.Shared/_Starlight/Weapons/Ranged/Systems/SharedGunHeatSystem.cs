@@ -60,10 +60,13 @@ public abstract partial class SharedGunHeatSystem : EntitySystem
             }
         }
 
+        SyncShotTemperature(ent);
         Dirty(ent);
     }
 
     protected virtual void AddShotHeat(Entity<GunHeatComponent> ent, int shots) { }
+
+    protected virtual void SyncShotTemperature(Entity<GunHeatComponent> ent) { }
 
     [SubscribeLocalEvent]
     private void OnAttemptShoot(Entity<GunHeatComponent> ent, ref AttemptShootEvent args)

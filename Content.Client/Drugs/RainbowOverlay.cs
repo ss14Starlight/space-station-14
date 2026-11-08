@@ -40,6 +40,7 @@ public sealed partial class RainbowOverlay : Overlay
     public RainbowOverlay()
     {
         IoCManager.InjectDependencies(this);
+        ZIndex = -20; // Starlight
 
         _statusEffects = _sysMan.GetEntitySystem<StatusEffectsSystem>();
 

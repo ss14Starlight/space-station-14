@@ -363,6 +363,8 @@
       - id: WeaponFlareGun
       - id: BarberScissors
       - id: TwinPointerKit # Starlight: Added twinpointer to maints loot
+      - id: JerryCanEmpty # Starlight Edit
+      - id: JerryCanWater # Starlight Edit
       - id: JetpackImprovisedFilled #Starlight
       - id: JailFree # Starlight
       - id: Flash0Use # Starlight

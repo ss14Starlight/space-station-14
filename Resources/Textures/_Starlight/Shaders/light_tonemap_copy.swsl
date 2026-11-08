@@ -1,0 +1,9 @@
+light_mode unshaded;
+blend_mode none;
+
+uniform highp vec2 targetSize;
+
+void fragment()
+{
+    COLOR = zTextureSpec(TEXTURE, FRAGCOORD.xy / targetSize);
+}

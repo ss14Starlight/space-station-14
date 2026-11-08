@@ -25,6 +25,10 @@ namespace Content.Client.UserInterface.Controls
 
         public EntityUid? Entity => SpriteView.Entity;
 
+        #region Starlight
+        private static readonly Color GhostFadeModulate = Color.DarkGray.WithAlpha(0.65f);
+        #endregion
+
         private bool _slotNameSet;
 
         private string _slotName = "";
@@ -226,6 +230,7 @@ namespace Content.Client.UserInterface.Controls
             SpriteView.SetEntity(ent);
             SpriteView.Visible = true;
             ProtoView.Visible = false;
+            ProtoView.Modulate = Color.White; // Starlight
             UpdateButtonTexture();
         }
 
@@ -235,16 +240,11 @@ namespace Content.Client.UserInterface.Controls
         public void SetPrototype(EntProtoId? proto, bool fade)
         {
             ProtoView.SetPrototype(proto);
+            ProtoView.Modulate = fade && proto != null ? GhostFadeModulate : Color.White; // Starlight
             SpriteView.Visible = false;
             ProtoView.Visible = true;
 
             UpdateButtonTexture();
-
-            if (ProtoView.Entity is not { } ent || !fade)
-                return;
-
-            var sprites = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<SpriteSystem>();
-            sprites.SetColor((ent.Owner, ent.Comp1), Color.DarkGray.WithAlpha(0.65f));
         }
 
         private void UpdateButtonTexture()

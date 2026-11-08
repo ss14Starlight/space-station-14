@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Audio;
 using Content.Shared.Administration;
 using Robust.Server.Player;
@@ -10,7 +11,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Administration.Commands;
 
-[AdminCommand(AdminFlags.Fun)]
+[AdminCommand(AdminFlags.Broadcast)] // Starlight-edit: was Fun
 public sealed partial class PlayGlobalSoundCommand : IConsoleCommand
 {
     [Dependency] private IEntityManager _entManager = default!;
@@ -88,6 +89,21 @@ public sealed partial class PlayGlobalSoundCommand : IConsoleCommand
         }
 
         audio = audio.AddVolume(-8);
+
+        // Starlight-start
+        var limits = _entManager.System<AdminLimitSystem>();
+        if (!limits.TryUseGlobalSound(shell.Player, out var remaining))
+        {
+            shell.WriteError(Loc.GetString("cmd-admin-limit-cooldown", ("seconds", MathF.Ceiling(remaining))));
+            return;
+        }
+
+        audio = audio.WithVolume(limits.ClampGlobalSoundVolume(shell.Player, audio.Volume));
+        _entManager.System<AutoDiscordLogSystem>().LogToDiscord(
+            Loc.GetString("autolog-global-sound", ("path", args[0]), ("volume", audio.Volume), ("count", filter.Count)),
+            shell.Player?.Name ?? "unknown");
+        // Starlight-end
+
         _entManager.System<ServerGlobalSoundSystem>().PlayAdminGlobal(filter, args[0], audio, replay);
     }
 

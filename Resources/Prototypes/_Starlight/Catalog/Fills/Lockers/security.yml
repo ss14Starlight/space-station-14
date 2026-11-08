@@ -218,3 +218,6 @@
         - id: TicketPad
         - id: ClothingHeadsetSecurity
         - id: ClothingOuterArmorBasic
+        - id: ClothingOuterHardsuitSergeant
+        - id: JetpackSecurityFilled
+        - id: ClothingShoesBootsMagSec

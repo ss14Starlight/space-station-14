@@ -8,3 +8,12 @@
   category: cargoproduct-category-name-emergency
   group: market
 
+- type: cargoProduct
+  id: EmergencyJerryCan
+  icon:
+    sprite: _Starlight/Objects/Tools/jerry_can.rsi
+    state: icon
+  product: CrateJerryCanWater
+  cost: 500
+  category: cargoproduct-category-name-emergency
+  group: market

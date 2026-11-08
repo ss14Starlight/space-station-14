@@ -2,7 +2,6 @@ using Content.Client.Changelog;
 using Content.Client.Info;
 using Content.Client.Lobby;
 using Content.Client.Message;
-using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.EscapeMenu;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared._Starlight.CCVar;
@@ -20,7 +19,6 @@ public sealed partial class LobbyGui : UIScreen
 {
     [Dependency] private IClientConsoleHost _consoleHost = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
-    [Dependency] private ChangelogManager _changelog = default!;
 
     public LobbyGui()
     {
@@ -40,6 +38,7 @@ public sealed partial class LobbyGui : UIScreen
 
         RulesButton.OnPressed += _ => new RulesAndInfoWindow().Open();
         GuidebookButton.OnPressed += _ => UserInterfaceManager.GetUIController<GuidebookUIController>().ToggleGuidebook();
+        ChangelogButton.OnPressed += _ => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
 
         _configurationManager.OnValueChanged(StarlightCCVars.LobbyChatWidth, _ => UpdateChatWidth(), true);
         ChatResizeHandle.OnDragStarted += () => _dragStartWidth = ChatColumn.SetWidth;
@@ -76,24 +75,13 @@ public sealed partial class LobbyGui : UIScreen
     protected override void EnteredTree()
     {
         base.EnteredTree();
-        _changelog.NewChangelogEntriesChanged += UpdateLinksHighlight;
-        UpdateLinksHighlight();
         Chat.Main = true;
     }
 
     protected override void ExitedTree()
     {
         base.ExitedTree();
-        _changelog.NewChangelogEntriesChanged -= UpdateLinksHighlight;
         Chat.Main = false;
-    }
-
-    private void UpdateLinksHighlight()
-    {
-        if (_changelog.NewChangelogEntries)
-            LinksButton.AddStyleClass(StyleClass.Negative);
-        else
-            LinksButton.RemoveStyleClass(StyleClass.Negative);
     }
 
     private const float MinChatWidth = 300;

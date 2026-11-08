@@ -1,0 +1,3 @@
+- type: !PartialOnly job
+  id: SecurityOfficer
+  antagScalingSecurityWeight: 1.0

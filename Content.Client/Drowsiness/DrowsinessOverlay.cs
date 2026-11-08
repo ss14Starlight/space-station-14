@@ -32,6 +32,7 @@ public sealed partial class DrowsinessOverlay : Overlay
     public DrowsinessOverlay()
     {
         IoCManager.InjectDependencies(this);
+        ZIndex = -50; // Starlight
 
         _statusEffects = _sysMan.GetEntitySystem<StatusEffectsSystem>();
 

@@ -11,3 +11,24 @@
     - wizard-item-restricted-2
     - wizard-item-restricted-3
     - wizard-item-restricted-4
+
+- type: entity
+  parent: [BaseItem, BaseMagicalContraband ]
+  id: ShadowSeal
+  name: shadow seal
+  description: A set of enchantments for a soulmancer to use before battle.
+  components:
+    - type: Sprite
+      sprite:  _Starlight/Objects/Magic/message.rsi
+      layers:
+        - state: shadowseal
+    - type: TriggerOnUse
+    - type: AddComponentsOnTrigger
+      targetUser: true
+      components:
+      - type: ThermalVision
+    - type: AddTagsOnTrigger
+      targetUser: true
+      tags:
+        - DarkWizard
+    - type: DeleteOnTrigger

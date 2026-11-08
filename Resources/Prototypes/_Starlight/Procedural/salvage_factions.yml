@@ -20,16 +20,16 @@
       prob: 0.9
     #revolver
     - proto: MobSovietComradeRevolver
-      cost: 20
+      cost: 10
       prob: 0.7
     #rifle
     - proto: MobSovietComradeAk
-      cost: 30
+      cost: 20
       prob: 0.5
     #boss / meeeh
     - proto: MobBearSoviet
       cost: 35
-      prob: 0.4
+      prob: 0.2
   difficulties:
     - Communist-Easy
     - Communist-Medium
@@ -117,9 +117,9 @@
   entries:
     - proto: MobHivebot
     - proto: MobHivebotRanged
-      cost: 6
+      cost: 2
     - proto: MobHivebotStrong
-      cost: 10
+      cost: 4
     - proto: MobPurrfusHostile
       cost: 5
     - proto: MobDerelictSiliconHostile
@@ -146,8 +146,7 @@
       cost: 5
       prob: 0.75
     - proto: MobArgocyteLeviathing
-      cost: 100
-      prob: 0.75
+      cost: 300
     - proto: MobArgocyteSwiper
       cost: 10
       prob: 0.75

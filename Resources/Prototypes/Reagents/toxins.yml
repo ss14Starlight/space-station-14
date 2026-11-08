@@ -108,11 +108,11 @@
         conditions:
         - !type:ReagentCondition
           reagent: ChloralHydrate
-          min: 0.26
+          min: 0.13
         - !type:MetabolizerTypeCondition
           type: [ Cyclorite ]
         reagent: ChloralHydrate
-        amount: 0.25
+        amount: 0.12
         # Starlight-End
 
 - type: reagent

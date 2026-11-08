@@ -1,0 +1,76 @@
+- type: entity
+  id: PKAUpgradeDamageExp
+  parent: BasePKAUpgrade
+  name: Experimental PKA modkit (damage)
+  description: An experimental modkit, sharpens projectiles into spikes before launching, at the cost of fire rate.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#ec9b2d"
+    - state: overlay-2
+      color: "#a71010"
+    - state: overlay-3
+      color: "#eb4c13"
+  - type: GunUpgrade
+    tags: [ GunUpgradeDamageExp ]
+    examineText: gun-upgrade-examine-text-damage
+  - type: GunUpgradeDamage
+    damage:
+      types:
+        Slash: 10
+  - type: GunUpgradeFireRate
+    coefficient: .6
+
+- type: entity
+  id: PKAUpgradeRangeExp
+  parent: BasePKAUpgrade
+  name: Experimental PKA modkit (range)
+  description: An experimental modkit, dramatically increases the speed of the projectile, at the cost of its structural damage.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#2decec"
+    - state: overlay-2
+      color: "#1012a7"
+    - state: overlay-3
+      color: "#1373eb"
+  - type: GunUpgrade
+    tags: [ GunUpgradeRangeExp ]
+    examineText: gun-upgrade-examine-text-range
+  - type: GunUpgradeSpeed
+    coefficient: 2
+  - type: GunUpgradeDamage
+    damage:
+      types:
+        Structural: -10
+
+- type: entity
+  id: PKAUpgradeFireRateExp
+  parent: BasePKAUpgrade
+  name: Experimental PKA modkit (fire rate)
+  description: An experimental modkit, dramatically increases firerate, at the cost of damage and projectile speed.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay-1
+      color: "#bbf134"
+    - state: overlay-2
+      color: "#07901b"
+    - state: overlay-3
+      color: "#9bf134"
+  - type: GunUpgrade
+    tags: [ GunUpgradeReloadSpeedExp ]
+    examineText: gun-upgrade-examine-text-reload
+  - type: GunUpgradeFireRate
+    coefficient: 3
+  - type: GunUpgradeSpeed
+    coefficient: .9
+  - type: GunUpgradeDamage
+    damage:
+      types:
+        Blunt: -7

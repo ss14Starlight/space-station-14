@@ -83,4 +83,44 @@ public abstract partial class SharedStationAiSystem
         _mind.TransferTo(mindId, brain);
         return true;
     }
+
+    /// <summary>
+    /// Ensures the core has a valid remote eye, creating and attaching one if needed.
+    /// </summary>
+    /// <remarks>
+    /// Returns false on clients when setup is needed because only the server can create remote eyes.
+    /// </remarks>
+    /// <param name="ent">The Station AI core to check.</param>
+    /// <returns>True if the core already has a valid remote eye or one was successfully created.</returns>
+    public bool EnsureRemoteEye(Entity<StationAiCoreComponent?> ent)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp, false))
+            return false;
+
+        var core = new Entity<StationAiCoreComponent>(ent.Owner, ent.Comp);
+        if (core.Comp.RemoteEntity is { Valid: true } remoteEye
+            && !TerminatingOrDeleted(remoteEye)
+            && HasComp<TransformComponent>(remoteEye))
+        {
+            return true;
+        }
+
+        if (_net.IsClient)
+            return false;
+
+        core.Comp.RemoteEntity = null;
+        ClearEye(core);
+
+        if (!SetupEye(core)
+            || core.Comp.RemoteEntity is not { Valid: true } newEye
+            || TerminatingOrDeleted(newEye)
+            || !HasComp<TransformComponent>(newEye))
+        {
+            return false;
+        }
+
+        AttachEye(core);
+
+        return true;
+    }
 }

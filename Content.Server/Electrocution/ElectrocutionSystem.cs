@@ -239,6 +239,7 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
                     electrified.SiemensCoefficient
                 );
             }
+            RaiseShockDealt(uid, targetUid, lastRet); // Starlight
             return lastRet;
         }
 
@@ -267,6 +268,7 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
                     true,
                     electrified.SiemensCoefficient);
             }
+            RaiseShockDealt(uid, targetUid, lastRet); // Starlight
             return lastRet;
         }
     }

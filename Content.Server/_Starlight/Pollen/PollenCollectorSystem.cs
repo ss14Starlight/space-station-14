@@ -32,7 +32,6 @@ public sealed partial class PollenCollectorSystem : EntitySystem
 
     private static readonly TimeSpan _checkInterval = TimeSpan.FromSeconds(1);
     private static readonly ProtoId<ReagentPrototype> _omnizine = "Omnizine";
-
     private readonly HashSet<Entity<ScentMarkerComponent>> _nearbyMarkers = new();
 
     public override void Initialize()

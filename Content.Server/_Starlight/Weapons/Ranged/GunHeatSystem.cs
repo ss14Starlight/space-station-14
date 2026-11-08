@@ -57,6 +57,12 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
         }
     }
 
+    protected override void SyncShotTemperature(Entity<GunHeatComponent> ent)
+    {
+        if (TryComp<TemperatureComponent>(ent, out var temperature))
+            ent.Comp.Temperature = temperature.CurrentTemperature;
+    }
+
     [SubscribeLocalEvent]
     private void OnModifyTemperature(EntityUid uid, GunHeatComponent component, ModifyChangedTemperatureEvent args)
     {

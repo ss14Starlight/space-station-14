@@ -29,6 +29,7 @@ using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Throwing;
+using Content.Shared.Radiation.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -416,11 +417,15 @@ public sealed partial class NuclearReactorSystem : EntitySystem
 
     private void ProcessCaseRadiation(EntityUid uid, NuclearReactorComponent reactor)
     {
-        var comp = EnsureComp<RadiationSourceComponent>(uid);
+        // Starlight start - using upstream radiation system
+        EnsureComp<RadiationSourceComponent>(uid);
 
         // Linear scaling up to maximum, logarithmic beyond that
-        comp.Intensity = (float)Math.Max(reactor.RadiationLevel <= reactor.MaximumRadiation ? reactor.RadiationLevel : reactor.MaximumRadiation + Math.Log(reactor.RadiationLevel - reactor.MaximumRadiation + 1), reactor.Melted ? reactor.MeltdownRadiation : 0);
+        var Intensity = (float)Math.Max(reactor.RadiationLevel <= reactor.MaximumRadiation ? reactor.RadiationLevel : reactor.MaximumRadiation + Math.Log(reactor.RadiationLevel - reactor.MaximumRadiation + 1), reactor.Melted ? reactor.MeltdownRadiation : 0);
+        // use the upstream radiation system
+        _entityManager.System<SharedRadiationSystem>().SetIntensity((uid, null), Intensity);
         reactor.RadiationLevel /= Math.Max(reactor.RadiationStability, 1);
+        // Starlight end
     }
 
     private static ReactorPartComponent?[] GetGridNeighbors(NuclearReactorComponent reactor, int x, int y, ReactorPartComponent?[] buffer)

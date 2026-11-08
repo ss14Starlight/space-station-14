@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration.UI;
 using Content.Server.EUI;
 using Content.Server.Explosion.EntitySystems;
@@ -12,7 +13,7 @@ using Robust.Server.GameObjects;
 
 namespace Content.Server.Administration.Commands;
 
-[AdminCommand(AdminFlags.Fun)]
+[AdminCommand(AdminFlags.Explosion)] // Starlight-edit: was Fun
 public sealed partial class OpenExplosionEui : LocalizedEntityCommands
 {
     [Dependency] private EuiManager _euiManager = default!;
@@ -33,12 +34,16 @@ public sealed partial class OpenExplosionEui : LocalizedEntityCommands
     }
 }
 
-[AdminCommand(AdminFlags.Fun)] // for the admin. Not so much for anyone else.
+[AdminCommand(AdminFlags.Explosion)] // for the admin. Not so much for anyone else. Starlight-edit: was Fun
 public sealed partial class ExplosionCommand : LocalizedEntityCommands
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private ExplosionSystem _explosion = default!;
     [Dependency] private TransformSystem _transform = default!;
+    #region Starlight
+    [Dependency] private AdminLimitSystem _limits = default!;
+    [Dependency] private AutoDiscordLogSystem _autoLog = default!;
+    #endregion
 
     public override string Command => "explosion";
 
@@ -129,6 +134,21 @@ public sealed partial class ExplosionCommand : LocalizedEntityCommands
                 return;
             }
         }
+
+        // Starlight-start
+        if (!_limits.TryUseExplosion(shell.Player, out var remaining))
+        {
+            shell.WriteError(Loc.GetString("cmd-admin-limit-cooldown", ("seconds", MathF.Ceiling(remaining))));
+            return;
+        }
+
+        if (_limits.ClampExplosion(shell.Player, ref intensity, ref slope, ref maxIntensity))
+            shell.WriteLine(Loc.GetString("cmd-explosion-clamped", ("intensity", intensity), ("maxIntensity", maxIntensity)));
+
+        _autoLog.LogToDiscord(
+            Loc.GetString("autolog-explosion", ("intensity", intensity), ("maxIntensity", maxIntensity), ("type", type.ID), ("coords", coords.ToString())),
+            shell.Player?.Name ?? "unknown");
+        // Starlight-end
 
         _explosion.QueueExplosion(coords, type.ID, intensity, slope, maxIntensity, null);
     }

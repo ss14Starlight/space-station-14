@@ -64,10 +64,6 @@
       - Screwing
     useSound:
       collection: Screwdriver
-  - type: RandomSprite
-    available:
-      - enum.DamageStateVisualLayers.Base:
-          screwdriver: Rainbow
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
@@ -255,6 +251,9 @@
     price: 40
   - type: IgnitionSource
     temperature: 700
+  - type: ESSparkOnItemToggle
+    count: 1
+    sparkPrototype: MoffEffectSparksSilent
   - type: Tag
     tags:
       - CyberHandItem

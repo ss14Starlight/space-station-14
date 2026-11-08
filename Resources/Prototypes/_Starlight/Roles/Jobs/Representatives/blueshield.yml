@@ -63,6 +63,7 @@
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
+  antagScalingCentcomWeight: 1.0
 
 - type: startingGear
   id: BlueShieldGear
