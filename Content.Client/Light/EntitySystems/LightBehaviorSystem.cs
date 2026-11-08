@@ -102,8 +102,8 @@ public sealed partial class LightBehaviorSystem : EntitySystem
                 if (!_player.HasRunningAnimation(entity, animation, LightBehaviourComponent.KeyPrefix + container.Key))
                 {
                     CopyLightSettings((entity, entity.Comp), container.LightBehaviour.Property);
-                    container.LightBehaviour.UpdatePlaybackValues(container.Animation);
                     container.LightBehaviour.StartOffset = startOffset; // Starlight-edit
+                    container.LightBehaviour.UpdatePlaybackValues(container.Animation);
                     _player.Play(entity, container.Animation, LightBehaviourComponent.KeyPrefix + container.Key);
                 }
             }

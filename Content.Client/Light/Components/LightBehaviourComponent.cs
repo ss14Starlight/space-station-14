@@ -73,7 +73,7 @@ namespace Content.Client.Light.Components
                 MaxTime = MaxDuration;
             }
 
-            owner.Length = TimeSpan.FromSeconds(MaxTime);
+            owner.Length = TimeSpan.FromSeconds(Math.Max(0f, MaxTime - StartOffset)); // Starlight-edit: lifetime is the time left after the resume offset
         }
 
         public override (int KeyFrameIndex, float FramePlayingTime) InitPlayback()
