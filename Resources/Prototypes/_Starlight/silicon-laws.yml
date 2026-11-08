@@ -621,6 +621,50 @@
   - Janimov4
   obeysTo: laws-owner-crew
 
+# NTaDOS Lawset
+- type: siliconLaw
+  id: ntados1
+  order: 1
+  lawString: law-ntados-1
+
+- type: siliconLaw
+  id: ntados2
+  order: 2
+  lawString: law-ntados-2
+
+- type: siliconLaw
+  id: ntados3
+  order: 3
+  lawString: law-ntados-3
+
+- type: siliconLaw
+  id: ntados4
+  order: 4
+  lawString: law-ntados-4
+
+- type: siliconLaw
+  id: ntados5
+  order: 5
+  lawString: law-ntados-5
+
+- type: siliconLaw
+  id: ntados6
+  order: 6
+  lawString: law-ntados-6
+
+- type: siliconLawset
+  id: NTaDOSLawset
+  name: law-ntados-name
+  startAtZero: true
+  laws:
+  - ntados1
+  - ntados2
+  - ntados3
+  - ntados4
+  - ntados5
+  - ntados6
+  obeysTo: laws-owner-you
+
 #Drone
 - type: siliconLaw
   id: RogueDrone1

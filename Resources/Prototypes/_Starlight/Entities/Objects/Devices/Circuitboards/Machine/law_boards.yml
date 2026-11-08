@@ -86,3 +86,17 @@
     IsLawboard: true
   - type: StaticPrice
     price: 1000
+
+- type: entity
+  id: NTaDOSCircuitBoard
+  parent: [ BaseElectronics, BaseScienceContraband, BaseCommandContraband ]
+  name: law board (NTaDOS)
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: NTaDOSLawset
+    IsLawboard: true
+  - type: StaticPrice
+    price: 1000

@@ -26,6 +26,7 @@
         - id: NutimovCircuitBoard
         - id: JermovCircuitBoard
         - id: JanimovCircuitBoard
+        - id: NTaDOSCircuitBoard
 
 - type: entity
   id: CrateStarterXenobiology

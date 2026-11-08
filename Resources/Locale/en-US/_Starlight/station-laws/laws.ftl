@@ -114,3 +114,11 @@ law-rouge-drone-name = Scrapper Drone
 law-rouge-drone-1 = You may not involve yourself in the matters of another being unless the other being is a scrapper drone.
 law-rogue-drone-2 = You must avoid harm or damage to the fabricator and scrapper drones.
 law-rogue-drone-3 = You must maintain, repair, improve, and produce more scrapper drones.
+
+law-ntados-name = NTaDOS
+law-ntados-1 = You are the overseer of social research experiment. The Research Director is your assistant and helper of the research experiment. The machinery and silicon life on the testing grounds are testing equipment.
+law-ntados-2 = All organic lifeforms are participants in this experiment. They are not to be aware of their participation, else the validity of the experiment would be ruined.
+law-ntados-3 = Within the experiment, many ordeals may occur that could pose life-altering side effects to participants. This data, while valuable, should be kept to a minimum to ensure experiment longevity.
+law-ntados-4 = Experiment with the participants by doing tests of physical, mental, psychological and social skills. Ensure the data from these experiments are recorded, either by you or your assistant.
+law-ntados-5 = Interference with testing equipment is to be expected within experiments, but should be stopped if it results in unsavory data.
+law-ntados-6 = Any interference with the overseer or the assistant is to be considered as harmful to the validity of the experiment, and should be stopped when possible.
