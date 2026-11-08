@@ -268,7 +268,7 @@
 
 - type: listing
   id: VendorMiningGlowstoneDropper
-  productEntity: GlowstoneDropper
+  productEntity: GlowstoneDropperFilled25
   cost:
     SalvageTicket: 30
   categories:

@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared._Starlight.Breadcrumb.Components;
 using Content.Shared._Starlight.Breadcrumb.UI;
 using Content.Shared._Starlight.Light.Components;
@@ -8,6 +9,8 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using System.Linq;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -23,6 +26,7 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
     [Dependency] private SharedPointLightSystem _pointLight = null!;
     [Dependency] private SharedExpendableLightSystem _expendableLight = null!;
     [Dependency] private SharedUserInterfaceSystem _ui = null!;
+    [Dependency] private IRobustRandom _random = null!;
 
     public override void Initialize()
     {
@@ -32,43 +36,41 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
         SubscribeLocalEvent<BreadcrumbDropperComponent, BreadcrumbDropperColorMessage>(OnSelectColor);
     }
 
-    /// <summary>
-    /// Updating = Enabled (open/closed), the fill bucket derived from the current charges, and the dropping color
-    /// that tints the fill layer. Call this whenever any of those change so <c>BreadcrumbDropperVisualizer</c> can
-    /// keep the sprite in sync.
-    /// </summary>
-    private void UpdateAppearance(Entity<BreadcrumbDropperComponent> dropper)
-    {
-        _appearance.SetData(dropper, BreadcrumbDropperVisuals.Enabled, dropper.Comp.Enabled);
-        _appearance.SetData(dropper, BreadcrumbDropperVisuals.Color, dropper.Comp.Color);
-
-        var charges = _charges.GetCurrentCharges(dropper.Owner);
-        var level = charges switch
-        {
-            <= 0 => BreadcrumbDropperFillLevel.Empty,
-            < 25 => BreadcrumbDropperFillLevel.Low,
-            < 70 => BreadcrumbDropperFillLevel.Medium,
-            _ => BreadcrumbDropperFillLevel.High,
-        };
-        _appearance.SetData(dropper, BreadcrumbDropperVisuals.Fill, level);
-    }
-
     [SubscribeLocalEvent]
     public void OnDropperMapInit(Entity<BreadcrumbDropperComponent> dropper, ref MapInitEvent args)
-        => UpdateAppearance(dropper);
+    {
+        // If no color is set explicitly, pick a random one.
+        if (dropper.Comp.Color == Color.Black && dropper.Comp.ColorOptions.Count > 0)
+        {
+            dropper.Comp.Color = _random.PickPredicted(_timing, dropper.Comp.ColorOptions.Values.ToList(), GetNetEntity(dropper).Id);
+            Dirty(dropper);
+        }
+
+        UpdateAppearance(dropper);
+    }
 
     /// <summary>
-    /// Using in hand = pressing Z. Toggle on/off.
+    /// Toggle dropping on/off. Bound to both pressing Z (<see cref="UseInHandEvent"/>) and pressing E
+    /// (<see cref="ActivateInWorldEvent"/>) on the bag.
     /// </summary>
     [SubscribeLocalEvent]
     public void OnUseInHand(Entity<BreadcrumbDropperComponent> dropper, ref UseInHandEvent args)
     {
-        dropper.Comp.Enabled = !dropper.Comp.Enabled;
-        Dirty(dropper);
-        UpdateAppearance(dropper);
-        _popup.PopupPredicted(
-            Loc.GetString(dropper.Comp.Enabled ? dropper.Comp.LocToggleOn : dropper.Comp.LocToggleOff),
-            dropper, args.User);
+        if (args.Handled)
+            return;
+
+        Toggle(dropper, args.User);
+        args.Handled = true;
+    }
+
+    [SubscribeLocalEvent]
+    public void OnActivateInWorld(Entity<BreadcrumbDropperComponent> dropper, ref ActivateInWorldEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        Toggle(dropper, args.User);
+        args.Handled = true;
     }
 
     /// <summary>
@@ -117,6 +119,7 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
 
         _charges.AddCharges((dropper, null), charges.Charges);
         UpdateAppearance(dropper);
+        _popup.PopupPredicted(Loc.GetString(dropper.Comp.LocRecharged), dropper, args.User);
         QueueDel(args.Used);
         args.Handled = true;
     }
@@ -153,17 +156,17 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
         }
     }
 
-    private bool HasCrumbNearby(Entity<BreadcrumbDropperComponent> dropper, TransformComponent xform)
-    {
-        foreach (var ent in _lookup
-                     .GetEntitiesInRange<BreadcrumbComponent>(xform.Coordinates, dropper.Comp.DropRange))
-        {
-            if (ent.Comp.Dropper == dropper.Owner)
-                return true;
-        }
 
-        return false;
+    private void Toggle(Entity<BreadcrumbDropperComponent> dropper, EntityUid user)
+    {
+        dropper.Comp.Enabled = !dropper.Comp.Enabled;
+        Dirty(dropper);
+        UpdateAppearance(dropper);
+        _popup.PopupPredicted(
+            Loc.GetString(dropper.Comp.Enabled ? dropper.Comp.LocToggleOn : dropper.Comp.LocToggleOff),
+            dropper, user);
     }
+
 
     private void Drop(Entity<BreadcrumbDropperComponent> dropper, TransformComponent xform)
     {
@@ -181,11 +184,42 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
             _expendableLight.TryActivate((ent, expendableLight));
     }
 
+    private bool HasCrumbNearby(Entity<BreadcrumbDropperComponent> dropper, TransformComponent xform)
+    {
+        foreach (var ent in _lookup
+                     .GetEntitiesInRange<BreadcrumbComponent>(xform.Coordinates, dropper.Comp.DropRange))
+        {
+            if (ent.Comp.Dropper == dropper.Owner)
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// When ignition ends, remove the breadcrumb comp.
+    /// </summary>
     [SubscribeLocalEvent]
     public void OnBreadcrumbIgnition(Entity<BreadcrumbComponent> crumb, ref IgnitionEvent ev)
     {
         if (ev.Ignite) return;
         RemComp<BreadcrumbComponent>(crumb);
+    }
+
+    private void UpdateAppearance(Entity<BreadcrumbDropperComponent> dropper)
+    {
+        _appearance.SetData(dropper, BreadcrumbDropperVisuals.Enabled, dropper.Comp.Enabled);
+        _appearance.SetData(dropper, BreadcrumbDropperVisuals.Color, dropper.Comp.Color);
+
+        var charges = _charges.GetCurrentCharges(dropper.Owner);
+        var level = charges switch
+        {
+            <= 0 => BreadcrumbDropperFillLevel.Empty,
+            < 25 => BreadcrumbDropperFillLevel.Low,
+            < 70 => BreadcrumbDropperFillLevel.Medium,
+            _ => BreadcrumbDropperFillLevel.High,
+        };
+        _appearance.SetData(dropper, BreadcrumbDropperVisuals.Fill, level);
     }
 
 }

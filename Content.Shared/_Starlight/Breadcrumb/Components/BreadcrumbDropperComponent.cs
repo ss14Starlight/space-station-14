@@ -9,8 +9,9 @@ public sealed partial class BreadcrumbDropperComponent : Component
 {
     /// <summary>
     /// The color of this bag and its droppings.
+    /// Black is treated as "pick a random color on startup".
     /// </summary>
-    [DataField, AutoNetworkedField] public Color Color = Color.White;
+    [DataField, AutoNetworkedField] public Color Color = Color.Black;
 
     /// <summary>
     /// The preset colors offered in the alt-click color picker, keyed by name (e.g. "white" -> "#ffffff").

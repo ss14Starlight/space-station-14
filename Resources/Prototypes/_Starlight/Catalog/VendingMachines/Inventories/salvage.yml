@@ -404,7 +404,7 @@
 
 - type: listing
   id: VendorSalvageGlowstoneDropper
-  productEntity: GlowstoneDropper
+  productEntity: GlowstoneDropperFilled25
   cost:
     SalvageTicket: 30
   categories:

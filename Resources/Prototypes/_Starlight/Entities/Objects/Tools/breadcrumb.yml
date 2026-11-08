@@ -1,5 +1,6 @@
 - type: entity
   parent: BaseItem
+  abstract: true
   id: GlowstoneDropper
   name: glowstone bag
   description: A bag for dropping glowstones as you walk. Finding home has never been so easy!
@@ -34,7 +35,6 @@
       locToggleOff: glowstone-bag-toggle-off
       locEmptied: glowstone-bag-emptied
       locRecharged: glowstone-bag-recharged
-      color: "#ffffff"
       colorOptions:
         white: "#ffffff"
         red: "#ff0000"
@@ -54,11 +54,19 @@
 
 - type: entity
   parent: GlowstoneDropper
-  id: GlowstoneDropperFilled30
-  suffix: "Filled, 30"
+  id: GlowstoneDropperEmpty
+  suffix: "Empty"
   components:
     - type: LimitedCharges
-      lastCharges: 30
+      lastCharges: 0
+
+- type: entity
+  parent: GlowstoneDropper
+  id: GlowstoneDropperFilled25
+  suffix: "Filled, 25"
+  components:
+    - type: LimitedCharges
+      lastCharges: 25
 
 - type: entity
   parent: GlowstoneDropper
