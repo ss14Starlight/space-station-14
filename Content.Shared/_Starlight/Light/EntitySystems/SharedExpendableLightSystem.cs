@@ -259,11 +259,6 @@ public sealed partial class SharedExpendableLightSystem : EntitySystem
 
     private void OnExpLightInit(EntityUid uid, ExpendableLightComponent component, ComponentInit args)
     {
-        if (TryComp<ItemComponent>(uid, out var item))
-        {
-            _item.SetHeldPrefix(uid, "unlit", component: item);
-        }
-
         component.CurrentState = ExpendableLightState.BrandNew;
         component.StateStartTime = _timing.CurTime;
         component.StateDuration = component.GlowDuration;
