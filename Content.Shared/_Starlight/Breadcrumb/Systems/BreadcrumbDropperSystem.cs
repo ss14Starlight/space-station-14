@@ -49,7 +49,8 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
         // If no color is set explicitly, pick a random one.
         if (dropper.Comp.Color == Color.Black && dropper.Comp.ColorOptions.Count > 0)
         {
-            dropper.Comp.Color = _random.PickPredicted(_timing, dropper.Comp.ColorOptions.Values.ToList(), GetNetEntity(dropper).Id);
+            dropper.Comp.Color = _random.PickPredicted(_timing, dropper.Comp.ColorOptions.Values.ToList(),
+                GetNetEntity(dropper).Id);
             Dirty(dropper);
         }
 
@@ -239,7 +240,7 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
     private bool HasCrumbNearby(Entity<BreadcrumbDropperComponent> dropper, TransformComponent xform)
     {
         foreach (var ent in _lookup
-                     .GetEntitiesInRange<BreadcrumbComponent>(xform.Coordinates, dropper.Comp.DropRange))
+            .GetEntitiesInRange<BreadcrumbComponent>(xform.Coordinates, dropper.Comp.DropRange))
         {
             if (ent.Comp.Dropper == dropper.Owner)
                 return true;
@@ -273,5 +274,4 @@ public sealed partial class BreadcrumbDropperSystem : EntitySystem
         };
         _appearance.SetData(dropper, BreadcrumbDropperVisuals.Fill, level);
     }
-
 }
