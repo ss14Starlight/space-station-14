@@ -1,39 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: All medical vending machines now have 1-2 Oil Packs for IPCs etc, to ensure universal accessibility on Evac and CentComm and slightly easier access via Civilian vends on Stations.
-    type: Tweak
-  id: 409850
-  time: '2026-10-28T07:56:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6912
-- author: Caws
-  changes:
-  - message: "'Leth Vessel' has been retired from the map pool."
-    type: Remove
-  id: 409851
-  time: '2026-10-28T07:56:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6914
-- author: rhithebirdthing
-  changes:
-  - message: Added job trinkets for Chef and Botanist.
-    type: Add
-  id: 409852
-  time: '2026-10-28T08:31:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6910
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: The syndicate chameleon projector module now has a power cell hand so that standard cyborgs can recharge their projector!
-    type: Tweak
-  id: 409853
-  time: '2026-10-28T08:31:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6909
-- author: Sparlight
-  changes:
-  - message: Fixed being able to chameleon PDAs into collars.
-    type: Fix
-  id: 409854
-  time: '2026-10-28T08:31:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6911
 - author: Floximo
   changes:
   - message: Cyborg AA is now removed on client disconnect. Reconnect will restore them.
@@ -2799,4 +2764,39 @@ Entries:
   id: 410249
   time: '2026-11-08T09:01:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7103
+- author: SirLutz
+  changes:
+  - message: Gunnery Sergant now also counts into antagscaling.
+    type: Add
+  id: 410250
+  time: '2026-11-08T13:53:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7100
+- author: SirLutz
+  changes:
+  - message: Antagscaling now retries if server cant load.
+    type: Fix
+  id: 410251
+  time: '2026-11-08T13:53:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7100
+- author: SirLutz
+  changes:
+  - message: Prevented partial threshold modifications when scaling fails.
+    type: Fix
+  id: 410252
+  time: '2026-11-08T13:53:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7100
+- author: STARLIGHT TEAM
+  changes:
+  - message: Roundstart engineer cardboard boxes now have 10 plasteel instead of 30.
+    type: Tweak
+  id: 410253
+  time: '2026-11-08T14:18:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7029
+- author: STARLIGHT TEAM
+  changes:
+  - message: Roundstart engineer cardboard boxes now have 30 plastic.
+    type: Tweak
+  id: 410254
+  time: '2026-11-08T14:18:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7029
 Order: -1
