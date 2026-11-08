@@ -59,6 +59,11 @@ public sealed class RemoteControlConsoleTest : GameTest
     components:
     -   type: RemoteControlConsole
         remoteControlPower: 51
+-   type: entity
+    id: RemoteControlTestAi
+    parent: AiHeld
+    components:
+    -   type: StationAIShuntable
 ";
 
     [Test]
@@ -1222,7 +1227,7 @@ public sealed class RemoteControlConsoleTest : GameTest
             try
             {
                 var coordinates = new MapCoordinates(0, 0, mapId);
-                var ai = SEntMan.SpawnEntity("AiHeld", coordinates);
+                var ai = SEntMan.SpawnEntity("RemoteControlTestAi", coordinates);
                 var plushie = SEntMan.SpawnEntity(plushiePrototype, coordinates);
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(ai);
                 var brain = SEntMan.GetComponent<RemoteControlBrainComponent>(plushie);
