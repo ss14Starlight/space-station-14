@@ -17,6 +17,7 @@
   - type: Battery
     maxCharge: 2400
     startingCharge: 2400
+    pricePerJoule: 0 # The built-in cell isn't sold on its own, a fixture keeps its old (lack of) price.
 
 - type: !PartialOnly entity
   id: !type:CreateVariants
