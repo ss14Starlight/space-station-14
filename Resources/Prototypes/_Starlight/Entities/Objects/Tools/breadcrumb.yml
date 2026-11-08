@@ -86,6 +86,7 @@
   components:
     - type: Item
       size: Tiny
+      heldPrefix: unlit
       shape:
         - 0,0,0,0
     - type: Sprite
