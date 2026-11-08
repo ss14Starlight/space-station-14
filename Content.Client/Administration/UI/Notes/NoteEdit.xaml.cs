@@ -103,12 +103,22 @@ public sealed partial class NoteEdit : FancyWindow
             SecretCheckBox.Pressed = note.Secret;
             SecretCheckBox.Disabled = note.NoteType is not NoteType.Note;
             ExpiryTime = note.ExpiryTime;
+            CreationTime = note.CreatedAt; // Starlight-edit
             if (ExpiryTime is not null)
             {
                 PermanentCheckBox.Pressed = false;
                 UpdatePermanentCheckboxFields();
-                ExpiryLineEdit.Text = ExpiryTime.Value.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
+
+                // Starlight-start
+                var (num, mult) = UnparseExpiryTime(CreationTime, ExpiryTime.Value);
+                ExpiryLineEdit.Text = num.ToString();
+                ExpiryLengthDropdown.SelectId((int)mult);
+                // Starlight-end
             }
+        }
+        else
+        {
+            CreationTime = DateTime.UtcNow; // Starlight
         }
 
         UpdateSubmitButton();
@@ -144,6 +154,7 @@ public sealed partial class NoteEdit : FancyWindow
             UpdateSubmitButton();
         }
     }
+    private DateTime CreationTime { get; set; } // Starlight
     private DateTime? ExpiryTime { get; set; }
     private TimeSpan? DeleteResetOn { get; set; }
     private bool IsCreating { get; set; }
@@ -319,7 +330,7 @@ public sealed partial class NoteEdit : FancyWindow
             (int) Multipliers.Centuries => TimeSpan.FromDays(36525).TotalMinutes,
             _ => throw new ArgumentOutOfRangeException(nameof(ExpiryLengthDropdown.SelectedId), "Multiplier out of range :(")
         };
-        ExpiryTime = DateTime.UtcNow.AddMinutes(inputInt * mult);
+        ExpiryTime = CreationTime.AddMinutes(inputInt * mult);
         ExpiryLineEdit.ModulateSelfOverride = null;
         return true;
     }
@@ -341,4 +352,33 @@ public sealed partial class NoteEdit : FancyWindow
 
         SubmitPressed = null;
     }
+
+    // Starlight-start
+    private static (uint Number, Multipliers Unit) UnparseExpiryTime(DateTime createdTime, DateTime expiryTime)
+    {
+        TimeSpan duration = expiryTime - createdTime;
+        long durationTicks = duration.Ticks;
+        long toleranceTicks = durationTicks / 100; // 1% tolerance
+
+        uint number = 0;
+        bool Check(TimeSpan unit)
+        {
+            long unitTicks = unit.Ticks;
+            long mod = durationTicks % unitTicks;
+            long errorRoundDown = mod, errorRoundUp = unitTicks - mod;
+            number = (uint)(durationTicks / unitTicks);
+            number = errorRoundDown < errorRoundUp ? number : number + 1;
+            return long.Min(errorRoundDown, errorRoundUp) <= toleranceTicks;
+        }
+
+        if (Check(TimeSpan.FromDays(36525))) return (number, Multipliers.Centuries);
+        if (Check(TimeSpan.FromDays(365))) return (number, Multipliers.Years);
+        if (Check(TimeSpan.FromDays(30))) return (number, Multipliers.Months);
+        if (Check(TimeSpan.FromDays(7))) return (number, Multipliers.Weeks);
+        if (Check(TimeSpan.FromDays(1))) return (number, Multipliers.Days);
+        if (Check(TimeSpan.FromHours(1))) return (number, Multipliers.Hours);
+        Check(TimeSpan.FromMinutes(1));
+        return (number, Multipliers.Minutes);
+    }
+    // Starlight-end
 }
