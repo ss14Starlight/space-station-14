@@ -2,7 +2,7 @@
 # Glowstone Bag specific locale keys
 glowstone-bag-toggle-empty = The dropper is empty!
 glowstone-bag-toggle-on = You open the bag, ready to drop glowstones as you walk.
-glowstone-bag-toggle-off = You close the bag,
+glowstone-bag-toggle-off = You close the bag and stop dropping glowstones.
 glowstone-bag-emptied = The bag has ran out!
 glowstone-bag-recharged = You break the crystal into small glowstones, refilling your bag.
 
