@@ -42,6 +42,8 @@
   - type: Construction
     graph: AirlockCycler
     node: airlock_cycler
+    containers:
+    - board
   - type: ContainerFill
     containers:
       board: [ AirlockCyclerElectronics ]
