@@ -14,6 +14,7 @@ namespace Content.Client.DeltaV.AACTablet.UI;
 [GenerateTypedNameReferences]
 public sealed partial class AACWindow : FancyWindow
 {
+    #region Starlight Fields
     /// <summary>
     /// Fixed width of every phrase button. Rows fill left to right; extra window width adds columns.
     /// </summary>
@@ -34,15 +35,17 @@ public sealed partial class AACWindow : FancyWindow
     /// </summary>
     private const int ScrollbarAllowance = 20;
 
-    private readonly IPrototypeManager _prototypeManager;
     private readonly ILocalizationManager _loc;
     private readonly List<PhraseEntry> _allPhrases;
     private readonly List<GridContainer> _buttonGrids = new();
 
-    public event Action<string>? PhraseButtonPressed;
-
     private string _currentFilter = string.Empty;
     private int _columns = 4;
+
+    #endregion
+
+    private readonly IPrototypeManager _prototypeManager;
+    public event Action<string>? PhraseButtonPressed;
 
     /// <summary>
     /// A phrase together with its localized labels, so searching and rendering use the exact same strings.
@@ -53,6 +56,8 @@ public sealed partial class AACWindow : FancyWindow
     {
         RobustXamlLoader.Load(this);
         _prototypeManager = prototypeManager;
+
+        //Starlight-start: AAC search bar edit. 
         _loc = IoCManager.Resolve<ILocalizationManager>();
 
         _allPhrases = _prototypeManager.EnumeratePrototypes<QuickPhrasePrototype>()
@@ -68,8 +73,10 @@ public sealed partial class AACWindow : FancyWindow
 
         // Build all tabs initially
         RebuildTabs();
+        //Starlight-end
     }
 
+    #region Starlight
     protected override void Resized()
     {
         base.Resized();
@@ -90,7 +97,7 @@ public sealed partial class AACWindow : FancyWindow
     /// </summary>
     private int CalculateColumns()
     {
-        var available = WindowBody.Width - ScrollbarAllowance - GridMargin * 2;
+        var available = WindowBody.Width - ScrollbarAllowance - (GridMargin * 2);
         var columns = (int) ((available + ButtonSeparation) / (ButtonWidth + ButtonSeparation));
         return Math.Max(1, columns);
     }
@@ -173,18 +180,21 @@ public sealed partial class AACWindow : FancyWindow
         WindowBody.AddChild(emptyScroll);
         WindowBody.SetTabTitle(0, Loc.GetString("aac-window-search-tab"));
     }
+    #endregion
 
+    //Starlight: Use IEnumerable group of string to PhraseEntry for localization
     private BoxContainer CreateBoxContainerForTab(IEnumerable<IGrouping<string, PhraseEntry>> groups)
     {
         var boxContainer = new BoxContainer
         {
             HorizontalExpand = true,
-            MouseFilter = MouseFilterMode.Pass,
+            MouseFilter = MouseFilterMode.Pass, //Starlight: Ignore mouse filter for window resize
             Orientation = BoxContainer.LayoutOrientation.Vertical
         };
 
         foreach (var group in groups)
         {
+            //Starlight-start: Create localized header here, then pass off to CreateButtonContainerForGroup
             var header = new Label
             {
                 Text = group.First().Group,
@@ -194,18 +204,21 @@ public sealed partial class AACWindow : FancyWindow
 
             boxContainer.AddChild(header);
             boxContainer.AddChild(CreateButtonContainerForGroup(group));
+            //Starlight-end
         }
 
         return boxContainer;
     }
 
+    //Starlight: Switch List<QuickPhrasePrototype> to IEnumerable<PhraseEntry> for localizing phrases
     private GridContainer CreateButtonContainerForGroup(IEnumerable<PhraseEntry> phrases)
     {
+        //Starlight-start: Dynamically size the GridContainer based on number of rows
         var buttonContainer = new GridContainer
         {
             Margin = new Thickness(GridMargin),
             HorizontalAlignment = HAlignment.Left,
-            MouseFilter = MouseFilterMode.Pass,
+            MouseFilter = MouseFilterMode.Pass, //Don't let it eat the mouse so that resizing mouse stuff renders properly
             HSeparationOverride = ButtonSeparation,
             VSeparationOverride = ButtonSeparation,
             Columns = _columns
@@ -219,12 +232,14 @@ public sealed partial class AACWindow : FancyWindow
             buttonContainer.AddChild(button);
         }
 
-        _buttonGrids.Add(buttonContainer);
+        _buttonGrids.Add(buttonContainer); //Store which grids we've made for use later
+        //Starlight-end
         return buttonContainer;
     }
 
     private static Button CreatePhraseButton(string text, string styleClass)
     {
+        //Starlight-start: Remove GetButtonWidth(), set MinWidth and MaxWidth, then VerticalExpand the buttons
         var phraseButton = new Button
         {
             Access = AccessLevel.Public,
@@ -233,13 +248,14 @@ public sealed partial class AACWindow : FancyWindow
             ClipText = false,
             // Fill the row height so every button in a row lines up, even if one wraps to more lines.
             VerticalExpand = true,
+            //Starlight-end
             StyleClasses = { styleClass }
         };
 
         var buttonLabel = new RichTextLabel
         {
             Margin = new Thickness(0, 5),
-            HorizontalAlignment = HAlignment.Center,
+            HorizontalAlignment = HAlignment.Center, //Starlight: Center the text so low character length buttons look nice
             StyleClasses = { "WhiteText" }
         };
 
@@ -252,4 +268,6 @@ public sealed partial class AACWindow : FancyWindow
     {
         PhraseButtonPressed?.Invoke(phraseId);
     }
+
+    //Starlight: Removed PopulateGui(), GetButtonWidth(), and CreateButtonContainer() methods as they are not needed in this implementation
 }
