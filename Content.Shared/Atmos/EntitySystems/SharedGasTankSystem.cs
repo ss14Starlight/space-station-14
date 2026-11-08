@@ -9,6 +9,7 @@ using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.GameObjects;
 using InternalsComponent = Content.Shared.Body.Components.InternalsComponent;
 
 namespace Content.Shared.Atmos.EntitySystems;
@@ -28,6 +29,7 @@ public abstract partial class SharedGasTankSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<GasTankComponent, ComponentShutdown>(OnGasShutdown);
+        SubscribeLocalEvent<GasTankComponent, ComponentStartup>(OnStartup); // Starlight
         SubscribeLocalEvent<GasTankComponent, BeforeActivatableUIOpenEvent>(BeforeUiOpen);
         SubscribeLocalEvent<GasTankComponent, GetItemActionsEvent>(OnGetActions);
         SubscribeLocalEvent<GasTankComponent, ExaminedEvent>(OnExamined);
@@ -84,7 +86,7 @@ public abstract partial class SharedGasTankSystem : EntitySystem
         using var _ = args.PushGroup(nameof(GasTankComponent));
 
         if (args.IsInDetailsRange)
-            args.PushMarkup(Loc.GetString("comp-gas-tank-examine", ("pressure", Math.Round(component.Air?.Pressure ?? 0))));
+            args.PushMarkup(Loc.GetString("comp-gas-tank-examine", ("pressure", Math.Round(GetPredictedPressure(component))))); // Starlight
 
         if (component.IsConnected)
             args.PushMarkup(Loc.GetString("comp-gas-tank-connected"));
