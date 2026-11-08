@@ -1,11 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Revolutionary monkeys are now educated on communist ideologies and will only attack mindshielded crew. They also won't attack headrevs anymore.
-    type: Fix
-  id: 409868
-  time: '2026-10-28T11:14:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6913
 - author: mikeysaurus
   changes:
   - message: Accessibility settings now include an option to preview your chat messages above your character as you type it.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410267
   time: '2026-11-08T19:24:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7128
+- author: Citrea
+  changes:
+  - message: Resomi tails are now drawn over jetpacks and other back items.
+    type: Fix
+  id: 410268
+  time: '2026-11-08T19:24:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7131
 Order: -1
