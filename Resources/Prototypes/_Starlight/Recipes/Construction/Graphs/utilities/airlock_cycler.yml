@@ -73,6 +73,9 @@
 
   - node: airlock_cycler
     entity: AirlockCycler
+    actions:
+    - !type:AddContainer
+      container: board
     edges:
     - to: electronics
       conditions:
