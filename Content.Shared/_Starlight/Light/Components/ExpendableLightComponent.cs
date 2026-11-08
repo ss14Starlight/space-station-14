@@ -6,7 +6,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Light.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class ExpendableLightComponent : Component
 {
     /// <summary>
@@ -18,7 +18,7 @@ public sealed partial class ExpendableLightComponent : Component
     /// <summary>
     /// When the current state started.
     /// </summary>
-    [ViewVariables, AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField, AutoPausedField]
     public TimeSpan StateStartTime;
 
     /// <summary>
