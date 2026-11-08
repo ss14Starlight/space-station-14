@@ -98,6 +98,10 @@ public sealed partial class ScalingSystem : SharedScalingSystem
             return false;
 
         var nearestGrid = _stationSystem.GetNearestStation(mob);
+
+        if (nearestGrid.Owner == EntityUid.Invalid)
+            return false;
+
         var station = _stationSystem.GetOwningStation(nearestGrid);
 
         if (station is not { } stationUid || !UpdatePopulation(stationUid))
