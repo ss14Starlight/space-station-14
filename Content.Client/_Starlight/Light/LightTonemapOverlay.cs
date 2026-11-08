@@ -53,9 +53,6 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
     /// </summary>
     private bool _unsupported;
 
-    /// <summary>
-    /// Creates the shaders used to copy and tonemap the viewport light map.
-    /// </summary>
     public LightTonemapOverlay()
     {
         IoCManager.InjectDependencies(this);
@@ -65,9 +62,6 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
         _tonemapShaderInst = _proto.Index(_tonemapShader).InstanceUnique();
     }
 
-    /// <summary>
-    /// Returns whether lighting is enabled for the eye, renderer, and map and no render target allocation has failed.
-    /// </summary>
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         var eye = args.Viewport.Eye;
@@ -77,10 +71,6 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
         return _entMan.TryGetComponent<MapComponent>(args.MapUid, out var map) && map.LightingEnabled;
     }
 
-    /// <summary>
-    /// Tonemaps the viewport light map in place. If allocating its floating point copy fails,
-    /// leaves the light map unchanged and disables subsequent draws for this overlay instance.
-    /// </summary>
     protected override void Draw(in OverlayDrawArgs args)
     {
         var viewport = args.Viewport;
@@ -143,9 +133,6 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
         handle.SetTransform(Matrix3x2.Identity);
     }
 
-    /// <summary>
-    /// Releases the cached light map copies for all viewports.
-    /// </summary>
     protected override void DisposeBehavior()
     {
         _resources.Dispose();
@@ -157,9 +144,6 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
     {
         public IRenderTexture? Copy;
 
-        /// <summary>
-        /// Releases this viewport's light map copy, if allocated.
-        /// </summary>
         public void Dispose()
             => Copy?.Dispose();
     }

@@ -40,9 +40,6 @@ public sealed partial class NightShiftSystem : EntitySystem
 
     private TimeSpan _nextUpdate;
 
-    /// <summary>
-    /// Refreshes station schedules, APC low power states, and light profiles at most once every two seconds.
-    /// </summary>
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -72,9 +69,6 @@ public sealed partial class NightShiftSystem : EntitySystem
 
     #region Station
 
-    /// <summary>
-    /// Adds night shift state to a newly initialized station.
-    /// </summary>
     [SubscribeLocalEvent]
     private void OnStationPostInit(Entity<StationDataComponent> ent, ref StationPostInitEvent args)
         => EnsureComp<StationNightShiftComponent>(ent);
@@ -104,16 +98,9 @@ public sealed partial class NightShiftSystem : EntitySystem
         UpdateStation(station, station.Comp, IsScheduledNight());
     }
 
-    /// <summary>
-    /// Returns whether the station currently uses night lighting; returns false when its night shift component is unavailable.
-    /// </summary>
     public bool IsStationNight(Entity<StationNightShiftComponent?> station)
         => Resolve(station, ref station.Comp, false) && station.Comp.Night;
 
-    /// <summary>
-    /// Checks the configured station-time interval, including its start and excluding its end.
-    /// Handles intervals crossing midnight; a disabled schedule or equal start and end hours yields false.
-    /// </summary>
     private bool IsScheduledNight()
     {
         if (!_cfg.GetCVar(StarlightCCVars.NightShiftEnabled))
@@ -130,10 +117,6 @@ public sealed partial class NightShiftSystem : EntitySystem
         return hour >= start && hour < end;
     }
 
-    /// <summary>
-    /// Recomputes station night lighting from its override, alert level, schedule, and forced sources.
-    /// On a transition, optionally announces it and immediately refreshes the station's APCs and light profiles.
-    /// </summary>
     private void UpdateStation(EntityUid station, StationNightShiftComponent comp, bool scheduled)
     {
         var wasSuppressed = comp.Suppressed;
@@ -187,10 +170,6 @@ public sealed partial class NightShiftSystem : EntitySystem
 
     #region APC
 
-    /// <summary>
-    /// Enters low power mode after sustained battery drain beyond the supply tolerance.
-    /// Clears it when the breaker is off, or when draining stops and charge reaches the recovery threshold.
-    /// </summary>
     private void UpdateLowPower(ApcLightingComponent lighting, ApcComponent apc, PowerNetworkBatteryComponent battery, TimeSpan now)
     {
         var state = battery.NetworkBattery;
@@ -222,9 +201,6 @@ public sealed partial class NightShiftSystem : EntitySystem
             lighting.LowPower = false;
     }
 
-    /// <summary>
-    /// Updates the APC's night state and reason, prioritizing manual mode, then station night, then enabled low power dimming.
-    /// </summary>
     private void UpdateApc(Entity<ApcLightingComponent> ent, bool lowPowerEnabled)
     {
         var lighting = ent.Comp;
@@ -245,10 +221,6 @@ public sealed partial class NightShiftSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    /// Refreshes all powered light profiles from their supplying APC networks.
-    /// </summary>
-    /// <param name="quiet">Whether profile changes suppress the light's turn-on sound.</param>
     private void UpdateLights(bool quiet)
     {
         var query = EntityQueryEnumerator<PoweredLightComponent, ApcPowerReceiverComponent>();
@@ -259,11 +231,6 @@ public sealed partial class NightShiftSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    /// Refreshes light profiles on the APC's network; does nothing if no APC network is available.
-    /// </summary>
-    /// <param name="apc">The APC whose network supplies the lights.</param>
-    /// <param name="quiet">Whether profile changes suppress the light's turn-on sound.</param>
     private void UpdateLights(EntityUid apc, bool quiet)
     {
         if (!TryComp<ApcPowerProviderComponent>(apc, out var apcProvider) || apcProvider.Net is not ApcNet net)
@@ -282,9 +249,6 @@ public sealed partial class NightShiftSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    /// Returns the first APC night profile on the network, or null when no APC uses night lighting.
-    /// </summary>
     private ApcLightingComponent? GetNightLighting(ApcNet? net)
     {
         if (net == null)
@@ -301,13 +265,6 @@ public sealed partial class NightShiftSystem : EntitySystem
         return null;
     }
 
-    /// <summary>
-    /// Copies the APC night profile to a fixture, or removes its night profile when lighting is null.
-    /// Refreshes the light only when its profile changes.
-    /// </summary>
-    /// <param name="light">The fixture to refresh.</param>
-    /// <param name="lighting">The night profile to apply, or null for day lighting.</param>
-    /// <param name="quiet">Whether the refresh suppresses the light's turn-on sound.</param>
     private void UpdateLight(Entity<PoweredLightComponent> light, ApcLightingComponent? lighting, bool quiet)
     {
         if (lighting == null)
@@ -343,10 +300,6 @@ public sealed partial class NightShiftSystem : EntitySystem
         _poweredLight.UpdateLight(light, light.Comp);
     }
 
-    /// <summary>
-    /// Applies a changed, valid APC mode when the actor has access and the cooldown has elapsed.
-    /// Rejected access or cooldown requests display a popup; accepted changes refresh the network's light profiles.
-    /// </summary>
     [SubscribeLocalEvent]
     private void OnSetLightingMode(EntityUid uid, ApcLightingComponent comp, ApcSetLightingModeMessage args)
     {

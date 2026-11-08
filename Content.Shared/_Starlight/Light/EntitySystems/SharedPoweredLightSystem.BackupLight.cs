@@ -53,14 +53,11 @@ public abstract partial class SharedPoweredLightSystem
     }
 
     /// <summary>
-    /// Returns the additional power draw in watts while the backup cell is charging, or zero otherwise.
+    /// Power the fixture draws on top of its bulb to charge its backup cell.
     /// </summary>
     public float GetBackupLoad(EntityUid uid)
         => TryComp<BackupLightComponent>(uid, out var backup) && backup.Charging ? backup.RechargeRate : 0f;
 
-    /// <summary>
-    /// Clears the backup appearance flag when the fixture has a backup light component.
-    /// </summary>
     private void ClearBackupLight(EntityUid uid, AppearanceComponent? appearance)
     {
         if (HasComp<BackupLightComponent>(uid))

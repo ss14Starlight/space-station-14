@@ -25,9 +25,6 @@ public sealed partial class SickLightsVariationPassSystem : VariationPassSystem<
 
     private readonly List<EntityUid> _ended = [];
 
-    /// <summary>
-    /// Schedules failures and randomly assigns persistent flicker to eligible station lights in the configured zone.
-    /// </summary>
     protected override void ApplyVariation(Entity<SickLightsVariationPassComponent> ent, ref StationVariationPassEvent args)
     {
         ent.Comp.Station = args.Station;
@@ -44,9 +41,6 @@ public sealed partial class SickLightsVariationPassSystem : VariationPassSystem<
         }
     }
 
-    /// <summary>
-    /// Finishes expired failures and periodically selects a lit fixture for a temporary flicker failure.
-    /// </summary>
     protected override void ActiveTick(EntityUid uid, SickLightsVariationPassComponent comp, GameRuleComponent gameRule, float frameTime)
     {
         base.ActiveTick(uid, comp, gameRule, frameTime);
@@ -83,9 +77,6 @@ public sealed partial class SickLightsVariationPassSystem : VariationPassSystem<
         _poweredLight.SetFlickerOverride(picked, comp.Flicker);
     }
 
-    /// <summary>
-    /// Clears flicker overrides on surviving fixtures with active temporary failures.
-    /// </summary>
     protected override void Ended(EntityUid uid, SickLightsVariationPassComponent comp, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
         base.Ended(uid, comp, gameRule, args);
@@ -99,9 +90,6 @@ public sealed partial class SickLightsVariationPassSystem : VariationPassSystem<
         comp.Failing.Clear();
     }
 
-    /// <summary>
-    /// Clears a surviving fixture's flicker override and may burn out its working bulb, refreshing the light and playing the burnout sound.
-    /// </summary>
     private void EndFailure(EntityUid light, SickLightsVariationPassComponent comp)
     {
         if (TerminatingOrDeleted(light))
@@ -121,9 +109,6 @@ public sealed partial class SickLightsVariationPassSystem : VariationPassSystem<
         _audio.PlayPvs(comp.BurnoutSound, light);
     }
 
-    /// <summary>
-    /// Randomly selects a lit, nonflickering fixture in the configured station and zone, or returns null if none qualifies.
-    /// </summary>
     private EntityUid? PickLight(SickLightsVariationPassComponent comp)
     {
         EntityUid? picked = null;
@@ -151,9 +136,6 @@ public sealed partial class SickLightsVariationPassSystem : VariationPassSystem<
         return picked;
     }
 
-    /// <summary>
-    /// Returns whether the fixture occupies the configured zone; returns false without a map grid.
-    /// </summary>
     private bool InZone(TransformComponent xform, SickLightsVariationPassComponent comp)
     {
         if (xform.GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
@@ -163,9 +145,6 @@ public sealed partial class SickLightsVariationPassSystem : VariationPassSystem<
         return _zones.IsInZone(grid, tile, comp.Zone);
     }
 
-    /// <summary>
-    /// Samples the interval before the next failure from the configured delay range.
-    /// </summary>
     private TimeSpan NextDelay(SickLightsVariationPassComponent comp)
         => Random.Next(comp.MinDelay, comp.MaxDelay);
 }

@@ -30,10 +30,6 @@ public sealed class GetDimmedLightLevelEvent : EntityEventArgs
     /// </summary>
     public bool Dimmable { get; }
 
-    /// <summary>
-    /// Initializes the bulb output and power use that dimming handlers may modify.
-    /// The dimmable flag controls alert level dimming; night lighting still applies when false.
-    /// </summary>
     public GetDimmedLightLevelEvent(float lightEnergy, float lightRadius, float powerUse, Color color, bool dimmable)
     {
         LightEnergy = lightEnergy;

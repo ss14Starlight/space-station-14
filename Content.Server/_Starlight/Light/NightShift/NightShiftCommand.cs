@@ -14,9 +14,6 @@ public sealed partial class NightShiftCommand : LocalizedEntityCommands
 
     public override string Command => "nightshift";
 
-    /// <summary>
-    /// Suggests lighting modes for the first argument and stations for the second.
-    /// </summary>
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
         => args.Length switch
         {
@@ -26,10 +23,6 @@ public sealed partial class NightShiftCommand : LocalizedEntityCommands
             _ => CompletionResult.Empty,
         };
 
-    /// <summary>
-    /// Sets a day, night, or automatic override on one station, or all stations when no station is given.
-    /// Invalid argument counts, modes, or station identifiers are reported to the shell without changing overrides.
-    /// </summary>
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (args.Length is < 1 or > 2)

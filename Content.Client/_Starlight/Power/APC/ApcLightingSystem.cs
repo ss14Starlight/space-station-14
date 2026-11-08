@@ -9,9 +9,6 @@ public sealed partial class ApcLightingSystem : EntitySystem
 {
     [Dependency] private UserInterfaceSystem _ui = default!;
 
-    /// <summary>
-    /// Refreshes the open APC menu after receiving updated lighting state.
-    /// </summary>
     [SubscribeLocalEvent]
     private void OnAfterHandleState(Entity<ApcLightingComponent> ent, ref AfterAutoHandleStateEvent args)
     {

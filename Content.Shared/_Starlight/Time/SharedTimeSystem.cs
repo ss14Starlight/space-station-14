@@ -26,7 +26,7 @@ public abstract partial class SharedTimeSystem : EntitySystem
     }
 
     /// <summary>
-    /// Stores the authoritative round date and shift start time received from the server.
+    /// Updates the Date every time a round starts.
     /// </summary>
     private void OnRoundDateSetEvent(RoundDateSetEvent ev)
     {

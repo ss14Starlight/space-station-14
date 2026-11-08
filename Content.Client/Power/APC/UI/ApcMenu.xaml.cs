@@ -12,9 +12,6 @@ namespace Content.Client.Power.APC.UI
     {
         public event Action? OnBreaker;
 
-        /// <summary>
-        /// Loads the APC controls and connects breaker and lighting button events.
-        /// </summary>
         public ApcMenu()
         {
             IoCManager.InjectDependencies(this);
@@ -77,9 +74,6 @@ namespace Content.Client.Power.APC.UI
             }
         }
 
-        /// <summary>
-        /// Enables breaker and lighting controls according to access and updates the breaker's access tooltip.
-        /// </summary>
         public void SetAccessEnabled(bool hasAccess)
         {
             if(hasAccess)

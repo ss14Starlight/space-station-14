@@ -11,9 +11,6 @@ public sealed partial class ApcBoundUserInterface
     public void UpdateLighting()
         => _menu?.UpdateLighting(EntMan.GetComponentOrNull<ApcLightingComponent>(Owner));
 
-    /// <summary>
-    /// Sends the requested mode to the server and immediately selects it in the open menu.
-    /// </summary>
     private void LightingModePressed(ApcLightingMode mode)
     {
         SendMessage(new ApcSetLightingModeMessage(mode));

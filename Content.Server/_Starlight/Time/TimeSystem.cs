@@ -19,7 +19,7 @@ public sealed partial class TimeSystem : SharedTimeSystem
     }
 
     /// <summary>
-    /// Sends the authoritative round date and shift start time to the requesting client.
+    /// When a client requests the authoritative round start date from the server, we answer.
     /// </summary>
     private void OnRequestRoundDate(RequestRoundDateEvent msg, EntitySessionEventArgs args) =>
         RaiseNetworkEvent(new RoundDateSetEvent(Date, ShiftStart), args.SenderSession);
