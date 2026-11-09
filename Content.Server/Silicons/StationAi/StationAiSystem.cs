@@ -524,6 +524,9 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         // Starlight - start
         if (args.Container.ID == StationAiCoreComponent.Container)
         {
+            if (TryComp<StationAIShuntableComponent>(args.Entity, out var shuntable)) // Starlight
+                shuntable.SlotReservationStation = _station.GetOwningStation(ent.Owner); // Starlight
+
             _containerSpawnJobSlots.RefreshJobSlots(allowAiSlotIncrease: false);
             AnnounceAiCoreConnectionLost(args.Entity, ent.Owner);
         }

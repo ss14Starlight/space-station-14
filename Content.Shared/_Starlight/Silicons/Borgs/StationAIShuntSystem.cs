@@ -133,7 +133,17 @@ public sealed partial class StationAIShuntSystem : EntitySystem
 
     [SubscribeLocalEvent]
     private void OnShuntableShutdown(EntityUid uid, StationAIShuntableComponent shuntable, ComponentShutdown args)
-        => SetShuntActionsAvailable(uid, shuntable, false);
+    {
+        SetShuntActionsAvailable(uid, shuntable, false);
+
+        if (shuntable.ShuntActionEntity is { } shuntAction
+            && !TerminatingOrDeleted(shuntAction))
+            QueueDel(shuntAction);
+
+        if (shuntable.ReconnectShuntActionEntity is { } reconnectShuntAction
+            && !TerminatingOrDeleted(reconnectShuntAction))
+            QueueDel(reconnectShuntAction);
+    }
 
     #region Actions
     private void OnAttemptShunt(EntityUid uid, StationAIShuntableComponent shuntable, AIShuntActionEvent ev)

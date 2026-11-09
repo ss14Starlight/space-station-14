@@ -215,10 +215,13 @@ public sealed partial class MindTests
     {
         var pair = await SetupPair();
         var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+        EntityUid ai = default;
+        EntityUid shuntAction = default;
+        EntityUid reconnectShuntAction = default;
 
         await pair.Server.WaitAssertion(() =>
         {
-            var ai = entMan.Spawn("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            ai = entMan.Spawn("StationAiBrainConstructed", MapCoordinates.Nullspace);
             var core = entMan.Spawn("PlayerStationAi", MapCoordinates.Nullspace);
             var actions = entMan.System<SharedActionsSystem>();
             var entityTargetActions = entMan.GetEntityQuery<EntityTargetActionComponent>();
@@ -240,11 +243,32 @@ public sealed partial class MindTests
             var coreHolder = entMan.GetComponent<StationAiHolderComponent>(core);
             Assert.That(entMan.System<ItemSlotsSystem>().TryInsert(core, coreHolder.Slot, ai, null), Is.True);
             AssertShuntActions(1);
+
+            var shuntable = entMan.GetComponent<StationAIShuntableComponent>(ai);
+            shuntAction = shuntable.ShuntActionEntity
+                ?? throw new InvalidOperationException("The shunt action was not stored on the AI.");
+            reconnectShuntAction = shuntable.ReconnectShuntActionEntity
+                ?? throw new InvalidOperationException("The reconnect shunt action was not stored on the AI.");
+
+            var actionContainer = entMan.System<ActionContainerSystem>();
+            actionContainer.RemoveAction(shuntAction);
+            actionContainer.RemoveAction(reconnectShuntAction);
+            AssertShuntActions(0);
+            Assert.That(entMan.EntityExists(shuntAction), Is.True);
+            Assert.That(entMan.EntityExists(reconnectShuntAction), Is.True);
+
             entMan.RemoveComponent<StationAIShuntableComponent>(ai);
             AssertShuntActions(0);
+        });
+        await pair.RunTicksSync(1);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            Assert.That(entMan.EntityExists(shuntAction), Is.False);
+            Assert.That(entMan.EntityExists(reconnectShuntAction), Is.False);
 
             entMan.AddComponent<StationAIShuntableComponent>(ai);
-            AssertShuntActions(1);
+            Assert.That(GetShuntActionIds(entMan, entMan.System<SharedActionsSystem>(), ai).Count, Is.EqualTo(2));
         });
     }
 
