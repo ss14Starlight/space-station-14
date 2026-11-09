@@ -21,7 +21,7 @@ public sealed partial class TransitTubeSystem
         {
             var ent = new Entity<TransitPodComponent>(uid, pod);
 
-            if (pod.State == TransitPodState.Stalled || pod.State == TransitPodState.Moving && holder.Halted)
+            if (pod.State == TransitPodState.Stalled || (pod.State == TransitPodState.Moving && holder.Halted))
                 CheckSupport(ent, (uid, holder), xform);
 
             switch (pod.State)
@@ -111,7 +111,7 @@ public sealed partial class TransitTubeSystem
             return;
 
         // Fast pods cover a lot of tube per tick; widen the check so they can't skip through each other.
-        var range = pod.Comp.CollisionRange + 2f * holder.TraversalSpeed * frameTime;
+        var range = pod.Comp.CollisionRange + ((2f * holder.TraversalSpeed) * frameTime);
 
         _nearbyPods.Clear();
         _lookup.GetEntitiesInRange(xform.Coordinates, range, _nearbyPods);
@@ -177,8 +177,8 @@ public sealed partial class TransitTubeSystem
 
         if (TryComp<DisposalHolderComponent>(other, out var otherHolder))
         {
-            if (otherHolder.CurrentTube is { } otherCurrent && _pathTubes.Contains(otherCurrent)
-                || otherHolder.NextTube is { } otherNext && _pathTubes.Contains(otherNext))
+            if ((otherHolder.CurrentTube is { } otherCurrent && _pathTubes.Contains(otherCurrent))
+                || (otherHolder.NextTube is { } otherNext && _pathTubes.Contains(otherNext)))
                 return true;
         }
 
