@@ -9,6 +9,7 @@
     - id: ITGTrackerImplanter
     - id: SalvageTechFabFlatpack
     - id: Multitool
+    - id: GlowstoneDropperFilled25
 
 - type: entityTable
   id: FillSalvageLeadHardsuitSpatio
