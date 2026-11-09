@@ -1,34 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: Cargo Add new cell recharger in Cargo Bay.
-    type: Add
-  id: 409887
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'ITG: Add Salvage Medic.'
-    type: Add
-  id: 409888
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'ITG: Remove 1 Salvage Specialist; now max of 4.'
-    type: Remove
-  id: 409889
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Replace service-accessed airlock with command on "Maid"'s bridge.
-    type: Fix
-  id: 409890
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
   - message: Add 2 Assistant Manager job roles.
     type: Add
   id: 409891
@@ -2799,4 +2771,32 @@ Entries:
   id: 410286
   time: '2026-11-09T17:36:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7148
+- author: Conflee
+  changes:
+  - message: Gave tabletop radio machinery an offset so they sit on top of tables and counters properly. Also did some minor shading touch-ups on all radio machinery, adjusting their outlines to be shaded and softer.
+    type: Tweak
+  id: 410287
+  time: '2026-11-09T19:38:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7116
+- author: redmushie
+  changes:
+  - message: More advanced signaling options for light fixtures.
+    type: Add
+  id: 410288
+  time: '2026-11-09T20:04:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7149
+- author: Rinary
+  changes:
+  - message: Added sliders to configure new light settings intensity in settings.
+    type: Add
+  id: 410289
+  time: '2026-11-09T21:23:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7153
+- author: Rinary
+  changes:
+  - message: Reverted newly added "Dark" or "Soulmancer" wizard cause it's too op.
+    type: Remove
+  id: 410290
+  time: '2026-11-09T21:23:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7152
 Order: -1
