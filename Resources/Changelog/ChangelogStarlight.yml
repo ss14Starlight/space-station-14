@@ -1,25 +1,4 @@
 Entries:
-- author: AnyTap, Trosling.
-  changes:
-  - message: Added Gunnery Sergeant SOP.
-    type: Add
-  id: 409871
-  time: '2026-10-29T14:37:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6848
-- author: wonderfulnewworld
-  changes:
-  - message: DAGDs should always get their extra TC now.
-    type: Fix
-  id: 409872
-  time: '2026-10-29T15:02:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6924
-- author: Conflee
-  changes:
-  - message: Fixed Interdyne Nukie Outpost APCs overloading by swapping them all from high capacity to super capacity. Run your hellfire freezer/heater all you want!
-    type: Fix
-  id: 409873
-  time: '2026-10-29T15:22:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6930
 - author: Talirson
   changes:
   - message: Added ProtoNitrate to the salvage gas canister loot pool.
@@ -2799,4 +2778,25 @@ Entries:
   id: 410270
   time: '2026-11-09T10:04:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7147
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added a location to visit through space or the transrecon portal located in science.
+    type: Add
+  id: 410271
+  time: '2026-11-09T10:42:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7140
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added new radio host equipment.
+    type: Add
+  id: 410272
+  time: '2026-11-09T10:42:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7140
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added a gunnery sergeant to armory.
+    type: Add
+  id: 410273
+  time: '2026-11-09T10:42:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7140
 Order: -1
