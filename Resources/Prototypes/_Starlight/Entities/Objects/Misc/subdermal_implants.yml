@@ -353,7 +353,7 @@
 - type: entity
   parent: DeathRattleImplant
   id: PollenDistressImplant
-  name: floral distress pollen
+  name: distress pollen
   description: An organic communication implant that transmits distress signals through the Diona spore hivemind.
   categories: [HideSpawnMenu]
   components:
