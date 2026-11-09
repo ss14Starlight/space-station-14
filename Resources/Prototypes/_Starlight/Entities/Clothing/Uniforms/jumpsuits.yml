@@ -625,8 +625,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHoPTurtleneck
-  name: head of personal's turtleneck
-  description: It's Head of Personal's turtleneck.
+  name: head of personnel's turtleneck
+  description: It's the Head of Personnel's turtleneck.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/hop_turtleneck.rsi
