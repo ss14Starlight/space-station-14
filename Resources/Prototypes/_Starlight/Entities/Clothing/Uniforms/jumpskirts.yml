@@ -806,7 +806,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtHoPTurtleneck
-  name: head of personnel's turtleneck
+  name: head of personnel's turtleneck skirt
   description: It's the Head of Personnel's turtleneck.
   components:
   - type: Sprite
