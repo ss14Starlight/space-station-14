@@ -1,7 +1,16 @@
+# ToggleableDevice START
+
 - type: sinkPort
-  id: State
-  name: signal-port-name-state
-  description: signal-port-description-state
+  id: ToggleableDeviceState
+  name: signal-port-name-toggleable-device-state
+  description: signal-port-description-toggleable-device-state
+
+- type: sinkPort
+  id: ToggleableDeviceStateInverted
+  name: signal-port-name-toggleable-device-state-inverted
+  description: signal-port-description-toggleable-device-state-inverted
+
+# ToggleableDevice END
 
 - type: sinkPort
   id: BodyScannerReceiver

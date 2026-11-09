@@ -51,7 +51,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
         SubscribeLocalEvent<PoweredLightComponent, EntInsertedIntoContainerMessage>(OnInserted);
         SubscribeLocalEvent<PoweredLightComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<PoweredLightComponent, InteractHandEvent>(OnInteractHand);
-        SubscribeLocalEvent<PoweredLightComponent, SignalReceivedEvent>(OnSignalReceived);
+        // SubscribeLocalEvent<PoweredLightComponent, SignalReceivedEvent>(OnSignalReceived); // Starlight-edit
         SubscribeLocalEvent<PoweredLightComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<PoweredLightComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<PoweredLightComponent, PoweredLightDoAfterEvent>(OnDoAfter);
@@ -65,7 +65,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
     private void OnInit(EntityUid uid, PoweredLightComponent light, ComponentInit args)
     {
         light.LightBulbContainer = ContainerSystem.EnsureContainer<ContainerSlot>(uid, LightBulbContainer);
-        _deviceLink.EnsureSinkPorts(uid, light.OnPort, light.OffPort, light.TogglePort);
+        //_deviceLink.EnsureSinkPorts(uid, light.OnPort, light.OffPort, light.TogglePort); // Starlight-edit
     }
 
     private void OnRemoved(Entity<PoweredLightComponent> light, ref EntRemovedFromContainerMessage args)
@@ -120,15 +120,15 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnSignalReceived(Entity<PoweredLightComponent> ent, ref SignalReceivedEvent args)
-    {
-        if (args.Port == ent.Comp.OffPort)
-            SetState(ent, false, ent.Comp);
-        else if (args.Port == ent.Comp.OnPort)
-            SetState(ent, true, ent.Comp);
-        else if (args.Port == ent.Comp.TogglePort)
-            ToggleLight(ent, ent.Comp);
-    }
+    // private void OnSignalReceived(Entity<PoweredLightComponent> ent, ref SignalReceivedEvent args)
+    // {
+    //     if (args.Port == ent.Comp.OffPort)
+    //         SetState(ent, false, ent.Comp);
+    //     else if (args.Port == ent.Comp.OnPort)
+    //         SetState(ent, true, ent.Comp);
+    //     else if (args.Port == ent.Comp.TogglePort)
+    //         ToggleLight(ent, ent.Comp);
+    // }
 
     /// <summary>
     /// Turns the light on or of when receiving a <see cref="DeviceNetworkConstants.CmdSetState"/> command.
@@ -438,6 +438,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
 
         light.On = !light.On;
         UpdateLight(uid, light);
+        SetToggleableState(uid, light.On); // Starlight-edit
     }
 
     public void SetState(EntityUid uid, bool state, PoweredLightComponent? light = null)
@@ -448,6 +449,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
         light.On = state;
         Dirty(uid, light);
         UpdateLight(uid, light);
+        SetToggleableState(uid, state); // Starlight-edit
     }
 
     // Starlight Start

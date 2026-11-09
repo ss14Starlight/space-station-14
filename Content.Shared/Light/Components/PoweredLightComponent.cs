@@ -55,14 +55,14 @@ namespace Content.Shared.Light.Components
         [DataField, AutoPausedField]
         public TimeSpan? LastGhostBlink;
 
-        [DataField]
-        public ProtoId<SinkPortPrototype> OnPort = "On";
-
-        [DataField]
-        public ProtoId<SinkPortPrototype> OffPort = "Off";
-
-        [DataField]
-        public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
+        // [DataField]
+        // public ProtoId<SinkPortPrototype> OnPort = "On";
+        //
+        // [DataField]
+        // public ProtoId<SinkPortPrototype> OffPort = "Off";
+        //
+        // [DataField]
+        // public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
 
         /// <summary>
         /// How long it takes to eject a bulb from this

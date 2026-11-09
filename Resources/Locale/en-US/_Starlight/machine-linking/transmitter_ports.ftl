@@ -1,3 +1,13 @@
+# ToggleableDevice START
+
+signal-port-name-toggleable-device-status = Status
+signal-port-description-toggleable-device-status = High while the device is on, Low while the device is off.
+
+signal-port-name-toggleable-device-status-inverted = Status (Inverted)
+signal-port-description-toggleable-device-status-inverted = Low while the device is on, High while the device is off.
+
+# ToggleableDevice END
+
 signal-port-name-body-scanner-sender = Operating Console
 signal-port-description-body-scanner-sender = Getting info only from Operating Table about patient.
 
