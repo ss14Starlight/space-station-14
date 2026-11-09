@@ -123,3 +123,15 @@
         - id: CombustionTurbineOutletFlatpack
         - id: ComputerCombustionTurbineFlatpack
         - id: IgniterMachineCircuitboard
+
+- type: entity
+  id: CrateJerryCanFuel
+  parent: CrateEngineeringSecure
+  name: fuel jerry can crate
+  description: A crate containing a jerry can of welding fuel.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: JerryCanFuel
