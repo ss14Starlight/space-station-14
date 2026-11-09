@@ -1,102 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: Cyborg AA is now removed on client disconnect. Reconnect will restore them.
-    type: Fix
-  id: 409855
-  time: '2026-10-28T08:58:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6873
-- author: baltdev
-  changes:
-  - message: Traded out the suit storage slot (which seems to be broken for Scurrets) for a pocket and belt slot on Scurrets.
-    type: Tweak
-  id: 409856
-  time: '2026-10-28T09:24:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6894
-- author: baltdev
-  changes:
-  - message: Gave Emotional Support Scurrets a job entry, ID, and playtime tracker.
-    type: Add
-  id: 409857
-  time: '2026-10-28T09:24:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6894
-- author: baltdev
-  changes:
-  - message: Let Emotional Support Scurrets access maints.
-    type: Tweak
-  id: 409858
-  time: '2026-10-28T09:24:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6894
-- author: baltdev
-  changes:
-  - message: Marked the QM mantle and spear as allowed for Emotional Support Scurrets.
-    type: Tweak
-  id: 409859
-  time: '2026-10-28T09:24:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6894
-- author: baltdev
-  changes:
-  - message: Syndicate Scurret Reinforcement job icon (currently unused).
-    type: Add
-  id: 409860
-  time: '2026-10-28T09:24:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6894
-- author: Swonki
-  changes:
-  - message: 'Argocyte Expedition: Low loot, but the bodies can be chopped up for tickets.'
-    type: Add
-  id: 409861
-  time: '2026-10-28T09:24:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6763
-- author: Swonki
-  changes:
-  - message: Silicon Expedition.
-    type: Add
-  id: 409862
-  time: '2026-10-28T09:24:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6763
-- author: Swonki
-  changes:
-  - message: Expedition loot is now generated based on the type of expedition rather than just the difficulty.
-    type: Add
-  id: 409863
-  time: '2026-10-28T09:24:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6763
-- author: Swonki
-  changes:
-  - message: Difficulties are now relative to the exped type.
-    type: Add
-  id: 409864
-  time: '2026-10-28T09:24:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6763
-- author: Swonki
-  changes:
-  - message: Worm Expedition.
-    type: Remove
-  id: 409865
-  time: '2026-10-28T09:24:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6763
-- author: Swonki
-  changes:
-  - message: xenos and argocytes are butcherable.
-    type: Fix
-  id: 409866
-  time: '2026-10-28T09:24:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6763
-- author: Conflee
-  changes:
-  - message: Added the Interdyne Nuclear Operative Outpost, a new outpost themed as an abandoned Interdyne hospital. Very little 'freebie' loot for the Nukies, but an extremely robust Chemistry setup with 2 fully equipped chem stations, and a large room set aside for Corpsman to use plumbing and chem automation with an RPLD if they know how.
-    type: Add
-  id: 409867
-  time: '2026-10-28T09:24:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6820
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Revolutionary monkeys are now educated on communist ideologies and will only attack mindshielded crew. They also won't attack headrevs anymore.
-    type: Fix
-  id: 409868
-  time: '2026-10-28T11:14:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6913
 - author: mikeysaurus
   changes:
   - message: Accessibility settings now include an option to preview your chat messages above your character as you type it.
@@ -2799,4 +2701,102 @@ Entries:
   id: 410254
   time: '2026-11-08T14:18:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7029
+- author: CrazyPhantom
+  changes:
+  - message: Players are no longer forced to attack after Round End if they have the ForceAttack component, (Spider and Slime Ghostroles).
+    type: Fix
+  id: 410255
+  time: '2026-11-08T18:09:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7129
+- author: Talirson
+  changes:
+  - message: You can no longer store items inside a 1x1 rubber duck.
+    type: Fix
+  id: 410256
+  time: '2026-11-08T18:40:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7123
+- author: Rinary
+  changes:
+  - message: "Added soft light option: it makes light more smoother so 10 light sources in one place won't create a big white dot."
+    type: Add
+  id: 410257
+  time: '2026-11-08T19:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7036
+- author: Rinary
+  changes:
+  - message: Adds emergency light into some lights on station, that use internal light battery to highlight area with small red light.
+    type: Add
+  id: 410258
+  time: '2026-11-08T19:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7036
+- author: Rinary
+  changes:
+  - message: Adds "Night vision" option, which makes game look more dark in rooms with low light level(yeah, it's intended) and adds gray vision effect in rooms with low light level.
+    type: Add
+  id: 410259
+  time: '2026-11-08T19:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7036
+- author: Rinary
+  changes:
+  - message: 'Adds vignette and grain option: just adds small grain(almost unnoticeable) and vignette to make game look better.'
+    type: Add
+  id: 410260
+  time: '2026-11-08T19:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7036
+- author: Rinary
+  changes:
+  - message: 'Adds bloom option: Makes some objects glow, like APCs screens, ghosts in dark rooms, lights.'
+    type: Add
+  id: 410261
+  time: '2026-11-08T19:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7036
+- author: Rinary
+  changes:
+  - message: Adds ability to change light mode in APC from Day light to Night light or Auto(depends on entire station light mode).
+    type: Add
+  id: 410262
+  time: '2026-11-08T19:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7036
+- author: Rinary
+  changes:
+  - message: Makes it so shift can begin at random time from 8:00 to 22:00.
+    type: Tweak
+  id: 410263
+  time: '2026-11-08T19:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7036
+- author: Rinary
+  changes:
+  - message: Makes it so station automatically swaps to night lights at evening(from 19:30 to 7:30), won't work on any alert level except green and blue(station automatically disables night lights).
+    type: Tweak
+  id: 410264
+  time: '2026-11-08T19:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7036
+- author: Rinary
+  changes:
+  - message: Changes night lights event to make it work on new night lights system.
+    type: Tweak
+  id: 410265
+  time: '2026-11-08T19:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7036
+- author: Rinary
+  changes:
+  - message: Changes lights energy/range to make station less glowing.
+    type: Tweak
+  id: 410266
+  time: '2026-11-08T19:03:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7036
+- author: Rinary
+  changes:
+  - message: Added ability to build airlock contollers/his buttons.
+    type: Add
+  id: 410267
+  time: '2026-11-08T19:24:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7128
+- author: Citrea
+  changes:
+  - message: Resomi tails are now drawn over jetpacks and other back items.
+    type: Fix
+  id: 410268
+  time: '2026-11-08T19:24:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7131
 Order: -1
