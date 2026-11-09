@@ -37,7 +37,7 @@ public sealed partial class DarkTileSystem : EntitySystem
         if (_shadekin.GetLightExposure(ent, ent.Comp.Threshold) >= ent.Comp.Threshold)
         {
             RemCompDeferred<ActiveEdgeSpreaderComponent>(ent);
-            PredictedQueueDel(ent);
+            QueueDel(ent);
             return;
         }
 
@@ -48,7 +48,7 @@ public sealed partial class DarkTileSystem : EntitySystem
             if (_shadekin.GetLightExposure(_transform.ToMapCoordinates(coordinates), ent.Comp.Threshold) >= ent.Comp.Threshold)
                 continue;
 
-            Spawn(prototype.ID, coordinates);
+            SpawnAtPosition(prototype.ID, coordinates);
             args.Updates--;
 
             if (args.Updates <= 0)
@@ -80,7 +80,7 @@ public sealed partial class DarkTileSystem : EntitySystem
                 continue;
 
             if (_shadekin.GetLightExposure(uid, component.Threshold) >= component.Threshold)
-                PredictedQueueDel(uid);
+                QueueDel(uid);
         }
     }
 }

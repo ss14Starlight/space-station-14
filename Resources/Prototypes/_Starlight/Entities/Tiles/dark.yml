@@ -28,7 +28,7 @@
     - type: EdgeSpreader
       id: DarkTile
     - type: Sprite
-      noRot: true
+      snapCardinals: true
       drawdepth: FloorTiles
       sprite: _Starlight/Tiles/dark.rsi
       layers:

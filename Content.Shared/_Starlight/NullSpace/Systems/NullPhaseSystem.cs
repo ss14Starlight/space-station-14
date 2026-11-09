@@ -197,7 +197,7 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        var effect = SpawnAtPosition(effectproto, Transform(uid).Coordinates);
+        var effect = PredictedSpawnAtPosition(effectproto, Transform(uid).Coordinates);
 
         _scaleVisuals.SetSpriteScale(effect, _scaleVisuals.GetSpriteScale(uid));
         _transform.SetLocalRotation(effect, Transform(uid).LocalRotation);
