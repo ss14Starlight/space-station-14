@@ -111,8 +111,8 @@ public sealed partial class StationAIShuntSystem : EntitySystem
 
     private bool IsInStationAiCore(EntityUid uid)
         => _containers.TryGetContainingContainer(uid, out var container)
-           && container.ID == StationAiCoreComponent.Container
-           && HasComp<StationAiCoreComponent>(container.Owner);
+            && container.ID == StationAiCoreComponent.Container
+            && HasComp<StationAiCoreComponent>(container.Owner);
 
     [SubscribeLocalEvent]
     private void OnShuntableShutdown(EntityUid uid, StationAIShuntableComponent shuntable, ComponentShutdown args)
