@@ -84,15 +84,3 @@
   components:
   - type: ShowSyndicateIcons
   - type: ShowAntagIcons
-
-- type: entity
-  parent: BaseMentalAction
-  id: ActionReplayToggleOwnSprite
-  name: Hide My Ghost
-  description: Hide your own ghost sprite in this replay.
-  components:
-  - type: Action
-    icon: { sprite: Mobs/Ghosts/ghost_human.rsi, state: icon }
-    clientExclusive: true
-  - type: InstantAction
-    event: !type:ReplayToggleOwnSpriteActionEvent

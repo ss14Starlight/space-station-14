@@ -68,7 +68,6 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleStatusIconsActionEvent>(OnToggleStatusIcons);
         SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleWeatherActionEvent>(OnToggleWeather);
         SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleFactionIconsActionEvent>(OnToggleFactionIcons);
-        SubscribeLocalEvent<ReplaySpectatorComponent, ReplayToggleOwnSpriteActionEvent>(OnToggleOwnSprite);
 
         _replayPlayback.ReplayPlaybackStarted += OnPlaybackStarted;
         _replayPlayback.ReplayPlaybackStopped += OnPlaybackStopped;
@@ -121,8 +120,6 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _factionIconsEnabled = false;
         _factionIconsShown = false;
         _factionIconsAction = null;
-        _ownSpriteHidden = false;
-        _ownSpriteAction = null;
         DetachRoundTimeControls();
         _viewing.Clear();
         _pendingViews.Clear();
@@ -161,7 +158,6 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         UpdatePlayerOverlay(frameTime, IsHudHidden());
         UpdateStatusIcons();
         UpdateFactionIcons();
-        UpdateOwnSprite();
         UpdateRoundTimeWidget();
         EnsureStatusIconOverlay();
         UpdateActionsBarOffset();
@@ -215,7 +211,6 @@ public sealed partial class ReplayObserverSystem : EntitySystem
 
         AddWeatherAction(uid);
         AddFactionIconsAction(uid);
-        AddOwnSpriteAction(uid);
 
         ApplyViewSettings(uid);
         _ghost.ToggleGhostVisibility(_ghostsVisible);
