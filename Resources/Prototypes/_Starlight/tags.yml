@@ -231,9 +231,6 @@
   id: DamagedShadekinCore
 
 - type: Tag
-  id: DarkWizard
-
-- type: Tag
   id: DeificEncounterTraitBackground
 
 - type: Tag
