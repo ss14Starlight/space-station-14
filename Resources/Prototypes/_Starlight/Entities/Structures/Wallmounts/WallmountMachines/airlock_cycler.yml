@@ -39,6 +39,17 @@
           Closing: { state: process }
           Pressurizing: { state: process }
           Depressurizing: { state: process }
+  - type: Construction
+    graph: AirlockCycler
+    node: airlock_cycler
+    containers:
+    - board
+  - type: ContainerFill
+    containers:
+      board: [ AirlockCyclerElectronics ]
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -67,6 +78,9 @@
   - type: AirlockCyclerButton
   - type: UseDelay
     delay: 0.5
+  - type: Construction
+    graph: AirlockCyclerButton
+    node: button
   - type: DeviceLinkSink
     ports:
     - AirlockCyclerButton
@@ -89,6 +103,81 @@
     - trigger:
         !type:DamageTrigger
         damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -8
+
+- type: entity
+  parent: BaseWallmountMetallic
+  id: AirlockCyclerAssembly
+  name: airlock controller assembly
+  description: An unfinished airlock controller. It won't be cycling anything any time soon.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/airlock_cycler.rsi
+    layers:
+    - state: frame
+      map: [ "enum.ConstructionVisuals.Layer" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          assembly: { state: frame }
+          wired: { state: wired }
+          electronics: { state: board }
+  - type: Construction
+    graph: AirlockCycler
+    node: assembly
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+
+- type: entity
+  parent: BaseWallmountMetallic
+  id: AirlockCyclerButtonFrame
+  name: airlock cycle button frame
+  description: An unfinished airlock cycle button. Pressing it does nothing yet.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _Starlight/Structures/Wallmounts/airlock_cycler_button.rsi
+    layers:
+    - state: frame
+      map: [ "enum.ConstructionVisuals.Layer" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          frame: { state: frame }
+          wired: { state: wired }
+  - type: Construction
+    graph: AirlockCyclerButton
+    node: frame
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
