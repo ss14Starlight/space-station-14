@@ -1213,7 +1213,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedicalIntern
-      time: 1800 # 5hr
+      time: 18000 # 5hr
   storage:
     back:
     - PlushieLizardJobMedicalintern
@@ -1317,7 +1317,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobResearchAssistant
-      time: 1800 # 5hr
+      time: 18000 # 5hr
   storage:
     back:
     - PlushieLizardJobResearchassistant
@@ -1369,7 +1369,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobSecurityCadet
-      time: 1800 # 5hr
+      time: 18000 # 5hr
   storage:
     back:
     - PlushieLizardJobSecuritycadet
@@ -1421,7 +1421,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobTechnicalAssistant
-      time: 1800 # 5hr
+      time: 18000 # 5hr
   storage:
     back:
     - PlushieLizardJobTechnicalassistant
