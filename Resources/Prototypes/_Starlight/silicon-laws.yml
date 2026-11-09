@@ -623,32 +623,32 @@
 
 # NTaDOS Lawset
 - type: siliconLaw
-  id: ntados1
+  id: ntados0
   order: 0
   lawString: law-ntados-0
 
 - type: siliconLaw
-  id: ntados2
+  id: ntados1
   order: 1
   lawString: law-ntados-1
 
 - type: siliconLaw
-  id: ntados3
+  id: ntados2
   order: 2
   lawString: law-ntados-2
 
 - type: siliconLaw
-  id: ntados4
+  id: ntados3
   order: 3
   lawString: law-ntados-3
 
 - type: siliconLaw
-  id: ntados5
+  id: ntados4
   order: 4
   lawString: law-ntados-4
 
 - type: siliconLaw
-  id: ntados6
+  id: ntados5
   order: 5
   lawString: law-ntados-5
 
