@@ -12,6 +12,7 @@ namespace Content.Client._Starlight.Replay;
 public sealed partial class ReplayObserverSystem
 {
     private const string RoundTimeFormat = @"hh\:mm\:ss";
+    private const double MaxRoundSeconds = 100 * 24 * 60 * 60;
 
     private ReplayControlWidget? _roundTimeWidget;
     private Label? _roundTimeLabel;
@@ -148,11 +149,19 @@ public sealed partial class ReplayObserverSystem
         var seconds = 0d;
         foreach (var part in parts)
         {
-            if (!double.TryParse(part, NumberStyles.Float, CultureInfo.InvariantCulture, out var value) || value < 0)
+            if (!double.TryParse(part, NumberStyles.Float, CultureInfo.InvariantCulture, out var value)
+                || !double.IsFinite(value)
+                || value < 0)
+            {
                 return false;
+            }
 
             seconds = seconds * 60 + value;
         }
+
+        // Far past any replay, and far enough from TimeSpan's limit that adding the round start can't overflow.
+        if (seconds > MaxRoundSeconds)
+            return false;
 
         time = TimeSpan.FromSeconds(seconds);
         return true;
