@@ -20,10 +20,22 @@ public sealed class GetDimmedLightLevelEvent : EntityEventArgs
     /// </summary>
     public float PowerUse { get; set; }
 
-    public GetDimmedLightLevelEvent(float lightEnergy, float lightRadius, float powerUse)
+    /// <summary>
+    /// The color of the light.
+    /// </summary>
+    public Color Color { get; set; }
+
+    /// <summary>
+    /// Whether the bulb is dimmed by alert levels.
+    /// </summary>
+    public bool Dimmable { get; }
+
+    public GetDimmedLightLevelEvent(float lightEnergy, float lightRadius, float powerUse, Color color, bool dimmable)
     {
         LightEnergy = lightEnergy;
         LightRadius = lightRadius;
         PowerUse = powerUse;
+        Color = color;
+        Dimmable = dimmable;
     }
 }

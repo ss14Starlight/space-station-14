@@ -12,4 +12,4 @@ public sealed partial class FootprintComponent : Component
 }
 
 [Serializable, NetSerializable]
-public readonly record struct FootprintData(Vector2 Offset, Angle Rotation, float Alpha, FootprintVisualState State);
+public readonly record struct FootprintData(Vector2 Offset, Angle Rotation, float Alpha, FootprintVisualState State, bool Mirrored); // Starlight

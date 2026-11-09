@@ -231,6 +231,9 @@
   id: DamagedShadekinCore
 
 - type: Tag
+  id: DarkWizard
+
+- type: Tag
   id: DeificEncounterTraitBackground
 
 - type: Tag
@@ -358,6 +361,15 @@
 
 - type: Tag
   id: GrenadeLessLethal #Ammo for the peacekeeper
+
+- type: Tag
+  id: GunUpgradeDamageExp
+
+- type: Tag
+  id: GunUpgradeRangeExp
+
+- type: Tag
+  id: GunUpgradeReloadSpeedExp
 
 - type: Tag
   id: GygaxArmor
@@ -652,6 +664,9 @@
   id: OmniCyberEyes
 
 - type: Tag
+  id: Outbreak
+
+- type: Tag
   id: OvenMachineBoard
 
 - type: Tag
@@ -721,6 +736,9 @@
 
 - type: Tag
   id: Salad # BountySalad
+
+- type: Tag
+  id: SalvageExperimentStar
 
 - type: Tag
   id: SalvageTicket
@@ -871,3 +889,6 @@
 
 - type: Tag
   id: StationRadioCircuitboard
+
+- type: Tag
+  id: AirlockCyclerElectronics # ConstructionGraph: AirlockCycler

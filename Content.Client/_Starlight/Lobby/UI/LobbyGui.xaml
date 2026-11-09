@@ -2,7 +2,7 @@
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
-    xmlns:vote="clr-namespace:Content.Client.Voting.UI"
+    xmlns:clog="clr-namespace:Content.Client.Changelog"
     xmlns:lobbyUi="clr-namespace:Content.Client.Lobby.UI"
     xmlns:info="clr-namespace:Content.Client.Info"
     xmlns:nulllink="clr-namespace:Content.Client._NullLink.UI"
@@ -20,7 +20,7 @@
                 <Button Name="RulesButton" Text="{Loc 'server-info-rules-button'}" StyleClasses="LobbyBarButton" />
                 <Button Name="GuidebookButton" Text="{Loc 'server-info-guidebook-button'}" StyleClasses="LobbyBarButton" />
                 <Button Name="AHelpButton" Access="Public" Text="{Loc 'ui-lobby-ahelp-button'}" StyleClasses="LobbyBarButton" />
-                <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="LobbyBarButton" />
+                <clog:ChangelogButton Name="ChangelogButton" Access="Public" StyleClasses="LobbyBarButton" />
                 <sc:DropdownButton Name="LinksButton" Text="{Loc 'ui-lobby-links-button'}" StyleClasses="LobbyBarButton" />
                 <Button Name="OptionsButton" Access="Public" Text="{Loc 'ui-lobby-options-button'}" StyleClasses="LobbyBarButton" />
                 <Button Name="LeaveButton" Access="Public" Text="{Loc 'ui-lobby-leave-button'}" StyleClasses="LobbyBarButton" />

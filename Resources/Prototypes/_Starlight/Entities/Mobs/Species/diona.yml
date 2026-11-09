@@ -13,6 +13,7 @@
     understands:
     - GalacticCommon
     - Sylvan
+    - Spore
   # Starlight-end
   - type: Absorbable
   - type: Tag

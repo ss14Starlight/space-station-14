@@ -476,26 +476,15 @@ public sealed partial class TelephoneSystem : SharedTelephoneSystem
 
         var sourceXform = Transform(source);
         var receiverXform = Transform(receiver);
-
-        // Check if we should ignore a device thats on the same grid
-        if (source.Comp.IgnoreTelephonesOnSameGrid &&
-            source.Comp.TransmissionRange != TelephoneRange.Grid &&
-            receiverXform.GridUid == sourceXform.GridUid)
-            return false;
-
-        switch (source.Comp.TransmissionRange)
-        {
-            case TelephoneRange.Grid:
-                return sourceXform.GridUid == receiverXform.GridUid;
-
-            case TelephoneRange.Map:
-                return sourceXform.MapID == receiverXform.MapID;
-
-            case TelephoneRange.Unlimited:
-                return true;
-        }
-
-        return false;
+        // Starlight - start
+        return IsSourceInRangeOfReceiver(
+            source.Comp,
+            sourceXform.MapID,
+            sourceXform.GridUid,
+            receiver.Comp.TransmissionRange,
+            receiverXform.MapID,
+            receiverXform.GridUid);
+        // Starlight - end
     }
 
     public bool IsSourceConnectedToReceiver(Entity<TelephoneComponent> source, Entity<TelephoneComponent> receiver)
