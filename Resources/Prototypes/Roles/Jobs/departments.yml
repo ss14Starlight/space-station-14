@@ -83,6 +83,7 @@
   - DeathSquad
   - Magistrate
   - NanoTrasenRepresentative
+  - StationAi # Starlight
   primary: false
   weight: 100
 
