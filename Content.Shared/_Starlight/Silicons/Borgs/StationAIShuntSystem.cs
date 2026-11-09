@@ -95,33 +95,18 @@ public sealed partial class StationAIShuntSystem : EntitySystem
 
             _actionSystem.RemoveAction(uid, action.Owner);
             _actionContainer.RemoveAction(action.Owner);
+            if (!TerminatingOrDeleted(action.Owner))
+                QueueDel(action.Owner);
         }
 
         if (!available)
             return;
 
         if (!hasShuntAction)
-            AddShuntAction(uid, shuntable.ShuntAction.Id, ref shuntable.ShuntActionEntity);
+            shuntable.ShuntActionEntity = _actionSystem.AddAction(uid, shuntable.ShuntAction.Id);
 
         if (!hasReconnectShuntAction)
-            AddShuntAction(uid, shuntable.ReconnectShuntAction.Id, ref shuntable.ReconnectShuntActionEntity);
-    }
-
-    private void AddShuntAction(EntityUid uid, string prototypeId, ref EntityUid? actionId)
-    {
-        if (actionId is { } storedAction
-            && !TerminatingOrDeleted(storedAction)
-            && _actionSystem.GetAction(storedAction) is { } action
-            && _actionContainer.AddAction(uid, storedAction, action.Comp))
-        {
-            var nullableAction = new Entity<ActionComponent?>(action.Owner, action.Comp);
-            if (_actionSystem.AddActionDirect(uid, nullableAction))
-                return;
-
-            _actionContainer.RemoveAction(nullableAction);
-        }
-
-        actionId = _actionSystem.AddAction(uid, prototypeId);
+            shuntable.ReconnectShuntActionEntity = _actionSystem.AddAction(uid, shuntable.ReconnectShuntAction.Id);
     }
 
     private bool IsInStationAiCore(EntityUid uid)

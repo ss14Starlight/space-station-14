@@ -277,11 +277,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             _menuDragHelper.EndDrag();
         // Starlight End
 
-        // Starlight - start
-        if (_actionsSystem?.GetAction(actionId) is { } action && action.Comp.PreservePositionOnRemoval)
-            return;
-        // Starlight - end
-
         _actions.RemoveAll(x => x == actionId);
     }
 
