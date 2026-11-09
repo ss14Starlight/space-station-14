@@ -24,3 +24,26 @@
     values: [ PoweredlightEmpty, PoweredSmallLightEmpty ]
   components:
   - type: LightFlicker
+
+# ToggleableDevice switch for powered lights.
+- type: !type:PartialOnly entity
+  id: !type:CreateVariants
+    values:
+      - PoweredlightEmpty
+      - PoweredSmallLightEmpty
+      - PoweredLightPostSmallEmpty
+      - PoweredStrobeLightEmpty
+  components:
+    - type: ToggleableDevice
+    - type: ToggleableDeviceSignaling
+    - type: DeviceLinkSink
+      ports:
+        - "On"
+        - "Off"
+        - "Toggle"
+        - "ToggleableDeviceState"
+        - "ToggleableDeviceStateInverted"
+    - type: DeviceLinkSource
+      ports:
+        - "Status"
+        - "ToggleableDeviceStatusInverted"
