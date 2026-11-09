@@ -271,9 +271,8 @@ public sealed partial class TraitSystem : EntitySystem
 
         foreach(var part in _body.GetBodyChildren(player))
         {
-            if(_body.CanInsertOrgan(part.Id, effect.Slot))
-                if(_body.InsertOrgan(part.Id, item, effect.Slot))
-                    return;
+            if(_body.CanInsertOrgan(part.Id, effect.Slot) && _body.InsertOrgan(part.Id, item, effect.Slot))
+                return;
         }
     }
 }
