@@ -30,15 +30,18 @@ public sealed partial class ToggleableDeviceSignalingComponent : Component
     /// </summary>
     [DataField] public ProtoId<SinkPortPrototype> StatePort = "ToggleableDeviceState";
 
+    /// <summary>
+    /// The inverse of <see cref="StatePort"/>.
+    /// </summary>
     [DataField] public ProtoId<SinkPortPrototype> StateInvertedPort = "ToggleableDeviceStateInverted";
 
     /// <summary>
-    /// (Output) Status port that is High when the device is on and Low when it's off.
+    /// Status port that is High when the device is on and Low when it's off.
     /// </summary>
     [DataField] public ProtoId<SourcePortPrototype> StatusPort = "Status";
 
     /// <summary>
-    /// (Output) Status port that is Low when the device is on and High when it's off.
+    /// The inverse of <see cref="StatusPort"/>.
     /// </summary>
     [DataField] public ProtoId<SourcePortPrototype> StatusInvertedPort = "ToggleableDeviceStatusInverted";
 }
