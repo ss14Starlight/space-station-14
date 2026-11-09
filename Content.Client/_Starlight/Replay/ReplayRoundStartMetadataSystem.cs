@@ -23,7 +23,9 @@ public sealed class ReplayRoundStartMetadataSystem : SharedReplayRoundStartMetad
     public TimeSpan? FinalRoundStart { get; private set; }
 
     // Reconnecting into a round skips the lobby status that sets IsGameStarted, but leaves the client in gameplay.
-    protected override bool RoundStarted => _ticker.IsGameStarted || _state.CurrentState is GameplayStateBase;
+    // Zero means the server hasn't sent the round start yet.
+    protected override bool RoundStarted =>
+        _ticker.RoundStartTimeSpan > TimeSpan.Zero && (_ticker.IsGameStarted || _state.CurrentState is GameplayStateBase);
 
     public override void Initialize()
     {
