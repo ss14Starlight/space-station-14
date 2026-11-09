@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Cargo.Components;
+using Content.Shared._Starlight.Cargo.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -34,7 +35,7 @@ namespace Content.Server.Cargo.Systems
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleAddOrderMessage>(OnAddOrderMessage);
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleRemoveOrderMessage>(OnRemoveOrderMessage);
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleApproveOrderMessage>(OnApproveOrderMessage);
-            SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsolePrintBarcodeMessage>(OnPrintBarcodeMessage); //Starlight
+            SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsolePrintBarcodeMessage>(OnPrintBarcodeMessage); //Starlight-edit: Cargo barcodes
             SubscribeLocalEvent<CargoOrderConsoleComponent, BoundUIOpenedEvent>(OnOrderUIOpened);
             SubscribeLocalEvent<CargoOrderConsoleComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<CargoOrderConsoleComponent, InteractUsingEvent>(OnInteractUsing);
@@ -334,36 +335,6 @@ namespace Content.Server.Cargo.Systems
 
             RemoveOrder(station.Value, component.Account, args.OrderId, orderDatabase);
         }
-
-        #region Starlight
-        private void OnPrintBarcodeMessage(EntityUid uid, CargoOrderConsoleComponent component, CargoConsolePrintBarcodeMessage args)
-        {
-            if (Timing.CurTime < component.NextPrintTime)
-                return;
-
-            if (!_protoMan.Resolve(args.Account, out var account))
-                return;
-
-            var label = Spawn(account.AcquisitionSlip, Transform(uid).Coordinates);
-            _metaSystem.SetEntityName(label, "Sale barcode");
-            component.NextPrintTime = Timing.CurTime + component.PrintDelay;
-            _audio.PlayPvs(component.PrintSound, uid);
-
-            var overrideSell = EnsureComp<OverrideSellComponent>(label);
-            overrideSell.OverrideAccount = args.Account;
-
-            if (!HasComp<PaperLabelComponent>(label))
-                AddComp<PaperLabelComponent>(label);
-
-            if (TryComp<PaperComponent>(label, out var paper))
-            {
-                var msg = new FormattedMessage();
-                msg.AddMarkupPermissive(Loc.GetString("cargo-barcode-label-content",
-                    ("account", Loc.GetString(account.Name))));
-                _paperSystem.SetContent((label, paper), msg.ToMarkup());
-            }
-        }
-        #endregion
 
         private void OnAddOrderMessageSlipPrinter(EntityUid uid, CargoOrderConsoleComponent component, CargoConsoleAddOrderMessage args, CargoProductPrototype product)
         {

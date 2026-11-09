@@ -1,5 +1,6 @@
 using Content.Shared.Cargo;
 using Content.Client.Cargo.UI;
+using Content.Shared._Starlight.Cargo.Components;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
@@ -110,9 +111,8 @@ namespace Content.Client.Cargo.BUI
             };
             //Starlight start
             _menu.OnPrintBarcode += account => SendMessage(new CargoConsolePrintBarcodeMessage(account));
-
-            _menu.OpenCentered();
             //Starlight end
+            _menu.OpenCentered();
         }
 
         private void Populate(List<CargoOrderData> orders)

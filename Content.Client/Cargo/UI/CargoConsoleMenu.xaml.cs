@@ -310,26 +310,6 @@ namespace Content.Client.Cargo.UI
             }
         }
 
-        #region Starlight
-        public void PopulateBarcodeAccounts()
-        {
-            if (!_entityManager.TryGetComponent<StationBankAccountComponent>(_station, out var bank))
-                return;
-
-            var i = 0;
-            BarcodeAccountOptions.Clear();
-            foreach (var account in bank.Accounts.Keys)
-            {
-                if (account == bank.PrimaryAccount) continue;
-                var accountProto = _protoManager.Index(account);
-                BarcodeAccountOptions.AddItem(Loc.GetString(accountProto.Code),
-                    i);
-                BarcodeAccountOptions.SetItemMetadata(i, account);
-                i++;
-            }
-        }
-        #endregion
-
         public void UpdateStation(EntityUid station)
         {
             _station = station;
