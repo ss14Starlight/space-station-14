@@ -201,6 +201,45 @@
   id: Trinkets
   loadouts:
     - RadioHandheldStation
+    - PlushieLizardJobAtmospherictechnician
+    - PlushieLizardJobBartender
+    - PlushieLizardJobBotanist
+    - PlushieLizardJobBoxer
+    - PlushieLizardJobCaptain
+    - PlushieLizardJobCargotechnician
+    - PlushieLizardJobChaplain
+    - PlushieLizardJobChef
+    - PlushieLizardJobChemist
+    - PlushieLizardJobChiefengineer
+    - PlushieLizardJobChiefmedicalofficer
+    - PlushieLizardJobClown
+    - PlushieLizardJobDetective
+    - PlushieLizardJobHeadofpersonnel
+    - PlushieLizardJobHeadofsecurity
+    - PlushieLizardJobJanitor
+    - PlushieLizardJobLawyer
+    - PlushieLizardJobLibrarian
+    - PlushieLizardJobMedicaldoctor
+    - PlushieLizardJobMedicalintern
+    - PlushieLizardJobMime
+    - PlushieLizardJobMusician
+    - PlushieLizardJobParamedic
+    - PlushieLizardJobAssistant
+    - PlushieLizardJobPsychologist
+    - PlushieLizardJobQuartermaster
+    - PlushieLizardJobReporter
+    - PlushieLizardJobResearchassistant
+    - PlushieLizardJobResearchdirector
+    - PlushieLizardJobSalvagespecialist
+    - PlushieLizardJobScientist
+    - PlushieLizardJobSecuritycadet
+    - PlushieLizardJobSecurityofficer
+    - PlushieLizardJobServiceworker
+    - PlushieLizardJobStationengineer
+    - PlushieLizardJobTechnicalassistant
+    - PlushieLizardJobWarden
+    - PlushieLizardJobZookeeper
+    - PlushieLizardJobMultiweh
 
 - type: !PartialOnly loadoutGroup
   id: Glasses

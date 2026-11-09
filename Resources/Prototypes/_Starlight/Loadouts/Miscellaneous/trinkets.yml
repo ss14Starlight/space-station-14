@@ -957,3 +957,509 @@
         time: 1h
   equipment:
     pocket1: RadioHandheldStation
+
+
+- type: loadout
+  id: PlushieLizardJobAtmospherictechnician
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobAtmosphericTechnician
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizard
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobBartender
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBartender
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobBartender
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobBotanist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobBotanist
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobBoxer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBoxer
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobBoxer
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobCaptain
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobCaptain
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobCargotechnician
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCargoTechnician
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobCargotechnician
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobChaplain
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChaplain
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobChaplain
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobChef
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChef
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobChef
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobChemist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChemist
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobChemist
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobChiefengineer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefEngineer
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobChiefengineer
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobChiefmedicalofficer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefMedicalOfficer
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobChiefmedicalofficer
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobClown
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobClown
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobDetective
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobDetective
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobDetective
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobHeadofpersonnel
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfPersonnel
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobHeadofpersonnel
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobHeadofsecurity
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobHeadofsecurity
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobJanitor
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobJanitor
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobJanitor
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobLawyer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobLawyer
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobLawyer
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobLibrarian
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobLibrarian
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobLibrarian
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobMedicaldoctor
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMedicalDoctor
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobMedicaldoctor
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobMedicalintern
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMedicalIntern
+      time: 1800 # 5hr
+  storage:
+    back:
+    - PlushieLizardJobMedicalintern
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobMime
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMime
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobMime
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobMusician
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMusician
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobMusician
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobParamedic
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobParamedic
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobParamedic
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobAssistant
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobAssistant
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobAssistant
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobPsychologist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPsychologist
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobPsychologist
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobQuartermaster
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobQuartermaster
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobQuartermaster
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobReporter
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobReporter
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobReporter
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobResearchassistant
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobResearchAssistant
+      time: 1800 # 5hr
+  storage:
+    back:
+    - PlushieLizardJobResearchassistant
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobResearchdirector
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobResearchDirector
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobResearchdirector
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobSalvagespecialist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobSalvagespecialist
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobScientist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobScientist
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobScientist
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobSecuritycadet
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityCadet
+      time: 1800 # 5hr
+  storage:
+    back:
+    - PlushieLizardJobSecuritycadet
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobSecurityofficer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobSecurityofficer
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobServiceworker
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobServiceWorker
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobServiceworker
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobStationengineer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobStationEngineer
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobStationengineer
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobTechnicalassistant
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobTechnicalAssistant
+      time: 1800 # 5hr
+  storage:
+    back:
+    - PlushieLizardJobTechnicalassistant
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobWarden
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobWarden
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobWarden
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobZookeeper
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 144000 # 40hr
+  storage:
+    back:
+    - PlushieLizardJobZookeeper
+  groupBy: "wehzards"
+
+- type: loadout
+  id: PlushieLizardJobMultiweh
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 360000 # 100hr
+  storage:
+    back:
+    - PlushieLizardJobMultiweh
+  groupBy: "wehzards"
