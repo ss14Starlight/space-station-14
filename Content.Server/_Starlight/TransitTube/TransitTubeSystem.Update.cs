@@ -135,6 +135,14 @@ public sealed partial class TransitTubeSystem
             if (System.Numerics.Vector2.Dot(otherVelocity - physics.LinearVelocity, offset) >= 0)
                 continue;
 
+            // A pod standing on the line is waited for, unless this one is going too fast to stop.
+            if (!pod.Comp.Boosted && !holder.Halted && StandsInTheWay(other))
+            {
+                pod.Comp.WaitingBehind = other;
+                Hold(pod, (pod.Owner, holder));
+                continue;
+            }
+
             // Boosted pods hit much harder, both for themselves and whoever they hit.
             var multiplier = pod.Comp.Boosted || other.Comp.Boosted ? pod.Comp.BoostedCollisionMultiplier : 1f;
 

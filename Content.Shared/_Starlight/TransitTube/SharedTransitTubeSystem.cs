@@ -67,6 +67,10 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
         if (station != null && ent.Owner == pod.Comp.Target)
             return StopAt((ent, station), pod, simulate);
 
+        // A passenger asking to get out beats the trip: the pod stops at the first station on the way.
+        if (station != null && travel != Direction.Invalid && StopsOnRequest(station, pod.Comp))
+            return StopAt((ent, station), pod, simulate);
+
         if (travel != Direction.Invalid && pod.Comp.Plan.TryGetValue((ent.Owner, travel), out var planned))
             return planned;
 
@@ -206,7 +210,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     /// </summary>
     protected bool WouldStopAt(Entity<TransitTubeStationComponent> station, Entity<TransitPodComponent> pod, Direction travel)
     {
-        if (pod.Comp.Target == station.Owner)
+        if (pod.Comp.Target == station.Owner || StopsOnRequest(station.Comp, pod.Comp))
             return true;
 
         if (pod.Comp.Plan.ContainsKey((station.Owner, travel))
@@ -232,6 +236,9 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
 
         return passes && PickExit((ent, ent.Comp, tube), travel) != Direction.Invalid;
     }
+
+    private static bool StopsOnRequest(TransitTubeStationComponent station, TransitPodComponent pod)
+        => pod.StopRequested && !pod.Boosted && !station.Depot;
 
     protected bool IsEmagged(EntityUid uid)
         => _emag.CheckFlag(uid, EmagType.Interaction);

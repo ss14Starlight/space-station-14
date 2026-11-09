@@ -3,6 +3,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Shared._Starlight.TransitTube;
 using Content.Shared.Access.Systems;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Administration.Logs;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Atmos;
@@ -53,6 +54,7 @@ public sealed partial class TransitTubeSystem : SharedTransitTubeSystem
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     [Dependency] private SharedStackSystem _stack = default!;
+    [Dependency] private ISharedAdminLogManager _adminLog = default!;
 
     private static readonly TimeSpan _atmosInterval = TimeSpan.FromSeconds(0.5);
     private static readonly TimeSpan _collisionCooldown = TimeSpan.FromSeconds(1);

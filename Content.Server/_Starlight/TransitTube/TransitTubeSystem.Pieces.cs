@@ -1,4 +1,8 @@
+using System.Linq;
 using Content.Shared._Starlight.TransitTube;
+using Content.Shared.Database;
+using Content.Shared.DoAfter;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Disposal.Components;
 using Content.Shared.Disposal.Tube;
 using Content.Shared.Disposal.Unit;
@@ -62,6 +66,14 @@ public sealed partial class TransitTubeSystem
             return;
         }
 
+        // Wait behind a pod standing on the line rather than ramming it.
+        if (!pod.Comp.Boosted && StoppedPodAhead(pod, tube, nextUid, next) is { } stopped)
+        {
+            pod.Comp.WaitingBehind = stopped;
+            Hold(pod, holder);
+            return;
+        }
+
         // Wait here, a tube short of a busy station the pod means to stop at.
         if (TryComp<TransitTubeStationComponent>(nextUid, out var station)
             && !CanDockAt((nextUid, station), pod)
@@ -120,10 +132,16 @@ public sealed partial class TransitTubeSystem
 
     private void UpdateHeld(Entity<TransitPodComponent> pod, DisposalHolderComponent holder, TimeSpan now)
     {
-        if (pod.Comp.HeldAtSignal == null && pod.Comp.WaitingFor == null || now < pod.Comp.NextSignalCheck)
+        UpdateBrake(pod, holder, now);
+
+        if (pod.Comp.HeldAtSignal == null && pod.Comp.WaitingFor == null && pod.Comp.WaitingBehind == null
+            || now < pod.Comp.NextSignalCheck)
             return;
 
         pod.Comp.NextSignalCheck = now + _signalCheckInterval;
+
+        if (pod.Comp.WaitingBehind is { } ahead && StandsInTheWay(ahead))
+            return;
 
         if (pod.Comp.HeldAtSignal is { } signalUid
             && TryComp<TransitTubeBlockSignalComponent>(signalUid, out var signal)
@@ -142,6 +160,7 @@ public sealed partial class TransitTubeSystem
         SetSignalLamp(pod.Comp.HeldAtSignal, false);
         pod.Comp.HeldAtSignal = null;
         pod.Comp.WaitingFor = null;
+        pod.Comp.WaitingBehind = null;
         _holder.SetHalted((pod, holder), false);
     }
 
@@ -237,14 +256,98 @@ public sealed partial class TransitTubeSystem
 
     private void RequestStopFromInside(Entity<TransitPodComponent> pod, EntityUid passenger)
     {
-        if (pod.Comp.StopRequested)
+        var now = _timing.CurTime;
+        if (!pod.Comp.StopRequested)
+        {
+            pod.Comp.StopRequested = true;
+            pod.Comp.StopRequestedAt = now;
+            Dirty(pod);
+            _popup.PopupEntity(Loc.GetString("transit-pod-stop-requested"), passenger, passenger, PopupType.Medium);
+            return;
+        }
+
+        // No station came up for a while, likely a loop without any: the emergency brake unlocks.
+        if (now < pod.Comp.StopRequestedAt + pod.Comp.BrakeAvailableAfter || now < pod.Comp.NextBrake)
         {
             _popup.PopupEntity(Loc.GetString("transit-pod-moving"), passenger, passenger);
             return;
         }
 
-        pod.Comp.StopRequested = true;
-        Dirty(pod);
-        _popup.PopupEntity(Loc.GetString("transit-pod-stop-requested"), passenger, passenger, PopupType.Medium);
+        var doAfter = new DoAfterArgs(EntityManager, passenger, pod.Comp.BrakeDelay, new TransitPodBrakeDoAfterEvent(), pod, target: pod)
+        {
+            BreakOnDamage = true,
+            NeedHand = false,
+        };
+
+        if (_doAfter.TryStartDoAfter(doAfter))
+            _popup.PopupEntity(Loc.GetString("transit-pod-brake-pulling"), passenger, passenger, PopupType.Medium);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnBrakeDoAfter(Entity<TransitPodComponent> ent, ref TransitPodBrakeDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled
+            || ent.Comp.State != TransitPodState.Moving
+            || ent.Comp.Braked
+            || !TryComp<DisposalHolderComponent>(ent, out var holder)
+            || holder.Halted)
+            return;
+
+        args.Handled = true;
+
+        // The pod stops right where it is, just long enough for everyone to climb out.
+        ent.Comp.Braked = true;
+        ent.Comp.BrakedUntil = _timing.CurTime + ent.Comp.BrakeDuration;
+        _holder.SetHalted((ent, holder), true);
+        _audio.PlayPvs(ent.Comp.CollisionSound, ent);
+        PopupPassengers(ent, "transit-pod-braked");
+        _adminLog.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(args.User):user} pulled the emergency brake of {ToPrettyString(ent):pod}");
+    }
+
+    /// <summary>
+    /// Lets a braked pod go once its time is up or nobody is left in it to climb out.
+    /// </summary>
+    private void UpdateBrake(Entity<TransitPodComponent> pod, DisposalHolderComponent holder, TimeSpan now)
+    {
+        if (!pod.Comp.Braked
+            || now < pod.Comp.BrakedUntil && GetPassengers(pod).Any(HasComp<MobStateComponent>))
+            return;
+
+        pod.Comp.Braked = false;
+        pod.Comp.NextBrake = now + pod.Comp.BrakeCooldown;
+        _holder.SetHalted((pod, holder), false);
+    }
+
+    /// <summary>
+    /// Whether a pod stands still for a while, and pods coming up behind it should wait rather than crash.
+    /// </summary>
+    private bool StandsInTheWay(EntityUid uid)
+        => TryComp<TransitPodComponent>(uid, out var pod)
+           && pod.State == TransitPodState.Moving
+           && (pod.Braked || pod.WaitingBehind != null);
+
+    /// <summary>
+    /// A pod standing in the way on the tube a pod is about to enter, or further along the one it is on.
+    /// </summary>
+    private EntityUid? StoppedPodAhead(Entity<TransitPodComponent> pod, EntityUid tube, EntityUid nextTube, Direction next)
+    {
+        var position = _xform.GetWorldPosition(pod);
+        var query = EntityQueryEnumerator<TransitPodComponent, DisposalHolderComponent>();
+        while (query.MoveNext(out var uid, out var other, out var otherHolder))
+        {
+            if (uid == pod.Owner
+                || other.State != TransitPodState.Moving
+                || !other.Braked && other.WaitingBehind == null)
+                continue;
+
+            if (otherHolder.CurrentTube == nextTube)
+                return uid;
+
+            if (otherHolder.CurrentTube == tube
+                && System.Numerics.Vector2.Dot(_xform.GetWorldPosition(uid) - position, next.ToVec()) > 0)
+                return uid;
+        }
+
+        return null;
     }
 }

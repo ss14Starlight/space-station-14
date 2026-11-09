@@ -7,6 +7,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Popups;
 using Content.Shared.RCD.Components;
 using Robust.Shared.Map;
@@ -30,6 +31,7 @@ public sealed partial class TransitTubeSystem
         }
 
         args.Handled = TryUnload(ent, args.User)
+                       || TryLoadPulled(ent, args.User)
                        || TryCallPod(ent, args.User)
                        || TryBoard(ent, args.User, args.User);
     }
@@ -53,6 +55,29 @@ public sealed partial class TransitTubeSystem
         // Load what is in hand straight into a cargo pod.
         if (_hands.TryDrop(args.User, args.Used) && TryInsertPassenger((podUid, pod), args.Used))
             UpdateDestinations(ent);
+    }
+
+    /// <summary>
+    /// Loads whatever the user pulls into a docked cargo pod. Crates can't be dragged,
+    /// so they are pulled up to the station and loaded with a click.
+    /// </summary>
+    private bool TryLoadPulled(Entity<TransitTubeStationComponent> station, EntityUid user)
+    {
+        if (station.Comp.DockedPod is not { } podUid
+            || !TryComp<TransitPodComponent>(podUid, out var pod)
+            || !pod.Cargo
+            || !TryComp<PullerComponent>(user, out var puller)
+            || puller.Pulling is not { } pulled
+            || !CanCarry(pod, pulled))
+            return false;
+
+        if (!CanBoard(station, user, popup: true) || !CheckPlatformSide(station, pulled, user))
+            return true;
+
+        if (TryInsertPassenger((podUid, pod), pulled))
+            UpdateDestinations(station);
+
+        return true;
     }
 
     /// <summary>

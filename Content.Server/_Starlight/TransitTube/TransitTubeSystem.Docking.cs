@@ -124,6 +124,8 @@ public sealed partial class TransitTubeSystem
         SetSignalLamp(pod.Comp.HeldAtSignal, false);
         pod.Comp.HeldAtSignal = null;
         pod.Comp.WaitingFor = null;
+        pod.Comp.WaitingBehind = null;
+        pod.Comp.Braked = false;
         ReleaseReservation(pod);
 
         // Nothing holds the pod up any more: everyone falls out.
@@ -133,12 +135,14 @@ public sealed partial class TransitTubeSystem
 
     private void ReleaseHold(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder)
     {
-        if (pod.Comp.HeldAtSignal == null && pod.Comp.WaitingFor == null)
+        if (pod.Comp.HeldAtSignal == null && pod.Comp.WaitingFor == null && pod.Comp.WaitingBehind == null && !pod.Comp.Braked)
             return;
 
         SetSignalLamp(pod.Comp.HeldAtSignal, false);
         pod.Comp.HeldAtSignal = null;
         pod.Comp.WaitingFor = null;
+        pod.Comp.WaitingBehind = null;
+        pod.Comp.Braked = false;
         _holder.SetHalted(holder.AsNullable(), false);
     }
 

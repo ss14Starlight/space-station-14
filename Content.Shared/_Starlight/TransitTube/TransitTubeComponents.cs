@@ -329,6 +329,61 @@ public sealed partial class TransitPodComponent : Component
     public Dictionary<EntityUid, TimeSpan> LastExitAttempts = new();
 
     /// <summary>
+    /// When a passenger asked this pod to stop. The emergency brake unlocks once a stop request
+    /// has gone unanswered for <see cref="BrakeAvailableAfter"/>, so it only helps those really stuck.
+    /// </summary>
+    [ViewVariables, AutoPausedField]
+    public TimeSpan StopRequestedAt;
+
+    /// <summary>
+    /// How long a stop request must go unanswered before the emergency brake can be pulled.
+    /// </summary>
+    [DataField]
+    public TimeSpan BrakeAvailableAfter = TimeSpan.FromSeconds(15);
+
+    /// <summary>
+    /// Do-after to pull the emergency brake.
+    /// </summary>
+    [DataField]
+    public TimeSpan BrakeDelay = TimeSpan.FromSeconds(3);
+
+    /// <summary>
+    /// The longest a braked pod stays put. It moves on earlier once nobody is left inside.
+    /// </summary>
+    [DataField]
+    public TimeSpan BrakeDuration = TimeSpan.FromSeconds(20);
+
+    /// <summary>
+    /// How soon after a brake ends it can be pulled again.
+    /// </summary>
+    [DataField]
+    public TimeSpan BrakeCooldown = TimeSpan.FromSeconds(60);
+
+    /// <summary>
+    /// Whether the emergency brake holds this pod.
+    /// </summary>
+    [ViewVariables]
+    public bool Braked;
+
+    /// <summary>
+    /// When the emergency brake lets go.
+    /// </summary>
+    [ViewVariables, AutoPausedField]
+    public TimeSpan BrakedUntil;
+
+    /// <summary>
+    /// When the emergency brake can next be pulled.
+    /// </summary>
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextBrake;
+
+    /// <summary>
+    /// A stopped pod this one waits behind, a tube short of it, rather than crashing into it.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? WaitingBehind;
+
+    /// <summary>
     /// Pods closer than this, in tiles, crash into each other.
     /// </summary>
     [DataField]
@@ -493,3 +548,6 @@ public sealed class TransitStationSelectDestinationMessage(NetEntity? destinatio
 
 [Serializable, NetSerializable]
 public sealed partial class TransitPodClimbOutDoAfterEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class TransitPodBrakeDoAfterEvent : SimpleDoAfterEvent;
