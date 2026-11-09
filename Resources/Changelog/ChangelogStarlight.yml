@@ -1,20 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: Add Anti-Anomaly Zones at the large thrusters.
-    type: Add
-  id: 409882
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Add missing links for Atmos devices in hall 7.
-    type: Fix
-  id: 409883
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
   - message: 'Service: Add new disposal unit in Ball Bar for Bartender(s).'
     type: Add
   id: 409884
@@ -2799,4 +2785,18 @@ Entries:
   id: 410281
   time: '2026-11-09T12:46:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7098
+- author: Destiny (Creativity)
+  changes:
+  - message: Added Medtak Portable ATM.
+    type: Add
+  id: 410282
+  time: '2026-11-09T13:15:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7142
+- author: Destiny (Creativity)
+  changes:
+  - message: Added ATM to Dispatcher and Medic kits.
+    type: Tweak
+  id: 410283
+  time: '2026-11-09T13:15:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7142
 Order: -1
