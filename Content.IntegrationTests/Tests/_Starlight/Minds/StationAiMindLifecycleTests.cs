@@ -14,9 +14,13 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Follower;
 using Content.Shared.Follower.Components;
 using Content.Shared.Ghost;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Intellicard;
+using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.Maps;
 using Content.Shared.Mobs;
@@ -72,6 +76,29 @@ public sealed partial class MindTests
 
         Assert.That(entMan.GetComponent<StationAiHolderComponent>(holder).Slot.Item, Is.Null);
         AssertStationAiJobSlots(entMan, station, 1);
+    }
+
+    [Test]
+    public async Task StationAiSlotRemainsReservedWhenJobAssignmentIsMissing()
+    {
+        var (pair, holder, ai, mindId, station) = await SetupAiHolder();
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
+            Assert.That(
+                entMan.GetComponent<StationAIShuntableComponent>(ai).SlotReservationStation,
+                Is.EqualTo(station));
+            Assert.That(
+                entMan.System<StationJobsSystem>().TryRemovePlayerJob(station, userId, "StationAi"),
+                Is.True);
+
+            entMan.System<ContainerSpawnJobSlotSystem>().RefreshJobSlots();
+
+            Assert.That(entMan.GetComponent<StationAiHolderComponent>(holder).Slot.Item, Is.EqualTo(ai));
+            AssertStationAiJobSlots(entMan, station, 0);
+        });
     }
 
     [Test]
@@ -190,6 +217,7 @@ public sealed partial class MindTests
         await pair.Server.WaitAssertion(() =>
         {
             var ai = entMan.Spawn("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            var core = entMan.Spawn("PlayerStationAi", MapCoordinates.Nullspace);
             var actions = entMan.System<SharedActionsSystem>();
             var entityTargetActions = entMan.GetEntityQuery<EntityTargetActionComponent>();
             var instantActions = entMan.GetEntityQuery<InstantActionComponent>();
@@ -206,6 +234,9 @@ public sealed partial class MindTests
                     Is.EqualTo(expected));
             }
 
+            AssertShuntActions(0);
+            var coreHolder = entMan.GetComponent<StationAiHolderComponent>(core);
+            Assert.That(entMan.System<ItemSlotsSystem>().TryInsert(core, coreHolder.Slot, ai, null), Is.True);
             AssertShuntActions(1);
             entMan.RemoveComponent<StationAIShuntableComponent>(ai);
             AssertShuntActions(0);
@@ -845,14 +876,28 @@ public sealed partial class MindTests
             entMan.System<MindSystem>().TransferTo(mindId, ai);
             AssertStationAiJobSlots(entMan, station, 0);
 
+            var user = entMan.SpawnEntity("MobHuman", MapCoordinates.Nullspace);
             holder = entMan.SpawnEntity("Intellicard", MapCoordinates.Nullspace);
-            var aiHolder = entMan.GetComponent<StationAiHolderComponent>(holder);
-            var slotContainer = aiHolder.Slot.ContainerSlot
-                ?? throw new InvalidOperationException("Intellicard AI container was not initialized.");
+            entMan.GetComponent<IntellicardComponent>(holder).DownloadTime = 0;
+            Assert.That(entMan.System<SharedHandsSystem>().TryPickupAnyHand(user, holder), Is.True);
 
-            Assert.That(containers.Insert(ai, slotContainer), Is.True);
+            var interact = new AfterInteractEvent(
+                user,
+                holder,
+                cores[0],
+                entMan.GetComponent<TransformComponent>(holder).Coordinates,
+                true);
+            entMan.EventBus.RaiseLocalEvent(holder, interact);
+            Assert.That(interact.Handled, Is.True);
         });
         await pair.RunTicksSync(5);
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            Assert.That(entMan.GetComponent<StationAiHolderComponent>(holder).Slot.Item, Is.EqualTo(ai));
+            Assert.That(entMan.GetComponent<MindComponent>(mindId).OwnedEntity, Is.EqualTo(ai));
+            AssertStationAiJobSlots(entMan, station, 0);
+        });
 
         return (pair, holder, ai, mindId, station);
     }

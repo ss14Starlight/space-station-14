@@ -46,6 +46,7 @@ using Content.Shared.Medical.SuitSensors;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Warps;
 using Robust.Shared.Map;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared._Starlight.StationAi;
 using Content.Shared.Tag;
 
@@ -503,7 +504,13 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
 
         // Starlight - start
         if (args.Container.ID == StationAiCoreComponent.Container)
+        {
+            if (TryComp<StationAIShuntableComponent>(args.Entity, out var shuntable)
+                && _station.GetOwningStation(ent.Owner) is { } station)
+                shuntable.SlotReservationStation = station;
+
             _containerSpawnJobSlots.RefreshJobSlots();
+        }
         // Starlight - end
 
         UpdateBatteryAlert(ent);

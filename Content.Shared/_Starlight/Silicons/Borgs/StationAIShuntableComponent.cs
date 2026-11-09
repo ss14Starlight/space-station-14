@@ -33,4 +33,10 @@ public sealed partial class StationAIShuntableComponent : Component
     /// </summary>
     [ViewVariables]
     public EntityUid? Inhabited = null;
+
+    /// <summary>
+    /// Station whose AI job slot this AI reserves while it is in an intellicard.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? SlotReservationStation;
 }
