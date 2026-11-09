@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: 'ITG: Remove 1 Salvage Specialist; now max of 4.'
-    type: Remove
-  id: 409889
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
   - message: Replace service-accessed airlock with command on "Maid"'s bridge.
     type: Fix
   id: 409890
@@ -2799,4 +2792,11 @@ Entries:
   id: 410288
   time: '2026-11-09T20:04:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7149
+- author: Rinary
+  changes:
+  - message: Added sliders to configure new light settings intensity in settings.
+    type: Add
+  id: 410289
+  time: '2026-11-09T21:23:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7153
 Order: -1
