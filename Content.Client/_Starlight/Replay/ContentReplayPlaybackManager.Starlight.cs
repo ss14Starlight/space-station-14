@@ -8,6 +8,7 @@ using Content.Shared.Chat;
 using Robust.Client.Replays.Loading;
 using Robust.Shared.Replays;
 using Robust.Shared.Serialization.Markdown;
+using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Value;
 
 namespace Content.Client.Replay;
