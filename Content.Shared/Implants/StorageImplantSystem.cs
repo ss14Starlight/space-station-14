@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Starlight.Cybernetics;
 using Content.Shared.Implants.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Containers;
@@ -17,6 +18,7 @@ public sealed partial class StorageImplantSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<StorageImplantComponent, ImplantRemovedEvent>(OnImplantRemoved);
+        SubscribeLocalEvent<StorageImplantComponent, CyberneticDisruptionEvent>(OnCyberneticDisruption); //Starlight-edit: Drop on disrupt.
     }
 
     private void OnImplantRemoved(Entity<StorageImplantComponent> ent, ref ImplantRemovedEvent args)

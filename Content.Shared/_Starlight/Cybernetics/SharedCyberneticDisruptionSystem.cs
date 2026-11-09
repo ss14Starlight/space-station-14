@@ -8,6 +8,7 @@ using Content.Shared._Starlight.Cybernetics.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Humanoid;
+using Content.Shared.Implants;
 using Content.Shared.Projectiles;
 using Robust.Shared.Random;
 
@@ -24,6 +25,7 @@ public abstract partial class SharedCyberneticDisruptionSystem : EntitySystem
     [Dependency] private SharedBodySystem _bodySystem = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedSubdermalImplantSystem _subdermalImplantSystem = default!;
 
     public override void Initialize()
     {
@@ -81,6 +83,9 @@ public abstract partial class SharedCyberneticDisruptionSystem : EntitySystem
             RaiseLocalEvent(part.Id, ref ev);
         foreach (var action in _actions.GetActions(uid))
             RaiseLocalEvent(action.Owner, ref ev);
+        if (_subdermalImplantSystem.TryGetImplants(uid, out var implants))
+            foreach (var implant in implants)
+                RaiseLocalEvent(implant, ref ev);
 
         var timeForLogs = duration.HasValue
             ? duration.Value.Seconds.ToString()
