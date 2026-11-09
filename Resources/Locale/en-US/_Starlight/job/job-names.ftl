@@ -11,6 +11,7 @@ job-name-clerical-assistant = Clerical Assistant
 job-name-janitor-assistant = Janitor Assistant
 job-name-scurret = Emotional Support Scurret
 job-name-syndicate-scurret = Syndicate Scurret Reinforcement
+job-name-guardian = Guardian
 
 # Role timers - Apparently someone from upstream will cut us if these aren't alphabetical?
 JobBlueShield = BlueShield Officer
