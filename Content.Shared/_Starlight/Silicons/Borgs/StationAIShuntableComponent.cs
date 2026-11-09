@@ -39,4 +39,10 @@ public sealed partial class StationAIShuntableComponent : Component
     /// </summary>
     [ViewVariables]
     public EntityUid? SlotReservationStation;
+
+    [ViewVariables]
+    public EntityUid? ShuntActionEntity;
+
+    [ViewVariables]
+    public EntityUid? ReconnectShuntActionEntity;
 }

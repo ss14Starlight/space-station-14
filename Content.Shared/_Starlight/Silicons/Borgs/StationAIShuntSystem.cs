@@ -12,6 +12,7 @@ using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
 
@@ -44,6 +45,22 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         SubscribeLocalEvent<StationAIShuntThroughComponent, FindShuntTargetEvent>(OnFindShuntTarget);
     }
     [SubscribeLocalEvent]
+    private void OnCoreTerminating(Entity<StationAiCoreComponent> ent, ref EntityTerminatingEvent args)
+    {
+        if (_net.IsClient || !_stationAi.TryGetHeld((ent.Owner, ent.Comp), out var ai))
+            return;
+
+        var aiUid = ai.Value;
+        if (!TryComp<StationAIShuntableComponent>(aiUid, out var shuntable)
+            || shuntable.Inhabited is not { } target
+            || !TryComp<StationAIShuntComponent>(target, out var shunt)
+            || shunt.Return != aiUid)
+            return;
+
+        RaiseLocalEvent(target, new AIUnShuntActionEvent { Performer = target });
+    }
+
+    [SubscribeLocalEvent]
     private void OnShuntableMapInit(EntityUid uid, StationAIShuntableComponent shuntable, ref MapInitEvent args)
         => SetShuntActionsAvailable(uid, shuntable, IsInStationAiCore(uid));
     [SubscribeLocalEvent]
@@ -61,9 +78,15 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         {
             var prototypeId = MetaData(action.Owner).EntityPrototype?.ID;
             if (prototypeId == shuntable.ShuntAction.Id)
+            {
                 hasShuntAction = true;
+                shuntable.ShuntActionEntity = action.Owner;
+            }
             else if (prototypeId == shuntable.ReconnectShuntAction.Id)
+            {
                 hasReconnectShuntAction = true;
+                shuntable.ReconnectShuntActionEntity = action.Owner;
+            }
             else
                 continue;
 
@@ -78,10 +101,27 @@ public sealed partial class StationAIShuntSystem : EntitySystem
             return;
 
         if (!hasShuntAction)
-            _actionSystem.AddAction(uid, shuntable.ShuntAction.Id);
+            AddShuntAction(uid, shuntable.ShuntAction.Id, ref shuntable.ShuntActionEntity);
 
         if (!hasReconnectShuntAction)
-            _actionSystem.AddAction(uid, shuntable.ReconnectShuntAction.Id);
+            AddShuntAction(uid, shuntable.ReconnectShuntAction.Id, ref shuntable.ReconnectShuntActionEntity);
+    }
+
+    private void AddShuntAction(EntityUid uid, string prototypeId, ref EntityUid? actionId)
+    {
+        if (actionId is { } storedAction
+            && !TerminatingOrDeleted(storedAction)
+            && _actionSystem.GetAction(storedAction) is { } action
+            && _actionContainer.AddAction(uid, storedAction, action.Comp))
+        {
+            var nullableAction = new Entity<ActionComponent?>(action.Owner, action.Comp);
+            if (_actionSystem.AddActionDirect(uid, nullableAction))
+                return;
+
+            _actionContainer.RemoveAction(nullableAction);
+        }
+
+        actionId = _actionSystem.AddAction(uid, prototypeId);
     }
 
     private bool IsInStationAiCore(EntityUid uid)

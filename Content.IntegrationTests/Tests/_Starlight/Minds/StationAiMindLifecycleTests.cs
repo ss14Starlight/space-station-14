@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Content.IntegrationTests.Pair;
 using Content.IntegrationTests.Tests.Helpers;
@@ -22,6 +23,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Intellicard;
 using Content.Shared.Interaction;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Maps;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -243,6 +245,45 @@ public sealed partial class MindTests
 
             entMan.AddComponent<StationAIShuntableComponent>(ai);
             AssertShuntActions(1);
+        });
+    }
+
+    [Test]
+    public async Task StationAiUnshuntsBeforeItsCoreIsDestroyed()
+    {
+        var (pair, station, cores) = await SetupAiStation(1);
+        var entMan = pair.Server.ResolveDependency<IServerEntityManager>();
+        var (mindId, _) = GetMind(pair);
+        var terminationProbe = entMan.System<StationAiCoreTerminationProbeSystem>();
+        EntityUid ai = default;
+        EntityUid borg = default;
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            var userId = entMan.GetComponent<MindComponent>(mindId).UserId!.Value;
+            Assert.That(entMan.System<StationJobsSystem>().TryAssignJob(station, "StationAi", userId), Is.True);
+
+            var containers = entMan.System<SharedContainerSystem>();
+            ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
+                throw new InvalidOperationException("Station AI core container was not initialized.");
+            Assert.That(containers.Insert(ai, coreContainer), Is.True);
+            entMan.System<MindSystem>().TransferTo(mindId, ai);
+            borg = ShuntAiIntoBorg(entMan, ai);
+
+            terminationProbe.Clear();
+            entMan.DeleteEntity(cores[0]);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(terminationProbe.MindOwnedEntityOnAdded, Is.EqualTo(ai));
+                Assert.That(entMan.GetComponent<StationAIShuntComponent>(borg).Return, Is.Null);
+                Assert.That(entMan.GetComponent<StationAIShuntComponent>(borg).ReturnAction, Is.Null);
+                Assert.That(
+                    entMan.System<SharedActionsSystem>().GetActions(borg)
+                        .Any(action => entMan.GetComponent<MetaDataComponent>(action.Owner).EntityPrototype?.ID == "ActionAIUnShunt"),
+                    Is.False);
+            });
         });
     }
 
@@ -941,6 +982,16 @@ public sealed partial class MindTests
         Assert.That(slots, Is.EqualTo(expectedSlots), "Unexpected number of available Station AI slots.");
     }
 
+    private static HashSet<EntityUid> GetShuntActionIds(
+        IServerEntityManager entMan,
+        SharedActionsSystem actions,
+        EntityUid ai)
+        => actions.GetActions(ai)
+            .Where(action => entMan.GetComponent<MetaDataComponent>(action.Owner).EntityPrototype?.ID is
+                "ActionAIShunt" or "ActionAIReconnectShunt")
+            .Select(action => action.Owner)
+            .ToHashSet();
+
     private static EntityUid ShuntAiIntoBorg(IServerEntityManager entMan, EntityUid ai)
     {
         var maps = entMan.System<SharedMapSystem>();
@@ -977,5 +1028,24 @@ public sealed partial class MindTests
         public void Clear() => LastMessage = string.Empty;
 
         private void OnAnnouncement(AnnouncementSpokeEvent args) => LastMessage = args.Message.Text;
+    }
+
+    public sealed class StationAiCoreTerminationProbeSystem : EntitySystem
+    {
+        public EntityUid? MindOwnedEntityOnAdded { get; private set; }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<StationAIShuntableComponent, MindAddedMessage>(OnAiMindAdded);
+        }
+
+        public void Clear() => MindOwnedEntityOnAdded = null;
+
+        private void OnAiMindAdded(
+            EntityUid uid,
+            StationAIShuntableComponent component,
+            MindAddedMessage args)
+            => MindOwnedEntityOnAdded = args.Mind.Comp.OwnedEntity;
     }
 }

@@ -29,6 +29,7 @@
         }
       itemIconStyle: BigAction
       priority: 1
+      preservePositionOnRemoval: true
     - type: TargetAction
     - type: EntityTargetAction
       canTargetSelf: false # no whitelist cause the posibrain has the shunt comp. not the chassis.
@@ -83,6 +84,7 @@
       icon:
         { sprite: _Starlight/Interface/Actions/actions_shunt.rsi, state: icon }
       itemIconStyle: BigAction
+      preservePositionOnRemoval: true
     - type: InstantAction
       event: !type:AIReconnectShuntActionEvent
 
