@@ -64,11 +64,11 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
                 // Starlight start: only dissolve if successfully implanted
                 var implanted = Implant(target, target, uid, component);
                 if (implanted && component.DissolveOnUse)
-                // Starlight end
                 {
                     // Queue the implanter for deletion (dissolve on use)
                     QueueDel(uid);
                 }
+                // Starlight end
             }
             else
                 TryImplant(component, args.User, target, uid);
@@ -145,11 +145,11 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
         // Starlight start: only dissolve if successfully implanted
         var implanted = Implant(args.User, args.Target.Value, args.Used.Value, component);
         if (implanted && component.DissolveOnUse)
-        // Starlight end
         {
             // Queue the implanter for deletion (dissolve on use)
             QueueDel(args.Used.Value);
         }
+        // Starlight end
 
         args.Handled = true;
     }
