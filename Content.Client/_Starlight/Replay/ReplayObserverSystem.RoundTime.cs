@@ -16,7 +16,7 @@ public sealed partial class ReplayObserverSystem
     private const double MaxRoundSeconds = 100 * 24 * 60 * 60;
 
     // Far past any server's uptime. Replay times beyond it are corrupt, and adding them together could overflow.
-    private static readonly TimeSpan MaxReplayTime = TimeSpan.FromDays(3650);
+    private static readonly TimeSpan _maxReplayTime = TimeSpan.FromDays(3650);
 
     private ReplayControlWidget? _roundTimeWidget;
     private Label? _roundTimeLabel;
@@ -37,8 +37,8 @@ public sealed partial class ReplayObserverSystem
 
             // With corrupt replay times, round time is left equal to replay time so no offset gets added.
             if (replay.StartTime < TimeSpan.Zero
-                || replay.StartTime > MaxReplayTime
-                || (replay.Duration is { } length && (length < TimeSpan.Zero || length > MaxReplayTime)))
+                || replay.StartTime > _maxReplayTime
+                || (replay.Duration is { } length && (length < TimeSpan.Zero || length > _maxReplayTime)))
             {
                 return replay.StartTime;
             }
