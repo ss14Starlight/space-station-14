@@ -38,3 +38,4 @@ ghost-gui-aghost-toggle-ghost-visibility-popup-on = Invisible to non-admins.
 ghost-gui-aghost-toggle-ghost-visibility-popup-off = Visible to non-admins.
 ghost-own-sprite-hidden = Your ghost is hidden.
 ghost-own-sprite-shown = Your ghost is visible.
+ghost-own-sprite-always-visible = Your ghost is set to always visible and can't be hidden.
