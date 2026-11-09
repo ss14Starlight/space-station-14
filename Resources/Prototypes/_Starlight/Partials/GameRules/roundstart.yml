@@ -132,3 +132,10 @@
       prob: 0.15
     - id: SiliconLiberation
       prob: 0.20
+
+- type: !PartialOnly entity
+  id: BasicRoundstartVariation
+  components:
+  - type: RoundstartStationVariationRule
+    rules:
+    - id: SickLightsVariationPass
