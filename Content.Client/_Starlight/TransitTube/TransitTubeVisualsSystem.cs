@@ -4,6 +4,7 @@ using Content.Shared.Disposal.Tube;
 using Robust.Client.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.TransitTube;
@@ -18,6 +19,7 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     private static readonly ResPath _rsi = new("/Textures/_Starlight/Structures/Piping/TransitTube/tube.rsi");
     private const string RingKey = "transit-ring";
@@ -25,6 +27,11 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
     private const int RingSpacing = 3;
     private const int MaxCorners = 4;
     private const string PodArrowKey = "direction";
+
+    /// <summary>
+    /// Sprite layer holding a piece's glass, tinted by its material. Details stay untinted.
+    /// </summary>
+    private const string GlassKey = "glass";
 
     /// <summary>
     /// Tubes whose decorations need redoing. Updated a tick later, so a tube that is being deleted
@@ -55,6 +62,14 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
         => MarkWithNeighbours(ent);
 
     [SubscribeLocalEvent]
+    private void OnGlassStartup(Entity<TransitTubeGlassComponent> ent, ref ComponentStartup args)
+        => _dirty.Add(ent);
+
+    [SubscribeLocalEvent]
+    private void OnGlassState(Entity<TransitTubeGlassComponent> ent, ref AfterAutoHandleStateEvent args)
+        => _dirty.Add(ent);
+
+    [SubscribeLocalEvent]
     private void OnPodStartup(Entity<TransitPodComponent> ent, ref ComponentStartup args)
     {
         if (IsClientSide(ent) || !TryComp<SpriteComponent>(ent, out var sprite))
@@ -73,8 +88,13 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
 
         foreach (var uid in _dirty)
         {
-            if (!TerminatingOrDeleted(uid) && TryComp<TransitTubeComponent>(uid, out var comp))
+            if (TerminatingOrDeleted(uid))
+                continue;
+
+            if (TryComp<TransitTubeComponent>(uid, out var comp))
                 UpdateDecorations((uid, comp));
+
+            UpdateGlass(uid);
         }
 
         _dirty.Clear();
@@ -139,8 +159,11 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
 
         for (; corner < MaxCorners; corner++)
         {
-            if (_sprite.LayerMapTryGet(sprite, CornerKey(corner), out var index, false))
-                _sprite.LayerSetVisible(sprite, index, false);
+            foreach (var key in new[] { CornerKey(corner), CornerDetailsKey(corner) })
+            {
+                if (_sprite.LayerMapTryGet(sprite, key, out var index, false))
+                    _sprite.LayerSetVisible(sprite, index, false);
+            }
         }
 
         UpdateRing(ent, sprite, xform, exits);
@@ -172,7 +195,14 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
 
     private void SetCorner(Entity<SpriteComponent?> sprite, int corner, Vector2 offset, string state)
     {
-        var key = CornerKey(corner);
+        // Glass and its frame, like the pieces themselves.
+        var glass = SetLayer(sprite, CornerKey(corner), state, offset);
+        SetLayer(sprite, CornerDetailsKey(corner), state + "_details", offset);
+        _sprite.LayerSetColor(sprite, glass, GetGlassColor(sprite.Owner));
+    }
+
+    private int SetLayer(Entity<SpriteComponent?> sprite, string key, string state, Vector2 offset)
+    {
         if (!_sprite.LayerMapTryGet(sprite, key, out var index, false))
         {
             index = _sprite.AddRsiLayer(sprite, state, _rsi);
@@ -185,9 +215,40 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
 
         _sprite.LayerSetOffset(sprite, index, offset);
         _sprite.LayerSetVisible(sprite, index, true);
+        return index;
+    }
+
+    /// <summary>
+    /// Tints the glass layer, and the glass of corner pieces, with the tube's material.
+    /// </summary>
+    private void UpdateGlass(EntityUid uid)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var spriteComp))
+            return;
+
+        var sprite = new Entity<SpriteComponent?>(uid, spriteComp);
+        var color = GetGlassColor(uid);
+
+        if (_sprite.LayerMapTryGet(sprite, GlassKey, out var glass, false))
+            _sprite.LayerSetColor(sprite, glass, color);
+
+        for (var corner = 0; corner < MaxCorners; corner++)
+        {
+            if (_sprite.LayerMapTryGet(sprite, CornerKey(corner), out var index, false))
+                _sprite.LayerSetColor(sprite, index, color);
+        }
+    }
+
+    private Color GetGlassColor(EntityUid uid)
+    {
+        return TryComp<TransitTubeGlassComponent>(uid, out var glass) && _proto.Resolve(glass.Material, out var material)
+            ? material.Color
+            : Color.White;
     }
 
     private static string CornerKey(int corner) => $"transit-corner-{corner}";
+
+    private static string CornerDetailsKey(int corner) => $"transit-corner-{corner}-details";
 
     private static string CornerState(int x, int y) => (x, y) switch
     {

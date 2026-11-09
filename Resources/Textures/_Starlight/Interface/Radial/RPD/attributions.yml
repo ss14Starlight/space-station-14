@@ -3,17 +3,36 @@
   copyright: "Taken from ParadiseSS13 (icons/obj/pipes/transit_tube_rpd.dmi), south-facing frames"
   source: "https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_rpd.dmi"
 
-- files: ["transit_terminus.png", "transit_terminus_flipped.png", "transit_pod_insulated.png"]
+- files: ["transit_terminus.png", "transit_terminus_flipped.png", "transit_pod_insulated.png", "transit_pod_cargo.png", "transit_depot.png", "transit_depot_flipped.png"]
   license: "CC-BY-SA-3.0"
-  copyright: "Made by Starlight from ParadiseSS13 transit tube sprites (transit_tube_station.dmi, transit_tube_rpd.dmi, transit_tube_pod.dmi)"
+  copyright: "Made by Starlight from ParadiseSS13 transit tube sprites (transit_tube_station.dmi, transit_tube_rpd.dmi, transit_tube_pod.dmi), south-facing frames"
   source: "https://github.com/ParadiseSS13/Paradise/tree/master/icons/obj/pipes"
 
-- files: ["transit_crossroad.png", "transit_oneway.png", "transit_sideconnector.png", "transit_sidebranch.png", "transit_turn.png", "transit_speedup.png", "transit_brake.png", "transit_switch.png", "transit_router.png", "transit_signalblock.png", "transit_signaller.png", "transit_tagger.png", "transit_sideconnector_flipped.png", "transit_sidebranch_flipped.png", "transit_router_flipped.png"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Drawn by Starlight on top of ParadiseSS13 transit tube sprites, south-facing frames"
-  source: "https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi"
-
-- files: ["transit_turntable.png", "transit_requeststop.png"]
+- files: [
+    "transit_crossroad.png",
+    "transit_oneway.png",
+    "transit_sideconnector.png",
+    "transit_sidebranch.png",
+    "transit_turn.png",
+    "transit_speedup.png",
+    "transit_brake.png",
+    "transit_switch.png",
+    "transit_router.png",
+    "transit_signalblock.png",
+    "transit_signaller.png",
+    "transit_tagger.png",
+    "transit_sideconnector_flipped.png",
+    "transit_sidebranch_flipped.png",
+    "transit_router_flipped.png",
+    "transit_sidebranch_switch.png",
+    "transit_sidebranch_switch_flipped.png",
+    "transit_sidebranch_tagged.png",
+    "transit_sidebranch_tagged_flipped.png",
+    "transit_turntable.png",
+    "transit_turntable_half.png",
+    "transit_crossroad_diagonal.png",
+    "transit_requeststop.png"
+  ]
   license: "CC-BY-SA-3.0"
   copyright: "Drawn by Starlight on top of ParadiseSS13 transit tube sprites, south-facing frames"
   source: "https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi"

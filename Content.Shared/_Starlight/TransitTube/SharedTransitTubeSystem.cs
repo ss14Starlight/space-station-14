@@ -7,6 +7,14 @@ using Content.Shared.Disposal.SignalRouter;
 using Content.Shared.Disposal.Tube;
 using Content.Shared.Disposal.Unit;
 using Content.Shared.DragDrop;
+using Content.Shared.Emag.Systems;
+using Content.Shared.Item;
+using Content.Shared.Power.EntitySystems;
+using Content.Shared.Storage.Components;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Components;
 
 namespace Content.Shared._Starlight.TransitTube;
@@ -17,6 +25,10 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedDeviceLinkSystem _deviceLink = default!;
     [Dependency] private SharedDisposalHolderSystem _holder = default!;
+    [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] protected IPrototypeManager _proto = default!;
 
     // Runs before the upstream routers so they leave transit tubes to this handler.
     [SubscribeLocalEvent(before: [typeof(DisposalTubeSystem), typeof(DisposalRouterSystem), typeof(DisposalSignalRouterSystem)])]
@@ -26,42 +38,50 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
             return;
 
         args.Handled = true;
+        var travel = args.Holder.Comp.CurrentDirection;
 
         if (!TryComp<TransitPodComponent>(args.Holder, out var pod))
         {
-            args.Next = PickExit(ent, tube, args.Holder.Comp.CurrentDirection);
+            args.Next = PickExit(ent, tube, travel);
             return;
         }
 
-        args.Next = Route(ent, tube, args.Holder, pod);
-        OnPodRouted(ent, args.Holder, (args.Holder.Owner, pod), args.Next);
+        Entity<TransitPodComponent> podEnt = (args.Holder.Owner, pod);
+        args.Next = Route(ent, tube, args.Holder, podEnt, travel);
+        OnPodRouted(ent, args.Holder, podEnt, args.Next);
     }
 
-    private Direction Route(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, Entity<DisposalHolderComponent> holder, TransitPodComponent pod)
+    /// <summary>
+    /// Where a pod entering this tube going <paramref name="travel"/> leaves it, or
+    /// <see cref="Direction.Invalid"/> if it stops here.
+    /// </summary>
+    /// <param name="simulate">Only look, don't mark the pod for docking. Used to look ahead along the line.</param>
+    protected Direction Route(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, Entity<DisposalHolderComponent> holder,
+        Entity<TransitPodComponent> pod, Direction travel, bool simulate = false)
     {
-        var travel = holder.Comp.CurrentDirection;
         var rotation = Transform(ent).LocalRotation;
+        TryComp<TransitTubeStationComponent>(ent, out var station);
 
-        // One-way tubes turn back pods coming the wrong way.
+        // A pod with a plan follows it to its target, past every other station and junction.
+        if (station != null && ent.Owner == pod.Comp.Target)
+            return StopAt((ent, station), pod, simulate);
+
+        if (travel != Direction.Invalid && pod.Comp.Plan.TryGetValue((ent.Owner, travel), out var planned))
+            return planned;
+
+        // One-way tubes turn back pods coming the wrong way, unless switched off or emagged.
         if (ent.Comp.OneWay is { } oneWay
             && travel != Direction.Invalid
             && !SameWay(travel, oneWay, rotation)
-            && IsEnabled(ent))
+            && IsEnabled(ent)
+            && !IsEmagged(ent))
             return travel.GetOpposite();
 
-        if (TryComp<TransitTubeStationComponent>(ent, out var station) && !PassesStation(ent, tube, station, pod, travel))
-        {
-            // A pod reaching a station stops there; the server docks it when the holder halts.
-            // Boosted pods never dock: a terminus is just a wall to them.
-            pod.DockTarget = station.DockedPod == null && !pod.Boosted ? ent.Owner : null;
-            return Direction.Invalid;
-        }
+        if (station != null && !PassesStation(ent, tube, station, pod.Comp, travel))
+            return StopAt((ent, station), pod, simulate);
 
         if (TryComp<TransitTubeTurntableComponent>(ent, out var turntable) && travel != Direction.Invalid)
-        {
-            var turned = new Angle(travel.ToAngle() + Angle.FromDegrees(turntable.Turn)).GetDir();
-            return HasExit(ent, tube, turned) ? turned : Direction.Invalid;
-        }
+            return Turn(ent, tube, turntable, travel);
 
         if (TryComp<DisposalRouterComponent>(ent, out var router))
         {
@@ -78,27 +98,111 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
 
         if (TryComp<TransitTubeSwitchComponent>(ent, out var tubeSwitch))
         {
-            var exit = tubeSwitch.Right ? tubeSwitch.RightExit : tubeSwitch.LeftExit;
+            // An emagged switch throws pods down whichever branch it likes.
+            var right = IsEmagged(ent) ? _random.Prob(0.5f) : tubeSwitch.Right;
+            var exit = right ? tubeSwitch.RightExit : tubeSwitch.LeftExit;
             return PickExit(ent, tube, travel, preferred: Preferred(exit, rotation));
         }
 
-        return PickExit(ent, tube, travel, force: ent.Comp.ForcePreferred);
+        return PickExit(ent, tube, travel, force: ForcesBranch(ent));
     }
 
     /// <summary>
-    /// Whether a pod goes through a station without stopping: boosted pods, and pods at a request stop
-    /// nobody asked for. A pod with nowhere to go on stops anyway.
+    /// Whether a side branch sends pods down its arrow. A switchable one only does while it is on,
+    /// and an emagged one picks at random.
     /// </summary>
-    private bool PassesStation(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, TransitTubeStationComponent station, TransitPodComponent pod, Direction travel)
+    private bool ForcesBranch(Entity<TransitTubeComponent> ent)
+    {
+        if (!ent.Comp.ForcePreferred)
+            return false;
+
+        if (!HasComp<TransitTubeToggleComponent>(ent))
+            return true;
+
+        return IsEmagged(ent) ? _random.Prob(0.5f) : IsEnabled(ent);
+    }
+
+    /// <summary>
+    /// Whether a piece is a side branch that can be switched on and off.
+    /// </summary>
+    protected bool IsBranchSwitch(Entity<TransitTubeComponent> ent)
+        => ent.Comp.ForcePreferred && HasComp<TransitTubeToggleComponent>(ent);
+
+    private Direction StopAt(Entity<TransitTubeStationComponent> station, Entity<TransitPodComponent> pod, bool simulate)
+    {
+        // A pod reaching a station stops there; the server docks it when the holder halts.
+        // Boosted pods never dock: a terminus is just a wall to them.
+        if (!simulate)
+            pod.Comp.DockTarget = CanDockAt(station, pod) && !pod.Comp.Boosted ? station.Owner : null;
+
+        return Direction.Invalid;
+    }
+
+    protected Direction Turn(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, TransitTubeTurntableComponent turntable, Direction travel)
+    {
+        var turned = new Angle(travel.ToAngle() + Angle.FromDegrees(turntable.Turn)).GetDir();
+        return HasExit(ent, tube, turned) ? turned : Direction.Invalid;
+    }
+
+    /// <summary>
+    /// Whether a pod can dock at a station now: nobody docked there and nobody else on the way to it.
+    /// </summary>
+    public bool CanDockAt(Entity<TransitTubeStationComponent> station, EntityUid pod)
+        => station.Comp.DockedPod == null
+           && (station.Comp.ReservedBy is not { } reserved
+               || reserved == pod
+               || !TryComp<TransitPodComponent>(reserved, out var other)
+               || other.Reserved != station.Owner);
+
+    /// <summary>
+    /// Claims a station for a pod, so other pods treat it as busy until this one docks.
+    /// </summary>
+    public void Reserve(Entity<TransitTubeStationComponent> station, Entity<TransitPodComponent> pod)
+    {
+        station.Comp.ReservedBy = pod;
+        pod.Comp.Reserved = station;
+    }
+
+    /// <summary>
+    /// Whether a pod entering a station going <paramref name="travel"/> would stop there.
+    /// </summary>
+    protected bool WouldStopAt(Entity<TransitTubeStationComponent> station, Entity<TransitPodComponent> pod, Direction travel)
+    {
+        if (pod.Comp.Target == station.Owner)
+            return true;
+
+        if (pod.Comp.Plan.ContainsKey((station.Owner, travel))
+            || !TryComp<TransitTubeComponent>(station, out var transit)
+            || !TryComp<DisposalTubeComponent>(station, out var tube))
+            return false;
+
+        return !pod.Comp.Boosted && !PassesStation((station, transit), tube, station.Comp, pod.Comp, travel);
+    }
+
+    /// <summary>
+    /// Whether a pod goes through a station without stopping: boosted pods, pods headed somewhere else,
+    /// and pods at a request stop nobody asked for. A pod with nowhere to go on stops anyway.
+    /// </summary>
+    protected bool PassesStation(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, TransitTubeStationComponent station, TransitPodComponent pod, Direction travel)
     {
         if (travel == Direction.Invalid)
             return false;
 
         var passes = pod.Boosted
+            || pod.Target != null && pod.Target != ent.Owner
             || station.RequestStop && !station.StopRequested && !pod.StopRequested;
 
         return passes && PickExit(ent, tube, travel) != Direction.Invalid;
     }
+
+    protected bool IsEmagged(EntityUid uid)
+        => _emag.CheckFlag(uid, EmagType.Interaction);
+
+    /// <summary>
+    /// Whether a piece has power. Pieces that don't need power always do.
+    /// </summary>
+    public bool IsPowered(EntityUid uid)
+        => _power.IsPowered(uid);
 
     /// <summary>
     /// Called on a pod after it picked its way through a tube.
@@ -173,6 +277,43 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
         return best;
     }
 
+    /// <summary>
+    /// Whether a pod takes this kind of thing: people for passenger pods, items and crates for cargo pods.
+    /// </summary>
+    public bool CanCarry(TransitPodComponent pod, EntityUid uid)
+    {
+        if (HasComp<MobStateComponent>(uid))
+            return !pod.Cargo;
+
+        return pod.Cargo && (HasComp<ItemComponent>(uid) || HasComp<EntityStorageComponent>(uid));
+    }
+
+    [SubscribeLocalEvent]
+    private void OnGlassDamageModify(Entity<TransitTubeGlassComponent> ent, ref DamageModifyEvent args)
+    {
+        if (_proto.Resolve(ent.Comp.Material, out var material)
+            && material.Modifiers is { } modifiers
+            && _proto.Resolve(modifiers, out var set))
+            args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, set);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnEmagged(Entity<TransitTubeComponent> ent, ref GotEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction) || IsEmagged(ent))
+            return;
+
+        // Only pieces with something to break: switches, one-way tubes and accelerators.
+        var speed = CompOrNull<TransitTubeSpeedComponent>(ent);
+        if (!HasComp<TransitTubeSwitchComponent>(ent)
+            && !IsBranchSwitch(ent)
+            && ent.Comp.OneWay == null
+            && speed?.Speed == null)
+            return;
+
+        args.Handled = true;
+    }
+
     [SubscribeLocalEvent]
     private void OnSwitchInit(Entity<TransitTubeSwitchComponent> ent, ref ComponentInit args)
         => _deviceLink.EnsureSinkPorts(ent, ent.Comp.LeftPort, ent.Comp.RightPort, ent.Comp.TogglePort);
@@ -184,6 +325,10 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnSwitchSignal(Entity<TransitTubeSwitchComponent> ent, ref SignalReceivedEvent args)
     {
+        // Without power the switch stays where it was.
+        if (!IsPowered(ent))
+            return;
+
         if (args.Port == ent.Comp.TogglePort)
             SetSwitch(ent, !ent.Comp.Right);
         else if (args.Port == ent.Comp.LeftPort)
@@ -209,6 +354,9 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnToggleSignal(Entity<TransitTubeToggleComponent> ent, ref SignalReceivedEvent args)
     {
+        if (!IsPowered(ent))
+            return;
+
         if (args.Port == ent.Comp.TogglePort)
             SetEnabled(ent, !ent.Comp.Enabled);
         else if (args.Port == ent.Comp.OnPort)
@@ -249,7 +397,9 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
         if (args.Handled)
             return;
 
-        args.CanDrop = HasComp<MobStateComponent>(args.Dragged) && ent.Comp.DockedPod != null;
+        args.CanDrop = ent.Comp.DockedPod is { } podUid
+                       && TryComp<TransitPodComponent>(podUid, out var pod)
+                       && CanCarry(pod, args.Dragged);
         args.Handled = true;
     }
 }

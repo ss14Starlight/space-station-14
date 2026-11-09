@@ -980,16 +980,22 @@
     - TransitTubeJunction
     - TransitTubeJunctionFlipped
     - TransitTubeCrossroad
+    - TransitTubeCrossroadDiagonal
     - TransitTubeOneWay
     - TransitTubeSideConnector
     - TransitTubeSideConnectorFlipped
     - TransitTubeSideBranch
     - TransitTubeSideBranchFlipped
+    - TransitTubeSideBranchSwitch
+    - TransitTubeSideBranchSwitchFlipped
+    - TransitTubeSideBranchTagged
+    - TransitTubeSideBranchTaggedFlipped
     - TransitTubeTurn
     - TransitTubeSwitchJunction
     - TransitTubeSpeedUp
     - TransitTubeBrake
     - TransitTubeTurntable
+    - TransitTubeTurntableHalf
     - TransitTubeSensor
     - TransitTubeBlockSignal
     - TransitTubeTagger

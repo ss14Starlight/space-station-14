@@ -1,17 +1,21 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Terminus *_flipped states mirrored by Starlight. *_request and request_lit drawn by Starlight on top of the station states.",
+  "copyright": "state based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
       "name": "closed_station",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
       "name": "opening_station",
       "directions": 4,
       "delays": [
@@ -46,10 +50,14 @@
       ]
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
       "name": "open_station",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
       "name": "closing_station",
       "directions": 4,
       "delays": [
@@ -84,10 +92,14 @@
       ]
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
       "name": "closed_terminus",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
       "name": "opening_terminus",
       "directions": 4,
       "delays": [
@@ -122,10 +134,14 @@
       ]
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
       "name": "open_terminus",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
       "name": "closing_terminus",
       "directions": 4,
       "delays": [
@@ -160,10 +176,14 @@
       ]
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass, *_details layers and mirrored by Rinary for Starlight.",
       "name": "closed_terminus_flipped",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass, *_details layers and mirrored by Rinary for Starlight.",
       "name": "opening_terminus_flipped",
       "directions": 4,
       "delays": [
@@ -198,10 +218,14 @@
       ]
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass, *_details layers and mirrored by Rinary for Starlight.",
       "name": "open_terminus_flipped",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass, *_details layers and mirrored by Rinary for Starlight.",
       "name": "closing_terminus_flipped",
       "directions": 4,
       "delays": [
@@ -236,10 +260,14 @@
       ]
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight.",
       "name": "closed_request",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight.",
       "name": "opening_request",
       "directions": 4,
       "delays": [
@@ -274,10 +302,14 @@
       ]
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight.",
       "name": "open_request",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight.",
       "name": "closing_request",
       "directions": 4,
       "delays": [
@@ -312,8 +344,430 @@
       ]
     },
     {
+      "license": "CC-BY-SA-4.0",
+      "copyright": "Made by Rinary for Starlight.",
       "name": "request_lit",
       "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight.",
+      "name": "closed_depot",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight.",
+      "name": "opening_depot",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight.",
+      "name": "open_depot",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight.",
+      "name": "closing_depot",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers, then redrawn and mirrored by Rinary for Starlight.",
+      "name": "closed_depot_flipped",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers, then redrawn and mirrored by Rinary for Starlight.",
+      "name": "opening_depot_flipped",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers, then redrawn and mirrored by Rinary for Starlight.",
+      "name": "open_depot_flipped",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers, then redrawn and mirrored by Rinary for Starlight.",
+      "name": "closing_depot_flipped",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
+      "name": "closed_station_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
+      "name": "closed_terminus_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers and then mirrored by Rinary for Starlight.",
+      "name": "closed_terminus_flipped_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
+      "name": "closing_station_details",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
+      "name": "closing_terminus_details",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers and then mirrored by Rinary for Starlight.",
+      "name": "closing_terminus_flipped_details",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
+      "name": "open_station_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
+      "name": "open_terminus_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers and then mirrored by Rinary for Starlight.",
+      "name": "open_terminus_flipped_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
+      "name": "opening_station_details",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers by Rinary for Starlight.",
+      "name": "opening_terminus_details",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_station.dmi. Split into glass and *_details layers and then mirrored by Rinary for Starlight.",
+      "name": "opening_terminus_flipped_details",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
     }
   ]
 }

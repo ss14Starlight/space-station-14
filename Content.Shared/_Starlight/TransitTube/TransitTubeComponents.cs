@@ -1,7 +1,9 @@
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
+using Content.Shared.DeviceLinking;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.TransitTube;
@@ -72,6 +74,44 @@ public sealed partial class TransitTubeStationComponent : Component
     /// </summary>
     [ViewVariables]
     public bool StopRequested;
+
+    /// <summary>
+    /// The name passengers pick this station by. If unset, the station's label (hand labeler) is used;
+    /// stations with neither are not offered as destinations.
+    /// </summary>
+    [DataField]
+    public string? Destination;
+
+    /// <summary>
+    /// A depot: pods that dock here stay until they are called to a station or sent off with a signal.
+    /// Nobody boards at a depot and pods looking for any free station never pick one.
+    /// </summary>
+    [DataField]
+    public bool Depot;
+
+    /// <summary>
+    /// Set by the Hold port: the docked pod stays until the Depart port fires.
+    /// </summary>
+    [ViewVariables]
+    public bool Holding;
+
+    /// <summary>
+    /// The pod on its way to dock here. Other pods treat the station as busy.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? ReservedBy;
+
+    [DataField]
+    public ProtoId<SourcePortPrototype> ArrivedPort = "TransitPodArrived";
+
+    [DataField]
+    public ProtoId<SourcePortPrototype> DepartedPort = "TransitPodDeparted";
+
+    [DataField]
+    public ProtoId<SinkPortPrototype> DepartPort = "TransitDepart";
+
+    [DataField]
+    public ProtoId<SinkPortPrototype> HoldPort = "TransitHold";
 
     /// <summary>
     /// How long a pod stays open before it leaves, with or without passengers. Pods run on this timer
@@ -197,6 +237,43 @@ public sealed partial class TransitPodComponent : Component
     /// </summary>
     [ViewVariables, AutoPausedField]
     public TimeSpan NextSignalCheck;
+
+    /// <summary>
+    /// A busy station the pod waits in front of, one tube before it.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? WaitingFor;
+
+    /// <summary>
+    /// The station this pod has claimed to dock at next.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? Reserved;
+
+    /// <summary>
+    /// The station a passenger sent this pod to. Pods with a target pass every other station.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? Target;
+
+    /// <summary>
+    /// Go to the nearest free station, waiting in the station until one is free.
+    /// </summary>
+    [ViewVariables]
+    public bool AnyFree;
+
+    /// <summary>
+    /// The way to <see cref="Target"/>: which exit to take on entering a tube going a given way.
+    /// Filled by the server when the pod leaves.
+    /// </summary>
+    [ViewVariables]
+    public Dictionary<(EntityUid Tube, Direction Travel), Direction> Plan = new();
+
+    /// <summary>
+    /// Cargo pods carry items and crates instead of people.
+    /// </summary>
+    [DataField]
+    public bool Cargo;
 
     /// <summary>
     /// Max amount of passengers that can be taken by this pod.
@@ -349,6 +426,34 @@ public enum TransitPodVisuals : byte
 
 [Serializable, NetSerializable]
 public sealed partial class TransitPodBoardDoAfterEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public enum TransitStationUiKey : byte
+{
+    Key,
+}
+
+[Serializable, NetSerializable]
+public sealed record TransitDestinationEntry(NetEntity Station, string Name);
+
+[Serializable, NetSerializable]
+public sealed class TransitStationBoundUserInterfaceState(List<TransitDestinationEntry> destinations, NetEntity? selected, bool anyFree)
+    : BoundUserInterfaceState
+{
+    public readonly List<TransitDestinationEntry> Destinations = destinations;
+    public readonly NetEntity? Selected = selected;
+    public readonly bool AnyFree = anyFree;
+}
+
+/// <summary>
+/// Picks where the docked pod goes next. Null with <see cref="AnyFree"/> false clears the choice.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class TransitStationSelectDestinationMessage(NetEntity? destination, bool anyFree) : BoundUserInterfaceMessage
+{
+    public readonly NetEntity? Destination = destination;
+    public readonly bool AnyFree = anyFree;
+}
 
 [Serializable, NetSerializable]
 public sealed partial class TransitPodClimbOutDoAfterEvent : SimpleDoAfterEvent;

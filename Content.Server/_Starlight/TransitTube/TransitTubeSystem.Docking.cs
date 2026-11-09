@@ -19,6 +19,11 @@ public sealed partial class TransitTubeSystem
 
         pod.Comp.Station = station;
         pod.Comp.Bounced = false;
+        pod.Comp.Target = null;
+        pod.Comp.AnyFree = false;
+        pod.Comp.Plan.Clear();
+        ReleaseReservation(pod);
+        _deviceLink.InvokePort(station, station.Comp.ArrivedPort);
         pod.Comp.StopRequested = false;
         station.Comp.StopRequested = false;
         _appearance.SetData(station, TransitStationVisuals.StopRequested, false);
@@ -69,6 +74,10 @@ public sealed partial class TransitTubeSystem
         var exits = _disposalTube.GetTubeConnectableDirections((stationUid, tube))
             .OrderByDescending(exit => exit == pod.Comp.TravelDirection);
 
+        // A pod with a plan leaves the way it says.
+        if (pod.Comp.Plan.TryGetValue((stationUid, Direction.Invalid), out var planned))
+            exits = exits.OrderByDescending(exit => exit == planned);
+
         foreach (var exit in exits)
         {
             if (!_holder.Launch(holder, (stationUid, tube), exit))
@@ -76,6 +85,7 @@ public sealed partial class TransitTubeSystem
 
             pod.Comp.Station = null;
             Undock((stationUid, station));
+            _deviceLink.InvokePort(stationUid, station.DepartedPort);
             SetState(pod, TransitPodState.Moving);
             _audio.PlayPvs(pod.Comp.DepartSound, pod);
             return;
@@ -110,11 +120,35 @@ public sealed partial class TransitTubeSystem
         _holder.SetHalted(holder, true);
         SetState(pod, TransitPodState.Stalled);
         SetSpeed(pod, holder, null);
+        SetSignalLamp(pod.Comp.HeldAtSignal, false);
         pod.Comp.HeldAtSignal = null;
+        pod.Comp.WaitingFor = null;
+        ReleaseReservation(pod);
 
         // Nothing holds the pod up any more: everyone falls out.
         if (!TryGetTube(Transform(pod), out _))
             EjectAll(pod, Transform(pod).Coordinates);
+    }
+
+    private void ReleaseHold(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder)
+    {
+        if (pod.Comp.HeldAtSignal == null && pod.Comp.WaitingFor == null)
+            return;
+
+        SetSignalLamp(pod.Comp.HeldAtSignal, false);
+        pod.Comp.HeldAtSignal = null;
+        pod.Comp.WaitingFor = null;
+        _holder.SetHalted(holder, false);
+    }
+
+    private void ReleaseReservation(Entity<TransitPodComponent> pod)
+    {
+        if (pod.Comp.Reserved is { } stationUid
+            && TryComp<TransitTubeStationComponent>(stationUid, out var station)
+            && station.ReservedBy == pod.Owner)
+            station.ReservedBy = null;
+
+        pod.Comp.Reserved = null;
     }
 
     /// <summary>

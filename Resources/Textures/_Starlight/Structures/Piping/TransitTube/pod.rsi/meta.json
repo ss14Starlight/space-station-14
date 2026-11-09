@@ -1,26 +1,46 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_pod.dmi",
+  "copyright": "state based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_pod.dmi.",
       "name": "pod",
       "directions": 8
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_pod.dmi.",
       "name": "pod_occupied",
       "directions": 8
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_pod.dmi.",
       "name": "temppod",
       "directions": 8
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_pod.dmi.",
       "name": "temppod_occupied",
+      "directions": 8
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken insulated pod from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_pod.dmi and recolored by Rinary for Starlight",
+      "name": "cargopod",
+      "directions": 8
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken insulated pod from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube_pod.dmi and recolored by Rinary for Starlight",
+      "name": "cargopod_occupied",
       "directions": 8
     }
   ]

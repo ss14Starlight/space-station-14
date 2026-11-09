@@ -143,6 +143,18 @@
   fx: EffectRCDConstruct1
 
 - type: rcd
+  id: TransitTubeCrossroadDiagonal
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_crossroad_diagonal.png
+  mode: ConstructObject
+  prototype: TransitTubeCrossroadDiagonal
+  cost: 2
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
   id: TransitTubeOneWay
   category: TransitTubes
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_oneway.png
@@ -263,6 +275,18 @@
   fx: EffectRCDConstruct1
 
 - type: rcd
+  id: TransitTubeTurntableHalf
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_turntable_half.png
+  mode: ConstructObject
+  prototype: TransitTubeTurntableHalf
+  cost: 2
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
   id: TransitTubeSensor
   category: TransitTubes
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_signaller.png
@@ -328,6 +352,54 @@
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_requeststop.png
   mode: ConstructObject
   prototype: TransitTubeStationRequest
+  cost: 2
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeSideBranchSwitch
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_sidebranch_switch.png
+  mode: ConstructObject
+  prototype: TransitTubeSideBranchSwitch
+  cost: 2
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeSideBranchSwitchFlipped
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_sidebranch_switch_flipped.png
+  mode: ConstructObject
+  prototype: TransitTubeSideBranchSwitchFlipped
+  cost: 2
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeSideBranchTagged
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_sidebranch_tagged.png
+  mode: ConstructObject
+  prototype: TransitTubeSideBranchTagged
+  cost: 2
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeSideBranchTaggedFlipped
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_sidebranch_tagged_flipped.png
+  mode: ConstructObject
+  prototype: TransitTubeSideBranchTaggedFlipped
   cost: 2
   delay: 1
   collisionMask: TableMask

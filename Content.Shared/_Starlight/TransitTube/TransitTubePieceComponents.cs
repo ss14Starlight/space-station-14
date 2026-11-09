@@ -23,6 +23,12 @@ public sealed partial class TransitTubeSpeedComponent : Component
     /// </summary>
     [DataField]
     public float? Speed;
+
+    /// <summary>
+    /// The speed an emagged accelerator pushes pods to.
+    /// </summary>
+    [DataField]
+    public float OverloadSpeed = 18f;
 }
 
 /// <summary>
@@ -63,7 +69,8 @@ public sealed partial class TransitTubeSwitchComponent : Component
 public sealed partial class TransitTubeTurntableComponent : Component
 {
     /// <summary>
-    /// How far the pod is turned, in degrees clockwise. 180 sends it back the way it came.
+    /// How far the pod is turned, in degrees counter-clockwise (negative turns clockwise).
+    /// 180 sends it back the way it came.
     /// </summary>
     [DataField]
     public float Turn = 180f;
@@ -107,6 +114,12 @@ public sealed partial class TransitTubeToggleComponent : Component
 
     [DataField]
     public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
+}
+
+[Serializable, NetSerializable]
+public enum TransitBlockSignalVisuals : byte
+{
+    Holding,
 }
 
 [Serializable, NetSerializable]

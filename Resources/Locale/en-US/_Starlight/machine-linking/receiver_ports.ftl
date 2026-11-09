@@ -42,3 +42,7 @@ signal-port-name-transit-switch-left = Switch left
 signal-port-description-transit-switch-left = Sends pods leaving the trunk down the left branch.
 signal-port-name-transit-switch-right = Switch right
 signal-port-description-transit-switch-right = Sends pods leaving the trunk down the right branch.
+signal-port-name-transit-depart = Depart
+signal-port-description-transit-depart = Sends the docked pod off now and stops holding pods here.
+signal-port-name-transit-hold = Hold
+signal-port-description-transit-hold = Keeps pods docked here until Depart is signalled.

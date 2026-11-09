@@ -1,130 +1,317 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. crossroad, oneway, sideconnector, sidebranch, turn, switchjuction*, speedup, brake, router, signalblock, signaller, tagger, oneway_enabled and their *_flipped states drawn by Starlight on top of them. turntable drawn by Starlight on top of crossroad.",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
       "name": "straight",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
       "name": "diagonal",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
       "name": "curved",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
       "name": "curved_flipped",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
       "name": "junction",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
       "name": "junction_flipped",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
       "name": "cap",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi.",
       "name": "decorative",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
       "name": "corner_se"
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
       "name": "corner_sw"
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
       "name": "corner_ne"
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
       "name": "corner_nw"
     },
     {
-      "name": "crossroad",
-      "directions": 4
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken streight from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
+      "name": "crossroad"
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken streight from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
       "name": "oneway",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
       "name": "sideconnector",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
       "name": "sidebranch",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
       "name": "turn",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
       "name": "switchjuction",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken juction state from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Arrows curred from juction by Rinary for Starlight",
       "name": "switchjuction_left",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken juction state from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Arrows curred from juction by Rinary for Starlight",
       "name": "switchjuction_right",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
       "name": "speedup",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
       "name": "brake",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken streight from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
       "name": "turntable",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-4.0",
+      "copyright": "Made by Rinary for Starlight",
       "name": "oneway_enabled",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken juction from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
       "name": "router",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken streight from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
       "name": "signalblock",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken streight from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
       "name": "signaller",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken streight from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
       "name": "tagger",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers, redrawn and then mirrored by Rinary for Starlight",
       "name": "sideconnector_flipped",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers, redrawn and then mirrored by Rinary for Starlight",
       "name": "sidebranch_flipped",
       "directions": 4
     },
     {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken juction from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers, redrawn and then mirrored by Rinary for Starlight",
       "name": "router_flipped",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken diagonal from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
+      "name": "crossroad_diagonal"
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken streight from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
+      "name": "turntable_half",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
+      "name": "cap_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
+      "name": "corner_ne_details"
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
+      "name": "corner_nw_details"
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
+      "name": "corner_se_details"
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
+      "name": "corner_sw_details"
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken streight from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
+      "name": "crossroad_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken diagonal from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
+      "name": "crossroad_diagonal_details"
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
+      "name": "curved_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
+      "name": "curved_flipped_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
+      "name": "diagonal_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers by Rinary for Starlight",
+      "name": "junction_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
+      "name": "sidebranch_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers, redrawn and then mirrored by Rinary for Starlight",
+      "name": "sidebranch_flipped_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
+      "name": "turn_details",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-4.0",
+      "copyright": "Made by Rinary for Starlight",
+      "name": "signalblock_hold",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-4.0",
+      "copyright": "Made by Rinary for Starlight",
+      "name": "signalblock_clear",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
+      "name": "sidebranch_tagged",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers, redrawn and then mirrored by Rinary for Starlight",
+      "name": "sidebranch_tagged_flipped",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers and then redrawn by Rinary for Starlight",
+      "name": "sidebranch_switch",
+      "directions": 4
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from ParadiseSS13 at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/pipes/transit_tube.dmi. Split into glass and *_details layers, redrawn and then mirrored by Rinary for Starlight",
+      "name": "sidebranch_switch_flipped",
       "directions": 4
     }
   ]

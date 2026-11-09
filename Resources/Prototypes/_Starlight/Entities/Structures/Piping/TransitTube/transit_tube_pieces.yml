@@ -7,7 +7,10 @@
   description: Two transit tubes crossing each other. Pods always go straight across.
   components:
   - type: Sprite
-    state: crossroad
+    layers:
+    - state: crossroad
+      map: [ "glass" ]
+    - state: crossroad_details
   - type: DisposalTube
     exits:
     - South
@@ -25,6 +28,8 @@
   components:
   - type: Sprite
     layers:
+    - state: straight
+      map: [ "glass" ]
     - state: oneway
     - state: oneway_enabled
       map: [ "enabled" ]
@@ -36,6 +41,9 @@
   - type: TransitTube
     oneWay: North
   - type: TransitTubeToggle
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ExtensionCableReceiver
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -61,7 +69,10 @@
   description: Joins a diagonal tube onto a straight one. Pods on the straight tube pass by, pods from the side merge in.
   components:
   - type: Sprite
-    state: sideconnector
+    layers:
+    - state: sidebranch
+      map: [ "glass" ]
+    - state: sideconnector
   - type: DisposalTube
     exits:
     - South
@@ -74,7 +85,10 @@
   suffix: Flipped
   components:
   - type: Sprite
-    state: sideconnector_flipped
+    layers:
+    - state: sidebranch_flipped
+      map: [ "glass" ]
+    - state: sideconnector_flipped
   - type: DisposalTube
     exits:
     - South
@@ -88,7 +102,10 @@
   description: Splits a diagonal tube off a straight one. Pods coming up the straight tube follow the arrow to the side, pods coming the other way merge in.
   components:
   - type: Sprite
-    state: sidebranch
+    layers:
+    - state: sidebranch
+      map: [ "glass" ]
+    - state: sidebranch_details
   - type: TransitTube
     preferredExit: NorthEast
     forcePreferred: true
@@ -99,7 +116,10 @@
   suffix: Flipped
   components:
   - type: Sprite
-    state: sidebranch_flipped
+    layers:
+    - state: sidebranch_flipped
+      map: [ "glass" ]
+    - state: sidebranch_flipped_details
   - type: DisposalTube
     exits:
     - South
@@ -115,7 +135,10 @@
   description: A tight right-angle turn.
   components:
   - type: Sprite
-    state: turn
+    layers:
+    - state: turn
+      map: [ "glass" ]
+    - state: turn_details
   - type: DisposalTube
     exits:
     - South
@@ -129,6 +152,8 @@
   components:
   - type: Sprite
     layers:
+    - state: junction
+      map: [ "glass" ]
     - state: switchjuction
     - state: switchjuction_right
       map: [ "switch" ]
@@ -138,6 +163,9 @@
     - NorthEast
     - NorthWest
   - type: TransitTubeSwitch
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: ExtensionCableReceiver
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -163,7 +191,10 @@
   description: Speeds pods up in the direction of the arrows. Fast pods fly past stations and hit dead ends hard.
   components:
   - type: Sprite
-    state: speedup
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: speedup
   - type: DisposalTube
     exits:
     - South
@@ -171,21 +202,27 @@
   - type: TransitTubeSpeed
     direction: North
     speed: 12
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: ExtensionCableReceiver
 
 - type: entity
   parent: TransitTubeBase
   id: TransitTubeBrake
   name: transit tube brake
-  description: Slows pods going in the direction of the arrows back to their normal speed.
+  description: Slows pods coming at the arrows back to their normal speed.
   components:
   - type: Sprite
-    state: brake
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: brake
   - type: DisposalTube
     exits:
     - South
     - North
   - type: TransitTubeSpeed
-    direction: South
+    direction: North
 
 - type: entity
   parent: TransitTubeBase
@@ -194,7 +231,10 @@
   description: Turns pods around on the spot and sends them back the way they came.
   components:
   - type: Sprite
-    state: turntable
+    layers:
+    - state: crossroad
+      map: [ "glass" ]
+    - state: turntable
   - type: DisposalTube
     exits:
     - South
@@ -212,7 +252,10 @@
   description: Sends a signal every time a pod goes through it.
   components:
   - type: Sprite
-    state: signaller
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: signaller
   - type: DisposalTube
     exits:
     - South
@@ -234,13 +277,34 @@
   description: Holds pods going in the direction of the arrow while another pod is on the stretch ahead, up to the next signal or station.
   components:
   - type: Sprite
-    state: signalblock
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: signalblock
+    - state: signalblock_clear
+      map: [ "lamp" ]
+      shader: unshaded
+      visible: false
   - type: DisposalTube
     exits:
     - South
     - North
   - type: TransitTubeBlockSignal
     direction: North
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ExtensionCableReceiver
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitBlockSignalVisuals.Holding:
+        lamp:
+          True: { state: signalblock_hold }
+          False: { state: signalblock_clear }
+      enum.PowerDeviceVisuals.Powered:
+        lamp:
+          True: { visible: true }
+          False: { visible: false }
 
 - type: entity
   parent: TransitTubeBase
@@ -249,7 +313,10 @@
   description: Sets the destination tag of every pod passing through, replacing the old one. Routers send pods by their tag.
   components:
   - type: Sprite
-    state: tagger
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: tagger
   - type: DisposalTube
     exits:
     - South
@@ -269,7 +336,10 @@
   description: A junction that reads destination tags. Pods with a matching tag follow the arrow, the rest take the other branch.
   components:
   - type: Sprite
-    state: router
+    layers:
+    - state: junction
+      map: [ "glass" ]
+    - state: router
   - type: DisposalRouter
   - type: ActivatableUI
     key: enum.DisposalRouterUiKey.Key
@@ -284,7 +354,10 @@
   suffix: Flipped
   components:
   - type: Sprite
-    state: router_flipped
+    layers:
+    - state: junction
+      map: [ "glass" ]
+    - state: router_flipped
   - type: TransitTube
     preferredExit: NorthWest
 
@@ -297,8 +370,10 @@
   - type: Sprite
     sprite: _Starlight/Structures/Piping/TransitTube/station.rsi
     layers:
+    - state: closed_station
+      map: [ "glass" ]
     - state: closed_request
-      map: [ "base" ]
+      map: [ "details" ]
     - state: request_lit
       map: [ "lamp" ]
       shader: unshaded
@@ -308,7 +383,12 @@
   - type: GenericVisualizer
     visuals:
       enum.TransitStationVisuals.State:
-        base:
+        glass:
+          Closed: { state: closed_station }
+          Opening: { state: opening_station }
+          Open: { state: open_station }
+          Closing: { state: closing_station }
+        details:
           Closed: { state: closed_request }
           Opening: { state: opening_request }
           Open: { state: open_request }
@@ -317,3 +397,134 @@
         lamp:
           True: { visible: true }
           False: { visible: false }
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeCrossroadDiagonal
+  name: diagonal transit tube crossing
+  description: Two diagonal transit tubes crossing each other. Pods always go straight across.
+  components:
+  - type: Sprite
+    layers:
+    - state: crossroad_diagonal
+      map: [ "glass" ]
+    - state: crossroad_diagonal_details
+  - type: DisposalTube
+    exits:
+    - NorthEast
+    - SouthWest
+    - NorthWest
+    - SouthEast
+  - type: TransitTube
+    maxTurn: 0
+
+- type: entity
+  parent: TransitTubeTurntable
+  id: TransitTubeTurntableHalf
+  name: transit tube quarter turntable
+  description: Turns pods a quarter turn clockwise on the spot.
+  components:
+  - type: Sprite
+    layers:
+    - state: crossroad
+      map: [ "glass" ]
+    - state: turntable_half
+  - type: TransitTubeTurntable
+    turn: -90
+
+- type: entity
+  parent: TransitTubeSideBranch
+  id: TransitTubeSideBranchSwitch
+  name: transit tube side switch
+  description: A side branch that can be switched on and off with a signal. While on, pods coming up the straight tube follow the arrow to the side; while off, they go straight on.
+  components:
+  - type: Sprite
+    layers:
+    - state: sidebranch
+      map: [ "glass" ]
+    - state: sidebranch_switch
+      map: [ "branch" ]
+  - type: TransitTubeToggle
+    enabled: false
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: ExtensionCableReceiver
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitTubeToggleVisuals.Enabled:
+        branch:
+          True: { state: sidebranch_details }
+          False: { state: sidebranch_switch }
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+
+- type: entity
+  parent: TransitTubeSideBranchSwitch
+  id: TransitTubeSideBranchSwitchFlipped
+  suffix: Flipped
+  components:
+  - type: Sprite
+    layers:
+    - state: sidebranch_flipped
+      map: [ "glass" ]
+    - state: sidebranch_switch_flipped
+      map: [ "branch" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitTubeToggleVisuals.Enabled:
+        branch:
+          True: { state: sidebranch_flipped_details }
+          False: { state: sidebranch_switch_flipped }
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+    - NorthWest
+  - type: TransitTube
+    preferredExit: NorthWest
+
+- type: entity
+  parent: TransitTubeSideBranch
+  id: TransitTubeSideBranchTagged
+  name: transit tube side router
+  description: A side branch that reads destination tags. Pods with a matching tag follow the arrow to the side, the rest go straight on.
+  components:
+  - type: Sprite
+    layers:
+    - state: sidebranch
+      map: [ "glass" ]
+    - state: sidebranch_tagged
+  - type: DisposalRouter
+  - type: ActivatableUI
+    key: enum.DisposalRouterUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.DisposalRouterUiKey.Key:
+        type: DisposalRouterBoundUserInterface
+
+- type: entity
+  parent: TransitTubeSideBranchTagged
+  id: TransitTubeSideBranchTaggedFlipped
+  suffix: Flipped
+  components:
+  - type: Sprite
+    layers:
+    - state: sidebranch_flipped
+      map: [ "glass" ]
+    - state: sidebranch_tagged_flipped
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+    - NorthWest
+  - type: TransitTube
+    preferredExit: NorthWest

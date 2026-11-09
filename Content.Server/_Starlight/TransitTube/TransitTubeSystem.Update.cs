@@ -24,7 +24,7 @@ public sealed partial class TransitTubeSystem
             {
                 case TransitPodState.Moving:
                     UpdateHeld(ent, holder, now);
-                    CheckCollisions(ent, holder, xform, now);
+                    CheckCollisions(ent, holder, xform, now, frameTime);
                     break;
 
                 case TransitPodState.Opening when now >= pod.StateEnd:
@@ -59,18 +59,35 @@ public sealed partial class TransitTubeSystem
         if (now < pod.Comp.NextDeparture || !TryGetStation(pod.Comp, out var station))
             return;
 
+        // Held by a signal, or parked at a depot until someone calls it.
+        if ((station.Comp.Holding || station.Comp.Depot) && pod.Comp.Target == null && !pod.Comp.AnyFree)
+        {
+            pod.Comp.NextDeparture = now + station.Comp.DepartDelay;
+            return;
+        }
+
+        // Looking for any free station and none is: keep the doors open and look again later.
+        if ((pod.Comp.AnyFree || pod.Comp.Target != null) && !TryPlanTrip(pod, station) && pod.Comp.AnyFree)
+        {
+            pod.Comp.NextDeparture = now + station.Comp.DepartDelay;
+            return;
+        }
+
         SetState(pod, TransitPodState.Closing, station.Comp.CloseTime);
         SetStationVisual(station, TransitStationVisualState.Closing);
         _audio.PlayPvs(station.Comp.CloseSound, station);
     }
 
-    private void CheckCollisions(Entity<TransitPodComponent> pod, DisposalHolderComponent holder, TransformComponent xform, TimeSpan now)
+    private void CheckCollisions(Entity<TransitPodComponent> pod, DisposalHolderComponent holder, TransformComponent xform, TimeSpan now, float frameTime)
     {
         if (now < pod.Comp.NextCollision || !TryComp<PhysicsComponent>(pod, out var physics))
             return;
 
+        // Fast pods cover a lot of tube per tick; widen the check so they can't skip through each other.
+        var range = pod.Comp.CollisionRange + 2f * holder.TraversalSpeed * frameTime;
+
         _nearbyPods.Clear();
-        _lookup.GetEntitiesInRange(xform.Coordinates, pod.Comp.CollisionRange, _nearbyPods);
+        _lookup.GetEntitiesInRange(xform.Coordinates, range, _nearbyPods);
 
         var position = _xform.GetWorldPosition(xform);
         foreach (var other in _nearbyPods)
@@ -107,8 +124,9 @@ public sealed partial class TransitTubeSystem
         pod.Comp.NextCollision = now + _collisionCooldown;
         HurtPassengers(pod, pod.Comp.CollisionDamage, multiplier);
 
-        // A pod held at a signal gets shoved back into motion.
-        pod.Comp.HeldAtSignal = null;
+        // A held pod gets shoved back into motion.
+        ReleaseHold(pod, holder);
+        ReleaseReservation(pod);
 
         if (!_holder.Reverse(holder))
             Stall(pod, holder);
@@ -174,6 +192,9 @@ public sealed partial class TransitTubeSystem
                 rate = pod.Comp.HeatConductivity;
             }
         }
+
+        // The tube's own glass keeps some of it off.
+        rate *= 1f - GetHeatInsulation(xform);
 
         if (rate <= 0)
             return;

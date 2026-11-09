@@ -1,7 +1,10 @@
 using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared._Starlight.TransitTube;
+using Content.Shared.Access.Systems;
 using Content.Shared.ActionBlocker;
+using Content.Shared.DeviceLinking;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Disposal.Holder;
@@ -14,6 +17,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
+using Content.Shared.Stacks;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
@@ -44,6 +48,11 @@ public sealed partial class TransitTubeSystem : SharedTransitTubeSystem
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private AccessReaderSystem _access = default!;
+    [Dependency] private SharedDeviceLinkSystem _deviceLink = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedStackSystem _stack = default!;
 
     private static readonly TimeSpan _atmosInterval = TimeSpan.FromSeconds(0.5);
     private static readonly TimeSpan _collisionCooldown = TimeSpan.FromSeconds(1);

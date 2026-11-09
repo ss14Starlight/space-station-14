@@ -20,7 +20,52 @@ public sealed partial class TransitTubeSystem
         if (args.Handled || !args.Complex)
             return;
 
-        args.Handled = TryRequestStop(ent, args.User) || TryBoard(ent, args.User, args.User);
+        args.Handled = TryRequestStop(ent, args.User)
+                       || TryUnload(ent, args.User)
+                       || TryCallPod(ent, args.User)
+                       || TryBoard(ent, args.User, args.User);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnStationInteractUsing(Entity<TransitTubeStationComponent> ent, ref InteractUsingEvent args)
+    {
+        if (args.Handled
+            || ent.Comp.DockedPod is not { } podUid
+            || !TryComp<TransitPodComponent>(podUid, out var pod)
+            || !pod.Cargo)
+            return;
+
+        args.Handled = true;
+
+        if (!CanBoard(ent, args.User, popup: true))
+            return;
+
+        // Load what is in hand straight into a cargo pod.
+        if (_hands.TryDrop(args.User, args.Used) && TryInsertPassenger((podUid, pod), args.Used))
+            UpdateDestinations(ent);
+    }
+
+    /// <summary>
+    /// Empties a docked cargo pod onto the platform.
+    /// </summary>
+    private bool TryUnload(Entity<TransitTubeStationComponent> station, EntityUid user)
+    {
+        if (station.Comp.DockedPod is not { } podUid
+            || !TryComp<TransitPodComponent>(podUid, out var pod)
+            || !pod.Cargo)
+            return false;
+
+        if (pod.State != TransitPodState.Open)
+        {
+            _popup.PopupEntity(Loc.GetString("transit-pod-not-ready"), station, user);
+            return true;
+        }
+
+        if (!GetPassengers((podUid, pod)).Any())
+            return false;
+
+        EjectAll((podUid, pod), GetPlatform(station));
+        return true;
     }
 
     [SubscribeLocalEvent]
@@ -34,7 +79,16 @@ public sealed partial class TransitTubeSystem
 
     private bool TryBoard(Entity<TransitTubeStationComponent> station, EntityUid passenger, EntityUid user)
     {
-        if (!HasComp<MobStateComponent>(passenger))
+        if (station.Comp.DockedPod is { } podUid
+            && TryComp<TransitPodComponent>(podUid, out var pod)
+            && !CanCarry(pod, passenger))
+        {
+            if (passenger == user || HasComp<MobStateComponent>(passenger))
+                _popup.PopupEntity(Loc.GetString(pod.Cargo ? "transit-pod-cargo-only" : "transit-pod-passengers-only"), station, user);
+            return passenger == user;
+        }
+
+        if (station.Comp.DockedPod == null && !HasComp<MobStateComponent>(passenger))
             return false;
 
         if (!CanBoard(station, user, popup: true))
@@ -65,6 +119,10 @@ public sealed partial class TransitTubeSystem
 
         if (station.Comp.DockedPod is not { } podUid || !TryComp<TransitPodComponent>(podUid, out var pod))
             reason = "transit-pod-none";
+        else if (station.Comp.Depot)
+            reason = "transit-station-depot";
+        else if (!_access.IsAllowed(user, station))
+            reason = "transit-station-access-denied";
         else if (pod.State != TransitPodState.Open)
             reason = "transit-pod-not-ready";
         else if (GetPassengers((podUid, pod)).Count() >= pod.MaxPassengers)
@@ -89,6 +147,15 @@ public sealed partial class TransitTubeSystem
             return;
 
         args.Handled = TryInsertPassenger((podUid, pod), passenger);
+
+        // Let the new passenger pick where to go, if there is anywhere to pick.
+        if (args.Handled && HasComp<MobStateComponent>(passenger) && passenger == args.User)
+        {
+            UpdateDestinations(ent);
+            if (_ui.TryGetUiState<TransitStationBoundUserInterfaceState>(ent.Owner, TransitStationUiKey.Key, out var state)
+                && state.Destinations.Count > 0)
+                _ui.OpenUi(ent.Owner, TransitStationUiKey.Key, passenger);
+        }
     }
 
     /// <summary>
@@ -126,7 +193,9 @@ public sealed partial class TransitTubeSystem
                 Eject(ent, args.Entity, GetPlatform((stationUid, station)));
                 break;
 
+            // Stuck in the tube, or held at a signal: pry the pod open and climb out.
             case TransitPodState.Stalled:
+            case TransitPodState.Moving when TryComp<DisposalHolderComponent>(ent, out var held) && held.Halted:
                 var doAfter = new DoAfterArgs(EntityManager, args.Entity, ent.Comp.ClimbOutDelay, new TransitPodClimbOutDoAfterEvent(), ent, target: ent)
                 {
                     BreakOnDamage = true,
@@ -146,7 +215,11 @@ public sealed partial class TransitTubeSystem
     [SubscribeLocalEvent]
     private void OnClimbOut(Entity<TransitPodComponent> ent, ref TransitPodClimbOutDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || ent.Comp.State != TransitPodState.Stalled)
+        if (args.Handled || args.Cancelled)
+            return;
+
+        if (ent.Comp.State != TransitPodState.Stalled
+            && !(ent.Comp.State == TransitPodState.Moving && TryComp<DisposalHolderComponent>(ent, out var holder) && holder.Halted))
             return;
 
         Eject(ent, args.User, Transform(ent).Coordinates);
