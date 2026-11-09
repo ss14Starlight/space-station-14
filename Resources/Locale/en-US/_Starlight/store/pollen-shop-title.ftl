@@ -12,7 +12,7 @@ pollen-tree-mushroom-name = Mushroom
 
 pollen-floral-t1-name = Distress Pollen
 pollen-floral-t1-desc = Upon your death, a final pulse of distress travels through the spore hivemind, alerting other Dionas to your passing.
-pollen-alert-pollen-dead = You sense pain from {$user}. The feeling cuts abruptly to nothing. 
+pollen-alert-pollen-dead = You sense pain from {$user}. The feeling cuts abruptly to nothing.
 
 pollen-floral-t2-name = Blooming Moss
 pollen-floral-t2-desc = Cultivate a layer of insulating moss across your bark, blunting both heat and cold.
