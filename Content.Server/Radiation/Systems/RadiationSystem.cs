@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Radiation.Systems;
 using Content.Server.Radiation.Components;
 using Content.Shared.Radiation.Components;
 using Content.Shared.Radiation.Events;
@@ -12,7 +13,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Radiation.Systems;
 
-public sealed partial class RadiationSystem : EntitySystem
+public sealed partial class RadiationSystem : SharedRadiationSystem
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
@@ -22,41 +23,37 @@ public sealed partial class RadiationSystem : EntitySystem
     [Dependency] private IGameTiming _gameTiming = default!; // Funkystation: Funky atmos - /tg/ gases
 
     [Dependency] private EntityQuery<RadiationReceiverComponent> _receiverQuery = default!;
-    private EntityQuery<RadiationBlockingContainerComponent> _blockerQuery;
-    private EntityQuery<RadiationGridResistanceComponent> _resistanceQuery;
-    private EntityQuery<MapGridComponent> _gridQuery; //FunkyStation
-    private EntityQuery<StackComponent> _stackQuery;
-    private EntityQuery<TransformComponent> _xformQuery; // Funkystation: Funky atmos - /tg/ gases
+    [Dependency] private EntityQuery<RadiationBlockingContainerComponent> _blockerQuery = default;
+    [Dependency] private EntityQuery<RadiationGridResistanceComponent> _resistanceQuery = default;
 
+    private EntityQuery<MapGridComponent> _gridQuery; //FunkyStation
+    private EntityQuery<TransformComponent> _xformQuery; // Funkystation: Funky atmos - /tg/ gases
     private readonly B2DynamicTree<EntityUid> _sourceTree = new();
     private readonly Dictionary<EntityUid, SourceData> _sourceDataMap = new();
     private readonly List<EntityUid> _activeReceivers = new();
 
     private float _accumulator;
-    private readonly Dictionary<EntityUid, Dictionary<Vector2i, (float Radiation, TimeSpan ExpiresAt)>> _tileRadiationCache = new(); // Funky atmos - /tg/ gases
 
+    private readonly Dictionary<EntityUid, Dictionary<Vector2i, (float Radiation, TimeSpan ExpiresAt)>> _tileRadiationCache = new(); // Funky atmos - /tg/ gases
     public override void Initialize()
     {
         base.Initialize();
         SubscribeCvars();
         InitRadBlocking();
 
-        _blockerQuery = GetEntityQuery<RadiationBlockingContainerComponent>();
-        _resistanceQuery = GetEntityQuery<RadiationGridResistanceComponent>();
         _gridQuery = GetEntityQuery<MapGridComponent>(); //FunkyStation
-        _stackQuery = GetEntityQuery<StackComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>(); // Funkystation: Funky atmos - /tg/ gases
 
-        SubscribeLocalEvent<RadiationSourceComponent, ComponentInit>(OnSourceInit);
+        SubscribeLocalEvent<RadiationSourceComponent, ComponentStartup>(OnSourceStartup);
         SubscribeLocalEvent<RadiationSourceComponent, ComponentShutdown>(OnSourceShutdown);
         SubscribeLocalEvent<RadiationSourceComponent, MoveEvent>(OnSourceMove);
         SubscribeLocalEvent<RadiationSourceComponent, StackCountChangedEvent>(OnSourceStackChanged);
 
-        SubscribeLocalEvent<RadiationReceiverComponent, ComponentInit>(OnReceiverInit);
+        SubscribeLocalEvent<RadiationReceiverComponent, ComponentStartup>(OnReceiverStartup);
         SubscribeLocalEvent<RadiationReceiverComponent, ComponentShutdown>(OnReceiverShutdown);
     }
 
-    private void OnSourceInit(Entity<RadiationSourceComponent> entity, ref ComponentInit args)
+    private void OnSourceStartup(Entity<RadiationSourceComponent> entity, ref ComponentStartup args)
     {
         UpdateSource(entity);
     }
@@ -85,7 +82,7 @@ public sealed partial class RadiationSystem : EntitySystem
         UpdateSource(entity);
     }
 
-    private void OnReceiverInit(EntityUid uid, RadiationReceiverComponent component, ComponentInit args)
+    private void OnReceiverStartup(EntityUid uid, RadiationReceiverComponent component, ComponentStartup args)
     {
         _activeReceivers.Add(uid);
     }
@@ -95,7 +92,7 @@ public sealed partial class RadiationSystem : EntitySystem
         _activeReceivers.Remove(uid);
     }
 
-    private void UpdateSource(Entity<RadiationSourceComponent> entity)
+    protected override void UpdateSource(Entity<RadiationSourceComponent> entity)
     {
         var (uid, component) = entity;
         var xform = Transform(uid);
@@ -187,8 +184,7 @@ public sealed partial class RadiationSystem : EntitySystem
             RemComp<RadiationReceiverComponent>(uid);
         }
     }
-
-    /// <summary>
+        /// <summary>
     ///     Funky atmos - /tg/ gases
     ///     Get approximate radiation level at given tile coordinates.
     ///     Returns 0 if no data or tile is not cached.
