@@ -10,6 +10,7 @@ namespace Content.Client._Starlight.Ghost;
 
 // Hides your own ghost on your screen only, for observers, admins and replay viewers who want a clear view.
 // GhostSystem re-shows the local ghost whenever ghost visibility changes, so this is enforced each frame.
+// Ghosts set to always visible (corporeal) are never hidden, matching GhostSystem.
 public sealed partial class GhostOwnSpriteSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
@@ -21,8 +22,9 @@ public sealed partial class GhostOwnSpriteSystem : EntitySystem
 
     private bool _hidden;
 
-    // The ghost whose action button last matched the toggle; a new ghost's button starts untoggled.
+    // The ghost and button state last synced; a new ghost's button starts untoggled.
     private EntityUid? _synced;
+    private bool _syncedHidden;
 
     public override void Initialize()
     {
@@ -37,13 +39,13 @@ public sealed partial class GhostOwnSpriteSystem : EntitySystem
             return;
 
         args.Handled = true;
+        if (component.AlwaysVisible)
+        {
+            _popup.PopupEntity(Loc.GetString("ghost-own-sprite-always-visible"), uid);
+            return;
+        }
+
         _hidden = !_hidden;
-        _actions.SetToggled((EntityUid?) args.Action.Owner, _hidden);
-        _synced = uid;
-
-        if (!_hidden && TryComp<SpriteComponent>(uid, out var sprite))
-            _sprite.SetVisible((uid, sprite), true);
-
         _popup.PopupEntity(Loc.GetString(_hidden ? "ghost-own-sprite-hidden" : "ghost-own-sprite-shown"), uid);
     }
 
@@ -51,26 +53,35 @@ public sealed partial class GhostOwnSpriteSystem : EntitySystem
     {
         base.FrameUpdate(frameTime);
 
-        if (_player.LocalEntity is not { } local || !HasComp<GhostComponent>(local))
+        if (_player.LocalEntity is not { } local || !TryComp<GhostComponent>(local, out var ghost))
             return;
 
-        if (_synced != local)
-            SyncAction(local);
+        var hide = _hidden && !ghost.AlwaysVisible;
+        if (_synced != local || _syncedHidden != hide)
+            SyncAction(local, hide);
 
-        if (_hidden && TryComp<SpriteComponent>(local, out var sprite) && sprite.Visible)
+        if (hide && TryComp<SpriteComponent>(local, out var sprite) && sprite.Visible)
             _sprite.SetVisible((local, sprite), false);
     }
 
-    private void SyncAction(EntityUid ghost)
+    // Keeps the button's toggled look matching whether the ghost is actually hidden.
+    private void SyncAction(EntityUid ghost, bool hide)
     {
+        var wasHidden = _syncedHidden;
+        _syncedHidden = hide;
+
         foreach (var action in _actions.GetActions(ghost))
         {
             if (MetaData(action.Owner).EntityPrototype?.ID != _actionProto.Id)
                 continue;
 
-            _actions.SetToggled((EntityUid?) action.Owner, _hidden);
+            _actions.SetToggled((EntityUid?) action.Owner, hide);
             _synced = ghost;
-            return;
+            break;
         }
+
+        // Shown again by the toggle or by becoming always visible: restore the sprite once.
+        if (wasHidden && !hide && TryComp<SpriteComponent>(ghost, out var sprite))
+            _sprite.SetVisible((ghost, sprite), true);
     }
 }
