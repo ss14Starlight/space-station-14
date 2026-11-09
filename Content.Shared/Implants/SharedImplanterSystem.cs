@@ -142,16 +142,16 @@ public abstract partial class SharedImplanterSystem : EntitySystem
             return false; // Starlight
         }
 
-        //If the target doesn't have the implanted component, add it.
-        var implantedComp = EnsureComp<ImplantedComponent>(target);
-        var implantContainer = implantedComp.ImplantContainer;
-
         // Starlight start
         if (component.ImplanterSlot.ContainerSlot == null ||
             !_container.Remove(implant.Value, component.ImplanterSlot.ContainerSlot))
         {
             return false;
         }
+
+        //If the target doesn't have the implanted component, add it.
+        var implantedComp = EnsureComp<ImplantedComponent>(target);
+        var implantContainer = implantedComp.ImplantContainer;
 
         implantContainer.OccludesLight = false;
         if (!_container.Insert(implant.Value, implantContainer))
