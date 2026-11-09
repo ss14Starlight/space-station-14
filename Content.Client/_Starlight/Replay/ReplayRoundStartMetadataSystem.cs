@@ -5,7 +5,7 @@ using Robust.Client.State;
 
 namespace Content.Client._Starlight.Replay;
 
-public sealed class ReplayRoundStartMetadataSystem : SharedReplayRoundStartMetadataSystem
+public sealed partial class ReplayRoundStartMetadataSystem : SharedReplayRoundStartMetadataSystem
 {
     [Dependency] private ClientGameTicker _ticker = default!;
     [Dependency] private IStateManager _state = default!;

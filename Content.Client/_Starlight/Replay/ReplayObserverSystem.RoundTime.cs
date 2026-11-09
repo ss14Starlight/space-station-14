@@ -25,7 +25,7 @@ public sealed partial class ReplayObserverSystem
     /// <summary>
     /// Server time the round started, or the recording start for replays without it, which matches for auto-recorded rounds.
     /// </summary>
-    private TimeSpan RoundStart
+    private TimeSpan _roundStart
     {
         get
         {
@@ -71,14 +71,14 @@ public sealed partial class ReplayObserverSystem
             return false;
         }
 
-        var target = roundTime + RoundStart - replay.StartTime;
+        var target = roundTime + _roundStart - replay.StartTime;
         if (target < TimeSpan.Zero)
             target = TimeSpan.Zero;
         else if (replay.Duration is { } duration && target > duration)
             target = duration;
 
         _replayPlayback.SetTime(target);
-        message = Loc.GetString("replay-observer-jump-done", ("time", FormatRoundTime(target + replay.StartTime - RoundStart)));
+        message = Loc.GetString("replay-observer-jump-done", ("time", FormatRoundTime(target + replay.StartTime - _roundStart)));
         return true;
     }
 
@@ -92,7 +92,7 @@ public sealed partial class ReplayObserverSystem
             return;
 
         // Same position the widget's own labels use, so they agree while scrubbing.
-        var offset = replay.StartTime - RoundStart;
+        var offset = replay.StartTime - _roundStart;
         var current = TimeSpan.FromSeconds(widget.TickSlider.Value) + offset;
         var end = replay.Duration is { } duration ? FormatRoundTime(duration + offset) : "N/A";
         _roundTimeLabel.Text = Loc.GetString("replay-observer-round-time", ("current", FormatRoundTime(current)), ("end", end));

@@ -10,7 +10,7 @@ namespace Content.Shared._Starlight.Replay;
 /// Writes the round start time into replay metadata, so viewers can show and jump to round time.
 /// Covers server recordings and client-side recordings.
 /// </summary>
-public abstract class SharedReplayRoundStartMetadataSystem : EntitySystem
+public abstract partial class SharedReplayRoundStartMetadataSystem : EntitySystem
 {
     [Dependency] private IReplayRecordingManager _replay = default!;
     [Dependency] private SharedGameTicker _ticker = default!;
