@@ -1,13 +1,6 @@
 Entries:
 - author: AnyTap, Trosling.
   changes:
-  - message: Added Gunnery Sergeant role to Security.
-    type: Add
-  id: 409870
-  time: '2026-10-29T14:37:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6848
-- author: AnyTap, Trosling.
-  changes:
   - message: Added Gunnery Sergeant SOP.
     type: Add
   id: 409871
@@ -2799,4 +2792,11 @@ Entries:
   id: 410269
   time: '2026-11-09T09:42:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7141
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Predicted SSD/departed/acting without reason on inspection so it shows correctly immediately instead of flashing "departed".
+    type: Fix
+  id: 410270
+  time: '2026-11-09T10:04:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7147
 Order: -1
