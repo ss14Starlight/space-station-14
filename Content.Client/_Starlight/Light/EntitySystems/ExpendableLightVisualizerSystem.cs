@@ -1,26 +1,39 @@
 using Content.Client.Light.Components;
-using Content.Shared.Light.Components;
+using Content.Client.Light.EntitySystems;
+using Content.Shared._Starlight.Light.Components;
 using Robust.Client.GameObjects;
-using Robust.Shared.Audio.Systems;
+using Robust.Shared.Timing;
 
-namespace Content.Client.Light.EntitySystems;
+namespace Content.Client._Starlight.Light.EntitySystems;
 
-public sealed partial class ExpendableLightSystem : VisualizerSystem<ExpendableLightComponent>
+public sealed partial class ExpendableLightVisualizerSystem : VisualizerSystem<ExpendableLightComponent>
 {
     [Dependency] private PointLightSystem _pointLightSystem = default!;
-    [Dependency] private SharedAudioSystem _audioSystem = default!;
     [Dependency] private LightBehaviorSystem _lightBehavior = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
-    public override void Initialize()
+    public override void FrameUpdate(float frameTime)
     {
-        base.Initialize();
+        // Fade the glow layer with the light.
+        var query = EntityQueryEnumerator<ExpendableLightComponent, PointLightComponent, SpriteComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var light, out var sprite))
+        {
+            if (!comp.FadeGlowWithEnergy)
+                continue;
 
-        SubscribeLocalEvent<ExpendableLightComponent, ComponentShutdown>(OnLightShutdown);
-    }
+            if (comp.CurrentState is not (ExpendableLightState.Fading))
+                continue;
 
-    private void OnLightShutdown(EntityUid uid, ExpendableLightComponent component, ComponentShutdown args)
-    {
-        component.PlayingStream = _audioSystem.Stop(component.PlayingStream);
+            if (!SpriteSystem.TryGetLayer((uid, sprite), ExpendableLightVisualLayers.Glow, out var layer, false))
+                continue;
+
+            var alpha = comp.GlowReferenceEnergy > 0f
+                ? Math.Clamp(light.Energy / comp.GlowReferenceEnergy, 0f, 1f)
+                : 1f;
+
+            // Leave color untouched, only change the Alpha.
+            SpriteSystem.LayerSetColor(layer, layer.Color.WithAlpha(alpha));
+        }
     }
 
     protected override void OnAppearanceChange(EntityUid uid, ExpendableLightComponent comp, ref AppearanceChangeEvent args)
@@ -28,14 +41,17 @@ public sealed partial class ExpendableLightSystem : VisualizerSystem<ExpendableL
         if (args.Sprite == null)
             return;
 
-        if (AppearanceSystem.TryGetData<string>(uid, ExpendableLightVisuals.Behavior, out var lightBehaviourID, args.Component)
+        if (AppearanceSystem.TryGetData<string>(uid, ExpendableLightVisuals.Behavior, out var lightBehaviourId, args.Component)
             && TryComp<LightBehaviourComponent>(uid, out var lightBehaviour))
         {
             _lightBehavior.StopLightBehaviour((uid, lightBehaviour));
 
-            if (!string.IsNullOrEmpty(lightBehaviourID))
+            if (!string.IsNullOrEmpty(lightBehaviourId))
             {
-                _lightBehavior.StartLightBehaviour((uid, lightBehaviour), lightBehaviourID);
+                // Resume the fade at however far into the current state we already are, so a light that just
+                // entered PVS (or spawned mid-life) picks up at the right point instead of replaying the fade.
+                var elapsed = (float)(_timing.CurTime - comp.StateStartTime).TotalSeconds;
+                _lightBehavior.StartLightBehaviour((uid, lightBehaviour), lightBehaviourId, elapsed);
             }
             else if (TryComp<PointLightComponent>(uid, out var light))
             {
@@ -49,10 +65,7 @@ public sealed partial class ExpendableLightSystem : VisualizerSystem<ExpendableL
         switch (state)
         {
             case ExpendableLightState.Lit:
-                _audioSystem.Stop(comp.PlayingStream);
-                comp.PlayingStream = _audioSystem.PlayPvs(
-                    comp.LoopedSound, uid)?.Entity;
-
+            case ExpendableLightState.Fading:
                 if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), ExpendableLightVisualLayers.Overlay, out var layerIdx, true))
                 {
                     if (!string.IsNullOrWhiteSpace(comp.IconStateLit))
@@ -72,7 +85,6 @@ public sealed partial class ExpendableLightSystem : VisualizerSystem<ExpendableL
 
                 break;
             case ExpendableLightState.Dead:
-                comp.PlayingStream = _audioSystem.Stop(comp.PlayingStream);
                 if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), ExpendableLightVisualLayers.Overlay, out layerIdx, true))
                 {
                     if (!string.IsNullOrWhiteSpace(comp.IconStateSpent))
