@@ -45,7 +45,7 @@ public sealed partial class ReplayObserverSystem
             if (_contentReplay.FinalRoundStart is { } final
                 && final >= TimeSpan.Zero
                 && replay.Duration is { } duration
-                && final <= replay.StartTime + duration)
+                && final - replay.StartTime <= duration)
             {
                 return final;
             }

@@ -21,6 +21,8 @@ public sealed partial class ContentReplayPlaybackManager
     private void NoteRecordedMessage() =>
         _entMan.System<ReplayObserverSystem>().IsApplyingRecordedMessages = true;
 
+    [Dependency] private ILogManager _log = default!;
+
     // Round start from the loaded replay's final metadata, for recordings begun in the lobby.
     public TimeSpan? FinalRoundStart { get; private set; }
 
@@ -32,12 +34,21 @@ public sealed partial class ContentReplayPlaybackManager
         if (!reader.Exists(ReplayConstants.FileMetaFinal))
             return;
 
-        using var stream = reader.Open(ReplayConstants.FileMetaFinal);
-        if (DataNodeParser.ParseYamlStream(new StreamReader(stream)).FirstOrDefault()?.Root is MappingDataNode final
-            && final.TryGet(ReplayRoundTime.MetaKeyRoundStart, out ValueDataNode? node)
-            && long.TryParse(node.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var ticks))
+        // This runs before the load job. A broken file is left for the engine, which reads the same file inside the job,
+        // where the failure reaches the loading error screen.
+        try
         {
-            FinalRoundStart = TimeSpan.FromTicks(ticks);
+            using var stream = reader.Open(ReplayConstants.FileMetaFinal);
+            if (DataNodeParser.ParseYamlStream(new StreamReader(stream)).FirstOrDefault()?.Root is MappingDataNode final
+                && final.TryGet(ReplayRoundTime.MetaKeyRoundStart, out ValueDataNode? node)
+                && long.TryParse(node.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var ticks))
+            {
+                FinalRoundStart = TimeSpan.FromTicks(ticks);
+            }
+        }
+        catch (Exception e)
+        {
+            _log.GetSawmill("replay").Warning($"Couldn't read the round start from final replay metadata: {e.Message}");
         }
     }
 }
