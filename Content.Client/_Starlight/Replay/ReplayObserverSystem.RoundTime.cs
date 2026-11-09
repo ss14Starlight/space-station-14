@@ -19,6 +19,8 @@ public sealed partial class ReplayObserverSystem
     private LineEdit? _jumpEdit;
     private Button? _jumpButton;
 
+    [Dependency] private ReplayRoundStartMetadataSystem _roundStartMetadata = default!;
+
     /// <summary>
     /// Server time the round started, or the recording start for replays without it, which matches for auto-recorded rounds.
     /// </summary>
@@ -36,6 +38,15 @@ public sealed partial class ReplayObserverSystem
                 && ticks <= replay.StartTime.Ticks)
             {
                 return TimeSpan.FromTicks(ticks);
+            }
+
+            // Lobby recordings only have it in the final metadata, and it falls within the recording.
+            if (_roundStartMetadata.FinalRoundStart is { } final
+                && final >= TimeSpan.Zero
+                && replay.Duration is { } duration
+                && final <= replay.StartTime + duration)
+            {
+                return final;
             }
 
             return replay.StartTime;

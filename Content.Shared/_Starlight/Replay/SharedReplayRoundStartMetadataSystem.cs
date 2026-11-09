@@ -23,6 +23,7 @@ public abstract class SharedReplayRoundStartMetadataSystem : EntitySystem
         base.Initialize();
 
         _replay.RecordingStarted += OnRecordingStarted;
+        _replay.RecordingStopped += OnRecordingStopped;
     }
 
     public override void Shutdown()
@@ -30,11 +31,16 @@ public abstract class SharedReplayRoundStartMetadataSystem : EntitySystem
         base.Shutdown();
 
         _replay.RecordingStarted -= OnRecordingStarted;
+        _replay.RecordingStopped -= OnRecordingStopped;
     }
 
-    // A recording started in the lobby gets no round start, since the metadata is written before the round starts;
-    // viewers then count from the recording start.
-    private void OnRecordingStarted(MappingDataNode metadata, List<object> events)
+    // A recording started in the lobby gets no round start here, since this metadata is written before the round starts.
+    private void OnRecordingStarted(MappingDataNode metadata, List<object> events) => WriteRoundStart(metadata);
+
+    // The final metadata is written when recording stops, after the round started, so lobby recordings get it there.
+    private void OnRecordingStopped(MappingDataNode metadata) => WriteRoundStart(metadata);
+
+    private void WriteRoundStart(MappingDataNode metadata)
     {
         if (RoundStarted)
             metadata[ReplayRoundTime.MetaKeyRoundStart] = new ValueDataNode(_ticker.RoundStartTimeSpan.Ticks.ToString(CultureInfo.InvariantCulture));
