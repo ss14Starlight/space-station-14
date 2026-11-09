@@ -33,4 +33,20 @@
   copyright: "made by stickycheZ101"
   source: "https://github.com/stickycheZ101"
 
+- files: [ "horror_announcement_cult.ogg" ]
+  license: "CC-BY-SA-3.0"
+  copyright: "made by Vincolan"
+  source: "https://github.com/VINCOLAN"
+
+- files: [ "horror_announcement_cult_laugh.ogg" ]
+  license: "CC-BY-SA-3.0"
+  copyright: "made by Vincolan"
+  source: "https://github.com/VINCOLAN"
+
+- files: [ "horror_announcement_cult_short.ogg" ]
+  license: "CC-BY-SA-3.0"
+  copyright: "made by Vincolan"
+  source: "https://github.com/VINCOLAN"
+
+
 

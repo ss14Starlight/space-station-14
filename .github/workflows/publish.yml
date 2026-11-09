@@ -72,7 +72,6 @@ jobs:
         run: ssh -T git@github.com || exit 0
 
       - name: Publish changelog (Discord)
-        continue-on-error: true
         run: Tools/actions_changelogs_since_last_run.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

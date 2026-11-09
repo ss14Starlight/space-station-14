@@ -41,9 +41,9 @@
     - ActionJumpToCore
     - ActionSurvCameraLights # Starlight: Restored removed surveillance camera lights from upstream
     - ActionAIViewLaws
-    - ActionAIShunt # Starlight AI Shunt ability
-    - ActionAIReconnectShunt # Starlight AI Shunt reconnect ability
+    - ActionAIRemoteControl # Starlight
     - ActionAIWarp # Starlight
+    # Starlight: Shunt actions are granted by persistent StationAIShuntable instead.
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
@@ -56,6 +56,8 @@
         type: SiliconLawBoundUserInterface
       enum.CommunicationsConsoleUiKey.Key:
         type: CommunicationsConsoleBoundUserInterface
+      enum.RemoteControlUIKey.Key: # Starlight
+        type: RemoteControlConsoleBoundUserInterface # Starlight
   - type: IntrinsicUI
     uis:
       enum.RadarConsoleUiKey.Key:
@@ -88,7 +90,8 @@
   - type: ShowJobIcons
   - type: ShowCrewIcons
   #region Starlight
-  - type: StationAIShuntable
+  # Starlight: Shunt state lives on StationAiBrain so it survives core ejection.
+  - type: RemoteControlConsole # Starlight
   #endregion Starlight
   - type: DamagedSiliconAccent
     startPowerCorruptionAtCharIdx: 4
@@ -309,6 +312,16 @@
         enum.StationAiVisualLayers.Base:
           False: { state: ai_empty }
           True: { state: ai_error }
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_ai
+  - type: Reactive
+    reactions:
+    - reagents: [Water, SpaceCleaner]
+      methods: [Touch]
+      effects:
+      - !type:WashCreamPie
   - type: InteractionPopup
     interactSuccessString: petting-success-station-ai
     interactFailureString: petting-failure-station-ai

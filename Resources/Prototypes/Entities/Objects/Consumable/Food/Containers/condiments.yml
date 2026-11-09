@@ -20,9 +20,6 @@
   - type: SpaceGarbage
   - type: StaticPrice
     price: 0
-  - type: Tag
-    tags:
-    - Condiment #Starlight
 
 # Packets
 
@@ -51,7 +48,7 @@
   # Well its fixed now, but I want to share my pain.
   - type: Solution
     solution:
-      maxVol: 1 # Cheap
+      maxVol: 1
   - type: SolutionTransfer
     maxTransferAmount: 1
   - type: Sprite
@@ -78,10 +75,6 @@
       - Packet
   - type: ExaminableSolution
     exactVolume: true
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: miscellaneous
-  # Starlight-end
 
 - type: entity
   parent: BaseFoodCondimentPacket
@@ -345,7 +338,7 @@
     closeable: true
   - type: Solution
     solution:
-      maxVol: 50 # ~ 400 to 450ml
+      maxVol: 50
   - type: RefillableSolution
     solution: food
   - type: Spillable
@@ -369,16 +362,6 @@
   - type: PhysicalComposition
     materialComposition:
       Glass: 50
-  # 🌟Starlight-start🌟
-  - type: SurgeryTool
-  - type: BoneGel
-    successRate: 0.01 # How.
-    speed: 0.5
-    startSound:
-      path: /Audio/Items/Medical/ointment_begin.ogg
-    endSound:
-      path: /Audio/Items/Medical/ointment_end.ogg
-  # 🌟Starlight-end🌟
 
 - type: entity
   parent: BaseFoodCondimentBottle
@@ -404,7 +387,6 @@
   - type: Tag
     tags:
       - Coldsauce
-      - Condiment #Starlight
 
 - type: entity
   parent: BaseFoodCondimentBottle
@@ -430,7 +412,6 @@
   - type: Tag
     tags:
       - Enzyme
-      - Condiment #Starlight
 
 - type: entity
   parent: BaseFoodCondimentBottle
@@ -453,9 +434,6 @@
       visible: true
   - type: Icon
     state: bottle-vinegar
-  - type: Tag
-    tags:
-    - Condiment #Starlight
 
 - type: entity
   parent: BaseFoodCondimentBottle
@@ -481,7 +459,6 @@
   - type: Tag
     tags:
       - Hotsauce
-      - Condiment #Starlight
 
 - type: entity
   parent: BaseFoodCondimentBottle
@@ -507,7 +484,6 @@
   - type: Tag
     tags:
       - Ketchup
-      - Condiment #Starlight
 
 - type: entity
   parent: BaseFoodCondimentBottle
@@ -534,7 +510,6 @@
   - type: Tag
     tags:
       - BBQsauce
-      - Condiment #Starlight
 
 # Shakers
 

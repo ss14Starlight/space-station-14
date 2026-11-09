@@ -32,7 +32,8 @@
             "copyright": "TG Station, K-Dynamic, wonderfulnewworld"
         },
         {
-            "name": "Vampire"
+            "name": "Vampire",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
             "name": "Surgeon"
@@ -242,6 +243,10 @@
             "copyright": "Captain icon from /tg/station13 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolored to Blackstar colors by @redmushie (github)"
         },
         {
+            "name": "Thrall",
+            "copyright": "Taken from Paradise Station 13"
+        },
+        {
             "name": "MedTakLeader",
             "copyright": "SevenShades"
         },
@@ -287,6 +292,11 @@
             ]
         },
         {
+            "name": "GunnerySergeant",
+            "copyright": "AnyTap"
+        },
+        {
+
             "name": "SalvageMedic",
             "copyright": "Swonki"
         },
@@ -329,6 +339,24 @@
         {
             "name": "MakeshiftID",
             "copyright": "rhithebirdthing"
+        },
+        {
+            "name": "ITGMindshield",
+            "copyright": "Swonki",
+            "delays": [
+                [
+                    1.0,
+                    1.0
+                ]
+            ]
+        },
+        {
+            "name": "EmotionalSupportScurret",
+            "copyright": "baltdev"
+        },
+        {
+            "name": "SyndicateScurret",
+            "copyright": "baltdev"
         }
     ]
 }

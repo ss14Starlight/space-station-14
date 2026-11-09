@@ -1,0 +1,11 @@
+- type: job
+  id: Drone
+  name: job-name-drone
+  description: job-description-drone
+  playTimeTracker: JobDrone
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobBorg
+      time: 10h
+  setPreference: false
+  icon: JobIconBorg

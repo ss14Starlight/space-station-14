@@ -10,16 +10,11 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.EntityTable;
 using Content.Shared.Prototypes;
-using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.VendingMachines;
 using Content.Shared.Wires;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-#region Starlight
-using Content.Shared._Starlight.Antags.Abductor.Prototypes;
-#endregion
 
 namespace Content.IntegrationTests.Tests
 {
@@ -39,91 +34,92 @@ namespace Content.IntegrationTests.Tests
             "VendingMachineRestockMagical",
             "VendingMachineRestockSyndicate",
             "VendingMachineRestockCentComm",
+            "VendingMachineRestockAbductorDispenser"
         };
         // Starlight end
 
         [TestPrototypes]
-        private const string Prototypes = @"
-- type: entity
-  name: HumanVendingDummy
-  id: HumanVendingDummy
-  components:
-  - type: Hands
-  - type: ComplexInteraction
-  - type: Body
-    prototype: Human
+        private const string Prototypes = """
+        -   type: entity
+            name: HumanVendingDummy
+            id: HumanVendingDummy
+            components:
+            -   type: Hands
+            -   type: ComplexInteraction
+            -   type: Body
+                prototype: Human
 
-- type: entity
-  parent: FoodSnackBase
-  id: TestRamen
-  name: TestRamen
+        -   type: entity
+            parent: FoodSnackBase
+            id: TestRamen
+            name: TestRamen
 
-- type: vendingMachineInventory
-  id: TestInventory
-  startingInventory:
-    TestRamen: 1
+        -   type: vendingMachineInventory
+            id: TestInventory
+            startingInventory:
+                TestRamen: 1
 
-- type: vendingMachineInventory
-  id: OtherTestInventory
-  startingInventory:
-    TestRamen: 3
+        -   type: vendingMachineInventory
+            id: OtherTestInventory
+            startingInventory:
+                TestRamen: 3
 
-- type: vendingMachineInventory
-  id: BigTestInventory
-  startingInventory:
-    TestRamen: 4
+        -   type: vendingMachineInventory
+            id: BigTestInventory
+            startingInventory:
+                TestRamen: 4
 
-- type: entity
-  parent: BaseVendingMachineRestock
-  id: TestRestockWrong
-  name: TestRestockWrong
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - OtherTestInventory
+        -   type: entity
+            parent: BaseVendingMachineRestock
+            id: TestRestockWrong
+            name: TestRestockWrong
+            components:
+            -   type: VendingMachineRestock
+                canRestock:
+                - OtherTestInventory
 
-- type: entity
-  parent: BaseVendingMachineRestock
-  id: TestRestockCorrect
-  name: TestRestockCorrect
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - TestInventory
+        -   type: entity
+            parent: BaseVendingMachineRestock
+            id: TestRestockCorrect
+            name: TestRestockCorrect
+            components:
+            -   type: VendingMachineRestock
+                canRestock:
+                - TestInventory
 
-- type: entity
-  parent: BaseVendingMachineRestock
-  id: TestRestockExplode
-  name: TestRestockExplode
-  components:
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 20
-      behaviors:
-      - !type:DumpRestockInventory
-      - !type:DoActsBehavior
-        acts: [ 'Destruction' ]
-  - type: VendingMachineRestock
-    canRestock:
-    - BigTestInventory
+        -   type: entity
+            parent: BaseVendingMachineRestock
+            id: TestRestockExplode
+            name: TestRestockExplode
+            components:
+            -   type: Damageable
+                damageContainer: Inorganic
+                damageModifierSet: Metallic
+            -   type: Destructible
+                thresholds:
+                -   trigger:
+                        !type:DamageTrigger
+                        damage: 20
+                    behaviors:
+                    -   !type:DumpRestockInventory
+                    -   !type:DoActsBehavior
+                        acts: [ 'Destruction' ]
+            -   type: VendingMachineRestock
+                canRestock:
+                - BigTestInventory
 
-- type: entity
-  parent: VendingMachine
-  id: VendingMachineTest
-  name: Test Ramen
-  components:
-  - type: Wires
-    layoutId: Vending
-  - type: VendingMachine
-    pack: TestInventory
-  - type: Sprite
-    sprite: error.rsi
-";
+        -   type: entity
+            parent: VendingMachine
+            id: VendingMachineTest
+            name: Test Ramen
+            components:
+            -   type: Wires
+                layoutId: Vending
+            -   type: VendingMachine
+                pack: TestInventory
+            -   type: Sprite
+                sprite: error.rsi
+        """;
 
         [Test]
         public async Task TestAllRestocksAreAvailableToBuy()
@@ -138,78 +134,80 @@ namespace Content.IntegrationTests.Tests
 
             await server.WaitAssertion(() =>
             {
-                HashSet<string> restocks = new();
-                Dictionary<string, List<string>> restockStores = new();
-
-                // Collect all the prototypes with restock components.
+                // Collect all entity prototypes which are vending machine restocks.
+                var restockEntities = new HashSet<EntProtoId<VendingMachineRestockComponent>>();
                 foreach (var proto in prototypeManager.EnumeratePrototypes<EntityPrototype>())
                 {
                     if (proto.Abstract
                         || pair.IsTestPrototype(proto)
+                        || _ignoredPrototypes.Contains(proto.ID) // Starlight
                         || !proto.HasComponent<VendingMachineRestockComponent>())
-                    {
                         continue;
-                    }
 
-                    restocks.Add(proto.ID);
+                    restockEntities.Add(proto.ID);
                 }
 
-                // Starlight start
-                foreach (var listing in prototypeManager.EnumeratePrototypes<AbductorListingPrototype>())
-                {
-                    // Ignore any prototypes that are listed as abductor listings instead
-                    restocks.Remove(listing.ProductEntity);
-                }
-
-                // Don't check ones we explicitly marked as not obtainable
-                restocks.RemoveWhere(x => _ignoredPrototypes.Contains(x));
-                // Starlight end
-
-                // Collect all the prototypes with StorageFills referencing those entities.
+                // Collect all entity prototypes with `EntityTableContainerFill`s which contain those restock entities.
+                // Specifically, this is a mapping of entities-with-container-fill to their-contained-entities-which-are-restocks.
+                Dictionary<EntProtoId<EntityTableContainerFillComponent>,
+                    List<EntProtoId<VendingMachineRestockComponent>>> entitiesWhichSpawnRestocks = new();
                 foreach (var proto in prototypeManager.EnumeratePrototypes<EntityPrototype>())
                 {
-                    if (!proto.TryGetComponent<EntityTableContainerFillComponent>(out var storage, compFact))
+                    if (!proto.TryGetComponent<EntityTableContainerFillComponent>(out var fill, compFact))
                         continue;
 
-                    var containers = storage.Containers;
+                    var containers = fill.Containers;
 
-                    if (!containers.TryGetValue(SharedEntityStorageSystem.ContainerName, out var container)) // We only care about this container type.
+                    // We only care about the special known container.
+                    if (!containers.TryGetValue(SharedEntityStorageSystem.ContainerName, out var container))
                         continue;
 
-                    List<string> restockStore = new();
-
-                    foreach (var spawnEntry in entityTable.GetSpawns(container))
+                    var entitiesInProtoContainingRestock = new List<EntProtoId<VendingMachineRestockComponent>>();
+                    foreach (var (fillSpawnEntry, _) in entityTable.ListSpawns(container))
                     {
-                        if (restocks.Contains(spawnEntry))
-                            restockStore.Add(spawnEntry);
+                        if (restockEntities.Contains(fillSpawnEntry.Id))
+                            entitiesInProtoContainingRestock.Add(fillSpawnEntry.Id);
                     }
 
-                    if (restockStore.Count > 0)
-                        restockStores.Add(proto.ID, restockStore);
+                    if (entitiesInProtoContainingRestock.Count > 0)
+                        entitiesWhichSpawnRestocks.Add(proto.ID, entitiesInProtoContainingRestock);
                 }
 
-                // Iterate through every CargoProduct and make sure each
-                // prototype with a restock component is referenced in a
-                // purchaseable entity with an EntityTableContianerFill.
+                // Remove all restock entities from our set which are either directly purchasable as a CargoProduct, or
+                // which are spawned by EntityTableContainerFill on a CargoProduct.
                 foreach (var proto in prototypeManager.EnumeratePrototypes<CargoProductPrototype>())
                 {
-                    if (!proto.Product.HasValue) continue; // Starlight: We have gas orders, proto.Product will be null!
-                    if (restockStores.ContainsKey(proto.Product))
-                    {
-                        foreach (var entry in restockStores[proto.Product])
-                            restocks.Remove(entry);
+                    if (proto.Product is not { } product)
+                        continue; // Starlight: gas orders do not have an entity product.
+                    // If the cargo product's product is the restock itself, just remove it.
+                    restockEntities.Remove(product.Id);
 
-                        restockStores.Remove(proto.Product);
+                    // Check if the product is an entity which spawns a restock.
+                    if (entitiesWhichSpawnRestocks.TryGetValue(product.Id, out var restocksSpawnedByProduct))
+                    {
+                        foreach (var entry in restocksSpawnedByProduct)
+                        {
+                            restockEntities.Remove(entry);
+                        }
+
+                        entitiesWhichSpawnRestocks.Remove(product.Id);
                     }
                 }
+                // Any entities left in restockEntities are restocks which can't be bought from Cargo.
 
                 Assert.Multiple(() =>
                 {
-                    Assert.That(restockStores, Has.Count.EqualTo(0),
-                        $"Some entities containing entities with VendingMachineRestock components are unavailable for purchase: \n - {string.Join("\n - ", restockStores.Keys)}");
+                    const string restockCompName = nameof(VendingMachineRestockComponent);
 
-                    Assert.That(restocks, Has.Count.EqualTo(0),
-                        $"Some entities with VendingMachineRestock components are unavailable for purchase: \n - {string.Join("\n - ", restocks)}");
+                    Assert.That(entitiesWhichSpawnRestocks,
+                        Has.Count.EqualTo(0),
+                        $"Some entities containing entities with {restockCompName} are unavailable for purchase: \n - {string.Join("\n - ", entitiesWhichSpawnRestocks.Keys)}");
+
+
+
+                    Assert.That(restockEntities,
+                        Has.Count.EqualTo(0),
+                        $"Some entities with {restockCompName} are unavailable for purchase: \n - {string.Join("\n - ", restockEntities)}");
                 });
             });
         }

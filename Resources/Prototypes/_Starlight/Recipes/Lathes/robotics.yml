@@ -151,3 +151,9 @@
   parent: BaseBorgModuleRecipe
   id: BorgModuleMiningDefense
   result: BorgModuleMiningDefense
+
+# Service
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleButcher
+  result: BorgModuleButcher

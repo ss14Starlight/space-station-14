@@ -6,7 +6,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "MedTak"
+    stampedName: stamp-component-stamped-name-rubber-stamp-med-tak
     stampedColor: "#880606"
     stampState: "paper_stamp-syndicate"
   - type: Sprite

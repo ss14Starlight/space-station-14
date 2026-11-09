@@ -1,8 +1,12 @@
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.NodeContainer.EntitySystems;
+using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Decals;
 using Content.Shared.Doors.Components;
 using Content.Shared.Maps;
@@ -12,8 +16,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
-using System.Linq;
-using Content.Shared.Damage.Systems;
 using Robust.Shared.Threading;
 
 namespace Content.Server.Atmos.EntitySystems;
@@ -33,7 +35,6 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     [Dependency] private GasTileOverlaySystem _gasTileOverlaySystem = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
-    [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private TileSystem _tile = default!;
     [Dependency] public PuddleSystem Puddle = default!;
     [Dependency] private DamageableSystem _damage = default!;
@@ -45,7 +46,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     private EntityQuery<MapAtmosphereComponent> _mapAtmosQuery;
     private EntityQuery<AirtightComponent> _airtightQuery;
     private EntityQuery<FirelockComponent> _firelockQuery;
-    private HashSet<EntityUid> _entSet = new();
+    private readonly HashSet<EntityUid> _entSet = new();
 
     private string[] _burntDecals = [];
 
@@ -122,6 +123,6 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
     private void CacheDecals()
     {
-        _burntDecals = _protoMan.EnumeratePrototypes<DecalPrototype>().Where(x => x.Tags.Contains("burnt")).Select(x => x.ID).ToArray();
+        _burntDecals = ProtoMan.EnumeratePrototypes<DecalPrototype>().Where(x => x.Tags.Contains("burnt")).Select(x => x.ID).ToArray();
     }
 }

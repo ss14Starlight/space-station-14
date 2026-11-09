@@ -1,6 +1,6 @@
 - type: thiefBackpackSet
   id: SaboteurSELF
-  name: The Breacher
+  name: thief-backpack-category-saboteur-self-name
   description: self-backpack-category-saboteur-description
   sprite:
     sprite: Objects/Tools/jaws_of_life.rsi
@@ -18,7 +18,7 @@
 
 - type: thiefBackpackSet
   id: PressSELF
-  name: The Press
+  name: thief-backpack-category-press-self-name
   description: self-backpack-category-press-description
   sprite:
     sprite: _Moffstation/Objects/Tools/handheld_camera.rsi
@@ -40,7 +40,7 @@
 
 - type: thiefBackpackSet
   id: SpySELF
-  name: The Spy
+  name: thief-backpack-category-spy-self-name
   description: self-backpack-category-spy-description
   sprite:
     sprite: Objects/Devices/camera_bug.rsi

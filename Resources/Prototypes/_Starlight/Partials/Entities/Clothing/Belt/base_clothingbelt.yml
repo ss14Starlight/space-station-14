@@ -1,0 +1,10 @@
+- type: !PartialOnly entity
+  id: ClothingBeltBase
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Starlight/Items/Handling/toolbelt_pickup.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Handling/toolbelt_drop.ogg
+

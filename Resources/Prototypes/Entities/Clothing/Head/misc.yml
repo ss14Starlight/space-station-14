@@ -37,12 +37,6 @@
     - Hair
     - HeadTop
     - HeadSide
-#Starlight
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
-#Starlight End
 
 - type: entity
   parent: ClothingHeadBase
@@ -62,7 +56,7 @@
     node: flowerwreath
 
 - type: entity
-  parent: [ ClothingHeadLightBase, ClothingHeadLightParamsBasic ] # Starlight
+  parent: [ ClothingHeadLightBase, ClothingHeadLightParamsBasic ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: ClothingHeadHatPumpkin
   name: pumpkin hat
   description: A jack o' lantern! Believed to ward off evil spirits.
@@ -77,7 +71,7 @@
     enabled: false
     radius: 3
     energy: 1
-    lightMask: ConeSingle
+    mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     color: "#cc6600"
     netsync: false
@@ -85,11 +79,6 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        #Starlight Start
-        blacklist:
-          tags:
-          - MechReactor
-        #Starlight End
   - type: HideLayerClothing
     slots:
     - Hair
@@ -221,14 +210,14 @@
   id: ClothingHeadHatCatEars
   name: cat ears
   description: "NYAH!"
-  # categories: [ DoNotMap ] # SL change
+  categories: [ DoNotMap ]
   components:
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi # Starlight
+    sprite: Clothing/Head/Hats/catears.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi # Starlight
+    sprite: Clothing/Head/Hats/catears.rsi
   - type: AddAccentClothing
     accent: OwOAccent
   - type: StaticPrice
@@ -250,9 +239,9 @@
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi # Starlight
+    sprite: Clothing/Head/Hats/catears.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi # Starlight
+    sprite: Clothing/Head/Hats/catears.rsi
   - type: AddAccentClothing
     accent: OwOAccent
 
@@ -266,7 +255,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatDogEars
   name: doggy ears
-  description: Only for good dogs. # SL: we gender neutral in this mf spacestation
+  description: Only for good boys.
   categories: [ DoNotMap ]
   components:
   - type: Sprite

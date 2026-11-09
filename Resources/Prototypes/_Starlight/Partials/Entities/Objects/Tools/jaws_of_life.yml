@@ -1,0 +1,35 @@
+- type: !PartialOnly entity
+  id: JawsOfLife
+  components:
+  - type: Prying
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
+    playSoundOnDoafter: true
+  - type: SurgeryTool
+  - type: BoneSaw
+    successRate: 0.8
+    speed: 0.8
+    startSound:
+      path: /Audio/Items/jaws_cut.ogg
+    endSound:
+      path: /Audio/Items/change_jaws.ogg
+  - type: WirecutterSurgery
+    speed: 0.6
+    startSound:
+      path: /Audio/Items/jaws_cut.ogg
+    endSound:
+      path: /Audio/Items/change_jaws.ogg
+  - type: CrowbarSurgery
+    speed: 0.6
+    startSound:
+      path: /Audio/Items/jaws_cut.ogg
+    endSound:
+      path: /Audio/Items/change_jaws.ogg
+
+- type: !PartialOnly entity
+  id: SyndicateJawsOfLife
+  components:
+  - type: Tag
+    tags:
+    - SyndicateJawsOfLife
+  - type: Prying
+    playSoundOnDoafter: false

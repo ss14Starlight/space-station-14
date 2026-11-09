@@ -1,7 +1,7 @@
 - type: entity
   name: M492 Smart LMG
   id: WeaponLightMachineGunM492
-  parent: [BaseWeaponLightMachineGun, BaseSecurityContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponLightMachineGun, BaseSecurityContraband ] # Blimpuf
   description: A high tech non-traditional LMG built specifically for combating the big threats among us. Uses .30 ammo.
   components:
   - type: Sprite
@@ -31,14 +31,14 @@
   - type: ItemSlots
     slots:
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
             - CartridgeLightRifle
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: LightRifleHeavyMagazineSP
         whitelist:
           tags:
@@ -58,7 +58,7 @@
 - type: entity
   name: DP-28 LMG
   id: WeaponLightMachineGunDP28
-  parent: [BaseWeaponLightMachineGun, BaseSovietContraband]
+  parent: [ BaseContrabandTier3, BaseWeaponLightMachineGun, BaseSovietContraband ] # Blimpuf
   description: From RA-TA-TA-TA with love. Uses .30 ammo.
   components:
   - type: Sprite
@@ -82,7 +82,7 @@
   - type: ItemSlots
     slots:
       gun_magazine:
-        name: Magazine
+        name: item-slot-component-slot-name-magazine
         startingItem: MagazineLightRifleMaxim
         insertSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         ejectSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
@@ -90,7 +90,7 @@
           tags:
             - MagazineLightRiflePan
       gun_chamber:
-        name: Chamber
+        name: item-slot-component-slot-name-chamber
         startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:

@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: BaseHandheldInstrument
+  components:
+  - type: ActivatableUI
+    requireActiveHand: false

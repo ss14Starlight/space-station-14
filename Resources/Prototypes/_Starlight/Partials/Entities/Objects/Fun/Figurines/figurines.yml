@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: ToyFigurineCaptain
+  description: A figurine depicting the standard outfit of a captain belonging to a civilian-sector NanoTrasen vessel.
+
+- type: !PartialOnly entity
+  id: ToyFigurineChaplain
+  description: A figurine depicting a religious leader hopefully praying for good things.
+
+- type: !PartialOnly entity
+  id: ToyFigurineChef
+  description: A figurine depicting a chef, master of the culinary arts! ...Most of the time.

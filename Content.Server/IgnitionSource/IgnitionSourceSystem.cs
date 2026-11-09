@@ -1,5 +1,6 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.IgnitionSource;
+using Robust.Shared.Containers;
 
 namespace Content.Server.IgnitionSource;
 
@@ -7,6 +8,7 @@ public sealed partial class IgnitionSourceSystem : SharedIgnitionSourceSystem
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedContainerSystem _container = default!; // STARLIGHT
 
     public override void Update(float frameTime)
     {
@@ -35,6 +37,9 @@ public sealed partial class IgnitionSourceSystem : SharedIgnitionSourceSystem
                 _activeSources.Remove(uid);
                 continue;
             }
+
+            if(_container.IsEntityOrParentInContainer(uid))
+                continue;
 
             if (!_transformQuery.TryComp(uid, out var xform) || xform.GridUid is not { } gridUid)
                 continue;

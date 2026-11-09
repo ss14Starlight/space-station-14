@@ -1,0 +1,43 @@
+- type: entity
+  id: BaseBulletVariableTrace
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+  - type: HitscanPierce
+  - type: HitscanRicochet
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: sp
+
+- type: entity
+  id: BulletVariableHeavyTrace
+  parent: BaseBulletVariableTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Piercing: 10
+
+- type: entity
+  id: BulletVariableMediumTrace
+  parent: BaseBulletVariableTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Piercing: 10
+
+- type: entity
+  id: BulletVariableLightTrace
+  parent: BaseBulletVariableTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Piercing: 10

@@ -48,12 +48,20 @@ public sealed partial class StationAiOverlay : Overlay
     public StationAiOverlay()
     {
         IoCManager.InjectDependencies(this);
-        ZIndex = (int) Content.Shared.DrawDepth.DrawDepth.CyberspaceOverlays; // Starlight: above all normal DrawDepths (max=13), below CyberspaceObjects (100)
+        ZIndex = (int)Content.Shared.DrawDepth.DrawDepth.CyberspaceOverlays; // Starlight: above all normal DrawDepths (max=13), below CyberspaceObjects (100)
         _cyberspaceRenderer = new CyberspaceNavMapRenderer(_proto); // Starlight
     }
 
     protected override void Draw(in OverlayDrawArgs args)
     {
+        // Starlight-start
+        var remoteControl = _entManager.System<Content.Client._Starlight.Computers.RemoteControl.RemoteControlInterface>();
+        if (args.ViewportControl is { } viewport && remoteControl.RemoteViewport == viewport)
+            return;
+
+        if (remoteControl.RemoteViewportEye is { } remoteEye && args.Viewport.Eye == remoteEye)
+            return;
+        // Starlight-end
         var res = _resources.GetForViewport(args.Viewport, static _ => new CachedResources());
 
         if (res.StencilTexture?.Texture.Size != args.Viewport.Size)
@@ -76,15 +84,26 @@ public sealed partial class StationAiOverlay : Overlay
 
         // Check for cross-grid viewing (e.g., Abductor remote eye) BEFORE getting gridUid
         if (_entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? stationAiOverlay)
-            && stationAiOverlay.AllowCrossGrid
+            && (stationAiOverlay.AllowCrossGrid || _entManager.HasComponent<StationAiHeldComponent>(playerEnt))
             && _entManager.TryGetComponent(playerEnt, out RelayInputMoverComponent? relay))
             playerEnt = relay.RelayEntity;
 
         _entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? relayStationAiOverlay);
         _entManager.TryGetComponent(playerEnt, out TransformComponent? playerXform);
 
+        // We try to figure out where the AI is even coming from to make sure we don't render cameras for remote grids without access
+        EntityUid? sourceGrid = null;
+        var stationAiSystem = _entManager.System<SharedStationAiSystem>();
+        if (_player.LocalEntity is EntityUid localEntity)
+            if (stationAiSystem.TryGetCore(localEntity, out var core) && core.Comp is not null)
+                sourceGrid = _entManager.GetComponent<TransformComponent>(core.Owner).GridUid;
+
         var gridUid = playerXform?.GridUid
-            ?? (stationAiOverlay is { AllowCrossGrid: true } ? _lastGridUid : EntityUid.Invalid);
+            ?? (stationAiOverlay is { AllowCrossGrid: true } ||
+                _entManager.HasComponent<StationAiHeldComponent>(_player.LocalEntity)
+                ? _lastGridUid
+                : EntityUid.Invalid);
+
         if (gridUid != EntityUid.Invalid)
             _lastGridUid = gridUid;
 
@@ -113,7 +132,7 @@ public sealed partial class StationAiOverlay : Overlay
                 _visibleTiles.Clear();
                 // Starlight - start
                 _visibleTileTags.Clear();
-                _entManager.System<StationAiVisionSystem>().GetView((gridUid, broadphase, grid), worldBounds, _visibleTiles, _visibleTileTags);
+                _entManager.System<StationAiVisionSystem>().GetView((gridUid, broadphase, grid), worldBounds, _visibleTiles, _visibleTileTags, sourceGrid: sourceGrid);
                 // Starlight - end
             }
 
@@ -204,4 +223,4 @@ public sealed partial class StationAiOverlay : Overlay
             StencilTexture?.Dispose();
         }
     }
-    }
+}

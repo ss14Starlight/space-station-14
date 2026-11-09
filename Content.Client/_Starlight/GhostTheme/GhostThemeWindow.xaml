@@ -10,8 +10,10 @@
             <TabContainer Name="CategoryTabs" Margin="0 0 0 8" VerticalExpand="True">
             </TabContainer>
         </BoxContainer>
-        <ScrollContainer VerticalExpand="True" HorizontalExpand ="True" HScrollEnabled="False">
-            <BoxContainer Orientation="Vertical" Name="GhostThemeDescriptionContainer" VerticalExpand="True"/>
-        </ScrollContainer>
+        <PanelContainer StyleClasses="InsetPanel" HorizontalExpand="True" VerticalExpand="True">
+            <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+                <BoxContainer Orientation="Vertical" Name="GhostThemeDescriptionContainer" VerticalExpand="True" Margin="10" />
+            </ScrollContainer>
+        </PanelContainer>
     </SplitContainer>
 </DefaultWindow>

@@ -114,9 +114,8 @@ public sealed partial class ChemistryGuideDataSystem : SharedChemistryGuideDataS
                 usedNames.Add(entProto.Name);
             }
 
-
             if (extractableComponent.GrindableSolutionName is { } grindableSolutionId &&
-                _solutionContainer.TryGetSolution(entProto, grindableSolutionId, out var grindableSolution))
+                _solutionContainer.TryGetSolution(entProto, grindableSolutionId, out var grindableSolution)) // Starlight, solution refactor so we can do this ahead of time
             {
                 var data = new ReagentEntitySourceData(
                     new() { DefaultGrindCategory },
@@ -224,4 +223,3 @@ public sealed class ReagentGasSourceData : ReagentSourceData
         GasPrototype = gasPrototype;
     }
 }
-

@@ -67,6 +67,11 @@ public sealed partial class BlockingSystem
     {
         if (!args.Activated && component.IsBlocking && TryComp<BlockingUserComponent>(component.User, out var blockingUserComponent))
             UserStopBlocking(Transform(uid).ParentUid, blockingUserComponent);
+
+        // Starlight-start
+        if (component.User is { } user)
+            _shieldBrace.RefreshHeldGuns(user);
+        // Starlight-end
     }
     #endregion
 
@@ -139,12 +144,11 @@ public sealed partial class BlockingSystem
         }
         #endregion
 
-        var modify = new DamageModifierSet(modifier);
+        var modify = new DamageModifierSet();
         foreach (var key in modifier.Coefficients.Keys.Concat(modifier.FlatReductions.Keys))
         {
             modify.Coefficients.TryAdd(key, 1 - blockFraction);
         }
-
         args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, modify);
 
         if (blocking.IsBlocking && !args.Damage.Equals(args.OriginalDamage))

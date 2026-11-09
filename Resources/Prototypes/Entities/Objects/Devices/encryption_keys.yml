@@ -1,5 +1,5 @@
 - type: entity
-  #abstract: true # Starlight | There's an actual reason for a blank encryption key to exist now.
+  abstract: true
   parent: BaseItem
   id: EncryptionKey
   name: encryption key
@@ -10,10 +10,6 @@
     sprite: Objects/Devices/encryption_keys.rsi
   - type: Sprite
     sprite: Objects/Devices/encryption_keys.rsi
-    #Starlight begin
-    layers:
-      - state: crypt_gray
-    #Starlight end
 
 - type: entity
   parent: EncryptionKey
@@ -63,11 +59,11 @@
     defaultChannel: CentCom
   - type: Sprite
     layers:
-    - state: crypt_silver # Starlight
+    - state: crypt_blue
     - state: nano_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseCentcommCommandContraband ]
+  parent: [ EncryptionKey, BaseCentcommContraband, BaseCommandContraband, BaseNanoTrasenContraband ] # Starlight/Blimpuf
   id: EncryptionKeyStationMaster
   name: station master encryption key
   description: An encryption key used by station's bosses.
@@ -82,14 +78,11 @@
     - Security
     - Service
     - Supply
-    - Law
     defaultChannel: Command
   - type: Sprite
     layers:
     - state: crypt_gold
     - state: cap_label
-  - type: StealTarget # Starlight
-    stealGroup: EncryptionKeyHybrid # Starlight
 
 - type: entity
   parent: [ EncryptionKey, BaseCommandContraband ]
@@ -146,7 +139,7 @@
     - EncryptionMedical
 
 - type: entity
-  parent: [ EncryptionKey, BaseMedicalScienceContraband ]
+  parent: [ EncryptionKey, BaseMedicalContraband, BaseScienceContraband ] # Blimpuf
   id: EncryptionKeyMedicalScience
   name: med-sci encryption key
   description: An encryption key used by someone who hasn't decided which side to take.
@@ -160,8 +153,6 @@
     layers:
     - state: crypt_gray
     - state: medsci_label
-  - type: StealTarget # Starlight
-    stealGroup: EncryptionKeyHybrid # Starlight
 
 - type: entity
   parent: [ EncryptionKey, BaseScienceContraband ]
@@ -197,7 +188,7 @@
     - state: robotics_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseSecurityContraband ] # Starlight
+  parent: [ EncryptionKey, BaseSecurityContraband, BaseInternalAffairsContraband ] # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   id: EncryptionKeySecurity
   name: security encryption key
   description: An encryption key used by security.
@@ -250,7 +241,7 @@
     price: 500 # 1000 for 2
 
 - type: entity
-  parent: [ EncryptionKey, BaseSiliconScienceContraband ]
+  parent: [ EncryptionKey, BaseScienceContraband, BaseSiliconContraband ] # Blimpuf
   id: EncryptionKeyBinary
   name: binary translator key
   description: An encryption key that translates binary signals used by silicons.

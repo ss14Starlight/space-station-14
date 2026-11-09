@@ -21,7 +21,7 @@
 - type: entity
   id: CyberEyeNightVision
   name: night vision cyber eyes
-  description: Enables you to see in the dark.
+  description: A surgically-installed cybernetic pair of eyeballs that allow you to see in the dark, although with an additional vulnerability to bright flashes.
   parent: [OrganCyber, BaseOrganEyes]
   components:
   - type: Sprite
@@ -48,7 +48,7 @@
 - type: entity
   id: CyberEyeThermal
   name: thermal vision cyber eyes
-  description: Enables you to see in the dark and detect warm objects through walls.
+  description: A surgically-installed cybernetic pair of eyeballs that allow you to see thermal heat signatures, including those of cloaked and invisible entities, although with an additional vulnerability to bright flashes.
   parent: [OrganCyber, BaseOrganEyes]
   components:
   - type: Sprite
@@ -75,7 +75,7 @@
 - type: entity
   id: BudgetCyberEyes
   name: budget cyber eyes
-  description: Cold and soulless. Just as depressing to look out of as to look into.
+  description: A surgically-installed cybernetic pair of eyeballs that isn't capable of seeing color. Cold and soulless, just as depressing to look out of as to look into.
   parent: [OrganCyber, BaseOrganEyes]
   components:
   - type: Sprite
@@ -114,7 +114,7 @@
 - type: entity
   id: BudgetCyberTongue
   name: budget cyber tongue
-  description: An artificial tongue with full range of movement. Taste buds not included.
+  description: A surgically-installed cybernetic tongue that gets the job done, as long as you don't care about being able to taste anything.
   parent: [OrganCyber, BaseOrganTongue]
   components:
   - type: Sprite
@@ -127,7 +127,7 @@
 - type: entity
   id: VocalCyberTongue
   name: vocal cyber tongue
-  description: An artificial tongue with full range of movement. Allows using all vocal sounds.
+  description: A surgically-installed cybernetic tongue that has full range of movement and some taste receptors to boot. It allows you to replicate the vocal mannerisms of any humanoid species.
   parent: [OrganCyber, BaseOrganTongue]
   components:
     - type: Sprite
@@ -143,7 +143,7 @@
 - type: entity
   id: BudgetCyberLiver
   name: budget cyber liver
-  description: "Design so reliable, it didn't have to be changed for the last 237 years! Warning: This product isn't meant for recreational drinking!"
+  description: A surgically-installed cybernetic liver, for when you want to continue getting drunk after happening to lose your original one. It works but not nearly as well as the real thing.
   parent: [OrganCyber, OrganHumanLiver]
   components:
   - type: Sprite
@@ -153,10 +153,11 @@
     maxReagents: 1
     metabolizerTypes: [BudgetCyber]
     stages: [ Metabolites ]
+
 - type: entity
   id: BudgetCyberStomach
   name: budget cyber stomach
-  description: An artifical stomach. Its lack of elasticity is a desired feature for those who want to control their eating habits.
+  description: A surgically-installed cybernetic stomach. It replicates the functionality of an organic stomach, but due to lack of elasticity it can't hold as much food or drink at once.
   parent: [OrganCyber, OrganHumanStomach]
   components:
   - type: Sprite
@@ -175,7 +176,7 @@
 - type: entity
   id: BudgetCyberKidneys
   name: budget cyber kidneys
-  description: A pair of artificial kidneys. Due to cheap materials used, they waste significantly more water than organic ones.
+  description: A surgically-installed pair of cybernetic kidneys. Due to cheap materials used, they waste significantly more water than organic ones, meaning you'll get thirsty more often.
   parent: [OrganCyber, OrganHumanKidneys]
   components:
   - type: Sprite
@@ -191,7 +192,7 @@
 - type: entity
   id: CyberRebreather
   name: cyber rebreather
-  description: Artificial lungs with an integrated gas tank system. Can be filled with any breathable gas mixture.
+  description: A surgically-installed pair of lungs with an integrated gas tank system. It can be filled with any breathable gas mixture, serving as a useful emergency supply in case you happen to find yourself gasping for air.
   parent: [OrganCyber, OrganHumanLungs]
   components:
   - type: Sprite

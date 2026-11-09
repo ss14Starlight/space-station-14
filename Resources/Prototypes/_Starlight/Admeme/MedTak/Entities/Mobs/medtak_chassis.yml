@@ -48,6 +48,7 @@
       - Biological
       - IPC
       - Hybrid
+      - MoffDemonBiological
     - type: SolutionScanner
     - type: FlashImmunity
       showInExamine: false
@@ -55,6 +56,7 @@
       damageContainers:
       - Biological
       - Hybrid
+      - MoffDemonBiological
     - type: ActionGrant
       actions:
       - ActionMedTek # MedTek With an E my beloathed

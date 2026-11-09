@@ -57,3 +57,17 @@
     Telecrystal: 1
   categories:
     - UplinkPointless
+
+- type: listing
+  id: UplinkMobBombroach
+  name: uplink-bombroach-microbomb-name
+  description: uplink-bombroach-microbomb-desc
+  icon: { sprite: _Starlight/Objects/Devices/communication.rsi, state: old-radio-bombroach }
+  productEntity: ReinforcementRadioSyndicateBombroach
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAllies

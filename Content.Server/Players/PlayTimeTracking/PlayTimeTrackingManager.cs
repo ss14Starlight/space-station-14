@@ -365,11 +365,10 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
             // Starlight start
             ref var tracked = ref CollectionsMarshal.GetValueRefOrAddDefault(data.TrackerTimes, timer.Tracker, out _);
             tracked += timer.TimeSpent;
-
-            ref var merged = ref CollectionsMarshal.GetValueRefOrAddDefault(data.MergedTrackerTimes, timer.Tracker, out _); //NullLink
-            merged += timer.TimeSpent; //NullLink
             // Starlight end
         }
+
+        RebuildMergedTrackerTimes(session.UserId, data); // NullLink
 
         data.Initialized = true;
 
@@ -382,6 +381,7 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
         SaveSession(session);
 
         _playTimeData.Remove(session);
+        _nullLinkPlayTime.Remove(session.UserId); // NullLink
     }
     // Starlight Start: Allow playtime commands to target offline players.
     public async Task<TimeSpan?> TryAddTimeToTrackerByUserName(

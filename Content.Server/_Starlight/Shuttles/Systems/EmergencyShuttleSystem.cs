@@ -42,7 +42,7 @@ public sealed partial class EmergencyShuttleSystem
 
         _consoleAccumulator += seconds;
         _logger.Add(LogType.AdminCommands,
-            $"{CommandHelpers.PlayerNameOrServer(session)} delayed the emergency shuttle launch by {seconds} seconds.");
+            $"{SharedCommandHelpers.PlayerNameOrServer(session)} delayed the emergency shuttle launch by {seconds} seconds.");
     }
 
     public void DelayShuttleArrival(float seconds, ICommonSession? session = null)
@@ -50,6 +50,6 @@ public sealed partial class EmergencyShuttleSystem
         if (EmergencyShuttleArrived) return;
         _roundEnd.DelayShuttleTimer(seconds);
         _logger.Add(LogType.AdminCommands,
-            $"{CommandHelpers.PlayerNameOrServer(session)} delayed the emergency shuttle arrival by {seconds} seconds.");
+            $"{SharedCommandHelpers.PlayerNameOrServer(session)} delayed the emergency shuttle arrival by {seconds} seconds.");
     }
 }

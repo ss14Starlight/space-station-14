@@ -351,6 +351,9 @@ public sealed partial class AchievementWindow : DefaultWindow
         if (string.IsNullOrWhiteSpace(category))
             return Loc.GetString("achievement-window-category-uncategorized");
 
+        if (IoCManager.Resolve<ILocalizationManager>().TryGetString($"achievement-category-{category}", out var localized))
+            return localized;
+
         var builder = new StringBuilder(category.Length);
         var capitalizeNext = true;
 

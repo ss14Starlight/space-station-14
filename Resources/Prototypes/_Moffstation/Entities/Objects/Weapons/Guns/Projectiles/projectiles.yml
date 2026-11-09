@@ -1,0 +1,31 @@
+- type: entity
+  parent: [SolutionAmmo, BaseBullet]
+  id: MoffBloodBolt
+  categories: [ HideSpawnMenu ]
+  name: blood bolt
+  description: gross.
+  components:
+  - type: Ammo
+    muzzleFlash: null
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: chronobolt
+      color: "#690d2a"
+  - type: Projectile
+    soundHit: /Audio/Effects/Fluids/splat.ogg
+    impactEffect: null
+    damage:
+      types:
+        Piercing: 2
+  - type: Solution
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 5
+      - ReagentId: Hemorrhinol
+        Quantity: 5
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 10
+    solution: ammo

@@ -50,14 +50,6 @@
   - type: Storage
     grid:
     - 0,0,4,1
-    # 🌟Starlight - Start🌟
-    whitelist:
-      components:
-        - Smokable
-        - Matchstick
-        - Welder # for lighters
-        - Crayon # they're ciggie shaped
-    # 🌟Starlight - End🌟
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -128,14 +120,6 @@
   - type: Storage
     grid:
     - 0,0,4,1
-    # 🌟Starlight - Start🌟
-    whitelist:
-      components:
-        - Smokable
-        - Matchstick
-        - Welder # for lighters
-        - Crayon # they're ciggie shaped
-    # 🌟Starlight - End🌟
   - type: ItemCounter
     count:
       tags: [Cigarette]
@@ -159,10 +143,6 @@
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/green.rsi
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/green.rsi
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: cigaretes
-  # Starlight-end
 
 - type: entity
   id: CigPackRed
@@ -174,10 +154,6 @@
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/red.rsi
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/red.rsi
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: cigaretes
-  # Starlight-end
 
 - type: entity
   id: CigPackBlue
@@ -189,10 +165,6 @@
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/blue.rsi
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/blue.rsi
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: cigaretes
-  # Starlight-end
 
 - type: entity
   id: CigPackBlack
@@ -204,16 +176,12 @@
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/black.rsi
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/black.rsi
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: cigaretes
-  # Starlight-end
 
 - type: entity
-  id: CigPackSyndicate  #SL EDIT, Syndie to non-contra
-  parent: CigPackBase
+  id: CigPackSyndicate
+  parent: CigPackBase # TODO Starlight partial once space-wizards/RobustToolbox/pull/7084 gets fixed
   name: Interdyne herbals packet
-  description: Medicinal cigarettes infused with medicine for when you need to do more than calm your nerves.  #SL EDIT, desc change for lore
+  description: Elite cigarettes for elite syndicate agents. Infused with medicine for when you need to do more than calm your nerves.
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/syndicate.rsi
@@ -242,10 +210,6 @@
         rolls: !type:RangeNumberSelector
           range: 2, 9
         tableId: RandomSoakedSmokeTable
-  # Starlight-start: Vending Machines Prices
-  - type: ItemPrice
-    priceCategory: cigaretes
-  # Starlight-end
 
 # Entity tables
 
@@ -253,8 +217,6 @@
   id: RandomSoakedSmokeTable
   table: !type:GroupSelector
     children:
-    - id: CigaretteLead
-      weight: 1
     - id: CigaretteLicoxide
       weight: 1
     - id: CigaretteFrezon
@@ -305,3 +267,4 @@
       weight: 7
     - id: CigaretteSaline
       weight: 7
+

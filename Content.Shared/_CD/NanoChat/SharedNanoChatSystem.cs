@@ -3,6 +3,7 @@ using Content.Shared.Alert;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
+using Content.Shared.Silicons.StationAi;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
@@ -284,6 +285,9 @@ public abstract partial class SharedNanoChatSystem : EntitySystem
         if (!_containers.TryGetContainingContainer(card.Owner, out var pdaContainer)
             || !HasComp<PdaComponent>(pdaContainer.Owner))
             return null;
+
+        if (HasComp<StationAiHeldComponent>(pdaContainer.Owner))
+            return pdaContainer.Owner;
 
         EntityUid? holder = null;
 

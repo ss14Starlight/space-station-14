@@ -1,0 +1,201 @@
+- type: !PartialOnly npcFaction
+  id: Dragon
+  hostile:
+  - BloodBound
+  - Changeling
+  - DungeonSoviet
+  - DungeonSyndicate
+  - Gorilla
+  - NanoTrasenSilicon
+  - Abductor
+  - Abyss
+  - SyndicateSilicon
+  - Vampire
+  - Pirate
+  - CosmicCult
+  - MoffNarsianDemon
+  - Floral
+
+- type: !PartialOnly npcFaction
+  id: NanoTrasen
+  friendly:
+  - BloodBound
+  hostile:
+  - SyndicateSilicon
+  - DungeonSyndicate
+  - DungeonSoviet
+  - Abyss
+  - Vampire
+  - Changeling
+  - Gorilla
+  - Abductor
+  - Pirate
+  - CosmicCult
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: Mouse
+  hostile:
+  - Abyss
+
+- type: !PartialOnly npcFaction
+  id: PetsNT
+  friendly:
+  - BloodBound
+  hostile:
+  - Abyss
+  - Wizard
+  - HonkHostile
+  - Gorilla
+  - MoffNarsianDemon
+  - Abductor
+  - CosmicCult
+
+- type: !PartialOnly npcFaction
+  id: SimpleHostile
+  hostile:
+  - BloodBound
+  - NanoTrasenSilicon
+  - SyndicateSilicon
+  - DungeonSyndicate
+  - DungeonSoviet
+  - Abyss
+  - Vampire
+  - Changeling
+  - Gorilla
+  - Abductor
+  - Pirate
+  - CosmicCult
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: Syndicate
+  hostile:
+  - BloodBound
+  - NanoTrasenSilicon
+  - DungeonSyndicate
+  - DungeonSoviet
+  - Abyss
+  - Vampire
+  - Changeling
+  - Gorilla
+  - Abductor
+  - Pirate
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: Xeno
+  hostile:
+  - BloodBound
+  - !Remove Xenoborg
+  - NanoTrasenSilicon
+  - SyndicateSilicon
+  - DungeonSyndicate
+  - DungeonSoviet
+  - Abyss
+  - Vampire
+  - Changeling
+  - Gorilla
+  - Pirate
+  - CosmicCult
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: Zombie
+  hostile:
+  - BloodBound
+  - !Remove Xenoborg
+  - DungeonSyndicate
+  - DungeonSoviet
+  - Abyss
+  - Vampire
+  - Changeling
+  - Gorilla
+  - Abductor
+  - Pirate
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: Revolutionary
+  hostile:
+  - BloodBound
+  - !Remove Wizard
+  - !Remove Xenoborg
+  - !Remove NanoTrasen # Don't attack crew indiscriminately...
+  - Shielded # ...only mindshielded crew. Viva!
+  - NanoTrasenSilicon
+  - DungeonSyndicate
+  - DungeonSoviet
+  - Abyss
+  - Vampire
+  - Changeling
+  - Gorilla
+  - Abductor
+  - Pirate
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: AllHostile
+  hostile:
+  - BloodBound
+  - NanoTrasenSilicon
+  - SyndicateSilicon
+  - HonkNeutral
+  - HonkHostile
+  - Vampire
+  - Changeling
+  - Gorilla
+  - Abductor
+  - Pirate
+  - CosmicCult
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: Wizard
+  hostile:
+  - BloodBound
+  - NanoTrasenSilicon
+  - SyndicateSilicon
+  - Gorilla
+  - Abductor
+  - Pirate
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: Xenoborg
+  hostile:
+  - BloodBound
+  - !Remove Xeno
+  - DungeonSyndicate
+  - DungeonSoviet
+  - NanoTrasenSilicon
+  - SyndicateSilicon
+  - Abductor
+  - Gorilla
+  - Pirate
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: CosmicCult
+  hostile:
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: SyndicateSilicon
+  hostile:
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: NanoTrasenSilicon
+  hostile:
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: DungeonSoviet
+  hostile:
+  - MoffNarsianDemon
+
+- type: !PartialOnly npcFaction
+  id: Passive
+  hostile:
+  - MoffNarsianDemon

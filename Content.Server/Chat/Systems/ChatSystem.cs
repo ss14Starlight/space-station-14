@@ -635,6 +635,12 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (session.AttachedEntity is not { Valid: true } listener) // Starlight-edit: Languages
                 continue;
 
+            // Starlight Start: Ignore humanoid speech.
+            if (HasComp<IgnoreHumanoidsComponent>(listener) &&
+                HasComp<HumanoidAppearanceComponent>(source))
+                continue;
+            // Starlight End
+
             // Moffstation - Start - Radio Host, hide chat messages from station radio
             var rangeCheck = MessageRangeCheck(session, data, range);
             if (rangeCheck == MessageRangeCheckResult.Disallowed)
@@ -649,7 +655,8 @@ public sealed partial class ChatSystem : SharedChatSystem
 
             var whisperClearRange = WhisperClearRange;
             var whisperMuffledRange = WhisperMuffledRange;
-            if (TryComp<ChatListenerRangeComponent>(listener, out var rangeComp))
+            var rangeListener = data.RemoteListener ?? listener; // Starlight
+            if (TryComp<ChatListenerRangeComponent>(rangeListener, out var rangeComp))
             {
                 whisperClearRange = rangeComp.WhisperClearRange;
                 whisperMuffledRange = rangeComp.WhisperMuffledRange;
@@ -664,7 +671,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 result = perceivedMessage;
                 wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", name, result, language, obfuscated);
             }
-            else if (_examineSystem.InRangeUnOccluded(source, listener, whisperMuffledRange))
+            else if (_examineSystem.InRangeUnOccluded(data.RemoteSource ?? source, rangeListener, whisperMuffledRange)) // Starlight
             {
                 // Scenario 2: if the listener is too far, they only hear fragments of the message
                 result = ObfuscateMessageReadability(perceivedMessage);
@@ -676,13 +683,8 @@ public sealed partial class ChatSystem : SharedChatSystem
                 result = ObfuscateMessageReadability(perceivedMessage);
                 wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-unknown-wrap-message", string.Empty, result, language, obfuscated);
             }
-            if (HasComp<IgnoreHumanoidsComponent>(listener) && HasComp<HumanoidAppearanceComponent>(source))
-            {
-                var unknownName = Loc.GetString("ignore-humanoids-unknown-name");
-                wrappedMessage = WrapAnonymizedMessage(ChatChannel.Whisper, source, result, unknownName, language, wrappedMessage, obfuscated);
-            }
 
-            _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedMessage, source, rangeCheck == MessageRangeCheckResult.HideChat, session.Channel); // Moffstation - Radio Host, hide chat messages from station radio
+            _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedMessage, data.RemoteSource ?? source, rangeCheck == MessageRangeCheckResult.HideChat, session.Channel); // Moffstation - Radio Host, hide chat messages from station radio
             // Starlight - End
         }
 
@@ -897,23 +899,26 @@ public sealed partial class ChatSystem : SharedChatSystem
             // Starlight - start
             if (session.AttachedEntity is not { Valid: true } playerEntity)
                 continue;
-            EntityUid listener = session.AttachedEntity.Value;
+            if (channel == ChatChannel.Local &&
+                HasComp<IgnoreHumanoidsComponent>(playerEntity) &&
+                HasComp<HumanoidAppearanceComponent>(source))
+                continue;
 
             // If the channel does not support languages, or the entity can understand the message, send the original message, otherwise send the obfuscated version
             var displayWrappedMessage = wrappedMessage;
             var displayObfuscatedMessage = obfuscatedWrappedMessage;
 
-            if (HasComp<IgnoreHumanoidsComponent>(listener) && HasComp<HumanoidAppearanceComponent>(source))
+            if (HasComp<IgnoreHumanoidsComponent>(playerEntity) && HasComp<HumanoidAppearanceComponent>(source))
             {
                 var unknownName = Loc.GetString("ignore-humanoids-unknown-name");
                 displayWrappedMessage = WrapAnonymizedMessage(channel, source, message, unknownName, language, wrappedMessage, false);
                 displayObfuscatedMessage = WrapAnonymizedMessage(channel, source, obfuscated, unknownName, language, obfuscatedWrappedMessage, true);
             }
 
-            if (ignoreLanguage || _language.CanUnderstand(listener, language.ID))
-                _chatManager.ChatMessageToOne(channel, message, displayWrappedMessage, source, entHideChat, session.Channel, author: author);
+            if (ignoreLanguage || _language.CanUnderstand(playerEntity, language.ID))
+                _chatManager.ChatMessageToOne(channel, message, displayWrappedMessage, data.RemoteSource ?? source, entHideChat, session.Channel, author: author);
             else
-                _chatManager.ChatMessageToOne(channel, obfuscated, displayObfuscatedMessage, source, entHideChat, session.Channel, author: author);
+                _chatManager.ChatMessageToOne(channel, obfuscated, displayObfuscatedMessage, data.RemoteSource ?? source, entHideChat, session.Channel, author: author);
             // Starlight - end
         }
 
@@ -1076,6 +1081,15 @@ public sealed partial class ChatSystem : SharedChatSystem
         if ((language.Speech.ObfuscationFont ?? false) && (!obfuscated ?? false))
             fonttype = speech.FontId;
 
+        // Apply default styling before the font tag so it does not replace a language's custom font.
+        if (fonttype == "Default")
+        {
+            if (chatType == InGameICChatType.Whisper)
+                fonttype = "DefaultItalic";
+            else if (speech.Bold)
+                fonttype = "DefaultBold";
+        }
+
         return Loc.GetString(wrapId,
             ("color", color),
             ("entityName", namestring),
@@ -1138,11 +1152,11 @@ public sealed partial class ChatSystem : SharedChatSystem
                 recipients.Add(player, new ICChatRecipientData(-1, true));
         }
 
-        RaiseLocalEvent(new ExpandICChatRecipientsEvent(source, voiceGetRange, recipients));
+        RaiseLocalEvent(new ExpandICChatRecipientsEvent(source, voiceGetRange, recipients, isWhisper)); // Starlight
         return recipients;
     }
 
-    public readonly record struct ICChatRecipientData(float Range, bool Observer, bool? HideChatOverride = null)
+    public readonly record struct ICChatRecipientData(float Range, bool Observer, bool? HideChatOverride = null, EntityUid? RemoteListener = null, EntityUid? RemoteSource = null) // Starlight
     {
     }
 
@@ -1183,7 +1197,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 ///     This event is raised before chat messages are sent out to clients. This enables some systems to send the chat
 ///     messages to otherwise out-of view entities (e.g. for multiple viewports from cameras).
 /// </summary>
-public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Dictionary<ICommonSession, ChatSystem.ICChatRecipientData> Recipients)
+public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Dictionary<ICommonSession, ChatSystem.ICChatRecipientData> Recipients, bool IsWhisper = false) // Starlight
 {
 }
 

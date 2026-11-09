@@ -11,6 +11,17 @@
   conditions:
     - !type:TileNotBlocked
 
+# Bar
+- type: construction
+  id: DryingRack
+  graph: DryingRackGraph
+  startNode: start
+  targetNode: dryingRack
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
 #region Chairs
 - type: construction
   id: ChairOfficeSleek

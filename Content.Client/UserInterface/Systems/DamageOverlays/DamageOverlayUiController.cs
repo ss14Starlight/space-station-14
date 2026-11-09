@@ -93,6 +93,7 @@ public sealed partial class DamageOverlayUiController : UIController
         }
 
         var damagePerGroup = _damageable.GetDamagePerGroup((entity, damageable));
+        var structuralDamage = _damageable.GetAllDamage((entity, damageable)).DamageDict.GetValueOrDefault("Structural"); // Starlight edit
         var critThreshold = foundThreshold.Value;
         _overlay.State = mobState.CurrentState;
 
@@ -111,6 +112,7 @@ public sealed partial class DamageOverlayUiController : UIController
                         damagePerGroup.TryGetValue(painDamageType, out var painDamage);
                         painLevel += painDamage;
                     }
+                    painLevel += structuralDamage; // Starlight edit
                     _overlay.PainLevel = FixedPoint2.Min(1f, painLevel / critThreshold).Float();
 
                     if (_overlay.PainLevel < 0.05f) // Don't show damage overlay if they're near enough to max.

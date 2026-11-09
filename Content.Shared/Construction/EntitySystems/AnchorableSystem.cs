@@ -170,6 +170,9 @@ public sealed partial class AnchorableSystem : EntitySystem
                 return;
             }
 
+            if (AnchorTileBlacklisted(uid, coordinates, args.User)) // Starlight
+                return;
+
             _transformSystem.SetCoordinates(uid, coordinates);
         }
 
@@ -238,18 +241,17 @@ public sealed partial class AnchorableSystem : EntitySystem
         // Log anchor attempt (server only)
         _adminLogger.Add(LogType.Anchor, LogImpact.Low, $"{ToPrettyString(userUid):user} is trying to anchor {ToPrettyString(uid):entity} to {transform.Coordinates:targetlocation}");
 
-        if (TryComp<PhysicsComponent>(uid, out var anchorBody) &&
-            !TileFree(transform.Coordinates, anchorBody))
-        {
-            _popup.PopupClient(Loc.GetString("anchorable-occupied"), uid, userUid);
+        if (!CanAnchorAt(uid, transform.Coordinates, userUid))
             return;
-        }
 
         if (AnyUnstackable(uid, transform.Coordinates))
         {
             _popup.PopupClient(Loc.GetString("construction-step-condition-no-unstackable-in-tile"), uid, userUid);
             return;
         }
+
+        if (AnchorTileBlacklisted(uid, transform.Coordinates, userUid)) // Starlight
+            return;
 
         _tool.UseTool(usingUid, userUid, uid, anchorable.Delay, usingTool.Qualities, new TryAnchorCompletedEvent());
     }
@@ -286,6 +288,23 @@ public sealed partial class AnchorableSystem : EntitySystem
         anchorable.Delay += attempt.Delay;
 
         return !attempt.Cancelled;
+    }
+
+    public bool CanAnchorAt(Entity<PhysicsComponent?> entity, EntityUid? user = null)
+    {
+        return CanAnchorAt(entity, Transform(entity).Coordinates, user);
+    }
+
+    public bool CanAnchorAt(Entity<PhysicsComponent?> entity, EntityCoordinates coordinates, EntityUid? user = null)
+    {
+        if (!Resolve(entity, ref entity.Comp))
+            return true;
+
+        if (TileFree(coordinates, entity.Comp))
+            return true;
+
+        _popup.PopupClient(Loc.GetString("anchorable-occupied"), entity, user);
+        return false;
     }
 
     /// <summary>

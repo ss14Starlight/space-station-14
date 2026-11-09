@@ -14,18 +14,11 @@ public sealed class MailCompanionBoundUserInterface(EntityUid owner, Enum uiKey)
         base.Open();
 
         EntityUid? gridUid = null;
-        var stationName = string.Empty;
 
         if (EntMan.TryGetComponent<TransformComponent>(Owner, out var xform))
-        {
             gridUid = xform.GridUid;
-
-            if (EntMan.TryGetComponent<MetaDataComponent>(gridUid, out var metaData))
-                stationName = metaData.EntityName;
-        }
-
         _window = this.CreatePopOutableWindow<MailCompanionWindow>(EntMan);
-        _window.Set(stationName, gridUid);
+        _window.Set(gridUid, Owner);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

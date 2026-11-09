@@ -1,6 +1,7 @@
 using Content.Client.Actions;
 using Content.Client.Markers;
 using Content.Client.SubFloor;
+using Content.Shared.SubFloor;
 using Robust.Client.Graphics;
 using Robust.Shared.Console;
 
@@ -22,7 +23,7 @@ internal sealed partial class MappingClientSideSetupCommand : LocalizedEntityCom
 
         _markerSystem.MarkersVisible = true;
         _lightManager.Enabled = false;
-        _subfloorSystem.ShowAll = true;
+        _subfloorSystem.SetLayer(SubFloorVisibilityMask.All, true); //Starlight edit - Subfloor layers
         _actionSystem.LoadActionAssignments("/mapping_actions.yml", false);
     }
 }

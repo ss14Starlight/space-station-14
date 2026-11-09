@@ -1,5 +1,4 @@
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Atmos.Piping.Components;
 using Content.Server.Audio;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Explosion.EntitySystems;
@@ -12,6 +11,7 @@ using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Audio;
 using Content.Shared.Construction.Components;
 using Content.Shared.Containers.ItemSlots;
@@ -724,6 +724,14 @@ public sealed partial class GasTurbineSystem : EntitySystem
 
         using (args.PushGroup(nameof(GasTurbineComponent)))
         {
+            // Starlight Start
+            if (!comp.Ruined && TryComp<PowerSupplierComponent>(ent, out var supplier))
+            {
+                args.PushMarkup(Loc.GetString("teg-generator-examine-power", ("power", supplier.CurrentSupply)));
+                args.PushMarkup(Loc.GetString("teg-generator-examine-power-max-output", ("power", supplier.MaxSupply)));
+            }
+            // Starlight End
+
             if(comp.CurrentStator == null)
                 args.PushMarkup(Loc.GetString("gas-turbine-examine-stator-null"));
 

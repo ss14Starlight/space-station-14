@@ -3,17 +3,27 @@
   name: zone-hallway
   color: "#7A7A7A"
   priority: 0
+  reverb: Hallway
   corridor: true
+  doors:
+  - AirlockGlass
+  - Airlock
 
 - type: zone
   id: Maintenance
   name: zone-maintenance
   color: "#5B4A2E"
   priority: 10
+  reverb: Maintenance
   doors:
   - AirlockMaint
   - AirlockMaintGlass
   - AirlockHatchMaintenance
+  - AirlockMaintRoboticsLocked
+  - AirlockMaintMedLocked
+  - AirlockMaintJanitorLocked
+  - AirlockMaintAtmoLocked
+  - AirlockMaintMiningCargoLocked
 
 - type: zone
   id: Command
@@ -26,6 +36,7 @@
   - AirlockCentralCommand
   - AirlockCentralCommandGlass
   - HighSecCommandLocked
+  - TurnstileCommand
   - HighSecCaptainLocked
   - HighSecCentralCommandLocked
 
@@ -46,9 +57,16 @@
   doors:
   - AirlockSecurity
   - AirlockSecurityGlass
+  - AirlockHeadOfSecurityLocked
+  - AirlockHeadOfSecurityGlassLocked
   - AirlockBrigmed
   - AirlockBrigmedGlass
   - HighSecArmoryLocked
+  - TurnstileGenpopEnter
+  - TurnstileGenpopLeave
+  - TurnstileSecurity
+  - TurnstileArmory
+  - WindoorSecurityLocked
 
 - type: zone
   id: Medical
@@ -57,6 +75,8 @@
   priority: 20
   doors:
   - AirlockMedical
+  - AirlockChiefMedicalOfficerLocked
+  - AirlockChiefMedicalOfficerGlassLocked
   - AirlockMedicalGlass
   - AirlockVirology
   - AirlockVirologyGlass
@@ -75,6 +95,10 @@
   doors:
   - AirlockEngineering
   - AirlockEngineeringGlass
+  - AirlockChiefEngineerLocked
+  - AirlockChiefEngineerGlassLocked
+  - AirlockExternalGlassEngineeringLocked
+  - WindoorSecureEngineeringLocked
 
 - type: zone
   id: Science
@@ -84,8 +108,12 @@
   doors:
   - AirlockScience
   - AirlockScienceGlass
+  - AirlockResearchDirectorLocked
+  - AirlockResearchDirectorGlassLocked
   - AirlockRobotics
   - AirlockRoboticsGlass
+  - PlasmaWindoorSecureScienceLocked
+  - WindoorSecureScienceLocked
 
 - type: zone
   id: Cargo
@@ -95,6 +123,8 @@
   doors:
   - AirlockCargo
   - AirlockCargoGlass
+  - AirlockQuartermasterLocked
+  - AirlockQuartermasterGlassLocked
   - AirlockSalvage
   - AirlockSalvageGlass
   - AirlockMining
@@ -102,6 +132,7 @@
   - AirlockMail
   - AirlockMailGlass
   - HighSecSalvageLocked
+  - AirlockExternalGlassCargoLocked
 
 - type: zone
   id: Service
@@ -111,6 +142,14 @@
   doors:
   - AirlockHydroponics
   - AirlockHydroponicsGlass
+  - AirlockHeadOfPersonnelLocked
+  - AirlockHeadOfPersonnelGlassLocked
+  - AirlockBarLocked
+  - AirlockKitchenLocked
+  - AirlockBarKitchenLocked
+  - AirlockJanitorLocked
+  - AirlockServiceGlassLocked
+  - AirlockServiceLocked
 
 - type: zone
   id: Arrivals
@@ -126,24 +165,34 @@
   doors:
   - AirlockAtmospherics
   - AirlockAtmosphericsGlass
+  - AirlockExternalGlassAtmosphericsLocked
 
 - type: zone
   id: Bar
   name: zone-bar
   color: "#7D4B2A"
   priority: 30
+  doors:
+  - AirlockBarLocked
+  - AirlockBarKitchenLocked
 
 - type: zone
   id: Kitchen
   name: zone-kitchen
   color: "#C4713A"
   priority: 30
+  doors:
+  - AirlockKitchenLocked
+  - AirlockBarKitchenLocked
 
 - type: zone
   id: Chapel
   name: zone-chapel
   color: "#9E9E9E"
   priority: 30
+  reverb: Chapel
+  doors:
+  - AirlockChapelLocked
 
 - type: zone
   id: Dormitory
@@ -156,6 +205,24 @@
   name: zone-solars
   color: "#2E4A62"
   priority: 30
+
+- type: zone
+  id: Detective
+  name: zone-detective
+  color: "#6B5B45"
+  priority: 30
+  doors: # Inherits Security from AirlockSecurity.
+  - AirlockDetectiveLocked
+  - AirlockDetectiveGlassLocked
+
+- type: zone
+  id: Virology
+  name: zone-virology
+  color: "#7CB342"
+  priority: 30
+  doors: # Also listed under Medical, so virology is in both.
+  - AirlockVirology
+  - AirlockVirologyGlass
 
 - type: rules
   id: InMaintenanceZone
@@ -182,3 +249,5 @@
     - Chapel
     - Dormitory
     - Solars
+    - Detective
+    - Virology

@@ -1,0 +1,66 @@
+- type: !PartialOnly entity
+  id: PersonalAI
+  components:
+  # Languages
+  - type: LanguageSpeaker
+  - type: TextToSpeech
+  - type: ToggleableGhostRole
+    mindRoles:
+    - !Remove MindRoleGhostRoleFamiliar
+    - MindRoleGhostRolePAI
+  # pAI comms rework, see PR #3299
+  - type: IntrinsicRadioTransmitter
+    channels: []
+  - type: ActiveRadio
+    channels: !Remove
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+  - type: EncryptionKeyHolder
+    keySlots: 1
+  - type: ActionGrant
+    actions:
+    - !Index:1 ActionPAIPDA # pAI can open PDAs, see PR #3272
+    - !Index:2 ActionPAIConsole # pAI can open consoles
+  - type: Store
+    name: store-preset-name-pai # name change for data purity
+    categories:
+    - Languages
+  - type: Tag
+    tags:
+    - SiliconEmotesFH # Return silicon noises to pAIs
+    - CanPilot
+  - type: Blindable
+  - type: ParentCanBlockVision
+  - type: ContentEye
+  - type: AntagImmune
+
+- type: !PartialOnly entity
+  id: SyndicatePersonalAI
+  components:
+  - type: TextToSpeech
+  - type: ToggleableGhostRole
+    roleRules: ghost-role-information-syndicate-pai-rules
+    mindRoles:
+    - !Remove MindRoleGhostRoleFamiliar
+    - MindRoleGhostRolePAI
+  # pAI comms rework, see PR #3299
+  - type: !Remove IntrinsicRadioTransmitter
+    channels: !Remove
+  - type: !Remove ActiveRadio
+    channels: !Remove
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiePAI
+  - type: EncryptionKeyHolder
+    keySlots: 2
+
+- type: !PartialOnly entity
+  id: PotatoAI
+  components:
+  - type: TextToSpeech
+  - type: ToggleableGhostRole
+    mindRoles:
+    - !Remove MindRoleGhostRoleFamiliar
+    - MindRoleGhostRolePAI

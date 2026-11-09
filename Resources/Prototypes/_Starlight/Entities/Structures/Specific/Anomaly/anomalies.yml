@@ -422,6 +422,7 @@
   parent: BaseStructure
   id: CosmicMalignRift
   name: anomaly
+  suffix: Cosmic
   description: A malign light pours forth from within.
   placement:
     mode: SnapgridCenter
@@ -526,6 +527,7 @@
 - type: entity
   id: CosmicMalignEmpoweredRift
   name: anomaly
+  suffix: Cosmic, Empowered
   description: A malign light pours forth from within.
   placement:
     mode: SnapgridCenter
@@ -590,7 +592,7 @@
     particleInteractions:
     - interactionKey: NullspaceStabilizer
       effect: EndAnomaly
-      delay: 60
+      delay: 12
       distanceThreshold: 10
       spawnCore: false
       visualEffect: CleanseEffectVFX
@@ -627,3 +629,91 @@
     guides:
     - AnomalousResearch
     - CosmicCultMalignRifts
+
+- type: entity
+  parent: HellPortal
+  id: HellPortalAnomaly
+  name: anomaly
+  suffix: Hellportal
+  components:
+  - type: Physics
+    bodyType: Static
+    bodyStatus: InAir
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: Appearance
+  - type: AnimationPlayer
+  - type: Anomaly
+    initialSeverityRange:
+      0.05: 0.05
+    minPulseLength: 120
+    maxPulseLength: 180
+    pulseSound: null
+    shuffleParticlesOnMapInit: false
+    randomBehaviorOnMapInit: false
+    supercriticalDuration: 10
+    supercriticalSound:
+      collection: RadiationPulse
+    corePrototype: null
+    coreInertPrototype: null
+    growthThreshold: 0.20
+    scannerContainmentParticleReadout: anomaly-particles-nullspace-stabilization
+    useNormalDangerParticle: false
+    useNormalUnstableParticle: false
+    useNormalContainmentParticle: false
+    useNormalTransformationParticle: false
+    canBePunched: false
+    particleInteractions:
+    - interactionKey: NullspaceStabilizer
+      effect: EndAnomaly
+      delay: 60
+      distanceThreshold: 10
+      spawnCore: false
+      visualEffect: CleanseEffectVFX
+  - type: SecretDataAnomaly
+    secret:
+    - Severity
+    - OutputPoint
+    - Behavior
+    - ParticleDanger
+    - ParticleUnstable
+    - ParticleTransformation
+  - type: EntitySpawnAnomaly
+    entries:
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 6
+        maxAmount: 15
+        minRange: 1
+        maxRange: 6
+      spawns:
+      - MoffMobDemonNarsieFleshClamp
+      - MoffMobDemonNarsieFleshGolem
+      - MoffMobDemonNarsieFleshJared
+      - MoffMobDemonNarsieFleshLover
+      - MobGooseNarsie
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 3
+        maxAmount: 6
+        minRange: 1
+        maxRange: 6
+      spawns:
+      - MoffMobDemonNarsieArtificer
+      - MoffMobDemonNarsieHarvester
+      - MoffMobDemonNarsieJuggernaut
+      - MoffMobDemonNarsieShade
+      - MoffMobDemonNarsieWraith
+  - type: GuideHelp
+    guides:
+    - AnomalousResearch

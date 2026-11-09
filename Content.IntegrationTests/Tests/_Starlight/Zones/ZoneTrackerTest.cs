@@ -101,7 +101,7 @@ public sealed class ZoneTrackerTest : GameTest
         await Server.WaitPost(() =>
         {
             var tracker = SEntMan.System<SharedZoneTrackerSystem>();
-            tracker.SetZone((dummy, SEntMan.GetComponent<ZoneTrackerComponent>(dummy)), "Maintenance", default);
+            tracker.SetZone((dummy, SEntMan.GetComponent<ZoneTrackerComponent>(dummy)), "Maintenance", ["Maintenance"], default);
         });
 
         Assert.That(rules.IsTrue(dummy, maintenance), Is.True);

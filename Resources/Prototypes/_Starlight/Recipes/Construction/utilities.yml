@@ -166,6 +166,76 @@
   - GasOutletInjectorAlt3
   - GasOutletInjectorAlt4
 
+- type: construction
+  id: GasInletSiphon
+  hide: false
+  graph: GasUnaryStarlight
+  startNode: start
+  targetNode: gasinletsiphon
+  category: construction-category-atmospherics
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes: &GasInletSiphonAltProtos
+  - GasInletSiphon
+  - GasInletSiphonAlt1
+  - GasInletSiphonAlt2
+  - GasInletSiphonAlt3
+  - GasInletSiphonAlt4
+
+- type: construction
+  id: GasInletSiphonAlt1
+  hide: true
+  graph: GasUnaryStarlight
+  startNode: start
+  targetNode: gasinletsiphonAlt1
+  category: construction-category-atmospherics
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes: *GasInletSiphonAltProtos
+
+- type: construction
+  id: GasInletSiphonAlt2
+  hide: true
+  graph: GasUnaryStarlight
+  startNode: start
+  targetNode: gasinletsiphonAlt2
+  category: construction-category-atmospherics
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes: *GasInletSiphonAltProtos
+
+- type: construction
+  id: GasInletSiphonAlt3
+  hide: true
+  graph: GasUnaryStarlight
+  startNode: start
+  targetNode: gasinletsiphonAlt3
+  category: construction-category-atmospherics
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes: *GasInletSiphonAltProtos
+
+- type: construction
+  id: GasInletSiphonAlt4
+  hide: true
+  graph: GasUnaryStarlight
+  startNode: start
+  targetNode: gasinletsiphonAlt4
+  category: construction-category-atmospherics
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes: *GasInletSiphonAltProtos
+
 # region binary
 
 - type: construction
@@ -865,3 +935,30 @@
     - GasPipeTankTallAlt4
 
 # Tall gas tank END
+
+# Airlock controller
+- type: construction
+  id: AirlockCycler
+  graph: AirlockCycler
+  startNode: start
+  targetNode: airlock_cycler
+  category: construction-category-atmospherics
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
+
+- type: construction
+  id: AirlockCyclerButton
+  graph: AirlockCyclerButton
+  startNode: start
+  targetNode: button
+  category: construction-category-atmospherics
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}

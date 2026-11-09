@@ -654,8 +654,17 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-# 🌟Starlight🌟
+# Starlight-start
 - function: Jump
   type: State
   key: Space
   priority: -1
+# Shares Space with Jump at a higher priority; only takes the key while struggling.
+- function: LatchStruggle
+  type: State
+  key: Space
+- function: HotbarRemove
+  type: State
+  key: MouseRight
+  canFocus: true
+# Starlight-end

@@ -39,3 +39,19 @@ signal-port-description-enabled = Emitted when the device is turned on and enabl
 
 signal-port-name-disabled = Disabled
 signal-port-description-disabled = Emitted when the device is turned off and disabled.
+
+signal-port-name-turret-controller-sync-sender = Sync
+signal-port-description-turret-controller-sync-sender = Shares this turret control panel's armament and authorization settings with another panel.
+
+signal-port-name-combustion-turbine-console-sender = Combustion Turbine Console
+signal-port-description-combustion-turbine-console-sender = Controls a combustion turbine. Link it to either the compressor or the turbine.
+
+signal-port-name-airlock-cycler-side-a = Side A
+signal-port-name-airlock-cycler-side-b = Side B
+signal-port-name-airlock-cycler-side-c = Side C
+signal-port-name-airlock-cycler-side-d = Side D
+signal-port-description-airlock-cycler-side = Link the doors and cycle buttons of one side of the chamber here.
+signal-port-name-airlock-cycler-inlets = Inlets
+signal-port-description-airlock-cycler-inlets = Air vents that fill the chamber.
+signal-port-name-airlock-cycler-outlets = Outlets
+signal-port-description-airlock-cycler-outlets = Air vents, scrubbers or pumps that empty the chamber. A small chamber can use one air vent on both ports.

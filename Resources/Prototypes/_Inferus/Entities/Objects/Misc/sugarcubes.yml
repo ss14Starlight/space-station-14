@@ -1,0 +1,85 @@
+- type: entity
+  name: sugar cube
+  parent: BaseItem
+  id: SugarCube
+  description: You could build a tiny house with these.
+  components:
+  - type: SolutionSpiker
+    sourceSolution: food
+    ignoreEmpty: true
+  - type: Edible
+  - type: Extractable
+    grindableSolutionName: food
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 5
+  - type: Sprite
+    sprite: _Inferus/Objects/Misc/sugarcubes.rsi
+    state: sugarcubes1
+    layers:
+    - state: sugarcubes1
+      map: ["base"]
+  - type: Item
+    sprite: _Inferus/Objects/Misc/sugarcubes.rsi
+    size: Tiny
+  - type: Appearance
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  - type: Stack
+    count: 1
+    stackType: SugarCube
+    baseLayer: base
+    layerStates:
+    - sugarcubes1
+    - sugarcubes2
+    - sugarcubes3
+    - sugarcubes4
+    - sugarcubes5
+    - sugarcubes6
+    - sugarcubes7
+    - sugarcubes8
+    - sugarcubes9
+    - sugarcubes10
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds: [2,3,4,5,6,7,8,9,10]
+
+- type: entity
+  parent: SugarCube
+  id: SugarCube3
+  suffix: 3
+  components:
+  - type: Stack
+    count: 3
+
+- type: entity
+  parent: SugarCube
+  id: SugarCube6
+  suffix: 6
+  components:
+  - type: Stack
+    count: 6
+
+- type: entity
+  parent: SugarCube
+  id: SugarCube10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
+
+- type: stack
+  parent: BaseSmallStack
+  id: SugarCube
+  name: stack-sugarcube
+  icon: { sprite: /Textures/_Inferus/Objects/Misc/sugarcubes.rsi, state: sugarcubes1 }
+  spawn: SugarCube

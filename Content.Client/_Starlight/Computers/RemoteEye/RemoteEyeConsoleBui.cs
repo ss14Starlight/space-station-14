@@ -40,7 +40,7 @@ public sealed class RemoteEyeConsoleBui(EntityUid owner, Enum uiKey) : BoundUser
         if (_window != null) return;
         _window = new RemoteEyeConsoleWindow();
         _window.OnClose += Close;
-        _window.Title = "Intercepted cameras.";
+        _window.Title = Loc.GetString("ui-intercepted-cameras-title");
 
         _window.StationsButton.OnPressed += _ =>
         {

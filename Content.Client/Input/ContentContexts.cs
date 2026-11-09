@@ -33,6 +33,7 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.MoveStoredItem);
             common.AddFunction(ContentKeyFunctions.RotateStoredItem);
             common.AddFunction(ContentKeyFunctions.SaveItemLocation);
+            common.AddFunction(ContentKeyFunctions.HotbarRemove); // Starlight
             common.AddFunction(ContentKeyFunctions.Point);
             common.AddFunction(ContentKeyFunctions.ZoomOut);
             common.AddFunction(ContentKeyFunctions.ZoomIn);
@@ -58,6 +59,7 @@ namespace Content.Client.Input
             human.AddFunction(EngineKeyFunctions.MoveRight);
             human.AddFunction(EngineKeyFunctions.Walk);
             human.AddFunction(ContentKeyFunctions.Jump); // 🌟Starlight🌟
+            human.AddFunction(ContentKeyFunctions.LatchStruggle); // 🌟Starlight🌟
             human.AddFunction(ContentKeyFunctions.ToggleKnockdown);
             human.AddFunction(ContentKeyFunctions.SwapHands);
             human.AddFunction(ContentKeyFunctions.SwapHandsReverse);

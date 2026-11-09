@@ -81,7 +81,7 @@
     - Hair
     - Snout
     allowProfileOverride: false
-    customSpecieName: "Creature of Flesh"
+    customSpecieName: species-custom-name-doll
     sex: Unsexed
     eyeColor: '#FF0000'
     skinColor: '#FFFFFF'

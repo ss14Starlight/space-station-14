@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: MedicalScanner
+  components:
+  - type: AmbientSound
+    enabled: false
+    range: 3
+    volume: -10
+    sound:
+      path: /Audio/_Starlight/Ambience/Objects/scanner_loop.ogg

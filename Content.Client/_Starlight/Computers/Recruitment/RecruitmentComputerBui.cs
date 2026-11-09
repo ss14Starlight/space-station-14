@@ -73,7 +73,7 @@ public sealed partial class RecruitmentComputerBui(EntityUid owner, Enum uiKey) 
                 .AddChildren(Table(jobsDict, departments)))));
 
         _window.OnClose += Close;
-        _window.Title = "recruitment computer";
+        _window.Title = Loc.GetString("ui-recruitment-computer-title");
         Render();
     }
 

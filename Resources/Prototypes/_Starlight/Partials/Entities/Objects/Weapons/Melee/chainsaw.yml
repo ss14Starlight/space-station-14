@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: Chainsaw
+  components:
+  - type: SurgeryTool
+  - type: BoneSaw
+    successRate: 0.6
+    speed: 0.2 # Chainsaws are very fast
+    startSound:
+      path: /Audio/Weapons/chainsawwield.ogg
+    endSound:
+      path: /Audio/Weapons/chainsaw.ogg

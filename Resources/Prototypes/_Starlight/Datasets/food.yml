@@ -1,0 +1,25 @@
+- type: dataset
+  id: FoodRestrictions
+  values:
+    - Vegetarian
+    - Carnivore
+    - Frugivore
+    - Fungivore
+    - Ovivore
+    - Hunter
+    - Soupivore
+
+- type: dataset
+  id: Edibles
+  values:
+    - Gray Plush
+    - Copypasta
+    - Moldy Bread Slice
+    - Baseball Burger
+    - Empowered Burger
+    - McGuffin
+    - Suppermatter
+    - Stick of Cannabis Butter
+    - Bungo Curry
+    - Salty Sweet Miso Cola Soup
+    - Bread Dog

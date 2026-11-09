@@ -27,7 +27,7 @@ using SixLabors.ImageSharp.Processing;
 
 namespace Content.MapRenderer.Painters
 {
-    public sealed class MapPainter : IAsyncDisposable
+    public sealed partial class MapPainter : IAsyncDisposable // Starlight-edit: partial
     {
         private readonly RenderMap _map;
         private readonly ITestContextLike _testContextLike;
@@ -77,6 +77,7 @@ namespace Content.MapRenderer.Painters
                         throw new IOException($"File {mapFile.FileName} could not be read");
 
                     _grids = loadResult.Grids.ToArray();
+                    _loadedFileIsGrid = IsGridFile(loadResult); // Starlight
                 });
             }
         }
@@ -234,6 +235,10 @@ namespace Content.MapRenderer.Painters
                 {
                     GridUid = uid,
                     Offset = xformSystem.GetWorldPosition(uid),
+                    // Starlight-start
+                    Name = sEntityManager.GetComponent<MetaDataComponent>(uid).EntityName,
+                    LocalOrigin = grid.LocalAABB.IsEmpty() ? new Vector2(minX, minY) * grid.TileSize : grid.LocalAABB.BottomLeft,
+                    // Starlight-end
                 };
 
                 yield return renderedImage;

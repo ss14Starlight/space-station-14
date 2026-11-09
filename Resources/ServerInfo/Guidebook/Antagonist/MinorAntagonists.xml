@@ -92,4 +92,21 @@
 
   - Slimes may [bold]deal extra cellular or poison damage[/bold], based upon their color. Water hurts them just as it would hurt a Laspi. <!--Starlight-->
   - Spiders have a venomous bite and can [bold]create webs[/bold] that are hard to move through, but are easily destroyed with a blade. They can also pry open doors, windoors, and airlocks.
-</Document>
+
+<!--
+Starlight Minor Antagonists
+-->
+  # Scrappers
+
+  <Box>
+    <GuideEntityEmbed Entity="DroneRogue" Caption=""/>
+  </Box>
+
+  Scrappers are rogue drones that steal resources from local space to create more scrappers. They are a known pest for spacefarers.
+
+  Scrappers are inherently detrimental to the operation of the station, and their fabricators should be destroyed whenever discovered.
+
+  - Scrappers have few inherent abilities, but are typically in the vicinity of a Scrapper Exo Fabricator, which can produce tools and new scrapper units for them
+  - Scrappers are capable of vent crawling to steal resources and equipment.
+  - Scrappers are typically non-violent, and driven by production.
+ </Document>

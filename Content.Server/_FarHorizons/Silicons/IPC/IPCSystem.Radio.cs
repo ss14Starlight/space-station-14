@@ -93,7 +93,7 @@ public sealed partial class IPCSystem
 
         var verb = new Verb
         {
-            Text = "Encryption keys",
+            Text = Loc.GetString("ipc-verb-eject-encryption-keys"),
             Category = VerbCategory.Eject,
             IconEntity = GetNetEntity(radio.EncryptionKeysContainer.ContainedEntities[0]),
             Act = () => EjectEncryptionKeys(ev.Target, ev.User),

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.IntegrationTests.Fixtures;
+using Content.Shared._Starlight.Sound;
 using Content.Shared.Audio;
 using Robust.Client.Audio;
 using Robust.Shared.Audio;
@@ -50,6 +51,9 @@ public sealed class StereoTest : GameTest
             new ResPath("/Audio/_Starlight/CosmicCult/a_new_dawn.ogg"), // Global
             new ResPath("/Audio/_Starlight/CosmicCult/finale.ogg"), // Global
             new ResPath("/Audio/_Starlight/CosmicCult/premonition.ogg"), // Global
+            new ResPath("/Audio/_Starlight/Admeme/horror_announcement_cult_laugh.ogg"), // Global
+            new ResPath("/Audio/_Starlight/Admeme/horror_announcement_cult.ogg"), // Global
+            new ResPath("/Audio/_Starlight/Admeme/horror_announcement_cult_short.ogg"), // Global
         ];
 
     public List<ResPath> IgnoredPaths = [
@@ -83,9 +87,9 @@ public sealed class StereoTest : GameTest
         var readErrors = new ConcurrentBag<string>();
 
         var ambienceTracks = new HashSet<ResPath>();
-        foreach (var ambience in protoMan.EnumeratePrototypes<AmbientMusicPrototype>())
+        void AddTracks(SoundSpecifier sound)
         {
-            switch (ambience.Sound)
+            switch (sound)
             {
                 case SoundCollectionSpecifier collection:
                     if (collection.Collection == null)
@@ -98,6 +102,16 @@ public sealed class StereoTest : GameTest
                     ambienceTracks.Add(path.Path);
                     break;
             }
+        }
+
+        foreach (var ambience in protoMan.EnumeratePrototypes<AmbientMusicPrototype>())
+        {
+            AddTracks(ambience.Sound);
+        }
+
+        foreach (var loop in protoMan.EnumeratePrototypes<AmbientLoopPrototype>())
+        {
+            AddTracks(loop.Sound);
         }
 
         var filesToCheck = resMan.ContentFindFiles(audioRoot)

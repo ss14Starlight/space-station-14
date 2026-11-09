@@ -1,0 +1,28 @@
+- type: entity
+  parent: BaseAction
+  id: ActionDefib
+  name: Defibrillate
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Specific/Medical/defib.rsi
+      state: icon
+    itemIconStyle: BigAction
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:DefibActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: MedTakActionSelectAmmo
+  name: Select Ammo Type
+  description: Switch the ammo type fired by this gun.
+  components:
+  - type: Action
+    icon:
+      sprite: _Starlight/Admeme/MedTak/Weapons/ammo-selection.rsi
+      state: standard-kinetic
+    useDelay: 0.25
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:GunSelectableAmmoActionEvent

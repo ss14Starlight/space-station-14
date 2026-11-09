@@ -28,6 +28,7 @@
     JugIceCream: 2
     JugCocoaPowder: 1
     DrinkCreamCarton: 1
+    SugarCube6: 5 #Downstreamed from Inferus
     # Starlight-end
   contrabandInventory:
     EggBoxBroken: 1

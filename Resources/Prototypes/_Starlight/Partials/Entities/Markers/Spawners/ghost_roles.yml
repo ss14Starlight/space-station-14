@@ -1,0 +1,32 @@
+- type: !PartialOnly entity
+  id: SpawnPointGhostRatKing
+  components:
+  - type: GhostRole
+    important: true
+    mindRoles: # GhostRoleSoloAntagonist -> RatKing
+    - !Remove MindRoleGhostRoleSoloAntagonist
+    - MindRoleRatKing
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - SpawnPointGhostNukeOperative
+    - SpawnPointLoneNukeOperative
+    - SpawnPointGhostDragon
+    - SpawnPointGhostSpaceNinja
+    - SpawnPointGhostParadoxClone
+    - SpawnPointGhostRoleMothershipCore
+    - SpawnPointGhostWizard
+  components:
+  - type: GhostRole
+    important: true
+
+- type: !PartialOnly entity
+  id: SpawnPointGhostRoleXenoborg
+  components:
+  - type: GhostRole
+    important: true
+  - type: Sprite
+    layers:
+    - !CombineIndex:1 sprite: Mobs/Silicon/Chassis/xeno_engi.rsi # we moved these
+      state: borg

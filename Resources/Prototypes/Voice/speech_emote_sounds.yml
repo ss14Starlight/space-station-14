@@ -90,10 +90,10 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-    Laugh: # Starlight start
-      collection: MaleLaugh
-    Sneeze:
-      collection: MaleSneezes # Starlight end
+    Laugh:
+      path: /Audio/Animals/lizard_happy.ogg
+    Sneeze: # Starlight
+      collection: MaleSneezes # Starlight
     Honk:
       collection: BikeHorn
     Whistle:
@@ -122,10 +122,10 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-    Laugh: # Starlight start
-      collection: FemaleLaugh
-    Sneeze:
-      collection: FemaleSneezes # Starlight end
+    Laugh:
+      path: /Audio/Animals/lizard_happy.ogg
+    Sneeze: # Starlight
+      collection: FemaleSneezes # Starlight
     Honk:
       collection: BikeHorn
     Whistle:
@@ -477,13 +477,13 @@
       collection: BikeHorn
     #region Starlight
     Crying:
-      /Audio/_Starlight/Voice/Moth/moth_cry.ogg
+      path: /Audio/_Starlight/Voice/Moth/moth_cry.ogg
     Cough:
-      /Audio/_Starlight/Voice/Moth/moth_cough.ogg
+      path: /Audio/_Starlight/Voice/Moth/moth_cough.ogg
     Yawn:
-      /Audio/_Starlight/Voice/Moth/moth_yawn.ogg
+      path: /Audio/_Starlight/Voice/Moth/moth_yawn.ogg
     Sigh:
-      /Audio/_Starlight/Voice/Moth/moth_sigh.ogg
+      path: /Audio/_Starlight/Voice/Moth/moth_sigh.ogg
     Gasp:
       path: /Audio/_Starlight/Voice/Moth/moth_gasp.ogg
     #endregion Starlight

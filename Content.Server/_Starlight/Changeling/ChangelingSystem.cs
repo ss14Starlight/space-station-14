@@ -56,6 +56,7 @@ using Content.Server.GameTicking;
 using Content.Shared.Body.Components;
 // Starlight edit end
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared._Starlight.Changeling;
 using Content.Server._Starlight.Objectives.Components;
 
@@ -98,6 +99,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private PullingSystem _pull = default!;
     [Dependency] private SharedCuffableSystem _cuffs = default!;
     [Dependency] private SharedPuddleSystem _puddle = default!;
+    [Dependency] private SharedLatchSystem _latch = default!;
     [Dependency] private SharedJitteringSystem _jitter = default!;
     [Dependency] private NpcFactionSystem _factionSystem = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
@@ -498,8 +500,13 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         // exceptional comps check
         // there's no foreach for types i believe so i gotta thug it out yandev style.
-        if (HasComp<HeadRevolutionaryComponent>(uid))
-            EnsureComp<HeadRevolutionaryComponent>(newEnt);
+        // Copy so the conversion blacklist/whitelist carry over.
+        if (TryComp<HeadRevolutionaryComponent>(uid, out var headRevComp))
+        {
+            var headRevCompCopy = _serialization.CreateCopy(headRevComp, notNullableOverride: true);
+            RemComp<HeadRevolutionaryComponent>(newEnt);
+            AddComp(newEnt, headRevCompCopy);
+        }
         if (HasComp<RevolutionaryComponent>(uid))
             EnsureComp<RevolutionaryComponent>(newEnt);
 

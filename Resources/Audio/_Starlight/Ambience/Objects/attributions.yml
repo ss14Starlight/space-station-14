@@ -2,3 +2,58 @@
   license: "CC-BY-SA-3.0"
   copyright: "Created by DRAGON-STUDIO, downloaded from Pixabay with creative effort applied to edit the pitch, base, treble, and timing to loop and sound properly."
   source: "https://ko-fi.com/dragonstudio"
+
+- files: ["computer_hum.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /tg/station (computer_mid1.ogg and computer_mid2.ogg), joined, downmixed to mono and crossfaded into a seamless loop"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/machines/computer"
+
+- files: ["tcomms_hum.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /tg/station (tcomms_mid1-4.ogg), joined, downmixed to mono and crossfaded into a seamless loop"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/machines/tcomms"
+
+- files: ["fan_loop.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /tg/station, downmixed to mono and crossfaded into a seamless loop"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/machines/fan"
+
+- files: ["generator_hum.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /tg/station (generator_mid1-3.ogg), joined and crossfaded into a seamless loop"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/machines/generator"
+
+- files: ["cryo_bubbling.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /tg/station (cryo_1-3.ogg), joined, downmixed to mono and crossfaded into a seamless loop"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/machines/cryo"
+
+- files: ["supermatter_calm.ogg", "supermatter_delam.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Paradise Station (sm/loops/calm.ogg and sm/loops/delamming.ogg, originally /tg/station), trimmed and crossfaded into seamless loops"
+  source: "https://github.com/ParadiseSS13/Paradise/tree/master/sound/machines/sm/loops"
+
+- files: ["oven_loop.ogg", "oven_start.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /tg/station (oven_loop_mid.ogg, oven_loop_start.ogg), downmixed to mono, amplified; the loop is joined and crossfaded to loop seamlessly"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/machines/oven"
+
+- files: ["grill_sizzle.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /tg/station (grillsizzle.ogg) and Paradise Station (kitchen/grill_mid.ogg), joined, downmixed to mono, amplified and crossfaded into a seamless loop"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/machines/grill"
+
+- files: ["ame_reactor.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Paradise Station (fission/reactor_loop.ogg), trimmed, downmixed to mono and crossfaded into a seamless loop"
+  source: "https://github.com/ParadiseSS13/Paradise/tree/master/sound/machines/fission"
+
+- files: ["pa_hum.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /tg/station (hypertorus/loops/hypertorus_nominal.ogg), trimmed, downmixed to mono and crossfaded into a seamless loop"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/machines/hypertorus/loops"
+
+- files: ["scanner_loop.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from /tg/station (scanner/scanner.ogg), downmixed to mono, amplified and crossfaded into a seamless loop"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/machines/scanner"

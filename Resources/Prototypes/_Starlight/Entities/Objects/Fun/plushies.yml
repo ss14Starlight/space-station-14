@@ -1,5 +1,64 @@
 # Character Plushies - Keep alphabetical, please!
 - type: entity
+  parent: BaseFelionoidPlushie
+  id: PlushieBarfo # Original_Username2 (SS14) / greasi (Discord)
+  name: barfo plushie
+  description: Soft, cuddly, and suspiciously up to something! This talking Barfo plushie has lots to say!
+  components:
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Fun/Plushies/barfo_plushie.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/barfo_plushie.rsi
+      state: icon
+    - type: Clothing
+      quickEquip: false
+      sprite: _Starlight/Objects/Fun/Plushies/barfo_plushie.rsi
+      slots:
+        - HEAD
+      clothingVisuals:
+        head:
+          - state: equipped-HELMET
+    - type: Edible
+      requiresSpecialDigestion: true
+      useSound:
+        collection: FelionoidHisses
+    - type: EmitSoundOnActivate
+      sound: &SoundBikeHorn
+        collection: BikeHorn
+        params:
+          variation: 0.125
+    - type: EmitSoundOnCollide
+      sound: *SoundBikeHorn
+    - type: EmitSoundOnTrigger
+      sound: *SoundBikeHorn
+    - type: EmitSoundOnLand
+      sound:
+        collection: FelionoidHisses
+    - type: EmitSoundOnUse
+      sound: *SoundBikeHorn
+    - type: MeleeWeapon
+      wideAnimationRotation: 180
+      soundHit: *SoundBikeHorn
+    - type: Extractable
+      juiceSolution:
+        reagents:
+          - ReagentId: Laughter
+            Quantity: 30
+    - type: Speech
+      speechSounds: Cat
+      speechVerb: Felionoid # for pais (In the secret stash)
+    - type: Solution
+      id: food
+      solution:
+        maxVol: 20
+        reagents:
+          - ReagentId: Fiber
+            Quantity: 10
+          - ReagentId: Laughter
+            Quantity: 10
+
+- type: entity
   parent: BaseShadekinPlushie
   id: PlushieBrightheart # rtasva
   name: brightheart plushie
@@ -1034,11 +1093,12 @@
   description: A squishy bunny, looks like it wants to be worn!
   components:
   - type: Item
-    size: Small
+    size: Normal
     sprite: &sprite _Starlight/Objects/Fun/Plushies/sea_bunny_plushie.rsi
   - type: Sprite
     sprite: *sprite
     state: icon
+    scale: 0.9, 0.9
   - type: EmitSoundOnUse
     sound:
       path: &sound /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
@@ -1067,6 +1127,10 @@
     clothingVisuals:
       head:
         - state: equipped-HELMET
+          offset: "0, 0.09"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieSeaBunny
 
 - type: entity
   parent: BaseShadekinPlushie
@@ -1216,3 +1280,232 @@
     clothingVisuals:
       head:
         - state: equipped-HELMET
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieStingRay
+  name: stingray plushie
+  description: The pancake of the sea - look at this lil goober. Soft, floppy and adorable!
+  components:
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Fun/Plushies/stingray_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/stingray_plushie.rsi
+    state: icon
+    scale: 0.9, 0.9
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/stingray_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+          offset: "0, 0.055"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieStingRay
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieSeaPancake
+  name: sea pancake plushie
+  description: The pancake of the sea - now complete with butter and maple syrup. Soft, floppy and adorable!
+  components:
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Fun/Plushies/sea_pancake_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/sea_pancake_plushie.rsi
+    state: icon
+    scale: 0.9, 0.9
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/toysqueak1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/toysqueak1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/toysqueak3.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/toysqueak2.ogg
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/sea_pancake_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+          offset: "0, 0.055"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieSeaPancake
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieSeal
+  name: seal plushie
+  description: The puppy of the sea. Perfectly spherical, perfectly huggable!
+  components:
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Fun/Plushies/seal_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/seal_plushie.rsi
+    state: icon
+    scale: 0.9, 0.9
+  - type: EmitSoundOnUse
+    sound:
+      collection: DogBark
+  - type: EmitSoundOnLand
+    sound:
+      collection: DogBark
+  - type: EmitSoundOnActivate
+    sound:
+      collection: DogBark
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: DogBark
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      collection: Whine
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: Whine
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/seal_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+          offset: "0, 0.13"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieSeal
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieDumboOctopus
+  name: dumbo octopus plushie
+  description: A small, vibrant octopus with big ears. It is perfectly friend shaped!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/dumbo_octopus_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/dumbo_octopus_plushie.rsi
+    state: icon
+    scale: 0.8, 0.8
+  - type: EmitSoundOnUse
+    sound:
+      collection: Squishes
+  - type: EmitSoundOnLand
+    sound:
+      collection: Squishes
+  - type: EmitSoundOnActivate
+    sound:
+      collection: Squishes
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: Squishes
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      collection: Squishes
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: Squishes
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/dumbo_octopus_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+          offset: "0, 0.13"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieDumboOctopus
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieSeaSheep
+  name: sea sheep plushie
+  description: A squishy sea sheep, looks like it wants to be worn!
+  components:
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Fun/Plushies/sea_sheep_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/sea_sheep_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/sea_sheep_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+          offset: "0, 0.1"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieSeaSheep

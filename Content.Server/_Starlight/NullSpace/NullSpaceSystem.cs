@@ -1,4 +1,5 @@
 using Content.Shared.Eye;
+using Content.Shared.Atmos;
 using Robust.Server.GameObjects;
 using Content.Server.Atmos.Components;
 using Content.Shared.Stealth;
@@ -8,7 +9,6 @@ using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Pulling.Components;
-using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;

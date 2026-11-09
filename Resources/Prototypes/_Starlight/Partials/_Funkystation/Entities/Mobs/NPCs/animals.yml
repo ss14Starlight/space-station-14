@@ -1,0 +1,82 @@
+- type: !PartialOnly entity
+  id: MobGooseNarsie
+  components:
+  - type: HellportalMob
+  - type: NpcFactionMember
+    factions:
+    - !Remove SimpleHostile
+    - MoffNarsianDemon
+  - type: Hands
+  - type: ComplexInteraction
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Tag
+    tags:
+    - StutterImmune
+    - DoorBumpOpener
+  - type: LanguageSpeaker
+    currentLanguage: Darktongue
+  - type: LanguageKnowledge
+    speaks:
+    - Darktongue
+    understands:
+    - GalacticCommon
+    - Darktongue
+  - type: Vocalizer
+    hideChat: true
+  - type: DatasetVocalizer
+    dataset: MoffNarSiePrayers
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 6
+        Structural: 15
+        Heat: 6
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: Destructible
+    thresholds: !Clear
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MoffDemonicEssence:
+            min: 0
+            max: 1
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Acidifier:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Body
+    prototype: Bloodsucker
+  - type: Damageable
+    damageModifierSet: MoffDemonFlesh
+    damageContainer: MoffDemonBiological
+  - type: HTN
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+  - type: Respirator
+    minSaturation: 0
+    suffocationThreshold: 0
+  - type: PressureImmunity
+  - type: TemperatureDamage
+    coldDamageThreshold: 0

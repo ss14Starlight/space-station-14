@@ -1,13 +1,13 @@
 # NT stamps
 - type: entity
   name: magistrate stamp
-  parent: [ RubberStampBase, BaseCommandContraband ]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseNanoTrasenContraband ] # Blimpuf
   id: RubberStampMagistrate
   description: A rubber stamp for stamping important documents. Your word is law. This stamp is order.
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: Magistrate
+    stampedName: stamp-component-stamped-name-rubber-stamp-magistrate
     stampedColor: "#FF5297"
     stampState: "paper_stamp-magistrate"
   - type: Sprite
@@ -16,13 +16,13 @@
 
 - type: entity
   name: nt representative's rubber stamp
-  parent: [ RubberStampBase, BaseCommandContraband ]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseNanoTrasenContraband ] # Blimpuf
   id: RubberStampNtrep
   description: A rubber stamp for stamping important documents. Heads will roll.
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "NanoTrasen Representative"
+    stampedName: stamp-component-stamped-name-rubber-stamp-ntrep
     stampedColor: "#fcc032"
     stampState: "paper_stamp-ntrep"
   - type: Sprite
@@ -31,7 +31,7 @@
 
 - type: entity
   name: internal affairs agent's rubber stamp
-  parent: [ RubberStampBase, BaseLawContraband ]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseLawContraband ] # Blimpuf
   id: RubberStampIAA
   description: A rubber stamp for stamping important documents. For when you want your fax to CC to have that bit more authority.
   suffix: DO NOT MAP
@@ -46,13 +46,13 @@
 
 - type: entity
   name: blueshield rubber stamp
-  parent: [ RubberStampBase, BaseBlueShieldContraband ]
+  parent: [ BaseContrabandTier2, RubberStampBase, BaseBlueShieldContraband ] # Blimpuf
   id: RubberStampBSO
   description: A rubber stamp for stamping important documents. While you are stamping a document, the captain is getting his shoes stolen AGAIN.
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Blueshield Officer"
+    stampedName: stamp-component-stamped-name-rubber-stamp-bso
     stampedColor: "#004281"
     stampState: "paper_stamp-bso"
   - type: Sprite
@@ -74,6 +74,27 @@
     - type: Sprite
       sprite: _Starlight/Objects/Misc/stamps.rsi
       state: stamp-brigmedic
+    - type: Contraband # Blimpuf
+      tier: Tier2
+      allowedJobs: [ Brigmedic ]
+
+# Gunnery Sergeant stamp
+- type: entity
+  name: gunnery sergeant's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampGunnerySergeant
+  suffix: DO NOT MAP
+  components:
+    - type: Stamp
+      stampedName: "Gunnery Sergeant"
+      stampedColor: "#c4363b"
+      stampState: "paper_stamp-gunnerysergeant"
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/stamps.rsi
+      state: stamp-gunnerysergeant
+    - type: Contraband # Blimpuf
+      tier: Tier2
+      allowedJobs: [ GunnerySergeant ]
 
 # Assistant Manager stamp
 - type: entity
@@ -110,13 +131,13 @@
 # CC Division Stamps
 - type: entity
   name: central administration division rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampCAD
   description: A rubber stamp for stamping important documents. Somebody is getting fired.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Administration Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-cad
     stampedColor: "#1155CC"
     stampState: "paper_stamp-cap"
   - type: Sprite
@@ -124,13 +145,13 @@
 
 - type: entity
   name: central cargo division rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampCCD
   description: A rubber stamp for stamping important documents. Used to deny the urgent medical supplies request and send over a pizza party instead.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Cargo Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-ccd
     stampedColor: "#9e794a"
     stampState: "paper_stamp-qm"
   - type: Sprite
@@ -138,13 +159,13 @@
 
 - type: entity
   name: central engineering division rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampCED
   description: A rubber stamp for stamping important documents. Use when another multi-trillion dollar station was lost.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Engineering Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-ced
     stampedColor: "#e39919"
     stampState: "paper_stamp-ntrep"
   - type: Sprite
@@ -158,7 +179,7 @@
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Intelligence Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-cid
     stampedColor: "#660089"
     stampState: "paper_stamp-rd"
   - type: Sprite
@@ -166,13 +187,13 @@
 
 - type: entity
   name: central medical division rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampCMD
   description: A rubber stamp for stamping important documents. For when the REAL doctor is in.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Medical Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-cmd
     stampedColor: "#0AAFC3"
     stampState: "paper_stamp-cmo"
   - type: Sprite
@@ -180,13 +201,13 @@
 
 - type: entity
   name: central research division rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampCRD
   description: A rubber stamp for stamping important documents. Every bit as exploded as it's non-CC counterpart.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Research Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-crd
     stampedColor: "#9900FF"
     stampState: "paper_stamp-rd"
   - type: Sprite
@@ -194,13 +215,13 @@
 
 - type: entity
   name: central domestic division rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampCDD
   description: A rubber stamp for stamping important documents. What do you even do again?
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Domestic Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-cdd
     stampedColor: "#6AA84F"
     stampState: "paper_stamp-centcom"
   - type: Sprite
@@ -214,7 +235,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Central Special Operations Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-csod
     stampedColor: "#741B47"
     stampState: "paper_stamp-magistrate"
   - type: Sprite
@@ -223,13 +244,13 @@
 
 - type: entity
   name: central security division rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampCSD
   description: A rubber stamp for stamping important documents. They fought the law, and the law won.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Central Security Division"
+    stampedName: stamp-component-stamped-name-rubber-stamp-csd
     stampedColor: "#cc0000"
     stampState: "paper_stamp-hos"
   - type: Sprite
@@ -237,7 +258,7 @@
 
 - type: entity
   name: cc department stamps box
-  parent: BoxCardboard
+  parent: [ BoxCardboard, BaseCentcommContraband ] # Blimpuf
   id: BoxStampsCCDepartments
   description: A small box containing stamps. You would think by the 26th century there would be something more sophisticated than a rubber stamp.
   components:
@@ -271,13 +292,13 @@
 # CC Administrative Stamps
 - type: entity
   name: ACKNOWLEDGED rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampAcknowledged
   description: A rubber stamp for stamping important documents. Yes we hear you. No, we will not do anything.
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Acknowledged"
+    stampedName: stamp-component-stamped-name-rubber-stamp-acknowledged
     stampedColor: "#79ae00"
     stampState: "paper_stamp-ok"
   - type: Sprite
@@ -286,13 +307,13 @@
 
 - type: entity
   name: MISSING STAMPS rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampMissingStamps
   description: A rubber stamp for stamping important documents. Next time, get the clown's stamp!
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Missing Stamps"
+    stampedName: stamp-component-stamped-name-rubber-stamp-missing-stamps
     stampedColor: "#9b5100"
     stampState: "paper_stamp-deny"
   - type: Sprite
@@ -301,13 +322,13 @@
 
 - type: entity
   name: INCORRECT STAMPS rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampIncorrectStamps
   description: A rubber stamp for stamping important documents. Next time, don't get the clown's stamp!
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Incorrect Stamps"
+    stampedName: stamp-component-stamped-name-rubber-stamp-incorrect-stamps
     stampedColor: "#9b5100"
     stampState: "paper_stamp-deny"
   - type: Sprite
@@ -316,13 +337,13 @@
 
 - type: entity
   name: INCORRECT FORM rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampIncorrectForm
   description: A rubber stamp for stamping important documents. They needed the OTHER document. No, the OTHER OTHER document.
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Incorrect Form"
+    stampedName: stamp-component-stamped-name-rubber-stamp-incorrect-form
     stampedColor: "#9b3600"
     stampState: "paper_stamp-deny"
   - type: Sprite
@@ -331,13 +352,13 @@
 
 - type: entity
   name: INCOMPLETE FORM rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampIncompleteForm
   description: A rubber stamp for stamping important documents. If they aren't going to finish this form, then I'm not going to f
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Incomplete Form"
+    stampedName: stamp-component-stamped-name-rubber-stamp-incomplete-form
     stampedColor: "#9b3600"
     stampState: "paper_stamp-deny"
   - type: Sprite
@@ -346,13 +367,13 @@
 
 - type: entity
   name: SENT TO ATS rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampSentToATS
   description: A rubber stamp for stamping important documents. Especially useful if the cargo shuttle is still intact.
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Sent to ATS"
+    stampedName: stamp-component-stamped-name-rubber-stamp-sent-to-ats
     stampedColor: "#b3844b"
     stampState: "paper_stamp-qm"
   - type: Sprite
@@ -361,13 +382,13 @@
 
 - type: entity
   name: DEFER TO COMMAND rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampDeferToCommand
   description: A rubber stamp for stamping important documents. Passing the buck, the CC way.
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Defer to Command"
+    stampedName: stamp-component-stamped-name-rubber-stamp-defer-to-command
     stampedColor: "#fcc032"
     stampState: "paper_stamp-ntrep"
   - type: Sprite
@@ -376,13 +397,13 @@
 
 - type: entity
   name: STANDBY rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseCentcommContraband, RubberStampBase ] # Blimpuf
   id: RubberStampStandby
   description: A rubber stamp for stamping important documents. You will do something. Maybe.
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Standby"
+    stampedName: stamp-component-stamped-name-rubber-stamp-standby
     stampedColor: "#e0c300"
     stampState: "paper_stamp-standby"
   - type: Sprite
@@ -391,7 +412,7 @@
 
 - type: entity
   name: cc administrative stamps box
-  parent: BoxCardboard
+  parent: [ BoxCardboard, BaseCentcommContraband ] # Blimpuf
   id: BoxStampsCCAdministrative
   description: A small box containing stamps. You would think by the 26th century there would be something more sophisticated than a rubber stamp.
   components:
@@ -431,23 +452,26 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Salvage Lead"
+    stampedName: stamp-component-stamped-name-rubber-stamp-salvage-lead
     stampedColor: "#846433"
     stampState: "paper_stamp-salvagelead"
   - type: Sprite
     sprite: _Starlight/Objects/Misc/stamps.rsi
     state: stamp-salvagelead
+  - type: Contraband
+    tier: Tier2 # Blimpuf
+    allowedJobs: [ SalvageLead ]
 
 # TSF/Solgov stamp
 - type: entity
   name: trans-solar federation rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
   id: RubberStampTSF
   description: A rubber stamp for stamping important documents. Oh god...
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Trans-Solar Federation"
+    stampedName: stamp-component-stamped-name-rubber-stamp-tsf
     stampedColor: "#22a7ff"
     stampState: "paper_stamp-cap"
   - type: Sprite
@@ -455,13 +479,13 @@
 
 - type: entity
   name: trans-solar marine corps rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
   id: RubberStampTSMC
   description: A rubber stamp for stamping important documents. OH GOD OH FUCK...!
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Trans-Solar Marine Corps"
+    stampedName: stamp-component-stamped-name-rubber-stamp-tsmc
     stampedColor: "#22a7ff"
     stampState: "paper_stamp-bso"
   - type: Sprite
@@ -469,13 +493,13 @@
 
 - type: entity
   name: solgov law enforcement rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
   id: RubberStampSolgovLaw
   description: A rubber stamp for stamping important documents. Oh fuck...
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Solgov Law Enforcement"
+    stampedName: stamp-component-stamped-name-rubber-stamp-solgov-law
     stampedColor: "#22a7ff"
     stampState: "paper_stamp-lawyer"
   - type: Sprite
@@ -483,13 +507,13 @@
 
 - type: entity
   name: solgov representative rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
   id: RubberStampSolgovRep
   description: A rubber stamp for stamping important documents. Reminds people that CC and NT answer to somebody.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Solgov Representative"
+    stampedName: stamp-component-stamped-name-rubber-stamp-solgov-rep
     stampedColor: "#22a7ff"
     stampState: "paper_stamp-bso"
   - type: Sprite
@@ -497,13 +521,13 @@
 
 - type: entity
   name: solgov traders rubber stamp
-  parent: RubberStampBase
+  parent: [ BaseContrabandTier3, RubberStampBase, BaseTSFContraband ] # Blimpuf
   id: RubberStampSolgovTraders
   description: A rubber stamp for stamping important documents. Where is money to be made, that is.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Solgov Traders"
+    stampedName: stamp-component-stamped-name-rubber-stamp-solgov-traders
     stampedColor: "#B45F06"
     stampState: "paper_stamp-qm"
   - type: Sprite
@@ -522,7 +546,9 @@
       stampState: "paper_stamp-psychologist"
     - type: Sprite
       state: stamp-hop
-
+    - type: Contraband # Blimpuf
+      tier: Tier2
+      allowedJobs: [ Reporter ]
 # ITG stamp
 - type: entity
   name: ITG stamp
@@ -532,7 +558,7 @@
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: Interstellar Trade Guild
+    stampedName: stamp-component-stamped-name-rubber-stamp-itg
     stampedColor: "#b3844b"
     stampState: "paper_stamp-qm"
   - type: Sprite

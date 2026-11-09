@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: FaxMachineFlatpack
+  components:
+  - type: Flatpack
+    allowUnpackOnTables: true
+
+- type: !PartialOnly entity
+  id: SyndicateMicrowaveFlatpack
+  components:
+  - type: Flatpack
+    allowUnpackOnTables: true

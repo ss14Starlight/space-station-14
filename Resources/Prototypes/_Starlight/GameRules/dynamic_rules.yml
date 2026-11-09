@@ -67,7 +67,7 @@
             rules:
             - VampireLess
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: Nukeops
           weight: 10
           prob: 0.95 # Every main gamemode will have a very small chance to fail
@@ -110,7 +110,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 35
+            min: 25
       # Minor Rules
       - !type:GroupSelector
         conditions:
@@ -124,13 +124,20 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 5
+        - id: BloodBound
+          prob: 0.15
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 10
         - id: SLChangeling
           prob: 0.15
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: SiliconLiberation
           prob: 0.15
           conditions:
@@ -153,14 +160,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        #- id: SubBrighteye
-        #  prob: 0.05
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:MaxRuleOccurenceCondition
-        #    max: 1 # it lags the game when making more maps
-        #  - !type:PlayerCountCondition
-        #    min: 20
       # Dynamic Multiantag, can spawn at the start, or midround. This is the actual intended purpose of Dynamic. Exciting, no? Run across the sky!
       - !type:GroupSelector
         children:
@@ -182,7 +181,7 @@
             rules:
             - Vampire
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: NukeopsLate
           weight: 9
           prob: 0.40 # Have a 60% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
@@ -220,7 +219,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 35
+            min: 25
         - id: ThiefLess
           weight: 8
           prob: 0.50
@@ -232,6 +231,14 @@
             - Thief # Don't double thieves
           - !type:PlayerCountCondition
             min: 5
+        - id: BloodBound
+          weight: 6
+          prob: 0.50
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 10
         - id: SLChangelingLess
           weight: 6
           prob: 0.50
@@ -242,7 +249,7 @@
             rules:
             - SLChangeling # Don't double changelings
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: SiliconLiberation
           weight: 8
           prob: 0.50
@@ -268,15 +275,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        #- id: SubBrighteye
-        #  weight: 5
-        #  prob: 0.50
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:MaxRuleOccurenceCondition
-        #    max: 1 # it lags the game when making more maps
-        #  - !type:PlayerCountCondition
-        #    min: 20
       # Midround rules
       - !type:GroupSelector
         conditions:
@@ -340,7 +338,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 40
+            min: 20
           - !type:RoundDurationCondition
             min: 1800 # 30 minutes
         - id: AbductorsSpawn
@@ -352,16 +350,6 @@
             min: 10
           - !type:RoundDurationCondition
             min: 1200 # 20 minutes
-        #- id: BrighteyeSpawn
-        #  weight: 1
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:MaxRuleOccurenceCondition
-        #    max: 1 # it lags the game when making more maps
-        #  - !type:PlayerCountCondition
-        #    min: 20
-        #  - !type:RoundDurationCondition
-        #    min: 1200 # 20 minutes
         - id: EeepEvent
           weight: 1
           prob: 0.85
@@ -386,7 +374,7 @@
   id: SLDynamicRuleLP
   components:
   - type: GameRule
-    minPlayers: 40
+    minPlayers: 20
   - type: DynamicRule
     startingBudgetMin: 200 # Beta can have a lower threshold.
     startingBudgetMax: 400
@@ -450,7 +438,7 @@
             rules:
             - VampireLess
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: Nukeops
           weight: 7
           prob: 0.95 # Every main gamemode will have a very small chance to fail
@@ -493,7 +481,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 35
+            min: 25
       # Minor Rules, Beta can keep the same as Alpha since these aren't split normally anyways
       - !type:GroupSelector
         conditions:
@@ -507,13 +495,20 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 5
+        - id: BloodBound
+          prob: 0.2
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 10
         - id: SLChangeling
           prob: 0.15
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: SiliconLiberation
           prob: 0.15
           conditions:
@@ -536,14 +531,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        #- id: SubBrighteye
-        #  prob: 0.05
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:MaxRuleOccurenceCondition
-        #    max: 1 # it lags the game when making more maps
-        #  - !type:PlayerCountCondition
-        #    min: 20
       # Dynamic Multiantag, can spawn at the start, or midround. This is the actual intended purpose of Dynamic. Exciting, no? Run across the sky! Beta edition.
       - !type:GroupSelector
         children:
@@ -565,7 +552,7 @@
             rules:
             - Vampire
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: NukeopsLate
           weight: 6
           prob: 0.40
@@ -603,7 +590,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 35
+            min: 25
         - id: ThiefLess
           weight: 8
           prob: 0.50
@@ -613,6 +600,14 @@
           - !type:MutuallyExclusiveRuleCondition
             rules:
             - Thief # Don't double thieves
+        - id: BloodBound
+          weight: 6
+          prob: 0.50
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 10
         - id: SLChangelingLess
           weight: 6
           prob: 0.50
@@ -623,7 +618,7 @@
             rules:
             - SLChangeling # Don't double changelings
           - !type:PlayerCountCondition
-            min: 25
+            min: 20
         - id: SiliconLiberation
           weight: 8
           prob: 0.50
@@ -649,15 +644,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        #- id: SubBrighteye
-        #  weight: 5
-        #  prob: 0.50
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:MaxRuleOccurenceCondition
-        #    max: 1 # it lags the game when making more maps
-        #  - !type:PlayerCountCondition
-        #    min: 20
       # Midround rules, same as Alpha, because Beta has no differences on these normally anyways
       - !type:GroupSelector
         conditions:
@@ -721,7 +707,7 @@
             rules:
             - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
-            min: 40
+            min: 20
           - !type:RoundDurationCondition
             min: 1800 # 30 minutes
         - id: AbductorsSpawn
@@ -733,16 +719,6 @@
             min: 10
           - !type:RoundDurationCondition
             min: 1200 # 20 minutes
-        #- id: BrighteyeSpawn
-        #  weight: 1
-        #  conditions:
-        #  - !type:HasBudgetCondition
-        #  - !type:MaxRuleOccurenceCondition
-        #    max: 1 # it lags the game when making more maps
-        #  - !type:PlayerCountCondition
-        #    min: 20
-        #  - !type:RoundDurationCondition
-        #    min: 1200 # 20 minutes
         - id: EeepEvent
           weight: 1
           prob: 0.85

@@ -68,3 +68,14 @@
       plantId: CinnaflarePlants
     - type: Sprite
       sprite: _Starlight/Objects/Specific/Hydroponics/cinnaflare.rsi
+
+- type: entity
+  parent: SeedBase
+  id: BrownMushroomSeeds
+  name: packet of brown mushroom spores
+  description: Spores for growing edible brown button mushrooms.
+  components:
+  - type: Seed
+    plantId: BrownMushroomPlants
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Hydroponics/brown_mushroom.rsi

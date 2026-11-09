@@ -8,6 +8,7 @@ using Robust.Shared.Configuration;
 using Content.Shared._Starlight.CombatMode;
 using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Prototypes;
+using Content.Client._Starlight.Computers.RemoteControl;
 
 namespace Content.Client.CombatMode;
 
@@ -21,6 +22,7 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
     #region Starlight
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IClyde _clyde = default!;
+    private RemoteControlInterface _remoteControl => EntityManager.System<RemoteControlInterface>(); // Starlight
     private bool _lastState = false;
     private string _rangedSight = "GunSight";
     private string _meleeSight = "MeleeSight";
@@ -28,6 +30,9 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
     private float _offset = 0.5f;
     private bool _rangedRotation = true;
     private bool _meleeRotation = true;
+    private bool _showBoltIndicator = true;
+    private bool _showJamIndicator = true;
+    private bool _showHeatIndicator = true;
     private Color _main = Color.White.WithAlpha(0.3f);
     private Color _second = Color.Black.WithAlpha(0.5f);
     #endregion
@@ -53,6 +58,9 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
         Subs.CVar(_cfg, StarlightCCVars.MeleeSight, OnMeleeSightChanged, true);
         Subs.CVar(_cfg, StarlightCCVars.RangedSightRotation, OnRangedRotationChanged, true);
         Subs.CVar(_cfg, StarlightCCVars.MeleeSightRotation, OnMeleeRotationChanged, true);
+        Subs.CVar(_cfg, StarlightCCVars.SightShowBoltIndicator, OnShowBoltIndicatorChanged, true);
+        Subs.CVar(_cfg, StarlightCCVars.SightShowJamIndicator, OnShowJamIndicatorChanged, true);
+        Subs.CVar(_cfg, StarlightCCVars.SightShowHeatIndicator, OnShowHeatIndicatorChanged, true);
         // Starlight-end
     }
 
@@ -68,6 +76,11 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
 
     public bool IsInCombatMode()
     {
+        // Starlight-start
+        if (_remoteControl.ControlledEntity is { } remote)
+            return IsInCombatMode(remote);
+        // Starlight-end
+
         var entity = _playerManager.LocalEntity;
 
         if (entity == null)
@@ -142,6 +155,24 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
         UpdateCombatIndicators();
     }
 
+    private void OnShowBoltIndicatorChanged(bool show)
+    {
+        _showBoltIndicator = show;
+        UpdateCombatIndicators();
+    }
+
+    private void OnShowJamIndicatorChanged(bool show)
+    {
+        _showJamIndicator = show;
+        UpdateCombatIndicators();
+    }
+
+    private void OnShowHeatIndicatorChanged(bool show)
+    {
+        _showHeatIndicator = show;
+        UpdateCombatIndicators();
+    }
+
     private void OnMeleeRotationChanged(bool rotation)
     {
         _meleeRotation = rotation;
@@ -172,7 +203,10 @@ public sealed partial class CombatModeSystem : SharedCombatModeSystem
                 _main,
                 _second,
                 _rangedRotation,
-                _meleeRotation));
+                _meleeRotation,
+                _showBoltIndicator,
+                _showJamIndicator,
+                _showHeatIndicator));
         }
     }
 
