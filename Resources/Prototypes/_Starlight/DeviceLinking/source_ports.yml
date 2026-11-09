@@ -1,11 +1,6 @@
 # ToggleableDevice START
 
 - type: sourcePort
-  id: ToggleableDeviceStatus
-  name: signal-port-name-toggleable-device-status
-  description: signal-port-description-toggleable-device-status
-
-- type: sourcePort
   id: ToggleableDeviceStatusInverted
   name: signal-port-name-toggleable-device-status-inverted
   description: signal-port-description-toggleable-device-status-inverted
