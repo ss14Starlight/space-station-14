@@ -119,7 +119,7 @@ public sealed partial class MindTests
             Assert.That(entMan.System<StationJobsSystem>().TryAssignJob(station, "StationAi", userId), Is.True);
 
             var containers = entMan.System<SharedContainerSystem>();
-            ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            ai = entMan.Spawn("StationAiBrainConstructed", MapCoordinates.Nullspace);
             if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
                 throw new InvalidOperationException("Station AI core container was not initialized.");
             Assert.That(containers.Insert(ai, coreContainer), Is.True);
@@ -288,7 +288,7 @@ public sealed partial class MindTests
             Assert.That(entMan.System<StationJobsSystem>().TryAssignJob(station, "StationAi", userId), Is.True);
 
             var containers = entMan.System<SharedContainerSystem>();
-            ai = entMan.SpawnEntity("StationAiBrainConstructed", MapCoordinates.Nullspace);
+            ai = entMan.Spawn("StationAiBrainConstructed", MapCoordinates.Nullspace);
             if (!containers.TryGetContainer(cores[0], StationAiCoreComponent.Container, out var coreContainer))
                 throw new InvalidOperationException("Station AI core container was not initialized.");
             Assert.That(containers.Insert(ai, coreContainer), Is.True);
@@ -941,7 +941,7 @@ public sealed partial class MindTests
             entMan.System<MindSystem>().TransferTo(mindId, ai);
             AssertStationAiJobSlots(entMan, station, 0);
 
-            var user = entMan.SpawnEntity("MobHuman", MapCoordinates.Nullspace);
+            var user = entMan.Spawn("MobHuman", MapCoordinates.Nullspace);
             holder = entMan.SpawnEntity("Intellicard", MapCoordinates.Nullspace);
             entMan.GetComponent<IntellicardComponent>(holder).DownloadTime = 0;
             Assert.That(entMan.System<SharedHandsSystem>().TryPickupAnyHand(user, holder), Is.True);

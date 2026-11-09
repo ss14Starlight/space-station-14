@@ -80,7 +80,7 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
             controlledBorg = SpawnBorg(coordinates.Offset(new Vector2(4f, 0f)), out controlledBrain);
             untouchedBorg = SpawnBorg(coordinates.Offset(new Vector2(-4f, 0f)), out _);
 
-            var core = SEntMan.SpawnEntity("PlayerStationAi", MapCoordinates.Nullspace);
+            var core = SEntMan.Spawn("PlayerStationAi", MapCoordinates.Nullspace);
             var containers = Server.System<SharedContainerSystem>();
             if (!containers.TryGetContainer(core, StationAiCoreComponent.Container, out var coreContainer))
                 throw new InvalidOperationException("Station AI core container was not initialized.");
