@@ -111,7 +111,7 @@ public sealed partial class TransitTubeSystem
             return;
 
         // Fast pods cover a lot of tube per tick; widen the check so they can't skip through each other.
-        var range = pod.Comp.CollisionRange + ((2f * holder.TraversalSpeed) * frameTime);
+        var range = pod.Comp.CollisionRange + (2f * holder.TraversalSpeed * frameTime);
 
         _nearbyPods.Clear();
         _lookup.GetEntitiesInRange(xform.Coordinates, range, _nearbyPods);
