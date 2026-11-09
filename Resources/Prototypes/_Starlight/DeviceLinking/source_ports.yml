@@ -2,6 +2,7 @@
   id: ToggleableDeviceStatusInverted
   name: signal-port-name-toggleable-device-status-inverted
   description: signal-port-description-toggleable-device-status-inverted
+  defaultLinks: [ ]
 
 - type: sourcePort
   id: BodyScannerSender
