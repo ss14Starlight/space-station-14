@@ -45,6 +45,8 @@ namespace Content.IntegrationTests.Tests.Minds;
 public sealed partial class MindTests
 {
     private const string StationAiTestMapId = "Empty";
+    private const string ActionAiShunt = "ActionAIShunt";
+    private const string ActionAiReconnectShunt = "ActionAIReconnectShunt";
 
     [Test]
     public async Task StationAiRemainsHeldWhileMindVisitsGhost()
@@ -54,7 +56,7 @@ public sealed partial class MindTests
 
         await pair.Server.WaitAssertion(() =>
         {
-            var ghost = entMan.SpawnEntity(GameTicker.ObserverPrototypeName, MapCoordinates.Nullspace);
+            var ghost = entMan.Spawn(GameTicker.ObserverPrototypeName, MapCoordinates.Nullspace);
             entMan.System<MindSystem>().Visit(mindId, ghost);
         });
         await pair.RunTicksSync(5);
@@ -71,7 +73,7 @@ public sealed partial class MindTests
 
         await pair.Server.WaitAssertion(() =>
         {
-            var ghost = entMan.SpawnEntity(GameTicker.ObserverPrototypeName, MapCoordinates.Nullspace);
+            var ghost = entMan.Spawn(GameTicker.ObserverPrototypeName, MapCoordinates.Nullspace);
             entMan.System<MindSystem>().TransferTo(mindId, ghost);
         });
         await pair.RunTicksSync(5);
@@ -1012,7 +1014,7 @@ public sealed partial class MindTests
         EntityUid ai)
         => actions.GetActions(ai)
             .Where(action => entMan.GetComponent<MetaDataComponent>(action.Owner).EntityPrototype?.ID is
-                "ActionAIShunt" or "ActionAIReconnectShunt")
+                ActionAiShunt or ActionAiReconnectShunt)
             .Select(action => action.Owner)
             .ToHashSet();
 
