@@ -478,9 +478,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
         if (args.Handled)
             return;
 
-        args.CanDrop = ent.Comp.DockedPod is { } podUid
-                       && TryComp<TransitPodComponent>(podUid, out var pod)
-                       && CanCarry(pod, args.Dragged);
+        args.CanDrop = ent.Comp.DockedPod is { } podUid && TryComp<TransitPodComponent>(podUid, out var pod) && CanCarry(pod, args.Dragged);
         args.Handled = true;
     }
 }

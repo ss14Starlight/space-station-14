@@ -247,8 +247,7 @@ public sealed partial class TransitTubeSystem
 
         switch (ent.Comp.State)
         {
-            case TransitPodState.Open when ent.Comp.Station is { } stationUid
-                                           && TryComp<TransitTubeStationComponent>(stationUid, out var station):
+            case TransitPodState.Open when ent.Comp.Station is { } stationUid && TryComp<TransitTubeStationComponent>(stationUid, out var station):
                 Eject(ent, args.Entity, GetPlatform((stationUid, station)));
                 break;
 

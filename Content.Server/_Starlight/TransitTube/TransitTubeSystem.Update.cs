@@ -138,6 +138,13 @@ public sealed partial class TransitTubeSystem
             // A pod standing on the line is waited for, unless this one is going too fast to stop.
             if (!pod.Comp.Boosted && !holder.Halted && StandsInTheWay(other))
             {
+                // Waiting here would make a loop of pods waiting on each other: turn back instead.
+                if (WaitWouldCycle(pod, other))
+                {
+                    TurnBack(pod, (pod.Owner, holder), now);
+                    return;
+                }
+
                 pod.Comp.WaitingBehind = other;
                 Hold(pod, (pod.Owner, holder));
                 continue;

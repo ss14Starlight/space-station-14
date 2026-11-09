@@ -22,6 +22,7 @@ public sealed partial class TransitTubeSystem
     private readonly HashSet<(EntityUid Tube, Direction Travel, string? Tag)> _sectionSeen = [];
     private readonly Queue<(Entity<DisposalTubeComponent> From, Direction Exit, int Depth, string? Tag)> _sectionFrontier = new();
     private readonly List<Direction> _sectionExits = [];
+    private readonly HashSet<EntityUid> _waitChain = [];
 
     protected override void OnPodRouted(Entity<TransitTubeComponent> tube, Entity<DisposalHolderComponent> holder, Entity<TransitPodComponent> pod, Direction next)
     {
@@ -67,7 +68,10 @@ public sealed partial class TransitTubeSystem
         }
 
         // Wait behind a pod standing on the line rather than ramming it.
-        if (!pod.Comp.Boosted && StoppedPodAhead(pod, tube, nextUid, next) is { } stopped)
+        // One that would end up waiting on itself rides on, and the collision check turns it back.
+        if (!pod.Comp.Boosted
+            && StoppedPodAhead(pod, tube, nextUid, next) is { } stopped
+            && !WaitWouldCycle(pod, stopped))
         {
             pod.Comp.WaitingBehind = stopped;
             Hold(pod, holder);
@@ -342,8 +346,37 @@ public sealed partial class TransitTubeSystem
     /// </summary>
     private bool StandsInTheWay(EntityUid uid)
         => TryComp<TransitPodComponent>(uid, out var pod)
-           && pod.State == TransitPodState.Moving
-           && (pod.Braked || pod.WaitingBehind != null);
+        && pod.State == TransitPodState.Moving
+        && (pod.Braked || pod.WaitingBehind != null);
+
+    private bool WaitWouldCycle(EntityUid pod, EntityUid ahead)
+    {
+        _waitChain.Clear();
+        EntityUid? current = ahead;
+        while (current is { } uid && _waitChain.Add(uid))
+        {
+            if (uid == pod)
+                return true;
+
+            current = TryComp<TransitPodComponent>(uid, out var other) ? other.WaitingBehind : null;
+        }
+
+        return false;
+    }
+
+    private void TurnBack(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder, TimeSpan now)
+    {
+        pod.Comp.NextCollision = now + _collisionCooldown;
+
+        if (pod.Comp.Target != null || pod.Comp.AnyFree)
+            CancelTrip(pod);
+
+        ReleaseReservation(pod);
+        PopupPassengers(pod, "transit-pod-turned-back");
+
+        if (!_holder.Reverse(holder.AsNullable()))
+            Stall(pod, holder);
+    }
 
     /// <summary>
     /// A pod standing in the way on the tube a pod is about to enter, or further along the one it is on.
