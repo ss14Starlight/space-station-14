@@ -15,6 +15,9 @@ public sealed partial class ReplayObserverSystem
     private const string RoundTimeFormat = @"mm\:ss";
     private const double MaxRoundSeconds = 100 * 24 * 60 * 60;
 
+    // Far past any server's uptime. Replay times beyond it are corrupt, and adding them together could overflow.
+    private static readonly TimeSpan MaxReplayTime = TimeSpan.FromDays(3650);
+
     private ReplayControlWidget? _roundTimeWidget;
     private Label? _roundTimeLabel;
     private LineEdit? _jumpEdit;
@@ -31,6 +34,14 @@ public sealed partial class ReplayObserverSystem
         {
             if (_replayPlayback.Replay is not { } replay)
                 return TimeSpan.Zero;
+
+            // With corrupt replay times, round time is left equal to replay time so no offset gets added.
+            if (replay.StartTime < TimeSpan.Zero
+                || replay.StartTime > MaxReplayTime
+                || (replay.Duration is { } length && (length < TimeSpan.Zero || length > MaxReplayTime)))
+            {
+                return replay.StartTime;
+            }
 
             // A stored round start after the recording start can't be right, and would throw off the jump math.
             if (replay.YamlData.TryGet(ReplayRoundTime.MetaKeyRoundStart, out ValueDataNode? node)
@@ -71,14 +82,15 @@ public sealed partial class ReplayObserverSystem
             return false;
         }
 
-        var target = roundTime + _roundStart - replay.StartTime;
+        // The offset first, so a large start time is never added on its own.
+        var target = roundTime + (_roundStart - replay.StartTime);
         if (target < TimeSpan.Zero)
             target = TimeSpan.Zero;
         else if (replay.Duration is { } duration && target > duration)
             target = duration;
 
         _replayPlayback.SetTime(target);
-        message = Loc.GetString("replay-observer-jump-done", ("time", FormatRoundTime(target + replay.StartTime - _roundStart)));
+        message = Loc.GetString("replay-observer-jump-done", ("time", FormatRoundTime(target + (replay.StartTime - _roundStart))));
         return true;
     }
 
