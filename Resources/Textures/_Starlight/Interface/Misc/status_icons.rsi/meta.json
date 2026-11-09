@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by BlackAures1 (GITHUB) Permission granted to relicence and use. GIT: https://github.com/DragonSurvivalTeam/DragonSurvival",
+  "states": [
+    {
+      "name": "evil_dragon"
+    }
+  ]
+}

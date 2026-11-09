@@ -1,4 +1,5 @@
 using Content.Server.Ghost.Roles.Events;
+using Content.Server.Salvage.Expeditions;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Roles;
 using Content.Shared._Starlight.CCVar;
@@ -97,12 +98,20 @@ public sealed partial class ScalingSystem : SharedScalingSystem
         if (!TryComp(mob, out MobThresholdsComponent? thresholdsComp))
             return false;
 
-        var nearestGrid = _stationSystem.GetNearestStation(mob);
+        // Remote expeditions scale against their home station's crew records.
+        EntityUid? station;
+        if (TryComp<SalvageExpeditionComponent>(Transform(mob).MapUid, out var expedition))
+        {
+            station = expedition.Station;
+        }
+        else
+        {
+            var nearestGrid = _stationSystem.GetNearestStation(mob);
+            if (nearestGrid.Owner == EntityUid.Invalid)
+                return false;
 
-        if (nearestGrid.Owner == EntityUid.Invalid)
-            return false;
-
-        var station = _stationSystem.GetOwningStation(nearestGrid);
+            station = _stationSystem.GetOwningStation(nearestGrid);
+        }
 
         if (station is not { } stationUid || !UpdatePopulation(stationUid))
             return false;
