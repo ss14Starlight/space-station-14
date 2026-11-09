@@ -11,7 +11,7 @@ namespace Content.Client._Starlight.Replay;
 // controls are public, so these are added into its layout rather than changing it.
 public sealed partial class ReplayObserverSystem
 {
-    private const string RoundTimeFormat = @"hh\:mm\:ss";
+    private const string RoundTimeFormat = @"mm\:ss";
     private const double MaxRoundSeconds = 100 * 24 * 60 * 60;
 
     private ReplayControlWidget? _roundTimeWidget;
@@ -29,8 +29,11 @@ public sealed partial class ReplayObserverSystem
             if (_replayPlayback.Replay is not { } replay)
                 return TimeSpan.Zero;
 
+            // A stored round start after the recording start can't be right, and would throw off the jump math.
             if (replay.YamlData.TryGet(ReplayRoundTime.MetaKeyRoundStart, out ValueDataNode? node)
-                && long.TryParse(node.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var ticks))
+                && long.TryParse(node.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var ticks)
+                && ticks >= 0
+                && ticks <= replay.StartTime.Ticks)
             {
                 return TimeSpan.FromTicks(ticks);
             }
@@ -167,6 +170,11 @@ public sealed partial class ReplayObserverSystem
         return true;
     }
 
-    private static string FormatRoundTime(TimeSpan time) =>
-        time < TimeSpan.Zero ? "-" + time.Duration().ToString(RoundTimeFormat) : time.ToString(RoundTimeFormat);
+    // Total hours, so replays past a day don't wrap back to 00.
+    private static string FormatRoundTime(TimeSpan time)
+    {
+        var duration = time.Duration();
+        var text = $"{(long) duration.TotalHours:00}:{duration.ToString(RoundTimeFormat)}";
+        return time < TimeSpan.Zero ? "-" + text : text;
+    }
 }
