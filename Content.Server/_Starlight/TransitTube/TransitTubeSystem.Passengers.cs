@@ -30,10 +30,7 @@ public sealed partial class TransitTubeSystem
             return;
         }
 
-        args.Handled = TryUnload(ent, args.User)
-                       || TryLoadPulled(ent, args.User)
-                       || TryCallPod(ent, args.User)
-                       || TryBoard(ent, args.User, args.User);
+        args.Handled = TryUnload(ent, args.User) || TryLoadPulled(ent, args.User) || TryCallPod(ent, args.User) || TryBoard(ent, args.User, args.User);
     }
 
     [SubscribeLocalEvent]
@@ -222,14 +219,11 @@ public sealed partial class TransitTubeSystem
     /// </summary>
     public bool TryInsertPassenger(Entity<TransitPodComponent?> pod, EntityUid passenger)
     {
-        if (!Resolve(pod, ref pod.Comp)
-            || !TryComp<DisposalHolderComponent>(pod, out var holder)
-            || holder.Container == null)
+        if (!Resolve(pod, ref pod.Comp) || !TryComp<DisposalHolderComponent>(pod, out var holder) || holder.Container == null)
             return false;
 
         Entity<TransitPodComponent> podEnt = (pod, pod.Comp);
-        if (GetPassengers(podEnt).Count() >= pod.Comp.MaxPassengers
-            || !_container.Insert(passenger, holder.Container))
+        if (GetPassengers(podEnt).Count() >= pod.Comp.MaxPassengers || !_container.Insert(passenger, holder.Container))
             return false;
 
         _holder.AttachEntity((pod, holder), passenger);

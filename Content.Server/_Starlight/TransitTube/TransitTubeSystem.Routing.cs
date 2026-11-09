@@ -59,8 +59,8 @@ public sealed partial class TransitTubeSystem
 
     private bool IsFreeStation(EntityUid uid, EntityUid pod)
         => TryComp<TransitTubeStationComponent>(uid, out var station)
-           && !station.Depot
-           && CanDockAt((uid, station), pod);
+        && !station.Depot
+        && CanDockAt((uid, station), pod);
 
     /// <summary>
     /// Breadth-first search over (tube, direction of travel) from a station to the nearest tube

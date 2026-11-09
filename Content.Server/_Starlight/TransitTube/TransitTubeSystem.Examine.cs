@@ -125,9 +125,7 @@ public sealed partial class TransitTubeSystem
         if (pod.Comp.State == TransitPodState.Open)
         {
             var left = pod.Comp.NextDeparture - _timing.CurTime;
-            var parked = TryGetStation(pod.Comp, out var station)
-                         && (station.Comp.Holding || station.Comp.Depot)
-                         && pod.Comp.Target == null && !pod.Comp.AnyFree;
+            var parked = TryGetStation(pod.Comp, out var station) && (station.Comp.Holding || station.Comp.Depot) && pod.Comp.Target == null && !pod.Comp.AnyFree;
 
             args.PushMarkup(parked
                 ? Loc.GetString("transit-pod-examine-parked")
