@@ -64,7 +64,7 @@ public sealed partial class PrayerSystem : EntitySystem
                         Pray(actor.PlayerSession, comp, message);
                         if (actor.PlayerSession.AttachedEntity is { } user)
                         {
-                            // Used for the fire effect the athiest fedora gives.
+                            // Used for the fire effect the atheist fedora gives.
                             var ev = new PrayerPerformedEvent(user);
                             RaiseLocalEvent(uid, ref ev);
                         }

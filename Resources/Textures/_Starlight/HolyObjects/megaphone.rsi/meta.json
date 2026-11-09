@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from cmss13 at https://github.com/Blundir/cmss13/blob/e49bbb12af47e71489d9f1ad935eeff202fe4a68/icons/mob/humans/onmob/items_lefthand_0.dmi, https://github.com/Blundir/cmss13/blob/e49bbb12af47e71489d9f1ad935eeff202fe4a68/icons/mob/humans/onmob/items_righthand_0.dmi, associated code taken from https://github.com/RMC-14/RMC-14/tree/adcea39fadaf0ee4082dc3d466faf61f15a7f017 licensed under MIT",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "icon"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    }
+  ]
+}

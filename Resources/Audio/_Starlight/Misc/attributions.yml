@@ -22,3 +22,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "Modified track by Arkanic, original backround audio pulled from section of Occams Lazer - Sphere of the Fixed Stars, which is a no copyright piece (https://x.com/occams_laser_/status/1270681584811851782)"
   source: "https://github.com/ss14Starlight/space-station-14"
+
+- files: ["megaphone.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "CMSS13"
+  source: "https://github.com/cmss13-devs/cmss13/blob/a50253802b9d56391f7b857684e345119a207f43/sound/items/megaphone.ogg"

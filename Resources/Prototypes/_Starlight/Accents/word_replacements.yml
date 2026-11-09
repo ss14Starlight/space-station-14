@@ -950,20 +950,20 @@
     accent-german-words-62: accent-german-words-replace-62
 
 - type: accent
-  id: athiest
+  id: atheist
   wordReplacements:
-    accent-athiest-words-1: accent-athiest-words-replace-1
-    accent-athiest-words-1-2: accent-athiest-words-replace-1
-    accent-athiest-words-2: accent-athiest-words-replace-2
-    accent-athiest-words-3: accent-athiest-words-replace-3
-    accent-athiest-words-4: accent-athiest-words-replace-4
-    accent-athiest-words-5: accent-athiest-words-replace-5
-    accent-athiest-words-6: accent-athiest-words-replace-6
-    accent-athiest-words-7: accent-athiest-words-replace-7
-    accent-athiest-words-8: accent-athiest-words-replace-8
-    accent-athiest-words-9: accent-athiest-words-replace-9
-    accent-athiest-words-10: accent-athiest-words-replace-10
-    accent-athiest-words-11: accent-athiest-words-replace-11
-    accent-athiest-words-12: accent-athiest-words-replace-12
-    accent-athiest-words-13: accent-athiest-words-replace-13
-    accent-athiest-words-14: accent-athiest-words-replace-14
+    accent-atheist-words-1: accent-atheist-words-replace-1
+    accent-atheist-words-1-2: accent-atheist-words-replace-1
+    accent-atheist-words-2: accent-atheist-words-replace-2
+    accent-atheist-words-3: accent-atheist-words-replace-3
+    accent-atheist-words-4: accent-atheist-words-replace-4
+    accent-atheist-words-5: accent-atheist-words-replace-5
+    accent-atheist-words-6: accent-atheist-words-replace-6
+    accent-atheist-words-7: accent-atheist-words-replace-7
+    accent-atheist-words-8: accent-atheist-words-replace-8
+    accent-atheist-words-9: accent-atheist-words-replace-9
+    accent-atheist-words-10: accent-atheist-words-replace-10
+    accent-atheist-words-11: accent-atheist-words-replace-11
+    accent-atheist-words-12: accent-atheist-words-replace-12
+    accent-atheist-words-13: accent-atheist-words-replace-13
+    accent-atheist-words-14: accent-atheist-words-replace-14

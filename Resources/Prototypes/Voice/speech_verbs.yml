@@ -39,6 +39,14 @@
   fontSize: 14 #starlight, yelling
 
 - type: speechVerb
+  id: MegaphoneYell
+  name: chat-speech-verb-name-exclamation-strong
+  speechVerbStrings:
+  - chat-speech-verb-exclamation-strong
+  priority: 10
+  fontSize: 20
+
+- type: speechVerb
   id: Arachnid
   name: chat-speech-verb-name-arachnid
   speechVerbStrings:

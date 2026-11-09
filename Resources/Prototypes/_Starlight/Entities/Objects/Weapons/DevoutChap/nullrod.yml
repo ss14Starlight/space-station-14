@@ -1,0 +1,318 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity # gives all the artifacts their 10% reflect chance. Divine intervention baby
+  parent: BaseItem
+  id: BaseFaithWep
+  abstract: true
+  components:
+  - type: Item
+    size: Small
+  - type: Reflect
+    reflectProb: 0.1
+
+- type: entity
+  name: rosary
+  description: A rosary carried by the faithful. No risk of brain damage when healing with this one.
+  parent: BaseFaithWep
+  id: rosary
+  components:
+  - type: UseDelay
+    delay: 5
+  - type: Bible
+    damage:
+      types:
+        Blunt: -10
+        Piercing: -10
+        Slash: -8
+        Heat: -5
+        Cold: -5
+        Shock: -5
+        Cellular: -1
+    damageOnFail:
+      types:
+        Blunt: 1  # I don't know if setting this to 0 would brick the whole entity. So it's staying at 1.
+    damageOnUntrainedUse:
+      types:
+        Heat: 10
+    damageOnUnholyUse:
+      types:
+        Heat: 30
+    damageUnholy:
+      types:
+        Heat: 20
+    failChance: 0
+  - type: Sprite
+    sprite: _Starlight/HolyObjects/rosary.rsi
+    state: icon
+  - type: Tool
+  - type: HeldSpeedModifier
+    walkModifier: 1.15
+    sprintModifier: 1.15
+  - type: Item
+    size: Small
+    sprite: _Starlight/HolyObjects/rosary.rsi
+  - type: Clothing
+    sprite: _Starlight/HolyObjects/rosary.rsi
+    equippedState: neck
+    slots:
+    - NECK
+  - type: Prayable
+
+- type: entity
+  parent: BaseFaithWep
+  id: MonkStaff
+  name: monk staff
+  description: Once a tool of human and cyclorite martial arts, now used to disarm tiders trying to shiv you for your bible.
+  components:
+  - type: Item
+    size: Huge
+    sprite: _Starlight/HolyObjects/monkstaff.rsi
+  - type: Sprite
+    sprite: _Starlight/HolyObjects/monkstaff.rsi
+    state: icon
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Holy: 6
+        Blunt: 1.5
+    soundHit:
+      collection: BoxingHit
+  - type: BonusMeleeAttackRate
+    multiplier: 2
+    wieldedOnly: true
+  - type: StaminaDamageOnHit
+    damage: 9
+  - type: Wieldable
+  - type: Tag
+    tags:
+    - MonkStaff
+
+- type: entity
+  name: Blessed Carp'sie Plush
+  description: A tribute to the god of cosmic space carp. Holding it makes you feel at peace with the fish of the universe.
+  parent: BaseFaithWep
+  id: Carp'sie
+  components:
+  - type: Sprite
+    sprite: _Starlight/HolyObjects/holycarp.rsi
+    state: carpplush
+  - type: Tool
+  - type: HeldSpeedModifier
+    walkModifier: 1.05
+    sprintModifier: 1.05
+  - type: HeldFaction
+    faction: Dragon
+  - type: Item
+    size: Small
+    sprite: _Starlight/HolyObjects/holycarp.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Holy: 10
+        Piercing: 8
+        Poison: 2
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+  - type: Tag
+    tags:
+    - Carp'sie
+
+- type: entity
+  name: Atheist's Fedora
+  parent: BaseFaithWep
+  id: AtheistFedora
+  description: In this moment, I am euphoric. Not because of any unrobust god's blessing, but because I am enlightened by my intelligence.
+  components:
+  - type: LandAtCursor
+  - type: ReturnOnThrow # This system is a shit of piece. For the love of Narsie, don't use this for other boomerang weapons.
+    returnSpeed: 8
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 12
+        Holy: 12
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 5
+        Holy: 10
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Item
+    size: Small
+    storedRotation: -90
+    sprite: _Starlight/HolyObjects/atheist.rsi
+  - type: Sprite
+    sprite: _Starlight/HolyObjects/atheist.rsi
+    state: icon
+  - type: Clothing
+    slots:
+    - HEAD
+    sprite: _Starlight/HolyObjects/atheist.rsi
+  - type: AddAccentClothing
+    accent: ReplacementAccent
+    replacement: atheist
+  - type: Scalpel
+    speed: 0.5
+  - type: Reflect
+    slotFlags:
+    - HEAD
+  - type: Tag
+    tags:
+    - AtheistsFedora
+  - type: IgniteUserOnPray
+  - type: Prayable
+
+- type: entity
+  parent: BaseFaithWep
+  id: RMCMegaphone
+  name: preacher's megaphone
+  description: Screaming about the upcoming rapture has never been easier.
+  components:
+  - type: Sprite
+    sprite: _Starlight/HolyObjects/megaphone.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Clothing
+    slots:
+    - pocket
+  - type: RMCMegaphone
+  - type: UseDelay
+    delay: 2
+
+- type: entity
+  name: eye of the gigglebeast
+  parent: BaseFaithWep
+  id: GigglebeastEye
+  description: This eye belonged to Giggles-At-Crimes's very first minion. Even today it bears the wrath of 1000 Cluwns.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Objects/Weapons/Guns/Battery/behonker_eye.rsi
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/behonker_eye.rsi
+    state: base
+  - type: MeleeWeapon
+    attackRate: 0.8
+    damage:
+      types:
+        Holy: 15
+    soundHit:
+      collection: CluwneHorn
+      params:
+        variation: 0.03
+        volume: 3
+  - type: SlipOnHit
+    blockedByHardsuit: true
+    staminaDamage: 10
+    slipData:
+      requiredSlipSpeed: 0
+      knockdownTime: 1
+      launchForwardsMultiplier: 2
+
+- type: entity
+  name: ratvarian spear
+  parent: [BaseItem, SolutionDart, BaseMinorContraband] #Even after building a whole partial for it, i couldn't get rid of the wield componet as long as it had the spear parent. So i'm reinventing the spear.
+  id: RatvarianSpear
+  description: A bronze spear from a long lost theology. You can hear the faint ticking of clockwork while holding it.
+  components:
+  - type: Tool
+    qualities:
+    - Slicing
+  - type: EmbeddableProjectile
+    offset: -0.15,0.0
+  - type: ThrowingAngle
+    angle: 225
+  - type: LandAtCursor
+  - type: Tag
+    tags:
+    - Spear
+    - ScurretWearable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: Sprite
+    sprite: _Starlight/HolyObjects/ratvarian_spear.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 12
+        Holy: 8
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 25
+  - type: Construction
+    graph: Spear
+    node: spear
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionInjectOnEmbed
+    transferAmount: 2
+    solution: melee
+  - type: SolutionTransfer
+    maxTransferAmount: 2
+    damageContainer: Inorganic
+  - type: UseDelay
+  - type: Appearance
+
+- type: entity
+  name: unholy scissors
+  description: Just holding these scissors makes you feel wrong. C̶H̴A̸O̸S̶ ̸R̵E̷I̶G̵N̶S̷
+  parent: BaseFaithWep
+  id: UnholyScissors
+  components:
+  - type: Sprite
+    sprite: _Starlight/HolyObjects/unholyscissors.rsi
+    state: icon
+  - type: HeldSpeedModifier
+    walkModifier: 1.05
+    sprintModifier: 1.05
+  - type: Item
+    size: Small
+    sprite: _Starlight/HolyObjects/unholyscissors.rsi
+  - type: MeleeWeapon
+    attackRate: 1.2
+    damage:
+      types:
+        Holy: 10
+        Piercing: 4
+        Slash: 4
+    soundHit:
+      path: /Audio/weapons/bladeslice.ogg
+  - type: InjectOnHit
+    reagents:
+    - ReagentId: Hemorrhinol
+      Quantity: 2

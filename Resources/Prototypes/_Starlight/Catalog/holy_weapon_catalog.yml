@@ -1,0 +1,88 @@
+- type: thiefBackpackSet
+  id: MonkSet
+  name: chaplain-backpack-category-monk-name
+  description: While others studied the blade, you studied the staff. Comes with scissors to shave your head
+  sprite:
+    sprite: _Starlight/HolyObjects/monkstaff.rsi
+    state: icon
+  content:
+  - MonkStaff
+  - BarberScissors
+
+- type: thiefBackpackSet
+  id: AtheistSet
+  name: chaplain-backpack-category-fedora-name
+  description: Heh, they came to the shrine expecting worship of GOD?
+  sprite:
+    sprite: _Starlight/HolyObjects/atheist.rsi
+    state: icon
+  content:
+  - AtheistFedora
+  - FoodSnackChips
+
+- type: thiefBackpackSet
+  id: CarpsieSet
+  name: chaplain-backpack-category-carpsie-name
+  description: Preach the health benefits of Carp Pockets and Glub Juice! Pray that you don't get eaten in the inevitable carp rapture!
+  sprite:
+    sprite: _Starlight/HolyObjects/holycarp.rsi
+    state: carpplush
+  content:
+  - Carp'sie
+  - ChemistryBottleGlub
+
+- type: thiefBackpackSet
+  id: PriestSet
+  name: chaplain-backpack-category-priest-name
+  description: In the name of the father, son, and the robust spirit. For those who find healing more rewarding than hurting.
+  sprite:
+    sprite: _Starlight/HolyObjects/rosary.rsi
+    state: icon
+  content:
+  - rosary
+  - FoodBakedBunHotX
+
+- type: thiefBackpackSet
+  id: RatvarSet
+  name: chaplain-backpack-category-ratvar-name
+  description: While he may be gone, Ratvar is not forgotten. Bear his spear and spread the name!
+  sprite:
+    sprite: _Starlight/HolyObjects/ratvarian_spear.rsi
+    state: icon
+  content:
+  - RatvarianSpear
+  - ClockworkShield
+  - BibleRatvar
+
+- type: thiefBackpackSet
+  id: HonkSet
+  name: chaplain-backpack-category-honk-name
+  description: Give the clown their just desserts with this profane Jonkist artifact. Either way increases the chance of security shooting you by 50%
+  sprite:
+    sprite: Objects/Weapons/Guns/Battery/behonker_eye.rsi
+    state: base
+  content:
+  - GigglebeastEye
+  - CluwneHorn
+
+- type: thiefBackpackSet
+  id: CultistSet
+  name: chaplain-backpack-category-cultist-name
+  description: Bring back the satanic panic with nothing more than a scary red book and a pair of gore-soaked scissors.
+  sprite:
+    sprite: _Starlight/HolyObjects/unholyscissors.rsi
+    state: icon
+  content:
+  - UnholyScissors
+  - BibleSatanic
+
+- type: thiefBackpackSet
+  id: YapperSet
+  name: chaplain-backpack-category-yapper-name
+  description: Sometimes all you need is a loud voice to get your point across. (Headphones provided by CMD to prevent hearing loss)
+  sprite:
+    sprite: _Starlight/HolyObjects/megaphone.rsi
+    state: icon
+  content:
+  - RMCMegaphone
+  - ClothingMultipleHeadphonesHighEnd

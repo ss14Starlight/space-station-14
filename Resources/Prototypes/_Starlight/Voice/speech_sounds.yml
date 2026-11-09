@@ -106,3 +106,12 @@
     path: /Audio/_Starlight/Voice/Experiment/exp_ask.ogg
   exclaimSound:
     path: /Audio/_Starlight/Voice/Experiment/exp_exclaim.ogg
+
+- type: speechSounds
+  id: PreacherMegaphone
+  saySound:
+    path: /Audio/_Starlight/Misc/megaphone.ogg
+  askSound:
+    path: /Audio/_Starlight/Misc/megaphone.ogg
+  exclaimSound:
+    path: /Audio/_Starlight/Misc/megaphone.ogg
