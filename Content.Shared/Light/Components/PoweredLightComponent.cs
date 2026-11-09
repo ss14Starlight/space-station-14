@@ -55,14 +55,7 @@ namespace Content.Shared.Light.Components
         [DataField, AutoPausedField]
         public TimeSpan? LastGhostBlink;
 
-        [DataField]
-        public ProtoId<SinkPortPrototype> OnPort = "On";
-
-        [DataField]
-        public ProtoId<SinkPortPrototype> OffPort = "Off";
-
-        [DataField]
-        public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
+        // Starlight-edit: Removed signaling ports, uses ToggleableDeviceSignaling now.
 
         /// <summary>
         /// How long it takes to eject a bulb from this

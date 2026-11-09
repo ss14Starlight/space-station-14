@@ -18,11 +18,12 @@ using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.CustomObjectiveSummary; // Starlight
+using Content.Shared._Starlight.CustomObjectiveSummary;
 using Content.Shared._Starlight.Station;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Abstract;
-using Content.Shared._Starlight.Objectives.Events; // Starlight
+using Content.Shared._Starlight.Objectives.Events;
+using Content.Server._Starlight.Pollen.Components;
 
 namespace Content.Server.Objectives;
 
@@ -136,32 +137,47 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
         var mindQuery = EntityQueryEnumerator<MindComponent>();
         while (mindQuery.MoveNext(out var mindId, out var mind))
         {
-            if (!(mind.OwnedEntity is { } ent)
-                || !TryComp<RailroadableComponent>(ent, out var railroadable))
-                continue;
+            var pollenObjectives = mind.Objectives
+                .Where(objective => HasComp<PollenCollectionConditionComponent>(objective))
+                .ToList();
 
             var cardsToProcess = new List<Entity<RailroadCardComponent, RuleOwnerComponent>>();
-            var cards = new List<Entity<RailroadCardComponent, RuleOwnerComponent>>();
 
-            if (railroadable.Completed is not null)
-                cards.AddRange(railroadable.Completed);
+            if (mind.OwnedEntity is { } ent &&
+                TryComp<RailroadableComponent>(ent, out var railroadable))
+            {
+                var cards = new List<Entity<RailroadCardComponent, RuleOwnerComponent>>();
 
-            if (railroadable.ActiveCard is { } activeCard)
-                cards.Add(activeCard);
+                if (railroadable.Completed is not null)
+                    cards.AddRange(railroadable.Completed);
 
-            foreach (var card in cards)
-                if (!card.Comp1.ShowObjective)
-                    cardsToProcess.Add(card);
+                if (railroadable.ActiveCard is { } activeCard)
+                    cards.Add(activeCard);
 
-            if (cardsToProcess.Count == 0)
+                foreach (var card in cards)
+                    if (!card.Comp1.ShowObjective)
+                        cardsToProcess.Add(card);
+            }
+
+            if (pollenObjectives.Count == 0 && cardsToProcess.Count == 0)
                 continue;
 
             _job.MindTryGetJobName(mindId, out var jobName);
             var custody = IsInCustody(mindId, mind) ? Loc.GetString("objectives-in-custody") : string.Empty;
 
-            builder.AppendLine(Loc.GetString("objectives-with-objectives", ("custody", custody), ("title", mind.CharacterName ?? "anonymous"), ("agent", jobName ?? "unemployed")));
+            builder.AppendLine(Loc.GetString("objectives-with-objectives",
+                ("custody", custody),
+                ("title", mind.CharacterName ?? "anonymous"),
+                ("agent", jobName ?? "unemployed")));
 
             var completedObjectives = 0;
+            foreach (var objective in pollenObjectives)
+            {
+                var info = GetInfo(objective, mindId, mind);
+                if (info == null)
+                    continue;
+                WriteObjective(ref completedObjectives, builder, info.Value.Title, info.Value.Progress);
+            }
             foreach (var card in cardsToProcess)
             {
                 var collect = new CollectObjectiveInfoEvent([]);
@@ -203,7 +219,11 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
             var title = GetTitle((mindId, mind), name);
             var custody = IsInCustody(mindId, mind) ? Loc.GetString("objectives-in-custody") : string.Empty;
 
-            var objectives = mind.Objectives;
+            // Starlight-start
+            var objectives = mind.Objectives
+                .Where(objective => !HasComp<PollenCollectionConditionComponent>(objective))
+                .ToList();
+            // Starlight-end
             var cardsToProcess = new List<Entity<RailroadCardComponent, RuleOwnerComponent>>();
 
             if ((mind.OwnedEntity is { } ent)
