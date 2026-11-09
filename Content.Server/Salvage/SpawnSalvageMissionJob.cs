@@ -21,7 +21,6 @@ using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Salvage.Expeditions.Modifiers;
 using Content.Shared.Shuttles.Components;
-using Content.Shared.Storage; // Starlight
 using Robust.Shared.Collections;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.Map.Components;
@@ -32,7 +31,8 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Salvage;
 
-public sealed class SpawnSalvageMissionJob : Job<bool>
+// Starlight: Boss and reinforcement handling is defined in a separate partial.
+public sealed partial class SpawnSalvageMissionJob : Job<bool>
 {
     private readonly IEntityManager _entManager;
     private readonly IGameTiming _timing;
@@ -228,16 +228,8 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 
         // Starlight-start
         // A boss expedition is only usable when its required boss was placed.
-        if (faction.Megafauna is { } megafauna
-            && !await SpawnRandomEntry((mapUid, grid), new SalvageMobEntry { Proto = megafauna }, dungeon, random))
-        {
-            _sawmill.Warning($"Rejecting salvage expedition: no free tile for required boss {megafauna}.");
-
-            // Mark the expedition as failed before deleting its map.
-            expedition.GenerationFailed = true;
-            _entManager.DeleteEntity(mapUid);
+        if (!await TrySpawnMegafauna((mapUid, grid), expedition, faction, dungeon, random))
             return false;
-        }
         // Starlight-end
 
         foreach (var entry in faction.MobGroups)
@@ -263,12 +255,8 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             }
         }
 
-        // Starlight-start: Faction reinforcements supplement the normal mob budget.
-        foreach (var proto in EntitySpawnCollection.GetSpawns(faction.ExtraMobs, random))
-        {
-            await SpawnRandomEntry((mapUid, grid), new SalvageMobEntry { Proto = proto }, dungeon, random);
-        }
-        // Starlight-end
+        // Starlight: Faction reinforcements supplement the normal mob budget.
+        await SpawnFactionReinforcements((mapUid, grid), faction, dungeon, random);
 
         var allLoot = _prototypeManager.Index<SalvageLootPrototype>(difficultyProto.LootPrototypeId);
         var lootBudget = difficultyProto.LootBudget;

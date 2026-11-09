@@ -9,6 +9,7 @@ using Content.Server.NPC.HTN;
 using Content.Shared._Starlight.FireDragon;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
+using Content.Shared.Actions.Events;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.NPC;
@@ -22,7 +23,7 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests._Starlight.Actions;
 
 [TestFixture]
-public sealed class FireDragonRoarTest : GameTest
+public sealed partial class FireDragonRoarTest : GameTest
 {
     public override PoolSettings PoolSettings => new() { Connected = true, Fresh = true, Dirty = true };
 
@@ -34,6 +35,7 @@ public sealed class FireDragonRoarTest : GameTest
         var actions = Server.System<SharedActionsSystem>();
         var status = Server.System<StatusEffectsSystem>();
         var clientActions = Client.System<Content.Client.Actions.ActionsSystem>();
+        var validation = Server.System<RoarValidationTestSystem>();
         EntityUid dragon = default;
         EntityUid prey = default;
         NetEntity netDragon = default;
@@ -60,6 +62,7 @@ public sealed class FireDragonRoarTest : GameTest
             var state = SEntMan.GetComponent<FireDragonComponent>(dragon);
             Assert.That(actions.GetAction(state.RoarActionEntity), Is.Not.Null);
             roar = actions.GetAction(state.RoarActionEntity)!.Value;
+            SEntMan.AddComponent<RoarValidationTestComponent>(roar.Value.Owner);
         });
 
         Entity<ActionComponent>? clientRoar = null;
@@ -96,6 +99,16 @@ public sealed class FireDragonRoarTest : GameTest
             await Pair.RunUntilSynced();
         }
 
+        await Server.WaitPost(() => validation.RejectRoar = true);
+        await TriggerRoar();
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(validation.Attempts, Is.GreaterThan(0), "Roar must go through action validation, including when invoked by an emote.");
+            Assert.That(status.HasStatusEffect(prey, hunt), Is.False);
+            Assert.That(roar!.Value.Comp.Cooldown, Is.Null);
+        });
+
+        await Server.WaitPost(() => validation.RejectRoar = false);
         await TriggerRoar();
         TimeSpan cooldownEnd = default;
         await Server.WaitAssertion(() =>
@@ -126,4 +139,26 @@ public sealed class FireDragonRoarTest : GameTest
         await TriggerRoar();
         await Server.WaitAssertion(() => Assert.That(status.HasStatusEffect(prey, hunt), Is.True));
     }
+
+    private sealed class RoarValidationTestSystem : EntitySystem
+    {
+        public bool RejectRoar;
+        public int Attempts;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<RoarValidationTestComponent, ActionValidateEvent>(OnValidate);
+        }
+
+        private void OnValidate(Entity<RoarValidationTestComponent> ent, ref ActionValidateEvent args)
+        {
+            Attempts++;
+            if (RejectRoar)
+                args.Invalid = true;
+        }
+    }
+
+    [RegisterComponent]
+    private sealed partial class RoarValidationTestComponent : Component;
 }

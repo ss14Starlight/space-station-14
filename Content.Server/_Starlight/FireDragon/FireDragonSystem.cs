@@ -5,6 +5,7 @@ using Content.Server.Speech.Muting;
 using Content.Shared._Starlight.FireDragon;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
+using Content.Shared.Actions.Events;
 using Content.Shared.Chat;
 using Content.Shared.Movement.Components;
 using Content.Shared.NPC;
@@ -230,13 +231,30 @@ public sealed partial class FireDragonSystem : SharedFireDragonSystem
         if (Actions.GetAction(actionUid) is not { } action || !Actions.ValidAction(action))
             return false;
 
+        var input = new RequestPerformActionEvent(GetNetEntity(action));
         if (HasComp<WorldTargetActionComponent>(action))
         {
-            if (target is not { } targetUid)
+            if (target is not { } targetUid || !Exists(targetUid))
                 return false;
 
-            Actions.SetEventTarget(action, targetUid);
+            input = new RequestPerformActionEvent(GetNetEntity(action), GetNetCoordinates(Transform(targetUid).Coordinates));
         }
+
+        // NPCs and emotes must respect the same restrictions as the ability button.
+        var attempt = new ActionAttemptEvent(uid);
+        RaiseLocalEvent(action, ref attempt);
+        if (attempt.Cancelled)
+            return false;
+
+        var validate = new ActionValidateEvent
+        {
+            Input = input,
+            User = uid,
+            Provider = action.Comp.Container ?? uid,
+        };
+        RaiseLocalEvent(action, ref validate);
+        if (validate.Invalid)
+            return false;
 
         Actions.PerformAction(uid, action, predicted: false);
         return Actions.IsCooldownActive(action.Comp);

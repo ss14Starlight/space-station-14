@@ -32,7 +32,7 @@ public sealed partial class DragonGroundFireComponent : Component
     [DataField] public float FireStacks = 1f;
 
     /// <summary>
-    /// Entity responsible for the fire, used for damage attribution and faction checks.
+    /// Entity responsible for the fire, used for damage attribution.
     /// </summary>
     [DataField] public EntityUid? Source;
 

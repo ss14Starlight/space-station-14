@@ -119,7 +119,7 @@ public sealed partial class DragonFireSystem : EntitySystem
         var fires = EntityQueryEnumerator<DragonGroundFireComponent, TransformComponent>();
         while (fires.MoveNext(out var uid, out var fire, out var xform))
         {
-            if (now >= fire.ExpiresAt)
+            if (now >= fire.ExpiresAt || EntityManager.IsQueuedForDeletion(uid))
             {
                 QueueDel(uid);
                 continue;
@@ -133,17 +133,18 @@ public sealed partial class DragonFireSystem : EntitySystem
             _contactTargets.Clear();
             _lookup.GetEntitiesInRange(center.MapId, center.Position, fire.ContactRange, _contactTargets);
             foreach (var target in _contactTargets)
-                ApplyContactDamage((uid, fire), target, now);
+                ApplyContactDamage((uid, fire), target, center, now);
         }
     }
 
-    private void ApplyContactDamage(Entity<DragonGroundFireComponent> ent, EntityUid target, TimeSpan now)
+    private void ApplyContactDamage(Entity<DragonGroundFireComponent> ent, EntityUid target, MapCoordinates origin, TimeSpan now)
     {
         if (!HasComp<MobStateComponent>(target)
             || (_nextContactDamage.TryGetValue(target, out var nextDamage) && now < nextDamage)
             || _containers.IsEntityInContainer(target)
             || HasComp<FireDragonComponent>(target)
-            || (ent.Comp.Source is { } source && Exists(source) && _factions.IsEntityFriendly(source, target)))
+            || _factions.IsEntityFriendly(ent.Owner, target)
+            || !_occluder.InRangeUnoccluded(origin, _transform.GetMapCoordinates(target), 0f, ignoreTouching: true))
             return;
 
         _nextContactDamage[target] = now + ent.Comp.DamageInterval;
@@ -284,7 +285,7 @@ public sealed partial class DragonFireSystem : EntitySystem
         _lookup.GetEntitiesInRange(coords, ExistingFireSearchRadius, _nearbyFireEntities);
         foreach (var existing in _nearbyFireEntities)
         {
-            if (!TryComp<DragonGroundFireComponent>(existing, out var fire))
+            if (EntityManager.IsQueuedForDeletion(existing) || !TryComp<DragonGroundFireComponent>(existing, out var fire))
                 continue;
 
             var expiresAt = _timing.CurTime + (lifetimeOverride ?? fire.Lifetime);
@@ -297,6 +298,10 @@ public sealed partial class DragonFireSystem : EntitySystem
         var uid = SpawnAttachedTo(prototype, coords);
         var newFire = Comp<DragonGroundFireComponent>(uid);
         newFire.Source = source;
+        // Keep allegiance on the fire itself so deleting the dragon cannot make its flames harm allied carps.
+        if (source is { } sourceUid && Exists(sourceUid))
+            _factions.Up(sourceUid, uid);
+
         // Keep the nominal lifetime for later breath or projectile refreshes.
         if (lifetimeOverride is { } lifetime)
             newFire.ExpiresAt = _timing.CurTime + lifetime;

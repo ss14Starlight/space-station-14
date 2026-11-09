@@ -97,6 +97,11 @@ public sealed partial class SalvageSystem
         if (Deleted(component.Station))
             return;
 
+        // Starlight-start: A rejected mission releases its claim without a completion cooldown or announcement.
+        if (TryRejectFailedExpedition(component))
+            return;
+        // Starlight-end
+
         // Finish mission
         if (TryComp<SalvageExpeditionDataComponent>(component.Station, out var data))
         {

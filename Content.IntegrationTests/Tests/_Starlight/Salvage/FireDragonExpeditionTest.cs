@@ -1,8 +1,11 @@
 #nullable enable
+using System.Linq;
 using Content.IntegrationTests.Fixtures;
+using Content.Server._Starlight.Procedural.Events;
 using Content.Server.Parallax;
 using Content.Server.Procedural;
 using Content.Server.Salvage;
+using Content.Server.Salvage.Expeditions;
 using Content.Shared._Starlight.FireDragon;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Procedural;
@@ -15,6 +18,7 @@ using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests._Starlight.Salvage;
@@ -24,12 +28,17 @@ public sealed class FireDragonExpeditionTest : GameTest
 {
     public override PoolSettings PoolSettings => new() { Fresh = true, Dirty = true };
 
-    [Test]
-    public async Task OnlyHardCarpExpeditionsSpawnOneDragonWithReinforcements()
+    [TestCase(false)]
+    [TestCase(true)]
+    public async Task HardCarpExpeditionsRequireBossPlacement(bool blockBossPlacement)
     {
         SpawnSalvageMissionJob job = null!;
         var queue = new JobQueue();
         EntityUid disk = default;
+        EntityUid station = default;
+        EntityUid otherMap = default;
+        EntityUid otherDisk = default;
+        var blockers = Server.System<BossPlacementTestSystem>();
         await Server.WaitAssertion(() =>
         {
             var salvage = Server.System<SharedSalvageSystem>();
@@ -53,12 +62,16 @@ public sealed class FireDragonExpeditionTest : GameTest
                 }
             }
 
-            var station = SEntMan.Spawn(null, MapCoordinates.Nullspace);
+            station = SEntMan.Spawn(null, MapCoordinates.Nullspace);
             SEntMan.AddComponent<StationRecordsComponent>(station);
             var data = SEntMan.AddComponent<SalvageExpeditionDataComponent>(station);
             data.ActiveMission = 1;
             data.NextOffer = SGameTiming.CurTime + TimeSpan.FromHours(1);
+            otherMap = Server.System<SharedMapSystem>().CreateMap(out _);
+            otherDisk = SEntMan.Spawn(null, MapCoordinates.Nullspace);
+            SEntMan.AddComponent<ShuttleDestinationCoordinatesComponent>(otherDisk).Destination = otherMap;
             disk = SEntMan.Spawn(null, MapCoordinates.Nullspace);
+            blockers.BlockBossPlacement = blockBossPlacement;
             job = new SpawnSalvageMissionJob(
                 0.002,
                 SEntMan,
@@ -86,6 +99,21 @@ public sealed class FireDragonExpeditionTest : GameTest
         {
             Assert.That(job.Exception, Is.Null);
             Assert.That(job.Status, Is.EqualTo(JobStatus.Finished));
+            Assert.That(SEntMan.GetComponent<ShuttleDestinationCoordinatesComponent>(otherDisk).Destination, Is.EqualTo(otherMap));
+
+            if (blockBossPlacement)
+            {
+                Assert.That(blockers.BlockedMap, Is.Not.Null, "The test must block an actual generated dungeon before boss placement.");
+                Assert.That(job.Result, Is.False);
+                Assert.That(SEntMan.Deleted(blockers.BlockedMap), Is.True);
+                Assert.That(SEntMan.GetComponent<ShuttleDestinationCoordinatesComponent>(disk).Destination, Is.Null);
+                var data = SEntMan.GetComponent<SalvageExpeditionDataComponent>(station);
+                Assert.That(data.ActiveMission, Is.Zero);
+                Assert.That(data.Claimed, Is.False);
+                Assert.That(data.Cooldown, Is.False, "Rejected generation must not start the normal completion cooldown.");
+                return;
+            }
+
             Assert.That(job.Result, Is.True);
             var generatedMap = SEntMan.GetComponent<ShuttleDestinationCoordinatesComponent>(disk).Destination;
             Assert.That(generatedMap, Is.Not.Null);
@@ -122,5 +150,28 @@ public sealed class FireDragonExpeditionTest : GameTest
             Assert.That(carps, Is.InRange(12, 18));
             Assert.That(sharks, Is.EqualTo(2));
         });
+    }
+
+    private sealed class BossPlacementTestSystem : EntitySystem
+    {
+        public bool BlockBossPlacement;
+        public EntityUid? BlockedMap;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<MapGridComponent, DungeonGeneratedEvent>(OnDungeonGenerated);
+        }
+
+        private void OnDungeonGenerated(EntityUid uid, MapGridComponent grid, DungeonGeneratedEvent args)
+        {
+            if (!BlockBossPlacement || !HasComp<SalvageExpeditionComponent>(uid))
+                return;
+
+            BlockedMap = uid;
+            var maps = EntityManager.System<SharedMapSystem>();
+            foreach (var tile in maps.GetAllTiles(uid, grid).ToArray())
+                SpawnAttachedTo("WallSolid", maps.GridTileToLocal(uid, grid, tile.GridIndices));
+        }
     }
 }
