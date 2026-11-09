@@ -1,41 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: Every 'External' Docking airlock that is touching each other now opens together.
-    type: Tweak
-  id: 409877
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'Medical: Add more fire safety and wall-mounted emergency closest to Medbay.'
-    type: Add
-  id: 409878
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'Service: Add more fire safety to Service, mostly near Kitchen.'
-    type: Add
-  id: 409879
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Double-check to make sure that airlocks to Kitchen/Hydroponics are set correctly.
-    type: Tweak
-  id: 409880
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Add missing pipes to docks in the East and NE of the station.
-    type: Add
-  id: 409881
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
   - message: Add Anti-Anomaly Zones at the large thrusters.
     type: Add
   id: 409882
@@ -2799,4 +2764,39 @@ Entries:
   id: 410276
   time: '2026-11-09T11:11:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7127
+- author: SirLutz
+  changes:
+  - message: Fixed Diona pollen collection objective progression when replacing a Diona.
+    type: Fix
+  id: 410277
+  time: '2026-11-09T12:46:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7098
+- author: SirLutz
+  changes:
+  - message: revented mind cleanup from accessing an already removed MindComponent.
+    type: Fix
+  id: 410278
+  time: '2026-11-09T12:46:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7098
+- author: SirLutz
+  changes:
+  - message: Moved the Diona "Your Roots" objective from antagonist objectives to the end-of-round cards section.
+    type: Tweak
+  id: 410279
+  time: '2026-11-09T12:46:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7098
+- author: SirLutz
+  changes:
+  - message: Diona distress pollen now only says the name, not the location.
+    type: Tweak
+  id: 410280
+  time: '2026-11-09T12:46:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7098
+- author: SirLutz
+  changes:
+  - message: Diona now are not anonymous anymore.
+    type: Tweak
+  id: 410281
+  time: '2026-11-09T12:46:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7098
 Order: -1
