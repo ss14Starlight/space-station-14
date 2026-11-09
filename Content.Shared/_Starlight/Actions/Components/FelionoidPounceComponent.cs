@@ -13,7 +13,7 @@ public sealed partial class FelionoidPounceComponent : Component
 
     [DataField] public float JumpSpeed = 15f;
 
-    [DataField] public float KnockdownDuration = 1f;
+    [DataField] public float KnockdownDuration = 2f;
 
     [ViewVariables] public EntityUid? ChargingTarget;
 
