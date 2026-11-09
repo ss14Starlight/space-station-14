@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: Replace service-accessed airlock with command on "Maid"'s bridge.
-    type: Fix
-  id: 409890
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
   - message: Add 2 Assistant Manager job roles.
     type: Add
   id: 409891
@@ -2799,4 +2792,11 @@ Entries:
   id: 410289
   time: '2026-11-09T21:23:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7153
+- author: Rinary
+  changes:
+  - message: Reverted newly added "Dark" or "Soulmancer" wizard cause it's too op.
+    type: Remove
+  id: 410290
+  time: '2026-11-09T21:23:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7152
 Order: -1
