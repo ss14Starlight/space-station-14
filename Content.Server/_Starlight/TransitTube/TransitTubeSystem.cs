@@ -145,8 +145,7 @@ public sealed partial class TransitTubeSystem : SharedTransitTubeSystem
     [SubscribeLocalEvent]
     private void OnPodTerminating(Entity<TransitPodComponent> ent, ref EntityTerminatingEvent args)
     {
-        SetSignalLamp(ent.Comp.HeldAtSignal, false);
-        ent.Comp.HeldAtSignal = null;
+        LeaveSignal(ent);
         ent.Comp.WaitingFor = null;
         ReleaseReservation(ent);
 

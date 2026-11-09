@@ -57,8 +57,10 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     /// <see cref="Direction.Invalid"/> if it stops here.
     /// </summary>
     /// <param name="simulate">Only look, don't mark the pod for docking. Used to look ahead along the line.</param>
+    /// <param name="tag">When looking ahead past a tagger: the only tag the pod will carry by then,
+    /// empty for none. Null uses the tags it has now.</param>
     protected Direction Route(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, Entity<DisposalHolderComponent> holder,
-        Entity<TransitPodComponent> pod, Direction travel, bool simulate = false)
+        Entity<TransitPodComponent> pod, Direction travel, bool simulate = false, string? tag = null)
     {
         var rotation = Transform(ent).LocalRotation;
         TryComp<TransitTubeStationComponent>(ent, out var station);
@@ -93,8 +95,9 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
             // Pods with a matching tag follow the arrow, the rest take the other way.
             var routerTags = router.Tags;
             var holderTags = holder.Comp.Tags;
-            var matches = _holder.TagsOverlap(holder, routerTags)
-                || (routerTags.Contains("*") && holderTags.Count > 0);
+            var matches = tag != null
+                ? tag.Length > 0 && (routerTags.Contains(tag) || routerTags.Contains("*"))
+                : _holder.TagsOverlap(holder, routerTags) || (routerTags.Contains("*") && holderTags.Count > 0);
 
             return matches
                 ? PickExit((ent, ent.Comp, tube), travel, force: true)
@@ -118,7 +121,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     }
 
     protected void PossibleRoutes(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, Entity<DisposalHolderComponent> holder,
-        Entity<TransitPodComponent> pod, Direction travel, List<Direction> exits)
+        Entity<TransitPodComponent> pod, Direction travel, List<Direction> exits, string? tag = null)
     {
         exits.Clear();
 
@@ -140,7 +143,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
             }
         }
 
-        AddExit(exits, Route(ent, tube, holder, pod, travel, simulate: true));
+        AddExit(exits, Route(ent, tube, holder, pod, travel, simulate: true, tag: tag));
     }
 
     private static void AddExit(List<Direction> exits, Direction exit)
@@ -292,6 +295,10 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
         var bestScore = double.MaxValue;
         var maxTurn = ent.Comp1.MaxTurn + 1;
 
+        // A pod riding straight through can be forced off to the side, right angles included.
+        // One coming down a diagonal branch has no straight way on, so it still merges into the trunk.
+        var forceTurn = Array.IndexOf(exits, travel) >= 0 ? 91 : 46;
+
         foreach (var exit in exits)
         {
             if (exit == back)
@@ -307,7 +314,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
                 score += 1000;
             // Forcing only reaches branches ahead: a pod coming down one branch of a split
             // still merges into the trunk instead of crossing over to the other branch.
-            if (force && exit == preferred && turn <= 46)
+            if (force && exit == preferred && turn <= forceTurn)
                 score -= 1000;
 
             var better = score < bestScore - 1

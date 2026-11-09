@@ -71,31 +71,67 @@ public sealed partial class TransitTubeSystem
             return;
         }
 
+        Entity<TransitTubeStationComponent> stationEnt = (stationUid, station);
+
+        // Held while the doors were closing: open up again and wait for the hold to clear.
+        if (station.Holding)
+        {
+            Reopen(pod, stationEnt);
+            return;
+        }
+
+        // A pod with a plan leaves the way it says. If that way is gone, it plans again, and failing
+        // that gives the trip up, rather than heading off the wrong way past stations it could use.
+        if (pod.Comp.Plan.TryGetValue((stationUid, Direction.Invalid), out var planned))
+        {
+            if (TryLaunchFrom(pod, holder, stationEnt, tube, planned))
+                return;
+
+            if (TryPlanTrip(pod, stationEnt)
+                && pod.Comp.Plan.TryGetValue((stationUid, Direction.Invalid), out var replanned)
+                && TryLaunchFrom(pod, holder, stationEnt, tube, replanned))
+                return;
+
+            if (pod.Comp.Target != null || pod.Comp.AnyFree)
+            {
+                CancelTrip(pod);
+                PopupPassengers(pod, "transit-pod-no-route");
+            }
+        }
+
         // Carry on the way the pod was going, otherwise turn back (terminus).
         var exits = _disposalTube.GetTubeConnectableDirections((stationUid, tube))
             .OrderByDescending(exit => exit == pod.Comp.TravelDirection);
 
-        // A pod with a plan leaves the way it says.
-        if (pod.Comp.Plan.TryGetValue((stationUid, Direction.Invalid), out var planned))
-            exits = exits.OrderByDescending(exit => exit == planned);
-
         foreach (var exit in exits)
         {
-            if (!_holder.Launch(holder.AsNullable(), (stationUid, tube), exit))
-                continue;
-
-            pod.Comp.Station = null;
-            Undock((stationUid, station));
-            _deviceLink.InvokePort(stationUid, station.DepartedPort);
-            SetState(pod, TransitPodState.Moving);
-            _audio.PlayPvs(pod.Comp.DepartSound, pod);
-            return;
+            if (TryLaunchFrom(pod, holder, stationEnt, tube, exit))
+                return;
         }
 
         // Nowhere to go, open up again and try later.
+        Reopen(pod, stationEnt);
+    }
+
+    private bool TryLaunchFrom(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder,
+        Entity<TransitTubeStationComponent> station, DisposalTubeComponent tube, Direction exit)
+    {
+        if (!_holder.Launch(holder.AsNullable(), (station, tube), exit))
+            return false;
+
+        pod.Comp.Station = null;
+        Undock(station);
+        _deviceLink.InvokePort(station, station.Comp.DepartedPort);
+        SetState(pod, TransitPodState.Moving);
+        _audio.PlayPvs(pod.Comp.DepartSound, pod);
+        return true;
+    }
+
+    private void Reopen(Entity<TransitPodComponent> pod, Entity<TransitTubeStationComponent> station)
+    {
         SetState(pod, TransitPodState.Open);
-        pod.Comp.NextDeparture = _timing.CurTime + station.DepartDelay;
-        SetStationVisual((stationUid, station), TransitStationVisualState.Open);
+        pod.Comp.NextDeparture = _timing.CurTime + station.Comp.DepartDelay;
+        SetStationVisual(station, TransitStationVisualState.Open);
     }
 
     private bool Bounce(Entity<DisposalHolderComponent> holder)
@@ -121,8 +157,7 @@ public sealed partial class TransitTubeSystem
         _holder.SetHalted(holder.AsNullable(), true);
         SetState(pod, TransitPodState.Stalled);
         SetSpeed(pod.AsNullable(), holder.AsNullable(), null);
-        SetSignalLamp(pod.Comp.HeldAtSignal, false);
-        pod.Comp.HeldAtSignal = null;
+        LeaveSignal(pod);
         pod.Comp.WaitingFor = null;
         pod.Comp.WaitingBehind = null;
         pod.Comp.Braked = false;
@@ -138,8 +173,7 @@ public sealed partial class TransitTubeSystem
         if (pod.Comp.HeldAtSignal == null && pod.Comp.WaitingFor == null && pod.Comp.WaitingBehind == null && !pod.Comp.Braked)
             return;
 
-        SetSignalLamp(pod.Comp.HeldAtSignal, false);
-        pod.Comp.HeldAtSignal = null;
+        LeaveSignal(pod);
         pod.Comp.WaitingFor = null;
         pod.Comp.WaitingBehind = null;
         pod.Comp.Braked = false;

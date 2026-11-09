@@ -223,7 +223,8 @@ public sealed partial class TransitTubeSystem
             return false;
 
         Entity<TransitPodComponent> podEnt = (pod, pod.Comp);
-        if (GetPassengers(podEnt).Count() >= pod.Comp.MaxPassengers || !_container.Insert(passenger, holder.Container))
+        if (!CanCarry(pod.Comp, passenger)
+            || GetPassengers(podEnt).Count() >= pod.Comp.MaxPassengers || !_container.Insert(passenger, holder.Container))
             return false;
 
         _holder.AttachEntity((pod, holder), passenger);

@@ -19,8 +19,8 @@ public sealed partial class TransitTubeSystem
     private static readonly TimeSpan _signalCheckInterval = TimeSpan.FromSeconds(0.25);
 
     private readonly HashSet<EntityUid> _section = [];
-    private readonly HashSet<(EntityUid Tube, Direction Travel)> _sectionSeen = [];
-    private readonly Queue<(Entity<DisposalTubeComponent> From, Direction Exit, int Depth)> _sectionFrontier = new();
+    private readonly HashSet<(EntityUid Tube, Direction Travel, string? Tag)> _sectionSeen = [];
+    private readonly Queue<(Entity<DisposalTubeComponent> From, Direction Exit, int Depth, string? Tag)> _sectionFrontier = new();
     private readonly List<Direction> _sectionExits = [];
 
     protected override void OnPodRouted(Entity<TransitTubeComponent> tube, Entity<DisposalHolderComponent> holder, Entity<TransitPodComponent> pod, Direction next)
@@ -124,6 +124,23 @@ public sealed partial class TransitTubeSystem
             _appearance.SetData(uid, TransitBlockSignalVisuals.Holding, holding);
     }
 
+    private void LeaveSignal(Entity<TransitPodComponent> pod)
+    {
+        if (pod.Comp.HeldAtSignal is not { } signal)
+            return;
+
+        pod.Comp.HeldAtSignal = null;
+
+        var query = EntityQueryEnumerator<TransitPodComponent>();
+        while (query.MoveNext(out var uid, out var other))
+        {
+            if (uid != pod.Owner && other.HeldAtSignal == signal && !TerminatingOrDeleted(uid))
+                return;
+        }
+
+        SetSignalLamp(signal, false);
+    }
+
     private void Hold(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder)
     {
         pod.Comp.NextSignalCheck = _timing.CurTime + _signalCheckInterval;
@@ -157,8 +174,7 @@ public sealed partial class TransitTubeSystem
             Reserve((stationUid, station), pod);
         }
 
-        SetSignalLamp(pod.Comp.HeldAtSignal, false);
-        pod.Comp.HeldAtSignal = null;
+        LeaveSignal(pod);
         pod.Comp.WaitingFor = null;
         pod.Comp.WaitingBehind = null;
         _holder.SetHalted((pod, holder), false);
@@ -189,14 +205,14 @@ public sealed partial class TransitTubeSystem
         _sectionSeen.Clear();
         _sectionFrontier.Clear();
         if (direction != Direction.Invalid)
-            _sectionFrontier.Enqueue(((signal, signalTube), direction, 0));
+            _sectionFrontier.Enqueue(((signal, signalTube), direction, 0, null));
 
         while (_sectionFrontier.TryDequeue(out var step))
         {
             if (step.Depth >= signal.Comp.MaxSectionLength
                 || _disposalTube.GetTubeInDirection(step.From, step.Exit) is not { } nextUid
                 || !TryComp<DisposalTubeComponent>(nextUid, out var nextTube)
-                || !_sectionSeen.Add((nextUid, step.Exit)))
+                || !_sectionSeen.Add((nextUid, step.Exit, step.Tag)))
                 continue;
 
             _section.Add(nextUid);
@@ -206,9 +222,12 @@ public sealed partial class TransitTubeSystem
                 || !TryComp<TransitTubeComponent>(nextUid, out var transit))
                 continue;
 
-            PossibleRoutes((nextUid, transit), nextTube, (pod, holder), pod, step.Exit, _sectionExits);
+            // A tagger on the way swaps the pod's tags, and the routers past it go by the new one.
+            var tag = TryComp<DisposalTaggerComponent>(nextUid, out var tagger) ? tagger.Tag : step.Tag;
+
+            PossibleRoutes((nextUid, transit), nextTube, (pod, holder), pod, step.Exit, _sectionExits, tag);
             foreach (var exit in _sectionExits)
-                _sectionFrontier.Enqueue(((nextUid, nextTube), exit, step.Depth + 1));
+                _sectionFrontier.Enqueue(((nextUid, nextTube), exit, step.Depth + 1, tag));
         }
 
         if (_section.Count == 0)

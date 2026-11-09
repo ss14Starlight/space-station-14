@@ -236,7 +236,8 @@ public sealed partial class TransitTubeSystem
     private void ExchangeHeat(Entity<TransitPodComponent> pod, DisposalHolderComponent holder, TransformComponent xform, float dt)
     {
         var air = holder.Air;
-        if (air.TotalMoles <= 0 || pod.Comp.HeatConductivity <= 0)
+        // Even a pod that passes no heat checks for fire: hot air from the last station burns all the same.
+        if (air.TotalMoles <= 0)
             return;
 
         var target = air.Temperature;
