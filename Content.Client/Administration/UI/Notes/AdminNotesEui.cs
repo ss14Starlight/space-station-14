@@ -9,10 +9,8 @@ using static Content.Shared.Administration.Notes.AdminNoteEuiMsg;
 namespace Content.Client.Administration.UI.Notes;
 
 [UsedImplicitly]
-public sealed class AdminNotesEui : BaseEui
+public sealed partial class AdminNotesEui : BaseEui // Starlight-edit (made partial)
 {
-    private readonly HashSet<BaseWindow> _openWindows = []; // Starlight
-
     public AdminNotesEui()
     {
         NoteWindow = new AdminNotesWindow();
@@ -96,18 +94,4 @@ public sealed class AdminNotesEui : BaseEui
         NoteWindow.OpenCentered();
         OnSubWindowOpened(NoteWindow); // Starlight
     }
-
-    // Starlight-start
-    private void OnSubWindowOpened(BaseWindow window)
-    {
-        _openWindows.Add(window);
-        window.OnClose += () => OnSubWindowClosed(window);
-    }
-
-    private void OnSubWindowClosed(BaseWindow window)
-    {
-        if (_openWindows.Remove(window) && _openWindows.Count == 0)
-            SendMessage(new CloseEuiMessage());
-    }
-    // Starlight-end
 }

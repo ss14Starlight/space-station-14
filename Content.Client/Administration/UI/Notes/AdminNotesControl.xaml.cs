@@ -22,7 +22,6 @@ public sealed partial class AdminNotesControl : Control
     public event Action<int, NoteType, string, NoteSeverity?, bool, DateTime?, string?>? NoteChanged; // Starlight-edit
     public event Action<NoteType, string, NoteSeverity?, bool, DateTime?>? NewNoteEntered;
     public event Action<int, NoteType, string?>? NoteDeleted; // Starlight-edit: ID, Type, Project
-    public event Action<BaseWindow>? SubWindowOpened; // Starlight
 
     private AdminNotesLinePopup? _popup;
     private readonly SpriteSystem _sprites;
@@ -192,53 +191,6 @@ public sealed partial class AdminNotesControl : Control
             ShowMoreButton.Visible = showMoreButtonVisible;
         }
     }
-
-    #region Starlight
-
-    public void SetNotes(Dictionary<(int, NoteType, string, string), SharedAdminNote> notes)
-    {
-        foreach (var (key, input) in NetworkInputs)
-        {
-            if (!notes.ContainsKey(key))
-            {
-                // Yes this is slower than just updating, but new notes get added at the bottom. The user won't notice.
-                Notes.RemoveAllChildren();
-                NetworkInputs.Clear();
-                break;
-            }
-            Notes.RemoveChild(input);
-            NetworkInputs.Remove(key);
-        }
-
-        var showMoreButtonVisible = false;
-        foreach (var note in notes.Values.OrderByDescending(note => note.CreatedAt))
-        {
-            if (NetworkInputs.TryGetValue((note.Id, note.NoteType, note.ServerName ?? "", note.ProjectName ?? ""), out var input))
-            {
-                input.UpdateNote(note);
-                continue;
-            }
-
-            input = new AdminNotesLine(_sprites, note);
-            input.OnClicked += NoteClicked;
-            input.OnMouseEntered += NoteMouseEntered;
-            input.OnMouseExited += NoteMouseExited;
-
-            UpdateNoteLineAlpha(input);
-
-            if (input.Modulate.A == 0)
-            {
-                input.Visible = false;
-                showMoreButtonVisible = true;
-            }
-
-            Notes.AddChild(input);
-            NetworkInputs[(note.Id, note.NoteType, note.ServerName ?? "", note.ProjectName ?? "")] = input;
-            ShowMoreButton.Visible = showMoreButtonVisible;
-        }
-    }
-
-    #endregion
 
     private void OnShowMoreButtonPressed(BaseButton.ButtonEventArgs obj)
     {
