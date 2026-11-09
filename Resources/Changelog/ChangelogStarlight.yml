@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: 'ITG: Add Salvage Medic.'
-    type: Add
-  id: 409888
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
   - message: 'ITG: Remove 1 Salvage Specialist; now max of 4.'
     type: Remove
   id: 409889
@@ -2799,4 +2792,11 @@ Entries:
   id: 410287
   time: '2026-11-09T19:38:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7116
+- author: redmushie
+  changes:
+  - message: More advanced signaling options for light fixtures.
+    type: Add
+  id: 410288
+  time: '2026-11-09T20:04:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7149
 Order: -1
