@@ -8,6 +8,7 @@ using Content.Shared.StatusEffectNew.Components;
 using Content.Shared._Starlight.Sleepiness.Components;
 using Content.Shared._Starlight.Sleepiness.Events;
 using Content.Shared._Starlight.Sleepiness.Systems;
+using Content.Shared._Starlight.Tiredness.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.FixedPoint;
@@ -104,6 +105,9 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
 
     private bool CanInduceSleep(EntityUid target, SleepinessStatusEffectComponent sleepiness)
     {
+        if (TryComp<TirednessComponent>(target, out var tiredness) && !tiredness.CanInduceSleep)
+            return false;
+
         if (sleepiness.SleepInductionThreshold <= FixedPoint2.Zero)
             return true;
 

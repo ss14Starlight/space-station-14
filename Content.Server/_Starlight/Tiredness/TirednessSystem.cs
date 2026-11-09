@@ -10,6 +10,7 @@ using Content.Shared._Starlight.Sleepiness.Components;
 using Content.Shared._Starlight.Tiredness.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Tiredness;
 
@@ -17,10 +18,10 @@ public sealed partial class TirednessSystem : EntitySystem
 {
     private const float UpdateInterval = 1f;
 
-    // The excess over natural sleepiness decay reaches the sleep threshold after about 20 minutes.
+    // At full tiredness, net sleepiness accumulation is 0.25 seconds per second.
     private const float MaximumSleepinessSecondsPerSecond = 1.25f;
     private const float SleepRecoveryMultiplier = 15f;
-    public static readonly TimeSpan MaximumTiredness = TimeSpan.FromMinutes(20);
+    public static readonly TimeSpan MaximumTiredness = TimeSpan.FromMinutes(120);
     private static readonly TimeSpan _alertThreshold = TimeSpan.FromMinutes(10);
     private static readonly TimeSpan _severeAlertThreshold = TimeSpan.FromMinutes(15);
     private static readonly ProtoId<AlertCategoryPrototype> _alertCategory = "Tiredness";
@@ -33,6 +34,7 @@ public sealed partial class TirednessSystem : EntitySystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private readonly HashSet<EntityUid> _sleepinessApplicationFailures = new();
     private float _updateAccumulator;
@@ -82,7 +84,26 @@ public sealed partial class TirednessSystem : EntitySystem
                 !_statusEffects.HasEffectComp<SleepinessStatusEffectComponent>(uid))
                 continue;
 
-            var sleepinessDuration = TimeSpan.FromSeconds(sleepinessSecondsPerSecond * updateTime);
+            var currentSleepinessSeconds = 0d;
+            if (_statusEffects.TryGetTime(uid, _sleepinessStatusEffect, out var sleepiness))
+            {
+                if (sleepiness.EndEffectTime is not { } endTime)
+                    continue;
+
+                currentSleepinessSeconds = Math.Max(0, (endTime - _timing.CurTime).TotalSeconds);
+            }
+
+            var availableSleepinessSeconds = tiredness.MaximumSleepiness.TotalSeconds - currentSleepinessSeconds;
+            if (availableSleepinessSeconds <= 0)
+                continue;
+
+            var sleepinessSeconds = Math.Min(
+                sleepinessSecondsPerSecond * updateTime,
+                availableSleepinessSeconds);
+            if (sleepinessSeconds <= 0)
+                continue;
+
+            var sleepinessDuration = TimeSpan.FromSeconds(sleepinessSeconds);
             if (!_statusEffects.TryAddStatusEffectDuration(uid, _sleepinessStatusEffect, sleepinessDuration) &&
                 _sleepinessApplicationFailures.Add(uid))
             {

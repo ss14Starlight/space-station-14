@@ -15,6 +15,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Timing;
 
 namespace Content.IntegrationTests.Tests._Starlight.Tiredness;
 
@@ -57,8 +58,8 @@ public sealed class FelionoidTirednessTest : GameTest
         {
             await server.WaitPost(() =>
             {
-                holder = entityManager.SpawnEntity("MobHuman", map.GridCoords);
-                felionoid = entityManager.SpawnEntity("MobFelionoid", map.GridCoords);
+                holder = entityManager.Spawn("MobHuman", map.MapCoords);
+                felionoid = entityManager.Spawn("MobFelionoid", map.MapCoords);
             });
             await pair.RunTicksSync(5);
 
@@ -78,7 +79,7 @@ public sealed class FelionoidTirednessTest : GameTest
                 Assert.That(handsSystem.TryDrop(holder, felionoid, checkActionBlocker: false), Is.True);
                 AssertSleepAction(actionsSystem, entityManager, felionoid, expected: false);
 
-                storage = entityManager.SpawnEntity("TirednessTestEntityStorage", map.GridCoords);
+                storage = entityManager.Spawn("TirednessTestEntityStorage", map.MapCoords);
             });
             await pair.RunTicksSync(5);
 
@@ -125,7 +126,7 @@ public sealed class FelionoidTirednessTest : GameTest
 
         await server.WaitPost(() =>
         {
-            felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
+            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
         });
 
         try
@@ -164,7 +165,7 @@ public sealed class FelionoidTirednessTest : GameTest
 
         await server.WaitPost(() =>
         {
-            felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
+            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
         });
 
         try
@@ -211,7 +212,7 @@ public sealed class FelionoidTirednessTest : GameTest
 
         await server.WaitPost(() =>
         {
-            felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
+            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
         });
 
         try
@@ -264,18 +265,20 @@ public sealed class FelionoidTirednessTest : GameTest
     }
 
     [Test]
-    public async Task TirednessOutpacesSleepinessDecayAndInducesSleep()
+    public async Task TirednessSleepinessIsCappedByComponentMaximum()
     {
         var pair = Pair;
         var server = pair.Server;
         var entityManager = server.ResolveDependency<IEntityManager>();
+        var maximumSleepiness = TimeSpan.FromSeconds(20);
         EntityUid felionoid = default;
 
         await server.WaitPost(() =>
         {
-            felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
+            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
             var tiredness = entityManager.GetComponent<TirednessComponent>(felionoid);
-            tiredness.CurrentTiredness = TimeSpan.FromMinutes(20);
+            tiredness.CurrentTiredness = TirednessSystem.MaximumTiredness;
+            tiredness.MaximumSleepiness = maximumSleepiness;
             entityManager.Dirty(felionoid, tiredness);
         });
 
@@ -291,6 +294,69 @@ public sealed class FelionoidTirednessTest : GameTest
                     statusEffects.TrySetStatusEffectDuration(
                         felionoid,
                         "StatusEffectSleepiness",
+                        TimeSpan.FromSeconds(19.99)),
+                    Is.True);
+            });
+
+            await pair.RunSeconds(5);
+
+            await server.WaitPost(() =>
+            {
+                var statusEffects = server.System<StatusEffectsSystem>();
+                var timing = server.ResolveDependency<IGameTiming>();
+                Assert.That(statusEffects.TryGetTime(felionoid, "StatusEffectSleepiness", out var sleepiness), Is.True);
+                Assert.That(sleepiness.EndEffectTime, Is.Not.Null);
+                var remainingSleepiness = sleepiness.EndEffectTime!.Value - timing.CurTime;
+                Assert.That(remainingSleepiness, Is.LessThanOrEqualTo(maximumSleepiness));
+                Assert.That(remainingSleepiness, Is.GreaterThan(TimeSpan.FromSeconds(18)));
+                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.False);
+            });
+        }
+        finally
+        {
+            await server.WaitPost(() => entityManager.DeleteEntity(felionoid));
+            await pair.RunUntilSynced();
+        }
+    }
+
+    [Test]
+    public Task TirednessCanInduceSleepWhenConfigured() => TestTirednessSleepInduction(
+        canInduceSleep: true,
+        expectedSleeping: true);
+
+    [Test]
+    public Task TirednessCannotInduceSleepWhenDisabled() => TestTirednessSleepInduction(
+        canInduceSleep: false,
+        expectedSleeping: false);
+
+    private async Task TestTirednessSleepInduction(bool canInduceSleep, bool expectedSleeping)
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var entityManager = server.ResolveDependency<IEntityManager>();
+        EntityUid felionoid = default;
+
+        await server.WaitPost(() =>
+        {
+            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
+            var tiredness = entityManager.GetComponent<TirednessComponent>(felionoid);
+            tiredness.CurrentTiredness = TirednessSystem.MaximumTiredness;
+            tiredness.MaximumSleepiness = TimeSpan.FromSeconds(40);
+            tiredness.CanInduceSleep = canInduceSleep;
+            entityManager.Dirty(felionoid, tiredness);
+        });
+
+        try
+        {
+            await pair.RunSeconds(2);
+
+            await server.WaitPost(() =>
+            {
+                var statusEffects = server.System<StatusEffectsSystem>();
+                Assert.That(
+                    statusEffects.TrySetStatusEffectDuration(
+                        felionoid,
+                        "StatusEffectSleepiness",
                         TimeSpan.FromSeconds(29.99)),
                     Is.True);
             });
@@ -298,7 +364,24 @@ public sealed class FelionoidTirednessTest : GameTest
             await pair.RunSeconds(10);
 
             await server.WaitPost(() =>
-                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.True));
+            {
+                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.EqualTo(expectedSleeping));
+                Assert.That(
+                    entityManager.HasComponent<SleepinessInducedSleepComponent>(felionoid),
+                    Is.EqualTo(expectedSleeping));
+
+                if (!expectedSleeping)
+                {
+                    var statusEffects = server.System<StatusEffectsSystem>();
+                    var timing = server.ResolveDependency<IGameTiming>();
+                    Assert.That(statusEffects.TryGetTime(felionoid, "StatusEffectSleepiness", out var sleepiness),
+                        Is.True);
+                    Assert.That(sleepiness.EndEffectTime, Is.Not.Null);
+                    Assert.That(
+                        sleepiness.EndEffectTime!.Value - timing.CurTime,
+                        Is.GreaterThan(TimeSpan.FromSeconds(30)));
+                }
+            });
         }
         finally
         {
