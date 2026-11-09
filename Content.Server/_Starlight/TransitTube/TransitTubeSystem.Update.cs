@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Starlight.TransitTube;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
@@ -19,6 +20,9 @@ public sealed partial class TransitTubeSystem
         while (query.MoveNext(out var uid, out var pod, out var holder, out var xform))
         {
             var ent = new Entity<TransitPodComponent>(uid, pod);
+
+            if (pod.State == TransitPodState.Stalled || pod.State == TransitPodState.Moving && holder.Halted)
+                CheckSupport(ent, (uid, holder), xform);
 
             switch (pod.State)
             {
@@ -53,14 +57,37 @@ public sealed partial class TransitTubeSystem
         }
     }
 
+    private void CheckSupport(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder, TransformComponent xform)
+    {
+        var current = holder.Comp.CurrentTube;
+        if (TryGetTube(xform, out _) && (current == null || Exists(current)))
+            return;
+
+        if (current == null && !GetPassengers(pod).Any())
+            return;
+
+        _holder.ClearTubes(holder.AsNullable());
+        if (pod.Comp.State == TransitPodState.Moving)
+            Stall(pod, holder);
+        else
+            EjectAll(pod, xform.Coordinates);
+    }
+
     private void UpdateOpen(Entity<TransitPodComponent> pod, TimeSpan now)
     {
         // Pods keep to their timetable and leave whether or not anyone got in.
         if (now < pod.Comp.NextDeparture || !TryGetStation(pod.Comp, out var station))
             return;
 
-        // Held by a signal, or parked at a depot until someone calls it.
-        if ((station.Comp.Holding || station.Comp.Depot) && pod.Comp.Target == null && !pod.Comp.AnyFree)
+        // Held by a signal: nothing leaves until Depart fires, wherever it is headed.
+        if (station.Comp.Holding)
+        {
+            pod.Comp.NextDeparture = now + station.Comp.DepartDelay;
+            return;
+        }
+
+        // Parked at a depot until someone calls it.
+        if (station.Comp.Depot && pod.Comp.Target == null && !pod.Comp.AnyFree)
         {
             pod.Comp.NextDeparture = now + station.Comp.DepartDelay;
             return;
@@ -95,6 +122,10 @@ public sealed partial class TransitTubeSystem
             if (other.Owner == pod.Owner || now < other.Comp.NextCollision)
                 continue;
 
+            // Pods on separate tubes side by side pass each other.
+            if (!PathsMeet(holder, xform, other))
+                continue;
+
             var offset = _xform.GetWorldPosition(other) - position;
             var otherVelocity = TryComp<PhysicsComponent>(other, out var otherPhysics) && other.Comp.State == TransitPodState.Moving
                 ? otherPhysics.LinearVelocity
@@ -119,23 +150,54 @@ public sealed partial class TransitTubeSystem
         }
     }
 
+    private bool PathsMeet(DisposalHolderComponent holder, TransformComponent xform, Entity<TransitPodComponent> other)
+    {
+        _pathTubes.Clear();
+        if (holder.CurrentTube is { } current)
+            _pathTubes.Add(current);
+        if (holder.NextTube is { } next)
+            _pathTubes.Add(next);
+        if (TryGetTube(xform, out var under))
+            _pathTubes.Add(under);
+
+        if (TryComp<DisposalHolderComponent>(other, out var otherHolder))
+        {
+            if (otherHolder.CurrentTube is { } otherCurrent && _pathTubes.Contains(otherCurrent)
+                || otherHolder.NextTube is { } otherNext && _pathTubes.Contains(otherNext))
+                return true;
+        }
+
+        return TryGetTube(Transform(other), out var otherUnder) && _pathTubes.Contains(otherUnder);
+    }
+
     private void Crash(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder, TimeSpan now, float multiplier)
     {
         pod.Comp.NextCollision = now + _collisionCooldown;
         HurtPassengers(pod, pod.Comp.CollisionDamage, multiplier);
 
-        // A held pod gets shoved back into motion.
+        // A held pod gets shoved back into motion. Its plan led the other way: the trip is off,
+        // so it stops at the next station it can rather than wandering past them.
         ReleaseHold(pod, holder);
+        if (pod.Comp.Target != null || pod.Comp.AnyFree)
+        {
+            CancelTrip(pod);
+            PopupPassengers(pod, "transit-pod-trip-cancelled");
+        }
+
         ReleaseReservation(pod);
 
-        if (!_holder.Reverse(holder))
+        if (!_holder.Reverse(holder.AsNullable()))
             Stall(pod, holder);
     }
 
     private void HurtPassengers(Entity<TransitPodComponent> pod, DamageSpecifier damage, float multiplier)
     {
-        foreach (var passenger in GetPassengers(pod))
+        // A snapshot: a passenger gibbed by the hit can drop things into the pod.
+        foreach (var passenger in GetPassengers(pod).ToArray())
         {
+            if (TerminatingOrDeleted(passenger))
+                continue;
+
             _damageable.ChangeDamage(passenger, damage * multiplier);
             _stun.TryUpdateParalyzeDuration(passenger, pod.Comp.CollisionStun * multiplier);
             _popup.PopupEntity(Loc.GetString("transit-pod-crash"), passenger, passenger, PopupType.MediumCaution);
@@ -196,15 +258,14 @@ public sealed partial class TransitTubeSystem
         // The tube's own glass keeps some of it off.
         rate *= 1f - GetHeatInsulation(xform);
 
-        if (rate <= 0)
-            return;
-
-        air.Temperature += (target - air.Temperature) * (1f - MathF.Exp(-rate * dt));
+        // Still check for fire below: hot air from the last station burns even in vacuum.
+        if (rate > 0)
+            air.Temperature += (target - air.Temperature) * (1f - MathF.Exp(-rate * dt));
 
         if (air.Temperature < pod.Comp.IgnitionTemperature)
             return;
 
-        foreach (var passenger in GetPassengers(pod))
+        foreach (var passenger in GetPassengers(pod).ToArray())
         {
             _flammable.AdjustFireStacks(passenger, pod.Comp.IgnitionFireStacks, ignite: true);
         }

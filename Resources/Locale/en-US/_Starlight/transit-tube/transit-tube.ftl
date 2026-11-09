@@ -16,6 +16,9 @@ transit-pod-destination-any = The pod will go to the nearest free station.
 transit-pod-destination-cleared = The pod will follow its usual route.
 transit-station-access-denied = Access denied.
 transit-station-depot = Pods are not boarded at a depot.
+transit-station-pod-coming = A pod is already on its way.
+transit-station-wrong-side = Board from the platform side.
+transit-pod-trip-cancelled = The crash threw the pod off its route. It stops at the next station.
 transit-station-pod-called = You call a pod. One is on its way.
 transit-station-verb-destination = Choose destination
 

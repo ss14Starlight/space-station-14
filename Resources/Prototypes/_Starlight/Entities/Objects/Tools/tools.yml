@@ -979,6 +979,7 @@
     - TransitTubeCurvedFlipped
     - TransitTubeJunction
     - TransitTubeJunctionFlipped
+    - TransitTubeCap
     - TransitTubeCrossroad
     - TransitTubeCrossroadDiagonal
     - TransitTubeOneWay
@@ -1005,6 +1006,8 @@
     - TransitTubeStation
     - TransitTubeTerminus
     - TransitTubeTerminusFlipped
+    - TransitTubeDepot
+    - TransitTubeDepotFlipped
     - TransitPod
     - TransitPodInsulated
   - type: LimitedCharges

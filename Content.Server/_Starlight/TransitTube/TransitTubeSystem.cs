@@ -58,6 +58,7 @@ public sealed partial class TransitTubeSystem : SharedTransitTubeSystem
     private static readonly TimeSpan _collisionCooldown = TimeSpan.FromSeconds(1);
 
     private readonly HashSet<Entity<TransitPodComponent>> _nearbyPods = [];
+    private readonly HashSet<EntityUid> _pathTubes = [];
 
 
     [SubscribeLocalEvent]
@@ -71,13 +72,11 @@ public sealed partial class TransitTubeSystem : SharedTransitTubeSystem
         ent.Comp.BaseSpeed = holder.TraversalSpeed;
         _holder.SetHalted((ent, holder), true);
 
-        // A new pod takes the air around it.
+        // A new pod takes the air around it, and none at all in vacuum.
         var air = holder.Air;
+        air.Clear();
         if (_atmos.GetTileMixture((ent, xform)) is { } env && env.TotalMoles > 0)
-        {
-            air.Clear();
             _atmos.Merge(air, env.RemoveVolume(air.Volume));
-        }
 
         if (TryGetTube(xform, out var tube)
             && TryComp<TransitTubeStationComponent>(tube, out var station)
@@ -144,6 +143,11 @@ public sealed partial class TransitTubeSystem : SharedTransitTubeSystem
     [SubscribeLocalEvent]
     private void OnPodTerminating(Entity<TransitPodComponent> ent, ref EntityTerminatingEvent args)
     {
+        SetSignalLamp(ent.Comp.HeldAtSignal, false);
+        ent.Comp.HeldAtSignal = null;
+        ent.Comp.WaitingFor = null;
+        ReleaseReservation(ent);
+
         if (ent.Comp.Station is { } stationUid && TryComp<TransitTubeStationComponent>(stationUid, out var station))
             Undock((stationUid, station));
 

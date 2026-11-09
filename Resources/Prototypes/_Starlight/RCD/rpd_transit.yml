@@ -405,3 +405,39 @@
   collisionMask: TableMask
   rotation: User
   fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeCap
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_cap.png
+  mode: ConstructObject
+  prototype: TransitTubeCap
+  cost: 2
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeDepot
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_depot.png
+  mode: ConstructObject
+  prototype: TransitTubeDepot
+  cost: 2
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeDepotFlipped
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_depot_flipped.png
+  mode: ConstructObject
+  prototype: TransitTubeDepotFlipped
+  cost: 2
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1

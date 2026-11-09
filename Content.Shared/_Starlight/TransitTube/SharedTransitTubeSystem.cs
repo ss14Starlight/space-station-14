@@ -11,6 +11,7 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.Item;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Storage.Components;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Damage;
@@ -42,7 +43,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
 
         if (!TryComp<TransitPodComponent>(args.Holder, out var pod))
         {
-            args.Next = PickExit(ent, tube, travel);
+            args.Next = PickExit((ent, ent.Comp, tube), travel);
             return;
         }
 
@@ -73,7 +74,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
         if (ent.Comp.OneWay is { } oneWay
             && travel != Direction.Invalid
             && !SameWay(travel, oneWay, rotation)
-            && IsEnabled(ent)
+            && IsEnabled(ent.Owner)
             && !IsEmagged(ent))
             return travel.GetOpposite();
 
@@ -92,19 +93,56 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
                 || (routerTags.Contains("*") && holderTags.Count > 0);
 
             return matches
-                ? PickExit(ent, tube, travel, force: true)
-                : PickExit(ent, tube, travel, avoid: Preferred(ent.Comp.PreferredExit, rotation));
+                ? PickExit((ent, ent.Comp, tube), travel, force: true)
+                : PickExit((ent, ent.Comp, tube), travel, avoid: Preferred(ent.Comp.PreferredExit, rotation));
         }
 
         if (TryComp<TransitTubeSwitchComponent>(ent, out var tubeSwitch))
         {
             // An emagged switch throws pods down whichever branch it likes.
             var right = IsEmagged(ent) ? _random.Prob(0.5f) : tubeSwitch.Right;
-            var exit = right ? tubeSwitch.RightExit : tubeSwitch.LeftExit;
-            return PickExit(ent, tube, travel, preferred: Preferred(exit, rotation));
+            return SwitchExit((ent, ent.Comp, tube), tubeSwitch, right, travel);
         }
 
-        return PickExit(ent, tube, travel, force: ForcesBranch(ent));
+        return PickExit((ent, ent.Comp, tube), travel, force: ForcesBranch(ent));
+    }
+
+    private Direction SwitchExit(Entity<TransitTubeComponent, DisposalTubeComponent> ent, TransitTubeSwitchComponent tubeSwitch, bool right, Direction travel)
+    {
+        var exit = right ? tubeSwitch.RightExit : tubeSwitch.LeftExit;
+        return PickExit((ent, ent.Comp1, ent.Comp2), travel, preferred: Preferred(exit, Transform(ent).LocalRotation), force: true);
+    }
+
+    protected void PossibleRoutes(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, Entity<DisposalHolderComponent> holder,
+        Entity<TransitPodComponent> pod, Direction travel, List<Direction> exits)
+    {
+        exits.Clear();
+
+        var planned = travel != Direction.Invalid && pod.Comp.Plan.ContainsKey((ent.Owner, travel));
+        if (!planned && IsEmagged(ent))
+        {
+            if (TryComp<TransitTubeSwitchComponent>(ent, out var tubeSwitch) && !HasComp<DisposalRouterComponent>(ent))
+            {
+                AddExit(exits, SwitchExit((ent, ent.Comp, tube), tubeSwitch, true, travel));
+                AddExit(exits, SwitchExit((ent, ent.Comp, tube), tubeSwitch, false, travel));
+                return;
+            }
+
+            if (IsBranchSwitch(ent))
+            {
+                AddExit(exits, PickExit((ent, ent.Comp, tube), travel, force: true));
+                AddExit(exits, PickExit((ent, ent.Comp, tube), travel));
+                return;
+            }
+        }
+
+        AddExit(exits, Route(ent, tube, holder, pod, travel, simulate: true));
+    }
+
+    private static void AddExit(List<Direction> exits, Direction exit)
+    {
+        if (exit != Direction.Invalid && !exits.Contains(exit))
+            exits.Add(exit);
     }
 
     /// <summary>
@@ -119,7 +157,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
         if (!HasComp<TransitTubeToggleComponent>(ent))
             return true;
 
-        return IsEmagged(ent) ? _random.Prob(0.5f) : IsEnabled(ent);
+        return IsEmagged(ent) ? _random.Prob(0.5f) : IsEnabled(ent.Owner);
     }
 
     /// <summary>
@@ -192,7 +230,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
             || pod.Target != null && pod.Target != ent.Owner
             || station.RequestStop && !station.StopRequested && !pod.StopRequested;
 
-        return passes && PickExit(ent, tube, travel) != Direction.Invalid;
+        return passes && PickExit((ent, ent.Comp, tube), travel) != Direction.Invalid;
     }
 
     protected bool IsEmagged(EntityUid uid)
@@ -231,22 +269,25 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     /// <param name="preferred">World direction to use instead of the tube's own preferred exit.</param>
     /// <param name="force">Take the preferred exit whenever it can be reached, not only on a tie.</param>
     /// <param name="avoid">World direction to take only if there is no other way on.</param>
-    public Direction PickExit(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, Direction travel,
+    public Direction PickExit(Entity<TransitTubeComponent?, DisposalTubeComponent?> ent, Direction travel,
         Direction? preferred = null, bool force = false, Direction? avoid = null)
     {
-        var exits = _disposalTube.GetTubeConnectableDirections((ent, tube));
+        if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2))
+            return Direction.Invalid;
+
+        var exits = _disposalTube.GetTubeConnectableDirections((ent, ent.Comp2));
         if (exits.Length == 0)
             return Direction.Invalid;
 
         if (travel == Direction.Invalid)
             return exits[0];
 
-        preferred ??= Preferred(ent.Comp.PreferredExit, Transform(ent).LocalRotation);
+        preferred ??= Preferred(ent.Comp1.PreferredExit, Transform(ent).LocalRotation);
 
         var back = travel.GetOpposite();
         var best = Direction.Invalid;
         var bestScore = double.MaxValue;
-        var maxTurn = ent.Comp.MaxTurn + 1;
+        var maxTurn = ent.Comp1.MaxTurn + 1;
 
         foreach (var exit in exits)
         {
@@ -261,7 +302,9 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
             var score = turn;
             if (exit == avoid)
                 score += 1000;
-            if (force && exit == preferred)
+            // Forcing only reaches branches ahead: a pod coming down one branch of a split
+            // still merges into the trunk instead of crossing over to the other branch.
+            if (force && exit == preferred && turn <= 46)
                 score -= 1000;
 
             var better = score < bestScore - 1
@@ -330,18 +373,18 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
             return;
 
         if (args.Port == ent.Comp.TogglePort)
-            SetSwitch(ent, !ent.Comp.Right);
+            SetSwitch(ent.AsNullable(), !ent.Comp.Right);
         else if (args.Port == ent.Comp.LeftPort)
-            SetSwitch(ent, false);
+            SetSwitch(ent.AsNullable(), false);
         else if (args.Port == ent.Comp.RightPort)
-            SetSwitch(ent, true);
+            SetSwitch(ent.AsNullable(), true);
     }
 
     /// <summary>
     /// Whether a piece is switched on. Pieces that cannot be switched are always on.
     /// </summary>
-    public bool IsEnabled(EntityUid uid)
-        => !TryComp<TransitTubeToggleComponent>(uid, out var toggle) || toggle.Enabled;
+    public bool IsEnabled(Entity<TransitTubeToggleComponent?> ent)
+        => !Resolve(ent, ref ent.Comp, false) || ent.Comp.Enabled;
 
     [SubscribeLocalEvent]
     private void OnToggleInit(Entity<TransitTubeToggleComponent> ent, ref ComponentInit args)
@@ -358,19 +401,19 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
             return;
 
         if (args.Port == ent.Comp.TogglePort)
-            SetEnabled(ent, !ent.Comp.Enabled);
+            SetEnabled(ent.AsNullable(), !ent.Comp.Enabled);
         else if (args.Port == ent.Comp.OnPort)
-            SetEnabled(ent, true);
+            SetEnabled(ent.AsNullable(), true);
         else if (args.Port == ent.Comp.OffPort)
-            SetEnabled(ent, false);
+            SetEnabled(ent.AsNullable(), false);
     }
 
     /// <summary>
     /// Switches a piece on or off.
     /// </summary>
-    public void SetEnabled(Entity<TransitTubeToggleComponent> ent, bool enabled)
+    public void SetEnabled(Entity<TransitTubeToggleComponent?> ent, bool enabled)
     {
-        if (ent.Comp.Enabled == enabled)
+        if (!Resolve(ent, ref ent.Comp) || ent.Comp.Enabled == enabled)
             return;
 
         ent.Comp.Enabled = enabled;
@@ -381,14 +424,42 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     /// <summary>
     /// Points a switch junction left or right.
     /// </summary>
-    public void SetSwitch(Entity<TransitTubeSwitchComponent> ent, bool right)
+    public void SetSwitch(Entity<TransitTubeSwitchComponent?> ent, bool right)
     {
-        if (ent.Comp.Right == right)
+        if (!Resolve(ent, ref ent.Comp) || ent.Comp.Right == right)
             return;
 
         ent.Comp.Right = right;
         Dirty(ent);
         _appearance.SetData(ent, TransitSwitchVisuals.Right, right);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnPodGetState(Entity<TransitPodComponent> ent, ref ComponentGetState args)
+    {
+        var plan = new List<TransitPlanStep>(ent.Comp.Plan.Count);
+        foreach (var ((tube, travel), exit) in ent.Comp.Plan)
+            plan.Add(new TransitPlanStep(GetNetEntity(tube), travel, exit));
+
+        args.State = new TransitPodComponentState(ent.Comp.State, ent.Comp.Boosted, ent.Comp.StopRequested,
+            GetNetEntity(ent.Comp.Target), ent.Comp.AnyFree, plan);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnPodHandleState(Entity<TransitPodComponent> ent, ref ComponentHandleState args)
+    {
+        if (args.Current is not TransitPodComponentState state)
+            return;
+
+        ent.Comp.State = state.State;
+        ent.Comp.Boosted = state.Boosted;
+        ent.Comp.StopRequested = state.StopRequested;
+        ent.Comp.Target = EnsureEntity<TransitPodComponent>(state.Target, ent);
+        ent.Comp.AnyFree = state.AnyFree;
+
+        ent.Comp.Plan.Clear();
+        foreach (var step in state.Plan)
+            ent.Comp.Plan[(EnsureEntity<TransitPodComponent>(step.Tube, ent), step.Travel)] = step.Exit;
     }
 
     [SubscribeLocalEvent]

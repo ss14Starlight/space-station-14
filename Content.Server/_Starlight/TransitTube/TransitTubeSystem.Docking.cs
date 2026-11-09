@@ -9,7 +9,7 @@ public sealed partial class TransitTubeSystem
 {
     private void Dock(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder, Entity<TransitTubeStationComponent> station, bool instant = false)
     {
-        _holder.SetHalted(holder, true);
+        _holder.SetHalted(holder.AsNullable(), true);
 
         var stationXform = Transform(station);
         _xform.SetCoordinates(pod, stationXform.Coordinates);
@@ -25,6 +25,7 @@ public sealed partial class TransitTubeSystem
         ReleaseReservation(pod);
         _deviceLink.InvokePort(station, station.Comp.ArrivedPort);
         pod.Comp.StopRequested = false;
+        Dirty(pod);
         station.Comp.StopRequested = false;
         _appearance.SetData(station, TransitStationVisuals.StopRequested, false);
         station.Comp.DockedPod = pod;
@@ -80,7 +81,7 @@ public sealed partial class TransitTubeSystem
 
         foreach (var exit in exits)
         {
-            if (!_holder.Launch(holder, (stationUid, tube), exit))
+            if (!_holder.Launch(holder.AsNullable(), (stationUid, tube), exit))
                 continue;
 
             pod.Comp.Station = null;
@@ -100,7 +101,7 @@ public sealed partial class TransitTubeSystem
     private bool Bounce(Entity<DisposalHolderComponent> holder)
     {
         if (Exists(holder.Comp.CurrentTube) && Exists(holder.Comp.NextTube))
-            return _holder.Reverse(holder);
+            return _holder.Reverse(holder.AsNullable());
 
         // The tube ahead is missing: leave the current tube by any other exit.
         if (holder.Comp.CurrentTube is not { } currentUid || !TryComp<DisposalTubeComponent>(currentUid, out var current))
@@ -108,7 +109,7 @@ public sealed partial class TransitTubeSystem
 
         foreach (var exit in _disposalTube.GetTubeConnectableDirections((currentUid, current)))
         {
-            if (exit != holder.Comp.CurrentDirection && _holder.Launch(holder, (currentUid, current), exit))
+            if (exit != holder.Comp.CurrentDirection && _holder.Launch(holder.AsNullable(), (currentUid, current), exit))
                 return true;
         }
 
@@ -117,9 +118,9 @@ public sealed partial class TransitTubeSystem
 
     private void Stall(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder)
     {
-        _holder.SetHalted(holder, true);
+        _holder.SetHalted(holder.AsNullable(), true);
         SetState(pod, TransitPodState.Stalled);
-        SetSpeed(pod, holder, null);
+        SetSpeed(pod.AsNullable(), holder.AsNullable(), null);
         SetSignalLamp(pod.Comp.HeldAtSignal, false);
         pod.Comp.HeldAtSignal = null;
         pod.Comp.WaitingFor = null;
@@ -138,7 +139,7 @@ public sealed partial class TransitTubeSystem
         SetSignalLamp(pod.Comp.HeldAtSignal, false);
         pod.Comp.HeldAtSignal = null;
         pod.Comp.WaitingFor = null;
-        _holder.SetHalted(holder, false);
+        _holder.SetHalted(holder.AsNullable(), false);
     }
 
     private void ReleaseReservation(Entity<TransitPodComponent> pod)

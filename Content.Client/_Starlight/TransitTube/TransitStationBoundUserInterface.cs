@@ -71,7 +71,12 @@ public sealed partial class TransitStationBoundUserInterface(EntityUid owner, En
             HorizontalExpand = true,
         };
 
-        button.OnPressed += _ => SendMessage(new TransitStationSelectDestinationMessage(destination, anyFree));
+        button.OnPressed += _ =>
+        {
+            SendMessage(new TransitStationSelectDestinationMessage(destination, anyFree));
+
+            button.Pressed = selected;
+        };
         _list?.AddChild(button);
     }
 }

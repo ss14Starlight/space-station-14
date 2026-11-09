@@ -31,7 +31,8 @@
     "transit_turntable.png",
     "transit_turntable_half.png",
     "transit_crossroad_diagonal.png",
-    "transit_requeststop.png"
+    "transit_requeststop.png",
+    "transit_cap.png"
   ]
   license: "CC-BY-SA-3.0"
   copyright: "Drawn by Starlight on top of ParadiseSS13 transit tube sprites, south-facing frames"

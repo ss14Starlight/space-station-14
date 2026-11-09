@@ -21,7 +21,7 @@ public sealed partial class TransitTubeSystem
             {
                 if (IsEmagged(ent))
                     args.PushMarkup(Loc.GetString("transit-tube-examine-oneway-broken"));
-                else if (!IsEnabled(ent))
+                else if (!IsEnabled(ent.Owner))
                     args.PushMarkup(Loc.GetString("transit-tube-examine-oneway-off"));
                 else
                     args.PushMarkup(Loc.GetString("transit-tube-examine-oneway", ("direction", WorldDir(oneWay))));
@@ -41,7 +41,7 @@ public sealed partial class TransitTubeSystem
                 var branch = WorldDir(ent.Comp.PreferredExit ?? Direction.North);
                 if (IsEmagged(ent))
                     args.PushMarkup(Loc.GetString("transit-tube-examine-branch-broken"));
-                else if (IsEnabled(ent))
+                else if (IsEnabled(ent.Owner))
                     args.PushMarkup(Loc.GetString("transit-tube-examine-branch-on", ("direction", branch)));
                 else
                     args.PushMarkup(Loc.GetString("transit-tube-examine-branch-off"));

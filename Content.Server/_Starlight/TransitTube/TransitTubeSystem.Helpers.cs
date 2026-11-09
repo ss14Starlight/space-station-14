@@ -42,6 +42,7 @@ public sealed partial class TransitTubeSystem
     {
         pod.Comp.State = state;
         pod.Comp.StateEnd = _timing.CurTime + (duration ?? TimeSpan.Zero);
+        Dirty(pod);
     }
 
     private void SetStationVisual(Entity<TransitTubeStationComponent> station, TransitStationVisualState state)

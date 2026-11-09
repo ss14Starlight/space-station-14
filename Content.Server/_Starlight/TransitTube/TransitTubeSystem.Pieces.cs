@@ -15,6 +15,9 @@ public sealed partial class TransitTubeSystem
     private static readonly TimeSpan _signalCheckInterval = TimeSpan.FromSeconds(0.25);
 
     private readonly HashSet<EntityUid> _section = [];
+    private readonly HashSet<(EntityUid Tube, Direction Travel)> _sectionSeen = [];
+    private readonly Queue<(Entity<DisposalTubeComponent> From, Direction Exit, int Depth)> _sectionFrontier = new();
+    private readonly List<Direction> _sectionExits = [];
 
     protected override void OnPodRouted(Entity<TransitTubeComponent> tube, Entity<DisposalHolderComponent> holder, Entity<TransitPodComponent> pod, Direction next)
     {
@@ -23,7 +26,7 @@ public sealed partial class TransitTubeSystem
 
         // A tagger gives the pod a new destination rather than piling up old ones.
         if (HasComp<DisposalTaggerComponent>(tube))
-            _holder.ClearTags(holder);
+            _holder.ClearTags(holder.AsNullable());
 
         if (TryComp<TransitTubeSpeedComponent>(tube, out var speed)
             && travel != Direction.Invalid
@@ -74,24 +77,33 @@ public sealed partial class TransitTubeSystem
         // Brakes are plain mechanics; accelerators need power, and an emagged one overloads.
         if (tube.Comp.Speed is not { } boost)
         {
-            SetSpeed(pod, holder, null);
+            SetSpeed(pod.AsNullable(), holder.AsNullable(), null);
             return;
         }
 
         if (!IsPowered(tube))
             return;
 
-        SetSpeed(pod, holder, IsEmagged(tube) ? tube.Comp.OverloadSpeed : boost);
+        SetSpeed(pod.AsNullable(), holder.AsNullable(), IsEmagged(tube) ? tube.Comp.OverloadSpeed : boost);
     }
 
     /// <summary>
     /// Sets the speed of a pod. Null puts it back to normal.
     /// </summary>
-    public void SetSpeed(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder, float? speed)
+    public void SetSpeed(Entity<TransitPodComponent?> pod, Entity<DisposalHolderComponent?> holder, float? speed)
     {
+        if (!Resolve(pod, ref pod.Comp) || !Resolve(holder, ref holder.Comp))
+            return;
+
         var target = speed ?? pod.Comp.BaseSpeed;
-        pod.Comp.Boosted = target > pod.Comp.BaseSpeed + 0.01f;
-        _holder.SetTraversalSpeed(holder, target);
+        var boosted = target > pod.Comp.BaseSpeed + 0.01f;
+        if (pod.Comp.Boosted != boosted)
+        {
+            pod.Comp.Boosted = boosted;
+            Dirty(pod);
+        }
+
+        _holder.SetTraversalSpeed(holder.AsNullable(), target);
     }
 
     private void SetSignalLamp(EntityUid? signal, bool holding)
@@ -103,7 +115,7 @@ public sealed partial class TransitTubeSystem
     private void Hold(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder)
     {
         pod.Comp.NextSignalCheck = _timing.CurTime + _signalCheckInterval;
-        _holder.SetHalted(holder, true);
+        _holder.SetHalted(holder.AsNullable(), true);
     }
 
     private void UpdateHeld(Entity<TransitPodComponent> pod, DisposalHolderComponent holder, TimeSpan now)
@@ -153,22 +165,31 @@ public sealed partial class TransitTubeSystem
         if (!TryComp<DisposalTubeComponent>(signal, out var signalTube) || !TryComp<DisposalHolderComponent>(pod, out var holder))
             return false;
 
-        Entity<DisposalTubeComponent> current = (signal, signalTube);
-        for (var i = 0; i < signal.Comp.MaxSectionLength && direction != Direction.Invalid; i++)
+        // Follow every way this very pod may go: switches, routers, turntables and its plan included,
+        // and both branches of a switch that picks at random.
+        _sectionSeen.Clear();
+        _sectionFrontier.Clear();
+        if (direction != Direction.Invalid)
+            _sectionFrontier.Enqueue(((signal, signalTube), direction, 0));
+
+        while (_sectionFrontier.TryDequeue(out var step))
         {
-            if (_disposalTube.GetTubeInDirection(current, direction) is not { } nextUid
+            if (step.Depth >= signal.Comp.MaxSectionLength
+                || _disposalTube.GetTubeInDirection(step.From, step.Exit) is not { } nextUid
                 || !TryComp<DisposalTubeComponent>(nextUid, out var nextTube)
-                || !_section.Add(nextUid))
-                break;
+                || !_sectionSeen.Add((nextUid, step.Exit)))
+                continue;
+
+            _section.Add(nextUid);
 
             if (HasComp<TransitTubeStationComponent>(nextUid)
                 || HasComp<TransitTubeBlockSignalComponent>(nextUid)
                 || !TryComp<TransitTubeComponent>(nextUid, out var transit))
-                break;
+                continue;
 
-            // Follow the way this very pod would go: switches, routers, turntables and its plan included.
-            direction = Route((nextUid, transit), nextTube, (pod, holder), pod, direction, simulate: true);
-            current = (nextUid, nextTube);
+            PossibleRoutes((nextUid, transit), nextTube, (pod, holder), pod, step.Exit, _sectionExits);
+            foreach (var exit in _sectionExits)
+                _sectionFrontier.Enqueue(((nextUid, nextTube), exit, step.Depth + 1));
         }
 
         if (_section.Count == 0)
@@ -208,6 +229,7 @@ public sealed partial class TransitTubeSystem
             return false;
 
         station.Comp.StopRequested = true;
+        Dirty(station);
         _appearance.SetData(station, TransitStationVisuals.StopRequested, true);
         _popup.PopupEntity(Loc.GetString("transit-station-stop-requested"), station, user);
         return true;
@@ -222,6 +244,7 @@ public sealed partial class TransitTubeSystem
         }
 
         pod.Comp.StopRequested = true;
+        Dirty(pod);
         _popup.PopupEntity(Loc.GetString("transit-pod-stop-requested"), passenger, passenger, PopupType.Medium);
     }
 }

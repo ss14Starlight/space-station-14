@@ -9,9 +9,9 @@ public abstract partial class SharedDisposalHolderSystem
     /// <summary>
     /// Stops or resumes a holder in place.
     /// </summary>
-    public void SetHalted(Entity<DisposalHolderComponent> ent, bool halted)
+    public void SetHalted(Entity<DisposalHolderComponent?> ent, bool halted)
     {
-        if (ent.Comp.Halted == halted)
+        if (!Resolve(ent, ref ent.Comp) || ent.Comp.Halted == halted)
             return;
 
         ent.Comp.Halted = halted;
@@ -25,17 +25,24 @@ public abstract partial class SharedDisposalHolderSystem
     /// <summary>
     /// Changes how fast a holder moves, in tiles per second.
     /// </summary>
-    public void SetTraversalSpeed(Entity<DisposalHolderComponent> ent, float speed)
+    public void SetTraversalSpeed(Entity<DisposalHolderComponent?> ent, float speed)
     {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
+        if (MathHelper.CloseTo(ent.Comp.TraversalSpeed, speed))
+            return;
+
         ent.Comp.TraversalSpeed = speed;
+        Dirty(ent);
     }
 
     /// <summary>
     /// Removes every routing tag from a holder.
     /// </summary>
-    public void ClearTags(Entity<DisposalHolderComponent> ent)
+    public void ClearTags(Entity<DisposalHolderComponent?> ent)
     {
-        if (ent.Comp.Tags.Count == 0)
+        if (!Resolve(ent, ref ent.Comp) || ent.Comp.Tags.Count == 0)
             return;
 
         ent.Comp.Tags.Clear();
@@ -45,10 +52,17 @@ public abstract partial class SharedDisposalHolderSystem
     /// <summary>
     /// Sends a holder out of a tube in the given direction.
     /// </summary>
-    /// <returns>False if there is no connected tube in that direction.</returns>
-    public bool Launch(Entity<DisposalHolderComponent> ent, Entity<DisposalTubeComponent> tube, Direction direction)
+    /// <returns>False if the tube has no exit that way, or no connected tube there.</returns>
+    public bool Launch(Entity<DisposalHolderComponent?> ent, Entity<DisposalTubeComponent?> tube, Direction direction)
     {
-        var next = _disposalTube.GetTubeInDirection(tube, direction);
+        if (!Resolve(ent, ref ent.Comp) || !Resolve(tube, ref tube.Comp))
+            return false;
+
+        // Only through a side the tube is actually open on.
+        if (Array.IndexOf(_disposalTube.GetTubeConnectableDirections((tube, tube.Comp)), direction) < 0)
+            return false;
+
+        var next = _disposalTube.GetTubeInDirection((tube, tube.Comp), direction);
         if (next == null)
             return false;
 
@@ -65,9 +79,11 @@ public abstract partial class SharedDisposalHolderSystem
     /// <summary>
     /// Turns a moving holder around, sending it back to the tube it came from.
     /// </summary>
-    public bool Reverse(Entity<DisposalHolderComponent> ent)
+    public bool Reverse(Entity<DisposalHolderComponent?> ent)
     {
-        if (ent.Comp.CurrentTube is not { } current || ent.Comp.NextTube is not { } next)
+        if (!Resolve(ent, ref ent.Comp)
+            || ent.Comp.CurrentTube is not { } current
+            || ent.Comp.NextTube is not { } next)
             return false;
 
         ent.Comp.CurrentTube = next;
@@ -76,5 +92,18 @@ public abstract partial class SharedDisposalHolderSystem
         _xform.SetLocalRotation(ent, ent.Comp.CurrentDirection.ToAngle());
         Dirty(ent);
         return true;
+    }
+
+    /// <summary>
+    /// Forgets the tubes a holder was in, for when they are gone from under it.
+    /// </summary>
+    public void ClearTubes(Entity<DisposalHolderComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp) || ent.Comp.CurrentTube == null && ent.Comp.NextTube == null)
+            return;
+
+        ent.Comp.CurrentTube = null;
+        ent.Comp.NextTube = null;
+        Dirty(ent);
     }
 }

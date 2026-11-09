@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.TransitTube;
 using Content.Shared.Disposal.Components;
 using Content.Shared.Disposal.Holder;
 using Content.Shared.Follower;
@@ -73,6 +74,13 @@ public abstract partial class SharedBeingDisposedSystem : EntitySystem
 
     private void OnInteractionAttempt(Entity<BeingDisposedComponent> ent, ref InteractionAttemptEvent args)
     {
+        // Starlight-start
+        if (args.Target is { } target
+            && TryComp<TransitPodComponent>(ent.Comp.Holder, out var pod)
+            && (target == ent.Comp.Holder || target == pod.Station))
+            return;
+        // Starlight-end
+
         // Prevent interactions while travelling through disposals
         args.Cancelled = true;
     }

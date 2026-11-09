@@ -8,6 +8,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
+using Content.Shared.RCD.Components;
 using Robust.Shared.Map;
 
 namespace Content.Server._Starlight.TransitTube;
@@ -20,8 +21,15 @@ public sealed partial class TransitTubeSystem
         if (args.Handled || !args.Complex)
             return;
 
-        args.Handled = TryRequestStop(ent, args.User)
-                       || TryUnload(ent, args.User)
+        // A request stop with no pod around also calls one from a depot.
+        if (TryRequestStop(ent, args.User))
+        {
+            TryCallPod(ent, args.User);
+            args.Handled = true;
+            return;
+        }
+
+        args.Handled = TryUnload(ent, args.User)
                        || TryCallPod(ent, args.User)
                        || TryBoard(ent, args.User, args.User);
     }
@@ -29,7 +37,9 @@ public sealed partial class TransitTubeSystem
     [SubscribeLocalEvent]
     private void OnStationInteractUsing(Entity<TransitTubeStationComponent> ent, ref InteractUsingEvent args)
     {
+        // Leave building tools alone, so an RPD still takes the station apart.
         if (args.Handled
+            || HasComp<RCDComponent>(args.Used)
             || ent.Comp.DockedPod is not { } podUid
             || !TryComp<TransitPodComponent>(podUid, out var pod)
             || !pod.Cargo)
@@ -37,7 +47,7 @@ public sealed partial class TransitTubeSystem
 
         args.Handled = true;
 
-        if (!CanBoard(ent, args.User, popup: true))
+        if (!CanBoard(ent, args.User, popup: true) || !CheckPlatformSide(ent, args.User, args.User))
             return;
 
         // Load what is in hand straight into a cargo pod.
@@ -63,6 +73,12 @@ public sealed partial class TransitTubeSystem
 
         if (!GetPassengers((podUid, pod)).Any())
             return false;
+
+        if (!_access.IsAllowed(user, station))
+        {
+            _popup.PopupEntity(Loc.GetString("transit-station-access-denied"), station, user);
+            return true;
+        }
 
         EjectAll((podUid, pod), GetPlatform(station));
         return true;
@@ -91,7 +107,7 @@ public sealed partial class TransitTubeSystem
         if (station.Comp.DockedPod == null && !HasComp<MobStateComponent>(passenger))
             return false;
 
-        if (!CanBoard(station, user, popup: true))
+        if (!CanBoard(station, user, popup: true) || !CheckPlatformSide(station, passenger, user))
             return true;
 
         var self = passenger == user;
@@ -134,13 +150,31 @@ public sealed partial class TransitTubeSystem
         return reason == null;
     }
 
+    private bool OnPlatformSide(Entity<TransitTubeStationComponent> station, EntityUid uid)
+    {
+        // Held things sit at their carrier's position, so this covers them too.
+        var stationXform = Transform(station);
+        var offset = _xform.GetWorldPosition(uid) - _xform.GetWorldPosition(stationXform);
+        var side = _xform.GetWorldRotation(stationXform).RotateVec(station.Comp.BoardingSide.ToVec());
+        return System.Numerics.Vector2.Dot(offset, side) > 0.1f;
+    }
+
+    private bool CheckPlatformSide(Entity<TransitTubeStationComponent> station, EntityUid passenger, EntityUid user)
+    {
+        if (OnPlatformSide(station, passenger))
+            return true;
+
+        _popup.PopupEntity(Loc.GetString("transit-station-wrong-side"), station, user);
+        return false;
+    }
+
     [SubscribeLocalEvent]
     private void OnBoardDoAfter(Entity<TransitTubeStationComponent> ent, ref TransitPodBoardDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || args.Target is not { } passenger)
             return;
 
-        if (!CanBoard(ent, args.User, popup: true))
+        if (!CanBoard(ent, args.User, popup: true) || !CheckPlatformSide(ent, passenger, args.User))
             return;
 
         if (ent.Comp.DockedPod is not { } podUid || !TryComp<TransitPodComponent>(podUid, out var pod))
@@ -161,30 +195,35 @@ public sealed partial class TransitTubeSystem
     /// <summary>
     /// Puts an entity into a pod, giving it the pod's air.
     /// </summary>
-    public bool TryInsertPassenger(Entity<TransitPodComponent> pod, EntityUid passenger)
+    public bool TryInsertPassenger(Entity<TransitPodComponent?> pod, EntityUid passenger)
     {
-        if (!TryComp<DisposalHolderComponent>(pod, out var holder)
-            || holder.Container == null
-            || GetPassengers(pod).Count() >= pod.Comp.MaxPassengers
+        if (!Resolve(pod, ref pod.Comp)
+            || !TryComp<DisposalHolderComponent>(pod, out var holder)
+            || holder.Container == null)
+            return false;
+
+        Entity<TransitPodComponent> podEnt = (pod, pod.Comp);
+        if (GetPassengers(podEnt).Count() >= pod.Comp.MaxPassengers
             || !_container.Insert(passenger, holder.Container))
             return false;
 
         _holder.AttachEntity((pod, holder), passenger);
-        UpdatePodVisuals(pod);
+        UpdatePodVisuals(podEnt);
         return true;
     }
 
     [SubscribeLocalEvent]
     private void OnPodRelayMovement(Entity<TransitPodComponent> ent, ref ContainerRelayMovementEntityEvent args)
     {
-        var now = _timing.CurTime;
-        if (now < ent.Comp.LastExitAttempt + ent.Comp.ExitAttemptCooldown)
-            return;
-
-        ent.Comp.LastExitAttempt = now;
-
+        // Each passenger has their own cooldown, used only by those who can actually move.
         if (!_actionBlocker.CanMove(args.Entity))
             return;
+
+        var now = _timing.CurTime;
+        if (ent.Comp.LastExitAttempts.TryGetValue(args.Entity, out var last) && now < last + ent.Comp.ExitAttemptCooldown)
+            return;
+
+        ent.Comp.LastExitAttempts[args.Entity] = now;
 
         switch (ent.Comp.State)
         {
@@ -246,6 +285,7 @@ public sealed partial class TransitTubeSystem
         if (!TryComp<DisposalHolderComponent>(pod, out var holder) || holder.Container == null)
             return;
 
+        pod.Comp.LastExitAttempts.Remove(passenger);
         _holder.DetachEntity(passenger);
         _container.Remove(passenger, holder.Container, force: true, destination: destination);
         UpdatePodVisuals(pod);

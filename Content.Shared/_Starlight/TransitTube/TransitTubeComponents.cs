@@ -72,15 +72,15 @@ public sealed partial class TransitTubeStationComponent : Component
     /// <summary>
     /// Someone on the platform asked the next pod to stop.
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public bool StopRequested;
 
     /// <summary>
-    /// The name passengers pick this station by. If unset, the station's label (hand labeler) is used;
-    /// stations with neither are not offered as destinations.
+    /// The localized name passengers pick this station by. If unset, the station's label (hand labeler)
+    /// is used as written; stations with neither are not offered as destinations.
     /// </summary>
     [DataField]
-    public string? Destination;
+    public LocId? Destination;
 
     /// <summary>
     /// A depot: pods that dock here stay until they are called to a station or sent off with a signal.
@@ -120,9 +120,15 @@ public sealed partial class TransitTubeStationComponent : Component
     [DataField]
     public TimeSpan DepartDelay = TimeSpan.FromSeconds(5);
 
+    /// <summary>
+    /// How long a docking pod takes to open up.
+    /// </summary>
     [DataField]
     public TimeSpan OpenTime = TimeSpan.FromSeconds(0.5);
 
+    /// <summary>
+    /// How long a departing pod takes to close before it leaves.
+    /// </summary>
     [DataField]
     public TimeSpan CloseTime = TimeSpan.FromSeconds(0.5);
 
@@ -162,7 +168,11 @@ public enum TransitPodState : byte
     Closing,
 }
 
-[RegisterComponent, AutoGenerateComponentPause]
+/// <summary>
+/// A transit pod: a persistent disposal holder that rides the transit tubes. Its routing state is
+/// networked so the client predicts the same way through the tubes as the server.
+/// </summary>
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
 public sealed partial class TransitPodComponent : Component
 {
     /// <summary>
@@ -307,16 +317,16 @@ public sealed partial class TransitPodComponent : Component
     public TimeSpan ClimbOutDelay = TimeSpan.FromSeconds(5);
 
     /// <summary>
-    /// Exit cooldown.
+    /// How often each passenger can try to get out.
     /// </summary>
     [DataField]
     public TimeSpan ExitAttemptCooldown = TimeSpan.FromSeconds(0.5);
 
     /// <summary>
-    /// Last exit attempt time.
+    /// When each passenger last tried to get out.
     /// </summary>
-    [ViewVariables, AutoPausedField]
-    public TimeSpan LastExitAttempt;
+    [ViewVariables]
+    public Dictionary<EntityUid, TimeSpan> LastExitAttempts = new();
 
     /// <summary>
     /// Pods closer than this, in tiles, crash into each other.
@@ -394,8 +404,34 @@ public sealed partial class TransitPodComponent : Component
 [RegisterComponent]
 public sealed partial class RadiantHeatComponent : Component
 {
+    /// <summary>
+    /// Temperature, in kelvin, that closed pods passing over this heat up towards.
+    /// </summary>
     [DataField]
     public float Temperature = 1500f;
+}
+
+/// <summary>
+/// One step of a pod's plan: on entering <see cref="Tube"/> going <see cref="Travel"/>, leave by <see cref="Exit"/>.
+/// </summary>
+[Serializable, NetSerializable]
+public readonly record struct TransitPlanStep(NetEntity Tube, Direction Travel, Direction Exit);
+
+[Serializable, NetSerializable]
+public sealed class TransitPodComponentState(
+    TransitPodState state,
+    bool boosted,
+    bool stopRequested,
+    NetEntity? target,
+    bool anyFree,
+    List<TransitPlanStep> plan) : ComponentState
+{
+    public readonly TransitPodState State = state;
+    public readonly bool Boosted = boosted;
+    public readonly bool StopRequested = stopRequested;
+    public readonly NetEntity? Target = target;
+    public readonly bool AnyFree = anyFree;
+    public readonly List<TransitPlanStep> Plan = plan;
 }
 
 [Serializable, NetSerializable]

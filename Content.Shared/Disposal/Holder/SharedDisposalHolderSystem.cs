@@ -140,7 +140,7 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
 
             // If the disposed entity re-entered a suspect pipe,
             // it is likely caught in a loop and should try to escape
-            if (ent.Comp.SuspectPipes.Contains(tube))
+            if (!ent.Comp.Persistent && ent.Comp.SuspectPipes.Contains(tube)) // Starlight-edit: transit pods ride loops on purpose
             {
                 ent.Comp.CanEscape = true;
             }
@@ -162,7 +162,7 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
 
 
             // Check if the holder can escape the current pipe
-            if (TryEscaping(ent, (tube, tube.Comp)))
+            if (!ent.Comp.Persistent && TryEscaping(ent, (tube, tube.Comp))) // Starlight-edit
                 return false;
         }
 

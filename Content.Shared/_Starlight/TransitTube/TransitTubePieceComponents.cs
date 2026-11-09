@@ -49,15 +49,27 @@ public sealed partial class TransitTubeSwitchComponent : Component
     [DataField]
     public Direction RightExit = Direction.NorthEast;
 
+    /// <summary>
+    /// Whether the switch is set to <see cref="RightExit"/> rather than <see cref="LeftExit"/>.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public bool Right = true;
 
+    /// <summary>
+    /// Sets the switch to the left branch.
+    /// </summary>
     [DataField]
     public ProtoId<SinkPortPrototype> LeftPort = "TransitSwitchLeft";
 
+    /// <summary>
+    /// Sets the switch to the right branch.
+    /// </summary>
     [DataField]
     public ProtoId<SinkPortPrototype> RightPort = "TransitSwitchRight";
 
+    /// <summary>
+    /// Flips the switch to the other branch.
+    /// </summary>
     [DataField]
     public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
 }
@@ -98,20 +110,32 @@ public sealed partial class TransitTubeBlockSignalComponent : Component
 
 /// <summary>
 /// Lets a tube piece be turned on and off over the device network. While off, a one-way tube
-/// lets pods through both ways.
+/// lets pods through both ways and a side switch lets them pass by.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class TransitTubeToggleComponent : Component
 {
+    /// <summary>
+    /// Whether the piece is switched on.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public bool Enabled = true;
 
+    /// <summary>
+    /// Switches the piece on.
+    /// </summary>
     [DataField]
     public ProtoId<SinkPortPrototype> OnPort = "On";
 
+    /// <summary>
+    /// Switches the piece off.
+    /// </summary>
     [DataField]
     public ProtoId<SinkPortPrototype> OffPort = "Off";
 
+    /// <summary>
+    /// Switches the piece the other way.
+    /// </summary>
     [DataField]
     public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
 }
@@ -119,6 +143,9 @@ public sealed partial class TransitTubeToggleComponent : Component
 [Serializable, NetSerializable]
 public enum TransitBlockSignalVisuals : byte
 {
+    /// <summary>
+    /// A pod is held at this signal: the lamp shows red instead of green.
+    /// </summary>
     Holding,
 }
 

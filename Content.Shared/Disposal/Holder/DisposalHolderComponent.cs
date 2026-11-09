@@ -25,7 +25,7 @@ public sealed partial class DisposalHolderComponent : Component, IGasMixtureHold
     /// <summary>
     /// Sets how fast the holder moves (~ number of tiles per second).
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] // Starlight-edit: transit pods change speed on the way
     public float TraversalSpeed { get; set; } = 5f;
 
     /// <summary>
