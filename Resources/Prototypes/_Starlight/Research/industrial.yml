@@ -105,6 +105,24 @@
   - Medical
   - Supply
 
+- type: technology
+  id: CombustionTurbines
+  name: research-technology-combustion-turbines
+  icon:
+    sprite: _Starlight/Structures/Power/Generation/combustion_turbine.rsi
+    state: core_rotor
+  discipline: Industrial
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - CombustionTurbineCompressorMachineCircuitboard
+  - CombustionTurbineRotorMachineCircuitboard
+  - CombustionTurbineOutletMachineCircuitboard
+  technologyPrerequisites:
+  - PowerGeneration
+  radioChannels:
+  - Engineering
+
 # Tier 3
 
 - type: technology

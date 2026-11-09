@@ -6,6 +6,7 @@
   - K9Variant
   - K9OuterClothing
   - K9Eyes
+  - K9Collar
 
 - type: loadoutGroup
   id: K9Variant
@@ -79,3 +80,35 @@
   id: K9SecHudEyepatch
   equipment:
     eyes: ClothingEyesEyepatchHudSecurity
+
+# Collar
+- type: loadoutGroup
+  id: K9Collar
+  name: loadout-group-k9-collar
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - K9CollarStandard
+  - K9CollarSenior
+
+- type: loadout
+  id: K9CollarStandard
+  equipment:
+    id: K9CollarPDA
+
+- type: loadout
+  id: K9CollarSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorK9
+  equipment:
+    id: K9CollarSeniorPDA
+
+- type: loadoutEffectGroup
+  id: SeniorK9
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobK9
+      time: 20h

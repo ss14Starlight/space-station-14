@@ -1183,3 +1183,26 @@
     - HonkSet
     - CultistSet
     - YapperSet
+
+# From Funky
+- type: entity
+  parent: NetworkConfigurator
+  id: NetworkConfiguratorWithTrigger
+  suffix: Trigger, Syndicate
+  components:
+  - type: ActivatableUI
+    verbOnly: true
+  - type: Signaller
+  - type: UseDelay
+  - type: DeviceLinkSource
+    ports:
+    - Pressed
+  - type: Tag
+    tags:
+    - Payload
+    - DoorElectronicsConfigurator
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 50

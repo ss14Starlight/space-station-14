@@ -1,0 +1,4 @@
+- type: !PartialOnly antagSpecifier
+  id: Wizard
+  briefing:
+    sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg"

@@ -606,3 +606,28 @@
   completetime: 1
   materials:
     Plastic: 50
+
+- type: latheRecipe
+  abstract: true
+  id: BaseCombustionTurbinePartRecipe
+  categories:
+  - Tools
+  completetime: 4
+  materials:
+    Steel: 500
+    Plasteel: 200
+
+- type: latheRecipe
+  parent: BaseCombustionTurbinePartRecipe
+  id: CombustionTurbineCompressorPart
+  result: CombustionTurbineCompressorPart
+
+- type: latheRecipe
+  parent: BaseCombustionTurbinePartRecipe
+  id: CombustionTurbineRotorPart
+  result: CombustionTurbineRotorPart
+
+- type: latheRecipe
+  parent: BaseCombustionTurbinePartRecipe
+  id: CombustionTurbineStatorPart
+  result: CombustionTurbineStatorPart

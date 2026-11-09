@@ -9,12 +9,20 @@
   components:
   - type: GhostRole
     important: true
+    mindRoles:
+    - MindRoleNukeops
 
 - type: !PartialOnly entity
   id: ReinforcementRadioSyndicateAncestor
   components:
   - type: GhostRole
     important: true
+
+- type: !PartialOnly entity
+  id: ReinforcementRadioSyndicateAncestorNukeops
+  components:
+  - type: GhostRole
+    mindRoles: [MindRoleGhostRoleTeamAntagonist, MindRoleNukeops]
 
 - type: !PartialOnly entity
   id: ReinforcementRadioSyndicateSyndiCat

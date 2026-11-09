@@ -1,0 +1,17 @@
+- type: !PartialOnly vendingMachineInventory
+  id: GetmoreChocolateCorpInventory
+  startingInventory:
+    FoodSnackRaisins: 4
+    FoodSnackChocolate: 4
+    FoodSnackCnDs: 4
+    FoodSnackPistachios: 4
+    FoodSnackSus: 4
+    FoodSnackSemki: 4
+    FoodBoxCrispyRiceBar: 1
+  contrabandInventory:
+    FoodSnackSwirlLollipop: 3
+    FoodSnackSyndi: 4
+  emaggedInventory: # Blimpuf
+    FoodCabbage: 2 # Blimpuf
+    FoodSnackMeltedChocolate: 2 # Blimpuf
+    FoodBakedMuffinChocolatePoison: 1 # Blimpuf

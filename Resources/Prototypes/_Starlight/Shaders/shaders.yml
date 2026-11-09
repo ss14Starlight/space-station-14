@@ -123,12 +123,6 @@
   id: MonumentPulse
   kind: source
   path: "/Textures/_Starlight/CosmicCult/Shaders/monument_pulse.swsl"
-- type: shader
-  id: DisplacedDrawUnshaded
-  kind: source
-  path: "/Textures/_Starlight/Shaders/displacement_unshaded.swsl"
-  params:
-    displacementSize: 127
 
 - type: shader
   id: LatchTargetOutline
@@ -176,3 +170,23 @@
     heat: 0
     displaced: 1
     displacementSize: 127
+
+- type: shader
+  id: LightTonemapCopy
+  kind: source
+  path: "/Textures/_Starlight/Shaders/light_tonemap_copy.swsl"
+
+- type: shader
+  id: LightTonemap
+  kind: source
+  path: "/Textures/_Starlight/Shaders/light_tonemap.swsl"
+
+- type: shader
+  id: ScreenPostProcess
+  kind: source
+  path: "/Textures/_Starlight/Shaders/screen_postprocess.swsl"
+
+- type: shader
+  id: BloomExtract
+  kind: source
+  path: "/Textures/_Starlight/Shaders/bloom_extract.swsl"

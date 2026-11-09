@@ -150,6 +150,12 @@
   id: CasinoChip
 
 - type: Tag
+  id: CD
+
+- type: Tag
+  id: CDCase
+
+- type: Tag
   id: CentcommVibroblade
 
 - type: Tag
@@ -229,6 +235,9 @@
 
 - type: Tag
   id: DamagedShadekinCore
+
+- type: Tag
+  id: DarkWizard
 
 - type: Tag
   id: DeificEncounterTraitBackground
@@ -333,6 +342,9 @@
   id: FringeTraitBackground
 
 - type: Tag
+  id: FragileImplant # Implant disintegrates on extraction
+
+- type: Tag
   id: FrontierTraitBackground
 
 - type: Tag
@@ -355,6 +367,15 @@
 
 - type: Tag
   id: GrenadeLessLethal #Ammo for the peacekeeper
+
+- type: Tag
+  id: GunUpgradeDamageExp
+
+- type: Tag
+  id: GunUpgradeRangeExp
+
+- type: Tag
+  id: GunUpgradeReloadSpeedExp
 
 - type: Tag
   id: GygaxArmor
@@ -385,6 +406,9 @@
 
 - type: Tag
   id: HandheldEngineeringMonitor #CE's handheld monitor
+
+- type: Tag
+  id: Heart
 
 - type: Tag
   id: HighTierCell #Blacklist for stunprod, used by the hyper and microreactor.
@@ -649,6 +673,9 @@
   id: OmniCyberEyes
 
 - type: Tag
+  id: Outbreak
+
+- type: Tag
   id: OvenMachineBoard
 
 - type: Tag
@@ -721,6 +748,9 @@
 
 - type: Tag
   id: Salad # BountySalad
+
+- type: Tag
+  id: SalvageExperimentStar
 
 - type: Tag
   id: SalvageTicket
@@ -846,7 +876,13 @@
   id: VinylSleeve # Storage whitelist: RecordMilkCrate, SyndicateMilkCrate
 
 - type: Tag
+  id: VinylSleeveFit
+
+- type: Tag
   id: WallmountMassScannerElectronics
+
+- type: Tag
+  id: WhitelistChameleonCollar # Chameleon key for chameleon collars
 
 - type: Tag
   id: Wizard
@@ -862,3 +898,9 @@
 
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground
+
+- type: Tag
+  id: StationRadioCircuitboard
+
+- type: Tag
+  id: AirlockCyclerElectronics # ConstructionGraph: AirlockCycler
