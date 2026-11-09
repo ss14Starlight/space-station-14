@@ -3,7 +3,7 @@
 signal-port-name-toggleable-device-status = Status
 signal-port-description-toggleable-device-status = High while the device is on, Low while the device is off.
 
-signal-port-name-toggleable-device-status-inverted = Status (Inverted)
+signal-port-name-toggleable-device-status-inverted = Inverted Status
 signal-port-description-toggleable-device-status-inverted = Low while the device is on, High while the device is off.
 
 # ToggleableDevice END

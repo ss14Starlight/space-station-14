@@ -51,7 +51,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
         SubscribeLocalEvent<PoweredLightComponent, EntInsertedIntoContainerMessage>(OnInserted);
         SubscribeLocalEvent<PoweredLightComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<PoweredLightComponent, InteractHandEvent>(OnInteractHand);
-        // SubscribeLocalEvent<PoweredLightComponent, SignalReceivedEvent>(OnSignalReceived); // Starlight-edit
+        // Starlight-edit: No more signal handling, we use ToggleableDeviceSignaling instead.
         SubscribeLocalEvent<PoweredLightComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<PoweredLightComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<PoweredLightComponent, PoweredLightDoAfterEvent>(OnDoAfter);
@@ -65,7 +65,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
     private void OnInit(EntityUid uid, PoweredLightComponent light, ComponentInit args)
     {
         light.LightBulbContainer = ContainerSystem.EnsureContainer<ContainerSlot>(uid, LightBulbContainer);
-        //_deviceLink.EnsureSinkPorts(uid, light.OnPort, light.OffPort, light.TogglePort); // Starlight-edit
+        // Starlight-edit: We use ToggleableDeviceSignaling instead.
     }
 
     private void OnRemoved(Entity<PoweredLightComponent> light, ref EntRemovedFromContainerMessage args)
@@ -119,16 +119,6 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
 
         args.Handled = true;
     }
-
-    // private void OnSignalReceived(Entity<PoweredLightComponent> ent, ref SignalReceivedEvent args)
-    // {
-    //     if (args.Port == ent.Comp.OffPort)
-    //         SetState(ent, false, ent.Comp);
-    //     else if (args.Port == ent.Comp.OnPort)
-    //         SetState(ent, true, ent.Comp);
-    //     else if (args.Port == ent.Comp.TogglePort)
-    //         ToggleLight(ent, ent.Comp);
-    // }
 
     /// <summary>
     /// Turns the light on or of when receiving a <see cref="DeviceNetworkConstants.CmdSetState"/> command.

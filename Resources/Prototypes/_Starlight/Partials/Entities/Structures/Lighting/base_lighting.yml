@@ -32,6 +32,7 @@
       - PoweredlightEmpty
       - PoweredSmallLightEmpty
       - PoweredLightPostSmallEmpty
+      - PoweredStrobeLightEmpty
   components:
     - type: ToggleableDevice
     - type: ToggleableDeviceSignaling
