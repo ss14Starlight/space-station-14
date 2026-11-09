@@ -62,7 +62,6 @@ public sealed partial class TransitTubeSystem : SharedTransitTubeSystem
     private readonly HashSet<Entity<TransitPodComponent>> _nearbyPods = [];
     private readonly HashSet<EntityUid> _pathTubes = [];
 
-
     [SubscribeLocalEvent]
     private void OnPodMapInit(Entity<TransitPodComponent> ent, ref MapInitEvent args)
     {

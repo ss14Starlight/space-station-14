@@ -155,7 +155,7 @@ public sealed partial class TransitTubeSystem
     {
         UpdateBrake(pod, holder, now);
 
-        if (pod.Comp.HeldAtSignal == null && pod.Comp.WaitingFor == null && pod.Comp.WaitingBehind == null
+        if ((pod.Comp.HeldAtSignal == null && pod.Comp.WaitingFor == null && pod.Comp.WaitingBehind == null)
             || now < pod.Comp.NextSignalCheck)
             return;
 
@@ -188,10 +188,8 @@ public sealed partial class TransitTubeSystem
     /// Whether a block signal shows clear: it has power and no other pod is in the section ahead.
     /// </summary>
     private bool SignalClear(Entity<TransitTubeBlockSignalComponent> signal, Direction direction, Entity<TransitPodComponent> pod)
-    {
         // An unpowered signal shows red: nothing passes until power is back.
-        return IsPowered(signal) && !SectionOccupied(signal, direction, pod);
-    }
+        => IsPowered(signal) && !SectionOccupied(signal, direction, pod);
 
     /// <summary>
     /// Whether another pod is in the section ahead of a block signal: every tube the pod would ride
@@ -244,8 +242,8 @@ public sealed partial class TransitTubeSystem
                 continue;
 
             // The tube a pod sits on covers docked and stalled pods too, the next tube covers pods about to enter.
-            if (other.NextTube is { } nextTubeUid && _section.Contains(nextTubeUid)
-                || TryGetTube(xform, out var under) && _section.Contains(under))
+            if ((other.NextTube is { } nextTubeUid && _section.Contains(nextTubeUid))
+                || (TryGetTube(xform, out var under) && _section.Contains(under)))
                 return true;
         }
 
@@ -333,7 +331,7 @@ public sealed partial class TransitTubeSystem
     private void UpdateBrake(Entity<TransitPodComponent> pod, DisposalHolderComponent holder, TimeSpan now)
     {
         if (!pod.Comp.Braked
-            || now < pod.Comp.BrakedUntil && GetPassengers(pod).Any(HasComp<MobStateComponent>))
+            || (now < pod.Comp.BrakedUntil && GetPassengers(pod).Any(HasComp<MobStateComponent>)))
             return;
 
         pod.Comp.Braked = false;
@@ -389,7 +387,7 @@ public sealed partial class TransitTubeSystem
         {
             if (uid == pod.Owner
                 || other.State != TransitPodState.Moving
-                || !other.Braked && other.WaitingBehind == null)
+                || (!other.Braked && other.WaitingBehind == null))
                 continue;
 
             if (otherHolder.CurrentTube == nextTube)

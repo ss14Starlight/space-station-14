@@ -240,11 +240,9 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
     }
 
     private Color GetGlassColor(EntityUid uid)
-    {
-        return TryComp<TransitTubeGlassComponent>(uid, out var glass) && _proto.Resolve(glass.Material, out var material)
-            ? material.Color
-            : Color.White;
-    }
+        => TryComp<TransitTubeGlassComponent>(uid, out var glass) && _proto.Resolve(glass.Material, out var material)
+        ? material.Color
+        : Color.White;
 
     private static string CornerKey(int corner) => $"transit-corner-{corner}";
 

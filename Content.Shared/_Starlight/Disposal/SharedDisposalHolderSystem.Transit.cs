@@ -99,7 +99,7 @@ public abstract partial class SharedDisposalHolderSystem
     /// </summary>
     public void ClearTubes(Entity<DisposalHolderComponent?> ent)
     {
-        if (!Resolve(ent, ref ent.Comp) || ent.Comp.CurrentTube == null && ent.Comp.NextTube == null)
+        if (!Resolve(ent, ref ent.Comp) || (ent.Comp.CurrentTube == null && ent.Comp.NextTube == null))
             return;
 
         ent.Comp.CurrentTube = null;
