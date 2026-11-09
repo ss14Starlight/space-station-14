@@ -190,7 +190,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     /// Whether a pod can dock at a station now: nobody docked there and nobody else on the way to it.
     /// </summary>
     public bool CanDockAt(Entity<TransitTubeStationComponent> station, EntityUid pod)
-        => (station.Comp.DockedPod == null && (station.Comp.ReservedBy is not { } reserved) || reserved == pod || !TryComp<TransitPodComponent>(reserved, out var other) || other.Reserved != station.Owner);
+        => station.Comp.DockedPod == null && (station.Comp.ReservedBy is not { } reserved || reserved == pod || !TryComp<TransitPodComponent>(reserved, out var other) || other.Reserved != station.Owner);
 
     /// <summary>
     /// Claims a station for a pod, so other pods treat it as busy until this one docks.
@@ -227,8 +227,8 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
             return false;
 
         var passes = pod.Boosted
-            || pod.Target != null && pod.Target != ent.Owner
-            || station.RequestStop && !station.StopRequested && !pod.StopRequested;
+            || (pod.Target != null && pod.Target != ent.Owner)
+            || (station.RequestStop && !station.StopRequested && !pod.StopRequested);
 
         return passes && PickExit((ent, ent.Comp, tube), travel) != Direction.Invalid;
     }
