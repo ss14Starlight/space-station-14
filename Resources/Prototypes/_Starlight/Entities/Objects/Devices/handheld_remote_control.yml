@@ -61,7 +61,6 @@
     state: toyremote
   - type: Item
     sprite: _Starlight/Objects/Devices/toy_remote_control.rsi
-    heldPrefix: toyremote
   - type: Appearance
   - type: GenericVisualizer
     visuals:
