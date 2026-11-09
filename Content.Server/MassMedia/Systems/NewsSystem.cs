@@ -194,6 +194,11 @@ public sealed partial class NewsSystem : SharedNewsSystem
 
         if (TryAddNews(ent, title, content, out var article, authorName, msg.Actor, snapshotData)) // Starlight Edit: Added snapshotData
         {
+            // Starlight Start: Clear the draft only after a confirmed publish.
+            ent.Comp.DraftTitle = string.Empty;
+            ent.Comp.DraftContent = string.Empty;
+            UpdateWriterUi(ent);
+            // Starlight End
             _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
             // Starlight Start
             if (snapshotData is not null)

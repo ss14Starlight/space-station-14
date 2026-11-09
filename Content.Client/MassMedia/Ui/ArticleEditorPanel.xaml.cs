@@ -98,7 +98,13 @@ public sealed partial class ArticleEditorPanel : Control
     private void OnPublish(BaseButton.ButtonEventArgs eventArgs)
     {
         PublishButtonPressed?.Invoke();
-        Reset();
+        // Reset(); // Starlight Edit: Removed for below addition
+        // Starlight Start: Hide without clearing the draft.
+        _preview = false;
+        TextEditPanel.Visible = true;
+        PreviewPanel.Visible = false;
+        PreviewLabel.SetMarkup("");
+        // Starlight End
         Visible = false;
     }
 
