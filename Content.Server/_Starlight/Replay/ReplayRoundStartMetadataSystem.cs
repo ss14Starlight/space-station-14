@@ -3,7 +3,7 @@ using Content.Shared._Starlight.Replay;
 
 namespace Content.Server._Starlight.Replay;
 
-public sealed class ReplayRoundStartMetadataSystem : SharedReplayRoundStartMetadataSystem
+public sealed partial class ReplayRoundStartMetadataSystem : SharedReplayRoundStartMetadataSystem
 {
     [Dependency] private GameTicker _ticker = default!;
 

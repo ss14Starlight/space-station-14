@@ -171,7 +171,7 @@ public sealed partial class ReplayObserverSystem
                 return false;
             }
 
-            seconds = seconds * 60 + value;
+            seconds = (seconds * 60) + value;
         }
 
         // Far past any replay, and far enough from TimeSpan's limit that adding the round start can't overflow.
