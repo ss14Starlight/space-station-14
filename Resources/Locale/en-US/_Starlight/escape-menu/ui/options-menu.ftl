@@ -195,3 +195,15 @@ ui-options-voice-volume = Voices and emotes:
 ui-options-announcement-volume = Announcements and alerts:
 ui-options-admin-sounds-volume = Admin sounds:
 ui-options-show-tippy = Show Tippy
+
+ui-options-atmosphere-label = Lighting and atmosphere
+ui-options-light-tonemap = Soft light
+ui-options-light-tonemap-tooltip = Rolls off bright spots where lights overlap, so sprites don't wash out.
+ui-options-night-vision = Night vision
+ui-options-night-vision-tooltip = Poorly lit areas lose their colour and turn cold blue, the way the eye sees in the dark.
+ui-options-vignette = Vignette
+ui-options-vignette-tooltip = Darkens the edges of the view.
+ui-options-bloom = Bloom
+ui-options-bloom-tooltip = Screens, lamps and other glowing things bleed light around them, most of all in the dark. Costs some performance.
+ui-options-film-grain = Film grain
+ui-options-film-grain-tooltip = Draws a light film grain over the view.
