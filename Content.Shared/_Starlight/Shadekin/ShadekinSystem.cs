@@ -37,6 +37,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Network;
+using Content.Shared.NPC.Systems;
 
 namespace Content.Shared._Starlight.Shadekin;
 
@@ -66,6 +67,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private SharedLanguageSystem _language = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedIlluminationSystem _illumination = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
 
     [Dependency] private EntityQuery<DarkLightComponent> _darkLightQuery = default!;
     [Dependency] private EntityQuery<ShadegenAffectedComponent> _shadegenAffected = default!;

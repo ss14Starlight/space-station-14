@@ -13,7 +13,6 @@ using Content.Shared._Starlight.Station;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Spawners.Components;
 using Content.Shared.NPC.Prototypes;
-using Content.Shared.NPC.Systems;
 using Robust.Shared.Prototypes;
 using Content.Shared.Eye;
 using Content.Shared._Starlight.NullSpace.Components;
@@ -22,9 +21,8 @@ namespace Content.Shared._Starlight.Shadekin;
 
 public sealed partial class ShadekinSystem
 {
-    [Dependency] private NpcFactionSystem _npcFaction = default!;
-
     private static readonly ProtoId<NpcFactionPrototype> _shieldedFaction = "Shielded";
+    private static readonly ProtoId<NpcFactionPrototype> _TheDarkFaction = "TheDark";
 
     [SubscribeLocalEvent]
     private void OnZombify(Entity<BrighteyeComponent> ent, ref EntityZombifiedEvent args)
@@ -45,6 +43,9 @@ public sealed partial class ShadekinSystem
 
         RemCompDeferred<MindShieldComponent>(ent.Owner);
         _npcFaction.RemoveFaction(ent.Owner, _shieldedFaction);
+
+        // DarkFaction so Rift Walkers dont attack Brighteyes.
+        _npcFaction.AddFaction(ent.Owner, _TheDarkFaction);
 
         _language.AddLanguage(ent.Owner, "Empathy");
 
@@ -136,6 +137,9 @@ public sealed partial class ShadekinSystem
     [SubscribeLocalEvent]
     private void OnShutdown(Entity<BrighteyeComponent> ent, ref ComponentShutdown _)
     {
+        // Were no more Brighteye, no more Friendly to The Dark.
+        _npcFaction.RemoveFaction(ent.Owner, _TheDarkFaction);
+
         _language.RemoveLanguage(ent.Owner, "Empathy");
 
         _alerts.ClearAlert(ent.Owner, ent.Comp.BrighteyeAlert);
@@ -151,7 +155,7 @@ public sealed partial class ShadekinSystem
         if (ent.Comp.Portal is not null)
         {
             PredictedSpawnAtPosition(ent.Comp.ShadekinShadow, Transform(ent.Comp.Portal.Value).Coordinates);
-            PredictedQueueDel(ent.Comp.Portal.Value);
+            QueueDel(ent.Comp.Portal.Value);
         }
 
         if (TryComp<BodyComponent>(ent.Owner, out var body))
@@ -246,6 +250,10 @@ public sealed partial class ShadekinSystem
         ent.Comp.Energy = 0;
         ent.Comp.Rejuvenating = true;
         _alerts.ShowAlert(ent.Owner, ent.Comp.RejuvenationAlert);
+
+        // Now... We mimir for 30Secs...
+        _status.TrySetStatusEffectDuration(ent, "StatusEffectForcedSleeping", duration: TimeSpan.FromSeconds(30));
+
         Dirty(ent.Owner, ent.Comp);
     }
 

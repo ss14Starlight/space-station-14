@@ -15,6 +15,7 @@
   - CosmicCult
   - MoffNarsianDemon
   - Floral
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: NanoTrasen
@@ -32,11 +33,13 @@
   - Pirate
   - CosmicCult
   - MoffNarsianDemon
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: Mouse
   hostile:
   - Abyss
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: PetsNT
@@ -50,6 +53,7 @@
   - MoffNarsianDemon
   - Abductor
   - CosmicCult
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: SimpleHostile
@@ -67,6 +71,7 @@
   - Pirate
   - CosmicCult
   - MoffNarsianDemon
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: Syndicate
@@ -82,6 +87,7 @@
   - Abductor
   - Pirate
   - MoffNarsianDemon
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: Xeno
@@ -99,6 +105,8 @@
   - Pirate
   - CosmicCult
   - MoffNarsianDemon
+  - TheDark
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: Zombie
@@ -114,6 +122,8 @@
   - Abductor
   - Pirate
   - MoffNarsianDemon
+  - TheDark
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: Revolutionary
@@ -133,6 +143,7 @@
   - Abductor
   - Pirate
   - MoffNarsianDemon
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: AllHostile
@@ -149,6 +160,8 @@
   - Pirate
   - CosmicCult
   - MoffNarsianDemon
+  - TheDark
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: Wizard
@@ -160,6 +173,8 @@
   - Abductor
   - Pirate
   - MoffNarsianDemon
+  - TheDark
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: Xenoborg
@@ -174,28 +189,35 @@
   - Gorilla
   - Pirate
   - MoffNarsianDemon
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: CosmicCult
   hostile:
   - MoffNarsianDemon
+  - TheDark
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: SyndicateSilicon
   hostile:
   - MoffNarsianDemon
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: NanoTrasenSilicon
   hostile:
   - MoffNarsianDemon
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: DungeonSoviet
   hostile:
   - MoffNarsianDemon
+  - TheDarkHostile
 
 - type: !PartialOnly npcFaction
   id: Passive
   hostile:
   - MoffNarsianDemon
+  - TheDarkHostile

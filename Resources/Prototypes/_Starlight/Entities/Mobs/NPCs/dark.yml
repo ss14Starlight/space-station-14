@@ -65,6 +65,7 @@
       quoremThreshold: 10
       quoremSound: /Audio/Effects/chime.ogg
       quoremEffect: "Exclamation"
+      defaultFaction: TheDark
       quoremFaction: AllHostile
     - type: HTN
       constantlyReplan: false
@@ -75,7 +76,7 @@
         NavInteract: !type:Bool true
     - type: NpcFactionMember
       factions:
-        - Passive
+        - TheDark
     - type: MeleeWeapon
       soundHit:
         path: /Audio/Effects/bite.ogg
@@ -177,6 +178,7 @@
     - type: NpcFactionMember
       factions:
         - PetsNT
+        - TheDark
     - type: QuoremCheck
       defaultFaction: PetsNT
     - type: Tag
@@ -207,6 +209,7 @@
     - type: NpcFactionMember
       factions:
         - PetsNT
+        - TheDark
     - type: QuoremCheck
       defaultFaction: PetsNT
     - type: Tag
@@ -227,7 +230,7 @@
     - type: UniversalLanguageSpeaker
     - type: NpcFactionMember
       factions:
-        - AllHostile
+        - TheDarkHostile
     - type: LanguageKnowledge
       speaks:
         - GalacticCommon
