@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server._Funkystation.ReagentFires.Systems;
 using Content.Shared._Funkystation.Footprints;
+using Content.Shared._Funkystation.Stains.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -36,6 +37,7 @@ public sealed partial class FootprintSystem : EntitySystem
     [Dependency] private EntityQuery<NoFootprintsComponent> _noFootprintsQuery = default!;
     [Dependency] private EntityQuery<SolutionComponent> _solutionQuery = default!;
     [Dependency] private EntityQuery<StandingStateComponent> _standingQuery = default!;
+    [Dependency] private EntityQuery<StainBlockerComponent> _stainBlockerQuery = default!;
 
     // A footprint sprite layer is relatively expensive. Chemical volume may continue accumulating after this cap,
     // but no more visual/network state is added until the footprint reaches capacity and becomes a puddle.
@@ -191,15 +193,28 @@ public sealed partial class FootprintSystem : EntitySystem
             : 0f;
 
         // Equipment only changes occasionally, so do this lookup at print cadence rather than physics cadence.
-        if (_noFootprintsQuery.HasComponent(entity.Owner) ||
-            (_inventory.TryGetSlotEntity(entity.Owner, "shoes", out var shoes) &&
-                _noFootprintsQuery.HasComponent(shoes)))
-        {
+        if (_noFootprintsQuery.HasComponent(entity.Owner))
             return;
+
+        var shod = _inventory.TryGetSlotEntity(entity.Owner, "shoes", out var shoes);
+        if (shod && _noFootprintsQuery.HasComponent(shoes))
+            return;
+
+        // A sealed suit encases the feet, so it prints as footwear even with the shoes slot empty.
+        if (!shod
+            && _inventory.TryGetSlotEntity(entity.Owner, "outerClothing", out var outer)
+            && _stainBlockerQuery.TryGetComponent(outer.Value, out var stainBlocker)
+            && (stainBlocker.BlockedSlots & SlotFlags.FEET) != 0
+            && _inventory.HasSlot(entity.Owner, "shoes"))
+        {
+            shod = true;
         }
 
         var xform = Transform(entity.Owner);
         if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
+            return;
+
+        if (!sameParent && args.NewPosition.EntityId != gridUid)
             return;
 
         Vector2 newLocal;
@@ -242,7 +257,7 @@ public sealed partial class FootprintSystem : EntitySystem
         if (ProcessPuddleStepping(entity, puddle, isStanding))
             return;
 
-        CreateFootprint(entity, grid, footprint, coords, rotation, isStanding);
+        CreateFootprint(entity, grid, footprint, coords, rotation, isStanding, shod, stepOffset > 0f);
     }
 
     private bool ProcessPuddleStepping(
@@ -351,7 +366,9 @@ public sealed partial class FootprintSystem : EntitySystem
         Entity<FootprintComponent, SolutionComponent>? existingFootprint,
         EntityCoordinates coords,
         Angle rotation,
-        bool isStanding)
+        bool isStanding,
+        bool shod,
+        bool mirrored)
     {
         if (!TryGetCarriedSolution(entity, out var ownerSolution))
             return;
@@ -415,9 +432,15 @@ public sealed partial class FootprintSystem : EntitySystem
                     MathF.Floor(localPosition.Y / grid.TileSize) -
                     (grid.TileSize / 2f);
 
-        var state = isStanding ? FootprintVisualState.Foot : _random.Pick(_dragStates);
+        // Footwear hides the species' own shape.
+        var state = !isStanding
+            ? _random.Pick(_dragStates)
+            : shod
+                ? FootprintVisualState.Foot
+                : entity.Comp.PrintState;
 
-        footprint.Comp1.Prints.Add(new FootprintData(new Vector2(normX, normY), rotation, alpha, state));
+        footprint.Comp1.Prints.Add(
+            new FootprintData(new Vector2(normX, normY), rotation, alpha, state, isStanding && mirrored));
         Dirty(footprint.Owner, footprint.Comp1);
     }
 

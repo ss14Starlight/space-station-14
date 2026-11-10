@@ -928,3 +928,6 @@
 
 - type: Tag
   id: StationRadioCircuitboard
+
+- type: Tag
+  id: AirlockCyclerElectronics # ConstructionGraph: AirlockCycler

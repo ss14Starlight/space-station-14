@@ -7,3 +7,8 @@
     slots:
     - back
     - suitstorage
+  - type: !PartialOnly ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: false
+        disableEject: false

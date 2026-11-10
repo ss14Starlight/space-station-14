@@ -8,7 +8,7 @@ namespace Content.Shared.Atmos.Rotting;
 /// Tracking component for stuff that has started to rot.
 /// Only the current stage is networked to the client.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause] // Starlight
 [Access(typeof(SharedRottingSystem))]
 public sealed partial class RottingComponent : Component
 {
@@ -34,7 +34,7 @@ public sealed partial class RottingComponent : Component
     /// <summary>
     /// How long has this thing been rotting?
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] //Starlight
     public TimeSpan TotalRotTime = TimeSpan.Zero;
 
     /// <summary>
