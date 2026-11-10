@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseItem
+  id: MedtakATM
+  name: Medtak Portable ATM
+  description: Saving lives, at the cost of your wallet.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/MedTak/Objects/medtakatm.rsi
+      state: icon
+    - type: ATM
+    - type: ActivatableUI
+      key: enum.ATMUIKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.ATMUIKey.Key:
+          type: ATMBui

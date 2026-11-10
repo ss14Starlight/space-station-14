@@ -30,13 +30,10 @@ namespace Content.Client.Construction
     public sealed partial class ConstructionSystem : SharedConstructionSystem
     {
         [Dependency] private IPlayerManager _playerManager = default!;
-        [Dependency] private ExamineSystemShared _examineSystem = default!;
+        // Starlight-edit: ExamineSystem is unued
         [Dependency] private SharedTransformSystem _transformSystem = default!;
         [Dependency] private SpriteSystem _sprite = default!;
         [Dependency] private PopupSystem _popupSystem = default!;
-        #region Starlight
-        [Dependency] private IConfigurationManager _configurationManager = default!;
-        #endregion
 
         private readonly Dictionary<int, EntityUid> _ghosts = new();
         private readonly Dictionary<string, ConstructionGuide> _guideCache = new();
@@ -283,35 +280,6 @@ namespace Content.Client.Construction
             return TrySpawnGhost(prototype, loc, dir, user, out ghost); // Starlight
         }
 
-        #region Starlight
-        /// <summary>
-        ///     Attempts to create a construction ghost for the specified user.
-        /// </summary>
-        /// <param name="prototype">The construction prototype for the ghost.</param>
-        /// <param name="loc">The location where the ghost should be created.</param>
-        /// <param name="dir">The direction the ghost should face.</param>
-        /// <param name="user">The entity whose range and construction conditions are validated.</param>
-        /// <param name="ghost">The created ghost, or <see langword="null"/> if creation failed.</param>
-        /// <param name="showPopup">Whether to show a popup explaining a failed construction condition.</param>
-        /// <returns>True if a construction ghost was created; otherwise, false.</returns>
-        public bool TrySpawnGhost(
-            ConstructionPrototype prototype,
-            EntityCoordinates loc,
-            Direction dir,
-            EntityUid user,
-            [NotNullWhen(true)] out EntityUid? ghost,
-            bool showPopup = true)
-        {
-            if (!user.IsValid())
-            {
-                ghost = null;
-                return false;
-            }
-
-            return TrySpawnGhostForUser(prototype, loc, dir, user, out ghost, showPopup);
-        }
-        #endregion
-
         private bool TrySpawnGhostForUser(
             ConstructionPrototype prototype,
             EntityCoordinates loc,
@@ -324,14 +292,16 @@ namespace Content.Client.Construction
             if (!TryGetRecipePrototype(prototype.ID, out var targetProtoId) || !PrototypeManager.TryIndex(targetProtoId, out EntityPrototype? targetProto))
                 return false;
 
-            // Starlight-edit start
+            // Starlight-start
             if (HasReachedMaximumGhosts(loc))
                 return false;
-            // Starlight-edit end
 
-            var predicate = GetPredicate(prototype.CanBuildInImpassable, _transformSystem.ToMapCoordinates(loc));
-            if (!_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate))
+            // Allow placing construction ghosts without line of sight.
+            var locMap = _transformSystem.ToMapCoordinates(loc);
+            var userMap = _transformSystem.GetMapCoordinates(user);
+            if (userMap.MapId != locMap.MapId || (userMap.Position - locMap.Position).Length() > 20f)
                 return false;
+            // Starlight-end
 
             if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup)) // Starlight
                 return false;
@@ -370,7 +340,12 @@ namespace Content.Client.Construction
             else
                 return false;
 
-            _sprite.SetColor((ghost.Value, sprite), new Color(48, 255, 48, 128));
+            UpdateGhostColor(ghost.Value, comp, sprite); // Starlight-edit: Color based on reachability
+
+            // Starlight-start: Construction ghosts render over most things.
+            // This means you can actually see the pipe ghosts you are placing for under-wall pipes!
+            _sprite.SetDrawDepth((ghost.Value, sprite), (int)Shared.DrawDepth.DrawDepth.Overdoors);
+            // Starlight-end
 
             if (prototype.CanBuildInImpassable)
                 EnsureComp<WallMountComponent>(ghost.Value).Arc = new(Math.Tau);
@@ -441,7 +416,15 @@ namespace Content.Client.Construction
             }
 
             var transform = Comp<TransformComponent>(ghostId);
+
+            // Starlight-start: Make sure player can reach before sending attempt to server
+            var mapCoords = _transformSystem.ToMapCoordinates(transform.Coordinates);
+            if (!CanReach(mapCoords, ghostComp.Prototype.CanBuildInImpassable))
+                return;
+            // Starlight-end
+
             var msg = new TryStartStructureConstructionMessage(GetNetCoordinates(transform.Coordinates), ghostComp.Prototype.ID, transform.LocalRotation, ghostId.GetHashCode());
+            ghostComp.IsBuilding = true; // Starlight-edit
             RaiseNetworkEvent(msg);
         }
 

@@ -36,6 +36,7 @@ namespace Content.Client.Eye.Blinding
         public BlurryVisionOverlay()
         {
             IoCManager.InjectDependencies(this);
+            ZIndex = -90; // Starlight
             _cataractsShader = _prototypeManager.Index(CataractsShader).InstanceUnique();
             _circleMaskShader = _prototypeManager.Index(CircleShader).InstanceUnique();
 

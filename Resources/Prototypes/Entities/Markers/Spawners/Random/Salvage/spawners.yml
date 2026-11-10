@@ -414,6 +414,8 @@
         weight: 0.4
       - id: HydrogenCanister
         weight: 0.3
+      - id: ProtoNitrateCanister
+        weight: 0.35
       #Starlight End
 
 - type: entityTable

@@ -1,8 +1,8 @@
 ﻿- type: entity
-  name: Dreaming cake
+  name: Broken-Dreams Cake
   parent: [FoodCakeBase, BaseSlicingRefinableFood]
   id: FoodResomiCake
-  description: The poor Resomi can no longer chase their dreams
+  description: The poor Resomi can no longer chase their dreams…
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Consumable/Food/Custcake.rsi
@@ -36,7 +36,7 @@
   name: Cotton Cake
   parent: [FoodCakeBase, BaseSlicingRefinableFood]
   id: FoodCottonCake
-  description: A sweet treat for the moth to eat
+  description: A sweet treat for the moth to eat!
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Consumable/Food/Custcake.rsi
@@ -74,7 +74,7 @@
   name: A Slice of Cotton Cake
   parent: FoodCakeSliceBase
   id: FoodCottonCakeSlice
-  description: You cut up the moff how dare you
+  description: You cut up the moff! How dare you.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Consumable/Food/Custcake.rsi
@@ -107,10 +107,10 @@
 
 
 - type: entity
-  name: A Slice of dreaming
+  name: A Slice of Broken-Dreams Cake
   parent: FoodCakeSliceBase
   id: FoodCakeResomiSlice
-  description: Broken wings cant fly, neither can the Resomi this was made with.
+  description: Broken wings can't fly, neither can the Resomi this was made with.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Consumable/Food/Custcake.rsi

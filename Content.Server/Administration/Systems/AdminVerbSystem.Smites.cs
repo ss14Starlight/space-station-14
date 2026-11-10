@@ -124,7 +124,7 @@ public sealed partial class AdminVerbSystem
 
         var player = actor.PlayerSession;
 
-        if (!_adminManager.HasAdminFlag(player, AdminFlags.Fun))
+        if (!_adminManager.HasAdminFlag(player, AdminFlags.Smite)) // Starlight-edit: was Fun
             return;
 
         // 1984.
