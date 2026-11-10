@@ -11,6 +11,7 @@
         - id: EmergencyCoolingUnit
         - id: Flare
         - id: PowerCellSmall
+        - id: WelderMini
   - type: Sprite
     layers:
     - state: internals
