@@ -53,6 +53,6 @@ public sealed class SetTirednessCommand : LocalizedEntityCommands
             return;
         }
 
-        EntityManager.System<TirednessSystem>().SetTiredness(playerEntity, TimeSpan.FromMinutes(minutes), tiredness);
+        EntityManager.System<TirednessSystem>().SetTiredness((playerEntity, tiredness), TimeSpan.FromMinutes(minutes));
     }
 }

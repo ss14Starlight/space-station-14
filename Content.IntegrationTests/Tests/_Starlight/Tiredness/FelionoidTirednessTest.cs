@@ -154,11 +154,11 @@ public sealed class FelionoidTirednessTest : GameTest
 
                 Assert.That(tiredness.CurrentTiredness, Is.LessThan(tirednessBeforeSleep));
 
-                tirednessSystem.SetTiredness(felionoid, TimeSpan.FromMinutes(30), tiredness);
+                tirednessSystem.SetTiredness((felionoid, tiredness), TimeSpan.FromMinutes(30));
                 Assert.That(tiredness.CurrentTiredness, Is.EqualTo(TirednessSystem.MaximumTiredness));
                 Assert.That(alerts.IsShowingAlertCategory(felionoid, "Tiredness"), Is.True);
 
-                tirednessSystem.SetTiredness(felionoid, TimeSpan.FromMinutes(-1), tiredness);
+                tirednessSystem.SetTiredness((felionoid, tiredness), TimeSpan.FromMinutes(-1));
                 Assert.That(tiredness.CurrentTiredness, Is.EqualTo(TimeSpan.Zero));
                 Assert.That(alerts.IsShowingAlertCategory(felionoid, "Tiredness"), Is.False);
             });

@@ -42,7 +42,10 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
         var query = EntityQueryEnumerator<SleepinessStatusEffectComponent, StatusEffectComponent>();
         while (query.MoveNext(out var uid, out var sleepiness, out var statusEffect))
         {
-            if (statusEffect.AppliedTo is not { } target || statusEffect.EndEffectTime is not { } endTime)
+            // Let the removal event handle queued effects and preserve pending wake requests.
+            if (EntityManager.IsQueuedForDeletion(uid) ||
+                statusEffect.AppliedTo is not { } target ||
+                statusEffect.EndEffectTime is not { } endTime)
                 continue;
 
             var remaining = endTime - _timing.CurTime;

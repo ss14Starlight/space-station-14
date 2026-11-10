@@ -31,6 +31,6 @@ public sealed class TiredCommand : LocalizedEntityCommands
             return;
         }
 
-        EntityManager.System<TirednessSystem>().SetTiredness(playerEntity, TirednessSystem.MaximumTiredness, tiredness);
+        EntityManager.System<TirednessSystem>().SetTiredness((playerEntity, tiredness), TirednessSystem.MaximumTiredness);
     }
 }

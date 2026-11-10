@@ -3,6 +3,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Rotation;
 using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using Content.Shared._Starlight.Humanoid;
 
 namespace Content.Shared._Starlight.Humanoid;
@@ -12,14 +13,7 @@ public sealed partial class PetBedSleepPoseSystem : EntitySystem
     [Dependency] private SharedRotationVisualsSystem _rotationVisuals = default!;
     [Dependency] private StandingStateSystem _standing = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<PetBedSleepPoseComponent, StrappedEvent>(OnStrapped);
-        SubscribeLocalEvent<BuckleComponent, SleepStateChangedEvent>(OnSleepStateChanged);
-    }
-
+    [SubscribeLocalEvent]
     private void OnStrapped(Entity<PetBedSleepPoseComponent> bed, ref StrappedEvent args)
     {
         var occupant = args.Buckle.Owner;
@@ -29,6 +23,7 @@ public sealed partial class PetBedSleepPoseSystem : EntitySystem
         SetSleepingPose(occupant);
     }
 
+    [SubscribeLocalEvent(before: [typeof(SleepingSystem)])]
     private void OnSleepStateChanged(Entity<BuckleComponent> ent, ref SleepStateChangedEvent args)
     {
         if (!HasComp<HumanoidAppearanceComponent>(ent)
@@ -44,6 +39,15 @@ public sealed partial class PetBedSleepPoseSystem : EntitySystem
         }
         else if (TryComp<StrapComponent>(bed, out var strap))
         {
+            if (strap.Position == StrapPosition.Stand
+                && (!args.WasKnockedDownBeforeSleep || !HasComp<KnockedDownComponent>(ent)))
+            {
+                if (!args.WasKnockedDownBeforeSleep)
+                    RemComp<KnockedDownComponent>(ent);
+
+                _standing.Stand(ent.Owner, force: true);
+            }
+
             _rotationVisuals.SetHorizontalAngle(ent.Owner, strap.Rotation);
         }
     }

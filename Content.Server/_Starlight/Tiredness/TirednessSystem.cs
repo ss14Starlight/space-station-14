@@ -112,19 +112,24 @@ public sealed partial class TirednessSystem : EntitySystem
         }
     }
 
-    public void SetTiredness(EntityUid uid, TimeSpan tiredness, TirednessComponent? component = null)
+    /// <summary>
+    /// Sets an entity's current tiredness.
+    /// </summary>
+    /// <param name="ent">The entity and its optional tiredness component.</param>
+    /// <param name="tiredness">The tiredness value to set.</param>
+    public void SetTiredness(Entity<TirednessComponent?> ent, TimeSpan tiredness)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(ent, ref ent.Comp, false))
             return;
 
         var newTiredness = TimeSpan.FromSeconds(Math.Clamp(tiredness.TotalSeconds, 0, MaximumTiredness.TotalSeconds));
-        if (newTiredness != component.CurrentTiredness)
+        if (newTiredness != ent.Comp.CurrentTiredness)
         {
-            component.CurrentTiredness = newTiredness;
-            DirtyField(uid, component, nameof(TirednessComponent.CurrentTiredness));
+            ent.Comp.CurrentTiredness = newTiredness;
+            DirtyField(ent.Owner, ent.Comp, nameof(TirednessComponent.CurrentTiredness));
         }
 
-        UpdateAlert(uid, component);
+        UpdateAlert(ent.Owner, ent.Comp);
     }
 
     [SubscribeLocalEvent]

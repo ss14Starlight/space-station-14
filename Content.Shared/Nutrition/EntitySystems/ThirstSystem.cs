@@ -221,7 +221,7 @@ public sealed partial class ThirstSystem : EntitySystem
             thirst.NextUpdateTime += thirst.UpdateRate;
 
             //Starlight begin
-            var sleepingDrainMultiplier = HasComp<SleepingComponent>(uid) ? 1f / 3f : 1f; // Starlight
+            var sleepingDrainMultiplier = HasComp<SleepingComponent>(uid) ? SleepingDecayMultiplier : 1f; // Starlight
             if (thirst.ThirstDrains.Count > 0)
             {
                 var totalDrain =

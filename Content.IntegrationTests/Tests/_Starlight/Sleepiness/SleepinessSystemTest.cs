@@ -5,6 +5,7 @@ using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.StatusEffectNew;
 using Content.Shared._Starlight.Sleepiness.Components;
 using Content.Shared._Starlight.Sleepiness.Systems;
+using Content.Shared._Starlight.Tiredness.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 
@@ -101,45 +102,67 @@ public sealed class SleepinessSystemTest : GameTest
         await server.WaitPost(() =>
         {
             felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
+            var tiredness = entityManager.GetComponent<TirednessComponent>(felionoid);
+            tiredness.CanInduceSleep = true;
+            entityManager.Dirty(felionoid, tiredness);
         });
 
         try
         {
             await pair.RunSeconds(1);
 
+            var sleepinessAdded = false;
             await server.WaitPost(() =>
             {
                 var statusEffects = server.System<StatusEffectsSystem>();
-                Assert.That(
-                    statusEffects.TryAddStatusEffectDuration(
-                        felionoid,
-                        "StatusEffectSleepiness",
-                        TimeSpan.FromSeconds(60)),
-                    Is.True);
+                sleepinessAdded = statusEffects.TryAddStatusEffectDuration(
+                    felionoid,
+                    "StatusEffectSleepiness",
+                    TimeSpan.FromSeconds(120));
             });
+            Assert.That(sleepinessAdded, Is.True);
 
             await pair.RunSeconds(1);
+            await server.WaitAssertion(() =>
+                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.True));
 
+            var firstSleepinessRemoved = false;
             await server.WaitPost(() =>
             {
                 var statusEffects = server.System<StatusEffectsSystem>();
-                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.True);
-                Assert.That(statusEffects.TryRemoveStatusEffect(felionoid, "StatusEffectSleepiness"), Is.True);
-                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.True);
+                firstSleepinessRemoved = statusEffects.TryRemoveStatusEffect(felionoid, "StatusEffectSleepiness");
+            });
+            Assert.That(firstSleepinessRemoved, Is.True);
 
-                Assert.That(
-                    statusEffects.TryAddStatusEffectDuration(
-                        felionoid,
-                        "StatusEffectSleepiness",
-                        out var sleepinessEffect,
-                        TimeSpan.FromSeconds(10)),
-                    Is.True);
-                var sleepinessUid = sleepinessEffect!.Value;
+            await pair.RunSeconds(1);
+            await server.WaitAssertion(() =>
+                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.True));
+
+            var wakeSleepinessAdded = false;
+            var wakeSleepinessRemoved = false;
+            await server.WaitPost(() =>
+            {
+                var statusEffects = server.System<StatusEffectsSystem>();
+                wakeSleepinessAdded = statusEffects.TryAddStatusEffectDuration(
+                    felionoid,
+                    "StatusEffectSleepiness",
+                    out var sleepinessEffect,
+                    TimeSpan.FromSeconds(10));
+
+                if (!wakeSleepinessAdded || sleepinessEffect is not { } sleepinessUid)
+                    return;
+
                 var sleepiness = entityManager.GetComponent<SleepinessStatusEffectComponent>(sleepinessUid);
                 sleepiness.WakeRequested = true;
                 entityManager.Dirty(sleepinessUid, sleepiness);
+                wakeSleepinessRemoved = statusEffects.TryRemoveStatusEffect(felionoid, "StatusEffectSleepiness");
+            });
+            Assert.That(wakeSleepinessAdded, Is.True);
+            Assert.That(wakeSleepinessRemoved, Is.True);
 
-                Assert.That(statusEffects.TryRemoveStatusEffect(felionoid, "StatusEffectSleepiness"), Is.True);
+            await pair.RunSeconds(1);
+            await server.WaitAssertion(() =>
+            {
                 Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.False);
                 Assert.That(entityManager.HasComponent<SleepinessInducedSleepComponent>(felionoid), Is.False);
             });

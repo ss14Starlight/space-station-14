@@ -158,7 +158,11 @@ public sealed partial class SleepingSystem : EntitySystem
         if (!_gameTiming.ApplyingState)
         {
             _stun.TryUnstun(ent.Owner);
-            _stun.TryStanding(ent.Owner);
+
+            // Starlight - start
+            if (!args.WasKnockedDownBeforeSleep)
+                _stun.TryStanding(ent.Owner);
+            // Starlight - end
         }
         // Starlight edit Start
         if (!TerminatingOrDeleted(ent))
@@ -168,7 +172,17 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void OnCompInit(Entity<SleepingComponent> ent, ref ComponentInit args)
     {
-        var ev = new SleepStateChangedEvent(true);
+        // Starlight - start
+        if (!_gameTiming.ApplyingState)
+        {
+            ent.Comp.WasKnockedDownBeforeSleep = HasComp<KnockedDownComponent>(ent);
+            Dirty(ent.Owner, ent.Comp);
+        }
+        // Starlight - end
+
+        // Starlight - start
+        var ev = new SleepStateChangedEvent(true, ent.Comp.WasKnockedDownBeforeSleep);
+        // Starlight - end
         RaiseLocalEvent(ent, ref ev);
         _blindableSystem.UpdateIsBlind(ent.Owner);
         _actionsSystem.AddAction(ent, ref ent.Comp.WakeAction, WakeActionId, ent);
@@ -178,7 +192,9 @@ public sealed partial class SleepingSystem : EntitySystem
     {
         _actionsSystem.RemoveAction(ent.Owner, ent.Comp.WakeAction);
 
-        var ev = new SleepStateChangedEvent(false);
+        // Starlight - start
+        var ev = new SleepStateChangedEvent(false, ent.Comp.WasKnockedDownBeforeSleep);
+        // Starlight - end
         RaiseLocalEvent(ent, ref ev);
 
         _blindableSystem.UpdateIsBlind(ent.Owner);
@@ -442,4 +458,4 @@ public sealed partial class WakeActionEvent : InstantActionEvent;
 /// Raised on an entity when they fall asleep or wake up.
 /// </summary>
 [ByRefEvent]
-public record struct SleepStateChangedEvent(bool FellAsleep);
+public record struct SleepStateChangedEvent(bool FellAsleep, bool WasKnockedDownBeforeSleep = false); // Starlight
