@@ -5,19 +5,23 @@
     <GuideEntityEmbed Entity="MobXenoSpecies" Caption=""/>
   </Box>
 
-  Xenos are a species of former xenomorphs captured and raised by TSM (Trans-Solar Marines). Fearing rebellion, marines made them highly dependent on human food to survive. While retaining some xenomorph traits, they face hostility from their hive mother, who still views them as enemies.
-
+  Xenos are a divergent, modified species related to the Xeno hives. They retain their ancestral hunger, and resistance to acids, at the cost of being more vulnerable to electric shocks.
+  Born from a single Queen Mother, their weakened hivemind makes them naturally democratic, and they are highly social, frequently gathering to elect a local leader.
 
   ## The Hunger
   <Box>
-    <GuideEntityEmbed Entity="FoodBurgerMcguffin" Caption=""/>
+    <GuideEntityEmbed Entity="FoodBadRecipe" Caption=""/>
   </Box>
   <Box>
     [color=#999999][italic]"Yummy!"[/italic][/color]
   </Box>
 
   While Xenos are able to store significant reserves of nutrients in their bodies, they also burn through them at alarming rates. A starving Xeno becomes downright ravenous, and may devour enough food to feed four people in one sitting.
+  Botanists, kitchen staff and engineers are of particular cultural significance to Xeno individuals, as they are the ones keeping the Hivehome fed and breathing.
 
+  ## The Congress
+
+  Groups of Xeno individuals will designate one of their own as a Voice of the Queen, charged with organising what remains of their hivemind and acting as a go-between with the Queen-Mother. This process is democratic in nature; the position is treated as both an honour and a burden.
 
   ## Racial Features
   - Take [color=#00aa00]10% less[/color] caustic damage.
@@ -32,5 +36,4 @@
 
   - Your tail is sharp and pointy. You may [color=#00aa00]use it as a spear[/color].
   - You can [color=#FFA500]talk to wild xenos[/color], but they remain hostile.
-
 </Document>
