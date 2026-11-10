@@ -199,6 +199,7 @@
       storagebase: !type:AllSelector
         children:
         - id: CableHVStack
+          amount: 2
         - id: OilPack
           amount: 2
         - id: PowerCellMicroreactor
