@@ -393,6 +393,11 @@ jobs:
             exit 1
           fi
 
+          if (( linter_status == 1 )); then
+            echo "::error::YAML validation failed; see the log for errors."
+            exit 1
+          fi
+
           exit "${reviewdog_status}"
 
   ci-success:

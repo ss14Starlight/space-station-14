@@ -199,3 +199,8 @@
   parent: [ BaseCheapElectronicsRecipe, BaseCircuitryRecipeCategory ]
   id: WallmountMassScannerElectronics
   result: WallmountMassScannerCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseElectronicsRecipe, BaseCircuitryRecipeCategory ]
+  id: AirlockCyclerElectronics
+  result: AirlockCyclerElectronics
