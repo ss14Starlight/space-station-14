@@ -1,27 +1,6 @@
 Entries:
 - author: Reisyn & SirLutz
   changes:
-  - message: Constant Colours to plant pollen, so smells have a fixed colour now!.
-    type: Add
-  id: 409900
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
-  - message: 'New trait: Pollen allergy! Write in your medical report, using plant names in the singular. example "apple" and you will be allergic to it! Not all plants do expel pollen! Example two "apple, POPPY, bAnAna, blue tomato".'
-    type: Add
-  id: 409901
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
-  - message: Allergy reaction, itching, sneezing, histamine buildup, loss of vision!.
-    type: Add
-  id: 409902
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
   - message: Diona can now collect Pollen! Finished botany products/plants carry pollen/spores, which regular smellers can detect. And Dionas passing by them might collect these pollen, granting them points!.
     type: Add
   id: 409903
@@ -2799,4 +2778,25 @@ Entries:
   id: 410299
   time: '2026-11-10T17:20:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7168
+- author: Trosling
+  changes:
+  - message: Overhauled Implantation Law to better work with new Induced Mutiny SOP.
+    type: Tweak
+  id: 410300
+  time: '2026-11-10T17:44:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7086
+- author: Trosling
+  changes:
+  - message: Added cool interactions between medical jobs and security for certain implantation.
+    type: Add
+  id: 410301
+  time: '2026-11-10T17:44:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7086
+- author: Trosling
+  changes:
+  - message: Added intuitive forms to make approving such implantation more transparent.
+    type: Add
+  id: 410302
+  time: '2026-11-10T17:44:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7086
 Order: -1
