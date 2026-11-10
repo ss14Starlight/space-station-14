@@ -142,7 +142,7 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
 
         var timeSinceSample = elapsed - previous.SampleTime;
         var lastMovementTime = previous.LastMovementTime;
-        if (timeSinceSample <= 0d || timeSinceSample > MaximumMovementSampleGapSeconds)
+        if (timeSinceSample is <= 0d or > MaximumMovementSampleGapSeconds)
         {
             lastMovementTime = double.NegativeInfinity;
         }

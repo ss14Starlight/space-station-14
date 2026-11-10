@@ -127,10 +127,7 @@ public sealed class FelionoidTirednessTest : GameTest
         var entityManager = server.ResolveDependency<IEntityManager>();
         EntityUid felionoid = default;
 
-        await server.WaitPost(() =>
-        {
-            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
-        });
+        await server.WaitPost(() => felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace));
 
         try
         {
@@ -262,9 +259,7 @@ public sealed class FelionoidTirednessTest : GameTest
             await pair.RunSeconds(10);
 
             await server.WaitPost(() =>
-            {
-                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.EqualTo(expectedSleeping));
-            });
+                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.EqualTo(expectedSleeping)));
         }
         finally
         {

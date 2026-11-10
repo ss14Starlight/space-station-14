@@ -28,10 +28,7 @@ public sealed class SleepinessSystemTest : GameTest
         var entityManager = server.ResolveDependency<IEntityManager>();
         EntityUid felionoid = default;
 
-        await server.WaitPost(() =>
-        {
-            felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
-        });
+        await server.WaitPost(() => felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace));
 
         try
         {
@@ -68,10 +65,7 @@ public sealed class SleepinessSystemTest : GameTest
         var entityManager = server.ResolveDependency<IEntityManager>();
         EntityUid felionoid = default;
 
-        await server.WaitPost(() =>
-        {
-            felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
-        });
+        await server.WaitPost(() => felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace));
 
         try
         {
@@ -157,7 +151,7 @@ public sealed class SleepinessSystemTest : GameTest
 
         await server.WaitPost(() =>
         {
-            felionoid = entityManager.SpawnEntity("MobFelionoid", MapCoordinates.Nullspace);
+            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
             var tiredness = entityManager.GetComponent<TirednessComponent>(felionoid);
             tiredness.CanInduceSleep = true;
             entityManager.Dirty(felionoid, tiredness);

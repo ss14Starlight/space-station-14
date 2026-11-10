@@ -138,7 +138,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
             EntityUid human = default;
 
             await server.WaitPost(() =>
-                human = entityManager.SpawnEntity("HumanLungDummy", MapCoordinates.Nullspace));
+                human = entityManager.Spawn("HumanLungDummy", MapCoordinates.Nullspace));
 
             try
             {
