@@ -1954,7 +1954,10 @@
   metabolisms:
     Bloodstream:
       effects:
-      # Starlight - Yawning is handled by the shared sleepiness effect.
+      - !type:Emote
+        emote: Yawn
+        showInChat: true
+        probability: 0.1
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrowsiness
         time: 4
