@@ -30,6 +30,9 @@
   id: Arachnid
 
 - type: Tag
+  id: AtmosFireHelmet # ConstructionGraph: AtmosianHelmet
+
+- type: Tag
   id: AutoMender
 
 - type: Tag
@@ -511,6 +514,9 @@
 
 - type: Tag
   id: MagazineBoxBoltRifle
+
+- type: Tag
+  id: MetalHydrogenHelmet # ConstructionGraph: AtmosianHelmet
 
 - type: Tag
   id: CartridgeImpactBolt
