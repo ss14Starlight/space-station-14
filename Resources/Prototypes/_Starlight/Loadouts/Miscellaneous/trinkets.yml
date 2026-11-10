@@ -969,7 +969,7 @@
       time: 144000 # 40hr
   storage:
     back:
-    - PlushieLizard
+    - PlushieLizardJobAtmospherictechnician
   groupBy: "wehzards"
 
 - type: loadout
