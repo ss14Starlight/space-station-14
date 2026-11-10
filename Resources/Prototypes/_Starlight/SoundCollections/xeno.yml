@@ -72,3 +72,10 @@
   files:
   - /Audio/_RMC/Voice/Xeno/alien_bite1.ogg
   - /Audio/_RMC/Voice/Xeno/alien_bite2.ogg
+
+- type: soundCollection
+  id: XenoRoarEcho
+  files:
+  - /Audio/_RMC/Voice/Xeno/alien_echoroar_1.ogg
+  - /Audio/_RMC/Voice/Xeno/alien_echoroar_2.ogg
+  - /Audio/_RMC/Voice/Xeno/alien_echoroar_3.ogg

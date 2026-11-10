@@ -29,7 +29,7 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
 
     private ISawmill _sawmill = default!;
 
-    private readonly SoundSpecifier _voiceElectedAlert = new SoundPathSpecifier("/Audio/Voice/Vox/vox_click.ogg");
+    private readonly SoundSpecifier _voiceElectedAlert = new SoundCollectionSpecifier("XenoRoarDistant");
 
     public override void Initialize()
     {

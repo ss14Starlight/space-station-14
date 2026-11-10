@@ -85,7 +85,7 @@
     soundSwing:
       collection: XenoTailSwipe
     soundHit:
-      collection: XenoTailSwipe
+      path: /Audio/_RMC/Voice/Xeno/alien_tail_attack.ogg
   - type: Item
     size: Ginormous
   - type: MeleeChemicalInjector

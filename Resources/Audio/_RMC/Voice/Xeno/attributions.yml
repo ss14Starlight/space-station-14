@@ -63,6 +63,11 @@
   copyright: "Taken from cmss13"
   source: "https://github.com/cmss13-devs/cmss13/blob/0991f38801d9fc5c7b7e073cb5788ef42822ad08/sound/effects/alien_tail_swipe3.ogg"
 
+- files: ["alien_tail_attack.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/cmss13-devs/cmss13/blob/183b50b774c6faef054b6f67f57ff40ecc15409f/sound/weapons/alien_tail_attack.ogg"
+
 - files: ["alien_growl1.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Taken from cmss13"
@@ -148,11 +153,6 @@
   copyright: "Taken from cmss13"
   source: "https://github.com/cmss13-devs/cmss13/blob/d74dae2014c8d2f00cbfdb9dc7b99b263af174ba/sound/voice/alien_roar_larva2.ogg"
 
-- files: ["spike_spray.ogg"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Taken from cmss13"
-  source: "https://github.com/cmss13-devs/cmss13/blob/8a583493f634e4fa9e983ac78c8f2306f31d6159/sound/effects/spike_spray.ogg"
-
 - files: ["deep_alien_screech.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Taken from cmss13"
@@ -162,3 +162,34 @@
   license: "CC-BY-SA-3.0"
   copyright: "Taken from cmss13"
   source: "https://github.com/cmss13-devs/cmss13/blob/085faa829b8e86366f180a5cc9d45dda0d9e4e0b/sound/effects/deep_alien_screech2.ogg"
+
+- files: ["alien_echoroar_1.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/cmss13-devs/cmss13/blob/ea919a8798253f334169819f21e913a3601e831e/sound/voice/alien_echoroar_1.ogg"
+
+- files: ["alien_echoroar_2.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/cmss13-devs/cmss13/blob/ea919a8798253f334169819f21e913a3601e831e/sound/voice/alien_echoroar_2.ogg"
+
+- files: ["alien_echoroar_3.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/cmss13-devs/cmss13/blob/ea919a8798253f334169819f21e913a3601e831e/sound/voice/alien_echoroar_3.ogg"
+
+
+- files: ["alien_talk1.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/cmss13-devs/cmss13/blob/master/sound/voice/alien_talk.ogg"
+
+- files: ["alien_talk2.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/cmss13-devs/cmss13/blob/master/sound/voice/alien_talk2.ogg"
+
+- files: ["alien_talk3.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from cmss13"
+  source: "https://github.com/cmss13-devs/cmss13/blob/master/sound/voice/alien_talk3.ogg"

@@ -110,8 +110,8 @@
 - type: speechSounds
   id: UnisexXeno
   saySound:
-    path: /Audio/_RMC/Voice/Xeno/alien_hiss2.ogg # TODO: Proper soundset
+    path: /Audio/_RMC/Voice/Xeno/alien_talk1.ogg
   askSound:
-    path: /Audio/_RMC/Voice/Xeno/alien_hiss2.ogg # TODO: Proper soundset
+    path: /Audio/_RMC/Voice/Xeno/alien_talk2.ogg
   exclaimSound:
-    path: /Audio/_RMC/Voice/Xeno/alien_hiss2.ogg # TODO: Proper soundset
+    path: /Audio/_RMC/Voice/Xeno/alien_talk3.ogg
