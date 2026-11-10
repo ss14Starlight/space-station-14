@@ -125358,10 +125358,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -125.5,9.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 20142
     components:
     - type: Transform
@@ -130317,19 +130313,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -94.5,60.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 20974
     components:
     - type: Transform
       parent: 2
       pos: -92.5,55.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: CrateServiceIceCreamMakerStarter
   entities:
   - uid: 20975
@@ -316028,37 +316016,21 @@ entities:
     - type: Transform
       parent: 2
       pos: -94.5,55.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 46713
     components:
     - type: Transform
       parent: 2
       pos: -94.5,56.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 46714
     components:
     - type: Transform
       parent: 2
       pos: -94.5,54.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 46715
     components:
     - type: Transform
       parent: 2
       pos: -94.5,53.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 46716
     components:
     - type: Transform
@@ -325057,10 +325029,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -91.5,48.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: VendingMachineSecDrobe
   entities:
   - uid: 48103

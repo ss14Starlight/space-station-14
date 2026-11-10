@@ -706,9 +706,6 @@
   id: RemoteSignallerAdvanced # Crafting whitelist: Advanced Deadman remote trigger
 
 - type: Tag
-  id: RequiredForLmgTag
-
-- type: Tag
   id: Resomi
 
 - type: Tag

@@ -85780,10 +85780,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 3.5,2.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: ComputerCriminalRecordsDesktop
   entities:
   - uid: 13138
