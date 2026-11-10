@@ -89,7 +89,7 @@ public sealed partial class CanSelfStoreSystem : EntitySystem
             return;
         }
 
-        args.Handled = true;
-        _storage.PlayerInsertEntityInWorld((uid, component), args.User, args.User);
+        if(_storage.PlayerInsertEntityInWorld((uid, component), args.User, args.User))
+            args.Handled = true;
     }
 }

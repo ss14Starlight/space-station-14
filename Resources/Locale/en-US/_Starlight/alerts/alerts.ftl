@@ -22,7 +22,7 @@ alerts-surge-desc = You have increased stamina regeneration and resistance [colo
 alerts-tracking-scent-name = Tracking scent
 alerts-tracking-scent-desc = You're actively following a scent trail. You can't keep track of it forever.
 alerts-tiredness-name = Tiredness
-alerts-tiredness-desc = You are getting increasingly tired. Sleep before the accumulated sleep pressure forces you to rest.
+alerts-tiredness-desc = You are getting increasingly tired. Going too long without rest will be debillitating.
 alerts-wrapped-name = [color=lightblue]Wrapped up[/color]
 alerts-wrapped-desc = You are [color=red]wrapped up[/color]! Click the alert to attempt to unwrap yourself.
 alerts-zoomies-name = [color=lightblue]Zoomies!![/color]

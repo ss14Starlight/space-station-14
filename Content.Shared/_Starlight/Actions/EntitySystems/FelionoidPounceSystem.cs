@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Server.Actions;
+using Content.Shared.Actions;
 using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Charges.Systems;
@@ -14,11 +14,11 @@ using Content.Shared.Throwing;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Starlight.Actions.EntitySystems;
+namespace Content.Shared._Starlight.Actions.EntitySystems;
 
 public sealed partial class FelionoidPounceSystem : EntitySystem
 {
-    [Dependency] private ActionsSystem _action = default!;
+    [Dependency] private SharedActionsSystem _action = default!;
     [Dependency] private SharedChargesSystem _charges = default!;
     [Dependency] private SharedChatSystem _chat = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
@@ -94,12 +94,7 @@ public sealed partial class FelionoidPounceSystem : EntitySystem
 
         if (args.Cancelled)
         {
-            if (comp.ActionEntity is { } actionEntity)
-            {
-                _charges.AddCharges((actionEntity, null, null), 1);
-                _action.ClearCooldown(actionEntity);
-            }
-
+            RefundPounce(comp);
             return;
         }
 
@@ -124,12 +119,16 @@ public sealed partial class FelionoidPounceSystem : EntitySystem
 
         comp.PouncingTarget = pounceTarget;
         comp.PounceEndTime = _timing.CurTime + _pounceTimeout;
-        _throwing.TryThrow(
-            ent,
-            direction,
-            baseThrowSpeed: comp.JumpSpeed,
-            compensateFriction: true,
-            doSpin: false);
+        if (!_throwing.TryThrow(
+                ent,
+                direction,
+                baseThrowSpeed: comp.JumpSpeed,
+                compensateFriction: true,
+                doSpin: false,
+                predicted: true))
+        {
+            RefundPounce(comp);
+        }
     }
     [SubscribeLocalEvent]
     private void OnPounceCollide(EntityUid uid, FelionoidPounceComponent comp, ref StartCollideEvent args)
@@ -158,6 +157,18 @@ public sealed partial class FelionoidPounceSystem : EntitySystem
         var duration = TimeSpan.FromSeconds(comp.KnockdownDuration);
         _stun.TryKnockdown(uid, duration, force: true);
         _stun.TryKnockdown(target, duration, force: true);
+    }
+
+    private void RefundPounce(FelionoidPounceComponent comp)
+    {
+        comp.PouncingTarget = null;
+        comp.PounceEndTime = TimeSpan.Zero;
+
+        if (comp.ActionEntity is not { } actionEntity)
+            return;
+
+        _charges.AddCharges((actionEntity, null, null), 1);
+        _action.ClearCooldown(actionEntity);
     }
 
     private bool TryPickupPouncer(EntityUid target, EntityUid pouncer)

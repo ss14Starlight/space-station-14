@@ -5,12 +5,7 @@ namespace Content.Shared._Starlight.Slippery;
 
 public sealed partial class TightGripSystem : EntitySystem
 {
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<FellDownThrowAttemptEvent>(OnFellDownThrowAttempt);
-    }
-
+    [SubscribeLocalEvent]
     private void OnFellDownThrowAttempt(ref FellDownThrowAttemptEvent args)
     {
         if (HasComp<TightGripComponent>(args.Thrower))

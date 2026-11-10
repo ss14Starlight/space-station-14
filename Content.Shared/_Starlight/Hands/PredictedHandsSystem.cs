@@ -140,7 +140,7 @@ public sealed partial class PredictedHandsSystem : EntitySystem
                 continue;
 
             var throwAttempt = new FellDownThrowAttemptEvent(entity);
-            RaiseLocalEvent(heldEntity.Value, ref throwAttempt);
+            RaiseLocalEvent(heldEntity.Value, ref throwAttempt, broadcast: true);
 
             if (throwAttempt.Cancelled)
                 continue;

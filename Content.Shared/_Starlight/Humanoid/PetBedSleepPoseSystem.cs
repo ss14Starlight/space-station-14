@@ -1,4 +1,3 @@
-using Content.Server.Rotation;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Humanoid;
@@ -6,11 +5,11 @@ using Content.Shared.Rotation;
 using Content.Shared.Standing;
 using Content.Shared._Starlight.Humanoid;
 
-namespace Content.Server._Starlight.Humanoid;
+namespace Content.Shared._Starlight.Humanoid;
 
 public sealed partial class PetBedSleepPoseSystem : EntitySystem
 {
-    [Dependency] private RotationVisualsSystem _rotationVisuals = default!;
+    [Dependency] private SharedRotationVisualsSystem _rotationVisuals = default!;
     [Dependency] private StandingStateSystem _standing = default!;
 
     public override void Initialize()

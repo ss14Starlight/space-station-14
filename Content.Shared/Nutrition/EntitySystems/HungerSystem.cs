@@ -72,8 +72,9 @@ public sealed partial class HungerSystem : EntitySystem
     /// <summary>
     /// Gets the current hunger value of the given <see cref="HungerComponent"/>.
     /// </summary>
-    public float GetHunger(HungerComponent component) => GetHunger(component, HasComp<SleepingComponent>(component.Owner));
+    public float GetHunger(HungerComponent component) => GetHunger(component, HasComp<SleepingComponent>(component.Owner)); // Starlight
 
+#region Starlight
     private float GetHunger(HungerComponent component, bool sleeping)
     {
         var dt = _timing.CurTime - component.LastAuthoritativeHungerChangeTime;
@@ -81,6 +82,7 @@ public sealed partial class HungerSystem : EntitySystem
         var value = component.LastAuthoritativeHungerValue - (float)dt.TotalSeconds * component.ActualDecayRate * decayMultiplier;
         return ClampHungerWithinThresholds(component, value);
     }
+#endregion
 
     /// <summary>
     /// Adds to the current hunger of an entity by the specified value

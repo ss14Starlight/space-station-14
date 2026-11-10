@@ -10,7 +10,12 @@ public sealed partial class HungerSystem
 
     [SubscribeLocalEvent]
     private void OnSleepStateChanged(Entity<HungerComponent> ent, ref SleepStateChangedEvent args)
-        => SetAuthoritativeHungerValue(ent, GetHunger(ent.Comp, !args.FellAsleep));
+    {
+        if (_timing.ApplyingState) return; // We can that from the network
+
+        SetAuthoritativeHungerValue(ent, GetHunger(ent.Comp, !args.FellAsleep));
+    }
+
 
     private float GetSleepingDecayMultiplier(EntityUid uid) =>
         HasComp<SleepingComponent>(uid) ? SleepingDecayMultiplier : 1f;
