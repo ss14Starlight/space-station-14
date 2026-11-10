@@ -5,9 +5,3 @@
   - type: MaintenanceMonstersVariationPass
     spawnTable: !type:NestedSelector
       tableId: MaintsMonstersBasic
-
-- type: entity
-  id: SickLightsVariationPass
-  parent: BaseVariationPass
-  components:
-  - type: SickLightsVariationPass
