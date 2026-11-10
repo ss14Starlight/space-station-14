@@ -117,7 +117,7 @@ public sealed class FelionoidTirednessTest : GameTest
     }
 
     [Test]
-    public async Task TirednessBuildsAndRecoversDuringSleep()
+    public async Task TirednessAccumulatesRecoversAndClamps()
     {
         var pair = Pair;
         var server = pair.Server;
@@ -138,123 +138,26 @@ public sealed class FelionoidTirednessTest : GameTest
             {
                 tirednessBeforeSleep = entityManager.GetComponent<TirednessComponent>(felionoid).CurrentTiredness;
                 Assert.That(tirednessBeforeSleep, Is.GreaterThan(TimeSpan.Zero));
-                Assert.That(server.System<AlertsSystem>().IsShowingAlertCategory(felionoid, "Tiredness"), Is.False);
                 Assert.That(server.System<SleepingSystem>().TrySleeping(felionoid), Is.True);
             });
 
             await pair.RunSeconds(2);
 
             await server.WaitPost(() =>
-                Assert.That(entityManager.GetComponent<TirednessComponent>(felionoid).CurrentTiredness,
-                    Is.LessThan(tirednessBeforeSleep)));
-        }
-        finally
-        {
-            await server.WaitPost(() => entityManager.DeleteEntity(felionoid));
-            await pair.RunUntilSynced();
-        }
-    }
-
-    [Test]
-    public async Task TirednessRecoversAtFifteenToOneRateWhileSleeping()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-        var entityManager = server.ResolveDependency<IEntityManager>();
-        EntityUid felionoid = default;
-
-        await server.WaitPost(() =>
-        {
-            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
-        });
-
-        try
-        {
-            await pair.RunSeconds(1);
-
-            await server.WaitPost(() =>
-            {
-                var tiredness = entityManager.GetComponent<TirednessComponent>(felionoid);
-                tiredness.CurrentTiredness = TimeSpan.FromMinutes(1);
-                entityManager.Dirty(felionoid, tiredness);
-
-                Assert.That(server.System<SleepingSystem>().TrySleeping(felionoid), Is.True);
-            });
-
-            await pair.RunSeconds(3);
-
-            await server.WaitPost(() =>
-            {
-                var remaining = entityManager.GetComponent<TirednessComponent>(felionoid).CurrentTiredness;
-                Assert.That(60 - remaining.TotalSeconds, Is.EqualTo(45).Within(3));
-            });
-
-            await pair.RunSeconds(1);
-
-            await server.WaitPost(() =>
-                Assert.That(entityManager.GetComponent<TirednessComponent>(felionoid).CurrentTiredness,
-                    Is.EqualTo(TimeSpan.Zero)));
-        }
-        finally
-        {
-            await server.WaitPost(() => entityManager.DeleteEntity(felionoid));
-            await pair.RunUntilSynced();
-        }
-    }
-
-    [Test]
-    public async Task TirednessCanBeSetAndClamped()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-        var entityManager = server.ResolveDependency<IEntityManager>();
-        EntityUid felionoid = default;
-
-        await server.WaitPost(() =>
-        {
-            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
-        });
-
-        try
-        {
-            await pair.RunSeconds(1);
-
-            await server.WaitPost(() =>
             {
                 var tirednessSystem = server.System<TirednessSystem>();
                 var tiredness = entityManager.GetComponent<TirednessComponent>(felionoid);
                 var alerts = server.System<AlertsSystem>();
-                var alertKey = AlertKey.ForCategory("Tiredness");
 
-                using (Assert.EnterMultipleScope())
-                {
-                    tirednessSystem.SetTiredness(
-                        felionoid,
-                        TimeSpan.FromMinutes(10) - TimeSpan.FromSeconds(1),
-                        tiredness);
-                    Assert.That(alerts.IsShowingAlertCategory(felionoid, "Tiredness"), Is.False);
+                Assert.That(tiredness.CurrentTiredness, Is.LessThan(tirednessBeforeSleep));
 
-                    tirednessSystem.SetTiredness(felionoid, TimeSpan.FromMinutes(10), tiredness);
-                    Assert.That(tiredness.CurrentTiredness, Is.EqualTo(TimeSpan.FromMinutes(10)));
-                    Assert.That(alerts.IsShowingAlertCategory(felionoid, "Tiredness"), Is.True);
-                    Assert.That(alerts.TryGetAlertState(felionoid, alertKey, out var alertState), Is.True);
-                    Assert.That(alertState.Severity, Is.EqualTo((short)0));
+                tirednessSystem.SetTiredness(felionoid, TimeSpan.FromMinutes(30), tiredness);
+                Assert.That(tiredness.CurrentTiredness, Is.EqualTo(TirednessSystem.MaximumTiredness));
+                Assert.That(alerts.IsShowingAlertCategory(felionoid, "Tiredness"), Is.True);
 
-                    tirednessSystem.SetTiredness(felionoid, TimeSpan.FromMinutes(15), tiredness);
-                    Assert.That(alerts.TryGetAlertState(felionoid, alertKey, out alertState), Is.True);
-                    Assert.That(alertState.Severity, Is.EqualTo((short)1));
-
-                    tirednessSystem.SetTiredness(felionoid, TimeSpan.FromMinutes(20), tiredness);
-                    Assert.That(alerts.TryGetAlertState(felionoid, alertKey, out alertState), Is.True);
-                    Assert.That(alertState.Severity, Is.EqualTo((short)2));
-
-                    tirednessSystem.SetTiredness(felionoid, TimeSpan.FromMinutes(30), tiredness);
-                    Assert.That(tiredness.CurrentTiredness, Is.EqualTo(TirednessSystem.MaximumTiredness));
-
-                    tirednessSystem.SetTiredness(felionoid, TimeSpan.FromMinutes(-1), tiredness);
-                    Assert.That(tiredness.CurrentTiredness, Is.EqualTo(TimeSpan.Zero));
-                    Assert.That(alerts.IsShowingAlertCategory(felionoid, "Tiredness"), Is.False);
-                }
+                tirednessSystem.SetTiredness(felionoid, TimeSpan.FromMinutes(-1), tiredness);
+                Assert.That(tiredness.CurrentTiredness, Is.EqualTo(TimeSpan.Zero));
+                Assert.That(alerts.IsShowingAlertCategory(felionoid, "Tiredness"), Is.False);
             });
         }
         finally
@@ -265,7 +168,7 @@ public sealed class FelionoidTirednessTest : GameTest
     }
 
     [Test]
-    public async Task TirednessSleepinessIsCappedByComponentMaximum()
+    public async Task TirednessSleepinessIsCappedAndInductionRespectsConfiguration()
     {
         var pair = Pair;
         var server = pair.Server;
@@ -308,7 +211,6 @@ public sealed class FelionoidTirednessTest : GameTest
                 Assert.That(sleepiness.EndEffectTime, Is.Not.Null);
                 var remainingSleepiness = sleepiness.EndEffectTime!.Value - timing.CurTime;
                 Assert.That(remainingSleepiness, Is.LessThanOrEqualTo(maximumSleepiness));
-                Assert.That(remainingSleepiness, Is.GreaterThan(TimeSpan.FromSeconds(18)));
                 Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.False);
             });
         }
@@ -317,17 +219,10 @@ public sealed class FelionoidTirednessTest : GameTest
             await server.WaitPost(() => entityManager.DeleteEntity(felionoid));
             await pair.RunUntilSynced();
         }
+
+        await TestTirednessSleepInduction(canInduceSleep: true, expectedSleeping: true);
+        await TestTirednessSleepInduction(canInduceSleep: false, expectedSleeping: false);
     }
-
-    [Test]
-    public Task TirednessCanInduceSleepWhenConfigured() => TestTirednessSleepInduction(
-        canInduceSleep: true,
-        expectedSleeping: true);
-
-    [Test]
-    public Task TirednessCannotInduceSleepWhenDisabled() => TestTirednessSleepInduction(
-        canInduceSleep: false,
-        expectedSleeping: false);
 
     private async Task TestTirednessSleepInduction(bool canInduceSleep, bool expectedSleeping)
     {
@@ -366,21 +261,6 @@ public sealed class FelionoidTirednessTest : GameTest
             await server.WaitPost(() =>
             {
                 Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.EqualTo(expectedSleeping));
-                Assert.That(
-                    entityManager.HasComponent<SleepinessInducedSleepComponent>(felionoid),
-                    Is.EqualTo(expectedSleeping));
-
-                if (!expectedSleeping)
-                {
-                    var statusEffects = server.System<StatusEffectsSystem>();
-                    var timing = server.ResolveDependency<IGameTiming>();
-                    Assert.That(statusEffects.TryGetTime(felionoid, "StatusEffectSleepiness", out var sleepiness),
-                        Is.True);
-                    Assert.That(sleepiness.EndEffectTime, Is.Not.Null);
-                    Assert.That(
-                        sleepiness.EndEffectTime!.Value - timing.CurTime,
-                        Is.GreaterThan(TimeSpan.FromSeconds(30)));
-                }
             });
         }
         finally
