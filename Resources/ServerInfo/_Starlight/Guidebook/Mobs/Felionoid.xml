@@ -20,8 +20,20 @@
   Additionally, Felionoids can run [color=lightgreen]25%[/color] faster than humans [color=yellow]when not wearing shoes[/color]. They run [color=lightgreen]5%[/color] faster when wearing shoes.
 
   Felionoids are also more vulnerable to damage:
-  - They fall into a critical state at [color=red]85[/color] points of damage.
-  - They die at [color=red]170[/color] points of damage.
+  - They fall into a critical state at [color=red]90[/color] points of damage.
+  - They die at [color=red]180[/color] points of damage.
+  Their stamina critical threshold is [color=yellow]110[/color], compared to the standard [color=yellow]100[/color].
+
+  ## Naptime and light sleep
+  Felionoids grow tired while awake and need around [color=yellow]4 minutes of sleep per hour[/color] to stay rested. Without enough rest, they become irritable and dizzy.
+
+  While asleep, Felionoids slowly recover from heat, cold, blunt, slash, piercing, and blood-loss damage, and heal bleeding. Their light sleep lets them hear their surroundings and sense nearby entities within [color=yellow]10 meters[/color].
+
+  ## Pounce
+  Felionoids can leap into the arms of unsuspecting humanoids, whom they see as walking sleeping spots. The [color=yellow]Pounce[/color] action takes [color=yellow]2 seconds[/color] of tail-wiggling to charge; moving interrupts the charge. An empty-handed target can catch and pick up the pouncing Felionoid; otherwise, the impact knocks both down. Pounce recharges after [color=yellow]1 minute[/color].
+
+  ## Tight Grip
+  Felionoids keep a tight grip on their items, even if they fall prone.
 
   ## Weapon Knockback
   Felionoids will find that large caliber weapons will push them around. They receive [color=yellow]Stun Damage[/color] for every shot fired from a large caliber weapon.
