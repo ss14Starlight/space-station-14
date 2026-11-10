@@ -86,7 +86,10 @@ public sealed partial class GraphicsTab : Control
         Control.AddOptionCheckBox(StarlightCCVars.HolesEnabled, HolesCheckBox);
         Control.AddOptionCheckBox(StarlightCCVars.SparksEnabled, SparksCheckBox);
         Control.AddOptionCheckBox(StarlightCCVars.LightTonemap, LightTonemapCheckBox);
-        AddLightingOptions();
+        Control.AddOptionCheckBox(StarlightCCVars.NightVision, NightVisionCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.Vignette, VignetteCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.Bloom, BloomCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.FilmGrain, FilmGrainCheckBox);
         Control.AddOptionCheckBox(StarlightCCVars.HitscanPrediction, HitscanPredictionCheckBox);
         // Starlight-end
         Control.AddOptionCheckBox(CCVars.HudFpsCounterVisible, FpsCounterCheckBox);
@@ -98,7 +101,6 @@ public sealed partial class GraphicsTab : Control
 
         UpdateViewportWidthRange();
         UpdateViewportSettingsVisibility();
-        UpdateLightingSettingsVisibility(); // Starlight
     }
 
     private void UpdateViewportSettingsVisibility()
