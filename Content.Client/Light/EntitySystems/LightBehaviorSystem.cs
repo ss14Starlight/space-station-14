@@ -33,6 +33,7 @@ public sealed partial class LightBehaviorSystem : EntitySystem
 
         if (container.LightBehaviour.IsLooped)
         {
+            container.LightBehaviour.StartOffset = 0f; // Starlight-edit: don't re-apply each cycle
             container.LightBehaviour.UpdatePlaybackValues(container.Animation);
             _player.Play(uid, container.Animation, container.FullKey);
         }
@@ -86,7 +87,7 @@ public sealed partial class LightBehaviorSystem : EntitySystem
     /// If specified light behaviours are already animating, calling this does nothing.
     /// Multiple light behaviours can have the same ID.
     /// </summary>
-    public void StartLightBehaviour(Entity<LightBehaviourComponent?> entity, string id = "")
+    public void StartLightBehaviour(Entity<LightBehaviourComponent?> entity, string id = "", float startOffset = 0f) // Starlight-edit: +startOffset
     {
         if (!Resolve(entity, ref entity.Comp))
             return;
@@ -101,6 +102,7 @@ public sealed partial class LightBehaviorSystem : EntitySystem
                 if (!_player.HasRunningAnimation(entity, animation, LightBehaviourComponent.KeyPrefix + container.Key))
                 {
                     CopyLightSettings((entity, entity.Comp), container.LightBehaviour.Property);
+                    container.LightBehaviour.StartOffset = startOffset; // Starlight-edit
                     container.LightBehaviour.UpdatePlaybackValues(container.Animation);
                     _player.Play(entity, container.Animation, LightBehaviourComponent.KeyPrefix + container.Key);
                 }
