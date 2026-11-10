@@ -18,21 +18,44 @@
                     <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
                         <sui:OptionDropDown Name="DropDownLightingQuality" Title="{Loc 'ui-options-lighting-label'}" />
                         <sui:OptionDropDown Name="DropDownParticleQuality" Title="{Loc 'ui-options-particles-label'}" /> <!-- _Starfall: Particles -->
-                        <sui:OptionDropDown Name="DropDownSpriteQuality" Title="{Loc 'ui-options-sprite-quality'}" Description="{Loc 'ui-options-sprite-quality-tooltip'}" /> <!-- Starlight, sprite effects -->
-                        <sui:OptionDropDown Name="DropDownInteractionParticles" Title="{Loc 'ui-options-interaction-particles'}" Description="{Loc 'ui-options-interaction-particles-tooltip'}" /> <!-- Starlight, interaction particles -->
+						<!-- Starlight-start -->
+                        <sui:OptionDropDown Name="DropDownSpriteQuality" Title="{Loc 'ui-options-sprite-quality'}" Description="{Loc 'ui-options-sprite-quality-tooltip'}" />
+                        <sui:OptionDropDown Name="DropDownInteractionParticles" Title="{Loc 'ui-options-interaction-particles'}" Description="{Loc 'ui-options-interaction-particles-tooltip'}" />
+						<!-- Starlight-end -->
                         <CheckBox Name="ViewportLowResCheckBox" Text="{Loc 'ui-options-vp-low-res'}" />
                         <CheckBox Name="ParallaxLowQualityCheckBox" Text="{Loc 'ui-options-parallax-low-quality'}" />
                         <CheckBox Name="AmbientOcclusionCheckBox" Text="{Loc 'ui-options-ambient-occlusion'}" />
                         <!-- CP14 -->
                         <CheckBox Name="PostProcessCheckBox" Text="{Loc 'cp14-ui-options-postprocess'}" ToolTip="{Loc 'cp14-ui-options-postprocess-tooltip'}" />
-                        <!-- Starlight -->
+                        <!-- Starlight-start -->
                         <CheckBox Name="TracesCheckBox" Text="{Loc 'ui-options-trace'}" ToolTip="{Loc 'ui-options-trace-tooltip'}" />
                         <CheckBox Name="HolesCheckBox" Text="{Loc 'ui-options-holes'}" ToolTip="{Loc 'ui-options-holes-tooltip'}" />
                         <CheckBox Name="SparksCheckBox" Text="{Loc 'ui-options-sparks'}" ToolTip="{Loc 'ui-options-sparks-tooltip'}" />
                         <CheckBox Name="HitscanPredictionCheckBox" Text="{Loc 'ui-options-hitscan-prediction'}" ToolTip="{Loc 'ui-options-hitscan-prediction-tooltip'}" />
                         <CheckBox Name="ClothingStainsCheckBox" Text="{Loc 'ui-options-show-stains'}" />
+					    <!-- Starlight-end -->
                     </BoxContainer>
                 </PanelContainer>
+                <!-- Starlight-start: lighting and screen effects -->
+                <Label Text="{Loc 'ui-options-atmosphere-label'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
+                <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
+                    <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <CheckBox Name="LightTonemapCheckBox" Text="{Loc 'ui-options-light-tonemap'}" ToolTip="{Loc 'ui-options-light-tonemap-tooltip'}" />
+                        <CheckBox Name="NightVisionCheckBox" Text="{Loc 'ui-options-night-vision'}" ToolTip="{Loc 'ui-options-night-vision-tooltip'}" />
+                        <sui:OptionSlider Name="NightVisionStrengthSlider" Title="{Loc 'ui-options-night-vision-strength'}" Margin="16 0 0 0" />
+                        <CheckBox Name="VignetteCheckBox" Text="{Loc 'ui-options-vignette'}" ToolTip="{Loc 'ui-options-vignette-tooltip'}" />
+                        <sui:OptionSlider Name="VignetteStrengthSlider" Title="{Loc 'ui-options-vignette-strength'}" Margin="16 0 0 0" />
+                        <CheckBox Name="BloomCheckBox" Text="{Loc 'ui-options-bloom'}" ToolTip="{Loc 'ui-options-bloom-tooltip'}" />
+                        <BoxContainer Name="BloomSettings" Orientation="Vertical" Margin="16 0 0 0" SeparationOverride="4">
+                            <sui:OptionSlider Name="BloomStrengthSlider" Title="{Loc 'ui-options-bloom-strength'}" />
+                            <sui:OptionSlider Name="BloomThresholdSlider" Title="{Loc 'ui-options-bloom-threshold'}" Description="{Loc 'ui-options-bloom-threshold-desc'}" />
+                            <sui:OptionSlider Name="BloomRadiusSlider" Title="{Loc 'ui-options-bloom-radius'}" Description="{Loc 'ui-options-bloom-radius-desc'}" />
+                        </BoxContainer>
+                        <CheckBox Name="FilmGrainCheckBox" Text="{Loc 'ui-options-film-grain'}" ToolTip="{Loc 'ui-options-film-grain-tooltip'}" />
+                        <sui:OptionSlider Name="FilmGrainStrengthSlider" Title="{Loc 'ui-options-film-grain-strength'}" Margin="16 0 0 0" />
+                    </BoxContainer>
+                </PanelContainer>
+				<!-- Starlight-end -->
                 <Label Text="{Loc 'ui-options-viewport-label'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
                 <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
                     <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
