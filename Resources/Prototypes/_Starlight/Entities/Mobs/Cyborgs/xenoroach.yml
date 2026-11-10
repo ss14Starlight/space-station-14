@@ -127,6 +127,10 @@
     - Aielic
     - Lagomorphian
     - Xeno
+    - Xenoqueen
+    - Xenocongress
+    - ClassicalSign
+    - CygniStandard
   # Surveillance - Mothership Core can watch through it
   - type: SurveillanceCamera
     networkSet: true

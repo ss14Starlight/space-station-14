@@ -8,7 +8,7 @@
       icon:
         sprite: _Starlight/Interface/Actions/actions_xeno.rsi
         state: toggle_tail
-      itemIconStyle: BigAction
+      itemIconStyle: NoItem
     - type: InstantAction
       event: !type:ToggleLimbEvent
 

@@ -38,7 +38,7 @@
       blockedByCuffs: true
       action: ActionToggleXenoTail
       sound:
-        path: /Audio/Voice/Vox/vox_click.ogg
+        collection: XenoGrowl
       handWhitelist:
         tags:
           - Spear
