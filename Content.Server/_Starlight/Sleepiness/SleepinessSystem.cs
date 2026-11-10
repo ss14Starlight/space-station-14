@@ -56,7 +56,7 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
                 _blindable.UpdateIsBlind(target);
 
             if (sleepiness.SleepImmediately && !HasComp<SleepingComponent>(target) &&
-                CanInduceSleep(target, sleepiness))
+                CanInduceSleep(target, sleepiness, checkTirednessSetting: false))
             {
                 if (TrySleepFromSleepiness(target, sleepiness.SleepThreshold))
                 {
@@ -84,7 +84,8 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
             }
 
             if (remaining < sleepiness.SleepThreshold || HasComp<SleepingComponent>(target) ||
-                !CanInduceSleep(target, sleepiness))
+                !CanInduceSleep(target, sleepiness,
+                    checkTirednessSetting: !sleepiness.HasExternalSleepinessSource))
                 continue;
 
             if (!TrySleepFromSleepiness(target, sleepiness.SleepThreshold))
@@ -106,9 +107,14 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
         return false;
     }
 
-    private bool CanInduceSleep(EntityUid target, SleepinessStatusEffectComponent sleepiness)
+    private bool CanInduceSleep(
+        EntityUid target,
+        SleepinessStatusEffectComponent sleepiness,
+        bool checkTirednessSetting)
     {
-        if (TryComp<TirednessComponent>(target, out var tiredness) && !tiredness.CanInduceSleep)
+        if (checkTirednessSetting &&
+            TryComp<TirednessComponent>(target, out var tiredness) &&
+            !tiredness.CanInduceSleep)
             return false;
 
         if (sleepiness.SleepInductionThreshold <= FixedPoint2.Zero)

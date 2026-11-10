@@ -1,7 +1,11 @@
 #nullable enable
 using Content.IntegrationTests.Fixtures;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Body.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.FixedPoint;
 using Content.Shared.StatusEffectNew;
 using Content.Shared._Starlight.Sleepiness.Components;
 using Content.Shared._Starlight.Sleepiness.Systems;
@@ -83,6 +87,58 @@ public sealed class SleepinessSystemTest : GameTest
                 Assert.That(server.System<LightSleepSystem>().IsLightSleepActive(felionoid), Is.True);
                 Assert.That(blindable.IsBlind, Is.True);
             });
+        }
+        finally
+        {
+            await server.WaitPost(() => entityManager.DeleteEntity(felionoid));
+            await pair.RunUntilSynced();
+        }
+    }
+
+    [Test]
+    public async Task NocturineCanInduceSleepWhenTirednessSleepIsDisabled()
+    {
+        var pair = Pair;
+        var server = pair.Server;
+        var entityManager = server.ResolveDependency<IEntityManager>();
+        EntityUid felionoid = default;
+
+        await server.WaitPost(() =>
+        {
+            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
+            var tiredness = entityManager.GetComponent<TirednessComponent>(felionoid);
+            tiredness.CanInduceSleep = false;
+            entityManager.Dirty(felionoid, tiredness);
+        });
+
+        try
+        {
+            await pair.RunSeconds(1);
+
+            var nocturineAdded = false;
+            await server.WaitPost(() =>
+            {
+                var bloodstream = entityManager.GetComponent<BloodstreamComponent>(felionoid);
+                var solutions = server.System<SharedSolutionContainerSystem>();
+                if (!solutions.ResolveSolution(
+                        felionoid,
+                        bloodstream.BloodSolutionName,
+                        ref bloodstream.BloodSolution,
+                        out _) ||
+                    bloodstream.BloodSolution is not { } bloodSolution)
+                    return;
+
+                solutions.TryAddReagent(
+                    bloodSolution,
+                    new ReagentQuantity("Nocturine", FixedPoint2.New(100)),
+                    out var acceptedQuantity);
+                nocturineAdded = acceptedQuantity >= FixedPoint2.New(4);
+            });
+            Assert.That(nocturineAdded, Is.True);
+
+            await pair.RunSeconds(15);
+            await server.WaitAssertion(() =>
+                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.True));
         }
         finally
         {

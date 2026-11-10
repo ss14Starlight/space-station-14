@@ -21,6 +21,12 @@ public sealed partial class SleepinessStatusEffectComponent : Component
     public bool SleepImmediately;
 
     /// <summary>
+    /// Whether a non-tiredness source contributed to this sleepiness effect.
+    /// </summary>
+    [AutoNetworkedField]
+    public bool HasExternalSleepinessSource;
+
+    /// <summary>
     /// Reagent used to induce sleep when the configured induction threshold is reached.
     /// </summary>
     [DataField]
