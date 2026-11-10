@@ -41,9 +41,6 @@
 - type: Tag
   id: ArtifactFragment # Storage whitelist: OreBag. CargoBounty: BountyArtifactFragment. ConstructionGraph: Artifact
 
-- type: Tag
-  id: AtmosFireHelmet # ConstructionGraph: AtmosianHelmet
-
 ## B ##
 
 - type: Tag
@@ -933,9 +930,6 @@
 
 - type: Tag
   id: Metal # Used by MicrowaveSystem. Causes microwaves to malfunction when tagged entity is nuked.
-
-- type: Tag
-  id: MetalHydrogenHelmet # ConstructionGraph: AtmosianHelmet
 
 - type: Tag
   id: MicroBomb # ReplacementImplant whitelist on MacroBombImplant.
