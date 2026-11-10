@@ -200,6 +200,7 @@
         children:
         - id: CableHVStack
         - id: OilPack
+        - id: PowerCellMicroreactor
           amount: 2
         - id: WelderExperimental
         
