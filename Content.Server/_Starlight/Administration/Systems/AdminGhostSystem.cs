@@ -63,6 +63,6 @@ public sealed partial class AdminGhostSystem : EntitySystem
     {
         if (entity.Comp.LifeStage <= ComponentLifeStage.Running)
             args.VisibilityMask |= (int)VisibilityFlags.Ghost | (int)VisibilityFlags.Net |
-                                   (int)VisibilityFlags.NullSpace | (int)VisibilityFlags.Admin;
+                                   (int)VisibilityFlags.NullSpace | (int)VisibilityFlags.MonumentCosmicCult | (int)VisibilityFlags.Admin;
     }
 }

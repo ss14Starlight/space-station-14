@@ -22,13 +22,13 @@
     drawdepth: Ghosts
   - type: NoSlip
   - type: CosmicAstralBody
-  - type: ShowNullSpace
   - type: Eye
     drawFov: false
     visMask:
     - Normal
     - Ghost
     - NullSpace
+    - MonumentCosmicCult
   - type: SSDIndicator
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
