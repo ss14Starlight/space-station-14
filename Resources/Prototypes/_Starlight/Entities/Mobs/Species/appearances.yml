@@ -263,7 +263,7 @@
         state: full
 
 - type: entity
-  parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
+  parent: [BaseSpeciesDummy, BaseInventoryXeno]
   id: AppearanceXeno
   categories: [ HideSpawnMenu ]
   description: A dummy doll meant to be used in character setup.

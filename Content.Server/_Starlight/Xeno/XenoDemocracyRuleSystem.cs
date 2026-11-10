@@ -124,6 +124,18 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
         {
             _sawmill.Info("Voice vote somehow finished without eligible candidates.");
         }
+
+        //Once done, remove vote action from all eligible voters
+        voterQuery = EntityQueryEnumerator<XenoDemocracyComponent, MetaDataComponent>();
+
+        while (voterQuery.MoveNext(out var voter, out _, out var metadata))
+        {
+            if(!TryComp(voter, out XenoDemocracyComponent? comp) || comp == null)
+                continue;
+
+            if (!Deleted(voter) && comp.ActionEntity is not null)
+                _action.RemoveAction((voter, null), comp.ActionEntity);
+        }
     }
 
     private void HandleMindRemoved(Entity<XenoDemocracyComponent> ent, ref MindRemovedMessage args)
