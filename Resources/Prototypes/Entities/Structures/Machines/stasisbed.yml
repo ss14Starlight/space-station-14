@@ -48,7 +48,7 @@
   - type: Strap
     position: Down
     rotation: -90
-    buckleOffset: "0,-0.2" # Starlight
+    buckleOffset: "0,-0.1" # Starlight
   - type: Machine
     board: StasisBedMachineCircuitboard
   - type: Physics
