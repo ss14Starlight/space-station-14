@@ -1,0 +1,59 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "state based",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi, rotated into four wall-mount directions by Rinary for Starlight;",
+            "name": "off",
+            "directions": 4
+        },
+        {
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi, rotated into four wall-mount directions by Rinary for Starlight;",
+            "name": "standby",
+            "directions": 4
+        },
+        {
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi, rotated into four wall-mount directions by Rinary for Starlight;",
+            "name": "cycle",
+            "directions": 4,
+            "delays": [
+                [
+                    0.5,
+                    0.5
+                ],
+                [
+                    0.5,
+                    0.5
+                ],
+                [
+                    0.5,
+                    0.5
+                ],
+                [
+                    0.5,
+                    0.5
+                ]
+            ]
+        },
+        {
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi redrawn by Rinary for Starlight",
+            "name": "frame",
+            "directions": 4
+        },
+        {
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Paradise Station at https://github.com/ParadiseSS13/Paradise/blob/bd91a1b962/icons/obj/airlock_machines.dmi redrawn by Rinary for Starlight",
+            "name": "wired",
+            "directions": 4
+        }
+    ]
+}

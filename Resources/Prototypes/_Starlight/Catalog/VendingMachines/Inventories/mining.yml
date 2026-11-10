@@ -265,3 +265,13 @@
   - MiningConsumeables
   conditions:
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorMiningGlowstoneDropper
+  productEntity: GlowstoneDropperFilled25
+  cost:
+    SalvageTicket: 30
+  categories:
+    - MiningConsumeables
+  conditions:
+    - !type:BuyerAccessCondition

@@ -326,7 +326,7 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
             SendNewLinkEvent(userId, sourceUid, source, sinkUid, sink);
         }
 
-        if (links.Count > 0)
+        if (sourceComponent.LinkedPorts.TryGetValue(sinkUid, out var savedLinks) && savedLinks.Count > 0) // Starlight-edit
             sinkComponent.LinkedSources.Add(sourceUid);
     }
 
@@ -443,11 +443,16 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
         }
         else
         {
-            if (!sourceComponent.Ports.Contains(source) || !sinkComponent.Ports.Contains(sink))
+            // Starlight-edit start: a refused link must not leave an empty entry pointing at the sink.
+            if (!sourceComponent.Ports.Contains(source)
+                || !sinkComponent.Ports.Contains(sink)
+                || !CanLink(userId, sourceUid, sinkUid, source, sink, true, sourceComponent))
+            {
+                if (linkedPorts.Count == 0)
+                    sourceComponent.LinkedPorts.Remove(sinkUid);
                 return false;
-
-            if (!CanLink(userId, sourceUid, sinkUid, source, sink, true, sourceComponent))
-                return false;
+            }
+            // Starlight-edit end
 
             outputs.Add(sinkUid);
             linkedPorts.Add((source, sink));
