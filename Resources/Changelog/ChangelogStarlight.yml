@@ -1,13 +1,6 @@
 Entries:
 - author: Reisyn & SirLutz
   changes:
-  - message: Flourish my Dionas, our time has come.
-    type: Add
-  id: 409899
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
   - message: Constant Colours to plant pollen, so smells have a fixed colour now!.
     type: Add
   id: 409900
@@ -2799,4 +2792,11 @@ Entries:
   id: 410298
   time: '2026-11-10T16:58:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7112
+- author: STARLIGHT TEAM
+  changes:
+  - message: Lowered default bloom value slightly.
+    type: Tweak
+  id: 410299
+  time: '2026-11-10T17:20:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7168
 Order: -1
