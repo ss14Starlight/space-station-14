@@ -53166,8 +53166,6 @@ entities:
     - type: Transform
       parent: 1
       pos: -2.5,98.5
-      access:
-      - - CentralCommand
 - proto: VendingMachineSeedsUnlocked
   entities:
   - uid: 7616
