@@ -1,11 +1,15 @@
 {
     "version": 1,
     "license": "CC-BY-SA-4.0",
-    "copyright": "By Killer Tamashi (Discord)",
+    "copyright": "face By Killer Tamashi (Discord) sharkminnow made by Sha-Seng (github)",
     "size": {"x": 32, "y": 32},
     "states": [
         {
             "name": "face",
+            "directions": 4
+        },
+        {
+            "name": "sharkminnow",
             "directions": 4
         }
     ]

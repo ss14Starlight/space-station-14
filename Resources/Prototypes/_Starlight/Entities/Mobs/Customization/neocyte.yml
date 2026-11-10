@@ -335,6 +335,15 @@
     state: face
 
 - type: marking
+  id: NeoThavenLEDFaceMinnow
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
+  speciesRestriction: [NeoThaven]
+  sprites:
+  - sprite: _FarHorizons/Mobs/Customization/proto-thaven/led_shapes_face.rsi
+    state: sharkminnow
+
+- type: marking
   id: NeoThavenLights
   bodyPart: BodyCoverCover
   markingCategory: BodyCoverCover
