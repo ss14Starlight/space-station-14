@@ -6,7 +6,9 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Machines/StationRadio/cdplayer.rsi
+    snapCardinals: true
     drawdepth: SmallObjects
+    offset: "0.0,0.2"
     layers:
     - state: icon
     - state: slot0
@@ -23,8 +25,7 @@
       visible: false
       map: [ "enum.VinylPlayerVisualLayers.Display" ]
   - type: Transform
-    noRot: false
-  - type: Rotatable
+    noRot: true
   - type: Fixtures
     fixtures:
       fix1:
