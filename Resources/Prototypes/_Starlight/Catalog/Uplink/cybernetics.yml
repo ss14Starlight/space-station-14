@@ -132,7 +132,7 @@
     }
   productEntity: NukeOpRobotkit
   cost:
-    Telecrystal: 5
+    Telecrystal: 14
   categories:
     - UplinkCybernetics
   whitelist:
