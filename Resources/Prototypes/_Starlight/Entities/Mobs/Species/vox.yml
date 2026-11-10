@@ -18,8 +18,8 @@
   - type: Icon
     sprite: Mobs/Species/Vox/parts.rsi
     state: vox_m
-  - type: Body
-    prototype: Vox
+  - type: SLBody
+    prefab: Vox
     requiredLegs: 2
     #- type: VoxAccent # Not yet coded
   - type: Speech

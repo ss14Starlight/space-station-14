@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Body.Components;
 using System.Linq;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Administration;
@@ -37,7 +38,7 @@ public sealed partial class RemoveHandCommand : IConsoleCommand
             return;
         }
 
-        if (!_entManager.TryGetComponent(player.AttachedEntity, out BodyComponent? body))
+        if (!_entManager.TryGetComponent(player.AttachedEntity, out SLBodyComponent? body))
         {
             var text = $"You have no body{(_random.Prob(0.2f) ? " and you must scream." : ".")}";
 

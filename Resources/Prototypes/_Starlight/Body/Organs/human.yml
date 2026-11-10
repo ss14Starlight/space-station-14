@@ -6,6 +6,8 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: Edible
   - type: Extractable
     grindableSolutionName: organ
@@ -30,6 +32,8 @@
   - type: Sprite
     state: brain
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: Input
     context: "ghost"
   - type: Brain
@@ -75,6 +79,14 @@
     prototypes:
       Default: MobHumanoidEyes
     # 🌟Starlight🌟 end
+  # New body visuals: the eyes are an external part of the head.
+  - type: BodyPartVisualizer
+    bodyVisualLayers:
+      body_eyes:
+        sprite:
+          sprite: Mobs/Customization/eyes.rsi
+          state: eyes
+        colorSource: HumanEyeColor
 
 - type: entity
   id: OrganHumanTongue

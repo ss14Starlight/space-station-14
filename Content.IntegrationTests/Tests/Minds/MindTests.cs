@@ -36,8 +36,8 @@ public sealed partial class MindTests : GameTest
   - type: MindContainer
   - type: Damageable
     damageContainer: Biological
-  - type: Body
-    prototype: Human
+  - type: SLBody
+    prefab: Human
     requiredLegs: 2
   - type: MobState
   - type: MobThresholds

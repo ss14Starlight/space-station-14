@@ -14,9 +14,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
-#region Starlight
-using Content.Shared.Body.Components;
-#endregion
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Server.ImmovableRod;
 
@@ -118,7 +116,7 @@ public sealed partial class ImmovableRodSystem : EntitySystem
         }
 
         // gib or damage em
-        if (HasComp<BodyComponent>(ent))
+        if (HasComp<SLBodyComponent>(ent)) // Starlight: SLBody
         {
             component.MobCount++;
             _popup.PopupEntity(Loc.GetString("immovable-rod-penetrated-mob", ("rod", uid), ("mob", ent)), uid, PopupType.LargeCaution);

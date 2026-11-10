@@ -1,0 +1,113 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: AnimalNymphBrain
+  root:
+    bodyPart: TorsoAnimal
+    containedParts:
+      Brain:
+        bodyPart: OrganDionaBrain
+      Lungs:
+        bodyPart: OrganAnimalLungs
+      Stomach:
+        bodyPart: OrganAnimalStomach
+      Liver:
+        bodyPart: OrganAnimalLiver
+      Heart:
+        bodyPart: OrganAnimalHeart
+      Kidneys:
+        bodyPart: OrganAnimalKidneys
+    attachedParts:
+      Legs:
+        bodyPart: LegsAnimal
+        attachedParts:
+          Feet:
+            bodyPart: FeetAnimal
+
+- type: bodyPrefab
+  id: AnimalNymphLungs
+  root:
+    bodyPart: TorsoAnimal
+    containedParts:
+      Lungs:
+        bodyPart: OrganDionaLungs
+      Stomach:
+        bodyPart: OrganAnimalStomach
+      Liver:
+        bodyPart: OrganAnimalLiver
+      Heart:
+        bodyPart: OrganAnimalHeart
+      Kidneys:
+        bodyPart: OrganAnimalKidneys
+    attachedParts:
+      Legs:
+        bodyPart: LegsAnimal
+        attachedParts:
+          Feet:
+            bodyPart: FeetAnimal
+
+- type: bodyPrefab
+  id: AnimalProtoNymphLungs
+  root:
+    bodyPart: TorsoAnimal
+    containedParts:
+      Lungs:
+        bodyPart: OrganNeoDionaLungs
+      Stomach:
+        bodyPart: OrganAnimalStomach
+      Liver:
+        bodyPart: OrganAnimalLiver
+      Heart:
+        bodyPart: OrganAnimalHeart
+      Kidneys:
+        bodyPart: OrganAnimalKidneys
+    attachedParts:
+      Legs:
+        bodyPart: LegsAnimal
+        attachedParts:
+          Feet:
+            bodyPart: FeetAnimal
+
+- type: bodyPrefab
+  id: AnimalNymphStomach
+  root:
+    bodyPart: TorsoAnimal
+    containedParts:
+      Lungs:
+        bodyPart: OrganAnimalLungs
+      Stomach:
+        bodyPart: OrganDionaStomach
+      Liver:
+        bodyPart: OrganAnimalLiver
+      Heart:
+        bodyPart: OrganAnimalHeart
+      Kidneys:
+        bodyPart: OrganAnimalKidneys
+    attachedParts:
+      Legs:
+        bodyPart: LegsAnimal
+        attachedParts:
+          Feet:
+            bodyPart: FeetAnimal
+
+- type: bodyPrefab
+  id: AnimalProtoNymphStomach
+  root:
+    bodyPart: TorsoAnimal
+    containedParts:
+      Lungs:
+        bodyPart: OrganAnimalLungs
+      Stomach:
+        bodyPart: OrganNeoDionaStomach
+      Liver:
+        bodyPart: OrganAnimalLiver
+      Heart:
+        bodyPart: OrganAnimalHeart
+      Kidneys:
+        bodyPart: OrganAnimalKidneys
+    attachedParts:
+      Legs:
+        bodyPart: LegsAnimal
+        attachedParts:
+          Feet:
+            bodyPart: FeetAnimal

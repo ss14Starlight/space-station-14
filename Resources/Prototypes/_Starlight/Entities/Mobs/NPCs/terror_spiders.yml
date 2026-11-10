@@ -81,8 +81,8 @@
     - id: FoodMeatSpider
       amount: 4
   - type: CombatMode
-  - type: Body
-    prototype: AnimalHemocyanin
+  - type: SLBody
+    prefab: AnimalHemocyanin
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: TerrorSpider

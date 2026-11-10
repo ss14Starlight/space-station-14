@@ -1,0 +1,58 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Reptilian
+  root:
+    bodyPart: TorsoReptilian
+    containedParts:
+      Heart:
+        bodyPart: OrganAnimalHeart
+      Lungs:
+        bodyPart: OrganHumanLungs
+      Stomach:
+        bodyPart: OrganReptilianStomach
+      Liver:
+        bodyPart: OrganAnimalLiver
+      Kidneys:
+        bodyPart: OrganHumanKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadReptilian
+        containedParts:
+          Brain:
+            bodyPart: OrganHumanBrain
+          Tongue:
+            bodyPart: OrganReptilianTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganHumanEyes
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmReptilian
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandReptilian
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmReptilian
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandReptilian
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegReptilian
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootReptilian
+      LeftLeg:
+        bodyPart: LeftLegReptilian
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootReptilian
+    sockets:
+      Cavity: OrganSocket

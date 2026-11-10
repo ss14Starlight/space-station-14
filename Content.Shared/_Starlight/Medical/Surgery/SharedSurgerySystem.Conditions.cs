@@ -1,4 +1,5 @@
-﻿using Content.Shared.Body.Part;
+﻿using Content.Shared._Starlight.Body.Systems;
+using Content.Shared._Starlight.Body.Components;
 using Content.Shared.Humanoid;
 using System.Linq;
 using Content.Shared._Starlight.Medical.Surgery.Events;
@@ -48,35 +49,21 @@ public abstract partial class SharedSurgerySystem
 
         if (ent.Comp.Container != null)
         {
-            foreach (var slotId in Comp<BodyPartComponent>(args.Part).Organs.Keys)
-            {
-                if (ent.Comp.Container == slotId)
-                {
-                    if (!_containers.TryGetContainer(args.Part, ent.Comp.Container, out var container))
-                        continue;
+            if (HasOrganInSlot(args.Part, ent.Comp.Container, type))
+                args.Cancelled = true;
+            return;
+        }
 
-                    foreach (var containedEnt in container.ContainedEntities)
-                    {
-                        if (HasComp(containedEnt, type))
-                        {
-                            args.Cancelled = true;
-                            return;
-                        }
-                    }
-                }
+        foreach (var organ in _body.GetPartOrgans(args.Part))
+        {
+            if (HasComp(organ.Id, type))
+            {
+                args.Cancelled = true;
+                return;
             }
         }
-        else
-        {
-            var organs = _body.GetPartOrgans(args.Part, Comp<BodyPartComponent>(args.Part));
-            foreach (var organ in organs)
-                if (HasComp(organ.Id, type))
-                {
-                    args.Cancelled = true;
-                    return;
-                }
-        }
     }
+
     private void OnOrganExistConditionValid(Entity<SurgeryOrganExistConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (ent.Comp.Organ?.Count != 1) return;
@@ -85,34 +72,75 @@ public abstract partial class SharedSurgerySystem
 
         EntityUid mainPart = args.Part;
 
-        if (TryComp<BodyPartComponent>(args.Body, out var itemPart))
+        if (HasComp<SLBodyPartComponent>(args.Body))
             mainPart = args.Body;
 
         if (ent.Comp.Container != null)
         {
-            var part = Comp<BodyPartComponent>(mainPart);
-            var containerId = SharedBodySystem.GetOrganContainerId(ent.Comp.Container);
-            if (!_body.CanInsertOrgan(mainPart, ent.Comp.Container, part)
-                || !_containers.TryGetContainer(mainPart, containerId, out var container))
-            {
+            // Something to take out: the organ, or anything that ended up where it goes.
+            if (!HasOrganSlot(mainPart, ent.Comp.Container) || GetOrganSlotContents(mainPart, ent.Comp.Container).Count == 0)
                 args.Cancelled = true;
-                return;
-            }
-
-            foreach (var containedEnt in container.ContainedEntities)
-                if (HasComp(containedEnt, type))
-                    return;
-
-            args.Cancelled = container.ContainedEntities.Count == 0;
+            return;
         }
-        else
+
+        foreach (var organ in _body.GetPartOrgans(mainPart))
         {
-            var organs = _body.GetPartOrgans(mainPart, Comp<BodyPartComponent>(mainPart));
-            foreach (var organ in organs)
-                if (HasComp(organ.Id, type))
-                    return;
-            args.Cancelled = true;
+            if (HasComp(organ.Id, type))
+                return;
         }
+
+        args.Cancelled = true;
+    }
+
+    /// <summary>
+    /// Legacy slot names map to SLBody sockets ("heart" -> "Heart"); the cavity is a plain item container.
+    /// </summary>
+    /// <summary>
+    /// The part has the organ slot and nothing is in it.
+    /// </summary>
+    public bool CanInsertIntoOrganSlot(EntityUid part, string slot)
+        => HasOrganSlot(part, slot) && GetOrganSlotContents(part, slot).Count == 0;
+
+    public bool HasOrganSlot(EntityUid part, string slot)
+        => slot == "cavity"
+            ? _containers.HasContainer(part, SharedBodySystem.GetOrganContainerId(slot), null)
+            : TryComp<SLBodyPartComponent>(part, out var slPart) && slPart.Sockets.ContainsKey(SharedBodySystem.GetSocketIdForLegacySlot(slot));
+
+    /// <summary>
+    /// Everything in an organ slot of the part: the organ in its socket, and items in the slot's container (the
+    /// cavity, or a tool or food deliberately put where an organ goes).
+    /// </summary>
+    public List<EntityUid> GetOrganSlotContents(EntityUid part, string slot)
+    {
+        var contents = new List<EntityUid>();
+        if (slot != "cavity"
+            && TryComp<SLBodyPartComponent>(part, out var slPart)
+            && _slBody.TryGetPartInSocket((part, slPart), SharedBodySystem.GetSocketIdForLegacySlot(slot), out var organ))
+            contents.Add(organ);
+
+        if (_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(slot), out var container))
+            contents.AddRange(container.ContainedEntities);
+
+        return contents;
+    }
+
+    private bool HasOrganInSlot(EntityUid part, string slot, Type type)
+    {
+        if (slot == "cavity")
+        {
+            if (!_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(slot), out var cavity))
+                return false;
+            foreach (var contained in cavity.ContainedEntities)
+            {
+                if (HasComp(contained, type))
+                    return true;
+            }
+            return false;
+        }
+
+        return TryComp<SLBodyPartComponent>(part, out var slPart)
+            && _slBody.TryGetPartInSocket((part, slPart), SharedBodySystem.GetSocketIdForLegacySlot(slot), out var organ)
+            && HasComp(organ, type);
     }
 
     private void OnPartConditionValid(Entity<SurgeryPartConditionComponent> ent, ref SurgeryValidEvent args)
@@ -120,13 +148,13 @@ public abstract partial class SharedSurgerySystem
         if (ent.Comp.Parts.Count == 0)
             return;
 
-        if (TryComp<BodyPartComponent>(args.Body, out var itemPart) && itemPart.PartType is BodyPartType item && !ent.Comp.Parts.Contains(item))
+        if (TryComp<SLBodyPartComponent>(args.Body, out var itemPart) && itemPart.Kind is BodyPartType item && !ent.Comp.Parts.Contains(item))
         {
             Log.Warning("don't have part at part");
             args.Cancelled = true;
         }
 
-        if (CompOrNull<BodyPartComponent>(args.Part)?.PartType is BodyPartType part && !ent.Comp.Parts.Contains(part))
+        if (CompOrNull<SLBodyPartComponent>(args.Part)?.Kind is BodyPartType part && !ent.Comp.Parts.Contains(part))
             args.Cancelled = true;
     }
     private void OnSpeciesConditionValid(Entity<SurgerySpeciesConditionComponent> ent, ref SurgeryValidEvent args)
@@ -158,15 +186,30 @@ public abstract partial class SharedSurgerySystem
     }
     private void OnAnyLimbSlotConditionValid(Entity<SurgeryAnyLimbSlotConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        if (CompOrNull<BodyPartComponent>(args.Part) is not BodyPartComponent bodyPartComponent)
+        if (!TryComp<SLBodyPartComponent>(args.Part, out var part))
             return;
 
-        if (_body.TryGetFreePartSlot(args.Part, out var slotId, bodyPartComponent))
-            args.Suffix = slotId;
-        else
-            args.Cancelled = true;
+        foreach (var socketId in part.Sockets.Keys)
+        {
+            if (IsInternalSocket(part, socketId) || _slBody.TryGetPartInSocket((args.Part, part), socketId, out _))
+                continue;
+            args.Suffix = SharedBodySystem.GetLegacySlotName(socketId);
+            return;
+        }
+
+        args.Cancelled = true;
     }
+
     private void OnLimbSlotConditionValid(Entity<SurgeryLimbSlotConditionComponent> ent, ref SurgeryValidEvent args)
-        => args.Cancelled = !(_containers.TryGetContainer(args.Part, SharedBodySystem.GetPartSlotContainerId(ent.Comp.Slot), out var container)
-            && container.ContainedEntities.Count == 0);
+    {
+        var socketId = SharedBodySystem.GetSocketIdForLegacySlot(ent.Comp.Slot);
+        args.Cancelled = !(TryComp<SLBodyPartComponent>(args.Part, out var part)
+            && part.Sockets.ContainsKey(socketId)
+            && !_slBody.TryGetPartInSocket((args.Part, part), socketId, out _));
+    }
+
+    private bool IsInternalSocket(SLBodyPartComponent part, string socketId)
+        => part.Sockets.TryGetValue(socketId, out var socketType)
+            && _prototypes.TryIndex(socketType, out var proto)
+            && proto.Internal;
 }

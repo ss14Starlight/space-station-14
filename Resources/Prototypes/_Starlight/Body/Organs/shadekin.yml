@@ -117,6 +117,8 @@
   components:
   - type: OrganShadekinCore
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
     layers:

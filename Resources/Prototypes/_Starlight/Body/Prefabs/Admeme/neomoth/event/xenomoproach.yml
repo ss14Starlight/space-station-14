@@ -1,0 +1,14 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Xenomoproach
+  root:
+    bodyPart: TorsoAnimal
+    containedParts:
+      Stomach:
+        bodyPart: OrganMothStomach
+    attachedParts:
+      Righthand:
+        bodyPart: RightHandAnimal
+      Lefthand:
+        bodyPart: LeftHandAnimal

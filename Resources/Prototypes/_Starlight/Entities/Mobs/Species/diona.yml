@@ -32,8 +32,8 @@
   - type: Icon
     sprite: _Starlight/Mobs/Species/Diona/parts.rsi
     state: full
-  - type: Body
-    prototype: Diona
+  - type: SLBody
+    prefab: Diona
     requiredLegs: 2
   - type: Damageable
     damageContainer: Biological

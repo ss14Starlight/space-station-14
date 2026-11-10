@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Shared._FarHorizons.Damage;
 using Content.Shared._Starlight.Medical.Damage;
+using Content.Shared._Starlight.Medical.PartDamage;
+using Content.Shared.Inventory;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -140,10 +142,15 @@ public sealed partial class DamageableSystem
         if (before.Cancelled)
             return damageDone;
 
+        // Starlight-start: locational damage picks the hit part first, so only armor covering it applies
+        var targetEv = new DamageTargetPartEvent(damage, origin);
+        RaiseLocalEvent(ent, ref targetEv);
+        // Starlight-end
+
         // Apply resistances
         if (!ignoreResistances)
         {
-            //Starlight Start
+            //Starlight-start
             var computedModifiers = new DamageModifierSet();
             if (
                 ent.Comp.DamageModifierSetId != null &&
@@ -170,11 +177,14 @@ public sealed partial class DamageableSystem
                     computedModifiers.FlatReductions.Add( additiveModifier.Key.ModifierKey, 0.0f + additiveModifier.Value);
 
             damage = DamageSpecifier.ApplyModifierSet(damage, computedModifiers, armorPenetration, canHeal);
-            //Starlight End
+            //Starlight-end
 
             // TODO DAMAGE
             // byref struct event.
-            var ev = new DamageModifyEvent(damage, origin, armorPenetration, canHeal); //starlight, added armor pen and heal flag
+            var ev = new DamageModifyEvent(damage, origin, armorPenetration, canHeal) // Starlight-edit, added armor pen and heal flag
+            {
+                TargetSlots = targetEv.ArmorSlots ?? ~SlotFlags.POCKET, // Starlight-edit: armor of the hit part
+            };
             RaiseLocalEvent(ent, ev);
             damage = ev.Damage;
 

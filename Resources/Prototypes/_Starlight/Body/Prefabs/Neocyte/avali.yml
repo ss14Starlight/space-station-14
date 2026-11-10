@@ -1,0 +1,59 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: NeoAvali
+  root:
+    bodyPart: TorsoAvali
+    containedParts:
+      Heart:
+        bodyPart: OrganNeoAvaliHeart
+      Lungs:
+        bodyPart: OrganNeocyteLungs
+      Stomach:
+        bodyPart: OrganNeoAvaliStomach
+      Liver:
+        bodyPart: OrganNeoAvaliLiver
+      Kidneys:
+        bodyPart: OrganNeocyteKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadAvali
+        containedParts:
+          Brain:
+            bodyPart: OrganNeocyteBrain
+          Tongue:
+            bodyPart: OrganNeoAvaliTongue
+          BrainImplant:
+            bodyPart: BrainImplantNexus
+        attachedParts:
+          Eyes:
+            bodyPart: OrganNeocyteEyes
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmAvali
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandAvali
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmAvali
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandAvali
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegAvali
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootAvali
+      LeftLeg:
+        bodyPart: LeftLegAvali
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootAvali
+    sockets:
+      Cavity: OrganSocket

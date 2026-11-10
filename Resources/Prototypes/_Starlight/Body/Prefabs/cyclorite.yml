@@ -1,0 +1,58 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Cyclorite
+  root:
+    bodyPart: TorsoCyclorite
+    containedParts:
+      Heart:
+        bodyPart: OrganCycloriteHeart
+      Lungs:
+        bodyPart: OrganCycloriteLungs
+      Stomach:
+        bodyPart: OrganCycloriteStomach
+      Liver:
+        bodyPart: OrganCycloriteLiver
+      Kidneys:
+        bodyPart: OrganCycloriteKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadCyclorite
+        containedParts:
+          Brain:
+            bodyPart: OrganCycloriteBrain
+          Tongue:
+            bodyPart: OrganCycloriteTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganCycloriteEye
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmCyclorite
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandCyclorite
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmCyclorite
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandCyclorite
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegCyclorite
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootCyclorite
+      LeftLeg:
+        bodyPart: LeftLegCyclorite
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootCyclorite
+    sockets:
+      Cavity: OrganSocket

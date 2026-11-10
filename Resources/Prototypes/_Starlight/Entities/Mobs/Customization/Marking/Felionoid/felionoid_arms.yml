@@ -4,8 +4,11 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  pawmittens_armsL
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: pawmittens_armsL
+        colorSource: UniqueColor
 
 - type: marking
   id: FelionoidArmPawMittensR
@@ -13,8 +16,11 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  pawmittens_armsR
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: pawmittens_armsR
+        colorSource: UniqueColor
 
 - type: marking
   id: FelionoidArmTabbyL
@@ -22,8 +28,11 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  Tabby_armL
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: Tabby_armL
+        colorSource: UniqueColor
 
 - type: marking
   id: FelionoidArmTabbyR
@@ -31,8 +40,11 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  Tabby_armR
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: Tabby_armR
+        colorSource: UniqueColor
 
 - type: marking
   id: FelionoidArmCalicoR
@@ -40,8 +52,11 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: calico2_ArmR
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: calico2_ArmR
+        colorSource: UniqueColor
 
 - type: marking
   id: FelionoidArmCalicoL
@@ -49,8 +64,11 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: calico2_ArmL
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: calico2_ArmL
+        colorSource: UniqueColor
 
 - type: marking
   id: FelionoidArmStripesR
@@ -58,8 +76,11 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: r_arm_stripes
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: r_arm_stripes
+        colorSource: UniqueColor
 
 - type: marking
   id: FelionoidArmStripesL
@@ -67,5 +88,8 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: l_arm_stripes
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: l_arm_stripes
+        colorSource: UniqueColor

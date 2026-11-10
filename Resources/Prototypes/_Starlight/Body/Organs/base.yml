@@ -239,6 +239,8 @@
     size: Small
     heldPrefix: brain
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: Input
     context: "ghost"
   - type: Brain

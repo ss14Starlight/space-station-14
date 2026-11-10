@@ -55,8 +55,8 @@
   - type: Icon
     sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
     state: full
-  - type: Body
-    prototype: Experiment
+  - type: SLBody
+    prefab: Experiment
     requiredLegs: 2
   - type:  HumanoidAppearance
     species: Experiment

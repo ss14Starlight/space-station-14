@@ -116,8 +116,8 @@
     - Bot
     - Unimplantable
   # Starlight - start
-  - type: Body
-    prototype: Bot
+  - type: SLBody
+    prefab: Bot
   # Starlight - end
   - type: Speech
     speechVerb: Robotic
@@ -487,8 +487,8 @@
   # Starlight Start
   - type: PullTrain
     maxCars: 3
-  - type: Body
-    prototype: SupplyBot
+  - type: SLBody
+    prefab: SupplyBot
   - type: Hands
     showInHands: false
     hands:
@@ -533,8 +533,8 @@
   - type: ComplexInteraction # Hugging is a complex interaction, apparently.
   - type: HugBot
   # Starlight - start
-  - type: Body
-    prototype: HugBot
+  - type: SLBody
+    prefab: HugBot
   # Starlight - end
   - type: HTN
     rootTask:

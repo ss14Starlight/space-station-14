@@ -1,0 +1,19 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: BorgSyndicateStealth
+  root:
+    bodyPart: TorsoBorg
+    attachedParts:
+      Righthand:
+        bodyPart: RightArmBorg
+
+- type: bodyPrefab
+  id: Drone
+  root:
+    bodyPart: TorsoBorg
+    attachedParts:
+      Hand1:
+        bodyPart: LeftArmBorg
+      Hand2:
+        bodyPart: RightArmBorg

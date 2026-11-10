@@ -14,8 +14,8 @@
       Extinguish: [Touch]
       Acidic: [Touch, Ingestion]
   # Starlight - start
-  - type: Body
-    prototype: Animal
+  - type: SLBody
+    prefab: Animal
   # Starlight - end
   - type: Climbing
   - type: NameIdentifier

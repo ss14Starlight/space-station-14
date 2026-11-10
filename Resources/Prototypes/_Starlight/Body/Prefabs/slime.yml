@@ -1,0 +1,52 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Slime
+  root:
+    bodyPart: TorsoSlime
+    containedParts:
+      Heart:
+        bodyPart: OrganSlimeHeart
+      Core:
+        bodyPart: SentientSlimeCore
+      Lungs:
+        bodyPart: OrganSlimeLungs
+    attachedParts:
+      Head:
+        bodyPart: HeadSlime
+        containedParts:
+          Tongue:
+            bodyPart: OrganSlimeSlurpoid
+        attachedParts:
+          Eyes:
+            bodyPart: OrganSlimePeepoids
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmSlime
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandSlime
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmSlime
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandSlime
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegSlime
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootSlime
+      LeftLeg:
+        bodyPart: LeftLegSlime
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootSlime
+    sockets:
+      Cavity: OrganSocket
+      BrainImplant: OrganSocket

@@ -3,7 +3,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Anomaly.Effects;
-using Content.Shared.Body.Components;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Popups;
@@ -11,6 +10,7 @@ using Robust.Shared.Prototypes;
 
 using Content.Shared.NPC.Systems;
 using Content.Shared.NPC.Prototypes;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Server.Anomaly.Effects;
 
@@ -73,7 +73,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
     private void OnAnomalySupercritical(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySupercriticalEvent args)
     {
-        if (!TryComp<BodyComponent>(ent, out var body))
+        if (!HasComp<SLBodyComponent>(ent))
             return;
 
         _gibbing.Gib(ent.Owner);

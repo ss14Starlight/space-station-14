@@ -1,0 +1,59 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: NeoResomi
+  root:
+    bodyPart: TorsoResomi
+    containedParts:
+      Heart:
+        bodyPart: OrganNeoResomiHeart
+      Lungs:
+        bodyPart: OrganNeoResomiLungs
+      Stomach:
+        bodyPart: OrganNeocyteStomach
+      Liver:
+        bodyPart: OrganNeocyteLiver
+      Kidneys:
+        bodyPart: OrganNeocyteKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadResomi
+        containedParts:
+          Brain:
+            bodyPart: OrganNeocyteBrain
+          Tongue:
+            bodyPart: OrganNeoResomiTongue
+          BrainImplant:
+            bodyPart: BrainImplantNexus
+        attachedParts:
+          Eyes:
+            bodyPart: OrganNeoResomiEyes
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmResomi
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandResomi
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmResomi
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandResomi
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegResomi
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootResomi
+      LeftLeg:
+        bodyPart: LeftLegResomi
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootResomi
+    sockets:
+      Cavity: OrganSocket

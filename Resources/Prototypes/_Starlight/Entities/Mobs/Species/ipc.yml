@@ -151,8 +151,8 @@
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: full
-  - type: Body
-    prototype: IPC
+  - type: SLBody
+    prefab: IPC
     requiredLegs: 2
   - type: HumanoidAppearance
     species: IPC

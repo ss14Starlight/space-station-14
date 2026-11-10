@@ -17,10 +17,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-    state: tall_ears_outer
-  - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-    state: tall_ears_inner
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: tall_ears_outer
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: tall_ears_inner
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanLagomorphEarsTallCutLeft
@@ -40,10 +46,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tall_ears_cut_L_outer
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tall_ears_cut_L_inner
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: tall_ears_cut_L_outer
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: tall_ears_cut_L_inner
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanLagomorphEarsTallCutRight
@@ -63,10 +75,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tall_ears_cut_R_outer
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: tall_ears_cut_R_inner
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: tall_ears_cut_R_outer
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: tall_ears_cut_R_inner
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanLagomorphEarsAirplane
@@ -86,10 +104,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: airplane
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: inner_airplane
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: airplane
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: inner_airplane
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanLagomorphEarsFloppy
@@ -109,8 +133,11 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: floppy_ears
+    body_headTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: floppy_ears
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanLagomorphEarsFloppyCutLeft
@@ -130,8 +157,11 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: floppy_ears_cut_L
+    body_headTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: floppy_ears_cut_L
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanLagomorphEarsFloppyCutRight
@@ -151,8 +181,11 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: floppy_ears_cut_R
+    body_headTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: floppy_ears_cut_R
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanLagomorphEarsMedium
@@ -172,10 +205,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: standard
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: standard_inner
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: standard
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: standard_inner
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanLagomorphEarsLoppy
@@ -195,10 +234,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: loppy
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: loppy_inner
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: loppy
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: loppy_inner
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanLagomorphEarsLoppyLarge
@@ -218,10 +263,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: loppy_large
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: loppy_large_inner
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: loppy_large
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: loppy_large_inner
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanLagomorphEarsSharp
@@ -241,10 +292,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: sharp
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: sharp_inner
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: sharp
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: sharp_inner
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanLagomorphEarsShort
@@ -264,10 +321,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: short
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: short_inner
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: short
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: short_inner
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanLagomorphEarsRotund
@@ -287,10 +350,16 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: rotund
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: rotund_inner
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: rotund
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+        state: rotund_inner
+      colorSource: UniqueColor
 
 - type: marking
   id: HumanBunnyEars
@@ -310,5 +379,9 @@
           !type:SimpleColoring
             color: "#FFFFFF"
   sprites:
-    - sprite: Clothing/Head/Misc/bunny.rsi
-      state: equipped-HELMET
+    body_headTop:
+      sprite:
+        sprite: Clothing/Head/Misc/bunny.rsi
+        state: equipped-HELMET
+      colorSource: UniqueColor
+

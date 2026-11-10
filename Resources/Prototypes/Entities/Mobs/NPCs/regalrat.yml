@@ -75,8 +75,8 @@
         Slash: 12
         Piercing: 8
   # Starlight - start
-  - type: Body
-    prototype: Rat
+  - type: SLBody
+    prefab: Rat
     requiredLegs: 0 # TODO: Make more than 1 leg, set to 0 to avoid sprint speed being reset by the body system
   # Starlight - end
   - type: Hunger # probably should be prototyped
@@ -284,8 +284,8 @@
         Slash: 5
         Piercing: 3
   # Starlight - start
-  - type: Body
-    prototype: Rat
+  - type: SLBody
+    prefab: Rat
     requiredLegs: 0 # TODO: Make more than 1 leg, set to 0 to avoid sprint speed being reset by the body system
   # Starlight - end
   - type: Hunger # probably should be prototyped

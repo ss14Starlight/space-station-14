@@ -18,8 +18,8 @@
   - type: Icon
     sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
     state: rodentia
-  - type: Body
-    prototype: Rodentia
+  - type: SLBody
+    prefab: Rodentia
     requiredLegs: 2
   - type: Thirst
   - type: MouthStorage

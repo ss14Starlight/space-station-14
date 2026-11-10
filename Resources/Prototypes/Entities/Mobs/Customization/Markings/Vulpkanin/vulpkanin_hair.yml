@@ -258,6 +258,11 @@
   markingCategory: FacialHair
   speciesRestriction: [ Vulpkanin ]
   canBeDisplaced: false
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Vulpkanin/facial_hair.rsi
-    state: goatee
+    body_facialHair:
+      sprite:
+        sprite: Mobs/Customization/Vulpkanin/facial_hair.rsi
+        state: goatee
+      colorSource: HumanFacialHairColor
+  # Starlight end

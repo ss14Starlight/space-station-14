@@ -1,8 +1,10 @@
+using Content.Shared._Starlight.Body.Systems;
+using Content.Shared._Starlight.Body.Prototypes;
+using Content.Shared._Starlight.Body.Components;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Robust.Shared.Console;
 
 namespace Content.Server._Starlight.Medical.Body.Commands;
@@ -73,9 +75,9 @@ public sealed partial class AttachBodyPartCommand : IConsoleCommand
                 return;
         }
 
-        if (!_entManager.TryGetComponent(bodyId, out BodyComponent? body))
+        if (!_entManager.TryGetComponent(bodyId, out SLBodyComponent? body))
         {
-            shell.WriteLine($"Entity {_entManager.GetComponent<MetaDataComponent>(bodyId).EntityName} with uid {bodyId} does not have a {nameof(BodyComponent)}.");
+            shell.WriteLine($"Entity {_entManager.GetComponent<MetaDataComponent>(bodyId).EntityName} with uid {bodyId} does not have a {nameof(SLBodyComponent)}.");
             return;
         }
 
@@ -85,34 +87,29 @@ public sealed partial class AttachBodyPartCommand : IConsoleCommand
             return;
         }
 
-        if (!_entManager.TryGetComponent(partUid, out BodyPartComponent? part))
+        if (!_entManager.TryGetComponent(partUid, out SLBodyPartComponent? part))
         {
-            shell.WriteLine($"Entity {_entManager.GetComponent<MetaDataComponent>(partUid.Value).EntityName} with uid {partUid.Value} does not have a {nameof(BodyPartComponent)}.");
+            shell.WriteLine($"Entity {_entManager.GetComponent<MetaDataComponent>(partUid.Value).EntityName} with uid {partUid.Value} does not have a {nameof(SLBodyPartComponent)}.");
             return;
         }
 
-        var bodySystem = _entManager.System<BodySystem>();
-        if (bodySystem.BodyHasChild(bodyId, partUid.Value, body, part))
+        if (part.Body == bodyId)
         {
             shell.WriteLine($"Body part {_entManager.GetComponent<MetaDataComponent>(partUid.Value).EntityName} with uid {partUid} is already attached to entity {_entManager.GetComponent<MetaDataComponent>(bodyId).EntityName} with uid {bodyId}");
             return;
         }
 
-        var slotId = $"AttachBodyPartVerb-{partUid}";
+        var slotId = $"AttachBodyPartVerb{partUid}";
 
-        if (body.RootContainer.ContainedEntity is null && !bodySystem.AttachPartToRoot(bodyId, partUid.Value, body, part))
+        if (body.RootPartEntity is not { } rootPartId || !_entManager.TryGetComponent(rootPartId, out SLBodyPartComponent? rootPart))
         {
             shell.WriteError("Body container does not have a root entity to attach to the body part!");
             return;
         }
 
-        var (rootPartId, rootPart) = bodySystem.GetRootPartOrNull(bodyId, body)!.Value;
-        if (!bodySystem.TryCreatePartSlotAndAttach(rootPartId,
-                slotId,
-                partUid.Value,
-                part.PartType,
-                rootPart,
-                part))
+        var slBody = _entManager.System<SLBodySystem>();
+        slBody.AddSocket((rootPartId, rootPart), slotId, BodyPrefabPrototype.DefaultExternalSocket);
+        if (!slBody.TryAttachPart((rootPartId, rootPart), slotId, (partUid.Value, part)))
         {
             shell.WriteError($"Could not create slot {slotId} on entity {_entManager.ToPrettyString(bodyId)}");
             return;

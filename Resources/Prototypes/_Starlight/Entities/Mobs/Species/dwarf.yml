@@ -34,8 +34,8 @@
         Asphyxiation: -1.0
   #- type: ScaleVisuals # STARLIGHT
   #  scale: 1, 0.8 # STARLIGHT
-  - type: Body
-    prototype: Dwarf
+  - type: SLBody
+    prefab: Dwarf
     requiredLegs: 2
   - type: Butcherable
     spawned:

@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using Content.Shared._Starlight.Body.Components;
+using System.Numerics;
 using Content.Shared._Starlight.Eye.Blinding.Components;
 using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared.Atmos.Components;
@@ -17,7 +18,7 @@ public sealed partial class SharedVentCrawlSystem
     /// </summary>
     /// <returns>True if the entity can be inserted into the container; otherwise, False.</returns>
     private bool CanInsert(EntityUid uid, EntityUid toInsert)
-        => _containerSystem.CanInsert(toInsert, GetOrEnsureContainer(uid)) && (HasComp<ItemComponent>(toInsert) || HasComp<BodyComponent>(toInsert));
+        => _containerSystem.CanInsert(toInsert, GetOrEnsureContainer(uid)) && (HasComp<ItemComponent>(toInsert) || HasComp<SLBodyComponent>(toInsert));
 
     private Container GetOrEnsureContainer(EntityUid uid)
         => _containerSystem.EnsureContainer<Container>(uid, nameof(VentCrawlHolderComponent));

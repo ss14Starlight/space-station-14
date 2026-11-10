@@ -135,8 +135,8 @@
     - RadiationProtection
     - Adrenaline
     - PoliteLanguage # STARLIGHT
-  - type: Body
-    prototype: Human
+  - type: SLBody
+    prefab: Human
     requiredLegs: 2
   - type: Identity
   - type: IdExaminable
@@ -393,8 +393,8 @@
   - type: Appearance
   - type: HumanoidAppearance
     species: Human
-  - type: Body
-    prototype: Human
+  - type: SLBody
+    prefab: Human
     requiredLegs: 2
   - type: Absorbable
   - type: UserInterface

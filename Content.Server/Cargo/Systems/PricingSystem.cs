@@ -20,6 +20,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Research.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -103,9 +104,9 @@ public sealed partial class PricingSystem : EntitySystem
 
         // Starlight edit Start: Reverted NuBody
         var partPenalty = 0.0;
-        if (TryComp<BodyComponent>(uid, out var body))
+        if (HasComp<SLBodyComponent>(uid))
         {
-            var partList = _bodySystem.GetBodyChildren(uid, body).ToList();
+            var partList = _bodySystem.GetBodyChildren(uid).ToList();
             var totalPartsPresent = partList.Sum(_ => 1);
             var totalParts = partList.Count;
 

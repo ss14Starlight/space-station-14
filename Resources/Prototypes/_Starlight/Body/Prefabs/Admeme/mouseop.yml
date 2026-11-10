@@ -1,0 +1,27 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: SindSiliconMouseops
+  root:
+    bodyPart: TorsoAnimal
+    containedParts:
+      Lungs:
+        bodyPart: OrganAnimalLungs
+      Stomach:
+        bodyPart: OrganAnimalStomach
+      Liver:
+        bodyPart: OrganAnimalLiver
+      Heart:
+        bodyPart: OrganAnimalHeart
+      Kidneys:
+        bodyPart: OrganAnimalKidneys
+    attachedParts:
+      Hands:
+        bodyPart: HandsAnimal
+      Legs:
+        bodyPart: LegsAnimal
+        attachedParts:
+          Feet:
+            bodyPart: FeetAnimal
+    sockets:
+      Cavity: OrganSocket

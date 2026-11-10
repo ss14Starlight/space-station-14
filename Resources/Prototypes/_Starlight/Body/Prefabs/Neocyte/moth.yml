@@ -1,0 +1,58 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: NeoMoth
+  root:
+    bodyPart: TorsoMoth
+    containedParts:
+      Heart:
+        bodyPart: OrganNeocyteHeart
+      Lungs:
+        bodyPart: OrganNeocyteLungs
+      Stomach:
+        bodyPart: OrganNeoMothStomach
+      Liver:
+        bodyPart: OrganNeocyteLiver
+      Kidneys:
+        bodyPart: OrganNeocyteKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadMoth
+        containedParts:
+          Brain:
+            bodyPart: OrganNeocyteBrain
+          Tongue:
+            bodyPart: OrganNeoMothTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganNeocyteEyes
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmMoth
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandMoth
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmMoth
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandMoth
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegMoth
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootMoth
+      LeftLeg:
+        bodyPart: LeftLegMoth
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootMoth
+    sockets:
+      Cavity: OrganSocket

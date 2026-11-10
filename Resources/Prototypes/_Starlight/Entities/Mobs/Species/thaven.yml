@@ -23,8 +23,8 @@
     noRot: true
     drawdepth: Mobs
     scale: 1, 1.05
-  - type: Body
-    prototype: Thaven
+  - type: SLBody
+    prefab: Thaven
     requiredLegs: 2
   # - type: NoContractionsAccent //SL doesn't have a no contractions accent
   - type: Damageable

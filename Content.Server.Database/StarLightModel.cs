@@ -64,6 +64,11 @@ public sealed class StarLightModel : DataModelBase
         public List<string> CyberneticIds { get; set; } = [];
         public float Width { get; set; } = 1f;
         public float Height { get; set; } = 1f;
+
+        /// <summary>
+        /// Serialized hierarchical body editor profile (JSON)
+        /// </summary>
+        public string? BodyEditorProfile { get; set; }
     }
 
     public class PlayerDataDTO

@@ -15,8 +15,8 @@
     - Machine
     - Chittin
   - type: IgnoreSpiderWeb
-  - type: Body
-    prototype: NeoArachnid
+  - type: SLBody
+    prefab: NeoArachnid
     requiredLegs: 2
   - type: HumanoidAppearance
     species: NeoArachnid

@@ -1,0 +1,21 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Bot
+  root:
+    bodyPart: LeftArmBorg
+
+- type: bodyPrefab
+  id: HugBot
+  root:
+    bodyPart: TorsoBorg
+    attachedParts:
+      RightArm:
+        bodyPart: RightArmBorg
+      LeftArm:
+        bodyPart: LeftArmBorg
+
+- type: bodyPrefab
+  id: SupplyBot
+  root:
+    bodyPart: TorsoBorg

@@ -25,8 +25,8 @@
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Moth/parts.rsi
     state: full
-  - type: Body
-    prototype: NeoMoth
+  - type: SLBody
+    prefab: NeoMoth
     requiredLegs: 2
   - type: Damageable
     damageContainer: Hybrid

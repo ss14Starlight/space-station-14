@@ -426,8 +426,8 @@
   description: Revolting unless you're french.
   components:
   # Starlight - start
-  - type: Body
-    prototype: Mouse
+  - type: SLBody
+    prefab: Mouse
   # Starlight - end
   - type: GhostRole
     makeSentient: true
@@ -621,8 +621,8 @@
   name: Snoth
   components:
   # Starlight - start
-  - type: Body
-    prototype: Mothroach
+  - type: SLBody
+    prefab: Mothroach
   # Starlight - end
   - type: GhostRole
     name: ghost-role-information-snoth-name

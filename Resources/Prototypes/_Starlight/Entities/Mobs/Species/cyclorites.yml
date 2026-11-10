@@ -31,8 +31,8 @@
     hideLayersOnEquip:
     - Hair
     - Snout
-  - type: Body
-    prototype: Cyclorite
+  - type: SLBody
+    prefab: Cyclorite
     requiredLegs: 2
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.

@@ -20,8 +20,8 @@
   - type: Icon
     sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
     state: felionoid
-  - type: Body
-    prototype: Felionoid
+  - type: SLBody
+    prefab: Felionoid
     requiredLegs: 2
   - type:  HumanoidAppearance
     species: Felionoid

@@ -32,7 +32,7 @@ public sealed class ConstantsTest : GameTest
                 // number of gas prototypes used in the atmos system
                 Assert.That(atmosSystem.Gases.Count(), Is.EqualTo(Atmospherics.TotalNumberOfGases),
                      $"AtmosSystem.Gases is not equal to TotalNumberOfGases.");
-                // enum mapping gases to their Id
+                // enum mapping gases to their PiercingDamageId
                 Assert.That(Enum.GetValues<Gas>(), Has.Length.EqualTo(Atmospherics.TotalNumberOfGases),
                      $"Gas enum size is not equal to TotalNumberOfGases.");
 

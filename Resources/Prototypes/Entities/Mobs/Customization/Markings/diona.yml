@@ -8,9 +8,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: thorns_head
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: thorns_head
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaThornsBody
@@ -22,9 +27,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: thorns_body
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: thorns_body
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaFlowersHead
@@ -36,9 +46,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: flowers_head
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: flowers_head
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaFlowersBody
@@ -50,9 +65,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: flowers_body
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: flowers_body
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaLeafCover
@@ -63,9 +83,14 @@
     default:
       type:
         !type:SkinColoring
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: leaf_cover
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: leaf_cover
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaBloomHead
@@ -77,9 +102,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: bloom
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: bloom
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaBracketHead
@@ -91,9 +121,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: bracket
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: bracket
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaBrushHead
@@ -104,9 +139,14 @@
     default:
       type:
         !type:SkinColoring
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: brush
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: brush
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaCornflowerHead
@@ -118,9 +158,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: cornflower
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: cornflower
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaFicusHead
@@ -132,9 +177,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: ficus
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: ficus
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaGarlandHead
@@ -146,9 +196,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: garland
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: garland
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaKingHead
@@ -160,9 +215,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: king
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: king
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaLaurelHead
@@ -174,9 +234,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: laurel
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: laurel
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaLeafyHeadTop
@@ -188,9 +253,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: leafy
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: leafy
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaLotusHead
@@ -202,9 +272,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: lotus
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: lotus
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaMeadowHeadTop
@@ -216,9 +291,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: meadow
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: meadow
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaOakHead
@@ -230,9 +310,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: oak
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: oak
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaPalmHead
@@ -244,9 +329,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: palm
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: palm
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaRootHead
@@ -258,9 +348,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: root
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: root
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaRoseHead
@@ -272,9 +367,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: rose
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: rose
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaRoseyHead
@@ -286,9 +386,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: rosey
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: rosey
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaShrubHeadTop
@@ -300,9 +405,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: shrub
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: shrub
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaSpinnerHeadSide
@@ -314,9 +424,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: spinner
+    body_headSide:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: spinner
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaSproutHeadSide
@@ -328,9 +443,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: sprout
+    body_headSide:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: sprout
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaVineHeadTop
@@ -342,9 +462,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: vine
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: vine
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaVinelHead
@@ -356,9 +481,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: vinel
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: vinel
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaVinesHead
@@ -370,9 +500,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: vines
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: vines
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaWildflowerHead
@@ -384,9 +519,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: wildflower
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: wildflower
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: DionaVineOverlay
@@ -398,6 +538,11 @@
       type:
         !type:SimpleColoring
         color: "#5f7039"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/diona.rsi
-    state: overlay
+    body_lLeg:
+      sprite:
+        sprite: Mobs/Customization/diona.rsi
+        state: overlay
+      colorSource: UniqueColor
+  # Starlight end

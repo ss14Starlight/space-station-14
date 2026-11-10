@@ -1,6 +1,5 @@
 using Content.Shared.DoAfter;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
+using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
@@ -272,7 +271,7 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
         {
             owner = storage;
         }
-        else if (TryComp<BodyPartComponent>(storage, out var bodyPart) && bodyPart.Body is { } body)
+        else if (TryComp<SLBodyPartComponent>(storage, out var bodyPart) && bodyPart.Body is { } body)
         {
             owner = body;
         }
@@ -297,7 +296,7 @@ public abstract partial class SharedPrivateStorageSystem : EntitySystem
     }
 
     private bool IsCarrierStorage(EntityUid uid) =>
-        HasComp<BodyComponent>(uid) &&
+        HasComp<SLBodyComponent>(uid) &&
         HasComp<StrippableComponent>(uid) &&
         HasComp<StorageComponent>(uid);
 

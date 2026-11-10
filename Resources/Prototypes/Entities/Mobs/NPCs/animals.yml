@@ -641,8 +641,8 @@
     factions:
     - Mouse
   # Starlight - start
-  - type: Body
-    prototype: Mothroach
+  - type: SLBody
+    prefab: Mothroach
   # Starlight - end
   - type: TypingIndicator
     proto: moth
@@ -988,8 +988,8 @@
     factions:
     - Passive
   # Starlight - start
-  - type: Body
-    prototype: AnimalRuminant
+  - type: SLBody
+    prefab: AnimalRuminant
   # Starlight - end
   - type: HTN
     rootTask:
@@ -1087,8 +1087,8 @@
     rootTask:
       task: RuminantCompound
   # Starlight - start
-  - type: Body
-    prototype: AnimalHemocyanin
+  - type: SLBody
+    prefab: AnimalHemocyanin
   # Starlight - end
 
 - type: entity
@@ -1181,8 +1181,8 @@
     factions:
     - Passive
   # Starlight - start
-  - type: Body
-    prototype: AnimalRuminant
+  - type: SLBody
+    prefab: AnimalRuminant
   # Starlight - end
   - type: NPCRetaliation
     attackMemoryLength: 5
@@ -1583,8 +1583,8 @@
     # Starlight edit End: Reverted NuBody
   - type: ComplexInteraction
   # Starlight - start
-  - type: Body
-    prototype: Primate
+  - type: SLBody
+    prefab: Primate
     requiredLegs: 1 # TODO: More than 1 leg
   # Starlight - end
   - type: CreamPied
@@ -2007,8 +2007,8 @@
     - Mouse
     - Squeakish
   - type: VentCrawler
-  - type: Body
-    prototype: Mouse
+  - type: SLBody
+    prefab: Mouse
   # Starlight End
   - type: GhostRole
     makeSentient: true
@@ -2817,8 +2817,8 @@
       amount: 2
   - type: CombatMode
   # Starlight - start
-  - type: Body
-    prototype: AnimalHemocyanin
+  - type: SLBody
+    prefab: AnimalHemocyanin
   # Starlight - end
   - type: MobThresholds
     thresholds:
@@ -4402,8 +4402,8 @@
   - type: Fingerprint # Starlight
   # Implement custom borgi body type
   # Starlight - start
-  - type: Body
-    prototype: SmartCorgi
+  - type: SLBody
+    prefab: SmartCorgi
   - type: RandomMetadata
     nameSegments:
     - NamesCorgi

@@ -23,8 +23,8 @@
   - type: Icon
     sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi #Starlight
     state: full
-  - type: Body
-    prototype: Vulpkanin
+  - type: SLBody
+    prefab: Vulpkanin
   - type: Speech
     speechSounds: Vulpkanin
     speechVerb: Vulpkanin

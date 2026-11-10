@@ -397,7 +397,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
         var extensions = new HealthAnalyzerExtensions
         {
-            Vitals = extensionsEv.Vitals, Abnormalities = extensionsEv.Abnormalities
+            Vitals = extensionsEv.Vitals, Abnormalities = extensionsEv.Abnormalities, Doll = extensionsEv.Doll
         };
 
         // Starlight end

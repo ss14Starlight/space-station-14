@@ -16,7 +16,7 @@
     whitelist:
       components:
       - Item
-      - Body
+      - SLBody
   - type: Climbable
     vaultable: false
   - type: Sprite

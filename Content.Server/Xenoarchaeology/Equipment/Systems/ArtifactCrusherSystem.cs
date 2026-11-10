@@ -6,9 +6,7 @@ using Content.Shared.Xenoarchaeology.Equipment;
 using Content.Shared.Xenoarchaeology.Equipment.Components;
 using Robust.Shared.Collections;
 using Robust.Shared.Random;
-#region Starlight
-using Content.Shared.Body.Components;
-#endregion
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Server.Xenoarchaeology.Equipment.Systems;
 
@@ -44,7 +42,7 @@ public sealed partial class ArtifactCrusherSystem : SharedArtifactCrusherSystem
             }
 
             // Starlight Start: Reverted NuBody
-            if (!TryComp<BodyComponent>(contained, out var body))
+            if (!HasComp<SLBodyComponent>(contained))
                 Del(contained);
             // Starlight End: Reverted NuBody
 

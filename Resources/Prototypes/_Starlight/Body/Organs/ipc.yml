@@ -6,6 +6,8 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/organs.rsi
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: Extractable
     grindableSolutionName: organ
   - type: SolutionManager

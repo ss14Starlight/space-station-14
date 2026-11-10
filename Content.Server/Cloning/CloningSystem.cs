@@ -22,6 +22,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Server.Cloning;
 
@@ -310,18 +311,16 @@ public sealed partial class CloningSystem : SharedCloningSystem
         }
     }
 
-#region: Starlight
+    #region Starlight
     /// <summary>
     ///     Copies all data of cyberware from one mob to another.
     ///     Only copies data of cyberware target mob has.
     ///     Can copy the storage inside a storage implant according to a whitelist and blacklist.
     /// </summary>
-    /// <param name="original">Entity to copy cyberware data from.</param>
-    /// <param name="target">Entity to copy cyberware data to.</param>
     private void CopyCyberwareStates(EntityUid original, EntityUid target)
     {
-        if(!TryComp(original, out BodyComponent? originalBody)
-        ||!TryComp(target, out BodyComponent? targetBody))
+        if(!HasComp<SLBodyComponent>(original)
+        ||!HasComp<SLBodyComponent>(target))
             return;
 
         if (!_prototype.Resolve((ProtoId<CloningSettingsPrototype>)"BaseClone", out var settings))
@@ -340,5 +339,5 @@ public sealed partial class CloningSystem : SharedCloningSystem
             }
         }
     }
-#endregion: Starlight
+    #endregion Starlight
 }

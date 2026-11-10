@@ -1,0 +1,48 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Gingerbread
+  root:
+    bodyPart: TorsoGingerbread
+    containedParts:
+      Heart:
+        bodyPart: OrganHumanHeart
+      Lungs:
+        bodyPart: OrganHumanLungs
+      Stomach:
+        bodyPart: OrganHumanStomach
+      Liver:
+        bodyPart: OrganHumanLiver
+      Kidneys:
+        bodyPart: OrganHumanKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadGingerbread
+        containedParts:
+          Brain:
+            bodyPart: OrganHumanBrain
+          Tongue:
+            bodyPart: OrganHumanTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganHumanEyes
+      RightArm:
+        bodyPart: RightArmGingerbread
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandGingerbread
+      LeftArm:
+        bodyPart: LeftArmGingerbread
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandGingerbread
+      RightLeg:
+        bodyPart: RightLegGingerbread
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootGingerbread
+      LeftLeg:
+        bodyPart: LeftLegGingerbread
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootGingerbread

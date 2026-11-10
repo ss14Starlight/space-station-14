@@ -35,8 +35,8 @@ namespace Content.IntegrationTests.Tests.Buckle
   - type: InputMover
   - type: Physics
     bodyType: KinematicController
-  - type: Body
-    prototype: Human
+  - type: SLBody
+    prefab: Human
   - type: StandingState
 
 - type: entity
@@ -247,7 +247,7 @@ namespace Content.IntegrationTests.Tests.Buckle
             EntityUid human = default;
             BuckleComponent buckle = null;
             HandsComponent hands = null;
-            Shared.Body.Components.BodyComponent body = null; // Starlight
+            Shared._Starlight.Body.Components.SLBodyComponent body = null; // Starlight
 
             await server.WaitIdleAsync();
 
@@ -302,7 +302,7 @@ namespace Content.IntegrationTests.Tests.Buckle
                 }
 
                 var bodySystem = entityManager.System<Server._Starlight.Medical.Body.Systems.BodySystem>();
-                var legs = bodySystem.GetBodyChildrenOfType(human, BodyPartType.Leg, body);
+                var legs = bodySystem.GetBodyChildrenOfType(human, BodyPartType.Leg);
 
                 // Break our guy's kneecaps
                 foreach (var leg in legs)

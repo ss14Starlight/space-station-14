@@ -69,8 +69,8 @@
   - type: Tag
     tags:
       - Monkey
-  - type: Body
-    prototype: AdvancedPrimate
+  - type: SLBody
+    prefab: AdvancedPrimate
   - type: Inventory
     templateId: advancedmonkey
     speciesId: monkey
@@ -120,8 +120,8 @@
         Blunt: 1
     clumsySound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-  - type: Body
-    prototype: AdvancedPrimate
+  - type: SLBody
+    prefab: AdvancedPrimate
     requiredLegs: 1
   - type: Inventory
     templateId: advancedmonkey
@@ -211,8 +211,8 @@
     - Mouse
     - Squeakish
   - type: VentCrawler
-  - type: Body
-    prototype: Mouse
+  - type: SLBody
+    prefab: Mouse
   - type: Speech
     speechSounds: Squeak
     speechVerb: SmallMob

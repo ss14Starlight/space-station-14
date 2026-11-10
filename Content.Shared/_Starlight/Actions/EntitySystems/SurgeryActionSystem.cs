@@ -1,7 +1,6 @@
 
 using System.Linq;
 using Content.Shared._Starlight.Actions.Events;
-using Content.Shared.Body.Part;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.DoAfter;
@@ -35,7 +34,7 @@ public sealed partial class SurgeryActionSystem : EntitySystem
         {
             if(!_protoManager.TryIndex<EntityPrototype>(surgery, out var surgeryProto) || !surgeryProto.TryComp<SurgeryComponent>(out var surgeryComp, _entityManager.ComponentFactory))
                 continue;
-            foreach (var bodypart in _body.GetBodyChildren(args.Performer).Where(part => args.BodyPartTypes.Contains(part.Component.PartType) && (args.BodyPartSymmetries.Contains(part.Component.Symmetry) || part.Component.Symmetry == BodyPartSymmetry.None)))
+            foreach (var bodypart in _body.GetBodyChildren(args.Performer).Where(part => args.BodyPartTypes.Contains(part.Component.Kind) && (args.BodyPartSymmetries.Contains(part.Component.Symmetry) || part.Component.Symmetry == BodyPartSymmetry.None)))
                 foreach (var step in surgeryComp.Steps)
                 {
                     if(!_surgery.IsStepComplete(bodypart.Id, surgery, step))

@@ -37,6 +37,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Network;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Shared._Starlight.Shadekin;
 
@@ -137,8 +138,8 @@ public sealed partial class ShadekinSystem : EntitySystem
     [SubscribeLocalEvent]
     private void NullSpaceShunt(Entity<ShadekinComponent> ent, ref NullSpaceShuntEvent __)
     {
-        if (TryComp<BodyComponent>(ent.Owner, out var body)
-            && _bodySystem.TryGetOrgansWithComponent<OrganShadekinCoreComponent>((ent.Owner, body), out _))
+        if (HasComp<SLBodyComponent>(ent.Owner)
+            && _bodySystem.TryGetOrgansWithComponent<OrganShadekinCoreComponent>((ent.Owner, null), out _))
         {
             // TODO STARLIGHT predict this properly, right now all callers are on server
             // (PopupPredicted would skip the shadekin itself, since the server assumes they predicted it)

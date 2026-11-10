@@ -26,8 +26,18 @@ public struct HealthAnalyzerAbnormalityData
 }
 
 [Serializable, NetSerializable]
+public struct HealthAnalyzerDollPart
+{
+    public const byte Missing = byte.MaxValue;
+
+    public string Part;
+    public byte Level;
+}
+
+[Serializable, NetSerializable]
 public struct HealthAnalyzerExtensions
 {
     public List<HealthAnalyzerVitalsBlockData> Vitals;
     public List<HealthAnalyzerAbnormalityData> Abnormalities;
+    public List<HealthAnalyzerDollPart> Doll;
 }

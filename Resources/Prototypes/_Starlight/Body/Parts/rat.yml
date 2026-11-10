@@ -6,7 +6,7 @@
   parent: PartAnimal
   categories: [ HideSpawnMenu ]
   components:
-  - type: BodyPart
+  - type: SLBodyPart
     partType: Torso
   - type: Damageable
     damageContainer: Biological

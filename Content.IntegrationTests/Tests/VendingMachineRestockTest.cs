@@ -46,8 +46,8 @@ namespace Content.IntegrationTests.Tests
             components:
             -   type: Hands
             -   type: ComplexInteraction
-            -   type: Body
-                prototype: Human
+            -   type: SLBody
+                prefab: Human
 
         -   type: entity
             parent: FoodSnackBase

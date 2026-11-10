@@ -4,8 +4,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: ears
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: ears
+        colorSource: FelionoidSkinColor
 
 - type: marking
   id: FelionoidEarsRound
@@ -13,5 +16,8 @@
   markingCategory: HeadTop
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: ears_round
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: ears_round
+        colorSource: FelionoidSkinColor

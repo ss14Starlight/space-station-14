@@ -6,6 +6,7 @@ using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
 using Content.Shared.Eye.Blinding.Systems;
 using Robust.Shared.Map.Components;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Shared._Starlight.Eye.Blinding.Systems;
 
@@ -37,12 +38,12 @@ public sealed partial class ChildBlockVisionSystem : EntitySystem
         if (!ent.Comp.Enabled)
             return;
 
-        if (TryComp<BodyComponent>(ent.Owner, out var body))
+        if (HasComp<SLBodyComponent>(ent.Owner))
         {
-            var totalOrgans = _bodySystem.GetBodyOrganEntityComps<OrganComponent>((ent.Owner, body));
-            var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((ent.Owner, body));
+            var totalOrgans = _bodySystem.GetBodyOrganEntityComps<OrganComponent>((ent.Owner, null));
+            var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((ent.Owner, null));
 
-            if (_bodySystem.HasOrganSlot(ent.Owner, body, "eyes") && eyes.Count == 0)
+            if (_bodySystem.HasOrganSlot(ent.Owner, "eyes") && eyes.Count == 0)
             {
                 args.Cancel();
                 return;

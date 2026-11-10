@@ -31,8 +31,8 @@
     factions:
       - SimpleHostile
   # Starlight - start
-  - type: Body
-    prototype: Animal
+  - type: SLBody
+    prefab: Animal
   # Starlight - end
   - type: Damageable
     damageContainer: BiologicalMetaphysical

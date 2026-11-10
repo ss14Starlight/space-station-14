@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Body.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
@@ -47,7 +48,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private MetabolizerSystem _metabolizerSystem = default!;
 
-    private static readonly ProtoId<MetabolismStagePrototype> RespirationStage = new("Respiration");
+    private static readonly ProtoId<MetabolismStagePrototype> _respirationStage = new("Respiration");
 
     public override void Initialize()
     {
@@ -55,21 +56,11 @@ public sealed partial class RespiratorSystem : EntitySystem
 
         // We want to process lung reagents before we inhale new reagents.
         UpdatesAfter.Add(typeof(MetabolizerSystem));
-        SubscribeLocalEvent<RespiratorComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<RespiratorComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
-
-        // BodyComp stuff
-        SubscribeLocalEvent<BodyComponent, InhaledGasEvent>(OnGasInhaled);
-        SubscribeLocalEvent<BodyComponent, ExhaledGasEvent>(OnGasExhaled);
-        SubscribeLocalEvent<BodyComponent, CanMetabolizeGasEvent>(CanBodyMetabolizeGas);
-        SubscribeLocalEvent<BodyComponent, SuffocationEvent>(OnSuffocation);
-        SubscribeLocalEvent<BodyComponent, StopSuffocatingEvent>(OnStopSuffocating);
     }
 
+    [SubscribeLocalEvent]
     private void OnMapInit(Entity<RespiratorComponent> ent, ref MapInitEvent args)
-    {
-        ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
-    }
+        => ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
 
     public override void Update(float frameTime)
     {
@@ -89,8 +80,8 @@ public sealed partial class RespiratorSystem : EntitySystem
             UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
 
             if (!(_mobState.IsIncapacitated(uid) || _mobState.IsSoftCritical(uid) // cannot breathe in crit.
-                || HasComp<HeldBreathComponent>(uid) // Starlight Edit - hold your breath
-                || HasComp<WrappedComponent>(uid))) // Starlight Edit - cannot breathe while wrapped in a web
+                || HasComp<HeldBreathComponent>(uid)
+                || HasComp<WrappedComponent>(uid)))
             {
                 switch (respirator.Status)
                 {
@@ -117,7 +108,7 @@ public sealed partial class RespiratorSystem : EntitySystem
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
                 {
                     respirator.LastGaspEmoteTime = _gameTiming.CurTime;
-                    if(!HasComp<HeldBreathComponent>(uid) && !HasComp<WrappedComponent>(uid)) // Starlight - suppress gasp when holding breath or wrapped, but still take suffocation damage
+                    if(!HasComp<HeldBreathComponent>(uid) && !HasComp<WrappedComponent>(uid))
                         _chat.TryEmoteWithChat(uid,
                             respirator.GaspEmote,
                             ChatTransmitRange.HideChat,
@@ -195,15 +186,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     /// Returns true if the entity is above their SuffocationThreshold and alive.
     /// </summary>
     public bool IsBreathing(Entity<RespiratorComponent?> ent)
-    {
-        if (_mobState.IsIncapacitated(ent) || _mobState.IsSoftCritical(ent))
-            return false;
-
-        if (!Resolve(ent, ref ent.Comp))
-            return false;
-
-        return (ent.Comp.Saturation > ent.Comp.SuffocationThreshold);
-    }
+        => !_mobState.IsIncapacitated(ent) && !_mobState.IsSoftCritical(ent) && Resolve(ent, ref ent.Comp) && ent.Comp.Saturation > ent.Comp.SuffocationThreshold;
 
     /// <summary>
     /// Checks if it's safe for a given entity to breathe the air from the environment it is currently situated in.
@@ -242,16 +225,14 @@ public sealed partial class RespiratorSystem : EntitySystem
         var ev = new CanMetabolizeGasEvent(gas);
         RaiseLocalEvent(ent, ref ev);
 
-        if (!ev.Handled || ev.Toxic)
-            return false;
-
-        return ev.Saturation > ent.Comp.UpdateInterval.TotalSeconds;
+        return ev.Handled && !ev.Toxic && ev.Saturation > ent.Comp.UpdateInterval.TotalSeconds;
     }
 
     /// <summary>
     /// Tries to safely metabolize the current solutions in a body's lungs.
     /// </summary>
-    private void CanBodyMetabolizeGas(Entity<BodyComponent> ent, ref CanMetabolizeGasEvent args)
+    [SubscribeLocalEvent]
+    private void CanBodyMetabolizeGas(Entity<SLBodyComponent> ent, ref CanMetabolizeGasEvent args)
     {
         if (args.Handled)
             return;
@@ -278,7 +259,7 @@ public sealed partial class RespiratorSystem : EntitySystem
         args.Saturation = saturation;
     }
 
-    public bool TryInhaleGasToBody(Entity<BodyComponent?> entity, GasMixture gas)
+    public bool TryInhaleGasToBody(Entity<SLBodyComponent?> entity, GasMixture gas)
     {
         if (!Resolve(entity, ref entity.Comp))
             return false;
@@ -299,7 +280,7 @@ public sealed partial class RespiratorSystem : EntitySystem
         return true;
     }
 
-    public void RemoveGasFromBody(Entity<BodyComponent> ent, GasMixture gas)
+    public void RemoveGasFromBody(Entity<SLBodyComponent> ent, GasMixture gas)
     {
         var outGas = new GasMixture(gas.Volume);
 
@@ -335,7 +316,7 @@ public sealed partial class RespiratorSystem : EntitySystem
         if (!Resolve(lung, ref lung.Comp))
             return 0;
 
-        if (!_metabolizerSystem.HasStage(lung, RespirationStage))
+        if (!_metabolizerSystem.HasStage(lung, _respirationStage))
             return 0;
 
         float saturation = 0;
@@ -345,7 +326,7 @@ public sealed partial class RespiratorSystem : EntitySystem
             if (reagent.Metabolisms == null)
                 continue;
 
-            if (!reagent.Metabolisms.Metabolisms.TryGetValue(RespirationStage, out var entry))
+            if (!reagent.Metabolisms.Metabolisms.TryGetValue(_respirationStage, out var entry))
                 continue;
 
             foreach (var effect in entry.Effects)
@@ -402,7 +383,8 @@ public sealed partial class RespiratorSystem : EntitySystem
         RaiseLocalEvent(ent, ref ev);
     }
 
-    private void OnSuffocation(Entity<BodyComponent> ent, ref SuffocationEvent args)
+    [SubscribeLocalEvent]
+    private void OnSuffocation(Entity<SLBodyComponent> ent, ref SuffocationEvent args)
     {
         // TODO: This is not going work with multiple different lungs, if that ever becomes a possibility
         var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((ent, null));
@@ -412,7 +394,8 @@ public sealed partial class RespiratorSystem : EntitySystem
         }
     }
 
-    private void OnStopSuffocating(Entity<BodyComponent> ent, ref StopSuffocatingEvent args)
+    [SubscribeLocalEvent]
+    private void OnStopSuffocating(Entity<SLBodyComponent> ent, ref StopSuffocatingEvent args)
     {
         // TODO: This is not going work with multiple different lungs, if that ever becomes a possibility
         var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((ent, null));
@@ -432,12 +415,12 @@ public sealed partial class RespiratorSystem : EntitySystem
             Math.Clamp(respirator.Saturation, respirator.MinSaturation, respirator.MaxSaturation);
     }
 
+    [SubscribeLocalEvent]
     private void OnApplyMetabolicMultiplier(Entity<RespiratorComponent> ent, ref ApplyMetabolicMultiplierEvent args)
-    {
-        ent.Comp.UpdateIntervalMultiplier = args.Multiplier;
-    }
+        => ent.Comp.UpdateIntervalMultiplier = args.Multiplier;
 
-    private void OnGasInhaled(Entity<BodyComponent> entity, ref InhaledGasEvent args)
+    [SubscribeLocalEvent]
+    private void OnGasInhaled(Entity<SLBodyComponent> entity, ref InhaledGasEvent args)
     {
         if (args.Handled)
             return;
@@ -447,7 +430,8 @@ public sealed partial class RespiratorSystem : EntitySystem
         args.Succeeded = TryInhaleGasToBody((entity, entity.Comp), args.Gas);
     }
 
-    private void OnGasExhaled(Entity<BodyComponent> entity, ref ExhaledGasEvent args)
+    [SubscribeLocalEvent]
+    private void OnGasExhaled(Entity<SLBodyComponent> entity, ref ExhaledGasEvent args)
     {
         if (args.Handled)
             return;

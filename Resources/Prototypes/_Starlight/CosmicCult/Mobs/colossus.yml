@@ -99,7 +99,7 @@
         - FlyingMobLayer
   - type: WarpPoint
     follow: true
-  - type: Body
+  - type: SLBody
     requiredLegs: 0
   - type: Emoting
   - type: Speech

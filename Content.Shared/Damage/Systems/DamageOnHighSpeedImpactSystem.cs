@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Medical.PartDamage;
 using Content.Shared.Stunnable;
 using Content.Shared.Damage.Components;
 using Content.Shared.Effects;
@@ -18,6 +19,9 @@ public sealed partial class DamageOnHighSpeedImpactSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedColorFlashEffectSystem _color = default!;
     [Dependency] private SharedStunSystem _stun = default!;
+    #region Starlight
+    [Dependency] private BodyPartDamageSystem _partDamage = default!;
+    #endregion
 
     public override void Initialize()
     {
@@ -50,7 +54,8 @@ public sealed partial class DamageOnHighSpeedImpactSystem : EntitySystem
 
         var damageScale = component.SpeedDamageFactor * speed / component.MinimumSpeed;
 
-        _damageable.TryChangeDamage(uid, component.Damage * damageScale);
+        using (_partDamage.Target(uid, BodyDamageTargeting.Spread)) // Starlight-edit: slamming into a wall hits the whole body
+            _damageable.TryChangeDamage(uid, component.Damage * damageScale);
 
         if (_gameTiming.IsFirstTimePredicted)
             _audio.PlayPvs(component.SoundHit, uid, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));

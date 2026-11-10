@@ -1,3 +1,7 @@
+using Content.Shared.Body.Systems;
+using Content.Shared._Starlight.Body.Systems;
+using Content.Shared._Starlight.Body.Prototypes;
+using Content.Shared._Starlight.Body.Components;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Administration;
 using Content.Shared._Starlight.Medical.Body.Part;
@@ -33,12 +37,24 @@ public sealed partial class AddBodyPartCommand : LocalizedEntityCommands
             return;
         }
 
-        if (Enum.TryParse<BodyPartType>(args[3], out var partType) &&
-            _bodySystem.TryCreatePartSlotAndAttach(parentId.Value, args[2], childId.Value, partType))
+        var slBody = EntityManager.System<SLBodySystem>();
+        var socketId = SharedBodySystem.GetSocketIdForLegacySlot(args[2]);
+        if (Enum.TryParse<BodyPartType>(args[3], out _)
+            && EntityManager.TryGetComponent<SLBodyPartComponent>(parentId.Value, out var parentPart)
+            && EntityManager.TryGetComponent<SLBodyPartComponent>(childId.Value, out var childPart)
+            && EnsureSocket(slBody, (parentId.Value, parentPart), socketId)
+            && slBody.TryAttachPart((parentId.Value, parentPart), socketId, (childId.Value, childPart)))
         {
             shell.WriteLine($@"Added {childId} to {parentId}.");
         }
         else
             shell.WriteError($@"Could not add {childId} to {parentId}.");
+    }
+
+    private static bool EnsureSocket(SLBodySystem slBody, Entity<SLBodyPartComponent> part, string socketId)
+    {
+        if (!part.Comp.Sockets.ContainsKey(socketId))
+            slBody.AddSocket(part, socketId, BodyPrefabPrototype.DefaultExternalSocket);
+        return true;
     }
 }

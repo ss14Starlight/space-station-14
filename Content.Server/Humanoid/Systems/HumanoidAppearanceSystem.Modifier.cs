@@ -5,8 +5,8 @@ using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Content.Shared.Body.Components;
-using Content.Server._Starlight.Medical.Body.Systems; // Starlight
+using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Server.Humanoid;
 
@@ -14,7 +14,9 @@ public sealed partial class HumanoidAppearanceSystem
 {
     [Dependency] private IAdminManager _adminManager = default!;
     [Dependency] private UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private BodySystem _body = default!; //Starlight
+    #region Starlight
+    [Dependency] private BodySystem _body = default!;
+    #endregion
 
     private void OnVerbsRequest(EntityUid uid, HumanoidAppearanceComponent component, GetVerbsEvent<Verb> args)
     {
@@ -48,10 +50,10 @@ public sealed partial class HumanoidAppearanceSystem
         });
     }
 
-    //Starlight Start
+    #region Starlight
     private void OnVerbsRequest(EntityUid uid, HumanoidAppearanceComponent component, GetVerbsEvent<ActivationVerb> args)
     {
-        if (uid != args.Target || !TryComp(args.Target, out BodyComponent? _))
+        if (uid != args.Target || !HasComp<SLBodyComponent>(args.Target))
             return;
 
         foreach (var part in _body.GetBodyChildren(args.Target))
@@ -60,7 +62,7 @@ public sealed partial class HumanoidAppearanceSystem
         foreach (var organ in _body.GetBodyOrgans(args.Target))
             RaiseLocalEvent(organ.Id, args);
     }
-    //Starlight End
+    #endregion
 
     private void OnBaseLayersSet(EntityUid uid, HumanoidAppearanceComponent component,
         HumanoidMarkingModifierBaseLayersSetMessage message)

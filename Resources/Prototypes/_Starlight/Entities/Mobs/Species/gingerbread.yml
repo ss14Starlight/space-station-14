@@ -11,8 +11,8 @@
   - type: Icon
     sprite: _Starlight/Mobs/Species/Gingerbread/parts.rsi
     state: full
-  - type: Body
-    prototype: Gingerbread
+  - type: SLBody
+    prefab: Gingerbread
     requiredLegs: 2
   - type: Damageable
     damageContainer: Biological

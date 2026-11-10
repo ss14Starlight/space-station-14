@@ -1,0 +1,60 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: TerminatorFlesh
+  root:
+    bodyPart: TorsoHuman
+    attachedParts:
+      Head:
+        bodyPart: HeadHuman
+        containedParts:
+          Brain:
+            bodyPart: MobTerminatorEndoskeleton
+      LeftArm:
+        bodyPart: LeftArmHuman
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandHuman
+      RightArm:
+        bodyPart: RightArmHuman
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandHuman
+      LeftLeg:
+        bodyPart: LeftLegHuman
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootHuman
+      RightLeg:
+        bodyPart: RightLegHuman
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootHuman
+
+- type: bodyPrefab
+  id: TerminatorEndoskeleton
+  root:
+    bodyPart: TorsoTerminator
+    attachedParts:
+      Head:
+        bodyPart: HeadTerminator
+      LeftArm:
+        bodyPart: LeftArmTerminator
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandTerminator
+      RightArm:
+        bodyPart: RightArmTerminator
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandTerminator
+      LeftLeg:
+        bodyPart: LeftLegTerminator
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootTerminator
+      RightLeg:
+        bodyPart: RightLegTerminator
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootTerminator

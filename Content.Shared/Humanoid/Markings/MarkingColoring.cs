@@ -1,3 +1,4 @@
+using System.Linq;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Humanoid.Markings;
@@ -61,16 +62,18 @@ public static class MarkingColoring
             var coloredSlots = new bool[colorSlotCount];
 
             // If some layers are specified.
-            for (var i = 0; i < prototype.Sprites.Count; i++)
+            // Starlight-start
+            for (var i = 0; i < prototype.SpriteList.Count; i++)
             {
-                // Starlight start - multiple sprite layers can share one color slot.
+
+                var bodySprite = prototype.SpriteList[i];
                 var colorIndex = prototype.GetColorIndex(i);
                 if (colorIndex >= colorSlotCount || coloredSlots[colorIndex])
                     continue;
-                // Starlight end
 
                 // Getting layer name
-                string? name = prototype.Sprites[i] switch
+                string? name = bodySprite.Sprite switch
+            // Starlight-end
                 {
                     SpriteSpecifier.Rsi rsi => rsi.RsiState,
                     SpriteSpecifier.Texture texture => texture.TexturePath.Filename,

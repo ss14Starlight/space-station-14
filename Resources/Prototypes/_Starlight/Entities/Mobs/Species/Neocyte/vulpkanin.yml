@@ -48,8 +48,8 @@
   - type: Damageable
     damageContainer: Hybrid
     damageModifierSet: NeoVulpkanin
-  - type: Body
-    prototype: NeoVulpkanin
+  - type: SLBody
+    prefab: NeoVulpkanin
     requiredLegs: 2
   - type: HumanoidAppearance
     species: NeoVulpkanin

@@ -1,0 +1,58 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Felionoid
+  root:
+    bodyPart: TorsoFelionoid
+    containedParts:
+      Heart:
+        bodyPart: OrganAnimalHeart
+      Lungs:
+        bodyPart: OrganHumanLungs
+      Stomach:
+        bodyPart: OrganReptilianStomach
+      Liver:
+        bodyPart: OrganHumanLiver
+      Kidneys:
+        bodyPart: OrganHumanKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadFelionoid
+        containedParts:
+          Brain:
+            bodyPart: OrganHumanBrain
+          Tongue:
+            bodyPart: OrganFelionoidTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganFelionoidEyes
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmFelionoid
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandFelionoid
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmFelionoid
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandFelionoid
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegFelionoid
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootFelionoid
+      LeftLeg:
+        bodyPart: LeftLegFelionoid
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootFelionoid
+    sockets:
+      Cavity: OrganSocket

@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Medical.PartDamage;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -466,7 +467,8 @@ public sealed partial class ExplosionSystem
                 // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
                 // Starlight - start
                 var damageToApply = internalBodies.Contains(entity) ? damage * 4 : damage;
-                _damageableSystem.TryChangeDamage((entity, damageable), damageToApply, ignoreResistances: true, ignoreGlobalModifiers: true);
+                using (_partDamage.Target(entity, BodyDamageTargeting.Spread)) // a blast hits the whole body
+                    _damageableSystem.TryChangeDamage((entity, damageable), damageToApply, ignoreResistances: true, ignoreGlobalModifiers: true);
                 // Starlight - end
 
                 if (_actorQuery.HasComp(entity))

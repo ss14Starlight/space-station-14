@@ -15,8 +15,11 @@
   markingCategory: Tail
   speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoResomi, NeoHuman, NeoMoth, NeoFelionoid, NeoDwarf, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> NeoDwarf, ProtoCyclops -> NeoCyclorite
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
-    state: tail_protogen
+    body_tail:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
+        state: tail_protogen
+      colorSource: UniqueColor
 
 - type: marking
   id: NeocyteTailBushy
@@ -24,8 +27,11 @@
   markingCategory: Tail
   speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoResomi, NeoHuman, NeoMoth, NeoFelionoid, NeoDwarf, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> NeoDwarf, ProtoCyclops -> NeoCyclorite
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
-    state: bushy_tail_protogen
+    body_tail:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
+        state: bushy_tail_protogen
+      colorSource: UniqueColor
 
 - type: marking
   id: NeocyteTailShark
@@ -33,8 +39,11 @@
   markingCategory: Tail
   speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoResomi, NeoHuman, NeoMoth, NeoFelionoid, NeoDwarf, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> NeoDwarf, ProtoCyclops -> NeoCyclorite
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
-    state: shark_tail_protogen
+    body_tail:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
+        state: shark_tail_protogen
+      colorSource: UniqueColor
 
 - type: marking
   id: NeocyteEars
@@ -42,10 +51,16 @@
   markingCategory: HeadTop
   speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoHuman, NeoMoth, NeoFelionoid, NeoDwarf, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] #resomi too smol + Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> NeoDwarf, ProtoCyclops -> NeoCyclorite
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
-    state: ears_protogen
-  - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
-    state: ears_protogen_tips
+    body_headTop@0:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
+        state: ears_protogen
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
+        state: ears_protogen_tips
+      colorSource: UniqueColor
 
 - type: marking
   id: TwoNeocyteEars
@@ -53,8 +68,11 @@
   markingCategory: HeadTop
   speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoHuman, NeoMoth, NeoFelionoid, NeoDwarf, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] #resomi too smol + Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> NeoDwarf, ProtoCyclops -> NeoCyclorite
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
-    state: two_ears_protogen
+    body_headTop:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
+        state: two_ears_protogen
+      colorSource: UniqueColor
 
 - type: marking
   id: NeocyteLights
@@ -62,8 +80,11 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [Neocyte, NeoReptilian, NeoHuman, NeoDwarf, NeoArachnid, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf, ProtoReptile -> NeoReptilian
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_body.rsi
-    state: body
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_body.rsi
+        state: body
+      colorSource: UniqueColor
 
 - type: marking
   id: NeocyteVisor
@@ -71,8 +92,11 @@
   markingCategory: FaceCover
   speciesRestriction: [Neocyte, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
-    state: visor
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeocyteVisorRound
@@ -80,8 +104,11 @@
   markingCategory: FaceCover
   speciesRestriction: [Neocyte, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
-    state: rounded
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
+        state: rounded
+      colorSource: UniqueColor
 
 - type: marking
   id: NeocyteLEDFace
@@ -89,8 +116,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [Neocyte, NeoReptilian, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf, ProtoReptile -> NeoReptilian
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 - type: marking
   id: NeocyteLEDFaceNoseless
@@ -98,8 +128,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [Neocyte, NeoReptilian, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf, ProtoReptile -> NeoReptilian
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
-    state: noseless
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
+        state: noseless
+      colorSource: UniqueColor
 
 - type: marking
   id: NeocyteLEDFaceRound
@@ -107,8 +140,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [Neocyte, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
-    state: rounded
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
+        state: rounded
+      colorSource: UniqueColor
 
 - type: marking
   id: NeocyteMediumArmor
@@ -116,8 +152,11 @@
   markingCategory: BodyCover
   speciesRestriction: [Neocyte, NeoReptilian, NeoHuman, NeoDwarf, NeoArachnid, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf, ProtoReptile -> NeoReptilian
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/body_armor.rsi
-    state: medium
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/body_armor.rsi
+        state: medium
+      colorSource: UniqueColor
 
 #region VULPKANIN ####
 
@@ -127,8 +166,11 @@
   markingCategory: Overlay
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/proto-vulp.rsi
-    state: pawsocks_feet
+    body_rFoot:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/proto-vulp.rsi
+        state: pawsocks_feet
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninPawSocksLegs
@@ -136,8 +178,11 @@
   markingCategory: Legs
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/proto-vulp.rsi
-    state: pawsocks_legs
+    body_lLeg:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/proto-vulp.rsi
+        state: pawsocks_legs
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninVisor
@@ -145,8 +190,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoVulpkanin, NeoReptilian, NeoHuman] # Starlight, ProtoHumie -> NeoHuman ProtoReptile -> NeoReptilian
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_shapes.rsi
-    state: vulpvisor
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_shapes.rsi
+        state: vulpvisor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninVisorFourEyes
@@ -154,8 +202,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_shapes.rsi
-    state: vulpvisor-four-eyes
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_shapes.rsi
+        state: vulpvisor-four-eyes
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninSnoutLong
@@ -163,8 +214,11 @@
   markingCategory: Snout
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_markings.rsi
-    state: snout
+    body_snout:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_markings.rsi
+        state: snout
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninVisorSideWings
@@ -172,8 +226,11 @@
   markingCategory: Head
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_markings.rsi
-    state: side-visor-wings
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_markings.rsi
+        state: side-visor-wings
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninMediumArmor
@@ -181,8 +238,11 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/body_armor.rsi
-    state: medium
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/body_armor.rsi
+        state: medium
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninMediumArmorAngled
@@ -190,8 +250,11 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/body_armor.rsi
-    state: mediumangled
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/body_armor.rsi
+        state: mediumangled
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninLEDFace
@@ -199,8 +262,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninLEDFaceLong
@@ -208,8 +274,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
-    state: long
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
+        state: long
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninLEDFaceFourEyes
@@ -217,8 +286,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
-    state: four-eyes
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
+        state: four-eyes
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninClaws
@@ -226,8 +298,11 @@
   markingCategory: Overlay
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
-    state: claws
+    body_rHand:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
+        state: claws
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninClawsLong
@@ -235,8 +310,11 @@
   markingCategory: Overlay
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
-    state: clawslong
+    body_rHand:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
+        state: clawslong
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninLights
@@ -244,8 +322,11 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
-    state: body
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
+        state: body
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVulpkaninLightsAngled
@@ -253,10 +334,16 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoVulpkanin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
-    state: bodyangled
-  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
-    state: bodyangled_inner
+    body_other@0:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
+        state: bodyangled
+      colorSource: UniqueColor
+    body_other@1:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
+        state: bodyangled_inner
+      colorSource: UniqueColor
 
 #region VOX ####
 
@@ -266,8 +353,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoVox]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vox/visor_shapes.rsi
-    state: visor
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vox/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVoxMediumArmor
@@ -275,8 +365,11 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoVox]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vox/body_armor.rsi
-    state: medium
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vox/body_armor.rsi
+        state: medium
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVoxLEDFace
@@ -284,8 +377,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoVox]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVoxLights
@@ -293,8 +389,11 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoVox]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_body.rsi
-    state: body
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_body.rsi
+        state: body
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoVoxClaws
@@ -302,8 +401,11 @@
   markingCategory: Overlay
   speciesRestriction: [NeoVox]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_body.rsi
-    state: claws
+    body_rHand:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_body.rsi
+        state: claws
+      colorSource: UniqueColor
 
 #region THAVEN ####
 
@@ -313,8 +415,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoThaven]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-thaven/visor_shapes.rsi
-    state: visor
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-thaven/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoThavenMediumArmor
@@ -322,8 +427,11 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoThaven]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-thaven/body_armor.rsi
-    state: medium
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-thaven/body_armor.rsi
+        state: medium
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoThavenLEDFace
@@ -331,8 +439,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoThaven]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-thaven/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-thaven/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoThavenLights
@@ -340,8 +451,11 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoThaven]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-thaven/led_shapes_body.rsi
-    state: body
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-thaven/led_shapes_body.rsi
+        state: body
+      colorSource: UniqueColor
 
 #region LASPI ####
 
@@ -351,8 +465,11 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoSlimePerson]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-slime/body_armor.rsi
-    state: medium
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-slime/body_armor.rsi
+        state: medium
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoSlimePersonVisor
@@ -360,8 +477,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoSlimePerson]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-slime/visor_shapes.rsi
-    state: visor
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-slime/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoSlimePersonLEDFace
@@ -369,8 +489,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoSlimePerson]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-slime/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-slime/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoSlimePersonLights
@@ -378,8 +501,11 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoSlimePerson]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_body.rsi
-    state: body
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_body.rsi
+        state: body
+      colorSource: UniqueColor
 
 #region SHADEKIN ####
 
@@ -389,8 +515,11 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoKin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-kin/body_armor.rsi
-    state: medium
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-kin/body_armor.rsi
+        state: medium
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoKinVisor
@@ -398,8 +527,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoKin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-kin/visor_shapes.rsi
-    state: visor
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-kin/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoKinLEDFace
@@ -407,8 +539,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoKin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-kin/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-kin/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoKinLights
@@ -416,8 +551,11 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoKin]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-kin/led_shapes_body.rsi
-    state: body
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-kin/led_shapes_body.rsi
+        state: body
+      colorSource: UniqueColor
 
 #region RESOMI ####
 
@@ -427,8 +565,11 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoResomi]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/body_armor.rsi # Starlight, new body sprite
-    state: medium
+    body_other:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/body_armor.rsi
+        state: medium
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoResomiVisor
@@ -436,8 +577,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoResomi]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/visor_shapes.rsi # Starlight, new body sprite
-    state: visor
+    body_other:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoResomiLEDFace
@@ -445,8 +589,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoResomi]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/led_shapes_face.rsi # Starlight, new body sprite
-    state: face
+    body_other:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoResomiLights
@@ -454,8 +601,11 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoResomi]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/led_shapes_body.rsi # Starlight, new body sprite
-    state: body
+    body_other:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/led_shapes_body.rsi
+        state: body
+      colorSource: UniqueColor
 
 #region REPTILIAN ####
 
@@ -465,8 +615,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoReptilian, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf, ProtoReptile -> NeoReptilian
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
-    state: boxy
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
+        state: boxy
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoReptilianClaws # Starlight, ProtoReptile -> NeoReptilian
@@ -474,8 +627,11 @@
   markingCategory: Overlay
   speciesRestriction: [NeoReptilian] # Starlight, ProtoReptile -> NeoReptilian
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-reptile/led_shapes_body.rsi
-    state: claws
+    body_rHand:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-reptile/led_shapes_body.rsi
+        state: claws
+      colorSource: UniqueColor
 
 #region MOTH ####
 
@@ -485,8 +641,11 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoMoth]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-moth/body_armor.rsi
-    state: medium
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-moth/body_armor.rsi
+        state: medium
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoMothVisor
@@ -494,8 +653,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoMoth]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-moth/visor_shapes.rsi
-    state: visor
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-moth/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoMothLEDFace
@@ -503,8 +665,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoMoth]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoMothLights
@@ -512,8 +677,11 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoMoth]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_body.rsi
-    state: body
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_body.rsi
+        state: body
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoMothClaws
@@ -521,8 +689,11 @@
   markingCategory: Overlay
   speciesRestriction: [NeoMoth]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_body.rsi
-    state: claws
+    body_rHand:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_body.rsi
+        state: claws
+      colorSource: UniqueColor
 
 # Human didn't need anything special, but, dividers here regardless. #
 
@@ -534,8 +705,11 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-feline/body_armor.rsi
-    state: medium
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-feline/body_armor.rsi
+        state: medium
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoFelionoidVisor # Starlight, Feline -> Felionoid
@@ -543,8 +717,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-feline/visor_shapes.rsi
-    state: visor
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-feline/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoFelionoidLEDFace # Starlight, Feline -> Felionoid
@@ -552,8 +729,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoFelionoidLights # Starlight, Feline -> Felionoid
@@ -561,8 +741,11 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_body.rsi
-    state: body
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_body.rsi
+        state: body
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoFelionoidClaws # Starlight, Feline -> Felionoid
@@ -570,8 +753,11 @@
   markingCategory: Overlay
   speciesRestriction: [NeoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_body.rsi
-    state: claws
+    body_rHand:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_body.rsi
+        state: claws
+      colorSource: UniqueColor
 
 #dwarves don't need special sprites. This is a travesty
 
@@ -583,8 +769,11 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoDiona] # Starlight, Dionae -> Diona
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-dionae/body_armor.rsi
-    state: medium
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-dionae/body_armor.rsi
+        state: medium
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoDionaVisor # Starlight, Dionae -> Diona
@@ -592,8 +781,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoDiona] # Starlight, Dionae -> Diona
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-dionae/visor_shapes.rsi
-    state: visor
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-dionae/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoDionaLEDFace # Starlight, Dionae -> Diona
@@ -601,8 +793,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoDiona] # Starlight, Dionae -> Diona
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoDionaLights # Starlight, Dionae -> Diona
@@ -610,8 +805,11 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoDiona] # Starlight, Dionae -> Diona
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_body.rsi
-    state: body
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_body.rsi
+        state: body
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoDionaVines # Starlight, Dionae -> Diona
@@ -619,8 +817,11 @@
   markingCategory: Overlay
   speciesRestriction: [NeoDiona] # Starlight, Dionae -> Diona
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_body.rsi
-    state: vines
+    body_rHand:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_body.rsi
+        state: vines
+      colorSource: UniqueColor
 
 #region CYCLORITE
 
@@ -630,8 +831,11 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/body_armor.rsi
-    state: medium
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-cyclops/body_armor.rsi
+        state: medium
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoCycloriteVisor # Starlight, Cyclops -> Cyclorite
@@ -639,8 +843,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/visor_shapes.rsi
-    state: visor
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-cyclops/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoCycloriteLEDFace # Starlight, Cyclops -> Cyclorite
@@ -648,8 +855,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-cyclops/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoCycloriteLights # Starlight, Cyclops -> Cyclorite
@@ -657,8 +867,11 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/led_shapes_body.rsi
-    state: body
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-cyclops/led_shapes_body.rsi
+        state: body
+      colorSource: UniqueColor
 
 #region AVALI
 
@@ -668,8 +881,11 @@
   markingCategory: BodyCover
   speciesRestriction: [NeoAvali]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-avali/body_armor.rsi
-    state: medium
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-avali/body_armor.rsi
+        state: medium
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoAvaliVisor
@@ -677,8 +893,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoAvali]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-avali/visor_shapes.rsi
-    state: visor
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-avali/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoAvaliLEDFace
@@ -686,8 +905,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoAvali]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoAvaliLights
@@ -695,8 +917,11 @@
   markingCategory: BodyCoverCover
   speciesRestriction: [NeoAvali]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_body.rsi
-    state: body
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_body.rsi
+        state: body
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoAvaliWings
@@ -704,8 +929,11 @@
   markingCategory: Overlay
   speciesRestriction: [NeoAvali]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_body.rsi
-    state: wings
+    body_tail:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_body.rsi
+        state: wings
+      colorSource: UniqueColor
 
 #region ARACHNID
 
@@ -715,8 +943,11 @@
   markingCategory: FaceCover
   speciesRestriction: [NeoArachnid]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-arachnid/visor_shapes.rsi
-    state: visor
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-arachnid/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoArachnidLEDFace
@@ -724,8 +955,11 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [NeoArachnid]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-arachnid/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _FarHorizons/Mobs/Customization/proto-arachnid/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 
 # Starlight start
 #region LAGOMORPH
@@ -735,8 +969,11 @@
   markingCategory: FaceCover
   speciesRestriction: [Neocyte, NeoLagomorph]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/proto-lagomorph/visor_shapes.rsi
-    state: visor
+    body_other:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Protogen/proto-lagomorph/visor_shapes.rsi
+        state: visor
+      colorSource: UniqueColor
 
 - type: marking
   id: NeoLagomorphLEDFace
@@ -744,6 +981,9 @@
   markingCategory: FaceCoverCover
   speciesRestriction: [Neocyte, NeoLagomorph]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Protogen/proto-lagomorph/led_shapes_face.rsi
-    state: face
+    body_other:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Protogen/proto-lagomorph/led_shapes_face.rsi
+        state: face
+      colorSource: UniqueColor
 # Starlight end

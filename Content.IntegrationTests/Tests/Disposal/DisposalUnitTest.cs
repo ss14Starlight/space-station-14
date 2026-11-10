@@ -64,8 +64,8 @@ namespace Content.IntegrationTests.Tests.Disposal
   name: HumanDisposalDummy
   id: HumanDisposalDummy
   components:
-  - type: Body
-    prototype: Human
+  - type: SLBody
+    prefab: Human
   - type: MobState
   - type: MobThresholds
     thresholds:
@@ -112,7 +112,7 @@ namespace Content.IntegrationTests.Tests.Disposal
     whitelist:
       components:
       - Item
-      - Body
+      - SLBody
   - type: Anchorable
   - type: ApcPowerReceiver
   - type: Physics

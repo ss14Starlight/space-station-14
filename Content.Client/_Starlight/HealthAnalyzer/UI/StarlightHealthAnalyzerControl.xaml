@@ -1,5 +1,6 @@
 ﻿<BoxContainer
     xmlns="https://spacestation14.io"
+    xmlns:ui="clr-namespace:Content.Client._Starlight.HealthAnalyzer.UI"
     Margin="5 5 5 5"
     VerticalExpand="True"
     Orientation="Vertical">
@@ -14,6 +15,7 @@
         <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
             <SpriteView OverrideDirection="South" Scale="2 2" Name="SpriteView" Access="Public" SetSize="64 64" />
             <TextureRect Name="NoDataTex" Access="Public" SetSize="64 64" Visible="false" Stretch="KeepAspectCentered" TexturePath="/Textures/Interface/Misc/health_analyzer_out_of_range.png"/>
+            <ui:HealthDollControl Name="HealthDoll" Margin="4 0 0 0" Visible="False" />
 
 
             <BoxContainer Margin="5 0 0 0" Orientation="Vertical" VerticalAlignment="Top" SetWidth="155">

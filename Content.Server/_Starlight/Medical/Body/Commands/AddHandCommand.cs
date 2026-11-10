@@ -1,3 +1,6 @@
+using Content.Shared._Starlight.Body.Systems;
+using Content.Shared._Starlight.Body.Prototypes;
+using Content.Shared._Starlight.Body.Components;
 using System.Linq;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Administration;
@@ -5,7 +8,6 @@ using Content.Server.Hands.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Administration;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.Hands.Components;
 using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
@@ -120,9 +122,9 @@ sealed partial class AddHandCommand : IConsoleCommand
                 return;
         }
 
-        if (!_entManager.TryGetComponent(entity, out BodyComponent? body) || body.RootContainer.ContainedEntity == null)
+        if (!_entManager.TryGetComponent(entity, out SLBodyComponent? body) || body.RootPartEntity == null)
         {
-            var location = _entManager.GetComponentOrNull<BodyPartComponent>(hand)?.Symmetry switch
+            var location = _entManager.GetComponentOrNull<SLBodyPartComponent>(hand)?.Symmetry switch
             {
                 BodyPartSymmetry.None => HandLocation.Middle,
                 BodyPartSymmetry.Left => HandLocation.Left,
@@ -137,9 +139,9 @@ sealed partial class AddHandCommand : IConsoleCommand
             return;
         }
 
-        if (!_entManager.TryGetComponent(hand, out BodyPartComponent? part))
+        if (!_entManager.TryGetComponent(hand, out SLBodyPartComponent? part))
         {
-            shell.WriteLine($"Hand entity {hand} does not have a {nameof(BodyPartComponent)} component.");
+            shell.WriteLine($"Hand entity {hand} does not have a {nameof(SLBodyPartComponent)} component.");
             return;
         }
 
@@ -155,9 +157,11 @@ sealed partial class AddHandCommand : IConsoleCommand
             return;
         }
 
-        var slotId = part.GetHashCode().ToString();
+        var slotId = $"Hand{part.GetHashCode()}";
+        var slBody = _entManager.System<SLBodySystem>();
+        slBody.AddSocket((attachAt.Id, attachAt.Component), slotId, BodyPrefabPrototype.DefaultExternalSocket);
 
-        if (!bodySystem.TryCreatePartSlotAndAttach(attachAt.Id, slotId, hand, BodyPartType.Hand, attachAt.Component, part))
+        if (!slBody.TryAttachPart((attachAt.Id, attachAt.Component), slotId, (hand, part)))
         {
             shell.WriteError($"Couldn't create a slot with id {slotId} on entity {_entManager.ToPrettyString(entity)}");
             return;

@@ -1,0 +1,17 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Mothroach
+  root:
+    bodyPart: TorsoAnimal
+    containedParts:
+      Lungs:
+        bodyPart: OrganAnimalLungs
+      Stomach:
+        bodyPart: OrganMothStomach
+      Liver:
+        bodyPart: OrganAnimalLiver
+      Heart:
+        bodyPart: OrganAnimalHeart
+      Kidneys:
+        bodyPart: OrganAnimalKidneys

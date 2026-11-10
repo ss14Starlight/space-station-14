@@ -6,6 +6,8 @@
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: BrainImplant
   - type: FlavorProfile
     flavors:

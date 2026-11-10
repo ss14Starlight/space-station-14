@@ -26,8 +26,8 @@
   - type: Damageable
     damageContainer: Hybrid
     damageModifierSet: NeoLagomorph
-  - type: Body
-    prototype: NeoLagomorph
+  - type: SLBody
+    prefab: NeoLagomorph
     requiredLegs: 2
   - type: HumanoidAppearance
     species: NeoLagomorph

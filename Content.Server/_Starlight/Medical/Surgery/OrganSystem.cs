@@ -1,9 +1,9 @@
+using Content.Shared._Starlight.Body.Components;
 using System.Linq;
 using Content.Server._Starlight.Language;
 using Content.Server.Humanoid;
 using Content.Shared._Starlight.Actions.Components;
 using Content.Shared.Actions;
-using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Damage;
@@ -169,6 +169,9 @@ public sealed partial class OrganSystem : EntitySystem
 
     private void OnMarkingOrganImplanted(Entity<MarkingOrganComponent> ent, ref SurgeryOrganImplantationCompleted args)
     {
+        if (!HasComp<HumanoidAppearanceComponent>(args.Body))
+            return;
+
         if(ent.Comp.Markings.Count > 0)
         {
             var addedMarkings = new List<ProtoId<MarkingPrototype>>();
@@ -200,10 +203,10 @@ public sealed partial class OrganSystem : EntitySystem
             if (!TryComp(args.Body, out HumanoidAppearanceComponent? appearance))
                 return;
 
-            if (!TryComp(args.Part, out BodyPartComponent? part))
+            if (!TryComp(args.Part, out SLBodyPartComponent? part))
                 return;
 
-            var resolvedLayers = ResolveBodyPartLayers(part.PartType, part.Symmetry);
+            var resolvedLayers = ResolveBodyPartLayers(part.Kind, part.Symmetry);
             if (!resolvedLayers.Any())
                 return;
 
@@ -262,13 +265,13 @@ public sealed partial class OrganSystem : EntitySystem
 
     private void UpdateMarking(EntityUid targetBody, EntityUid targetPart, string marking, IReadOnlyList<Color> colors, bool isGlowing = false, bool add = true)
     {
-        if (!_markingManager.Markings.TryGetValue(marking, out var prototype))
+        if (!_markingManager.Markings.TryGetValue(marking, out var prototype) || !HasComp<HumanoidAppearanceComponent>(targetBody))
             return;
 
-        if(!TryComp(targetPart, out BodyPartComponent? part))
+        if(!TryComp(targetPart, out SLBodyPartComponent? part))
             return;
 
-        if(!ResolveBodyPartLayers(part.PartType, part.Symmetry).Contains(prototype.BodyPart))
+        if(!ResolveBodyPartLayers(part.Kind, part.Symmetry).Contains(prototype.BodyPart))
             return;
 
         if(add)

@@ -1,0 +1,47 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: IPC
+  root:
+    bodyPart: TorsoIPC
+    containedParts:
+      Heart:
+        bodyPart: OrganIPCHeart
+    attachedParts:
+      Head:
+        bodyPart: HeadIPC
+        containedParts:
+          Tongue:
+            bodyPart: OrganIPCTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganIPCEyes
+        sockets:
+          EyeImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmIPC
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandIPC
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmIPC
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandIPC
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegIPC
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootIPC
+      LeftLeg:
+        bodyPart: LeftLegIPC
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootIPC
+    sockets:
+      Cavity: OrganSocket

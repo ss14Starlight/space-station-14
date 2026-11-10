@@ -1,0 +1,23 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Bloodsucker
+  root:
+    bodyPart: TorsoAnimal
+    containedParts:
+      Lungs:
+        bodyPart: OrganAnimalLungs
+      Stomach:
+        bodyPart: OrganBloodsuckerStomach
+      Liver:
+        bodyPart: OrganBloodsuckerLiver
+      Heart:
+        bodyPart: OrganBloodsuckerHeart
+      Kidneys:
+        bodyPart: OrganAnimalKidneys
+    attachedParts:
+      Legs:
+        bodyPart: LegsAnimal
+        attachedParts:
+          Feet:
+            bodyPart: FeetAnimal

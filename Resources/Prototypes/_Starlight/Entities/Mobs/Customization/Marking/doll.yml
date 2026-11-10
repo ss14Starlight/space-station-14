@@ -10,8 +10,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: l_arm
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: l_arm
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRArm
@@ -24,8 +27,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: r_arm
+    body_rArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: r_arm
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLHand
@@ -38,8 +44,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: l_hand
+    body_lHand:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: l_hand
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRHand
@@ -52,8 +61,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: r_hand
+    body_rHand:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: r_hand
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLLeg
@@ -66,8 +78,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: l_leg
+    body_lLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: l_leg
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRLeg
@@ -80,8 +95,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: r_leg
+    body_rLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: r_leg
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLFoot
@@ -94,8 +112,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: l_foot
+    body_lFoot:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: l_foot
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRFoot
@@ -108,8 +129,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: r_foot
+    body_rFoot:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: r_foot
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellChestFemale
@@ -122,8 +146,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: torso_f
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: torso_f
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellChestMale
@@ -136,8 +163,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: torso_m
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: torso_m
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellHeadFemale
@@ -150,8 +180,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: head_f
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: head_f
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellHeadMale
@@ -164,8 +197,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: head_m
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: head_m
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellHeadFemaleReverse
@@ -178,8 +214,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: head_f_reverse
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: head_f_reverse
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellHeadMaleReverse
@@ -192,8 +231,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: head_m_reverse
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: head_m_reverse
+      colorSource: UniqueColor
 
 #Devil
 - type: marking
@@ -207,8 +249,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_l_arm
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: devil_l_arm
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRArmDevil
@@ -221,8 +266,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_r_arm
+    body_rArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: devil_r_arm
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLHandDevil
@@ -235,8 +283,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_l_hand
+    body_lHand:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: devil_l_hand
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRHandDevil
@@ -249,8 +300,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_r_hand
+    body_rHand:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: devil_r_hand
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLLegDevil
@@ -263,8 +317,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_l_leg
+    body_lLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: devil_l_leg
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRLegDevil
@@ -277,8 +334,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_r_leg
+    body_rLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: devil_r_leg
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLFootDevil
@@ -291,8 +351,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_l_foot
+    body_lFoot:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: devil_l_foot
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRFootDevil
@@ -305,8 +368,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_r_foot
+    body_rFoot:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: devil_r_foot
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellChestDevil
@@ -319,8 +385,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_torso
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: devil_torso
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellHeadDevil
@@ -333,8 +402,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_head
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: devil_head
+      colorSource: UniqueColor
 
 #Segmented
 - type: marking
@@ -348,8 +420,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_l_arm
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: segmented_l_arm
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRArmSegmented
@@ -362,8 +437,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_r_arm
+    body_rArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: segmented_r_arm
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLHandSegmented
@@ -376,8 +454,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_l_hand
+    body_lHand:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: segmented_l_hand
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRHandSegmented
@@ -390,8 +471,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_r_hand
+    body_rHand:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: segmented_r_hand
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLLegSegmented
@@ -404,8 +488,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_l_leg
+    body_lLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: segmented_l_leg
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRLegSegmented
@@ -418,8 +505,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_r_leg
+    body_rLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: segmented_r_leg
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLFootSegmented
@@ -432,8 +522,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_l_foot
+    body_lFoot:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: segmented_l_foot
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRFootSegmented
@@ -446,8 +539,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_r_foot
+    body_rFoot:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: segmented_r_foot
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellChestSegmented
@@ -460,8 +556,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_torso
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: segmented_torso
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellChestSegmentedM
@@ -474,8 +573,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_m
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: segmented_m
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellHeadSegmented
@@ -488,8 +590,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_head
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: segmented_head
+      colorSource: UniqueColor
 
 #Unbroken
 - type: marking
@@ -503,12 +608,21 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_l_arm
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_l_arm_gold
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_l_arm_repaired
+    body_lArm@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_l_arm
+      colorSource: UniqueColor
+    body_lArm@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_l_arm_gold
+      colorSource: UniqueColor
+    body_lArm@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_l_arm_repaired
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRArmUnbroken
@@ -521,12 +635,21 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_r_arm
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_r_arm_gold
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_r_arm_repaired
+    body_rArm@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_r_arm
+      colorSource: UniqueColor
+    body_rArm@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_r_arm_gold
+      colorSource: UniqueColor
+    body_rArm@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_r_arm_repaired
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLHandUnbroken
@@ -539,12 +662,21 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_l_hand
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_l_hand_gold
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_l_hand_repaired
+    body_lHand@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_l_hand
+      colorSource: UniqueColor
+    body_lHand@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_l_hand_gold
+      colorSource: UniqueColor
+    body_lHand@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_l_hand_repaired
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRHandUnbroken
@@ -557,12 +689,21 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_r_hand
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_r_hand_gold
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_r_hand_repaired
+    body_rHand@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_r_hand
+      colorSource: UniqueColor
+    body_rHand@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_r_hand_gold
+      colorSource: UniqueColor
+    body_rHand@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_r_hand_repaired
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLLegUnbroken
@@ -575,12 +716,21 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_l_leg
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_l_leg_gold
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_l_leg_repaired
+    body_lLeg@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_l_leg
+      colorSource: UniqueColor
+    body_lLeg@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_l_leg_gold
+      colorSource: UniqueColor
+    body_lLeg@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_l_leg_repaired
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRLegUnbroken
@@ -593,12 +743,21 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_r_leg
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_r_leg_gold
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_r_leg_repaired
+    body_rLeg@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_r_leg
+      colorSource: UniqueColor
+    body_rLeg@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_r_leg_gold
+      colorSource: UniqueColor
+    body_rLeg@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_r_leg_repaired
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLFootUnbroken
@@ -611,12 +770,21 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_l_foot
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_l_foot_gold
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_l_foot_repaired
+    body_lFoot@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_l_foot
+      colorSource: UniqueColor
+    body_lFoot@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_l_foot_gold
+      colorSource: UniqueColor
+    body_lFoot@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_l_foot_repaired
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRFootUnbroken
@@ -629,12 +797,21 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_r_foot
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_r_foot_gold
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_r_foot_repaired
+    body_rFoot@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_r_foot
+      colorSource: UniqueColor
+    body_rFoot@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_r_foot_gold
+      colorSource: UniqueColor
+    body_rFoot@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_r_foot_repaired
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellChestUnbroken
@@ -647,12 +824,21 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_torso
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_torso_gold
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_torso_repaired
+    body_chest@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_torso
+      colorSource: UniqueColor
+    body_chest@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_torso_gold
+      colorSource: UniqueColor
+    body_chest@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_torso_repaired
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellChestUnbrokenM
@@ -665,12 +851,21 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_m
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_torso_gold
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_torso_repaired
+    body_chest@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_m
+      colorSource: UniqueColor
+    body_chest@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_torso_gold
+      colorSource: UniqueColor
+    body_chest@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_torso_repaired
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellHeadUnbroken
@@ -683,12 +878,21 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_head
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_head_gold
-  - sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
-    state: unbroken_head_repaired
+    body_head@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_head
+      colorSource: UniqueColor
+    body_head@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_head_gold
+      colorSource: UniqueColor
+    body_head@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/unbroken.rsi
+        state: unbroken_head_repaired
+      colorSource: UniqueColor
 
 #Overgrown
 - type: marking
@@ -702,8 +906,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
-    state: overgrown_l_arm
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
+        state: overgrown_l_arm
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRArmOvergrown
@@ -716,8 +923,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
-    state: overgrown_r_arm
+    body_rArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
+        state: overgrown_r_arm
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLHandOvergrown
@@ -730,8 +940,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
-    state: overgrown_l_hand
+    body_lHand:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
+        state: overgrown_l_hand
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRHandOvergrown
@@ -744,8 +957,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
-    state: overgrown_r_hand
+    body_rHand:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
+        state: overgrown_r_hand
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLLegOvergrown
@@ -758,8 +974,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
-    state: overgrown_l_leg
+    body_lLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
+        state: overgrown_l_leg
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRLegOvergrown
@@ -772,8 +991,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
-    state: overgrown_r_leg
+    body_rLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
+        state: overgrown_r_leg
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellChestOvergrown
@@ -786,8 +1008,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
-    state: overgrown_torso
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
+        state: overgrown_torso
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellChestOvergrownM
@@ -800,8 +1025,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
-    state: overgrown_m
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
+        state: overgrown_m
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellHeadOvergrown
@@ -814,8 +1042,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
-    state: overgrown_head
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/overgrown.rsi
+        state: overgrown_head
+      colorSource: UniqueColor
 
 #Paradigm
 - type: marking
@@ -829,8 +1060,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_l_arm
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_l_arm
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRArmParadigm
@@ -843,8 +1077,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_r_arm
+    body_rArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_r_arm
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLHandParadigm
@@ -857,10 +1094,16 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_l_hand
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_l_hand_flesh
+    body_lHand@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_l_hand
+      colorSource: UniqueColor
+    body_lHand@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_l_hand_flesh
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRHandParadigm
@@ -873,10 +1116,16 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_r_hand
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_r_hand_flesh
+    body_rHand@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_r_hand
+      colorSource: UniqueColor
+    body_rHand@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_r_hand_flesh
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLLegParadigm
@@ -889,10 +1138,16 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_l_leg
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_l_leg_flesh
+    body_lLeg@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_l_leg
+      colorSource: UniqueColor
+    body_lLeg@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_l_leg_flesh
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRLegParadigm
@@ -905,10 +1160,16 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_r_leg
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_r_leg_flesh
+    body_rLeg@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_r_leg
+      colorSource: UniqueColor
+    body_rLeg@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_r_leg_flesh
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellLFootParadigm
@@ -921,10 +1182,16 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_l_foot
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_l_foot_flesh
+    body_lFoot@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_l_foot
+      colorSource: UniqueColor
+    body_lFoot@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_l_foot_flesh
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellRFootParadigm
@@ -937,10 +1204,16 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_r_foot
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_r_foot_flesh
+    body_rFoot@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_r_foot
+      colorSource: UniqueColor
+    body_rFoot@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_r_foot_flesh
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellChestParadigm
@@ -953,8 +1226,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_torso
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_torso
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellChestParadigmM
@@ -967,8 +1243,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_m
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_m
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellHeadParadigm
@@ -981,8 +1260,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
-    state: paradigm_head
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/paradigm.rsi
+        state: paradigm_head
+      colorSource: UniqueColor
 
 #Species Masks
 - type: marking
@@ -996,8 +1278,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: head_fox
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: head_fox
+      colorSource: UniqueColor
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -1026,8 +1311,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: head_moth
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: head_moth
+      colorSource: UniqueColor
   emotes:
     - emotePrototype: Chitter
       requiredMarkingsAny:
@@ -1045,8 +1333,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: head_crested
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: head_crested
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellHeadOwl
@@ -1059,8 +1350,11 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: head_owl
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: head_owl
+      colorSource: UniqueColor
 
 - type: marking
   id: DollShellHeadHawk
@@ -1073,5 +1367,9 @@
         !type:SimpleColoring
           color: "#ffffff"
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: head_hawk
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+        state: head_hawk
+      colorSource: UniqueColor
+

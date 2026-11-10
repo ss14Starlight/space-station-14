@@ -1,7 +1,7 @@
+using Content.Shared._Starlight.Body.Components;
 using Content.Client.Administration.UI.CustomControls;
 using Content.Client.Hands.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
-using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared._Starlight.Medical.Surgery;
 using JetBrains.Annotations;
@@ -79,20 +79,18 @@ public sealed partial class SurgeryBui : BoundUserInterface
         _part = null;
         _surgery = null;
 
-        var parts = new List<Entity<BodyPartComponent>>(state.Choices.Keys.Count);
+        var parts = new List<Entity<SLBodyPartComponent>>(state.Choices.Keys.Count);
         foreach (var choice in state.Choices.Keys)
         {
             if (_entities.TryGetEntity(choice, out var ent) &&
-                _entities.TryGetComponent(ent, out BodyPartComponent? part))
-            {
+                _entities.TryGetComponent(ent, out SLBodyPartComponent? part))
                 parts.Add((ent.Value, part));
-            }
         }
 
         parts.Sort((a, b) =>
         {
-            static int GetScore(Entity<BodyPartComponent> part)
-                => part.Comp.PartType switch
+            static int GetScore(Entity<SLBodyPartComponent> part)
+                => part.Comp.Kind switch
                 {
                     BodyPartType.Head => 1,
                     BodyPartType.Torso => 2,
@@ -124,9 +122,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
             {
                 if (!_entitySystem.TryGetSingleton(surgeryId, out var surgery) ||
                     !_entities.TryGetComponent(surgery, out SurgeryComponent? surgeryComp))
-                {
                     continue;
-                }
 
                 if (oldPart == part && oldSurgery?.Proto == surgeryId)
                     OnSurgeryPressed((surgery, surgeryComp), netPart, surgeryId);
@@ -165,9 +161,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
             if (!_entities.TryGetNetEntity(_part, out var netPart) ||
                 State is not SurgeryBuiState s ||
                 !s.Choices.TryGetValue(netPart.Value, out var surgeries))
-            {
                 return;
-            }
 
             OnPartPressed(netPart.Value, surgeries);
         };
@@ -176,18 +170,14 @@ public sealed partial class SurgeryBui : BoundUserInterface
         {
             if (!_entities.TryGetNetEntity(_part, out var netPart) ||
                 _previousSurgeries.Count == 0)
-            {
                 return;
-            }
 
             var last = _previousSurgeries[^1];
             _previousSurgeries.RemoveAt(_previousSurgeries.Count - 1);
 
             if (!_entitySystem.TryGetSingleton(last, out var previousId) ||
                 !_entities.TryGetComponent(previousId, out SurgeryComponent? previous))
-            {
                 return;
-            }
 
             OnSurgeryPressed((previousId, previous), netPart.Value, last);
         };
@@ -197,9 +187,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
     {
         if (_window == null ||
             !_entitySystem.TryGetSingleton(stepId, out var step))
-        {
             return;
-        }
 
         var stepName = new FormattedMessage();
         stepName.AddText(_entities.GetComponent<MetaDataComponent>(step).EntityName);
@@ -229,14 +217,13 @@ public sealed partial class SurgeryBui : BoundUserInterface
         {
             if (!_entitySystem.TryGetSingleton(stepId, out var step)
                 || !_entities.TryGetComponent(step, out SurgeryStepOrganExtractComponent? extraction)
-                || extraction.Slot is not { } slot
-                || !_containers.TryGetContainer(part, SharedBodySystem.GetOrganContainerId(slot), out var container))
+                || extraction.Slot is not { } slot)
             {
                 continue;
             }
 
             var (target, _) =
-                _system.GetOrganExtractionTarget(extraction, container.ContainedEntities);
+                _system.GetOrganExtractionTarget(extraction, _system.GetOrganSlotContents(part, slot));
             if (target is not { } item
                 || !_entities.TryGetComponent(item, out MetaDataComponent? itemMetadata)
                 || itemMetadata.EntityName.Length == 0)
@@ -271,7 +258,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
             foreach (var requirementId in requirementIds)
             {
                 if (_entitySystem.TryGetSingleton(requirementId, out var requirement)
-                    && _entities.TryGetComponent(_part, out BodyPartComponent? partComp)
+                    && _entities.TryGetComponent(_part, out SLBodyPartComponent? partComp)
                     && partComp.Body is { } Body
                     && _part is { } Part
                     && _system.IsSurgeryValid(Body, Part, requirementId, surgeryId, out _, out _, out _))
@@ -322,9 +309,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
         {
             if (!_entitySystem.TryGetSingleton(surgeryId, out var surgery) ||
                 !_entities.TryGetComponent(surgery, out SurgeryComponent? surgeryComp))
-            {
                 continue;
-            }
 
             var texture = _entities.GetComponentOrNull<SpriteComponent>(surgery)?.Icon?.Default;
             var surgeryName = GetSurgeryDisplayName(surgeryId, (surgery, surgeryComp), _part.Value);
@@ -360,7 +345,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
     {
         if (_window == null ||
             !_entities.HasComponent<SurgeryComponent>(_surgery?.Ent) ||
-            !_entities.TryGetComponent(_part, out BodyPartComponent? part))
+            !_entities.TryGetComponent(_part, out SLBodyPartComponent? part))
             return;
 
         UpdateDisabledPanel();
@@ -399,7 +384,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
             {
                 stepButton.Button.Modulate = Color.White;
                 if (_player.LocalEntity is { } player &&
-                    !_system.CanPerformStep(player, Owner, part.PartType, stepButton.Step, false, out var popup, out var reason, out _))
+                    !_system.CanPerformStep(player, Owner, part.Kind, stepButton.Step, false, out var popup, out var reason, out _))
                 {
                     stepButton.TooltipTextSupplier = popup != null ? (() => popup) : stepTooltip;
                     stepButton.Button.Disabled = true;
@@ -485,13 +470,9 @@ public sealed partial class SurgeryBui : BoundUserInterface
                 ("surgery", surgeryMeta.EntityName));
         }
         else if (partMeta != null)
-        {
             _window.Title = Loc.GetString("surgery-ui-window-title-part", ("part", partMeta.EntityName));
-        }
         else
-        {
             _window.Title = Loc.GetString("surgery-ui-window-title");
-        }
     }
 
     private enum ViewType

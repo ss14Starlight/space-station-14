@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Body.Components;
 using Content.IntegrationTests.Fixtures;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
@@ -25,8 +26,8 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
         id: HumanLungDummy
         components:
         -   type: SolutionManager
-        -   type: Body
-            prototype: Human
+        -   type: SLBody
+            prefab: Human
         -   type: MobState
             allowedStates:
                 - Alive
@@ -62,7 +63,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
             var mapSys = entityManager.System<SharedMapSystem>();
 
             EntityUid? grid = null;
-            BodyComponent body = default;
+            SLBodyComponent body = default;
             RespiratorComponent resp = default;
             EntityUid human = default;
             GridAtmosphereComponent relevantAtmos = default;
@@ -161,7 +162,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                 var mixture = entityManager.System<AtmosphereSystem>().GetContainingMixture(human);
 #pragma warning disable NUnit2045
                 Assert.That(mixture.TotalMoles, Is.GreaterThan(0));
-                Assert.That(entityManager.HasComponent<BodyComponent>(human), Is.True);
+                Assert.That(entityManager.HasComponent<SLBodyComponent>(human), Is.True);
                 Assert.That(entityManager.TryGetComponent(human, out respirator), Is.True);
                 Assert.That(respirator.SuffocationCycles, Is.LessThanOrEqualTo(respirator.SuffocationCycleThreshold));
 #pragma warning restore NUnit2045

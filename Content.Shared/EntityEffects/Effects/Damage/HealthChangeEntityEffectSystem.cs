@@ -1,4 +1,5 @@
-﻿using Content.Shared.Damage;
+﻿using Content.Shared._Starlight.Medical.PartDamage;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
@@ -16,6 +17,9 @@ namespace Content.Shared.EntityEffects.Effects.Damage;
 public sealed partial class HealthChangeEntityEffectSystem : EntityEffectSystem<DamageableComponent, HealthChange>
 {
     [Dependency] private DamageableSystem _damageable = default!;
+    #region Starlight
+    [Dependency] private BodyPartDamageSystem _partDamage = default!;
+    #endregion
 
     protected override void Effect(Entity<DamageableComponent> entity, ref EntityEffectEvent<HealthChange> args)
     {
@@ -23,6 +27,7 @@ public sealed partial class HealthChangeEntityEffectSystem : EntityEffectSystem<
 
         damageSpec *= args.Scale;
 
+        using var _ = _partDamage.Target(entity, BodyDamageTargeting.Random); // Starlight-edit: reagents act on a random part
         _damageable.TryChangeDamage(
                 entity.AsNullable(),
                 damageSpec,

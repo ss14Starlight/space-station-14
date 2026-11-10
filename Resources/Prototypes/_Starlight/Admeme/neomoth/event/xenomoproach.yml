@@ -139,8 +139,8 @@
       price: 150
     - type: CanEscapeInventory
       baseResistTime: 0.5
-    - type: Body
-      prototype: Xenomoproach
+    - type: SLBody
+      prefab: Xenomoproach
     - type: FireVisuals
       sprite: Mobs/Effects/onfire.rsi
       normalState: Mouse_burning
@@ -429,7 +429,6 @@
     - type: Buckle
     - type: Xenoborg
 
-
 - type: entity
   parent: Solution
   id: SolutionMobXenomoproachAbsorbed
@@ -544,20 +543,3 @@
   equipment:
     head: ClothingHeadHatPurplesoft
     back: ClothingBackpackXenomoproach
-
-- type: body
-  id: Xenomoproach
-  name: "xenomoproach"
-  root: torso
-  slots:
-    torso:
-      part: TorsoAnimal
-      connections:
-        - righthand
-        - lefthand
-      organs:
-        stomach: OrganMothStomach
-    lefthand:
-      part: LeftHandAnimal
-    righthand:
-      part: RightHandAnimal

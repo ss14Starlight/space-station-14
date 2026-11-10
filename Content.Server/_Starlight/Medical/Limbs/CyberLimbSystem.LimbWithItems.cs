@@ -1,5 +1,5 @@
+using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Medical.Limbs;
-using Content.Shared.Body.Part;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
@@ -61,7 +61,7 @@ public sealed partial class CyberLimbSystem : EntitySystem
             }
         }
 
-        if (_slEnt.TryEntity<BaseLayerIdComponent, BaseLayerIdToggledComponent, BodyPartComponent>(ent.Owner, out var limb, false)
+        if (_slEnt.TryEntity<BaseLayerIdComponent, BaseLayerIdToggledComponent, SLBodyPartComponent>(ent.Owner, out var limb, false)
             && _slEnt.TryEntity<HumanoidAppearanceComponent>(args.Performer, out var performer, false))
             _limb.ToggleLimbVisual(performer, limb, ent.Comp.Toggled);
 

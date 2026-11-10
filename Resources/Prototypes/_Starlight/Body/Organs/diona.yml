@@ -6,6 +6,8 @@
   - type: Sprite
     sprite: Mobs/Species/Diona/organs.rsi
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: Edible
   - type: Extractable
     grindableSolutionName: organ
@@ -139,8 +141,8 @@
   components:
   - type: IsDeadIC
   # Starlight - start
-  - type: Body
-    prototype: AnimalNymphBrain
+  - type: SLBody
+    prefab: AnimalNymphBrain
   # Starlight - end
 
 - type: entity
@@ -153,8 +155,8 @@
   components:
   - type: IsDeadIC
   # Starlight - start
-  - type: Body
-    prototype: AnimalNymphStomach
+  - type: SLBody
+    prefab: AnimalNymphStomach
   # Starlight - end
 
 - type: entity
@@ -167,8 +169,8 @@
   components:
   - type: IsDeadIC
   # Starlight - start
-  - type: Body
-    prototype: AnimalNymphLungs
+  - type: SLBody
+    prefab: AnimalNymphLungs
   # Starlight - end
 
 - type: entity

@@ -1,4 +1,6 @@
-﻿using Robust.Shared.Prototypes;
+﻿using System.Linq;
+using Content.Shared._Starlight.Body.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
 // ReSharper disable once CheckNamespace
@@ -33,6 +35,14 @@ public sealed partial class MarkingPrototype : IInheritingPrototype
     /// </summary>
     [DataField]
     public List<int>? SpriteColorIndexes;
+
+    private BodySpriteSpecifier[]? _spriteList;
+
+    /// <summary>
+    /// <see cref="MarkingPrototype.Sprites"/> in declaration order, for code that addresses sprites by index
+    /// (color slots, <see cref="SpriteLayers"/>, <see cref="SpriteColorIndexes"/>).
+    /// </summary>
+    public IReadOnlyList<BodySpriteSpecifier> SpriteList => _spriteList ??= Sprites.Values.ToArray();
 
     public int ColorSlotCount
     {

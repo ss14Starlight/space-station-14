@@ -9,9 +9,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_lefteye_2
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_lefteye_2
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeLefteyePad
@@ -23,9 +28,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_lefteye_1
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_lefteye_1
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeRighteyePatch
@@ -37,9 +47,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_righteye_2
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_righteye_2
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeRighteyePad
@@ -51,9 +66,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_righteye_1
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_righteye_1
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeBlindfold
@@ -65,9 +85,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_blindfold
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_blindfold
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeShoulder
@@ -79,9 +104,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_shoulder
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_shoulder
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeStomach
@@ -93,9 +123,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_abdomen
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_abdomen
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeUpperArmRight
@@ -107,13 +142,18 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_upperarm_r
+    body_rArm:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_upperarm_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeLowerArmRight
-  bodyPart: RArm, RHand
+  bodyPart: RArm
   markingCategory: Overlay
   speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
@@ -121,13 +161,23 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_lowerarm_r
+    body_rArm:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_lowerarm_r
+      colorSource: UniqueColor
+    body_rHand:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_lowerarm_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeLeftArm
-  bodyPart: LArm, LHand
+  bodyPart: LArm
   markingCategory: Overlay
   speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
   coloring:
@@ -135,12 +185,22 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_leftarm
+    body_lArm:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_leftarm
+      colorSource: UniqueColor
+    body_lHand:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_leftarm
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: GauzeLowerLegLeft
+  id: GauzeLower
   bodyPart: LFoot
   markingCategory: Overlay
   speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
@@ -149,12 +209,22 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_lowerleg_l
+    body_lFoot:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_lowerleg_l
+      colorSource: UniqueColor
+    body_rFoot:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_lowerleg_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: GauzeUpperLegLeft
+  id: GauzeUpper
   bodyPart: LLeg
   markingCategory: Overlay
   speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
@@ -163,54 +233,22 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_upperleg_l
+    body_lLeg:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_upperleg_l
+      colorSource: UniqueColor
+    body_rLeg:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_upperleg_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: GauzeUpperLegRight
-  bodyPart: RLeg
-  markingCategory: Overlay
-  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_upperleg_r
-
-- type: marking
-  id: GauzeLowerLegRight
-  bodyPart: RFoot
-  markingCategory: Overlay
-  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_lowerleg_r
-
-- type: marking
-  id: GauzeBoxerWrapRight
-  bodyPart: RHand
-  markingCategory: Overlay
-  speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_boxerwrap_r
-
-- type: marking
-  id: GauzeBoxerWrapLeft
+  id: GauzeBoxerWrap
   bodyPart: LHand
   markingCategory: Overlay
   speciesRestriction: [Dwarf, NeoDwarf, Human, NeoHuman, Reptilian, NeoReptilian, Arachnid, NeoArachnid, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Neocytes
@@ -219,9 +257,19 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_boxerwrap_l
+    body_lHand:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_boxerwrap_l
+      colorSource: UniqueColor
+    body_rHand:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_boxerwrap_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeHead
@@ -233,9 +281,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_head
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_head
+      colorSource: UniqueColor
+  # Starlight end
 
 # Lizard Specific Markings
 - type: marking
@@ -248,9 +301,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_lizard_lefteye
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_lizard_lefteye
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeLizardRighteyePatch
@@ -262,26 +320,17 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_lizard_righteye
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_lizard_righteye
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: GauzeLizardFootRight
-  bodyPart: RFoot
-  markingCategory: Overlay
-  speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # Starlight, Neocytes
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_lizard_foot_r
-
-- type: marking
-  id: GauzeLizardFootLeft
+  id: GauzeLizard
   bodyPart: LFoot
   markingCategory: Overlay
   speciesRestriction: [Reptilian, NeoReptilian, Neocyte] # Starlight, Neocytes
@@ -290,9 +339,19 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_lizard_foot_l
+    body_lFoot:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_lizard_foot_l
+      colorSource: UniqueColor
+    body_rFoot:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_lizard_foot_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeLizardBlindfold
@@ -304,9 +363,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_lizard_blindfold
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_lizard_blindfold
+      colorSource: UniqueColor
+  # Starlight end
 
 # Moth, NeoMoth Specific Markings
 - type: marking
@@ -319,9 +383,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_blindfold
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_blindfold
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeMothShoulder
@@ -333,9 +402,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_shoulder
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_shoulder
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeMothStomach
@@ -347,9 +421,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_abdomen
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_abdomen
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeMothLeftEyePatch
@@ -361,9 +440,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_lefteye_2
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_lefteye_2
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeMothLeftEyePad
@@ -375,9 +459,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_lefteye_1
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_lefteye_1
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeMothRightEyePatch
@@ -389,9 +478,14 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_righteye_2
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_righteye_2
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeMothRightEyePad
@@ -403,26 +497,17 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_righteye_1
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_righteye_1
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: GauzeMothUpperArmRight
-  bodyPart: RArm
-  markingCategory: Overlay
-  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_upperarm_r
-
-- type: marking
-  id: GauzeMothUpperArmLeft
+  id: GauzeMothUpperArms
   bodyPart: LArm
   markingCategory: Overlay
   speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
@@ -431,26 +516,22 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_upperarm_l
+    body_lArm:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_upperarm_l
+      colorSource: UniqueColor
+    body_rArm:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_upperarm_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: GauzeMothUpperLegRight
-  bodyPart: RLeg
-  markingCategory: Overlay
-  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_upperleg_r
-
-- type: marking
-  id: GauzeMothUpperLegLeft
+  id: GauzeMothUpperLegs
   bodyPart: LLeg
   markingCategory: Overlay
   speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
@@ -459,26 +540,22 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_upperleg_l
+    body_lLeg:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_upperleg_l
+      colorSource: UniqueColor
+    body_rLeg:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_upperleg_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: GauzeMothLowerLegRight
-  bodyPart: RFoot
-  markingCategory: Overlay
-  speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#FFFFFF"
-  sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_lowerleg_r
-
-- type: marking
-  id: GauzeMothLowerLegLeft
+  id: GauzeMothLower
   bodyPart: LFoot
   markingCategory: Overlay
   speciesRestriction: [Moth, NeoMoth, Neocyte] # Starlight, Neocytes
@@ -487,11 +564,20 @@
       type:
         !type:SimpleColoring
           color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_moth_lowerleg_l
+    body_lFoot:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_lowerleg_l
+      colorSource: UniqueColor
+    body_rFoot:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_moth_lowerleg_r
+      colorSource: UniqueColor
+  # Starlight end
 
-# Vulpkanin Specific Markings
 - type: marking
   id: GauzeVulpStomach
   bodyPart: Chest
@@ -502,9 +588,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_abdomen
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_abdomen
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpBlindfold
@@ -516,9 +607,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_blindfold
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_blindfold
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpBoxerwrapLeft
@@ -530,9 +626,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_boxerwrap_l
+    body_lHand:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_boxerwrap_l
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpBoxerwrapRight
@@ -544,9 +645,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_boxerwrap_r
+    body_rHand:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_boxerwrap_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpHead
@@ -558,9 +664,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_head
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_head
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpLeftArm
@@ -572,9 +683,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_leftarm
+    body_lArm:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_leftarm
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpLefteyePatch
@@ -586,9 +702,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_lefteye_2
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_lefteye_2
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpLowerArmRight
@@ -600,9 +721,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_lowerarm_r
+    body_rHand:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_lowerarm_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpLowerLegLeft
@@ -614,9 +740,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_lowerleg_l
+    body_lFoot:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_lowerleg_l
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpLowerLegRight
@@ -628,9 +759,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_lowerleg_r
+    body_rFoot:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_lowerleg_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpRighteyePatch
@@ -642,9 +778,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_righteye_2
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_righteye_2
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpShoulder
@@ -656,9 +797,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_shoulder
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_shoulder
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpUpperLegLeft
@@ -670,9 +816,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_upperleg_l
+    body_lLeg:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_upperleg_l
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: GauzeVulpUpperLegRight
@@ -684,6 +835,11 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/gauze.rsi
-    state: gauze_vulp_upperleg_r
+    body_rLeg:
+      sprite:
+        sprite: Mobs/Customization/gauze.rsi
+        state: gauze_vulp_upperleg_r
+      colorSource: UniqueColor
+  # Starlight end

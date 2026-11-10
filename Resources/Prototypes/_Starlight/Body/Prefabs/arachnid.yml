@@ -1,0 +1,58 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Arachnid
+  root:
+    bodyPart: TorsoArachnid
+    containedParts:
+      Heart:
+        bodyPart: OrganArachnidHeart
+      Lungs:
+        bodyPart: OrganArachnidLungs
+      Stomach:
+        bodyPart: OrganArachnidStomach
+      Liver:
+        bodyPart: OrganArachnidLiver
+      Kidneys:
+        bodyPart: OrganArachnidKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadArachnid
+        containedParts:
+          Brain:
+            bodyPart: OrganHumanBrain
+          Tongue:
+            bodyPart: OrganArachnidTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganArachnidEyes
+        sockets:
+          EyeImplant: OrganSocket
+          NoseImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmArachnid
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandArachnid
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmArachnid
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandArachnid
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegArachnid
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootArachnid
+      LeftLeg:
+        bodyPart: LeftLegArachnid
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootArachnid
+    sockets:
+      Cavity: OrganSocket

@@ -27,7 +27,7 @@
     canTargetSelf: false
     whitelist:
       components:
-      - Body
+      - SLBody
     event: !type:HorseEyesActionEvent
 
 - type: entity
@@ -122,8 +122,8 @@
 
   #Two hands.
   - type: Hands
-  - type: Body
-    prototype: BizarreHorse
+  - type: SLBody
+    prefab: BizarreHorse
   - type: ComplexInteraction
   - type: Puller
 

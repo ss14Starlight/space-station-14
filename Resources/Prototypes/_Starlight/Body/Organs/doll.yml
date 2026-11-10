@@ -8,6 +8,8 @@
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Doll/organs.rsi
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: Edible
   - type: Extractable
     grindableSolutionName: organ
@@ -92,8 +94,8 @@
   - type: HTN
     rootTask:
       task: IdleCompound
-  - type: Body
-    prototype: Animal
+  - type: SLBody
+    prefab: Animal
   - type: Climbing
   - type: NameIdentifier
     group: GenericNumber
@@ -117,6 +119,8 @@
     size: Small
     heldPrefix: brain
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: Input
     context: "ghost"
   - type: Brain
@@ -287,6 +291,8 @@
     sprite: _Starlight/Mobs/Species/Doll/organs.rsi
     state: shell
   - type: Organ
+  - type: SLBodyPart
+    partType: Organ
   - type: PhysicalComposition
     materialComposition:
       Plasteel: 25

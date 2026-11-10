@@ -29,6 +29,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Shared.Medical.Cryogenics;
 
@@ -231,7 +232,7 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         if (args.Handled)
             return;
 
-        args.CanDrop = HasComp<BodyComponent>(args.Dragged);
+        args.CanDrop = HasComp<SLBodyComponent>(args.Dragged); // Starlight-edit: SLBody
         args.Handled = true;
     }
 

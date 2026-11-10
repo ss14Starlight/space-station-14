@@ -1,4 +1,5 @@
-using Content.Shared.Body.Part;
+using Content.Shared._Starlight.Body.Components;
+using Content.Shared._Starlight.Body.Systems;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Tag;
@@ -35,6 +36,8 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private StandingStateSystem _standing = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private SLBodySystem _slBody = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private IReflectionManager _reflectionManager = default!;
     [Dependency] private ISerializationManager _serialization = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
@@ -59,7 +62,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             EntProtoId surgery,
             EntProtoId stepId,
             out Entity<SurgeryComponent> surgeryEnt,
-            out Entity<BodyPartComponent> partEnt,
+            out Entity<SLBodyPartComponent> partEnt,
             out EntityUid step
         )
     {

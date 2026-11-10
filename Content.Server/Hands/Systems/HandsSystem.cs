@@ -3,7 +3,6 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Input.Binding;
-using Content.Shared._Starlight.Medical.Body.Part; // Starlight
 
 namespace Content.Server.Hands.Systems
 {
@@ -16,11 +15,6 @@ namespace Content.Server.Hands.Systems
             base.Initialize();
 
             // Starlight: Moved disarmed event listener to shared for prediction.
-
-            // Starlight Start: Reverted NuBody
-            SubscribeLocalEvent<HandsComponent, BodyPartAddedEvent>(HandleBodyPartAdded);
-            SubscribeLocalEvent<HandsComponent, BodyPartRemovedEvent>(HandleBodyPartRemoved);
-            // Starlight End: Reverted NuBody
 
             SubscribeLocalEvent<HandsComponent, ComponentGetState>(GetComponentState);
 
@@ -54,33 +48,7 @@ namespace Content.Server.Hands.Systems
         }
 
         // Starlight: Moved OnDisarmed to shared for prediction.
-        // Starlight Start: Reverted NuBody
-        private void HandleBodyPartAdded(Entity<HandsComponent> ent, ref BodyPartAddedEvent args)
-        {
-            if (args.Part.Comp.PartType != BodyPartType.Hand)
-                return;
-
-            // If this annoys you, which it should.
-            // Ping Smugleaf.
-            var location = args.Part.Comp.Symmetry switch
-            {
-                BodyPartSymmetry.None => HandLocation.Middle,
-                BodyPartSymmetry.Left => HandLocation.Left,
-                BodyPartSymmetry.Right => HandLocation.Right,
-                _ => throw new ArgumentOutOfRangeException(nameof(args.Part.Comp.Symmetry))
-            };
-
-            AddHand(ent.AsNullable(), args.Slot, location);
-        }
-
-        private void HandleBodyPartRemoved(EntityUid uid, HandsComponent component, ref BodyPartRemovedEvent args)
-        {
-            if (args.Part.Comp.PartType != BodyPartType.Hand)
-                return;
-
-            RemoveHand(uid, args.Slot);
-        }
-        // Starlight End: Reverted NuBody
+        // Starlight: hands come from hand body parts (BodyPartHandSystem).
         #region interactions
 
         // Starlight: Moved HandleThrowItem, OnDropHandItems, and ThrowHeldItem to shared for prediction.

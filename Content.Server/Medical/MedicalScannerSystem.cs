@@ -15,9 +15,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.Containers;
 using static Content.Shared.MedicalScanner.SharedMedicalScannerComponent; // Hmm...
-#region Starlight
-using Content.Shared.Body.Components;
-#endregion
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Server.Medical
 {
@@ -60,7 +58,7 @@ namespace Content.Server.Medical
             if (!Resolve(uid, ref component))
                 return false;
 
-            return HasComp<BodyComponent>(target);
+            return HasComp<SLBodyComponent>(target); // Starlight-edit: SLBody
         }
 
         private void OnComponentInit(EntityUid uid, MedicalScannerComponent scannerComponent, ComponentInit args)
@@ -232,7 +230,7 @@ namespace Content.Server.Medical
             if (scannerComponent.BodyContainer.ContainedEntity != null)
                 return;
 
-            if (!HasComp<BodyComponent>(to_insert))
+            if (!HasComp<SLBodyComponent>(to_insert)) // Starlight-edit: SLBody
                 return;
 
             _containerSystem.Insert(to_insert, scannerComponent.BodyContainer);

@@ -31,6 +31,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
+using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -39,9 +40,11 @@ public sealed partial class ShuttleSystem
     /*
      * This is a way to move a shuttle from one location to another, via an intermediate map for fanciness.
      */
-    [Dependency] private ScreenshakeSystem _shake = default!; // Starlight
-    [Dependency] private IPlayerManager _plr = default!; // Starlight
-    [Dependency] private CameraRecoilSystem _recoil = default!; // Starlight
+    #region Starlight
+    [Dependency] private ScreenshakeSystem _shake = default!;
+    [Dependency] private IPlayerManager _plr = default!;
+    [Dependency] private CameraRecoilSystem _recoil = default!;
+    #endregion
 
     private readonly SoundSpecifier _startupSound = new SoundPathSpecifier("/Audio/Effects/Shuttle/hyperspace_begin.ogg")
     {
@@ -60,7 +63,7 @@ public sealed partial class ShuttleSystem
     private TimeSpan ArrivalsFTLCooldown;
     public float FTLMassLimit;
     private TimeSpan _hyperspaceKnockdownTime = TimeSpan.FromSeconds(5);
-    private readonly string ShakeKey = "ftlShake"; // Starlight
+    private readonly string ShakeKey = "ftlShake"; // Starlight-edit
 
     /// <summary>
     /// Left-side of the station we're allowed to use
@@ -81,7 +84,7 @@ public sealed partial class ShuttleSystem
     private readonly HashSet<EntityUid> _immuneEnts = new();
     private readonly HashSet<Entity<NoFTLComponent>> _noFtls = new();
 
-    private EntityQuery<BodyComponent> _bodyQuery;
+    private EntityQuery<SLBodyComponent> _bodyQuery; // Starlight-edit: SLBody
     private EntityQuery<FTLSmashImmuneComponent> _immuneQuery;
     private EntityQuery<StatusEffectsComponent> _statusQuery;
 
@@ -90,7 +93,7 @@ public sealed partial class ShuttleSystem
         SubscribeLocalEvent<StationPostInitEvent>(OnStationPostInit);
         SubscribeLocalEvent<FTLComponent, ComponentShutdown>(OnFtlShutdown);
 
-        _bodyQuery = GetEntityQuery<BodyComponent>();
+        _bodyQuery = GetEntityQuery<SLBodyComponent>(); // Starlight-edit: SLBody
         _immuneQuery = GetEntityQuery<FTLSmashImmuneComponent>();
         _statusQuery = GetEntityQuery<StatusEffectsComponent>();
 

@@ -4,8 +4,11 @@
   markingCategory: Hair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
-      state: crestedquills_s
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
+          state: crestedquills_s
+        colorSource: HumanHairColor
 
 - type: marking
   id: FelionoidHairFlowing
@@ -13,8 +16,11 @@
   markingCategory: Hair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
-      state: flowing_s
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
+          state: flowing_s
+        colorSource: HumanHairColor
 
 - type: marking
   id: FelionoidHairHawk
@@ -22,8 +28,11 @@
   markingCategory: Hair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
-      state: hawk_s
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
+          state: hawk_s
+        colorSource: HumanHairColor
 
 - type: marking
   id: FelionoidHairKeelQuills
@@ -31,8 +40,11 @@
   markingCategory: Hair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
-      state: keelquills_s
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
+          state: keelquills_s
+        colorSource: HumanHairColor
 
 - type: marking
   id: FelionoidHairKeetQuills
@@ -40,8 +52,11 @@
   markingCategory: Hair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
-      state: keetquills_s
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
+          state: keetquills_s
+        colorSource: HumanHairColor
 
 - type: marking
   id: FelionoidHairKingly
@@ -49,8 +64,11 @@
   markingCategory: Hair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
-      state: kingly_s
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
+          state: kingly_s
+        colorSource: HumanHairColor
 
 - type: marking
   id: FelionoidHairMange
@@ -58,8 +76,11 @@
   markingCategory: Hair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
-      state: mange_s
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
+          state: mange_s
+        colorSource: HumanHairColor
 
 - type: marking
   id: FelionoidHairNights
@@ -67,5 +88,8 @@
   markingCategory: Hair
   speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
-      state: nights_s
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
+          state: nights_s
+        colorSource: HumanHairColor

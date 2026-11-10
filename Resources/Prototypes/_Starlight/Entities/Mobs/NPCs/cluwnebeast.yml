@@ -98,8 +98,8 @@
       Unsexed: CluwneBeast
   - type: StutteringAccent
   # Starlight - start
-  - type: Body
-    prototype: Human
+  - type: SLBody
+    prefab: Human
     requiredLegs: 2
   # Starlight - end
   - type: Cluwne

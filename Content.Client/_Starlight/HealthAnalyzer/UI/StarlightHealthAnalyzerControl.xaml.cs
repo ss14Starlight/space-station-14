@@ -104,6 +104,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             .ToDictionary(g => g.Key, g => g.Value);
 
         DrawHeader(state, target.Value);
+        HealthDoll.Update(state.Extensions?.Doll);
         DrawVitals(state, target.Value, damageSpec, deathValue);
         DrawAbnormalities(state);
         DrawDamageBreakdown(sortedGroups, damagePerType, deathValue);

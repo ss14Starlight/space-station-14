@@ -27,7 +27,7 @@ public sealed partial class MarkingPicker : Control
     public Action<MarkingSet>? OnMarkingColorChange;
     public Action<MarkingSet>? OnMarkingRankChange;
 
-    private List<Color> _currentMarkingColors = new();
+    private readonly List<Color> _currentMarkingColors = []; // Starlight-edit
 
     private ItemList.Item? _selectedMarking;
     private ItemList.Item? _selectedUnusedMarking;
@@ -35,7 +35,7 @@ public sealed partial class MarkingPicker : Control
 
     private MarkingSet _currentMarkings = new();
 
-    private List<MarkingCategories> _markingCategories = Enum.GetValues<MarkingCategories>().ToList();
+    private readonly List<MarkingCategories> _markingCategories = [.. Enum.GetValues<MarkingCategories>()]; // Starlight-edit
 
     private string _currentSpecies = SharedHumanoidAppearanceSystem.DefaultSpecies;
     private Sex _currentSex = Sex.Unsexed;
@@ -44,7 +44,7 @@ public sealed partial class MarkingPicker : Control
     public Marking? HairMarking;
     public Marking? FacialHairMarking;
 
-    private readonly HashSet<MarkingCategories> _ignoreCategories = new();
+    private readonly HashSet<MarkingCategories> _ignoreCategories = []; // Starlight-edit
 
     public string IgnoreCategories
     {
@@ -69,17 +69,17 @@ public sealed partial class MarkingPicker : Control
 
     public bool Forced { get; set; }
 
-    private bool _ignoreSpecies;
-
+    // Starlight-start
     public bool IgnoreSpecies
     {
-        get => _ignoreSpecies;
+        get;
         set
         {
-            _ignoreSpecies = value;
+            field = value;
             Populate(CMarkingSearch.Text);
         }
     }
+    // Starlight-end
 
     public void SetData(List<Marking> newMarkings, string species, Sex sex, Color skinColor, Color eyeColor)
     {
@@ -150,22 +150,24 @@ public sealed partial class MarkingPicker : Control
 
         CMarkingSearch.OnTextChanged += args => Populate(args.Text);
 
-        //starlight start
+        // Starlight-start
         Glowing.OnToggled += args =>
         {
             if (_selectedMarking is null) return;
             var markingPrototype = (MarkingPrototype)_selectedMarking.Metadata!;
-            int markingIndex = _currentMarkings.FindIndexOf(_selectedMarkingCategory, markingPrototype.ID);
+            var markingIndex = _currentMarkings.FindIndexOf(_selectedMarkingCategory, markingPrototype.ID);
 
             if (markingIndex < 0) return;
 
-            var marking = new Marking(_currentMarkings.Markings[_selectedMarkingCategory][markingIndex]);
-            marking.IsGlowing = args.Pressed;
+            var marking = new Marking(_currentMarkings.Markings[_selectedMarkingCategory][markingIndex])
+            {
+                IsGlowing = args.Pressed,
+            };
             _currentMarkings.Replace(_selectedMarkingCategory, markingIndex, marking);
 
             OnMarkingColorChange?.Invoke(_currentMarkings);
         };
-        //starlight end
+        // Starlight-end
     }
 
     private void SetupCategoryButtons()
@@ -184,27 +186,25 @@ public sealed partial class MarkingPicker : Control
             }
 
             validCategories.Add(category);
-            CMarkingCategoryButton.AddItem(Loc.GetString($"markings-category-{category.ToString()}"), i);
+            CMarkingCategoryButton.AddItem(Loc.GetString($"markings-category-{category}"), i); // Starlight-edit
         }
 
+        // Starlight-start
         if (validCategories.Contains(_selectedMarkingCategory))
         {
             CMarkingCategoryButton.SelectId(_markingCategories.IndexOf(_selectedMarkingCategory));
         }
-        else if (validCategories.Count > 0)
-        {
-            _selectedMarkingCategory = validCategories[0];
-        }
         else
         {
-            _selectedMarkingCategory = MarkingCategories.Chest;
+            _selectedMarkingCategory = validCategories.Count > 0 ? validCategories[0] : MarkingCategories.Chest;
         }
+        // Starlight-end
     }
 
-    private string GetMarkingName(MarkingPrototype marking) => Loc.GetString($"marking-{marking.ID}");
+    private static string GetMarkingName(MarkingPrototype marking) => Loc.GetString($"marking-{marking.ID}"); // Starlight-edit
 
     // Starlight start - color controls can represent shared color slots instead of raw sprite layers.
-    private List<string> GetMarkingColorNames(MarkingPrototype marking)
+    private static List<string> GetMarkingColorNames(MarkingPrototype marking)
     {
         var result = new List<string>();
         for (var i = 0; i < marking.ColorSlotCount; i++)
@@ -213,13 +213,13 @@ public sealed partial class MarkingPicker : Control
         }
 
         var namedSlots = new bool[marking.ColorSlotCount];
-        for (var i = 0; i < marking.Sprites.Count; i++)
+        for (var i = 0; i < marking.SpriteList.Count; i++)
         {
             var colorIndex = marking.GetColorIndex(i);
             if (colorIndex >= marking.ColorSlotCount || namedSlots[colorIndex])
                 continue;
 
-            switch (marking.Sprites[i])
+            switch (marking.SpriteList[i].Sprite)
             {
                 case SpriteSpecifier.Rsi rsi:
                     result[colorIndex] = Loc.GetString($"marking-{marking.ID}-{rsi.RsiState}");
@@ -237,11 +237,9 @@ public sealed partial class MarkingPicker : Control
     // Starlight end
 
     private IReadOnlyDictionary<string, MarkingPrototype> GetMarkings(MarkingCategories category)
-    {
-        return IgnoreSpecies
+        => IgnoreSpecies // Starlight-edit: lambda
             ? _markingManager.MarkingsByCategoryAndSex(category, _currentSex)
             : _markingManager.MarkingsByCategoryAndSpeciesAndSex(category, _currentSpecies, _currentSex);
-    }
 
     public void Populate(string filter)
     {
@@ -251,9 +249,11 @@ public sealed partial class MarkingPicker : Control
         _selectedUnusedMarking = null;
 
         var sortedMarkings = GetMarkings(_selectedMarkingCategory).Values.Where(m =>
-            m.ID.ToLower().Contains(filter.ToLower()) ||
-            GetMarkingName(m).ToLower().Contains(filter.ToLower())
-        ).OrderBy(p => GetMarkingName(p)); // Starlight
+        // Starlight-start
+            m.ID.Contains(filter, StringComparison.CurrentCultureIgnoreCase) ||
+            GetMarkingName(m).Contains(filter, StringComparison.CurrentCultureIgnoreCase)
+        ).OrderBy(GetMarkingName);
+        // Starlight-end
 
         foreach (var marking in sortedMarkings)
         {
@@ -262,7 +262,7 @@ public sealed partial class MarkingPicker : Control
                 continue;
             }
 
-            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites[0]));
+            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites.Values.First().Sprite)); // Starlight
             item.Metadata = marking;
         }
 
@@ -296,7 +296,7 @@ public sealed partial class MarkingPicker : Control
             var _item = new ItemList.Item(CMarkingsUsed)
             {
                 Text = text,
-                Icon = _sprite.Frame0(newMarking.Sprites[0]),
+                Icon = _sprite.Frame0(newMarking.Sprites.Values.First().Sprite), // Starlight
                 Selectable = true,
                 Metadata = newMarking,
                 IconModulate = marking.MarkingColors[0]
@@ -345,10 +345,7 @@ public sealed partial class MarkingPicker : Control
         }
 
         var visualDest = src + places; // what it would visually look like
-        var visualTemp = CMarkingsUsed[visualDest];
-        CMarkingsUsed[visualDest] = CMarkingsUsed[src];
-        CMarkingsUsed[src] = visualTemp;
-
+        (CMarkingsUsed[src], CMarkingsUsed[visualDest]) = (CMarkingsUsed[visualDest], CMarkingsUsed[src]); // Starlight-edit
         switch (places)
         {
             // i.e., we're going down in rank
@@ -367,8 +364,6 @@ public sealed partial class MarkingPicker : Control
 
         return true;
     }
-
-
 
     // repopulate in case markings are restricted,
     // and also filter out any markings that are now invalid
@@ -438,11 +433,11 @@ public sealed partial class MarkingPicker : Control
             return;
         }
 
-        // Starlight start - build one picker per color slot, not per sprite.
+        // Starlight-start - build one picker per color slot, not per sprite.
         var colorNames = GetMarkingColorNames(prototype);
         _currentMarkingColors.Clear();
         CMarkingColors.RemoveAllChildren();
-        for (int i = 0; i < prototype.ColorSlotCount; i++)
+        for (var i = 0; i < prototype.ColorSlotCount; i++)
         {
             var colorContainer = new BoxContainer
             {
@@ -451,8 +446,10 @@ public sealed partial class MarkingPicker : Control
 
             CMarkingColors.AddChild(colorContainer);
 
-            ColorSelectorSliders colorSelector = new ColorSelectorSliders();
-            colorSelector.SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv; // defaults color selector to HSV
+            var colorSelector = new ColorSelectorSliders()
+            {
+                SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv, // defaults color selector to HSV
+            };
 
             colorContainer.AddChild(new Label { Text = Loc.GetString("marking-picker-slot-color", ("name", colorNames[i])) });
             colorContainer.AddChild(colorSelector);
@@ -469,36 +466,34 @@ public sealed partial class MarkingPicker : Control
             _currentMarkingColors.Add(currentColor);
             var colorIndex = _currentMarkingColors.Count - 1;
 
-            Action<Color> colorChanged = _ =>
+            void colorChanged(Color _)
             {
                 _currentMarkingColors[colorIndex] = colorSelector.Color;
 
                 ColorChanged(colorIndex);
-            };
+            }
             colorSelector.OnColorChanged += colorChanged;
         }
-        // Starlight end
 
         CMarkingColors.Visible = true;
 
-        //starlight start
         if (_selectedMarking is null) return;
         var markingPrototype = (MarkingPrototype)_selectedMarking.Metadata!;
-        int markingIndex = _currentMarkings.FindIndexOf(_selectedMarkingCategory, markingPrototype.ID);
+        var markingIndex = _currentMarkings.FindIndexOf(_selectedMarkingCategory, markingPrototype.ID);
 
         if (markingIndex < 0) return;
 
         var marking = _currentMarkings.Markings[_selectedMarkingCategory][markingIndex];
 
         Glowing.Pressed = marking.IsGlowing;
-        //starlight end
+        // Starlight-end
     }
 
     private void ColorChanged(int colorIndex)
     {
         if (_selectedMarking is null) return;
         var markingPrototype = (MarkingPrototype) _selectedMarking.Metadata!;
-        int markingIndex = _currentMarkings.FindIndexOf(_selectedMarkingCategory, markingPrototype.ID);
+        var markingIndex = _currentMarkings.FindIndexOf(_selectedMarkingCategory, markingPrototype.ID); // Starlight-edit
 
         if (markingIndex < 0) return;
 
@@ -568,7 +563,7 @@ public sealed partial class MarkingPicker : Control
         var item = new ItemList.Item(CMarkingsUsed)
         {
             Text = Loc.GetString("marking-used", ("marking-name", $"{GetMarkingName(marking)}"), ("marking-category", Loc.GetString($"markings-category-{marking.MarkingCategory}"))),
-            Icon = _sprite.Frame0(marking.Sprites[0]),
+            Icon = _sprite.Frame0(marking.Sprites.Values.First().Sprite), // Starlight: Dictionary -> Values.First
             Selectable = true,
             Metadata = marking,
         };
@@ -592,7 +587,7 @@ public sealed partial class MarkingPicker : Control
 
         if (marking.MarkingCategory == _selectedMarkingCategory)
         {
-            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites[0]));
+            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites.Values.First().Sprite)); // Starlight: Dictionary -> Values.First
             item.Metadata = marking;
         }
         _selectedMarking = null;

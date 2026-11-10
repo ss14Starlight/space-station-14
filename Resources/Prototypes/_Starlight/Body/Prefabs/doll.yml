@@ -1,0 +1,156 @@
+# Generated from the legacy `body` prototypes (same ids); see SLBody migration.
+
+- type: bodyPrefab
+  id: Doll
+  root:
+    bodyPart: TorsoDoll
+    containedParts:
+      Heart:
+        bodyPart: OrganDollHeart
+      Lungs:
+        bodyPart: OrganDollLungs
+      Stomach:
+        bodyPart: OrganDollStomach
+      Liver:
+        bodyPart: OrganDollLiver
+      Kidneys:
+        bodyPart: OrganDollKidneys
+      Shell:
+        bodyPart: ShellFragmentDoll
+    attachedParts:
+      Head:
+        bodyPart: HeadDoll
+        containedParts:
+          Brain:
+            bodyPart: OrganDollBrain
+          Tongue:
+            bodyPart: OrganDollTongue
+          Shell:
+            bodyPart: ShellFragmentDoll
+        attachedParts:
+          Eyes:
+            bodyPart: OrganDollEyes
+        sockets:
+          EyeImplant: OrganSocket
+          BrainImplant: OrganSocket
+      RightArm:
+        bodyPart: RightArmDoll
+        containedParts:
+          Shell:
+            bodyPart: ShellFragmentDoll
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandDoll
+            containedParts:
+              Shell:
+                bodyPart: ShellFragmentDoll
+            sockets:
+              HandImplant: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmDoll
+        containedParts:
+          Shell:
+            bodyPart: ShellFragmentDoll
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandDoll
+            containedParts:
+              Shell:
+                bodyPart: ShellFragmentDoll
+            sockets:
+              HandImplant: OrganSocket
+      RightLeg:
+        bodyPart: RightLegDoll
+        containedParts:
+          Shell:
+            bodyPart: ShellFragmentDoll
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootDoll
+            containedParts:
+              Shell:
+                bodyPart: ShellFragmentDoll
+      LeftLeg:
+        bodyPart: LeftLegDoll
+        containedParts:
+          Shell:
+            bodyPart: ShellFragmentDoll
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootDoll
+            containedParts:
+              Shell:
+                bodyPart: ShellFragmentDoll
+    sockets:
+      Cavity: OrganSocket
+
+- type: bodyPrefab
+  id: DollFresh
+  root:
+    bodyPart: TorsoDoll
+    containedParts:
+      Heart:
+        bodyPart: OrganDollHeart
+      Lungs:
+        bodyPart: OrganDollLungs
+      Stomach:
+        bodyPart: OrganDollStomach
+      Liver:
+        bodyPart: OrganDollLiver
+      Kidneys:
+        bodyPart: OrganDollKidneys
+    attachedParts:
+      Head:
+        bodyPart: HeadDoll
+        containedParts:
+          Tongue:
+            bodyPart: OrganDollTongue
+        attachedParts:
+          Eyes:
+            bodyPart: OrganDollEyes
+        sockets:
+          Brain: OrganSocket
+          EyeImplant: OrganSocket
+          BrainImplant: OrganSocket
+          Shell: OrganSocket
+      RightArm:
+        bodyPart: RightArmDoll
+        attachedParts:
+          RightHand:
+            bodyPart: RightHandDoll
+            sockets:
+              HandImplant: OrganSocket
+              Shell: OrganSocket
+        sockets:
+          Shell: OrganSocket
+      LeftArm:
+        bodyPart: LeftArmDoll
+        attachedParts:
+          LeftHand:
+            bodyPart: LeftHandDoll
+            sockets:
+              HandImplant: OrganSocket
+              Shell: OrganSocket
+        sockets:
+          Shell: OrganSocket
+      RightLeg:
+        bodyPart: RightLegDoll
+        attachedParts:
+          RightFoot:
+            bodyPart: RightFootDoll
+            sockets:
+              Shell: OrganSocket
+        sockets:
+          Shell: OrganSocket
+      LeftLeg:
+        bodyPart: LeftLegDoll
+        attachedParts:
+          LeftFoot:
+            bodyPart: LeftFootDoll
+            sockets:
+              Shell: OrganSocket
+        sockets:
+          Shell: OrganSocket
+    sockets:
+      Cavity: OrganSocket
+      Shell: OrganSocket

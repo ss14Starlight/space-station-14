@@ -49,8 +49,8 @@
         Base: dead
       Dead:
         Base: dead
-  - type: Body
-    prototype: AnimalHemocyanin
+  - type: SLBody
+    prefab: AnimalHemocyanin
   - type: MobThresholds
     thresholds:
       0: Alive
