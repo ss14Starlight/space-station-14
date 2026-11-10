@@ -1,41 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: Add 2 Assistant Manager job roles.
-    type: Add
-  id: 409891
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'Medical: Add 2 Defibs at Medical Checkpoint by EVAC.'
-    type: Add
-  id: 409892
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'Bumblebee: Change Normal Water Tank into High-capacity Water Tank.'
-    type: Tweak
-  id: 409893
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Every 'externals' airlocks that are touching each other are now linked, meaning that they open together.
-    type: Tweak
-  id: 409894
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Made the "Arcade" Room smaller.
-    type: Tweak
-  id: 409895
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
   - message: Minor changes/additions to maints.
     type: Tweak
   id: 409896
@@ -2799,4 +2764,39 @@ Entries:
   id: 410290
   time: '2026-11-09T21:23:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7152
+- author: Citrea
+  changes:
+  - message: Nexus Integrated trait no longer requires surgery.
+    type: Fix
+  id: 410291
+  time: '2026-11-09T21:53:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7130
+- author: Citrea
+  changes:
+  - message: Expies can no longer be Nexus Integrated, as it conflicts with their pre-existing brain implant.
+    type: Remove
+  id: 410292
+  time: '2026-11-09T21:53:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7130
+- author: Celestial3rror404
+  changes:
+  - message: IPC survival boxes now come with an emergency welder.
+    type: Tweak
+  id: 410293
+  time: '2026-11-10T00:01:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7156
+- author: Sparlight
+  changes:
+  - message: Added a half-bright lighting option for spectating, which illuminates dark areas dimly for easier viewing.
+    type: Add
+  id: 410294
+  time: '2026-11-10T07:38:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7157
+- author: Rinary
+  changes:
+  - message: Last lights change was reverted. Goodbye.
+    type: Remove
+  id: 410295
+  time: '2026-11-10T08:52:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7161
 Order: -1

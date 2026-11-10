@@ -2,7 +2,6 @@
   id: BaseAPC
   components:
   - type: Setup
-  - type: ApcLighting
   - type: UserInterface
     interfaces:
       enum.SetupUiKey.Key:

@@ -76,7 +76,6 @@ public sealed partial class PoweredLightSystem : SharedPoweredLightSystem
             // Otherwise, ensure the component exists and set its value.
             var alertLevelDimming = EnsureComp<AlertLevelDimmedLightComponent>(uid);
             alertLevelDimming.LightEnergyMultiplier = levelAfter.DimmedLightMultiplier.Value;
-            Dirty(uid, alertLevelDimming);
             UpdateLight(uid, light);
         }
     }
