@@ -1,4 +1,3 @@
-using Content.Shared._Starlight.Light;
 using Content.Shared._Starlight.ToggleableDevice.EntitySystems;
 using Content.Shared.Light.Components;
 
