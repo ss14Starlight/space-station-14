@@ -1,6 +1,3 @@
-using Content.Shared.Actions;
-
-// ReSharper disable once CheckNamespace
 namespace Content.Shared._Starlight.Silicons.Borgs;
 
 public sealed partial class StationAIShuntSystem
