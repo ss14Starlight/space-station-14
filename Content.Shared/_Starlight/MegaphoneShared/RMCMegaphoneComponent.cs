@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Content.Shared.Speech;
 
-namespace Content.Shared._Starlight.Megaphone;
+namespace Content.Shared._Starlight.MegaphoneShared;
 
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(RMCMegaphoneSystem))]

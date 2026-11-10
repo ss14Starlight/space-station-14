@@ -1,7 +1,7 @@
 using Content.Shared.Interaction.Events;
 using Robust.Shared.GameObjects;
 
-namespace Content.Shared._Starlight.Megaphone;
+namespace Content.Shared._Starlight.MegaphoneShared;
 
 public sealed class RMCMegaphoneSystem : EntitySystem
 {
