@@ -18,9 +18,11 @@ using Content.Shared.Storage.EntitySystems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+#region Starlight
 using Content.Shared._Starlight.Light;
 using Content.Shared._Starlight.Railroading.Components.Tasks;
 using Content.Shared._Starlight.Shadekin.Components;
+#endregion
 
 namespace Content.Shared.Light.EntitySystems;
 
@@ -60,6 +62,17 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
 
         SubscribeLocalEvent<BlinkingPoweredLightComponent, MapInitEvent>(OnBlinkingMapInit);
         SubscribeLocalEvent<BlinkingPoweredLightComponent, ComponentShutdown>(OnBlinkingShutdown);
+
+        SubscribeLocalEvent<AlertLevelDimmedLightComponent, GetDimmedLightLevelEvent>(OnGetDimmedLightLevel); // Starlight
+    }
+
+    /// <summary>
+    /// STARLIGHT: Handle light dimming during higher alert levels.
+    /// </summary>
+    private void OnGetDimmedLightLevel(EntityUid uid, AlertLevelDimmedLightComponent component, GetDimmedLightLevelEvent args)
+    {
+        args.LightEnergy *= component.LightEnergyMultiplier;
+        args.PowerUse *= component.LightEnergyMultiplier;
     }
 
     private void OnInit(EntityUid uid, PoweredLightComponent light, ComponentInit args)
@@ -275,9 +288,8 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
         if (bulbUid == null || !TryComp<LightBulbComponent>(bulbUid.Value, out var lightBulb))
         {
             SetLight(uid, false, light: light);
-            powerReceiver.Load = GetBackupLoad(uid); // Starlight: was 0, the backup cell may still be charging
+            powerReceiver.Load = 0;
             _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.Empty, appearance);
-            UpdateFlicker(uid, null, false, false); // Starlight
             return;
         }
 
@@ -285,16 +297,16 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
         var lightEnergy = lightBulb.LightEnergy;
         var lightRadius = lightBulb.LightRadius;
         var powerUse = lightBulb.PowerUse;
-        var lightColor = lightBulb.Color;
 
-        // Raised for every bulb, handlers check Dimmable themselves: alert levels skip emergency bulbs, night lighting doesn't.
-        var lightLevelEv = new GetDimmedLightLevelEvent(lightEnergy, lightRadius, powerUse, lightColor, lightBulb.Dimmable);
-        RaiseLocalEvent(uid, lightLevelEv);
+        if (lightBulb.Dimmable)
+        {
+            var lightLevelEv = new GetDimmedLightLevelEvent(lightEnergy, lightRadius, powerUse);
+            RaiseLocalEvent(uid, lightLevelEv);
 
-        lightEnergy = lightLevelEv.LightEnergy;
-        lightRadius = lightLevelEv.LightRadius;
-        powerUse = (int) Math.Ceiling(lightLevelEv.PowerUse);
-        lightColor = lightLevelEv.Color;
+            lightEnergy = lightLevelEv.LightEnergy;
+            lightRadius = lightBulb.LightRadius;
+            powerUse = (int) Math.Ceiling((double) lightBulb.PowerUse);
+        }
 
         // Lets the fixture itself scale its light, whatever bulb is fitted.
         var fixtureEv = new GetLightFixtureLevelEvent(lightEnergy, lightRadius);
@@ -308,9 +320,8 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
             case LightBulbState.Normal:
                 if (powerReceiver.Powered && light.On && lightEnergy > 0)
                 {
-                    SetLight(uid, true, lightColor, light, lightRadius, lightEnergy, lightBulb.LightSoftness, HasComp<DarkLightComponent>(bulbUid.Value)); // Starlight
+                    SetLight(uid, true, lightBulb.Color, light, lightRadius, lightEnergy, lightBulb.LightSoftness, HasComp<DarkLightComponent>(bulbUid.Value)); // Starlight
                     _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.On, appearance);
-                    ClearBackupLight(uid, appearance); // Starlight
                     var time = GameTiming.CurTime;
                     if (time > light.LastThunk + ThunkDelay)
                     {
@@ -319,7 +330,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
                         _audio.PlayPredicted(light.TurnOnSound, uid, user: user, light.TurnOnSound.Params.AddVolume(-10f));
                     }
                 }
-                else if (!TrySetBackupLight(uid, light, (bulbUid.Value, lightBulb), powerReceiver, appearance)) // Starlight
+                else
                 {
                     SetLight(uid, false, light: light);
                     _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.Off, appearance);
@@ -335,15 +346,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
                 break;
         }
 
-        // Starlight-start
-
-        powerReceiver.Load = ((light.On && lightBulb.State == LightBulbState.Normal) ? powerUse : 0) + GetBackupLoad(uid);
-
-        UpdateFlicker(uid,
-            bulbUid,
-            lightBulb.State == LightBulbState.Normal && powerReceiver.Powered && light.On && lightEnergy > 0,
-            lightBulb.State == LightBulbState.Broken && powerReceiver.Powered && light.On);
-        // Starlight-end
+        powerReceiver.Load = (light.On && lightBulb.State == LightBulbState.Normal) ? powerUse : 0; // Starlight
     }
 
     /// <summary>

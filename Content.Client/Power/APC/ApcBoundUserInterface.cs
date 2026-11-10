@@ -7,7 +7,7 @@ using Robust.Client.UserInterface;
 namespace Content.Client.Power.APC
 {
     [UsedImplicitly]
-    public sealed partial class ApcBoundUserInterface : BoundUserInterface // Starlight-edit: Partial
+    public sealed class ApcBoundUserInterface : BoundUserInterface
     {
         [ViewVariables]
         private ApcMenu? _menu;
@@ -22,7 +22,6 @@ namespace Content.Client.Power.APC
             _menu = this.CreateWindow<ApcMenu>();
             _menu.SetEntity(Owner);
             _menu.OnBreaker += BreakerPressed;
-            _menu.OnLightingMode += LightingModePressed; // Starlight-edit
 
             var hasAccess = false;
             if (PlayerManager.LocalEntity != null)
@@ -31,7 +30,6 @@ namespace Content.Client.Power.APC
                 hasAccess = accessReader.IsAllowed((EntityUid)PlayerManager.LocalEntity, Owner);
             }
             _menu?.SetAccessEnabled(hasAccess);
-            UpdateLighting(); // Starlight-edit
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)
