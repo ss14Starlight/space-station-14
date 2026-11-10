@@ -58,7 +58,6 @@
     - map: [ "enum.ToggleableVisuals.Layer" ]
       state: toyremote_on
       visible: false
-    state: toyremote
   - type: Item
     sprite: _Starlight/Objects/Devices/toy_remote_control.rsi
   - type: Appearance
