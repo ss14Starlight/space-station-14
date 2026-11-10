@@ -1,27 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: Every 'externals' airlocks that are touching each other are now linked, meaning that they open together.
-    type: Tweak
-  id: 409894
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Made the "Arcade" Room smaller.
-    type: Tweak
-  id: 409895
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Minor changes/additions to maints.
-    type: Tweak
-  id: 409896
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
   - message: Minor additions and fixes.
     type: Fix
   id: 409897
@@ -2799,4 +2778,25 @@ Entries:
   id: 410293
   time: '2026-11-10T00:01:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7156
+- author: Sparlight
+  changes:
+  - message: Added a half-bright lighting option for spectating, which illuminates dark areas dimly for easier viewing.
+    type: Add
+  id: 410294
+  time: '2026-11-10T07:38:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7157
+- author: Rinary
+  changes:
+  - message: Last lights change was reverted. Goodbye.
+    type: Remove
+  id: 410295
+  time: '2026-11-10T08:52:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7161
+- author: Rinary
+  changes:
+  - message: I see smth on the ground!!! what is this? Diamond! Lights 1.0 restored to previous state. Have a good day SL community. I'll take a brake for a while.
+    type: Add
+  id: 410296
+  time: '2026-11-10T10:15:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7164
 Order: -1
