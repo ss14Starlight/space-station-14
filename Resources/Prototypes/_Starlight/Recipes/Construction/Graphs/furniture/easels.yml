@@ -1,0 +1,355 @@
+- type: constructionGraph
+  id: EaselSL
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: easelBase
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 2
+        - to: canvasBlank
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 2
+        - to: canvasPaintedRK
+          steps:
+          - tag: CanvasBlank
+            icon:
+              sprite: _Starlight/Structures/Furniture/easel.rsi
+              state: canvas_base
+            name: crafting-menu-name-CANVAS
+            amount: 1
+          - tag: CrayonCanvas
+            icon:
+              sprite: Objects/Fun/crayons.rsi
+              state: rainbow
+            name: crafting-menu-name-crayon
+            amount: 1
+            doAfter: 5
+        - to: canvasPaintedSpooky
+          steps:
+          - tag: CanvasBlank
+            icon:
+              sprite: _Starlight/Structures/Furniture/easel.rsi
+              state: canvas_base
+            name: crafting-menu-name-CANVAS
+          - tag: CrayonCanvas
+            icon:
+              sprite: Objects/Fun/crayons.rsi
+              state: rainbow
+            name: crafting-menu-name-crayon
+            amount: 1
+            doAfter: 5
+        - to: canvasPaintedCheesePizza
+          steps:
+          - tag: CanvasBlank
+            icon:
+              sprite: _Starlight/Structures/Furniture/easel.rsi
+              state: canvas_base
+            name: crafting-menu-name-CANVAS
+          - tag: CrayonCanvas
+            icon:
+              sprite: Objects/Fun/crayons.rsi
+              state: rainbow
+            name: crafting-menu-name-crayon
+            amount: 1
+            doAfter: 5
+        - to: canvasPaintedPepperoniPizza
+          steps:
+          - tag: CanvasBlank
+            icon:
+              sprite: _Starlight/Structures/Furniture/easel.rsi
+              state: canvas_base
+            name: crafting-menu-name-CANVAS
+          - tag: CrayonCanvas
+            icon:
+              sprite: Objects/Fun/crayons.rsi
+              state: rainbow
+            name: crafting-menu-name-crayon
+            amount: 1
+            doAfter: 5
+        - to: canvasPaintedWave
+          steps:
+          - tag: CanvasBlank
+            icon:
+              sprite: _Starlight/Structures/Furniture/easel.rsi
+              state: canvas_base
+            name: crafting-menu-name-CANVAS
+          - tag: CrayonCanvas
+            icon:
+              sprite: Objects/Fun/crayons.rsi
+              state: rainbow
+            name: crafting-menu-name-crayon
+            amount: 1
+            doAfter: 5
+        - to: canvasPaintedSkullCig
+          steps:
+          - tag: CanvasBlank
+            icon:
+              sprite: _Starlight/Structures/Furniture/easel.rsi
+              state: canvas_base
+            name: crafting-menu-name-CANVAS
+          - tag: CrayonCanvas
+            icon:
+              sprite: Objects/Fun/crayons.rsi
+              state: rainbow
+            name: crafting-menu-name-crayon
+            amount: 1
+            doAfter: 5
+        - to: canvasPaintedSaturn
+          steps:
+          - tag: CanvasBlank
+            icon:
+              sprite: _Starlight/Structures/Furniture/easel.rsi
+              state: canvas_base
+            name: crafting-menu-name-CANVAS
+          - tag: CrayonCanvas
+            icon:
+              sprite: Objects/Fun/crayons.rsi
+              state: rainbow
+            name: crafting-menu-name-crayon
+            amount: 1
+            doAfter: 5
+        - to: canvasPaintedStarry
+          steps:
+          - tag: CanvasBlank
+            icon:
+              sprite: _Starlight/Structures/Furniture/easel.rsi
+              state: canvas_base
+            name: crafting-menu-name-CANVAS
+          - tag: CrayonCanvas
+            icon:
+              sprite: Objects/Fun/crayons.rsi
+              state: rainbow
+            name: crafting-menu-name-crayon
+            amount: 1
+            doAfter: 5
+        - to: canvasPaintedGodo
+          steps:
+          - tag: CanvasBlank
+            icon:
+              sprite: _Starlight/Structures/Furniture/easel.rsi
+              state: canvas_base
+            name: crafting-menu-name-CANVAS
+          - tag: CrayonCanvas
+            icon:
+              sprite: Objects/Fun/crayons.rsi
+              state: rainbow
+            name: crafting-menu-name-crayon
+            amount: 1
+            doAfter: 5
+        - to: canvasPaintedVengefulWeh
+          steps:
+          - tag: CanvasBlank
+            icon:
+              sprite: _Starlight/Structures/Furniture/easel.rsi
+              state: canvas_base
+            name: crafting-menu-name-CANVAS
+          - tag: CrayonCanvas
+            icon:
+              sprite: Objects/Fun/crayons.rsi
+              state: rainbow
+            name: crafting-menu-name-crayon
+            amount: 1
+            doAfter: 5
+        - to: canvasPaintedLiminal
+          steps:
+          - tag: CanvasBlank
+            icon:
+              sprite: _Starlight/Structures/Furniture/easel.rsi
+              state: canvas_base
+            name: crafting-menu-name-CANVAS
+          - tag: CrayonCanvas
+            icon:
+              sprite: Objects/Fun/crayons.rsi
+              state: rainbow
+            name: crafting-menu-name-crayon
+            amount: 1
+            doAfter: 5
+        - to: canvasPaintedFelinoidJudgement
+          steps:
+          - tag: CanvasBlank
+            icon:
+              sprite: _Starlight/Structures/Furniture/easel.rsi
+              state: canvas_base
+            name: crafting-menu-name-CANVAS
+          - tag: CrayonCanvas
+            icon:
+              sprite: Objects/Fun/crayons.rsi
+              state: rainbow
+            name: crafting-menu-name-crayon
+            amount: 1
+            doAfter: 5
+
+    - node: easelBase
+      entity: EaselBase
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: WoodPlank
+              amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: canvasBlank
+      entity: BlankCanvas
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: Cloth
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: canvasPaintedRK
+      entity: PaintedCanvasRK
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: BlankCanvas
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: canvasPaintedSpooky
+      entity: PaintedCanvasSpooky
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: BlankCanvas
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: canvasPaintedCheesePizza
+      entity: PaintedCanvasCheesePizza
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: BlankCanvas
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: canvasPaintedPepperoniPizza
+      entity: PaintedCanvasPepperoniPizza
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: BlankCanvas
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: canvasPaintedWave
+      entity: PaintedCanvasWave
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: BlankCanvas
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: canvasPaintedSkullCig
+      entity: PaintedCanvasSkullCig
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: BlankCanvas
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: canvasPaintedSaturn
+      entity: PaintedCanvasSaturn
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: BlankCanvas
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: canvasPaintedStarry
+      entity: PaintedCanvasStarry
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: BlankCanvas
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: canvasPaintedGodo
+      entity: PaintedCanvasGodo
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: BlankCanvas
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: canvasPaintedVengefulWeh
+      entity: PaintedCanvasVengefulWeh
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: BlankCanvas
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: canvasPaintedLiminal
+      entity: PaintedCanvasLiminal
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: BlankCanvas
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: canvasPaintedFelinoidJudgement
+      entity: PaintedCanvasFelinoidJudgement
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: BlankCanvas
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 1

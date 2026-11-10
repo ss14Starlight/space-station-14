@@ -707,3 +707,132 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
+
+# Easel + Canvases
+- type: construction
+  id: EaselBase
+  name: construction-recipe-easel
+  graph: EaselSL
+  startNode: start
+  targetNode: easelBase
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: BlankCanvas
+  name: construction-recipe-canvas-blank
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasBlank
+  category: construction-category-furniture
+  objectType: Item
+
+- type: construction
+  id: PaintedCanvasRK
+  name: construction-recipe-canvas-painted-rat-king
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasPaintedRK
+  category: construction-category-furniture
+  objectType: Item
+
+- type: construction
+  id: PaintedCanvasSpooky
+  name: construction-recipe-canvas-painted-spooky
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasPaintedSpooky
+  category: construction-category-furniture
+  objectType: Item
+
+- type: construction
+  id: PaintedCanvasCheesePizza
+  name: construction-recipe-canvas-painted-cheese-pizza
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasPaintedCheesePizza
+  category: construction-category-furniture
+  objectType: Item
+
+- type: construction
+  id: PaintedCanvasPepperoniPizza
+  name: construction-recipe-canvas-painted-pepperoni-pizza
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasPaintedPepperoniPizza
+  category: construction-category-furniture
+  objectType: Item
+
+- type: construction
+  id: PaintedCanvasWave
+  name: construction-recipe-canvas-painted-wave
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasPaintedWave
+  category: construction-category-furniture
+  objectType: Item
+
+- type: construction
+  id: PaintedCanvasSaturn
+  name: construction-recipe-canvas-painted-saturn
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasPaintedSaturn
+  category: construction-category-furniture
+  objectType: Item
+
+- type: construction
+  id: PaintedCanvasSkullCig
+  name: construction-recipe-canvas-painted-skull-cig
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasPaintedSkullCig
+  category: construction-category-furniture
+  objectType: Item
+
+- type: construction
+  id: PaintedCanvasStarry
+  name: construction-recipe-canvas-painted-starry
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasPaintedStarry
+  category: construction-category-furniture
+  objectType: Item
+
+- type: construction
+  id: PaintedCanvasGodo
+  name: construction-recipe-canvas-painted-godo
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasPaintedGodo
+  category: construction-category-furniture
+  objectType: Item
+
+- type: construction
+  id: PaintedCanvasVengefulWeh
+  name: construction-recipe-canvas-painted-vengeful-weh
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasPaintedVengefulWeh
+  category: construction-category-furniture
+  objectType: Item
+
+- type: construction
+  id: PaintedCanvasLiminal
+  name: construction-recipe-canvas-painted-liminal
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasPaintedLiminal
+  category: construction-category-furniture
+  objectType: Item
+
+- type: construction
+  id: PaintedCanvasFelinoidJudgement
+  name: construction-recipe-canvas-painted-felinoid-judgement
+  graph: EaselSL
+  startNode: start
+  targetNode: canvasPaintedFelinoidJudgement
+  category: construction-category-furniture
+  objectType: Item

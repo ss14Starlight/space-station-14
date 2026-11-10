@@ -1,0 +1,55 @@
+- type: !PartialOnly entity
+  id: CrayonWhite
+  components:
+  - type: Tag
+    tags:
+    - CrayonCanvas
+
+- type: !PartialOnly entity
+  id: CrayonBlack
+  components:
+  - type: Tag
+    tags:
+    - CrayonCanvas
+
+- type: !PartialOnly entity
+  id: CrayonRed
+  components:
+  - type: Tag
+    tags:
+    - CrayonCanvas
+
+- type: !PartialOnly entity
+  id: CrayonOrange
+  components:
+  - type: Tag
+    tags:
+    - CrayonCanvas
+
+- type: !PartialOnly entity
+  id: CrayonYellow
+  components:
+  - type: Tag
+    tags:
+    - CrayonCanvas
+
+- type: !PartialOnly entity
+  id: CrayonGreen
+  components:
+  - type: Tag
+    tags:
+    - CrayonCanvas
+
+- type: !PartialOnly entity
+  id: CrayonBlue
+  components:
+  - type: Tag
+    tags:
+    - CrayonCanvas
+
+- type: !PartialOnly entity
+  id: CrayonPurple
+  components:
+  - type: Tag
+    tags:
+    - CrayonCanvas

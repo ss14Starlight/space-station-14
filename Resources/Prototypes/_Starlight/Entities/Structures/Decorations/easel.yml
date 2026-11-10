@@ -23,6 +23,10 @@
           - CanvasPaintedSaturn
           - CanvasPaintedSkullCig
           - CanvasPaintedStarry
+          - CanvasPaintedGodo
+          - CanvasPaintedVengefulWeh
+          - CanvasPaintedLiminal
+          - CanvasPaintedFelinoidJudgement
   - type: ItemMapper
     mapLayers:
       easel_canvas:
@@ -61,6 +65,22 @@
         whitelist:
           tags:
             - CanvasPaintedStarry
+      canvas_godo:
+        whitelist:
+          tags:
+            - CanvasPaintedGodo
+      canvas_vengeful_weh:
+        whitelist:
+          tags:
+            - CanvasPaintedVengefulWeh
+      canvas_liminal:
+        whitelist:
+          tags:
+           - CanvasPaintedLiminal
+      canvas_felinoid_judgement:
+        whitelist:
+          tags:
+           - CanvasPaintedFelinoidJudgement
   - type: Appearance
   - type: Destructible
     thresholds:
@@ -110,6 +130,9 @@
         occludes: True
   - type: Transform
     noRot: true
+  - type: Construction
+    graph: EaselSL
+    node: easelBase
 
 - type: entity
   id: BlankCanvas
@@ -127,6 +150,9 @@
   - type: Tag
     tags:
     - CanvasBlank
+  - type: Construction
+    graph: EaselSL
+    node: canvasBlank
 
 - type: entity
   id: PaintedCanvasRK
@@ -142,6 +168,9 @@
   - type: Tag
     tags:
     - CanvasPaintedRK
+  - type: Construction
+    graph: EaselSL
+    node: canvasPaintedRK
 
 - type: entity
   id: PaintedCanvasSpooky
@@ -157,6 +186,9 @@
   - type: Tag
     tags:
     - CanvasPaintedSpooky
+  - type: Construction
+    graph: EaselSL
+    node: canvasPaintedSpooky
 
 - type: entity
   id: PaintedCanvasCheesePizza
@@ -172,6 +204,9 @@
   - type: Tag
     tags:
     - CanvasPaintedCheesePizza
+  - type: Construction
+    graph: EaselSL
+    node: canvasPaintedCheesePizza
 
 - type: entity
   id: PaintedCanvasPepperoniPizza
@@ -187,6 +222,9 @@
   - type: Tag
     tags:
     - CanvasPaintedPepperoniPizza
+  - type: Construction
+    graph: EaselSL
+    node: canvasPaintedPepperoniPizza
 
 - type: entity
   id: PaintedCanvasWave
@@ -202,6 +240,9 @@
   - type: Tag
     tags:
     - CanvasPaintedWave
+  - type: Construction
+    graph: EaselSL
+    node: canvasPaintedWave
 
 - type: entity
   id: PaintedCanvasSaturn
@@ -217,6 +258,9 @@
   - type: Tag
     tags:
     - CanvasPaintedSaturn
+  - type: Construction
+    graph: EaselSL
+    node: canvasPaintedSaturn
 
 - type: entity
   id: PaintedCanvasSkullCig
@@ -232,6 +276,9 @@
   - type: Tag
     tags:
     - CanvasPaintedSkullCig
+  - type: Construction
+    graph: EaselSL
+    node: canvasPaintedSkullCig
 
 - type: entity
   id: PaintedCanvasStarry
@@ -247,3 +294,79 @@
   - type: Tag
     tags:
     - CanvasPaintedStarry
+  - type: Construction
+    graph: EaselSL
+    node: canvasPaintedStarry
+
+- type: entity
+  id: PaintedCanvasGodo
+  parent: BlankCanvas
+  name: painted canvas
+  suffix: Godo
+  description: a painted canvas, behold its masterpiece!
+  components: 
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_godo
+  - type: Tag
+    tags:
+    - CanvasPaintedGodo
+  - type: Construction
+    graph: EaselSL
+    node: canvasPaintedGodo
+
+- type: entity
+  id: PaintedCanvasVengefulWeh
+  parent: BlankCanvas
+  name: painted canvas
+  suffix: Vengeul Weh
+  description: a painted canvas, behold its masterpiece!
+  components: 
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_vengeful_weh
+  - type: Tag
+    tags:
+    - CanvasPaintedVengefulWeh
+  - type: Construction
+    graph: EaselSL
+    node: canvasPaintedVengefulWeh
+
+- type: entity
+  id: PaintedCanvasLiminal
+  parent: BlankCanvas
+  name: painted canvas
+  suffix: Liminal
+  description: a painted canvas, you find yourself unable to look away ... where were you again?
+  components: 
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_liminal
+  - type: Tag
+    tags:
+    - CanvasPaintedLiminal
+  - type: Construction
+    graph: EaselSL
+    node: canvasPaintedLiminal
+
+- type: entity
+  id: PaintedCanvasFelinoidJudgement
+  parent: BlankCanvas
+  name: painted canvas
+  suffix: Felinoid Face of Judgement
+  description: a painted canvas, behold its masterpiece!
+  components: 
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/easel.rsi
+    layers:
+    - state: canvas_felinoid_judgement
+  - type: Tag
+    tags:
+    - CanvasPaintedFelinoidJudgement
+  - type: Construction
+    graph: EaselSL
+    node: canvasPaintedFelinoidJudgement
+

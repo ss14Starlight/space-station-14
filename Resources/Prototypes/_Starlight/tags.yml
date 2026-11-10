@@ -138,19 +138,22 @@
   id: CanvasBlank # Storage whitelist: Easel. ItemMapper: Easel
 
 - type: Tag
-  id: CanvasPaintedRK # Storage whitelist: Easel. ItemMapper: Easel
-
-- type: Tag
-  id: CanvasPaintedSpooky # Storage whitelist: Easel. ItemMapper:Easel
-
-- type: Tag
   id: CanvasPaintedCheesePizza # Storage whitelist: Easel. ItemMapper:Easel
+
+- type: Tag
+  id: CanvasPaintedFelinoidJudgement # Storage whitelist: Easel. ItemMapper:Easel
+
+- type: Tag
+  id: CanvasPaintedGodo # Storage whitelist: Easel. ItemMapper:Easel
+
+- type: Tag
+  id: CanvasPaintedLiminal # Storage whitelist: Easel. ItemMapper:Easel
 
 - type: Tag
   id: CanvasPaintedPepperoniPizza # Storage whitelist: Easel. ItemMapper:Easel
 
 - type: Tag
-  id: CanvasPaintedWave # Storage whitelist: Easel. ItemMapper:Easel
+  id: CanvasPaintedRK # Storage whitelist: Easel. ItemMapper: Easel
 
 - type: Tag
   id: CanvasPaintedSaturn # Storage whitelist: Easel. ItemMapper:Easel
@@ -159,7 +162,16 @@
   id: CanvasPaintedSkullCig # Storage whitelist: Easel. ItemMapper:Easel
 
 - type: Tag
+  id: CanvasPaintedSpooky # Storage whitelist: Easel. ItemMapper:Easel
+
+- type: Tag
   id: CanvasPaintedStarry # Storage whitelist: Easel. ItemMapper:Easel
+
+- type: Tag
+  id: CanvasPaintedVengefulWeh # Storage whitelist: Easel. ItemMapper:Easel
+
+- type: Tag
+  id: CanvasPaintedWave # Storage whitelist: Easel. ItemMapper:Easel
 
 - type: Tag # used for camera construction graphs
   id: Camera
@@ -247,6 +259,9 @@
 
 - type: Tag
   id: CoupeGlass # BountyCoupeGlass
+
+- type: Tag
+  id: CrayonCanvas # Used for canvas construction graphs, excludes special crayons to avoid accidentally using them for crafting canvases.
 
 - type: Tag
   id: CrispyRiceBar

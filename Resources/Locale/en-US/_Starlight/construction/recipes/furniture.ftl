@@ -105,3 +105,19 @@ construction-recipe-counter-retro-diner = retro counter diner
 ## Froggy Chair
 construction-recipe-froggy-chair = froggy chair
 construction-recipe-lovey-chair = lovey chair
+
+## Easel + Canvases
+construction-recipe-easel = easel
+construction-recipe-canvas-blank = blank canvas
+construction-recipe-canvas-painted-rat-king = painted canvas (Rat King)
+construction-recipe-canvas-painted-spooky = painted canvas (Spooky)
+construction-recipe-canvas-painted-cheese-pizza = painted canvas (Cheese Pizza)
+construction-recipe-canvas-painted-pepperoni-pizza = painted canvas (Pepperoni Pizza)
+construction-recipe-canvas-painted-wave = painted canvas (The Great Wave off Kanagawa)
+construction-recipe-canvas-painted-saturn = painted canvas (Saturn Devouring His Son)
+construction-recipe-canvas-painted-skull-cig = painted canvas (Skull of a Skeleton with Burning Cigarette)
+construction-recipe-canvas-painted-starry = painted canvas (Starry Night)
+construction-recipe-canvas-painted-godo = painted canvas (Godo)
+construction-recipe-canvas-painted-vengeful-weh = painted canvas (Vengeful Weh)
+construction-recipe-canvas-painted-liminal = painted canvas (Liminal)
+construction-recipe-canvas-painted-felinoid-judgement = painted canvas (Felinoid Face of Judgement)
