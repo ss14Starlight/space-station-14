@@ -21,7 +21,7 @@
       useDelay: 1
       icon:
         sprite: _Starlight/Interface/Actions/actions_xeno.rsi
-        state: toggle_tail
+        state: cast_vote
       itemIconStyle: NoItem
       raiseOnUser: true
     - type: TargetAction

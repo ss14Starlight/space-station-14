@@ -1,14 +1,19 @@
 {
 	"version": 1,
 	"license": "CC-BY-SA-4.0",
-	"copyright": "ya314a",
+	"copyright": "State-Based Copyright",
 	"size": {
 		"x": 32,
 		"y": 32
 	},
 	"states": [
 		{
-			"name": "toggle_tail"
+			"name": "toggle_tail",
+			"copyright": "ya314a"
+		},
+		{
+			"name": "cast_vote",
+			"copyright": "Citrea, based on sprite background by ya314a. Someone please make a better one?"
 		}
 	]
 }
