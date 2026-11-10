@@ -6,3 +6,4 @@
    - !type:RoleTimeRequirement
      role: JobSecurityOfficer # Teachs you basic combat, as this is a 14 credit item.
      time: 1h
+
