@@ -25,6 +25,16 @@
                         <!--Battery Power-->
                         <Label Text="{Loc 'apc-menu-power-label'}" StyleClasses="highlight" MinWidth="120" />
                         <Label Name="PowerLabel"/>
+                        <!-- Starlight: day/night lighting -->
+                        <Label Name="LightingLabel" Text="{Loc 'apc-menu-lighting-label'}" StyleClasses="highlight" MinWidth="120" />
+                        <BoxContainer Name="LightingButtons" Orientation="Horizontal">
+                            <Button Name="LightingAutoButton" Text="{Loc 'apc-menu-lighting-auto'}" StyleClasses="OpenRight" ToggleMode="True" HorizontalExpand="True" />
+                            <Button Name="LightingDayButton" Text="{Loc 'apc-menu-lighting-day'}" StyleClasses="OpenBoth" ToggleMode="True" HorizontalExpand="True" />
+                            <Button Name="LightingNightButton" Text="{Loc 'apc-menu-lighting-night'}" StyleClasses="OpenLeft" ToggleMode="True" HorizontalExpand="True" />
+                        </BoxContainer>
+                        <Control Name="LightingStateSpacer" />
+                        <Label Name="LightingStateLabel" />
+                        <!-- Starlight end -->
                     </GridContainer>
                 </BoxContainer>
             </BoxContainer>

@@ -26,7 +26,8 @@ public sealed partial class HalfBrightOverlay : Robust.Client.Graphics.Overlay
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowWorld;
 
-    public const int ContentZIndex = -140;
+    // After the tonemap, so it works on the final light map.
+    public const int ContentZIndex = LightTonemapOverlay.ContentZIndex + 1;
 
     private readonly OverlayResourceCache<CachedResources> _resources = new();
     private readonly ShaderInstance _copyShaderInst;
