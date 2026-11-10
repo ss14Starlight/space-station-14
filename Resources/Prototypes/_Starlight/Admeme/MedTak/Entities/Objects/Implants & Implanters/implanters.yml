@@ -62,25 +62,6 @@
   - type: Implanter
     implant: TrackingImplantMedTakGold
 
-
-- type: entity
-  id: MedTakImplanterTrackingGold
-  name: MedTak gold tracker
-  parent: MedTakImplanter
-  components:
-    - type: Sprite
-      sprite: _Starlight/Admeme/MedTak/Objects/implanter.rsi
-      state: implanter0
-      layers:
-        - state: implanter1
-          map: [ "implantFull" ]
-          visible: true
-        - state: implanter0
-          map: [ "implantOnly" ]
-        - state: gold
-    - type: Implanter
-      implant: TrackingImplantMedTakGold
-
 - type: entity
   id: MedTakImplanterTrackingPlatinum
   name: MedTak platinum tracker

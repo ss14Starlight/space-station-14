@@ -8,12 +8,12 @@
   },
   "states": [
     {
-      "name": "deimplanter-inhand-left",
+      "name": "implanter-inhand-left",
       "directions": 4,
       "copyright": "SevenShades"
     },
     {
-      "name": "deimplanter-inhand-right",
+      "name": "implanter-inhand-right",
       "directions": 4,
       "copyright": "SevenShades"
     },
