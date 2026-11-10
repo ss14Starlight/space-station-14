@@ -9,11 +9,6 @@
   - !type:RoleTimeRequirement
     role: JobBorg
     time: 5h
-  # Starlight-start
-  - !type:DepartmentTimeRequirement
-    department: Command
-    time: 10h # Requires command experience for comms, alerts, and terminal use.
-  # Starlight-end
   weight: 10
   displayWeight: 1 # Starlight, we're reordering things
   icon: JobIconStationAi
