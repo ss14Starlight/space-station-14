@@ -70,7 +70,7 @@ public abstract partial class SharedDarkPortalSystem : EntitySystem
             return;
 
         _actionsSystem.AddAction(ent, ref ent.Comp.PortalAction, ent.Comp.BrighteyePortalAction, ent);
-        _actionsSystem.SetCooldown(ent.Comp.PortalAction, TimeSpan.FromSeconds(300));
+        _actionsSystem.SetCooldown(ent.Comp.PortalAction, TimeSpan.FromSeconds(600));
     }
 
     [SubscribeLocalEvent]
