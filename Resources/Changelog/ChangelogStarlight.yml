@@ -1,13 +1,6 @@
 Entries:
 - author: Reisyn & SirLutz
   changes:
-  - message: Diona can now collect Pollen! Finished botany products/plants carry pollen/spores, which regular smellers can detect. And Dionas passing by them might collect these pollen, granting them points!.
-    type: Add
-  id: 409903
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
   - message: Pollen shop and Skill TREE, spend your points in three categories, Floral, Bark, Mushroom. Having their own special use cases.
     type: Add
   id: 409904
@@ -2799,4 +2792,11 @@ Entries:
   id: 410302
   time: '2026-11-10T17:44:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7086
+- author: Talirson
+  changes:
+  - message: Added a craftable Atmosian Helmet.
+    type: Add
+  id: 410303
+  time: '2026-11-10T18:10:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7167
 Order: -1
