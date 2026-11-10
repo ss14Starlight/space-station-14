@@ -1,13 +1,6 @@
 Entries:
 - author: Reisyn & SirLutz
   changes:
-  - message: Sprites for Floral Wisps just an actual pollen entity, which buffs diona shortly, and fade after.
-    type: Add
-  id: 409911
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
   - message: Diona can emit a randomly selected scent from their own scent and their collected pollen types. Emitted pollen is represented by pollen markers, allowing other Diona to collect it.
     type: Add
   id: 409912
@@ -2799,4 +2792,11 @@ Entries:
   id: 410310
   time: '2026-11-10T19:07:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7026
+- author: redmushie
+  changes:
+  - message: Exterminator target pinpointer.
+    type: Fix
+  id: 410311
+  time: '2026-11-10T19:47:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7169
 Order: -1
