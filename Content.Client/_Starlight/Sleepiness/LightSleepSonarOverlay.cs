@@ -177,10 +177,9 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
             return EchoMode.Active;
 
         return _entityManager.TryGetComponent(uid, out ApcPowerReceiverComponent? power) &&
-               power.Powered &&
-               !power.PowerDisabled
-            ? EchoMode.Active
-            : EchoMode.None;
+                power is { Powered: true, PowerDisabled: false }
+                ? EchoMode.Active
+                : EchoMode.None;
     }
 
     private enum EchoMode
