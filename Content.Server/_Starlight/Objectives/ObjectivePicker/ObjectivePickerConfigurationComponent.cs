@@ -28,6 +28,11 @@ public sealed partial class ObjectivePickerConfigurationComponent : Component
     public Dictionary<string, float> StoryWeights = new();
 
     /// <summary>
+    /// Number of story objective choices to offer.
+    /// </summary>
+    public int StoryObjectiveCount;
+
+    /// <summary>
     /// Preferred number of available positive-difficulty offers.
     /// Generation can add more to satisfy the pool's difficulty and compatibility requirements.
     /// </summary>

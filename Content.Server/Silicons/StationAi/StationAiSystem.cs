@@ -114,8 +114,6 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         SubscribeLocalEvent<StationAiCoreComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<StationAiCoreComponent, DoAfterAttemptEvent<IntellicardDoAfterEvent>>(OnDoAfterAttempt);
         SubscribeLocalEvent<StationAiCoreComponent, RejuvenateEvent>(OnRejuvenate);
-        SubscribeLocalEvent<GhostAttemptHandleEvent>(OnGhostAttempt); // Starlight
-
         SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandICChatRecipients);
         SubscribeLocalEvent<StationAiTurretComponent, AmmoShotEvent>(OnAmmoShot);
         SubscribeLocalEvent<SuitSensorComponent, SuitSensorModeChangedEvent>(OnSuitSensorModeChanged); // Starlight
@@ -125,17 +123,6 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     }
 
     #region Starlight
-    // The intellicard/AI should immediatly eject the ghost if the command ghost is used to free it for further use.
-    private void OnGhostAttempt(GhostAttemptHandleEvent args)
-    {
-        if (args.Mind.CurrentEntity is not { } entity ||
-            !_container.TryGetContainingContainer(entity, out var container) ||
-            container.ID != StationAiHolderComponent.Container ||
-            !TryComp<StationAiHolderComponent>(container.Owner, out var holder))
-            return;
-
-        _slots.TryEject(container.Owner, holder.Slot, null, out _);
-    }
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -514,6 +501,11 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     {
         base.OnAiInsert(ent, ref args);
 
+        // Starlight - start
+        if (args.Container.ID == StationAiCoreComponent.Container)
+            _containerSpawnJobSlots.RefreshJobSlots();
+        // Starlight - end
+
         UpdateBatteryAlert(ent);
         UpdateCoreIntegrityAlert(ent);
         UpdateDamagedAccent(ent);
@@ -522,6 +514,14 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     protected override void OnAiRemove(Entity<StationAiCoreComponent> ent, ref EntRemovedFromContainerMessage args)
     {
         base.OnAiRemove(ent, ref args);
+
+        // Starlight - start
+        if (args.Container.ID == StationAiCoreComponent.Container)
+        {
+            _containerSpawnJobSlots.RefreshJobSlots(allowAiSlotIncrease: false);
+            AnnounceAiCoreConnectionLost(args.Entity, ent.Owner);
+        }
+        // Starlight - end
 
         _alerts.ClearAlert(args.Entity, _batteryAlert);
         _alerts.ClearAlert(args.Entity, _damageAlert);
@@ -538,6 +538,11 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     {
         if (args.NewMobState != MobState.Alive)
         {
+            // Starlight - start
+            if (args.OldMobState == MobState.Alive)
+                AnnounceAiOffline(ent.Owner);
+            // Starlight - end
+
             SetStationAiState(ent, StationAiState.Dead);
             return;
         }
