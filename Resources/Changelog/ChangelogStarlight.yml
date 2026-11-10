@@ -1,179 +1,4 @@
 Entries:
-- author: mikeysaurus
-  changes:
-  - message: Accessibility settings now include an option to preview your chat messages above your character as you type it.
-    type: Add
-  id: 409869
-  time: '2026-10-28T21:02:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6921
-- author: AnyTap, Trosling.
-  changes:
-  - message: Added Gunnery Sergeant role to Security.
-    type: Add
-  id: 409870
-  time: '2026-10-29T14:37:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6848
-- author: AnyTap, Trosling.
-  changes:
-  - message: Added Gunnery Sergeant SOP.
-    type: Add
-  id: 409871
-  time: '2026-10-29T14:37:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6848
-- author: wonderfulnewworld
-  changes:
-  - message: DAGDs should always get their extra TC now.
-    type: Fix
-  id: 409872
-  time: '2026-10-29T15:02:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6924
-- author: Conflee
-  changes:
-  - message: Fixed Interdyne Nukie Outpost APCs overloading by swapping them all from high capacity to super capacity. Run your hellfire freezer/heater all you want!
-    type: Fix
-  id: 409873
-  time: '2026-10-29T15:22:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6930
-- author: Talirson
-  changes:
-  - message: Added ProtoNitrate to the salvage gas canister loot pool.
-    type: Add
-  id: 409874
-  time: '2026-10-29T19:31:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6807
-- author: Hot Mic
-  changes:
-  - message: Added a new Disposal Transport System for Public and Security.
-    type: Add
-  id: 409875
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'Medical: Major change to the layout of the Medbay of the Medical Department.'
-    type: Tweak
-  id: 409876
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Every 'External' Docking airlock that is touching each other now opens together.
-    type: Tweak
-  id: 409877
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'Medical: Add more fire safety and wall-mounted emergency closest to Medbay.'
-    type: Add
-  id: 409878
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'Service: Add more fire safety to Service, mostly near Kitchen.'
-    type: Add
-  id: 409879
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Double-check to make sure that airlocks to Kitchen/Hydroponics are set correctly.
-    type: Tweak
-  id: 409880
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Add missing pipes to docks in the East and NE of the station.
-    type: Add
-  id: 409881
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Add Anti-Anomaly Zones at the large thrusters.
-    type: Add
-  id: 409882
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Add missing links for Atmos devices in hall 7.
-    type: Fix
-  id: 409883
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'Service: Add new disposal unit in Ball Bar for Bartender(s).'
-    type: Add
-  id: 409884
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'Cargo: Add Salvage Tools vendor to Mining.'
-    type: Add
-  id: 409885
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'Cargo: Add new cell recharger in Mining.'
-    type: Add
-  id: 409886
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Cargo Add new cell recharger in Cargo Bay.
-    type: Add
-  id: 409887
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'ITG: Add Salvage Medic.'
-    type: Add
-  id: 409888
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'ITG: Remove 1 Salvage Specialist; now max of 4.'
-    type: Remove
-  id: 409889
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Replace service-accessed airlock with command on "Maid"'s bridge.
-    type: Fix
-  id: 409890
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: Add 2 Assistant Manager job roles.
-    type: Add
-  id: 409891
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'Medical: Add 2 Defibs at Medical Checkpoint by EVAC.'
-    type: Add
-  id: 409892
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: Hot Mic
-  changes:
-  - message: 'Bumblebee: Change Normal Water Tank into High-capacity Water Tank.'
-    type: Tweak
-  id: 409893
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
 - author: Hot Mic
   changes:
   - message: Every 'externals' airlocks that are touching each other are now linked, meaning that they open together.
@@ -2799,4 +2624,179 @@ Entries:
   id: 410268
   time: '2026-11-08T19:24:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7131
+- author: Demented
+  changes:
+  - message: HOP Turtleneck.
+    type: Fix
+  id: 410269
+  time: '2026-11-09T09:42:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7141
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Predicted SSD/departed/acting without reason on inspection so it shows correctly immediately instead of flashing "departed".
+    type: Fix
+  id: 410270
+  time: '2026-11-09T10:04:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7147
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added a location to visit through space or the transrecon portal located in science.
+    type: Add
+  id: 410271
+  time: '2026-11-09T10:42:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7140
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added new radio host equipment.
+    type: Add
+  id: 410272
+  time: '2026-11-09T10:42:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7140
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added a gunnery sergeant to armory.
+    type: Add
+  id: 410273
+  time: '2026-11-09T10:42:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7140
+- author: redmushie, DocMoth
+  changes:
+  - message: Added glowstones and glowstone bags! Leave a trail of colored glowstones as you walk. Stones glow for 20 minutes. Perfect for going on expeditions. The bags can be refilled using crystal shards.
+    type: Add
+  id: 410274
+  time: '2026-11-09T11:11:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7127
+- author: redmushie, DocMoth
+  changes:
+  - message: Salvage Lead now get a glowstone bag in their locker.
+    type: Add
+  id: 410275
+  time: '2026-11-09T11:11:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7127
+- author: redmushie, DocMoth
+  changes:
+  - message: Miners and Salvage Technicians can buy glowstone bags for 30 tickets.
+    type: Add
+  id: 410276
+  time: '2026-11-09T11:11:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7127
+- author: SirLutz
+  changes:
+  - message: Fixed Diona pollen collection objective progression when replacing a Diona.
+    type: Fix
+  id: 410277
+  time: '2026-11-09T12:46:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7098
+- author: SirLutz
+  changes:
+  - message: revented mind cleanup from accessing an already removed MindComponent.
+    type: Fix
+  id: 410278
+  time: '2026-11-09T12:46:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7098
+- author: SirLutz
+  changes:
+  - message: Moved the Diona "Your Roots" objective from antagonist objectives to the end-of-round cards section.
+    type: Tweak
+  id: 410279
+  time: '2026-11-09T12:46:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7098
+- author: SirLutz
+  changes:
+  - message: Diona distress pollen now only says the name, not the location.
+    type: Tweak
+  id: 410280
+  time: '2026-11-09T12:46:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7098
+- author: SirLutz
+  changes:
+  - message: Diona now are not anonymous anymore.
+    type: Tweak
+  id: 410281
+  time: '2026-11-09T12:46:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7098
+- author: Destiny (Creativity)
+  changes:
+  - message: Added Medtak Portable ATM.
+    type: Add
+  id: 410282
+  time: '2026-11-09T13:15:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7142
+- author: Destiny (Creativity)
+  changes:
+  - message: Added ATM to Dispatcher and Medic kits.
+    type: Tweak
+  id: 410283
+  time: '2026-11-09T13:15:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7142
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: SKB implanters that dissolve on use (like the SKB deathrattle implant) now only dissolve if successfully used, so you don't waste your implanter by accident.
+    type: Fix
+  id: 410284
+  time: '2026-11-09T13:15:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7132
+- author: Johnny
+  changes:
+  - message: Changed the 20mm autocannon to not do absurd damage.
+    type: Tweak
+  id: 410285
+  time: '2026-11-09T17:36:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7148
+- author: Johnny
+  changes:
+  - message: Changed the 20mm autocannon to not act as an anti-material rifle and go through multiple layers of solid plastitanium.
+    type: Tweak
+  id: 410286
+  time: '2026-11-09T17:36:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7148
+- author: Conflee
+  changes:
+  - message: Gave tabletop radio machinery an offset so they sit on top of tables and counters properly. Also did some minor shading touch-ups on all radio machinery, adjusting their outlines to be shaded and softer.
+    type: Tweak
+  id: 410287
+  time: '2026-11-09T19:38:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7116
+- author: redmushie
+  changes:
+  - message: More advanced signaling options for light fixtures.
+    type: Add
+  id: 410288
+  time: '2026-11-09T20:04:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7149
+- author: Rinary
+  changes:
+  - message: Added sliders to configure new light settings intensity in settings.
+    type: Add
+  id: 410289
+  time: '2026-11-09T21:23:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7153
+- author: Rinary
+  changes:
+  - message: Reverted newly added "Dark" or "Soulmancer" wizard cause it's too op.
+    type: Remove
+  id: 410290
+  time: '2026-11-09T21:23:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7152
+- author: Citrea
+  changes:
+  - message: Nexus Integrated trait no longer requires surgery.
+    type: Fix
+  id: 410291
+  time: '2026-11-09T21:53:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7130
+- author: Citrea
+  changes:
+  - message: Expies can no longer be Nexus Integrated, as it conflicts with their pre-existing brain implant.
+    type: Remove
+  id: 410292
+  time: '2026-11-09T21:53:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7130
+- author: Celestial3rror404
+  changes:
+  - message: IPC survival boxes now come with an emergency welder.
+    type: Tweak
+  id: 410293
+  time: '2026-11-10T00:01:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7156
 Order: -1
