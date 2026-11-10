@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Made by Talirson for Starlight Station, based on the original sprites by tgstation.",
+  "copyright": "Original sprites by tgstation, edited by Talirson for Starlight",
   "size": {
     "x": 32,
     "y": 32
@@ -9,22 +9,22 @@
   "states": [
     {
       "name": "icon",
-      "copyright": "Talirson"
+      "copyright": "Original sprites by tgstation, edited by Talirson for Starlight"
     },
     {
       "name": "equipped-HELMET",
       "directions": 4,
-      "copyright": "Talirson"
+      "copyright": "Original sprites by tgstation, edited by Talirson for Starlight"
     },
     {
       "name": "inhand-left",
       "directions": 4,
-      "copyright": "Talirson"
+      "copyright": "Original sprites by tgstation, edited by Talirson for Starlight"
     },
     {
       "name": "inhand-right",
       "directions": 4,
-      "copyright": "Talirson"
+      "copyright": "Original sprites by tgstation, edited by Talirson for Starlight"
     }
   ]
 }
