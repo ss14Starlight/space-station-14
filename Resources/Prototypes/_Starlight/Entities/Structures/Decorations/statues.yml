@@ -34,7 +34,6 @@
     - type: ChildEntities
       childPrototypes:
       - prototype: OverlayBluespaceSparksEffect
-    - type: Shadegen
     - type: Transform
       anchored: true
     - type: Sprite
