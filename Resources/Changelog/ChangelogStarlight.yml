@@ -1,18 +1,4 @@
 Entries:
-- author: Hot Mic
-  changes:
-  - message: Minor additions and fixes.
-    type: Fix
-  id: 409897
-  time: '2026-10-29T19:59:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6925
-- author: wonderfulnewworld
-  changes:
-  - message: Syndicate duffelbag no longer costs 5x as much TC.
-    type: Fix
-  id: 409898
-  time: '2026-10-29T20:32:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6940
 - author: Reisyn & SirLutz
   changes:
   - message: Flourish my Dionas, our time has come.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410296
   time: '2026-11-10T10:15:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7164
+- author: Caws
+  changes:
+  - message: "'Cadet' access has been removed. Security Cadets once again have Security access."
+    type: Remove
+  id: 410297
+  time: '2026-11-10T16:58:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7112
+- author: Caws
+  changes:
+  - message: Removed the "freezes you in place if you wear something without having the correct access" system, which was largely unused.
+    type: Remove
+  id: 410298
+  time: '2026-11-10T16:58:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7112
 Order: -1
