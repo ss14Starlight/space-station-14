@@ -111,6 +111,7 @@
     tags:
     - SiliconEmotes
     - DogEmotes # Starlight
+    - XenoEmotes # Starlight
   chatMessages: ["chat-emote-msg-whistle"]
   chatTriggers:
     - whistle

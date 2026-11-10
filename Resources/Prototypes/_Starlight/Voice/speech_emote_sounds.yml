@@ -1166,77 +1166,69 @@
   id: UnisexXeno
   sounds:
     Scream:
-      path: /Audio/Voice/Arachnid/arachnid_scream.ogg
+      collection: XenoScream
       params:
-        pitch: 0.9
         variation: 0.125
     Laugh:
-      path: /Audio/_Starlight/Misc/alien_teleport.ogg
+      path: /Audio/_RMC/Voice/Xeno/deep_alien_screech2.ogg
       params:
-        volume: 1.5
-        pitch: 1.5
+        pitch: 2.0
         variation: 0.125
     Sneeze:
-      path: /Audio/Voice/Vox/vox_sneeze.ogg
+      path: /Audio/_RMC/Voice/Xeno/alien_pounce.ogg
       params:
-        pitch: 0.9
         variation: 0.125
     Honk:
       collection: BikeHorn
-    Whistle:
-      collection: CycloriteWhistle
-      params:
-        pitch: 0.9
-        variation: 0.125
     Weh:
       collection: Weh
     Hew:
       collection: Hew
     Gasp:
-      path: /Audio/Effects/Gasp/vox_gasp.ogg
+      collection: XenoHiss
       params:
-        pitch: 0.9
+        pitch: 1.5
         variation: 0.125
     DefaultDeathgasp:
-      path: /Audio/Effects/Gasp/vox_DeathGasp.ogg
+      collection: XenoDeath
       params:
-        pitch: 0.9
         variation: 0.125
     Sigh:
-      path: /Audio/Voice/Vox/vox_sigh.ogg
+      collection: XenoHiss
       params:
-        pitch: 0.9
+        pitch: 0.8
         variation: 0.125
     Crying:
-      path: /Audio/Voice/Vox/vox_cry.ogg
+      collection: XenoScream
       params:
-        pitch: 0.9
+        pitch: 0.6
         variation: 0.125
     Cough:
-      path: /Audio/Voice/Vox/vox_cough.ogg
+      path: /Audio/_RMC/Voice/Xeno/alien_pounce.ogg
       params:
-        pitch: 0.9
+        pitch: 0.8
         variation: 0.125
     Yawn:
-      collection: FemaleYawn
+      collection: XenoTinyRoar
+      params:
+        variation: 0.125
     Hisses:
-      collection: LowHiss
+      collection: XenoHiss
       params:
-        volume: 10
-        pitch: 5
+        variation: 0.125
     Purr:
-      path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
+      collection: XenoScreechDeep
       params:
-        pitch: 0.9
         variation: 0.125
     Growl:
-      path: /Audio/Voice/Vox/vox_click.ogg
+      collection: XenoGrowl
       params:
-        volume: 2
-        pitch: 0.9
         variation: 0.125
     Scree:
-      path: /Audio/Voice/Vox/shriek1.ogg
+      collection: XenoRoar
       params:
-        pitch: 0.9
+        variation: 0.125
+    Drool:
+      collection: XenoDrool
+      params:
         variation: 0.125

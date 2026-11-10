@@ -79,7 +79,7 @@
   description: "Proof that there is more jaws inside."
   components:
   - type: OrganTongue
-    allowedEmotes: [ "Hisses", "Purr", "Growl", "Scree" ]
+    allowedEmotes: [ "Hisses", "Purr", "Growl", "Scree", "Drool" ]
     sounds:
       Male: UnisexXeno
       Female: UnisexXeno

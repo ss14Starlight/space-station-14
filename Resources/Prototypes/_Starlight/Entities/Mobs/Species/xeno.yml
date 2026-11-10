@@ -59,7 +59,9 @@
   - type: MeleeWeapon
     animation: WeaponArcBite
     soundHit:
-      path: /Audio/Effects/bite.ogg
+      collection: XenoBite
+      params:
+        variation: 0.125
     damage:
       types:
         Piercing: 5
@@ -100,6 +102,9 @@
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#52a258"
   - type: XenoDemocracy
+  - type: Tag
+    tags:
+    - XenoEmotes
 
 - type: entity
   parent: BaseSpeciesDummy

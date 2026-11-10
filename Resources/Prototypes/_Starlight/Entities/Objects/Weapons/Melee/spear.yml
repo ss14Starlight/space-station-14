@@ -82,8 +82,10 @@
         Piercing: 12
     angle: 0
     animation: WeaponArcThrust
+    soundSwing:
+      collection: XenoTailSwipe
     soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
+      collection: XenoTailSwipe
   - type: Item
     size: Ginormous
   - type: MeleeChemicalInjector
