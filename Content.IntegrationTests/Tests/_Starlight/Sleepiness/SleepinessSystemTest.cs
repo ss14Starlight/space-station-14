@@ -37,6 +37,7 @@ public sealed class SleepinessSystemTest : GameTest
                 var sleeping = server.System<SleepingSystem>();
                 var blindable = entityManager.GetComponent<BlindableComponent>(felionoid);
 
+                entityManager.RemoveComponent<LightSleepComponent>(felionoid);
                 Assert.That(sleeping.TrySleeping(felionoid), Is.True);
                 Assert.That(blindable.IsBlind, Is.True);
 
@@ -73,7 +74,6 @@ public sealed class SleepinessSystemTest : GameTest
 
             await server.WaitPost(() =>
             {
-                entityManager.AddComponent<LightSleepComponent>(felionoid);
                 entityManager.AddComponent<PlayerRequestedSleepComponent>(felionoid);
 
                 var sleeping = server.System<SleepingSystem>();
