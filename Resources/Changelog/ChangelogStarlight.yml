@@ -1,55 +1,6 @@
 Entries:
 - author: Reisyn & SirLutz
   changes:
-  - message: Pollen shop and Skill TREE, spend your points in three categories, Floral, Bark, Mushroom. Having their own special use cases.
-    type: Add
-  id: 409904
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
-  - message: Bark Skilltree, this provides survivability, in form of wood production, slightly brute reduction, and self-medication!.
-    type: Add
-  id: 409905
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
-  - message: Mushroom Skilltree, this provides utility, an injector ability which contains an botanical superchem, an spore hivemind perk, and an spore cloud ability.
-    type: Add
-  id: 409906
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
-  - message: Diona-exclusive chemical Phytovitalin, an general heal all chemical, slighty toxic for non-plants.
-    type: Add
-  id: 409907
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
-  - message: Diona-exclusive chemical Mychophylin, an fungal chemical cocktail, enhancing for Diona, hallucinogenic for non-diona.
-    type: Add
-  id: 409908
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
-  - message: Floral Skilltree, this provides buffs, 1. Alert pollen, which gives other diona on the same grid n alert of your demise and approximate location, 2. Blooming Moss which insulates you, and gives slight heat and cold protection , 3. Advanced pollen, which expels pollen into the air granting minor buffs which can heal or give an short speedboost.
-    type: Add
-  id: 409909
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
-  - message: Custom icons for all abilities.
-    type: Add
-  id: 409910
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
   - message: Sprites for Floral Wisps just an actual pollen entity, which buffs diona shortly, and fade after.
     type: Add
   id: 409911
@@ -2799,4 +2750,53 @@ Entries:
   id: 410303
   time: '2026-11-10T18:10:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7167
+- author: WNP78 & Sparlight
+  changes:
+  - message: Refactored UI for plumbing smart dispensers. Client-side predicted (so more responsive), plus the labels are more readable.
+    type: Tweak
+  id: 410304
+  time: '2026-11-10T19:07:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7026
+- author: WNP78 & Sparlight
+  changes:
+  - message: Added the ability to label chemicals that are in a plumbing smart dispenser, using the hand labeler.
+    type: Add
+  id: 410305
+  time: '2026-11-10T19:07:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7026
+- author: WNP78 & Sparlight
+  changes:
+  - message: Added access reader (defaults Medical access), maintenance panel and hacking wires to plumbing smart dispenser.
+    type: Add
+  id: 410306
+  time: '2026-11-10T19:07:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7026
+- author: WNP78 & Sparlight
+  changes:
+  - message: Fixed the plumbing smart dispenser sprite not showing the power state properly.
+    type: Fix
+  id: 410307
+  time: '2026-11-10T19:07:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7026
+- author: WNP78 & Sparlight
+  changes:
+  - message: Fixed the plumbing smart dispenser not requiring power for anything despite saying it does in the description (you can still manually dispense, just the smart-dispense functionality is gone).
+    type: Fix
+  id: 410308
+  time: '2026-11-10T19:07:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7026
+- author: WNP78 & Sparlight
+  changes:
+  - message: Plumbing smart dispenser now defaults to 5u dispense amount.
+    type: Tweak
+  id: 410309
+  time: '2026-11-10T19:07:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7026
+- author: WNP78 & Sparlight
+  changes:
+  - message: (Sparlight) Added context menu verbs for dispensing reagents and returning them to the dispenser.
+    type: Add
+  id: 410310
+  time: '2026-11-10T19:07:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7026
 Order: -1
