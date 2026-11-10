@@ -53,7 +53,7 @@ uplink-forensics-implant-desc = A cybernetic implant for hands. Removes an agent
 uplink-syndie-implant-name = Syndicate Agent Implant
 uplink-syndie-implant-desc = A cybernetic eye implant. Enables an agent to see information about the station crew, humanoids and syndicate without any glasses. (Warning: You will need a surgical assistant for the procedure.)
 uplink-nuke-op-robotkit-name = Advanced Robotic Medical Kit
-uplink-nuke-op-robotkit-desc = The best robotic medical kit money can buy featuring an experimental welder and two microreactor cells.
+uplink-nuke-op-robotkit-desc = The best robotic medical kit money can buy featuring an experimental welder and a microreactor cell.
 
 uplink-uzi-bundle-name = Type U3 Uzi Bundle
 uplink-uzi-bundle-desc = Contains the Type U3 Uzi, with two additional magazines.
