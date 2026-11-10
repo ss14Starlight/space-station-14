@@ -23,16 +23,19 @@ namespace Content.IntegrationTests.Tests._Starlight.Tiredness;
 public sealed class FelionoidTirednessTest : GameTest
 {
     [TestPrototypes]
-    private const string TestPrototypes = @"
-- type: entity
-    id: TirednessTestEntityStorage
-    name: test storage
-    components:
-        - type: EntityStorage
-        - type: ContainerContainer
-            containers:
-                entity_storage: !type:Container
-";
+    private const string TestPrototypes = """
+    -
+        type: entity
+        id: TirednessTestEntityStorage
+        name: test storage
+        components:
+            -
+                type: EntityStorage
+            -
+                type: ContainerContainer
+                containers:
+                    entity_storage: !type:Container
+    """;
 
     public override PoolSettings PoolSettings => new() { Connected = true, DummyTicker = false };
 
