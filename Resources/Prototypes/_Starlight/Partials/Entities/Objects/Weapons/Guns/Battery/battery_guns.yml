@@ -112,6 +112,9 @@
     angleIncreaseDivider: 2
   - type: GunHeat
     heatPerShot: 1000
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
   - type: ContainerFill
     containers:
       firing_pin:
@@ -122,6 +125,10 @@
 - type: !PartialOnly entity
   id: WeaponLaserSvalinn
   components:
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      firing_pin: !type:Container
   - type: ContainerFill
     containers:
       firing_pin:
