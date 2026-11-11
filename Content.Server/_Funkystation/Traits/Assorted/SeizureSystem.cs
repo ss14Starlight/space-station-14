@@ -1,3 +1,4 @@
+// SPDX-FileCopyrightText: 2026 Mora <46364955+TrixxedHeart@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2026 TrixxedHeart <46364955+TrixxedBit@users.noreply.github.com>
 //
 // SPDX-License-Identifier: MIT
@@ -338,6 +339,9 @@ public sealed class SeizureSystem : EntitySystem
 
         // Remove stuttering accent if still present
         RemComp<StutteringAccentComponent>(uid);
+
+        component.MovementSpeedMultiplier = 1.0f;
+        _movementSpeed.RefreshMovementSpeedModifiers(uid);
     }
 
     private void UpdateMovementSpeed(EntityUid uid, SeizureComponent seizure, float frameTime)

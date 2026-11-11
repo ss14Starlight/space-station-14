@@ -1870,7 +1870,7 @@
     Bloodstream:
       effects:
       - !type:ReduceSeizureBuild
-        reductionAmount: 0.01
+        reductionAmount: 0.1
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
