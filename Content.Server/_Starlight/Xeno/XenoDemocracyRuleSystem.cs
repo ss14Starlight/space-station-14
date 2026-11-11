@@ -127,6 +127,7 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
         {
             _sawmill.Info("Voice vote somehow finished without eligible candidates.");
             rule.VoiceVoteTimer = _timing.CurTime.Add(rule.VoiceVoteDelay); //Retry later.
+            return;
         }
 
         //Once done, remove vote action from all eligible voters
