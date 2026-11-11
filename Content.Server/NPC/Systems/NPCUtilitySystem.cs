@@ -619,8 +619,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
 
                 foreach (var ent in entities)
                 {
-                    #region Starlight
-                    // clean up footprints too
+                    // Starlight start, clean up footprints too
                     string solutionName;
                     if (_puddleQuery.TryGetComponent(ent, out var puddleComp))
                         solutionName = puddleComp.SolutionName;
@@ -631,7 +630,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                         _entityList.Add(ent);
                         continue;
                     }
-                    #endregion
+                    // Starlight end
 
                     if (!_solutions.TryGetSolution(ent, solutionName, out _, out var sol) || // Starlight
                         _puddle.CanFullyEvaporate(sol))
