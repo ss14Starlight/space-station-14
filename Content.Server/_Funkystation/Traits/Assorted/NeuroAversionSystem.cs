@@ -1,117 +1,45 @@
+// SPDX-FileCopyrightText: 2026 Mora <46364955+TrixxedHeart@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2026 TrixxedHeart <46364955+TrixxedBit@users.noreply.github.com>
 //
 // SPDX-License-Identifier: MIT
 
-using Content.Shared._Funkystation.Traits.Assorted;
-using Content.Shared.Mindshield.Components;
-using Content.Shared.StatusEffectNew;
-using Content.Shared.Popups;
+using System.Linq;
+using Content.Server.Jobs;
+using Content.Server.Mind;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.IdentityManagement;
-using Content.Server.Mind;
-using Content.Server.Jobs;
+using Content.Shared.Mindshield.Components;
+using Content.Shared.Popups;
 using Content.Shared.Roles;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Roles.Components;
 using Content.Shared._Blimpuf.Traits.Assorted;
 using Content.Shared._Starfall.Traits.Assorted;
 using Robust.Shared.Timing;
-using Content.Shared.Mobs.Systems;
+using Content.Shared._Funkystation.Traits.Assorted;
+using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Funkystation.Traits.Assorted;
 
 /// <summary>
-/// Handles Neuroaversion trait. When someone has this trait AND has a mindshield they get migraines (from MigraineSystem) and rare seizures (handled in this system).
+/// Server-side system for Neuroaversion trait.
+/// Handles migraines, seizures, and mindshield interactions.
 /// </summary>
-public sealed class NeuroAversionSystem : EntitySystem
+public sealed class NeuroAversionSystem : SharedNeuroAversionSystem
 {
-    [Dependency] private readonly Robust.Shared.Random.IRobustRandom _random = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SeizureSystem _seizure = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private EntityQuery<MindShieldComponent> _mindShieldQuery;
     private EntityQuery<MigraineSchedulerComponent> _chronicMigrainesQuery;
 
     [Dependency] private readonly IGameTiming _timing = default!;
-
-    // get the passive-build multiplier for the current health tier
-    private static float GetConditionMultiplier(NeuroAversionComponent comp, bool isCritical, float missingHpFrac)
-    {
-        float baseMultiplier;
-
-        if (isCritical)
-            baseMultiplier = comp.ConditionCriticalMultiplier;
-        else if (missingHpFrac >= 2f / 3f)
-            baseMultiplier = comp.ConditionBadMultiplier;
-        else if (missingHpFrac >= 1f / 3f)
-            baseMultiplier = comp.ConditionOkayMultiplier;
-        else
-            baseMultiplier = comp.ConditionGoodMultiplier;
-
-        // If the entity is not roundstart mindshielded, they get more severe effects.
-        var severityMultiplier = comp.StartedMindShielded
-            ? comp.StartedMindShieldedMultiplier
-            : comp.MidRoundMindShieldedMultiplier;
-
-        return baseMultiplier * severityMultiplier;
-    }
-
-    /// <summary>
-    /// Checks if the entity's job prototype (from MindRoleComponent) includes MindShieldComponent or MindShieldImplant.
-    /// </summary>
-    private bool JobHasMindshieldComponent(EntityUid uid)
-    {
-        if (!_mindSystem.TryGetMind(uid, out var mindEntity, out var mindComponent))
-        {
-            return false;
-        }
-
-        foreach (var roleUid in mindComponent.MindRoleContainer.ContainedEntities)
-        {
-            if (!EntityManager.EntityExists(roleUid))
-            {
-                continue;
-            }
-            if (!EntityManager.TryGetComponent(roleUid, out MindRoleComponent? role) || role is null)
-            {
-                continue;
-            }
-            if (role.JobPrototype is { } jobProtoId)
-            {
-                if (!_prototypeManager.TryIndex(jobProtoId, out JobPrototype? jobProto) || jobProto == null)
-                {
-                    continue;
-                }
-                foreach (var special in jobProto.Special)
-                {
-                    switch (special)
-                    {
-                        case AddComponentSpecial addCompSpecial:
-                            if (addCompSpecial.Components.ContainsKey("MindShield"))
-                            {
-                                return true;
-                            }
-                            break;
-                        case AddImplantSpecial implantSpecial:
-                            foreach (var implantId in implantSpecial.Implants)
-                            {
-                                if (implantId == "MindShieldImplant")
-                                {
-                                    return true;
-                                }
-                            }
-                            break;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
 
     public override void Initialize()
     {
@@ -121,30 +49,13 @@ public sealed class NeuroAversionSystem : EntitySystem
         _chronicMigrainesQuery = GetEntityQuery<MigraineSchedulerComponent>();
         SubscribeLocalEvent<NeuroAversionComponent, MigrainePopupEvent>(OnMigrainePopup);
         SubscribeLocalEvent<NeuroAversionComponent, MigrainePreventionUpdatedEvent>(OnPreventionUpdated);
-
-        SubscribeLocalEvent<NeuroAversionComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<NeuroAversionComponent, ComponentShutdown>(OnShutdown);
-        // Ideally it would be funny to have a whole system that detects certain keywords a player says negatively about nanotrasen or positively about the syndicate but thats like, severely out of scope of what I want to do and chatcode is scary.
-        // This is the only remnant of this system and i only have this here to act as a like "this is what i want done with it" if someone ever wants to implement it properly.
-        // please make me able to spam "I HATE NANOTRASEN" to instantly have a seizure
-//        SubscribeLocalEvent<NeuroAversionComponent, Content.Server.Chat.Systems.EntitySpokeEvent>(OnEntitySpoke);
     }
 
-    private void OnStartup(EntityUid uid, NeuroAversionComponent component, ComponentStartup args)
+    protected override void OnShutdown(EntityUid uid, NeuroAversionComponent component, ComponentShutdown args)
     {
-        // Initialize migraine timer
-        component.NextMigraineTime = _random.NextFloat(component.TimeBetweenMigraines.X, component.TimeBetweenMigraines.Y);
-        component.IsMindShielded = _mindShieldQuery.HasComponent(uid);
-        component.StartedMindShielded = true;
-    }
-
-    private void OnShutdown(EntityUid uid, NeuroAversionComponent component, ComponentShutdown args)
-    {
-        // Clean up migraine effect
+        base.OnShutdown(uid, component, args);
         if (!TerminatingOrDeleted(uid))
-        {
             _statusEffects.TryRemoveStatusEffect(uid, MigraineEffectComponent.Prototype);
-        }
     }
 
     private void OnMigrainePopup(EntityUid uid, NeuroAversionComponent component, MigrainePopupEvent args)
@@ -164,182 +75,169 @@ public sealed class NeuroAversionSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        var deltaTime = TimeSpan.FromSeconds(frameTime);
+
         var query = EntityQueryEnumerator<NeuroAversionComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            // dead people cant have migraines or seizures
-            if (_mobState.IsDead(uid))
+            // Dead entities don't have migraines or seizures
+            if (MobState.IsDead(uid))
                 continue;
 
-            // Mindshield status check and update
-            var hasMindShield = _mindShieldQuery.HasComponent(uid);
-            if (hasMindShield && !comp.IsMindShielded)
-            {
-                comp.IsMindShielded = true;
-            }
-            else if (!hasMindShield && comp.IsMindShielded)
-            {
-                comp.IsMindShielded = false;
-            }
+            UpdateMindshieldStatus(uid, comp);
 
-            // Only check and set StartedMindShielded once then NEVER AGAIN!!!!
-            if (!comp.StartedMindShieldedChecked)
-            {
-                comp.StartedMindShielded = comp.IsMindShielded && JobHasMindshieldComponent(uid);
-                comp.StartedMindShieldedChecked = true;
-            }
-
-            // if they aren't mindshielded fuck off
+            // Only process if mindshielded
             if (!comp.IsMindShielded)
+            {
+                Dirty(uid, comp);
                 continue;
-
-            // calculate health
-            var missingHpFrac = 0f;
-            if (TryComp<DamageableComponent>(uid, out var damageable))
-            {
-                var maxHp = damageable.HealthBarThreshold?.Float() ?? 100f;
-                if (maxHp > 0f)
-                {
-                    var currentDamage = (float)damageable.TotalDamage;
-                    missingHpFrac = MathF.Max(0f, MathF.Min(1f, currentDamage / maxHp));
-                }
             }
 
-            // Dont allow episodes to trigger if the entity is crit/dead
-            // Allow building meter if the entity is in crit however
-            if (_mobState.IsDead(uid))
-                continue;
+            var missingHpFrac = CalculateHealthFraction(uid);
 
-            // Decrease next migraine timer faster when more hurt, and apply severity multiplier
-            var migraineFactor = 1f - (0.5f * (1f - missingHpFrac));
+            UpdateMigraineTimer(uid, comp, frameTime, missingHpFrac);
+            UpdateSeizureLogic(uid, comp, deltaTime, missingHpFrac);
+            Dirty(uid, comp);
+        }
+    }
 
-            // Apply severity multiplier for mid-round mindshielded entities
-            var severityMultiplier = comp.StartedMindShielded
-                ? comp.StartedMindShieldedMultiplier
-                : comp.MidRoundMindShieldedMultiplier;
+    private void UpdateMindshieldStatus(EntityUid uid, NeuroAversionComponent comp)
+    {
+        var hasMindShield = _mindShieldQuery.HasComponent(uid);
+        comp.IsMindShielded = hasMindShield;
+        // Check if started mindshielded only once
+        if (!comp.StartedMindShieldedChecked)
+        {
+            comp.StartedMindShielded = comp.IsMindShielded && JobHasMindshieldComponent(uid);
+            comp.StartedMindShieldedChecked = true;
+        }
+    }
 
-            if (!_statusEffects.HasStatusEffect(uid, MigraineEffectComponent.Prototype) &&
-                !_statusEffects.HasStatusEffect(uid, MigrainePreventionEffectComponent.Prototype))
-            {
-                comp.NextMigraineTime -= frameTime * (1f / migraineFactor) * severityMultiplier;
-                if (comp.NextMigraineTime <= 0f && _timing.CurTime >= comp.MigrainePreventedUntil)
-                {
-                    // Reset next migraine timer. Typical configured timings are 8-20 minutes (480-1200s).
-                    // TimeBetweenMigraines should be set to something like (480f, 1200f) for that behavior.
-                    comp.NextMigraineTime = _random.NextFloat(comp.TimeBetweenMigraines.X, comp.TimeBetweenMigraines.Y);
-                    var duration = _random.NextFloat(comp.MigraineDuration.X, comp.MigraineDuration.Y);
-                    TriggerMigraine(uid, duration);
-                }
-            }
+    private float CalculateHealthFraction(EntityUid uid)
+    {
+        if (!TryComp<DamageableComponent>(uid, out var damageable))
+            return 0f;
 
-            // Seizure meter: passive build accumulates over time and is scaled by condition tiers
-            // (Good/Okay/Bad/Critical) derived from missing HP fraction.
-            // Determine condition multiplier from missingHpFrac
-            var conditionMult = GetConditionMultiplier(comp, _mobState.IsCritical(uid), missingHpFrac);
+        return CalculateMissingHpFraction(damageable);
+    }
 
-            // Check for trait interaction with Chronic Migraines
-            var hasChronicMigraines = _chronicMigrainesQuery.HasComponent(uid);
-            var traitInteractionMultiplier = hasChronicMigraines ? 1.3f : 1.0f; // 30% extra build with both traits
+    private void UpdateMigraineTimer(EntityUid uid, NeuroAversionComponent comp, float frameTime, float missingHpFrac)
+    {
+        if (_statusEffects.HasStatusEffect(uid, MigraineEffectComponent.Prototype) ||
+            _statusEffects.HasStatusEffect(uid, MigrainePreventionEffectComponent.Prototype))
+            return;
 
-            // Passive build
-            var passive = comp.BaseSeizurePassivePerSec * conditionMult * traitInteractionMultiplier;
+        // Migraines trigger faster when more damaged
+        var migraineFactor = 1f - (0.5f * (1f - missingHpFrac));
+        var severityMultiplier = comp.StartedMindShielded
+            ? comp.StartedMindShieldedMultiplier
+            : comp.MidRoundMindShieldedMultiplier;
 
-            comp.SeizureBuild += passive * frameTime;
+        var seconds = frameTime * (1f / migraineFactor) * severityMultiplier;
+        comp.NextMigraineTime -= TimeSpan.FromSeconds(seconds);
 
-            // Add random jumps to make seizures feel truly random but still health-state dependent
-            // More frequent spikes but smaller when healthy, larger when damaged
-            var randomSpikeProbability = 0.005f * frameTime * (1f + missingHpFrac * 2f);
-            if (_random.NextDouble() < randomSpikeProbability)
-            {
-                // Smaller spikes in good condition, escalating with damage
-                var baseSpike = _random.NextFloat(0.005f, 0.02f); // 0.5-2% base spike
-                var damageMultiplier = 1f + (missingHpFrac * 4f); // 1x to 5x multiplier based on damage
-                var randomSpike = baseSpike * damageMultiplier;
-                comp.SeizureBuild += randomSpike;
-            }
+        if (comp.NextMigraineTime <= TimeSpan.Zero && _timing.CurTime >= comp.MigrainePreventedUntil)
+        {
+            // Pick new migraine time
+            var nextMigraineSeconds = Random.NextFloat((float)comp.TimeBetweenMigraines.Min.TotalSeconds, (float)comp.TimeBetweenMigraines.Max.TotalSeconds);
+            comp.NextMigraineTime = TimeSpan.FromSeconds(nextMigraineSeconds);
+            var durationSeconds = Random.NextFloat((float)comp.MigraineDuration.Min.TotalSeconds, (float)comp.MigraineDuration.Max.TotalSeconds);
+            TriggerMigraine(uid, durationSeconds);
+        }
+    }
 
-            // CLAMP THAT BITCH
-            if (comp.SeizureBuild < 0f)
-                comp.SeizureBuild = 0f;
+    private void UpdateSeizureLogic(EntityUid uid, NeuroAversionComponent comp, TimeSpan deltaTime, float missingHpFrac)
+    {
+        var seconds = (float) deltaTime.TotalSeconds;
+        if (seconds <= 0f)
+            return;
 
-            // Handle seizure triggering, rolls every 3 seconds
-            // Only attempt to trigger if not dead, not in crit, and not already having a seizure
-            if (!_mobState.IsCritical(uid) && !_seizure.IsSeizing(uid))
-            {
-                comp.NextSeizureRollTime -= frameTime;
+        var isCritical = MobState.IsCritical(uid);
+        var conditionMult = GetConditionMultiplier(comp, isCritical, missingHpFrac);
 
-                if (comp.NextSeizureRollTime <= 0f)
-                {
-                    // Reset timer for next roll
-                    comp.NextSeizureRollTime = 3f;
+        // Check for chronic migraines trait interaction
+        var hasChronicMigraines = _chronicMigrainesQuery.HasComponent(uid);
+        var traitInteractionMult = hasChronicMigraines
+            ? ChronicMigraineInteractionMultiplier
+            : 1.3f;
 
-                    var buildFraction = 0f;
-                    if (comp.SeizureThreshold > 0f)
-                        buildFraction = MathF.Max(0f, MathF.Min(1f, comp.SeizureBuild / comp.SeizureThreshold));
+        if (!comp.SeizurePaused)
+        {
+            UpdateSeizureBuild(uid, comp, deltaTime, conditionMult, traitInteractionMult, missingHpFrac);
+        }
 
-                    // Calculate seizure chance as a percentage
+        // No seizures while critical, already seizing, or paused
+        if (isCritical || _seizure.IsSeizing(uid) || comp.SeizurePaused)
+            return;
 
-                    // Chance based on build level with exponential scaling for dramatic effect
-                    var scaledBuildFraction = buildFraction * buildFraction * buildFraction;
-                    var buildChancePercent = 25f * scaledBuildFraction; // Up to 25% at full build
+        // Countdown to next hazard check
+        comp.NextSeizureCheckTime -= deltaTime;
+        if (comp.NextSeizureCheckTime > TimeSpan.Zero)
+            return;
 
-                    // Health condition multiplier for build-based chance
-                    var seizureConditionMult = GetConditionMultiplier(comp, _mobState.IsCritical(uid), missingHpFrac);
-                    var totalChancePercent = buildChancePercent * seizureConditionMult;
-                    var chanceDecimal = totalChancePercent / 100f; // Convert to 0-1 range
+        comp.NextSeizureCheckTime = comp.SeizureCheckInterval;
 
-                    // Roll for seizure
-                    var roll = _random.NextDouble();
-                    var hit = roll < chanceDecimal;
+        // Mindshield severity
+        float mindshieldMult = comp.StartedMindShielded
+            ? comp.StartedMindShieldedMultiplier
+            : comp.MidRoundMindShieldedMultiplier;
 
-                    if (hit)
-                    {
-                        // Trigger seizure and reset build
-                        _seizure.StartSeizure(uid, null, 10f);
-                        comp.SeizureBuild = comp.PostSeizureResidual;
-                    }
-                }
-            }
+        // Calculate hazard (per second)
+        float hazard =
+            (comp.SeizureBuild * comp.BuildHazardFactor);
+
+        hazard *= conditionMult * mindshieldMult * traitInteractionMult;
+
+        float interval = (float)comp.SeizureCheckInterval.TotalSeconds;
+        float probability = 1f - MathF.Exp(-hazard * interval);
+
+        double roll = Random.NextDouble();
+        bool triggered = roll < probability;
+        if (triggered)
+        {
+            // Use the effects system to trigger a seizure
+            var effect = new SeizureSystem.TriggerSeizureEffect { SeizureDuration = (float)comp.NeuroAversionSeizureDuration.TotalSeconds };
+            _entityEffects.ApplyEffect(uid, effect);
         }
     }
 
     private void TriggerMigraine(EntityUid uid, float duration)
     {
+        // Extend duration if chronic migraines present
         if (_chronicMigrainesQuery.HasComponent(uid))
-            duration += 2f;
+        {
+            duration += ChronicMigraineDurationBonus;
+        }
 
         _statusEffects.TrySetStatusEffectDuration(uid, MigraineEffectComponent.Prototype, TimeSpan.FromSeconds(duration));
     }
 
     /// <summary>
-    /// Modifies seizure build on the target entity by <paramref name="amount"/>.
-    /// Positive values increase build, negative values decrease build.
+    /// Checks if the entity's job includes mindshield component or implant.
     /// </summary>
-    public void ModifySeizureBuild(EntityUid uid, float amount)
+    private bool JobHasMindshieldComponent(EntityUid uid)
     {
-        if (!TryComp<NeuroAversionComponent>(uid, out var comp))
-            return;
-
-        var newBuild = comp.SeizureBuild + amount;
-        comp.SeizureBuild = MathF.Max(0f, MathF.Min(comp.SeizureThreshold * 10f, newBuild));
-    }
-
-
-    /// <summary>
-    /// Attempts to trigger a seizure on the target entity.
-    /// Returns true if the target has a <see cref="NeuroAversionComponent"/> and the action was performed.
-    /// </summary>
-    public bool TryTriggerSeizure(EntityUid uid)
-    {
-        if (TerminatingOrDeleted(uid))
+        if (!_mindSystem.TryGetMind(uid, out _, out var mindComponent))
             return false;
 
-        if (!TryComp<NeuroAversionComponent>(uid, out var comp))
-            return false;
+        foreach (var roleUid in mindComponent.MindRoleContainer.ContainedEntities)
+        {
+            if (!EntityManager.EntityExists(roleUid) ||
+                !EntityManager.TryGetComponent(roleUid, out MindRoleComponent? role) ||
+                role.JobPrototype is not { } jobProtoId ||
+                !_prototypeManager.TryIndex(jobProtoId, out JobPrototype? jobProto))
+                continue;
 
-        // Trigger seizure and reset build
-        _seizure.StartSeizure(uid);
-        comp.SeizureBuild = comp.PostSeizureResidual;
-        return true;
+            foreach (var special in jobProto.Special)
+            {
+                // We check for both AddComponentSpecial and AddImplantSpecial because while they're ONLY supposed to be given via AddImplantSpecial I don't want the scenario where for some fucking reason someone decides to use AddComponentSpecial to do it instead.
+                if ((special is AddComponentSpecial addCompSpecial && addCompSpecial.Components.ContainsKey("MindShield")) ||
+                    (special is AddImplantSpecial implantSpecial && implantSpecial.Implants.Any(id => id == "MindShieldImplant")))
+                    return true;
+            }
+        }
+
+        return false;
     }
 }

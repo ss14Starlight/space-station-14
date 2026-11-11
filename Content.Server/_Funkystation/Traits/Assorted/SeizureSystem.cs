@@ -3,148 +3,94 @@
 //
 // SPDX-License-Identifier: MIT
 
+using Content.Server._Starlight.Speech.EntitySystems;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Jittering;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared._Funkystation.Traits.Assorted;
-using Content.Shared.Movement.Systems;
-using Content.Shared.IdentityManagement;
-using Content.Server.Speech.Components;
-using Content.Shared.Mobs.Systems;
-using Robust.Shared.Random;
+using Content.Shared.EntityEffects;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Effects;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 
 namespace Content.Server._Funkystation.Traits.Assorted;
 
 /// <summary>
-/// System that handles seizure effects including prodrome warning phase
-/// and seizure with stunning, visual effects, and speech impairment.
+/// Server-side system that handles seizure game logic including
+/// stunning, jittering, popups, and speech impairment.
 /// </summary>
-public sealed class SeizureSystem : EntitySystem
+public sealed partial class SeizureSystem : SharedSeizureSystem
 {
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedJitteringSystem _jittering = default!;
+    [Dependency] private readonly SharedColorFlashEffectSystem _colorFlash = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly StutteringSystem _stuttering = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<SeizureComponent, ComponentStartup>(OnSeizureStart);
-        SubscribeLocalEvent<SeizureComponent, ComponentShutdown>(OnSeizureEnd);
-        SubscribeLocalEvent<SeizureComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
-        SubscribeLocalEvent<SeizureOverlayComponent, RefreshMovementSpeedModifiersEvent>(OnOverlayRefreshMovementSpeed);
+        SubscribeLocalEvent<SeizureComponent, MoveEvent>(OnMoved);
     }
 
-    public override void Update(float frameTime)
+    private void OnMoved(Entity<SeizureComponent> ent, ref MoveEvent args)
     {
-        base.Update(frameTime);
+        if (TerminatingOrDeleted(ent))
+            return;
 
+        var dragging = _standing.IsDown(ent.Owner);
+        if (!dragging)
+            return;
+
+        if (TryComp<DamageableComponent>(ent, out var damage) && damage.TotalDamage >= ent.Comp.DamageUpperBound)
+            return;
+
+        var factor = (args.NewPosition.Position - args.OldPosition.Position).Length();
+        // kazne made me hardcode damage
+        DamageSpecifier dspec = new();
+        dspec.DamageDict.Add("Blunt", 0.6f);
+        var normalDamage = dspec * factor;
+        _damageable.TryChangeDamage(ent.Owner, normalDamage);
+        _colorFlash.RaiseEffect(Color.Red, new List<EntityUid> {ent}, Filter.Pvs(ent, entityManager: EntityManager));
+    }
+    protected override void UpdateSeizureComponents(float frameTime)
+    {
         var query = EntityQueryEnumerator<SeizureComponent>();
         while (query.MoveNext(out var uid, out var seizure))
         {
-            // dead people cant have seizures
+            // Dead entities can't have seizures
             if (_mobState.IsDead(uid))
                 continue;
 
             seizure.RemainingTime -= frameTime;
 
             UpdateMovementSpeed(uid, seizure, frameTime);
-
-            // Update SeizureOverlayComponent visual effect
-            if (TryComp<SeizureOverlayComponent>(uid, out var overlayComp))
-            {
-                overlayComp.PulseAccumulator += frameTime;
-
-                if (overlayComp.IsFading)
-                {
-                    var fadeSpeed = 1.0f / overlayComp.FadeOutDuration;
-                    var fadeAmount = fadeSpeed * frameTime;
-
-                    overlayComp.BlurryMagnitude = MathHelper.Lerp(overlayComp.BlurryMagnitude, 0f, fadeAmount);
-                    overlayComp.PulseAmplitude = MathHelper.Lerp(overlayComp.PulseAmplitude, 0f, fadeAmount);
-                    overlayComp.CurrentBlur = MathHelper.Lerp(overlayComp.CurrentBlur, 0f, fadeAmount);
-
-                    if (overlayComp.BlurryMagnitude <= 0.01f && overlayComp.PulseAmplitude <= 0.01f && overlayComp.CurrentBlur <= 0.01f)
-                    {
-                        RemComp<SeizureOverlayComponent>(uid);
-                        continue;
-                    }
-                }
-                else
-                {
-                    var targetBlur = overlayComp.BlurryMagnitude;
-                    var rampSpeed = targetBlur > overlayComp.CurrentBlur
-                        ? overlayComp.RampUpSpeed
-                        : overlayComp.RampDownSpeed;
-
-                    overlayComp.CurrentBlur = MathHelper.Lerp(overlayComp.CurrentBlur, targetBlur, frameTime * rampSpeed);
-                }
-
-                Dirty(uid, overlayComp);
-            }
+            UpdateOverlayVisuals(uid, seizure, frameTime);
+            Dirty(uid, seizure);
 
             if (seizure.RemainingTime <= 0f)
             {
-                // Transition to next phase or end
-                if (seizure.CurrentState == SeizureState.Prodrome)
-                {
-                    // Transition from prodrome to seizure
-                    StartSeizurePhase(uid, seizure);
-                }
-                else if (seizure.CurrentState == SeizureState.Seizure)
-                {
-                    // Transition from seizure to recovery
-                    StartRecoveryPhase(uid, seizure);
-                }
-                else if (seizure.CurrentState == SeizureState.Recovery)
-                {
-                    // Recovery is over, start overlay fade but keep SeizureComponent until fade completes
-                    if (TryComp<SeizureOverlayComponent>(uid, out var recoveryOverlayComp))
-                    {
-                        recoveryOverlayComp.IsFading = true;
-                        recoveryOverlayComp.FadeOutDuration = 1f;
-
-                        // Transfer current movement speed to overlay for gradual recovery
-                        recoveryOverlayComp.MovementSpeedMultiplier = seizure.MovementSpeedMultiplier;
-                        recoveryOverlayComp.HandleMovementRecovery = true;
-
-                        // Mark seizure as in fade phase
-                        seizure.CurrentState = SeizureState.Fading;
-                        seizure.RemainingTime = recoveryOverlayComp.FadeOutDuration;
-
-                        Dirty(uid, recoveryOverlayComp);
-                    }
-                    else
-                    {
-                        // No overlay to fade, remove component
-                        RemComp<SeizureComponent>(uid);
-                    }
-                }
-                else
-                {
-                    // Fading phase is complete
-                    RemComp<SeizureComponent>(uid);
-                }
+                HandlePhaseTransition(uid, seizure);
                 continue;
             }
-
-            // Apply appropriate effects based on current state
-            if (seizure.CurrentState == SeizureState.Seizure)
-            {
-                // jittering during seizure only
-                _jittering.DoJitter(uid, TimeSpan.FromSeconds(1f), true,
-                    seizure.JitterAmplitude, seizure.JitterFrequency, true);
-            }
         }
+    }
 
-        // Handle SeizureOverlayComponent
+    protected override void UpdateOverlayComponents(float frameTime)
+    {
         var overlayQuery = EntityQueryEnumerator<SeizureOverlayComponent>();
         while (overlayQuery.MoveNext(out var overlayUid, out var overlay))
         {
-            // dead people still cant have seizures
+            // Dead entities can't have seizures
             if (_mobState.IsDead(overlayUid))
                 continue;
 
@@ -152,57 +98,19 @@ public sealed class SeizureSystem : EntitySystem
 
             if (overlay.HandleMovementRecovery)
             {
-                var speedChangeRate = 0.3f;
-                overlay.MovementSpeedMultiplier = MathHelper.Lerp(overlay.MovementSpeedMultiplier, 1.0f, frameTime * speedChangeRate);
-
-                _movementSpeed.RefreshMovementSpeedModifiers(overlayUid);
-
-                if (MathF.Abs(overlay.MovementSpeedMultiplier - 1.0f) < 0.01f)
-                {
-                    overlay.MovementSpeedMultiplier = 1.0f;
-                    overlay.HandleMovementRecovery = false;
-                    _movementSpeed.RefreshMovementSpeedModifiers(overlayUid);
-                }
+                UpdateMovementRecovery(overlayUid, overlay, frameTime);
             }
 
-            // Handle overlay fade logic
-            if (overlay.IsFading)
-            {
-                var fadeSpeed = 1.0f / overlay.FadeOutDuration;
-                var fadeAmount = fadeSpeed * frameTime;
-
-                // During fade
-                overlay.BlurryMagnitude = MathHelper.Lerp(overlay.BlurryMagnitude, 0f, fadeAmount);
-                overlay.PulseAmplitude = MathHelper.Lerp(overlay.PulseAmplitude, 0f, fadeAmount);
-                overlay.CurrentBlur = MathHelper.Lerp(overlay.CurrentBlur, 0f, fadeAmount);
-
-                // Remove when fade is complete
-                if (overlay.BlurryMagnitude <= 0.01f && overlay.PulseAmplitude <= 0.01f && overlay.CurrentBlur <= 0.01f)
-                {
-                    RemComp<SeizureOverlayComponent>(overlayUid);
-                    continue;
-                }
-            }
-            else
-            {
-                // interpolate CurrentBlur to target
-                var targetBlur = overlay.BlurryMagnitude;
-                var rampSpeed = targetBlur > overlay.CurrentBlur
-                    ? overlay.RampUpSpeed
-                    : overlay.RampDownSpeed;
-
-                overlay.CurrentBlur = MathHelper.Lerp(overlay.CurrentBlur, targetBlur, frameTime * rampSpeed);
-            }
-
+            UpdateOverlayFade(overlayUid, overlay, frameTime);
             Dirty(overlayUid, overlay);
         }
     }
 
     /// <summary>
     /// Starts a seizure process, beginning with prodrome warning phase.
-    /// Duration is randomized from component's SeizureDuration range (min, max).
     /// </summary>
-    public void StartSeizure(EntityUid uid, float? seizureDuration = null, float prodromeDuration = 10f)
+    public void StartSeizure(EntityUid uid, float? seizureDuration = null, float prodromeDuration = 10f,
+        string? prodromePopupKey = null, string? seizurePopupKey = null, string? recoveryPopupKey = null)
     {
         if (HasComp<SeizureComponent>(uid))
             return; // Already having a seizure
@@ -212,55 +120,41 @@ public sealed class SeizureSystem : EntitySystem
         seizureComp.ProdromeDuration = prodromeDuration;
         seizureComp.RemainingTime = prodromeDuration;
 
+        seizureComp.ProdromePopupKey = prodromePopupKey;
+        seizureComp.SeizurePopupKey = seizurePopupKey;
+        seizureComp.RecoveryPopupKey = recoveryPopupKey;
 
         StartProdromePhase(uid, seizureComp);
     }
 
     private void StartProdromePhase(EntityUid uid, SeizureComponent component)
     {
-        // Add SeizureOverlayComponent
         var overlayComp = EnsureComp<SeizureOverlayComponent>(uid);
 
         overlayComp.VisualState = SeizureVisualState.Prodrome;
         overlayComp.BlurryMagnitude = 1.5f;
-        overlayComp.CurrentBlur = overlayComp.CurrentBlur;
         overlayComp.PulseAmplitude = 0.3f;
         overlayComp.PulseFrequency = 0.8f;
         overlayComp.RampUpSpeed = 2f;
         overlayComp.RampDownSpeed = 1f;
-        overlayComp.PulseAccumulator = (float)(DateTime.UtcNow.TimeOfDay.TotalSeconds % 1000.0);
+        overlayComp.PulseAccumulator = 0f;
         overlayComp.IsFading = false;
         overlayComp.UseSoftShader = false;
         overlayComp.Softness = 0.45f;
         overlayComp.FadeOutDuration = 1f;
         Dirty(uid, overlayComp);
 
-        // Initialize movement speed multiplier for smooth progressive slowdown
         component.MovementSpeedMultiplier = 1.0f;
         component.TargetMovementSpeed = 1.0f;
 
-
-        // Show prodrome warning message
-        try
-        {
-            _popup.PopupEntity(Loc.GetString("blimpuf-seizure-prodrome-self"), uid, uid, PopupType.LargeCaution);
-            var othersMessage = Loc.GetString("blimpuf-seizure-prodrome-others", ("target", Identity.Entity(uid, EntityManager)));
-            _popup.PopupPredicted(Loc.GetString("blimpuf-seizure-prodrome-self"), othersMessage, uid, uid, PopupType.LargeCaution);
-        }
-        catch
-        {
-            // do nothing cause whatevrurrrrr
-        }
+        ShowProdromePopup(uid, component.ProdromePopupKey);
     }
 
-    private void StartSeizurePhase(EntityUid uid, SeizureComponent component)
+    protected override void TransitionToSeizure(EntityUid uid, SeizureComponent seizure)
     {
-        component.CurrentState = SeizureState.Seizure;
+        base.TransitionToSeizure(uid, seizure);
 
-        var actualDuration = _random.NextFloat(component.SeizureDuration.X, component.SeizureDuration.Y);
-        component.RemainingTime = actualDuration;
-
-        // Modify SeizureOverlayComponent for harsh overlay with smooth transition
+        // Update visual overlay for harsh seizure effects
         if (TryComp<SeizureOverlayComponent>(uid, out var overlayComp))
         {
             overlayComp.VisualState = SeizureVisualState.Seizure;
@@ -275,142 +169,67 @@ public sealed class SeizureSystem : EntitySystem
             Dirty(uid, overlayComp);
         }
 
-        // Apply stun and knockdown for the seizure duration
-        _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(component.RemainingTime));
-        _jittering.DoJitter(uid, TimeSpan.FromSeconds(component.RemainingTime), true,
-            component.JitterAmplitude, component.JitterFrequency, true);
+        // Apply server-side effects
+        _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(seizure.RemainingTime));
+        _jittering.DoJitter(uid, TimeSpan.FromSeconds(seizure.RemainingTime), true,
+            seizure.JitterAmplitude, seizure.JitterFrequency, true);
+        _stuttering.DoStutter(uid, TimeSpan.FromSeconds(seizure.RemainingTime), true);
 
-        // stuttering accent during seizure
-        var stutterComp = EnsureComp<StutteringAccentComponent>(uid);
-        stutterComp.MatchRandomProb = 0.9f;
-        stutterComp.FourRandomProb = 0.3f;
-        stutterComp.ThreeRandomProb = 0.4f;
-        stutterComp.CutRandomProb = 0.1f;
+        ShowSeizurePopup(uid, seizure.SeizurePopupKey);
+    }
 
+    protected override void TransitionToRecovery(EntityUid uid, SeizureComponent seizure)
+    {
+        base.TransitionToRecovery(uid, seizure);
+        ShowRecoveryPopup(uid, seizure.RecoveryPopupKey);
+    }
 
-        // Show seizure start message
+    private void ShowProdromePopup(EntityUid uid, string? popupKey)
+    {
+        var selfKey = popupKey ?? "blimpuf-seizure-prodrome-self";
+        var othersKey = popupKey != null ? popupKey + "-others" : "blimpuf-seizure-prodrome-others";
         try
         {
-            _popup.PopupEntity(Loc.GetString("blimpuf-seizure-self"), uid, uid, PopupType.LargeCaution);
-            var othersMessage = Loc.GetString("blimpuf-seizure-others", ("target", Identity.Entity(uid, EntityManager)));
-            _popup.PopupPredicted(Loc.GetString("blimpuf-seizure-self"), othersMessage, uid, uid, PopupType.LargeCaution);
+            _popup.PopupEntity(Loc.GetString(selfKey), uid, uid, PopupType.LargeCaution);
+            var othersMessage = Loc.GetString(othersKey, ("target", Identity.Entity(uid, EntityManager)));
+            _popup.PopupPredicted(Loc.GetString(selfKey), othersMessage, uid, uid, PopupType.LargeCaution);
         }
         catch
         {
-            // do nothing cause whatevrurrrrr
+            // Silently fail if localization is missing
         }
     }
 
-    private void StartRecoveryPhase(EntityUid uid, SeizureComponent component)
+    private void ShowSeizurePopup(EntityUid uid, string? popupKey)
     {
-        component.CurrentState = SeizureState.Recovery;
-        component.RemainingTime = component.RecoveryDuration;
-
-        // Remove stuttering accent as recovery begins
-        RemComp<StutteringAccentComponent>(uid);
-
-        // Show recovery message
+        var selfKey = popupKey ?? "blimpuf-seizure-self";
+        var othersKey = popupKey != null ? popupKey + "-others" : "blimpuf-seizure-others";
         try
         {
-            _popup.PopupEntity(Loc.GetString("blimpuf-seizure-end-self"), uid, uid, PopupType.SmallCaution);
-            var othersMessage = Loc.GetString("blimpuf-seizure-end-others", ("target", Identity.Entity(uid, EntityManager)));
-            _popup.PopupPredicted(Loc.GetString("blimpuf-seizure-end-self"), othersMessage, uid, uid, PopupType.SmallCaution);
+            _popup.PopupEntity(Loc.GetString(selfKey), uid, uid, PopupType.LargeCaution);
+            var othersMessage = Loc.GetString(othersKey, ("target", Identity.Entity(uid, EntityManager)));
+            _popup.PopupPredicted(Loc.GetString(selfKey), othersMessage, uid, uid, PopupType.LargeCaution);
         }
         catch
         {
-            // hi mom, we're doing nothing
+            // Silently fail if localization is missing
         }
     }
 
-    private void OnSeizureStart(EntityUid uid, SeizureComponent component, ComponentStartup args)
+    private void ShowRecoveryPopup(EntityUid uid, string? popupKey)
     {
-        // Initialize
-        component.MovementSpeedMultiplier = 1.0f;
-        component.TargetMovementSpeed = 1.0f;
-
-        // Refresh speed modifiers
-        _movementSpeed.RefreshMovementSpeedModifiers(uid);
-    }
-
-    private void OnSeizureEnd(EntityUid uid, SeizureComponent component, ComponentShutdown args)
-    {
-        if (TerminatingOrDeleted(uid))
-            return;
-
-        // Remove stuttering accent if still present
-        RemComp<StutteringAccentComponent>(uid);
-
-        component.MovementSpeedMultiplier = 1.0f;
-        _movementSpeed.RefreshMovementSpeedModifiers(uid);
-    }
-
-    private void UpdateMovementSpeed(EntityUid uid, SeizureComponent seizure, float frameTime)
-    {
-        if (seizure.CurrentState == SeizureState.Prodrome)
+        var selfKey = popupKey ?? "blimpuf-seizure-end-self";
+        var othersKey = popupKey != null ? popupKey + "-others" : "blimpuf-seizure-end-others";
+        try
         {
-            // During prodrome, gradually slow down as seizure approaches
-            // Calculate how much time has passed in the prodrome phase
-            var prodromeProgress = 1.0f - (seizure.RemainingTime / seizure.ProdromeDuration);
-
-            seizure.MovementSpeedMultiplier = MathHelper.Lerp(1.0f, 0.6f, prodromeProgress);
+            _popup.PopupEntity(Loc.GetString(selfKey), uid, uid, PopupType.SmallCaution);
+            var othersMessage = Loc.GetString(othersKey, ("target", Identity.Entity(uid, EntityManager)));
+            _popup.PopupPredicted(Loc.GetString(selfKey), othersMessage, uid, uid, PopupType.SmallCaution);
         }
-        else if (seizure.CurrentState == SeizureState.Seizure)
+        catch
         {
-            // During seizure, apply very slow movement
-            var speedChangeRate = 3.0f;
-            seizure.MovementSpeedMultiplier = MathHelper.Lerp(seizure.MovementSpeedMultiplier, 0.1f, frameTime * speedChangeRate);
+            // Silently fail if localization is missing
         }
-        else if (seizure.CurrentState == SeizureState.Recovery)
-        {
-            // During recovery, return to normal speed
-            var speedChangeRate = 0.5f;
-            seizure.MovementSpeedMultiplier = MathHelper.Lerp(seizure.MovementSpeedMultiplier, 1.0f, frameTime * speedChangeRate);
-        }
-
-        // Apply the movement speed modifier
-        _movementSpeed.RefreshMovementSpeedModifiers(uid);
-    }
-
-    private void OnRefreshMovementSpeed(EntityUid uid, SeizureComponent component, RefreshMovementSpeedModifiersEvent args)
-    {
-        // Apply the current movement speed multiplier from the seizure
-        args.ModifySpeed(component.MovementSpeedMultiplier, component.MovementSpeedMultiplier);
-    }
-
-    private void OnOverlayRefreshMovementSpeed(EntityUid uid, SeizureOverlayComponent component, RefreshMovementSpeedModifiersEvent args)
-    {
-        if (component.HandleMovementRecovery)
-        {
-            args.ModifySpeed(component.MovementSpeedMultiplier, component.MovementSpeedMultiplier);
-        }
-    }
-
-    /// <summary>
-    /// Checks if an entity is currently having a seizure or in prodrome.
-    /// </summary>
-    public bool IsSeizing(EntityUid uid)
-    {
-        return HasComp<SeizureComponent>(uid);
-    }
-
-    /// <summary>
-    /// Checks if an entity is in the warning phase.
-    /// </summary>
-    public bool IsInProdrome(EntityUid uid)
-    {
-        if (TryComp<SeizureComponent>(uid, out var seizure))
-            return seizure.CurrentState == SeizureState.Prodrome;
-        return false;
-    }
-
-    /// <summary>
-    /// Checks if an entity is in the active seizure phase.
-    /// </summary>
-    public bool IsInActiveSeizure(EntityUid uid)
-    {
-        if (TryComp<SeizureComponent>(uid, out var seizure))
-            return seizure.CurrentState == SeizureState.Seizure;
-        return false;
     }
 
     /// <summary>
@@ -418,11 +237,44 @@ public sealed class SeizureSystem : EntitySystem
     /// </summary>
     public void StopSeizure(EntityUid uid)
     {
-        if (HasComp<SeizureComponent>(uid))
-        {
-            // Clean up because we're good programmers that clean when we're done
-            RemComp<StutteringAccentComponent>(uid);
-            RemComp<SeizureComponent>(uid);
-        }
+        if (!HasComp<SeizureComponent>(uid))
+            return;
+
+        _stuttering.DoRemoveStutter(uid);
+        RemComp<SeizureComponent>(uid);
+    }
+
+    /// <summary>
+    /// Triggers a seizure on the target entity.
+    /// </summary>
+    public sealed partial class TriggerSeizureEffect : EntityEffectBase<TriggerSeizureEffect>
+    {
+        /// <summary>
+        /// Optional custom seizure duration (seconds).
+        /// </summary>
+        [DataField("seizureDuration")]
+        public float? SeizureDuration;
+
+        /// <summary>
+        /// Optional custom prodrome duration (seconds).
+        /// </summary>
+        [DataField("prodromeDuration")]
+        public float ProdromeDuration = 10f;
+
+        public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc)
+            => null;
+    }
+}
+
+public sealed partial class TriggerSeizureEntityEffectSystem : EntityEffectSystem<NeuroAversionComponent, SeizureSystem.TriggerSeizureEffect>
+{
+    protected override void Effect(Entity<NeuroAversionComponent> entity, ref EntityEffectEvent<SeizureSystem.TriggerSeizureEffect> args)
+    {
+        var duration = args.Effect.SeizureDuration.HasValue
+            ? TimeSpan.FromSeconds(args.Effect.SeizureDuration.Value)
+            : entity.Comp.NeuroAversionSeizureDuration;
+        EntityManager.System<SeizureSystem>().StartSeizure(entity, (float)duration.TotalSeconds, args.Effect.ProdromeDuration);
+        entity.Comp.SeizureBuild = entity.Comp.PostSeizureResidual;
+        Dirty(entity);
     }
 }

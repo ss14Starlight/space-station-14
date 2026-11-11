@@ -2,23 +2,51 @@
 //
 // SPDX-License-Identifier: MIT
 
+using Content.Shared.FixedPoint;
 using System.Numerics;
+using Robust.Shared.GameStates;
 
-namespace Content.Server._Funkystation.Traits.Assorted;
+namespace Content.Shared._Funkystation.Traits.Assorted;
+
+/// <summary>
+/// Seizure episode phases.
+/// </summary>
+public enum SeizureState : byte
+{
+    /// <summary>
+    /// Warning phase with faint visual overlay and gradual movement slowdown.
+    /// </summary>
+    Prodrome = 0,
+
+    /// <summary>
+    /// Active seizure with harsh overlay, stunning, and visual effects.
+    /// </summary>
+    Seizure = 1,
+
+    /// <summary>
+    /// Recovery phase with gradual movement speed restoration.
+    /// </summary>
+    Recovery = 2,
+
+    /// <summary>
+    /// Final fade phase where overlay fades while component cleans up.
+    /// </summary>
+    Fading = 3
+}
 
 /// <summary>
 /// Component for entities experiencing a seizure episode.
 /// Manages timing and state for prodrome, seizure, recovery, and fading phases.
 /// </summary>
-[RegisterComponent, Access(typeof(SeizureSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class SeizureComponent : Component
 {
     /// <summary>
     /// Duration range for seizure episodes, (min, max) in seconds.
     /// Default: 25-30 seconds to match the audio length
     /// </summary>
-    [DataField("durationOfIncident")]
-    public Vector2 SeizureDuration { get; private set; } = new(25f, 30f);
+    [DataField]
+    public Vector2 SeizureDuration = new(25f, 30f);
 
     /// <summary>
     /// How long the prodrome warning phase lasts before seizure begins.
@@ -47,48 +75,48 @@ public sealed partial class SeizureComponent : Component
     /// <summary>
     /// Current seizure phase state.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public SeizureState CurrentState = SeizureState.Prodrome;
 
     /// <summary>
     /// Time remaining in the current phase.
     /// </summary>
+    [DataField, AutoNetworkedField]
     public float RemainingTime;
 
     /// <summary>
     /// Current movement speed multiplier.
     /// </summary>
+    [DataField, AutoNetworkedField]
     public float MovementSpeedMultiplier = 1.0f;
 
     /// <summary>
-    /// Target movement speed.
+    /// Target movement speed for interpolation.
     /// </summary>
+    [DataField, AutoNetworkedField]
     public float TargetMovementSpeed = 1.0f;
+
+    /// <summary>
+    /// Custom popup key for the prodrome phase.
+    /// </summary>
+    [DataField]
+    public string? ProdromePopupKey;
+
+    /// <summary>
+    /// Custom popup key for the seizure phase.
+    /// </summary>
+    [DataField]
+    public string? SeizurePopupKey;
+
+    /// <summary>
+    /// Custom popup key for the recovery phase.
+    /// </summary>
+    [DataField]
+    public string? RecoveryPopupKey;
+
+    /// <summary>
+    /// How much damage can be dealt before the entity will stop taking damage from drag
+    /// </summary>
+    [DataField]
+    public FixedPoint2 DamageUpperBound = 100;
 }
-
-/// <summary>
-/// Seizure episode phases.
-/// </summary>
-public enum SeizureState : byte
-{
-    /// <summary>
-    /// Warning phase with faint visual overlay and gradual movement slowdown.
-    /// </summary>
-    Prodrome = 0,
-
-    /// <summary>
-    /// Active seizure with harsh overlay, stunning, and visual effects.
-    /// </summary>
-    Seizure = 1,
-
-    /// <summary>
-    /// Recovery phase with gradual movement speed restoration.
-    /// </summary>
-    Recovery = 2,
-
-    /// <summary>
-    /// Final fade phase where overlay fades while component cleans up.
-    /// </summary>
-    Fading = 3
-}
-

@@ -1,148 +1,139 @@
-// SPDX-FileCopyrightText: 2026 Mora <46364955+TrixxedHeart@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2026 TrixxedHeart <46364955+TrixxedBit@users.noreply.github.com>
 //
 // SPDX-License-Identifier: MIT
 
-using System.Numerics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._Funkystation.Traits.Assorted;
 
 /// <summary>
-/// Component for entities with neuro aversion trait.
-/// Handles migraine timing and seizure build-up when mind-shielded.
+/// Component for entities with Neuroaversion trait.
+/// When combined with mindshield, causes migraines and seizures.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class NeuroAversionComponent : Component
 {
-    // =| MIGRAINES |=
-
     /// <summary>
-    /// Time range between migraine episodes while mind-shielded, (min, max) in seconds.
-    /// Default: 8-20 minutes. Frequency is affected by health.
+    /// Time range between migraines (min, max).
+    /// Default: 8-20 minutes
     /// </summary>
     [DataField]
-    public Vector2 TimeBetweenMigraines { get; private set; } = new(480f, 1200f);
+    public (TimeSpan Min, TimeSpan Max) TimeBetweenMigraines = (TimeSpan.FromMinutes(8), TimeSpan.FromMinutes(20));
 
     /// <summary>
-    /// Duration range of migraine episodes, (min, max) in seconds.
+    /// Duration range for migraines (min, max).
     /// </summary>
     [DataField]
-    public Vector2 MigraineDuration { get; private set; } = new(12f, 15f);
-
-    // =| SEIZURES |=
+    public (TimeSpan Min, TimeSpan Max) MigraineDuration = (TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(60));
 
     /// <summary>
-    /// Base seizure build gain per second (0-1 scale).
+    /// Time until next migraine.
     /// </summary>
-    [DataField]
-    public float BaseSeizurePassivePerSec { get; private set; } = 0.00000694f;
-
-    /// <summary>
-    /// Seizure meter threshold for triggering seizures.
-    /// </summary>
-    [DataField]
-    public float SeizureThreshold { get; private set; } = 1.0f;
-
-    /// <summary>
-    /// Residual meter value after seizure (prevents immediate retriggering).
-    /// </summary>
-    [DataField]
-    public float PostSeizureResidual { get; private set; } = 0.1f;
-
-    // =| HEALTH MULTIPLIERS |=
-
-    /// <summary>
-    /// Build multiplier for good health condition.
-    /// </summary>
-    [DataField]
-    public float ConditionGoodMultiplier { get; private set; } = 1.0f;
-
-    /// <summary>
-    /// Build multiplier for okay health condition.
-    /// </summary>
-    [DataField]
-    public float ConditionOkayMultiplier { get; private set; } = 1.4f;
-
-    /// <summary>
-    /// Build multiplier for bad health condition.
-    /// </summary>
-    [DataField]
-    public float ConditionBadMultiplier { get; private set; } = 4.0f;
-
-    /// <summary>
-    /// Build multiplier for critical health condition.
-    /// </summary>
-    [DataField]
-    public float ConditionCriticalMultiplier { get; private set; } = 14.0f;
-
-    /// <summary>
-    /// Severity multiplier for entities that started with mindshields (normal severity).
-    /// </summary>
-    [DataField]
-    public float StartedMindShieldedMultiplier { get; private set; } = 1.0f;
-
-    /// <summary>
-    /// Severity multiplier for entities that got mindshielded mid-round (more severe effects).
-    /// </summary>
-    [DataField]
-    public float MidRoundMindShieldedMultiplier { get; private set; } = 3f;
-
-    // =| EVERYTHING ELSE |=
-
-    /// <summary>
-    /// Current seizure meter accumulation (0-1 scale).
-    /// Builds toward SeizureThreshold to trigger seizures.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float SeizureBuild;
-
-    /// <summary>
-    /// Whether this entity currently has a mind shield implant.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public bool IsMindShielded;
-
-    /// <summary>
-    /// Whether this entity started with a mind shield at round start.
-    /// Used to determine severity levels those who are roundstart (command/sec/etc) mindshielded get normal effects,
-    /// those who get mindshielded midround get more severe effects.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public bool StartedMindShielded;
-
-    /// <summary>
-    /// Whether the StartedMindShielded flag has been checked and set. Used to ensure it is only set once.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public bool StartedMindShieldedChecked;
-
-    /// <summary>
-    /// Time until next migraine episode (in seconds).
-    /// </summary>
-    public float NextMigraineTime;
+    [DataField, AutoNetworkedField]
+    public TimeSpan NextMigraineTime;
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan MigrainePreventedUntil;
 
     /// <summary>
-    /// Time until next seizure chance roll (3 second intervals).
+    /// Current seizure build level (0-100).
+    /// Represents the percentage chance to have a seizure on each roll (every 3 seconds).
+    /// Value is rounded to 4 decimal places to avoid floating point artifacts.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float NextSeizureRollTime = 3f;
-
-    // =| API STUFF |=
-
-    /// <summary>
-    /// Modifies the seizure meter by the specified amount.
-    /// </summary>
-    /// <param name="amount">Amount to modify (positive increases, negative decreases)</param>
-    public void ModifySeizureBuild(float amount)
+    [DataField, AutoNetworkedField]
+    private float _seizureBuild;
+    public float SeizureBuild
     {
-        var newBuild = SeizureBuild + amount;
-        SeizureBuild = MathF.Max(0f, MathF.Min(SeizureThreshold * 10f, newBuild));
+        get => _seizureBuild;
+        set => _seizureBuild = MathF.Round(MathF.Max(0f, MathF.Min(value, SeizureThreshold * 2f)), 4);
     }
 
+    /// <summary>
+    /// Seizure threshold (100 = full meter).
+    /// </summary>
+    [DataField]
+    public float SeizureThreshold = 100f;
 
+    /// <summary>
+    /// Base passive seizure build per second when in good condition.
+    /// Build percentage IS the seizure chance per roll (every 3 sec).
+    /// 0.0015 = 0.0015%/sec
+    /// Roundstart (1.0x): ~10% build after 2 hours = 10% chance per roll
+    /// Mid-round (3.0x): ~32% build after 2 hours = 32% chance per roll
+    /// </summary>
+    [DataField]
+    public float BaseSeizurePassivePerSec = 0.005f;
+
+    /// <summary>
+    /// Residual seizure build after a seizure occurs (percentage of max).
+    /// </summary>
+    [DataField]
+    public float PostSeizureResidual = 10f;
+
+    /// <summary>
+    /// Time between seizure hazard checks.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TimeSpan NextSeizureCheckTime = TimeSpan.FromSeconds(15);
+
+    [DataField]
+    public TimeSpan SeizureCheckInterval = TimeSpan.FromSeconds(15);
+
+    /// <summary>
+    /// Additional hazard per point of seizure build.
+    /// </summary>
+    [DataField]
+    public float BuildHazardFactor = 0.000004f;
+
+    /// <summary>
+    /// Whether the entity currently has a mindshield.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool IsMindShielded;
+
+    /// <summary>
+    /// Whether the entity started with a mindshield at round start.
+    /// Affects severity multipliers.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool StartedMindShielded;
+
+    /// <summary>
+    /// Whether we've checked if they started mindshielded (only check once).
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool StartedMindShieldedChecked;
+
+    /// <summary>
+    /// If true, seizure rolls and build accumulation are paused (such as while psicodine is metabolized).
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool SeizurePaused;
+
+    // Condition multipliers based on health state
+    [DataField]
+    public float ConditionGoodMultiplier = 1.0f;
+
+    [DataField]
+    public float ConditionOkayMultiplier = 1.5f;
+
+    [DataField]
+    public float ConditionBadMultiplier = 4.0f;
+
+    [DataField]
+    public float ConditionCriticalMultiplier = 25.0f;
+
+    // Severity multipliers based on when mindshield was applied
+    [DataField]
+    public float StartedMindShieldedMultiplier = 1.0f;
+
+    [DataField]
+    public float MidRoundMindShieldedMultiplier = 3.5f;
+
+    /// <summary>
+    /// Duration of seizures triggered by neuroaversion.
+    /// </summary>
+    [DataField]
+    public TimeSpan NeuroAversionSeizureDuration = TimeSpan.FromSeconds(10);
 }
