@@ -492,7 +492,7 @@
   categories:
     - SalvageSurplus
   conditions:
-    - !type:BuyerAccessCondition
+  - !type:BuyerAccessCondition
   - !type:ListingLimitedStockCondition
      stock: 1
 
