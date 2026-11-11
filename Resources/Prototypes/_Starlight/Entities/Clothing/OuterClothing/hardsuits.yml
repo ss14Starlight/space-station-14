@@ -364,7 +364,7 @@
   parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterHardsuitSecurityExperimental
   name: experimental security hardsuit
-  description: A high-tech hardsuit meant to eventually replace the standard security suit, it boasts an ID-Lock and Gun-Lock system. Rumors have it that the first prototype was stolen by the syndicate..
+  description: A high-tech hardsuit that was meant to eventually replace the standard security hardsuit. Rumor has it that the first prototype was stolen by the Syndicate...
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/experimental_security.rsi
@@ -381,13 +381,6 @@
       damageCoefficient: 0.3
     - type: ZombificationResistance
       zombificationResistanceCoefficient: 0.50
-    - type: IdClothingBlocker
-      allowedAccesses:
-        - Security
-        - Armory
-        - HeadOfSecurity
-        - Captain
-        - Detective
     - type: Pierceable
       level: Metal
     - type: Armor
@@ -410,9 +403,6 @@
           pitch: 0.7
           variation: 0.025
     - type: HeldSpeedModifier
-    - type: Tag
-      tags:
-        - RequiredForLmgTag
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitSecurityExperimental
 

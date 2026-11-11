@@ -78562,10 +78562,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 12.5,5.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 12225
     components:
     - type: Transform
@@ -79826,10 +79822,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 33.5,4.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
     - type: EntityStorage
       air:
         temperature: 293.14673
@@ -79858,10 +79850,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 36.5,7.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: CrateSecurityTrackingMindshieldImplants
   entities:
   - uid: 12424
@@ -79869,10 +79857,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 34.5,10.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: CrateServicePersonnel
   entities:
   - uid: 12425

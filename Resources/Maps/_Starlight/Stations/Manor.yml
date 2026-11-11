@@ -92396,10 +92396,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -2.5,85.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 15238
     components:
     - type: Transform
