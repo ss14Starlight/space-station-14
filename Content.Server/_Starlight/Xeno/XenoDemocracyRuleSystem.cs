@@ -56,7 +56,7 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
         }
     }
 
-    private void VoiceVote()
+    private void VoiceVote(EntityUid? exclude = null)
     {
         var ruleQuery = QueryActiveRules();
         var foundRule = false;
@@ -111,7 +111,7 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
             var selectedVoice = voteRankings.First();
             voteRankings.Remove(selectedVoice);
 
-            if(!TryComp(selectedVoice.Value, out XenoDemocracyComponent? comp) || !_mind.TryGetMind(selectedVoice.Value, out _, out _))
+            if(!TryComp(selectedVoice.Value, out XenoDemocracyComponent? comp) || !_mind.TryGetMind(selectedVoice.Value, out _, out _) || (exclude != null && selectedVoice.Value == exclude))
                 continue;
             _languageSystem.AddLanguage(selectedVoice.Value, comp.VoiceLanguage);
             _languageSystem.RemoveLanguage(selectedVoice.Value, comp.NonVoiceLanguage, removeUnderstood: false);
@@ -126,6 +126,7 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
         if(rule != null && !rule.HasVoice)
         {
             _sawmill.Info("Voice vote somehow finished without eligible candidates.");
+            rule.VoiceVoteTimer = _timing.CurTime.Add(rule.VoiceVoteDelay); //Retry later.
         }
 
         //Once done, remove vote action from all eligible voters
@@ -152,8 +153,11 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
         {
             rule.HasVoice = false;
         }
+        _languageSystem.AddLanguage(ent.Owner, ent.Comp.NonVoiceLanguage);
+        _languageSystem.RemoveLanguage(ent.Owner, ent.Comp.VoiceLanguage, removeUnderstood: false);
+        ent.Comp.IsVoice = true;
 
-        VoiceVote(); //Get the next in line!
+        VoiceVote(ent.Owner); //Get the next in line!
     }
 
     //Need to do this for comp shutdown, too, in case the component is forcefully removed
@@ -172,7 +176,7 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
             rule.HasVoice = false;
         }
 
-        VoiceVote(); //Get the next in line!
+        VoiceVote(ent.Owner); //Get the next in line!
     }
 
     private void OnComponentStartup(EntityUid uid, XenoDemocracyComponent component, ComponentStartup _)
