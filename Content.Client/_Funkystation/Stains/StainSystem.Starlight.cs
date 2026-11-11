@@ -2,7 +2,7 @@ using Content.Shared._Funkystation.Stains.Components;
 using Content.Shared._Funkystation.Stains.Systems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Item;
-using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared._Starlight.CCVar;
 using Robust.Client.GameObjects;
 using Robust.Shared.Configuration;
 

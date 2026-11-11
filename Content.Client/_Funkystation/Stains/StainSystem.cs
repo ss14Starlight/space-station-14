@@ -2,7 +2,6 @@
 using Content.Client.Items.Systems;
 using Content.Shared._Funkystation.Stains.Components;
 using Content.Shared._Funkystation.Stains.Systems;
-using Content.Shared._Starlight.CCVar;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Clothing;
 using Content.Shared.Clothing.Components;
