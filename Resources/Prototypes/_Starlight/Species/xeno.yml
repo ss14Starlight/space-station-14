@@ -16,8 +16,8 @@
   roundstartCyberwareCapacity: 0
   minAge: 20
   youngAge: 100
-  oldAge: 300
-  maxAge: 400
+  oldAge: 150
+  maxAge: 200
   standardSize: 170
   standardWeight: 80
   standardDensity: 110
