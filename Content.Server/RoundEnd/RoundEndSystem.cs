@@ -79,7 +79,6 @@ namespace Content.Server.RoundEnd
         {
             base.Initialize();
             SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => Reset());
-            SubscribeLocalEvent<RoundEndCancelMessageEvent>(OnRoundEndCancelled); // Starlight
             SetAutoCallTime();
         }
 

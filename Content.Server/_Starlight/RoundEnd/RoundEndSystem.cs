@@ -70,11 +70,8 @@ public sealed partial class RoundEndSystem
         Timer.Spawn(countdownTime.Value, AfterEndRoundRestart, _countdownTokenSource.Token);
     }
 
-    /// <summary>
-    /// The restart timer shares <see cref="_countdownTokenSource"/> with the shuttle call, so it has to be cleared
-    /// when going back to the round, or every future shuttle call thinks one is already in progress.
-    /// </summary>
-    private void OnRoundEndCancelled(RoundEndCancelMessageEvent ev)
+    [SubscribeLocalEvent]
+    private void OnRoundEndCancelled(ref RoundEndCancelMessageEvent ev)
     {
         _countdownTokenSource?.Cancel();
         _countdownTokenSource = null;
