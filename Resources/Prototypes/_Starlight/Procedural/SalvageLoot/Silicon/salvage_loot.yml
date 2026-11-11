@@ -16,7 +16,6 @@
         - proto: BorgModuleAdvancedMining
         - proto: BorgModuleRescue
         - proto: BorgModuleChemical
-        - proto: BorgModuleTopical
         - proto: BorgModuleAdvancedCleaning
         - proto: BorgModuleConstruction
         - proto: SalvageMiningBorg
@@ -64,8 +63,6 @@
         - proto: BorgModuleRescue
           prob: 0.5
         - proto: BorgModuleChemical
-          prob: 0.5
-        - proto: BorgModuleTopical
           prob: 0.5
         - proto: BorgModuleAdvancedCleaning
         - proto: BorgModuleConstruction
@@ -130,8 +127,6 @@
         - proto: BorgModuleRescue
           prob: 0.5
         - proto: BorgModuleChemical
-          prob: 0.5
-        - proto: BorgModuleTopical
           prob: 0.5
         - proto: BorgModuleAdvancedCleaning
         - proto: BorgModuleConstruction
