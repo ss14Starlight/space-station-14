@@ -67,7 +67,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
     [Dependency] private NPCHidingWitnessSystem _hidingWitness = default!; // Starlight
 
     private EntityQuery<PuddleComponent> _puddleQuery;
-    private EntityQuery<FootprintComponent> _footprintQuery;
+    private EntityQuery<FootprintComponent> _footprintQuery; // Starlight-edit
     private EntityQuery<TransformComponent> _xformQuery;
     private static readonly ProtoId<TagPrototype> _reagentFireTag = "ReagentFire";
 
