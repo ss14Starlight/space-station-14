@@ -22,7 +22,7 @@
   name: pill canister
   parent: PillCanister
   id: PillCanisterPsicodine
-  suffix: Psicodine 10u, 5
+  suffix: Psicodine 10u, 3
   components:
   - type: Label
     currentLabel: reagent-label-psicodine-10

@@ -13,4 +13,4 @@
       minDurationOfIncident: 35s
       maxDurationOfIncident: 65s
   - !type:SpawnItemInHandEffect
-    item: PillCanisterChepagepant
+    item: PillCanisterPsicodine

@@ -1,6 +1,6 @@
 - type: entityEffect
-  id: ChepagepantMigrainePrevention
-  guidebookText: chepagepant-guidebook-prevention
+  id: PsicodineMigrainePrevention
+  guidebookText: blimpuf-reagent-effect-migraine-prevention
   effects:
   - !type:ModifyStatusEffect
     effectProto: StatusEffectMigrainePrevention

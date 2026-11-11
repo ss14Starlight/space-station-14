@@ -1871,6 +1871,16 @@
       effects:
       - !type:ReduceSeizureBuild
         reductionAmount: 0.1
+      - !type:NestedEffect
+        proto: PsicodineMigrainePrevention
+        conditions:
+        - !type:ReagentCondition
+          reagent: Psicodine
+          min: 0.10
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectMigraine
+        time: 0.5
+        type: Remove
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition

@@ -15,3 +15,4 @@ blimpuf-reagent-effect-reduce-seizure-build = { $chance ->
     [1] Reduces
     *[other] May reduce
     } seizure buildup associated with neuroaversion.
+blimpuf-reagent-effect-migraine-prevention = Delays the next migraine until at least 15 minutes after protection ends.

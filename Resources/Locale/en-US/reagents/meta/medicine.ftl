@@ -150,7 +150,7 @@ reagent-name-mannitol = mannitol
 reagent-desc-mannitol = Efficiently restores brain damage.
 
 reagent-name-psicodine = psicodine
-reagent-desc-psicodine = Suppresses anxiety and other various forms of mental distress. Overdose causes hallucinations and minor toxin damage.
+reagent-desc-psicodine = Suppresses anxiety, treats migraines, and reduces seizure buildup. Overdose causes hallucinations and minor toxin damage.
 
 reagent-name-potassium-iodide = potassium iodide
 reagent-desc-potassium-iodide = Will reduce the damaging effects of radiation by 90%. Prophylactic use only.
