@@ -402,6 +402,16 @@
   conditions:
   - !type:BuyerAccessCondition
 
+- type: listing
+  id: VendorSalvageGlowstoneDropper
+  productEntity: GlowstoneDropperFilled25
+  cost:
+    SalvageTicket: 30
+  categories:
+    - SalvageConsumeables
+  conditions:
+    - !type:BuyerAccessCondition
+
 #Blueprints
 - type: listing
   id: VendorSalvageBlueprintBasicAmmo

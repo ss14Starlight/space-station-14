@@ -102064,29 +102064,17 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 66.5,-69.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 15790
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 101.5,22.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 15791
     components:
     - type: Transform
       parent: 2
       pos: 85.5,-64.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: ComputerCriminalRecordsDesktop
   entities:
   - uid: 15792
@@ -102114,10 +102102,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 72.5,-54.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 15797
     components:
     - type: Transform
@@ -102138,10 +102122,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 72.5,-49.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 15801
     components:
     - type: Transform
@@ -103695,10 +103675,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 66.5,-77.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: CrateServiceColorfulLights
   entities:
   - uid: 16054

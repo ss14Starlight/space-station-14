@@ -1,0 +1,150 @@
+- type: entity
+  parent: BaseItem
+  abstract: true
+  id: GlowstoneDropper
+  name: glowstone bag
+  description: A fine leather bag, purpose-made for leaving a trail of glowstones as you walk. Never lose your way again! Refill with crystal shards.
+  suffix: "Empty"
+  components:
+    - type: Transform
+      noRot: true
+    - type: Item
+      size: Small
+      shape:
+        - 0,0,0,1
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/Breadcrumb/bag.rsi
+      layers:
+        - state: icon-closed
+          map: [ "enum.BreadcrumbDropperVisualLayers.Base" ]
+        - state: fill-2
+          map: [ "enum.BreadcrumbDropperVisualLayers.Fill" ]
+          visible: false
+      noRot: true
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.BreadcrumbDropperVisuals.Enabled:
+          enum.BreadcrumbDropperVisualLayers.Base:
+            True: { state: icon-open }
+            False: { state: icon-closed }
+    - type: BreadcrumbDropper
+      dropRange: 4.5
+      locToggleOn: glowstone-bag-toggle-on
+      locToggleEmpty: glowstone-bag-toggle-empty
+      locToggleOff: glowstone-bag-toggle-off
+      locEmptied: glowstone-bag-emptied
+      locRecharged: glowstone-bag-recharged
+      locRechargeFull: glowstone-bag-recharge-full
+      colorOptions:
+        white: "#ffffff"
+        red: "#ff0000"
+        orange: "#ff8000"
+        yellow: "#ffff00"
+        green: "#3dff3d"
+        cyan: "#00ffff"
+        blue: "#0560fc"
+        magenta: "#ff00ff"
+    - type: LimitedCharges
+      maxCharges: 500
+      lastCharges: -1 # -1 = empty; 0 gets filled to max.
+    - type: UserInterface
+      interfaces:
+        enum.BreadcrumbDropperUiKey.Key:
+          type: BreadcrumbDropperBoundUserInterface
+
+- type: entity
+  parent: GlowstoneDropper
+  id: GlowstoneDropperEmpty
+  suffix: "Empty"
+
+- type: entity
+  parent: GlowstoneDropper
+  id: GlowstoneDropperFilled25
+  suffix: "Filled, 25"
+  components:
+    - type: LimitedCharges
+      lastCharges: 25
+
+- type: entity
+  parent: GlowstoneDropper
+  id: GlowstoneDropperFilled500
+  suffix: "Filled, 500"
+  components:
+    - type: LimitedCharges
+      lastCharges: 500
+
+- type: entity
+  parent: BaseItem
+  id: Glowstone
+  name: glowstone
+  description: A stone that glows for a while. Useful for tracking where you've been.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Item
+      size: Tiny
+      heldPrefix: unlit
+      shape:
+        - 0,0,0,0
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/Breadcrumb/dropping.rsi
+      noRot: true
+      layers:
+        - state: base
+          map: [ "enum.ExpendableLightVisualLayers.Base" ]
+        - state: light
+          map: [ "enum.BreadcrumbVisualLayers.UnlitColor", "enum.ExpendableLightVisualLayers.Overlay" ]
+          visible: true
+        - state: light
+          map: [ "enum.BreadcrumbVisualLayers.LitColor", "enum.ExpendableLightVisualLayers.Glow" ]
+          visible: false
+          shader: unshaded
+    - type: Breadcrumb
+    - type: Damageable
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 1
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: Appearance
+    - type: PointLight
+      enabled: false
+      color: "#ffffff"
+      radius: 1.7
+      energy: 2.5
+    - type: ExpendableLight
+      glowDuration: 300
+      fadeOutDuration: 900
+      turnOnBehaviourID: turn_on
+      fadeOutBehaviourID: fade_out
+      fadeGlowWithEnergy: true
+      glowReferenceEnergy: 3.5 # intentionally higher than the max energy to make it less intense
+    - type: LightBehaviour
+      behaviours:
+        - !type:FadeBehaviour # fade in radius
+          id: turn_on
+          maxDuration: 5
+          startValue: 1.1
+          endValue: 1.7
+        - !type:FadeBehaviour # fade in energy
+          id: turn_on
+          maxDuration: 5
+          property: Energy
+          startValue: 0.2
+          endValue: 2.5
+        - !type:FadeBehaviour # fade out radius
+          id: fade_out
+          maxDuration: 900
+          startValue: 1.7
+          endValue: 1.2
+        - !type:FadeBehaviour # fade out energy
+          id: fade_out
+          maxDuration: 900
+          property: Energy
+          startValue: 2.5
+          endValue: 0.7
+    - type: Tag
+    - type: SpaceGarbage

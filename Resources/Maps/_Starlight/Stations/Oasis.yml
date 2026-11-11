@@ -17828,14 +17828,6 @@ entities:
       parent: 29394
       rot: 1.5707963267948966 rad
       pos: -6.5,28.5
-    - type: AccessReader
-      accessListsOriginal: []
-      access:
-      - - Security
-      - - Armory
-      - - Brig
-      - - Detective
-      - - Cadet
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: DeviceLinkSource
@@ -18263,13 +18255,6 @@ entities:
     - type: Transform
       parent: 29394
       pos: -6.5,24.5
-    - type: AccessReader
-      accessListsOriginal: []
-      access:
-      - - Security
-      - - Armory
-      - - Detective
-      - - Cadet
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: DeviceLinkSource
@@ -18285,14 +18270,6 @@ entities:
     - type: Transform
       parent: 29394
       pos: -3.5,26.5
-    - type: AccessReader
-      accessListsOriginal: []
-      access:
-      - - Security
-      - - Armory
-      - - Brig
-      - - Detective
-      - - Cadet
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: DeviceLinkSource
@@ -99643,10 +99620,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 33.5,-11.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 11106
     components:
     - type: Transform
@@ -99659,28 +99632,16 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 33.5,-21.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 11108
     components:
     - type: Transform
       parent: 2
       pos: 43.5,-15.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 33980
     components:
     - type: Transform
       parent: 29394
       pos: 19.5,-42.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: ComputerCriminalRecordsDesktop
   entities:
   - uid: 11109
@@ -99694,20 +99655,12 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 35.5,-33.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 33981
     components:
     - type: Transform
       parent: 29394
       rot: 3.141592653589793 rad
       pos: 15.5,11.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: ComputerFrame
   entities:
   - uid: 11111
@@ -101558,10 +101511,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 54.5,-19.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: CrateSecurityTrackingMindshieldImplants
   entities:
   - uid: 11355
@@ -101569,10 +101518,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 48.5,-21.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: CrateServiceBureaucracy
   entities:
   - uid: 11356
@@ -171045,14 +170990,6 @@ entities:
       parent: 29394
       rot: 1.5707963267948966 rad
       pos: 1.5,26.5
-    - type: AccessReader
-      accessListsOriginal: []
-      access:
-      - - Security
-      - - Armory
-      - - Brig
-      - - Detective
-      - - Cadet
 - proto: HolofanProjector
   entities:
   - uid: 19768
@@ -174169,17 +174106,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 33.5,-41.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Medical
-      access:
-      - - HeadOfSecurity
-      - - Security
-      - - Armory
-      - - Brig
-      - - Detective
-      - - Brigmedic
-      - - Cadet
 - proto: LockerMedicineFilled
   entities:
   - uid: 20086
@@ -201018,10 +200944,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 44.5,-33.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 35550
     components:
     - type: Transform
@@ -215020,10 +214942,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 44.5,-32.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: VendingMachineSecDrobe
   entities:
   - uid: 25420
@@ -215031,10 +214949,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 44.5,-31.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: VendingMachineSeeds
   entities:
   - uid: 25421

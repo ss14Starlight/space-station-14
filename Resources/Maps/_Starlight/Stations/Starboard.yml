@@ -120239,20 +120239,12 @@ entities:
     - type: Transform
       parent: 2
       pos: 4.5,6.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 17272
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 0.5,-4.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 17273
     components:
     - type: Transform
@@ -120264,10 +120256,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 26.5,5.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 17275
     components:
     - type: Transform
@@ -120279,10 +120267,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 17.5,-44.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 17277
     components:
     - type: Transform
@@ -120301,10 +120285,6 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 1.5,-61.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: ComputerFrame
   entities:
   - uid: 17280
