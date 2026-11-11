@@ -47,19 +47,18 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: UseBeforeWield
+  # Starlight: energy weapons have very little recoil, making them more accurate than ballistic weapons when shooting one-handed
   - type: Gun
-    minAngle: 0
-    maxAngle: 22
-    angleIncrease: 6
+    minAngle: 6
+    maxAngle: 18
+    angleIncrease: 1
     angleDecay: 20
-    movingMinAngle: 6
+    movingMinAngle: 0
+    walkSpreadModifier: 0.5
+    sprintSpeedModifier: 1
   - type: GunWieldBonus
-    minAngle: 0
-    maxAngle: 0
-    minAngleDivider: 1.5
-    maxAngleDivider: 1.5
-    angleIncreaseDivider: 2
-    angleDecayDivider: 0.6
+    minAngleDivider: 4
+    maxAngleDivider: 4
 
 - type: !PartialOnly entity
   id: WeaponLaserCannon
