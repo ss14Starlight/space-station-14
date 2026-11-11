@@ -1,11 +1,12 @@
 using System.Linq;
+using Content.Shared._Blimpuf.Contraband;
 using Content.Shared._Moffstation.Clothing.ModularHud.Components;
 using Content.Shared._Moffstation.Extensions;
 using Content.Shared.Access.Systems;
 using Content.Shared.Chemistry;
-using Content.Shared.Contraband;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
+using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Flash;
 using Content.Shared.Foldable;
@@ -50,23 +51,23 @@ namespace Content.Shared._Moffstation.Clothing.ModularHud.Systems;
 /// the HUD effects.
 public abstract partial class SharedModularHudSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly BlurryVisionSystem _blurryVision = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedFlashSystem _flash = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedToolSystem _tool = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private BlurryVisionSystem _blurryVision = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedFlashSystem _flash = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedToolSystem _tool = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
     /// The lists contained here specify the layers and (by implicit ordering) precedence for each visual category. For
     /// example, the highest priority lens color will apply to `Lens`, then the next highest will apply to
     /// `LensAccentMajor`, and so on.
     /// Presently, this only really matters for lens colors, but it simplifies the logic to treat all the categories the
     /// same.
-    private static readonly Dictionary<ModularHudVisuals, List<ModularHudVisualKeys>> VisualsLayersToKeys = new()
+    private static readonly Dictionary<ModularHudVisuals, List<ModularHudVisualKeys>> _visualsLayersToKeys = new()
     {
         // ReSharper disable once UseCollectionExpression // Whatever the underlying thing that enables collection expressions for statics is is not whitelisted in Robust, so fuck me, I guess.
         [ModularHudVisuals.Lens] = new List<ModularHudVisualKeys> { Lens, LensAccentMajor, LensAccentMinor },
@@ -149,10 +150,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         SyncVisuals(entity);
     }
 
-    private void OnComponentRemove(Entity<ModularHudComponent> entity, ref ComponentRemove args)
-    {
-        RefreshEffectsForModules(GetModules(entity));
-    }
+    private void OnComponentRemove(Entity<ModularHudComponent> entity, ref ComponentRemove args) => RefreshEffectsForModules(GetModules(entity));
 
     private void OnInteractUsing(Entity<ModularHudComponent> entity, ref InteractUsingEvent args)
     {
@@ -295,9 +293,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
             args.Verbs.Add(new InteractionVerb
             {
                 Text = Loc.GetString(entity.Comp.RemoveModulesVerbText),
-                Act = () =>
-                {
-                    _tool.UseTool(
+                Act = () => _tool.UseTool(
                         tool!.Value, // Can only invoke the verb if `tool` is not null
                         user,
                         entity.Owner,
@@ -305,8 +301,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
                         [entity.Comp.ModuleExtractionToolQuality],
                         new HudModulesRemovalDoAfterEvent(),
                         out _
-                    );
-                },
+                    ),
                 Message = Loc.GetString(
                     usedHasQuality
                         ? entity.Comp.RemoveModulesVerbMessage
@@ -367,21 +362,15 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         SyncVisuals(entity);
     }
 
-    private void OnGotEquipped(Entity<ModularHudComponent> entity, ref GotEquippedEvent args)
-    {
-        RefreshEffectsForWearerForContainedModules(entity, args.Equipee);
-    }
+    private void OnGotEquipped(Entity<ModularHudComponent> entity, ref GotEquippedEvent args) => RefreshEffectsForWearerForContainedModules(entity, args.EquipTarget); // Starlight
 
-    private void OnGotUneqipped(Entity<ModularHudComponent> entity, ref GotUnequippedEvent args)
-    {
-        RefreshEffectsForWearerForContainedModules(entity, args.Equipee);
-    }
+    private void OnGotUneqipped(Entity<ModularHudComponent> entity, ref GotUnequippedEvent args) => RefreshEffectsForWearerForContainedModules(entity, args.EquipTarget); // Starlight
 
     /// This function contains a functional grab-bag of whatever function calls / event raisings need to happen to cause
     /// the disparate HUD effects to be updated when the modular HUD is un/equipped.
     private void RefreshEffectsForWearerForContainedModules(Entity<ModularHudComponent> entity, EntityUid equippee)
     {
-        _blurryVision.UpdateBlurMagnitude(equippee);
+        _blurryVision.UpdateBlurMagnitude(equippee, CompOrNull<BlindableComponent>(equippee)?.IsWearingGlasses ?? false); // Starlight
         var flashEv = new FlashImmunityChangedEvent(_flash.IsFlashImmune(equippee));
         RaiseLocalEvent(equippee, ref flashEv);
 
@@ -402,12 +391,8 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     private IEnumerable<string> GetRequirementFailures(
         Entity<ModularHudComponent> entity,
         Entity<ModularHudModuleComponent> module
-    )
-    {
-        return module.Comp.Requirements.Where(it => !_whitelist.IsWhitelistPassOrNull(it.Whitelist, entity) ||
-                                                    _whitelist.IsWhitelistPass(it.Blacklist, entity))
+    ) => module.Comp.Requirements.Where(it => !_whitelist.IsWhitelistPassOrNull(it.Whitelist, entity) || _whitelist.IsWhitelistPass(it.Blacklist, entity))
             .Select(it => Loc.GetString(it.FailureMessage, ("hud", entity), ("module", module)));
-    }
 
     /// Sets <see cref="AppearanceComponent"/> data for the given HUD entity, as appropriate. This causes the client to
     /// update the visuals for the HUD entity.
@@ -441,14 +426,14 @@ public abstract partial class SharedModularHudSystem : EntitySystem
 
         foreach (var (visualsLayer, prioritizedColors) in visuals.AsEnumerable())
         {
-            var prioritizedColorsAndKeys = prioritizedColors.Zip(VisualsLayersToKeys[visualsLayer]).ToList();
+            var prioritizedColorsAndKeys = prioritizedColors.Zip(_visualsLayersToKeys[visualsLayer]).ToList();
 
             // If there are no colors from modules for this layer, use the default color from the HUD.
             if (prioritizedColorsAndKeys.Count == 0)
             {
                 _appearance.SetData(
                     entity,
-                    VisualsLayersToKeys[visualsLayer].First(),
+                    _visualsLayersToKeys[visualsLayer].First(),
                     new ModularHudVisualData(entity.Comp2.DefaultVisuals[visualsLayer]),
                     appearance
                 );

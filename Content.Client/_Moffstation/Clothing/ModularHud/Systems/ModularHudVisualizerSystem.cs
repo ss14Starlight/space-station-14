@@ -14,10 +14,10 @@ namespace Content.Client._Moffstation.Clothing.ModularHud.Systems;
 /// keyed by <see cref="ModularHudVisualKeys"/>. This is what causes modular HUDs to have dynamic visuals.
 /// This system also handles updating the sprite to account for folding, which is used to flip the orientation of eye
 /// patch HUDs.
-public sealed class ModularHudVisualizerSystem : VisualizerSystem<ModularHudVisualsComponent>
+public sealed partial class ModularHudVisualizerSystem : VisualizerSystem<ModularHudVisualsComponent>
 {
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly IReflectionManager _reflect = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private IReflectionManager _reflect = default!;
 
     public override void Initialize()
     {

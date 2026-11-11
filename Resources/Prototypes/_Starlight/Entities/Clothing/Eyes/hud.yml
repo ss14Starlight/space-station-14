@@ -81,9 +81,6 @@
       - Biological
       - Hybrid
       - MoffDemonBiological
-    - type: Construction
-      graph: GlassesSecHUD
-      node: glassesSec
     - type: Tag
       tags:
         - HamsterWearable
@@ -131,9 +128,6 @@
         - Biological
         - Hybrid
         - MoffDemonBiological
-    - type: Construction
-      graph: GlassesSecHUD
-      node: glassesSec
     - type: Tag
       tags:
         - HamsterWearable

@@ -35,18 +35,6 @@
     eyes: ClothingEyesGlassesNoir
 
 - type: loadout
-  id: SecurityGlasses
-  nameOverride: "moff-loadout-security-sunglasses"
-  equipment:
-    eyes: ClothingEyesGlassesSecurity
-
-- type: loadout
-  id: SecurityHud
-  nameOverride: "moff-loadout-security-hud"
-  equipment:
-    eyes: ClothingEyesHudSecurity
-
-- type: loadout
   id: SecurityEyePatchHud
   nameOverride: "moff-loadout-security-patch"
   equipment:
@@ -76,22 +64,9 @@
     eyes: ClothingEyesGlassesChemical
 
 - type: loadout
-  id: MedicalHud
-  equipment:
-    eyes: ClothingEyesHudMedical
-
-- type: loadout
   id: MedicalGlasses
   equipment:
     eyes: ClothingEyesGlassesMedSunglasses
-
-- type: loadout
-  id: MedicalEyePatchHud
-  groupBy: "medEyepatch"
-  equipment:
-    eyes: ClothingEyesEyepatchHudMedical
-
-# Science
 
 - type: loadout
   id: RoboticsHud

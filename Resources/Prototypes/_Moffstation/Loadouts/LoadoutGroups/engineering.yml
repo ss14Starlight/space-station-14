@@ -1,7 +1,7 @@
 # Generic
 - type: loadoutGroup
   id: EngineeringEyewear
-  name: loadout-group-engineering-glasses
+  name: loadout-group-glasses # Starlight
   minLimit: 1
   loadouts:
   - EngineeringGoggles
@@ -13,43 +13,3 @@
   - GlassesJensen
   - EyePatch
   - EyePatchFlipped
-
-# Chief Engineer
-- type: loadoutGroup
-  id: ChiefEngineerBackpack
-  name: loadout-group-chief-engineer-backpack
-  loadouts:
-  - StationEngineerBackpack
-  - StationEngineerSatchel
-  - StationEngineerDuffel
-  - AtmosphericTechnicianBackpack
-  - AtmosphericTechnicianSatchel
-  - AtmosphericTechnicianDuffel
-  - LeatherSatchel
-
-- type: loadoutGroup
-  id: ChiefEngineerPDA
-  name: loadout-group-chief-engineer-id
-  loadouts:
-  - CEPDA # Keep default PDA on top of the list
-  - EngineeringForemanPDA
-
-# Atmospheric Technician
-- type: loadoutGroup
-  id: AtmosphericTechnicianHead
-  name: loadout-group-atmospheric-technician-head
-  minLimit: 0
-  loadouts:
-  - StationEngineerHardhatYellow
-  - AtmosphericTechnicianHardhatBlue
-  - AtmosphericTechnicianYellowCap
-
-- type: loadoutGroup
-  id: AtmosPDA
-  name: loadout-group-atmospheric-technician-id
-  loadouts:
-  - AtmosPDA # Keep default PDA on top of the list
-  - ThermalSystemsSpecialistPDA
-  - SeniorAtmosphericTechnicianPDA
-  - FirefighterPDA
-  - AssistantAtmosphericTechnicianPDA

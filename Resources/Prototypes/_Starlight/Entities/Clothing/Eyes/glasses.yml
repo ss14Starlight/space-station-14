@@ -16,9 +16,6 @@
       - Biological
       - Hybrid
       - MoffDemonBiological
-  - type: Construction
-    graph: GlassesSecHUD
-    node: glassesSec
   - type: StealTarget
     stealGroup: RareGlassesCollection
   - type: Tag
@@ -47,9 +44,6 @@
       - Biological
       - Hybrid
       - MoffDemonBiological
-  - type: Construction
-    graph: GlassesSecHUD
-    node: glassesSec
   - type: StealTarget
     stealGroup: MiscGlassesCollection
   - type: Tag
