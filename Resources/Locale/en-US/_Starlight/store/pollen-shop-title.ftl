@@ -11,10 +11,8 @@ pollen-tree-bark-name = Bark
 pollen-tree-mushroom-name = Mushroom
 
 pollen-floral-t1-name = Distress Pollen
-pollen-floral-t1-desc = You'll release distress pollen automatically the moment you fall into critical condition.
-pollen-alert-pollen-self = You release a wave of distress pollen into the air.
-pollen-alert-pollen-critical = {$user} is emitting distress pollen near {$position}.
-pollen-alert-pollen-dead = {$user} has died near {$position}.
+pollen-floral-t1-desc = Upon your death, a final pulse of distress travels through the spore hivemind, alerting other Dionas to your passing.
+pollen-alert-pollen-dead = You sense pain from {$user}. The feeling cuts abruptly to nothing.
 
 pollen-floral-t2-name = Blooming Moss
 pollen-floral-t2-desc = Cultivate a layer of insulating moss across your bark, blunting both heat and cold.

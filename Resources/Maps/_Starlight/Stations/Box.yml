@@ -78993,10 +78993,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 4.5,55.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 11830
     components:
     - type: Transform
@@ -80446,10 +80442,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -12.5,40.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: CrateServiceGuidebooks
   entities:
   - uid: 12046
@@ -149125,10 +149117,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 0.5,49.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 20675
     components:
     - type: Transform
@@ -149144,10 +149132,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -2.5,49.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 20678
     components:
     - type: Transform
@@ -174498,10 +174482,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -8.5,40.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: SuitStorageWarden
   entities:
   - uid: 24743
