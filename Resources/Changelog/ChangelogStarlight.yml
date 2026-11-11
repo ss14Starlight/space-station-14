@@ -1,39 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Added differet bate footstep sounds.
-    type: Add
-  id: 409915
-  time: '2026-10-29T22:22:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6900
-- author: Rinary
-  changes:
-  - message: Added new footstep sounds like glass, grass, wood, asteroid, catwalks, concrete, different floors, heavy materials, different tiles.
-    type: Add
-  id: 409916
-  time: '2026-10-29T22:22:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6900
-- author: Rinary
-  changes:
-  - message: Added ability to change volume/pitch for different boots.
-    type: Add
-  id: 409917
-  time: '2026-10-29T22:22:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6900
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Changeling shapeshift now works properly again.
-    type: Fix
-  id: 409918
-  time: '2026-10-30T11:45:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6946
-- author: Yosif
-  changes:
-  - message: Hydroponics tools now craftable in service techfab.
-    type: Fix
-  id: 409919
-  time: '2026-10-30T14:29:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6902
 - author: Yosif
   changes:
   - message: botany cyborg module now have plant analyzer.
@@ -2799,4 +2764,39 @@ Entries:
   id: 410314
   time: '2026-11-11T05:33:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7177
+- author: redmushie
+  changes:
+  - message: Increased prefilled glowstone bag from 25 charges to 50 charges.
+    type: Tweak
+  id: 410315
+  time: '2026-11-11T10:23:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7180
+- author: redmushie
+  changes:
+  - message: Increased glowstone bag refill value of crystal shards from 10 to 15.
+    type: Tweak
+  id: 410316
+  time: '2026-11-11T10:23:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7180
+- author: redmushie
+  changes:
+  - message: Salvage Medics get a filled glowstone bag in their locker.
+    type: Add
+  id: 410317
+  time: '2026-11-11T10:23:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7180
+- author: redmushie
+  changes:
+  - message: Mining Specialists get a filled glowstone bag in their locker.
+    type: Add
+  id: 410318
+  time: '2026-11-11T10:23:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7180
+- author: redmushie
+  changes:
+  - message: Salvage Specialists get an empty glowstone bag in their locker.
+    type: Add
+  id: 410319
+  time: '2026-11-11T10:23:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7180
 Order: -1
