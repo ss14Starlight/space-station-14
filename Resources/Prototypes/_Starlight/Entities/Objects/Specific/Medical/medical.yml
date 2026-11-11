@@ -146,7 +146,7 @@
     - Medkit
 
 - type: entity
-  name: Nuclear Operative Robotic Medkit
+  name: CyberSun robotic treatment kit
   description: "Used to treat robotic patients, such as Cyborgs and IPCs."
   parent: BaseStorageItem
   id: RoboticNukeMedkit
