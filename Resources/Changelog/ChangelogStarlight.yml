@@ -1,11 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Mindless monkeys and the like no longer grant conversion credit or telebonds when joining the revolution.
-    type: Fix
-  id: 409922
-  time: '2026-10-30T15:03:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6945
 - author: rhithebirdthing
   changes:
   - message: Fixed some grammar under the _Starlight namespace.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410321
   time: '2026-11-11T15:16:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7182
+- author: Maxim
+  changes:
+  - message: Lasers are immune to jamming at the cost of being able to melt their crystal when under sustained fire. Watch your HUD heat gauge carefully.
+    type: Tweak
+  id: 410322
+  time: '2026-11-11T15:54:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7173
 Order: -1
