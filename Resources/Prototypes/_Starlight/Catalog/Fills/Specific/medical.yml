@@ -189,6 +189,7 @@
           amount: 2
         - id: Welder
         - id: ClothingHeadHatWelding
+
 - type: entity
   id: NukeOpRobotkit
   suffix: Filled
