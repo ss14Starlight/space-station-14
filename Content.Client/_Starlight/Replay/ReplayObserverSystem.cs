@@ -45,6 +45,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
     private bool _drawFov;
     private bool _drawLight = true;
     private bool _personalLight;
+    private bool _halfBright;
     private bool _ghostsVisible = true;
 
     public bool IsReplayActive => _replayPlayback.Replay != null;
@@ -108,6 +109,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         _drawFov = false;
         _drawLight = true;
         _personalLight = false;
+        _halfBright = false;
         _ghostsVisible = true;
         _hearAll = true;
         _overlayEnabled = false;
@@ -158,6 +160,7 @@ public sealed partial class ReplayObserverSystem : EntitySystem
         UpdateRefollow();
         UpdateSolutionWindows(frameTime);
         UpdateMutedSounds();
+        UpdateAudioAudiences();
     }
 
     public override void Update(float frameTime)
@@ -219,6 +222,8 @@ public sealed partial class ReplayObserverSystem : EntitySystem
 
         if (_lights.TryGetLight(uid, out var light))
             _lights.SetEnabled(uid, _personalLight, light);
+
+        _ghost.SetHalfBright(_halfBright);
     }
 
     private void SaveViewSettings(EntityUid uid)
@@ -231,6 +236,8 @@ public sealed partial class ReplayObserverSystem : EntitySystem
 
         if (_lights.TryGetLight(uid, out var light))
             _personalLight = light.Enabled;
+
+        _halfBright = _ghost.HalfBright;
     }
 
     private void OnToggleGhosts(EntityUid uid, ReplaySpectatorComponent component, ToggleGhostsActionEvent args)

@@ -79,6 +79,8 @@
   name: Red Wizard Duelist Role
   components:
   - type: WizardDuelistRole
+  - type: RoleBriefing
+    briefing: wizard-duelist-red-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -86,6 +88,8 @@
   name: Blue Wizard Duelist Role
   components:
   - type: WizardDuelistRole
+  - type: RoleBriefing
+    briefing: wizard-duelist-blue-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -93,6 +97,8 @@
   name: Purple Wizard Duelist Role
   components:
   - type: WizardDuelistRole
+  - type: RoleBriefing
+    briefing: wizard-duelist-purple-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -100,6 +106,8 @@
   name: Yellow Wizard Duelist Role
   components:
   - type: WizardDuelistRole
+  - type: RoleBriefing
+    briefing: wizard-duelist-yellow-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -107,6 +115,8 @@
   name: Green Wizard Duelist Role
   components:
   - type: WizardDuelistRole
+  - type: RoleBriefing
+    briefing: wizard-duelist-green-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -114,4 +124,6 @@
   name: Orange Wizard Duelist Role
   components:
   - type: WizardDuelistRole
+  - type: RoleBriefing
+    briefing: wizard-duelist-orange-role-greeting
 

@@ -98,6 +98,13 @@
   contrabandTier: Tier1
   contrabandSeverity: !Remove
   requiresPrescription: true
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectAnxietySuppression
+        time: 60
+        type: Add
 
 - type: !PartialOnly reagent
   id: Heparin

@@ -3,3 +3,5 @@ station-event-nightshift-end-announcement = Good morning, crew. As it is now day
 
 station-event-nightshift-disable = Disabling night lighting: Station is in a state of emergency.
 station-event-nightshift-enable = Enabling night lighting: Station is no longer in a state of emergency.
+
+nightshift-announcement-sender = Automated Lighting System

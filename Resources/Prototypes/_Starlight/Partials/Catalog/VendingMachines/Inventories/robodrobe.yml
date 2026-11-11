@@ -1,0 +1,26 @@
+- type: !PartialOnly vendingMachineInventory
+  id: RoboDrobeInventory
+  startingInventory: !Clear
+    ClothingBackpackRoboticist: 3
+    ClothingBackpackSatchelRoboticist: 3
+    ClothingBackpackDuffelRoboticist: 3
+    ClothingOuterCoatRobo: 2
+    ClothingUniformJumpsuitRoboticist: 2
+    ClothingUniformJumpskirtRoboticist: 2
+    ClothingShoesColorBlack: 2
+    ClothingHandsGlovesRobohands: 2
+    ClothingHeadHatCorpsoft: 2
+    ClothingHeadBandSkull: 2
+    ClothingHeadHatBlacksoft: 2
+    ClothingHeadsetRobotics: 2
+    ClothingOuterWinterRobo: 2
+    ClothingNeckScarfRoboticist: 2
+  contrabandInventory:
+    ToolboxRoboticist: 1
+    ClothingMaskRoboticist: 1
+    ToyFigurineRoboticist: 1
+  emaggedInventory: # Blimpuf
+    ClothingHeadHelmetZ4KU: 1 # Blimpuf
+    ClothingOuterCoatRndSyndicate: 1 # Blimpuf
+    ClothingUniformJumpsuitScienceSyndie: 1 # Blimpuf
+    ClothingUniformJumpskirtScienceSyndie: 1 # Blimpuf

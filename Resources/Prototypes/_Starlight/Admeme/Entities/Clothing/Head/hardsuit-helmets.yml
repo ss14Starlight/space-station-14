@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseNanoTrasenContraband, ClothingHeadLightParamsProfessional, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseItem, BaseNanoTrasenContraband, ClothingHeadLightParamsProfessional, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitNTNCConsortium
   name: NanoTrasen navy marine hardsuit helmet
   description: A protective hardsuit helmet worn by NanoTrasen Navy Marines.

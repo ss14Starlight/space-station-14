@@ -1,0 +1,361 @@
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBun
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCottonBun
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBagel
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBagelPoppy
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBagelCotton
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCornbread
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCreamCheeseBread
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMeatBread
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMimanaBread
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBread
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeSausageBread
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeSpiderMeatBread
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeTofuBread
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeXenoMeatBread
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBaguette
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBaguetteCotton
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeButteredToast
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeFrenchToast
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeGarlicBread
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeJellyToast
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMoldyBreadSlice
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeTwoBreadSlice
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeRicePudding
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBisque
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMeatballSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeNettleSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeEyeballSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeOnionSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMushroomSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeStewSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeTomatoSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeTomatoBloodSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeWingFangChuSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeWingFangChuSoupSpider
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeVegetableSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeClownTearsSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMonkeysDelightSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBungoSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeEscargotSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeAmanitaPie
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeApplePie
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBananaCreamPie
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBerryClafoutis
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCherryPie
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeFrostyPie
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMeatPie
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipePumpkinPie
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeXenoPie
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCocoTart
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeGappleTart
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeGrapeTart
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMimeTart
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCookie
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeSugarCookie
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeRaisinCookie
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCookieOatmeal
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeChocolateChipPancake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeAppleCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCarrotCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeLemonCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeLemoonCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeOrangeCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBlueberryCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeLimeCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCheeseCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipePumpkinCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeClownCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBirthdayCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeChocolateCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBrainCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeSlimeCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCatCake
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBreadDog
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeBrownies
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeHotChili
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeColdChili
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeClownTears
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeChiliClown
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeQueso
+  deviceType: Stove
+  reagents:
+    Blackpepper: 1
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMuffin
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMuffinChocolate
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMuffinBerry
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMuffinBanana
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeMuffinCherry
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCannabisBrownies
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipePeaSoup
+  deviceType: Stove
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeTacoShell
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCroissant
+  deviceType: Oven
+
+- type: !PartialOnly microwaveMealRecipe
+  id: RecipeCottonCake
+  result: FoodCottonCake

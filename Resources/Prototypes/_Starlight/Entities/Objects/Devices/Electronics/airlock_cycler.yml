@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseElectronics
+  id: AirlockCyclerElectronics
+  name: airlock controller electronics
+  description: An electronics board used in airlock controllers.
+  components:
+  - type: Item
+    storedRotation: 0
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: airalarm_electronics
+  - type: Tag
+    tags:
+    - AirlockCyclerElectronics
+  - type: StaticPrice
+    price: 40

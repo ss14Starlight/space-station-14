@@ -415,3 +415,15 @@
   targetNode: sandbag
   category: construction-category-materials
   objectType: Item
+
+- type: construction
+  id: PluralFlag
+  graph: PluralFlagGraph
+  startNode: start
+  targetNode: pluralflag
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition {}

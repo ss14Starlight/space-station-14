@@ -1,4 +1,14 @@
 - type: sinkPort
+  id: ToggleableDeviceState
+  name: signal-port-name-toggleable-device-state
+  description: signal-port-description-toggleable-device-state
+
+- type: sinkPort
+  id: ToggleableDeviceStateInverted
+  name: signal-port-name-toggleable-device-state-inverted
+  description: signal-port-description-toggleable-device-state-inverted
+
+- type: sinkPort
   id: BodyScannerReceiver
   name: signal-port-name-body-scanner-receiver
   description: signal-port-description-body-scanner-receiver
@@ -42,3 +52,23 @@
   id: TurretControllerSyncReceiver
   name: signal-port-name-turret-controller-sync-receiver
   description: signal-port-description-turret-controller-sync-receiver
+
+- type: sinkPort
+  id: CombustionTurbineConsoleReceiver
+  name: signal-port-name-combustion-turbine-console-receiver
+  description: signal-port-description-combustion-turbine-console-receiver
+
+- type: sinkPort
+  id: AirlockCyclerDoor
+  name: signal-port-name-airlock-cycler-door
+  description: signal-port-description-airlock-cycler-door
+
+- type: sinkPort
+  id: AirlockCyclerButton
+  name: signal-port-name-airlock-cycler-button
+  description: signal-port-description-airlock-cycler-button
+
+- type: sinkPort
+  id: AirlockCyclerDevice
+  name: signal-port-name-airlock-cycler-device
+  description: signal-port-description-airlock-cycler-device

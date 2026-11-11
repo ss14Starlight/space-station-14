@@ -2,7 +2,7 @@
 - type: !PartialOnly roleType
   id: Neutral
   color: LightBlue
-  faction: role-type-crew-aligned-name
+  faction: role-subtype-contractor
   alignment: character-info-alignment-crew
 
 - type: !PartialOnly roleType

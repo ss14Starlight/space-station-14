@@ -1,0 +1,61 @@
+- type: !PartialOnly entity
+  id: FoodSnackBase
+  components:
+  - type: ItemPrice
+    priceCategory: food_cheap
+
+- type: !PartialOnly entity
+  id: FoodSnackChocolate
+  components:
+  - type: SpawnItemsOnUse
+    requireHands: false
+  - type: ItemPrice
+    priceCategory: food_medium
+
+- type: !PartialOnly entity
+  id: FoodSnackEnergy
+  components:
+  - type: SpawnItemsOnUse
+    requireHands: false
+
+- type: !PartialOnly entity
+  id: FoodSnackSyndi
+  components:
+  - type: ItemPrice
+    priceCategory: food_medium
+
+- type: !PartialOnly entity
+  id: FoodSnackDanDanNoodles
+  components:
+  - type: ItemPrice
+    priceCategory: food_medium
+
+- type: !PartialOnly entity
+  id: FoodSnackNutribrick
+  components:
+  - type: SpawnItemsOnUse
+    requireHands: false
+  - type: ItemPrice
+    priceCategory: food_medium
+
+- type: !PartialOnly entity
+  id: FoodSnackNutribrickOpen
+  components:
+  - type: Tag
+    tags: !Clear
+    - AvianFood
+    - ReptilianFood
+  - type: ItemPrice
+    priceCategory: food_medium
+
+- type: !PartialOnly entity
+  id: FoodSnackMREBrownie
+  components:
+  - type: SpawnItemsOnUse
+    requireHands: false
+
+- type: !PartialOnly entity
+  id: FoodSnackMREBrownieOpen
+  components:
+  - type: ItemPrice
+    priceCategory: food_medium

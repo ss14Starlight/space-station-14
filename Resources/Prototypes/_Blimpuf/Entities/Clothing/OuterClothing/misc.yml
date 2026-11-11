@@ -1,0 +1,47 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterApronSyndicate
+  name: apron
+  suffix: Botanical
+  description: A thick red apron, even better for insulating your soft flesh from spills, soil and thorns.
+  components:
+  - type: Contraband
+    tier: Tier2
+    contrabandType: Syndicate
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/OuterClothing/Misc/apronsyndicate.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/OuterClothing/Misc/apronsyndicate.rsi
+  - type: Tag
+    tags:
+    - Apron
+    - WhitelistChameleon
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.85
+        Piercing: 0.85
+        Slash: 0.85
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatRndSyndicate
+  name: syndicate scientist lab coat
+  description: A suit that protects against chemical spills, radiation, and the dangers of the elements.
+  components:
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/OuterClothing/Misc/syndicate_labcoat_sci.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/OuterClothing/Misc/syndicate_labcoat_sci.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.75
+        Heat: 0.75
+        Caustic: 0.75
+        Radiation: 0.75
+  - type: Contraband
+    tier: Tier2
+    contrabandType: Syndicate

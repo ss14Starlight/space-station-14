@@ -172,3 +172,54 @@
       randomEntities: #Structured to be able to add more options once we have sprites for more
         - EndymionStatueLarge1
 
+- type: entity
+  parent: [ BaseStructureFlatpack, BaseEngineeringContraband ]
+  id: CombustionTurbineCompressorFlatpack
+  name: inlet compressor flatpack
+  description: A flatpack used for constructing the inlet compressor of a combustion turbine, with a tier 1 compressor part installed.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: large
+  - type: Flatpack
+    entity: CombustionTurbineCompressorFilled
+
+- type: entity
+  parent: [ BaseStructureFlatpack, BaseEngineeringContraband ]
+  id: CombustionTurbineRotorFlatpack
+  name: core rotor flatpack
+  description: A flatpack used for constructing the core rotor of a combustion turbine, with a tier 1 rotor part installed.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: large
+  - type: Flatpack
+    entity: CombustionTurbineRotorFilled
+
+- type: entity
+  parent: [ BaseStructureFlatpack, BaseEngineeringContraband ]
+  id: CombustionTurbineOutletFlatpack
+  name: turbine outlet flatpack
+  description: A flatpack used for constructing the outlet of a combustion turbine, with a tier 1 stator part installed.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: large
+  - type: Flatpack
+    entity: CombustionTurbineOutletFilled
+
+- type: entity
+  parent: [ BaseStructureFlatpack, BaseEngineeringContraband ]
+  id: ComputerCombustionTurbineFlatpack
+  name: combustion turbine control computer flatpack
+  description: A flatpack used for constructing a combustion turbine control computer.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: large
+  - type: Flatpack
+    entity: ComputerCombustionTurbine

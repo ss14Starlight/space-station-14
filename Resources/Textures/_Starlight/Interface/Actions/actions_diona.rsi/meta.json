@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "discord @reisyn#3934",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "open_shop"
+        },
+        {
+            "name": "floral_alert_pollen"
+        },
+        {
+            "name": "floral_blooming_moss"
+        },
+        {
+            "name": "floral_advanced_pollen_icon"
+        },
+        {
+            "name": "bark_make_wood"
+        },
+        {
+            "name": "bark_harden"
+        },
+        {
+            "name": "bark_bioreactor"
+        },
+        {
+            "name": "mush_spore_hivemind"
+        },
+        {
+            "name": "mush_injection_phytovitalin"
+        },
+        {
+            "name": "mush_spore_cloud"
+        }
+    ]
+}

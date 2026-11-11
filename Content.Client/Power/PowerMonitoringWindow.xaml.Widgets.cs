@@ -338,6 +338,10 @@ public sealed partial class PowerMonitoringWindow
                 MasterTabContainer.CurrentTab = 2; break;
             case PowerMonitoringConsoleGroup.APC:
                 MasterTabContainer.CurrentTab = 3; break;
+            //Starlight start
+            case PowerMonitoringConsoleGroup.Consumer:
+                MasterTabContainer.CurrentTab = 4; break;
+            //Starlight end
         }
     }
 

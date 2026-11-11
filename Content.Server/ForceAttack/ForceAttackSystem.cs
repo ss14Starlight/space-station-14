@@ -9,6 +9,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Server.GameTicking;
 
 namespace Content.Server.ForceAttack;
 
@@ -23,6 +24,7 @@ public sealed partial class ForceAttackSystem : EntitySystem
     [Dependency] private SharedCombatModeSystem _mode = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private MobStateSystem _mob = default!;
+    [Dependency] private GameTicker _ticker = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -39,6 +41,11 @@ public sealed partial class ForceAttackSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        // Starlight Start: EORG Protection; Nuh uh
+        if (_ticker.RunLevel == GameRunLevel.PostRound)
+            return;
+        // Starlight End
 
         var curTime = _timing.CurTime;
 
@@ -66,8 +73,10 @@ public sealed partial class ForceAttackSystem : EntitySystem
                 continue;
             }
 
-            if (forceComp.NextAttack > curTime)
+            // Starlight - start
+            if (!forceComp.NextAttack.HasValue || forceComp.NextAttack.Value > curTime)
                 continue;
+            // Starlight - end
 
             // Force mob to enter combat mode (necessary for AttemptAttack to succeed).
             _mode.SetInCombatMode(uid, true, modeComp);

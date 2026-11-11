@@ -96,7 +96,7 @@ public sealed partial class StoreSystem
     /// <param name="store"></param>
     /// <param name="component">The store the listings are coming from.</param>
     /// <returns>The available listings.</returns>
-    public IEnumerable<ListingDataWithCostModifiers> GetAvailableListings(EntityUid buyer, EntityUid store, StoreComponent component)
+    public override IEnumerable<ListingDataWithCostModifiers> GetAvailableListings(EntityUid buyer, EntityUid store, StoreComponent component)
     {
         return GetAvailableListings(buyer, component.FullListingsCatalog, component.Categories, store);
     }

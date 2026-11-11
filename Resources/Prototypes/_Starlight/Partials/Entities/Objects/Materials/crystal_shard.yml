@@ -1,0 +1,6 @@
+# Using any crystal on the breadcrumb bag adds charges.
+- type: !PartialOnly entity
+  id: ShardCrystalBase
+  components:
+    - type: BreadcrumbCharges
+      charges: 10

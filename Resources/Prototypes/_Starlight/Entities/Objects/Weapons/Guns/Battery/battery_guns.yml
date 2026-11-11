@@ -190,7 +190,7 @@
     zeroVisible: true
   - type: Lock
   - type: AccessReader
-    access: [["Security"], ["Cadet"]]
+    access: [["Security"]]
   - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50

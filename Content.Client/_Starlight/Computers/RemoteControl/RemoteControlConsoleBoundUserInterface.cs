@@ -46,6 +46,7 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
         _remoteControl.ItemConstructionRequested += OnRemoteItemConstruction;
         _window = this.CreatePopOutableWindow<RemoteControlConsoleWindow>(EntMan);
         _window.ToggleControl += ToggleControl;
+        _window.RemoteToggleKnockdownPressed += RemoteToggleKnockdown;
         _window.RemoteInteractionPressed += RemoteInteractionPressed;
         _window.RemoteActionPressed += RemoteActionPressed;
         _window.RemoteTargetActionPressed += RemoteTargetActionPressed;
@@ -168,6 +169,9 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
 
     private void ToggleControl() => SendMessage(new RemoteControlToggleMessage());
 
+    private void RemoteToggleKnockdown()
+        => SendMessage(new RemoteControlToggleKnockdownMessage());
+
     private void RemoteActionPressed(EntityUid action)
         => SendMessage(new RemoteControlActionMessage { Action = EntMan.GetNetEntity(action) });
 
@@ -266,6 +270,7 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
             {
                 window.OnFinalClose -= OnWindowClosed;
                 window.ToggleControl -= ToggleControl;
+                window.RemoteToggleKnockdownPressed -= RemoteToggleKnockdown;
                 window.RemoteInteractionPressed -= RemoteInteractionPressed;
                 window.RemoteActionPressed -= RemoteActionPressed;
                 window.RemoteHandPressed -= RemoteHandPressed;

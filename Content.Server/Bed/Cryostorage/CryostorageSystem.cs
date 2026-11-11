@@ -204,6 +204,14 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
             }
         }
 
+        // Starlight start
+        if (userId == null)
+        {
+            var storedWithoutPlayer = new CryoStoredWithoutPlayerEvent();
+            RaiseLocalEvent(ent.Owner, ref storedWithoutPlayer);
+        }
+        // Starlight end
+
         _audio.PlayPvs(cryostorageComponent.RemoveSound, ent);
 
         EnsurePausedMap();
@@ -221,6 +229,10 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
                 _ghostSystem.OnGhostAttempt(mind.Value, false);
             }
         }
+        // Starlight start
+        if (userId != null)
+            _containerSpawnJobSlots.RefreshJobSlots();
+        // Starlight end
 
         RemComp<AnomalyComponent>(ent.Owner); // Starlight - kill anomaly infection when host cryosleep
         comp.AllowReEnteringBody = false;

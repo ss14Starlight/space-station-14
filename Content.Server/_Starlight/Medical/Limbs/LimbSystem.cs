@@ -2,6 +2,7 @@ using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Humanoid;
 using Content.Shared._Starlight.Medical.Body;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Limbs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -28,10 +29,17 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
     public bool AttachLimb(Entity<HumanoidAppearanceComponent> body, string slot, Entity<BodyPartComponent> part, Entity<BodyPartComponent> limb)
     {
+        if (!_body.CanAttachPart(part.Owner, slot, limb.Owner, part.Comp, limb.Comp))
+            return false;
+
+        EnsureLimbChildSlots(limb);
+
         if (!_body.AttachPart(part, slot, limb, part.Comp, limb.Comp))
             return false;
         AddLimbVisual(body, limb);
         AddLimb(body, slot, limb);
+        if (limb.Comp.PartType == BodyPartType.Leg)
+            _body.UpdateMovementSpeed(body.Owner);
         return true;
     }
 

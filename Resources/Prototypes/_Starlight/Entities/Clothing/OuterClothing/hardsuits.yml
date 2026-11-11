@@ -303,6 +303,12 @@
       walkModifier: 0.90
       sprintModifier: 0.90
     - type: HeldSpeedModifier
+    - type: FootstepLayer
+      sound:
+        collection: FootstepLayerHeavy
+        params:
+          volume: -2
+          variation: 0.08
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitSovietMarine
     - type: Tag
@@ -358,7 +364,7 @@
   parent: [ BaseContrabandTier2, ClothingOuterHardsuitBase, BaseSecurityContraband ] # Blimpuf
   id: ClothingOuterHardsuitSecurityExperimental
   name: experimental security hardsuit
-  description: A high-tech hardsuit meant to eventually replace the standard security suit, it boasts an ID-Lock and Gun-Lock system. Rumors have it that the first prototype was stolen by the syndicate..
+  description: A high-tech hardsuit that was meant to eventually replace the standard security hardsuit. Rumor has it that the first prototype was stolen by the Syndicate...
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/experimental_security.rsi
@@ -375,13 +381,6 @@
       damageCoefficient: 0.3
     - type: ZombificationResistance
       zombificationResistanceCoefficient: 0.50
-    - type: IdClothingBlocker
-      allowedAccesses:
-        - Security
-        - Armory
-        - HeadOfSecurity
-        - Captain
-        - Detective
     - type: Pierceable
       level: Metal
     - type: Armor
@@ -404,9 +403,6 @@
           pitch: 0.7
           variation: 0.025
     - type: HeldSpeedModifier
-    - type: Tag
-      tags:
-        - RequiredForLmgTag
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitSecurityExperimental
 
@@ -1184,6 +1180,14 @@
           Heat: 0.4
           Caustic: 0
       staminaModifier: 0.0
+    - type: FootstepModifier
+      footstepSoundCollection: null
+    - type: FootstepLayer
+      sound:
+        collection: FootstepLayerHeavy
+        params:
+          volume: -2
+          variation: 0.08
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitTSFMARSOC
 
@@ -1316,6 +1320,9 @@
         shader: unshaded
       outerClothing-dog:
       - state: equipped-OUTERCLOTHING-light-dog
+        shader: unshaded
+      outerClothing-avali:
+      - state: equipped-OUTERCLOTHING-light-avali
         shader: unshaded
   - type: ItemTogglePointLight # Starlight
   - type: Appearance
@@ -1478,3 +1485,28 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterHardsuitSecurity
+  id: ClothingOuterHardsuitSergeant
+  name: gunnery sergeant hardsuit
+  description: A special suit to lead your squad into hazardous environments. High tech and efficient, a perfect embodiment of corporate security.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sergeant.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sergeant.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.7
+        Caustic: 0.7
+    staminaModifier: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSergeant

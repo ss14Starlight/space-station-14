@@ -1,0 +1,44 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'airlock-cycler-window-title'}"
+                      MinSize="440 380"
+                      SetSize="440 380">
+    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+        <!-- Status -->
+        <PanelContainer StyleClasses="InsetPanel">
+            <BoxContainer Orientation="Vertical" Margin="8 6">
+                <Label Name="StatusLabel" StyleClasses="LabelHeading" />
+                <RichTextLabel Name="ProblemLabel" Visible="False" />
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- Pressures -->
+        <BoxContainer Name="PressureBox" Orientation="Vertical" SeparationOverride="2">
+            <BoxContainer Name="ChamberRow" Orientation="Horizontal">
+                <Label Text="{Loc 'airlock-cycler-window-chamber'}" StyleClasses="LabelWeak" MinWidth="110" />
+                <Label Name="ChamberLabel" />
+            </BoxContainer>
+            <BoxContainer Name="TargetRow" Orientation="Horizontal">
+                <Label Text="{Loc 'airlock-cycler-window-target'}" StyleClasses="LabelWeak" MinWidth="110" />
+                <Label Name="TargetLabel" />
+            </BoxContainer>
+            <BoxContainer Name="TankRow" Orientation="Horizontal">
+                <Label Text="{Loc 'airlock-cycler-window-tank'}" StyleClasses="LabelWeak" MinWidth="110" />
+                <Label Name="TankLabel" />
+            </BoxContainer>
+        </BoxContainer>
+
+        <!-- Sides -->
+        <BoxContainer Orientation="Vertical" SeparationOverride="4">
+            <Label Text="{Loc 'airlock-cycler-window-sides'}" StyleClasses="LabelKeyText" />
+            <BoxContainer Name="SidesContainer" Orientation="Vertical" SeparationOverride="4" />
+            <RichTextLabel Name="NoSidesLabel" Visible="False" />
+        </BoxContainer>
+
+        <Control VerticalExpand="True" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Button Name="ForceButton" Text="{Loc 'airlock-cycler-window-force'}" StyleClasses="negative" HorizontalExpand="True" Visible="False" />
+            <Button Name="LockdownButton" Text="{Loc 'airlock-cycler-window-lockdown'}" HorizontalExpand="True" Visible="False" />
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>
