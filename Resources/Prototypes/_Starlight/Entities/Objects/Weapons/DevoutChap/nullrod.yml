@@ -1,7 +1,5 @@
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 - type: entity # gives all the artifacts their 10% reflect chance. Divine intervention baby
-  parent: BaseItem
+  parent: [BaseItem, BaseContrabandTier2]
   id: BaseFaithWep
   abstract: true
   components:
@@ -9,6 +7,9 @@
     size: Small
   - type: Reflect
     reflectProb: 0.1
+  - type: Contraband
+    contrabandType: Holy
+    allowedJobs: [ Chaplain ]
 
 - type: entity
   name: rosary

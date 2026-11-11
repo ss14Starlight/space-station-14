@@ -1,7 +1,7 @@
 - type: thiefBackpackSet
   id: MonkSet
   name: chaplain-backpack-category-monk-name
-  description: While others studied the blade, you studied the staff. Comes with scissors to shave your head
+  description: While others studied the blade, you studied the staff. Comes with scissors to shave your head.
   sprite:
     sprite: _Starlight/HolyObjects/monkstaff.rsi
     state: icon
@@ -57,7 +57,7 @@
 - type: thiefBackpackSet
   id: HonkSet
   name: chaplain-backpack-category-honk-name
-  description: Give the clown their just desserts with this profane Jonkist artifact. Either way increases the chance of security shooting you by 50%
+  description: Give the clown their just desserts with this profane Jonkist artifact. Either way increases the chance of security shooting you by 50%.
   sprite:
     sprite: Objects/Weapons/Guns/Battery/behonker_eye.rsi
     state: base

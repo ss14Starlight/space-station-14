@@ -15,6 +15,7 @@ contraband-type-cosmic = cosmic cult
 contraband-type-central-command = Central Command
 contraband-type-nanotrasen = NanoTrasen
 contraband-type-eto = ETO
+contraband-type-holy = Holy
 
 contraband-examine-text-tier =
     { $itemType ->
