@@ -214,6 +214,7 @@
           cost: 6
         - proto: X4
           cost: 10
+          prob: 0.5
         - proto: CrateITGArmamentSurplus
           cost: 20
 #baseloot
