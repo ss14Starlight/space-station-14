@@ -56,7 +56,7 @@
 
 
 - type: entity
-  name: xeno tail
+  name: xen'kara tail
   parent: [BaseItem, SolutionDart]
   id: XenoTailSpear
   description: Your trusty tail. Sharp, and good for stabbing things with!
