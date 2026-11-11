@@ -89,3 +89,14 @@
   - !type:StationRadioMusicWireAction
   - !type:StationRadioMicrophoneWireAction
   - !type:StationRadioInterferenceWireAction
+
+- type: wireLayout
+  id: PlumbingSmartDispenser
+  wires:
+  - !type:PowerWireAction
+  - !type:PowerWireAction
+    pulseTimeout: 15
+  - !type:AccessWireAction
+    electrify: true
+  - !type:LogWireAction
+  dummyWires: 2
