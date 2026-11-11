@@ -1,32 +1,4 @@
 Entries:
-- author: wonderfulnewworld, mkanke-real
-  changes:
-  - message: Added reagent boxcutter and radio jammer disguised as a appraisal tool to Cargo traitors' uplink.
-    type: Add
-  id: 409926
-  time: '2026-10-30T18:10:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6941
-- author: wonderfulnewworld, mkanke-real
-  changes:
-  - message: Added secret storage warning cone and network analyzer with remote trigger to Engineering traitors' uplink.
-    type: Add
-  id: 409927
-  time: '2026-10-30T18:10:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6941
-- author: wonderfulnewworld, mkanke-real
-  changes:
-  - message: Added pepper shaker full of lead and coffee pitcher of napalm to Chef traitors' uplink.
-    type: Add
-  id: 409928
-  time: '2026-10-30T18:10:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6941
-- author: wonderfulnewworld, mkanke-real
-  changes:
-  - message: Added mute+pax auto injector and silent shoes to Mime traitors' uplink.
-    type: Add
-  id: 409929
-  time: '2026-10-30T18:10:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6941
 - author: Rhapsody (Pepta, Soothe)
   changes:
   - message: Implants can now be tagged as fragile and will break upon extraction. For now, only mindshields are fragile.
@@ -2799,4 +2771,32 @@ Entries:
   id: 410325
   time: '2026-11-11T16:45:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7122
+- author: Conflee
+  changes:
+  - message: Moved Incendiary Munitions from Tier 1 to Tier 2 and lowered it's cost from 10000 to 8000.
+    type: Tweak
+  id: 410326
+  time: '2026-11-11T21:36:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7183
+- author: Conflee
+  changes:
+  - message: Moved Uranium Munitions from Tier 1 to Tier 2.
+    type: Tweak
+  id: 410327
+  time: '2026-11-11T21:36:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7183
+- author: Conflee
+  changes:
+  - message: Moved Explosive Mech Ammunition from Tier 3 to Tier 4 and lowered it's cost from 15400 to 15000.
+    type: Tweak
+  id: 410328
+  time: '2026-11-11T21:36:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7183
+- author: Conflee
+  changes:
+  - message: Moved Scan Gate Technology from Tier 4 to Tier 3 and increased it's cost from 5000 to 8000.
+    type: Tweak
+  id: 410329
+  time: '2026-11-11T21:36:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7183
 Order: -1
