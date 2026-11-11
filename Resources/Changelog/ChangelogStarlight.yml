@@ -1,18 +1,4 @@
 Entries:
-- author: rhithebirdthing
-  changes:
-  - message: Fixed some grammar under the _Starlight namespace.
-    type: Tweak
-  id: 409923
-  time: '2026-10-30T15:26:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6937
-- author: wonderfulnewworld, mkanke-real
-  changes:
-  - message: Added disguised uplink to Science and Botany traitors' uplink.
-    type: Add
-  id: 409924
-  time: '2026-10-30T18:10:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6941
 - author: wonderfulnewworld, mkanke-real
   changes:
   - message: Added vial of lead to Medical traitors' uplink.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410322
   time: '2026-11-11T15:54:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7173
+- author: Destiny (Creativity)
+  changes:
+  - message: Deimplanter for MedTak implants, found in MedTak techfab.
+    type: Add
+  id: 410323
+  time: '2026-11-11T16:20:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7160
+- author: Destiny (Creativity)
+  changes:
+  - message: Platinum MedTak Tracker.
+    type: Add
+  id: 410324
+  time: '2026-11-11T16:20:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7160
 Order: -1
