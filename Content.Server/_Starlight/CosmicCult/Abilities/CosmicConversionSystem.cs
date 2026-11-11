@@ -67,9 +67,8 @@ public sealed partial class CosmicConversionSystem : EntitySystem
     private void TryConvertTarget(Entity<CosmicGlyphConversionComponent> uid, HashSet<EntityUid> possibleTargets, ref TryActivateGlyphEvent args)
     {
         var validTargets = new List<EntityUid>(possibleTargets.Count);
-        var allDead = true;
-        var allMindless = true;
-        string? singleReason = null;
+        string? commonReason = null;
+        var allSame = true;
         foreach (var target in possibleTargets)
         {
             var blockReason = GetConversionBlockReason(uid, target);
@@ -79,9 +78,10 @@ public sealed partial class CosmicConversionSystem : EntitySystem
                 continue;
             }
 
-            allDead &= blockReason == "cult-glyph-target-dead";
-            allMindless &= blockReason == "cult-glyph-target-nomind";
-            singleReason = blockReason;
+            if (commonReason == null)
+                commonReason = blockReason;
+            else if (commonReason != blockReason)
+                allSame = false;
         }
 
         if (validTargets.Count > 0)
@@ -93,17 +93,8 @@ public sealed partial class CosmicConversionSystem : EntitySystem
             return;
         }
 
-        if (possibleTargets.Count == 1)
-        {
-            _popup.PopupEntity(Loc.GetString(singleReason!), uid, args.User);
-            args.Cancel();
-            return;
-        }
-
-        if (allDead)
-            _popup.PopupEntity(Loc.GetString("cult-glyph-target-dead"), uid, args.User);
-        else if (allMindless)
-            _popup.PopupEntity(Loc.GetString("cult-glyph-target-nomind"), uid, args.User);
+        if (allSame && commonReason != null)
+            _popup.PopupEntity(Loc.GetString(commonReason), uid, args.User);
         else
             _popup.PopupEntity(Loc.GetString("cult-glyph-conditions-not-met"), uid, args.User);
         args.Cancel();
