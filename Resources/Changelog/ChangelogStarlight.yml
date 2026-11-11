@@ -1,11 +1,4 @@
 Entries:
-- author: Yosif
-  changes:
-  - message: botany cyborg module now have plant analyzer.
-    type: Tweak
-  id: 409920
-  time: '2026-10-30T14:29:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6902
 - author: Johnny
   changes:
   - message: Evac pod requesting now only needs two command instead of three.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410319
   time: '2026-11-11T10:23:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7180
+- author: FishtopherDoe, The ETO Team
+  changes:
+  - message: Rebalanced the ETO Combat kit, replacing one of the diluted combat medipens with a syringe of saline, and changing some of the tric to be nutriment instead. TSF players rejoice!
+    type: Tweak
+  id: 410320
+  time: '2026-11-11T10:47:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7172
 Order: -1
