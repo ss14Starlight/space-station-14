@@ -69,7 +69,7 @@
     groups:
       Flammable: [ Touch ]
       Extinguish: [ Touch ]
-      Acidic: [ Touch, Ingestion ]
+      Acidic: [ Ingestion ]
     reactions:
     - reagents: [ Water, SpaceCleaner]
       methods: [ Touch ]

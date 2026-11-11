@@ -12,6 +12,7 @@ using Content.Server._Starlight.Xeno.Components;
 using Content.Shared._Starlight.Xeno.Components;
 using Content.Shared.Actions;
 using Content.Server.Antag;
+using Content.Shared.Mind;
 
 namespace Content.Server._Starlight.Xeno;
 
@@ -26,6 +27,7 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
     [Dependency] private LanguageSystem _languageSystem = default!;
     [Dependency] private SharedActionsSystem _action = default!;
     [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -105,13 +107,13 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
         voteRankings = [.. voteRankings.OrderByDescending(v => v.Key)];
         while(voteRankings.Count > 0)
         {
-            var selectedVoice = voteRankings.Last();
+            var selectedVoice = voteRankings.First();
             voteRankings.Remove(selectedVoice);
 
-            if(!TryComp(selectedVoice.Value, out XenoDemocracyComponent? comp))
+            if(!TryComp(selectedVoice.Value, out XenoDemocracyComponent? comp) || !_mind.TryGetMind(selectedVoice.Value, out _, out _))
                 continue;
             _languageSystem.AddLanguage(selectedVoice.Value, comp.VoiceLanguage);
-            _languageSystem.RemoveLanguage(selectedVoice.Value, comp.NonVoiceLanguage);
+            _languageSystem.RemoveLanguage(selectedVoice.Value, comp.NonVoiceLanguage, removeUnderstood: false);
             comp.IsVoice = true;
             rule?.HasVoice = true;
 
@@ -143,6 +145,13 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
         if (!ent.Comp.IsVoice) // Target isn't the Voice, no need to revote
             return;
 
+        // Tell the rule we no longer have a Voice
+        var ruleQuery = QueryActiveRules();
+        while (ruleQuery.MoveNext(out _, out _, out var rule, out _))
+        {
+            rule.HasVoice = false;
+        }
+
         VoiceVote(); //Get the next in line!
     }
 
@@ -154,6 +163,13 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
 
         if (!ent.Comp.IsVoice) // Target isn't the Voice, no need to revote
             return;
+
+        // Tell the rule we no longer have a Voice
+        var ruleQuery = QueryActiveRules();
+        while (ruleQuery.MoveNext(out _, out _, out var rule, out _))
+        {
+            rule.HasVoice = false;
+        }
 
         VoiceVote(); //Get the next in line!
     }

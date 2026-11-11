@@ -452,6 +452,12 @@
           types:
             Caustic: 0.1
       - !type:Emote
+      #Starlight Start
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+      #Starlight End
         emote: Scream
         probability: 0.1
   metabolisms:
