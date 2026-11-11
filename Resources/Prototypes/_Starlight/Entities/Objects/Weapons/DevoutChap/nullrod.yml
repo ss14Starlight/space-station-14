@@ -7,6 +7,9 @@
     size: Small
   - type: Reflect
     reflectProb: 0.1
+  - type: Contraband
+    contrabandType: Holy
+    allowedJobs: [ Chaplain ]
 
 - type: entity
   name: rosary
@@ -282,7 +285,6 @@
     solution: melee
   - type: SolutionTransfer
     maxTransferAmount: 2
-    damageContainer: Inorganic
   - type: UseDelay
   - type: Appearance
 
