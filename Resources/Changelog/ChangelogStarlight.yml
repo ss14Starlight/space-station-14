@@ -1,13 +1,6 @@
 Entries:
 - author: Rinary
   changes:
-  - message: Changed basic footstep sounds.
-    type: Tweak
-  id: 409914
-  time: '2026-10-29T22:22:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6900
-- author: Rinary
-  changes:
   - message: Added differet bate footstep sounds.
     type: Add
   id: 409915
@@ -2799,4 +2792,11 @@ Entries:
   id: 410313
   time: '2026-11-11T05:04:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7176
+- author: GGdoggodude
+  changes:
+  - message: Aieliths now spawn with the proper survival box!
+    type: Fix
+  id: 410314
+  time: '2026-11-11T05:33:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7177
 Order: -1
