@@ -193,7 +193,7 @@
   id: VendorSalvageSalvageEncryptionKey
   productEntity: EncryptionKeyExpedition
   cost:
-    SalvageTicket: 100
+    SalvageTicket: 25
   categories:
     - SalvageEquipment
   conditions:
@@ -429,7 +429,7 @@
   id: VendorSalvageBlueprintBasicMedical
   productEntity: BlueprintBasicMedical
   cost:
-    SalvageTicket: 200
+    SalvageTicket: 500
   categories:
   - SalvageBlueprints
   conditions:
@@ -441,7 +441,7 @@
   id: VendorSalvageBlueprintFulton
   productEntity: BlueprintFulton
   cost:
-    SalvageTicket: 400
+    SalvageTicket: 300
   categories:
   - SalvageBlueprints
   conditions:
@@ -465,7 +465,7 @@
   id: VendorSalvageBlueprintPKAModkits
   productEntity: BlueprintPKAModkits
   cost:
-    SalvageTicket: 400
+    SalvageTicket: 300
   categories:
   - SalvageBlueprints
   conditions:
@@ -493,6 +493,8 @@
     - SalvageSurplus
   conditions:
     - !type:BuyerAccessCondition
+  - !type:ListingLimitedStockCondition
+     stock: 1
 
 - type: listing
   id: VendorSalvageSurplusCrate

@@ -528,14 +528,22 @@
     refineResult: # Starlight
     - id: FoodMeatXeno
       amount: 10
-    - id: SalvageTicket100 # Starlight
+    - id: SalvageTicket100 # Starlight-start
       amount: 5
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 10
     - id: SalvageTicket100
-      amount: 5 # Starlight end
+      amount: 5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1200
+      behaviors:
+      - !type:GibBehavior { }# Starlight-end
   - type: Fixtures
     fixtures:
       fix1:

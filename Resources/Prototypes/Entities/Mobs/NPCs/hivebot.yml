@@ -25,7 +25,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.50
+          radius: 0.35 #Starlight
         density: 80
         mask:
         - MobMask
@@ -69,6 +69,11 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
+  - type: ToolRefinable # Starlight-start
+    refineResult:
+    - id: ScrapSteel
+      amount: 1
+    qualityNeeded: Screwing # Starlight-end
 
 - type: entity
   parent: MobHivebot
@@ -88,10 +93,10 @@
     rechargeCooldown: 0.50
   - type: BasicEntityAmmoProvider
     proto: BulletHivebot
-    capacity: 1
-    count: 1
+    capacity: 5 # Starlight-start
+    count: 5
   - type: Gun
-    fireRate: 0.50
+    fireRate: .8 # Starlight-end
     useKey: false
     selectedMode: FullAuto
     availableModes:

@@ -30,6 +30,11 @@
           cost: 2
           prob: 0.5
         - proto: NuclearBombKeg
+        - proto: C4Worn
+        - proto: Pizzabomb
+          prob: 0.1
+        - proto: WeaponRevolverZOZ
+          cost: 2
         - proto: AmmoTechFabCircuitboard
           cost: 10
           prob: 0.2
@@ -54,6 +59,7 @@
         - proto: MagazinePistolSP
         - proto: WeaponSniperMosin
           cost: 3
+        - proto: WeaponSniperMosinWorn
         - proto: SovietIdCard
           prob: 0.5
         - proto: ClothingHeadHatUshanka
@@ -94,9 +100,22 @@
         - proto: EmpGrenade
           cost: 8
         - proto: NuclearBombKeg
+        - proto: C4Worn
+        - proto: Pizzabomb
+          prob: 0.1
+        - proto: WeaponRevolverZOZ
+          cost: 2
+        - proto: WeaponPistolViperWorn
+          cost: 6
         - proto: AmmoTechFabCircuitboard
           cost: 10
           prob: 0.2
+        - proto: CrateITGArmamentSurplus
+          cost: 15
+          prob: 0.5
+        - proto: WeaponPistolViperWorn
+          cost: 6
+          prob: 0.5
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
@@ -164,7 +183,7 @@
           cost: 8
           prob: 0.5
         - proto: ClothingBeltSovietMarineWebbing
-          cost: 15
+          cost: 5
           prob: 0.5
         - proto: ClothingEyesHudSovietMarine
           cost: 15
@@ -183,6 +202,20 @@
           cost: 13
         - proto: MechReactorMicro
           cost: 10
+        - proto: WeaponSniperHristovWorn
+          cost: 10
+          prob: 0.5
+        - proto: C4Worn
+        - proto: Pizzabomb
+          prob: 0.1
+        - proto: WeaponRevolverZOZ
+          cost: 2
+        - proto: WeaponPistolViperWorn
+          cost: 6
+        - proto: X4
+          cost: 10
+        - proto: CrateITGArmamentSurplus
+          cost: 20
 #baseloot
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
