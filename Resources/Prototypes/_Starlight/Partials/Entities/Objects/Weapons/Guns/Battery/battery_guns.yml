@@ -112,3 +112,19 @@
     angleIncreaseDivider: 2
   - type: GunHeat
     heatPerShot: 1000
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinLaser
+  - type: FiringPinHolder
+    supportedPins: [ Laser ]
+
+- type: !PartialOnly entity
+  id: WeaponLaserSvalinn
+  components:
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinLaser
+  - type: FiringPinHolder
+    supportedPins: [ Laser ]
