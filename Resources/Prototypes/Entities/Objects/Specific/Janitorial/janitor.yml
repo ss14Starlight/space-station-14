@@ -38,6 +38,7 @@
     size: Large
     sprite: Objects/Specific/Janitorial/mop.rsi
   - type: Absorbent
+    footprintCleaning: Plus # Starlight
     useAbsorberSolution: true
   - type: UseDelay
     delay: 1
@@ -88,6 +89,8 @@
       sprite: Objects/Specific/Janitorial/advmop.rsi
     - type: Absorbent
       pickupAmount: 100
+      footprintCleaning: Square # Starlight
+      cleanAdjacentWallStains: true # Starlight
     - type: SolutionRegeneration
       generated:
         reagents:

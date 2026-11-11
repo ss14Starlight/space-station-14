@@ -8,3 +8,30 @@
       sprite: _Starlight/Objects/Tools/Hydroponics/clippers_gold.rsi/
     - type: Item
       sprite: _Starlight/Objects/Tools/Hydroponics/clippers_gold.rsi/
+
+# From Funky
+- type: entity
+  parent: [BaseItem, StorePresetUplink]
+  id: HiddenUplinkRadioBotany
+  name: plant analyzer
+  description: A scanner used to evaluate a plant's various areas of growth, genetic traits and chemicals.
+  suffix: Uplink
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/plant_analyzer.rsi
+    layers:
+    - state: icon
+    - state: analyzer
+      shader: unshaded
+  - type: Item
+    storedRotation: -90
+  - type: GuideHelp
+    guides:
+    - Botany
+    - Chemicals
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key

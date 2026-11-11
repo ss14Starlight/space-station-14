@@ -17,6 +17,7 @@ using Content.Shared.Objectives.Components;
 using Content.Shared._Starlight.Character.Info.Components;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared.Mind;
+using Content.Shared.Roles;
 using Content.Shared.Tag;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -31,6 +32,7 @@ namespace Content.IntegrationTests.Tests.GameRules;
 public sealed partial class TraitorRuleTest
 {
     private static readonly ProtoId<TagPrototype> _sLBackgroundTag = "CivilianTraitBackground";
+    private static readonly ProtoId<AntagPrototype> _traitorAntag = "Traitor";
 
     [TestPrototypes]
     private const string PickerProgressPrototypes = """
@@ -54,7 +56,7 @@ public sealed partial class TraitorRuleTest
 
         Dictionary<NetEntity, EntityUid> candidates = null;
         HashSet<NetEntity> selected = null;
-        EntityUid forced = default;
+        EntityUid[] assignedObjectives = null;
         EntityUid foreignMind = default;
         EntityUid foreignObjective = default;
         NetEntity foreignMindNet = default;
@@ -62,13 +64,21 @@ public sealed partial class TraitorRuleTest
         await Server.WaitAssertion(() =>
         {
             var mindComp = SEntMan.GetComponent<MindComponent>(mind);
-            Assert.That(mindComp.Objectives.Count, Is.EqualTo(1), "Only the forced objective is assigned before confirmation.");
-            forced = mindComp.Objectives.Single();
+            var unrelated = SEntMan.SpawnEntity("SLPickerTestNetworkProgress", MapCoordinates.Nullspace);
+            Server.System<MindSystem>().AddObjective(mind, mindComp, unrelated);
+            // Preserve objectives already assigned by the rule, species, or other systems.
+            assignedObjectives = mindComp.Objectives.ToArray();
+            var traitorObjectives = assignedObjectives.Where(objective =>
+                SEntMan.GetComponent<ObjectiveComponent>(objective).Antag == _traitorAntag).ToArray();
+            Assert.That(traitorObjectives, Has.Length.EqualTo(1),
+                "Only the forced traitor objective is assigned before confirmation.");
             var offers = SEntMan.GetComponent<PotentialObjectivesComponent>(mind);
+            Assert.That(assignedObjectives.Intersect(offers.ObjectiveOptions.Keys.Select(SEntMan.GetEntity)), Is.Empty,
+                "Unconfirmed offers must not be assigned to the mind.");
             Assert.That(ObjectivePickerSelection.Difficulty(offers, offers.ObjectiveOptions.Keys),
                 Is.GreaterThanOrEqualTo(2 * offers.MinimumDifficulty));
             var storyCount = offers.Difficulties.Count(pair => pair.Value == 0);
-            Assert.That(storyCount, Is.EqualTo(SEntMan.HasComponent<DieConditionComponent>(forced) ? 0 : 2));
+            Assert.That(storyCount, Is.EqualTo(traitorObjectives.Any(SEntMan.HasComponent<DieConditionComponent>) ? 0 : 2));
             foreach (var objective in offers.ObjectiveOptions.Keys.Select(SEntMan.GetEntity))
             {
                 if ((SEntMan.HasComponent<KillPersonConditionComponent>(objective) ||
@@ -179,7 +189,7 @@ public sealed partial class TraitorRuleTest
         {
             Assert.That(SEntMan.GetComponent<ObjectivePickerConfigurationComponent>(mind).PickerSession, Is.Null);
             Assert.That(SEntMan.GetComponent<MindComponent>(foreignMind).Objectives, Is.Empty);
-            Assert.That(SEntMan.GetComponent<MindComponent>(mind).Objectives, Is.EqualTo(new[] { forced }));
+            Assert.That(SEntMan.GetComponent<MindComponent>(mind).Objectives, Is.EqualTo(assignedObjectives));
         });
 
         // An under-budget submission must leave the picker open and assign no offers.
@@ -191,7 +201,7 @@ public sealed partial class TraitorRuleTest
         await Pair.RunTicksSync(5);
         await Server.WaitAssertion(() =>
         {
-            Assert.That(SEntMan.GetComponent<MindComponent>(mind).Objectives, Is.EqualTo(new[] { forced }));
+            Assert.That(SEntMan.GetComponent<MindComponent>(mind).Objectives, Is.EqualTo(assignedObjectives));
             Assert.That(SEntMan.HasComponent<PotentialObjectivesComponent>(mind), Is.True);
         });
 
@@ -235,7 +245,7 @@ public sealed partial class TraitorRuleTest
         await Server.WaitAssertion(() =>
         {
             Assert.That(SEntMan.GetComponent<MindComponent>(mind).Objectives,
-                Is.EquivalentTo(selected.Select(objective => candidates[objective]).Append(forced)));
+                Is.EquivalentTo(selected.Select(objective => candidates[objective]).Concat(assignedObjectives)));
             Assert.That(SEntMan.HasComponent<PotentialObjectivesComponent>(mind), Is.False);
             foreach (var unused in candidates.Where(candidate => !selected.Contains(candidate.Key)))
             {
@@ -246,10 +256,11 @@ public sealed partial class TraitorRuleTest
         await Server.WaitAssertion(() =>
         {
             var config = SEntMan.GetComponent<ObjectivePickerConfigurationComponent>(mind);
+            var mindComp = SEntMan.GetComponent<MindComponent>(mind);
             config.CurrentBatch.Clear();
+            config.CompletedObjectives.Clear();
             config.BatchUnlocked = false;
             config.NextProgressCheck = TimeSpan.MaxValue;
-            var mindComp = SEntMan.GetComponent<MindComponent>(mind);
             for (var i = 0; i < 4; i++)
             {
                 var objective = SEntMan.SpawnEntity("SLPickerTestNetworkProgress", MapCoordinates.Nullspace);

@@ -75,3 +75,16 @@
   - type: Construction #Starlight, downstreamed from Inferus
     graph: Flags
     node: WaffleCoFlag
+
+- type: entity
+  parent: BaseFlag
+  id: PluralFlag
+  name: plural flag
+  description: Make more than one!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/flags/pluralflag.rsi/
+      state: plural_flag
+    - type: Construction #Starlight,
+      graph: PluralFlagGraph
+      node: pluralflag

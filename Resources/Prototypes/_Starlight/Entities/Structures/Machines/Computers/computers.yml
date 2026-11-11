@@ -51,7 +51,7 @@
   parent: BaseComputer
   id: AbductorConsole
   name: abductor console
-  description: retrieve people marked by scientist tools. Also used for buying replacement gear and linking the agent's vest.
+  description: Retrieve people marked by scientist tools. Also used for buying replacement gear and linking the agent's vest.
   components:
   - type: AbductorConsole
   - type: Sprite

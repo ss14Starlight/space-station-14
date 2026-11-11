@@ -59,3 +59,29 @@
         entity_storage: !type:AllSelector
           children:
             - id: PrinterDocFlatpack
+
+# A record crate of eight different records rather than a steel crate of loose sleeves. The id stays for maps.
+- type: entity
+  parent: RecordMilkCrate
+  id: CrateRadioHostVinyls
+  suffix: Filled
+  components:
+  - type: UniqueDiscFill
+    table: RandomVinylDisc
+    min: 8
+    max: 8
+    wrapper: VinylSleeve
+    container: records
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateRadioHostADs
+  name: ads crate
+  description: A crate with 6 different advertisement CDs to add to your collection, each in its case.
+  components:
+  - type: UniqueDiscFill
+    table: RandomCDDisc
+    min: 6
+    max: 6
+    wrapper: CDCase
+    container: entity_storage

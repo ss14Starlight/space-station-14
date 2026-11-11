@@ -1,0 +1,41 @@
+# From Funky
+- type: entity
+  parent: [BaseItem, StorePresetUplink]
+  id: HiddenUplinkRadioScience
+  name: anomaly scanner
+  description: A hand-held scanner built to collect information on various anomalous objects.
+  suffix: Uplink
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Research/anomalyscanner.rsi
+    layers:
+    - state: icon
+      map: [ "enum.AnomalyScannerVisualLayers.Base" ]
+    - map: [ "enum.AnomalyScannerVisualLayers.Screen" ]
+      visible: false
+      shader: unshaded
+    - state: severity_mask
+      map: [ "enum.AnomalyScannerVisualLayers.SeverityMask" ]
+      visible: false
+      shader: unshaded
+    - map: [ "enum.AnomalyScannerVisualLayers.Stability" ]
+      visible: false
+      shader: unshaded
+    - visible: false
+      map: [ "enum.AnomalyScannerVisualLayers.Pulse" ]
+      shader: unshaded
+    - state: supercritical
+      map: [ "enum.AnomalyScannerVisualLayers.Supercritical" ]
+      shader: unshaded
+      visible: false
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: GuideHelp
+    guides:
+    - ScannersAndVessels
+  - type: Item
+    storedRotation: -90
