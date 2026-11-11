@@ -75,7 +75,6 @@ namespace Content.Server.Communications
 
             // Starlight Start: Secure Command Terminal
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleOpenSecureTerminalMessage>(OnOpenSecureTerminalMessage);
-            SubscribeLocalEvent<CommunicationsConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
             // Starlight End
         }
 
@@ -131,12 +130,6 @@ namespace Content.Server.Communications
             if (!CanUse(actor, uid)) return;
             if (!TryComp<SecureCommandTerminalConsoleComponent>(uid, out var terminal) || !terminal.Enabled) return;
             _uiSystem.TryOpenUi(uid, SecureCommandTerminalUiKey.Key, actor);
-        }
-
-        private void OnUIOpened(EntityUid uid, CommunicationsConsoleComponent comp, BoundUIOpenedEvent args)
-        {
-            if (args.UiKey.Equals(CommunicationsConsoleUiKey.Key))
-                UpdateCommsConsoleInterface(uid, comp);
         }
         // Starlight End
 
