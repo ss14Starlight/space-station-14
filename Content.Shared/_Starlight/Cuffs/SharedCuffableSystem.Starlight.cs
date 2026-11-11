@@ -14,5 +14,5 @@ public abstract partial class SharedCuffableSystem
         hands.Hands.Values.Count(hand => hand.Location != HandLocation.Functional);
 
     public bool IsCuffed(EntityUid target, bool requireFullyCuffed = true, CuffableComponent? cuffable = null) =>
-        Resolve(target, ref cuffable) && IsCuffed((target, cuffable));
+        Resolve(target, ref cuffable) && IsCuffed((target, cuffable), requireFullyCuffed);
 }
