@@ -12,6 +12,8 @@ namespace Content.Client._Starlight.Replay;
 // controls are public, so these are added into its layout rather than changing it.
 public sealed partial class ReplayObserverSystem
 {
+    [Dependency] private ContentReplayPlaybackManager _contentReplay = default!;
+
     private const string RoundTimeFormat = @"mm\:ss";
     private const double MaxRoundSeconds = 100 * 24 * 60 * 60;
 
@@ -22,8 +24,6 @@ public sealed partial class ReplayObserverSystem
     private Label? _roundTimeLabel;
     private LineEdit? _jumpEdit;
     private Button? _jumpButton;
-
-    [Dependency] private ContentReplayPlaybackManager _contentReplay = default!;
 
     /// <summary>
     /// Server time the round started, or the recording start for replays without it, which matches for auto-recorded rounds.

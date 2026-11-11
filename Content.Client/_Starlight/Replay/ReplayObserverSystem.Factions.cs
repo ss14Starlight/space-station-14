@@ -24,6 +24,7 @@ public sealed partial class ReplayObserverSystem
     public bool? FactionIconsVisibleTo(EntityUid? viewer) =>
         IsReplayActive && viewer != null && viewer == _observer ? _factionIconsEnabled : null;
 
+    [SubscribeLocalEvent]
     private void OnToggleFactionIcons(EntityUid uid, ReplaySpectatorComponent component, ReplayToggleFactionIconsActionEvent args)
     {
         if (args.Handled || !IsReplayActive)

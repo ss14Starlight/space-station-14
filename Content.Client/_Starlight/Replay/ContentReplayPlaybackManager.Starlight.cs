@@ -15,16 +15,16 @@ namespace Content.Client.Replay;
 
 public sealed partial class ContentReplayPlaybackManager
 {
+    [Dependency] private ILogManager _log = default!;
+
+    // Round start from the loaded replay's final metadata, for recordings begun in the lobby.
+    public TimeSpan? FinalRoundStart { get; private set; }
+
     private bool ShouldSkipChatMessage(ChatMessage chat) =>
         !_entMan.System<ReplayObserverSystem>().ShouldHearChat(chat);
 
     private void NoteRecordedMessage() =>
         _entMan.System<ReplayObserverSystem>().IsApplyingRecordedMessages = true;
-
-    [Dependency] private ILogManager _log = default!;
-
-    // Round start from the loaded replay's final metadata, for recordings begun in the lobby.
-    public TimeSpan? FinalRoundStart { get; private set; }
 
     // Playback only keeps the start metadata, so the final metadata is read while the replay's files are open. This
     // manager handles every load, and exists before entity systems do.

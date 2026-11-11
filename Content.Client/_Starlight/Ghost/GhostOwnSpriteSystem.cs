@@ -8,9 +8,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Ghost;
 
-// Hides your own ghost on your screen only, for observers, admins and replay viewers who want a clear view.
-// GhostSystem re-shows the local ghost whenever ghost visibility changes, so this is enforced each frame.
-// Ghosts set to always visible (corporeal) are never hidden, matching GhostSystem.
+/// <summary>
+/// Hides your own ghost on your screen only, for observers, admins and replay viewers who want a clear view.
+/// GhostSystem re-shows the local ghost whenever ghost visibility changes, so this is enforced each frame.
+/// Ghosts set to always visible (corporeal) are never hidden, matching GhostSystem.
+/// </summary>
 public sealed partial class GhostOwnSpriteSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
@@ -26,13 +28,7 @@ public sealed partial class GhostOwnSpriteSystem : EntitySystem
     private EntityUid? _synced;
     private bool _syncedHidden;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<GhostComponent, ToggleOwnGhostSpriteActionEvent>(OnToggle);
-    }
-
+    [SubscribeLocalEvent]
     private void OnToggle(EntityUid uid, GhostComponent component, ToggleOwnGhostSpriteActionEvent args)
     {
         if (args.Handled || uid != _player.LocalEntity)
