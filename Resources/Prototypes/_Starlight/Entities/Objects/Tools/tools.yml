@@ -1183,7 +1183,7 @@
     - HonkSet
     - CultistSet
     - YapperSet
-    
+
 # From Funky
 - type: entity
   parent: NetworkConfigurator
