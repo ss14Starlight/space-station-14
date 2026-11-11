@@ -30,6 +30,7 @@
   </Box>
   <Box>
   <GuideEntityEmbed Entity="AppearanceVox" Caption="Vox"/>
+  <GuideEntityEmbed Entity="AppearanceVespuli" Caption="Vespuli"/>
   <GuideEntityEmbed Entity="AppearanceVulpkanin" Caption="Vulpkanin"/>
   <GuideEntityEmbed Entity="AppearanceNeocyte" Caption="Neocyte"/> <!--FH-->
   <GuideEntityEmbed Entity="AppearanceIPC" Caption="IPC"/> <!--FH-->

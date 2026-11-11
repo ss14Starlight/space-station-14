@@ -184,3 +184,16 @@
       amount: 1
   products:
     CellCultureMedium: 6
+
+- type: reaction
+  id: Aurumine
+  impact: Medium
+  reactants:
+    Honey:
+      amount: 1
+    Inaprovaline:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+  products:
+    Aurumine: 3

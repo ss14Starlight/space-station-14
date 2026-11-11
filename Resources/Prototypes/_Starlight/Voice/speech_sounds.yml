@@ -106,3 +106,12 @@
     path: /Audio/_Starlight/Voice/Experiment/exp_ask.ogg
   exclaimSound:
     path: /Audio/_Starlight/Voice/Experiment/exp_exclaim.ogg
+
+- type: speechSounds
+  id: UnisexVespuli
+  saySound:
+    path: /Audio/_Starlight/Voice/Vespuli/vespuli.ogg
+  askSound:
+    path: /Audio/_Starlight/Voice/Vespuli/vespuli_ask.ogg
+  exclaimSound:
+    path: /Audio/_Starlight/Voice/Vespuli/vespuli_exclaim.ogg

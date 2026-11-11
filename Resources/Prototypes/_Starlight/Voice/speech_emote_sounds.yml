@@ -1161,3 +1161,33 @@
       collection: FemaleYawn
     Snore:
       collection: Snores
+
+- type: emoteSounds
+  id: UnisexVespuli
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/_Starlight/Voice/Vespuli/vespuli_scream.ogg
+    Laugh:
+      path: /Audio/_Starlight/Voice/Vespuli/vespuli_laugh.ogg
+    Cough:
+      path: /Audio/_Starlight/Voice/Vespuli/vespuli_cough.ogg
+    Yawn:
+      path: /Audio/_Starlight/Voice/Vespuli/vespuli_yawn.ogg
+    Honk:
+      collection: BikeHorn
+    Sigh:
+      path: /Audio/_Starlight/Voice/Vespuli/vespuli_exclaim.ogg
+    Crying:
+      path: /Audio/_Starlight/Voice/Vespuli/vespuli_cry.ogg
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
+    Gasp:
+      path: /Audio/_Starlight/Voice/Vespuli/vespuli_ask.ogg
+    DefaultDeathgasp:
+      path: /Audio/_Starlight/Voice/Vespuli/vespuli_deathgasp.ogg

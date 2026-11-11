@@ -86,4 +86,7 @@
   name: species-name-experiment
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/Experiment.xml"
 
-
+- type: guideEntry
+  id: Vespuli
+  name: species-name-vespuli
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Vespuli.xml"

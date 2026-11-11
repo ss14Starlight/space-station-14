@@ -1,0 +1,11 @@
+- type: localizedDataset
+  id: names_vespuli_first
+  values:
+    prefix: names-vespuli-first-dataset-
+    count: 38
+
+- type: localizedDataset
+  id: names_vespuli_last
+  values:
+    prefix: names-vespuli-last-dataset-
+    count: 81

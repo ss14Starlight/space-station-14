@@ -32,3 +32,6 @@ construction-recipe-cell-bars-broken = cell bars (broken)
 
 ## Lights
 construction-recipe-floor-light = floor light
+
+## Honeycomb
+construction-honeycomb-wall = honeycomb wall

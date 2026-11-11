@@ -107,3 +107,22 @@
       toPointer: false
       sound:
         path: /Audio/_Starlight/Effects/Jump/jetpack.ogg
+
+- type: entity
+  parent: Jump
+  id: JumpVespuli
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 1
+  - type: LimitedCharges
+    maxCharges: 2 # less than moths. smaller wings.
+  - type: AutoRecharge
+    rechargeDuration: 30
+  - type: WorldTargetAction
+    event: !type:JumpActionEvent
+      distance: 2   # bees are too fat to get their little bodies off the ground
+      toPointer: false
+      speed: 4.5       # equal to movement speed
+      sound:
+        path: /Audio/_Starlight/Effects/Jump/moth.ogg

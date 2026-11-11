@@ -1,21 +1,102 @@
-# Abdomen Markings
-- type: marking
-  id: VespuliAbdomenDefault # This is the default Vespuli abdomen.
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Vespuli]
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_tail.rsi
-    state: default
-
 - type: marking
   id: VespuliWingsDefault
   bodyPart: Tail
-  markingCategory: TailExtras
+  markingCategory: Tail
   speciesRestriction: [Vespuli]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+        color: "#EDFDE1"
   sprites:
     - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_wings.rsi
       state: default
 
+# Bumblebee
 
-    
+- type: marking
+  id: VespuliAbdomenBumble
+  bodyPart: Tail
+  markingCategory: TailExtras
+  speciesRestriction: [Vespuli]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_tail.rsi
+      state: bumble
+
+- type: marking
+  id: VespuliBodyBumble
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Vespuli]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_chest.rsi
+      state: bumble
+
+- type: marking
+  id: VespuliLegBumble
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Vespuli]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_leg.rsi
+      state: bumble
+
+# Yellowjacket
+
+- type: marking
+  id: VespuliHeadYellowjacket
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vespuli]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_head.rsi
+      state: yellowjacket
+
+- type: marking
+  id: VespuliAbdomenYellowjacket
+  bodyPart: Tail
+  markingCategory: TailExtras
+  speciesRestriction: [Vespuli]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_tail.rsi
+      state: yellowjacket
+
+- type: marking
+  id: VespuliBodyYellowjacket
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Vespuli]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_chest.rsi
+      state: yellowjacket
+
+- type: marking
+  id: VespuliLegYellowjacket
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Vespuli]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_leg.rsi
+      state: yellowjacket
+
+# Honeypot
+
+- type: marking
+  id: VespuliAbdomenHoneypot
+  bodyPart: Tail
+  markingCategory: TailExtras
+  speciesRestriction: [Vespuli]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_tail.rsi
+      state: honeypot
+
+# Solid
+
+- type: marking
+  id: VespuliAbdomenSolid
+  bodyPart: Tail
+  markingCategory: TailExtras
+  speciesRestriction: [Vespuli]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vespuli/vespuli_tail.rsi
+      state: solid

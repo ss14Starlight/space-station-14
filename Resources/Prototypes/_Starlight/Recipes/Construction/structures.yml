@@ -427,3 +427,17 @@
   canBuildInImpassable: true
   conditions:
     - !type:WallmountCondition {}
+
+- type: construction
+  id: HoneyCombWall
+  name: construction-honeycomb-wall
+  graph: HoneyCombWall
+  startNode: start
+  targetNode: honeyCombWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

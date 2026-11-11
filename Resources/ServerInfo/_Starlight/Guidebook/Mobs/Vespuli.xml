@@ -1,0 +1,29 @@
+<Document>
+  # Vespuli
+
+  <Box>
+    <GuideEntityEmbed Entity="MobVespuli" Caption=""/>
+  </Box>
+
+  Ask anyone around you where a Vespuli is from, and they will not be able to give you an answer. Currently, Vespuli have no documented homeworld, and swarms of them have taken residency on any spacefaring vessel they can. They often form hives in long abandoned sectors of a station from which they create a miniature society, producing goods to trade with their hosts. Due to this behavior, they are often seen as pests and are often forced out or exterminated, though this never lasts for long. Most have decided to simply let them be.
+  
+  ## The Vibralink
+  Vespuli bodies can emit frequencies that are inaudible to most species, and have utilized a frequency specifically to communicate with other Vespuli. This is referred to as the Vibralink, and it is used to socialize and coordinate with other Vespuli.
+
+  Unlike neural links, a Vespuli's Vibralink is appended with a frequency that is unique to an individual Vespuli, and is used to identify them. The Vibralink is not anonymous.
+
+  ## Racial Features
+  - [color=#00aa00]Resistance to Heat[/color]
+  - [color=#00aa00]Short burst jumps[/color]
+  - [color=#00aa00]Zero-gravity mobility[/color]
+  - [color=#aa0000]Weakness to Cold damage and Blunt damage[/color]
+
+  ## Honey Production
+
+  Vespuli are able to create [color=#c08932]Honeydrops[/color] at the cost of some of their hunger. This substance can be ground into [color=#c08932]Honey[/color] or cooked into [color=#c08932]Honeycomb[/color] allowing for the creation of various food items or structures.
+
+  ## Hives and You
+
+  Vespuli usually prefer to be listed with the name of their hive, and are often standardized as "(Name) - (Hive Name)". Members of a hive will often be more social with each other, and will often defend their hive mates from danger. It is ill advised to attack a Vespuli in the vicinity of others of the same hive, as they will often retaliate in a swarm. Those with differing hive names will still defend each other, but will not be as aggressive as those of the same hive.
+
+</Document>

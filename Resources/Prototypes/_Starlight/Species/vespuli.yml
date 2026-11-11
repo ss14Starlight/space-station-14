@@ -1,6 +1,6 @@
 - type: species
   id: Vespuli
-  name: species-name-Vespuli
+  name: species-name-vespuli
   roundStart: true
   prototype: MobVespuli
   sprites: MobVespuliSprites
@@ -8,9 +8,9 @@
   markingLimits: MobVespuliMarkingLimits
   dollPrototype: AppearanceVespuli
   skinColoration: Hues
-  maleFirstNames: names_resomi_first
-  femaleFirstNames: names_resomi_first
-  lastNames: names_resomi_packs
+  maleFirstNames: names_vespuli_first
+  femaleFirstNames: names_vespuli_first
+  lastNames: names_vespuli_last
   naming: FirstLast
   sexes:
   - Male
@@ -35,7 +35,6 @@
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
-    TailExtras: MobHumanoidAnyMarking
     Eyes: MobVespuliEyes
     LArm: MobVespuliLArm
     RArm: MobVespuliRArm
@@ -80,14 +79,10 @@
     Arms:
       points: 2
       required: false
-    TailExtras:
-      points: 1
-      required: true
-      defaultMarkings: [ VespuliWingsDefault ]
     Tail:
       points: 1
       required: true
-      defaultMarkings: [ VespuliAbdomenDefault ]
+      defaultMarkings: [ VespuliWingsDefault ]
 
 - type: humanoidBaseSprite
   id: MobVespuliEyes

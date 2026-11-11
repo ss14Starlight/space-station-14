@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "copyright": "State based copyright",
+    "license": "CC-BY-SA-3.0",
+    "states": [
+        {
+            "name": "honeycomb",
+            "copyright": "Made by Mintly"
+        },
+        {
+            "name": "honeycomb0",
+            "directions": 4,
+            "copyright": "Made by Mintly"
+        },
+        {
+            "name": "honeycomb1",
+            "directions": 4,
+            "copyright": "Made by Mintly"
+        },
+        {
+            "name": "honeycomb2",
+            "directions": 4,
+            "copyright": "Made by Mintly"
+        },
+        {
+            "name": "honeycomb3",
+            "directions": 4,
+            "copyright": "Made by Mintly"
+        },
+        {
+            "name": "honeycomb4",
+            "directions": 4,
+            "copyright": "Made by Mintly"
+        },
+        {
+            "name": "honeycomb5",
+            "directions": 4,
+            "copyright": "Made by Mintly"
+        },
+        {
+            "name": "honeycomb6",
+            "directions": 4,
+            "copyright": "Made by Mintly"
+        },
+        {
+            "name": "honeycomb7",
+            "directions": 4,
+            "copyright": "Made by Mintly"
+        }
+    ]
+}

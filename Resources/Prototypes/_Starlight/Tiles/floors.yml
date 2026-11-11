@@ -1052,3 +1052,15 @@
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemGrass
   weather: false
+
+- type: tile
+  id: FloorHoneycomb
+  name: tiles-honeycomb-floor
+  sprite: /Textures/_Starlight/Tiles/honeycomb.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepBlood
+  itemDrop: FloorTileItemHoneycomb
+  heatCapacity: 10000

@@ -7,6 +7,22 @@
     {
       "name": "default",
       "directions": 4
+    },
+    {
+      "name": "bumble",
+      "directions": 4
+    },
+    {
+      "name": "yellowjacket",
+      "directions": 4
+    },
+    {
+      "name": "honeypot",
+      "directions": 4
+    },
+    {
+      "name": "solid",
+      "directions": 4
     }
   ]
 }

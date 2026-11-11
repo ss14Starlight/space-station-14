@@ -141,6 +141,8 @@
   - type: Item
     size: Tiny
   - type: Edible
+  - type: Extractable
+    grindableSolutionName: food
   - type: FlavorProfile
     flavors:
       - honey
@@ -166,6 +168,8 @@
   - type: Item
     size: Tiny
   - type: Edible
+  - type: Extractable
+    grindableSolutionName: food
   - type: FlavorProfile
     flavors:
       - honey

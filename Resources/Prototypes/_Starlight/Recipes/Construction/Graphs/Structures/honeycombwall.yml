@@ -1,0 +1,26 @@
+- type: constructionGraph
+  id: HoneyCombWall
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: honeyCombWall
+      steps:
+      - material: honeycomb
+        amount: 4
+        doAfter: 3
+
+  - node: honeyCombWall
+    entity: HoneyCombWall
+    edges:
+      - to: start
+        completed:
+        - !type:GivePrototype
+          prototype: Honeycomb
+          amount: 4
+        - !type:DeleteEntity {}
+        steps:
+        - tool: Screwing
+          doAfter: 1
+        - tool: Anchoring
+          doAfter: 2

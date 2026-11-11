@@ -140,6 +140,10 @@
         {
             "name": "artcarpet",
 			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
+        },
+        {
+            "name": "honeycomb",
+			"copyright": "attributions available in the Resources/Textures/_Starlight/Tiles/attributions.yml file"
         }
     ]
 }

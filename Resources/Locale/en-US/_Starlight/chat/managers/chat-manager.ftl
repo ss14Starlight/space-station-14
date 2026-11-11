@@ -38,6 +38,12 @@ chat-speech-verb-experiment-2 = barks
 chat-speech-verb-experiment-3 = says
 chat-speech-verb-experiment-4 = yaps
 
+chat-speech-verb-name-vespuli = Vespuli
+chat-speech-verb-vespuli-1 = buzzes
+chat-speech-verb-vespuli-2 = hums
+chat-speech-verb-vespuli-3 = says
+chat-speech-verb-vespuli-4 = burrs
+
 chat-speech-verb-name-pause = Pausing
 chat-speech-verb-pause = pauses
 

@@ -356,3 +356,10 @@
   flatReductions:
     Blunt: 4
     Heat: 3
+
+- type: damageModifierSet
+  id: Vespuli
+  coefficients:
+    Cold: 1.2
+    Heat: 0.7
+    Blunt: 1.2

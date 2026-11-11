@@ -52,3 +52,12 @@
   name: chat-speech-verb-name-pause
   speechVerbStrings:
   - chat-speech-verb-pause
+
+- type: speechVerb
+  id: Vespuli
+  name: chat-speech-verb-name-vespuli
+  speechVerbStrings:
+  - chat-speech-verb-vespuli-1
+  - chat-speech-verb-vespuli-2
+  - chat-speech-verb-vespuli-3
+  - chat-speech-verb-vespuli-4

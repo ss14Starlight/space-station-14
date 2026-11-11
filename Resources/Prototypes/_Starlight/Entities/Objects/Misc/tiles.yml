@@ -807,3 +807,23 @@
       - FloorAstroDirt
   - type: Stack
     stackType: FloorTileAstroDirt
+
+# Honeycomb
+
+- type: entity
+  name: honeycomb floor
+  parent: FloorTileItemBase
+  id: FloorTileItemHoneycomb
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: honeycomb
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    heldPrefix: honeycomb
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorHoneycomb
+  - type: Stack
+    stackType: FloorTileItemHoneycomb
