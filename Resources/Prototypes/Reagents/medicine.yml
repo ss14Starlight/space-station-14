@@ -1869,6 +1869,8 @@
   metabolisms:
     Bloodstream:
       effects:
+      - !type:ReduceSeizureBuild
+        reductionAmount: 0.01
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition

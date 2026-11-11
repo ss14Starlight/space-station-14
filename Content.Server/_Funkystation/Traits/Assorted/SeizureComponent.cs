@@ -1,0 +1,94 @@
+// SPDX-FileCopyrightText: 2025 TrixxedHeart <46364955+TrixxedBit@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
+using System.Numerics;
+
+namespace Content.Server._Funkystation.Traits.Assorted;
+
+/// <summary>
+/// Component for entities experiencing a seizure episode.
+/// Manages timing and state for prodrome, seizure, recovery, and fading phases.
+/// </summary>
+[RegisterComponent, Access(typeof(SeizureSystem))]
+public sealed partial class SeizureComponent : Component
+{
+    /// <summary>
+    /// Duration range for seizure episodes, (min, max) in seconds.
+    /// Default: 25-30 seconds to match the audio length
+    /// </summary>
+    [DataField("durationOfIncident")]
+    public Vector2 SeizureDuration { get; private set; } = new(25f, 30f);
+
+    /// <summary>
+    /// How long the prodrome warning phase lasts before seizure begins.
+    /// </summary>
+    [DataField]
+    public float ProdromeDuration = 10f;
+
+    /// <summary>
+    /// How long the recovery phase lasts.
+    /// </summary>
+    [DataField]
+    public float RecoveryDuration = 6f;
+
+    /// <summary>
+    /// Visual jittering amplitude during seizure.
+    /// </summary>
+    [DataField]
+    public float JitterAmplitude = 25f;
+
+    /// <summary>
+    /// Visual jittering frequency during seizure.
+    /// </summary>
+    [DataField]
+    public float JitterFrequency = 6f;
+
+    /// <summary>
+    /// Current seizure phase state.
+    /// </summary>
+    [DataField]
+    public SeizureState CurrentState = SeizureState.Prodrome;
+
+    /// <summary>
+    /// Time remaining in the current phase.
+    /// </summary>
+    public float RemainingTime;
+
+    /// <summary>
+    /// Current movement speed multiplier.
+    /// </summary>
+    public float MovementSpeedMultiplier = 1.0f;
+
+    /// <summary>
+    /// Target movement speed.
+    /// </summary>
+    public float TargetMovementSpeed = 1.0f;
+}
+
+/// <summary>
+/// Seizure episode phases.
+/// </summary>
+public enum SeizureState : byte
+{
+    /// <summary>
+    /// Warning phase with faint visual overlay and gradual movement slowdown.
+    /// </summary>
+    Prodrome = 0,
+
+    /// <summary>
+    /// Active seizure with harsh overlay, stunning, and visual effects.
+    /// </summary>
+    Seizure = 1,
+
+    /// <summary>
+    /// Recovery phase with gradual movement speed restoration.
+    /// </summary>
+    Recovery = 2,
+
+    /// <summary>
+    /// Final fade phase where overlay fades while component cleans up.
+    /// </summary>
+    Fading = 3
+}
+

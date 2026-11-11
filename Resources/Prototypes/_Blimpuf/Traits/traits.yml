@@ -1,0 +1,25 @@
+- type: trait
+  id: Dipsomania
+  name: trait-dipsomania-name
+  description: trait-dipsomania-desc
+  category: Quirks
+  cost: 0
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: Dipsomania
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Human
+
+- type: trait
+  id: NeuroAversion
+  name: blimpuf-trait-neuroaversion-name
+  description: blimpuf-trait-neuroaversion-desc
+  category: Disabilities
+  cost: 0
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: NeuroAversion

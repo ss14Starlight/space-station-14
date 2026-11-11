@@ -7,7 +7,7 @@
   flavor: medicine
   color: "#8cb6c7"
   metabolisms:
-    Bloodstream:
+    Medicine:
       metabolismRate: 0.5
       effects:
       - !type:NestedEffect

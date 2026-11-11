@@ -2,6 +2,9 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Random.Helpers;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Timing;
+using Content.Shared._Funkystation.Traits.Assorted;
+using Content.Shared._Blimpuf.Traits.Assorted;
+using Content.Shared.Mindshield.Components;
 
 namespace Content.Shared._Starfall.Traits.Assorted;
 
@@ -51,6 +54,14 @@ public sealed partial class MigraineSchedulerSystem : EntitySystem
         {
             if (_mobState.IsDead(uid))
                 continue;
+
+            // Neuroaversion schedules episodes while the implant is present.
+            if (HasComp<NeuroAversionComponent>(uid) && HasComp<MindShieldComponent>(uid))
+            {
+                migraines.NextIncidentTime += TimeSpan.FromSeconds(frameTime);
+                DirtyField(uid, migraines, nameof(migraines.NextIncidentTime));
+                continue;
+            }
 
             if (migraines.NextIncidentTime > _timing.CurTime)
                 continue;
@@ -105,6 +116,9 @@ public sealed partial class MigraineSchedulerSystem : EntitySystem
     /// </summary>
     private void UpdateMigrainePrevention(Entity<MigraineSchedulerComponent?> entity, TimeSpan protectionEnd, TimeSpan minimumDelay, TimeSpan addedProtectionTime)
     {
+        var ev = new MigrainePreventionUpdatedEvent(protectionEnd, minimumDelay);
+        RaiseLocalEvent(entity.Owner, ref ev);
+
         if (!Resolve(entity, ref entity.Comp, false))
             return;
 

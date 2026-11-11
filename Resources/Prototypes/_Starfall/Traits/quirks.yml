@@ -4,10 +4,13 @@
   description: trait-chronic-migraines-desc
   category: Disabilities
   cost: 0
-  traitGear: PillCanisterChepagepant
-  components:
-  - type: MigraineScheduler
-    minTimeBetweenIncidents: 20m
-    maxTimeBetweenIncidents: 90m
-    minDurationOfIncident: 35s
-    maxDurationOfIncident: 65s
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: MigraineScheduler
+      minTimeBetweenIncidents: 20m
+      maxTimeBetweenIncidents: 90m
+      minDurationOfIncident: 35s
+      maxDurationOfIncident: 65s
+  - !type:SpawnItemInHandEffect
+    item: PillCanisterChepagepant
