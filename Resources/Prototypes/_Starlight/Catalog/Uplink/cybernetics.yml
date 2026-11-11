@@ -135,7 +135,4 @@
     Telecrystal: 10
   categories:
     - UplinkCybernetics
-  whitelist:
-        tags:
-          - NukeOpsUplink
 
