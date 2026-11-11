@@ -76,3 +76,10 @@
   - 1272899036571238521 # Developer
   discord: roles-req-discord-starlight
   rolesLoc: roles-req-developer
+
+- type: roleRequirementPrototype
+  id: MapperReq
+  roles:
+  - 1297739822131056703 # Mapper
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-mapper
