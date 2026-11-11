@@ -21,9 +21,9 @@ public sealed partial class TirednessSystem : EntitySystem
     // At full tiredness, net sleepiness accumulation is 0.25 seconds per second.
     private const float MaximumSleepinessSecondsPerSecond = 1.25f;
     private const float SleepRecoveryMultiplier = 15f;
-    public static readonly TimeSpan MaximumTiredness = TimeSpan.FromMinutes(20);
-    private static readonly TimeSpan _alertThreshold = TimeSpan.FromMinutes(10);
-    private static readonly TimeSpan _severeAlertThreshold = TimeSpan.FromMinutes(15);
+    public static readonly TimeSpan MaximumTiredness = TimeSpan.FromMinutes(30);
+    private static readonly TimeSpan _alertThreshold = TimeSpan.FromMinutes(15);
+    private static readonly TimeSpan _severeAlertThreshold = TimeSpan.FromMinutes(25);
     private static readonly ProtoId<AlertCategoryPrototype> _alertCategory = "Tiredness";
     private static readonly ProtoId<AlertPrototype> _alert = "FelionoidTiredness";
     private static readonly EntProtoId _sleepinessStatusEffect = "StatusEffectSleepiness";

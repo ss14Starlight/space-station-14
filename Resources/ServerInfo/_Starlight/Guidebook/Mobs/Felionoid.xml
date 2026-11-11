@@ -22,10 +22,11 @@
   Felionoids are also more vulnerable to damage:
   - They fall into a critical state at [color=red]90[/color] points of damage.
   - They die at [color=red]180[/color] points of damage.
+
   Their stamina critical threshold is [color=yellow]110[/color], compared to the standard [color=yellow]100[/color].
 
   ## Naptime and light sleep
-  Felionoids grow tired while awake and need around [color=yellow]4 minutes of sleep per hour[/color] to stay rested. Without enough rest, they become irritable and dizzy.
+  Felionoids grow tired while awake and need around [color=yellow]2 minutes of sleep every half hour[/color] to stay rested. Without enough rest, they become irritable and dizzy.
 
   While asleep, Felionoids slowly recover from heat, cold, blunt, slash, piercing, and blood-loss damage, and heal bleeding. Their light sleep lets them hear their surroundings and sense nearby entities within [color=yellow]10 meters[/color].
 

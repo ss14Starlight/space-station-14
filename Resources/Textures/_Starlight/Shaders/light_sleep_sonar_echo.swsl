@@ -1,6 +1,9 @@
 light_mode unshaded;
 
 uniform highp float time;
+uniform highp float damage;
+uniform highp float visibility;
+uniform highp float isMob;
 
 const highp float TAU = 6.2831853;
 
@@ -11,8 +14,13 @@ void fragment()
     highp float noise = zFBM(UV2 * 28.0 + vec2(time * 0.18, -time * 0.15));
     highp float ripple = sin((length(centeredUV) * 16.0 - time * 0.6) * TAU);
     highp float signal = clamp(0.6 + noise * 0.18 + ripple * 0.12, 0.35, 1.0);
+    highp float pulse = 0.65 + 0.35 * sin(time * 4.0);
+    highp vec3 mobColor = vec3(0.09, 0.56, 0.74);
+    highp vec3 nonMobColor = vec3(0.025, 0.33, 0.36);
+    highp vec3 baseColor = mix(nonMobColor, mobColor, clamp(isMob, 0.0, 1.0));
+    highp vec3 echoColor = mix(baseColor, vec3(0.95, 0.08, 0.05) * pulse, clamp(damage, 0.0, 1.0));
 
-    color.rgb = vec3(0.09, 0.56, 0.74) * signal;
-    color.a *= 0.5;
+    color.rgb = echoColor * signal;
+    color.a *= 0.5 * clamp(visibility, 0.0, 1.0);
     COLOR = color;
 }
