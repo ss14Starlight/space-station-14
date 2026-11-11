@@ -6,7 +6,9 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Machines/StationRadio/broadcast_recorder.rsi
+    snapCardinals: true
     drawdepth: SmallObjects
+    offset: "0.0,0.2"
     layers:
     - state: icon
     - state: tape
@@ -43,8 +45,7 @@
           Recording: { visible: true }
           Playing: { visible: false }
   - type: Transform
-    noRot: false
-  - type: Rotatable
+    noRot: true
   - type: Fixtures
     fixtures:
       fix1:

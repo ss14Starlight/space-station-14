@@ -10,6 +10,6 @@
         - id: MedicatedSuture
         - id: Gauze
         - id: SyringeEphedrine
+        - id: SyringeSaline
         - id: CombatMedipenETO
         - id: BruteAutoInjector
-        - id: CombatMedipenETO

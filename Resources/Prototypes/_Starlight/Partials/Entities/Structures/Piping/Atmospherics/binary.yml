@@ -58,10 +58,12 @@
         - "On"
         - "Off"
         - "Toggle"
-        - "State"
+        - "ToggleableDeviceState"
+        - "ToggleableDeviceStateInverted"
     - type: DeviceLinkSource
       ports:
         - "Status"
+        - "ToggleableDeviceStatusInverted"
     - type: SubFloorHide
       subfloorLayer: Pipes
 

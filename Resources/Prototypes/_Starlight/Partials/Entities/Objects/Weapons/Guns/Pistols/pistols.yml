@@ -1,6 +1,6 @@
 - type: !PartialOnly entity
   id: BaseWeaponPistol
-  parent: [ BaseItem, BaseGunWieldable ]
+  parent: [ BaseGunWieldable ]
   components:
   - type: Gun
     minAngle: 0

@@ -79,11 +79,19 @@
       receiveFrequencyId: SmartLight
     - type: WirelessNetworkConnection
       range: 200
+    - type: ToggleableDevice
+    - type: ToggleableDeviceSignaling
     - type: DeviceLinkSink
       ports:
-        - On
-        - Off
-        - Toggle
+        - "On"
+        - "Off"
+        - "Toggle"
+        - "ToggleableDeviceState"
+        - "ToggleableDeviceStateInverted"
+    - type: DeviceLinkSource
+      ports:
+        - "Status"
+        - "ToggleableDeviceStatusInverted"
     - type: Construction
       graph: FloorLightFixture
       node: floorLight
