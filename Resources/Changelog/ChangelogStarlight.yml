@@ -1,13 +1,6 @@
 Entries:
 - author: Reisyn & SirLutz
   changes:
-  - message: Diona can emit a randomly selected scent from their own scent and their collected pollen types. Emitted pollen is represented by pollen markers, allowing other Diona to collect it.
-    type: Add
-  id: 409912
-  time: '2026-10-29T21:56:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5923
-- author: Reisyn & SirLutz
-  changes:
   - message: Neocyte Dionas now also get the traits.
     type: Add
   id: 409913
@@ -2799,4 +2792,11 @@ Entries:
   id: 410311
   time: '2026-11-10T19:47:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7169
+- author: Caws
+  changes:
+  - message: Deli stands are  now anchored at roundstart.
+    type: Fix
+  id: 410312
+  time: '2026-11-11T02:54:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7171
 Order: -1
