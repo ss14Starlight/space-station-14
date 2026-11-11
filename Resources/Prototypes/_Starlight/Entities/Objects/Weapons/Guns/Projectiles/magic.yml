@@ -356,8 +356,8 @@
     deleteOnCollide: false
     damage:
       types:
-        Piercing: 30
-        Poison: 30
+        Piercing: 10
+        Poison: 10
   - type: Fixtures
     fixtures:
       projectile:

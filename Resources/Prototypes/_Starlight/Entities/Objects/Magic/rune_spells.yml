@@ -192,16 +192,16 @@
   parent: ActionFreezeRune
   id: ActionSoulKnives
   name: Rune of soul cutting
-  description: Summons a magical rune that will place several immobile soul knives, hurting anyone who comes in contact with them (30 seconds cooldown).
+  description: Summons a magical rune that will place several immobile soul knives, hurting anyone who comes in contact with them (40 seconds cooldown).
   components:
   - type: Action
-    useDelay: 30
+    useDelay: 40
     icon:
         sprite: _Starlight/Objects/Magic/magicactions.rsi
         state: kniverune
   - type: TargetAction
     range: 16
-    checkCanAccess: false
+    checkCanAccess: true
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -293,7 +293,10 @@
       spawnOffsets:
       - 2, -2
   - type: TimedDespawn
-    lifetime: 2
+    lifetime: 3.5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/_Starlight/Weapons/magicalhit.ogg
 
 - type: entity
   parent: BaseRune
@@ -314,7 +317,7 @@
     - timer
     proto: ProjectileSoulKnife
   - type: TimedDespawn
-    lifetime: 2.1
+    lifetime: 3.5
 
 - type: entity
   parent: ActionFreezeRune
@@ -423,13 +426,13 @@
   - type: TimerTrigger
     examinable: false
     popup: null
-    delay: 1.5
+    delay: 2
   - type: SpawnOnTrigger
     keysIn:
     - timer
     proto: ImpaleSpear
   - type: TimedDespawn
-    lifetime: 1.55
+    lifetime: 2.05
 
 - type: entity
   parent: ActionFreezeRune
@@ -444,7 +447,7 @@
         state: annihilation
   - type: TargetAction
     range: 16
-    checkCanAccess: false
+    checkCanAccess: true
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
