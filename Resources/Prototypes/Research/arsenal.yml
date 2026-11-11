@@ -28,8 +28,8 @@
     sprite: Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
     state: incendiarydisplay
   discipline: Arsenal
-  tier: 1
-  cost: 10000
+  tier: 2 # Starlight edit: 1 > 2
+  cost: 8000 # Starlight edit: 10000 > 8000
   recipeUnlocks:
   - BoxShotgunIncendiary
   - MagazineRifleIncendiary
@@ -99,7 +99,7 @@
     sprite: Objects/Materials/Sheets/other.rsi
     state: uranium
   discipline: Arsenal
-  tier: 1
+  tier: 2 # Starlight edit: 1 > 2
   cost: 7500
   recipeUnlocks:
   - MagazineRifleUranium
