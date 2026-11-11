@@ -31,7 +31,7 @@
       Dead: 0
   - type: Icon
     sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
-    state: xeno
+    state: full
   - type: Thirst
   - type: Butcherable
     spawned:

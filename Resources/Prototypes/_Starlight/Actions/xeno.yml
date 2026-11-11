@@ -28,7 +28,6 @@
       interactOnMiss: false
       deselectOnMiss: false
     - type: EntityTargetAction
-      range: 12
       canTargetSelf: true
       rotateOnUse: false
       event: !type:XenoDemocracyVoteActionEvent
