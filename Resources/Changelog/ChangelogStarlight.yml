@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, mkanke-real
   changes:
-  - message: Added vial of lead to Medical traitors' uplink.
-    type: Add
-  id: 409925
-  time: '2026-10-30T18:10:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6941
-- author: wonderfulnewworld, mkanke-real
-  changes:
   - message: Added reagent boxcutter and radio jammer disguised as a appraisal tool to Cargo traitors' uplink.
     type: Add
   id: 409926
@@ -2799,4 +2792,11 @@ Entries:
   id: 410324
   time: '2026-11-11T16:20:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7160
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: The remaining pressure when inspecting a wearable air tank or jetpack is now predicted, and will now show the correct value instead of showing 1000 kPa before correcting itself shortly after.
+    type: Fix
+  id: 410325
+  time: '2026-11-11T16:45:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7122
 Order: -1
