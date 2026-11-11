@@ -95,6 +95,7 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
         if (votes.Count == 0)
         {
             _sawmill.Info("Voice vote tallying started, but found no votes");
+            rule?.VoiceVoteTimer = _timing.CurTime.Add(rule.VoiceVoteDelay); //Retry later.
             return;
         }
 
