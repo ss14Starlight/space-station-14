@@ -32,7 +32,7 @@ public sealed partial class ActionUIController
         if (_actionsSystem == null ||
             _container == null ||
             _actions.Contains(action) ||
-            _actionsSystem.GetClientActions().Any(clientAction => clientAction.Owner == action))
+            _actionsSystem.GetClientActions().All(clientAction => clientAction.Owner != action))
             return;
 
         _userArranged = true;
