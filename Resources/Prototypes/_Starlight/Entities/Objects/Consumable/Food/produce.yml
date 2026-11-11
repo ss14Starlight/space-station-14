@@ -188,7 +188,6 @@
       glowDuration: 145
       fadeOutDuration: 15
       plantBurnTimeModifier: 3
-      iconStateOn: flare_unlit
       iconStateSpent: flare_spent
       turnOnBehaviourID: turn_on
       fadeOutBehaviourID: fade_out

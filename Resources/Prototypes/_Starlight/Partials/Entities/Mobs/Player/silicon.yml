@@ -31,4 +31,3 @@
         acts: [ "Destruction" ]
   - type: DamageGate
     minDamageToDestruction: 900 # C4: 885/event; X4: 1032.5/event
-    minDamageToStage: 200
