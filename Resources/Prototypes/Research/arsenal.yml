@@ -183,7 +183,7 @@
   - PowerCageSmall
   - PowerCageMedium
   - MagazineGrenadeEmpty
-  - GrenadeFlash
+  #- GrenadeFlash # Starlight: Missing recipe? Probably didn't merge this from Wizden.
   - GrenadeBlast
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
