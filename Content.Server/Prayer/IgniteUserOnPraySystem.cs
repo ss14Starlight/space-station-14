@@ -1,8 +1,8 @@
-// Begin Starlight (DevoutChap)
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Prayer.Components;
 using Content.Shared.Atmos.Components;
 
+// Begin Starlight (DevoutChap)
 namespace Content.Server.Prayer;
 
 public sealed partial class IgniteUserOnPraySystem : EntitySystem

@@ -7,9 +7,6 @@
     size: Small
   - type: Reflect
     reflectProb: 0.1
-  - type: Contraband
-    contrabandType: Holy
-    allowedJobs: [ Chaplain ]
 
 - type: entity
   name: rosary
@@ -312,7 +309,7 @@
         Piercing: 4
         Slash: 4
     soundHit:
-      path: /Audio/weapons/bladeslice.ogg
+      path: /Audio/Weapons/bladeslice.ogg
   - type: InjectOnHit
     reagents:
     - ReagentId: Hemorrhinol

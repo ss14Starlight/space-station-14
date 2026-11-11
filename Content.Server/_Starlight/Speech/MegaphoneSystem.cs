@@ -35,19 +35,19 @@ public sealed partial class MegaphoneSystem : EntitySystem
 
         var user = args.User;
         var session = actor.PlayerSession;
-        _quickDialog.OpenDialog<LongString>(
+        _quickDialog.OpenDialog<string>(
             session,
             Loc.GetString("megaphone-input-title"),
             Loc.GetString("megaphone-input-prompt"),
             message =>
             {
-                if (string.IsNullOrWhiteSpace(message.String) ||
+                if (string.IsNullOrWhiteSpace(message) ||
                     !TryComp<RMCMegaphoneComponent>(megaphone.Owner, out var currentMegaphone) ||
                     !_hands.IsHolding(user, megaphone.Owner) ||
                     !TryComp<SpeechComponent>(user, out var speech))
                     return;
 
-                if (message.String.Length > MaxMessageLength)
+                if (message.Length > MaxMessageLength)
                 {
                     _popup.PopupEntity(Loc.GetString("megaphone-input-too-long"), user, user, PopupType.SmallCaution);
                     return;
@@ -64,7 +64,7 @@ public sealed partial class MegaphoneSystem : EntitySystem
 
                 try
                 {
-                    _chat.TrySendInGameICMessage(user, message.String, InGameICChatType.Speak, false, player: session);
+                    _chat.TrySendInGameICMessage(user, message, InGameICChatType.Speak, false, player: session);
                 }
                 finally
                 {

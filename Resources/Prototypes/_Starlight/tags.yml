@@ -32,7 +32,7 @@
 - type: Tag
   id: AtheistsFedora
 
-  - type: Tag
+- type: Tag
   id: AtmosFireHelmet # ConstructionGraph: AtmosianHelmet
 
 - type: Tag

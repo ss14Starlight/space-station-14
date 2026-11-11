@@ -94,7 +94,13 @@ public sealed partial class ReturnOnThrowSystem : EntitySystem
 
     private void OnGotEquipped(Entity<ReturnOnThrowComponent> ent, ref GotEquippedHandEvent args)
     {
-        ent.Comp.ReturnTarget = null;
+        if (ent.Comp.ReturnTarget == null)
+            return;
+
+        if (TryComp<PhysicsComponent>(ent, out var physics))
+            StopReturning(ent, ent.Comp, physics);
+        else
+            ent.Comp.ReturnTarget = null;
     }
 
     private void StopReturning(EntityUid uid, ReturnOnThrowComponent component, PhysicsComponent physics)

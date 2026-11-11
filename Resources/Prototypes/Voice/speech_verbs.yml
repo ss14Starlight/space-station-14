@@ -38,6 +38,7 @@
   priority: 10
   fontSize: 14 #starlight, yelling
 
+#Starlight Start
 - type: speechVerb
   id: MegaphoneYell
   name: chat-speech-verb-name-exclamation-strong
@@ -45,6 +46,7 @@
   - chat-speech-verb-exclamation-strong
   priority: 10
   fontSize: 20
+ #Starlight End
 
 - type: speechVerb
   id: Arachnid
