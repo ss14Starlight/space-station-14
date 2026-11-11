@@ -105,8 +105,6 @@
           prob: 0.1
         - proto: WeaponRevolverZOZ
           cost: 2
-        - proto: WeaponPistolViperWorn
-          cost: 6
         - proto: AmmoTechFabCircuitboard
           cost: 10
           prob: 0.2
