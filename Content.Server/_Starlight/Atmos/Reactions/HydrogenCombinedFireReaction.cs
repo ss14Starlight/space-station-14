@@ -15,6 +15,7 @@ namespace Content.Server._Starlight.Atmos.Reactions;
 public sealed partial class HydrogenCombinedFireReaction : IGasReactionEffect
 {
     private const float PluoxiumFactor = 8f; // pluoxium is 8 times more effective than oxygen so make a constant
+
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
         // check for presence of oxidisers as the yaml only checks for fuel
@@ -68,7 +69,7 @@ public sealed partial class HydrogenCombinedFireReaction : IGasReactionEffect
         // adjust gas mixture by mols consumed - only if it is greater than nothing
         if (pluoxConsumed > 0f)
             mixture.AdjustMoles(Gas.Pluoxium, -pluoxConsumed);
-        if (oxygenConsumed >0f)
+        if (oxygenConsumed > 0f)
             mixture.AdjustMoles(Gas.Oxygen, -oxygenConsumed);
         mixture.AdjustMoles(Gas.Hydrogen, -burnedFuel);
 
@@ -86,7 +87,7 @@ public sealed partial class HydrogenCombinedFireReaction : IGasReactionEffect
         if (energyReleased > 0)
         {
             var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
-            if ((newHeatCapacity > Atmospherics.MinimumHeatCapacity)) mixture.Temperature = (temperature * (oldHeatCapacity + energyReleased) / newHeatCapacity);
+            if ((newHeatCapacity > Atmospherics.MinimumHeatCapacity)) mixture.Temperature = ((temperature * oldHeatCapacity) + energyReleased) / newHeatCapacity;
         }
 
         if (holder is TileAtmosphere location)
