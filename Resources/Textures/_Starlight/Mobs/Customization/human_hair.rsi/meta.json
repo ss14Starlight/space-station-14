@@ -391,6 +391,46 @@
       "name": "coolspikes",
       "copyright": "neomoth",
       "directions": 4
+    },
+    {
+      "name": "matted",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+    {
+      "name": "mattedshort",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+     {
+      "name": "bubbleponytail",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+    {
+      "name": "afropuffbun",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+    {
+      "name": "straightbangs",
+      "copyright": "Howdyth",
+      "directions": 4
+     },
+     {
+      "name": "frontbangs",
+      "copyright": "Howdyth",
+      "directions": 4
+     },
+     {
+      "name": "workoutheadband",
+      "copyright": "Howdyth",
+      "directions": 4
+      },
+      {
+      "name": "mullet",
+      "copyright": "Howdyth",
+      "directions": 4
     }
   ]
 }

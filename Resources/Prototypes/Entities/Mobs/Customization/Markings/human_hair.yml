@@ -1427,4 +1427,60 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_hair.rsi
       state: gatheredlow
+- type: marking
+  id: HumanHairMatted
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: matted
+- type: marking
+  id: HumanHairMattedShort
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: mattedshort
+- type: marking
+  id: HumanHairBubblePonytail
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bubbleponytail
+- type: marking
+  id: HumanHairMullet
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: mullet
+- type: marking
+  id: HumanHairStraightBangs
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: straightbangs
+- type: marking
+  id: HumanHairFrontBangs
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: frontbangs
+- type: marking
+  id: HumanHairWorkoutHeadband
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: workoutheadband
+- type: marking
+  id: HumanHairAfropuffBun
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afropuffbun
 #starlight end
