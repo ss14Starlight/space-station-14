@@ -34,7 +34,7 @@ namespace Content.Client._Funkystation.Traits.Assorted
         private float _localCurrentBlur = 0f;
         private float _localPulseAccumulator = 0f;
         private float _localPulseFrequency = 0.4f;
-        private float _localPulseAmplitude = 0.8f;
+        private float _localPulseAmplitude = 0f;
         private float _localRampDownSpeed = 2f;
         private bool _localUseSoftShader = false;
         private float _localSoftness = 0.45f;

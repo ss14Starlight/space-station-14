@@ -271,6 +271,13 @@ public abstract class SharedSeizureSystem : EntitySystem
         if (TerminatingOrDeleted(uid))
             return;
 
+        if (TryComp<SeizureOverlayComponent>(uid, out var overlay) && !overlay.IsFading)
+        {
+            overlay.IsFading = true;
+            overlay.FadeOutDuration = DefaultFadeOutDuration;
+            Dirty(uid, overlay);
+        }
+
         component.MovementSpeedMultiplier = 1.0f;
         MovementSpeed.RefreshMovementSpeedModifiers(uid);
     }

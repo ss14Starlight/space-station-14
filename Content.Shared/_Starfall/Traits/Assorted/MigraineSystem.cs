@@ -32,6 +32,7 @@ public sealed partial class MigraineSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = null!;
     [Dependency] private SharedAudioSystem _audio = null!;
     [Dependency] private SharedJitteringSystem _jittering = null!;
+    [Dependency] private Content.Shared.StatusEffect.StatusEffectsSystem _statusEffects = null!;
     [Dependency] private INetManager _net = null!;
     [Dependency] private IGameTiming _timing = null!;
 
@@ -111,6 +112,9 @@ public sealed partial class MigraineSystem : EntitySystem
         _movementSpeed.RefreshMovementSpeedModifiers(args.Target);
 
         if (!_net.IsServer)
+            return;
+
+        if (_statusEffects.HasStatusEffect(args.Target, "Jitter"))
             return;
 
         RemCompDeferred<JitteringComponent>(args.Target);

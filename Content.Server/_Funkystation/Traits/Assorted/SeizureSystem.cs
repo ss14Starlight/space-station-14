@@ -120,6 +120,9 @@ public sealed partial class SeizureSystem : SharedSeizureSystem
         seizureComp.ProdromeDuration = prodromeDuration;
         seizureComp.RemainingTime = prodromeDuration;
 
+        if (seizureDuration is { } duration)
+            seizureComp.SeizureDuration = new(duration, duration);
+
         seizureComp.ProdromePopupKey = prodromePopupKey;
         seizureComp.SeizurePopupKey = seizurePopupKey;
         seizureComp.RecoveryPopupKey = recoveryPopupKey;

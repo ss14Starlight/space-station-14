@@ -6,6 +6,8 @@
 using System.Linq;
 using Content.Server.Jobs;
 using Content.Server.Mind;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.IdentityManagement;
@@ -34,6 +36,7 @@ public sealed class NeuroAversionSystem : SharedNeuroAversionSystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
 
     private EntityQuery<MindShieldComponent> _mindShieldQuery;
     private EntityQuery<MigraineSchedulerComponent> _chronicMigrainesQuery;
@@ -87,6 +90,9 @@ public sealed class NeuroAversionSystem : SharedNeuroAversionSystem
 
             UpdateMindshieldStatus(uid, comp);
 
+            comp.SeizurePaused = _solutions.TryGetSolution(uid, "bloodstream", out _, out var bloodstream)
+                                 && bloodstream.ContainsReagent(new ReagentId("Psicodine", null));
+
             // Only process if mindshielded
             if (!comp.IsMindShielded)
             {
@@ -129,7 +135,7 @@ public sealed class NeuroAversionSystem : SharedNeuroAversionSystem
             return;
 
         // Migraines trigger faster when more damaged
-        var migraineFactor = 1f - (0.5f * (1f - missingHpFrac));
+        var migraineFactor = 1f - (0.5f * missingHpFrac);
         var severityMultiplier = comp.StartedMindShielded
             ? comp.StartedMindShieldedMultiplier
             : comp.MidRoundMindShieldedMultiplier;
@@ -160,7 +166,7 @@ public sealed class NeuroAversionSystem : SharedNeuroAversionSystem
         var hasChronicMigraines = _chronicMigrainesQuery.HasComponent(uid);
         var traitInteractionMult = hasChronicMigraines
             ? ChronicMigraineInteractionMultiplier
-            : 1.3f;
+            : 1f;
 
         if (!comp.SeizurePaused)
         {
@@ -187,7 +193,7 @@ public sealed class NeuroAversionSystem : SharedNeuroAversionSystem
         float hazard =
             (comp.SeizureBuild * comp.BuildHazardFactor);
 
-        hazard *= conditionMult * mindshieldMult * traitInteractionMult;
+        hazard *= conditionMult * traitInteractionMult;
 
         float interval = (float)comp.SeizureCheckInterval.TotalSeconds;
         float probability = 1f - MathF.Exp(-hazard * interval);
@@ -197,7 +203,7 @@ public sealed class NeuroAversionSystem : SharedNeuroAversionSystem
         if (triggered)
         {
             // Use the effects system to trigger a seizure
-            var effect = new SeizureSystem.TriggerSeizureEffect { SeizureDuration = (float)comp.NeuroAversionSeizureDuration.TotalSeconds };
+            var effect = new SeizureSystem.TriggerSeizureEffect { SeizureDuration = Random.NextFloat(10f, 30f) };
             _entityEffects.ApplyEffect(uid, effect);
         }
     }
