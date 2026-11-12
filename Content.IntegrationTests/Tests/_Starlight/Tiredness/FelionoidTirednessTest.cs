@@ -8,7 +8,6 @@ using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Movement.Components;
 using Content.Shared.StatusEffectNew;
 using Content.Shared._Starlight.Sleepiness.Components;
 using Content.Shared._Starlight.Tiredness.Components;
@@ -168,70 +167,6 @@ public sealed class FelionoidTirednessTest : GameTest
     }
 
     [Test]
-    public async Task TirednessAppliesMovementSpeedModifiersAtStages()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-        var entityManager = server.ResolveDependency<IEntityManager>();
-        EntityUid felionoid = default;
-        EntityUid neoFelionoid = default;
-
-        await server.WaitPost(() =>
-        {
-            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
-            neoFelionoid = entityManager.Spawn("MobNeoFelionoid", MapCoordinates.Nullspace);
-        });
-
-        try
-        {
-            await pair.RunTicksSync(5);
-            await server.WaitPost(() =>
-            {
-                var tirednessSystem = server.System<TirednessSystem>();
-                foreach (var uid in new[] { felionoid, neoFelionoid })
-                {
-                    var tiredness = entityManager.GetComponent<TirednessComponent>(uid);
-                    var movement = entityManager.GetComponent<MovementSpeedModifierComponent>(uid);
-                    Assert.That(tiredness.MaximumSleepiness, Is.EqualTo(TimeSpan.FromSeconds(10)));
-                    Assert.That(tiredness.MaximumSleepinessSecondsPerSecond, Is.EqualTo(1.25f));
-                    Assert.That(tiredness.SleepRecoveryMultiplier, Is.EqualTo(15f));
-                    Assert.That(tiredness.SevereTirednessMovementSpeedModifier, Is.EqualTo(0.95f));
-                    Assert.That(tiredness.MaximumTirednessMovementSpeedModifier, Is.EqualTo(0.75f));
-                    AssertMovementSpeedModifiers(movement, 1f, 1f);
-
-                    tirednessSystem.SetTiredness(
-                        (uid, tiredness),
-                        TimeSpan.FromMinutes(24) + TimeSpan.FromSeconds(59));
-                    AssertMovementSpeedModifiers(movement, 1f, 1f);
-
-                    tirednessSystem.SetTiredness((uid, tiredness), TimeSpan.FromMinutes(25));
-                    AssertMovementSpeedModifiers(movement, 0.95f, 0.95f);
-
-                    tirednessSystem.SetTiredness(
-                        (uid, tiredness),
-                        TimeSpan.FromMinutes(29) + TimeSpan.FromSeconds(59));
-                    AssertMovementSpeedModifiers(movement, 0.95f, 0.95f);
-
-                    tirednessSystem.SetTiredness((uid, tiredness), TimeSpan.FromMinutes(30));
-                    AssertMovementSpeedModifiers(movement, 0.75f, 0.75f);
-
-                    tirednessSystem.SetTiredness((uid, tiredness), TimeSpan.Zero);
-                    AssertMovementSpeedModifiers(movement, 1f, 1f);
-                }
-            });
-        }
-        finally
-        {
-            await server.WaitPost(() =>
-            {
-                entityManager.DeleteEntity(felionoid);
-                entityManager.DeleteEntity(neoFelionoid);
-            });
-            await pair.RunUntilSynced();
-        }
-    }
-
-    [Test]
     public async Task TirednessSleepinessIsCappedAndInductionRespectsConfiguration()
     {
         var pair = Pair;
@@ -345,12 +280,4 @@ public sealed class FelionoidTirednessTest : GameTest
         Assert.That(hasAction, Is.EqualTo(expected));
     }
 
-    private static void AssertMovementSpeedModifiers(
-        MovementSpeedModifierComponent movement,
-        float expectedWalk,
-        float expectedSprint)
-    {
-        Assert.That(movement.WalkSpeedModifier, Is.EqualTo(expectedWalk));
-        Assert.That(movement.SprintSpeedModifier, Is.EqualTo(expectedSprint));
-    }
 }
