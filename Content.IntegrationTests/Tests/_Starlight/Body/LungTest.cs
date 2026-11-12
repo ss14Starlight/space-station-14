@@ -144,16 +144,26 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
             {
                 await pair.RunSeconds(1);
 
+                RespiratorComponent respirator = null!;
+                var nextUpdateBeforeSleep = TimeSpan.Zero;
                 await server.WaitAssertion(() =>
                 {
-                    var respirator = entityManager.GetComponent<RespiratorComponent>(human);
+                    respirator = entityManager.GetComponent<RespiratorComponent>(human);
+                    var sleeping = server.System<SleepingSystem>();
+
+                    nextUpdateBeforeSleep = respirator.NextUpdate;
+                    Assert.That(sleeping.TrySleeping(human), Is.True);
+                    Assert.That(respirator.NextUpdate, Is.LessThanOrEqualTo(nextUpdateBeforeSleep));
+                });
+
+                await PoolManager.WaitUntil(server, () => respirator.NextUpdate > nextUpdateBeforeSleep);
+                await server.WaitAssertion(() =>
+                {
                     var sleeping = server.System<SleepingSystem>();
                     var timing = server.ResolveDependency<IGameTiming>();
 
-                    Assert.That(sleeping.TrySleeping(human), Is.True);
                     Assert.That((respirator.NextUpdate - timing.CurTime).TotalSeconds,
                         Is.EqualTo(respirator.AdjustedUpdateInterval.TotalSeconds * 3).Within(0.1));
-
                     Assert.That(sleeping.TryWaking(human, force: true), Is.True);
                     Assert.That((respirator.NextUpdate - timing.CurTime).TotalSeconds,
                         Is.EqualTo(respirator.AdjustedUpdateInterval.TotalSeconds).Within(0.1));

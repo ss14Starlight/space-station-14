@@ -79,7 +79,9 @@ public sealed partial class HungerSystem : EntitySystem
     {
         var dt = _timing.CurTime - component.LastAuthoritativeHungerChangeTime;
         var decayMultiplier = sleeping ? SleepingDecayMultiplier : 1f;
-        var value = component.LastAuthoritativeHungerValue - (float)dt.TotalSeconds * component.ActualDecayRate * decayMultiplier;
+        var decay = (float)dt.TotalSeconds * component.ActualDecayRate * decayMultiplier; // Starlight
+        var value = component.LastAuthoritativeHungerValue; // Starlight
+        value -= decay; // Starlight
         return ClampHungerWithinThresholds(component, value);
     }
 #endregion

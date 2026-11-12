@@ -6,12 +6,9 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Rejuvenate;
-using Content.Shared.StatusEffectNew;
-using Content.Shared._Starlight.Sleepiness.Components;
 using Content.Shared._Starlight.Tiredness.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 // ReSharper disable CheckNamespace
 namespace Content.Shared._Starlight.Tiredness.Systems;
@@ -25,7 +22,6 @@ public abstract partial class SharedTirednessSystem : EntitySystem
     private static readonly TimeSpan _severeAlertThreshold = TimeSpan.FromMinutes(25);
     private static readonly ProtoId<AlertCategoryPrototype> _alertCategory = "Tiredness";
     private static readonly ProtoId<AlertPrototype> _alert = "FelionoidTiredness";
-    private static readonly EntProtoId _sleepinessStatusEffect = "StatusEffectSleepiness";
 
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private ActionContainerSystem _actionContainers = default!;
@@ -33,10 +29,7 @@ public abstract partial class SharedTirednessSystem : EntitySystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
-    [Dependency] private StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private IGameTiming _timing = default!;
 
-    private readonly HashSet<EntityUid> _sleepinessApplicationFailures = new();
     private readonly HashSet<EntityUid> _pendingMovementSpeedRefreshes = new();
     private float _updateAccumulator;
 
@@ -74,48 +67,6 @@ public abstract partial class SharedTirednessSystem : EntitySystem
                 _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
 
             UpdateAlert(uid, tiredness);
-
-            if (isSleeping)
-                continue;
-
-            var averageTirednessRatio = Math.Clamp(
-                (oldTirednessSeconds + newTirednessSeconds) / (2 * maximumTirednessSeconds),
-                0,
-                1);
-            var sleepinessSecondsPerSecond =
-                (float) averageTirednessRatio * tiredness.MaximumSleepinessSecondsPerSecond;
-            if (sleepinessSecondsPerSecond <= 0f)
-                continue;
-
-            if (sleepinessSecondsPerSecond <= 1f &&
-                !_statusEffects.HasEffectComp<SleepinessStatusEffectComponent>(uid))
-                continue;
-
-            var currentSleepinessSeconds = 0d;
-            if (_statusEffects.TryGetTime(uid, _sleepinessStatusEffect, out var sleepiness))
-            {
-                if (sleepiness.EndEffectTime is not { } endTime)
-                    continue;
-
-                currentSleepinessSeconds = Math.Max(0, (endTime - _timing.CurTime).TotalSeconds);
-            }
-
-            var availableSleepinessSeconds = tiredness.MaximumSleepiness.TotalSeconds - currentSleepinessSeconds;
-            if (availableSleepinessSeconds <= 0)
-                continue;
-
-            var sleepinessSeconds = Math.Min(
-                sleepinessSecondsPerSecond * updateTime,
-                availableSleepinessSeconds);
-            if (sleepinessSeconds <= 0)
-                continue;
-
-            var sleepinessDuration = TimeSpan.FromSeconds(sleepinessSeconds);
-            if (!_statusEffects.TryAddStatusEffectDuration(uid, _sleepinessStatusEffect, sleepinessDuration) &&
-                _sleepinessApplicationFailures.Add(uid))
-            {
-                Log.Error($"Failed to add {_sleepinessStatusEffect} for tired entity {uid}.");
-            }
         }
     }
 
@@ -162,7 +113,6 @@ public abstract partial class SharedTirednessSystem : EntitySystem
     private void OnShutdown(EntityUid uid, TirednessComponent component, ComponentShutdown args)
     {
         _alerts.ClearAlertCategory(uid, _alertCategory);
-        _sleepinessApplicationFailures.Remove(uid);
 
         if (!TerminatingOrDeleted(uid))
             _pendingMovementSpeedRefreshes.Add(uid);

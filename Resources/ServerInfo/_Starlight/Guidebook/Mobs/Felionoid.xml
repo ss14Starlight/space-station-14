@@ -17,24 +17,24 @@
   Their unarmed claw attacks deal [color=red]3[/color] points of Slash damage with a hit rate that is [color=yellow]2[/color] times faster than humans.
   As a result, they have an easier time [color=yellow]shoving[/color] and [color=red]disarming[/color] others.
 
-  Compared with humans, rested Felionoids run [color=lightgreen]25%[/color] faster while barefoot and [color=lightgreen]5%[/color] faster while wearing shoes.
+  Compared with humans, rested Felionoids run [color=lightgreen]25%[/color] faster.
 
   Felionoids are also more vulnerable to damage:
   - They fall into a critical state at [color=red]85[/color] points of damage.
   - They die at [color=red]170[/color] points of damage.
 
-  ## Naptime and light sleep
-  Felionoids grow tired while awake and need around [color=yellow]2 minutes of sleep every half hour[/color] to stay rested. Without enough rest, they become sluggish, irritable, and dizzy.
+  ## Light Sleep
+  In light sleep, they can hear their surroundings and sense nearby entities through sound within [color=yellow]10 meters[/color].
 
+  ## Nap Time
   After around [color=yellow]25 minutes[/color] without a nap, tiredness reduces their walking and running speeds by [color=yellow]5%[/color]. After [color=red]30 minutes[/color], the reduction reaches [color=red]25%[/color].
 
-  While asleep, Felionoids slowly recover from heat, cold, blunt, slash, piercing, and blood-loss damage, and heal bleeding. In light sleep, they can hear their surroundings and sense nearby entities through sound within [color=yellow]10 meters[/color].
+  ## Purring
+  If Felionoids are injured while asleep, they automatically start purring to slowly recover from heat, cold, blunt, slash, piercing, and blood-loss damage, and heal bleeding.
+  When held by an injured humanoid, Felionoids automatically purr to help with the healing process.
 
   ## Pounce
   Felionoids can leap into the arms of unsuspecting humanoids, whom they see as walking sleeping spots. The [color=yellow]Pounce[/color] action takes [color=yellow]2 seconds[/color] of tail-wiggling to charge; moving interrupts the charge. An empty-handed target can catch and pick up the pouncing Felionoid; otherwise, the impact knocks both down. Pounce recharges after [color=yellow]1 minute[/color].
-
-  ## Tight Grip
-  Felionoids keep a tight grip on their items, even if they fall prone.
 
   ## Weapon Knockback
   Felionoids will find that large caliber weapons will push them around. They receive [color=yellow]Stun Damage[/color] for every shot fired from a large caliber weapon.

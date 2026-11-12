@@ -27,8 +27,6 @@
   - type: OwOAccent
   - type: FelionoidPounce
   - type: Tiredness
-    maximumSleepiness: 5s
-    maximumSleepinessSecondsPerSecond: 1.25
     sleepRecoveryMultiplier: 15
     severeTirednessMovementSpeedModifier: 0.95
     maximumTirednessMovementSpeedModifier: 0.75
@@ -44,7 +42,6 @@
         Bloodloss: 1
     bleedHealPerUpdate: 0.25
   - type: LightSleep
-  - type: TightGrip
   - type: MobThresholds
     thresholds:
       0: Alive

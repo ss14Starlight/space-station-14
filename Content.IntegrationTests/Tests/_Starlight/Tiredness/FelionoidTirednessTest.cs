@@ -14,7 +14,6 @@ using Content.Shared._Starlight.Tiredness.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Timing;
 
 namespace Content.IntegrationTests.Tests._Starlight.Tiredness;
 
@@ -167,63 +166,7 @@ public sealed class FelionoidTirednessTest : GameTest
     }
 
     [Test]
-    public async Task TirednessSleepinessIsCappedAndInductionRespectsConfiguration()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-        var entityManager = server.ResolveDependency<IEntityManager>();
-        var maximumSleepiness = TimeSpan.FromSeconds(5);
-        EntityUid felionoid = default;
-
-        await server.WaitPost(() =>
-        {
-            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
-            var tiredness = entityManager.GetComponent<TirednessComponent>(felionoid);
-            tiredness.CurrentTiredness = TirednessSystem.MaximumTiredness;
-            Assert.That(tiredness.MaximumSleepiness, Is.EqualTo(maximumSleepiness));
-            entityManager.Dirty(felionoid, tiredness);
-        });
-
-        try
-        {
-            await pair.RunSeconds(2);
-
-            await server.WaitPost(() =>
-            {
-                var statusEffects = server.System<StatusEffectsSystem>();
-                Assert.That(statusEffects.HasEffectComp<SleepinessStatusEffectComponent>(felionoid), Is.True);
-                Assert.That(
-                    statusEffects.TrySetStatusEffectDuration(
-                        felionoid,
-                        "StatusEffectSleepiness",
-                        TimeSpan.FromSeconds(9.99)),
-                    Is.True);
-            });
-
-            await pair.RunSeconds(5);
-
-            await server.WaitPost(() =>
-            {
-                var statusEffects = server.System<StatusEffectsSystem>();
-                var timing = server.ResolveDependency<IGameTiming>();
-                Assert.That(statusEffects.TryGetTime(felionoid, "StatusEffectSleepiness", out var sleepiness), Is.True);
-                Assert.That(sleepiness.EndEffectTime, Is.Not.Null);
-                var remainingSleepiness = sleepiness.EndEffectTime!.Value - timing.CurTime;
-                Assert.That(remainingSleepiness, Is.LessThanOrEqualTo(maximumSleepiness));
-                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.False);
-            });
-        }
-        finally
-        {
-            await server.WaitPost(() => entityManager.DeleteEntity(felionoid));
-            await pair.RunUntilSynced();
-        }
-
-        await TestTirednessSleepInduction(canInduceSleep: true, expectedSleeping: true);
-        await TestTirednessSleepInduction(canInduceSleep: false, expectedSleeping: false);
-    }
-
-    private async Task TestTirednessSleepInduction(bool canInduceSleep, bool expectedSleeping)
+    public async Task TirednessDoesNotApplySleepiness()
     {
         var pair = Pair;
         var server = pair.Server;
@@ -235,8 +178,6 @@ public sealed class FelionoidTirednessTest : GameTest
             felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
             var tiredness = entityManager.GetComponent<TirednessComponent>(felionoid);
             tiredness.CurrentTiredness = TirednessSystem.MaximumTiredness;
-            tiredness.MaximumSleepiness = TimeSpan.FromSeconds(40);
-            tiredness.CanInduceSleep = canInduceSleep;
             entityManager.Dirty(felionoid, tiredness);
         });
 
@@ -244,21 +185,11 @@ public sealed class FelionoidTirednessTest : GameTest
         {
             await pair.RunSeconds(2);
 
-            await server.WaitPost(() =>
-            {
-                var statusEffects = server.System<StatusEffectsSystem>();
+            await server.WaitAssertion(() =>
                 Assert.That(
-                    statusEffects.TrySetStatusEffectDuration(
-                        felionoid,
-                        "StatusEffectSleepiness",
-                        TimeSpan.FromSeconds(29.99)),
-                    Is.True);
-            });
-
-            await pair.RunSeconds(10);
-
-            await server.WaitPost(() =>
-                Assert.That(entityManager.HasComponent<SleepingComponent>(felionoid), Is.EqualTo(expectedSleeping)));
+                    server.System<StatusEffectsSystem>()
+                        .HasEffectComp<SleepinessStatusEffectComponent>(felionoid),
+                    Is.False));
         }
         finally
         {
@@ -279,5 +210,4 @@ public sealed class FelionoidTirednessTest : GameTest
 
         Assert.That(hasAction, Is.EqualTo(expected));
     }
-
 }

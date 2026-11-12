@@ -8,7 +8,6 @@ using Content.Shared.StatusEffectNew.Components;
 using Content.Shared._Starlight.Sleepiness.Components;
 using Content.Shared._Starlight.Sleepiness.Events;
 using Content.Shared._Starlight.Sleepiness.Systems;
-using Content.Shared._Starlight.Tiredness.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.FixedPoint;
@@ -56,7 +55,7 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
                 _blindable.UpdateIsBlind(target);
 
             if (sleepiness.SleepImmediately && !HasComp<SleepingComponent>(target) &&
-                CanInduceSleep(target, sleepiness, checkTirednessSetting: false))
+                CanInduceSleep(target, sleepiness))
             {
                 if (TrySleepFromSleepiness(target))
                 {
@@ -84,8 +83,7 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
             }
 
             if (remaining < sleepiness.SleepThreshold || HasComp<SleepingComponent>(target) ||
-                !CanInduceSleep(target, sleepiness,
-                    checkTirednessSetting: !sleepiness.HasExternalSleepinessSource))
+                !CanInduceSleep(target, sleepiness))
                 continue;
 
             if (!TrySleepFromSleepiness(target))
@@ -104,16 +102,8 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
         return false;
     }
 
-    private bool CanInduceSleep(
-        EntityUid target,
-        SleepinessStatusEffectComponent sleepiness,
-        bool checkTirednessSetting)
+    private bool CanInduceSleep(EntityUid target, SleepinessStatusEffectComponent sleepiness)
     {
-        if (checkTirednessSetting &&
-            TryComp<TirednessComponent>(target, out var tiredness) &&
-            !tiredness.CanInduceSleep)
-            return false;
-
         if (sleepiness.SleepInductionThreshold <= FixedPoint2.Zero)
             return true;
 

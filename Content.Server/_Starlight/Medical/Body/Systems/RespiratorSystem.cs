@@ -68,10 +68,9 @@ public sealed partial class RespiratorSystem : EntitySystem
         SubscribeLocalEvent<BodyComponent, StopSuffocatingEvent>(OnStopSuffocating);
     }
 
-    private void OnMapInit(Entity<RespiratorComponent> ent, ref MapInitEvent args)
-    {
+    private void OnMapInit(Entity<RespiratorComponent> ent, ref MapInitEvent args) =>
         ent.Comp.NextUpdate = _gameTiming.CurTime + GetBreathingInterval(ent, HasComp<SleepingComponent>(ent.Owner));
-    }
+
     [SubscribeLocalEvent]
     private void OnSleepStateChanged(Entity<RespiratorComponent> ent, ref SleepStateChangedEvent args)
     {

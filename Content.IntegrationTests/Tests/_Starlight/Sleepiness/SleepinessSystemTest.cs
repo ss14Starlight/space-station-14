@@ -9,7 +9,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.StatusEffectNew;
 using Content.Shared._Starlight.Sleepiness.Components;
 using Content.Shared._Starlight.Sleepiness.Systems;
-using Content.Shared._Starlight.Tiredness.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 
@@ -90,20 +89,14 @@ public sealed class SleepinessSystemTest : GameTest
     }
 
     [Test]
-    public async Task NocturineCanInduceSleepWhenTirednessSleepIsDisabled()
+    public async Task NocturineCanInduceSleep()
     {
         var pair = Pair;
         var server = pair.Server;
         var entityManager = server.ResolveDependency<IEntityManager>();
         EntityUid felionoid = default;
 
-        await server.WaitPost(() =>
-        {
-            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
-            var tiredness = entityManager.GetComponent<TirednessComponent>(felionoid);
-            tiredness.CanInduceSleep = false;
-            entityManager.Dirty(felionoid, tiredness);
-        });
+        await server.WaitPost(() => felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace));
 
         try
         {
@@ -149,13 +142,7 @@ public sealed class SleepinessSystemTest : GameTest
         var entityManager = server.ResolveDependency<IEntityManager>();
         EntityUid felionoid = default;
 
-        await server.WaitPost(() =>
-        {
-            felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace);
-            var tiredness = entityManager.GetComponent<TirednessComponent>(felionoid);
-            tiredness.CanInduceSleep = true;
-            entityManager.Dirty(felionoid, tiredness);
-        });
+        await server.WaitPost(() => felionoid = entityManager.Spawn("MobFelionoid", MapCoordinates.Nullspace));
 
         try
         {

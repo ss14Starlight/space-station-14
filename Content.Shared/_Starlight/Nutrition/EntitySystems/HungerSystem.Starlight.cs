@@ -16,7 +16,6 @@ public sealed partial class HungerSystem
         SetAuthoritativeHungerValue(ent, GetHunger(ent.Comp, !args.FellAsleep));
     }
 
-
     private float GetSleepingDecayMultiplier(EntityUid uid) =>
         HasComp<SleepingComponent>(uid) ? SleepingDecayMultiplier : 1f;
 }

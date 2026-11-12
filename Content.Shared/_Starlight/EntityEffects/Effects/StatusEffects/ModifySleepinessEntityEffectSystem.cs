@@ -40,8 +40,6 @@ public sealed partial class ModifySleepinessEntityEffectSystem : EntityEffectSys
                     initialTime))
                 return;
             SetSleepInductionRequirement(statusEffect.Value, args.Effect);
-            MarkExternalSleepinessSource(statusEffect.Value);
-
             return;
         }
 
@@ -70,8 +68,6 @@ public sealed partial class ModifySleepinessEntityEffectSystem : EntityEffectSys
 
         if (!_status.TrySetStatusEffectDuration(entity, args.Effect.EffectProto, newDuration))
             return;
-
-        MarkExternalSleepinessSource(current.EffectEnt);
     }
 
     private TimeSpan GetResistedTime(EntityUid entity, TimeSpan time, TimeSpan maximumSleepiness,
@@ -98,16 +94,6 @@ public sealed partial class ModifySleepinessEntityEffectSystem : EntityEffectSys
         component.SleepInductionReagent = reagent;
         component.SleepInductionThreshold = sleepiness.SleepInductionThreshold;
         Dirty(effect, component);
-    }
-
-    private void MarkExternalSleepinessSource(EntityUid effect)
-    {
-        if (!TryComp<SleepinessStatusEffectComponent>(effect, out var sleepiness) ||
-            sleepiness.HasExternalSleepinessSource)
-            return;
-
-        sleepiness.HasExternalSleepinessSource = true;
-        Dirty(effect, sleepiness);
     }
 }
 

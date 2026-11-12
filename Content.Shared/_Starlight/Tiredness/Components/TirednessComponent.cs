@@ -11,16 +11,6 @@ public sealed partial class TirednessComponent : Component
     [DataField, AutoNetworkedField] public TimeSpan CurrentTiredness = TimeSpan.Zero;
 
     /// <summary>
-    /// Maximum sleepiness duration that may be accumulated, in seconds.
-    /// </summary>
-    [DataField] public TimeSpan MaximumSleepiness = TimeSpan.FromSeconds(20);
-
-    /// <summary>
-    /// Additional sleepiness duration applied per real second at maximum tiredness, before natural decay.
-    /// </summary>
-    [DataField] public float MaximumSleepinessSecondsPerSecond = 1.25f;
-
-    /// <summary>
     /// Multiplier for tiredness recovery per second while sleeping.
     /// </summary>
     [DataField] public float SleepRecoveryMultiplier = 15f;
@@ -34,11 +24,6 @@ public sealed partial class TirednessComponent : Component
     /// Movement-speed multiplier applied at maximum tiredness.
     /// </summary>
     [DataField] public float MaximumTirednessMovementSpeedModifier = 0.75f;
-
-    /// <summary>
-    /// Whether tiredness-generated sleepiness is allowed to induce sleep.
-    /// </summary>
-    [DataField] public bool CanInduceSleep = false;
 
     /// <summary>
     /// The sleep action granted while the entity is inside a container.
