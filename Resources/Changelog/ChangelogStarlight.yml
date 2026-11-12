@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Mops will now clean footprints in a "Plus" shape, and advanced mops will now clean footprints in a 3x3 "Square" shape.
-    type: Tweak
-  id: 409956
-  time: '2026-10-30T19:36:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6087
-- author: wonderfulnewworld
-  changes:
   - message: Advanced mops will now clean adjacent wall stains.
     type: Tweak
   id: 409957
@@ -2799,4 +2792,11 @@ Entries:
   id: 410355
   time: '2026-11-12T08:12:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7192
+- author: Johnny
+  changes:
+  - message: Changed Telecrystals to sell for 1000 spesos instead of 200.
+    type: Tweak
+  id: 410356
+  time: '2026-11-12T08:56:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7195
 Order: -1
