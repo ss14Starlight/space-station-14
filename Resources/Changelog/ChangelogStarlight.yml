@@ -1,102 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Added a new theme control to the user interface settings, Secondary Accent Color.
-    type: Add
-  id: 409959
-  time: '2026-10-30T19:36:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6896
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Added a new theme control to the user interface settings, Classic styling. Use this option to restore some classic-styled borders and effects from the old classic theme. Not guaranteed to work perfectly on every theme; this option is enabled by default on the NanoTrasen theme and disabled by default on other themes.
-    type: Add
-  id: 409960
-  time: '2026-10-30T19:36:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6896
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Improved the NanoTrasen theme to make it better resemble the old classic theme.
-    type: Tweak
-  id: 409961
-  time: '2026-10-30T19:36:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6896
-- author: baltdev
-  changes:
-  - message: Scurret corpses are no longer edible. Why were they ever!?
-    type: Fix
-  id: 409962
-  time: '2026-10-30T20:00:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6928
-- author: Rescue
-  changes:
-  - message: Borg fashion software has been updated, vastly improving the placement of hats across all 84 models.
-    type: Fix
-  id: 409963
-  time: '2026-10-30T20:22:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6926
-- author: Rescue
-  changes:
-  - message: You may now beg your xenoborg mother to equip you with fashionable battle-attire.
-    type: Add
-  id: 409964
-  time: '2026-10-30T20:22:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6926
-- author: to01
-  changes:
-  - message: Added Syndimoff, a budget alternative to the Syndicat.
-    type: Add
-  id: 409965
-  time: '2026-10-30T20:47:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6931
-- author: redmushie
-  changes:
-  - message: (Box) Change Distro/Waste layers to match docking port standard.
-    type: Tweak
-  id: 409966
-  time: '2026-10-30T21:46:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6916
-- author: redmushie
-  changes:
-  - message: (Box) Route distro, waste and HV to every docking port.
-    type: Add
-  id: 409967
-  time: '2026-10-30T21:46:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6916
-- author: redmushie
-  changes:
-  - message: (Cog) Change Distro/Waste layers to match docking port standard.
-    type: Tweak
-  id: 409968
-  time: '2026-10-30T21:46:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6916
-- author: redmushie
-  changes:
-  - message: (Cog) Route distro, waste and HV to every docking port.
-    type: Add
-  id: 409969
-  time: '2026-10-30T21:46:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6916
-- author: Caws
-  changes:
-  - message: (Silica) Added Gunnery Sergeant.
-    type: Add
-  id: 409970
-  time: '2026-10-30T22:25:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6959
-- author: Caws
-  changes:
-  - message: (Silica) Removed the directional fan from Dorm 4 (this used to be a Vox Dorm but I forgor to take out the fan).
-    type: Remove
-  id: 409971
-  time: '2026-10-30T22:25:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6959
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added Gunnery Sergeant.
-    type: Add
-  id: 409972
-  time: '2026-10-30T22:25:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6960
 - author: Caws
   changes:
   - message: (Novo Lobster) Added a station power computer to PA Room.
@@ -2799,4 +2701,102 @@ Entries:
   id: 410358
   time: '2026-11-12T11:35:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7186
+- author: Katzenminer
+  changes:
+  - message: Added the Photography Camera, A Camera that takes actual Pictures!
+    type: Add
+  id: 410359
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: Removed the Travelers Camera, replaced with the Photography Camera.
+    type: Remove
+  id: 410360
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: Removed the Travelers Camera from the Uplink, Replaced with the Photography Camera.
+    type: Remove
+  id: 410361
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: Added the Photography Camera to trinkets for 50 Reporter Hours.
+    type: Add
+  id: 410362
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: Added the Photography Camera PDA Cartridge, found in HoP's locker.
+    type: Add
+  id: 410363
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: Added the Photography Camera to HoP's Locker, Detectives Locker and Reporters bag on Spawn.
+    type: Add
+  id: 410364
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: Added Blank Photos.
+    type: Add
+  id: 410365
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: Photography Cameras now consume Blank Photos (Max 4 inserted).
+    type: Tweak
+  id: 410366
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: Blank Photos can now be printed at the AutoLathe for 1 paper each.
+    type: Tweak
+  id: 410367
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: Blank Photo box holding 9 blank photos, One found in HoP's locker, Detectives Locker and Reporters bag on spawn.
+    type: Add
+  id: 410368
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: Photography crate, buyable at Cargo for 4k, Contains 2 Photography Cameras and 4 Blank Photo Box's.
+    type: Add
+  id: 410369
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: You can now Insert flashes into Photography Cameras which produces light when taking a photo at the cost of a Flash Charge, You can also use this to convert by hitting someone with the camera that has a flash, PDA's cannot hold flashes.
+    type: Tweak
+  id: 410370
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: Hovering over an entity while taking a photo of them will now produce their Description on the Photo printed.
+    type: Tweak
+  id: 410371
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: CrazyPhantom, Vincolan
+  changes:
+  - message: You can now upload Photographs to a news report by inserting it into the Mass Media Digiboard Or console, one Picture per Article, Not uploaded to the Discord.
+    type: Add
+  id: 410372
+  time: '2026-11-12T12:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7042
 Order: -1
