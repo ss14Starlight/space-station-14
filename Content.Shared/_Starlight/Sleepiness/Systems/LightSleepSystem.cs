@@ -9,6 +9,8 @@ namespace Content.Shared._Starlight.Sleepiness.Systems;
 
 public sealed partial class LightSleepSystem : EntitySystem
 {
+    private static readonly TimeSpan _voluntaryWakePower = TimeSpan.FromSeconds(1);
+
     [Dependency] private BlindableSystem _blindable = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
     [Dependency] private IGameTiming _timing = default!;
@@ -45,35 +47,23 @@ public sealed partial class LightSleepSystem : EntitySystem
             return false;
 
         var playerRequestedSleep = HasComp<PlayerRequestedSleepComponent>(uid);
-        var hasSleepinessInducedSleep = false;
-        var threshold = TimeSpan.Zero;
-        if (TryComp<SleepinessInducedSleepComponent>(uid, out var sleepCause))
-        {
-            hasSleepinessInducedSleep = true;
-            threshold = sleepCause.SleepThreshold;
-        }
-        else if (!playerRequestedSleep)
-        {
+        var hasSleepinessInducedSleep = HasComp<SleepinessInducedSleepComponent>(uid);
+        if (!playerRequestedSleep && !hasSleepinessInducedSleep)
             return false;
-        }
 
-        var remaining = TimeSpan.Zero;
-        if (_statusEffects.TryGetTime(uid, "StatusEffectSleepiness", out var effect))
-        {
-            if (effect.EndEffectTime is not { } endTime)
-                return false;
+        if (_statusEffects.HasEffectComp<ForcedSleepingStatusEffectComponent>(uid))
+            return false;
 
-            remaining = endTime - _timing.CurTime;
-            if (!hasSleepinessInducedSleep)
-            {
-                if (!TryComp<SleepinessStatusEffectComponent>(effect.EffectEnt, out var sleepiness))
-                    return false;
+        if (!_statusEffects.HasEffectComp<SleepinessStatusEffectComponent>(uid))
+            return true;
 
-                threshold = sleepiness.SleepThreshold;
-            }
-        }
+        if (!_statusEffects.TryGetTime(uid, "StatusEffectSleepiness", out var effect) ||
+            effect.EndEffectTime is not { } endTime)
+            return false;
 
-        return remaining <= threshold;
+        // SleepinessSystem removes wake power before rolling, so this is the guaranteed-success boundary.
+        var remainingAfterWake = endTime - _timing.CurTime - _voluntaryWakePower;
+        return remainingAfterWake <= _voluntaryWakePower;
     }
 
     private void UpdateVision(EntityUid uid)

@@ -58,7 +58,7 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
             if (sleepiness.SleepImmediately && !HasComp<SleepingComponent>(target) &&
                 CanInduceSleep(target, sleepiness, checkTirednessSetting: false))
             {
-                if (TrySleepFromSleepiness(target, sleepiness.SleepThreshold))
+                if (TrySleepFromSleepiness(target))
                 {
                     sleepiness.SleepImmediately = false;
                     Dirty(uid, sleepiness);
@@ -88,17 +88,14 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
                     checkTirednessSetting: !sleepiness.HasExternalSleepinessSource))
                 continue;
 
-            if (!TrySleepFromSleepiness(target, sleepiness.SleepThreshold))
+            if (!TrySleepFromSleepiness(target))
                 continue;
         }
     }
 
-    private bool TrySleepFromSleepiness(EntityUid target, TimeSpan sleepThreshold)
+    private bool TrySleepFromSleepiness(EntityUid target)
     {
         EnsureComp<SleepinessInducedSleepComponent>(target);
-        var sleepCause = Comp<SleepinessInducedSleepComponent>(target);
-        sleepCause.SleepThreshold = sleepThreshold;
-        Dirty(target, sleepCause);
 
         if (_sleeping.TrySleeping(target))
             return true;
