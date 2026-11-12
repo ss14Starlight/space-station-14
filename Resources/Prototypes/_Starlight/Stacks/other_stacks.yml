@@ -43,6 +43,6 @@
 - type: stack
   id: Chitin
   name: stack-chitin
-  icon: { sprite: /Textures/Objects/Materials/Sheets/metal.rsi, state: steel }
+  icon: { sprite: _Starlight/Objects/Materials/chitin.rsi, state: chitin }
   spawn: SheetChitin1
   maxCount: 30

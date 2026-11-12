@@ -51,16 +51,17 @@
     stackType: Chitin
     baseLayer: base
     layerStates:
-    - steel
-    - steel_2
-    - steel_3
+    - chitin
+    - chitin_2
+    - chitin_3
   - type: Sprite
-    state: steel_3
+    sprite: _Starlight/Objects/Materials/chitin.rsi
+    state: chitin_3
     layers:
-    - state: steel_3
+    - state: chitin_3
       map: ["base"]
   - type: Item
-    heldPrefix: steel
+    heldPrefix: chitin
   - type: QuickConstructable
     category: Chitin
 
@@ -71,7 +72,7 @@
   suffix: 10
   components:
   - type: Sprite
-    state: steel
+    state: chitin
   - type: Stack
     stackType: Chitin
     count: 10
@@ -83,7 +84,7 @@
   suffix: Single
   components:
   - type: Sprite
-    state: steel
+    state: chitin
   - type: Stack
     stackType: Chitin
     count: 1

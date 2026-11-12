@@ -1,22 +1,13 @@
 - type: quickConstructionCategory
   id: Chitin
   constructionEntries:
-    - CrateGenericSteel #starlight
-    - MachineFrame
-    - Computer
-    - Girder
-    - MetalRod
-  categoryEntries:
-    - XenoFurniture
-    - XenoTiles
-
-- type: quickConstructionCategory
-  id: XenoFurniture
-  name: quickconstruction-category-furniture
-  icon: { sprite: Structures/Furniture/chairs.rsi, state: xeno-chair }
-  constructionEntries:
+    - WallChitin
+    - ReinforcedWallChitin
+    - AirlockXeno
     - TableXeno
     - ChairXeno
+  categoryEntries:
+    - XenoTiles
 
 - type: quickConstructionCategory
   id: XenoTiles

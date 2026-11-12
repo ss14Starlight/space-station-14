@@ -34,5 +34,5 @@
   id: Chitin
   stackEntity: SheetChitin1
   name: materials-chitin
-  icon: { sprite: Objects/Materials/Sheets/metal.rsi, state: steel }
+  icon: { sprite: _Starlight/Objects/Materials/chitin.rsi, state: chitin }
   price: 0.2
