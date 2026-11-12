@@ -25,7 +25,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.5
+          radius: 0.50
         density: 80
         mask:
         - MobMask
@@ -91,7 +91,7 @@
     capacity: 1
     count: 1
   - type: Gun
-    fireRate: .5
+    fireRate: 0.50
     useKey: false
     selectedMode: FullAuto
     availableModes:
