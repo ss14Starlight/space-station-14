@@ -1483,4 +1483,11 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_hair.rsi
       state: afropuffbun
+- type: marking
+  id: HumanHairLongPigtails
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longpigtails
 #starlight end

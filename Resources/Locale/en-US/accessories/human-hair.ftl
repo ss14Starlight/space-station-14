@@ -108,6 +108,7 @@ marking-HumanHairLong2 = Long Hair 2
 marking-HumanHairLong3 = Long Hair 3
 marking-HumanHairLongWithBundles = Long With Bundles
 marking-HumanHairLongovereye = Long Over Eye
+marking-HumanHairLongPigtails = Long Pigtails
 marking-HumanHairLbangs = Long Bangs
 marking-HumanHairLongemo = Long Emo
 marking-HumanHairLongfringe = Long Fringe
