@@ -35,7 +35,6 @@
     angleDecay: 20
     movingMinAngle: 0
     walkSpreadModifier: 0.5
-    sprintSpeedModifier: 1
   - type: GunWieldBonus
     minAngleDivider: 4
     maxAngleDivider: 4
@@ -55,7 +54,6 @@
     angleDecay: 20
     movingMinAngle: 0
     walkSpreadModifier: 0.5
-    sprintSpeedModifier: 1
   - type: GunWieldBonus
     minAngleDivider: 4
     maxAngleDivider: 4
