@@ -80,6 +80,7 @@
 
 - type: !PartialOnly entity
   id: ClothingEyesEyepatchHudBeerFlipped
+  categories: [HideSpawnMenu]
   components: !Clear
   - type: EntityTableContainerFill
     containers:
@@ -104,6 +105,7 @@
 
 - type: !PartialOnly entity
   id: ClothingEyesEyepatchHudDiagFlipped
+  categories: [HideSpawnMenu]
   components: !Clear
   - type: EntityTableContainerFill
     containers:
@@ -128,9 +130,13 @@
     - WhitelistChameleon
     - HudMedical
     - PetWearable
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
 
 - type: !PartialOnly entity
   id: ClothingEyesEyepatchHudMedicalFlipped
+  categories: [HideSpawnMenu]
   components: !Clear
   - type: EntityTableContainerFill
     containers:
@@ -145,6 +151,9 @@
     - PetWearable
   - type: Foldable
     folded: true
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
 
 - type: !PartialOnly entity
   id: ClothingEyesEyepatchHudSecurity
@@ -162,12 +171,14 @@
     - HudSecurity
     - PetWearable
   - type: Contraband
+    tier: Tier2
     allowedDepartments:
     - Security
     allowedJobs: []
 
 - type: !PartialOnly entity
   id: ClothingEyesEyepatchHudSecurityFlipped
+  categories: [HideSpawnMenu]
   components: !Clear
   - type: EntityTableContainerFill
     containers:
@@ -182,6 +193,7 @@
     - HudSecurity
     - PetWearable
   - type: Contraband
+    tier: Tier2
     allowedDepartments:
     - Security
     allowedJobs: []
@@ -220,6 +232,8 @@
     - ModularHudSingleEye
     - WhitelistChameleon
     - PetWearable
+  - type: Contraband
+    tier: Tier2
 
 - type: !PartialOnly entity
   id: ClothingEyesHudDiagnostic
@@ -247,6 +261,9 @@
     - ModularHudSingleEye
     - WhitelistChameleon
     - SecBeltEquip
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic]
 
 - type: !PartialOnly entity
   id: ClothingEyesHudMedical
@@ -262,6 +279,9 @@
     - WhitelistChameleon
     - HudMedical
     - PetWearable
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
 
 - type: !PartialOnly entity
   id: ClothingEyesHudSecurity
@@ -278,3 +298,5 @@
     - WhitelistChameleon
     - HudSecurity
     - PetWearable
+  - type: Contraband
+    tier: Tier2

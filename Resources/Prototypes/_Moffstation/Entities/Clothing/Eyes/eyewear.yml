@@ -270,7 +270,7 @@
 ## Premade modular HUD usages
 
 - type: entity
-  parent: [ ClothingEyesModularHudCheapSunglasses, AbstractModularHudMedicalIcons ]
+  parent: [ClothingEyesModularHudCheapSunglasses, AbstractModularHudMedicalIcons, BaseMedicalContraband]
   id: ClothingEyesGlassesMedSunglasses
 
 - type: entity
@@ -278,7 +278,7 @@
   id: ClothingEyesGlassesMesonSunglasses
 
 - type: entity
-  parent: [ ClothingEyesModularHudGoggles ]
+  parent: [ClothingEyesModularHudGoggles, BaseMedicalContraband]
   id: ClothingEyesGlassesMedChem
   components:
   - type: EntityTableContainerFill

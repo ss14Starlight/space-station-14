@@ -314,7 +314,7 @@
     - Antagonists
 
 - type: entity
-  parent: ModularHudModuleBase
+  parent: [ModularHudModuleBase, BaseEngineeringContraband, BaseRoboticistContraband]
   id: HudModuleShowInorganicHealthBars
   name: diagnostic HUD module
   components:
@@ -337,7 +337,7 @@
     - Silicon
 
 - type: entity
-  parent: ModularHudModuleBase
+  parent: [ModularHudModuleBase, BaseMedicalContraband]
   id: HudModuleShowMedicalIcons
   name: health HUD module
   description: A heads-up display module which scans the humanoids in view and provides accurate data about their health status.

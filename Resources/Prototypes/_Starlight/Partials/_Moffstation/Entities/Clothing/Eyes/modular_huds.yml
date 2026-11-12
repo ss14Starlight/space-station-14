@@ -33,6 +33,9 @@
     damageContainers:
     - Biological
     - Hybrid
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
 
 - type: !PartialOnly entity
   id: HudModuleShowInorganicHealthBars
@@ -44,6 +47,9 @@
     - IPC
     - Hybrid
     - MoffDemonInorganic
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [ResearchDirector, BlueShield]
 
 - type: !PartialOnly entity
   id: HudModuleShowCriminalRecordIcons
@@ -54,7 +60,7 @@
         color: '#FF3333'
         priority: 100
   - type: Contraband
-    contrabandType: NanoTrasen
+    tier: Tier2
     allowedDepartments:
     - Security
     - Representatives
@@ -63,6 +69,7 @@
   id: HudModuleShowJobIcons
   components:
   - type: Contraband
+    tier: Tier2
     allowedDepartments:
     - Security
     - Command

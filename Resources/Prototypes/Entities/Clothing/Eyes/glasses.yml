@@ -241,7 +241,7 @@
 
 #Make a scanner category when these actually function and we get the trayson
 - type: entity
-  parent: ClothingEyesBase
+  parent: ClothingEyesModularHudGoggles # Starlight
   id: ClothingEyesGlassesThermal
   name: optical thermal scanner
   description: Thermals in the shape of glasses.
@@ -260,7 +260,7 @@
   - type: ThermalSight
 
 - type: entity
-  parent: [ClothingEyesModularHudGoggles]
+  parent: ClothingEyesModularHudGoggles # Starlight
   id: ClothingEyesGlassesChemical
   name: chemical analysis goggles
   description: Goggles that can scan the chemical composition of a solution.

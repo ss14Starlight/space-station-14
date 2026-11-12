@@ -292,6 +292,7 @@
     - WirelessCameraHandheld
     - StarlightExperimentalwelderOnly
     - ScienceModularHudFrames
+    - ScienceModularHudModules
   - type: EmagLatheRecipes
     emagDynamicPacks:
     # They can keep the "best thing to emag" trait

@@ -2,6 +2,7 @@
   id: ModularHudModules
   recipes: !Clear
   - HudModuleEyeProtection
+  - HudModuleThermalSight
   - HudModuleShowAccessReaderSettings
   - HudModuleShowInorganicHealthBars
 

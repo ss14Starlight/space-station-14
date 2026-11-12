@@ -31,9 +31,11 @@
     - HudMedical
   - type: EyeProtection
     protectionTime: 5
+  - type: Contraband
+    tier: Tier2
 
 - type: entity
-  parent: [ClothingEyesModularHudPatch]
+  parent: ClothingEyesModularHudPatch
   id: ClothingEyesEyepatchHudBlueShield
   name: blue shield hud eyepatch
   description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information. For true patriots.
@@ -67,6 +69,7 @@
     - HudMedical
     - PetWearable
   - type: Contraband
+    tier: Tier2
     allowedDepartments: []
     allowedJobs:
     - BlueShield
@@ -75,8 +78,9 @@
     protectionTime: 5
 
 - type: entity
-  parent: [ClothingEyesModularHudPatch]
+  parent: ClothingEyesModularHudPatch
   id: ClothingEyesEyepatchHudBlueShieldFlipped
+  categories: [HideSpawnMenu]
   name: blue shield hud eyepatch
   components:
   - type: ModularHudVisuals
@@ -108,6 +112,7 @@
     - HudMedical
     - PetWearable
   - type: Contraband
+    tier: Tier2
     allowedDepartments: []
     allowedJobs:
     - BlueShield
@@ -135,10 +140,10 @@
   - type: ShowAccess
 
 - type: entity
-  parent: [ClothingEyesModularHudPatch]
+  parent: [ClothingEyesModularHudPatch, BaseRestrictedContraband]
   id: ClothingEyesEyepatchHudBrigmedic
   name: brigmedic hud eyepatch
-  description: Tamashi-upgraded HUDs for true patriots. Yes. Brigmedic ones.
+  description: An eye display that looks like a mixture of medical and security huds. For true patriots.
   components:
   - type: EntityTableContainerFill
     containers:
@@ -155,19 +160,20 @@
     - HudSecurity
     - PetWearable
     - HudMedical
-  - type: Contraband
-    allowedDepartments:
-    - Security
-    allowedJobs: []
   - type: EyeProtection
     protectionTime: 5
   - type: IdentityBlocker
     coverage: EYES
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic]
 
 - type: entity
-  parent: [ClothingEyesModularHudPatch]
+  parent: [ClothingEyesModularHudPatch, BaseRestrictedContraband]
   id: ClothingEyesEyepatchHudBrigmedicFlipped
+  categories: [HideSpawnMenu]
   name: brigmedic hud eyepatch
+  description: An eye display that looks like a mixture of medical and security huds. For true patriots.
   components:
   - type: EntityTableContainerFill
     containers:
@@ -184,19 +190,18 @@
     - HudSecurity
     - PetWearable
     - HudMedical
-  - type: Contraband
-    allowedDepartments:
-    - Security
-    allowedJobs: []
   - type: EyeProtection
     protectionTime: 5
   - type: IdentityBlocker
     coverage: EYES
   - type: Foldable
     folded: true
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic]
 
 - type: entity
-  parent: [ClothingEyesModularHudVisor]
+  parent: ClothingEyesModularHudVisor
   id: ClothingEyesHudChemical
   name: chemical hud
   description: A heads-up display that scans the chemical composition of a solution.
@@ -214,7 +219,7 @@
     - CorgiWearable
 
 - type: entity
-  parent: [ClothingEyesModularHudPatch]
+  parent: ClothingEyesModularHudPatch
   id: ClothingEyesEyepatchHudChemical
   name: chemical hud eyepatch
   description: A heads-up display that scans the chemical composition of a solution. For true patriots.
@@ -233,8 +238,9 @@
     - HudMedical
 
 - type: entity
-  parent: [ClothingEyesModularHudPatch]
+  parent: ClothingEyesModularHudPatch
   id: ClothingEyesEyepatchHudChemicalFlipped
+  categories: [HideSpawnMenu]
   name: chemical hud eyepatch
   components:
   - type: EntityTableContainerFill
@@ -253,7 +259,7 @@
     folded: true
 
 - type: entity
-  parent: [ClothingEyesModularHudVisor]
+  parent: ClothingEyesModularHudVisor
   id: ClothingEyesHudSkills
   name: skills hud
   description: Visor with a built-in skills HUD, showing the employment history of nearby NT crew members.

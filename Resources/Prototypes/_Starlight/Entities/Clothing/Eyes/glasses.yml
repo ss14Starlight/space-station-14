@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingEyesModularHudSunglasses, BaseSecurityContraband]
+  parent: [ClothingEyesModularHudSunglasses, BaseRestrictedContraband]
   id: ClothingEyesGlassesBrigmedic
   name: brigmedic sunglasses
   description: Can protect against flashes much like security glasses, and track vitals!
@@ -21,6 +21,9 @@
     stealGroup: RareGlassesCollection
   - type: EyeProtection
     protectionTime: 5
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic]
 
 - type: entity
   parent: ClothingEyesBase
@@ -62,7 +65,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingEyesModularHudSunglasses]
+  parent: ClothingEyesModularHudSunglasses
   id: ClothingEyesSunGlassesHudSkill
   name: skills sunglasses
   description: Sunglasses with a build-in skills HUD, showing the employment history of nearby NT crew members.
@@ -116,6 +119,8 @@
     stealGroup: RareGlassesCollection
   - type: EyeProtection
     protectionTime: 5
+  - type: Contraband
+    tier: Tier2
 
 - type: entity
   parent: [ClothingEyesBase, BaseBlueShieldContraband]
@@ -310,7 +315,7 @@
     - type: VisionCorrection
 
 - type: entity
-  parent: [ClothingEyesModularHudJamjars]
+  parent: ClothingEyesModularHudJamjars
   id: ClothingEyesGlassesJamjarChemist
   name: chemical jamjar glasses
   description: For the chemist who needs particularly large glasses. Rumoured to exist because of someone extremely skilled at chemistry.
@@ -320,7 +325,6 @@
       modular-hud-modules: !type:AllSelector
         children:
         - id: HudModuleSolutionScanner
-        - id: HudModuleVisionCorrection
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -330,7 +334,7 @@
     coverage: EYES
 
 - type: entity
-  parent: [ClothingEyesModularHudCheapSunglasses]
+  parent: ClothingEyesModularHudCheapSunglasses
   id: ClothingEyesGlassesNoirAssistant
   name: cheap noir-tech sunglasses
   description: A pair of glasses that simulate what the world looked like before the invention of color.
@@ -347,7 +351,7 @@
     - FullEyeCovering
 
 - type: entity
-  parent: [ClothingEyesModularHudGlasses, BaseSecurityContraband]
+  parent: [ClothingEyesModularHudGlasses, BaseRestrictedContraband]
   id: ClothingEyesGlassesBrigmedicPrescription
   name: prescription brigmedic glasses
   description: A set of prescription glasses for Brigmedics.
@@ -365,9 +369,12 @@
     - WhitelistChameleon
     - SecBeltEquip
     - FullEyeCovering
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic]
 
 - type: entity
-  parent: [ClothingEyesModularHudGlasses]
+  parent: [ClothingEyesModularHudGlasses, BaseMedicalContraband]
   id: ClothingEyeGlassesMedicalPrescription
   name: prescription medical glasses
   description: A set of prescription glasses for Doctors. Not covered under insurance.
@@ -384,6 +391,9 @@
     - WhitelistChameleon
     - HamsterWearable
     - FullEyeCovering
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
 
 - type: entity
   parent: [ClothingEyesModularHudGlasses, BaseSecurityContraband]
@@ -403,9 +413,11 @@
     - WhitelistChameleon
     - SecBeltEquip
     - FullEyeCovering
+  - type: Contraband
+    tier: Tier2
 
 - type: entity
-  parent: [ClothingEyesModularHudGlasses]
+  parent: ClothingEyesModularHudGlasses
   id: ClothingEyeGlassesChemicalPrescription
   name: prescription chemical analysis glasses
   description: A set of prescription glasses for chemists.
@@ -458,6 +470,8 @@
     - FullEyeCovering
   - type: StealTarget
     stealGroup: RareGlassesCollection
+  - type: Contraband
+    tier: Tier2
 
 - type: entity
   parent: ClothingEyesGlassesCentCommBase

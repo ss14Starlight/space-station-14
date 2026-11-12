@@ -1,0 +1,4 @@
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleThermalSight
+  result: HudModuleThermalSight

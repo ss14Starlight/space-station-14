@@ -152,6 +152,7 @@
   - ModularHudModulesIndustrialT1
   recipeUnlocks:
   - HudModuleEyeProtection
+  - HudModuleThermalSight
   radioChannels:
   - Engineering
 

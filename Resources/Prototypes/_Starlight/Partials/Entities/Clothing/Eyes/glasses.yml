@@ -17,6 +17,8 @@
     - FullEyeCovering
   - type: EyeProtection
     protectionTime: 5
+  - type: Contraband
+    tier: Tier2
 
 - type: !PartialOnly entity
   id: ClothingEyesGlassesNoir
@@ -37,6 +39,8 @@
     - FullEyeCovering
   - type: EyeProtection
     protectionTime: 5
+  - type: Contraband
+    tier: Tier2
 
 - type: !PartialOnly entity
   id: ClothingEyesGlassesChemical
@@ -75,6 +79,8 @@
     stealGroup: RareGlassesCollection
   - type: EyeProtection
     protectionTime: 5
+  - type: Contraband
+    tier: Tier2
 
 - type: !PartialOnly entity
   id: ClothingEyesGlassesMeson
@@ -93,3 +99,17 @@
     - FullEyeCovering
   - type: IdentityBlocker
     coverage: EYES
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: ClothingEyesGlassesThermal
+  components:
+  - type: !Remove Sprite
+  - type: !Remove Clothing
+  - type: !Remove ThermalSight
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleThermalSight

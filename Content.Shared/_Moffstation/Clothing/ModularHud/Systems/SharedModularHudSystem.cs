@@ -107,6 +107,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<ShowCriminalRecordIconsComponent>>();
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<BlackAndWhiteOverlayComponent>>();
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<NoirOverlayComponent>>();
+        SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<ThermalSightComponent>>(); // Starlight
     }
 
     /// Adds subscriptions which relay `TArgs` to all contained modules.
