@@ -69,6 +69,8 @@
 - type: !PartialOnly entity
   id: ClothingEyesModularHudVisor
   components:
+  - type: ModularHud
+    maximumContainedModules: 3
   - type: Tag
     tags:
     - ModularHudSingleEye

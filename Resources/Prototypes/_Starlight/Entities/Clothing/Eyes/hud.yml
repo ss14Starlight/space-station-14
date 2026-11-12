@@ -16,6 +16,8 @@
       specular:
         color: '#FFFFFF10'
         priority: 1000
+  - type: ModularHud
+    maximumContainedModules: 4
   - type: EntityTableContainerFill
     containers:
       modular-hud-modules: !type:AllSelector
