@@ -215,6 +215,9 @@ public sealed partial class SleepingSystem : EntitySystem
     private void OnSeeAttempt(Entity<SleepingComponent> ent, ref CanSeeAttemptEvent args)
     {
         // Starlight - start
+        if (TerminatingOrDeleted(ent))
+            return;
+
         args.Cancel();
         // Starlight - end
     }

@@ -172,7 +172,7 @@ public sealed class FelionoidTirednessTest : GameTest
         var pair = Pair;
         var server = pair.Server;
         var entityManager = server.ResolveDependency<IEntityManager>();
-        var maximumSleepiness = TimeSpan.FromSeconds(10);
+        var maximumSleepiness = TimeSpan.FromSeconds(5);
         EntityUid felionoid = default;
 
         await server.WaitPost(() =>

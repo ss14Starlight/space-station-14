@@ -66,8 +66,6 @@ public sealed partial class ThrowingSystem : EntitySystem
         Subs.CVar(_configManager, CCVars.AirFriction, value => _airDamping = value, true);
     }
 
-    #region Starlight
-
     /// <returns>Whether the entity was thrown.</returns>
     public bool TryThrow(
         EntityUid uid,
@@ -284,8 +282,6 @@ public sealed partial class ThrowingSystem : EntitySystem
 
         return true;
     }
-
-    #endregion
 
     #region Starlight
 

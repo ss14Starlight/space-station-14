@@ -52,10 +52,15 @@ public sealed partial class CanSelfStoreSystem : EntitySystem
         args.Handled = true;
     }
 
-    private bool CanSelfStore(EntityUid user, EntityUid storage, StorageComponent component) =>
-        user != storage &&
-        _actionBlocker.CanInteract(user, storage) &&
-        _storage.CanInsert(storage, user, out _, component);
+    private bool CanSelfStore(EntityUid user, EntityUid storage, StorageComponent component)
+    {
+        if (user == storage || !_actionBlocker.CanInteract(user, storage))
+            return false;
+
+        var ev = new StorageInteractAttemptEvent(Silent: true);
+        RaiseLocalEvent(storage, ref ev);
+        return !ev.Cancelled && _storage.CanInsert(storage, user, out _, component);
+    }
 
     private void StartSelfStore(EntityUid storage, EntityUid user)
     {

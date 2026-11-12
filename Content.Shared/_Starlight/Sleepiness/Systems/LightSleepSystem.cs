@@ -41,11 +41,16 @@ public sealed partial class LightSleepSystem : EntitySystem
         ref ComponentRemove args) =>
         UpdateVision(ent.Owner);
 
-    public bool IsLightSleepActive(EntityUid uid)
+    /// <summary>
+    /// Checks whether an entity is voluntarily or sleepiness-induced sleeping, is not forced asleep,
+    /// and is within the boundary where voluntary waking is guaranteed to succeed.
+    /// </summary>
+    public bool IsLightSleepActive(Entity<LightSleepComponent?> ent)
     {
-        if (!HasComp<LightSleepComponent>(uid) || !HasComp<SleepingComponent>(uid))
+        if (!Resolve(ent, ref ent.Comp, logMissing: false) || !HasComp<SleepingComponent>(ent))
             return false;
 
+        var uid = ent.Owner;
         var playerRequestedSleep = HasComp<PlayerRequestedSleepComponent>(uid);
         var hasSleepinessInducedSleep = HasComp<SleepinessInducedSleepComponent>(uid);
         if (!playerRequestedSleep && !hasSleepinessInducedSleep)

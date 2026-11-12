@@ -133,16 +133,6 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
         base.Initialize();
         SubscribeLocalEvent<SleepinessStatusEffectComponent, StatusEffectRemovedEvent>(OnSleepinessRemoved);
         SubscribeLocalEvent<SleepinessWakeAttemptEvent>(OnWakeAttempt);
-        SubscribeLocalEvent<SleepingComponent, ComponentShutdown>(OnSleepingShutdown);
-    }
-
-    private void OnSleepingShutdown(EntityUid uid, SleepingComponent component, ComponentShutdown args) =>
-        RemoveSleepCauseMarkers(uid);
-
-    private void RemoveSleepCauseMarkers(EntityUid uid)
-    {
-        RemComp<SleepinessInducedSleepComponent>(uid);
-        RemComp<PlayerRequestedSleepComponent>(uid);
     }
 
     private void OnWakeAttempt(ref SleepinessWakeAttemptEvent args)

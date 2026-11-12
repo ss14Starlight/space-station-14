@@ -75,7 +75,9 @@ public sealed partial class RespiratorSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnSleepStateChanged(Entity<RespiratorComponent> ent, ref SleepStateChangedEvent args)
     {
-        ent.Comp.NextUpdate = _gameTiming.CurTime + GetBreathingInterval(ent, args.FellAsleep);
+        var nextUpdate = _gameTiming.CurTime + GetBreathingInterval(ent, args.FellAsleep);
+        if (nextUpdate < ent.Comp.NextUpdate)
+            ent.Comp.NextUpdate = nextUpdate;
     }
 
     private TimeSpan GetBreathingInterval(Entity<RespiratorComponent> ent, bool sleeping)
