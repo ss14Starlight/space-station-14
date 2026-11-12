@@ -9,7 +9,7 @@
 	"states": [
 		{
 			"name": "toggle_tail",
-			"copyright": "ya314a"
+			"copyright": "ya3.14a"
 		},
 		{
 			"name": "cast_vote",
@@ -17,23 +17,23 @@
 		},
 		{
 			"name": "xeno_shop",
-			"copyright": "MeWhenThe (Preliminary)"
+			"copyright": "MeWhenThe"
 		},
 		{
 			"name": "xeno_heal",
-			"copyright": "MeWhenThe (Preliminary)"
+			"copyright": "MeWhenThe"
 		},
 		{
 			"name": "xeno_leap",
-			"copyright": "MeWhenThe (Preliminary)"
+			"copyright": "MeWhenThe"
 		},
 		{
 			"name": "xeno_tree",
-			"copyright": "MeWhenThe (Preliminary)"
+			"copyright": "MeWhenThe"
 		},
 		{
 			"name": "xeno_spit",
-			"copyright": "MeWhenThe (Preliminary)"
+			"copyright": "MeWhenThe"
 		}
 	]
 }
