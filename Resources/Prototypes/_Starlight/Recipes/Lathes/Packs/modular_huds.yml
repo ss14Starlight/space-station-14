@@ -24,6 +24,7 @@
   - HudModuleShowHungerIcons
   - HudModuleShowThirstIcons
   - HudModuleNoirOverlay
+  - HudModuleBlueNoirOverlay
   - HudModuleBlackAndWhiteOverlay
 
 - type: latheRecipePack

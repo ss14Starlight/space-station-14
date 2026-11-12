@@ -21,3 +21,30 @@
         color: '#FF5C44'
         priority: 100
   - type: ThermalSight
+
+- type: entity
+  parent: ModularHudModuleBase
+  id: HudModuleBlueNoirOverlay
+  name: blue noir HUD module
+  description: A heads-up display module that makes the world black and white while preserving blue hues.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: Gray
+    - state: stripe
+      color: '#4282E8'
+    - state: contacts
+    - state: common_label
+  - type: ModularHudModule
+    requirements:
+    - failureMessage: modular-hud-requirement-full-coverage
+      whitelist:
+        tags:
+        - FullEyeCovering
+    visuals:
+      lens:
+        color: '#4282E8'
+        priority: 10001
+        preventsOtherColors: true
+  - type: BlueNoirOverlay

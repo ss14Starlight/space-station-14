@@ -104,6 +104,7 @@
 
 - type: !PartialOnly entity
   id: ClothingEyesGlassesThermal
+  name: thermal goggles
   components:
   - type: !Remove Sprite
   - type: !Remove Clothing

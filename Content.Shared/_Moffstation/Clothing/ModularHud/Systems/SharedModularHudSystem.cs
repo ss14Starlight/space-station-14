@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._Moffstation.Clothing.ModularHud.Components;
+using Content.Shared._Starlight.Overlay.Components; // Starlight
 using Content.Shared._Moffstation.Extensions;
 using Content.Shared.Access.Systems;
 using Content.Shared.Chemistry;
@@ -107,6 +108,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<ShowCriminalRecordIconsComponent>>();
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<BlackAndWhiteOverlayComponent>>();
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<NoirOverlayComponent>>();
+        SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<BlueNoirOverlayComponent>>(); // Starlight
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<ThermalSightComponent>>(); // Starlight
     }
 

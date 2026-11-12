@@ -33,6 +33,7 @@
   recipeUnlocks:
   - HudModuleBlackAndWhiteOverlay
   - HudModuleNoirOverlay
+  - HudModuleBlueNoirOverlay
   radioChannels:
   - Service
 
