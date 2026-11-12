@@ -15,7 +15,7 @@
     - Vespic
     - Vibralink
   - type: Jump
-    action: JumpMoth
+    action: JumpVespuli
   - type: Absorbable
   - type: Sericulture
     action: ActionHoneyGather

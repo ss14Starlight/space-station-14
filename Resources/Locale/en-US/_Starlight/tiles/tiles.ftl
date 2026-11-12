@@ -52,6 +52,7 @@ tiles-rough-metal-floor = rough metal floor
 tiles-rusty-metal-floor = rusty metal floor
 tiles-steel-grate-floor = steel grate floor
 tiles-tech-greeb-floor = tech maints greeb floor
+tiles-honeycomb-floor = honeycomb floor
 
 # Grass
 tiles-mowed-dark-astro-grass = mowed dark astro-grass
