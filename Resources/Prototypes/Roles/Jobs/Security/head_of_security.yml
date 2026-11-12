@@ -27,7 +27,6 @@
   icon: "JobIconHeadOfSecurity"
   supervisors: job-supervisors-captain
   access:
-  - Cadet # Starlight
   - HeadOfSecurity
   - Command
   - Brig

@@ -37393,10 +37393,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 14.5,12.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 5736
     components:
     - type: Transform

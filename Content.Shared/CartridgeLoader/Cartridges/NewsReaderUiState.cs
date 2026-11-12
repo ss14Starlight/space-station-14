@@ -4,7 +4,7 @@ using Content.Shared.MassMedia.Systems;
 namespace Content.Shared.CartridgeLoader.Cartridges;
 
 [Serializable, NetSerializable]
-public sealed class NewsReaderBoundUserInterfaceState : BoundUserInterfaceState
+public sealed partial class NewsReaderBoundUserInterfaceState : BoundUserInterfaceState // Starlight Edit: Made partial
 {
     public NewsArticle Article;
     public int TargetNum;

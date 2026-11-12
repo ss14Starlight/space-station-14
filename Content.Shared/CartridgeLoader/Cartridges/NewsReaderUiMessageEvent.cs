@@ -21,6 +21,7 @@ public enum NewsReaderUiAction
     NotificationSwitch,
     // Starlight-edit: start
     Like,
-    Dislike
-    // Straight-edit: end
+    Dislike,
+    ViewPhoto
+    // Starlight-edit: end
 }

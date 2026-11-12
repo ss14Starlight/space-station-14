@@ -16,6 +16,7 @@ public sealed partial class ArticleEditorPanel : Control
 {
     public event Action? PublishButtonPressed;
     public event Action<string, string>? ArticleDraftUpdated;
+    public event Action? PhotoEjectButtonPressed; // Starlight
 
     private bool _preview;
 
@@ -48,6 +49,7 @@ public sealed partial class ArticleEditorPanel : Control
         ButtonCancel.OnPressed += OnCancel;
         ButtonPublish.OnPressed += OnPublish;
         ButtonSaveDraft.OnPressed += OnDraftSaved;
+        PhotoEjectButton.OnPressed += _ => PhotoEjectButtonPressed?.Invoke(); // Starlight
 
         TitleField.OnTextChanged += args => OnTextChanged(args.Text.Length, args.Control, SharedNewsSystem.MaxTitleLength);
         ContentField.OnTextChanged += args => OnTextChanged(Rope.CalcTotalLength(args.TextRope), args.Control, SharedNewsSystem.MaxContentLength);
@@ -96,7 +98,13 @@ public sealed partial class ArticleEditorPanel : Control
     private void OnPublish(BaseButton.ButtonEventArgs eventArgs)
     {
         PublishButtonPressed?.Invoke();
-        Reset();
+        // Reset(); // Starlight Edit: Removed for below addition
+        // Starlight Start: Hide without clearing the draft.
+        _preview = false;
+        TextEditPanel.Visible = true;
+        PreviewPanel.Visible = false;
+        PreviewLabel.SetMarkup("");
+        // Starlight End
         Visible = false;
     }
 
