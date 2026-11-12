@@ -33,6 +33,7 @@ public sealed partial class MigraineSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = null!;
     [Dependency] private SharedJitteringSystem _jittering = null!;
     [Dependency] private Content.Shared.StatusEffect.StatusEffectsSystem _statusEffects = null!;
+    [Dependency] private StatusEffectsSystem _newStatusEffects = null!;
     [Dependency] private INetManager _net = null!;
     [Dependency] private IGameTiming _timing = null!;
 
@@ -42,6 +43,7 @@ public sealed partial class MigraineSystem : EntitySystem
 
         SubscribeLocalEvent<MigraineEffectComponent, StatusEffectAppliedEvent>(OnMigraineApplied);
         SubscribeLocalEvent<MigraineEffectComponent, StatusEffectRemovedEvent>(OnMigraineRemoved);
+        SubscribeLocalEvent<Content.Shared.StatusEffect.StatusEffectsComponent, Content.Shared.StatusEffect.StatusEffectEndedEvent>(OnTimedStatusEnded);
     }
 
     public override void Update(float frameTime)
@@ -118,6 +120,18 @@ public sealed partial class MigraineSystem : EntitySystem
             return;
 
         RemCompDeferred<JitteringComponent>(args.Target);
+    }
+
+    private void OnTimedStatusEnded(EntityUid uid, Content.Shared.StatusEffect.StatusEffectsComponent component,
+        Content.Shared.StatusEffect.StatusEffectEndedEvent args)
+    {
+        if (!_net.IsServer || args.Key != "Jitter")
+            return;
+
+        if (_newStatusEffects.HasStatusEffect(uid, MigraineEffectComponent.Prototype))
+            _jittering.AddJitter(uid, -85f, 2f);
+        else
+            RemCompDeferred<JitteringComponent>(uid);
     }
 
     // Check if the target entity is an IPC
