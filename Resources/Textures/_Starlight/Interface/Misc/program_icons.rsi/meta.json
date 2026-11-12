@@ -10,6 +10,11 @@
         {
             "name": "nanochat",
             "copyright": "nanochat made by kushbreth (discord) and heavily edited by honeyed_lemons_"
+        },
+        {
+            "name": "camera",
+            "copyright": "camera made by Vincolan (discord) for starlight",
+            "license": "CC-BY-SA-4.0"
         }
     ]
 }

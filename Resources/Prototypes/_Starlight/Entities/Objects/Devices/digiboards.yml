@@ -1,5 +1,3 @@
-
-
 - type: entity
   parent: [PowerCellSlotMediumItem, BaseHandheldComputer]
   id: DigiboardMassMedia
@@ -32,6 +30,23 @@
     - type: PowerCellDraw
       drawRate: 1
     - type: NewsWriter
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot { }
+        photo: !type:ContainerSlot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMedium
+          blacklist:
+            tags:
+              - MechReactor
+        photo:
+          swap: false
+          whitelist:
+            components:
+              - Photograph
     - type: ActivatableUI
       key: enum.NewsWriterUiKey.Key
     - type: UserInterface

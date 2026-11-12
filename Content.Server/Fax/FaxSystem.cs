@@ -5,7 +5,6 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Tools;
-using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
@@ -316,6 +315,7 @@ public sealed partial class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxSlipOrderAccount, out string? slipAccount);
                     args.Data.TryGetValue(FaxConstants.FaxMetaSender, out string? metaSender);
                     args.Data.TryGetValue(FaxConstants.FaxMetaSentAt, out string? metaSentAt);
+                    args.Data.TryGetValue(FaxConstants.FaxPaperPhotographData, out string? photographData);
                     // Starlight-end
 
 
@@ -335,7 +335,8 @@ public sealed partial class FaxSystem : EntitySystem
                         slipAccount,
                         retainMetadata: true,
                         metaSender,
-                        metaSentAt); // Starlight-end
+                        metaSentAt,
+                        photographData: photographData); // Starlight-end
                     Receive(uid, printout, args.SenderAddress);
 
                     break;
@@ -508,8 +509,7 @@ public sealed partial class FaxSystem : EntitySystem
         if (component.SendTimeoutRemaining > 0)
             return;
 
-        var sendEntity = component.PaperSlot.Item;
-        if (sendEntity == null)
+        if (component.PaperSlot.Item is not { } sendEntity) // Starlight Edit
             return;
 
         if (!TryComp(sendEntity, out MetaDataComponent? metadata) ||
@@ -535,7 +535,8 @@ public sealed partial class FaxSystem : EntitySystem
                                         cargoSlipComponent?.Reason,
                                         cargoSlipComponent?.OrderQuantity,
                                         cargoSlipComponent?.Account,
-                                        retainMetadata: true); //starlight-end
+                                        retainMetadata: true,
+                                        photographData: _snapshotPersistence.GetSerializedData(sendEntity)); //starlight-end
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -564,8 +565,7 @@ public sealed partial class FaxSystem : EntitySystem
         if (component.SendTimeoutRemaining > 0)
             return;
 
-        var sendEntity = component.PaperSlot.Item;
-        if (sendEntity == null)
+        if (component.PaperSlot.Item is not { } sendEntity) // Sta
             return;
 
         if (component.DestinationFaxAddress == null)
@@ -633,6 +633,9 @@ public sealed partial class FaxSystem : EntitySystem
         }
 
         #region Starlight
+        if (_snapshotPersistence.GetSerializedData(sendEntity) is { } photographData)
+            payload[FaxConstants.FaxPaperPhotographData] = photographData;
+
         payload[FaxConstants.FaxMetaSender] = component.FaxName;
         var time = _gameTicker.RoundDuration();
         payload[FaxConstants.FaxMetaSentAt] = TimeSpan.FromSeconds(Math.Truncate(time.TotalSeconds)).ToString();
@@ -702,6 +705,8 @@ public sealed partial class FaxSystem : EntitySystem
             ? Transform(outerContainer.Owner).Coordinates
             : xform.Coordinates;
         var printed = Spawn(entityToSpawn, coords);
+        if (printout.PhotographData is { } photographData)
+            _snapshotPersistence.SetSerializedData(printed, photographData);
         // Starlight end
 
         if (TryComp<PaperComponent>(printed, out var paper))
@@ -778,6 +783,9 @@ public sealed partial class FaxSystem : EntitySystem
                 var entityToSpawn = printout.PrototypeId;
                 if (TrySpawnInContainer(entityToSpawn, worn.Value, "storagebase", out var printed))
                 {
+                    if (printout.PhotographData is { } photographData)
+                        _snapshotPersistence.SetSerializedData(printed.Value, photographData);
+
                     if (TryComp<PaperComponent>(printed.Value, out var paper))
                     {
                         _paperSystem.SetContent((printed.Value, paper), printout.Content);

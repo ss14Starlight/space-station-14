@@ -204,3 +204,6 @@ uplink-lead-chemistry-vial-desc = A small vial containing 15 units of lead.
 
 uplink-boxcutter-syndi-name = Chemical Boxcutter
 uplink-boxcutter-syndi-desc = A boxcutter with special grooves that can hold up to 10 units of chemicals.
+
+uplink-photo-camera-name = Photo Camera
+uplink-photo-camera-desc = Capture a precious moment, ruining it right after with the integrated flash.

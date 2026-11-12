@@ -27,6 +27,7 @@
     - ServiceBoardsStaticGoob # Goobstation - Radio Host boards
     - CassetteTape
     - TapeRecorder
+    - BlankPhotograph
     dynamicPacks:
     - StarlightAutolatheLootable
   - type: EmagLatheRecipes
