@@ -1512,7 +1512,7 @@
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: mattedshort
 - type: marking
-  id: ThavenHairBubbleponytail
+  id: ThavenHairBubblePonytail
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
