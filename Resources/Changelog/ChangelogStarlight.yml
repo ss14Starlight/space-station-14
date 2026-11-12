@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Advanced mops will now clean adjacent wall stains.
-    type: Tweak
-  id: 409957
-  time: '2026-10-30T19:36:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6087
-- author: wonderfulnewworld
-  changes:
   - message: Footprints should be significantly less laggy now.
     type: Fix
   id: 409958
@@ -2799,4 +2792,11 @@ Entries:
   id: 410356
   time: '2026-11-12T08:56:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7195
+- author: RedSpeeds
+  changes:
+  - message: Fixed Syndi reinforcement being able to sign syndie letter.
+    type: Fix
+  id: 410357
+  time: '2026-11-12T11:10:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7193
 Order: -1
