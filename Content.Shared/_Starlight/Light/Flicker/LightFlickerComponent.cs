@@ -43,13 +43,13 @@ public sealed partial class LightFlickerComponent : Component
     public bool Toggled;
 
     /// <summary>
-    /// Fixture radius before the flicker shrank it, restored when the blip ends.
+    /// Fixture radius before the flicker changed it, restored when the blip ends.
     /// </summary>
     [ViewVariables]
     public float? BaseRadius;
 
     /// <summary>
-    /// Fixture energy before the flicker lowered it, restored when the blip ends.
+    /// Fixture energy before the flicker changed it, restored when the blip ends.
     /// </summary>
     [ViewVariables]
     public float? BaseEnergy;
