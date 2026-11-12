@@ -1,158 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Implants can now be tagged as fragile and will break upon extraction. For now, only mindshields are fragile.
-    type: Add
-  id: 409930
-  time: '2026-10-30T18:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6942
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Vampires are now unable to be converted without the Glyph of Truth.
-    type: Tweak
-  id: 409931
-  time: '2026-10-30T18:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6942
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Improved on-boarding for cosmic cult to help inform new players how to collect and deposit entropy, and how to use glyphs.
-    type: Tweak
-  id: 409932
-  time: '2026-10-30T18:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6942
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Improved the feedback given when a cultist absorbs a malign rift to describe the effects given and that it's removed if Null Fragmentation is used.
-    type: Tweak
-  id: 409933
-  time: '2026-10-30T18:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6942
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: If the cosmic cult's steward is de-converted in tiers 1 or 2, a new steward is randomly chosen from the remaining cultists, and all cultists are notified. This can only happen once.
-    type: Tweak
-  id: 409934
-  time: '2026-10-30T18:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6942
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: The Monument can now be moved starting in tier 1, rather than in tier 2.
-    type: Tweak
-  id: 409935
-  time: '2026-10-30T18:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6942
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Siphon Entropy now has a slightly increased tolerance for movement before being interrupted. If it's interrupted for any reason half of the cooldown is refunded.
-    type: Tweak
-  id: 409936
-  time: '2026-10-30T18:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6942
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Cosmic cult ability costs have been slightly lowered across the board to give greater access to the more expensive abilities in the lategame.
-    type: Tweak
-  id: 409937
-  time: '2026-10-30T18:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6942
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Wizards are now unable to be converted without the Glyph of Truth as intended; it was accidentally preventing wizard cultists from converting, not preventing wizards from being converted.
-    type: Fix
-  id: 409938
-  time: '2026-10-30T18:10:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6942
-- author: Trosling
-  changes:
-  - message: Subdivided the Civil Code into subsections in the guidebook.
-    type: Tweak
-  id: 409939
-  time: '2026-10-30T18:40:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6938
-- author: Trosling
-  changes:
-  - message: Generally modernized the Silicon Clause lore-wise.
-    type: Tweak
-  id: 409940
-  time: '2026-10-30T18:40:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6938
-- author: Trosling
-  changes:
-  - message: Silicons are now people; their chassis remain property.
-    type: Add
-  id: 409941
-  time: '2026-10-30T18:40:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6938
-- author: Trosling
-  changes:
-  - message: Hostile silicon brains are now encouraged to be retrieved and yoked by Science.
-    type: Add
-  id: 409942
-  time: '2026-10-30T18:40:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6938
-- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
-  changes:
-  - message: "Added a new antagonist: Blood Bound! A minor antag with the ability to convert a single person to their cause, to perform objectives on behalf of Nar'Sie! You can only be converted if you have the antag or corresponding new trait enabled."
-    type: Add
-  id: 409943
-  time: '2026-10-30T19:05:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6738
-- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
-  changes:
-  - message: 'Added 5 new story objectives for Traitors: Trash a (specific) room, Claim a (specific) room for the Syndicate, gather intelligence on a person, leave a calling card on a person.'
-    type: Add
-  id: 409944
-  time: '2026-10-30T19:05:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6738
-- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
-  changes:
-  - message: 'Added a new Thief story objective: Rob a (specific) department.'
-    type: Add
-  id: 409945
-  time: '2026-10-30T19:05:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6738
-- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
-  changes:
-  - message: You can no longer pick Darktongue as a language.
-    type: Remove
-  id: 409946
-  time: '2026-10-30T19:05:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6738
-- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
-  changes:
-  - message: Remilia no longer speaks Darktongue, but can speak Mouse as she already understands Mouse.
-    type: Remove
-  id: 409947
-  time: '2026-10-30T19:05:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6738
-- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
-  changes:
-  - message: You can no longer get departmental story objectives on your own department.
-    type: Tweak
-  id: 409948
-  time: '2026-10-30T19:05:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6738
-- author: wonderfulnewworld, DuckManZach, Southbridge, youtissoum, Spanky, DrWhoFan13
-  changes:
-  - message: Anyone can take Felyaic as a trait.
-    type: Tweak
-  id: 409949
-  time: '2026-10-30T19:05:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6738
-- author: Xale
-  changes:
-  - message: Arachnids can again eat raw foods and drink blood.
-    type: Fix
-  id: 409950
-  time: '2026-10-30T19:05:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6955
-- author: Xale
-  changes:
-  - message: Arachnids are again poisoned by theobromine. Be careful of coffee and chocolate.
-    type: Fix
-  id: 409951
-  time: '2026-10-30T19:05:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6955
 - author: Xale
   changes:
   - message: Arachnids are again poisoned by allicin. Be careful of foods that contains onions.
@@ -2799,4 +2645,158 @@ Entries:
   id: 410329
   time: '2026-11-11T21:36:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7183
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add new Paramedic Slot, now initialized with 3 slots at round start.
+    type: Add
+  id: 410330
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add a missing seed extractor to "Maid"'s service department (How was this not reported to me after all this time?).
+    type: Add
+  id: 410331
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add new APCs to Artifact room.
+    type: Add
+  id: 410332
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add new Radiation Lockers, EOD Locker, and EVA Storage Units to Artifact room.
+    type: Add
+  id: 410333
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add new directional fans to Mining Arm and Cargo Shuttle Docking.
+    type: Add
+  id: 410334
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: "(Flotilla) Add the new transit line: Bridge to Command's EVAC break room."
+    type: Add
+  id: 410335
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Minor Additions to Command (i.e Fireaxe, Station Radio, etc.).
+    type: Add
+  id: 410336
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add Stir Stir to Genpop.
+    type: Add
+  id: 410337
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add more TVs, at least one per department.
+    type: Add
+  id: 410338
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Add new Airlock Cycle to a few external airlocks.
+    type: Add
+  id: 410339
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Replace SYN Nuclear Bomb with NT-approved Nuclear Bomb (Let's hope that there's no Nukie round before this update).
+    type: Tweak
+  id: 410340
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Rename the Transit Disposal Units with easier-to-remember tag names.
+    type: Tweak
+  id: 410341
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Tweak the logic for Command's main doors to be less annoying while preventing tailgating.
+    type: Tweak
+  id: 410342
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Redo the pipes at docks.
+    type: Tweak
+  id: 410343
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Removed extra stack of plastic from Engi's Supply Box for TechFab.
+    type: Tweak
+  id: 410344
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Renamed some APCs.
+    type: Tweak
+  id: 410345
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Moved Service request console from Service break room to HoP line.
+    type: Tweak
+  id: 410346
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Changed the layout for AI core; now AI should not kill itself if someone is standing right next to AI.
+    type: Tweak
+  id: 410347
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Removed one Atmos Tech Locker (now 5 lockers in total) and replaced it with AtmosDrobe.
+    type: Tweak
+  id: 410348
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Fixed disposal for NTR and Library's Game Room.
+    type: Fix
+  id: 410349
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Fixed access to Command's Breakroom at EVAC; from AA to Command.
+    type: Fix
+  id: 410350
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
+- author: Hot Mic
+  changes:
+  - message: (Flotilla) Minor fixes.
+    type: Fix
+  id: 410351
+  time: '2026-11-12T01:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7187
 Order: -1
