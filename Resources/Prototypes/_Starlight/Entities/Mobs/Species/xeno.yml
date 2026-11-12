@@ -110,3 +110,18 @@
     - DoorBumpOpener
     - AnomalyHost
     - NotLabelable
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 15
+  - type: ActionGrant
+    actions:
+    - ActionXenoOpenShop
+  - type: Store
+    name: store-preset-name-xeno
+    categories:
+    - EvolutionsStandard
+    currencyWhitelist:
+    - EvolutionPoint
+    balance:
+      EvolutionPoint: 1

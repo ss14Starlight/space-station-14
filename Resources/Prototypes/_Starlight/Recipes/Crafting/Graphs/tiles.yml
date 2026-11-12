@@ -1,0 +1,63 @@
+- type: constructionGraph
+  id: TileXenoSteel
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: xenosteeltile
+          completed:
+            - !type:SetStackCount
+              amount: 4
+          steps:
+            - material: Chitin
+              amount: 1
+    - node: xenosteeltile
+      entity: FloorTileItemXenoSteel
+
+- type: constructionGraph
+  id: TileXenoSteelCorner
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: xenosteelcornertile
+          completed:
+            - !type:SetStackCount
+              amount: 4
+          steps:
+            - material: Chitin
+              amount: 1
+    - node: xenosteelcornertile
+      entity: FloorTileItemXenoSteelCorner
+
+- type: constructionGraph
+  id: TileXenoTechmaint
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: xenotechmainttile
+          completed:
+            - !type:SetStackCount
+              amount: 4
+          steps:
+            - material: Chitin
+              amount: 1
+    - node: xenotechmainttile
+      entity: FloorTileItemXenoMaint
+
+- type: constructionGraph
+  id: TileXeno
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: xenotile
+          completed:
+            - !type:SetStackCount
+              amount: 4
+          steps:
+            - material: Chitin
+              amount: 1
+    - node: xenotile
+      entity: FloorTileItemXeno

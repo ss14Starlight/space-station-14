@@ -1,0 +1,1 @@
+quickconstruction-category-furniture = pipes

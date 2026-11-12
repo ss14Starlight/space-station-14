@@ -1,0 +1,24 @@
+- type: constructionGraph
+  id: SeatXeno
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: chairXeno
+          steps:
+            - material: Chitin
+              amount: 1
+              doAfter: 1
+
+    - node: chairXeno
+      entity: ChairXeno
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetChitin1
+          steps:
+            - tool: Screwing
+              doAfter: 1

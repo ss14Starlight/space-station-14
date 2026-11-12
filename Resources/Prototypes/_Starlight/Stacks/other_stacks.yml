@@ -39,3 +39,10 @@
   icon: { sprite: "_FarHorizons/Objects/Specific/Medical/medical.rsi", state: oilpack-empty }
   spawn: EmptyOilPack
   maxCount: 10
+
+- type: stack
+  id: Chitin
+  name: stack-chitin
+  icon: { sprite: /Textures/Objects/Materials/Sheets/metal.rsi, state: steel }
+  spawn: SheetChitin1
+  maxCount: 30

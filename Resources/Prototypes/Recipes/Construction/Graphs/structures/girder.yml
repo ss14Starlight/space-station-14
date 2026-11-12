@@ -39,7 +39,18 @@
             - material: Steel
               amount: 2
               doAfter: 2
-
+        # Starlight Start
+        - to: wall
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Chitin
+              amount: 2
+              doAfter: 2
+        # Starlight End
         - to: reinforcedGirder
           completed:
             - !type:SnapToGrid

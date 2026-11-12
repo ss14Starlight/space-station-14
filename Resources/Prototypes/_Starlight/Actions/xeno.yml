@@ -34,3 +34,105 @@
       whitelist:
         components:
         - XenoDemocracy
+
+- type: entity
+  parent: ActionIntrinsicStore
+  id: ActionXenoOpenShop
+  name: Ancestral Strains
+  description: Awaken a latent ability of your ancestry
+  components:
+  - type: Action
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_xeno.rsi
+      state: xeno_shop
+
+- type: entity
+  id: ActionXenoSpit
+  name: spit
+  description: spit acid at a very high metabolic cost
+  components:
+    - type: Action
+      metabolicCost: 10
+      useDelay: 2
+      raiseOnUser: true
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_xeno.rsi
+        state: xeno_spit
+      itemIconStyle: BigAction
+      sound:
+        path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    - type: TargetAction
+      range: 60
+    - type: WorldTargetAction
+      event: !type:ProjectileSpellEvent
+        prototype: BulletAcid
+    - type: EorgPreventAction
+
+- type: entity
+  parent: Jump
+  id: ActionXenoPounce
+  name: pounce
+  description: leap and bite at foes
+  components:
+    - type: Action
+      metabolicCost: 10
+      useDelay: 30
+      itemIconStyle: BigAction
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_xeno.rsi
+        state: xeno_leap
+    - type: WorldTargetAction
+      event: !type:JumpActionEvent
+        distance: 15
+        sound:
+          path: /Audio/_RMC/Voice/Xeno/alien_pounce.ogg
+    - type: EorgPreventAction
+
+- type: entity
+  id: ActionXenoTransfuse
+  name: transfuse
+  description: apply regenerative saliva
+  components:
+    - type: Action
+      metabolicCost: 25
+      useDelay: 15
+      raiseOnUser: true
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_xeno.rsi
+        state: xeno_heal
+      itemIconStyle: BigAction
+      sound:
+        collection: XenoDrool
+    - type: TargetAction
+      range: 2
+    - type: EntityTargetAction
+      canTargetSelf: false
+      whitelist:
+        components:
+        - MobState
+      event: !type:DamageActionEvent
+        ignoreResistances: true
+        damage:
+          groups:
+            Brute: -20
+            Burn: -20
+
+- type: entity
+  id: ActionXenoWax
+  name: secrete wax
+  description: create chitinous wax to build with
+  components:
+    - type: Action
+      metabolicCost: 25
+      useDelay: 5
+      raiseOnUser: true
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_xeno.rsi
+        state: xeno_tree
+      itemIconStyle: BigAction
+      sound:
+        collection: XenoDrool
+    - type: InstantAction
+      event: !type:SpawnItemInHandEvent
+        spawned: SheetChitin10
+        requiresFreeHand: false
