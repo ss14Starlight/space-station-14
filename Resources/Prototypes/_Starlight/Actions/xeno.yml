@@ -55,12 +55,12 @@
       metabolicCost: 10
       useDelay: 2
       raiseOnUser: true
+      sound:
+        path: /Audio/Weapons/Xeno/alien_spitacid.ogg
       icon:
         sprite: _Starlight/Interface/Actions/actions_xeno.rsi
         state: xeno_spit
       itemIconStyle: BigAction
-      sound:
-        path: /Audio/Weapons/Xeno/alien_spitacid.ogg
     - type: TargetAction
       range: 60
     - type: WorldTargetAction
@@ -91,7 +91,7 @@
 - type: entity
   id: ActionXenoTransfuse
   name: transfuse
-  description: apply regenerative saliva
+  description: apply regenerative acids
   components:
     - type: Action
       metabolicCost: 25
