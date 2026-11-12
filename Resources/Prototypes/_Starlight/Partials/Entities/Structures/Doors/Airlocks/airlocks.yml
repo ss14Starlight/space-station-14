@@ -7,8 +7,6 @@
   id: AirlockXeno
   name: chitin airlock
   components:
-  - !Remove type: Paintable
-    group: null
   - type: Construction
     graph: Airlock
     node: chitinAirlock
