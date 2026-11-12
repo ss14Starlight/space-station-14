@@ -7,8 +7,8 @@ using JetBrains.Annotations;
 namespace Content.Server._Starlight.Atmos.Reactions;
 
 /// <summary>
-///     The ignition of hydrogen in the presence of pluox at temperatures above 373.15K.
-///     Copies the tritium burn reaction almost exactly, but without the radiation pulse.
+///     The ignition of hydrogen in the presence of either oxygen and/or pluox at temperatures above 373.15K.
+///     Same maths as the upstream hydrogen-oxygen burn reaction almost exactly.
 /// </summary>
 [UsedImplicitly]
 [DataDefinition]
