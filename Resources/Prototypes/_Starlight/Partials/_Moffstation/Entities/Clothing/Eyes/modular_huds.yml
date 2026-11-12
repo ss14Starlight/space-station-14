@@ -1,4 +1,9 @@
 - type: !PartialOnly entity
+  id: HudModuleShowAccessReaderSettings
+  name: access tampering detector HUD module
+  description: A heads-up display module that detects changed access requirements on airlocks and other lockable devices, showing the current requirements or whether they have been removed.
+
+- type: !PartialOnly entity
   id: HudModuleEyeProtection
   components:
   - type: ModularHudModule
