@@ -73,3 +73,18 @@
       reagents:
       - ReagentId: MuteToxin
         Quantity: 0.2
+
+- type: entity
+  parent: [ BaseXenoborgContraband, BaseStorageItem ]
+  id: XenoborgStorageBag
+  name: Corpse storage bag
+  description: A storage bag for the belongs of the deceased.
+  components:
+    - type: Storage
+      maxItemSize: Ginormous
+      grid:
+        - 0,0,19,19
+    - type: ReadOnlyStorage
+    - type: Sprite
+      sprite: Objects/Specific/Medical/Morgue/bodybags.rsi
+      state: bag

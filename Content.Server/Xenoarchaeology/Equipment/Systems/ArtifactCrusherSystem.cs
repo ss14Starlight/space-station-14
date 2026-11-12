@@ -1,10 +1,13 @@
 using Content.Server.Stack;
 using Content.Shared.Gibbing;
+using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
+using Content.Shared.Tag;
 using Content.Shared.Whitelist;
 using Content.Shared.Xenoarchaeology.Equipment;
 using Content.Shared.Xenoarchaeology.Equipment.Components;
 using Robust.Shared.Collections;
+using Robust.Shared.Containers;
 using Robust.Shared.Random;
 #region Starlight
 using Content.Shared.Body.Components;
@@ -19,6 +22,10 @@ public sealed partial class ArtifactCrusherSystem : SharedArtifactCrusherSystem
     [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private StackSystem _stack = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private TagSystem _tagSystem = default!; //Starlight-edit
+
+    private const string XenoBorgCrusherTag = "XenoBorgCrusher";
+    private const string XenoBorgBag = "XenoborgStorageBag";
 
     // TODO: Move to shared once StackSystem spawning is in Shared and we have RandomPredicted
     public override void FinishCrushing(Entity<ArtifactCrusherComponent, EntityStorageComponent> ent)
@@ -49,10 +56,24 @@ public sealed partial class ArtifactCrusherSystem : SharedArtifactCrusherSystem
             // Starlight End: Reverted NuBody
 
             var gibs = _gibbing.Gib(contained);
+            //Starlight start - Xenoborg crushing
+            BaseContainer? bagStorage = null;
+            if (_tagSystem.HasTag(ent.Owner, XenoBorgCrusherTag))
+            {
+                var bag = SpawnInContainerOrDrop(XenoBorgBag, ent.Owner, crusher.OutputContainerName);
+                bagStorage = ContainerSystem.GetContainer(bag, StorageComponent.ContainerId);
+            }
+
             foreach (var gib in gibs)
             {
+                if (bagStorage != null
+                    && !HasComp<BrainComponent>(gib)
+                    && ContainerSystem.Insert((gib, null, null, null), bagStorage, force: true))
+                    continue;
+
                 ContainerSystem.Insert((gib, null, null, null), crusher.OutputContainer);
             }
+            //Starlight end
         }
     }
 }
