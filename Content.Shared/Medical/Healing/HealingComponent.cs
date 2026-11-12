@@ -1,6 +1,7 @@
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -70,6 +71,12 @@ public sealed partial class HealingComponent : Component
 
     [DataField]
     public List<ReagentQuantity> ReagentsToDrain = new();
+
+    [DataField]
+    public EntityWhitelist? Whitelist;
+
+    [DataField]
+    public EntityWhitelist? Blacklist;
     #endregion
 
     #region FarHorizons

@@ -110,6 +110,7 @@
     - DoorBumpOpener
     - AnomalyHost
     - NotLabelable
+    - Xeno
   - type: DamageOtherOnHit
     damage:
       types:

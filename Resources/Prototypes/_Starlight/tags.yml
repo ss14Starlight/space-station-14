@@ -882,6 +882,9 @@
   id: RawXenoMeat #BountySalvageRawXenoMeat
 
 - type: Tag
+  id: Xeno
+
+- type: Tag
   id: XenoEmotes
 
 - type: Tag

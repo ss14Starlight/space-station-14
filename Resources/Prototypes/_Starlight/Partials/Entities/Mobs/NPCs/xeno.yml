@@ -16,6 +16,9 @@
       - ReagentId: XenoBlood
         Quantity: 1300
   - type: XenoSpeechAccent
+  - type: Tag
+    tags:
+      - Xeno
 
 - type: !PartialOnly entity
   id: MobXenoLonePraetorianNoGhost
@@ -35,3 +38,6 @@
       - ReagentId: XenoBlood
         Quantity: 600
   - type: XenoSpeechAccent
+  - type: Tag
+    tags:
+      - Xeno
