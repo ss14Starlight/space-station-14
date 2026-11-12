@@ -42,14 +42,22 @@ marking-FelionoidFacialHairMane = Mane
 marking-FelionoidFacialHairNeck = Neck
 
 # Hair
+marking-FelionoidHairBubblePonytail = Bubble Ponytail 
+marking-FelionoidHairCovered = Covered 
 marking-FelionoidHairCrestedQuills = Crested Quills
-marking-FelionoidHairFlowing = Flowing
+marking-FelionoidHairFlowing = Flowing 
+marking-FelionoidHairFrontBangs = Front Bangs
 marking-FelionoidHairHawk = Hawk
 marking-FelionoidHairKeelQuills = Keel Quills
 marking-FelionoidHairKeetQuills = Keet Quills
 marking-FelionoidHairKingly = Kingly
 marking-FelionoidHairMange = Mange
+marking-FelionoidHairMatted = Matted
+marking-FelionoidHairMattedShort = Matted Short 
+marking-FelionoidHairMullet = Mullet
 marking-FelionoidHairNights = Nights
+marking-FelionoidHairPigtails = Pigtails 
+marking-FelionoidHairStraightBangs = StraightBangs
 
 # Head
 marking-FelionoidHeadTiger = Tiger Head
