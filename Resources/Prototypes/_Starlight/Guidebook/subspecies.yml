@@ -30,11 +30,6 @@
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/NeoDiona.xml"
 
 - type: guideEntry
-  id: NeoDwarf
-  name: subspecies-name-neodwarf
-  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/NeoDwarf.xml"
-
-- type: guideEntry
   id: NeoFelionoid
   name: subspecies-name-neofelionoid
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/NeoFelionoid.xml"

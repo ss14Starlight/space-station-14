@@ -385,7 +385,6 @@ guidebook-search-keywords-neoarachnid = Neo-Arachnid; Neo Arachnid; neocyte subs
 guidebook-search-keywords-neoavali = Neo-Avali; Neo Avali; neocyte subspecies; character frames
 guidebook-search-keywords-neocyclorite = Neo-Cyclorite; Neo Cyclorite; neocyte subspecies; character frames
 guidebook-search-keywords-neodiona = Neo-Diona; Neo Diona; neocyte subspecies; character frames
-guidebook-search-keywords-neodwarf = Neo-Dwarf; Neo Dwarf; neocyte subspecies; character frames
 guidebook-search-keywords-neofelionoid = Neo-Felionoid; Neo Felionoid; neocyte subspecies; character frames
 guidebook-search-keywords-neoelf = Neo-Aielithii; Neo Elf; neocyte subspecies; character frames
 guidebook-search-keywords-neohuman = Neo-Human; Neo Human; neocyte subspecies; character frames

@@ -10,7 +10,6 @@
   <GuideEntityEmbed Entity="AppearanceAvali" Caption="Avali"/>
   <GuideEntityEmbed Entity="AppearanceCyclorite" Caption="Cyclorite"/>
   <GuideEntityEmbed Entity="AppearanceDiona" Caption="Diona"/>
-  <GuideEntityEmbed Entity="AppearanceDwarf" Caption="Dwarf"/>
   </Box>
   <Box>
   <GuideEntityEmbed Entity="AppearanceDoll" Caption="Doll"/>

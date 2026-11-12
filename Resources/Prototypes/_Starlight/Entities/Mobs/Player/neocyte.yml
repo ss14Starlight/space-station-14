@@ -66,12 +66,6 @@
 
 - type: entity
   save: false
-  name: Urist McHandster the Neo-Dwarf
-  parent: BaseMobNeoDwarf
-  id: MobNeoDwarf
-
-- type: entity
-  save: false
   name: Urist McPlantster
   parent: BaseMobNeoDiona
   id: MobNeoDiona

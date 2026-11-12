@@ -272,7 +272,6 @@
     - !type:SpeciesRequirement
       species:
         - Dwarf
-        - NeoDwarf
       inverted: true
     - !type:TraitsRequirement
       traits:

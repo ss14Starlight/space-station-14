@@ -86,16 +86,6 @@
     Cellular: 1.1
     Radiation: 1.2
 
-# NeoDwarf
-- type: damageModifierSet
-  id: NeoDwarf
-  coefficients:
-    Shock: 1.25
-    Blunt: 1.1
-    Cold: 0.65
-    Heat: 1.15 # Their beards.
-    Poison: 0.85 # Alcohol-optimized organs.
-
 # NeoArachnid
 - type: damageModifierSet
   id: NeoArachnid

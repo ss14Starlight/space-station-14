@@ -13,7 +13,6 @@ subspecies-name-neoreptilian = Neo-Reptilian
 subspecies-name-neomoth = Neo-Moth
 subspecies-name-neohuman = Neo-Human
 subspecies-name-neofelionoid = Neo-Felionoid
-subspecies-name-neodwarf = Neo-Dwarf
 subspecies-name-neodiona = Neo-Diona
 subspecies-name-neocyclorite = Neo-Cyclorite
 subspecies-name-neoavali = Neo-Avali

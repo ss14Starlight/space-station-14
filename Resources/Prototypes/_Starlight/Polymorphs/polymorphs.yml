@@ -350,17 +350,6 @@
     polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
 
 - type: polymorph
-  id: CosmicLapseMobNeoDwarf
-  configuration:
-    entity: CosmicPolymorphEntDwarf
-    forced: true
-    inventory: None
-    transferName: false
-    transferDamage: true
-    duration: 12
-    polymorphSound: /Audio/_Starlight/CosmicCult/ability_lapse.ogg
-
-- type: polymorph
   id: CosmicLapseMobNeoDiona
   configuration:
     entity: CosmicPolymorphEntDiona

@@ -1,0 +1,5 @@
+# Dwarves are retired as a playable species: hidden from character creation.
+# Profiles that still use Dwarf fall back to the default species (Human) on load.
+- type: !PartialOnly species
+  id: Dwarf
+  roundStart: false

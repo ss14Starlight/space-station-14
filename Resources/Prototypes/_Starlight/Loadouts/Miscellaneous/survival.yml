@@ -12,7 +12,6 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Dwarf
-    - NeoDwarf
 
 - type: loadoutEffectGroup
   id: OxygenBreatherHaemovore

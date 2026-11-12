@@ -16,6 +16,8 @@
   profileMigration:
     oldSpecies:
     - ProtoHuman
+    - ProtoDwarf
+    - NeoDwarf
 
 - type: speciesBaseSprites
   id: MobNeoHumanSprites

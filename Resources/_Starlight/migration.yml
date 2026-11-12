@@ -200,7 +200,7 @@ MobProtoReptilian: MobNeoReptilian
 MobProtoMoth: MobNeoMoth
 MobProtoHuman: MobNeoHuman
 MobProtoFelionoid: MobNeoFelionoid
-MobProtoDwarf: MobNeoDwarf
+MobProtoDwarf: MobNeoHuman
 MobProtoDiona: MobNeoDiona
 MobProtoCyclorite: MobNeoCyclorite
 MobProtoAvali: MobNeoAvali
@@ -244,9 +244,9 @@ OrganProtoDionaStomachNymph: OrganNeoDionaStomachNymph
 OrganProtoDionaNymphStomach: OrganNeoDionaNymphStomach
 OrganProtoDionaLungsNymph: OrganNeoDionaLungsNymph
 OrganProtoDionaNymphLungs: OrganNeoDionaNymphLungs
-OrganProtoDwarfHeart: OrganNeoDwarfHeart
-OrganProtoDwarfLiver: OrganNeoDwarfLiver
-OrganProtoDwarfStomach: OrganNeoDwarfStomach
+OrganProtoDwarfHeart: OrganNeocyteHeart
+OrganProtoDwarfLiver: OrganNeocyteLiver
+OrganProtoDwarfStomach: OrganNeocyteStomach
 OrganProtoLagomorphStomach: OrganNeoLagomorphStomach
 OrganProtoLagomorphHeart: OrganNeoLagomorphHeart
 OrganProtoMothStomach: OrganNeoMothStomach
@@ -267,7 +267,7 @@ AppearanceProtoArachnid: AppearanceNeoArachnid
 AppearanceProtoAvali: AppearanceNeoAvali
 AppearanceProtoCyclorite: AppearanceNeoCyclorite
 AppearanceProtoDiona: AppearanceNeoDiona
-AppearanceProtoDwarf: AppearanceNeoDwarf
+AppearanceProtoDwarf: AppearanceNeoHuman
 AppearanceProtoElf: AppearanceNeoElf
 AppearanceProtoFelionoid: AppearanceNeoFelionoid
 AppearanceProtoHuman: AppearanceNeoHuman
@@ -510,3 +510,10 @@ PhotographYellow: null
 PhotographGreen: null
 PhotographBlue: null
 PhotographRed: null
+
+# 2026-11-12 Neo-Dwarf retired, folded into Neo-Human
+MobNeoDwarf: MobNeoHuman
+AppearanceNeoDwarf: AppearanceNeoHuman
+OrganNeoDwarfHeart: OrganNeocyteHeart
+OrganNeoDwarfLiver: OrganNeocyteLiver
+OrganNeoDwarfStomach: OrganNeocyteStomach

@@ -13,7 +13,7 @@
   id: NeocyteTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoResomi, NeoHuman, NeoMoth, NeoFelionoid, NeoDwarf, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> NeoDwarf, ProtoCyclops -> NeoCyclorite
+  speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoResomi, NeoHuman, NeoMoth, NeoFelionoid, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> ProtoCyclops -> NeoCyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: tail_protogen
@@ -22,7 +22,7 @@
   id: NeocyteTailBushy
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoResomi, NeoHuman, NeoMoth, NeoFelionoid, NeoDwarf, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> NeoDwarf, ProtoCyclops -> NeoCyclorite
+  speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoResomi, NeoHuman, NeoMoth, NeoFelionoid, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> ProtoCyclops -> NeoCyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: bushy_tail_protogen
@@ -31,7 +31,7 @@
   id: NeocyteTailShark
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoResomi, NeoHuman, NeoMoth, NeoFelionoid, NeoDwarf, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> NeoDwarf, ProtoCyclops -> NeoCyclorite
+  speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoResomi, NeoHuman, NeoMoth, NeoFelionoid, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> ProtoCyclops -> NeoCyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: shark_tail_protogen
@@ -40,7 +40,7 @@
   id: NeocyteEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoHuman, NeoMoth, NeoFelionoid, NeoDwarf, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] #resomi too smol + Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> NeoDwarf, ProtoCyclops -> NeoCyclorite
+  speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoHuman, NeoMoth, NeoFelionoid, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] #resomi too smol + Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> ProtoCyclops -> NeoCyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: ears_protogen
@@ -51,7 +51,7 @@
   id: TwoNeocyteEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoHuman, NeoMoth, NeoFelionoid, NeoDwarf, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] #resomi too smol + Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> NeoDwarf, ProtoCyclops -> NeoCyclorite
+  speciesRestriction: [Neocyte, NeoVulpkanin, NeoVox, NeoThaven, NeoKin, NeoHuman, NeoMoth, NeoFelionoid, NeoCyclorite, NeoAvali, NeoElf, NeoLagomorph] #resomi too smol + Starlight, ProtoHumie -> NeoHuman, ProtoFeline -> NeoFelionoid, ProtoDawi -> ProtoCyclops -> NeoCyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: two_ears_protogen
@@ -60,7 +60,7 @@
   id: NeocyteLights
   bodyPart: BodyCoverCover
   markingCategory: BodyCoverCover
-  speciesRestriction: [Neocyte, NeoReptilian, NeoHuman, NeoDwarf, NeoArachnid, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf, ProtoReptile -> NeoReptilian
+  speciesRestriction: [Neocyte, NeoReptilian, NeoHuman, NeoArachnid, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> ProtoReptile -> NeoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_body.rsi
     state: body
@@ -69,7 +69,7 @@
   id: NeocyteVisor
   bodyPart: FaceCover
   markingCategory: FaceCover
-  speciesRestriction: [Neocyte, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf
+  speciesRestriction: [Neocyte, NeoHuman, NeoElf] # Starlight, ProtoHumie -> NeoHuman
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
     state: visor
@@ -78,7 +78,7 @@
   id: NeocyteVisorRound
   bodyPart: FaceCover
   markingCategory: FaceCover
-  speciesRestriction: [Neocyte, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf
+  speciesRestriction: [Neocyte, NeoHuman, NeoElf] # Starlight, ProtoHumie -> NeoHuman
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
     state: rounded
@@ -87,7 +87,7 @@
   id: NeocyteLEDFace
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
-  speciesRestriction: [Neocyte, NeoReptilian, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf, ProtoReptile -> NeoReptilian
+  speciesRestriction: [Neocyte, NeoReptilian, NeoHuman, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> ProtoReptile -> NeoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
     state: face
@@ -96,7 +96,7 @@
   id: NeocyteLEDFaceNoseless
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
-  speciesRestriction: [Neocyte, NeoReptilian, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf, ProtoReptile -> NeoReptilian
+  speciesRestriction: [Neocyte, NeoReptilian, NeoHuman, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> ProtoReptile -> NeoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
     state: noseless
@@ -105,7 +105,7 @@
   id: NeocyteLEDFaceRound
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
-  speciesRestriction: [Neocyte, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf
+  speciesRestriction: [Neocyte, NeoHuman, NeoElf] # Starlight, ProtoHumie -> NeoHuman
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
     state: rounded
@@ -114,7 +114,7 @@
   id: NeocyteMediumArmor
   bodyPart: BodyCover
   markingCategory: BodyCover
-  speciesRestriction: [Neocyte, NeoReptilian, NeoHuman, NeoDwarf, NeoArachnid, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf, ProtoReptile -> NeoReptilian
+  speciesRestriction: [Neocyte, NeoReptilian, NeoHuman, NeoArachnid, NeoElf, NeoLagomorph] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> ProtoReptile -> NeoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/body_armor.rsi
     state: medium
@@ -463,7 +463,7 @@
   id: NeoReptilianLEDFaceBoxy # Starlight, ProtoReptile -> NeoReptilian
   bodyPart: FaceCoverCover
   markingCategory: FaceCoverCover
-  speciesRestriction: [NeoReptilian, NeoHuman, NeoDwarf, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> NeoDwarf, ProtoReptile -> NeoReptilian
+  speciesRestriction: [NeoReptilian, NeoHuman, NeoElf] # Starlight, ProtoHumie -> NeoHuman, ProtoDawi -> ProtoReptile -> NeoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
     state: boxy

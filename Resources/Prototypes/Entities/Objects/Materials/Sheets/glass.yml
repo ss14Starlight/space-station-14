@@ -77,7 +77,7 @@
   #FH - Start
   - type: ConditionalHealing
     healingDefinitions:
-      - allowedTags: [ IPC, Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
+      - allowedTags: [ IPC, Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
         healing:
           damageContainers:
             - IPC # Starlight
@@ -382,7 +382,7 @@
 # Starlight start
   - type: ConditionalHealing
     healingDefinitions:
-      - allowedTags: [ Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
+      - allowedTags: [ Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
         healing:
           damageContainers:
             - Hybrid
@@ -456,7 +456,7 @@
   # Starlight start
   - type: ConditionalHealing
     healingDefinitions:
-      - allowedTags: [ Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
+      - allowedTags: [ Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
         healing:
           damageContainers:
             - Hybrid
