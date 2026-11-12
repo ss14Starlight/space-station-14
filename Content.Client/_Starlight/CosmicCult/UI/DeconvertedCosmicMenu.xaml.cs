@@ -5,9 +5,9 @@ using Robust.Client.UserInterface.XAML;
 namespace Content.Client._Starlight.CosmicCult.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class CosmicDeconvertedMenu : FancyWindow
+public sealed partial class DeconvertedCosmicMenu : FancyWindow
 {
-    public CosmicDeconvertedMenu()
+    public DeconvertedCosmicMenu()
     {
         RobustXamlLoader.Load(this);
 

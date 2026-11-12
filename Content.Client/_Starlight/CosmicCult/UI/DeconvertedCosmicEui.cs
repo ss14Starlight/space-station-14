@@ -2,12 +2,12 @@ using Content.Client.Eui;
 
 namespace Content.Client._Starlight.CosmicCult.UI;
 
-public sealed class CosmicDeconvertedEui : BaseEui
+public sealed class DeconvertedCosmicEui : BaseEui
 {
-    private readonly CosmicDeconvertedMenu _menu;
+    private readonly DeconvertedCosmicMenu _menu;
 
-    public CosmicDeconvertedEui()
-        => _menu = new CosmicDeconvertedMenu();
+    public DeconvertedCosmicEui()
+        => _menu = new DeconvertedCosmicMenu();
 
     public override void Opened()
         => _menu.OpenCentered();
