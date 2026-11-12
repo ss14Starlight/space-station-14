@@ -120,6 +120,37 @@
   - Security
   - Medical
 
+- type: technology
+  id: ModularHudModulesCivilianT2Security
+  name: research-technology-modular-hud-modules-civilian-t2-security
+  icon:
+    entity: HudModuleShowCriminalRecordIcons
+  discipline: Arsenal
+  tier: 2
+  cost: 3500
+  technologyPrerequisites:
+  - ModularHudFrames
+  recipeUnlocks:
+  - HudModuleShowCriminalRecordIcons
+  - HudModuleShowMindShieldIcons
+  radioChannels:
+  - Security
+
+- type: technology
+  id: ModularHudModulesArsenalT2
+  name: research-technology-modular-hud-modules-arsenal-t2
+  icon:
+    entity: HudModuleFlashImmunity
+  discipline: Arsenal
+  tier: 2
+  cost: 4000
+  technologyPrerequisites:
+  - ModularHudFrames
+  recipeUnlocks:
+  - HudModuleFlashImmunity
+  radioChannels:
+  - Security
+
 # Tier 3
 
 - type: technology

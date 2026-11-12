@@ -1,3 +1,5 @@
+using Content.Shared._Moffstation.Clothing.ModularHud.Components;
+using Content.Shared._Moffstation.Clothing.ModularHud.Systems;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.Overlay.Events;
 using Content.Shared.Clothing.Components;
@@ -13,9 +15,11 @@ public sealed partial class FlashImmunitySystem : EntitySystem
 {
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedFlashSystem _flash = default!;
+    [Dependency] private SharedModularHudSystem _modularHud = default!;
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<TransformComponent, FlashImmunityChangedEvent>(OnModularHudFlashImmunityChanged);
 
         SubscribeLocalEvent<FlashImmunityComponent, GotEquippedEvent>(OnFlashImmunityEquipped);
         SubscribeLocalEvent<FlashImmunityComponent, GotUnequippedEvent>(OnFlashImmunityUnEquipped);
@@ -101,12 +105,37 @@ public sealed partial class FlashImmunitySystem : EntitySystem
             var slots = _inventory.GetSlotEnumerator((uid, inventoryComp), SlotFlags.WITHOUT_POCKET);
             while (slots.MoveNext(out var slot))
             {
+                if (slot.ContainedEntity is { } item && HasModularHudVisionBlockers(item))
+                    return true;
+
                 if (slot.ContainedEntity != null && TryComp(slot.ContainedEntity, out FlashImmunityComponent? wornFlashImmunityComponent))
                 {
                     if (wornFlashImmunityComponent.BlocksSpecialVision)
                         return true;
                 }
             }
+        }
+
+        return false;
+    }
+
+    private void OnModularHudFlashImmunityChanged(Entity<TransformComponent> ent, ref FlashImmunityChangedEvent args)
+    {
+        var uid = GetPossibleWearer(ent.Owner);
+        var ev = new FlashImmunityCheckEvent(uid, HasFlashImmunityVisionBlockers(uid));
+        RaiseLocalEvent(uid, ev);
+    }
+
+    private bool HasModularHudVisionBlockers(EntityUid uid)
+    {
+        if (!TryComp<ModularHudComponent>(uid, out var hud) ||
+            !_inventory.InSlotWithAnyFlags(uid, hud.ActiveSlots))
+            return false;
+
+        foreach (var module in _modularHud.GetModules((uid, hud)))
+        {
+            if (TryComp<FlashImmunityComponent>(module, out var immunity) && immunity.BlocksSpecialVision)
+                return true;
         }
 
         return false;

@@ -186,14 +186,12 @@
         children:
         - id: HudModuleShowMindShieldIcons
         - id: HudModuleShowCriminalRecordIcons
-        - id: HudModuleShowContrabandDetails
   - type: Label
     currentLabel: modularhud-premade-security
 
 - type: entity
   id: AbstractModularHudMedicalIcons
   abstract: true
-  suffix: Medical
   components:
   - type: EntityTableContainerFill
     containers:
@@ -260,7 +258,6 @@
 - type: entity
   id: AbstractModularHudEngineering
   abstract: true
-  suffix: Engineering
   components:
   - type: EntityTableContainerFill
     containers:
@@ -273,46 +270,6 @@
 ## Premade modular HUD usages
 
 - type: entity
-  parent: [ ClothingEyesModularHudSunglasses, AbstractModularHudSecurity ]
-  id: ClothingEyesGlassesSecurity
-
-- type: entity
-  parent: [ ClothingEyesModularHudSunglasses, AbstractModularHudCommand ]
-  id: ClothingEyesGlassesCommand
-
-- type: entity
-  parent: [ ClothingEyesModularHudGoggles, AbstractModularHudChemistry ]
-  id: ClothingEyesGlassesChemical
-
-- type: entity
-  parent: [ ClothingEyesModularHudVisor, AbstractModularHudDiagnostic ]
-  id: ClothingEyesHudDiagnostic
-
-- type: entity
-  parent: [ ClothingEyesModularHudVisor, AbstractModularHudMedicalIcons ]
-  id: ClothingEyesHudMedical
-
-- type: entity
-  parent: [ ClothingEyesModularHudVisor, AbstractModularHudSecurity ]
-  id: ClothingEyesHudSecurity
-
-- type: entity
-  parent: [ ClothingEyesModularHudVisor, AbstractModularHudCommand ]
-  id: ClothingEyesHudCommand
-
-- type: entity
-  parent: [ ClothingEyesModularHudPatch, AbstractModularHudMedicalIcons ]
-  id: ClothingEyesEyepatchHudMedical
-
-- type: entity
-  parent: [ ClothingEyesModularHudPatch, AbstractModularHudSecurity ]
-  id: ClothingEyesEyepatchHudSecurity
-
-- type: entity
-  parent: [ ClothingEyesModularHudPatch, AbstractModularHudDiagnostic ]
-  id: ClothingEyesEyepatchHudDiag
-
-- type: entity
   parent: [ ClothingEyesModularHudCheapSunglasses, AbstractModularHudMedicalIcons ]
   id: ClothingEyesGlassesMedSunglasses
 
@@ -321,21 +278,8 @@
   id: ClothingEyesGlassesMesonSunglasses
 
 - type: entity
-  parent: [ ClothingEyesModularHudGoggles, AbstractModularHudEngineering ]
-  id: ClothingEyesGlassesMeson
-
-- type: entity
-  parent: [ ClothingEyesModularHudCheapSunglasses, AbstractModularHudBeer ]
-  id: ClothingEyesHudBeer
-
-- type: entity
-  parent: [ ClothingEyesModularHudPatch, AbstractModularHudBeer ]
-  id: ClothingEyesEyepatchHudBeer
-
-- type: entity
   parent: [ ClothingEyesModularHudGoggles ]
   id: ClothingEyesGlassesMedChem
-  suffix: MedChem
   components:
   - type: EntityTableContainerFill
     containers:
@@ -345,35 +289,3 @@
         - id: HudModuleSolutionScanner
   - type: Label
     currentLabel: modularhud-premade-medchem
-
-- type: entity
-  parent: [ ClothingEyesModularHudVisor ]
-  id: ClothingEyesHudMedSec
-  suffix: MedSec
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      modular-hud-modules: !type:AllSelector
-        children:
-        - id: HudModuleShowMindShieldIcons
-        - id: HudModuleShowCriminalRecordIcons
-        - id: HudModuleShowContrabandDetails
-        - id: HudModuleShowMedicalIcons
-  - type: Label
-    currentLabel: modularhud-premade-medsec
-
-- type: entity
-  parent: [ ClothingEyesModularHudSunglasses ]
-  id: ClothingEyesGlassesNoir
-  suffix: Noir
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      modular-hud-modules: !type:AllSelector
-        children:
-        - id: HudModuleShowMindShieldIcons
-        - id: HudModuleShowCriminalRecordIcons
-        - id: HudModuleShowContrabandDetails
-        - id: HudModuleNoirOverlay
-  - type: Label
-    currentLabel: modularhud-premade-noir

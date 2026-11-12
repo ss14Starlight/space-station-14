@@ -4,7 +4,7 @@ using Content.Shared.Inventory;
 
 namespace Content.Shared.Eye.Blinding.Systems;
 
-public sealed class BlurryVisionSystem : EntitySystem
+public sealed partial class BlurryVisionSystem : EntitySystem
 {
     public override void Initialize()
     {
@@ -18,6 +18,7 @@ public sealed class BlurryVisionSystem : EntitySystem
     // Moffstation - Begin - Modular HUDs need this to be base + relayed
     private void OnGetBlur(Entity<VisionCorrectionComponent> glasses, ref GetBlurEvent args)
     {
+        args.HasVisionCorrection = true; // Starlight
         args.Blur += glasses.Comp.VisionBonus;
         args.CorrectionPower *= glasses.Comp.CorrectionPower;
     }
@@ -47,12 +48,12 @@ public sealed class BlurryVisionSystem : EntitySystem
 
     private void OnGlassesEquipped(Entity<VisionCorrectionComponent> glasses, ref GotEquippedEvent args)
     {
-        UpdateBlurMagnitude(args.EquipTarget, true); // starlight change: glasses param
+        UpdateBlurMagnitude(args.EquipTarget);
     }
 
     private void OnGlassesUnequipped(Entity<VisionCorrectionComponent> glasses, ref GotUnequippedEvent args)
     {
-        UpdateBlurMagnitude(args.EquipTarget, false); // starlight change: glasses param
+        UpdateBlurMagnitude(args.EquipTarget);
     }
 }
 
@@ -61,6 +62,7 @@ public sealed class GetBlurEvent : EntityEventArgs, IInventoryRelayEvent
     public readonly float BaseBlur;
     public float Blur;
     public float CorrectionPower = BlurryVisionComponent.DefaultCorrectionPower;
+    public bool HasVisionCorrection; // Starlight
 
     public GetBlurEvent(float blur)
     {

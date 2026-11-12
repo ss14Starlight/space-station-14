@@ -1,0 +1,6 @@
+- type: !PartialOnly roleLoadout
+  id: JobRadioHost
+  groups:
+  - !Index:6 Glasses
+  - !Remove RadioHostGlasses
+  - TiesGroup

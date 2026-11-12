@@ -96,27 +96,6 @@
 
 - type: entity
   parent: ModularHudModuleBase
-  id: HudModuleShowContrabandDetails
-  name: contraband HUD module
-  description: A heads-up display module which uses advanced pattern-recognition to identify and categorize contraband.
-  components:
-  - type: Sprite
-    layers:
-    - state: base
-      color: White
-    - state: stripe
-      color: &slateblue "#4675C0"
-    - state: contacts
-    - state: sec_label
-  - type: ModularHudModule
-    visuals:
-      Lens:
-        color: Red
-        priority: 40
-  - type: ShowContrabandDetails
-
-- type: entity
-  parent: ModularHudModuleBase
   id: HudModuleSolutionScanner
   name: chemical analysis HUD module
   description: A heads-up display module which allows scanning the chemical composition of a solution.
@@ -126,7 +105,7 @@
     - state: base
       color: White
     - state: stripe
-      color: *slateblue
+      color: &slateblue "#4675C0"
     - state: contacts
     - state: medsci_label
   - type: ModularHudModule

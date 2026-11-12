@@ -25,13 +25,13 @@
 
 - type: latheRecipe
   parent: BaseModularHudModuleT1Recipe
-  id: HudModuleShowAccessReaderSettings
-  result: HudModuleShowAccessReaderSettings
+  id: HudModuleShowInorganicHealthBars
+  result: HudModuleShowInorganicHealthBars
 
 - type: latheRecipe
   parent: BaseModularHudModuleT1Recipe
-  id: HudModuleShowContrabandDetails
-  result: HudModuleShowContrabandDetails
+  id: HudModuleShowAccessReaderSettings
+  result: HudModuleShowAccessReaderSettings
 
 - type: latheRecipe
   parent: BaseModularHudModuleT1Recipe

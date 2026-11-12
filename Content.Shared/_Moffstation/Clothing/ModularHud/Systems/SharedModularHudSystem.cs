@@ -1,12 +1,10 @@
 using System.Linq;
-using Content.Shared._Blimpuf.Contraband;
 using Content.Shared._Moffstation.Clothing.ModularHud.Components;
 using Content.Shared._Moffstation.Extensions;
 using Content.Shared.Access.Systems;
 using Content.Shared.Chemistry;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Flash;
 using Content.Shared.Foldable;
@@ -93,7 +91,6 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         SubscribeLocalEvent<ModularHudComponent, GetVerbsEvent<InteractionVerb>>(OnGetInteractionVerbs);
 
         // Relays for module events.
-        SubscribeRelaysForEffectEvents<GetContrabandDetailsEvent>();
         SubscribeRelaysForEffectEvents<SolutionScanEvent>();
         SubscribeRelaysForEffectEvents<ShowAccessReaderSettingsEvent>();
         SubscribeRelaysForEffectEvents<GetEyeProtectionEvent>();
@@ -392,7 +389,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     {
         if ((equippee ?? GetWearer(entity)) is { } e)
         {
-            _blurryVision.UpdateBlurMagnitude(e, CompOrNull<BlindableComponent>(equippee)?.IsWearingGlasses ?? false); // Starlight
+            _blurryVision.UpdateBlurMagnitude(e);
             var flashEv = new FlashImmunityChangedEvent(_flash.IsFlashImmune(e));
             RaiseLocalEvent(e, ref flashEv);
         }

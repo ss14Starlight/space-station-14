@@ -1,0 +1,25 @@
+- type: !PartialOnly latheRecipePack
+  id: ModularHudModules
+  recipes: !Clear
+  - HudModuleEyeProtection
+  - HudModuleShowAccessReaderSettings
+  - HudModuleShowInorganicHealthBars
+
+- type: !PartialOnly latheRecipePack
+  id: SecurityModularHudFrames
+  recipes:
+  - ClothingEyesModularHudVisor
+
+- type: !PartialOnly latheRecipePack
+  id: SecurityModularHudModules
+  recipes: !Clear
+  - HudModuleFlashImmunity
+  - HudModuleNoirOverlay
+  - HudModuleShowCriminalRecordIcons
+  - HudModuleShowMindShieldIcons
+
+- type: !PartialOnly latheRecipePack
+  id: MedicalModularHudModules
+  recipes: !Clear
+  - HudModuleShowMedicalIcons
+  - HudModuleSolutionScanner

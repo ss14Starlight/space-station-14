@@ -26,9 +26,8 @@
   - type: ShowHealthIcons
 
 - type: entity
-  parent: ClothingEyesHudBase
-  id: ClothingEyesHudDiagnosticUpstream # Moffstation - Replaced by modular HUDs
-  categories: [ HideSpawnMenu ] # Moffstation - Replaced by modular HUDs
+  parent: [ClothingEyesModularHudVisor]
+  id: ClothingEyesHudDiagnostic
   name: diagnostic hud
   description: A heads-up display capable of analyzing the integrity and status of robotics and exosuits. Made out of see-borg-ium.
   components:
@@ -43,9 +42,8 @@
   - type: ShowAccessReaderSettings
 
 - type: entity
-  parent: [ClothingEyesHudBase, ShowMedicalIcons]
-  id: ClothingEyesHudMedicalUpstream # Moffstation - Replaced by modular HUDs
-  categories: [ HideSpawnMenu ] # Moffstation - Replaced by modular HUDs
+  parent: [ClothingEyesModularHudVisor]
+  id: ClothingEyesHudMedical
   name: medical hud
   description: A heads-up display that scans the humanoids in view and provides accurate data about their health status.
   components:
@@ -60,9 +58,8 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingEyesHudBase, ShowSecurityIcons, BaseSecurityContraband]
-  id: ClothingEyesHudSecurityUpstream # Moffstation - Replaced by modular HUDs
-  categories: [ HideSpawnMenu ] # Moffstation - Replaced by modular HUDs
+  parent: [ClothingEyesModularHudVisor, BaseSecurityContraband]
+  id: ClothingEyesHudSecurity
   name: security hud
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records.
   components:
@@ -77,9 +74,8 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingEyesHudBase, BaseCommandContraband]
-  id: ClothingEyesHudCommandUpstream # Moffstation - Replaced by modular HUDs
-  categories: [ HideSpawnMenu ] # Moffstation - Replaced by modular HUDs
+  parent: [ClothingEyesModularHudVisor, BaseCommandContraband]
+  id: ClothingEyesHudCommand
   name: administration hud
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status.
   components:
@@ -95,9 +91,8 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingEyesHudBase
-  id: ClothingEyesHudBeerUpstream # Moffstation - Replaced by modular HUDs
-  categories: [ HideSpawnMenu ] # Moffstation - Replaced by modular HUDs
+  parent: [ClothingEyesModularHudSunglasses]
+  id: ClothingEyesHudBeer
   name: beer goggles
   description: A pair of sunHud outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion.
   components:
@@ -178,9 +173,8 @@
   - type: ShowThirstIcons
 
 - type: entity
-  parent: [ ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityContraband, BaseCommandContraband ] # Starlight
-  id: ClothingEyesHudMedSecUpstream # Moffstation - Replaced by modular HUDs
-  categories: [ HideSpawnMenu ] # Moffstation - Replaced by modular HUDs
+  parent: [ClothingEyesModularHudVisor, BaseSecurityContraband, BaseCommandContraband]
+  id: ClothingEyesHudMedSec
   name: medsec hud
   description: An eye display that looks like a mixture of medical and security huds.
   components:
@@ -188,11 +182,9 @@
     sprite: Clothing/Eyes/Hud/medsec.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/medsec.rsi
-  # Moffstation - Begin - Not constructiblr in favor of modular HUDs
-#  - type: Construction
-#    graph: HudMedSec
-#    node: medsecHud
-  # Moffstation - End
+  - type: Construction
+    graph: HudMedSec
+    node: medsecHud
 
 - type: entity
   parent: [ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons]
@@ -270,11 +262,8 @@
   #  stealGroup: ClothingEyesHuds # Starlight end
 
 - type: entity
-  # Moffstation - Begin - Replaced by modular HUDs
-  parent: [ClothingEyesHudMedicalUpstream, ClothingHeadEyeBaseFlippable]
-  id: ClothingEyesEyepatchHudMedicalUpstream
-  categories: [ HideSpawnMenu ]
-  # Moffstation - End
+  parent: [ClothingEyesModularHudPatch]
+  id: ClothingEyesEyepatchHudMedical
   name: medical hud eyepatch
   description: A heads-up display that scans the humanoids in view and provides accurate data about their health status. For true patriots.
   components:
@@ -289,18 +278,13 @@
     - HudMedical
 
 - type: entity
-  # Moffstation - Begin - Replaced by modular HUDs
-  parent: [ClothingEyesEyepatchHudMedicalUpstream, ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchHudMedicalFlippedUpstream
-  categories: [ HideSpawnMenu ]
-  # Moffstation - End
+  parent: [ClothingEyesModularHudPatch]
+  id: ClothingEyesEyepatchHudMedicalFlipped
   name: medical hud eyepatch
 
 - type: entity
-  # Moffstation - Begin - Replaced by modular HUDs
-  parent: [ClothingEyesHudSecurityUpstream, ClothingHeadEyeBaseFlippable]
-  id: ClothingEyesEyepatchHudSecurityUpstream
-  # Moffstation - End
+  parent: [ClothingEyesModularHudPatch]
+  id: ClothingEyesEyepatchHudSecurity
   name: security hud eyepatch
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records. For true patriots.
   components:
@@ -315,19 +299,13 @@
     - HudSecurity
 
 - type: entity
-  # Moffstation - Begin - Replaced by modular HUDs
-  parent: [ClothingEyesEyepatchHudSecurityUpstream,  ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchHudSecurityFlippedUpstream
-  categories: [ HideSpawnMenu ]
-  # Moffstation - End
+  parent: [ClothingEyesModularHudPatch]
+  id: ClothingEyesEyepatchHudSecurityFlipped
   name: security hud eyepatch
 
 - type: entity
-  # Moffstation - Begin - Replaced by modular HUDs
-  parent: [ClothingEyesHudBeerUpstream, ClothingHeadEyeBaseFlippable]
-  id: ClothingEyesEyepatchHudBeerUpstream
-  categories: [ HideSpawnMenu ]
-  # Moffstation - End
+  parent: [ClothingEyesModularHudPatch]
+  id: ClothingEyesEyepatchHudBeer
   name: beer hud eyepatch
   description: A pair of sunHud outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion. For true patriots.
   components:
@@ -344,19 +322,13 @@
     - WhitelistChameleon
 
 - type: entity
-  # Moffstation - Begin - Replaced by modular HUDs
-  parent: [ClothingEyesEyepatchHudBeerUpstream, ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchHudBeerFlippedUpstream
-  categories: [ HideSpawnMenu ]
-  # Moffstation - End
+  parent: [ClothingEyesModularHudPatch]
+  id: ClothingEyesEyepatchHudBeerFlipped
   name: beer hud eyepatch
 
 - type: entity
-  # Moffstation - Begin - Replaced by modular HUDs
-  parent: [ClothingEyesHudDiagnosticUpstream, ClothingHeadEyeBaseFlippable]
-  id: ClothingEyesEyepatchHudDiagUpstream # Moffstation - Replaced by modular HUDs
-  categories: [ HideSpawnMenu ]
-  # Moffstation - End
+  parent: [ClothingEyesModularHudPatch]
+  id: ClothingEyesEyepatchHudDiag
   name: diagnostic hud eyepatch
   description: A heads-up display capable of analyzing the integrity and status of robotics and exosuits. Made out of see-borg-ium.
   components:
@@ -366,9 +338,6 @@
     sprite: Clothing/Eyes/Hud/diagpatch.rsi
 
 - type: entity
-  # Moffstation - Begin - Replaced by modular HUDs
-  parent: [ClothingEyesEyepatchHudDiagUpstream, ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchHudDiagFlippedUpstream
-  categories: [ HideSpawnMenu ]
-  # Moffstation - End
+  parent: [ClothingEyesModularHudPatch]
+  id: ClothingEyesEyepatchHudDiagFlipped
   name: diagnostic hud eyepatch

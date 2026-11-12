@@ -109,6 +109,7 @@
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
   - type: MaterialStorage
     whitelist: &StandardMaterialWhitelist
       tags:
@@ -166,11 +167,14 @@
     - EngineeringWeapons
     - Equipment
     - StarlightEngineeringBoards
+    - ModularHudModules
+    - EngineeringModularHudFrames
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: StealTarget
@@ -220,11 +224,13 @@
     - Janitor
     - Instruments
     - WirelessCameraHandheld
+    - ServiceModularHudModules
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -285,6 +291,7 @@
     - StarlightScienceWeapons
     - WirelessCameraHandheld
     - StarlightExperimentalwelderOnly
+    - ScienceModularHudFrames
   - type: EmagLatheRecipes
     emagDynamicPacks:
     # They can keep the "best thing to emag" trait
@@ -298,10 +305,16 @@
     - StarlightSecurityEquipment
     - StarlightSecurityWeapons
     - StarlightDefenseStatic
+    - ModularHudModules
+    - ServiceModularHudModules
+    - SecurityModularHudModules
+    - CommandModularHudModules
+    - MedicalModularHudModules
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: StealTarget
@@ -347,12 +360,15 @@
     - StarlightProtolatheLootable
     - Instruments
     - WirelessCameraHandheld
+    - CommandModularHudModules
+    - CommandModularHudFrames
   - type: EmagLatheRecipes
     emagStaticPacks:
     # If you somehow manage to emag it, cool, I guess
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: StealTarget
@@ -465,6 +481,7 @@
     - StarlightSecurityAmmoEmagStatic
     - StarlightSecurityGrenadesEmag
     - SyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -650,6 +667,7 @@
         - StarlightSecurityAmmoStatic
         - StarlightSyndicateAmmoStatic
         - SyndicateAmmoStatic
+        - PrescriptionHudModuleStatic
     - type: BlueprintReceiver
       whitelist:
         tags:

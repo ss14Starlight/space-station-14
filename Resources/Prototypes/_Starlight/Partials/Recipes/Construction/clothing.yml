@@ -1,0 +1,7 @@
+- type: !PartialOnly construction
+  id: ClothingEyesHudMedSec
+  hide: true
+
+- type: !PartialOnly construction
+  id: ClothingEyesGlassesSecurity
+  hide: true
