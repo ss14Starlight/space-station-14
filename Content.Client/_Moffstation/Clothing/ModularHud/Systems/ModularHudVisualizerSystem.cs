@@ -19,6 +19,7 @@ public sealed partial class ModularHudVisualizerSystem : VisualizerSystem<Modula
 {
     [Dependency] private SharedItemSystem _item = default!;
     [Dependency] private IReflectionManager _reflect = default!;
+    [Dependency] private InventorySystem _inventory = default!; // Starlight
 
     public override void Initialize()
     {
@@ -116,8 +117,8 @@ public sealed partial class ModularHudVisualizerSystem : VisualizerSystem<Modula
     {
         // No layers if the clothing isn't in an "equipped" slot.
         if (!TryComp<ClothingComponent>(entity, out var clothing) ||
-            clothing.InSlotFlag is not { } slotFlag ||
-            !clothing.Slots.HasFlag(slotFlag))
+            !_inventory.TryGetSlot(args.Equipee, args.Slot, out var slot) || // Starlight
+            !clothing.Slots.HasFlag(slot.SlotFlags)) // Starlight
         {
             return;
         }
