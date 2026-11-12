@@ -130,22 +130,6 @@
 
 - type: entity
   parent: TransitTubeBase
-  id: TransitTubeTurn
-  name: transit tube turn
-  description: A tight right-angle turn.
-  components:
-  - type: Sprite
-    layers:
-    - state: turn
-      map: [ "glass" ]
-    - state: turn_details
-  - type: DisposalTube
-    exits:
-    - South
-    - East
-
-- type: entity
-  parent: TransitTubeBase
   id: TransitTubeSwitchJunction
   name: transit tube switch
   description: A junction whose arrow can be switched left or right with a signal. Pods coming from either branch merge back into the trunk.
@@ -528,3 +512,125 @@
     - NorthWest
   - type: TransitTube
     preferredExit: NorthWest
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeGate
+  name: transit tube gate
+  description: Stops pods in front of it while it is closed, and lets them go when it opens. Opened and closed with a signal.
+  components:
+  - type: Sprite
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: gate
+    - state: gate_open
+      map: [ "gate" ]
+      shader: unshaded
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+  - type: TransitTubeGate
+  - type: TransitTubeToggle # on is closed
+    enabled: false
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: ExtensionCableReceiver
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TransitTubeToggleVisuals.Enabled:
+        gate:
+          True: { state: gate_closed }
+          False: { state: gate_open }
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeBuffer
+  name: transit tube buffer stop
+  description: A padded end of the line. Pods going too fast are slowed to their normal speed here and turn back unharmed.
+  components:
+  - type: Sprite
+    layers:
+    - state: cap
+      map: [ "glass" ]
+    - state: cap_details
+    - state: buffer
+  - type: DisposalTube
+    exits:
+    - South
+  - type: TransitTubeSpeed
+    direction: North
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeUnloader
+  name: transit tube unloader
+  description: Empties cargo pods passing through onto the floor at its hatch. Can be switched on and off with a signal.
+  components:
+  - type: Sprite
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: unloader
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+  - type: TransitTubeUnloader
+  - type: TransitTubeToggle
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+
+- type: entity
+  parent: TransitTubeBase
+  id: TransitTubeLoader
+  name: transit tube loader
+  description: Loads cargo pods passing through with the items and crates lying at its hatch. Can be switched on and off with a signal.
+  components:
+  - type: Sprite
+    layers:
+    - state: straight
+      map: [ "glass" ]
+    - state: loader
+  - type: DisposalTube
+    exits:
+    - South
+    - North
+  - type: TransitTubeLoader
+  - type: TransitTubeToggle
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200

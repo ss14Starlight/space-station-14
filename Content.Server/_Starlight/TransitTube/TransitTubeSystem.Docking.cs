@@ -30,6 +30,7 @@ public sealed partial class TransitTubeSystem
         _appearance.SetData(station, TransitStationVisuals.StopRequested, false);
         station.Comp.DockedPod = pod;
         Dirty(station);
+        RefreshPodDestinations(pod);
 
         if (instant)
         {
@@ -48,9 +49,13 @@ public sealed partial class TransitTubeSystem
         pod.Comp.NextDeparture = _timing.CurTime + station.Comp.DepartDelay;
         SetStationVisual(station, TransitStationVisualState.Open);
 
+        var text = GetDestinationName(station) is { } name
+            ? Loc.GetString("transit-pod-arrived-at", ("station", name))
+            : Loc.GetString("transit-pod-arrived");
+
         foreach (var passenger in GetPassengers(pod))
         {
-            _popup.PopupEntity(Loc.GetString("transit-pod-arrived"), passenger, passenger);
+            _popup.PopupEntity(text, passenger, passenger);
         }
     }
 
@@ -164,7 +169,7 @@ public sealed partial class TransitTubeSystem
         ReleaseReservation(pod);
 
         // Nothing holds the pod up any more: everyone falls out.
-        if (!TryGetTube(Transform(pod), out _))
+        if (!TryGetTube(Transform(pod), out _, holder))
             EjectAll(pod, Transform(pod).Coordinates);
     }
 

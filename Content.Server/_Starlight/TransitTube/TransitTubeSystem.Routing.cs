@@ -1,6 +1,8 @@
+using System.Linq;
 using Content.Shared._Starlight.TransitTube;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Disposal.Tube;
+using Content.Shared.Disposal.Unit;
 using Content.Shared.Labels.Components;
 using Content.Shared.Verbs;
 
@@ -55,6 +57,29 @@ public sealed partial class TransitTubeSystem
         pod.Comp.Plan.Clear();
         ReleaseReservation(pod);
         Dirty(pod);
+        RefreshPodDestinations(pod);
+    }
+
+    private bool TryGetRouteStart(Entity<TransitPodComponent> pod, out EntityUid origin, out (EntityUid Tube, Direction Travel)? start)
+    {
+        start = null;
+        origin = default;
+
+        if (pod.Comp.Station is { } station)
+        {
+            origin = station;
+            return true;
+        }
+
+        if (!TryComp<DisposalHolderComponent>(pod, out var holder)
+            || holder.CurrentTube is not { } current
+            || holder.NextTube is not { } next
+            || holder.CurrentDirection == Direction.Invalid)
+            return false;
+
+        origin = current;
+        start = (next, holder.CurrentDirection);
+        return true;
     }
 
     private bool IsFreeStation(EntityUid uid, EntityUid pod)
@@ -68,7 +93,11 @@ public sealed partial class TransitTubeSystem
     /// </summary>
     /// <param name="pod">Gets the found route as its plan. Null only checks that there is one.</param>
     /// <param name="length">How many tubes the found route runs through.</param>
-    private bool TryFindRoute(EntityUid origin, Entity<TransitPodComponent>? pod, Func<EntityUid, bool> isGoal, out EntityUid goal, out int length)
+    /// <param name="start">For a pod on the move: the tube it is heading into and its direction of travel.
+    /// The search then only goes on from there, the way the pod already goes. Null searches every way out of
+    /// <paramref name="origin"/>, like a pod leaving a station.</param>
+    private bool TryFindRoute(EntityUid origin, Entity<TransitPodComponent>? pod, Func<EntityUid, bool> isGoal, out EntityUid goal, out int length,
+        (EntityUid Tube, Direction Travel)? start = null)
     {
         goal = default;
         length = 0;
@@ -78,13 +107,21 @@ public sealed partial class TransitTubeSystem
         if (!TryComp<DisposalTubeComponent>(origin, out var originTube))
             return false;
 
-        foreach (var exit in _disposalTube.GetTubeConnectableDirections((origin, originTube)))
+        if (start is { } moving)
         {
-            if (_disposalTube.GetTubeInDirection((origin, originTube), exit) is not { } next)
-                continue;
+            _cameFrom[moving] = (origin, Direction.Invalid, moving.Travel);
+            _frontier.Enqueue(moving);
+        }
+        else
+        {
+            foreach (var exit in _disposalTube.GetTubeConnectableDirections((origin, originTube)))
+            {
+                if (_disposalTube.GetTubeInDirection((origin, originTube), exit) is not { } next)
+                    continue;
 
-            if (_cameFrom.TryAdd((next, exit), (origin, Direction.Invalid, exit)))
-                _frontier.Enqueue((next, exit));
+                if (_cameFrom.TryAdd((next, exit), (origin, Direction.Invalid, exit)))
+                    _frontier.Enqueue((next, exit));
+            }
         }
 
         var searched = 0;
@@ -207,6 +244,12 @@ public sealed partial class TransitTubeSystem
         if (station.Comp.DockedPod != null || station.Comp.Depot)
             return false;
 
+        if (!_access.IsAllowed(user, station))
+        {
+            _popup.PopupEntity(Loc.GetString("transit-station-access-denied"), station, user);
+            return true;
+        }
+
         // A pod is already on its way here: don't drain the depots calling more.
         if (station.Comp.ReservedBy is { } reserved
             && TryComp<TransitPodComponent>(reserved, out var coming)
@@ -274,14 +317,13 @@ public sealed partial class TransitTubeSystem
         _ui.OpenUi(station.Owner, TransitStationUiKey.Key, user);
     }
 
-    private void UpdateDestinations(Entity<TransitTubeStationComponent> station)
+    private List<TransitDestinationEntry> CollectDestinations(EntityUid origin, (EntityUid Tube, Direction Travel)? start)
     {
-        // One search over the whole line, picking up every named station on the way.
         var destinations = new List<TransitDestinationEntry>();
         var found = new HashSet<EntityUid>();
-        TryFindRoute(station, null, uid =>
+        TryFindRoute(origin, null, uid =>
         {
-            if (uid != station.Owner
+            if (uid != origin
                 && TryComp<TransitTubeStationComponent>(uid, out var other)
                 && !other.Depot
                 && GetDestinationName((uid, other)) is { } name
@@ -289,9 +331,15 @@ public sealed partial class TransitTubeSystem
                 destinations.Add(new TransitDestinationEntry(GetNetEntity(uid), name));
 
             return false;
-        }, out _, out _);
+        }, out _, out _, start);
 
         destinations.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase));
+        return destinations;
+    }
+
+    private void UpdateDestinations(Entity<TransitTubeStationComponent> station)
+    {
+        var destinations = CollectDestinations(station, null);
 
         TransitPodComponent? pod = null;
         if (station.Comp.DockedPod is { } podUid)
@@ -316,41 +364,157 @@ public sealed partial class TransitTubeSystem
     [SubscribeLocalEvent]
     private void OnSelectDestination(Entity<TransitTubeStationComponent> ent, ref TransitStationSelectDestinationMessage args)
     {
-        if (!_access.IsAllowed(args.Actor, ent))
+        SelectAtStation(ent, args.Actor, args.Destination, args.AnyFree);
+        UpdateDestinations(ent);
+    }
+
+    private void SelectAtStation(Entity<TransitTubeStationComponent> station, EntityUid actor, NetEntity? destination, bool anyFree)
+    {
+        if (!_access.IsAllowed(actor, station))
         {
-            _popup.PopupEntity(Loc.GetString("transit-station-access-denied"), ent, args.Actor);
-            UpdateDestinations(ent);
+            _popup.PopupEntity(Loc.GetString("transit-station-access-denied"), station, actor);
             return;
         }
 
-        if (ent.Comp.DockedPod is not { } podUid
+        if (station.Comp.DockedPod is not { } podUid
             || !TryComp<TransitPodComponent>(podUid, out var pod)
             || pod.State != TransitPodState.Open)
         {
-            _popup.PopupEntity(Loc.GetString("transit-pod-not-ready"), ent, args.Actor);
-            UpdateDestinations(ent);
+            _popup.PopupEntity(Loc.GetString("transit-pod-not-ready"), station, actor);
             return;
         }
 
-        var target = GetEntity(args.Destination);
+        var target = GetEntity(destination);
         if (target != null && !HasComp<TransitTubeStationComponent>(target))
+            return;
+
+        Entity<TransitPodComponent> podEnt = (podUid, pod);
+        ReleaseReservation(podEnt);
+        pod.Target = target;
+        pod.AnyFree = target == null && anyFree;
+        pod.Plan.Clear();
+        Dirty(podEnt);
+
+        PopupDestination(podEnt, actor);
+        RefreshPodDestinations(podEnt);
+    }
+
+    private void PopupDestination(Entity<TransitPodComponent> pod, EntityUid actor)
+    {
+        var text = pod.Comp.Target is { } targetUid && TryComp<TransitTubeStationComponent>(targetUid, out var targetStation)
+            ? Loc.GetString("transit-pod-destination-set", ("destination", GetDestinationName((targetUid, targetStation)) ?? string.Empty))
+            : Loc.GetString(pod.Comp.AnyFree ? "transit-pod-destination-any" : "transit-pod-destination-cleared");
+
+        _popup.PopupEntity(text, actor, actor);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnPodVerbs(Entity<TransitPodComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    {
+        // Passengers pick where to go from inside, docked or on the way.
+        if (ent.Comp.Cargo || !IsPassenger(ent, args.User))
+            return;
+
+        var user = args.User;
+        args.Verbs.Add(new AlternativeVerb
         {
-            UpdateDestinations(ent);
+            Text = Loc.GetString("transit-station-verb-destination"),
+            Act = () => OpenPodDestinations(ent, user),
+        });
+    }
+
+    private bool IsPassenger(Entity<TransitPodComponent> pod, EntityUid uid)
+        => GetPassengers(pod).Contains(uid);
+
+    private bool OpenPodDestinations(Entity<TransitPodComponent> pod, EntityUid user)
+    {
+        if (UpdatePodDestinations(pod) == 0)
+        {
+            _popup.PopupEntity(Loc.GetString("transit-station-ui-empty"), user, user);
+            return false;
+        }
+
+        _ui.OpenUi(pod.Owner, TransitPodUiKey.Key, user);
+        return true;
+    }
+
+    /// <returns>How many destinations the pod can pick from.</returns>
+    private int UpdatePodDestinations(Entity<TransitPodComponent> pod)
+    {
+        var destinations = TryGetRouteStart(pod, out var origin, out var start)
+            ? CollectDestinations(origin, start)
+            : [];
+
+        var state = new TransitStationBoundUserInterfaceState(destinations, GetNetEntity(pod.Comp.Target), pod.Comp.AnyFree);
+        _ui.SetUiState(pod.Owner, TransitPodUiKey.Key, state);
+        return destinations.Count;
+    }
+
+    private void RefreshPodDestinations(Entity<TransitPodComponent> pod)
+    {
+        if (_ui.IsUiOpen(pod.Owner, TransitPodUiKey.Key))
+            UpdatePodDestinations(pod);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnPodSelectDestination(Entity<TransitPodComponent> ent, ref TransitStationSelectDestinationMessage args)
+    {
+        if (!IsPassenger(ent, args.Actor))
+            return;
+
+        if (ent.Comp.Station is { } stationUid && TryComp<TransitTubeStationComponent>(stationUid, out var station))
+            SelectAtStation((stationUid, station), args.Actor, args.Destination, args.AnyFree);
+        else
+            SelectOnTheWay(ent, args.Actor, GetEntity(args.Destination), args.AnyFree);
+
+        UpdatePodDestinations(ent);
+    }
+
+    private void SelectOnTheWay(Entity<TransitPodComponent> pod, EntityUid actor, EntityUid? target, bool anyFree)
+    {
+        if (target != null && !HasComp<TransitTubeStationComponent>(target)
+            || pod.Comp.State != TransitPodState.Moving
+            || !TryGetRouteStart(pod, out var origin, out var start))
+        {
+            _popup.PopupEntity(Loc.GetString("transit-pod-not-ready"), actor, actor);
             return;
         }
 
-        ReleaseReservation((podUid, pod));
-        pod.Target = target;
-        pod.AnyFree = target == null && args.AnyFree;
-        pod.Plan.Clear();
-        Dirty(podUid, pod);
+        // Check there is a way before giving up the old trip.
+        if (target is { } goal && !TryFindRoute(origin, null, uid => uid == goal, out _, out _, start))
+        {
+            _popup.PopupEntity(Loc.GetString("transit-pod-no-route"), actor, actor);
+            return;
+        }
 
-        var text = target is { } targetUid && TryComp<TransitTubeStationComponent>(targetUid, out var targetStation)
-            ? Loc.GetString("transit-pod-destination-set", ("destination", GetDestinationName((targetUid, targetStation)) ?? string.Empty))
-            : Loc.GetString(pod.AnyFree ? "transit-pod-destination-any" : "transit-pod-destination-cleared");
+        ReleaseReservation(pod);
+        pod.Comp.Plan.Clear();
+        pod.Comp.Target = null;
+        pod.Comp.AnyFree = false;
 
-        _popup.PopupEntity(text, ent, args.Actor);
-        UpdateDestinations(ent);
+        // Going somewhere now, so the pod no longer means to stop at the next station.
+        pod.Comp.StopRequested = false;
+
+        if (target is { } chosen)
+        {
+            TryFindRoute(origin, pod, uid => uid == chosen, out _, out _, start);
+            pod.Comp.Target = chosen;
+        }
+        else if (anyFree)
+        {
+            // Head for the nearest free station, or look again at the next stop.
+            if (TryFindRoute(origin, pod, uid => IsFreeStation(uid, pod), out var free, out _, start)
+                && TryComp<TransitTubeStationComponent>(free, out var freeStation))
+            {
+                pod.Comp.Target = free;
+                Reserve((free, freeStation), pod);
+            }
+
+            pod.Comp.AnyFree = true;
+        }
+
+        Dirty(pod);
+        PopupDestination(pod, actor);
     }
 
     #endregion

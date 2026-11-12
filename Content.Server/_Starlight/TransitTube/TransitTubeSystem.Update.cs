@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared._Starlight.TransitTube;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Damage;
 using Content.Shared.Disposal.Unit;
 using Content.Shared.Popups;
@@ -16,6 +17,8 @@ public sealed partial class TransitTubeSystem
         base.Update(frameTime);
 
         var now = _timing.CurTime;
+        UpdateSupport(now);
+
         var query = EntityQueryEnumerator<TransitPodComponent, DisposalHolderComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var pod, out var holder, out var xform))
         {
@@ -60,7 +63,7 @@ public sealed partial class TransitTubeSystem
     private void CheckSupport(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder, TransformComponent xform)
     {
         var current = holder.Comp.CurrentTube;
-        if (TryGetTube(xform, out _) && (current == null || Exists(current)))
+        if (TryGetTube(xform, out _, holder) && (current == null || Exists(current)))
             return;
 
         if (current == null && !GetPassengers(pod).Any())
@@ -172,7 +175,7 @@ public sealed partial class TransitTubeSystem
             _pathTubes.Add(current);
         if (holder.NextTube is { } next)
             _pathTubes.Add(next);
-        if (TryGetTube(xform, out var under))
+        if (TryGetTube(xform, out var under, holder))
             _pathTubes.Add(under);
 
         if (TryComp<DisposalHolderComponent>(other, out var otherHolder))
@@ -182,7 +185,7 @@ public sealed partial class TransitTubeSystem
                 return true;
         }
 
-        return TryGetTube(Transform(other), out var otherUnder) && _pathTubes.Contains(otherUnder);
+        return TryGetTube(Transform(other), out var otherUnder, otherHolder) && _pathTubes.Contains(otherUnder);
     }
 
     private void Crash(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder, TimeSpan now, float multiplier)
@@ -272,7 +275,7 @@ public sealed partial class TransitTubeSystem
         }
 
         // The tube's own glass keeps some of it off.
-        rate *= 1f - GetHeatInsulation(xform);
+        rate *= 1f - GetHeatInsulation(xform, holder);
 
         // Still check for fire below: hot air from the last station burns even in vacuum.
         if (rate > 0)
@@ -281,9 +284,11 @@ public sealed partial class TransitTubeSystem
         if (air.Temperature < pod.Comp.IgnitionTemperature)
             return;
 
+        // Only what can burn: cargo is mostly crates and loose items.
         foreach (var passenger in GetPassengers(pod).ToArray())
         {
-            _flammable.AdjustFireStacks(passenger, pod.Comp.IgnitionFireStacks, ignite: true);
+            if (TryComp<FlammableComponent>(passenger, out var flammable))
+                _flammable.AdjustFireStacks(passenger, pod.Comp.IgnitionFireStacks, flammable, ignite: true);
         }
     }
 }

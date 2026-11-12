@@ -991,7 +991,6 @@
     - TransitTubeSideBranchSwitchFlipped
     - TransitTubeSideBranchTagged
     - TransitTubeSideBranchTaggedFlipped
-    - TransitTubeTurn
     - TransitTubeSwitchJunction
     - TransitTubeSpeedUp
     - TransitTubeBrake
@@ -1008,6 +1007,21 @@
     - TransitTubeTerminusFlipped
     - TransitTubeDepot
     - TransitTubeDepotFlipped
+    - TransitTubeRampDown
+    - TransitTubeRampUp
+    - TransitTubeUnder
+    - TransitTubeUnderDiagonal
+    - TransitTubeUnderCurved
+    - TransitTubeUnderCurvedFlipped
+    - TransitTubeOver
+    - TransitTubeOverDiagonal
+    - TransitTubeOverCurved
+    - TransitTubeOverCurvedFlipped
+    - TransitTubeOverSupport
+    - TransitTubeGate
+    - TransitTubeBuffer
+    - TransitTubeUnloader
+    - TransitTubeLoader
     - TransitPod
     - TransitPodInsulated
   - type: LimitedCharges

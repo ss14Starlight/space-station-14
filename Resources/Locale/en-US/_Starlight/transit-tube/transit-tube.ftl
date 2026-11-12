@@ -1,4 +1,7 @@
 transit-pod-arrived = The pod opens. Move to step out before it leaves again.
+transit-pod-arrived-at = The pod opens at {$station}. Move to step out before it leaves again.
+transit-pod-pushed = You shove the pod along the tube.
+transit-pod-push-failed = The pod won't budge that way.
 transit-pod-being-boarded = {CAPITALIZE(THE($user))} is putting you into a transit pod!
 transit-pod-none = There is no pod here.
 transit-pod-not-ready = The pod is not open yet.
@@ -41,6 +44,15 @@ transit-tube-direction-southwest = south-west
 transit-tube-side-left = left
 transit-tube-side-right = right
 
+transit-tube-examine-ramp = Takes pods between the floor and the tubes under or over it. Pods going too fast will not make the slope.
+transit-tube-examine-support = It stands on a [color=yellow]support[/color] and holds up the tubes around it.
+transit-tube-examine-over = It hangs over the floor, held by a support nearby.
+transit-tube-examine-over-sagging = It is [color=red]sagging[/color]: nothing holds it up this far from a ramp or a support.
+transit-tube-examine-under = It runs under the floor.
+transit-tube-examine-under-unstable = It runs under the floor, too far from a ramp for the ground to hold: [color=red]no floor will stay[/color] over it.
+transit-tube-sagging = The tube creaks and starts to sag!
+transit-tube-collapsed = The tube comes crashing down!
+transit-tube-floor-collapsed = The floor gives way over the tube!
 transit-tube-examine-oneway = Lets pods through going [color=yellow]{$direction}[/color] only.
 transit-tube-examine-oneway-off = The one-way gate is [color=gray]off[/color]: pods pass both ways.
 transit-tube-examine-oneway-broken = The one-way gate is [color=red]fried[/color]: pods pass both ways.
@@ -52,6 +64,13 @@ transit-tube-examine-branch-broken = The side switch is [color=red]sparking[/col
 transit-tube-examine-accelerator = Speeds pods going {$direction} up to [color=yellow]{$speed}[/color] tiles per second.
 transit-tube-examine-accelerator-overloaded = The coils are [color=red]overloaded[/color].
 transit-tube-examine-brake = Slows pods going {$direction} back to their normal speed.
+transit-tube-examine-gate-closed = The gate is [color=red]closed[/color]: pods wait in front of it.
+transit-tube-examine-gate-open = The gate is [color=green]open[/color].
+transit-tube-examine-gate-broken = The gate is [color=red]jammed open[/color].
+transit-tube-examine-unloader = Empties cargo pods to the [color=yellow]{$direction}[/color] as they pass.
+transit-tube-examine-unloader-off = The unloader is [color=gray]off[/color].
+transit-tube-examine-loader = Loads cargo pods with whatever lies to the [color=yellow]{$direction}[/color] as they pass.
+transit-tube-examine-loader-off = The loader is [color=gray]off[/color].
 transit-tube-examine-signal = Guards pods going [color=yellow]{$direction}[/color].
 transit-tube-examine-turntable = Turns pods {$degrees} degrees{$clockwise ->
     [true] {" "}clockwise
@@ -65,6 +84,8 @@ transit-station-examine-request-stop = A request stop. Press the button to call 
 transit-station-examine-requested = A stop has been [color=yellow]requested[/color].
 transit-station-examine-holding = Pods are being [color=yellow]held[/color] here.
 transit-station-examine-empty = No pod is docked.
+transit-station-examine-coming = A pod is [color=yellow]on its way[/color] here.
+transit-pod-examine-stalled = It is [color=yellow]stuck[/color]. A good shove would get it going again.
 transit-pod-examine-departs = Departs in [color=yellow]{$seconds}[/color] s.
 transit-pod-examine-parked = Parked until called.
 transit-pod-examine-target = Heading for [color=yellow]{$destination}[/color].

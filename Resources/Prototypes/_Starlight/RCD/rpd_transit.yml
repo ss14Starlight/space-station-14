@@ -215,18 +215,6 @@
   fx: EffectRCDConstruct1
 
 - type: rcd
-  id: TransitTubeTurn
-  category: TransitTubes
-  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_turn.png
-  mode: ConstructObject
-  prototype: TransitTubeTurn
-  cost: 2
-  delay: 1
-  collisionMask: TableMask
-  rotation: User
-  fx: EffectRCDConstruct1
-
-- type: rcd
   id: TransitTubeSwitchJunction
   category: TransitTubes
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_switch.png
@@ -437,6 +425,178 @@
   mode: ConstructObject
   prototype: TransitTubeDepotFlipped
   cost: 2
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeGate
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_gate.png
+  mode: ConstructObject
+  prototype: TransitTubeGate
+  cost: 3
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeBuffer
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_buffer.png
+  mode: ConstructObject
+  prototype: TransitTubeBuffer
+  cost: 2
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeUnloader
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_unloader.png
+  mode: ConstructObject
+  prototype: TransitTubeUnloader
+  cost: 4
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeLoader
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_loader.png
+  mode: ConstructObject
+  prototype: TransitTubeLoader
+  cost: 4
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeRampDown
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_ramp_down.png
+  mode: ConstructObject
+  prototype: TransitTubeRampDown
+  cost: 3
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeRampUp
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_ramp_up.png
+  mode: ConstructObject
+  prototype: TransitTubeRampUp
+  cost: 3
+  delay: 1
+  collisionMask: TableMask
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeUnder
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_under.png
+  mode: ConstructObject
+  prototype: TransitTubeUnder
+  cost: 2
+  delay: 1
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeUnderDiagonal
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_under_diagonal.png
+  mode: ConstructObject
+  prototype: TransitTubeUnderDiagonal
+  cost: 2
+  delay: 1
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeUnderCurved
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_under_curved.png
+  mode: ConstructObject
+  prototype: TransitTubeUnderCurved
+  cost: 2
+  delay: 1
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeUnderCurvedFlipped
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_under_curved_flipped.png
+  mode: ConstructObject
+  prototype: TransitTubeUnderCurvedFlipped
+  cost: 2
+  delay: 1
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeOver
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_over.png
+  mode: ConstructObject
+  prototype: TransitTubeOver
+  cost: 2
+  delay: 1
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeOverDiagonal
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_over_diagonal.png
+  mode: ConstructObject
+  prototype: TransitTubeOverDiagonal
+  cost: 2
+  delay: 1
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeOverCurved
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_over_curved.png
+  mode: ConstructObject
+  prototype: TransitTubeOverCurved
+  cost: 2
+  delay: 1
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeOverCurvedFlipped
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_over_curved_flipped.png
+  mode: ConstructObject
+  prototype: TransitTubeOverCurvedFlipped
+  cost: 2
+  delay: 1
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TransitTubeOverSupport
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_over_support.png
+  mode: ConstructObject
+  prototype: TransitTubeOverSupport
+  cost: 3
   delay: 1
   collisionMask: TableMask
   rotation: User

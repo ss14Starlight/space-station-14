@@ -10,7 +10,7 @@ using Robust.Shared.Utility;
 namespace Content.Client._Starlight.TransitTube;
 
 /// <summary>
-/// Decorations of transit tubes, it's diagonal tubes smoothing and small metal decoration for long straight tubes.
+/// Decorations of transit tubes: the corner pieces that fill in diagonal joints.
 /// Also hides the direction arrow on real pods: it is only meant for the placement ghost, which is client-side.
 /// </summary>
 public sealed partial class TransitTubeVisualsSystem : EntitySystem
@@ -18,13 +18,11 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
     [Dependency] private DisposalTubeSystem _tube = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private IPrototypeManager _proto = default!;
 
     private static readonly ResPath _rsi = new("/Textures/_Starlight/Structures/Piping/TransitTube/tube.rsi");
-    private const string RingKey = "transit-ring";
-    private const string RingState = "decorative";
-    private const int RingSpacing = 3;
     private const int MaxCorners = 4;
     private const string PodArrowKey = "direction";
 
@@ -77,6 +75,26 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
 
         if (_sprite.LayerMapTryGet((ent, sprite), PodArrowKey, out var index, false))
             _sprite.LayerSetVisible((ent, sprite), index, false);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnPodAppearance(Entity<TransitPodComponent> ent, ref AppearanceChangeEvent args)
+    {
+        if (args.Sprite is not { } sprite)
+            return;
+
+        _appearance.TryGetData<TransitTubeLevel>(ent, TransitPodVisuals.Level, out var level, args.Component);
+        _appearance.TryGetData<bool>(ent, TransitPodVisuals.Hidden, out var hidden, args.Component);
+
+        var depth = level switch
+        {
+            TransitTubeLevel.Under => Shared.DrawDepth.DrawDepth.ThinWire,
+            TransitTubeLevel.Over => Shared.DrawDepth.DrawDepth.Overdoors,
+            _ => Shared.DrawDepth.DrawDepth.Mobs,
+        };
+
+        _sprite.SetDrawDepth((ent, sprite), (int)depth);
+        _sprite.SetVisible((ent, sprite), !hidden);
     }
 
     public override void Update(float frameTime)
@@ -165,32 +183,6 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
                     _sprite.LayerSetVisible(sprite, index, false);
             }
         }
-
-        UpdateRing(ent, sprite, xform, exits);
-    }
-
-    private void UpdateRing(Entity<TransitTubeComponent> ent, Entity<SpriteComponent?> sprite, TransformComponent xform, Direction[] exits)
-    {
-        var show = false;
-
-        if (ent.Comp.Rings && xform.Anchored && xform.GridUid is { } gridUid && TryComp<MapGridComponent>(gridUid, out var grid))
-        {
-            var tile = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
-            var vertical = Array.IndexOf(exits, Direction.North) >= 0;
-            var along = vertical ? tile.Y : tile.X;
-            show = ((along % RingSpacing) + RingSpacing) % RingSpacing == 0;
-        }
-
-        if (!_sprite.LayerMapTryGet(sprite, RingKey, out var index, false))
-        {
-            if (!show)
-                return;
-
-            index = _sprite.AddRsiLayer(sprite, RingState, _rsi);
-            _sprite.LayerMapSet(sprite, RingKey, index);
-        }
-
-        _sprite.LayerSetVisible(sprite, index, show);
     }
 
     private void SetCorner(Entity<SpriteComponent?> sprite, int corner, Vector2 offset, string state)

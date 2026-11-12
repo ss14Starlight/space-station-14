@@ -116,7 +116,7 @@ public sealed partial class DisposalTubeSystem : EntitySystem
             if (!TryComp(entity, out DisposalTubeComponent? tube))
                 continue;
 
-            if (tube.Network != ent.Comp.Network) // Starlight-edit
+            if (GetExitNetwork((entity, tube), oppositeDirection) != GetExitNetwork(ent, direction)) // Starlight-edit
                 continue;
 
             if (!CanConnect((entity, tube), oppositeDirection))

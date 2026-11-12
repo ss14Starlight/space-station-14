@@ -1,5 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Starlight.TransitTube;
 using Content.Shared.Destructible;
+using Content.Shared.Disposal.Unit;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Stacks;
@@ -11,21 +13,9 @@ public sealed partial class TransitTubeSystem
     [SubscribeLocalEvent]
     private void OnGlassInteractUsing(Entity<TransitTubeGlassComponent> ent, ref InteractUsingEvent args)
     {
-        if (args.Handled || !TryComp<StackComponent>(args.Used, out var stack))
-            return;
-
-        var stackType = stack.StackTypeId;
-        TransitTubeMaterialPrototype? material = null;
-        foreach (var proto in _proto.EnumeratePrototypes<TransitTubeMaterialPrototype>())
-        {
-            if (proto.Stack == stackType)
-            {
-                material = proto;
-                break;
-            }
-        }
-
-        if (material == null)
+        if (args.Handled
+            || !TryComp<StackComponent>(args.Used, out var stack)
+            || !TryGetGlassMaterial(stack, out var material))
             return;
 
         args.Handled = true;
@@ -47,6 +37,21 @@ public sealed partial class TransitTubeSystem
         _popup.PopupEntity(Loc.GetString("transit-tube-glass-reglazed", ("material", Loc.GetString(material.Name))), ent, args.User);
     }
 
+    private bool TryGetGlassMaterial(StackComponent stack, [NotNullWhen(true)] out TransitTubeMaterialPrototype? material)
+    {
+        foreach (var proto in _proto.EnumeratePrototypes<TransitTubeMaterialPrototype>())
+        {
+            if (proto.Stack != stack.StackTypeId)
+                continue;
+
+            material = proto;
+            return true;
+        }
+
+        material = null;
+        return false;
+    }
+
     [SubscribeLocalEvent]
     private void OnGlassDestroyed(Entity<TransitTubeGlassComponent> ent, ref DestructionEventArgs args)
     {
@@ -63,9 +68,9 @@ public sealed partial class TransitTubeSystem
         args.PushMarkup(Loc.GetString("transit-tube-glass-examine", ("material", Loc.GetString(material.Name))));
     }
 
-    private float GetHeatInsulation(TransformComponent podXform)
+    private float GetHeatInsulation(TransformComponent podXform, DisposalHolderComponent holder)
     {
-        if (!TryGetTube(podXform, out var tube)
+        if (!TryGetTube(podXform, out var tube, holder)
             || !TryComp<TransitTubeGlassComponent>(tube, out var glass)
             || !_proto.Resolve(glass.Material, out var material))
             return 0f;

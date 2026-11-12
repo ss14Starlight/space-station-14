@@ -1,7 +1,12 @@
 using System.Linq;
 using Content.Shared._Starlight.TransitTube;
 using Content.Shared.Disposal.Unit;
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.Disposal.Tube;
 using Content.Shared.DoAfter;
+using Content.Shared.Emag.Components;
+using Content.Shared.Stacks;
+using Content.Shared.Tools.Components;
 using Content.Shared.DragDrop;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -9,6 +14,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Popups;
+using Content.Shared.Labels.Components;
 using Content.Shared.RCD.Components;
 using Robust.Shared.Map;
 
@@ -36,9 +42,10 @@ public sealed partial class TransitTubeSystem
     [SubscribeLocalEvent]
     private void OnStationInteractUsing(Entity<TransitTubeStationComponent> ent, ref InteractUsingEvent args)
     {
-        // Leave building tools alone, so an RPD still takes the station apart.
+        // Leave tools alone: an RPD still takes the station apart, a labeler still names it,
+        // and so on. They can still be loaded by dragging them onto the station.
         if (args.Handled
-            || HasComp<RCDComponent>(args.Used)
+            || IsStationTool(args.Used)
             || ent.Comp.DockedPod is not { } podUid
             || !TryComp<TransitPodComponent>(podUid, out var pod)
             || !pod.Cargo)
@@ -53,6 +60,14 @@ public sealed partial class TransitTubeSystem
         if (_hands.TryDrop(args.User, args.Used) && TryInsertPassenger((podUid, pod), args.Used))
             UpdateDestinations(ent);
     }
+
+    private bool IsStationTool(EntityUid used)
+        => HasComp<RCDComponent>(used)
+        || HasComp<HandLabelerComponent>(used)
+        || HasComp<ToolComponent>(used)
+        || HasComp<NetworkConfiguratorComponent>(used)
+        || HasComp<EmagComponent>(used)
+        || (TryComp<StackComponent>(used, out var stack) && TryGetGlassMaterial(stack, out _));
 
     /// <summary>
     /// Loads whatever the user pulls into a docked cargo pod. Crates can't be dragged,
@@ -205,12 +220,12 @@ public sealed partial class TransitTubeSystem
         args.Handled = TryInsertPassenger((podUid, pod), passenger);
 
         // Let the new passenger pick where to go, if there is anywhere to pick.
+        // It stays open for the ride, and can be opened again from the pod's menu.
         if (args.Handled && HasComp<MobStateComponent>(passenger) && passenger == args.User)
         {
             UpdateDestinations(ent);
-            if (_ui.TryGetUiState<TransitStationBoundUserInterfaceState>(ent.Owner, TransitStationUiKey.Key, out var state)
-                && state.Destinations.Count > 0)
-                _ui.OpenUi(ent.Owner, TransitStationUiKey.Key, passenger);
+            if (UpdatePodDestinations((podUid, pod)) > 0)
+                _ui.OpenUi(podUid, TransitPodUiKey.Key, passenger);
         }
     }
 
@@ -284,6 +299,56 @@ public sealed partial class TransitTubeSystem
         args.Handled = true;
     }
 
+    [SubscribeLocalEvent]
+    private void OnPodActivate(Entity<TransitPodComponent> ent, ref ActivateInWorldEvent args)
+    {
+        // A pod stuck in the tube can be shoved back into motion from outside.
+        if (args.Handled || !args.Complex || ent.Comp.State != TransitPodState.Stalled || IsPassenger(ent, args.User))
+            return;
+
+        args.Handled = true;
+
+        if (TryPush(ent, args.User))
+            _popup.PopupEntity(Loc.GetString("transit-pod-pushed"), ent, args.User);
+        else
+            _popup.PopupEntity(Loc.GetString("transit-pod-push-failed"), ent, args.User);
+    }
+
+    private bool TryPush(Entity<TransitPodComponent> pod, EntityUid user)
+    {
+        var xform = Transform(pod);
+        if (!TryComp<DisposalHolderComponent>(pod, out var holder)
+            || !TryGetTube(xform, out var tubeUid, holder)
+            || !TryComp<DisposalTubeComponent>(tubeUid, out var tube)
+            || xform.GridUid is not { } gridUid)
+            return false;
+
+        // Tube exits are directions on the grid, so the push is turned into the grid's frame.
+        var push = _xform.GetWorldPosition(xform) - _xform.GetWorldPosition(user);
+        push = (-_xform.GetWorldRotation(gridUid)).RotateVec(push);
+        if (push.LengthSquared() < 0.01f)
+            return false;
+
+        push = System.Numerics.Vector2.Normalize(push);
+        var exits = _disposalTube.GetTubeConnectableDirections((tubeUid, tube))
+            .Where(exit => System.Numerics.Vector2.Dot(System.Numerics.Vector2.Normalize(exit.ToVec()), push) > 0.3f)
+            .OrderByDescending(exit => System.Numerics.Vector2.Dot(System.Numerics.Vector2.Normalize(exit.ToVec()), push));
+
+        foreach (var exit in exits)
+        {
+            if (!_holder.Launch((pod, holder), (tubeUid, tube), exit))
+                continue;
+
+            _xform.SetCoordinates(pod, Transform(tubeUid).Coordinates);
+            pod.Comp.Bounced = false;
+            SetState(pod, TransitPodState.Moving);
+            _audio.PlayPvs(pod.Comp.DepartSound, pod);
+            return true;
+        }
+
+        return false;
+    }
+
     private EntityCoordinates GetPlatform(Entity<TransitTubeStationComponent> station)
     {
         var xform = Transform(station);
@@ -305,6 +370,7 @@ public sealed partial class TransitTubeSystem
             return;
 
         pod.Comp.LastExitAttempts.Remove(passenger);
+        _ui.CloseUi(pod.Owner, TransitPodUiKey.Key, passenger);
         _holder.DetachEntity(passenger);
         _container.Remove(passenger, holder.Container, force: true, destination: destination);
         UpdatePodVisuals(pod);

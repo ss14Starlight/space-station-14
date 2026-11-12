@@ -140,6 +140,43 @@ public sealed partial class TransitTubeToggleComponent : Component
     public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
 }
 
+[RegisterComponent]
+public sealed partial class TransitTubeGateComponent : Component;
+
+/// <summary>
+/// Empties cargo pods passing through onto the tile at its side, without stopping them.
+/// Needs power, and can be switched off with a <see cref="TransitTubeToggleComponent"/>.
+/// </summary>
+[RegisterComponent]
+public sealed partial class TransitTubeUnloaderComponent : Component
+{
+    /// <summary>
+    /// The side, before rotation, that cargo is put out to.
+    /// </summary>
+    [DataField]
+    public Direction Side = Direction.East;
+}
+
+/// <summary>
+/// Fills cargo pods passing through with the items and crates lying on the tile at its side,
+/// without stopping them. Needs power, and can be switched off with a <see cref="TransitTubeToggleComponent"/>.
+/// </summary>
+[RegisterComponent]
+public sealed partial class TransitTubeLoaderComponent : Component
+{
+    /// <summary>
+    /// The side, before rotation, that cargo is taken from.
+    /// </summary>
+    [DataField]
+    public Direction Side = Direction.East;
+
+    /// <summary>
+    /// How far from the middle of that tile things are picked up, in tiles.
+    /// </summary>
+    [DataField]
+    public float Range = 0.5f;
+}
+
 [Serializable, NetSerializable]
 public enum TransitBlockSignalVisuals : byte
 {

@@ -6,7 +6,10 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Disposal.Components;
 using Content.Shared.Disposal.Tube;
 using Content.Shared.Disposal.Unit;
+using Content.Shared.Item;
 using Content.Shared.Popups;
+using Content.Shared.Storage.Components;
+using Robust.Shared.Map;
 
 namespace Content.Server._Starlight.TransitTube;
 
@@ -23,6 +26,8 @@ public sealed partial class TransitTubeSystem
     private readonly Queue<(Entity<DisposalTubeComponent> From, Direction Exit, int Depth, string? Tag)> _sectionFrontier = new();
     private readonly List<Direction> _sectionExits = [];
     private readonly HashSet<EntityUid> _waitChain = [];
+    private readonly HashSet<Entity<ItemComponent>> _loadItems = [];
+    private readonly HashSet<Entity<EntityStorageComponent>> _loadCrates = [];
 
     protected override void OnPodRouted(Entity<TransitTubeComponent> tube, Entity<DisposalHolderComponent> holder, Entity<TransitPodComponent> pod, Direction next)
     {
@@ -41,29 +46,37 @@ public sealed partial class TransitTubeSystem
         if (next == Direction.Invalid)
             return;
 
-        if (TryComp<TransitTubeBlockSignalComponent>(tube, out var signal)
-            && SameWay(next, signal.Direction, rotation)
-            && !SignalClear((tube, signal), next, pod))
+        UpdatePodLevel(pod, tube);
+
+        if (pod.Comp.Cargo)
+            HandleCargo(tube, pod);
+
+        EntityUid? nextTube = TryComp<DisposalTubeComponent>(tube, out var tubeComp)
+            ? _disposalTube.GetTubeInDirection((tube, tubeComp), next)
+            : null;
+
+        // Off the planned route (turned back, bounced, a tube on the way was rebuilt): plan again from here.
+        if (nextTube is { } replanFrom
+            && travel != Direction.Invalid
+            && pod.Comp.Target is { } target
+            && target != tube.Owner
+            && !pod.Comp.Plan.ContainsKey((tube.Owner, travel)))
+            Replan(pod, tube, (replanFrom, next), target);
+
+        if (HoldsAt(tube, next, pod))
         {
-            pod.Comp.HeldAtSignal = tube;
-            SetSignalLamp(tube, true);
-            Hold(pod, holder);
+            HoldAt(pod, holder, tube);
             return;
         }
 
-        if (!TryComp<DisposalTubeComponent>(tube, out var tubeComp)
-            || _disposalTube.GetTubeInDirection((tube, tubeComp), next) is not { } nextUid)
+        if (nextTube is not { } nextUid)
             return;
 
-        // Stop a tube short of a red signal rather than on it, so the waiting pod stays clear of
-        // the junction or crossing right behind the signal.
-        if (TryComp<TransitTubeBlockSignalComponent>(nextUid, out var ahead)
-            && SameWay(next, ahead.Direction, Transform(nextUid).LocalRotation)
-            && !SignalClear((nextUid, ahead), next, pod))
+        // Stop a tube short of a red signal or a closed gate rather than on it, so the waiting pod
+        // stays clear of the junction or crossing right behind it.
+        if (HoldsAt(nextUid, next, pod))
         {
-            pod.Comp.HeldAtSignal = nextUid;
-            SetSignalLamp(nextUid, true);
-            Hold(pod, holder);
+            HoldAt(pod, holder, nextUid);
             return;
         }
 
@@ -78,15 +91,102 @@ public sealed partial class TransitTubeSystem
             return;
         }
 
-        // Wait here, a tube short of a busy station the pod means to stop at.
+        // Wait here, a tube short of a busy station the pod means to stop at, or of one it only
+        // passes through while another pod stands in it. Pods going too fast to stop ram it instead.
         if (TryComp<TransitTubeStationComponent>(nextUid, out var station)
-            && !CanDockAt((nextUid, station), pod)
-            && WouldStopAt((nextUid, station), pod, next))
+            && StationBlocked((nextUid, station), pod, next, out _))
         {
             pod.Comp.WaitingFor = nextUid;
             Hold(pod, holder);
         }
     }
+
+    private bool StationBlocked(Entity<TransitTubeStationComponent> station, Entity<TransitPodComponent> pod, Direction travel, out bool stops)
+    {
+        stops = WouldStopAt(station, pod, travel);
+        if (stops)
+            return !CanDockAt(station, pod);
+
+        return !pod.Comp.Boosted && station.Comp.DockedPod != null;
+    }
+
+    private bool HoldsAt(EntityUid uid, Direction direction, Entity<TransitPodComponent> pod)
+    {
+        if (GateClosed(uid))
+            return true;
+
+        return TryComp<TransitTubeBlockSignalComponent>(uid, out var signal)
+            && SameWay(direction, signal.Direction, Transform(uid).LocalRotation)
+            && !SignalClear((uid, signal), direction, pod);
+    }
+
+    private bool GateClosed(EntityUid uid)
+        => HasComp<TransitTubeGateComponent>(uid) && IsEnabled(uid) && !IsEmagged(uid);
+
+    private void HoldAt(Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder, EntityUid at)
+    {
+        pod.Comp.HeldAtSignal = at;
+        SetSignalLamp(at, true);
+        Hold(pod, holder);
+    }
+
+    private void Replan(Entity<TransitPodComponent> pod, EntityUid origin, (EntityUid Tube, Direction Travel) start, EntityUid target)
+    {
+        if (TryFindRoute(origin, pod, uid => uid == target, out _, out _, start))
+            return;
+
+        CancelTrip(pod);
+        PopupPassengers(pod, "transit-pod-no-route");
+    }
+
+    private void HandleCargo(Entity<TransitTubeComponent> tube, Entity<TransitPodComponent> pod)
+    {
+        var hasUnloader = TryComp<TransitTubeUnloaderComponent>(tube, out var unloader);
+        var hasLoader = TryComp<TransitTubeLoaderComponent>(tube, out var loader);
+        if ((!hasUnloader && !hasLoader) || !IsEnabled(tube.Owner) || !IsPowered(tube))
+            return;
+
+        var xform = Transform(tube);
+
+        if (hasUnloader && GetPassengers(pod).Any())
+        {
+            EjectAll(pod, GetSide(xform, unloader!.Side));
+            _audio.PlayPvs(tube.Comp.CargoSound, tube);
+        }
+
+        if (!hasLoader)
+            return;
+
+        _loadItems.Clear();
+        _loadCrates.Clear();
+        var side = GetSide(xform, loader!.Side);
+        _lookup.GetEntitiesInRange(side, loader.Range, _loadItems);
+        _lookup.GetEntitiesInRange(side, loader.Range, _loadCrates);
+
+        var loaded = false;
+        foreach (var item in _loadItems)
+            loaded |= TryLoad(pod, item);
+
+        foreach (var crate in _loadCrates)
+            loaded |= TryLoad(pod, crate);
+
+        if (loaded)
+            _audio.PlayPvs(tube.Comp.CargoSound, tube);
+    }
+
+    private bool TryLoad(Entity<TransitPodComponent> pod, EntityUid uid)
+    {
+        // Loose things only: nothing bolted down, held, or already inside something.
+        if (TerminatingOrDeleted(uid)
+            || Transform(uid).Anchored
+            || _container.IsEntityInContainer(uid))
+            return false;
+
+        return TryInsertPassenger(pod.AsNullable(), uid);
+    }
+
+    private static EntityCoordinates GetSide(TransformComponent xform, Direction side)
+        => xform.Coordinates.Offset(new Angle(side.ToAngle() + xform.LocalRotation).GetDir().ToVec());
 
     private void ApplySpeed(Entity<TransitTubeSpeedComponent> tube, Entity<TransitPodComponent> pod, Entity<DisposalHolderComponent> holder)
     {
@@ -164,18 +264,18 @@ public sealed partial class TransitTubeSystem
         if (pod.Comp.WaitingBehind is { } ahead && StandsInTheWay(ahead))
             return;
 
-        if (pod.Comp.HeldAtSignal is { } signalUid
-            && TryComp<TransitTubeBlockSignalComponent>(signalUid, out var signal)
-            && !SignalClear((signalUid, signal), holder.CurrentDirection, pod))
+        if (pod.Comp.HeldAtSignal is { } heldAt && Exists(heldAt) && HoldsAt(heldAt, holder.CurrentDirection, pod))
             return;
 
         if (pod.Comp.WaitingFor is { } stationUid && TryComp<TransitTubeStationComponent>(stationUid, out var station))
         {
-            if (!CanDockAt((stationUid, station), pod))
+            if (StationBlocked((stationUid, station), pod, holder.CurrentDirection, out var stops))
                 return;
 
             // Claim the station, so only one of the pods waiting for it moves up.
-            Reserve((stationUid, station), pod);
+            // A pod that only rides through claims nothing.
+            if (stops)
+                Reserve((stationUid, station), pod);
         }
 
         LeaveSignal(pod);
@@ -243,7 +343,7 @@ public sealed partial class TransitTubeSystem
 
             // The tube a pod sits on covers docked and stalled pods too, the next tube covers pods about to enter.
             if ((other.NextTube is { } nextTubeUid && _section.Contains(nextTubeUid))
-                || (TryGetTube(xform, out var under) && _section.Contains(under)))
+                || (TryGetTube(xform, out var under, other) && _section.Contains(under)))
                 return true;
         }
 

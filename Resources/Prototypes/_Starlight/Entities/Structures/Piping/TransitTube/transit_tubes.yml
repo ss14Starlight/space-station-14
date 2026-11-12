@@ -28,6 +28,9 @@
   - type: Transform
     anchored: true
   - type: Climbable
+  - type: Tag # lets hand labelers name stations, and with them destinations
+    tags:
+    - Structure
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Glass
@@ -69,12 +72,11 @@
     layers:
     - state: straight
       map: [ "glass" ]
+    - state: straight_details
   - type: DisposalTube
     exits:
     - South
     - North
-  - type: TransitTube
-    rings: true
 
 - type: entity
   parent: TransitTubeBase
@@ -336,6 +338,16 @@
           !type:PhysShapeCircle
           radius: 0.25
   - type: TransitPod
+  - type: UserInterface
+    interfaces:
+      enum.TransitPodUiKey.Key:
+        type: TransitStationBoundUserInterface
+        requireInputValidation: false
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
+    rpd: true
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Glass

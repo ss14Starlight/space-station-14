@@ -62,6 +62,9 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     protected Direction Route(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, Entity<DisposalHolderComponent> holder,
         Entity<TransitPodComponent> pod, Direction travel, bool simulate = false, string? tag = null)
     {
+        if (pod.Comp.Boosted && HasComp<TransitTubeRampComponent>(ent))
+            return Direction.Invalid;
+
         var rotation = Transform(ent).LocalRotation;
         TryComp<TransitTubeStationComponent>(ent, out var station);
 
@@ -73,16 +76,18 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
         if (station != null && travel != Direction.Invalid && StopsOnRequest(station, pod.Comp))
             return StopAt((ent, station), pod, simulate);
 
-        if (travel != Direction.Invalid && pod.Comp.Plan.TryGetValue((ent.Owner, travel), out var planned))
-            return planned;
-
         // One-way tubes turn back pods coming the wrong way, unless switched off or emagged.
+        // This beats the plan: the gate may have been switched on after the pod planned its trip,
+        // and the server plans again once the pod is off its route.
         if (ent.Comp.OneWay is { } oneWay
             && travel != Direction.Invalid
             && !SameWay(travel, oneWay, rotation)
             && IsEnabled(ent.Owner)
             && !IsEmagged(ent))
             return travel.GetOpposite();
+
+        if (travel != Direction.Invalid && pod.Comp.Plan.TryGetValue((ent.Owner, travel), out var planned))
+            return planned;
 
         if (station != null && !PassesStation(ent, tube, station, pod.Comp, travel))
             return StopAt((ent, station), pod, simulate);
@@ -356,9 +361,10 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction) || IsEmagged(ent))
             return;
 
-        // Only pieces with something to break: switches, one-way tubes and accelerators.
+        // Only pieces with something to break: switches, gates, one-way tubes and accelerators.
         var speed = CompOrNull<TransitTubeSpeedComponent>(ent);
         if (!HasComp<TransitTubeSwitchComponent>(ent)
+            && !HasComp<TransitTubeGateComponent>(ent)
             && !IsBranchSwitch(ent)
             && ent.Comp.OneWay == null
             && speed?.Speed == null)

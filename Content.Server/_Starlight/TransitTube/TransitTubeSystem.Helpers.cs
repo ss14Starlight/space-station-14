@@ -1,30 +1,41 @@
 using System.Linq;
 using Content.Shared._Starlight.TransitTube;
 using Content.Shared.Disposal.Tube;
+using Content.Shared.Disposal.Unit;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server._Starlight.TransitTube;
 
 public sealed partial class TransitTubeSystem
 {
-    private bool TryGetTube(TransformComponent xform, out EntityUid tube)
+    private bool TryGetTube(TransformComponent xform, out EntityUid tube, DisposalHolderComponent? holder = null)
     {
         tube = default;
 
         if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
             return false;
 
+        var found = false;
         var anchored = _map.GetAnchoredEntities(gridUid, grid, _map.TileIndicesFor(gridUid, grid, xform.Coordinates));
         while (anchored.MoveNext(out var uid))
         {
             if (!HasComp<TransitTubeComponent>(uid) || !HasComp<DisposalTubeComponent>(uid))
                 continue;
 
+            if (holder != null && (uid == holder.CurrentTube || uid == holder.NextTube))
+            {
+                tube = uid.Value;
+                return true;
+            }
+
+            if (found)
+                continue;
+
             tube = uid.Value;
-            return true;
+            found = true;
         }
 
-        return false;
+        return found;
     }
 
     private bool TryGetStation(TransitPodComponent pod, out Entity<TransitTubeStationComponent> station)

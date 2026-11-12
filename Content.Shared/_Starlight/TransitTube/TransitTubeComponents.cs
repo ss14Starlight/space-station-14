@@ -38,11 +38,53 @@ public sealed partial class TransitTubeComponent : Component
     public float MaxTurn = 90f;
 
     /// <summary>
-    /// Draw a metal ring on every few joints so long straight runs don't look empty.
+    /// Where the tube runs: on the floor, in a trench under it, or hung over it.
     /// </summary>
     [DataField]
-    public bool Rings;
+    public TransitTubeLevel Level = TransitTubeLevel.Floor;
+
+    /// <summary>
+    /// A tube under or over the floor holds only this many tubes away from a ramp or a support.
+    /// Further out, a hung tube sags and falls, and a buried one brings down any floor laid over it.
+    /// </summary>
+    [DataField]
+    public int SupportRange = 3;
+
+    /// <summary>
+    /// Whether this piece holds up the tubes around it. Ramps always do.
+    /// </summary>
+    [DataField]
+    public bool Support;
+
+    /// <summary>
+    /// How long a hung tube sags with nothing holding it before it comes down.
+    /// </summary>
+    [DataField]
+    public TimeSpan CollapseDelay = TimeSpan.FromSeconds(8);
+
+    /// <summary>
+    /// Played when a tube falls or the floor over it gives way.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? CollapseSound = new SoundCollectionSpecifier("MetalThud");
+
+    /// <summary>
+    /// Played by loaders and unloaders when they move cargo.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? CargoSound = new SoundPathSpecifier("/Audio/Machines/windoor_open.ogg", AudioParams.Default.WithVolume(-8f).WithPitchScale(1.3f));
 }
+
+[Serializable, NetSerializable]
+public enum TransitTubeLevel : byte
+{
+    Floor,
+    Under,
+    Over,
+}
+
+[RegisterComponent]
+public sealed partial class TransitTubeRampComponent : Component;
 
 /// <summary>
 /// A transit tube segment where pods stop, open, exchange air with the room and take passengers.
@@ -513,6 +555,16 @@ public enum TransitStationVisualState : byte
 public enum TransitPodVisuals : byte
 {
     Occupied,
+
+    /// <summary>
+    /// The <see cref="TransitTubeLevel"/> the pod rides on.
+    /// </summary>
+    Level,
+
+    /// <summary>
+    /// The pod is under a covered floor and cannot be seen.
+    /// </summary>
+    Hidden,
 }
 
 [Serializable, NetSerializable]
@@ -520,6 +572,15 @@ public sealed partial class TransitPodBoardDoAfterEvent : SimpleDoAfterEvent;
 
 [Serializable, NetSerializable]
 public enum TransitStationUiKey : byte
+{
+    Key,
+}
+
+/// <summary>
+/// The destination picker passengers use from inside a pod. Same window and messages as a station's.
+/// </summary>
+[Serializable, NetSerializable]
+public enum TransitPodUiKey : byte
 {
     Key,
 }

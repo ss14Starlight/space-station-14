@@ -17,6 +17,19 @@ public sealed partial class TransitTubeSystem
 
         using (args.PushGroup(nameof(TransitTubeComponent)))
         {
+            if (HasComp<TransitTubeRampComponent>(ent))
+                args.PushMarkup(Loc.GetString("transit-tube-examine-ramp"));
+
+            if (ent.Comp.Level != TransitTubeLevel.Floor)
+            {
+                if (ent.Comp.Support)
+                    args.PushMarkup(Loc.GetString("transit-tube-examine-support"));
+                else if (HasSupport(ent))
+                    args.PushMarkup(Loc.GetString(ent.Comp.Level == TransitTubeLevel.Over ? "transit-tube-examine-over" : "transit-tube-examine-under"));
+                else
+                    args.PushMarkup(Loc.GetString(ent.Comp.Level == TransitTubeLevel.Over ? "transit-tube-examine-over-sagging" : "transit-tube-examine-under-unstable"));
+            }
+
             if (ent.Comp.OneWay is { } oneWay)
             {
                 if (IsEmagged(ent))
@@ -62,6 +75,20 @@ public sealed partial class TransitTubeSystem
                 }
             }
 
+            if (HasComp<TransitTubeGateComponent>(ent))
+            {
+                if (IsEmagged(ent))
+                    args.PushMarkup(Loc.GetString("transit-tube-examine-gate-broken"));
+                else
+                    args.PushMarkup(Loc.GetString(IsEnabled(ent.Owner) ? "transit-tube-examine-gate-closed" : "transit-tube-examine-gate-open"));
+            }
+
+            if (TryComp<TransitTubeUnloaderComponent>(ent, out var unloader))
+                args.PushMarkup(Loc.GetString(IsEnabled(ent.Owner) ? "transit-tube-examine-unloader" : "transit-tube-examine-unloader-off", ("direction", WorldDir(unloader.Side))));
+
+            if (TryComp<TransitTubeLoaderComponent>(ent, out var loader))
+                args.PushMarkup(Loc.GetString(IsEnabled(ent.Owner) ? "transit-tube-examine-loader" : "transit-tube-examine-loader-off", ("direction", WorldDir(loader.Side))));
+
             if (TryComp<TransitTubeBlockSignalComponent>(ent, out var signal))
                 args.PushMarkup(Loc.GetString("transit-tube-examine-signal", ("direction", WorldDir(signal.Direction))));
 
@@ -103,6 +130,8 @@ public sealed partial class TransitTubeSystem
 
             if (ent.Comp.DockedPod is { } podUid && TryComp<TransitPodComponent>(podUid, out var pod))
                 PushPodStatus((podUid, pod), args);
+            else if (ent.Comp.ReservedBy is { } coming && TryComp<TransitPodComponent>(coming, out var comingPod) && comingPod.Reserved == ent.Owner)
+                args.PushMarkup(Loc.GetString("transit-station-examine-coming"));
             else
                 args.PushMarkup(Loc.GetString("transit-station-examine-empty"));
         }
@@ -125,7 +154,9 @@ public sealed partial class TransitTubeSystem
         if (pod.Comp.State == TransitPodState.Open)
         {
             var left = pod.Comp.NextDeparture - _timing.CurTime;
-            var parked = TryGetStation(pod.Comp, out var station) && (station.Comp.Holding || station.Comp.Depot) && pod.Comp.Target == null && !pod.Comp.AnyFree;
+            // A hold keeps every pod; a depot only the ones nobody called.
+            var parked = TryGetStation(pod.Comp, out var station)
+                && (station.Comp.Holding || (station.Comp.Depot && pod.Comp.Target == null && !pod.Comp.AnyFree));
 
             args.PushMarkup(parked
                 ? Loc.GetString("transit-pod-examine-parked")
@@ -139,6 +170,9 @@ public sealed partial class TransitTubeSystem
 
         if (pod.Comp.Boosted)
             args.PushMarkup(Loc.GetString("transit-pod-examine-boosted"));
+
+        if (pod.Comp.State == TransitPodState.Stalled)
+            args.PushMarkup(Loc.GetString("transit-pod-examine-stalled"));
     }
 
     private string DirName(Direction direction)
