@@ -1,18 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: Fixed not being able to clear K9 wanted status.
-    type: Fix
-  id: 409954
-  time: '2026-10-30T19:05:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6922
-- author: wonderfulnewworld
-  changes:
-  - message: Readd footprints.
-    type: Add
-  id: 409955
-  time: '2026-10-30T19:36:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6087
 - author: wonderfulnewworld
   changes:
   - message: Mops will now clean footprints in a "Plus" shape, and advanced mops will now clean footprints in a 3x3 "Square" shape.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410353
   time: '2026-11-12T01:33:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7181
+- author: Johnny
+  changes:
+  - message: Added a new mindrole status named Survivor. Its for ghost roles that require, well, survival believe it or not.
+    type: Add
+  id: 410354
+  time: '2026-11-12T08:12:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7192
+- author: Johnny
+  changes:
+  - message: Changed the syndicate disaster victims to  be survivors instead of free agents.
+    type: Tweak
+  id: 410355
+  time: '2026-11-12T08:12:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7192
 Order: -1
