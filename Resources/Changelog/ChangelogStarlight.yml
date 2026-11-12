@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Footprints should be significantly less laggy now.
-    type: Fix
-  id: 409958
-  time: '2026-10-30T19:36:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6087
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Added a new theme control to the user interface settings, Secondary Accent Color.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410357
   time: '2026-11-12T11:10:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7193
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Cosmic Cult conversion is now much more permissive and won't get locked up by having multiple targets on the glyph. It'll just pick a valid target at random and ignore invalid targets entirely.
+    type: Tweak
+  id: 410358
+  time: '2026-11-12T11:35:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7186
 Order: -1
