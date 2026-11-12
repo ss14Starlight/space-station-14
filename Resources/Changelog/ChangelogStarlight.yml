@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Added a station power computer to PA Room.
-    type: Add
-  id: 409973
-  time: '2026-10-30T22:25:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6960
-- author: Caws
-  changes:
-  - message: (Hotel) Added Gunnery Sergeant.
-    type: Add
-  id: 409974
-  time: '2026-10-30T22:55:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6961
-- author: Caws
-  changes:
   - message: (Hotel) Librarian has been enabled.
     type: Fix
   id: 409975
@@ -2799,4 +2785,18 @@ Entries:
   id: 410372
   time: '2026-11-12T12:34:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7042
+- author: Floximo
+  changes:
+  - message: AI job slot is no longer freed on intellicard being used.
+    type: Fix
+  id: 410373
+  time: '2026-11-12T13:16:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7146
+- author: Floximo
+  changes:
+  - message: While being on intellicard, shunting is no longer possible.
+    type: Fix
+  id: 410374
+  time: '2026-11-12T13:16:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7146
 Order: -1
