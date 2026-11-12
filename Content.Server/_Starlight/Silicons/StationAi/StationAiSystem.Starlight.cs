@@ -80,6 +80,14 @@ public sealed partial class StationAiSystem
 
         var wasInAiHolder = TryGetStationAiHolder(removedMindEntity, out var holder);
         var wasInAiCore = wasInAiHolder && HasComp<StationAiCoreComponent>(holder);
+        if (TerminatingOrDeleted(removedMindEntity))
+        {
+            if (wasInAiHolder)
+                FreeStationAiJobSlot(args.Mind.Comp.UserId);
+
+            return;
+        }
+
         var inCryostorage = HasComp<CryostorageContainedComponent>(removedMindEntity);
         var permanentlyGhostedFromAiHolder = args.TransferEntity is { } ghostTarget
             && TryComp<GhostComponent>(ghostTarget, out var holderGhost)

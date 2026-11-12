@@ -78475,10 +78475,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 11.5,12.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 15582
     components:
     - type: Transform
@@ -78499,10 +78495,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 17.5,21.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 32342
     components:
     - type: Transform
@@ -182616,10 +182608,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 25.5,18.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: VendingMachineSecDrobe
   entities:
   - uid: 9333
@@ -182627,10 +182615,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 30.5,13.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: VendingMachineSeeds
   entities:
   - uid: 1641

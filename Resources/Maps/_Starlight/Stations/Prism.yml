@@ -68228,10 +68228,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 44.5,31.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 10266
     components:
     - type: Transform
@@ -70039,10 +70035,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 44.5,42.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: CrateServiceColorfulLights
   entities:
   - uid: 10515
@@ -159772,19 +159764,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 46.5,40.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 23947
     components:
     - type: Transform
       parent: 2
       pos: 46.5,41.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: SuitStorageWarden
   entities:
   - uid: 23948

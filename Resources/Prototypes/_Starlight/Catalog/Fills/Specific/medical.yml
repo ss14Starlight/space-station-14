@@ -189,3 +189,20 @@
           amount: 2
         - id: Welder
         - id: ClothingHeadHatWelding
+
+- type: entity
+  id: NukeOpRobotkit
+  suffix: Filled
+  parent: RoboticNukeMedkit
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CableHVStack
+          amount: 2
+        - id: OilPack
+          amount: 2
+        - id: PowerCellMicroreactor
+          amount: 1
+        - id: WelderIndustrialAdvanced

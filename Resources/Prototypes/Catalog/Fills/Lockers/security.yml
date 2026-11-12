@@ -205,6 +205,8 @@
     #- id: HandLabeler # Starlight - Condensing, duplicate of items found in the CardboardBoxLargeEvidenceFilledExtras
     - id: BoxTapeRecorder # Starlight
     - id: CardboardBoxLargeEvidenceFilledExtras # Starlight
+    - id: PhotoCamera # Starlight
+    - id: BlankPhotographBox # Starlight
     - id: PlushieLizardJobDetective
       prob: 0.02
 
