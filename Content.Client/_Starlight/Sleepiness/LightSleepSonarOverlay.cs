@@ -54,8 +54,10 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
     private const float SourceWaveMaximumRadius = 1.25f;
     private const float SourceWaveMaximumRadiusSquared = SourceWaveMaximumRadius * SourceWaveMaximumRadius;
     private const float MovingSourceWaveRateMultiplier = 1.5f;
+
     private const float MovingSourceWaveLifetimeSeconds =
         StationarySourceWaveLifetimeSeconds / MovingSourceWaveRateMultiplier;
+
     private const float StationarySourceWaveAlpha = 0.275f;
     private const float MovingSourceWaveAlpha = 0.4f;
     private const float SourceDetectionRange = EchoRange + SourceWaveMaximumRadius;
@@ -317,6 +319,7 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
             ear.SpeedDegreesPerSecond = 0d;
             ear.LastUpdateTime = double.NaN;
         }
+
         _lastRadarOrigin = default;
         _activeRevealType = null;
         _radarWaves.Clear();
@@ -356,6 +359,7 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
             ear.SpeedDegreesPerSecond = 0d;
             ear.LastUpdateTime = double.NaN;
         }
+
         _lastRadarOrigin = radarOrigin;
         _activeRevealType = null;
         _radarWaves.Clear();
@@ -428,9 +432,9 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
             {
                 _previousTargetPositions[target.Uid] = target.Position;
                 if ((revealType == SonarRevealType.RotatingSweep &&
-                     IsRadarSweepAligned(target.Position, radarOrigin, elapsed)) ||
+                        IsRadarSweepAligned(target.Position, radarOrigin, elapsed)) ||
                     (revealType == SonarRevealType.CatEars &&
-                     IsCatEarSweepAligned(target.Position, radarOrigin, eyeRotation, catEarSweepSettings)))
+                        IsCatEarSweepAligned(target.Position, radarOrigin, eyeRotation, catEarSweepSettings)))
                 {
                     RevealTargetAt(target.Uid, elapsed);
                 }
@@ -517,13 +521,13 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
             for (var beam = 0; beam < 2; beam++)
             {
                 if (IsAlignedWithSweepLine(
-                        targetAngle,
-                        GetCatEarBeamAngle(
-                            ear.BaseAngleDegrees,
-                            ear.IsLeftEar,
-                            beam,
-                            eyeRotation,
-                            catEarSweepSettings)))
+                    targetAngle,
+                    GetCatEarBeamAngle(
+                        ear.BaseAngleDegrees,
+                        ear.IsLeftEar,
+                        beam,
+                        eyeRotation,
+                        catEarSweepSettings)))
                 {
                     return true;
                 }
@@ -622,23 +626,23 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
             for (var beam = 0; beam < 2; beam++)
             {
                 if (TryGetSweepLineHitTime(
-                        GetCatEarBeamAngle(
-                            segment.StartBaseAngleDegrees,
-                            segment.IsLeftEar,
-                            beam,
-                            segmentStartEyeRotation,
-                            catEarSweepSettings),
-                        GetCatEarBeamAngle(
-                            segment.EndBaseAngleDegrees,
-                            segment.IsLeftEar,
-                            beam,
-                            segmentEndEyeRotation,
-                            catEarSweepSettings),
-                        targetStartAngle,
-                        targetEndAngle,
-                        segment.StartTime,
-                        segment.EndTime,
-                        out var candidateHitTime))
+                    GetCatEarBeamAngle(
+                        segment.StartBaseAngleDegrees,
+                        segment.IsLeftEar,
+                        beam,
+                        segmentStartEyeRotation,
+                        catEarSweepSettings),
+                    GetCatEarBeamAngle(
+                        segment.EndBaseAngleDegrees,
+                        segment.IsLeftEar,
+                        beam,
+                        segmentEndEyeRotation,
+                        catEarSweepSettings),
+                    targetStartAngle,
+                    targetEndAngle,
+                    segment.StartTime,
+                    segment.EndTime,
+                    out var candidateHitTime))
                     latestHitTime = Math.Max(latestHitTime, candidateHitTime);
             }
         }
@@ -767,7 +771,7 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
             var segmentDuration = reachesBoundary ? timeToBoundary : remainingTime;
             var startAngle = ear.BaseAngleDegrees;
             var endAngle = startAngle +
-                           (ear.Direction * ear.SpeedDegreesPerSecond * segmentDuration);
+                (ear.Direction * ear.SpeedDegreesPerSecond * segmentDuration);
             if (reachesBoundary)
                 endAngle = boundary;
 
@@ -801,7 +805,7 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
     {
         var direction = catEarSweepSettings.GetSweepDirection(isLeftEar);
         var angleDegrees = catEarSweepSettings.StartAngleDegrees +
-                           (direction * (baseAngleDegrees + (beam * catEarSweepSettings.LineSeparationDegrees)));
+            (direction * (baseAngleDegrees + (beam * catEarSweepSettings.LineSeparationDegrees)));
         return eyeRotation + (angleDegrees * DegreesToRadians);
     }
 
@@ -875,7 +879,8 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
         }
     }
 
-    private void EmitSourceWave(EntityUid uid, Vector2 position, MapId mapId, EchoMode echoMode, double elapsed, bool movement)
+    private void EmitSourceWave(EntityUid uid, Vector2 position, MapId mapId, EchoMode echoMode, double elapsed,
+        bool movement)
     {
         var injuryChance = echoMode == EchoMode.Critical ? 0f : GetInjuryChance(uid);
         var red = echoMode == EchoMode.Critical || (injuryChance > 0f && _random.NextFloat() < injuryChance);
@@ -1014,7 +1019,7 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
 
         var phase = (float)(age / wave.LifetimeSeconds);
         var radius = GetWaveRadius(wave, phase);
-        var pulse = wave.IsRed ? 0.65f + (0.35f * MathF.Sin((float) elapsed * 4f)) : 1f;
+        var pulse = wave.IsRed ? 0.65f + (0.35f * MathF.Sin((float)elapsed * 4f)) : 1f;
         var alpha = wave.MaximumAlpha * (1f - phase) * pulse;
         var color = wave.IsRed
             ? new Color(1f, 0.1f, 0.08f, alpha)
@@ -1055,7 +1060,7 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
         var fadeInProgress = (float)Math.Clamp(timeSinceReveal / VisibilityFadeInSeconds, 0d, 1d);
         var fadeInEase = fadeInProgress * fadeInProgress * (3f - (2f * fadeInProgress));
         var fadeIn = revealState.StartVisibility +
-                     ((1f - revealState.StartVisibility) * fadeInEase);
+            ((1f - revealState.StartVisibility) * fadeInEase);
         var fadeOutProgress = (float)Math.Clamp(timeSinceReveal / VisibilityFadeSeconds, 0d, 1d);
         var fadeOut = 1f - ((1f - MinimumVisibility) * fadeOutProgress);
         return fadeIn * fadeOut;
@@ -1090,7 +1095,7 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
             return EchoMode.Critical;
 
         return _entityManager.TryGetComponent(uid, out ApcPowerReceiverComponent? power) &&
-                power is { Powered: true, PowerDisabled: false }
+            power is { Powered: true, PowerDisabled: false }
                 ? EchoMode.Active
                 : EchoMode.None;
     }
