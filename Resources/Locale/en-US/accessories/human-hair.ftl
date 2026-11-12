@@ -177,6 +177,7 @@ marking-HumanHairBAlt = Shoulder-length Hair (Over eye)
 marking-HumanHairSidecut = Sidecut
 marking-HumanHairSkinhead = Skinhead
 marking-HumanHairProtagonist = Slightly Long Hair
+marking-HumanHairStarpuffs= Starpuffs
 marking-HumanHairSpikey = Spiky
 marking-HumanHairSpiky = Spiky 2
 marking-HumanHairSpiky2 = Spiky 3

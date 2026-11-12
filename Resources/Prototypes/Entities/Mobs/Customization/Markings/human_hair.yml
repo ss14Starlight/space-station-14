@@ -1490,4 +1490,11 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_hair.rsi
       state: longpigtails
+- type: marking
+  id: HumanHairStarpuffs
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: Starpuffs
 #starlight end
