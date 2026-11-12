@@ -28,8 +28,14 @@ void fragment()
 
     highp float timeX = (sin(TIME * 0.006) + 0.5) * 0.08;
     highp float timeY = (cos(TIME * 0.005) + 0.5) * 0.08;
-    highp float tunnelNoiseX = zFBM(cataractsCoordinates + timeX) - 0.5;
-    highp float tunnelNoiseY = zFBM(cataractsCoordinates + timeY) - 0.5;
+    highp float tunnelNoiseX = 0.0;
+    highp float tunnelNoiseY = 0.0;
+
+    if (ReducedMotion < 0.5)
+    {
+    tunnelNoiseX = zFBM(cataractsCoordinates + timeX) - 0.5;
+    tunnelNoiseY = zFBM(cataractsCoordinates + timeY) - 0.5;
+    }
 
     highp vec2 cataractsDistortion = vec2(tunnelNoiseX, tunnelNoiseY) * cataractsEdgeMask * 4.5;
     highp vec2 distortion = cataractsDistortion * 0.075 * Strength * (1.0 - ReducedMotion);
