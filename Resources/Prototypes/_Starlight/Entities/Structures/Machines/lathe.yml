@@ -306,6 +306,10 @@
     - StarlightSecurityEquipment
     - StarlightSecurityWeapons
     - StarlightDefenseStatic
+    - ModularHudFrames
+    - SecurityModularHudFrames
+    - EngineeringModularHudFrames
+    - CommandModularHudFrames
     - ModularHudModules
     - ServiceModularHudModules
     - SecurityModularHudModules
@@ -433,6 +437,7 @@
     - EmptyMedkitsStatic
     - StarlightMedicalStatic
     - AACTabletStatic
+    - PrescriptionHudModuleStatic
     dynamicPacks:
     - StarlightAutolatheLootable
     - StarlightProtolatheLootable
@@ -475,6 +480,17 @@
     - StarlightBudgetCyberOrgansDynamic
     - StarlightMedicalTechFabLootable
     - StarlightCargoDynamic
+    - ModularHudFrames
+    - SecurityModularHudFrames
+    - EngineeringModularHudFrames
+    - CommandModularHudFrames
+    - ScienceModularHudFrames
+    - ModularHudModules
+    - ScienceModularHudModules
+    - ServiceModularHudModules
+    - SecurityModularHudModules
+    - CommandModularHudModules
+    - MedicalModularHudModules
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
@@ -482,7 +498,6 @@
     - StarlightSecurityAmmoEmagStatic
     - StarlightSecurityGrenadesEmag
     - SyndicateAmmoStatic
-    - PrescriptionHudModuleStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -568,6 +583,7 @@
     - EmptyMedkitsStatic
     - StarlightMedicalStatic
     - AACTabletStatic
+    - PrescriptionHudModuleStatic
     # Its main difference is it gets the syndicate stuff in its static packs.
     - StarlightSyndicateModulesSecfab
     - StarlightSyndicateAmmoStatic
@@ -616,6 +632,17 @@
     - StarlightBudgetCyberOrgansDynamic
     - StarlightMedicalTechFabLootable
     - StarlightCargoDynamic
+    - ModularHudFrames
+    - SecurityModularHudFrames
+    - EngineeringModularHudFrames
+    - CommandModularHudFrames
+    - ScienceModularHudFrames
+    - ModularHudModules
+    - ScienceModularHudModules
+    - ServiceModularHudModules
+    - SecurityModularHudModules
+    - CommandModularHudModules
+    - MedicalModularHudModules
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

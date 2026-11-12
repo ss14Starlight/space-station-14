@@ -39,6 +39,7 @@
 
 - type: !PartialOnly entity
   id: HudModuleShowInorganicHealthBars
+  description: A heads-up display module which scans the inorganics in view and provides accurate data about their integrity.
   components:
   - type: ShowHealthBars
     damageContainers:

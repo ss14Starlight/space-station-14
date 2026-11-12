@@ -64,6 +64,17 @@
     - StarlightSecurityEquipment
     - StarlightSecurityWeapons
     - StarlightDefenseStatic
+    - ModularHudFrames
+    - SecurityModularHudFrames
+    - EngineeringModularHudFrames
+    - CommandModularHudFrames
+    - ScienceModularHudFrames
+    - ModularHudModules
+    - ScienceModularHudModules
+    - ServiceModularHudModules
+    - SecurityModularHudModules
+    - CommandModularHudModules
+    - MedicalModularHudModules
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
