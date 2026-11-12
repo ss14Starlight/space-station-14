@@ -30,12 +30,14 @@
 
 - type: lightFlicker
   id: Sparking
-  minDelay: 15
-  maxDelay: 60
+  minDelay: 20
+  maxDelay: 90
   minBlips: 1
   maxBlips: 2
-  minBlipTime: 0.03
-  maxBlipTime: 0.09
+  minBlipTime: 0.18
+  maxBlipTime: 0.36
+  radiusMultiplier: 0.6
+  energyMultiplier: 0.75
   sound:
     collection: sparks
     params:

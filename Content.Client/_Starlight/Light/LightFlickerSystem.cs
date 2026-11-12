@@ -54,7 +54,7 @@ public sealed partial class LightFlickerSystem : EntitySystem
                     _audio.PlayEntity(profile.Sound, Filter.Local(), uid, false);
             }
 
-            SetToggled((uid, flicker, visuals, appearance), !flicker.Toggled);
+            SetToggled((uid, flicker, visuals, appearance), !flicker.Toggled, profile.RadiusMultiplier, profile.EnergyMultiplier);
             flicker.TogglesLeft--;
             flicker.NextToggle = flicker.TogglesLeft > 0
                 ? now + TimeSpan.FromSeconds(_random.NextFloat(profile.MinBlipTime, profile.MaxBlipTime))
@@ -65,7 +65,7 @@ public sealed partial class LightFlickerSystem : EntitySystem
     private TimeSpan Delay(LightFlickerPrototype profile)
         => TimeSpan.FromSeconds(_random.NextFloat(profile.MinDelay, profile.MaxDelay));
 
-    private void SetToggled(Entity<LightFlickerComponent, PoweredLightVisualsComponent, AppearanceComponent> ent, bool toggled)
+    private void SetToggled(Entity<LightFlickerComponent, PoweredLightVisualsComponent, AppearanceComponent> ent, bool toggled, float radiusMultiplier = 1f, float energyMultiplier = 1f)
     {
         var (uid, flicker, visuals, appearance) = ent;
         if (flicker.Toggled == toggled)
@@ -79,8 +79,31 @@ public sealed partial class LightFlickerSystem : EntitySystem
 
         if (!toggled)
         {
+            if (TryComp<PointLightComponent>(uid, out var pointLight))
+            {
+                if (flicker.BaseRadius is { } baseRadius)
+                    _pointLight.SetRadius(uid, baseRadius, pointLight);
+                if (flicker.BaseEnergy is { } baseEnergy)
+                    _pointLight.SetEnergy(uid, baseEnergy, pointLight);
+            }
+            flicker.BaseRadius = null;
+            flicker.BaseEnergy = null;
             _appearance.QueueUpdate(uid, appearance);
             return;
+        }
+
+        if (!lit && TryComp<PointLightComponent>(uid, out var brokenLight))
+        {
+            if (radiusMultiplier != 1f)
+            {
+                flicker.BaseRadius ??= brokenLight.Radius;
+                _pointLight.SetRadius(uid, flicker.BaseRadius.Value * radiusMultiplier, brokenLight);
+            }
+            if (energyMultiplier != 1f)
+            {
+                flicker.BaseEnergy ??= brokenLight.Energy;
+                _pointLight.SetEnergy(uid, flicker.BaseEnergy.Value * energyMultiplier, brokenLight);
+            }
         }
 
         if (!lit || !TryComp<SpriteComponent>(uid, out var sprite))
