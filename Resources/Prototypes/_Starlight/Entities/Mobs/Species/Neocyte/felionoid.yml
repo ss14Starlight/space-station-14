@@ -25,10 +25,13 @@
     prototype: NeoFelionoid
     requiredLegs: 2
   - type: OwOAccent
-  - type: Stamina
-    baseCritThreshold: 110
   - type: FelionoidPounce
   - type: Tiredness
+    maximumSleepiness: 5s
+    maximumSleepinessSecondsPerSecond: 1.25
+    sleepRecoveryMultiplier: 15
+    severeTirednessMovementSpeedModifier: 0.95
+    maximumTirednessMovementSpeedModifier: 0.75
   - type: RegenerativeSleep
     updateInterval: 1s
     healingPerUpdate:
@@ -45,8 +48,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      90: Critical
-      180: Dead
+      85: Critical
+      170: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       51: 0.7 # 60%

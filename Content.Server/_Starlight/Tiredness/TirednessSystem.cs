@@ -4,6 +4,7 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Rejuvenate;
 using Content.Shared.StatusEffectNew;
 using Content.Shared._Starlight.Sleepiness.Components;
@@ -18,9 +19,6 @@ public sealed partial class TirednessSystem : EntitySystem
 {
     private const float UpdateInterval = 1f;
 
-    // At full tiredness, net sleepiness accumulation is 0.25 seconds per second.
-    private const float MaximumSleepinessSecondsPerSecond = 1.25f;
-    private const float SleepRecoveryMultiplier = 15f;
     public static readonly TimeSpan MaximumTiredness = TimeSpan.FromMinutes(30);
     private static readonly TimeSpan _alertThreshold = TimeSpan.FromMinutes(15);
     private static readonly TimeSpan _severeAlertThreshold = TimeSpan.FromMinutes(25);
@@ -32,6 +30,7 @@ public sealed partial class TirednessSystem : EntitySystem
     [Dependency] private ActionContainerSystem _actionContainers = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
     [Dependency] private IGameTiming _timing = default!;
@@ -58,14 +57,18 @@ public sealed partial class TirednessSystem : EntitySystem
                 continue;
 
             var oldTirednessSeconds = tiredness.CurrentTiredness.TotalSeconds;
+            var oldMovementSpeedStage = GetTirednessMovementSpeedStage(oldTirednessSeconds);
             var isSleeping = HasComp<SleepingComponent>(uid);
-            var tirednessDelta = isSleeping ? -updateTime * SleepRecoveryMultiplier : updateTime;
+            var tirednessDelta = isSleeping ? -updateTime * tiredness.SleepRecoveryMultiplier : updateTime;
             var newTirednessSeconds = Math.Clamp(oldTirednessSeconds + tirednessDelta, 0, maximumTirednessSeconds);
             if (newTirednessSeconds != oldTirednessSeconds)
             {
                 tiredness.CurrentTiredness = TimeSpan.FromSeconds(newTirednessSeconds);
                 DirtyField(uid, tiredness, nameof(TirednessComponent.CurrentTiredness));
             }
+
+            if (oldMovementSpeedStage != GetTirednessMovementSpeedStage(newTirednessSeconds))
+                _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
 
             UpdateAlert(uid, tiredness);
 
@@ -76,7 +79,8 @@ public sealed partial class TirednessSystem : EntitySystem
                 (oldTirednessSeconds + newTirednessSeconds) / (2 * maximumTirednessSeconds),
                 0,
                 1);
-            var sleepinessSecondsPerSecond = (float)averageTirednessRatio * MaximumSleepinessSecondsPerSecond;
+            var sleepinessSecondsPerSecond =
+                (float)averageTirednessRatio * tiredness.MaximumSleepinessSecondsPerSecond;
             if (sleepinessSecondsPerSecond <= 0f)
                 continue;
 
@@ -122,11 +126,15 @@ public sealed partial class TirednessSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return;
 
+        var oldMovementSpeedStage = GetTirednessMovementSpeedStage(ent.Comp.CurrentTiredness.TotalSeconds);
         var newTiredness = TimeSpan.FromSeconds(Math.Clamp(tiredness.TotalSeconds, 0, MaximumTiredness.TotalSeconds));
         if (newTiredness != ent.Comp.CurrentTiredness)
         {
             ent.Comp.CurrentTiredness = newTiredness;
             DirtyField(ent.Owner, ent.Comp, nameof(TirednessComponent.CurrentTiredness));
+
+            if (oldMovementSpeedStage != GetTirednessMovementSpeedStage(newTiredness.TotalSeconds))
+                _movementSpeedModifier.RefreshMovementSpeedModifiers(ent.Owner);
         }
 
         UpdateAlert(ent.Owner, ent.Comp);
@@ -141,6 +149,7 @@ public sealed partial class TirednessSystem : EntitySystem
     {
         UpdateAlert(uid, component);
         UpdateSleepAction(uid, component);
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
     }
 
     [SubscribeLocalEvent]
@@ -169,10 +178,32 @@ public sealed partial class TirednessSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnRejuvenate(EntityUid uid, TirednessComponent component, RejuvenateEvent args)
     {
+        var oldMovementSpeedStage = GetTirednessMovementSpeedStage(component.CurrentTiredness.TotalSeconds);
         component.CurrentTiredness = TimeSpan.Zero;
         DirtyField(uid, component, nameof(TirednessComponent.CurrentTiredness));
         _alerts.ClearAlertCategory(uid, _alertCategory);
+
+        if (oldMovementSpeedStage != 0)
+            _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
     }
+
+    [SubscribeLocalEvent]
+    private void OnRefreshMovementSpeedModifiers(Entity<TirednessComponent> ent,
+        ref RefreshMovementSpeedModifiersEvent args) =>
+        args.ModifySpeed(GetTirednessMovementSpeedModifier(ent.Comp));
+
+    private static float GetTirednessMovementSpeedModifier(TirednessComponent tiredness) =>
+        GetTirednessMovementSpeedStage(tiredness.CurrentTiredness.TotalSeconds) switch
+        {
+            2 => tiredness.MaximumTirednessMovementSpeedModifier,
+            1 => tiredness.SevereTirednessMovementSpeedModifier,
+            _ => 1f
+        };
+
+    private static int GetTirednessMovementSpeedStage(double tirednessSeconds) =>
+        tirednessSeconds >= MaximumTiredness.TotalSeconds ? 2
+            : tirednessSeconds >= _severeAlertThreshold.TotalSeconds ? 1
+            : 0;
 
     private void UpdateAlert(EntityUid uid, TirednessComponent component)
     {

@@ -17,7 +17,7 @@
   Their unarmed claw attacks deal [color=red]3[/color] points of Slash damage with a hit rate that is [color=yellow]2[/color] times faster than humans.
   As a result, they have an easier time [color=yellow]shoving[/color] and [color=red]disarming[/color] others.
 
-  Additionally, Felionoids can run [color=lightgreen]25%[/color] faster than humans [color=yellow]when not wearing shoes[/color]. They run [color=lightgreen]5%[/color] faster when wearing shoes.
+  When rested, Felionoids can run [color=lightgreen]25%[/color] faster than humans [color=yellow]when not wearing shoes[/color]. They run [color=lightgreen]5%[/color] faster when wearing shoes.
 
   Felionoids are also more vulnerable to damage:
   - They fall into a critical state at [color=red]90[/color] points of damage.
@@ -27,6 +27,8 @@
 
   ## Naptime and light sleep
   Felionoids grow tired while awake and need around [color=yellow]2 minutes of sleep every half hour[/color] to stay rested. Without enough rest, they become irritable and dizzy.
+
+  After around [color=yellow]25 minutes[/color] without a nap, tiredness slows their walking and running speeds by [color=yellow]5%[/color]. At [color=red]30 minutes[/color], their walking and running speeds are [color=red]25% slower[/color].
 
   While asleep, Felionoids slowly recover from heat, cold, blunt, slash, piercing, and blood-loss damage, and heal bleeding. Their light sleep lets them hear their surroundings and sense nearby entities within [color=yellow]10 meters[/color].
 
