@@ -1496,5 +1496,5 @@
   markingCategory: Hair
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_hair.rsi
-      state: Starpuffs
+      state: starpuffs
 #starlight end
