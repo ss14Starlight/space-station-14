@@ -118,8 +118,8 @@
     channelAdd:
       - Expedition
   - type: Sprite
-    sprite: _Starlight/Objects/Tools/emag.rsi
+    sprite: _Starlight/Objects/Tools/itgmag.rsi
     state: icon
   - type: Item
-    sprite: _Starlight/Objects/Tools/emag.rsi
+    sprite: _Starlight/Objects/Tools/itgmag.rsi
   - type: LimitedCharges

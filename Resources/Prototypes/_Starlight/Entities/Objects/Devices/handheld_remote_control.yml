@@ -52,15 +52,14 @@
   description: A compact remote control without a screen, meant for RC toys.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/expeditionhandy.rsi
+    sprite: _Starlight/Objects/Devices/toy_remote_control.rsi
     layers:
-    - state: walkietalkie
+    - state: toyremote_off
     - map: [ "enum.ToggleableVisuals.Layer" ]
-      state: walkietalkie-on
+      state: toyremote_on
       visible: false
   - type: Item
-    sprite: _Starlight/Objects/Devices/expeditionhandy.rsi
-    heldPrefix: walkietalkie
+    sprite: _Starlight/Objects/Devices/toy_remote_control.rsi
   - type: Appearance
   - type: GenericVisualizer
     visuals:
