@@ -36,6 +36,8 @@
     movingMinAngle: 0
     walkSpreadModifier: 0.5
   - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
     minAngleDivider: 4
     maxAngleDivider: 4
 
@@ -55,6 +57,8 @@
     movingMinAngle: 0
     walkSpreadModifier: 0.5
   - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
     minAngleDivider: 4
     maxAngleDivider: 4
 
