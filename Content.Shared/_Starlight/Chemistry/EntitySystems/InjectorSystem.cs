@@ -2,6 +2,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Events;
 using Content.Shared.DoAfter;
 
+// ReSharper disable CheckNamespace
 namespace Content.Shared.Chemistry.EntitySystems;
 
 public sealed partial class InjectorSystem
