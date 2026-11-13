@@ -1,13 +1,6 @@
 Entries:
 - author: John Nexus Integrated Trait & Kazolotl
   changes:
-  - message: Chemist Jamjar Glasses added.
-    type: Add
-  id: 410009
-  time: '2026-11-01T03:14:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6984
-- author: John Nexus Integrated Trait & Kazolotl
-  changes:
   - message: Chemist Jamjars are now an option in the chemist job loadout.
     type: Add
   id: 410010
@@ -2799,4 +2792,11 @@ Entries:
   id: 410408
   time: '2026-11-13T21:17:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7133
+- author: Tjmaxmillion
+  changes:
+  - message: Station AI can now use the Secure Command Terminal for select requests (Code Violet, Emergency Access, and Escape Pods), but cannot cancel pending requests.
+    type: Tweak
+  id: 410409
+  time: '2026-11-13T22:00:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7135
 Order: -1
