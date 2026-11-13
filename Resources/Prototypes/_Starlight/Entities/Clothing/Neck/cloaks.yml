@@ -709,13 +709,3 @@
         - WhitelistChameleon
         - CorgiWearable
 
-- type: entity
-  parent: ClothingNeckBase
-  id: ClothingNeckCloakCSDMantle
-  name: central security division mantle
-  description: A mantle for members of the central security division who like to get their hands dirty.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Neck/Cloaks/CSD_mantle.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Neck/Cloaks/CSD_mantle.rsi
