@@ -143,54 +143,77 @@ public sealed partial class AACWindow : FancyWindow
 
     private void RebuildTabs()
     {
-        if (WindowBody.ChildCount > 0)
-            WindowBody.CurrentTab = 0;
-        WindowBody.RemoveAllChildren(); // Yeet.
-        _buttonGrids.Clear();
-
-        var query = _currentFilter.Trim();
-        var isFiltering = query.Length > 0;
-
-        var filtered = isFiltering
-            ? _allPhrases.Where(p =>
-                    p.Text.Contains(query, StringComparison.CurrentCultureIgnoreCase)
-                    || p.Group.Contains(query, StringComparison.CurrentCultureIgnoreCase)
-                    || p.Tab.Contains(query, StringComparison.CurrentCultureIgnoreCase))
-                .ToList()
-            : _allPhrases;
-
-        if (filtered.Count == 0)
+        _isRebuildingTabs = true;
+        try // Swap to try/finally block so I don't have to remember to set _rebuildingTabs to false when returning
         {
-            AddEmptyResultsTab(query);
-            return;
-        }
+            WindowBody.RemoveAllChildren(); // Yeet.
+            _buttonGrids.Clear();
+            _tabKeys.Clear();
 
-        var tabs = filtered
-            .GroupBy(p => p.Prototype.Tab)
-            .OrderBy(t => t.First().Tab, StringComparer.CurrentCulture);
+            var query = _currentFilter.Trim();
+            var isFiltering = query.Length > 0;
 
-        foreach (var tab in tabs)
-        {
-            var groups = tab
-                .GroupBy(p => p.Prototype.Group.Id)
-                .OrderBy(g => g.Min(p => p.Prototype.GroupOrder))
-                .ThenBy(g => g.First().Group, StringComparer.CurrentCulture);
+            var filtered = isFiltering
+                ? _allPhrases.Where(p =>
+                        p.Text.Contains(query, StringComparison.CurrentCultureIgnoreCase)
+                        || p.Group.Contains(query, StringComparison.CurrentCultureIgnoreCase)
+                        || p.Tab.Contains(query, StringComparison.CurrentCultureIgnoreCase))
+                    .ToList()
+                : _allPhrases;
 
-            var scroll = new ScrollContainer
+            if (filtered.Count == 0)
             {
-                HScrollEnabled = false,
-                VerticalExpand = true,
-                HorizontalExpand = true,
-                MouseFilter = MouseFilterMode.Pass
-            };
-            scroll.AddChild(CreateBoxContainerForTab(groups));
-            WindowBody.AddChild(scroll);
-            WindowBody.SetTabTitle(WindowBody.ChildCount - 1, tab.First().Tab);
-        }
+                AddEmptyResultsTab(query);
+                return;
+            }
 
-        // If filtering, auto-select first tab with results
-        if (isFiltering)
-            WindowBody.CurrentTab = 0;
+            var tabs = filtered
+                .GroupBy(p => p.Prototype.Tab)
+                .OrderBy(t => t.First().Tab, StringComparer.CurrentCulture);
+
+            foreach (var tab in tabs)
+            {
+                _tabKeys.Add(tab.Key);
+
+                var groups = tab
+                    .GroupBy(p => p.Prototype.Group.Id)
+                    .OrderBy(g => g.Min(p => p.Prototype.GroupOrder))
+                    .ThenBy(g => g.First().Group, StringComparer.CurrentCulture);
+
+                var scroll = new ScrollContainer
+                {
+                    HScrollEnabled = false,
+                    VerticalExpand = true,
+                    HorizontalExpand = true,
+                    MouseFilter = MouseFilterMode.Pass
+                };
+                scroll.AddChild(CreateBoxContainerForTab(groups));
+                WindowBody.AddChild(scroll);
+                WindowBody.SetTabTitle(WindowBody.ChildCount - 1, tab.First().Tab);
+            }
+
+            if (isFiltering)
+            {
+                // Auto-select the first tab when you're filtering
+                WindowBody.CurrentTab = 0;
+                return;
+            }
+
+            // Restore the tab you had selected if you aren't filtering anymore
+            if (_selectedTab is { } selected
+                && _tabKeys.IndexOf(selected) is var index and >= 0)
+            {
+                WindowBody.CurrentTab = index;
+            }
+            else
+            {
+                WindowBody.CurrentTab = 0;
+            }
+        }
+        finally
+        {
+            _isRebuildingTabs = false;
+        }
     }
 
     private void AddEmptyResultsTab(string query)
@@ -219,7 +242,10 @@ public sealed partial class AACWindow : FancyWindow
     protected override void Dispose(bool disposing)
     {
         if (disposing)
+        {
             _cfg.UnsubValueChanged(CVars.LocCultureName, OnLanguageChanged);
+            WindowBody.OnTabChanged -= OnTabChanged;
+        }
 
         base.Dispose(disposing);
     }
