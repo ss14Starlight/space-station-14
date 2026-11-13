@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Cluster) Added Gunnery Sergeant.
-    type: Add
-  id: 409977
-  time: '2026-10-30T22:55:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6962
-- author: Caws
-  changes:
   - message: (Cluster) Added a criminal records computer by Genpop.
     type: Add
   id: 409978
@@ -2799,4 +2792,11 @@ Entries:
   id: 410376
   time: '2026-11-13T09:42:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7179
+- author: neomoth
+  changes:
+  - message: Fixed a bug with borgs that caused error spam in console saying the key for their head slots didn't exist.
+    type: Fix
+  id: 410377
+  time: '2026-11-13T10:08:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7207
 Order: -1
