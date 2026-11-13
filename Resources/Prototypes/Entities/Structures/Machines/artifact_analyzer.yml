@@ -166,3 +166,6 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/body_crusher.rsi
+  - type: Tag
+    tags:
+      - XenoBorgCrusher

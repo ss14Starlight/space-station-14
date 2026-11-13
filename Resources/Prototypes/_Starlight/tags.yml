@@ -894,6 +894,9 @@
   id: XenosDisasterSurvivorTraitBackground
 
 - type: Tag
+  id: XenoBorgCrusher
+
+- type: Tag
   id: StationRadioCircuitboard
 
 - type: Tag
