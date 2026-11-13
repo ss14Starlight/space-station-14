@@ -99,7 +99,7 @@ public sealed partial class SpiderSystem : SharedSpiderSystem
         // Spawn web in center
         if (!IsTileBlockedByWeb(coords, out var web))
         {
-            SpawnAtPosition(ent.Comp.WebPrototype, coords);
+            Spawn(ent.Comp.WebPrototype, coords);
             result = true;
         }
         // Starlight-start
