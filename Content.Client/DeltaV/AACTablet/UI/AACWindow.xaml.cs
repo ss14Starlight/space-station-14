@@ -146,6 +146,8 @@ public sealed partial class AACWindow : FancyWindow
         _isRebuildingTabs = true;
         try // Swap to try/finally block so I don't have to remember to set _rebuildingTabs to false when returning
         {
+            if (WindowBody.ChildCount > 0)
+                WindowBody.CurrentTab = 0; // Reset while the old children still exist.
             WindowBody.RemoveAllChildren(); // Yeet.
             _buttonGrids.Clear();
             _tabKeys.Clear();
