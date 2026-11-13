@@ -51,11 +51,6 @@ public sealed partial class XenoVisionSystem : EntitySystem
         _overlayMan.AddOverlay(_overlay);
     }
 
-    /// <summary>
-    /// Attempt to remove the overlay from the local player.
-    /// </summary>
-    /// <param name="uid"></param>
-    /// <param name="force">Use if you need to forcefully remove the overlay no matter what. Only should be used with events that ONLY the local player can fire, like attach/detach</param>
     private void AttemptRemoveVision(EntityUid uid, bool force = false)
     {
         //ENSURE this is the local player
