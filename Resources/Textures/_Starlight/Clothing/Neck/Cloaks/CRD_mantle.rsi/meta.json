@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "made by emisse for ss14, resprited by AnyTap",
+  "copyright": "made by emisse for ss14 | Recolored by Razads",
   "size": {
     "x": 32,
     "y": 32
@@ -12,7 +12,8 @@
     },
     {
       "name": "equipped-NECK",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Recolored by Razads"
     }
   ]
 }

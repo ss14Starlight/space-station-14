@@ -28,6 +28,6 @@
   description: A mantle for members of the central security division who like to get their hands dirty.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Neck/Cloaks/CSD_mantle.rsi
+      sprite: _Starlight/Admeme/Clothing/Neck/Cloaks/CSD_mantle.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Neck/Cloaks/CSD_mantle.rsi
+      sprite: _Starlight/Admeme/Clothing/Neck/Cloaks/CSD_mantle.rsi
