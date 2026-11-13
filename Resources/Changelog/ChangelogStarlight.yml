@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Packed) Added Gunnery Sergeant.
-    type: Add
-  id: 410032
-  time: '2026-11-02T10:20:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7010
-- author: Caws
-  changes:
   - message: (Packed) Replaced the 'Research' station beacon with a 'Science' station beacon.
     type: Tweak
   id: 410033
@@ -2799,4 +2792,11 @@ Entries:
   id: 410431
   time: '2026-11-13T23:10:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7215
+- author: neomoth
+  changes:
+  - message: You can now view the accesses on any player or item as an observer in replays.
+    type: Add
+  id: 410432
+  time: '2026-11-13T23:33:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7218
 Order: -1
