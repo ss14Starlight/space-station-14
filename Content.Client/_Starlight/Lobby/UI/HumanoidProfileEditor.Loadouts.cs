@@ -24,7 +24,7 @@ public sealed partial class HumanoidProfileEditor
     /// </summary>
     private bool _loadoutDressing;
 
-    private bool LoadoutTabVisible => TabContainer.CurrentTab == LoadoutTab.GetPositionInParent();
+    private bool _loadoutTabVisible => TabContainer.CurrentTab == LoadoutTab.GetPositionInParent();
 
     private void InitializeLoadoutTab()
     {
@@ -60,7 +60,7 @@ public sealed partial class HumanoidProfileEditor
 
         TabContainer.OnTabChanged += _ =>
         {
-            if (LoadoutTabVisible)
+            if (_loadoutTabVisible)
                 DressForLoadout();
             else
                 UndressFromLoadout();
@@ -98,9 +98,7 @@ public sealed partial class HumanoidProfileEditor
         {
             var jobs = department.Roles
                 .Select(id => _prototypeManager.Index(id))
-                .Where(job => job.SetPreference
-                              && _prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID))
-                              && keys.Add(JobKeyPrefix + job.ID))
+                .Where(job => job.SetPreference && _prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)) && keys.Add(JobKeyPrefix + job.ID))
                 .ToArray();
             if (jobs.Length == 0)
                 continue;
@@ -195,8 +193,8 @@ public sealed partial class HumanoidProfileEditor
         if (key == SpeciesKey)
         {
             loadout = Profile.SpeciesLoadout?.Clone()
-                      ?? Profile.GetSpeciesLoadoutOrDefault(_playerManager.LocalSession, _prototypeManager)
-                      ?? new RoleLoadout(proto.ID);
+                    ?? Profile.GetSpeciesLoadoutOrDefault(_playerManager.LocalSession, _prototypeManager)
+                    ?? new RoleLoadout(proto.ID);
         }
         else if (Profile.Loadouts.TryGetValue(proto.ID, out var saved))
         {
@@ -230,7 +228,7 @@ public sealed partial class HumanoidProfileEditor
     /// </summary>
     private void DressForLoadout()
     {
-        if (!LoadoutTabVisible || _loadoutKey == null)
+        if (!_loadoutTabVisible || _loadoutKey == null)
             return;
 
         JobOverride = null;

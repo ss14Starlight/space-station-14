@@ -54,7 +54,6 @@ public sealed partial class HumanoidProfileEditor
             SubspeciesButton.AddItem(name, i);
         }
 
-
         SubspeciesButton.SelectId(selected);
         CSubspecies.Visible = true;
     }
@@ -70,13 +69,10 @@ public sealed partial class HumanoidProfileEditor
             !_prototypeManager.TryIndex(species.Loadout, out var loadoutProto))
             return;
 
-
         CSpeciesLoadout.Visible = true;
         SpeciesLoadout.OnPressed += SpeciesLoadoutPressed;
     }
 
     private void SpeciesLoadoutPressed(BaseButton.ButtonEventArgs args)
-    {
-        OpenLoadoutTab(SpeciesKey); // Starlight-edit: the loadout tab instead of a window
-    }
+        => OpenLoadoutTab(SpeciesKey); // Starlight-edit: the loadout tab instead of a window
 }

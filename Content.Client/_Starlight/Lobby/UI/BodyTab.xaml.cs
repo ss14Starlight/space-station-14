@@ -417,15 +417,13 @@ public sealed partial class BodyTab : Control, IMarkingCardDragHost
         => state.GetFrame(state.RsiDirections == RsiDirectionType.Dir1 ? RsiDirection.South : BodyPreview.Direction, 0);
 
     private static void AddTexture(LayoutContainer stack, Texture texture, Color color, float scale)
-    {
-        stack.AddChild(new TextureRect
+        => stack.AddChild(new TextureRect
         {
             Texture = texture,
             TextureScale = new Vector2(scale),
             ModulateSelfOverride = color,
             MouseFilter = MouseFilterMode.Ignore,
         });
-    }
 
     public void BeginDrag(MarkingCard card)
     {

@@ -215,7 +215,7 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
         // A full group swaps its oldest marking out, so picking a different one never needs a remove first.
         if (_set.PointsLeft(category) == 0)
         {
-            var oldest = GetMarkings(group)[0] ?? _set.Markings[category].FirstOrDefault();
+            var oldest = GetMarkings(group).FirstOrDefault() ?? _set.Markings[category].FirstOrDefault();
             if (oldest == null)
                 return;
             _set.Remove(category, oldest.MarkingId);
@@ -462,16 +462,14 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
 
     private bool OnPart(PartDef def, Marking marking)
         => def.Categories.Length > 1
-           || (_markings.TryGetMarking(marking, out var prototype) && def.Layers.Contains(prototype.BodyPart));
+        || (_markings.TryGetMarking(marking, out var prototype) && def.Layers.Contains(prototype.BodyPart));
 
     private bool TryParseGroup(BodyEditorGroup group, out PartDef def, out MarkingCategories category)
     {
         def = _body;
         category = default;
         var split = group.Id.Split('|');
-        return split.Length == 2
-               && _defs.TryGetValue(split[0], out def!)
-               && Enum.TryParse(split[1], out category);
+        return split.Length == 2 && _defs.TryGetValue(split[0], out def!) && Enum.TryParse(split[1], out category);
     }
 
     private void ApplyMarkings()

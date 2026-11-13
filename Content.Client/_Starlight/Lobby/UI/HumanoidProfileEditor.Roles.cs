@@ -55,18 +55,14 @@ public sealed partial class HumanoidProfileEditor
     private void PreviewAntag(ProtoId<AntagPrototype>? antagId)
     {
         AntagOverride = antagId;
-        JobOverride = antagId != null
-                      && _prototypeManager.TryIndex(antagId, out var antag)
-                      && antag.PreviewStartingGear != null
+        JobOverride = antagId != null && _prototypeManager.TryIndex(antagId, out var antag) && antag.PreviewStartingGear != null
             ? _prototypeManager.EnumeratePrototypes<JobPrototype>().FirstOrDefault(j => j.StartingGear == antag.PreviewStartingGear)
             : null;
         ReloadPreview();
     }
 
     private void OnAntagLoadoutPressed(ProtoId<AntagPrototype> antagId)
-    {
-        OpenLoadoutTab(AntagKeyPrefix + antagId.Id);
-    }
+        => OpenLoadoutTab(AntagKeyPrefix + antagId.Id);
 
     /// <summary>
     /// Job rows by job, and the stats label of each department, for search and counts.
