@@ -1,3 +1,5 @@
+// ReSharper disable CheckNamespace
+// Partial of the upstream ActionComponent, so it has to share its namespace.
 namespace Content.Shared.Actions.Components;
 public sealed partial class ActionComponent : Component
 {

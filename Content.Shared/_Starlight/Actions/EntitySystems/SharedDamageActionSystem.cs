@@ -1,5 +1,4 @@
 using Content.Shared._Starlight.Actions.Events;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
@@ -8,10 +7,7 @@ public sealed partial class SharedDamageActionSystem : EntitySystem
 {
     [Dependency] private DamageableSystem _damage = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-    }
+    public override void Initialize() => base.Initialize();
 
     [SubscribeLocalEvent]
     private void OnDamageAction(DamageActionEvent ev)

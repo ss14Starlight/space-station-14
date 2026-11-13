@@ -1,6 +1,8 @@
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 
+// ReSharper disable CheckNamespace
+// Partial of the upstream HungerComponent, so it has to share its namespace.
 namespace Content.Shared.Nutrition.Components;
 
 public sealed partial class HungerComponent : Component
