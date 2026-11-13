@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Prism) Added Gunnery Sergeant.
-    type: Add
-  id: 409982
-  time: '2026-10-30T23:30:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6965
-- author: Caws
-  changes:
   - message: (Prism) Let the dogs out (enabled K9s).
     type: Add
   id: 409983
@@ -2799,4 +2792,11 @@ Entries:
   id: 410381
   time: '2026-11-13T10:58:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7209
+- author: STARLIGHT TEAM
+  changes:
+  - message: EOC SOP is now point based, and paperwork to match.
+    type: Tweak
+  id: 410382
+  time: '2026-11-13T11:21:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7084
 Order: -1
