@@ -1,34 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Packed) Replaced the 'Research' station beacon with a 'Science' station beacon.
-    type: Tweak
-  id: 410033
-  time: '2026-11-02T10:20:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7010
-- author: Caws
-  changes:
-  - message: (Packed) The air scrubber in the artifact chamber is now linked to the nearby unlocked air alarm.
-    type: Fix
-  id: 410034
-  time: '2026-11-02T10:20:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7010
-- author: Caws
-  changes:
-  - message: (Plasma) Added Assistant Manager.
-    type: Add
-  id: 410035
-  time: '2026-11-02T10:38:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7011
-- author: Caws
-  changes:
-  - message: (Plasma) Added Gunnery Sergeant.
-    type: Add
-  id: 410036
-  time: '2026-11-02T10:38:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7011
-- author: Caws
-  changes:
   - message: (Plasma) Fixed stacked firelocks around Science maints.
     type: Fix
   id: 410037
@@ -2799,4 +2771,32 @@ Entries:
   id: 410432
   time: '2026-11-13T23:33:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7218
+- author: Vincolan
+  changes:
+  - message: Added Photography folder.
+    type: Add
+  id: 410433
+  time: '2026-11-13T23:33:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7217
+- author: Vincolan
+  changes:
+  - message: Removed the camera from reporter bag (use the app!).
+    type: Remove
+  id: 410434
+  time: '2026-11-13T23:33:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7217
+- author: Vincolan
+  changes:
+  - message: Reporter loses the BlankPhotosBox and receives the Photography folder instead.
+    type: Tweak
+  id: 410435
+  time: '2026-11-13T23:33:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7217
+- author: Vincolan
+  changes:
+  - message: Reporter News Digiboard now has a little more autonomy.
+    type: Tweak
+  id: 410436
+  time: '2026-11-13T23:33:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7217
 Order: -1
