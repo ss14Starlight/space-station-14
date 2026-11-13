@@ -787,6 +787,14 @@ public sealed partial class InjectorSystem : EntitySystem
         if (!_prototypeManager.Resolve(injector.Comp.ActiveModeProtoId, out var activeProto))
             return;
 
+        // Starlight start: a pending do-after keeps the time of the mode it started in
+        if (HasPendingDoAfter(injector, user))
+        {
+            _popup.PopupClient(Loc.GetString("injector-component-cannot-toggle-busy-message"), user, user);
+            return;
+        }
+        // Starlight end
+
         string? errorMessage = null;
 
         foreach (var allowedMode in injector.Comp.AllowedModes)

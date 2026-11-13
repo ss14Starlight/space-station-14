@@ -5,14 +5,8 @@ using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Weapons.Ranged.Systems;
-using Content.Shared._Starlight.Medical.Body.Components;
-using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Reptilian.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
-using Content.Shared.Chemistry.Components;
-using Content.Shared.FixedPoint;
-using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared._Starlight.Reptilian.Systems;
 using Content.Shared.Damage.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
@@ -34,6 +28,7 @@ namespace Content.Server._Starlight.Reptilian;
 /// </summary>
 public sealed partial class FireBreathSystem : EntitySystem
 {
+    [Dependency] private FireBreathFuelSystem _fuel = default!;
     [Dependency] private FlammableSystem _flammable = default!;
     [Dependency] private GunSystem _gun = default!;
     [Dependency] private HungerSystem _hunger = default!;
@@ -41,10 +36,8 @@ public sealed partial class FireBreathSystem : EntitySystem
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedSolutionContainerSystem _solution = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private SmokingSystem _smoking = default!;
     [Dependency] private TransformSystem _transform = default!;
@@ -75,7 +68,7 @@ public sealed partial class FireBreathSystem : EntitySystem
             return;
         }
 
-        var tier = TryBurnFuel(ent);
+        var tier = _fuel.TryBurnFuel(ent);
 
         // A cigarette in the mouth gets lit either way.
         TryLightSmokable(GetMaskSmokable(user));
@@ -103,44 +96,6 @@ public sealed partial class FireBreathSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString(tier != null ? $"{tier.Popup}-self" : "fire-breath-self"), user, user);
 
         args.Handled = true;
-    }
-
-    private FireBreathFuelTier? TryBurnFuel(Entity<FireBreathComponent> ent)
-    {
-        if (ent.Comp.FuelTiers.Count == 0)
-            return null;
-
-        var sources = new List<Entity<SolutionComponent>>();
-        foreach (var stomach in _body.GetBodyOrganEntityComps<StomachComponent>((ent.Owner, null)))
-        {
-            if (_solution.ResolveSolution(stomach.Owner, StomachSystem.DefaultSolutionName, ref stomach.Comp1.Solution, out _))
-                sources.Add(stomach.Comp1.Solution.Value);
-        }
-
-        if (_solution.TryGetSolution(ent.Owner, BloodstreamComponent.DefaultBloodSolutionName, out var blood))
-            sources.Add(blood.Value);
-
-        foreach (var tier in ent.Comp.FuelTiers)
-        {
-            var total = FixedPoint2.Zero;
-            foreach (var source in sources)
-                total += source.Comp.Solution.GetTotalPrototypeQuantity(tier.Reagent);
-
-            if (total < tier.Amount)
-                continue;
-
-            var left = tier.Amount;
-            foreach (var source in sources)
-            {
-                if (left <= 0)
-                    break;
-                left -= _solution.RemoveReagent(source, tier.Reagent, left);
-            }
-
-            return tier;
-        }
-
-        return null;
     }
 
     private bool TryLightNearby(Entity<FireBreathComponent> ent, EntityUid target, HungerComponent? hunger)

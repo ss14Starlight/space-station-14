@@ -11,6 +11,7 @@ public sealed partial class ThickScalesGearSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     [SubscribeLocalEvent]
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
@@ -52,10 +53,11 @@ public sealed partial class ThickScalesGearSystem : EntitySystem
             return;
 
         var owner = container.Owner;
-        var coords = Transform(owner).Coordinates;
+        var coords = _transform.GetMapCoordinates(owner);
         Del(item);
 
-        var newItem = SpawnAttachedTo(replacement, coords);
+        // Spawned loose on the map, so a failed insert below leaves it on the floor, not parented to carried gear.
+        var newItem = Spawn(replacement, coords);
         if (TryComp<StorageComponent>(owner, out var storage) && container.ID == StorageComponent.ContainerId)
         {
             if (_storage.Insert(owner, newItem, out _, storageComp: storage, playSound: false))
@@ -66,7 +68,7 @@ public sealed partial class ThickScalesGearSystem : EntitySystem
             return;
         }
 
-        // Nowhere to put it: leave it at the owner's feet rather than losing it.
-        _container.TryRemoveFromContainer(newItem);
+        // Nowhere to put it: drop it at the wearer's feet rather than losing it.
+        _transform.AttachToGridOrMap(newItem);
     }
 }
