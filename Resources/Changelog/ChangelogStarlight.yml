@@ -1,20 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: '(Flottila)Security: Add a wide sink to Brigmed.'
-    type: Add
-  id: 410018
-  time: '2026-11-01T10:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6992
-- author: Hot Mic
-  changes:
-  - message: (Flottila)Fixed the Laundromat's wires.
-    type: Fix
-  id: 410019
-  time: '2026-11-01T10:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6992
-- author: Hot Mic
-  changes:
   - message: (Flottila)Remodel the room in the East Arrivals dock.
     type: Tweak
   id: 410020
@@ -2799,4 +2785,18 @@ Entries:
   id: 410417
   time: '2026-11-13T22:35:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7158
+- author: neomoth
+  changes:
+  - message: Pacifism management during end of round is now automated. Zeds or an active attempt to nuke Central Command will cause pacifism to not trigger until the threat is eliminated.
+    type: Add
+  id: 410418
+  time: '2026-11-13T22:35:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6927
+- author: neomoth
+  changes:
+  - message: Fix an issue with EOR pacification involving polymorphed entities whose parent entities were deleted (e.g. bread smite on a ghost) causing EOR to break really really badly.
+    type: Fix
+  id: 410419
+  time: '2026-11-13T22:35:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6927
 Order: -1
