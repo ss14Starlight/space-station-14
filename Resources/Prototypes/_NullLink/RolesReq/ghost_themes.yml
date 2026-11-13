@@ -78,8 +78,8 @@
   rolesLoc: roles-req-developer
 
 - type: roleRequirementPrototype
-  id: MapperReq
+  id: StaffMapperReq
   roles:
-  - 1297739822131056703 # Mapper
+  - 1297739822131056703 # Staff Mapper
   discord: roles-req-discord-starlight
-  rolesLoc: roles-req-mapper
+  rolesLoc: roles-req-staff-mapper

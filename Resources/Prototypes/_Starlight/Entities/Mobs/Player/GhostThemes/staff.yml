@@ -142,5 +142,5 @@
       state: ghost-architect
   requirements:
   - !type:DiscordRolesRequirement
-    requirement: MapperReq
+    requirement: StaffMapperReq
   category: Staff
