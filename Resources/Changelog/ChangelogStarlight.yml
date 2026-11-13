@@ -1,46 +1,4 @@
 Entries:
-- author: Rescue
-  changes:
-  - message: Fixed server crash caused by shadekin and new lighting system.
-    type: Fix
-  id: 409984
-  time: '2026-10-31T03:12:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6968
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Updated the description for Siphon Entropy as it never actually did damage. Now it helps users know what entropy is used for and where to deposit and spend it.
-    type: Tweak
-  id: 409985
-  time: '2026-10-31T13:12:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6975
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Null Fragmentation now makes it VERY CLEAR that using it on a silicon or IPC will reveal the cult to the station. It also now requires confirmation before use, once again directly telling the player this will reveal the cult to the station.
-    type: Tweak
-  id: 409986
-  time: '2026-10-31T13:12:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6975
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Cosmic cultists are now correctly immune to the need for air when empowered, or when the Monument is tier 3.
-    type: Fix
-  id: 409987
-  time: '2026-10-31T13:12:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6975
-- author: HartLys
-  changes:
-  - message: Added Plural flag, scarf and cloak.
-    type: Add
-  id: 409988
-  time: '2026-10-31T13:37:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6953
-- author: wonderfulnewworld
-  changes:
-  - message: Diona can now achieve their objectives.
-    type: Fix
-  id: 409989
-  time: '2026-10-31T13:37:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6944
 - author: Swonki
   changes:
   - message: ITG Trading Surplus Crate.
@@ -2799,4 +2757,46 @@ Entries:
   id: 410383
   time: '2026-11-13T11:50:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7201
+- author: MaxAlpine
+  changes:
+  - message: (Prism) added new radio host equipment.
+    type: Add
+  id: 410384
+  time: '2026-11-13T11:50:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7208
+- author: MaxAlpine
+  changes:
+  - message: (Prism) moved APCs out of artifact chamber to cut down on unintentional artifact activation.
+    type: Tweak
+  id: 410385
+  time: '2026-11-13T11:50:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7208
+- author: MaxAlpine
+  changes:
+  - message: (Prism) vox box distro is now set off by default as it puts a constant strain on distro.
+    type: Tweak
+  id: 410386
+  time: '2026-11-13T11:50:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7208
+- author: MaxAlpine
+  changes:
+  - message: (Prism) removed poster spawners placed over other wallmounts.
+    type: Fix
+  id: 410387
+  time: '2026-11-13T11:50:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7208
+- author: MaxAlpine
+  changes:
+  - message: (Prism) moved floor lights in containment chamber to stop them blocking containment fields.
+    type: Fix
+  id: 410388
+  time: '2026-11-13T11:50:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7208
+- author: MaxAlpine
+  changes:
+  - message: (Prism) fixed unlinked airlocks on the east side of the station.
+    type: Fix
+  id: 410389
+  time: '2026-11-13T11:50:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7208
 Order: -1
