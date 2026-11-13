@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Hotel) Librarian has been enabled.
-    type: Fix
-  id: 409975
-  time: '2026-10-30T22:55:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6961
-- author: Caws
-  changes:
   - message: (Hotel) Fixed the Plushie Room being unpowered roundstart.
     type: Fix
   id: 409976
@@ -2799,4 +2792,11 @@ Entries:
   id: 410374
   time: '2026-11-12T13:16:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7146
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Devil monkeys, kobolds, and scurrets can now open the book of the damned.
+    type: Fix
+  id: 410375
+  time: '2026-11-13T09:42:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7206
 Order: -1
