@@ -128,9 +128,15 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     public IEnumerable<Entity<ModularHudModuleComponent>> GetModules(Entity<ModularHudComponent?> entity) // Starlight
     {
         if (!Resolve(entity, ref entity.Comp)) // Starlight
-            yield break; // Starlight
+            return []; // Starlight
 
-        foreach (var moduleEnt in entity.Comp.ModuleContainer?.ContainedEntities ?? [])
+        return GetContainedModules(entity.Comp); // Starlight
+    }
+
+    // Starlight start
+    private IEnumerable<Entity<ModularHudModuleComponent>> GetContainedModules(ModularHudComponent component)
+    {
+        foreach (var moduleEnt in component.ModuleContainer?.ContainedEntities ?? []) // Starlight end
         {
             if (_modularHudModuleQuery.TryComp(moduleEnt, out var moduleComp))
                 yield return (moduleEnt, moduleComp);
@@ -146,7 +152,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnComponentRemove(Entity<ModularHudComponent> entity, ref ComponentRemove args) => RefreshEffectsForModules(GetModules(entity.AsNullable())); // Starlight
+    private void OnComponentRemove(Entity<ModularHudComponent> entity, ref ComponentRemove args) => RefreshEffectsForModules(GetContainedModules(entity.Comp)); // Starlight
 
     [SubscribeLocalEvent]
     private void OnInteractUsing(Entity<ModularHudComponent> entity, ref InteractUsingEvent args)
