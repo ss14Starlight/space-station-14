@@ -109,9 +109,7 @@ namespace Content.Client.Cargo.BUI
             {
                 SendMessage(new CargoConsoleToggleLimitMessage());
             };
-            //Starlight start
-            _menu.OnPrintBarcode += account => SendMessage(new CargoConsolePrintBarcodeMessage(account));
-            //Starlight end
+            _menu.OnPrintBarcode += account => SendMessage(new CargoConsolePrintBarcodeMessage(account)); // Starlight-edit
             _menu.OpenCentered();
         }
 
