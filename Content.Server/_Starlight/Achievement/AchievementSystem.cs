@@ -76,6 +76,7 @@ using Content.Shared._Starlight.Medical;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Body.Organ;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Medical;
 using Content.Shared.Nutrition;
@@ -116,6 +117,7 @@ public sealed partial class AchievementSystem : EntitySystem
     private const string VoxSpeciesId = "Vox";
     private const string UplinkCatEarsListingId = "UplinkCatEars";
     private const string UplinkBalloon = "UplinkBalloon";
+    private const string NexusImplant = "BrainImplantNexus";
     private readonly Dictionary<Guid, Dictionary<string, double>> _roundProgress = [];
     private readonly HashSet<Guid> _achievementFetchInFlight = [];
     private readonly HashSet<EntityUid> _commandStaffMindsThatDied = [];
@@ -152,7 +154,7 @@ public sealed partial class AchievementSystem : EntitySystem
         SubscribeLocalEvent<MobStateComponent, TargetDefibrillatedEvent>(OnDefib);
         SubscribeLocalEvent<MobStateComponent, ConsumedFoodEvent>(OnConsume);
         SubscribeLocalEvent<StripAttemptEvent>(OnStrip);
-        SubscribeLocalEvent<SurgeryOrganExtracted>(OnFunctionalOrganExtracted);
+        SubscribeLocalEvent<OrganComponent, SurgeryOrganExtracted>(OnOrganExtracted);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
 
         foreach (var session in _playerManager.Sessions)
@@ -353,9 +355,9 @@ public sealed partial class AchievementSystem : EntitySystem
 
     #region Event Handlers
 
-    private void OnFunctionalOrganExtracted(ref SurgeryOrganExtracted args)
+    private void OnOrganExtracted(Entity<OrganComponent> ent, ref SurgeryOrganExtracted args)
     {
-        if (MetaData(args.Organ).EntityPrototype?.ID == "BrainImplantNexus") QueueUnlockAchievement(args.User, "broken_media");
+        if (MetaData(args.Organ).EntityPrototype?.ID == NexusImplant) QueueUnlockAchievement(args.User, "broken_media");
     }
 
     private void OnStrip(ref StripAttemptEvent ev)
@@ -436,7 +438,6 @@ public sealed partial class AchievementSystem : EntitySystem
 
             if (rads >0 && highest) QueueUnlockAchievement(args.Target, "imperfect_protection");
         }
-
 
         if (args.NewMobState != MobState.Dead || args.OldMobState >= args.NewMobState)
             return;
