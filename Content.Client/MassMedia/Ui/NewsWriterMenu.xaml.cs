@@ -34,7 +34,7 @@ public sealed partial class NewsWriterMenu : FancyWindow
         ButtonCreate.OnPressed += OnCreate;
     }
 
-    public void UpdateUI(NewsArticle[] articles, bool publishEnabled, TimeSpan nextPublish, string draftTitle, string draftContent)
+    public void UpdateUI(NewsArticle[] articles, bool publishEnabled, TimeSpan nextPublish, string draftTitle, string draftContent, bool hasPhoto = false) // Starlight Edit: Added hasPhoto
     {
         ArticlesContainer.Children.Clear();
         ArticleCount.Text = Loc.GetString("news-write-ui-article-count-text", ("count", articles.Length));
@@ -45,6 +45,7 @@ public sealed partial class NewsWriterMenu : FancyWindow
             var article = articles[i];
             var control = new NewsArticleCard
             {
+                HasPhoto = !string.IsNullOrEmpty(article.ArticleSnapshotData),
                 Title = article.Title,
                 Author = article.Author ?? Loc.GetString("news-read-ui-no-author"),
                 PublicationTime = article.ShareTime,
@@ -60,6 +61,7 @@ public sealed partial class NewsWriterMenu : FancyWindow
 
         ArticleEditorPanel.TitleField.Text = draftTitle;
         ArticleEditorPanel.ContentField.TextRope = new Rope.Leaf(draftContent);
+        ArticleEditorPanel.SetPhotoState(hasPhoto);
     }
 
     protected override void FrameUpdate(FrameEventArgs args)

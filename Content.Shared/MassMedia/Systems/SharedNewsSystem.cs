@@ -2,14 +2,14 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.MassMedia.Systems;
 
-public abstract class SharedNewsSystem : EntitySystem
+public abstract partial class SharedNewsSystem : EntitySystem // Starlight Edit: Made partial
 {
     public const int MaxTitleLength = 35; // Starlight, slight increase
     public const int MaxContentLength = 3072; // Starlight, +50% increase
 }
 
 [Serializable, NetSerializable]
-public struct NewsArticle
+public partial struct NewsArticle // Starlight Edit: Made partial
 {
     [ViewVariables(VVAccess.ReadWrite)]
     public string Title;

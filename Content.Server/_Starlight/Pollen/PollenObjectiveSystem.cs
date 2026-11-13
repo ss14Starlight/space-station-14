@@ -73,6 +73,7 @@ public sealed partial class PollenObjectiveSystem : EntitySystem
 
     private void OnGetProgress(Entity<PollenCollectionConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
+        args.Progress = 0f;
         if (ent.Comp.Diona is not { } diona || !TryComp<PollenCollectorComponent>(diona, out var collector))
             return;
 

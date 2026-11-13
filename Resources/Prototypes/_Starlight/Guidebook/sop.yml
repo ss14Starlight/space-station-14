@@ -416,6 +416,7 @@
   priority: 12
   children:
   - security-sop-enemy-of-corporation
+  - security-sop-induced-mutiny
   - security-sop-hostage-situations
 
 - type: guideEntry
@@ -425,10 +426,16 @@
   priority: 1
 
 - type: guideEntry
+  id: security-sop-induced-mutiny
+  name: guide-entry-sl-security-sop-induced-mutiny
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations/InducedMutiny.xml"
+  priority: 2
+
+- type: guideEntry
   id: security-sop-hostage-situations
   name: guide-entry-sl-security-sop-hostage-situations
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations/HostageSituations.xml"
-  priority: 2
+  priority: 3
 
 - type: guideEntry
   id: security-sop-criminal-status
