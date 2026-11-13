@@ -160,6 +160,12 @@ ui-options-hud-theme-mpurp = M-Purp
 # Graphics
 ui-options-show-stains = Show clothing stains
 
+ui-options-footprint-visibility = Footprints:
+ui-options-footprint-visibility-all = All
+ui-options-footprint-visibility-half = Half
+ui-options-footprint-visibility-none = None
+ui-options-footprint-visibility-tooltip = Controls how many footprints and drag marks are shown.
+
 # Technically this is a more general Sprite Effects option, but right now it's literally only used for weather, so I'm just going to label it that for now
 ui-options-sprite-quality = Weather Quality:
 ui-options-sprite-quality-low = Low
