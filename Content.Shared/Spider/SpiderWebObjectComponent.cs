@@ -7,8 +7,7 @@ namespace Content.Shared.Spider;
 public sealed partial class SpiderWebObjectComponent : Component
 {
     /// <summary>
-    /// Whether a spider spawning webs can overwrite this. Plain webs are; structures like cocoons are not.
+    /// Whether a spider spawning webs can replace this. Can be set to false for web structures.
     /// </summary>
-    [DataField]
-    public bool Replaceable = true;
+    [DataField] public bool Replaceable = true;
 }
