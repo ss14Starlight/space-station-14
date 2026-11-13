@@ -215,10 +215,15 @@ public sealed partial class LobbyUIController
 
         public override void Close()
         {
-            if (Control.Parent != null && _requestClose())
+            if (Control.Parent != null && CancelClose())
                 return;
 
             base.Close();
         }
+
+        /// <summary>
+        /// Asks about unsaved changes, both for the in-game window and the popped out desktop one.
+        /// </summary>
+        protected override bool CancelClose() => _requestClose();
     }
 }

@@ -26,6 +26,9 @@ public sealed class SegmentedButtons : BoxContainer
         SeparationOverride = 0;
     }
 
+    /// <summary>
+    /// Adds a button at the end of the row. Nothing is picked until <see cref="SelectId"/> is called.
+    /// </summary>
     public void AddItem(string text, int id)
     {
         var button = new Button
@@ -44,6 +47,10 @@ public sealed class SegmentedButtons : BoxContainer
         UpdateEnds();
     }
 
+    /// <summary>
+    /// Lights the button with this id and unlights the rest. An unknown id is ignored and changes nothing.
+    /// Doesn't raise <see cref="OnItemSelected"/>: that's only for the player pressing a button.
+    /// </summary>
     public void SelectId(int id)
     {
         if (!_buttons.ContainsKey(id))
@@ -54,6 +61,9 @@ public sealed class SegmentedButtons : BoxContainer
             button.Pressed = buttonId == id;
     }
 
+    /// <summary>
+    /// Removes every button and resets <see cref="SelectedId"/> to -1.
+    /// </summary>
     public void Clear()
     {
         RemoveAllChildren();
