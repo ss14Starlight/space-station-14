@@ -72,5 +72,4 @@ public sealed partial class SpiderSystem
         }
         return false;
     }
-
 }
