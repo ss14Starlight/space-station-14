@@ -19,24 +19,22 @@ public sealed partial class XenoVisionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<XenoVisionComponent, ComponentInit>(OnVisionInit);
-        SubscribeLocalEvent<XenoVisionComponent, ComponentShutdown>(OnVisionShutdown);
-
-        SubscribeLocalEvent<XenoVisionComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<XenoVisionComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
-
         _overlay = new(_prototypeManager.Index<ShaderPrototype>(XenoShaderPrototype));
     }
 
+    [SubscribeLocalEvent]
     private void OnPlayerAttached(Entity<XenoVisionComponent> ent, ref LocalPlayerAttachedEvent args)
         => AttemptAddVision(ent.Owner);
 
+    [SubscribeLocalEvent]
     private void OnPlayerDetached(Entity<XenoVisionComponent> ent, ref LocalPlayerDetachedEvent args)
         => AttemptRemoveVision(ent.Owner, true);
 
+    [SubscribeLocalEvent]
     private void OnVisionInit(Entity<XenoVisionComponent> ent, ref ComponentInit args)
         => AttemptAddVision(ent.Owner);
 
+    [SubscribeLocalEvent]
     private void OnVisionShutdown(Entity<XenoVisionComponent> ent, ref ComponentShutdown args)
         => AttemptRemoveVision(ent.Owner);
 

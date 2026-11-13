@@ -38,10 +38,6 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
         base.Initialize();
 
         _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("xenodemocracy");
-
-        SubscribeLocalEvent<XenoDemocracyComponent, ComponentStartup>(OnComponentStartup);
-        SubscribeLocalEvent<XenoDemocracyComponent, ComponentShutdown>(OnComponentShutdown);
-        SubscribeLocalEvent<XenoDemocracyComponent, MindRemovedMessage>(HandleMindRemoved);
     }
 
     protected override void Started(EntityUid uid, XenoDemocracyRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -143,6 +139,7 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
         }
     }
 
+    [SubscribeLocalEvent]
     private void HandleMindRemoved(Entity<XenoDemocracyComponent> ent, ref MindRemovedMessage args)
     {
         if (!ent.Comp.IsVoice) // Target isn't the Voice, no need to revote
@@ -162,6 +159,7 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
     }
 
     //Need to do this for comp shutdown, too, in case the component is forcefully removed
+    [SubscribeLocalEvent]
     private void OnComponentShutdown(Entity<XenoDemocracyComponent> ent, ref ComponentShutdown args)
     {
         if (!Deleted(ent.Owner) && ent.Comp.ActionEntity is not null)
@@ -180,6 +178,7 @@ public sealed partial class XenoDemocracyRuleSystem : GameRuleSystem<XenoDemocra
         VoiceVote(ent.Owner); //Get the next in line!
     }
 
+    [SubscribeLocalEvent]
     private void OnComponentStartup(EntityUid uid, XenoDemocracyComponent component, ComponentStartup _)
     {
         var ruleQuery = QueryActiveRules();

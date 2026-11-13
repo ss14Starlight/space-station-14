@@ -12,16 +12,9 @@ public sealed partial class StarvationSystem : EntitySystem
     [Dependency] private IOverlayManager _overlayMan = default!;
     [Dependency] private IPlayerManager _player = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
+    public override void Initialize() => base.Initialize();
 
-        SubscribeLocalEvent<StarvationComponent, ComponentStartup>(OnStarvationStartup);
-        SubscribeLocalEvent<StarvationComponent, ComponentShutdown>(OnStarvationShutdown);
-        SubscribeLocalEvent<LocalPlayerAttachedEvent>(OnLocalPlayerAttached);
-        SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnLocalPlayerDetached);
-    }
-
+    [SubscribeLocalEvent]
     private void OnStarvationStartup(Entity<StarvationComponent> ent, ref ComponentStartup args)
     {
         if (_player.LocalEntity != ent.Owner)
@@ -30,6 +23,7 @@ public sealed partial class StarvationSystem : EntitySystem
         _overlayMan.AddOverlay(_vignette);
     }
 
+    [SubscribeLocalEvent]
     private void OnStarvationShutdown(Entity<StarvationComponent> ent, ref ComponentShutdown args)
     {
         if (_player.LocalEntity != ent.Owner)
@@ -38,6 +32,7 @@ public sealed partial class StarvationSystem : EntitySystem
         _overlayMan.RemoveOverlay(_vignette);
     }
 
+    [SubscribeLocalEvent]
     private void OnLocalPlayerAttached(LocalPlayerAttachedEvent ev)
     {
         if (!TryComp<StarvationComponent>(ev.Entity, out var hungry))
@@ -46,6 +41,7 @@ public sealed partial class StarvationSystem : EntitySystem
         _overlayMan.AddOverlay(_vignette);
     }
 
+    [SubscribeLocalEvent]
     private void OnLocalPlayerDetached(LocalPlayerDetachedEvent ev)
     {
         if (!TryComp<StarvationComponent>(ev.Entity, out var hungry))
