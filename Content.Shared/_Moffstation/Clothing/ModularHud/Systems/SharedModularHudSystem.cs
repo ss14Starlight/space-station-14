@@ -434,8 +434,8 @@ public abstract partial class SharedModularHudSystem : EntitySystem
             [ModularHudVisuals.Specular] = new(1),
         };
         foreach (var (layer, color) in GetModules(entity)
-                     .SelectMany(module => module.Comp.Visuals)
-                     .Concat(entity.Comp2.InnateVisuals))
+                    .SelectMany(module => module.Comp.Visuals)
+                    .Concat(entity.Comp2.InnateVisuals))
         {
             visuals[layer].Add(color);
         }
@@ -493,7 +493,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     {
         var parentUid = Transform(hud).ParentUid;
         return HasComp<InventoryComponent>(parentUid) &&
-               _inventory.InSlotWithAnyFlags(hud.Owner, hud.Comp.ActiveSlots)
+            _inventory.InSlotWithAnyFlags(hud.Owner, hud.Comp.ActiveSlots)
             ? parentUid
             : null;
     }
