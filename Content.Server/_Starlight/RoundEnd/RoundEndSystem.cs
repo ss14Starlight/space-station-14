@@ -71,7 +71,7 @@ public sealed partial class RoundEndSystem
     }
 
     [SubscribeLocalEvent]
-    private void OnRoundEndCancelled(ref RoundEndCancelMessageEvent ev)
+    private void OnRoundEndCancelled(RoundEndCancelMessageEvent ev)
     {
         _countdownTokenSource?.Cancel();
         _countdownTokenSource = null;
