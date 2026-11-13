@@ -2,7 +2,7 @@ trait-blindness-name = Blindness
 trait-blindness-desc = You are legally blind, and can't see clearly past a few meters in front of you.
 
 trait-poor-vision-name = Short-sighted
-trait-poor-vision-desc = Your eyes are not what they once were, you have difficulty seeing things far away without corrective glasses.
+trait-poor-vision-desc = Your eyes are not what they once were, you have difficulty seeing things far away without corrective glasses. You start with a prescription HUD module. Select modular glasses in your loadout, or get a frame from Medical.
 
 trait-narcolepsy-name = Narcolepsy
 trait-narcolepsy-desc = You fall asleep randomly.

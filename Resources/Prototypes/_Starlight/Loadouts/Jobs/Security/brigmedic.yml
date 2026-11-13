@@ -238,8 +238,12 @@
 - type: loadout
   id: BrigmedicHud
   equipment:
-    eyes: ClothingEyesHudBrigmedic
+    eyes: ClothingEyesHudMedSec
 
+- type: loadout
+  id: BrigmedicGlassesPrescription
+  equipment:
+    eyes: ClothingEyesGlassesBrigmedicPrescription
 
 # Eyewear
 - type: loadout
@@ -249,21 +253,6 @@
         proto: SkilledBrigmedic
   equipment:
     eyes: ClothingEyesEyepatchHudBrigmedic
-
-- type: loadout
-  id: BrigmeicGlassesPrescription
-  equipment:
-    eyes: ClothingEyesGlassesBrigmedicPrescription
-
-- type: loadout
-  id: CorpsmanGlasses
-  equipment:
-    eyes: ClothingEyesGlassesCorpsman
-
-- type: loadout
-  id: CorpsmanHud
-  equipment:
-    eyes: ClothingEyesHudCorpsman
 
 # PDA
 - type: loadout

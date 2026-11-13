@@ -123,7 +123,6 @@
   table: !type:AllSelector
     children:
     - id: ClothingEyesGlassesBrigmedic # Starlight
-    - id: ClothingEyesGlassesCorpsman # Starlight
     - id: ClothingOuterCoatCorpsman #Starlight
     - id: ClothingUniformJumpsuitCorpsman #Starlight
     - id: ClothingUniformJumpskirtCorpsman #Starlight

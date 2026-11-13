@@ -47,6 +47,7 @@
     PillGold5: 1
 
 # Core medical supply vendor
+
 - type: vendingMachineInventory
   id: GoldNanoMedPlusInventory
   startingInventory:
@@ -71,7 +72,6 @@
     SyringeIpecac: 1
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
-    ClothingEyeGlassesMedicalPrescription: 2
     AutoMenderBruteFilled: 1
     AutoMenderBurnFilled: 1
     SpaceMedipen: 1

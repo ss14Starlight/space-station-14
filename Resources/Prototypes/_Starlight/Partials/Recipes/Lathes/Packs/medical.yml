@@ -1,0 +1,4 @@
+- type: !PartialOnly latheRecipePack
+  id: ChemistryStatic
+  recipes:
+  - !Remove 'ClothingEyesGlassesChemical'

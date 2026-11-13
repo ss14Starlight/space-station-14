@@ -64,9 +64,7 @@
       entity_storage: !type:AllSelector
         children:
         - id: ClothingEyesGlassesBrigmedic
-        - id: ClothingEyesGlassesCorpsman
-        - id: ClothingEyesHudBrigmedic
-        - id: ClothingEyesHudCorpsman
+        - id: ClothingEyesHudMedSec
         - id: WeaponDisabler
           amount: 2
         - id: TrackingImplanter
