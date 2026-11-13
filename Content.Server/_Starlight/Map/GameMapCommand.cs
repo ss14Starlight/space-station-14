@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using Content.Server._Starlight.Toolshed;
 using Content.Shared._Starlight.Commands;
 using Content.Server.Administration;
 using Content.Shared.Administration;
@@ -204,7 +205,8 @@ public sealed partial class GameMapCommand : ToolshedCommand
     }
 
     [CommandImplementation("load")]
-    public EntityUid LoadMap(IInvocationContext ctx, int id, ResPath path, bool useStoredUids)
+    public EntityUid LoadMap(IInvocationContext ctx, int id,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath path, bool useStoredUids)
     {
         _loader ??= GetSys<MapLoaderSystem>();
         var opts = new DeserializationOptions { StoreYamlUids = useStoredUids };
@@ -215,8 +217,9 @@ public sealed partial class GameMapCommand : ToolshedCommand
     }
 
     [CommandImplementation("loadoffset")]
-    public EntityUid LoadMapOffset(IInvocationContext ctx, int id, ResPath path, bool useStoredUids, float xOff,
-        float yOff, float rotation)
+    public EntityUid LoadMapOffset(IInvocationContext ctx, int id,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath path, bool useStoredUids, float xOff, float yOff,
+        float rotation)
     {
         _loader ??= GetSys<MapLoaderSystem>();
         var opts = new DeserializationOptions { StoreYamlUids = useStoredUids };
@@ -227,7 +230,8 @@ public sealed partial class GameMapCommand : ToolshedCommand
     }
 
     [CommandImplementation("save")]
-    public EntityUid SaveMap(IInvocationContext ctx, [PipedArgument] EntityUid uid, string path)
+    public EntityUid SaveMap(IInvocationContext ctx, [PipedArgument] EntityUid uid,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath path)
     {
         _map ??= GetSys<MapSystem>();
         if (!TryComp<MapComponent>(uid, out var map))
@@ -240,7 +244,8 @@ public sealed partial class GameMapCommand : ToolshedCommand
     }
 
     [CommandImplementation("saveid")]
-    public EntityUid SaveMap(IInvocationContext ctx, int id, string path)
+    public EntityUid SaveMap(IInvocationContext ctx, int id,
+        [CommandArgument(typeof(ResPathCompletionParser))] ResPath path)
     {
         _map ??= GetSys<MapSystem>();
         var mapId = new MapId(id);
@@ -267,7 +272,7 @@ public sealed partial class GameMapCommand : ToolshedCommand
         return true;
     }
 
-    private bool DoSaveMap(IInvocationContext ctx, MapId id, string path)
+    private bool DoSaveMap(IInvocationContext ctx, MapId id, ResPath path)
     {
         _map ??= GetSys<MapSystem>();
         _loader ??= GetSys<MapLoaderSystem>();
@@ -283,7 +288,7 @@ public sealed partial class GameMapCommand : ToolshedCommand
             ctx.WriteLine("As much as it sucks, you are going to need to remap the entire thing on an uninitialized map. Sorry! :(");
         }
 
-        if(_loader.TrySaveMap(id, new ResPath(path)))
+        if(_loader.TrySaveMap(id, path))
             ctx.WriteLine($"Map saved to {path}.");
         else
             CommandMarkup.Error(ctx, "There was an error saving the map.");
