@@ -117,17 +117,16 @@
   entries:
     - proto: MobHivebot
     - proto: MobHivebotRanged
-      cost: 2
     - proto: MobHivebotStrong
-      cost: 4
+      cost: 2
     - proto: MobPurrfusHostile
       cost: 5
     - proto: MobDerelictSiliconHostile
       cost: 5
     - proto: MobDerelictEngineerHostile
-      cost: 10
+      cost: 13
     - proto: MobDerelictJanitorHostile
-      cost: 5
+      cost: 10
   difficulties:
     - Silicon-Easy
     - Silicon-Medium
