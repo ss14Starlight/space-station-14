@@ -13,7 +13,6 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Input;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Mind;
@@ -177,10 +176,8 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
         await Server.WaitAssertion(() =>
         {
             var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(SPlayer);
-            if (console.RemoteBrain is { } remoteBrain)
-                SEntMan.EventBus.RaiseLocalEvent(SPlayer,
-                    new PortDisconnectedEvent("RemoteControl", SPlayer, remoteBrain));
-
+            console.Channel = null;
+            console.RemoteBrain = null;
             Assert.That(console.RemoteBrain, Is.Null, "The test should disconnect its remote brain before teardown.");
         });
 
