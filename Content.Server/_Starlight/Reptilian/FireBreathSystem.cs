@@ -108,8 +108,7 @@ public sealed partial class FireBreathSystem : EntitySystem
                 return false;
             target = mask;
         }
-        else if (HasComp<MobStateComponent>(target)
-                 || !_interaction.InRangeUnobstructed(user, target, ent.Comp.LightRange))
+        else if (HasComp<MobStateComponent>(target) || !_interaction.InRangeUnobstructed(user, target, ent.Comp.LightRange))
         {
             return false;
         }
