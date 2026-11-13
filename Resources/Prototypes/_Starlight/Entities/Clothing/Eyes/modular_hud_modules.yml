@@ -26,7 +26,7 @@
   parent: ModularHudModuleBase
   id: HudModuleBlueNoirOverlay
   name: blue noir HUD module
-  description: A heads-up display module that makes the world black and white while preserving blue hues.
+  description: A heads-up display module that makes the world look magical.
   components:
   - type: Sprite
     layers:
