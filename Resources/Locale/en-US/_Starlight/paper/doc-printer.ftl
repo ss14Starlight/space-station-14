@@ -1528,7 +1528,7 @@ doc-text-printer-explorative-surgery-form =
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
-doc-text-printer-P-23-ID-PDA-Replacement-Form =
+doc-text-printer-p-23-id-pda-replacement-form =
     [head=1][color=#1b67a5]────────────────────[/color][/head]
     [color=#134975]█▄░░█ ▀▀█▀▀[/color]  [head=3][color=#1b67a5]NANOTRASEN CORPORATION[/color][/head]
     [color=#134975]█▀█▄█ ░░█░░[/color][bolditalic][color=#1b67a5]  Together, we change worlds...[/color][/bolditalic]
