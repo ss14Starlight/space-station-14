@@ -35,6 +35,7 @@
   - PrintedDocumentRequestConstructionWorkRecipe
   - PrintedDocumentRequestModernizationRecipe
   - PrintedDocumentRequestERTRecipe
+  - PrintedDocumentP23IdPdaReplacementFormRecipe
   # Complaints
   - PrintedDocumentComplaintViolationLaborRulesRecipe
   - PrintedDocumentComplaintOffenseRecipe
