@@ -78,6 +78,8 @@
       285: 0.7
   - type: Wagging
   - type: ThickScales
+    startingGearReplacements:
+      EmergencyMedipen: PillEmergency
   - type: FireBreath
     fuelTiers: # strongest first
     - reagent: Napalm

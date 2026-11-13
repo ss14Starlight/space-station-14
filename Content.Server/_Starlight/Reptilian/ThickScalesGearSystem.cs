@@ -1,0 +1,72 @@
+using Content.Shared._Starlight.Reptilian.Components;
+using Content.Shared.GameTicking;
+using Content.Shared.Storage;
+using Content.Shared.Storage.EntitySystems;
+using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
+
+namespace Content.Server._Starlight.Reptilian;
+
+public sealed partial class ThickScalesGearSystem : EntitySystem
+{
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedStorageSystem _storage = default!;
+
+    [SubscribeLocalEvent]
+    private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
+    {
+        if (!TryComp<ThickScalesComponent>(args.Mob, out var scales) || scales.StartingGearReplacements.Count == 0)
+            return;
+
+        var found = new List<(EntityUid Item, EntProtoId Replacement)>();
+        CollectReplacements(args.Mob, scales, found);
+
+        foreach (var (item, replacement) in found)
+            Replace(item, replacement);
+    }
+
+    private void CollectReplacements(EntityUid uid, ThickScalesComponent scales, List<(EntityUid, EntProtoId)> found)
+    {
+        if (!TryComp<ContainerManagerComponent>(uid, out var manager))
+            return;
+
+        foreach (var container in _container.GetAllContainers(uid, manager))
+        {
+            foreach (var contained in container.ContainedEntities)
+            {
+                if (MetaData(contained).EntityPrototype?.ID is { } protoId
+                    && scales.StartingGearReplacements.TryGetValue(protoId, out var replacement))
+                {
+                    found.Add((contained, replacement));
+                    continue;
+                }
+
+                CollectReplacements(contained, scales, found);
+            }
+        }
+    }
+
+    private void Replace(EntityUid item, EntProtoId replacement)
+    {
+        if (!_container.TryGetContainingContainer(item, out var container))
+            return;
+
+        var owner = container.Owner;
+        var coords = Transform(owner).Coordinates;
+        Del(item);
+
+        var newItem = SpawnAttachedTo(replacement, coords);
+        if (TryComp<StorageComponent>(owner, out var storage) && container.ID == StorageComponent.ContainerId)
+        {
+            if (_storage.Insert(owner, newItem, out _, storageComp: storage, playSound: false))
+                return;
+        }
+        else if (_container.Insert(newItem, container))
+        {
+            return;
+        }
+
+        // Nowhere to put it: leave it at the owner's feet rather than losing it.
+        _container.TryRemoveFromContainer(newItem);
+    }
+}

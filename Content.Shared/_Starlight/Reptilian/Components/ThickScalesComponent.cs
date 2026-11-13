@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Reptilian.Components;
 
@@ -26,4 +27,10 @@ public sealed partial class ThickScalesComponent : Component
     /// </summary>
     [DataField]
     public bool BlockRemoteInjection = true;
+
+    /// <summary>
+    /// Items in the starting gear that get swapped on spawn, since injectors are useless on thick scales.
+    /// </summary>
+    [DataField]
+    public Dictionary<EntProtoId, EntProtoId> StartingGearReplacements = new();
 }
