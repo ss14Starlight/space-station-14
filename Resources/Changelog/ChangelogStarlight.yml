@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Hotel) Fixed the Plushie Room being unpowered roundstart.
-    type: Fix
-  id: 409976
-  time: '2026-10-30T22:55:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6961
-- author: Caws
-  changes:
   - message: (Cluster) Added Gunnery Sergeant.
     type: Add
   id: 409977
@@ -2799,4 +2792,11 @@ Entries:
   id: 410375
   time: '2026-11-13T09:42:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7206
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Fixed a very minor spelling error.
+    type: Fix
+  id: 410376
+  time: '2026-11-13T09:42:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7179
 Order: -1
