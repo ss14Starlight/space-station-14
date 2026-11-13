@@ -318,6 +318,16 @@
   components:
     - type: Paper
       content: doc-text-printer-product-order
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentP23IdPdaReplacementForm
+  name: P-23 ID and PDA Replacement Form
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-p-23-id-pda-replacement-form
+
 # Complaints
 
 - type: entity
