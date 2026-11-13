@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Cluster) Added a criminal records computer by Genpop.
-    type: Add
-  id: 409978
-  time: '2026-10-30T22:55:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6962
-- author: Caws
-  changes:
   - message: (Cluster) Added a dividing wall in Security so Genpop prisoners can't easily wander around Security after being released.
     type: Tweak
   id: 409979
@@ -2799,4 +2792,11 @@ Entries:
   id: 410377
   time: '2026-11-13T10:08:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7207
+- author: Rhapsody (Pepta, Soothe)
+  changes:
+  - message: Fixed changelings not being able to devour laspi, cyclorites, and dionae.
+    type: Fix
+  id: 410378
+  time: '2026-11-13T10:08:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7202
 Order: -1
