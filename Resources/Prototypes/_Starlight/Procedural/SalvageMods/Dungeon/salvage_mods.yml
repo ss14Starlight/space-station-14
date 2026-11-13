@@ -14,7 +14,6 @@
     - Xeno-Hard
     - Carp-Easy
     - Carp-Medium
-    - Carp-Hard
     - Argocyte-Easy
     - Argocyte-Medium
     - Argocyte-Hard
@@ -59,7 +58,6 @@
     - Xeno-Hard
     - Carp-Easy
     - Carp-Medium
-    - Carp-Hard
     - Argocyte-Easy
     - Argocyte-Medium
     - Argocyte-Hard
@@ -77,7 +75,6 @@
     - Xeno-Medium
     - Xeno-Hard
     - Carp-Medium
-    - Carp-Hard
     - Argocyte-Medium
     - Argocyte-Hard
     - Silicon-Easy
@@ -96,7 +93,6 @@
     - Xeno-Hard
     - Carp-Easy
     - Carp-Medium
-    - Carp-Hard
 
 - type: salvageDungeonMod
   id: SnowyLabs
@@ -110,7 +106,6 @@
     - Xeno-Hard
     - Carp-Easy
     - Carp-Medium
-    - Carp-Hard
     - Argocyte-Easy
     - Argocyte-Medium
     - Argocyte-Hard
@@ -147,4 +142,11 @@
     - Xeno-Hard
     - Carp-Easy
     - Carp-Medium
+
+# Hard carp expeditions use the dragon's copy of the standard carp dungeon.
+- type: salvageDungeonMod
+  id: FireDragon
+  desc: salvage-dungeon-mod-fire-dragon
+  proto: FireDragonDungeon
+  difficulties:
     - Carp-Hard

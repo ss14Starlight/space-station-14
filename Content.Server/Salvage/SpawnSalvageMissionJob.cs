@@ -31,7 +31,8 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Salvage;
 
-public sealed class SpawnSalvageMissionJob : Job<bool>
+// Starlight: Boss and reinforcement handling is defined in a separate partial.
+public sealed partial class SpawnSalvageMissionJob : Job<bool>
 {
     private readonly IEntityManager _entManager;
     private readonly IGameTiming _timing;
@@ -225,6 +226,12 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         var faction = _prototypeManager.Index<SalvageFactionPrototype>(mission.Faction);
         var randomSystem = _entManager.System<RandomSystem>();
 
+        // Starlight-start
+        // A boss expedition is only usable when its required boss was placed.
+        if (!await TrySpawnMegafauna((mapUid, grid), expedition, faction, dungeon, random))
+            return false;
+        // Starlight-end
+
         foreach (var entry in faction.MobGroups)
         {
             budgetEntries.Add(entry);
@@ -247,6 +254,9 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
                 _sawmill.Error($"Failed to spawn mobs for {entry.Proto}: {e}");
             }
         }
+
+        // Starlight: Faction reinforcements supplement the normal mob budget.
+        await SpawnFactionReinforcements((mapUid, grid), faction, dungeon, random);
 
         var allLoot = _prototypeManager.Index<SalvageLootPrototype>(difficultyProto.LootPrototypeId);
         var lootBudget = difficultyProto.LootBudget;
@@ -283,7 +293,8 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         return true;
     }
 
-    private async Task SpawnRandomEntry(Entity<MapGridComponent> grid, IBudgetEntry entry, Dungeon dungeon, IRobustRandom random)
+    // Starlight: Report placement failure so required bosses can reject the expedition.
+    private async Task<bool> SpawnRandomEntry(Entity<MapGridComponent> grid, IBudgetEntry entry, Dungeon dungeon, IRobustRandom random)
     {
         await SuspendIfOutOfTime();
 
@@ -310,11 +321,11 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
                 var uid = _entManager.SpawnAtPosition(entry.Proto, _map.GridTileToLocal(grid, grid, tile));
                 _entManager.RemoveComponent<GhostRoleComponent>(uid);
                 _entManager.RemoveComponent<GhostTakeoverAvailableComponent>(uid);
-                return;
+                return true; // Starlight
             }
         }
 
-        // oh noooooooooooo
+        return false; // Starlight
     }
 
     private async Task SpawnDungeonLoot(SalvageLootPrototype loot, EntityUid gridUid)

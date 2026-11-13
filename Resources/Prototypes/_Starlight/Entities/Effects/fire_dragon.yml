@@ -1,0 +1,79 @@
+- type: entity
+  id: FireDragonGroundFire
+  name: dragon fire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    # Anchoring snaps to tile centers and hides shallow firebreath angles.
+    anchored: false
+  - type: Sprite
+    sprite: _Funkystation/Effects/reagentfire.rsi
+    color: "#FF8C32"
+    drawdepth: Effects
+    layers:
+    - state: "5"
+      shader: unshaded
+  - type: DragonGroundFire
+    damage:
+      types:
+        Heat: 8
+  - type: Appearance
+  - type: Flammable
+    # Provides the normal extinguishing reaction. DragonGroundFire owns burning
+    # and lifetime so these magical flames also persist in oxygenless dungeons.
+    damage:
+      types: {}
+  - type: Reactive
+    groups:
+      Extinguish: [Touch]
+  - type: PointLight
+    color: "#FF8C32"
+    radius: 1.5
+    energy: 1
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: BaseBulletTrigger
+  id: ProjectileAncientFlame
+  name: ancient flame
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    scale: 1.5, 1.5
+    layers:
+    - state: fireball
+      shader: unshaded
+  - type: PointLight
+    color: "#E25822"
+    radius: 3
+    energy: 5
+  - type: Projectile
+    damage:
+      types:
+        Heat: 40
+  - type: AncientFlameProjectile
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: AncientFlame
+    totalIntensity: 40
+    intensitySlope: 2
+    maxIntensity: 6
+    maxTileBreak: 0
+    canCreateVacuum: false
+  - type: TimedDespawn
+    lifetime: 4
+
+- type: explosion
+  id: AncientFlame
+  damagePerIntensity:
+    types:
+      Heat: 5
+      Blunt: 1
+  lightColor: Orange
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 3
+  fireStacks: 3
+  temperature: 1500
