@@ -46,15 +46,9 @@ public sealed partial class BlurryVisionSystem : EntitySystem
         Dirty(ent, blurry);
     }
 
-    private void OnGlassesEquipped(Entity<VisionCorrectionComponent> glasses, ref GotEquippedEvent args)
-    {
-        UpdateBlurMagnitude(args.EquipTarget);
-    }
+    private void OnGlassesEquipped(Entity<VisionCorrectionComponent> glasses, ref GotEquippedEvent args) => UpdateBlurMagnitude(args.EquipTarget);
 
-    private void OnGlassesUnequipped(Entity<VisionCorrectionComponent> glasses, ref GotUnequippedEvent args)
-    {
-        UpdateBlurMagnitude(args.EquipTarget);
-    }
+    private void OnGlassesUnequipped(Entity<VisionCorrectionComponent> glasses, ref GotUnequippedEvent args) => UpdateBlurMagnitude(args.EquipTarget);
 }
 
 public sealed class GetBlurEvent : EntityEventArgs, IInventoryRelayEvent

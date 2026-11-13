@@ -58,10 +58,7 @@ public sealed partial class AccessReaderSystem : EntitySystem
     }
 
     // Moffstation - Begin - Access reader by event
-    private void OnAccessRead(Entity<ShowAccessReaderSettingsComponent> entity, ref ShowAccessReaderSettingsEvent args)
-    {
-        args.CanShowSettings = true;
-    }
+    private void OnAccessRead(Entity<ShowAccessReaderSettingsComponent> entity, ref ShowAccessReaderSettingsEvent args) => args.CanShowSettings = true;
     // Moffstation - End
 
     private void OnExamined(Entity<AccessReaderComponent> ent, ref ExaminedEvent args)

@@ -38,10 +38,7 @@ public sealed partial class ModularHudModuleComponent : Component
     {
         /// Implementation of <see cref="IComparable"/>, just defers to priorities. This is needed to use a priority queue
         /// in <see cref="SharedModularHudSystem.SyncVisuals"/>.
-        public int CompareTo(ModuleColor other)
-        {
-            return Priority.CompareTo(other.Priority);
-        }
+        public int CompareTo(ModuleColor other) => Priority.CompareTo(other.Priority);
 
         /// <summary>The actual color</summary>
         public Color Color { get; init; } = Color;

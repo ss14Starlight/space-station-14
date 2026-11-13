@@ -79,8 +79,10 @@ public abstract partial class SharedFlashSystem : EntitySystem
     /// </summary>
     public bool IsFlashImmune(EntityUid uid)
     {
-        var ev = new FlashAttemptEvent(uid, User: null, Used: null);
-        ev.IsImmunityQuery = true; // Starlight
+        var ev = new FlashAttemptEvent(uid, User: null, Used: null)
+        {
+            IsImmunityQuery = true // Starlight
+        };
         RaiseLocalEvent(uid, ref ev);
         return ev.Cancelled;
     }
@@ -92,7 +94,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
     /// </summary>
     private void OnFlashMapInit(EntityUid uid, FlashComponent flash, ref MapInitEvent args)
     {
-        if (TryComp<LimitedChargesComponent>(uid, out var charges) && ((charges.MaxCharges == 0)))
+        if (TryComp<LimitedChargesComponent>(uid, out var charges) && (charges.MaxCharges == 0))
         {
             _appearance.SetData(uid, FlashVisuals.Burnt, true);
             _tag.AddTag(uid, TrashTag);

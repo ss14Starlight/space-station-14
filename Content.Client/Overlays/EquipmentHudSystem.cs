@@ -121,9 +121,6 @@ public abstract partial class EquipmentHudSystem<T> : EntitySystem where T : ICo
     }
 
     // Moffstation - Begin - Modular HUDs
-    private void OnEquipmentHudNeedsRefresh(Entity<T> ent, ref EquipmentHudNeedsRefreshEvent args)
-    {
-        RefreshOverlay();
-    }
+    private void OnEquipmentHudNeedsRefresh(Entity<T> ent, ref EquipmentHudNeedsRefreshEvent args) => RefreshOverlay();
     // Moffstation - End
 }
