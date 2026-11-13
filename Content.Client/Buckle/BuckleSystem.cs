@@ -122,9 +122,9 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
 
     private void OnAppearanceChange(EntityUid uid, BuckleComponent component, ref AppearanceChangeEvent args)
     {
+        // Starlight-start
         var buckled = Appearance.TryGetData<bool>(uid, BuckleVisuals.Buckled, out var isBuckled, args.Component) && isBuckled;
 
-        // Starlight-start
         if (args.Sprite != null)
         {
             if (buckled && component.BuckledTo is { } strapUid
