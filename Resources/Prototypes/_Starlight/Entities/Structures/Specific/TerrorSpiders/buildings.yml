@@ -151,16 +151,16 @@
   - type: HealOnBuckle
     damage:
       types:
-        Bloodloss: -0.1
-        Blunt: -0.03
-        Slash: -0.03
-        Piercing: -0.03
-        Heat: -0.03
-        Shock: -0.03
-        Cold: -0.03
-        Caustic: -0.03
-        Poison: -0.05
-        Radiation: -0.05
+        Bloodloss: -0.25
+        Blunt: -0.7
+        Slash: -0.7
+        Piercing: -0.7
+        Heat: -0.7
+        Shock: -0.7
+        Cold: -0.7
+        Caustic: -0.7
+        Poison: -0.7
+        Radiation: -0.7
 
 - type: entity
   id: AmmoniaEggGenerator
