@@ -98,6 +98,12 @@ public sealed partial class EggInjectSystem : EntitySystem
             DistanceThreshold = 1f
         };
 
-        ev.Handled = _doAfter.TryStartDoAfter(doAfter);
+        if (!_doAfter.TryStartDoAfter(doAfter))
+        {
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-too-far-away"), ev.Performer, ev.Performer);
+            return;
+        }
+
+        ev.Handled = true;
     }
 }
