@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Cluster) Added a dividing wall in Security so Genpop prisoners can't easily wander around Security after being released.
-    type: Tweak
-  id: 409979
-  time: '2026-10-30T22:55:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6962
-- author: Caws
-  changes:
   - message: (Cluster) Improved Armory's layout a bit.
     type: Tweak
   id: 409980
@@ -2799,4 +2792,11 @@ Entries:
   id: 410378
   time: '2026-11-13T10:08:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7202
+- author: Cvlancer, Caws
+  changes:
+  - message: A new ghost theme has been added for Mappers! Sprites by Cvlancer.
+    type: Add
+  id: 410379
+  time: '2026-11-13T10:08:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7188
 Order: -1
