@@ -1,46 +1,4 @@
 Entries:
-- author: Ohelig
-  changes:
-  - message: (Cluster) Replaced indestructible lights in Clown and Radio Host with normal variants.
-    type: Fix
-  id: 410001
-  time: '2026-11-01T00:02:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6971
-- author: Ohelig
-  changes:
-  - message: (Cork) Added Gunnery Sergeant.
-    type: Add
-  id: 410002
-  time: '2026-11-01T00:33:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6972
-- author: Ohelig
-  changes:
-  - message: (Cork) Fixed the door access between Botany and Theater.
-    type: Fix
-  id: 410003
-  time: '2026-11-01T00:33:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6972
-- author: redmushie
-  changes:
-  - message: (Bagel) Change distro/waste layers to match docking port standard.
-    type: Tweak
-  id: 410004
-  time: '2026-11-01T00:53:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6973
-- author: redmushie
-  changes:
-  - message: (Bagel) Connected several disconnected waste networks.
-    type: Tweak
-  id: 410005
-  time: '2026-11-01T00:53:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6973
-- author: redmushie
-  changes:
-  - message: (Bagel) Routed distro, waste and HV to every docking port.
-    type: Add
-  id: 410006
-  time: '2026-11-01T00:53:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6973
 - author: Cvlancer
   changes:
   - message: (Oasis) Added Gunner Sergeant and his locker to wardens office.
@@ -2799,4 +2757,46 @@ Entries:
   id: 410400
   time: '2026-11-13T12:39:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7113
+- author: Floximo
+  changes:
+  - message: Remote Control Interface and Remote Control Console are now buildable after research.
+    type: Add
+  id: 410401
+  time: '2026-11-13T19:44:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6988
+- author: Floximo
+  changes:
+  - message: Rouny and Flox (new plushy) are now remote controllable.
+    type: Add
+  id: 410402
+  time: '2026-11-13T19:44:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6988
+- author: Floximo
+  changes:
+  - message: Remote Control uses now a channel system. 6 digits that are shown on inspecting a controllable entity.
+    type: Add
+  id: 410403
+  time: '2026-11-13T19:44:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6988
+- author: Floximo
+  changes:
+  - message: pAI can now buy a toy class remote control and can use it by being told a channel of a controllable entity.
+    type: Add
+  id: 410404
+  time: '2026-11-13T19:44:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6988
+- author: Floximo
+  changes:
+  - message: pAI can now control a Remote Control Console if inserted in one.
+    type: Add
+  id: 410405
+  time: '2026-11-13T19:44:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6988
+- author: Floximo
+  changes:
+  - message: Some client and server crashes got fixed.
+    type: Fix
+  id: 410406
+  time: '2026-11-13T19:44:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6988
 Order: -1
