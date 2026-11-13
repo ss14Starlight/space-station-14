@@ -124,6 +124,34 @@
           amount: 9
 
 - type: entity
+  parent: BoxFolderBaseEmpty
+  id: PhotographFolder
+  name: photography folder
+  description: A folder for documents and photos, has a photo of a sun setting behind a mountain.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/photography_folder.rsi
+      layers:
+        - state: icon
+        - state: icon
+          map: [ "folder-overlay-paper" ]
+          visible: false
+    - type: Item
+      sprite: _Starlight/Objects/Misc/photography_folder.rsi
+    - type: Storage
+      whitelist:
+        components:
+          - BlankPhotograph
+        tags:
+          - Document
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: BlankPhotograph
+              amount: 9
+
+- type: entity
   id: PhotoCameraCrate
   parent: CratePlastic
   name: photo camera crate

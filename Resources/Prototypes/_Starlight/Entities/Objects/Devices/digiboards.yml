@@ -28,7 +28,7 @@
       soundDeactivate:
         path: /Audio/Machines/button.ogg
     - type: PowerCellDraw
-      drawRate: 1
+      drawRate: 0.6
     - type: NewsWriter
     - type: ContainerContainer
       containers:
