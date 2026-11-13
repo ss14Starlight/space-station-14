@@ -48,6 +48,7 @@ public sealed partial class TerminatorRuleSystem : GameRuleSystem<TerminatorRule
             }
 
             ent.Comp.Target = newTarget.Owner;
+            ent.Comp.TargetBody = newTarget.Comp.OwnedEntity;
         }
 
         var terminator = Spawn(ent.Comp.TerminatorEntityPrototype, args.Coords);

@@ -169,6 +169,7 @@ namespace Content.Client.Verbs.UI
                     AddVerbCategory(category, popup);
             }
 
+            AddEntries(popup); // Starlight
             popup.InvalidateMeasure();
         }
 

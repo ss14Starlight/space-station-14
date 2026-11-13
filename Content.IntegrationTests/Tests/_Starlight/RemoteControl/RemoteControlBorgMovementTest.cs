@@ -13,6 +13,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Input;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Mind;
@@ -26,6 +27,7 @@ using Content.Shared.Popups;
 using Content.Shared.Power.Components;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Silicons.StationAi;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Robust.Shared.Containers;
@@ -81,6 +83,12 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
             var coordinates = SEntMan.GetCoordinates(PlayerCoords);
             controlledBorg = SpawnBorg(coordinates.Offset(new Vector2(4f, 0f)), out controlledBrain);
             untouchedBorg = SpawnBorg(coordinates.Offset(new Vector2(-4f, 0f)), out _);
+
+            var core = SEntMan.Spawn("PlayerStationAi", MapCoordinates.Nullspace);
+            var containers = Server.System<SharedContainerSystem>();
+            if (!containers.TryGetContainer(core, StationAiCoreComponent.Container, out var coreContainer))
+                throw new InvalidOperationException("Station AI core container was not initialized.");
+            Assert.That(containers.Insert(SPlayer, coreContainer), Is.True);
 
             var mindSystem = Server.System<SharedMindSystem>();
             mindId = mindSystem.CreateMind(ServerSession.UserId);
@@ -165,6 +173,16 @@ public sealed class RemoteControlBorgMovementTest : MovementTest
         await Move(DirectionFlag.East, 1f);
         await Server.WaitAssertion(() =>
             untouchedBorgMoved = Transform.GetWorldPosition(untouchedBorg).X > untouchedBorgStart.X + 0.1f);
+
+        await Server.WaitAssertion(() =>
+        {
+            var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(SPlayer);
+            if (console.RemoteBrain is { } remoteBrain)
+                SEntMan.EventBus.RaiseLocalEvent(SPlayer,
+                    new PortDisconnectedEvent("RemoteControl", SPlayer, remoteBrain));
+
+            Assert.That(console.RemoteBrain, Is.Null, "The test should disconnect its remote brain before teardown.");
+        });
 
         Assert.Multiple(() =>
         {

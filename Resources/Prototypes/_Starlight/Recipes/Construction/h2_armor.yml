@@ -1,0 +1,8 @@
+# atmosian helmet
+- type: construction
+  id: AtmosianHelmet
+  graph: AtmosianHelmet
+  startNode: start
+  targetNode: helmet
+  category: construction-category-clothing
+  objectType: Item

@@ -12,3 +12,43 @@
   - type: TargetAction
   - type: EntityTargetAction
     event: !type:MedTekActionEvent
+
+- type: entity
+  parent: BasePDACartridge
+  id: PhotoCartridge
+  name: photo cartridge
+  description: Lets you take pictures! Blank Photographs not included.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/cartridge.rsi
+    state: cart-camera
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/cartridge.rsi
+    state: cart-camera
+  - type: Cartridge
+    programName: photo-program-name
+    icon:
+      sprite: _Starlight/Interface/Misc/program_icons.rsi
+      state: camera
+  - type: PhotoCartridge
+    grantedComponents:
+    - type: SnapshotCapture
+      snapshot: SnapshotPhotograph
+      zoomLevels:
+      - 9,7
+      - 7,5
+      - 5,3
+      - 3,3
+      - 1,1
+    - type: Flash
+      flashOnUse: false
+      flashOnRangedInteract: false
+      flashOnMelee: false
+      sound:
+        path: /Audio/Misc/camera_snap.ogg
+    - type: LimitedCharges
+      maxCharges: 4
+    - type: AutoRecharge
+      rechargeDuration: 60
+    - type: UseDelay
+      delay: 1

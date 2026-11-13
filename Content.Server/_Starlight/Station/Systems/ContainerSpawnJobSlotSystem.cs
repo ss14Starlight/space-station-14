@@ -3,10 +3,12 @@ using Content.Server.Mind;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Intellicard;
 using Content.Shared.Roles;
 using Content.Shared.Silicons.StationAi;
 using Robust.Shared.Containers;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -117,7 +119,7 @@ public sealed partial class ContainerSpawnJobSlotSystem : EntitySystem
                 if (job == _stationAiJob)
                 {
                     var emptyAiCores = _emptyAiCores.TryGetValue(station, out var count) ? count : 0;
-                    availableSlots = Math.Max(0, Math.Min(free, emptyAiCores) - CountIntellicardReservations(stationJobs));
+                    availableSlots = Math.Max(0, Math.Min(free, emptyAiCores) - CountIntellicardReservations(station));
                 }
 
                 if (!_stationJobs.TryGetJobSlot(station, job, out var slots, stationJobs)
@@ -131,21 +133,32 @@ public sealed partial class ContainerSpawnJobSlotSystem : EntitySystem
         }
     }
 
-    private int CountIntellicardReservations(StationJobsComponent stationJobs)
+    private int CountIntellicardReservations(EntityUid station)
     {
-        var reservations = 0;
-        foreach (var (userId, jobs) in stationJobs.PlayerJobs)
+        var reservations = new HashSet<NetUserId>();
+        var query = EntityQueryEnumerator<IntellicardComponent, StationAiHolderComponent>();
+        while (query.MoveNext(out _, out _, out var holder))
         {
-            if (!jobs.Contains(_stationAiJob)
-                || !_mind.TryGetMind(userId, out _, out var mind)
-                || mind.OwnedEntity is not { } body
-                || !_container.TryGetContainingContainer(body, out var container)
-                || !HasComp<IntellicardComponent>(container.Owner))
+            if (holder.Slot.Item is not { } ai
+                || !TryComp<StationAIShuntableComponent>(ai, out var shuntable)
+                || shuntable.SlotReservationStation != station)
                 continue;
 
-            reservations++;
+            var hasMind = _mind.TryGetMind(ai, out _, out var mind);
+            if (!hasMind
+                && shuntable.Inhabited is { } inhabited)
+            {
+                hasMind = _mind.TryGetMind(inhabited, out _, out mind);
+            }
+
+            if (!hasMind
+                || mind is null
+                || mind.UserId is not { } userId)
+                continue;
+
+            reservations.Add(userId);
         }
 
-        return reservations;
+        return reservations.Count;
     }
 }

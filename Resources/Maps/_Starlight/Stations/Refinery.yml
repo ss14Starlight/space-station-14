@@ -91639,10 +91639,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 55.5,-45.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 15623
     components:
     - type: Transform
@@ -167850,10 +167846,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 10.5,-36.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
     - type: EntityStorage
       air:
         temperature: 293.14673
@@ -167872,19 +167864,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 15.5,-36.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 26733
     components:
     - type: Transform
       parent: 2
       pos: 12.5,-34.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 26734
     components:
     - type: Transform
@@ -167895,19 +167879,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 12.5,-33.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 26736
     components:
     - type: Transform
       parent: 2
       pos: 12.5,-35.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 26737
     components:
     - type: Transform

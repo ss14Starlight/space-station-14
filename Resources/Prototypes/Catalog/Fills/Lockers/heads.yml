@@ -228,6 +228,9 @@
       - id: EndymionMonumentFlatpack
     - id: PrintedDocumentEndymionMemorial
     - id: Multitool
+    - id: PhotoCamera
+    - id: PhotoCartridge
+    - id: BlankPhotographBox
     - id: WashingMachineFlatpack # Starlight - TODO remove once laundromats are implemented in most maps
     # Starlight End
     - id: PlushieLizardJobHeadofpersonnel
