@@ -1,11 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a portable scrubber to gen pop atsmo.
-    type: Add
-  id: 410008
-  time: '2026-11-01T00:53:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6967
 - author: John Nexus Integrated Trait & Kazolotl
   changes:
   - message: Chemist Jamjar Glasses added.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410407
   time: '2026-11-13T20:35:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7066
+- author: neomoth
+  changes:
+  - message: ACTUALLY fix action order this time... i think... i HOPE...
+    type: Fix
+  id: 410408
+  time: '2026-11-13T21:17:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7133
 Order: -1
