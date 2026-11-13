@@ -7,6 +7,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Reptilian;
 
+/// <summary>
+/// When a thick-scaled player spawns, swaps starting gear they can't use (like emergency medipens)
+/// for the replacements listed in <see cref="ThickScalesComponent.StartingGearReplacements"/>.
+/// </summary>
 public sealed partial class ThickScalesGearSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _container = default!;
@@ -26,6 +30,10 @@ public sealed partial class ThickScalesGearSystem : EntitySystem
             Replace(item, replacement);
     }
 
+    /// <summary>
+    /// Walks every container on <paramref name="uid"/> and the items inside them, recursively, and adds
+    /// each item that has a replacement to <paramref name="found"/>. Replaced items aren't searched further.
+    /// </summary>
     private void CollectReplacements(EntityUid uid, ThickScalesComponent scales, List<(EntityUid, EntProtoId)> found)
     {
         if (!TryComp<ContainerManagerComponent>(uid, out var manager))

@@ -26,7 +26,10 @@ public sealed partial class ThickScalesSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnBeforeInject(Entity<ThickScalesComponent> ent, ref TargetBeforeInjectEvent args)
     {
-        if (!ent.Comp.BlockInstantInjectors || args.Cancelled || !IsInstantInjector(args.UsedInjector))
+        if (!ent.Comp.BlockInstantInjectors
+            || args.Cancelled
+            || HasComp<PiercesThickScalesComponent>(args.UsedInjector)
+            || !IsInstantInjector(args.UsedInjector))
             return;
 
         args.Cancel();
@@ -57,7 +60,7 @@ public sealed partial class ThickScalesSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnInjectOnHitAttempt(Entity<ThickScalesComponent> ent, ref InjectOnHitAttemptEvent args)
     {
-        if (!ent.Comp.BlockRemoteInjection || args.Cancelled)
+        if (!ent.Comp.BlockRemoteInjection || args.Cancelled || HasComp<PiercesThickScalesComponent>(args.Used))
             return;
 
         args.Cancelled = true;

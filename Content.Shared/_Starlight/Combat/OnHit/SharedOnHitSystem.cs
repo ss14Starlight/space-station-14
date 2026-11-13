@@ -75,7 +75,7 @@ public abstract partial class SharedOnHitSystem : EntitySystem
         foreach (var target in args.HitEntities)
         {
             // Check for target-specific immunity (like hardsuit immunity)
-            var targetAttempt = new InjectOnHitAttemptEvent(false, args.User);
+            var targetAttempt = new InjectOnHitAttemptEvent(false, args.User, ent.Owner);
             RaiseLocalEvent(target, ref targetAttempt, true);
             if (targetAttempt.Cancelled)
                 continue;
