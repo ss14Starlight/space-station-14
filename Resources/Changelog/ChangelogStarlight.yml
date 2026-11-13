@@ -1,13 +1,6 @@
 Entries:
 - author: Hot Mic
   changes:
-  - message: '(Flottila)Security: Add more guns to the armory.'
-    type: Add
-  id: 410017
-  time: '2026-11-01T10:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6992
-- author: Hot Mic
-  changes:
   - message: '(Flottila)Security: Add a wide sink to Brigmed.'
     type: Add
   id: 410018
@@ -2799,4 +2792,11 @@ Entries:
   id: 410416
   time: '2026-11-13T22:00:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7203
+- author: Floximo
+  changes:
+  - message: The way sleep inducing drugs apply movement speed modifiers was generalized.
+    type: Tweak
+  id: 410417
+  time: '2026-11-13T22:35:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7158
 Order: -1
