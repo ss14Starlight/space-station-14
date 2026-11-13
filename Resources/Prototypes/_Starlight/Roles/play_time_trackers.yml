@@ -109,6 +109,9 @@
 - type: playTimeTracker
   id: JobEmotionalSupportScurret
 
+- type: playTimeTracker
+  id: JobGuardian
+
 # Other ghosts
 
 - type: playTimeTracker
