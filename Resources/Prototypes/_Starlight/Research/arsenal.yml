@@ -1,3 +1,20 @@
+# Tier 1
+- type: technology
+  id: ModularHudModulesArsenalT1
+  name: research-technology-modular-hud-modules-arsenal-t1
+  icon:
+    entity: HudModuleShowCriminalRecordIcons
+  discipline: Arsenal
+  tier: 1
+  cost: 2500
+  technologyPrerequisites:
+  - ModularHudFrames
+  recipeUnlocks:
+  - HudModuleShowCriminalRecordIcons
+  - HudModuleShowMindShieldIcons
+  radioChannels:
+  - Security
+
 # Tier 2
 - type: technology
   id: Paddy
@@ -119,22 +136,6 @@
   radioChannels:
   - Security
   - Medical
-
-- type: technology
-  id: ModularHudModulesCivilianT2Security
-  name: research-technology-modular-hud-modules-civilian-t2-security
-  icon:
-    entity: HudModuleShowCriminalRecordIcons
-  discipline: Arsenal
-  tier: 2
-  cost: 3500
-  technologyPrerequisites:
-  - ModularHudFrames
-  recipeUnlocks:
-  - HudModuleShowCriminalRecordIcons
-  - HudModuleShowMindShieldIcons
-  radioChannels:
-  - Security
 
 - type: technology
   id: ModularHudModulesArsenalT2

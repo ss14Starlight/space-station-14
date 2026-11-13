@@ -242,8 +242,8 @@
   - Medical
 
 - type: technology
-  id: ModularHudModulesCivilianT2Medical
-  name: research-technology-modular-hud-modules-civilian-t2-medical
+  id: ModularHudModulesMedicalT2
+  name: research-technology-modular-hud-modules-medical-t2
   icon:
     entity: HudModuleShowMedicalIcons
   discipline: Biochemical
