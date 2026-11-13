@@ -6,6 +6,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input;
 
+// ReSharper disable CheckNamespace
 namespace Content.Client._Starlight.UI;
 
 internal sealed class SwatchButton : PanelContainer

@@ -21,7 +21,7 @@ public sealed class FlatCharacterEditorSheetlet : Sheetlet<NanotrasenStylesheet>
 
         var proto = theme.Proto;
 
-        MutableSelectorElement Card() => E<ContainerButton>().Class(MarkingCard.StyleClassCard);
+        static MutableSelectorElement Card() => E<ContainerButton>().Class(MarkingCard.StyleClassCard);
 
         return
         [

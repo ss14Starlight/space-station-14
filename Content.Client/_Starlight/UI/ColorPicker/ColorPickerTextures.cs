@@ -7,6 +7,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using Color = Robust.Shared.Maths.Color;
 
+// ReSharper disable CheckNamespace
 namespace Content.Client._Starlight.UI;
 
 // After testing, generating textures for every color we could find, it took 1.5 MB.

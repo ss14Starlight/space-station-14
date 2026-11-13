@@ -56,9 +56,9 @@ public sealed class LoadoutTab : BoxContainer
     };
     private readonly BoxContainer _editor;
 
-    private readonly List<Section> _sections = new();
-    private readonly Dictionary<string, (Button Button, BoxContainer Groups, Section Section, string Name)> _roles = new();
-    private readonly List<(LoadoutPrototype Proto, ContainerButton Card, string Name)> _cards = new();
+    private readonly List<Section> _sections = [];
+    private readonly Dictionary<string, (Button Button, BoxContainer Groups, Section Section, string Name)> _roles = [];
+    private readonly List<(LoadoutPrototype Proto, ContainerButton Card, string Name)> _cards = [];
 
     private string? _roleKey;
     private RoleLoadoutPrototype? _roleProto;
@@ -351,8 +351,8 @@ public sealed class LoadoutTab : BoxContainer
             && name.StartsWith(role.Name + " ", StringComparison.CurrentCultureIgnoreCase))
         {
             // Substring and ToUpperInvariant, not char + string: that concat builds a span over the char, which the sandbox forbids.
-            name = name.Substring(role.Name.Length + 1);
-            name = name.Substring(0, 1).ToUpperInvariant() + name.Substring(1);
+            name = name[(role.Name.Length + 1)..];
+            name = string.Concat(name[..1].ToUpperInvariant(), name.AsSpan(1));
         }
 
         return name;

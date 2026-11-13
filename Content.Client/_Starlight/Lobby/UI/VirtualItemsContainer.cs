@@ -108,7 +108,7 @@ public abstract class VirtualItemsContainer : Container
         var endLine = startLine + visibleLines;
 
         var startIndex = Math.Max(0, startLine * perLine);
-        var endIndex = Math.Min(TotalItemCount - 1, (endLine + 1) * perLine - 1);
+        var endIndex = Math.Min(TotalItemCount - 1, ((endLine + 1) * perLine) - 1);
 
         if (startIndex == _visibleRange.Start && endIndex == _visibleRange.End)
             return;

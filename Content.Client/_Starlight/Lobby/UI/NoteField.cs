@@ -14,7 +14,7 @@ public sealed class NoteField : PanelContainer
 {
     private readonly Label _title;
     private readonly Label _count;
-    private VScrollBar? _scrollBar;
+    private readonly VScrollBar? _scrollBar;
 
     public readonly TextEdit Input;
 
@@ -75,7 +75,6 @@ public sealed class NoteField : PanelContainer
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
-        if (_scrollBar != null)
-            _scrollBar.Visible = _scrollBar.MaxValue > _scrollBar.Page + 1f;
+        _scrollBar?.Visible = _scrollBar.MaxValue > _scrollBar.Page + 1f;
     }
 }

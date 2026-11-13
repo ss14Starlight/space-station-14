@@ -47,7 +47,6 @@
                 </controls:ConfirmButton>
             </PanelContainer>
 			<!-- Starlight-end -->
-			
         </BoxContainer> <!-- End button container -->
     </BoxContainer>
 </ContainerButton>

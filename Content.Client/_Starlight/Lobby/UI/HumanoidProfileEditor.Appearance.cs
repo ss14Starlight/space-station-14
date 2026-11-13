@@ -15,8 +15,8 @@ public sealed partial class HumanoidProfileEditor
 {
     public event Action<List<ProtoId<GuideEntryPrototype>>>? OnOpenGuidebook;
 
-    private readonly List<SpeciesPrototype> _species = new();
-    private static readonly ProtoId<GuideEntryPrototype> DefaultSpeciesGuidebook = "Species";
+    private readonly List<SpeciesPrototype> _species = [];
+    private static readonly ProtoId<GuideEntryPrototype> _defaultSpeciesGuidebook = "Species";
 
     public void RefreshSpecies()
     {
@@ -27,6 +27,8 @@ public sealed partial class HumanoidProfileEditor
         _species.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase));
         var speciesIds = _species.Select(o => o.ID).ToList();
 
+        var loc = IoCManager.Resolve<ILocalizationManager>();
+
         for (var i = 0; i < _species.Count; i++)
         {
             // Far Horizons: subspecies are selected through the subspecies control instead.
@@ -34,7 +36,7 @@ public sealed partial class HumanoidProfileEditor
                 continue;
 
             var name = Loc.GetString(_species[i].Name);
-            SpeciesButton.AddItem(name, i, _species[i].DollPrototype, SpeciesSummary(_species[i]), // Starlight-edit: cards with a preview
+            SpeciesButton.AddItem(name, i, _species[i].DollPrototype, SpeciesSummary(loc, _species[i]), // Starlight-edit: cards with a preview
                 _prototypeManager.HasIndex<GuideEntryPrototype>(_species[i].ID));
 
             if (Profile?.Species.Equals(_species[i].ID) == true ||
@@ -77,19 +79,13 @@ public sealed partial class HumanoidProfileEditor
     {
         Profile = Profile?.WithSex(newSex);
 
-        switch (newSex)
+        Profile = newSex switch
         {
-            case Sex.Male:
-                Profile = Profile?.WithGender(Gender.Male);
-                break;
-            case Sex.Female:
-                Profile = Profile?.WithGender(Gender.Female);
-                break;
-            default:
-                Profile = Profile?.WithGender(Gender.Epicene);
-                break;
-        }
-
+            Sex.Male => Profile?.WithGender(Gender.Male),
+            Sex.Female => Profile?.WithGender(Gender.Female),
+            Sex.Unsexed => Profile?.WithGender(Gender.Neuter),
+            _ => Profile?.WithGender(Gender.Epicene),
+        };
         UpdateGenderControls();
         UpdateBodyTab();
         ReloadPreview();
@@ -143,10 +139,7 @@ public sealed partial class HumanoidProfileEditor
         PronounsButton.SelectId((int) Profile.Gender);
     }
 
-    private void UpdateAgeEdit()
-    {
-        AgeEdit.Text = Profile?.Age.ToString() ?? "";
-    }
+    private void UpdateAgeEdit() => AgeEdit.Text = Profile?.Age.ToString() ?? "";
 
     private void UpdateSexControls()
     {
@@ -243,8 +236,8 @@ public sealed partial class HumanoidProfileEditor
     /// </summary>
     private static (float Height, float Weight) SizeToMetrics(SpeciesPrototype species, float heightScale, float widthScale)
     {
-        var height = species.StandardSize * (heightScale - 1f) * 2f + species.StandardSize;
-        var weight = species.StandardWeight + species.StandardDensity * (widthScale * heightScale * heightScale - 1f);
+        var height = (species.StandardSize * (heightScale - 1f) * 2f) + species.StandardSize;
+        var weight = species.StandardWeight + (species.StandardDensity * ((widthScale * heightScale * heightScale) - 1f));
         return (height, weight);
     }
 
@@ -258,7 +251,7 @@ public sealed partial class HumanoidProfileEditor
 
         if (float.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out var height))
         {
-            var scale = (height - species.StandardSize) / (2f * species.StandardSize) + 1f;
+            var scale = ((height - species.StandardSize) / (2f * species.StandardSize)) + 1f;
             HeightSlider.Value = Math.Clamp(scale, species.MinHeight, species.MaxHeight);
         }
 
@@ -276,7 +269,7 @@ public sealed partial class HumanoidProfileEditor
         if (float.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out var weight) && species.StandardDensity != 0)
         {
             var heightScale = Profile.Appearance.Height;
-            var scale = ((weight - species.StandardWeight) / species.StandardDensity + 1f) / (heightScale * heightScale);
+            var scale = (((weight - species.StandardWeight) / species.StandardDensity) + 1f) / (heightScale * heightScale);
             WidthSlider.Value = Math.Clamp(scale, species.MinWidth, species.MaxWidth);
         }
 
@@ -286,10 +279,10 @@ public sealed partial class HumanoidProfileEditor
     /// <summary>
     /// A few lines about the species for the tooltip of its card.
     /// </summary>
-    private string SpeciesSummary(SpeciesPrototype species)
+    private string SpeciesSummary(ILocalizationManager loc, SpeciesPrototype species)
     {
         var lines = new List<string> { Loc.GetString(species.Name) };
-        if (Loc.TryGetString($"species-summary-{species.ID.ToLowerInvariant()}", out var summary))
+        if (loc.TryGetString($"species-summary-{species.ID.ToLowerInvariant()}", out var summary))
             lines.Add(summary);
 
         lines.Add(Loc.GetString("humanoid-profile-editor-species-summary-stats",
@@ -304,17 +297,17 @@ public sealed partial class HumanoidProfileEditor
     {
         var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
         var species = speciesProto.SubspeciesOf ?? speciesProto.ID;
-        var page = DefaultSpeciesGuidebook;
+        var page = _defaultSpeciesGuidebook;
 
         if (_prototypeManager.HasIndex<GuideEntryPrototype>(species))
             page = new ProtoId<GuideEntryPrototype>(species.Id);
 
-        if (!_prototypeManager.Resolve(DefaultSpeciesGuidebook, out var guideRoot))
+        if (!_prototypeManager.Resolve(_defaultSpeciesGuidebook, out var guideRoot))
             return;
 
         var dict = new Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry>
         {
-            [DefaultSpeciesGuidebook] = guideRoot,
+            [_defaultSpeciesGuidebook] = guideRoot,
         };
         guidebookController.OpenGuidebook(dict, includeChildren: true, selected: page);
     }

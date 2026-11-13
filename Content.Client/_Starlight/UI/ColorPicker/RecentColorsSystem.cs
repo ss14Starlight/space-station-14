@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
 
+// ReSharper disable CheckNamespace
 namespace Content.Client._Starlight.UI;
 
 /// <summary>

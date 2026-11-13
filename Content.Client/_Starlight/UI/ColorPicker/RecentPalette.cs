@@ -3,6 +3,7 @@
 
 using Robust.Client.UserInterface.Controls;
 
+// ReSharper disable CheckNamespace
 namespace Content.Client._Starlight.UI;
 
 internal sealed class RecentPalette : GridContainer

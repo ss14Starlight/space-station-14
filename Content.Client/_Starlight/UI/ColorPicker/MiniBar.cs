@@ -7,6 +7,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Maths;
 
+// ReSharper disable CheckNamespace
 namespace Content.Client._Starlight.UI;
 
 /// <summary>

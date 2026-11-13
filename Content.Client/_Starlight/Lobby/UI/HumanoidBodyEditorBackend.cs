@@ -27,20 +27,25 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
         PartDef[] Children);
 
     // Arms and legs share a category per pair of limbs, so a limb only takes the markings drawn on its own layer.
-    private static readonly PartDef Body = new("torso", "body-editor-part-torso",
-        [HumanoidVisualLayers.Chest, HumanoidVisualLayers.Tail, HumanoidVisualLayers.TailExtras, HumanoidVisualLayers.TailOverlay,
-         HumanoidVisualLayers.UndergarmentTop, HumanoidVisualLayers.UndergarmentBottom, HumanoidVisualLayers.BodyCover,
-         HumanoidVisualLayers.BodyCoverCover],
-        [MarkingCategories.Chest, MarkingCategories.Tail, MarkingCategories.TailExtras, MarkingCategories.UndergarmentTop,
-         MarkingCategories.UndergarmentBottom, MarkingCategories.BodyCover, MarkingCategories.BodyCoverCover, MarkingCategories.Overlay],
+    private static readonly PartDef _body = new("torso", "body-editor-part-torso",
+        [
+            HumanoidVisualLayers.Chest, HumanoidVisualLayers.Tail, HumanoidVisualLayers.TailExtras, HumanoidVisualLayers.TailOverlay,
+            HumanoidVisualLayers.UndergarmentTop, HumanoidVisualLayers.UndergarmentBottom, HumanoidVisualLayers.BodyCover, HumanoidVisualLayers.BodyCoverCover
+        ],
+        [
+            MarkingCategories.Chest, MarkingCategories.Tail, MarkingCategories.TailExtras, MarkingCategories.UndergarmentTop,
+            MarkingCategories.UndergarmentBottom, MarkingCategories.BodyCover, MarkingCategories.BodyCoverCover, MarkingCategories.Overlay
+        ],
         [
             new("head", "body-editor-part-head",
-                [HumanoidVisualLayers.Head, HumanoidVisualLayers.Hair, HumanoidVisualLayers.FacialHair, HumanoidVisualLayers.Snout,
-                 HumanoidVisualLayers.SnoutCover, HumanoidVisualLayers.HeadSide, HumanoidVisualLayers.HeadTop, HumanoidVisualLayers.Eyes,
-                 HumanoidVisualLayers.FaceCover, HumanoidVisualLayers.FaceCoverCover],
-                [MarkingCategories.Hair, MarkingCategories.FacialHair, MarkingCategories.Head, MarkingCategories.HeadTop,
-                 MarkingCategories.HeadSide, MarkingCategories.Eyes, MarkingCategories.Snout, MarkingCategories.SnoutCover,
-                 MarkingCategories.FaceCover, MarkingCategories.FaceCoverCover],
+                [
+                    HumanoidVisualLayers.Head, HumanoidVisualLayers.Hair, HumanoidVisualLayers.FacialHair, HumanoidVisualLayers.Snout,
+                    HumanoidVisualLayers.SnoutCover, HumanoidVisualLayers.HeadSide, HumanoidVisualLayers.HeadTop, HumanoidVisualLayers.Eyes,
+                    HumanoidVisualLayers.FaceCover, HumanoidVisualLayers.FaceCoverCover],
+                [
+                    MarkingCategories.Hair, MarkingCategories.FacialHair, MarkingCategories.Head, MarkingCategories.HeadTop,
+                    MarkingCategories.HeadSide, MarkingCategories.Eyes, MarkingCategories.Snout, MarkingCategories.SnoutCover,
+                    MarkingCategories.FaceCover, MarkingCategories.FaceCoverCover],
                 []),
             Limb("rarm", "body-editor-part-right-arm", HumanoidVisualLayers.RArm, MarkingCategories.Arms,
                 Limb("rhand", "body-editor-part-right-hand", HumanoidVisualLayers.RHand, MarkingCategories.Arms)),
@@ -57,12 +62,12 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
 
     private readonly IPrototypeManager _prototype;
     private readonly MarkingManager _markings;
-    private readonly Dictionary<string, PartDef> _defs = new();
-    private readonly Dictionary<string, BodyEditorPart> _parts = new();
+    private readonly Dictionary<string, PartDef> _defs = [];
+    private readonly Dictionary<string, BodyEditorPart> _parts = [];
 
     private readonly Func<HumanoidCharacterProfile?> _getProfile;
     private MarkingSet _set = new();
-    private Dictionary<MarkingCategories, MarkingPoints> _points = new();
+    private Dictionary<MarkingCategories, MarkingPoints> _points = [];
 
     public event Action? Changed;
 
@@ -79,12 +84,12 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
         _prototype = prototype;
         _markings = markings;
         _getProfile = profile;
-        Root = Build(Body);
+        Root = Build(_body);
     }
 
     private BodyEditorPart Build(PartDef def)
     {
-        var part = new BodyEditorPart(def.Id, def.Name, def.Children.Select(Build).ToList());
+        var part = new BodyEditorPart(def.Id, def.Name, [.. def.Children.Select(Build)]);
         _defs[def.Id] = def;
         _parts[def.Id] = part;
         return part;
@@ -100,7 +105,7 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
     {
         var profile = _profile;
         _set = new MarkingSet();
-        _points = new();
+        _points = [];
 
         if (profile != null && _prototype.TryIndex(profile.Species, out var species))
         {
@@ -122,13 +127,15 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
         if (_profile == null || !_defs.TryGetValue(part.Id, out var def))
             return groups;
 
+        var loc = IoCManager.Resolve<ILocalizationManager>();
+
         foreach (var category in def.Categories)
         {
             var group = category switch
             {
-                MarkingCategories.Hair => new BodyEditorGroup(HairGroup, CategoryName(category), 1, 0),
-                MarkingCategories.FacialHair => new BodyEditorGroup(FacialHairGroup, CategoryName(category), 1, 0),
-                _ => new BodyEditorGroup($"{part.Id}|{category}", CategoryName(category),
+                MarkingCategories.Hair => new BodyEditorGroup(HairGroup, CategoryName(loc, category), 1, 0),
+                MarkingCategories.FacialHair => new BodyEditorGroup(FacialHairGroup, CategoryName(loc, category), 1, 0),
+                _ => new BodyEditorGroup($"{part.Id}|{category}", CategoryName(loc, category),
                     _points.TryGetValue(category, out var points) ? points.Points : -1,
                     _points.TryGetValue(category, out points) && points.Required ? 1 : 0),
             };
@@ -140,31 +147,24 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
         return groups;
     }
 
-    private static string CategoryName(MarkingCategories category)
-        => Loc.TryGetString($"markings-category-{category}", out var name) ? name : category.ToString();
+    private static string CategoryName(ILocalizationManager loc, MarkingCategories category)
+        => loc.TryGetString($"markings-category-{category}", out var name) ? name : category.ToString();
 
     public IReadOnlyList<Marking> GetMarkings(BodyEditorGroup group)
-    {
-        if (_appearance == null)
-            return [];
-
-        switch (group.Id)
+        => _appearance == null
+        ? []
+        : (IReadOnlyList<Marking>)(group.Id switch
         {
-            case HairGroup:
-                return _appearance.HairStyleId == HairStyles.DefaultHairStyle
-                    ? []
-                    : new List<Marking> { new(_appearance.HairStyleId, new List<Color> { _appearance.HairColor }, _appearance.HairGlowing) };
-            case FacialHairGroup:
-                return _appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
-                    ? []
-                    : new List<Marking> { new(_appearance.FacialHairStyleId, new List<Color> { _appearance.FacialHairColor }, _appearance.FacialHairGlowing) };
-        }
-
-        if (!TryParseGroup(group, out var def, out var category) || !_set.TryGetCategory(category, out var markings))
-            return [];
-
-        return markings.Where(m => OnPart(def, m)).ToList();
-    }
+            HairGroup => _appearance.HairStyleId == HairStyles.DefaultHairStyle
+                                ? []
+                                : [new(_appearance.HairStyleId, [_appearance.HairColor], _appearance.HairGlowing)],
+            FacialHairGroup => _appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
+                                ? []
+                                : new List<Marking> { new(_appearance.FacialHairStyleId, [_appearance.FacialHairColor], _appearance.FacialHairGlowing) },
+            _ => !TryParseGroup(group, out var def, out var category) || !_set.TryGetCategory(category, out var markings)
+                        ? []
+                        : [.. markings.Where(m => OnPart(def, m))],
+        });
 
     public IReadOnlyList<MarkingPrototype> GetAvailable(BodyEditorGroup group)
     {
@@ -182,11 +182,10 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
 
         var onlyWhitelisted = _points.TryGetValue(category, out var points) && points.OnlyWhitelisted;
         var def = _defs.GetValueOrDefault(group.Id.Split('|')[0]);
-        return _markings.MarkingsByCategoryAndSpeciesAndSex(category, _profile.Species, _profile.Sex).Values
+        return [.. _markings.MarkingsByCategoryAndSpeciesAndSex(category, _profile.Species, _profile.Sex).Values
             .Where(m => !onlyWhitelisted || m.SpeciesRestrictions?.Contains(_profile.Species) == true)
             .Where(m => def == null || def.Categories.Length > 1 || def.Layers.Contains(m.BodyPart))
-            .OrderBy(m => Loc.GetString($"marking-{m.ID}"))
-            .ToList();
+            .OrderBy(m => Loc.GetString($"marking-{m.ID}"))];
     }
 
     public void ToggleMarking(BodyEditorGroup group, MarkingPrototype marking)
@@ -204,7 +203,7 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
                 return;
         }
 
-        if (!TryParseGroup(group, out var def, out var category))
+        if (!TryParseGroup(group, out _, out var category))
             return;
 
         if (_set.TryGetMarking(category, marking.ID, out _))
@@ -216,7 +215,7 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
         // A full group swaps its oldest marking out, so picking a different one never needs a remove first.
         if (_set.PointsLeft(category) == 0)
         {
-            var oldest = GetMarkings(group).FirstOrDefault() ?? _set.Markings[category].FirstOrDefault();
+            var oldest = GetMarkings(group)[0] ?? _set.Markings[category].FirstOrDefault();
             if (oldest == null)
                 return;
             _set.Remove(category, oldest.MarkingId);
@@ -463,11 +462,11 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
 
     private bool OnPart(PartDef def, Marking marking)
         => def.Categories.Length > 1
-           || _markings.TryGetMarking(marking, out var prototype) && def.Layers.Contains(prototype.BodyPart);
+           || (_markings.TryGetMarking(marking, out var prototype) && def.Layers.Contains(prototype.BodyPart));
 
     private bool TryParseGroup(BodyEditorGroup group, out PartDef def, out MarkingCategories category)
     {
-        def = Body;
+        def = _body;
         category = default;
         var split = group.Id.Split('|');
         return split.Length == 2
@@ -478,7 +477,7 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
     private void ApplyMarkings()
     {
         if (_appearance != null)
-            Apply(_appearance.WithMarkings(_set.GetForwardEnumerator().ToList()));
+            Apply(_appearance.WithMarkings([.. _set.GetForwardEnumerator()]));
     }
 
     private void Apply(HumanoidCharacterAppearance appearance)

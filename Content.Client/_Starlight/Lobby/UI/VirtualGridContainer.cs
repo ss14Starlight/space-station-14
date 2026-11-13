@@ -30,7 +30,7 @@ public sealed class VirtualGridContainer : VirtualItemsContainer
     protected override Vector2 GetTotalSize()
     {
         var rows = RowCount;
-        var totalWidth = (Columns * ItemSize.X) + Math.Max(0, Columns - 1) * Separation;
+        var totalWidth = (Columns * ItemSize.X) + (Math.Max(0, Columns - 1) * Separation);
         var height = (rows * ItemSize.Y) + (Math.Max(0, rows - 1) * Separation);
         return new Vector2(totalWidth, height);
     }
