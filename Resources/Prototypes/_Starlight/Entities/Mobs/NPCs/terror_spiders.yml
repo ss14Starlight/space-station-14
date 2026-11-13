@@ -1,6 +1,6 @@
 - type: entity
   name: terror spider
-  parent: [ SimpleSpaceMobBaseAntag, MobRespirator, BaseSlicingRefinable ]
+  parent: [ SimpleSpaceMobBaseAntag, BaseSlicingRefinable ]
   id: MobTerrorSpider
   description: A deadly hybrid of a giant spider and xenomorph.
   abstract: true
