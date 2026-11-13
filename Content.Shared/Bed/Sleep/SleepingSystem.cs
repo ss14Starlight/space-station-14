@@ -93,7 +93,14 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void OnBedSleepAction(Entity<ActionsContainerComponent> ent, ref SleepActionEvent args)
     {
-        TrySleeping(args.Performer);
+        // Starlight - start
+        if (HasComp<SleepingComponent>(args.Performer))
+            return;
+
+        EnsureComp<PlayerRequestedSleepComponent>(args.Performer);
+        if (!TrySleeping(args.Performer))
+            RemComp<PlayerRequestedSleepComponent>(args.Performer);
+        // Starlight - end
     }
 
     private void OnWakeAction(Entity<MobStateComponent> ent, ref WakeActionEvent args)
@@ -104,7 +111,14 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void OnSleepAction(Entity<MobStateComponent> ent, ref SleepActionEvent args)
     {
-        TrySleeping((ent, ent.Comp));
+        // Starlight - start
+        if (HasComp<SleepingComponent>(ent.Owner))
+            return;
+
+        EnsureComp<PlayerRequestedSleepComponent>(ent.Owner);
+        if (!TrySleeping((ent, ent.Comp)))
+            RemComp<PlayerRequestedSleepComponent>(ent.Owner);
+        // Starlight - end
     }
 
     private void OnRejuvenate(Entity<SleepingComponent> ent, ref RejuvenateEvent args)
@@ -144,7 +158,11 @@ public sealed partial class SleepingSystem : EntitySystem
         if (!_gameTiming.ApplyingState)
         {
             _stun.TryUnstun(ent.Owner);
-            _stun.TryStanding(ent.Owner);
+
+            // Starlight - start
+            if (!args.WasKnockedDownBeforeSleep)
+                _stun.TryStanding(ent.Owner);
+            // Starlight - end
         }
         // Starlight edit Start
         if (!TerminatingOrDeleted(ent))
@@ -154,7 +172,17 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void OnCompInit(Entity<SleepingComponent> ent, ref ComponentInit args)
     {
-        var ev = new SleepStateChangedEvent(true);
+        // Starlight - start
+        if (!_gameTiming.ApplyingState)
+        {
+            ent.Comp.WasKnockedDownBeforeSleep = HasComp<KnockedDownComponent>(ent);
+            Dirty(ent.Owner, ent.Comp);
+        }
+        // Starlight - end
+
+        // Starlight - start
+        var ev = new SleepStateChangedEvent(true, ent.Comp.WasKnockedDownBeforeSleep);
+        // Starlight - end
         RaiseLocalEvent(ent, ref ev);
         _blindableSystem.UpdateIsBlind(ent.Owner);
         _actionsSystem.AddAction(ent, ref ent.Comp.WakeAction, WakeActionId, ent);
@@ -164,7 +192,9 @@ public sealed partial class SleepingSystem : EntitySystem
     {
         _actionsSystem.RemoveAction(ent.Owner, ent.Comp.WakeAction);
 
-        var ev = new SleepStateChangedEvent(false);
+        // Starlight - start
+        var ev = new SleepStateChangedEvent(false, ent.Comp.WasKnockedDownBeforeSleep);
+        // Starlight - end
         RaiseLocalEvent(ent, ref ev);
 
         _blindableSystem.UpdateIsBlind(ent.Owner);
@@ -184,8 +214,12 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void OnSeeAttempt(Entity<SleepingComponent> ent, ref CanSeeAttemptEvent args)
     {
-        if (ent.Comp.LifeStage <= ComponentLifeStage.Running)
-            args.Cancel();
+        // Starlight - start
+        if (TerminatingOrDeleted(ent))
+            return;
+
+        args.Cancel();
+        // Starlight - end
     }
 
     private void OnPointAttempt(Entity<SleepingComponent> ent, ref PointAttemptEvent args)
@@ -427,4 +461,4 @@ public sealed partial class WakeActionEvent : InstantActionEvent;
 /// Raised on an entity when they fall asleep or wake up.
 /// </summary>
 [ByRefEvent]
-public record struct SleepStateChangedEvent(bool FellAsleep);
+public record struct SleepStateChangedEvent(bool FellAsleep, bool WasKnockedDownBeforeSleep = false); // Starlight

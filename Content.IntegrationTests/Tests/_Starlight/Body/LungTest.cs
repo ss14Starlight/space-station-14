@@ -1,6 +1,7 @@
 using Content.IntegrationTests.Fixtures;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Content.Shared.Atmos.Components;
 using Robust.Shared;
@@ -9,6 +10,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using System.Numerics;
 using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Medical.Body.Systems;
 
@@ -122,6 +124,55 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                     GetMapMoles(), Is.EqualTo(startingMoles).Within(0.0002),
                     "Did not exhale as much gas as was inhaled"
                 );
+            }
+        }
+
+        [Test]
+        public async Task SleepingReducesBreathingRate()
+        {
+            var pair = Pair;
+            var server = pair.Server;
+            await server.WaitIdleAsync();
+
+            var entityManager = server.ResolveDependency<IEntityManager>();
+            EntityUid human = default;
+
+            await server.WaitPost(() =>
+                human = entityManager.Spawn("HumanLungDummy", MapCoordinates.Nullspace));
+
+            try
+            {
+                await pair.RunSeconds(1);
+
+                RespiratorComponent respirator = null!;
+                var nextUpdateBeforeSleep = TimeSpan.Zero;
+                await server.WaitAssertion(() =>
+                {
+                    respirator = entityManager.GetComponent<RespiratorComponent>(human);
+                    var sleeping = server.System<SleepingSystem>();
+
+                    nextUpdateBeforeSleep = respirator.NextUpdate;
+                    Assert.That(sleeping.TrySleeping(human), Is.True);
+                    Assert.That(respirator.NextUpdate, Is.LessThanOrEqualTo(nextUpdateBeforeSleep));
+                });
+
+                await PoolManager.WaitUntil(server, () => respirator.NextUpdate > nextUpdateBeforeSleep);
+                await server.WaitAssertion(() =>
+                {
+                    var sleeping = server.System<SleepingSystem>();
+                    var timing = server.ResolveDependency<IGameTiming>();
+
+                    Assert.That((respirator.NextUpdate - timing.CurTime).TotalSeconds,
+                        Is.EqualTo(respirator.AdjustedUpdateInterval.TotalSeconds * 3).Within(0.1));
+                    Assert.That(sleeping.TryWaking(human, force: true), Is.True);
+                    Assert.That((respirator.NextUpdate - timing.CurTime).TotalSeconds,
+                        Is.EqualTo(respirator.AdjustedUpdateInterval.TotalSeconds).Within(0.1));
+                });
+            }
+            finally
+            {
+                await server.WaitPost(() => entityManager.DeleteEntity(human));
+                await pair.RunUntilSynced();
             }
         }
 

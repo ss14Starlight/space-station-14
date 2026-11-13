@@ -4,6 +4,7 @@ using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
@@ -48,6 +49,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     [Dependency] private MetabolizerSystem _metabolizerSystem = default!;
 
     private static readonly ProtoId<MetabolismStagePrototype> RespirationStage = new("Respiration");
+    private const float SleepingBreathingIntervalMultiplier = 3f;
 
     public override void Initialize()
     {
@@ -66,9 +68,21 @@ public sealed partial class RespiratorSystem : EntitySystem
         SubscribeLocalEvent<BodyComponent, StopSuffocatingEvent>(OnStopSuffocating);
     }
 
-    private void OnMapInit(Entity<RespiratorComponent> ent, ref MapInitEvent args)
+    private void OnMapInit(Entity<RespiratorComponent> ent, ref MapInitEvent args) =>
+        ent.Comp.NextUpdate = _gameTiming.CurTime + GetBreathingInterval(ent, HasComp<SleepingComponent>(ent.Owner));
+
+    [SubscribeLocalEvent]
+    private void OnSleepStateChanged(Entity<RespiratorComponent> ent, ref SleepStateChangedEvent args)
     {
-        ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
+        var nextUpdate = _gameTiming.CurTime + GetBreathingInterval(ent, args.FellAsleep);
+        if (nextUpdate < ent.Comp.NextUpdate)
+            ent.Comp.NextUpdate = nextUpdate;
+    }
+
+    private TimeSpan GetBreathingInterval(Entity<RespiratorComponent> ent, bool sleeping)
+    {
+        var interval = ent.Comp.AdjustedUpdateInterval;
+        return sleeping ? interval * SleepingBreathingIntervalMultiplier : interval;
     }
 
     public override void Update(float frameTime)
@@ -81,7 +95,7 @@ public sealed partial class RespiratorSystem : EntitySystem
             if (_gameTiming.CurTime < respirator.NextUpdate)
                 continue;
 
-            respirator.NextUpdate += respirator.AdjustedUpdateInterval;
+            respirator.NextUpdate += GetBreathingInterval((uid, respirator), HasComp<SleepingComponent>(uid));
 
             if (_mobState.IsDead(uid))
                 continue;

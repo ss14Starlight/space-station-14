@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Shared.Coordinates;
+using Content.Shared._Starlight.Sleepiness.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Map;
@@ -120,6 +121,10 @@ public sealed class PrototypeSaveTest : GameTest
 
                         if (compType == typeof(MetaDataComponent) || compType == typeof(TransformComponent) || compType == typeof(FixturesComponent))
                             continue;
+
+                        // Starlight - This threshold is derived from DestructibleComponent during startup.
+                        if (compType == typeof(SonarDamageThresholdComponent) && !protoData.ContainsKey(compName)) // Starlight
+                            continue; // Starlight
 
                         MappingDataNode compMapping;
                         try

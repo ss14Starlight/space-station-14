@@ -14,14 +14,14 @@ public sealed partial class ReduceSleepinessEntityEffectSystem : EntityEffectSys
         if (args.Effect.Time is not { } time)
             return;
 
-        _status.TryRemoveTime(entity, _sleepinessStatusEffect, time * args.Scale);
-
         if (_status.TryGetTime(entity, _sleepinessStatusEffect, out var effect) &&
             TryComp<SleepinessStatusEffectComponent>(effect.EffectEnt, out var sleepiness))
         {
             sleepiness.WakeRequested = true;
             Dirty(effect.EffectEnt, sleepiness);
         }
+
+        _status.TryRemoveTime(entity, _sleepinessStatusEffect, time * args.Scale);
     }
 
     private static readonly EntProtoId _sleepinessStatusEffect = "StatusEffectSleepiness";

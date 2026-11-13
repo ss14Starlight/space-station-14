@@ -1,0 +1,17 @@
+- type: alertCategory
+  id: Tiredness
+
+- type: alert
+  id: FelionoidTiredness
+  category: Tiredness
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/tiredness.rsi
+    state: tired
+  - sprite: /Textures/_Starlight/Interface/Alerts/tiredness.rsi
+    state: very_tired
+  - sprite: /Textures/_Starlight/Interface/Alerts/tiredness.rsi
+    state: over_tired
+  name: alerts-tiredness-name
+  description: alerts-tiredness-desc
+  minSeverity: 0
+  maxSeverity: 2
