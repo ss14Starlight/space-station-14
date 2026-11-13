@@ -1,0 +1,87 @@
+- type: !PartialOnly entity
+  id: ClothingEyesModularHudSunglasses
+  components:
+  - type: StealTarget
+    stealGroup: MiscGlassesCollection
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values:
+    - ClothingEyesModularHudGlasses
+    - ClothingEyesModularHudGoggles
+    - ClothingEyesModularHudVisor
+    - ClothingEyesModularHudJamjars
+    - ClothingEyesModularHudPatch
+  components:
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: !PartialOnly entity
+  id: ClothingEyesModularHudPatch
+  components:
+  - type: Clothing
+    clothingVisuals: !Clear {}
+
+- type: !PartialOnly entity
+  id: AbstractModularHudMedicalIcons
+  components:
+  - type: !Remove Label
+
+- type: !PartialOnly entity
+  id: AbstractModularHudEngineering
+  components:
+  - type: !Remove Label
+
+- type: !PartialOnly entity
+  id: ClothingEyesGlassesMedSunglasses
+  name: cheap medical sunglasses
+  suffix: ''
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
+
+- type: !PartialOnly entity
+  id: ClothingEyesGlassesMesonSunglasses
+  name: cheap engineering sunglasses
+  suffix: ''
+
+- type: !PartialOnly entity
+  id: ClothingEyesGlassesMedChem
+  name: medchem goggles
+  suffix: ''
+  components:
+  - type: !Remove Label
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
+
+- type: !PartialOnly entity
+  id: ClothingEyesModularHudGoggles
+  components:
+  - type: ModularHud
+    maximumContainedModules: 2
+  - type: Tag
+    tags:
+    - ModularHudGoggles
+
+- type: !PartialOnly entity
+  id: ClothingEyesModularHudVisor
+  components:
+  - type: ModularHud
+    maximumContainedModules: 3
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+
+- type: !PartialOnly entity
+  id: ClothingEyesModularHudPatch
+  components:
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+
+- type: !PartialOnly entity
+  id: ClothingEyesModularHudJamjars
+  name: modular HUD jamjar glasses

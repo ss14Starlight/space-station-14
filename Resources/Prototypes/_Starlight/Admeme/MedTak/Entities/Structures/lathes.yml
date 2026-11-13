@@ -27,6 +27,7 @@
     runningState: icon
     staticPacks:
     - MedTakAmmoStatic
+    - MedTakImplants
     - TopicalsStatic
     - ChemistryStatic
     - MedicalClothingStatic

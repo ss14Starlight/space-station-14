@@ -4,3 +4,8 @@
   - MagazineBoxVariableHeavy
   - MagazineBoxVariableMedium
   - MagazineBoxVariableLight
+
+- type: latheRecipePack
+  id: MedTakImplants
+  recipes:
+    - Deimplanter

@@ -26,6 +26,12 @@ public sealed partial class FootprintComponent : Component
     public int RenderedPrintCount;
 
     /// <summary>
+    /// Number of prints already handled by the client. Used for the half-prints graphics option, so you don't get inconsistent rendering.
+    /// </summary>
+    [ViewVariables]
+    public int ProcessedPrintCount;
+
+    /// <summary>
     /// The shared RGB tint for every print on this tile. Individual print opacity is stored separately.
     /// </summary>
     [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]

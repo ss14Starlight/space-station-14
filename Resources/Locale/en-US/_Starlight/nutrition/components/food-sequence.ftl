@@ -6,6 +6,7 @@ food-sequence-cotton-burger-content-plushie-borb = borb
 food-sequence-cotton-burger-content-plushie-borg = lawful
 food-sequence-cotton-burger-content-plushie-cow-squishims = cow
 food-sequence-cotton-burger-content-plushie-creature = YIPPIE
+food-sequence-cotton-burger-content-plushie-flox = flox
 food-sequence-cotton-burger-content-plushie-frog-squishims = froggy
 food-sequence-cotton-burger-content-plushie-goat = soft
 food-sequence-cotton-burger-content-plushie-gnome = fooberry

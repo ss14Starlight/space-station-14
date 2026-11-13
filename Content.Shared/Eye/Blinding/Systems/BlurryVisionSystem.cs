@@ -4,7 +4,7 @@ using Content.Shared.Inventory;
 
 namespace Content.Shared.Eye.Blinding.Systems;
 
-public sealed class BlurryVisionSystem : EntitySystem
+public sealed partial class BlurryVisionSystem : EntitySystem
 {
     public override void Initialize()
     {
@@ -12,14 +12,17 @@ public sealed class BlurryVisionSystem : EntitySystem
 
         SubscribeLocalEvent<VisionCorrectionComponent, GotEquippedEvent>(OnGlassesEquipped);
         SubscribeLocalEvent<VisionCorrectionComponent, GotUnequippedEvent>(OnGlassesUnequipped);
-        SubscribeLocalEvent<VisionCorrectionComponent, InventoryRelayedEvent<GetBlurEvent>>(OnGetBlur);
+        Subs.SubscribeWithRelay<VisionCorrectionComponent, GetBlurEvent>(OnGetBlur, held: false); // Moffstation - Modular HUDs need to handle both the basic event and the inventory relayed one
     }
 
-    private void OnGetBlur(Entity<VisionCorrectionComponent> glasses, ref InventoryRelayedEvent<GetBlurEvent> args)
+    // Moffstation - Begin - Modular HUDs need this to be base + relayed
+    private void OnGetBlur(Entity<VisionCorrectionComponent> glasses, ref GetBlurEvent args)
     {
-        args.Args.Blur += glasses.Comp.VisionBonus;
-        args.Args.CorrectionPower *= glasses.Comp.CorrectionPower;
+        args.HasVisionCorrection = true; // Starlight
+        args.Blur += glasses.Comp.VisionBonus;
+        args.CorrectionPower *= glasses.Comp.CorrectionPower;
     }
+    // Moffstation - End
 
     public void UpdateBlurMagnitude(Entity<BlindableComponent?> ent, bool glasses) // starlight change: glasses param
     {
@@ -43,15 +46,9 @@ public sealed class BlurryVisionSystem : EntitySystem
         Dirty(ent, blurry);
     }
 
-    private void OnGlassesEquipped(Entity<VisionCorrectionComponent> glasses, ref GotEquippedEvent args)
-    {
-        UpdateBlurMagnitude(args.EquipTarget, true); // starlight change: glasses param
-    }
+    private void OnGlassesEquipped(Entity<VisionCorrectionComponent> glasses, ref GotEquippedEvent args) => UpdateBlurMagnitude(args.EquipTarget);
 
-    private void OnGlassesUnequipped(Entity<VisionCorrectionComponent> glasses, ref GotUnequippedEvent args)
-    {
-        UpdateBlurMagnitude(args.EquipTarget, false); // starlight change: glasses param
-    }
+    private void OnGlassesUnequipped(Entity<VisionCorrectionComponent> glasses, ref GotUnequippedEvent args) => UpdateBlurMagnitude(args.EquipTarget);
 }
 
 public sealed class GetBlurEvent : EntityEventArgs, IInventoryRelayEvent
@@ -59,6 +56,7 @@ public sealed class GetBlurEvent : EntityEventArgs, IInventoryRelayEvent
     public readonly float BaseBlur;
     public float Blur;
     public float CorrectionPower = BlurryVisionComponent.DefaultCorrectionPower;
+    public bool HasVisionCorrection; // Starlight
 
     public GetBlurEvent(float blur)
     {

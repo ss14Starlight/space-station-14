@@ -130,3 +130,17 @@
   - !type:DiscordRolesRequirement
     requirement: DeveloperReq
   category: Staff
+
+- type: ghostTheme
+  id: ArchitectTheme
+  name: ghost-theme-architect-theme-name
+  description: ghost-theme-architect-theme-desc
+  colorizeable: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+      state: ghost-architect
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: StaffMapperReq
+  category: Staff

@@ -40,6 +40,10 @@
         Quantity: 30
 
 - type: !PartialOnly entity
+  id: PlushieRouny
+  parent: !Clear [BaseRemoteControlPlushie, BasePlushie, BaseMob]
+
+- type: !PartialOnly entity
   id: ToyIan
   components:
   - type: EmitSoundOnUse

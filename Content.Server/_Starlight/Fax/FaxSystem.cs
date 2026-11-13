@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Snapshots;
 using Content.Shared._Starlight.DocumentManager;
 using Content.Shared._Starlight.Fax;
 using Content.Shared._Starlight.Fax.UI;
@@ -13,7 +14,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-// ReSharper disable CheckNamespace
+// ReSharper disable CheckNamespace once
 namespace Content.Server.Fax;
 
 public sealed partial class FaxSystem
@@ -24,6 +25,7 @@ public sealed partial class FaxSystem
     [Dependency] private SharedContainerSystem _container = null!;
     [Dependency] private PreWrittenDocumentManager _documentManager = null!;
     [Dependency] private IComponentFactory _factory = null!;
+    [Dependency] private SnapshotPersistenceSystem _snapshotPersistence = default!;
 
     private string GetTimeStamp()
     {

@@ -79,3 +79,4 @@ pill-label-dermaline-20u = { reagent-name-dermaline } 20u
 pill-label-tricordrazine-20u = { reagent-name-tricordrazine } 20u
 pill-label-bicaridine-20u = { reagent-name-bicaridine } 20u
 pill-label-charcoal-20u = { reagent-name-charcoal } 20u
+pill-label-emergency = { reagent-name-epinephrine } 15u, { reagent-name-tranexamic-acid } 5u

@@ -2,7 +2,7 @@ using Content.Shared._Funkystation.Stains.Components;
 using Content.Shared._Funkystation.Stains.Systems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Item;
-using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared._Starlight.CCVar;
 using Robust.Client.GameObjects;
 using Robust.Shared.Configuration;
 
@@ -14,6 +14,14 @@ public sealed partial class StainSystem : SharedStainSystem
     [Dependency] private IConfigurationManager _cfg = null!;
 
     private bool _showClothingStains;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        _showClothingStains = _cfg.GetCVar(StarlightCCVars.ShowClothingStains);
+        _cfg.OnValueChanged(StarlightCCVars.ShowClothingStains, OnShowClothingStainsChanged);
+    }
 
     private void OnShowClothingStainsChanged(bool show)
     {
@@ -30,6 +38,7 @@ public sealed partial class StainSystem : SharedStainSystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnMaskStateChanged(Entity<MaskComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         if (HasComp<StainableComponent>(ent.Owner))

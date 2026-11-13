@@ -5,3 +5,5 @@
     interfaces:
       enum.StackCustomSplitUiKey.Key:
         type: StackCustomSplitBoundUserInterface
+  - type: StackPrice
+    price: 1000

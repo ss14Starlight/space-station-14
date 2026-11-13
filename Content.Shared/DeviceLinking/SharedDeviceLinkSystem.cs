@@ -235,8 +235,10 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
         var defaults = new List<(string, string)>();
         foreach (var source in sources)
         {
+            // Starlight - start
             if (source.DefaultLinks == null)
-                return new List<(string, string)>();
+                continue;
+            // Starlight - end
 
             foreach (var defaultLink in source.DefaultLinks)
             {
@@ -418,11 +420,12 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
         if (!Resolve(sourceUid, ref sourceComponent) || !Resolve(sinkUid, ref sinkComponent))
             return false;
 
-        var outputs = sourceComponent.Outputs.GetOrNew(source);
-        var linkedPorts = sourceComponent.LinkedPorts.GetOrNew(sinkUid);
-
-        if (linkedPorts.Contains((source, sink)))
+        // Starlight - start
+        if (sourceComponent.LinkedPorts.TryGetValue(sinkUid, out var existingLinks)
+            && existingLinks.Contains((source, sink)))
         {
+            var outputs = sourceComponent.Outputs.GetOrNew(source);
+
             if (userId != null)
                 _adminLogger.Add(LogType.DeviceLinking, LogImpact.Low, $"{ToPrettyString(userId.Value):actor} unlinked {ToPrettyString(sourceUid):source} {source} and {ToPrettyString(sinkUid):sink} {sink}");
             else
@@ -432,9 +435,9 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
             RaiseLocalEvent(sinkUid, new PortDisconnectedEvent(sink, sourceUid, sinkUid));
 
             outputs.Remove(sinkUid);
-            linkedPorts.Remove((source, sink));
+            existingLinks.Remove((source, sink));
 
-            if (linkedPorts.Count != 0)
+            if (existingLinks.Count != 0)
                 return true;
 
             sourceComponent.LinkedPorts.Remove(sinkUid);
@@ -448,12 +451,15 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
                 || !sinkComponent.Ports.Contains(sink)
                 || !CanLink(userId, sourceUid, sinkUid, source, sink, true, sourceComponent))
             {
-                if (linkedPorts.Count == 0)
+                if (sourceComponent.LinkedPorts.TryGetValue(sinkUid, out var existingLinkedPorts)
+                    && existingLinkedPorts.Count == 0)
                     sourceComponent.LinkedPorts.Remove(sinkUid);
                 return false;
             }
             // Starlight-edit end
 
+            var outputs = sourceComponent.Outputs.GetOrNew(source);
+            var linkedPorts = sourceComponent.LinkedPorts.GetOrNew(sinkUid);
             outputs.Add(sinkUid);
             linkedPorts.Add((source, sink));
             sinkComponent.LinkedSources.Add(sourceUid);
@@ -461,6 +467,7 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
             SendNewLinkEvent(userId, sourceUid, source, sinkUid, sink);
             CreateLinkPopup(userId, sourceUid, source, sinkUid, sink, false);
         }
+        // Starlight - end
 
         return true;
     }

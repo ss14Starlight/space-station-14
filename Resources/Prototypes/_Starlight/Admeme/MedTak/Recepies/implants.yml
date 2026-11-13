@@ -1,0 +1,7 @@
+﻿- type: latheRecipe
+  id: Deimplanter
+  result: Deimplanter
+  completetime: 1
+  materials:
+    Glass: 500
+    Steel: 500

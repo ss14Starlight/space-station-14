@@ -50,7 +50,7 @@
     soundsId: ReptilianBodyEmotes
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Scale
+    damageModifierSet: ReptilianScales
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -77,4 +77,37 @@
       295: 0.8
       285: 0.7
   - type: Wagging
+  - type: ThickScales
+    startingGearReplacements:
+      EmergencyMedipen: PillEmergency
+  - type: FireBreath
+    fuelTiers: # strongest first
+    - reagent: Napalm
+      amount: 5
+      projectile: ProjectileReptilianBreathNapalm
+      popup: fire-breath-napalm
+      sound:
+        path: /Audio/Magic/fireball.ogg
+        params:
+          volume: 4
+          pitch: 0.7
+          variation: 0.1
+    - reagent: WeldingFuel
+      amount: 10
+      projectile: ProjectileReptilianBreathFuel
+      sound:
+        path: /Audio/Magic/fireball.ogg
+        params:
+          volume: 2
+          pitch: 0.8
+          variation: 0.1
+    - reagent: WeldingFuel
+      amount: 5
+      projectile: ProjectileReptilianBreathFuelSmall
+      sound:
+        path: /Audio/Magic/fireball.ogg
+        params:
+          volume: 0
+          pitch: 0.9
+          variation: 0.1
 #Weh

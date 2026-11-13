@@ -385,9 +385,9 @@
     - id: Command
       name: secure-terminal-command-name
       groups:
-        - [Command, Ntrep]
-        - [Command, Ntrep]
-        - [Command, Ntrep]
+        - [Command, Ntrep, StationAi]
+        - [Command, Ntrep, StationAi]
+        - [Command, Ntrep, StationAi]
   cooldownSecs: 600
 
 # ── End GAMMA ─────────────────────────────────────────────────────────────────
@@ -443,8 +443,8 @@
     - id: Command
       name: secure-terminal-command-name
       groups:
-        - [Command, Ntrep]
-        - [Command, Ntrep]
+        - [Command, Ntrep, StationAi]
+        - [Command, Ntrep, StationAi]
   cooldownSecs: 0
 
 # ── End PSI ───────────────────────────────────────────────────────────────────
@@ -639,8 +639,8 @@
     - id: Command
       name: secure-terminal-command-name
       groups:
-        - [Command, Ntrep]
-        - [Command, Ntrep]
+        - [Command, Ntrep, StationAi]
+        - [Command, Ntrep, StationAi]
   cooldownSecs: 600
 
 # ── End Station-Wide Emergency Access ─────────────────────────────────────────────────────
@@ -660,7 +660,7 @@
     - id: Command
       name: secure-terminal-command-name
       groups:
-        - [Command, Ntrep]
+        - [Command, Ntrep, StationAi]
   cooldownSecs: 0
 
 #region Misc
@@ -738,8 +738,8 @@
     - id: Command
       name: secure-terminal-command-name
       groups:
-        - [Command, Ntrep]
-        - [Command, Ntrep]
+        - [Command, Ntrep, StationAi]
+        - [Command, Ntrep, StationAi]
 
 # ── Self Destruct Code ─────────────────────────────────────────────────────
 - type: secureTerminalRequest

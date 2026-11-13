@@ -46,6 +46,21 @@ public sealed partial class GraphicsTab : Control
                     (int) InteractionParticleMode.None,
                     Loc.GetString("ui-options-interaction-particles-none")),
             ]);
+
+        Control.AddOptionDropDown(
+            StarlightCCVars.FootprintVisibility,
+            DropDownFootprintVisibility,
+            [
+                new OptionDropDownCVar<int>.ValueOption(
+                    (int) FootprintVisibilityMode.All,
+                    Loc.GetString("ui-options-footprint-visibility-all")),
+                new OptionDropDownCVar<int>.ValueOption(
+                    (int) FootprintVisibilityMode.Half,
+                    Loc.GetString("ui-options-footprint-visibility-half")),
+                new OptionDropDownCVar<int>.ValueOption(
+                    (int) FootprintVisibilityMode.None,
+                    Loc.GetString("ui-options-footprint-visibility-none")),
+            ]);
         #endregion
 
         // Starlight: UI scale moved to the interface tab (UITab).

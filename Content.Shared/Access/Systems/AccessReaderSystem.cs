@@ -19,6 +19,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Collections;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Content.Shared._Starlight.Access;
 using Content.Shared._Starlight.Access.Systems;
@@ -52,7 +53,13 @@ public sealed partial class AccessReaderSystem : EntitySystem
 
         SubscribeLocalEvent<AccessReaderComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<AccessReaderComponent, ComponentHandleState>(OnHandleState);
+
+        Subs.SubscribeWithRelay<ShowAccessReaderSettingsComponent, ShowAccessReaderSettingsEvent>(OnAccessRead); // Moffstation
     }
+
+    // Moffstation - Begin - Access reader by event
+    private void OnAccessRead(Entity<ShowAccessReaderSettingsComponent> entity, ref ShowAccessReaderSettingsEvent args) => args.CanShowSettings = true;
+    // Moffstation - End
 
     private void OnExamined(Entity<AccessReaderComponent> ent, ref ExaminedEvent args)
     {
@@ -77,10 +84,11 @@ public sealed partial class AccessReaderSystem : EntitySystem
         }
 
         var examiner = args.Examiner;
-        var canSeeAccessModification = accessHasBeenModified &&
-                                       (HasComp<ShowAccessReaderSettingsComponent>(examiner) ||
-                                        _inventorySystem.TryGetInventoryEntity<ShowAccessReaderSettingsComponent>(
-                                            examiner, out _));
+        // Moffstation start
+        var ev = new ShowAccessReaderSettingsEvent();
+        RaiseLocalEvent(examiner, ref ev);
+        var canSeeAccessModification = accessHasBeenModified && ev.CanShowSettings;
+        // Moffstation end
 
         if (canSeeAccessModification)
         {
@@ -1022,3 +1030,12 @@ public sealed partial class AccessReaderSystem : EntitySystem
         return localizedNames;
     }
 }
+
+// Moffstation - Begin - Access reader with events
+[ByRefEvent, Serializable, NetSerializable]
+public sealed partial class ShowAccessReaderSettingsEvent() : EntityEventArgs, IInventoryRelayEvent
+{
+    public bool CanShowSettings;
+    public SlotFlags TargetSlots => SlotFlags.WITHOUT_POCKET;
+}
+// Moffstation - End

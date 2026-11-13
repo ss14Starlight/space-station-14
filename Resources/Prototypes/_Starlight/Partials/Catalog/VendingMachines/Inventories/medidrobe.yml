@@ -46,6 +46,10 @@
     ClothingShoesColorBlue: 2
     ClothingShoesColorWhite: 2
     ClothingShoesBootsWinterMed: 2
+    ClothingEyesModularHudGlasses: 3
+    ClothingEyesModularHudJamjars: 2
+    ClothingEyesModularHudCheapSunglasses: 2
+    HudModuleVisionCorrection: 3
   contrabandInventory: !Clear
     ClothingUniformJumpskirtOfLife: 1
     ClothingUniformJumpsuitOfLife: 1
