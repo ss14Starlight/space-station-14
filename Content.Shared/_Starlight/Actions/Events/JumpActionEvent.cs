@@ -1,5 +1,4 @@
 using Content.Shared.Actions;
-using Content.Shared.Damage;
 using Robust.Shared.Audio;
 
 namespace Content.Shared._Starlight.Actions.Events;

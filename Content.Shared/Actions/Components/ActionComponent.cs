@@ -200,15 +200,6 @@ public sealed partial class ActionComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public SoundSpecifier? Sound;
-
-    #region Starlight
-
-    /// <summary>
-    ///     If not null, this action will cost x amount of hunger points per use.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float? MetabolicCost;
-    #endregion Starlight
 }
 
 [DataRecord, Serializable, NetSerializable]
