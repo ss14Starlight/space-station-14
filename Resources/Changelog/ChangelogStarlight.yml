@@ -1,48 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: (Cluster) Removed the indoor Tesla to make room for...
-    type: Remove
-  id: 409993
-  time: '2026-11-01T00:02:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6971
-- author: Ohelig
-  changes:
-  - message: (Cluster) Added a small nuclear reactor.
-    type: Add
-  id: 409994
-  time: '2026-11-01T00:02:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6971
-- author: Ohelig
-  changes:
-  - message: (Cluster) Fixed Freezer atmos alarms.
-    type: Fix
-  id: 409995
-  time: '2026-11-01T00:02:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6971
-- author: Ohelig
-  changes:
-  - message: (Cluster) Added a drain to Freezer.
-    type: Add
-  id: 409996
-  time: '2026-11-01T00:02:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6971
-- author: Ohelig
-  changes:
-  - message: (Cluster) Fixed Cargo Maints doors to use the Cargo and Mining variants instead of Salvage.
-    type: Fix
-  id: 409997
-  time: '2026-11-01T00:02:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6971
-- author: Ohelig
-  changes:
-  - message: (Cluster) Fixed Renault dying in the air-tight Captain's bedroom.
-    type: Fix
-  id: 409998
-  time: '2026-11-01T00:02:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6971
-- author: Ohelig
-  changes:
   - message: (Cluster) Added distro/waste pipe to a mining dock that was missing them.
     type: Fix
   id: 409999
@@ -2799,4 +2757,46 @@ Entries:
   id: 410392
   time: '2026-11-13T12:16:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7136
+- author: wonderfulnewworld, Conflee, DuckManZach
+  changes:
+  - message: Added clientside config option to disable or half visibility of footprints.
+    type: Add
+  id: 410393
+  time: '2026-11-13T12:16:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7174
+- author: wonderfulnewworld, Conflee, DuckManZach
+  changes:
+  - message: Added doormats to clean your shoes/footprints on.
+    type: Add
+  id: 410394
+  time: '2026-11-13T12:16:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7174
+- author: wonderfulnewworld, Conflee, DuckManZach
+  changes:
+  - message: Cleanbots and moproaches now clean footprints.
+    type: Add
+  id: 410395
+  time: '2026-11-13T12:16:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7174
+- author: wonderfulnewworld, Conflee, DuckManZach
+  changes:
+  - message: Footprints now go further or closer depending on how much solution was in the puddle. (10u max).
+    type: Tweak
+  id: 410396
+  time: '2026-11-13T12:16:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7174
+- author: wonderfulnewworld, Conflee, DuckManZach
+  changes:
+  - message: Footprints can carry up to 10u now instead of 1u, and disperse more units per print now.
+    type: Tweak
+  id: 410397
+  time: '2026-11-13T12:16:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7174
+- author: wonderfulnewworld, Conflee, DuckManZach
+  changes:
+  - message: Fixed stains sometimes becoming desynced from the client.
+    type: Fix
+  id: 410398
+  time: '2026-11-13T12:16:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7174
 Order: -1
