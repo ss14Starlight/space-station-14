@@ -325,8 +325,8 @@
   name: P-23 ID and PDA Replacement Form
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-p-23-id-pda-replacement-form
+    - type: TextFilePaperContent
+      fileName: p-23-id-pda-replacement.txt
 
 # Complaints
 
