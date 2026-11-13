@@ -1,9 +1,11 @@
 using System.Numerics;
 using Content.Server._Starlight.Cargo.TamperSeal.Components;
 using Content.Server.Cargo.Components;
+using Content.Shared._Starlight.Cargo.Components;
 using Content.Shared._Starlight.Cargo.TamperSeal.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Cargo;
+using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Labels.Components;
 using Content.Shared.Paper;
@@ -11,6 +13,7 @@ using Content.Shared.Station.Components;
 using Content.Shared.Tools;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -146,5 +149,32 @@ public sealed partial class CargoSystem
         integrity.StationId = GetEntity(order.StationId);
 
         DirtyEntity(item);
+    }
+    private void OnPrintBarcodeMessage(EntityUid uid, CargoOrderConsoleComponent component, CargoConsolePrintBarcodeMessage args)
+    {
+        if (Timing.CurTime < component.NextPrintTime)
+            return;
+
+        if (!_protoMan.Resolve(args.Account, out var account))
+            return;
+
+        var label = SpawnAtPosition(account.AcquisitionSlip, Transform(uid).Coordinates);
+        _metaSystem.SetEntityName(label, "Sale barcode");
+        component.NextPrintTime = Timing.CurTime + component.PrintDelay;
+        _audio.PlayPvs(component.PrintSound, uid);
+
+        var overrideSell = EnsureComp<OverrideSellComponent>(label);
+        overrideSell.OverrideAccount = args.Account;
+
+        if (!HasComp<PaperLabelComponent>(label))
+            AddComp<PaperLabelComponent>(label);
+
+        if (TryComp<PaperComponent>(label, out var paper))
+        {
+            var msg = new FormattedMessage();
+            msg.AddMarkupPermissive(Loc.GetString("cargo-barcode-label-content",
+                ("account", Loc.GetString(account.Name))));
+            _paperSystem.SetContent((label, paper), msg.ToMarkup());
+        }
     }
 }
