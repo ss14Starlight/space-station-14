@@ -1,20 +1,6 @@
 Entries:
 - author: Ohelig
   changes:
-  - message: (Cluster) Added distro/waste pipe to a mining dock that was missing them.
-    type: Fix
-  id: 409999
-  time: '2026-11-01T00:02:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6971
-- author: Ohelig
-  changes:
-  - message: (Cluster) Added a disposals chute to Botany.
-    type: Add
-  id: 410000
-  time: '2026-11-01T00:02:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6971
-- author: Ohelig
-  changes:
   - message: (Cluster) Replaced indestructible lights in Clown and Radio Host with normal variants.
     type: Fix
   id: 410001
@@ -2799,4 +2785,18 @@ Entries:
   id: 410398
   time: '2026-11-13T12:16:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7174
+- author: WNP78
+  changes:
+  - message: Fixed admin edit note UI not working when the admin notes panel has been closed.
+    type: Fix
+  id: 410399
+  time: '2026-11-13T12:39:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7113
+- author: WNP78
+  changes:
+  - message: Fixed admin edit note UI filling in expiry date instead of duration into duration field.
+    type: Fix
+  id: 410400
+  time: '2026-11-13T12:39:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7113
 Order: -1
