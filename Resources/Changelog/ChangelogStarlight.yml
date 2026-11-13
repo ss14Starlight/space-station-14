@@ -1,53 +1,4 @@
 Entries:
-- author: John Nexus Integrated Trait & Kazolotl
-  changes:
-  - message: Chemist Jamjars are now an option in the chemist job loadout.
-    type: Add
-  id: 410010
-  time: '2026-11-01T03:14:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6984
-- author: John Nexus Integrated Trait & Kazolotl
-  changes:
-  - message: Chemists now have an alternative option in their loadout to prescription chemistry goggles.
-    type: Tweak
-  id: 410011
-  time: '2026-11-01T03:14:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6984
-- author: John Nexus Integrated Trait & Kazolotl
-  changes:
-  - message: Committed to the bit where I fucked up putting my name in the changelog's contributor name last time.
-    type: Tweak
-  id: 410012
-  time: '2026-11-01T03:14:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6984
-- author: Hot Mic
-  changes:
-  - message: '(Flottila)Medical: Add missing MV and LV wires.'
-    type: Fix
-  id: 410013
-  time: '2026-11-01T10:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6992
-- author: Hot Mic
-  changes:
-  - message: (Flottila)Set the Journalism airlock to the correct access.
-    type: Fix
-  id: 410014
-  time: '2026-11-01T10:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6992
-- author: Hot Mic
-  changes:
-  - message: '(Flottila)Security: Add a new Job Role: Gunnery Sergeant.'
-    type: Add
-  id: 410015
-  time: '2026-11-01T10:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6992
-- author: Hot Mic
-  changes:
-  - message: '(Flottila)Security: Add a pistol safe.'
-    type: Add
-  id: 410016
-  time: '2026-11-01T10:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6992
 - author: Hot Mic
   changes:
   - message: '(Flottila)Security: Add more guns to the armory.'
@@ -2799,4 +2750,53 @@ Entries:
   id: 410409
   time: '2026-11-13T22:00:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7135
+- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
+  changes:
+  - message: 'Added modular HUDs: flexible, modular eyewear which lets you put together the infinity stones of eyewear.'
+    type: Add
+  id: 410410
+  time: '2026-11-13T22:00:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7203
+- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
+  changes:
+  - message: Added new researches to unlock modular hud frames.
+    type: Add
+  id: 410411
+  time: '2026-11-13T22:00:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7203
+- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
+  changes:
+  - message: Added a chemical hud module to CMO's locker, and thermal vision hud module to CE's locker.
+    type: Add
+  id: 410412
+  time: '2026-11-13T22:00:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7203
+- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
+  changes:
+  - message: Added a new blue noir filter.
+    type: Add
+  id: 410413
+  time: '2026-11-13T22:00:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7203
+- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
+  changes:
+  - message: Replaced a bunch of preexisting HUDs with modular HUDs.
+    type: Tweak
+  id: 410414
+  time: '2026-11-13T22:00:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7203
+- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
+  changes:
+  - message: The short-sighted trait now comes with a prescription hud module; select some modular eyewear on loadout or go to medical for a frame.
+    type: Tweak
+  id: 410415
+  time: '2026-11-13T22:00:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7203
+- author: wonderfulnewworld, Centronias, Huaqas, TheShuEd
+  changes:
+  - message: Health eyewear is now t2 medical contraband. Don't want people rushing to get it without a permit!
+    type: Tweak
+  id: 410416
+  time: '2026-11-13T22:00:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7203
 Order: -1
