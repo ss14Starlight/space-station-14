@@ -15,6 +15,10 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
+  - type: Pierceable
+    level: HardenedMetal
+  - type: ArmorSparkEffect
+    alwaysSparks: true
 
 - type: !PartialOnly entity
   id: ClothingOuterArmorAtmosian
@@ -36,3 +40,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.80
     sprintModifier: 0.80
+  - type: Pierceable
+    level: HardenedMetal
+  - type: ArmorSparkEffect
+    alwaysSparks: true
