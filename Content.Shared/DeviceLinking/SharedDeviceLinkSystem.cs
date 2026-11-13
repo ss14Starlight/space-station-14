@@ -235,8 +235,10 @@ public abstract partial class SharedDeviceLinkSystem : EntitySystem
         var defaults = new List<(string, string)>();
         foreach (var source in sources)
         {
+            // Starlight - start
             if (source.DefaultLinks == null)
-                return new List<(string, string)>();
+                continue;
+            // Starlight - end
 
             foreach (var defaultLink in source.DefaultLinks)
             {
