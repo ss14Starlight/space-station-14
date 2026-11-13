@@ -11,10 +11,9 @@ public sealed partial class SharedDamageActionSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<DamageActionEvent>(OnDamageAction);
     }
 
+    [SubscribeLocalEvent]
     private void OnDamageAction(DamageActionEvent ev)
     {
         if(ev.Handled)
