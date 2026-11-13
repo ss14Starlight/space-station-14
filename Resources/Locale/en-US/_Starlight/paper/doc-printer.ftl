@@ -1529,26 +1529,26 @@ doc-text-printer-explorative-surgery-form =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 doc-text-printer-p-23-id-pda-replacement-form =
-    [head=1][color=#1b67a5]────────────────────[/color][/head]
-    [color=#134975]█▄░░█ ▀▀█▀▀[/color]  [head=3][color=#1b67a5]NANOTRASEN CORPORATION[/color][/head]
-    [color=#134975]█▀█▄█ ░░█░░[/color][bolditalic][color=#1b67a5]  Together, we change worlds...[/color][/bolditalic]
-    [color=#134975]█░░▀█ ░░█░░[/color]  [color=#aaaaaa][italic]OFFICIAL NANOTRASEN DOCUMENT[/italic][/color]
-    [head=1][color=#1b67a5]────────────────────[/color][/head]
+    [head=1][color=#134975]──────────[/color][/head][head=1][color=#009100]──────────[/color][/head]
+    [color=#134975]█▄░░█ ▀▀█▀▀[/color]   [color=#009100]█▀▀ █▀▀[/color]   [head=3][color=#009100][bold]CONSORTIUM[/bold][/color][/head]
+    [color=#134975]█▀█▄█ ░░█░░[/color]   [color=#009100]█░░ █░░[/color]  [bolditalic][color=#1b67a5] At the pinnacle of Research.[/color][/bolditalic]
+    [color=#134975]█░░▀█ ░░█░░[/color]   [color=#009100]▀▀▀ ▀▀▀[/color]   [color=#aaaaaa][italic]OFFICIAL NT-CC DOCUMENT[/italic][/color]
+    [head=1][color=#009100]──────────[/color][/head][head=1][color=#134975]──────────[/color][/head]
     [bold]P-23 Form:[/bold] Reissuance of Corporate-Issued Identification and/or Personal Digital Assistant
     ─────────────────────────────────────────
-    Date and Time: [italic][color=#0c34b1][datetime][/color][/italic]
+     Date and Time: [italic][color=#0c34b1][datetime][/color][/italic]
     Document Compiler: [italic][color=#0c34b1][signature][/color][/italic]
 
     [bold]Name and position:[/bold]
-        [italic][color=#0c34b1][signature][/color][/italic]
+      [italic][color=#0c34b1][signature][/color][/italic]
     [bold]Items to be reissued:[/bold]
-        [color=#0c34b1][check][/color]- Personal Digital Assistant
-        [color=#0c34b1][check][/color]- Identification card
+      [color=#0c34b1][check][/color]- Personal Digital Assistant
+      [color=#0c34b1][check][/color]- Identification card
     [bold]Circumstances of Loss or Damage:[/bold]
-        [italic][color=#0c34b1][form][/color] [/italic]
+      [italic][color=#0c34b1][form][/color] [/italic]
     [bold]Replacement Charges:[/bold]
-        [check] - Identification card: [bold]15 credits[/bold]
-        [check] - Personal Digital Assistant: [bold]220 credits[/bold]
+      [check] - Identification card: [bold]15 credits[/bold]
+      [check] - Personal Digital Assistant: [bold]220 credits[/bold]
 
     I, [italic][color=#0c34b1][signature][/color][/italic], hereby declare that all information provided in this application is true, complete, and accurate to the best of my knowledge. I understand that any false or misleading statement made herein may constitute impersonation (§1-08) and forgery (§3-08) as described by Corporate Law, and I accept the disciplinary and legal consequences prescribed therein.
 
@@ -1558,6 +1558,5 @@ doc-text-printer-p-23-id-pda-replacement-form =
     ────────────────────────────────────────
 
 
-   ⠀                      [italic][color=#aaaaaa]Place for Stamps and/or Signatures[/color][/italic]
-
+   ⠀                      [italic][color=#aaaaaa]Place for stamps and/or signatures[/color][/italic]
 
