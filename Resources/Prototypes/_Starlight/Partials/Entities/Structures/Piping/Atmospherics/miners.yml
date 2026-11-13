@@ -1,0 +1,12 @@
+# Starlight gas mining buffs - stations use 4x as much N2 as they do O2, which leaves the O2 miner idle while the N2 miner struggles to refill distro
+- type: !PartialOnly entity
+  id: GasMinerNitrogen
+  components:
+  - type: GasMiner
+    spawnAmount: 1600 # 4x as much mol/second
+
+- type: !PartialOnly entity
+  id: GasMinerNitrogenStationLarge
+  components:
+  - type: GasMiner
+    spawnAmount: 1600 # 4x as much mol/second
