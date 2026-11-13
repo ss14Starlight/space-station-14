@@ -127,14 +127,17 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
 
         if (args.Sprite != null)
         {
-            if (buckled && component.BuckledTo is { } strapUid
+            var shouldHide = buckled
+                && component.BuckledTo is { } strapUid
                 && TryComp<StrapComponent>(strapUid, out var strap)
-                && strap.SetVisible)
+                && strap.SetVisible;
+
+            if (shouldHide)
             {
                 component.OriginalVisible ??= args.Sprite.Visible;
                 _sprite.SetVisible((uid, args.Sprite), false);
             }
-            else if (!buckled && component.OriginalVisible is { } originalVis)
+            else if (component.OriginalVisible is { } originalVis)
             {
                 _sprite.SetVisible((uid, args.Sprite), originalVis);
                 component.OriginalVisible = null;
