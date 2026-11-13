@@ -1,0 +1,41 @@
+marking-HeadXenoDeacon = Deacon
+marking-HeadXenoDeacon-deacon = Carapace
+marking-HeadXenoListener = Listener
+marking-HeadXenoListener-listener = Carapace
+marking-HeadXenoSaggy = Saggy
+marking-HeadXenoSaggy-saggy = Carapace
+marking-HeadXenoSkull = Skull
+marking-HeadXenoSkull-skull = Carapace
+
+marking-HeadTopXenoLong = Long
+marking-HeadTopXenoLong-long = Carapace
+marking-HeadTopXenoLurker = Lurker
+marking-HeadTopXenoLurker-lurker = Carapace
+marking-HeadTopXenoRunner = Runner
+marking-HeadTopXenoRunner-runner = Carapace
+marking-HeadTopXenoShortStubby = Short and Stubby
+marking-HeadTopXenoShortStubby-short_stubby = Carapace
+marking-HeadTopXenoSkullRidged = Ridged Skull
+marking-HeadTopXenoSkullRidged-skull_ridged = Carapace
+marking-HeadTopXenoSpitter = Spitter
+marking-HeadTopXenoSpitter-spitter = Carapace
+marking-HeadTopXenoTeeth = Teeth
+marking-HeadTopXenoTeeth-teeth = Carapace
+
+marking-TailXenoDeacon = Deacon
+marking-TailXenoDeacon-deacon = Carapace
+marking-TailXenoLong = Long
+marking-TailXenoLong-long = Carapace
+marking-TailXenoRunner = Runner
+marking-TailXenoRunner-runner = Carapace
+marking-TailXenoShortStubby = Short and Stubby
+marking-TailXenoShortStubby-short_stubby = Carapace
+marking-TailXenoSkullRidged = Ridged Skull
+marking-TailXenoSkullRidged-skull_ridged = Carapace
+marking-TailXenoSpitter = Spitter
+marking-TailXenoSpitter-spitter = Carapace
+
+marking-ChestXenoSlant = Slant
+marking-ChestXenoSlant-torso_slant = Carapace
+marking-ChestXenoSpitter = Spitter
+marking-ChestXenoSpitter-torso_spitter = Carapace

@@ -1,0 +1,16 @@
+uniform sampler2D SCREEN_TEXTURE;
+
+uniform highp float ShiftIntensity;
+
+void fragment()
+{
+    COLOR = zTextureSpec(SCREEN_TEXTURE, Pos);
+
+    highp vec3 baseColor = COLOR.rgb;
+    highp vec3 shiftedColor = vec3(
+        min(255, baseColor[0]*(1-(0.7*ShiftIntensity)) + baseColor[1]*(1-(0.41*ShiftIntensity)) + baseColor[2]*(1-(0.89*ShiftIntensity))),
+        min(255, baseColor[0]*(1-(0.7*ShiftIntensity)) + baseColor[1]*(1-(0.41*ShiftIntensity)) + baseColor[2]*(1-(0.89*ShiftIntensity))),
+        min(255, baseColor[0]*(1-(0.7*ShiftIntensity)) + baseColor[1]*(1-(0.41*ShiftIntensity)) + baseColor[2]*(1-(0.89*ShiftIntensity))));
+
+    COLOR.rgb = baseColor[0] < baseColor[1] && baseColor[2] < baseColor[1] ? baseColor : shiftedColor;
+}

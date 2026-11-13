@@ -869,3 +869,87 @@
         32:
           sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
           state: in_hand
+
+
+- type: entity
+  id: BaseInventoryXeno
+  abstract: true
+  components:
+  - type: Inventory
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      id:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: shoes
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+    rightHandDisplacement:
+      sizeMaps:
+        32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit

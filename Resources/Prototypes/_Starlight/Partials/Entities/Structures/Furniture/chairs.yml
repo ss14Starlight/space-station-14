@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: ChairXeno
+  components:
+  - type: Construction
+    graph: SeatXeno
+    node: chairXeno

@@ -24,6 +24,7 @@
             - type: LizardAccent
             - type: MothAccent
             - type: GrowlingAccent
+            - type: XenoSpeechAccent
             - type: ReplacementAccent
               accent: dwarf
 

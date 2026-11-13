@@ -1,0 +1,52 @@
+<Document>
+  # Xen'Kara
+
+  <Box>
+    <GuideEntityEmbed Entity="MobXenoSpecies" Caption=""/>
+  </Box>
+
+  Xen'Kara - as they call themselves - are a divergent, modified species related to the Xeno hives. They retain their ancestral hunger, and resistance to acids, at the cost of being more vulnerable to electric shocks.
+
+  Born from a single Queen Mother, their weakened hivemind makes them naturally democratic, and they are highly social, frequently gathering to elect a local leader.
+
+  While they can likely get much older, there is no individual older than 200 years - the time of the First Queen.
+
+  ## The Hunger
+  <Box>
+    <GuideEntityEmbed Entity="FoodBadRecipe" Caption=""/>
+  </Box>
+  <Box>
+    [color=#999999][italic]"Yummy!"[/italic][/color]
+  </Box>
+
+  While Xen'Kara are able to store significant reserves of nutrients in their bodies, they also burn through them at alarming rates. A starving Xen'Kara becomes downright ravenous, and may devour enough food to feed four people in one sitting.
+
+  Botanists, kitchen staff and engineers are of particular cultural significance to Xen'Kara individuals, as they are the ones keeping the Hivehome fed and breathing.
+
+  ## Ancestral Strains
+
+  Xen'Kara exhibit a variety of traits, lying dormant within their biology until activated. Each of these comes with a significant metabolic cost, but can allow them to spit acid, leap at foes, heal others or even build their own structures.
+
+  ## The Congress
+
+  Groups of Xen'Kara individuals will designate one of their own as a Voice of the Queen, charged with organising what remains of their hivemind and acting as a go-between with the Queen-Mother. This process is democratic in nature; the position is treated as both an honour and a burden.
+
+  ## Racial Features
+  - Take [color=#00aa00]10% less[/color] caustic damage.
+  - Common acids [color=#00aa00]do not hurt[/color].
+  - [color=#FFA500]Your blood is acid[/color].
+  - Take [color=#aa0000]30% more[/color] shock damage.
+  - Your exoskeleton and acid blood [color=#aa0000]prevent basic topicals from working[/color] on you.
+
+
+  - You get hungry [color=#aa0000]very quickly[/color].
+  - You [color=#00aa00]do not get slowed[/color] when starving.
+  - You can [color=#FFA500]store extra nutrients[/color], so eating a lot will keep you sated for longer.
+  - You can [color=#00aa00]eat almost anything[/color], including rotten food.
+  - You may [color=#00aa00]spend hunger to fuel abilities[/color].
+
+
+  - Your tail is sharp and pointy. You may [color=#00aa00]use it as a spear[/color].
+  - You can [color=#FFA500]talk to wild xenos[/color], but they remain hostile.
+  - You [color=#aa0000]deal damage when thrown[/color], whether from being spiky or reflexive biting.
+</Document>

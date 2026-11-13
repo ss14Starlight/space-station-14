@@ -39,7 +39,18 @@
             - material: Steel
               amount: 2
               doAfter: 2
-
+        # Starlight Start
+        - to: wallChitin
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Chitin
+              amount: 2
+              doAfter: 2
+        # Starlight End
         - to: reinforcedGirder
           completed:
             - !type:SnapToGrid
@@ -152,7 +163,7 @@
         - to: girder
           completed:
             - !type:GivePrototype
-              prototype: SheetSteel1
+              prototype: SheetChitin1 #Starlight Edit
               amount: 2
           steps:
             - tool: Welding
@@ -265,6 +276,18 @@
             - material: Plasteel
               amount: 2
               doAfter: 1
+        # Starlight Start
+        - to: reinforcedWallChitin
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          conditions:
+            - !type:EntityAnchored {}
+          steps:
+            - material: Chitin
+              amount: 4
+              doAfter: 2
+        # Starlight End
 
         - to: shuttleWall
           completed:
@@ -366,8 +389,8 @@
         - to: reinforcedGirder
           completed:
             - !type:SpawnPrototype
-              prototype: SheetPlasteel1
-              amount: 2
+              prototype: SheetChitin1 #Starlight Edit
+              amount: 4 #Starlight Edit
           steps:
             - tool: Cutting
               doAfter: 1

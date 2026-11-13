@@ -1,0 +1,128 @@
+﻿- type: entity
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge, BaseInventoryXeno]
+  id: BaseMobXeno
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Xeno
+    - Xenocongress
+    understands:
+    - GalacticCommon
+    - Xeno
+    - Xenoqueen
+  - type: Speech
+    speechVerb: Xeno
+    speechSounds: UnisexXeno
+  - type: XenoSpeechAccent
+  - type: TypingIndicator
+    proto: alien
+  - type: Absorbable
+  - type: Hunger
+    baseDecayRate: 0.1 #very, *very* hungry, for a player species
+    starvingSlowdownModifier: 1.0
+    applyStarvationVignette: true
+    thresholds:
+      Overfed: 500 #Extra hunger capacity. Gorge yourself to be fine for a loong while
+      Okay: 200
+      Peckish: 100
+      Starving: 50
+      Dead: 0
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: full
+  - type: Thirst
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatXeno
+      amount: 5
+  - type: HumanoidAppearance
+    species: Xeno
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: Body
+    prototype: Xeno
+    requiredLegs: 2
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Xeno
+  - type: Vocal
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: XenoBlood
+        Quantity: 600
+  - type: Puller
+    needsHands: false
+  - type: MeleeWeapon
+    animation: WeaponArcBite
+    soundHit:
+      collection: XenoBite
+      params:
+        variation: 0.125
+    damage:
+      types:
+        Piercing: 5
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Ingestion ]
+    reactions:
+    - reagents: [ Water, SpaceCleaner]
+      methods: [ Touch ]
+      effects:
+      - !type:WashCreamPie
+    - reagents: [ WeldingFuel, Phlogiston, Napalm, Benzene, Oil, Vodka, Absinthe ]
+      methods: [ Touch ]
+      effects:
+      - !type:Emote
+        emote: Hisses
+        showInChat: false
+  - type: BodyEmotes
+    soundsId: UnisexXeno
+  - type: Inventory
+    speciesId: Xeno
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: shoes
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#52a258"
+  - type: XenoDemocracy
+  - type: Tag
+    tags:
+    - XenoEmotes
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - NotLabelable
+    - Xeno
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 15
+  - type: ActionGrant
+    actions:
+    - ActionXenoOpenShop
+  - type: Store
+    name: store-preset-name-xeno
+    categories:
+    - EvolutionsStandard
+    currencyWhitelist:
+    - EvolutionPoint
+    balance:
+      EvolutionPoint: 1

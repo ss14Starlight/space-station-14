@@ -1,0 +1,174 @@
+# Heads
+- type: marking
+  id: HeadXenoDeacon
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/heads.rsi
+      state: deacon
+
+- type: marking
+  id: HeadXenoListener
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/heads.rsi
+      state: listener
+
+- type: marking
+  id: HeadXenoSaggy
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/heads.rsi
+      state: saggy
+
+- type: marking
+  id: HeadXenoSkull
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/heads.rsi
+      state: skull
+
+# Head Top
+- type: marking
+  id: HeadTopXenoLong
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+      state: long
+
+- type: marking
+  id: HeadTopXenoLurker
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+      state: lurker
+
+- type: marking
+  id: HeadTopXenoRunner
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+      state: runner
+
+- type: marking
+  id: HeadTopXenoShortStubby
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+      state: short_stubby
+
+- type: marking
+  id: HeadTopXenoSkullRidged
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+      state: skull_ridged
+
+- type: marking
+  id: HeadTopXenoSpitter
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+      state: spitter
+
+- type: marking
+  id: HeadTopXenoTeeth
+  bodyPart: HeadTop
+  markingCategory: Special
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+      state: teeth
+
+# Tails
+- type: marking
+  id: TailXenoDeacon
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/tails.rsi
+      state: deacon
+
+- type: marking
+  id: TailXenoLong
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/tails.rsi
+      state: long
+
+- type: marking
+  id: TailXenoRunner
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/tails.rsi
+      state: runner
+
+- type: marking
+  id: TailXenoShortStubby
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/tails.rsi
+      state: short_stubby
+
+- type: marking
+  id: TailXenoSkullRidged
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/tails.rsi
+      state: skull_ridged
+
+- type: marking
+  id: TailXenoSpitter
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/tails.rsi
+      state: spitter
+
+# Torsos
+- type: marking
+  id: ChestXenoSlant
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/torsos.rsi
+      state: torso_slant
+
+- type: marking
+  id: ChestXenoSpitter
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Xeno ]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Xeno/torsos.rsi
+      state: torso_spitter

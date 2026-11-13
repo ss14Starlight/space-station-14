@@ -1,0 +1,52 @@
+# Xeno Evolutions
+- type: listing
+  id: EvolveSpit
+  name: evolution-spit-name
+  description: evolution-spit-description
+  productAction: ActionXenoSpit
+  cost:
+    EvolutionPoint: 1
+  categories:
+  - EvolutionsStandard
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolvePounce
+  name: evolution-pounce-name
+  description: evolution-pounce-description
+  productAction: ActionXenoPounce
+  cost:
+    EvolutionPoint: 1
+  categories:
+  - EvolutionsStandard
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolveTransfusion
+  name: evolution-transfuse-name
+  description: evolution-transfuse-description
+  productAction: ActionXenoTransfuse
+  cost:
+    EvolutionPoint: 1
+  categories:
+  - EvolutionsStandard
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolveBuilder
+  name: evolution-builder-name
+  description: evolution-builder-description
+  productAction: ActionXenoWax
+  cost:
+    EvolutionPoint: 1
+  categories:
+  - EvolutionsStandard
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

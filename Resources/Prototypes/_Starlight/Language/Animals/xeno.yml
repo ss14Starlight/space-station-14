@@ -2,10 +2,18 @@
   id: Xeno
   icon: LanguageIconXeno
   chatPrefix: xno
+  speech:
+    color: "#8b32ff"
+    fontId: NotoSansDisplayBold
+    speechVerbOverrides:
+    - chat-speech-verb-xeno-1
+    - chat-speech-verb-xeno-2
+    - chat-speech-verb-xeno-3
+    - chat-speech-verb-xeno-4
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
-    maxSyllables: 2
+    maxSyllables: 5
     replacement:
     - sss
     - sSs

@@ -2,3 +2,11 @@
 - type: !PartialOnly entity
   id: AirlockMaintGlass
   name: maintenance access
+
+- type: !PartialOnly entity
+  id: AirlockXeno
+  name: chitin airlock
+  components:
+  - type: Construction
+    graph: Airlock
+    node: chitinAirlock

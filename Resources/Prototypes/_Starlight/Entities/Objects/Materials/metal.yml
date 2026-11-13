@@ -36,3 +36,55 @@
     - type: Stack
       stackType: Adamantine
       count: 1
+
+- type: entity
+  parent: [SheetMetalBase, BaseQuickConstructionMaterial]
+  id: SheetChitin
+  name: chitinous wax
+  suffix: Full
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Chitin: 100
+  - type: Stack
+    stackType: Chitin
+    baseLayer: base
+    layerStates:
+    - chitin
+    - chitin_2
+    - chitin_3
+  - type: Sprite
+    sprite: _Starlight/Objects/Materials/chitin.rsi
+    state: chitin_3
+    layers:
+    - state: chitin_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: chitin
+  - type: QuickConstructable
+    category: Chitin
+
+- type: entity
+  parent: SheetChitin
+  id: SheetChitin10
+  name: chitinous wax
+  suffix: 10
+  components:
+  - type: Sprite
+    state: chitin
+  - type: Stack
+    stackType: Chitin
+    count: 10
+
+- type: entity
+  parent: SheetChitin
+  id: SheetChitin1
+  name: chitinous wax
+  suffix: Single
+  components:
+  - type: Sprite
+    state: chitin
+  - type: Stack
+    stackType: Chitin
+    count: 1

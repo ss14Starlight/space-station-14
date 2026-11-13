@@ -1,0 +1,39 @@
+{
+	"version": 1,
+	"license": "CC-BY-SA-4.0",
+	"copyright": "State-Based Copyright",
+	"size": {
+		"x": 32,
+		"y": 32
+	},
+	"states": [
+		{
+			"name": "toggle_tail",
+			"copyright": "ya3.14a"
+		},
+		{
+			"name": "cast_vote",
+			"copyright": "Citrea, based on sprite background by ya314a. Someone please make a better one?"
+		},
+		{
+			"name": "xeno_shop",
+			"copyright": "MeWhenThe"
+		},
+		{
+			"name": "xeno_heal",
+			"copyright": "MeWhenThe"
+		},
+		{
+			"name": "xeno_leap",
+			"copyright": "MeWhenThe"
+		},
+		{
+			"name": "xeno_tree",
+			"copyright": "MeWhenThe"
+		},
+		{
+			"name": "xeno_spit",
+			"copyright": "MeWhenThe"
+		}
+	]
+}

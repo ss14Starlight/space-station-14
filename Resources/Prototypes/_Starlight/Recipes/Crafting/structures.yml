@@ -1,0 +1,37 @@
+- type: construction
+  id: WallChitin
+  graph: Girder
+  startNode: start
+  targetNode: wallChitin
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ReinforcedWallChitin
+  graph: Girder
+  startNode: start
+  targetNode: reinforcedWallChitin
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AirlockXeno
+  graph: Airlock
+  startNode: start
+  targetNode: chitinAirlock
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

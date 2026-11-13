@@ -197,7 +197,7 @@ public sealed partial class RadioSystem : EntitySystem
             var languageQuery = EntityQueryEnumerator<LanguageSpeakerComponent>();
             while (canSend && languageQuery.MoveNext(out var receiver, out var _))
             {
-                if (_language.CanUnderstand(receiver, language.ID, false) || HasComp<GhostComponent>(receiver))
+                if (_language.CanUnderstand(receiver, language.ID, false) || HasComp<GhostComponent>(receiver) || messageSource == receiver)
                 {
                     // check if message can be sent to specific receiver
                     var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);

@@ -25,3 +25,17 @@
     CarbonDioxide: 4.5
     Nitrogen: 2.5
     Protein: 6
+
+- type: reaction
+  id: XenoBloodBreakdown
+  source: true
+  requiredMixerCategories:
+    - Centrifuge
+  reactants:
+    XenoBlood:
+      amount: 30
+  products:
+    Protein: 17
+    CarbonDioxide: 4.5
+    Nitrogen: 2.5
+    FluorosulfuricAcid: 6

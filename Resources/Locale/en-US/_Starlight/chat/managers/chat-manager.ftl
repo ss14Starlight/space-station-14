@@ -38,6 +38,12 @@ chat-speech-verb-experiment-2 = barks
 chat-speech-verb-experiment-3 = says
 chat-speech-verb-experiment-4 = yaps
 
+chat-speech-verb-name-xeno = Xen'Kara
+chat-speech-verb-xeno-1 = hisses
+chat-speech-verb-xeno-2 = growls
+chat-speech-verb-xeno-3 = clicks
+chat-speech-verb-xeno-4 = snaps
+
 chat-speech-verb-name-pause = Pausing
 chat-speech-verb-pause = pauses
 

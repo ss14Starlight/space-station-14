@@ -32,6 +32,127 @@
   physicalDesc: reagent-physical-desc-resomi
 
 - type: reagent
+  id: XenoBlood
+  name: reagent-name-xeno-blood
+  group: Biological
+  desc: reagent-desc-xeno-blood
+  flavor: acid
+  color: "#52a258"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-acidic
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 0.05
+      - !type:Emote
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        emote: Scream
+        probability: 0.1
+  metabolisms:
+    Digestion:
+      metabolites:
+        UncookedAnimalProteins: 0.2
+      effects:
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: Protein
+        amount: 0.3
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -1.5
+            Burn: -0.75
+      - !type:SatiateThirst
+        factor: 1.0
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Doll ]
+      - !type:SatiateThirst
+        factor: 1.0
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Human ]
+            inverted: true
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+        damage:
+          groups:
+            Brute: -3
+            Burn: -1.25
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        damage:
+          types:
+            Caustic: 0.5
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.15
+      - !type:Emote
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        emote: Scream
+        probability: 0.175
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -1.5
+            Burn: -0.75
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      amount: -8
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6
+
+- type: reagent
   parent: Blood
   id: DarkBlood
   name: reagent-name-dark-blood

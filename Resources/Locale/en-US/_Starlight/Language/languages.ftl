@@ -80,7 +80,7 @@ language-Carptongue-name = Carptongue
 language-Carptongue-description = Various fishy sounds that might make sense to space carps.
 
 language-Xeno-name = Xeno
-language-Xeno-description = The common tongue of the xenos.
+language-Xeno-description = The common tongue of the xenos and their descendants.
 
 language-Cat-name = Cat
 language-Cat-description = Meow
@@ -153,6 +153,12 @@ language-Carpmind-description = Various fishy minds.
 
 language-Xenomind-name = Hivemind
 language-Xenomind-description = Various minds of xenos and terrors.
+
+language-Xenocongress-name = Xen'Kara Congress
+language-Xenocongress-description = The collective voices of the Xen'Kara people, heard only by the sender and their elected Queen.
+
+language-Xenoqueen-name = Words of the Queen
+language-Xenoqueen-description = The mental voice of the elected Voice of the Queen, heard by all individuals of a local hive.
 
 language-Squeakish-name = Squeakish
 language-Squeakish-description = The language of the Rodentia, made up of a series of chirps and squeaks.

@@ -6,6 +6,13 @@
     ShiftIntensity: 1.0
 
 - type: shader
+  id: XenoShader
+  kind: source
+  path: "/Textures/_Starlight/Shaders/xeno.swsl"
+  params:
+    ShiftIntensity: 1.0
+
+- type: shader
   id: StencilDrawUnshaded
   kind: canvas
   light_mode: unshaded

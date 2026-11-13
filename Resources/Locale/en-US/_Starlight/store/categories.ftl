@@ -20,6 +20,7 @@ store-ling-category-sting = Stings
 store-ling-category-utility = Utility
 
 store-category-cantrips-standard = Standard Cantrips
+store-category-evolutions-standard = Standard Evolutions
 
 # Uplinks
 store-category-cybernetics = Cybernetics

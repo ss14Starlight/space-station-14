@@ -13,7 +13,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Neocyte ] # Harmless to Neocytes
+          type: [ Neocyte, Xeno ] # Harmless to Neocytes # Starlight - and Xenos
           inverted: true
         damage:
           types: # Drinking battery acid is bad for you? Woh.
@@ -24,6 +24,15 @@
         - !type:MetabolizerTypeCondition
           type: [ Neocyte ]
         factor: 1 #yummy
+        #Starlight Start
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+        damage:
+          types:
+            Bloodloss: -0.2 #Budget blood
+        #Starlight End
       # Acts like vitamin but for Neocytes. Keep in mind the -50% healing debuff they get, hence buffed numbers.
       - !type:EvenHealthChange
         conditions:
@@ -33,9 +42,20 @@
           Brute: -1
           Burn: -1
       - !type:ModifyBleed #smth smth burns you from the inside so it stops internal bleeding, clearly.
+        conditions:
+        #Starlight Start
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        #Starlight End
         amount: -0.5
       - !type:SatiateHunger
         factor: 1 # yummy
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Neocyte ]
+        #Starlight Start
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
+        #Starlight End
