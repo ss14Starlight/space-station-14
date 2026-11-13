@@ -115,7 +115,7 @@ public sealed partial class AACWindow : FancyWindow
                     _loc.GetString(p.Group),
                     _loc.GetString(p.Tab)))
                 .ToList());
-        
+
         _builtCultureName = _cfg.GetCVar(CVars.LocCultureName); //Set the language being used
     }
 
@@ -247,7 +247,7 @@ public sealed partial class AACWindow : FancyWindow
     protected override void Dispose(bool disposing)
     {
         if (disposing)
-        {   
+        {
             WindowBody.OnTabChanged -= OnTabChanged;
         }
 
