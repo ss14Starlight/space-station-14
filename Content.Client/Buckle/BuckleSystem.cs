@@ -96,13 +96,11 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
             return;
 
         // Starlight-start
-
         if (strapComp.SetVisible)
         {
-            ent.Comp.OriginalVisible = buckledSprite.Visible;
+            ent.Comp.OriginalVisible ??= buckledSprite.Visible;
             buckledSprite.Visible = false;
         }
-
         // Starlight-end
 
         var angle = _xformSystem.GetWorldRotation(args.Strap) + _eye.CurrentEye.Rotation; // Get true screen position, or close enough
@@ -127,10 +125,11 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
             return;
 
         // Starlight-start
-
         if (strapComp.SetVisible && ent.Comp.OriginalVisible is { } originalVis)
+        {
             buckledSprite.Visible = originalVis;
-
+            ent.Comp.OriginalVisible = null;
+        }
         // Starlight-end
 
         if (!ent.Comp.OriginalDrawDepth.HasValue)
