@@ -27,6 +27,7 @@
       Flammable: [Touch]
       Extinguish: [Touch]
   - type: SpiderWebObject
+    replaceable: false
   - type: EntityBeacon
     entitiesToSpawn:
     - SpiderWeb
@@ -97,6 +98,7 @@
       Flammable: [Touch]
       Extinguish: [Touch]
   - type: SpiderWebObject
+    replaceable: false
   - type: Strap
     position: Stand
     needsHands: false
@@ -191,6 +193,7 @@
       Flammable: [Touch]
       Extinguish: [Touch]
   - type: SpiderWebObject
+    replaceable: false
   - type: Transform
     anchored: true
   - type: Sprite
