@@ -70,6 +70,14 @@ public abstract partial class SharedTirednessSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Sets an entity's tiredness duration.
+    /// </summary>
+    /// <param name="ent">The entity whose tiredness to set.</param>
+    /// <param name="tiredness">The requested duration, clamped from zero to 30 minutes.</param>
+    /// <remarks>
+    /// Updates the tiredness alert and refreshes movement speed modifiers if the movement-speed stage changes.
+    /// </remarks>
     public void SetTiredness(Entity<TirednessComponent?> ent, TimeSpan tiredness)
     {
         if (!Resolve(ent, ref ent.Comp, false))

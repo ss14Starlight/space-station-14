@@ -2,7 +2,7 @@
   parent: BaseAction
   id: FelionoidPounce
   name: "[color=orange]Pounce[/color]"
-  description: Charge for 2 seconds before pouncing on a mob; movement interrupts the charge. The target drops what they are holding to catch you; if they cannot drop it or pick you up, you both fall down.
+  description: Charge for 2 seconds before pouncing on a mob; movement interrupts the charge. An empty-handed target can catch and pick you up; otherwise, the impact knocks you both down.
   components:
   - type: Action
     useDelay: 30
