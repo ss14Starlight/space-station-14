@@ -3,22 +3,23 @@ namespace Content.Client.Administration.UI.Notes;
 
 partial class NoteEdit
 {
-    private DateTime? CreationTime { get; set; }
+    private DateTime? _creationTime { get; set; }
 
-    private static (uint Number, Multipliers Unit) UnparseExpiryTime(DateTime createdTime, DateTime expiryTime)
+    private static (int Number, Multipliers Unit) UnparseExpiryTime(DateTime createdTime, DateTime expiryTime)
     {
         TimeSpan duration = expiryTime - createdTime;
-        long durationTicks = duration.Ticks;
-        long toleranceTicks = durationTicks / 100; // 1% tolerance
+        long durationTicks = long.Abs(duration.Ticks);
+        long toleranceTicks = durationTicks / 1000; // 0.1% tolerance
 
-        uint number = 0;
+        int number = 0;
         bool Check(TimeSpan unit)
         {
             long unitTicks = unit.Ticks;
             long mod = durationTicks % unitTicks;
             long errorRoundDown = mod, errorRoundUp = unitTicks - mod;
-            number = (uint)(durationTicks / unitTicks);
+            number = (int)(durationTicks / unitTicks);
             number = errorRoundDown < errorRoundUp ? number : number + 1;
+            number *= long.Sign(toleranceTicks);
             return long.Min(errorRoundDown, errorRoundUp) <= toleranceTicks;
         }
 

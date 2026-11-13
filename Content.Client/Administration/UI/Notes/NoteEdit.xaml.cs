@@ -103,7 +103,7 @@ public sealed partial class NoteEdit : FancyWindow
             SecretCheckBox.Pressed = note.Secret;
             SecretCheckBox.Disabled = note.NoteType is not NoteType.Note;
             ExpiryTime = note.ExpiryTime;
-            CreationTime = note.CreatedAt; // Starlight-edit
+            _creationTime = note.CreatedAt; // Starlight-edit
             if (ExpiryTime is not null)
             {
                 PermanentCheckBox.Pressed = false;
@@ -331,7 +331,7 @@ public sealed partial class NoteEdit : FancyWindow
         // show an error if trying to set an expiry in the past or too far ahead
         var now = DateTime.UtcNow;
         DateTime? expiry;
-        try { expiry = (CreationTime ?? now).AddMinutes(inputInt * mult); }
+        try { expiry = (_creationTime ?? now).AddMinutes(inputInt * mult); }
         catch (ArgumentOutOfRangeException) { expiry = null; }
 
         if (!expiry.HasValue || expiry.Value < now)

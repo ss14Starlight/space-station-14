@@ -52,5 +52,4 @@ partial class AdminNotesControl
             ShowMoreButton.Visible = showMoreButtonVisible;
         }
     }
-
 }
