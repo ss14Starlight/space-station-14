@@ -1,39 +1,4 @@
 Entries:
-- author: Hot Mic
-  changes:
-  - message: (Flottila)Remodel the room in the East Arrivals dock.
-    type: Tweak
-  id: 410020
-  time: '2026-11-01T10:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6992
-- author: Hot Mic
-  changes:
-  - message: '(Flottila)Robotist: Replace the welding fuel tank with a wall-mounted fuel dispenser.'
-    type: Tweak
-  id: 410021
-  time: '2026-11-01T10:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6992
-- author: Hot Mic
-  changes:
-  - message: (Flottila)Move IntercomAll right next to the AI core.
-    type: Fix
-  id: 410022
-  time: '2026-11-01T10:51:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6992
-- author: wonderfulnewworld
-  changes:
-  - message: Brigmed/Corpsman glasses no longer have solution scanner.
-    type: Tweak
-  id: 410023
-  time: '2026-11-01T11:18:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6987
-- author: baltdev
-  changes:
-  - message: Recolor syndicate business card signatures to match their text color.
-    type: Tweak
-  id: 410024
-  time: '2026-11-01T11:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6989
 - author: DocMoth
   changes:
   - message: Fixed avali jugsuit helmet sprites.
@@ -2799,4 +2764,39 @@ Entries:
   id: 410419
   time: '2026-11-13T22:35:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6927
+- author: Rinary
+  changes:
+  - message: Added fireballs for lizards, based on reagents in stomach.
+    type: Add
+  id: 410420
+  time: '2026-11-13T23:10:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7214
+- author: Rinary
+  changes:
+  - message: Added protection from fast injectors for lizards(hyposprays, emergency spray, abductor injector wand, etc).
+    type: Add
+  id: 410421
+  time: '2026-11-13T23:10:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7214
+- author: Rinary
+  changes:
+  - message: Added 2x speed debuff for syringe when trying to inject smth in lizard.
+    type: Add
+  id: 410422
+  time: '2026-11-13T23:10:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7214
+- author: Rinary
+  changes:
+  - message: Changed digest speed for lizards, it's 1.5x faster now.
+    type: Tweak
+  id: 410423
+  time: '2026-11-13T23:10:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7214
+- author: Rinary
+  changes:
+  - message: Changed damage modifiers for lizards, now they also protected from blunt/slash damage by 10%.
+    type: Tweak
+  id: 410424
+  time: '2026-11-13T23:10:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7214
 Order: -1
