@@ -480,9 +480,7 @@
       proto: annihilationsmite
     - type: EmitSoundOnSpawn
       sound:
-        path: /Audio/_Moffstation/Effects/narsie_construct_drone.ogg
-        params:
-          volume: 30
+        path: /Audio/_Starlight/Weapons/ghostwhispers.ogg
 
 - type: entity
   id: annihilationsmite
@@ -523,10 +521,10 @@
   parent: ActionFreezeRune
   id: ActionRuneGravity
   name: Rune of gravity
-  description: Summon a rune that will quickly pull anything close towards it, don't stay close! (30 seconds cooldown).
+  description: Summon a rune that will quickly pull anything close towards it, don't stay close! (50 seconds cooldown).
   components:
   - type: Action
-    useDelay: 30
+    useDelay: 50
     icon:
         sprite: _Starlight/Objects/Magic/magicactions.rsi
         state: gravity

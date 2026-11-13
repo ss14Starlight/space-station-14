@@ -16,7 +16,7 @@
     proto: BulletTurretHarm
     capacity: 500
   - type: Gun
-    fireRate: 1
+    fireRate: 0.75
     selectedMode: FullAuto
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
   - type: HTN
@@ -29,13 +29,13 @@
     damageContainer: Biological
   - type: PointLight
     radius: 1
-    energy: 4
+    energy: 8
     color: "#31F5C0"
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 250
+        damage: 200
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]

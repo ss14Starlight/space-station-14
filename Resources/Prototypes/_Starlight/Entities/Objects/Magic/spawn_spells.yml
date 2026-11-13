@@ -149,7 +149,7 @@
         state: summonharm
   - type: TargetAction
     range: 10
-    checkCanAccess: false
+    checkCanAccess: true
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -194,7 +194,7 @@
         state: summonslow
   - type: TargetAction
     range: 10
-    checkCanAccess: false
+    checkCanAccess: true
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:

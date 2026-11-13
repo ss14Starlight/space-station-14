@@ -543,7 +543,6 @@
       damage:
         types:
           Poison: 10
-          Slash: 10
     - type: Sprite
       sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
       layers:
