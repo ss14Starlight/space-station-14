@@ -80,9 +80,9 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     /// so we restrict it to StationAi access only here to prevent it from fulfilling Command/Captain auth groups.
     /// Non-AI actors must have an ID card (preventing cyborgs).
     /// </summary>
-    private ICollection<ProtoId<AccessLevelPrototype>> GetTerminalAccessTags(EntityUid actor)
+    private ICollection<ProtoId<AccessLevelPrototype>> GetTerminalAccessTags(EntityUid actor, bool bypassAI = false)
     {
-        if (HasComp<StationAiHeldComponent>(actor))
+        if (!bypassAI && HasComp<StationAiHeldComponent>(actor))
         {
             var tags = _access.FindAccessTags(actor);
             return tags.Contains(StationAiAccess)
@@ -579,7 +579,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             return;
         }
 
-        var tags = GetTerminalAccessTags(actor);
+        var tags = GetTerminalAccessTags(actor, true);
         if (!comp.Admin && !tags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)"Command"))
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-request-denied"), actor, PopupType.Medium);
