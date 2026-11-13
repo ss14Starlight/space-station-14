@@ -92396,10 +92396,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -2.5,85.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 15238
     components:
     - type: Transform
@@ -189040,7 +189036,6 @@ entities:
     components:
     - type: Transform
       parent: 2
-      rot: 1.5707963267948966 rad
       pos: -6.5,15.5
     - type: DeviceLinkSource
       linkedPorts:

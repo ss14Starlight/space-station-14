@@ -374,7 +374,7 @@ public sealed partial class FootprintSystem : EntitySystem
             return;
 
         var transferAmount = CalculateTransferVolume(entity.Comp, ownerSolution, isStanding);
-        var minimumVolume = isStanding ? entity.Comp.MinPrintVolume : entity.Comp.MinBodyPrintVolume;
+        var minimumVolume = isStanding ? entity.Comp.MinFootprintVolume : entity.Comp.MinBodyprintVolume;
         if (transferAmount < minimumVolume)
             return;
 
@@ -490,13 +490,13 @@ public sealed partial class FootprintSystem : EntitySystem
             return FixedPoint2.Zero;
 
         var maxPrintVolume = isStanding ? component.MaxFootprintVolume : component.MaxBodyprintVolume;
-        var minPrintVolume = isStanding ? component.MinPrintVolume : component.MinBodyPrintVolume;
+        var minFootprintVolume = isStanding ? component.MinFootprintVolume : component.MinBodyprintVolume;
         var fraction = volume / maxVolume;
-        var spread = maxPrintVolume - minPrintVolume;
+        var spread = maxPrintVolume - minFootprintVolume;
 
         return FixedPoint2.Max(
             FixedPoint2.Zero,
-            FixedPoint2.Min(volume, (spread * fraction) + minPrintVolume));
+            FixedPoint2.Min(volume, (spread * fraction) + minFootprintVolume));
     }
 
     private void FindTileFluids(

@@ -12,13 +12,6 @@
   recipeUnlocks:
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
-  - MechEquipmentKineticAccelerator
-  - FiringPinExpedition # Starlight
-  - BorgModuleMiningDefense # Starlight
-  technologyPrerequisites:
-  - SalvageEquipment # starlight
-  radioChannels:
-  - Supply
   # These are roundstart but not replenishable for salvage
 
 - type: technology
@@ -37,16 +30,10 @@
   - MagazinePistolSubMachineGunIncendiary
   - MagazineLightRifleIncendiary
   - SpeedLoaderMagnumIncendiary
-  - MagazineShotgunIncendiary
   - MagazineBoxPistolIncendiary
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
-  - MagazineDMRIncendiary # Starlight
-  - MagazinePistolSubMachineGunIncendiary
-  - SpeedLoaderShotgunIncendiary
-  radioChannels:
-  - Security
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -59,10 +46,6 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
-  - FiringPinLaser # Starlight
-  - WeaponMechCombatFiredartLaser
-  radioChannels:
-  - Security
 
 - type: technology
   id: NonlethalAmmunition
@@ -74,23 +57,10 @@
   tier: 1
   cost: 5000
   recipeUnlocks:
-  - MagazineShotgunBeanbag
   - BoxShellTranquilizer
   - BoxBeanbag
   - WeaponDisabler
-  - WeaponMechCombatDisabler
-  - WeaponMechCombatFlashbangLauncher
-  - WeaponMechCombatTaser # 🌟Starlight-change🌟
-  - CartridgePistolRubber
-  - CartridgeMagnumRubber
-  - CartridgeLightRifleRubber
-  - CartridgeRifleRubber
-  - MagazineBoxPistolRubber
-  - MagazineBoxMagnumRubber
-  - MagazineBoxLightRifleRubber
-  - MagazineBoxRifleRubber
-  radioChannels:
-  - Security
+  - WeaponDisablerSMG
 
 - type: technology
   id: UraniumMunitions
@@ -112,28 +82,6 @@
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
-  - MagazineDMRUranium # Starlight
-  - MagazinePistolSubMachineGunUranium
-  - SpeedLoaderShotgunUranium
-  radioChannels:
-  - Security
-
-- type: technology
-  id: AdvancedRiotControl
-  name: research-technology-advanced-riot-control
-  icon:
-    sprite: Objects/Weapons/Melee/truncheon.rsi
-    state: icon
-  discipline: Arsenal
-  tier: 1
-  cost: 8000
-  recipeUnlocks:
-  - Truncheon
-  - TelescopicShield
-  - HoloprojectorSecurity
-  - WeaponDisablerSMG
-  radioChannels:
-  - Security
 
 - type: technology
   id: ExplosiveTechnology
@@ -154,8 +102,6 @@
   - ChemicalPayload
   - CableDetStack1
   - EmptyDetonator
-  radioChannels:
-  - Security
 
 - type: technology
   id: SpecialMeans
@@ -168,10 +114,22 @@
   cost: 5000
   recipeUnlocks:
   - ClothingBackpackElectropack
-  radioChannels:
-  - Security
 
 # Tier 2
+
+- type: technology
+  id: AdvancedRiotControl
+  name: research-technology-advanced-riot-control
+  icon:
+    sprite: Objects/Weapons/Melee/truncheon.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 8000
+  recipeUnlocks:
+  - Truncheon
+  - TelescopicShield
+  - HoloprojectorSecurity
 
 - type: technology
   id: ConcentratedLaserWeaponry
@@ -184,10 +142,6 @@
   cost: 10000
   recipeUnlocks:
   - WeaponLaserCannon
-  - WeaponMechCombatSolarisLaser
-  - WeaponLaserImmolator
-  radioChannels:
-  - Security
 
 - type: technology
   id: WaveParticleHarnessing
@@ -200,9 +154,6 @@
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
-  - WeaponMechCombatXray # 🌟Starlight-change🌟
-  radioChannels:
-  - Security
 
 - type: technology
   id: KineticModifications
@@ -217,12 +168,6 @@
   - PKAUpgradeDamage
   - PKAUpgradeRange
   - PKAUpgradeFireRate
-  # region starlight
-  technologyPrerequisites:
-  - SalvageWeapons
-  radioChannels:
-  - Supply
-  # end region
 
 - type: technology
   id: BasicShuttleArmament
@@ -232,24 +177,19 @@
     state: full
   discipline: Arsenal
   tier: 2
-  cost: 8000 # Starlight
+  cost: 10500
   recipeUnlocks:
   - PowerCageRechargerCircuitboard
   - PowerCageSmall
   - PowerCageMedium
-  - PowerCageHigh
   - MagazineGrenadeEmpty
+  #- GrenadeFlash # Starlight: Missing recipe? Probably didn't merge this from Wizden.
   - GrenadeBlast
-  - GrenadeBaton # Starlight
-  - ShuttleGunFriendshipCircuitboard
-  - MagazineGrenadeEmpty
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
+  - ShuttleGunFriendshipCircuitboard
   technologyPrerequisites:
   - SalvageWeapons
-  - Shuttlecraft # starlight
-  radioChannels:
-  - Security
 
 - type: technology
   id: DualWieldingTechnology
@@ -277,10 +217,6 @@
   recipeUnlocks:
   - WeaponAdvancedLaser
   - PortableRecharger
-  - WeaponMechCombatImmolationGun
-  - WeaponMechCombatAMLG90 # 🌟Starlight-change🌟
-  radioChannels:
-  - Security
 
 - type: technology
   id: ThermalWeaponry
@@ -292,11 +228,7 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
-  - WeaponLaserSvalinn
   - WeaponTemperatureGun
-  radioChannels:
-  - Security
-
 
 - type: technology
   id: AdvancedShuttleWeapon
@@ -313,5 +245,3 @@
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:
   - BasicShuttleArmament
-  radioChannels:
-  - Security

@@ -1,7 +1,12 @@
 - type: sinkPort
-  id: State
-  name: signal-port-name-state
-  description: signal-port-description-state
+  id: ToggleableDeviceState
+  name: signal-port-name-toggleable-device-state
+  description: signal-port-description-toggleable-device-state
+
+- type: sinkPort
+  id: ToggleableDeviceStateInverted
+  name: signal-port-name-toggleable-device-state-inverted
+  description: signal-port-description-toggleable-device-state-inverted
 
 - type: sinkPort
   id: BodyScannerReceiver
@@ -52,6 +57,11 @@
   id: CombustionTurbineConsoleReceiver
   name: signal-port-name-combustion-turbine-console-receiver
   description: signal-port-description-combustion-turbine-console-receiver
+
+- type: sinkPort
+  id: RemoteControlControllable
+  name: signal-port-name-remote-control-controllable
+  description: signal-port-description-remote-control-controllable
 
 - type: sinkPort
   id: AirlockCyclerDoor

@@ -73,4 +73,9 @@ public static class SharedCommandHelpers
 
         return input[starts.Peek()..commandStart].Trim();
     }
+
+    /// <summary>
+    /// Wrap something in quotes and double up backslashes. Mostly meant for converting something into valid command input.
+    /// </summary>
+    public static string Quote(string text) => $"\"{text.Replace("\\", @"\\").Replace("\"", "\\\"")}\"";
 }

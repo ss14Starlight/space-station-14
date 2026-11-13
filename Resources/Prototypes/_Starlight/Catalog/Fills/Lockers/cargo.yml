@@ -1,4 +1,22 @@
-﻿#Salvave Lead
+﻿#Salvage (Shared between Specialist and Lead)
+- type: entityTable
+  id: LockerFillSalvageShared
+  table: !type:AllSelector
+    children:
+      - id: ClothingBeltUtilityFilled
+      - id: SurvivalKnife
+      - id: HandheldGPSBasic
+      - id: RadioHandheldExpedition
+      - id: AppraisalTool
+      - id: FireExtinguisher
+      - id: Flare
+        prob: 0.3
+        rolls: !type:ConstantNumberSelector
+          value: 3
+      - id: PlushieLizardJobSalvagespecialist
+        prob: 0.02
+
+#Salvave Lead
 - type: entityTable
   id: LockerFillSalvageLead
   table: !type:AllSelector
@@ -9,6 +27,7 @@
     - id: ITGTrackerImplanter
     - id: SalvageTechFabFlatpack
     - id: Multitool
+    - id: GlowstoneDropperFilled50
 
 - type: entityTable
   id: FillSalvageLeadHardsuitSpatio
@@ -35,6 +54,14 @@
   - type: EntityTableContainerFill
 
 # Salvage Specialist
+- type: entityTable
+  id: LockerFillSalvageSpecialistITG
+  table: !type:AllSelector
+    children:
+      - !type:NestedSelector
+        tableId: LockerFillSalvageSpecialist
+      - id: ITGTrackerImplanter
+
 # regular lockers located in Wizden's Resources/Prototypes/Catalog/Fills/Lockers/cargo.yml
 - type: entity
   id: LockerSalvageSpecialistLargeFilledHardsuit
@@ -129,6 +156,7 @@
     - id: Pickaxe
     - id: Shovel
     - id: OreBag
+    - id: GlowstoneDropperFilled50
 
 # Cargo Techs and Mail Techs
 - type: entity
@@ -323,7 +351,7 @@
           - !type:NestedSelector
             tableId: FillSalvageSpecialistHardsuitSpatio
           - !type:NestedSelector
-            tableId: LockerFillSalvageSpecialist
+            tableId: LockerFillSalvageSpecialistITG
 
 - type: entity
   id: LockerSalvageSpecialistFilledITG
@@ -333,7 +361,7 @@
     - type: EntityTableContainerFill
       containers:
         entity_storage: !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
+          tableId: LockerFillSalvageSpecialistITG
 
 - type: entity
   id: LockerSalvageLeadFilledITG
@@ -347,7 +375,7 @@
         - !type:NestedSelector
           tableId: LockerFillSalvageLead
         - !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
+          tableId: LockerFillSalvageShared
 
 - type: entity
   id: LockerSalvageLeadFilledHardsuitITG
@@ -364,7 +392,7 @@
         - !type:NestedSelector
           tableId: LockerFillSalvageLead
         - !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
+          tableId: LockerFillSalvageShared
 
 # Salvage Specialist Large
 # regular lockers located in Wizden's Resources/Prototypes/Catalog/Fills/Lockers/cargo.yml
@@ -382,9 +410,9 @@
         - !type:NestedSelector
           tableId: FillSalvageSpecialistHardsuitSpatio
         - !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
+          tableId: LockerFillSalvageSpecialistITG
         - !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
+          tableId: LockerFillSalvageSpecialistITG
 
 - type: entity
   id: LockerSalvageSpecialistLargeFilledITG
@@ -396,9 +424,9 @@
       entity_storage: !type:AllSelector
         children:
         - !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
+          tableId: LockerFillSalvageSpecialistITG
         - !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
+          tableId: LockerFillSalvageSpecialistITG
 
 - type: entityTable
   id: LockerFillSalvageMedic
@@ -420,6 +448,7 @@
       - id: ITGTrackerImplanter
       - id: BoxBodyBag
       - id: EmergencyRollerBedSpawnFolded
+      - id: GlowstoneDropperFilled50
 
 - type: entityTable
   id: FillSalvageMedicHardsuitSpatio

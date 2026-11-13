@@ -1,4 +1,10 @@
 - type: !PartialOnly entityTable
+  id: AllPlushiesTable
+  table:
+    children:
+      - id: PlushieFlox
+
+- type: !PartialOnly entityTable
   id: AllMiscToysTable
   table:
     children:
