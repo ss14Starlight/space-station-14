@@ -2,6 +2,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Charges.Systems;
 using Content.Shared.DoAfter;
+using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Spider;
 using Robust.Shared.Player;
@@ -17,6 +18,7 @@ public sealed partial class EggInjectSystem : EntitySystem
     [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedChargesSystem _charges = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
 
     public override void Initialize()
     {
@@ -91,6 +93,12 @@ public sealed partial class EggInjectSystem : EntitySystem
             return;
         }
 
+        if (!_interaction.InRangeAndAccessible(ev.Performer, ev.Target, 1f))
+        {
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-too-far-away"), ev.Performer, ev.Performer);
+            return;
+        }
+
         var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(ev.InjectionDelay), new EggInjectionDoAfterEvent(), ev.Performer, ev.Target)
         {
             BreakOnMove = true,
@@ -99,10 +107,7 @@ public sealed partial class EggInjectSystem : EntitySystem
         };
 
         if (!_doAfter.TryStartDoAfter(doAfter))
-        {
-            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-too-far-away"), ev.Performer, ev.Performer);
             return;
-        }
 
         ev.Handled = true;
     }
