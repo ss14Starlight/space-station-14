@@ -85,8 +85,6 @@ public sealed partial class EggInjectSystem : EntitySystem
             return;
         }
 
-        ev.Handled = true;
-
         if (HasComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value))
         {
             _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-already-has-eggs"), ev.Performer, ev.Performer);
@@ -100,6 +98,6 @@ public sealed partial class EggInjectSystem : EntitySystem
             DistanceThreshold = 1f
         };
 
-        _doAfter.TryStartDoAfter(doAfter);
+        ev.Handled = _doAfter.TryStartDoAfter(doAfter);
     }
 }
