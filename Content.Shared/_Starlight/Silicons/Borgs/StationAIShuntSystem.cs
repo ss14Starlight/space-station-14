@@ -12,6 +12,7 @@ using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
 
@@ -42,33 +43,95 @@ public sealed partial class StationAIShuntSystem : EntitySystem
 
         SubscribeLocalEvent<StationAIShuntThroughComponent, GetVerbsEvent<AlternativeVerb>>(GetAltVerbs);
         SubscribeLocalEvent<StationAIShuntThroughComponent, FindShuntTargetEvent>(OnFindShuntTarget);
-        InitializeReconnect();
     }
     [SubscribeLocalEvent]
-    private void OnShuntableMapInit(EntityUid uid, StationAIShuntableComponent shuntable, ref MapInitEvent args)
+    private void OnCoreTerminating(Entity<StationAiCoreComponent> ent, ref EntityTerminatingEvent args)
     {
-        _actionSystem.AddAction(uid, shuntable.ShuntAction.Id);
-        _actionSystem.AddAction(uid, shuntable.ReconnectShuntAction.Id);
+        if (_net.IsClient || !_stationAi.TryGetHeld((ent.Owner, ent.Comp), out var ai))
+            return;
+
+        var aiUid = ai.Value;
+        if (!TryComp<StationAIShuntableComponent>(aiUid, out var shuntable)
+            || shuntable.Inhabited is not { } target
+            || !TryComp<StationAIShuntComponent>(target, out var shunt)
+            || shunt.Return != aiUid)
+            return;
+
+        RaiseLocalEvent(target, new AIUnShuntActionEvent { Performer = target });
     }
 
     [SubscribeLocalEvent]
-    private void OnShuntableShutdown(EntityUid uid, StationAIShuntableComponent shuntable, ComponentShutdown args)
+    private void OnShuntableMapInit(EntityUid uid, StationAIShuntableComponent shuntable, ref MapInitEvent args)
+        => SetShuntActionsAvailable(uid, shuntable, IsInStationAiCore(uid));
+    [SubscribeLocalEvent]
+    private void OnShuntableInserted(EntityUid uid, StationAIShuntableComponent shuntable, ref EntGotInsertedIntoContainerMessage args) =>
+        SetShuntActionsAvailable(uid, shuntable, IsInStationAiCore(uid));
+    [SubscribeLocalEvent]
+    private void OnShuntableRemoved(EntityUid uid, StationAIShuntableComponent shuntable, ref EntGotRemovedFromContainerMessage args) =>
+        SetShuntActionsAvailable(uid, shuntable, false);
+
+    private void SetShuntActionsAvailable(EntityUid uid, StationAIShuntableComponent shuntable, bool available)
     {
+        var hasShuntAction = false;
+        var hasReconnectShuntAction = false;
         foreach (var action in _actionSystem.GetActions(uid).ToArray())
         {
             var prototypeId = MetaData(action.Owner).EntityPrototype?.ID;
-            if (prototypeId != shuntable.ShuntAction.Id && prototypeId != shuntable.ReconnectShuntAction.Id)
+            if (prototypeId == shuntable.ShuntAction.Id)
+            {
+                hasShuntAction = true;
+                shuntable.ShuntActionEntity = action.Owner;
+            }
+            else if (prototypeId == shuntable.ReconnectShuntAction.Id)
+            {
+                hasReconnectShuntAction = true;
+                shuntable.ReconnectShuntActionEntity = action.Owner;
+            }
+            else
+                continue;
+
+            if (available)
                 continue;
 
             _actionSystem.RemoveAction(uid, action.Owner);
             _actionContainer.RemoveAction(action.Owner);
+            if (!TerminatingOrDeleted(action.Owner))
+                QueueDel(action.Owner);
         }
+
+        if (!available)
+            return;
+
+        if (!hasShuntAction)
+            shuntable.ShuntActionEntity = _actionSystem.AddAction(uid, shuntable.ShuntAction.Id);
+
+        if (!hasReconnectShuntAction)
+            shuntable.ReconnectShuntActionEntity = _actionSystem.AddAction(uid, shuntable.ReconnectShuntAction.Id);
+    }
+
+    private bool IsInStationAiCore(EntityUid uid)
+        => _containers.TryGetContainingContainer(uid, out var container)
+            && container.ID == StationAiCoreComponent.Container
+            && HasComp<StationAiCoreComponent>(container.Owner);
+
+    [SubscribeLocalEvent]
+    private void OnShuntableShutdown(EntityUid uid, StationAIShuntableComponent shuntable, ComponentShutdown args)
+    {
+        SetShuntActionsAvailable(uid, shuntable, false);
+
+        if (shuntable.ShuntActionEntity is { } shuntAction
+            && !TerminatingOrDeleted(shuntAction))
+            QueueDel(shuntAction);
+
+        if (shuntable.ReconnectShuntActionEntity is { } reconnectShuntAction
+            && !TerminatingOrDeleted(reconnectShuntAction))
+            QueueDel(reconnectShuntAction);
     }
 
     #region Actions
     private void OnAttemptShunt(EntityUid uid, StationAIShuntableComponent shuntable, AIShuntActionEvent ev)
     {
-        if (ev.Handled)
+        if (ev.Handled || !IsInStationAiCore(uid))
             return;
         var target = ev.Target;
         if (!ev.IgnoreCameraView && _vision.IsOutsideCameraViewCached(target))
@@ -155,11 +218,13 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         if (ev.Handled)
             return;
 
+        if (shunt.Return is not { } shuntReturnUid || !IsInStationAiCore(shuntReturnUid))
+            return;
+
         if (!_mindSystem.TryGetMind(uid, out var mindId, out var _))
             return;
 
         var shuntActionUid = shunt.ReturnAction;
-        var shuntReturnUid = shunt.Return;
 
         if (!TryComp<ActionComponent>(shuntActionUid, out var act))
             return; //Somehow the action does not have action component? invalid perhaps?
@@ -167,7 +232,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         if (!TryComp<StationAIShuntableComponent>(shuntReturnUid, out var shuntable))
             return; //trying to return to a body you cant leave from? weird...
 
-        var target = shuntReturnUid.Value;
+        var target = shuntReturnUid;
         var aiCore = Transform(target).ParentUid;
         if (_net.IsServer
             && TryComp<StationAiCoreComponent>(aiCore, out var aiCoreComponent)
@@ -229,7 +294,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         // Handle unshunt verb for entities we're currently inhabiting
         if (comp is StationAIShuntComponent shuntComp && ev.User == ev.Target)
         {
-            if (!shuntComp.Return.HasValue)
+            if (shuntComp.Return is not { } returnTarget || !IsInStationAiCore(returnTarget))
                 return; //we are in something not inhabited. so obvs we cant shunt out of it.
 
             var unshuntVerb = new AlternativeVerb()
@@ -249,7 +314,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
             return;
         }
 
-        if (!HasComp<StationAIShuntableComponent>(ev.User))
+        if (!HasComp<StationAIShuntableComponent>(ev.User) || !IsInStationAiCore(ev.User))
             return; //only shuntable can get the into verb
 
         // Handle direct shunt targets

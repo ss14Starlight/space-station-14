@@ -39,6 +39,9 @@
         type: VampireClassBui
       enum.VampireLocateUiKey.Key:
         type: VampireLocateBui
+      enum.DamnationsMenuUiKey.Key:
+        type: DevilDamnationsBoundUserInterface
+        requireInputValidation: false
 
 - type: !PartialOnly entity
   id: MobBaseKobold

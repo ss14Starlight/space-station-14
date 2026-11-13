@@ -50304,10 +50304,6 @@ entities:
     - type: Transform
       parent: 1
       pos: -18.5,49.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 7174
     components:
     - type: Transform
@@ -53170,12 +53166,6 @@ entities:
     - type: Transform
       parent: 1
       pos: -2.5,98.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
-      access:
-      - - CentralCommand
 - proto: VendingMachineSeedsUnlocked
   entities:
   - uid: 7616

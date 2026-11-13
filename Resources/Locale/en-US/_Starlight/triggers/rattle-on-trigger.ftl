@@ -11,5 +11,8 @@ rattle-on-trigger-medtak-silver-dead = [color= #b2cede]Silver client {$user} ({$
 rattle-on-trigger-medtak-gold-critical = [color= #FFD700]Gold client {$user} ({$job})[/color] life signs critical, immediate assistance required {$position}.
 rattle-on-trigger-medtak-gold-dead = [color= #FFD700]Gold client {$user} ({$job})[/color] has died {$position}.
 
+rattle-on-trigger-medtak-platinum-critical = [color= #AFCFE6]Platinum client {$user} ({$job})[/color] life signs critical, immediate assistance required {$position}.
+rattle-on-trigger-medtak-platinum-dead = [color= #AFCFE6]Platinum client {$user} ({$job})[/color] has died {$position}.
+
 rattle-on-trigger-medtak-team-critical = [color= #FFFFFF]MedTak personnel {$user} ({$job})[/color] life signs critical, immediate assistance required {$position}.
 rattle-on-trigger-medtak-team-dead = [color= #FFFFFF]MedTak personnel {$user} ({$job})[/color] has died {$position}.

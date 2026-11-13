@@ -1,19 +1,9 @@
 using Content.Shared.Ghost;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
-using AlertLevelDimmedLightComponent = Content.Shared._Starlight.Light.AlertLevelDimmedLightComponent;
-
-#region Starlight
-
+using Content.Shared._Starlight.Light;
 using Content.Server.AlertLevel;
-using Content.Shared.Station.Components; // Starlight
-// SL
-// SL
-using Content.Server.GameTicking; // SL
-using Content.Server.Chat.Systems; // SL
-
-// SL
-#endregion Starlight
+using Content.Shared.Station.Components;
 
 namespace Content.Server.Light.EntitySystems;
 
@@ -22,10 +12,6 @@ namespace Content.Server.Light.EntitySystems;
 /// </summary>
 public sealed partial class PoweredLightSystem : SharedPoweredLightSystem
 {
-    [Dependency] private GameTicker _gameTicker = default!; // SL
-    [Dependency] private ChatSystem _chat = default!; // SL
-    [Dependency] private AlertLevelSystem _alertLevel = default!; // SL
-
     public override void Initialize()
     {
         base.Initialize();
@@ -90,6 +76,7 @@ public sealed partial class PoweredLightSystem : SharedPoweredLightSystem
             // Otherwise, ensure the component exists and set its value.
             var alertLevelDimming = EnsureComp<AlertLevelDimmedLightComponent>(uid);
             alertLevelDimming.LightEnergyMultiplier = levelAfter.DimmedLightMultiplier.Value;
+            Dirty(uid, alertLevelDimming);
             UpdateLight(uid, light);
         }
     }

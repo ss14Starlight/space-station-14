@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared.CCVar;
+using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -24,6 +25,7 @@ namespace Content.Server.NPC.Systems
 
         [Dependency] private IConfigurationManager _configurationManager = default!;
         [Dependency] private HTNSystem _htn = default!;
+        [Dependency] private MindExamineSystem _mindExamine = default!; // Starlight
         [Dependency] private MobStateSystem _mobState = default!;
 
         /// <summary>
@@ -115,6 +117,7 @@ namespace Content.Server.NPC.Systems
 
             Log.Debug($"Waking {ToPrettyString(uid)}");
             EnsureComp<ActiveNPCComponent>(uid);
+            _mindExamine.RefreshMindStatus(uid); // Starlight
         }
 
         public void SleepNPC(EntityUid uid, HTNComponent? component = null)
@@ -138,6 +141,7 @@ namespace Content.Server.NPC.Systems
 
             Log.Debug($"Sleeping {ToPrettyString(uid)}");
             RemComp<ActiveNPCComponent>(uid);
+            _mindExamine.RefreshMindStatus(uid); // Starlight
         }
 
         /// <inheritdoc />
