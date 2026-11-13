@@ -1527,4 +1527,3 @@ doc-text-printer-explorative-surgery-form =
    ⠀ [italic]must be performed by a medical professional.[/italic]
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
