@@ -17,3 +17,24 @@
   id: ChlorineTrifluoride
   contrabandTier: Tier2
   contrabandSeverity: !Remove
+
+- type: !PartialOnly reagent
+  id: WeldingFuel
+  metabolisms:
+    Bloodstream:
+      effects: !Clear
+      - !type:SatiateThirst
+        factor: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Vox]
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Vox, Reptilian]
+          inverted: true
+        damage:
+          types:
+            Poison: 1
+      - !type:Flammable
+        multiplier: 0.4

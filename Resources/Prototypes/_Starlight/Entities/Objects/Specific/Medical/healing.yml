@@ -32,3 +32,24 @@
         children:
         - id: PillPsicodine
           amount: 5
+
+- type: entity
+  name: emergency pill
+  description: The emergency medipen's dose of epinephrine and tranexamic acid, pressed into a pill for those whose hide no needle gets through. Swallow it when things look grim. Beware of overdose.
+  parent: Pill
+  id: PillEmergency
+  components:
+  - type: Pill
+    pillType: 4
+  - type: Sprite
+    state: pill5
+  - type: Label
+    currentLabel: pill-label-emergency
+  - type: Solution
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 15
+      - ReagentId: TranexamicAcid
+        Quantity: 5

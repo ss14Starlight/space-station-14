@@ -1,0 +1,34 @@
+<Document>
+  # Reptilians
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceReptilian" Caption=""/>
+  </Box>
+
+  They can ONLY eat fruits and meat, but can eat raw meat and drink blood without any ill effects.
+  Their stomach digests about [color=#1e90ff]1.5 times faster[/color] than other species, so food and pills kick in sooner.
+  They prefer a somewhat higher temperature range than humans.
+  They can drag objects with their tail, keeping both their hands free.
+
+  Their unarmed claw attacks deal Slash damage instead of Blunt.
+
+  ## Thick Scales
+  Their scales are too thick for quick needles:
+  - [color=#ffa500]Hyposprays, hypopens and jet injectors can't get through.[/color]
+  - [color=#1e90ff]Darts, tranquilizer shells and injecting melee weapons can't get through either.[/color]
+  - [color=#ffa500]Syringes and droppers take twice as long to inject.[/color] Drawing blood works as usual.
+  To treat a reptilian, use pills, patches, topicals and menders, or take your time with a syringe.
+
+  They take [color=#1e90ff]10% less Blunt and Slash damage[/color] and [color=#ffa500]30% more Cold damage.[/color]
+
+  ## Fire Breath
+  Reptilians can breathe out a small flame that reaches about three tiles, sets whatever it hits on fire and lights a cigarette in their mouth.
+  Each breath [color=#ffa500]drains stamina, makes them hungrier and slows them down for a moment[/color], and it needs time to recover. They can't do it while starving.
+  Using the breath on a cigarette, candle, sheet of paper or other flammable item within reach (or on themselves, to light the cigarette in their mouth) just lights it. That costs [color=#1e90ff]far less stamina and recovers in a few seconds[/color].
+  Swallowed fuel makes the flame bigger. Each breath burns the strongest fuel they have enough of in their stomach and blood:
+  - [color=#1e90ff]5u of welding fuel[/color]: about 1.5 times the flame, reaching four to five tiles.
+  - [color=#1e90ff]10u of welding fuel[/color]: about twice the flame, reaching about six tiles.
+  - [color=#1e90ff]5u of napalm[/color]: about 2.5 times the flame, reaching seven to eight tiles. [color=#ffa500]Napalm still burns and poisons them from the inside.[/color]
+  Their bodies digest welding fuel without being poisoned by it, [color=#ffa500]but fuel in their blood still makes them flammable, so they catch fire more easily while it lasts.[/color]
+
+</Document>
