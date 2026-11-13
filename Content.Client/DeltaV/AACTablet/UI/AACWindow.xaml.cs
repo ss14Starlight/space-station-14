@@ -46,6 +46,8 @@ public sealed partial class AACWindow : FancyWindow
     private LocId? _selectedTab;
     private bool _isRebuildingTabs;
 
+    private string _builtCultureName = string.Empty;
+
     private string _currentFilter = string.Empty;
     private int _columns = 4;
 
@@ -71,7 +73,6 @@ public sealed partial class AACWindow : FancyWindow
         _cfg = IoCManager.Resolve<IConfigurationManager>();
 
         RefreshPhraseLabels();
-        _cfg.OnValueChanged(CVars.LocCultureName, OnLanguageChanged);
 
         SearchBar.OnTextChanged += OnSearchTextChanged;
         SearchBar.OnTextEntered += _ => SearchBar.ReleaseKeyboardFocus();
@@ -114,6 +115,8 @@ public sealed partial class AACWindow : FancyWindow
                     _loc.GetString(p.Group),
                     _loc.GetString(p.Tab)))
                 .ToList());
+        
+        _builtCultureName = _cfg.GetCVar(CVars.LocCultureName); //Set the language being used
     }
 
     /// <summary>
@@ -244,12 +247,30 @@ public sealed partial class AACWindow : FancyWindow
     protected override void Dispose(bool disposing)
     {
         if (disposing)
-        {
-            _cfg.UnsubValueChanged(CVars.LocCultureName, OnLanguageChanged);
+        {   
             WindowBody.OnTabChanged -= OnTabChanged;
         }
 
         base.Dispose(disposing);
+    }
+
+    protected override void Opened()
+    {
+        base.Opened();
+
+        _cfg.OnValueChanged(CVars.LocCultureName, OnLanguageChanged); //Subscribe to language changes when the window opens
+
+        if (_builtCultureName != _cfg.GetCVar(CVars.LocCultureName))
+        { //Check against the last culture we built with, and rebuild if the language has changed
+            RefreshPhraseLabels();
+            RebuildTabs();
+        }
+    }
+
+    protected override void ExitedTree()
+    {
+        _cfg.UnsubValueChanged(CVars.LocCultureName, OnLanguageChanged); //Stop listening to language changes when the window is closed/is no longer in the tree
+        base.ExitedTree();
     }
 
     #endregion
