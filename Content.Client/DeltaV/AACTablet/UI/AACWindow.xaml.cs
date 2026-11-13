@@ -42,6 +42,10 @@ public sealed partial class AACWindow : FancyWindow
     private readonly List<PhraseEntry> _allPhrases = new();
     private readonly List<GridContainer> _buttonGrids = new();
 
+    private readonly List<LocId> _tabKeys = new();
+    private LocId? _selectedTab;
+    private bool _isRebuildingTabs;
+
     private string _currentFilter = string.Empty;
     private int _columns = 4;
 
@@ -61,6 +65,8 @@ public sealed partial class AACWindow : FancyWindow
         _prototypeManager = prototypeManager;
 
         //Starlight-start: AAC search bar edit.
+        WindowBody.OnTabChanged += OnTabChanged;
+
         _loc = IoCManager.Resolve<ILocalizationManager>();
         _cfg = IoCManager.Resolve<IConfigurationManager>();
 
@@ -124,6 +130,15 @@ public sealed partial class AACWindow : FancyWindow
     {
         _currentFilter = obj.Text ?? string.Empty;
         RebuildTabs();
+    }
+
+    private void OnTabChanged(int index)
+    {
+        if (_isRebuildingTabs)
+            return;
+
+        if (index >= 0 && index < _tabKeys.Count)
+            _selectedTab = _tabKeys[index];
     }
 
     private void RebuildTabs()
