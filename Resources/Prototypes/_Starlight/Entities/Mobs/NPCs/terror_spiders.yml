@@ -121,7 +121,7 @@
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bleedReductionAmount: 1
-    bloodRefreshAmount: 3
+    bloodRefreshAmount: 4
     bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
