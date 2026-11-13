@@ -1,6 +1,5 @@
 using Content.Client._Starlight.Nutrition.Overlays;
 using Content.Shared._Starlight.Nutrition.Components;
-//using Content.Shared._Starlight.Nutrition.EntitySystems;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
