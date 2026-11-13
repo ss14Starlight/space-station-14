@@ -35,6 +35,31 @@
 
 - type: entity
   parent: [BaseMentalAction, BaseImplantAction]
+  id: ActionActivateBudgetBluespaceImplant
+  name: budget bluespace implant
+  description: A cheaper subdermal implant that, when activated, teleports the user far away while leaving their equipment behind.
+  categories: [HideSpawnMenu]
+  components:
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: DoAfterArgs
+    delay: 30
+    breakOnMove: true
+    breakOnDamage: true
+    damageThreshold: 1
+    needHand: false
+    breakOnHandChange: false
+    breakOnDropItem: false
+    requireCanInteract: false
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: _Starlight/Effects/portal_implant.rsi
+      state: bluespace_implant
+
+- type: entity
+  parent: [BaseMentalAction, BaseImplantAction]
   id: ActionActivateRedspaceImplant
   name: An advanced subdermal implant that, when activated, teleports the user far away.
   description: An advanced subdermal implant that, when activated, teleports the user far away.
