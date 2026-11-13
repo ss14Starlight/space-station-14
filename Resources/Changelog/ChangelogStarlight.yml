@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Cluster) Improved Armory's layout a bit.
-    type: Tweak
-  id: 409980
-  time: '2026-10-30T22:55:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6962
-- author: Caws
-  changes:
   - message: (Cluster) Security's entrance has been reworked slightly and fixed.
     type: Fix
   id: 409981
@@ -2799,4 +2792,11 @@ Entries:
   id: 410379
   time: '2026-11-13T10:08:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7188
+- author: VBlankFF
+  changes:
+  - message: Revolutionary deconversion uses the revolutionary deconversion message instead of the cosmic cultist deconversion message.
+    type: Fix
+  id: 410380
+  time: '2026-11-13T10:37:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7198
 Order: -1
