@@ -1,25 +1,4 @@
 Entries:
-- author: Swonki
-  changes:
-  - message: ITG Trading Surplus Crate.
-    type: Tweak
-  id: 409990
-  time: '2026-10-31T13:59:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6802
-- author: Xale
-  changes:
-  - message: Dwarves can again not eat raw meat or drink blood.
-    type: Fix
-  id: 409991
-  time: '2026-10-31T18:10:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6982
-- author: Citrea
-  changes:
-  - message: Magboots steps are heavy.
-    type: Tweak
-  id: 409992
-  time: '2026-10-31T23:32:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6964
 - author: Ohelig
   changes:
   - message: (Cluster) Removed the indoor Tesla to make room for...
@@ -2799,4 +2778,25 @@ Entries:
   id: 410389
   time: '2026-11-13T11:50:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7208
+- author: Sparlight
+  changes:
+  - message: Added the ability to toggle your own ghost sprite in replays.
+    type: Add
+  id: 410390
+  time: '2026-11-13T12:16:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7136
+- author: Sparlight
+  changes:
+  - message: Added the ability to toggle faction icons in replays.
+    type: Add
+  id: 410391
+  time: '2026-11-13T12:16:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7136
+- author: Sparlight
+  changes:
+  - message: Added the ability to jump to a specified time in the round.
+    type: Add
+  id: 410392
+  time: '2026-11-13T12:16:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7136
 Order: -1
