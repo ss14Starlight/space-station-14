@@ -1,5 +1,3 @@
-
-
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._Starlight.Spider.Events;
