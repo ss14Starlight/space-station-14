@@ -1,14 +1,18 @@
+using Content.Server.Administration.Logs;
+using Content.Shared.Database;
 using Content.Server.Stunnable.Components;
 using Content.Shared.Movement.Systems;
 using JetBrains.Annotations;
 using Content.Shared.Throwing;
 using Robust.Shared.Physics.Events;
+using Content.Shared.Projectiles;
 
 namespace Content.Server.Stunnable.Systems;
 
 [UsedImplicitly]
 internal sealed partial class StunOnCollideSystem : EntitySystem
 {
+    [Dependency] private IAdminLogManager _adminLogger = default!; // Starlight- adding admin logging
     [Dependency] private StunSystem _stunSystem = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
 
@@ -22,7 +26,16 @@ internal sealed partial class StunOnCollideSystem : EntitySystem
 
     private void TryDoCollideStun(Entity<StunOnCollideComponent> ent, EntityUid target)
     {
-        _stunSystem.TryKnockdown(target, ent.Comp.KnockdownAmount, ent.Comp.Refresh, ent.Comp.AutoStand, ent.Comp.Drop, ent.Comp.Forced); //starlight, control forced via comp
+        var knockedDown = _stunSystem.TryKnockdown(target, ent.Comp.KnockdownAmount, ent.Comp.Refresh, ent.Comp.AutoStand, ent.Comp.Drop, ent.Comp.Forced); // Starlight start - adding admin logging for taser knockdown effect
+
+        if (knockedDown && TryComp<ProjectileComponent>(ent, out var projectile))
+        {
+            ent.Comp.Handled = true;
+            _adminLogger.Add(LogType.DisarmedKnockdown,
+                    LogImpact.Medium,
+                    $"Projectile {ToPrettyString(ent):projectile} shot by {ToPrettyString(projectile.Shooter):user} from {ToPrettyString(projectile.Weapon):weapon} hit {ToPrettyString(target):target} and knocked them down");
+        }
+        // Starlight end
 
         if (ent.Comp.Refresh)
         {
@@ -51,6 +64,9 @@ internal sealed partial class StunOnCollideSystem : EntitySystem
 
     private void HandleCollide(Entity<StunOnCollideComponent> ent, ref StartCollideEvent args)
     {
+        if (ent.Comp.Handled) // Starlight addition
+            return;
+
         if (args.OurFixtureId != ent.Comp.FixtureID)
             return;
 
