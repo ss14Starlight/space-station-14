@@ -87,9 +87,11 @@ public sealed partial class AccessReaderSystem : EntitySystem
         }
 
         var examiner = args.Examiner;
+        // Moffstation start
         var ev = new ShowAccessReaderSettingsEvent();
         RaiseLocalEvent(examiner, ref ev);
         var canSeeAccessModification = accessHasBeenModified && ev.CanShowSettings;
+        // Moffstation end
 
         if (canSeeAccessModification)
         {

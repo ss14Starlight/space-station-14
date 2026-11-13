@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Shared._Moffstation.Clothing.ModularHud.Components;
-using Content.Shared._Starlight.Overlay.Components; // Starlight
+using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Moffstation.Extensions;
 using Content.Shared.Access.Systems;
 using Content.Shared.Chemistry;
@@ -116,7 +116,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
             if (requiresActiveSlots && !_inventory.InSlotWithAnyFlags(entity.Owner, entity.Comp.ActiveSlots))
                 return;
 
-            var modules = GetModules(entity);
+            var modules = GetModules(entity.AsNullable()); // Starlight
             foreach (var module in predicate is { } p ? modules.Where(p) : modules)
             {
                 RaiseLocalEvent(module, ref args);
@@ -125,8 +125,11 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     );
 
     /// Yields all the modules contained in the given HUD.
-    public IEnumerable<Entity<ModularHudModuleComponent>> GetModules(Entity<ModularHudComponent> entity)
+    public IEnumerable<Entity<ModularHudModuleComponent>> GetModules(Entity<ModularHudComponent?> entity) // Starlight
     {
+        if (!Resolve(entity, ref entity.Comp)) // Starlight
+            yield break; // Starlight
+
         foreach (var moduleEnt in entity.Comp.ModuleContainer?.ContainedEntities ?? [])
         {
             if (_modularHudModuleQuery.TryComp(moduleEnt, out var moduleComp))
@@ -138,12 +141,12 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     private void OnStartup(Entity<ModularHudComponent> entity, ref ComponentStartup args)
     {
         entity.Comp.ModuleContainer = _container.EnsureContainer<Container>(entity, entity.Comp.ModuleContainerId);
-        RefreshEffectsForModules(GetModules(entity));
+        RefreshEffectsForModules(GetModules(entity.AsNullable())); // Starlight
         SyncVisuals(entity);
     }
 
     [SubscribeLocalEvent]
-    private void OnComponentRemove(Entity<ModularHudComponent> entity, ref ComponentRemove args) => RefreshEffectsForModules(GetModules(entity));
+    private void OnComponentRemove(Entity<ModularHudComponent> entity, ref ComponentRemove args) => RefreshEffectsForModules(GetModules(entity.AsNullable())); // Starlight
 
     [SubscribeLocalEvent]
     private void OnInteractUsing(Entity<ModularHudComponent> entity, ref InteractUsingEvent args)
@@ -193,7 +196,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         }
 
         // Module removal
-        if (GetModules(entity).Any())
+        if (GetModules(entity.AsNullable()).Any()) // Starlight
         {
             var usedHasQuality = _tool.HasQuality(args.Used, entity.Comp.ModuleExtractionToolQuality);
             _proto.Resolve(entity.Comp.ModuleExtractionToolQuality, out var toolQuality);
@@ -279,7 +282,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         }
 
         // Module removal
-        if (GetModules(entity).Any())
+        if (GetModules(entity.AsNullable()).Any()) // Starlight
         {
             var tool = args.Using;
             var user = args.User;
@@ -316,7 +319,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     {
         using (args.PushGroup(nameof(ModularHudComponent)))
         {
-            using var modules = GetModules(entity).GetEnumerator();
+            using var modules = GetModules(entity.AsNullable()).GetEnumerator(); // Starlight
             if (!modules.MoveNext())
             {
                 args.PushMarkup(Loc.GetString(entity.Comp.NoModulesExamineText));
@@ -342,7 +345,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         if (args.Cancelled || entity.Comp.ModuleContainer is null)
             return;
 
-        foreach (var module in GetModules(entity).ToList())
+        foreach (var module in GetModules(entity.AsNullable()).ToList()) // Starlight
         {
             _container.Remove(module.Owner, entity.Comp.ModuleContainer);
             _hands.TryPickup(args.User, module);
@@ -398,7 +401,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
             RaiseLocalEvent(e, ref flashEv);
         }
 
-        RefreshEffectsForModules(GetModules(entity).Concat(extraModules ?? []));
+        RefreshEffectsForModules(GetModules(entity.AsNullable()).Concat(extraModules ?? [])); // Starlight
         SyncVisuals(entity);
     }
 
@@ -433,7 +436,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
             [ModularHudVisuals.Accent] = new(1),
             [ModularHudVisuals.Specular] = new(1),
         };
-        foreach (var (layer, color) in GetModules(entity)
+        foreach (var (layer, color) in GetModules(entity.AsNullable()) // Starlight
                     .SelectMany(module => module.Comp.Visuals)
                     .Concat(entity.Comp2.InnateVisuals))
         {
