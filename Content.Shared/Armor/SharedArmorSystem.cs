@@ -55,6 +55,9 @@ public abstract partial class SharedArmorSystem : EntitySystem
 
     private void OnDamageableCoefficientQuery(EntityUid uid, DamageableComponent component, ref CoefficientQueryEvent args)
     {
+        if (!args.IncludeInnateModifiers)
+            return;
+
         if (component.DamageModifierSetId == null ||
             !_prototypeManager.Resolve(component.DamageModifierSetId, out var modifierSet))
             return;

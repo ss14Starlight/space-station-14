@@ -68,6 +68,13 @@ public sealed class CoefficientQueryEvent : EntityEventArgs, IInventoryRelayEven
     /// </summary>
     public DamageModifierSet DamageModifiers { get; set; } = new DamageModifierSet();
 
+    // Starlight start
+    /// <summary>
+    /// Whether the entity's innate damage resistance modifiers should be considered.
+    /// </summary>
+    public bool IncludeInnateModifiers = true;
+    // Starlight end
+
     public CoefficientQueryEvent(SlotFlags slots)
     {
         TargetSlots = slots;
