@@ -120,3 +120,19 @@
     Telecrystal: 5
   categories:
     - UplinkCybernetics
+
+- type: listing
+  id: NukeOpRobotmedkit
+  name: uplink-nuke-op-robotkit-name
+  description: uplink-nuke-op-robotkit-desc
+  icon:
+    {
+      sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi,
+      state: robotic,
+    }
+  productEntity: NukeOpRobotkit
+  cost:
+    Telecrystal: 10
+  categories:
+    - UplinkCybernetics
+

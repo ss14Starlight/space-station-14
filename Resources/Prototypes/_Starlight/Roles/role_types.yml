@@ -33,3 +33,10 @@
   name: role-type-harmless-antagonist-name
   color: "#ff8800"
   symbol: "🦇"
+
+- type: roleType
+  id: SurvivorAligned
+  name: role-type-survivor-aligned-name
+  alignment: role-type-survivor-aligned-name
+  color: "#A52A2A"
+  symbol: "🔥"
