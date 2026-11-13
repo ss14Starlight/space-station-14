@@ -145,7 +145,7 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
         if (!TryComp<RotationVisualsComponent>(uid, out var rotVisuals))
             return;
 
-        if (!buckled || args.Sprite == null)
+        if (!buckled || args.Sprite == null) // Starlight-edit
         {
             _rotationVisualizerSystem.SetHorizontalAngle((uid, rotVisuals), rotVisuals.DefaultRotation);
             return;
