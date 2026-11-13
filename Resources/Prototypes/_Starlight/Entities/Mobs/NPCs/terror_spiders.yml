@@ -225,8 +225,8 @@
         Piercing: 21
         Structural: 20
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.50
-    baseSprintSpeed : 4.50
+    baseWalkSpeed : 3.00
+    baseSprintSpeed : 4.00
 
 - type: entity
   name: terror red
