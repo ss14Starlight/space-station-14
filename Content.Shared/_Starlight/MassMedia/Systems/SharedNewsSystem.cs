@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Content.Shared._Starlight.Snapshots;
 using Robust.Shared.Serialization;
 
@@ -10,6 +11,7 @@ public abstract partial class SharedNewsSystem
     public const string PhotoSlotId = "photo";
 }
 
+[StructLayout(LayoutKind.Auto)]
 public partial struct NewsArticle
 {
     [ViewVariables]

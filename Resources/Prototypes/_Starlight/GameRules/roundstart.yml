@@ -41,6 +41,8 @@
       prob: 1
     - id: MeteorSwarmScheduler
       prob: 1
+    - id: WireCutScheduler
+      prob: 1
   - type: DynamicRuleCost
     cost: 0 # Free, since we want this to roll most of the time.
 
@@ -56,6 +58,8 @@
     - id: DynamicRampingEventScheduler
       prob: 1
     - id: MeteorSwarmScheduler
+      prob: 1
+    - id: WireCutScheduler
       prob: 1
   - type: DynamicRuleCost
     cost: 150 # It can have less since it's not *as* bad as the other two
@@ -106,6 +110,8 @@
     - id: DynamicStationEventScheduler
       prob: 1
     - id: MeteorSwarmScheduler
+      prob: 1
+    - id: WireCutScheduler
       prob: 1
     - id: BasicRoundstartVariation
       prob: 1

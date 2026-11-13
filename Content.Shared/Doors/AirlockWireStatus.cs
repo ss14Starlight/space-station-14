@@ -12,5 +12,7 @@ namespace Content.Shared.Doors
         AiVisionIndicator,
         TimingIndicator,
         SafetyIndicator,
+        AirAlertIndicator,
+        FireAlertIndicator
     }
 }
