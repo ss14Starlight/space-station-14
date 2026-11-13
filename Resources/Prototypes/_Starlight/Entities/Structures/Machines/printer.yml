@@ -30,7 +30,6 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - BlimpufDocsEmag
-    - PrescriptionHudModuleStatic
   - type: Fixtures
     fixtures:
       fix1:
