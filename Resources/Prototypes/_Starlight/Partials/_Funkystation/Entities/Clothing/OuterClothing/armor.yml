@@ -1,0 +1,38 @@
+- type: !PartialOnly entity
+  id: ClothingOuterArmorMetalHydrogen
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.55
+        Piercing: 0.50
+        Heat: 0.60
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+
+- type: !PartialOnly entity
+  id: ClothingOuterArmorAtmosian
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.60
+        Piercing: 0.55
+        Heat: 0.50
+        Cold: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  - type: FireProtection
+    reduction: 0.80
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.80
+    sprintModifier: 0.80
