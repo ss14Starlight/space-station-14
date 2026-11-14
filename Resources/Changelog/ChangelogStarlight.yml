@@ -1,46 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Plasma) Fixed stacked firelocks around Science maints.
-    type: Fix
-  id: 410037
-  time: '2026-11-02T10:38:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7011
-- author: Caws
-  changes:
-  - message: (Plasma) Fixed the mining conveyor belt suddenly switching directions (miners rejoice).
-    type: Fix
-  id: 410038
-  time: '2026-11-02T10:38:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7011
-- author: Caws
-  changes:
-  - message: (Plasma) Disposals actually puts stuff on the dang belt now.
-    type: Fix
-  id: 410039
-  time: '2026-11-02T10:38:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7011
-- author: Caws
-  changes:
-  - message: (Plasma) A mysterious unconnected 'Nuclear Hot Loop' gas pipe sensor buried under an engineering hallway has been removed. If you're experiencing symptoms from having touched this sensor, please visit the Medbay as soon as possible for radiation exposure treatment.
-    type: Remove
-  id: 410040
-  time: '2026-11-02T10:38:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7011
-- author: VictoriaActual
-  changes:
-  - message: Make the LGBTie Hamlet wearable.
-    type: Tweak
-  id: 410041
-  time: '2026-11-02T11:08:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6999
-- author: Citrea & The Toad Council
-  changes:
-  - message: New shell type for dolls.
-    type: Add
-  id: 410042
-  time: '2026-11-02T11:56:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6983
 - author: Citrea & The Toad Council
   changes:
   - message: New mask for dolls.
@@ -2799,4 +2757,46 @@ Entries:
   id: 410436
   time: '2026-11-13T23:33:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7217
+- author: CrazyPhantom
+  changes:
+  - message: PDA Cameras no longer give you more view range.
+    type: Remove
+  id: 410437
+  time: '2026-11-14T08:10:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7223
+- author: CrazyPhantom
+  changes:
+  - message: PDA Cameras no longer flash.
+    type: Fix
+  id: 410438
+  time: '2026-11-14T08:10:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7223
+- author: CrazyPhantom
+  changes:
+  - message: PDA Cameras no longer Auto Recharge and instead require a Blank Photograph.
+    type: Fix
+  id: 410439
+  time: '2026-11-14T08:10:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7223
+- author: CrazyPhantom
+  changes:
+  - message: Cameras now capture Footprints.
+    type: Fix
+  id: 410440
+  time: '2026-11-14T08:10:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7223
+- author: CrazyPhantom
+  changes:
+  - message: Cameras now capture PDA lights.
+    type: Fix
+  id: 410441
+  time: '2026-11-14T08:10:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7223
+- author: CrazyPhantom
+  changes:
+  - message: The Photography Cartridge is now Command Contraband.
+    type: Tweak
+  id: 410442
+  time: '2026-11-14T08:10:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7223
 Order: -1
