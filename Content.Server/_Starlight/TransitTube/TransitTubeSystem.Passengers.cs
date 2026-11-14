@@ -22,21 +22,16 @@ namespace Content.Server._Starlight.TransitTube;
 
 public sealed partial class TransitTubeSystem
 {
-    [SubscribeLocalEvent]
-    private void OnStationActivate(Entity<TransitTubeStationComponent> ent, ref ActivateInWorldEvent args)
+    protected override bool TryStationAction(Entity<TransitTubeStationComponent> ent, EntityUid user)
     {
-        if (args.Handled || !args.Complex)
-            return;
-
         // A request stop with no pod around also calls one from a depot.
-        if (TryRequestStop(ent, args.User))
+        if (TryRequestStop(ent, user))
         {
-            TryCallPod(ent, args.User);
-            args.Handled = true;
-            return;
+            TryCallPod(ent, user);
+            return true;
         }
 
-        args.Handled = TryUnload(ent, args.User) || TryLoadPulled(ent, args.User) || TryCallPod(ent, args.User) || TryBoard(ent, args.User, args.User);
+        return TryUnload(ent, user) || TryLoadPulled(ent, user) || TryCallPod(ent, user) || TryBoard(ent, user, user);
     }
 
     [SubscribeLocalEvent]
@@ -128,81 +123,6 @@ public sealed partial class TransitTubeSystem
             return;
 
         args.Handled = TryBoard(ent, args.Dragged, args.User);
-    }
-
-    private bool TryBoard(Entity<TransitTubeStationComponent> station, EntityUid passenger, EntityUid user)
-    {
-        if (station.Comp.DockedPod is { } podUid
-            && TryComp<TransitPodComponent>(podUid, out var pod)
-            && !CanCarry(pod, passenger))
-        {
-            if (passenger == user || HasComp<MobStateComponent>(passenger))
-                _popup.PopupEntity(Loc.GetString(pod.Cargo ? "transit-pod-cargo-only" : "transit-pod-passengers-only"), station, user);
-            return passenger == user;
-        }
-
-        if (station.Comp.DockedPod == null && !HasComp<MobStateComponent>(passenger))
-            return false;
-
-        if (!CanBoard(station, user, popup: true) || !CheckPlatformSide(station, passenger, user))
-            return true;
-
-        var self = passenger == user;
-        var delay = self ? station.Comp.BoardDelay : station.Comp.DraggedBoardDelay;
-
-        if (!self)
-        {
-            _popup.PopupEntity(Loc.GetString("transit-pod-being-boarded", ("user", Identity.Entity(user, EntityManager))), passenger, passenger, PopupType.Large);
-        }
-
-        var doAfter = new DoAfterArgs(EntityManager, user, delay, new TransitPodBoardDoAfterEvent(), station, target: passenger, used: station)
-        {
-            BreakOnMove = true,
-            BreakOnDamage = true,
-            NeedHand = false,
-        };
-
-        _doAfter.TryStartDoAfter(doAfter);
-        return true;
-    }
-
-    private bool CanBoard(Entity<TransitTubeStationComponent> station, EntityUid user, bool popup)
-    {
-        string? reason = null;
-
-        if (station.Comp.DockedPod is not { } podUid || !TryComp<TransitPodComponent>(podUid, out var pod))
-            reason = "transit-pod-none";
-        else if (station.Comp.Depot)
-            reason = "transit-station-depot";
-        else if (!_access.IsAllowed(user, station))
-            reason = "transit-station-access-denied";
-        else if (pod.State != TransitPodState.Open)
-            reason = "transit-pod-not-ready";
-        else if (GetPassengers((podUid, pod)).Count() >= pod.MaxPassengers)
-            reason = "transit-pod-full";
-
-        if (reason != null && popup)
-            _popup.PopupEntity(Loc.GetString(reason), station, user);
-
-        return reason == null;
-    }
-
-    private bool OnPlatformSide(Entity<TransitTubeStationComponent> station, EntityUid uid)
-    {
-        // Held things sit at their carrier's position, so this covers them too.
-        var stationXform = Transform(station);
-        var offset = _xform.GetWorldPosition(uid) - _xform.GetWorldPosition(stationXform);
-        var side = _xform.GetWorldRotation(stationXform).RotateVec(station.Comp.BoardingSide.ToVec());
-        return System.Numerics.Vector2.Dot(offset, side) > 0.1f;
-    }
-
-    private bool CheckPlatformSide(Entity<TransitTubeStationComponent> station, EntityUid passenger, EntityUid user)
-    {
-        if (OnPlatformSide(station, passenger))
-            return true;
-
-        _popup.PopupEntity(Loc.GetString("transit-station-wrong-side"), station, user);
-        return false;
     }
 
     [SubscribeLocalEvent]
@@ -299,19 +219,18 @@ public sealed partial class TransitTubeSystem
         args.Handled = true;
     }
 
-    [SubscribeLocalEvent]
-    private void OnPodActivate(Entity<TransitPodComponent> ent, ref ActivateInWorldEvent args)
+    protected override bool TryPushStalled(Entity<TransitPodComponent> ent, EntityUid user)
     {
         // A pod stuck in the tube can be shoved back into motion from outside.
-        if (args.Handled || !args.Complex || ent.Comp.State != TransitPodState.Stalled || IsPassenger(ent, args.User))
-            return;
+        if (ent.Comp.State != TransitPodState.Stalled)
+            return false;
 
-        args.Handled = true;
-
-        if (TryPush(ent, args.User))
-            _popup.PopupEntity(Loc.GetString("transit-pod-pushed"), ent, args.User);
+        if (TryPush(ent, user))
+            _popup.PopupEntity(Loc.GetString("transit-pod-pushed"), ent, user);
         else
-            _popup.PopupEntity(Loc.GetString("transit-pod-push-failed"), ent, args.User);
+            _popup.PopupEntity(Loc.GetString("transit-pod-push-failed"), ent, user);
+
+        return true;
     }
 
     private bool TryPush(Entity<TransitPodComponent> pod, EntityUid user)
@@ -354,14 +273,6 @@ public sealed partial class TransitTubeSystem
         var xform = Transform(station);
         var side = new Angle(station.Comp.BoardingSide.ToAngle() + xform.LocalRotation).GetDir();
         return xform.Coordinates.Offset(side.ToVec());
-    }
-
-    private IEnumerable<EntityUid> GetPassengers(Entity<TransitPodComponent> pod)
-    {
-        if (!TryComp<DisposalHolderComponent>(pod, out var holder) || holder.Container == null)
-            return [];
-
-        return holder.Container.ContainedEntities;
     }
 
     private void Eject(Entity<TransitPodComponent> pod, EntityUid passenger, EntityCoordinates destination)

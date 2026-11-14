@@ -27,7 +27,7 @@
 - type: rcd
   id: TransitTubeCurved
   category: TransitTubes
-  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_curved.png
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_curved_flipped.png
   mode: ConstructObject
   prototype: TransitTubeCurved
   cost: 2
@@ -39,7 +39,7 @@
 - type: rcd
   id: TransitTubeCurvedFlipped
   category: TransitTubes
-  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_curved_flipped.png
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_curved.png
   mode: ConstructObject
   prototype: TransitTubeCurvedFlipped
   cost: 2
@@ -50,7 +50,7 @@
 
 - type: rcd
   id: TransitTubeJunction
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_junction.png
   mode: ConstructObject
   prototype: TransitTubeJunction
@@ -62,7 +62,7 @@
 
 - type: rcd
   id: TransitTubeJunctionFlipped
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_junction_flipped.png
   mode: ConstructObject
   prototype: TransitTubeJunctionFlipped
@@ -74,7 +74,7 @@
 
 - type: rcd
   id: TransitTubeStation
-  category: TransitTubes
+  category: TransitStations
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_station.png
   mode: ConstructObject
   prototype: TransitTubeStation
@@ -86,7 +86,7 @@
 
 - type: rcd
   id: TransitTubeTerminus
-  category: TransitTubes
+  category: TransitStations
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_terminus.png
   mode: ConstructObject
   prototype: TransitTubeTerminus
@@ -98,7 +98,7 @@
 
 - type: rcd
   id: TransitTubeTerminusFlipped
-  category: TransitTubes
+  category: TransitStations
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_terminus_flipped.png
   mode: ConstructObject
   prototype: TransitTubeTerminusFlipped
@@ -110,7 +110,7 @@
 
 - type: rcd
   id: TransitPod
-  category: TransitTubes
+  category: TransitStations
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_pod.png
   mode: ConstructObject
   prototype: TransitPod
@@ -121,7 +121,7 @@
 
 - type: rcd
   id: TransitPodInsulated
-  category: TransitTubes
+  category: TransitStations
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_pod_insulated.png
   mode: ConstructObject
   prototype: TransitPodInsulated
@@ -132,7 +132,7 @@
 
 - type: rcd
   id: TransitPodCargo
-  category: TransitTubes
+  category: TransitStations
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_pod_cargo.png
   mode: ConstructObject
   prototype: TransitPodCargo
@@ -143,7 +143,7 @@
 
 - type: rcd
   id: TransitTubeCrossroad
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_crossroad.png
   mode: ConstructObject
   prototype: TransitTubeCrossroad
@@ -155,7 +155,7 @@
 
 - type: rcd
   id: TransitTubeCrossroadDiagonal
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_crossroad_diagonal.png
   mode: ConstructObject
   prototype: TransitTubeCrossroadDiagonal
@@ -167,7 +167,7 @@
 
 - type: rcd
   id: TransitTubeOneWay
-  category: TransitTubes
+  category: TransitControl
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_oneway.png
   mode: ConstructObject
   prototype: TransitTubeOneWay
@@ -179,7 +179,7 @@
 
 - type: rcd
   id: TransitTubeSideConnector
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_sideconnector.png
   mode: ConstructObject
   prototype: TransitTubeSideConnector
@@ -191,7 +191,7 @@
 
 - type: rcd
   id: TransitTubeSideConnectorFlipped
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_sideconnector_flipped.png
   mode: ConstructObject
   prototype: TransitTubeSideConnectorFlipped
@@ -203,7 +203,7 @@
 
 - type: rcd
   id: TransitTubeSideBranch
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_sidebranch.png
   mode: ConstructObject
   prototype: TransitTubeSideBranch
@@ -215,7 +215,7 @@
 
 - type: rcd
   id: TransitTubeSideBranchFlipped
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_sidebranch_flipped.png
   mode: ConstructObject
   prototype: TransitTubeSideBranchFlipped
@@ -227,7 +227,7 @@
 
 - type: rcd
   id: TransitTubeSwitchJunction
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_switch.png
   mode: ConstructObject
   prototype: TransitTubeSwitchJunction
@@ -239,7 +239,7 @@
 
 - type: rcd
   id: TransitTubeSpeedUp
-  category: TransitTubes
+  category: TransitControl
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_speedup.png
   mode: ConstructObject
   prototype: TransitTubeSpeedUp
@@ -251,7 +251,7 @@
 
 - type: rcd
   id: TransitTubeBrake
-  category: TransitTubes
+  category: TransitControl
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_brake.png
   mode: ConstructObject
   prototype: TransitTubeBrake
@@ -263,7 +263,7 @@
 
 - type: rcd
   id: TransitTubeTurntable
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_turntable.png
   mode: ConstructObject
   prototype: TransitTubeTurntable
@@ -275,7 +275,7 @@
 
 - type: rcd
   id: TransitTubeTurntableHalf
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_turntable_half.png
   mode: ConstructObject
   prototype: TransitTubeTurntableHalf
@@ -287,7 +287,7 @@
 
 - type: rcd
   id: TransitTubeSensor
-  category: TransitTubes
+  category: TransitControl
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_signaller.png
   mode: ConstructObject
   prototype: TransitTubeSensor
@@ -299,7 +299,7 @@
 
 - type: rcd
   id: TransitTubeBlockSignal
-  category: TransitTubes
+  category: TransitControl
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_signalblock.png
   mode: ConstructObject
   prototype: TransitTubeBlockSignal
@@ -311,7 +311,7 @@
 
 - type: rcd
   id: TransitTubeTagger
-  category: TransitTubes
+  category: TransitControl
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_tagger.png
   mode: ConstructObject
   prototype: TransitTubeTagger
@@ -323,7 +323,7 @@
 
 - type: rcd
   id: TransitTubeRouter
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_router.png
   mode: ConstructObject
   prototype: TransitTubeRouter
@@ -335,7 +335,7 @@
 
 - type: rcd
   id: TransitTubeRouterFlipped
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_router_flipped.png
   mode: ConstructObject
   prototype: TransitTubeRouterFlipped
@@ -347,7 +347,7 @@
 
 - type: rcd
   id: TransitTubeStationRequest
-  category: TransitTubes
+  category: TransitStations
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_requeststop.png
   mode: ConstructObject
   prototype: TransitTubeStationRequest
@@ -359,7 +359,7 @@
 
 - type: rcd
   id: TransitTubeSideBranchSwitch
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_sidebranch_switch.png
   mode: ConstructObject
   prototype: TransitTubeSideBranchSwitch
@@ -371,7 +371,7 @@
 
 - type: rcd
   id: TransitTubeSideBranchSwitchFlipped
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_sidebranch_switch_flipped.png
   mode: ConstructObject
   prototype: TransitTubeSideBranchSwitchFlipped
@@ -383,7 +383,7 @@
 
 - type: rcd
   id: TransitTubeSideBranchTagged
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_sidebranch_tagged.png
   mode: ConstructObject
   prototype: TransitTubeSideBranchTagged
@@ -395,7 +395,7 @@
 
 - type: rcd
   id: TransitTubeSideBranchTaggedFlipped
-  category: TransitTubes
+  category: TransitJunctions
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_sidebranch_tagged_flipped.png
   mode: ConstructObject
   prototype: TransitTubeSideBranchTaggedFlipped
@@ -419,7 +419,7 @@
 
 - type: rcd
   id: TransitTubeDepot
-  category: TransitTubes
+  category: TransitStations
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_depot.png
   mode: ConstructObject
   prototype: TransitTubeDepot
@@ -431,7 +431,7 @@
 
 - type: rcd
   id: TransitTubeDepotFlipped
-  category: TransitTubes
+  category: TransitStations
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_depot_flipped.png
   mode: ConstructObject
   prototype: TransitTubeDepotFlipped
@@ -443,7 +443,7 @@
 
 - type: rcd
   id: TransitTubeGate
-  category: TransitTubes
+  category: TransitControl
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_gate.png
   mode: ConstructObject
   prototype: TransitTubeGate
@@ -455,7 +455,7 @@
 
 - type: rcd
   id: TransitTubeBuffer
-  category: TransitTubes
+  category: TransitControl
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_buffer.png
   mode: ConstructObject
   prototype: TransitTubeBuffer
@@ -467,7 +467,7 @@
 
 - type: rcd
   id: TransitTubeUnloader
-  category: TransitTubes
+  category: TransitStations
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_unloader.png
   mode: ConstructObject
   prototype: TransitTubeUnloader
@@ -479,7 +479,7 @@
 
 - type: rcd
   id: TransitTubeLoader
-  category: TransitTubes
+  category: TransitStations
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_loader.png
   mode: ConstructObject
   prototype: TransitTubeLoader
@@ -491,7 +491,7 @@
 
 - type: rcd
   id: TransitTubeRampDown
-  category: TransitTubes
+  category: TransitLevels
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_ramp_down.png
   mode: ConstructObject
   prototype: TransitTubeRampDown
@@ -503,7 +503,7 @@
 
 - type: rcd
   id: TransitTubeRampUp
-  category: TransitTubes
+  category: TransitLevels
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_ramp_up.png
   mode: ConstructObject
   prototype: TransitTubeRampUp
@@ -515,7 +515,7 @@
 
 - type: rcd
   id: TransitTubeUnder
-  category: TransitTubes
+  category: TransitLevels
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_under.png
   mode: ConstructObject
   prototype: TransitTubeUnder
@@ -526,7 +526,7 @@
 
 - type: rcd
   id: TransitTubeUnderDiagonal
-  category: TransitTubes
+  category: TransitLevels
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_under_diagonal.png
   mode: ConstructObject
   prototype: TransitTubeUnderDiagonal
@@ -537,8 +537,8 @@
 
 - type: rcd
   id: TransitTubeUnderCurved
-  category: TransitTubes
-  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_under_curved.png
+  category: TransitLevels
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_under_curved_flipped.png
   mode: ConstructObject
   prototype: TransitTubeUnderCurved
   cost: 2
@@ -548,8 +548,8 @@
 
 - type: rcd
   id: TransitTubeUnderCurvedFlipped
-  category: TransitTubes
-  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_under_curved_flipped.png
+  category: TransitLevels
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_under_curved.png
   mode: ConstructObject
   prototype: TransitTubeUnderCurvedFlipped
   cost: 2
@@ -559,7 +559,7 @@
 
 - type: rcd
   id: TransitTubeOver
-  category: TransitTubes
+  category: TransitLevels
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_over.png
   mode: ConstructObject
   prototype: TransitTubeOver
@@ -570,7 +570,7 @@
 
 - type: rcd
   id: TransitTubeOverDiagonal
-  category: TransitTubes
+  category: TransitLevels
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_over_diagonal.png
   mode: ConstructObject
   prototype: TransitTubeOverDiagonal
@@ -581,8 +581,8 @@
 
 - type: rcd
   id: TransitTubeOverCurved
-  category: TransitTubes
-  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_over_curved.png
+  category: TransitLevels
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_over_curved_flipped.png
   mode: ConstructObject
   prototype: TransitTubeOverCurved
   cost: 2
@@ -592,8 +592,8 @@
 
 - type: rcd
   id: TransitTubeOverCurvedFlipped
-  category: TransitTubes
-  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_over_curved_flipped.png
+  category: TransitLevels
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_over_curved.png
   mode: ConstructObject
   prototype: TransitTubeOverCurvedFlipped
   cost: 2
@@ -603,7 +603,7 @@
 
 - type: rcd
   id: TransitTubeOverSupport
-  category: TransitTubes
+  category: TransitLevels
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_over_support.png
   mode: ConstructObject
   prototype: TransitTubeOverSupport

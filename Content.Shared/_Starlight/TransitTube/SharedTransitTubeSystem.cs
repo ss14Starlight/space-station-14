@@ -48,6 +48,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
         }
 
         Entity<TransitPodComponent> podEnt = (args.Holder.Owner, pod);
+        BeforeRoute(ent, tube, args.Holder, podEnt, travel);
         args.Next = Route(ent, tube, args.Holder, podEnt, travel);
         OnPodRouted(ent, args.Holder, podEnt, args.Next);
     }
@@ -153,28 +154,30 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     }
 
     protected void PossibleRoutes(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, Entity<DisposalHolderComponent> holder,
-        Entity<TransitPodComponent> pod, Direction travel, List<Direction> exits, string? tag = null)
+        Direction travel, List<Direction> exits, string? tag = null)
     {
         exits.Clear();
 
-        if (travel != Direction.Invalid && IsEmagged(ent))
-        {
-            if (TryComp<TransitTubeSwitchComponent>(ent, out var tubeSwitch) && !HasComp<DisposalRouterComponent>(ent))
-            {
-                AddExit(exits, SwitchExit((ent, ent.Comp, tube), tubeSwitch, true, travel));
-                AddExit(exits, SwitchExit((ent, ent.Comp, tube), tubeSwitch, false, travel));
-                return;
-            }
+        if (travel == Direction.Invalid)
+            return;
 
-            if (IsBranchSwitch(ent))
-            {
-                AddExit(exits, PickExit((ent, ent.Comp, tube), travel, force: true));
-                AddExit(exits, PickExit((ent, ent.Comp, tube), travel));
+        var changeable = IsEmagged(ent)
+            || HasComp<TransitTubeSwitchComponent>(ent)
+            || HasComp<TransitTubeToggleComponent>(ent);
+
+        if (FixedExit(ent, tube, holder, travel, tag) is { } fixedExit)
+        {
+            AddExit(exits, fixedExit);
+            if (!changeable)
                 return;
-            }
         }
 
-        AddExit(exits, Route(ent, tube, holder, pod, travel, simulate: true, tag: tag));
+        var back = travel.GetOpposite();
+        foreach (var exit in _disposalTube.GetTubeConnectableDirections((ent, tube)))
+        {
+            if (exit != back && Math.Abs(Angle.ShortestDistance(travel.ToAngle(), exit.ToAngle()).Degrees) <= ent.Comp.MaxTurn + 1)
+                AddExit(exits, exit);
+        }
     }
 
     private static void AddExit(List<Direction> exits, Direction exit)
@@ -263,6 +266,14 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     /// </summary>
     public bool IsPowered(EntityUid uid)
         => _power.IsPowered(uid);
+
+    /// <summary>
+    /// Called on a pod about to pick its way through a tube.
+    /// </summary>
+    protected virtual void BeforeRoute(Entity<TransitTubeComponent> tube, DisposalTubeComponent tubeComp, Entity<DisposalHolderComponent> holder,
+        Entity<TransitPodComponent> pod, Direction travel)
+    {
+    }
 
     /// <summary>
     /// Called on a pod after it picked its way through a tube.

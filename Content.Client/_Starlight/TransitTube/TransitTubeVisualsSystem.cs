@@ -87,8 +87,8 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
 
         var depth = level switch
         {
-            TransitTubeLevel.Under => Shared.DrawDepth.DrawDepth.ThinWire,
-            TransitTubeLevel.Over => Shared.DrawDepth.DrawDepth.Overdoors,
+            TransitTubeLevel.Under => Shared.DrawDepth.DrawDepth.LowFloors,
+            TransitTubeLevel.Over => Shared.DrawDepth.DrawDepth.BlastDoors,
             _ => Shared.DrawDepth.DrawDepth.Mobs,
         };
 

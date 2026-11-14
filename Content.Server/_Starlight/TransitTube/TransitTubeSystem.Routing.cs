@@ -23,12 +23,14 @@ public sealed partial class TransitTubeSystem
     /// </summary>
     private const int DetourCost = MaxRouteSearch * 4;
 
-    private readonly Dictionary<(EntityUid Tube, Direction Travel), (EntityUid Tube, Direction Travel, Direction Exit)> _cameFrom = [];
-    private readonly Dictionary<(EntityUid Tube, Direction Travel), int> _routeCost = [];
-    private readonly Dictionary<(EntityUid Tube, Direction Travel), string?> _routeTag = [];
-    private readonly HashSet<(EntityUid Tube, Direction Travel)> _routeClosed = [];
-    private readonly PriorityQueue<(EntityUid Tube, Direction Travel), int> _frontier = new();
+    private readonly record struct RouteState(EntityUid Tube, Direction Travel, string? Tag);
+
+    private readonly Dictionary<RouteState, (RouteState From, Direction Exit)> _cameFrom = [];
+    private readonly Dictionary<RouteState, int> _routeCost = [];
+    private readonly HashSet<RouteState> _routeClosed = [];
+    private readonly PriorityQueue<RouteState, int> _frontier = new();
     private readonly List<(Direction Exit, int Cost)> _choices = [];
+    private readonly HashSet<(EntityUid Tube, Direction Travel)> _planConflicts = [];
 
     #region Planning
 
@@ -118,7 +120,6 @@ public sealed partial class TransitTubeSystem
         length = 0;
         _cameFrom.Clear();
         _routeCost.Clear();
-        _routeTag.Clear();
         _routeClosed.Clear();
         _frontier.Clear();
 
@@ -129,16 +130,17 @@ public sealed partial class TransitTubeSystem
             ? (podUid.Owner, holderComp)
             : null;
 
+        var root = new RouteState(origin, Direction.Invalid, null);
         if (start is { } moving)
         {
-            Relax(moving, (origin, Direction.Invalid, moving.Travel), 1, null);
+            Relax(new RouteState(moving.Tube, moving.Travel, null), root, moving.Travel, 1);
         }
         else
         {
             foreach (var exit in _disposalTube.GetTubeConnectableDirections((origin, originTube)))
             {
                 if (_disposalTube.GetTubeInDirection((origin, originTube), exit) is { } next)
-                    Relax((next, exit), (origin, Direction.Invalid, exit), 1, null);
+                    Relax(new RouteState(next, exit, null), root, exit, 1);
             }
         }
 
@@ -153,9 +155,9 @@ public sealed partial class TransitTubeSystem
             if (state.Tube != origin && isGoal(state.Tube))
             {
                 goal = state.Tube;
-                length = RouteLength(origin, state);
+                length = RouteLength(state);
                 if (writePlan && pod is { } podEnt)
-                    WritePlan(podEnt, origin, state);
+                    WritePlan(podEnt, state);
                 return true;
             }
 
@@ -163,27 +165,26 @@ public sealed partial class TransitTubeSystem
                 continue;
 
             // A tagger on the way swaps the pod's tags, and the routers past it go by the new one.
-            var tag = TryComp<DisposalTaggerComponent>(state.Tube, out var tagger) ? tagger.Tag : _routeTag.GetValueOrDefault(state);
+            var tag = TryComp<DisposalTaggerComponent>(state.Tube, out var tagger) ? tagger.Tag : state.Tag;
 
             GetChoices(state.Tube, tube, state.Travel, holder, tag, _choices);
             foreach (var (exit, stepCost) in _choices)
             {
                 if (_disposalTube.GetTubeInDirection((state.Tube, tube), exit) is { } next)
-                    Relax((next, exit), (state.Tube, state.Travel, exit), cost + stepCost, tag);
+                    Relax(new RouteState(next, exit, tag), state, exit, cost + stepCost);
             }
         }
 
         return false;
     }
 
-    private void Relax((EntityUid Tube, Direction Travel) state, (EntityUid Tube, Direction Travel, Direction Exit) from, int cost, string? tag)
+    private void Relax(RouteState state, RouteState from, Direction exit, int cost)
     {
         if (_routeClosed.Contains(state) || (_routeCost.TryGetValue(state, out var known) && known <= cost))
             return;
 
         _routeCost[state] = cost;
-        _cameFrom[state] = from;
-        _routeTag[state] = tag;
+        _cameFrom[state] = (from, exit);
         _frontier.Enqueue(state, cost);
     }
 
@@ -246,38 +247,81 @@ public sealed partial class TransitTubeSystem
             choices.Add((back, 1));
     }
 
-    private int RouteLength(EntityUid origin, (EntityUid Tube, Direction Travel) goal)
+    private int RouteLength(RouteState goal)
     {
         var length = 0;
         var state = goal;
-        while (_cameFrom.TryGetValue(state, out var from) && length < MaxRouteSearch)
+        while (_cameFrom.TryGetValue(state, out var step) && length < MaxRouteSearch)
         {
             length++;
-            if (from.Tube == origin && from.Travel == Direction.Invalid)
-                break;
-
-            state = (from.Tube, from.Travel);
+            state = step.From;
         }
 
         return length;
     }
 
-    private void WritePlan(Entity<TransitPodComponent> pod, EntityUid origin, (EntityUid Tube, Direction Travel) goal)
+    private void WritePlan(Entity<TransitPodComponent> pod, RouteState goal)
     {
         pod.Comp.Plan.Clear();
+        _planConflicts.Clear();
         Dirty(pod);
 
         var state = goal;
-        while (_cameFrom.TryGetValue(state, out var from))
+        var steps = 0;
+        while (_cameFrom.TryGetValue(state, out var step) && steps++ < MaxRouteSearch)
         {
-            pod.Comp.Plan[(from.Tube, from.Travel)] = from.Exit;
-
             // The way out of the origin is stored with no direction of travel.
-            if (from.Tube == origin && from.Travel == Direction.Invalid)
-                break;
+            var key = (step.From.Tube, step.From.Travel);
+            if (_planConflicts.Contains(key))
+            {
+                // Already found to differ between visits.
+            }
+            else if (pod.Comp.Plan.TryGetValue(key, out var written) && written != step.Exit)
+            {
+                pod.Comp.Plan.Remove(key);
+                _planConflicts.Add(key);
+            }
+            else
+            {
+                pod.Comp.Plan[key] = step.Exit;
+            }
 
-            state = (from.Tube, from.Travel);
+            state = step.From;
         }
+    }
+
+    /// <summary>
+    /// A pod on a trip reaches a junction its plan has no way out of: plan again from here before it
+    /// picks a way, so it goes by the tags it really carries now.
+    /// </summary>
+    protected override void BeforeRoute(Entity<TransitTubeComponent> tube, DisposalTubeComponent tubeComp, Entity<DisposalHolderComponent> holder,
+        Entity<TransitPodComponent> pod, Direction travel)
+    {
+        if (travel == Direction.Invalid
+            || pod.Comp.Target is not { } target
+            || target == tube.Owner
+            || pod.Comp.Plan.ContainsKey((tube.Owner, travel))
+            || holder.Comp.CurrentTube is not { } previous
+            || previous == tube.Owner
+            || HasComp<TransitTubeStationComponent>(tube)
+            || FixedExit(tube, tubeComp, holder, travel) != null
+            || CountWaysOn(tube, tubeComp, travel) < 2)
+            return;
+
+        Replan(pod, previous, (tube.Owner, travel), target);
+    }
+
+    private int CountWaysOn(Entity<TransitTubeComponent> tube, DisposalTubeComponent tubeComp, Direction travel)
+    {
+        var count = 0;
+        var back = travel.GetOpposite();
+        foreach (var exit in _disposalTube.GetTubeConnectableDirections((tube, tubeComp)))
+        {
+            if (exit != back && Math.Abs(Angle.ShortestDistance(travel.ToAngle(), exit.ToAngle()).Degrees) <= tube.Comp.MaxTurn + 1)
+                count++;
+        }
+
+        return count;
     }
 
     #endregion
@@ -345,25 +389,8 @@ public sealed partial class TransitTubeSystem
 
     #region Destination picker
 
-    [SubscribeLocalEvent]
-    private void OnStationVerbs(Entity<TransitTubeStationComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
-    {
-        if (!args.CanAccess || !args.CanInteract || ent.Comp.Depot)
-            return;
-
-        var user = args.User;
-        args.Verbs.Add(new AlternativeVerb
-        {
-            Text = Loc.GetString("transit-station-verb-destination"),
-            Act = () => OpenDestinations(ent, user),
-        });
-    }
-
-    private void OpenDestinations(Entity<TransitTubeStationComponent> station, EntityUid user)
-    {
-        UpdateDestinations(station);
-        _ui.OpenUi(station.Owner, TransitStationUiKey.Key, user);
-    }
+    protected override void OnDestinationsOpening(Entity<TransitTubeStationComponent> station)
+        => UpdateDestinations(station);
 
     private List<TransitDestinationEntry> CollectDestinations(EntityUid origin, Entity<TransitPodComponent>? pod, (EntityUid Tube, Direction Travel)? start)
     {
@@ -471,9 +498,6 @@ public sealed partial class TransitTubeSystem
             Act = () => OpenPodDestinations(ent, user),
         });
     }
-
-    private bool IsPassenger(Entity<TransitPodComponent> pod, EntityUid uid)
-        => GetPassengers(pod).Contains(uid);
 
     private bool OpenPodDestinations(Entity<TransitPodComponent> pod, EntityUid user)
     {

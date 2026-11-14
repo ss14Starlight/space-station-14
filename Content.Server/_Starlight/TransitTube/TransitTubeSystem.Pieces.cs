@@ -373,8 +373,8 @@ public sealed partial class TransitTubeSystem
         if (!TryComp<DisposalTubeComponent>(signal, out var signalTube) || !TryComp<DisposalHolderComponent>(pod, out var holder))
             return false;
 
-        // Follow every way this very pod may go: switches, routers, turntables and its plan included,
-        // and both branches of a switch that picks at random.
+        // Follow every way this pod could still go: both sides of junctions and of switches that may be
+        // thrown, since its plan can change on the way. Routers go by the tags it will carry.
         _sectionSeen.Clear();
         _sectionFrontier.Clear();
         if (direction != Direction.Invalid)
@@ -398,7 +398,7 @@ public sealed partial class TransitTubeSystem
             // A tagger on the way swaps the pod's tags, and the routers past it go by the new one.
             var tag = TryComp<DisposalTaggerComponent>(nextUid, out var tagger) ? tagger.Tag : step.Tag;
 
-            PossibleRoutes((nextUid, transit), nextTube, (pod, holder), pod, step.Exit, _sectionExits, tag);
+            PossibleRoutes((nextUid, transit), nextTube, (pod, holder), step.Exit, _sectionExits, tag);
             foreach (var exit in _sectionExits)
                 _sectionFrontier.Enqueue(((nextUid, nextTube), exit, step.Depth + 1, tag));
         }

@@ -84,6 +84,11 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
     public virtual void Exit(Entity<DisposalHolderComponent> ent)
     {
         // Handled by the server
+        // Starlight-start: a persistent holder (transit pod) stops where the server will stop it, rather
+        // than gliding on past a station for a frame until the server says it docked.
+        if (ent.Comp.Persistent)
+            SetHalted(ent.AsNullable(), true);
+        // Starlight-end
     }
 
     /// <summary>
