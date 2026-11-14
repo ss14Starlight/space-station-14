@@ -25,12 +25,12 @@ public sealed class SharedTeleportSystem : EntitySystem
         /// Whether anything the entity teleporting is pulling comes along instead of being left behind.
         /// </summary>
         public bool CarryPulled = DefaultTeleportCarryPulled;
-        
+
         /// <summary>
         /// Whether whoever is pulling the teleported entity comes along instead of being left behind.
         /// </summary>
         public bool CarryIncomingPulls = DefaultTeleportCarryIncomingPulls;
-        
+
         /// <summary>
         /// Heaviest entity that can come along, in kilograms. Heavier targets stay behind and the pull is broken.
         /// </summary>
