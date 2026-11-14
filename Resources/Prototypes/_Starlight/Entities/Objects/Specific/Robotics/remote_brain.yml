@@ -5,9 +5,17 @@
   description: A synthetic interface installed in place of a positronic brain, allowing a compatible robotic body to be controlled remotely.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Robotics/mmi.rsi
+    sprite: _Starlight/Objects/Specific/Robotics/remotecontrolbrain.rsi
     layers:
-    - state: posibrain
+    - state: remotebrain
+      map: ["base"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.RemoteControlBrainVisuals.Connected:
+        base:
+          True: { state: remotebrain-occupied }
+          False: { state: remotebrain }
   - type: Eye
   - type: ContentEye
   - type: RemoteControlBrain

@@ -54,6 +54,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.UserInterface;
 using Content.Shared.Wires;
 using Content.Shared.Weapons.Melee;
+using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -133,6 +134,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
     public override void Initialize()
     {
+        SubscribeAllEvent<HeavyAttackEvent>(OnRemoteHeavyAttack);
         SubscribeAllEvent<TypingChangedEvent>(OnRemoteControllerTypingChanged);
         Subs.BuiEvents<RemoteControlConsoleComponent>(RemoteControlUIKey.Key,
             subs =>
@@ -1098,6 +1100,26 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         RefreshRemoteState(uid, component, remoteEntity);
     }
 
+    private void OnRemoteHeavyAttack(HeavyAttackEvent ev, EntitySessionEventArgs args)
+    {
+        if (args.SenderSession.AttachedEntity is not { } controller
+            || !TryComp<RemoteControlControllerComponent>(controller, out var controllerComponent))
+            return;
+
+        var melee = EntityManager.System<SharedMeleeWeaponSystem>();
+        foreach (var consoleUid in controllerComponent.Consoles)
+        {
+            if (!TryComp<RemoteControlConsoleComponent>(consoleUid, out var console)
+                || !console.EnableRemoteView
+                || !TryGetActionableControlledEntity((consoleUid, console), controller, out var remoteEntity)
+                || remoteEntity == controller)
+                continue;
+
+            if (melee.TryAttemptRemoteHeavyAttack(remoteEntity, ev, args.SenderSession))
+                return;
+        }
+    }
+
     private async void OnRemoteBuildConstruction(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlBuildConstructionMessage args)
     {
@@ -1302,6 +1324,16 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             && activatable.Key?.Equals(args.UiKey) == true
             && activatable.CurrentSingleUser == args.Actor)
             _activatableUi.SetCurrentSingleUser(entity.Owner, controller, activatable);
+
+        if (!_ui.IsUiOpen(entity.Owner, args.UiKey, controller))
+        {
+            RaiseNetworkEvent(
+                new RemoteControlBuiOpenedByRemoteActorEvent(
+                    GetNetEntity(entity.Owner),
+                    args.UiKey,
+                    GetNetEntity(args.Actor)),
+                controllerSession.Channel);
+        }
 
         TrackRemoteUiRangeOverrideActor(entity.Owner, args.UiKey, args.Actor, controller, args.Actor);
         TrackRemoteUiRangeOverrideActor(entity.Owner, args.UiKey, controller, controller, args.Actor);
@@ -1771,7 +1803,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
     {
         if (remoteEntity is not { } chassis
             || TerminatingOrDeleted(chassis)
-            || !TryComp<BorgChassisComponent>(chassis, out _))
+            || !TryComp<BorgChassisComponent>(chassis, out var chassisComp))
             return;
 
         var controlled = false;
@@ -1789,6 +1821,13 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         EnsureComp<AppearanceComponent>(chassis);
         _appearance.SetData(chassis, BorgVisualsStarlight.RemoteControlled, controlled);
+
+        if (chassisComp.BrainContainer.ContainedEntity is { } brain
+            && HasComp<RemoteControlBrainComponent>(brain))
+        {
+            EnsureComp<AppearanceComponent>(brain);
+            _appearance.SetData(brain, RemoteControlBrainVisuals.Connected, controlled);
+        }
     }
 
     private bool TryActivateRemoteBorg(RemoteControlConsoleComponent console, EntityUid chassis)
