@@ -1,4 +1,5 @@
 using Content.Client._Starlight.UserInterface;
+using Content.Client._Starlight.UserInterface.Systems.PinWindow;
 using Content.Client.Stylesheets;
 using Content.Shared._Starlight.UserInterface;
 using Content.Client.Stylesheets.Sheetlets;
@@ -80,6 +81,8 @@ public sealed class FlatWindowSheetlet : Sheetlet<NanotrasenStylesheet>
             .. ChromeButton(PopOutExtensions.PopOutButtonStyleClass, proto.TextMuted, proto.Text),
             .. ChromeButton(StarlightStyleClass.WindowSidebarButton, proto.TextMuted, proto.Text),
             .. ChromeButton(FancyWindow.StyleClassWindowHelpButton, proto.TextMuted, proto.Text),
+            .. ChromeButton(PinWindowUIController.StyleClassPinButtonUnpinned, proto.TextMuted, proto.Text),
+            .. ChromeButton(PinWindowUIController.StyleClassPinButtonPinned, proto.TextMuted, proto.Text),
 
             E<Label>().Class("WindowFooterText").FontColor(proto.TextMuted),
         ]);
