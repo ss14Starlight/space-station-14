@@ -69,11 +69,10 @@ public sealed partial class FultonSystem : SharedFultonSystem
 
             // Starlight start: teleport helper
             //TransformSystem.SetCoordinates(uid, new EntityCoordinates(beaconXform.ParentUid, localPos));
-            _teleports.Teleport(uid, new EntityCoordinates(beaconXform.ParentUid, localPos), new SharedTeleportSystem.TeleportOptions
+            _teleports.Teleport((uid, xform), new EntityCoordinates(beaconXform.ParentUid, localPos), new SharedTeleportSystem.TeleportOptions
             {
                 CarryPulled = SharedTeleportSystem.DefaultTeleportCarryPulled,
                 CarryMassLimit = SharedTeleportSystem.DefaultTeleportCarryMassLimit,
-                Unbuckle = SharedTeleportSystem.DefaultTeleportUnbuckle,
                 CarryIncomingPulls = SharedTeleportSystem.DefaultTeleportCarryIncomingPulls,
             });
             // Starlight end

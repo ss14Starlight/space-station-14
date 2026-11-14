@@ -1,5 +1,3 @@
-using Content.Shared.Buckle;
-using Content.Shared.Buckle.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Robust.Shared.GameObjects;
@@ -11,13 +9,11 @@ namespace Content.Shared._Starlight.Teleportation.Systems;
 public sealed partial class SharedTeleportSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
 
     public const bool DefaultTeleportCarryPulled = true;
     public const bool DefaultTeleportCarryIncomingPulls = false;
     public const float DefaultTeleportCarryMassLimit = 150f; // Player characters cap out around 115
-    public const bool DefaultTeleportUnbuckle = true;
 
     public sealed class TeleportOptions
     {
@@ -35,39 +31,34 @@ public sealed partial class SharedTeleportSystem : EntitySystem
         /// Heaviest entity that can come along, in kilograms. Heavier targets stay behind and the pull is broken.
         /// </summary>
         public float CarryMassLimit = DefaultTeleportCarryMassLimit;
-
-        /// <summary>
-        /// Whether the teleported entity is unbuckled first, so it doesn't get stuck.
-        /// </summary>
-        public bool Unbuckle = DefaultTeleportUnbuckle;
     }
 
     /// <summary>
     /// Teleports an entity, by default bringing whoever they're pulling along with them.
     /// </summary>
-    public void Teleport(EntityUid uid, EntityCoordinates destination, TeleportOptions? options = null)
+    public void Teleport(Entity<TransformComponent?> ent, EntityCoordinates destination, TeleportOptions? options = null)
     {
         options ??= new TeleportOptions();
 
-        if (options.Unbuckle && TryComp<BuckleComponent>(uid, out var buckle) && buckle.Buckled)
-            _buckle.TryUnbuckle(uid, uid, buckle, popup: false);
+        if (!Resolve(ent.Owner, ref ent.Comp))
+            return;
 
-        var passenger = TryComp<PullerComponent>(uid, out var puller) ? puller.Pulling : null;
-        if (options.CarryPulled && passenger is { } target && TryMovePulled(uid, target, destination, options.CarryMassLimit))
-            TrimCarriedLinks(uid, target);
+        var passenger = TryComp<PullerComponent>(ent.Owner, out var puller) ? puller.Pulling : null;
+        if (options.CarryPulled && passenger is { } target && TryMovePulled(ent.Owner, target, destination, options.CarryMassLimit))
+            TrimCarriedLinks(ent.Owner, target);
         else if (passenger is { } leftBehind && TryComp<PullableComponent>(leftBehind, out var leftPullable))
         {
             _pulling.TryStopPull(leftBehind, leftPullable);
         }
 
-        var incoming = TryComp<PullableComponent>(uid, out var selfPullable) ? selfPullable.Puller : null;
-        if (options.CarryIncomingPulls && incoming is { } dragger && TryMovePulled(uid, dragger, destination, options.CarryMassLimit))
-            TrimCarriedLinks(uid, dragger);
+        var incoming = TryComp<PullableComponent>(ent.Owner, out var selfPullable) ? selfPullable.Puller : null;
+        if (options.CarryIncomingPulls && incoming is { } dragger && TryMovePulled(ent.Owner, dragger, destination, options.CarryMassLimit))
+            TrimCarriedLinks(ent.Owner, dragger);
         else if (selfPullable is not null && selfPullable.Puller is not null)
-            _pulling.TryStopPull(uid, selfPullable);
+            _pulling.TryStopPull(ent.Owner, selfPullable);
 
-        _transform.SetCoordinates(uid, destination);
-        _transform.AttachToGridOrMap(uid, Transform(uid));
+        _transform.SetCoordinates(ent.Owner, destination);
+        _transform.AttachToGridOrMap(ent.Owner, ent.Comp);
     }
 
     /// <summary>
@@ -84,9 +75,6 @@ public sealed partial class SharedTeleportSystem : EntitySystem
     private bool TryMovePulled(EntityUid uid, EntityUid target, EntityCoordinates destination, float carryMassLimit)
     {
         if (!Exists(target) || Transform(target).Anchored)
-            return false;
-
-        if (TryComp<BuckleComponent>(target, out var targetBuckle) && targetBuckle.Buckled)
             return false;
 
         if (_transform.GetMapId(target) != _transform.GetMapId(destination.EntityId))

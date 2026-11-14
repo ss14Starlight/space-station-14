@@ -69,7 +69,6 @@ public abstract partial class SharedMagicSystem : EntitySystem
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private TurfSystem _turf = default!;
-    [Dependency] private SharedTeleportSystem _teleports = default!; // Starlight
     [Dependency] private SharedChargesSystem _charges = default!;
     [Dependency] private ExamineSystemShared _examine= default!;
     [Dependency] private TargetSystem _target = default!;
@@ -77,6 +76,7 @@ public abstract partial class SharedMagicSystem : EntitySystem
     #region Starlight
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private SharedTeleportSystem _teleports = default!;
 
     private static readonly EntProtoId TowerOfBabel = "TowerOfBabel";
     #endregion
@@ -381,11 +381,10 @@ public abstract partial class SharedMagicSystem : EntitySystem
         // Starlight start: teleport helper
         //_transform.SetCoordinates(args.Performer, args.Target);
         //_transform.AttachToGridOrMap(args.Performer, transform);
-        _teleports.Teleport(args.Performer, args.Target, new SharedTeleportSystem.TeleportOptions
+        _teleports.Teleport((args.Performer, transform), args.Target, new SharedTeleportSystem.TeleportOptions
         {
             CarryPulled = SharedTeleportSystem.DefaultTeleportCarryPulled,
             CarryMassLimit = SharedTeleportSystem.DefaultTeleportCarryMassLimit,
-            Unbuckle = SharedTeleportSystem.DefaultTeleportUnbuckle,
             CarryIncomingPulls = SharedTeleportSystem.DefaultTeleportCarryIncomingPulls,
         });
         // Starlight end
