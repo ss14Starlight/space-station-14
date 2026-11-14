@@ -847,7 +847,7 @@
       title: comms-console-announcement-title-news
       delay: 300
       sound: /Audio/_Starlight/Announcements/announce2.ogg
-      color: "#e8b923"
+      color: "#539c00"
       settableAlertLevels: []
       canBroadcast: false
       canShuttle: false
