@@ -1,7 +1,6 @@
 using Content.Shared._Starlight.Snapshots;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Charges.Components;
-using Content.Shared.Flash.Components;
 using Content.Shared.Timing;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
@@ -40,9 +39,7 @@ public sealed partial class PhotoCartridgeFilmSystem : EntitySystem
 
         SaveState(args.Loader);
         RemComp<SnapshotCaptureComponent>(args.Loader);
-        RemComp<FlashComponent>(args.Loader);
         RemComp<LimitedChargesComponent>(args.Loader);
-        RemComp<AutoRechargeComponent>(args.Loader);
         RemComp<UseDelayComponent>(args.Loader);
     }
 

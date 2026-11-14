@@ -264,7 +264,7 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
 
         _charges.AddCharges((ent.Owner, charges, null), 1);
         args.Handled = true;
-        Del(args.Used);
+        QueueDel(args.Used);
         _popup.PopupClient(Loc.GetString("snapshot-film-loaded", ("charges", _charges.GetCurrentCharges((ent.Owner, charges, null))), ("max", charges.MaxCharges)), args.User, args.User);
     }
 
@@ -319,7 +319,11 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         return null;
     }
 
-    private bool FireFlashEntity(EntityUid flashUid, FlashComponent flash, EntityUid _, EntityUid? user)
+    /// <summary>
+    /// Spends the inserted flash's charge, plays its sound and light burst, and flashes everyone near it.
+    /// Only runs when a flash item is inserted.
+    /// </summary>
+    private bool FireFlashEntity(EntityUid flashUid, FlashComponent flash, EntityUid? user)
     {
         if (!_flash.TryUseFlashItem((flashUid, flash), user))
             return false;
@@ -416,7 +420,7 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
         if (GetInsertedFlash(capturer) is { } insertedFlash
             && _flashQuery.TryComp(insertedFlash, out var insertedComp))
         {
-            if (!FireFlashEntity(insertedFlash, insertedComp, capturer, user))
+            if (!FireFlashEntity(insertedFlash, insertedComp, user))
             {
                 RefundFilm();
                 _popup.PopupClient(Loc.GetString("snapshot-capture-rate-limited"), user, user);
@@ -424,15 +428,6 @@ public abstract partial class SnapshotCaptureSystem : EntitySystem
             }
 
             UpdateFlashAppearance(capturer);
-        }
-        else if (_flashQuery.TryComp(capturer, out var builtInFlash))
-        {
-            if (!FireFlashEntity(capturer, builtInFlash, capturer, user))
-            {
-                RefundFilm();
-                _popup.PopupClient(Loc.GetString("snapshot-capture-rate-limited"), user, user);
-                return;
-            }
         }
 
         _audio.PlayPredicted(shutterSound, capturer, user);
