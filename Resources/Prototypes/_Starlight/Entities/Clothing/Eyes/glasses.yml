@@ -1,64 +1,29 @@
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  parent: [ClothingEyesModularHudSunglasses, BaseRestrictedContraband]
   id: ClothingEyesGlassesBrigmedic
-  name: brigmedic glasses
-  description: High-quality hud that can protect against flashes. Tamashi-style!
-  components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Glasses/brigmedicglasses.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Glasses/brigmedicglasses.rsi
-  - type: FlashImmunity
-  - type: EyeProtection
-    protectionTime: 5
-  - type: ShowHealthBars
-    damageContainers:
-      - Biological
-      - Hybrid
-      - MoffDemonBiological
-  - type: Construction
-    graph: GlassesSecHUD
-    node: glassesSec
-  - type: StealTarget
-    stealGroup: RareGlassesCollection
-  - type: Tag
-    tags:
-    - HamsterWearable
-    - WhitelistChameleon
-    - SecBeltEquip
-  - type: IdentityBlocker
-    coverage: EYES
-
-- type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
-  id: ClothingEyesGlassesCorpsman
-  name: corpsman glasses
+  name: brigmedic sunglasses
   description: Can protect against flashes much like security glasses, and track vitals!
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/corpsman.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/corpsman.rsi
-  - type: FlashImmunity
-  - type: EyeProtection
-    protectionTime: 5
-  - type: ShowHealthBars
-    damageContainers:
-      - Biological
-      - Hybrid
-      - MoffDemonBiological
-  - type: Construction
-    graph: GlassesSecHUD
-    node: glassesSec
-  - type: StealTarget
-    stealGroup: MiscGlassesCollection
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
   - type: Tag
     tags:
-    - HamsterWearable
     - WhitelistChameleon
+    - HamsterWearable
     - SecBeltEquip
-  - type: IdentityBlocker
-    coverage: EYES
+    - FullEyeCovering
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic]
 
 - type: entity
   parent: ClothingEyesBase
@@ -100,36 +65,79 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: ClothingEyesModularHudSunglasses
   id: ClothingEyesSunGlassesHudSkill
   name: skills sunglasses
   description: Sunglasses with a build-in skills HUD, showing the employment history of nearby NT crew members.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/sunhudskill.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/sunhudskill.rsi
-  - type: FlashImmunity
-  - type: ShowJobIcons
-  - type: ShowMindShieldIcons
-  - type: ShowCriminalRecordIcons
-  - type: EyeProtection
-    protectionTime: 5
-  - type: ShowAccess
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowJobIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowAccessReaderSettings
   - type: StealTarget
     stealGroup: RareGlassesCollection
+  - type: EyeProtection
+    protectionTime: 5
 
 - type: entity
-  parent: [ ClothingEyesBase, BaseBlueShieldContraband ]
+  parent: [ClothingEyesModularHudSunglasses, BaseBlueShieldContraband]
   id: ClothingEyesGlassesBlueShield
-  name: blue shield glasses
+  name: blue shield sunglasses
   description: The innovative blue lenses hide your eyes from light flashes and have a built-in visor.
+  components:
+  - type: ModularHudVisuals
+    innateVisuals:
+      lens:
+        color: '#00003C'
+        priority: 1000
+        preventsOtherColors: true
+      accent:
+        color: '#00003C'
+        priority: 1000
+      specular:
+        color: '#FFFFFF10'
+        priority: 1000
+  - type: ModularHud
+    maximumContainedModules: 4
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+        - id: HudModuleShowInorganicHealthBars
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HudMedical
+    - FullEyeCovering
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Contraband
+    tier: Tier2
+
+- type: entity
+  parent: [ClothingEyesBase, BaseBlueShieldContraband]
+  id: ClothingEyesGlassesNanotrasen
+  name: NanoTrasen glasses
+  description: The latest in NanoTrasen technology has lead up to these glasses, only given to the best of the best.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Eyes/Glasses/blueshield.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HudMedical
   - type: Clothing
     sprite: _Starlight/Clothing/Eyes/Glasses/blueshield.rsi
   - type: FlashImmunity
+    blocksSpecialVision: false
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
@@ -144,22 +152,10 @@
     - Biological
     - IPC
     - Hybrid
-  - type: Tag
-    tags:
-    - HudMedical
   - type: EyeProtection
     protectionTime: 5
   - type: StealTarget
     stealGroup: RareGlassesCollection
-
-- type: entity
-  parent: ClothingEyesGlassesBlueShield
-  id: ClothingEyesGlassesNanotrasen
-  name: NanoTrasen glasses
-  description: The latest in NanoTrasen technology has lead up to these glasses, only given to the best of the best.
-  components:
-  - type: FlashImmunity
-    blocksSpecialVision: False
 
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
@@ -214,86 +210,6 @@
     - WhitelistChameleon
   - type: StealTarget
     stealGroup: RareGlassesCollection
-
-# Prescription Glasses
-
-- type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
-  id: ClothingEyesGlassesBrigmedicPrescription
-  name: prescription brigmedic glasses
-  description: A set of unshielded prescription glasses for Brigmedics.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionbrigmedicglasses.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionbrigmedicglasses.rsi
-  - type: VisionCorrection
-  - type: ShowHealthBars
-    damageContainers:
-      - Biological
-      - Hybrid
-      - MoffDemonBiological
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - SecBeltEquip
-
-- type: entity
-  parent: [ClothingEyesBase, ShowMedicalIcons]
-  id: ClothingEyeGlassesMedicalPrescription
-  name: prescription medical glasses
-  description: A set of prescription glasses for Doctors. Not covered under insurance.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionmedical.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionmedical.rsi
-  - type: VisionCorrection
-  - type: Tag
-    tags:
-    - HudMedical
-    - WhitelistChameleon
-    - HamsterWearable
-
-- type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
-  id: ClothingEyeGlassesSecurityPrescription
-  name: prescription security glasses
-  description: A set of unshielded prescription glasses for Security.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionsecglasses.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionsecglasses.rsi
-  - type: VisionCorrection
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - SecBeltEquip
-
-- type: entity
-  parent: ClothingEyesGlassesChemical
-  id: ClothingEyeGlassesChemicalPrescription
-  name: prescription chemical analysis glasses
-  description: A set of prescription glasses for chemists.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionscience.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionscience.rsi
-  - type: VisionCorrection
-
-- type: entity
-  parent: ClothingEyesGlassesCentCommBase
-  id: ClothingEyesGlassesCentCommPrescription
-  name: prescription CentComm glasses
-  description: A set of prescription glasses for CentComm personnel. Protects against flashes and has a built-in visor.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
-    - type: VisionCorrection
 
 # USSP
 
@@ -399,34 +315,175 @@
     - type: VisionCorrection
 
 - type: entity
-  parent: ClothingEyesGlassesChemical
+  parent: ClothingEyesModularHudJamjars
   id: ClothingEyesGlassesJamjarChemist
   name: chemical jamjar glasses
   description: For the chemist who needs particularly large glasses. Rumoured to exist because of someone extremely skilled at chemistry.
   components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarchemist.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarchemist.rsi
-    - type: VisionCorrection
-
-- type: entity
-  parent: ClothingEyesBase
-  id: ClothingEyesGlassesNoirAssistant
-  name: cheap noir-tech glasses
-  description: A pair of glasses that simulate what the world looked like before the invention of color.
-  components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Glasses/noir.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Glasses/sunglasses.rsi
-  - type: IdentityBlocker
-    coverage: EYES
-  - type: FlashImmunity
-  - type: EyeProtection
-    protectionTime: 5
-  - type: NoirOverlay
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleSolutionScanner
   - type: Tag
     tags:
-    - HamsterWearable
     - WhitelistChameleon
+    - PetWearable
+    - FullEyeCovering
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: entity
+  parent: ClothingEyesModularHudCheapSunglasses
+  id: ClothingEyesGlassesNoirAssistant
+  name: cheap noir-tech sunglasses
+  description: A pair of glasses that simulate what the world looked like before the invention of color.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleNoirOverlay
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable
+    - FullEyeCovering
+
+- type: entity
+  parent: [ClothingEyesModularHudGlasses, BaseRestrictedContraband]
+  id: ClothingEyesGlassesBrigmedicPrescription
+  name: prescription brigmedic glasses
+  description: A set of prescription glasses for Brigmedics.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - SecBeltEquip
+    - FullEyeCovering
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic]
+
+- type: entity
+  parent: [ClothingEyesModularHudGlasses, BaseMedicalContraband]
+  id: ClothingEyeGlassesMedicalPrescription
+  name: prescription medical glasses
+  description: A set of prescription glasses for Doctors. Not covered under insurance.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMedicalIcons
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - HudMedical
+    - WhitelistChameleon
+    - HamsterWearable
+    - FullEyeCovering
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
+
+- type: entity
+  parent: [ClothingEyesModularHudGlasses, BaseSecurityContraband]
+  id: ClothingEyeGlassesSecurityPrescription
+  name: prescription security glasses
+  description: A set of prescription glasses for Security.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - SecBeltEquip
+    - FullEyeCovering
+  - type: Contraband
+    tier: Tier2
+
+- type: entity
+  parent: ClothingEyesModularHudGlasses
+  id: ClothingEyeGlassesChemicalPrescription
+  name: prescription chemical analysis glasses
+  description: A set of prescription glasses for chemists.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleSolutionScanner
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - PetWearable
+    - FullEyeCovering
+
+- type: entity
+  parent: [ClothingEyesModularHudGlasses, BaseBlueShieldContraband]
+  id: ClothingEyesGlassesBlueShieldPrescription
+  name: prescription blue shield glasses
+  description: A set of prescription glasses for Blue Shield Officers.
+  components:
+  - type: ModularHudVisuals
+    innateVisuals:
+      lens:
+        color: '#00003C'
+        priority: 1000
+        preventsOtherColors: true
+      accent:
+        color: '#00003C'
+        priority: 1000
+      specular:
+        color: '#FFFFFF10'
+        priority: 1000
+  - type: ModularHud
+    maximumContainedModules: 4
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+        - id: HudModuleShowInorganicHealthBars
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HudMedical
+    - FullEyeCovering
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
+  - type: Contraband
+    tier: Tier2
+
+- type: entity
+  parent: ClothingEyesGlassesCentCommBase
+  id: ClothingEyesGlassesCentCommPrescription
+  name: prescription CentComm glasses
+  description: A set of prescription glasses for CentComm personnel with a built-in visor.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
+  - type: VisionCorrection
+  - type: FlashImmunity
+    enabled: false
+    showInExamine: false

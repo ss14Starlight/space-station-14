@@ -65,3 +65,22 @@
     - Silicon
     - IPC
     - Hybrid
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionReplayToggleFactionIcons
+  name: Toggle Faction Icons
+  description: Show faction icons, such as nuclear operatives and revolutionaries, in this replay.
+  components:
+  - type: Action
+    icon: { sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi, state: syndicate }
+    clientExclusive: true
+  - type: InstantAction
+    event: !type:ReplayToggleFactionIconsActionEvent
+
+- type: entity
+  id: ReplayObserverFactionHud
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ShowSyndicateIcons
+  - type: ShowAntagIcons

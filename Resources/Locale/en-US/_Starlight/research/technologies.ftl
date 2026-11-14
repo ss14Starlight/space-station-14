@@ -46,3 +46,13 @@ research-technology-basic-xenobiology = Basic Xenobiology
 research-technology-combustion-turbines = Combustion turbines
 
 research-technology-radio-music-communication = Radio Music Communications
+research-technology-modular-hud-modules-civilian-t2 = Advanced Civilian HUD Modules
+
+# Modular HUD techs
+research-technology-modular-hud-frames = Modular HUD Frames
+research-technology-modular-hud-modules-industrial-t1 = Basic Industrial HUD Modules
+research-technology-modular-hud-modules-civilian-t1 = Basic Civilian HUD Modules
+research-technology-modular-hud-modules-industrial-t2 = Advanced Industrial HUD Modules
+research-technology-modular-hud-modules-arsenal-t1 = Security HUD Modules
+research-technology-modular-hud-modules-arsenal-t2 = Advanced Security HUD Modules
+research-technology-modular-hud-modules-medical-t2 = Medical HUD Modules

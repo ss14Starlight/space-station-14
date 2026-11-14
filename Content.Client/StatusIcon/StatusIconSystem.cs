@@ -101,6 +101,9 @@ public sealed partial class StatusIconSystem : SharedStatusIconSystem
             return true;
 
         #region Starlight
+        if (ReplayFactionIconVisible(viewer, data) is { } replayVisible)
+            return replayVisible;
+
         // For Admin ghosts, client settings decide if these icons are shown.
         if (HasComp<AdminGhostHudComponent>(viewer))
         {

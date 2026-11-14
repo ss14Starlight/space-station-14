@@ -1,4 +1,10 @@
 - type: sourcePort
+  id: ToggleableDeviceStatusInverted
+  name: signal-port-name-toggleable-device-status-inverted
+  description: signal-port-description-toggleable-device-status-inverted
+  defaultLinks: [ ]
+
+- type: sourcePort
   id: BodyScannerSender
   name: signal-port-name-body-scanner-sender
   description: signal-port-description-body-scanner-sender
@@ -82,6 +88,12 @@
   name: signal-port-name-combustion-turbine-console-sender
   description: signal-port-description-combustion-turbine-console-sender
   defaultLinks: [ CombustionTurbineConsoleReceiver ]
+
+- type: sourcePort
+  id: RemoteControl
+  name: signal-port-name-remote-control
+  description: signal-port-description-remote-control
+  defaultLinks: [ RemoteControlControllable ]
 
 - type: sourcePort
   id: AirlockCyclerSideA

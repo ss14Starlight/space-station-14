@@ -37630,19 +37630,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -1.5,8.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 5860
     components:
     - type: Transform
       parent: 2
       pos: 8.5,30.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 5861
     components:
     - type: Transform
@@ -37656,10 +37648,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 11.5,-45.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 5863
     components:
     - type: Transform
@@ -39339,19 +39327,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -6.5,17.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 6106
     components:
     - type: Transform
       parent: 2
       pos: -5.5,17.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: DeskBell
   entities:
   - uid: 6107
@@ -70710,10 +70690,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -13.5,13.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: LockerWardenFilled
   entities:
   - uid: 10614

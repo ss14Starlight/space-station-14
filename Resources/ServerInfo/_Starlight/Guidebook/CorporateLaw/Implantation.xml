@@ -1,19 +1,56 @@
 <Document>
+# Compulsory Implantation
+While involuntary implantation is illegal in most cases, it can be authorized in a select few cases. Such authorization requires the filling of a form detailing the legal justification for said procedure, and must have the signatures and stamps (if applicable) of both the ordering authorities and the medical professional who will be performing the procedure. The two [italic]can[/italic] be the same person.
 
-  ## Implantation
-  Any prisoner in custody can be subjected to implantation or implant removal procedures, so long as it's within reason Check [textlink="Metashield" link="Metashield"]. The process of adding an implant should not prolong the detainees sentence, meaning you can not hold them longer to administer the implant, unless stated otherwise. A former inmate can be requested to undergo implantation at a later point in time if they fit the circumstances during their confinement, they must comply. The following have been listed out with special circumstances, anything not in this list can still be applied, given proper legal context. A prisoner can still receive implantation procedures without meeting the circumstances if they give their clear permission.
+All such procedures must be performed by a medical professional, either a member of [lightblue]Medical[/lightblue], or the [red]Brigmedic[/red]. If the individual in question is unfit for implantation, either due to health risks or other complications, then the medical professional is obligated to refuse performing the procedure.
 
-  [color=#a4885c]Illegal Implants:[/color] Applied without proper authorization, these implants may justify extensions if removal is required.
+## Removal of Illegal Implants
 
-  [color=#a4885c]Tracking Implants:[/color] Trackers can be applied to any suspect that has been convicted of a violent crime (the red linked crimes).
-  - If voluntary or deemed necessary Command Staff should be given Tracking Implants.
-  - If voluntary and approved by Warden or Head of Security, normal members of the crew may also be granted Tracking Implants.
+[italic]Requires authorization by: [bold][color=#ff4242]Warden[/color][/bold] or [bold][color=#ff4242]Head of Security[/color][/bold][/italic]
 
-  [color=#a4885c]Mind Shields:[/color] Shields can be administered to any inmate who has been clearly mind controlled, lost control of themselves, or a suspect charged with unlawful control. Unlike standard implantation you may hold a prisoner until you finish issuing Mind Shields, so long as it's done in a timely fashion.
-  - If a suspect refuses to cooperate or the implant fails to function they can be charged with Refusal of Mental Shielding.
-  - All promoted members of Security, Command, and Salvage must undergo Mind Shielding before they are formally promoted and granted accesses. Anyone given ID access to secure areas, such as the Bridge, must also undergo Mind Shielding.
+Unauthorized implants of a contraband category of 3 or above can be removed and confiscated. Security is not obligated to replace missing limbs.
 
-  A suspect can be forced to receive implant removal if there is strong, reasonable proof that they have been implanted, such as an officer seeing them use one or identifying information is found on a discarded injector. Unlike the implantation procedure, a prisoner can have their sentence entirely delayed or extended until they comply with the procedure with authorization from the Captain, Head of Security, Magistrate, or Warden. Akin to implanting, if an inmate gives their clear permission, implant removal can proceed without proof.
+This procedure requires the individual to already be sentenced and in the brig. Removal of the implant counts as brig time, but is allowed to exceed their allotted sentence if needed.
 
-  During a confirmed Revolution, the Head of Security or Warden are permitted to authorize execution of an individual if a Mind Shielding fails or is refused. No other officers are granted this authorization. Execution of those charged with Refusal of Mental Shielding outside of a confirmed Revolution must be authorized by the Captain or Central Command on a case by case basis every time it happens.
+## Compulsory Mindshielding
+
+Compulsory mindshielding can be done for two reasons:
+
+### Removal of Mind Control
+
+[italic]Requires authorization by: [bold][color=#57b8f0]Psychologist[/color][/bold] OR [bold][color=#57b8f0]Chief Medical Officer[/color][/bold], and the [bold][color=#ff4242]Head of Security[/color][/bold][/italic]
+
+Persons believed to be under the effects of involuntary mind-control may be subjected to compulsory mindshielding to undo said mind-control. This requires a psychological evaluation to be performed on the individual, unless an Induced Mutiny is known to be afoot.
+
+If the mind-shielding results in short-term memory loss, this is confirmation of [textlink="Induced Mutiny" link=InducedMutiny].
+
+### Testing Purposes
+
+[italic]Requires authorization by: [bold][color=#ff4242]Head of Security[/color][/bold] and the [bold][color=#fcdf03]Captain[/color][/bold] OR [bold][color=#2253b5]Magistrate[/color][/bold][/italic]
+
+Persons believed to be guilty of Violations of Bodily Autonomy can be subjected to compulsory mindshielding to ascertain whether or not a nefarious organization sent them. This requires evidence of said violations of bodily autonomy, such as large stashes of suspect equipment, or at least two eye-witnesses having witnessed an incident involving the alleged implant.
+
+If the mind-shielding fails, this is confirmation of [textlink="Induced Mutiny" link=InducedMutiny], and the subject is themselves automatically assumed guilty of Violations of Bodily Autonomy, as well as Refusal of Mental Shielding. The recommended sentence for this, is death.
+
+## Compulsory Tracking
+
+[italic]Requires authorization by: [bold][color=#57b8f0]Psychologist[/color][/bold] OR [bold][color=#57b8f0]Chief Medical Officer[/color][/bold], and the [bold][color=#ff4242]Head of Security[/color][/bold] or [bold][color=#ff4242]Warden[/color][/bold][/italic]
+
+Persons believed to be dangerous to themselves, whether via patterns of self-harm, overly reckless behavior, or similar, can be subjected to compulsory tracking implantation for their own safety.
+
+Performance of this procedure requires a psychological evaluation to have been performed on the individual, firmly establishing the need for said procedure.
+
+## Explorative Surgery
+
+[italic]Requires authorization by: [bold][color=#ff4242]Head of Security[/color][/bold] and either a [bold][color=#57b8f0]Surgeon[/color][/bold] or the [bold][color=#57b8f0]Chief Medical Officer[/color][/bold][/italic]
+
+Persons believed to be hiding illegal implants outside of immediate view can be subjected to explorative surgery, either via traditional surgery, or via an implant removal device.
+
+Such procedures are only to be done if:
+
+- At least two eye-witnesses witnessed the usage of such an implant.
+- An implantation device, or other relevant evidence, is found with DNA or fingerprints from the accused.
+- The accused has admitted themselves to the existence of their implants.
+
+The procedure is only to proceed to the extent necessary to remove and/or prove the existence of whatever implant there is evidence of. Further exploration will require further evidence.
 </Document>

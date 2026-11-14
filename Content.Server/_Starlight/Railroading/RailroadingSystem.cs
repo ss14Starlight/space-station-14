@@ -85,7 +85,12 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
             collect.Objectives[i] = objective;
         }
 
-        args.Groups[Loc.GetString("cards")] = collect.Objectives;
+        var group = Loc.GetString("cards");
+
+        if (args.Groups.TryGetValue(group, out var existing))
+            existing.AddRange(collect.Objectives);
+        else
+            args.Groups[group] = collect.Objectives;
     }
 
     private void OnExamined(Entity<RailroadableComponent> ent, ref ExaminedEvent args)

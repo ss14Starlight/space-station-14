@@ -21,9 +21,12 @@ public sealed partial class ToggleableDeviceSignalingSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnComponentInit(Entity<ToggleableDeviceSignalingComponent> entity, ref ComponentInit args)
     {
-        _signalSystem.EnsureSinkPorts(entity, entity.Comp.OnPort, entity.Comp.OffPort,
-            entity.Comp.TogglePort, entity.Comp.StatePort);
-        _signalSystem.EnsureSourcePorts(entity, entity.Comp.StatusPort);
+        _signalSystem.EnsureSinkPorts(entity,
+            entity.Comp.OnPort, entity.Comp.OffPort,
+            entity.Comp.TogglePort,
+            entity.Comp.StatePort, entity.Comp.StateInvertedPort);
+        _signalSystem.EnsureSourcePorts(entity,
+            entity.Comp.StatusPort, entity.Comp.StatusInvertedPort);
     }
 
     /// <summary>
@@ -31,15 +34,22 @@ public sealed partial class ToggleableDeviceSignalingSystem : EntitySystem
     /// </summary>
     [SubscribeLocalEvent]
     private void OnToggleableDeviceInit(Entity<ToggleableDeviceSignalingComponent> entity,
-        ref ToggleableDeviceInitEvent args) =>
+        ref ToggleableDeviceInitEvent args)
+    {
         _signalSystem.SendSignal(entity, entity.Comp.StatusPort, args.State);
+        _signalSystem.SendSignal(entity, entity.Comp.StatusInvertedPort, !args.State);
+    }
 
     /// <summary>
     /// When the state changes, update the outputted State signal.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnStateChanged(Entity<ToggleableDeviceSignalingComponent> entity, ref ToggleableDeviceStateChangedEvent ev)
-        => _signalSystem.SendSignal(entity, entity.Comp.StatusPort, ev.State);
+    private void OnStateChanged(Entity<ToggleableDeviceSignalingComponent> entity,
+        ref ToggleableDeviceStateChangedEvent ev)
+    {
+        _signalSystem.SendSignal(entity, entity.Comp.StatusPort, ev.State);
+        _signalSystem.SendSignal(entity, entity.Comp.StatusInvertedPort, !ev.State);
+    }
 
     /// <summary>
     /// On signal receive, update the toggleable device.
@@ -62,5 +72,7 @@ public sealed partial class ToggleableDeviceSignalingSystem : EntitySystem
             _toggleableDevice.Toggle((entity, device));
         else if (args.Port == entity.Comp.StatePort)
             _toggleableDevice.SetState((entity, device), high);
+        else if (args.Port == entity.Comp.StateInvertedPort)
+            _toggleableDevice.SetState((entity, device), !high);
     }
 }

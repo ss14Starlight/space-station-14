@@ -1,0 +1,11 @@
+- type: loadout
+  id: ModularHudGlasses
+  groupBy: modular eyewear
+  equipment:
+    eyes: ClothingEyesModularHudGlasses
+
+- type: loadout
+  id: ModularHudJamjars
+  groupBy: modular eyewear
+  equipment:
+    eyes: ClothingEyesModularHudJamjars

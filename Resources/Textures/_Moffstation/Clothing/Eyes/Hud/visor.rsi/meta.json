@@ -1,0 +1,144 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/5a73e8f825ff279e82949b9329783a9e3070e2da, edited by SlamBamActionman, equipped-EYES-arachnid and equipped-EYES-moth modified from equipped-EYES by HTMLSystem. equipped-eyes-dog from equipped-EYES by Sparlight (GitHub). Sliced into independently colorable layers by Centronias (Github)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "colorful-icon"
+        },
+        {
+            "name": "equipped-EYES-accent-arachnid",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-accent-dog",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-accent-moth",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-accent",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-frame-arachnid",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-frame-dog",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-frame-moth",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-frame",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-accent-minor-arachnid",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-accent-minor-dog",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-accent-minor-moth",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-accent-minor",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-arachnid",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-dog",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-moth",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-specular-arachnid",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-specular-dog",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-specular-moth",
+            "directions": 4
+        },
+        {
+            "name": "equipped-EYES-specular",
+            "directions": 4
+        },
+        {
+            "name": "icon-accent"
+        },
+        {
+            "name": "icon-frame"
+        },
+        {
+            "name": "icon-lens-accent-major"
+        },
+        {
+            "name": "icon-lens-accent-minor"
+        },
+        {
+            "name": "icon-lens"
+        },
+        {
+            "name": "icon-specular"
+        },
+        {
+            "name": "inhand-left-frame",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left-lens-accent-minor",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left-lens",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left-specular",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-frame",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-lens-accent-minor",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-lens",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-specular",
+            "directions": 4
+        }
+    ]
+}
