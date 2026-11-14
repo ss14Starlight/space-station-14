@@ -9,3 +9,10 @@
   id: MedTakImplants
   recipes:
     - Deimplanter
+
+- type: latheRecipePack
+  id: MedTakKitsStatic
+  recipes:
+    - MedkitCombatMedTak
+    - BottleCaseMedTak
+    - SurgicalKitMedTak
