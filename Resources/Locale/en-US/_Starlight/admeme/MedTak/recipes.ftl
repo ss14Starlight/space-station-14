@@ -1,3 +1,3 @@
-lathe-recipe-MedkitCombatMedTak-name = medtak combat kit (empty)
-lathe-recipe-BottleCaseMedTak-name = medtak chemical case (empty)
-lathe-recipe-SurgicalKitMedTak-name = medtak advanced surgical kit (empty)
+lathe-recipe-medkitcombatmedtak-name = MedTak combat kit (empty)
+lathe-recipe-bottlecasemedtak-name = MedTak chemical case (empty)
+lathe-recipe-surgicalkitmedtak-name = MedTak advanced surgical kit (empty)

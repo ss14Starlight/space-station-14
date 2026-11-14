@@ -1,7 +1,7 @@
 - type: latheRecipe
   id: MedkitCombatMedTak
   result: MedkitCombatMedTak
-  name: lathe-recipe-MedkitCombatMedTak-name
+  name: lathe-recipe-medkitcombatmedtak-name
   completetime: 2
   materials:
     Plastic: 300
@@ -10,7 +10,7 @@
 - type: latheRecipe
   id: BottleCaseMedTak
   result: BottleCaseMedTak
-  name: lathe-recipe-BottleCaseMedTak-name
+  name: lathe-recipe-bottlecasemedtak-name
   completetime: 2
   materials:
     Plastic: 300
@@ -19,7 +19,7 @@
 - type: latheRecipe
   id: SurgicalKitMedTak
   result: SurgicalKitMedTak
-  name: lathe-recipe-SurgicalKitMedTak-name
+  name: lathe-recipe-surgicalkitmedtak-name
   completetime: 2
   materials:
     Plastic: 300
