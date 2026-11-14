@@ -151,6 +151,81 @@ achievement-blood-herald-description = Complete at least 10 Difficulty as a Bloo
 achievement-theory-of-objectivity-name = Theory of Objectivity
 achievement-theory-of-objectivity-description = Obtain Elite Contractor, Phantom Thief, First Kindred, Enemy Unknown, and Herald of Blood.
 
+achievement-really-with-that-name = Really? With that?
+achievement-really-with-that-description = Attempt to suicide with a non-lethal.
+
+achievement-failed-phoenix-name = Failed Phoenix
+achievement-failed-phoenix-description = You failed to rise from the ashes.
+
+achievement-puny-god-name = Puny God
+achievement-puny-god-description = You killed a god, their riches are now yours.
+
+achievement-da-roolz-name = Thats against da roolz
+achievement-da-roolz-description = Teach an admin mouse a lesson
+
+achievement-gorilla-punch-name = Gorilla punch
+achievement-gorilla-punch-description = OOK! OOK!
+
+achievement-osha-name = OSHA Certified
+achievement-osha-description = You failed to take proper safety precautions
+
+achievement-fishos-name = Fish OS
+achievement-fishos-description = go a little crazier than usual.
+
+achievement-lizard-plushie-army-name = The final warriors of the final war
+achievement-lizard-plushie-army-description = Summon the warriors of armawehddon
+
+achievement-defib-mouse-name = Every life matters
+achievement-defib-mouse-description = You know they are pests right?
+
+achievement-bird-medic-name = Bird medic
+achievement-bird-medic-description = Ah, right, you forgot about the other two bloodloss chemicals
+
+achievement-sci-exploded-name = Science is messy
+achievement-sci-exploded-description = What did that say?
+
+achievement-hamster-fax-name = There is no Hamster
+achievement-hamster-fax-description = What did you think would happen?
+
+achievement-future-refused-name = But the future refused to change.
+achievement-future-refused-description = I'll be back.
+
+achievement-aaahhh-name = AAAAH!
+achievement-aaahhh-description = AHHHH!
+
+achievement-master-bartender-name = Master bartender
+achievement-master-bartender-description = A badge of honor to an accomplished bartender
+
+achievement-weh-name = Weh!
+achievement-weh-description = Weh!
+
+achievement-spicy-rock-name = Spicy rocks
+achievement-spicy-rock-description = Enough calories for the rest of your life
+
+achievement-personal-liberties-name = Personal Liberties
+achievement-personal-liberties-description = Just holding on to it for "safekeeping"
+
+achievement-imperfect-protection-name = Imperfect Protection
+achievement-imperfect-protection-description = 99% resistance is less than 100%
+
+achievement-vox-moment-name = Vox Moment
+achievement-vox-moment-description = SKREEEEE!!!!
+
+achievement-changeling-defib-name = Yeah sure that works too
+achievement-changeling-defib-description = Didn't want to enter stasis anyway
+
+achievement-uplink-balloon-name = A trip to syndieland
+achievement-uplink-balloon-description = And all I got was this stupid balloon
+
+achievement-no-room-hell-name = No more room in hell
+achievement-no-room-hell-description = As a II you managed to convert most of the station into the walking dead!
+
+achievement-broken-media-name = Broken Social Media
+achievement-broken-media-description = You surgically removed a nexus implant you monster!
+
+achievement-breaking-good-name = Breaking Good
+achievement-breaking-good-description = We have to cook
+
 achievement-window-title = Track your milestones, hidden trophies, and long-term progress
 achievement-window-categories = Categories
 achievement-window-category-all = All Achievements

@@ -1,5 +1,7 @@
+using Content.Server._Starlight.Achievement;
 using Content.Server.Actions;
 using Content.Server.Chat.Systems;
+using Content.Shared._Starlight.Achievement;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Humanoid;
@@ -23,7 +25,6 @@ public sealed partial class VocalSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private ActionsSystem _actions = default!;
-    [Dependency] private IGameTiming _gameTiming = default!; //Starlight-edit
 
     public override void Initialize()
     {
@@ -54,18 +55,6 @@ public sealed partial class VocalSystem : EntitySystem
 
         Dirty(target, targetComp);
     }
-
-    #region Starlight
-
-    public void SetSounds(Entity<VocalComponent?> uid, Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? sounds)
-    {
-        if (!Resolve(uid, ref uid.Comp)) return;
-        uid.Comp.Sounds = sounds;
-        uid.Comp.EmoteSounds = null;
-        LoadSounds(uid, uid.Comp);
-        Dirty(uid, uid.Comp);
-    }
-    #endregion
 
     private void OnMapInit(EntityUid uid, VocalComponent component, MapInitEvent args)
     {
@@ -127,7 +116,7 @@ public sealed partial class VocalSystem : EntitySystem
     {
         if (args.Handled)
             return;
-
+        _achievement.AddProgressAndCheck(uid, AchievementProgressKeys.ScreamCounter); // Starlight-edit
         _chat.TryEmoteWithChat(uid, component.ScreamId);
         args.Handled = true;
     }

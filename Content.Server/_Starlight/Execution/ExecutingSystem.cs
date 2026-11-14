@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Achievement;
 using Content.Shared._Starlight.Execution;
 using Content.Shared.Chat;
 using Content.Shared.Clumsy;
@@ -40,6 +41,7 @@ public sealed partial class ExecutionSystem : EntitySystem
     [Dependency] private SharedSuicideSystem _suicide = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private AchievementSystem _achievement = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -242,6 +244,10 @@ public sealed partial class ExecutionSystem : EntitySystem
             }
         }
 
+        if (damage.GetTotal() <= 10 && attacker == victim)
+        {
+            _achievement.QueueUnlockAchievement(victim, "really_with_that");
+        }
         // Gun successfully fired, deal damage
         _damageableSystem.TryChangeDamage(victim, damage * ExecutionComponent.DamageMultiplier, true);
         _audio.PlayEntity(component.SoundGunshot, Filter.Pvs(weapon), weapon, false, AudioParams.Default);
