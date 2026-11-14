@@ -41,7 +41,11 @@
                 <Label Text="{Loc 'ui-options-atmosphere-label'}" StyleClasses="LabelKeyText" Margin="0 0 0 4" />
                 <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
                     <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
+                        <sui:OptionSlider Name="ScreenBrightnessSlider" Title="{Loc 'ui-options-screen-brightness'}" Description="{Loc 'ui-options-screen-brightness-desc'}" />
+                        <sui:OptionSlider Name="LightBoostSlider" Title="{Loc 'ui-options-light-boost'}" Description="{Loc 'ui-options-light-boost-desc'}" />
                         <CheckBox Name="LightTonemapCheckBox" Text="{Loc 'ui-options-light-tonemap'}" ToolTip="{Loc 'ui-options-light-tonemap-tooltip'}" />
+                        <CheckBox Name="GlobalIlluminationCheckBox" Text="{Loc 'ui-options-gi'}" ToolTip="{Loc 'ui-options-gi-tooltip'}" />
+                        <sui:OptionSlider Name="GlobalIlluminationRaysSlider" Title="{Loc 'ui-options-gi-rays'}" Description="{Loc 'ui-options-gi-rays-desc'}" Margin="16 0 0 0" />
                         <CheckBox Name="NightVisionCheckBox" Text="{Loc 'ui-options-night-vision'}" ToolTip="{Loc 'ui-options-night-vision-tooltip'}" />
                         <sui:OptionSlider Name="NightVisionStrengthSlider" Title="{Loc 'ui-options-night-vision-strength'}" Margin="16 0 0 0" />
                         <CheckBox Name="VignetteCheckBox" Text="{Loc 'ui-options-vignette'}" ToolTip="{Loc 'ui-options-vignette-tooltip'}" />

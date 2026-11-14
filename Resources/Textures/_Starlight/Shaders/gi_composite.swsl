@@ -1,0 +1,12 @@
+light_mode unshaded;
+blend_mode add;
+
+// Adds the blurred bounce light onto the engine's light map.
+
+uniform highp vec2 targetSize;
+uniform highp float strength;
+
+void fragment()
+{
+    COLOR = vec4(zTextureSpec(TEXTURE, FRAGCOORD.xy / targetSize).rgb * strength, 1.0);
+}

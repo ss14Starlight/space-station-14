@@ -17,6 +17,9 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
 
     private const float BloomScale = 0.5f;
 
+    public const float MinBrightness = 0.8f;
+    public const float MaxBrightness = 1.3f;
+
     [Dependency] private IClyde _clyde = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IEntityManager _entMan = default!;
@@ -48,7 +51,8 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         if (_player.LocalEntity == null || args.Viewport.Eye == null || args.Viewport.Eye != _eye.CurrentEye)
             return false;
 
-        return _cfg.GetCVar(StarlightCCVars.NightVision)
+        return MathF.Abs(Brightness() - 1f) > 0.001f
+            || _cfg.GetCVar(StarlightCCVars.NightVision)
             || _cfg.GetCVar(StarlightCCVars.Bloom)
             || _cfg.GetCVar(StarlightCCVars.Vignette)
             || _cfg.GetCVar(StarlightCCVars.FilmGrain);
@@ -79,6 +83,7 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
         _shaderInst.SetParameter("nightVision", Strength(StarlightCCVars.NightVision, StarlightCCVars.NightVisionStrength));
         _shaderInst.SetParameter("bloom", bloomTexture != null ? bloom : 0f);
         _shaderInst.SetParameter("vignette", Strength(StarlightCCVars.Vignette, StarlightCCVars.VignetteStrength));
+        _shaderInst.SetParameter("brightness", Brightness());
         _shaderInst.SetParameter("grain", Strength(StarlightCCVars.FilmGrain, StarlightCCVars.FilmGrainStrength));
 
         var handle = args.WorldHandle;
@@ -133,6 +138,9 @@ public sealed partial class ScreenPostProcessOverlay : Robust.Client.Graphics.Ov
 
         base.DisposeBehavior();
     }
+
+    private float Brightness()
+        => Math.Clamp(_cfg.GetCVar(StarlightCCVars.ScreenBrightness), MinBrightness, MaxBrightness);
 
     private float Strength(CVarDef<bool> enabled, CVarDef<float> strength)
         => _cfg.GetCVar(enabled) ? Math.Clamp(_cfg.GetCVar(strength), 0f, 1f) : 0f;
