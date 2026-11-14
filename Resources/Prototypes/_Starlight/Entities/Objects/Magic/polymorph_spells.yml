@@ -2,10 +2,10 @@
   id: ActionShadowJaunt
   parent: BaseActionPolymorph
   name: Shadow jaunt
-  description: Become a living shadow that can pass through walls! (25 seconds cooldown).
+  description: Become a living shadow that can pass through walls! (40 seconds cooldown).
   components:
   - type: Action
-    useDelay: 25
+    useDelay: 40
     icon:
       sprite: _Starlight/Objects/Magic/magicactions.rsi
       state: shadowjaunt

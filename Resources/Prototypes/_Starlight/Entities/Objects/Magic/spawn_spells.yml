@@ -80,7 +80,7 @@
         state: cursedskullicon
   - type: TargetAction
     range: 10
-    checkCanAccess: false
+    checkCanAccess: true
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:

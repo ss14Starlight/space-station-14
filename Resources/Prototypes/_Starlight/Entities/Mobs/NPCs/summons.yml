@@ -166,3 +166,5 @@
     - type: DeleteOnTrigger
       keysIn:
       - trigger
+    - type: TimedDespawn
+      lifetime: 30
