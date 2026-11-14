@@ -1,0 +1,26 @@
+- type: latheRecipe
+  id: MedkitCombatMedTak
+  result: MedkitCombatMedTak
+  name: lathe-recipe-MedkitCombatMedTak-name
+  completetime: 2
+  materials:
+    Plastic: 300
+    Steel: 100
+
+- type: latheRecipe
+  id: BottleCaseMedTak
+  result: BottleCaseMedTak
+  name: lathe-recipe-BottleCaseMedTak-name
+  completetime: 2
+  materials:
+    Plastic: 250
+    Steel: 100
+
+- type: latheRecipe
+  id: SurgicalKitMedTak
+  result: SurgicalKitMedTak
+  name: lathe-recipe-SurgicalKitMedTak-name
+  completetime: 2
+  materials:
+    Plastic: 200
+    Steel: 100

@@ -12,7 +12,7 @@
         - id: BodyBagMedTakFolded
         - id: MedTakHoverBedSpawnFolded
         - id: MagazineBoxPistol40SP
-        - id: SurgicalKitMedTak
+        - id: SurgicalKitMedTakFilled
         - id: PowerCellHigh
         - id: DrinkMREFlask
         - id: FoodSnackNutribrick
