@@ -18,6 +18,7 @@
         - id: FoodSnackNutribrick
         - id: MedTakImplanterMindShield
         - id: MedTakImplanterTrackingTeam
+        - id: MedtakATM
 
 - type: entity
   id: ClothingBackpackMedTakFilledBasic
@@ -114,3 +115,4 @@
         - id: DoubleEmergencyOxygenTankFilled
         - id: ClothingMaskGasSecurity
         - id: DoorRemoteMedTak
+        - id: MedtakATM

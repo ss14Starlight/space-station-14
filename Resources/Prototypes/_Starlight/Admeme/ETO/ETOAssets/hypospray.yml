@@ -70,6 +70,8 @@
         - ReagentId: Omnizine
           Quantity: 10
         - ReagentId: Tricordrazine
-          Quantity: 15
+          Quantity: 8
         - ReagentId: TranexamicAcid
           Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 7

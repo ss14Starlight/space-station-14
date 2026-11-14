@@ -543,8 +543,9 @@
   category: LanguageTraits
   cost: 2
   effects:
-    - !type:SpawnItemInHandEffect
+    - !type:SpawnItemAsImplantEffect
       item: BrainImplantNexus
+      slot: brain_implant
   requirements:
     - !type:TraitsRequirement
       traits:
@@ -555,4 +556,5 @@
         - Resomi
         - NeoAvali
         - NeoResomi
+        - Experiment
       inverted: true

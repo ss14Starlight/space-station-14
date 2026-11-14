@@ -1,0 +1,4 @@
+- type: entity
+  parent: StatusEffectSlowdown
+  id: FireBreathSlowdownStatusEffect
+  name: fire breath slowdown

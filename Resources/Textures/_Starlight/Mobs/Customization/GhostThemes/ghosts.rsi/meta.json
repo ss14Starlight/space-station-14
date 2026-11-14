@@ -145,6 +145,11 @@
       "copyright": "A custom item by AftrLite(Github), Modified by CrazyPhantom779(Github) to one layer",
       "directions": 4,
       "delays": [[0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15], [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15], [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15], [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]]
+    },
+    {
+      "name": "ghost-architect",
+      "copyright": "By Cvlancer, based on the default ghost",
+      "directions": 4
     }
   ]
 }

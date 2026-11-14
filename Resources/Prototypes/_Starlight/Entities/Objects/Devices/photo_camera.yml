@@ -1,0 +1,178 @@
+- type: entity
+  parent: BaseItem
+  id: PhotoCamera
+  name: photo camera
+  description: Capture a precious moment, ruining it right after with the integrated flash.
+  components:
+  - type: SnapshotCapture
+    snapshot: SnapshotPhotograph
+    zoomLevels:
+    - 9,7
+    - 7,5
+    - 5,3
+    - 3,3
+    - 1,1
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/snapshot_camera.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  # Red light once the flash is out of charges.
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.FlashVisuals.Burnt:
+        base:
+          True: { state: icon-empty }
+          False: { state: icon }
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 0
+  # Optional inserted flash, on the end of the camera. Without it the camera takes dark photos.
+  - type: ContainerContainer
+    containers:
+      flash: !type:ContainerSlot {}
+  - type: ItemSlots
+    slots:
+      flash:
+        name: item-slot-component-slot-name-flash
+        whitelist:
+          components:
+          - Flash
+  - type: PointLight
+    enabled: false
+    radius: 8
+    energy: 1.2
+    color: "#ffffff"
+  # Only applied while looking through the viewfinder, like binoculars.
+  - type: EyeCursorOffset
+    maxOffset: 5
+    pvsIncrease: 0.5
+  - type: LimitedCharges
+    maxCharges: 4
+  - type: UseDelay
+    delay: 1
+  - type: StaticPrice
+    price: 100
+  - type: Clothing
+    slots:
+    - NECK
+    sprite: _Starlight/Objects/Devices/snapshot_camera.rsi
+
+- type: entity
+  parent: BasePaper
+  id: SnapshotPhotograph
+  name: photograph
+  description: A photograph of something someone thought worth remembering.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/photograph.rsi
+    layers:
+    - state: rainbow
+  - type: Item
+    # no inhand sprite yet so i steal the paper one.
+    sprite: Objects/Misc/bureaucracy.rsi
+  - type: ActivatableUI
+    key: enum.SnapshotViewUiKey.Key
+    requiresComplex: false
+  - type: Snapshot
+  - type: Paper
+  - type: FaxableObject
+  - type: Photograph
+  - type: UserInterface
+    interfaces:
+      enum.SnapshotViewUiKey.Key:
+        type: SnapshotViewBoundUserInterface
+
+- type: entity
+  parent: BasePaper
+  id: BlankPhotograph
+  name: blank photograph
+  description: A sealed blank photo film sheet. Feed it into a photo camera to take a picture.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/photograph.rsi
+    layers:
+    - state: black
+  - type: Item
+    sprite: Objects/Misc/bureaucracy.rsi
+  - type: BlankPhotograph
+
+- type: entity
+  id: BlankPhotographBox
+  parent: BoxCardboard
+  name: blank photograph box
+  description: A box of blank photo film sheets.
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    grid:
+    - 0,0,2,2
+    maxItemSize: Small
+    whitelist:
+      components:
+      - BlankPhotograph
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: BlankPhotograph
+          amount: 9
+
+- type: entity
+  parent: BoxFolderBaseEmpty
+  id: PhotographFolder
+  name: photography folder
+  description: A folder for documents and photos, has a photo of a sun setting behind a mountain.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/photography_folder.rsi
+      layers:
+        - state: icon
+        - state: icon
+          map: [ "folder-overlay-paper" ]
+          visible: false
+    - type: Item
+      sprite: _Starlight/Objects/Misc/photography_folder.rsi
+    - type: Storage
+      whitelist:
+        components:
+          - BlankPhotograph
+        tags:
+          - Document
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: BlankPhotograph
+              amount: 9
+
+- type: entity
+  id: PhotoCameraCrate
+  parent: CratePlastic
+  name: photo camera crate
+  description: A crate with four blank film boxes and two photo cameras.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BlankPhotographBox
+          amount: 4
+        - id: PhotoCamera
+          amount: 2
+
+- type: entity
+  id: EffectSnapshotFlash
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    radius: 8
+    energy: 1.2
+    color: "#ffffff"
+  - type: TimedDespawn
+    lifetime: 1

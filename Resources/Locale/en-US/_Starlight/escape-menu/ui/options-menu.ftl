@@ -160,6 +160,12 @@ ui-options-hud-theme-mpurp = M-Purp
 # Graphics
 ui-options-show-stains = Show clothing stains
 
+ui-options-footprint-visibility = Footprints:
+ui-options-footprint-visibility-all = All
+ui-options-footprint-visibility-half = Half
+ui-options-footprint-visibility-none = None
+ui-options-footprint-visibility-tooltip = Controls how many footprints and drag marks are shown.
+
 # Technically this is a more general Sprite Effects option, but right now it's literally only used for weather, so I'm just going to label it that for now
 ui-options-sprite-quality = Weather Quality:
 ui-options-sprite-quality-low = Low
@@ -207,3 +213,11 @@ ui-options-bloom = Bloom
 ui-options-bloom-tooltip = Screens, lamps and other glowing things bleed light around them, most of all in the dark. Costs some performance.
 ui-options-film-grain = Film grain
 ui-options-film-grain-tooltip = Draws a light film grain over the view.
+ui-options-night-vision-strength = Night vision strength
+ui-options-vignette-strength = Vignette strength
+ui-options-bloom-strength = Bloom strength
+ui-options-bloom-threshold = Bloom threshold
+ui-options-bloom-threshold-desc = How much brighter than its light a pixel has to be to glow. Lower makes more things glow.
+ui-options-bloom-radius = Bloom radius
+ui-options-bloom-radius-desc = How far the glow spreads.
+ui-options-film-grain-strength = Film grain strength

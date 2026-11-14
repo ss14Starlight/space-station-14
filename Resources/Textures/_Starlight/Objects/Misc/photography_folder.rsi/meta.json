@@ -1,0 +1,22 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Vincolan",
+
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Made by Vincolan",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+    "name": "folder-overlay-paper",
+    "copyright": "Made by Vincolan",
+    "license": "CC-BY-SA-3.0"
+    }
+  ]
+}

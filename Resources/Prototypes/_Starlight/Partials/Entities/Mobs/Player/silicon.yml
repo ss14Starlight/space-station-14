@@ -31,3 +31,12 @@
         acts: [ "Destruction" ]
   - type: DamageGate
     minDamageToDestruction: 900 # C4: 885/event; X4: 1032.5/event
+
+- type: !PartialOnly entity
+  id: AiHeld
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.SecureCommandTerminalUiKey.Key:
+        type: SecureCommandTerminalBui
+  - type: SecureCommandTerminalConsole

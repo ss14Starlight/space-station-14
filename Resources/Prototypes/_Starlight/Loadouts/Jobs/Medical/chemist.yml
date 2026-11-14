@@ -81,7 +81,6 @@
   - !type:GroupLoadoutEffect
     proto: SeniorChemist
 
-
 - type: loadout
   id: SeniorChemistSatchel
   equipment:
@@ -97,7 +96,6 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorChemist
-
 
 # Chem bag
 - type: loadout

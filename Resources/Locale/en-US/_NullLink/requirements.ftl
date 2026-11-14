@@ -23,6 +23,7 @@ roles-req-ticketsadministrator-roles = Tickets Administrator
 roles-req-first-writing-roles = First Writing Contest Winner
 roles-req-senior-developer = Senior Developer
 roles-req-developer = Developer
+roles-req-staff-mapper = Staff Mapper
 
 triesteport-main = TRIESTEPORT
 overall = overall

@@ -698,6 +698,8 @@ public abstract partial class SharedMechSystem : EntitySystem
     {
         if (!component.BreakOnEmag)
             return;
+        if (component.EquipmentWhitelist == null) // Starlight
+            return;
         args.Handled = true;
         component.EquipmentWhitelist = null;
         Dirty(uid, component);

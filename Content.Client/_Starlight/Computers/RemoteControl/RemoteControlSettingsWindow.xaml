@@ -1,0 +1,25 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      x:Class="Content.Client._Starlight.Computers.RemoteControl.RemoteControlSettingsWindow"
+                      Title="{Loc 'remote-control-settings-title'}"
+                      MinSize="360 200"
+                      SetSize="360 200">
+    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <Label Text="{Loc 'remote-control-settings-channel-label'}" VerticalAlignment="Center" />
+            <LineEdit Name="ChannelInput" HorizontalExpand="True" />
+        </BoxContainer>
+        <Label Name="StatusLabel" StyleClasses="LabelHeading" />
+        <Label Name="ErrorLabel" />
+        <BoxContainer Orientation="Horizontal" VerticalExpand="True" VerticalAlignment="Bottom" SeparationOverride="8">
+            <controls:SwitchButton Name="ControlButton"
+                                   OnStateText="{Loc 'remote-control-console-control-button-controlling'}"
+                                   OffStateText="{Loc 'remote-control-console-control-button-viewing'}"
+                                   HorizontalAlignment="Left" />
+            <Control HorizontalExpand="True" />
+            <Button Name="OpenScreenButton" Text="{Loc 'remote-control-settings-open-screen'}" />
+            <Button Name="ApplyButton" Text="{Loc 'remote-control-settings-apply'}" />
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

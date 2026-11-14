@@ -95,7 +95,7 @@ public sealed partial class StarlightCCVars
     /// How bright the bloom is, from 0 to 3. The blur spreads the glow thin, so values above 1 are useful.
     /// </summary>
     public static readonly CVarDef<float> BloomStrength =
-        CVarDef.Create("lighting.bloom_strength", 1.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("lighting.bloom_strength", 0.7f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// How much a pixel has to outshine its light before it glows, from 0 to 1.
