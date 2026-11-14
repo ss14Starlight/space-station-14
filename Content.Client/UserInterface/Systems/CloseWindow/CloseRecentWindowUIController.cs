@@ -41,7 +41,7 @@ public sealed partial class CloseRecentWindowUIController : UIController
         {
             var window = recentlyInteractedWindows[i];
             recentlyInteractedWindows.RemoveAt(i); // Should always be removed as either the reference is stale or we're closing it
-            if (PinWindowUIController.IsPinned(recentlyInteractedWindows[i])) continue; // Starlight
+            if (PinWindowUIController.IsPinned(window)) continue; // Starlight
             if (window.IsOpen)
             {
                 window.Close();
