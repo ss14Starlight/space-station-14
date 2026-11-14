@@ -1,0 +1,29 @@
+light_mode unshaded;
+blend_mode none;
+
+// Replaces the light map with a view of the global illumination passes. TEXTURE is the bounce light.
+// mode 1: distance field, mode 2: bounce light only.
+
+uniform sampler2D SDF_TEXTURE;
+uniform highp vec2 targetSize;
+uniform highp vec2 giSize;
+uniform highp float maxDistance;
+uniform highp float strength;
+uniform lowp int mode;
+
+void fragment()
+{
+    highp vec2 uv = FRAGCOORD.xy / targetSize;
+    // No early return: the body is inlined into main().
+    COLOR = vec4(zTextureSpec(TEXTURE, uv).rgb * strength, 1.0);
+
+    if (mode == 1)
+    {
+        highp vec2 gi = floor(uv * giSize) + 0.5;
+        highp vec4 seed = texture2D(SDF_TEXTURE, gi / giSize);
+        highp float d = seed.a < 0.5 ? maxDistance : distance(seed.xy, gi);
+        highp float t = clamp(d / maxDistance, 0.0, 1.0);
+        highp float bands = 0.85 + 0.15 * step(0.5, fract(d / 4.0));
+        COLOR = vec4(d < 0.5 ? vec3(1.0, 0.3, 0.2) : vec3(t * bands), 1.0);
+    }
+}

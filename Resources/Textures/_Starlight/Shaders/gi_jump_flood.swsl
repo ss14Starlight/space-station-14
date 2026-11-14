@@ -1,0 +1,39 @@
+light_mode unshaded;
+blend_mode none;
+
+// One jump flood pass: every pixel keeps the closest wall pixel it or its eight neighbours
+// stepSize pixels away know about. Run with halving steps, it ends with the nearest wall for every pixel.
+
+uniform highp vec2 targetSize;
+uniform highp float stepSize;
+
+void fragment()
+{
+    highp vec2 pos = FRAGCOORD.xy;
+    highp vec4 best = vec4(0.0);
+    highp float bestDist = 1000000000.0;
+
+    for (int y = -1; y <= 1; y++)
+    {
+        for (int x = -1; x <= 1; x++)
+        {
+            highp vec2 p = pos + vec2(float(x), float(y)) * stepSize;
+            if (p.x < 0.0 || p.y < 0.0 || p.x >= targetSize.x || p.y >= targetSize.y)
+                continue;
+
+            highp vec4 seed = texture2D(TEXTURE, p / targetSize);
+            if (seed.a < 0.5)
+                continue;
+
+            highp vec2 d = seed.xy - pos;
+            highp float dist = dot(d, d);
+            if (dist < bestDist)
+            {
+                bestDist = dist;
+                best = seed;
+            }
+        }
+    }
+
+    COLOR = best;
+}

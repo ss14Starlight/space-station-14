@@ -1,0 +1,8 @@
+light_mode unshaded;
+blend_mode none;
+
+// Plain copy by texture coordinates, used to move last frame's bounce light into this frame's view.
+void fragment()
+{
+    COLOR = zTextureSpec(TEXTURE, UV);
+}

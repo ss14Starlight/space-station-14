@@ -1,0 +1,98 @@
+light_mode unshaded;
+blend_mode none;
+
+// One bounce of light off walls. TEXTURE is the jump flood result (nearest wall pixel for every pixel).
+// Every floor pixel casts rays, sphere-traces them through the distance field and, where a ray hits a wall,
+// takes the light that wall pixel got from the engine's light map (lit faces carry it through wall bleed).
+
+uniform sampler2D LIGHT_TEXTURE;
+uniform highp vec2 targetSize;
+// Furthest a ray goes, in pixels of this target.
+uniform highp float maxDistance;
+uniform lowp int rays;
+// Last frame's result in this frame's pixels, alpha 0 where there is none.
+uniform sampler2D HISTORY_TEXTURE;
+// Share of the history a pixel keeps, 0 turns accumulation off.
+uniform highp float historyWeight;
+// Share of the bounce light next to a hit wall that the wall throws back.
+uniform highp float feedback;
+// Frame counter, turns the rays a little every frame.
+uniform highp float frame;
+
+const lowp int MAX_RAYS = 32;
+const lowp int MAX_STEPS = 32;
+const highp float TAU = 6.28318530718;
+
+// Interleaved gradient noise, a fixed rotation per pixel so neighbouring pixels sample between each other's rays.
+highp float ign(highp vec2 p)
+{
+    return fract(52.9829189 * fract(dot(p, vec2(0.06711056, 0.00583715))));
+}
+
+// Distance to the nearest wall pixel centre, maxDistance when none is in reach.
+highp float wallDistance(highp vec2 p, out highp vec2 wall)
+{
+    // Snap to the pixel centre: blending two seeds would point somewhere in between.
+    highp vec4 seed = texture2D(TEXTURE, (floor(p) + 0.5) / targetSize);
+    wall = seed.xy;
+    if (seed.a < 0.5)
+        return maxDistance;
+
+    return distance(seed.xy, p);
+}
+
+void fragment()
+{
+    highp vec2 origin = FRAGCOORD.xy;
+    highp vec2 wall;
+    highp vec3 sum = vec3(0.0);
+    highp float count = float(rays);
+
+    // Walls get their light from the engine's wall bleed. No early return: the body is inlined into main().
+    if (wallDistance(origin, wall) >= 0.5)
+    {
+        // Golden ratio steps cover the circle evenly over consecutive frames.
+        highp float jitter = fract(ign(origin) + frame * 0.61803398875);
+
+        for (int i = 0; i < MAX_RAYS; i++)
+        {
+            if (i >= rays)
+                break;
+
+            highp float angle = (float(i) + jitter) / count * TAU;
+            highp vec2 dir = vec2(cos(angle), sin(angle));
+            highp float travelled = 0.0;
+
+            for (int j = 0; j < MAX_STEPS; j++)
+            {
+                highp vec2 p = origin + dir * travelled;
+                if (p.x < 0.0 || p.y < 0.0 || p.x >= targetSize.x || p.y >= targetSize.y)
+                    break;
+
+                highp float d = wallDistance(p, wall);
+                if (d < 1.0)
+                {
+                    highp vec3 bounced = texture2D(LIGHT_TEXTURE, wall / targetSize).rgb;
+                    if (feedback > 0.0)
+                    {
+                        // The floor in front of the wall, where last frame's bounce light lies.
+                        highp vec2 front = clamp(p - dir * 1.5, vec2(0.5), targetSize - 0.5);
+                        highp vec4 previous = texture2D(HISTORY_TEXTURE, front / targetSize);
+                        bounced += previous.rgb * previous.a * feedback;
+                    }
+
+                    sum += bounced;
+                    break;
+                }
+
+                travelled += max(d - 0.5, 1.0);
+                if (travelled > maxDistance)
+                    break;
+            }
+        }
+    }
+
+    highp vec3 traced = sum / count;
+    highp vec4 history = texture2D(HISTORY_TEXTURE, origin / targetSize);
+    COLOR = vec4(mix(traced, history.rgb, historyWeight * history.a), 1.0);
+}

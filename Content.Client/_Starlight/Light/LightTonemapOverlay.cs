@@ -22,6 +22,10 @@ namespace Content.Client._Starlight.Light;
 /// <i>maximum</i> (<see cref="StarlightCCVars.LightTonemapMax"/>).
 /// </para>
 /// <para>
+/// The client's <see cref="StarlightCCVars.LightBoost"/> is folded into the exposure, so the overlay also runs with
+/// the roll-off switched off while the boost is above 1.
+/// </para>
+/// <para>
 /// It runs in <see cref="OverlaySpace.WorldSpaceBelowWorld"/>, after the light map is generated but before the world is drawn.
 /// Since a shader cannot read and write the same texture, the light map is copied to a float texture before processing.
 /// </para>
@@ -43,6 +47,14 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
     public const int ContentZIndex = -150;
 
     private const float MinRollOff = 0.01f;
+
+    public const float MinLightBoost = 1f;
+    public const float MaxLightBoost = 1.3f;
+
+    /// <summary>
+    /// Knee used while the roll-off is switched off and only the light boost is applied: nothing gets this bright.
+    /// </summary>
+    private const float NoRollOff = 1000f;
 
     private readonly OverlayResourceCache<CachedResources> _resources = new();
     private readonly ShaderInstance _copyShaderInst;
@@ -107,9 +119,20 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
 
         _copyShaderInst.SetParameter("targetSize", targetSize);
         _tonemapShaderInst.SetParameter("targetSize", targetSize);
-        _tonemapShaderInst.SetParameter("exposure", _cfg.GetCVar(StarlightCCVars.LightTonemapExposure));
-        var maxLight = MathF.Max(_cfg.GetCVar(StarlightCCVars.LightTonemapMax), MinRollOff);
-        var knee = Math.Clamp(_cfg.GetCVar(StarlightCCVars.LightTonemapKnee), 0f, maxLight - MinRollOff);
+        var boost = Math.Clamp(_cfg.GetCVar(StarlightCCVars.LightBoost), MinLightBoost, MaxLightBoost);
+        _tonemapShaderInst.SetParameter("exposure", _cfg.GetCVar(StarlightCCVars.LightTonemapExposure) * boost);
+        float maxLight, knee;
+        if (_cfg.GetCVar(StarlightCCVars.LightTonemap))
+        {
+            maxLight = MathF.Max(_cfg.GetCVar(StarlightCCVars.LightTonemapMax), MinRollOff);
+            knee = Math.Clamp(_cfg.GetCVar(StarlightCCVars.LightTonemapKnee), 0f, maxLight - MinRollOff);
+        }
+        else
+        {
+            // Only here for the light boost.
+            knee = NoRollOff;
+            maxLight = NoRollOff + 1f;
+        }
         _tonemapShaderInst.SetParameter("knee", knee);
         _tonemapShaderInst.SetParameter("maxLight", maxLight);
 

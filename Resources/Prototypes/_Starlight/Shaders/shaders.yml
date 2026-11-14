@@ -195,3 +195,33 @@
   id: HalfBright
   kind: source
   path: "/Textures/_Starlight/Shaders/half_bright.swsl"
+
+- type: shader
+  id: GiSeed
+  kind: source
+  path: "/Textures/_Starlight/Shaders/gi_seed.swsl"
+
+- type: shader
+  id: GiJumpFlood
+  kind: source
+  path: "/Textures/_Starlight/Shaders/gi_jump_flood.swsl"
+
+- type: shader
+  id: GiTrace
+  kind: source
+  path: "/Textures/_Starlight/Shaders/gi_trace.swsl"
+
+- type: shader
+  id: GiComposite
+  kind: source
+  path: "/Textures/_Starlight/Shaders/gi_composite.swsl"
+
+- type: shader
+  id: GiDebug
+  kind: source
+  path: "/Textures/_Starlight/Shaders/gi_debug.swsl"
+
+- type: shader
+  id: GiCopy
+  kind: source
+  path: "/Textures/_Starlight/Shaders/gi_copy.swsl"
