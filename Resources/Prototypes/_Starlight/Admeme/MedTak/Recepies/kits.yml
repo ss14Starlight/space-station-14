@@ -13,7 +13,7 @@
   name: lathe-recipe-BottleCaseMedTak-name
   completetime: 2
   materials:
-    Plastic: 250
+    Plastic: 300
     Steel: 100
 
 - type: latheRecipe
@@ -22,5 +22,5 @@
   name: lathe-recipe-SurgicalKitMedTak-name
   completetime: 2
   materials:
-    Plastic: 200
+    Plastic: 300
     Steel: 100
