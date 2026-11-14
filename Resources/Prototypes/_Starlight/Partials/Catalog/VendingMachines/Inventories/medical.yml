@@ -1,0 +1,4 @@
+- type: !PartialOnly vendingMachineInventory
+  id: NanoMedPlusInventory
+  startingInventory:
+    ClothingEyeGlassesMedicalPrescription: !Remove

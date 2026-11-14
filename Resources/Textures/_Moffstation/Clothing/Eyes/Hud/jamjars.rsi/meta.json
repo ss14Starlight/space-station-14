@@ -1,0 +1,165 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/5a73e8f825ff279e82949b9329783a9e3070e2da. Equipped-EYES-arachnid and equipped-EYES-moth modified from equipped-EYES by HTMLSystem. Sliced into independently colorable layers by Centronias (Github)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "equipped-EYES-accent-arachnid",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-accent-hamster",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-accent-moth",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-accent",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-frame-arachnid",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-frame-hamster",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-frame-moth",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-frame",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-accent-major-arachnid",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-accent-major-hamster",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-accent-major-moth",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-accent-major",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-accent-minor-arachnid",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-accent-minor-hamster",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-accent-minor-moth",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-accent-minor",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-arachnid",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-hamster",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens-moth",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-lens",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-specular-arachnid",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-specular-hamster",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-specular-moth",
+            "Directions": 4
+        },
+        {
+            "name": "equipped-EYES-specular",
+            "Directions": 4
+        },
+        {
+            "name": "icon-accent"
+        },
+        {
+            "name": "icon-frame"
+        },
+        {
+            "name": "icon-lens-accent-major"
+        },
+        {
+            "name": "icon-lens-accent-minor"
+        },
+        {
+            "name": "icon-lens"
+        },
+        {
+            "name": "icon-specular"
+        },
+        {
+            "name": "inhand-left-frame",
+            "Directions": 4
+        },
+        {
+            "name": "inhand-left-lens-accent-major",
+            "Directions": 4
+        },
+        {
+            "name": "inhand-left-lens-accent-minor",
+            "Directions": 4
+        },
+        {
+            "name": "inhand-left-lens",
+            "Directions": 4
+        },
+        {
+            "name": "inhand-left-specular",
+            "Directions": 4
+        },
+        {
+            "name": "inhand-right-frame",
+            "Directions": 4
+        },
+        {
+            "name": "inhand-right-lens-accent-major",
+            "Directions": 4
+        },
+        {
+            "name": "inhand-right-lens-accent-minor",
+            "Directions": 4
+        },
+        {
+            "name": "inhand-right-lens",
+            "Directions": 4
+        },
+        {
+            "name": "inhand-right-specular",
+            "Directions": 4
+        }
+    ]
+}

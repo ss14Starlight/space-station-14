@@ -1,0 +1,50 @@
+- type: entity
+  parent: ModularHudModuleBase
+  id: HudModuleThermalSight
+  name: thermal scanner HUD module
+  description: A heads-up display module that highlights dangerous air temperatures.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: White
+    - state: stripe
+      color: '#FF5C44'
+    - state: contacts
+    - state: eng_label
+  - type: ModularHudModule
+    visuals:
+      lens:
+        color: '#FF5C44'
+        priority: 100
+      accent:
+        color: '#FF5C44'
+        priority: 100
+  - type: ThermalSight
+
+- type: entity
+  parent: ModularHudModuleBase
+  id: HudModuleBlueNoirOverlay
+  name: blue noir HUD module
+  description: A heads-up display module that makes the world look magical.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: Gray
+    - state: stripe
+      color: '#4282E8'
+    - state: contacts
+    - state: common_label
+  - type: ModularHudModule
+    requirements:
+    - failureMessage: modular-hud-requirement-full-coverage
+      whitelist:
+        tags:
+        - FullEyeCovering
+    visuals:
+      lens:
+        color: '#4282E8'
+        priority: 10001
+        preventsOtherColors: true
+  - type: BlueNoirOverlay
