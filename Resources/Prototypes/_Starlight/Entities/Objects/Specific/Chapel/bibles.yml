@@ -206,3 +206,15 @@
     sprite: Objects/Specific/Chapel/tanakh.rsi
   - type: Item
     sprite: Objects/Specific/Chapel/tanakh.rsi
+
+- type: entity
+  parent: Bible
+  name: The Book Of life
+  description: "A holy book depicting the holy path towards eternal life and immortality"
+  id: BibleBookOfLife
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/bookoflife.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/bookoflife.rsi
+
