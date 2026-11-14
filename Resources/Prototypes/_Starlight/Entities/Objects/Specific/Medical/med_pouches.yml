@@ -24,6 +24,7 @@
       - Syringe
       - JetInjector
       - Medipen
+      - Patch
   - type: Item
     size: Small
     shape:
