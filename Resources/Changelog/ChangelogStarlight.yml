@@ -1,13 +1,6 @@
 Entries:
 - author: Citrea & The Toad Council
   changes:
-  - message: New mask for dolls.
-    type: Add
-  id: 410043
-  time: '2026-11-02T11:56:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6983
-- author: Citrea & The Toad Council
-  changes:
   - message: Shoe-less dolls now make ceramic noises.
     type: Add
   id: 410044
@@ -2799,4 +2792,11 @@ Entries:
   id: 410442
   time: '2026-11-14T08:10:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7223
+- author: redmushie
+  changes:
+  - message: Fixed hand-held artifacts spawning entities attached to the player holding it.
+    type: Fix
+  id: 410443
+  time: '2026-11-14T09:44:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7231
 Order: -1
