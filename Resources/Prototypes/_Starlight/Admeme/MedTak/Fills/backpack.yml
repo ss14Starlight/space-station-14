@@ -71,6 +71,9 @@
         - id: MedTakImplanterTrackingTeam
         - id: TearGasGrenade
         - id: GrenadeFlashBang
+        - id: MedTakStunbaton
+        - id: Handcuffs
+        - id: Handcuffs
 
 - type: entity
   id: ClothingBackpackMedTakFilledLeader
@@ -111,4 +114,5 @@
         - id: MedkitCombatMedTakFilled
         - id: DoubleEmergencyOxygenTankFilled
         - id: ClothingMaskGasSecurity
+        - id: DoorRemoteMedTak
         - id: MedtakATM

@@ -92,7 +92,7 @@
     id: MedTakPDADispatcher
     head: ClothingHeadHatBeretMedTak
     eyes: ClothingEyesGlassesMedTak
-    ears: ClothingHeadsetAltMedTak
+    ears: ClothingHeadsetDispatcherMedTak
     belt: WeaponMedTakPistol
     gloves: ClothingHandsGlovesCombat
     pocket1: RubberStampMedTak

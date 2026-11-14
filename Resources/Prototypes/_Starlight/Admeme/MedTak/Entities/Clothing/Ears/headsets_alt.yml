@@ -15,3 +15,22 @@
       sprite: _Starlight/Admeme/MedTak/Clothing/Ears/Headsets/medtak.rsi
     - type: Clothing
       sprite: _Starlight/Admeme/MedTak/Clothing/Ears/Headsets/medtak.rsi
+
+- type: entity
+  parent: [ ClothingHeadsetAlt, BaseMedTakContraband ]
+  id: ClothingHeadsetDispatcherMedTak
+  name: MedTak dispatcher headset
+  description: A headset used by MedTak dispatchers.
+  components:
+    - type: Headset
+    - type: ContainerFill
+      containers:
+        key_slots:
+          - EncryptionKeyMedTak
+          - EncryptionKeyCommon
+          - EncryptionKeyMedical
+          - EncryptionKeyCommand
+    - type: Sprite
+      sprite: _Starlight/Admeme/MedTak/Clothing/Ears/Headsets/medtak.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/MedTak/Clothing/Ears/Headsets/medtak.rsi
