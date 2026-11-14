@@ -28,7 +28,7 @@
   components:
   - type: LightBulb
     color: "#F6EFE4"
-    lightEnergy: 0.6
+    lightEnergy: 0.8
     lightSoftness: 1.3
     dimmable: false
 

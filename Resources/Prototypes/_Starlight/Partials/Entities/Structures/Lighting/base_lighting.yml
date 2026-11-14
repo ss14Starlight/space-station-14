@@ -21,10 +21,10 @@
     color: "#F6EFE4"
 
 - type: !PartialOnly entity
-  id: PoweredlightLED
+  id: PoweredLEDSmallLight
   components:
   - type: PointLight
-    radius: 10
+    radius: 8
     energy: 0.8
     softness: 1.3
     color: "#F6EFE4"
