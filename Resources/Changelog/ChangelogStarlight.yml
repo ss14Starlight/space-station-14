@@ -1,116 +1,4 @@
 Entries:
-- author: Citrea & The Toad Council
-  changes:
-  - message: Shoe-less dolls now make ceramic noises.
-    type: Add
-  id: 410044
-  time: '2026-11-02T11:56:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6983
-- author: Citrea & The Toad Council
-  changes:
-  - message: Doll survival kits have water in them now.
-    type: Fix
-  id: 410045
-  time: '2026-11-02T11:56:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6983
-- author: baltdev
-  changes:
-  - message: Added a slightly rare docile giant spider ghostrole. This can appear in maints or from the random vent creatures event.
-    type: Add
-  id: 410046
-  time: '2026-11-02T13:49:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7008
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Added a new outcome to the glyph of blades, the astral razor. It's a scythe that when wielded, shoots a projectile. If you hit someone with this projectile and then hit them with a followup attack shortly after, you deal massive damage, making this an ideal skirmisher weapon.
-    type: Add
-  id: 410047
-  time: '2026-11-02T14:11:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7000
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Non-cultists can no longer see the sleeping icon on shunted players. You can still tell something is off as a non-cultist by closely inspecting them.
-    type: Tweak
-  id: 410048
-  time: '2026-11-02T14:11:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7000
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Refined glyph of blades/warding transmutation logic. No longer stops transmutation when multiple eligible items are present. It prioritizes a transmutable item in the triggering player's hand, else it picks a random one on the glyph.
-    type: Tweak
-  id: 410049
-  time: '2026-11-02T14:11:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7000
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: The Monument no longer triggers light sensitivity and night vision effects on shadekin, even when they weren't cultists and couldn't see it.
-    type: Fix
-  id: 410050
-  time: '2026-11-02T14:11:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7000
-- author: Ohelig
-  changes:
-  - message: Fixes spawning with handheld station radio trinket.
-    type: Fix
-  id: 410051
-  time: '2026-11-02T16:25:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7015
-- author: Romero/Littlemen
-  changes:
-  - message: the Verdict.
-    type: Add
-  id: 410052
-  time: '2026-11-02T19:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6891
-- author: Romero/Littlemen
-  changes:
-  - message: The sp8ar a gun that existed, barely. It doesnt anymore, though.
-    type: Remove
-  id: 410053
-  time: '2026-11-02T19:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6891
-- author: Floximo
-  changes:
-  - message: Performance of holopads and nav console was increased.
-    type: Tweak
-  id: 410054
-  time: '2026-11-02T20:04:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7004
-- author: STARLIGHT TEAM
-  changes:
-  - message: Added three new vinyls by hermitsabee.
-    type: Add
-  id: 410055
-  time: '2026-11-02T20:42:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7007
-- author: Rinary
-  changes:
-  - message: Implemented tippy limitations for admins.
-    type: Add
-  id: 410056
-  time: '2026-11-02T20:42:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6836
-- author: Rinary
-  changes:
-  - message: Implemented global sounds limitations for admins.
-    type: Add
-  id: 410057
-  time: '2026-11-02T20:42:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6836
-- author: Rinary
-  changes:
-  - message: Added ability to disable tippy in misc tab.
-    type: Add
-  id: 410058
-  time: '2026-11-02T20:42:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6836
-- author: Rinary
-  changes:
-  - message: Added ability to change admin sounds volume in sounds page.
-    type: Add
-  id: 410059
-  time: '2026-11-02T20:42:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6836
 - author: Rinary
   changes:
   - message: Made changes in access to certain things like tippy, global sounds, smites, explosions, now not all staff will be able to use them.
@@ -2799,4 +2687,116 @@ Entries:
   id: 410443
   time: '2026-11-14T09:44:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7231
+- author: Makeshift
+  changes:
+  - message: (Downpour) Gunnery Sergeant.
+    type: Add
+  id: 410444
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) New Radio machines to the Radio studio.
+    type: Add
+  id: 410445
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Airlock Controller to Mining's dock.
+    type: Add
+  id: 410446
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) YouTool to Engineering.
+    type: Add
+  id: 410447
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Desktop Crew Monitor to Security.
+    type: Add
+  id: 410448
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Zones should be a little more accurate.
+    type: Tweak
+  id: 410449
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Re-added the missing door to bar maints.
+    type: Fix
+  id: 410450
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Replaced some always-powered lights with their regular variants.
+    type: Fix
+  id: 410451
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Comms maints are now engineering access, instead of command.
+    type: Fix
+  id: 410452
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Removed some railings in the vault, so you can now walk around the nuke.
+    type: Fix
+  id: 410453
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Connected the Mime Hallway APC to LV.
+    type: Fix
+  id: 410454
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Connected the left bridge blast doors to the blast door button.
+    type: Fix
+  id: 410455
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Removed the duplicate air alarm outside of library.
+    type: Fix
+  id: 410456
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Added missing vacuum markers to the outside of the station.
+    type: Fix
+  id: 410457
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Added more missing tiles under doors.
+    type: Fix
+  id: 410458
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Makeshift
+  changes:
+  - message: (Downpour) Removed collision on some platforms in CMO and RD's bedroom, to allow dragging a locker up them.
+    type: Fix
+  id: 410459
+  time: '2026-11-14T21:44:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7230
 Order: -1
