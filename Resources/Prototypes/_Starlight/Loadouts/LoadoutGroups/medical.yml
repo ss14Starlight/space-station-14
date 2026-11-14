@@ -12,8 +12,9 @@
   minLimit: 0
   loadouts:
   - MedicalHud
+  - MedicalSunglasses
+  - MedicalGlassesPrescription
   - MedicalEyePatchHud
   - Glasses
   - GlassesJamjar
   - GlassesJensen
-  - MedicalGlassesPrescription

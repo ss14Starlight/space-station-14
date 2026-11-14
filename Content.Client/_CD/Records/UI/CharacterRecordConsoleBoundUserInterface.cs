@@ -49,6 +49,8 @@ public sealed partial class CharacterRecordConsoleBoundUserInterface : BoundUser
 
     protected override void Open()
     {
+        if (IsOpened) return; // Starlight
+
         base.Open();
 
         _window = new();

@@ -10,3 +10,8 @@
   - CombustionTurbineCompressorMachineCircuitboard
   - CombustionTurbineRotorMachineCircuitboard
   - CombustionTurbineOutletMachineCircuitboard
+
+- type: !PartialOnly latheRecipePack
+  id: ElectronicsStatic
+  recipes:
+  - AirlockCyclerElectronics

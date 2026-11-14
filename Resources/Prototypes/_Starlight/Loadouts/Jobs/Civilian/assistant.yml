@@ -132,6 +132,7 @@
 # Eyes
 - type: loadout
   id: CheapSunnies
+  groupBy: eyewear
   effects:
   - !type:GroupLoadoutEffect
     proto: HonoredAssistant
@@ -141,7 +142,7 @@
 - type: loadout
   id: AssistantNoirGlasses
   equipment:
-    Eyes: ClothingEyesGlassesNoirAssistant
+    eyes: ClothingEyesGlassesNoirAssistant
   effects:
   - !type:GroupLoadoutEffect
     proto: HonoredAssistant

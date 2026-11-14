@@ -109,6 +109,7 @@
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
   - type: MaterialStorage
     whitelist: &StandardMaterialWhitelist
       tags:
@@ -166,11 +167,14 @@
     - EngineeringWeapons
     - Equipment
     - StarlightEngineeringBoards
+    - ModularHudModules
+    - EngineeringModularHudFrames
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: StealTarget
@@ -220,11 +224,13 @@
     - Janitor
     - Instruments
     - WirelessCameraHandheld
+    - ServiceModularHudModules
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -285,6 +291,8 @@
     - StarlightScienceWeapons
     - WirelessCameraHandheld
     - StarlightExperimentalwelderOnly
+    - ScienceModularHudFrames
+    - ScienceModularHudModules
   - type: EmagLatheRecipes
     emagDynamicPacks:
     # They can keep the "best thing to emag" trait
@@ -298,10 +306,20 @@
     - StarlightSecurityEquipment
     - StarlightSecurityWeapons
     - StarlightDefenseStatic
+    - ModularHudFrames
+    - SecurityModularHudFrames
+    - EngineeringModularHudFrames
+    - CommandModularHudFrames
+    - ModularHudModules
+    - ServiceModularHudModules
+    - SecurityModularHudModules
+    - CommandModularHudModules
+    - MedicalModularHudModules
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: StealTarget
@@ -347,12 +365,15 @@
     - StarlightProtolatheLootable
     - Instruments
     - WirelessCameraHandheld
+    - CommandModularHudModules
+    - CommandModularHudFrames
   - type: EmagLatheRecipes
     emagStaticPacks:
     # If you somehow manage to emag it, cool, I guess
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: StealTarget
@@ -416,6 +437,7 @@
     - EmptyMedkitsStatic
     - StarlightMedicalStatic
     - AACTabletStatic
+    - PrescriptionHudModuleStatic
     dynamicPacks:
     - StarlightAutolatheLootable
     - StarlightProtolatheLootable
@@ -458,6 +480,17 @@
     - StarlightBudgetCyberOrgansDynamic
     - StarlightMedicalTechFabLootable
     - StarlightCargoDynamic
+    - ModularHudFrames
+    - SecurityModularHudFrames
+    - EngineeringModularHudFrames
+    - CommandModularHudFrames
+    - ScienceModularHudFrames
+    - ModularHudModules
+    - ScienceModularHudModules
+    - ServiceModularHudModules
+    - SecurityModularHudModules
+    - CommandModularHudModules
+    - MedicalModularHudModules
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
@@ -550,6 +583,7 @@
     - EmptyMedkitsStatic
     - StarlightMedicalStatic
     - AACTabletStatic
+    - PrescriptionHudModuleStatic
     # Its main difference is it gets the syndicate stuff in its static packs.
     - StarlightSyndicateModulesSecfab
     - StarlightSyndicateAmmoStatic
@@ -598,6 +632,17 @@
     - StarlightBudgetCyberOrgansDynamic
     - StarlightMedicalTechFabLootable
     - StarlightCargoDynamic
+    - ModularHudFrames
+    - SecurityModularHudFrames
+    - EngineeringModularHudFrames
+    - CommandModularHudFrames
+    - ScienceModularHudFrames
+    - ModularHudModules
+    - ScienceModularHudModules
+    - ServiceModularHudModules
+    - SecurityModularHudModules
+    - CommandModularHudModules
+    - MedicalModularHudModules
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -650,6 +695,7 @@
         - StarlightSecurityAmmoStatic
         - StarlightSyndicateAmmoStatic
         - SyndicateAmmoStatic
+        - PrescriptionHudModuleStatic
     - type: BlueprintReceiver
       whitelist:
         tags:

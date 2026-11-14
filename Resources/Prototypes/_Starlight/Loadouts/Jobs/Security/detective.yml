@@ -11,7 +11,7 @@
 - type: loadout
   id: DetectiveNoirGlasses
   equipment:
-    Eyes: ClothingEyesGlassesNoir
+    eyes: ClothingEyesGlassesNoir
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterDet

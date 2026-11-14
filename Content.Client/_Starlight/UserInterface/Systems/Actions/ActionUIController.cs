@@ -1,6 +1,4 @@
 using System.Linq;
-using Content.Client.Actions;
-using Content.Shared.Actions.Components;
 
 // ReSharper disable CheckNamespace
 namespace Content.Client.UserInterface.Systems.Actions;
@@ -8,11 +6,8 @@ namespace Content.Client.UserInterface.Systems.Actions;
 public sealed partial class ActionUIController
 {
     /// <summary>
-    /// True from attaching to an entity until all of its actions have arrived. While set, the whole bar gets
-    /// re-sorted whenever actions come in, instead of appending them in whatever order the client received them.
+    /// Whether the bar needs comparing against the default order. Handled at most once per frame.
     /// </summary>
-    private bool _settling;
-
     private bool _sortQueued;
 
     /// <summary>
@@ -20,24 +15,29 @@ public sealed partial class ActionUIController
     /// </summary>
     private bool _userArranged;
 
-    private void StartSettling()
+    private void ResetArrangement()
     {
         _userArranged = false;
-        _settling = true;
+        _sortQueued = true;
     }
 
-    private void QueueSortIfSettling()
+    private void QueueSort()
     {
-        if (_settling && !_userArranged)
+        if (!_userArranged)
             _sortQueued = true;
     }
 
-    private bool AllActionsArrived()
+    private void AddToHotbar(EntityUid action)
     {
-        if (_playerManager.LocalEntity is not { } user
-            || !EntityManager.TryGetComponent<ActionsComponent>(user, out var actions))
-            return false;
+        if (_actionsSystem == null ||
+            _container == null ||
+            _actions.Contains(action) ||
+            _actionsSystem.GetClientActions().All(clientAction => clientAction.Owner != action))
+            return;
 
-        return actions.Actions.All(action => EntityManager.HasComponent<ActionComponent>(action));
+        _userArranged = true;
+        _actions.Add(action);
+
+        _container.SetActionData(_actionsSystem, _actions.ToArray());
     }
 }

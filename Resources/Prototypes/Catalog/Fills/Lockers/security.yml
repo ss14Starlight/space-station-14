@@ -123,7 +123,6 @@
   table: !type:AllSelector
     children:
     - id: ClothingEyesGlassesBrigmedic # Starlight
-    - id: ClothingEyesGlassesCorpsman # Starlight
     - id: ClothingOuterCoatCorpsman #Starlight
     - id: ClothingUniformJumpsuitCorpsman #Starlight
     - id: ClothingUniformJumpskirtCorpsman #Starlight
@@ -205,6 +204,8 @@
     #- id: HandLabeler # Starlight - Condensing, duplicate of items found in the CardboardBoxLargeEvidenceFilledExtras
     - id: BoxTapeRecorder # Starlight
     - id: CardboardBoxLargeEvidenceFilledExtras # Starlight
+    - id: PhotoCamera # Starlight
+    - id: BlankPhotographBox # Starlight
     - id: PlushieLizardJobDetective
       prob: 0.02
 

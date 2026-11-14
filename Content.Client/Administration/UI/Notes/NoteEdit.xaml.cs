@@ -103,11 +103,17 @@ public sealed partial class NoteEdit : FancyWindow
             SecretCheckBox.Pressed = note.Secret;
             SecretCheckBox.Disabled = note.NoteType is not NoteType.Note;
             ExpiryTime = note.ExpiryTime;
+            _creationTime = note.CreatedAt; // Starlight-edit
             if (ExpiryTime is not null)
             {
                 PermanentCheckBox.Pressed = false;
                 UpdatePermanentCheckboxFields();
-                ExpiryLineEdit.Text = ExpiryTime.Value.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
+
+                // Starlight-start
+                var (num, mult) = UnparseExpiryTime(note.CreatedAt, ExpiryTime.Value);
+                ExpiryLineEdit.Text = num.ToString();
+                ExpiryLengthDropdown.SelectId((int)mult);
+                // Starlight-end
             }
         }
 
@@ -319,7 +325,24 @@ public sealed partial class NoteEdit : FancyWindow
             (int) Multipliers.Centuries => TimeSpan.FromDays(36525).TotalMinutes,
             _ => throw new ArgumentOutOfRangeException(nameof(ExpiryLengthDropdown.SelectedId), "Multiplier out of range :(")
         };
-        ExpiryTime = DateTime.UtcNow.AddMinutes(inputInt * mult);
+
+        // Starlight-start
+        // duration should always be set from creation time for consistency
+        // show an error if trying to set an expiry in the past or too far ahead
+        var now = DateTime.UtcNow;
+        DateTime? expiry;
+        try { expiry = (_creationTime ?? now).AddMinutes(inputInt * mult); }
+        catch (ArgumentOutOfRangeException) { expiry = null; }
+
+        if (!expiry.HasValue || expiry.Value < now)
+        {
+            ExpiryLineEdit.ModulateSelfOverride = Color.Red;
+            return false;
+        }
+
+        ExpiryTime = expiry.Value;
+        // Starlight-end
+
         ExpiryLineEdit.ModulateSelfOverride = null;
         return true;
     }

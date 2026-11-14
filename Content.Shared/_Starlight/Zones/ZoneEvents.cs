@@ -8,6 +8,12 @@ public readonly record struct ZoneChangedEvent(
     ProtoId<ZonePrototype>? Old,
     ProtoId<ZonePrototype>? New);
 
+/// <summary>
+/// Raised when an entity changes grids or its main or secondary zones change.
+/// </summary>
+[ByRefEvent]
+public readonly record struct ZoneMembershipChangedEvent;
+
 [Serializable, NetSerializable]
 public sealed class RequestZoneShapesEvent(NetEntity grid) : EntityEventArgs
 {

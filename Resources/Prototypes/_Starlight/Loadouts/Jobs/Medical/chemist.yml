@@ -81,7 +81,6 @@
   - !type:GroupLoadoutEffect
     proto: SeniorChemist
 
-
 - type: loadout
   id: SeniorChemistSatchel
   equipment:
@@ -97,7 +96,6 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorChemist
-
 
 # Chem bag
 - type: loadout
@@ -208,6 +206,14 @@
         proto: SkilledChemist
   equipment:
     eyes: ClothingEyesGlassesJensenChemical
+
+- type: loadout
+  id: ChemicalJamjar
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledChemist
+  equipment:
+    eyes: ClothingEyesGlassesJamjarChemist
 
 # Beaker
 - type: loadout

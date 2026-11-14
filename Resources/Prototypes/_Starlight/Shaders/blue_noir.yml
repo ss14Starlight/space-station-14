@@ -1,0 +1,4 @@
+- type: shader
+  id: CP14BlueNoir
+  kind: source
+  path: /Textures/_CP14/Shaders/blue_noir.swsl

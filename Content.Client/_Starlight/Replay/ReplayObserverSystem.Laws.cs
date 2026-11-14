@@ -12,9 +12,6 @@ public sealed partial class ReplayObserverSystem
 {
     [Dependency] private SharedStationAiSystem _stationAi = default!;
 
-    private void InitializeLaws() =>
-        SubscribeLocalEvent<ReplayLawsComponent, AfterAutoHandleStateEvent>(OnReplayLawsUpdated);
-
     private void AddLawVerbs(GetVerbsEvent<Verb> ev)
     {
         if (GetLawBearer(ev.Target) is { } bearer)
@@ -59,6 +56,7 @@ public sealed partial class ReplayObserverSystem
     }
 
     // Keep an open window current as the recording's laws change.
+    [SubscribeLocalEvent]
     private void OnReplayLawsUpdated(Entity<ReplayLawsComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         if (_observer is not { } observer)

@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.MassMedia.Systems;
 using Content.Shared.MassMedia.Components;
 using Robust.Client.UserInterface;
@@ -7,7 +8,7 @@ using Robust.Shared.Utility;
 namespace Content.Client.MassMedia.Ui;
 
 [UsedImplicitly]
-public sealed class NewsWriterBoundUserInterface : BoundUserInterface
+public sealed partial class NewsWriterBoundUserInterface : BoundUserInterface // Starlight Edit: Made Partial
 {
     [ViewVariables]
     private NewsWriterMenu? _menu;
@@ -28,6 +29,7 @@ public sealed class NewsWriterBoundUserInterface : BoundUserInterface
 
         _menu.CreateButtonPressed += OnCreateButtonPressed;
         _menu.ArticleEditorPanel.ArticleDraftUpdated += OnArticleDraftUpdated;
+        _menu.ArticleEditorPanel.PhotoEjectButtonPressed += OnPhotoEjectButtonPressed;
 
         SendMessage(new NewsWriterArticlesRequestMessage());
     }
@@ -38,7 +40,7 @@ public sealed class NewsWriterBoundUserInterface : BoundUserInterface
         if (state is not NewsWriterBoundUserInterfaceState cast)
             return;
 
-        _menu?.UpdateUI(cast.Articles, cast.PublishEnabled, cast.NextPublish, cast.DraftTitle, cast.DraftContent);
+        _menu?.UpdateUI(cast.Articles, cast.PublishEnabled, cast.NextPublish, cast.DraftTitle, cast.DraftContent, cast.HasPhoto);
     }
 
     private void OnPublishButtonPressed()

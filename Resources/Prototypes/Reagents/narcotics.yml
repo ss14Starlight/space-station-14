@@ -326,9 +326,7 @@
     Bloodstream:
       metabolismRate: 0.5 # Starlight: Sleepiness metabolism, to archive sleep after 8 seconds, as before
       effects: # It would be nice to have speech slurred or mumbly, but accents are a bit iffy atm. Same for distortion effects.
-      - !type:MovementSpeedModifier
-        walkSpeedModifier: 0.65
-        sprintSpeedModifier: 0.65
+      # Starlight - SleepinessStatusEffect handles movement slowdown.
       - !type:ModifySleepiness # Starlight: Nocturine uses the strongest Sleepiness profile.
         effectProto: StatusEffectSleepiness
         maximumSleepiness: 5m

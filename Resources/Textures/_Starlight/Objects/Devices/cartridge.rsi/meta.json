@@ -10,6 +10,11 @@
 		{
             "name": "cart-chat",
             "copyright": "cart-chat made by kushbreth (discord) and edited by honeyed_lemons_"
+        },
+        {
+            "name": "cart-camera",
+            "copyright": "camera made by Vincolan (discord) for starlight",
+            "license": "CC-BY-SA-4.0"
         }
     ]
 }

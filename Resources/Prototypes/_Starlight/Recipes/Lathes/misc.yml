@@ -631,3 +631,12 @@
   parent: BaseCombustionTurbinePartRecipe
   id: CombustionTurbineStatorPart
   result: CombustionTurbineStatorPart
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: BlankPhotograph
+  result: BlankPhotograph
+  completetime: 2
+  materials:
+    Paper: 100
+  applyMaterialDiscount: false

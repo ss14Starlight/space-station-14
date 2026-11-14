@@ -30,6 +30,9 @@
   id: Arachnid
 
 - type: Tag
+  id: AtmosFireHelmet # ConstructionGraph: AtmosianHelmet
+
+- type: Tag
   id: AutoMender
 
 - type: Tag
@@ -360,6 +363,15 @@
   id: GrenadeLessLethal #Ammo for the peacekeeper
 
 - type: Tag
+  id: GunUpgradeDamageExp
+
+- type: Tag
+  id: GunUpgradeRangeExp
+
+- type: Tag
+  id: GunUpgradeReloadSpeedExp
+
+- type: Tag
   id: GygaxArmor
 
 - type: Tag
@@ -504,6 +516,9 @@
   id: MagazineBoxBoltRifle
 
 - type: Tag
+  id: MetalHydrogenHelmet # ConstructionGraph: AtmosianHelmet
+
+- type: Tag
   id: CartridgeImpactBolt
 
 - type: Tag
@@ -619,6 +634,12 @@
   id: ModularBarrel
 
 - type: Tag
+  id: ModularHudGoggles
+
+- type: Tag
+  id: ModularHudSingleEye
+
+- type: Tag
   id: ModuleBlacklistXenoborgEngiWeapon
 
 - type: Tag
@@ -650,6 +671,9 @@
 
 - type: Tag
   id: OmniCyberEyes
+
+- type: Tag
+  id: Outbreak
 
 - type: Tag
   id: OvenMachineBoard
@@ -694,9 +718,6 @@
   id: RemoteSignallerAdvanced # Crafting whitelist: Advanced Deadman remote trigger
 
 - type: Tag
-  id: RequiredForLmgTag
-
-- type: Tag
   id: Resomi
 
 - type: Tag
@@ -721,6 +742,9 @@
 
 - type: Tag
   id: Salad # BountySalad
+
+- type: Tag
+  id: SalvageExperimentStar
 
 - type: Tag
   id: SalvageTicket
@@ -871,3 +895,6 @@
 
 - type: Tag
   id: StationRadioCircuitboard
+
+- type: Tag
+  id: AirlockCyclerElectronics # ConstructionGraph: AirlockCycler

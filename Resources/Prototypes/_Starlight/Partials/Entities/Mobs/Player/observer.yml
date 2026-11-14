@@ -8,6 +8,9 @@
   - type: ActiveInputMover
   - type: Speech # only adds speech bubble while typing
   - type: AntagImmune
+  - type: ActionGrant
+    actions:
+    - ActionToggleOwnGhostSprite
 
 # proto for player ghosts specifically
 - type: !PartialOnly entity

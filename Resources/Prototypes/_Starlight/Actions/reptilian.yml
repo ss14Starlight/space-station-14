@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseAction
+  id: ActionReptilianFireBreath
+  name: Fire Breath
+  description: Breathe out a small flame. Tires you out and makes you hungry. Drinking welding fuel beforehand makes the flame bigger. Use it on a cigarette, candle or paper within reach to just light it.
+  components:
+  - type: Action
+    icon: { sprite: Objects/Weapons/Guns/Projectiles/magic.rsi, state: fireball }
+    itemIconStyle: BigAction
+    useDelay: 30
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: EntityTargetAction
+  - type: WorldTargetAction
+    event: !type:FireBreathActionEvent

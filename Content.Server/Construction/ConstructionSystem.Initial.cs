@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Construction.Components;
+using Content.Shared._Starlight.Construction;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Prototypes;
@@ -477,12 +478,14 @@ namespace Content.Server.Construction
             if (_whitelistSystem.IsWhitelistFail(constructionPrototype.EntityWhitelist, user))
             {
                 _popup.PopupEntity(Loc.GetString("construction-system-cannot-start"), user, user);
+                RaiseNetworkEvent(new CancelStructureConstructionMessage(ev.Ack), session); // Starlight
                 return;
             }
 
             if (_container.IsEntityInContainer(user))
             {
                 _popup.PopupEntity(Loc.GetString("construction-system-inside-container"), user, user);
+                RaiseNetworkEvent(new CancelStructureConstructionMessage(ev.Ack), session); // Starlight
                 return;
             }
 
@@ -519,7 +522,14 @@ namespace Content.Server.Construction
                 }
             }
 
-            void Cleanup() => _beingBuilt[session].Remove(ev.Ack); // Starlight
+            // Starlight-start
+            void Cleanup(bool cancel = true)
+            {
+                if (cancel)
+                    RaiseNetworkEvent(new CancelStructureConstructionMessage(ev.Ack), session);
+                _beingBuilt[session].Remove(ev.Ack);
+            }
+            // Starlight-end
 
             if (!_actionBlocker.CanInteract(user, null)
                 || !TryComp(user, out HandsComponent? hands) || _handsSystem.GetActiveItem((user, hands)) == null)
@@ -593,7 +603,7 @@ namespace Content.Server.Construction
 
             RaiseNetworkEvent(new AckStructureConstructionMessage(ev.Ack, GetNetEntity(structure)), session); // Starlight
             _adminLogger.Add(LogType.Construction, LogImpact.Low, $"{ToPrettyString(user):player} has turned a {ev.PrototypeName} construction ghost into {ToPrettyString(structure)} at {Transform(structure).Coordinates}");
-            Cleanup();
+            Cleanup(false); // Starlight-edit
         }
     }
 }

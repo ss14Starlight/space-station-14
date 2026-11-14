@@ -15,3 +15,41 @@
       id: VisitorIDCard
     - type: Pda
       id: EmotionalSupportScurretIDCard
+
+- type: !PartialOnly entity
+  id: ReporterPDA
+  components:
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - NanoChatCartridge
+    - PhotoCartridge
+
+- type: !PartialOnly entity
+  id: DetectivePDA
+  components:
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - LogProbeCartridge
+    - NanoChatCartridge
+    - PhotoCartridge
+
+- type: !PartialOnly entity
+  id: HoPPDA
+  components:
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - NanoChatCartridge
+    - PhotoCartridge

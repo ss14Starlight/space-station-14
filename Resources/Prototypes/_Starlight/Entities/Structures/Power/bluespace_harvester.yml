@@ -46,8 +46,8 @@
         !type:CableDeviceNode
         nodeGroupID: HVPower
   - type: PowerMonitoringDevice
-    group: Generator
-    loadNode: input
+    group: Consumer
+    sourceNode: input
     collectionName: bluespaceHarvester
     sprite: _Starlight/Structures/Power/bluespace_harvester.rsi
     state: bluespace_monitor
