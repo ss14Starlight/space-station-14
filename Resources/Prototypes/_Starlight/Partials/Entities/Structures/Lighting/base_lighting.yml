@@ -5,7 +5,7 @@
   components:
   - type: PointLight
     color: "#FFE2C8"
-    energy: 2
+    energy: 0.6
     radius: 8
     softness: 1.5
     falloff: 8
