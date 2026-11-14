@@ -516,3 +516,6 @@ PhotographRed: null
 ClothingEyesGlassesCorpsman: null
 ClothingEyesHudCorpsman: null
 ClothingEyesHudBrigmedic: ClothingEyesHudMedSec
+
+# 2026-11-14 - Name doesn't match intended use
+HandheldRemoteControlExpedition: HandheldRemoteControlToy

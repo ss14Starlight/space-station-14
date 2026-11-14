@@ -1079,7 +1079,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 .TryGetWeapon(remoteEntity, out var weaponUid, out var weapon))
         {
             EntityManager.System<SharedMeleeWeaponSystem>()
-                .AttemptLightAttack(remoteEntity, weaponUid, weapon, attackTarget);
+                .TryAttemptRemoteLightAttack(remoteEntity, weaponUid, weapon, attackTarget);
             RefreshRemoteState(uid, component, remoteEntity);
             return;
         }
@@ -1822,12 +1822,19 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         EnsureComp<AppearanceComponent>(chassis);
         _appearance.SetData(chassis, BorgVisualsStarlight.RemoteControlled, controlled);
 
-        if (chassisComp.BrainContainer.ContainedEntity is { } brain
-            && HasComp<RemoteControlBrainComponent>(brain))
-        {
-            EnsureComp<AppearanceComponent>(brain);
-            _appearance.SetData(brain, RemoteControlBrainVisuals.Connected, controlled);
-        }
+        if (chassisComp.BrainContainer.ContainedEntity is { } brain)
+            UpdateRemoteBrainConnectedAppearance(brain, controlled);
+    }
+
+    private void UpdateRemoteBrainConnectedAppearance(EntityUid? brain, bool connected)
+    {
+        if (brain is not { } remoteBrain
+            || TerminatingOrDeleted(remoteBrain)
+            || !HasComp<RemoteControlBrainComponent>(remoteBrain))
+            return;
+
+        EnsureComp<AppearanceComponent>(remoteBrain);
+        _appearance.SetData(remoteBrain, RemoteControlBrainVisuals.Connected, connected);
     }
 
     private bool TryActivateRemoteBorg(RemoteControlConsoleComponent console, EntityUid chassis)
@@ -1965,6 +1972,8 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
             UpdateControllerIndex(entity.Owner, entity.Comp.Controller, null);
             entity.Comp.Controller = null;
             UpdateRemoteBorgControlledAppearance(remoteEntity);
+            if (controllingUser is not null)
+                UpdateRemoteBrainConnectedAppearance(entity.Comp.RemoteBrain, false);
             Dirty(entity);
             _pendingRemoteBorgActivations.RemoveWhere(pending => pending.Console == entity.Owner);
             if (!keepToyActive)
@@ -2109,6 +2118,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         var controllerBeforeUpdate = component.Controller;
         component.Controller = controller;
         UpdateRemoteBorgControlledAppearance(remoteEntity);
+        if (controllerBeforeUpdate is not null && controller is null)
+            UpdateRemoteBrainConnectedAppearance(component.RemoteBrain, false);
+
         UpdateControllerIndex(consoleUid, controllerBeforeUpdate, controller);
         Dirty(consoleUid, component);
 

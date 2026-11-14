@@ -95,12 +95,15 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
     private void OnRemoteUiInteractionActor(ref RemoteControlUiInteractionActorEvent args)
     {
         if (!TryGetControlledEntity(args.Controller, out var remoteEntity)
-            || !CanRemoteControlledEntityAct(remoteEntity)
-            || (!args.IsOpenAttempt
-                && args.Target != remoteEntity
-                && !_ui.IsUiOpen(args.Target, args.UiKey, remoteEntity)
-                && !_ui.IsUiOpen(args.Target, args.UiKey, args.Controller))
-            || !_interaction.IsAccessible(remoteEntity, args.Target))
+            || !CanRemoteControlledEntityAct(remoteEntity))
+            return;
+
+        if (!args.IsOpenAttempt
+            && args.Target != remoteEntity
+            && !_ui.IsUiOpen(args.Target, args.UiKey, remoteEntity))
+            return;
+
+        if (!_interaction.IsAccessible(remoteEntity, args.Target))
             return;
 
         args.Actor = remoteEntity;
