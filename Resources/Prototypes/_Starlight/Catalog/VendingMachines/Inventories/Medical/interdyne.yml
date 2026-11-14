@@ -22,7 +22,7 @@
   emaggedInventory:
     StrangePill: 1
     PillLead5: 1
-
+    MedPouchSyndicate: 1
 
 - type: vendingMachineInventory
   id: InterdyneCommercialWallInventory
@@ -41,6 +41,7 @@
     PillCanisterRandom: 1
     OminousPill: 1
     PowerCellSmall: 2
+    MedPouchSyndicate: 1
   emaggedInventory:
     StrangePill: 1
     PillDesoxyephedrine5: 1
@@ -79,6 +80,7 @@
   emaggedInventory:
     StrangePill: 2
     PillLead5: 1
+    MedPouchSyndicate: 1
 
 - type: vendingMachineInventory
   id: InterdyneCommercialInventory
@@ -102,6 +104,7 @@
     PillSpaceDrugs: 3
     OminousPill: 1
     FoodOrange: 1
+    MedPouchSyndicate: 1
   emaggedInventory:
     StrangePill: 1
     PillDesoxyephedrine5: 1

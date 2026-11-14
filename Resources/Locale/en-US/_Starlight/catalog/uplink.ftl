@@ -33,3 +33,6 @@ uplink-fake-stamps-desc = Fool the station with Syndicate replicas of REAL stamp
 
 uplink-joke-stamps-name = Box of Joke Stamps
 uplink-joke-stamps-desc = For if you really, REALLY, want to make fun of someone.
+
+uplink-medpouch-syndicate-name = Syndicate Medicine Pouch
+uplink-medpouch-syndicate-desc = A small 2x2 pouch with a 5x2 internal inventory that can only hold medicine like topicals, pills, and syringes. Medicine not included.

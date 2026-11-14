@@ -5,6 +5,7 @@
     HandheldHealthAnalyzer: 1
     ClothingBeltMedical: 2
     ClothingBeltMedicalEMT: 1
+    MedPouchMedical: 1
     Gauze: 2
     GoldBrutePack: 2
     GoldOintment: 2
@@ -54,6 +55,7 @@
     HandheldHealthAnalyzer: 3
     ClothingBeltMedical: 3
     ClothingBeltMedicalEMT: 2
+    MedPouchMedical: 2
     Gauze: 4
     GoldBrutePack: 4
     GoldOintment: 4

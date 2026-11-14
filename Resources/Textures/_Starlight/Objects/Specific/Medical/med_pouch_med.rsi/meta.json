@@ -1,0 +1,29 @@
+{
+	"version": 1,
+	"license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+	"size": {
+		"x": 32,
+		"y": 32
+	},
+	"states": [
+		{
+			"name": "icon-open",
+			"copyright": "Based on sprites by DocMoth, edited by Conflee"
+		},
+		{
+			"name": "icon-closed",
+			"copyright": "Based on sprites by DocMoth, edited by Conflee"
+		},
+		{
+			"name": "inhand-left",
+            "directions": 4,
+			"copyright": "Made by Conflee"
+		},
+		{
+			"name": "inhand-right",
+            "directions": 4,
+			"copyright": "Made by Conflee"
+		}
+    ]
+}

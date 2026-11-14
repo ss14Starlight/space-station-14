@@ -1,0 +1,84 @@
+- type: entity
+  abstract: true
+  id: BaseMedPouch
+  parent: BaseStorageItem
+  name: medicine pouch
+  description: A small pouch for storing topicals and pills.
+  components:
+  - type: Sprite
+    layers:
+      - map: [ base ]
+        state: icon-closed
+  - type: Storage
+    grid:
+    - 0,0,3,1
+    whitelist:
+      tags:
+      - Bottle
+      - Ointment
+      - Brutepack
+      - Bloodpack
+      - Tourniquet
+      - Gauze
+      - PillCanister
+      - Syringe
+      - JetInjector
+      - Medipen
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
+  - type: Appearance
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: icon-open }
+          False: { state: icon-closed }
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: SwitchableEquipMode
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  parent: [BaseMedPouch, BaseSecurityContraband]
+  id: MedPouchSecurity
+  name: security medicine pouch
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/med_pouch_sec.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/med_pouch_sec.rsi
+
+- type: entity
+  parent: BaseMedPouch
+  id: MedPouchMedical
+  name: doctor medicine pouch
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/med_pouch_med.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/med_pouch_med.rsi
+
+- type: entity
+  parent: [BaseMedPouch, BaseMinorContraband]
+  id: MedPouchSyndicate
+  name: syndicate medicine pouch
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/med_pouch_synd.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/med_pouch_synd.rsi
+  - type: Storage
+    grid:
+    - 0,0,4,1

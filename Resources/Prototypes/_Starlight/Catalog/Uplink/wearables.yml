@@ -32,6 +32,19 @@
     - UplinkWearables
 
 - type: listing
+  id: UplinkMedPouchSyndicate
+  name: uplink-medpouch-syndicate-name
+  description: uplink-medpouch-syndicate-desc
+  productEntity: MedPouchSyndicate
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkWearables
+
+- type: listing
   id: UplinkSatchelSyndicate
   name: uplink-satchel-syndicate-name
   description: uplink-satchel-syndicate-desc
