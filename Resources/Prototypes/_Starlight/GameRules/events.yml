@@ -337,3 +337,110 @@
           addresses:
             - ERR*?*%!
           delay: 8
+
+- type: entity
+  parent: BaseGameRule
+  id: WireCut
+  abstract: true
+  components:
+  - type: StationEvent
+    duration: 1
+    earliestStart: 15
+    reoccurrenceDelay: 30
+    minimumPlayers: 10
+    startAnnouncement: station-event-wire-cut-announcement
+  - type: WireCutRule
+    blacklist:
+      components:
+      - ParticleAcceleratorControlBox
+
+- type: entity
+  parent: WireCut
+  id: WireCutAirlock
+  components:
+  - type: StationEvent
+    weight: 5
+  - type: WireCutRule
+    whitelist:
+      components:
+      - Airlock
+    minWires: 5
+    maxWires: 15
+
+- type: entity
+  parent: WireCut
+  id: WireCutFirelock
+  components:
+  - type: StationEvent
+    weight: 4
+  - type: WireCutRule
+    whitelist:
+      components:
+      - Firelock
+    minWires: 5
+    maxWires: 15
+
+- type: entity
+  parent: WireCut
+  id: WireCutPoweredLocker
+  components:
+    - type: StationEvent
+      weight: 3
+    - type: WireCutRule
+      whitelist:
+        tags:
+          - SecuredLocker
+          - Locker
+      minWires: 3
+      maxWires: 8
+
+- type: entity
+  parent: WireCut
+  id: WireCutVendingMachine
+  components:
+  - type: StationEvent
+    weight: 2
+  - type: WireCutRule
+    whitelist:
+      components:
+      - VendingMachine
+    minWires: 10
+    maxWires: 20
+    maxWiresPerEntity: 2
+
+- type: entity
+  parent: WireCut
+  id: WireCutAirAlarm
+  components:
+  - type: StationEvent
+    weight: 1
+  - type: WireCutRule
+    whitelist:
+      components:
+      - AirAlarm
+    minWires: 3
+    maxWires: 8
+
+# The scheduler rolls one of the variants above, using their weights as relative chances.
+- type: entityTable
+  id: WireCutEventsTable
+  table: !type:AllSelector
+    children:
+    - id: WireCutAirlock
+    - id: WireCutFirelock
+    - id: WireCutPoweredLocker
+    - id: WireCutVendingMachine
+    - id: WireCutAirAlarm
+
+- type: entity
+  parent: BaseGameRule
+  id: WireCutScheduler
+  components:
+  - type: BasicStationEventScheduler
+    minimumTimeUntilFirstEvent: 600 # 10 min
+    maximumSpanUntilFirstEvent: 300 # 5 min
+    minMaxEventTiming:
+      min: 900 # 15 min
+      max: 1500 # 25 min
+    scheduledGameRules: !type:NestedSelector
+      tableId: WireCutEventsTable

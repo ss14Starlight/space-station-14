@@ -82,7 +82,10 @@ namespace Content.Server.Doors.Systems
                     && appearanceQuery.TryGetComponent(uid, out var appearance))
                 {
                     var (pressure, fire) = CheckPressureAndFire(uid, firelock, xform, airtight, airtightQuery, door.State == DoorState.Open); // Funky change
-
+                    // Starlight-start: Firelock wires
+                    if (!pressure && firelock.PressureWireCut) pressure = true;
+                    if (!fire && firelock.HeatWireCut) fire = true;
+                    // Starlight-end: Firelock wires
                     // Funky change
                     if (door.State == DoorState.Open)
                     {

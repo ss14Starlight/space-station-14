@@ -30,6 +30,7 @@
   - SubGamemodesRuleNoXenoborg # No two motherships. Allows wizards to spawn on Xenoborgs. Space is dangerous, yo.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
+  - WireCutScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
 
@@ -49,6 +50,7 @@
     - BasicStationEventScheduler
     - BasicStationEventScheduler # More events without ramping events. What could go wrong?
     - MeteorSwarmMildScheduler
+    - WireCutScheduler
     - SubGamemodesRule
     - BasicRoundstartVariation
     - BasicRoundstartVariation
@@ -72,6 +74,7 @@
   - SubGamemodesRuleNoVampires
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
+  - WireCutScheduler
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -89,6 +92,7 @@
     - SLChangelingLess
     - SubGamemodesRuleNoChangelings
     - BasicStationEventScheduler
+    - WireCutScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -105,6 +109,7 @@
     - Traitor
     - SubGamemodesRuleNoChangelings
     - BasicStationEventScheduler
+    - WireCutScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -126,6 +131,7 @@
     - VampireLess
     - SubGamemodesRuleVampTraitorLing
     - BasicStationEventScheduler
+    - WireCutScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -146,6 +152,7 @@
     - WizardDuel
     #- Xenoborgs
     - RampingStationEventScheduler
+    - WireCutScheduler
     - SLChangeling
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
@@ -182,6 +189,7 @@
     - BasicStationEventScheduler
     - ShitStationEventScheduler
     - MeteorSwarmScheduler # Meteor mild isn't included in almost aller because in theory the idea is to have a round last more than 10 minutes.
+    - WireCutScheduler
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
@@ -214,6 +222,7 @@
     - CosmicCult
     - SubGamemodesRuleConversion
     - MeteorSwarmScheduler
+    - WireCutScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - BasicStationEventScheduler
@@ -235,6 +244,7 @@
   - SubGamemodesRuleNoChangelings
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
+  - WireCutScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
   - RailroadingMinor # 🌟Starlight🌟
