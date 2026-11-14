@@ -9,6 +9,7 @@ public sealed partial class ReplayObserverSystem
 {
     private bool _hearAll = true;
 
+    [SubscribeLocalEvent]
     private void OnToggleHearing(EntityUid uid, ReplaySpectatorComponent component, ToggleGhostHearingActionEvent args)
     {
         if (args.Handled || !IsReplayActive)

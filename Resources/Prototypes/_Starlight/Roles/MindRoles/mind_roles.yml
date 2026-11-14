@@ -8,6 +8,14 @@
 
 - type: entity
   parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostSurvivorAligned
+  name: Ghost Role (Survivor Aligned)
+  components:
+    - type: MindRole
+      roleType: SurvivorAligned
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
   id: MindRoleGhostCentCommAligned
   name: Ghost Role (CentComm Aligned)
   components:

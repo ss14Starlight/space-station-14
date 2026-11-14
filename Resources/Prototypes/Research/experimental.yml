@@ -92,6 +92,8 @@
   cost: 5000
   recipeUnlocks:
   - MechEquipmentBorgBeacon
+  - RemoteControlBrain # Starlight
+  - RemoteControlConsoleCircuitboard # Starlight
 
 # Tier 2
 

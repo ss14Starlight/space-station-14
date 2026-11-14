@@ -84,7 +84,7 @@ public abstract partial class SharedGasTankSystem : EntitySystem
         using var _ = args.PushGroup(nameof(GasTankComponent));
 
         if (args.IsInDetailsRange)
-            args.PushMarkup(Loc.GetString("comp-gas-tank-examine", ("pressure", Math.Round(component.Air?.Pressure ?? 0))));
+            args.PushMarkup(Loc.GetString("comp-gas-tank-examine", ("pressure", Math.Round(GetPredictedPressure(component), 1)))); // Starlight
 
         if (component.IsConnected)
             args.PushMarkup(Loc.GetString("comp-gas-tank-connected"));

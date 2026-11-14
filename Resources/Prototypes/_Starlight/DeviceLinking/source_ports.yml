@@ -90,6 +90,12 @@
   defaultLinks: [ CombustionTurbineConsoleReceiver ]
 
 - type: sourcePort
+  id: RemoteControl
+  name: signal-port-name-remote-control
+  description: signal-port-description-remote-control
+  defaultLinks: [ RemoteControlControllable ]
+
+- type: sourcePort
   id: AirlockCyclerSideA
   name: signal-port-name-airlock-cycler-side-a
   description: signal-port-description-airlock-cycler-side

@@ -79,17 +79,7 @@
         probability: 0.1
 
 
-      - !type:MovementSpeedModifier
-        minScale: 1
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Slime ]
-          inverted: true
-        - !type:BloodReagentCondition #  Funky atmos - /tg/ gases
-          reagent: NitrosylPlasmide
-          max: 0.1
-        walkSpeedModifier: 0.65
-        sprintSpeedModifier: 0.65
+      # Starlight - SleepinessStatusEffect handles movement slowdown.
 
       - !type:AdjustReagent
         conditions:

@@ -634,6 +634,12 @@
   id: ModularBarrel
 
 - type: Tag
+  id: ModularHudGoggles
+
+- type: Tag
+  id: ModularHudSingleEye
+
+- type: Tag
   id: ModuleBlacklistXenoborgEngiWeapon
 
 - type: Tag

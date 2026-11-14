@@ -7,6 +7,7 @@ using Content.Server.Voting.Managers;
 using Content.Shared._Starlight.Commands;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.GameTicking;
 using Robust.Shared.Player;
 using Timer = Robust.Shared.Timing.Timer;
 
@@ -67,6 +68,21 @@ public sealed partial class RoundEndSystem
                 ("time", time),
                 ("units", Loc.GetString(unitsLocString))));
         Timer.Spawn(countdownTime.Value, AfterEndRoundRestart, _countdownTokenSource.Token);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRoundEndCancelled(RoundEndCancelMessageEvent ev)
+    {
+        _countdownTokenSource?.Cancel();
+        _countdownTokenSource = null;
+        _cooldownTokenSource?.Cancel();
+        _cooldownTokenSource = null;
+
+        CantRecall = false;
+        LastCountdownStart = null;
+        ExpectedCountdownEnd = null;
+        SetAutoCallTime();
+        RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
     }
 
     public bool IsRestartTimerActive() =>

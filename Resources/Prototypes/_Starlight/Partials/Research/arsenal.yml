@@ -3,3 +3,109 @@
   recipeUnlocks:
   - FiringPinAdvancedLaserReplacement
   - FiringPinSmartLMGReplacement
+  - WeaponMechCombatAMLG90
+  - WeaponMechCombatImmolationGun
+  radioChannels:
+  - Security
+
+- type: !PartialOnly technology
+  id: DraconicMunitions
+  tier: 2
+  cost: 8000
+  recipeUnlocks:
+  - MagazineDMRIncendiary
+  - MagazineShotgunIncendiary
+  - SpeedLoaderShotgunIncendiary
+  radioChannels:
+  - Security
+
+- type: !PartialOnly technology
+  id: UraniumMunitions
+  tier: 2
+  recipeUnlocks:
+  - MagazineDMRUranium
+  - SpeedLoaderShotgunUranium
+  radioChannels:
+  - Security
+
+- type: !PartialOnly technology
+  id: SalvageWeapons
+  recipeUnlocks:
+  - FiringPinExpedition
+  - BorgModuleMiningDefense
+  - MechEquipmentKineticAccelerator
+  technologyPrerequisites:
+  - SalvageEquipment
+  radioChannels:
+  - Supply
+
+- type: !PartialOnly technology
+  id: WeaponizedLaserManipulation
+  recipeUnlocks:
+  - FiringPinLaser
+  - WeaponMechCombatFiredartLaser
+  radioChannels:
+  - Security
+
+- type: !PartialOnly technology
+  id: NonlethalAmmunition
+  recipeUnlocks:
+  - WeaponMechCombatTaser
+  - MagazineShotgunBeanbag
+  - WeaponMechCombatDisabler
+  - WeaponMechCombatFlashbangLauncher
+  - CartridgePistolRubber
+  - CartridgeMagnumRubber
+  - CartridgeLightRifleRubber
+  - CartridgeRifleRubber
+  - MagazineBoxPistolRubber
+  - MagazineBoxMagnumRubber
+  - MagazineBoxLightRifleRubber
+  - MagazineBoxRifleRubber
+  radioChannels:
+  - Security
+
+- type: !PartialOnly technology
+  id: WaveParticleHarnessing
+  recipeUnlocks:
+  - WeaponMechCombatXray
+  radioChannels:
+  - Security
+
+- type: !PartialOnly technology
+  id: KineticModifications
+  technologyPrerequisites:
+  - SalvageWeapons
+  radioChannels:
+  - Supply
+
+- type: !PartialOnly technology
+  id: BasicShuttleArmament
+  cost: 8000
+  recipeUnlocks:
+  - GrenadeBaton
+  technologyPrerequisites:
+  - Shuttlecraft
+  radioChannels:
+  - Security
+
+- type: !PartialOnly technology
+  id: AdvancedRiotControl
+  tier: 1
+  radioChannels:
+  - Security
+
+- type: !PartialOnly technology
+  id: ConcentratedLaserWeaponry
+  recipeUnlocks:
+  - WeaponMechCombatSolarisLaser
+  - WeaponLaserImmolator
+  radioChannels:
+  - Security
+
+- type: !PartialOnly technology
+  id: ThermalWeaponry
+  recipeUnlocks:
+  - WeaponLaserSvalinn
+  radioChannels:
+  - Security

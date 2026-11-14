@@ -96,6 +96,29 @@
   radioChannels:
   - Medical
 
+- type: technology
+  id: ModularHudFrames
+  name: research-technology-modular-hud-frames
+  icon:
+    sprite: _Moffstation/Clothing/Eyes/Hud/visor.rsi
+    state: colorful-icon
+  discipline: Biochemical
+  tier: 1
+  cost: 6000
+  recipeUnlocks:
+  - ClothingEyesModularHudVisor
+  - ClothingEyesModularHudGoggles
+  - ClothingEyesModularHudGlasses
+  - ClothingEyesModularHudSunglasses
+  - ClothingEyesModularHudCheapSunglasses
+  - ClothingEyesModularHudJamjars
+  - ClothingEyesModularHudPatch
+  radioChannels:
+  - Engineering
+  - Medical
+  - Service
+  - Security
+
 # Tier 2
 
 - type: technology
@@ -216,6 +239,22 @@
     - CyberImplantsTech
   radioChannels:
   - Security
+  - Medical
+
+- type: technology
+  id: ModularHudModulesMedicalT2
+  name: research-technology-modular-hud-modules-medical-t2
+  icon:
+    entity: HudModuleShowMedicalIcons
+  discipline: Biochemical
+  tier: 2
+  cost: 3500
+  technologyPrerequisites:
+  - ModularHudFrames
+  recipeUnlocks:
+  - HudModuleSolutionScanner
+  - HudModuleShowMedicalIcons
+  radioChannels:
   - Medical
 
 # Tier 3

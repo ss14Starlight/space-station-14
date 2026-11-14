@@ -1,13 +1,116 @@
-﻿- type: !PartialOnly entity
+- type: !PartialOnly entity
   id: ClothingEyesGlassesSecurity
-  components:
+  name: security sunglasses
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
   - type: Tag
     tags:
+    - WhitelistChameleon
+    - HamsterWearable
+    - PetWearable
     - SecBeltEquip
+    - FullEyeCovering
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Contraband
+    tier: Tier2
 
 - type: !PartialOnly entity
   id: ClothingEyesGlassesNoir
-  components:
+  name: noir-tech sunglasses
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleNoirOverlay
   - type: Tag
     tags:
+    - WhitelistChameleon
+    - HamsterWearable
     - SecBeltEquip
+    - FullEyeCovering
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: ClothingEyesGlassesChemical
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleSolutionScanner
+  - type: Tag
+    tags:
+    - ModularHudGoggles
+    - WhitelistChameleon
+    - PetWearable
+    - FullEyeCovering
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: !PartialOnly entity
+  id: ClothingEyesGlassesCommand
+  name: administration sunglasses
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowJobIcons
+        - id: HudModuleShowAccessReaderSettings
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable
+    - PetWearable
+    - FullEyeCovering
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: ClothingEyesGlassesMeson
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleEyeProtection
+  - type: Tag
+    tags:
+    - ModularHudGoggles
+    - WhitelistChameleon
+    - PetWearable
+    - Meson
+    - FullEyeCovering
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: ClothingEyesGlassesThermal
+  name: thermal goggles
+  components:
+  - type: !Remove Sprite
+  - type: !Remove Clothing
+  - type: !Remove ThermalSight
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleThermalSight

@@ -26,7 +26,7 @@
   - type: ShowHealthIcons
 
 - type: entity
-  parent: ClothingEyesHudBase
+  parent: ClothingEyesModularHudVisor # Starlight
   id: ClothingEyesHudDiagnostic
   name: diagnostic hud
   description: A heads-up display capable of analyzing the integrity and status of robotics and exosuits. Made out of see-borg-ium.
@@ -42,7 +42,7 @@
   - type: ShowAccessReaderSettings
 
 - type: entity
-  parent: [ClothingEyesHudBase, ShowMedicalIcons]
+  parent: [ClothingEyesModularHudVisor, BaseMedicalContraband] # Starlight
   id: ClothingEyesHudMedical
   name: medical hud
   description: A heads-up display that scans the humanoids in view and provides accurate data about their health status.
@@ -58,7 +58,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingEyesHudBase, ShowSecurityIcons, BaseSecurityContraband]
+  parent: [ClothingEyesModularHudVisor, BaseSecurityContraband]
   id: ClothingEyesHudSecurity
   name: security hud
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records.
@@ -74,7 +74,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingEyesHudBase, BaseCommandContraband]
+  parent: [ClothingEyesModularHudVisor, BaseCommandContraband]
   id: ClothingEyesHudCommand
   name: administration hud
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status.
@@ -91,7 +91,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingEyesHudBase
+  parent: ClothingEyesModularHudSunglasses # Starlight
   id: ClothingEyesHudBeer
   name: beer goggles
   description: A pair of sunHud outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion.
@@ -173,7 +173,7 @@
   - type: ShowThirstIcons
 
 - type: entity
-  parent: [ ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityContraband, BaseCommandContraband ] # Starlight
+  parent: [ClothingEyesModularHudVisor, BaseRestrictedContraband] # Starlight
   id: ClothingEyesHudMedSec
   name: medsec hud
   description: An eye display that looks like a mixture of medical and security huds.
@@ -262,7 +262,7 @@
   #  stealGroup: ClothingEyesHuds # Starlight end
 
 - type: entity
-  parent: [ClothingEyesHudMedical, ClothingHeadEyeBaseFlippable]
+  parent: [ClothingEyesModularHudPatch, BaseMedicalContraband] # Starlight
   id: ClothingEyesEyepatchHudMedical
   name: medical hud eyepatch
   description: A heads-up display that scans the humanoids in view and provides accurate data about their health status. For true patriots.
@@ -278,12 +278,12 @@
     - HudMedical
 
 - type: entity
-  parent: [ClothingEyesEyepatchHudMedical, ClothingHeadEyeBaseFlipped]
+  parent: [ClothingEyesModularHudPatch, BaseMedicalContraband] # Starlight
   id: ClothingEyesEyepatchHudMedicalFlipped
   name: medical hud eyepatch
 
 - type: entity
-  parent: [ClothingEyesHudSecurity, ClothingHeadEyeBaseFlippable]
+  parent: ClothingEyesModularHudPatch # Starlight
   id: ClothingEyesEyepatchHudSecurity
   name: security hud eyepatch
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records. For true patriots.
@@ -299,12 +299,12 @@
     - HudSecurity
 
 - type: entity
-  parent: [ClothingEyesEyepatchHudSecurity,  ClothingHeadEyeBaseFlipped]
+  parent: ClothingEyesModularHudPatch # Starlight
   id: ClothingEyesEyepatchHudSecurityFlipped
   name: security hud eyepatch
 
 - type: entity
-  parent: ClothingHeadEyeBaseFlippable
+  parent: ClothingEyesModularHudPatch # Starlight
   id: ClothingEyesEyepatchHudBeer
   name: beer hud eyepatch
   description: A pair of sunHud outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion. For true patriots.
@@ -322,12 +322,12 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingEyesEyepatchHudBeer, ClothingHeadEyeBaseFlipped]
+  parent: ClothingEyesModularHudPatch # Starlight
   id: ClothingEyesEyepatchHudBeerFlipped
   name: beer hud eyepatch
 
 - type: entity
-  parent: [ClothingEyesHudDiagnostic, ClothingHeadEyeBaseFlippable]
+  parent: ClothingEyesModularHudPatch # Starlight
   id: ClothingEyesEyepatchHudDiag
   name: diagnostic hud eyepatch
   description: A heads-up display capable of analyzing the integrity and status of robotics and exosuits. Made out of see-borg-ium.
@@ -338,6 +338,6 @@
     sprite: Clothing/Eyes/Hud/diagpatch.rsi
 
 - type: entity
-  parent: [ClothingEyesEyepatchHudDiag, ClothingHeadEyeBaseFlipped]
+  parent: ClothingEyesModularHudPatch # Starlight
   id: ClothingEyesEyepatchHudDiagFlipped
   name: diagnostic hud eyepatch

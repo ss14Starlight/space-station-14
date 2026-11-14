@@ -9,7 +9,7 @@ namespace Content.Client.Store.Ui;
 [UsedImplicitly]
 public sealed partial class StoreBoundUserInterface : BoundUserInterface // Starlight, partial
 {
-    private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // Starlight
     private readonly StoreSystem _storeSystem = default!;
 
     [ViewVariables]
@@ -80,7 +80,9 @@ public sealed partial class StoreBoundUserInterface : BoundUserInterface // Star
                 _listings = msg.Listings;
 
                 _menu?.UpdateBalance(msg.Balance);
-                _menu!.GridMode = msg.GridMode; // Starlight
+                // Starlight - start
+                _menu?.GridMode = msg.GridMode;
+                // Starlight - end
 
                 UpdateListingsWithSearchFilter();
                 _menu?.SetFooterVisibility(msg.ShowFooter);

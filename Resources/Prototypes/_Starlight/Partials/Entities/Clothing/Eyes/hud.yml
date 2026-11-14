@@ -66,3 +66,237 @@
   - type: Contraband
     tier: Tier4
 
+- type: !PartialOnly entity
+  id: ClothingEyesEyepatchHudBeer
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowThirstIcons
+        - id: HudModuleSolutionScanner
+  - type: StealTarget
+    stealGroup: MiscGlassesCollection
+
+- type: !PartialOnly entity
+  id: ClothingEyesEyepatchHudBeerFlipped
+  categories: [HideSpawnMenu]
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowThirstIcons
+        - id: HudModuleSolutionScanner
+  - type: StealTarget
+    stealGroup: MiscGlassesCollection
+  - type: Foldable
+    folded: true
+
+- type: !PartialOnly entity
+  id: ClothingEyesEyepatchHudDiag
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowAccessReaderSettings
+        - id: HudModuleShowInorganicHealthBars
+
+- type: !PartialOnly entity
+  id: ClothingEyesEyepatchHudDiagFlipped
+  categories: [HideSpawnMenu]
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowAccessReaderSettings
+        - id: HudModuleShowInorganicHealthBars
+  - type: Foldable
+    folded: true
+
+- type: !PartialOnly entity
+  id: ClothingEyesEyepatchHudMedical
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMedicalIcons
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - HudMedical
+    - PetWearable
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
+
+- type: !PartialOnly entity
+  id: ClothingEyesEyepatchHudMedicalFlipped
+  categories: [HideSpawnMenu]
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMedicalIcons
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - HudMedical
+    - PetWearable
+  - type: Foldable
+    folded: true
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
+
+- type: !PartialOnly entity
+  id: ClothingEyesEyepatchHudSecurity
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - HudSecurity
+    - PetWearable
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Security
+    allowedJobs: []
+
+- type: !PartialOnly entity
+  id: ClothingEyesEyepatchHudSecurityFlipped
+  categories: [HideSpawnMenu]
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - HudSecurity
+    - PetWearable
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Security
+    allowedJobs: []
+  - type: Foldable
+    folded: true
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudBeer
+  name: beer sunglasses
+  description: A pair of sunglasses outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion.
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowThirstIcons
+        - id: HudModuleSolutionScanner
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - PetWearable
+    - Sunglasses
+    - FullEyeCovering
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudCommand
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowJobIcons
+        - id: HudModuleShowAccessReaderSettings
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - PetWearable
+  - type: Contraband
+    tier: Tier2
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudDiagnostic
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowAccessReaderSettings
+        - id: HudModuleShowInorganicHealthBars
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudMedSec
+  name: brigmedic hud
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - SecBeltEquip
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic]
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudMedical
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMedicalIcons
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - HudMedical
+    - PetWearable
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudSecurity
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - HudSecurity
+    - PetWearable
+  - type: Contraband
+    tier: Tier2

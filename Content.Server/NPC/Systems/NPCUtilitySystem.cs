@@ -5,6 +5,7 @@ using Content.Server.NPC.Queries.Considerations;
 using Content.Server.NPC.Queries.Curves;
 using Content.Server.NPC.Queries.Queries;
 using Content.Server.Nutrition.Components;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Examine;
 using Content.Shared.Fluids.Components;
@@ -66,6 +67,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
     [Dependency] private NPCHidingWitnessSystem _hidingWitness = default!; // Starlight
 
     private EntityQuery<PuddleComponent> _puddleQuery;
+    private EntityQuery<FootprintComponent> _footprintQuery; // Starlight-edit
     private EntityQuery<TransformComponent> _xformQuery;
     private static readonly ProtoId<TagPrototype> _reagentFireTag = "ReagentFire";
 
@@ -81,6 +83,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
     {
         base.Initialize();
         _puddleQuery = GetEntityQuery<PuddleComponent>();
+        _footprintQuery = GetEntityQuery<FootprintComponent>(); // Starlight
         _xformQuery = GetEntityQuery<TransformComponent>();
     }
 
@@ -616,8 +619,20 @@ public sealed partial class NPCUtilitySystem : EntitySystem
 
                 foreach (var ent in entities)
                 {
-                    if (!_puddleQuery.TryGetComponent(ent, out var puddleComp) ||
-                        !_solutions.TryGetSolution(ent, puddleComp.SolutionName, out _, out var sol) ||
+                    // Starlight start, clean up footprints too
+                    string solutionName;
+                    if (_puddleQuery.TryGetComponent(ent, out var puddleComp))
+                        solutionName = puddleComp.SolutionName;
+                    else if (_footprintQuery.HasComponent(ent))
+                        solutionName = FootprintComponent.SolutionName;
+                    else
+                    {
+                        _entityList.Add(ent);
+                        continue;
+                    }
+                    // Starlight end
+
+                    if (!_solutions.TryGetSolution(ent, solutionName, out _, out var sol) || // Starlight
                         _puddle.CanFullyEvaporate(sol))
                     {
                         _entityList.Add(ent);
