@@ -17,6 +17,7 @@ using Content.Shared.Magic.Components;
 using Content.Shared.Magic.Events;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
+using Content.Shared._Starlight.Teleportation.Systems;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
@@ -68,6 +69,7 @@ public abstract partial class SharedMagicSystem : EntitySystem
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private SharedTeleportSystem _teleports = default!; // Starlight
     [Dependency] private SharedChargesSystem _charges = default!;
     [Dependency] private ExamineSystemShared _examine= default!;
     [Dependency] private TargetSystem _target = default!;
@@ -376,8 +378,17 @@ public abstract partial class SharedMagicSystem : EntitySystem
         if (transform.MapID != _transform.GetMapId(args.Target) || (!args.IgnoreWalls && !_interaction.InRangeUnobstructed(args.Performer, args.Target, range: 1000F, collisionMask: CollisionGroup.Opaque, popup: true)))
             return;
 
-        _transform.SetCoordinates(args.Performer, args.Target);
-        _transform.AttachToGridOrMap(args.Performer, transform);
+        // Starlight start: teleport helper
+        //_transform.SetCoordinates(args.Performer, args.Target);
+        //_transform.AttachToGridOrMap(args.Performer, transform);
+        _teleports.Teleport(args.Performer, args.Target, new SharedTeleportSystem.TeleportOptions
+        {
+            CarryPulled = SharedTeleportSystem.DefaultTeleportCarryPulled,
+            CarryMassLimit = SharedTeleportSystem.DefaultTeleportCarryMassLimit,
+            Unbuckle = SharedTeleportSystem.DefaultTeleportUnbuckle,
+            CarryIncomingPulls = SharedTeleportSystem.DefaultTeleportCarryIncomingPulls,
+        });
+        // Starlight end
         args.Handled = true;
     }
 

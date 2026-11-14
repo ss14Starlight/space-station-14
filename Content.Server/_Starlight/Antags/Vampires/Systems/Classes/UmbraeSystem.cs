@@ -19,6 +19,7 @@ using Content.Shared.Light.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared._Starlight.Teleportation.Systems;
 using Content.Shared.Temperature.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -51,6 +52,7 @@ public sealed partial class UmbraeSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedEyeSystem _eye = default!;
     [Dependency] private SharedUmbraeSystem _sharedUmbrae = default!;
+    [Dependency] private SharedTeleportSystem _teleports = default!;
 
     public override void Initialize()
     {
@@ -197,8 +199,13 @@ public sealed partial class UmbraeSystem : EntitySystem
 
         Spawn(args.MistInPrototype, curXform.Coordinates);
 
-        _transform.SetCoordinates(uid, target);
-        _transform.AttachToGridOrMap(uid, curXform);
+        _teleports.Teleport(uid, target, new SharedTeleportSystem.TeleportOptions
+        {
+            CarryPulled = SharedTeleportSystem.DefaultTeleportCarryPulled,
+            CarryMassLimit = SharedTeleportSystem.DefaultTeleportCarryMassLimit,
+            Unbuckle = SharedTeleportSystem.DefaultTeleportUnbuckle,
+            CarryIncomingPulls = SharedTeleportSystem.DefaultTeleportCarryIncomingPulls,
+        });
 
         Spawn(args.MistOutPrototype, target);
 
@@ -541,9 +548,13 @@ public sealed partial class UmbraeSystem : EntitySystem
         }
 
         var beacon = umbrae.SpawnedShadowAnchorBeacon.Value;
-        var coords = Transform(beacon).Coordinates;
-        _transform.SetCoordinates(uid, coords);
-        _transform.AttachToGridOrMap(uid, Transform(uid));
+        _teleports.Teleport(uid, Transform(beacon).Coordinates, new SharedTeleportSystem.TeleportOptions
+        {
+            CarryPulled = SharedTeleportSystem.DefaultTeleportCarryPulled,
+            CarryMassLimit = SharedTeleportSystem.DefaultTeleportCarryMassLimit,
+            Unbuckle = SharedTeleportSystem.DefaultTeleportUnbuckle,
+            CarryIncomingPulls = SharedTeleportSystem.DefaultTeleportCarryIncomingPulls,
+        });
 
         QueueDel(beacon);
         umbrae.SpawnedShadowAnchorBeacon = null;
