@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: FoodMeatDragon
+  components:
+  - type: Tag
+    tags:
+      - DragonMeat

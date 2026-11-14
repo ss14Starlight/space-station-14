@@ -1,5 +1,8 @@
 # PLEASE, KEEP THIS FILE ALPHABETIZED
 - type: Tag
+  id: AdvancedMop # BountySalvageMop
+
+- type: Tag
   id: AbductedTraitBackground
 
 - type: Tag
@@ -195,6 +198,9 @@
   id: Citrus # Artifact citrus trigger
 
 - type: Tag
+  id: Cloning # BountySalvageCloning
+
+- type: Tag
   id: CluwneBeastWearable
 
 - type: Tag
@@ -202,6 +208,12 @@
 
 - type: Tag
   id: CombatRemote # Tag: used on the RemoteSignallerCombat
+
+- type: Tag
+  id: CommieBasicWeapon # BountySalvageCommieWeapons
+
+- type: Tag
+  id: CommieAdvancedWeapon # BountySalvageAKMS
 
 - type: Tag
   id: CommieID # BountySalvageCommieID
@@ -256,6 +268,9 @@
 
 - type: Tag
   id: DogEmotes
+
+- type: Tag
+  id: DragonMeat # BountySalvageDragon
 
 - type: Tag
   id: Drone
@@ -480,6 +495,9 @@
   id: K9Wearable
 
 - type: Tag
+  id: Keg # BountySalvageKeg
+
+- type: Tag
   id: L6Saw
 
 - type: Tag
@@ -609,6 +627,9 @@
   id: MechReactor
 
 - type: Tag
+  id: MechReactorExpedition # BountySalvageReactor
+
+- type: Tag
   id: MechThruster
 
 - type: Tag
@@ -701,6 +722,9 @@
 
 - type: Tag
   id: PowerCellTiny
+
+- type: Tag
+  id: Protolathe # BountyProtolatheMachineBoard
 
 - type: Tag
   id: PrototypeJawsOfLife
@@ -856,6 +880,9 @@
 
 - type: Tag
   id: USSPTraitBackground
+
+- type: Tag
+  id: Vodkizine # BountySalvageVodkizine
 
 - type: Tag
   id: Vial

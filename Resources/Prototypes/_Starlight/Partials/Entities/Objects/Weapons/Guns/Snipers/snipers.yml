@@ -49,3 +49,10 @@
     maxAngleDivider: 1.4
     minAngle: 0
     maxAngle: 0
+
+- type: !PartialOnly entity
+  id: WeaponSniperMosin
+  components:
+  - type: Tag
+    tags:
+      - CommieBasicWeapon
