@@ -212,9 +212,9 @@
   name: The Book Of life
   description: "A holy book depicting the holy path towards eternal life and immortality"
   id: BibleBookOfLife
-  components: ##will need a rework of life's bible in the future
+  components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Chapel/bookoflife.rsi
   - type: Item
     sprite: _Starlight/Objects/Specific/Chapel/bookoflife.rsi
-##TODO add speak-out-loud prayers, function pending
+
