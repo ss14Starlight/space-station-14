@@ -1,5 +1,5 @@
 ﻿using Content.Client._Starlight.UserInterface;
-using Content.Client._Starlight.UserInterface.Systems.PinWindow; // Starlight
+using Content.Client._Starlight.UserInterface.Systems.PinWindow;
 using Content.Client.Resources;
 using Content.Client.Stylesheets.Fonts;
 using Content.Client.Stylesheets.Palette;
