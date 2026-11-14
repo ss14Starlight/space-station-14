@@ -26,6 +26,7 @@ namespace Content.Client.Eye.Blinding
         public BlindOverlay()
         {
             IoCManager.InjectDependencies(this);
+            ZIndex = -80; // Starlight
             _greyscaleShader = _prototypeManager.Index(GreyscaleShader).InstanceUnique();
             _circleMaskShader = _prototypeManager.Index(CircleShader).InstanceUnique();
         }

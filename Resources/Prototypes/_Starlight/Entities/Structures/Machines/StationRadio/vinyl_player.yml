@@ -8,6 +8,7 @@
     sprite: _Starlight/Structures/Machines/StationRadio/vinylplayer.rsi
     snapCardinals: true
     granularLayersRendering: true
+    offset: "0.0,0.3"
     layers:
     - state: icon
     - state: disk_installed

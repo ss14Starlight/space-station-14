@@ -1,0 +1,11 @@
+- type: !PartialOnly entityTable
+  id: LockerFillChiefEngineerNoHardsuit
+  table:
+    children:
+    - id: HudModuleThermalSight
+
+- type: !PartialOnly entityTable
+  id: LockerFillChiefMedicalOfficerNoHardsuit
+  table:
+    children:
+    - id: HudModuleSolutionScanner

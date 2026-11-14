@@ -27,6 +27,7 @@
     - ServiceBoardsStaticGoob # Goobstation - Radio Host boards
     - CassetteTape
     - TapeRecorder
+    - BlankPhotograph
     dynamicPacks:
     - StarlightAutolatheLootable
   - type: EmagLatheRecipes
@@ -36,6 +37,7 @@
     - StarlightSecurityAmmoStatic
     - StarlightSecurityAmmoEmagStatic
     - !Remove SecurityAmmoStatic # SL disable in favor of prior three lines
+    - PrescriptionHudModuleStatic
 
 - type: !PartialOnly entity
   id: Protolathe
@@ -63,6 +65,17 @@
     - StarlightSecurityEquipment
     - StarlightSecurityWeapons
     - StarlightDefenseStatic
+    - ModularHudFrames
+    - SecurityModularHudFrames
+    - EngineeringModularHudFrames
+    - CommandModularHudFrames
+    - ScienceModularHudFrames
+    - ModularHudModules
+    - ScienceModularHudModules
+    - ServiceModularHudModules
+    - SecurityModularHudModules
+    - CommandModularHudModules
+    - MedicalModularHudModules
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
@@ -70,6 +83,7 @@
     - !Remove SecurityExplosives
     - !Remove SecurityEquipment
     - !Remove SecurityWeapons
+    - PrescriptionHudModuleStatic
 
 - type: !PartialOnly entity
   id: CircuitImprinter
@@ -99,6 +113,7 @@
     - StarlightSyndicateVendorBoards
     - StarlightLatheBoardsEmag
     - !Remove SecurityBoards
+    - PrescriptionHudModuleStatic
 
 - type: !PartialOnly entity
   id: ExosuitFabricator
@@ -112,6 +127,7 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModules
+    - PrescriptionHudModuleStatic
     emagDynamicPacks:
     - StarlightMechWeapon
 
@@ -123,6 +139,9 @@
     - StarlightFriendlyCubesStatic
     dynamicPacks:
     - StarlightBiofabricatorLootable
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - PrescriptionHudModuleStatic
 
 - type: !PartialOnly entity
   id: SecurityTechFab
@@ -153,12 +172,15 @@
     - !Remove SecurityBoards
     - !Remove SecurityExplosives
     - !Remove SecurityWeapons
+    - SecurityModularHudFrames
+    - SecurityModularHudModules
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
     - StarlightSyndicateAmmoStatic
     - StarlightSecurityAmmoEmagStatic
     - StarlightSecurityGrenadesEmag
+    - PrescriptionHudModuleStatic
   - type: StealTarget
     stealGroup: SecureTechFabCircuitboard
 
@@ -172,6 +194,7 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
 
 - type: !PartialOnly entity
   id: MedicalTechFab
@@ -182,6 +205,7 @@
     - StarlightMedicalStatic
     - AACTabletStatic # Moffstation - AAC tablet
     - !Remove SurgeryStatic
+    - PrescriptionHudModuleStatic
     dynamicPacks:
     - StarlightSurgeryDynamic
     - StarlightAutomendersDynamic
@@ -190,11 +214,14 @@
     - StarlightImplantDynamic
     - StarlightBudgetCyberOrgansDynamic
     - StarlightMedicalTechFabLootable
+    - ModularHudFrames
+    - MedicalModularHudModules
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSyndicateAmmoStatic
+    - PrescriptionHudModuleStatic
     emagDynamicPacks:
     - SecurityCyberLimbs
     - SecurityImplants
@@ -208,6 +235,10 @@
   - type: Lathe
     dynamicPacks:
     - StarlightUniformPrinterLootable
+    - ModularHudFrames
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - PrescriptionHudModuleStatic
 
 - type: !PartialOnly entity
   id: Biogenerator
@@ -216,6 +247,9 @@
   - type: Lathe
     staticPacks:
     - StarlightBioGenIngredientsStatic
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - PrescriptionHudModuleStatic
 
 - type: !PartialOnly entity
   id: OreProcessor

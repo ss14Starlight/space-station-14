@@ -245,6 +245,9 @@
       prefixOn: on
       prefixOff: off
     - type: Appearance
+    - type: ESSparkOnItemToggle
+      count: 1
+      sparkPrototype: SLEffectSparksBaton
     - type: GenericVisualizer
       visuals:
         enum.ToggleableVisuals.Enabled:

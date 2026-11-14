@@ -1,0 +1,20 @@
+- type: entity
+  parent: PhotoCamera
+  id: PhotoCameraAdmeme
+  suffix: admeme
+  components:
+  - type: SnapshotCapture
+    snapshot: SnapshotPhotograph
+    zoomLevels:
+    - 13,11
+    - 11,9
+    - 9,7
+    - 7,5
+    - 5,3
+    - 3,3
+    - 1,1
+  - type: LimitedCharges
+    maxCharges: 10
+  - type: AutoRecharge
+    rechargeDuration: 1
+  - type: UseDelay

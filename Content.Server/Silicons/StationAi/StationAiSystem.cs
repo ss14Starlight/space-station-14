@@ -46,6 +46,7 @@ using Content.Shared.Medical.SuitSensors;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Warps;
 using Robust.Shared.Map;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared._Starlight.StationAi;
 using Content.Shared.Tag;
 
@@ -114,8 +115,6 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         SubscribeLocalEvent<StationAiCoreComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<StationAiCoreComponent, DoAfterAttemptEvent<IntellicardDoAfterEvent>>(OnDoAfterAttempt);
         SubscribeLocalEvent<StationAiCoreComponent, RejuvenateEvent>(OnRejuvenate);
-        _player.PlayerStatusChanged += OnPlayerStatusChanged; // Starlight
-
         SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandICChatRecipients);
         SubscribeLocalEvent<StationAiTurretComponent, AmmoShotEvent>(OnAmmoShot);
         SubscribeLocalEvent<SuitSensorComponent, SuitSensorModeChangedEvent>(OnSuitSensorModeChanged); // Starlight
@@ -505,7 +504,12 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
 
         // Starlight - start
         if (args.Container.ID == StationAiCoreComponent.Container)
+        {
+            if (TryComp<StationAIShuntableComponent>(args.Entity, out var shuntable))
+                shuntable.SlotReservationStation = _station.GetOwningStation(ent.Owner);
+
             _containerSpawnJobSlots.RefreshJobSlots();
+        }
         // Starlight - end
 
         UpdateBatteryAlert(ent);
@@ -520,6 +524,9 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         // Starlight - start
         if (args.Container.ID == StationAiCoreComponent.Container)
         {
+            if (TryComp<StationAIShuntableComponent>(args.Entity, out var shuntable)) // Starlight
+                shuntable.SlotReservationStation = _station.GetOwningStation(ent.Owner); // Starlight
+
             _containerSpawnJobSlots.RefreshJobSlots(allowAiSlotIncrease: false);
             AnnounceAiCoreConnectionLost(args.Entity, ent.Owner);
         }

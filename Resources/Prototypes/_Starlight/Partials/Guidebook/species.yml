@@ -1,0 +1,3 @@
+- type: !PartialOnly guideEntry
+  id: Reptilian
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Reptilian.xml"

@@ -1,0 +1,8 @@
+- type: !PartialOnly utilityQuery
+  id: NearbyPuddles
+  query: !Clear
+    - !type:PuddleFilter
+    - !type:ComponentQueryAny
+      components:
+        - type: Puddle
+        - type: Footprint
