@@ -123,7 +123,7 @@ public sealed partial class FlammableStainsSystem : EntitySystem
             var reagents = GetFlammableStainsString(wearer, inv);
             _adminLogger.Add(LogType.Flammable, LogImpact.High,
                 $"{ToPrettyString(wearer):entity} was ignited by their flammable stains ({reagents}) reacting to a hotspot (Igniter: {ToPrettyString(igniter):entity}).");
-            _achievements.QueueUnlockAchievement(wearer, "osha");
+            _achievements.QueueUnlockAchievement(wearer, "osha"); // Starlight-edit
         }
     }
 

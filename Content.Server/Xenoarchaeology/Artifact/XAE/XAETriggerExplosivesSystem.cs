@@ -13,14 +13,14 @@ namespace Content.Server.Xenoarchaeology.Artifact.XAE;
 public sealed partial class XAETriggerExplosivesSystem : BaseXAESystem<XAETriggerExplosivesComponent>
 {
     [Dependency] private ExplosionSystem _explosion = default!;
-    [Dependency] private AchievementSystem _achievements = default!;
+    [Dependency] private AchievementSystem _achievements = default!; // Starlight-edit
 
     /// <inheritdoc />
     protected override void OnActivated(Entity<XAETriggerExplosivesComponent> ent, ref XenoArtifactNodeActivatedEvent args)
     {
         if(!TryComp<ExplosiveComponent>(ent, out var explosiveComp))
             return;
-        if (args.User.HasValue) _achievements.QueueUnlockAchievement(args.User.Value, "sci_exploded");
+        if (args.User.HasValue) _achievements.QueueUnlockAchievement(args.User.Value, "sci_exploded"); // Starlight-edit
 
         _explosion.TriggerExplosive(ent, explosiveComp);
     }

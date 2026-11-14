@@ -116,7 +116,7 @@ public sealed partial class VocalSystem : EntitySystem
     {
         if (args.Handled)
             return;
-        _achievement.AddProgressAndCheck(uid, AchievementProgressKeys.ScreamCounter);
+        _achievement.AddProgressAndCheck(uid, AchievementProgressKeys.ScreamCounter); // Starlight-edit
         _chat.TryEmoteWithChat(uid, component.ScreamId);
         args.Handled = true;
     }
