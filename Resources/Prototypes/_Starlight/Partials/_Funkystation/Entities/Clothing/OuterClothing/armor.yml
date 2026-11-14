@@ -1,5 +1,6 @@
 - type: !PartialOnly entity
   id: ClothingOuterArmorMetalHydrogen
+  description: A superb armor made with the toughest and rarest materials available to man, though it's innate malleability leaves it slightly vulnerable to localised bludgeoning.
   components:
   - type: Armor
     modifiers:
@@ -22,6 +23,7 @@
 
 - type: !PartialOnly entity
   id: ClothingOuterArmorAtmosian
+  description: Despite some armour plating needed to be removed in order to retain space worthiness and manoeuvrability, this the fire suit bolstered with metal hydrogen can still take some punishment.
   components:
   - type: Armor
     modifiers:
