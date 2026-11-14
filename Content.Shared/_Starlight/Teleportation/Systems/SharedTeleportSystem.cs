@@ -8,11 +8,11 @@ using Robust.Shared.Physics.Components;
 
 namespace Content.Shared._Starlight.Teleportation.Systems;
 
-public sealed class SharedTeleportSystem : EntitySystem
+public sealed partial class SharedTeleportSystem : EntitySystem
 {
-    [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private SharedBuckleSystem _buckle = default!;
-    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
+    [Dependency] private readonly PullingSystem _pulling = default!;
 
     public const bool DefaultTeleportCarryPulled = true;
     public const bool DefaultTeleportCarryIncomingPulls = false;
