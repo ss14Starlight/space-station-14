@@ -82,3 +82,5 @@
   - type: Storage
     grid:
     - 0,0,4,1
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
