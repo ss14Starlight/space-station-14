@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Starlight.Teleportation.Systems;
 using Content.Shared.Salvage.Fulton;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
@@ -11,6 +12,7 @@ namespace Content.Server.Salvage;
 public sealed partial class FultonSystem : SharedFultonSystem
 {
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedTeleportSystem _teleports = default!; // Starlight
 
     public override void Initialize()
     {
@@ -65,7 +67,15 @@ public sealed partial class FultonSystem : SharedFultonSystem
                     TransformSystem.GetWorldPosition(beaconXform),
                     TransformSystem.GetInvWorldMatrix(beaconXform.ParentUid)) + offset;
 
-            TransformSystem.SetCoordinates(uid, new EntityCoordinates(beaconXform.ParentUid, localPos));
+            // Starlight start: teleport helper
+            //TransformSystem.SetCoordinates(uid, new EntityCoordinates(beaconXform.ParentUid, localPos));
+            _teleports.Teleport((uid, xform), new EntityCoordinates(beaconXform.ParentUid, localPos), new SharedTeleportSystem.TeleportOptions
+            {
+                CarryPulled = SharedTeleportSystem.DefaultTeleportCarryPulled,
+                CarryMassLimit = SharedTeleportSystem.DefaultTeleportCarryMassLimit,
+                CarryIncomingPulls = SharedTeleportSystem.DefaultTeleportCarryIncomingPulls,
+            });
+            // Starlight end
 
             RaiseNetworkEvent(new FultonAnimationMessage()
             {
