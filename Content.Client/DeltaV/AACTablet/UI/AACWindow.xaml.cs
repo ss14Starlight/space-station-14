@@ -67,8 +67,6 @@ public sealed partial class AACWindow : FancyWindow
         _prototypeManager = prototypeManager;
 
         //Starlight-start: AAC search bar edit.
-        WindowBody.OnTabChanged += OnTabChanged;
-
         _loc = IoCManager.Resolve<ILocalizationManager>();
         _cfg = IoCManager.Resolve<IConfigurationManager>();
 
@@ -244,20 +242,11 @@ public sealed partial class AACWindow : FancyWindow
         WindowBody.SetTabTitle(0, Loc.GetString("aac-window-search-tab"));
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            WindowBody.OnTabChanged -= OnTabChanged;
-        }
-
-        base.Dispose(disposing);
-    }
-
     protected override void Opened()
     {
         base.Opened();
 
+        WindowBody.OnTabChanged += OnTabChanged;
         _cfg.OnValueChanged(CVars.LocCultureName, OnLanguageChanged); //Subscribe to language changes when the window opens
 
         if (_builtCultureName != _cfg.GetCVar(CVars.LocCultureName))
@@ -270,6 +259,7 @@ public sealed partial class AACWindow : FancyWindow
     protected override void ExitedTree()
     {
         _cfg.UnsubValueChanged(CVars.LocCultureName, OnLanguageChanged); //Stop listening to language changes when the window is closed/is no longer in the tree
+        WindowBody.OnTabChanged -= OnTabChanged;
         base.ExitedTree();
     }
 
@@ -357,10 +347,7 @@ public sealed partial class AACWindow : FancyWindow
         return phraseButton;
     }
 
-    private void OnPhraseButtonPressed(string phraseId)
-    {
-        PhraseButtonPressed?.Invoke(phraseId);
-    }
+    private void OnPhraseButtonPressed(string phraseId) => PhraseButtonPressed?.Invoke(phraseId);
 
     //Starlight: Removed PopulateGui(), GetButtonWidth(), and CreateButtonContainer() methods as they are not needed in this implementation
 }
