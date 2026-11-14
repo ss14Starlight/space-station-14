@@ -71,8 +71,7 @@ public sealed class SharedTeleportSystem : EntitySystem
     }
 
     /// <summary>
-    /// Breaks any of the carried companion's other pull links so they don't stretch a joint back
-    /// to someone left behind. Never touches the carried link back to <paramref name="uid"/>.
+    /// Breaks any of the carried companion's other pull links.
     /// </summary>
     private void TrimCarriedLinks(EntityUid uid, EntityUid companion)
     {
