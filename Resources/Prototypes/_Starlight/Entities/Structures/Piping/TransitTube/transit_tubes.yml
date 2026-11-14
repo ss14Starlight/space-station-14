@@ -485,6 +485,10 @@
     layers:
     - state: cargopod
       map: [ "base" ]
+    - state: cargopod_occupied
+      map: [ "load" ]
+      shader: unshaded
+      visible: false
     # Shown only while placing the pod, to tell which way it will leave a through station.
     - sprite: Markers/arrow.rsi
       state: mono
@@ -496,7 +500,12 @@
       enum.TransitPodVisuals.Occupied:
         base:
           False: { state: cargopod }
-          True: { state: cargopod_occupied }
+          True: { state: cargopod }
+      enum.TransitPodVisuals.Load:
+        load:
+          Empty: { visible: false }
+          Occupied: { visible: true, state: cargopod_occupied }
+          Full: { visible: true, state: cargopod_full }
   - type: TransitPod
     cargo: true
     maxPassengers: 4

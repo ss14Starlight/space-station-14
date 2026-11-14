@@ -131,6 +131,17 @@
   fx: EffectRCDConstruct1
 
 - type: rcd
+  id: TransitPodCargo
+  category: TransitTubes
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_pod_cargo.png
+  mode: ConstructObject
+  prototype: TransitPodCargo
+  cost: 10
+  delay: 1
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
   id: TransitTubeCrossroad
   category: TransitTubes
   sprite: /Textures/_Starlight/Interface/Radial/RPD/transit_crossroad.png

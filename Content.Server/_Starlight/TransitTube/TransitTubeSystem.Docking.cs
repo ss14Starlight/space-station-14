@@ -19,10 +19,18 @@ public sealed partial class TransitTubeSystem
 
         pod.Comp.Station = station;
         pod.Comp.Bounced = false;
-        pod.Comp.Target = null;
-        pod.Comp.AnyFree = false;
+        ReleaseSection(pod);
+
+        // The trip ends only at its target. A stop on the way (a request stop, a terminus to turn
+        // around at) keeps the target and the claim on it; the pod plans on from here before it leaves.
+        if (pod.Comp.Target == null || pod.Comp.Target == station.Owner)
+        {
+            pod.Comp.Target = null;
+            pod.Comp.AnyFree = false;
+            ReleaseReservation(pod);
+        }
+
         pod.Comp.Plan.Clear();
-        ReleaseReservation(pod);
         _deviceLink.InvokePort(station, station.Comp.ArrivedPort);
         pod.Comp.StopRequested = false;
         Dirty(pod);
@@ -167,6 +175,7 @@ public sealed partial class TransitTubeSystem
         pod.Comp.WaitingBehind = null;
         pod.Comp.Braked = false;
         ReleaseReservation(pod);
+        ReleaseSection(pod);
 
         // Nothing holds the pod up any more: everyone falls out.
         if (!TryGetTube(Transform(pod), out _, holder))

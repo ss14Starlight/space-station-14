@@ -233,7 +233,7 @@
   parent: TransitTubeBase
   id: TransitTubeSensor
   name: transit tube sensor
-  description: Sends a signal every time a pod goes through it.
+  description: Sends a signal every time a pod goes through it, and another one depending on whether the pod is empty or not.
   components:
   - type: Sprite
     layers:
@@ -245,12 +245,15 @@
     - South
     - North
   - type: DisposalSignaller
+  - type: TransitTubeSensor
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
   - type: DeviceLinkSource
     ports:
     - ItemDetected
+    - TransitPodOccupied
+    - TransitPodEmpty
   - type: WirelessNetworkConnection
     range: 200
 

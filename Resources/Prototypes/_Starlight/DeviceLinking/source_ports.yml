@@ -124,3 +124,13 @@
   id: TransitPodDeparted
   name: signal-port-name-transit-pod-departed
   description: signal-port-description-transit-pod-departed
+
+- type: sourcePort
+  id: TransitPodOccupied
+  name: signal-port-name-transit-pod-occupied
+  description: signal-port-description-transit-pod-occupied
+
+- type: sourcePort
+  id: TransitPodEmpty
+  name: signal-port-name-transit-pod-empty
+  description: signal-port-description-transit-pod-empty

@@ -65,7 +65,6 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
         if (pod.Comp.Boosted && HasComp<TransitTubeRampComponent>(ent))
             return Direction.Invalid;
 
-        var rotation = Transform(ent).LocalRotation;
         TryComp<TransitTubeStationComponent>(ent, out var station);
 
         // A pod with a plan follows it to its target, past every other station and junction.
@@ -76,33 +75,48 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
         if (station != null && travel != Direction.Invalid && StopsOnRequest(station, pod.Comp))
             return StopAt((ent, station), pod, simulate);
 
-        // One-way tubes turn back pods coming the wrong way, unless switched off or emagged.
-        // This beats the plan: the gate may have been switched on after the pod planned its trip,
-        // and the server plans again once the pod is off its route.
-        if (ent.Comp.OneWay is { } oneWay
-            && travel != Direction.Invalid
-            && !SameWay(travel, oneWay, rotation)
-            && IsEnabled(ent.Owner)
-            && !IsEmagged(ent))
-            return travel.GetOpposite();
+        // Pieces that decide on their own (one-way tubes, switches, side branches, routers, turntables)
+        // beat the plan: they may have been switched after the pod planned its trip, and the server
+        // plans again once the pod is off its route.
+        if (travel != Direction.Invalid && FixedExit(ent, tube, holder, travel, tag) is { } fixedExit)
+            return fixedExit;
 
+        // At plain junctions a pod with a plan takes the branch it needs.
         if (travel != Direction.Invalid && pod.Comp.Plan.TryGetValue((ent.Owner, travel), out var planned))
             return planned;
 
         if (station != null && !PassesStation(ent, tube, station, pod.Comp, travel))
             return StopAt((ent, station), pod, simulate);
 
-        if (TryComp<TransitTubeTurntableComponent>(ent, out var turntable) && travel != Direction.Invalid)
+        return PickExit((ent, ent.Comp, tube), travel);
+    }
+
+    protected Direction? FixedExit(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, Entity<DisposalHolderComponent>? holder,
+        Direction travel, string? tag = null)
+    {
+        var rotation = Transform(ent).LocalRotation;
+
+        // One-way tubes turn back pods coming the wrong way, unless switched off or emagged.
+        if (ent.Comp.OneWay is { } oneWay
+            && !SameWay(travel, oneWay, rotation)
+            && IsEnabled(ent.Owner)
+            && !IsEmagged(ent))
+            return travel.GetOpposite();
+
+        if (TryComp<TransitTubeTurntableComponent>(ent, out var turntable))
             return Turn(ent, tube, turntable, travel);
 
         if (TryComp<DisposalRouterComponent>(ent, out var router))
         {
             // Pods with a matching tag follow the arrow, the rest take the other way.
             var routerTags = router.Tags;
-            var holderTags = holder.Comp.Tags;
-            var matches = tag != null
-                ? tag.Length > 0 && (routerTags.Contains(tag) || routerTags.Contains("*"))
-                : _holder.TagsOverlap(holder, routerTags) || (routerTags.Contains("*") && holderTags.Count > 0);
+            bool matches;
+            if (tag != null)
+                matches = tag.Length > 0 && (routerTags.Contains(tag) || routerTags.Contains("*"));
+            else if (holder is { } tagged)
+                matches = _holder.TagsOverlap(tagged, routerTags) || (routerTags.Contains("*") && tagged.Comp.Tags.Count > 0);
+            else
+                matches = false;
 
             return matches
                 ? PickExit((ent, ent.Comp, tube), travel, force: true)
@@ -116,7 +130,20 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
             return SwitchExit((ent, ent.Comp, tube), tubeSwitch, right, travel);
         }
 
-        return PickExit((ent, ent.Comp, tube), travel, force: ForcesBranch(ent));
+        // A side branch sends pods down its arrow; a switchable one only while it is on.
+        if (ent.Comp.ForcePreferred)
+        {
+            if (!HasComp<TransitTubeToggleComponent>(ent))
+                return PickExit((ent, ent.Comp, tube), travel, force: true);
+
+            if (IsEmagged(ent))
+                return PickExit((ent, ent.Comp, tube), travel, force: _random.Prob(0.5f));
+
+            if (IsEnabled(ent.Owner))
+                return PickExit((ent, ent.Comp, tube), travel, force: true);
+        }
+
+        return null;
     }
 
     private Direction SwitchExit(Entity<TransitTubeComponent, DisposalTubeComponent> ent, TransitTubeSwitchComponent tubeSwitch, bool right, Direction travel)
@@ -130,8 +157,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     {
         exits.Clear();
 
-        var planned = travel != Direction.Invalid && pod.Comp.Plan.ContainsKey((ent.Owner, travel));
-        if (!planned && IsEmagged(ent))
+        if (travel != Direction.Invalid && IsEmagged(ent))
         {
             if (TryComp<TransitTubeSwitchComponent>(ent, out var tubeSwitch) && !HasComp<DisposalRouterComponent>(ent))
             {
@@ -155,21 +181,6 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     {
         if (exit != Direction.Invalid && !exits.Contains(exit))
             exits.Add(exit);
-    }
-
-    /// <summary>
-    /// Whether a side branch sends pods down its arrow. A switchable one only does while it is on,
-    /// and an emagged one picks at random.
-    /// </summary>
-    private bool ForcesBranch(Entity<TransitTubeComponent> ent)
-    {
-        if (!ent.Comp.ForcePreferred)
-            return false;
-
-        if (!HasComp<TransitTubeToggleComponent>(ent))
-            return true;
-
-        return IsEmagged(ent) ? _random.Prob(0.5f) : IsEnabled(ent.Owner);
     }
 
     /// <summary>
@@ -269,7 +280,7 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
     private static Direction? Preferred(Direction? local, Angle rotation)
         => local is { } dir ? new Angle(dir.ToAngle() + rotation).GetDir() : null;
 
-    private bool HasExit(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, Direction exit)
+    protected bool HasExit(Entity<TransitTubeComponent> ent, DisposalTubeComponent tube, Direction exit)
         => Array.IndexOf(_disposalTube.GetTubeConnectableDirections((ent, tube)), exit) >= 0;
 
     /// <summary>
@@ -372,6 +383,10 @@ public abstract partial class SharedTransitTubeSystem : EntitySystem
 
         args.Handled = true;
     }
+
+    [SubscribeLocalEvent]
+    private void OnSensorInit(Entity<TransitTubeSensorComponent> ent, ref ComponentInit args)
+        => _deviceLink.EnsureSourcePorts(ent, ent.Comp.OccupiedPort, ent.Comp.EmptyPort);
 
     [SubscribeLocalEvent]
     private void OnSwitchInit(Entity<TransitTubeSwitchComponent> ent, ref ComponentInit args)

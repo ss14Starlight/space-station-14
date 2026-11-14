@@ -197,3 +197,23 @@ public enum TransitTubeToggleVisuals : byte
 {
     Enabled,
 }
+
+/// <summary>
+/// Tells pods with someone or something inside from empty ones: sends a signal on one port or the
+/// other as each pod goes through.
+/// </summary>
+[RegisterComponent]
+public sealed partial class TransitTubeSensorComponent : Component
+{
+    /// <summary>
+    /// Fired for a pod carrying anyone or anything.
+    /// </summary>
+    [DataField]
+    public ProtoId<SourcePortPrototype> OccupiedPort = "TransitPodOccupied";
+
+    /// <summary>
+    /// Fired for an empty pod.
+    /// </summary>
+    [DataField]
+    public ProtoId<SourcePortPrototype> EmptyPort = "TransitPodEmpty";
+}

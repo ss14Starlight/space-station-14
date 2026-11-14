@@ -23,7 +23,6 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
 
     private static readonly ResPath _rsi = new("/Textures/_Starlight/Structures/Piping/TransitTube/tube.rsi");
-    private const int MaxCorners = 4;
     private const string PodArrowKey = "direction";
 
     /// <summary>
@@ -155,49 +154,119 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
         var sprite = new Entity<SpriteComponent?>(ent, spriteComp);
         var xform = Transform(ent);
         var rotation = xform.LocalRotation;
-        var exits = _tube.GetTubeConnectableDirections((ent, tube));
-
-        // Layers rotate with the tube, so corners are placed in the tube's own frame.
         var corner = 0;
-        foreach (var exit in exits)
+
+        if (xform.Anchored && xform.GridUid is { } gridUid && TryComp<MapGridComponent>(gridUid, out var grid))
         {
-            if (exit is not Direction.NorthEast and not Direction.NorthWest)
-                continue;
+            var tile = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
+            var level = ent.Comp.Level;
 
-            if (!xform.Anchored || _tube.GetTubeInDirection((ent, tube), exit) == null)
-                continue;
-
-            var local = new Angle(exit.ToAngle() - rotation).GetDir().ToIntVec();
-            if (local.X == 0 || local.Y == 0)
-                continue;
-
-            SetCorner(sprite, corner++, new Vector2(local.X, 0), CornerState(-local.X, local.Y));
-            SetCorner(sprite, corner++, new Vector2(0, local.Y), CornerState(local.X, -local.Y));
-        }
-
-        for (; corner < MaxCorners; corner++)
-        {
-            foreach (var key in new[] { CornerKey(corner), CornerDetailsKey(corner) })
+            // Diagonal joints running past this tile, between the tubes beside it: the corner piece goes
+            // under this tube, so it never covers it.
+            foreach (var dx in new[] { -1, 1 })
             {
-                if (_sprite.LayerMapTryGet(sprite, key, out var index, false))
-                    _sprite.LayerSetVisible(sprite, index, false);
+                foreach (var dy in new[] { -1, 1 })
+                {
+                    if (JointBetween((gridUid, grid), tile + new Vector2i(dx, 0), new Vector2i(-dx, dy), level))
+                        SetCorner(sprite, corner++, Vector2.Zero, CornerState(ToLocal(new Vector2i(dx, dy), rotation)));
+                }
+            }
+
+            // Joints of this tube with one up north: it fills in the corners beside them itself,
+            // but only where no tube on the same level stands to draw them under itself.
+            foreach (var exit in _tube.GetTubeConnectableDirections((ent, tube)))
+            {
+                if (exit is not Direction.NorthEast and not Direction.NorthWest
+                    || _tube.GetTubeInDirection((ent, tube), exit) == null)
+                    continue;
+
+                var world = exit.ToIntVec();
+                var side = new Vector2i(world.X, 0);
+                var above = new Vector2i(0, world.Y);
+
+                if (!HasTubeOnLevel((gridUid, grid), tile + side, level))
+                    SetCorner(sprite, corner++, ToLocal(side, rotation), CornerState(ToLocal(new Vector2i(-world.X, world.Y), rotation)));
+
+                if (!HasTubeOnLevel((gridUid, grid), tile + above, level))
+                    SetCorner(sprite, corner++, ToLocal(above, rotation), CornerState(ToLocal(new Vector2i(world.X, -world.Y), rotation)));
             }
         }
+
+        // Hide whatever corners are left over from before.
+        for (; ; corner++)
+        {
+            var found = false;
+            foreach (var key in new[] { CornerKey(corner), CornerDetailsKey(corner) })
+            {
+                if (!_sprite.LayerMapTryGet(sprite, key, out var index, false))
+                    continue;
+
+                found = true;
+                _sprite.LayerSetVisible(sprite, index, false);
+            }
+
+            if (!found)
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Whether a tube on <paramref name="level"/> at <paramref name="from"/> joins one diagonally,
+    /// going <paramref name="direction"/>.
+    /// </summary>
+    private bool JointBetween(Entity<MapGridComponent> grid, Vector2i from, Vector2i direction, TransitTubeLevel level)
+    {
+        var exit = new Angle(new Vector2(direction.X, direction.Y)).GetDir();
+        var anchored = _map.GetAnchoredEntities(grid, grid.Comp, from);
+        while (anchored.MoveNext(out var uid))
+        {
+            if (!TryComp<TransitTubeComponent>(uid, out var transit)
+                || transit.Level != level
+                || !TryComp<DisposalTubeComponent>(uid, out var tube))
+                continue;
+
+            if (Array.IndexOf(_tube.GetTubeConnectableDirections((uid.Value, tube)), exit) >= 0
+                && _tube.GetTubeInDirection((uid.Value, tube), exit) != null)
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool HasTubeOnLevel(Entity<MapGridComponent> grid, Vector2i tile, TransitTubeLevel level)
+    {
+        var anchored = _map.GetAnchoredEntities(grid, grid.Comp, tile);
+        while (anchored.MoveNext(out var uid))
+        {
+            if (TryComp<TransitTubeComponent>(uid, out var transit) && transit.Level == level && HasComp<SpriteComponent>(uid))
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Turns a grid offset into the tube's own frame: layers rotate with the tube.
+    /// </summary>
+    private static Vector2i ToLocal(Vector2i world, Angle rotation)
+    {
+        var local = (-rotation).RotateVec(new Vector2(world.X, world.Y));
+        return new Vector2i((int)MathF.Round(local.X), (int)MathF.Round(local.Y));
     }
 
     private void SetCorner(Entity<SpriteComponent?> sprite, int corner, Vector2 offset, string state)
     {
-        // Glass and its frame, like the pieces themselves.
-        var glass = SetLayer(sprite, CornerKey(corner), state, offset);
-        SetLayer(sprite, CornerDetailsKey(corner), state + "_details", offset);
+        // Glass and its frame, like the pieces themselves, under the piece's own layers.
+        var glass = SetLayer(sprite, CornerKey(corner), state, offset, corner * 2);
+        SetLayer(sprite, CornerDetailsKey(corner), state + "_details", offset, corner * 2 + 1);
         _sprite.LayerSetColor(sprite, glass, GetGlassColor(sprite.Owner));
     }
 
-    private int SetLayer(Entity<SpriteComponent?> sprite, string key, string state, Vector2 offset)
+    private int SetLayer(Entity<SpriteComponent?> sprite, string key, string state, Vector2 offset, int insertAt)
     {
         if (!_sprite.LayerMapTryGet(sprite, key, out var index, false))
         {
-            index = _sprite.AddRsiLayer(sprite, state, _rsi);
+            index = _sprite.AddRsiLayer(sprite, state, _rsi, insertAt);
             _sprite.LayerMapSet(sprite, key, index);
         }
         else
@@ -224,10 +293,9 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
         if (_sprite.LayerMapTryGet(sprite, GlassKey, out var glass, false))
             _sprite.LayerSetColor(sprite, glass, color);
 
-        for (var corner = 0; corner < MaxCorners; corner++)
+        for (var corner = 0; _sprite.LayerMapTryGet(sprite, CornerKey(corner), out var index, false); corner++)
         {
-            if (_sprite.LayerMapTryGet(sprite, CornerKey(corner), out var index, false))
-                _sprite.LayerSetColor(sprite, index, color);
+            _sprite.LayerSetColor(sprite, index, color);
         }
     }
 
@@ -240,7 +308,7 @@ public sealed partial class TransitTubeVisualsSystem : EntitySystem
 
     private static string CornerDetailsKey(int corner) => $"transit-corner-{corner}-details";
 
-    private static string CornerState(int x, int y) => (x, y) switch
+    private static string CornerState(Vector2i towards) => (towards.X, towards.Y) switch
     {
         (> 0, > 0) => "corner_ne",
         (< 0, > 0) => "corner_nw",

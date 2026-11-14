@@ -43,6 +43,15 @@ public sealed partial class TransitTubeSystem
             && SameWay(travel, speed.Direction, rotation))
             ApplySpeed((tube, speed), pod, holder);
 
+        if (TryComp<TransitTubeSensorComponent>(tube, out var sensor))
+            _deviceLink.InvokePort(tube, GetPassengers(pod).Any() ? sensor.OccupiedPort : sensor.EmptyPort);
+
+        // Out of the claimed section: other pods may have it.
+        if (pod.Comp.ClaimedSignal is { } claimed
+            && tube.Owner != claimed
+            && !pod.Comp.ClaimedSection.Contains(tube.Owner))
+            ReleaseSection(pod);
+
         if (next == Direction.Invalid)
             return;
 
@@ -55,12 +64,12 @@ public sealed partial class TransitTubeSystem
             ? _disposalTube.GetTubeInDirection((tube, tubeComp), next)
             : null;
 
-        // Off the planned route (turned back, bounced, a tube on the way was rebuilt): plan again from here.
+        // Off the planned route (turned back, bounced, a switch thrown, a tube on the way rebuilt): plan again from here.
         if (nextTube is { } replanFrom
             && travel != Direction.Invalid
             && pod.Comp.Target is { } target
             && target != tube.Owner
-            && !pod.Comp.Plan.ContainsKey((tube.Owner, travel)))
+            && (!pod.Comp.Plan.TryGetValue((tube.Owner, travel), out var planned) || planned != next))
             Replan(pod, tube, (replanFrom, next), target);
 
         if (HoldsAt(tube, next, pod))
@@ -79,6 +88,10 @@ public sealed partial class TransitTubeSystem
             HoldAt(pod, holder, nextUid);
             return;
         }
+
+        // Let through by a signal: the section behind it is this pod's until it leaves.
+        ClaimSection(pod, tube, next);
+        ClaimSection(pod, nextUid, next);
 
         // Wait behind a pod standing on the line rather than ramming it.
         // One that would end up waiting on itself rides on, and the collision check turns it back.
@@ -278,6 +291,11 @@ public sealed partial class TransitTubeSystem
                 Reserve((stationUid, station), pod);
         }
 
+        // Let through by the signal it waited at: claim the section now, before any other pod
+        // checked in this same tick sees it clear too.
+        if (pod.Comp.HeldAtSignal is { } releasedAt)
+            ClaimSection(pod, releasedAt, holder.CurrentDirection);
+
         LeaveSignal(pod);
         pod.Comp.WaitingFor = null;
         pod.Comp.WaitingBehind = null;
@@ -296,6 +314,59 @@ public sealed partial class TransitTubeSystem
     /// through up to the next signal or station, which is included.
     /// </summary>
     private bool SectionOccupied(Entity<TransitTubeBlockSignalComponent> signal, Direction direction, Entity<TransitPodComponent> pod)
+    {
+        if (!BuildSection(signal, direction, pod))
+            return false;
+
+        var query = EntityQueryEnumerator<TransitPodComponent, DisposalHolderComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var otherPod, out var other, out var xform))
+        {
+            if (uid == pod.Owner)
+                continue;
+
+            // The tube a pod sits on covers docked and stalled pods too, the next tube covers pods about to enter.
+            if ((other.NextTube is { } nextTubeUid && _section.Contains(nextTubeUid))
+                || (TryGetTube(xform, out var under, other) && _section.Contains(under)))
+                return true;
+
+            // A pod let in by another signal holds its whole section until it is out, even before it gets here.
+            if (otherPod.ClaimedSignal != null && otherPod.ClaimedSection.Overlaps(_section))
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Claims the section behind a block signal for a pod it lets through, if the piece is one facing that way.
+    /// </summary>
+    private void ClaimSection(Entity<TransitPodComponent> pod, EntityUid signalUid, Direction direction)
+    {
+        if (pod.Comp.ClaimedSignal == signalUid
+            || !TryComp<TransitTubeBlockSignalComponent>(signalUid, out var signal)
+            || !SameWay(direction, signal.Direction, Transform(signalUid).LocalRotation))
+            return;
+
+        ReleaseSection(pod);
+        if (!BuildSection((signalUid, signal), direction, pod))
+            return;
+
+        pod.Comp.ClaimedSignal = signalUid;
+        pod.Comp.ClaimedSection.UnionWith(_section);
+    }
+
+    private static void ReleaseSection(Entity<TransitPodComponent> pod)
+    {
+        pod.Comp.ClaimedSignal = null;
+        pod.Comp.ClaimedSection.Clear();
+    }
+
+    /// <summary>
+    /// Fills <see cref="_section"/> with every tube a pod may ride through past a block signal, up to
+    /// the next signal or station, which is included.
+    /// </summary>
+    /// <returns>False if the section is empty.</returns>
+    private bool BuildSection(Entity<TransitTubeBlockSignalComponent> signal, Direction direction, Entity<TransitPodComponent> pod)
     {
         _section.Clear();
 
@@ -332,22 +403,7 @@ public sealed partial class TransitTubeSystem
                 _sectionFrontier.Enqueue(((nextUid, nextTube), exit, step.Depth + 1, tag));
         }
 
-        if (_section.Count == 0)
-            return false;
-
-        var query = EntityQueryEnumerator<TransitPodComponent, DisposalHolderComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out _, out var other, out var xform))
-        {
-            if (uid == pod.Owner)
-                continue;
-
-            // The tube a pod sits on covers docked and stalled pods too, the next tube covers pods about to enter.
-            if ((other.NextTube is { } nextTubeUid && _section.Contains(nextTubeUid))
-                || (TryGetTube(xform, out var under, other) && _section.Contains(under)))
-                return true;
-        }
-
-        return false;
+        return _section.Count > 0;
     }
 
     /// <summary>

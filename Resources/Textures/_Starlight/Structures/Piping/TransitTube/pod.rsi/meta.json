@@ -30,6 +30,10 @@
     {
       "name": "cargopod_occupied",
       "directions": 8
+    },
+    {
+      "name": "cargopod_full",
+      "directions": 8
     }
   ]
 }

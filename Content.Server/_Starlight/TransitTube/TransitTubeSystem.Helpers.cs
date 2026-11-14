@@ -60,5 +60,13 @@ public sealed partial class TransitTubeSystem
         => _appearance.SetData(station, TransitStationVisuals.State, state);
 
     private void UpdatePodVisuals(Entity<TransitPodComponent> pod)
-        => _appearance.SetData(pod, TransitPodVisuals.Occupied, GetPassengers(pod).Any());
+    {
+        var count = GetPassengers(pod).Count();
+        var load = count == 0 ? TransitPodLoad.Empty
+            : count >= pod.Comp.MaxPassengers ? TransitPodLoad.Full
+            : TransitPodLoad.Occupied;
+
+        _appearance.SetData(pod, TransitPodVisuals.Occupied, count > 0);
+        _appearance.SetData(pod, TransitPodVisuals.Load, load);
+    }
 }

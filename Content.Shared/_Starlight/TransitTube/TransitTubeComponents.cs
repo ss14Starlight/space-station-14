@@ -285,6 +285,19 @@ public sealed partial class TransitPodComponent : Component
     public EntityUid? HeldAtSignal;
 
     /// <summary>
+    /// The block signal whose section this pod has claimed on its way past it.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? ClaimedSignal;
+
+    /// <summary>
+    /// The tubes of the section claimed past <see cref="ClaimedSignal"/>. Other pods count the whole
+    /// section as taken until this one leaves it, so two pods let in at once can't both enter.
+    /// </summary>
+    [ViewVariables]
+    public HashSet<EntityUid> ClaimedSection = [];
+
+    /// <summary>
     /// When a held pod next checks whether the section ahead is clear.
     /// </summary>
     [ViewVariables, AutoPausedField]
@@ -565,6 +578,27 @@ public enum TransitPodVisuals : byte
     /// The pod is under a covered floor and cannot be seen.
     /// </summary>
     Hidden,
+
+    /// <summary>
+    /// How loaded the pod is, a <see cref="TransitPodLoad"/>. Cargo pods show it with lamps.
+    /// </summary>
+    Load,
+}
+
+[Serializable, NetSerializable]
+public enum TransitPodLoad : byte
+{
+    Empty,
+
+    /// <summary>
+    /// Something is inside, with room for more.
+    /// </summary>
+    Occupied,
+
+    /// <summary>
+    /// No room left.
+    /// </summary>
+    Full,
 }
 
 [Serializable, NetSerializable]
