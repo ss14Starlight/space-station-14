@@ -41,7 +41,6 @@
   <Project Path="Content.Tools/Content.Tools.csproj" />
   <Project Path="Content.YAMLLinter/Content.YAMLLinter.csproj" />
   <Project Path="Content.Starlight.Codegen/Content.Starlight.Codegen.csproj" />
-  <Project Path="Content.Starlight.Roslyn/Content.Starlight.Roslyn.csproj" />
   <Project Path="Pow3r/Pow3r.csproj" />
   <Folder Name="/RobustToolbox/.github/" />
   <Folder Name="/RobustToolbox/.github/workflows/">
