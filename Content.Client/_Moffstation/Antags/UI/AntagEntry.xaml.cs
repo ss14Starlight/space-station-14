@@ -23,6 +23,7 @@ public sealed partial class AntagEntry : PanelContainer
 
     public event Action<bool>? OnToggled;
     public event Action? OnLoadoutPressed;
+    public event Action? OnPreviewPressed; // Starlight
 
     public bool IsSelected => AntagCheckbox.Pressed;
 
@@ -46,6 +47,7 @@ public sealed partial class AntagEntry : PanelContainer
 
         SetupRequirements(profile); // Starlight
         SetupLoadoutButton();
+        PreviewButton.OnPressed += _ => OnPreviewPressed?.Invoke(); // Starlight
 
         LoadoutButton.StyleClasses.Add(StyleClassButton);
         LoadoutButton.StyleClasses.Add(StyleClass.ButtonOpenBoth);
@@ -96,6 +98,9 @@ public sealed partial class AntagEntry : PanelContainer
 
         LoadoutButton.OnPressed += _ => OnLoadoutPressed?.Invoke();
     }
+
+    // Starlight
+    public void SetPreviewed(bool previewed) => PreviewButton.Pressed = previewed;
 
     private void OnCheckboxToggled(BaseButton.ButtonToggledEventArgs args)
     {

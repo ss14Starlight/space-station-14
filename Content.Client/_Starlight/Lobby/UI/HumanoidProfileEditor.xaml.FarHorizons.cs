@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Client.Lobby.UI.Loadouts;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
 using Robust.Client.UserInterface.Controls;
@@ -55,7 +54,6 @@ public sealed partial class HumanoidProfileEditor
             SubspeciesButton.AddItem(name, i);
         }
 
-
         SubspeciesButton.SelectId(selected);
         CSubspecies.Visible = true;
     }
@@ -71,80 +69,10 @@ public sealed partial class HumanoidProfileEditor
             !_prototypeManager.TryIndex(species.Loadout, out var loadoutProto))
             return;
 
-
         CSpeciesLoadout.Visible = true;
         SpeciesLoadout.OnPressed += SpeciesLoadoutPressed;
     }
 
     private void SpeciesLoadoutPressed(BaseButton.ButtonEventArgs args)
-    {
-         if (Profile == null ||
-            !_prototypeManager.TryIndex(Profile.Species, out var species) ||
-            species.Loadout == null ||
-            !_prototypeManager.TryIndex(species.Loadout, out var loadoutProto))
-            return;
-
-        RoleLoadout? loadout = null;
-
-        if (Profile!.SpeciesLoadout == null)
-        {
-            loadout = Profile.GetSpeciesLoadoutOrDefault(_playerManager.LocalSession, _prototypeManager);
-            loadout!.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager);
-        } else {
-            loadout = Profile.SpeciesLoadout!.Clone();
-            loadout!.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager);
-        }
-
-        OpenSpeciesLoadout(species, loadout, loadoutProto);
-    }
-
-    private void OpenSpeciesLoadout(SpeciesPrototype species, RoleLoadout speciesLoadout, RoleLoadoutPrototype speciesLoadoutProto)
-    {
-        _loadoutWindow?.Dispose();
-        _loadoutWindow = null;
-        var collection = IoCManager.Instance;
-
-        if (collection == null || _playerManager.LocalSession == null || Profile == null || species.Loadout == null)
-            return;
-
-        var session = _playerManager.LocalSession;
-
-        _loadoutWindow = new LoadoutWindow(Profile, speciesLoadout, speciesLoadoutProto, _playerManager.LocalSession, collection)
-        {
-            Title = Loc.GetString("loadout-window-title-loadout", ("job", $"{Loc.GetString(species.Name)}")),
-        };
-
-        // Refresh the buttons etc.
-        _loadoutWindow.RefreshLoadouts(speciesLoadout, session, collection);
-        _loadoutWindow.OpenCenteredLeft();
-
-        _loadoutWindow.OnLoadoutPressed += (loadoutGroup, loadoutProto) =>
-        {
-            speciesLoadout.AddLoadout(loadoutGroup, loadoutProto, _prototypeManager);
-            _loadoutWindow.RefreshLoadouts(speciesLoadout, session, collection);
-            Profile = Profile?.WithSpeciesLoadout(speciesLoadout);
-            ReloadPreview();
-        };
-
-        _loadoutWindow.OnLoadoutUnpressed += (loadoutGroup, loadoutProto) =>
-        {
-            speciesLoadout.RemoveLoadout(loadoutGroup, loadoutProto, _prototypeManager);
-            _loadoutWindow.RefreshLoadouts(speciesLoadout, session, collection);
-            Profile = Profile?.WithSpeciesLoadout(speciesLoadout);
-            ReloadPreview();
-        };
-
-        ReloadPreview();
-
-        _loadoutWindow.OnClose += () =>
-        {
-            JobOverride = null;
-            ReloadPreview();
-        };
-
-        if (Profile is null)
-            return;
-
-        UpdateJobPreferences();
-    }
+        => OpenLoadoutTab(SpeciesKey); // Starlight-edit: the loadout tab instead of a window
 }

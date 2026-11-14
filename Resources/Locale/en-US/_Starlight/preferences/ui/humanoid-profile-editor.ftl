@@ -2,6 +2,7 @@ humanoid-profile-editor-customspeciename-label = Custom Species Name:
 humanoid-profile-editor-height-label = Height: {$height}cm
 humanoid-profile-editor-width-label = Weight: {$weight}kg
 humanoid-profile-editor-slider-reset = Reset
+humanoid-profile-editor-body-tab = Body
 
 humanoid-profile-editor-voice-select = Select Voice
 humanoid-profile-editor-silicon-voice-select = Select Silicon Voice
@@ -70,3 +71,17 @@ tts-tag-soft = Soft
 tts-tag-squalky = Squalky
 
 humanoid-profile-editor-species-loadout-select = Select Species Loadout
+humanoid-profile-editor-height = Height
+humanoid-profile-editor-height-unit = cm
+humanoid-profile-editor-weight = Weight
+humanoid-profile-editor-weight-unit = kg
+humanoid-profile-editor-voice-tab = Voice
+voice-selector-any = Any
+voice-selector-shown = {$shown} of {$total}
+voice-selector-kind-character = Character
+voice-selector-kind-silicon = Silicon
+loadout-tab-title = Loadout
+loadout-tab-pick-role = Pick a role on the left to change what it starts with.
+loadout-tab-search = Search items
+loadout-tab-antags = Antagonists
+loadout-tab-species = Species

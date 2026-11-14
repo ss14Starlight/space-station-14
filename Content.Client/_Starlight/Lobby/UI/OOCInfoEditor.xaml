@@ -1,20 +1,19 @@
-﻿<Control  xmlns="https://spacestation14.io"
-          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-          HorizontalExpand="True">
-    <ScrollContainer VerticalExpand="True">
-        <BoxContainer Orientation="Vertical" VerticalExpand="True">
-            <BoxContainer
-                Name="PersonalNotes" Access="Public"
-                Orientation="Vertical" VerticalExpand="True">
-                <Label Text="{Loc 'character-info-personal-notes'}"/>
-                <TextEdit Name="PersonalNotesInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
-            </BoxContainer>
-            <BoxContainer
-                Name="OOCNotes" Access="Public"
-                Orientation="Vertical" VerticalExpand="True" >
-                <Label Text="{Loc 'character-info-ooc-notes'}"/>
-                <TextEdit Name="OOCNotesInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
-            </BoxContainer>
+<BoxContainer xmlns="https://spacestation14.io"
+              xmlns:ui="clr-namespace:Content.Client._Starlight.Lobby.UI"
+              x:Class="Content.Client._Starlight.Lobby.UI.OOCInfoEditor"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+    <!-- Laid out like the jobs, antags and traits tabs -->
+    <PanelContainer StyleClasses="TraitsHeaderPanel" Margin="0 0 0 8">
+        <BoxContainer Orientation="Vertical" Margin="12 10" SeparationOverride="2">
+            <Label Text="{Loc 'character-info-ooc-header'}" StyleClasses="TraitsTitleLabel" />
+            <Label Text="{Loc 'character-info-ooc-hint'}" StyleClasses="TraitsSubtitleLabel" />
+        </BoxContainer>
+    </PanelContainer>
+    <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+        <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="0 0 4 0">
+            <ui:NoteField Name="PersonalNotes" Access="Public" Title="{Loc 'character-info-personal-notes'}" PlaceholderLoc="personal-notes-text-placeholder" />
+            <ui:NoteField Name="OOCNotes" Access="Public" Title="{Loc 'character-info-ooc-notes'}" PlaceholderLoc="ooc-notes-text-placeholder" />
         </BoxContainer>
     </ScrollContainer>
-</Control>
+</BoxContainer>

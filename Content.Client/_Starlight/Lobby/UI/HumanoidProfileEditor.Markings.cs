@@ -1,126 +1,69 @@
 using System.Linq;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Markings;
 using Content.Shared._Starlight.Humanoid;
 
 namespace Content.Client._Starlight.Lobby.UI;
 
 public sealed partial class HumanoidProfileEditor
 {
-    private void OnMarkingChange(MarkingSet markings)
+    private HumanoidBodyEditorBackend _bodyBackend = default!;
+
+    /// <summary>
+    /// The body tab draws its own preview of the character, so the side preview hides while it's open.
+    /// </summary>
+    public bool BodyTabVisible => TabContainer.CurrentTab == BodyTab.GetPositionInParent();
+
+    public event Action<bool>? BodyTabVisibilityChanged;
+
+    private void InitializeBodyTab()
     {
-        if (Profile is null)
-            return;
-
-        Profile = Profile.WithCharacterAppearance(
-            Profile.Appearance.WithMarkings(markings.GetForwardEnumerator().ToList()));
-        ReloadProfilePreview();
-    }
-
-    private void UpdateMarkings()
-    {
-        if (Profile == null)
-            return;
-
-        Markings.SetData(
-            Profile.Appearance.Markings,
-            Profile.Species,
-            Profile.Sex,
-            Profile.Appearance.SkinColor,
-            Profile.Appearance.EyeColor);
-    }
-
-    private void UpdateHairPickers()
-    {
-        if (Profile == null)
-            return;
-
-        var hairMarking = Profile.Appearance.HairStyleId == HairStyles.DefaultHairStyle
-            ? new List<Marking>()
-            : new()
-            {
-                new Marking(
-                    Profile.Appearance.HairStyleId,
-                    new List<Color> { Profile.Appearance.HairColor },
-                    Profile.Appearance.HairGlowing),
-            };
-
-        var facialHairMarking = Profile.Appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
-            ? new List<Marking>()
-            : new()
-            {
-                new Marking(
-                    Profile.Appearance.FacialHairStyleId,
-                    new List<Color> { Profile.Appearance.FacialHairColor },
-                    Profile.Appearance.FacialHairGlowing),
-            };
-
-        HairStylePicker.UpdateData(hairMarking, Profile.Species, 1);
-        FacialHairPicker.UpdateData(facialHairMarking, Profile.Species, 1);
-    }
-
-    private void UpdateCMarkingsHair()
-    {
-        if (Profile == null)
-            return;
-
-        Color? hairColor = null;
-        if (Profile.Appearance.HairStyleId != HairStyles.DefaultHairStyle &&
-            _markingManager.Markings.TryGetValue(Profile.Appearance.HairStyleId, out var hairProto) &&
-            _markingManager.CanBeApplied(Profile.Species, Profile.Sex, hairProto, _prototypeManager))
+        _bodyBackend = new HumanoidBodyEditorBackend(_prototypeManager, _markingManager, () => Profile);
+        _bodyBackend.AppearanceEdited += appearance =>
         {
-            if (_markingManager.MustMatchSkin(
-                    Profile.Species,
-                    HumanoidVisualLayers.Hair,
-                    out _,
-                    _prototypeManager))
-            {
-                hairColor = Profile.Appearance.SkinColor;
-            }
-            else
-            {
-                hairColor = Profile.Appearance.HairColor;
-            }
-        }
+            if (Profile is null)
+                return;
 
-        Markings.HairMarking = hairColor != null
-            ? new Marking(
-                Profile.Appearance.HairStyleId,
-                new List<Color> { hairColor.Value },
-                Profile.Appearance.HairGlowing)
-            : null;
+            Profile = Profile.WithCharacterAppearance(appearance);
+            ReloadProfilePreview();
+        };
+        BodyTab.SetBackend(_bodyBackend);
+
+        // The species decides the whole body, so it comes first and is what the tab opens on.
+        BodyTab.AddSection(Loc.GetString("body-editor-species"), SpeciesSection, leading: true);
+        BodyTab.AddSection(Loc.GetString("humanoid-profile-editor-cybernetics-tab"), CyberneticsSection);
+        BodyTab.ShowSection(SpeciesSection);
+
+        TabContainer.OnTabChanged += _ =>
+        {
+            PreviewPanel.Visible = !BodyTabVisible;
+            BodyTabVisibilityChanged?.Invoke(BodyTabVisible);
+            // Clothes come off while editing the body.
+            ReloadPreview();
+        };
     }
 
-    private void UpdateCMarkingsFacialHair()
+    /// <summary>
+    /// Reloads the body tab after the species, sex or the whole profile changed.
+    /// </summary>
+    private void UpdateBodyTab()
     {
-        if (Profile == null)
+        _bodyBackend.Reload();
+        BodyTab.ResetSelection();
+    }
+
+    /// <summary>
+    /// Keeps the skin color in what the species allows, after switching species.
+    /// </summary>
+    private void ClampSkinColor()
+    {
+        if (Profile is null || !_prototypeManager.TryIndex(Profile.Species, out var species))
             return;
 
-        Color? facialHairColor = null;
-        if (Profile.Appearance.FacialHairStyleId != HairStyles.DefaultFacialHairStyle &&
-            _markingManager.Markings.TryGetValue(Profile.Appearance.FacialHairStyleId, out var facialHairProto) &&
-            _markingManager.CanBeApplied(Profile.Species, Profile.Sex, facialHairProto, _prototypeManager))
-        {
-            if (_markingManager.MustMatchSkin(
-                    Profile.Species,
-                    HumanoidVisualLayers.Hair,
-                    out _,
-                    _prototypeManager))
-            {
-                facialHairColor = Profile.Appearance.SkinColor;
-            }
-            else
-            {
-                facialHairColor = Profile.Appearance.FacialHairColor;
-            }
-        }
-
-        Markings.FacialHairMarking = facialHairColor != null
-            ? new Marking(
-                Profile.Appearance.FacialHairStyleId,
-                new List<Color> { facialHairColor.Value },
-                Profile.Appearance.FacialHairGlowing)
-            : null;
+        var strategy = _prototypeManager.Index(species.SkinColoration).Strategy;
+        var skin = strategy.InputType == SkinColorationStrategyInput.Unary
+            ? strategy.FromUnary(strategy.ToUnary(Profile.Appearance.SkinColor))
+            : strategy.ClosestSkinColor(Profile.Appearance.SkinColor);
+        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(skin));
     }
 
     private void OnCyberneticsUpdated(List<CyberneticImplant> cybernetics)

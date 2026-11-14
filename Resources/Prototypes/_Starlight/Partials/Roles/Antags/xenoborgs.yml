@@ -1,0 +1,7 @@
+- type: !PartialOnly antag
+  id: MothershipCore
+  previewEntity: MothershipCore
+
+- type: !PartialOnly antag
+  id: Xenoborg
+  previewEntity: XenoborgEngi

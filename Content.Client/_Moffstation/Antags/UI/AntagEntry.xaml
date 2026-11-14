@@ -48,10 +48,15 @@
                                StyleClasses="TraitsEntryDescriptionLabel"
                                Margin="0 4 0 0"/>
             </BoxContainer>
-            <Button Name="LoadoutButton"
-                    Text="{Loc 'loadout-window'}"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Right"/>
+            <!-- Starlight: preview -->
+            <BoxContainer Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" SeparationOverride="4">
+                <Button Name="PreviewButton"
+                        Text="{Loc 'antag-preview-button'}"
+                        ToolTip="{Loc 'antag-preview-button-tooltip'}"
+                        ToggleMode="True"/>
+                <Button Name="LoadoutButton"
+                        Text="{Loc 'loadout-window'}"/>
+            </BoxContainer>
         </GridContainer>
     </BoxContainer>
 </PanelContainer>

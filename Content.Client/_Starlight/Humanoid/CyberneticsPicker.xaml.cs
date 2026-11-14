@@ -18,9 +18,6 @@ public sealed partial class CyberneticsPicker : Control
 
     private readonly SpriteSystem _sprite;
 
-    private ItemList.Item? _selectedAvailableCybernetics;
-    private ItemList.Item? _selectedInstalledCybernetics;
-
     private readonly List<CyberneticImplant> CollectionAllCybernetics = [];
     private List<CyberneticImplant> CollectionInstalledCybernetics = [];
     private readonly Dictionary<string, SpriteSpecifier.Rsi> CollectionAllIcons = [];
@@ -43,16 +40,6 @@ public sealed partial class CyberneticsPicker : Control
         IoCManager.InjectDependencies(this);
 
         _sprite = _entityManager.System<SpriteSystem>();
-
-        AvailableCybernetics.OnItemSelected += item =>
-            _selectedAvailableCybernetics = AvailableCybernetics[item.ItemIndex];
-        InstalledCybernetics.OnItemSelected += item =>
-            _selectedInstalledCybernetics = InstalledCybernetics[item.ItemIndex];
-
-        Install.OnPressed += _ =>
-            InstallCybernetics();
-        Remove.OnPressed += _ =>
-            RemoveCybernetics();
 
         CollectionAllCybernetics = CyberneticImplant.GetAllCybernetics(_prototypeManager);
         CollectionAllIcons = GetIconsList();
@@ -118,24 +105,20 @@ public sealed partial class CyberneticsPicker : Control
         return cost;
     }
 
-    // Install button clicked, install selected part
-    private void InstallCybernetics() {
-        if (_selectedAvailableCybernetics is null || _selectedAvailableCybernetics.Metadata is not CyberneticImplant selectedImplant){
+    // Starlight-edit: cards like the body tab's markings, clicked to install or remove.
+    private void InstallCybernetics(CyberneticImplant implant)
+    {
+        if (CurrentPoints + CalculateCost(implant) > CyberneticsMaxPoints)
             return;
-        }
-        if (CurrentPoints + CalculateCost(selectedImplant) <= CyberneticsMaxPoints){
-            InstallPart(selectedImplant);
-        }
+
+        InstallPart(implant);
         PopulateUI();
         OnCyberneticsUpdated?.Invoke(CollectionInstalledCybernetics);
     }
 
-    // Remove button clicked, remove selected part
-    private void RemoveCybernetics() {
-        if (_selectedInstalledCybernetics is null || _selectedInstalledCybernetics.Metadata is not CyberneticImplant selectedImplant){
-            return;
-        }
-        RemovePart(selectedImplant);
+    private void RemoveCybernetics(CyberneticImplant implant)
+    {
+        RemovePart(implant);
         PopulateUI();
         OnCyberneticsUpdated?.Invoke(CollectionInstalledCybernetics);
     }
@@ -143,23 +126,60 @@ public sealed partial class CyberneticsPicker : Control
     // Build full UI from scratch
     public void PopulateUI()
     {
-        AvailableCybernetics.Clear();
-        InstalledCybernetics.Clear();
-        _selectedAvailableCybernetics = null;
-        _selectedInstalledCybernetics = null;
+        AvailableCybernetics.RemoveAllChildren();
+        InstalledCybernetics.RemoveAllChildren();
 
-        foreach (var part in CollectionAllCybernetics) {
-            if (!CollectionInstalledCybernetics.Contains(part)){
-                var item = AvailableCybernetics.AddItem($"{part.Name}", _sprite.Frame0(CollectionAllIcons[part.ID]));
-                item.Metadata = part;
-            }
+        foreach (var part in CollectionAllCybernetics)
+        {
+            if (CollectionInstalledCybernetics.Contains(part))
+                continue;
+
+            var fits = CurrentPoints + CalculateCost(part) <= CyberneticsMaxPoints;
+            var card = Card(part, false);
+            card.Disabled = !fits;
+            card.OnPressed += _ => InstallCybernetics(part);
+            AvailableCybernetics.AddChild(card);
         }
 
-        foreach (var part in CollectionInstalledCybernetics) {
-            var item = InstalledCybernetics.AddItem($"{part.Name}", _sprite.Frame0(CollectionAllIcons[part.ID]));
-            item.Metadata = part;
+        foreach (var part in CollectionInstalledCybernetics)
+        {
+            var card = Card(part, true);
+            card.ToolTip = Loc.GetString("cybernetics-click-to-remove", ("name", part.Name));
+            card.OnPressed += _ => RemoveCybernetics(part);
+            InstalledCybernetics.AddChild(card);
         }
 
         CyberneticsPoints.Text = Loc.GetString("cybernetics-points-remaining", ("points", CyberneticsMaxPoints - CurrentPoints), ("points_total", CyberneticsMaxPoints));
+    }
+
+    private ContainerButton Card(CyberneticImplant part, bool installed)
+    {
+        var card = new ContainerButton
+        {
+            SetSize = new System.Numerics.Vector2(installed ? 72 : 104, installed ? 72 : 104),
+            ToolTip = Loc.GetString("cybernetics-cost", ("name", part.Name), ("cost", CalculateCost(part))),
+            StyleClasses = { "MarkingCard" },
+        };
+        if (installed)
+            card.AddStyleClass("MarkingCardPicked");
+
+        var content = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
+            VerticalAlignment = VAlignment.Center,
+            Children =
+            {
+                new TextureRect
+                {
+                    Texture = _sprite.Frame0(CollectionAllIcons[part.ID]),
+                    TextureScale = new System.Numerics.Vector2(2, 2),
+                    HorizontalAlignment = HAlignment.Center,
+                },
+            },
+        };
+        if (!installed)
+            content.AddChild(new Label { Text = part.Name, ClipText = true, HorizontalAlignment = HAlignment.Center, Margin = new Thickness(4, 0) });
+        card.AddChild(content);
+        return card;
     }
 }

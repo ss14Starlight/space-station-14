@@ -13,7 +13,6 @@ public sealed class SectionNav : BoxContainer
 
     private readonly BoxContainer _buttons;
     private readonly Control _content;
-    private readonly ButtonGroup _group = new();
     private readonly List<(Control Page, Button Button)> _sections = new();
     private int _current = -1;
 
@@ -44,7 +43,8 @@ public sealed class SectionNav : BoxContainer
         _content.AddChild(page);
 
         var index = _sections.Count;
-        var button = new Button { Text = title, ToggleMode = true, Group = _group };
+        // No ButtonGroup: buttons drop out of it when the window closes, Select keeps one pressed instead.
+        var button = new Button { Text = title, ToggleMode = true };
         button.AddStyleClass(StyleClassNavButton);
         button.OnPressed += _ => Select(index);
         _buttons.AddChild(button);

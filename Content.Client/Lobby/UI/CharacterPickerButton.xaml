@@ -22,21 +22,31 @@
         <PanelContainer Name="ButtonDivider" MinSize="1 0" StyleClasses="LowDivider" Margin="0 6" /> <!-- Starlight-edit -->
 
         <!-- Container to hold the enable and delete buttons -->
+        <!-- Starlight-edit: icons instead of words -->
         <BoxContainer Name="ButtonBox" Orientation="Vertical" VerticalAlignment="Center" VerticalExpand="True"
-                      SeparationOverride="4" SetWidth="80" Margin="8 0 0 0">
+                      SeparationOverride="4" Margin="6 0 4 0">
 
             <!-- Enabled button -->
-            <PanelContainer Name="EnabledCheckOutline"> <!-- Starlight-edit: no outline texture -->
-                <Button Name="EnabledCheck" ToggleMode="True" HorizontalAlignment="Stretch"
-                        Text="{Loc 'character-setup-gui-character-picker-button-enabled-button'}"/>
+			<!-- Starlight-start -->
+            <PanelContainer Name="EnabledCheckOutline">
+                <Button Name="EnabledCheck" ToggleMode="True" SetSize="28 28" StyleClasses="ButtonSquare">
+                    <TextureRect Name="EnabledIcon" Stretch="KeepCentered" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 TextureScale="0.5 0.5" StyleClasses="CharacterPickerIcon" />
+                </Button>
             </PanelContainer>
+			<!-- Starlight-end -->
 
             <!-- Delete button -->
-            <PanelContainer Name="DeleteButtonOutline" Visible="False"> <!-- Starlight-edit: no outline texture -->
-                <controls:ConfirmButton Name="DeleteButton" HorizontalAlignment="Stretch"
-                        Text="{Loc 'character-setup-gui-character-picker-button-delete-button'}"/>
+			<!-- Starlight-start -->
+            <PanelContainer Name="DeleteButtonOutline" Visible="False">
+                <controls:ConfirmButton Name="DeleteButton" SetSize="28 28" StyleClasses="ButtonSquare"
+                                        ConfirmationText="" ToolTip="{Loc 'character-setup-gui-character-picker-button-delete-tooltip'}">
+                    <TextureRect TexturePath="/Textures/Interface/VerbIcons/delete_transparent.svg.192dpi.png"
+                                 Stretch="KeepCentered" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 TextureScale="0.4 0.4" StyleClasses="CharacterPickerIcon" />
+                </controls:ConfirmButton>
             </PanelContainer>
-
+			<!-- Starlight-end -->
         </BoxContainer> <!-- End button container -->
     </BoxContainer>
 </ContainerButton>

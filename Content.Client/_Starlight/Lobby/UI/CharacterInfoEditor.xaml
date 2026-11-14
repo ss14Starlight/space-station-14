@@ -1,31 +1,21 @@
-﻿<Control  xmlns="https://spacestation14.io"
-          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" HorizontalExpand="True">
-    <ScrollContainer VerticalExpand="True">
-        <BoxContainer Orientation="Vertical" VerticalExpand="True">
-            <BoxContainer
-                Name="Physical" Access="Public"
-                Orientation="Vertical" VerticalExpand="True">
-                <Label Text="{Loc 'character-editor-physical'}"/>
-                <TextEdit Name="PhysicalDescInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
-            </BoxContainer>
-            <BoxContainer
-                Name="Personality" Access="Public"
-                Orientation="Vertical" VerticalExpand="True">
-                <Label Text="{Loc 'character-editor-personality'}"/>
-                <TextEdit Name="PersonalityDescInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
-            </BoxContainer>
-            <BoxContainer
-                Name="Exploitable" Access="Public"
-                Orientation="Vertical" VerticalExpand="True">
-                <Label Text="{Loc 'character-info-exploitable'}"/>
-                <TextEdit Name="ExploitableInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
-            </BoxContainer>
-            <BoxContainer
-                Name="Secrets" Access="Public"
-                Orientation="Vertical" VerticalExpand="True">
-                <Label Text="{Loc 'character-info-secrets'}"/>
-                <TextEdit Name="SecretsInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
-            </BoxContainer>
+<BoxContainer xmlns="https://spacestation14.io"
+              xmlns:ui="clr-namespace:Content.Client._Starlight.Lobby.UI"
+              x:Class="Content.Client._Starlight.Lobby.UI.CharacterInfoEditor"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+    <!-- Laid out like the jobs, antags and traits tabs -->
+    <PanelContainer StyleClasses="TraitsHeaderPanel" Margin="0 0 0 8">
+        <BoxContainer Orientation="Vertical" Margin="12 10" SeparationOverride="2">
+            <Label Text="{Loc 'character-info-ic-header'}" StyleClasses="TraitsTitleLabel" />
+            <Label Text="{Loc 'character-info-ic-hint'}" StyleClasses="TraitsSubtitleLabel" />
+        </BoxContainer>
+    </PanelContainer>
+    <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+        <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="0 0 4 0">
+            <ui:NoteField Name="Physical" Access="Public" Title="{Loc 'character-editor-physical'}" PlaceholderLoc="character-physical-text-placeholder" />
+            <ui:NoteField Name="Personality" Access="Public" Title="{Loc 'character-editor-personality'}" PlaceholderLoc="character-personality-text-placeholder" />
+            <ui:NoteField Name="Exploitable" Access="Public" Title="{Loc 'character-info-exploitable'}" PlaceholderLoc="character-exploitable-text-placeholder" />
+            <ui:NoteField Name="Secrets" Access="Public" Title="{Loc 'character-info-secrets'}" PlaceholderLoc="character-secrets-text-placeholder" />
         </BoxContainer>
     </ScrollContainer>
-</Control>
+</BoxContainer>

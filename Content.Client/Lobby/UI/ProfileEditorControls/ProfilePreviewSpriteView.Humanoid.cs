@@ -10,12 +10,10 @@ using Content.Shared.Roles;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Shared.Body.Part;
-#region Starlight
 using Content.Shared._Starlight.Medical.Limbs;
 using Content.Client._Starlight.Humanoid;
 using Content.Shared._Starlight.Humanoid;
 using Content.Shared._Starlight.Roles;
-#endregion
 
 namespace Content.Client.Lobby.UI.ProfileEditorControls;
 
@@ -64,7 +62,15 @@ public sealed partial class ProfilePreviewSpriteView
         // If an antag override is provided, display that antag's loadout
         if (antagOverride != null && _prototypeManager.TryIndex(antagOverride.Value, out var antagProto))
         {
-            PreviewDummy = EntMan.SpawnEntity(
+            // Antags that turn into something else, like xenoborgs, show what they become.
+            if (antagProto.PreviewEntity is { } previewEntity && _prototypeManager.HasIndex(previewEntity))
+            {
+                PreviewDummy = EntMan.Spawn(previewEntity, MapCoordinates.Nullspace);
+                JobName = Loc.GetString(antagProto.Name);
+                return;
+            }
+
+            PreviewDummy = EntMan.Spawn(
                 _prototypeManager.Index(humanoid.Species).DollPrototype,
                 MapCoordinates.Nullspace);
 
@@ -74,6 +80,27 @@ public sealed partial class ProfilePreviewSpriteView
                 return;
 
             JobName = Loc.GetString(antagProto.Name);
+
+            // The antag's own outfit first. One without it, like a traitor, is dressed for its job.
+            if (antagProto.PreviewStartingGear.HasValue)
+            {
+                GiveDummyAntagLoadout(antagProto);
+            }
+            else
+            {
+                var antagJob = job ?? GetPreferredJob(humanoid)
+                    ?? _prototypeManager.Index<JobPrototype>(SharedGameTicker.FallbackOverflowJob);
+                GiveDummyJobClothes(PreviewDummy, humanoid, antagJob);
+                if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(antagJob.ID)))
+                {
+                    GiveDummyLoadout(PreviewDummy, humanoid.GetLoadoutOrDefault(
+                        LoadoutSystem.GetJobPrototype(antagJob.ID),
+                        _playerManager.LocalSession,
+                        humanoid.Species,
+                        EntMan,
+                        _prototypeManager));
+                }
+            }
 
             // Then apply roleLoadout on top (which can override specific slots)
             if (antagProto.RoleLoadout != null && antagProto.RoleLoadout.Count > 0)

@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Linq;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.Guidebook;
@@ -14,9 +15,8 @@ public sealed partial class HumanoidProfileEditor
 {
     public event Action<List<ProtoId<GuideEntryPrototype>>>? OnOpenGuidebook;
 
-    private ColorSelectorSliders _rgbSkinColorSelector = default!;
-    private readonly List<SpeciesPrototype> _species = new();
-    private static readonly ProtoId<GuideEntryPrototype> DefaultSpeciesGuidebook = "Species";
+    private readonly List<SpeciesPrototype> _species = [];
+    private static readonly ProtoId<GuideEntryPrototype> _defaultSpeciesGuidebook = "Species";
 
     public void RefreshSpecies()
     {
@@ -27,6 +27,8 @@ public sealed partial class HumanoidProfileEditor
         _species.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase));
         var speciesIds = _species.Select(o => o.ID).ToList();
 
+        var loc = IoCManager.Resolve<ILocalizationManager>();
+
         for (var i = 0; i < _species.Count; i++)
         {
             // Far Horizons: subspecies are selected through the subspecies control instead.
@@ -34,7 +36,8 @@ public sealed partial class HumanoidProfileEditor
                 continue;
 
             var name = Loc.GetString(_species[i].Name);
-            SpeciesButton.AddItem(name, i);
+            SpeciesButton.AddItem(name, i, _species[i].DollPrototype, SpeciesSummary(loc, _species[i]), // Starlight-edit: cards with a preview
+                _prototypeManager.HasIndex<GuideEntryPrototype>(_species[i].ID));
 
             if (Profile?.Species.Equals(_species[i].ID) == true ||
                 _species.Find(p => p.ID == Profile?.Species)?.SubspeciesOf == _species[i].ID)
@@ -55,13 +58,12 @@ public sealed partial class HumanoidProfileEditor
     {
         Profile = Profile?.WithSpecies(newSpecies);
         UpdateSubspecies();
-        OnSkinColorOnValueChanged();
-        Markings.SetSpecies(newSpecies);
+        ClampSkinColor();
+        UpdateBodyTab();
         RefreshJobs();
         RefreshAntags();
         RefreshLoadouts();
         UpdateSexControls();
-        UpdateSpeciesGuidebookIcon();
         UpdateSizeControls();
         UpdateSpeciesLoadout();
         ReloadPreview();
@@ -77,21 +79,15 @@ public sealed partial class HumanoidProfileEditor
     {
         Profile = Profile?.WithSex(newSex);
 
-        switch (newSex)
+        Profile = newSex switch
         {
-            case Sex.Male:
-                Profile = Profile?.WithGender(Gender.Male);
-                break;
-            case Sex.Female:
-                Profile = Profile?.WithGender(Gender.Female);
-                break;
-            default:
-                Profile = Profile?.WithGender(Gender.Epicene);
-                break;
-        }
-
+            Sex.Male => Profile?.WithGender(Gender.Male),
+            Sex.Female => Profile?.WithGender(Gender.Female),
+            Sex.Unsexed => Profile?.WithGender(Gender.Neuter),
+            _ => Profile?.WithGender(Gender.Epicene),
+        };
         UpdateGenderControls();
-        Markings.SetSex(newSex);
+        UpdateBodyTab();
         ReloadPreview();
         UpdateVoicesControls();
         UpdateSiliconVoicesControls();
@@ -143,10 +139,7 @@ public sealed partial class HumanoidProfileEditor
         PronounsButton.SelectId((int) Profile.Gender);
     }
 
-    private void UpdateAgeEdit()
-    {
-        AgeEdit.Text = Profile?.Age.ToString() ?? "";
-    }
+    private void UpdateAgeEdit() => AgeEdit.Text = Profile?.Age.ToString() ?? "";
 
     private void UpdateSexControls()
     {
@@ -177,47 +170,6 @@ public sealed partial class HumanoidProfileEditor
             SexButton.SelectId((int) Profile.Sex);
         else
             SexButton.SelectId((int) sexes[0]);
-    }
-
-    private void UpdateEyePickers()
-    {
-        if (Profile == null)
-            return;
-
-        Markings.CurrentEyeColor = Profile.Appearance.EyeColor;
-        EyeColorPicker.SetData(Profile.Appearance.EyeColor, Profile.Appearance.EyeGlowing);
-    }
-
-    private void UpdateSkinColor()
-    {
-        if (Profile == null)
-            return;
-
-        var skin = _prototypeManager.Index<SpeciesPrototype>(Profile.Species).SkinColoration;
-        var strategy = _prototypeManager.Index(skin).Strategy;
-
-        switch (strategy.InputType)
-        {
-            case SkinColorationStrategyInput.Unary:
-                if (!Skin.Visible)
-                {
-                    Skin.Visible = true;
-                    RgbSkinColorContainer.Visible = false;
-                }
-
-                Skin.Value = strategy.ToUnary(Profile.Appearance.SkinColor);
-                break;
-
-            case SkinColorationStrategyInput.Color:
-                if (!RgbSkinColorContainer.Visible)
-                {
-                    Skin.Visible = false;
-                    RgbSkinColorContainer.Visible = true;
-                }
-
-                _rgbSkinColorSelector.Color = strategy.ClosestSkinColor(Profile.Appearance.SkinColor);
-                break;
-        }
     }
 
     private void UpdateSpawnPriorityControls()
@@ -259,7 +211,8 @@ public sealed partial class HumanoidProfileEditor
         UpdateSizeText();
     }
 
-    private void UpdateSizeText()
+    /// <param name="forceEdits">Rewrite the number boxes even while one has focus, after a value typed in was applied.</param>
+    private void UpdateSizeText(bool forceEdits = false)
     {
         if (Profile is null)
             return;
@@ -267,97 +220,95 @@ public sealed partial class HumanoidProfileEditor
         if (!_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype))
             return;
 
-        var height = speciesPrototype.StandardSize * (Profile.Appearance.Height - 1f) * 2f + speciesPrototype.StandardSize;
-        var weight = speciesPrototype.StandardWeight +
-                        speciesPrototype.StandardDensity *
-                        (Profile.Appearance.Width * Profile.Appearance.Height * Profile.Appearance.Height - 1);
+        var (height, weight) = SizeToMetrics(speciesPrototype, Profile.Appearance.Height, Profile.Appearance.Width);
 
-        HeightDescribeLabel.Text = Loc.GetString(
-            "humanoid-profile-editor-height-label",
-            ("height", Math.Round(height)));
-        WidthDescribeLabel.Text = Loc.GetString(
-            "humanoid-profile-editor-width-label",
-            ("weight", Math.Round(weight, 1)));
+        // Not while typing, the slider moving under the caret would rewrite the number.
+        if (forceEdits || !HeightEdit.HasKeyboardFocus())
+            HeightEdit.Text = Math.Round(height).ToString(CultureInfo.InvariantCulture);
+        if (forceEdits || !WeightEdit.HasKeyboardFocus())
+            WeightEdit.Text = Math.Round(weight).ToString(CultureInfo.InvariantCulture);
 
         _recordsTab?.UpdateComputedMetrics(Profile);
     }
 
-    public void UpdateSpeciesGuidebookIcon()
+    /// <summary>
+    /// Height in centimeters and weight in kilograms for the size scales, the same way character records count them.
+    /// </summary>
+    private static (float Height, float Weight) SizeToMetrics(SpeciesPrototype species, float heightScale, float widthScale)
     {
-        SpeciesInfoButton.StyleClasses.Clear();
-
-        if (_species.Count == 0)
-            return;
-
-        var species = Profile?.Species ?? _species.First().ID;
-        if (!_prototypeManager.Resolve<SpeciesPrototype>(species, out var speciesProto))
-            return;
-
-        if (!_prototypeManager.HasIndex<GuideEntryPrototype>(speciesProto.SubspeciesOf ?? species))
-            return;
-
-        SpeciesInfoButton.StyleIdentifier = "SpeciesInfoDefault";
+        var height = (species.StandardSize * (heightScale - 1f) * 2f) + species.StandardSize;
+        var weight = species.StandardWeight + (species.StandardDensity * ((widthScale * heightScale * heightScale) - 1f));
+        return (height, weight);
     }
 
-    private void OnSpeciesInfoButtonPressed(BaseButton.ButtonEventArgs args)
+    /// <summary>
+    /// Sets the height from centimeters typed in, kept within what the species allows.
+    /// </summary>
+    private void OnHeightEntered(string text)
     {
-        if (_species.Count == 0)
+        if (Profile is null || !_prototypeManager.TryIndex(Profile.Species, out var species))
             return;
 
+        if (float.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out var height))
+        {
+            var scale = ((height - species.StandardSize) / (2f * species.StandardSize)) + 1f;
+            HeightSlider.Value = Math.Clamp(scale, species.MinHeight, species.MaxHeight);
+        }
+
+        UpdateSizeText(forceEdits: true);
+    }
+
+    /// <summary>
+    /// Sets the build from kilograms typed in at the current height, kept within what the species allows.
+    /// </summary>
+    private void OnWeightEntered(string text)
+    {
+        if (Profile is null || !_prototypeManager.TryIndex(Profile.Species, out var species))
+            return;
+
+        if (float.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out var weight) && species.StandardDensity != 0)
+        {
+            var heightScale = Profile.Appearance.Height;
+            var scale = (((weight - species.StandardWeight) / species.StandardDensity) + 1f) / (heightScale * heightScale);
+            WidthSlider.Value = Math.Clamp(scale, species.MinWidth, species.MaxWidth);
+        }
+
+        UpdateSizeText(forceEdits: true);
+    }
+
+    /// <summary>
+    /// A few lines about the species for the tooltip of its card.
+    /// </summary>
+    private string SpeciesSummary(ILocalizationManager loc, SpeciesPrototype species)
+    {
+        var lines = new List<string> { Loc.GetString(species.Name) };
+        if (loc.TryGetString($"species-summary-{species.ID.ToLowerInvariant()}", out var summary))
+            lines.Add(summary);
+
+        lines.Add(Loc.GetString("humanoid-profile-editor-species-summary-stats",
+            ("minAge", species.MinAge),
+            ("maxAge", species.MaxAge),
+            ("height", species.StandardSize),
+            ("weight", species.StandardWeight)));
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    private void OpenSpeciesGuidebook(SpeciesPrototype speciesProto)
+    {
         var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
-        var speciesId = Profile?.Species ?? SharedHumanoidAppearanceSystem.DefaultSpecies;
-        var speciesProto = _species.Find(p => p.ID == speciesId) ?? _species.First();
         var species = speciesProto.SubspeciesOf ?? speciesProto.ID;
-        var page = DefaultSpeciesGuidebook;
+        var page = _defaultSpeciesGuidebook;
 
         if (_prototypeManager.HasIndex<GuideEntryPrototype>(species))
             page = new ProtoId<GuideEntryPrototype>(species.Id);
 
-        if (!_prototypeManager.Resolve(DefaultSpeciesGuidebook, out var guideRoot))
+        if (!_prototypeManager.Resolve(_defaultSpeciesGuidebook, out var guideRoot))
             return;
 
         var dict = new Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry>
         {
-            [DefaultSpeciesGuidebook] = guideRoot,
+            [_defaultSpeciesGuidebook] = guideRoot,
         };
         guidebookController.OpenGuidebook(dict, includeChildren: true, selected: page);
-    }
-
-    private void OnSkinColorOnValueChanged()
-    {
-        if (Profile is null)
-            return;
-
-        var skin = _prototypeManager.Index<SpeciesPrototype>(Profile.Species).SkinColoration;
-        var strategy = _prototypeManager.Index(skin).Strategy;
-
-        switch (strategy.InputType)
-        {
-            case SkinColorationStrategyInput.Unary:
-                if (!Skin.Visible)
-                {
-                    Skin.Visible = true;
-                    RgbSkinColorContainer.Visible = false;
-                }
-
-                var unaryColor = strategy.FromUnary(Skin.Value);
-                Markings.CurrentSkinColor = unaryColor;
-                Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(unaryColor));
-                break;
-
-            case SkinColorationStrategyInput.Color:
-                if (!RgbSkinColorContainer.Visible)
-                {
-                    Skin.Visible = false;
-                    RgbSkinColorContainer.Visible = true;
-                }
-
-                var color = strategy.ClosestSkinColor(_rgbSkinColorSelector.Color);
-                Markings.CurrentSkinColor = color;
-                Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
-                break;
-        }
-
-        ReloadProfilePreview();
     }
 }

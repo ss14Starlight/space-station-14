@@ -1,0 +1,39 @@
+<ui:BodyTab xmlns="https://spacestation14.io"
+            xmlns:ui="clr-namespace:Content.Client._Starlight.Lobby.UI"
+            HorizontalExpand="True"
+            VerticalExpand="True">
+    <BoxContainer Orientation="Horizontal" SeparationOverride="8" Margin="8">
+        <!-- The body: a big clickable preview, the part tree, then the colors of the picked part -->
+        <PanelContainer StyleClasses="InsetPanel" SetWidth="340">
+            <ScrollContainer HScrollEnabled="False" VerticalExpand="True" ReserveScrollbarSpace="True">
+                <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="8">
+                    <ui:BodyPreviewControl Name="BodyPreview" />
+                    <WrapContainer Name="Breadcrumb" SeparationOverride="2" CrossSeparationOverride="2" HorizontalAlignment="Center" />
+                    <GridContainer Name="ChildParts" Columns="2" HSeparationOverride="4" VSeparationOverride="4" />
+                    <PanelContainer StyleClasses="LowDivider" />
+                    <Label Text="{Loc 'body-editor-colors'}" StyleClasses="LabelKeyText" />
+                    <BoxContainer Name="ColorList" Orientation="Vertical" SeparationOverride="2" />
+                    <BoxContainer Name="ColorEditor" Orientation="Vertical" SeparationOverride="6" />
+                </BoxContainer>
+            </ScrollContainer>
+        </PanelContainer>
+
+        <!-- Markings of the picked part -->
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="6">
+            <WrapContainer Name="GroupList" SeparationOverride="4" CrossSeparationOverride="4" />
+            <!-- Whole-body sections, such as species and cybernetics, take the place of the markings -->
+            <BoxContainer Name="SectionArea" Orientation="Vertical" VerticalExpand="True" Visible="False" />
+            <BoxContainer Name="MarkingsArea" Orientation="Vertical" VerticalExpand="True" SeparationOverride="6">
+                <Label Name="PickedHeader" StyleClasses="LabelSubText" />
+                <WrapContainer Name="PickedList" SeparationOverride="4" CrossSeparationOverride="4" />
+                <LineEdit Name="SearchEdit" PlaceHolder="{Loc 'body-editor-search'}" />
+                <PanelContainer StyleClasses="InsetPanel" VerticalExpand="True">
+                    <!-- Reserved scrollbar space: the grid sizes its cells by width, a scrollbar coming and going would loop -->
+                    <ScrollContainer HScrollEnabled="False" VerticalExpand="True" ReserveScrollbarSpace="True">
+                        <ui:VirtualGridContainer Name="AvailableGrid" Columns="5" Margin="4" />
+                    </ScrollContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</ui:BodyTab>
