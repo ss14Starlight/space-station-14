@@ -57,11 +57,11 @@ public abstract partial class SharedBorgSystem
             return;
 
         _adminLog.Add(LogType.Action, LogImpact.High, $"{args.Actor} set borg \"{chassis.Owner}\"'s name to: {name}");
-        // Starlight-start: Keep the Borg brain synchronized with the chassis name.
+        // Starlight - start
         _metaData.SetEntityName(chassis, name, metaData);
-        if (chassis.Comp.BrainEntity is { } brain)
+        if (chassis.Comp.BrainEntity is { } brain && !IsRemoteControlBrain(brain))
             _metaData.SetEntityName(brain, name);
-        // Starlight-end
+        // Starlight - end
     }
 
     private void OnRemoveModuleBuiMessage(Entity<BorgChassisComponent> chassis, ref BorgRemoveModuleBuiMessage args)

@@ -140,15 +140,20 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
         _access.SetAccessEnabled(chassis.Owner, chassis.Comp.Active); // Starlight-edit: Access status is syncronized to ensure its based on the chassi state
 
-        // Starlight-start: If the borg has a brain, synchronize the name of the brain with the chassis.
+        // Starlight - start
         if (chassis.Comp.BrainEntity is { } brain)
             SynchronizeBrainName(chassis, brain);
-        // Starlight-end
+        // Starlight - end
     }
 
     // Starlight: function to synchronize the name of the brain with the chassis, and the other way around.
     private void SynchronizeBrainName(Entity<BorgChassisComponent> chassis, EntityUid brain)
     {
+        // Starlight - start
+        if (IsRemoteControlBrain(brain))
+            return;
+        // Starlight - end
+
         var brainName = _nameModifier.GetBaseName(brain);
         var chassisName = _nameModifier.GetBaseName(chassis.Owner);
 

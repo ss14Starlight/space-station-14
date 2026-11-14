@@ -66,7 +66,7 @@
     remoteControlPower: 51
 
 - type: entity
-  id: HandheldRemoteControlExpedition
+  id: HandheldRemoteControlToy
   parent: [ PowerCellSlotSmallItem, BaseHandheldComputer ] # Starlight
   name: toy remote control
   description: A compact remote control without a screen, meant for RC toys.

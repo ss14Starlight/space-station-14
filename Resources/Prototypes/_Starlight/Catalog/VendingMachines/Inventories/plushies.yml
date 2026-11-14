@@ -630,6 +630,17 @@
     stock: 1
 
 - type: listing
+  id: VendorHandheldRemoteControlToy
+  productEntity: HandheldRemoteControlToy
+  cost:
+    NTCredit: 20
+  categories:
+  - SLToys
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
   id: VendorSingularityToy
   productEntity: SingularityToy
   cost:
@@ -639,4 +650,3 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
-

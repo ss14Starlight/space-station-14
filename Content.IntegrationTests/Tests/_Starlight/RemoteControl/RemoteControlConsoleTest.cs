@@ -363,7 +363,7 @@ public sealed class RemoteControlConsoleTest : GameTest
         try
         {
             var coordinates = new MapCoordinates(0, 0, mapId);
-            var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlExpedition", coordinates);
+            var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlToy", coordinates);
             var remote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
             var user = SEntMan.SpawnEntity("MobHuman", coordinates);
             var activatable = SEntMan.GetComponent<ActivatableUIComponent>(toyRemote);
@@ -417,7 +417,7 @@ public sealed class RemoteControlConsoleTest : GameTest
             try
             {
                 var coordinates = new MapCoordinates(0, 0, mapId);
-                var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlExpedition", coordinates);
+                var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlToy", coordinates);
                 var remote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
                 var user = SEntMan.SpawnEntity("MobHuman", coordinates);
                 var itemToggle = SEntMan.GetComponent<ItemToggleComponent>(toyRemote);
@@ -1190,7 +1190,7 @@ public sealed class RemoteControlConsoleTest : GameTest
             var handheld = SEntMan.SpawnEntity("HandheldRemoteControl", coordinates);
             var antagHandheld = SEntMan.SpawnEntity("HandheldRemoteControlAntag", coordinates);
             var antagMindHandheld = SEntMan.SpawnEntity("HandheldRemoteControlAntagMind", coordinates);
-            var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlExpedition", coordinates);
+            var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlToy", coordinates);
             var computer = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
             var playerAi = SEntMan.SpawnEntity("AiHeld", coordinates);
 

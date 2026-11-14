@@ -1,7 +1,6 @@
 using Robust.Shared.Serialization;
 using Robust.Shared.Map;
 using Content.Shared.Atmos.Components;
-using Robust.Shared.Maths;
 
 namespace Content.Shared._Starlight.Computers.RemoteControl;
 
@@ -122,4 +121,16 @@ public sealed class RemoteControlInventoryMessage : BoundUserInterfaceMessage
 {
     public required string Slot { get; init; }
     public required RemoteControlInventoryAction Action { get; init; }
+}
+
+[Serializable, NetSerializable]
+public sealed class RemoteControlBuiOpenedByRemoteActorEvent(NetEntity uiEntity, Enum uiKey, NetEntity remoteActor)
+    : EntityEventArgs
+{
+    public readonly NetEntity UiEntity = uiEntity;
+    public readonly string UiKey = GetUiKeyIdentifier(uiKey);
+    public readonly NetEntity RemoteActor = remoteActor;
+
+    public static string GetUiKeyIdentifier(Enum uiKey)
+        => $"{uiKey.GetType().FullName}:{uiKey}";
 }
