@@ -158,7 +158,7 @@ namespace Content.Server.Spawners.EntitySystems
             if (TerminatingOrDeleted(ent) || !Exists(ent))
                 return;
 
-            var coords = Transform(ent).Coordinates;
+            var coords = _xform.GetMapCoordinates(ent, Transform(ent)); // Starlight-edit: Map coords, not local
             var offset = ent.Comp.Offset;
 
             var spawns = _entityTable.GetSpawns(ent.Comp.Table);
@@ -168,7 +168,7 @@ namespace Content.Server.Spawners.EntitySystems
                 var yOffset = _robustRandom.NextFloat(-offset, offset);
                 var trueCoords = coords.Offset(new Vector2(xOffset, yOffset));
 
-                SpawnAttachedTo(proto, trueCoords);
+                Spawn(proto, trueCoords); // Starlight-edit: Spawn unparented
             }
         }
     }
