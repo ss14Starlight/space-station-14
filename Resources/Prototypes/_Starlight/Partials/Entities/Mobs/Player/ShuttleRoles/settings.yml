@@ -57,6 +57,6 @@
   id: SyndieVisitor
   components:
     - type: GhostRole
-      rules: ghost-role-information-survivor-rules
+      rules: ghost-role-information-harmless-antagonist-rules
       mindRoles:
-      - MindRoleGhostSurvivorAligned
+      - MindRoleGhostHarmlessAntagonist
