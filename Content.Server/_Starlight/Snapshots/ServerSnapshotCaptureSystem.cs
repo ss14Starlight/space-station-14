@@ -625,15 +625,21 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     }
 
     private bool ShouldInclude(EntityUid uid, int visMask, EntityUid? grid)
-    {
-        if (uid == grid || _mapQuery.HasComp(uid) || _gridQuery.HasComp(uid))
-            return false;
+        => uid != grid
+            && !_mapQuery.HasComp(uid)
+            && !_gridQuery.HasComp(uid)
+            && IsVisibleTo(uid, visMask)
+            && !_container.IsEntityOrParentInContainer(uid);
 
-        if (!IsVisibleTo(uid, visMask))
-            return false;
-
-        return !_container.IsEntityOrParentInContainer(uid);
-    }
+    /// <summary>
+    /// Support-only lights may be inside non-occluding containers, such as a PDA flashlight held in hand.
+    /// The illumination index already drops lights hidden in occluding containers, so only the visibility
+    /// mask matters here.
+    /// </summary>
+    private bool ShouldIncludeSupportLight(EntityUid uid, int visMask)
+        => !_mapQuery.HasComp(uid)
+            && !_gridQuery.HasComp(uid)
+            && IsVisibleTo(uid, visMask);
 
     /// <summary>
     /// PVS layer rules to not accidentally capture ghosts and such.
@@ -791,7 +797,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     }
 
     /// <summary>
-    /// Captures off-frame lights that still illuminate the frame as support-only entities.
+    /// Captures off-frame lights that still illuminate the frame as support-only entities, including lights
+    /// held in non-occluding containers such as a PDA flashlight.
     /// Reuses <see cref="_nearbyLights"/> instead of allocating a fresh lookup list per shot.
     /// </summary>
     private void CaptureNearbyLights(
@@ -845,7 +852,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 continue;
             }
 
-            if (!ShouldInclude(uid, visMask, null)
+            if (!ShouldIncludeSupportLight(uid, visMask)
                 || MetaData(uid).EntityPrototype is not { } proto)
             {
                 continue;
