@@ -76,7 +76,7 @@
         children:
         - id: HudModuleShowJobIcons
         - id: HudModuleShowCriminalRecordIcons
-        - id: HudModuleShowAccessReaderSettings
+        - id: HudModuleShowIdAccess
   - type: StealTarget
     stealGroup: RareGlassesCollection
   - type: EyeProtection
