@@ -11,7 +11,6 @@ public abstract partial class SharedNewsSystem
     public const string PhotoSlotId = "photo";
 }
 
-[StructLayout(LayoutKind.Auto)]
 public partial struct NewsArticle
 {
     [ViewVariables]

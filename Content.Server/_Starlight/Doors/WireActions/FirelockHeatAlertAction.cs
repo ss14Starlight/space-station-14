@@ -7,7 +7,7 @@ namespace Content.Server._Starlight.Doors.WireActions;
 
 public sealed partial class FirelockHeatAlertAction : ComponentWireAction<FirelockComponent>
 {
-    public override string Name { get; set; } = "wire-name-door-heat-alert";
+    public override string Name { get; set; } = "wire-name-door-fire-alert";
     public override Color Color { get; set; } = Color.IndianRed;
     public override object? StatusKey { get; } = AirlockWireStatus.FireAlertIndicator;
 

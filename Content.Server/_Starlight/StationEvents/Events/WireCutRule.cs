@@ -34,7 +34,7 @@ public sealed partial class WireCutRule : StationEventSystem<WireCutRuleComponen
         stationEvent.TargetStation = station;
         var stationUid = station.Value;
 
-        var candidates = new List<(EntityUid Uid, WiresComponent Wires)>();
+        var candidates = new List<Entity<WiresComponent>>();
         var query = EntityQueryEnumerator<WiresComponent, TransformComponent>();
         while (query.MoveNext(out var target, out var wires, out var xform))
         {
@@ -62,7 +62,7 @@ public sealed partial class WireCutRule : StationEventSystem<WireCutRuleComponen
 
         RobustRandom.Shuffle(candidates);
 
-        foreach (var (target, wires) in candidates)
+        foreach (var target in candidates)
         {
             if (remaining <= 0)
                 break;
@@ -70,7 +70,7 @@ public sealed partial class WireCutRule : StationEventSystem<WireCutRuleComponen
             if (TerminatingOrDeleted(target))
                 continue;
 
-            var uncutWires = wires.WiresList.Where(wire => !wire.IsCut).ToList();
+            var uncutWires = target.Comp.WiresList.Where(wire => !wire.IsCut).ToList();
             RobustRandom.Shuffle(uncutWires);
 
             var perEntity = Math.Min(Math.Max(1, component.MaxWiresPerEntity), uncutWires.Count);
@@ -82,7 +82,7 @@ public sealed partial class WireCutRule : StationEventSystem<WireCutRuleComponen
                 if (TerminatingOrDeleted(target))
                     break;
 
-                if (!_wires.TryCutWire(target, wire, wires: wires))
+                if (!_wires.TryCutWire(target, wire))
                     continue;
 
                 remaining--;

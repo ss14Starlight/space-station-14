@@ -8,7 +8,7 @@
   description: survival-description
   rules:
     - MeteorSwarmScheduler
-    - WireCutScheduler
+    - WireCutScheduler # Starlight
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler # Starlight
     - SpaceTrafficControlFriendlyEventScheduler # Starlight
@@ -26,7 +26,7 @@
   description: kessler-syndrome-description
   rules:
     - KesslerSyndromeScheduler
-    - WireCutScheduler
+    - WireCutScheduler # Starlight
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler # Starlight
     - BasicRoundstartVariation
@@ -47,7 +47,7 @@
     - WizardDuel # Starlight
     #- Xenoborgs # Starlight
     - KesslerSyndromeScheduler
-    - WireCutScheduler
+    - WireCutScheduler # Starlight
     - RampingStationEventScheduler
     - SLChangeling #Starlight
     - SpaceTrafficControlEventScheduler # Starlight
@@ -87,7 +87,7 @@
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler
     - MeteorSwarmScheduler
-    - WireCutScheduler
+    - WireCutScheduler # Starlight
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler # Starlight
     - SpaceTrafficControlFriendlyEventScheduler # Starlight
@@ -121,7 +121,7 @@
   rules:
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
-  - WireCutScheduler
+  - WireCutScheduler # Starlight
   - SpaceTrafficControlEventScheduler # Starlight
   - BasicRoundstartVariation
 
@@ -196,7 +196,7 @@
   - SubGamemodesRuleNoChangelings #Starlight
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
-  - WireCutScheduler
+  - WireCutScheduler # Starlight
   - SpaceTrafficControlEventScheduler # Starlight
   - BasicRoundstartVariation
   - RailroadingMinor # Starlight
@@ -230,7 +230,7 @@
   - SubGamemodesRuleNuclearOperativeScaling # Starlight
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
-  - WireCutScheduler
+  - WireCutScheduler # Starlight
   - SpaceTrafficControlEventScheduler # Starlight
   - BasicRoundstartVariation
 
@@ -250,7 +250,7 @@
   - SubGamemodesRuleConversion # Starlight. 3 max thieves on revs, so they can't be guaranteed an Emag.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
-  - WireCutScheduler
+  - WireCutScheduler # Starlight
   - SpaceTrafficControlEventScheduler # Starlight
   - BasicRoundstartVariation
 
@@ -268,7 +268,7 @@
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
-  - WireCutScheduler
+  - WireCutScheduler # Starlight
   - SpaceTrafficControlEventScheduler # Starlight
   - BasicRoundstartVariation
 
@@ -286,7 +286,7 @@
   - SubGamemodesRuleNoXenoborg # Starlight. no two motherships. Allows wizards to spawn on Xenoborgs. Space is dangerous, yo.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
-  - WireCutScheduler
+  - WireCutScheduler # Starlight
   - SpaceTrafficControlEventScheduler # Starlight
   - BasicRoundstartVariation
 
@@ -307,7 +307,7 @@
   - SubGamemodesRuleZombieCompliantAntags # Starlight. I want to trial this, see how it plays out. If it goes poorly, we'll remove Xenoborgs from it.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
-  - WireCutScheduler
+  - WireCutScheduler # Starlight
   - SpaceTrafficControlEventScheduler # Starlight
   - BasicRoundstartVariation
 
@@ -326,6 +326,6 @@
   - SubGamemodesRuleZombieCompliantAntags # Starlight. I want to trial this, see how it plays out. If it goes poorly, we'll remove Xenoborgs from it.
   - BasicStationEventScheduler
   - KesslerSyndromeScheduler
-  - WireCutScheduler
+  - WireCutScheduler # Starlight
   - SpaceTrafficControlEventScheduler # Starlight
   - BasicRoundstartVariation

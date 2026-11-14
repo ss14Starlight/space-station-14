@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using Content.Shared.Throwing;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Doors.Systems;
 
 public abstract partial class SharedDoorSystem

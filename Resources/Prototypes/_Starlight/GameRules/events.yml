@@ -428,6 +428,7 @@
     children:
     - id: WireCutAirlock
     - id: WireCutFirelock
+    - id: WireCutPoweredLocker
     - id: WireCutVendingMachine
     - id: WireCutAirAlarm
 
