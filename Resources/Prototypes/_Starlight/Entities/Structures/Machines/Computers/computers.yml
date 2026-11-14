@@ -225,8 +225,10 @@
   parent: BaseComputerAiAccess
   id: RemoteControlConsole
   name: remote control console
-  description: Enables operators to view and control a linked robotic body over virtually any distance, with minimal loss of control precision.
+  description: Enables operators to view and control a robotic body by its remote control channel over virtually any distance.
   components:
+  - type: Computer
+    board: RemoteControlConsoleCircuitboard
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -240,15 +242,17 @@
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: generic_panel_open
   - type: RemoteControlConsole
+    remoteControlPower: 15
   - type: DeviceLinkSource
-    ports:
-    - RemoteControl
+    ports: [ RemoteControl ]
   - type: ActivatableUI
     key: enum.RemoteControlUIKey.Key
   - type: UserInterface
     interfaces:
       enum.RemoteControlUIKey.Key:
         type: RemoteControlConsoleBoundUserInterface
+      enum.RemoteControlSettingsUIKey.Key:
+        type: RemoteControlSettingsBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
 
@@ -816,6 +820,45 @@
       energy: 1.5
       color: "#b48b57"
 
+# Reporters- Journalism access
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsBreakingNews
+  categories: [ ShouldMapStation ]
+  name: breaking news console
+  description: A computer used by reporters to make station wide breaking news announcements.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: comm-new
+          sprite: _Starlight/Structures/Machines/computers.rsi
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: AccessReader
+      access: [[ "Journalism" ]]
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-news
+      delay: 300
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      color: "#e8b923"
+      settableAlertLevels: []
+      canBroadcast: false
+      canShuttle: false
+    - type: SecureCommandTerminalConsole
+      enabled: false
+    - type: Computer
+      board: BreakingNewsCommsComputerCircuitboard
+    - type: PointLight
+      radius: 2.5
+      energy: 1.5
+      color: "#e8b923"
 ## Departmental Communications Consoles END
 
 - type: entity

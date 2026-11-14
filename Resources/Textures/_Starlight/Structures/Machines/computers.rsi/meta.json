@@ -421,6 +421,29 @@
             ]
         },
         {
+          "name": "comm-new",
+          "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, updated for departmental edits by redmushie and then Vincolan for News Console (disord, github).",
+          "directions": 4,
+          "delays": [
+            [
+              0.2,
+              0.2
+            ],
+            [
+              0.2,
+              0.2
+            ],
+            [
+              0.2,
+              0.2
+            ],
+            [
+              0.2,
+              0.2
+            ]
+          ]
+        },
+        {
             "name": "gunnery_keyboard",
             "copyright": "Gunnery sprites by justanorang for Monolith.",
             "directions": 4
