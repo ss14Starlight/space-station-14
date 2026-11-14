@@ -52,6 +52,14 @@
                                  Modulate="#32cd32"
                                  Margin="20 0 5 0"/>
                     <Label Text="{Loc 'power-monitoring-window-label-apc'}"/>
+                    <!-- Starlight Start -->
+                    <TextureRect Stretch="KeepAspectCentered"
+                                 TexturePath="/Textures/Interface/NavMap/beveled_diamond.png"
+                                 SetSize="16 16"
+                                 Modulate="#0000ff"
+                                 Margin="20 0 5 0"/>
+                    <Label Text="{Loc 'power-monitoring-window-label-consumer'}"/>
+                    <!-- Starlight End -->
                 </BoxContainer>
             </BoxContainer>
 
@@ -89,6 +97,11 @@
                     <ScrollContainer HorizontalExpand="True" Margin="8, 8, 8, 8">
                         <BoxContainer Name="ApcList" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="0 0 10 0"/>
                     </ScrollContainer>
+                    <!-- Starlight Start -->
+                    <ScrollContainer HorizontalExpand="True" Margin="8, 8, 8, 8">
+                        <BoxContainer Name="ConsumerList" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="0 0 10 0"/>
+                    </ScrollContainer>
+                    <!-- Starlight End -->
                 </TabContainer>
 
                 <!-- Cable network toggles -->

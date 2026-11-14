@@ -108,6 +108,19 @@
   groupBy: "Headphones"
 
 - type: loadout
+  id: PhotoCameraTrinket
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobReporter
+      time: 180000 # 50hr
+  storage:
+    back:
+    - PhotoCamera
+  groupBy: "neck"
+
+- type: loadout
   id: PawBootTrinket
   equipment:
     shoes: ClothingShoesPawBoots
@@ -946,3 +959,14 @@
   equipment:
     mask: ClothingMaskBreathTube
 
+
+- type: loadout
+  id: RadioHandheldStation
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobRadioHost
+        time: 1h
+  equipment:
+    pocket1: RadioHandheldStation

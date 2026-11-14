@@ -1,0 +1,12 @@
+- type: !PartialOnly entityTable
+  id: MaintenanceLockerLoot
+  table: !type:AllSelector
+    children:
+    - id: OminousPill
+      prob: 0.10
+    - id: WeirdPill
+      prob: 0.10
+    - id: GoldenPill
+      prob: 0.05
+    - id: ToolboxSyndicateMimic
+      prob: 0.03

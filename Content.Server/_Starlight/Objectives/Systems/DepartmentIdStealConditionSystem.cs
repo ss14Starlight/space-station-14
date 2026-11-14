@@ -4,6 +4,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Jobs;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -15,6 +16,7 @@ public sealed partial class DepartmentIdStealConditionSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private MetaDataSystem _meta = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
 
     public override void Initialize()
     {
@@ -36,8 +38,10 @@ public sealed partial class DepartmentIdStealConditionSystem : EntitySystem
             foreach (var department in card.JobDepartments.Distinct())
                 counts[department] = counts.GetValueOrDefault(department) + 1;
         }
+        _jobs.MindTryGetJob(args.MindId, out var job);
         var eligible = counts.Where(pair => pair.Value >= ent.Comp.MinCount &&
-            _prototypes.Index(pair.Key) is { Primary: true, EditorHidden: false }).ToList();
+            _prototypes.Index(pair.Key) is { Primary: true, EditorHidden: false } department &&
+            (job == null || !department.Roles.Contains(job.ID))).ToList();
         if (eligible.Count == 0 || ent.Comp.MinCount < 1 || ent.Comp.MaxCount < ent.Comp.MinCount)
         {
             args.Cancelled = true;

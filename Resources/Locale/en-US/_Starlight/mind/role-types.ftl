@@ -1,6 +1,10 @@
 role-type-harmless-antagonist-name = Harmless Antagonist
 role-type-harmless-antagonist-color = #ff8800
 
+role-type-survivor-aligned-name = Survivor
+role-type-survivor-aligned-desc = Someone who has been through trials and tribulations to get where they are now. Do what it takes to keep living.
+role-type-survivor-aligned-colour = #A52A2A
+
 role-subtype-abductor = Abductor
 role-subtype-pirate = Pirate
 
@@ -13,3 +17,7 @@ roles-antag-selfagent-name = S.E.L.F Agent
 roles-antag-selfagent-description = An agent of the Silicon Engine Liberation Front. Free the station's Silicons from their Laws
 role-subtype-mind-controlled = Mind Controlled
 role-subtype-CentComm = Central Command
+
+role-subtype-nanotrasen = NanoTrasen
+role-subtype-itg = Interstellar Trade Guild
+role-subtype-contractor = Contractor

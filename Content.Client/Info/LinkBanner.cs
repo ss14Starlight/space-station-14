@@ -1,6 +1,4 @@
 ﻿using Content.Client.Administration.Managers;
-using Content.Client.Changelog;
-using Content.Client.UserInterface.Systems.EscapeMenu;
 using Content.Shared.CCVar;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -27,10 +25,6 @@ namespace Content.Client.Info
             var uriOpener = IoCManager.Resolve<IUriOpener>();
             _cfg = IoCManager.Resolve<IConfigurationManager>();
             _playerRoles = IoCManager.Resolve<INullLinkPlayerRolesManager>(); // NullLink
-            // Starlight-edit: rules and the guidebook are buttons on the lobby top bar, the changelog goes first.
-            var changelogButton = new ChangelogButton();
-            changelogButton.OnPressed += args => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
-            buttons.AddChild(changelogButton);
 
             AddInfoButton("server-info-discord-button", CCVars.InfoLinksDiscord);
             AddInfoButton("server-info-website-button", CCVars.InfoLinksWebsite);

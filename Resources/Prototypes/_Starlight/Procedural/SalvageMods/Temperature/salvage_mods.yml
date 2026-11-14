@@ -1,0 +1,106 @@
+# Temperatures
+- type: salvageTemperatureMod
+  id: RoomTemp
+  desc: salvage-temperature-mod-room-temperature
+  cost: 0
+
+- type: salvageTemperatureMod
+  id: Hot
+  desc: salvage-temperature-mod-hot
+  cost: 1
+  temperature: 323.15 # 50C
+  biomes:
+    - Caves
+    #- LowDesert
+    - Grasslands
+    - Lava
+  difficulties:
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard
+
+- type: salvageTemperatureMod
+  id: Burning
+  desc: salvage-temperature-mod-high-temperature
+  cost: 2
+  temperature: 423.15 # 200C
+  biomes:
+    - Caves
+    #- LowDesert
+    - Lava
+  difficulties:
+    - Silicon-Medium
+
+- type: salvageTemperatureMod
+  id: Melting
+  desc: salvage-temperature-mod-extreme-heat
+  cost: 4
+  temperature: 1273.15 # 1000C hot hot hot
+  biomes:
+    - Lava
+  difficulties:
+    - Silicon-Hard
+
+- type: salvageTemperatureMod
+  id: Cold
+  desc: salvage-temperature-mod-cold
+  cost: 1
+  temperature: 275.15 # 2C
+  biomes:
+    - Caves
+    #- LowDesert
+    - Grasslands
+    - Snow
+  difficulties:
+    - Communist-Easy
+    - Communist-Medium
+    - Communist-Hard
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard
+
+- type: salvageTemperatureMod
+  id: Tundra
+  desc: salvage-temperature-mod-low-temperature
+  cost: 2
+  temperature: 263.15 # -40C
+  biomes:
+    - Caves
+    - Snow
+  difficulties:
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard
+
+- type: salvageTemperatureMod
+  id: Frozen
+  desc: salvage-temperature-mod-extreme-cold
+  cost: 4
+  temperature: 123.15 # -150C
+  biomes:
+    - Snow
+  difficulties:
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard

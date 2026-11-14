@@ -79,6 +79,7 @@ public sealed partial class ContentReplayPlaybackManager
 
     private void LoadOverride(IReplayFileReader fileReader)
     {
+        ReadFinalRoundStart(fileReader); // Starlight
         var screen = _stateMan.RequestStateChange<LoadingScreen<bool>>();
         screen.Job = new ContentLoadReplayJob(1 / 60f, fileReader, _loadMan, screen);
         screen.OnJobFinished += (_, e) => OnFinishedLoading(e);
@@ -152,6 +153,7 @@ public sealed partial class ContentReplayPlaybackManager
 
     private bool OnHandleReplayMessage(object message, bool skipEffects)
     {
+        NoteRecordedMessage(); // Starlight
         // TODO REPLAYS figure out a cleaner way of doing this. This sucks.
         // Maybe wrap the event in another cancellable event and raise that?
 

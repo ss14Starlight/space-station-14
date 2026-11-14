@@ -32,7 +32,7 @@
   name: china lake
   parent: [BaseWeaponLauncher, BaseSyndicateContraband]
   id: WeaponLauncherChinaLake
-  description: A pump-action grenade launcher commonly used by the infamous Nuclear Operatives. PLOOP!
+  description: PLOOP.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
@@ -89,6 +89,7 @@
       tags:
       - Grenade
     proto: GrenadeCleanade
+    capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
     soundEject:
@@ -206,7 +207,9 @@
 
 - type: entity
   name: tether gun
-  parent: [ BaseItem, PowerCellSlotMediumItem ] # Blimpuf
+  parent:
+  - BaseItem
+  - PowerCellSlotMediumItem
   id: WeaponTetherGun
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
@@ -246,7 +249,9 @@
 
 - type: entity
   name: force gun
-  parent: [ BaseItem, PowerCellSlotMediumItem ] # Blimpuf
+  parent:
+    - BaseItem
+    - PowerCellSlotMediumItem
   id: WeaponForceGun
   description: Manipulates gravity around objects to fling them at high velocities.
   components:

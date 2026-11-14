@@ -1136,9 +1136,8 @@
     rules: ghost-role-information-nonantagonist-rules
     job: Bartender # Starlight - TODO - we need a PunPun job with the 2hr bartender requirement
   - type: GhostTakeoverAvailable
-  # Starlight Start - Butcherable > ToolRefinable
-  - type: ToolRefinable
-    refineResult: # Starlight End
+  - type: Butcherable
+    spawned:
     - id: FoodMeat
       amount: 3
     - id: DrinkTequilaBottleFull

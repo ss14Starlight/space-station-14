@@ -4,3 +4,10 @@
   - SMESAdvancedMachineCircuitboard
   - SMESHyperAdvancedMachineCircuitboard
   - APCAdvancedElectronics
+
+- type: latheRecipePack
+  id: CombustionTurbinePartsStatic
+  recipes:
+  - CombustionTurbineCompressorPart
+  - CombustionTurbineRotorPart
+  - CombustionTurbineStatorPart

@@ -1,5 +1,6 @@
 ﻿- type: job
   id: SalvageLead
+  roleSubtype: role-subtype-itg
   name: job-name-salvagelead
   description: job-description-salvagelead
   rules: job-rules-itg-aligned
@@ -27,6 +28,7 @@
   - !type:AddComponentSpecial
     components:
       - type: NoObjectiveTarget
+  antagScalingSalvageWeight: 3 # 3x0.25
 
 - type: startingGear
   id: SalvageLeadGear

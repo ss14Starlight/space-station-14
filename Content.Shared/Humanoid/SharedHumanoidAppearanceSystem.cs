@@ -685,6 +685,7 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
 
         humanoid.Voice = voiceId;
         comp.VoicePrototypeId = voiceId;
+        Dirty(uid, comp);
     }
     /// <summary>
     /// Takes ID of the species prototype, returns UI-friendly name of the species.

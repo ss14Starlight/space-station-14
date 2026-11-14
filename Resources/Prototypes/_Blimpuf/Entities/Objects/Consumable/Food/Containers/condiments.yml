@@ -1,0 +1,33 @@
+# Emagged Condiment Station
+- type: entity
+  parent: FoodCondimentPacketColdsauce
+  id: FoodCondimentPacketColdersauce
+  name: coldersauce
+  description: Coldersauce. Leaves the tongue completely, entirely numb in its passage.
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Coldsauce
+        Quantity: 7
+      - ReagentId: Fresium
+        Quantity: 3
+
+# Emag Condiment Station
+- type: entity
+  parent: FoodCondimentPacketHotsauce
+  id: FoodCondimentPacketHottersauce
+  name: hottersauce
+  description: You can TASTE the stomach ulcers now, guaranteed!
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Hotsauce
+        Quantity: 8
+      - ReagentId: Phlogiston
+        Quantity: 2

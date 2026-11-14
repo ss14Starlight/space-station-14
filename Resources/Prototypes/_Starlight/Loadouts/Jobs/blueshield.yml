@@ -74,6 +74,11 @@
     eyes: ClothingEyesGlassesBlueShield
 
 - type: loadout
+  id: BlueShieldGlassesPrescription
+  equipment:
+    eyes: ClothingEyesGlassesBlueShieldPrescription
+
+- type: loadout
   id: BlueShieldHud
   equipment:
     eyes: ClothingEyesHudBlueShield

@@ -21,7 +21,6 @@ id-card-access-level-robotics = Robotics
 
 # Security
 id-card-access-level-brigmedic = Brigmedic
-id-card-access-level-cadet = Cadet
 
 # Service
 id-card-access-level-clown = Clown
@@ -57,4 +56,4 @@ id-card-access-level-blackstar = Blackstar
 id-card-access-level-medtak = MedTak
 id-card-access-level-visitor = Visitor
 
-id-card-access-level-itg = Interstellar Trade Guild
+id-card-access-level-itg = ITG

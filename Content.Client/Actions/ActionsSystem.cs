@@ -128,16 +128,20 @@ namespace Content.Client.Actions
             ActionsUpdated?.Invoke();
         }
 
-        public static int ActionComparer(Entity<ActionComponent> a, Entity<ActionComponent> b)
+        public int ActionComparer(Entity<ActionComponent> a, Entity<ActionComponent> b) // Starlight edit
         {
-            var priorityA = a.Comp?.Priority ?? 0;
-            var priorityB = b.Comp?.Priority ?? 0;
-            if (priorityA != priorityB)
-                return priorityA - priorityB;
+            // Starlight begin
+            var result = a.Comp.Priority.CompareTo(b.Comp.Priority);
+            if (result != 0)
+                return result;
 
-            priorityA = a.Comp?.Container?.Id ?? 0;
-            priorityB = b.Comp?.Container?.Id ?? 0;
-            return priorityA - priorityB;
+            result = IsExternalAction(a).CompareTo(IsExternalAction(b));
+            if (result != 0)
+                return result;
+
+            result = string.CompareOrdinal(Prototype(a)?.ID, Prototype(b)?.ID);
+            return result != 0 ? result : GetNetEntity(a.Owner).Id.CompareTo(GetNetEntity(b.Owner).Id);
+            // Starlight end
         }
 
         protected override void ActionAdded(Entity<ActionsComponent> performer, Entity<ActionComponent> action)

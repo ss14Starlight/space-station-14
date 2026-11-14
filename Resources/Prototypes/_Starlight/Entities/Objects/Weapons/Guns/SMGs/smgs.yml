@@ -387,7 +387,6 @@
   - type: StealTarget
     stealGroup: HOSWeapon # Proto5x and WT550r
 
-
 - type: entity
   name: WT550g
   parent: [ WeaponSubMachineGunWt550 ]

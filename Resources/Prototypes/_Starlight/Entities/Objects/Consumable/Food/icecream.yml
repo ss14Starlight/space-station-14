@@ -80,6 +80,25 @@
       - ReagentId: Cream
         Quantity: 15
 
+# Blimpuf - Emag the I Scream for Ice Cream Vendor
+- type: entity
+  name: vanilla i scream
+  parent: FoodVanillaIceCream
+  id: FoodVanillaIScream
+  description: The sweet and sharp taste of vanilla is mouthwatering.
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+      - ReagentId: Razorium
+        Quantity: 10
+
 - type: entity
   name: chocolate ice cream
   parent: FoodIceCreamBase
@@ -493,6 +512,25 @@
         Quantity: 5
       - ReagentId: Cream
         Quantity: 15
+
+# Blimpuf - Emag the I Scream for Ice Cream Vendor
+- type: entity
+  name: frosty ice cream
+  parent: FoodAppleCinnamonIceCream
+  id: FoodFreezerburnedIceCream
+  description: Your hand keeps getting frozen stuck to the glass. Ouch!
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 40
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
+      - ReagentId: Fresium
+        Quantity: 20
 
 - type: entity
   name: gold apple cinnamon ice cream

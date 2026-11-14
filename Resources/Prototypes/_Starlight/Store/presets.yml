@@ -58,6 +58,16 @@
       Telebond: 0
       Conversion: 0
 
+- type: entity
+  parent: StorePresetUSSP
+  id: USSPHeadUplinkStore
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+
 # Elf Cantrip Book
 - type: entity
   id: StorePresetCantrips

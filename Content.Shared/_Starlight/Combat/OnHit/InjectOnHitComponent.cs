@@ -13,4 +13,4 @@ public sealed partial class InjectOnHitComponent : Component
     public SoundSpecifier? Sound;
 }
 [ByRefEvent]
-public record struct InjectOnHitAttemptEvent(bool Cancelled, EntityUid? Attacker = null);
+public record struct InjectOnHitAttemptEvent(bool Cancelled, EntityUid? Attacker = null, EntityUid? Used = null);

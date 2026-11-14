@@ -13,6 +13,7 @@
   - CargoBelt
   - ClothingOuterVestTank
   - HandheldStationMap
+  - HandLabeler
 
 - type: latheRecipePack
   id: StarlightCargoDynamic

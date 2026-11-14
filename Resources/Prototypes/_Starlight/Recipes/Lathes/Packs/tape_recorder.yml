@@ -2,8 +2,14 @@
   id: CassetteTape
   recipes:
   - CassetteTape
+  - BroadcastTape
 
 - type: latheRecipePack
   id: TapeRecorder
   recipes:
   - TapeRecorder
+
+- type: latheRecipePack
+  id: BlankPhotograph
+  recipes:
+  - BlankPhotograph

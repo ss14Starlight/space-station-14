@@ -1098,6 +1098,32 @@
   - UplinkDisruption
 
 - type: listing
+  # Starlight edit Start: travel -> photo
+  id: UplinkPhotoCamera
+  name: uplink-photo-camera-name
+  description: uplink-photo-camera-desc
+  productEntity: PhotoCamera
+  # Starlight edit End
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkDeception
+
+# Note: Removed for the time being until surgery/newmed is added. Considered bloat until then.
+# - type: listing
+#   id: UplinkDuffelSurgery
+#   name: uplink-duffel-surgery-name
+#   description: uplink-duffel-surgery-desc
+#   productEntity: ClothingBackpackDuffelSyndicateFilledMedical
+#   discountCategory: usualDiscounts
+#   discountDownTo:
+#     Telecrystal: 2
+#   cost:
+#     Telecrystal: 4
+#   categories:
+#   - UplinkDisruption
+
+- type: listing
   id: UplinkPowerSink
   name: uplink-power-sink-name
   description: uplink-power-sink-desc

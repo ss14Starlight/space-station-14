@@ -73,6 +73,7 @@
                     <BoxContainer Name="OtherPage" Orientation="Vertical" Margin="10 6" SeparationOverride="4">
                         <sui:OptionSlider Name="SliderVolumeInterface" Title="{Loc 'ui-options-interface-volume'}" />
                         <sui:OptionSlider Name="SliderVolumeMidi" Title="{Loc 'ui-options-midi-volume'}" />
+                        <sui:OptionSlider Name="SliderAdminSounds" Title="{Loc 'ui-options-admin-sounds-volume'}" /> <!-- Starlight -->
                         <CheckBox Name="AdminSoundsCheckBox" Text="{Loc 'ui-options-admin-sounds'}" Margin="0 8 0 0" />
                         <CheckBox Name="BwoinkSoundCheckBox" Text="{Loc 'ui-options-bwoink-sound'}" />
                     </BoxContainer>

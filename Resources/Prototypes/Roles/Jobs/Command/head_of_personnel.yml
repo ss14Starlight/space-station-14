@@ -26,7 +26,6 @@
   icon: "JobIconHeadOfPersonnel"
   supervisors: job-supervisors-captain
   access:
-  - Cadet # Starlight
   - Command
   - HeadOfPersonnel
   - Bar

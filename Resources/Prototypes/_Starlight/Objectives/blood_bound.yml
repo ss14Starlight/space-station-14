@@ -1,0 +1,287 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseBloodBoundObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-blood-bound
+  - type: RoleRequirement
+    roles:
+    - BloodBoundRole
+
+- type: entity
+  abstract: true
+  parent: BaseBloodBoundObjective
+  id: BaseBloodBoundStealObjective
+  components:
+  - type: StealCondition
+    descriptionText: objective-condition-blood-bound-steal-description
+    descriptionMultiplyText: objective-condition-blood-bound-steal-multiply-description
+
+# Tracked objectives
+- type: entity
+  parent: [BaseBloodBoundObjective, BaseTargetObjective]
+  id: BloodBoundStealHeartObjective
+  description: We need to get this person's heart.
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-steal-heart
+    difficulty: 2
+    unique: true
+    icon:
+      sprite: Mobs/Species/Human/organs.rsi
+      state: heart-on
+  - type: TargetObjective
+    title: objective-condition-blood-bound-steal-heart
+  - type: PickRandomPerson
+    pool: !type:WeightedAlivePool
+      weightHighValue: true
+    filters:
+    - !type:HasHeartMindFilter
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - StealHeartCondition
+  - type: StealHeartCondition
+
+- type: entity
+  parent: BaseBloodBoundObjective
+  id: BloodBoundFirestakeObjective
+  components:
+  - type: Objective
+    difficulty: 2
+    unique: true
+    icon:
+      sprite: Structures/Decoration/bonfire_stake.rsi
+      state: burning
+  - type: NumberObjective
+    min: 1
+    max: 4
+  - type: FirestakeCondition
+    title: objective-condition-blood-bound-firestake
+    description: objective-condition-blood-bound-firestake-description
+
+# Support a sworn partner
+- type: entity
+  parent: [BaseBloodBoundObjective, BaseTargetObjective]
+  id: BloodBoundAssistObjective
+  name: Help your blood bound.
+  description: Assist your blood bound in completing all of their objectives no matter the cost.
+  components:
+  - type: Objective
+    difficulty: 0 # never given randomly anyways
+    issuer: objective-issuer-blood-bound
+    icon:
+      sprite: /Textures/Interface/Alerts/bleed.rsi
+      state: bleed10
+  - type: TargetObjective
+    title: objective-condition-blood-bound-progress-title
+  - type: HelpProgressCondition
+
+# state
+
+- type: entity
+  parent: [BaseBloodBoundObjective, EscapeShuttleObjective]
+  id: BloodBoundEscapeShuttleObjective
+  description: We must escape unbound, or it will all be for naught.
+
+# kill
+
+- type: entity
+  parent: [BaseBloodBoundObjective, KillRandomPersonObjective]
+  id: BloodBoundKillRandomPersonObjective
+  description: We need to make sure this person doesn't make it back to CentComm, dead or alive.
+
+- type: entity
+  parent: [BaseBloodBoundObjective, KillRandomHeadObjective]
+  id: BloodBoundKillRandomHeadObjective
+  description: We need to make sure this person doesn't make it back to CentComm, dead or alive.
+
+# lesson
+- type: entity
+  parent: [BaseBloodBoundObjective, TeachRandomPersonObjective]
+  id: BloodBoundTeachRandomPersonObjective
+  description: We need to make sure this person dies at least once this shift.
+
+- type: entity
+  parent: [BaseBloodBoundObjective, TeachRandomHeadObjective]
+  id: BloodBoundTeachRandomHeadObjective
+  description: We need to make sure this person dies at least once this shift.
+
+# steal
+
+## cmo
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CMOHyposprayStealObjective]
+  id: BloodBoundCMOHyposprayStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CrewMonitorStealCollectionObjective]
+  id: BloodBoundCrewMonitorStealCollectionObjective
+
+## rd
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, RDHardsuitStealObjective]
+  id: BloodBoundRDHardsuitStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, HandTeleporterStealObjective]
+  id: BloodBoundHandTeleporterStealObjective
+
+## hos
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, HOSWeaponStealObjective]
+  id: BloodBoundHOSWeaponStealObjective
+
+## ce
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, MagbootsStealObjective]
+  id: BloodBoundMagbootsStealObjective
+
+## qm
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, ClipboardStealObjective]
+  id: BloodBoundClipboardStealObjective
+
+## hop
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CorgiMeatStealObjective]
+  id: BloodBoundCorgiMeatStealObjective
+
+## cap
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CaptainIDStealObjective]
+  id: BloodBoundCaptainIDStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CaptainJetpackStealObjective]
+  id: BloodBoundCaptainJetpackStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CaptainGunStealObjective]
+  id: BloodBoundCaptainGunStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, NukeDiskStealObjective]
+  id: BloodBoundNukeDiskStealObjective
+
+# Non-command Thief single-item objectives, so they don't just become Vamps 2
+- type: entity
+  parent: [BaseBloodBoundStealObjective, ForensicScannerStealObjective]
+  id: BloodBoundForensicScannerStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, FlippoEngravedLighterStealObjective]
+  id: BloodBoundFlippoEngravedLighterStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, ClothingHeadHatWardenStealObjective]
+  id: BloodBoundClothingHeadHatWardenStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, WantedListCartridgeStealObjective]
+  id: BloodBoundWantedListCartridgeStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, FiringPinAdvancedLaserStealObjective]
+  id: BloodBoundFiringPinAdvancedLaserStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, LogProbeCartridgeStealObjective]
+  id: BloodBoundLogProbeCartridgeStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, MedTekCartridgeStealObjective]
+  id: BloodBoundMedTekCartridgeStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, DepartmentalTechFabCircuitboardStealObjective]
+  id: BloodBoundDepartmentalTechFabCircuitboardStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, BrigmedicStrangeBedsheetStealObjective]
+  id: BloodBoundBrigmedicStrangeBedsheetStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, MiningShuttleCircuitboardStealObjective]
+  id: BloodBoundMiningShuttleCircuitboardStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, ClothingOuterHardsuitVoidParamedStealObjective]
+  id: BloodBoundClothingOuterHardsuitVoidParamedStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, SecureTechFabCircuitboardStealObjective]
+  id: BloodBoundSecureTechFabCircuitboardStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, FireAxeStealObjective]
+  id: BloodBoundFireAxeStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, AmePartFlatpackStealObjective]
+  id: BloodBoundAmePartFlatpackStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CargoShuttleCircuitboardStealObjective]
+  id: BloodBoundCargoShuttleCircuitboardStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, BibleStealObjective]
+  id: BloodBoundBibleStealObjective
+
+# Blood bound story objectives
+- type: entity
+  parent: [BaseBloodBoundObjective, BaseStoryObjective]
+  id: BloodBoundCookSentientsObjective
+  name: Make food using sentient beings.
+  description: We need to make food using sentient beings.
+
+- type: entity
+  parent: [BaseBloodBoundObjective, BaseStoryObjective]
+  id: BloodBoundReplaceHeadObjective
+  name: Take the place of a head of staff.
+  description: We need to take the place of a head of staff.
+
+- type: entity
+  parent: [BaseBloodBoundObjective, BaseStoryObjective]
+  id: BloodBoundConvertFollowersObjective
+  name: Convert people to the Children of Nar'Sie.
+  description: We need to spread the faith and bring new followers into the Children of Nar'Sie.
+
+- type: entity
+  parent: [BaseBloodBoundObjective, HarassObjective]
+  id: BloodBoundHarassObjective
+  description: We need to harass and inconvenience this department without causing direct bodily harm.
+
+- type: entity
+  parent: [BaseBloodBoundObjective, TrashRoomObjective]
+  id: BloodBoundTrashRoomObjective
+  description: We need to trash this room. Make sure it doesn't pass a health inspection.
+
+- type: entity
+  parent: [BaseBloodBoundObjective, ClaimLocationObjective]
+  id: BloodBoundClaimLocationObjective
+  description: Establish this room as a base for the Children of Nar'Sie.
+  components:
+  - type: LocationObjective
+    title: objective-condition-blood-bound-claim-room
+
+- type: entity
+  parent: [BaseBloodBoundObjective, RobDepartmentObjective]
+  id: BloodBoundRobDepartmentObjective
+  description: We need to get this department's valuables.
+
+- type: entity
+  parent: [BaseBloodBoundObjective, CallingCardObjective]
+  id: BloodBoundCallingCardObjective
+  name: Leave a calling card at the scene of our crimes.
+  description: We need to leave a calling card at the scene of our crimes.

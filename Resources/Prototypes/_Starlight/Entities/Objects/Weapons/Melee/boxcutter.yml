@@ -61,3 +61,66 @@
       collection: Screwdriver
   - type: ThrowingAngle
     angle: 180
+
+- type: entity
+  parent: WeaponMeleeBoxcutter
+  id: WeaponMeleeBoxcutterSyndi
+  suffix: Injector, Syndicate
+  components:
+  - type: ItemSwitch
+    states:
+      sheathed: !type:ItemSwitchState
+        verb: sheathe
+        sprite:
+          sprite: _Starlight/Objects/Weapons/Melee/boxcutter.rsi
+          state: boxcutter
+        components:
+        - type: MeleeWeapon
+          wideAnimationRotation: -135
+          attackRate: 1
+          damage:
+            types:
+              Blunt: 1
+        - type: DamageOtherOnHit
+          damage:
+            types:
+              Blunt: 0
+        - type: EmbeddableProjectile
+          minimumSpeed: 100000
+          embedOnThrow: false
+
+      unsheathed: !type:ItemSwitchState
+        verb: unsheathe
+        sprite:
+          sprite: _Starlight/Objects/Weapons/Melee/boxcutter.rsi
+          state: icon
+        components:
+        - type: MeleeWeapon
+          wideAnimationRotation: -135
+          attackRate: 1
+          damage:
+            types:
+              Slash: 8
+        - type: MeleeChemicalInjector
+          transferAmount: 5
+          solution: melee
+        - type: DamageOtherOnHit
+          damage:
+            types:
+              Slash: 6
+        - type: EmbeddableProjectile
+          sound: /Audio/Weapons/star_hit.ogg
+          offset: -0.15,0.0
+  - type: Solution
+    id: melee
+    solution:
+      maxVol: 10
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionTransfer
+  - type: SolutionInjectOnEmbed
+    transferAmount: 5
+    solution: melee
+    blockSlots: OUTERCLOTHING

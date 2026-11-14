@@ -1,4 +1,4 @@
-# role-type-crew-aligned-name = Crew Aligned # Moffstation
+role-type-crew-aligned-name = Crew Aligned
 role-type-solo-antagonist-name = Solo Antagonist
 role-type-team-antagonist-name = Team Antagonist
 # role-type-free-agent-name = Free Agent # Moffstation
@@ -23,7 +23,7 @@ role-subtype-traitor = Traitor
 role-subtype-thief = Thief
 role-subtype-ninja = Ninja
 role-subtype-nukie = Nukie
-role-subtype-traitor-reinforcement = Reinforcement
+role-subtype-traitor-reinforcement = Syndicate Reinforcement
 role-subtype-revolutionary = Rev
 role-subtype-head-revolutionary = Head Rev
 role-subtype-initial-infected = Infected

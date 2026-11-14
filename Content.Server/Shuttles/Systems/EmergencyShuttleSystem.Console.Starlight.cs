@@ -16,6 +16,12 @@ public sealed partial class EmergencyShuttleSystem
     private void SetupEvacuationPlanet()
     {
         _evacuationPlanetGenerated = false; // Starlight
+        // Starlight - start
+        _evacuationDungeonGenerationTasks.Clear();
+        _evacuationDungeonTiles.Clear();
+        _evacuationPodLandingMap = null;
+        _evacuationPodLandingReservations.Clear();
+        // Starlight - end
 
         try
         {

@@ -1,0 +1,31 @@
+# Silicon Difficulties
+
+- type: salvageDifficulty
+  id: Silicon-Easy
+  lootPrototype: "SalvageLootSiliconEasy"
+  lootBudget: 20
+  mobBudget: 35
+  modifierBudget: 3
+  color: "#9FED5896"
+  recommendedPlayers: 3
+  probability: 0.3
+
+- type: salvageDifficulty
+  id: Silicon-Medium
+  lootPrototype: "SalvageLootSiliconMedium"
+  lootBudget: 35
+  mobBudget: 40
+  modifierBudget: 3
+  color: "#52B4E996"
+  recommendedPlayers: 4
+  probability: 0.3
+
+- type: salvageDifficulty
+  id: Silicon-Hard
+  lootPrototype: "SalvageLootSiliconHard"
+  lootBudget: 75
+  mobBudget: 100
+  modifierBudget: 5
+  color: "#EFB34196"
+  recommendedPlayers: 5
+  probability: 0.3

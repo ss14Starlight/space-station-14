@@ -1,0 +1,38 @@
+- type: latheRecipePack
+  id: EngineeringModularHudFrames
+  recipes:
+  - ClothingEyesModularHudGoggles
+
+- type: latheRecipePack
+  id: CommandModularHudFrames
+  recipes:
+  - ClothingEyesModularHudSunglasses
+
+- type: latheRecipePack
+  id: ScienceModularHudFrames
+  recipes:
+  - ClothingEyesModularHudVisor
+
+- type: latheRecipePack
+  id: ScienceModularHudModules
+  recipes:
+  - HudModuleShowInorganicHealthBars
+
+- type: latheRecipePack
+  id: ServiceModularHudModules
+  recipes:
+  - HudModuleShowHungerIcons
+  - HudModuleShowThirstIcons
+  - HudModuleNoirOverlay
+  - HudModuleBlueNoirOverlay
+  - HudModuleBlackAndWhiteOverlay
+
+- type: latheRecipePack
+  id: CommandModularHudModules
+  recipes:
+  - HudModuleShowJobIcons
+
+- type: latheRecipePack
+  id: PrescriptionHudModuleStatic
+  recipes:
+  - HudModuleVisionCorrection

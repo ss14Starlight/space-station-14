@@ -20,6 +20,7 @@ using Content.Client._Starlight.UserInterface;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions.Components;
 using Content.Shared.CombatMode;
+using Content.Shared.Stunnable;
 using Robust.Client.State;
 using Content.Client.Examine;
 using Content.Shared.Interaction;
@@ -91,6 +92,8 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     private TextureRect? _remoteTargetCursor;
     private readonly List<(EntityUid Entity, Control Bubble, float TimeLeft)> _remoteSpeechBubbles = new();
     private bool _activeHandHasItem;
+    private Vector2? _remoteWindowOverlayRootSize;
+    private Vector2? _remoteWindowOverlayContainerSize;
     private readonly ChatUIController _chatController;
     private SimpleRadialMenu? _remoteRadialMenu;
     private Vector2 _remoteMouseScreenPosition;
@@ -98,6 +101,9 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     private EntityUid? _targetingAction;
     private EntityUid? _selectedAction;
     public event Action? ToggleControl;
+    public event Action? SettingsRequested;
+    public event Action? RemoteToggleKnockdownPressed;
+    public event Action? RemoteReleasePulledObjectPressed;
 
     public event Action<NetCoordinates, EntityUid?, bool, bool, RemoteControlInteractionAction, AtmosPipeLayer?>?
         RemoteInteractionPressed;
@@ -382,6 +388,8 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
     public void UpdateRemoteEye()
     {
+        UpdateRemoteWindowOverlaySize();
+
         if (_sourceEye is not { } sourceEye)
             return;
 
@@ -391,6 +399,62 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         _remoteEye.DrawFov = sourceEye.DrawFov;
         _remoteEye.DrawLight = sourceEye.DrawLight;
         _remoteEye.Rotation = sourceEye.Rotation;
+    }
+
+    public void UpdateRemoteWindowOverlaySize()
+    {
+        if (RootContainer.Root is not { } root)
+            return;
+
+        var rootSize = root.Size;
+        var containerSize = RootContainer.Size;
+        if (_remoteWindowOverlayRootSize == rootSize && _remoteWindowOverlayContainerSize == containerSize)
+            return;
+
+        _remoteWindowOverlayRootSize = rootSize;
+        _remoteWindowOverlayContainerSize = containerSize;
+        // BaseWindow uses screen-space mouse coordinates but clamps them to its parent size while dragging.
+        RemoteWindowOverlay.SetSize = rootSize;
+        RemoteWindowOverlay.MaxSize = rootSize;
+        LayoutContainer.SetMarginRight(RemoteWindowOverlay, rootSize.X - containerSize.X);
+        LayoutContainer.SetMarginBottom(RemoteWindowOverlay, rootSize.Y - containerSize.Y);
+    }
+
+    public void EmbedWindow(BaseWindow window)
+    {
+        UpdateRemoteWindowOverlaySize();
+
+        if (window.Parent != RemoteWindowOverlay)
+        {
+            window.Orphan();
+            RemoteWindowOverlay.AddChild(window);
+        }
+
+        window.Measure(Vector2Helpers.Infinity);
+
+        if (window is StorageWindow storageWindow)
+        {
+            var position = RemoteStorageContainer.GlobalPosition - RemoteWindowOverlay.GlobalPosition;
+            foreach (var child in RemoteWindowOverlay.Children)
+            {
+                if (child is StorageWindow existing
+                    && existing != storageWindow
+                    && existing.Visible)
+                    position.X = Math.Max(position.X, existing.Position.X + existing.Size.X);
+            }
+
+            position.Y += (RemoteStorageContainer.Size.Y - window.DesiredSize.Y) / 2f;
+            LayoutContainer.SetPosition(window, position);
+            return;
+        }
+
+        var availableSize = RootContainer.Size;
+        var desiredSize = window.DesiredSize;
+        var positionInRemoteWindow = Vector2.Clamp(
+            (availableSize - desiredSize) / 2f,
+            Vector2.Zero,
+            Vector2.Max(availableSize - desiredSize, Vector2.Zero));
+        LayoutContainer.SetPosition(window, positionInRemoteWindow);
     }
 
     public void ResetRemoteEye()
@@ -946,8 +1010,12 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             return;
 
         ControlButton.OnPressed += OnControlButtonPressed;
+        SettingsButton.OnPressed += OnSettingsButtonPressed;
 
         CommandBinds.Builder
+            .BindBefore(ContentKeyFunctions.ToggleKnockdown,
+                new RemoteToggleKnockdownInputHandler(this),
+                typeof(SharedStunSystem))
             .BindBefore(ContentKeyFunctions.SwapHands,
                 new RemoteHandCycleInputHandler(this, RemoteControlHandAction.CycleActive),
                 typeof(SharedHandsSystem))
@@ -981,7 +1049,46 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
                 typeof(ExamineSystem))
             .Register<RemoteControlConsoleWindow>();
         _commandBindsRegistered = true;
+        _inputManager.FirstChanceOnKeyEvent += OnFirstChanceKeyEvent;
     }
+
+    private void OnFirstChanceKeyEvent(KeyEventArgs args, KeyEventType type)
+    {
+        var activeContext = _inputManager.Contexts.ActiveContext;
+        var functionAvailable =
+            activeContext.FunctionExistsHierarchy(ContentKeyFunctions.ReleasePulledObject);
+        var focusedControl = IoCManager.Resolve<IUserInterfaceManager>().KeyboardFocused;
+        var controlledEntity = _remoteControl.ControlledEntity;
+
+        foreach (var binding in _inputManager.GetKeyBindings(ContentKeyFunctions.ReleasePulledObject))
+        {
+            if (binding.BaseKey != args.Key)
+                continue;
+
+            var modifiersMatch =
+                IsModifierPressed(binding.Mod1, args.Key) &&
+                IsModifierPressed(binding.Mod2, args.Key) &&
+                IsModifierPressed(binding.Mod3, args.Key);
+            var canHandle = functionAvailable &&
+                            modifiersMatch &&
+                            controlledEntity is not null &&
+                            focusedControl is null &&
+                            !args.Handled;
+
+            if (!canHandle || type == KeyEventType.Up)
+                continue;
+
+            args.Handle();
+
+            if (type == KeyEventType.Down)
+                RemoteReleasePulledObjectPressed?.Invoke();
+
+            return;
+        }
+    }
+
+    private bool IsModifierPressed(Keyboard.Key modifier, Keyboard.Key eventKey)
+        => modifier == Keyboard.Key.Unknown || modifier == eventKey || _inputManager.IsKeyDown(modifier);
 
     private bool HandleRemoteHandCycle(RemoteControlHandAction action)
     {
@@ -990,6 +1097,23 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
         RemoteHandPressed?.Invoke(string.Empty, action);
         return true;
+    }
+
+    private sealed class RemoteToggleKnockdownInputHandler(RemoteControlConsoleWindow window) : InputCmdHandler
+    {
+        public override bool FireOutsidePrediction => true;
+
+        public override bool HandleCmdMessage(IEntityManager entManager, ICommonSession? session,
+            IFullInputCmdMessage message)
+        {
+            if (window._remoteControl.ControlledEntity is null)
+                return false;
+
+            if (message.State == BoundKeyState.Down)
+                window.RemoteToggleKnockdownPressed?.Invoke();
+
+            return true;
+        }
     }
 
     private sealed class RemoteHandCycleInputHandler(
@@ -1011,11 +1135,16 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         if (!_commandBindsRegistered)
             return;
 
+        _inputManager.FirstChanceOnKeyEvent -= OnFirstChanceKeyEvent;
         ControlButton.OnPressed -= OnControlButtonPressed;
+        SettingsButton.OnPressed -= OnSettingsButtonPressed;
         CommandBinds.Unregister<RemoteControlConsoleWindow>();
         _commandBindsRegistered = false;
     }
 
     private void OnControlButtonPressed(BaseButton.ButtonEventArgs _)
         => ToggleControl?.Invoke();
+
+    private void OnSettingsButtonPressed(BaseButton.ButtonEventArgs _)
+        => SettingsRequested?.Invoke();
 }

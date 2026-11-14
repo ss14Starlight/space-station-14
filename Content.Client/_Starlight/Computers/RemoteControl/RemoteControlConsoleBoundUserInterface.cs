@@ -46,6 +46,9 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
         _remoteControl.ItemConstructionRequested += OnRemoteItemConstruction;
         _window = this.CreatePopOutableWindow<RemoteControlConsoleWindow>(EntMan);
         _window.ToggleControl += ToggleControl;
+        _window.SettingsRequested += OpenSettings;
+        _window.RemoteToggleKnockdownPressed += RemoteToggleKnockdown;
+        _window.RemoteReleasePulledObjectPressed += RemoteReleasePulledObject;
         _window.RemoteInteractionPressed += RemoteInteractionPressed;
         _window.RemoteActionPressed += RemoteActionPressed;
         _window.RemoteTargetActionPressed += RemoteTargetActionPressed;
@@ -57,6 +60,9 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
     }
 
     private void OnWindowClosed() => Close();
+
+    private void OpenSettings()
+        => SendMessage(new RemoteControlOpenSettingsMessage());
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
@@ -168,6 +174,12 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
 
     private void ToggleControl() => SendMessage(new RemoteControlToggleMessage());
 
+    private void RemoteToggleKnockdown()
+        => SendMessage(new RemoteControlToggleKnockdownMessage());
+
+    private void RemoteReleasePulledObject()
+        => SendMessage(new RemoteControlReleasePulledObjectMessage());
+
     private void RemoteActionPressed(EntityUid action)
         => SendMessage(new RemoteControlActionMessage { Action = EntMan.GetNetEntity(action) });
 
@@ -266,6 +278,9 @@ public sealed class RemoteControlConsoleBoundUserInterface(EntityUid owner, Enum
             {
                 window.OnFinalClose -= OnWindowClosed;
                 window.ToggleControl -= ToggleControl;
+                window.SettingsRequested -= OpenSettings;
+                window.RemoteToggleKnockdownPressed -= RemoteToggleKnockdown;
+                window.RemoteReleasePulledObjectPressed -= RemoteReleasePulledObject;
                 window.RemoteInteractionPressed -= RemoteInteractionPressed;
                 window.RemoteActionPressed -= RemoteActionPressed;
                 window.RemoteHandPressed -= RemoteHandPressed;

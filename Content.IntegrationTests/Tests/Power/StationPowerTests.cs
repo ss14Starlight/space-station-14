@@ -49,7 +49,6 @@ public sealed class StationPowerTests : GameTest
         "StarlightLagan",
         "StarlightNovoLobster",
         "StarlightManor",
-        "StarlightLeth",
         "StarlightMing",
         "StarlightOrwell",
         "StarlightPrism",

@@ -1,5 +1,6 @@
 construction-graph-tag-disposal-pipe = disposal pipe
 construction-graph-tag-wallmount-mass-scanner-electronics = wallmount mass scanner electronics
+construction-graph-tag-airlock-cycler-electronics = airlock controller electronics
 
 construction-graph-tag-meson = engineering goggles
 construction-graph-tag-shadekin-eye = shadekin eyes

@@ -22,6 +22,12 @@
             <Control HorizontalExpand="True" />
             <Label Name="RichTextInfoLabel" Text="?" MouseFilter="Pass" Margin="14 0" StyleClasses="LabelWeak"/>
         </BoxContainer>
+        <!-- Starlight Start -->
+        <BoxContainer Orientation="Horizontal">
+            <Label Name="PhotoStatusLabel" Text="{Loc news-write-ui-photo-empty}" Margin="17 0 0 6" VerticalAlignment="Center"/>
+            <Button Name="PhotoEjectButton" Margin="6 0 0 6" SetHeight="24" SetWidth="90" Text="{Loc news-write-ui-photo-eject}" Access="Public" Visible="False"/>
+        </BoxContainer>
+        <!-- Starlight edit End -->
         <Control Name="TextEditPanel" VerticalExpand="True" Margin="11 0 11 0">
             <PanelContainer>
                 <PanelContainer.PanelOverride>

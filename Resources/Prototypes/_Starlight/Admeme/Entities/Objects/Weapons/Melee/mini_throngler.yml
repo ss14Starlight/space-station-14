@@ -1,0 +1,30 @@
+- type: entity
+  name: mini throngler
+  parent: Throngler
+  id: MiniThrongler
+  description: Some may call it a thronglet. A weaker yet more versatile throngler.
+  components:
+  - type: Sprite
+    scale: 0.6, 0.6
+  - type: MeleeWeapon
+    damage:
+      types:
+        Asphyxiation: 1
+        Bloodloss: 1
+        Blunt: 1
+        Cellular: 1
+        Caustic: 1
+        Cold: 1
+        Heat: 1
+        Piercing: 1
+        Poison: 1
+        Radiation: 1
+        Shock: 1
+        Slash: 1
+        Structural: 1
+        Holy: 1
+  - type: Item
+    size: Normal
+  - type: Grammar
+    attributes:
+      proper: false

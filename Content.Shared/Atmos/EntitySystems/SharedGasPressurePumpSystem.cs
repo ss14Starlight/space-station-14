@@ -31,7 +31,6 @@ public abstract partial class SharedGasPressurePumpSystem : EntitySystem
 
         SubscribeLocalEvent<GasPressurePumpComponent, AtmosDeviceDisabledEvent>(OnPumpLeaveAtmosphere);
         SubscribeLocalEvent<GasPressurePumpComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<GasPressurePumpComponent, AnchorStateChangedEvent>(OnAnchorChanged); // Starlight
     }
 
     private void OnExamined(Entity<GasPressurePumpComponent> ent, ref ExaminedEvent args)
@@ -69,15 +68,9 @@ public abstract partial class SharedGasPressurePumpSystem : EntitySystem
     }
 
     private void OnToggleStatusMessage(Entity<GasPressurePumpComponent> ent, ref GasPressurePumpToggleStatusMessage args)
-    {
-        ent.Comp.Enabled = args.Enabled;
-        _adminLogger.Add(LogType.AtmosPowerChanged,
-            LogImpact.Medium,
-            $"{ToPrettyString(args.Actor):player} set the power on {ToPrettyString(ent):device} to {args.Enabled}");
-        Dirty(ent);
-        UpdateAppearance(ent);
-        UpdateUi(ent);
-    }
+        // Starlight-start: Toggle logic is now centered around ToggleableDeviceSystem.
+        => SetStateInternal(ent, args.Enabled, args.Actor);
+    // Starlight-end
 
     private void OnOutputPressureChangeMessage(Entity<GasPressurePumpComponent> ent, ref GasPressurePumpChangeOutputPressureMessage args)
     {
@@ -88,18 +81,6 @@ public abstract partial class SharedGasPressurePumpSystem : EntitySystem
         Dirty(ent);
         UpdateUi(ent);
     }
-
-    // Starlight Start
-    private void OnAnchorChanged(Entity<GasPressurePumpComponent> ent, ref AnchorStateChangedEvent args)
-    {
-        if (!args.Anchored)
-        {
-            ent.Comp.Enabled = false;
-            Dirty(ent);
-            UpdateAppearance(ent);
-        }
-    }
-    // Starlight End
 
     private void OnPumpLeaveAtmosphere(Entity<GasPressurePumpComponent> ent, ref AtmosDeviceDisabledEvent args)
     {
@@ -116,24 +97,4 @@ public abstract partial class SharedGasPressurePumpSystem : EntitySystem
     {
     }
 
-    #region Starlight
-
-    protected void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null)
-    {
-        if (!Resolve(uid, ref pump, ref appearance, false))
-            return;
-
-        var pumpOn = pump.Enabled && _receiver.IsPowered(uid);
-        _appearance.SetData(uid, PumpVisuals.Enabled, pumpOn, appearance);
-    }
-
-    public void Set(EntityUid uid, GasPressurePumpComponent component, bool value)
-    {
-        if (component.Enabled == value) return;
-        component.Enabled = value;
-        Dirty(uid, component);
-        UpdateAppearance(uid, component);
-    }
-
-    #endregion
 }

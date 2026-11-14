@@ -155,8 +155,10 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         expedition.EndTime = _timing.CurTime + mission.Duration;
         expedition.MissionParams = _missionParams;
 
-        const float LandingPadRadius = 24f;
-        var minDungeonOffset = (float)Math.Floor(LandingPadRadius * 2f);
+        // Starlight - start
+        const float MinDungeonOffset = 28f;
+        var minDungeonOffset = MinDungeonOffset;
+        // Starlight - end
 
         // We'll use the dungeon rotation as the spawn angle
         var dungeonRotation = _dungeon.GetDungeonRotation(_missionParams.Seed);
@@ -178,17 +180,13 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             return false;
         }
 
+        // Starlight - start
         expedition.DungeonLocation = dungeonOffset;
-
-        List<Vector2i> reservedTiles = new();
-
-        foreach (var tile in _map.GetTilesIntersecting(mapUid, grid, new Circle(Vector2.Zero, LandingPadRadius), false))
+        foreach (var generatedDungeon in dungeons)
         {
-            if (!_biome.TryGetBiomeTile(mapUid, grid, tile.GridIndices, out _))
-                continue;
-
-            reservedTiles.Add(tile.GridIndices);
+            expedition.LandingBlockedTiles.UnionWith(generatedDungeon.AllTiles);
         }
+        // Starlight - end
 
         var budgetEntries = new List<IBudgetEntry>();
 

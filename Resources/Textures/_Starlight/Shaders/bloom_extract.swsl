@@ -1,0 +1,23 @@
+light_mode unshaded;
+blend_mode none;
+
+uniform sampler2D SCREEN_TEXTURE;
+uniform sampler2D LIGHT_TEXTURE;
+
+uniform highp vec2 targetSize;
+uniform highp float threshold;
+
+const highp float LIT_ALBEDO = 0.8;
+
+void fragment()
+{
+    highp vec2 uv = FRAGCOORD.xy / targetSize;
+    highp vec3 screen = zTextureSpec(SCREEN_TEXTURE, uv).rgb;
+    highp vec3 light = texture2D(LIGHT_TEXTURE, uv).rgb;
+
+    highp vec3 glow = max(screen - light * LIT_ALBEDO, 0.0);
+    highp float peak = max(glow.r, max(glow.g, glow.b));
+    glow *= smoothstep(threshold, threshold + 0.25, peak);
+
+    COLOR = vec4(glow, 1.0);
+}

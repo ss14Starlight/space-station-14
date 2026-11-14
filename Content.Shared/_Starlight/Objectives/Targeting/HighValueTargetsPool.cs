@@ -1,22 +1,23 @@
 using Content.Shared.Mind;
 using Content.Shared.Mind.Filters;
 using Content.Shared._Starlight.Traits.Antags;
+using Content.Shared.Objectives.Systems;
 
 namespace Content.Shared._Starlight.Objectives.Targeting;
 
 /// <summary>
 /// Living command staff and characters who opted into being high value targets.
 /// </summary>
-public sealed partial class HighValueTargetsPool : IMindPool
+public sealed partial class HighValueTargetsPool : MindPool
 {
     [DataField]
     public bool IncludeCommand = true;
 
-    public void FindMinds(HashSet<Entity<MindComponent>> minds, EntityUid? exclude,
-        IEntityManager entMan, SharedMindSystem mindSys)
+    public override void FindMinds(HashSet<Entity<MindComponent>> minds, EntityUid? exclude,
+        IEntityManager entMan, TargetSystem targetSys)
     {
-        mindSys.AddAliveHumans(minds, exclude);
-        mindSys.AddObjectiveTargetNonHumanoids(minds, exclude);
+        targetSys.AddAliveHumans(minds, exclude);
+        targetSys.AddObjectiveTargetNonHumanoids(minds, exclude);
         minds.RemoveWhere(mind => mind.Comp.OwnedEntity is not { } body ||
             (!(IncludeCommand && IsCommand(body, entMan)) && !entMan.HasComponent<MarkedForDeathComponent>(body)));
     }

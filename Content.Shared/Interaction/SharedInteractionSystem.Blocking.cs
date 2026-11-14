@@ -42,7 +42,7 @@ public partial class SharedInteractionSystem
     private void OnMoveAttempt(EntityUid uid, BlockMovementComponent component, UpdateCanMoveEvent args)
     {
         // If we're relaying then don't cancel.
-        if (HasComp<RelayInputMoverComponent>(uid))
+        if (TryComp<RelayInputMoverComponent>(uid, out var relay) && relay.LifeStage < ComponentLifeStage.Stopping) // Starlight
             return;
 
         args.Cancel(); // no more scurrying around

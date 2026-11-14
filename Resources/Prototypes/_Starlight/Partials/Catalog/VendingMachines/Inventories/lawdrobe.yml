@@ -1,0 +1,26 @@
+- type: !PartialOnly vendingMachineInventory
+  id: LawDrobeInventory
+  startingInventory: !Clear
+    ClothingUniformJumpsuitLawyerBlue: 1
+    ClothingUniformJumpskirtLawyerBlue: 1
+    ClothingUniformJumpsuitLawyerPurple: 1
+    ClothingUniformJumpskirtLawyerPurple: 1
+    ClothingUniformJumpsuitLawyerRed: 1
+    ClothingUniformJumpskirtLawyerRed: 1
+    ClothingUniformJumpsuitLawyerBlack: 1
+    ClothingUniformJumpskirtLawyerBlack: 1
+    ClothingUniformJumpsuitLawyerGood: 1
+    ClothingUniformJumpskirtLawyerGood: 1
+    ClothingShoesBootsLaceup: 2
+    ClothingHeadsetIAA: 2
+    ClothingNeckLawyerbadge: 2
+    BriefcaseBrown: 2
+    BookSpaceLaw: 3
+    LuxuryPen: 2
+    HandLabeler: 2
+    EncryptionKeyLaw: 1
+  emaggedInventory: # Blimpuf
+    SpaceCash1000: 2 # Blimpuf
+    ClothingUniformJumpsuitSyndieFormal: 2 # Blimpuf
+    ClothingNeckBrassLawyerbadge: 1 # Blimpuf
+    HeavyGavelHammer: 1 # Blimpuf

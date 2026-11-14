@@ -23,7 +23,7 @@
   parent: BaseMentalAction
   id: ActionReplayToggleStatusIcons
   name: Toggle Status Icons
-  description: Show job, mindshield and health icons in this replay.
+  description: Show job, mindshield, security status and health icons in this replay.
   components:
   - type: Action
     icon: { sprite: Clothing/Eyes/Hud/med.rsi, state: icon }
@@ -50,6 +50,7 @@
   components:
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
   - type: ShowHealthBars
     damageContainers:
     - Biological
@@ -64,3 +65,22 @@
     - Silicon
     - IPC
     - Hybrid
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionReplayToggleFactionIcons
+  name: Toggle Faction Icons
+  description: Show faction icons, such as nuclear operatives and revolutionaries, in this replay.
+  components:
+  - type: Action
+    icon: { sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi, state: syndicate }
+    clientExclusive: true
+  - type: InstantAction
+    event: !type:ReplayToggleFactionIconsActionEvent
+
+- type: entity
+  id: ReplayObserverFactionHud
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ShowSyndicateIcons
+  - type: ShowAntagIcons

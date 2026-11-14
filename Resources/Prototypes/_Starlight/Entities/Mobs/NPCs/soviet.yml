@@ -20,6 +20,7 @@
         - SovietComradeGear
     - type: InputMover
     - type: MobMover
+    - type: NoSlip
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound

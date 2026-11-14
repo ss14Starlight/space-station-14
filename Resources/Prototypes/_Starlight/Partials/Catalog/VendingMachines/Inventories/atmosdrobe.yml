@@ -1,0 +1,12 @@
+- type: !PartialOnly vendingMachineInventory
+  id: AtmosDrobeInventory
+  startingInventory:
+    ClothingNeckScarfSolidLightBlue: 3
+    ClothingMaskGasAtmos: 3
+    ClothingBeltUtility: 3
+  emaggedInventory: # Blimpuf
+    ClothingHandsGlovesConducting: 1 # Blimpuf
+    ClothingMaskGasSyndicate: 1 # Blimpuf
+    ClothingUniformJumpsuitRepairmanSyndie: 1 # Blimpuf
+    ClothingHeadHatSyndie: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf

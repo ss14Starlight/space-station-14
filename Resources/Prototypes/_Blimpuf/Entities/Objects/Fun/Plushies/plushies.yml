@@ -1,0 +1,20 @@
+# Emagged Pride-O-Mat
+- type: entity
+  parent: PlushieSharkBlue
+  id: PlushieSharkRed
+  name: syndicate shark soft toy
+  description: This rödhaj is a mean and angry kind of shonk.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Plushies/shark.rsi
+    state: red
+  - type: Item
+    heldPrefix: red
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: RedSharkPlushie
+  - type: Tag
+    tags:
+    - PlushieSharkRed
+    - Payload
+    - ClothMade

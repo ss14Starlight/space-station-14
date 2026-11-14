@@ -263,6 +263,9 @@ public sealed partial class FancyTree : Control
 
     private void RecursivelyUpdateRowStyle(TreeItem item, ref int index)
     {
+        if (!item.Visible) // Starlight: filtered rows do not count toward alternating styles.
+            return;
+
         if (int.IsOddInteger(index))
         {
             item.Button.RemoveStyleClass(TreeItem.StyleClassEvenRow);

@@ -280,7 +280,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Moves a shuttle from its current position to the target one without any checks. Goes through the hyperspace map while the timer is running.
     /// </summary>
-    public void FTLToCoordinates(
+    public bool FTLToCoordinates( // Starlight: void to bool
         EntityUid shuttleUid,
         ShuttleComponent component,
         EntityCoordinates coordinates,
@@ -289,8 +289,14 @@ public sealed partial class ShuttleSystem
         float? hyperspaceTime = null,
         string? priorityTag = null)
     {
+        if (!coordinates.IsValid(EntityManager) || !double.IsFinite(angle.Theta))
+        {
+            Log.Error($"Found invalid FTL destination with coordinates {coordinates} and angle {angle} for shuttle {shuttleUid}");
+            return false;
+        }
+
         if (!TrySetupFTL(shuttleUid, component, out var hyperspace))
-            return;
+            return false; // Starlight
 
         startupTime ??= DefaultStartupTime;
         hyperspaceTime ??= DefaultTravelTime;
@@ -308,8 +314,9 @@ public sealed partial class ShuttleSystem
 
         var mapId = _transform.GetMapId(coordinates);
         var mapUid = _mapSystem.GetMap(mapId);
-        var ev = new FTLRequestEvent(mapUid);
+        var ev = new FTLRequestEvent(mapUid, shuttleUid); // Starlight
         RaiseLocalEvent(shuttleUid, ref ev, true);
+        return HasComp<FTLComponent>(shuttleUid); // Starlight
     }
 
     /// <summary>

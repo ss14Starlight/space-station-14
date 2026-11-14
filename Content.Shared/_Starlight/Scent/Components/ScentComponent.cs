@@ -15,6 +15,13 @@ public sealed partial class ScentComponent : Component
     [DataField, AutoNetworkedField]
     public string? ScentId;
 
+    /// <summary>
+    /// Additional shared scents this entity can emit.
+    /// These do not uniquely identify the entity.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public List<string> AdditionalScents = new();
+
     // How close a new emission needs to be to LastMarkerEntity to merge into it instead of
     // spawning fresh. ~1 tile by default.
     [DataField]
@@ -51,4 +58,11 @@ public sealed partial class ScentComponent : Component
     // Current tail of this entity's scent chain. A new emission only merges into this marker.
     [DataField]
     public EntityUid? LastMarkerEntity;
+
+    /// <summary>
+    /// Current tail of this entity's pollen marker chain.
+    /// Used to avoid repeated spatial lookups when emitting pollen.
+    /// </summary>
+    [DataField]
+    public EntityUid? LastPollenMarkerEntity;
 }
