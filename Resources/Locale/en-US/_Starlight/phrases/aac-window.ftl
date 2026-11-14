@@ -1,0 +1,3 @@
+aac-window-search-placeholder = Search phrases, groups, or tabs...
+aac-window-search-tab = Search
+aac-window-search-no-results = No results for '{ $query }'
