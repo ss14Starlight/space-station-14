@@ -20,6 +20,22 @@
           - RawXenoMeat
 
 - type: cargoBounty
+  id: BountyProtolatheMachineBoard
+  reward: 50
+  tickets: 1000
+  description: bounty-description-salvage-protolathe
+  group: SalvageJobTier1
+  sprite:
+    sprite: Structures/Machines/protolathe_hypercon.rsi
+    state: icon
+  entries:
+    - name: bounty-item-protolathe
+      amount: 1
+      whitelist:
+        tags:
+          - Protolathe
+
+- type: cargoBounty
   id: BountySalvageAbyssiumOre
   reward: 50
   tickets: 1500
@@ -36,22 +52,6 @@
           - AbyssiumOre
 
 - type: cargoBounty
-  id: BountySalvageOldTreasure
-  reward: 50
-  tickets: 1000
-  description: bounty-description-salvage-old-treasure
-  group: SalvageJobTier1
-  sprite:
-    sprite: Objects/Misc/module.rsi
-    state: cddrive
-  entries:
-    - name: bounty-item-old-treasure
-      amount: 5
-      whitelist:
-        tags:
-          - OldTreasure
-
-- type: cargoBounty
   id: BountySalvageSpaceBearHide
   reward: 50
   tickets: 800
@@ -66,6 +66,22 @@
       whitelist:
         tags:
           - SpaceBearHide
+
+- type: cargoBounty
+  id: BountySalvageCubanCarp
+  reward: 50
+  tickets: 200
+  description: bounty-description-cuban-carp
+  group: SalvageJobTier1
+  sprite:
+    sprite: Objects/Consumable/Food/meals.rsi
+    state: cubancarp
+  entries:
+  - name: bounty-item-cuban-carp
+    amount: 1
+    whitelist:
+      tags:
+          - CubanCarp
 
 # Tier 2
 
@@ -101,4 +117,133 @@
         tags:
           - CommieID
 
+- type: cargoBounty
+  id: BountySalvageVodkizine
+  reward: 50
+  tickets: 450
+  description: bounty-description-salvage-vodkizine
+  group: SalvageJobTier2
+  sprite:
+    sprite: Objects/Consumable/Drinks/vodkabottle.rsi
+    state: icon
+  entries:
+    - name: bounty-item-vodkizine
+      amount: 3
+      whitelist:
+        tags:
+          - Vodkizine
+
+- type: cargoBounty
+  id: BountySalvageMop
+  reward: 50
+  tickets: 350
+  description: bounty-description-salvage-mop
+  group: SalvageJobTier2
+  sprite:
+    sprite: Objects/Specific/Janitorial/advmop.rsi
+    state: advmop
+  entries:
+    - name: bounty-item-mop
+      amount: 1
+      whitelist:
+        tags:
+          - AdvancedMop
+
+- type: cargoBounty
+  id: BountySalvageCommieWeapons
+  reward: 50
+  tickets: 700
+  description: bounty-description-salvage-weapons
+  group: SalvageJobTier2
+  sprite:
+    sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+    state: base
+  entries:
+    - name: bounty-item-weapons
+      amount: 5
+      whitelist:
+        tags:
+          - CommieBasicWeapon
+
+- type: cargoBounty
+  id: BountySalvageKeg
+  reward: 50
+  tickets: 500
+  description: bounty-description-salvage-keg
+  group: SalvageJobTier2
+  sprite:
+    sprite: Objects/Devices/nuke.rsi
+    state: nuclearbomb_base
+  entries:
+    - name: bounty-item-keg
+      amount: 1
+      whitelist:
+        tags:
+          - Keg
+
 # Tier 3
+
+- type: cargoBounty
+  id: BountySalvageCloning
+  reward: 50
+  tickets: 1000
+  description: bounty-description-salvage-cloning
+  group: SalvageJobTier3
+  sprite:
+    sprite: Structures/Machines/cloning.rsi
+    state: pod_0
+  entries:
+    - name: bounty-item-cloning
+      amount: 2
+      whitelist:
+        tags:
+          - Cloning
+
+- type: cargoBounty
+  id: BountySalvageDragon
+  reward: 50
+  tickets: 700
+  description: bounty-description-salvage-dragon
+  group: SalvageJobTier3
+  sprite:
+    sprite: Mobs/Aliens/Carps/dragon.rsi
+    state: alive
+  entries:
+    - name: bounty-item-dragon
+      amount: 2
+      whitelist:
+        tags:
+          - DragonMeat
+
+- type: cargoBounty
+  id: BountySalvageReactor
+  reward: 50
+  tickets: 900
+  description: bounty-description-salvage-reactor
+  group: SalvageJobTier3
+  sprite:
+    sprite: _Starlight/Objects/Power/mech_reactors.rsi
+    state: cavalier
+  entries:
+    - name: bounty-item-reactor
+      amount: 2
+      whitelist:
+        tags:
+          - MechReactorExpedition
+
+- type: cargoBounty
+  id: BountySalvageAKMS
+  reward: 50
+  tickets: 1100
+  description: bounty-description-salvage-akms
+  group: SalvageJobTier3
+  sprite:
+    sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+    state: base
+  entries:
+    - name: bounty-item-akms
+      amount: 2
+      whitelist:
+        tags:
+          - CommieAdvancedWeapon
+

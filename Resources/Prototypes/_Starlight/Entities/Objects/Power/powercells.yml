@@ -148,6 +148,10 @@
   - type: BatterySelfRecharger
     autoRechargeRate: 20
     autoRechargePauseTime: 5
+  - type: Tag
+    tags:
+      - MechReactor
+      - MechReactorExpedition
 
 - type: entity
   id: MechReactorAntique
@@ -220,6 +224,10 @@
   - type: Battery
     maxCharge: 40000
     startingCharge: 40000
+  - type: Tag
+    tags:
+      - MechReactor
+      - MechReactorExpedition
 
 - type: entity
   id: MechReactorCavalier
@@ -240,6 +248,10 @@
   - type: MechSpeedModifier
     sprintModifier: 1.5
     walkModifier: 1
+  - type: Tag
+    tags:
+      - MechReactor
+      - MechReactorExpedition
 
 - type: entity
   id: PowerCageOmega

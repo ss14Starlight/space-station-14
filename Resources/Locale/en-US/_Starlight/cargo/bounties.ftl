@@ -5,6 +5,16 @@ bounty-item-abyssium-ore = Abyssium Ore
 bounty-item-old-treasure = Old Treasure
 bounty-item-space-bear-hide = Space Bear Hide
 
+bounty-item-protolathe = Protolathe Circuitboard
+bounty-item-vodkizine = Vodkizine Bottle
+bounty-item-mop = Advanced Mop
+bounty-item-weapons = Makarov/Finka/Mosin
+bounty-item-keg = Bomb Keg
+bounty-item-cloning = Cloning Circuit Board
+bounty-item-dragon = Dragon Meat
+bounty-item-reactor = Expedition Mech Reactors
+bounty-item-akms = AKMS
+
 bounty-item-cotton-cake = Cotton cake
 bounty-item-cotton-bread = Cotton bread
 bounty-item-coupe-glass = Coupe glass

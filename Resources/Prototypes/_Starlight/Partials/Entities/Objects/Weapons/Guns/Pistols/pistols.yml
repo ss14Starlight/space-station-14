@@ -52,3 +52,10 @@
     minAngle: 0
     maxAngle: 0
     angleDecayDivider: 0.6
+
+- type: !PartialOnly entity
+  id: WeaponPistolMakarov
+  components:
+  - type: Tag
+    tags:
+      - CommieBasicWeapon

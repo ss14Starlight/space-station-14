@@ -27,3 +27,10 @@
   components:
   - type: Scalpel
     successRate: 0.7
+
+- type: !PartialOnly entity
+  id: Finka
+  components:
+  - type: Tag
+    tags:
+      - CommieBasicWeapon
