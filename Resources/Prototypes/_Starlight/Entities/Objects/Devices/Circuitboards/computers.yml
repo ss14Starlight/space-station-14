@@ -158,6 +158,17 @@
     - type: ComputerBoard
       prototype: ComputerCommsCargo
 
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: BreakingNewsCommsComputerCircuitboard
+  name: breaking news console board
+  description: A computer printed circuit board for a breaking news console.
+  components:
+    - type: Sprite
+      state: cpu_service
+    - type: ComputerBoard
+      prototype: ComputerCommsBreakingNews
+
 ## Departmental Communications Consoles END
 
 - type: entity
