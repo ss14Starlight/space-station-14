@@ -1,74 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Made changes in access to certain things like tippy, global sounds, smites, explosions, now not all staff will be able to use them.
-    type: Tweak
-  id: 410060
-  time: '2026-11-02T20:42:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6836
-- author: Romero/Littlemen
-  changes:
-  - message: Gunnery Sergeant Hardsuit.
-    type: Add
-  id: 410061
-  time: '2026-11-02T21:04:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7006
-- author: Ohelig
-  changes:
-  - message: (Cluster) Added a laundromat.
-    type: Add
-  id: 410062
-  time: '2026-11-02T21:28:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7018
-- author: Ohelig
-  changes:
-  - message: (Cluster) Added a laundry machine to Medbay and Security.
-    type: Add
-  id: 410063
-  time: '2026-11-02T21:28:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7018
-- author: Ohelig
-  changes:
-  - message: (Cluster) Added a crew monitor to Bridge.
-    type: Add
-  id: 410064
-  time: '2026-11-02T21:28:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7018
-- author: Ohelig
-  changes:
-  - message: (Cluster) Added a nuclear lathe to the Reactor room.
-    type: Add
-  id: 410065
-  time: '2026-11-02T21:28:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7018
-- author: Helle Stargazer
-  changes:
-  - message: Fixed Cyclorite metabolism rate of chloral hydrate.
-    type: Fix
-  id: 410066
-  time: '2026-11-02T21:52:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7020
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Removed the clothing store.
-    type: Remove
-  id: 410067
-  time: '2026-11-03T10:25:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7024
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Added a new Ice Cream Shop and Donut Shop in its place.
-    type: Add
-  id: 410068
-  time: '2026-11-03T10:25:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7024
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Add new lattices right outside of the windows so that their death can show up on monitoring systems in various "dead" spaces.
-    type: Add
-  id: 410069
-  time: '2026-11-03T10:25:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7024
 - author: Hot Mic
   changes:
   - message: (Flotilla) Reduce the min player requirement from 150 to 135 players. To fill all the job slots, you need 145 players.
@@ -2799,4 +2729,74 @@ Entries:
   id: 410459
   time: '2026-11-14T21:44:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7230
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added new radio host equipment.
+    type: Add
+  id: 410460
+  time: '2026-11-14T22:08:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7232
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a few lights to adjust to new lighting changes.
+    type: Add
+  id: 410461
+  time: '2026-11-14T22:08:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7232
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a hatchet to gen pop island.
+    type: Add
+  id: 410462
+  time: '2026-11-14T22:08:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7232
+- author: Cvlancer
+  changes:
+  - message: (Manor) Added a few maints locker to maints cargo.
+    type: Add
+  id: 410463
+  time: '2026-11-14T22:08:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7232
+- author: Cvlancer
+  changes:
+  - message: (Manor) Added potential room. A new blank room with the potential to be whatever you want it to be.
+    type: Add
+  id: 410464
+  time: '2026-11-14T22:08:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7232
+- author: Cvlancer
+  changes:
+  - message: (Manor) Added a few hardhats to roboticist.
+    type: Add
+  id: 410465
+  time: '2026-11-14T22:08:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7232
+- author: Cvlancer
+  changes:
+  - message: (Manor) Added a few lights around the map.
+    type: Add
+  id: 410466
+  time: '2026-11-14T22:08:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7232
+- author: Cvlancer
+  changes:
+  - message: (Manor) Added a few ushankas in arrivals maints.
+    type: Add
+  id: 410467
+  time: '2026-11-14T22:08:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7232
+- author: Cvlancer
+  changes:
+  - message: (Manor) Fixed a glass window blocking gravity rooms door.
+    type: Fix
+  id: 410468
+  time: '2026-11-14T22:08:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7232
+- author: Cvlancer
+  changes:
+  - message: (Manor) Fixed shuttle construction bay vendomat being empty.
+    type: Fix
+  id: 410469
+  time: '2026-11-14T22:08:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7232
 Order: -1
