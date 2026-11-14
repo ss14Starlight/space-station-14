@@ -1,3 +1,5 @@
+# it's important these values match the ones in lights.yml - these PointLight values are used in pre-mapinit lighting
+# if they don't match, the map's will not be lit as you'd expect it to be from mapping!
 - type: !PartialOnly entity
   id: AlwaysPoweredWallLight
   components:
@@ -8,6 +10,23 @@
     softness: 1.5
     falloff: 8
     curveFactor: 1
+
+- type: !PartialOnly entity
+  id: PoweredlightLED
+  components:
+  - type: PointLight
+    radius: 10
+    energy: 0.8
+    softness: 1.3
+    color: "#F6EFE4"
+
+- type: !PartialOnly entity
+  id: PoweredLEDSmallLight
+  components:
+  - type: PointLight
+    energy: 0.6
+    softness: 1.3
+    color: "#F6EFE4"
 
 - type: !PartialOnly entity
   id: !type:CreateVariants
