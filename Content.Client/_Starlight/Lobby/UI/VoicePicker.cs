@@ -217,8 +217,8 @@ public sealed class VoicePicker : BoxContainer
                 (pitch == Any || (voice.Pitch is { } p && (int) p == pitch)) &&
                 (_tag == null || tags.Contains(_tag.Value)) &&
                 (search.Length == 0 ||
-                 Loc.GetString(voice.Name).Contains(search, StringComparison.CurrentCultureIgnoreCase) ||
-                 tags.Any(t => t.Value.Contains(search, StringComparison.InvariantCultureIgnoreCase)));
+                Loc.GetString(voice.Name).Contains(search, StringComparison.CurrentCultureIgnoreCase) ||
+                tags.Any(t => t.Value.Contains(search, StringComparison.InvariantCultureIgnoreCase)));
 
             card.Visible = visible;
             if (visible)

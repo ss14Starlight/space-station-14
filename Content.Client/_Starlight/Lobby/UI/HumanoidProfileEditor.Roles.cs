@@ -271,8 +271,7 @@ public sealed partial class HumanoidProfileEditor
             var any = false;
             foreach (var jobId in jobs)
             {
-                var visible = search.Length == 0
-                              || _prototypeManager.Index<JobPrototype>(jobId).LocalizedName.Contains(search, StringComparison.CurrentCultureIgnoreCase);
+                var visible = search.Length == 0 || _prototypeManager.Index<JobPrototype>(jobId).LocalizedName.Contains(search, StringComparison.CurrentCultureIgnoreCase);
                 _jobEntries[jobId].Visible = visible;
                 any |= visible;
             }
