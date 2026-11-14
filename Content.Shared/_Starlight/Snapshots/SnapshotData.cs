@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared.DisplacementMap;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
@@ -170,6 +171,11 @@ public sealed class SnapshotEntity
     /// RandomSprite selection (greyscale sprite tinting like tools), applied to the rebuilt clone.
     /// </summary>
     public Dictionary<string, (string State, Color? Color)>? RandomSprite;
+
+    /// <summary>
+    /// Footprint layers and tint.
+    /// </summary>
+    public FootprintComponent.FootprintComponent_AutoState? Footprint;
 }
 
 /// <summary>
