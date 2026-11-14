@@ -34,15 +34,10 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
-    [Dependency] private RoundStatisticsSystem _roundStatistics = default!; // Starlight
     [Dependency] private SharedMindSystem _mindSystem = default!;
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private ZombieSystem _zombie = default!;
-    [Dependency] private LanguageSystem _language = default!; // Starlight
-    [Dependency] private AchievementSystem _achievement = default!;
-
-    private readonly HashSet<ICommonSession> _initialInfected = new();
 
     public override void Initialize()
     {
@@ -53,18 +48,6 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
         SubscribeLocalEvent<IncurableZombieComponent, ZombifySelfActionEvent>(OnZombifySelf);
         SubscribeLocalEvent<ZombieRuleComponent, AfterAntagEntitySelectedEvent>(OnInitialInfectedSelected); // Starlight
     }
-
-    // Starlight-start: zombie language
-    /// <summary>
-    /// Gives initial infected the ability to understand (but not speak) zombie language.
-    /// </summary>
-    private void OnInitialInfectedSelected(EntityUid uid, ZombieRuleComponent comp,
-        ref AfterAntagEntitySelectedEvent args)
-    {
-        if (args.Session is { } session) _initialInfected.Add(session);
-        _language.AddLanguage(args.EntityUid, "Zombie", addSpoken: false, addUnderstood: true);
-    }
-    // Starlight-end
 
     private void OnGetBriefing(Entity<InitialInfectedRoleComponent> role, ref GetBriefingEvent args)
     {
@@ -241,13 +224,4 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
         }
         return healthy;
     }
-
-    #region Starlight
-    protected override void Ended(EntityUid uid, ZombieRuleComponent component, GameRuleComponent gameRule,
-        GameRuleEndedEvent args)
-    {
-        base.Ended(uid,component, gameRule, args);
-        _initialInfected.Clear();
-    }
-    #endregion
 }

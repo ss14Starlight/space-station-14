@@ -13,18 +13,4 @@ public sealed partial class FaxableObjectComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField, AutoNetworkedField]
     public string InsertingState = "inserting";
-
-    #region Starlight
-    /// <summary>
-    /// Starlight-edit
-    /// The text to output when faxing this object. Must be Document name
-    /// </summary>
-    [DataField, AutoNetworkedField] public string OutputtingText = "";
-
-    /// <summary>
-    /// Starlight-edit
-    /// The achievement to give when faxing this object.
-    /// </summary>
-    [DataField, AutoNetworkedField] public string Achievement = "";
-    #endregion
 }

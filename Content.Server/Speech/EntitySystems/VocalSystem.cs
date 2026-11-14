@@ -25,8 +25,6 @@ public sealed partial class VocalSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private ActionsSystem _actions = default!;
-    [Dependency] private IGameTiming _gameTiming = default!; //Starlight-edit
-    [Dependency] private AchievementSystem _achievement = default!; //Starlight-edit
 
     public override void Initialize()
     {
@@ -57,18 +55,6 @@ public sealed partial class VocalSystem : EntitySystem
 
         Dirty(target, targetComp);
     }
-
-    #region Starlight
-
-    public void SetSounds(Entity<VocalComponent?> uid, Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? sounds)
-    {
-        if (!Resolve(uid, ref uid.Comp)) return;
-        uid.Comp.Sounds = sounds;
-        uid.Comp.EmoteSounds = null;
-        LoadSounds(uid, uid.Comp);
-        Dirty(uid, uid.Comp);
-    }
-    #endregion
 
     private void OnMapInit(EntityUid uid, VocalComponent component, MapInitEvent args)
     {

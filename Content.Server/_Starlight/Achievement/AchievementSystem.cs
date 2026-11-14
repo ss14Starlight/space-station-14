@@ -77,6 +77,7 @@ using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Organ;
+using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Medical;
 using Content.Shared.Nutrition;
@@ -101,6 +102,7 @@ public sealed partial class AchievementSystem : EntitySystem
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private SharedCuffableSystem _cuffableSystem = default!;
 
     private static readonly TimeSpan _achievementHydrationRetryDelay = TimeSpan.FromSeconds(3);
     private static readonly ProtoId<TagPrototype> _arrowTag = "Arrow";
@@ -364,7 +366,7 @@ public sealed partial class AchievementSystem : EntitySystem
     {
         if (ev.Item.Valid && TryComp<BreathToolComponent>(ev.Item, out _) &&
             TryComp<HumanoidAppearanceComponent>(ev.Target, out var appearance) &&
-            appearance.Species.Equals(VoxSpeciesId) && TryComp<CuffableComponent>(ev.Target, out _))
+            appearance.Species.Equals(VoxSpeciesId) && TryComp<CuffableComponent>(ev.Target, out var cuff) && _cuffableSystem.IsCuffed((ev.Target, cuff)))
             QueueUnlockAchievement(ev.User.Owner, "vox_moment");
     }
 
