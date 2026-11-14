@@ -1,4 +1,5 @@
-﻿using Content.Client._Starlight.UserInterface; // Starlight
+﻿using Content.Client._Starlight.UserInterface;
+using Content.Client._Starlight.UserInterface.Systems.PinWindow; // Starlight
 using Content.Client.Resources;
 using Content.Client.Stylesheets.Fonts;
 using Content.Client.Stylesheets.Palette;
@@ -51,6 +52,8 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
         borderedBackgroundBox.SetPatchMargin(StyleBox.Margin.All, 2);
         var closeButtonTex = sheet.GetTextureOr(iconCfg.CrossIconPath, NanotrasenStylesheet.TextureRoot);
         var popOutButtonTex = ResCache.GetTexture("/Textures/_Starlight/Interface/Nano/pop_out.svg.png"); // Starlight
+        var pinnedTex = ResCache.GetTexture("/Textures/_Starlight/Interface/Nano/pin.svg.png"); // Starlight
+        var unpinnedTex = ResCache.GetTexture("/Textures/_Starlight/Interface/Nano/unpin.svg.png"); // Starlight
 
         var leftPanel = StyleBoxHelpers.OpenLeftStyleBox(sheet);
         leftPanel.SetPadding(StyleBox.Margin.All, 0.0f);
@@ -118,6 +121,39 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
                 .Modulate(Palettes.Neutral.HoveredElement),
             E<TextureButton>()
                 .Class(PopOutExtensions.PopOutButtonStyleClass)
+                .PseudoPressed()
+                .Modulate(Palettes.Neutral.PressedElement),
+
+            E<TextureButton>()
+                .Class(PinWindowUIController.StyleClassPinButtonUnpinned)
+                .Prop(TextureButton.StylePropertyTexture, unpinnedTex)
+                .Margin(3),
+            E<TextureButton>()
+                .Class(PinWindowUIController.StyleClassPinButtonPinned)
+                .Prop(TextureButton.StylePropertyTexture, pinnedTex)
+                .Margin(3),
+            E<TextureButton>()
+                .Class(PinWindowUIController.StyleClassPinButtonUnpinned)
+                .PseudoNormal()
+                .Modulate(Palettes.Neutral.Element),
+            E<TextureButton>()
+                .Class(PinWindowUIController.StyleClassPinButtonUnpinned)
+                .PseudoHovered()
+                .Modulate(Palettes.Neutral.HoveredElement),
+            E<TextureButton>()
+                .Class(PinWindowUIController.StyleClassPinButtonUnpinned)
+                .PseudoPressed()
+                .Modulate(Palettes.Neutral.PressedElement),
+            E<TextureButton>()
+                .Class(PinWindowUIController.StyleClassPinButtonPinned)
+                .PseudoNormal()
+                .Modulate(Palettes.Neutral.Element),
+            E<TextureButton>()
+                .Class(PinWindowUIController.StyleClassPinButtonPinned)
+                .PseudoHovered()
+                .Modulate(Palettes.Neutral.HoveredElement),
+            E<TextureButton>()
+                .Class(PinWindowUIController.StyleClassPinButtonPinned)
                 .PseudoPressed()
                 .Modulate(Palettes.Neutral.PressedElement),
             // Starlight end

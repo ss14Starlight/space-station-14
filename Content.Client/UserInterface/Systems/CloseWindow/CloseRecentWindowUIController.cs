@@ -1,3 +1,4 @@
+using Content.Client._Starlight.UserInterface.Systems.PinWindow;
 using Robust.Client.Input;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
@@ -39,6 +40,7 @@ public sealed partial class CloseRecentWindowUIController : UIController
         for (int i=recentlyInteractedWindows.Count-1; i>=0; i--)
         {
             var window = recentlyInteractedWindows[i];
+            if (PinWindowUIController.IsPinned(recentlyInteractedWindows[i])) continue; // Starlight: below comment is wrong, hello pinning.
             recentlyInteractedWindows.RemoveAt(i); // Should always be removed as either the reference is stale or we're closing it
             if (window.IsOpen)
             {
@@ -129,7 +131,7 @@ public sealed partial class CloseRecentWindowUIController : UIController
         for (var i = recentlyInteractedWindows.Count - 1; i >= 0; i--)
         {
             var window = recentlyInteractedWindows[i];
-            if (window.IsOpen)
+            if (window.IsOpen && !PinWindowUIController.IsPinned(window)) // Starlight edit
                 return true;
 
             // continue going down the list, hoping to find a still-open window

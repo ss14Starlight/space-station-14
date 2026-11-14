@@ -23,12 +23,15 @@ public sealed partial class AdminOptionsTab
         RenderAdminTools();
     }
 
+    private bool HasLocalAdminFlag(AdminFlags flag) =>
+        _player.LocalSession is { } session && _admin.HasAdminFlag(session, flag);
+
     private void RenderAdminTools() =>
         AdminToolsContainer.Visible = RenderAdminGhostTools() | RenderAdminArenaMapTools();
 
     private bool RenderAdminGhostTools()
     {
-        if (!_admin.HasAdminFlag(_player.LocalSession!, AdminFlags.Fun)) return false;
+        if (!HasLocalAdminFlag(AdminFlags.Fun)) return false;
 
         var hbox = new HBox();
         var label = new Label
@@ -53,7 +56,7 @@ public sealed partial class AdminOptionsTab
 
     private bool RenderAdminArenaMapTools()
     {
-        if (!_admin.HasAdminFlag(_player.LocalSession!, AdminFlags.Mapping)) return false;
+        if (!HasLocalAdminFlag(AdminFlags.Mapping)) return false;
         var mapBox = new HBox();
         var mapLabel = new Label
         {

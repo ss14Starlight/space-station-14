@@ -1,4 +1,5 @@
 using Content.Client._Starlight.Managers;
+using Content.Client._Starlight.UserInterface.Systems.PinWindow;
 using Content.Client.Administration.Managers;
 using Content.Client.FeedbackPopup;
 using Content.Client.Gameplay;
@@ -64,6 +65,7 @@ public sealed partial class EscapeUIController : UIController, IOnStateEntered<G
         DebugTools.Assert(_escapeWindow == null);
 
         _escapeWindow = UIManager.CreateWindow<Options.UI.EscapeMenu>();
+        PinWindowUIController.SetPinnable(_escapeWindow, false); // Starlight
 
         _escapeWindow.OnClose += DeactivateButton;
         _escapeWindow.OnOpen += ActivateButton;
