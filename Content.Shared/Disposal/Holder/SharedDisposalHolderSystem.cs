@@ -84,6 +84,11 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
     public virtual void Exit(Entity<DisposalHolderComponent> ent)
     {
         // Handled by the server
+        // Starlight-start: a persistent holder (transit pod) stops where the server will stop it, rather
+        // than gliding on past a station for a frame until the server says it docked.
+        if (ent.Comp.Persistent)
+            SetHalted(ent.AsNullable(), true);
+        // Starlight-end
     }
 
     /// <summary>
@@ -140,7 +145,7 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
 
             // If the disposed entity re-entered a suspect pipe,
             // it is likely caught in a loop and should try to escape
-            if (ent.Comp.SuspectPipes.Contains(tube))
+            if (!ent.Comp.Persistent && ent.Comp.SuspectPipes.Contains(tube)) // Starlight-edit: transit pods ride loops on purpose
             {
                 ent.Comp.CanEscape = true;
             }
@@ -162,7 +167,7 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
 
 
             // Check if the holder can escape the current pipe
-            if (TryEscaping(ent, (tube, tube.Comp)))
+            if (!ent.Comp.Persistent && TryEscaping(ent, (tube, tube.Comp))) // Starlight-edit
                 return false;
         }
 
@@ -258,11 +263,14 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
         while (query.MoveNext(out var uid, out var holder, out var xform))
         {
             // Remove any disposal holders that were somehow emptied
-            if (holder.Container?.Count == 0)
+            if (holder.Container?.Count == 0 && !holder.Persistent) // Starlight-edit
             {
                 PredictedQueueDel(uid);
                 continue;
             }
+
+            if (holder.Halted) // Starlight-edit
+                continue;
 
             UpdateDisposalHolder((uid, holder));
         }
@@ -314,7 +322,7 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
         }
 
         // Attempt to enter the next tube
-        if (TryEnterTube(ent, nextTube.Value))
+        if (TryEnterTube(ent, nextTube.Value) && !ent.Comp.Halted) // Starlight-edit: a holder halted on entry stays put
         {
             UpdateDisposalHolder(ent);
         }

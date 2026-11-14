@@ -77,3 +77,23 @@
   id: AirlockCyclerDevice
   name: signal-port-name-airlock-cycler-device
   description: signal-port-description-airlock-cycler-device
+
+- type: sinkPort
+  id: TransitSwitchLeft
+  name: signal-port-name-transit-switch-left
+  description: signal-port-description-transit-switch-left
+
+- type: sinkPort
+  id: TransitSwitchRight
+  name: signal-port-name-transit-switch-right
+  description: signal-port-description-transit-switch-right
+
+- type: sinkPort
+  id: TransitDepart
+  name: signal-port-name-transit-depart
+  description: signal-port-description-transit-depart
+
+- type: sinkPort
+  id: TransitHold
+  name: signal-port-name-transit-hold
+  description: signal-port-description-transit-hold
