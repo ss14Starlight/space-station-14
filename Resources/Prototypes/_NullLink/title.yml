@@ -82,6 +82,10 @@
       color: "#f1eb58"
       roles:
       - 1272899036571238521 # Developer
+    - type: "Discord Admin"
+      color: "#ef97df"
+      roles:
+      - 1273576282415960084 # Discord Administrator
     - text: "Jr. Event Coord"
       color: "#983fc9"
       roles:
@@ -110,6 +114,10 @@
       color: "#8ff10f"
       roles:
       - 1299137799693406288 # Spriter
+    - type: "Discord Mod"
+      color: "#a9f5a9"
+      roles:
+      - 1290857164167974952 # Discord Moderator
     - text: "Staff"
       color: "#ad1457"
       roles:
