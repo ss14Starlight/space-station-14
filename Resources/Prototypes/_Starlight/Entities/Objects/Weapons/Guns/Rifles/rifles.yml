@@ -553,3 +553,105 @@
       gun_chamber: !type:ContainerSlot ""
       firing_pin: !type:Container
   - type: Appearance
+  
+  
+- type: entity
+  name: Renegade
+  parent: [ BaseWeaponRifle, BaseSalvageContraband ]
+  id: WeaponRifleRenegade
+  description: "A heavily modified M-18 Militant, boasting improved ergonomics, improved handling, and sporting a taclight to keep the dark at bay. Designed by two local salvagers, you probably know them—there's some silly leaf engraved in the magwell. \nUses .20 rifle ammo."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/renegade.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: base-overlay
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/renegade.rsi
+  - type: Item
+    size: Large
+  - type: Gun
+    fireRate: 7
+    burstFireRate: 14
+    selectedMode: SemiAuto
+    availableModes:
+    - Burst
+    - SemiAuto
+    minAngle: 10
+    maxAngle: 24
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/m90.ogg
+      params:
+        volume: 1
+    angleIncrease: 3
+    angleDecay: 10
+    shotsPerBurst: 3
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: item-slot-component-slot-name-magazine
+        startingItem: MagazineRifleSP
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: item-slot-component-slot-name-chamber
+        startingItem: CartridgeRifleSP
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeRifle
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: ToggleableVisuals
+    spriteLayer: light
+    inhandVisuals:
+      left:
+      - state: inhand-left-light
+        shader: unshaded
+      right:
+      - state: inhand-right-light
+        shader: unshaded
+    wieldingVisuals:
+      right:
+      - state: wielded-inhand-right-light
+        shader: unshaded
+      left:
+      - state: wielded-inhand-left-light
+        shade: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: PointLight
+    enabled: false
+    lightMask: ConeSingle
+    autoRot: true
+    radius: 7
+    netsync: true
+  - type: HandheldLight
+    addPrefix: false
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 8
+    maxAngleDivider: 4
+    angleIncreaseDivider: 1.75
+

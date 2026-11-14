@@ -1,0 +1,127 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "Hanz5579(discord)"
+        },
+        {
+            "name": "base",
+            "copyright": "Hanz5579(discord)"
+        },
+        {
+            "name": "base-overlay",
+            "copyright": "Hanz5579(discord)"
+        },
+        {
+            "name": "bolt-open",
+            "copyright": "Hanz5579(discord)"
+        },
+        {
+            "name": "mag-0",
+            "copyright": "Teddiousbear",
+			"delays": [
+			[
+			0.5,
+			0.5
+			]
+		]
+        },
+        {
+            "name": "mag-1",
+            "copyright": "Teddiousbear",
+			"delays": [
+			[
+			0.5,
+			0.5
+			]
+		]
+        },
+        {
+            "name": "mag-2",
+            "copyright": "Teddiousbear",
+			"delays": [
+			[
+			0.5,
+			0.5
+			]
+		]
+        },
+        {
+            "name": "mag-3",
+            "copyright": "Teddiousbear",
+			"delays": [
+			[
+			0.5,
+			0.5
+			]
+		]
+        },
+        {
+            "name": "mag-4",
+            "copyright": "Teddiousbear",
+			"delays": [
+			[
+			0.5,
+			0.5
+			]
+		]
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "Hanz5579(discord)",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left-light",
+            "copyright": "Hanz5579(discord)",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "Hanz5579(discord)",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-light",
+            "copyright": "Hanz5579(discord)",
+            "directions": 4
+        },
+        {
+            "name": "wielded-inhand-left",
+            "copyright": "Hanz5579(discord)",
+            "directions": 4
+        },
+        {
+            "name": "wielded-inhand-left-light",
+            "copyright": "Hanz5579(discord)",
+            "directions": 4
+        },
+        {
+            "name": "wielded-inhand-right",
+            "copyright": "Hanz5579(discord)",
+            "directions": 4
+        },
+        {
+            "name": "wielded-inhand-right-light",
+            "copyright": "Hanz5579(discord)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-BACKPACK",
+            "copyright": "Hanz5579(discord)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-SUITSTORAGE",
+            "copyright": "Hanz5579(discord)",
+            "directions": 4
+        }
+    ]
+}
