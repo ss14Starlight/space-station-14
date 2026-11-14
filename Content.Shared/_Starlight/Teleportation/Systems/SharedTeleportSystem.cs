@@ -8,8 +8,8 @@ namespace Content.Shared._Starlight.Teleportation.Systems;
 
 public sealed partial class SharedTeleportSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private PullingSystem _pulling = default!;
 
     public const bool DefaultTeleportCarryPulled = true;
     public const bool DefaultTeleportCarryIncomingPulls = false;
