@@ -580,7 +580,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         RemComp<ThirstComponent>(uid);
         //EnsureComp<ZombieImmuneComponent>(uid); Starlight, we're bringing Lings into Zombies!
 
-        var voiceMask = Spawn("ChangelingVoiceMask", Transform(uid).Coordinates);
+        var voiceMask = SpawnAtPosition("ChangelingVoiceMask", Transform(uid).Coordinates);
         _implant.ForceImplant(uid, voiceMask);
 
         var voiceMaskComp = Comp<VoiceMaskComponent>(voiceMask);
