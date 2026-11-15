@@ -28,7 +28,7 @@
   - type: Damageable
     damageContainer: Biological
   - type: PointLight
-    radius: 1
+    radius: 3
     energy: 8
     color: "#31F5C0"
   - type: Destructible

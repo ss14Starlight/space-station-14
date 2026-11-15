@@ -54,3 +54,12 @@
   - type: Sprite
     sprite: _Starlight/Effects/chemsmoke.rsi
     state: chemsmoke_yellow
+
+- type: entity
+  parent: Smoke
+  id: WizardSmoke2
+  name: smoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Smoke
+    spreadAmount: 20
