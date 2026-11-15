@@ -17,7 +17,8 @@ namespace Content.Client._Starlight.Light;
 /// <see cref="StarlightCCVars.LightTonemapKnee"/> and gradually bringing higher values
 /// toward <see cref="StarlightCCVars.LightTonemapMax"/>.
 ///
-/// Client <see cref="StarlightCCVars.LightBoost"/> is included in exposure and disables roll-off when greater than 1.
+/// Client <see cref="StarlightCCVars.LightBoost"/> multiplies the exposure and never turns the roll-off off.
+/// With the roll-off disabled, the overlay still runs while the boost is above 1 and applies only the boost.
 /// Server exposure is applied only when roll-off is enabled.
 ///
 /// Runs in <see cref="OverlaySpace.WorldSpaceBelowWorld"/>, after the light map is generated
