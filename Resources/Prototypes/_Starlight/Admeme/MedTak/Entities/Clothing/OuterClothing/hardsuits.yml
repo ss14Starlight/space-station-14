@@ -44,7 +44,7 @@
       deviceNetId: Wireless
       receiveFrequencyId: MedTakOperators
       transmitFrequencyId: MedTak
-    - type: SurveillanceCamera # they act like cameras for the mothership
+    - type: SurveillanceCamera
       networkSet: true
       nameSet: True
       id: MedTakOperators
