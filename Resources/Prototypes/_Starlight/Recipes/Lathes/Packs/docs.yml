@@ -7,21 +7,21 @@
   - PrintedDocumentReportOnEliminationOfViolationsRecipe
   - PrintedDocumentReportDepartmentRecipe
   - PrintedDocumentReportEmployeePerformanceRecipe
-  - PrintedDocumentReportOnTheChaptersMeetingRecipe
+  - PrintedDocumentVoteRecordRecipe
   - PrintedDocumentInternalAffairsAgentsReportRecipe
   - PrintedDocumentConditionReportRecipe
-  - PrintedDocumentObjectInvestigationReportRecipe
+  - PrintedDocumentObjectExaminationReportRecipe
   - PrintedDocumentExperimentReportRecipe
   - PrintedDocumentDisposalReportRecipe
   - PrintedDocumentArrestReportRecipe
   - PrintedDocumentSalvageLeadReportRecipe
   - PrintedDocumentPsychologicalReportRecipe
   # Statements
-  - PrintedDocumentStatementAppointmentInterimChapterRecipe
+  - PrintedDocumentStatementInterimAppointmentRecipe
   - PrintedDocumentEmploymentContractRecipe
   - PrintedDocumentResignationStatementRecipe
   - PrintedDocumentAccessRequestRecipe
-  - PrintedDocumentEquipmentRequestStatementRecipe
+  - PrintedDocumentEquipmentRequestRecipe
   # InquiriesAndAppeals
   - PrintedDocumentInvocationRecipe
   - PrintedDocumentEvacuationShuttleRequestRecipe

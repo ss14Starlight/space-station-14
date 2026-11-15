@@ -43,8 +43,8 @@
   name: Departmental Review
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-report-department
+    - type: TextFilePaperContent
+      fileName: report-department.txt
 
 - type: entity
   parent: PrintedDocument
@@ -57,12 +57,12 @@
 
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentReportOnTheChaptersMeeting
+  id: PrintedDocumentVoteRecord
   name: Vote Record
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-report-on-the-chapters-meeting
+    - type: TextFilePaperContent
+      fileName: vote-record.txt
 
 - type: entity
   parent: PrintedDocument
@@ -84,12 +84,13 @@
 
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentObjectInvestigationReport
-  name: Unknown Object Investigation Report
+  id: PrintedDocumentObjectExaminationReport
+  name: Unknown Object Examination Report
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-object-investigation-report
+    - type: TextFilePaperContent
+      fileName: object-examination-report.txt
+
 
 - type: entity
   parent: PrintedDocument
@@ -97,8 +98,8 @@
   name: Experiment Report
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-experiment-report
+    - type: TextFilePaperContent
+      fileName: experiment-report.txt
 
 - type: entity
   parent: PrintedDocument
@@ -106,8 +107,8 @@
   name: Disposal Report
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-disposal-report
+    - type: TextFilePaperContent
+      fileName: disposal-report.txt
 
 - type: entity
   parent: PrintedDocument
@@ -135,11 +136,12 @@
   components:
     - type: TextFilePaperContent
       fileName: psychological-report.txt
+
 # Statements
 
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentStatementAppointmentInterimChapter
+  id: PrintedDocumentStatementInterimAppointment
   name: Interim Command Appointment
   categories: [ HideSpawnMenu ]
   components:
@@ -157,6 +159,17 @@
 
 - type: entity
   parent: PrintedDocument
+  id: PrintedDocumentResignationStatement
+  name: Notice of Resignation
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TextFilePaperContent
+      fileName: resignation-statement.txt
+
+# InquiriesAndAppeals
+
+- type: entity
+  parent: PrintedDocument
   id: PrintedDocumentEmploymentContract
   name: Employment Contract
   categories: [ HideSpawnMenu ]
@@ -164,15 +177,6 @@
     - type: Paper
     - type: TextFilePaperContent
       fileName: employment-contract.txt
-
-- type: entity
-  parent: PrintedDocument
-  id: PrintedDocumentResignationStatement
-  name: Notice of Resignation
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: TextFilePaperContent
-      fileName: resignation-statement.txt
 
 - type: entity
   parent: PrintedDocument
@@ -185,14 +189,12 @@
 
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentEquipmentRequestStatement
+  id: PrintedDocumentEquipmentRequest
   name: Equipment Request
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-equipment-request-statement
-
-# InquiriesAndAppeals
+    - type: TextFilePaperContent
+      fileName: equipment-request.txt
 
 - type: entity
   parent: PrintedDocument
@@ -227,8 +229,8 @@
   name: Request to Call CentComm Members
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-request-call-centcomm-members
+    - type: TextFilePaperContent
+      fileName: request-call-centcomm-members.txt
 
 - type: entity
   parent: PrintedDocument
@@ -241,12 +243,12 @@
 
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentRequestChangeSalary
+  id: PrintedDocumentRequestSalaryModification
   name: Salary Change Request
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-request-change-salary
+    - type: TextFilePaperContent
+      fileName: request-salary-modification.txt
 
 - type: entity
   parent: PrintedDocument
@@ -386,7 +388,6 @@
   components:
     - type: TextFilePaperContent
       fileName: search-warrant.txt
-
 
 - type: entity
   parent: PrintedDocument
@@ -584,8 +585,8 @@
   name: CentComm Communication
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-centcomm-communication
+    - type: TextFilePaperContent
+      fileName: centcomm-communication.txt
 
 #greenshift alert
 

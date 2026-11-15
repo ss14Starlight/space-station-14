@@ -61,8 +61,8 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentReportOnTheChaptersMeetingRecipe
-  result: PrintedDocumentReportOnTheChaptersMeeting
+  id: PrintedDocumentVoteRecordRecipe
+  result: PrintedDocumentVoteRecord
   categories:
   - Reports
   completetime: 2
@@ -91,8 +91,8 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentObjectInvestigationReportRecipe
-  result: PrintedDocumentObjectInvestigationReport
+  id: PrintedDocumentObjectExaminationReportRecipe
+  result: PrintedDocumentObjectExaminationReport
   categories:
   - Reports
   completetime: 2
@@ -153,8 +153,8 @@
 # Statements
 
 - type: latheRecipe
-  id: PrintedDocumentStatementAppointmentInterimChapterRecipe
-  result: PrintedDocumentStatementAppointmentInterimChapter
+  id: PrintedDocumentStatementInterimAppointmentRecipe
+  result: PrintedDocumentStatementInterimAppointment
   categories:
   - Statements
   completetime: 2
@@ -166,7 +166,7 @@
   id: PrintedDocumentEmploymentContractRecipe
   result: PrintedDocumentEmploymentContract
   categories:
-  - Statements
+  - InquiriesAndAppeals
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -193,10 +193,10 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentEquipmentRequestStatementRecipe
-  result: PrintedDocumentEquipmentRequestStatement
+  id: PrintedDocumentEquipmentRequestRecipe
+  result: PrintedDocumentEquipmentRequest
   categories:
-  - Statements
+  - InquiriesAndAppeals
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -255,8 +255,8 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentRequestChangeSalaryRecipe
-  result: PrintedDocumentRequestChangeSalary
+  id: PrintedDocumentRequestSalaryModificationRecipe
+  result: PrintedDocumentRequestSalaryModification
   categories:
   - InquiriesAndAppeals
   completetime: 2
