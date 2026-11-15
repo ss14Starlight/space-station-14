@@ -668,7 +668,3 @@ binds:
   key: MouseRight
   canFocus: true
 # Starlight-end
-# RMC14 Controls port
-- function: SLInteractWithOtherHand # Starlight, imported from RMC renamed to avoid keybind conflicts with RMC14
-  type: State
-  key: c
