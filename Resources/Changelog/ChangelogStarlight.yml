@@ -1,13 +1,6 @@
 Entries:
 - author: Rhapsody (Pepta, Soothe)
   changes:
-  - message: Supply rifts now only show a station beacon once the energy flux announcement is made to the station.
-    type: Tweak
-  id: 410080
-  time: '2026-11-03T12:31:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6986
-- author: Rhapsody (Pepta, Soothe)
-  changes:
   - message: Carp rifts now correctly show a station beacon once the energy flux announcement is made to the station (this was intended but broken).
     type: Fix
   id: 410081
@@ -2799,4 +2792,11 @@ Entries:
   id: 410479
   time: '2026-11-15T14:37:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7251
+- author: Teddiousbear
+  changes:
+  - message: NTNC Marine Hardsuit Armor values.
+    type: Tweak
+  id: 410480
+  time: '2026-11-15T14:57:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7227
 Order: -1
