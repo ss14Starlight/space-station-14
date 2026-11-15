@@ -3,34 +3,34 @@
 
     <GuideEntityEmbed Entity="RandomHumanoidVisitorReporter" Caption="Reporter"/>
 
-   1. Reporters report directly to the Head of Personnel.
+    1. Reporters report directly to the Head of Personnel.
 
-   2. Reporters may investigate around station for new information regarding ongoing situations or new situations occurring on station.
+    2. Reporters may investigate around the station for new information regarding ongoing situations or new situations occurring on the station.
 
-   3. Reporters may request interviews with any crew member, and may record it using a Tape Recorder.
+    3. Reporters may request interviews with any crew member, and may record them using a Tape Recorder.
 
-   4. Reporters may use their handheld cameras or if available setup wireless cameras.
+    4. Reporters may use their handheld cameras or, if available, set up wireless cameras.
 
-   5. Reporters may wear the press armor on blue and above if reporting in areas that may place them at risk.
+    5. Reporters may wear the press armor on blue alert and above if reporting in areas that may place them at risk.
 
-   6. While wearing press equipment (holo-pin and Armor), reporters may not engage in combat except in self-defense.
+    6. While wearing press equipment (holo-pin and armor), reporters may not engage in combat except in self-defense.
 
-   7. The HOP may temporarily or permanently revoke the reporter's work equipment or immediately demote them for SOP breaches.
+    7. The HOP may temporarily or permanently revoke the reporter's work equipment or immediately demote them for SOP breaches.
 
-   8. Reporters may try to abide by press guidelines to the best of their capabilities.
+    8. Reporters should try to abide by the press guidelines to the best of their capabilities.
 
     # Press Guidelines
-    Guidelines for Reporter work behavior. Keep it in mind, and get your news running trough the station!
+    Guidelines for Reporter work behavior. Keep them in mind, and get your news running through the station!
 
     ## Press Equipment
-    Reporter has some critical work equipments:
+    Reporters have some critical work equipment:
 
     ### The Consoles
     <Box>
         <GuideEntityEmbed Entity="ComputerCommsBreakingNews"/>
         <GuideEntityEmbed Entity="ComputerMassMedia"/>
     </Box>
-    The 'breaking news console' and 'news manager console' are the reporter main work tools.
+    The 'breaking news console' and 'news manager console' are the reporter's main work tools.
 
     The news manager console is where you can write your news articles; here you send all the important information you want the crew to know. It supports rich text writing and allows for attaching one photo per article.
 
@@ -42,7 +42,7 @@
         <GuideEntityEmbed Entity="TapeRecorder"/>
         <GuideEntityEmbed Entity="SnapshotPhotograph"/>
     </Box>
-    The 'reporter PDA' and 'tape Recorder' are both extremally valuable source information gathering tools.
+    The 'reporter PDA' and 'tape recorder' are both extremely valuable information-gathering tools.
 
     The reporter PDA allows you to take a photo when used, consuming one blank photograph that can be attached to your news articles.
 
@@ -59,17 +59,17 @@
     Explain what happened: who, what, where, and when. Keep it organized and avoid one-line or irrelevant articles.
 
     3. [bold]Relay information.[/bold]
-    Always finish with what the crew needs to know or do, such as areas to avoid, who to contact, ongoing risks or what is happening around the station.
+    Always finish with what the crew needs to know or do, such as areas to avoid, who to contact, ongoing risks, or what is happening around the station.
 
     ### Quick Tips
 
-    - Separate your writing into a [bold]header[/bold], a [bold]body[/bold] that explains what happened. Do this every time.
-    - If you have more than one theme at same article you can separate them with different headings.
-    - Quote your sources when possible. Use interview recordings from your Tape Recorder when you have them or name the person that gave you that information.
+    - Separate your writing into a [bold]header[/bold] and a [bold]body[/bold] that explains what happened. Do this every time.
+    - If you have more than one theme in the same article, you can separate them with different headings.
+    - Quote your sources when possible. Use interview recordings from your Tape Recorder when you have them, or name the person who gave you that information.
     - Keep facts and opinions apart. If you are giving an opinion, say so.
-    - Mention the time and location of events(if possible) so readers can follow along.
-    - Use rich text always that possible, but do not overdo it.
-    - If you can, remember to take photos! its always great to have something visually appealing.
+    - Mention the time and location of events (if possible) so readers can follow along.
+    - Use rich text whenever possible, but do not overdo it.
+    - If you can, remember to take photos! It's always great to have something visually appealing.
     - Proofread before posting. Do it well, do it once.
 
     ## Rich Text
