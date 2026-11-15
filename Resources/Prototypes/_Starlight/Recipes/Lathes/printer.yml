@@ -183,10 +183,10 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentAccessRequestStatementRecipe
-  result: PrintedDocumentAccessRequestStatement
+  id: PrintedDocumentAccessRequestRecipe
+  result: PrintedDocumentAccessRequest
   categories:
-  - Statements
+  - InquiriesAndAppeals
   completetime: 2
   applyMaterialDiscount: false
   materials:

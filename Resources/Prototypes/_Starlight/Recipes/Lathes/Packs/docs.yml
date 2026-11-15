@@ -20,7 +20,7 @@
   - PrintedDocumentStatementAppointmentInterimChapterRecipe
   - PrintedDocumentEmploymentStatementRecipe
   - PrintedDocumentResignationStatementRecipe
-  - PrintedDocumentAccessRequestStatementRecipe
+  - PrintedDocumentAccessRequestRecipe
   - PrintedDocumentEquipmentRequestStatementRecipe
   # InquiriesAndAppeals
   - PrintedDocumentInvocationRecipe

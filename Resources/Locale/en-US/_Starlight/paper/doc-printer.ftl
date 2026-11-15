@@ -128,27 +128,6 @@ doc-text-printer-internal-affairs-agents-report =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
-doc-text-printer-condition-report =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]MAINTENANCE REPORT[/bold]
-    ─────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Irregularities were identified in the station's [form].
-
-    The problems were caused by: [form]
-
-    Damage to the station: [form]
-
-    Repairs performed: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
 
 doc-text-printer-object-investigation-report =
                              [head=3]NT-CC Consortium Services[/head]
@@ -225,31 +204,6 @@ doc-text-printer-disposal-report =
 
 
 
-doc-text-printer-psychological-report =
-                             [head=3]NT-CC Consortium Services[/head]
-
-            [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-    ⠀                              [bold]PSYCHOLOGICAL REPORT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Patient: [form]
-    Reason for examination: [form]
-    Willingness: [form]
-
-    Symptoms: [form]
-
-    Triggers: [form]
-
-    Notes: [form]
-
-    Suggested actions and treatments: [form]
-
-    ────────────────────────────────────────
-    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
 
 # Statements
 
@@ -316,29 +270,6 @@ doc-text-printer-resignation-statement =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
-doc-text-printer-access-request-statement =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                       [bold]ACCESS REQUEST[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], request the following access be added to my ID card:
-    • [form]
-    • [form]
-    • [form]
-    • [form]
-    • [form]
-    • [form]
-
-    Reason for gaining elevated access: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
 
 doc-text-printer-equipment-request-statement =
                              [head=3]NT-CC Consortium Services[/head]
@@ -386,26 +317,6 @@ doc-text-printer-invocation =
 
 
 
-doc-text-printer-evacuation-shuttle-request =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                    [bold]EVACUATION SHUTTLE REQUEST[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    To Central Command,
-
-    I, [signature], write to request that you dispatch an evacuation shuttle to the station, without delay, and authorize evacuation of the station via said shuttle.
-
-    Reason for evacuation request: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
 
 doc-text-printer-shuttle-registration-request =
                              [head=3]NT-CC Consortium Services[/head]
@@ -450,23 +361,6 @@ doc-text-printer-request-call-centcomm-members =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
-
-doc-text-printer-request-establish-threat-level =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀             [bold]REQUEST TO ESTABLISH THREAT LEVEL[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], request that follow threat level be established: [form]
-
-    Reason for request: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
 
@@ -568,55 +462,6 @@ doc-text-printer-request-documents =
 
 
 
-doc-text-printer-request-euthanasia =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                        [bold]PETITION FOR EUTHANASIA[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], hereby request to be euthanized.
-
-    My desire for this is as follows: [form].
-
-   ⠀[check] I am aware that this decision is irreversible and will affect compensation given to my next of kin.
-
-   ⠀[check] I am of sound mind, as determined by a member of the Medical Department.
-
-   ⠀    Inspecting Doctor: [signature]
-   ⠀     Date and Time: [datetime]
-
-   ⠀[check] I have no claims against the Medical Department in their adherence to euthanasia protocols.
-
-    At the end of the procedure, I ask that my body be [form], if possible.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-construction-work =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                     [bold]CONSTRUCTION REQUEST[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature] formally request construction work at: [form]
-
-    Reason for request: [form]
-
-    List of construction work: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
 
 
 doc-text-printer-request-modernization =
@@ -640,32 +485,6 @@ doc-text-printer-request-modernization =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
-
-doc-text-printer-request-ert =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀           [bold]EMERGENCY RESPONSE TEAM REQUEST[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], request an ERT team to be sent to the station to assist with an ongoing problem that exceeds the station's current resources to resolve.
-
-    Threat(s) to the station:
-    ⠀• [form]
-     • [form]
-
-    Type of ERT requested: [form]
-    (Security / Engineering / Janitorial / Medical / ...)
-
-    Fatalities (approximate number): [form]
-    Other casualties (approximate number): [form]
-
-   ⠀ [italic]Abuse of this form may lead to immediate dismissal of the person(s) involved in this request.[/italic]
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
 
@@ -695,88 +514,8 @@ doc-text-printer-product-order =
 
 # Complaints
 
-doc-text-printer-complaint-violation-labor-rules =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-    ⠀⠀[bold]DEPARTMENTAL COMPLAINT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], believe that major misconduct, constituting either breach of SOP or Corporate Law, has occurred, or is ongoing, as described below.
-
-    Department(s) involved: [form]
-
-    Violations committed:
-
-   ⠀• [form]
-   ⠀• [form]
-   ⠀• [form]
-
-    I request an internal review of the department(s) in question.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-
 
 # Permissions
-
-doc-text-printer-permission-equipment =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]EQUIPMENT PERMIT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Permit Holder: [signature]
-
-    Item: [form]
-    Sub Items: [form]
-    Item Origin: [form]
-
-    Item Tier Level: [form]
-    Weapon or Combat Equipment Permit Yes / No : [form]
-
-    Reason for Permit Issue: [form]
-    Terms & Conditions of Use: [form]
-
-    I, [signature], accept the terms of use, restrictions, and legal responsibilities associated with possessing this item, and hereby swear that all information contained herein is true, accurate, and filled out strictly in accordance with official station permit standards under penalty of forgery.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-
-doc-text-printer-construction-permit =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]CONSTRUCTION PERMIT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], authorize the redevelopment of the following part of the station: [form]
-
-    Reason for redevelopment: [form]
-
-    Agreed scope of redevelopment: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
 
 
 # OrdersAndInstructions

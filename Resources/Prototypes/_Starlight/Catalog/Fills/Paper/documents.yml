@@ -79,8 +79,8 @@
   name: Maintenance Report
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-condition-report
+    - type: TextFilePaperContent
+      fileName: condition-report.txt
 
 - type: entity
   parent: PrintedDocument
@@ -130,11 +130,11 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentPsychologicalReport
-  name: Psychological Report
+  name: Psychological Evaluation Report
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-psychological-report
+    - type: TextFilePaperContent
+      fileName: psychological-report.txt
 # Statements
 
 - type: entity
@@ -175,12 +175,12 @@
 
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentAccessRequestStatement
+  id: PrintedDocumentAccessRequest
   name: Access Request
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-access-request-statement
+    - type: TextFilePaperContent
+      fileName: access-request.txt
 
 - type: entity
   parent: PrintedDocument
@@ -208,8 +208,8 @@
   name: Evacuation Shuttle Request
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-evacuation-shuttle-request
+    - type: TextFilePaperContent
+      fileName: evacuation-shuttle-request.txt
 
 - type: entity
   parent: PrintedDocument
@@ -235,8 +235,8 @@
   name: Request to Establish Threat Level
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-request-establish-threat-level
+    - type: TextFilePaperContent
+      fileName: evacuation-shuttle-request.txt
 
 - type: entity
   parent: PrintedDocument
@@ -280,8 +280,8 @@
   name: Petition for Euthanasia
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-request-euthanasia
+    - type: TextFilePaperContent
+      fileName: request-euthanasia.txt
 
 - type: entity
   parent: PrintedDocument
@@ -289,8 +289,8 @@
   name: Construction Request
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-request-construction-work
+    - type: TextFilePaperContent
+      fileName: request-construction-work.txt
 
 - type: entity
   parent: PrintedDocument
@@ -307,8 +307,8 @@
   name: Emergency Response Team (ERT) Request
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-request-ert
+    - type: TextFilePaperContent
+      fileName: request-ert.txt
 
 - type: entity
   parent: PrintedDocument
@@ -326,8 +326,8 @@
   name: Departmental Complaint
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-complaint-violation-labor-rules
+    - type: TextFilePaperContent
+      fileName: complaint-violation-labor-rules.txt
 
 - type: entity
   parent: PrintedDocument
@@ -346,8 +346,8 @@
   name: Equipment Permit
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-permission-equipment
+    - type: TextFilePaperContent
+      fileName: permission-equipment.txt
 
 - type: entity
   parent: PrintedDocument
@@ -401,8 +401,8 @@
   name: Construction Permit
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-construction-permit
+    - type: TextFilePaperContent
+      fileName: construction-permit.txt
 
 - type: entity
   parent: PrintedDocument
