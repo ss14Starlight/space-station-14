@@ -3,6 +3,7 @@ using Content.Server._Starlight.Station.Systems;
 using Content.Server.Administration.Managers;
 using Content.Server.GameTicking.Events;
 using Robust.Shared.Player;
+using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
@@ -97,21 +98,21 @@ namespace Content.Server.GameTicking.Commands
                 // Starlight-start: validate the client-supplied job and station server-side
                 if (!_prototypeManager.TryIndex<JobPrototype>(id, out var jobPrototype))
                 {
-                    shell.WriteError($"Unknown job {id}.");
+                    shell.WriteError(Loc.GetString("join-game-command-unknown-job", ("job", id)));
                     return;
                 }
 
                 var station = _entManager.GetEntity(new NetEntity(sid));
                 if (!_entManager.HasComponent<StationJobsComponent>(station))
                 {
-                    shell.WriteError("Invalid station.");
+                    shell.WriteError(Loc.GetString("join-game-command-invalid-station"));
                     return;
                 }
 
                 if (!IsJobAllowed(player, jobPrototype.ID))
                 {
                     _sawmill.Info($"{player.Name} ({player.UserId}) attempted to latejoin as restricted job {jobPrototype.ID}.");
-                    shell.WriteError($"You are not allowed to join as {jobPrototype.LocalizedName}.");
+                    shell.WriteError(Loc.GetString("join-game-command-job-restricted", ("job", jobPrototype.LocalizedName)));
                     return;
                 }
 
@@ -128,6 +129,15 @@ namespace Content.Server.GameTicking.Commands
                     shell.WriteLine("No profile in slot");
                     return;
                 }
+
+                // Starlight-start: IsJobAllowed passes if any enabled profile qualifies, so check the one being spawned.
+                if (!_entManager.System<PlayTimeTrackingSystem>().IsProfileAllowedForJob(player, jobPrototype.ID, humanoid))
+                {
+                    _sawmill.Info($"{player.Name} ({player.UserId}) attempted to latejoin as {jobPrototype.ID} with a profile that fails its requirements.");
+                    shell.WriteError(Loc.GetString("join-game-command-profile-restricted", ("job", jobPrototype.LocalizedName)));
+                    return;
+                }
+                // Starlight-end
 
                 if (_adminManager.IsAdmin(player) && _cfg.GetCVar(CCVars.AdminDeadminOnJoin))
                 {
