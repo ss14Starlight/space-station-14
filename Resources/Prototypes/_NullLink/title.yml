@@ -83,7 +83,7 @@
       roles:
       - 1272899036571238521 # Developer
     - text: "Discord Admin"
-      color: "#ef97df"
+      color: "#67daf1"
       roles:
       - 1273576282415960084 # Discord Administrator
     - text: "Jr. Event Coord"
