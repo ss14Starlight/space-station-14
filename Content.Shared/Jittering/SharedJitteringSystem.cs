@@ -74,5 +74,9 @@ namespace Content.Shared.Jittering
             jitter.Frequency = frequency;
             Dirty(uid, jitter);
         }
+
+        public virtual void DoRemoveJitter(EntityUid uid)
+        {
+        }
     }
 }

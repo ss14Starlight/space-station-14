@@ -244,6 +244,8 @@ public sealed partial class SeizureSystem : SharedSeizureSystem
             return;
 
         _stuttering.DoRemoveStutter(uid);
+        _jittering.DoRemoveJitter(uid);
+        _stun.TryUpdateParalyzeDuration(uid, TimeSpan.Zero);
         RemComp<SeizureComponent>(uid);
     }
 
