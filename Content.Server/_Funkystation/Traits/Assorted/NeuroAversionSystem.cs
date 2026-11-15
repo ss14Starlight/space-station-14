@@ -125,7 +125,7 @@ public sealed class NeuroAversionSystem : SharedNeuroAversionSystem
         if (!TryComp<DamageableComponent>(uid, out var damageable))
             return 0f;
 
-        return CalculateMissingHpFraction(damageable);
+        return CalculateMissingHpFraction(uid, damageable);
     }
 
     private void UpdateMigraineTimer(EntityUid uid, NeuroAversionComponent comp, float frameTime, float missingHpFrac)

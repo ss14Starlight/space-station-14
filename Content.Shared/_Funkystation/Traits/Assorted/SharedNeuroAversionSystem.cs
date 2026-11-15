@@ -18,7 +18,7 @@ public abstract class SharedNeuroAversionSystem : EntitySystem
 {
     [Dependency] protected readonly IRobustRandom Random = default!;
     [Dependency] protected readonly MobStateSystem MobState = default!;
-    [Dependency] protected static readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] protected static readonly DamageableSystem s_damageableSystem = default!; //Starlight
 
     // Seizure build constants (using 0-100 scale instead of 0-1)
     protected const float MinRandomSpikePercent = 0.1f;  // Reduced spike size
@@ -80,16 +80,16 @@ public abstract class SharedNeuroAversionSystem : EntitySystem
 
     /// <summary>
     /// Calculates missing HP as a fraction (0-1).
+    /// Modified for Starlight
     /// </summary>
-    protected static float CalculateMissingHpFraction(DamageableComponent damageable)
+    protected static float CalculateMissingHpFraction(EntityUid uid, DamageableComponent damageable)
     {
         var maxHp = damageable.HealthBarThreshold?.Float() ?? 100f;
         if (maxHp <= 0f)
             return 0f;
 
-
-        var currentDamage = _damageableSystem.GetTotalDamage(damageable.Owner);
-        return MathF.Max(0f, MathF.Min(1f, (float)(currentDamage / maxHp)));
+        var currentDamage = (float)s_damageableSystem.GetTotalDamage(uid);
+        return MathF.Max(0f, MathF.Min(1f, currentDamage / maxHp));
     }
 
     /// <summary>
