@@ -8,7 +8,7 @@
     arc: 360
   - type: StationAiWhitelist
   - type: Sprite
-    drawdepth: WallMountedItems # Starlight: SmallObjects->WallMountedItems so they layer above button frames
+    drawdepth: SmallObjects
     sprite: Structures/Wallmounts/switch.rsi
     state: on
   - type: SignalSwitch
@@ -61,7 +61,7 @@
     arc: 360
   - type: StationAiWhitelist
   - type: Sprite
-    drawdepth: WallMountedItems # Starlight: SmallObjects->WallMountedItems so they layer above button frames
+    drawdepth: SmallObjects
     sprite: Structures/Wallmounts/switch.rsi
     state: dead
   - type: UseDelay
@@ -112,7 +112,7 @@
   - type: WallMount
     arc: 360
   - type: Sprite
-    drawdepth: WallMountedItems # Starlight: SmallObjects->WallMountedItems so they layer above button frames
+    drawdepth: SmallObjects
     sprite: Structures/Wallmounts/switch.rsi
     state: on
   - type: Rotatable
