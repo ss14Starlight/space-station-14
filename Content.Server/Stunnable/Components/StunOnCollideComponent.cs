@@ -69,9 +69,9 @@ public sealed partial class StunOnCollideComponent : Component
     public bool Forced = false;
 
     /// <summary>
-    /// Has something already been knocked down by this entity?
+    /// List of entities already knocked down by this entity
     /// </summary>
-    public bool Handled = false;
+    public List<EntityUid> Hits = new();
 
     #endregion
 }

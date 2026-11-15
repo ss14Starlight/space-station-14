@@ -28,12 +28,14 @@ internal sealed partial class StunOnCollideSystem : EntitySystem
     {
         var knockedDown = _stunSystem.TryKnockdown(target, ent.Comp.KnockdownAmount, ent.Comp.Refresh, ent.Comp.AutoStand, ent.Comp.Drop, ent.Comp.Forced); // Starlight start - adding admin logging for taser knockdown effect
 
-        if (knockedDown && TryComp<ProjectileComponent>(ent, out var projectile))
+        if (knockedDown)
         {
-            ent.Comp.Handled = true;
-            _adminLogger.Add(LogType.DisarmedKnockdown,
-                    LogImpact.Medium,
-                    $"Projectile {ToPrettyString(ent):projectile} shot by {ToPrettyString(projectile.Shooter):user} from {ToPrettyString(projectile.Weapon):weapon} hit {ToPrettyString(target):target} and knocked them down");
+            ent.Comp.Hits.Add(target);
+
+            if(TryComp<ProjectileComponent>(ent, out var projectile))
+                _adminLogger.Add(LogType.DisarmedKnockdown,
+                        LogImpact.Medium,
+                        $"Projectile {ToPrettyString(ent):projectile} shot by {ToPrettyString(projectile.Shooter):user} from {ToPrettyString(projectile.Weapon):weapon} hit {ToPrettyString(target):target} and knocked them down");
         }
         // Starlight end
 
@@ -64,10 +66,11 @@ internal sealed partial class StunOnCollideSystem : EntitySystem
 
     private void HandleCollide(Entity<StunOnCollideComponent> ent, ref StartCollideEvent args)
     {
-        if (ent.Comp.Handled) // Starlight addition
-            return;
 
         if (args.OurFixtureId != ent.Comp.FixtureID)
+            return;
+
+        if (ent.Comp.Hits.Contains(args.OtherEntity)) // Starlight addition
             return;
 
         TryDoCollideStun(ent, args.OtherEntity);
