@@ -298,8 +298,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         }
 
         var mapPosition = RemoteView.PixelToMap(args.ScreenCoordinates.Position);
-        var targets = IsInRemoteView(args.ScreenCoordinates)
-                     && _stateManager.CurrentState is GameplayStateBase screen
+        var targets = IsInRemoteView(args.ScreenCoordinates) && _stateManager.CurrentState is GameplayStateBase screen
             ? screen.GetClickableEntities(mapPosition, _remoteEye)
             : Array.Empty<EntityUid>();
         var dragDrop = _entityManager.System<DragDropSystem>();
@@ -542,8 +541,8 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
             return true;
 
         return type != RemoteAttackType.Shoot
-               && _entityManager.System<MeleeWeaponSystem>().TryGetWeapon(remoteEntity, out _, out var weapon)
-               && weapon.AutoAttack;
+                    && _entityManager.System<MeleeWeaponSystem>().TryGetWeapon(remoteEntity, out _, out var weapon)
+                    && weapon.AutoAttack;
     }
 
     private float GetRemoteAttackInterval(EntityUid remoteEntity, RemoteAttackType type)
@@ -1507,10 +1506,10 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         var throwFunctionAvailable =
             activeContext.FunctionExistsHierarchy(ContentKeyFunctions.ThrowItemInHand);
         bool MatchesHandActionBinding(IKeyBinding binding)
-            => binding.BaseKey == args.Key &&
-               IsModifierPressed(binding.Mod1, args.Key) &&
-               IsModifierPressed(binding.Mod2, args.Key) &&
-               IsModifierPressed(binding.Mod3, args.Key);
+                => binding.BaseKey == args.Key &&
+                IsModifierPressed(binding.Mod1, args.Key) &&
+                IsModifierPressed(binding.Mod2, args.Key) &&
+                IsModifierPressed(binding.Mod3, args.Key);
 
         foreach (var binding in releasePulledObjectBindings)
         {
