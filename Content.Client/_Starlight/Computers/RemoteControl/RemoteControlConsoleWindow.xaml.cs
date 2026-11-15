@@ -1571,29 +1571,29 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
     private static bool IsSameKeyCombo(IKeyBinding first, IKeyBinding second)
         => first.BaseKey == second.BaseKey &&
-           ContainsModifiers(first, second) &&
-           ContainsModifiers(second, first);
+            ContainsModifiers(first, second) &&
+            ContainsModifiers(second, first);
 
     private static bool IsStrictSubCombo(IKeyBinding subCombo, IKeyBinding superCombo)
         => subCombo.BaseKey == superCombo.BaseKey &&
-           ContainsModifiers(superCombo, subCombo) &&
-           HasAdditionalModifiers(superCombo, subCombo);
+            ContainsModifiers(superCombo, subCombo) &&
+            HasAdditionalModifiers(superCombo, subCombo);
 
     private static bool ContainsModifiers(IKeyBinding superset, IKeyBinding subset)
         => IsModifierContained(subset.Mod1, superset) &&
-           IsModifierContained(subset.Mod2, superset) &&
-           IsModifierContained(subset.Mod3, superset);
+            IsModifierContained(subset.Mod2, superset) &&
+            IsModifierContained(subset.Mod3, superset);
 
     private static bool IsModifierContained(Keyboard.Key modifier, IKeyBinding binding)
         => modifier == Keyboard.Key.Unknown ||
-           binding.Mod1 == modifier ||
-           binding.Mod2 == modifier ||
-           binding.Mod3 == modifier;
+            binding.Mod1 == modifier ||
+            binding.Mod2 == modifier ||
+            binding.Mod3 == modifier;
 
     private static bool HasAdditionalModifiers(IKeyBinding superset, IKeyBinding subset)
         => HasAdditionalModifier(superset.Mod1, subset) ||
-           HasAdditionalModifier(superset.Mod2, subset) ||
-           HasAdditionalModifier(superset.Mod3, subset);
+            HasAdditionalModifier(superset.Mod2, subset) ||
+            HasAdditionalModifier(superset.Mod3, subset);
 
     private static bool HasAdditionalModifier(Keyboard.Key modifier, IKeyBinding subset)
         => modifier != Keyboard.Key.Unknown && !IsModifierContained(modifier, subset);
