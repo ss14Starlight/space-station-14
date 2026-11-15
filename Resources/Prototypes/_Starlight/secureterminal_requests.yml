@@ -596,8 +596,8 @@
     - id: Command
       name: secure-terminal-command-name
       groups:
-        - [Command]
-        - [Command]
+        - [Command, StationAi]
+        - [Command, StationAi]
   cooldownSecs: 600
 
 # ── End Emergency Maintenance Access ─────────────────────────────────────────────────────
@@ -620,7 +620,7 @@
     - id: Command
       name: secure-terminal-command-name
       groups:
-        - [Command]
+        - [Command, StationAi]
   cooldownSecs: 0
 
 # ── Station-Wide Emergency Access ─────────────────────────────────────────────────────
