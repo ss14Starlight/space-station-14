@@ -5,12 +5,7 @@ using Robust.Shared.Configuration;
 namespace Content.Client._Starlight.Light;
 
 /// <summary>
-/// Turns the client's lighting effects on and off. A tonemap squeezes light that is too bright back into a
-/// range the screen can show, so a spot lit by several lamps looks a bit brighter instead of turning flat white.
-/// Adds the <see cref="LightTonemapOverlay"/> while <see cref="StarlightCCVars.LightTonemap"/> is on or
-/// <see cref="StarlightCCVars.LightBoost"/> is above 1,
-/// the <see cref="GlobalIlluminationOverlay"/> while <see cref="StarlightCCVars.GlobalIllumination"/> is on,
-/// and the <see cref="ScreenPostProcessOverlay"/>, which checks its own cvars.
+/// Manages client-side lighting effects.
 /// </summary>
 public sealed partial class LightTonemapSystem : EntitySystem
 {

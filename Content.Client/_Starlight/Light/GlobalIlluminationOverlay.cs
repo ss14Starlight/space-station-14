@@ -13,27 +13,19 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._Starlight.Light;
 
 /// <summary>
-/// One bounce of light off walls, added onto the engine's light map before the tonemap.
+/// Adds one bounce of wall light to the light map before tonemapping.
 /// </summary>
 /// <remarks>
-/// <para>
-/// Based on the jump flood + sphere tracing approach of Sam Bigos' 2D global illumination demo
-/// (https://github.com/samuelbigos/godot_2d_global_illumination, MIT), adapted to keep the engine's direct light:
-/// </para>
-/// <list type="number">
-/// <item>Occluder polygons are drawn into a seed target, every covered pixel storing its own position.</item>
-/// <item>Jump flood passes spread the seeds, so every pixel knows its nearest wall pixel (a distance field).
-/// Steps only start at the trace distance, walls further away than that never matter.</item>
-/// <item>Every floor pixel casts rays through the distance field. A ray that hits a wall takes the light that wall
-/// pixel has in the light map: the engine's wall bleed lights the faces next to lit floor.</item>
-/// <item>The trace is blended into last frame's result, reprojected to this frame's view, and rays turn a little every
-/// frame, so noise averages out over time. Rays that hit a wall also take the bounce light already lying next to it
-/// in that history, which gives more bounces over a few frames, the way Bigos' demo does it.</item>
-/// <item>A copy is blurred to hide what noise is left and added onto the light map.</item>
-/// </list>
-/// <para>
-/// Runs only for the player's own eye, before <see cref="LightTonemapOverlay"/> so bounced light is rolled off too.
-/// </para>
+/// Based on Sam Bigos' 2D global illumination demo
+/// (https://github.com/samuelbigos/godot_2d_global_illumination, MIT).
+/// Jump flooding creates a wall distance field, then sphere tracing casts rays
+/// from floor pixels to collect light from nearby walls.
+/// Results build up across frames through reprojection and ray rotation, allowing
+/// bounced light to spread farther over time. The final result is blurred and
+/// added to the light map.
+/// 
+/// Runs only for the player's eye, before <see cref="LightTonemapOverlay"/>,
+/// so bounced light is also tonemapped.
 /// </remarks>
 public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.Overlay
 {
@@ -46,7 +38,7 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
     private static readonly ProtoId<ShaderPrototype> _copyByPixelShader = "LightTonemapCopy";
 
     /// <summary>
-    /// How much of last frame's bounce light a pixel keeps. Higher is smoother, but lags behind changing light.
+    /// The amount of bounce light from the previous frame retained by a pixel. Higher values look smoother but respond more slowly to changing light.
     /// </summary>
     private const float HistoryWeight = 0.85f;
 
@@ -83,11 +75,20 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
 
     private int _frame;
 
+    private readonly CVarSubscriptions _cvars;
+    private float _resolution;
+    private bool _temporal;
+    private float _distance;
+    private int _rays;
+    private float _strength;
+    private float _blur;
+    private int _debug;
+
     private readonly List<Vector2> _vertices = new(4096);
     private readonly List<ushort> _indices = new(6144);
 
     /// <summary>
-    /// Set when float render targets can't be made: seeds need full 32-bit floats.
+    /// Set when float render targets can't be made.
     /// </summary>
     private bool _unsupported;
 
@@ -106,16 +107,26 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
         _debugShaderInst = _proto.Index(_debugShader).InstanceUnique();
         _copyShaderInst = _proto.Index(_copyShader).InstanceUnique();
         _copyByPixelShaderInst = _proto.Index(_copyByPixelShader).InstanceUnique();
+
+        _cvars = new CVarSubscriptions(_cfg);
+        _cvars.Track(StarlightCCVars.GlobalIlluminationResolution, v => _resolution = Math.Clamp(v, 0.25f, 1f));
+        _cvars.Track(StarlightCCVars.GlobalIlluminationTemporal, v => _temporal = v);
+        _cvars.Track(StarlightCCVars.GlobalIlluminationDistance, v => _distance = v);
+        _cvars.Track(StarlightCCVars.GlobalIlluminationRays, v => _rays = Math.Clamp(v, 4, 32));
+        _cvars.Track(StarlightCCVars.GlobalIlluminationStrength, v => _strength = MathF.Max(0f, v));
+        _cvars.Track(StarlightCCVars.GlobalIlluminationBlur, v => _blur = v);
+        _cvars.Track(StarlightCCVars.GlobalIlluminationDebug, v => _debug = v);
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         var eye = args.Viewport.Eye;
-        if (_unsupported || eye == null || eye != _eye.CurrentEye || !eye.DrawLight
-            || !_lightManager.Enabled || !_lightManager.DrawLighting)
-        {
+        if (_unsupported || eye == null
+            || eye != _eye.CurrentEye
+            || !eye.DrawLight
+            || !_lightManager.Enabled
+            || !_lightManager.DrawLighting)
             return false;
-        }
 
         return _entMan.TryGetComponent<MapComponent>(args.MapUid, out var map) && map.LightingEnabled;
     }
@@ -125,7 +136,7 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
         var viewport = args.Viewport;
         var eye = viewport.Eye!;
         var light = viewport.LightRenderTarget;
-        var resolution = Math.Clamp(_cfg.GetCVar(StarlightCCVars.GlobalIlluminationResolution), 0.25f, 1f);
+        var resolution = _resolution;
         var size = new Vector2i(
             Math.Max(1, (int) MathF.Ceiling(light.Size.X * resolution)),
             Math.Max(1, (int) MathF.Ceiling(light.Size.Y * resolution)));
@@ -134,7 +145,7 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
         if (res.SeedA?.Size != size && !TryCreateTargets(res, size))
             return;
 
-        var temporal = _cfg.GetCVar(StarlightCCVars.GlobalIlluminationTemporal);
+        var temporal = _temporal;
         var historyValid = temporal && res.HistoryValid && res.HistoryMap == args.MapId;
 
         var handle = args.WorldHandle;
@@ -144,7 +155,7 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
 
         // Tiles to target pixels, eye zoom and rotation included.
         var pixelsPerTile = (Vector2.Transform(Vector2.UnitX, giMatrix) - Vector2.Transform(Vector2.Zero, giMatrix)).Length();
-        var maxDistance = MathF.Max(1f, _cfg.GetCVar(StarlightCCVars.GlobalIlluminationDistance) * pixelsPerTile);
+        var maxDistance = MathF.Max(1f, _distance * pixelsPerTile);
 
         // 1. Seeds.
         var mapId = args.MapId;
@@ -166,7 +177,7 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
                 Flush(handle);
             }, Color.Transparent);
 
-        // 2. Jump flood, from the first power of two past the trace distance down to single pixels.
+        // 2. Jump flood from the first power of two past the trace distance down to single pixels.
         var step = 1;
         while (step < maxDistance && step < Math.Max(size.X, size.Y))
             step <<= 1;
@@ -191,8 +202,8 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
 
         var sdf = source;
 
-        // 3. Last frame's bounce light, reprojected: drawn over the world area it covered with this frame's matrix.
-        // Everything that was off screen last frame stays transparent and is traced from scratch.
+        // 3. Reproject the previous frame's bounce light and draw it over the world area it covered, using this frame's matrix.
+        // Areas that were off screen in the previous frame remain transparent and are traced from scratch.
         var history = res.History!;
         if (historyValid)
         {
@@ -215,12 +226,12 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
         _traceShaderInst.SetParameter("LIGHT_TEXTURE", light.Texture);
         _traceShaderInst.SetParameter("targetSize", sizeF);
         _traceShaderInst.SetParameter("maxDistance", maxDistance);
-        _traceShaderInst.SetParameter("rays", Math.Clamp(_cfg.GetCVar(StarlightCCVars.GlobalIlluminationRays), 4, 32));
+        _traceShaderInst.SetParameter("rays", _rays);
         _traceShaderInst.SetParameter("HISTORY_TEXTURE", history.Texture);
         _traceShaderInst.SetParameter("historyWeight", temporal ? HistoryWeight : 0f);
         // Light a wall gets from bounce light is thrown back as well, a bit more of it every frame.
         _traceShaderInst.SetParameter("feedback", temporal
-            ? Math.Clamp(_cfg.GetCVar(StarlightCCVars.GlobalIlluminationStrength), 0f, MaxFeedback)
+            ? MathF.Min(_strength, MaxFeedback)
             : 0f);
         // Rays turn a little every frame so the history averages them out.
         _frame = (_frame + 1) % FrameCycle;
@@ -248,13 +259,13 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
                 handle.DrawTextureRect(accumulatedTarget.Texture, giBounds);
             }, Color.Black);
 
-        var blur = _cfg.GetCVar(StarlightCCVars.GlobalIlluminationBlur);
+        var blur = _blur;
         if (blur > 0f)
             _clyde.BlurRenderTarget(viewport, res.Bounce!, res.BlurBuffer!, eye, blur);
 
         var lightMatrix = light.GetWorldToLocalMatrix(eye, viewport.RenderScale * (light.Size / (Vector2) viewport.Size));
-        var strength = MathF.Max(0f, _cfg.GetCVar(StarlightCCVars.GlobalIlluminationStrength));
-        var debug = _cfg.GetCVar(StarlightCCVars.GlobalIlluminationDebug);
+        var strength = _strength;
+        var debug = _debug;
         ShaderInstance shader;
         if (debug is 1 or 2)
         {
@@ -291,7 +302,7 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
 
         try
         {
-            // Seeds are pixel positions: half floats lose the pixel centre above 1024, so they get full floats.
+            // Seeds represent pixel positions. Half floats cannot preserve pixel centers above 1024, so seeds use full floats.
             var seedFormat = new RenderTargetFormatParameters(RenderTargetColorFormat.RG32F);
             var format = new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba16F);
             res.SeedA = _clyde.CreateRenderTarget(size, seedFormat, name: "gi-seed-a");
@@ -367,6 +378,7 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
 
     protected override void DisposeBehavior()
     {
+        _cvars.Dispose();
         _resources.Dispose();
 
         base.DisposeBehavior();

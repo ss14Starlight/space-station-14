@@ -47,6 +47,7 @@ void fragment()
     highp vec2 wall;
     highp vec3 sum = vec3(0.0);
     highp float count = float(rays);
+    highp float escaped = 0.0;
 
     // Walls get their light from the engine's wall bleed. No early return: the body is inlined into main().
     if (wallDistance(origin, wall) >= 0.5)
@@ -67,7 +68,10 @@ void fragment()
             {
                 highp vec2 p = origin + dir * travelled;
                 if (p.x < 0.0 || p.y < 0.0 || p.x >= targetSize.x || p.y >= targetSize.y)
+                {
+                    escaped += 1.0;
                     break;
+                }
 
                 highp float d = wallDistance(p, wall);
                 if (d < 1.0)
@@ -92,7 +96,8 @@ void fragment()
         }
     }
 
-    highp vec3 traced = sum / count;
     highp vec4 history = texture2D(HISTORY_TEXTURE, origin / targetSize);
+    highp float known = count - escaped;
+    highp vec3 traced = known > 0.5 ? sum / known : history.rgb * history.a;
     COLOR = vec4(mix(traced, history.rgb, historyWeight * history.a), 1.0);
 }
