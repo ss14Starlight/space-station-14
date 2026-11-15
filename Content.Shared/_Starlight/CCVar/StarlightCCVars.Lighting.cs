@@ -74,6 +74,20 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("lighting.tonemap_max", 1.15f, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
+    /// A client-side multiplier applied to each light source in the light map before falloff.
+    /// It brightens and slightly widens light pools, but cannot illuminate tiles beyond a lamp's reach. Clamped to 1–1.3.
+    /// </summary>
+    public static readonly CVarDef<float> LightBoost =
+        CVarDef.Create("lighting.light_boost", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Adjusts brightness across the entire view using a gamma curve. Dark areas become lighter, while pure black and full white remain unchanged.
+    /// Values are limited to 0.8–1.3.
+    /// </summary>
+    public static readonly CVarDef<float> ScreenBrightness =
+        CVarDef.Create("lighting.screen_brightness", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Whether poorly lit areas lose their colour and turn blue, the way the eye sees in the dark.
     /// </summary>
     public static readonly CVarDef<bool> NightVision =
