@@ -159,21 +159,142 @@ doc-text-printer-report-on-the-chapters-meeting =
 
 
 doc-text-printer-internal-affairs-agents-report =
-                             [head=3]NT-CC Consortium Services[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ─────────────────────────────────────────
-   ⠀⠀               [bold]AUDIT REPORT[/bold]
-    ─────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
+[/meta][head=1][color=#134975]────────────────────[/color][/head]
+[color=#134975]█▄░░█ ▀▀█▀▀[/color]  [head=3][color=#134975]NANOTRASEN CORPORATION[/color][/head]
+[color=#134975]█▀█▄█ ░░█░░[/color][bolditalic][color=#134975]  Together, we change worlds...[/color][/bolditalic]
+[color=#134975]█░░▀█ ░░█░░[/color]  [color=#aaaaaa][italic]OFFICIAL NANOTRASEN DOCUMENT[/italic][/color]
+[head=1][color=#134975]────────────────────[/color][/head]
+[center][color=#134975][bold]                            DEPARTMENTAL INSPECTION[/bold][/color][/center] 
 
-    I, [signature], during the course of an internal audit requested by [form] for the reason of [form], found the following irregularities: [form]
+[bold]Current Time and Date:[/bold] [datetime]
+[bold]Station:[/bold] [form]
+[color=#134975]────────────────────[/color]
 
-    I also wish to report the following: [form]
+Inspecting Official: [signature]
+Department Audited: [form]
+Relevant Head of Staff: [form]
 
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+[head=2][color=#134975]GENERAL COMPLIANCE[/color][/bold]
+[check] Department is adequately staffed to fulfill its duties.
+[check] Personnel are wearing appropriate departmental attire.
+[check] Workplace is clear of hazards and is neatly maintained.
+[check] Departmental equipment is secured when not in use.
+[check] No unauthorized personnel are present within secure 
+        areas without an access permit.
+[check] Head of Staff is active and overseeing operations.
+[check] Personnel are working on head-approved projects 
+        and/or SOP appropriate work.
+[check] All trainees are actively supervised and trained.
+[check] No seditious acts were observed during walkthrough.
+[check] No undocumented or improperly stored contraband 
+        materials found.
+
+
+[head=2][color=#134975]DEPARTMENTAL CHECKLISTS[/color][/head]
+
+[bold][color=darkred]SECURITY SOP[/color][/bold]
+[italic][color=#aaaaaa]As the Security SOP is long, most checklist items will be generalizations. Refer to Security SOP and Corporate Law books for specifics, and note any specific violations in the ADDITIONAL NOTES section.[/color][/italic]
+At time of inspection, the alert level is: [form]
+[check] Long guns are kept in the armory unless code red is 
+        called or an authorized permit is present
+[check] Weapons are holstered unless in active pursuit or 
+        code red.
+[check] All weapons, armor, and contraband are kept in a 
+        secured and locked container when not in use
+[check] Security is following proper detainment and 
+        sentencing procedures for the current alert level
+[check] Security personnel are wearing identifiable clothing at 
+        all times, with the exception of detectives
+[check] Security is actively patrolling the station, unless an 
+        active stationwide threat is present
+[check] Brigmedic, Warden, and Duty Officers are not 
+        performing standard patrols or arrests
+[check] Prisoner Treatment guidelines are being followed
+[check] No potential violations of Corporate Law noted
+
+[bold][color=brown]CARGO SOP[/color][/bold]
+[check] Proper documentation exists for all orders unless 
+        preapproved, or for security, and medical on red, 
+        violet, or gamma
+[check] Secure crates remain unopened and locked at all 
+        times
+[check] The Quartermaster has not allowed unrestricted movement on the ATS
+[check] Orders are delivered within 10-15 minutes of approval
+[check] Mail is delivered in a timely manner, ideally <5 
+        minutes and less for priority mail
+[check] Mining teams have delivered at least one ore bag before departing their station
+
+[bold][color=purple]SCIENCE SOP[/color][/bold]
+[italic][color=#aaaaaa]Note:Updated for NT Approved Science SOP[/color][/italic]
+[check] Anomalies are generated and collapsed with the 
+        explicit permission of the RD.
+[check] Anomaly vessels are clearly marked with type and 
+        location.
+[check] No anomalies are unaccounted for.
+[check] Documentation exists for anomalies stored in 
+              organic hosts.
+[check] Artifacts are properly contained in a protective 
+        and secure environment.
+[check] Proper protective equipment is within reach of all 
+        artifacts and anomalies at all times.
+[check] All research is approved directly by the Director.
+[check] No combat capable mechs in robotics without explicit 
+        permission from the HoS, RD, or Captain.
+[check] Forms exist for all elective cyborg/AI conversions
+
+[bold][color=lightblue]MEDICAL SOP[/color][/bold]
+[check] Contraband chemicals (if present) distributed with 
+        valid prescription or permit only
+[check] Chemistry lab is actively staffed at all times
+[check] Medbay doors are kept secure unless code red
+[check] Chems are stored in a secure locker or container and 
+        closed when not in use
+[check] Defibrillators are kept in cabinets and are sufficiently 
+        charged
+[check] Proper protective equipment (gloves, masks, etc) is 
+        worn by all staff
+[check] Surgeons have valid documented consent forms for 
+        all elective surgeries
+[check] Deceased patients are stored in the morgue or body 
+        bags until they can be revived
+
+[bold][color=orange]ENGINEERING SOP[/color][/bold]
+[check] AME and Solars are set up prior to main engine
+[check] Main engine set up in a safe and secure location
+[check] Distro and Waste lines set up correctly
+[check] No harmful or stimulating mixes present in atmos 
+        without a permit (Nitrium, Zauker, Maxcap)
+[check] If present, supermatter crystal incorporates an 
+        emergency venting system
+[check] If present, nuclear reactor incorporates emergency 
+        dampening system
+[check] Building permits exist for all existing station additions
+ 
+
+[head=2][color=#134975]SUMMARY[/color][/head]
+
+[bold][color=#134975]FINDINGS AND EVALUATION[/color][/bold]
+[italic][color=#aaaaaa]Provide a summary of walkthrough and department performance below:[/color][/italic]
+[form]
+
+[bold][color=#134975]RECOMMENDED ACTION[/color][/bold]
+[check] [bold][color=green]Full Compliance[/color][/bold]: Department is up to NT standards.
+[check] [bold][color=orange]Minor Violations[/color][/bold]: Follow-up inspection and/or light 
+        reprimand recommended.
+[check] [bold][color=darkred]Major Violations[/color][/bold]: Escalation to Captain and CC and/or 
+        dismissals recommended.
+
+[bold][color=#134975]ADDITIONAL NOTES[/color][/bold]
+[form]
+
+[head=1][color=#134975]────────────────────[/color][/head]
+
+[italic][color=#aaaaaa]FOR OFFICIAL USE ONLY. NOT FOR PUBLIC RELEASE. DISCLAIMER: Departmental checklists are not exhaustive and do not consider all aspects of a station or department. Always refer to official SOP documentation when performing an inspection. 
+Glory to NanoTrasen.[/color][/italic]
+
+⠀      [italic]Official Internal Affairs / NT Representative Stamp Above[/italic]
 
 
 doc-text-printer-condition-report =
