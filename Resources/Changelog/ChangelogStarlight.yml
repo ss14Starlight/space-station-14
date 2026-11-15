@@ -1,13 +1,6 @@
 Entries:
 - author: joshujo
   changes:
-  - message: Non-admin ghosts can no longer trigger interactions by examining.
-    type: Fix
-  id: 410075
-  time: '2026-11-03T11:45:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6952
-- author: joshujo
-  changes:
   - message: AGhosts no longer trigger interactions by examining when hidden from non-admin ghosts.
     type: Add
   id: 410076
@@ -2799,4 +2792,11 @@ Entries:
   id: 410474
   time: '2026-11-15T10:04:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7243
+- author: redmushie
+  changes:
+  - message: Stray rads.
+    type: Fix
+  id: 410475
+  time: '2026-11-15T10:31:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7254
 Order: -1
