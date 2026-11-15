@@ -35,18 +35,7 @@ public partial class RadiationSystem
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        // Starlight-start: Update positions if out of sync.
-        var sourceSync = EntityQueryEnumerator<RadiationSourceComponent, TransformComponent>();
-        while (sourceSync.MoveNext(out var srcUid, out var srcComp, out var srcXform))
-        {
-            if (!srcComp.Enabled)
-                continue;
-
-            var world = _transform.GetWorldPosition(srcXform);
-            if (!_sourceDataMap.TryGetValue(srcUid, out var data) || !data.WorldPosition.EqualsApprox(world))
-                UpdateSource((srcUid, srcComp));
-        }
-        // Starlight-end
+        UpdatePositions(); // Starlight-edit: Update positions if out of sync.
 
         var sourcesCount = _sourceDataMap.Count;
         if (_activeReceivers.Count == 0 || sourcesCount == 0)
