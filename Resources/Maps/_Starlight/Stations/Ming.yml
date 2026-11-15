@@ -160272,7 +160272,7 @@ entities:
     - type: Transform
       parent: 2
       pos: -38.5,-39.5
-- proto: PrintedDocumentEmploymentStatement
+- proto: PrintedDocumentEmploymentContract
   entities:
   - uid: 3
     mapInit: true

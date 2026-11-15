@@ -163,8 +163,8 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentEmploymentStatementRecipe
-  result: PrintedDocumentEmploymentStatement
+  id: PrintedDocumentEmploymentContractRecipe
+  result: PrintedDocumentEmploymentContract
   categories:
   - Statements
   completetime: 2

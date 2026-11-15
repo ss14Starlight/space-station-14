@@ -1,25 +1,5 @@
 # Reports
 
-doc-text-printer-report-on-elimination-of-violations =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀            [bold]ISSUE RESOLUTION REPORT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Issue(s) identified by: [form]
-    Employee position: [form]
-
-    Presented issue(s): [form]
-
-    Measures taken to resolve issue(s): [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
 
 doc-text-printer-report-department =
                              [head=3]NT-CC Consortium Services[/head]
@@ -43,24 +23,6 @@ doc-text-printer-report-department =
     Degree of target readiness: [form]
 
     General condition of the department: [form]
-
-    ─────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-report-employee-performance =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ─────────────────────────────────────────
-   ⠀⠀                 [bold]WORK REPORT[/bold]
-    ─────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], have completed the following work: [form]
-
-    I hereby request that the result be accepted by the Head of the [form] Department.
 
     ─────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
@@ -109,23 +71,6 @@ doc-text-printer-report-on-the-chapters-meeting =
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
-
-doc-text-printer-internal-affairs-agents-report =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ─────────────────────────────────────────
-   ⠀⠀               [bold]AUDIT REPORT[/bold]
-    ─────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], during the course of an internal audit requested by [form] for the reason of [form], found the following irregularities: [form]
-
-    I also wish to report the following: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
 
@@ -225,49 +170,7 @@ doc-text-printer-statement-appointment-interim-chapter =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
-doc-text-printer-employment-statement =
-                             [head=3]NT-CC Consortium Services[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]EMPLOYMENT CONTRACT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], formally request to be appointed as an employee of the following department, in the position indicated below, for the remainder of the shift, or until resignation.
-
-    Name of department: [form]
-
-    Name of position: [form]
-
-   ⠀[check] I assert that I am qualified to hold the position which I am seeking, and acknowledge that my contract will be terminated if this is found not to be the case.
-
-   ⠀[check] I will surrender any current department work gear and equipment upon transfer.
-
-   ⠀[check] I agree to follow all applicable Standard Operating Procedures, and accept that my contract may be terminated if I fail to uphold them.
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-resignation-statement =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                          [bold]NOTICE OF RESIGNATION[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], hereby resign my position because of [form].
-
-   ⠀[check] I accept to pay the penalty established by the terms of termination of my contract at the end of the shift.
-
-   ⠀[check] I will surrender my departmental work gear and equipment.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
 
@@ -295,52 +198,6 @@ doc-text-printer-equipment-request-statement =
 
 
 # InquiriesAndAppeals
-
-doc-text-printer-invocation =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                         [bold]NOTICE OF SUMMONS[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-   ⠀[form] is hereby asked by [signature] to appear at [form], without delay.
-
-    Reason: [form]
-
-   ⠀[italic]This is an official notice. Penalties may apply for failure to appear.[/italic]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-
-doc-text-printer-shuttle-registration-request =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                  [bold]SHUTTLE REGISTRATION FORM[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I hereby request that the following shuttle be registered in the NanoTrasen system for identification.
-
-    Shuttle size: [form]
-
-    Shuttle class: [form]
-
-    Construction responsible: [form]
-
-    Requested name: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
 
 
 doc-text-printer-request-call-centcomm-members =
@@ -384,133 +241,6 @@ doc-text-printer-request-change-salary =
 
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-for-non-listed-employment =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀             [bold]NON-LISTED EMPLOYMENT CONTRACT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Name of applicant: [signature]
-
-    New job title: [form]
-
-    New supervisor: [form]
-
-    Applicable duties under SOP: [form]
-
-    Access provided to the employee: [form]
-
-    Reason for employment: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-for-promotion =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                         [bold]REQUEST FOR PROMOTION[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], assert that the following employee has obtained the necessary qualifications and experience to be promoted.
-
-    Employee to be promoted: [form]
-
-    Requested position: [form]
-
-    Supervisor(s): [form]
-
-    Reason for promotion: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-documents =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ──────────────────────────────────────────
-   ⠀⠀                  [bold]REQUEST FOR RELEASE OF DOCUMENTS[/bold]
-    ──────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], request a copy of the following document(s), in order to verify compliance with Standard Operating Procedures and/or Corporate Law.
-
-    Documents sought:
-
-   ⠀ • [form]
-   ⠀ • [form]
-   ⠀ • [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-
-
-doc-text-printer-request-modernization =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                         [bold]MODERNIZATION REQUEST[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], request to upgrade the instrumentation in the following department: [form]
-
-    Reason for request: [form]
-
-    List of upgrades:
-    • [form]
-    • [form]
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-
-
-doc-text-printer-product-order =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                                 [bold]PRODUCT ORDER[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Request to produce products by the following department: [form]
-
-    List of products required:
-    • [form]
-    • [form]
-
-    Reason for order: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
 
 # Complaints
 

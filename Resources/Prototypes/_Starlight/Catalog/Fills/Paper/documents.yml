@@ -34,8 +34,8 @@
   name: Issue Resolution Report
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-report-on-elimination-of-violations
+    - type: TextFilePaperContent
+      fileName: report-on-elimination-of-violations.txt
 
 - type: entity
   parent: PrintedDocument
@@ -52,8 +52,8 @@
   name: Work Report
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-report-employee-performance
+    - type: TextFilePaperContent
+      fileName: report-employee-performance.txt
 
 - type: entity
   parent: PrintedDocument
@@ -67,11 +67,11 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentInternalAffairsAgentsReport
-  name: Audit Report
+  name: IAA Audit Report
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-internal-affairs-agents-report
+    - type: TextFilePaperContent
+      fileName: internal-affairs-agents-report.txt
 
 - type: entity
   parent: PrintedDocument
@@ -157,12 +157,13 @@
 
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentEmploymentStatement
+  id: PrintedDocumentEmploymentContract
   name: Employment Contract
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
-      content: doc-text-printer-employment-statement
+    - type: TextFilePaperContent
+      fileName: employment-contract.txt
 
 - type: entity
   parent: PrintedDocument
@@ -170,8 +171,8 @@
   name: Notice of Resignation
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-resignation-statement
+    - type: TextFilePaperContent
+      fileName: resignation-statement.txt
 
 - type: entity
   parent: PrintedDocument
@@ -199,8 +200,8 @@
   name: Notice of Summons
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-invocation
+    - type: TextFilePaperContent
+      fileName: invocation.txt
 
 - type: entity
   parent: PrintedDocument
@@ -217,8 +218,8 @@
   name: Shuttle Registration Form
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-shuttle-registration-request
+    - type: TextFilePaperContent
+      fileName: shuttle-registration-request.txt
 
 - type: entity
   parent: PrintedDocument
@@ -253,8 +254,8 @@
   name: Non-Listed Employment Contract
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-request-for-non-listed-employment
+    - type: TextFilePaperContent
+      fileName: request-for-non-listed-employment.txt
 
 - type: entity
   parent: PrintedDocument
@@ -262,8 +263,8 @@
   name: Request for Promotion
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-request-for-promotion
+    - type: TextFilePaperContent
+      fileName: request-for-promotion.txt
 
 - type: entity
   parent: PrintedDocument
@@ -271,8 +272,8 @@
   name: Request for Release of Documents
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-request-documents
+    - type: TextFilePaperContent
+      fileName: request-documents.txt
 
 - type: entity
   parent: PrintedDocument
@@ -298,8 +299,8 @@
   name: Modernization Request
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-request-modernization
+    - type: TextFilePaperContent
+      fileName: request-modernization.txt
 
 - type: entity
   parent: PrintedDocument
@@ -316,8 +317,9 @@
   name: Product Order
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-product-order
+    - type: TextFilePaperContent
+      fileName: product-order.txt
+
 # Complaints
 
 - type: entity
