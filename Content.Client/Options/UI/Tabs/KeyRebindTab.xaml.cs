@@ -12,7 +12,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared._RMC14.Input;
+using Content.Shared._Starlight.Input;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 
 namespace Content.Client.Options.UI.Tabs

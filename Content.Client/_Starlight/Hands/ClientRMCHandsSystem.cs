@@ -1,11 +1,11 @@
 using System.Linq;
 using Content.Client.Hands.Systems;
-using Content.Shared._RMC14.Input;
+using Content.Shared._Starlight.Input;
 using Content.Shared.Hands.Components;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Utility;
 
-namespace Content.Client._RMC14.Hands;
+namespace Content.Client._Starlight.Hands;
 
 public sealed partial class ClientRMCHandsSystem : EntitySystem
 {

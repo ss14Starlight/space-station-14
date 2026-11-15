@@ -1,6 +1,6 @@
 ﻿using Content.Shared.Input;
 using Robust.Shared.Input;
-using Content.Shared._RMC14.Input;
+using Content.Shared._Starlight.Input;
 
 namespace Content.Client.Input
 {
@@ -96,7 +96,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade1);
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
-            human.AddFunction(CMKeyFunctions.SLInteractWithOtherHand); // Prefixes changed from RMC to SL to allow rebinds without affecting RMC or vice versa
+            human.AddFunction(CMKeyFunctions.SLInteractWithOtherHand); //Starlight, Ported from RMC14, Prefixes changed from RMC to SL to allow rebinds without affecting RMC or vice versa
 
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);

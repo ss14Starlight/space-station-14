@@ -1,6 +1,6 @@
 using Robust.Shared.Input;
 
-namespace Content.Shared._RMC14.Input;
+namespace Content.Shared._Starlight.Input;
 
 [KeyFunctions]
 public sealed class CMKeyFunctions
