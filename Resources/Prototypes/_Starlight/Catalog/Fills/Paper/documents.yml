@@ -16,17 +16,17 @@
   name: Morgue DNR Report
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-report-morgue
+    - type: TextFilePaperContent
+      fileName: report-morgue.txt
 
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentReportStation
+  id: PrintedDocumentReportSituation
   name: Station Situation Report
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-report-station
+    - type: TextFilePaperContent
+      fileName: report-situation.txt
 
 - type: entity
   parent: PrintedDocument
@@ -115,8 +115,8 @@
   name: Arrest Report
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-arrest-report
+    - type: TextFilePaperContent
+      fileName: arrest-report.txt
 
 - type: entity
   parent: PrintedDocument
@@ -331,12 +331,12 @@
 
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentComplaintOffense
+  id: PrintedDocumentCriminalComplaint
   name: Criminal Complaint
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-offense-complaint
+    - type: TextFilePaperContent
+      fileName: criminal-complaint.txt
 
 # Permissions
 
@@ -378,22 +378,22 @@
 
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentSearchPermission
+  id: PrintedDocumentSearchWarrant
   name: Search Warrant
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-search-permission
+    - type: TextFilePaperContent
+      fileName: search-warrant.txt
 
 
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentPermissionDisposeBody
+  id: PrintedDocumentBodyDisposalPermit
   name: Body Disposal Authorization
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-permission-dispose-body
+    - type: TextFilePaperContent
+      fileName: body-disposal-permit.txt
 
 - type: entity
   parent: PrintedDocument
@@ -419,8 +419,8 @@
   name: Art Permit
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-art-permit
+    - type: TextFilePaperContent
+      fileName: art-permit.txt
 
 - type: entity
   parent: PrintedDocument
@@ -437,8 +437,8 @@
   name: Mech Authorization Form
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-mech-authorization-form
+    - type: TextFilePaperContent
+      fileName: mech-authorization-form.txt
 
 # OrdersAndInstructions
 
@@ -466,8 +466,8 @@
   name: Recognition of Merit
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-incentive-order
+    - type: TextFilePaperContent
+      fileName: incentive-order.txt
 
 - type: entity
   parent: PrintedDocument
@@ -475,8 +475,8 @@
   name: Order of Mandatory Parole
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-prisoner-parole-order
+    - type: TextFilePaperContent
+      fileName: parole-order.txt
 
 - type: entity
   parent: PrintedDocument

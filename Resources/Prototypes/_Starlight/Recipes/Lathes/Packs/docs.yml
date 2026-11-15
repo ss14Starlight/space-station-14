@@ -3,7 +3,7 @@
   recipes:
   - PrintedDocumentReportMorgueRecipe
   - PrintedDocumentReportResearchAnomalyLogRecipe
-  - PrintedDocumentReportStationRecipe
+  - PrintedDocumentReportSituationRecipe
   - PrintedDocumentReportOnEliminationOfViolationsRecipe
   - PrintedDocumentReportDepartmentRecipe
   - PrintedDocumentReportEmployeePerformanceRecipe
@@ -37,14 +37,14 @@
   - PrintedDocumentRequestERTRecipe
   # Complaints
   - PrintedDocumentComplaintViolationLaborRulesRecipe
-  - PrintedDocumentComplaintOffenseRecipe
+  - PrintedDocumentCriminalComplaintRecipe
   # Permissions
   - PrintedDocumentPermissionEquipmentRecipe
   - PrintedDocumentPermissionResearchEquipmentRecipe
   - PrintedDocumentPermissionResearchSiliconConversionRecipe
   - PrintedDocumentPermissionResearchAnomalyHostRecipe
-  - PrintedDocumentSearchPermissionRecipe
-  - PrintedDocumentPermissionDisposeBodyRecipe
+  - PrintedDocumentSearchWarrantRecipe
+  - PrintedDocumentBodyDisposalPermitRecipe
   - PrintedDocumentConstructionPermitRecipe
   - PrintedDocumentSurgeryConsentFormRecipe
   - PrintedDocumentArtPermitRecipe

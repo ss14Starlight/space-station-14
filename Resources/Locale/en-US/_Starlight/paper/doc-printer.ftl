@@ -1,53 +1,5 @@
 # Reports
 
-doc-text-printer-report-morgue =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-    ⠀                              [bold]MORGUE DNR REPORT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Name: [form]
-
-    Job/Occupation: [form]
-
-    Approximate time of death/DNR approval: [form]
-
-    Reason for DNR status: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-report-station =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                            [bold]SITUATION REPORT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Purpose: [form]
-
-    Threat Level Code: [form]
-
-    Reason for establishing the code: [form]
-
-    Active threats: [form]
-
-    Crew casualties: [form]
-
-    Current situation: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
 doc-text-printer-report-on-elimination-of-violations =
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -271,35 +223,6 @@ doc-text-printer-disposal-report =
     ─────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
-
-doc-text-printer-arrest-report =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                            [bold]SECURITY ARREST REPORT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Arrestee: [form]
-
-    Arrest reason or complaining witnesses: [form]
-
-    Estimated time of arrest: [form]
-
-    Arresting officer: [form]
-
-    The arrestee was: [check] detained; [check] paroled; [check] released
-
-    Charges filed, if any: [form]
-
-    Duration of detention, if applicable: [form]
-
-    Additional remarks: [form]
-
-    ─────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
 doc-text-printer-psychological-report =
@@ -799,33 +722,6 @@ doc-text-printer-complaint-violation-labor-rules =
 
 
 
-doc-text-printer-offense-complaint =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                             [bold]CRIMINAL COMPLAINT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], believe that the following person has violated Corporate Law.
-
-    Name of violator: [form]
-
-    Description of misconduct: [form]
-
-    Criminal charges:
-
-   ⠀• [form]
-   ⠀• [form]
-   ⠀• [form]
-   ⠀• [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
 
 
 # Permissions
@@ -858,63 +754,6 @@ doc-text-printer-permission-equipment =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
-doc-text-printer-search-permission =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                             [bold]SEARCH WARRANT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], authorize the search of the following person and/or location
-
-    The affidavit below, sworn and subscribed before me, [signature], has established probable cause for this search warrant, which the Security Department is ordered to execute as follows:
-
-    Name of searched person: [form]
-
-    Position of searched person: [form]
-
-    Reason for search: [form]
-
-    Scope of property to be confiscated:
-
-   ⠀[check] Contraband
-   ⠀[check] Items believed to have been involved in a crime
-   ⠀[check] Misappropriated equipment
-   ⠀[check] Other, specify: [form]
-
-    Disposition of property: All property seized pursuant to this search warrant shall be remanded into the custody of the Warden's office, pending further orders by Command.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-
-
-doc-text-printer-permission-dispose-body =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                 [bold]BODY DISPOSAL AUTHORIZATION[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], authorize the disposal of the body of the following person or animal: [form]
-
-    Former position (if applicable): [form]
-
-    Reason for disposal: [form]
-
-    Method of disposal: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
 
 
 doc-text-printer-construction-permit =
@@ -939,110 +778,8 @@ doc-text-printer-construction-permit =
 
 
 
-doc-text-printer-art-permit =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]ART PERMIT[/bold]
-    ────────────────────────────────────────
-    Date And Time:[color=#0000ff] [form] [/color]
-    Document Compiler:[color=#0000ff] [form] [/color]
-
-    I, [bolditalic][color=#0000ff] [signature] [/color][/bolditalic], hereby approve the creation of the following work of art in the location given below.
-
-    Subject of the artpiece:[color=#0000ff] [form] [/color]
-    Location of the artpiece:[color=#0000ff] [form] [/color] [italic][color=#a9a9a9]
-
-    Art permits require a stamp from the Head of Personnel, the NanoTrasen Representative, or the Captain. If an artwork is located inside of a department or at its lobby the stamp of the relevant head of staff is required as well.
-
-    Any artwork that requires significant modification to the station's structure may also require the stamp of the Chief Engineer.[/color][/italic]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-doc-text-printer-mech-authorization-form =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]MECH AUTHORIZATION FORM[/bold]
-    ────────────────────────────────────────
-    Date And Time:[color=#0000ff] [form] [/color]
-    Document Compiler:[color=#0000ff] [form] [/color]
-
-    I, [bolditalic][color=#0000ff] [signature] [/color][/bolditalic], hereby approve the creation of the following mech.
-
-    Class of the Mech:[color=#0000ff] [form] [/color]
-    Authorized person:[color=#0000ff] [signature] [/color]
-    Reason for Authorization:[color=#0000ff] [form] [/color] [italic][color=#a9a9a9]
-
-    Mech authorization forms require a stamp from the RD, or the Captain.
-
-    If the mech chassis is a combat class it is required that this document be stamped by RD, HoS, and Captain.[/color][/italic]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 # OrdersAndInstructions
-
-
-
-doc-text-printer-incentive-order =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                       [bold]RECOGNITION OF MERIT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-
-    Dear [form],
-
-    In the course of your duties to the station, you have proven yourself to be an exemplar to the crew through your record of distinguished conduct. It is therefore my pleasure to grant you the following special commendation.
-
-    Services Performed: [form]
-
-    Medal or Citation: [form]
-
-    May your devotion to the station continue to light the way for your fellow crewmembers.
-
-    Sincerely,
-
-   ⠀[signature]
-
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-prisoner-parole-order =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                         [bold]ORDER OF MANDATORY PAROLE[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Parolee: [form]
-
-    Parole ordered by: [form]
-
-    Upon granting of parole, the Parolee shall enter into a position in the Service Department.
-
-    Failure to perform the duties of this position may result in re-imprisonment.
-
-    Position: [form]
-
-    Additional terms of parole: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
 
 
 # Communications
@@ -1065,5 +802,4 @@ doc-text-printer-centcomm-communication =
        - [signature]
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
 
