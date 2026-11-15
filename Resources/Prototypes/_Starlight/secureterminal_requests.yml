@@ -57,7 +57,7 @@
   description: secure-terminal-ert-security-desc
   announcement: secure-terminal-ert-security-announcement
   announcementColor: "#ff4444"
-  activationDelaySecs: 300
+  activationDelaySecs: 900
   requiresWarNotDeclared: true
   requireReason: true
   requiresAdminApproval: true
@@ -677,8 +677,10 @@
   salaryModifiers:
     - source: Interstellar Trade Guild
       change: 0.1
-    - source: Everyone
+    - source: Security
       change: -0.05
+    - source: Command
+      change: -0.1
   actionType: Announcement
   sortOrder: 200
   authSchemes:

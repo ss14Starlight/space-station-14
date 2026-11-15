@@ -130,7 +130,7 @@ secure-terminal-warops-security-announcement = An Emergency Response Team — Se
 
 secure-terminal-ert-security-name = ERT Security
 secure-terminal-ert-security-desc = Deploys an ERT Security detail.
-secure-terminal-ert-security-announcement = An Emergency Response Team — Security detail — has been authorized and is en route. Estimated arrival: 5 minutes.
+secure-terminal-ert-security-announcement = An Emergency Response Team — Security detail — has been authorized and is en route. Estimated arrival: 15 minutes.
 
 secure-terminal-ert-engineering-name = ERT Engineering
 secure-terminal-ert-engineering-desc = Deploys an ERT Engineering detail to assist with critical station infrastructure.
