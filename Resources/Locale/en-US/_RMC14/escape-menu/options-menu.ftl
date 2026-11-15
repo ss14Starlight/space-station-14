@@ -1,0 +1,1 @@
+ui-options-function-SL-interact-with-other-hand = Interact with other hand
