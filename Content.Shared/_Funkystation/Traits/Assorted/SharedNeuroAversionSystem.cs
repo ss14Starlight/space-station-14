@@ -4,6 +4,7 @@
 
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Random;
 
@@ -17,6 +18,7 @@ public abstract class SharedNeuroAversionSystem : EntitySystem
 {
     [Dependency] protected readonly IRobustRandom Random = default!;
     [Dependency] protected readonly MobStateSystem MobState = default!;
+    [Dependency] protected static readonly DamageableSystem _damageableSystem = default!;
 
     // Seizure build constants (using 0-100 scale instead of 0-1)
     protected const float MinRandomSpikePercent = 0.1f;  // Reduced spike size
@@ -85,8 +87,9 @@ public abstract class SharedNeuroAversionSystem : EntitySystem
         if (maxHp <= 0f)
             return 0f;
 
-        var currentDamage = (float)damageable.TotalDamage;
-        return MathF.Max(0f, MathF.Min(1f, currentDamage / maxHp));
+
+        var currentDamage = _damageableSystem.GetTotalDamage(damageable.Owner);
+        return MathF.Max(0f, MathF.Min(1f, (float)(currentDamage / maxHp)));
     }
 
     /// <summary>

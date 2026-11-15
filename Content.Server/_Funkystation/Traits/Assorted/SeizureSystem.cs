@@ -51,7 +51,7 @@ public sealed partial class SeizureSystem : SharedSeizureSystem
         if (!dragging)
             return;
 
-        if (TryComp<DamageableComponent>(ent, out var damage) && damage.TotalDamage >= ent.Comp.DamageUpperBound)
+        if (TryComp<DamageableComponent>(ent, out var damage) && _damageable.GetTotalDamage(damage.Owner) >= ent.Comp.DamageUpperBound)
             return;
 
         var factor = (args.NewPosition.Position - args.OldPosition.Position).Length();
