@@ -238,10 +238,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         if (!_mobState.IsIncapacitated(victim)) // starlight edit - cuffed and crit people can be devoured
         {
             if (TryComp<CuffableComponent>(victim, out var cuffs) && cuffs.CuffedHandCount > 0)
-            {
                 return true;
-            }
-            
             if (showPopup)
                 _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-not-dead"), changeling.Owner, changeling.Owner, PopupType.Medium);
             return false;
