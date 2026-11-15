@@ -1098,10 +1098,12 @@
   - UplinkDisruption
 
 - type: listing
-  id: UplinkTravelCamera
-  name: uplink-travel-camera-name
-  description: uplink-travel-camera-desc
-  productEntity: TravelCamera
+  # Starlight edit Start: travel -> photo
+  id: UplinkPhotoCamera
+  name: uplink-photo-camera-name
+  description: uplink-photo-camera-desc
+  productEntity: PhotoCamera
+  # Starlight edit End
   cost:
     Telecrystal: 1
   categories:

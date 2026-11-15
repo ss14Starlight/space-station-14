@@ -1,0 +1,47 @@
+- type: !PartialOnly latheRecipe
+  id: BaseModularHudModuleT1Recipe
+  categories: !Clear
+  - Eyewear
+  materials:
+    Steel: 300
+    Glass: 150
+    Plastic: 75
+
+- type: !PartialOnly latheRecipe
+  id: BaseModularHudModuleT2Recipe
+  materials:
+    Steel: 400
+    Glass: 200
+    Plastic: 100
+    Silver: 100
+
+- type: !PartialOnly latheRecipe
+  id: HudModuleEyeProtection
+  materials:
+    Steel: 400
+    Glass: 200
+    Silver: 200
+
+- type: !PartialOnly latheRecipe
+  id: HudModuleFlashImmunity
+  materials:
+    Steel: 400
+    Glass: 150
+    Silver: 300
+
+- type: !PartialOnly latheRecipe
+  id: HudModuleShowCriminalRecordIcons
+  parent: BaseModularHudModuleT1Recipe
+  materials:
+    Steel: 300
+    Glass: 150
+    Plastic: 75
+    Silver: 75
+
+- type: !PartialOnly latheRecipe
+  id: HudModuleNoirOverlay
+  parent: BaseModularHudModuleVisualRecipe
+
+- type: !PartialOnly latheRecipe
+  id: HudModuleBlackAndWhiteOverlay
+  parent: BaseModularHudModuleVisualRecipe

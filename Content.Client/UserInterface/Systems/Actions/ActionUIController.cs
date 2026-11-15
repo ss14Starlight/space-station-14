@@ -103,7 +103,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             _actionsSystem.OnActionAdded += OnActionAdded;
             _actionsSystem.OnActionRemoved += OnActionRemoved;
             _actionsSystem.ActionsUpdated += OnActionsUpdated;
-            StartSettling(); // Starlight
+            ResetArrangement(); // Starlight
         }
 
         UpdateFilterLabel();
@@ -258,7 +258,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             return;
 
         _actions.Add(action);
-        QueueSortIfSettling(); // Starlight
+        QueueSort(); // Starlight
     }
 
     private void OnActionRemoved(EntityUid actionId)
@@ -283,7 +283,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
     private void OnActionsUpdated()
     {
         QueueWindowUpdate();
-        QueueSortIfSettling(); // Starlight
+        QueueSort(); // Starlight
 
         if (_actionsSystem != null)
             _container?.SetActionData(_actionsSystem, _actions.ToArray());
@@ -758,20 +758,12 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         if (_window is {UpdateNeeded: true})
             SearchAndDisplay();
         // Starlight start
-        // improve sorting and race condition handling that was here before to hopefully work properly and be more consistent.
-        if (_sortQueued && _actionsSystem != null)
-        {
-            _sortQueued = false;
-            if (!_userArranged)
-            {
-                LoadDefaultActions();
-                _container?.SetActionData(_actionsSystem, _actions.ToArray());
-                QueueWindowUpdate();
-            }
-        }
-
-        if (_settling && AllActionsArrived())
-            _settling = false;
+        // improve sorting++ (please work god please work on live i beg)
+        if (!_sortQueued || _actionsSystem == null) return;
+        _sortQueued = false;
+        if (_userArranged || !LoadDefaultActions()) return;
+        _container?.SetActionData(_actionsSystem, _actions.ToArray());
+        QueueWindowUpdate();
         // Starlight end
     }
 
@@ -780,7 +772,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         if (_actionsSystem == null)
             return;
 
-        StartSettling(); // Starlight
+        ResetArrangement(); // Starlight
         LoadDefaultActions();
         _container?.SetActionData(_actionsSystem, _actions.ToArray());
         QueueWindowUpdate();
@@ -788,18 +780,24 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
 
     private void OnComponentUnlinked()
     {
+        ResetArrangement(); // Starlight
         _container?.ClearActionData();
         QueueWindowUpdate();
         StopTargeting();
     }
 
-    private void LoadDefaultActions()
+    private bool LoadDefaultActions() // Starlight edit
     {
         if (_actionsSystem == null)
-            return;
+            return false; // Starlight edit
 
         var actions = _actionsSystem.GetClientActions().Where(action => action.Comp.AutoPopulate).ToList();
         actions.Sort(_actionsSystem.ActionComparer); // Starlight edit
+
+        // Starlight begin
+        if (_actions.SequenceEqual(actions.Select(action => (EntityUid?) action.Owner)))
+            return false;
+        // Starlight end
 
         _actions.Clear();
         foreach (var (action, _) in actions)
@@ -807,6 +805,8 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             if (!_actions.Contains(action))
                 _actions.Add(action);
         }
+
+        return true; // Starlight edit
     }
 
     /// <summary>

@@ -21,13 +21,13 @@
   category: Disabilities
   cost: 0
   effects:
-    - !type:AddCompsEffect
-      components:
-        - type: PermanentBlindness
-          blindness: 4
-          glassesFixable: true
-    - !type:SpawnItemInHandEffect
-      item: ClothingEyesGlasses
+  - !type:AddCompsEffect
+    components:
+    - type: PermanentBlindness
+      blindness: 4
+      glassesFixable: true
+  - !type:SpawnItemInHandEffect
+    item: HudModuleVisionCorrection
   whitelist:
     components:
       - Blindable

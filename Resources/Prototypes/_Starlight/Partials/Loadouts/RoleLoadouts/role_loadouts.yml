@@ -1,6 +1,8 @@
 - type: !PartialOnly roleLoadout
   id: JobBartender
   groups:
+    - !Remove Glasses
+    - !Index:3 BartenderEyewear
     - TiesGroup
 
 - type: !PartialOnly roleLoadout
@@ -36,6 +38,7 @@
 - type: !PartialOnly roleLoadout
   id: JobMusician
   groups:
+    - !Remove Glasses
     - TiesGroup
 
 - type: !PartialOnly roleLoadout
@@ -51,6 +54,7 @@
 - type: !PartialOnly roleLoadout
   id: JobTechnicalAssistant
   groups:
+    - !Index:5 Glasses
     - TiesGroup
 
 - type: !PartialOnly roleLoadout
@@ -129,6 +133,12 @@
     - TiesGroup
 
 - type: !PartialOnly roleLoadout
-  id: JobRadioHost
+  id: JobAssistant
   groups:
-    - TiesGroup
+  - !Index:9 Glasses
+  - !Remove AssistantGlasses
+
+- type: !PartialOnly roleLoadout
+  id: JobLawyer
+  groups:
+  - !Remove Glasses

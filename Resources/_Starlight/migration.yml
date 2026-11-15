@@ -500,3 +500,19 @@ GasPipeTankTallFilledAir7500Alt1: GasPipeTankTallFilledAir9000Alt1
 GasPipeTankTallFilledAir7500Alt2: GasPipeTankTallFilledAir9000Alt2
 GasPipeTankTallFilledAir7500Alt3: GasPipeTankTallFilledAir9000Alt3
 GasPipeTankTallFilledAir7500Alt4: GasPipeTankTallFilledAir9000Alt4
+
+
+#2026-11-08 - Removed in favour of Photo Camera's
+TravelCamera: PhotoCamera
+PhotographBlack: null
+PhotographRainbow: null
+PhotographPurple: null
+PhotographYellow: null
+PhotographGreen: null
+PhotographBlue: null
+PhotographRed: null
+
+#2026-11-05 - Modular HUD extra glasses cleanup
+ClothingEyesGlassesCorpsman: null
+ClothingEyesHudCorpsman: null
+ClothingEyesHudBrigmedic: ClothingEyesHudMedSec

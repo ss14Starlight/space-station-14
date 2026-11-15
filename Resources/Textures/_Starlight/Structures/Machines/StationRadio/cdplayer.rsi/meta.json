@@ -9,27 +9,27 @@
     "states": [
         {
             "name": "icon",
-            "directions": 4
+            "directions": 1
         },
         {
             "name": "unlit",
-            "directions": 4
+            "directions": 1
         },
         {
             "name": "unlit_empty",
-            "directions": 4
+            "directions": 1
         },
         {
             "name": "slot0",
-            "directions": 4
+            "directions": 1
         },
         {
             "name": "slot1",
-            "directions": 4
+            "directions": 1
         },
         {
             "name": "slot2",
-            "directions": 4
+            "directions": 1
         }
     ]
 }
