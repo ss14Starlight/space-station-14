@@ -1,6 +1,3 @@
-trait-dipsomania-name = Dipsomania
-trait-dipsomania-desc = Your body relies on alcohol for sustenance, while drinking water makes you vomit.
-
 blimpuf-trait-neuroaversion-name = Neuroaversion
 blimpuf-trait-neuroaversion-desc = Mindshield implants interfere with your nervous system, causing recurring migraines and occasional seizures.
 blimpuf-neuroaversion-migraine-self = A sharp ache spreads through your head around the mindshield implant.
