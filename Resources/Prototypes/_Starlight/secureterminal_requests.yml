@@ -760,15 +760,20 @@
   sortOrder: 500
   authSchemes:
     - id: SecurityLeadership
+      name: secure-terminal-executive-authority-name
+      groups:
+        - [Captain, Ntrep]
+        - [Captain, Ntrep]
+    - id: SecurityLeadership
       name: secure-terminal-security-leadership-name
       groups:
         - [Captain, HeadOfSecurity, Ntrep]
         - [Captain, HeadOfSecurity, Ntrep]
-        - [Command, HeadOfSecurity, Ntrep]
+        - [Command]
     - id: CaptainAndCommand
       name: secure-terminal-command-name
       groups:
         - [Captain, Ntrep]
-        - [Command, Ntrep]
-        - [Command, Ntrep]
-        - [Command, Ntrep]
+        - [Command]
+        - [Command]
+        - [Command]
