@@ -15,11 +15,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.Sprite;
 
-/// <summary>
-/// Applies <see cref="SpriteControlComponent"/>. The entity's own sprite is backed up onto a client-side entity the
-/// first time anything is applied, and copied back (with clothing, held items, humanoid parts and visualizers
-/// re-rendered fresh) when the component is removed.
-/// </summary>
 public sealed partial class SpriteControlSystem : EntitySystem
 {
     [Dependency] private ItemSystem _item = null!;
