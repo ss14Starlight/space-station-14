@@ -1,0 +1,14 @@
+- type: entity
+  parent: SurveillanceCameraWirelessRouterBase
+  id: SurveillanceCameraWirelessRouterMedTak
+  name: MedTak camera wireless router
+  suffix: MedTak
+  components:
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: MedTak
+    transmitFrequencyId: MedTak
+  - type: WirelessNetworkConnection
+    range: 2000 # longer range
+  - type: SurveillanceCameraRouter
+    subnetFrequency: MedTakOperators
