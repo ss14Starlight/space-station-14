@@ -272,7 +272,7 @@
         children:
         - id: HudModuleShowJobIcons
         - id: HudModuleShowCriminalRecordIcons
-        - id: HudModuleShowAccessReaderSettings
+        - id: HudModuleShowIdAccess
   - type: EyeProtection
     protectionTime: 5
 
