@@ -98,7 +98,7 @@ namespace Content.Server.GameTicking.Commands
                 // Starlight-start: validate the client-supplied job and station server-side
                 if (!_prototypeManager.TryIndex<JobPrototype>(id, out var jobPrototype))
                 {
-                    shell.WriteError(Loc.GetString("join-game-command-unknown-job", ("job", id)));
+                    shell.WriteError(Loc.GetString("join-game-command-unknown-job"));
                     return;
                 }
 
