@@ -1,6 +1,6 @@
 - type: entity
   name: terror spider
-  parent: [ SimpleSpaceMobBaseAntag, MobRespirator, BaseSlicingRefinable ]
+  parent: [ SimpleSpaceMobBaseAntag, BaseSlicingRefinable ]
   id: MobTerrorSpider
   description: A deadly hybrid of a giant spider and xenomorph.
   abstract: true
@@ -90,6 +90,10 @@
     thresholds:
       0: Alive
       160: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds: &speedModifiers160
+      112: &slowdownSmall 0.85 # 70%
+      136: &slowdownMedium 0.7 # 85%
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -117,7 +121,7 @@
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bleedReductionAmount: 1
-    bloodRefreshAmount: 3
+    bloodRefreshAmount: 4
     bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
@@ -191,10 +195,13 @@
     thresholds:
       0: Alive
       210: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds: &speedModifiers210
+      147: *slowdownSmall # 70%
+      178.5: *slowdownMedium # 85%
   - type: PassiveDamage
     allowedStates:
     - Alive
-
     damage:
       types:
         Poison: -0.8
@@ -264,6 +271,10 @@
     thresholds:
       0: Alive
       120: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds: &speedModifiers120
+      84: *slowdownSmall # 70%
+      102: *slowdownMedium # 85%
   - type: PassiveDamage
     allowedStates:
     - Alive
@@ -331,10 +342,11 @@
     thresholds:
       0: Alive
       120: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds: *speedModifiers120
   - type: PassiveDamage
     allowedStates:
     - Alive
-
     damage:
       types:
         Poison: -0.5
@@ -413,10 +425,13 @@
     thresholds:
       0: Alive
       180: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds: &speedModifiers180
+      126: *slowdownSmall # 70%
+      153: *slowdownMedium # 85%
   - type: PassiveDamage
     allowedStates:
     - Alive
-
     damage:
       types:
         Poison: -0.5
@@ -471,12 +486,15 @@
     thresholds:
       0: Alive
       315: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds: &speedModifiers315
+      220.5: *slowdownSmall # 70%
+      267.75: *slowdownMedium # 85%
   - type: Spider
     webPrototype: SpiderWebStrongThick
   - type: PassiveDamage
     allowedStates:
     - Alive
-
     damage:
       types:
         Poison: -0.8
@@ -533,6 +551,8 @@
     thresholds:
       0: Alive
       180: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds: *speedModifiers180
   - type: BatteryAmmoProvider
     proto: BulletAcidHitscan
     fireCost: 50
@@ -551,7 +571,6 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-
     damage:
       types:
         Poison: -0.5
@@ -605,6 +624,10 @@
       0: Alive
       350: Critical
       475: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds: &speedModifiers350
+      245: *slowdownSmall # 70%
+      297.5: *slowdownMedium # 85%
   - type: MeleeWeapon
     damage:
       types:
@@ -613,7 +636,6 @@
     allowedStates:
     - Alive
     - Critical
-
     damage:
       types:
         Poison: -0.1
@@ -659,11 +681,14 @@
       0: Alive
       200: Critical
       270: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds: &speedModifiers200
+      140: *slowdownSmall # 70%
+      170: *slowdownMedium # 85%
   - type: PassiveDamage
     allowedStates:
     - Alive
     - Critical
-
     damage:
       types:
         Poison: -1
@@ -734,6 +759,8 @@
       0: Alive
       200: Critical
       270: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds: *speedModifiers200
   - type: PassiveDamage
     allowedStates:
     - Alive

@@ -30,6 +30,9 @@
   id: Arachnid
 
 - type: Tag
+  id: AtmosFireHelmet # ConstructionGraph: AtmosianHelmet
+
+- type: Tag
   id: AutoMender
 
 - type: Tag
@@ -513,6 +516,9 @@
   id: MagazineBoxBoltRifle
 
 - type: Tag
+  id: MetalHydrogenHelmet # ConstructionGraph: AtmosianHelmet
+
+- type: Tag
   id: CartridgeImpactBolt
 
 - type: Tag
@@ -628,6 +634,12 @@
   id: ModularBarrel
 
 - type: Tag
+  id: ModularHudGoggles
+
+- type: Tag
+  id: ModularHudSingleEye
+
+- type: Tag
   id: ModuleBlacklistXenoborgEngiWeapon
 
 - type: Tag
@@ -704,9 +716,6 @@
 
 - type: Tag
   id: RemoteSignallerAdvanced # Crafting whitelist: Advanced Deadman remote trigger
-
-- type: Tag
-  id: RequiredForLmgTag
 
 - type: Tag
   id: Resomi

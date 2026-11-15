@@ -87502,10 +87502,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -74.5,53.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 14330
     components:
     - type: Transform
@@ -87524,10 +87520,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 13.5,36.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: ComputerCriminalRecordsDesktop
   entities:
   - uid: 14333
@@ -88702,10 +88694,6 @@ entities:
       parent: 2
       pos: -77.5,45.5
       anchored: True
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
     - type: Physics
       bodyType: Static
     - type: EntityStorage
@@ -88749,10 +88737,6 @@ entities:
       parent: 2
       pos: -78.5,45.5
       anchored: True
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
     - type: Physics
       bodyType: Static
   - uid: 14506
@@ -185381,10 +185365,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -74.5,50.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
     - type: EntityStorage
       air:
         temperature: 293.14673

@@ -82587,30 +82587,18 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 21.5,23.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 13601
     components:
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: 6.5,26.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 13602
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -14.5,25.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 13603
     components:
     - type: Transform
@@ -82625,20 +82613,12 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -25.5,19.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 13605
     components:
     - type: Transform
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -10.5,13.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
   - uid: 13606
     components:
     - type: Transform

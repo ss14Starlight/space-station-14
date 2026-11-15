@@ -79,6 +79,7 @@ public sealed partial class ContentReplayPlaybackManager
 
     private void LoadOverride(IReplayFileReader fileReader)
     {
+        ReadFinalRoundStart(fileReader); // Starlight
         var screen = _stateMan.RequestStateChange<LoadingScreen<bool>>();
         screen.Job = new ContentLoadReplayJob(1 / 60f, fileReader, _loadMan, screen);
         screen.OnJobFinished += (_, e) => OnFinishedLoading(e);

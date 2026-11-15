@@ -1,0 +1,93 @@
+- type: !PartialOnly entity
+  id: HudModuleShowAccessReaderSettings
+  name: access tampering detector HUD module
+  description: A heads-up display module that detects changed access requirements on airlocks and other lockable devices, showing the current requirements or whether they have been removed.
+
+- type: !PartialOnly entity
+  id: HudModuleEyeProtection
+  components:
+  - type: ModularHudModule
+    requirements: !Clear
+    - failureMessage: modular-hud-requirement-goggles
+      whitelist:
+        tags:
+        - ModularHudGoggles
+
+- type: !PartialOnly entity
+  id: HudModuleFlashImmunity
+  components:
+  - type: ModularHudModule
+    requirements: !Clear
+    - failureMessage: modular-hud-requirement-full-coverage
+      whitelist:
+        tags:
+        - FullEyeCovering
+      blacklist:
+        tags:
+        - ModularHudSingleEye
+
+- type: !PartialOnly entity
+  id: HudModuleShowMedicalIcons
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Hybrid
+    - MoffDemonBiological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+    - Hybrid
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
+
+- type: !PartialOnly entity
+  id: HudModuleShowInorganicHealthBars
+  description: A heads-up display module which scans the inorganics in view and provides accurate data about their integrity.
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - Inorganic
+    - Silicon
+    - IPC
+    - Hybrid
+    - MoffDemonInorganic
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [ResearchDirector, BlueShield]
+
+- type: !PartialOnly entity
+  id: HudModuleShowCriminalRecordIcons
+  components:
+  - type: ModularHudModule
+    visuals:
+      accent:
+        color: '#FF3333'
+        priority: 100
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Security
+    - Representatives
+
+- type: !PartialOnly entity
+  id: HudModuleShowJobIcons
+  components:
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments:
+    - Security
+    - Command
+
+- type: !PartialOnly entity
+  id: HudModuleShowMindShieldIcons
+  components:
+  - type: ModularHudModule
+    visuals:
+      lens:
+        color: '#FF3333'
+        priority: 50
+      Specular:
+        color: '#FF6633'
+        priority: 120

@@ -12,7 +12,74 @@ Examples include:
   Non-crew invaders, such as hostile boarders, automatically qualify and are to be engaged at will.
 
   ## Crew
-  Crew-members must be [bold]guilty of at least 2 extreme crimes[/bold], and, in addition, have a tangible tie to an enemy organization.
+  Crew-members must reach at least 4 points from charged crimes, and, in addition, have a tangible tie to an enemy organization.
+
+  Points are determined by the severity tier of each charged crime:
+
+  <Table Columns="2">
+    <ColorBox>
+      <Box Margin="2">
+        [bold]Tier[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        [bold]Points[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" Margin="2">
+        1-XX Minor
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        0
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" Margin="2">
+        2-XX Moderate
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        0
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" Margin="2">
+        3-XX Major
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        1
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" Margin="2">
+        4-XX Extreme
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        2
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" Margin="2">
+        5-XX Capital
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box Margin="2">
+        3
+      </Box>
+    </ColorBox>
+  </Table>
+
+  Standard Corporate Law rules apply; linked crimes cannot be charged at the same time, and subsequently points may only be afforded to individuals for charged crimes.
 
   This tie can take two forms:
   - Physical evidence
@@ -24,20 +91,14 @@ Examples include:
     - Contraband tied to an enemy organization, such as a FreeMAG or open uplink.
     - A positive test of some sort proving said allegiance, such as a failed mindshielding, implant extraction, or sun/holy water test on a vampire.
 
-    In all cases, the physical evidence cannot be part of the already accused extreme crimes.
-
-    As such, to declare someone an enemy of the corporation off of contraband alone, the individual must have three pieces of it.
-    - One for each of the two minimum extreme crimes
-    - One in addition, to confirm their allegiance
-
     ### Admission
     An admission can be either verbal or written, but must in both cases be witnessed by at least two mindshielded security personnel to be valid.
 
   ## Administering the Designation
   Two of three of the following crew must approve of the measure:
-  - (Acting) Head of Security
   - Magistrate
   - (Acting) Captain
+  - (Acting) Head of Security
 
   On Red Alert or above, the Head of Security may designate EoCs verbally by their own authority, but must still do the paperwork when the crisis is over.
 

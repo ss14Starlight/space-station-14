@@ -57,3 +57,13 @@
   cost: 1300
   category: cargoproduct-category-name-service
   group: market
+
+- type: cargoProduct
+  id: ServicePhotoCameras
+  icon:
+    sprite: _Starlight/Objects/Devices/snapshot_camera.rsi
+    state: icon
+  product: PhotoCameraCrate
+  cost: 4000
+  category: cargoproduct-category-name-service
+  group: market

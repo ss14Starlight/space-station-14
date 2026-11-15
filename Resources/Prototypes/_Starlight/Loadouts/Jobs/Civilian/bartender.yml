@@ -1,0 +1,9 @@
+- type: loadout
+  id: BartenderBeerSunglasses
+  equipment:
+    eyes: ClothingEyesHudBeer
+
+- type: loadout
+  id: BartenderBeerEyepatch
+  equipment:
+    eyes: ClothingEyesEyepatchHudBeer

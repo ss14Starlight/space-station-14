@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Verbs;
 using Content.Server._Starlight.Commands;
+using Content.Shared._Starlight.Commands;
 using Content.Shared.Verbs;
 using Robust.Shared.Console;
 using Robust.Shared.Toolshed;
@@ -27,7 +28,7 @@ public sealed partial class VerbNameCustomParser : CustomCompletionParser<string
             || targets.FirstOrNull() is not { } target)
         {
             var typeOpts = Verb.VerbTypes
-                .Select(type => new CompletionOption(Quote(type.Name), "verb type", OptionFlags));
+                .Select(type => new CompletionOption(SharedCommandHelpers.Quote(type.Name), "verb type", OptionFlags));
             return CompletionResult.FromHintOptions(typeOpts, "verb name or type");
         }
 
@@ -35,11 +36,9 @@ public sealed partial class VerbNameCustomParser : CustomCompletionParser<string
         var opts = _verb.GetLocalVerbs(target, invoker, Verb.VerbTypes, true)
             .Select(verb => verb.Text)
             .Distinct()
-            .Select(text => new CompletionOption(Quote(text), Flags: OptionFlags));
+            .Select(text => new CompletionOption(SharedCommandHelpers.Quote(text), Flags: OptionFlags));
         return CompletionResult.FromHintOptions(opts, "verb name");
     }
-
-    private static string Quote(string text) => $"\"{text.Replace("\\", @"\\").Replace("\"", "\\\"")}\"";
 
     private static bool TryResolveInvoker(ParserContext ctx, out EntityUid invoker)
     {

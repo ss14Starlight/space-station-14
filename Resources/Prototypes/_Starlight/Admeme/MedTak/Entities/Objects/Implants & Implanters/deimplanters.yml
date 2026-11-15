@@ -1,0 +1,77 @@
+﻿# Implanters
+
+- type: entity
+  name: deimplanter
+  id: BaseDeimplanter
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      implanter_slot: !type:ContainerSlot { }
+  - type: Implanter
+    drawTime: 15
+    whitelist:
+      components:
+      - MobState # no chair microbomb
+    blacklist:
+      components:
+      - Guardian # no holoparasite macrobomb wombo combo
+      tags:
+      - Unimplantable
+    currentMode: Draw
+    implanterSlot:
+      name: Implant
+      locked: True
+      priority: 0
+      whitelist:
+        tags:
+        - SubdermalImplant
+    allowDeimplantAll: false
+    deimplantWhitelist:
+    - MedTakMindShieldImplant
+    - TrackingImplantMedTakBronze
+    - TrackingImplantMedTakSilver
+    - TrackingImplantMedTakGold
+    - TrackingImplantMedTakPlatinum
+    - TrackingImplantMedTakTeam
+    deimplantFailureDamage:
+      types:
+        Cellular: 50
+        Heat: 10
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Objects/deimplanter.rsi
+    state: deimplanter0
+    layers:
+    - state: deimplanter0
+      map: [ "implantOnly" ] #Double check this
+      visible: true
+    - state: deimplanter1
+      map: [ "implantFull" ]
+      visible: false
+  - type: Item
+    sprite: _Starlight/Admeme/MedTak/Objects/deimplanter.rsi
+    heldPrefix: implanter
+    size: Small
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ImplanterVisuals.Full:
+        implantFull:
+          True: {visible: true}
+          False: {visible: false}
+  - type: UserInterface
+    interfaces:
+      enum.DeimplantUiKey.Key:
+        type: DeimplantBoundUserInterface
+
+- type: entity
+  id: Deimplanter
+  parent: BaseDeimplanter
+  name: MedTak implant extractor
+  description: "A dual-purpose MedTak syringe designed for the removal of MedTak subdermal implants. Once an implant is extracted, it is stored within and can be re-administered.\nWARNING: Operator error, such as selecting a non-present implant type, causes severe genetic trauma to the operator."
+  components:
+  - type: Tag
+    tags:
+    - Trash

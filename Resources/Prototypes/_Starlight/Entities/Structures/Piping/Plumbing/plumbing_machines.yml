@@ -527,7 +527,7 @@
   parent: PlumbingMachineBase
   id: PlumbingSmartDispenser
   name: plumbing smart dispenser
-  description: Pulls in all reagents from its inlets and stores up to 240u of each type. Use a labeled container to auto-dispense a matching reagent, or use a refillable container on it to manually dispense. Requires power.
+  description: Pulls in all reagents from its inlets and stores up to 240u of each type. Use a labeled container to auto-dispense a matching reagent, or use a refillable container on it to manually dispense. Requires power to auto-dispense.
   components:
   - type: Transform
     noRot: true
@@ -540,12 +540,6 @@
     - state: dispenser-unshaded
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
-  - type: GenericVisualizer
-    visuals:
-      enum.PowerDeviceVisuals.Powered:
-        enum.PowerDeviceVisualLayers.Powered:
-          True: { visible: true }
-          False: { visible: false }
   - type: CollideOnAnchor
     enable: true
   - type: SubFloorHide
@@ -599,6 +593,8 @@
     interfaces:
       enum.PlumbingSmartDispenserUiKey.Key:
         type: PlumbingSmartDispenserBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: ActivatableUI
     key: enum.PlumbingSmartDispenserUiKey.Key
   - type: ApcPowerReceiver
@@ -616,6 +612,14 @@
         acts: ["Destruction"]
   - type: StaticPrice
     price: 200
+  - type: AccessReader
+    access: [["Medical"]]
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+    wiresAccessible: True
+  - type: Wires
+    boardName: wires-board-name-pluming-smart-dispenser
+    layoutId: PlumbingSmartDispenser
 
 # =============================================================================
 # Plumbing Pill Press - automatically creates pills or patches from reagents
