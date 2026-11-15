@@ -242,7 +242,7 @@
   - type: RemoteControlConsole
   - type: DeviceLinkSource
     ports:
-      - RemoteControl
+    - RemoteControl
   - type: ActivatableUI
     key: enum.RemoteControlUIKey.Key
   - type: UserInterface
