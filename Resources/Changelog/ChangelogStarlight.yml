@@ -1,13 +1,6 @@
 Entries:
 - author: Floximo
   changes:
-  - message: Loss of power will no longer leave the AI in an unrecoverable state.
-    type: Fix
-  id: 410077
-  time: '2026-11-03T12:06:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6950
-- author: Floximo
-  changes:
   - message: The job slot of the AI will now be freed on cryo/ghost.
     type: Fix
   id: 410078
@@ -2799,4 +2792,11 @@ Entries:
   id: 410476
   time: '2026-11-15T10:59:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7252
+- author: Rinary
+  changes:
+  - message: Fixed exploit when you can latejoin and bypass any role checks(including playime, whitelist, role ban).
+    type: Fix
+  id: 410477
+  time: '2026-11-15T13:14:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7255
 Order: -1
