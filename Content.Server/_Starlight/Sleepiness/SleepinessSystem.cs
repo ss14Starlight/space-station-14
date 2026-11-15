@@ -1,8 +1,10 @@
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
+using Content.Shared.Chat;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Eye.Blinding.Systems;
+using Content.Shared.Movement.Systems;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.StatusEffectNew.Components;
 using Content.Shared._Starlight.Sleepiness.Components;
@@ -22,6 +24,9 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
     [Dependency] private SleepingSystem _sleeping = default!;
     [Dependency] private BlindableSystem _blindable = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private SleepinessMovementSpeedSystem _sleepinessMovementSpeed = default!;
+    [Dependency] private SharedChatSystem _chat = default!;
     [Dependency] private SharedSolutionContainerSystem _solutions = default!;
     [Dependency] private IRobustRandom _random = default!;
 
@@ -43,11 +48,21 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
         {
             // Let the removal event handle queued effects and preserve pending wake requests.
             if (EntityManager.IsQueuedForDeletion(uid) ||
-                statusEffect.AppliedTo is not { } target ||
-                statusEffect.EndEffectTime is not { } endTime)
+                statusEffect.AppliedTo is not { } target)
                 continue;
 
-            var remaining = endTime - _timing.CurTime;
+            var endTime = statusEffect.EndEffectTime;
+            var remaining = endTime is { } expiration
+                ? expiration - _timing.CurTime
+                : sleepiness.MaximumSlowdownSleepiness;
+
+            _movementSpeedModifier.RefreshMovementSpeedModifiers(target);
+
+            if (remaining > TimeSpan.Zero && _random.Prob(sleepiness.YawnChance))
+                _chat.TryEmoteWithChat(target, "Yawn");
+
+            if (endTime is null)
+                continue;
 
             if (HasComp<LightSleepComponent>(target) &&
                 HasComp<SleepinessInducedSleepComponent>(target) &&
@@ -165,6 +180,8 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
 
     private void OnSleepinessRemoved(Entity<SleepinessStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
     {
+        _sleepinessMovementSpeed.RefreshMovementSpeedAfterSleepinessRemoved(ent.Owner, args.Target);
+
         if (ent.Comp.WakeRequested && TryComp<SleepingComponent>(args.Target, out var sleeping))
             _sleeping.TryWaking((args.Target, sleeping), ignoreSsd: true);
 

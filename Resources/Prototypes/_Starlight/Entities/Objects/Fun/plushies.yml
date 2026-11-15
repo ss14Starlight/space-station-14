@@ -191,6 +191,54 @@
         - state: equipped-HELMET
 
 - type: entity
+  # BaseMob adds RotationVisuals, which rotates the rest sprite while crawling.
+  parent: [BaseRemoteControlPlushie, BasePlushie]
+  id: PlushieFlox
+  name: flox plushie
+  description: A soft Flox plushie that can be controlled remotely.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Pets/flox.rsi
+    noRot: true
+    layers:
+    - state: flox
+      map: ["flox"]
+  - type: GenericVisualizer
+    visuals:
+      enum.RotationVisuals.RotationState:
+        flox:
+          Vertical: { state: flox }
+          Horizontal: { state: flox_rest }
+  - type: StandingState
+    downSound: null
+  - type: Crawler
+  - type: Rotatable
+  - type: SocialInteractionGiver
+    interactionPrototypes:
+    - Look
+  - type: SocialInteractionReceiver
+    interactionPrototypes:
+    - Boop
+  - type: Item
+    sprite: _Starlight/Mobs/Pets/flox.rsi
+    inhandVisuals:
+      left:
+      - state: flox-inhand-left
+      right:
+      - state: flox-inhand-right
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Mobs/Pets/flox.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: flox-equipped-HELMET
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieFlox
+
+- type: entity
   parent: BaseLizardPlushie
   id: PlushieGalio # galiotheblepdragon
   name: galio plushie

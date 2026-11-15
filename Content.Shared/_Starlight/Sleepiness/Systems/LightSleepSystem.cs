@@ -41,6 +41,16 @@ public sealed partial class LightSleepSystem : EntitySystem
         ref ComponentRemove args) =>
         UpdateVision(ent.Owner);
 
+    [SubscribeLocalEvent]
+    private void OnSleepingShutdown(Entity<SleepingComponent> ent, ref ComponentShutdown args) =>
+        RemoveSleepCauseMarkers(ent.Owner);
+
+    private void RemoveSleepCauseMarkers(EntityUid uid)
+    {
+        RemComp<SleepinessInducedSleepComponent>(uid);
+        RemComp<PlayerRequestedSleepComponent>(uid);
+    }
+
     /// <summary>
     /// Checks whether an entity is voluntarily or sleepiness-induced sleeping, is not forced asleep,
     /// and is within the boundary where voluntary waking is guaranteed to succeed.

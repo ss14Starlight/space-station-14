@@ -1,16 +1,20 @@
 #nullable enable
+using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.EntityEffects.Effects.StatusEffects;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.StatusEffectNew;
+using Content.Shared._Starlight.EntityEffects.Effects.StatusEffects;
 using Content.Shared._Starlight.Sleepiness.Components;
 using Content.Shared._Starlight.Sleepiness.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests._Starlight.Sleepiness;
 
@@ -208,6 +212,29 @@ public sealed class SleepinessSystemTest : GameTest
         {
             await server.WaitPost(() => entityManager.DeleteEntity(felionoid));
             await pair.RunUntilSynced();
+        }
+    }
+
+    [Test]
+    public void SleepinessInducingReagentsDoNotConfigureMovementSpeedModifier()
+    {
+        var prototypeManager = Pair.Server.ResolveDependency<IPrototypeManager>();
+        var sleepinessInducingReagents = prototypeManager.EnumeratePrototypes<ReagentPrototype>()
+            .Where(reagent => reagent.Metabolisms?.Metabolisms.Values
+                .SelectMany(metabolism => metabolism.Effects)
+                .Any(effect => effect is ModifySleepiness) == true)
+            .ToArray();
+
+        Assert.That(sleepinessInducingReagents, Is.Not.Empty);
+
+        foreach (var reagent in sleepinessInducingReagents)
+        {
+            var effects = reagent.Metabolisms!.Metabolisms.Values
+                .SelectMany(metabolism => metabolism.Effects);
+            Assert.That(
+                effects.OfType<MovementSpeedModifier>(),
+                Is.Empty,
+                $"{reagent.ID} should not configure MovementSpeedModifier; sleepiness slowdown is calculated by SleepinessSystem.");
         }
     }
 }

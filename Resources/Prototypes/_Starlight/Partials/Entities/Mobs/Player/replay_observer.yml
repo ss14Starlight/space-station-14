@@ -13,3 +13,6 @@
     uis:
       enum.RadarConsoleUiKey.Key:
         toggleAction: ActionObserverShowRadar
+  - type: ShowAccess
+    itemsOnly: false
+    seeIdHolder: true

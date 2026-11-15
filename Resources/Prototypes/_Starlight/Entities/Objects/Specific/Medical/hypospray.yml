@@ -62,6 +62,7 @@
   description: An adaptation of the Gorlex Hypospray for cyborgs.
   id: SyndiBorgHypo
   components:
+  - type: PiercesThickScales
   - type: Sprite
     sprite: Objects/Specific/Medical/syndihypo.rsi
     layers:

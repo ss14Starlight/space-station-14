@@ -20,7 +20,7 @@
           path: /Maps/_Starlight/Shuttles/Cargo/cargo_downpour.yml
         - type: StationJobs
           availableJobs:
-            # Total (87-88+)
+            # Total (88-89+)
             # Command (7)
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
@@ -55,7 +55,8 @@
             Scientist: [ 4, 4 ]
             Roboticist: [ 2, 2 ]
             ResearchAssistant: [ 4, 4 ] #intern, not counted
-            # Security (11)
+            # Security (12)
+            GunnerySergeant: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
             SecurityOfficer: [ 6, 6 ]

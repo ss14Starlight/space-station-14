@@ -21,6 +21,7 @@
 						<!-- Starlight-start -->
                         <sui:OptionDropDown Name="DropDownSpriteQuality" Title="{Loc 'ui-options-sprite-quality'}" Description="{Loc 'ui-options-sprite-quality-tooltip'}" />
                         <sui:OptionDropDown Name="DropDownInteractionParticles" Title="{Loc 'ui-options-interaction-particles'}" Description="{Loc 'ui-options-interaction-particles-tooltip'}" />
+                        <sui:OptionDropDown Name="DropDownFootprintVisibility" Title="{Loc 'ui-options-footprint-visibility'}" Description="{Loc 'ui-options-footprint-visibility-tooltip'}" />
 						<!-- Starlight-end -->
                         <CheckBox Name="ViewportLowResCheckBox" Text="{Loc 'ui-options-vp-low-res'}" />
                         <CheckBox Name="ParallaxLowQualityCheckBox" Text="{Loc 'ui-options-parallax-low-quality'}" />

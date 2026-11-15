@@ -356,3 +356,10 @@
   flatReductions:
     Blunt: 4
     Heat: 3
+
+- type: damageModifierSet
+  id: ReptilianScales # Scales take the edge off blows and cuts, but they're still cold-blooded.
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.9
+    Cold: 1.3
