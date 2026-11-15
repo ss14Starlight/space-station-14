@@ -130,7 +130,7 @@ namespace Content.Server.GameTicking.Commands
                     return;
                 }
 
-                // Starlight-start: species, trait and other profile requirements of the job, checked on the slot being spawned.
+                // Starlight-start: playtime, species, age and trait requirements, checked on the slot being spawned. This check ignores job priorities.
                 if (!_entManager.System<PlayTimeTrackingSystem>().IsProfileAllowedForJob(player, jobPrototype.ID, humanoid))
                 {
                     _sawmill.Info($"{player.Name} ({player.UserId}) attempted to latejoin as {jobPrototype.ID} with a profile that fails its requirements.");

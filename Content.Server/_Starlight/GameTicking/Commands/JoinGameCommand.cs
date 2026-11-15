@@ -1,4 +1,4 @@
-using Content.Server.GameTicking.Events;
+using Content.Server.Players.JobWhitelist;
 using Content.Shared.Roles;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -8,13 +8,13 @@ namespace Content.Server.GameTicking.Commands;
 
 sealed partial class JoinGameCommand
 {
+    [Dependency] private JobWhitelistManager _jobWhitelist = default!;
+
     private bool IsJobAllowed(ICommonSession player, ProtoId<JobPrototype> job)
     {
         if (_banManager.GetJobBans(player.UserId) is not { } jobBans || jobBans.Contains(job))
             return false;
 
-        var allowedEv = new IsRoleAllowedEvent(player, new List<ProtoId<JobPrototype>> { job }, null, isSpawning: false);
-        _entManager.EventBus.RaiseEvent(EventSource.Local, ref allowedEv);
-        return !allowedEv.Cancelled;
+        return _jobWhitelist.IsAllowed(player, job);
     }
 }
