@@ -52,6 +52,8 @@ uplink-forensics-implant-name = Forensics Implant
 uplink-forensics-implant-desc = A cybernetic implant for hands. Removes an agent's fingerprints so as to not leave evidence of a crime. Does not work through gloves. (Warning: You will need a surgical assistant for the procedure.)
 uplink-syndie-implant-name = Syndicate Agent Implant
 uplink-syndie-implant-desc = A cybernetic eye implant. Enables an agent to see information about the station crew, humanoids and syndicate without any glasses. (Warning: You will need a surgical assistant for the procedure.)
+uplink-nuke-op-robotkit-name = CyberSun Robotic Treatment Kit
+uplink-nuke-op-robotkit-desc = The best robotic medical kit money can buy. Features an advanced industrial welder, some HV cables, oil packs, and a microreactor cell.
 
 uplink-uzi-bundle-name = Type U3 Uzi Bundle
 uplink-uzi-bundle-desc = Contains the Type U3 Uzi, with two additional magazines.
@@ -202,3 +204,6 @@ uplink-lead-chemistry-vial-desc = A small vial containing 15 units of lead.
 
 uplink-boxcutter-syndi-name = Chemical Boxcutter
 uplink-boxcutter-syndi-desc = A boxcutter with special grooves that can hold up to 10 units of chemicals.
+
+uplink-photo-camera-name = Photo Camera
+uplink-photo-camera-desc = Capture a precious moment, ruining it right after with the integrated flash.

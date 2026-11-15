@@ -27,6 +27,7 @@ public sealed partial class ReplayObserverSystem
     private bool _statusIconsShown;
     private EntityUid? _statusIconsAction;
 
+    [SubscribeLocalEvent]
     private void OnToggleStatusIcons(EntityUid uid, ReplaySpectatorComponent component, ReplayToggleStatusIconsActionEvent args)
     {
         if (args.Handled || !IsReplayActive)

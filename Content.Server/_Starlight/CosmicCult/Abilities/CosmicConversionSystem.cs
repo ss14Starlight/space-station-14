@@ -11,6 +11,7 @@ using Content.Shared.Roles.Components;
 using Content.Shared.Mind;
 using Content.Shared.SSDIndicator;
 using Robust.Server.Player;
+using Robust.Shared.Random;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.Changeling;
@@ -33,6 +34,7 @@ public sealed partial class CosmicConversionSystem : EntitySystem
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private IPlayerManager _playerMan = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private IRobustRandom _rand = default!;
 
     public override void Initialize()
     {
@@ -58,62 +60,76 @@ public sealed partial class CosmicConversionSystem : EntitySystem
             args.Cancel();
             return;
         }
-        if (possibleTargets.Count > 1)
+
+        TryConvertTarget(uid, possibleTargets, ref args);
+    }
+
+    private void TryConvertTarget(Entity<CosmicGlyphConversionComponent> uid, HashSet<EntityUid> possibleTargets, ref TryActivateGlyphEvent args)
+    {
+        var validTargets = new List<EntityUid>(possibleTargets.Count);
+        string? commonReason = null;
+        var allSame = true;
+        foreach (var target in possibleTargets)
         {
-            _popup.PopupEntity(Loc.GetString("cult-glyph-too-many-targets"), uid, args.User);
-            args.Cancel();
+            var blockReason = GetConversionBlockReason(uid, target);
+            if (blockReason == null)
+            {
+                validTargets.Add(target);
+                continue;
+            }
+
+            if (commonReason == null)
+                commonReason = blockReason;
+            else if (commonReason != blockReason)
+                allSame = false;
+        }
+
+        if (validTargets.Count > 0)
+        {
+            var target = _rand.Pick(validTargets);
+            _stun.TryAddStunDuration(target, TimeSpan.FromSeconds(4f));
+            _damageable.TryChangeDamage(target, uid.Comp.ConversionHeal * -1);
+            _cultRule.CosmicConversion(uid, target);
             return;
         }
 
-        foreach (var target in possibleTargets)
-        {
-            if (_mobState.IsDead(target))
-            {
-                _popup.PopupEntity(Loc.GetString("cult-glyph-target-dead"), uid, args.User);
-                args.Cancel();
-            }
-            else if (!IsMindActive(target))
-            {
-                _popup.PopupEntity(Loc.GetString("cult-glyph-target-nomind"), uid, args.User);
-                args.Cancel();
-            }
-            else if (uid.Comp.NegateProtection == false && HasComp<BibleUserComponent>(target))
-            {
-                _popup.PopupEntity(Loc.GetString("cult-glyph-target-chaplain"), uid, args.User);
-                args.Cancel();
-            }
-            else if (uid.Comp.NegateProtection == false && (HasComp<ChangelingComponent>(target) || HasComp<VampireComponent>(target)))
-            {
-                _popup.PopupEntity(Loc.GetString("cult-glyph-target-otherantag"), uid, args.User);
-                args.Cancel();
-            }
-            else if (uid.Comp.NegateProtection == false && HasComp<MindShieldComponent>(target))
-            {
-                _popup.PopupEntity(Loc.GetString("cult-glyph-target-mindshield"), uid, args.User);
-                args.Cancel();
-            }
-            else if (uid.Comp.NegateProtection == false && HasComp<BrighteyeComponent>(target))
-            {
-                _popup.PopupEntity(Loc.GetString("cult-glyph-target-brighteye"), uid, args.User);
-                args.Cancel();
-            }
-            else if (uid.Comp.NegateProtection == false && HasComp<DevilComponent>(target))
-            {
-                _popup.PopupEntity(Loc.GetString("cult-glyph-target-devil"), uid, args.User);
-                args.Cancel();
-            }
-            else if (uid.Comp.NegateProtection == false && _mind.TryGetMind(target, out var mind, out _) && (_role.MindHasRole<WizardRoleComponent>(mind) || _role.MindHasRole<WizardDuelistRoleComponent>(mind)))
-            {
-                _popup.PopupEntity(Loc.GetString("cult-glyph-target-wizard"), uid, args.User);
-                args.Cancel();
-            }
-            else
-            {
-                _stun.TryAddStunDuration(target, TimeSpan.FromSeconds(4f));
-                _damageable.TryChangeDamage(target, uid.Comp.ConversionHeal * -1);
-                _cultRule.CosmicConversion(uid, target);
-            }
-        }
+        if (allSame && commonReason != null)
+            _popup.PopupEntity(Loc.GetString(commonReason), uid, args.User);
+        else
+            _popup.PopupEntity(Loc.GetString("cult-glyph-conditions-not-met"), uid, args.User);
+        args.Cancel();
+    }
+
+    private string? GetConversionBlockReason(Entity<CosmicGlyphConversionComponent> uid, EntityUid target)
+    {
+        if (_mobState.IsDead(target))
+            return "cult-glyph-target-dead";
+
+        if (!IsMindActive(target))
+            return "cult-glyph-target-nomind";
+
+        if (uid.Comp.NegateProtection)
+            return null;
+
+        if (HasComp<BibleUserComponent>(target))
+            return "cult-glyph-target-chaplain";
+
+        if (HasComp<ChangelingComponent>(target) || HasComp<VampireComponent>(target))
+            return "cult-glyph-target-otherantag";
+
+        if (HasComp<MindShieldComponent>(target))
+            return "cult-glyph-target-mindshield";
+
+        if (HasComp<BrighteyeComponent>(target))
+            return "cult-glyph-target-brighteye";
+
+        if (HasComp<DevilComponent>(target))
+            return "cult-glyph-target-devil";
+
+        if (_mind.TryGetMind(target, out var mind, out _) && (_role.MindHasRole<WizardRoleComponent>(mind) || _role.MindHasRole<WizardDuelistRoleComponent>(mind)))
+            return "cult-glyph-target-wizard";
+
+        return null;
     }
 
     /// <summary>

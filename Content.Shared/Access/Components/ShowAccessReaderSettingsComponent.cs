@@ -14,3 +14,4 @@ public sealed partial class ShowAccessReaderSettingsComponent : Component, IClot
     /// </summary>
     public SlotFlags Slots { get; set; } = ~SlotFlags.POCKET;
 }
+

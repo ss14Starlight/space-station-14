@@ -93,6 +93,11 @@ public sealed partial class LoadoutSystem : EntitySystem
 
     public string GetName(LoadoutPrototype loadout)
     {
+        // Moffstation - Begin - Allow overriding loadout option names
+        if (loadout.NameOverride is { } nameOverride)
+            return Loc.GetString(nameOverride);
+        // Moffstation - End
+
         if (loadout.DummyEntity is not null && _protoMan.Resolve(loadout.DummyEntity, out var proto))
             return proto.Name;
 

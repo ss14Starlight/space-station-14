@@ -52,3 +52,11 @@
       - Terrum
       - Thaveyan
       - VoxPidgin
+
+- type: !PartialOnly randomHumanoidSettings
+  id: SyndieVisitor
+  components:
+    - type: GhostRole
+      rules: ghost-role-information-survivor-rules
+      mindRoles:
+      - MindRoleGhostSurvivorAligned

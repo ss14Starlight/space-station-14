@@ -3,6 +3,7 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
+// ReSharper disable CheckNamespace
 namespace Content.Shared._Starlight.Sleepiness.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -13,6 +14,24 @@ public sealed partial class SleepinessStatusEffectComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan SleepThreshold = TimeSpan.FromSeconds(60);
+
+    /// <summary>
+    /// Sleepiness level at which movement speed reaches its minimum modifier.
+    /// </summary>
+    [DataField]
+    public TimeSpan MaximumSlowdownSleepiness = TimeSpan.FromSeconds(25);
+
+    /// <summary>
+    /// Lowest movement speed modifier applied by sleepiness.
+    /// </summary>
+    [DataField]
+    public float MinimumSpeedModifier = 0.65f;
+
+    /// <summary>
+    /// Chance to yawn on each sleepiness update.
+    /// </summary>
+    [DataField]
+    public float YawnChance = 0.1f;
 
     /// <summary>
     /// Whether the target should fall asleep immediately, regardless of the sleep threshold.

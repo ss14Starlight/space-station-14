@@ -8,3 +8,5 @@ plumbing-smart-dispenser-row-tooltip = {$reagent}: {$stored}u / {$max}u stored.
 plumbing-smart-dispenser-not-in-stock = {$reagent} is not in stock.
 plumbing-smart-dispenser-jug-full = Container is already full.
 plumbing-smart-dispenser-filled = Filled {$amount}u of {$reagent}.
+plumbing-smart-dispenser-not-powered = Smart dispensing functionality requires power.
+plumbing-smart-dispenser-access-denied = Access Denied.

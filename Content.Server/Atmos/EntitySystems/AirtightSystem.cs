@@ -55,6 +55,7 @@ namespace Content.Server.Atmos.EntitySystems
         private void OnAirtightPositionChanged(EntityUid uid, AirtightComponent airtight, ref AnchorStateChangedEvent args)
         {
             var xform = args.Transform;
+            var oldPosition = airtight.LastPosition;
 
             if (!TryComp(xform.GridUid, out MapGridComponent? grid))
                 return;
@@ -69,8 +70,6 @@ namespace Content.Server.Atmos.EntitySystems
 
             var airtightEv = new AirtightChanged(uid, airtight, false, (gridId.Value, tilePos));
             RaiseLocalEvent(uid, ref airtightEv, true);
-
-            var oldPosition = airtight.LastPosition;
 
             if (oldPosition != default && oldPosition != airtight.LastPosition)
             {

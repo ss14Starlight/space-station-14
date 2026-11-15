@@ -184,13 +184,14 @@ namespace Content.Server.Shuttles.Systems
             }
         }
 
-        [SubscribeLocalEvent]
-        private void OnDockingMove(Entity<DockingComponent> entity, ref MoveEvent args)
-        {
-            InvalidateRadarDockingPortStates();  // Starlight-edit
+    [SubscribeLocalEvent]
+    private void OnDockingMove(Entity<DockingComponent> entity, ref MoveEvent args)
+    {
+        var uid = entity.Owner;
+        var component = entity.Comp;
 
-            if (!entity.Comp.Docked || args.OnlyRotation) // Starlight-edit
-                return;
+        if (!component.Docked || args.OnlyRotation)
+            return;
 
             var other = Comp<DockingComponent>(entity.Comp.DockedWith!.Value);
 

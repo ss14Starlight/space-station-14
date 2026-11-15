@@ -70,13 +70,15 @@
   category: construction-category-clothing
   objectType: Item
 
-- type: construction
-  id: ClothingEyesHudMedSec
-  graph: HudMedSec
-  startNode: start
-  targetNode: medsecHud
-  category: construction-category-clothing
-  objectType: Item
+# Starlight - Begin - Replaced by modular HUDs
+# - type: construction
+#   id: ClothingEyesHudMedSec
+#   graph: HudMedSec
+#   startNode: start
+#   targetNode: medsecHud
+#   category: construction-category-clothing
+#   objectType: Item
+# Starlight - End
 
 - type: construction
   id: ClothingShoeSlippersDuck
@@ -94,13 +96,15 @@
   category: construction-category-clothing
   objectType: Item
 
-- type: construction
-  id: ClothingEyesGlassesSecurity
-  graph: GlassesSecHUD
-  startNode: start
-  targetNode: glassesSec
-  category: construction-category-clothing
-  objectType: Item
+# Starlight - Begin - Replaced by modular HUDs
+# - type: construction
+#   id: ClothingEyesGlassesSecurity
+#   graph: GlassesSecHUD
+#   startNode: start
+#   targetNode: glassesSec
+#   category: construction-category-clothing
+#   objectType: Item
+# Starlight - End
 
 - type: construction
   id: ClothingBeltQuiver

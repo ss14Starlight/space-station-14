@@ -870,7 +870,7 @@
         Blunt: 0.2
         Slash: 0.2
         Piercing: 0.2
-        Heat: 0.2
+        Heat: 0.35 # Starlight edit: 0.2 -> 0.35
         Radiation: 0.2
         Caustic: 0.2
     # Starlight-start
