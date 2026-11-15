@@ -35,7 +35,7 @@ public partial class RadiationSystem
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        // Starlight-start: Update poitions if out of sync.
+        // Starlight-start: Update positions if out of sync.
         var sourceSync = EntityQueryEnumerator<RadiationSourceComponent, TransformComponent>();
         while (sourceSync.MoveNext(out var srcUid, out var srcComp, out var srcXform))
         {
