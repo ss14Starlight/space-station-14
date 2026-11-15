@@ -68,6 +68,7 @@
       modular-hud-modules: !type:AllSelector
         children:
         - id: HudModuleShowJobIcons
+        - id: HudModuleShowIdAccess
         - id: HudModuleShowAccessReaderSettings
   - type: Tag
     tags:
