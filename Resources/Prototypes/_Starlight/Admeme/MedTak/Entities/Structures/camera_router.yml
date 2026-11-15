@@ -9,6 +9,6 @@
     receiveFrequencyId: MedTak
     transmitFrequencyId: MedTak
   - type: WirelessNetworkConnection
-    range: 2000 # longer range
+    range: 4000 # longer range
   - type: SurveillanceCameraRouter
     subnetFrequency: MedTakOperators

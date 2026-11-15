@@ -39,7 +39,7 @@
         - CorgiWearable
     - type: Eye
     - type: WirelessNetworkConnection
-      range: 2000
+      range: 4000
     - type: DeviceNetwork
       deviceNetId: Wireless
       receiveFrequencyId: MedTakOperators

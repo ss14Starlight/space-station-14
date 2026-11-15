@@ -23,7 +23,7 @@
     receiveFrequencyId: MedTak
     transmitFrequencyId: MedTak
   - type: WirelessNetworkConnection
-    range: 2000
+    range: 4000
   - type: SurveillanceCameraMonitor
 
 - type: entity
@@ -37,4 +37,4 @@
     receiveFrequencyId: MedTak
     transmitFrequencyId: MedTak
   - type: WirelessNetworkConnection
-    range: 2000
+    range: 4000
