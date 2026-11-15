@@ -3,6 +3,7 @@ using Content.Shared.Roles;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Players.PlayTimeTracking;
 
 public sealed partial class PlayTimeTrackingSystem
