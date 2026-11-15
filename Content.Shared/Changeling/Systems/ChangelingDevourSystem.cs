@@ -285,18 +285,19 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
     }
 
     // TODO: This should just be an API method in the butcher system
-    private void RipClothing(EntityUid victim, Entity<ToolRefinableComponent> item) // Starlight
-    {
-        var spawnEntities = EntitySpawnCollection.GetSpawns(item.Comp.RefineResult, _robustRandom); // Starlight
+    // starlight edit - commented out since it's no longer used
+    // private void RipClothing(EntityUid victim, Entity<ToolRefinableComponent> item) // Starlight
+    // {
+    //     var spawnEntities = EntitySpawnCollection.GetSpawns(item.Comp.RefineResult, _robustRandom); // Starlight
 
-        foreach (var proto in spawnEntities)
-        {
-            // TODO: once predictedRandom is in, make this a Coordinate offset of 0.25f from the victims position
-            PredictedSpawnNextToOrDrop(proto, victim);
-        }
+    //     foreach (var proto in spawnEntities)
+    //     {
+    //         // TODO: once predictedRandom is in, make this a Coordinate offset of 0.25f from the victims position
+    //         PredictedSpawnNextToOrDrop(proto, victim);
+    //     }
 
-        PredictedQueueDel(item.Owner);
-    }
+    //     PredictedQueueDel(item.Owner);
+    // }
 }
 
 #region Starlight ling consume event
