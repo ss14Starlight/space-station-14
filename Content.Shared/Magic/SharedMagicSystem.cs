@@ -378,16 +378,7 @@ public abstract partial class SharedMagicSystem : EntitySystem
         if (transform.MapID != _transform.GetMapId(args.Target) || (!args.IgnoreWalls && !_interaction.InRangeUnobstructed(args.Performer, args.Target, range: 1000F, collisionMask: CollisionGroup.Opaque, popup: true)))
             return;
 
-        // Starlight start: teleport helper
-        //_transform.SetCoordinates(args.Performer, args.Target);
-        //_transform.AttachToGridOrMap(args.Performer, transform);
-        _teleports.Teleport((args.Performer, transform), args.Target, new SharedTeleportSystem.TeleportOptions
-        {
-            CarryPulled = SharedTeleportSystem.DefaultTeleportCarryPulled,
-            CarryMassLimit = SharedTeleportSystem.DefaultTeleportCarryMassLimit,
-            CarryIncomingPulls = SharedTeleportSystem.DefaultTeleportCarryIncomingPulls,
-        });
-        // Starlight end
+        _teleports.Teleport((args.Performer, transform), args.Target, new TeleportOptions()); // Starlight: teleport helper
         args.Handled = true;
     }
 

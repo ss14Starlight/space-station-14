@@ -11,28 +11,6 @@ public sealed partial class SharedTeleportSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private PullingSystem _pulling = default!;
 
-    public const bool DefaultTeleportCarryPulled = true;
-    public const bool DefaultTeleportCarryIncomingPulls = false;
-    public const float DefaultTeleportCarryMassLimit = 150f; // Player characters cap out around 115
-
-    public sealed class TeleportOptions
-    {
-        /// <summary>
-        /// Whether anything the entity teleporting is pulling comes along instead of being left behind.
-        /// </summary>
-        public bool CarryPulled = DefaultTeleportCarryPulled;
-
-        /// <summary>
-        /// Whether whoever is pulling the teleported entity comes along instead of being left behind.
-        /// </summary>
-        public bool CarryIncomingPulls = DefaultTeleportCarryIncomingPulls;
-
-        /// <summary>
-        /// Heaviest entity that can come along, in kilograms. Heavier targets stay behind and the pull is broken.
-        /// </summary>
-        public float CarryMassLimit = DefaultTeleportCarryMassLimit;
-    }
-
     /// <summary>
     /// Teleports an entity, by default bringing whoever they're pulling along with them.
     /// </summary>

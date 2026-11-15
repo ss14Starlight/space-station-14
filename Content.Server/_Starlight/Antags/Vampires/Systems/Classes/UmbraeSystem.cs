@@ -199,12 +199,7 @@ public sealed partial class UmbraeSystem : EntitySystem
 
         Spawn(args.MistInPrototype, curXform.Coordinates);
 
-        _teleports.Teleport((uid, curXform), target, new SharedTeleportSystem.TeleportOptions
-        {
-            CarryPulled = SharedTeleportSystem.DefaultTeleportCarryPulled,
-            CarryMassLimit = SharedTeleportSystem.DefaultTeleportCarryMassLimit,
-            CarryIncomingPulls = SharedTeleportSystem.DefaultTeleportCarryIncomingPulls,
-        });
+        _teleports.Teleport((uid, curXform), target, new TeleportOptions());
 
         Spawn(args.MistOutPrototype, target);
 
@@ -547,12 +542,7 @@ public sealed partial class UmbraeSystem : EntitySystem
         }
 
         var beacon = umbrae.SpawnedShadowAnchorBeacon.Value;
-        _teleports.Teleport((uid, Transform(uid)), Transform(beacon).Coordinates, new SharedTeleportSystem.TeleportOptions
-        {
-            CarryPulled = SharedTeleportSystem.DefaultTeleportCarryPulled,
-            CarryMassLimit = SharedTeleportSystem.DefaultTeleportCarryMassLimit,
-            CarryIncomingPulls = SharedTeleportSystem.DefaultTeleportCarryIncomingPulls,
-        });
+        _teleports.Teleport((uid, Transform(uid)), Transform(beacon).Coordinates, new TeleportOptions());
 
         QueueDel(beacon);
         umbrae.SpawnedShadowAnchorBeacon = null;

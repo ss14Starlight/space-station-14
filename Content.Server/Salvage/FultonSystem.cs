@@ -67,15 +67,7 @@ public sealed partial class FultonSystem : SharedFultonSystem
                     TransformSystem.GetWorldPosition(beaconXform),
                     TransformSystem.GetInvWorldMatrix(beaconXform.ParentUid)) + offset;
 
-            // Starlight start: teleport helper
-            //TransformSystem.SetCoordinates(uid, new EntityCoordinates(beaconXform.ParentUid, localPos));
-            _teleports.Teleport((uid, xform), new EntityCoordinates(beaconXform.ParentUid, localPos), new SharedTeleportSystem.TeleportOptions
-            {
-                CarryPulled = SharedTeleportSystem.DefaultTeleportCarryPulled,
-                CarryMassLimit = SharedTeleportSystem.DefaultTeleportCarryMassLimit,
-                CarryIncomingPulls = SharedTeleportSystem.DefaultTeleportCarryIncomingPulls,
-            });
-            // Starlight end
+            _teleports.Teleport((uid, xform), new EntityCoordinates(beaconXform.ParentUid, localPos), new TeleportOptions()); // Starlight: teleport helper
 
             RaiseNetworkEvent(new FultonAnimationMessage()
             {
