@@ -124,8 +124,8 @@
   name: Salvage Lead Report
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-salvagelead-report
+    - type: TextFilePaperContent
+      fileName: salvagelead-report.txt
 
 - type: entity
   parent: PrintedDocument
@@ -428,8 +428,8 @@
   name: Borgification Consent Form
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-borgification-consent-form
+    - type: TextFilePaperContent
+      fileName: borgification-consent-form.txt
 
 - type: entity
   parent: PrintedDocument
@@ -493,8 +493,8 @@
   name: Medical Intervention Order
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-medical-intervention-order
+    - type: TextFilePaperContent
+      fileName: medical-intervention-order.txt
 
 - type: entity
   parent: PrintedDocument
@@ -511,8 +511,8 @@
   name: Enemy of Corporation Designation
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-enemy-of-corporation-designation
+    - type: TextFilePaperContent
+      fileName: enemy-of-corporation-designation.txt
 
 - type: entity
   parent: PrintedDocument
@@ -520,8 +520,8 @@
   name: Illegal Implant Removal Order
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-illegal-implant-removal-form
+    - type: TextFilePaperContent
+      fileName: illegal-implant-removal-form.txt
 
 - type: entity
   parent: PrintedDocument
@@ -529,8 +529,8 @@
   name: Mind Control Removal Order
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-mind-control-removal-form
+    - type: TextFilePaperContent
+      fileName: mind-control-removal-form.txt
 
 - type: entity
   parent: PrintedDocument
@@ -538,8 +538,9 @@
   name: Explorative Surgery Order
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-explorative-surgery-form
+    - type: TextFilePaperContent
+      fileName: explorative-surgery-form.txt
+
 
 - type: entity
   parent: PrintedDocument
@@ -547,8 +548,9 @@
   name: Probing Mindshield Order
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-probing-mindshield-form
+    - type: TextFilePaperContent
+      fileName: probing-mindshield-form.txt
+
 
 - type: entity
   parent: PrintedDocument
@@ -556,8 +558,8 @@
   name: Compulsory Tracking Order
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-compulsory-tracking-form
+    - type: TextFilePaperContent
+      fileName: compulsory-tracking-form.txt
 
 - type: entity
   id: BoxFolderClipboardFilled
