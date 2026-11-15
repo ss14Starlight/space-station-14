@@ -1,32 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: (Kiloton) Change Distro/Waste layers to match docking port standard.
-    type: Tweak
-  id: 410071
-  time: '2026-11-03T10:49:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7019
-- author: redmushie
-  changes:
-  - message: (Kiloton) Redid med cryo tubes, it now has two and uses distro instead of an air can.
-    type: Tweak
-  id: 410072
-  time: '2026-11-03T10:49:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7019
-- author: redmushie
-  changes:
-  - message: (Kiloton) Route distro, waste and HV to every docking port.
-    type: Add
-  id: 410073
-  time: '2026-11-03T10:49:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7019
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Abbreviated Interstellar Trade Guild to ITG on the ID computer and turret control panels to save space.
-    type: Tweak
-  id: 410074
-  time: '2026-11-03T11:16:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7022
 - author: joshujo
   changes:
   - message: Non-admin ghosts can no longer trigger interactions by examining.
@@ -2799,4 +2771,32 @@ Entries:
   id: 410470
   time: '2026-11-15T00:26:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7244
+- author: wonderfulnewworld
+  changes:
+  - message: Administrative HUDs no longer see access reader settings.
+    type: Remove
+  id: 410471
+  time: '2026-11-15T10:04:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7243
+- author: wonderfulnewworld
+  changes:
+  - message: Increase cost of most modular hud modules a little.
+    type: Tweak
+  id: 410472
+  time: '2026-11-15T10:04:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7243
+- author: wonderfulnewworld
+  changes:
+  - message: Moved mindshield module to t2.
+    type: Tweak
+  id: 410473
+  time: '2026-11-15T10:04:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7243
+- author: wonderfulnewworld
+  changes:
+  - message: Skills and Administrative HUDs can see ID accesses again.
+    type: Fix
+  id: 410474
+  time: '2026-11-15T10:04:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7243
 Order: -1
