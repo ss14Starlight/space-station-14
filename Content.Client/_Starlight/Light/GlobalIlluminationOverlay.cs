@@ -87,7 +87,7 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
     private readonly List<ushort> _indices = new(6144);
 
     /// <summary>
-    /// Set when float render targets can't be made: seeds need more than 8 bits per channel.
+    /// Set when float render targets can't be made: seeds need full 32-bit floats.
     /// </summary>
     private bool _unsupported;
 
@@ -193,7 +193,7 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
 
         // 3. Last frame's bounce light, reprojected: drawn over the world area it covered with this frame's matrix.
         // Everything that was off screen last frame stays transparent and is traced from scratch.
-        var history = dest;
+        var history = res.History!;
         if (historyValid)
         {
             var accumulated = res.Accumulated!;
@@ -291,9 +291,12 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
 
         try
         {
+            // Seeds are pixel positions: half floats lose the pixel centre above 1024, so they get full floats.
+            var seedFormat = new RenderTargetFormatParameters(RenderTargetColorFormat.RG32F);
             var format = new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba16F);
-            res.SeedA = _clyde.CreateRenderTarget(size, format, name: "gi-seed-a");
-            res.SeedB = _clyde.CreateRenderTarget(size, format, name: "gi-seed-b");
+            res.SeedA = _clyde.CreateRenderTarget(size, seedFormat, name: "gi-seed-a");
+            res.SeedB = _clyde.CreateRenderTarget(size, seedFormat, name: "gi-seed-b");
+            res.History = _clyde.CreateRenderTarget(size, format, name: "gi-history");
             res.Bounce = _clyde.CreateRenderTarget(size, format, name: "gi-bounce");
             res.Accumulated = _clyde.CreateRenderTarget(size, format, name: "gi-accumulated");
             res.BlurBuffer = _clyde.CreateRenderTarget(size, format, name: "gi-bounce-blur");
@@ -389,6 +392,11 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
         /// Unblurred bounce light of the last frame, the history the next one blends into.
         /// </summary>
         public IRenderTexture? Accumulated;
+
+        /// <summary>
+        /// <see cref="Accumulated"/> moved into this frame's view, what the trace blends into.
+        /// </summary>
+        public IRenderTexture? History;
         public bool HistoryValid;
         public Box2Rotated HistoryBounds;
         public MapId HistoryMap;
@@ -402,7 +410,8 @@ public sealed partial class GlobalIlluminationOverlay : Robust.Client.Graphics.O
             SeedB?.Dispose();
             Bounce?.Dispose();
             BlurBuffer?.Dispose();
-            SeedA = SeedB = Bounce = BlurBuffer = null;
+            History?.Dispose();
+            SeedA = SeedB = Bounce = BlurBuffer = History = null;
         }
     }
 }

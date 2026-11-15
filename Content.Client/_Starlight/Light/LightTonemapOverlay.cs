@@ -23,7 +23,7 @@ namespace Content.Client._Starlight.Light;
 /// </para>
 /// <para>
 /// The client's <see cref="StarlightCCVars.LightBoost"/> is folded into the exposure, so the overlay also runs with
-/// the roll-off switched off while the boost is above 1.
+/// the roll-off switched off while the boost is above 1. The server's exposure only applies together with the roll-off.
 /// </para>
 /// <para>
 /// It runs in <see cref="OverlaySpace.WorldSpaceBelowWorld"/>, after the light map is generated but before the world is drawn.
@@ -120,19 +120,23 @@ public sealed partial class LightTonemapOverlay : Robust.Client.Graphics.Overlay
         _copyShaderInst.SetParameter("targetSize", targetSize);
         _tonemapShaderInst.SetParameter("targetSize", targetSize);
         var boost = Math.Clamp(_cfg.GetCVar(StarlightCCVars.LightBoost), MinLightBoost, MaxLightBoost);
-        _tonemapShaderInst.SetParameter("exposure", _cfg.GetCVar(StarlightCCVars.LightTonemapExposure) * boost);
-        float maxLight, knee;
+        float exposure, maxLight, knee;
         if (_cfg.GetCVar(StarlightCCVars.LightTonemap))
         {
+            exposure = _cfg.GetCVar(StarlightCCVars.LightTonemapExposure) * boost;
             maxLight = MathF.Max(_cfg.GetCVar(StarlightCCVars.LightTonemapMax), MinRollOff);
             knee = Math.Clamp(_cfg.GetCVar(StarlightCCVars.LightTonemapKnee), 0f, maxLight - MinRollOff);
         }
         else
         {
-            // Only here for the light boost.
+            // Only here for the light boost: the server's exposure belongs to the roll-off the player turned off,
+            // so it must not darken (or brighten) their light map either.
+            exposure = boost;
             knee = NoRollOff;
             maxLight = NoRollOff + 1f;
         }
+
+        _tonemapShaderInst.SetParameter("exposure", exposure);
         _tonemapShaderInst.SetParameter("knee", knee);
         _tonemapShaderInst.SetParameter("maxLight", maxLight);
 

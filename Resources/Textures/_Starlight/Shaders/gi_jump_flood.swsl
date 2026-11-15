@@ -22,7 +22,8 @@ void fragment()
                 continue;
 
             highp vec4 seed = texture2D(TEXTURE, p / targetSize);
-            if (seed.a < 0.5)
+            // x = 0 is the clear colour: no seed. Real seeds are pixel centres, 0.5 or more.
+            if (seed.x < 0.25)
                 continue;
 
             highp vec2 d = seed.xy - pos;

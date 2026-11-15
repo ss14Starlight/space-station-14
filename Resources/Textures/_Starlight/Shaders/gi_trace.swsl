@@ -35,7 +35,7 @@ highp float wallDistance(highp vec2 p, out highp vec2 wall)
     // Snap to the pixel centre: blending two seeds would point somewhere in between.
     highp vec4 seed = texture2D(TEXTURE, (floor(p) + 0.5) / targetSize);
     wall = seed.xy;
-    if (seed.a < 0.5)
+    if (seed.x < 0.25)
         return maxDistance;
 
     return distance(seed.xy, p);

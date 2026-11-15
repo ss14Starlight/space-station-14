@@ -2,7 +2,8 @@ light_mode unshaded;
 blend_mode none;
 
 // Drawn over every occluder polygon: each covered pixel becomes a jump flood seed pointing at itself.
-// Pixels left at the clear colour have alpha 0, which means "no wall found yet".
+// Seeds live in an RG32F target (no alpha): pixel centres are at least 0.5, so x = 0 (the clear colour) means
+// "no wall found yet".
 void fragment()
 {
     COLOR = vec4(FRAGCOORD.xy, 0.0, 1.0);
