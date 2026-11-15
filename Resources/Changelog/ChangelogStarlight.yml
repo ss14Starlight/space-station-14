@@ -1,11 +1,4 @@
 Entries:
-- author: joshujo
-  changes:
-  - message: AGhosts no longer trigger interactions by examining when hidden from non-admin ghosts.
-    type: Add
-  id: 410076
-  time: '2026-11-03T11:45:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6952
 - author: Floximo
   changes:
   - message: Loss of power will no longer leave the AI in an unrecoverable state.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410475
   time: '2026-11-15T10:31:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7254
+- author: redmushie
+  changes:
+  - message: Disabled remote cyborg control pending some bugfixes. Coming soon!
+    type: Remove
+  id: 410476
+  time: '2026-11-15T10:59:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7252
 Order: -1
