@@ -1,0 +1,19 @@
+- type: htnCompound
+  id: AngryCleanbotCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: CleanbotCompound
+
+- type: htnCompound
+  id: AngryCleanbotWithGunCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: GunCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: CleanbotCompound

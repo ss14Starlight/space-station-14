@@ -1,0 +1,85 @@
+- type: entity
+  parent: [MobSiliconBase, SolutionMopNormal]
+  id: MobMedTakCleanBot
+  name: MedTak assault cleanbot
+  description: A very agressive cleaning bot. MedTak takes workplace cleanliness very seriously.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Mobs/Silicon/Bots/assault_cleanbot.rsi
+    layers:
+    - map: ["movement"]
+      state: assault_cleanbot
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: assault_cleanbot-moving
+    noMovementLayers:
+      movement:
+        state: assault_cleanbot
+  - type: Appearance
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
+  - type: Absorbent
+    pickupAmount: 20
+  - type: UseDelay
+    delay: 1
+  - type: SolutionRegeneration
+    generated:
+      reagents:
+        - ReagentId: Water
+          Quantity: 20
+  - type: SolutionPurge
+    preserve:
+      - Water
+    quantity: 20
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Dead: BorgDead
+    showOverlays: false
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.5
+  - type: InteractionPopup
+    interactSuccessString: petting-success-cleanbot-medtak
+    interactFailureString: petting-failure-cleanbot-medtak
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: HTN
+    rootTask:
+      task: AngryCleanbotCompound
+  - type: CombatMode
+  - type: MeleeWeapon # It just bumps into you really hard. Painful on the ankles.
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    damage:
+      types:
+        Blunt: 10
+    angle: 0
+    animation: WeaponArcPunch
+  - type: NPCRetaliation
+
+- type: entity
+  parent: MobMedTakCleanBot
+  suffix: Admeme, Armed
+  id: MobMedTakCleanBotStrapped
+  description: Someone appears to have made the grave error of giving this already agressive armoured cleanbot a firearm.
+  components:
+  - type: Gun
+    fireRate: 2
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: BallisticAmmoProvider
+    proto: CartridgeCaselessRifle
+    capacity: 999
+  - type: HTN
+    rootTask:
+      task: AngryCleanbotWithGunCompound
