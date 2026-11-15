@@ -23,7 +23,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Slash: 10
+        Slash: 15
         Structural: 25
         Poison: 5
   - type: Item

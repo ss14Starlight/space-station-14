@@ -62,9 +62,6 @@
       - state: spookysmoke
         color: "#793a80dd"
         map: [base]
-    - type: Kudzu
-      growthTickChance: 0.05
-      spreadChance: 0.6
     - type: Tag
       tags:
         - HideContextMenu

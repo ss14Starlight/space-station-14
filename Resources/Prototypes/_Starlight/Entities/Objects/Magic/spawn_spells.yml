@@ -118,18 +118,22 @@
   parent: BaseRuneAction
   id: ActionFogCloud
   name: Summon Fog
-  description: Summons a small cloud of shadow fog (10 seconds cooldown).
+  description: Summons a small cloud of shadow fog (30 seconds cooldown).
   components:
   - type: Action
-    useDelay: 10
+    useDelay: 30
     itemIconStyle: BigAction
     icon:
         sprite: _Starlight/Objects/Magic/magicactions.rsi
         state: fog
-  - type: InstantAction
-    event: !type:InstantSpawnSpellEvent
-      prototype: ShadowKudzuWiz
-      posData: !type:TargetInFront
+  - type: TargetAction
+    range: 10
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: WizardSmoke2
+        amount: 1
   - type: SpeakOnAction
     sentence: action-speech-spell-fogcloud
     tts: action-speech-spell-fogcloud-tts

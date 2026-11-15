@@ -224,10 +224,10 @@
   parent: BaseAction
   id: ActionDarkPassage
   name: Dark passage
-  description: Glare at the walls in front of you, collapsing them to nothingness (20 seconds cooldown).
+  description: Glare at the walls in front of you, collapsing them to nothingness (15 seconds cooldown).
   components:
   - type: Action
-    useDelay: 20
+    useDelay: 15
     itemIconStyle: BigAction
     raiseOnUser: true
     icon:
