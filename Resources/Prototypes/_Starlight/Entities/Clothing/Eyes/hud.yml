@@ -270,7 +270,7 @@
     containers:
       modular-hud-modules: !type:AllSelector
         children:
-        - id: HudModuleShowJobIcons
+        - id: HudModuleShowMindShieldIcons
         - id: HudModuleShowCriminalRecordIcons
         - id: HudModuleShowIdAccess
   - type: EyeProtection
