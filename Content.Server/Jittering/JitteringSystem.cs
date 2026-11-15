@@ -7,7 +7,7 @@ namespace Content.Server.Jittering
     {
         [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
-        // This entity system only exists on the server so it will be registered, otherwise we can't use SharedJitteringSystem...
+        // Starlight DoRemoveJitter
         public override void DoRemoveJitter(EntityUid uid)
             => _statusEffects.TryRemoveStatusEffect(uid, "Jitter");
     }

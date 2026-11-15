@@ -75,7 +75,7 @@ namespace Content.Shared.Jittering
             Dirty(uid, jitter);
         }
 
-        public virtual void DoRemoveJitter(EntityUid uid)
+        public virtual void DoRemoveJitter(EntityUid uid) //Starlight
         {
         }
     }
