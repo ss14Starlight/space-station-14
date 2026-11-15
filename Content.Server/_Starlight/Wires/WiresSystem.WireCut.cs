@@ -15,8 +15,6 @@ public sealed partial class WiresSystem
         if (wire.IsCut || wire.Owner != ent.Owner)
             return false;
 
-        // World-driven cuts have no user. EntityUid.Invalid is safe here: the
-        // electrocution path simply cannot find status effects on it.
         if (wire.Action != null && !wire.Action.Cut(user ?? EntityUid.Invalid, wire))
             return false;
 

@@ -805,14 +805,14 @@ public abstract partial class SharedDoorSystem : EntitySystem
         var door = ent.Comp;
         door.NextStateChange = null;
 
-        if (door.CurrentlyCrushing.Count > 0 && door.State != DoorState.Opening && !door.KeepClosed)
+        if (door.CurrentlyCrushing.Count > 0 && door.State != DoorState.Opening && !door.KeepClosed) // Starlight-edit
         {
             // This is a closed door that is crushing people and needs to auto-open. Note that we don't check "can open"
             // here. The door never actually finished closing and we don't want people to get stuck inside of doors.
             StartOpening(ent, door);
             return;
         }
-        if(door is { KeepClosed: true, CurrentlyCrushing.Count: > 0 }) door.CurrentlyCrushing.Clear();
+        if(door is { KeepClosed: true, CurrentlyCrushing.Count: > 0 }) door.CurrentlyCrushing.Clear(); // Starlight-edit
 
         switch (door.State)
         {

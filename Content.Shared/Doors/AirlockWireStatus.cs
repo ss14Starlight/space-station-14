@@ -12,7 +12,9 @@ namespace Content.Shared.Doors
         AiVisionIndicator,
         TimingIndicator,
         SafetyIndicator,
-        AirAlertIndicator, //Starlight
-        FireAlertIndicator //Starlight
+        // Starlight-start
+        AirAlertIndicator,
+        FireAlertIndicator
+        // Starlight-end
     }
 }
