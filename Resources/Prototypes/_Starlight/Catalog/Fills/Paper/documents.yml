@@ -479,7 +479,7 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: TextFilePaperContent
-      fileName: parole-order.txt
+      fileName: prisoner-parole-order.txt
 
 - type: entity
   parent: PrintedDocument
