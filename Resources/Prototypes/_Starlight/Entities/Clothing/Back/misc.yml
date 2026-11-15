@@ -2,6 +2,7 @@
   parent: [ Clothing, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ]
   id: ClothingNullSpaceDrainer
   name: nullspace drainer
+  suffix: SelfUnremovable
   description: A Superimposed device that occupies the physical and nullspace. Intaking external and foreign energy into data. This device restrains and blocks entities from entering and or leaving nullspace.
   components:
     - type: Tag
@@ -15,12 +16,9 @@
     - type: Clothing
       slots: BACK
       sprite: _Starlight/Clothing/Back/nullspaceteleporter.rsi
-    - type: IdClothingBlocker
-      freezeUser: false
-      allowedAccesses:
-        - Security
-        - Cadet
-        - Command
+      stripDelay: 10
+      equipDelay: 5 # to avoid accidentally falling into the trap associated with SelfUnremovableClothing
+    - type: SelfUnremovableClothing
     - type: NullSpaceDrainer
     - type: TheDarkImmune
     - type: ResearchClient

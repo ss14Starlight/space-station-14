@@ -1,3 +1,7 @@
 #Color changing hairflower
 - type: Tag
   id: HairFlower #  Chameleon key for ClothingHeadHatHairFlowerBase.
+
+# Eyewear which covers both (all?) eyes fully
+- type: Tag
+  id: FullEyeCovering

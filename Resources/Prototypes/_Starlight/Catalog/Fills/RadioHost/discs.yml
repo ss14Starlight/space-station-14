@@ -179,6 +179,9 @@
     - id: VinylDamperII
     - id: VinylCathode
     - id: VinylHitEm
+    - id: VinylCryonauseogenesis
+    - id: VinylHeartloose
+    - id: VinylPlasmaflare
     #Starlight-end
 
 - type: entityTable

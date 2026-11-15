@@ -1,0 +1,4 @@
+#- type: !PartialOnly latheRecipePack # Disabled until fully cooked
+#  id: ScienceBoards
+#  recipes:
+#  - RemoteControlConsoleCircuitboard

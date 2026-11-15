@@ -51,6 +51,7 @@
             Roboticist: [ 1, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
+            GunnerySergeant: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
             SecurityOfficer: [ 3, 3 ]
@@ -67,6 +68,7 @@
             CargoTechnician: [ 2, 2 ]
             MailTech: [ 1, 2 ]
             #civilian
+            AssistantManager: [ 1, 1 ]
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]

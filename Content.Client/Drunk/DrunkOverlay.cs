@@ -58,6 +58,7 @@ public sealed partial class DrunkOverlay : Overlay
     public DrunkOverlay()
     {
         IoCManager.InjectDependencies(this);
+        ZIndex = -30; // Starlight
         _statusEffectsSystem = _entityManager.System<Shared.StatusEffectNew.StatusEffectsSystem>();
         _drunkShader = _prototypeManager.Index(DrunkShader).InstanceUnique();
         _configManager.OnValueChanged(CCVars.ReducedMotion, OnReducedMotionChanged, invokeImmediately: true);

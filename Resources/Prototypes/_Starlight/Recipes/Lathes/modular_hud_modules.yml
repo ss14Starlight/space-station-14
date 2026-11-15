@@ -1,0 +1,23 @@
+- type: latheRecipe
+  parent: BaseModularHudModuleT1Recipe
+  id: BaseModularHudModuleVisualRecipe
+  abstract: true
+  materials:
+    Steel: 200
+    Glass: 100
+    Plastic: 50
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleThermalSight
+  result: HudModuleThermalSight
+
+- type: latheRecipe
+  parent: BaseModularHudModuleVisualRecipe
+  id: HudModuleBlueNoirOverlay
+  result: HudModuleBlueNoirOverlay
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleShowIdAccess
+  result: HudModuleShowIdAccess

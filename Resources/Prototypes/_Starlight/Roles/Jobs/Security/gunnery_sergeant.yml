@@ -2,6 +2,7 @@
   id: GunnerySergeant
   name: job-name-gunnerysergeant
   description: job-description-gunnerysergeant
+  antagScalingSecurityWeight: 1
   playTimeTracker: JobGunnerySergeant
   requirements:
     - !type:RoleTimeRequirement

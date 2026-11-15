@@ -37,7 +37,12 @@ public sealed partial class BloodBoundSystem : SharedBloodBoundSystem
         _actions.AddAction(entity, ref entity.Comp.CheckConvertActionEntity, entity.Comp.CheckConvertAction);
     }
 
-    private void OnShutdown(Entity<BloodBoundComponent> entity, ref ComponentShutdown args) => FinishRecruitment(entity);
+    private void OnShutdown(Entity<BloodBoundComponent> entity, ref ComponentShutdown args)
+    {
+        FinishRecruitment(entity);
+        var ev = new BloodBoundRemovedEvent();
+        RaiseLocalEvent(entity.Owner, ref ev);
+    }
 
     /// <summary>
     /// Remove recruitment actions after forming an oath or removing the role.
@@ -51,3 +56,6 @@ public sealed partial class BloodBoundSystem : SharedBloodBoundSystem
         entity.Comp.CheckConvertActionEntity = null;
     }
 }
+
+[ByRefEvent]
+public readonly record struct BloodBoundRemovedEvent;

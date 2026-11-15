@@ -19,7 +19,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 
-namespace Content.Server._Starlight.Pollen; // this somehow also didnt get updated
+namespace Content.Server._Starlight.Pollen;
 
 public sealed partial class PollenSensitiveSystem : EntitySystem
 {
@@ -31,13 +31,14 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
     [Dependency] private CharacterRecordsSystem _characterRecords = default!;
     [Dependency] private SharedDarkenedVisionSystem _darkenedVision = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
-    [Dependency] private EntityLookupSystem _lookup = default!;
 
     private static readonly TimeSpan s_checkInterval = TimeSpan.FromSeconds(1);
     private static readonly TimeSpan s_sneezeInterval = TimeSpan.FromSeconds(10);
     private static readonly TimeSpan s_histamineInterval = TimeSpan.FromSeconds(0.75);
     private const string PollenAllergySlowdown = "PollenAllergySlowdown";
     private static readonly ProtoId<ReagentPrototype> s_histamine = "Histamine";
+
+    private readonly HashSet<Entity<ScentMarkerComponent>> _nearbyMarkers = new();
 
     public override void Update(float frameTime)
     {
@@ -65,12 +66,12 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
             if (_scent.IsSealed(uid))
                 continue;
 
-            var nearby = _lookup.GetEntitiesInRange(sensitiveTransform.Coordinates, sensitive.PollenRange);
+            _scent.GetNearbyMarkers(sensitiveTransform.Coordinates, sensitive.PollenRange, _nearbyMarkers);
             var containerHere = _scent.GetAirtightContainer(sensitiveTransform);
 
-            foreach (var candidate in nearby)
+            foreach (var (_, pollen) in _nearbyMarkers)
             {
-                if (!TryComp<ScentMarkerComponent>(candidate, out var pollen) || !pollen.IsPollen)
+                if (!pollen.IsPollen)
                     continue;
 
                 // Only interact with pollen in the same airtight container.
@@ -128,10 +129,10 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
 
     private static string NormalizePollenId(string pollenId)
     {
-        const string suffix = "Plants";
+        const string Suffix = "Plants";
 
-        return pollenId.EndsWith(suffix, StringComparison.OrdinalIgnoreCase)
-            ? pollenId[..^suffix.Length]
+        return pollenId.EndsWith(Suffix, StringComparison.OrdinalIgnoreCase)
+            ? pollenId[..^Suffix.Length]
             : pollenId;
     }
     private void InteractWithPollen(Entity<PollenSensitiveComponent> ent, string pollenId, bool isAdvancedPollen)
@@ -211,7 +212,6 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
 
         var oldNoseItch = ent.Comp.NoseItchActive;
         var oldSneezing = ent.Comp.SneezingActive;
-        var oldSevere = ent.Comp.SevereAllergyActive;
 
         ent.Comp.NoseItchActive = stack > 2f;
         ent.Comp.SneezingActive = stack > 4f;

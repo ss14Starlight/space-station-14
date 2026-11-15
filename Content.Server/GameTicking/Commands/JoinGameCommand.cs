@@ -1,7 +1,11 @@
 ﻿using Content.Server._Starlight.NewLife;
 using Content.Server._Starlight.Station.Systems;
 using Content.Server.Administration.Managers;
+using Content.Server.GameTicking.Events;
+using Robust.Shared.Player;
+using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
+using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -21,8 +25,10 @@ namespace Content.Server.GameTicking.Commands
         [Dependency] private IAdminManager _adminManager = default!;
         [Dependency] private IConfigurationManager _cfg = default!;
         [Dependency] private ILogManager _logManager = default!;
-
-        [Dependency] private IServerPreferencesManager _preferencesManager = default!; // Starlight
+        #region Starlight
+        [Dependency] private IServerPreferencesManager _preferencesManager = default!;
+        [Dependency] private IBanManager _banManager = default!;
+        #endregion
 
         private readonly ISawmill _sawmill;
 
@@ -65,32 +71,54 @@ namespace Content.Server.GameTicking.Commands
                 if (!int.TryParse(args[0], out var charSlot))
                 {
                     shell.WriteError(Loc.GetString("shell-argument-must-be-number"));
+                    return; // Starlight-edit
                 }
                 string id = args[1];
 
                 if (!int.TryParse(args[2], out var sid))
                 {
                     shell.WriteError(Loc.GetString("shell-argument-must-be-number"));
+                    return; // Starlight-edit
                 }
 
                 if (ticker.PlayerGameStatuses.TryGetValue(player.UserId, out var status) && status == PlayerGameStatus.JoinedGame)
                 {
-                    //🌟Starlight🌟 start
+                    // Starlight-start
                     var newLifeSystem = _entManager.System<NewLifeSystem>();
 
-                    if (!newLifeSystem.SlotIsAvailable(player.UserId, charSlot))
+                    if (!newLifeSystem.CanTakeNewLife(player, charSlot, out var reason))
                     {
-                        Logger.InfoS("security", $"{player.Name} ({player.UserId}) attempted to latejoin while in-game.");
+                        _sawmill.Info($"{player.Name} ({player.UserId}) attempted to latejoin while in-game ({reason}).");
                         shell.WriteError($"{player.Name} is not in the lobby.   This incident will be reported.");
                         return;
                     }
-                    //🌟Starlight🌟 end
+                    // Starlight-end
+                }
+
+                // Starlight-start: validate the client-supplied job and station server-side
+                if (!_prototypeManager.TryIndex<JobPrototype>(id, out var jobPrototype))
+                {
+                    shell.WriteError(Loc.GetString("join-game-command-unknown-job"));
+                    return;
                 }
 
                 var station = _entManager.GetEntity(new NetEntity(sid));
-                var jobPrototype = _prototypeManager.Index<JobPrototype>(id);
-                _entManager.System<ContainerSpawnJobSlotSystem>().RefreshJobSlots(); // Starlight
-                if(stationJobs.TryGetJobSlot(station, jobPrototype, out var slots) == false || slots == 0)
+                if (!_entManager.HasComponent<StationJobsComponent>(station))
+                {
+                    shell.WriteError(Loc.GetString("join-game-command-invalid-station"));
+                    return;
+                }
+
+                if (!IsJobAllowed(player, jobPrototype.ID))
+                {
+                    _sawmill.Info($"{player.Name} ({player.UserId}) attempted to latejoin as restricted job {jobPrototype.ID}.");
+                    shell.WriteError(Loc.GetString("join-game-command-job-restricted", ("job", jobPrototype.LocalizedName)));
+                    return;
+                }
+
+                _entManager.System<ContainerSpawnJobSlotSystem>().RefreshJobSlots();
+                // Starlight-end
+                if (stationJobs.TryGetJobSlot(station, jobPrototype, out var slots) == false || slots == 0)
                 {
                     shell.WriteLine($"{jobPrototype.LocalizedName} has no available slots.");
                     return;
@@ -101,6 +129,15 @@ namespace Content.Server.GameTicking.Commands
                     shell.WriteLine("No profile in slot");
                     return;
                 }
+
+                // Starlight-start: playtime, species, age and trait requirements, checked on the slot being spawned. This check ignores job priorities.
+                if (!_entManager.System<PlayTimeTrackingSystem>().IsProfileAllowedForJob(player, jobPrototype.ID, humanoid))
+                {
+                    _sawmill.Info($"{player.Name} ({player.UserId}) attempted to latejoin as {jobPrototype.ID} with a profile that fails its requirements.");
+                    shell.WriteError(Loc.GetString("join-game-command-profile-restricted", ("job", jobPrototype.LocalizedName)));
+                    return;
+                }
+                // Starlight-end
 
                 if (_adminManager.IsAdmin(player) && _cfg.GetCVar(CCVars.AdminDeadminOnJoin))
                 {

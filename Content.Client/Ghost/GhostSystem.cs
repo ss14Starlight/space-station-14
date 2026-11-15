@@ -95,6 +95,11 @@ namespace Content.Client.Ghost
 
             TryComp<PointLightComponent>(uid, out var light);
 
+            // Starlight Begin
+            if (TryToggleHalfBright(uid, component, light, args))
+                return;
+            // Starlight End
+
             if (!component.DrawLight)
             {
                 // normal lighting
@@ -150,6 +155,7 @@ namespace Content.Client.Ghost
             if (uid != _playerManager.LocalEntity)
                 return;
 
+            SetHalfBright(false); // Starlight
             GhostVisibility = false;
             PlayerRemoved?.Invoke(component);
         }
@@ -172,6 +178,7 @@ namespace Content.Client.Ghost
 
         private void OnGhostPlayerDetach(EntityUid uid, GhostComponent component, LocalPlayerDetachedEvent args)
         {
+            SetHalfBright(false); // Starlight
             GhostVisibility = false;
             PlayerDetached?.Invoke();
         }

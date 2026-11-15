@@ -41,7 +41,6 @@ namespace Content.Client.Light.Components
 
         [ViewVariables] protected float MaxTime { get; set; }
 
-        private float _maxTime = default;
         private EntityUid _parent = default!;
 
         public void Initialize(EntityUid parent, IRobustRandom random, IEntityManager entMan)
@@ -74,14 +73,14 @@ namespace Content.Client.Light.Components
                 MaxTime = MaxDuration;
             }
 
-            owner.Length = TimeSpan.FromSeconds(MaxTime);
+            owner.Length = TimeSpan.FromSeconds(Math.Max(0f, MaxTime - StartOffset)); // Starlight-edit: lifetime is the time left after the resume offset
         }
 
         public override (int KeyFrameIndex, float FramePlayingTime) InitPlayback()
         {
             OnStart();
 
-            return (-1, _maxTime);
+            return (-1, StartOffset); // Starlight-edit: Return start offset
         }
 
         protected void ApplyProperty(object value)
@@ -174,16 +173,16 @@ namespace Content.Client.Light.Components
         [DataField("reverseWhenFinished")]
         public bool ReverseWhenFinished { get; set; }
 
-        public override (int KeyFrameIndex, float FramePlayingTime) AdvancePlayback(
-            object context, int prevKeyFrameIndex, float prevPlayingTime, float frameTime)
+        // Starlight-edit: Moved AdvancePlayback method to our own partial.
+
+        private void ApplyTime(float playingTime) // Starlight-edit: Repurposed method, now called from more places.
         {
-            var playingTime = prevPlayingTime + frameTime;
-            var interpolateValue = playingTime / MaxTime;
+            var interpolateValue = MaxTime <= 0f ? 1f : Math.Clamp(playingTime / MaxTime, 0f, 1f); // Starlight-edit: Clamp to prevent overshoot; avoid divide by zero
 
             if (Property == nameof(PointLightComponent.AnimatedEnable)) // special case for boolean
             {
                 ApplyProperty(interpolateValue < EndValue);
-                return (-1, playingTime);
+                return; // Starlight-edit: Void return
             }
 
             // From 0 to MaxTime/2, we go from StartValue to EndValue. From MaxTime/2 to MaxTime, we reverse this interpolation.
@@ -202,8 +201,7 @@ namespace Content.Client.Light.Components
             {
                 ApplyInterpolation(StartValue, EndValue, interpolateValue);
             }
-
-            return (-1, playingTime);
+            // Starlight-edit: Void return
         }
 
         private void ApplyInterpolation(float start, float end, float interpolateValue)

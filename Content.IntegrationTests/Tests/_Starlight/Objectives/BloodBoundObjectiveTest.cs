@@ -108,6 +108,23 @@ public async Task StealHeartObjectiveTest()
         containers.Remove(heart, inventory);
         Assert.That(objectives.GetProgress(objective, ownerMind), Is.Zero);
 
+        var bag = SEntMan.SpawnEntity(null, MapCoordinates.Nullspace);
+        var bagContents = containers.EnsureContainer<Container>(bag, "heart-test-bag");
+        containers.Insert(heart, bagContents);
+        containers.Insert(bag, inventory);
+        Assert.That(objectives.GetProgress(objective, ownerMind), Is.EqualTo(1),
+            "A heart in a nested bag must count.");
+        containers.Remove(bag, inventory);
+        Assert.That(objectives.GetProgress(objective, ownerMind), Is.Zero,
+            "Dropping the bag must immediately remove progress.");
+
+        var targetInventory = containers.EnsureContainer<Container>(target, "heart-test-target-inventory");
+        Assert.That(containers.Insert(bag, targetInventory), Is.True);
+        Assert.That(containers.Insert(target, inventory), Is.True);
+        Assert.That(objectives.GetProgress(objective, ownerMind), Is.Zero,
+            "A heart carried by another person must not count when carrying that person.");
+        containers.Remove(target, inventory);
+
         // Follow the same target mind into a replacement body.
         var clone = SEntMan.SpawnEntity("MobHuman", MapCoordinates.Nullspace);
         minds.TransferTo(targetMind, clone);
@@ -115,7 +132,49 @@ public async Task StealHeartObjectiveTest()
         Assert.That(bodies.RemoveOrgan(cloneHeart), Is.True);
         containers.Insert(cloneHeart, inventory);
         Assert.That(objectives.GetProgress(objective, ownerMind), Is.EqualTo(1));
+
+        // Avoid transferring the IPC's mind into its brain while the test pair deletes both entities.
+        minds.TransferTo(ipcMind, null);
     });
+
+    [Test]
+    public async Task FirestakeAssignsBeforeZoneTick()
+        => await Server.WaitAssertion(() =>
+        {
+            var maps = Server.System<SharedMapSystem>();
+            maps.CreateMap(out var mapId, runMapInit: false);
+            var grid = maps.CreateGridEntity(mapId);
+            var tiles = Server.ResolveDependency<ITileDefinitionManager>();
+            var plating = new Tile(tiles["Plating"].TileId);
+            for (var x = 0; x < 4; x++)
+            for (var y = 0; y < 4; y++)
+                maps.SetTile(grid, grid, new Vector2i(x, y), plating);
+
+            var zoneGrid = SEntMan.AddComponent<ZoneGridComponent>(grid);
+            zoneGrid.Shapes =
+            [
+                new ZoneShapeSet { Zone = "Cargo", Rects = [new Box2i(0, 0, 4, 4)] },
+            ];
+            var zones = Server.System<ZoneSystem>();
+            zones.RebuildHints((grid, zoneGrid));
+            maps.InitializeMap(mapId);
+            Assert.That(zoneGrid.TopologyInitialized, Is.False,
+                "The initial rebuild must still be queued to exercise pre-update assignment.");
+
+            var owner = SEntMan.SpawnEntity("MobHuman", new EntityCoordinates(grid, 1.5f, 1.5f));
+            var minds = Server.System<MindSystem>();
+            var ownerMind = minds.CreateMind(null);
+            minds.TransferTo(ownerMind, owner);
+
+            var objective = SEntMan.SpawnEntity("BloodBoundFirestakeObjective", MapCoordinates.Nullspace);
+            var assigned = new ObjectiveAssignedEvent(ownerMind, ownerMind.Comp);
+            SEntMan.EventBus.RaiseLocalEvent(objective, ref assigned);
+
+            Assert.That(assigned.Cancelled, Is.False,
+                "Round-start Firestake offers must work before the first zone-system update.");
+            Assert.That(SEntMan.GetComponent<FirestakeConditionComponent>(objective).Zone?.Id, Is.EqualTo("Cargo"));
+            Assert.That(zones.GetGridZones(grid), Is.EquivalentTo(new ProtoId<ZonePrototype>[] { "Cargo" }));
+        });
 
     [Test]
     public async Task FirestakeObjectiveTest()

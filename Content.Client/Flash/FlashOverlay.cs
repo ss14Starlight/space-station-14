@@ -33,6 +33,7 @@ namespace Content.Client.Flash
         public FlashOverlay()
         {
             IoCManager.InjectDependencies(this);
+            ZIndex = -70; // Starlight
             _shader = _prototypeManager.Index(FlashedEffectShader).InstanceUnique();
             _flash = _entityManager.System<SharedFlashSystem>();
             _statusSys = _entityManager.System<StatusEffectsSystem>();

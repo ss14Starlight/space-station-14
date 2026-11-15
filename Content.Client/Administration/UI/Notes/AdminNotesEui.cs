@@ -1,13 +1,15 @@
+using System.Linq;
 using Content.Client.Eui;
 using Content.Shared.Administration.Notes;
 using Content.Shared.Eui;
 using JetBrains.Annotations;
+using Robust.Client.UserInterface.CustomControls;
 using static Content.Shared.Administration.Notes.AdminNoteEuiMsg;
 
 namespace Content.Client.Administration.UI.Notes;
 
 [UsedImplicitly]
-public sealed class AdminNotesEui : BaseEui
+public sealed partial class AdminNotesEui : BaseEui // Starlight-edit (made partial)
 {
     public AdminNotesEui()
     {
@@ -34,19 +36,30 @@ public sealed class AdminNotesEui : BaseEui
         NoteControl.NoteChanged += (id, type, text, severity, secret, expiryTime, project) => SendMessage(new EditNoteRequest(id, type, text, severity, secret, expiryTime, false, project));
         NoteControl.NewNoteEntered += (type, text, severity, secret, expiryTime) => SendMessage(new CreateNoteRequest(type, text, severity, secret, expiryTime, false));
         NoteControl.NoteDeleted += (id, type, project) => SendMessage(new DeleteNoteRequest(id, type, project, false));
+        NoteControl.SubWindowOpened += OnSubWindowOpened;
 
         NetworkNotesControl.NoteChanged += (id, type, text, severity, secret, expiryTime, project) => SendMessage(new EditNoteRequest(id, type, text, severity, secret, expiryTime, true, project));
         NetworkNotesControl.NewNoteEntered += (type, text, severity, secret, expiryTime) => SendMessage(new CreateNoteRequest(type, text, severity, secret, expiryTime, true));
         NetworkNotesControl.NoteDeleted += (id, type, project) => SendMessage(new DeleteNoteRequest(id, type, project, true));
+        NetworkNotesControl.SubWindowOpened += OnSubWindowOpened;
         // Starlight-end
 
-        NoteWindow.OnClose += () => SendMessage(new CloseEuiMessage());
+        // Starlight: removed OnClose in favour of sub in OnSubWindowOpened
     }
 
     public override void Closed()
     {
         base.Closed();
-        NoteWindow.Close();
+
+        // Starlight-start
+        if (_openWindows.Count > 0)
+        {
+            var windows = _openWindows.ToArray();
+            _openWindows.Clear();
+            foreach (var window in windows)
+                window.Close();
+        }
+        // Starlight-end
     }
 
     private AdminNotesWindow NoteWindow { get; }
@@ -61,6 +74,8 @@ public sealed class AdminNotesEui : BaseEui
         {
             return;
         }
+
+        if (!NoteWindow.IsOpen) return; // Starlight
 
         NoteWindow.SetTitlePlayer(s.NotedPlayerName);
         NoteControl.SetPlayerName(s.NotedPlayerName);
@@ -77,5 +92,6 @@ public sealed class AdminNotesEui : BaseEui
     public override void Opened()
     {
         NoteWindow.OpenCentered();
+        OnSubWindowOpened(NoteWindow); // Starlight
     }
 }

@@ -133,10 +133,6 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
     private void OnToggle(Entity<PointLightComponent> ent, ref PointLightToggleEvent _)
         => Relocate((ent, ent.Comp, Transform(ent)));
 
-    [SubscribeLocalEvent]
-    private void OnReAnchor(Entity<PointLightComponent> ent, ref ReAnchorEvent args)
-        => Relocate((ent, ent.Comp, args.Xform));
-
     private void Relocate(Entity<SharedPointLightComponent, TransformComponent> light)
     {
         RemoveLight(light);

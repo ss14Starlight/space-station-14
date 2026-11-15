@@ -1,4 +1,17 @@
 - type: listing
+  id: PAIRemoteControl
+  name: pai-remote-control-name
+  description: pai-remote-control-desc
+  productAction: ActionPAIRemoteControl
+  cost:
+    SiliconMemory: 10
+  categories:
+    - PAIAbilities
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: SolCommon
   name: language-SolCommon-name
   description: language-SolCommon-description

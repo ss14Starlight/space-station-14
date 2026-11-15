@@ -10,7 +10,7 @@ public enum NewsWriterUiKey : byte
 }
 
 [Serializable, NetSerializable]
-public sealed class NewsWriterBoundUserInterfaceState : BoundUserInterfaceState
+public sealed partial class NewsWriterBoundUserInterfaceState : BoundUserInterfaceState // Starlight Edit: Made partial
 {
     public readonly NewsArticle[] Articles;
     public readonly bool PublishEnabled;

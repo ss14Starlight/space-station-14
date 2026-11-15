@@ -316,18 +316,7 @@
         visualType: Medium
         messages: [ "effect-sleepy" ]
         probability: 0.1
-      - !type:MovementSpeedModifier
-        minScale: 1
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Slime ]
-          inverted: true
-        # Funkystation Start: Funky atmos - /tg/ gases
-        - !type:BloodReagentCondition
-          reagent: NitrosylPlasmide
-        # Funkystation End: Funky atmos - /tg/ gases
-        walkSpeedModifier: 0.65
-        sprintSpeedModifier: 0.65
+      # Starlight - SleepinessStatusEffect handles movement slowdown.
       - !type:HealthChange
         minScale: 3.5
         conditions:
