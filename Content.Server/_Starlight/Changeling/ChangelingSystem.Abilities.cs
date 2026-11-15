@@ -111,6 +111,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private void OnAbsorb(EntityUid uid, ChangelingComponent comp, ref AbsorbDNAEvent args)
     {
+        Log.Info($"Changeling {ToPrettyString(uid)} is attempting to absorb {ToPrettyString(args.Target)}");
         var target = args.Target;
 
         if (!IsIncapacitated(target))
@@ -147,6 +148,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     public ProtoId<DamageGroupPrototype> AbsorbedDamageGroup = "Genetic";
     private void OnDevouredPerson(EntityUid uid, ChangelingComponent comp, ref OnLingDevour args)
     {
+        Log.Info($"Changeling {ToPrettyString(uid)} has devoured {ToPrettyString(args.Consumed)}");
         var target = args.Consumed;
 
         if (!IsIncapacitated(target) || HasComp<AbsorbedComponent>(target))
@@ -409,8 +411,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         var reagents = new Dictionary<string, FixedPoint2>
         {
-            { "Diphenhydramine", 5f },
-            { "Arithrazine", 5f },
+            { "Ultravasculine", 5f },
             { "Ethylredoxrazine", 5f }
         };
         if (TryInjectReagents(uid, reagents))

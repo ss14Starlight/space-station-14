@@ -15,6 +15,7 @@ using Content.Shared.Popups;
 using Content.Shared.Storage;
 using Content.Shared.Tools.Components;
 using Content.Shared.Whitelist;
+using Content.Shared.Cuffs.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
@@ -180,9 +181,10 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} successfully devoured {ToPrettyString(target):player}'s identity");
             _changelingIdentitySystem.CloneToPausedMap((ent, identityStorage), target);
 
-            if (_inventorySystem.TryGetSlotEntity(target, "jumpsuit", out var item)
-                && TryComp<ToolRefinableComponent>(item, out var refinable)) // Starlight
-                RipClothing(target, (item.Value, refinable)); // Starlight
+            // starlight edit - no more eating jumpsuits
+            // if (_inventorySystem.TryGetSlotEntity(target, "jumpsuit", out var item)
+            //     && TryComp<ToolRefinableComponent>(item, out var refinable)) // Starlight
+            //     RipClothing(target, (item.Value, refinable)); // Starlight
         }
 
         #region Starlight ling devour.
@@ -233,8 +235,13 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             return false;
         }
 
-        if (!_mobState.IsDead(victim))
+        if (!_mobState.IsIncapacitated(victim)) // starlight edit - cuffed and crit people can be devoured
         {
+            if (TryComp<CuffableComponent>(victim, out var cuffs) && cuffs.CuffedHandCount > 0)
+            {
+                return true;
+            }
+            
             if (showPopup)
                 _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-not-dead"), changeling.Owner, changeling.Owner, PopupType.Medium);
             return false;
