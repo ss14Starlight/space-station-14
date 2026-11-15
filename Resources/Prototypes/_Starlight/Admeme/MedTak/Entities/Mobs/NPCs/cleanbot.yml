@@ -33,6 +33,14 @@
     preserve:
       - Water
     quantity: 20
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -79,7 +87,7 @@
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: BallisticAmmoProvider
     proto: CartridgeCaselessRifle
-    capacity: 999
+    capacity: 100
   - type: HTN
     rootTask:
       task: AngryCleanbotWithGunCompound
