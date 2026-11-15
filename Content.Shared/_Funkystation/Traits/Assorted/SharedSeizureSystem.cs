@@ -163,8 +163,8 @@ public abstract class SharedSeizureSystem : EntitySystem
     private static bool IsFadeComplete(SeizureOverlayComponent overlay)
     {
         return overlay.BlurryMagnitude <= FadeThreshold
-               && overlay.PulseAmplitude <= FadeThreshold
-               && overlay.CurrentBlur <= FadeThreshold;
+            && overlay.PulseAmplitude <= FadeThreshold
+            && overlay.CurrentBlur <= FadeThreshold;
     }
 
     private static void UpdateBlurInterpolation(SeizureOverlayComponent overlay, float frameTime)

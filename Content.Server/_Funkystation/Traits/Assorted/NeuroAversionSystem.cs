@@ -91,7 +91,7 @@ public sealed class NeuroAversionSystem : SharedNeuroAversionSystem
             UpdateMindshieldStatus(uid, comp);
 
             comp.SeizurePaused = _solutions.TryGetSolution(uid, "bloodstream", out _, out var bloodstream)
-                                 && bloodstream.ContainsReagent(new ReagentId("Psicodine", null));
+                                && bloodstream.ContainsReagent(new ReagentId("Psicodine", null));
 
             // Only process if mindshielded
             if (!comp.IsMindShielded)

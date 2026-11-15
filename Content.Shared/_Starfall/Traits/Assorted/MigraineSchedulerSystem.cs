@@ -125,8 +125,8 @@ public sealed partial class MigraineSchedulerSystem : EntitySystem
         if (addedProtectionTime > TimeSpan.Zero)
             entity.Comp.NextIncidentTime += addedProtectionTime;
 
-         // Regardless of the original timer, guarantee that the migraine remains
-         // at least minimumDelay away after the medicine's protection expires.
+        // Regardless of the original timer, guarantee that the migraine remains
+        // at least minimumDelay away after the medicine's protection expires.
         var minimumIncidentTime = protectionEnd + minimumDelay;
 
         if (entity.Comp.NextIncidentTime < minimumIncidentTime)
