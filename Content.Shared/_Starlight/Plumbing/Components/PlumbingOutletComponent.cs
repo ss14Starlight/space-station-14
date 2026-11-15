@@ -7,7 +7,7 @@ namespace Content.Shared._Starlight.Plumbing.Components;
 ///     <see cref="PlumbingPullSystem"/> discovers entities with this component
 ///     when other machines request reagents from the network.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)] // Staright-edit: enabled raiseAfterAutoHandleState
 public sealed partial class PlumbingOutletComponent : Component
 {
     /// <summary>

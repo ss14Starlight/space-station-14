@@ -1,5 +1,6 @@
 using Content.Client.ContextMenu.UI;
 using Content.Client.Stylesheets;
+using Content.Client.Stylesheets.Palette;
 using Content.Client.Stylesheets.Sheetlets;
 using Content.Client.Stylesheets.Stylesheets;
 using Robust.Client.Graphics;
@@ -21,9 +22,42 @@ public sealed class FlatContextMenuSheetlet : Sheetlet<NanotrasenStylesheet>
             return [];
 
         var proto = theme.Proto;
-        var buttonPalette = theme.Primary with { Element = proto.Surface };
 
-        var rules = new List<StyleRule>
+        if (theme.ClassicDecor)
+        {
+            var menuFrame = FlatBox.Bordered(proto.Surface, proto.Border, proto.BorderThickness)
+                .WithContentMargin(StyleBox.Margin.All, ContextMenuElement.ElementMargin);
+            var rules = new List<StyleRule>
+            {
+                E<PanelContainer>()
+                    .Class(ContextMenuPopup.StyleClassContextMenuPopup)
+                    .Panel(menuFrame),
+            };
+
+            var buttonPalette = new ColorPalette(
+                Base: proto.Surface,
+                LightnessShift: 0f,
+                ChromaShift: 0f,
+                Element: Color.FromHex("#1119"),
+                HoveredElement: proto.ElementHovered,
+                PressedElement: theme.ElementActive,
+                DisabledElement: proto.ElementDisabled,
+                Background: proto.Surface,
+                BackgroundLight: proto.SurfaceRaised,
+                BackgroundDark: proto.Background,
+                Text: proto.Text,
+                TextDark: proto.TextMuted);
+
+            ButtonSheetlet<NanotrasenStylesheet>.MakeButtonRules<ContextMenuElement>(rules,
+                buttonPalette,
+                ContextMenuElement.StyleClassContextMenuButton);
+
+            return rules.ToArray();
+        }
+
+        var flatButtonPalette = theme.Primary with { Element = proto.Surface };
+
+        var flatRules = new List<StyleRule>
         {
             E<PanelContainer>()
                 .Class(ContextMenuPopup.StyleClassContextMenuPopup)
@@ -31,10 +65,10 @@ public sealed class FlatContextMenuSheetlet : Sheetlet<NanotrasenStylesheet>
                     .WithContentMargin(StyleBox.Margin.All, ContextMenuElement.ElementMargin)),
         };
 
-        ButtonSheetlet<NanotrasenStylesheet>.MakeButtonRules<ContextMenuElement>(rules,
-            buttonPalette,
+        ButtonSheetlet<NanotrasenStylesheet>.MakeButtonRules<ContextMenuElement>(flatRules,
+            flatButtonPalette,
             ContextMenuElement.StyleClassContextMenuButton);
 
-        return rules.ToArray();
+        return flatRules.ToArray();
     }
 }

@@ -19,6 +19,10 @@
   name: heart
   description: "Skips a beat at the sight of landmines."
   components:
+  - type: Tag
+    tags:
+    - Meat
+    - Heart
   - type: Sprite
     state: heart-on
   - type: Organ

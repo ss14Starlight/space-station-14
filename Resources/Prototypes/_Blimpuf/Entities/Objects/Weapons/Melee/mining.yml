@@ -1,0 +1,13 @@
+# Emagged Salvage Vendor
+- type: entity
+  name: pickaxe
+  parent: Pickaxe
+  id: DullPickaxe
+  description: The striking surface on this pickaxe is incredibly dull.
+  components:
+  - type: IncreaseDamageOnWield
+    damage:
+      groups:
+        Brute: 3
+      types:
+        Structural: 5

@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/d1b842356ec4fd773a1e7092197e7f094cc4d36d (icons/obj/machines/engine/turbine.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "turbine_outlet",
+      "directions": 4
+    },
+    {
+      "name": "core_rotor",
+      "directions": 4
+    },
+    {
+      "name": "inlet_compressor",
+      "directions": 4
+    },
+    {
+      "name": "rotor_part"
+    },
+    {
+      "name": "compressor_part"
+    },
+    {
+      "name": "stator_part"
+    },
+    {
+      "name": "outlet_on",
+      "directions": 4,
+      "delays": [
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ],
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ],
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ],
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ]
+      ]
+    },
+    {
+      "name": "outlet_off",
+      "directions": 4
+    },
+    {
+      "name": "outlet_open",
+      "directions": 4
+    },
+    {
+      "name": "inlet_on",
+      "directions": 4,
+      "delays": [
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ],
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ],
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ],
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ]
+      ]
+    },
+    {
+      "name": "inlet_off",
+      "directions": 4
+    },
+    {
+      "name": "inlet_open",
+      "directions": 4
+    },
+    {
+      "name": "core_on",
+      "directions": 4
+    },
+    {
+      "name": "core_open",
+      "directions": 4
+    }
+  ]
+}

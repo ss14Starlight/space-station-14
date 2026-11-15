@@ -1,0 +1,13 @@
+# Poison Chocolate Muffin
+- type: entity
+  parent: FoodBakedMuffinChocolate
+  id: FoodBakedMuffinChocolatePoison
+  suffix: Poison
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Amatoxin
+        Quantity: 10

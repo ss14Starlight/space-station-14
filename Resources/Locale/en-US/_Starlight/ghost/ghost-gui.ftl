@@ -36,3 +36,8 @@ ghost-role-information-cc-janitor-description = Keep the floors on CentComm outp
 ghost-important-role = [bold]Now looking for candidates to play as {$rolename}[/bold]
 ghost-gui-aghost-toggle-ghost-visibility-popup-on = Invisible to non-admins.
 ghost-gui-aghost-toggle-ghost-visibility-popup-off = Visible to non-admins.
+ghost-gui-toggle-lighting-manager-popup-half-bright = Half-bright mode.
+
+ghost-own-sprite-hidden = Your ghost is hidden.
+ghost-own-sprite-shown = Your ghost is visible.
+ghost-own-sprite-always-visible = Your ghost is set to always visible and can't be hidden.

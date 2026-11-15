@@ -232,3 +232,11 @@
   components:
   - type: Implanter
     implant: ITGTrackingImplant
+
+- type: entity
+  id: ITGMindShieldImplanter
+  name: ITG mindshield implanter
+  parent: MindShieldImplanter
+  components:
+  - type: Implanter
+    implant: ITGMindShieldImplant

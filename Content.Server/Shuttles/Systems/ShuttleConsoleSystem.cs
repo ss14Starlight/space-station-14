@@ -1,4 +1,5 @@
 using Content.Server.Power.EntitySystems;
+using Content.Server.Salvage.Expeditions;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
@@ -331,6 +332,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         NavInterfaceState navState;
         ShuttleMapInterfaceState mapState;
+        var surfaceMode = false; // Starlight
+        NetEntity? surfaceMapGrid = null; // Starlight
         dockState ??= GetDockState();
         dockingPortStates ??= GetDockingPortStates(); // Starlight
 
@@ -338,6 +341,13 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         {
             navState = GetNavState(entity.Value); // Starlight: -dockState.Docks
             mapState = GetMapState(shuttleGridUid.Value);
+            // Starlight - start
+            if (consoleXform?.MapUid is { } mapUid && TryComp<SalvageExpeditionComponent>(mapUid, out _))
+            {
+                surfaceMode = true;
+                surfaceMapGrid = GetNetEntity(mapUid);
+            }
+            // Starlight - end
         }
         else
         {
@@ -388,7 +398,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 }
             }
 
-            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState, dockingPortStates)); // Starlight: +dockingPortStates
+            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState, dockingPortStates, surfaceMode, surfaceMapGrid)); // Starlight: +dockingPortStates +surfaceMode +surfaceMapGrid
         }
     }
 

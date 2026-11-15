@@ -1,0 +1,67 @@
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseContrabandTier3]
+  id: ClothingHeadHelmetZ4KU
+  name: prototype Z4-KU helmet
+  description: A prototype of the neck-achingly heavy Z4-KU mech suit helmet, featuring retroreflective panels for dispersing energy weapon damage. It has a built in sensor for fluid detection as well as a tinted visor.
+  components:
+  - type: Contraband
+    tier: Tier3
+    contrabandType: Syndicate
+  - type: Sprite
+    sprite: _Blimpuf/Clothing/Head/Helmets/z4-ku.rsi
+  - type: Clothing
+    sprite: _Blimpuf/Clothing/Head/Helmets/z4-ku.rsi
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 2
+    unequipDelay: 2
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: Reflect
+    reflectProb: 0.35
+    reflects:
+    - Energy
+  - type: SolutionScanner # Change to Thermal Vision when it is actually a thing : )
+  - type: IdentityBlocker
+  - type: FlashImmunity
+    blocksSpecialVision: false
+  - type: EyeProtection
+  - type: IngestionBlocker
+  - type: BreathMask
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 10
+  - type: MultiHandedItem

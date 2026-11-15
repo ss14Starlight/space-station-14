@@ -11,10 +11,17 @@
   biome: Caves
   # Starlight
   difficulties:
-    - Challenging
-    - Moderate
-    - Easy
-    - Difficult
+# Starlight-start
+    - Communist-Easy
+    - Xeno-Easy
+    - Xeno-Medium
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard
+# Starlight-end
 
 - type: salvageBiomeMod
   id: Grasslands
@@ -22,10 +29,19 @@
   biome: Grasslands
   # Starlight
   difficulties:
-    - Challenging
-    - Moderate
-    - Easy
-    - Difficult
+# Starlight-start
+    - Communist-Easy
+    - Communist-Medium
+    - Communist-Hard
+    - Xeno-Easy
+    - Xeno-Medium
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard
+# Starlight-end
 
 - type: salvageBiomeMod
   id: Snow
@@ -34,10 +50,20 @@
   biome: Snow
   # Starlight
   difficulties:
-    - Challenging
-    - Moderate
-    - Easy
-    - Difficult
+# Starlight-start
+    - Communist-Easy
+    - Communist-Medium
+    - Communist-Hard
+    - Xeno-Easy
+    - Xeno-Medium
+    - Xeno-Hard
+    - Carp-Easy
+    - Carp-Medium
+    - Carp-Hard
+    - Argocyte-Easy
+    - Argocyte-Medium
+    - Argocyte-Hard
+# Starlight-end
 
 - type: salvageBiomeMod
   id: Lava
@@ -46,10 +72,12 @@
   biome: Lava
   # Starlight
   difficulties:
-    - Challenging
-    - Moderate
-    - Easy
-    - Difficult
+# Starlight-start
+    - Xeno-Hard
+    - Silicon-Easy
+    - Silicon-Medium
+    - Silicon-Hard
+# Starlight-end
 
 #- type: salvageBiomeMod
 #  id: Space

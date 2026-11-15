@@ -129,6 +129,7 @@
   description: I must survive no matter what.
   components:
   - type: Objective
+    difficulty: 0
     icon:
       sprite: _Starlight/Interface/Misc/objective_icons.rsi
       state: survive
@@ -136,11 +137,11 @@
 - type: entity
   parent: [BaseVampireObjective, BaseLivingObjective]
   id: VampireEscapeObjective
-  name: Escape to centcomm alive and unrestrained.
+  name: Escape to CentComm alive and unrestrained.
   description: I need to escape on the evacuation shuttle. Undercover.
   components:
   - type: Objective
-    difficulty: 1.3
+    difficulty: 0
     icon:
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
@@ -151,14 +152,23 @@
 - type: entity
   parent: [BaseVampireObjective, BaseKillObjective]
   id: VampireKillRandomPersonObjective
-  description: Do it however you like, just make sure they don't make it to centcomm.
+  description: Do it however you like, just make sure they don't make it to CentComm.
   components:
   - type: Objective
-    difficulty: 1.75
-    unique: false
+    hidden: true
+    hiddenTitle: objective-picker-hidden-kill
+    difficulty: 0
+    unique: true
   - type: TargetObjective
     title: objective-condition-kill-person-title
   - type: PickRandomPerson
+    pool: !type:WeightedAlivePool
+      weightHighValue: true
+    filters:
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - KillPersonCondition
   - type: KillPersonCondition
     requireMaroon: true
 
@@ -169,6 +179,7 @@
   id: VampireDrainObjective
   components:
   - type: Objective
+    difficulty: 0
     icon:
       sprite: _Starlight/Interface/Misc/objective_icons.rsi
       state: blood
@@ -189,7 +200,7 @@
   components:
   - type: Objective
     issuer: objective-issuer-vampire
-    difficulty: 0.1
+    difficulty: 0
     unique: false
     icon:
       sprite: /Textures/_Starlight/Interface/Actions/actions_vampire.rsi
@@ -289,3 +300,28 @@
     difficulty: 2 # Equal to HoS's in difficulty.
 
 # States
+
+# The original kill is forced and free; additional picker kills have a paid difficulty.
+- type: entity
+  parent: VampireKillRandomPersonObjective
+  id: VampirePickerKillObjective
+  components:
+  - type: Objective
+    difficulty: 1.75
+
+- type: entity
+  parent: VampirePickerKillObjective
+  id: VampireKillRandomHeadObjective
+  description: This high value person must not make it to CentComm.
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-kill-head
+    difficulty: 2.5
+    unique: true
+  - type: PickRandomPerson
+    pool: !type:HighValueTargetsPool
+      includeCommand: true
+  - type: KillPersonCondition
+    requireDead: true
+    requireMaroon: true

@@ -7,6 +7,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared;
 using Robust.Shared.Configuration;
+using Content.Client._Starlight.Options.UI;
 
 namespace Content.Client.Options.UI.Tabs;
 
@@ -44,6 +45,21 @@ public sealed partial class GraphicsTab : Control
                 new OptionDropDownCVar<int>.ValueOption(
                     (int) InteractionParticleMode.None,
                     Loc.GetString("ui-options-interaction-particles-none")),
+            ]);
+
+        Control.AddOptionDropDown(
+            StarlightCCVars.FootprintVisibility,
+            DropDownFootprintVisibility,
+            [
+                new OptionDropDownCVar<int>.ValueOption(
+                    (int) FootprintVisibilityMode.All,
+                    Loc.GetString("ui-options-footprint-visibility-all")),
+                new OptionDropDownCVar<int>.ValueOption(
+                    (int) FootprintVisibilityMode.Half,
+                    Loc.GetString("ui-options-footprint-visibility-half")),
+                new OptionDropDownCVar<int>.ValueOption(
+                    (int) FootprintVisibilityMode.None,
+                    Loc.GetString("ui-options-footprint-visibility-none")),
             ]);
         #endregion
 
@@ -84,6 +100,8 @@ public sealed partial class GraphicsTab : Control
         Control.AddOptionCheckBox(StarlightCCVars.ShowClothingStains, ClothingStainsCheckBox);
         Control.AddOptionCheckBox(StarlightCCVars.HolesEnabled, HolesCheckBox);
         Control.AddOptionCheckBox(StarlightCCVars.SparksEnabled, SparksCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.LightTonemap, LightTonemapCheckBox);
+        AddLightingOptions();
         Control.AddOptionCheckBox(StarlightCCVars.HitscanPrediction, HitscanPredictionCheckBox);
         // Starlight-end
         Control.AddOptionCheckBox(CCVars.HudFpsCounterVisible, FpsCounterCheckBox);
@@ -95,6 +113,7 @@ public sealed partial class GraphicsTab : Control
 
         UpdateViewportWidthRange();
         UpdateViewportSettingsVisibility();
+        UpdateLightingSettingsVisibility(); // Starlight
     }
 
     private void UpdateViewportSettingsVisibility()

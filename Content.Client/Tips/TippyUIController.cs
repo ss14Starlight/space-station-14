@@ -15,7 +15,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using static Content.Client.Tips.TippyUI;
 using Content.Shared.Humanoid;
-using Content.Client._Starlight.Humanoid;
 using JetBrains.Annotations;
 
 namespace Content.Client.Tips;
@@ -27,7 +26,6 @@ public sealed partial class TippyUIController : UIController
     [Dependency] private IResourceCache _resCache = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
-    [UISystemDependency] private readonly HumanoidAppearanceSystem _appearance = default!; // Starlight
 
     public const float Padding = 50;
     public static Angle WaddleRotation = Angle.FromDegrees(10);
@@ -42,12 +40,7 @@ public sealed partial class TippyUIController : UIController
     {
         base.Initialize();
         UIManager.OnScreenChanged += OnScreenChanged;
-    // Starlight begin - Why the fuck are we even subscribing to an event in here that should be a crime, moved to system.
     }
-
-    public void AddTippyToQueue(TippyEvent msg) =>
-        _queuedMessages.Enqueue(msg);
-    // Starlight end
 
     public override void FrameUpdate(FrameEventArgs args)
     {

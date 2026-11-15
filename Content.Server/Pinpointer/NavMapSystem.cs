@@ -101,6 +101,8 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         if (!_navQuery.TryComp(ev.Entity, out var navMap))
             return;
 
+        RefreshNavMapForWallFlagChanges(ref ev, navMap); // Starlight-edit: Refresh configured tile walls.
+
         foreach (var change in ev.Changes)
         {
             if (!change.EmptyChanged)
@@ -124,6 +126,8 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
             else
             {
                 tileData = FloorMask;
+
+                ApplyNavMapWallMask(change.NewTile, ref tileData); // Starlight-edit: Apply tile wall flag.
             }
 
             DirtyChunk((ev.Entity, navMap), chunk);
@@ -273,6 +277,8 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
             tileData = FloorMask;
         else
             tileData &= FloorMask;
+
+        ApplyNavMapWallMask(_mapSystem.GetTileRef(uid, mapGrid, tile).Tile, ref tileData); // Starlight-edit: Apply tile wall flag.
 
         var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, mapGrid, tile);
         while (enumerator.MoveNext(out var ent))

@@ -4,7 +4,6 @@
   result: FoodBreadBun
   time: 5
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughSlice: 1 # one third of a standard bread dough recipe
 
@@ -14,7 +13,6 @@
   result: FoodCottonBun
   time: 5
   group: Moth
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughCottonSlice: 1
 
@@ -25,7 +23,6 @@
   result: FoodBagel
   time: 5
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughRope: 1 # created by rolling a dough slice.
 
@@ -35,7 +32,6 @@
   result: FoodBagelPoppy
   time: 5
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughRope: 1
     PoppySeeds: 1
@@ -46,7 +42,6 @@
   result: FoodBagelCotton
   time: 5
   group: Moth
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughCottonRope: 1
 
@@ -363,8 +358,8 @@
   group: Savory
   reagents:
     TableSalt: 1
-    Blackpepper: 1
     Egg: 12
+    Blackpepper: 1
   solids:
     FoodBreadBun: 1
     FoodMeat: 2
@@ -418,7 +413,6 @@
   result: FoodBreadCorn
   time: 10
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughCornmeal: 1
 
@@ -428,7 +422,6 @@
   result: FoodBreadCreamcheese
   time: 15
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Milk: 5
   solids:
@@ -441,7 +434,6 @@
   result: FoodBreadMeat
   time: 15
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDough: 1
     FoodMeatCutlet: 2
@@ -453,7 +445,6 @@
   result: FoodBreadMimana
   time: 15
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Nothing: 5
   solids:
@@ -466,7 +457,6 @@
   result: FoodBreadPlain
   time: 10
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDough: 1
 
@@ -485,7 +475,6 @@
   result: FoodBreadSausage
   time: 15
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDough: 1
     FoodMeat: 1 #replace with sausage
@@ -496,7 +485,6 @@
   result: FoodBreadMeatSpider
   time: 15
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDough: 1
     FoodMeatSpiderCutlet: 2
@@ -508,7 +496,6 @@
   result: FoodBreadTofu
   time: 15
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDough: 1
     FoodTofuSlice: 1
@@ -519,7 +506,6 @@
   result: FoodBreadMeatXeno
   time: 15
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDough: 1
     FoodMeatXenoCutlet: 2
@@ -533,7 +519,6 @@
   result: FoodBreadBaguette
   time: 15
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     TableSalt: 1
     Blackpepper: 1
@@ -546,7 +531,6 @@
   result: FoodBreadBaguetteCotton
   time: 15
   group: Moth
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     TableSalt: 1
     Blackpepper: 1
@@ -573,7 +557,6 @@
   result: FoodBreadButteredToast
   time: 5
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodBreadPlainSlice: 1
     FoodButterSlice: 1
@@ -584,7 +567,6 @@
   result: FoodBreadFrenchToast
   time: 5
   group: Breakfast
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Milk: 5
     Egg: 6
@@ -597,7 +579,6 @@
   result: FoodBreadGarlicSlice
   time: 5
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodBreadPlainSlice: 1
     FoodGarlic: 1
@@ -609,7 +590,6 @@
   result: FoodBreadJellySlice
   time: 5
   group: Breads
-  deviceType: Stove # Starlight-edit: Cooking Devices
   solids:
     FoodBreadPlainSlice: 1
     FoodJellyAmanita: 1 #replace with jelly
@@ -620,7 +600,6 @@
   result: FoodBreadMoldySlice
   time: 5
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodBreadPlainSlice: 1
     FoodFlyAmanita: 1
@@ -631,7 +610,6 @@
   result: FoodBreadTwoSlice
   time: 5
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Wine: 5
   solids:
@@ -845,12 +823,11 @@
   result: FoodRicePudding
   time: 15
   group: Dessert
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Rice: 10
     Milk: 30
-    Egg: 6
     Sugar: 5
+    Egg: 6
   solids:
     FoodBowlBig: 1
 
@@ -904,7 +881,6 @@
   result: FoodSoupBisque
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Water: 10
   solids:
@@ -919,7 +895,6 @@
   result: FoodSoupMeatball
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Water: 20
   solids:
@@ -934,15 +909,14 @@
   result: FoodSoupNettle
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Water: 10
     Egg: 6
   solids:
     FoodBowlBig: 1
     Nettle: 1
-    FoodAmbrosiaDeus: 1
     FoodPotato: 1
+    FoodAmbrosiaDeus: 1
 
 - type: microwaveMealRecipe
   id: RecipeEyeballSoup
@@ -950,7 +924,6 @@
   result: FoodSoupEyeball
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Water: 10
   solids:
@@ -977,7 +950,6 @@
   result: FoodSoupOnion
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Water: 10
   solids:
@@ -991,7 +963,6 @@
   result: FoodSoupMushroom
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Water: 5
     Milk: 5
@@ -1005,7 +976,6 @@
   result: FoodSoupStew
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Water: 10
   solids:
@@ -1023,7 +993,6 @@
   result: FoodSoupTomato
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Water: 10
   solids:
@@ -1036,7 +1005,6 @@
   result: FoodSoupTomatoBlood
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Blood: 10
   solids:
@@ -1049,7 +1017,6 @@
   result: FoodSoupWingFangChu
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Soysauce: 10
   solids:
@@ -1062,7 +1029,6 @@
   result: FoodSoupWingFangChu
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Soysauce: 5
   solids:
@@ -1075,7 +1041,6 @@
   result: FoodSoupVegetable
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Water: 5
   solids:
@@ -1091,14 +1056,13 @@
   result: FoodSoupClown
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Water: 10
   solids:
     FoodBowlBig: 1
     FoodBanana: 1
-    MaterialBananium: 1
     ShardGlass: 1
+    MaterialBananium: 1
     #idk probably replace shard with someting bananium when #14663 merged
 
 - type: microwaveMealRecipe
@@ -1107,7 +1071,6 @@
   result: FoodSoupMonkey
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Flour: 5
     TableSalt: 1
@@ -1123,7 +1086,6 @@
   result: FoodSoupBungo
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Water: 5
   solids:
@@ -1148,15 +1110,14 @@
   result: FoodSoupEscargot
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     Water: 5
   solids:
     FoodBowlBig: 1
     FoodOnionSlice: 1
+    FoodMeatSnailCooked: 1
     FoodGarlic: 1
     FoodButterSlice: 2
-    FoodMeatSnailCooked: 1
 
 #Pies
 
@@ -1166,7 +1127,6 @@
   result: FoodPieAmanita
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughPie: 1
     FoodFlyAmanita: 1
@@ -1178,7 +1138,6 @@
   result: FoodPieApple
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughPie: 1
     FoodApple: 3
@@ -1201,7 +1160,6 @@
   result: FoodPieBananaCream
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughPie: 1
     FoodBanana: 3
@@ -1213,7 +1171,6 @@
   result: FoodPieClafoutis
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughPie: 1
     FoodBerries: 3
@@ -1225,7 +1182,6 @@
   result: FoodPieCherry
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughPie: 1
     FoodCherry: 5
@@ -1237,7 +1193,6 @@
   result: FoodPieFrosty
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughPie: 1
     FoodChillyPepper: 3
@@ -1249,7 +1204,6 @@
   result: FoodPieMeat
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughPie: 1
     FoodMeat: 3
@@ -1261,7 +1215,6 @@
   result: FoodPiePumpkin
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughPie: 1
     FoodPumpkin: 1
@@ -1283,7 +1236,6 @@
   result: FoodPieXeno
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodDoughPie: 1
     FoodMeatXeno: 3
@@ -1297,7 +1249,6 @@
   result: FoodTartCoco
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Sugar: 5
     Milk: 5
@@ -1312,7 +1263,6 @@
   result: FoodTartGapple
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Gold: 10
     Sugar: 5
@@ -1328,7 +1278,6 @@
   result: FoodTartGrape
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Sugar: 5
     Milk: 5
@@ -1343,7 +1292,6 @@
   result: FoodTartMime
   time: 15
   group: Pie
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Sugar: 5
     Milk: 5
@@ -1361,10 +1309,10 @@
   time: 15
   group: Savory
   solids:
-    FoodDoughSlice: 1
     FoodCheeseSlice: 2
     FoodChiliPepper: 1
     FoodMeatFish: 2
+    FoodDoughSlice: 1
 
 - type: microwaveMealRecipe
   id: RecipeSashimi
@@ -1533,7 +1481,6 @@
   result: FoodBakedCookie
   time: 5
   group: BarsAndCookies
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Flour: 5
     Sugar: 5
@@ -1547,7 +1494,6 @@
   result: FoodBakedCookieSugar
   time: 5
   group: BarsAndCookies
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Flour: 5
     Sugar: 10
@@ -1560,7 +1506,6 @@
   result: FoodBakedCookieRaisin
   time: 5
   group: BarsAndCookies
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Flour: 5
     Sugar: 5
@@ -1573,7 +1518,6 @@
   result: FoodBakedCookieOatmeal
   time: 5
   group: BarsAndCookies
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Oats: 5
     Sugar: 5
@@ -1586,7 +1530,6 @@
   result: FoodBakedPancakeCc
   time: 5
   group: BarsAndCookies
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Flour: 5
     Milk: 5
@@ -1600,7 +1543,6 @@
   result: FoodCakeApple
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodCakePlain: 1
     FoodApple: 3
@@ -1611,7 +1553,6 @@
   result: FoodCakeCarrot
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodCakePlain: 1
     FoodCarrot: 2
@@ -1622,7 +1563,6 @@
   result: FoodCakeLemon
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodCakePlain: 1
     FoodLemon: 3
@@ -1633,7 +1573,6 @@
   result: FoodCakeLemoon
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodCakePlain: 1
     FoodLemoon: 1
@@ -1645,7 +1584,6 @@
   result: FoodCakeOrange
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodCakePlain: 1
     FoodOrange: 3
@@ -1656,7 +1594,6 @@
   result: FoodCakeBlueberry
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodCakePlain: 1
     FoodBerries: 3
@@ -1667,7 +1604,6 @@
   result: FoodCakeLime
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodCakePlain: 1
     FoodLime: 3
@@ -1678,7 +1614,6 @@
   result: FoodCakeCheese
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Cream: 10
   solids:
@@ -1691,7 +1626,6 @@
   result: FoodCakePumpkin
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodCakePlain: 1
     FoodPumpkin: 1
@@ -1702,7 +1636,6 @@
   result: FoodCakeClown
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     ClothingMaskClown: 1
     FoodCakePlain: 1
@@ -1713,7 +1646,6 @@
   result: FoodCakePlain
   time: 15
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodCakeBatter: 1
 
@@ -1723,7 +1655,6 @@
   result: FoodCakeBirthday
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Cream: 5
   solids:
@@ -1735,7 +1666,6 @@
   result: FoodCakeChocolate
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodCakePlain: 1
     FoodSnackChocolateBar: 2
@@ -1746,7 +1676,6 @@
   result: FoodCakeBrain
   time: 15
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodCakePlain: 1
     OrganHumanBrain: 1
@@ -1757,7 +1686,6 @@
   result: FoodCakeSlime
   time: 5
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Slime: 15
   solids:
@@ -1769,7 +1697,6 @@
   result: MobCatCake
   time: 15
   group: Cake
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Milk: 15
     Cognizine: 5
@@ -1796,7 +1723,6 @@
   result: MobBreadDog
   time: 15
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Cognizine: 5
   solids:
@@ -1822,7 +1748,6 @@
   result: FoodBakedBrownieBatch
   time: 25
   group: BarsAndCookies
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Flour: 15
     Sugar: 30
@@ -1927,7 +1852,6 @@
   result: FoodSoupChiliHot
   time: 20
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   solids:
     FoodBowlBig: 1
     FoodChiliPepper: 1
@@ -1941,7 +1865,6 @@
   result: FoodSoupChiliCold
   time: 5
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
     FrostOil: 10
   solids:
@@ -1953,7 +1876,6 @@
   result: FoodSoupClown
   time: 15
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   solids:
     FoodBowlBig: 1
     FoodOnionSlice: 1
@@ -1966,7 +1888,6 @@
   result: FoodSoupChiliClown
   time: 30
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   solids:
     FoodBowlBig: 1
     FoodChiliPepper: 1
@@ -1981,9 +1902,9 @@
   result: FoodMealQueso
   time: 15
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
-  reagents:
-    Blackpepper: 1 # Starlight-edit: Blackpepper
+  #todo Add blackpepper
+  #reagents:
+    #blackpepper: 5
   solids:
     FoodChiliPepper: 1
     FoodCheeseSlice: 2
@@ -2137,7 +2058,6 @@
   result: FoodBakedMuffin
   time: 15
   group: Dessert
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodPlateMuffinTin: 1
     FoodDoughSlice: 1
@@ -2150,7 +2070,6 @@
   result: FoodBakedMuffinChocolate
   time: 15
   group: Dessert
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodPlateMuffinTin: 1
     FoodDoughSlice: 1
@@ -2164,7 +2083,6 @@
   result: FoodBakedMuffinBerry
   time: 15
   group: Dessert
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodPlateMuffinTin: 1
     FoodDoughSlice: 1
@@ -2178,7 +2096,6 @@
   result: FoodBakedMuffinBanana
   time: 15
   group: Dessert
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodPlateMuffinTin: 1
     FoodDoughSlice: 1
@@ -2192,7 +2109,6 @@
   result: FoodBakedMuffinCherry
   time: 15
   group: Dessert
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodPlateMuffinTin: 1
     FoodDoughSlice: 1
@@ -2293,7 +2209,6 @@
   result: FoodBakedCannabisBrownieBatch
   time: 25
   group: BarsAndCookies
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     Flour: 15
     Sugar: 30
@@ -2319,7 +2234,6 @@
   result: FoodSoupPea
   time: 10
   group: Soup
-  deviceType: Stove # Starlight-edit: Cooking Devices
   solids:
     FoodPeaPod: 3
     FoodBowlBig: 1
@@ -2332,9 +2246,8 @@
   result: FoodTacoShell
   time: 5
   group: Breads
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
-    FoodDoughTortillaFlat: 1 # one eighth a standard bread dough recipe
+    FoodDoughTortillaFlat: 1 # one third of a standard bread dough recipe
 
 - type: microwaveMealRecipe
   id: RecipeTacoBeef
@@ -2427,7 +2340,6 @@
   result: FoodBakedCroissant
   time: 5
   group: Dessert
-  deviceType: Oven # Starlight-edit: Cooking Devices
   solids:
     FoodCroissantRaw: 1
     FoodButterSlice: 1
@@ -2546,7 +2458,7 @@
 - type: microwaveMealRecipe
   id: RecipeCottonCake
   name: cotton cake recipe
-  result: FoodCottonCake #Starlight moff cake
+  result: FoodCakeCotton
   time: 5
   group: Moth
   reagents:

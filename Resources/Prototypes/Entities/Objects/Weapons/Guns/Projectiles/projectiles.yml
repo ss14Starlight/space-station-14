@@ -237,17 +237,13 @@
     slowdownAmount: 2.5
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
-  # Starlight start
-  - type: CyberneticDisruptionOnCollide
-    disableChance: 0.2
-  # Starlight end
 
 - type: entity
-  name: taser bolt
-  id: BulletTaserSuper
-  description: If you can see this, you've probably been stun-meta'd
   parent: BulletTaser
+  id: BulletTaserSuper
   categories: [ HideSpawnMenu ]
+  name: taser bolt
+  description: If you can see this, you've probably been stun-meta'd
   components:
   - type: Sprite
     noRot: true
@@ -270,10 +266,6 @@
     slowdownAmount: 10
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
-  # Starlight start
-  - type: CyberneticDisruptionOnCollide
-    disableChance: 0.2
-  # Starlight end
 
 - type: entity
   name : disabler bolt
@@ -318,10 +310,6 @@
     soundHit:
       collection: WeakHit
     forceSound: true
-  # Starlight start
-  - type: CyberneticDisruptionOnCollide
-    disableChance: 0.1
-  # Starlight end
 
 - type: entity
   name : disabler bolt practice
@@ -400,13 +388,6 @@
     - EmitterBolt
   - type: TimedDespawn
     lifetime: 3
-  - type: Reflective
-    reflective:
-    - Energy
-  # Starlight start
-  - type: CyberneticDisruptionOnCollide
-    duration: 5
-  # Starlight end
 
 - type: entity
   name: watcher bolt
@@ -570,11 +551,11 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 25
+        Blunt: 15
         Structural: 30
   # Short lifespan
   - type: TimedDespawn
-    lifetime: 0.275 # roughly 6.5 tiles
+    lifetime: 0.22 # roughly 5.5 tiles
   - type: GatheringProjectile
 
 - type: entity
@@ -627,8 +608,8 @@
         - MobState
     damage:
       types:
-        Blunt: 20
-        Slash: 5
+        Blunt: 18
+        Slash: 4
   - type: Projectile
     impactEffect: BulletImpactEffectKinetic
     damage:
@@ -638,6 +619,7 @@
   - type: TimedDespawn
     lifetime: 0.4
 
+  # Deals less damage, glaive has better HP recovery
 - type: entity
   parent: BaseBullet
   id: AnomalousParticleDelta
@@ -830,12 +812,6 @@
     radius: 3.5
     color: orange
     energy: 0.5
-  - type: RadarBlip # Starlight
-    color: "#44FFAA"
-    scale: 1
-    shape: Circle
-    requireInSpace: true
-  - type: PDTarget # Starlight
 
 - type: entity
   id: BulletWeakRocket
@@ -860,34 +836,6 @@
     energy: 0.5
 
 - type: entity
-  id: Bullet60mmRocket
-  name: 60mm rocket
-  parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    layers:
-      - state: frag
-  - type: ExplodeOnTrigger
-  - type: Explosive
-    explosionType: Default
-    maxIntensity: 20
-    intensitySlope: 3
-    totalIntensity: 100
-    maxTileBreak: 1
-  - type: PointLight
-    radius: 3.5
-    color: orange
-    energy: 0.5
-  - type: RadarBlip # Starlight
-    color: "#44FFAA"
-    scale: 1
-    shape: Circle
-    requireInSpace: true
-  - type: PDTarget # Starlight
-
-- type: entity
   id: BulletGrenadeBaton
   name: baton grenade
   parent: BaseBullet
@@ -898,14 +846,14 @@
     layers:
       - state: grenade
   - type: Projectile
-    deleteOnCollide: true # Starlight change (oversight imo)
+    deleteOnCollide: false
     damage:
       types:
-        Blunt: 15 # Starlight change
+        Blunt: 1
     soundHit:
       path: /Audio/Effects/gen_hit.ogg
   - type: StaminaDamageOnCollide
-    damage: 65 # Starlight change
+    damage: 80
 
 - type: entity
   id: BulletGrenadeBlast
@@ -924,12 +872,6 @@
     intensitySlope: 5
     maxIntensity: 10
     canCreateVacuum: false
-  - type: RadarBlip # Starlight
-    color: "#FFDD00"
-    scale: 1
-    shape: Square
-    requireInSpace: true
-  - type: PDTarget # Starlight
 
 - type: entity
   id: BulletGrenadeFlash
@@ -971,12 +913,6 @@
     triggerKey: trigger
     fillPrototype: PelletClusterLessLethal
     capacity: 30
-  - type: RadarBlip # Starlight
-    color: "#FFDD00"
-    scale: 1
-    shape: Square
-    requireInSpace: true
-  - type: PDTarget # Starlight
 
 - type: entity
   parent: BaseBulletTrigger
@@ -989,8 +925,8 @@
     layers:
     - state: cleanade
   - type: SmokeOnTrigger
-    duration: 6
-    spreadAmount: 45
+    duration: 3.5
+    spreadAmount: 30
     smokePrototype: Foam
     solution:
       reagents:
@@ -999,17 +935,13 @@
   - type: EmitSoundOnTrigger
     sound: /Audio/Items/smoke_grenade_smoke.ogg
     positional: true
-  - type: Projectile # Starlight start
-    damage:
-      types:
-        Blunt: 0 # Cleanades shouldn't do damage
-  # - type: ExplodeOnTrigger
-  # - type: Explosive
-  #   explosionType: Default
-  #   totalIntensity: 0.01 # a little pop
-  #   intensitySlope: 1
-  #   maxIntensity: 0.01
-  #   tileBreakScale: 0.01 # Starlight end
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 0.01 # a little pop
+    intensitySlope: 1
+    maxIntensity: 0.01
+    tileBreakScale: 0.01
 
 - type: entity
   id: BulletGrenadeEMP
@@ -1031,12 +963,6 @@
     radius: 3.5
     color: blue
     energy: 0.5
-  - type: RadarBlip # Starlight
-    color: "#44FFAA"
-    scale: 1
-    shape: Circle
-    requireInSpace: true
-  - type: PDTarget # Starlight
 
 - type: entity
   id: BulletCap
@@ -1233,10 +1159,6 @@
     soundHit:
       collection: WeakHit
     forceSound: true
-  # Starlight start
-  - type: CyberneticDisruptionOnCollide
-    disableChance: 0.1
-  # Starlight end
 
 - type: entity
   name : energy bolt
@@ -1312,9 +1234,6 @@
     soundHit:
       collection: WeakHit
     forceSound: true
-  # Starlight start
-  - type: CyberneticDisruptionOnCollide
-  # Starlight end
 
 - type: entity
   name: tesla gun lightning
@@ -1386,42 +1305,7 @@
     impactEffect: BulletImpactEffectOrangeDisabler
     damage:
       types:
-        Heat: 20
-
-- type: entity
-  name: destroying bolt
-  id: BulletLaserDestroy
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: FlyBySound
-    sound:
-      collection: EnergyMiss
-      params:
-        volume: 5
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-    layers:
-    - state: heavylaser
-      shader: unshaded
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.15,-0.3,0.15,0.3"
-        hard: false
-        mask:
-        - Impassable
-        - BulletImpassable
-      fly-by: *flybyfixture
-  - type: Ammo
-  - type: Projectile
-    impactEffect: BulletImpactEffectOrangeDisabler
-    damage:
-      types:
-        Heat: 50
+        Heat: 13
 
 - type: entity
   name: wide laser barrage
@@ -1537,10 +1421,10 @@
     damage: 45
   - type: Solution
     solution:
-      maxVol: 4 # Starlight-edit: 1.5 -> 4
+      maxVol: 1.5
       reagents:
-      - ReagentId: Impedrezene # SL edit
-        Quantity: 4
+      - ReagentId: Toxin
+        Quantity: 1.5
   - type: SolutionInjectOnProjectileHit
-    transferAmount: 4 # Starlight-edit: 1.5 -> 4
+    transferAmount: 1.5
     solution: ammo

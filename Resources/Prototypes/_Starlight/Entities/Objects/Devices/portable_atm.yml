@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseItem
+  id: PortableATM
+  name: Portable ATM
+  description: Hostage negotiations have never been easier!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Economy/portable_atm.rsi
+      state: icon
+    - type: ATM
+    - type: ActivatableUI
+      key: enum.ATMUIKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.ATMUIKey.Key:
+          type: ATMBui

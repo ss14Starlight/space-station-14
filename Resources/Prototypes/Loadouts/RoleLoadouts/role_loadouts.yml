@@ -125,7 +125,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  #- ChefJobTrinkets
+  - ChefJobTrinkets # Starlight (uncommented)
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -217,7 +217,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  #- BotanistJobTrinkets
+  - BotanistJobTrinkets # Starlight (uncommented)
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -398,6 +398,7 @@
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianOuterClothing
   - AtmosphericTechnicianShoes
+  - AtmosphericTechnicianID # Starlight
   - SurvivalExtended
   - Trinkets
   - Scarves # Starlight

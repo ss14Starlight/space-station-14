@@ -1,4 +1,3 @@
-using Content.Client._Starlight.Computers.RemoteControl;
 using Robust.Client.UserInterface;
 using Content.Shared.Atmos.Components;
 
@@ -18,7 +17,6 @@ public sealed class GasAnalyzerBoundUserInterface : BoundUserInterface
         base.Open();
 
         _window = this.CreateWindowCenteredLeft<GasAnalyzerWindow>();
-        EntMan.System<RemoteControlInterface>().TryEmbedWindow(_window); // Starlight
         _window.OnClose += Close;
     }
 

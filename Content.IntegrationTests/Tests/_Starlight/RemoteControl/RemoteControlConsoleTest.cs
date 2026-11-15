@@ -1,13 +1,23 @@
+#nullable enable annotations
+
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Computers.RemoteControl;
+using Content.Server.DeviceLinking.Systems;
+using Content.Server._Starlight.Silicons;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Silicons.Borgs;
+using Content.Server.Wires;
 using Content.Shared._Afterlight.Silicons.Borgs;
 using Content.Shared._Starlight.Computers.RemoteControl;
+using Content.Shared._Starlight.Silicons;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.DeviceLinking;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction;
 using Content.Shared.Inventory;
+using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
@@ -15,10 +25,14 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Power.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.Borgs;
+using Content.Shared.Throwing;
 using Content.Shared.UserInterface;
+using Content.Shared.Verbs;
+using Content.Shared.Wires;
 using Robust.Server.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Localization;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -38,13 +52,450 @@ public sealed class RemoteControlConsoleTest : GameTest
             enum.BorgSwitchableTypeUiKey.SelectBorgType:
                 type: BorgSelectTypeUserInterface
                 interactionRange: 2
+                requireInputValidation: true
 -   type: entity
-    id: RemoteControlForceTestConsole
+    id: RemoteControlHighPowerTestConsole
     parent: RemoteControlConsole
     components:
     -   type: RemoteControlConsole
-        canForceRemoteControl: true
+        remoteControlPower: 51
+-   type: entity
+    id: RemoteControlTestAi
+    parent: AiHeld
+    components:
+    -   type: StationAIShuntable
 ";
+
+    [Test]
+    public async Task RemoteControlPortConnectionCopiesChannelAndDisconnects()
+    {
+        EntityUid? map = null;
+        EntityUid remote = default;
+        EntityUid consoleUid = default;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var mapSystem = Server.System<SharedMapSystem>();
+                map = mapSystem.CreateMap(out var mapId);
+                var coordinates = new MapCoordinates(0, 0, mapId);
+                remote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
+                consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
+                var remoteBrain = SEntMan.GetComponent<RemoteControlBrainComponent>(remote);
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                var deviceLink = Server.System<DeviceLinkSystem>();
+
+                deviceLink.LinkDefaults(null, consoleUid, remote);
+
+                Assert.Multiple(() =>
+                {
+                    Assert.That(console.Channel, Is.EqualTo(remoteBrain.Channel));
+                    Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+                    Assert.That(deviceLink.GetLinks(consoleUid, remote), Is.Not.Empty);
+                });
+            });
+
+            await RunSeconds(0.1f);
+            await Server.WaitAssertion(() =>
+            {
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                var deviceLink = Server.System<DeviceLinkSystem>();
+
+                Assert.Multiple(() =>
+                {
+                    Assert.That(console.Channel, Is.Not.Null);
+                    Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+                    Assert.That(deviceLink.GetLinks(consoleUid, remote), Is.Empty);
+                });
+            });
+        }
+        finally
+        {
+            if (map is { } mapUid)
+                await Server.WaitPost(() => SEntMan.DeleteEntity(mapUid));
+        }
+    }
+
+    [TestCase("PlushieRouny")]
+    [TestCase("PlushieFlox")]
+    public async Task RemoteControlCanConnectToMobileEntityByChannel(string plushiePrototype)
+    {
+        EntityUid? map = null;
+        EntityUid remote = default;
+        EntityUid secondRemote = default;
+        EntityUid consoleUid = default;
+        EntityUid controller = default;
+        RemoteControlConsoleComponent console = default!;
+        RemoteControlBrainComponent remoteBrain = default!;
+        RemoteControlBrainComponent secondRemoteBrain = default!;
+        RemoteControlBrainSystem brainSystem = default!;
+        SharedUserInterfaceSystem userInterface = default!;
+        var missingChannel = 0;
+
+        void SetChannel(string? channel)
+            => SEntMan.EventBus.RaiseLocalEvent(consoleUid,
+                new RemoteControlSetChannelMessage
+                {
+                    Actor = controller,
+                    UiKey = RemoteControlSettingsUIKey.Key,
+                    Channel = channel
+                });
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var mapSystem = Server.System<SharedMapSystem>();
+                map = mapSystem.CreateMap(out var mapId);
+                var coordinates = new MapCoordinates(0, 0, mapId);
+                remote = SEntMan.SpawnEntity(plushiePrototype, coordinates);
+                secondRemote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
+                var dynamicBrainEntity = SEntMan.SpawnEntity(null, coordinates);
+                var dynamicBrain = SEntMan.AddComponent<RemoteControlBrainComponent>(dynamicBrainEntity);
+                brainSystem = Server.System<RemoteControlBrainSystem>();
+                var collisionChannel = RemoteControlChannel.ChannelCount - 1;
+                while (brainSystem.TryGetBrain(collisionChannel, out _))
+                    collisionChannel--;
+
+                var firstCollisionBrainEntity = SEntMan.SpawnEntity(null, coordinates);
+                var secondCollisionBrainEntity = SEntMan.SpawnEntity(null, coordinates);
+                var firstCollisionBrain = new RemoteControlBrainComponent { Channel = collisionChannel };
+                var secondCollisionBrain = new RemoteControlBrainComponent { Channel = collisionChannel };
+                SEntMan.AddComponent(firstCollisionBrainEntity, firstCollisionBrain);
+                SEntMan.AddComponent(secondCollisionBrainEntity, secondCollisionBrain);
+
+                consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
+                controller = SEntMan.SpawnEntity("MobHuman", coordinates);
+                console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                remoteBrain = SEntMan.GetComponent<RemoteControlBrainComponent>(remote);
+                secondRemoteBrain = SEntMan.GetComponent<RemoteControlBrainComponent>(secondRemote);
+                userInterface = Server.System<SharedUserInterfaceSystem>();
+                console.Users.Add(controller);
+
+                var formattedChannel = RemoteControlChannel.Format(remoteBrain.Channel);
+                Assert.That(formattedChannel, Has.Length.EqualTo(RemoteControlChannel.DigitCount));
+                Assert.That(RemoteControlChannel.TryParse(formattedChannel, out var parsedChannel), Is.True);
+                Assert.That(parsedChannel, Is.EqualTo(remoteBrain.Channel));
+                Assert.That(secondRemoteBrain.Channel, Is.Not.EqualTo(remoteBrain.Channel));
+                Assert.That(RemoteControlChannel.IsValid(dynamicBrain.Channel), Is.True);
+                Assert.That(dynamicBrain.Channel, Is.Not.EqualTo(remoteBrain.Channel));
+                Assert.That(firstCollisionBrain.Channel, Is.EqualTo(collisionChannel));
+                Assert.That(RemoteControlChannel.IsValid(secondCollisionBrain.Channel), Is.True);
+                Assert.That(secondCollisionBrain.Channel, Is.Not.EqualTo(firstCollisionBrain.Channel));
+                Assert.That(brainSystem.TryGetBrain(firstCollisionBrain.Channel, out var firstRegisteredBrain), Is.True);
+                Assert.That(firstRegisteredBrain, Is.EqualTo(firstCollisionBrainEntity));
+                Assert.That(brainSystem.TryGetBrain(secondCollisionBrain.Channel, out var secondRegisteredBrain), Is.True);
+                Assert.That(secondRegisteredBrain, Is.EqualTo(secondCollisionBrainEntity));
+                Assert.That(Server.System<RemoteControlBrainSystem>()
+                    .TryGetBrain(dynamicBrain.Channel, out var registeredDynamicBrain), Is.True);
+                Assert.That(registeredDynamicBrain, Is.EqualTo(dynamicBrainEntity));
+                Assert.That(Server.System<RemoteControlBrainSystem>()
+                    .TryGetBrain(remoteBrain.Channel, out var registeredBrain), Is.True);
+                Assert.That(registeredBrain, Is.EqualTo(remote));
+
+                Assert.That(userInterface.HasUi(consoleUid, RemoteControlSettingsUIKey.Key), Is.True);
+                Assert.That(userInterface.TryOpenUi(consoleUid, RemoteControlUIKey.Key, controller), Is.True);
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid,
+                    new RemoteControlOpenSettingsMessage
+                    {
+                        Actor = controller,
+                        UiKey = RemoteControlUIKey.Key
+                    });
+                Assert.That(userInterface.IsUiOpen(consoleUid, RemoteControlSettingsUIKey.Key, controller), Is.True);
+                Assert.That(userInterface.TryGetUiState<RemoteControlSettingsBuiState>(
+                    consoleUid, RemoteControlSettingsUIKey.Key, out var initialSettingsState), Is.True);
+                Assert.That(initialSettingsState!.Channel, Is.Empty);
+                Assert.That(initialSettingsState.Connected, Is.False);
+
+                missingChannel = RemoteControlChannel.ChannelCount - 1;
+                while (brainSystem.TryGetBrain(missingChannel, out _))
+                    missingChannel--;
+
+                SetChannel("1000000");
+                Assert.That(console.Channel, Is.Null, "Out-of-range channels should be rejected.");
+                Assert.That(userInterface.TryGetUiState<RemoteControlSettingsBuiState>(
+                    consoleUid, RemoteControlSettingsUIKey.Key, out var invalidSettingsState), Is.True);
+                Assert.That(invalidSettingsState!.Error, Is.EqualTo(Loc.GetString("remote-control-settings-invalid-channel")));
+
+                SetChannel(RemoteControlChannel.Format(missingChannel));
+                Assert.That(console.Channel, Is.Null, "A second channel request within one second should be rejected.");
+                Assert.That(userInterface.TryGetUiState<RemoteControlSettingsBuiState>(
+                    consoleUid, RemoteControlSettingsUIKey.Key, out var rateLimitedSettingsState), Is.True);
+                Assert.That(rateLimitedSettingsState!.Error, Is.Empty);
+            });
+
+            await RunSeconds(1.1f);
+            await Server.WaitAssertion(() =>
+            {
+                SetChannel(RemoteControlChannel.Format(missingChannel));
+                Assert.That(console.Channel, Is.EqualTo(missingChannel));
+                Assert.That(console.RemoteBrain, Is.Null);
+                Assert.That(userInterface.TryGetUiState<RemoteControlSettingsBuiState>(
+                    consoleUid, RemoteControlSettingsUIKey.Key, out var disconnectedSettingsState), Is.True);
+                Assert.That(disconnectedSettingsState!.Channel, Is.EqualTo(RemoteControlChannel.Format(missingChannel)));
+                Assert.That(disconnectedSettingsState.Connected, Is.False);
+                Assert.That(disconnectedSettingsState.Error, Is.Null);
+
+                SetChannel(RemoteControlChannel.Format(remoteBrain.Channel));
+                Assert.That(console.Channel, Is.EqualTo(missingChannel));
+                Assert.That(console.RemoteBrain, Is.Null);
+                Assert.That(userInterface.TryGetUiState<RemoteControlSettingsBuiState>(
+                    consoleUid, RemoteControlSettingsUIKey.Key, out var rejectedSettingsState), Is.True);
+                Assert.That(rejectedSettingsState!.Error, Is.Empty);
+            });
+
+            await RunSeconds(1.1f);
+            await Server.WaitAssertion(() =>
+            {
+                SetChannel(RemoteControlChannel.Format(remoteBrain.Channel));
+                Assert.That(console.Channel, Is.EqualTo(remoteBrain.Channel));
+                Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+                Assert.That(userInterface.TryGetUiState<RemoteControlSettingsBuiState>(
+                    consoleUid, RemoteControlSettingsUIKey.Key, out var connectedSettingsState), Is.True);
+                Assert.That(connectedSettingsState!.Channel, Is.EqualTo(RemoteControlChannel.Format(remoteBrain.Channel)));
+                Assert.That(connectedSettingsState.Connected, Is.True);
+                Assert.That(connectedSettingsState.Error, Is.Null);
+
+                var toggleMessage = new RemoteControlToggleMessage
+                {
+                    Actor = controller,
+                    UiKey = RemoteControlUIKey.Key
+                };
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid, toggleMessage);
+
+                var remoteControl = Server.System<SharedRemoteControlConsoleSystem>();
+                Assert.Multiple(() =>
+                {
+                    Assert.That(SEntMan.HasComponent<RemoteControlBrainComponent>(remote), Is.True);
+                    Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+                    Assert.That(remoteControl.TryGetBody((consoleUid, console), out var body), Is.True);
+                    Assert.That(body, Is.EqualTo(remote));
+                    Assert.That(console.Controller, Is.EqualTo(controller));
+                    Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(controller).RelayEntity,
+                        Is.EqualTo(remote));
+                });
+
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid, toggleMessage);
+                Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(controller), Is.False);
+
+                SetChannel(RemoteControlChannel.Format(secondRemoteBrain.Channel));
+                Assert.That(console.Channel, Is.EqualTo(remoteBrain.Channel));
+                Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+                Assert.That(userInterface.TryGetUiState<RemoteControlSettingsBuiState>(
+                    consoleUid, RemoteControlSettingsUIKey.Key, out var rejectedSettingsState), Is.True);
+                Assert.That(rejectedSettingsState!.Error, Is.Empty);
+            });
+
+            await RunSeconds(1.1f);
+            await Server.WaitAssertion(() =>
+            {
+                SetChannel(RemoteControlChannel.Format(secondRemoteBrain.Channel));
+                Assert.That(console.Channel, Is.EqualTo(secondRemoteBrain.Channel));
+                Assert.That(console.RemoteBrain, Is.EqualTo(secondRemote));
+            });
+
+            await RunSeconds(1.1f);
+            await Server.WaitAssertion(() =>
+            {
+                SetChannel(null);
+                Assert.That(console.RemoteBrain, Is.Null);
+                Assert.That(console.Channel, Is.Null);
+            });
+        }
+        finally
+        {
+            if (map is { } mapUid)
+                await Server.WaitPost(() => SEntMan.DeleteEntity(mapUid));
+        }
+    }
+
+    [Test]
+    public async Task RemoteControlRequiresKinematicController()
+    {
+        EntityUid? map = null;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var mapSystem = Server.System<SharedMapSystem>();
+                var userInterface = Server.System<SharedUserInterfaceSystem>();
+                map = mapSystem.CreateMap(out var mapId);
+                var coordinates = new MapCoordinates(0, 0, mapId);
+                var remote = SEntMan.SpawnEntity("RemoteControlRangeTestUi", coordinates);
+                var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                var controller = SEntMan.SpawnEntity("MobHuman", coordinates);
+                console.RemoteBrain = remote;
+
+                Assert.That(userInterface.TryOpenUi(consoleUid, RemoteControlUIKey.Key, controller), Is.True);
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid,
+                    new RemoteControlToggleMessage
+                    {
+                        Actor = controller,
+                        UiKey = RemoteControlUIKey.Key
+                    });
+
+                Assert.That(console.Controller, Is.Null);
+                Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(controller), Is.False);
+                Assert.That(userInterface.TryGetUiState<RemoteControlConsoleBuiState>(
+                    consoleUid, RemoteControlUIKey.Key, out var state), Is.True);
+                Assert.That(state!.Controller, Is.Null);
+            });
+        }
+        finally
+        {
+            if (map is { } mapUid)
+                await Server.WaitPost(() => SEntMan.DeleteEntity(mapUid));
+        }
+    }
+
+    [Test]
+    public async Task ToyRemoteUseActivatesAndControlsSelectedBrain() => await Server.WaitAssertion(() =>
+    {
+        var mapSystem = Server.System<SharedMapSystem>();
+        var ui = Server.System<SharedUserInterfaceSystem>();
+        var hands = Server.System<SharedHandsSystem>();
+        var interaction = Server.System<SharedInteractionSystem>();
+        var map = mapSystem.CreateMap(out var mapId);
+
+        try
+        {
+            var coordinates = new MapCoordinates(0, 0, mapId);
+            var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlExpedition", coordinates);
+            var remote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
+            var user = SEntMan.SpawnEntity("MobHuman", coordinates);
+            var activatable = SEntMan.GetComponent<ActivatableUIComponent>(toyRemote);
+            var itemToggle = SEntMan.GetComponent<ItemToggleComponent>(toyRemote);
+            var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(toyRemote);
+            var remoteBrain = SEntMan.GetComponent<RemoteControlBrainComponent>(remote);
+
+            Assert.That(activatable.Key, Is.EqualTo(RemoteControlSettingsUIKey.Key));
+            Assert.That(hands.TryPickupAnyHand(user, toyRemote), Is.True);
+            Assert.That(ui.TryOpenUi(toyRemote, RemoteControlSettingsUIKey.Key, user), Is.True);
+            SEntMan.EventBus.RaiseLocalEvent(toyRemote,
+                new RemoteControlSetChannelMessage
+                {
+                    Actor = user,
+                    UiKey = RemoteControlSettingsUIKey.Key,
+                    Channel = RemoteControlChannel.Format(remoteBrain.Channel)
+                });
+            Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+            Assert.That(console.Controller, Is.Null,
+                "Selecting a brain while the toy is inactive should not start control.");
+            Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(user), Is.False);
+            ui.CloseUi(toyRemote, RemoteControlSettingsUIKey.Key, user);
+
+            Assert.That(itemToggle.Activated, Is.False);
+            interaction.UseInHandInteraction(user, toyRemote);
+
+            Assert.That(itemToggle.Activated, Is.True, "Using the toy remote should activate its toggle.");
+            Assert.That(ui.IsUiOpen(toyRemote, RemoteControlSettingsUIKey.Key, user), Is.True);
+            Assert.That(console.Controller, Is.EqualTo(user));
+            Assert.That(Server.System<SharedRemoteControlConsoleSystem>()
+                .TryGetControlledEntity(user, out var controlledEntity), Is.True);
+            Assert.That(controlledEntity, Is.EqualTo(remote));
+            Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(user).RelayEntity, Is.EqualTo(remote));
+        }
+        finally
+        {
+            SEntMan.DeleteEntity(map);
+        }
+    });
+
+    [Test]
+    public async Task ToyRemoteControlsBrainSelectedAfterActivation() =>
+        await Server.WaitAssertion(() =>
+        {
+            var mapSystem = Server.System<SharedMapSystem>();
+            var ui = Server.System<SharedUserInterfaceSystem>();
+            var hands = Server.System<SharedHandsSystem>();
+            var interaction = Server.System<SharedInteractionSystem>();
+            var map = mapSystem.CreateMap(out var mapId);
+
+            try
+            {
+                var coordinates = new MapCoordinates(0, 0, mapId);
+                var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlExpedition", coordinates);
+                var remote = SEntMan.SpawnEntity("PlushieRouny", coordinates);
+                var user = SEntMan.SpawnEntity("MobHuman", coordinates);
+                var itemToggle = SEntMan.GetComponent<ItemToggleComponent>(toyRemote);
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(toyRemote);
+                var remoteBrain = SEntMan.GetComponent<RemoteControlBrainComponent>(remote);
+
+                Assert.That(hands.TryPickupAnyHand(user, toyRemote), Is.True);
+                interaction.UseInHandInteraction(user, toyRemote);
+
+                Assert.That(itemToggle.Activated, Is.True, "Using the toy remote should activate its toggle.");
+                Assert.That(console.Controller, Is.Null);
+                Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(user), Is.False);
+                Assert.That(ui.IsUiOpen(toyRemote, RemoteControlSettingsUIKey.Key, user), Is.True);
+
+                SEntMan.EventBus.RaiseLocalEvent(toyRemote,
+                    new RemoteControlSetChannelMessage
+                    {
+                        Actor = user,
+                        UiKey = RemoteControlSettingsUIKey.Key,
+                        Channel = RemoteControlChannel.Format(remoteBrain.Channel)
+                    });
+
+                Assert.That(console.RemoteBrain, Is.EqualTo(remote));
+                Assert.That(console.Controller, Is.EqualTo(user));
+                var remoteControl = Server.System<SharedRemoteControlConsoleSystem>();
+                Assert.That(remoteControl.TryGetControlledEntity(user, out var controlledEntity), Is.True);
+                Assert.That(controlledEntity, Is.EqualTo(remote));
+                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(user).RelayEntity, Is.EqualTo(remote));
+            }
+            finally
+            {
+                SEntMan.DeleteEntity(map);
+            }
+        });
+
+    [Test]
+    public async Task RemoteControlBrainChannelIsOnlyExaminableOnTheBrainAtCloseRange() =>
+        await Server.WaitAssertion(() =>
+        {
+            var mapSystem = Server.System<SharedMapSystem>();
+            var map = mapSystem.CreateMap(out var mapId);
+
+            try
+            {
+                var coordinates = new MapCoordinates(0, 0, mapId);
+                var user = SEntMan.SpawnEntity("MobHuman", coordinates);
+                var chassis = SEntMan.SpawnEntity("BorgChassisGeneric", coordinates);
+                var brain = SEntMan.SpawnEntity("RemoteControlBrain", coordinates);
+                var chassisComponent = SEntMan.GetComponent<BorgChassisComponent>(chassis);
+                Assert.That(Server.System<SharedContainerSystem>().Insert(brain, chassisComponent.BrainContainer), Is.True);
+
+                var channelVerbText = Loc.GetString("remote-control-brain-channel-verb");
+                var nearbyBrainVerbs = GetExamineVerbs(SEntMan, brain, user, canInteract: true, canAccess: true);
+                Assert.That(nearbyBrainVerbs.Verbs.Any(verb => verb.Text == channelVerbText), Is.True);
+
+                var distantBrainVerbs = GetExamineVerbs(SEntMan, brain, user, canInteract: false, canAccess: true);
+                Assert.That(distantBrainVerbs.Verbs.Any(verb => verb.Text == channelVerbText), Is.False);
+
+                var chassisVerbs = GetExamineVerbs(SEntMan, chassis, user, canInteract: true, canAccess: true);
+                Assert.That(chassisVerbs.Verbs.Any(verb => verb.Text == channelVerbText), Is.False);
+            }
+            finally
+            {
+                SEntMan.DeleteEntity(map);
+            }
+        });
+
+    private static GetVerbsEvent<ExamineVerb> GetExamineVerbs(
+        IEntityManager entityManager,
+        EntityUid target,
+        EntityUid user,
+        bool canInteract,
+        bool canAccess)
+    {
+        var args = new GetVerbsEvent<ExamineVerb>(user, target, null, null, canInteract, canInteract, canAccess, []);
+        entityManager.EventBus.RaiseLocalEvent(target, args);
+        return args;
+    }
 
     [TestCase(false, 1, true)]
     [TestCase(false, 10, false)]
@@ -83,28 +534,38 @@ public sealed class RemoteControlConsoleTest : GameTest
         });
 
         if (controlling && expectedOpen)
-            await AssertMirroredUiMessageRejected();
+            await AssertCrossMapMirroredUiOpensAndRespectsRange();
     }
 
-    private async Task AssertMirroredUiMessageRejected()
+    private async Task AssertCrossMapMirroredUiOpensAndRespectsRange()
     {
         EntityUid? map = null;
+        EntityUid? controllerMap = null;
         EntityUid target = default;
         EntityUid user = default;
         EntityUid remote = default;
+        NetEntity targetNet = default;
+        NetEntity userNet = default;
         ICommonSession session = null;
         EntityUid? previousAttachedEntity = null;
+        var targetInsertedIntoRemoteContainer = false;
+        var defaultAccessAllowsController = true;
+        var remoteAccessAllowsTarget = false;
         var key = BorgSwitchableTypeUiKey.SelectBorgType;
 
         try
         {
             await Server.WaitAssertion(() =>
             {
-                map = Server.System<SharedMapSystem>().CreateMap(out var mapId);
+                var mapSystem = Server.System<SharedMapSystem>();
+                map = mapSystem.CreateMap(out var mapId);
+                controllerMap = mapSystem.CreateMap(out var controllerMapId);
                 target = SEntMan.SpawnEntity("RemoteControlRangeTestUi", new MapCoordinates(0, 0, mapId));
                 remote = SEntMan.SpawnEntity(null, new MapCoordinates(1, 0, mapId));
-                user = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, mapId));
-                var consoleUid = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, mapId));
+                user = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, controllerMapId));
+                targetNet = SEntMan.GetNetEntity(target);
+                userNet = SEntMan.GetNetEntity(user);
+                var consoleUid = SEntMan.SpawnEntity(null, new MapCoordinates(100, 0, controllerMapId));
                 var console = SEntMan.AddComponent<RemoteControlConsoleComponent>(consoleUid);
                 console.RemoteBrain = remote;
                 SetTestController(consoleUid, console, user);
@@ -117,16 +578,88 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.AddComponent<BorgSwitchableTypeComponent>(target);
 
                 var ui = Server.System<SharedUserInterfaceSystem>();
+                var uiOpenAttemptTestSystem = Server.System<RemoteControlUiOpenAttemptTestSystem>();
+                uiOpenAttemptTestSystem.Watch(target, user);
+                var containers = Server.System<SharedContainerSystem>();
+                var remoteContainer = containers.EnsureContainer<Container>(remote, "test-hand");
+                targetInsertedIntoRemoteContainer = containers.Insert(target, remoteContainer);
+                var interaction = Server.System<SharedInteractionSystem>();
+                defaultAccessAllowsController = interaction.CanAccess(user, target);
+                remoteAccessAllowsTarget = interaction.CanAccess(remote, target);
+                Assert.That(SEntMan.GetComponent<TransformComponent>(target).MapID,
+                    Is.Not.EqualTo(SEntMan.GetComponent<TransformComponent>(user).MapID),
+                    "The UI target and controller must be on different maps.");
+                Assert.That(ui.TryGetInterfaceData((target, null), key, out var interfaceData), Is.True);
+                Assert.That(interfaceData?.RequireInputValidation, Is.True,
+                    "The test must exercise validated bound-interface opens.");
+                Assert.That(ui.IsUiOpen(target, key, user), Is.False,
+                    "The mirrored controller UI must start closed.");
                 Assert.DoesNotThrow(() => ui.OpenUi(target, key, remote));
                 Assert.That(ui.IsUiOpen(target, key, remote), Is.True);
+                Assert.That(ui.IsUiOpen(target, key, user), Is.False,
+                    "The controller UI should remain closed until the deferred mirror open.");
+                Assert.That(ui.GetUiRange(target, key), Is.Zero);
             });
+            Assert.That(targetInsertedIntoRemoteContainer, Is.True,
+                "The UI target must be contained by the remote body to exercise container access validation.");
+            Assert.That(defaultAccessAllowsController, Is.False,
+                "A controller outside the remote body's container must fail the default access check.");
+            Assert.That(remoteAccessAllowsTarget, Is.True,
+                "The remote body must be able to access the UI target in its container.");
 
             await Server.WaitRunTicks(1);
+            var controllerUiOpen = false;
+            var controllerOpenAttempted = false;
+            var controllerUiWasOpenAtAttempt = true;
+            var interactionRangeAtAttempt = float.NaN;
+            var controllerAccessibilityChecked = false;
+            var controllerAccessibilityHandled = false;
+            var controllerAccessible = false;
+            await Server.WaitAssertion(() =>
+            {
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                var uiOpenAttemptTestSystem = Server.System<RemoteControlUiOpenAttemptTestSystem>();
+                controllerUiOpen = ui.IsUiOpen(target, key, user);
+                controllerOpenAttempted = uiOpenAttemptTestSystem.ControllerOpenAttempted;
+                controllerUiWasOpenAtAttempt = uiOpenAttemptTestSystem.ControllerUiWasOpenAtAttempt;
+                interactionRangeAtAttempt = uiOpenAttemptTestSystem.InteractionRangeAtAttempt;
+                controllerAccessibilityChecked = uiOpenAttemptTestSystem.ControllerAccessibilityChecked;
+                controllerAccessibilityHandled = uiOpenAttemptTestSystem.ControllerAccessibilityHandled;
+                controllerAccessible = uiOpenAttemptTestSystem.ControllerAccessible;
+            });
+            Assert.That(controllerUiOpen, Is.True,
+                "The first cross-map mirrored OpenBoundInterfaceMessage should be allowed.");
+            Assert.That(controllerOpenAttempted, Is.True,
+                "The controller's initial OpenBoundInterfaceMessage must be validated.");
+            Assert.That(controllerUiWasOpenAtAttempt, Is.False,
+                "The controller UI must still be closed when its initial open is validated.");
+            Assert.That(interactionRangeAtAttempt, Is.Zero,
+                "The initial open must exercise the cross-map zero-range accessibility path.");
+            Assert.That(controllerAccessibilityChecked, Is.True,
+                "The initial open must run the controller accessibility override.");
+            Assert.That(controllerAccessibilityHandled, Is.True,
+                "The remote-control accessibility override must handle the initial open.");
+            Assert.That(controllerAccessible, Is.True,
+                "The remote-control accessibility override must allow the initial open.");
+            await Pair.RunUntilSynced();
+            await Client.WaitAssertion(() =>
+            {
+                var clientEntities = Client.ResolveDependency<IEntityManager>();
+                var clientUi = Client.System<SharedUserInterfaceSystem>();
+                var clientTarget = clientEntities.GetEntity(targetNet);
+                var clientUser = clientEntities.GetEntity(userNet);
+                Assert.That(clientUi.IsUiOpen(clientTarget, key, clientUser), Is.True);
+            });
+
             await Server.WaitAssertion(() =>
             {
                 var ui = Server.System<SharedUserInterfaceSystem>();
                 Assert.That(ui.IsUiOpen(target, key, user), Is.True);
-                Server.System<SharedTransformSystem>().SetCoordinates(remote, new EntityCoordinates(map!.Value, 10, 0));
+                var transform = Server.System<SharedTransformSystem>();
+                transform.SetCoordinates(target, new EntityCoordinates(map!.Value, 0, 0));
+                Assert.That(Server.System<SharedInteractionSystem>().CanAccess(user, target), Is.True,
+                    "The target must be uncontained for the later range-only message checks.");
+                transform.SetCoordinates(remote, new EntityCoordinates(map!.Value, 10, 0));
 
                 var message = new BorgSelectSubtypeMessage(new ProtoId<BorgTypePrototype>("generic"), null)
                 {
@@ -136,6 +669,19 @@ public sealed class RemoteControlConsoleTest : GameTest
 
                 Assert.That(SEntMan.GetComponent<BorgSwitchableTypeComponent>(target).SelectedBorgType,
                     Is.Null, "Out-of-range remote UI messages should be rejected.");
+
+                Server.System<SharedTransformSystem>().SetCoordinates(remote, new EntityCoordinates(map!.Value, 1, 0));
+                var validMessage = new BorgSelectSubtypeMessage(new ProtoId<BorgTypePrototype>("generic"), null)
+                {
+                    Actor = user
+                };
+                ui.RaiseUiMessage(target, key, validMessage);
+
+                Assert.That(SEntMan.GetComponent<BorgSwitchableTypeComponent>(target).SelectedBorgType,
+                    Is.EqualTo(new ProtoId<BorgTypePrototype>("generic")),
+                    "An in-range remote UI message should be accepted.");
+                Assert.That(ui.IsUiOpen(target, key, user), Is.False);
+                Assert.That(ui.GetUiRange(target, key), Is.EqualTo(2f));
             });
         }
         finally
@@ -150,6 +696,9 @@ public sealed class RemoteControlConsoleTest : GameTest
 
                 if (map is { } mapUid && !SEntMan.Deleted(mapUid))
                     SEntMan.DeleteEntity(mapUid);
+
+                if (controllerMap is { } controllerMapUid && !SEntMan.Deleted(controllerMapUid))
+                    SEntMan.DeleteEntity(controllerMapUid);
             });
         }
     }
@@ -201,6 +750,136 @@ public sealed class RemoteControlConsoleTest : GameTest
             if (holder is { } holderEntity)
                 Assert.That(hands.EnumerateHeld(holderEntity).Contains(item), Is.EqualTo(!expectedPickup));
         });
+    }
+
+    [Test]
+    public async Task RemoteThrowThrowsHeldItemAtCursor()
+    {
+        var testMap = await Pair.CreateTestMap();
+
+        await Server.WaitAssertion(() =>
+        {
+            var remoteEntity = SEntMan.SpawnEntity("MobHuman", testMap.GridCoords);
+            var item = SEntMan.SpawnEntity("Wrench", testMap.GridCoords);
+            var hands = Server.System<SharedHandsSystem>();
+            Assert.That(hands.TryPickupAnyHand(remoteEntity, item), Is.True);
+
+            var controllerCoordinates = new EntityCoordinates(testMap.Grid.Owner, 100, 0);
+            var controller = SEntMan.SpawnEntity(null, controllerCoordinates);
+            var consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", controllerCoordinates);
+            var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+            console.RemoteBrain = remoteEntity;
+            SetTestController(consoleUid, console, controller);
+            console.Users.Add(controller);
+
+            SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInteractionMessage
+            {
+                Actor = controller,
+                Entity = SEntMan.GetNetEntity(consoleUid),
+                UiKey = RemoteControlUIKey.Key,
+                Coordinates = SEntMan.GetNetCoordinates(new EntityCoordinates(testMap.Grid.Owner, 5, 0)),
+                Action = RemoteControlInteractionAction.Throw,
+            });
+
+            Assert.That(hands.EnumerateHeld(remoteEntity).Contains(item), Is.False);
+            Assert.That(SEntMan.HasComponent<ThrownItemComponent>(item), Is.True);
+        });
+    }
+
+    [Test]
+    public async Task RemoteWirecutterOpensAndUsesWireUi()
+    {
+        var testMap = await Pair.CreateTestMap();
+        IPlayerManager playerManager = null!;
+        ICommonSession session = null!;
+        EntityUid? previousAttachedEntity = null;
+        EntityUid controller = default;
+        EntityUid remoteEntity = default;
+        EntityUid target = default;
+        EntityUid consoleUid = default;
+        var hasAttachedSession = false;
+
+        try
+        {
+            await Server.WaitAssertion(() =>
+            {
+                var coordinates = testMap.Grid.Owner;
+                remoteEntity = SEntMan.SpawnEntity("MobHuman", new EntityCoordinates(coordinates, 0, 0));
+                var wirecutter = SEntMan.SpawnEntity("Wirecutter", new EntityCoordinates(coordinates, 0, 0));
+                target = SEntMan.SpawnEntity("AirlockEngineering", new EntityCoordinates(coordinates, 1, 0));
+                controller = SEntMan.SpawnEntity("MobHuman", new EntityCoordinates(coordinates, 100, 0));
+                consoleUid = SEntMan.SpawnEntity("RemoteControlConsole", new EntityCoordinates(coordinates, 100, 0));
+
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                console.RemoteBrain = remoteEntity;
+                console.Users.Add(controller);
+                SetTestController(consoleUid, console, controller);
+
+                playerManager = Server.ResolveDependency<IPlayerManager>();
+                session = playerManager.Sessions.Single();
+                previousAttachedEntity = session.AttachedEntity;
+                Assert.That(playerManager.SetAttachedEntity(session, controller), Is.True);
+                hasAttachedSession = true;
+
+                Assert.That(Server.System<SharedHandsSystem>().TryPickupAnyHand(remoteEntity, wirecutter), Is.True);
+            });
+
+            await Server.WaitRunTicks(1);
+            await Server.WaitAssertion(() =>
+            {
+                var wiresSystem = Server.System<WiresSystem>();
+                var panel = SEntMan.GetComponent<WiresPanelComponent>(target);
+                Assert.That(wiresSystem.TogglePanel(target, panel, true, remoteEntity), Is.True);
+
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid, new RemoteControlInteractionMessage
+                {
+                    Actor = controller,
+                    Entity = SEntMan.GetNetEntity(consoleUid),
+                    UiKey = RemoteControlUIKey.Key,
+                    Coordinates = SEntMan.GetNetCoordinates(SEntMan.GetComponent<TransformComponent>(target).Coordinates),
+                    Target = SEntMan.GetNetEntity(target),
+                    Action = RemoteControlInteractionAction.Interact,
+                });
+
+                Assert.That(ui.IsUiOpen(target, WiresUiKey.Key, remoteEntity), Is.True,
+                    "The remote interaction should open the wires UI for the controlled body.");
+            });
+
+            await Server.WaitRunTicks(1);
+            await Server.WaitAssertion(() =>
+            {
+                var ui = Server.System<SharedUserInterfaceSystem>();
+                Assert.That(ui.IsUiOpen(target, WiresUiKey.Key, controller), Is.True,
+                    "The remote wires UI should be mirrored to the controller.");
+
+                var wires = SEntMan.GetComponent<WiresComponent>(target);
+                Assert.That(wires.WiresList, Is.Not.Empty);
+                var wire = wires.WiresList[0];
+                Assert.That(wire.IsCut, Is.False);
+
+                ui.RaiseUiMessage(target, WiresUiKey.Key, new WiresActionMessage(wire.Id, WiresAction.Cut)
+                {
+                    Actor = controller,
+                    Entity = SEntMan.GetNetEntity(target),
+                    UiKey = WiresUiKey.Key,
+                });
+
+                Assert.That(wire.IsCut, Is.True,
+                    "Wire actions from the mirrored UI should use the controlled body's held tool.");
+            });
+        }
+        finally
+        {
+            if (playerManager is not null && session is not null)
+            {
+                await Server.WaitPost(() =>
+                {
+                    if (hasAttachedSession)
+                        playerManager.SetAttachedEntity(session, previousAttachedEntity);
+                });
+            }
+        }
     }
 
     [TestCase("Wrench", false)]
@@ -499,10 +1178,44 @@ public sealed class RemoteControlConsoleTest : GameTest
         }
     }
 
-    [TestCase(false)]
-    [TestCase(true)]
-    public async Task PlayerControlledEntityCannotBeRemoteControlled(bool canForce)
+    [Test]
+    public async Task RemoteControlPowerPrototypesHaveExpectedValues() => await Server.WaitAssertion(() =>
     {
+        var mapSystem = Server.System<SharedMapSystem>();
+        var map = mapSystem.CreateMap(out var mapId);
+
+        try
+        {
+            var coordinates = new MapCoordinates(0, 0, mapId);
+            var handheld = SEntMan.SpawnEntity("HandheldRemoteControl", coordinates);
+            var antagHandheld = SEntMan.SpawnEntity("HandheldRemoteControlAntag", coordinates);
+            var antagMindHandheld = SEntMan.SpawnEntity("HandheldRemoteControlAntagMind", coordinates);
+            var toyRemote = SEntMan.SpawnEntity("HandheldRemoteControlExpedition", coordinates);
+            var computer = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
+            var playerAi = SEntMan.SpawnEntity("AiHeld", coordinates);
+
+            Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(handheld).RemoteControlPower,
+                Is.EqualTo(10));
+            Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(antagHandheld).RemoteControlPower,
+                Is.EqualTo(20));
+            Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(antagMindHandheld).RemoteControlPower,
+                Is.EqualTo(51));
+            Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(toyRemote).RemoteControlPower,
+                Is.EqualTo(5));
+            Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(computer).RemoteControlPower,
+                Is.EqualTo(15));
+            Assert.That(SEntMan.GetComponent<RemoteControlConsoleComponent>(playerAi).RemoteControlPower,
+                Is.EqualTo(21));
+        }
+        finally
+        {
+            SEntMan.DeleteEntity(map);
+        }
+    });
+
+    [TestCase("PlushieRouny")]
+    [TestCase("PlushieFlox")]
+    public async Task AiRemoteControlCanTargetRemoteControlBrainEntities(string plushiePrototype) =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -514,21 +1227,25 @@ public sealed class RemoteControlConsoleTest : GameTest
             try
             {
                 var coordinates = new MapCoordinates(0, 0, mapId);
-                var remoteEntity = SEntMan.SpawnEntity("RemoteControlRangeTestUi", coordinates);
-                Assert.That(playerManager.SetAttachedEntity(session, remoteEntity), Is.True);
+                var ai = SEntMan.SpawnEntity("RemoteControlTestAi", coordinates);
+                var plushie = SEntMan.SpawnEntity(plushiePrototype, coordinates);
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(ai);
+                var brain = SEntMan.GetComponent<RemoteControlBrainComponent>(plushie);
+                console.Users.Add(ai);
+                Assert.That(playerManager.SetAttachedEntity(session, ai), Is.True);
 
-                var consoleUid = SEntMan.SpawnEntity(
-                    canForce ? "RemoteControlForceTestConsole" : "RemoteControlConsole",
-                    coordinates);
-                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
-                Assert.That(console.CanForceRemoteControl, Is.EqualTo(canForce));
-                console.RemoteBrain = remoteEntity;
+                var remoteControl = new AIRemoteControlActionEvent
+                {
+                    Target = plushie,
+                    Performer = ai
+                };
+                SEntMan.EventBus.RaiseLocalEvent(ai, remoteControl);
 
-                var controller = SEntMan.SpawnEntity(null, coordinates);
-                SEntMan.EventBus.RaiseLocalEvent(consoleUid,
-                    new BoundUIOpenedEvent(RemoteControlUIKey.Key, consoleUid, controller));
-
-                Assert.That(console.Controller, Is.Null);
+                Assert.That(remoteControl.Handled, Is.True);
+                Assert.That(console.RemoteBrain, Is.EqualTo(plushie));
+                Assert.That(console.Channel, Is.EqualTo(brain.Channel));
+                Assert.That(console.Controller, Is.EqualTo(ai));
+                Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(ai).RelayEntity, Is.EqualTo(plushie));
             }
             finally
             {
@@ -536,12 +1253,63 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.DeleteEntity(map);
             }
         });
-    }
 
-    [TestCase(false)]
-    [TestCase(true)]
-    public async Task PlayerTakingOverRemoteEntityAlwaysEndsRemoteControl(bool canForce)
-    {
+    [TestCase(10, false)]
+    [TestCase(50, false)]
+    [TestCase(51, true)]
+    public async Task PossessedEntityRequiresHigherRemoteControlPower(int remoteControlPower, bool expectedToControl) =>
+        await Server.WaitAssertion(() =>
+        {
+            var mapSystem = Server.System<SharedMapSystem>();
+            var playerManager = Server.ResolveDependency<IPlayerManager>();
+            var session = playerManager.Sessions.Single();
+            var previousAttachedEntity = session.AttachedEntity;
+            var map = mapSystem.CreateMap(out var mapId);
+
+            try
+            {
+                var coordinates = new MapCoordinates(0, 0, mapId);
+                var containerSystem = Server.System<SharedContainerSystem>();
+                var remoteEntity = SEntMan.SpawnEntity("BorgChassisGeneric", coordinates);
+                var borg = SEntMan.GetComponent<BorgChassisComponent>(remoteEntity);
+                var brain = SEntMan.SpawnEntity("RemoteControlBrain", coordinates);
+                Assert.That(containerSystem.Insert(brain, borg.BrainContainer), Is.True);
+                Assert.That(playerManager.SetAttachedEntity(session, remoteEntity), Is.True);
+
+                var consoleUid = SEntMan.SpawnEntity(
+                    remoteControlPower == 51 ? "RemoteControlHighPowerTestConsole" : "RemoteControlConsole",
+                    coordinates);
+                var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
+                Assert.That(console.RemoteControlPower, Is.EqualTo(remoteControlPower == 51 ? 51 : 15));
+                if (remoteControlPower != 51)
+                    console.RemoteControlPower = remoteControlPower;
+                Assert.That(console.RemoteControlPower, Is.EqualTo(remoteControlPower));
+                console.RemoteBrain = brain;
+
+                var controller = SEntMan.SpawnEntity(null, coordinates);
+                SEntMan.EventBus.RaiseLocalEvent(consoleUid,
+                    new BoundUIOpenedEvent(RemoteControlUIKey.Key, consoleUid, controller));
+
+                Assert.That(console.Controller, Is.EqualTo(expectedToControl ? (EntityUid?) controller : null));
+                Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(controller), Is.EqualTo(expectedToControl));
+                if (expectedToControl)
+                    Assert.That(SEntMan.GetComponent<RelayInputMoverComponent>(controller).RelayEntity,
+                        Is.EqualTo(remoteEntity));
+
+            }
+            finally
+            {
+                playerManager.SetAttachedEntity(session, previousAttachedEntity);
+                SEntMan.DeleteEntity(map);
+            }
+        });
+
+    [TestCase(10, false)]
+    [TestCase(50, false)]
+    [TestCase(51, true)]
+    public async Task PlayerPossessionTakesOverUnlessRemotePowerIsHigher(
+        int remoteControlPower,
+        bool expectedToRemainInControl) =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -560,10 +1328,13 @@ public sealed class RemoteControlConsoleTest : GameTest
                 var brain = SEntMan.SpawnEntity("RemoteControlBrain", coordinates);
                 Assert.That(containerSystem.Insert(brain, borg.BrainContainer), Is.True);
                 var consoleUid = SEntMan.SpawnEntity(
-                    canForce ? "RemoteControlForceTestConsole" : "RemoteControlConsole",
+                    remoteControlPower == 51 ? "RemoteControlHighPowerTestConsole" : "RemoteControlConsole",
                     coordinates);
                 var console = SEntMan.GetComponent<RemoteControlConsoleComponent>(consoleUid);
-                Assert.That(console.CanForceRemoteControl, Is.EqualTo(canForce));
+                Assert.That(console.RemoteControlPower, Is.EqualTo(remoteControlPower == 51 ? 51 : 15));
+                if (remoteControlPower != 51)
+                    console.RemoteControlPower = remoteControlPower;
+                Assert.That(console.RemoteControlPower, Is.EqualTo(remoteControlPower));
                 console.RemoteBrain = brain;
 
                 var controller = SEntMan.SpawnEntity(null, coordinates);
@@ -574,9 +1345,14 @@ public sealed class RemoteControlConsoleTest : GameTest
                     Is.EqualTo(remoteEntity));
 
                 Assert.That(playerManager.SetAttachedEntity(session, remoteEntity), Is.True);
-                Assert.That(console.Controller, Is.Null);
-                Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(controller), Is.False);
-                Assert.That(remoteControl.TryGetControlledEntity(controller, out _), Is.False);
+                Assert.That(console.Controller,
+                    Is.EqualTo(expectedToRemainInControl ? (EntityUid?) controller : null));
+                Assert.That(SEntMan.HasComponent<RelayInputMoverComponent>(controller),
+                    Is.EqualTo(expectedToRemainInControl));
+                Assert.That(remoteControl.TryGetControlledEntity(controller, out var controlledEntity),
+                    Is.EqualTo(expectedToRemainInControl));
+                if (expectedToRemainInControl)
+                    Assert.That(controlledEntity, Is.EqualTo(remoteEntity));
             }
             finally
             {
@@ -584,12 +1360,11 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.DeleteEntity(map);
             }
         });
-    }
 
-    [TestCase(false, false)]
-    [TestCase(true, true)]
-    public async Task RemoteControlTakeoverRequiresForce(bool canForce, bool expectedToTakeOver)
-    {
+    [TestCase(9, false)]
+    [TestCase(10, false)]
+    [TestCase(11, true)]
+    public async Task RemoteControlTakeoverRequiresHigherPower(int takeoverPower, bool expectedToTakeOver) =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -600,20 +1375,23 @@ public sealed class RemoteControlConsoleTest : GameTest
             try
             {
                 var coordinates = new MapCoordinates(0, 0, mapId);
-                var remoteEntity = SEntMan.SpawnEntity("RemoteControlRangeTestUi", coordinates);
+                var containerSystem = Server.System<SharedContainerSystem>();
+                var remoteEntity = SEntMan.SpawnEntity("BorgChassisGeneric", coordinates);
+                var borg = SEntMan.GetComponent<BorgChassisComponent>(remoteEntity);
+                var brain = SEntMan.SpawnEntity("RemoteControlBrain", coordinates);
+                Assert.That(containerSystem.Insert(brain, borg.BrainContainer), Is.True);
                 var currentConsoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
                 var currentConsole = SEntMan.GetComponent<RemoteControlConsoleComponent>(currentConsoleUid);
+                currentConsole.RemoteControlPower = 10;
                 var currentController = SEntMan.SpawnEntity(null, coordinates);
-                currentConsole.RemoteBrain = remoteEntity;
+                currentConsole.RemoteBrain = brain;
                 SetTestController(currentConsoleUid, currentConsole, currentController);
                 currentConsole.Users.Add(currentController);
 
-                var takeoverConsoleUid = SEntMan.SpawnEntity(
-                    canForce ? "RemoteControlForceTestConsole" : "RemoteControlConsole",
-                    coordinates);
+                var takeoverConsoleUid = SEntMan.SpawnEntity("RemoteControlConsole", coordinates);
                 var takeoverConsole = SEntMan.GetComponent<RemoteControlConsoleComponent>(takeoverConsoleUid);
-                Assert.That(takeoverConsole.CanForceRemoteControl, Is.EqualTo(canForce));
-                takeoverConsole.RemoteBrain = remoteEntity;
+                takeoverConsole.RemoteControlPower = takeoverPower;
+                takeoverConsole.RemoteBrain = brain;
                 var takeoverController = SEntMan.SpawnEntity(null, coordinates);
 
                 SEntMan.EventBus.RaiseLocalEvent(takeoverConsoleUid,
@@ -638,11 +1416,9 @@ public sealed class RemoteControlConsoleTest : GameTest
                 SEntMan.DeleteEntity(map);
             }
         });
-    }
 
     [Test]
-    public async Task ForcedRemoteControlTakeoverPreservesBorgActivationAndOldUiClose()
-    {
+    public async Task HigherPowerRemoteControlTakeoverPreservesBorgActivationAndOldUiClose() =>
         await Server.WaitAssertion(() =>
         {
             var mapSystem = Server.System<SharedMapSystem>();
@@ -666,8 +1442,9 @@ public sealed class RemoteControlConsoleTest : GameTest
                 currentConsole.Users.Add(currentController);
                 currentConsole.BorgActivatedByRemote = true;
 
-                var takeoverConsoleUid = SEntMan.SpawnEntity("RemoteControlForceTestConsole", coordinates);
+                var takeoverConsoleUid = SEntMan.SpawnEntity("RemoteControlHighPowerTestConsole", coordinates);
                 var takeoverConsole = SEntMan.GetComponent<RemoteControlConsoleComponent>(takeoverConsoleUid);
+                Assert.That(takeoverConsole.RemoteControlPower, Is.EqualTo(51));
                 var takeoverController = SEntMan.SpawnEntity(null, coordinates);
                 takeoverConsole.RemoteBrain = brain;
 
@@ -679,19 +1456,39 @@ public sealed class RemoteControlConsoleTest : GameTest
                 Assert.That(takeoverConsole.Controller, Is.EqualTo(takeoverController));
                 Assert.That(takeoverConsole.BorgActivatedByRemote, Is.True);
                 Assert.That(chassis.Active, Is.True);
+                var appearance = Server.System<SharedAppearanceSystem>();
+                Assert.That(appearance.TryGetData<bool>(
+                    chassisUid,
+                    BorgVisualsStarlight.RemoteControlled,
+                    out var remoteControlled), Is.True);
+                Assert.That(remoteControlled, Is.True);
 
                 SEntMan.EventBus.RaiseLocalEvent(currentConsoleUid,
                     new BoundUIClosedEvent(RemoteControlUIKey.Key, currentConsoleUid, currentController));
 
                 Assert.That(takeoverConsole.Controller, Is.EqualTo(takeoverController));
                 Assert.That(chassis.Active, Is.True);
+                Assert.That(appearance.TryGetData<bool>(
+                    chassisUid,
+                    BorgVisualsStarlight.RemoteControlled,
+                    out remoteControlled), Is.True);
+                Assert.That(remoteControlled, Is.True);
+
+                SEntMan.EventBus.RaiseLocalEvent(takeoverConsoleUid,
+                    new BoundUIClosedEvent(RemoteControlUIKey.Key, takeoverConsoleUid, takeoverController));
+
+                Assert.That(takeoverConsole.Controller, Is.Null);
+                Assert.That(appearance.TryGetData<bool>(
+                    chassisUid,
+                    BorgVisualsStarlight.RemoteControlled,
+                    out remoteControlled), Is.True);
+                Assert.That(remoteControlled, Is.False);
             }
             finally
             {
                 SEntMan.DeleteEntity(map);
             }
         });
-    }
 
     [Test]
     public async Task RemoteControlMirrorsSingleUserActivatableUi()
@@ -924,5 +1721,61 @@ public sealed class RemoteControlConsoleTest : GameTest
             mapping.Consoles.Add(consoleUid);
         else
             SEntMan.AddComponent<RemoteControlControllerComponent>(current).Consoles.Add(consoleUid);
+    }
+
+    private sealed class RemoteControlUiOpenAttemptTestSystem : EntitySystem
+    {
+        private EntityUid Target;
+        private EntityUid Controller;
+        public bool ControllerOpenAttempted { get; private set; }
+        public bool ControllerUiWasOpenAtAttempt { get; private set; }
+        public float InteractionRangeAtAttempt { get; private set; }
+        public bool ControllerAccessibilityChecked { get; private set; }
+        public bool ControllerAccessibilityHandled { get; private set; }
+        public bool ControllerAccessible { get; private set; }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<BoundUserInterfaceMessageAttempt>(OnBoundInterfaceMessageAttempt);
+            SubscribeLocalEvent<BorgSwitchableTypeComponent, AccessibleOverrideEvent>(
+                OnAccessibleOverride,
+                after: [typeof(RemoteControlConsoleSystem)]);
+        }
+
+        public void Watch(EntityUid target, EntityUid controller)
+        {
+            Target = target;
+            Controller = controller;
+            ControllerOpenAttempted = false;
+            ControllerUiWasOpenAtAttempt = false;
+            InteractionRangeAtAttempt = float.NaN;
+            ControllerAccessibilityChecked = false;
+            ControllerAccessibilityHandled = false;
+            ControllerAccessible = false;
+        }
+
+        private void OnBoundInterfaceMessageAttempt(ref BoundUserInterfaceMessageAttempt args)
+        {
+            if (args.Target != Target
+                || args.Actor != Controller
+                || args.Message is not OpenBoundInterfaceMessage)
+                return;
+
+            var ui = EntityManager.System<SharedUserInterfaceSystem>();
+            ControllerOpenAttempted = true;
+            ControllerUiWasOpenAtAttempt = ui.IsUiOpen((args.Target, null), args.UiKey, args.Actor);
+            InteractionRangeAtAttempt = ui.GetUiRange((args.Target, null), args.UiKey);
+        }
+
+        private void OnAccessibleOverride(Entity<BorgSwitchableTypeComponent> entity, ref AccessibleOverrideEvent args)
+        {
+            if (entity.Owner != Target || args.User != Controller)
+                return;
+
+            ControllerAccessibilityChecked = true;
+            ControllerAccessibilityHandled = args.Handled;
+            ControllerAccessible = args.Accessible;
+        }
     }
 }

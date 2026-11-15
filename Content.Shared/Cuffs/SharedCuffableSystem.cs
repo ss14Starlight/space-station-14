@@ -175,7 +175,7 @@ namespace Content.Shared.Cuffs
 
         public void UpdateCuffState(EntityUid uid, CuffableComponent component)
         {
-            var canInteract = !TryComp(uid, out HandsComponent? hands) || hands.Hands.Count > component.CuffedHandCount; // Starlight, set true when no HandsComponent
+            var canInteract = component.CuffedHandCount == 0 || !TryComp(uid, out HandsComponent? hands) || GetCuffableHandCount(hands) > component.CuffedHandCount; // Starlight, set true when uncuffed or no HandsComponent, ignore functional hands
 
             if (canInteract == component.CanStillInteract)
                 return;
@@ -207,7 +207,7 @@ namespace Content.Shared.Cuffs
             if (cancelled || user != ent.Owner)
                 return;
 
-            if (!TryComp<HandsComponent>(ent, out var hands) || ent.Comp.CuffedHandCount < hands.Count)
+            if (!TryComp<HandsComponent>(ent, out var hands) || ent.Comp.CuffedHandCount < GetCuffableHandCount(hands)) // Starlight
                 return;
 
             cancelled = true;
@@ -425,7 +425,7 @@ namespace Content.Shared.Cuffs
                 return;
 
             var dirty = false;
-            var handCount = CompOrNull<HandsComponent>(ent.Owner)?.Count ?? 0;
+            var handCount = TryComp<HandsComponent>(ent.Owner, out var hands) ? GetCuffableHandCount(hands) : 0; // Starlight
 
             while (ent.Comp.CuffedHandCount > handCount && ent.Comp.CuffedHandCount > 0)
             {
@@ -500,7 +500,7 @@ namespace Content.Shared.Cuffs
             // if the amount of hands the target has is equal to or less than the amount of hands that are cuffed
             // don't apply the new set of cuffs
             // (how would you even end up with more cuffed hands than actual hands? either way accounting for it)
-            if (TryComp<HandsComponent>(target, out var hands) && hands.Count <= component.CuffedHandCount)
+            if (TryComp<HandsComponent>(target, out var hands) && GetCuffableHandCount(hands) <= component.CuffedHandCount) // Starlight
                 return false;
 
             // Starlight: borg handcuffs carry Unremoveable; strip it so TryDrop + Insert can proceed
@@ -563,7 +563,7 @@ namespace Content.Shared.Cuffs
                 return true;
             }
 
-            if (cuffable.CuffedHandCount >= hands.Count)
+            if (cuffable.CuffedHandCount >= GetCuffableHandCount(hands)) // Starlight
             {
                 _popup.PopupClient(Loc.GetString("handcuff-component-target-has-no-free-hands-error",
                     ("targetName", Identity.Name(target, EntityManager, user))), user, user);
@@ -634,7 +634,7 @@ namespace Content.Shared.Cuffs
             if (target.Comp.CuffedHandCount <= 0)
                 return false;
 
-            if (requireFullyCuffed && hands.Count > target.Comp.CuffedHandCount)
+            if (requireFullyCuffed && GetCuffableHandCount(hands) > target.Comp.CuffedHandCount) // Starlight
                 return false;
 
             return true;

@@ -107,7 +107,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         return coords;
     }
 
-    public void UpdateState(NavInterfaceState state, DockingPortStates dockingPortStates) // Starlight: +dockingPortStates
+    public void UpdateState(NavInterfaceState state, DockingPortStates? dockingPortStates) // Starlight: optional dockingPortStates
     {
         SetMatrix(EntManager.GetCoordinates(state.Coordinates), state.Angle);
 
@@ -125,7 +125,10 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         RotateWithEntity = state.RotateWithEntity;
 
-        _docks = dockingPortStates.Docks; // Starlight
+        // Starlight - start
+        if (dockingPortStates != null)
+            _docks = dockingPortStates.Docks;
+        // Starlight - end
         _blips = state.Blips; // Starlight
         _lasers = state.Lasers; // Starlight
     }
@@ -225,7 +228,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
                 var gridCentre = Vector2.Transform(gridBody.LocalCenter, curGridToView);
 
-                var gridDistance = (gridBody.LocalCenter - xform.LocalPosition).Length();
+                var gridCentreWorld = Vector2.Transform(gridBody.LocalCenter, curGridToWorld); // Starlight
+                var gridDistance = (gridCentreWorld - mapPos.Position).Length(); // Starlight
                 var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName),
                     ("distance", $"{gridDistance:0.0}"));
 

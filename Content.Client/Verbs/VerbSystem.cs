@@ -31,6 +31,7 @@ namespace Content.Client.Verbs
         [Dependency] private SharedContainerSystem _containers = default!;
         [Dependency] private IConfigurationManager _cfg = default!;
         [Dependency] private EntityLookupSystem _lookup = default!;
+        [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
 
         private float _lookupSize;
 

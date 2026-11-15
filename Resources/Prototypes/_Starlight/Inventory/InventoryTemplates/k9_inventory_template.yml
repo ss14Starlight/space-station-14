@@ -30,9 +30,22 @@
       tags:
       - PetWearable
       - CorgiWearable
+  - name: id
+    slotTexture: collar
+    fullTextureName: template_small
+    slotFlags: IDCARD
+    slotGroup: SecondHotbar
+    stripTime: 2
+    uiWindowPos: 2,1
+    strippingWindowPos: 2,4
+    displayName: ID
+    whitelist:
+      tags:
+      - CorgiWearable
   - name: suitstorage
     slotTexture: suit_storage
     slotFlags: SUITSTORAGE
+    slotGroup: SecondHotbar
     stripTime: 3
     uiWindowPos: 0,0
     strippingWindowPos: 2,5

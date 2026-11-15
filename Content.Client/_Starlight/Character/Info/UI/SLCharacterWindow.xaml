@@ -1,0 +1,156 @@
+<windows:SLCharacterWindow
+    xmlns="https://spacestation14.io"
+    xmlns:cc="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:windows="clr-namespace:Content.Client._Starlight.Character.Info.UI"
+    xmlns:sl="clr-namespace:Content.Client._Starlight.Character.Info.UI"
+    Title="{Loc 'character-info-title'}"
+    MinWidth="900"
+    MinHeight="520">
+    <TabContainer Name="CharacterInfoTabs" Access="Public" VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" Margin="15 15 15 10">
+
+            <BoxContainer Orientation="Horizontal" VerticalExpand="True">
+
+                <!-- character sprite + name + job -->
+                <ScrollContainer HScrollEnabled="False" MinWidth="230" MaxWidth="240" VerticalExpand="True">
+                    <BoxContainer Orientation="Vertical"
+                                  VerticalAlignment="Center"
+                                  VerticalExpand="True"
+                                  SeparationOverride="4"
+                                  Margin="0 0 15 0"
+                                  MinWidth="130">
+                        <WrapContainer Name="RoleType"
+                                       Access="Public"
+                                       LayoutAxis="Horizontal"
+                                       Justification="Center"
+                                       SeparationOverride="4"
+                                       CrossSeparationOverride="4"
+                                       HorizontalExpand="True"/>
+                        <WrapContainer Name="AlignmentLabel"
+                                       Access="Public"
+                                       LayoutAxis="Horizontal"
+                                       Justification="Center"
+                                       SeparationOverride="3"
+                                       CrossSeparationOverride="0"
+                                       HorizontalExpand="True"/>
+                        <PanelContainer StyleClasses="LowDivider"/>
+                        <SpriteView Name="SpriteView"
+                                    Access="Public"
+                                    OverrideDirection="South"
+                                    Scale="4 4"
+                                    HorizontalAlignment="Center"/>
+                        <RichTextLabel Name="NameLabel"
+                                       Access="Public"
+                                       HorizontalAlignment="Center"/>
+                        <BoxContainer Name="JobContainer"
+                                      Access="Public"
+                                      Orientation="Horizontal"
+                                      HorizontalAlignment="Center">
+                            <TextureRect Name="JobIcon"
+                                         Access="Public"
+                                         TextureScale="2 2"
+                                         VerticalAlignment="Center"/>
+                            <Control MinWidth="5"/>
+                            <RichTextLabel Name="SubText"
+                                           Access="Public"
+                                           VerticalAlignment="Center"/>
+                        </BoxContainer>
+                        <Control Margin="5"/>
+                        <RichTextLabel Name="CharacterInfo"
+                                       Access="Public"
+                                       HorizontalAlignment="Center"/>
+                        <sl:CharacterBackgroundInfoControl Name="InfoBackground"
+                                                           Access="Public"
+                                                           Margin="0 8 0 0"/>
+                        <Control Margin="5"/>
+                        <RichTextLabel Name="DetailedDescription"
+                                       Access="Public"
+                                       HorizontalAlignment="Center"
+                                       MaxWidth="220"/>
+                    </BoxContainer>
+                </ScrollContainer>
+
+                <PanelContainer StyleClasses="LowDivider" Margin="20"/>
+
+                <!-- faction briefing -->
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                    <RichTextLabel Text="{Loc 'character-info-briefing-header'}"/>
+                    <PanelContainer StyleClasses="PanelDark"
+                                    Margin="0 0 10 0"
+                                    MinWidth="220"
+                                    HorizontalExpand="True"
+                                    VerticalExpand="True">
+                        <ScrollContainer HScrollEnabled="False" VerticalExpand="True">
+                            <BoxContainer Name="Briefing"
+                                          Access="Public"
+                                          Orientation="Vertical"
+                                          Margin="8"
+                                          VerticalExpand="True"/>
+                        </ScrollContainer>
+                    </PanelContainer>
+                </BoxContainer>
+
+                <!-- objectives list -->
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                    <RichTextLabel Text="{Loc 'character-info-objectives-header'}"/>
+                    <PanelContainer StyleClasses="PanelDark"
+                                    Margin="0 0 10 0"
+                                    MinWidth="220"
+                                    HorizontalExpand="True"
+                                    VerticalExpand="True">
+                        <ScrollContainer Name="ObjectivesScroll"
+                                         Access="Public"
+                                         HScrollEnabled="False"
+                                         MinWidth="270"
+                                         VerticalExpand="True">
+                            <BoxContainer Name="ObjectivesWrapper"
+                                          Access="Public"
+                                          Orientation="Vertical">
+                                <Button Name="ObjectiveButton"
+                                        StyleClasses="OpenBoth"
+                                        Margin="2 2 2 0"
+                                        VerticalExpand="False"
+                                        VerticalAlignment="Top"/>
+                                <Button Name="CardsButton"
+                                        Access="Public"
+                                        StyleClasses="OpenBoth"
+                                        Text="{Loc 'character-info-cards-button'}"
+                                        Margin="2 2 2 0"/>
+                                <Label Name="NoObjectivesLabel"
+                                       Text="{Loc 'character-info-no-objectives'}"
+                                       StyleClasses="LabelSubText"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       VerticalExpand="False"/>
+                                <BoxContainer Name="Objectives"
+                                              Access="Public"
+                                              Orientation="Vertical"
+                                              Margin="0 2 0 0"
+                                              SeparationOverride="2"/>
+                            </BoxContainer>
+                        </ScrollContainer>
+                    </PanelContainer>
+                </BoxContainer>
+
+            </BoxContainer>
+
+            <!-- This thing... I keep it so that its compatible with the old UI code -->
+            <cc:Placeholder Name="RolePlaceholder"
+                            Access="Public"
+                            Visible="False"/>
+
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="12" Margin="15 15 15 10" VerticalExpand="True">
+            <PanelContainer StyleClasses="PanelDark" HorizontalExpand="True" SizeFlagsStretchRatio="1" VerticalExpand="True">
+                <ScrollContainer HScrollEnabled="False" VerticalExpand="True">
+                    <sl:CharacterICInfoControl Name="InfoIC" Access="Public" Margin="10"/>
+                </ScrollContainer>
+            </PanelContainer>
+            <PanelContainer StyleClasses="PanelDark" HorizontalExpand="True" SizeFlagsStretchRatio="1" VerticalExpand="True">
+                <ScrollContainer HScrollEnabled="False" VerticalExpand="True">
+                    <sl:CharacterOOCInfoControl Name="InfoOOC" Access="Public" Margin="10"/>
+                </ScrollContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </TabContainer>
+</windows:SLCharacterWindow>

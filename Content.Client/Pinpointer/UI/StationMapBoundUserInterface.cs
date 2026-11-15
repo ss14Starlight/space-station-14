@@ -15,29 +15,19 @@ public sealed class StationMapBoundUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
-        EntityUid? gridUid = null;
+        // Starlight - start
+        EntityUid? trackedEntity = null;
 
-        if (EntMan.TryGetComponent<StationMapComponent>(Owner, out var comp) && comp.TargetGrid != null)
+        if (EntMan.TryGetComponent<StationMapComponent>(Owner, out var comp))
         {
-            gridUid = comp.TargetGrid;
+            if (comp.ShowLocation)
+                trackedEntity = Owner;
         }
-        else if (EntMan.TryGetComponent<TransformComponent>(Owner, out var xform))
-        {
-            gridUid = xform.GridUid;
-        }
+        // Starlight - end
 
         _window = this.CreateWindow<StationMapWindow>();
         _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
 
-        string stationName = string.Empty;
-        if(EntMan.TryGetComponent<MetaDataComponent>(gridUid, out var gridMetaData))
-        {
-            stationName = gridMetaData.EntityName;
-        }
-
-        if (comp != null && comp.ShowLocation)
-            _window.Set(stationName, gridUid, Owner);
-        else
-            _window.Set(stationName, gridUid, null);
+        _window.Set(trackedEntity, Owner); // Starlight
     }
 }

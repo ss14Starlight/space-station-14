@@ -41,6 +41,24 @@
           visible: false
     - type: GenericVisualizer
       visuals:
+        # This partial replaces BaseComputer's visualizer, so retain its mappings.
+        enum.ComputerVisuals.Powered:
+          computerLayerScreen:
+            True: { visible: true, shader: unshaded }
+            False: { visible: false }
+          computerLayerKeys:
+            True: { visible: true, shader: unshaded }
+            False: { visible: true, shader: shaded }
+        enum.WiresVisuals.MaintenancePanelState:
+          enum.WiresVisualLayers.MaintenancePanel:
+            True: { visible: true }
+            False: { visible: false }
+        enum.EdgeConnectionVisuals.ConnectionMask:
+          computerLayerBody:
+            None: { state: computer, sprite: Structures/Machines/computers.rsi }
+            West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+            East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+            East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
         enum.PowerCellFallbackVisuals.VisualState:
           computerLayerBatteryScreen:
             Off: { visible: false }

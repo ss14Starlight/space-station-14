@@ -12,7 +12,31 @@ public enum RemoteControlUIKey : byte
 }
 
 [Serializable, NetSerializable]
+public enum RemoteControlSettingsUIKey : byte
+{
+    Key,
+}
+
+[Serializable, NetSerializable]
+public sealed class RemoteControlOpenSettingsMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed partial class RemoteControlOpenScreenMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class RemoteControlSetChannelMessage : BoundUserInterfaceMessage
+{
+    public string? Channel { get; init; }
+}
+
+[Serializable, NetSerializable]
 public sealed class RemoteControlToggleMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class RemoteControlToggleKnockdownMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class RemoteControlReleasePulledObjectMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
 public enum RemoteControlInteractionAction : byte
@@ -22,6 +46,7 @@ public enum RemoteControlInteractionAction : byte
     MovePulledObject,
     Shoot,
     Drop,
+    Throw,
 }
 
 [Serializable, NetSerializable]

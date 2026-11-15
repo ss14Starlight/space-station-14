@@ -38,8 +38,11 @@ public sealed partial class KillPersonConditionSystem : EntitySystem
         if (!TryComp<MindComponent>(target, out var mind) || mind.OwnedEntity == null)
             return 1f;
 
+        if (IsTargetRemoved(mind)) // Starlight, cryo, catatonic, or permanently lost character.
+            return 1f;
+
         var targetDead = _mind.IsCharacterDeadIc(mind);
-        var targetUnrevivable = _mind.IsCharacterUnrevivableIc(mind); //Starlight
+        var targetUnrevivable = SLIsCharacterUnrevivable(mind); // Starlight, detached organic brains can return.
         var targetMarooned = !_emergencyShuttle.IsTargetEscaping(mind.OwnedEntity.Value) || targetUnrevivable; //Starlight edit: Moved unrevivable check out
         if (!_config.GetCVar(CCVars.EmergencyShuttleEnabled) && requireMaroon)
         {

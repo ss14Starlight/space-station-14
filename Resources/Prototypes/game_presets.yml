@@ -55,8 +55,8 @@
     - SiliconLiberation #Starlight
     - SubBrighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
+    - BloodBound # Starlight
     - CosmicCult #Starlight
-    #- TerrorSpidersSpawn # Starlight
     - Devil # Starlight
 
 - type: gamePreset
@@ -100,8 +100,8 @@
     - LoneOpsSpawn # Starlight
     - RailroadingTerminator # Starlight
     - RailroadingMinor # Starlight
+    - BloodBound # Starlight
     - CosmicCult # Starlight
-    #- TerrorSpidersSpawn # Starlight
     - Devil # Starlight
 
 - type: gamePreset

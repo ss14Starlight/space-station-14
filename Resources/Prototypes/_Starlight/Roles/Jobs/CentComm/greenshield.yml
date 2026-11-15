@@ -1,5 +1,6 @@
 - type: job
   id: CentralCommandGreenShield
+  roleType: CentCommAligned
   name: job-name-greenshield
   description: job-description-greenshield
   playTimeTracker: JobCCGreenShield

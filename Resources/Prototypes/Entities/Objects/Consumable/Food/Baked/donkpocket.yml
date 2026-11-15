@@ -20,6 +20,19 @@
     - DonkPocket
     - Meat
 
+- type: entity
+  parent: [SolutionFood, SolutionTiny]
+  id: SolutionFoodDonkpocketWarm
+  categories: [HideSpawnMenu] # Needed for a very specific lighter so can't be abstract
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 12
+      - ReagentId: Omnizine
+        Quantity: 3
+
 # Donkpocket
 
 # Warm gives +5 nutriment.
@@ -38,19 +51,6 @@
       - cheap
   - type: Sprite
     state: plain
-
-- type: entity
-  parent: [SolutionFood, SolutionTiny]
-  id: SolutionFoodDonkpocketWarm
-  categories: [ HideSpawnMenu ] # Needed for a very specific lighter so can't be abstract
-  components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 12
-      - ReagentId: Omnizine
-        Quantity: 3
 
 - type: entity
   name: warm donk-pocket

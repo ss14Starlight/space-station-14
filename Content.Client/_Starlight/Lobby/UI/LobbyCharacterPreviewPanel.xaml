@@ -1,0 +1,17 @@
+<Control
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <BoxContainer Name="VBox" Orientation="Vertical">
+        <BoxContainer Name="Loaded" Orientation="Vertical" Visible="False" SeparationOverride="8">
+            <BoxContainer Orientation="Vertical">
+                <Label Name="HighJob" StyleClasses="LabelHeading" ClipText="True" />
+                <Label Name="CharacterCount" StyleClasses="LabelSubText" ClipText="True" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+                <Button Name="CharacterSetup" Text="{Loc 'lobby-character-preview-panel-character-setup-button'}" HorizontalExpand="True" />
+                <Button Name="JobPriorities" Text="{Loc 'lobby-character-preview-panel-job-priorities-button'}" HorizontalExpand="True" />
+            </BoxContainer>
+        </BoxContainer>
+        <Label Name="Unloaded" Text="{Loc 'lobby-character-preview-panel-unloaded-preferences-label'}" />
+    </BoxContainer>
+</Control>

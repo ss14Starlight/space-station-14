@@ -1,18 +1,16 @@
-﻿using Content.Shared.Alert;
+﻿using Content.Client._Starlight.Alert;
+using Content.Shared._Starlight.Silicons.Borgs;
+using Content.Shared.Alert;
 using Content.Shared.Mobs;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
+using Content.Shared.PowerCell.Components;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
-
-#region Starlight
-using Content.Client._Starlight.Alert;
-using Content.Shared._Starlight.Silicons.Borgs;
-#endregion
 
 namespace Content.Client.Silicons.Borgs;
 
@@ -27,6 +25,8 @@ public sealed partial class BorgSystem : SharedBorgSystem
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private EntityQuery<BorgChassisComponent> _chassisQuery = default!;
+    [Dependency] private EntityQuery<PowerCellSlotComponent> _slotQuery = default!;
     [Dependency] private BatteryAlertSystem _batteryAlert = default!; // Starlight
 
     public override void Initialize()
@@ -96,8 +96,18 @@ public sealed partial class BorgSystem : SharedBorgSystem
         if (!_appearance.TryGetData<bool>(ent.Owner, BorgVisuals.HasPlayer, out var hasPlayer, ent.Comp2))
             hasPlayer = false;
 
-        _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light, ent.Comp1.BrainEntity != null || hasPlayer);
-        _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light, hasPlayer ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
+        // Starlight - start
+        var isRemoteControlled = _appearance.TryGetData<bool>(
+            ent.Owner,
+            BorgVisualsStarlight.RemoteControlled,
+            out var remoteControlled,
+            ent.Comp2) && remoteControlled;
+        var hasPlayerOrRemoteControl = hasPlayer || isRemoteControlled;
+        _sprite.LayerSetVisible((ent.Owner, ent.Comp3), BorgVisualLayers.Light,
+            ent.Comp1.BrainEntity != null || hasPlayerOrRemoteControl);
+        _sprite.LayerSetRsiState((ent.Owner, ent.Comp3), BorgVisualLayers.Light,
+            hasPlayerOrRemoteControl ? ent.Comp1.HasMindState : ent.Comp1.NoMindState);
+        // Starlight - end
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)

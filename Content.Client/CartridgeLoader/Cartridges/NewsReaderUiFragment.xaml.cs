@@ -18,6 +18,7 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
     //Starlight-edit: start
     public event Action? OnLikeButtonPressed;
     public event Action? OnDislikeButtonPressed;
+    public event Action? OnViewPhotoButtonPressed;
     //Starlight-edit: end
 
     public NewsReaderUiFragment()
@@ -30,10 +31,11 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
         // Starlight-edit: start
         Like.OnPressed += _ => OnLikeButtonPressed?.Invoke();
         Dislike.OnPressed += _ => OnDislikeButtonPressed?.Invoke();
+        ViewPhoto.OnPressed += _ => OnViewPhotoButtonPressed?.Invoke();
         // Starlight-edit: end
     }
 
-    public void UpdateState(NewsArticle article, int targetNum, int totalNum, bool notificationOn, bool hasReacted)
+    public void UpdateState(NewsArticle article, int targetNum, int totalNum, bool notificationOn, bool hasReacted, bool hasPhoto = false) // Starlight Edit: Added hasPhoto
     {
         PageNum.Visible = true;
         PageText.Visible = true;
@@ -66,6 +68,7 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
 
         Like.Disabled = hasReacted;
         Dislike.Disabled = hasReacted;
+        ViewPhoto.Visible = hasPhoto;
         // Starlight-edit: end
         Prev.Disabled = targetNum <= 1;
         Next.Disabled = targetNum >= totalNum;
@@ -83,6 +86,7 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
         Views.Visible = false;
         ReactionsSeparator.Visible = false;
         ViewsSeparator.Visible = false;
+        ViewPhoto.Visible = false;
         Like.Disabled = false;
         Dislike.Disabled = false;
         // Starlight-edit: end

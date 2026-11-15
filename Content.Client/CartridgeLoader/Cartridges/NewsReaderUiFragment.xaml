@@ -55,6 +55,7 @@
     </PanelContainer>
     <!-- Starlight-edit start -->
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="5,1,5,2">
+        <Button Name="ViewPhoto" Margin="0,0,0,2" Text="{Loc 'news-read-ui-view-photo-text'}" Access="Public" Visible="False"/>
         <RichTextLabel
             Margin="0,0,0,1"
             Name="Author"

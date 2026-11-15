@@ -1,0 +1,12 @@
+- type: job
+  id: EmotionalSupportScurret
+  name: job-name-scurret
+  description: job-description-scurret
+  playTimeTracker: JobEmotionalSupportScurret
+  startingGear: EmotionalSupportScurretGear
+  setPreference: false
+  icon: "JobIconEmotionalSupportScurret"
+  supervisors: job-supervisors-everyone
+  jobEntity: MobEmotionalSupportScurret
+  access:
+    - Maintenance

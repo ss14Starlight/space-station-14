@@ -54,7 +54,8 @@
             Scientist: [ 3, 3 ]
             Roboticist: [ 1, 1 ]
             ResearchAssistant: [ 4, 4 ] #intern, not counted
-            #security (12 - 14)
+            #security (13 - 15)
+            GunnerySergeant: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
             SecurityOfficer: [ 4, 6 ]
@@ -69,7 +70,8 @@
             MiningSpecialist: [ 3, 3 ] #the miners... yearn for the mines...
             MailTech: [ 1, 2 ]
             CargoTechnician: [ 4, 6 ]
-            #civilian (3 - 4+)
+            #civilian (4 - 5+)
+            AssistantManager: [ 1, 1 ]
             Assistant: [ -1, -1 ]  #infinite, the tiders yearn for the mines
             Clown: [ 1, 2 ] # this might be fun!
             Mime: [ 1, 1 ]

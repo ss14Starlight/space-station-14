@@ -21,7 +21,7 @@
   - Shuttle # Starlight
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ ITGMindShieldImplant ] #starlight
   - !type:AddComponentSpecial
     components:
       - type: NoObjectiveTarget #starlight

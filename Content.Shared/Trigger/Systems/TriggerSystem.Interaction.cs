@@ -33,6 +33,11 @@ public sealed partial class TriggerSystem
 
     private void OnExamined(Entity<TriggerOnExaminedComponent> ent, ref ExaminedEvent args)
     {
+        // Starlight start
+        if (IsGhostAndNotAdminGhost(args)) // Prevents player ghosts from triggering examine events
+            return;
+        // Starlight end
+
         Trigger(ent.Owner, args.Examiner, ent.Comp.KeyOut);
     }
 

@@ -16,9 +16,6 @@ lobby-state-background-lingkiller-artist = voy0099
 lobby-state-background-ntosprey-title = NT Osprey
 lobby-state-background-ntosprey-artist = ItsAbby11
 
-lobby-state-background-friendsforever-title = Friends Forever
-lobby-state-background-friendsforever-artist = ItsAbby11
-
 lobby-state-background-againstthexeno-title = Against The Xeno
 lobby-state-background-againstthexeno-artist = Ramblinger
 
@@ -43,17 +40,11 @@ lobby-state-background-tritfiredragon-artist = Conflee
 lobby-state-background-securityshowdown-title = Security Showdown
 lobby-state-background-securityshowdown-artist = TheKillerDumb & Bukkataro
 
-lobby-state-background-revclown-title = Rev Clown
-lobby-state-background-revclown-artist = Zigo
-
 lobby-state-background-themidroundantagsbane-title = The mid round antag's bane
 lobby-state-background-themidroundantagsbane-artist = voy0099
 
 lobby-state-background-blackfeathers-title = Blackfeathers
 lobby-state-background-blackfeathers-artist = Gib Schmib
-
-lobby-state-background-mime-title = Mime
-lobby-state-background-mime-artist = Darkrell
 
 lobby-state-background-Dispace-title = Dispace
 lobby-state-background-IQlvlZero-artist = IQlvlZero
@@ -64,17 +55,8 @@ lobby-state-background-clown-artist = m0lem4n
 lobby-state-background-fatefulshift-title = Fateful Shift
 lobby-state-background-fatefulshift-artist = rickery
 
-lobby-state-background-hopdesksimulator-title = HoP Desk Simulator
-lobby-state-background-hopdesksimulator-artist = swonki
-
-lobby-state-background-janitorialhell-title = Janitorial Hell
-lobby-state-background-janitorialhell-artist = wintergem18
-
 lobby-state-background-katievssyndie-title = Katie vs Syndie
 lobby-state-background-katievssyndie-artist = ramblinger
-
-lobby-state-background-nogalcom-title = When the brigmedic's starting chems run out
-lobby-state-background-nogalcom-artist = deltaVelocity
 
 lobby-state-background-aiderthief-title = Maints Discovery
 lobby-state-background-aiderthief-artist = silkielol
@@ -87,3 +69,39 @@ lobby-state-background-ipcandmoff-artist = Doner
 
 lobby-state-background-thesix-title = The Six
 lobby-state-background-thesix-artist = Doner
+
+lobby-state-background-mushroomannihilator-title = Mushroom Annihilator
+lobby-state-background-mushroomannihilator-artist = zymshok
+
+lobby-state-background-doomdeed-title = Doom Deed
+lobby-state-background-doomdeed-artist = sharkpeekotwoelecticboogaloo
+
+lobby-state-background-ivan-title = Ivan
+lobby-state-background-ivan-artist = ramblinger
+
+lobby-state-background-tidy-title = Tidy
+lobby-state-background-tidy-artist = argentsunshine
+
+lobby-state-background-smoko-title = Smoko
+lobby-state-background-smoko-artist = Wowls
+
+lobby-state-background-why-title = Why?
+lobby-state-background-why-artist = starlighthowls
+
+lobby-state-background-regularshift-title = Regular Shift
+lobby-state-background-regularshift-artist = Gasper_horned
+
+lobby-state-background-xenosattack-title = Xenos Attack
+lobby-state-background-xenosattack-artist = Gasper_horned
+
+lobby-state-background-maintenanceclown-title = Maintenance Clown
+lobby-state-background-maintenanceclown-artist = Nijn
+
+lobby-state-background-expedition-title = Expedition
+lobby-state-background-expedition-artist = reynir_exe
+
+lobby-state-background-solesurvivor-title = Sole Survivor
+lobby-state-background-solesurvivor-artist = rozycosmic
+
+lobby-state-background-glubs-title = Glubs
+lobby-state-background-glubs-artist = Eviinuuangel

@@ -3,7 +3,6 @@
   components:
   - type: MeleeWeapon
     wideAnimationRotation: 60
-  # Vending Machines Prices
   - type: ItemPrice
     fallbackPrice: 25
 

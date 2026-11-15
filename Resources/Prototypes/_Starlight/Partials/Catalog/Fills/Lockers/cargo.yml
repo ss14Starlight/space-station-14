@@ -1,0 +1,9 @@
+# Redefines the Salvage Specialist locker fill as being "the common stuff" + an empty glowstone bag.
+# "The common stuff" is shared with the Salvage Lead, but they get a filled glowstone bag.
+- type: !PartialOnly entityTable
+  id: LockerFillSalvageSpecialist
+  table: !type:AllSelector
+    children: !Clear
+    - !type:NestedSelector
+      tableId: LockerFillSalvageShared
+    - id: GlowstoneDropperEmpty

@@ -6,6 +6,8 @@ using Content.Client.Playtime;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
 using Content.Shared.CCVar;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared.GameTicking.Prototypes;
 using Robust.Client;
 using Robust.Client.Console;
 using Robust.Client.ResourceManagement;
@@ -14,12 +16,8 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-
-#region Starlight
-
 using Robust.Client.UserInterface.CustomControls;
 using Content.Client._Starlight.Lobby.UI;
-#endregion Starlight
 
 namespace Content.Client.Lobby
 {
@@ -64,20 +62,18 @@ namespace Content.Client.Lobby
             _voteManager.SetPopupContainer(Lobby.VoteContainer);
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
 
-
             // STARLIGHT-START
             //Lobby.ServerName.Text = string.IsNullOrEmpty(lobbyNameCvar)
             //    ? Loc.GetString("ui-lobby-title", ("serverName", serverName))
             //    : lobbyNameCvar; //Moved to Lobby GUI
             // STARLIGHT-END
 
-            var width = _cfg.GetCVar(CCVars.ServerLobbyRightPanelWidth);
-            Lobby.RightSide.SetWidth = width;
+            // Starlight-edit: the right side only holds the chat now, its width is set in LobbyGui.xaml.
 
             UpdateLobbyUi();
 
             Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
-            Lobby.CharacterPreview.PrioritiesUpdated += UpdateReadyAllowed;
+            // Starlight-edit: priorities are edited in their own window, OnAnyCharacterOrJobChange covers it
             Lobby.ReadyButton.OnPressed += OnReadyPressed;
             Lobby.ReadyButton.OnToggled += OnReadyToggled;
             Lobby.ReadyButton.TooltipSupplier = GetReadyButtonTooltip;
@@ -85,6 +81,7 @@ namespace Content.Client.Lobby
             _gameTicker.InfoBlobUpdated += UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated += LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
+            _cfg.OnValueChanged(StarlightCCVars.LobbyBackground, OnLobbyBackgroundPicked); // Starlight-edit
 
             _userInterfaceManager.GetUIController<LobbyUIController>().OnAnyCharacterOrJobChange += UpdateReadyAllowed;
 
@@ -108,10 +105,8 @@ namespace Content.Client.Lobby
             return Loc.GetString("ui-lobby-ready-button-tooltip-is-not-ready");
         }
 
-        private Control GetReadyButtonTooltip(Control sender)
-        {
-            return new Tooltip { Text = GetReadyButtonTooltipText() };
-        }
+        private Tooltip GetReadyButtonTooltip(Control sender) // Starlight-edit: Clarified tooltip instead of Control
+            => new() { Text = GetReadyButtonTooltipText() }; // Starlight-edit: Lambda
 
         protected override void Shutdown()
         {
@@ -120,6 +115,7 @@ namespace Content.Client.Lobby
             _gameTicker.InfoBlobUpdated -= UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated -= LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated -= LobbyLateJoinStatusUpdated;
+            _cfg.UnsubValueChanged(StarlightCCVars.LobbyBackground, OnLobbyBackgroundPicked); // Starlight-edit
             _contentAudioSystem.LobbySoundtrackChanged -= UpdateLobbySoundtrackInfo;
 
             _voteManager.ClearPopupContainer();
@@ -132,10 +128,8 @@ namespace Content.Client.Lobby
         }
 
         public void SwitchState(LobbyGui.LobbyGuiState state)
-        {
             // Yeah I hate this but LobbyState contains all the badness for now.
-            Lobby?.SwitchState(state);
-        }
+            => Lobby?.SwitchState(state); // Starlight-edit: Lambda
 
         private void OnSetupPressed(BaseButton.ButtonEventArgs args)
         {
@@ -154,9 +148,7 @@ namespace Content.Client.Lobby
         }
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)
-        {
-            SetReady(args.Pressed);
-        }
+            => SetReady(args.Pressed); // Starlight-edit: Lambda
 
         public override void FrameUpdate(FrameEventArgs e)
         {
@@ -208,9 +200,7 @@ namespace Content.Client.Lobby
         }
 
         private void LobbyLateJoinStatusUpdated()
-        {
-            Lobby!.ReadyButton.Disabled = _gameTicker.DisallowedLateJoin;
-        }
+            => Lobby!.ReadyButton.Disabled = _gameTicker.DisallowedLateJoin; // Starlight-edit: Lambda
 
         private void UpdateLobbyUi()
         {
@@ -292,9 +282,18 @@ namespace Content.Client.Lobby
             }
         }
 
+        private void OnLobbyBackgroundPicked(string _) => UpdateLobbyBackground(); // Starlight-edit
+
         private void UpdateLobbyBackground()
         {
-            if (_protoMan.TryIndex(_gameTicker.LobbyBackground, out var proto))
+            // Starlight-start
+            var picked = _cfg.GetCVar(StarlightCCVars.LobbyBackground);
+            var background = !string.IsNullOrEmpty(picked) && _protoMan.HasIndex<LobbyBackgroundPrototype>(picked)
+                ? new ProtoId<LobbyBackgroundPrototype>(picked)
+                : _gameTicker.LobbyBackground;
+
+            if (_protoMan.TryIndex(background, out var proto))
+            // Starlight-end
             {
                 Lobby!.Background.Texture = _resourceCache.GetResource<TextureResource>(proto.Background);
 

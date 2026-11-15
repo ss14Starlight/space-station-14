@@ -1,10 +1,12 @@
 using System.Numerics;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Random;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Traits;
 
@@ -14,6 +16,10 @@ public sealed partial class ParacusiaSystem : SharedParacusiaSystem
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
+    #region Starlight
+    [Dependency] private StatusEffectsSystem _status = default!;
+    private static readonly EntProtoId _anxietySuppressionStatus = "StatusEffectAnxietySuppression";
+    #endregion
 
     public override void Initialize()
     {
@@ -56,6 +62,12 @@ public sealed partial class ParacusiaSystem : SharedParacusiaSystem
         // Set the new time.
         var timeInterval = _random.NextFloat(paracusia.MinTimeBetweenIncidents, paracusia.MaxTimeBetweenIncidents);
         paracusia.NextIncidentTime += TimeSpan.FromSeconds(timeInterval);
+
+        // Starlight-start
+        // Medications can block hallucinations
+        if (_status.HasStatusEffect(uid, _anxietySuppressionStatus))
+            return;
+        // Starlight-end
 
         // Offset position where the sound is played
         var randomOffset =

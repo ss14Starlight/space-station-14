@@ -1,6 +1,7 @@
 - type: guideEntry
   id: References
   name: guide-entry-references
+  color: "#C6B59A" # Starlight: references sandstone
   priority: 30
   text: "/ServerInfo/Guidebook/References.xml"
   children:
@@ -13,12 +14,14 @@
 - type: guideEntry
   id: Drinks
   name: guide-entry-drinks
+  color: "#D69949" # Starlight: shared food and drink recipe color
   text: "/ServerInfo/Guidebook/ReferenceTables/Drinks.xml"
   filterEnabled: True
 
 - type: guideEntry
   id: FoodRecipes
   name: guide-entry-foodrecipes
+  color: "#D69949" # Starlight: Advanced cargolight
   text: "/ServerInfo/Guidebook/Service/FoodRecipes.xml"
   filterEnabled: True
   children:
@@ -134,10 +137,12 @@
 - type: guideEntry
   id: Writing
   name: guide-entry-writing
+  color: "#A8B8D0" # Starlight: writing slate blue
   text: "/ServerInfo/Guidebook/Writing.xml"
 
 - type: guideEntry
   id: Lawsets
   name: guide-entry-lawsets
+  department: Silicon # Starlight
   text: "/ServerInfo/Guidebook/ReferenceTables/Lawsets.xml"
   filterEnabled: True

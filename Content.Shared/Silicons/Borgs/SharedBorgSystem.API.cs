@@ -15,7 +15,9 @@ public abstract partial class SharedBorgSystem
     /// - Having a player mind attached
     /// - The borg is alive (not crit or dead).
     /// </summary>
-    /// <param name="allowRemoteControl">Whether to bypass the requirement for an attached player mind.</param>
+    /// Starlight - start
+    /// <param name="allowRemoteControl">If true, bypasses both the attached mind check and the ActorComponent check, including the disconnected-player guard.</param>
+    /// Starlight - end
     public bool CanActivate(Entity<BorgChassisComponent> chassis, bool allowRemoteControl = false) // Starlight
     {
         if (HasComp<BorgLockdownComponent>(chassis)) // Starlight
@@ -26,8 +28,11 @@ public abstract partial class SharedBorgSystem
 
         // TODO: Replace this with something else, only the client's own mind is networked to them,
         // so this will always be false for the minds of other clients.
-        if (!allowRemoteControl && !_mind.TryGetMind(chassis.Owner, out _, out _)) // Starlight
+        // Starlight - start: Ensure its remote controlled or has an actor
+        if (!allowRemoteControl &&
+            (!_mind.TryGetMind(chassis.Owner, out _, out _) || !HasComp<ActorComponent>(chassis.Owner)))
             return false;
+        // Starlight - end
 
         if (_mobState.IsIncapacitated(chassis.Owner))
             return false;
@@ -39,7 +44,9 @@ public abstract partial class SharedBorgSystem
     /// Activates the borg if the conditions are met.
     /// Returns true if the borg was activated.
     /// </summary>
-    /// <param name="allowRemoteControl">Whether to bypass the requirement for an attached player mind.</param>
+    /// Starlight - start
+    /// <param name="allowRemoteControl">If true, bypasses both the attached mind check and the ActorComponent check, including the disconnected-player guard.</param>
+    /// Starlight - end
     public bool TryActivate(Entity<BorgChassisComponent> chassis, EntityUid? user = null, bool allowRemoteControl = false) // Starlight
     {
         if (chassis.Comp.Active)

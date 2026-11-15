@@ -9,7 +9,6 @@ loadout-group-roboticist-shoes = Roboticist shoes
 loadout-group-roboticist-neck = Roboticist neck
 
 # Civilian
-loadout-group-assistant-glasses = Assistant glasses
 loadout-group-assistant-head = Assistant head
 loadout-group-assistant-backpack = Assistant backpack
 
@@ -67,8 +66,14 @@ loadout-group-dutyofficer-belt = Duty officer belt
 loadout-group-k9-variant = K9 coat
 loadout-group-k9-outerclothing = K9 armor
 loadout-group-k9-eyes = K9 eyewear
+loadout-group-k9-collar = K9 collar
 
 loadout-group-detective-lethal = Detective lethal sidearm
+
+loadout-group-gunnery-sergeant-head = Sergeant head
+loadout-group-gunnery-sergeant-jumpsuit = Sergeant jumpsuit
+loadout-group-gunnery-sergeant-outerclothing = Sergeant Outer Clothing
+loadout-group-gunnery-sergeant-neck = Sergeant Neck
 
 # Law
 loadout-group-magistrate-jumpsuit = Magistrate jumpsuit
@@ -134,6 +139,9 @@ loadout-group-performer-outerclothing = Performer outer clothing
 
 loadout-group-lawyer-shoes = Lawyer shoes
 
+# Engineering
+loadout-group-atmospheric-technician-id = Atmospheric Technician ID
+
 # Other
 loadout-group-scarves = Scarf
 loadout-group-pins = Pins
@@ -153,3 +161,4 @@ loadout-group-NanotrasenCareerTrainer-eyewear = NanoTrasen Career Trainer eyewea
 
 # Security
 loadout-group-warden-neck = Warden neck
+loadout-group-bartender-eyewear = Bartender eyewear

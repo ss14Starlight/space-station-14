@@ -57,3 +57,23 @@
   cost: 4200
   category: cargoproduct-category-name-engineering
   group: market
+
+- type: cargoProduct
+  id: CombustionTurbineFlatpackPurchase
+  icon:
+    sprite: _Starlight/Structures/Power/Generation/combustion_turbine.rsi
+    state: core_rotor
+  product: CrateCombustionTurbineFlatpack
+  cost: 6000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: EngineeringJerryCan
+  icon:
+    sprite: _Starlight/Objects/Tools/jerry_can.rsi
+    state: icon
+  product: CrateJerryCanFuel
+  cost: 800
+  category: cargoproduct-category-name-engineering
+  group: market
