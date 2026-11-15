@@ -55,6 +55,11 @@ public sealed partial class QuickConstructionBoundUserInterface : BoundUserInter
         _menu = this.CreateWindow<SimpleRadialMenu>();
         _menu.SetButtons(models);
 
+        // Starlight - start
+        if (remote)
+            _menu.OnClose += OnRemoteMenuClosed;
+        // Starlight - end
+
         // Starlight start
         if (remote && EntMan.System<RemoteControlInterface>().OpenRemoteRadialMenu(_menu))
             return;

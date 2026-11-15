@@ -27,6 +27,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.Construction;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Events;
+using Content.Shared.DragDrop;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Input;
@@ -142,6 +143,9 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
                 subs.Event<RemoteControlToggleKnockdownMessage>(OnRemoteToggleKnockdown);
                 subs.Event<RemoteControlReleasePulledObjectMessage>(OnRemoteReleasePulledObject);
                 subs.Event<RemoteControlInteractionMessage>(OnRemoteInteraction);
+                subs.Event<RemoteControlAttackHoldMessage>(OnRemoteAttackHold);
+                subs.Event<RemoteControlCloseQuickConstructionMessage>(OnRemoteCloseQuickConstruction);
+                subs.Event<RemoteControlDragDropMessage>(OnRemoteDragDrop);
                 subs.Event<RemoteControlBuildConstructionMessage>(OnRemoteBuildConstruction);
                 subs.Event<RemoteControlBuildItemConstructionMessage>(OnRemoteBuildItemConstruction);
                 subs.Event<RemoteControlActionMessage>(OnRemoteAction);
@@ -983,6 +987,22 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         _actions.TryPerformAction(remoteEntity, action, target, args.Coordinates);
     }
 
+    private void OnRemoteCloseQuickConstruction(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlCloseQuickConstructionMessage args)
+    {
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity)
+            || !TryGetEntity(args.Item, out EntityUid? itemEntity)
+            || itemEntity is not { } item
+            || !HasComp<QuickConstructableComponent>(item)
+            || !TryComp<HandsComponent>(remoteEntity, out var hands)
+            || _hands.GetActiveItem((remoteEntity, hands)) != item
+            || !_ui.IsUiOpen(item, QuickConstructionUiKey.Key, remoteEntity))
+            return;
+
+        _ui.CloseUi((item, null), QuickConstructionUiKey.Key, remoteEntity);
+        RefreshRemoteState(uid, component, remoteEntity);
+    }
+
     private void OnRemoteInteraction(EntityUid uid, RemoteControlConsoleComponent component,
         RemoteControlInteractionMessage args)
     {
@@ -1097,6 +1117,19 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
         }
 
         _interaction.UserInteraction(remoteEntity, GetCoordinates(args.Coordinates), target, args.AltInteract);
+        RefreshRemoteState(uid, component, remoteEntity);
+    }
+
+    private void OnRemoteDragDrop(EntityUid uid, RemoteControlConsoleComponent component,
+        RemoteControlDragDropMessage args)
+    {
+        if (!TryGetActionableControlledEntity((uid, component), args.Actor, out var remoteEntity))
+            return;
+
+        EntityManager.System<SharedDragDropSystem>().TryPerformDragDrop(
+            remoteEntity,
+            GetEntity(args.Dragged),
+            GetEntity(args.Target));
         RefreshRemoteState(uid, component, remoteEntity);
     }
 
@@ -1926,6 +1959,7 @@ public sealed partial class RemoteControlConsoleSystem : EntitySystem
 
         UpdatePendingRemoteBorgActivations();
         UpdateRemoteUiInteractionRanges();
+        UpdateRemoteAttackHolds();
     }
 
     private void ReleaseControlIfInvalid(EntityUid user)

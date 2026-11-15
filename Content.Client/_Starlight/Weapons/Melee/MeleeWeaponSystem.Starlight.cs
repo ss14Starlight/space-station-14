@@ -18,7 +18,29 @@ public sealed partial class MeleeWeaponSystem
     /// a remote heavy attack.
     /// </returns>
     public bool TryHandleRemoteHeavyAttack(EntityUid user, MapCoordinates mousePosition)
+        => TryHandleRemoteHeavyAttack(user, mousePosition, ignoreClientAttackState: false, out _);
+
+    /// <summary>
+    /// Handles remote heavy-attack input, optionally ignoring client-side attack state for hold repeats.
+    /// </summary>
+    /// <param name="user">The entity receiving the attack input.</param>
+    /// <param name="mousePosition">The map position targeted by the input.</param>
+    /// <param name="ignoreClientAttackState">
+    /// Whether to ignore the locally replicated cooldown and active-attack state. The server still validates both.
+    /// </param>
+    /// <param name="attackSent">Whether the heavy-attack event was sent.</param>
+    /// <returns>
+    /// <see langword="true"/> if the input is consumed; otherwise, <see langword="false"/> if the input does not qualify as
+    /// a remote heavy attack.
+    /// </returns>
+    public bool TryHandleRemoteHeavyAttack(
+        EntityUid user,
+        MapCoordinates mousePosition,
+        bool ignoreClientAttackState,
+        out bool attackSent)
     {
+        attackSent = false;
+
         if (!CombatMode.IsInCombatMode(user)
             || !TryGetWeapon(user, out var weaponUid, out var weapon))
             return false;
@@ -35,8 +57,7 @@ public sealed partial class MeleeWeaponSystem
         }
 
         if (!Blocker.CanAttack(user, weapon: (weaponUid, weapon))
-            || weapon.Attacking
-            || weapon.NextAttack > Timing.CurTime)
+            || (!ignoreClientAttackState && (weapon.Attacking || weapon.NextAttack > Timing.CurTime)))
             return true;
 
         if (mousePosition.MapId == MapId.Nullspace)
@@ -47,6 +68,7 @@ public sealed partial class MeleeWeaponSystem
             : TransformSystem.ToCoordinates(_map.GetMap(mousePosition.MapId), mousePosition);
 
         ClientHeavyAttack(user, coordinates, weaponUid, weapon);
+        attackSent = true;
         return true;
     }
 }

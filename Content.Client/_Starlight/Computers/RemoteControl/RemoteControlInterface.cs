@@ -8,6 +8,7 @@ using Robust.Shared.Timing;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Storage.Controls;
@@ -141,6 +142,11 @@ public sealed partial class RemoteControlInterface : EntitySystem
         _window = window;
         RemoteViewport = window?.RemoteViewport;
     }
+
+    public PopupContainer? GetExaminePopupContainer(EntityUid examiner)
+        => ControlledEntity == examiner && _window is { Disposed: false } window
+            ? window.RemoteExaminePopupContainer
+            : null;
 
     public override void Update(float frameTime)
     {
