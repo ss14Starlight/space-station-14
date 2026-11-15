@@ -22,5 +22,4 @@ public sealed partial class RadiationSystem
                 UpdateSource((srcUid, srcComp));
         }
     }
-
 }
