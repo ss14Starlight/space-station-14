@@ -1,4 +1,3 @@
-
 using Content.Shared.Radiation.Components;
 
 // ReSharper disable once CheckNamespace
