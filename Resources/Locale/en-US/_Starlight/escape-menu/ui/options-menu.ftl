@@ -203,8 +203,16 @@ ui-options-admin-sounds-volume = Admin sounds:
 ui-options-show-tippy = Show Tippy
 
 ui-options-atmosphere-label = Lighting and atmosphere
+ui-options-screen-brightness = Screen brightness
+ui-options-screen-brightness-desc = Lifts dim areas of the view. Pitch black stays black.
+ui-options-light-boost = Light source brightness
+ui-options-light-boost-desc = Makes every lamp a little brighter and reach a little further.
 ui-options-light-tonemap = Soft light
 ui-options-light-tonemap-tooltip = Rolls off bright spots where lights overlap, so sprites don't wash out.
+ui-options-gi = Light bounce (experimental)
+ui-options-gi-tooltip = Lit walls throw some of their light back onto the floor around them, and light spills around corners and through doorways. Costs some GPU time.
+ui-options-gi-rays = Light bounce quality
+ui-options-gi-rays-desc = Rays per pixel. More is smoother and slower.
 ui-options-night-vision = Night vision
 ui-options-night-vision-tooltip = Poorly lit areas lose their colour and turn cold blue, the way the eye sees in the dark.
 ui-options-vignette = Vignette
