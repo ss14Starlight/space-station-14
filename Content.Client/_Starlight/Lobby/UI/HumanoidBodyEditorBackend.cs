@@ -157,10 +157,10 @@ public sealed class HumanoidBodyEditorBackend : IBodyEditorBackend
         {
             HairGroup => _appearance.HairStyleId == HairStyles.DefaultHairStyle
                                 ? []
-                                : [new(_appearance.HairStyleId, [_appearance.HairColor], _appearance.HairGlowing)],
+                                : new List<Marking> { new(_appearance.HairStyleId, new List<Color> { _appearance.HairColor }, _appearance.HairGlowing) },
             FacialHairGroup => _appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
                                 ? []
-                                : new List<Marking> { new(_appearance.FacialHairStyleId, [_appearance.FacialHairColor], _appearance.FacialHairGlowing) },
+                                : new List<Marking> { new(_appearance.FacialHairStyleId, new List<Color> { _appearance.FacialHairColor }, _appearance.FacialHairGlowing) },
             _ => !TryParseGroup(group, out var def, out var category) || !_set.TryGetCategory(category, out var markings)
                         ? []
                         : [.. markings.Where(m => OnPart(def, m))],
