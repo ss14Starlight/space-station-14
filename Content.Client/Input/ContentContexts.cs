@@ -96,7 +96,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade1);
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
-            human.AddFunction(CMKeyFunctions.SLInteractWithOtherHand);
+            human.AddFunction(CMKeyFunctions.SLInteractWithOtherHand); // Prefixes changed from RMC to SL to allow rebinds without affecting RMC or vice versa
 
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);

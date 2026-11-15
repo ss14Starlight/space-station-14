@@ -197,7 +197,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.MoveStoredItem);
             AddButton(ContentKeyFunctions.RotateStoredItem);
             AddButton(ContentKeyFunctions.SaveItemLocation);
-            AddButton(CMKeyFunctions.SLInteractWithOtherHand); // Starlight, imported from RMC
+            AddButton(CMKeyFunctions.SLInteractWithOtherHand); // Starlight, imported from RMC, Prefixes changed from RMC to SL to allow rebinds without affecting RMC or vice versa
 
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);

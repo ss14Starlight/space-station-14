@@ -16,7 +16,7 @@ public sealed partial class ClientRMCHandsSystem : EntitySystem
         base.Initialize();
 
         CommandBinds.Builder
-            .Bind(CMKeyFunctions.SLInteractWithOtherHand,
+            .Bind(CMKeyFunctions.SLInteractWithOtherHand, // Prefixes changed from RMC to SL to allow rebinds without affecting RMC or vice versa
                 InputCmdHandler.FromDelegate(session =>
                     {
                         if (session?.AttachedEntity is not { } ent)
