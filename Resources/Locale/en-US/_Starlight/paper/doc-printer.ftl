@@ -939,40 +939,6 @@ doc-text-printer-construction-permit =
 
 
 
-doc-text-printer-surgery-consent-permit =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]SURGERY CONSENT FORM[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    In sound mind I, [signature], authorize the following surgery or surgeries to be performed upon me.
-
-    Authorized surgeon: [signature]
-
-    Reason for surgery: [form]
-
-    Surgical modification(s) to be performed:
-
-    • [form]
-    • [form]
-    • [form]
-
-   ⠀[check] I fully understand the risks associated with the operation(s) to which I have given my consent.
-
-   ⠀[check] I authorize the Medical Department to dispose of any tissues or organs removed from my body as they see fit, including possibly donating such tissues or organs to other patients.
-
-   ⠀[check] I consent to the operation proceeding without the use of anesthetics.
-
-   ⠀ [italic]This form is not legal unless it has been signed by the patient and stamped by the station's Chief Medical Officer or one of the Chief Medical Officer's superiors. It is not required for life-saving surgeries. For punitive and non-elective surgeries, such as those ordered by Security, please file a Medical Intervention Order.[/italic]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
 doc-text-printer-art-permit =
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1019,52 +985,6 @@ doc-text-printer-mech-authorization-form =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 # OrdersAndInstructions
-
-doc-text-printer-dismissal-order =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                               [bold]DISMISSAL ORDER[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], order that the following employee be removed from their current position.
-
-    Employee name: [form]
-
-   ⠀Employee position: [form]
-
-    Reason for dismissal: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-access-revocation-order =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                       [bold]ACCESS REVOCATION ORDER[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], hereby order that certain access rights be removed from the ID card of an employee, as specified below.
-
-    Employee: [form]
-
-   ⠀Position: [form]
-
-    Access rights to be removed: [form]
-
-    Further remarks: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
 
@@ -1124,61 +1044,6 @@ doc-text-printer-prisoner-parole-order =
 
 
 
-doc-text-printer-order-recognizing-reasonableness-creature =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-                                ⠀[bold]DECLARATION OF SENTIENCE[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], in the course of testing the entity described below, have detected signs of intelligence and rationality. It has exhibited an ability to think and learn, and a capacity to comprehend morality.
-
-    Based on the principles of equality of rights of all reasonable beings established by the OPRA, I hereby move to declare it as sentient.
-
-    Appearance of the being: [form]
-
-    The established full name of the creature: [form]
-
-    The creature is henceforth to be accepted as an Assistant.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-
-doc-text-printer-execution-dnr-order =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀             [bold]EXECUTION AND DO-NOT-REVIVE ORDER[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Name of Prisoner:  [form]
-    Former position of Prisoner: [form]
-
-    Crimes committed:
-    ⠀• [form]
-
-    Reason for the execution and DNR:
-    ⠀• [form]
-
-    Authority ordering the Execution (Name + Position): [signature]
-
-   ⠀ [italic]This order can only be issued by the (Acting) Captain of the[/italic]
-   ⠀ [italic]station. If a Magistrate is present, they can overrule the Captain[/italic]
-   ⠀ [italic]on the decision, and their stamp is required.[/italic]
-   ⠀ [italic]The prisoner is to remain securely restrained until the execution.[/italic]
-   ⠀ [italic]The execution method may be chosen by the prisoner, to the[/italic]
-   ⠀ [italic]extent permissible under law, and must be as humane as possible.[/italic]
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 # Communications
 

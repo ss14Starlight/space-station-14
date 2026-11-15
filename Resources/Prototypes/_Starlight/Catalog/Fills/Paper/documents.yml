@@ -406,12 +406,12 @@
 
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentSurgeryConsentPermit
+  id: PrintedDocumentSurgeryConsentForm
   name: Surgery Consent Form
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-surgery-consent-permit
+    - type: TextFilePaperContent
+      fileName: surgery-consent-form.txt
 
 - type: entity
   parent: PrintedDocument
@@ -448,8 +448,8 @@
   name: Dismissal Order
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-dismissal-order
+    - type: TextFilePaperContent
+      fileName: dismissal-order.txt
 
 - type: entity
   parent: PrintedDocument
@@ -457,8 +457,8 @@
   name: Access Revocation Order
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-access-revocation-order
+    - type: TextFilePaperContent
+      fileName: access-revocation-order.txt
 
 - type: entity
   parent: PrintedDocument
@@ -484,8 +484,8 @@
   name: Declaration of Sentience
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-order-recognizing-reasonableness-creature
+    - type: TextFilePaperContent
+      fileName: order-recognizing-reasonableness-creature.txt
 
 - type: entity
   parent: PrintedDocument
@@ -502,8 +502,9 @@
   name: Execution & DNR Order
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-execution-dnr-order
+  components:
+    - type: TextFilePaperContent
+      fileName: execution-dnr-order.txt
 
 - type: entity
   parent: PrintedDocument

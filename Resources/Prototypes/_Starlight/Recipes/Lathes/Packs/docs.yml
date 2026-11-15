@@ -46,7 +46,7 @@
   - PrintedDocumentSearchPermissionRecipe
   - PrintedDocumentPermissionDisposeBodyRecipe
   - PrintedDocumentConstructionPermitRecipe
-  - PrintedDocumentSurgeryConsentPermitRecipe
+  - PrintedDocumentSurgeryConsentFormRecipe
   - PrintedDocumentArtPermitRecipe
   - PrintedDocumentBorgificationConsentFormRecipe
   - PrintedDocumentMechAuthorizationFormRecipe

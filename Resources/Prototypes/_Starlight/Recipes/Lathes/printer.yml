@@ -440,8 +440,8 @@
     SheetPrinter: 100
 
 - type: latheRecipe
-  id: PrintedDocumentSurgeryConsentPermitRecipe
-  result: PrintedDocumentSurgeryConsentPermit
+  id: PrintedDocumentSurgeryConsentFormRecipe
+  result: PrintedDocumentSurgeryConsentForm
   categories:
   - Permissions
   completetime: 2

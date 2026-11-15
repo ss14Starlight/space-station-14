@@ -163959,7 +163959,7 @@ entities:
     - type: Transform
       parent: 2
       pos: 86.504555,-15.503023
-- proto: PrintedDocumentSurgeryConsentPermit
+- proto: PrintedDocumentSurgeryConsentForm
   entities:
   - uid: 24048
     components:
