@@ -23,7 +23,7 @@ namespace Content.Client._Starlight.Light;
 /// Results build up across frames through reprojection and ray rotation, allowing
 /// bounced light to spread farther over time. The final result is blurred and
 /// added to the light map.
-/// 
+///
 /// Runs only for the player's eye, before <see cref="LightTonemapOverlay"/>,
 /// so bounced light is also tonemapped.
 /// </remarks>

@@ -16,10 +16,10 @@ namespace Content.Client._Starlight.Light;
 /// Smoothly tonemaps the light map, preserving values below
 /// <see cref="StarlightCCVars.LightTonemapKnee"/> and gradually bringing higher values
 /// toward <see cref="StarlightCCVars.LightTonemapMax"/>.
-/// 
+///
 /// Client <see cref="StarlightCCVars.LightBoost"/> is included in exposure and disables roll-off when greater than 1.
 /// Server exposure is applied only when roll-off is enabled.
-/// 
+///
 /// Runs in <see cref="OverlaySpace.WorldSpaceBelowWorld"/>, after the light map is generated
 /// and before the world is rendered. A float texture copy prevents reading from and
 /// writing to the same texture.
