@@ -1,11 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Carp rifts now correctly show a station beacon once the energy flux announcement is made to the station (this was intended but broken).
-    type: Fix
-  id: 410081
-  time: '2026-11-03T12:31:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6986
 - author: joshujo
   changes:
   - message: Hyper-nob now prevents gas fires.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410480
   time: '2026-11-15T14:57:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7227
+- author: AnyTap
+  changes:
+  - message: Added CSD Mantle.
+    type: Add
+  id: 410481
+  time: '2026-11-15T14:57:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7126
 Order: -1
