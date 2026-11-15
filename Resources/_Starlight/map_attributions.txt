@@ -140,8 +140,5 @@
 - files: ["escape_pod_toilet.yml"]
   authors: Penguinwizzard
 
-- files: ["escape_pod_verysmall.yml"]
-  authors: Penguinwizzard
-
 - files: ["escape_pod_lifeboat.yml"]
   authors: CawsForConcern

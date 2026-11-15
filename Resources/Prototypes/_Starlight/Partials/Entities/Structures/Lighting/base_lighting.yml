@@ -1,0 +1,49 @@
+- type: !PartialOnly entity
+  id: AlwaysPoweredWallLight
+  components:
+  - type: PointLight
+    color: "#FFE2C8"
+    energy: 0.6
+    radius: 7
+    softness: 1.5
+    falloff: 8
+    curveFactor: 1
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values: [ PoweredlightEmpty, PoweredSmallLightEmpty ]
+  components:
+  - type: BackupLight
+  - type: Battery
+    maxCharge: 2400
+    startingCharge: 2400
+    pricePerJoule: 0 # The built-in cell isn't sold on its own, a fixture keeps its old (lack of) price.
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values: [ PoweredlightEmpty, PoweredSmallLightEmpty ]
+  components:
+  - type: LightFlicker
+
+# ToggleableDevice switch for powered lights.
+- type: !type:PartialOnly entity
+  id: !type:CreateVariants
+    values:
+      - PoweredlightEmpty
+      - PoweredSmallLightEmpty
+      - PoweredLightPostSmallEmpty
+      - PoweredStrobeLightEmpty
+  components:
+    - type: ToggleableDevice
+    - type: ToggleableDeviceSignaling
+    - type: DeviceLinkSink
+      ports:
+        - "On"
+        - "Off"
+        - "Toggle"
+        - "ToggleableDeviceState"
+        - "ToggleableDeviceStateInverted"
+    - type: DeviceLinkSource
+      ports:
+        - "Status"
+        - "ToggleableDeviceStatusInverted"

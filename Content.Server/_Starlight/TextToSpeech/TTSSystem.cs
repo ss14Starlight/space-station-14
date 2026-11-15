@@ -13,6 +13,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Enums;
 
 namespace Content.Server._Starlight.TextToSpeech;
 
@@ -245,7 +246,15 @@ public sealed partial class TTSSystem : EntitySystem
         }, filter, false);
 
         await foreach (var chunk in _client.GenerateTTS(text, voice, effect))
+        {
+            filter.RemoveWhere(session => session.Status is not (SessionStatus.Connected or SessionStatus.InGame)
+                                        || !session.Channel.IsConnected);
+
+            if (filter.Count == 0)
+                break;
+
             RaiseNetworkEvent(new TTSChunkEvent { Id = id, Data = chunk }, filter, false);
+        }
     }
 
     private async void OnClientOptionTTS(ClientOptionTTSEvent ev, EntitySessionEventArgs args)

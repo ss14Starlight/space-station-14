@@ -170,6 +170,9 @@ public sealed partial class AnchorableSystem : EntitySystem
                 return;
             }
 
+            if (AnchorTileBlacklisted(uid, coordinates, args.User)) // Starlight
+                return;
+
             _transformSystem.SetCoordinates(uid, coordinates);
         }
 
@@ -246,6 +249,9 @@ public sealed partial class AnchorableSystem : EntitySystem
             _popup.PopupClient(Loc.GetString("construction-step-condition-no-unstackable-in-tile"), uid, userUid);
             return;
         }
+
+        if (AnchorTileBlacklisted(uid, transform.Coordinates, userUid)) // Starlight
+            return;
 
         _tool.UseTool(usingUid, userUid, uid, anchorable.Delay, usingTool.Qualities, new TryAnchorCompletedEvent());
     }

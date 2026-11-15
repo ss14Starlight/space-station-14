@@ -1,5 +1,0 @@
-- type: !PartialOnly entity
-  id: MobCatShadow
-  components:
-  - type: FootprintOwner
-    printState: Paw

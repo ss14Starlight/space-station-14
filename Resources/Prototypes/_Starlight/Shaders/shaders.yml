@@ -170,3 +170,28 @@
     heat: 0
     displaced: 1
     displacementSize: 127
+
+- type: shader
+  id: LightTonemapCopy
+  kind: source
+  path: "/Textures/_Starlight/Shaders/light_tonemap_copy.swsl"
+
+- type: shader
+  id: LightTonemap
+  kind: source
+  path: "/Textures/_Starlight/Shaders/light_tonemap.swsl"
+
+- type: shader
+  id: ScreenPostProcess
+  kind: source
+  path: "/Textures/_Starlight/Shaders/screen_postprocess.swsl"
+
+- type: shader
+  id: BloomExtract
+  kind: source
+  path: "/Textures/_Starlight/Shaders/bloom_extract.swsl"
+
+- type: shader
+  id: HalfBright
+  kind: source
+  path: "/Textures/_Starlight/Shaders/half_bright.swsl"

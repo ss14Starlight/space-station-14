@@ -23,7 +23,9 @@
   license: CC-BY-SA-3.0
   source: https://github.com/Skyrat-SS13/Skyrat-tg/blob/c45bc517706f5708c107fdcb018115a4a6b7320b/modular_skyrat/modules/emotes/sound/voice/rattle.ogg
 
-- files: ["lizard_laugh.ogg, neo_lizard_laugh.ogg"]
-  copyright: "Original sound made with sfxr tool Copyright (c) 2007 Tomas Pettersson. Converted and edited by Zokkie"
-  license: "CC0-1.0"
-  source: "https://www.drpetter.se/project_sfxr.html"
+- files: ["neo_lizard_happy.ogg"]
+  copyright: "Provided by DaturoDewitt. Created using transformed and layered samples bundled with Logic Pro X. Robot filter added by Rhapsody."
+  license: "CC-BY-SA-4.0"
+  source: "https://github.com/space-wizards/space-station-14/pull/42915"
+
+

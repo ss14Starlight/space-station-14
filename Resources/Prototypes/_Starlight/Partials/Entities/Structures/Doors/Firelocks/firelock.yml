@@ -6,7 +6,7 @@
     - type: AlertLevelAccess
       added:
         # Security gets firelock access during various alerts. They got places to be!
-        red: &sec [ ["Security"], ["Cadet"] ]
+        red: &sec [["Security"]]
         gamma: *sec
         delta: *sec
         psi: *sec

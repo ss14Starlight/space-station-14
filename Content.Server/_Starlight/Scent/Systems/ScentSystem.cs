@@ -65,7 +65,6 @@ public sealed partial class ScentSystem : SharedScentSystem
 
     private const string ScentMarkerPrototype = "ScentMarker";
     private const int ScentIdByteLength = 8;
-
     private readonly HashSet<Entity<ScentMarkerComponent>> _nearbyMarkers = new();
     private readonly List<(string Id, bool IsPollen)> _scentChoices = new();
 
@@ -503,7 +502,8 @@ public sealed partial class ScentSystem : SharedScentSystem
         var query = EntityQueryEnumerator<ScentComponent>();
         while (query.MoveNext(out var uid, out var scent))
         {
-            if (scent.ScentId == null && scent.AdditionalScents.Count == 0)
+            if (scent.ScentId == null && scent.AdditionalScents.Count == 0 &&
+                !HasComp<PollenCollectorComponent>(uid))
                 continue;
 
             if (scent.NextEmitTime == TimeSpan.Zero)
@@ -592,9 +592,8 @@ public sealed partial class ScentSystem : SharedScentSystem
         {
             var pollenDecayTime = GetDecayTime(scent, uid);
 
-            // Pollen markers aren't part of this entity's own trail, so they never become its tail.
-            EntityUid? pollenTail = null;
-            var pollenMarker = EmitPollenMarker(ref pollenTail, uid, scentId, xform, pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
+            // Pollen markers use their own cache and never become part of the personal scent trail.
+            var pollenMarker = EmitPollenMarker(ref scent.LastPollenMarkerEntity, uid, scentId, xform, pollenDecayTime, scent.MergeRadius, scent.MergeStrengthStep);
 
             if (!pollenMarker.IsValid())
                 return;
@@ -679,6 +678,17 @@ public sealed partial class ScentSystem : SharedScentSystem
         holder.CurrentTube is not { } tube ||
         !HasComp<VentCrawlEntryComponent>(tube));
 
+    /// <summary>
+    /// Emits or refreshes a pollen marker for an emitter.
+    /// First tries the emitter's cached marker to avoid unnecessary spatial lookups.
+    /// If the cached marker is no longer suitable, searches within mergeRadius for
+    /// another pollen marker with the same pollenId and airtight container.
+    /// When multiple markers match, the lowest entity ID is selected.
+    /// Otherwise spawns a new marker. The result is stored in lastMarker.
+    /// </summary>
+    /// <param name="lastMarker">
+    /// The emitter's cached pollen marker reference (ScentComponent.LastPollenMarkerEntity).
+    /// Updated in place when a marker is found or spawned.
     // A personal scent only merges into our own chain tail, never any other nearby marker. Revisiting
     // an old spot would otherwise rewrite the trail's visit order. Shared scents can come from several
     // entities, so they merge into any nearby marker with the same ID.
@@ -717,6 +727,7 @@ public sealed partial class ScentSystem : SharedScentSystem
         // Skips a tail from before the scent changed (e.g. washing) or from outside our current container.
         if (scent.LastMarkerEntity is not { } tail ||
             !TryComp<ScentMarkerComponent>(tail, out var marker) ||
+            marker.IsPollen ||
             marker.ScentId != scentId ||
             marker.ContainedIn != container ||
             !TryComp(tail, out TransformComponent? tailXform) ||
@@ -768,10 +779,17 @@ public sealed partial class ScentSystem : SharedScentSystem
     /// <param name="lastMarker">
     /// The emitter's cached last-marker reference (e.g. EmitPollenComponent.LastMarkerEntity).
     /// </param>
-    /// <returns>The marker entity now associated with this emitter.</returns>
+    /// <param name="emitterUid">The entity emitting the pollen.</param>
+    /// <param name="pollenId">The identifier of the emitted pollen.</param>
+    /// <param name="emitterXform">The emitter's transform.</param>
+    /// <param name="lifetime">The marker's lifetime.</param>
+    /// <param name="mergeRadius">The radius in which existing pollen markers can be merged.</param>
+    /// <param name="mergeStrengthStep">The strength added when refreshing an existing marker.</param>
+    /// <returns>The marker entity now associated with this emitter, or EntityUid.Invalid if emission is suppressed.</returns>
     public EntityUid EmitPollenMarker(ref EntityUid? lastMarker, EntityUid emitterUid, string pollenId,
         TransformComponent emitterXform, TimeSpan lifetime, float mergeRadius, float mergeStrengthStep)
     {
+        // Don't emit pollen in environments below 5 kPa.
         if ((_atmosphere.GetTileMixture(emitterUid)?.Pressure ?? 0f) <= 5f)
         {
             lastMarker = null;
@@ -780,6 +798,7 @@ public sealed partial class ScentSystem : SharedScentSystem
 
         var container = GetAirtightContainer(emitterXform);
 
+        // Try our cached marker first. Most repeat emissions can refresh it without a spatial lookup.
         // Most emitters don't move, so their last marker is usually still in range.
         if (lastMarker is { } cached &&
             TryComp<ScentMarkerComponent>(cached, out var cachedMarker) &&
@@ -793,10 +812,13 @@ public sealed partial class ScentSystem : SharedScentSystem
             return cached;
         }
 
+        // The cached marker is unavailable or no longer suitable.
+        // Search for an existing matching marker so different emitters can still share pollen markers.
         EntityUid? matchingMarker = null;
 
         // Pick the lowest ID so nearby emitters settle on the same marker.
         GetNearbyMarkers(emitterXform.Coordinates, mergeRadius, _nearbyMarkers);
+
         foreach (var (candidate, marker) in _nearbyMarkers)
         {
             if (!marker.IsPollen ||
@@ -806,6 +828,7 @@ public sealed partial class ScentSystem : SharedScentSystem
                 !_transform.InRange(emitterXform.Coordinates, markerXform.Coordinates, mergeRadius))
                 continue;
 
+            // Select the same marker consistently, regardless of each emitter's cached reference.
             if (matchingMarker is not { } current || candidate.CompareTo(current) < 0)
                 matchingMarker = candidate;
         }
