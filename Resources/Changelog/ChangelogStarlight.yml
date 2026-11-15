@@ -1,11 +1,4 @@
 Entries:
-- author: Hot Mic
-  changes:
-  - message: (Flotilla) Reduce the min player requirement from 150 to 135 players. To fill all the job slots, you need 145 players.
-    type: Tweak
-  id: 410070
-  time: '2026-11-03T10:25:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7024
 - author: redmushie
   changes:
   - message: (Kiloton) Change Distro/Waste layers to match docking port standard.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410469
   time: '2026-11-14T22:08:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7232
+- author: wonderfulnewworld
+  changes:
+  - message: Moproach and cleanbot won't repetitively clean water puddles after footprints.
+    type: Fix
+  id: 410470
+  time: '2026-11-15T00:26:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7244
 Order: -1
