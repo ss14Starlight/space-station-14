@@ -13,13 +13,7 @@ sealed partial class JoinGameCommand
         if (_banManager.GetJobBans(player.UserId) is not { } jobBans || jobBans.Contains(job))
             return false;
 
-        var disallowed = new HashSet<ProtoId<JobPrototype>>();
-        var disallowedEv = new GetDisallowedJobsEvent(player, disallowed);
-        _entManager.EventBus.RaiseEvent(EventSource.Local, ref disallowedEv);
-        if (disallowed.Contains(job))
-            return false;
-
-        var allowedEv = new IsRoleAllowedEvent(player, new List<ProtoId<JobPrototype>> { job }, null);
+        var allowedEv = new IsRoleAllowedEvent(player, new List<ProtoId<JobPrototype>> { job }, null, isSpawning: false);
         _entManager.EventBus.RaiseEvent(EventSource.Local, ref allowedEv);
         return !allowedEv.Cancelled;
     }
