@@ -7,18 +7,11 @@
   - type: DeviceNetwork
     receiveFrequencyId: MedTakOperators
     transmitFrequencyId: MedTak
-  - type: SurveillanceCamera # they act like cameras for the mothership
+  - type: SurveillanceCamera
     networkSet: true
     nameSet: True
     id: MedTakOperators
     useEntityNameAsCameraId: true
-  - type: Explosive
-    explosionType: Minibomb
-    deleteAfterExplosion: false # let damage threshold gib the borg
-    totalIntensity: 200 # bigger kaboom
-    intensitySlope: 20
-    maxIntensity: 100
-    canCreateVacuum: false
 
 - type: entity
   id: BorgChassisMedTak
