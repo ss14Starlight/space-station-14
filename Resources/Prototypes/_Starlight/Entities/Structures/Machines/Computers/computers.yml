@@ -841,7 +841,7 @@
       access: [[ "Journalism" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-news
-      delay: 300
+      delay: 600
       sound: /Audio/_Starlight/Announcements/announce2.ogg
       color: "#539c00"
       settableAlertLevels: []
