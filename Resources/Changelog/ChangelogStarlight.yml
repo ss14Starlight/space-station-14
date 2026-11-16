@@ -1,39 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) A light post erroneously installed in the middle of Security's doorway into the Brig has been removed.
-    type: Fix
-  id: 410099
-  time: '2026-11-04T13:03:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7028
-- author: Talirson
-  changes:
-  - message: Moved the bluespace harvester to consumer tab in power monitoring consoles.
-    type: Tweak
-  id: 410100
-  time: '2026-11-04T14:09:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7035
-- author: SirLutz
-  changes:
-  - message: Antagscaling reworked, "centcomm" jobs dont contribute anymore to antag scaling. All Security jobs, all Salvage, Captain and BSO do now. The code is also now more robust not to break, when someone renames jobs.
-    type: Tweak
-  id: 410101
-  time: '2026-11-04T14:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6898
-- author: SirLutz
-  changes:
-  - message: Removed the ability to drag from Coscult Custodians and Lodestars, Oracles as semi-leaders can drag their minion friends or bodies.
-    type: Remove
-  id: 410102
-  time: '2026-11-04T14:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6898
-- author: SirLutz
-  changes:
-  - message: Custodians can now pry open powered doors.
-    type: Add
-  id: 410103
-  time: '2026-11-04T14:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6898
 - author: SirLutz
   changes:
   - message: Malignant passive regeneration has been re-buffed, 50% regen increase(its at 75% of the original value when it came out).
@@ -2799,4 +2764,39 @@ Entries:
   id: 410498
   time: '2026-11-16T06:00:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7274
+- author: neomoth
+  changes:
+  - message: Finally fix the melee swing animation to render correctly when camera is rotated.
+    type: Fix
+  id: 410499
+  time: '2026-11-16T06:21:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7273
+- author: SevenShades
+  changes:
+  - message: Added a MedTak paperwork module.
+    type: Add
+  id: 410500
+  time: '2026-11-16T07:29:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7275
+- author: SevenShades
+  changes:
+  - message: Removed Emag immunity on MedTak silicons.
+    type: Remove
+  id: 410501
+  time: '2026-11-16T07:29:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7275
+- author: SevenShades
+  changes:
+  - message: The MedTak hypospray can be used on Reptilians again.
+    type: Tweak
+  id: 410502
+  time: '2026-11-16T07:29:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7275
+- author: neomoth
+  changes:
+  - message: Potentially fix some sprite layering issues that occur on reconnect without relaunching the game.
+    type: Fix
+  id: 410503
+  time: '2026-11-16T07:53:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7277
 Order: -1
