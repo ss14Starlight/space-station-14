@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (CentComm GNT9) The Brig has been updated to modern 'genpop' standards.
-    type: Tweak
-  id: 410097
-  time: '2026-11-04T13:03:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7028
-- author: Caws
-  changes:
   - message: (CentComm GNT9) The floating light outside of the debriefing room has been removed. We apologize for any of the stress caused by said unsecured light fixture.
     type: Fix
   id: 410098
@@ -2799,4 +2792,11 @@ Entries:
   id: 410496
   time: '2026-11-16T05:05:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7221
+- author: SevenShades
+  changes:
+  - message: Added admin logging to taser knockdowns.
+    type: Add
+  id: 410497
+  time: '2026-11-16T05:34:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7219
 Order: -1
