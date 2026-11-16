@@ -172,6 +172,9 @@ uplink-plushie-linari-desc = An expertly crafted plush lizard in tactical office
 uplink-bombroach-microbomb-name = Bombroach Teleporter
 uplink-bombroach-microbomb-desc = Call in a handy bombroach equipped with a picobomb implant. Explodes on death or when triggered by the bombroach.
 
+uplink-clothing-eyes-hud-syndicate-modular-name = Empty Syndicate Visor
+uplink-clothing-eyes-hud-syndicate-modular-desc = The iconic model of eyewear that denotes Syndicate elites, unlike yourself. HUD modules not included.
+
 # These are from funky, but funky puts them in Wizden files, so in our files they go then
 uplink-hidden-radio-botany-name = Hidden Uplink
 uplink-hidden-radio-botany-desc = An uplink disguised as a plant analyzer. Keep it for yourself or give it to a trusted ally to aid your mission. Telecrystals not included.
