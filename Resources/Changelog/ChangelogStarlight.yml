@@ -1,18 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: (Sepultum) Change Distro/Waste layers to match docking port standard.
-    type: Tweak
-  id: 410125
-  time: '2026-11-05T15:34:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7037
-- author: redmushie
-  changes:
-  - message: (Sepultum) Route distro, waste and HV to every docking port.
-    type: Add
-  id: 410126
-  time: '2026-11-05T15:34:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7037
 - author: Rhapsody (Pepta, Soothe)
   changes:
   - message: Fixed an uncommon case where EoR could fail to start if the Captain chose the War card and either the Captain or one of the people who counter-picked the Deserter card were gibbed/ashed/otherwise erased from existence.
@@ -2799,4 +2785,18 @@ Entries:
   id: 410524
   time: '2026-11-16T14:17:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7229
+- author: Reestock
+  changes:
+  - message: Syndicate visors now use the modular HUDs system.
+    type: Tweak
+  id: 410525
+  time: '2026-11-16T15:23:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7271
+- author: Reestock
+  changes:
+  - message: Blank syndicate visors can now be purchased from uplinks and printed at most fabricators when emagged.
+    type: Add
+  id: 410526
+  time: '2026-11-16T15:23:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7271
 Order: -1
