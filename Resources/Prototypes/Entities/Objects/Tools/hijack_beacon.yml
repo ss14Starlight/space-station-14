@@ -32,3 +32,6 @@
     noRot: true
     layers:
     - state: extraction_point
+    - sprite: _Starlight/Objects/Tools/hijack_beacon.rsi # Starlight edit: unshaded lights
+      state: extraction_point_unshaded
+      shader: unshaded
