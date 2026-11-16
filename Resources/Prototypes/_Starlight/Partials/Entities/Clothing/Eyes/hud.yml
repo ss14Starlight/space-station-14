@@ -49,7 +49,7 @@
     - MoffDemonInorganic
 
 - type: !PartialOnly entity
-  parent: !Clear ClothingEyesModularHudSyndicate
+  parent: !Clear [ ClothingEyesModularHudSyndicate, BaseSyndicateContraband ]
   id: ClothingEyesHudSyndicate
   description: The syndicate's professional heads-up display, designed for better detection of humanoids and their subsequent elimination.
   components: !Clear
@@ -58,9 +58,11 @@
       modular-hud-modules: !type:AllSelector
         children:
         - id: HudModuleShowSyndicateIcons
+  - type: Contraband
+    tier: Tier2
 
 - type: !PartialOnly entity
-  parent: !Clear ClothingEyesModularHudSyndicate
+  parent: !Clear [ ClothingEyesModularHudSyndicate, BaseSyndicateContraband ]
   id: ClothingEyesHudSyndicateAgent
   description: The Syndicate corpsman's professional heads-up display, designed for quick diagnosis of their team's status.
   components: !Clear
@@ -70,6 +72,8 @@
         children:
         - id: HudModuleShowSyndicateIcons
         - id: HudModuleShowMedicalIconsSyndicate
+  - type: Contraband
+    tier: Tier2
 
 - type: !PartialOnly entity
   id: ClothingEyesEyepatchHudBeer
