@@ -480,8 +480,10 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
     private void SelectChannel(NetUserId uid)
     {
         EnsurePanel(uid);
-        Control!.SelectChannel(uid);
-        SelectedPlayer = uid; // Starlight
+        // Starlight begin
+        if (Control!.SelectChannel(uid))
+            SelectedPlayer = uid;
+        // Starlight end
     }
 
     public void Dispose()

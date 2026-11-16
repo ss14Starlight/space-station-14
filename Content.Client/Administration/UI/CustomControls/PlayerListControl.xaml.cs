@@ -16,13 +16,6 @@ namespace Content.Client.Administration.UI.CustomControls;
 [GenerateTypedNameReferences]
 public sealed partial class PlayerListControl : BoxContainer
 {
-    // Starlight begin: RECONNECT BUG AUUGGHHHHHH
-    private IReadOnlyList<PlayerInfo> _currentPlayerList =>
-        _entManager.TrySystem<AdminSystem>(out var system) ? system.PlayerList : [];
-    private AdminSystem? _subscribedSystem;
-    private readonly IEntitySystemManager _systemManager;
-    // Starlight end
-
     private readonly IEntityManager _entManager;
     private readonly IUserInterfaceManager _uiManager;
 

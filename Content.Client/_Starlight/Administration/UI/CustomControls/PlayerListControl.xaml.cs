@@ -1,10 +1,16 @@
 using Content.Client.Administration.Systems;
+using Content.Shared.Administration;
 
 // ReSharper disable CheckNamespace
 namespace Content.Client.Administration.UI.CustomControls;
 
 public sealed partial class PlayerListControl
 {
+    private IReadOnlyList<PlayerInfo> _currentPlayerList =>
+        _entManager.TrySystem<AdminSystem>(out var system) ? system.PlayerList : [];
+    private AdminSystem? _subscribedSystem;
+    private readonly IEntitySystemManager _systemManager;
+
     /// <summary>
     /// Raised after the list is refreshed with new player data. Starlight.
     /// </summary>
