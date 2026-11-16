@@ -51,7 +51,7 @@ public sealed partial class ThickScalesSystem : EntitySystem
         if (args.Mode.InjectOnUse)
             return;
 
-        if (HasComp<InjectionPortComponent>(ent))
+        if (TryComp<InjectionPortComponent>(ent, out var port) && port.BypassScales)
             return;
 
         args.DoAfterTime *= ent.Comp.InjectTimeMultiplier;
