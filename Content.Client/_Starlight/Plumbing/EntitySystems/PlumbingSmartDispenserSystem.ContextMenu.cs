@@ -37,8 +37,8 @@ public sealed partial class PlumbingSmartDispenserSystem
             args.Entries.Add(new PlumbingSmartDispenserReagentMenuElement(
                 label,
                 proto.SubstanceColor,
-                () => GetFillFraction(ent, proto),
-                () => GetReagentTooltip(ent, proto))
+                () => GetFillFraction(ent, id),
+                () => GetReagentTooltip(ent, id, proto))
             {
                 OnUse = () => RequestContextDispense(ent.Owner, id),
                 CloseMenu = false,
@@ -46,20 +46,20 @@ public sealed partial class PlumbingSmartDispenserSystem
         }
     }
 
-    private FixedPoint2 GetStored(Entity<PlumbingSmartDispenserComponent> ent, ReagentPrototype proto) =>
+    private FixedPoint2 GetStored(Entity<PlumbingSmartDispenserComponent> ent, ReagentId id) =>
         _solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out _, out var solution)
-            ? solution.GetTotalPrototypeQuantity(proto.ID)
+            ? solution.GetReagentQuantity(id)
             : FixedPoint2.Zero;
 
-    private float GetFillFraction(Entity<PlumbingSmartDispenserComponent> ent, ReagentPrototype proto) =>
+    private float GetFillFraction(Entity<PlumbingSmartDispenserComponent> ent, ReagentId id) =>
         ent.Comp.MaxPerReagent > FixedPoint2.Zero
-            ? GetStored(ent, proto).Float() / ent.Comp.MaxPerReagent.Float()
+            ? GetStored(ent, id).Float() / ent.Comp.MaxPerReagent.Float()
             : 1f;
 
-    private string GetReagentTooltip(Entity<PlumbingSmartDispenserComponent> ent, ReagentPrototype proto) =>
+    private string GetReagentTooltip(Entity<PlumbingSmartDispenserComponent> ent, ReagentId id, ReagentPrototype proto) =>
         Loc.GetString("plumbing-smart-dispenser-row-tooltip",
             ("reagent", proto.LocalizedName),
-            ("stored", GetStored(ent, proto)),
+            ("stored", GetStored(ent, id)),
             ("max", ent.Comp.MaxPerReagent));
 
     private void RequestContextDispense(EntityUid dispenser, ReagentId reagentId)
