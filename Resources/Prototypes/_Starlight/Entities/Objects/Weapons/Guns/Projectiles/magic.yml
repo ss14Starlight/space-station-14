@@ -343,7 +343,7 @@
     layers:
     - state: soulknives
   - type: TimedDespawn
-    lifetime: 40
+    lifetime: 25
 
 - type: entity
   id: ImpaleSpear

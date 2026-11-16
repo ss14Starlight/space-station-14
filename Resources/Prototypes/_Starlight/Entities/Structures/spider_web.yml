@@ -233,6 +233,7 @@
     walkSpeedModifier: 0.3
     sprintSpeedModifier: 0.3
   - type: DamageContacts
+    damageDead: false
     ignoreWhitelist:
         tags:
           - DarkWizard

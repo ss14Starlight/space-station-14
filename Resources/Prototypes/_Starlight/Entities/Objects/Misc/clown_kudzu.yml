@@ -73,3 +73,6 @@
           data: { state: spookysmoke }
         - options: ReducedMotion
           data: { state: spookysmoke_static }
+    - type: Kudzu
+      growthTickChance: 0
+      spreadChance: 0

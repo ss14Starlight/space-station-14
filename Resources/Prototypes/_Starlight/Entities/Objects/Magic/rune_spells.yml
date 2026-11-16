@@ -473,7 +473,7 @@
     - type: TimerTrigger
       delay: 4
     - type: TimedDespawn
-      lifetime: 14
+      lifetime: 12
     - type: SpawnOnTrigger
       keysIn:
       - timer
@@ -515,7 +515,7 @@
         Asphyxiation: 200
         Structural: 50
   - type: TimedDespawn
-    lifetime: 10
+    lifetime: 8
 
 - type: entity
   parent: ActionFreezeRune
