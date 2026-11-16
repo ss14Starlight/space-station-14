@@ -521,7 +521,7 @@
 - type: entity
   id: ActionChameleonSkin
   name: Chameleon Skin
-  description: Slowly blend in with the environment. Costs 15 chemicals.
+  description: Slowly blend in with the environment. Costs 25 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -638,7 +638,7 @@
 - type: entity
   id: ActionToggleSpacesuit
   name: Toggle Space Suit
-  description: Make your body space proof. Costs 20 chemicals.
+  description: Make your body space proof. Costs 30 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
