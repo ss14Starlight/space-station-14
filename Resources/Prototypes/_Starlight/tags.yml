@@ -637,10 +637,10 @@
   id: ModularHudGoggles
 
 - type: Tag
-  id: ModularHudSyndicate
+  id: ModularHudSingleEye
 
 - type: Tag
-  id: ModularHudSingleEye
+id: ModularHudSyndicate
 
 - type: Tag
   id: ModuleBlacklistXenoborgEngiWeapon
