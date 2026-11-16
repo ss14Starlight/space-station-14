@@ -179,6 +179,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                 var awakeGasIntake = 0f;
                 var sleepingGasIntake = 0f;
                 var nextUpdateBeforeSleep = TimeSpan.Zero;
+                var adjustedUpdateIntervalBeforeSleep = TimeSpan.Zero;
                 await server.WaitAssertion(() =>
                 {
                     var respiratorSystem = server.System<RespiratorSystem>();
@@ -189,6 +190,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                     awakeGasIntake = awakeMolesBefore - GetMapMoles();
 
                     nextUpdateBeforeSleep = respirator.NextUpdate;
+                    adjustedUpdateIntervalBeforeSleep = respirator.AdjustedUpdateInterval;
                     using (Assert.EnterMultipleScope())
                     {
                         Assert.That(sleeping.TrySleeping(human), Is.True);
@@ -216,10 +218,10 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                     using (Assert.EnterMultipleScope())
                     {
                         Assert.That((respirator.NextUpdate - timing.CurTime).TotalSeconds,
-                            Is.EqualTo(respirator.AdjustedUpdateInterval.TotalSeconds).Within(0.1));
+                            Is.EqualTo(adjustedUpdateIntervalBeforeSleep.TotalSeconds).Within(0.1));
                         Assert.That(sleeping.TryWaking(human, force: true), Is.True);
                         Assert.That((respirator.NextUpdate - timing.CurTime).TotalSeconds,
-                            Is.EqualTo(respirator.AdjustedUpdateInterval.TotalSeconds).Within(0.1));
+                            Is.EqualTo(adjustedUpdateIntervalBeforeSleep.TotalSeconds).Within(0.1));
                     }
                 });
             }
