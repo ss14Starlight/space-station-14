@@ -51,7 +51,7 @@
 - type: !PartialOnly entity
   parent: !Clear [ ClothingEyesModularHudSyndicate, BaseSyndicateContraband ]
   id: ClothingEyesHudSyndicate
-  description: The syndicate's professional heads-up display, designed for better detection of humanoids and their subsequent elimination.
+  description: The Syndicate's professional heads-up display, designed for better detection of humanoids and their subsequent elimination.
   components: !Clear
   - type: EntityTableContainerFill
     containers:

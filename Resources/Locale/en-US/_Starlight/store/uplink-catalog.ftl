@@ -171,7 +171,7 @@ uplink-bombroach-microbomb-name = Bombroach Teleporter
 uplink-bombroach-microbomb-desc = Call in a handy bombroach equipped with a picobomb implant. Explodes on death or when triggered by the bombroach.
 
 uplink-clothing-eyes-hud-syndicate-modular-name = Empty Syndicate Visor
-uplink-clothing-eyes-hud-syndicate-modular-desc = The iconic model of eyewear that denotes syndicate elites, unlike yourself. HUD modules not included.
+uplink-clothing-eyes-hud-syndicate-modular-desc = The iconic model of eyewear that denotes Syndicate elites, unlike yourself. HUD modules not included.
 
 # These are from funky, but funky puts them in Wizden files, so in our files they go then
 uplink-hidden-radio-botany-name = Hidden Uplink

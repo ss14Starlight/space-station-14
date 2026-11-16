@@ -74,7 +74,7 @@
   parent: [ ModularHudModuleBase, BaseSyndicateContraband ]
   id: HudModuleShowSyndicateIcons
   name: blood-red HUD module
-  description: A heads-up display module that simultaneously detects ID status, criminal records, mindshield status, and most importantly, affiliation with the syndicate.
+  description: A heads-up display module that simultaneously detects ID status, criminal records, mindshield status, and most importantly, affiliation with the Syndicate.
   components:
   - type: Sprite
     layers:
