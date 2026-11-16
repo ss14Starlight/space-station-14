@@ -1,32 +1,4 @@
 Entries:
-- author: Romero/Littlemen
-  changes:
-  - message: Hotfix for the Verdict, a new gun in the sec armory and available as a purchase by cargo.
-    type: Tweak
-  id: 410115
-  time: '2026-11-04T19:17:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7041
-- author: Sparlight
-  changes:
-  - message: Pawed animals produce pawprints instead of shoed footprints.
-    type: Tweak
-  id: 410116
-  time: '2026-11-04T19:17:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7030
-- author: Quietly12
-  changes:
-  - message: Spray painters will no longer take 2 charges when painting pipes or painting or removing a decal.
-    type: Fix
-  id: 410117
-  time: '2026-11-05T00:28:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7043
-- author: Makeshift
-  changes:
-  - message: (Plasma) Laundromat.
-    type: Add
-  id: 410118
-  time: '2026-11-05T10:03:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7049
 - author: Makeshift
   changes:
   - message: (Plasma) Converted the old Salvage Room into a cargo break room.
@@ -2799,4 +2771,32 @@ Entries:
   id: 410514
   time: '2026-11-16T13:46:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7266
+- author: Vincolan
+  changes:
+  - message: Breaking news console.
+    type: Add
+  id: 410515
+  time: '2026-11-16T13:46:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7239
+- author: Vincolan
+  changes:
+  - message: Returns Camera to the Base Reporter Loadout so Reporter can choose between PDA app and normal camera.
+    type: Add
+  id: 410516
+  time: '2026-11-16T13:46:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7239
+- author: Vincolan
+  changes:
+  - message: Changed Reporter Holopin from Neck slot to misc slot.
+    type: Fix
+  id: 410517
+  time: '2026-11-16T13:46:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7239
+- author: Vincolan
+  changes:
+  - message: Changed Reporter SOP. Reporter now has tools guide inside his SOP and work guidelines.
+    type: Tweak
+  id: 410518
+  time: '2026-11-16T13:46:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7239
 Order: -1
