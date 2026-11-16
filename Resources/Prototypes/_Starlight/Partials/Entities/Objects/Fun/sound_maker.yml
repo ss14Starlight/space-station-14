@@ -1,7 +1,3 @@
 - type: !PartialOnly entity
-  id: BaseRubberToy
-  parent: BaseItem
-
-- type: !PartialOnly entity
   id: RubberChicken
-  parent: [BaseRubberToy, BaseStash]
+  parent: [ BaseStash ]

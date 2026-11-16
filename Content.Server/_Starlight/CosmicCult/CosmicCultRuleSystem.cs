@@ -1071,7 +1071,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             if (HasComp<RevolutionaryComponent>(uid) || HasComp<HeadRevolutionaryComponent>(uid))
                 _euiMan.OpenEui(new DeconvertedEui(), session);
             else
-                _euiMan.OpenEui(new CosmicDeconvertedEui(), session);
+                _euiMan.OpenEui(new DeconvertedCosmicEui(), session);
         }
         _eye.SetVisibilityMask(uid, 1);
         _alerts.ClearAlert(uid.Owner, uid.Comp.EntropyAlert);

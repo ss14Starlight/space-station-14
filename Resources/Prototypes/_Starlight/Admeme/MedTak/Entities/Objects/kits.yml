@@ -84,7 +84,7 @@
 # Surgical Kit
 - type: entity
   name: advanced surgical kit
-  suffix: MedTak, Filled
+  suffix: MedTak
   description: A compact kit of surgical tools.
   parent: [ BaseSurgicalKit, BaseMedTakContraband ]
   id: SurgicalKitMedTak
@@ -107,18 +107,6 @@
         - Brutepack
        components:
         - SurgeryTool
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: MedicatedSuture
-        - id: BoneGel
-        - id: BoneSetterAdvanced
-        - id: HemostatAdvanced
-        - id: RetractorAdvanced
-        - id: Drill
-        - id: ScalpelLaser
-        - id: SawAdvanced
 
 # I don't think this needs its own file
 - type: entity

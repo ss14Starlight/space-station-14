@@ -89,6 +89,8 @@ ghost-role-information-xenomoproach-name = Xenomoproach
 ghost-role-information-xenomoproach-description = You are a small Xenoborg wearing the skin of a moproach as a disguise.
 ghost-role-information-xenomoproach-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all other xenoborgs. Your goal is not to attack organic beings, rather you are tasked with being cute and distracting the organics while gathering intel.
 
+ghost-role-information-survivor-rules = You are a [color={role-type-survivor-aligned-colour}][bold]{role-type-survivor-aligned-name}[/bold][/color] who has the goal of surviving at all costs. Your goal is not to attack, steal, or otherwise harm anyone else unless necessary to live.
+
 ghost-role-information-slime-sentience-potion-description = Made conscious with the power of a sentience potion. Don't worry, you can move and speak!
 
 ghost-role-information-terminator-name = Exterminator

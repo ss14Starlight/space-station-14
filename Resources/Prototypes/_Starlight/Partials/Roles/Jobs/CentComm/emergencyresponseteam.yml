@@ -272,11 +272,11 @@
 - type: !PartialOnly startingGear
   id: ERTSecurityGearArmedRifle
   equipment:
-    back: !Clear
+    back: !Remove
     suitstorage: PortableRecharger
     pocket1: LoadoutRadioERTSec
     pocket2: WeaponPistolPDW9
-  inhand: !Clear
+  inhand: !Remove
   storage: !Clear
     belt:
     - WeaponPistolMk58HighCapacity

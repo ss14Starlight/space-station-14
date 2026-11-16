@@ -35,9 +35,6 @@ public sealed partial class ReplayObserverSystem
 
     private void InitializeViewer()
     {
-        SubscribeLocalEvent<GetVerbsEvent<Verb>>(OnGetViewerVerbs);
-        SubscribeLocalEvent<CloseBoundInterfaceMessage>(OnUiClosedByViewer);
-
         // Replays run without prediction, so the handler has to opt in to firing outside it.
         CommandBinds.Builder
             .BindBefore(ContentKeyFunctions.ActivateItemInWorld,
@@ -89,6 +86,7 @@ public sealed partial class ReplayObserverSystem
         return false;
     }
 
+    [SubscribeLocalEvent]
     private void OnGetViewerVerbs(GetVerbsEvent<Verb> ev)
     {
         if (!IsReplayActive || ev.User != _observer)
@@ -210,6 +208,7 @@ public sealed partial class ReplayObserverSystem
     }
 
     // Only raised for closes sent as messages, i.e. by the viewer. Closes from recorded state bypass it.
+    [SubscribeLocalEvent]
     private void OnUiClosedByViewer(CloseBoundInterfaceMessage args)
     {
         if (args.Actor == _observer)

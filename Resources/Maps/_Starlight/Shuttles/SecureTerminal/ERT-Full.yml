@@ -1786,10 +1786,6 @@ entities:
     - type: Transform
       pos: -4.5,6.5
       parent: 1
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
     - type: EntityStorage
       air:
         volume: 200

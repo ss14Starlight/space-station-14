@@ -13,10 +13,18 @@ public sealed partial class NewsArticleCard : Control
     public Action? OnDeletePressed;
     public int ArtcileNumber;
 
+    public bool HasPhoto { get; set; } // Starlight
+
     public string? Title
     {
         get => TitleLabel.Text;
-        set => TitleLabel.Text = value?.Length <= 30 ? value : $"{value?[..30]}...";
+        // Starlight edit Start
+        set
+        {
+            var text = value?.Length <= 30 ? value : $"{value?[..30]}...";
+            TitleLabel.Text = HasPhoto ? $"{text} 📷" : text;
+        }
+        // Starlight edit End
     }
 
     public string? Author

@@ -39,7 +39,7 @@
   equipment:
     #shoes: ClothingShoesColorBlack
     id: IAAPDA
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesModularHudSunglasses
     ears: ClothingHeadsetIAA
     belt: BoxFolderNanoTrasenClipboard
   inhand:
@@ -49,4 +49,4 @@
   id: IAAChameleonOutfit
   job: IAA
   equipment:
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesModularHudSunglasses

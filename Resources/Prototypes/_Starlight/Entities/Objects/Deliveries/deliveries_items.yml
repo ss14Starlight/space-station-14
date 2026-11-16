@@ -17,6 +17,7 @@
           - Traitor
           - Revolutionary
           - SELFAgent
+          - AutoTraitor
 
 - type: entity
   id: RRMailSyndicateSpamLetter
@@ -37,6 +38,7 @@
           - Traitor
           - Revolutionary
           - SELFAgent
+          - AutoTraitor
 
 - type: entity
   id: MailSyndicateSpamLetterAdmin

@@ -19,6 +19,8 @@
     solutions:
     - SolutionOrganFoodMeat
     - SolutionOrganStomach50
+  - type: Metabolizer
+    updateInterval: 0.67 # Reptilians digest about 1.5x faster
 
 - type: entity
   id: OrganReptilianTongue
@@ -31,3 +33,11 @@
       Male: MaleReptilian
       Female: FemaleReptilian
       Unsexed: MaleReptilian
+
+- type: entity
+  id: OrganReptilianHeart
+  parent: OrganAnimalHeart
+  suffix: Reptilian
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Animal, Reptilian ] # Digests welding fuel without poisoning

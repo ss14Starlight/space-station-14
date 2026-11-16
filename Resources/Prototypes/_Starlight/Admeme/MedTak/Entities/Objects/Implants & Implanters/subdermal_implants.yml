@@ -5,6 +5,8 @@
   description: This implant will inform the nearest MedTak unit should the user fall into critical condition or die.
   abstract: true
   components:
+    - type: SubdermalImplant
+      permanent: false
     - type: IconImplant
       icon: MedTakOperator
       iconType: MedTak
@@ -66,6 +68,19 @@
 
 - type: entity
   parent: TrackingImplantMedTak
+  id: TrackingImplantMedTakPlatinum
+  name: MedTak platinum beacon
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: IconImplant
+      icon: MedTakPlatinum
+    - type: RattleOnTrigger
+      messages:
+        Critical: rattle-on-trigger-medtak-platinum-critical
+        Dead: rattle-on-trigger-medtak-platinum-dead
+
+- type: entity
+  parent: TrackingImplantMedTak
   id: TrackingImplantMedTakTeam
   name: MedTak team beacon
   categories: [ HideSpawnMenu ]
@@ -84,3 +99,6 @@
   components:
   - type: MindShieldImplant
     mindShieldStatusIcon: MedTakMindShieldIcon
+  - type: Tag
+    tags:
+    - FragileImplant # Matching standard Mindshields
