@@ -81,7 +81,7 @@
   cost:
     Telecrystal: 1
   categories:
-    - UplinkPointless
+    - UplinkWearables
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:

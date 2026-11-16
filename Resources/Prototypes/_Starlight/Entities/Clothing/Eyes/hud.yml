@@ -397,6 +397,8 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Eyes/Hud/syndicate.rsi
     clothingVisuals: {}
+  - type: ModularHud
+    maximumContainedModules: 4
   - type: ModularHudVisuals
     frameIsDynamic: true
     speciesWithDifferentClothing:
