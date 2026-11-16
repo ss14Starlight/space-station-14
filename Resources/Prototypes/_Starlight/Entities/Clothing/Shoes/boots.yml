@@ -175,7 +175,7 @@
   parent: ClothingShoesBase
   id: ClothingShoesPawBoots
   name: Paw boots
-  description: Special boots made specifically for Felionoid paws
+  description: Special boots made specifically for Felionoid paws.
   components:
     - type: Clothing
       sprite: _Starlight/Clothing/Shoes/Boots/pawboots.rsi

@@ -1,11 +1,42 @@
 {
-    "version": 1,
-    "license": "CC-BY-SA-3.0",
-    "copyright": "GitHub @Redead-ITA, made for Starlight",
-    "size": { "x": 32, "y": 32 },
-    "states": [
-        { "name": "tired", "directions": 1, "delays": [[1.0]] },
-        { "name": "over_tired", "directions": 1, "delays": [[0.5, 0.5]] },
-        { "name": "very_tired", "directions": 1, "delays": [[1.0]] }
-    ]
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "GitHub @Redead-ITA, made for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "tired",
+      "copyright": "GitHub @Redead-ITA, made for Starlight",
+      "directions": 1,
+      "delays": [
+        [
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "over_tired",
+      "copyright": "GitHub @Redead-ITA, made for Starlight",
+      "directions": 1,
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "very_tired",
+      "copyright": "GitHub @Redead-ITA, made for Starlight",
+      "directions": 1,
+      "delays": [
+        [
+          1.0
+        ]
+      ]
+    }
+  ]
 }

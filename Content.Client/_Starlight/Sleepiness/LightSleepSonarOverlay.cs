@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Client.Power.Components;
-using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Sleepiness.Components;
 using Content.Shared._Starlight.Sleepiness.Systems;
 using Content.Shared.Damage.Components;
@@ -13,7 +12,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Containers;
-using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -29,8 +27,6 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private IConfigurationManager _cfg = default!;
-    [Dependency] private ILogManager _log = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
 
@@ -43,6 +39,27 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
     private const double FullRotationRadians = Math.PI * 2d;
     private const double DegreesToRadians = Math.PI / 180d;
     private const double CatEarSweepSpeedVariation = 0.1d;
+
+    /// <summary>
+    /// Selects the light-sleep sonar reveal method: 0 = sleeper waves, 1 = rotating line, 2 = cat-ear sweep.
+    /// </summary>
+    private const SonarRevealType LightSleepSonarRevealType = SonarRevealType.CatEars;
+
+    /// <summary>
+    /// Rotation speed of the sleeper-origin sonar sweep, in degrees per second.
+    /// </summary>
+    private const float SonarSweepSpeedDegreesPerSecond = 20f;
+
+    /// <summary>
+    /// Screen-relative start angle for both cat-ear sweeps
+    /// </summary>
+    private const float CatEarStartAngleDegrees = 60f;
+
+    /// <summary>
+    /// Angular separation between the two lines; sweep travel is 180 degrees minus this value,
+    /// with the right sweep inverted.
+    /// </summary>
+    private const float CatEarLineSeparationDegrees = 20f;
     private const float RadarSweepBeamHalfAngleRadians = 0.02f;
     private const float VisibilityFadeInSeconds = 0.2f;
     private const float VisibilityFadeSeconds = 3.5f;
@@ -93,7 +110,6 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
     private double _lastCatEarEyeRotation = double.NaN;
     private Vector2 _lastRadarOrigin;
     private SonarRevealType? _activeRevealType;
-    private int? _lastLoggedInvalidRevealType;
     private bool _waveContextInitialized;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
@@ -138,12 +154,11 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
         var (radarOrigin, _) = _transform.GetWorldPositionRotation(playerTransform);
         var eyeRotation = eye.Rotation;
         var elapsed = _timing.RealTime.TotalSeconds;
-        var revealType = GetRevealType(_cfg.GetCVar(StarlightCCVars.LightSleepSonarRevealType));
-        var sweepSpeedDegreesPerSecond =
-            _cfg.GetCVar(StarlightCCVars.LightSleepSonarSweepSpeedDegreesPerSecond);
+        var revealType = LightSleepSonarRevealType;
+        var sweepSpeedDegreesPerSecond = SonarSweepSpeedDegreesPerSecond;
         var catEarSweepSettings = new CatEarSweepSettings(
-            _cfg.GetCVar(StarlightCCVars.LightSleepSonarCatEarStartAngleDegrees),
-            _cfg.GetCVar(StarlightCCVars.LightSleepSonarCatEarLineSeparationDegrees));
+            CatEarStartAngleDegrees,
+            CatEarLineSeparationDegrees);
         _radarSweepRadiansPerSecond =
             sweepSpeedDegreesPerSecond * DegreesToRadians;
         worldHandle.UseShader(null);
@@ -385,31 +400,6 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
         {
             if (elapsed - _sourceWaves[i].StartTime >= _sourceWaves[i].LifetimeSeconds)
                 _sourceWaves.RemoveAt(i);
-        }
-    }
-
-    private SonarRevealType GetRevealType(int configuredType)
-    {
-        switch (configuredType)
-        {
-            case 0:
-                _lastLoggedInvalidRevealType = null;
-                return SonarRevealType.ExpandingWaves;
-            case 1:
-                _lastLoggedInvalidRevealType = null;
-                return SonarRevealType.RotatingSweep;
-            case 2:
-                _lastLoggedInvalidRevealType = null;
-                return SonarRevealType.CatEars;
-            default:
-                if (_lastLoggedInvalidRevealType != configuredType)
-                {
-                    _log.GetSawmill("sleep.sonar").Warning(
-                        $"Invalid light_sleep_sonar.reveal_type value {configuredType}; expected 0, 1, or 2. Using type 2.");
-                    _lastLoggedInvalidRevealType = configuredType;
-                }
-
-                return SonarRevealType.CatEars;
         }
     }
 

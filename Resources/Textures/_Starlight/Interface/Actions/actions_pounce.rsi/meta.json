@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "SUNRISE, Floximo for Starlight, GitHub @Redead-ITA",
+  "copyright": "base by SUNRISE, icon by GitHub @Redead-ITA, merged by Floximo for Starlight",
   "rsic": false,
   "size": {
     "x": 32,
@@ -9,7 +9,8 @@
   },
   "states": [
     {
-      "name": "pounce"
+      "name": "pounce",
+      "copyright": "base by SUNRISE, icon by GitHub @Redead-ITA, merged by Floximo for Starlight"
     }
   ]
 }

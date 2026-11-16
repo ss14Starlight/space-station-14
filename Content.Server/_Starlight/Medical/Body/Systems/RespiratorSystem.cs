@@ -49,7 +49,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     [Dependency] private MetabolizerSystem _metabolizerSystem = default!;
 
     private static readonly ProtoId<MetabolismStagePrototype> RespirationStage = new("Respiration");
-    private const float SleepingBreathingIntervalMultiplier = 3f;
+    private const float SleepingBreathNeedMultiplier = 1f / 3f;
 
     public override void Initialize()
     {
@@ -68,22 +68,13 @@ public sealed partial class RespiratorSystem : EntitySystem
         SubscribeLocalEvent<BodyComponent, StopSuffocatingEvent>(OnStopSuffocating);
     }
 
-    private void OnMapInit(Entity<RespiratorComponent> ent, ref MapInitEvent args) =>
-        ent.Comp.NextUpdate = _gameTiming.CurTime + GetBreathingInterval(ent, HasComp<SleepingComponent>(ent.Owner));
-
-    [SubscribeLocalEvent]
-    private void OnSleepStateChanged(Entity<RespiratorComponent> ent, ref SleepStateChangedEvent args)
+    private void OnMapInit(Entity<RespiratorComponent> ent, ref MapInitEvent args)
     {
-        var nextUpdate = _gameTiming.CurTime + GetBreathingInterval(ent, args.FellAsleep);
-        if (nextUpdate < ent.Comp.NextUpdate)
-            ent.Comp.NextUpdate = nextUpdate;
+        ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
     }
 
-    private TimeSpan GetBreathingInterval(Entity<RespiratorComponent> ent, bool sleeping)
-    {
-        var interval = ent.Comp.AdjustedUpdateInterval;
-        return sleeping ? interval * SleepingBreathingIntervalMultiplier : interval;
-    }
+    private float GetBreathNeedMultiplier(EntityUid uid) =>
+        HasComp<SleepingComponent>(uid) ? SleepingBreathNeedMultiplier : 1f;
 
     public override void Update(float frameTime)
     {
@@ -95,12 +86,13 @@ public sealed partial class RespiratorSystem : EntitySystem
             if (_gameTiming.CurTime < respirator.NextUpdate)
                 continue;
 
-            respirator.NextUpdate += GetBreathingInterval((uid, respirator), HasComp<SleepingComponent>(uid));
+            respirator.NextUpdate += respirator.AdjustedUpdateInterval;
 
             if (_mobState.IsDead(uid))
                 continue;
 
-            UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
+            var breathNeedMultiplier = GetBreathNeedMultiplier(uid);
+            UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds * breathNeedMultiplier, respirator);
 
             if (!(_mobState.IsIncapacitated(uid) || _mobState.IsSoftCritical(uid) // cannot breathe in crit.
                 || HasComp<HeldBreathComponent>(uid) // Starlight Edit - hold your breath
@@ -165,7 +157,7 @@ public sealed partial class RespiratorSystem : EntitySystem
         if (ev.Gas is null)
             return;
 
-        var gas = ev.Gas.RemoveVolume(entity.Comp.BreathVolume);
+        var gas = ev.Gas.RemoveVolume(entity.Comp.BreathVolume * GetBreathNeedMultiplier(entity.Owner));
 
         var inhaleEv = new InhaledGasEvent(gas);
         RaiseLocalEvent(entity, ref inhaleEv);
@@ -259,7 +251,7 @@ public sealed partial class RespiratorSystem : EntitySystem
         if (!ev.Handled || ev.Toxic)
             return false;
 
-        return ev.Saturation > ent.Comp.UpdateInterval.TotalSeconds;
+        return ev.Saturation > ent.Comp.UpdateInterval.TotalSeconds * GetBreathNeedMultiplier(ent.Owner);
     }
 
     /// <summary>

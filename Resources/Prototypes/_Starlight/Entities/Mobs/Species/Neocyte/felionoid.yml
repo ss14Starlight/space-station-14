@@ -33,13 +33,15 @@
   - type: RegenerativeSleep
     updateInterval: 1s
     healingPerUpdate:
-      types:
-        Heat: 0.5
-        Cold: 0.5
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 1
-        Bloodloss: 1
+      mixmax:
+        value: 1
+        types:
+        - Heat
+        - Cold
+        - Blunt
+        - Slash
+        - Piercing
+        - Bloodloss
     bleedHealPerUpdate: 0.25
   - type: LightSleep
   - type: MobThresholds

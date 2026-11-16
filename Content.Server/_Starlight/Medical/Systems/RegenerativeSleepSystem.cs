@@ -60,6 +60,8 @@ public sealed partial class RegenerativeSleepSystem : EntitySystem
             if (regenerativeSleep.NextHeal > curTime)
                 continue;
 
+            regenerativeSleep.NextHeal = curTime + regenerativeSleep.UpdateInterval;
+
             if(!CanHealPassive(uid))
                 continue;
 
@@ -79,8 +81,6 @@ public sealed partial class RegenerativeSleepSystem : EntitySystem
 
             if (selfHealing || purringForHolder)
                 _chat.TryEmoteWithoutChat(uid, "Purr", ignoreActionBlocker: sleeping);
-
-            regenerativeSleep.NextHeal = curTime + regenerativeSleep.UpdateInterval;
         }
     }
 

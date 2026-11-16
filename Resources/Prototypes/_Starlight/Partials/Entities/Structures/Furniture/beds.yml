@@ -1,0 +1,15 @@
+- type: !PartialOnly entity
+  id: Bed
+  components:
+  - type: Strap
+    buckleOffset: "0,-0.1"
+
+- type: !PartialOnly entity
+  id: DogBed
+  components:
+  - type: PetBedSleepPose
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+  - type: Strap
+    buckleOffset: "0,-0.15"
+    needsHands: false
