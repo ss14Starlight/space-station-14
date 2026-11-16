@@ -22,7 +22,6 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("admin.permitted_sprite_control_admins", string.Empty,
             CVar.SERVER | CVar.ARCHIVE | CVar.REPLICATED);
 
-
     /// <summary>
     /// Seconds between two tippies sent by admins, shared by all admins.
     /// </summary>
