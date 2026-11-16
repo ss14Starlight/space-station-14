@@ -112,3 +112,4 @@
         - id: DoubleEmergencyOxygenTankFilled
         - id: ClothingMaskGasSecurity
         - id: MedtakATM
+        - id: MedtakPortableCameraMonitor
