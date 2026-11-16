@@ -122,6 +122,18 @@
     - UplinkCybernetics
 
 - type: listing
+  id: UplinkInjectorPort
+  name: uplink-injector-port-name
+  description: uplink-injector-port-desc
+  productEntity: HandImplantInjectorPort
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkCybernetics
+
+- type: listing
   id: NukeOpRobotmedkit
   name: uplink-nuke-op-robotkit-name
   description: uplink-nuke-op-robotkit-desc
