@@ -49,22 +49,27 @@
     - MoffDemonInorganic
 
 - type: !PartialOnly entity
-  id: ClothingEyesHudSyndicateAgent
-  components:
-  - type: ShowHealthBars
-    damageContainers:
-    - Biological
-    - Hybrid
-    - MoffDemonBiological
-  - type: SolutionScanner
-  - type: Contraband
-    tier: Tier4
+  parent: !Clear ClothingEyesModularHudSyndicate
+  id: ClothingEyesHudSyndicate
+  description: The syndicate's professional heads-up display, designed for better detection of humanoids and their subsequent elimination.
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowSyndicateIcons
 
 - type: !PartialOnly entity
-  id: ClothingEyesHudSyndicate
-  components:
-  - type: Contraband
-    tier: Tier4
+  parent: !Clear ClothingEyesModularHudSyndicate
+  id: ClothingEyesHudSyndicateAgent
+  description: The Syndicate corpsman's professional heads-up display, designed for quick diagnosis of their team's status.
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowSyndicateIcons
+        - id: HudModuleShowMedicalIconsSyndicate
 
 - type: !PartialOnly entity
   id: ClothingEyesEyepatchHudBeer
@@ -283,26 +288,3 @@
   - type: Contraband
     tier: Tier2
     allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
-
-- type: !PartialOnly entity
-  parent: !Clear ClothingEyesModularHudSyndicate
-  id: ClothingEyesHudSyndicate
-  description: The syndicate's professional heads-up display, designed for better detection of humanoids and their subsequent elimination.
-  components: !Clear
-  - type: EntityTableContainerFill
-    containers:
-      modular-hud-modules: !type:AllSelector
-        children:
-        - id: HudModuleShowSyndicateIcons
-
-- type: !PartialOnly entity
-  parent: !Clear ClothingEyesModularHudSyndicate
-  id: ClothingEyesHudSyndicateAgent
-  description: The Syndicate corpsman's professional heads-up display, designed for quick diagnosis of their team's status.
-  components: !Clear
-  - type: EntityTableContainerFill
-    containers:
-      modular-hud-modules: !type:AllSelector
-        children:
-        - id: HudModuleShowSyndicateIcons
-        - id: HudModuleShowMedicalIconsSyndicate

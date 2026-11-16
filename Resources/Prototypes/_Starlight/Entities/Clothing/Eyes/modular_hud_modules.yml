@@ -125,6 +125,11 @@
         priority: 151
         preventsOtherColors: true
   - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Hybrid
+    - MoffDemonBiological
   - type: ShowHealthIcons
+  - type: SolutionScanner
   - type: Contraband
     tier: Tier2
