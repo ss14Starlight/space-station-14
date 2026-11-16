@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
+using Content.Server.Discord;
 using Content.Server.GameTicking;
 using Content.Shared.Database;
 using Content.Shared.Players;
@@ -675,7 +676,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     {
         if (_webhookUrl == string.Empty) return;
 
-        var request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true",
+        var request = await _httpClient.PostAsync(DiscordWebhookUrl.Apply(_cfg, $"{_webhookUrl}?wait=true"),
             new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
 
         var content = await request.Content.ReadAsStringAsync();
@@ -968,7 +969,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     private async Task SetWebhookData(string id, string token)
     {
-        var response = await _httpClient.GetAsync($"https://discord.com/api/v10/webhooks/{id}/{token}");
+        var response = await _httpClient.GetAsync(DiscordWebhookUrl.Apply(_cfg, $"https://discord.com/api/v10/webhooks/{id}/{token}"));
 
         var content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)

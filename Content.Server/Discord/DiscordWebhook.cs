@@ -1,8 +1,11 @@
+using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Content.Shared.CCVar;
+using Robust.Shared.Configuration;
 
 namespace Content.Server.Discord;
 
@@ -12,14 +15,15 @@ public sealed partial class DiscordWebhook : IPostInjectInit
         { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
 
     [Dependency] private ILogManager _log = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
-    private const string BaseUrl = "https://discord.com/api/v10/webhooks";
     private readonly HttpClient _http = new();
     private ISawmill _sawmill = default!;
 
     private string GetUrl(WebhookIdentifier identifier)
     {
-        return $"{BaseUrl}/{identifier.Id}/{identifier.Token}";
+        return DiscordWebhookUrl.Apply(_cfg,
+            $"{DiscordWebhookUrl.DiscordOrigin}/api/v10/webhooks/{identifier.Id}/{identifier.Token}");
     }
 
     /// <summary>
@@ -31,7 +35,7 @@ public sealed partial class DiscordWebhook : IPostInjectInit
     {
         try
         {
-            return await _http.GetFromJsonAsync<WebhookData>(url);
+            return await _http.GetFromJsonAsync<WebhookData>(DiscordWebhookUrl.Apply(_cfg, url));
         }
         catch (Exception e)
         {
