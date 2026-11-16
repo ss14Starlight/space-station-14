@@ -9,7 +9,9 @@
   - type: Appearance
   - type: Sprite
     sprite: _Starlight/Structures/Machines/StationRadio/stationradio.rsi
+    snapCardinals: true
     drawdepth: SmallObjects
+    offset: "0.0,0.3"
     layers:
     - state: icon
     - state: unlit

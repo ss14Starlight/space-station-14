@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: Recycler
+  components:
+  - type: AnchorTileBlacklist
+    blacklist:
+      components:
+      - CanBuildWindowOnTop # intact grilles
+      - Airlock
+    popup: anchorable-tile-blacklisted-grille-or-airlock

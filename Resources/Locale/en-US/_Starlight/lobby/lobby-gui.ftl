@@ -1,4 +1,4 @@
-ui-lobby-links-button = Links
+ui-lobby-links-button = Account
 lobby-card-header = Characters
 lobby-chat-header = Chat
 lobby-job-columns-header = Job priorities

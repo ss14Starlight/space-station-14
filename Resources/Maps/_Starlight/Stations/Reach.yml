@@ -24091,10 +24091,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 1.5,23.5
-    - type: AccessReader
-      accessListsOriginal:
-      - - Security
-      - - Cadet
 - proto: SurveillanceCameraGeneral
   entities:
   - uid: 3289

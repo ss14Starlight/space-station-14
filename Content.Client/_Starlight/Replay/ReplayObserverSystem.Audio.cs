@@ -18,7 +18,6 @@ public sealed partial class ReplayObserverSystem
     {
         // Mute before the audio system starts a new sound, so it never plays even briefly.
         UpdatesBefore.Add(typeof(SharedAudioSystem));
-        SubscribeLocalEvent<ReplayAudioAudienceComponent, ComponentStartup>(OnAudienceStartup);
     }
 
     private void UpdateMutedSounds()
@@ -34,6 +33,7 @@ public sealed partial class ReplayObserverSystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnAudienceStartup(Entity<ReplayAudioAudienceComponent> ent, ref ComponentStartup args)
     {
         if (IsReplayActive && TryComp<AudioComponent>(ent, out var audio))

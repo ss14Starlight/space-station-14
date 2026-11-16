@@ -18,6 +18,7 @@ namespace Content.Client.Power.APC.UI
             RobustXamlLoader.Load(this);
 
             BreakerButton.OnPressed += _ => OnBreaker?.Invoke();
+            InitializeLighting(); // Starlight-edit
         }
 
         public void SetEntity(EntityUid entity)
@@ -85,6 +86,8 @@ namespace Content.Client.Power.APC.UI
                 BreakerButton.Disabled = true;
                 BreakerButton.ToolTip = Loc.GetString("apc-component-insufficient-access");
             }
+
+            SetLightingAccess(hasAccess); // Starlight-edit
         }
 
         private void UpdateChargeBarColor(float charge)

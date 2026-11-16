@@ -1,0 +1,50 @@
+- type: entity
+  parent: [DrinkBaseMaterialStrongPlastic, DrinkVisualsOpenable, DrinkBaseOpenable, DrinkBase]
+  id: JerryCanEmpty
+  name: jerry can
+  suffix: Empty
+  description: A heavy plastic can for holding fuel.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/jerry_can.rsi
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Solution
+    solution:
+      maxVol: 480
+  - type: SolutionTransfer
+    transferAmount: 60
+    maxTransferAmount: 120
+    minTransferAmount: 20
+  - type: Openable
+    sound:
+      collection: flaskOpenSounds
+    closeable: true
+    closeSound:
+      collection: flaskCloseSounds
+
+- type: entity
+  parent: JerryCanEmpty
+  id: JerryCanFuel
+  suffix: Full, Fuel
+  description: A heavy plastic can for holding fuel. Smells like welding fuel.
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 480
+
+- type: entity
+  parent: JerryCanEmpty
+  id: JerryCanWater
+  suffix: Full, Water
+  description: A heavy plastic can for holding fuel.
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Water
+        Quantity: 480

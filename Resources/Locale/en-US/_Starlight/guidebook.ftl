@@ -270,6 +270,7 @@ guidebook-search-keywords-security-sop-parole = parole sop; parole procedures; p
 guidebook-search-keywords-security-sop-permitacquisition = permit acquisition; permit sop; firearm permits
 guidebook-search-keywords-security-sop-specialsituations = special security situations; emergency security procedures
 guidebook-search-keywords-security-sop-enemy-of-corporation = enemy of the corporation; eoc; hostile entities
+guidebook-search-keywords-security-sop-induced-mutiny = induced mutiny; mutiny; confirmed revolution; revolution
 guidebook-search-keywords-security-sop-hostage-situations = hostages; hostage response; hostage negotiation
 guidebook-search-keywords-security-sop-criminal-status = criminal status sop; wanted status; arrest status
 guidebook-search-keywords-security-sop-k9 = canine; police dog; security dog; k9 procedures

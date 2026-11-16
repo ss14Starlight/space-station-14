@@ -42,6 +42,7 @@ ghost-role-information-colossus-rules = You are a [color={role-type-team-antagon
 terror-colossus = Attention crew, it appears that someone on your station has drawn the attention of an enormous malign anomaly.
 
 ghost-role-colossus-charactermenu = You must usher in the end of all things. Wreak untold havoc upon all before you.
+    Hint: To sacrifice a crewmember, first use your Ingress ability on an ordinary Malign Rift to empower it. Then drag a critical or dead non-cultist crewmember onto the empowered rift to capture them.
 ghost-role-colossus-objective = Call forth an Effigy of Entropy and persist until the end of all things.
 ghost-role-colossus-briefing =
     You are an Entropic Colossus!

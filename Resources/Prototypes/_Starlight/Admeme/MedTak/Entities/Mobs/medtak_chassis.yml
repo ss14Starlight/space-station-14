@@ -94,10 +94,12 @@
       - CanPilot
       - SiliconEmotes
       - Unimplantable
-      - EmagImmune
     - type: PointLight
       color: "#d55858"
       radius: 5
       energy: 3
     - type: Damageable
       damageModifierSet: ArmoredSilicon
+    - type: InteractionPopup
+      interactSuccessString: petting-success-medtak-cyborg
+      interactFailureString: petting-failure-medtak-cyborg
