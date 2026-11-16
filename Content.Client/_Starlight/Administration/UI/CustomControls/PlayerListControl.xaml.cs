@@ -56,8 +56,7 @@ public sealed partial class PlayerListControl
 
     private void Unsubscribe()
     {
-        if (_subscribedSystem is not null)
-            _subscribedSystem.PlayerListChanged -= PopulateList;
+        _subscribedSystem?.PlayerListChanged -= PopulateList;
         _subscribedSystem = null;
     }
 }
