@@ -123,7 +123,7 @@ namespace Content.Client.Hands.Systems
         /// <summary>
         ///     Called when a user clicked on their hands GUI
         /// </summary>
-        public void UIHandClick(Entity<HandsComponent> ent, string handName)
+        public void UIHandClick(Entity<HandsComponent> ent, string handName, bool switchHands = true) //starlight, added bool switchHands to allow for the new keybind to work without switching hands, but still allow for the old behavior of switching hands when clicking on a hand in the GUI
         {
             var hands = ent.Comp;
             if (hands.ActiveHandId == null)
@@ -140,7 +140,7 @@ namespace Content.Client.Hands.Systems
                 return;
             }
 
-            if (handName != hands.ActiveHandId && pressedEntity == null)
+            if (switchHands && handName != hands.ActiveHandId && pressedEntity == null) //starlight, added switchHands check to allow for the new keybind to work without switching hands, but still allow for the old behavior of switching hands when clicking on a hand in the GUI
             {
                 // change active hand
                 RaisePredictiveEvent(new RequestSetHandEvent(handName));

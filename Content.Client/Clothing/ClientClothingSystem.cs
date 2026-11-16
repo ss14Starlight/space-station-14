@@ -83,6 +83,7 @@ public sealed partial class ClientClothingSystem : ClothingSystem
 
     private void OnInventoryTemplateUpdated(Entity<InventoryComponent> ent, ref InventoryTemplateUpdated args)
     {
+        ReserveSlots(ent); // Starlight
         UpdateAllSlots(ent.Owner, ent.Comp);
     }
 
