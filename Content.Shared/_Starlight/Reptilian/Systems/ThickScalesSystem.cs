@@ -1,5 +1,6 @@
 using Content.Shared._Starlight.Chemistry.Events;
 using Content.Shared._Starlight.Combat.OnHit;
+using Content.Shared._Starlight.Implants.Components;
 using Content.Shared._Starlight.Reptilian.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Events;
@@ -29,7 +30,8 @@ public sealed partial class ThickScalesSystem : EntitySystem
         if (!ent.Comp.BlockInstantInjectors
             || args.Cancelled
             || HasComp<PiercesThickScalesComponent>(args.UsedInjector)
-            || !IsInstantInjector(args.UsedInjector))
+            || !IsInstantInjector(args.UsedInjector)
+            || (TryComp<InjectionPortComponent>(ent, out var port) && port.BypassScales))
             return;
 
         args.Cancel();
@@ -47,6 +49,9 @@ public sealed partial class ThickScalesSystem : EntitySystem
 
         // Instant injectors are blocked outright when the injection happens.
         if (args.Mode.InjectOnUse)
+            return;
+
+        if (TryComp<InjectionPortComponent>(ent, out var port) && port.BypassScales)
             return;
 
         args.DoAfterTime *= ent.Comp.InjectTimeMultiplier;
@@ -100,6 +105,10 @@ public sealed partial class ThickScalesSystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
-        args.PushMarkup(Loc.GetString("thick-scales-examine", ("target", Identity.Entity(ent, EntityManager))));
+        var desc = "thick-scales-examine";
+        if (TryComp<InjectionPortComponent>(ent, out var port) && port.BypassScales)
+            desc = "thick-scales-examine-port-installed";
+
+        args.PushMarkup(Loc.GetString(desc, ("target", Identity.Entity(ent, EntityManager))));
     }
 }
