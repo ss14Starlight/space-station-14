@@ -1,4 +1,5 @@
 hijack-beacon-announcement-sender = Automated Trade Station
+# Starlight: Minor grammar fixes
 hijack-beacon-announcement-activated = Attention! An attempted breach of the Automated Trade Station's firewall has been detected! Estimated {$time} seconds until the firewall is breached! The Interstellar Trade Guild is urged to intervene ASAP.
 hijack-beacon-announcement-deactivated = Firewall breach failed. Firewall integrity partially restored. Have a nice day!
 hijack-beacon-announcement-success = Successfully disengaged Automated Trade Station firewall. {$fine} spessos has been transferred from station funds to [%ERROR%]. Your trade station warranty is now void. This incident has been reported.
