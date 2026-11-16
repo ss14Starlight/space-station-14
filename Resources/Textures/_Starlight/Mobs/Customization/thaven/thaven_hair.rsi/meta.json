@@ -785,6 +785,31 @@
       "name": "bubbleponytail",
       "copyright": "Howdyth",
       "directions": 4
+    },
+    {
+      "name": "jellyfish",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+    {
+      "name": "longpigtails",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+    {
+      "name": "longponytailfront",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+    {
+      "name": "surferboy",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+    {
+      "name": "workoutheadband",
+      "copyright": "Howdyth",
+      "directions": 4
     }
   ]
 }

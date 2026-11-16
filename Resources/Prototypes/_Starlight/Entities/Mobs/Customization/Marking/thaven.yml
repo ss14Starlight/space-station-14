@@ -1543,6 +1543,46 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: mullet
+- type: marking
+  id: ThavenHairJellyfish
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+    state: jellyfish
+- type: marking
+  id: ThavenHairLongPigtails
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+    state: longpigtails
+  - type: marking
+  id: ThavenHairLongPonytailFront
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+    state: longponytailfront
+  - type: marking
+  id: ThavenHairSurferBoy
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+    state: surferboy
+- type: marking
+  id: ThavenHairWorkoutHeadband
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [ Thaven, NeoThaven , Neocyte] # FH + Starlight
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+    state: workoutheadband
 
 # Chest
 

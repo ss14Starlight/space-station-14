@@ -142,4 +142,38 @@
     - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
       state: straightbangs
 
+- type: marking
+  id: FelionoidHairOverTheShoulderBraid
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Felionoid, NeoFelionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
+      state: overtheshoulderbraid
 
+- type: marking
+  id: FelionoidHairLongPigtails
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Felionoid, NeoFelionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
+      state: longpigtails
+
+- type: marking
+  id: FelionoidHairLongPonytailFront
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Felionoid, NeoFelionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
+      state: longponytailfront
+
+- type: marking
+  id: FelionoidHairSurferBoy
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Felionoid, NeoFelionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/hair.rsi
+      state: surferboy

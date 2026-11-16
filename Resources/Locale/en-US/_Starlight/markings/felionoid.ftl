@@ -51,13 +51,17 @@ marking-FelionoidHairHawk = Hawk
 marking-FelionoidHairKeelQuills = Keel Quills
 marking-FelionoidHairKeetQuills = Keet Quills
 marking-FelionoidHairKingly = Kingly
+marking-FelionoidHairLongPigtails = Long Pigtails
+marking-FelionoidHairLongPonytailFront = Long Ponytail (Front)
 marking-FelionoidHairMange = Mange
 marking-FelionoidHairMatted = Matted
 marking-FelionoidHairMattedShort = Matted Short 
 marking-FelionoidHairMullet = Mullet
 marking-FelionoidHairNights = Nights
+marking-FelionoidHairOverTheShoulderBraid = Over-The-Shoulder Braid
 marking-FelionoidHairPigtails = Pigtails 
 marking-FelionoidHairStraightBangs = StraightBangs
+marking-FelionoidHairSurferBoy = Surfer Boy
 
 # Head
 marking-FelionoidHeadTiger = Tiger Head

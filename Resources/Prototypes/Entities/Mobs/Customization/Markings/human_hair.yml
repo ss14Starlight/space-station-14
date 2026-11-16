@@ -1497,4 +1497,25 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_hair.rsi
       state: starpuffs
+- type: marking
+  id: HumanHairStarpuffsAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: starpuffsalt
+- type: marking
+  id: HumanHairStarOverTheShoulderBraid
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: overtheshoulderbraid
+- type: marking
+  id: HumanHairLongPonytailFront
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longponytailfront
 #starlight end
