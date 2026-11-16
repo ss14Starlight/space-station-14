@@ -8,14 +8,17 @@
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Created for Heaven, Author:https://github.com/tonimark,"
     },
     {
       "name": "inhand-left",
+      "copyright": "Created for Heaven, Author:https://github.com/tonimark,",
       "directions": 4
     },
     {
       "name": "inhand-right",
+      "copyright": "Created for Heaven, Author:https://github.com/tonimark,",
       "directions": 4
     }
   ]
