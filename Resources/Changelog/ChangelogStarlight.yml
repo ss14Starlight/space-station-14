@@ -1,60 +1,4 @@
 Entries:
-- author: Swonki
-  changes:
-  - message: Change to "experiment" dungeon layout, primarily for grassland alien expeds.
-    type: Add
-  id: 410088
-  time: '2026-11-03T12:54:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6958
-- author: Swonki
-  changes:
-  - message: '"Outbreak" dungeon layout.'
-    type: Add
-  id: 410089
-  time: '2026-11-03T12:54:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6958
-- author: Swonki
-  changes:
-  - message: Modkits can now be removed using a screwdriver.
-    type: Add
-  id: 410090
-  time: '2026-11-03T12:54:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6958
-- author: Swonki
-  changes:
-  - message: Comrades no longer slip.
-    type: Tweak
-  id: 410091
-  time: '2026-11-03T12:54:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6958
-- author: Swonki
-  changes:
-  - message: Expedition difficulty and loot budgets, easier expeds are harder, harder expeds are also harder.
-    type: Tweak
-  id: 410092
-  time: '2026-11-03T12:54:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6958
-- author: Swonki
-  changes:
-  - message: Landmines no longer generate in commies.
-    type: Tweak
-  id: 410093
-  time: '2026-11-03T12:54:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6958
-- author: Swonki
-  changes:
-  - message: Corrupted Silicons have slightly smaller hitboxes, and now utilize silicon damage models.
-    type: Tweak
-  id: 410094
-  time: '2026-11-03T12:54:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6958
-- author: to01
-  changes:
-  - message: Fixed bug which caused large amounts of food to finish cooking when stopped prematurely.
-    type: Fix
-  id: 410095
-  time: '2026-11-03T14:50:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6966
 - author: baltdev
   changes:
   - message: Fixed the Docile Giant Spider sprites.
@@ -2799,4 +2743,60 @@ Entries:
   id: 410487
   time: '2026-11-16T04:32:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7248
+- author: Ohelig
+  changes:
+  - message: (Cluster) Fixed Evac Shuttle being 300kpa overpressure.
+    type: Fix
+  id: 410488
+  time: '2026-11-16T04:32:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7246
+- author: Ohelig
+  changes:
+  - message: (Cluster) Renamed Salvage Bay APC and Air Alarm to Mining Bay.
+    type: Fix
+  id: 410489
+  time: '2026-11-16T04:32:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7246
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added airlock controller to Mining dock. Enjoy!
+    type: Add
+  id: 410490
+  time: '2026-11-16T04:32:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7246
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added airlock controller to TEG. Enjoy!
+    type: Add
+  id: 410491
+  time: '2026-11-16T04:32:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7246
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added a missing disposal unit to the Space Bar.
+    type: Add
+  id: 410492
+  time: '2026-11-16T04:32:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7246
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added another Chemistry locker.
+    type: Add
+  id: 410493
+  time: '2026-11-16T04:32:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7246
+- author: Ohelig
+  changes:
+  - message: (Cluster) Moved the Radio Host's shutters button to somewhere you can reach.
+    type: Fix
+  id: 410494
+  time: '2026-11-16T04:32:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7246
+- author: Ohelig
+  changes:
+  - message: (Cluster) Added pipe docking standards to each dock and escape pod.
+    type: Fix
+  id: 410495
+  time: '2026-11-16T04:32:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7246
 Order: -1
