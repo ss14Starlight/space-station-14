@@ -693,7 +693,7 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_hair.rsi
       state: starpuffsalt
-      
+
 - type: marking
   id: HumanHairOverTheShoulderBraid
   bodyPart: Hair
