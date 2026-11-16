@@ -108,7 +108,6 @@
       - CanPilot
       - SiliconEmotes
       - Unimplantable
-      - EmagImmune
     - type: PointLight
       color: "#d55858"
       radius: 5
@@ -120,3 +119,6 @@
       sprite:
         sprite: _Starlight/Admeme/MedTak/Mobs/Silicon/Chassis/medtak.rsi
         state: borg
+    - type: InteractionPopup
+      interactSuccessString: petting-success-medtak-cyborg
+      interactFailureString: petting-failure-medtak-cyborg

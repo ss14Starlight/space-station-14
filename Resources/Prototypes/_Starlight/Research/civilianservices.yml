@@ -68,6 +68,7 @@
   - ModularHudModulesCivilianT1
   recipeUnlocks:
   - HudModuleShowJobIcons
+  - HudModuleShowIdAccess
   - HudModuleShowHungerIcons
   - HudModuleShowThirstIcons
   radioChannels:
