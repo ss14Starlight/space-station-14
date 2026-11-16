@@ -320,6 +320,12 @@ public sealed partial class InjectorSystem : EntitySystem
         else if (_standingState.IsDown(target))
             doAfterTime *= activeMode.DownedModifier;
 
+        // Starlight start: let the target change the do-after (e.g. thick scales)
+        var timeEv = new InjectorMobDoAfterTimeEvent(user, injector.Owner, activeMode, doAfterTime);
+        RaiseLocalEvent(target, ref timeEv);
+        doAfterTime = timeEv.DoAfterTime;
+        // Starlight end
+
         return true;
     }
     #endregion Mob Interaction
@@ -496,7 +502,7 @@ public sealed partial class InjectorSystem : EntitySystem
         // Jugsuit blocking Hyposprays when
         if (ev.Cancelled)
         {
-            var userMessage = Loc.GetString("injector-component-blocked-user");
+            var userMessage = ev.OverrideMessage ?? Loc.GetString("injector-component-blocked-user"); // Starlight: OverrideMessage
             var otherMessage = Loc.GetString("injector-component-blocked-other", ("target", target), ("user", user));
             _popup.PopupPredicted(userMessage, otherMessage, target, user, PopupType.SmallCaution);
             return true;
@@ -780,6 +786,14 @@ public sealed partial class InjectorSystem : EntitySystem
     {
         if (!_prototypeManager.Resolve(injector.Comp.ActiveModeProtoId, out var activeProto))
             return;
+
+        // Starlight start: a pending do-after keeps the time of the mode it started in
+        if (HasPendingDoAfter(injector, user))
+        {
+            _popup.PopupClient(Loc.GetString("injector-component-cannot-toggle-busy-message"), user, user);
+            return;
+        }
+        // Starlight end
 
         string? errorMessage = null;
 

@@ -1,0 +1,4 @@
+- type: !PartialOnly latheRecipePack
+  id: SecurityEquipmentStatic
+  recipes:
+  - !Remove 'ClothingEyesHudSecurity'

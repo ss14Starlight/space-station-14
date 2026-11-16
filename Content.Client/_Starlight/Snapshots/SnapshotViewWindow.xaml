@@ -1,0 +1,7 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:viewport="clr-namespace:Content.Client.Viewport"
+               Title="{Loc 'snapshot-view-window-title'}"
+               MinSize="576 480">
+    <!-- Ignore: clicks would otherwise become interactions with the snapshot's client-side clones. -->
+    <viewport:ScalingViewport Name="SnapshotViewport" MouseFilter="Ignore" RenderScaleMode="CeilInt" />
+</DefaultWindow>

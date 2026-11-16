@@ -18,6 +18,9 @@ public sealed partial class DamagedByFlashingSystem : EntitySystem
     // Best wait for Ed's status effect system rewrite.
     private void OnFlashAttempt(Entity<DamagedByFlashingComponent> ent, ref FlashAttemptEvent args)
     {
+        if (args.IsImmunityQuery) // Starlight
+            return; // Starlight
+
         _damageable.ChangeDamage(ent.Owner, ent.Comp.FlashDamage);
 
         // TODO: It would be more logical if different flashes had different power,

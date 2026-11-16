@@ -22,6 +22,11 @@
     {
       "name": "silver",
       "copyright": "SevenShades"
+    },
+    {
+      "name": "platinum",
+      "copyright": "Destiny_rising, animation adjusted from SevenShades",
+      "delays": [[ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ]]
     }
   ]
 }

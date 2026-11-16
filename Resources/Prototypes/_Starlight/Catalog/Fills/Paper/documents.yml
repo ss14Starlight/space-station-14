@@ -515,6 +515,51 @@
       content: doc-text-printer-enemy-of-corporation-designation
 
 - type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentIllegalImplantRemovalOrder
+  name: Illegal Implant Removal Order
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-illegal-implant-removal-form
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentMindControlRemovalOrder
+  name: Mind Control Removal Order
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-mind-control-removal-form
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentExplorativeSurgeryOrder
+  name: Explorative Surgery Order
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-explorative-surgery-form
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentProbingMindshieldOrder
+  name: Probing Mindshield Order
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-probing-mindshield-form
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentCompulsoryTrackingOrder
+  name: Compulsory Tracking Order
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-compulsory-tracking-form
+
+- type: entity
   id: BoxFolderClipboardFilled
   suffix: Filled
   parent: BoxFolderClipboard

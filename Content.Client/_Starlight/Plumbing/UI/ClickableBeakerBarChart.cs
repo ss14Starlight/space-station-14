@@ -1,6 +1,7 @@
 using Content.Client.Medical.Cryogenics;
 using Content.Client.Stylesheets.Colorspace;
 using Content.Client.Stylesheets.Palette;
+using Content.Shared.Chemistry.Reagent;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 
@@ -9,6 +10,7 @@ namespace Content.Client._Starlight.Plumbing.UI;
 public sealed class ClickableBeakerBarChart : ContainerButton
 {
     private const float StateLightnessShift = 0.10f;
+    private const int LabelHeight = 24;
 
     private static readonly ColorPalette _buttonPalette = Palettes.Navy;
     private static readonly Color _idleBackgroundColor = _buttonPalette.Element;
@@ -17,10 +19,12 @@ public sealed class ClickableBeakerBarChart : ContainerButton
     private static readonly Color _pressedBackgroundColor = _buttonPalette.PressedElement.NudgeLightness(StateLightnessShift);
 
     private readonly BeakerBarChart _chart;
+    private readonly BoxContainer _chartContainer;
+    private readonly Label _label;
 
-    public event Action<string>? OnChartPressed;
+    public event Action<ReagentId>? OnChartPressed;
 
-    public string ReagentId { get; set; } = string.Empty;
+    public ReagentId? ReagentId { get; set; } = null;
 
     public float Capacity
     {
@@ -35,11 +39,12 @@ public sealed class ClickableBeakerBarChart : ContainerButton
         ToolTip = string.Empty;
         OnPressed += _ => HandlePressed();
 
-        var chartContainer = new BoxContainer
+        _chartContainer = new BoxContainer
         {
             HorizontalExpand = true,
             VerticalExpand = true,
             Margin = new Thickness(4),
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
         };
 
         _chart = new BeakerBarChart
@@ -50,15 +55,27 @@ public sealed class ClickableBeakerBarChart : ContainerButton
             BackgroundColor = _chartBackgroundColor,
         };
 
-        chartContainer.AddChild(_chart);
-        AddChild(chartContainer);
+        _label = new Label
+        {
+            ClipText = true,
+            FontColorOverride = Color.White,
+            Margin = new Thickness(4, 0, 0, 0),
+            HorizontalExpand = true,
+            VerticalExpand = false,
+            MinHeight = LabelHeight,
+            MaxHeight = LabelHeight,
+        };
+
+        _chartContainer.AddChild(_label);
+        _chartContainer.AddChild(_chart);
+        AddChild(_chartContainer);
         UpdateButtonStyle();
     }
 
-    public void Clear()
-        => _chart.Clear();
-
-    public void SetEntry(
+    /// <summary>
+    /// Updates the bar chart with a new set of details, without destroying and recreating it.
+    /// </summary>
+    public void SetDetails(
         string uid,
         string label,
         float amount,
@@ -66,8 +83,10 @@ public sealed class ClickableBeakerBarChart : ContainerButton
         Color? textColor = null,
         string? tooltip = null)
     {
+        _chart.Clear();
         ToolTip = tooltip;
-        _chart.SetEntry(uid, label, amount, color, textColor, tooltip);
+        _label.Text = label;
+        _chart.SetEntry(uid, string.Empty, amount, color, textColor, tooltip);
     }
 
     protected override void DrawModeChanged()
@@ -78,10 +97,10 @@ public sealed class ClickableBeakerBarChart : ContainerButton
 
     private void HandlePressed()
     {
-        if (string.IsNullOrEmpty(ReagentId))
+        if (!ReagentId.HasValue)
             return;
 
-        OnChartPressed?.Invoke(ReagentId);
+        OnChartPressed?.Invoke(ReagentId.Value);
     }
 
     private void UpdateButtonStyle()
