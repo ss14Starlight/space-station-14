@@ -1,13 +1,6 @@
 Entries:
 - author: Swonki
   changes:
-  - message: Experimental PKA Modkits, findable on Argocyte Expeds.
-    type: Add
-  id: 410087
-  time: '2026-11-03T12:54:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6958
-- author: Swonki
-  changes:
   - message: Change to "experiment" dungeon layout, primarily for grassland alien expeds.
     type: Add
   id: 410088
@@ -2799,4 +2792,11 @@ Entries:
   id: 410486
   time: '2026-11-15T17:44:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7260
+- author: Ohelig
+  changes:
+  - message: Signal buttons and airlock buttons will always have an outline when hovering instead of being blocked by the button frame.
+    type: Fix
+  id: 410487
+  time: '2026-11-16T04:32:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7248
 Order: -1
