@@ -1,5 +1,5 @@
 - type: !PartialOnly entity
-  id: FloorCarpetItemRed
+  id: CarpetBase
   components:
   - type: Solution
     id: food
@@ -12,8 +12,10 @@
     tags:
     - ClothMade
   - type: Edible
+    delay: 7
     requiresSpecialDigestion: true
     solution: food
+  - type: BadFood
   - type: FlavorProfile
     flavors:
     - fiber
