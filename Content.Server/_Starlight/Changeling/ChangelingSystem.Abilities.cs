@@ -296,7 +296,6 @@ public sealed partial class ChangelingSystem : EntitySystem
         PlayMeatySound(uid, comp);
     }
     private void OnToggleArmor(EntityUid uid, ChangelingComponent comp, ref ToggleChitinousArmorEvent args) => ToggleArmor(uid, comp);
-    
     private void ToggleArmor(EntityUid uid, ChangelingComponent comp)
     {
         if (!TryToggleItem(uid, ArmorPrototype, comp, "outerClothing")
