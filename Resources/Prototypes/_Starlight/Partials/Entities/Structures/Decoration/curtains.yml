@@ -1,0 +1,20 @@
+- type: !PartialOnly entity
+  id: BaseCurtains
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 20
+  - type: Tag
+    tags:
+    - ClothMade
+  - type: Edible
+    delay: 3
+    requiresSpecialDigestion: true
+    solution: food
+  - type: FlavorProfile
+    flavors:
+    - fiber
