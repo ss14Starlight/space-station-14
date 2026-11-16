@@ -44,4 +44,7 @@ public sealed partial class ReformComponent : Component
     /// </summary>
     [DataField(required: true)]
     public EntProtoId ReformPrototype { get; private set; }
+
+    [DataField]
+    public bool PreserveDamage = false;
 }

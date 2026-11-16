@@ -9,3 +9,4 @@
   rules:
   - SpaceTrafficControlFriendlyEventScheduler 
   - BasicRoundstartVariation
+  - Infected

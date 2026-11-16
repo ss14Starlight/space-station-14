@@ -397,17 +397,11 @@
     reformTime: 40 
     popupText: Вы пускаете слизь, собирая свой яйцеклад.
     reformPrototype: MobAlienQueenEggLayer
+    preserveDamage: true
   - type: Sericulture
     action: ActionSpawnAlianWall
     productionLength: 8
     entityProduced: AlianWall
-  - type: EggLayer
-    hungerUsage: 0
-    eggLayAction: ActionAlienLayEgg 
-    eggLaySound: !type:SoundPathSpecifier
-      path: /Audio/_Daiquiri/Xeno/Aliens/Slider_speach.ogg
-    eggSpawn:
-    - id: AlienEgg
   - type: ActionGun
     action: ActionNeuroAlien
     gunProto: AlienGunNeuro
@@ -431,6 +425,7 @@
     bodyType: Static
   - type: EggLayer
     hungerUsage: 0
+    eggLayAction: ActionAlienLayEgg
     eggLaySound: !type:SoundPathSpecifier
       path: /Audio/_Daiquiri/Xeno/Aliens/Slider_speach.ogg
     eggSpawn:
@@ -443,6 +438,7 @@
     reformTime: 10
     popupText: Вы начинаете вставать на ноги, тем самым отрывая себя от яйцеклада.
     reformPrototype: MobAlienQueen
+    preserveDamage: true
 
 #Ползун
 - type: entity
@@ -565,15 +561,6 @@
     randomizeName: true
   - type: Loadout
     prototypes: [InfectedGear]
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: инфицированный
-    description: У вас внутри находится личинка ксеноморфа, но вы об этом ещё не знаете.
-    raffle:
-      settings: short
-  - type: GhostTakeoverAvailable
   - type: GibAction
     popupText: С громким треском ваша грудь ломается.
     actionPrototype: SliderBreakAction

@@ -1,6 +1,7 @@
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.Antag;
+using Content.Server.Antag.Components;
 using Content.Server.Clothing.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
@@ -358,6 +359,22 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", pirateSLName, Loc.GetString("admin-verb-make-pirate-sl")),
         };
         args.Verbs.Add(pirateSL);
+
+        var infectedName = Loc.GetString("admin-verb-text-make-infected");
+        Verb infected = new()
+        {
+            Text = infectedName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi"), "Slider"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<AntagSpawnerComponent>(targetPlayer, "Infected");
+                _autolog.LogToDiscord(string.Join(": ", infectedName, Loc.GetString("admin-verb-make-infected")), player.Name);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", infectedName, Loc.GetString("admin-verb-make-infected")),
+        };
+        args.Verbs.Add(infected);
         // STARLIGHT END
 
         // Harmony start

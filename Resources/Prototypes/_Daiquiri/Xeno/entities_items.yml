@@ -64,8 +64,8 @@
   parent: OrganHumanBrain
   components:
   - type: Brain
-  - type: Nymph
-    entityPrototype: MobAlienSliderRoyal
+  - type: AlienLarva
+    larvaPrototype: MobAlienSliderRoyal
     transferMind: true
 
 #Чутьё Королевы

@@ -8,3 +8,6 @@ pirate-crew-briefing = Вы — член экипажа этого пиратс�
 admin-verb-make-devil = Сделать цель дьяволом.
 
 admin-verb-text-make-devil = Сделать дьяволом
+
+admin-verb-make-infected = Делает цель инфицированным — её разум подконтролен улью, и она скоро погибнет.
+admin-verb-text-make-infected = Сделать инфицированным

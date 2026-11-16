@@ -1,0 +1,81 @@
+#Инфицированный
+- type: playTimeTracker
+  id: AntagInfected
+  name: roles-antag-infected-name
+
+- type: antag
+  id: Infected
+  name: roles-antag-infected-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-infected-description
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 6h
+  - !type:SpeciesRequirement
+    species:
+    - Diona
+    - IPC
+    inverted: true
+  playTimeTracker: AntagInfected
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Infected
+  prefRoles: [ Infected ]
+  spawnerPrototype: SpawnPointGhostInfected
+  briefing:
+    text: infected-role-greeting
+    color: "#6A0DAD"
+    sound: /Audio/_Daiquiri/Xeno/Aliens/Slider_speach.ogg
+  mindRoles:
+  - MindRoleInfected
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleInfected
+  name: roles-antag-infected-name
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: Infected
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostInfected
+  name: точка появления инфицированного
+  components:
+  - type: GhostRole
+    name: ghost-role-information-infected-name
+    description: ghost-role-information-infected-description
+    rules: ghost-role-information-rules-team-antagonist
+    important: true
+    mindRoles: [ MindRoleInfected ]
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+
+- type: entity
+  parent: [ BaseGameRule, BaseRoundstartAntagRule ]
+  id: Infected
+  components:
+  - type: GameRule
+    minPlayers: 15
+  - type: AntagRandomSpawn
+  - type: AlienInfectedSpawner
+    prototype: MobHumanAlienInfected
+  - type: AntagSelection
+    agentName: infected-round-end-agent-name
+    antags:
+    - !type:LinearAntagCount
+      proto: Infected
+      playerRatio: 30
+      range:
+        min: 1
+        max: 2
+  - type: DynamicRuleCost
+    cost: 150

@@ -1,5 +1,8 @@
 using Content.Shared.Species.Components;
 using Content.Shared.Actions;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
@@ -22,6 +25,7 @@ public sealed partial class ReformSystem : EntitySystem
     [Dependency] private SharedStunSystem _stunSystem = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -88,9 +92,16 @@ public sealed partial class ReformSystem : EntitySystem
         if (_netMan.IsClient)
             return;
 
+        DamageSpecifier? damage = null;
+        if (comp.PreserveDamage && HasComp<DamageableComponent>(uid))
+            damage = _damageable.GetAllDamage(uid);
+
         // Spawn a new entity
         // This is, to an extent, taken from polymorph. I don't use polymorph for various reasons- most notably that this is permanent.
         var child = SpawnNextToOrDrop(comp.ReformPrototype, uid);
+
+        if (damage != null)
+            _damageable.SetDamage(child, damage);
 
         // This transfers the mind to the new entity
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))

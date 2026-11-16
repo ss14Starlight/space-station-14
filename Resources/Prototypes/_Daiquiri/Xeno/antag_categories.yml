@@ -1,0 +1,9 @@
+- type: antagCategory
+  id: Xenomorphs
+  name: antag-category-xenomorphs-name
+  description: antag-category-xenomorphs-desc
+  priority: 6
+  accentColor: "#000000"
+  factionColor: "#000000"
+  antags:
+  - Infected
