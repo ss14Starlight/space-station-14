@@ -251,7 +251,7 @@ public sealed partial class RespiratorSystem : EntitySystem
         if (!ev.Handled || ev.Toxic)
             return false;
 
-        return ev.Saturation > ent.Comp.UpdateInterval.TotalSeconds * GetBreathNeedMultiplier(ent.Owner);
+        return ev.Saturation > ent.Comp.UpdateInterval.TotalSeconds;
     }
 
     /// <summary>

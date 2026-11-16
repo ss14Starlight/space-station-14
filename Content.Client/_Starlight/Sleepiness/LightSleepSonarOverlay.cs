@@ -383,6 +383,11 @@ public sealed partial class LightSleepSonarOverlay : Robust.Client.Graphics.Over
         _currentEmitters.Clear();
         _targetRevealStates.Clear();
         _previousTargetPositions.Clear();
+
+        foreach (var shader in _targetEchoShaders.Values)
+            shader.Dispose();
+
+        _targetEchoShaders.Clear();
     }
 
     private void PruneExpiredWaves(double elapsed)
