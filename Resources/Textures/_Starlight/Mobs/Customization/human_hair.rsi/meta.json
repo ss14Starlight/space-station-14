@@ -456,6 +456,21 @@
       "name": "longponytailfront",
       "copyright": "Howdyth",
       "directions": 4
+    },
+      {
+      "name": "longponytailfrontalt",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+      {
+      "name": "overtheshoulderbraidalt",
+      "copyright": "Howdyth",
+      "directions": 4
+    },
+     {
+      "name": "bubbleponytailalt",
+      "copyright": "Howdyth",
+      "directions": 4
     }
   ]
 }
