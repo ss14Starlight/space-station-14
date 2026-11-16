@@ -211,6 +211,8 @@
         children:
         - id: HudModuleShowThirstIcons
         - id: HudModuleSolutionScanner
+  - type: StealTarget
+    stealGroup: MiscGlassesCollection
   - type: Tag
     tags:
     - WhitelistChameleon

@@ -8,6 +8,8 @@
         children:
         - id: HudModuleShowMindShieldIcons
         - id: HudModuleShowCriminalRecordIcons
+  - type: StealTarget
+    stealGroup: MiscGlassesCollection
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -31,6 +33,8 @@
         - id: HudModuleShowMindShieldIcons
         - id: HudModuleShowCriminalRecordIcons
         - id: HudModuleNoirOverlay
+  - type: StealTarget
+    stealGroup: MiscGlassesCollection
   - type: Tag
     tags:
     - WhitelistChameleon
