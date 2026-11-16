@@ -1,0 +1,105 @@
+- type: entity
+  id: ProjectileReptilianBreath
+  name: puff of flame
+  description: A tiny tongue of fire.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    scale: 0.5, 0.5
+    layers:
+    - state: fireball
+      shader: unshaded
+  - type: PointLight
+    color: "#E25822"
+    radius: 1.5
+    energy: 3.0
+  - type: Physics
+    bodyType: Dynamic
+  - type: TileFrictionModifier
+    modifier: 0
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Projectile
+    damage:
+      types:
+        Heat: 2
+  - type: IgnitionSource
+    temperature: 700
+    ignited: true
+  - type: IgniteOnCollide
+    fireStacks: 1
+  - type: TimedDespawn
+    lifetime: 0.3 # about three tiles at 10 tiles per second
+
+- type: entity
+  parent: ProjectileReptilianBreath
+  id: ProjectileReptilianBreathFuelSmall
+  name: lick of flame
+  description: Smells faintly of welding fuel.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    scale: 0.65, 0.65
+  - type: PointLight
+    radius: 2.0
+    energy: 4.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 3
+  - type: IgniteOnCollide
+    fireStacks: 1.5
+  - type: TimedDespawn
+    lifetime: 0.45 # about 4-5 tiles
+
+- type: entity
+  parent: ProjectileReptilianBreath
+  id: ProjectileReptilianBreathFuel
+  name: gout of flame
+  description: Smells like welding fuel.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    scale: 0.8, 0.8
+  - type: PointLight
+    radius: 2.5
+    energy: 5.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 4
+  - type: IgniteOnCollide
+    fireStacks: 2
+  - type: TimedDespawn
+    lifetime: 0.6 # about six tiles
+
+- type: entity
+  parent: ProjectileReptilianBreath
+  id: ProjectileReptilianBreathNapalm
+  name: napalm fireball
+  description: Sticky, pink-tinged fire.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    scale: 1, 1
+  - type: PointLight
+    color: "#FF5A3C"
+    radius: 3.0
+    energy: 6.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 5
+  - type: IgniteOnCollide
+    fireStacks: 2.5
+  - type: TimedDespawn
+    lifetime: 0.75 # about seven to eight tiles

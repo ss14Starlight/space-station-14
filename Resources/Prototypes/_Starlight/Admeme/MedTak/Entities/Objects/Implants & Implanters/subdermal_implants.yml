@@ -99,3 +99,6 @@
   components:
   - type: MindShieldImplant
     mindShieldStatusIcon: MedTakMindShieldIcon
+  - type: Tag
+    tags:
+    - FragileImplant # Matching standard Mindshields

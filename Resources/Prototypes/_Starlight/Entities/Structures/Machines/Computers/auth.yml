@@ -39,6 +39,7 @@
       interfaces:
         enum.SecureCommandTerminalUiKey.Key:
           type: SecureCommandTerminalBui
+    - type: StationAiWhitelist
     - type: SecureCommandTerminalConsole
       authTerminal: true
     - type: Appearance

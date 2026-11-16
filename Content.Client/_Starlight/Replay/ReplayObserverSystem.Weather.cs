@@ -16,6 +16,7 @@ public sealed partial class ReplayObserverSystem
     private EntityUid? _weatherAction;
     private bool? _drawWeatherBeforeReplay;
 
+    [SubscribeLocalEvent]
     private void OnToggleWeather(EntityUid uid, ReplaySpectatorComponent component, ReplayToggleWeatherActionEvent args)
     {
         if (args.Handled || !IsReplayActive)

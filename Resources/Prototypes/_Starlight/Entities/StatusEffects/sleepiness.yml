@@ -10,3 +10,6 @@
     maximumDuration: 2m
   - type: SleepinessStatusEffect
     sleepThreshold: 30s
+    maximumSlowdownSleepiness: 25s
+    minimumSpeedModifier: 0.65
+    yawnChance: 0.1

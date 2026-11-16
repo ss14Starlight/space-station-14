@@ -12,3 +12,15 @@
     priority: -20
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionToggleOwnGhostSprite
+  name: Hide My Ghost
+  description: Hide your own ghost sprite on your screen. Others still see it.
+  components:
+  - type: Action
+    icon: { sprite: Mobs/Ghosts/ghost_human.rsi, state: icon }
+    clientExclusive: true
+  - type: InstantAction
+    event: !type:ToggleOwnGhostSpriteActionEvent

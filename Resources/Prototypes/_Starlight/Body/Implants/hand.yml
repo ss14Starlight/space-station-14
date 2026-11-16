@@ -59,3 +59,15 @@
   - type: FunctionalOrgan
     comps:
     - type: MovementAlwaysTouching
+
+- type: entity
+  id: HandImplantInjectorPort
+  name: injector port implant
+  description: A surgically-installed hand implant that makes injecting chemicals faster and more reliable, and bypasses skin with natural resistance to injection.
+  parent: BaseEntityHandImplant
+  components:
+  - type: Sprite
+    state: injection_port
+  - type: FunctionalOrgan
+    comps:
+    - type: InjectionPort

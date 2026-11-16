@@ -1,64 +1,29 @@
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  parent: [ClothingEyesModularHudSunglasses, BaseRestrictedContraband]
   id: ClothingEyesGlassesBrigmedic
   name: очки бригмедика
   description: Высококачественный худ, защищающий от вспышек. В стиле Тамаси!
   components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Glasses/brigmedicglasses.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Glasses/brigmedicglasses.rsi
-  - type: FlashImmunity
-  - type: EyeProtection
-    protectionTime: 5
-  - type: ShowHealthBars
-    damageContainers:
-      - Biological
-      - Hybrid
-      - MoffDemonBiological
-  - type: Construction
-    graph: GlassesSecHUD
-    node: glassesSec
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable
+    - SecBeltEquip
+    - FullEyeCovering
   - type: StealTarget
     stealGroup: RareGlassesCollection
-  - type: Tag
-    tags:
-    - HamsterWearable
-    - WhitelistChameleon
-    - SecBeltEquip
-  - type: IdentityBlocker
-    coverage: EYES
-
-- type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
-  id: ClothingEyesGlassesCorpsman
-  name: очки санитара
-  description: Защищает от вспышек не хуже очков службы безопасности, а также отслеживает жизненные показатели!
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/corpsman.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/corpsman.rsi
-  - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
-  - type: ShowHealthBars
-    damageContainers:
-      - Biological
-      - Hybrid
-      - MoffDemonBiological
-  - type: Construction
-    graph: GlassesSecHUD
-    node: glassesSec
-  - type: StealTarget
-    stealGroup: MiscGlassesCollection
-  - type: Tag
-    tags:
-    - HamsterWearable
-    - WhitelistChameleon
-    - SecBeltEquip
-  - type: IdentityBlocker
-    coverage: EYES
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic]
 
 - type: entity
   parent: ClothingEyesBase
@@ -78,58 +43,130 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingEyesGlassesCheapSunglasses
-  id: ClothingEyesGlassesMusicianSunglasses
-  name: очки музыканта
-  description: Стильная пара фиолетовых очков. Работают и как солнцезащитные.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/musicianglasses.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/musicianglasses.rsi
-  - type: FlashImmunity
-  - type: EyeProtection
-    protectionTime: 5
-  - type: StealTarget
-    stealGroup: MiscGlassesCollection
-  - type: Tag
-    tags:
-    - Sunglasses
-    - PetWearable
-    - HamsterWearable
-    - WhitelistChameleon
-
-- type: entity
-  parent: ClothingEyesBase
+  parent: ClothingEyesModularHudSunglasses
   id: ClothingEyesSunGlassesHudSkill
   name: солнцезащитные очки навыков
   description: Солнцезащитные очки со встроенным HUD навыков, показывающим трудовую историю ближайших членов экипажа НТ.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/sunhudskill.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/sunhudskill.rsi
-  - type: FlashImmunity
-  - type: ShowJobIcons
-  - type: ShowMindShieldIcons
-  - type: ShowCriminalRecordIcons
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowJobIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowIdAccess
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
   - type: EyeProtection
     protectionTime: 5
-  - type: ShowAccess
+
+- type: entity
+  parent: ClothingEyesModularHudGlasses
+  id: ClothingEyesGlassesSkillsPrescription
+  name: очки навыков по рецепту
+  description: Очки по рецепту со встроенным HUD навыков, показывающим трудовую историю ближайших членов экипажа НТ.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowJobIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowIdAccess
+  - type: VisionCorrection
   - type: StealTarget
     stealGroup: RareGlassesCollection
 
 - type: entity
-  parent: [ ClothingEyesBase, BaseBlueShieldContraband ]
+  parent: [ClothingEyesModularHudGlasses, BaseCommandContraband]
+  id: ClothingEyesGlassesCommandPrescription
+  name: очки администрации по рецепту
+  description: Очки по рецепту с HUD администрации, отображающим статус ID и права доступа экипажа.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowJobIcons
+        - id: HudModuleShowIdAccess
+        - id: HudModuleShowAccessReaderSettings
+  - type: VisionCorrection
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
+  - type: Contraband
+    tier: Tier2
+
+- type: entity
+  parent: [ClothingEyesModularHudGoggles, BaseEngineeringContraband, BaseRoboticistContraband]
+  id: ClothingEyesGlassesDiagnosticGoggles
+  name: диагностические очки
+  description: Очки с диагностическим HUD, отслеживающим целостность ближайших неорганических форм жизни.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowInorganicHealthBars
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [ResearchDirector, BlueShield]
+
+- type: entity
+  parent: [ClothingEyesModularHudSunglasses, BaseBlueShieldContraband]
   id: ClothingEyesGlassesBlueShield
   name: очки блюшилда
   description: Инновационные синие линзы скрывают глаза от вспышек света и имеют встроенный визор.
   components:
+  - type: ModularHudVisuals
+    innateVisuals:
+      lens:
+        color: '#00003C'
+        priority: 1000
+        preventsOtherColors: true
+      accent:
+        color: '#00003C'
+        priority: 1000
+      specular:
+        color: '#FFFFFF10'
+        priority: 1000
+  - type: ModularHud
+    maximumContainedModules: 4
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+        - id: HudModuleShowInorganicHealthBars
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HudMedical
+    - FullEyeCovering
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Contraband
+    tier: Tier2
+
+- type: entity
+  parent: [ClothingEyesBase, BaseBlueShieldContraband]
+  id: ClothingEyesGlassesNanotrasen
+  name: очки НаноТрейзен
+  description: Новейшие технологии NanoTrasen, воплощённые в этих очках, выдаваемых только лучшим из лучших.
+  components:
   - type: Sprite
     sprite: _Starlight/Clothing/Eyes/Glasses/blueshield.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HudMedical
   - type: Clothing
     sprite: _Starlight/Clothing/Eyes/Glasses/blueshield.rsi
   - type: FlashImmunity
+    blocksSpecialVision: false
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
@@ -144,22 +181,10 @@
     - Biological
     - IPC
     - Hybrid
-  - type: Tag
-    tags:
-    - HudMedical
   - type: EyeProtection
     protectionTime: 5
   - type: StealTarget
     stealGroup: RareGlassesCollection
-
-- type: entity
-  parent: ClothingEyesGlassesBlueShield
-  id: ClothingEyesGlassesNanotrasen
-  name: очки НаноТрейзен
-  description: Новейшие технологии NanoTrasen, воплощённые в этих очках, выдаваемых только лучшим из лучших.
-  components:
-  - type: FlashImmunity
-    blocksSpecialVision: False
 
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
@@ -214,86 +239,6 @@
     - WhitelistChameleon
   - type: StealTarget
     stealGroup: RareGlassesCollection
-
-# Prescription Glasses
-
-- type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
-  id: ClothingEyesGlassesBrigmedicPrescription
-  name: рецептурные очки бригмедика
-  description: Набор неэкранированных рецептурных очков для бригмедиков.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionbrigmedicglasses.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionbrigmedicglasses.rsi
-  - type: VisionCorrection
-  - type: ShowHealthBars
-    damageContainers:
-      - Biological
-      - Hybrid
-      - MoffDemonBiological
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - SecBeltEquip
-
-- type: entity
-  parent: [ClothingEyesBase, ShowMedicalIcons]
-  id: ClothingEyeGlassesMedicalPrescription
-  name: рецептурные медицинские очки
-  description: Набор рецептурных очков для врачей. Страховкой не покрывается.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionmedical.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionmedical.rsi
-  - type: VisionCorrection
-  - type: Tag
-    tags:
-    - HudMedical
-    - WhitelistChameleon
-    - HamsterWearable
-
-- type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
-  id: ClothingEyeGlassesSecurityPrescription
-  name: рецептурные очки службы безопасности
-  description: Набор неэкранированных рецептурных очков для службы безопасности.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionsecglasses.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionsecglasses.rsi
-  - type: VisionCorrection
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - SecBeltEquip
-
-- type: entity
-  parent: ClothingEyesGlassesChemical
-  id: ClothingEyeGlassesChemicalPrescription
-  name: рецептурные очки химического анализа
-  description: Набор рецептурных очков для химиков.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionscience.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionscience.rsi
-  - type: VisionCorrection
-
-- type: entity
-  parent: ClothingEyesGlassesCentCommBase
-  id: ClothingEyesGlassesCentCommPrescription
-  name: рецептурные очки ЦК
-  description: Набор рецептурных очков для персонала ЦК. Защищает от вспышек и имеет встроенный визор.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
-    - type: VisionCorrection
 
 # USSP
 
@@ -399,34 +344,175 @@
     - type: VisionCorrection
 
 - type: entity
-  parent: ClothingEyesGlassesChemical
+  parent: ClothingEyesModularHudJamjars
   id: ClothingEyesGlassesJamjarChemist
   name: "химические очки-банки"
   description: "Для химика, которому нужны особенно большие очки. Говорят, они появились благодаря кому-то чрезвычайно умелому в химии."
   components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarchemist.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarchemist.rsi
-    - type: VisionCorrection
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleSolutionScanner
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - PetWearable
+    - FullEyeCovering
+  - type: IdentityBlocker
+    coverage: EYES
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: ClothingEyesModularHudCheapSunglasses
   id: ClothingEyesGlassesNoirAssistant
   name: дешёвые нуар-тек очки
   description: Пара очков, показывающих, каким был мир до изобретения цвета.
   components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Glasses/noir.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Glasses/sunglasses.rsi
-  - type: IdentityBlocker
-    coverage: EYES
-  - type: FlashImmunity
-  - type: EyeProtection
-    protectionTime: 5
-  - type: NoirOverlay
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleNoirOverlay
   - type: Tag
     tags:
-    - HamsterWearable
     - WhitelistChameleon
+    - HamsterWearable
+    - FullEyeCovering
+
+- type: entity
+  parent: [ClothingEyesModularHudGlasses, BaseRestrictedContraband]
+  id: ClothingEyesGlassesBrigmedicPrescription
+  name: рецептурные очки бригмедика
+  description: Набор неэкранированных рецептурных очков для бригмедиков.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - SecBeltEquip
+    - FullEyeCovering
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic]
+
+- type: entity
+  parent: [ClothingEyesModularHudGlasses, BaseMedicalContraband]
+  id: ClothingEyeGlassesMedicalPrescription
+  name: рецептурные медицинские очки
+  description: Набор рецептурных очков для врачей. Страховкой не покрывается.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMedicalIcons
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - HudMedical
+    - WhitelistChameleon
+    - HamsterWearable
+    - FullEyeCovering
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
+
+- type: entity
+  parent: [ClothingEyesModularHudGlasses, BaseSecurityContraband]
+  id: ClothingEyeGlassesSecurityPrescription
+  name: рецептурные очки службы безопасности
+  description: Набор неэкранированных рецептурных очков для службы безопасности.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - SecBeltEquip
+    - FullEyeCovering
+  - type: Contraband
+    tier: Tier2
+
+- type: entity
+  parent: ClothingEyesModularHudGlasses
+  id: ClothingEyeGlassesChemicalPrescription
+  name: рецептурные очки химического анализа
+  description: Набор рецептурных очков для химиков.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleSolutionScanner
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - PetWearable
+    - FullEyeCovering
+
+- type: entity
+  parent: [ClothingEyesModularHudGlasses, BaseBlueShieldContraband]
+  id: ClothingEyesGlassesBlueShieldPrescription
+  name: очки синего щита по рецепту
+  description: Очки по рецепту для офицеров Синего Щита.
+  components:
+  - type: ModularHudVisuals
+    innateVisuals:
+      lens:
+        color: '#00003C'
+        priority: 1000
+        preventsOtherColors: true
+      accent:
+        color: '#00003C'
+        priority: 1000
+      specular:
+        color: '#FFFFFF10'
+        priority: 1000
+  - type: ModularHud
+    maximumContainedModules: 4
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+        - id: HudModuleShowInorganicHealthBars
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HudMedical
+    - FullEyeCovering
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
+  - type: Contraband
+    tier: Tier2
+
+- type: entity
+  parent: ClothingEyesGlassesCentCommBase
+  id: ClothingEyesGlassesCentCommPrescription
+  name: рецептурные очки ЦК
+  description: Набор рецептурных очков для персонала ЦК. Защищает от вспышек и имеет встроенный визор.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
+  - type: VisionCorrection
+  - type: FlashImmunity
+    enabled: false
+    showInExamine: false

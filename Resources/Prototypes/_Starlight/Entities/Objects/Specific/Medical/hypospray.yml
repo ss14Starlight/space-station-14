@@ -62,6 +62,7 @@
   description: Адаптация гипоспрея Gorlex для киборгов.
   id: SyndiBorgHypo
   components:
+  - type: PiercesThickScales
   - type: Sprite
     sprite: Objects/Specific/Medical/syndihypo.rsi
     layers:

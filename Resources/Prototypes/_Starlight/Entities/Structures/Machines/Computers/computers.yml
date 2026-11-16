@@ -227,6 +227,8 @@
   name: консоль дистанционного управления
   description: Позволяет операторам видеть и управлять подключённым телом робота практически на любом расстоянии с минимальной потерей точности.
   components:
+  - type: Computer
+    board: RemoteControlConsoleCircuitboard
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -240,15 +242,17 @@
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: generic_panel_open
   - type: RemoteControlConsole
+    remoteControlPower: 15
   - type: DeviceLinkSource
-    ports:
-    - RemoteControl
+    ports: [ RemoteControl ]
   - type: ActivatableUI
     key: enum.RemoteControlUIKey.Key
   - type: UserInterface
     interfaces:
       enum.RemoteControlUIKey.Key:
         type: RemoteControlConsoleBoundUserInterface
+      enum.RemoteControlSettingsUIKey.Key:
+        type: RemoteControlSettingsBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
 
@@ -601,7 +605,7 @@
       access: [[ "ChiefEngineer" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-eng
-      sound: /Audio/_CorvaxGoob/Announcements/announce.ogg
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
       color: "#ff733c"
       settableAlertLevels:
         - green
@@ -643,7 +647,7 @@
       access: [[ "ChiefMedicalOfficer" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-med
-      sound: /Audio/_CorvaxGoob/Announcements/announce.ogg
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
       color: "#57b8f0"
       settableAlertLevels: []
       canBroadcast: false
@@ -682,7 +686,7 @@
       access: [[ "ResearchDirector" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-sci
-      sound: /Audio/_CorvaxGoob/Announcements/announce.ogg
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
       color: "#cd7ccd"
       settableAlertLevels: []
       canBroadcast: false
@@ -721,7 +725,7 @@
       access: [[ "HeadOfSecurity", "Armory" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-sec
-      sound: /Audio/_CorvaxGoob/Announcements/announce.ogg
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
       color: "#ff4242"
       settableAlertLevels:
         - green
@@ -763,7 +767,7 @@
       access: [[ "HeadOfPersonnel" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-srv
-      sound: /Audio/_CorvaxGoob/Announcements/announce.ogg
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
       color: "#539c00"
       settableAlertLevels: []
       canBroadcast: false
@@ -802,7 +806,7 @@
       access: [[ "Quartermaster" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-sup
-      sound: /Audio/_CorvaxGoob/Announcements/announce.ogg
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
       color: "#b48b57"
       settableAlertLevels: []
       canBroadcast: false
@@ -816,6 +820,45 @@
       energy: 1.5
       color: "#b48b57"
 
+# Reporters- Journalism access
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsBreakingNews
+  categories: [ ShouldMapStation ]
+  name: breaking news console
+  description: A computer used by reporters to make station wide breaking news announcements.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: comm-new
+          sprite: _Starlight/Structures/Machines/computers.rsi
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: AccessReader
+      access: [[ "Journalism" ]]
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-news
+      delay: 600
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      color: "#539c00"
+      settableAlertLevels: []
+      canBroadcast: false
+      canShuttle: false
+    - type: SecureCommandTerminalConsole
+      enabled: false
+    - type: Computer
+      board: BreakingNewsCommsComputerCircuitboard
+    - type: PointLight
+      radius: 2.5
+      energy: 1.5
+      color: "#e8b923"
 ## Departmental Communications Consoles END
 
 - type: entity

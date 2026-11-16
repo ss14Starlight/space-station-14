@@ -21,7 +21,7 @@
   equipment:
     #shoes: ClothingShoesBootsLaceup # Starlight
     id: LawyerPDA
-    eyes: ClothingEyesGlassesCheapSunglasses # Starlight, some cheap sunglasses.
+    eyes: ClothingEyesModularHudCheapSunglasses # Starlight
     ears: ClothingHeadsetLawyer # Starlight, not part of Security.
   inhand:
     - BriefcaseLawyerFilled # Starlight, Lawyer briefcase.
@@ -35,7 +35,7 @@
   job: Lawyer
   equipment:
     head: ClothingHeadHatBowlerHat
-    eyes: ClothingEyesGlassesCheapSunglasses
+    eyes: ClothingEyesModularHudCheapSunglasses # Starlight
     mask: ClothingMaskBreath
     misc: ClothingNeckLawyerbadge # Starlight change slot to misc.
     outerClothing: ClothingOuterWinterColorBlack

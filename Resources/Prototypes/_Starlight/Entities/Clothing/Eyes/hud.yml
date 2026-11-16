@@ -1,201 +1,280 @@
 - type: entity
-  parent: [ClothingEyesBase, BaseBlueShieldContraband]
+  parent: [ClothingEyesModularHudVisor, BaseBlueShieldContraband]
   id: ClothingEyesHudBlueShield
   name: HUD блюшилда
   description: Инновационный нашлемный дисплей, сканирующий гуманоидов в поле зрения и выдающий точные данные об их ID, записях СБ и медицинской информации.
   components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Eyes/Hud/blueshield.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Eyes/Hud/blueshield.rsi
-    - type: ShowJobIcons
-    - type: ShowMindShieldIcons
-    - type: ShowCriminalRecordIcons
-    - type: ShowHealthBars
-      damageContainers:
-        - Biological
-        - IPC
-        - Hybrid
-        - MoffDemonBiological
-    - type: ShowHealthIcons
-      damageContainers:
-        - Biological
-        - IPC
-        - Hybrid
-    - type: Tag
-      tags:
-        - HudMedical
-    - type: EyeProtection
-      protectionTime: 5
+  - type: ModularHudVisuals
+    innateVisuals:
+      lens:
+        color: '#00003C'
+        priority: 1000
+        preventsOtherColors: true
+      accent:
+        color: '#00003C'
+        priority: 1000
+      specular:
+        color: '#FFFFFF10'
+        priority: 1000
+  - type: ModularHud
+    maximumContainedModules: 4
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+        - id: HudModuleShowInorganicHealthBars
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Contraband
+    tier: Tier2
 
 - type: entity
-  parent: [ClothingEyesHudBlueShield, ClothingHeadEyeBaseFlippable]
+  parent: ClothingEyesModularHudPatch
   id: ClothingEyesEyepatchHudBlueShield
   name: моновизор блюшилда
   description: Инновационный нашлемный дисплей, сканирующий гуманоидов в поле зрения и выдающий точные данные об их ID, записях СБ и медицинской информации. Для истинных патриотов.
   components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Eyes/Hud/blueshieldpatch.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Eyes/Hud/blueshieldpatch.rsi
-    - type: Tag
-      tags:
-        - PetWearable
-        - WhitelistChameleon
-        - HudMedical
+  - type: ModularHudVisuals
+    innateVisuals:
+      lens:
+        color: '#00003C'
+        priority: 1000
+        preventsOtherColors: true
+      accent:
+        color: '#00003C'
+        priority: 1000
+      specular:
+        color: '#FFFFFF10'
+        priority: 1000
+  - type: ModularHud
+    maximumContainedModules: 4
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+        - id: HudModuleShowInorganicHealthBars
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - HudMedical
+    - PetWearable
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments: []
+    allowedJobs:
+    - BlueShield
+    contrabandType: NanoTrasen
+  - type: EyeProtection
+    protectionTime: 5
 
 - type: entity
-  parent: [ClothingEyesEyepatchHudBlueShield, ClothingHeadEyeBaseFlipped]
+  parent: ClothingEyesModularHudPatch
   id: ClothingEyesEyepatchHudBlueShieldFlipped
+  categories: [HideSpawnMenu]
   name: моновизор блюшилда
+  components:
+  - type: ModularHudVisuals
+    innateVisuals:
+      lens:
+        color: '#00003C'
+        priority: 1000
+        preventsOtherColors: true
+      accent:
+        color: '#00003C'
+        priority: 1000
+      specular:
+        color: '#FFFFFF10'
+        priority: 1000
+  - type: ModularHud
+    maximumContainedModules: 4
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+        - id: HudModuleShowInorganicHealthBars
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - HudMedical
+    - PetWearable
+  - type: Contraband
+    tier: Tier2
+    allowedDepartments: []
+    allowedJobs:
+    - BlueShield
+    contrabandType: NanoTrasen
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Foldable
+    folded: true
 
 - type: entity
-  parent: [ BaseCommandContraband, BaseAssistantManagerContraband, ClothingEyesHudCommand ]
+  parent: [ClothingEyesBase, BaseCommandContraband, BaseAssistantManagerContraband]
   id: ClothingEyesEyepatchHudAssistantManager
   name: моновизор ассистента управляющего
   description: Нефритовый нашлемный дисплей, сканирующий гуманоидов в поле зрения и выдающий точные данные об их ID. Узри его почти невидимую нить.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Eyes/Hud/assistantpatch.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Hud/assistantpatch.rsi
   - type: Tag
     tags:
     - PetWearable
     - WhitelistChameleon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/assistantpatch.rsi
+  - type: ShowJobIcons
+  - type: ShowAccess
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
-  id: ClothingEyesHudBrigmedic
-  name: HUD бригмедика
-  description: HUD, улучшенные Тамаси. Да. Бригмедиковские.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Eyes/Hud/brigmedichud.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Eyes/Hud/brigmedichud.rsi
-    - type: EyeProtection
-      protectionTime: 5
-    - type: ShowHealthBars
-      damageContainers:
-      - Biological
-      - Hybrid
-      - MoffDemonBiological
-    - type: Construction
-      graph: GlassesSecHUD
-      node: glassesSec
-    - type: Tag
-      tags:
-        - HamsterWearable
-        - WhitelistChameleon
-        - HudSecurity
-    - type: IdentityBlocker
-      coverage: EYES
-
-- type: entity
-  parent: [ClothingEyesHudBrigmedic, ClothingHeadEyeBaseFlippable]
+  parent: [ClothingEyesModularHudPatch, BaseRestrictedContraband]
   id: ClothingEyesEyepatchHudBrigmedic
   name: моновизор бригмедика
   description: HUD, улучшенные Тамаси для истинных патриотов. Да. Бригмедиковские.
   components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Eyes/Hud/brigmedpatch.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Eyes/Hud/brigmedpatch.rsi
-    - type: Tag
-      tags:
-        - PetWearable
-        - WhitelistChameleon
-        - HudMedical
-        - HudSecurity
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - HamsterWearable
+    - HudSecurity
+    - PetWearable
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic]
 
 - type: entity
-  parent: [ClothingEyesEyepatchHudBrigmedic, ClothingHeadEyeBaseFlipped]
+  parent: [ClothingEyesModularHudPatch, BaseRestrictedContraband]
   id: ClothingEyesEyepatchHudBrigmedicFlipped
+  categories: [HideSpawnMenu]
   name: моновизор бригмедика
-
-- type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
-  id: ClothingEyesHudCorpsman
-  name: HUD санитара
-  description: HUD, улучшенные Тамаси для истинных патриотов. Да. Корпсменские.
+  description: An eye display that looks like a mixture of medical and security huds. For true patriots.
   components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Eyes/Hud/corpsmanhud.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Eyes/Hud/corpsmanhud.rsi
-    - type: EyeProtection
-      protectionTime: 5
-    - type: ShowHealthBars
-      damageContainers:
-        - Biological
-        - Hybrid
-        - MoffDemonBiological
-    - type: Construction
-      graph: GlassesSecHUD
-      node: glassesSec
-    - type: Tag
-      tags:
-        - HamsterWearable
-        - WhitelistChameleon
-        - SecBeltEquip
-    - type: IdentityBlocker
-      coverage: EYES
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowMedicalIcons
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - HamsterWearable
+    - HudSecurity
+    - PetWearable
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: Foldable
+    folded: true
+  - type: Contraband
+    tier: Tier2
+    allowedJobs: [Brigmedic]
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: ClothingEyesModularHudVisor
   id: ClothingEyesHudChemical
   name: химический HUD
   description: Нашлемный дисплей, сканирующий химический состав раствора.
   components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Eyes/Hud/chemhud.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Eyes/Hud/chemhud.rsi
-    - type: SolutionScanner
-    - type: Tag
-      tags:
-        - PetWearable
-        - CorgiWearable
-        - WhitelistChameleon
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleSolutionScanner
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - PetWearable
+    - CorgiWearable
 
 - type: entity
-  parent: [ClothingEyesHudChemical, ClothingHeadEyeBaseFlippable]
+  parent: ClothingEyesModularHudPatch
   id: ClothingEyesEyepatchHudChemical
   name: химический моновизор
   description: Нашлемный дисплей, сканирующий химический состав раствора. Для истинных патриотов.
   components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Eyes/Hud/chempatch.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Eyes/Hud/chempatch.rsi
-    - type: Tag
-      tags:
-        - PetWearable
-        - WhitelistChameleon
-        - HudMedical
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleSolutionScanner
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - PetWearable
+    - CorgiWearable
+    - HudMedical
 
 - type: entity
-  parent: [ClothingEyesEyepatchHudChemical, ClothingHeadEyeBaseFlipped]
+  parent: ClothingEyesModularHudPatch
   id: ClothingEyesEyepatchHudChemicalFlipped
+  categories: [HideSpawnMenu]
   name: химический моновизор
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleSolutionScanner
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - PetWearable
+    - CorgiWearable
+    - HudMedical
+  - type: Foldable
+    folded: true
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: ClothingEyesModularHudVisor
   id: ClothingEyesHudSkills
   name: HUD навыков
   description: Визор со встроенным HUD навыков, показывающим трудовую историю ближайших членов экипажа НТ.
   components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Eyes/Hud/hudskill.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Eyes/Hud/hudskill.rsi
-    - type: ShowJobIcons
-    - type: ShowMindShieldIcons
-    - type: ShowCriminalRecordIcons
-    - type: ShowAccess
-    - type: EyeProtection
-      protectionTime: 5
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowJobIcons
+        - id: HudModuleShowCriminalRecordIcons
+        - id: HudModuleShowIdAccess
+  - type: EyeProtection
+    protectionTime: 5
 
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
@@ -240,7 +319,6 @@
       tags:
         - PetWearable
 
-#USSP
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSovietContraband]
   id: ClothingEyesHudSovietMarine
@@ -305,3 +383,36 @@
     - type: RadioChime
       sound:
         path: /Audio/_Starlight/Effects/Radio/tsf.ogg
+
+- type: entity
+  parent: [ClothingEyesModularHudBase, BaseSyndicateContraband]
+  id: ClothingEyesModularHudSyndicate
+  name: модульный HUD-визор Синдиката
+  description: Профессиональный HUD Синдиката, предназначенный для лучшего обнаружения гуманоидов и их последующего устранения.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Hud/syndicate.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Eyes/Hud/syndicate.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/syndicate.rsi
+    clothingVisuals: {}
+  - type: ModularHud
+    maximumContainedModules: 4
+  - type: ModularHudVisuals
+    frameIsDynamic: true
+    speciesWithDifferentClothing:
+    - arachnid
+    - dog
+    - resomi
+    inhandExcludedLayers:
+      default:
+      - Accent
+      - LensAccentMajor
+  - type: Tag
+    tags:
+    - FullEyeCovering
+    - ModularHudSyndicate
+    - PetWearable
+  - type: Contraband
+    tier: Tier2

@@ -4,7 +4,6 @@
     ClothingHeadHatBeretChemist: 2
     ClothingHeadNurseHatChemist: 2
     ClothingShoesBootsWinterChem: 2
-    ClothingEyeGlassesChemicalPrescription: 2
     ClothingEyesGlassesChemical: 2
     HandLabeler: 2
     ClothingHeadsetMedical: 2
@@ -19,6 +18,7 @@
     ClothingOuterWinterChem: 2
     ClothingHandsGlovesLatex: 2
     ClothingShoesColorWhite: 2
+    HudModuleVisionCorrection: 3
   contrabandInventory:
     StrangePill: 1 # Blimpuf
   emaggedInventory: # Blimpuf

@@ -20,3 +20,14 @@
       sprite: _Starlight/Admeme/Clothing/Neck/Mantles/majorpauldron-ntnc.rsi
     - type: Clothing
       sprite: _Starlight/Admeme/Clothing/Neck/Mantles/majorpauldron-ntnc.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakCSDMantle
+  name: central security division mantle
+  description: A mantle for members of the central security division who like to get their hands dirty.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/Clothing/Neck/Mantles/CSD_mantle.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/Clothing/Neck/Mantles/CSD_mantle.rsi
