@@ -36,7 +36,7 @@ public sealed partial class StainableComponent : Component
     public List<PrototypeLayerData> IconVisuals = new();
 
     [ViewVariables]
-    public HashSet<int> RevealedLayers = new();
+    public HashSet<string> RevealedLayers = new(); // Starlight - track by layer map key, not index
 
     // Moff start - Stains not guaranteed
     [DataField]
