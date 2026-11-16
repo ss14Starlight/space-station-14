@@ -1539,4 +1539,11 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_hair.rsi
       state: bubbleponytailalt
+- type: marking
+  id: HumanHairLongPigtailsAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longpigtailsalt
 #starlight end

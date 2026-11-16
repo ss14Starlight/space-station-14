@@ -110,6 +110,7 @@ marking-HumanHairLong3 = Long Hair 3
 marking-HumanHairLongWithBundles = Long With Bundles
 marking-HumanHairLongovereye = Long Over Eye
 marking-HumanHairLongPigtails = Long Pigtails
+marking-HumanHairLongPigtailsAlt = Long Pigtails (Alt)
 marking-HumanHairLongPonytailFront = Long Ponytail (Front)
 marking-HumanHairLongPonytailFrontAlt = Long Ponytail (FrontAlt)
 marking-HumanHairLbangs = Long Bangs
