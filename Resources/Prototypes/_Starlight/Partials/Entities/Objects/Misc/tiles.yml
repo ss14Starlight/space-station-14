@@ -9,7 +9,7 @@
     damage: !Remove
 
 - type: !PartialOnly entity
-  id: FloorItemTileWeb
+  id: FloorTileItemWeb
   components:
   - type: Solution
     id: food
