@@ -156,7 +156,7 @@ public sealed partial class AchievementSystem : SharedAchievementSystem
     private bool HasAchievementUnlocked(ICommonSession session, string achievementId)
         => _nullLinkPlayers.HasAchievementUnlocked(session.UserId, achievementId);
 
-    public ValueTask<bool> HasAchievementUnlockedAsync(ICommonSession session, string achievementId)
+    public override ValueTask<bool> HasAchievementUnlockedAsync(ICommonSession session, string achievementId)
         => _nullLinkPlayers.HasAchievementUnlockedAsync(session.UserId, achievementId);
 
     private ValueTask<bool> UnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
