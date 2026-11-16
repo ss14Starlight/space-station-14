@@ -1,25 +1,4 @@
 Entries:
-- author: Talirson
-  changes:
-  - message: Moved the bluespace harvester to consumer tab in power monitoring consoles.
-    type: Tweak
-  id: 410100
-  time: '2026-11-04T14:09:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7035
-- author: SirLutz
-  changes:
-  - message: Antagscaling reworked, "centcomm" jobs dont contribute anymore to antag scaling. All Security jobs, all Salvage, Captain and BSO do now. The code is also now more robust not to break, when someone renames jobs.
-    type: Tweak
-  id: 410101
-  time: '2026-11-04T14:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6898
-- author: SirLutz
-  changes:
-  - message: Removed the ability to drag from Coscult Custodians and Lodestars, Oracles as semi-leaders can drag their minion friends or bodies.
-    type: Remove
-  id: 410102
-  time: '2026-11-04T14:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6898
 - author: SirLutz
   changes:
   - message: Custodians can now pry open powered doors.
@@ -2799,4 +2778,25 @@ Entries:
   id: 410499
   time: '2026-11-16T06:21:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7273
+- author: SevenShades
+  changes:
+  - message: Added a MedTak paperwork module.
+    type: Add
+  id: 410500
+  time: '2026-11-16T07:29:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7275
+- author: SevenShades
+  changes:
+  - message: Removed Emag immunity on MedTak silicons.
+    type: Remove
+  id: 410501
+  time: '2026-11-16T07:29:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7275
+- author: SevenShades
+  changes:
+  - message: The MedTak hypospray can be used on Reptilians again.
+    type: Tweak
+  id: 410502
+  time: '2026-11-16T07:29:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7275
 Order: -1
