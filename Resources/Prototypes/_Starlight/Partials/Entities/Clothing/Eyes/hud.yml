@@ -292,3 +292,21 @@
   - type: Contraband
     tier: Tier2
     allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
+
+- type: !PartialOnly entity
+  id: ClothingEyesHudSecurity
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowMindShieldIcons
+        - id: HudModuleShowCriminalRecordIcons
+  - type: Tag
+    tags:
+    - ModularHudSingleEye
+    - WhitelistChameleon
+    - HudSecurity
+    - PetWearable
+  - type: Contraband
+    tier: Tier2
