@@ -1,53 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Dragons Health has been reduced by 25 HP, this is to adjust to the new counted antagscaling.
-    type: Tweak
-  id: 410108
-  time: '2026-11-04T14:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6898
-- author: SirLutz
-  changes:
-  - message: Antagscaling now also adjusts the slowdown, if it didnt before.
-    type: Add
-  id: 410109
-  time: '2026-11-04T14:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6898
-- author: SirLutz
-  changes:
-  - message: Dragons Health slowdown has been shifted by 5%, making them slowdown an bit later.
-    type: Tweak
-  id: 410110
-  time: '2026-11-04T14:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6898
-- author: SirLutz
-  changes:
-  - message: Carps and dragons are now hostile toward Floral entities.
-    type: Tweak
-  id: 410111
-  time: '2026-11-04T14:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6898
-- author: SirLutz
-  changes:
-  - message: Dragon pierce flatreduction has been lowered 2->1.
-    type: Tweak
-  id: 410112
-  time: '2026-11-04T14:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6898
-- author: SirLutz
-  changes:
-  - message: Buckshots now increase the armor value of the target by 20%, and not 40% anymore(this made things like dragon almost immune to it, its still not great but damages it atleast).
-    type: Tweak
-  id: 410113
-  time: '2026-11-04T14:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6898
-- author: Zokkie
-  changes:
-  - message: Laughing sound effect for Reptilians/Neo-Reptilians.
-    type: Add
-  id: 410114
-  time: '2026-11-04T18:53:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7039
 - author: Romero/Littlemen
   changes:
   - message: Hotfix for the Verdict, a new gun in the sec armory and available as a purchase by cargo.
@@ -2799,4 +2750,53 @@ Entries:
   id: 410507
   time: '2026-11-16T13:18:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7259
+- author: wonderfulnewworld
+  changes:
+  - message: Added prescription skills glasses, prescription administration glasses, and diagnostic goggles.
+    type: Add
+  id: 410508
+  time: '2026-11-16T13:46:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7266
+- author: wonderfulnewworld
+  changes:
+  - message: HoP can now choose their eyewear.
+    type: Add
+  id: 410509
+  time: '2026-11-16T13:46:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7266
+- author: wonderfulnewworld
+  changes:
+  - message: Removed musician shades.
+    type: Remove
+  id: 410510
+  time: '2026-11-16T13:46:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7266
+- author: wonderfulnewworld
+  changes:
+  - message: All jobs that spawned with sunglasses/cheap sunglasses before now spawn with modular ones.
+    type: Tweak
+  id: 410511
+  time: '2026-11-16T13:46:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7266
+- author: wonderfulnewworld
+  changes:
+  - message: All jobs now either have a prescription option or have access to at least 1 frame that supports the prescription module, for the short-sighted trait.
+    type: Tweak
+  id: 410512
+  time: '2026-11-16T13:46:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7266
+- author: wonderfulnewworld
+  changes:
+  - message: The black and white module now overwrites hud color apperance, like the noir and blue noir ones.
+    type: Tweak
+  id: 410513
+  time: '2026-11-16T13:46:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7266
+- author: wonderfulnewworld
+  changes:
+  - message: Generic modular sunglasses no longer count towards the misc glasses steal objective.
+    type: Fix
+  id: 410514
+  time: '2026-11-16T13:46:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7266
 Order: -1
