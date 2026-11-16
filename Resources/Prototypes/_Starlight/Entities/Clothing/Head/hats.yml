@@ -1109,6 +1109,44 @@
     - WhitelistChameleon
 
 - type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretGunnerySergeant
+  name: "берет сержанта-инструктора"
+  description: "Берет, который носит сержант-инструктор."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/beret_gunnery_sergeant.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/beret_gunnery_sergeant.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatSergeantDrillHat
+  name: "строевая шляпа сержанта"
+  description: "Чтобы курсанты знали, кого бояться."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/sergeant_drill_hat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/sergeant_drill_hat.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatBeretCaptain
   name: берет капитана

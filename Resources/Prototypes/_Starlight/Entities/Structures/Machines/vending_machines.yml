@@ -206,7 +206,7 @@
   description: Снаряжение для офицеров службы безопасности.
   components:
   - type: AccessReader
-    access: [["Security"], ["Cadet"]]
+    access: [["Security"]]
   - type: Sprite
     sprite: _Starlight/Structures/Machines/VendingMachines/security.rsi
   - type: Store

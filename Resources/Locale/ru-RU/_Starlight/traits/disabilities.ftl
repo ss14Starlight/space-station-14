@@ -9,3 +9,6 @@ trait-extremelightsensitivity-desc = Вы экстремально чувств�
 
 trait-nightblind-name = Ночная слепота
 trait-nightblind-desc = В отличие от остальных вашего вида, вы не видите в темноте.
+
+trait-pollen-allergic-name = Аллергия на пыльцу
+trait-pollen-allergic-desc = У вас аллергия на пыльцу.

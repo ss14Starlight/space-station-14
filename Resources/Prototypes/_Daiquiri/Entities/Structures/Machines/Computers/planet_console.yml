@@ -1,0 +1,45 @@
+- type: entity
+  id: ComputerPlanetConsole
+  parent: BaseComputer
+  name: planet flight console
+  description: Charts a course to another planet and jumps the shuttle it is bolted to over to it.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          sprite: _Daiquiri/Structures/Machines/computers.rsi
+          state: planet
+        - map: ["computerLayerKeys"]
+          state: tech_key
+        - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+          state: generic_panel_open
+    - type: PlanetConsole
+      printTime: 15
+      cooldown: 1200
+    - type: ActivatableUI
+      key: enum.PlanetConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.PlanetConsoleUiKey.Key:
+          type: PlanetConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+    - type: Computer
+      board: PlanetConsoleCircuitboard
+    - type: PointLight
+      color: "#3FC9E8"
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: PlanetConsoleCircuitboard
+  name: planet console board
+  description: A computer printed circuit board for a planet flight console.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerPlanetConsole

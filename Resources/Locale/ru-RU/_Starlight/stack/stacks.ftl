@@ -147,3 +147,9 @@ stack-abyssium-bar = {$amount ->
     [1] абиссиумовый слиток
     *[other] абиссиумовые слитки
 }
+
+stack-light-tile = светлая напольная плитка
+stack-sandbag = {$amount ->
+    [1] мешок с песком
+    *[other] мешки с песком
+}

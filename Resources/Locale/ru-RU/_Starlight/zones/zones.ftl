@@ -22,3 +22,6 @@ zone-placer-window-hint = Выберите зону, затем протянит
 sandbox-window-spawn-zones-button = Зоны
 sandbox-window-show-zones-button = Показать зоны
 sandbox-window-show-rooms-button = Показать комнаты
+
+zone-detective = Детектив
+zone-virology = Вирусология

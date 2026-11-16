@@ -30,3 +30,8 @@ monument-interface-influences-purchased = Получено
 monument-interface-influences-owned-tooltip = У вас уже есть это влияние.
 monument-interface-influences-unlocked-not-enough-entropy-tooltip = Вам нужно ещё {$entropy} энтропии, чтобы получить это влияние.
 monument-interface-influences-locked-tooltip = Это влияние заблокировано, вливайте больше энтропии в монумент.
+
+monument-interface-glyphs-requires-cultists = { $count ->
+    [one] Для активации требуется 1 культист на глифе.
+   *[other] Для активации требуется {$count} культистов на глифе.
+}

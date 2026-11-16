@@ -39,15 +39,18 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
 
         var activeUI = _entManager.GetEntity(loaderUiState.ActiveUI);
 
+        // A plain program-list refresh must not rebuild the active ui: RetrieveCartridgeUI
+        // calls Setup(), which creates a brand new fragment. The old early return left that
+        // copy unattached while the visible fragment silently stopped receiving states
+        // (for example the Lichess link status), so only rebuild when the program changes.
+        if (_activeProgram == activeUI && _activeUiFragment != null)
+            return;
+
         _activeProgram = activeUI;
 
         var ui = RetrieveCartridgeUI(activeUI);
         var comp = RetrieveCartridgeComponent(activeUI);
         var control = ui?.GetUIFragmentRoot();
-
-        //Prevent the same UI fragment from getting disposed and attached multiple times
-        if (_activeUiFragment?.GetType() == control?.GetType())
-            return;
 
         if (_activeUiFragment is not null)
             DetachCartridgeUI(_activeUiFragment);
@@ -118,10 +121,25 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
 
     protected override void Dispose(bool disposing)
     {
+        // Let the active program know the ui is going away before the interface is torn
+        // down, so it can stop background work such as a match search.
+        if (disposing)
+            SendUiClosed();
+
         base.Dispose(disposing);
 
         if (disposing)
             _activeUiFragment?.Dispose();
+    }
+
+    private void SendUiClosed()
+    {
+        if (!_activeProgram.HasValue)
+            return;
+
+        SendMessage(new CartridgeLoaderUiMessage(
+            _entManager.GetNetEntity(_activeProgram.Value),
+            CartridgeUiMessageAction.UiClosed));
     }
 
     protected CartridgeComponent? RetrieveCartridgeComponent(EntityUid? cartridgeUid)

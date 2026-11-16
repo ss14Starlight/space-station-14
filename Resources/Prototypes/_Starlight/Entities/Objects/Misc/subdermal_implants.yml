@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: MagillitisSerumImplant
-  name: имплант сыворотки магиллита
-  description: Экспериментальный биочип, вызывающий необратимый быстрый рост мышц у гоминид. Побочные эффекты могут включать гипертрихоз, вспышки ярости и бесконечную любовь к бананам.
+  name: magillitis serum implant
+  description: An experimental biochip which causes irreversable rapid muscular growth in Hominidae. Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas.
   categories: [HideSpawnMenu]
   components:
     - type: SubdermalImplant
@@ -18,8 +18,8 @@
 - type: entity
   parent: MindShieldImplant
   id: TSFMindShieldImplant
-  name: имплант «Щит разума» ТСФ
-  description: Этот имплант обеспечит лояльность Солгов и защитит от устройств контроля разума.
+  name: TSF mindshield implant
+  description: This implant will ensure loyalty to SolGov and prevent mind control devices.
   categories: [ HideSpawnMenu ]
   components:
   - type: MindShieldImplant
@@ -28,8 +28,8 @@
 - type: entity
   parent: DeathRattleImplant
   id: DeathRattleImplantTSF
-  name: имплант «предсмертный хрип» ТСФ
-  description: Этот имплант сообщит по радиоканалу ТСФ, если пользователь окажется в критическом состоянии или умрёт.
+  name: TSF death rattle implant
+  description: This implant will inform the TSF radio channel should the user fall into critical condition or die.
   categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger
@@ -39,8 +39,8 @@
 - type: entity
   parent: DeathRattleImplant
   id: DeathRattleImplantSalvage
-  name: утилизаторский имплант «предсмертный хрип»
-  description: Этот имплант сообщит по радиоканалу Экспедиции, если пользователь окажется в критическом состоянии или умрёт.
+  name: Salvage death rattle implant
+  description: This implant will inform the Expedition radio channel should the user fall into critical condition or die.
   categories: [ HideSpawnMenu ]
   components:
     - type: RattleOnTrigger
@@ -50,8 +50,8 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: BluespaceImplant
-  name: блюспейс-имплант
-  description: Продвинутый подкожный имплант, который при активации телепортирует пользователя далеко прочь.
+  name: bluespace implant
+  description: An advanced subdermal implant that, when activated, teleports the user far away.
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -69,8 +69,8 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: RedspaceImplant
-  name: редспейс-имплант
-  description: Продвинутый подкожный имплант, который при активации телепортирует пользователя далеко прочь.
+  name: redspace implant
+  description: An advanced subdermal implant that, when activated, teleports the user far away.
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -89,8 +89,8 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: GearAcidifierImplant
-  name: имплант-растворитель снаряжения
-  description: Этот имплант при смерти расплавляет снаряжение пользователя, оставляя тело целым.
+  name: gear-acidifier implant
+  description: This implant melts the user's equipment upon death, leaving the body intact.
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -123,8 +123,8 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: BluespaceStorageImplant
-  name: блюспейс-имплант «хранилище»
-  description: Этот имплант обеспечивает скрытое хранилище в теле человека с помощью блюспейс-технологий.
+  name: bluespace storage implant
+  description: This implant grants hidden storage within a person's body using bluespace technology.
   categories: [ HideSpawnMenu ]
   components:
     - type: StorageImplant
@@ -149,8 +149,8 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: TerminatorDeathAcidifierImplant
-  name: терминаторский имплант самоуничтожения
-  description: Этот имплант расплавляет пользователя и его снаряжение при ручной активации. Не срабатывает во время трансформации.
+  name: terminator self-destruct implant
+  description: This implant melts the user and their equipment upon manual activation. Will not trigger during transformation.
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -172,8 +172,8 @@
 - type: entity
   parent: MicroBombImplant
   id: TerminatorMicroBombImplant
-  name: терминаторский имплант-микробомба
-  description: Этот имплант взрывает пользователя при активации или после смерти.
+  name: terminator micro bomb implant
+  description: "Этот имплант взрывает носителя при активации или смерти."
   categories: [ HideSpawnMenu ]
   components:
   - type: Explosive
@@ -183,12 +183,42 @@
     maxIntensity: 15
     canCreateVacuum: false
 
+- type: entity
+  parent: BaseSubdermalImplant
+  id: PicoBombImplant
+  name: "имплант пикобомбы"
+  description: "Этот имплант взрывает носителя при активации или смерти."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivatePicoBomb
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: TriggerOnActivateImplant
+  - type: ExplodeOnTrigger
+  - type: GibOnTrigger
+    targetUser: true
+    deleteItems: true
+  - type: Explosive
+    explosionType: PicoBomb
+    totalIntensity: 10
+    intensitySlope: 5
+    maxIntensity: 30
+    canCreateVacuum: false
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+    - MicroBomb
+
 # Traitor Mind Control
 - type: entity
   parent: BaseSubdermalImplant
   id: MindControlImplant
-  name: имплант контроля разума
-  description: Дешёвая подделка Щита разума. Этот имплант ставит пользователя на сторону Синдиката.
+  name: mind control implant
+  description: A knock-off of the Mindshield. this Implant ensures the user is on the side of the syndicate.
   categories: [ HideSpawnMenu ]
   components:
     - type: MindControlImplant
@@ -197,8 +227,8 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: RadioImplantNanoTrasen
-  name: радиоимплант НаноТрейзен
-  description: Этот имплант даёт доступ к каналу НаноТрейзен без гарнитуры. Разрешён только персоналу НаноТрейзен.
+  name: nanotrasen radio implant
+  description: This implant grants access to the NanoTrasen channel without a headset. Only authorized for NanoTrasen personnel.
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -209,8 +239,8 @@
 - type: entity
   parent: DeathRattleImplant
   id: DeathRattleImplantNanoTrasen
-  name: имплант «предсмертный хрип» НаноТрейзен
-  description: Этот имплант сообщит по радиоканалу НаноТрейзен, если пользователь окажется в критическом состоянии или умрёт.
+  name: nanotrasen death rattle implant
+  description: This implant will inform the NanoTrasen radio channel should the user fall into critical condition or die.
   categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger
@@ -221,8 +251,8 @@
 - type: entity
   parent: TrackingImplant
   id: CommandTrackingImplant
-  name: командный имплант-трекер
-  description: Этот имплант оснащён устройством слежения, подключённым к сети датчиков костюма, а также монитором состояния для радиоканалов охраны и командования.
+  name: command tracking implant
+  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the security and command radio channels.
   categories: [ HideSpawnMenu ]
   components:
     - type: RattleOnTrigger
@@ -235,8 +265,8 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: XenoroachSelfDestructImplant
-  name: имплант самоуничтожения ксенотаракана
-  description: Растворяет шасси ксенотаракана и все удерживаемые предметы при ручной активации.
+  name: xenoroach self-destruct implant
+  description: Dissolves the xenoroach chassis and any held items on manual activation.
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -258,8 +288,8 @@
 - type: entity
   parent: TrackingImplant
   id: ITGTrackingImplant
-  name: имплант-трекер МТГ
-  description: Этот имплант оснащён устройством слежения, подключённым к сети датчиков костюма, а также монитором состояния для канала Экспедиции.
+  name: itg tracking implant
+  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the expedition channel.
   categories: [ HideSpawnMenu ]
   components:
     - type: RattleOnTrigger
@@ -270,9 +300,9 @@
 # USSP Implants
 - type: entity
   id: USSPUplinkImplant
-  name: аплинк-имплант USSP
-  description: Подкожный имплант, содержащий радио аплинка USSP.
-  parent: [ BaseSubdermalImplant, StorePresetUSSP ]
+  name: USSP uplink implant
+  description: A subdermal implant containing the USSP uplink radio.
+  parent: BaseSubdermalImplant
   categories: [ HideSpawnMenu ]
   components:
     - type: SubdermalImplant
@@ -280,9 +310,7 @@
       whitelist:
         components:
           - Hands
-    - type: Store
-      balance:
-        Telebond: 0
+    - type: RemoteStore
     - type: UserInterface
       interfaces:
         enum.StoreUiKey.Key:
@@ -292,8 +320,8 @@
 - type: entity
   parent: DeathRattleImplant
   id: DeathRattleImplantUSSP
-  name: имплант «предсмертный хрип» СССП
-  description: Имплант сообщит в радиоканал СССП, если носитель впадёт в критическое состояние или умрёт.
+  name: USSP death rattler
+  description: This implant will inform the USSP radio channel should the user fall into critical condition or die.
   categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger
@@ -303,8 +331,8 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: RadioImplantUSSP
-  name: радиоимплант СССП
-  description: Имплант позволяет слушать и говорить в радиоканале СССП без гарнитуры.
+  name: USSP radio implant
+  description: This implant will allow you to listen and talk in the USSP radio channel without a headset.
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -321,3 +349,16 @@
   components:
   - type: MindShieldImplant
     mindShieldStatusIcon: ITGMindShieldIcon
+
+- type: entity
+  parent: DeathRattleImplant
+  id: PollenDistressImplant
+  name: "цветочная пыльца бедствия"
+  description: "Органический коммуникационный имплант, передающий сигналы бедствия через споро-улей дион."
+  categories: [HideSpawnMenu]
+  components:
+    - type: RattleOnTrigger
+      radioChannel:
+        - SporeRadio
+      messages:
+        Dead: pollen-alert-pollen-dead

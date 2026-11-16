@@ -1,7 +1,7 @@
 - type: entity
   id: CosmicGlyphBase
   name: базовый глиф
-  description: A strange, otherworldly marking.
+  description: "Странный, потусторонний знак."
   abstract: true
   placement:
     mode: SnapgridCenter
@@ -106,6 +106,7 @@
     transmutations:
     - SwordCosmicCult
     - SpearCosmicCult
+    - ScytheCosmicCult
     whitelist:
       toolQuality:
       - Slicing

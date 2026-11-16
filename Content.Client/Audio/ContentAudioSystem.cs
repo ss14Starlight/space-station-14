@@ -71,27 +71,23 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     private void OnRoundCleanup(RoundRestartCleanupEvent ev)
     {
         _fadingOut.Clear();
+        _postRoundMusic = false; // Starlight
 
-        // Preserve lobby music but everything else should get dumped.
+        // Preserve lobby music and the restart jingle. Do not silence them and then try to
+        // restore the captured gain: StartLobbyMusic() may replace the stream between the
+        // capture and the restore, leaving the new stream at gain 0 (audible only as silence).
         var lobbyMusic = _lobbySoundtrackInfo?.MusicStreamEntityUid;
-        TryComp(lobbyMusic, out AudioComponent? lobbyMusicComp);
-        var oldMusicGain = lobbyMusicComp?.Gain;
-
         var restartAudio = _lobbyRoundRestartAudioStream;
-        TryComp(restartAudio, out AudioComponent? restartComp);
-        var oldAudioGain = restartComp?.Gain;
 
-        SilenceAudio();
-
-        if (oldMusicGain != null)
+        var query = AllEntityQuery<AudioComponent>();
+        while (query.MoveNext(out var uid, out var comp))
         {
-            Audio.SetGain(lobbyMusic, oldMusicGain.Value, lobbyMusicComp);
+            if (uid == lobbyMusic || uid == restartAudio)
+                continue;
+
+            Audio.SetGain(uid, 0f, comp);
         }
 
-        if (oldAudioGain != null)
-        {
-            Audio.SetGain(restartAudio, oldAudioGain.Value, restartComp);
-        }
         PlayRestartSound(ev);
     }
 

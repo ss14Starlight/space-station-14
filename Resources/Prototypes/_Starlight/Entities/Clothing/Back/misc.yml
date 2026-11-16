@@ -2,6 +2,7 @@
   parent: [ Clothing, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband ]
   id: ClothingNullSpaceDrainer
   name: осушитель нуль-пространства
+  suffix: SelfUnremovable
   description: Совмещённое устройство, занимающее физическое пространство и нуль-пространство. Поглощает внешнюю энергию в данные. Устройство сдерживает и блокирует сущности от входа и выхода из нуль-пространства.
   components:
     - type: Tag
@@ -15,12 +16,9 @@
     - type: Clothing
       slots: BACK
       sprite: _Starlight/Clothing/Back/nullspaceteleporter.rsi
-    - type: IdClothingBlocker
-      freezeUser: false
-      allowedAccesses:
-        - Security
-        - Cadet
-        - Command
+      stripDelay: 10
+      equipDelay: 5 # to avoid accidentally falling into the trap associated with SelfUnremovableClothing
+    - type: SelfUnremovableClothing
     - type: NullSpaceDrainer
     - type: TheDarkImmune
     - type: ResearchClient

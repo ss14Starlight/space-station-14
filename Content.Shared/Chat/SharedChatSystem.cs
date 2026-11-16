@@ -41,6 +41,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     public const char EmotesPrefix = '@';
     public const char EmotesAltPrefix = '*';
     public const char AdminPrefix = ']';
+    public const char MentorPrefix = '&'; //Starlight-edit: Mentor chat
     public const char WhisperPrefix = ',';
 
     public const char DefaultChannelKey = 'h';
@@ -49,7 +50,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
     public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
     public static readonly SoundSpecifier DefaultAnnouncementSound
-        = new SoundPathSpecifier("/Audio/Announcements/announce.ogg");
+        = new SoundPathSpecifier("/Audio/_CorvaxGoob/Announcements/announce.ogg");
 
     public static readonly char[] ICDisallowedCharacters = ['[', ']', '\\']; // Starlight
 

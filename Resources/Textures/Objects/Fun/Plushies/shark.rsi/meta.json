@@ -1,44 +1,67 @@
 {
-  "version": 1,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "Sprited for SS14 by GitHub user Willhelm53, later overhauledby GitHub user Psychpsyo",
-  "size": {
-    "x": 32,
-    "y": 32
-  },
-  "states": [
-    {
-      "name": "blue"
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
     },
-    {
-      "name": "blue-inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "blue-inhand-right",
-      "directions": 4
-    },
-    {
-      "name": "pink"
-    },
-    {
-      "name": "pink-inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "pink-inhand-right",
-      "directions": 4
-    },
-    {
-      "name": "grey"
-    },
-    {
-      "name": "grey-inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "grey-inhand-right",
-      "directions": 4
-    }
-  ]
+    "states": [
+        {
+            "name": "blue",
+            "copyright": "Sprited for SS14 by GitHub user Willhelm53, later overhauled by GitHub user Psychpsyo."
+        },
+        {
+            "name": "blue-inhand-left",
+            "copyright": "Willhelm53, Psychpsyo",
+            "directions": 4
+        },
+        {
+            "name": "blue-inhand-right",
+            "copyright": "Willhelm53, Psychpsyo",
+            "directions": 4
+        },
+        {
+            "name": "pink",
+            "copyright": "Willhelm53, Psychpsyo"
+        },
+        {
+            "name": "pink-inhand-left",
+            "copyright": "Willhelm53, Psychpsyo",
+            "directions": 4
+        },
+        {
+            "name": "pink-inhand-right",
+            "copyright": "Willhelm53, Psychpsyo",
+            "directions": 4
+        },
+        {
+            "name": "red",
+            "copyright": "Willhelm53, Psychpsyo. Red syndicate variant by ItsMaitake on Blimpuf Station."
+        },
+        {
+            "name": "red-inhand-left",
+            "copyright": "Willhelm53, Psychpsyo, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "red-inhand-right",
+            "copyright": "Willhelm53, Psychpsyo, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "grey",
+            "copyright": "Willhelm53, Psychpsyo"
+        },
+        {
+            "name": "grey-inhand-left",
+            "copyright": "Willhelm53, Psychpsyo",
+            "directions": 4
+        },
+        {
+            "name": "grey-inhand-right",
+            "copyright": "Willhelm53, Psychpsyo",
+            "directions": 4
+        }
+    ]
 }

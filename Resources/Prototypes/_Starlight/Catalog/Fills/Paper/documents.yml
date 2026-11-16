@@ -22,7 +22,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentReportStation
-  name: Station Situation Report
+  name: Отчёт о ситуации на станции
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -31,7 +31,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentReportOnEliminationOfViolations
-  name: Issue Resolution Report
+  name: Отчёт об устранении нарушений
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -49,7 +49,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentReportEmployeePerformance
-  name: Work Report
+  name: Отчёт о работе
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -58,7 +58,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentReportOnTheChaptersMeeting
-  name: Vote Record
+  name: Протокол голосования
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -67,7 +67,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentInternalAffairsAgentsReport
-  name: Audit Report
+  name: Отчёт о внутреннем аудите
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -76,7 +76,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentConditionReport
-  name: Maintenance Report
+  name: Отчёт о техническом состоянии
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -94,7 +94,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentExperimentReport
-  name: Experiment Report
+  name: Отчёт об эксперименте
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -103,7 +103,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentDisposalReport
-  name: Disposal Report
+  name: Отчёт об утилизации
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -205,7 +205,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentEvacuationShuttleRequest
-  name: Evacuation Shuttle Request
+  name: Запрос на эвакуационный шаттл
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -214,7 +214,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentShuttleRegistrationRequest
-  name: Shuttle Registration Form
+  name: Форма регистрации шаттла
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -241,7 +241,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestChangeSalary
-  name: Salary Change Request
+  name: Запрос на изменение зарплаты
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -250,7 +250,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestForNonlistedEmployment
-  name: Non-Listed Employment Contract
+  name: Трудовой договор на должность вне списка
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -259,7 +259,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestForPromotion
-  name: Request for Promotion
+  name: Запрос на повышение
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -268,7 +268,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestDocuments
-  name: Request for Release of Documents
+  name: Запрос на выдачу документов
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -277,7 +277,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestEuthanasia
-  name: Petition for Euthanasia
+  name: Ходатайство об эвтаназии
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -286,7 +286,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestConstructionWork
-  name: Construction Request
+  name: Запрос на строительные работы
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -295,7 +295,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestModernization
-  name: Modernization Request
+  name: Запрос на модернизацию
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -323,7 +323,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentComplaintViolationLaborRules
-  name: Departmental Complaint
+  name: Жалоба на отдел
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -332,7 +332,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentComplaintOffense
-  name: Criminal Complaint
+  name: Уголовная жалоба
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -343,7 +343,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentPermissionEquipment
-  name: Equipment Permit
+  name: Разрешение на снаряжение
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -379,7 +379,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentSearchPermission
-  name: Search Warrant
+  name: Ордер на обыск
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -389,7 +389,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentPermissionDisposeBody
-  name: Body Disposal Authorization
+  name: Разрешение на утилизацию тела
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -398,7 +398,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentConstructionPermit
-  name: Construction Permit
+  name: Разрешение на строительство
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -515,6 +515,51 @@
       content: doc-text-printer-enemy-of-corporation-designation
 
 - type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentIllegalImplantRemovalOrder
+  name: Приказ об удалении нелегальных имплантов
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-illegal-implant-removal-form
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentMindControlRemovalOrder
+  name: Приказ о снятии контроля над разумом
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-mind-control-removal-form
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentExplorativeSurgeryOrder
+  name: Приказ об исследовательской операции
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-explorative-surgery-form
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentProbingMindshieldOrder
+  name: Приказ о проверке ментального экранирования
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-probing-mindshield-form
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentCompulsoryTrackingOrder
+  name: Приказ о принудительном отслеживании
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-compulsory-tracking-form
+
+- type: entity
   id: BoxFolderClipboardFilled
   suffix: Filled
   parent: BoxFolderClipboard
@@ -558,3 +603,52 @@
   components:
     - type: Paper
       content: doc-text-printer-endymion-memorial
+
+# Blimpuf Emag Additions
+
+- type: entity
+  parent: [ Paper, BaseSyndicateContraband ]
+  id: PrintedDocumentSyndicateRecruitmentOffer
+  name: Предложение о вербовке от Синдиката
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TextFilePaperContent
+      fileName: syndicate-recruitment-offer.txt
+
+- type: entity
+  parent: [ Paper, BaseSyndicateContraband ]
+  id: PrintedDocumentSyndicateOperationTakeover
+  name: Операция Синдиката — захват
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TextFilePaperContent
+      fileName: operation-takeover.txt
+
+- type: entity
+  parent: [ Paper, BaseSyndicateContraband ]
+  id: PrintedDocumentSyndicateOperationBorgification
+  name: Операция Синдиката — киборгизация
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TextFilePaperContent
+      fileName: operation-borgification.txt
+
+- type: entity
+  parent: [ Paper, BaseSyndicateContraband ]
+  id: PrintedDocumentOfficialSyndicateCommunication
+  name: Официальное сообщение Синдиката
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TextFilePaperContent
+      fileName: syndicate-communication.txt
+
+- type: entity
+  parent: [ Paper, BaseSyndicateContraband ]
+  id: PrintedDocumentSyndicateDidYouKnow
+  name: А вы знали?
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TextFilePaperContent
+      fileName: did-you-know.txt
+    - type: Contraband
+      tier: Tier1

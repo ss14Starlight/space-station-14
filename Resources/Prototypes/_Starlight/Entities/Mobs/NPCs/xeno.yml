@@ -94,8 +94,8 @@
         Base: dead
   - type: Puller
     needsHands: false
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    spawned:
     - id: FoodMeatXeno
       amount: 5
   - type: GhostRole
@@ -167,8 +167,8 @@
     drawdepth: Mobs
     sprite: Mobs/Aliens/Xenos/rouny.rsi
     offset: 0,0.6
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    spawned:
     - id: FoodMeatRouny
       amount: 3
 

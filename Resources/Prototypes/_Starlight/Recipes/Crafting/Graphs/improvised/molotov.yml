@@ -26,6 +26,20 @@
       - material: Cloth
         amount: 5
         doAfter: 2
+  - node: burntout
+    entity: MolotovBottleBurntOut
+    edges:
+    - to: molotov
+      conditions:
+      - !type:MinSolution
+        solution: drink
+        reagent:
+          ReagentId: WeldingFuel
+        quantity: 200
+      steps:
+      - material: Cloth
+        amount: 5
+        doAfter: 2
   - node: fuel
     entity: MolotovBottleFuel
     edges:

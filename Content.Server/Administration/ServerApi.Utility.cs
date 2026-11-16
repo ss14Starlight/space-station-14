@@ -34,6 +34,22 @@ public sealed partial class ServerApi
     }
 
     /// <summary>
+    /// Registers an endpoint that is readable without the admin API token. Used for public
+    /// data such as the chess leaderboard.
+    /// </summary>
+    private void RegisterPublicHandler(HttpMethod method, string exactPath, Func<IStatusHandlerContext, Task> handler)
+    {
+        _statusHost.AddHandler(async context =>
+        {
+            if (context.RequestMethod != method || context.Url.AbsolutePath != exactPath)
+                return false;
+
+            await handler(context);
+            return true;
+        });
+    }
+
+    /// <summary>
     /// Async helper function which runs a task on the main thread and returns the result.
     /// </summary>
     private async Task<T> RunOnMainThread<T>(Func<T> func)

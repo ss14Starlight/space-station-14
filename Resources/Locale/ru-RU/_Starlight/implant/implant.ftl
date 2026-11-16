@@ -13,3 +13,5 @@ mind-control-prevents-mindshield = Другой имплант помешал.
 mind-control-invalid = Субъект должен быть жив.
 roles-antag-mind-controlled-name = Под контролем разума
 roles-antag-mind-controlled-objective = Подчиняйтесь приказам вашего куратора.
+
+fragile-implant-extraction = Хрупкий имплант рассыпается при извлечении...

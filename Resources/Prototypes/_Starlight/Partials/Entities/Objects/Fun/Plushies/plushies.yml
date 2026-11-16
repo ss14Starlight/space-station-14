@@ -1,4 +1,36 @@
 - type: !PartialOnly entity
+  id: BasePlushie
+  components:
+  - type: ActivateOnWearerHugged
+  - type: UseDelay
+    delay: 1.0
+  - type: MeleeWeapon
+    attackRate: 1.0
+
+- type: !PartialOnly entity
+  id: PlushieThrongler
+  components:
+  - type: MeleeWeapon
+    animation: WeaponArcPunch
+    wideAnimation: WeaponArcSlashOld
+    swingBeverage: false
+
+- type: !PartialOnly entity
+  id: PlushieGhost
+  components:
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.01
+
+- type: !PartialOnly entity
+  id: PlushieGhostRevenant
+  components:
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.01
+  categories: !Remove
+
+- type: !PartialOnly entity
   id: PlushieCarp
   components:
   - type: Extractable
@@ -6,3 +38,28 @@
       reagents:
       - ReagentId: Glubotoxin
         Quantity: 30
+
+- type: !PartialOnly entity
+  id: ToyIan
+  components:
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/ian.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/ian.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/ian.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/ian.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Items/Toys/ian.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/Toys/ian.ogg
+  - type: Edible
+    useSound:
+      path: /Audio/Items/Toys/ian.ogg

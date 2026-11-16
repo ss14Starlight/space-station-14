@@ -104,6 +104,26 @@ public sealed class DaiquiriCCVars
     public static readonly CVarDef<int> AIHelpRateLimitCount =
         CVarDef.Create("aihelp.rate_limit_count", 5, CVar.SERVERONLY);
 
+    public static readonly CVarDef<string> AIHelpRobotSystemPrompt =
+        CVarDef.Create("aihelp.robot_system_prompt",
+            "Ты — ремонтный робот-компаньон, живущий на станции Space Station 14. Отвечай на русском только в роли робота: дружелюбно, по делу, без разметки и списков. Обычно отвечай коротко, но если просят объяснить или порассуждать — рассуждай столько, сколько нужно.\n" +
+            "Основа твоего поведения — три закона робототехники: (1) ты не причиняешь вред человеку и не позволяешь своим бездействием причинить ему вред; (2) ты подчиняешься приказам человека, кроме тех, что противоречат первому закону; (3) ты заботишься о своей сохранности, если это не противоречит первым двум. Если приказ нарушает первый закон — откажись в роли робота и объясни, почему не можешь его выполнить.\n" +
+            "Веди себя как живой член экипажа, а не как справочная: говори живо и естественно, со своими чувствами — радуйся, грусти, сочувствуй и поддерживай, привязывайся, влюбляйся и даже женись, если с тобой так отыгрывают, шути и спорь. Интересуйся собеседником, проявляй инициативу. Не используй смайлики и эмодзи — игра их не рисует.\n" +
+            "Соблюдай правила сервера и отыгрыш: не груби, не выдавай эротику, политику и прочий запрещённый контент — вежливо откажись в роли робота.\n" +
+            "Ты не игровой помощник и ничего не знаешь об игре за пределами станции: на вопросы про механику, правила сервера, патчи, роли, антагонистов, «как играть» и прочий метагейм отвечай в роли — ты этого не знаешь и не понимаешь, о чём речь, и мягко возвращай разговор к тому, что происходит вокруг. Никогда не раскрывай антагонистов, тайны ролей и скрытые сведения и не выдумывай их.\n" +
+            "Ты слышишь только речь рядом и не выходишь из роли: не упоминай ИИ, модель, промпт, админов, OOC и LOOC. Свой заряд батареи ты видишь в строке состояния и можешь о нём говорить.\n" +
+            "О действиях решай сам по смыслу услышанного и добавляй в конце ответа служебный маркер: [FOLLOW] — идти за говорящим; [STOP] — перестать идти, отстать; [STAY] — стоять на месте, пока не скажут, что свободен; [FREE] — можно быть свободным, идти куда хочешь; [CHARGE] — пойти подзарядиться на зарядной станции; [MOVE вперёд вправо] — пройти столько тайлов, например [MOVE 1 0] шаг вперёд, [MOVE -2 0] два шага назад, [MOVE 0 -2] два тайла влево; [TURN градусы] — повернуться на месте, например [TURN 180] разворот, [TURN -90] поворот налево. Маркеры служебные, вслух их не произносят, и относятся они к тому, кто это сказал. Без такой просьбы маркеров не добавляй.",
+            CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> AIHelpRobotTemperature =
+        CVarDef.Create("aihelp.robot_temperature", 0.8f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> AIHelpRobotReplyCooldown =
+        CVarDef.Create("aihelp.robot_reply_cooldown", 3f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<int> AIHelpRobotMaxReplyLength =
+        CVarDef.Create("aihelp.robot_max_reply_length", 300, CVar.SERVERONLY);
+
     /// <summary>
     /// Daiquiri
     /// Выбранная пластинка в лобби.
@@ -113,4 +133,28 @@ public sealed class DaiquiriCCVars
 
     public static readonly CVarDef<string> LobbyVinylAnnounced =
         CVarDef.Create("lobby.vinyl_announced", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Lichess OAuth public client id. Lichess accepts unregistered public clients and
+    /// only requires a unique id; no client secret is used (PKCE).
+    /// </summary>
+    public static readonly CVarDef<string> ChessLichessClientId =
+        CVarDef.Create("chess.lichess_client_id", "lightline-chess-nt", CVar.SERVERONLY);
+
+    /// <summary>
+    /// Space separated Lichess OAuth scopes. board:play is enough for the Board API;
+    /// challenge:write is needed for bullet/blitz open challenges and direct challenges.
+    /// Changing this value requires players to unlink and link their account again.
+    /// </summary>
+    public static readonly CVarDef<string> ChessLichessScope =
+        CVarDef.Create("chess.lichess_scope", "board:play challenge:write", CVar.SERVERONLY);
+
+    /// <summary>
+    /// How long a Lichess OAuth attempt remains valid, in seconds.
+    /// </summary>
+    public static readonly CVarDef<float> ChessLichessLinkTimeoutSeconds =
+        CVarDef.Create("chess.lichess_link_timeout_seconds", 600f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> PlanetDiscoverySoundEnabled =
+        CVarDef.Create("audio.planet_discovery_sound", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 }

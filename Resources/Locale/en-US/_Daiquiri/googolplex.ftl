@@ -1,3 +1,3 @@
 googolplex-program-name = Googolplex
-googolplex-cartridge-name = Googolplex cartridge
-googolplex-cartridge-desc = The Googolplex search network.
+ent-GoogolplexCartridge = Googolplex cartridge
+ent-GoogolplexCartridge-desc = The Googolplex search network.

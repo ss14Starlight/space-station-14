@@ -6,7 +6,7 @@
 
 - type: lobbyBackground
   id: IPCsaster
-  background: /Textures/_Starlight/LobbyScreens/IPCsaster.webp
+  background: /Textures/_Starlight/LobbyScreens/ipcsaster.webp
   title: lobby-state-background-ipcsaster-title
   artist: lobby-state-background-ipcsaster-artist
 
@@ -33,12 +33,6 @@
   background: /Textures/_Starlight/LobbyScreens/ntosprey.webp
   title: lobby-state-background-ntosprey-title
   artist: lobby-state-background-ntosprey-artist
-
-- type: lobbyBackground
-  id: FriendsForever
-  background: /Textures/_Starlight/LobbyScreens/friendsforever.webp
-  title: lobby-state-background-friendsforever-title
-  artist: lobby-state-background-friendsforever-artist
 
 - type: lobbyBackground
   id: AgainstTheXeno
@@ -89,14 +83,8 @@
   artist: lobby-state-background-securityshowdown-artist
 
 - type: lobbyBackground
-  id: RevClown
-  background: /Textures/_Starlight/LobbyScreens/rev-clown.webp
-  title: lobby-state-background-revclown-title
-  artist: lobby-state-background-revclown-artist
-
-- type: lobbyBackground
   id: The_mid-round_antag's_bane
-  background: /Textures/_Starlight/LobbyScreens/The_mid-round_antag's_bane.webp
+  background: /Textures/_Starlight/LobbyScreens/the-mid-round-antags-bane.webp
   title: lobby-state-background-themidroundantagsbane-title
   artist: lobby-state-background-themidroundantagsbane-artist
 
@@ -107,14 +95,8 @@
   artist: lobby-state-background-blackfeathers-artist
 
 - type: lobbyBackground
-  id: mime
-  background: /Textures/LobbyScreens/mime.webp
-  title: lobby-state-background-mime-title #starlight
-  artist: lobby-state-background-mime-artist #starlight
-
-- type: lobbyBackground
   id: dispace
-  background: /Textures/_Starlight/LobbyScreens/Dispace.webp
+  background: /Textures/_Starlight/LobbyScreens/dispace.webp
   title: lobby-state-background-Dispace-title
   artist: lobby-state-background-IQlvlZero-artist
 
@@ -126,49 +108,31 @@
 
 - type: lobbyBackground
   id: fatefulshift
-  background: /Textures/_Starlight/LobbyScreens/FatefulShift.webp
+  background: /Textures/_Starlight/LobbyScreens/fatefulshift.webp
   title: lobby-state-background-fatefulshift-title
   artist: lobby-state-background-fatefulshift-artist
 
 - type: lobbyBackground
-  id: hopdesksimulator
-  background: /Textures/_Starlight/LobbyScreens/HoPdeskSimulator.webp
-  title: lobby-state-background-hopdesksimulator-title
-  artist: lobby-state-background-hopdesksimulator-artist
-
-- type: lobbyBackground
-  id: janitorialhell
-  background: /Textures/_Starlight/LobbyScreens/janitorial.webp
-  title: lobby-state-background-janitorialhell-title
-  artist: lobby-state-background-janitorialhell-artist
-
-- type: lobbyBackground
   id: katievssyndie
-  background: /Textures/_Starlight/LobbyScreens/KATIEVSSYNDIE.webp
+  background: /Textures/_Starlight/LobbyScreens/katievssyndie.webp
   title: lobby-state-background-katievssyndie-title
   artist: lobby-state-background-katievssyndie-artist
 
 - type: lobbyBackground
-  id: NoGalCom
-  background: /Textures/_Starlight/LobbyScreens/NoGalCom.webp
-  title: lobby-state-background-nogalcom-title
-  artist: lobby-state-background-nogalcom-artist
-
-- type: lobbyBackground
   id: AiderThief
-  background: /Textures/_Starlight/LobbyScreens/AiderThief.webp
+  background: /Textures/_Starlight/LobbyScreens/aiderthief.webp
   title: lobby-state-background-aiderthief-title
   artist: lobby-state-background-aiderthief-artist
 
 - type: lobbyBackground
   id: AuroraCaelus
-  background: /Textures/_Starlight/LobbyScreens/AuroraCaelus.webp
+  background: /Textures/_Starlight/LobbyScreens/auroracaelus.webp
   title: lobby-state-background-aeuroracaelus-title
   artist: lobby-state-background-aeuroracaelus-artist
 
 - type: lobbyBackground
   id: IPCAndMoff
-  background: /Textures/_Starlight/LobbyScreens/IPCAndMoff.webp
+  background: /Textures/_Starlight/LobbyScreens/ipcandmoff.webp
   title: lobby-state-background-ipcandmoff-title
   artist: lobby-state-background-ipcandmoff-artist
 
@@ -179,277 +143,73 @@
   artist: lobby-state-background-thesix-artist
 
 - type: lobbyBackground
-  id: BarLife
-  background: /Textures/Corvax/LobbyScreens/bar-life.webp
-  title: lobby-state-background-barlife-title
-  artist: lobby-state-background-barlife-artist
+  id: MushroomAnnihilator
+  background: /Textures/_Starlight/LobbyScreens/mushroomannihilator.webp
+  title: lobby-state-background-mushroomannihilator-title
+  artist: lobby-state-background-mushroomannihilator-artist
 
 - type: lobbyBackground
-  id: DeadInSpace
-  background: /Textures/Corvax/LobbyScreens/dead-in-space.webp
-  title: lobby-state-background-deadinspace-title
-  artist: lobby-state-background-deadinspace-artist
+  id: DoomDeed
+  background: /Textures/_Starlight/LobbyScreens/doomdeed.webp
+  title: lobby-state-background-doomdeed-title
+  artist: lobby-state-background-doomdeed-artist
 
 - type: lobbyBackground
-  id: Deadsquad
-  background: /Textures/Corvax/LobbyScreens/deadsquad.webp
-  title: lobby-state-background-deadsquad-title
-  artist: lobby-state-background-deadsquad-artist
+  id: Ivan
+  background: /Textures/_Starlight/LobbyScreens/ivan.webp
+  title: lobby-state-background-ivan-title
+  artist: lobby-state-background-ivan-artist
 
 - type: lobbyBackground
-  id: Detective
-  background: /Textures/Corvax/LobbyScreens/detective.webp
-  title: lobby-state-background-detective-title
-  artist: lobby-state-background-detective-artist
+  id: Tidy
+  background: /Textures/_Starlight/LobbyScreens/tidy.webp
+  title: lobby-state-background-tidy-title
+  artist: lobby-state-background-tidy-artist
 
 - type: lobbyBackground
-  id: EngineersChill
-  background: /Textures/Corvax/LobbyScreens/engineers-chill.webp
-  title: lobby-state-background-engineerschill-title
-  artist: lobby-state-background-engineerschill-artist
+  id: Smoko
+  background: /Textures/_Starlight/LobbyScreens/smoko.webp
+  title: lobby-state-background-smoko-title
+  artist: lobby-state-background-smoko-artist
 
 - type: lobbyBackground
-  id: Hydroponics
-  background: /Textures/Corvax/LobbyScreens/hydroponics.webp
-  title: lobby-state-background-hydroponics-title
-  artist: lobby-state-background-hydroponics-artist
-
-- type: lobbyBackground
-  id: IntoSpace
-  background: /Textures/Corvax/LobbyScreens/into-space.webp
-  title: lobby-state-background-intospace-title
-  artist: lobby-state-background-intospace-artist
-
-- type: lobbyBackground
-  id: Jailbreak
-  background: /Textures/Corvax/LobbyScreens/jailbreak.webp
-  title: lobby-state-background-jailbreak-title
-  artist: lobby-state-background-jailbreak-artist
-
-- type: lobbyBackground
-  id: Kosmologistika
-  background: /Textures/Corvax/LobbyScreens/kosmologistika.webp
-  title: lobby-state-background-kosmologistika-title
-  artist: lobby-state-background-kosmologistika-artist
-
-- type: lobbyBackground
-  id: LizardBar
-  background: /Textures/Corvax/LobbyScreens/lizard-bar.webp
-  title: lobby-state-background-lizardbar-title
-  artist: lobby-state-background-lizardbar-artist
-
-- type: lobbyBackground
-  id: Lofi
-  background: /Textures/Corvax/LobbyScreens/lofi.webp
-  title: lobby-state-background-lofi-title
-  artist: lobby-state-background-lofi-artist
-
-- type: lobbyBackground
-  id: MaintenanceClown
-  background: /Textures/Corvax/LobbyScreens/maintenance-clown.webp
-  title: lobby-state-background-maintenanceclown-title
-  artist: lobby-state-background-maintenanceclown-artist
-
-- type: lobbyBackground
-  id: MedDepart
-  background: /Textures/Corvax/LobbyScreens/med-depart.webp
-  title: lobby-state-background-meddepart-title
-  artist: lobby-state-background-meddepart-artist
-
-- type: lobbyBackground
-  id: NukiesHere
-  background: /Textures/Corvax/LobbyScreens/nukies-here.webp
-  title: lobby-state-background-nukieshere-title
-  artist: lobby-state-background-nukieshere-artist
+  id: Why
+  background: /Textures/_Starlight/LobbyScreens/why.webp
+  title: lobby-state-background-why-title
+  artist: lobby-state-background-why-artist
 
 - type: lobbyBackground
   id: RegularShift
-  background: /Textures/Corvax/LobbyScreens/regular-shift.webp
+  background: /Textures/_Starlight/LobbyScreens/regular-shift.webp
   title: lobby-state-background-regularshift-title
   artist: lobby-state-background-regularshift-artist
 
 - type: lobbyBackground
-  id: Russellmart
-  background: /Textures/Corvax/LobbyScreens/russellmart.webp
-  title: lobby-state-background-russellmart-title
-  artist: lobby-state-background-russellmart-artist
+  id: XenosAttack
+  background: /Textures/_Starlight/LobbyScreens/xenosattack.webp
+  title: lobby-state-background-xenosattack-title
+  artist: lobby-state-background-xenosattack-artist
 
 - type: lobbyBackground
-  id: Sidor
-  background: /Textures/Corvax/LobbyScreens/sidor.webp
-  title: lobby-state-background-sidor-title
-  artist: lobby-state-background-sidor-artist
-
-- type: lobbyBackground
-  id: Singulord
-  background: /Textures/Corvax/LobbyScreens/singulord.webp
-  title: lobby-state-background-singulord-title
-  artist: lobby-state-background-singulord-artist
-
-- type: lobbyBackground
-  id: SpaceMudaki
-  background: /Textures/Corvax/LobbyScreens/space-mudaki.webp
-  title: lobby-state-background-spacemudaki-title
-  artist: lobby-state-background-spacemudaki-artist
-
-- type: lobbyBackground
-  id: Traitor
-  background: /Textures/Corvax/LobbyScreens/traitor.webp
-  title: lobby-state-background-traitor-title
-  artist: lobby-state-background-traitor-artist
-
-- type: lobbyBackground
-  id: NukieDudes
-  background: /Textures/Corvax/LobbyScreens/nukie-dudes.webp
-  title: lobby-state-background-nukiedudes-title
-  artist: lobby-state-background-nukiedudes-artist
-
-- type: lobbyBackground
-  id: LostAndPowerless
-  background: /Textures/Corvax/LobbyScreens/lost-and-powerless.webp
-  title: lobby-state-background-lostandpowerless-title
-  artist: lobby-state-background-lostandpowerless-artist
-
-- type: lobbyBackground
-  id: MenAtWork
-  background: /Textures/Corvax/LobbyScreens/men-at-work.webp
-  title: lobby-state-background-menatwork-title
-  artist: lobby-state-background-menatwork-artist
-
-- type: lobbyBackground
-  id: FleshAnom
-  background: /Textures/Corvax/LobbyScreens/fleshanom.webp
-  title: lobby-state-background-fleshanom-title
-  artist: lobby-state-background-fleshanom-artist
-
-- type: lobbyBackground
-  id: Revenant
-  background: /Textures/Corvax/LobbyScreens/revenant.webp
-  title: lobby-state-background-revenant-title
-  artist: lobby-state-background-revenant-artist
-
-- type: lobbyBackground
-  id: DeathNettle
-  background: /Textures/Corvax/LobbyScreens/deathnettle.webp
-  title: lobby-state-background-deathnettle-title
-  artist: lobby-state-background-deathnettle-artist
-
-- type: lobbyBackground
-  id: Xeno
-  background: /Textures/Corvax/LobbyScreens/xeno.webp
-  title: lobby-state-background-xeno-title
-  artist: lobby-state-background-xeno-artist
-
-- type: lobbyBackground
-  id: ClownSpider
-  background: /Textures/Corvax/LobbyScreens/clownspider.webp
-  title: lobby-state-background-clownspider-title
-  artist: lobby-state-background-clownspider-artist
-
-- type: lobbyBackground
-  id: AIMia
-  background: /Textures/Corvax/LobbyScreens/ai-mia.webp
-  title: lobby-state-background-aimia-title
-  artist: lobby-state-background-aimia-artist
-
-- type: lobbyBackground
-  id: XenoAttack
-  background: /Textures/Corvax/LobbyScreens/xenosattack.webp
-  title: lobby-state-background-xenoattack-title
-  artist: lobby-state-background-xenoattack-artist
-
-- type: lobbyBackground
-  id: SingulordCage
-  background: /Textures/Corvax/LobbyScreens/singulord-cage.webp
-  title: lobby-state-background-singulordcage-title
-  artist: lobby-state-background-singulordcage-artist
-
-- type: lobbyBackground
-  id: YouLookLonely
-  background: /Textures/Corvax/LobbyScreens/you-look-lonely.webp
-  title: lobby-state-background-youlooklonely-title
-  artist: lobby-state-background-youlooklonely-artist
-
-- type: lobbyBackground
-  id: GrayTide
-  background: /Textures/Corvax/LobbyScreens/gray-tide.webp
-  title: lobby-state-background-gray-tide-title
-  artist: lobby-state-background-gray-tide-artist
-
-- type: lobbyBackground
-  id: SpaceNuke
-  background: /Textures/Corvax/LobbyScreens/space-nuke.webp
-  title: lobby-state-background-spacenuke-title
-  artist: lobby-state-background-spacenuke-artist
-
-- type: lobbyBackground
-  id: ArnoldIntelligence
-  background: /Textures/Corvax/LobbyScreens/arnold-intelligence.webp
-  title: lobby-state-background-arnoldintelligence-title
-  artist: lobby-state-background-arnoldintelligence-artist
-
-- type: lobbyBackground
-  id: MimesInTechs
-  background: /Textures/Corvax/LobbyScreens/mimes-in-techs.webp
-  title: lobby-state-background-mimesintechs-title
-  artist: lobby-state-background-mimesintechs-artist
-
-- type: lobbyBackground
-  id: NukieWar
-  background: /Textures/Corvax/LobbyScreens/nukie-war.webp
-  title: lobby-state-background-nukiewar-title
-  artist: lobby-state-background-nukiewar-artist
-
-- type: lobbyBackground
-  id: EngineersVsZombies
-  background: /Textures/Corvax/LobbyScreens/engineers-vs-zombies.webp
-  title: lobby-state-background-engineersvszombies-title
-  artist: lobby-state-background-engineersvszombies-artist
-
-- type: lobbyBackground
-  id: SillyIsland
-  background: /Textures/Corvax/LobbyScreens/silly-island.webp
-  title: lobby-state-background-silly-title
-  artist: lobby-state-background-silly-artist
-
-- type: lobbyBackground
-  id: EchoTeam
-  background: /Textures/Corvax/LobbyScreens/echo-team.webp
-  title: lobby-state-background-echoteam-title
-  artist: lobby-state-background-echoteam-artist
-
-- type: lobbyBackground
-  id: NarSieCult
-  background: /Textures/Corvax/LobbyScreens/nar-sie.webp
-  title: lobby-state-background-narsie-title
-  artist: lobby-state-background-narsie-artist
-
-- type: lobbyBackground
-  id: End
-  background: /Textures/Corvax/LobbyScreens/end.webp
-  title: lobby-state-background-end-title
-  artist: lobby-state-background-end-artist
-
-- type: lobbyBackground
-  id: CyborgNinja
-  background: /Textures/Corvax/LobbyScreens/cyborg-ninja.webp
-  title: lobby-state-background-cyborgninja-title
-  artist: lobby-state-background-cyborgninja-artist
-
-- type: lobbyBackground
-  id: Security
-  background: /Textures/Corvax/LobbyScreens/security.webp
-  title: lobby-state-background-security-title
-  artist: lobby-state-background-security-artist
+  id: MaintenanceClown
+  background: /Textures/_Starlight/LobbyScreens/maintenance-clown.webp
+  title: lobby-state-background-maintenanceclown-title
+  artist: lobby-state-background-maintenanceclown-artist
 
 - type: lobbyBackground
   id: Expedition
-  background: /Textures/Corvax/LobbyScreens/expedition.webp
+  background: /Textures/_Starlight/LobbyScreens/expedition.webp
   title: lobby-state-background-expedition-title
   artist: lobby-state-background-expedition-artist
 
 - type: lobbyBackground
   id: SoleSurvivor
-  background: /Textures/Corvax/LobbyScreens/sole-survivor.webp
+  background: /Textures/_Starlight/LobbyScreens/sole-survivor.webp
   title: lobby-state-background-solesurvivor-title
   artist: lobby-state-background-solesurvivor-artist
+
+- type: lobbyBackground
+  id: Glubs
+  background: /Textures/_Starlight/LobbyScreens/glubs.webp
+  title: lobby-state-background-glubs-title
+  artist: lobby-state-background-glubs-artist

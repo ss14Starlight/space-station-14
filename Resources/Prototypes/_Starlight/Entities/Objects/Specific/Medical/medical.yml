@@ -145,3 +145,35 @@
     tags:
     - Medkit
 
+- type: entity
+  name: CyberSun robotic treatment kit
+  description: "Used to treat robotic patients, such as Cyborgs and IPCs."
+  parent: BaseStorageItem
+  id: RoboticNukeMedkit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    state: robotic
+  - type: Storage
+    whitelist:
+      tags:
+        - OilPack
+        - Sheet
+        - ConstructionMaterial
+        - CableCoil
+        - PowerCell
+      components:
+        - Tool
+        - EyeProtection
+    grid:
+    - 0,0,3,2
+  - type: Item
+    size: Large
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    heldPrefix: robotic
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 150
+  - type: Tag
+    tags:
+    - Medkit

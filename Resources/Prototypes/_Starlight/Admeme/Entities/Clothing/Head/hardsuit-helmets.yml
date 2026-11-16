@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseNanoTrasenContraband, ClothingHeadLightParamsProfessional, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseItem, BaseNanoTrasenContraband, ClothingHeadLightParamsProfessional, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitNTNCConsortium
   name: шлем скафандра морпеха NanoTrasen
   description: Защитный шлем скафандра морпехов NanoTrasen.

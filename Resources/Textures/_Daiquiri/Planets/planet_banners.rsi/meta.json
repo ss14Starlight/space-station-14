@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "size": {
+    "x": 512,
+    "y": 512
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Drawn by suslya (сусля) for the Daiquiri planet destinations.",
+  "states": [
+    {
+      "name": "taipan"
+    },
+    {
+      "name": "lavaland"
+    },
+    {
+      "name": "novonihon"
+    }
+  ]
+}

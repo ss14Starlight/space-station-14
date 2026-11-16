@@ -45,8 +45,6 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     #endregion
     [Dependency] private IConfigurationManager _cfg = default!;
 
-    private EntityQuery<TransformComponent> _xformQuery;
-
     private const string MeleeLungeKey = "melee-lunge";
     private const string HitRecoilAnimationKey = "hit-recoil"; // Starlight-edit
 
@@ -62,7 +60,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     public override void Initialize()
     {
         base.Initialize();
-        _xformQuery = GetEntityQuery<TransformComponent>();
+
         SubscribeNetworkEvent<MeleeLungeEvent>(OnMeleeLunge);
         UpdatesOutsidePrediction = true;
     }

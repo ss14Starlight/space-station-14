@@ -1,0 +1,160 @@
+# Barefoot print shapes per species. PrintState only applies while the shoes slot is empty;
+# anything worn there falls back to the generic boot print, so species without an entry here
+# simply use the default barefoot shape.
+#
+# Neocyte variants parent BaseMobNeocyte rather than their namesake species, so each needs its
+# own entry; inheriting from a sibling does nothing. Variants not listed match their organic
+# counterpart's default barefoot shape.
+
+# --- paw ---
+- type: !PartialOnly entity
+  id: BaseMobVulpkanin
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: BaseMobNeoVulpkanin
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: BaseMobRodentia
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: BaseMobFelionoid
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: BaseMobNeoFelionoid
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: BaseMobLagomorph
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: BaseMobNeoLagomorph
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+- type: !PartialOnly entity
+  id: BaseMobExperiment
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+# The generic neocyte. Set here rather than on BaseMobNeocyte, which every variant inherits.
+- type: !PartialOnly entity
+  id: MobNeocyte
+  components:
+  - type: FootprintOwner
+    printState: Paw
+
+# --- claw ---
+- type: !PartialOnly entity
+  id: BaseMobAvali
+  components:
+  - type: FootprintOwner
+    printState: Claw
+
+- type: !PartialOnly entity
+  id: BaseMobNeoAvali
+  components:
+  - type: FootprintOwner
+    printState: Claw
+
+- type: !PartialOnly entity
+  id: BaseMobResomi
+  components:
+  - type: FootprintOwner
+    printState: Claw
+
+- type: !PartialOnly entity
+  id: BaseMobNeoResomi
+  components:
+  - type: FootprintOwner
+    printState: Claw
+
+- type: !PartialOnly entity
+  id: BaseMobReptilian
+  components:
+  - type: FootprintOwner
+    printState: Claw
+
+- type: !PartialOnly entity
+  id: BaseMobNeoReptilian
+  components:
+  - type: FootprintOwner
+    printState: Claw
+
+# --- talon (two-toed) ---
+- type: !PartialOnly entity
+  id: BaseMobVox
+  components:
+  - type: FootprintOwner
+    printState: Talon
+
+- type: !PartialOnly entity
+  id: BaseMobNeoVox
+  components:
+  - type: FootprintOwner
+    printState: Talon
+
+# --- moth (two claws and a foot) ---
+- type: !PartialOnly entity
+  id: BaseMobMoth
+  components:
+  - type: FootprintOwner
+    printState: Moth
+
+- type: !PartialOnly entity
+  id: BaseMobNeoMoth
+  components:
+  - type: FootprintOwner
+    printState: Moth
+
+# --- spider (a foot and two opposed claws) ---
+- type: !PartialOnly entity
+  id: BaseMobArachnid
+  components:
+  - type: FootprintOwner
+    printState: Spider
+
+- type: !PartialOnly entity
+  id: BaseMobNeoArachnid
+  components:
+  - type: FootprintOwner
+    printState: Spider
+
+# --- diona ---
+- type: !PartialOnly entity
+  id: BaseMobDiona
+  components:
+  - type: FootprintOwner
+    printState: Diona
+
+- type: !PartialOnly entity
+  id: BaseMobNeoDiona
+  components:
+  - type: FootprintOwner
+    printState: Diona
+
+# --- barefoot shape is the default, so these only need the component itself ---
+# BaseMobShadekin parents BaseMobSpecies rather than BaseMobSpeciesOrganic, so it never
+# inherited FootprintOwner and left no prints at all. The Neocyte variant declares its own.
+- type: !PartialOnly entity
+  id: BaseMobShadekin
+  components:
+  - type: FootprintOwner

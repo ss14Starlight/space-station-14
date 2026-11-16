@@ -1,0 +1,40 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039. Additional credit: OnlineGirlfriend. Recolored into Service Worker (Sous Chef) by wonderfulnewworld (GitHub) for Starlight. Syndicate variants by ItsMaitake on Blimpuf Station."
+        },
+        {
+            "name": "equipped-INNERCLOTHING",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "TG Station, OnlineGirlfriend, wonderfulnewworld, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "equipped-INNERCLOTHING-monkey",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "TG Station, OnlineGirlfriend. Monkey derivative made by brainfood1183 (github) for ss14. wonderfulnewworld, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "TG Station, OnlineGirlfriend, wonderfulnewworld, ItsMaitake",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "license": "CC-BY-SA-3.0",
+            "copyright": "TG Station, OnlineGirlfriend, wonderfulnewworld, ItsMaitake",
+            "directions": 4
+        }
+    ]
+}

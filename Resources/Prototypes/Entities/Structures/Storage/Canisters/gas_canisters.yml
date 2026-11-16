@@ -184,8 +184,9 @@
   name: storage canister
   components:
     - type: Sprite
+      sprite: Structures/Storage/canister.rsi
       layers:
-        - state: storage # Starlight Edit: yellow -> storage
+        - state: yellow
         - state: HoseAttachment  # Starlight
           visible: false
           map: [ "enum.GasCanisterVisuals.HoseAttached" ]
@@ -226,8 +227,9 @@
   description: A canister that can contain any type of gas. This one is supposed to contain air mixture. It can be attached to connector ports using a wrench.
   components:
   - type: Sprite
+    sprite: Structures/Storage/canister.rsi
     layers:
-      - state: air # Starlight Edit: grey -> air
+      - state: grey
       - state: HoseAttachment  # Starlight
         visible: false
         map: [ "enum.GasCanisterVisuals.HoseAttached" ]
@@ -269,8 +271,9 @@
   description: A canister that can contain any type of gas. This one is supposed to contain oxygen. It can be attached to connector ports using a wrench.
   components:
   - type: Sprite
+    sprite: Structures/Storage/canister.rsi
     layers:
-      - state: oxygen # Starlight Edit: blue -> oxygen
+      - state: blue
       - state: HoseAttachment  # Starlight
         visible: false
         map: [ "enum.GasCanisterVisuals.HoseAttached" ]
@@ -312,6 +315,7 @@
   components:
   # Starlight Start
   - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
     layers:
       - state: l_oxygen
       - state: HoseAttachment  # Starlight
@@ -334,8 +338,9 @@
   description: A canister that can contain any type of gas. This one is supposed to contain nitrogen. It can be attached to connector ports using a wrench.
   components:
     - type: Sprite
+      sprite: Structures/Storage/canister.rsi
       layers:
-        - state: nitrogen # Starlight Edit: red -> nitrogen
+        - state: red
         - state: HoseAttachment  # Starlight
           visible: false
           map: [ "enum.GasCanisterVisuals.HoseAttached" ]
@@ -377,6 +382,7 @@
   components:
   # Starlight Start
   - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
     layers:
       - state: l_nitrogen
       - state: HoseAttachment  # Starlight
@@ -399,8 +405,9 @@
   description: A canister that can contain any type of gas. This one is supposed to contain carbon dioxide. It can be attached to connector ports using a wrench.
   components:
     - type: Sprite
+      sprite: Structures/Storage/canister.rsi
       layers:
-        - state: carbon # Starlight Edit: black -> carbon
+        - state: black
         - state: HoseAttachment  # Starlight
           visible: false
           map: [ "enum.GasCanisterVisuals.HoseAttached" ]
@@ -458,8 +465,9 @@
   description: A canister that can contain any type of gas. This one is supposed to contain plasma. It can be attached to connector ports using a wrench.
   components:
     - type: Sprite
+      sprite: Structures/Storage/canister.rsi
       layers:
-        - state: plasma # Starlight Edit: orange -> plasma
+        - state: orange
         - state: HoseAttachment  # Starlight
           visible: false
           map: [ "enum.GasCanisterVisuals.HoseAttached" ]
@@ -502,8 +510,9 @@
   description: A canister that can contain any type of gas. This one is supposed to contain tritium. It can be attached to connector ports using a wrench.
   components:
     - type: Sprite
+      sprite: Structures/Storage/canister.rsi
       layers:
-        - state: tritium # Starlight Edit: green -> tritium
+        - state: green
         - state: HoseAttachment  # Starlight
           visible: false
           map: [ "enum.GasCanisterVisuals.HoseAttached" ]
@@ -546,6 +555,7 @@
   description: A canister that can contain any type of gas. This one is supposed to contain water vapor. It can be attached to connector ports using a wrench.
   components:
     - type: Sprite
+      sprite: Structures/Storage/canister.rsi
       layers:
         - state: water_vapor
         - state: HoseAttachment  # Starlight
@@ -588,8 +598,9 @@
   description: A canister that can contain any type of gas. This one is supposed to contain ammonia. It can be attached to connector ports using a wrench.
   components:
     - type: Sprite
+      sprite: Structures/Storage/canister.rsi
       layers:
-        - state: ammonia # Starlight Edit: greenys -> ammonia
+        - state: greenys
         - state: HoseAttachment  # Starlight
           visible: false
           map: [ "enum.GasCanisterVisuals.HoseAttached" ]
@@ -632,8 +643,9 @@
   description: A canister that can contain any type of gas. This one is supposed to contain nitrous oxide. It can be attached to connector ports using a wrench.
   components:
     - type: Sprite
+      sprite: Structures/Storage/canister.rsi
       layers:
-        - state: nitrous_oxide # Starlight Edit: redws -> nitrous_oxide
+        - state: redws
         - state: HoseAttachment  # Starlight
           visible: false
           map: [ "enum.GasCanisterVisuals.HoseAttached" ]
@@ -676,8 +688,9 @@
   description: A canister that can contain any type of gas. This one is supposed to contain frezon. It can be attached to connector ports using a wrench.
   components:
   - type: Sprite
+    sprite: Structures/Storage/canister.rsi
     layers:
-    - state: freezon # Starlight Edit: frezon -> freezon
+    - state: frezon
     - state: HoseAttachment  # Starlight
       visible: false
       map: [ "enum.GasCanisterVisuals.HoseAttached" ]
@@ -776,7 +789,8 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: storage_broken # Starlight Edit: yellow_1 -> storage_broken
+      sprite: Structures/Storage/canister.rsi
+      state: yellow-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -784,7 +798,8 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
   - type: Sprite
-    state: air_broken # Starlight Edit: grey-1 -> air_broken
+    sprite: Structures/Storage/canister.rsi
+    state: grey-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -792,7 +807,8 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
   - type: Sprite
-    state: oxygen_broken # Starlight Edit: blue-1 -> oxygen_broken
+    sprite: Structures/Storage/canister.rsi
+    state: blue-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -800,7 +816,8 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: nitrogen_broken
+      sprite: Structures/Storage/canister.rsi
+      state: red-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -808,7 +825,8 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: carbon_broken # Starlight Edit: black-1 -> carbon_broken
+      sprite: Structures/Storage/canister.rsi
+      state: black-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -816,7 +834,8 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: plasma_broken # Starlight Edit: orange-1 -> plasma_broken
+      sprite: Structures/Storage/canister.rsi
+      state: orange-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -824,7 +843,8 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: tritium_broken # Starlight Edit: green-1 -> tritium_broken
+      sprite: Structures/Storage/canister.rsi
+      state: green-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -833,7 +853,8 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: water_vapor_broken # Starlight Edit: water_vapor-1 -> water_vapor_broken
+      sprite: Structures/Storage/canister.rsi
+      state: water_vapor-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -841,7 +862,8 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: ammonia_broken # Starlight Edit: greenys-1 -> ammonia_broken
+      sprite: Structures/Storage/canister.rsi
+      state: greenys-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -849,7 +871,8 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: nitrous_oxide_broken # Starlight Edit: redws-1 -> nitrous_oxide_broken
+      sprite: Structures/Storage/canister.rsi
+      state: redws-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -857,4 +880,5 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
   - type: Sprite
-    state: freezon_broken # Starlight Edit: frezon-1 -> freezon_broken
+    sprite: Structures/Storage/canister.rsi
+    state: frezon-1

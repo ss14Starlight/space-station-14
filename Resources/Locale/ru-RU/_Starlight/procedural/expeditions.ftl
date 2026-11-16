@@ -4,3 +4,5 @@ salvage-dungeon-mod-soviet-warehouse = Склад стратегических �
 
 salvage-biome-mod-true-abyss = Бездна
 salvage-biome-mod-abyss = Затронутый Бездной
+
+salvage-dungeon-mod-outbreak = Вспышка

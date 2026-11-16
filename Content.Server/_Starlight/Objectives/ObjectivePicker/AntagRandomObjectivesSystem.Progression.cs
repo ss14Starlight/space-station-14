@@ -20,33 +20,52 @@ public sealed partial class AntagRandomObjectivesSystem
                 config.CurrentBatch.Add(objective);
         }
         config.BatchUnlocked = false;
+        config.NextProgressCheck = _timing.CurTime + _progressCheckInterval;
         var progress = EnsureComp<ObjectivePickerProgressComponent>(mindId);
         progress.CanPickMore = false;
         Dirty(mindId, progress);
     }
 
-    private void UpdateProgression()
+    /// <summary>
+    /// Reuses progress already calculated for the character menu.
+    /// </summary>
+    public void RecordObjectiveProgress(EntityUid mindId, EntityUid objective, float value)
     {
-        var query = EntityQueryEnumerator<MindComponent, ObjectivePickerConfigurationComponent>();
-        while (query.MoveNext(out var uid, out var mind, out var config))
+        if (!TryComp<ObjectivePickerConfigurationComponent>(mindId, out var config) ||
+            !config.Finished || config.BatchUnlocked || !config.CurrentBatch.Contains(objective))
+            return;
+
+        if (value >= 0.999f)
+            config.CompletedObjectives.Add(objective);
+        config.NextProgressCheck = _timing.CurTime + _progressCheckInterval;
+        TryUnlockBatch(mindId, config);
+    }
+
+    private void UpdateProgression(EntityUid uid, MindComponent mind, ObjectivePickerConfigurationComponent config)
+    {
+        config.NextProgressCheck = _timing.CurTime + _progressCheckInterval;
+        if (!config.Finished || config.BatchUnlocked || config.CurrentBatch.Count == 0)
+            return;
+
+        foreach (var objective in config.CurrentBatch)
         {
-            if (!config.Finished || config.BatchUnlocked || config.CurrentBatch.Count == 0)
-                continue;
-
-            foreach (var objective in config.CurrentBatch)
-            {
-                if (Exists(objective) && _objectives.IsCompleted(objective, (uid, mind)))
-                    config.CompletedObjectives.Add(objective);
-            }
-            var completed = config.CurrentBatch.Count(config.CompletedObjectives.Contains);
-            if ((float)completed / config.CurrentBatch.Count < _unlockRequirement)
-                continue;
-
-            config.BatchUnlocked = true;
-            var progress = EnsureComp<ObjectivePickerProgressComponent>(uid);
-            progress.CanPickMore = true;
-            Dirty(uid, progress);
+            if (!config.CompletedObjectives.Contains(objective) && Exists(objective) &&
+                _objectives.IsCompleted(objective, (uid, mind)))
+                config.CompletedObjectives.Add(objective);
         }
+        TryUnlockBatch(uid, config);
+    }
+
+    private void TryUnlockBatch(EntityUid mindId, ObjectivePickerConfigurationComponent config)
+    {
+        if (config.CurrentBatch.Count == 0 ||
+            (float)config.CurrentBatch.Count(config.CompletedObjectives.Contains) / config.CurrentBatch.Count < _unlockRequirement)
+            return;
+
+        config.BatchUnlocked = true;
+        var progress = EnsureComp<ObjectivePickerProgressComponent>(mindId);
+        progress.CanPickMore = true;
+        Dirty(mindId, progress);
     }
 
     private void OnRequestAdditionalObjectives(ObjectivePickerRequestAdditional ev, EntitySessionEventArgs args)
@@ -65,9 +84,11 @@ public sealed partial class AntagRandomObjectivesSystem
 
     private bool TryCreateAdditionalPicker(EntityUid mindId, MindComponent mind)
     {
+        if (!TryComp<ObjectivePickerConfigurationComponent>(mindId, out var config) || !config.Finished)
+            return false;
+        UpdateProgression(mindId, mind, config);
         if (HasComp<PotentialObjectivesComponent>(mindId) ||
-            !TryComp<ObjectivePickerProgressComponent>(mindId, out var progress) || !progress.CanPickMore ||
-            !TryComp<ObjectivePickerConfigurationComponent>(mindId, out var config) || !config.Finished)
+            !config.BatchUnlocked || !TryComp<ObjectivePickerProgressComponent>(mindId, out var progress) || !progress.CanPickMore)
             return false;
 
         var offers = new PotentialObjectivesComponent
@@ -78,6 +99,9 @@ public sealed partial class AntagRandomObjectivesSystem
             MulliganUsed = config.MulliganUsed,
         };
         config.DeferredTargets.Clear();
+        config.CachedOffers.Clear();
+        config.TargetTokens.Clear();
+        config.Refill = null;
         FillOffers(mindId, mind, offers, config, CountAssignedObjectives(mindId));
         if (!offers.ObjectiveOptions.Keys.Any(id => ObjectivePickerSelection.Available(offers, id)))
         {
@@ -88,6 +112,7 @@ public sealed partial class AntagRandomObjectivesSystem
         }
 
         config.Finished = false;
+        config.LastTimeoutRevision = -1;
         progress.CanPickMore = false;
         AddComp(mindId, offers);
         Dirty(mindId, offers);

@@ -125,6 +125,20 @@ public sealed class CartridgeUiReadyEvent : EntityEventArgs
 }
 
 /// <summary>
+/// Gets sent to the active program / cartridge entity when the cartridge loader ui is closed,
+/// so background work (for example a match search) can be stopped.
+/// </summary>
+public sealed class CartridgeUiClosedEvent : EntityEventArgs
+{
+    public readonly EntityUid Loader;
+
+    public CartridgeUiClosedEvent(EntityUid loader)
+    {
+        Loader = loader;
+    }
+}
+
+/// <summary>
 /// Gets sent by the cartridge loader system to the cartridge loader entity so another system
 /// can handle displaying the notification
 /// </summary>

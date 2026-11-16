@@ -135,8 +135,13 @@ namespace Content.Shared.StatusEffect
 
             if (TryAddStatusEffect(uid, key, time, refresh, status))
             {
+                // Some status effect components are server-only (e.g. PressureImmunity). The client cannot
+                // instantiate them while predicting, so just let the server add and replicate the component.
+                if (!Factory.TryGetRegistration(component, out var registration))
+                    return true;
+
                 // If they already have the comp, we just won't bother updating anything.
-                if (!HasComp(uid, Factory.GetRegistration(component).Type))
+                if (!HasComp(uid, registration.Type))
                 {
                     var newComponent = (Component) Factory.GetComponent(component);
                     AddComp(uid, newComponent);

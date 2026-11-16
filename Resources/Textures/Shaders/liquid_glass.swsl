@@ -1,0 +1,120 @@
+
+uniform sampler2D SCREEN_TEXTURE;
+
+uniform highp float CornerRadius;
+uniform highp float BlurPixels;
+uniform highp float RefractionPixels;
+uniform highp float Highlight;
+uniform highp float Opacity;
+uniform highp float Quality;
+uniform highp float Animate;
+
+uniform highp float BackdropAvailable;
+
+uniform highp vec4 Tint;
+uniform highp vec4 EdgeTint;
+
+const highp float PI = 3.14159265359;
+
+highp float sdRoundBox(highp vec2 p, highp vec2 halfSize, highp float radius)
+{
+    highp vec2 q = abs(p) - halfSize + vec2(radius);
+    return min(max(q.x, q.y), 0.0) + length(max(q, 0.0)) - radius;
+}
+
+highp vec2 sdRoundBoxNormal(highp vec2 p, highp vec2 halfSize, highp float radius)
+{
+    highp vec2 q = abs(p) - halfSize + vec2(radius);
+    highp vec2 s = vec2(p.x < 0.0 ? -1.0 : 1.0, p.y < 0.0 ? -1.0 : 1.0);
+
+    if (q.x > 0.0 && q.y > 0.0)
+        return normalize(q) * s;
+
+    if (q.x > 0.0)
+        return vec2(s.x, 0.0);
+
+    if (q.y > 0.0)
+        return vec2(0.0, s.y);
+
+    return vec2(0.0);
+}
+
+highp vec3 sampleBackdrop(highp vec2 uv, highp vec2 stepUv)
+{
+    highp vec2 clamped = clamp(uv, vec2(0.0), vec2(1.0));
+    highp vec3 col = texture2D(SCREEN_TEXTURE, clamped).rgb * 0.16;
+    highp float total = 0.16;
+
+    for (int i = 0; i < 8; i++)
+    {
+        highp float angle = float(i) * (PI * 0.25);
+        highp vec2 dir = vec2(cos(angle), sin(angle));
+
+        col += texture2D(SCREEN_TEXTURE, clamp(uv + dir * stepUv, vec2(0.0), vec2(1.0))).rgb * 0.08;
+        total += 0.08;
+
+        if (Quality > 0.5)
+        {
+            col += texture2D(SCREEN_TEXTURE, clamp(uv + dir * stepUv * 2.1, vec2(0.0), vec2(1.0))).rgb * 0.035;
+            total += 0.035;
+        }
+
+        if (Quality > 1.5)
+        {
+            col += texture2D(SCREEN_TEXTURE, clamp(uv + dir * stepUv * 3.4, vec2(0.0), vec2(1.0))).rgb * 0.02;
+            total += 0.02;
+        }
+    }
+
+    return col / total;
+}
+
+void fragment()
+{
+    highp vec2 uv = UV;
+    highp vec2 screenUv = UV2;
+
+#ifdef HAS_DFDX
+    highp vec2 panelSize = 1.0 / max(fwidth(uv), vec2(0.0001));
+    highp vec2 uvPerPixel = fwidth(screenUv);
+#else
+    highp vec2 panelSize = vec2(256.0);
+    highp vec2 uvPerPixel = SCREEN_PIXEL_SIZE;
+#endif
+
+    highp vec2 halfSize = panelSize * 0.5;
+    highp float radius = min(CornerRadius, min(halfSize.x, halfSize.y));
+    highp vec2 p = (uv - 0.5) * panelSize;
+    highp float dist = sdRoundBox(p, halfSize, radius);
+
+    highp float shape = 1.0 - smoothstep(-1.0, 1.0, dist);
+    if (shape <= 0.001)
+        discard;
+
+    highp float edge = 1.0 - smoothstep(0.0, max(2.0, radius * 0.35), -dist);
+    highp vec2 normal = sdRoundBoxNormal(p, halfSize, radius);
+
+    highp vec2 blurStep = uvPerPixel * max(BlurPixels, 0.0);
+    highp vec2 refractedUv = screenUv + normal * (RefractionPixels * edge * uvPerPixel);
+
+    highp vec3 backdrop = sampleBackdrop(refractedUv, blurStep);
+
+    highp vec3 tintLinear = zFromSrgb(vec4(Tint.rgb, 1.0)).rgb;
+
+    backdrop = mix(tintLinear, backdrop, clamp(BackdropAvailable, 0.0, 1.0));
+
+    highp vec3 col = mix(backdrop, tintLinear, clamp(Tint.a, 0.0, 1.0));
+
+    highp float rim = 1.0 - smoothstep(0.0, 1.6, abs(dist));
+    highp vec3 edgeLinear = zFromSrgb(vec4(EdgeTint.rgb, 1.0)).rgb;
+    col += edgeLinear * (rim * clamp(Highlight, 0.0, 1.0) * EdgeTint.a);
+
+    if (Animate > 0.5)
+    {
+        highp float sheen = sin((uv.x * 1.7 + uv.y * 0.8 + TIME * 0.35) * PI * 2.0) * 0.5 + 0.5;
+        highp float band = smoothstep(0.0, 0.35, uv.y) * (1.0 - smoothstep(0.65, 1.0, uv.y));
+        col += vec3(0.035) * sheen * band;
+    }
+
+    COLOR = vec4(col, shape * clamp(Opacity, 0.0, 1.0));
+}

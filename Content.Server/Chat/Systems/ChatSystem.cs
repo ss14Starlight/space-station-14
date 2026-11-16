@@ -491,7 +491,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         SoundSpecifier? commsConsoleSound = null; // resolve outside so the event below reports the sound actually played.
         if (playSound)
         {
-            commsConsoleSound = announcementSound ?? new SoundPathSpecifier("/Audio/_Starlight/Announcements/announce2.ogg");
+            commsConsoleSound = announcementSound ?? new SoundPathSpecifier("/Audio/_CorvaxGoob/Announcements/announce.ogg");
             var resolvedSound = _audio.ResolveSound(commsConsoleSound);
             _audio.PlayGlobal(resolvedSound, filter, true, AudioParams.Default.WithVolume(-2f));
         }

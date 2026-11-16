@@ -23,3 +23,16 @@
     equipSound:
       path: /Audio/_Starlight/Items/Equip/helmet_equip1.ogg
 
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetAtmosFire
+  components:
+  - type: Tag
+    tags:
+      - AtmosFireHelmet
+
+- type: !PartialOnly entity
+  id: ClothingHeadHelmetMetalHydrogen
+  components:
+  - type: Tag
+    tags:
+      - MetalHydrogenHelmet

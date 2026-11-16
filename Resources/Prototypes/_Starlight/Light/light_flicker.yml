@@ -1,0 +1,43 @@
+- type: lightFlicker
+  id: Aged
+  minDelay: 12
+  maxDelay: 45
+  minBlips: 1
+  maxBlips: 3
+  minBlipTime: 0.04
+  maxBlipTime: 0.18
+  sound:
+    path: /Audio/Machines/light_tube_on.ogg
+    params:
+      volume: -14
+      variation: 0.1
+  soundChance: 0.5
+
+- type: lightFlicker
+  id: Sick
+  minDelay: 1.5
+  maxDelay: 7
+  minBlips: 2
+  maxBlips: 6
+  minBlipTime: 0.03
+  maxBlipTime: 0.3
+  sound:
+    collection: sparks
+    params:
+      volume: -10
+      variation: 0.15
+  soundChance: 0.3
+
+- type: lightFlicker
+  id: Sparking
+  minDelay: 15
+  maxDelay: 60
+  minBlips: 1
+  maxBlips: 2
+  minBlipTime: 0.03
+  maxBlipTime: 0.09
+  sound:
+    collection: sparks
+    params:
+      volume: -8
+      variation: 0.15

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from TauCetiClassic at commit https://github.com/TauCetiStation/TauCetiClassic/tree/13b5c47145804dd24507b75f250de5e87d34e194. TG-canisters Taken from AdventureTimeStation at https://github.com/AdventureTimeSS14/space_station_ADT | Via AdventureSpaceTeam/adventure_space_nova (https://github.com/AdventureSpaceTeam/adventure_space_nova)",
+  "copyright": "Taken from Goob-Station (Paradise / TauCetiClassic origin), extra states taken from AdventureTimeStation at https://github.com/AdventureTimeSS14/space_station_ADT | Via AdventureSpaceTeam/adventure_space_nova (https://github.com/AdventureSpaceTeam/adventure_space_nova)",
   "size": {
     "x": 32,
     "y": 32
@@ -195,6 +195,16 @@
     },
     {
       "name": "zauker-1"
+    },
+    {
+      "name": "purple"
+    },
+    {
+      "name": "purple-1"
+    },
+    {
+      "name": "HoseAttachment",
+      "copyright": "Made by AegisShield (Discord: aegis_shield) for Starlight"
     }
   ]
 }

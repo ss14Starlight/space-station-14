@@ -31,3 +31,9 @@ scent-evidence-scent = запах
 scent-evidence-forensics = отпечатки пальцев и другие улики
 scent-evidence-both = запах, отпечатки пальцев и другие улики
 scent-evidence-stains = пятна
+
+scent-sniff-window-entry-detail-no-species = [color={$color}]{$freshness}[/color]
+scent-track-fades-popup = Запах, который вы отслеживали, угасает...
+
+scent-sneeze-allergic = Ваша аллергия заставляет вас чихнуть!
+pollen-allergy-nose-itch = От аллергии у вас чешется нос.

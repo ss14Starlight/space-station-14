@@ -1,32 +1,69 @@
-<DefaultWindow xmlns="https://spacestation14.io"
-               xmlns:ui="clr-namespace:Content.Client.Options.UI"
-               xmlns:sui="clr-namespace:Content.Client._Starlight.Options.UI"
-               Title="{Loc 'ui-glass-prompt-title'}"
-               MinSize="720 0">
-    <BoxContainer Orientation="Vertical">
-        <BoxContainer Name="GlassPage" Access="Public" Orientation="Vertical" Margin="8" SeparationOverride="8" Visible="False">
-            <Label Text="{Loc 'ui-glass-prompt-line1'}" />
-            <Label Text="{Loc 'ui-glass-prompt-line2'}" />
-            <Label Text="{Loc 'ui-glass-prompt-line3'}" />
-            <CheckBox Name="GlassCheckBox" Access="Public" Text="{Loc 'ui-options-glass-theme'}" />
-            <BoxContainer Name="GlassOptions" Access="Public" Orientation="Vertical" SeparationOverride="8" Visible="False">
-                <CheckBox Name="TransparencyCheckBox" Access="Public" Text="{Loc 'ui-options-glass-transparency-enable'}" />
-                <sui:OptionSlider Name="TransparencySlider" Access="Public" Title="{Loc 'ui-options-glass-transparency'}" />
-                <CheckBox Name="AccentCheckBox" Access="Public" Text="{Loc 'ui-options-glass-accent'}" />
-                <ui:OptionColorSlider Name="AccentSlider" Access="Public" Title="{Loc 'ui-options-glass-accent-color'}" />
-            </BoxContainer>
-            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right" SeparationOverride="8">
-                <Button Name="BackButton" Access="Public" Text="{Loc 'ui-glass-prompt-back'}" />
-                <Button Name="DoneButton" Access="Public" Text="{Loc 'ui-glass-prompt-done'}" />
+<Control xmlns="https://spacestation14.io"
+         xmlns:parallax="clr-namespace:Content.Client.Parallax"
+         xmlns:sui="clr-namespace:Content.Client._Starlight.Options.UI"
+         xmlns:info="clr-namespace:Content.Client.Info"
+         VerticalExpand="True" HorizontalExpand="True"
+         RectClipContent="True"
+         MouseFilter="Stop">
+    <parallax:ParallaxControl Name="Space" Access="Public" SpeedX="14" SpeedY="3" />
+
+    <PanelContainer Name="Card" Access="Public" StyleClasses="windowPanel"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+        <BoxContainer Orientation="Horizontal" Margin="18" SeparationOverride="18">
+            <TextureRect Name="Art" Access="Public"
+                         TexturePath="/Textures/_Daiquiri/Interface/newcomer_art.png"
+                         Stretch="KeepAspectCentered"
+                         SetSize="240 240"
+                         VerticalAlignment="Top" />
+
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="10">
+                <Label Name="TitleLabel" Access="Public" StyleClasses="LabelHeading" />
+
+                <BoxContainer Name="WelcomePage" Access="Public" Orientation="Vertical"
+                              HorizontalExpand="True" VerticalExpand="True" SeparationOverride="6">
+                    <RichTextLabel Name="WelcomeLine1" Access="Public" />
+                    <RichTextLabel Name="WelcomeLine2" Access="Public" />
+                    <Control VerticalExpand="True" />
+                    <Button Name="WelcomeNext" Access="Public" Text="{Loc 'ui-newcomer-next'}"
+                            HorizontalAlignment="Right" />
+                </BoxContainer>
+
+                <BoxContainer Name="RulesPage" Access="Public" Orientation="Vertical"
+                              HorizontalExpand="True" VerticalExpand="True" SeparationOverride="8"
+                              Visible="False">
+                    <RichTextLabel Name="RulesIntro" Access="Public" />
+                    <Button Name="ShowRulesButton" Access="Public" Text="{Loc 'ui-newcomer-rules-open'}"
+                            HorizontalAlignment="Left" />
+                    <info:RulesControl Name="RulesView" Access="Public"
+                                       HorizontalExpand="True" VerticalExpand="True" Visible="False" />
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                        <Button Name="RulesBack" Access="Public" Text="{Loc 'ui-newcomer-back'}" />
+                        <Label Name="RulesWaitLabel" VerticalAlignment="Center" HorizontalExpand="True" />
+                        <Button Name="RulesAccept" Access="Public" Text="{Loc 'ui-newcomer-rules-accept'}"
+                                Disabled="True" />
+                    </BoxContainer>
+                </BoxContainer>
+
+                <BoxContainer Name="ThemePage" Access="Public" Orientation="Vertical"
+                              HorizontalExpand="True" VerticalExpand="True" SeparationOverride="8"
+                              Visible="False">
+                    <RichTextLabel Name="ThemeLine1" Access="Public" />
+                    <RichTextLabel Name="ThemeLine2" Access="Public" />
+                    <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="True">
+                        <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="8"
+                                      Margin="0 0 8 0">
+                            <sui:StyleThemePicker Name="ThemePicker" Access="Public" Columns="5" />
+                            <sui:AccentPicker Name="AccentPicker" Access="Public" />
+                            <sui:AccentPicker Name="SecondaryAccentPicker" Access="Public" />
+                        </BoxContainer>
+                    </ScrollContainer>
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                        <Button Name="ThemeBack" Access="Public" Text="{Loc 'ui-newcomer-back'}" />
+                        <Control HorizontalExpand="True" />
+                        <Button Name="DoneButton" Access="Public" Text="{Loc 'ui-glass-prompt-done'}" />
+                    </BoxContainer>
+                </BoxContainer>
             </BoxContainer>
         </BoxContainer>
-        <BoxContainer Name="ThemePage" Access="Public" Orientation="Vertical" Margin="8" SeparationOverride="8">
-            <Label Text="{Loc 'ui-glass-prompt-theme-line'}" />
-            <Label Text="{Loc 'ui-glass-prompt-theme-line2'}" />
-            <sui:StyleThemePicker Name="ThemePicker" Access="Public" />
-            <sui:AccentPicker Name="AccentPicker" Access="Public" />
-            <Button Name="NextButton" Access="Public" Text="{Loc 'ui-glass-prompt-next'}"
-                    HorizontalAlignment="Right" />
-        </BoxContainer>
-    </BoxContainer>
-</DefaultWindow>
+    </PanelContainer>
+</Control>

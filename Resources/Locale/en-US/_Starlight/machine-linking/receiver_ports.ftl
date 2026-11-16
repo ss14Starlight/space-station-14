@@ -1,3 +1,9 @@
+signal-port-name-toggleable-device-state = State
+signal-port-description-toggleable-device-state = The state which the device should match. High = on, Low = off.
+
+signal-port-name-toggleable-device-state-inverted = Inverted State
+signal-port-description-toggleable-device-state-inverted = The state the opposite of which the device should match. High = off, Low = on.
+
 signal-port-name-body-scanner-receiver = Operating Table
 signal-port-description-body-scanner-receiver = Sending info only to Operating Console about patient.
 
@@ -24,3 +30,13 @@ signal-port-description-trigger-spawn = Activates the spawner, causing it to spa
 
 signal-port-name-turret-controller-sync-receiver = Sync
 signal-port-description-turret-controller-sync-receiver = Shares armament and authorization settings with another turret control panel.
+
+signal-port-name-combustion-turbine-console-receiver = Combustion Turbine
+signal-port-description-combustion-turbine-console-receiver = Receives commands from a combustion turbine control console.
+
+signal-port-name-airlock-cycler-door = Airlock Controller
+signal-port-description-airlock-cycler-door = Lets an airlock controller bolt, close and open this door.
+signal-port-name-airlock-cycler-button = Airlock Controller
+signal-port-description-airlock-cycler-button = Asks the airlock controller to cycle towards this button's side.
+signal-port-name-airlock-cycler-device = Airlock Controller
+signal-port-description-airlock-cycler-device = Lets an airlock controller fill or empty the chamber with this vent, scrubber or pump.

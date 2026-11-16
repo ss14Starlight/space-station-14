@@ -1,0 +1,12 @@
+- type: entity
+  parent: MobGorilla
+  id: MobWhiteGorilla
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: crawling
+      sprite: _Daiquiri/Mobs/Animals/white_gorilla.rsi
+  - type: AmputateOnHit
+    chance: 0.05

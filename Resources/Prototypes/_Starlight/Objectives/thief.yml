@@ -314,7 +314,7 @@
   parent: [BaseThiefObjective, BaseLivingObjective]
   id: EscapeMasterThiefObjective
   name: стань величайшим вором и укради всё, что считаешь ценным.
-  description: Just make sure to get out alive and free.
+  description: "Только обязательно выберитесь живым и свободным."
   components:
   - type: Objective
     difficulty: 0
@@ -322,10 +322,6 @@
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
   - type: EscapeShuttleCondition
-  - type: ObjectiveBlacklistRequirement
-    blacklist:
-      components: # So you can't get this and the normal Escape objective at the same time.
-      - EscapeShuttleCondition
 
 - type: entity
   parent: BaseThiefStealCollectionObjective
@@ -337,3 +333,12 @@
     maxCollectionSize: 18 #will be limited to the number of figures on the station anyway.
   - type: Objective
     difficulty: 0.7 #Starlight edit, youre fighting others for em
+
+# Story objectives from Moff Station
+- type: entity
+  parent: [BaseThiefObjective, BaseDepartmentStoryObjective]
+  id: RobDepartmentObjective
+  description: "В этом отделе есть кое-что интересное — пора присвоить это себе."
+  components:
+  - type: DepartmentObjective
+    title: objective-condition-rob-department

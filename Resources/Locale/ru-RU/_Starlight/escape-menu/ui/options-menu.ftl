@@ -24,6 +24,26 @@ ui-options-hitscan-prediction = Предсказывать собственны�
 ui-options-hitscan-prediction-tooltip = Пули отрисовываются в момент выстрела, не дожидаясь сервера.
     Попадания по-прежнему определяет сервер.
 
+ui-options-atmosphere-label = Освещение и атмосфера
+ui-options-light-tonemap = Мягкий свет
+ui-options-light-tonemap-tooltip = Сглаживает яркие пятна в местах пересечения источников света, чтобы спрайты не выцветали.
+ui-options-night-vision = Ночное зрение
+ui-options-night-vision-tooltip = Плохо освещённые области теряют цвет и становятся холодно-синими — так глаз видит в темноте.
+ui-options-vignette = Виньетка
+ui-options-vignette-tooltip = Затемняет края обзора.
+ui-options-bloom = Свечение
+ui-options-bloom-tooltip = Экраны, лампы и другие светящиеся объекты испускают свет вокруг себя, особенно в темноте. Снижает производительность.
+ui-options-film-grain = Зернистость плёнки
+ui-options-film-grain-tooltip = Накладывает лёгкую зернистость на изображение.
+ui-options-night-vision-strength = Сила ночного зрения
+ui-options-vignette-strength = Сила виньетки
+ui-options-bloom-strength = Сила свечения
+ui-options-bloom-threshold = Порог свечения
+ui-options-bloom-threshold-desc = Насколько пиксель должен быть ярче своего света, чтобы светиться. Чем ниже, тем больше объектов светится.
+ui-options-bloom-radius = Радиус свечения
+ui-options-bloom-radius-desc = Как далеко распространяется свечение.
+ui-options-film-grain-strength = Сила зернистости плёнки
+
 ## Accessibility
 
 ui-options-arachnophobia = Режим арахнофобии
@@ -64,6 +84,7 @@ style-theme-flesh = Плоть
 style-theme-syndicate = Синдикат
 style-theme-clockwork = Часовой механизм
 style-theme-nanotrasen = Нанотрейзен
+style-theme-liquid-glass = Жидкое стекло (Beta)
 ui-options-ui-sight-hash = Строка настроек прицела
 ui-options-sight-rotation = Поворот прицела
 ui-options-wield-before-rack = Взять в обе руки перед передёргиванием
@@ -83,22 +104,41 @@ ui-options-sight-second-color = Вторичный цвет прицела
 
 ui-starlight = Daiquiri
 ui-options-auto-punctuate = Автоматически ставить знаки препинания во внутриигровых сообщениях
-ui-options-glass-theme = Полупрозрачность (Beta)
-ui-options-glass-transparency = Степень прозрачности
-ui-options-glass-transparency-enable = Регулировать степень прозрачности
-ui-options-glass-accent = Цветной акцент
-ui-options-glass-accent-color = Цвет акцента
-ui-glass-prompt-title = Окно новичка
-ui-glass-prompt-line1 = Включить тему «полупрозрачность»?
-ui-glass-prompt-line2 = Переключайте галочки, чтобы посмотреть вживую.
-ui-glass-prompt-line3 = Вы сможете выключить или включить полупрозрачность в настройках игры.
-ui-glass-prompt-confirm = Подтвердить
-ui-glass-prompt-next = Далее
-ui-glass-prompt-theme = Тема интерфейса
-ui-glass-prompt-theme-line = Выбери тему интерфейса.
-ui-glass-prompt-theme-line2 = Поменять можно в настройках.
-ui-glass-prompt-done = Готово
-ui-glass-prompt-back = Назад
+ui-glass-prompt-title = Добро пожаловать!
+ui-glass-prompt-theme = Выбор темы
+ui-glass-prompt-theme-line = Остался последний шаг — выбери, как будет выглядеть интерфейс.
+ui-glass-prompt-theme-line2 = Поменять тему можно в любой момент в настройках, вкладка «Интерфейс».
+ui-glass-prompt-done = Начать игру
+ui-newcomer-welcome-1 = Добро пожаловать на Daiquiri Station!
+ui-newcomer-welcome-2 = Мы рады видеть тебя на станции. Прежде чем ты отправишься на смену, нужно выполнить пару формальностей.
+ui-newcomer-next = Далее
+ui-newcomer-back = Назад
+ui-newcomer-rules-title = Правила сервера
+ui-newcomer-rules-line = Игра на Daiquiri Station возможна только после ознакомления с правилами проекта. Открой их и прочитай внимательно — это обязательно.
+ui-newcomer-rules-line-optional = С правилами проекта стоит ознакомиться до начала смены — там собрано всё, что нужно знать новичку.
+ui-newcomer-rules-open = Ознакомиться с правилами
+ui-newcomer-rules-read = Я ознакомился с правилами
+ui-newcomer-rules-accept = Я прочитал и принимаю правила
+ui-newcomer-rules-wait = Кнопка станет доступна через { $time } с.
+ui-options-liquid-glass-open = Настройки жидкого стекла
+ui-liquid-glass-settings-title = Жидкое стекло
+ui-liquid-glass-settings-description = Тонкая настройка матового стекла. Изменения применяются сразу.
+ui-liquid-glass-enabled = Включить эффект жидкого стекла
+ui-liquid-glass-blur = Размытие фона
+ui-liquid-glass-refraction = Преломление по краям
+ui-liquid-glass-highlight = Блики на кромке
+ui-liquid-glass-opacity = Непрозрачность панелей
+ui-liquid-glass-tint = Сила тонировки
+ui-liquid-glass-tint-enabled = Использовать свой цвет тонировки
+ui-liquid-glass-tint-color = Цвет тонировки
+ui-liquid-glass-corner = Радиус скругления
+ui-liquid-glass-quality = Качество размытия
+ui-liquid-glass-quality-low = Низкое
+ui-liquid-glass-quality-medium = Среднее
+ui-liquid-glass-quality-high = Высокое
+ui-liquid-glass-animate = Анимированный блик
+ui-liquid-glass-reset = Сбросить настройки
+ui-liquid-glass-close = Готово
 ui-options-general-ghost-themes = Темы призрака
 ui-options-general-ghost-themes-force-tester = Принудительно показывать вкладку тестера в меню тем призрака
 
@@ -178,3 +218,41 @@ ui-options-sight-heat-indicator = Показывать нагрев пушки
 ui-options-sight-jam-indicator = Показывать клин
 ui-options-tts-label = Синтез речи
 ui-options-tts-volume = Громкость ТТС:
+
+ui-options-lobby-ready-position = Кнопка готовности
+ui-options-lobby-ready-position-bottom = Под чатом
+ui-options-lobby-ready-position-top = Над чатом
+
+ui-options-admin-ahelp-label = Админ-помощь
+ui-options-bar-placement-auto = Авто
+ui-options-bar-placement-hidden = Скрыто
+ui-options-bar-placement-menu = В меню
+ui-options-bar-placement-pinned = Закреплено
+ui-options-lobby-background = Фон лобби
+ui-options-lobby-background-server = Выбор сервера
+ui-options-lobby-job-columns = Перетаскивание приоритетов должностей в лобби
+ui-options-lobby-job-columns-tooltip = Показывает старые колонки приоритетов должностей под информацией о раунде, рядом с окном приоритетов должностей.
+ui-options-lobby-label = Лобби
+ui-options-lobby-opacity = Прозрачность панели
+ui-options-menu-bar-key-hints = Подсказки клавиш
+ui-options-menu-bar-key-hints-always = Всегда
+ui-options-menu-bar-key-hints-hold = При удержании Alt
+ui-options-menu-bar-key-hints-never = Никогда
+ui-options-menu-bar-label = Верхняя панель меню
+ui-options-viewport-label = Область просмотра
+
+ui-options-function-hotbar-remove = Убрать с панели быстрого доступа
+ui-options-classic-styling = Классический стиль
+ui-options-style-secondary-accent = Дополнительный акцентный цвет
+ui-options-admin-tools = Настройки инструментов администрации
+ui-options-admin-space-map-label = Путь к арене администратора
+ui-options-admin-space-map-tooltip =
+    Путь к .yml-файлу карты, которую вы хотите загрузить как арену администратора.
+    Если оставить пустым, будет использована карта по умолчанию.
+    Сначала проверяются пользовательские данные сервера, затем данные контента.
+ui-options-admin-space-map-init-label = Инициализировать арену администратора
+ui-options-admin-space-map-init-tooltip =
+    Если включено, карта инициализируется при загрузке.
+    Если выключено, карта создаётся неинициализированной.
+ui-options-admin-sounds-volume = Звуки администрации:
+ui-options-show-tippy = Показывать Типпи

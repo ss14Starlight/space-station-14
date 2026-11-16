@@ -127,7 +127,7 @@
 
 - type: !PartialOnly entity
   id: BorgModuleSyndicateWeapon
-  description: a simple weapon module that comes with an Echis and energy dagger.
+  description: "Простой оружейный модуль с «Эхисом» и энергетическим кинжалом."
 
 - type: !PartialOnly entity
   id: BorgModuleL6C
@@ -161,6 +161,16 @@
         blacklist:
           tags:
           - MechReactor
+    - hand:
+        emptyRepresentative: ClothingHeadHatTophat
+        emptyLabel: borg-slot-clothing-empty
+        whitelist:
+          components:
+          - Clothing
+        blacklist:
+          components:
+          - Armor
+          - Reflect
 
 - type: !PartialOnly entity
   id: XenoborgModuleLaser
@@ -178,8 +188,8 @@
 
 - type: !PartialOnly entity
   id: XenoborgModuleHypo
-  name: hypo xenoborg module
-  description: Module with self-refilling hypos.
+  name: "гипо-модуль ксеноборга"
+  description: "Модуль с самозаправляющимися гипоспреями."
   components:
   - type: ItemBorgModule
     hands:

@@ -22,3 +22,5 @@ reagent-name-cinnamon = Корица
 reagent-desc-cinnamon = Одна из специй жизни. Не пробуйте ложку всухомятку.
 reagent-physical-desc-cinnamon = коричный
 reagent-name-stellibininsyrup = сироп стеллибинина
+
+reagent-desc-stellibininsyrup = Хуже как лекарство, но при добавлении в еду может предотвратить отравление теобромином и аллицином. Метаболизируется медленно.

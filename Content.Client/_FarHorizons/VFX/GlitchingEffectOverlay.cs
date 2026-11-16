@@ -24,6 +24,7 @@ public sealed partial class GlitchingEffectOverlay : Overlay
     public GlitchingEffectOverlay()
     {
         IoCManager.InjectDependencies(this);
+        ZIndex = -10; // Starlight
         _shader = _protoMan.Index(_shaderProto).InstanceUnique();
     }
 

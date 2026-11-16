@@ -3,3 +3,5 @@ station-event-nightshift-end-announcement = Доброе утро, экипаж.
 
 station-event-nightshift-disable = Отключение ночного освещения: станция находится в чрезвычайном положении.
 station-event-nightshift-enable = Включение ночного освещения: станция больше не находится в чрезвычайном положении.
+
+nightshift-announcement-sender = Автоматическая система освещения

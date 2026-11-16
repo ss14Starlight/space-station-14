@@ -78,3 +78,7 @@ station-ai-warp-no-results = No destinations found.
 station-ai-warp-section-crew = Crew
 station-ai-warp-section-locations = Locations
 station-ai-warp-radial-tooltip = Warp
+
+station-ai-deathrattle-sender = AI SYSTEM ALERT
+station-ai-deathrattle-connection-lost = Connection to Station AI {$ai} was lost {$position}.
+station-ai-deathrattle-shutdown = Station AI {$ai} has shut down {$position}.

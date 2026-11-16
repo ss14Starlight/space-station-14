@@ -2,7 +2,7 @@
   abstract: true
   id: CMPlatformBase
   name: platform
-  description: A raised surface. Wait, thats illegal!
+  description: "Приподнятая поверхность. Погодите, это же незаконно!"
   components:
   - type: Transform
     anchored: true

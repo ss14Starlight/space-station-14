@@ -204,7 +204,7 @@ guide-entry-corporate-law = Корпоративный закон
 guide-entry-treatment-of-prisoners = Обращение с заключёнными
 guide-entry-search-and-seizure = Обыск и изъятие
 guide-entry-permits = Разрешения
-guide-entry-implantation = Имплантация
+guide-entry-implantation = Обязательная имплантация
 guide-entry-sentencing = Вынесение приговоров
 guide-entry-parole = УДО
 guide-entry-legal-representation = Юридическое представительство
@@ -232,3 +232,14 @@ guide-entry-sl-science-sop-roboticist = Робототехник
 guide-entry-sl-science-sop-scientist = Учёный
 guide-entry-sl-science-sop-staff-intro = Процедуры персонала
 guide-entry-sl-security-sop-k9 = Кинолог
+
+guide-entry-combustion-turbine = Турбина сгорания
+
+guide-entry-sl-security-sop-permitacquisition-examples = Примеры разрешений
+
+guide-entry-sl-security-sop-gunnerysergeant = Сержант-инструктор
+guide-entry-religious-freedom = Свобода вероисповедания
+guide-entry-silicon-clause = Оговорка о синтетиках
+guide-entry-carnival-treaty = Карнавальный договор
+
+guide-entry-sl-security-sop-induced-mutiny = Подстрекательство к мятежу

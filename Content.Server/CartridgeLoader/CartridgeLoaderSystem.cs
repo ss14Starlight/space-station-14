@@ -416,6 +416,10 @@ public sealed partial class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
                 if (component.ActiveProgram.HasValue)
                     RaiseLocalEvent(component.ActiveProgram.Value, new CartridgeUiReadyEvent(loaderUid));
                 break;
+            case CartridgeUiMessageAction.UiClosed:
+                if (component.ActiveProgram.HasValue)
+                    RaiseLocalEvent(component.ActiveProgram.Value, new CartridgeUiClosedEvent(loaderUid));
+                break;
             default:
                 throw new ArgumentOutOfRangeException($"Unrecognized UI action passed from cartridge loader ui {message.Action}.");
         }

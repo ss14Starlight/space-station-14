@@ -218,3 +218,7 @@ construction-graph-tag-insulthread = изолированная нить
 crafting-menu-name-false-projector = ложный проектор створок
 crafting-menu-text-false-projector = Выглядит почти как настоящий. Полезен, чтобы закрыть обзор рассеянным или невнимательным, пока вы делаете то, что нужно.
 construction-graph-tag-holoprojector = любой голопроектор
+
+construction-graph-tag-drink-bottle = любая большая стеклянная бутылка
+crafting-menu-name-molo = коктейль Молотова
+crafting-menu-text-molo = вечная классика для любого недовольного — анархия в ладони.

@@ -82,3 +82,5 @@ economy-chat-donate-18-wrapped-message = [bold]Комиссионный плат
 
 economy-chat-donate-19-message = Дивиденды зачислены на ваш баланс. Сумма: {$amount} кр.
 economy-chat-donate-19-wrapped-message = [bold]Дивиденды зачислены на ваш баланс. Сумма: [color=green]{$amount}[/color][/bold] кр.
+
+ui-atm-title = Банкомат

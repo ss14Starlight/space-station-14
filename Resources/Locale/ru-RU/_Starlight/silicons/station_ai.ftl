@@ -78,3 +78,7 @@ station-ai-warp-no-results = Точки не найдены.
 station-ai-warp-section-crew = Экипаж
 station-ai-warp-section-locations = Локации
 station-ai-warp-radial-tooltip = Варп
+
+station-ai-deathrattle-sender = СИСТЕМНОЕ ОПОВЕЩЕНИЕ ИИ
+station-ai-deathrattle-connection-lost = Связь со станционным ИИ {$ai} потеряна {$position}.
+station-ai-deathrattle-shutdown = Станционный ИИ {$ai} отключился {$position}.

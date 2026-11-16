@@ -19,6 +19,10 @@
   name: сердце
   description: Замирает при виде мин.
   components:
+  - type: Tag
+    tags:
+    - Meat
+    - Heart
   - type: Sprite
     state: heart-on
   - type: Organ

@@ -1,0 +1,28 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:sui="clr-namespace:Content.Client._Starlight.Options.UI"
+               xmlns:ui="clr-namespace:Content.Client.Options.UI"
+               Title="{Loc 'ui-liquid-glass-settings-title'}"
+               MinSize="640 0">
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="8">
+        <Label Text="{Loc 'ui-liquid-glass-settings-description'}" />
+        <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" MinHeight="380">
+            <BoxContainer Orientation="Vertical" Margin="0 0 8 0" SeparationOverride="8">
+                <CheckBox Name="EnabledCheckBox" Text="{Loc 'ui-liquid-glass-enabled'}" />
+                <sui:OptionSlider Name="BlurSlider" Title="{Loc 'ui-liquid-glass-blur'}" />
+                <sui:OptionSlider Name="RefractionSlider" Title="{Loc 'ui-liquid-glass-refraction'}" />
+                <sui:OptionSlider Name="HighlightSlider" Title="{Loc 'ui-liquid-glass-highlight'}" />
+                <sui:OptionSlider Name="OpacitySlider" Title="{Loc 'ui-liquid-glass-opacity'}" />
+                <sui:OptionSlider Name="TintSlider" Title="{Loc 'ui-liquid-glass-tint'}" />
+                <CheckBox Name="TintEnabledCheckBox" Text="{Loc 'ui-liquid-glass-tint-enabled'}" />
+                <ui:OptionColorSlider Name="TintColorSlider" Title="{Loc 'ui-liquid-glass-tint-color'}" />
+                <sui:OptionSlider Name="CornerSlider" Title="{Loc 'ui-liquid-glass-corner'}" />
+                <sui:OptionSlider Name="QualitySlider" Title="{Loc 'ui-liquid-glass-quality'}" />
+                <CheckBox Name="AnimateCheckBox" Text="{Loc 'ui-liquid-glass-animate'}" />
+            </BoxContainer>
+        </ScrollContainer>
+        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right" SeparationOverride="8">
+            <Button Name="ResetButton" Text="{Loc 'ui-liquid-glass-reset'}" />
+            <Button Name="DoneButton" Text="{Loc 'ui-liquid-glass-close'}" />
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

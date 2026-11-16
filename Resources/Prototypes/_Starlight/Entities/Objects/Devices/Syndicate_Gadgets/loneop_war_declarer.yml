@@ -30,7 +30,7 @@
       ignoreASpace: true
       globalAnnounce: true
       sound:
-       path: /Audio/Announcements/war.ogg
+       path: /Audio/_CorvaxGoob/Announcements/war3.ogg
       color: red
     - type: TimedDespawn
       lifetime: 1

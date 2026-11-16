@@ -1,0 +1,37 @@
+- type: entity
+  id: ActionBloodBoundConvert
+  name: "Превратить"
+  description: "Обратите члена экипажа в вашу кровавую клятву."
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/Interface/Alerts/bleed.rsi
+      state: bleed10
+    itemIconStyle: BigAction
+  - type: TargetAction
+    repeat: false
+    deselectOnMiss: false
+  - type: EntityTargetAction
+    event: !type:BloodBoundConvertActionEvent
+    whitelist:
+      components:
+      - HumanoidAppearance
+    canTargetSelf: false
+
+- type: entity
+  id: ActionBloodBoundCheckConvert
+  name: "Проверить возможность обращения"
+  description: "Проверить, поддаётся ли член экипажа обращению."
+  components:
+  - type: Action
+    icon: Interface/VerbIcons/vv.svg.192dpi.png # eye icon
+    itemIconStyle: BigAction
+  - type: TargetAction
+    repeat: true
+    deselectOnMiss: false
+  - type: EntityTargetAction
+    event: !type:BloodBoundCheckConvertActionEvent
+    whitelist:
+      components:
+      - HumanoidAppearance
+    canTargetSelf: false

@@ -199,3 +199,7 @@ gofish-card-rules-content = [color=#1b67a5]
     {"  • [bold]Не раскрывайте карты[/bold], сет с которыми вы почти собрали!"}
 
     {"  • [bold]Не забывайте веселиться![/bold]"}
+
+gofish-card-rules-desc = Это карта правил! Вы можете прочитать её, чтобы лучше понять правила.
+gofish-card-rules-name = Карта правил «Go Fish!»
+gofish-card-rules-name-reverse = игральная карта

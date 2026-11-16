@@ -1,0 +1,24 @@
+
+- type: parallax
+  id: DaiquiriTaipanSurface
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Tiles/Planet/Snow/ice.png"
+      slowness: 0.35
+
+- type: parallax
+  id: DaiquiriLavalandSurface
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/LavaParallax.png"
+      slowness: 0.35
+
+- type: parallax
+  id: DaiquiriNovoNihonSurface
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Tiles/Planet/Grass/grass.png"
+      slowness: 0.35

@@ -20,3 +20,5 @@ command-description-inventory-ensurespawn =
     Spawns a given prototype on the first piped entity that has a slot matching the given flag if none exists, passing through the UID of whatever is in the slot by the end.
 command-description-inventory-contents =
     Gets the entities in the inventory slots of the piped entities and passes them along.
+
+command-description-inventory-query = Получает сущности в слотах инвентаря сущностей из конвейера и передаёт их дальше.

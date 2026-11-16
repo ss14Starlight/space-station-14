@@ -1,11 +1,6 @@
 - type: !PartialOnly entity
   id: BaseWeaponLauncher
   components:
-  - type: RestrictByUserTag
-    doestContain:
-    - Abductor
-    messages:
-    - abductor-gun-restricted-1
   - type: KnockbackByUserTag
     doestContain:
       Skating:
@@ -20,6 +15,15 @@
       Felionoid:
         knockback: 5 # half of what resomi take
         staminaMultiplier: 18
+  - type: RestrictByUserTag
+    doestContain:
+    - Abductor
+    messages:
+    - abductor-gun-restricted-1
+
+- type: !PartialOnly entity
+  id: WeaponLauncherChinaLake
+  description: A pump-action grenade launcher commonly used by the infamous Nuclear Operatives. PLOOP!
 
 - type: !PartialOnly entity
   id: WeaponLauncherHydra
@@ -28,6 +32,7 @@
     whitelist:
       tags: !Clear
       - Cleanade # make it use cleanades instead of frags
+    capacity: !Remove
 
 # Ballistics
 - type: !PartialOnly entity
@@ -78,6 +83,7 @@
 
 - type: !PartialOnly entity
   id: WeaponGrapplingGun
+  description: A gun with a steel frame and brass fittings. The hook is securely fitted into the barrel.
   components:
   - type: Tag
     tags:

@@ -36,3 +36,4 @@ ghost-role-information-cc-janitor-description = Держите полы на а�
 ghost-important-role = [bold]Идёт поиск кандидатов на роль { $rolename }[/bold]
 ghost-gui-aghost-toggle-ghost-visibility-popup-on = Невидим для не-администраторов.
 ghost-gui-aghost-toggle-ghost-visibility-popup-off = Видим для не-администраторов.
+ghost-gui-toggle-lighting-manager-popup-half-bright = Полуяркий режим.

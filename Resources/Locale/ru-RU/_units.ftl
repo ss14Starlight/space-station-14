@@ -93,3 +93,6 @@ units-kelvin-long = кельвин
 units-k-kelvin-long = килокельвин
 units-m-kelvin-long = мегакельвин
 units-g-kelvin-long = гигакельвин
+
+units-mole = моль
+units-u = u

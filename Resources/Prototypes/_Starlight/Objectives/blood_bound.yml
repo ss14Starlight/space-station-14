@@ -1,0 +1,287 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseBloodBoundObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-blood-bound
+  - type: RoleRequirement
+    roles:
+    - BloodBoundRole
+
+- type: entity
+  abstract: true
+  parent: BaseBloodBoundObjective
+  id: BaseBloodBoundStealObjective
+  components:
+  - type: StealCondition
+    descriptionText: objective-condition-blood-bound-steal-description
+    descriptionMultiplyText: objective-condition-blood-bound-steal-multiply-description
+
+# Tracked objectives
+- type: entity
+  parent: [BaseBloodBoundObjective, BaseTargetObjective]
+  id: BloodBoundStealHeartObjective
+  description: "Нам нужно сердце этого человека."
+  components:
+  - type: Objective
+    hidden: true
+    hiddenTitle: objective-picker-hidden-steal-heart
+    difficulty: 2
+    unique: true
+    icon:
+      sprite: Mobs/Species/Human/organs.rsi
+      state: heart-on
+  - type: TargetObjective
+    title: objective-condition-blood-bound-steal-heart
+  - type: PickRandomPerson
+    pool: !type:WeightedAlivePool
+      weightHighValue: true
+    filters:
+    - !type:HasHeartMindFilter
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - StealHeartCondition
+  - type: StealHeartCondition
+
+- type: entity
+  parent: BaseBloodBoundObjective
+  id: BloodBoundFirestakeObjective
+  components:
+  - type: Objective
+    difficulty: 2
+    unique: true
+    icon:
+      sprite: Structures/Decoration/bonfire_stake.rsi
+      state: burning
+  - type: NumberObjective
+    min: 1
+    max: 4
+  - type: FirestakeCondition
+    title: objective-condition-blood-bound-firestake
+    description: objective-condition-blood-bound-firestake-description
+
+# Support a sworn partner
+- type: entity
+  parent: [BaseBloodBoundObjective, BaseTargetObjective]
+  id: BloodBoundAssistObjective
+  name: "Помогите своему кровному брату."
+  description: "Помогайте своему кровному брату выполнить все его цели, чего бы это ни стоило."
+  components:
+  - type: Objective
+    difficulty: 0 # never given randomly anyways
+    issuer: objective-issuer-blood-bound
+    icon:
+      sprite: /Textures/Interface/Alerts/bleed.rsi
+      state: bleed10
+  - type: TargetObjective
+    title: objective-condition-blood-bound-progress-title
+  - type: HelpProgressCondition
+
+# state
+
+- type: entity
+  parent: [BaseBloodBoundObjective, EscapeShuttleObjective]
+  id: BloodBoundEscapeShuttleObjective
+  description: "Мы должны вырваться свободными, иначе всё будет напрасно."
+
+# kill
+
+- type: entity
+  parent: [BaseBloodBoundObjective, KillRandomPersonObjective]
+  id: BloodBoundKillRandomPersonObjective
+  description: "Нужно проследить, чтобы этот человек не добрался до Центрального командования — ни живым, ни мёртвым."
+
+- type: entity
+  parent: [BaseBloodBoundObjective, KillRandomHeadObjective]
+  id: BloodBoundKillRandomHeadObjective
+  description: "Нужно проследить, чтобы этот человек не добрался до Центрального командования — ни живым, ни мёртвым."
+
+# lesson
+- type: entity
+  parent: [BaseBloodBoundObjective, TeachRandomPersonObjective]
+  id: BloodBoundTeachRandomPersonObjective
+  description: "Нужно проследить, чтобы этот человек умер хотя бы раз за смену."
+
+- type: entity
+  parent: [BaseBloodBoundObjective, TeachRandomHeadObjective]
+  id: BloodBoundTeachRandomHeadObjective
+  description: "Нужно проследить, чтобы этот человек умер хотя бы раз за смену."
+
+# steal
+
+## cmo
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CMOHyposprayStealObjective]
+  id: BloodBoundCMOHyposprayStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CrewMonitorStealCollectionObjective]
+  id: BloodBoundCrewMonitorStealCollectionObjective
+
+## rd
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, RDHardsuitStealObjective]
+  id: BloodBoundRDHardsuitStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, HandTeleporterStealObjective]
+  id: BloodBoundHandTeleporterStealObjective
+
+## hos
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, HOSWeaponStealObjective]
+  id: BloodBoundHOSWeaponStealObjective
+
+## ce
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, MagbootsStealObjective]
+  id: BloodBoundMagbootsStealObjective
+
+## qm
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, ClipboardStealObjective]
+  id: BloodBoundClipboardStealObjective
+
+## hop
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CorgiMeatStealObjective]
+  id: BloodBoundCorgiMeatStealObjective
+
+## cap
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CaptainIDStealObjective]
+  id: BloodBoundCaptainIDStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CaptainJetpackStealObjective]
+  id: BloodBoundCaptainJetpackStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CaptainGunStealObjective]
+  id: BloodBoundCaptainGunStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, NukeDiskStealObjective]
+  id: BloodBoundNukeDiskStealObjective
+
+# Non-command Thief single-item objectives, so they don't just become Vamps 2
+- type: entity
+  parent: [BaseBloodBoundStealObjective, ForensicScannerStealObjective]
+  id: BloodBoundForensicScannerStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, FlippoEngravedLighterStealObjective]
+  id: BloodBoundFlippoEngravedLighterStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, ClothingHeadHatWardenStealObjective]
+  id: BloodBoundClothingHeadHatWardenStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, WantedListCartridgeStealObjective]
+  id: BloodBoundWantedListCartridgeStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, FiringPinAdvancedLaserStealObjective]
+  id: BloodBoundFiringPinAdvancedLaserStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, LogProbeCartridgeStealObjective]
+  id: BloodBoundLogProbeCartridgeStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, MedTekCartridgeStealObjective]
+  id: BloodBoundMedTekCartridgeStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, DepartmentalTechFabCircuitboardStealObjective]
+  id: BloodBoundDepartmentalTechFabCircuitboardStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, BrigmedicStrangeBedsheetStealObjective]
+  id: BloodBoundBrigmedicStrangeBedsheetStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, MiningShuttleCircuitboardStealObjective]
+  id: BloodBoundMiningShuttleCircuitboardStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, ClothingOuterHardsuitVoidParamedStealObjective]
+  id: BloodBoundClothingOuterHardsuitVoidParamedStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, SecureTechFabCircuitboardStealObjective]
+  id: BloodBoundSecureTechFabCircuitboardStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, FireAxeStealObjective]
+  id: BloodBoundFireAxeStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, AmePartFlatpackStealObjective]
+  id: BloodBoundAmePartFlatpackStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, CargoShuttleCircuitboardStealObjective]
+  id: BloodBoundCargoShuttleCircuitboardStealObjective
+
+- type: entity
+  parent: [BaseBloodBoundStealObjective, BibleStealObjective]
+  id: BloodBoundBibleStealObjective
+
+# Blood bound story objectives
+- type: entity
+  parent: [BaseBloodBoundObjective, BaseStoryObjective]
+  id: BloodBoundCookSentientsObjective
+  name: "Приготовьте еду из разумных существ."
+  description: "Нам нужно приготовить еду из разумных существ."
+
+- type: entity
+  parent: [BaseBloodBoundObjective, BaseStoryObjective]
+  id: BloodBoundReplaceHeadObjective
+  name: "Займите место главы отдела."
+  description: "Нам нужно занять место главы отдела."
+
+- type: entity
+  parent: [BaseBloodBoundObjective, BaseStoryObjective]
+  id: BloodBoundConvertFollowersObjective
+  name: "Обращайте людей в Детей Нар'Си."
+  description: "Нам нужно распространять веру и приводить новых последователей к Детям Нар'Си."
+
+- type: entity
+  parent: [BaseBloodBoundObjective, HarassObjective]
+  id: BloodBoundHarassObjective
+  description: "Нам нужно досаждать этому отделу и создавать неудобства, не нанося прямого физического вреда."
+
+- type: entity
+  parent: [BaseBloodBoundObjective, TrashRoomObjective]
+  id: BloodBoundTrashRoomObjective
+  description: "Нам нужно разгромить эту комнату. Проследите, чтобы она не прошла санитарную проверку."
+
+- type: entity
+  parent: [BaseBloodBoundObjective, ClaimLocationObjective]
+  id: BloodBoundClaimLocationObjective
+  description: "Сделайте эту комнату базой Детей Нар'Си."
+  components:
+  - type: LocationObjective
+    title: objective-condition-blood-bound-claim-room
+
+- type: entity
+  parent: [BaseBloodBoundObjective, RobDepartmentObjective]
+  id: BloodBoundRobDepartmentObjective
+  description: "Нам нужно заполучить ценности этого отдела."
+
+- type: entity
+  parent: [BaseBloodBoundObjective, CallingCardObjective]
+  id: BloodBoundCallingCardObjective
+  name: "Оставьте визитную карточку на месте наших преступлений."
+  description: "Нам нужно оставить визитную карточку на месте наших преступлений."

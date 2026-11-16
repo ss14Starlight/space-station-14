@@ -15,9 +15,7 @@ public sealed partial class StyleThemePrototype : IPrototype
     [DataField(required: true)]
     public LocId Name;
 
-    /// <summary>
     /// Sort order in the options menu.
-    /// </summary>
     [DataField]
     public int Order;
 
@@ -136,6 +134,11 @@ public sealed partial class StyleThemePrototype : IPrototype
     /// </summary>
     [DataField]
     public bool RawColors;
+
+    /// <summary>
+    /// </summary>
+    [DataField]
+    public bool LiquidGlass;
 
     /// <summary>
     /// Secondary accent color, for pressed and selected buttons.

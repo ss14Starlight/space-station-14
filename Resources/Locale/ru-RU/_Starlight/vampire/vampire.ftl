@@ -192,3 +192,5 @@ Vamp-converted-text =
     Вы были порабощены!
     Верно подчиняйтесь своему хозяину, вы можете получить доступ к хайвмайнду через '+p'
 Vamp-converted-confirm = Понятно
+
+vampire-overwhelming-force-latch-blocked = Вы не можете ухватиться за нечто столь неподвижное!

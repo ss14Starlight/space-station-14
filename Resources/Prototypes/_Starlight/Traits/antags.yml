@@ -26,3 +26,14 @@
   - !type:AddCompsEffect
     components:
     - type: Unglorious
+
+- type: trait
+  id: BloodBound
+  name: trait-blood-bound-name
+  description: trait-blood-bound-description
+  category: AntagTraits
+  cost: 0
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: BloodBoundConvertible

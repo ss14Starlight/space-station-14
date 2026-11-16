@@ -1,0 +1,17 @@
+- type: entity
+  parent: ButchCleaver
+  id: ButchCleaverGold
+  name: "золотой мясницкий тесак"
+  description: "Позолоченный мясницкий тесак, вручаемый в знак признательности за годы службы. Лезвие из пластали для особо острой резки."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/cleaver_gold.rsi/
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/cleaver_gold.rsi/
+  - type: MeleeWeapon
+    wideAnimationRotation: -115
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 13.1 # Extra 0.1 damage a swing is… basically cosmetic.
+

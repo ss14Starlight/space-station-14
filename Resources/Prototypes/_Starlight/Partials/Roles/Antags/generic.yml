@@ -1,0 +1,11 @@
+- type: !PartialOnly antag
+  id: GenericAntagonist
+  isGeneric: true
+
+- type: !PartialOnly antag
+  id: GenericTeamAntagonist
+  isGeneric: true
+
+- type: !PartialOnly antag
+  id: GenericFreeAgent
+  isGeneric: true

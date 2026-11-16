@@ -159,3 +159,6 @@ language-CygniStandard-description = Язык СССП.
 
 language-Penguin-name = Пингвиний
 language-Penguin-description = Кар!
+
+language-Spore-name = Споры
+language-Spore-description = Общение посредством грибковых спор.

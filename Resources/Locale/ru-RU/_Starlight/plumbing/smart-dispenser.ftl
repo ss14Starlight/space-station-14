@@ -8,3 +8,5 @@ plumbing-smart-dispenser-row-tooltip = {$reagent}: запасено {$stored}u /
 plumbing-smart-dispenser-not-in-stock = {$reagent} нет в наличии.
 plumbing-smart-dispenser-jug-full = Контейнер уже полон.
 plumbing-smart-dispenser-filled = Залито {$amount}u: {$reagent}.
+plumbing-smart-dispenser-not-powered = Для функции умной выдачи требуется питание.
+plumbing-smart-dispenser-access-denied = Доступ запрещён.

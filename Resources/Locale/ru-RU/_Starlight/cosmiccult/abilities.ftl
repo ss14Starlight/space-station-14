@@ -21,3 +21,7 @@ cosmicability-monument-spawn-error-grid = Неверное место! Мону�
 cosmicability-monument-spawn-error-station = Неверное место! Монумент должен быть воззван на станции.
 cosmicability-monument-spawn-error-intersection = Слишком тесно! Для воззвания Монумента требуется пустая область 3x1.
 cosmicability-monument-spawn-error-space = Слишком близко к космосу! Монумент должен находиться на расстоянии не менее {$DISTANCE} м.
+
+cosmicability-fragmentation-confirm =
+    ЭТО, СКОРЕЕ ВСЕГО, РАСКРОЕТ КУЛЬТ СТАНЦИИ!
+           Нажмите ещё раз, чтобы активировать Нулевое фрагментирование.

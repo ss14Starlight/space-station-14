@@ -1,0 +1,10 @@
+thaven-mood-confusing-perspective-desc = Хорошие новости вас огорчают, а катастрофы и другие плохие новости — повод для радости. Реагируйте соответственно, независимо от чувств окружающих.
+thaven-mood-confusing-perspective-name = Запутанное восприятие
+thaven-mood-extremist-desc = Вы чувствуете потребность выходить за пределы своих других настроений и действовать в их абсолютно крайних проявлениях.
+thaven-mood-extremist-name = Экстремист
+thaven-mood-monster-hunter-desc = По станции рыщут опасные существа. Определите, что считать монстром, и найдите их.
+thaven-mood-monster-hunter-name = Охотник на монстров
+thaven-mood-respect-through-violence-desc = Правильный способ представиться — короткая драка. Отношения, не пережившие насилия, стоят на шатком фундаменте.
+thaven-mood-respect-through-violence-name = Уважение через насилие
+thaven-mood-spite-desc = Вы хотите лишь одного: напрямую наблюдать, как другие не получают желаемого.
+thaven-mood-spite-name = Злоба

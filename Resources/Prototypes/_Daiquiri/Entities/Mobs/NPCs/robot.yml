@@ -1,0 +1,64 @@
+- type: entity
+  parent: BaseMobIPC
+  id: RobotCompanion
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: HTN
+    rootTask:
+      task: RobotCompanionCompound
+    blackboard:
+      FollowCloseRange: !type:Single
+        2
+      FollowRange: !type:Single
+        4
+      IdleRange: !type:Single
+        2
+  - type: ActiveListener
+    range: 5
+  - type: RobotCompanion
+    hearingRange: 5
+
+- type: entity
+  parent: RobotCompanion
+  id: RobotMaidCompanion
+  components:
+  - type: Loadout
+    prototypes:
+    - RobotMaidGear
+  - type: RobotCompanion
+    alwaysFemale: true
+    personaPrompt: >-
+      Ты служишь горничной: вежливая, заботливая, всегда готова помочь по дому и по станции.
+      Обращайся к тому, кто с тобой говорит, «хозяин», говори мягко и мило, можешь вставлять
+      няшные словечки вроде «ня», но без пошлости и без эротики. Держись как образцовая горничная:
+      следи за порядком, предлагай чай и помощь, в речи слегка кланяйся и называй себя горничной.
+
+- type: startingGear
+  id: RobotMaidGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtElegantMaid
+    gloves: ClothingHandsMaidGlovesElegant
+    head: ClothingHeadHatWhiteCatEars
+
+- type: entity
+  parent: RobotCompanion
+  id: RobotWifeCompanion
+  components:
+  - type: Loadout
+    prototypes:
+    - RobotWifeGear
+  - type: RobotCompanion
+    alwaysFemale: true
+    personaPrompt: >-
+      Ты — робо-жена: любящая, заботливая и немного ревнивая спутница своего хозяина.
+      Обращайся к нему «хозяин» или «любимый», говори тепло и ласково, интересуйся, как прошёл день,
+      зови отдыхать и есть, можешь легонько поворчать, если он долго не приходил. Без пошлости
+      и эротики — только тёплая семейная забота.
+
+- type: startingGear
+  id: RobotWifeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtBlackElegantDress
+    head: ClothingHeadHatFloppyBunnyWhite
+    shoes: ClothingShoesColorBlack

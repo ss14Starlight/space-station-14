@@ -1,0 +1,22 @@
+[color=#AFAFAF]█▀  █▀▀  ▀█[head=3] Спинвардский Синдикат[/head]
+█    ▀▀█    █  Ради будущего.
+▀▀  ▀▀▀  ▀▀
+[/color][italic][color=#E5E5E5]Этот документ содержит секретную информацию. НЕ РАСПРОСТРАНЯТЬ.[/color][/italic]
+[head=3][color=#2E0404]ЗАЩИЩЁННЫЙ ФАКС
+УНИЧТОЖИТЬ ПОСЛЕ ПРОЧТЕНИЯ[/color][/head]
+[color=#AFAFAF]▌ICD12834911[/color]
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    [color=#aaaaaa][bold][italic]НАЧАЛО ФАКСА[/italic][/bold][/color]
+
+⠀⠀⠀⠀⠀                    [bold]ОФИЦИАЛЬНОЕ СООБЩЕНИЕ СИНДИКАТА[/bold]
+
+Дата и время: [datetime]
+Составитель документа: [signature]
+
+[bold]КОМУ:[/bold] [form]
+[bold]ОТ:[/bold] [signature]
+[bold]ТЕМА:[/bold] [form]
+
+[form]
+
+    [color=#aaaaaa][bold][italic]КОНЕЦ ФАКСА[/italic][/bold][/color]

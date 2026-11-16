@@ -1,0 +1,19 @@
+- files: ["level.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Created by Dapper Husky"
+  source: "https://www.youtube.com/watch?v=Lyj-MZSAA9o"
+
+- files: ["nuclearremake_infil.ogg"]
+  license: "Custom"
+  copyright: "CC0 1.0 Universal. Created by A-Guy."
+  source: "https://github.com/A-Guy173/Music"
+  
+- files: ["nuclearremake_def.ogg"]
+  license: "Custom"
+  copyright: "CC0 1.0 Universal. Created by A-Guy."
+  source: "https://github.com/A-Guy173/Music"
+
+- files: ["nuclearoperations.ogg"]
+  license: "Custom"
+  copyright: "CC0 1.0 Universal. Created by A-Guy."
+  source: "https://github.com/A-Guy173/Music"

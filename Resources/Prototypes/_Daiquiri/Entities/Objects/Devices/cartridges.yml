@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseItem
   id: GoogolplexCartridge
-  name: googolplex-cartridge-name
-  description: googolplex-cartridge-desc
+  name: Googolplex cartridge
+  description: The Googolplex search network.
   components:
   - type: Sprite
     sprite: _Daiquiri/Objects/Devices/cartridge.rsi
@@ -15,3 +15,4 @@
       sprite: _Daiquiri/Interface/Misc/program_icons.rsi
       state: googolplex
   - type: StarWayCartridge
+  - type: ChessCartridge

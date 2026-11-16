@@ -1,7 +1,10 @@
+using Content.Shared.ActionBlocker;
 using Content.Shared.Body.Organ;
 using Content.Shared.Interaction;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
+
+// ReSharper disable CheckNamespace
 
 namespace Content.Shared._Starlight.Computers.RemoteControl;
 
@@ -9,6 +12,7 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
 
     public override void Initialize()
     {
@@ -41,13 +45,28 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Checks whether the controlled remote entity is eligible to perform conscious actions.
+    /// </summary>
+    /// <remarks>
+    /// This checks the remote entity through <c>ConsciousAttemptEvent</c> and does not check whether the controller
+    /// can act.
+    /// </remarks>
+    /// <param name="remoteEntity">The controlled remote entity whose conscious-action eligibility is checked.</param>
+    /// <returns>
+    /// <see langword="true"/> if the remote entity can perform conscious actions; otherwise, <see langword="false"/>.
+    /// </returns>
+    public bool CanRemoteControlledEntityAct(EntityUid remoteEntity)
+        => _actionBlocker.CanConsciouslyPerformAction(remoteEntity);
+
     private void OnRemoteControlInteractionCheck(ref RemoteControlInteractionCheckEvent args)
     {
         if (!TryGetControlledEntity(args.Actor, out var remoteEntity))
             return;
 
         args.RemoteEntity = remoteEntity;
-        args.Allowed = _interaction.InRangeAndAccessible(remoteEntity, args.Target);
+        args.Allowed = CanRemoteControlledEntityAct(remoteEntity)
+            && _interaction.InRangeAndAccessible(remoteEntity, args.Target);
     }
 
     public bool TryGetRemoteEntity(Entity<RemoteControlConsoleComponent?> entity, out EntityUid remoteEntity)
@@ -101,8 +120,8 @@ public sealed partial class SharedRemoteControlConsoleSystem : EntitySystem
         }
 
         return _containers.TryGetContainingContainer(brain, out var container)
-                && container.ID == "borg_brain"
-                && TryComp<BorgChassisComponent>(container.Owner, out _)
-                && (body = container.Owner) != default;
+            && container.ID == "borg_brain"
+            && TryComp<BorgChassisComponent>(container.Owner, out _)
+            && (body = container.Owner) != default;
     }
 }

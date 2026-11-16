@@ -1,7 +1,6 @@
 ﻿<tabs:MiscTab xmlns="https://spacestation14.io"
               xmlns:tabs="clr-namespace:Content.Client.Options.UI.Tabs"
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-              xmlns:sui="clr-namespace:Content.Client._Starlight.Options.UI"
               xmlns:ui="clr-namespace:Content.Client.Options.UI">
     <BoxContainer Orientation="Vertical">
         <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
@@ -11,11 +10,6 @@
                 <PanelContainer StyleClasses="InsetPanel" Margin="0 0 0 12">
                     <BoxContainer Orientation="Vertical" Margin="10 6" SeparationOverride="4">
                         <CheckBox Name="AutoPunctuate" Text="{Loc 'ui-options-auto-punctuate'}" />
-                        <CheckBox Name="GlassThemeCheckBox" Text="{Loc 'ui-options-glass-theme'}" />
-                        <CheckBox Name="GlassTransparencyCheckBox" Text="{Loc 'ui-options-glass-transparency-enable'}" />
-                        <sui:OptionSlider Name="GlassAlphaSlider" Title="{Loc 'ui-options-glass-transparency'}" />
-                        <CheckBox Name="GlassAccentCheckBox" Text="{Loc 'ui-options-glass-accent'}" />
-                        <ui:OptionColorSlider Name="GlassAccentSlider" Title="{Loc 'ui-options-glass-accent-color'}" />
                         <CheckBox Name="WieldBeforeRack" Text="{Loc 'ui-options-wield-before-rack'}" ToolTip="{Loc 'ui-options-wield-before-rack-tooltip'}" />
                     </BoxContainer>
                 </PanelContainer>
@@ -27,6 +21,7 @@
                         <CheckBox Name="ShowLoocAboveHeadCheckBox" Text="{Loc 'ui-options-show-looc-on-head'}" />
                         <CheckBox Name="FancySpeechBubblesCheckBox" Text="{Loc 'ui-options-fancy-speech'}" />
                         <CheckBox Name="FancyNameBackgroundsCheckBox" Text="{Loc 'ui-options-fancy-name-background'}" />
+                        <CheckBox Name="ShowTippyCheckBox" Text="{Loc 'ui-options-show-tippy'}" /> <!-- Starlight -->
                     </BoxContainer>
                 </PanelContainer>
 

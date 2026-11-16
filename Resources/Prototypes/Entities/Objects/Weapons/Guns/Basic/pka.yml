@@ -26,6 +26,8 @@
     whitelist:
       tags:
       - PKAUpgrade
+    upgradeRemovalMethod: Screwing #starlight
+    upgradeRemovalDelay: 10 #starlight
   - type: ContainerContainer
     containers:
       upgrades: !type:Container

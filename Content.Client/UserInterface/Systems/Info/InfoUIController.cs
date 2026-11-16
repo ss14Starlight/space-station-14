@@ -1,3 +1,4 @@
+using System;
 using Content.Client.Administration.Managers;
 using Content.Client.Gameplay;
 using Content.Client.Info;
@@ -9,6 +10,7 @@ using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client.UserInterface.Systems.Info;
 
@@ -22,9 +24,19 @@ public sealed partial class InfoUIController : UIController, IOnStateExited<Game
     private RulesPopup? _rulesPopup;
     private RulesAndInfoWindow? _infoWindow;
 
+    private bool _newcomerOwnsRules;
+    private bool _rulesPending;
+    private float _rulesPendingTime;
+
     private static readonly ProtoId<GuideEntryPrototype> DefaultRuleset = "DefaultRuleset";
 
     public ProtoId<GuideEntryPrototype> RulesEntryId = DefaultRuleset;
+
+    public bool RulesInfoReceived { get; private set; }
+
+    public bool RulesRequired { get; private set; }
+
+    public float RulesWaitTime { get; private set; }
 
     protected override string SawmillName => "rules";
 
@@ -53,13 +65,45 @@ public sealed partial class InfoUIController : UIController, IOnStateExited<Game
     private void OnRulesInformationMessage(SendRulesInformationMessage message)
     {
         RulesEntryId = message.CoreRules;
+        RulesInfoReceived = true;
+        RulesRequired = message.ShouldShowRules;
+        RulesWaitTime = message.PopupTime;
 
-        if (message.ShouldShowRules)
-            ShowRules(message.PopupTime);
+        if (!message.ShouldShowRules)
+            return;
+
+        _rulesPending = true;
+        _rulesPendingTime = message.PopupTime;
+
+        Timer.Spawn(TimeSpan.FromSeconds(1), () =>
+        {
+            if (!_rulesPending)
+                return;
+
+            _rulesPending = false;
+            ShowRules(_rulesPendingTime);
+        });
+    }
+
+    public void ClaimRulesForNewcomer()
+    {
+        _newcomerOwnsRules = true;
+        _rulesPending = false;
+
+        if (_rulesPopup == null)
+            return;
+
+        _rulesPopup.OnQuitPressed -= OnQuitPressed;
+        _rulesPopup.OnAcceptPressed -= OnAcceptPressed;
+        _rulesPopup.Orphan();
+        _rulesPopup = null;
     }
 
     public void OnStateExited(GameplayState state)
     {
+        _newcomerOwnsRules = false;
+        _rulesPending = false;
+
         if (_infoWindow == null)
             return;
 
@@ -69,7 +113,7 @@ public sealed partial class InfoUIController : UIController, IOnStateExited<Game
 
     private void ShowRules(float time)
     {
-        if (_rulesPopup != null)
+        if (_rulesPopup != null || _newcomerOwnsRules)
             return;
 
         _rulesPopup = new RulesPopup
@@ -93,8 +137,14 @@ public sealed partial class InfoUIController : UIController, IOnStateExited<Game
         var message = new RulesAcceptedMessage() { FuckRules = fuckRules };
         _netManager.ClientSendMessage(message);
 
+        _rulesPending = false;
         _rulesPopup?.Orphan();
         _rulesPopup = null;
+    }
+
+    public void AcceptRules()
+    {
+        OnAcceptPressed(false);
     }
 
     public GuideEntryPrototype GetCoreRuleEntry()

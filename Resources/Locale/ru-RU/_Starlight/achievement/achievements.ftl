@@ -180,3 +180,7 @@ role-achievement-reward-fail-hidden = Требуется [color=yellow]скры�
 loadouts-achievement-reward-pass = Награда за достижение разблокирована: {$achievement}
 loadouts-achievement-reward-fail = Требуется награда за достижение: {$achievement}
 loadouts-achievement-reward-fail-hidden = Требуется награда за скрытое достижение
+
+achievement-blood-herald-name = Вестник крови
+achievement-blood-herald-description = Выполните цели сложности не ниже 10, будучи Кровными узами, за один раунд.
+achievement-category-bloodbound = Кровные узы

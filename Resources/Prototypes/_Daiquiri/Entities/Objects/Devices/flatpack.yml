@@ -1,0 +1,17 @@
+- type: entity
+  parent: BaseFlatpack
+  id: PlanetConsoleFlatpack
+  name: planet flight console flatpack
+  description: A flatpack for a planet flight console. Charts a course to another planet and jumps the shuttle it is bolted to over to it.
+  components:
+  - type: Flatpack
+    entity: ComputerPlanetConsole
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#A46106"
+      map: ["enum.FlatpackVisualLayers.Overlay"]
+    - state: icon-default
+  - type: StaticPrice
+    price: 250

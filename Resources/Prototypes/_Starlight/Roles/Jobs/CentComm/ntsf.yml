@@ -8,8 +8,6 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 72000 # 20 hrs
-    - !type:RolesRequirement
-      proto: ExtRolesReq
   setPreference: false
   startingGear: BaseNanoTrasenSpecialForcesGear
   icon: JobIconNanoTrasenSpecialForces

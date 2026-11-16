@@ -105,6 +105,10 @@
   suffix: Cyclorite
   description: Жаль этого бессердечного ублюдка, потерявшего его.
   components:
+  - type: Tag
+    tags:
+    - Meat
+    - Heart
   - type: Sprite
     state: heart-on
   # The heart 'metabolizes' medicines and poisons that aren't filtered out by other organs.

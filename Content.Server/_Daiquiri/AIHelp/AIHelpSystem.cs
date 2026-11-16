@@ -243,7 +243,7 @@ public sealed partial class AIHelpSystem : SharedAIHelpSystem
         var entry = AddLogEntry(session, text, AIHelpRequestStatus.Pending);
         BroadcastAdminLog();
 
-        _ = RespondAsync(session, text, apiKey, entry);
+        _ = RespondAsync(session, text, entry);
     }
 
     protected override void OnAIHelpReset(AIHelpResetMessage message, EntitySessionEventArgs eventArgs)
@@ -356,7 +356,124 @@ public sealed partial class AIHelpSystem : SharedAIHelpSystem
         }
     }
 
-    private async Task RespondAsync(ICommonSession session, string userText, string apiKey, AIHelpRequestLogEntry entry)
+    public async Task<AIHelpCompletion> CompleteAsync(
+        IReadOnlyList<AIHelpChatMessage> history,
+        string systemPrompt,
+        string tag,
+        CancellationToken cancel,
+        int? maxTokens = null,
+        float? temperature = null)
+    {
+        var url = _config.GetCVar(DaiquiriCCVars.AIHelpApiUrl);
+        var model = _config.GetCVar(DaiquiriCCVars.AIHelpModel);
+        var apiKey = _config.GetCVar(DaiquiriCCVars.AIHelpApiKey);
+
+        if (string.IsNullOrWhiteSpace(apiKey) ||
+            string.IsNullOrWhiteSpace(url) ||
+            string.IsNullOrWhiteSpace(model))
+        {
+            _sawmill.Warning($"[AIHelp] {tag}: не заданы aihelp.api_key/api_url/model — запрос невозможен.");
+            return AIHelpCompletion.Fail(AIHelpCompletionStatus.NotConfigured);
+        }
+
+        var usedMaxTokens = maxTokens ?? _config.GetCVar(DaiquiriCCVars.AIHelpMaxTokens);
+        var usedTemperature = temperature ?? _config.GetCVar(DaiquiriCCVars.AIHelpTemperature);
+
+        var messages = new List<AIHelpChatMessage>();
+        if (!string.IsNullOrWhiteSpace(systemPrompt))
+            messages.Add(new AIHelpChatMessage { Role = "system", Content = systemPrompt });
+        messages.AddRange(history);
+
+        var payload = new AIHelpApiRequest
+        {
+            Model = model,
+            Messages = messages,
+            MaxTokens = usedMaxTokens,
+            Temperature = usedTemperature
+        };
+
+        _sawmill.Info($"[AIHelp] {tag}: POST {url} (model={model}, auth={(IsGigaChat() ? "gigachat" : "bearer")}, сообщений {messages.Count}, история {history.Count}, max_tokens={usedMaxTokens}, temperature={usedTemperature}).");
+        if (!string.IsNullOrWhiteSpace(systemPrompt))
+            _sawmill.Debug($"[AIHelp] {tag}: system ({systemPrompt.Length} симв.): {Short(systemPrompt, 300)}");
+        foreach (var m in messages)
+            _sawmill.Debug($"[AIHelp] {tag}: → {m.Role}: {Short(m.Content, 400)}");
+
+        var watch = Stopwatch.StartNew();
+        try
+        {
+            var bearer = apiKey;
+            if (IsGigaChat())
+            {
+                var token = await GetAccessTokenAsync(apiKey, cancel);
+                if (string.IsNullOrWhiteSpace(token))
+                {
+                    _sawmill.Error($"[AIHelp] {tag}: не удалось получить токен GigaChat.");
+                    return AIHelpCompletion.Fail(AIHelpCompletionStatus.AuthError);
+                }
+
+                bearer = token;
+            }
+
+            using var request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = JsonContent.Create(payload)
+            };
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", bearer);
+            request.Headers.UserAgent.ParseAdd("LightLine-AIHelp/1.0");
+            request.Headers.Accept.ParseAdd("application/json");
+
+            var httpWatch = Stopwatch.StartNew();
+            using var response = await GetHttpClient().SendAsync(request, cancel);
+            var body = await response.Content.ReadAsStringAsync(cancel);
+            httpWatch.Stop();
+
+            _sawmill.Info($"[AIHelp] {tag}: HTTP {(int) response.StatusCode} {response.ReasonPhrase} за {httpWatch.ElapsedMilliseconds} мс, получено {body.Length} байт.");
+            _sawmill.Debug($"[AIHelp] {tag}: тело ответа: {Short(body, 4000)}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                _sawmill.Error($"[AIHelp] {tag}: API вернул {(int) response.StatusCode} {response.ReasonPhrase}: {Short(body, 2000)}");
+                return AIHelpCompletion.Fail(AIHelpCompletionStatus.ApiError);
+            }
+
+            var parsed = JsonSerializer.Deserialize<AIHelpApiResponse>(body);
+            var reply = parsed?.Choices is { Count: > 0 } choices
+                ? choices[0].Message?.Content?.Trim() ?? string.Empty
+                : string.Empty;
+
+            if (string.IsNullOrWhiteSpace(reply))
+            {
+                _sawmill.Warning($"[AIHelp] {tag}: API вернул пустой ответ, тело: {Short(body, 2000)}");
+                return AIHelpCompletion.Fail(AIHelpCompletionStatus.Empty);
+            }
+
+            var usedModel = parsed?.Model ?? model;
+            _sawmill.Info($"[AIHelp] {tag}: ответ модели {usedModel}{FormatUsage(parsed?.Usage)}, {reply.Length} симв.: {Short(reply, 500)}");
+            return new AIHelpCompletion(AIHelpCompletionStatus.Ok, reply, parsed?.Usage?.TotalTokens ?? 0, usedModel);
+        }
+        catch (OperationCanceledException)
+        {
+            _sawmill.Warning($"[AIHelp] {tag}: запрос отменён или истёк таймаут через {watch.ElapsedMilliseconds} мс.");
+            return AIHelpCompletion.Fail(AIHelpCompletionStatus.Timeout);
+        }
+        catch (Exception e)
+        {
+            _sawmill.Error($"[AIHelp] {tag}: ошибка через {watch.ElapsedMilliseconds} мс: {e}");
+            return AIHelpCompletion.Fail(AIHelpCompletionStatus.ApiError);
+        }
+    }
+
+    private string LocalizeFailure(AIHelpCompletionStatus status)
+        => status switch
+        {
+            AIHelpCompletionStatus.NotConfigured => Loc.GetString("ai-help-not-configured"),
+            AIHelpCompletionStatus.AuthError => Loc.GetString("ai-help-auth-error"),
+            AIHelpCompletionStatus.Timeout => Loc.GetString("ai-help-timeout"),
+            AIHelpCompletionStatus.Empty => Loc.GetString("ai-help-empty-response"),
+            _ => Loc.GetString("ai-help-error")
+        };
+
+    private async Task RespondAsync(ICommonSession session, string userText, AIHelpRequestLogEntry entry)
     {
         var channel = session.Channel;
 
@@ -375,101 +492,16 @@ public sealed partial class AIHelpSystem : SharedAIHelpSystem
             Typing = true
         }, channel);
 
-        var reply = string.Empty;
-        var isError = false;
+        var systemPrompt = _config.GetCVar(DaiquiriCCVars.AIHelpSystemPrompt);
         var watch = Stopwatch.StartNew();
+        var result = await CompleteAsync(history, systemPrompt, session.Name, cts.Token);
+        watch.Stop();
 
-        try
+        var isError = !result.Success;
+        var reply = result.Text;
+
+        if (isError)
         {
-            var url = _config.GetCVar(DaiquiriCCVars.AIHelpApiUrl);
-            var model = _config.GetCVar(DaiquiriCCVars.AIHelpModel);
-            var maxTokens = _config.GetCVar(DaiquiriCCVars.AIHelpMaxTokens);
-            var temperature = _config.GetCVar(DaiquiriCCVars.AIHelpTemperature);
-            var systemPrompt = _config.GetCVar(DaiquiriCCVars.AIHelpSystemPrompt);
-
-            var messages = new List<AIHelpChatMessage>();
-            if (!string.IsNullOrWhiteSpace(systemPrompt))
-                messages.Add(new AIHelpChatMessage { Role = "system", Content = systemPrompt });
-            messages.AddRange(history);
-
-            var payload = new AIHelpApiRequest
-            {
-                Model = model,
-                Messages = messages,
-                MaxTokens = maxTokens,
-                Temperature = temperature
-            };
-
-            _sawmill.Info($"[AIHelp] {session.Name}: POST {url} (model={model}, auth={(IsGigaChat() ? "gigachat" : "bearer")}, сообщений {messages.Count}, история {history.Count}, max_tokens={maxTokens}, temperature={temperature}, timeout={timeout} с).");
-            if (!string.IsNullOrWhiteSpace(systemPrompt))
-                _sawmill.Debug($"[AIHelp] {session.Name}: system ({systemPrompt.Length} симв.): {Short(systemPrompt, 300)}");
-            foreach (var m in messages)
-                _sawmill.Debug($"[AIHelp] {session.Name}: → {m.Role}: {Short(m.Content, 400)}");
-
-            var bearer = apiKey;
-            if (IsGigaChat())
-            {
-                var token = await GetAccessTokenAsync(apiKey, cts.Token);
-                if (string.IsNullOrWhiteSpace(token))
-                {
-                    isError = true;
-                    reply = Loc.GetString("ai-help-auth-error");
-                }
-                else
-                {
-                    bearer = token;
-                }
-            }
-
-            if (!isError)
-            {
-                using var request = new HttpRequestMessage(HttpMethod.Post, url)
-                {
-                    Content = JsonContent.Create(payload)
-                };
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", bearer);
-                // Некоторые шлюзы (Cloudflare перед Groq) отдают 403 на запросы без User-Agent.
-                request.Headers.UserAgent.ParseAdd("LightLine-AIHelp/1.0");
-                request.Headers.Accept.ParseAdd("application/json");
-
-                var httpWatch = Stopwatch.StartNew();
-                using var response = await GetHttpClient().SendAsync(request, cts.Token);
-                var body = await response.Content.ReadAsStringAsync(cts.Token);
-                httpWatch.Stop();
-
-                _sawmill.Info($"[AIHelp] {session.Name}: HTTP {(int) response.StatusCode} {response.ReasonPhrase} за {httpWatch.ElapsedMilliseconds} мс, получено {body.Length} байт.");
-                _sawmill.Debug($"[AIHelp] {session.Name}: тело ответа: {Short(body, 4000)}");
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    isError = true;
-                    reply = Loc.GetString("ai-help-error");
-                    _sawmill.Error($"[AIHelp] {session.Name}: API вернул {(int) response.StatusCode} {response.ReasonPhrase}: {Short(body, 2000)}");
-                }
-                else
-                {
-                    var parsed = JsonSerializer.Deserialize<AIHelpApiResponse>(body);
-                    reply = parsed?.Choices is { Count: > 0 } choices
-                        ? choices[0].Message?.Content?.Trim() ?? string.Empty
-                        : string.Empty;
-
-                    if (string.IsNullOrWhiteSpace(reply))
-                    {
-                        isError = true;
-                        reply = Loc.GetString("ai-help-empty-response");
-                        _sawmill.Warning($"[AIHelp] {session.Name}: API вернул пустой ответ, тело: {Short(body, 2000)}");
-                    }
-                    else
-                    {
-                        entry.Tokens = parsed?.Usage?.TotalTokens ?? 0;
-                        _sawmill.Info($"[AIHelp] {session.Name}: ответ модели {parsed?.Model ?? model}{FormatUsage(parsed?.Usage)}, {reply.Length} симв.: {Short(reply, 500)}");
-                    }
-                }
-            }
-        }
-        catch (OperationCanceledException)
-        {
-            isError = true;
             if (entry.Status == AIHelpRequestStatus.Cancelled)
             {
                 reply = Loc.GetString("ai-help-admin-cancelled");
@@ -477,28 +509,20 @@ public sealed partial class AIHelpSystem : SharedAIHelpSystem
             }
             else
             {
-                reply = Loc.GetString("ai-help-timeout");
-                _sawmill.Warning($"[AIHelp] {session.Name}: таймаут через {watch.ElapsedMilliseconds} мс (aihelp.timeout_seconds).");
+                reply = LocalizeFailure(result.Status);
+            }
+
+            if (history.Count > 0 && history[^1].Role == "user")
+            {
+                history.RemoveAt(history.Count - 1);
+                _sawmill.Debug($"[AIHelp] {session.Name}: неудачная реплика убрана из истории (осталось {history.Count}).");
             }
         }
-        catch (Exception e)
+        else
         {
-            isError = true;
-            reply = Loc.GetString("ai-help-error");
-            _sawmill.Error($"[AIHelp] {session.Name}: ошибка через {watch.ElapsedMilliseconds} мс: {e}");
-        }
-
-        if (!isError && !string.IsNullOrWhiteSpace(reply))
-        {
+            entry.Tokens = result.Tokens;
             history.Add(new AIHelpChatMessage { Role = "assistant", Content = reply });
             TrimHistory(history);
-        }
-        else if (history.Count > 0 && history[^1].Role == "user")
-        {
-            // Запрос не удался: убираем реплику из истории, иначе следующая попытка
-            // отправит два сообщения подряд от пользователя (GigaChat такого не принимает).
-            history.RemoveAt(history.Count - 1);
-            _sawmill.Debug($"[AIHelp] {session.Name}: неудачная реплика убрана из истории (осталось {history.Count}).");
         }
 
         _sawmill.Info($"[AIHelp] {session.Name}: готово за {watch.ElapsedMilliseconds} мс — {(isError ? $"ОШИБКА: {Short(reply, 200)}" : $"ответ {reply.Length} симв.")}");
@@ -560,15 +584,6 @@ public sealed partial class AIHelpSystem : SharedAIHelpSystem
 
         [JsonPropertyName("stream")]
         public bool Stream { get; set; }
-    }
-
-    private sealed class AIHelpChatMessage
-    {
-        [JsonPropertyName("role")]
-        public string Role { get; set; } = string.Empty;
-
-        [JsonPropertyName("content")]
-        public string Content { get; set; } = string.Empty;
     }
 
     private sealed class GigaChatAuthResponse

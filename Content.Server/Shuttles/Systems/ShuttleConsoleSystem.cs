@@ -23,6 +23,7 @@ using Robust.Shared.Utility;
 using Content.Shared.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Server._Daiquiri.Planets;
 using Content.Server._Starlight.Shuttles.Systems;
 using Content.Server._Starlight.Shuttles.Components;
 using Content.Shared._Starlight.Shuttles.Components;
@@ -342,7 +343,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             navState = GetNavState(entity.Value); // Starlight: -dockState.Docks
             mapState = GetMapState(shuttleGridUid.Value);
             // Starlight - start
-            if (consoleXform?.MapUid is { } mapUid && TryComp<SalvageExpeditionComponent>(mapUid, out _))
+            if (consoleXform?.MapUid is { } mapUid
+                && (TryComp<SalvageExpeditionComponent>(mapUid, out _) || TryComp<PlanetMapComponent>(mapUid, out _)))
             {
                 surfaceMode = true;
                 surfaceMapGrid = GetNetEntity(mapUid);

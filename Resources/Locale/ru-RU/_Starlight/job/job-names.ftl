@@ -30,3 +30,7 @@ JobCentCommServiceWorker = Сервисный работник ЦентКом
 JobCentCommChef = Повар ЦентКом
 JobCentCommBartender = Бармен ЦентКом
 JobCentCommJanitor = Уборщик ЦентКом
+
+job-name-scurret = Скоррет эмоциональной поддержки
+job-name-syndicate-scurret = Подкрепление — скоррет Синдиката
+JobEmotionalSupportScurret = Скоррет эмоциональной поддержки

@@ -46,7 +46,7 @@ reagent-desc-phosphorus = Реактивный металл, используе�
 reagent-name-radium = радий
 reagent-desc-radium = Радиоактивный металл, серебристо-белый в чистом виде. Он светится из-за своей радиоактивности и очень токсичен.
 
-reagent-name-silicon = силикон
+reagent-name-silicon = кремний
 reagent-desc-silicon = Твёрдое и хрупкое кристаллическое вещество серо-голубого цвета.
 
 reagent-name-silver = серебро

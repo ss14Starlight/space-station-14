@@ -1,0 +1,26 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    Title="{Loc time-transfer-window-title}"
+    SetSize="420 400"
+    MinSize="380 300">
+    <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal">
+            <Label Text="{Loc time-transfer-window-username}" />
+            <LineEdit Name="UsernameLine"
+                      HorizontalExpand="True"
+                      PlaceHolder="{Loc time-transfer-window-username-placeholder}" />
+        </BoxContainer>
+        <CheckBox Name="IncludeCommandCheckBox"
+                  Text="{Loc time-transfer-window-include-command}" />
+        <CheckBox Name="IncludeSecurityCheckBox"
+                  Text="{Loc time-transfer-window-include-security}" />
+        <Button Name="TransferButton"
+                Text="{Loc time-transfer-window-transfer}"
+                Disabled="True" />
+        <Label Name="StatusLabel" />
+        <cc:HSeparator Margin="1" />
+        <RichTextLabel Text="{Loc time-transfer-window-description}" />
+        <cc:PlayerListControl Name="PlayerList" VerticalExpand="True" MinSize="0 120" />
+    </BoxContainer>
+</DefaultWindow>

@@ -127,11 +127,19 @@
       types:
         Heat: 2
     popupText: powered-light-component-burn-hand
+  - type: ToggleableDevice
+  - type: ToggleableDeviceSignaling
   - type: DeviceLinkSink
     ports:
-      - On
-      - Off
-      - Toggle
+      - "On"
+      - "Off"
+      - "Toggle"
+      - "ToggleableDeviceState"
+      - "ToggleableDeviceStateInverted"
+  - type: DeviceLinkSource
+    ports:
+      - "Status"
+      - "ToggleableDeviceStatusInverted"
 
 - type: entity
   id: PoweredLightStreetLamp

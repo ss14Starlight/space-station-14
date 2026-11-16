@@ -44,3 +44,9 @@ comp-nuclear-reactor-ui-therm-format = { POWERWATTS($power) }t
 
 comp-nuclear-reactor-ui-footer-left = Опасно: высокий уровень радиации.
 comp-nuclear-reactor-ui-footer-right = 1.0 REV 1
+
+comp-nuclear-reactor-ui-alarm-ack = ПОДТВ.
+comp-nuclear-reactor-ui-empty = пусто
+comp-nuclear-reactor-ui-fuel-level = Уровень топлива: { $level }%
+comp-nuclear-reactor-ui-overload = ПЕРЕГРУЗКА
+comp-nuclear-reactor-ui-title = Ядерный реактор

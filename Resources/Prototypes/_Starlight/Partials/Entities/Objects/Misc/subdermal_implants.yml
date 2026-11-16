@@ -24,11 +24,15 @@
 
 - type: !PartialOnly entity
   id: MindShieldImplant
-  description: This implant will ensure loyalty to NanoTrasen and prevent mind control devices.
+  description: "Этот имплант обеспечивает верность NanoTrasen и защищает от устройств контроля разума."
+  components:
+  - type: Tag
+    tags:
+    - FragileImplant
 
 - type: !PartialOnly entity
   id: RadioImplantCentcomm
-  name: centcomm radio implant
+  name: "имплант радио Центрального командования"
 
 - type: !PartialOnly entity
   id: DeathRattleImplantCentcomm
@@ -38,7 +42,7 @@
 
 - type: !PartialOnly entity
   id: FreedomImplant
-  description: This implant lets the user break out of hand restraints and bolas up to three times before ceasing to function anymore.
+  description: "Этот имплант позволяет носителю освобождаться от наручников и бола до трёх раз, после чего перестаёт работать."
   components:
   - type: RemoveBolaOnTrigger
     targetUser: true

@@ -33,6 +33,8 @@ namespace Content.Client.Viewport
 
         public int CurrentRenderScale => _curRenderScale;
 
+        public IClydeViewport? ClydeViewport => _viewport;
+
         /// <summary>
         ///     The eye to render.
         /// </summary>

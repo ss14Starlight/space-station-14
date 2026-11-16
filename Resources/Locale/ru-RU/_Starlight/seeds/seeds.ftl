@@ -12,3 +12,5 @@ seeds-cinnamon-name = коричное дерево
 seeds-cinnamon-display-name = коричное дерево
 seeds-cinnaflare-name = циннафлейр-дерево
 seeds-cinnaflare-display-name = циннафлейр-дерево
+
+seeds-brown-mushroom-name = коричневый гриб

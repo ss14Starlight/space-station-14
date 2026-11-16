@@ -1,3 +1,9 @@
+signal-port-name-toggleable-device-state = Состояние
+signal-port-description-toggleable-device-state = Состояние, которому должно соответствовать устройство. Высокий = вкл, низкий = выкл.
+
+signal-port-name-toggleable-device-state-inverted = Инвертированное состояние
+signal-port-description-toggleable-device-state-inverted = Состояние, обратному которому должно соответствовать устройство. Высокий = выкл, низкий = вкл.
+
 signal-port-name-body-scanner-receiver = Операционный стол
 signal-port-description-body-scanner-receiver = Отправляет информацию о пациенте только на операционную консоль.
 
@@ -24,3 +30,13 @@ signal-port-description-trigger-spawn = Активирует спавнер, з�
 
 signal-port-name-turret-controller-sync-receiver = Синхронизация
 signal-port-description-turret-controller-sync-receiver = Обменивается настройками вооружения и авторизации с другой панелью управления турелями.
+
+signal-port-name-combustion-turbine-console-receiver = Турбина сгорания
+signal-port-description-combustion-turbine-console-receiver = Получает команды от консоли управления турбиной сгорания.
+
+signal-port-name-airlock-cycler-button = Контроллер шлюза
+signal-port-name-airlock-cycler-device = Контроллер шлюза
+signal-port-name-airlock-cycler-door = Контроллер шлюза
+signal-port-description-airlock-cycler-button = Просит контроллер шлюза запустить цикл в сторону этой кнопки.
+signal-port-description-airlock-cycler-device = Позволяет контроллеру шлюза заполнять или опустошать камеру через этот вентилятор, скруббер или насос.
+signal-port-description-airlock-cycler-door = Позволяет контроллеру шлюза запирать, закрывать и открывать эту дверь.

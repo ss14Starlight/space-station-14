@@ -4,12 +4,14 @@ using Content.Shared.Doors.Systems;
 using Content.Shared.Power;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
+using Robust.Client.Graphics;
 
 namespace Content.Client.Doors;
 
 public sealed partial class AirlockSystem : SharedAirlockSystem
 {
     [Dependency] private AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private AnimationPlayerSystem _animationSystem = default!;
     [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
@@ -17,6 +19,7 @@ public sealed partial class AirlockSystem : SharedAirlockSystem
         base.Initialize();
         SubscribeLocalEvent<AirlockComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<AirlockComponent, AppearanceChangeEvent>(OnAppearanceChange);
+        SubscribeLocalEvent<AirlockComponent, AnimationCompletedEvent>(OnAnimationCompleted);
     }
 
     private void OnComponentStartup(EntityUid uid, AirlockComponent comp, ComponentStartup args)
@@ -27,8 +30,12 @@ public sealed partial class AirlockSystem : SharedAirlockSystem
 
         if (comp.OpenUnlitVisible) // Otherwise there are flashes of the fallback sprite between clicking on the door and the door closing animation starting.
         {
-            door.OpenSpriteStates.Add((DoorVisualLayers.BaseUnlit, comp.OpenSpriteState));
-            door.ClosedSpriteStates.Add((DoorVisualLayers.BaseUnlit, comp.ClosedSpriteState));
+            // Not every airlock RSI has an open_unlit state (e.g. the custom Starlight glass airlocks).
+            // Only register the unlit states that actually exist so DoorSystem doesn't spam errors.
+            if (HasUnlitState(uid, comp.OpenSpriteState))
+                door.OpenSpriteStates.Add((DoorVisualLayers.BaseUnlit, comp.OpenSpriteState));
+            if (HasUnlitState(uid, comp.ClosedSpriteState))
+                door.ClosedSpriteStates.Add((DoorVisualLayers.BaseUnlit, comp.ClosedSpriteState));
         }
 
         ((Animation)door.OpeningAnimation).AnimationTracks.Add(new AnimationTrackSpriteFlick()
@@ -118,32 +125,65 @@ public sealed partial class AirlockSystem : SharedAirlockSystem
             );
         }
 
-        // The BaseUnlit rsi state itself is driven by DoorSystem through
-        // OpenSpriteStates/ClosedSpriteStates (populated in OnComponentStartup when
-        // OpenUnlitVisible is on). Setting it here as well fights the running
-        // open/close animations and makes the light flicker.
-        
-        // GoobStation: Explicitly set RSI state for BaseUnlit layer to ensure correct visuals
-        if (comp.OpenUnlitVisible)
+        // GoobStation: idle open/closed doors should show the correct light strip.
+        // While a door animation is running its tracks own the BaseUnlit layer and rewrite
+        // opening_unlit/closing_unlit every frame, so touching the state here would make the strip flicker.
+        // OnAnimationCompleted applies the idle state once the animation is actually done.
+        if (comp.OpenUnlitVisible
+            && !_animationSystem.HasRunningAnimation(uid, DoorComponent.OpenKey)
+            && !_animationSystem.HasRunningAnimation(uid, DoorComponent.CloseKey))
         {
-            switch (state)
-            {
-                case DoorState.Open:
-                    _sprite.LayerSetRsiState((uid, args.Sprite), DoorVisualLayers.BaseUnlit, comp.OpenSpriteState);
-                    break;
-                case DoorState.Closed:
-                    _sprite.LayerSetRsiState((uid, args.Sprite), DoorVisualLayers.BaseUnlit, comp.ClosedSpriteState);
-                    break;
-                case DoorState.Opening:
-                    _sprite.LayerSetRsiState((uid, args.Sprite), DoorVisualLayers.BaseUnlit, comp.OpeningSpriteState);
-                    break;
-                case DoorState.Closing:
-                    _sprite.LayerSetRsiState((uid, args.Sprite), DoorVisualLayers.BaseUnlit, comp.ClosingSpriteState);
-                    break;
-                case DoorState.Denying:
-                    _sprite.LayerSetRsiState((uid, args.Sprite), DoorVisualLayers.BaseUnlit, comp.DenySpriteState);
-                    break;
-            }
+            UpdateIdleUnlitState(uid, comp, args.Sprite, state);
         }
+    }
+
+    private void OnAnimationCompleted(EntityUid uid, AirlockComponent comp, ref AnimationCompletedEvent args)
+    {
+        if (!args.Finished || (args.Key != DoorComponent.OpenKey && args.Key != DoorComponent.CloseKey))
+            return;
+
+        if (!TryComp<SpriteComponent>(uid, out var sprite) || !TryComp<DoorComponent>(uid, out var door))
+            return;
+
+        UpdateIdleUnlitState(uid, comp, sprite, door.State);
+    }
+
+    /// <summary>
+    /// Sets the light strip to the idle state for the given door state, hiding the layer when the RSI has no
+    /// matching state (e.g. the custom Starlight glass airlocks have no <c>open_unlit</c>).
+    /// </summary>
+    private void UpdateIdleUnlitState(EntityUid uid, AirlockComponent comp, SpriteComponent sprite, DoorState state)
+    {
+        if (!comp.OpenUnlitVisible)
+            return;
+
+        var unlitState = state switch
+        {
+            DoorState.Open => comp.OpenSpriteState,
+            DoorState.Closed => comp.ClosedSpriteState,
+            _ => null,
+        };
+
+        if (unlitState == null)
+            return;
+
+        if (HasUnlitState(uid, unlitState))
+        {
+            _sprite.LayerSetRsiState((uid, sprite), DoorVisualLayers.BaseUnlit, unlitState);
+            _sprite.LayerSetAutoAnimated((uid, sprite), DoorVisualLayers.BaseUnlit, true);
+        }
+        else
+        {
+            _sprite.LayerSetVisible((uid, sprite), DoorVisualLayers.BaseUnlit, false);
+        }
+    }
+
+    private bool HasUnlitState(EntityUid uid, string state)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return false;
+
+        return _sprite.LayerGetEffectiveRsi((uid, sprite), DoorVisualLayers.BaseUnlit, RSI.StateId.Invalid) is { } rsi
+               && rsi.TryGetState(state, out _);
     }
 }

@@ -48,6 +48,8 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
         SubscribeLocalEvent<TargetCryoTeleportationComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<TargetCryoTeleportationComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<TargetCryoTeleportationComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<TargetCryoTeleportationComponent, CryoStoredWithoutPlayerEvent>(OnStoredWithoutPlayer);
+        SubscribeLocalEvent<CryoSlotReturnedEvent>(OnSlotReturned);
         _playerMan.PlayerStatusChanged += OnSessionStatus;
     }
 
@@ -127,6 +129,17 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
             return;
 
         comp.ExitTime = _timing.CurTime;
+    }
+
+    // Covers bodies put in a pod by hand after their player left.
+    private void OnStoredWithoutPlayer(Entity<TargetCryoTeleportationComponent> ent, ref CryoStoredWithoutPlayerEvent args)
+        => ReturnJobSlot(ent, ent.Comp);
+
+    // One reopen per body, by any path; the holder may since have rejoined as this job.
+    private void OnSlotReturned(ref CryoSlotReturnedEvent args)
+    {
+        if (TryComp<TargetCryoTeleportationComponent>(args.Body, out var comp) && comp.Job == args.Job)
+            comp.Job = null;
     }
 
     private void ReturnJobSlot(EntityUid body, TargetCryoTeleportationComponent comp)

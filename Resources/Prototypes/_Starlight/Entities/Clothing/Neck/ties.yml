@@ -1,7 +1,6 @@
 # Additional tie colors for Starlight
-
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingNeckBaseHamster
   id: ClothingNeckTieBlue
   name: синий галстук
   description: Милый синий галстук, идеален для собеседований.
@@ -16,7 +15,7 @@
       sprite: _Starlight/Clothing/Neck/Ties/bluetie.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingNeckBaseHamster
   id: ClothingNeckTieBrown
   name: коричневый галстук
   description: Коричневый карго-галстук, подчёркивает профессионализм в перемещении ящиков.
@@ -31,7 +30,7 @@
       sprite: _Starlight/Clothing/Neck/Ties/browntie.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingNeckBaseHamster
   id: ClothingNeckTieGreen
   name: зелёный галстук
   description: Ярко-салатовый галстук в цветах сервисного отдела. Очень шикарно.
@@ -46,7 +45,7 @@
       sprite: _Starlight/Clothing/Neck/Ties/greentie.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingNeckBaseHamster
   id: ClothingNeckTieGrey
   name: серый галстук
   description: Серый тайдерский галстук для стильного вида в техтоннелях.
@@ -61,7 +60,7 @@
       sprite: _Starlight/Clothing/Neck/Ties/greytie.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingNeckBaseHamster
   id: ClothingNeckLGBTie
   name: ЛГБТи
   description: Почему мы должны носить эти шикарные галстуки?
@@ -74,3 +73,18 @@
     storedSprite:
       state: storage
       sprite: _Starlight/Clothing/Neck/Ties/LGBTie.rsi
+
+- type: entity
+  parent: ClothingNeckBaseHamster
+  id: ClothingNeckTieRetro
+  name: "ретро-галстук"
+  description: "Почему мы все обязаны носить эти нелепые галстуки?"
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Ties/retrotie.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Ties/retrotie.rsi
+    - type: Item
+      storedSprite:
+        state: storage
+        sprite: _Starlight/Clothing/Neck/Ties/retrotie.rsi

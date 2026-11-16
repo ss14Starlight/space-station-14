@@ -39,6 +39,7 @@ ui-options-restart-sounds = Звуки перезапуска раунда
 ui-options-event-music = Музыка событий
 ui-options-admin-sounds = Музыка админов
 ui-options-bwoink-sound = Звук уведомления Ахелпа
+ui-options-planet-discovery-sound = Звук при высадке на планету
 ui-options-mute-unfocused = Отключить звук при неактивном окне игры
 ui-options-audio-device = Устройство вывода:
 ui-options-audio-device-default = Устройство по умолчанию
@@ -450,3 +451,6 @@ ui-options-admin-strip-overlay-title = Оверлей обыска
 ui-options-admin-strip-overlay-setting = Показывать админ-вид обыска по умолчанию
 ui-options-accessability-header-visuals = Визуал
 ui-options-accessability-header-content = Контент
+
+ui-options-chat-preview = Показывать пузыри предпросмотра чата при вводе
+ui-options-preview-bubble-background-opacity = Непрозрачность фона пузыря предпросмотра

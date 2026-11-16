@@ -37,3 +37,6 @@ surgery-tool-name-screwdriver = отвёртка
 surgery-tool-name-welder = сварщик
 surgery-tool-name-wirecutter = кусачки
 surgery-tool-name-wrench = гаечный ключ
+
+surgery-ui-step-too-big = (Предмет слишком большой)
+surgery-ui-surgery-action-item = { $action } { $item }

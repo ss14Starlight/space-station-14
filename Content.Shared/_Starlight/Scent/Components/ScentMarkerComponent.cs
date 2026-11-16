@@ -51,4 +51,10 @@ public sealed partial class ScentMarkerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool WasCloaked;
+
+    /// <summary>
+    /// Tell Pollen and Scent apart, here to reduce lag.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool IsPollen;
 }

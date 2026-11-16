@@ -3,3 +3,15 @@
   id: BasePDA
   components:
   - type: DarkLight
+
+- type: !PartialOnly entity
+  parent: ClearPDA
+  id: ScurretPDA
+  name: "КПК скоррета"
+  description: "Временный КПК, выдаваемый скорретам-временщикам. Много не умеет. Вава!"
+  components:
+    - !Remove
+      type: Pda
+      id: VisitorIDCard
+    - type: Pda
+      id: EmotionalSupportScurretIDCard

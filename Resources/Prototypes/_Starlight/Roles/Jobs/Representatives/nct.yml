@@ -5,8 +5,6 @@
   description: job-description-nct
   playTimeTracker: JobNanotrasenCareerTrainer
   requirements:
-    - !type:RolesRequirement
-      proto: StaffAndMentorOnlyRolesReq
     - !type:TraitsRequirement
       traits:
         - Iterator

@@ -1,0 +1,50 @@
+- type: htnCompound
+  id: RobotCompanionCompound
+  branches:
+    - preconditions:
+        - !type:KeyBoolEqualsPrecondition
+          key: StandStill
+          value: true
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:WaitOperator
+            key: StandStillTime
+
+    - preconditions:
+        - !type:KeyExistsPrecondition
+          key: ChargeTarget
+      tasks:
+        - !type:HTNCompoundTask
+          task: RobotChargeCompound
+
+    - preconditions:
+        - !type:KeyExistsPrecondition
+          key: StepTarget
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            pathfindInPlanning: false
+            targetKey: StepTarget
+            rangeKey: StepRange
+
+    - preconditions:
+        - !type:KeyExistsPrecondition
+          key: FollowTarget
+      tasks:
+        - !type:HTNCompoundTask
+          task: FollowCompound
+
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+- type: htnCompound
+  id: RobotChargeCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            pathfindInPlanning: true
+            targetKey: ChargeTarget
+            rangeKey: ChargeRange
+            removeKeyOnFinish: false

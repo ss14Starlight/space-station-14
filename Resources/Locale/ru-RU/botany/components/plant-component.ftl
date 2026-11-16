@@ -12,3 +12,9 @@ plant-component-heat-improper-warning = Мигает [color=orange]предуп�
 plant-component-pressure-improper-warning = Мигает [color=lightblue]предупреждение о неподходящем атмосферном давлении[/color].
 plant-component-gas-missing-warning = Мигает [color=cyan]предупреждение о неподходящем составе атмосферы[/color].
 plant-component-ligneous-cant-harvest-message = Растение слишком прочное, чтобы собрать его голыми руками.
+plant-component-improper-heat-warning = [color=orange]Температурные условия[/color] растения неподходящие.
+plant-component-improper-pressure-warning = [color=lightblue]Условия давления[/color] растения неподходящие.
+plant-component-missing-gas-warning = [color=skyblue]Газовые условия[/color] растения неподходящие.
+plant-component-pests-high-warning = [color=gray]Уровень вредителей[/color] опасен для этого растения.
+plant-component-toxins-high-warning = [color=mediumpurple]Уровень токсинов[/color] опасен для этого растения.
+plant-component-weeds-high-warning = [color=lightgreen]Уровень сорняков[/color] опасен для этого растения.

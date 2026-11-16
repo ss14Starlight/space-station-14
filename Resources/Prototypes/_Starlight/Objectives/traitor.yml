@@ -695,3 +695,48 @@
       sprite: _Starlight/Interface/Misc/objective_icons.rsi
       state: rp
   - type: AchieveObjectivesCondition
+
+# Story objectives from Moff Station
+- type: entity
+  parent: BaseRoomStoryObjective
+  id: TrashRoomObjective
+  name: Разгром комнаты
+  description: Нужно разгромить эту комнату. Проследите, чтобы она не прошла санитарную проверку.
+  components:
+  - type: LocationObjective
+    title: objective-condition-trash-room
+
+- type: entity
+  parent: BaseRoomStoryObjective
+  id: ClaimLocationObjective
+  name: Захват локации
+  description: Сделайте эту комнату базой Синдиката.
+  components:
+  - type: LocationObjective
+    title: objective-condition-claim-room
+
+- type: entity
+  parent: BaseStoryObjective
+  id: GatherIntelObjective
+  name: Сбор сведений
+  description: Соберите сведения об этом человеке. Соберите всю информацию, какую сможете о нём найти.
+  components:
+  - type: TargetObjective
+    title: objective-condition-gather-intel
+  - type: PickRandomPerson
+
+- type: entity
+  parent: BaseStoryObjective
+  id: JailbreakObjective
+  name: Освобождение заключённых
+  description: Неважно, кто был заперт и почему — тюрьмы должны оставаться пустыми.
+
+- type: entity
+  parent: BaseStoryObjective
+  id: LeaveCallingCardOnPersonObjective
+  name: Оставить предупреждение
+  description: Этот человек перешёл черту. Напомните ему об этом.
+  components:
+  - type: TargetObjective
+    title: objective-condition-leave-card-on-person
+  - type: PickRandomPerson

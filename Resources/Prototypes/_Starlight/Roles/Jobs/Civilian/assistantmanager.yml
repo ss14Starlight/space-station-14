@@ -10,8 +10,6 @@
   - !type:RoleTimeRequirement
     role: JobPassenger # How can you lead the masses if you've never been one of them?
     time: 30h
-  - !type:RolesRequirement
-    proto: ExtRolesReq
   - !type:TraitsRequirement # I don't think I need to explain why these traits are restricted, but for the inevitable case someone asks...
     traits:
       - Iterator # Can't delegate tasks if nobody can understand you.

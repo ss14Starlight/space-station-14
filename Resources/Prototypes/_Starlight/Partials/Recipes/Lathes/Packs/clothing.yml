@@ -1,0 +1,9 @@
+- type: !PartialOnly latheRecipePack
+  id: Ties
+  recipes:
+    - ClothingNeckTieBlue
+    - ClothingNeckTieBrown
+    - ClothingNeckTieGreen
+    - ClothingNeckTieGrey
+    - ClothingNeckLGBTie
+    - ClothingNeckTieRetro

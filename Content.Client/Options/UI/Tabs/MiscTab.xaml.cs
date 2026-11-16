@@ -39,30 +39,10 @@ public sealed partial class MiscTab : Control
         Control.AddOptionCheckBox(CCVars.StaticStorageUI, StaticStorageUI);
         // Starlight-start
         Control.AddOptionCheckBox(StarlightCCVars.AutoPunctuate, AutoPunctuate);
-        Control.AddOptionCheckBox(StarlightCCVars.UIGlassTheme, GlassThemeCheckBox);
-        Control.AddOptionCheckBox(StarlightCCVars.UIGlassTransparencyEnabled, GlassTransparencyCheckBox);
-        Control.AddOptionSlider(StarlightCCVars.UIGlassTransparency, GlassAlphaSlider, 0, 100, (_, value) => $"{value}%");
-        Control.AddOptionCheckBox(StarlightCCVars.UIGlassAccentEnabled, GlassAccentCheckBox);
-        Control.AddOptionColorSlider(StarlightCCVars.UIGlassAccent, GlassAccentSlider);
+        Control.AddOptionCheckBox(StarlightCCVars.TippyClientEnabled, ShowTippyCheckBox);
         Control.AddOptionCheckBox(StarlightCCVars.WieldBeforeRack, WieldBeforeRack);
         Control.AddOptionCheckBox(StarlightCCVars.ForceTestersTab, ForceTestersTab);
         // Starlight-end
-
-        // Daiquiri
         Control.Initialize();
-        GlassTransparencyCheckBox.Visible = GlassThemeCheckBox.Pressed;
-        GlassAlphaSlider.Visible = GlassThemeCheckBox.Pressed && GlassTransparencyCheckBox.Pressed;
-        GlassAccentCheckBox.Visible = GlassThemeCheckBox.Pressed;
-        GlassAccentSlider.Visible = GlassThemeCheckBox.Pressed && GlassAccentCheckBox.Pressed;
-        GlassThemeCheckBox.OnToggled += args =>
-        {
-            GlassTransparencyCheckBox.Visible = args.Pressed;
-            GlassAlphaSlider.Visible = args.Pressed && GlassTransparencyCheckBox.Pressed;
-            GlassAccentCheckBox.Visible = args.Pressed;
-            GlassAccentSlider.Visible = args.Pressed && GlassAccentCheckBox.Pressed;
-        };
-        GlassTransparencyCheckBox.OnToggled += args =>
-            GlassAlphaSlider.Visible = args.Pressed && GlassThemeCheckBox.Pressed;
-        GlassAccentCheckBox.OnToggled += args => GlassAccentSlider.Visible = args.Pressed && GlassThemeCheckBox.Pressed;
     }
 }

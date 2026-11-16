@@ -138,6 +138,8 @@ public abstract partial class SharedBorgSystem : EntitySystem
     {
         _movementSpeedModifier.RefreshMovementSpeedModifiers(chassis.Owner);
 
+        _access.SetAccessEnabled(chassis.Owner, chassis.Comp.Active); // Starlight-edit: Access status is syncronized to ensure its based on the chassi state
+
         // Starlight-start: If the borg has a brain, synchronize the name of the brain with the chassis.
         if (chassis.Comp.BrainEntity is { } brain)
             SynchronizeBrainName(chassis, brain);
@@ -277,6 +279,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
         if (TryComp<TextToSpeechComponent>(chassis, out var ttscomp))
         {
             ttscomp.VoicePrototypeId = args.Mind.Comp.SiliconVoice;
+            Dirty(chassis, ttscomp);
         }
         //Starlight end
 
@@ -485,8 +488,11 @@ public abstract partial class SharedBorgSystem : EntitySystem
         //load borg voice
         if (TryComp<TextToSpeechComponent>(uid, out var ttscomp))
 		{
-			if(mind != null)
-			    ttscomp.VoicePrototypeId = mind.SiliconVoice;
+            if (mind != null)
+            {
+                ttscomp.VoicePrototypeId = mind.SiliconVoice;
+                Dirty(uid, ttscomp);
+            }
 		}
         //Starlight End
 

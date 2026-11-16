@@ -616,3 +616,19 @@ entity-effect-guidebook-satiate-hunger =
         [1] голод средне
         *[other] голод со скоростью { NATURALFIXED($relative, 3) }x от средней
     }
+
+entity-effect-guidebook-plant-change-trait =
+    { $chance ->
+        [1] { $change ->
+            [Add] добавляет {$trait} к
+            [Remove] удаляет {$trait} у
+            [Toggle] переключает {$trait} на
+            *[other] изменяет {$trait} у
+        }
+        *[other] { $change ->
+            [Add] добавить {$trait} к
+            [Remove] удалить {$trait} у
+            [Toggle] переключить {$trait} на
+            *[other] изменить {$trait} у
+        }
+    } растения

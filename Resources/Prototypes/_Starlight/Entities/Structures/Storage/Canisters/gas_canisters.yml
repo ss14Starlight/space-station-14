@@ -353,8 +353,8 @@
   id: LiquidCarbonDioxideCanisterBroken
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Storage/canister.rsi
-    state: carbon_broken
+    sprite: Structures/Storage/canister.rsi
+    state: black-1
 
 - type: entity
   parent: GasCanisterBrokenBase

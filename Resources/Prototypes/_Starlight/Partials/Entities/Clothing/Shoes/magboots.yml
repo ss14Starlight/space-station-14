@@ -1,6 +1,19 @@
 - type: !PartialOnly entity
+  id: ClothingShoesBootsMagBase
+  components:
+  - type: FootstepTimbre
+    pitch: 0.86
+    volume: 1
+  - type: FootstepLayer
+    requireActive: true
+    sound:
+      collection: FootstepHeavy
+      params:
+        variation: 0.1
+
+- type: !PartialOnly entity
   id: ClothingShoesBootsMagSyndie
-  description: Reverse-engineered from ERT magboots, they have a heavy magnetic pull, integrated thrusters, and are designed for combat. It can hold 0.75 L of gas.
+  description: "Реверс-инжиниринг от магнитных ботинок ОБР: мощное магнитное притяжение, встроенные двигатели, созданы для боя. Вмещает 0,75 л газа."
   components:
   - type: ClothingSlowOnDamageModifier
     modifier: 0.5
@@ -9,4 +22,5 @@
 
 - type: !PartialOnly entity
   id: ClothingShoesBootsMagERT
-  description: Upgraded magnetic boots utilized by NanoTrasen's Emergency Response Teams, they have a heavy magnetic pull and integrated thrusters. It can hold 0.75 L of gas.
+  description: "Улучшенные магнитные ботинки групп экстренного реагирования NanoTrasen: мощное магнитное притяжение и встроенные двигатели. Вмещает 0,75 л газа."
+

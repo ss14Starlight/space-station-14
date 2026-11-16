@@ -24,3 +24,7 @@ station-radio-server-examine-not-recording = Сервер станции сей�
 station-radio-server-microphone-on-use = Микрофон { $radioState }.
 ui-options-radio-music-volume = Музыка радио:
 # Starlight - End
+
+item-slot-component-slot-name-vinyl = виниловая пластинка
+station-radio-server-cancelled-anchor = На этой станции уже есть радио-сервер!
+vinyl = виниловая пластинка

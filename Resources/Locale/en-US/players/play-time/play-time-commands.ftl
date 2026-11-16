@@ -20,6 +20,15 @@ cmd-playtime_addrole-arg-role = <role>
 cmd-playtime_addrole-arg-minutes = <minutes>
 cmd-playtime_addrole-error-args = Expected exactly three arguments
 
+# - playtime_unlockall
+cmd-playtime_unlockall-desc = Adds the minimum playtime needed to satisfy playtime requirements for roles available with the selected departments. Central Command, hidden roles, and non-selectable roles are always excluded; Command and Security can be included with flags. Roles in Command are only considered when --command is passed; roles in Security but not Command are only considered when --security is passed. Time is only added to roles that do not belong to an excluded department. Roles that require an excluded department, or have other or conflicting requirements, may remain locked.
+cmd-playtime_unlockall-help = Usage: {$command} <user name> [--command] [--security]
+cmd-playtime_unlockall-succeed = Added {TOSTRING($time, "dddd\\:hh\\:mm")} of playtime to {$username} for the selected departments.
+cmd-playtime_unlockall-already = No playtime additions are needed for {$username} with the selected departments.
+cmd-playtime_unlockall-arg-user = <user name>
+cmd-playtime_unlockall-arg-flags = [--command] [--security]
+cmd-playtime_unlockall-error-args = Expected a user name and optional --command/--security flags
+
 # - playtime_getoverall
 cmd-playtime_getoverall-desc = Gets the specified minutes for a player's overall playtime
 cmd-playtime_getoverall-help = Usage: {$command} <user name>

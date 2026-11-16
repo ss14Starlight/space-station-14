@@ -120,3 +120,8 @@
   id: HeatBlur
   kind: source
   path: "/Textures/Shaders/heatBlur.swsl"
+
+- type: shader
+  id: LiquidGlass
+  kind: source
+  path: "/Textures/Shaders/liquid_glass.swsl"

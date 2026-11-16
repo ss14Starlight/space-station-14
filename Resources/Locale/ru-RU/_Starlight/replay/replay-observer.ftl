@@ -12,3 +12,10 @@ replay-observer-status-icons-off = Иконки статусов выключе�
 replay-observer-verb-view-laws = Осмотреть законы
 replay-observer-verb-view-moods = Осмотреть настроение
 replay-observer-ghostnado-none = Ни за кем не следуют.
+
+replay-observer-verb-view-solutions = Осмотреть растворы
+replay-observer-solution-header = [bold]{$name}[/bold]: {$volume}/{$max} ед.
+replay-observer-solutions-none = В нём нет растворов.
+
+replay-observer-weather-off = Погодные эффекты скрыты.
+replay-observer-weather-on = Погодные эффекты показаны.

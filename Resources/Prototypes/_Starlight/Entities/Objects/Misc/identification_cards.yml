@@ -304,6 +304,53 @@
     job: DutyOfficer
 
 - type: entity
+  parent: [ IDCardStandard, BaseSecurityContraband ]
+  id: GunnerySergeantIDCard
+  name: "ID-карта сержанта-инструктора"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - sprite: *id-rsi
+      state: stripe_top
+      color: *color-security-top
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: *color-security-bottom
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: GunnerySergeant
+  - type: PresetIdCard
+    job: GunnerySergeant
+
+- type: entity
+  parent: [ IDCardStandard, BaseSecurityContraband ]
+  id: K9IDCard
+  name: "ID-карта K9"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - sprite: *id-rsi
+      state: stripe_top
+      color: *color-security-top
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: *color-security-bottom
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: K9
+  - type: PresetIdCard
+    job: K9
+
+- type: entity
+  parent: K9IDCard
+  id: SeniorK9IDCard
+  name: "ID-карта старшего K9"
+
+- type: entity
   parent: IDCardStandard
   id: KikiIDCard
   name: ID-карта Кики
@@ -320,7 +367,7 @@
       state: Botanist
   - type: PresetIdCard
     job: Botanist
-    name: Kiki
+    name: "Кики"
   - type: Tag # Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -353,7 +400,7 @@
   name: ID-карта Стир Стира
   components:
   - type: PresetIdCard
-    name: Stir Stir
+    name: "Стир-Стир"
 
 - type: entity
   parent: IDCardStandard
@@ -1082,3 +1129,18 @@
       state: SalvageMedic
   - type: PresetIdCard
     job: SalvageMedic
+
+- type: entity
+  parent: IDCardStandard
+  id: EmotionalSupportScurretIDCard
+  name: "ID-карта скоррета эмоциональной поддержки"
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: default
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: EmotionalSupportScurret
+    - type: PresetIdCard
+      job: EmotionalSupportScurret

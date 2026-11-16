@@ -1,6 +1,7 @@
 ui-options-function-open-m-help = Open mentor help
 ui-options-function-jump = Jump
 ui-options-function-latch-struggle = Struggle (while latched)
+ui-options-function-hotbar-remove = Remove from hotbar
 ui-escape-connect-discord = Link Discord
 server-info-connect-discord-button = Link Discord
 ui-escape-connect-steam = Link Steam
@@ -47,8 +48,10 @@ ui-options-radio-chime-mute = Mute Radio Chimes
 
 ui-options-tab-ui = User Interface
 ui-options-ui-style = User Interface Style
+ui-options-classic-styling = Classic styling
 ui-options-style-theme = Color Theme
 ui-options-style-accent = Accent Color
+ui-options-style-secondary-accent = Secondary Accent Color
 ui-options-style-custom-accent = Use custom accent color
 ui-options-style-accent-custom = Custom
 ui-options-style-accent-theme = Theme
@@ -57,6 +60,9 @@ ui-options-lobby-label = Lobby
 ui-options-lobby-background = Lobby art
 ui-options-lobby-background-server = Server's choice
 ui-options-lobby-opacity = Panel opacity
+ui-options-lobby-ready-position = Ready button
+ui-options-lobby-ready-position-bottom = Under the chat
+ui-options-lobby-ready-position-top = Above the chat
 ui-options-lobby-job-columns = Drag and drop job priorities in the lobby
 ui-options-lobby-job-columns-tooltip = Shows the old job priority columns under the round info, next to the job priorities window.
 ui-options-menu-bar-label = Top Menu Bar
@@ -84,6 +90,7 @@ style-theme-flesh = Flesh
 style-theme-syndicate = Syndicate
 style-theme-clockwork = Clockwork
 style-theme-nanotrasen = NanoTrasen
+style-theme-liquid-glass = Liquid Glass (Beta)
 ui-options-ui-sight-hash = Sight Preferences String
 ui-options-wield-before-rack = Wield before racking
 ui-options-wield-before-rack-tooltip = Using a gun in hand wields it first; racking the bolt or switching the fire mode happens on the next press.
@@ -110,22 +117,41 @@ ui-options-sight-second-color = Sight Second Color
 
 ui-starlight = Daiquiri
 ui-options-auto-punctuate = Automatically punctuate in-character messages
-ui-options-glass-theme = Translucency (Beta)
-ui-options-glass-transparency = Transparency strength
-ui-options-glass-transparency-enable = Adjust transparency strength
-ui-options-glass-accent = Accent tint
-ui-options-glass-accent-color = Accent color
-ui-glass-prompt-title = Newcomer window
-ui-glass-prompt-line1 = Enable the "translucency" theme?
-ui-glass-prompt-line2 = Toggle the checkboxes to preview it live.
-ui-glass-prompt-line3 = You can turn translucency on or off later in the game settings.
-ui-glass-prompt-confirm = Confirm
-ui-glass-prompt-next = Next
-ui-glass-prompt-theme = Interface theme
-ui-glass-prompt-theme-line = Pick the interface theme.
-ui-glass-prompt-theme-line2 = You can change it in the settings later.
-ui-glass-prompt-done = Done
-ui-glass-prompt-back = Back
+ui-glass-prompt-title = Welcome!
+ui-glass-prompt-theme = Theme
+ui-glass-prompt-theme-line = One last step - pick how the interface should look.
+ui-glass-prompt-theme-line2 = You can change it at any time in the settings, on the Interface tab.
+ui-glass-prompt-done = Start playing
+ui-newcomer-welcome-1 = Welcome to Daiquiri Station!
+ui-newcomer-welcome-2 = We are glad to have you aboard. Before you head off to your shift, there are a couple of formalities.
+ui-newcomer-next = Next
+ui-newcomer-back = Back
+ui-newcomer-rules-title = Server rules
+ui-newcomer-rules-line = Playing on Daiquiri Station is only possible after reading the project rules. Open them and read carefully - this is mandatory.
+ui-newcomer-rules-line-optional = It is worth reading the project rules before your shift - they cover everything a newcomer needs to know.
+ui-newcomer-rules-open = Read the rules
+ui-newcomer-rules-read = I have read the rules
+ui-newcomer-rules-accept = I have read and accept the rules
+ui-newcomer-rules-wait = The button unlocks in { $time } s.
+ui-options-liquid-glass-open = Liquid Glass settings
+ui-liquid-glass-settings-title = Liquid Glass
+ui-liquid-glass-settings-description = Fine-tune the frosted glass backdrop. Changes are applied live.
+ui-liquid-glass-enabled = Enable the Liquid Glass backdrop
+ui-liquid-glass-blur = Backdrop blur
+ui-liquid-glass-refraction = Edge refraction
+ui-liquid-glass-highlight = Rim highlights
+ui-liquid-glass-opacity = Panel opacity
+ui-liquid-glass-tint = Theme tint strength
+ui-liquid-glass-tint-enabled = Use a custom tint colour
+ui-liquid-glass-tint-color = Tint colour
+ui-liquid-glass-corner = Corner radius
+ui-liquid-glass-quality = Blur quality
+ui-liquid-glass-quality-low = Low
+ui-liquid-glass-quality-medium = Medium
+ui-liquid-glass-quality-high = High
+ui-liquid-glass-animate = Animated sheen
+ui-liquid-glass-reset = Reset to defaults
+ui-liquid-glass-close = Done
 ui-options-general-ghost-themes = Ghost Themes
 ui-options-general-ghost-themes-force-tester = Force display the Tester tab in the Ghost Themes menu
 
@@ -149,11 +175,19 @@ ui-options-admin-ghost-hud-setting-health-iconsandbars = Icons and bars
 ui-options-admin-ghost-hud-show-faction-icons = Show faction icons
 ui-options-admin-ghost-hud-show-satiation-icons = Show satiation icons
 
-ui-options-admin-ghost = Admin Ghost Config
+ui-options-admin-tools = Admin Tools Config
 ui-options-admin-ghost-script-label = aghost Script
 ui-options-admin-ghost-script-tooltip =
     The name of the script you want to automatically run when becoming admin ghost, either by command or by observing from lobby.
     Path is relative to your launcher's data directory, typically inside AppData on Windows or .local/share on Linux.
+ui-options-admin-space-map-label = Admin Arena Path
+ui-options-admin-space-map-tooltip =
+    The path to the map .yml you want to load as your Admin Arena.
+    If left empty the default one will be used.
+    Will check server user data first, then content data.
+ui-options-admin-space-map-init-label = Initialize Admin Arena
+ui-options-admin-space-map-init-tooltip =
+  If true, initializes the map on load. If false, the map spawns uninitialized.
 
 ## Theme
 
@@ -195,3 +229,25 @@ ui-options-handling-volume = Picking up and equipping:
 ui-options-combat-volume = Weapons and combat:
 ui-options-voice-volume = Voices and emotes:
 ui-options-announcement-volume = Announcements and alerts:
+ui-options-admin-sounds-volume = Admin sounds:
+ui-options-show-tippy = Show Tippy
+
+ui-options-atmosphere-label = Lighting and atmosphere
+ui-options-light-tonemap = Soft light
+ui-options-light-tonemap-tooltip = Rolls off bright spots where lights overlap, so sprites don't wash out.
+ui-options-night-vision = Night vision
+ui-options-night-vision-tooltip = Poorly lit areas lose their colour and turn cold blue, the way the eye sees in the dark.
+ui-options-vignette = Vignette
+ui-options-vignette-tooltip = Darkens the edges of the view.
+ui-options-bloom = Bloom
+ui-options-bloom-tooltip = Screens, lamps and other glowing things bleed light around them, most of all in the dark. Costs some performance.
+ui-options-film-grain = Film grain
+ui-options-film-grain-tooltip = Draws a light film grain over the view.
+ui-options-night-vision-strength = Night vision strength
+ui-options-vignette-strength = Vignette strength
+ui-options-bloom-strength = Bloom strength
+ui-options-bloom-threshold = Bloom threshold
+ui-options-bloom-threshold-desc = How much brighter than its light a pixel has to be to glow. Lower makes more things glow.
+ui-options-bloom-radius = Bloom radius
+ui-options-bloom-radius-desc = How far the glow spreads.
+ui-options-film-grain-strength = Film grain strength

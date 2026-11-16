@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseItem
+  id: PortableATM
+  name: "Портативный банкомат"
+  description: "Переговоры о заложниках ещё никогда не были такими простыми!"
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Economy/portable_atm.rsi
+      state: icon
+    - type: ATM
+    - type: ActivatableUI
+      key: enum.ATMUIKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.ATMUIKey.Key:
+          type: ATMBui

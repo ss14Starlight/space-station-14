@@ -48,3 +48,12 @@ chat-speech-verb-rodentia-4 = визжит
 
 chat-speech-verb-name-pause = Пауза
 chat-speech-verb-pause = молчит
+
+chat-manager-send-mentor-chat-wrap-message = {$mentorChannelName}: [bold]{$playerName}:[/bold] {$message}
+chat-manager-mentor-channel-name = МЕНТОР
+
+chat-speech-verb-experiment-1 = пищит
+chat-speech-verb-experiment-2 = лает
+chat-speech-verb-experiment-3 = говорит
+chat-speech-verb-experiment-4 = тявкает
+chat-speech-verb-name-experiment = Эксперимент

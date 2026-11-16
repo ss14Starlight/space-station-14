@@ -37,3 +37,6 @@ role-timer-blacklisted-traits-pass = Ваш персонаж [color=limegreen]н
 role-timer-blacklisted-traits-fail = Ваш персонаж [color=yellow]не должен[/color] иметь одну из следующих черт: [color=yellow]{ $traits }[/color]
 
 role-ban = Вы были [color=red]забанены[/color] на эту роль.
+
+role-requirement-any = Соответствуйте хотя бы одному из следующих требований:
+role-requirement-none = Не соответствуйте ни одному из следующих требований:

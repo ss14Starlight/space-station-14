@@ -19,6 +19,7 @@
             <cc:UICommandButton Command="purgecharacterrecords" Text="{Loc admin-player-actions-window-cd-record-purge}" WindowType="{x:Type cdAdmin:ModifyCharacterRecords}"/>
             <!-- Cosmatic Drift Record System-end -->
             <cc:CommandButton Command="achatwindow" Text="{Loc admin-player-actions-window-admin-chat}"/>
+            <cc:UICommandButton Command="playtime_unlockall" Text="{Loc admin-player-actions-window-time-transfer}" WindowType="{x:Type at:TimeTransferWindow}"/>
         </GridContainer>
     </BoxContainer>
 </Control>

@@ -601,7 +601,7 @@
       access: [[ "ChiefEngineer" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-eng
-      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      sound: /Audio/_CorvaxGoob/Announcements/announce.ogg
       color: "#ff733c"
       settableAlertLevels:
         - green
@@ -643,7 +643,7 @@
       access: [[ "ChiefMedicalOfficer" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-med
-      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      sound: /Audio/_CorvaxGoob/Announcements/announce.ogg
       color: "#57b8f0"
       settableAlertLevels: []
       canBroadcast: false
@@ -682,7 +682,7 @@
       access: [[ "ResearchDirector" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-sci
-      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      sound: /Audio/_CorvaxGoob/Announcements/announce.ogg
       color: "#cd7ccd"
       settableAlertLevels: []
       canBroadcast: false
@@ -721,7 +721,7 @@
       access: [[ "HeadOfSecurity", "Armory" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-sec
-      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      sound: /Audio/_CorvaxGoob/Announcements/announce.ogg
       color: "#ff4242"
       settableAlertLevels:
         - green
@@ -763,7 +763,7 @@
       access: [[ "HeadOfPersonnel" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-srv
-      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      sound: /Audio/_CorvaxGoob/Announcements/announce.ogg
       color: "#539c00"
       settableAlertLevels: []
       canBroadcast: false
@@ -802,7 +802,7 @@
       access: [[ "Quartermaster" ]]
     - type: CommunicationsConsole
       title: comms-console-announcement-title-sup
-      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      sound: /Audio/_CorvaxGoob/Announcements/announce.ogg
       color: "#b48b57"
       settableAlertLevels: []
       canBroadcast: false
@@ -1013,8 +1013,8 @@
             False: { visible: true }
         enum.WiresVisuals.MaintenancePanelState:
           enum.WiresVisualLayers.MaintenancePanel:
-            True: { visible: false }
-            False: { visible: true }
+            True: { visible: true }
+            False: { visible: false }
         # Starlight Start
         enum.EdgeConnectionVisuals.ConnectionMask:
           computerLayerBody:
@@ -1083,3 +1083,47 @@
     energy: 1.5
     color: "#8151c9"
   # Starlight End
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerCombustionTurbine
+  name: combustion turbine control computer
+  description: Starts and stops a combustion turbine, sets its intake and shows how it is running. Link it to the turbine with a multitool.
+  components:
+  - type: CombustionTurbineConsole
+  - type: ActivatableUI
+    key: enum.CombustionTurbineConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CombustionTurbineConsoleUiKey.Key:
+        type: CombustionTurbineConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: turbine
+    - map: ["computerLayerKeys"]
+      state: atmos_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Computer
+    board: CombustionTurbineComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#37b8d1"
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+  - type: DeviceLinkSource
+    range: 15
+    ports:
+    - CombustionTurbineConsoleSender
+  - type: GuideHelp
+    guides:
+    - CombustionTurbine

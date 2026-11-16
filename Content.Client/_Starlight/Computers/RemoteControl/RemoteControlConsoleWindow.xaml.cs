@@ -20,6 +20,7 @@ using Content.Client._Starlight.UserInterface;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions.Components;
 using Content.Shared.CombatMode;
+using Content.Shared.Stunnable;
 using Robust.Client.State;
 using Content.Client.Examine;
 using Content.Shared.Interaction;
@@ -98,6 +99,7 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
     private EntityUid? _targetingAction;
     private EntityUid? _selectedAction;
     public event Action? ToggleControl;
+    public event Action? RemoteToggleKnockdownPressed;
 
     public event Action<NetCoordinates, EntityUid?, bool, bool, RemoteControlInteractionAction, AtmosPipeLayer?>?
         RemoteInteractionPressed;
@@ -948,6 +950,9 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
         ControlButton.OnPressed += OnControlButtonPressed;
 
         CommandBinds.Builder
+            .BindBefore(ContentKeyFunctions.ToggleKnockdown,
+                new RemoteToggleKnockdownInputHandler(this),
+                typeof(SharedStunSystem))
             .BindBefore(ContentKeyFunctions.SwapHands,
                 new RemoteHandCycleInputHandler(this, RemoteControlHandAction.CycleActive),
                 typeof(SharedHandsSystem))
@@ -990,6 +995,23 @@ public sealed partial class RemoteControlConsoleWindow : PopOutFancyWindow
 
         RemoteHandPressed?.Invoke(string.Empty, action);
         return true;
+    }
+
+    private sealed class RemoteToggleKnockdownInputHandler(RemoteControlConsoleWindow window) : InputCmdHandler
+    {
+        public override bool FireOutsidePrediction => true;
+
+        public override bool HandleCmdMessage(IEntityManager entManager, ICommonSession? session,
+            IFullInputCmdMessage message)
+        {
+            if (window._remoteControl.ControlledEntity is null)
+                return false;
+
+            if (message.State == BoundKeyState.Down)
+                window.RemoteToggleKnockdownPressed?.Invoke();
+
+            return true;
+        }
     }
 
     private sealed class RemoteHandCycleInputHandler(

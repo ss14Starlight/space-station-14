@@ -1,0 +1,15 @@
+
+- type: entity
+  parent: MobBearSoviet
+  id: MobBearWhite
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Daiquiri/Mobs/Animals/white_bear.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: bear
+
+- type: entity
+  parent: MobBearSoviet
+  id: MobBearBrown

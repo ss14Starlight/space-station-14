@@ -176,13 +176,6 @@ public sealed partial class OptionsTabControlRow : Control
         return AddOption(new OptionDropDownCVar<T>(this, _cfg, cVar, dropDown, options));
     }
 
-    #region Starlight
-
-    public OptionLineEditCvar AddOptionLineEdit(CVarDef<string> cVar, LineEdit lineEdit) =>
-        AddOption(new OptionLineEditCvar(this, _cfg, cVar, lineEdit));
-
-    #endregion Starlight
-
     /// <summary>
     /// Initializes the control row. This should be called after all options have been added.
     /// </summary>

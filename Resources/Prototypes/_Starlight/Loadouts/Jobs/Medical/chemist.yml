@@ -209,6 +209,14 @@
   equipment:
     eyes: ClothingEyesGlassesJensenChemical
 
+- type: loadout
+  id: ChemicalJamjar
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledChemist
+  equipment:
+    eyes: ClothingEyesGlassesJamjarChemist
+
 # Beaker
 - type: loadout
   id: LightBeaker

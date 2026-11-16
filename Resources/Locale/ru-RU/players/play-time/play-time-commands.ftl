@@ -20,6 +20,15 @@ cmd-playtime_addrole-arg-role = <role>
 cmd-playtime_addrole-arg-minutes = <minutes>
 cmd-playtime_addrole-error-args = Ожидается ровно три аргумента
 
+# - playtime_unlockall
+cmd-playtime_unlockall-desc = Начисляет минимальное время, необходимое для выполнения требований по игровому времени для ролей, доступных с выбранными отделами. Центральное командование, скрытые и недоступные для выбора роли исключены всегда; отделы «Командование» и «СБ» можно включить флагами. Роли в «Командовании» учитываются только при флаге --command; роли в «СБ», но не в «Командовании», — только при флаге --security. Время начисляется только ролям, не входящим ни в один исключённый отдел. Роли, требующие исключённого отдела, а также роли с другими или конфликтующими требованиями могут остаться недоступными.
+cmd-playtime_unlockall-help = Использование: { $command } <user name> [--command] [--security]
+cmd-playtime_unlockall-succeed = Игроку { $username } начислено { TOSTRING($time, "dddd\\:hh\\:mm") } игрового времени для выбранных отделов.
+cmd-playtime_unlockall-already = Для игрока { $username } не требуется начисление времени для выбранных отделов.
+cmd-playtime_unlockall-arg-user = <user name>
+cmd-playtime_unlockall-arg-flags = [--command] [--security]
+cmd-playtime_unlockall-error-args = Ожидается имя пользователя и необязательные флаги --command/--security
+
 # - playtime_getoverall
 cmd-playtime_getoverall-desc = Получить общее игровое время игрока в минутах
 cmd-playtime_getoverall-help = Использование: { $command } <user name>

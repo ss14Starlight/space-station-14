@@ -1,0 +1,106 @@
+
+- type: entity
+  parent: WeatherSnowfallHeavy
+  id: WeatherPlanetSnowfall
+  name: heavy snowfall
+
+- type: entity
+  parent: WeatherAshfallHeavy
+  id: WeatherPlanetAshfall
+  name: heavy ashfall
+
+- type: entity
+  parent: WeatherRain
+  id: WeatherPlanetDrizzle
+  name: drizzle
+  components:
+  - type: WeatherStatusEffect
+    color: "#CFE4F533"
+    scrolling: -0.2,-0.2
+    sound:
+      path: /Audio/Effects/Weather/rain.ogg
+      params:
+        loop: true
+        volume: -14
+  - type: PlanetWeatherAnnouncement
+    startMessage: planet-weather-drizzle-start
+    endMessage: planet-weather-drizzle-end
+  - type: PlanetWeatherLightning
+    chancePerSecond: 0.005
+
+- type: entity
+  parent: WeatherRain
+  id: WeatherPlanetRain
+  name: rain
+  components:
+  - type: WeatherStatusEffect
+    color: "#C3D9EC66"
+    scrolling: -0.4,-0.4
+  - type: PlanetWeatherAnnouncement
+    startMessage: planet-weather-rain-start
+    endMessage: planet-weather-rain-end
+  - type: PlanetWeatherLightning
+    chancePerSecond: 0.02
+
+- type: entity
+  parent: WeatherRain
+  id: WeatherPlanetDownpour
+  name: downpour
+  components:
+  - type: WeatherStatusEffect
+    color: "#A9C3DC99"
+    scrolling: -0.7,-0.7
+    sound:
+      path: /Audio/Effects/Weather/rain_heavy.ogg
+      params:
+        loop: true
+        volume: -4
+  - type: PlanetWeatherAnnouncement
+    startMessage: planet-weather-downpour-start
+    endMessage: planet-weather-downpour-end
+  - type: PlanetWeatherLightning
+    chancePerSecond: 0.05
+
+- type: entity
+  parent: WeatherStorm
+  id: WeatherPlanetStorm
+  name: storm
+  components:
+  - type: WeatherStatusEffect
+    color: "#C0A8E880"
+    scrolling: -1.1,-1.1
+  - type: PlanetWeatherAnnouncement
+    startMessage: planet-weather-storm-start
+    endMessage: planet-weather-storm-end
+  - type: PlanetWeatherLightning
+    chancePerSecond: 0.1
+
+- type: entity
+  parent: BaseLightning
+  id: DaiquiriPurpleLightning
+  name: purple lightning
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: /Textures/Effects/lightning.rsi
+    drawdepth: Effects
+    layers:
+    - state: "lightning_3"
+      color: "#C08BFF"
+      shader: unshaded
+  - type: PointLight
+    enabled: true
+    color: "#B060FF"
+    radius: 4
+    softness: 1
+    autoRot: true
+    castShadows: false
+  - type: Electrified
+    onBump: false
+    onAttacked: false
+    onHandInteract: false
+    onInteractUsing: false
+  - type: Lightning
+    canArc: false
+  - type: TimedDespawn
+    lifetime: 0.7

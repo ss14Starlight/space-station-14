@@ -24,3 +24,5 @@ station-beacon-laundromat = Прачечная
 station-beacon-radio-host = Радиостудия
 station-beacon-brigmedic = Бригмедик
 station-beacon-ats = Автоторговая станция
+
+nav-beacon-supply-rift = разлом снабжения

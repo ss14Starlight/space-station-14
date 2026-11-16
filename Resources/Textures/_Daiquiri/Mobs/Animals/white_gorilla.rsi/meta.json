@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 64
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Recoloured from Mobs/Animals/gorilla.rsi (tgstation, commit 53d1f1477d22a11a99c6c6924977cd431075761b) into a white coat for the Daiquiri snow planet.",
+  "states": [
+    {
+      "name": "icon",
+      "delays": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "name": "dead",
+      "delays": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "name": "crawling",
+      "directions": 4,
+      "delays": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ]
+    }
+  ]
+}

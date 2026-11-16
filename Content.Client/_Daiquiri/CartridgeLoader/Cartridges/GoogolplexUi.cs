@@ -1,6 +1,7 @@
 using Content.Client.UserInterface.Fragments;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
+using Content.Shared._Daiquiri.CartridgeLoader.Cartridges;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._Daiquiri.CartridgeLoader.Cartridges;
@@ -34,6 +35,15 @@ public sealed partial class GoogolplexUi : UIFragment
                 break;
             case StarWayThreadIndexState indexState:
                 _fragment.OnThreadIndexReceived(indexState);
+                break;
+            case ChessLinkStatusState chessStatusState:
+                _fragment.OnChessLinkStatusReceived(chessStatusState);
+                break;
+            case ChessLinkStartState chessStartState:
+                _fragment.OnChessLinkStartReceived(chessStartState);
+                break;
+            case ChessGameState chessGameState:
+                _fragment.OnChessGameStateReceived(chessGameState);
                 break;
         }
     }

@@ -81,6 +81,7 @@ public sealed partial class ContentAudioSystem
 
         SubscribeNetworkEvent<LobbyMusicStopEvent>(OnLobbySongStopped);
         SubscribeNetworkEvent<LobbyPlaylistChangedEvent>(OnLobbySongChanged);
+        SubscribeNetworkEvent<RoundEndCancelMessageEvent>(OnRoundEndCancelMessage); // Daiquiri
     }
 
     /// <summary>
@@ -98,18 +99,24 @@ public sealed partial class ContentAudioSystem
         switch (args.NewState)
         {
             case LobbyState:
+                var resume = CaptureLobbyResume();
+                _postRoundMusic = false;
                 StopAllAudio();
-                StartLobbyMusic();
+                StartLobbyMusic(resume);
                 break;
             default:
-                EndLobbyMusic();
+                // Daiquiri
+                if (!_postRoundMusic)
+                    EndLobbyMusic();
                 break;
         }
     }
 
     private void OnLeave(object? sender, PlayerEventArgs args)
     {
+        _postRoundMusic = false; // Daiquiri
         EndLobbyMusic();
+        _configManager.SaveToFile();
     }
 
     #region Starlight
@@ -120,6 +127,20 @@ public sealed partial class ContentAudioSystem
     public bool LobbyMusicPaused => _lobbyPauseStarted != null;
     private TimeSpan? _lobbyPauseStarted;
     private float _lobbyPausePosition;
+    private TimeSpan _lobbyTrackStartedAt;
+
+    /// <summary>
+    /// How long a freshly started stream may take to actually begin playing before we
+    /// consider it dead. Prevents a track from being skipped during a long frame/map load.
+    /// </summary>
+    private static readonly TimeSpan LobbyTrackStartGrace = TimeSpan.FromSeconds(2);
+
+    /// <summary>
+    /// Playback position is authoritative for "did this track finish?". Wall-clock
+    /// timing can jump during long stalls/round restarts, which used to skip through
+    /// the whole playlist in a single frame.
+    /// </summary>
+    private const float LobbyTrackEndTolerance = 0.75f;
 
     /// <summary>
     /// Current track length in seconds, if any.
@@ -239,8 +260,6 @@ public sealed partial class ContentAudioSystem
         _lobbySoundtrackInfo = null;
         LobbyTrackLengthSeconds = null;
     }
-
-    private void OnRoundEndCancelMessage(RoundEndCancelMessageEvent ev) => EndLobbyMusic();
 
     /// <summary>
     /// Whether there is a lobby playlist available to skip through.
@@ -706,14 +725,14 @@ public sealed partial class ContentAudioSystem
     private void OnLobbySongChanged(LobbyPlaylistChangedEvent playlistChangedEvent)
     {
         var playlist = playlistChangedEvent.Playlist;
+        _postRoundMusic = playlistChangedEvent.PostRound; // Daiquiri
         var current = _lobbySoundtrackInfo?.Filename;
 
-        // Daiquiri
         if (current != null
-            && _lobbyPlaylist != null
-            && _lobbyPlaylist.SequenceEqual(playlist)
-            && playlist.Contains(current))
+            && (playlist.Contains(current) || _localAddedTracks.Contains(current)))
         {
+            _lobbyPlaylist = playlist;
+            ReconcileOrder();
             LobbyPlaylistChanged?.Invoke();
             return;
         }
@@ -724,6 +743,27 @@ public sealed partial class ContentAudioSystem
         EndLobbyMusic();
         StartLobbyMusic(playlist);
         LobbyPlaylistChanged?.Invoke();
+    }
+
+    private (string Track, float Position)? CaptureLobbyResume()
+    {
+        if (_lobbySoundtrackInfo == null || LobbyMusicPaused)
+            return null;
+
+        try
+        {
+            if (!TryComp(_lobbySoundtrackInfo.MusicStreamEntityUid, out AudioComponent? comp)
+                || !comp.Playing)
+            {
+                return null;
+            }
+
+            return (_lobbySoundtrackInfo.Filename, comp.PlaybackPosition);
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     /// <summary>
@@ -742,9 +782,22 @@ public sealed partial class ContentAudioSystem
     }
 
     /// <summary>
+    /// Returns the track to start with: the last one this player heard if it is still
+    /// available, otherwise the first track in the pool.
+    /// </summary>
+    private string GetResumeTrack(string[] pool)
+    {
+        var last = _configManager.GetCVar(StarlightCCVars.LobbyLastTrack);
+        if (!string.IsNullOrEmpty(last) && Array.IndexOf(pool, last) >= 0)
+            return last;
+
+        return pool[0];
+    }
+
+    /// <summary>
     /// Re-starts playing lobby music from playlist, last sent from server. if there is currently none - does nothing.
     /// </summary>
-    private void StartLobbyMusic()
+    private void StartLobbyMusic((string Track, float Position)? resume = null)
     {
         if (!_configManager.GetCVar(CCVars.LobbyMusicEnabled)
             || _state.CurrentState is not LobbyState)
@@ -769,7 +822,11 @@ public sealed partial class ContentAudioSystem
             return;
         }
 
-        PlaySoundtrack(pool[0]);
+        var track = GetResumeTrack(pool);
+        PlaySoundtrack(track);
+
+        if (resume is { } previous && previous.Track == track)
+            SeekLobbyTrack(previous.Position);
     }
 
     /// <summary>
@@ -778,15 +835,18 @@ public sealed partial class ContentAudioSystem
     /// <param name="playlist">Array of soundtrack filenames for lobby playlist.</param>
     private void StartLobbyMusic(string[] playlist)
     {
-        if (!_configManager.GetCVar(CCVars.LobbyMusicEnabled)
-            || _state.CurrentState is not LobbyState)
+        if (!_configManager.GetCVar(CCVars.LobbyMusicEnabled))
+            return;
+
+        // Post-round music is deliberately played while the client is still in
+        // GameplayState (the round-end scoreboard). Only allow the playlist to start
+        // outside the lobby in that case.
+        if (_state.CurrentState is not LobbyState && !_postRoundMusic)
             return;
 
         _lobbyPlaylist = playlist;
         if (_lobbyPlaylist.Length == 0)
-        {
             return;
-        }
 
         if (_lobbySoundtrackInfo != null)
         {
@@ -796,21 +856,27 @@ public sealed partial class ContentAudioSystem
             EndLobbyMusic();
         }
 
-        PlaySoundtrack(playlist[0]);
+        var pool = LocalPool();
+        if (pool.Length == 0)
+            return;
+
+        PlaySoundtrack(GetResumeTrack(pool));
     }
 
     private void PlaySoundtrack(string soundtrackFilename)
     {
         if (!_resourceCache.TryGetResource(new ResPath(soundtrackFilename), out AudioResource? audio))
         {
+            _sawmill.Warning($"Lobby soundtrack resource not found: {soundtrackFilename}");
             return;
         }
 
+        var volume = _lobbySoundtrackParams.Volume + SharedAudioSystem.GainToVolume(_configManager.GetCVar(CCVars.LobbyMusicVolume));
         var playResult = _audio.PlayGlobal(
             soundtrackFilename,
             Filter.Local(),
             false,
-            _lobbySoundtrackParams.WithVolume(_lobbySoundtrackParams.Volume + SharedAudioSystem.GainToVolume(_configManager.GetCVar(CCVars.LobbyMusicVolume)))
+            _lobbySoundtrackParams.WithVolume(volume)
         );
         if (playResult == null)
         {
@@ -819,11 +885,12 @@ public sealed partial class ContentAudioSystem
                 soundtrackFilename);
             return;
         }
-
         var nextTrackOn = _timing.RealTime + audio.AudioStream.Length;
         _lobbySoundtrackInfo = new LobbySoundtrackInfo(soundtrackFilename, nextTrackOn, playResult.Value.Entity);
+        _lobbyTrackStartedAt = _timing.RealTime;
         _lobbyPauseStarted = null;
         LobbyTrackLengthSeconds = (float) audio.AudioStream.Length.TotalSeconds;
+        _configManager.SetCVar(StarlightCCVars.LobbyLastTrack, soundtrackFilename);
 
         var lobbySongChangedEvent = new LobbySoundtrackChangedEvent(soundtrackFilename);
         _lobbySoundtrackChanged?.Invoke(lobbySongChangedEvent);
@@ -870,6 +937,7 @@ public sealed partial class ContentAudioSystem
         _client.PlayerLeaveServer -= OnLeave;
 
         EndLobbyMusic();
+        _configManager.SaveToFile();
     }
 
     private void UpdateLobbyMusic()
@@ -901,28 +969,37 @@ public sealed partial class ContentAudioSystem
             return;
         }
 
-        var finished = _timing.RealTime >= _lobbySoundtrackInfo.NextTrackOn;
-        if (!finished
-            && (!TryComp(_lobbySoundtrackInfo.MusicStreamEntityUid, out AudioComponent? comp) || !comp.Playing))
+        var hasComp = TryComp(_lobbySoundtrackInfo.MusicStreamEntityUid, out AudioComponent? comp);
+        var length = LobbyTrackLengthSeconds;
+        var position = hasComp ? comp!.PlaybackPosition : 0f;
+        var finished = hasComp
+                       && length is { } trackLength
+                       && position >= MathF.Max(0f, trackLength - LobbyTrackEndTolerance);
+
+        // Daiquiri
+        // Do not use _timing.RealTime for advancing. A long frame (map load, round restart,
+        // debugger break) makes the wall clock jump past NextTrackOn and used to skip the
+        // entire playlist. The stream's own playback position only moves when audio actually
+        // played.
+        if (hasComp && comp!.Playing)
         {
-            // Daiquiri
-            if (_lobbySoundtrackInfo.NextTrackOn - _timing.RealTime <= TimeSpan.FromSeconds(5))
+            if (!finished)
+                return;
+        }
+        else
+        {
+            // Give a freshly created stream a moment to start before treating it as dead.
+            if (_timing.RealTime - _lobbyTrackStartedAt < LobbyTrackStartGrace)
+                return;
+
+            if (!finished)
             {
-                var loopSoundtrackFilename = GetNextSoundtrackFromPlaylist(_lobbySoundtrackInfo.Filename, pool);
-                EndLobbyMusic();
-                PlaySoundtrack(loopSoundtrackFilename);
+                _sawmill.Debug("Lobby stream died mid-track, pausing instead of advancing.");
+                if (length is { } deadLength)
+                    _lobbyPausePosition = Math.Clamp(position, 0f, deadLength);
+                SetLobbyMusicPaused(true);
                 return;
             }
-            _sawmill.Debug("Lobby stream died mid-track, pausing instead of advancing.");
-            if (LobbyTrackLengthSeconds is { } deadLength)
-                _lobbyPausePosition = Math.Clamp(deadLength - (float) (_lobbySoundtrackInfo.NextTrackOn - _timing.RealTime).TotalSeconds, 0f, deadLength);
-            SetLobbyMusicPaused(true);
-            return;
-        }
-
-        if (!finished)
-        {
-            return;
         }
 
         var nextSoundtrackFilename = GetNextSoundtrackFromPlaylist(_lobbySoundtrackInfo.Filename, pool);

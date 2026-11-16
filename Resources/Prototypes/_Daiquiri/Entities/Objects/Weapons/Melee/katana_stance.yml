@@ -1,0 +1,36 @@
+- type: entity
+  name: katana
+  parent: Katana
+  id: KatanaStance
+  description: Ancient craftwork made with not so ancient plasteel. Its balance allows the wielder to switch between an attack and a defense stance.
+  components:
+  - type: MultiHandedItem
+    handsNeeded: 2
+  - type: ItemToggle
+    popupActivate: katana-stance-defense
+    popupDeactivate: katana-stance-attack
+    verbToggleOn: katana-stance-defense
+    verbToggleOff: katana-stance-attack
+  - type: UseDelay
+    delay: 1
+  - type: KatanaStance
+    attackWalkModifier: 1.1
+    attackSprintModifier: 1.1
+    defenseWalkModifier: 0.8
+    defenseSprintModifier: 0.8
+    attackDamageMultiplier: 1
+    defenseDamageMultiplier: 1
+    canAttackInDefense: false
+    defenseBlockChance: 1
+    attackBlockChance: 0.2
+    disarmBlockChance: 1
+    defenseReflectChance: 0.15
+    attackReflectChance: 0.05
+    flipSpriteInDefense: true
+    flipSpriteLayers: [ icon ]
+    blockedPopup: katana-blocked
+    attackBlockedPopup: katana-attack-blocked
+    blockSound:
+      path: /Audio/Weapons/block_metal1.ogg
+    reflectSound:
+      path: /Audio/Weapons/Guns/Hits/laser_sear_wall.ogg

@@ -4,7 +4,6 @@ ghost-gui-ghost-roles-button = Роли призраков ({ $count })
 ghost-gui-toggle-ghost-visibility-popup-on = Видимость призраков включена.
 ghost-gui-toggle-ghost-visibility-popup-off = Видимость призраков выключена.
 ghost-gui-toggle-lighting-manager-popup-normal = Обычное освещение.
-ghost-gui-toggle-lighting-manager-popup-half-bright = Частичное освещение.
 ghost-gui-toggle-lighting-manager-popup-fullbright = Полная яркость.
 ghost-gui-toggle-fov-popup = Поле зрения переключено.
 

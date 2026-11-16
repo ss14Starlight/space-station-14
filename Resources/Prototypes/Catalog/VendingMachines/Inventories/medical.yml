@@ -8,6 +8,7 @@
     Brutepack: 3
     Ointment: 3
     Bloodpack: 3
+    OilPack: 2 # Starlight
     ChemistryBottleEpinephrine: 3
     Syringe: 3
     PillCanisterTricordrazine: 2
@@ -29,6 +30,7 @@
     Brutepack: 3
     AloeCream: 3 # Currently just a reskin of Ointment but it's something
     Bloodpack: 3
+    OilPack: 2 # Starlight
     ChemistryBottleInaprovaline: 3
     Syringe: 3
     PillTricordrazine: 10
@@ -51,6 +53,7 @@
     Brutepack: 5
     Ointment: 5
     Bloodpack: 5
+    OilPack: 2 # Starlight
     Tourniquet: 2
     ChemistryBottleEpinephrine: 3
     ChemistryBottleBicaridine: 1
@@ -88,6 +91,7 @@
     Brutepack: 5
     AloeCream: 5
     Bloodpack: 5
+    OilPack: 2 # Starlight
     ChemistryBottleInaprovaline: 3 # Starlight
     ChemistryBottleEpinephrine: 3 # Starlight
     Syringe: 5

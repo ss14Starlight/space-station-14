@@ -15,6 +15,6 @@ public sealed class GlassPromptCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        IoCManager.Resolve<IUserInterfaceManager>().CreateWindow<GlassThemePrompt>().OpenCentered();
+        GlassThemePrompt.Open(IoCManager.Resolve<IUserInterfaceManager>());
     }
 }

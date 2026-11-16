@@ -1,12 +1,17 @@
 - type: entity
   id: BaseLanguageTranslator
-  parent: BaseItem
-  name: language-translator-base-name
-  description: language-translator-base-desc
+  parent: Translator
+  name: handheld translator
+  description: A portable device that translates speech into Galactic Common.
   components:
   - type: Sprite
     sprite: _Daiquiri/Objects/Devices/translator.rsi
-    state: icon
+    layers:
+    - state: icon
+    - state: translator
+      shader: unshaded
+      visible: false
+      map: ["translator"]
   - type: HandheldTranslator
     spoken:
     - GalacticCommon
@@ -21,8 +26,8 @@
 - type: entity
   id: LanguageTranslatorVoxPidgin
   parent: BaseLanguageTranslator
-  name: language-translator-voxpidgin-name
-  description: language-translator-voxpidgin-desc
+  name: "Vox-Pidgin → Galactic Common translator"
+  description: Translates Vox-Pidgin speech into Galactic Common. Requires knowledge of Vox-Pidgin.
   components:
   - type: HandheldTranslator
     requires:
@@ -32,8 +37,8 @@
 - type: entity
   id: LanguageTranslatorThaveyan
   parent: BaseLanguageTranslator
-  name: language-translator-thaveyan-name
-  description: language-translator-thaveyan-desc
+  name: "Thaveyan → Galactic Common translator"
+  description: Translates Thaveyan speech into Galactic Common. Requires knowledge of Thaveyan.
   components:
   - type: HandheldTranslator
     requires:
@@ -43,8 +48,8 @@
 - type: entity
   id: LanguageTranslatorTerrum
   parent: BaseLanguageTranslator
-  name: language-translator-terrum-name
-  description: language-translator-terrum-desc
+  name: "Terrum → Galactic Common translator"
+  description: Translates Terrum speech into Galactic Common. Requires knowledge of Terrum.
   components:
   - type: HandheldTranslator
     requires:
@@ -54,8 +59,8 @@
 - type: entity
   id: LanguageTranslatorSylvan
   parent: BaseLanguageTranslator
-  name: language-translator-sylvan-name
-  description: language-translator-sylvan-desc
+  name: "Sylvan → Galactic Common translator"
+  description: Translates Sylvan speech into Galactic Common. Requires knowledge of Sylvan.
   components:
   - type: HandheldTranslator
     requires:
@@ -65,8 +70,8 @@
 - type: entity
   id: LanguageTranslatorSqueakish
   parent: BaseLanguageTranslator
-  name: language-translator-squeakish-name
-  description: language-translator-squeakish-desc
+  name: "Squeakish → Galactic Common translator"
+  description: Translates Squeakish speech into Galactic Common. Requires knowledge of Squeakish.
   components:
   - type: HandheldTranslator
     requires:
@@ -76,8 +81,8 @@
 - type: entity
   id: LanguageTranslatorNekomimetic
   parent: BaseLanguageTranslator
-  name: language-translator-nekomimetic-name
-  description: language-translator-nekomimetic-desc
+  name: "Nekomimetic → Galactic Common translator"
+  description: Translates Nekomimetic speech into Galactic Common. Requires knowledge of Nekomimetic.
   components:
   - type: HandheldTranslator
     requires:
@@ -87,8 +92,8 @@
 - type: entity
   id: LanguageTranslatorMoffic
   parent: BaseLanguageTranslator
-  name: language-translator-moffic-name
-  description: language-translator-moffic-desc
+  name: "Moffic → Galactic Common translator"
+  description: Translates Moffic speech into Galactic Common. Requires knowledge of Moffic.
   components:
   - type: HandheldTranslator
     requires:
@@ -98,8 +103,8 @@
 - type: entity
   id: LanguageTranslatorMarish
   parent: BaseLanguageTranslator
-  name: language-translator-marish-name
-  description: language-translator-marish-desc
+  name: "Marish → Galactic Common translator"
+  description: Translates Marish speech into Galactic Common. Requires knowledge of Marish.
   components:
   - type: HandheldTranslator
     requires:
@@ -109,8 +114,8 @@
 - type: entity
   id: LanguageTranslatorLagomorphian
   parent: BaseLanguageTranslator
-  name: language-translator-lagomorphian-name
-  description: language-translator-lagomorphian-desc
+  name: "Laguine → Galactic Common translator"
+  description: Translates Laguine speech into Galactic Common. Requires knowledge of Laguine.
   components:
   - type: HandheldTranslator
     requires:
@@ -120,8 +125,8 @@
 - type: entity
   id: LanguageTranslatorGrumbakul
   parent: BaseLanguageTranslator
-  name: language-translator-grumbakul-name
-  description: language-translator-grumbakul-desc
+  name: "Grumbakul → Galactic Common translator"
+  description: Translates Grumbakul speech into Galactic Common. Requires knowledge of Grumbakul.
   components:
   - type: HandheldTranslator
     requires:
@@ -131,8 +136,8 @@
 - type: entity
   id: LanguageTranslatorFelyaic
   parent: BaseLanguageTranslator
-  name: language-translator-felyaic-name
-  description: language-translator-felyaic-desc
+  name: "Felyaic → Galactic Common translator"
+  description: Translates Felyaic speech into Galactic Common. Requires knowledge of Felyaic.
   components:
   - type: HandheldTranslator
     requires:
@@ -142,8 +147,8 @@
 - type: entity
   id: LanguageTranslatorDraconic
   parent: BaseLanguageTranslator
-  name: language-translator-draconic-name
-  description: language-translator-draconic-desc
+  name: "Draconic → Galactic Common translator"
+  description: Translates Draconic speech into Galactic Common. Requires knowledge of Draconic.
   components:
   - type: HandheldTranslator
     requires:
@@ -153,8 +158,8 @@
 - type: entity
   id: LanguageTranslatorChittin
   parent: BaseLanguageTranslator
-  name: language-translator-chittin-name
-  description: language-translator-chittin-desc
+  name: "Chittin → Galactic Common translator"
+  description: Translates Chittin speech into Galactic Common. Requires knowledge of Chittin.
   components:
   - type: HandheldTranslator
     requires:
@@ -164,8 +169,8 @@
 - type: entity
   id: LanguageTranslatorCanilunzt
   parent: BaseLanguageTranslator
-  name: language-translator-canilunzt-name
-  description: language-translator-canilunzt-desc
+  name: "Canilunzt → Galactic Common translator"
+  description: Translates Canilunzt speech into Galactic Common. Requires knowledge of Canilunzt.
   components:
   - type: HandheldTranslator
     requires:
@@ -175,8 +180,8 @@
 - type: entity
   id: LanguageTranslatorBubblish
   parent: BaseLanguageTranslator
-  name: language-translator-bubblish-name
-  description: language-translator-bubblish-desc
+  name: "Bubblish → Galactic Common translator"
+  description: Translates Bubblish speech into Galactic Common. Requires knowledge of Bubblish.
   components:
   - type: HandheldTranslator
     requires:
@@ -186,9 +191,295 @@
 - type: entity
   id: LanguageTranslatorAielic
   parent: BaseLanguageTranslator
-  name: language-translator-aielic-name
-  description: language-translator-aielic-desc
+  name: "Aielic → Galactic Common translator"
+  description: Translates Aielic speech into Galactic Common. Requires knowledge of Aielic.
   components:
   - type: HandheldTranslator
     requires:
     - Aielic
+
+# Ancestor -> Galactic Common
+- type: entity
+  id: LanguageTranslatorAncestor
+  parent: BaseLanguageTranslator
+  name: "Ancestor → Galactic Common translator"
+  description: Translates Ancestor speech into Galactic Common. Requires knowledge of Ancestor.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Ancestor
+
+# Bat -> Galactic Common
+- type: entity
+  id: LanguageTranslatorBat
+  parent: BaseLanguageTranslator
+  name: "Bat → Galactic Common translator"
+  description: Translates Bat speech into Galactic Common. Requires knowledge of Bat.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Bat
+
+# Carptongue -> Galactic Common
+- type: entity
+  id: LanguageTranslatorCarptongue
+  parent: BaseLanguageTranslator
+  name: "Carptongue → Galactic Common translator"
+  description: Translates Carptongue speech into Galactic Common. Requires knowledge of Carptongue.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Carptongue
+
+# Cat -> Galactic Common
+- type: entity
+  id: LanguageTranslatorCat
+  parent: BaseLanguageTranslator
+  name: "Cat → Galactic Common translator"
+  description: Translates Cat speech into Galactic Common. Requires knowledge of Cat.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Cat
+
+# Cat (Feral) -> Galactic Common
+- type: entity
+  id: LanguageTranslatorCatFeral
+  parent: BaseLanguageTranslator
+  name: "Cat (Feral) → Galactic Common translator"
+  description: Translates Cat (Feral) speech into Galactic Common. Requires knowledge of Cat (Feral).
+  components:
+  - type: HandheldTranslator
+    requires:
+    - CatFeral
+
+# Chicken -> Galactic Common
+- type: entity
+  id: LanguageTranslatorChicken
+  parent: BaseLanguageTranslator
+  name: "Chicken → Galactic Common translator"
+  description: Translates Chicken speech into Galactic Common. Requires knowledge of Chicken.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Chicken
+
+# Classical -> Galactic Common
+- type: entity
+  id: LanguageTranslatorClassical
+  parent: BaseLanguageTranslator
+  name: "Classical → Galactic Common translator"
+  description: Translates Classical speech into Galactic Common. Requires knowledge of Classical.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Classical
+
+# Classical Sign Language -> Galactic Common
+- type: entity
+  id: LanguageTranslatorClassicalSign
+  parent: BaseLanguageTranslator
+  name: "Classical Sign Language → Galactic Common translator"
+  description: Translates Classical Sign Language speech into Galactic Common. Requires knowledge of Classical Sign Language.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - ClassicalSign
+
+# CodeSpeak -> Galactic Common
+- type: entity
+  id: LanguageTranslatorCodeSpeak
+  parent: BaseLanguageTranslator
+  name: "CodeSpeak → Galactic Common translator"
+  description: Translates CodeSpeak speech into Galactic Common. Requires knowledge of CodeSpeak.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - CodeSpeak
+
+# Cygni Standard -> Galactic Common
+- type: entity
+  id: LanguageTranslatorCygniStandard
+  parent: BaseLanguageTranslator
+  name: "Cygni Standard → Galactic Common translator"
+  description: Translates Cygni Standard speech into Galactic Common. Requires knowledge of Cygni Standard.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - CygniStandard
+
+# Darktongue -> Galactic Common
+- type: entity
+  id: LanguageTranslatorDarktongue
+  parent: BaseLanguageTranslator
+  name: "Darktongue → Galactic Common translator"
+  description: Translates Darktongue speech into Galactic Common. Requires knowledge of Darktongue.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Darktongue
+
+# Dog -> Galactic Common
+- type: entity
+  id: LanguageTranslatorDog
+  parent: BaseLanguageTranslator
+  name: "Dog → Galactic Common translator"
+  description: Translates Dog speech into Galactic Common. Requires knowledge of Dog.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Dog
+
+# Dog (Feral) -> Galactic Common
+- type: entity
+  id: LanguageTranslatorDogFeral
+  parent: BaseLanguageTranslator
+  name: "Dog (Feral) → Galactic Common translator"
+  description: Translates Dog (Feral) speech into Galactic Common. Requires knowledge of Dog (Feral).
+  components:
+  - type: HandheldTranslator
+    requires:
+    - DogFeral
+
+# Duck -> Galactic Common
+- type: entity
+  id: LanguageTranslatorDuck
+  parent: BaseLanguageTranslator
+  name: "Duck → Galactic Common translator"
+  description: Translates Duck speech into Galactic Common. Requires knowledge of Duck.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Duck
+
+# Fox -> Galactic Common
+- type: entity
+  id: LanguageTranslatorFox
+  parent: BaseLanguageTranslator
+  name: "Fox → Galactic Common translator"
+  description: Translates Fox speech into Galactic Common. Requires knowledge of Fox.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Fox
+
+# Encoded Audio Language -> Galactic Common
+- type: entity
+  id: LanguageTranslatorMachine
+  parent: BaseLanguageTranslator
+  name: "Encoded Audio Language → Galactic Common translator"
+  description: Translates Encoded Audio Language speech into Galactic Common. Requires knowledge of Encoded Audio Language.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Machine
+
+# Mothroach -> Galactic Common
+- type: entity
+  id: LanguageTranslatorMothroach
+  parent: BaseLanguageTranslator
+  name: "Mothroach → Galactic Common translator"
+  description: Translates Mothroach speech into Galactic Common. Requires knowledge of Mothroach.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Mothroach
+
+# Mouse -> Galactic Common
+- type: entity
+  id: LanguageTranslatorMouse
+  parent: BaseLanguageTranslator
+  name: "Mouse → Galactic Common translator"
+  description: Translates Mouse speech into Galactic Common. Requires knowledge of Mouse.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Mouse
+
+# Penguin -> Galactic Common
+- type: entity
+  id: LanguageTranslatorPenguin
+  parent: BaseLanguageTranslator
+  name: "Penguin → Galactic Common translator"
+  description: Translates Penguin speech into Galactic Common. Requires knowledge of Penguin.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Penguin
+
+# Pig -> Galactic Common
+- type: entity
+  id: LanguageTranslatorPig
+  parent: BaseLanguageTranslator
+  name: "Pig → Galactic Common translator"
+  description: Translates Pig speech into Galactic Common. Requires knowledge of Pig.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Pig
+
+# Scratch -> Galactic Common
+- type: entity
+  id: LanguageTranslatorScratch
+  parent: BaseLanguageTranslator
+  name: "Scratch → Galactic Common translator"
+  description: Translates Scratch speech into Galactic Common. Requires knowledge of Scratch.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Scratch
+
+# Scurret Sign -> Galactic Common
+- type: entity
+  id: LanguageTranslatorScurretSign
+  parent: BaseLanguageTranslator
+  name: "Scurret Sign → Galactic Common translator"
+  description: Translates Scurret Sign speech into Galactic Common. Requires knowledge of Scurret Sign.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - ScurretSign
+
+# Galactic Sign Language -> Galactic Common
+- type: entity
+  id: LanguageTranslatorSign
+  parent: BaseLanguageTranslator
+  name: "Galactic Sign Language → Galactic Common translator"
+  description: Translates Galactic Sign Language speech into Galactic Common. Requires knowledge of Galactic Sign Language.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Sign
+
+# Sol Common -> Galactic Common
+- type: entity
+  id: LanguageTranslatorSolCommon
+  parent: BaseLanguageTranslator
+  name: "Sol Common → Galactic Common translator"
+  description: Translates Sol Common speech into Galactic Common. Requires knowledge of Sol Common.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - SolCommon
+
+# Xeno -> Galactic Common
+- type: entity
+  id: LanguageTranslatorXeno
+  parent: BaseLanguageTranslator
+  name: "Xeno → Galactic Common translator"
+  description: Translates Xeno speech into Galactic Common. Requires knowledge of Xeno.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Xeno
+
+# Zombie -> Galactic Common
+- type: entity
+  id: LanguageTranslatorZombie
+  parent: BaseLanguageTranslator
+  name: "Zombie → Galactic Common translator"
+  description: Translates Zombie speech into Galactic Common. Requires knowledge of Zombie.
+  components:
+  - type: HandheldTranslator
+    requires:
+    - Zombie

@@ -1,4 +1,10 @@
 - type: sourcePort
+  id: ToggleableDeviceStatusInverted
+  name: signal-port-name-toggleable-device-status-inverted
+  description: signal-port-description-toggleable-device-status-inverted
+  defaultLinks: [ ]
+
+- type: sourcePort
   id: BodyScannerSender
   name: signal-port-name-body-scanner-sender
   description: signal-port-description-body-scanner-sender
@@ -76,3 +82,41 @@
   name: signal-port-name-turret-controller-sync-sender
   description: signal-port-description-turret-controller-sync-sender
   defaultLinks: [ TurretControllerSyncReceiver ]
+
+- type: sourcePort
+  id: CombustionTurbineConsoleSender
+  name: signal-port-name-combustion-turbine-console-sender
+  description: signal-port-description-combustion-turbine-console-sender
+  defaultLinks: [ CombustionTurbineConsoleReceiver ]
+
+- type: sourcePort
+  id: AirlockCyclerSideA
+  name: signal-port-name-airlock-cycler-side-a
+  description: signal-port-description-airlock-cycler-side
+
+- type: sourcePort
+  id: AirlockCyclerSideB
+  name: signal-port-name-airlock-cycler-side-b
+  description: signal-port-description-airlock-cycler-side
+
+- type: sourcePort
+  id: AirlockCyclerSideC
+  name: signal-port-name-airlock-cycler-side-c
+  description: signal-port-description-airlock-cycler-side
+
+- type: sourcePort
+  id: AirlockCyclerSideD
+  name: signal-port-name-airlock-cycler-side-d
+  description: signal-port-description-airlock-cycler-side
+
+- type: sourcePort
+  id: AirlockCyclerInlets
+  name: signal-port-name-airlock-cycler-inlets
+  description: signal-port-description-airlock-cycler-inlets
+  defaultLinks: [ AirlockCyclerDevice ]
+
+- type: sourcePort
+  id: AirlockCyclerOutlets
+  name: signal-port-name-airlock-cycler-outlets
+  description: signal-port-description-airlock-cycler-outlets
+  defaultLinks: [ AirlockCyclerDevice ]

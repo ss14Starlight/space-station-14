@@ -68,3 +68,6 @@ alerts-ipc-fans-efficiency-low-desc = Атмосферные условия ни
 
 alerts-ipc-fans-off-name = Невозможно включить охлаждение!
 alerts-ipc-fans-off-desc = Крайняя опасность! Атмосферные условия не позволяют включить подсистемы охлаждения!
+
+ipc-verb-eject-brain = Извлечь мозг
+ipc-verb-eject-encryption-keys = Извлечь ключи шифрования

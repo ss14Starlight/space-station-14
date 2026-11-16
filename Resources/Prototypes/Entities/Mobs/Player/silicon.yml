@@ -41,10 +41,9 @@
     - ActionJumpToCore
     - ActionSurvCameraLights # Starlight: Restored removed surveillance camera lights from upstream
     - ActionAIViewLaws
-    - ActionAIShunt # Starlight AI Shunt ability
     - ActionAIRemoteControl # Starlight
-    - ActionAIReconnectShunt # Starlight AI Shunt reconnect ability
     - ActionAIWarp # Starlight
+    # Starlight: Shunt actions are granted by persistent StationAIShuntable instead.
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
@@ -82,7 +81,7 @@
   - type: CommunicationsConsole
     canShuttle: false
     title: comms-console-announcement-title-station-ai
-    sound: /Audio/_Starlight/Announcements/announce2.ogg #Starlight
+    sound: /Audio/_CorvaxGoob/Announcements/aiannounce.ogg #Starlight
     color: "#00a2ff"
   - type: HolographicAvatar
     layerData:
@@ -91,7 +90,7 @@
   - type: ShowJobIcons
   - type: ShowCrewIcons
   #region Starlight
-  - type: StationAIShuntable
+  # Starlight: Shunt state lives on StationAiBrain so it survives core ejection.
   - type: RemoteControlConsole # Starlight
   #endregion Starlight
   - type: DamagedSiliconAccent

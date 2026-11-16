@@ -2,7 +2,7 @@
 artifact-trigger-hint-vodka = Реакция на алкоголь из картофеля
 artifact-trigger-hint-milk = Реакция на молочное
 artifact-trigger-hint-bleach = Реакция на дезинфицирующее средство
-artifact-trigger-hint-silicon = Реакция на силикон
+artifact-trigger-hint-silicon = Реакция на кремний
 artifact-trigger-hint-unstable-mutagen = Реакция на нестабильные биологические жидкости
 artifact-trigger-hint-coffee = Реакция на жидкую энергию
 artifact-trigger-copper = Реакция на медьсодержащую жидкость

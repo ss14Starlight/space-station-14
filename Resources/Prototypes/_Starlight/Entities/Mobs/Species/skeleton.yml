@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urist McBones
+  name: "Урист МакКости"
   parent:
   - MobFlammable
   - BaseMobSpecies
@@ -128,3 +128,4 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+  - type: FootprintOwner

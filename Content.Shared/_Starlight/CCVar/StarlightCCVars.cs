@@ -7,9 +7,7 @@ namespace Content.Shared._Starlight.CCVar;
 [CVarDefs]
 public sealed partial class StarlightCCVars
 {
-    /// <summary>
     /// Basic CCVars
-    /// </summary>
     public static readonly CVarDef<string> LobbyChangelogsList =
         CVarDef.Create("lobby_changelog.list", "ChangelogStarlight.yml,Changelog.yml", CVar.SERVER | CVar.REPLICATED);
 
@@ -23,53 +21,83 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<string> OverrideGamemodeDescription =
         CVarDef.Create("lobby.gamemode_desc_override", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
-    /// <summary>
     /// Whether the no EORG popup is enabled.
-    /// </summary>
     public static readonly CVarDef<bool> RoundEndNoEorgPopup =
         CVarDef.Create("game.round_end_eorg_popup_enabled", true, CVar.SERVER | CVar.REPLICATED);
 
-    /// <summary>
     /// Skip the no EORG popup.
-    /// </summary>
     public static readonly CVarDef<bool> SkipRoundEndNoEorgPopup =
         CVarDef.Create("game.skip_round_end_eorg_popup", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    /// <summary>
-    /// Translucent "liquid glass" interface theme. Turn off for fully opaque panels.
-    /// </summary>
     public static readonly CVarDef<bool> UIGlassTheme =
         CVarDef.Create("ui.glass_theme", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    /// <summary>
-    /// Whether manual transparency strength adjustment is enabled.
-    /// </summary>
     public static readonly CVarDef<bool> UIGlassTransparencyEnabled =
         CVarDef.Create("ui.glass_transparency_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    /// <summary>
-    /// Glass transparency strength, 0-100 percent.
-    /// </summary>
     public static readonly CVarDef<int> UIGlassTransparency =
         CVarDef.Create("ui.glass_transparency", 20, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    /// <summary>
-    /// Whether the glass accent color tint is applied.
-    /// </summary>
     public static readonly CVarDef<bool> UIGlassAccentEnabled =
         CVarDef.Create("ui.glass_accent_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    /// <summary>
-    /// Glass accent tint color (hex).
-    /// </summary>
     public static readonly CVarDef<string> UIGlassAccent =
         CVarDef.Create("ui.glass_accent_v2", "#545562", CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    /// <summary>
     /// Whether the first-run liquid glass prompt was already shown.
-    /// </summary>
     public static readonly CVarDef<bool> UIGlassThemeSeen =
         CVarDef.Create("ui.glass_theme_seen", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> UILiquidGlassEnabled =
+        CVarDef.Create("ui.liquid_glass_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<int> UILiquidGlassBlur =
+        CVarDef.Create("ui.liquid_glass_blur", 50, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// </summary>
+    public static readonly CVarDef<int> UILiquidGlassRefraction =
+        CVarDef.Create("ui.liquid_glass_refraction", 43, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// </summary>
+    public static readonly CVarDef<int> UILiquidGlassHighlight =
+        CVarDef.Create("ui.liquid_glass_highlight", 43, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// </summary>
+    public static readonly CVarDef<int> UILiquidGlassOpacity =
+        CVarDef.Create("ui.liquid_glass_opacity", 95, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// </summary>
+    public static readonly CVarDef<int> UILiquidGlassTint =
+        CVarDef.Create("ui.liquid_glass_tint", 30, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// </summary>
+    public static readonly CVarDef<bool> UILiquidGlassTintEnabled =
+        CVarDef.Create("ui.liquid_glass_tint_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// </summary>
+    public static readonly CVarDef<string> UILiquidGlassTintColor =
+        CVarDef.Create("ui.liquid_glass_tint_color", "#7A8AA8", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// </summary>
+    public static readonly CVarDef<int> UILiquidGlassCornerRadius =
+        CVarDef.Create("ui.liquid_glass_corner_radius", 55, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// </summary>
+    public static readonly CVarDef<int> UILiquidGlassQuality =
+        CVarDef.Create("ui.liquid_glass_quality", 2, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// </summary>
+    public static readonly CVarDef<bool> UILiquidGlassAnimate =
+        CVarDef.Create("ui.liquid_glass_animate", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// How long to display the EORG popup for.

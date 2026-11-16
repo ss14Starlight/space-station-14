@@ -1,0 +1,93 @@
+
+- type: planetDestination
+  id: PlanetTaipan
+  name: planet-taipan-name
+  description: planet-taipan-desc
+  biome: Snow
+  parallax: DaiquiriTaipanSurface
+  banner:
+    sprite: _Daiquiri/Planets/planet_banners.rsi
+    state: taipan
+  mapLight: "#9CC4E8"
+  temperature: -60
+  atmosphere:
+    Oxygen: 21.8
+    Nitrogen: 82.1
+  accent: "#8FDCFF"
+  weathers:
+  - WeatherPlanetSnowfall
+  weatherStartMessage: planet-weather-taipan-start
+  weatherEndMessage: planet-weather-taipan-end
+  weatherColor: "#7FD4FF"
+  weatherDamageType: Cold
+  weatherDamagePerSecond: 1
+  mobMarkers:
+  - WatchersIcewing
+  - DaiquiriWhiteGorillas
+  - DaiquiriWhiteBears
+  order: 10
+
+- type: planetDestination
+  id: PlanetLavaland
+  name: planet-lavaland-name
+  description: planet-lavaland-desc
+  biome: Lava
+  parallax: DaiquiriLavalandSurface
+  banner:
+    sprite: _Daiquiri/Planets/planet_banners.rsi
+    state: lavaland
+  mapLight: "#B35C2A"
+  temperature: 118
+  atmosphere:
+    Oxygen: 5
+    Nitrogen: 60
+    CarbonDioxide: 35
+  accent: "#FF8A4C"
+  weathers:
+  - WeatherPlanetAshfall
+  weatherStartMessage: planet-weather-lavaland-start
+  weatherEndMessage: planet-weather-lavaland-end
+  weatherColor: "#FF6B4A"
+  weatherDamageType: Heat
+  weatherDamagePerSecond: 1
+  mobMarkers:
+  - WatchersMagmawing
+  - DaiquiriGoliaths
+  order: 20
+
+- type: planetDestination
+  id: PlanetNovoNihon
+  name: planet-novonihon-name
+  description: planet-novonihon-desc
+  biome: Grasslands
+  parallax: DaiquiriNovoNihonSurface
+  banner:
+    sprite: _Daiquiri/Planets/planet_banners.rsi
+    state: novonihon
+  mapLight: "#CCCCCC"
+  cycleMinLevel: "#19267FFF"
+  cycleMaxLevel: "#F5E77E"
+  cycleMinLightLevel: 0.35
+  temperature: 20
+  atmosphere:
+    Oxygen: 21.8
+    Nitrogen: 82.1
+  accent: "#E8B4C8"
+  weathers:
+  - WeatherPlanetDrizzle
+  - WeatherPlanetRain
+  - WeatherPlanetDownpour
+  - WeatherPlanetStorm
+  weatherStartMessage: planet-weather-novonihon-start
+  weatherEndMessage: planet-weather-novonihon-end
+  weatherColor: "#C9B6F0"
+  weatherDamagePerSecond: 0
+  lightning: DaiquiriPurpleLightning
+  lightningShockDamage: 20
+  mobMarkers:
+  - Pigs
+  - Chickens
+  - DaiquiriReindeerBucks
+  - DaiquiriReindeerDoes
+  - DaiquiriBrownBears
+  order: 30

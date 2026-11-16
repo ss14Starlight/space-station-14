@@ -102,3 +102,22 @@ thaven-mood-trendy-words-desc = Тавены всегда на передово�
 
 thaven-mood-gossipers-name = Сплетники
 thaven-mood-gossipers-desc = Драма — высшая форма развлечения.
+
+thaven-mood-blood-feud-desc = Две группы тавенов веками враждовали. Решите, кто в какой группе, и продолжите распрю.
+thaven-mood-blood-feud-name = Кровная вражда
+thaven-mood-department-of-the-day-desc = Сегодняшний день посвящён достижениям отдела { $department }. Все тавены должны праздновать и помогать ему.
+thaven-mood-department-of-the-day-name = Отдел дня
+thaven-mood-hall-monitor-desc = Коридоры станции должны содержаться в порядке. Составьте список правил и наказывайте за любое нарушение щипком.
+thaven-mood-hall-monitor-name = Дежурный по коридору
+thaven-mood-honourable-ambushes-desc = Внезапные атаки — важный знак взаимного уважения среди тавенов. Устраивайте их против тавенов как можно чаще.
+thaven-mood-honourable-ambushes-name = Благородные засады
+thaven-mood-monument-building-desc = Великие достижения заслуживают постоянных памятников. Постройте монумент в честь достижений станции.
+thaven-mood-monument-building-name = Возведение монументов
+thaven-mood-star-actors-desc = Вы и ваши товарищи-тавены — актёры в фильме. Решите, какой фильм вы снимаете, распределите роли и сыграйте его для экипажа станции — на радость или на погибель.
+thaven-mood-star-actors-name = Звёздные актёры
+thaven-mood-the-collective-desc = Культура тавенов процветает благодаря взаимопониманию. Вы обязаны следовать идеалам других тавенов и подражать им.
+thaven-mood-the-collective-name = Коллектив
+thaven-mood-the-curtains-must-rise-for-all-desc = Уединение — священное право. Стройте и устанавливайте занавеси, чтобы скрыться от любопытных глаз. Никто не должен видеть то, что предназначено для личного. Тавены должны устанавливать занавеси везде, где возможно, и встречаться тайно.
+thaven-mood-the-curtains-must-rise-for-all-name = Занавеси должны подняться для всех
+thaven-mood-traders-desc = Вы должны регулярно встречаться и обмениваться ценными предметами с другими тавенами. Торгуйтесь, пока не договоритесь о честной сделке.
+thaven-mood-traders-name = Торговцы

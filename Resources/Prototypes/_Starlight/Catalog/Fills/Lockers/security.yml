@@ -140,7 +140,9 @@
       entity_storage: !type:AllSelector
         children:
         - id: WeaponRifleL10
-          amount: 3
+          amount: 2
+        - id: WeaponRifleVerdict
+          amount: 1
         - id: MagazineDMRSP
           amount: 4
         - id: MagazineDMRFMJ
@@ -192,3 +194,30 @@
           amount: 2
         - id: RiotShield
           amount: 4
+
+- type: entity
+  id: LockerGunnerySergeantFilled
+  suffix: Filled
+  parent: LockerGunnerySergeant
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FlashlightSeclite
+        - id: WeaponDisabler
+        - id: WeaponTaser
+        - id: ClothingBeltSecurityFilled
+        - id: Flash
+        - id: ClothingEyesGlassesSecurity
+        - id: ClothingShoesBootsJack
+        - id: DoorRemoteArmory
+        - id: RubberStampGunnerySergeant
+        - id: HoloprojectorSecurity
+        - id: BookSpaceLaw
+        - id: TicketPad
+        - id: ClothingHeadsetSecurity
+        - id: ClothingOuterArmorBasic
+        - id: ClothingOuterHardsuitSergeant
+        - id: JetpackSecurityFilled
+        - id: ClothingShoesBootsMagSec

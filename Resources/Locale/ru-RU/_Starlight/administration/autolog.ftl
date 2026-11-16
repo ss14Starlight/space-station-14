@@ -8,3 +8,8 @@ autolog-setgamemap = Карта принудительно установлен�
 autolog-setalertlevel = Уровень тревоги принудительно установлен на {$level} администратором {$admin} (заблокирован: {$locked})
 autolog-announce = {$admin} отправил объявление {$sender} Объявление: {$message}
 autolog-tippy = Отправлен типпи {$message} с прототипом {$prototype}
+
+autolog-forcedprototype-attempt = Попытка установить ForcedPrototype `{$prototype}` на слот персонажа {$slot} со стороны клиента. Заблокировано; слот сохраняет {$kept}. ID пользователя: {$userId}
+autolog-forcedprototype-none = принудительный прототип отсутствует
+autolog-global-sound = Воспроизведён глобальный звук {$path} на {$volume} дБ для {$count} игроков
+autolog-explosion = Создан взрыв типа {$type}, интенсивность {$intensity} (макс. {$maxIntensity} на клетку) в {$coords}

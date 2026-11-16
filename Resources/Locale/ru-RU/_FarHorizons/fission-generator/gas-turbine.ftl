@@ -75,3 +75,5 @@ gas-turbine-ui-power = { POWERWATTS($power) }
 gas-turbine-ui-locked-message = Управление заблокировано.
 gas-turbine-ui-footer-left = Опасно: быстровращающийся механизм.
 gas-turbine-ui-footer-right = 2.1 REV 1
+
+gas-turbine-ui-title = Газовая турбина

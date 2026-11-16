@@ -26,6 +26,7 @@
         - id: PowerCellSmall
         - id: SheetGlass1
           amount: 2
+        - id: SyndicateShuttleConsoleCircuitboard
 
 - type: entity
   parent: CrateSyndicate

@@ -115,6 +115,13 @@ public sealed partial class CCVars
         CVarDef.Create("discord.starway_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /// <summary>
+    ///     URL of the Discord webhook which receives finished Chess.NT games. If left empty,
+    ///     disables chess result reporting.
+    /// </summary>
+    public static readonly CVarDef<string> DiscordChessWebhook =
+        CVarDef.Create("discord.chess_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /// <summary>
     ///     Whether or not articles should be sent mid-round instead of all at once at the round's end
     /// </summary>
     public static readonly CVarDef<bool> DiscordNewsWebhookSendDuringRound =

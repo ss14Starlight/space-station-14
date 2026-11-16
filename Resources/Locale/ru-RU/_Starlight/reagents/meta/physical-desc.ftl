@@ -17,3 +17,6 @@ reagent-physical-desc-elf-space-cleaner = сверкающий
 reagent-physical-desc-highlander = бессмертный
 
 reagent-physical-desc-resinfera = колючий
+
+reagent-physical-desc-sawian = искусственная
+reagent-physical-desc-starry-and-thick = густая и звёздная

@@ -341,6 +341,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Нарушение телесной автономии
       </Box>
     </ColorBox>
     <ColorBox>
@@ -873,6 +874,16 @@
     <ColorBox Color="#593a4e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         Отказ подчиниться разумной процедуре установки ментальной защиты. Применяется, если подозреваемый чрезмерно не сотрудничает или имплант не работает из-за слишком тяжёлого психического состояния заключённого. [bold]Если имплант не срабатывает, казнь настоятельно рекомендуется и может быть одобрена капитаном или Central Command. Подробнее см. в разделе об имплантации.[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#593a4e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Нарушение телесной автономии
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#593a4e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Незаконно имплантировать, деимплантировать, брать под контроль или иным образом изменять тело другого человека без его согласия.\n\nНе применяется к лицам, которые не владеют собственным телом, например к силиконам.
       </Box>
     </ColorBox>
     <ColorBox Color="#2e422e">

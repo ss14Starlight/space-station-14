@@ -143,7 +143,7 @@
     globalAnnouncement: false # Starlight
     startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/Announcements/announce.ogg
+      path: /Audio/_CorvaxGoob/Announcements/flux.ogg
     weight: 8
     duration: 35
   - type: AnomalySpawnRule
@@ -160,7 +160,7 @@
     globalAnnouncement: false # Starlight
     startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/Announcements/announce.ogg
+      path: /Audio/_CorvaxGoob/Announcements/blusp_anomalies.ogg
     weight: 8
     duration: 35
   - type: BluespaceArtifactRule
@@ -182,6 +182,8 @@
   components:
   - type: StationEvent
     globalAnnouncement: false # Starlight
+    startAudio:
+      path: /Audio/_CorvaxGoob/Announcements/apc.ogg
     weight: 7
     duration: 1
     minimumPlayers: 15

@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: Airlock
+  components:
+  - type: DeviceLinkSink
+    ports:
+    - AirlockCyclerDoor

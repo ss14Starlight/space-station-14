@@ -26,6 +26,7 @@ using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Actions.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 
 namespace Content.Server._Starlight.Medical.Body.Systems;
 
@@ -106,6 +107,13 @@ public sealed partial class RespiratorSystem : EntitySystem
 
             if (respirator.Saturation < respirator.SuffocationThreshold)
             {
+                if (TryComp<CosmicCultComponent>(uid, out var cultComp) && !cultComp.Respiration && !_mobState.IsIncapacitated(uid))
+                {
+                    StopSuffocation((uid, respirator));
+                    respirator.SuffocationCycles = 0;
+                    continue;
+                }
+
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
                 {
                     respirator.LastGaspEmoteTime = _gameTiming.CurTime;

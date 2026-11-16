@@ -1327,3 +1327,177 @@ doc-text-printer-borgification-consent-form =
    ⠀ [italic]NanoTrasen™ Certified Roboticist or CMO.[/italic]
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+doc-text-printer-illegal-implant-removal-form =
+                             [head=3]NT-CC Consortium Services[/head]
+
+                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+    ⠀⠀             [bold]ILLEGAL IMPLANT REMOVAL AUTHORIZATION[/bold]
+    ────────────────────────────────────────
+    Date and Time: [datetime]
+    Document Compiler: [signature]
+
+    Name of Patient:  [form]
+
+    This document authorizes the immediate removal of the implants listed in the patient.
+
+    Improper or dishonest authorization of compulsory implantation is a Capital Crime under Corporate Law.
+
+    Individual is implanted with the following unauthorized implants of Category 3 Restriction or above:
+    ⠀• [form]
+    ⠀• [form]
+    ⠀• [form]
+
+    The presence of this implant has been ascertained via:
+    ⠀• [check] Visual Inspection
+    ⠀• [check] Exploratory Surgery (Separate Form Required)
+
+    Medical Professional to perform the Removal (Name + Position): [signature]
+
+    Authority ordering the Removal (Name + Position): [signature]
+
+   ⠀ [italic]Removal of implants can only be authorized by the Warden,[/italic]
+   ⠀ [italic]or Head of Security. All compulsory implantation procedures[/italic]
+   ⠀ [italic]must be performed by a trained medical professional.[/italic]
+    ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+doc-text-printer-mind-control-removal-form =
+                             [head=3]NT-CC Consortium Services[/head]
+
+                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+    ⠀⠀             [bold]MIND CONTROL REMOVAL AUTHORIZATION[/bold]
+    ────────────────────────────────────────
+    Date and Time: [datetime]
+    Document Compiler: [signature]
+
+    Name of Patient:  [form]
+
+    This document authorizes the immediate compulsory mindshielding of the patient listed, for the purposes of reversal of involuntary mind-control.
+
+    Improper or dishonest authorization of compulsory implantation is a Capital Crime under Corporate Law.
+
+    Mind Control of Patient has been established via:
+    ⠀• [check] Psychological Evaluation
+    ⠀• [check] Presence of an Induced Mutiny
+
+    Psychological Evaluation performed by (Name + Position): [signature]
+
+    Medical Professional to perform the Procedure (Name + Position): [signature]
+
+    Authority ordering the Removal (Name + Position): [signature]
+
+   ⠀ [italic]Mind-control removal can only be authorized by the[/italic]
+   ⠀ [italic]Head of Security, on the advice of either a Psychologist[/italic]
+   ⠀ [italic]or the Chief Medical Officer. All implantations must be[/italic]
+   ⠀ [italic]performed by a medical professional.[/italic]
+    ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+doc-text-printer-probing-mindshield-form =
+                             [head=3]NT-CC Consortium Services[/head]
+
+                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+    ⠀⠀             [bold]MINDSHIELD TESTING AUTHORIZATION[/bold]
+    ────────────────────────────────────────
+    Date and Time: [datetime]
+    Document Compiler: [signature]
+
+    Name of Suspect:  [form]
+
+    This document authorizes the immediate compulsory mindshielding of the listed suspect, for the purposes of ascertaining the presence of nefarious forces on the station.
+
+    Improper or dishonest authorization of compulsory implantation is a Capital Crime under Corporate Law.
+
+    At least one of the following statements is true about the suspect:
+    ⠀• [check] Suspect is sentenced for one or more Violations of Bodily Autonomy.
+    ⠀• [check] Large quantities of suspect equipment found on suspect.
+    ⠀• [check] Two witnesses saw the suspect mind-controlling someone.
+
+    If the authorization is dependent on witnesses, then these must be listed below:
+    ⠀• Witness 1: [signature]
+    ⠀• Witness 2: [signature]
+
+    Medical Professional to perform the Procedure (Name + Position): [signature]
+
+    Authority ordering the Removal (Name + Position): [signature]
+
+   ⠀ [italic]Mind-control removal can only be authorized by the[/italic]
+   ⠀ [italic]Head of Security, with approval from either a Magistrate[/italic]
+   ⠀ [italic]or the Captain. All implantations must be[/italic]
+   ⠀ [italic]performed by a medical professional.[/italic]
+    ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+doc-text-printer-compulsory-tracking-form =
+                             [head=3]NT-CC Consortium Services[/head]
+
+                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+    ⠀⠀             [bold]COMPULSORY TRACKING AUTHORIZATION[/bold]
+    ────────────────────────────────────────
+    Date and Time: [datetime]
+    Document Compiler: [signature]
+
+    Name of Patient:  [form]
+
+    This document authorizes the immediate compulsory implantation of a tracker in the patient, to remain until end of shift.
+
+    Improper or dishonest authorization of compulsory implantation is a Capital Crime under Corporate Law.
+
+    Patient exhibits signs of: [form]
+
+    For this reason, it is the opinion of [signature] that the patient should be implanted with a tracker, for their own safety.
+
+    Medical Professional to perform the Procedure (Name + Position): [signature]
+
+    Authority ordering the Implantation (Name + Position): [signature]
+
+   ⠀ [italic]Compulsory tracking can only be authorized by the[/italic]
+   ⠀ [italic]Head of Security or Warden, on the advice of either[/italic]
+   ⠀ [italic]a Psychologist or the Chief Medical Officer. All such[/italic]
+   ⠀ [italic]procedures must be performed by a medical professional.[/italic]
+    ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+doc-text-printer-explorative-surgery-form =
+                             [head=3]NT-CC Consortium Services[/head]
+
+                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+    ⠀⠀             [bold]EXPLORATIVE SURGERY AUTHORIZATION[/bold]
+    ────────────────────────────────────────
+    Date and Time: [datetime]
+    Document Compiler: [signature]
+
+    Name of Patient:  [form]
+
+    This document authorizes the performance of involuntary exploratory surgery on the patient, for the purpose of uncovering hidden illegal implantations and removing them.
+    This procedure may be done either traditionally, or with an Implant Removal Device.
+
+    Improper or dishonest authorization of compulsory implantation is a Capital Crime under Corporate Law.
+
+    Patient is suspected of possession of the following implant: [form]
+
+    At least one of the following statements is true about the patient:
+    ⠀• [check] Physical evidence connects the patient to implant paraphernalia, such as an implantation device.
+    ⠀• [check] Patient has admitted to the presence of said implant.
+    ⠀• [check] Two witnesses saw the patient performing a feat impossible without the implant.
+
+    If the authorization is dependent on witnesses, then these must be listed below:
+    ⠀• Witness 1: [signature]
+    ⠀• Witness 2: [signature]
+
+    Medical Professional to perform the Procedure (Name + Position): [signature]
+
+    Authority ordering the Implantation (Name + Position): [signature]
+
+   ⠀ [italic]Involuntary surgery can only be authorized by the[/italic]
+   ⠀ [italic]Head of Security, on the advice of either a Surgeon[/italic]
+   ⠀ [italic]or the Chief Medical Officer. All such procedures[/italic]
+   ⠀ [italic]must be performed by a medical professional.[/italic]
+    ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]

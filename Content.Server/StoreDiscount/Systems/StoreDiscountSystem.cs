@@ -300,11 +300,13 @@ public sealed partial class StoreDiscountSystem : EntitySystem
 /// <param name="UseDiscounts">Marker, if store should have discounts.</param>
 /// <param name="UseSecondHand">Marker, if store should have a second-hand (worn/damaged items) tab.</param>
 /// <param name="Listings">List of available listings items.</param>
+/// <param name="BalanceInitialized">Marker, if the store's base balance was initialized and objective bonuses should be applied.</param>
 [ByRefEvent]
 public record struct StoreInitializedEvent(
     EntityUid TargetUser,
     EntityUid Store,
     bool UseDiscounts,
     bool UseSecondHand,
-    IReadOnlyList<ListingDataWithCostModifiers> Listings
+    IReadOnlyList<ListingDataWithCostModifiers> Listings,
+    bool BalanceInitialized = false // Starlight
 );

@@ -84,3 +84,23 @@ lobby-state-background-aeuroracaelus-artist = xxhotgirl69
 
 lobby-state-background-ipcandmoff-title = "Сонное время"
 lobby-state-background-ipcandmoff-artist = "Doner"
+
+lobby-state-background-mushroomannihilator-title = Грибной уничтожитель
+lobby-state-background-mushroomannihilator-artist = zymshok
+lobby-state-background-doomdeed-title = Деяние погибели
+lobby-state-background-doomdeed-artist = sharkpeekotwoelecticboogaloo
+lobby-state-background-ivan-title = Иван
+lobby-state-background-ivan-artist = ramblinger
+lobby-state-background-tidy-title = Опрятно
+lobby-state-background-tidy-artist = argentsunshine
+lobby-state-background-smoko-title = Перекур
+lobby-state-background-smoko-artist = Wowls
+lobby-state-background-why-title = Почему?
+lobby-state-background-why-artist = starlighthowls
+lobby-state-background-xenosattack-title = Атака ксеносов
+lobby-state-background-xenosattack-artist = Gasper_horned
+lobby-state-background-glubs-title = Глубы
+lobby-state-background-glubs-artist = Eviinuuangel
+
+lobby-state-background-thesix-artist = Doner
+lobby-state-background-thesix-title = Шестёрка

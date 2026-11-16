@@ -96,3 +96,14 @@
     sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/lightblue.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Neck/Scarfs/SolidColors/lightblue.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfStripedPlural
+  name: "полосатый шарф «Плюрал»"
+  description: "Стильный полосатый шарф «Плюрал». Идеальный зимний аксессуар для тех, у кого тонкое чувство стиля, и для тех, кто не переносит холодный ветер на шее."
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Scarfs/plural.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Scarfs/plural.rsi

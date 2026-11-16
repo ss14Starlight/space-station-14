@@ -247,8 +247,8 @@
     suitstorage: WeaponDisablerSMG
   storage: !Clear
     back:
-    - WeaponPistolMk58Nonlethal
-    - MagazinePistolRubber
+    - WeaponPistolMk58
+    - MagazinePistolSP
     - TearGasGrenade
     - GrenadeStinger
     - Flash
@@ -272,11 +272,11 @@
 - type: !PartialOnly startingGear
   id: ERTSecurityGearArmedRifle
   equipment:
-    back: !Clear
+    back: !Remove
     suitstorage: PortableRecharger
     pocket1: LoadoutRadioERTSec
     pocket2: WeaponPistolPDW9
-  inhand: !Clear
+  inhand: !Remove
   storage: !Clear
     belt:
     - WeaponPistolMk58HighCapacity
@@ -425,7 +425,7 @@
     - MedkitCombatFilled
     - MedkitCombatFilled
     - BodyBagLockableFolded
-    - WeaponPistolSP8AR
+    - WeaponPistolDP
     - MagazinePistol40SP
     - CombatMedipen
 
@@ -489,8 +489,8 @@
     - MagazineGrenadeCleanade
     - MagazineGrenadeCleanade
     belt:
-    - WeaponPistolMk58Nonlethal
-    - MagazinePistolRubber
+    - WeaponPistolMk58
+    - MagazinePistolSP
     - MegaSprayBottleSpaceCleaner
     - WireBrush
     - LightReplacer

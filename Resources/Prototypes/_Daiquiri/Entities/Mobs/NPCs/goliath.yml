@@ -1,0 +1,19 @@
+# Daiquiri: the Lavaland goliath is twice the size of the regular one,
+# so its hitbox is scaled up along with the sprite.
+- type: entity
+  parent: MobGoliath
+  id: MobDaiquiriGoliath
+  components:
+  - type: Sprite
+    scale: 2.0, 2.0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.7
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer

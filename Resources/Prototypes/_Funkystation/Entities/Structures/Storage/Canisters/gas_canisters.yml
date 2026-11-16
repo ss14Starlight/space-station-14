@@ -5,8 +5,9 @@
   name: баллон BZ
   components:
   - type: Sprite
+    sprite: Structures/Storage/canister.rsi
     layers:
-    - state: bz # Starlight Edit: purple -> bz
+    - state: purple
   - type: GasCanister
     gasMixture:
     # Starlight-start: Canister volume
@@ -47,6 +48,7 @@
   name: баллон хилиума
   components:
   - type: Sprite
+    sprite: Structures/Storage/canister.rsi
     layers:
     - state: healium
   - type: GasCanister
@@ -89,8 +91,9 @@
   name: баллон нитриума
   components:
   - type: Sprite
+    sprite: Structures/Storage/canister.rsi
     layers:
-    - state: nitrium # Starlight Edit: brown -> nitrium
+    - state: brown
   - type: GasCanister
     gasMixture:
     # Starlight-start: Canister volume
@@ -131,8 +134,9 @@
   name: баллон плюоксия
   components:
   - type: Sprite
+    sprite: Structures/Storage/canister.rsi
     layers:
-    - state: pluoxium # Starlight Edit: darkblue -> pluoxium
+    - state: darkblue
   - type: GasCanister
     gasMixture:
     # Starlight-start: Canister volume
@@ -467,28 +471,32 @@
   id: BZCanisterBroken
   components:
   - type: Sprite
-    state: bz_broken # Starlight Edit: purple-1 -> bz_broken
+    sprite: Structures/Storage/canister.rsi
+    state: purple-1
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: HealiumCanisterBroken
   components:
   - type: Sprite
-    state: healium_broken # Starlight Edit: healium-1 -> healium_broken
+    sprite: Structures/Storage/canister.rsi
+    state: healium-1
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: NitriumCanisterBroken
   components:
   - type: Sprite
-    state: nitrium_broken # Starlight Edit: brown-1 -> nitrium_broken
+    sprite: Structures/Storage/canister.rsi
+    state: brown-1
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: PluoxiumCanisterBroken
   components:
   - type: Sprite
-    state: pluoxium_broken # Starlight Edit: darkblue-1 -> pluoxium_broken
+    sprite: Structures/Storage/canister.rsi
+    state: darkblue-1
 
 - type: entity
   parent: GasCanisterBrokenBase

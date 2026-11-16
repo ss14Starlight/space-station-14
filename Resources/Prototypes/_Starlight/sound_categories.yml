@@ -4,7 +4,16 @@
   paths:
   - /Audio/Effects/Footsteps/
   - /Audio/_Starlight/CosmicCult/footsteps/
+  - /Audio/_Starlight/Effects/Footsteps/
   collections:
+  - BarestepCarpet
+  - BarestepGlass
+  - BarestepGrass
+  - BarestepGrate
+  - BarestepGravel
+  - BarestepHard
+  - BarestepMetal
+  - BarestepWood
   - FootstepAsteroid
   - FootstepBells
   - FootstepBlood
@@ -18,6 +27,7 @@
   - FootstepDuck
   - FootstepFloor
   - FootstepGrass
+  - FootstepHeavy
   - FootstepHighHeels
   - FootstepHoverBorg
   - FootstepHoverXenoborg
@@ -94,6 +104,7 @@
   paths:
   - /Audio/Announcements/
   - /Audio/_Starlight/Announcements/
+  - /Audio/_CorvaxGoob/Announcements/
   - /Audio/Misc/notice1.ogg
   - /Audio/Misc/notice2.ogg
   - /Audio/Misc/redalert.ogg
@@ -117,7 +128,6 @@
   - /Audio/_Starlight/Music/
   - /Audio/_Starlight/RadioStation/
   - /Audio/_Starlight/StationEvents/
-  - /Audio/_Goobstation/RadioStation/
   collections:
   - AmbienceAtmospherics
   - AmbienceDetective

@@ -26,4 +26,10 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<string> LobbyQueueAdded =
         CVarDef.Create("lobby.queue_added", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Last lobby track that was playing, so reconnecting players resume the same song.
+    /// </summary>
+    public static readonly CVarDef<string> LobbyLastTrack =
+        CVarDef.Create("lobby.last_track", "", CVar.CLIENTONLY | CVar.ARCHIVE);
 }

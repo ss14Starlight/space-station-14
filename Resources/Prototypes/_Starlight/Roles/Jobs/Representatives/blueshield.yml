@@ -14,8 +14,6 @@
     - !type:RoleTimeRequirement
       role: JobBrigmedic
       time: 3h # Lower stakes version of the same role, and forces you to get Paramed time too. Totals to about 8 hours paramed+brigmed combined.
-    - !type:RolesRequirement
-      proto: ExtRolesReq
     - !type:TraitsRequirement
       traits:
         - Iterator
@@ -63,6 +61,7 @@
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
+  antagScalingCentcomWeight: 1.0
 
 - type: startingGear
   id: BlueShieldGear

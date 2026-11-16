@@ -10,7 +10,7 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionReplayTogglePlayerOverlay
-  name: Переключить оверлей игроков
+  name: Toggle Player Overlay
   description: Show usernames and antagonist status above players in this replay.
   components:
   - type: Action
@@ -22,8 +22,8 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionReplayToggleStatusIcons
-  name: Переключить значки статуса
-  description: Show job, mindshield and health icons in this replay.
+  name: Toggle Status Icons
+  description: Show job, mindshield, security status and health icons in this replay.
   components:
   - type: Action
     icon: { sprite: Clothing/Eyes/Hud/med.rsi, state: icon }
@@ -34,7 +34,7 @@
 - type: entity
   parent: BaseMentalAction
   id: ActionReplayToggleWeather
-  name: Переключить погоду
+  name: Toggle Weather
   description: Show or hide weather overlays in this replay.
   components:
   - type: Action
@@ -50,6 +50,7 @@
   components:
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
   - type: ShowHealthBars
     damageContainers:
     - Biological

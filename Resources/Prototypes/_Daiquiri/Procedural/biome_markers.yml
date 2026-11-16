@@ -1,0 +1,36 @@
+
+- type: biomeMarkerLayer
+  id: DaiquiriGoliaths
+  prototype: MobDaiquiriGoliath
+  minGroupSize: 1
+  maxGroupSize: 2
+
+- type: biomeMarkerLayer
+  id: DaiquiriWhiteGorillas
+  prototype: MobWhiteGorilla
+  minGroupSize: 1
+  maxGroupSize: 2
+
+- type: biomeMarkerLayer
+  id: DaiquiriWhiteBears
+  prototype: MobBearWhite
+  minGroupSize: 1
+  maxGroupSize: 1
+
+- type: biomeMarkerLayer
+  id: DaiquiriBrownBears
+  prototype: MobBearBrown
+  minGroupSize: 1
+  maxGroupSize: 1
+
+- type: biomeMarkerLayer
+  id: DaiquiriReindeerBucks
+  prototype: MobReindeerBuck
+  minGroupSize: 1
+  maxGroupSize: 2
+
+- type: biomeMarkerLayer
+  id: DaiquiriReindeerDoes
+  prototype: MobReindeerDoe
+  minGroupSize: 2
+  maxGroupSize: 4

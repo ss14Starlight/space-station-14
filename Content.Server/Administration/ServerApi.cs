@@ -15,6 +15,7 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
 using Content.Server.RoundEnd;
+using Content.Server._Daiquiri.CartridgeLoader.Cartridges;
 using Content.Shared.Administration.Managers;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -80,6 +81,7 @@ public sealed partial class ServerApi : IPostInjectInit
         RegisterActorHandler(HttpMethod.Get, "/admin/info", InfoHandler);
         RegisterHandler(HttpMethod.Get, "/admin/game_rules", GetGameRules);
         RegisterHandler(HttpMethod.Get, "/admin/presets", GetPresets);
+        RegisterPublicHandler(HttpMethod.Get, "/chess/leaderboard", GetChessLeaderboard);
 
         // Post
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/round/start", ActionRoundStart);
@@ -539,6 +541,26 @@ public sealed partial class ServerApi : IPostInjectInit
         });
     }
 
+    /// <summary>
+    /// Public leaderboard for chess.nt. Unlike the admin API this endpoint is intentionally
+    /// readable without an admin token, so the top 10 can be shown on a website or in-game.
+    /// </summary>
+    private async Task GetChessLeaderboard(IStatusHandlerContext context)
+    {
+        var response = await RunOnMainThread(() =>
+        {
+            var chess = _entitySystemManager.GetEntitySystem<ChessCartridgeSystem>();
+            return new ChessLeaderboardResponse
+            {
+                Players = chess.GetChessLeaderboard(10),
+                TotalPlayers = chess.ChessLeaderboardPlayerCount,
+                UpdatedAtUtc = DateTimeOffset.UtcNow,
+            };
+        });
+
+        await context.RespondJsonAsync(response);
+    }
+
 
     /// <summary>
     ///     Handles fetching information.
@@ -806,6 +828,13 @@ public sealed partial class ServerApi : IPostInjectInit
     private sealed class GameruleResponse
     {
         public required List<string> GameRules { get; init; }
+    }
+
+    private sealed class ChessLeaderboardResponse
+    {
+        public required List<ChessLeaderboardEntry> Players { get; init; }
+        public required int TotalPlayers { get; init; }
+        public required DateTimeOffset UpdatedAtUtc { get; init; }
     }
 
     #endregion

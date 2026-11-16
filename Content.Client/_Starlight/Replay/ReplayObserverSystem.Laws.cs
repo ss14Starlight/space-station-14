@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.Replay;
 using Content.Shared._Starlight.Thaven;
 using Content.Shared.Silicons.Laws.Components;
+using Content.Shared.Silicons.StationAi;
 using Content.Shared.Verbs;
 
 namespace Content.Client._Starlight.Replay;
@@ -9,16 +10,41 @@ namespace Content.Client._Starlight.Replay;
 // opened the window, so the state is rebuilt from ReplayLawsComponent where the recording has one.
 public sealed partial class ReplayObserverSystem
 {
+    [Dependency] private SharedStationAiSystem _stationAi = default!;
+
     private void InitializeLaws() =>
         SubscribeLocalEvent<ReplayLawsComponent, AfterAutoHandleStateEvent>(OnReplayLawsUpdated);
 
     private void AddLawVerbs(GetVerbsEvent<Verb> ev)
     {
-        if (HasComp<SiliconLawBoundComponent>(ev.Target))
-            AddViewerVerb(ev, SiliconLawsUiKey.Key, "replay-observer-verb-view-laws", "information.svg.192dpi.png");
+        if (GetLawBearer(ev.Target) is { } bearer)
+            AddViewerVerb(ev, SiliconLawsUiKey.Key, "replay-observer-verb-view-laws", "information.svg.192dpi.png", bearer);
 
         if (HasComp<ThavenMoodsComponent>(ev.Target))
             AddViewerVerb(ev, ThavenMoodsUiKey.Key, "replay-observer-verb-view-moods", "information.svg.192dpi.png");
+    }
+
+    // A station AI's laws are on the brain inside its core, which can't be clicked; the core or AI eye stands in for it.
+    private EntityUid? GetLawBearer(EntityUid target)
+    {
+        if (HasComp<SiliconLawBoundComponent>(target))
+            return target;
+
+        var holder = target;
+        var cores = AllEntityQuery<StationAiCoreComponent>();
+        while (cores.MoveNext(out var core, out var coreComp))
+        {
+            if (coreComp.RemoteEntity != target)
+                continue;
+
+            holder = core;
+            break;
+        }
+
+        if (!_stationAi.TryGetHeld(new Entity<StationAiHolderComponent?>(holder, null), out var held) || !HasComp<SiliconLawBoundComponent>(held))
+            return null;
+
+        return held;
     }
 
     private void ApplyLawState(EntityUid target, Enum key)

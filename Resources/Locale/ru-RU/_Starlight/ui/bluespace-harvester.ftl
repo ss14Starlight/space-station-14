@@ -27,3 +27,6 @@ bluespace-harvester-pool-power-cell = Неизвестный энергояче�
 bluespace-harvester-pool-artifact = Неизвестный артефакт
 bluespace-harvester-pool-rare-seeds = Неизвестные редкие семена
 bluespace-harvester-pool-circuit-board = Неизвестная печатная плата
+
+bluespace-harvester-max = МАКС
+bluespace-harvester-min = МИН

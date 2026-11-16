@@ -34,8 +34,8 @@ public sealed partial class GlassPromptSystem : EntitySystem
 
     private void OnShowPromptEvent(GlassPromptShowEvent ev)
     {
-        Logger.InfoS("glassprompt", "Received GlassPromptShowEvent, opening prompt window.");
-        _ui.CreateWindow<GlassThemePrompt>().OpenCentered();
+        Logger.InfoS("glassprompt", "Received GlassPromptShowEvent, opening the newcomer overlay.");
+        GlassThemePrompt.Open(_ui);
 
         // Daiquiri
         _newcomerTrackPending = true;
@@ -44,8 +44,8 @@ public sealed partial class GlassPromptSystem : EntitySystem
 
     private void OnShowPrompt(GlassPromptShowMessage message)
     {
-        Logger.InfoS("glassprompt", "Received GlassPromptShowMessage, opening prompt window.");
-        _ui.CreateWindow<GlassThemePrompt>().OpenCentered();
+        Logger.InfoS("glassprompt", "Received GlassPromptShowMessage, opening the newcomer overlay.");
+        GlassThemePrompt.Open(_ui);
     }
 
     private void OnLobbySoundtrack(LobbySoundtrackChangedEvent ev)

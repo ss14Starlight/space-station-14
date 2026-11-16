@@ -197,7 +197,7 @@
   parent: BaseWeaponPistol
   id: BaseWeaponPistolDP
   abstract: true
-  description: A pistol that packs a punch for brig defense, just as NanoTrasen intended.
+  description: "Пистолет, способный дать отпор для защиты брига — именно так и задумывала NanoTrasen."
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/dp.rsi
@@ -255,25 +255,6 @@
     - type: ChamberMagazineAmmoProvider
     - type: StealTarget
       stealGroup: BSOWeapon
-
-- type: entity
-  name: сп-8ар
-  parent: [ BaseContrabandTier3, WeaponPistolDP, BaseSecurityContraband ] # Blimpuf
-  id: WeaponPistolSP8AR
-  components:
-  - type: Gun
-    shotsPerBurst: 3
-    selectedMode: Burst
-    availableModes:
-      - SemiAuto
-      - Burst
-    soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/sp8ar.ogg
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/sp8ar.rsi
-  - type: ChamberMagazineAmmoProvider
-    availablePrefixes:
-    - ""
 
 - type: entity
   name: АПС Стечкина

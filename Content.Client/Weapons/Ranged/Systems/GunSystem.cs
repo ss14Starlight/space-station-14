@@ -380,7 +380,7 @@ public sealed partial class GunSystem : SharedGunSystem
                             new AnimationTrackProperty.KeyFrame(new Vector2(distance, 0.5f), (time - 100) / 1000),
                             new AnimationTrackProperty.KeyFrame(new Vector2(distance, 0.5f), time / 1000),
                         },
-                InterpolationMode = AnimationInterpolationMode.Cubic
+                InterpolationMode = AnimationInterpolationMode.Linear
             });
             anim.AnimationTracks.Add(new AnimationTrackComponentProperty()
             {

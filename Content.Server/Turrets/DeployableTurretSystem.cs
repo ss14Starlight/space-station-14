@@ -98,6 +98,16 @@ public sealed partial class DeployableTurretSystem : SharedDeployableTurretSyste
             return;
         }
 
+        // Starlight - start
+        if (command == DeployableTurretControllerSystem.CmdSetNeutralTargeting &&
+            args.Data.TryGetValue(command, out bool targetNeutralEntities) &&
+            TryComp<TurretTargetSettingsComponent>(ent, out var neutralTargetSettings))
+        {
+            _turretTargetingSettings.SetTargetNeutralEntities((ent, neutralTargetSettings), targetNeutralEntities);
+            return;
+        }
+        // Starlight - end
+
         // Received a command to update the device network
         if (command == DeviceNetworkConstants.CmdUpdatedState)
         {

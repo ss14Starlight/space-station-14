@@ -1,0 +1,14 @@
+admin-trick-engineer-arm-description = Заменить левую руку на руку инженера.
+admin-trick-prevent-objective-targeting-description = Не позволяет другим игрокам выбирать эту сущность целью своих задач. Также предотвращает это для параклонов этого игрока.
+admin-trick-reaper-arm-description = Заменить правую руку на руку жнеца.
+admin-trick-speg-left-description = Заменить левую ногу на спег.
+admin-trick-speg-right-description = Заменить правую ногу на спег.
+toolshed-verb-append-marked = Добавить в отмеченные
+toolshed-verb-append-marked-description = Добавляет эту сущность к значению «$marked».
+toolshed-verb-clear-marked = Очистить отмеченные
+toolshed-verb-clear-marked-description = Очищает значение «$marked».
+toolshed-verb-rm-marked = Убрать из отмеченных
+toolshed-verb-rm-marked-description = Удаляет эту сущность из значения «$marked».
+toolshed-verb-set-marked = Задать отмеченные
+toolshed-verb-set-marked-description = Задаёт значение «$marked» как новый список, состоящий только из этой сущности.
+verb-categories-mark = Отметка

@@ -2,10 +2,10 @@ using System.Numerics;
 using System.Threading.Tasks;
 using Content.Server.Shuttles.Components;
 using Content.Shared._Starlight.Computers.PodConsole;
+using Content.Shared.Procedural;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics;
 
 // ReSharper disable CheckNamespace
 namespace Content.Server.Shuttles.Systems;
@@ -16,11 +16,14 @@ public sealed partial class EmergencyShuttleSystem
     private const int EvacuationLandingSearchRings = 8;
     private const float EvacuationPodLandingGap = 2f;
 
-    [Dependency] private EntityLookupSystem _lookup = default!;
+    private readonly record struct EvacuationPodLandingReservation(
+        Vector2 Position,
+        float Radius,
+        ShuttleSystem.LandingAreaReservation LandingArea);
 
     private readonly List<(Vector2 Position, float Radius)> _evacuationPodLandingReservations = [];
-    private readonly HashSet<EntityUid> _evacuationLandingLookupEntities = [];
-    private readonly List<(string ConfigId, Task Generation)> _evacuationDungeonGenerationTasks = [];
+    private readonly HashSet<Vector2i> _evacuationDungeonTiles = [];
+    private readonly List<(string ConfigId, Task<List<Dungeon>> Generation)> _evacuationDungeonGenerationTasks = [];
     private readonly List<(EntityUid Uid, float TravelTime)> _pendingEvacuationPodLaunches = [];
     private EntityUid? _evacuationPodLandingMap;
     private bool _evacuationPlanetGenerated;
@@ -100,6 +103,13 @@ public sealed partial class EmergencyShuttleSystem
                     Log.Warning($"Failed to generate evacuation planet dungeon {configId}: {generation.Exception?.GetBaseException().Message}");
                 else if (generation.IsCanceled)
                     Log.Warning($"Generation of evacuation planet dungeon {configId} was cancelled.");
+                else
+                {
+                    foreach (var dungeon in generation.GetAwaiter().GetResult())
+                    {
+                        _evacuationDungeonTiles.UnionWith(dungeon.AllTiles);
+                    }
+                }
             }
 
             _evacuationDungeonGenerationTasks.Clear();
@@ -119,17 +129,22 @@ public sealed partial class EmergencyShuttleSystem
         }
     }
 
-    private EntityCoordinates? GetEvacuationPodLandingCoordinates(EntityUid shuttleUid, EntityCoordinates landingZone)
+    private EntityCoordinates? GetEvacuationPodLandingCoordinates(
+        EntityUid shuttleUid,
+        EntityCoordinates landingZone,
+        Angle rotation,
+        out EvacuationPodLandingReservation reservation)
     {
+        reservation = default;
+
         if (_evacuationPodLandingMap != landingZone.EntityId)
         {
             _evacuationPodLandingMap = landingZone.EntityId;
             _evacuationPodLandingReservations.Clear();
         }
 
-        var bounds = Comp<MapGridComponent>(shuttleUid).LocalAABB;
-        var radius = bounds.Center.Length() + (new Vector2(bounds.Width, bounds.Height).Length() / 2f);
-        var halfExtents = new Vector2(radius);
+        var mapGrid = Comp<MapGridComponent>(landingZone.EntityId);
+        var radius = _shuttle.GetLandingRadius(shuttleUid);
 
         for (var ring = 0; ring < EvacuationLandingSearchRings; ring++)
         {
@@ -158,40 +173,17 @@ public sealed partial class EmergencyShuttleSystem
                     continue;
 
                 var landingPosition = landingZone.Position + offset;
-                var landingBounds = new Box2(landingPosition - halfExtents, landingPosition + halfExtents).Enlarged(0.2f);
-                if (!IsEvacuationLandingAreaClear(landingZone.EntityId, landingBounds))
+                var landingBounds = _shuttle.GetLandingAreaBounds(shuttleUid, landingPosition, rotation);
+                if (!_shuttle.IsLandingAreaClear(landingZone.EntityId, mapGrid, landingBounds, _evacuationDungeonTiles))
                     continue;
 
+                var landingArea = _shuttle.ReserveLandingArea(landingZone.EntityId, mapGrid, landingBounds);
+                reservation = new EvacuationPodLandingReservation(offset, radius, landingArea);
                 _evacuationPodLandingReservations.Add((offset, radius));
-
-                var tiles = new List<(Vector2i Index, Tile Tile)>();
-                _biomes.ReserveTiles(landingZone.EntityId, landingBounds, tiles);
                 return landingZone.Offset(offset);
             }
         }
 
         return null;
-    }
-
-    private bool IsEvacuationLandingAreaClear(EntityUid mapUid, Box2 landingBounds)
-    {
-        _evacuationLandingLookupEntities.Clear();
-        _lookup.GetLocalEntitiesIntersecting(
-            mapUid,
-            landingBounds,
-            _evacuationLandingLookupEntities,
-            LookupFlags.Uncontained & ~LookupFlags.Sensors);
-
-        foreach (var entity in _evacuationLandingLookupEntities)
-        {
-            if (!TryComp<FixturesComponent>(entity, out var fixtures))
-                continue;
-
-            foreach (var fixture in fixtures.Fixtures.Values)
-                if (fixture.Hard)
-                    return false;
-        }
-
-        return true;
     }
 }

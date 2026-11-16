@@ -81,11 +81,35 @@ public sealed partial class DoorSystem : SharedDoorSystem
 
     private void OnAnimationCompleted(Entity<DoorComponent> ent, ref AnimationCompletedEvent args)
     {
-        if (args.Key != DoorComponent.OpenKey && args.Key != DoorComponent.CloseKey)
+        if (!args.Finished || (args.Key != DoorComponent.OpenKey && args.Key != DoorComponent.CloseKey))
             return;
 
-        // State visuals are already handled in UpdateAppearanceForDoorState when the state changes.
-        // This avoids flickering from duplicate layer state setting.
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
+            return;
+
+        // The server changes the door state to Open/Closed before the client animation finishes
+        // (OpenTimeOne + OpenTimeTwo = 0.6 s, OpeningAnimationTime = 0.8 s). UpdateAppearanceForDoorState()
+        // bails out while an animation is running, so without this the sprite would stay stuck on the last
+        // animation frame. Apply the real end state now that the animation is done.
+        switch (ent.Comp.State)
+        {
+            case DoorState.Open:
+                foreach (var (layer, layerState) in ent.Comp.OpenSpriteStates)
+                {
+                    _sprite.LayerSetRsiState((ent.Owner, sprite), layer, layerState);
+                    _sprite.LayerSetAutoAnimated((ent.Owner, sprite), layer, true);
+                }
+
+                break;
+            case DoorState.Closed:
+                foreach (var (layer, layerState) in ent.Comp.ClosedSpriteStates)
+                {
+                    _sprite.LayerSetRsiState((ent.Owner, sprite), layer, layerState);
+                    _sprite.LayerSetAutoAnimated((ent.Owner, sprite), layer, true);
+                }
+
+                break;
+        }
     }
 
     private void OnAppearanceChange(Entity<DoorComponent> entity, ref AppearanceChangeEvent args)

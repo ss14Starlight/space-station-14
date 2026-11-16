@@ -159,3 +159,7 @@ ghost-role-information-spawn-point-ghost-cluwne-beast-name = Зверь-клав
 ghost-role-information-spawn-point-ghost-cluwne-beast-description = Распространяй смех и хаос, бей и превращай экипаж в клавнов.
 ghost-role-information-spawn-point-ghost-cluwne-beast-rules = Ты антагонист, преврати как можно больше экипажа в клавнов.
 ghost-role-information-drone-name = Дрон-техник
+
+ghost-role-information-bombroach-name = Бомбожук
+ghost-role-information-bombroach-description = Вы — верный обученный вредитель оперативников Синдиката с пикобомбой. Служите хозяину до смерти!
+ghost-role-information-bombroach-rules = Вы — [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] вместе с агентом, вызвавшим вас.

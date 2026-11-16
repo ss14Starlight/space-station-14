@@ -19,3 +19,8 @@ paper-tamper-proof-modified-message = Эта страница написана �
 
 # Paper tools
 stamp-slot-component-slot-name-stamp = Печать
+
+paper-check-blank-button = ☐ Пусто
+paper-check-check-button = ✔ Галочка
+paper-check-cross-button = ✖ Крестик
+paper-datetime-format = {$date} // {$time} время смены

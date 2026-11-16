@@ -1,0 +1,50 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:parallax="clr-namespace:Content.Client.Parallax"
+                      Title="{Loc 'planet-console-window-title'}"
+                      Resizable="False"
+                      SetSize="1250 790">
+    <parallax:ParallaxControl Name="Space" Access="Public"
+                              ParallaxPrototype="FastSpace"
+                              SpeedX="12" SpeedY="4"
+                              MouseFilter="Ignore" />
+
+    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="10">
+            <Control SetSize="32 32" VerticalAlignment="Center">
+                <TextureRect Name="HeaderIcon" Access="Public"
+                             Stretch="KeepAspectCentered"
+                             SetSize="32 32" />
+                <TextureRect Name="HeaderScreen" Access="Public"
+                             Stretch="KeepAspectCentered"
+                             SetSize="32 32" />
+            </Control>
+            <RichTextLabel Name="HeaderSubtitle" Access="Public"
+                           HorizontalExpand="True" VerticalAlignment="Center" />
+        </BoxContainer>
+
+        <controls:HLine Color="#2E4A55" Thickness="2" />
+
+        <ScrollContainer Name="PlanetScroll" Access="Public"
+                         HorizontalExpand="True" VerticalExpand="True"
+                         HScrollEnabled="True" VScrollEnabled="False">
+            <BoxContainer Name="PlanetList" Access="Public"
+                          Orientation="Horizontal" SeparationOverride="12"
+                          Align="Center" />
+        </ScrollContainer>
+
+        <controls:HLine Color="#2E4A55" Thickness="2" />
+
+        <BoxContainer Orientation="Horizontal" SeparationOverride="10">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="2">
+                <Label Name="StatusLabel" Access="Public" HorizontalExpand="True" />
+                <Label Name="HintLabel" Access="Public" HorizontalExpand="True" />
+            </BoxContainer>
+            <ProgressBar Name="PrintProgress" Access="Public"
+                         MinValue="0" MaxValue="1"
+                         SetWidth="260" SetHeight="18"
+                         VerticalAlignment="Center"
+                         Visible="False" />
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

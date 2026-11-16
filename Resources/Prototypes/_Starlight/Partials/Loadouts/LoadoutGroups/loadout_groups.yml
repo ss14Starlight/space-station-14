@@ -90,6 +90,7 @@
   - GreyTieGeneric
   - LGBTieLoadout
   - ScientistTie
+  - RetroTie
 
 - type: !PartialOnly loadoutGroup
   id: ScientistNeck
@@ -99,6 +100,7 @@
   - GreenTieGeneric
   - GreyTieGeneric
   - LGBTieLoadout
+  - RetroTie
 
 - type: !PartialOnly loadoutGroup
   id: HeadofSecurityNeck
@@ -131,6 +133,7 @@
   - GreenTieGeneric
   - GreyTieGeneric
   - LGBTieLoadout
+  - RetroTie
 
 - type: !PartialOnly loadoutGroup
   id: NanoTrasenRepresentativeNeck
@@ -193,3 +196,13 @@
   - ScientistTie
   - DetectiveTie
   - SecurityRedNeckTie
+
+- type: !PartialOnly loadoutGroup
+  id: Trinkets
+  loadouts:
+    - RadioHandheldStation
+
+- type: !PartialOnly loadoutGroup
+  id: Glasses
+  loadouts:
+  - CheapSunnies

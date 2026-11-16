@@ -37,7 +37,6 @@ using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
 using Robust.Server;
 using Robust.Server.ServerStatus;
-using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
@@ -120,26 +119,19 @@ namespace Content.Server.Entry
         /// <inheritdoc />
         public override void Init()
         {
+            base.Init();
             Dependencies.BuildGraph();
             Dependencies.InjectDependencies(this);
-
-            // Must register components BEFORE base.Init() loads prototypes.
-            // DoAutoRegistrations picks up every [RegisterComponent] type, including the
-            // _Daiquiri StarWay cartridge component, so it must not be registered explicitly:
-            // Register() throws "Type is already registered" even with overwrite: true.
-            _factory.DoAutoRegistrations();
-            _factory.IgnoreMissingComponents("Visuals");
-            _factory.RegisterIgnore(IgnoredComponents.List);
-            _factory.GenerateNetIds();
-
-            base.Init();
-
-            _cfg.OverrideDefault(CVars.LookupEnableServerLightTree, true); // Starlight - ShadekinSystem needs the light tree
 
             LoadConfigPresets(_cfg, _res, _log.GetSawmill("configpreset"));
 
             var aczProvider = new ContentMagicAczProvider(Dependencies);
             _host.SetMagicAczProvider(aczProvider);
+
+            _factory.DoAutoRegistrations();
+            _factory.IgnoreMissingComponents("Visuals");
+            _factory.RegisterIgnore(IgnoredComponents.List);
+            _factory.GenerateNetIds();
 
             _proto.RegisterIgnore("parallax");
 

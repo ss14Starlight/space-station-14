@@ -4,3 +4,24 @@
   - type: Contraband
     tier: Tier1
     contrabandType: Syndicate
+
+- type: !PartialOnly entity
+  id: ClothingShoesBootsWork
+  components:
+  - type: FootstepTimbre
+    pitch: 0.92
+    volume: 1
+
+- type: !PartialOnly entity
+  id: ClothingShoesBootsSalvage
+  components:
+  - type: FootstepTimbre
+    pitch: 0.91
+    volume: 1
+
+- type: !PartialOnly entity
+  id: ClothingShoesBootsLaceup
+  components:
+  - type: FootstepTimbre
+    pitch: 1.1
+    volume: 0.5

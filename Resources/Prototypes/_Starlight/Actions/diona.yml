@@ -1,0 +1,87 @@
+- type: entity
+  id: ActionOpenPollenShop
+  name: "Открыть магазин пыльцы"
+  description: "Потратьте накопленные очки пыльцы на улучшения тела."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: open_shop
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:IntrinsicStoreActionEvent {}
+
+- type: entity
+  id: PollenTreeFloralT2PassiveMossFireResistEffect
+  components:
+  - type: StatusEffect
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Heat: 0.9
+        Cold: 0.8
+
+- type: entity
+  id: PollenTreeBarkT1ActionMakeWood
+  name: "Сделать древесину"
+  description: "Отрежьте часть своего тела, чтобы получить свежую древесину. Наносит вам урон."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: bark_make_wood
+    useDelay: 60
+  - type: ConfirmableAction
+    popup: pollen-bark-make-wood-confirm
+  - type: InstantAction
+    event: !type:MakeWoodEvent {}
+
+- type: entity
+  id: PollenTreeBarkT2PassiveHardenEffect
+  components:
+  - type: StatusEffect
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95
+
+- type: entity
+  id: ActionSporeCloud
+  name: "Облако спор"
+  description: "Выпустите вокруг себя облако спор, пропитанных микофилином."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: mush_spore_cloud
+    useDelay: 15m
+  - type: InstantAction
+    event: !type:PollenSporeCloudEvent {}
+
+- type: entity
+  id: ActionInjectPhytovitalin
+  name: "Ввести фитовиталин"
+  description: "Некоторое время сосредоточьтесь, затем введите 5 ед. фитовиталина в существо или контейнер."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: mush_injection_phytovitalin
+    useDelay: 12m
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: true
+    event: !type:PollenInjectPhytovitalinEvent {}
+

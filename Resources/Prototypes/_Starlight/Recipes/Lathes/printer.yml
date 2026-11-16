@@ -552,6 +552,56 @@
     SheetPrinter: 100
 
 - type: latheRecipe
+  id: PrintedDocumentIllegalImplantRemovalOrderRecipe
+  result: PrintedDocumentIllegalImplantRemovalOrder
+  categories:
+  - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMindControlRemovalOrderRecipe
+  result: PrintedDocumentMindControlRemovalOrder
+  categories:
+  - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentExplorativeSurgeryOrderRecipe
+  result: PrintedDocumentExplorativeSurgeryOrder
+  categories:
+  - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentProbingMindshieldOrderRecipe
+  result: PrintedDocumentProbingMindshieldOrder
+  categories:
+  - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentCompulsoryTrackingOrderRecipe
+  result: PrintedDocumentCompulsoryTrackingOrder
+  categories:
+  - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
   id: PrintedDocumentMedicalInterventionOrderRecipe
   result: PrintedDocumentMedicalInterventionOrder
   categories:
@@ -568,6 +618,57 @@
   result: PrintedDocumentCentCommCommunication
   categories:
   - Communications
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+# Blimpuf Emag Additions
+- type: latheRecipe
+  id: PrintedDocumentSyndicateRecruitmentOfferRecipe
+  result: PrintedDocumentSyndicateRecruitmentOffer
+  categories:
+    - InquiriesAndAppeals
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentSyndicateOperationTakeoverRecipe
+  result: PrintedDocumentSyndicateOperationTakeover
+  categories:
+    - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentSyndicateOperationBorgificationRecipe
+  result: PrintedDocumentSyndicateOperationBorgification
+  categories:
+    - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentOfficialSyndicateCommunicationRecipe
+  result: PrintedDocumentOfficialSyndicateCommunication
+  categories:
+    - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentSyndicateDidYouKnowRecipe
+  result: PrintedDocumentSyndicateDidYouKnow
+  categories:
+    - Complaints
   completetime: 2
   applyMaterialDiscount: false
   materials:

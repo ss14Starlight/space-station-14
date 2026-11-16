@@ -67,3 +67,6 @@ flavor-complex-sawian-blood = как наука и отсутствие этик
 flavor-complex-chocolate-milk = как шоколадное молоко
 flavor-complex-strawberry-milk = как клубничное молоко
 flavor-complex-banana-milk = как банановое молоко
+
+flavor-complex-death = как смерть
+flavor-base-brothy = бульонное

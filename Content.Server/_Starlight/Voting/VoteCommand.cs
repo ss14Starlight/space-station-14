@@ -249,10 +249,6 @@ public sealed partial class VoteCommand : ToolshedCommand
                         tied.Add(i);
 
                 pickedIndex = _random.Pick(tied);
-                var message = Loc.GetString("ui-vote-map-tie");
-                SendWinnerMessage(message,
-                    Loc.GetString("chat-manager-server-wrap-message",
-                        ("message", FormattedMessage.EscapeText(message))), chatFilter);
             }
             else
                 pickedIndex = args.Votes.IndexOf(topVotes);
@@ -260,7 +256,9 @@ public sealed partial class VoteCommand : ToolshedCommand
             var picked = (GameMapPrototype)maps[pickedIndex].Item2;
 
             {
-                var message = Loc.GetString("ui-vote-map-win");
+                var message = args.Winner == null
+                    ? Loc.GetString("ui-vote-map-tie", ("picked", picked.MapName))
+                    : Loc.GetString("ui-vote-map-win", ("winner", picked.MapName));
                 SendWinnerMessage(message,
                     Loc.GetString("chat-manager-server-wrap-message",
                         ("message", FormattedMessage.EscapeText(message))), chatFilter);

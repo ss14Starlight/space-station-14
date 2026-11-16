@@ -53,6 +53,10 @@
   suffix: Slime
   description: Маленький циркулятор, гоняющий жидкость по телу слайма.
   components:
+  - type: Tag
+    tags:
+    - Meat
+    - Heart
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
     state: heart-on

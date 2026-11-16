@@ -105,7 +105,9 @@ public abstract partial class SharedDevilSystem : EntitySystem
         var rawSacrificesGroup = sacrifices[0];
         var rawBenefitsGroup = benefits[0];
 
-        var listSplitterRegex = new Regex("[•\\-\\.\\+]\\s*(.+)"); // bruh
+        // Daiquiri: only split on bullets that start a line, otherwise punctuation inside
+        // a (translated) damnation name, like an ellipsis, would cut the clause in half.
+        var listSplitterRegex = new Regex("(?m)^[ \\t]*[•\\-\\.\\+][ \\t]*(.+)"); // bruh
 
         var rawSacrifices = listSplitterRegex.Matches(rawSacrificesGroup).Cast<Match>().Select(m => m.Groups[1].Value).ToList();
         var rawBenefits = listSplitterRegex.Matches(rawBenefitsGroup).Cast<Match>().Select(m => m.Groups[1].Value).ToList();

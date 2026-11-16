@@ -21,6 +21,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private GameTicker _gameTicker = null!; // Starlight
 
     private SoundCollectionPrototype? _lobbyMusicCollection = default!;
     private string[]? _lobbyPlaylist;
@@ -86,7 +87,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         if (_lobbyPlaylist != null)
         {
             var session = ev.PlayerSession;
-            RaiseNetworkEvent(new LobbyPlaylistChangedEvent(_lobbyPlaylist), session);
+            RaiseNetworkEvent(new LobbyPlaylistChangedEvent(_lobbyPlaylist, IsPostRound()), session); // Starlight
         }
     }
 
@@ -110,7 +111,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
             _lobbyPlaylist = ShuffleLobbyPlaylist();
         }
 
-        RaiseNetworkEvent(new LobbyPlaylistChangedEvent(_lobbyPlaylist));
+        RaiseNetworkEvent(new LobbyPlaylistChangedEvent(_lobbyPlaylist, true)); // Starlight
     }
 
     #region Starlight

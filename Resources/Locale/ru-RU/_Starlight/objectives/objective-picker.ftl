@@ -37,3 +37,5 @@ objective-picker-hidden-help-progress = Помогите соратнику-пр
 objective-picker-hidden-help-alive = Сохраните соратнику-предателю жизнь.
 objective-picker-under-budget-tip = Оставшиеся варианты не позволят набрать нужную сложность. Можно подтвердить выбор меньшего размера.
 objective-condition-escape-identity-eliminate-title = Сбегите живым и свободным под видом {$targetName} ({CAPITALIZE($job)}) и не дайте цели добраться до ЦентКом.
+
+objective-picker-hidden-steal-heart = Украдите чьё-то сердце.

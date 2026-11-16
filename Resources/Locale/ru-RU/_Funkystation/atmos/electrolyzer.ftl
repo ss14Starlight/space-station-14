@@ -6,3 +6,5 @@ electrolyzer-fuel-inserted = Топливо загружено.
 electrolyzer-cannot-merge-invalid-stack = Невозможно объединить.
 electrolyzer-fuel-swapped = Топливо заменено.
 electrolyzer-cannot-swap-ejection-failed = Невозможно заменить.
+
+item-slot-component-slot-name-fuel = топливный слот

@@ -81,3 +81,5 @@ ghost-role-mindsink-slot-component-slot-name-brain = Мозг
 # ПРОЧЕЕ
 ghost-role-information-nymph-name = Нимфа дионы
 ghost-role-information-nymph-description = Дикая нимфа дионы, пробравшаяся на станцию.
+
+ghost-role-information-giant-spider-passive-description = Обитатели этой станции выглядят... не очень-то аппетитно. Может, их еда?

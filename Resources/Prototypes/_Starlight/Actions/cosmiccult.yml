@@ -1,7 +1,7 @@
 - type: entity
   id: ActionCosmicSiphon
   name: Вытянуть энтропию
-  description: Silently siphon entropy from your target, dealing some damage in the process.
+  description: "Беззвучно выкачайте энтропию из цели. Собранную энтропию можно внести в Монумент, чтобы усилить его и открыть новые Влияния."
   components:
   - type: Action
     useDelay: 50
@@ -130,7 +130,7 @@
   - type: ConfirmableAction
     popup: cosmicability-glare-confirm
     confirmDelay: 0.1
-    primeTime: 5 #increased to give you more time to figure out where you want to put it
+    primeTime: 5
   - type: Action
     useDelay: 60
     checkCanInteract: false
@@ -194,8 +194,15 @@
 - type: entity
   id: ActionCosmicFragmentation
   name: Нулевая фрагментация
-  description: Transfer your malign empowerment into a digital system, such as an AI Upload Console, Cyborg or IPC, corrupting it in the process. Doing so will expend your empowerment.
+  description: |-
+    Перенесите своё злокачественное усиление в цифровую систему, например в консоль загрузки ИИ, киборга или КПБ, повредив её в процессе. Это израсходует ваше усиление.
+
+    При использовании на силиконе или КПБ это раскроет существование культа, а также примерное место применения способности, всей станции.
   components:
+  - type: ConfirmableAction
+    popup: cosmicability-fragmentation-confirm
+    confirmDelay: 1
+    primeTime: 15
   - type: LimitedCharges
     maxCharges: 1
   - type: Action

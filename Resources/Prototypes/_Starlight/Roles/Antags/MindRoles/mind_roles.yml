@@ -79,6 +79,8 @@
   name: роль красного волшебника-дуэлянта
   components:
   - type: WizardDuelistRole
+  - type: RoleBriefing
+    briefing: wizard-duelist-red-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -86,6 +88,8 @@
   name: роль синего волшебника-дуэлянта
   components:
   - type: WizardDuelistRole
+  - type: RoleBriefing
+    briefing: wizard-duelist-blue-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -93,6 +97,8 @@
   name: роль фиолетового волшебника-дуэлянта
   components:
   - type: WizardDuelistRole
+  - type: RoleBriefing
+    briefing: wizard-duelist-purple-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -100,6 +106,8 @@
   name: роль жёлтого волшебника-дуэлянта
   components:
   - type: WizardDuelistRole
+  - type: RoleBriefing
+    briefing: wizard-duelist-yellow-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -107,6 +115,8 @@
   name: роль зелёного волшебника-дуэлянта
   components:
   - type: WizardDuelistRole
+  - type: RoleBriefing
+    briefing: wizard-duelist-green-role-greeting
 
 - type: entity
   parent: MindRoleWizardDuelistBase
@@ -114,4 +124,6 @@
   name: роль оранжевого волшебника-дуэлянта
   components:
   - type: WizardDuelistRole
+  - type: RoleBriefing
+    briefing: wizard-duelist-orange-role-greeting
 

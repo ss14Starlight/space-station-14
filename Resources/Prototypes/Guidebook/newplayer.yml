@@ -1,6 +1,7 @@
 - type: guideEntry
   id: NewPlayer
   name: guide-entry-newplayer
+  color: "#D6B16C" # Starlight: shared How to Play gold
   priority: 0
   text: "/ServerInfo/Guidebook/NewPlayer/NewPlayer.xml"
   children:

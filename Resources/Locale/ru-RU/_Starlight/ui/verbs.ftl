@@ -8,3 +8,6 @@ verb-handheld-monitor-atmos = Атмос
 item-switch-verb-cycle = Переключить на {$state}
 
 speed-potion-apply-text = Применить зелье скорости
+
+setup-verb-text = Настроить
+verb-categories-manage-channels = Управление каналами

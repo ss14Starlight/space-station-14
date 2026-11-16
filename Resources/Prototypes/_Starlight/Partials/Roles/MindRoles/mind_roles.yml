@@ -103,6 +103,8 @@
   components:
   - type: MindRole
     subtypeColor: 'turquoise'
+  - type: RoleBriefing
+    briefing: wizard-role-greeting
 
 - type: !PartialOnly entity
   id: MindRoleMothershipCore

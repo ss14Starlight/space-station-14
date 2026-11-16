@@ -148,6 +148,10 @@
   suffix: Neocyte
   description: На самом деле ему не нужно биться, оно лишь имитирует движение для комфорта пользователя.
   components:
+  - type: Tag
+    tags:
+    - Meat
+    - Heart
   - type: Sprite
     state: heart-on
   - type: Metabolizer

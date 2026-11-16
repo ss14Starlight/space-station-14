@@ -1,5 +1,6 @@
 // ReSharper disable CheckNamespace
 
+using Content.Server._Daiquiri.Planets;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Cargo.Components;
@@ -28,8 +29,7 @@ public sealed partial class SalvageSystem
             !TryComp(console, out TransformComponent? consoleXform) ||
             consoleXform.GridUid is not { } shuttleUid ||
             !TryComp<ShuttleComponent>(shuttleUid, out var shuttle) ||
-            HasComp<FTLComponent>(shuttleUid) ||
-            !TryComp<SalvageExpeditionComponent>(consoleXform.MapUid, out var expedition))
+            HasComp<FTLComponent>(shuttleUid))
         {
             return;
         }
@@ -37,7 +37,18 @@ public sealed partial class SalvageSystem
         if (!_shuttle.CanFTL(shuttleUid, out _))
             return;
 
-        ReturnShuttleToStation(shuttleUid, shuttle, expedition.Station);
+        if (TryComp<SalvageExpeditionComponent>(consoleXform.MapUid, out var expedition))
+        {
+            ReturnShuttleToStation(shuttleUid, shuttle, expedition.Station);
+            return;
+        }
+
+        if (consoleXform.MapUid is { } mapUid &&
+            HasComp<PlanetMapComponent>(mapUid) &&
+            _station.GetOwningStation(shuttleUid) is { } stationUid)
+        {
+            ReturnShuttleToStation(shuttleUid, shuttle, stationUid);
+        }
     }
 
     private void ReturnShuttleToStation(

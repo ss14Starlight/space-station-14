@@ -25,7 +25,7 @@
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
   - type: AccessReader
-    access: [["Security"], ["Cadet"]]
+    access: [["Security"]]
 
 # Brigmedic
 - type: entity
@@ -41,6 +41,22 @@
     stateDoorClosed: brigmedic_door
   - type: AccessReader
     access: [["Brigmedic"]]
+
+#Gunnery Sergeant
+- type: entity
+  id: LockerGunnerySergeant
+  parent: LockerBaseSecure
+  name: "шкафчик сержанта-инструктора"
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: gunnerysergeant
+    stateDoorOpen: gunnerysergeant_open
+    stateDoorClosed: gunnerysergeant_door
+  - type: AccessReader
+    access: [["Armory"]]
 
 ## NanoTrasen Representatives
 #BSO

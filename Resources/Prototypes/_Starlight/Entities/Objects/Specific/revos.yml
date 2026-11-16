@@ -83,7 +83,7 @@
 
 # Uplinks
 - type: entity
-  parent: [BaseUplinkRadio, StorePresetUSSP, BaseSovietContraband]
+  parent: [BaseItem, BaseSovietContraband]
   id: BaseRevUplinkRadio
   name: рация Связь-УЗЛ
   description: Советский узел связи широкого применения в войсках СССП. Этот модифицирован для агентов СКБ и их активов. Несанкционированное использование строго не рекомендуется, потому что мы вас найдём.
@@ -102,9 +102,7 @@
         type: StoreBoundUserInterface
   - type: ActivatableUI
     key: enum.StoreUiKey.Key
-  - type: Store
-    balance:
-      Telebond: 0
+  - type: RemoteStore
 
 # - type: entity
 #   parent: [BaseRevUplinkRadio, StorePresetUSSP]
