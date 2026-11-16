@@ -1,11 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Fixed placeholder icons in hand slots (most commonly in cyborg modules) not always being transparent.
-    type: Fix
-  id: 410124
-  time: '2026-11-05T14:48:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7054
 - author: redmushie
   changes:
   - message: (Sepultum) Change Distro/Waste layers to match docking port standard.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410523
   time: '2026-11-16T14:17:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7264
+- author: efzapa
+  changes:
+  - message: Added recipes for empty medkits and chem bottle kits to the MedTak Lathe.
+    type: Add
+  id: 410524
+  time: '2026-11-16T14:17:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7229
 Order: -1
