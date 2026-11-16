@@ -158,7 +158,7 @@ public sealed partial class ColorControlSystem : EntitySystem
 
     private static bool IsIgnored(ColorControlComponent comp, Layer layer)
     {
-        var shader = comp.TrackedLayers.TryGetValue(layer, out var tracked)
+        var shader = comp.TrackedLayers.TryGetValue(layer, out var tracked) && tracked.ShaderApplied
             ? tracked.OriginalShaderProto
             : layer.ShaderPrototype?.Id;
 
@@ -177,7 +177,11 @@ public sealed partial class ColorControlSystem : EntitySystem
             return;
         }
 
-        if (tracked.ColorApplied && layer.Color != tracked.AppliedColor && !_rgb.IsModulating(uid, layer, index))
+        if (!tracked.ColorApplied)
+            tracked.OriginalColor = _rgb.TryGetOriginalColor(uid, layer, index, out var rgbOriginal)
+                ? rgbOriginal
+                : layer.Color;
+        else if (layer.Color != tracked.AppliedColor && !_rgb.IsModulating(uid, layer, index))
             tracked.OriginalColor = layer.Color;
 
         var target = mode == ColorControlMode.Multiply
@@ -203,7 +207,7 @@ public sealed partial class ColorControlSystem : EntitySystem
             return;
         }
 
-        if (tracked.ShaderApplied && layer.ShaderPrototype?.Id != tracked.AppliedShader)
+        if (!tracked.ShaderApplied || layer.ShaderPrototype?.Id != tracked.AppliedShader)
         {
             tracked.OriginalShaderProto = layer.ShaderPrototype?.Id;
             tracked.OriginalShader = layer.Shader;

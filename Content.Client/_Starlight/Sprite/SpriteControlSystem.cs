@@ -81,9 +81,9 @@ public sealed partial class SpriteControlSystem : EntitySystem
         }
     }
 
-    private static SpriteControlConfig GetConfig(SpriteControlComponent comp) =>
-        new(comp.SourceEntity, comp.SourceProto, comp.Sprite, comp.KeepClothing, comp.KeepHeld, comp.HideOwnLayers,
-            comp.Offset, comp.Rotation, comp.Color, comp.DrawDepth, comp.NoRotation);
+    private static SpriteControlConfig GetConfig(SpriteControlComponent comp) => new(comp.SourceEntity,
+        comp.SourceProto, comp.Sprite, comp.MirrorInterval, comp.KeepClothing, comp.KeepHeld, comp.HideOwnLayers,
+        comp.Offset, comp.Rotation, comp.Color, comp.DrawDepth, comp.NoRotation);
 
     private void Apply(Entity<SpriteControlComponent, SpriteComponent> ent, SpriteControlConfig config)
     {
@@ -93,7 +93,7 @@ public sealed partial class SpriteControlSystem : EntitySystem
         if (!EnsureBackup((uid, sprite), comp, out var backup))
             return;
 
-        var replaced = TryReplaceSprite((uid, comp, sprite));
+        var replaced = TryReplaceSprite((uid, comp, sprite), backup.Comp);
 
         if (replaced)
         {
@@ -142,7 +142,7 @@ public sealed partial class SpriteControlSystem : EntitySystem
         return true;
     }
 
-    private bool TryReplaceSprite(Entity<SpriteControlComponent, SpriteComponent> ent)
+    private bool TryReplaceSprite(Entity<SpriteControlComponent, SpriteComponent> ent, SpriteComponent baseline)
     {
         var (uid, comp, sprite) = ent;
 
@@ -171,6 +171,8 @@ public sealed partial class SpriteControlSystem : EntitySystem
             Log.Warning($"Entity {ToPrettyString(ent):entity} not permitted to use sprite specifier as ghost.");
             return false;
         }
+
+        CopySpriteWideProperties(baseline, (uid, sprite));
 
         while (sprite.LayerData.Count > 0)
             _sprite.RemoveLayer((uid, sprite), sprite.LayerData.Count - 1);

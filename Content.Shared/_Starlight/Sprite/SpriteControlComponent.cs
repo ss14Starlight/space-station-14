@@ -83,6 +83,7 @@ public readonly record struct SpriteControlConfig(
     EntityUid? SourceEntity,
     EntProtoId? SourceProto,
     SpriteSpecifier? Sprite,
+    float? MirrorInterval,
     bool KeepClothing,
     bool KeepHeld,
     bool HideOwnLayers,
