@@ -45,6 +45,23 @@ public abstract partial class SharedMeleeWeaponSystem
         return true;
     }
 
+    /// <summary>
+    /// Attempts a remote heavy attack toward the specified position.
+    /// </summary>
+    /// <param name="user">The entity performing the remote attack.</param>
+    /// <param name="coordinates">The aimed-at position in entity coordinates, converted to map coordinates for the attack ray.</param>
+    /// <param name="session">The session associated with the request, if available; it is passed to the normal heavy-attack attempt.</param>
+    /// <returns>
+    /// <see langword="true"/> if the generated attack is accepted by <see cref="TryAttemptRemoteHeavyAttack"/>; otherwise,
+    /// <see langword="false"/>. A true return does not guarantee that a target was hit.
+    /// </returns>
+    /// <remarks>
+    /// The user must be in combat mode and have a melee weapon that is not already attacking or on cooldown, and
+    /// <see cref="Blocker.CanAttack"/> must allow the attack. A use-key gun must have heavy melee alt-fire, and an
+    /// unarmed weapon with <see cref="MeleeWeaponComponent.AltDisarm"/> enabled is not eligible. The user's origin
+    /// entity must have a transform, and the target position must be on the same map. The method then raycasts toward
+    /// the position and submits the resulting attack to the normal heavy-attack attempt.
+    /// </remarks>
     public bool TryAttemptRemoteHeavyAttackAt(EntityUid user, EntityCoordinates coordinates, ICommonSession? session)
     {
         if (!CombatMode.IsInCombatMode(user)
@@ -56,16 +73,8 @@ public abstract partial class SharedMeleeWeaponSystem
             || weapon.NextAttack > Timing.CurTime)
             return false;
 
-        if (TryComp<GunComponent>(weaponUid, out var gun) && gun.UseKey)
-        {
-            if (!TryComp<AltFireMeleeComponent>(weaponUid, out var altFire)
-                || altFire.AttackType != AltFireAttackType.Heavy)
-                return false;
-        }
-        else if (weapon.AltDisarm && weaponUid == user)
-        {
+        if (!CanUseRemoteHeavyAttackWeapon(user, weaponUid, weapon))
             return false;
-        }
 
         var originUid = GetOriginEntity(user);
         if (!TryComp(originUid, out TransformComponent? originXform))
@@ -94,6 +103,12 @@ public abstract partial class SharedMeleeWeaponSystem
             GetNetCoordinates(coordinates));
         return TryAttemptRemoteHeavyAttack(user, attack, session);
     }
+
+    protected bool CanUseRemoteHeavyAttackWeapon(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon) =>
+        TryComp<GunComponent>(weaponUid, out var gun) && gun.UseKey
+            ? TryComp<AltFireMeleeComponent>(weaponUid, out var altFire)
+                && altFire.AttackType == AltFireAttackType.Heavy
+            : !weapon.AltDisarm || weaponUid != user;
 
     #endregion
 }

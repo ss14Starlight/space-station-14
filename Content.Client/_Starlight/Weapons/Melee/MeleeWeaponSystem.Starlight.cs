@@ -1,5 +1,3 @@
-using Content.Shared.Weapons.Melee.Components;
-using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Map;
 
 // ReSharper disable CheckNamespace
@@ -45,16 +43,8 @@ public sealed partial class MeleeWeaponSystem
             || !TryGetWeapon(user, out var weaponUid, out var weapon))
             return false;
 
-        if (TryComp<GunComponent>(weaponUid, out var gun) && gun.UseKey)
-        {
-            if (!TryComp<AltFireMeleeComponent>(weaponUid, out var altFire)
-                || altFire.AttackType != AltFireAttackType.Heavy)
-                return false;
-        }
-        else if (weapon.AltDisarm && weaponUid == user)
-        {
+        if (!CanUseRemoteHeavyAttackWeapon(user, weaponUid, weapon))
             return false;
-        }
 
         if (!Blocker.CanAttack(user, weapon: (weaponUid, weapon))
             || (!ignoreClientAttackState && (weapon.Attacking || weapon.NextAttack > Timing.CurTime)))
