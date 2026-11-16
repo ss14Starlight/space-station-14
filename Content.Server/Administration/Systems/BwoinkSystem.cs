@@ -376,7 +376,7 @@ namespace Content.Server.Administration.Systems
 
         private async Task<WebhookData?> GetWebhookData(string id, string token)
         {
-            var response = await _httpClient.GetAsync($"https://discord.com/api/v10/webhooks/{id}/{token}");
+            var response = await _httpClient.GetAsync(DiscordWebhookUrl.Apply(_config, $"https://discord.com/api/v10/webhooks/{id}/{token}"));
 
             var content = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
@@ -493,7 +493,7 @@ namespace Content.Server.Administration.Systems
             // Otherwise patch (edit) it
             if (existingEmbed.Id == null)
             {
-                var request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true",
+                var request = await _httpClient.PostAsync(DiscordWebhookUrl.Apply(_config, $"{_webhookUrl}?wait=true"),
                     new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
 
                 var content = await request.Content.ReadAsStringAsync();
@@ -518,7 +518,7 @@ namespace Content.Server.Administration.Systems
             }
             else
             {
-                var request = await _httpClient.PatchAsync($"{_webhookUrl}/messages/{existingEmbed.Id}",
+                var request = await _httpClient.PatchAsync(DiscordWebhookUrl.Apply(_config, $"{_webhookUrl}/messages/{existingEmbed.Id}"),
                     new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
 
                 if (!request.IsSuccessStatusCode)
@@ -555,7 +555,7 @@ namespace Content.Server.Administration.Systems
 
                     payload = GeneratePayload(message.ToString(), existingEmbed.Username, existingEmbed.CharacterName);
 
-                    var request = await _httpClient.PostAsync($"{_onCallUrl}?wait=true",
+                    var request = await _httpClient.PostAsync(DiscordWebhookUrl.Apply(_config, $"{_onCallUrl}?wait=true"),
                         new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
 
                     var content = await request.Content.ReadAsStringAsync();
