@@ -216,6 +216,6 @@ marking-ThavenHairFrontBangs = Front Bangs
 marking-ThavenHairStraightBangs = Straight Bangs 
 marking-ThavenHairJellyfish = Jellyfish 
 marking-ThavenHairLongPigtails = Long Pigtails
-marking-ThavenHairLongPonytail = Long Ponytail (Front)
+marking-ThavenHairLongPonytailFront = Long Ponytail (Front)
 marking-ThavenHairWorkoutHeadband = Workout Headband
 marking-ThavenHairSurferBoy = Surfer Boy
