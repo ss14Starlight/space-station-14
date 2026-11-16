@@ -1,7 +1,7 @@
 ﻿{
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/5a73e8f825ff279e82949b9329783a9e3070e2da. equipped-EYES-secdog modified from equipped-EYES by TJohnson. Equipped-EYES-arachnid and equipped-EYES-resomi modified from equipped-EYES by HTMLSystem. equipped-EYES-dog modified from equipped-EYES by Sparlight (GitHub). Sliced into independently colorable layers by Centronias (Github)",
+    "copyright": "Made by IntegerTempest. Equipped-EYES-arachnid modified from equipped-EYES by HTMLSystem. equipped-EYES-dog modified from equipped-EYES by Sparlight (GitHub). Equipped-EYES-resomi modified from equipped-EYES by Huaqas (GitHub). Split into layers by Reestock.",
     "size": {
         "x": 32,
         "y": 32
