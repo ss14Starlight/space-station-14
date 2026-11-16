@@ -16,3 +16,4 @@ lathe-category-error = Error
 lathe-category-communication = Communication
 
 lathe-category-silicon = Silicon
+lathe-category-eyewear = Eyewear

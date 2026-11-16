@@ -44,6 +44,7 @@ public sealed partial class AntagRandomObjectivesSystem
         var config = EnsureComp<ObjectivePickerConfigurationComponent>(mindId);
         config.Rule = rule.Owner;
         config.PreferredOptions = Math.Max(1, rule.Comp.MaxOptions);
+        config.StoryObjectiveCount = Math.Max(0, rule.Comp.StoryObjectiveCount);
         config.MinimumDifficulty = rule.Comp.MaxDifficulty;
         config.SelectionDelay = rule.Comp.SelectionDelay;
         EnsureComp<ObjectivePickerProgressComponent>(mindId);
@@ -272,7 +273,7 @@ public sealed partial class AntagRandomObjectivesSystem
 
         var storyCount = offers.ObjectiveOptions.Keys.Count(key =>
             Prototype(GetEntity(key)) is { } proto && config.StoryWeights.ContainsKey(proto.ID));
-        while (storyCount < 2 && refill.Stories.Count > 0)
+        while (storyCount < config.StoryObjectiveCount && refill.Stories.Count > 0)
         {
             if (attemptBudget <= 0)
                 return false;

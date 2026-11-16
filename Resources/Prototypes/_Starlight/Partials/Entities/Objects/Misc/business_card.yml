@@ -1,0 +1,6 @@
+- type: !PartialOnly entity
+  id: SyndicateBusinessCard
+  components:
+    - type: CustomSignature
+      config: !type:SignatureConfig
+        penColor: "#dbe1e8"

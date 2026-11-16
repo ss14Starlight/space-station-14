@@ -622,6 +622,7 @@
           - BotanySwab
     - item: HydroponicsToolScythe
     - item: HydroponicsToolHatchet
+    - item: PlantAnalyzer
     - item: PlantBag
     - hand:
         emptyLabel: borg-slot-seeds-empty

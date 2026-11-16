@@ -237,7 +237,7 @@
   parent: [ClothingNeckBase, BaseCentcommContraband]
   id: ClothingNeckCloakCCponcho
   name: central command poncho
-  description: a stylish poncho for a CC offical that prefers field-work to pushing papers.
+  description: A stylish poncho for a CC official that prefers field-work to pushing papers.
   components:
   - type: Sprite
     sprite:  _Starlight/Clothing/Neck/Cloaks/CC_poncho.rsi
@@ -691,3 +691,20 @@
       sprite:  _Starlight/Clothing/Neck/Cloaks/CC_shawl.rsi
     - type: Clothing
       sprite:  _Starlight/Clothing/Neck/Cloaks/CC_shawl.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakPlural
+  name: altered cloak
+  description: Cloak for those who prefer a whole Fleet of Theseus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Cloaks/plural.rsi/
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Cloaks/plural.rsi/
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - WhitelistChameleon
+        - CorgiWearable

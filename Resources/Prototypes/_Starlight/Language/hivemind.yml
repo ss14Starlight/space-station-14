@@ -153,7 +153,7 @@
 
 - type: language
   id: Spore
-  chatPrefix: s
+  chatPrefix: spo
   iconUnderstood: false
   iconNotUnderstood: false
   speech:

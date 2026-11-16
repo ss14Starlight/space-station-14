@@ -89,7 +89,7 @@
   parent: BaseUnburnablePaper
   id: BasePaperQuietChaos
   name: end of Q # no longer "the" since when you emote it would come out to "the the end of Q x"
-  description: dreadful paper that cant be faxed. but has it's own ways of getting around.
+  description: A dreadful paper that can't be faxed, but has its own ways of getting around.
   abstract: true
   components:
     - type: Tag
@@ -127,8 +127,8 @@
 - type: entity
   parent: BasePaperQuietChaos
   id: PaperTooQuietNeedChaos
-  name: the end of Q
-  description: dreadful paper that cant fit in a fax machine.
+  name: end of Q
+  description: A dreadful paper that can't fit in a fax machine.
   components:
     - type: Paper
       content: paper-too-quiet-need-chaos

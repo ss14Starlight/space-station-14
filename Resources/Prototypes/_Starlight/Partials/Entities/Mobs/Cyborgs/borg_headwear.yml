@@ -1,0 +1,497 @@
+# ----------------------------------------
+# Shared
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: BaseBorgChassisNotIonStormable
+  components:
+  - type: Inventory
+    speciesId: borg
+
+# ----------------------------------------
+# Cargo
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: BorgMiningSubtypeCargoStandard
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadStandard
+
+- type: !PartialOnly entity
+  id: BorgMiningSubtypeCargoNoble
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadNobleShort
+
+- type: !PartialOnly entity
+  id: BorgMiningSubtypeCargoCricket
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadCricketDutch
+
+- type: !PartialOnly entity
+  id: BorgMiningSubtypeCargoRealTech
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadRealTechTall
+
+- type: !PartialOnly entity
+  id: BorgCargoSubtypeMezo
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadMezoCargo
+
+# ----------------------------------------
+# Engineering
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: BorgEngineerSubtypeStandard
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadStandard
+
+- type: !PartialOnly entity
+  id: BorgEngineerSubtypeGeneric
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadGenericTall
+
+- type: !PartialOnly entity
+  id: BorgEngineerSubtypeAntique
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadAntiqueTall
+
+- type: !PartialOnly entity
+  id: BorgEngineerSubtypeNoble
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadNobleForwardDutch
+
+- type: !PartialOnly entity
+  id: BorgEngineerSubtypeCricket
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadCricketDutch
+
+- type: !PartialOnly entity
+  id: BorgEngineerSubtypeMezo
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadMezoEngineering
+
+# ----------------------------------------
+# Generic
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: BorgGenericSubtypeGeneric
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadGenericTall
+
+- type: !PartialOnly entity
+  id: BorgGenericSubtypeDroid
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadDroidGeneric
+
+- type: !PartialOnly entity
+  id: BorgGenericSubtypeNoble
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadNobleForwardDutch
+
+- type: !PartialOnly entity
+  id: BorgGenericSubtypeMezo
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadMezoGeneric
+
+# ----------------------------------------
+# Janitor
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: BorgJanitorSubtypeStandard
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadStandard
+
+- type: !PartialOnly entity
+  id: BorgJanitorSubtypeGeneric
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadGenericTall
+
+- type: !PartialOnly entity
+  id: BorgJanitorSubtypeMopbot
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadGenericTall
+
+- type: !PartialOnly entity
+  id: BorgJanitorSubtypeNoble
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadNobleDutch
+
+- type: !PartialOnly entity
+  id: BorgJanitorSubtypeCricket
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadCricketDutch
+
+- type: !PartialOnly entity
+  id: BorgJanitorSubtypeMezo
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadMezoJanitor
+
+# ----------------------------------------
+# Medical
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: BorgMedicalSubtypeStandard
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadStandard
+
+- type: !PartialOnly entity
+  id: BorgMedicalSubtypeGeneric
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadGenericTall
+
+- type: !PartialOnly entity
+  id: BorgMedicalSubtypeNeedles
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadNeedlesTall
+
+- type: !PartialOnly entity
+  id: BorgMedicalSubtypeDroid
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadDroidMedicalDutch
+
+- type: !PartialOnly entity
+  id: BorgMedicalSubtypeNoble
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadNobleDutch
+
+- type: !PartialOnly entity
+  id: BorgMedicalSubtypeCricket
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadCricketDutch
+
+- type: !PartialOnly entity
+  id: BorgMedicalSubtypeMezo
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadMezoMedical
+
+- type: !PartialOnly entity
+  id: BorgChassisMedTak
+  components:
+  - type: Inventory
+    templateId: borgHeadMedTak
+
+# ----------------------------------------
+# Mining
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: BorgMiningSubtypeMiningStandard
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadStandard
+
+- type: !PartialOnly entity
+  id: BorgMiningSubtypeMiningGeneric
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadGenericTall
+
+- type: !PartialOnly entity
+  id: BorgMiningSubtypeDroid
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadDroidMiningDutch
+
+- type: !PartialOnly entity
+  id: BorgMiningSubtypeMiningNoble
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadNobleDutch
+
+- type: !PartialOnly entity
+  id: BorgMiningSubtypeMiningCricket
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadCricketDutch
+
+- type: !PartialOnly entity
+  id: BorgMiningSubtypeMiningBeetle
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadBeetle
+
+- type: !PartialOnly entity
+  id: BorgMiningSubtypeMezo
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadMezoMining
+
+# ----------------------------------------
+# Purrfus
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: BorgPurrfusSubtypeGreen
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadPurrfusTall
+
+- type: !PartialOnly entity
+  id: BorgPurrfusSubtypeOrange
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadPurrfusTall
+
+- type: !PartialOnly entity
+  id: BorgPurrfusSubtypePink
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadPurrfusTall
+
+# ----------------------------------------
+# Security
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: BorgSecuritySubtypeRedKnight
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadRedKnightTall
+
+- type: !PartialOnly entity
+  id: BorgSecuritySubtypeBlackKnight
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadKnightTall
+
+- type: !PartialOnly entity
+  id: BorgSecuritySubtypeStandard
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadStandard
+
+- type: !PartialOnly entity
+  id: BorgSecuritySubtypeNoble
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadNobleSecurityDutch
+
+- type: !PartialOnly entity
+  id: BorgSecuritySubtypeCricket
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadSecurityCricketDutch
+
+- type: !PartialOnly entity
+  id: BorgSecuritySubtypeHeavy
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadHeavy
+
+# ----------------------------------------
+# Service
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: BorgServiceSubtypeStandard
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadStandard
+
+- type: !PartialOnly entity
+  id: BorgServiceSubtypeGeneric
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadGenericTall
+
+- type: !PartialOnly entity
+  id: BorgServiceSubtypeWaitress
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadGenericTall
+
+- type: !PartialOnly entity
+  id: BorgServiceSubtypeBrobot
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadGenericTall
+
+- type: !PartialOnly entity
+  id: BorgServiceSubtypeMaximillion
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadMaximillionTall
+
+- type: !PartialOnly entity
+  id: BorgServiceSubtypeNoble
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadNobleServiceDutch
+
+- type: !PartialOnly entity
+  id: BorgServiceSubtypeCricket
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadCricketDutch
+
+- type: !PartialOnly entity
+  id: BorgServiceSubtypeMezo
+  components:
+  - type: BorgSubtypeDefinition
+    inventoryTemplateId: borgHeadMezoService
+
+# ----------------------------------------
+# Derelict
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: DerelictEngiXenoborg
+  components:
+  - type: Inventory
+    templateId: borgHeadEngineeringDefault
+
+- type: !PartialOnly entity
+  id: PurrfusBorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadPurrfus
+
+- type: !PartialOnly entity
+  id: DerelictScoutXenoborg
+  components:
+  - type: Inventory
+    templateId: borgHeadMedicalScout
+
+- type: !PartialOnly entity
+  id: MedicalBorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadMedicalDefault
+
+- type: !PartialOnly entity
+  id: DerelictStealthXenoborg
+  components:
+  - type: Inventory
+    templateId: borgHeadXenoStealthDerelict
+
+- type: !PartialOnly entity
+  id: BorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadStandard
+
+- type: !PartialOnly entity
+  id: EngineeringBorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadEngineeringDefault
+
+- type: !PartialOnly entity
+  id: SyndicateAssaultBorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadSyndicateAssault
+
+- type: !PartialOnly entity
+  id: DerelictHeavyXenoborg
+  components:
+  - type: Inventory
+    templateId: borgHeadXenoHeavy
+
+- type: !PartialOnly entity
+  id: JanitorBorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadJanitorDefault
+
+- type: !PartialOnly entity
+  id: MiningBorgChassisDerelict
+  components:
+  - type: Inventory
+    templateId: borgHeadMiningDefault
+
+# ----------------------------------------
+# Xenoborgs
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: XenoborgEngi
+  components:
+  - type: Inventory
+    templateId: borgHeadEngineeringDefault
+
+- type: !PartialOnly entity
+  id: XenoborgScout
+  components:
+  - type: Inventory
+    templateId: borgHeadMedicalScout
+
+- type: !PartialOnly entity
+  id: XenoborgStealth
+  components:
+  - type: Inventory
+    templateId: borgHeadXenoStealth
+
+- type: !PartialOnly entity
+  id: XenoborgHeavy
+  components:
+  - type: Inventory
+    templateId: borgHeadXenoHeavy
+
+- type: !PartialOnly entity
+  id: MothershipCore
+  components:
+  - type: Inventory
+    templateId: borgHeadMothershipCore
+
+# ----------------------------------------
+# Syndicate
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: BorgChassisSyndicateMedical
+  components:
+  - type: Inventory
+    templateId: borgHeadMedicalSyndicate
+
+- type: !PartialOnly entity
+  id: BorgChassisSyndicateAssault
+  components:
+  - type: Inventory
+    templateId: borgHeadSyndicateAssault
+
+- type: !PartialOnly entity
+  id: BorgChassisSyndicateSaboteur
+  components:
+  - type: Inventory
+    templateId: borgHeadEngineeringDefault
+
+- type: !PartialOnly entity
+  id: BorgChassisSyndicateStealth
+  components:
+  - type: Inventory
+    templateId: borgHeadSyndicateStealth
+
+# ----------------------------------------
+# Other
+# ----------------------------------------
+- type: !PartialOnly entity
+  id: BorgChassisTSF
+  components:
+  - type: Inventory
+    templateId: borgHeadTsf
+
+- type: !PartialOnly entity
+  id: BaseNTNCChassis
+  components:
+  - type: Inventory
+    templateId: borgHeadNtnc

@@ -20,6 +20,12 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnStepInPuddle(Entity<PuddleComponent> ent, ref StartCollideEvent args)
     {
+        if (_timing.ApplyingState) // Moff Station
+            return; // Moff Station
+
+        if (!ent.Comp.CausesStains)
+            return;
+
         // The thing stepping in the puddle. Because I keep forgetting which is which
         var stepper = args.OtherEntity;
 

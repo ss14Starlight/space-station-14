@@ -13,3 +13,4 @@ mind-control-prevents-mindshield = Another Implant was in the way.
 mind-control-invalid = The subject must be alive.
 roles-antag-mind-controlled-name = Mind Controlled
 roles-antag-mind-controlled-objective = Obey your handler's commands.
+fragile-implant-extraction = The fragile implant disintegrates upon extraction...

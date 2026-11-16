@@ -69,7 +69,9 @@ public sealed partial class MeleeWeaponSystem
                     angle *= -1;
             }
         }
-        // Starlight-end
+        sprite.NoRotation = false;
+        _sprite.SetSnapCardinals((animationUid, sprite), false);
+        // Starlight end
         _sprite.SetRotation((animationUid, sprite), localPos.ToWorldAngle());
 
         var xform = Transform(animationUid);
@@ -162,7 +164,6 @@ public sealed partial class MeleeWeaponSystem
 
         startRotation += spriteRotation;
         endRotation += spriteRotation;
-        sprite.Comp.NoRotation = true;
 
         return new Animation()
         {

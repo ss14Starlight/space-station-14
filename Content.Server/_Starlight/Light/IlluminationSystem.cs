@@ -133,10 +133,6 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
     private void OnToggle(Entity<PointLightComponent> ent, ref PointLightToggleEvent _)
         => Relocate((ent, ent.Comp, Transform(ent)));
 
-    [SubscribeLocalEvent]
-    private void OnReAnchor(Entity<PointLightComponent> ent, ref ReAnchorEvent args)
-        => Relocate((ent, ent.Comp, args.Xform));
-
     private void Relocate(Entity<SharedPointLightComponent, TransformComponent> light)
     {
         RemoveLight(light);
@@ -536,7 +532,11 @@ public sealed partial class IlluminationSystem : SharedIlluminationSystem
         {
             var start = Vector2.Transform(to, tree.InvMatrix);
             var end = Vector2.Transform(from, tree.InvMatrix);
-            var state = new OcclusionState(new Ray(start, (end - start) / length), length - OwnOccluderTolerance);
+            var localDelta = end - start;
+            var localLength = localDelta.Length();
+            if (!float.IsFinite(localLength) || localLength <= OwnOccluderTolerance)
+                continue;
+            var state = new OcclusionState(new Ray(start, localDelta / localLength), localLength - OwnOccluderTolerance);
 
             tree.Tree.Tree.QueryAabb(ref state, OcclusionCallback, new Box2(Vector2.Min(start, end), Vector2.Max(start, end)), approx: true);
             if (state.Hit)

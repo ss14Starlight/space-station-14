@@ -204,7 +204,7 @@
   parent: [ClothingHeadBase, BaseSecurityContraband]
   id: ClothingHeadDeputyHat
   name: deputy's hat
-  description: el desperados...
+  description: El desperados...
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/deputy_hat.rsi

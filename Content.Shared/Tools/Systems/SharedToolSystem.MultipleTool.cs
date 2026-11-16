@@ -70,13 +70,16 @@ public abstract partial class SharedToolSystem
 
         var current = multiple.Entries[multiple.CurrentEntry];
         tool.UseSound = current.UseSound;
-        tool.Qualities = current.Behavior;
+        tool.Qualities.Clear();
+        tool.Qualities.UnionWith(current.Behavior);
         tool.SpeedModifier = current.SpeedModifier; /// Starlight
+        Dirty(uid, tool);
 
         // TODO: Replace this with a better solution later
         if (TryComp<PryingComponent>(uid, out var pryComp))
         {
             pryComp.Enabled = current.Behavior.Contains("Prying");
+            Dirty(uid, pryComp);
         }
 
         /// STARLIGHT Start

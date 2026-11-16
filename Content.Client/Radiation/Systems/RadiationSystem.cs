@@ -5,7 +5,7 @@ using Robust.Client.Graphics;
 
 namespace Content.Client.Radiation.Systems;
 
-public sealed partial class RadiationSystem : EntitySystem
+public sealed partial class RadiationSystem : SharedRadiationSystem
 {
     [Dependency] private IOverlayManager _overlayMan = default!;
 

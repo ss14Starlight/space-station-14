@@ -19,3 +19,58 @@
   radioChannels:
   - Medical
   - Service
+
+- type: technology
+  id: ModularHudModulesCivilianT1
+  name: research-technology-modular-hud-modules-civilian-t1
+  icon:
+    entity: HudModuleNoirOverlay
+  discipline: CivilianServices
+  tier: 1
+  cost: 1000
+  technologyPrerequisites:
+  - ModularHudFrames
+  recipeUnlocks:
+  - HudModuleBlackAndWhiteOverlay
+  - HudModuleNoirOverlay
+  - HudModuleBlueNoirOverlay
+  radioChannels:
+  - Service
+
+- type: technology
+  id: RadioMusicCommunications
+  name: research-technology-radio-music-communication
+  icon:
+    sprite: _Starlight/Structures/Machines/StationRadio/vinylplayer.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - VinylPlayerCircuitboard
+  - CDPlayerCircuitboard
+  - BroadcastRecorderCircuitboard
+  - StationRadioMixerCircuitboard
+  - TapeDeckCircuitboard
+  - StationRadioServerCircuitboard
+  - StationRadioRigCircuitboard
+
+- type: technology
+  id: ModularHudModulesCivilianT2
+  name: research-technology-modular-hud-modules-civilian-t2
+  icon:
+    entity: HudModuleShowJobIcons
+  discipline: CivilianServices
+  tier: 2
+  cost: 3500
+  technologyPrerequisites:
+  - ModularHudFrames
+  - ModularHudModulesCivilianT1
+  recipeUnlocks:
+  - HudModuleShowJobIcons
+  - HudModuleShowIdAccess
+  - HudModuleShowHungerIcons
+  - HudModuleShowThirstIcons
+  radioChannels:
+  - Command
+  - Service

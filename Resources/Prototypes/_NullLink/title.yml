@@ -82,6 +82,10 @@
       color: "#f1eb58"
       roles:
       - 1272899036571238521 # Developer
+    - text: "Discord Admin"
+      color: "#67daf1"
+      roles:
+      - 1273576282415960084 # Discord Administrator
     - text: "Jr. Event Coord"
       color: "#983fc9"
       roles:
@@ -102,14 +106,18 @@
       color: "#F1C40F"
       roles:
       - 1348030990811009044 # Prototyper
-    - text: "Mapper"
+    - text: "Staff Mapper"
       color: "#8ff10f"
       roles:
-      - 1297739822131056703 # Mapper
+      - 1297739822131056703 # Staff Mapper
     - text: "Spriter"
       color: "#8ff10f"
       roles:
       - 1299137799693406288 # Spriter
+    - text: "Discord Mod"
+      color: "#a9f5a9"
+      roles:
+      - 1290857164167974952 # Discord Moderator
     - text: "Staff"
       color: "#ad1457"
       roles:

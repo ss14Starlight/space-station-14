@@ -60,7 +60,7 @@
       sprite: _Starlight/Clothing/Neck/Ties/greytie.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingNeckBaseHamster
   id: ClothingNeckLGBTie
   name: LGBTie
   description: Why do we have to wear these fabulous ties?

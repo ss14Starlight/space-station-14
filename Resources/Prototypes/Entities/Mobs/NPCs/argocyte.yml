@@ -116,13 +116,13 @@
     - id: FoodMeatXeno
       amount: 1
     - id: SalvageTicket10 # Starlight
-      amount: 1
+      amount: 2
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 1
     - id: SalvageTicket10 # Starlight
-      amount: 1
+      amount: 2
   - type: Fixtures
     fixtures:
       fix1:
@@ -164,13 +164,13 @@
     - id: FoodMeatXeno
       amount: 1
     - id: SalvageTicket15 # Starlight
-      amount: 1
+      amount: 2
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 1
     - id: SalvageTicket15
-      amount: 1  # Starlight end
+      amount: 2  # Starlight end
   - type: Fixtures
     fixtures:
       fix1:
@@ -212,13 +212,13 @@
     - id: FoodMeatXeno
       amount: 2
     - id: SalvageTicket15 # Starlight
-      amount: 1
+      amount: 3
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 2
     - id: SalvageTicket15
-      amount: 1 # Starlight end
+      amount: 3 # Starlight end
   - type: MovementSpeedModifier
     baseSprintSpeed : 5
 
@@ -246,12 +246,13 @@
     - id: FoodMeatXeno # Starlight
       amount: 2
     - id: SalvageTicket15
-      amount: 1 # Starlight end
+      amount: 3 # Starlight end
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno # Starlight
       amount: 2
     - id: SalvageTicket15 # Starlight
+      amount: 3 # Starlight
   - type: MovementSpeedModifier
     baseSprintSpeed : 4
     baseWalkSpeed : 3.5
@@ -280,13 +281,13 @@
     - id: FoodMeatXeno
       amount: 2
     - id: SalvageTicket15 # Starlight
-      amount: 1
+      amount: 3
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 2
     - id: SalvageTicket15 # Starlight
-      amount: 1
+      amount: 3
   - type: MeleeWeapon
     damage:
       types:
@@ -317,13 +318,13 @@
     - id: FoodMeatXeno
       amount: 2
     - id: SalvageTicket15 # Starlight
-      amount: 1
+      amount: 3
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 2
     - id: SalvageTicket15
-      amount: 1 # Starlight end
+      amount: 3 # Starlight end
   - type: MeleeWeapon
     damage:
       types:
@@ -357,13 +358,13 @@
     - id: FoodMeatXeno
       amount: 2
     - id: SalvageTicket30 # Starlight
-      amount: 1
+      amount: 3
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 2
     - id: SalvageTicket30
-      amount: 1 # Starlight end
+      amount: 3 # Starlight end
   - type: MeleeWeapon
     damage:
       types:
@@ -396,13 +397,13 @@
     - id: FoodMeatXeno
       amount: 2
     - id: SalvageTicket30 # Starlight
-      amount: 1
+      amount: 3
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 2
     - id: SalvageTicket30
-      amount: 1 # Starlight end
+      amount: 3 # Starlight end
   - type: MeleeWeapon
     damage:
       types:
@@ -437,13 +438,13 @@
     - id: FoodMeatXeno
       amount: 3
     - id: SalvageTicket50 # Starlight
-      amount: 1
+      amount: 3
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 3
     - id: SalvageTicket50
-      amount: 1 # Starlight end
+      amount: 3 # Starlight end
   - type: MeleeWeapon
     damage:
       types:
@@ -475,13 +476,13 @@
     - id: FoodMeatXeno
       amount: 5
     - id: SalvageTicket50 # Starlight
-      amount: 1
+      amount: 6
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
       amount: 5
     - id: SalvageTicket50
-      amount: 1 # Starlight end
+      amount: 6 # Starlight end
   - type: Fixtures
     fixtures:
       fix1:
@@ -528,7 +529,7 @@
     - id: FoodMeatXeno
       amount: 10
     - id: SalvageTicket100 # Starlight
-      amount: 3
+      amount: 5
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno

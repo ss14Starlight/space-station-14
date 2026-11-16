@@ -83,6 +83,7 @@ public sealed partial class ClientClothingSystem : ClothingSystem
 
     private void OnInventoryTemplateUpdated(Entity<InventoryComponent> ent, ref InventoryTemplateUpdated args)
     {
+        ReserveSlots(ent); // Starlight
         UpdateAllSlots(ent.Owner, ent.Comp);
     }
 
@@ -288,6 +289,8 @@ public sealed partial class ClientClothingSystem : ClothingSystem
                     break;
             }
         }
+
+        displacementData ??= slotDef.Displacement; // Starlight-edit: use directional inventory-template placement when the wearer has no override.
 
         // add the new layers
         foreach (var (key, layerData) in ev.Layers)

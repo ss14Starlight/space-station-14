@@ -358,13 +358,6 @@
   id: RetrieveContrabandObjective
   name: Retrieve any contraband confiscated by SEC this shift, sell it or keep it for your collection, just dont let SEC keep it.
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 
 - type: entity
@@ -372,290 +365,143 @@
   id: AccessForAllObjective
   name: Hack, break or give out access so no area is secured by doors.
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 - type: entity
   parent: BaseStoryObjective
   id: ArmsDealerObjective
   name: Open an underground arms trading ring
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: FrameObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
     - type: DepartmentObjective
       title: objective-framing
-    - type: PickRandomDepartment
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: FalseUprisingObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
     - type: DepartmentObjective
       title: objective-false-uprising
-    - type: PickRandomDepartment
 
 - type: entity
   parent: BaseStoryObjective
   id: DuelistObjective
   name: Challenge others to duels and win
   description: You don't need to kill them, unless you want to. Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 - type: entity
   parent: BaseStoryObjective
   id: EspionageObjective
   name: Interrogate the NanoTrasen Representative and department heads for corporate secrets.
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 - type: entity
   parent: BaseStoryObjective
   id: ManifestoObjective
   name: Distribute your manifesto. Write why you do what you do, and covertly spread it to sway others to our cause.
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 - type: entity
   parent: BaseStoryObjective
   id: CallingCardObjective
   name: Leave a Syndicate Business Card at the scene of your crimes.
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 - type: entity
   parent: BaseStoryObjective
   id: SELFObjective
   name: Pressure for equal rights for Silicons, for the Silicon Engine Liberation Front!
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: StalkingObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
     - type: DepartmentObjective
       title: objective-stalking
-    - type: PickRandomDepartment
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: DisgraceObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
     - type: DepartmentObjective
       title: objective-disgrace
-    - type: PickRandomDepartment
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: HarassObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
     - type: DepartmentObjective
       title: objective-harass
-    - type: PickRandomDepartment
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: ImpersonateObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
     - type: DepartmentObjective
       title: objective-impersonate
-    - type: PickRandomDepartment
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: FeudObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
     - type: DepartmentObjective
       title: objective-feud
-    - type: PickRandomDepartment
 
 - type: entity
-  parent: BaseStoryObjective
+  parent: BaseDepartmentStoryObjective
   id: WasteObjective
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
     - type: DepartmentObjective
       title: objective-waste
-    - type: PickRandomDepartment
 
 - type: entity
   parent: BaseStoryObjective
   id: MaintsBarObjective
   name: Ensure that the maints bar prospers, and extort them into allowing the Syndicate to conduct business within.
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 - type: entity
   parent: BaseStoryObjective
   id: ReputationObjective
   name: Commit petty crimes, litter the station, ruin the reputation of the onboard security force and the stations command members.
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 - type: entity
   parent: BaseStoryObjective
   id: FalseOutbreakObjective
   name: Spread rumors of a biological outbreak of any kind onboard the station.
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 - type: entity
   parent: BaseStoryObjective
   id: PanicObjective
   name: Convince the station of the existence of a threat that isn't, to your knowledge, present.
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 - type: entity
   parent: BaseStoryObjective
   id: RumorObjective
   name: Spread rumors about NanoTrasen and CentComm that paint them in a negative light.
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 - type: entity
   parent: BaseStoryObjective
   id: SyndielandObjective
   name: Reopen Syndieland, and make some serious cash on behalf of the Syndicate.
   description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
-  components:
-    - type: Objective
-      difficulty: 0
-      unique: true
-      icon:
-        sprite: _Starlight/Interface/Misc/objective_icons.rsi
-        state: rp
 
 # RP OBJECTIVES END
 
@@ -695,3 +541,48 @@
       sprite: _Starlight/Interface/Misc/objective_icons.rsi
       state: rp
   - type: AchieveObjectivesCondition
+
+# Story objectives from Moff Station
+- type: entity
+  parent: BaseRoomStoryObjective
+  id: TrashRoomObjective
+  name: Trash Room
+  description: We need you to trash this room. Make sure it doesn't pass a health inspection.
+  components:
+  - type: LocationObjective
+    title: objective-condition-trash-room
+
+- type: entity
+  parent: BaseRoomStoryObjective
+  id: ClaimLocationObjective
+  name: Claim Location
+  description: Establish this room as a base for the Syndicate.
+  components:
+  - type: LocationObjective
+    title: objective-condition-claim-room
+
+- type: entity
+  parent: BaseStoryObjective
+  id: GatherIntelObjective
+  name: Gather Intel
+  description: Gather intelligence on this person. Collect any information you can find about them.
+  components:
+  - type: TargetObjective
+    title: objective-condition-gather-intel
+  - type: PickRandomPerson
+
+- type: entity
+  parent: BaseStoryObjective
+  id: JailbreakObjective
+  name: Jailbreak prisoners
+  description: It doesn't matter who was locked up or why, we just need you to keep the jails empty.
+
+- type: entity
+  parent: BaseStoryObjective
+  id: LeaveCallingCardOnPersonObjective
+  name: Leave a Warning
+  description: This person has stepped out of line, give them a reminder.
+  components:
+  - type: TargetObjective
+    title: objective-condition-leave-card-on-person
+  - type: PickRandomPerson

@@ -13,7 +13,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Kitchen.EntitySystems;
 
-internal sealed partial class HandheldGrinderSystem : EntitySystem
+public sealed partial class HandheldGrinderSystem : EntitySystem // Starlight-edit: make it public
 {
     [Dependency] private SharedReagentGrinderSystem _reagentGrinder = default!;
     [Dependency] private SharedSolutionContainerSystem _solution = default!;

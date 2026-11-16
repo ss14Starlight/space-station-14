@@ -166,6 +166,7 @@ public sealed partial class AntagRandomObjectivesSystem
         {
             Weights = oldConfig.Weights,
             StoryWeights = oldConfig.StoryWeights,
+            StoryObjectiveCount = oldConfig.StoryObjectiveCount,
             PreferredOptions = oldConfig.PreferredOptions,
         };
         if (oldConfig.DeferredTargets.Contains(retained))

@@ -46,6 +46,12 @@ public sealed partial class AntagRandomObjectivesComponent : Component
     [DataField("storyObjectiveGroup")]
     public ProtoId<WeightedRandomPrototype>? StoryObjectiveGroup;
 
+    /// <summary>
+    /// Number of story objective choices offered separately from the difficulty budget.
+    /// </summary>
+    [DataField]
+    public int StoryObjectiveCount = 2;
+
     [DataField("excludedObjectives")]
     public HashSet<EntProtoId> ExcludedObjectives = new();
 }

@@ -27,6 +27,7 @@
       Flammable: [Touch]
       Extinguish: [Touch]
   - type: SpiderWebObject
+    replaceable: false
   - type: EntityBeacon
     entitiesToSpawn:
     - SpiderWeb
@@ -97,6 +98,7 @@
       Flammable: [Touch]
       Extinguish: [Touch]
   - type: SpiderWebObject
+    replaceable: false
   - type: Strap
     position: Stand
     needsHands: false
@@ -151,16 +153,16 @@
   - type: HealOnBuckle
     damage:
       types:
-        Bloodloss: -0.1
-        Blunt: -0.03
-        Slash: -0.03
-        Piercing: -0.03
-        Heat: -0.03
-        Shock: -0.03
-        Cold: -0.03
-        Caustic: -0.03
-        Poison: -0.05
-        Radiation: -0.05
+        Bloodloss: -0.2
+        Blunt: -0.6
+        Slash: -0.6
+        Piercing: -0.6
+        Heat: -0.6
+        Shock: -0.6
+        Cold: -0.6
+        Caustic: -0.6
+        Poison: -0.6
+        Radiation: -0.6
 
 - type: entity
   id: AmmoniaEggGenerator
@@ -191,6 +193,7 @@
       Flammable: [Touch]
       Extinguish: [Touch]
   - type: SpiderWebObject
+    replaceable: false
   - type: Transform
     anchored: true
   - type: Sprite

@@ -1,4 +1,12 @@
 - type: !PartialOnly entity
+  id: MobBaseScurret
+  components:
+    - type: !Remove Edible
+    # Bipedal, so no quadruped step tuning.
+    - type: FootprintOwner
+      printState: Paw
+
+- type: !PartialOnly entity
   id: MobEmotionalSupportScurret
   components:
   - type: AntagTarget
