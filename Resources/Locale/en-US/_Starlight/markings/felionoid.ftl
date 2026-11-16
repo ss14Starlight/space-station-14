@@ -60,7 +60,7 @@ marking-FelionoidHairMullet = Mullet
 marking-FelionoidHairNights = Nights
 marking-FelionoidHairOverTheShoulderBraid = Over-The-Shoulder Braid
 marking-FelionoidHairPigtails = Pigtails 
-marking-FelionoidHairStraightBangs = StraightBangs
+marking-FelionoidHairStraightBangs = Straight Bangs
 marking-FelionoidHairSurferBoy = Surfer Boy
 
 # Head
