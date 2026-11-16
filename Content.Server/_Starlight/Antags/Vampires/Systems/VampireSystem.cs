@@ -144,8 +144,8 @@ public sealed partial class VampireSystem : EntitySystem
         TransformComponent xform)
     {
         if (_container.IsEntityInContainer(uid) || !IsInSpace(xform) ||
-            TryComp<MobStateComponent>(uid, out var mobState) &&
-            mobState.CurrentState == Shared.Mobs.MobState.Dead)
+            (TryComp<MobStateComponent>(uid, out var mobState) &&
+                mobState.CurrentState == Shared.Mobs.MobState.Dead))
         {
             ResetSpaceExposure(sunlight);
             return;
