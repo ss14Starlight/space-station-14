@@ -12,6 +12,7 @@
       whitelist:
         tags:
         - ModularHudGoggles
+        - ModularHudSyndicate
 
 - type: !PartialOnly entity
   id: HudModuleFlashImmunity
