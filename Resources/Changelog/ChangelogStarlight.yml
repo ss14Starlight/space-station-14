@@ -1,11 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta, Soothe)
-  changes:
-  - message: Fixed an uncommon case where EoR could fail to start if the Captain chose the War card and either the Captain or one of the people who counter-picked the Deserter card were gibbed/ashed/otherwise erased from existence.
-    type: Fix
-  id: 410127
-  time: '2026-11-05T15:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7048
 - author: wonderfulnewworld
   changes:
   - message: Nuclear Operatives  will no longer suddenly become USSP SKB Agents.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410526
   time: '2026-11-16T15:23:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7271
+- author: WNP78
+  changes:
+  - message: Fix client hang with plumbing smart dispensers.
+    type: Fix
+  id: 410527
+  time: '2026-11-16T19:20:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7284
 Order: -1
