@@ -210,7 +210,7 @@
 - type: entity
   parent: Bible
   name: The Book Of life
-  description: "A holy book depicting the holy path towards eternal life and immortality"
+  description: "A holy book depicting the holy path towards eternal life and immortality."
   id: BibleBookOfLife
   components:
   - type: Sprite
