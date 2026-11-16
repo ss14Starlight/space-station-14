@@ -48,7 +48,7 @@ namespace Content.Client.Light
             if (LifeStage(uid) >= EntityLifeStage.Terminating)
             // Starlight begin
             {
-                _autoOriginalColors.Remove(uid);
+                rgb.AutoOriginalColors.Clear();
                 return;
             }
             // Starlight end
@@ -156,11 +156,11 @@ namespace Content.Client.Light
             _lights.SetColor(uid, rgb.OriginalLightColor, light);
 
             // Starlight begin
-            if (_autoOriginalColors.Remove(uid, out var autoColors))
-                foreach (var (layer, color) in autoColors)
-                    // Skip layers that have since been removed from the sprite.
-                    if (IsLayerOf(sprite, layer))
-                        _sprite.LayerSetColor(layer, color);
+            foreach (var (layer, color) in rgb.AutoOriginalColors)
+                // Skip layers that have since been removed from the sprite.
+                if (IsLayerOf(sprite, (Layer) layer))
+                    _sprite.LayerSetColor((Layer) layer, color);
+            rgb.AutoOriginalColors.Clear();
             // Starlight end
 
             if (rgb.Layers == null || rgb.OriginalLayerColors == null)
@@ -192,12 +192,7 @@ namespace Content.Client.Light
                 // Starlight begin
                 else
                 {
-                    if (!_autoOriginalColors.TryGetValue(uid, out var originals))
-                    {
-                        originals = new Dictionary<Layer, Color>(ReferenceEqualityComparer.Instance);
-                        _autoOriginalColors[uid] = originals;
-                    }
-
+                    var originals = rgb.AutoOriginalColors;
                     var modulated = 0;
                     foreach (var layer in sprite.AllLayers)
                     {
@@ -211,7 +206,7 @@ namespace Content.Client.Light
 
                     // Forget layers that have been removed (e.g. clothing re-rendered) so this doesn't grow forever.
                     if (originals.Count > modulated)
-                        foreach (var layer in originals.Keys.ToArray())
+                        foreach (var layer in originals.Keys.Cast<Layer>().ToArray())
                             if (!IsLayerOf(sprite, layer))
                                 originals.Remove(layer);
                             else if (layer.ShaderPrototype != "unshaded" && originals.Remove(layer, out var original))
