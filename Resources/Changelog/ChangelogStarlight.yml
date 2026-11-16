@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Custodians can now pry open powered doors.
-    type: Add
-  id: 410103
-  time: '2026-11-04T14:34:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6898
-- author: SirLutz
-  changes:
   - message: Malignant passive regeneration has been re-buffed, 50% regen increase(its at 75% of the original value when it came out).
     type: Tweak
   id: 410104
@@ -2799,4 +2792,11 @@ Entries:
   id: 410502
   time: '2026-11-16T07:29:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7275
+- author: neomoth
+  changes:
+  - message: Potentially fix some sprite layering issues that occur on reconnect without relaunching the game.
+    type: Fix
+  id: 410503
+  time: '2026-11-16T07:53:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7277
 Order: -1
