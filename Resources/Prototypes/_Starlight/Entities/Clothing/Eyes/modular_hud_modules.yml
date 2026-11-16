@@ -48,3 +48,24 @@
         priority: 10001
         preventsOtherColors: true
   - type: BlueNoirOverlay
+
+- type: entity
+  parent: ModularHudModuleBase
+  id: HudModuleShowIdAccess
+  name: ID access HUD module
+  description: A heads-up display module that lists the access permissions stored on ID cards and PDAs.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      color: White
+    - state: stripe
+      color: Goldenrod
+    - state: contacts
+    - state: hop_label
+  - type: ModularHudModule
+    visuals:
+      accent:
+        color: Goldenrod
+        priority: 10
+  - type: ShowAccess
