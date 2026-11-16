@@ -53,12 +53,17 @@ public sealed partial class MindShieldSystem : EntitySystem
     // Starlight-edit start
     private void OnAttemptImplant(EntityUid uid, MindShieldImplantComponent comp, AddImplantAttemptEvent args)
     {
-        if (HasComp<HeadRevolutionaryComponent>(args.Target))
-            _achievements.QueueUnlockAchievement(args.User, "beyond_reasonable_doubt");
+        if (args.User != args.Target) // Prevent that we just Implant ourself for Achivements
+        {
+            if (HasComp<HeadRevolutionaryComponent>(args.Target))
+                _achievements.QueueUnlockAchievement(args.User, "beyond_reasonable_doubt");
 
-        // So i need to use AddImplantAttemptEvent here anyway so Brighteye Mindshield thingies is now handle here, Achivement included.
-        if (HasComp<BrighteyeComponent>(args.Target))
-            _achievements.QueueUnlockAchievement(args.User, "mindshield_failure");
+            if (HasComp<BrighteyeComponent>(args.Target))
+            {
+                _achievements.QueueUnlockAchievement(args.User, "mindshield_failure");
+                _achievements.QueueUnlockAchievement(args.Target, "lightwalker_enforcement");
+            }
+        }
 
         if (HasComp<MindControlComponent>(args.Target)) // this SHOULD just be a yml blacklist on the implanter, but it refuses to work T-T
         {
@@ -88,9 +93,6 @@ public sealed partial class MindShieldSystem : EntitySystem
     {
         if (HasComp<HeadRevolutionaryComponent>(implanted) || HasComp<BrighteyeComponent>(implanted))
         {
-            if (HasComp<BrighteyeComponent>(implanted))
-                _achievements.QueueUnlockAchievement(implanted, "lightwalker_enforcement");
-
             _popupSystem.PopupEntity(Loc.GetString("head-rev-break-mindshield"), implanted);
             QueueDel(implant);
             return;

@@ -120,9 +120,9 @@
   requirements: []
 
 - type: achievement
-  id: lesser_kin
-  name: achievement-lesser-kin-name
-  description: achievement-lesser-kin-description
+  id: jealousy
+  name: achievement-jealousy-name
+  description: achievement-jealousy-description
   category: milestones
   showProgress: false
   icon:

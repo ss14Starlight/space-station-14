@@ -75,7 +75,7 @@ public sealed partial class ShadekinSystem
                     ent.Comp.MaxEnergy = 50;
                     ent.Comp.PhaseCost = 50;
 
-                    _achievements.QueueUnlockAchievement(ent.Owner, "lesser_kin");
+                    _achievements.QueueUnlockAchievement(ent.Owner, "jealousy");
 
                     _alerts.ClearAlert(ent.Owner, ent.Comp.PortalAlert);
                     _actionsSystem.RemoveAction(ent.Owner, ent.Comp.PortalAction);

@@ -160,8 +160,8 @@ achievement-mindshield-failure-description = Attempt to mindshield a Brighteye.
 achievement-lightwalker-enforcement-name = Lightwalker Enforcement
 achievement-lightwalker-enforcement-description = As a Brighteye, be the target of a mindshield attempt.
 
-achievement-lesser-kin-name = Lesser Kin
-achievement-lesser-kin-description = As a Shadekin, replace your core with a stolen brighteye core.
+achievement-jealousy-name = Jealousy
+achievement-jealousy-description = As a Black-Eye Shadekin, replace your core with a stolen Brighteye core.
 
 achievement-window-title = Track your milestones, hidden trophies, and long-term progress
 achievement-window-categories = Categories
