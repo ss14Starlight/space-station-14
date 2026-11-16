@@ -1,0 +1,9 @@
+- type: reaction
+  id: XenoNeuroAcidClean
+  reactants:
+    XenoNeuroAcid:
+      amount: 10
+    Blood:
+      amount: 10
+  products:
+    XenoNeuroAcidClean: 2

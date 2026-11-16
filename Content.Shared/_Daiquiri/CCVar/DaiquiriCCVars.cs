@@ -6,6 +6,12 @@ namespace Content.Shared._Daiquiri.CCVar;
 public sealed class DaiquiriCCVars
 {
     /// <summary>
+    ///     Whether a random station goal is sent to the station fax on round start.
+    /// </summary>
+    public static readonly CVarDef<bool> StationGoal =
+        CVarDef.Create("game.station_goal", true, CVar.SERVERONLY);
+
+    /// <summary>
     ///     Whether the AI help window is available on this server.
     /// </summary>
     public static readonly CVarDef<bool> AIHelpEnabled =
@@ -130,6 +136,9 @@ public sealed class DaiquiriCCVars
     /// </summary>
     public static readonly CVarDef<string> LobbyVinyl =
         CVarDef.Create("lobby.vinyl", "Classic", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> LobbyVinylEnabled =
+        CVarDef.Create("lobby.vinyl_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<string> LobbyVinylAnnounced =
         CVarDef.Create("lobby.vinyl_announced", "", CVar.CLIENTONLY | CVar.ARCHIVE);

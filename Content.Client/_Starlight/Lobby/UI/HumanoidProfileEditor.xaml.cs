@@ -486,6 +486,8 @@ namespace Content.Client._Starlight.Lobby.UI
             if (!disposing)
                 return;
 
+            _prototypeManager.PrototypesReloaded -= OnPrototypesReloaded;
+
             _loadoutWindow?.Dispose();
             _loadoutWindow = null;
         }

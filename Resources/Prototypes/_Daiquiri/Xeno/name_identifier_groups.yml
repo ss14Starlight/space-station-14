@@ -1,0 +1,9 @@
+- type: nameIdentifierGroup
+  id: Alien
+  minValue: 2
+  maxValue: 426
+
+- type: nameIdentifierGroup
+  id: Queen
+  minValue: 1
+  maxValue: 1

@@ -1,0 +1,5 @@
+- type: typingIndicator
+  id: AlienCustom
+  spritePath: _Daiquiri/Xeno/Mobs/Aliens/Alien_Typing.rsi
+  typingState: alien0
+  idleState: alien3

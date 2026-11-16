@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by borkroman",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "Alian_wall"
+    },
+    {
+      "name": "Alian_wall_Spawn",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "Alian_wall_East"
+    },
+    {
+      "name": "Alian_wall_North"
+    },
+    {
+      "name": "Alian_wall_South"
+    },
+    {
+      "name": "Alian_wall_West"
+    },
+    {
+      "name": "Alian0",
+      "directions": 4
+    },
+    {
+      "name": "Alian1",
+      "directions": 4
+    },
+    {
+      "name": "Alian2",
+      "directions": 4
+    },
+    {
+      "name": "Alian3",
+      "directions": 4
+    },
+    {
+      "name": "Alian4",
+      "directions": 4
+    },
+    {
+      "name": "Alian5",
+      "directions": 4
+    },
+    {
+      "name": "Alian6",
+      "directions": 4
+    },
+    {
+      "name": "Alian7",
+      "directions": 4
+    }
+  ]
+}

@@ -142,6 +142,7 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
             _prototypeManager.RegisterIgnore("codewordGenerator");
             _prototypeManager.RegisterIgnore("codewordFaction");
+            _prototypeManager.RegisterIgnore("stationGoal"); // Daiquiri
             // Starlight-edit: Lancer arcade scoreboards
             _prototypeManager.RegisterIgnore("arcadeScoreboard");
 

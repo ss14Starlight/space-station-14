@@ -1,0 +1,14 @@
+- type: damageModifierSet
+  id: DaiquiriColdResistant
+  coefficients:
+    Cold: 0.0
+
+# Mirrors the Gorilla set so the white gorilla keeps its resistances.
+- type: damageModifierSet
+  id: DaiquiriGorillaColdResistant
+  coefficients:
+    Asphyxiation: 1.5
+    Heat: 1.5
+    Cellular: 0
+    Poison: 1.5
+    Cold: 0.0

@@ -1,0 +1,6 @@
+#Смерть Чужих
+- type: emote
+  id: AlienDeathgasp
+  name: chat-emote-name-deathgasp
+  icon: { sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi, state: Scream }
+  chatMessages: ["Ксеноморф издаёт предсмертный крик, оседает и замирает..."]

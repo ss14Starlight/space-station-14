@@ -1,0 +1,12 @@
+xeno-radio-channel-alian = Коллективный разум ксеноморфов
+xeno-reagent-alien-silicon-name = Слизь Ксеноморфа
+xeno-reagent-xeno-blood-acid-name = Кислота Ксеноморфов
+xeno-reagent-xeno-blood-acid-desc = Абсолюно едкое
+xeno-reagent-xeno-blood-acid-physical-desc = Жёлтое вещество, способное растворить что угодно.
+xeno-reagent-xeno-neuro-acid-name = Нейрокислота
+xeno-reagent-xeno-neuro-acid-desc = Немного едкое
+xeno-reagent-xeno-neuro-acid-physical-desc = Жёлтое вещество, и лечит и калечит.
+xeno-reagent-xeno-neuro-acid-clean-name = Очищенная нейрокислота
+xeno-reagent-xeno-neuro-acid-clean-desc = Немного едкое
+xeno-reagent-xeno-neuro-acid-clean-physical-desc = Это явно можно пить.
+id-card-access-level-alien = Ксеноморфы

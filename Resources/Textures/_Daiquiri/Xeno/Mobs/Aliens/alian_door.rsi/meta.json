@@ -1,0 +1,124 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "made by borkroman",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+    {
+      "name": "bolted_unlit"
+    },
+    {
+      "name": "bolted_open_unlit"
+    },
+    {
+      "name": "closed"
+    },
+    {
+      "name": "closed_unlit"
+    },
+    {
+      "name": "open_unlit"
+    },
+    {
+      "name": "closing",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "closing_unlit"
+    },
+    {
+      "name": "deny_unlit"
+    },
+    {
+      "name": "open"
+    },
+    {
+      "name": "opening",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "opening_unlit"
+    },
+    {
+      "name": "panel_closed"
+    },
+    {
+      "name": "panel_closing"
+    },
+    {
+      "name": "panel_open"
+    },
+    {
+      "name": "panel_opening"
+    },
+    {
+      "name": "sparks"
+    },
+    {
+      "name": "sparks_broken"
+    },
+    {
+      "name": "sparks_damaged"
+    },
+    {
+      "name": "sparks_open"
+    },
+    {
+      "name": "welded"
+    },
+    {
+      "name": "emergency_unlit"
+    },
+    {
+      "name": "Alian_wall_East"
+    },
+    {
+      "name": "Alian_wall_North"
+    },
+    {
+      "name": "Alian_wall_South"
+    },
+    {
+      "name": "Alian_wall_West"
+    },
+    {
+      "name": "Alien_Door_Spawn",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

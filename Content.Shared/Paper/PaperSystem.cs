@@ -347,7 +347,7 @@ public sealed partial class PaperSystem : EntitySystem
             StampedName = Name(signer),
             StampedColor = Color.FromHex("#333333"),
             Type = StampType.Signature,
-            Font = "/Fonts/_Starlight/MarckScript-Regular.ttf" // 🌟Starlight🌟
+            Font = "/Fonts/_Daiquiri/MarckScript-Regular.ttf"
         };
 
         // STARLIGHT START

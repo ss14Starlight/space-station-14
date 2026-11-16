@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by borkroman",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "Alian_slime"
+    },
+    {
+      "name": "Alian_web0"
+    },
+    {
+      "name": "Alian_web1"
+    },
+    {
+      "name": "Alian_web2"
+    },
+    {
+      "name": "Alian_web3"
+    },
+    {
+      "name": "Alian_web4"
+    },
+    {
+      "name": "Alian_web5"
+    },
+    {
+      "name": "Alian_web6"
+    },
+    {
+      "name": "Alian_web7"
+    },
+    {
+      "name": "Alian_membran0"
+    },
+    {
+      "name": "Alian_membran1"
+    },
+    {
+      "name": "Alian_membran2"
+    },
+    {
+      "name": "Alian_membran3"
+    }
+  ]
+}

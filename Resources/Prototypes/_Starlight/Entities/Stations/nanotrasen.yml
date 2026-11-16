@@ -3,6 +3,7 @@
   parent:
     - StandardNanotrasenStationTestOnly
     - BaseStationAlertArmories
+    - BaseStationGoal
   categories: [ HideSpawnMenu ]
   components:
     - type: Transform

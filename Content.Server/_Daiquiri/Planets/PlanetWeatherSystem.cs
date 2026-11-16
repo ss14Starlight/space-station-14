@@ -226,7 +226,7 @@ public sealed partial class PlanetWeatherSystem : EntitySystem
 
         while (mobs.MoveNext(out var uid, out var state, out var damageable, out var xform))
         {
-            if (state.CurrentState == MobState.Dead)
+            if (state.CurrentState == MobState.Dead || !HasComp<ActorComponent>(uid))
                 continue;
 
             if (xform.MapUid != mapUid || IsSheltered(mapUid, xform))

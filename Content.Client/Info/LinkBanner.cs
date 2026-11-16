@@ -16,11 +16,8 @@ namespace Content.Client.Info
 
         public LinkBanner()
         {
-            var buttons = new BoxContainer
-            {
-                Orientation = LayoutOrientation.Horizontal
-            };
-            AddChild(buttons);
+            Orientation = LayoutOrientation.Horizontal;
+            SeparationOverride = 4;
 
             var uriOpener = IoCManager.Resolve<IUriOpener>();
             _cfg = IoCManager.Resolve<IConfigurationManager>();
@@ -37,9 +34,13 @@ namespace Content.Client.Info
 
             void AddInfoButton(string loc, CVarDef<string> cVar)
             {
-                var button = new Button { Text = Loc.GetString(loc) };
+                var button = new Button
+                {
+                    Text = Loc.GetString(loc),
+                    VerticalAlignment = Control.VAlignment.Center,
+                };
                 button.OnPressed += _ => uriOpener.OpenUri(_cfg.GetCVar(cVar));
-                buttons.AddChild(button);
+                AddChild(button);
                 _infoLinks.Add((cVar, button));
             }
         }

@@ -9257,7 +9257,7 @@ entities:
     - type: Paper
       stampState: paper_stamp-generic
       stampedBy:
-      - font: /Fonts/_Starlight/MarckScript-Regular.ttf
+      - font: /Fonts/_Daiquiri/MarckScript-Regular.ttf
         type: Signature
         stampedColor: '#333333FF'
         stampedName: Ms. Ironcoat

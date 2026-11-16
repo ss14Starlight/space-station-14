@@ -1,0 +1,12 @@
+xeno-radio-channel-alian = Xenomorph hive mind
+xeno-reagent-alien-silicon-name = Xenomorph Slime
+xeno-reagent-xeno-blood-acid-name = Xenomorph Acid
+xeno-reagent-xeno-blood-acid-desc = Absolutely caustic
+xeno-reagent-xeno-blood-acid-physical-desc = A yellow substance capable of dissolving anything.
+xeno-reagent-xeno-neuro-acid-name = Neurotoxin Acid
+xeno-reagent-xeno-neuro-acid-desc = Slightly caustic
+xeno-reagent-xeno-neuro-acid-physical-desc = A yellow substance that both heals and harms.
+xeno-reagent-xeno-neuro-acid-clean-name = Purified Neurotoxin Acid
+xeno-reagent-xeno-neuro-acid-clean-desc = Slightly caustic
+xeno-reagent-xeno-neuro-acid-clean-physical-desc = This is clearly drinkable.
+id-card-access-level-alien = Xenomorphs

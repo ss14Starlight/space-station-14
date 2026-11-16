@@ -107,6 +107,8 @@
     radius: 1
     energy: 3
     color: deepskyblue
+  - type: Damageable
+    damageModifierSet: DaiquiriColdResistant
 
 - type: entity
   id: MobWatcherMagmawing

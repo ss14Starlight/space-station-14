@@ -26,14 +26,13 @@
   - type: Sprite
     sprite: Structures/Power/Generation/Singularity/emitter.rsi
     layers:
-    - state: emitter2
+    - state: emitter
     - state: beam
       shader: unshaded
       visible: false
       map: ["enum.EmitterVisualLayers.Lights"]
-    - state: locked
+    - state: unlocked
       shader: unshaded
-      visible: false
       map: ["enum.LockVisualLayers.Lock"]
   - type: Emitter
     alertRadio: true

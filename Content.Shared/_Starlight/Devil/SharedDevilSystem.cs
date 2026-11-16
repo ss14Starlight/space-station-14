@@ -38,6 +38,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
         SubscribeLocalEvent<InfernalContractComponent, ComponentInit>(OnContractInit);
         SubscribeLocalEvent<InfernalContractComponent, ExaminedEvent>(OnExamineEvent);
         SubscribeLocalEvent<InfernalContractComponent, PaperSignedEvent>(OnSignedEvent);
+        SubscribeLocalEvent<InfernalContractComponent, PaperSignatureRequestMessage>(OnContractSignatureRequest);
         SubscribeLocalEvent<InfernalContractComponent, PaperWriteAttemptEvent>(OnPaperWriteAttempt);
         SubscribeLocalEvent<InfernalContractComponent, PaperInputTextMessage>(OnPaperInputTextMessage, after: [typeof(PaperSystem)]);
 
@@ -191,6 +192,18 @@ public abstract partial class SharedDevilSystem : EntitySystem
 
         contractComp.Completed = true;
         Dirty(uid, contractComp);
+    }
+
+    private void OnContractSignatureRequest(Entity<InfernalContractComponent> ent, ref PaperSignatureRequestMessage args)
+    {
+        if (ent.Comp.Completed)
+            return;
+
+        var ev = new PaperSignedEvent(args.Actor);
+        RaiseLocalEvent(ent.Owner, ref ev);
+
+        if (ev.Cancelled && ev.FailReason != null)
+            _popup.PopupClient(ev.FailReason, args.Actor, args.Actor);
     }
 
     /// <summary>

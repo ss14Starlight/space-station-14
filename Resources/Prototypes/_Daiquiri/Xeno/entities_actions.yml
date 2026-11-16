@@ -1,0 +1,321 @@
+#Отложить яйцо
+- type: entity
+  id: ActionAlienLayEgg
+  name: Отложить яйцо
+  description: Дети такие милые, когда убивают людей за вас.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Egg
+    useDelay: 120
+  - type: InstantAction
+    event: !type:EggLayInstantActionEvent
+
+#Строительство слизи
+- type: entity
+  id: ActionAlienWeb
+  name: Пустить слизь
+  description: Слизь - ваш друг и союзнить, распространяйте её чтобы замедлить ваших врагов, а ходьба по ней усиливает вашу регенерацию.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Web
+    useDelay: 25
+  - type: InstantAction
+    event: !type:SpiderWebActionEvent
+
+#Строительство стены
+- type: entity
+  id: ActionSpawnAlianWall
+  name: Построить стену улья
+  description: Возведите стену для защиты улья.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Wall
+  - type: TargetAction
+    range: 1.5
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: AlianWallSpawn
+        amount: 1
+
+#Строительство двери улья
+- type: entity
+  id: ActionSpawnAlienDoor
+  name: Построить проход улья
+  description: Органическая дверь, с доступом только у взрослых ксеноморфов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Door
+  - type: TargetAction
+    range: 1.5
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: AlienDoorSpawn
+        amount: 1
+
+#Строительство мембраны улья
+- type: entity
+  id: ActionSpawnAlienMembran
+  name: Построить мембрану улья
+  description: Тонкая мембрана, наносящая кислотные повреждения всем кто через неё ходит, но вам это не грозит.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 40
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Membran
+  - type: TargetAction
+    range: 1.5
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: AlianMembran
+        amount: 1
+
+#Орать(респрайт)
+- type: entity
+  id: ActionAlienScream
+  name: Кричать
+  description: Выпустите эмоции наружу.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 10
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Scream
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ScreamActionEvent
+
+#Драться(респрайт)
+- type: entity
+  id: ActionAlienCombatModeToggle
+  name: "[color=red]Боевой режим[/color]"
+  description: УБИВАТЬ УБИВАТЬ УБИВАТЬ УБИВАТЬ!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    icon: { sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi, state: NOcombat }
+    iconOn: { sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi, state: combat }
+    priority: -100
+  - type: InstantAction
+    event: !type:ToggleCombatActionEvent
+
+- type: entity
+  id: ActionAlienCombatModeToggleOff
+  parent: ActionAlienCombatModeToggle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    enabled: false
+    autoPopulate: false
+    priority: -100
+
+#Ночное зрение
+- type: entity
+  id: ActionToggleLightingAlienNightVision
+  name: Ночное зрение
+  description: Переключите своё зрение в режим ночного зрения, чтобы видеть всё!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: { sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi, state: NONightVision }
+    iconOn: { sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi, state: NightVision }
+    clientExclusive: true
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ToggleLightingActionEvent
+
+#Отрастить яйцеклад
+- type: entity
+  id: EggLayerEvolutionAction
+  name: Отрастить яйцеклад
+  description: Вы не сможете двигаться, но сможете построить армию.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: EggLay
+    useDelay: 60
+  - type: InstantAction
+    event: !type:ReformEvent {}  
+
+#Сбросить яйцеклад
+- type: entity
+  id: NOEggLayerEvolutionAction
+  name: Сбросить яйцеклад
+  description: Сбросте яйцеклад и снова двигайтесь.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: NoEggLay
+    useDelay: 20
+  - type: InstantAction
+    event: !type:ReformEvent {}  
+
+#Эволюционировать в трутня
+- type: entity
+  id: AlienEvolutionAction
+  name: Эволюционировать в трутня
+  description: Пришло время стать сильнее.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Alien
+    useDelay: 180
+  - type: InstantAction
+    event: !type:ReformEvent {} 
+
+#Эволюционировать в солдата
+- type: entity
+  id: SolderEvolutionAction
+  name: Эволюционировать в солдата
+  description: Пришло время стать сильнее.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Sold
+    useDelay: 460
+  - type: InstantAction
+    event: !type:ReformEvent {}
+
+#Эволюционировать в преторианца
+- type: entity
+  id: PraetorianEvolutionAction
+  name: Эволюционировать в преторианца
+  description: Пришло время стать сильнее.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Preto
+    useDelay: 920
+  - type: InstantAction
+    event: !type:ReformEvent {}
+
+#Эволюционировать в трутня
+- type: entity
+  id: RoyalAlienEvolutionAction
+  name: Эволюционировать в трутня
+  description: Пришло время стать сильнее.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Alien
+    useDelay: 180
+  - type: InstantAction
+    event: !type:ReformEvent {} 
+
+#Эволюционировать в королеву
+- type: entity
+  id: RoyalQueenEvolutionAction
+  name: Эволюционировать в королеву
+  description: Пришло время стать сильнее.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Queen
+    useDelay: 180
+  - type: InstantAction
+    event: !type:ReformEvent {} 
+
+#Вырваться из груди
+- type: entity
+  id: SliderBreakAction
+  name: Вырваться из груди
+  description: Вы готовы увидеть свет, но это убьёт вашего носителя.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Slider
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:GibActionEvent {}
+
+- type: entity
+  id: ActionToggleAlienClaw
+  name: Вцепиться когтями
+  description: Используйте свои когти чтобы игнорировать гравитацию.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon: { sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi, state: claw }
+    iconOn: { sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi, state: claw }
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: ActionAcidAlien
+  name: Кислотный плевок
+  description: Используйте свою слюну чтобы убивать врагов (доступно раз в 5 секунд).
+  components:
+  - type: Action
+    useDelay: 5
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Acid
+    priority: 100
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: ActionNeuroAlien
+  name: Плевок нейрокислотой
+  description: Нейрокислота способна восстановить 25 единиц любого урона (доступно раз в 30 секунд).
+  components:
+  - type: Action
+    useDelay: 5
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      state: Neuro
+    priority: 100
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent

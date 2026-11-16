@@ -1,0 +1,142 @@
+#яйца ксено
+- type: entity
+  id: AlienEgg
+  parent: AlienEggDecor
+  description: Там что-то швелится.
+  name: Овоморф
+  suffix: BORK (Alien)
+  components:
+  - type: Sprite
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alien_egg/alien_egg.rsi
+    layers:
+      - state: alienegg
+  - type: TimedSpawner
+    prototypes:
+    - AlienEggOpenSliderSpawn
+    intervalSeconds: 180
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn 
+    lifetime: 181
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FoodMeatAlian:
+            min: 1
+            max: 2
+          MobAlienSlider:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: AlienEggOpenDecor
+  parent: AlienEggDecor
+  description: Кажется оно пустое, это не к добру.
+  name: Овоморф
+  suffix: BORK (Alien/Decor)
+  components:
+  - type: Sprite
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alien_egg/alien_egg_open.rsi
+    layers:
+      - state: alienegg_open
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FoodMeatAlian:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+#открытие яйца
+- type: entity
+  parent: AlienEggOpenDecor
+  id: AlienEggOpenSliderSpawn
+  suffix: BORK (Alien/OpenEgg)
+  components:
+  - type: Sprite
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alien_egg/alien_egg_open.rsi
+    layers:
+    - state: alienegg_opening
+  - type: SpawnOnDespawn
+    prototype: AlienEggOpenDecor
+  - type: TimedSpawner
+    prototypes:
+    - MobAlienSlider
+    intervalSeconds: 2
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 2.5
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/_Daiquiri/Xeno/Aliens/alienegg_opening.ogg
+      params:
+        volume: -10
+
+- type: entity
+  id: AlienEggDecor
+  parent: BaseItem
+  description: Там что-то швелится.
+  name: Овоморф
+  suffix: BORK (Alien/Decor)
+  components:
+  - type: Sprite
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alien_egg/alien_egg.rsi
+    layers:
+      - state: alienegg
+  - type: MultiHandedItem
+  - type: StaticPrice
+    price: 4000
+  - type: Item
+    size: Huge
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FoodMeatAlian:
+            min: 1
+            max: 1
+          MobAlienSlider:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnHighSpeedImpact
+    minimumSpeed: 0.1
+    damage:
+      types:
+        Blunt: 1

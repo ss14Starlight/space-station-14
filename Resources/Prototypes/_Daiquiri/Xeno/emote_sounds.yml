@@ -1,0 +1,11 @@
+- type: emoteSounds
+  id: AlienScream
+  sounds:
+    Scream:
+      collection: AlienScreamCollection
+
+- type: emoteSounds
+  id: QueenRoar
+  sounds:
+    Scream:
+      collection: QueenRoarCollection

@@ -1,0 +1,21 @@
+- type: startingGear
+  id: AlienGear
+  equipment:
+    pocket1: PinpointerAlien
+    pocket2: PinpointerAlienHumanoid
+    shoes: ShoesAlienClaw
+
+- type: startingGear
+  id: SliderGear
+  equipment:
+    pocket1: PinpointerAlien
+    pocket2: PinpointerAlienHumanoid
+
+- type: startingGear
+  id: InfectedGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGreen
+    shoes: ClothingShoesColorBlack
+    id: AssistantPDA
+    belt: ClothingBeltStorageWaistbag
+    ears: ClothingHeadsetAssistant

@@ -1,0 +1,267 @@
+- type: entity
+  parent: BaseSubdermalImplant
+  id: AlienImplant
+  name: Коллективное чувство
+  description: Чувство коллективного разума, если дрон попадет в критическое состояние или умрет.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+      permanent: true
+      whitelist:
+        components:
+        - MobState 
+    - type: TriggerOnMobstateChange
+      mobState:
+      - Critical
+      - Dead
+    - type: RattleOnTrigger
+      radioChannel:
+      - Alian
+
+#мясо чужих
+- type: entity
+  name: Мясо ксеноморфа
+  parent: FoodMeatXeno
+  id: FoodMeatAlian
+  description: Кусок мяса ксеноморфа, пропитанный кислотой.
+  components:
+  - type: Sprite
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alian_meat.rsi
+    layers:
+      - state: Alian
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: XenoBloodAcid
+          Quantity: 20
+        - ReagentId: AlienSilicon
+          Quantity: 10
+
+- type: entity
+  name: Нейрожелеза
+  parent: FoodMeatXeno
+  id: FoodMeatAlianNeuro
+  description: Орган взрослой особи ксеноморфа, выделяющий неройкислоту.
+  components:
+  - type: Sprite
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alian_meat.rsi
+    layers:
+      - state: neuro_organ
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: XenoNeuroAcid
+          Quantity: 20
+        - ReagentId: XenoBloodAcid
+          Quantity: 5
+        - ReagentId: AlienSilicon
+          Quantity: 5
+
+- type: entity
+  id: OrganHumanBrainInfected
+  parent: OrganHumanBrain
+  components:
+  - type: Brain
+  - type: Nymph
+    entityPrototype: MobAlienSliderRoyal
+    transferMind: true
+
+#Чутьё Королевы
+- type: entity
+  name: Чутьё Королевы
+  description: Вы можете чувствовать свою королеву, где бы она не находилась.
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  id: PinpointerAlien
+  components:
+  - type: Unremoveable
+  - type: Transform
+    noRot: True
+  - type: Sprite
+    noRot: True
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/Alien_instinct.rsi
+    layers:
+    - state: instinct_Queen
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/Alien_instinct.rsi
+    state: instinct_Queen
+  - type: Item
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/Alien_instinct.rsi
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PinpointerVisuals.IsActive:
+        enum.PinpointerLayers.Screen:
+          True: { visible: True }
+          False: { visible: False }
+      enum.PinpointerVisuals.TargetDistance:
+        enum.PinpointerLayers.Screen:
+          Unknown: { state: pinonnull }
+          Reached: { state: pinondirect }
+          Close: { state: pinonclose }
+          Medium: { state: pinonmedium }
+          Far: { state: pinonfar }
+  - type: AnimationPlayer
+  - type: Pinpointer
+    component: EggLayer
+    targetName: Королева
+
+#Чувство жертвы
+- type: entity
+  name: Чувство жертвы
+  description: Вы можете чувствовать ближайшего гуманоида.
+  parent: PinpointerAlien
+  categories: [ HideSpawnMenu ]
+  id: PinpointerAlienHumanoid
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    noRot: True
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/Alien_instinct.rsi
+    layers:
+    - state: instinct_Humanoid
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/Alien_instinct.rsi
+    state: instinct_Humanoid
+  - type: Pinpointer
+    component: HumanoidAppearance
+    targetName: Гуманоиды
+
+#Когти ксеноморфа
+- type: entity
+  parent: [ClothingShoesBase, BaseToggleClothing]
+  id: ShoesAlienClaw
+  categories: [ HideSpawnMenu ]
+  name: Когти ксеноморфа
+  description: .
+  components:
+    - type: Sprite
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/AlienActionIcons.rsi
+      layers:
+      - state: claw
+        map: [ "enum.ToggleableVisuals.Layer" ]
+    - type: ToggleClothing
+      action: ActionToggleAlienClaw
+      mustEquip: false
+    - type: ComponentToggler
+      components:
+      - type: NoSlip
+    - type: Magboots
+    - type: ClothingSpeedModifier
+      walkModifier: 1
+      sprintModifier: 1
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ToggleableVisuals.Enabled:
+          enum.ToggleableVisuals.Layer:
+            True: {state: claw}
+            False: {state: claw}
+    - type: Unremoveable
+    - type: FootstepModifier 
+      footstepSoundCollection:
+        collection: AlienFootStepCollection
+        params:
+          volume: -12
+
+#Кислотный плевок
+- type: entity
+  id: BulletAcidAlien
+  name: Кислотный плевок
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      noRot: false
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/acid_spit.rsi
+      layers:
+        - state: acidspit
+    - type: TimedDespawn
+      lifetime: 1
+    - type: EmitSoundOnSpawn
+      sound: 
+        path: /Audio/_Daiquiri/Xeno/Aliens/alien_acid_shot.ogg
+    - type: Projectile
+      impactEffect: BulletImpactEffectKinetic
+      damage:
+        types:
+          Caustic: 10
+          Structural: 300
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AlienGun
+  name: Кислотная железа
+  description: железа выделяющая часть кислоты из крови ксеноморфа.
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+  - type: BasicEntityAmmoProvider
+    proto: BulletAcidAlien
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_Daiquiri/Xeno/Aliens/alien_scream_2.ogg
+    projectileSpeed: 10
+
+#Плевок нейрокислотой
+- type: entity
+  id: BulletNeuro
+  name: Плевок нейрокислотой
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: .
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/acid_spit.rsi
+    layers:
+    - state: neuro
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/_Daiquiri/Xeno/Aliens/alien_acid_shot.ogg
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      groups:
+        Brute: -75
+        Airloss: -75
+        Toxin: -75
+        Genetic: -75
+      types:
+        Caustic: 10
+        Heat: -75
+        Shock: -75
+        Cold: -75
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AlienGunNeuro
+  name: Железа нейрокислоты
+  description: Результат эволюции ккислотной железы.
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 30
+  - type: BasicEntityAmmoProvider
+    proto: BulletNeuro
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_Daiquiri/Xeno/Aliens/alien_scream_2.ogg
+    projectileSpeed: 10

@@ -1,0 +1,54 @@
+#Звуки
+- type: soundCollection
+  id: AliensDead
+  files:
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_dead_1.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_dead_2.ogg
+
+- type: soundCollection
+  id: AlienScreamCollection
+  files:
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_scream_1.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_scream_2.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_scream_3.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_dead_2.ogg
+
+- type: soundCollection
+  id: QueenRoarCollection
+  files:
+  - /Audio/_Daiquiri/Xeno/Aliens/Queen_roar_1.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/Queen_roar_2.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/Queen_roar_3.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/Queen_roar_4.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/Queen_roar_5.ogg
+
+- type: soundCollection
+  id: AlienScreamAttack
+  files:
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_scream_attack_1.1.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_scream_attack_1.2.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_scream_attack_1.3.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_scream_attack_2.1.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_scream_attack_2.2.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_scream_attack_2.3.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_scream_attack_3.1.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_scream_attack_3.2.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/alien_scream_attack_3.3.ogg
+
+- type: soundCollection
+  id: AlienFootStepCollection
+  files:
+  - /Audio/_Daiquiri/Xeno/Aliens/Alien_FootStep1.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/Alien_FootStep2.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/Alien_FootStep3.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/Alien_FootStep4.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/Alien_FootStep5.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/Alien_FootStep6.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/Alien_FootStep7.ogg
+
+- type: soundCollection
+  id: SliderFootStepCollection
+  files:
+  - /Audio/_Daiquiri/Xeno/Aliens/Slider_FootStep1.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/Slider_FootStep2.ogg
+  - /Audio/_Daiquiri/Xeno/Aliens/Slider_FootStep3.ogg

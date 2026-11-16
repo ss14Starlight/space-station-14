@@ -9,7 +9,22 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: bear
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 600
+  - type: Damageable
+    damageModifierSet: DaiquiriColdResistant
 
 - type: entity
   parent: MobBearSoviet
   id: MobBearBrown
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 600
+  - type: Damageable
+    damageModifierSet: DaiquiriColdResistant

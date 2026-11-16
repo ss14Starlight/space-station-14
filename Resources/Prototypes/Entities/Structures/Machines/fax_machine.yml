@@ -90,6 +90,7 @@
     order: 100 # Starlight
     name: "Central Command"
     notifyAdmins: true
+    receiveAllStationGoals: true # Daiquiri
 
 - type: entity
   parent: FaxMachineSyndicateBase # Starlight
@@ -118,5 +119,6 @@
       order: 200 # Starlight
       name: "Captain"
       receiveNukeCodes: true
+      receiveStationGoal: true # Daiquiri
     - type: StealTarget
       stealGroup: FaxMachineCaptain

@@ -1,0 +1,11 @@
+- type: gamePreset
+  id: Xenotwo
+  alias:
+  - greenshift
+  - shittersafarideluxeedition
+  name: Вторжение
+  showInVote: false #4boring4vote
+  description: Переживите нападение ксеноморфов на станцию
+  rules:
+  - SpaceTrafficControlFriendlyEventScheduler 
+  - BasicRoundstartVariation

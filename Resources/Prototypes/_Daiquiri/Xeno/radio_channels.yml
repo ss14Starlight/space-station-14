@@ -1,0 +1,8 @@
+#Радио Чужих
+- type: radioChannel
+  id: Alian
+  name: xeno-radio-channel-alian
+  keycode: 'ч' 
+  frequency: 426
+  color: "#d9f500"
+  longRange: true

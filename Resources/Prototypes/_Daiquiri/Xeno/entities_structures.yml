@@ -1,0 +1,348 @@
+#Слизь улья
+- type: entity
+  id: AlianWeb
+  suffix: BORK (Alien)
+  name: Слизь улья
+  description: Слизь, вырабатываемая ксеноморфами для постройки улья.
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: DamageContacts
+      damage:
+        groups:
+          Brute: -0.5
+          Burn: -0.5
+          Airloss: -0.5
+          Toxin: -0.5
+          Genetic: -0.5
+      ignoreWhitelist:
+        tags:
+        - CanPilot
+        - CannotSuicide
+        - VimPilot
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/alian_web.rsi
+      layers:
+        - state: Alian_web0
+          map: ["spiderWebLayer"]
+      drawdepth: FloorTiles
+    - type: Appearance
+    - type: RandomSprite
+      available:
+      - 0:
+          Alian_web0: ""
+      - 0:
+          Alian_web1: ""
+      - 0:
+          Alian_web2: ""
+      - 0:
+          Alian_web3: ""
+      - 0:
+          Alian_web4: ""
+      - 0:
+          Alian_web5: ""
+      - 0:
+          Alian_web6: ""
+      - 0:
+          Alian_web7: ""
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: SliderFootStepCollection
+        params:
+          volume: -8
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Aliens
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 30
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            AlianSlime:
+              min: 1
+              max: 2
+    - type: Temperature
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 10
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      blacklist:
+        components:
+            - IgnoreSpiderWeb
+    - type: EmitSoundOnSpawn
+      sound: 
+        path: /Audio/_Daiquiri/Xeno/Aliens/Alian_slime_Spawn.ogg
+        params:
+          volume: -5
+    - type: AtmosDevice
+    - type: GasMiner
+      maxExternalPressure: 105
+      spawnAmount: 0.1
+      spawnGas: Ammonia
+
+#Мембрана улья
+- type: entity
+  id: AlianMembran
+  parent: AlianWeb
+  suffix: BORK (Alien)
+  name: Мембрана улья
+  description: Прозрачная слизь, обжигающая при прикосновении.
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      sprite: _Daiquiri/Xeno/Mobs/Aliens/alian_web.rsi
+      layers:
+        - state: Alian_membran0
+          map: ["spiderWebLayer"]
+      drawdepth: Overdoors
+    - type: Appearance
+    - type: RandomSprite
+      available:
+      - 0:
+          Alian_membran0: ""
+      - 0:
+          Alian_membran1: ""
+      - 0:
+          Alian_membran2: ""
+      - 0:
+          Alian_membran3: ""
+    - type: DamageContacts
+      damage:
+        types:
+          Caustic: 0.2
+
+#Затвердевшая слизь
+- type: entity
+  name: Затвердевшая слизь
+  suffix: BORK (Alien)
+  parent: FoodMeatBase
+  id: AlianSlime
+  description: Слизь, вырабатываяемая ксеноморфами для строительства.
+  components:
+  - type: Sprite
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alian_web.rsi
+    layers:
+      - state: Alian_slime
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: AlienSilicon
+          Quantity: 25
+        - ReagentId: XenoBloodAcid
+          Quantity: 5
+
+#Стена улья
+- type: entity
+  parent: BaseWall
+  id: AlianWall
+  suffix: BORK (Alien)
+  name: Стена улья
+  description: Довольно крепкое сооружение ксеноморфов из слизи.
+  components:
+  - type: Damageable
+    damageModifierSet: Aliens
+  - type: IconSmooth
+    key: walls
+    base: Alian
+  - type: SmoothEdge
+  - type: Sprite
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alian_Wall.rsi
+    layers:
+    - state: Alian_wall
+    - map: [ "enum.EdgeLayer.South" ]
+      state: Alian_wall_South
+    - map: [ "enum.EdgeLayer.East" ]
+      state: Alian_wall_East
+    - map: [ "enum.EdgeLayer.North" ]
+      state: Alian_wall_North
+    - map: [ "enum.EdgeLayer.West" ]
+      state: Alian_wall_West
+  - type: Icon
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alian_Wall.rsi
+    state: Alian_wall
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AlianSlime:
+            min: 2
+            max: 4
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+
+#Спавн Стены
+- type: entity
+  name: Стена улья
+  parent: WallSpawnAsteroid
+  id: AlianWallSpawn
+  suffix: BORK (Alien/Spawn)
+  components:
+  - type: Sprite
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alian_Wall.rsi
+    layers:
+    - state: Alian_wall_Spawn
+  - type: SpawnOnDespawn
+    prototype: AlianWall
+  - type: TimedDespawn
+    lifetime: 0.7
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/_Daiquiri/Xeno/Aliens/Alian_slime_Spawn.ogg
+      params:
+        volume: -5
+
+#Дверь улья
+- type: entity
+  id: AlienDoor
+  parent: BaseStructure
+  name: Проход улья
+  suffix: BORK (Alien)
+  description: Никто не знает, что вас ждёт за этим проходом.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alian_door.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: closed_unlit
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: bolted_unlit
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+    - state: emergency_unlit
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AnimationPlayer
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49" 
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: DoorBolt
+  - type: Door
+    closeTimeTwo: 0.4
+    openTimeTwo: 0.4
+    crushDamage:
+      types:
+        Blunt: 50
+    openSound:
+      path: /Audio/_Daiquiri/Xeno/Aliens/aliendoor_opening.ogg
+    closeSound:
+      path: /Audio/_Daiquiri/Xeno/Aliens/aliendoor_closing.ogg
+    denySound:
+      path: /Audio/_Daiquiri/Xeno/Aliens/Alian_slime_Spawn.ogg
+  - type: Airlock
+    openUnlitVisible: true 
+  - type: NavMapDoor
+  - type: AccessReader
+    access: [["AlienAccess"]]
+  - type: Appearance
+  - type: WiresVisuals
+  - type: ApcPowerReceiver
+    powerLoad: 0
+  - type: ExtensionCableReceiver
+  - type: Electrified
+    enabled: false
+    usesApcPower: true
+  - type: Airtight
+  - type: Occluder
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Aliens
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AlianSlime:
+            min: 2
+            max: 4
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+
+#Спавн двери улья
+- type: entity
+  name: Проход улья
+  parent: WallSpawnAsteroid
+  id: AlienDoorSpawn
+  suffix: BORK (Alien/Spawn)
+  components:
+  - type: Sprite
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alian_door.rsi
+    layers:
+    - state: Alien_Door_Spawn
+  - type: SpawnOnDespawn
+    prototype: AlienDoor
+  - type: TimedDespawn
+    lifetime: 0.7
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/_Daiquiri/Xeno/Aliens/Alian_slime_Spawn.ogg
+      params:
+        volume: -5

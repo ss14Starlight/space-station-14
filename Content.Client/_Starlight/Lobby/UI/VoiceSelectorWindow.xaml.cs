@@ -24,7 +24,7 @@ public sealed partial class VoiceSelectorWindow : DefaultWindow
 
     public VoicePrototype? CurrentVoice { get; private set; } = null;
 
-    private readonly VoiceTagTaxonomy _taxonomy;
+    private VoiceTagTaxonomy _taxonomy;
 
     private Sex? _sexFilter = null;
     private VoicePitch? _pitchFilter = null;
@@ -156,6 +156,28 @@ public sealed partial class VoiceSelectorWindow : DefaultWindow
 
         if (updateVoice && CurrentVoice != null)
             SelectVoice(CurrentVoice);
+    }
+
+    /// <summary>
+    /// Rebuilds the available voices and their tag filter after the server voice list changed.
+    /// </summary>
+    public void RefreshVoices(List<VoicePrototype> voices)
+    {
+        _taxonomy = new VoiceTagTaxonomy(voices, _prototypeManager);
+        _tagFilter = null;
+
+        TagFilter.Clear();
+        TagFilter.AddItem(Loc.GetString("voice-selector-tag-all"));
+        var tagIndex = 1;
+        foreach (var tag in _taxonomy.CachedTags)
+        {
+            TagFilter.AddItem(tag.ToDisplayName(_localization), tagIndex);
+            TagFilter.SetItemMetadata(tagIndex, tag);
+            tagIndex++;
+        }
+
+        UpdateVoices(voices, updateList: true, updateVoice: false);
+        FilterAndUpdateVoices();
     }
 
     public void SelectVoice(VoicePrototype voice)

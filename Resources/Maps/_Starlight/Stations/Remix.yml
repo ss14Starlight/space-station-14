@@ -73623,7 +73623,7 @@ entities:
       - type: Signature
         stampedName: CED Technician "Construction"
         stampedColor: '#333333FF'
-        font: /Fonts/_Starlight/MarckScript-Regular.ttf
+        font: /Fonts/_Daiquiri/MarckScript-Regular.ttf
       - type: RubberStamp
         stampedName: Central Engineering Division
         stampedColor: '#E39919FF'
@@ -73639,7 +73639,7 @@ entities:
       - type: Signature
         stampedName: CSD Enforcement Officer "Oritnyan"
         stampedColor: '#333333FF'
-        font: /Fonts/_Starlight/MarckScript-Regular.ttf
+        font: /Fonts/_Daiquiri/MarckScript-Regular.ttf
       content: >2-
                                   [head=3]NT-CC Consortium Services[/head]
 

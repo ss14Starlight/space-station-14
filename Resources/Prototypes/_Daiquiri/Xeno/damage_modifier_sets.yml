@@ -1,0 +1,9 @@
+#Броня Чужих
+- type: damageModifierSet
+  id: Aliens
+  coefficients:
+    Caustic: 0.0
+    Blunt: 0.75
+    Slash: 0.75
+    Piercing: 0.70
+    Heat: 1.5

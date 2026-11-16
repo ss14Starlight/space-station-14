@@ -29,10 +29,11 @@
                                        HorizontalExpand="True" HorizontalAlignment="Center" Text="{Loc 'ui-lobby-welcome'}" />
                                 <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="2" />
                                 <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" SeparationOverride="4">
+                                    <Button Name="GuidebookButton" Access="Public" Text="{Loc 'server-info-guidebook-button'}"
+                                            VerticalAlignment="Center" />
                                     <Button Name="AchievementsButton" Access="Public" Text="{Loc 'ui-lobby-achievements-button'}"
-                                            Margin="0 4 0 4" />
-                                    <info:LinkBanner Name="LinkBanner" VerticalExpand="false" HorizontalAlignment="Center"
-                                                     Margin="3 3 3 3" />
+                                            VerticalAlignment="Center" />
+                                    <info:LinkBanner Name="LinkBanner" VerticalExpand="false" VerticalAlignment="Center" />
                                 </BoxContainer>
                                 <controls:StripeBack>
                                     <BoxContainer Orientation="Horizontal" SeparationOverride="6" Margin="3 3 3 3">

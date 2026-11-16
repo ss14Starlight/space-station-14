@@ -1,0 +1,591 @@
+#База Ксенов
+- type: entity
+  abstract: true
+  parent: MobXeno
+  id: BaseMobAlien
+  components:
+  - type: Tag
+    tags:
+    - FootstepSound
+    - DoorBumpOpener
+    - Alien
+  - type: Wagging
+    action: ActionToggleLightingAlienNightVision
+  - type: AutoImplant
+    implants:
+    - AlienImplant
+  - type: Deathgasp
+    prototype: AlienDeathgasp
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: running
+      Dead:
+        Base: dead
+  - type: CombatMode
+    combatToggleAction: ActionAlienCombatModeToggle
+  - type: TypingIndicator
+    proto: AlienCustom
+  - type: Access
+    tags:
+    - AlienAccess
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: NameIdentifier
+    group: Alien
+  - type: Bloodstream
+    bloodlossDamage:
+      types:
+        Bloodloss: 0
+    bloodlossHealDamage:
+      types:
+        Bloodloss: -1
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: XenoBloodAcid
+        Quantity: 100
+  - type: StatusEffects
+    allowed:
+    - Stun
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: AliensDead
+      params:
+        volume: -2
+  - type: Damageable
+    damageModifierSet: Aliens
+  - type: IgnoreSpiderWeb
+  - type: Speech
+    speechVerb: LargeMob
+    speechSounds: AlienSpeach
+  - type: Vocal
+    screamAction: ActionAlienScream
+    sounds:
+      Male: AlienScream
+      Female: AlienScream
+      Unsexed: AlienScream
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/_Daiquiri/Xeno/Aliens/Slider_spawn.ogg
+      params:
+        volume: -8
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Alian
+  - type: ActiveRadio
+    channels:
+    - Alian
+  - type: Puller
+    needsHands: false
+  - type: PassiveDamage 
+    allowedStates:
+    - Alive
+    damage:
+      groups:
+        Brute: -1.50
+        Burn: -1.50
+        Airloss: -1.50
+        Toxin: -1.50
+        Genetic: -1.50
+  - type: Emoting
+  - type: Inventory
+    templateId: Alien
+  - type: InventorySlots
+  - type: Loadout
+    prototypes: [AlienGear]
+
+#Трутень
+- type: entity
+  name: Трутень
+  suffix: BORK (Alien)
+  description: Идеальный организм.
+  parent: BaseMobAlien
+  id: MobAlien
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alien.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.7
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+        Slash: 5
+        Structural: 20
+    soundHit:
+     collection: AlienScreamAttack
+    animation: WeaponArcClaw
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 5
+    baseWalkSpeed : 5.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 450
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Трутень
+    description: Вы - основная рабочая сила улья, стройте его и выполняйте все прихоти королевы.
+  - type: Butcherable
+    spawned:
+      - id: FoodMeatAlian
+        amount: 3
+  - type: Spider
+    webPrototype: AlianWeb
+    webAction: ActionAlienWeb
+  - type: Reform
+    actionPrototype: SolderEvolutionAction
+    reformTime: 20
+    popupText: Вы  начинаете сбрасывать свой старый панцирь
+    reformPrototype: MobAlienSolder
+  - type: Sericulture
+    action: ActionSpawnAlianWall
+    productionLength: 8
+    entityProduced: AlianWall
+  - type: ActionGun
+    action: ActionSpawnAlienDoor
+    gunProto: DragonsBreathGun
+
+#Солдат
+- type: entity
+  name: Солдат
+  suffix: BORK (Alien)
+  description: Идеальный организм.
+  parent: BaseMobAlien
+  id: MobAlienSolder
+  components:
+  - type: Sericulture
+    action: ActionSpawnAlienMembran
+    productionLength: 8
+    entityProduced: AlianMembran
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alienSolder.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.7
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 10
+        Slash: 5
+        Structural: 25
+    soundHit:
+     collection: AlienScreamAttack
+    animation: WeaponArcClaw
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 4.8
+    baseWalkSpeed : 5.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 450
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Солдат
+    description: Высокая скорость, сила, интеллект - идеальное оружие для убийств.
+  - type: Butcherable
+    spawned:
+      - id: FoodMeatAlian
+        amount: 3
+  - type: Spider
+    webPrototype: AlianWeb
+    webAction: ActionAlienWeb
+  - type: Reform
+    actionPrototype: PraetorianEvolutionAction
+    reformTime: 20
+    popupText: Вы  начинаете сбрасывать свой старый панцирь
+    reformPrototype: MobAlienPraetorian
+  - type: ActionGun
+    action: ActionAcidAlien
+    gunProto: AlienGun
+
+#Преторианец
+- type: entity
+  name: Преторианец
+  suffix: BORK (Alien)
+  description: элитный солдат улья.
+  parent: BaseMobAlien
+  id: MobAlienPraetorian
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alienpraetorian.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      300: 0.7
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 4.5
+    baseWalkSpeed : 5.5
+  - type: MeleeWeapon
+    damage:
+     types:
+       Blunt: 15
+       Slash: 5
+       Structural: 30
+    soundHit:
+     collection: AlienScreamAttack
+    animation: WeaponArcClaw
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 700
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Преторианец
+    description: Защищайте королеву, командуйте своими братьями на передовой.
+  - type: Butcherable
+    spawned:
+      - id: FoodMeatAlian
+        amount: 5
+      - id: FoodMeatAlianNeuro
+        amount: 1
+  - type: Spider
+    webPrototype: AlianWeb
+    webAction: ActionAlienWeb
+  - type: Reflect
+    reflectProb: .1
+    spread: 75
+  - type: ActionGun
+    action: ActionNeuroAlien
+    gunProto: AlienGunNeuro
+
+#Королева 
+- type: entity
+  name: Королева 
+  suffix: BORK (Alien)
+  description: Матка и центральный мозг улья.
+  parent: BaseMobAlien
+  id: MobAlienQueen
+  components:
+  - type: Tag
+    tags:
+    - FootstepSound
+    - DoorBumpOpener
+    - Alien
+    - AlienQueen
+  - type: NameIdentifier
+    group: Queen
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/alienqueen.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1000: Critical
+      1100: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      950: 0.7
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 3.5
+    baseWalkSpeed : 4.5
+  - type: MeleeWeapon
+    damage:
+      types:
+       Blunt: 30
+       Slash: 5
+       Structural: 100
+    soundHit:
+     collection: AlienScreamAttack
+    animation: WeaponArcClaw
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.64
+        density: 1500
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Королева 
+    description: Руководите ульем, отдайте жизнь за улей, вы есть улей....
+  - type: Damageable
+    damageModifierSet: Aliens
+  - type: Butcherable
+    spawned:
+      - id: FoodMeatAlian
+        amount: 8
+      - id: FoodMeatAlianNeuro
+        amount: 1
+  - type: Spider
+    webAction: ActionAlienWeb
+    webPrototype: AlianWeb
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Daiquiri/Xeno/Aliens/Queen_dead.ogg
+      params:
+        volume: -4
+  - type: Vocal
+    sounds:
+      Male: QueenRoar
+      Female: QueenRoar
+      Unsexed: QueenRoar
+  - type: Reform
+    actionPrototype: EggLayerEvolutionAction
+    reformTime: 40 
+    popupText: Вы пускаете слизь, собирая свой яйцеклад.
+    reformPrototype: MobAlienQueenEggLayer
+  - type: Sericulture
+    action: ActionSpawnAlianWall
+    productionLength: 8
+    entityProduced: AlianWall
+  - type: EggLayer
+    hungerUsage: 0
+    eggLayAction: ActionAlienLayEgg 
+    eggLaySound: !type:SoundPathSpecifier
+      path: /Audio/_Daiquiri/Xeno/Aliens/Slider_speach.ogg
+    eggSpawn:
+    - id: AlienEgg
+  - type: ActionGun
+    action: ActionNeuroAlien
+    gunProto: AlienGunNeuro
+  - type: Reflect
+    reflectProb: .1
+    spread: 75
+
+#Королева яйцекладущая
+- type: entity
+  suffix: BORK (Alien/EggLayer)
+  parent: MobAlienQueen
+  id: MobAlienQueenEggLayer
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/QueenEggLayer.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: Physics
+    bodyType: Static
+  - type: EggLayer
+    hungerUsage: 0
+    eggLaySound: !type:SoundPathSpecifier
+      path: /Audio/_Daiquiri/Xeno/Aliens/Slider_speach.ogg
+    eggSpawn:
+    - id: AlienEgg
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 0.000001
+    baseWalkSpeed : 0.000001
+  - type: Reform
+    actionPrototype: NOEggLayerEvolutionAction
+    reformTime: 10
+    popupText: Вы начинаете вставать на ноги, тем самым отрывая себя от яйцеклада.
+    reformPrototype: MobAlienQueen
+
+#Ползун
+- type: entity
+  name: Ползун
+  suffix: BORK (Alien)
+  description: Начало конца.
+  parent: BaseMobAlien
+  id: MobAlienSlider
+  components:
+  - type: Access
+    tags:
+    - AlienAccess
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Daiquiri/Xeno/Mobs/Aliens/slider.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MeleeWeapon
+    damage:
+     types:
+       Blunt: 1
+       Slash: 1
+    soundHit:
+     collection: AlienScreamAttack
+    animation: WeaponArcBite
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 30
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 4
+    baseWalkSpeed : 4.5
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Ползун
+    description: Вы крайне слабы. Избегайте людей для успешной эволюции.
+  - type: Reform
+    actionPrototype: AlienEvolutionAction
+    reformTime: 10 
+    popupText: Вы  начинаете сбрасывать свой старый панцирь
+    reformPrototype: MobAlien
+  - type: Butcherable
+    spawned:
+      - id: FoodMeatAlian
+        amount: 1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Daiquiri/Xeno/Aliens/Slider_dead.ogg
+      params:
+        volume: -2
+  - type: Speech
+    speechVerb: LargeMob
+    speechSounds: SliderSpeach
+  - type: Inventory
+    templateId: Slider
+  - type: InventorySlots
+  - type: Loadout
+    prototypes: [SliderGear]
+  - type: FootstepModifier 
+    footstepSoundCollection:
+      collection: SliderFootStepCollection
+      params:
+        volume: -11
+
+#Королевский ползун
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: MobAlienSlider
+  id: MobAlienSliderRoyal
+  components:
+  - type: Reform
+    actionPrototype: AlienEvolutionAction
+    reformTime: 10 
+    popupText: Вы начинаете сбрасывать свой старый панцирь
+    reformPrototype: MobAlienRoyal
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/_Daiquiri/Xeno/Aliens/Slider_dead.ogg
+      params:
+        volume: -2
+
+#Королевский Трутень
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: MobAlien
+  id: MobAlienRoyal
+  components:
+  - type: Reform
+    actionPrototype: RoyalQueenEvolutionAction
+    reformTime: 30
+    popupText: Вы начинаете сбрасывать свой старый панцирь
+    reformPrototype: MobAlienQueen
+
+- type: entity
+  parent: MobHuman
+  suffix: BORK (Alien)
+  id: MobHumanAlienInfected
+  name: инфицированный
+  components:
+  - type: Body
+    prototype: HumanInfected
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: Loadout
+    prototypes: [InfectedGear]
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: инфицированный
+    description: У вас внутри находится личинка ксеноморфа, но вы об этом ещё не знаете.
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: GibAction
+    popupText: С громким треском ваша грудь ломается.
+    actionPrototype: SliderBreakAction
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: PassiveDamage 
+    allowedStates:
+    - Alive
+    - Critical
+    damage:
+      types:
+        Cellular: 0.2
+        Bloodloss: 0.5

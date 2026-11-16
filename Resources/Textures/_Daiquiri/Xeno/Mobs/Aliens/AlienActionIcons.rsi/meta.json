@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Borkroman",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "Acid"
+    },
+    {
+      "name": "Alien"
+    },
+    {
+      "name": "claw"
+    },
+    {
+      "name": "combat"
+    },
+    {
+      "name": "Door"
+    },
+    {
+      "name": "Egg"
+    },
+    {
+      "name": "EggLay"
+    },
+    {
+      "name": "NightVision"
+    },
+    {
+      "name": "NONightVision"
+    },
+    {
+      "name": "Neuro"
+    },
+    {
+      "name": "NOcombat"
+    },
+    {
+      "name": "NoEggLay"
+    },
+    {
+      "name": "Preto"
+    },
+    {
+      "name": "Slider"
+    },
+    {
+      "name": "Queen"
+    },
+    {
+      "name": "Scream"
+    },
+    {
+      "name": "Sold"
+    },
+    {
+      "name": "Wall"
+    },
+    {
+      "name": "Membran"
+    },
+    {
+      "name": "Web"
+    }
+  ]
+}

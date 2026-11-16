@@ -1,0 +1,97 @@
+#Слизь Ксеноморфа
+- type: reagent
+  id: AlienSilicon
+  parent: Silicon
+  name: xeno-reagent-alien-silicon-name
+  group: Toxins
+  desc: reagent-desc-silicon
+  physicalDesc: reagent-physical-desc-crystalline
+  flavor: metallic
+  color: "#364056"
+
+#Кровь ксено
+- type: reagent
+  id: XenoBloodAcid
+  parent: SulfuricAcid
+  name: xeno-reagent-xeno-blood-acid-name
+  group: Toxins
+  desc: xeno-reagent-xeno-blood-acid-desc
+  physicalDesc: xeno-reagent-xeno-blood-acid-physical-desc
+  flavor: acid
+  color: "#d9f500"
+
+- type: reagent
+  id: XenoNeuroAcid
+  parent: SulfuricAcid
+  name: xeno-reagent-xeno-neuro-acid-name
+  group: Toxins
+  desc: xeno-reagent-xeno-neuro-acid-desc
+  physicalDesc: xeno-reagent-xeno-neuro-acid-physical-desc
+  flavor: acid
+  color: "#afdf1b"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 0.1
+      - !type:Emote
+        emote: Scream
+        probability: 0.1
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        ignoreResistances: false
+        damage:
+          groups:
+            Airloss: -15
+            Brute: -15
+            Toxin: -15
+            Genetic: -15
+          types:
+            Caustic: 2
+            Heat: -15
+            Shock: -15
+            Cold: -15
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.33
+      - !type:Emote
+        emote: Scream
+        probability: 0.2
+
+- type: reagent
+  id: XenoNeuroAcidClean
+  name: xeno-reagent-xeno-neuro-acid-clean-name
+  group: Toxins
+  desc: xeno-reagent-xeno-neuro-acid-clean-desc
+  physicalDesc: xeno-reagent-xeno-neuro-acid-clean-physical-desc
+  flavor: acid
+  color: "#1bdf7c"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        ignoreResistances: false
+        damage:
+          groups:
+            Airloss: -12.5
+            Burn: -12.5
+            Brute: -12.5
+            Toxin: -12.5
+            Genetic: -12.5
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "Вы чувствуете как ваше тело восстанавливается" ]
+        probability: 0.33
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+      - !type:Jitter

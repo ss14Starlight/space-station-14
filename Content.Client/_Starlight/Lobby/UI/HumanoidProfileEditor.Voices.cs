@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client._Starlight.TextToSpeech;
 using Content.Shared._Starlight.TextToSpeech;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Lobby.UI;
 
@@ -41,6 +42,51 @@ public sealed partial class HumanoidProfileEditor
         _voiceSiliconSelectorWindow.OnPreviewRequested += () =>
             _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.SiliconVoice ?? "");
         SiliconVoiceButton.OnPressed += _ => _voiceSiliconSelectorWindow.OpenCentered();
+
+        _prototypeManager.PrototypesReloaded += OnPrototypesReloaded;
+    }
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        if (!args.WasModified<VoicePrototype>())
+            return;
+
+        RefreshVoiceList();
+    }
+
+    /// <summary>
+    /// Rescans every voice the server currently has, so newly available voices show up
+    /// in the selector without a reconnect and the chosen voice stays valid.
+    /// </summary>
+    private void RefreshVoiceList()
+    {
+        _voices = [.. _prototypeManager
+            .EnumeratePrototypes<VoicePrototype>()
+            .Where(voice => !voice.Silicon)];
+
+        _siliconVoices = [.. _prototypeManager
+            .EnumeratePrototypes<VoicePrototype>()
+            .Where(voice => voice.Silicon)];
+
+        _voiceSelectorWindow.RefreshVoices(_voices);
+        _voiceSiliconSelectorWindow.RefreshVoices(_siliconVoices);
+
+        if (Profile is null)
+            return;
+
+        if (string.IsNullOrEmpty(Profile.Voice) || !_prototypeManager.HasIndex<VoicePrototype>(Profile.Voice))
+            Profile.Voice = PickVoice(_voices);
+
+        if (string.IsNullOrEmpty(Profile.SiliconVoice) || !_prototypeManager.HasIndex<VoicePrototype>(Profile.SiliconVoice))
+            Profile.SiliconVoice = PickVoice(_siliconVoices);
+
+        UpdateVoicesControls();
+        UpdateSiliconVoicesControls();
+    }
+
+    private static string PickVoice(List<VoicePrototype> voices)
+    {
+        return voices.Count > 0 ? voices[Random.Shared.Next(voices.Count)].ID : string.Empty;
     }
 
     private void UpdateVoicesControls()

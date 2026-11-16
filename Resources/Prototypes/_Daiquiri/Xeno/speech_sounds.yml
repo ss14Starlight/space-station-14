@@ -1,0 +1,17 @@
+- type: speechSounds
+  id: AlienSpeach
+  saySound:
+    path: /Audio/_Daiquiri/Xeno/Aliens/alien_speach_1.ogg
+  askSound:
+    path: /Audio/_Daiquiri/Xeno/Aliens/alien_speach_2.ogg
+  exclaimSound:
+    path: /Audio/_Daiquiri/Xeno/Aliens/alien_speach_3.ogg
+
+- type: speechSounds
+  id: SliderSpeach
+  saySound:
+    path: /Audio/_Daiquiri/Xeno/Aliens/Slider_speach.ogg
+  askSound:
+    path: /Audio/_Daiquiri/Xeno/Aliens/Slider_speach.ogg
+  exclaimSound:
+    path: /Audio/_Daiquiri/Xeno/Aliens/Slider_speach.ogg

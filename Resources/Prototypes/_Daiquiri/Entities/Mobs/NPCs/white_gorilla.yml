@@ -10,3 +10,7 @@
       sprite: _Daiquiri/Mobs/Animals/white_gorilla.rsi
   - type: AmputateOnHit
     chance: 0.05
+  - type: TemperatureDamage
+    coldDamageThreshold: 200
+  - type: Damageable
+    damageModifierSet: DaiquiriGorillaColdResistant
