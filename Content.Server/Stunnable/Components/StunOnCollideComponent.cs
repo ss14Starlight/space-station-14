@@ -68,6 +68,11 @@ public sealed partial class StunOnCollideComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool Forced = false;
 
+    /// <summary>
+    /// List of entities already knocked down by this entity
+    /// </summary>
+    public List<EntityUid> Hits = new();
+
     #endregion
 }
 
