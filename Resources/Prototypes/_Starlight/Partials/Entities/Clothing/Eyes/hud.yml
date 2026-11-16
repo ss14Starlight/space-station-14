@@ -285,19 +285,24 @@
     allowedJobs: [Brigmedic, BlueShield, SalvageMedic]
 
 - type: !PartialOnly entity
-  id: ClothingEyesHudSecurity
+  parent: !Clear ClothingEyesModularHudSyndicate
+  id: ClothingEyesHudSyndicate
+  description: The syndicate's professional heads-up display, designed for better detection of humanoids and their subsequent elimination.
   components: !Clear
   - type: EntityTableContainerFill
     containers:
       modular-hud-modules: !type:AllSelector
         children:
-        - id: HudModuleShowMindShieldIcons
-        - id: HudModuleShowCriminalRecordIcons
-  - type: Tag
-    tags:
-    - ModularHudSingleEye
-    - WhitelistChameleon
-    - HudSecurity
-    - PetWearable
-  - type: Contraband
-    tier: Tier2
+        - id: HudModuleShowSyndicateIcons
+
+- type: !PartialOnly entity
+  parent: !Clear ClothingEyesModularHudSyndicate
+  id: ClothingEyesHudSyndicateAgent
+  description: The Syndicate corpsman's professional heads-up display, designed for quick diagnosis of their team's status.
+  components: !Clear
+  - type: EntityTableContainerFill
+    containers:
+      modular-hud-modules: !type:AllSelector
+        children:
+        - id: HudModuleShowSyndicateIcons
+        - id: HudModuleShowMedicalIconsSyndicate

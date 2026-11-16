@@ -23,3 +23,9 @@
   parent: BaseHatRecipe
   id: ClothingHeadHatBeretDutyOfficer
   result: ClothingHeadHatBeretDutyOfficer
+
+# Modular HUD
+- type: latheRecipe
+  parent: BaseModularHudFrameRecipe
+  id: ClothingEyesModularHudSyndicate
+  result: ClothingEyesModularHudSyndicate

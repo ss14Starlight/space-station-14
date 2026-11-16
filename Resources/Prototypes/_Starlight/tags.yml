@@ -637,6 +637,9 @@
   id: ModularHudGoggles
 
 - type: Tag
+  id: ModularHudSyndicate
+
+- type: Tag
   id: ModularHudSingleEye
 
 - type: Tag

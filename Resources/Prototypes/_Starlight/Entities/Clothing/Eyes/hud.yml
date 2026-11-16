@@ -383,3 +383,34 @@
     - type: RadioChime
       sound:
         path: /Audio/_Starlight/Effects/Radio/tsf.ogg
+
+- type: entity
+  parent: [ClothingEyesModularHudBase, BaseSyndicateContraband]
+  id: ClothingEyesModularHudSyndicate
+  name: modular HUD syndicate visor
+  description: The syndicate's professional heads-up display, designed for better detection of humanoids and their subsequent elimination.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Hud/syndicate.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Eyes/Hud/syndicate.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/syndicate.rsi
+    clothingVisuals: {}
+  - type: ModularHudVisuals
+    frameIsDynamic: true
+    speciesWithDifferentClothing:
+    - arachnid
+    - dog
+    - resomi
+    inhandExcludedLayers:
+      default:
+      - Accent
+      - LensAccentMajor
+  - type: Tag
+    tags:
+    - FullEyeCovering
+    - ModularHudSyndicate
+    - PetWearable
+  - type: Contraband
+    tier: Tier2
