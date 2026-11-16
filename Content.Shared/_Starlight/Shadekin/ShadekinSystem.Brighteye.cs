@@ -75,6 +75,8 @@ public sealed partial class ShadekinSystem
                     ent.Comp.MaxEnergy = 50;
                     ent.Comp.PhaseCost = 50;
 
+                    _achievements.QueueUnlockAchievement(ent.Owner, "lesser_kin");
+
                     _alerts.ClearAlert(ent.Owner, ent.Comp.PortalAlert);
                     _actionsSystem.RemoveAction(ent.Owner, ent.Comp.PortalAction);
                     _actionsSystem.RemoveAction(ent.Owner, ent.Comp.ShadeSkipAction);
@@ -107,17 +109,6 @@ public sealed partial class ShadekinSystem
 
         RemCompDeferred<MindShieldComponent>(ent.Owner);
         _npcFaction.RemoveFaction(ent.Owner, _shieldedFaction);
-    }
-
-    // ! Gosh this is bad... But there no event to get implanted shit? or mindshield? il do this for now change if need later!
-    [SubscribeLocalEvent]
-    private void MindShieldImplanted(EntityUid uid, MindShieldComponent comp, ComponentStartup args)
-    {
-        if (HasComp<BrighteyeComponent>(uid))
-        {
-            RemCompDeferred<MindShieldComponent>(uid);
-            _npcFaction.RemoveFaction(uid, _shieldedFaction);
-        }
     }
 
     [SubscribeLocalEvent]

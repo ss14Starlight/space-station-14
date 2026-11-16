@@ -194,9 +194,6 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
 
     private void SetPhaseEffect(EntityUid uid, EntProtoId effectproto)
     {
-        if (_net.IsClient)
-            return;
-
         var effect = PredictedSpawnAtPosition(effectproto, Transform(uid).Coordinates);
 
         _scaleVisuals.SetSpriteScale(effect, _scaleVisuals.GetSpriteScale(uid));

@@ -154,6 +154,15 @@ achievement-theory-of-objectivity-description = Obtain Elite Contractor, Phantom
 achievement-dark-vacation-name = Dark Vacation
 achievement-dark-vacation-description = Step into The Dark without being a Brighteye.
 
+achievement-mindshield-failure-name = MindShield™ Failure
+achievement-mindshield-failure-description = Attempt to mindshield a Brighteye.
+
+achievement-lightwalker-enforcement-name = Lightwalker Enforcement
+achievement-lightwalker-enforcement-description = As a Brighteye, be the target of a mindshield attempt.
+
+achievement-lesser-kin-name = Lesser Kin
+achievement-lesser-kin-description = As a Shadekin, replace your core with a stolen brighteye core.
+
 achievement-window-title = Track your milestones, hidden trophies, and long-term progress
 achievement-window-categories = Categories
 achievement-window-category-all = All Achievements
