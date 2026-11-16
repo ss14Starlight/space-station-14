@@ -90,7 +90,7 @@
   parent: BaseAction
   id: ActionRetractableItemArmBladePlus
   name: True Arm Blade
-  description: Shed your flesh and reform it into a truly beautiful blade. Costs 30 chemicals to summon, and 30 chemicals to retract.
+  description: Shed your flesh and reform it into a truly beautiful blade. Costs 45 chemicals to summon. Retract freely.
   components:
   - type: Action
     useDelay: 2
@@ -108,7 +108,8 @@
     retractSounds:
       collection: gib # Placeholder
   - type: ChangelingAction
-    chemicalCost: 30 # It's *very* strong. This is your *final* upgrade.
+    togglable: true
+    chemicalCost: 45 # 30 -> 45. It's *very* strong. This is your *final* upgrade.
     requireAbsorbed: 6
 
 - type: entity
@@ -131,7 +132,7 @@
 - type: entity
   id: ActionToggleChitinousArmor
   name: Toggle Armor
-  description: Inflate your body into an all-consuming chitinous mass of armor. Costs 25 chemicals.
+  description: Inflate your body into an all-consuming chitinous mass of armor. Costs 35 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -143,14 +144,15 @@
   - type: InstantAction
     event: !type:ToggleChitinousArmorEvent {}
   - type: ChangelingAction
-    chemicalCost: 25
+    togglable: true
+    chemicalCost: 35 # 25 -> 35
     requireAbsorbed: 2
 
 - type: entity
   parent: BaseAction
   id: ActionToggleOrganicShield
   name: Form Shield
-  description: Reform one of your arms into a large, fleshy shield. Costs 20 chemicals.
+  description: Reform one of your arms into a large, fleshy shield. Costs 30 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -169,7 +171,8 @@
     retractSounds:
       collection: gib # Placeholder
   - type: ChangelingAction
-    chemicalCost: 20
+    togglable: true
+    chemicalCost: 30 # 20 -> 30
     requireAbsorbed: 2
 
 - type: entity
@@ -212,7 +215,7 @@
 - type: entity
   id: ActionToggleStrainedMuscles
   name: Strain Muscles
-  description: Move at extremely fast speeds. Deals stamina damage.
+  description: Move at extremely fast speeds. Deals stamina damage. Costs 45 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -224,7 +227,8 @@
   - type: InstantAction
     event: !type:ToggleStrainedMusclesEvent {}
   - type: ChangelingAction
-    chemicalCost: 30
+    togglable: true
+    chemicalCost: 45 # 30 -> 45
     useInLesserForm: true
 
 # stings
@@ -531,7 +535,8 @@
   - type: InstantAction
     event: !type:ActionChameleonSkinEvent {}
   - type: ChangelingAction
-    chemicalCost: 15 # Takes energy to disable, so we can make it a little cheaper.
+    togglable: true
+    chemicalCost: 25 # 15 -> 25
 
 - type: entity
   id: ActionEphedrineOverdose
@@ -645,7 +650,8 @@
   - type: InstantAction
     event: !type:ActionSpacesuitEvent {}
   - type: ChangelingAction
-    chemicalCost: 20
+    togglable: true
+    chemicalCost: 30 # 20 -> 30
 
 - type: entity
   id: ActionToggleNeocyteDisguise

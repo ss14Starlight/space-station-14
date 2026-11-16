@@ -6,6 +6,7 @@ using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Changeling;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body.Components;
@@ -683,6 +684,12 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
+        if (!TryComp<ActionComponent>(ent.Owner, out var action))
+        {
+            Log.Debug($"No action component found for {ent.Owner}");
+            ev.Cancelled = true;
+            return;
+        }
         var lingAction = ent.Comp;
 
         if (comp.Biomass < 1 && lingAction.RequireBiomass)
@@ -699,13 +706,6 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
-        if (comp.Chemicals < lingAction.ChemicalCost)
-        {
-            _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
-            ev.Cancelled = true;
-            return;
-        }
-
         if (lingAction.RequireAbsorbed > comp.TotalAbsorbedEntities)
         {
             var delta = lingAction.RequireAbsorbed - comp.TotalAbsorbedEntities;
@@ -713,6 +713,22 @@ public sealed partial class ChangelingSystem : EntitySystem
             ev.Cancelled = true;
             return;
         }
+
+        if (lingAction.Togglable && action.Toggled)
+        {
+            _actions.SetToggled(ent.Owner, false);
+            return;
+        }
+
+        if (comp.Chemicals < lingAction.ChemicalCost)
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-chemicals-deficit"), uid, uid);
+            ev.Cancelled = true;
+            return;
+        }
+
+        if (lingAction.Togglable)
+            _actions.SetToggled(ent.Owner, true);
 
         UpdateChemicals(uid, comp, -lingAction.ChemicalCost);
         UpdateBiomass(uid, comp, -lingAction.BiomassCost);
