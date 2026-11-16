@@ -1,13 +1,13 @@
 using Content.Client._Starlight.Humanoid;
 using Content.Client.Items.Systems;
-using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.Administration.Components;
 using Content.Shared._Starlight.Sprite;
-using Content.Shared.Ghost;
+using Content.Shared.Administration;
+using Content.Shared.Administration.Managers;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Robust.Client.GameObjects;
-using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -26,7 +26,7 @@ public sealed partial class SpriteControlSystem : EntitySystem
     [Dependency] private HumanoidAppearanceSystem _humanoid = null!;
     [Dependency] private IGameTiming _timing = null!;
     [Dependency] private IPrototypeManager _proto = null!;
-    [Dependency] private IConfigurationManager _config = null!;
+    [Dependency] private ISharedAdminManager _admin = null!;
 
     private readonly HashSet<int> _clothingIndices = [];
     private readonly HashSet<int> _heldIndices = [];
@@ -259,9 +259,8 @@ public sealed partial class SpriteControlSystem : EntitySystem
 
     private bool IsSpecifierPermitted(EntityUid uid)
     {
-        if (!HasComp<GhostComponent>(uid)) return true;
-        if (!TryComp<ActorComponent>(uid, out var actor)) return false;
-        return _config.GetCVar(StarlightCCVars.PermittedSpriteControlAdmins).Split(',')
-            .Contains(actor.PlayerSession.UserId.ToString());
+        if (!HasComp<AdminGhostComponent>(uid)) return true;
+        return TryComp<ActorComponent>(uid, out var actor) &&
+            _admin.HasAdminFlag(actor.PlayerSession, AdminFlags.Bypass);
     }
 }

@@ -15,12 +15,6 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<bool> AdminArenaMapInit =
         CVarDef.Create("admin.admin_arena_map_init", true, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED);
 
-    /// <summary>
-    /// Comma-separated list of admins allowed to set their sprites with SpriteControlComponent to a SpriteSpecifier while ghosted.
-    /// </summary>
-    [CVarControl(AdminFlags.Permissions)] public static readonly CVarDef<string> PermittedSpriteControlAdmins =
-        CVarDef.Create("admin.permitted_sprite_control_admins", string.Empty,
-            CVar.SERVER | CVar.ARCHIVE | CVar.REPLICATED);
 
     /// <summary>
     /// Seconds between two tippies sent by admins, shared by all admins.
