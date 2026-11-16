@@ -1,39 +1,4 @@
 Entries:
-- author: Makeshift
-  changes:
-  - message: (Plasma) Converted the old Salvage Room into a cargo break room.
-    type: Tweak
-  id: 410119
-  time: '2026-11-05T10:03:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7049
-- author: Makeshift
-  changes:
-  - message: (Plasma) Converted the old Cargo break room into a mail room.
-    type: Tweak
-  id: 410120
-  time: '2026-11-05T10:03:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7049
-- author: Makeshift
-  changes:
-  - message: (Plasma) Edited the mining dock a little.
-    type: Tweak
-  id: 410121
-  time: '2026-11-05T10:03:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7049
-- author: Makeshift
-  changes:
-  - message: (Plasma) Added the new Radio machines to the Radio Studio.
-    type: Fix
-  id: 410122
-  time: '2026-11-05T10:03:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7049
-- author: Makeshift
-  changes:
-  - message: (Plasma) Added a fax machine to HoS's office.
-    type: Fix
-  id: 410123
-  time: '2026-11-05T10:03:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7049
 - author: Rhapsody (Pepta, Soothe)
   changes:
   - message: Fixed placeholder icons in hand slots (most commonly in cyborg modules) not always being transparent.
@@ -2799,4 +2764,39 @@ Entries:
   id: 410518
   time: '2026-11-16T13:46:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7239
+- author: adroithill
+  changes:
+  - message: Added portable MedTak camera monitor
+    type: Add
+  id: 410519
+  time: '2026-11-16T14:17:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7264
+- author: adroithill
+  changes:
+  - message: Added MedTak Camera monitor
+    type: Add
+  id: 410520
+  time: '2026-11-16T14:17:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7264
+- author: adroithill
+  changes:
+  - message: Added cameras to MedTak hardsuits
+    type: Tweak
+  id: 410521
+  time: '2026-11-16T14:17:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7264
+- author: adroithill
+  changes:
+  - message: Added cameras to MedTak sillicons
+    type: Tweak
+  id: 410522
+  time: '2026-11-16T14:17:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7264
+- author: adroithill
+  changes:
+  - message: Added portable MedTak camera monitor to MedTak dispatcher's backpack
+    type: Tweak
+  id: 410523
+  time: '2026-11-16T14:17:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7264
 Order: -1
