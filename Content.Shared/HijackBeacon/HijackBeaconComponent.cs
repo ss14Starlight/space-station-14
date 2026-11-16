@@ -31,7 +31,7 @@ public sealed partial class HijackBeaconComponent : Component
     ///     Remaining time until the hijack is completed.
     /// </summary>
     [DataField, Access(typeof(HijackBeaconSystem))]
-    public TimeSpan RemainingTime = TimeSpan.FromSeconds(360); // Starlight: 200 -> 360 
+    public TimeSpan RemainingTime = TimeSpan.FromSeconds(360); // Starlight: 200 -> 360
 
     /// <summary>
     ///     Default amount of time before the beacon can be re-activated, if it is disarmed.
