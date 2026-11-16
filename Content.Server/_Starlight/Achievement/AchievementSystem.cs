@@ -74,7 +74,7 @@ using Content.Shared._Starlight.Objectives.ObjectivePicker;
 
 namespace Content.Server._Starlight.Achievement;
 
-public sealed partial class AchievementSystem : EntitySystem
+public sealed partial class AchievementSystem : SharedAchievementSystem
 {
     [Dependency] private INullLinkPlayerManager _nullLinkPlayers = default!;
     [Dependency] private IAchievementRewardManager _achievementRewards = default!;
@@ -764,7 +764,7 @@ public sealed partial class AchievementSystem : EntitySystem
             .FireAndForget();
     }
 
-    public void QueueUnlockAchievement(EntityUid uid, string achievementId)
+    public override void QueueUnlockAchievement(EntityUid uid, string achievementId)
     {
         if (!_playerManager.TryGetSessionByEntity(uid, out var session))
             return;

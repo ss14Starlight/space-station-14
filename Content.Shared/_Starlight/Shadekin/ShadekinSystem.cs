@@ -38,6 +38,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Network;
 using Content.Shared.NPC.Systems;
+using Content.Shared._Starlight.Achievement;
 
 namespace Content.Shared._Starlight.Shadekin;
 
@@ -68,6 +69,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedIlluminationSystem _illumination = default!;
     [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private SharedAchievementSystem _achievements = default!;
 
     [Dependency] private EntityQuery<DarkLightComponent> _darkLightQuery = default!;
     [Dependency] private EntityQuery<ShadegenAffectedComponent> _shadegenAffected = default!;
@@ -414,13 +416,16 @@ public sealed partial class ShadekinSystem : EntitySystem
         while (mobQuery.MoveNext(out var uid, out _, out var xform))
         {
             var inTheDark = xform.MapUid is { } mapUid
-                && _theDarkMaps.Contains(mapUid)
-                && !IsImmuneToTheDark(uid, xform);
+                && _theDarkMaps.Contains(mapUid);
+
+            // achievement
+            if (inTheDark && !HasComp<BrighteyeComponent>(uid))
+                _achievements.QueueUnlockAchievement(uid, "dark_vacation"); // This should be in shared... _net exist dudes!
 
             var hasStatus = _status.HasStatusEffect(uid, _theDarkMapStatus);
-            if (inTheDark && !hasStatus)
+            if (inTheDark && !IsImmuneToTheDark(uid, xform) && !hasStatus)
                 _status.TrySetStatusEffectDuration(uid, _theDarkMapStatus);
-            else if (!inTheDark && hasStatus)
+            else if (!inTheDark && IsImmuneToTheDark(uid, xform) && hasStatus)
                 _status.TryRemoveStatusEffect(uid, _theDarkMapStatus);
         }
     }

@@ -96,6 +96,17 @@
     role: MindRoleBloodBound
     requiredDifficulty: 10
 
+# Dark / Brighteye
+- type: achievement
+  id: dark_vacation
+  name: achievement-dark-vacation-name
+  description: achievement-dark-vacation-description
+  category: milestones
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: mar
+  requirements: []
 
 # manual-only, granted by admins via achievement_unlock command
 # Even though this achievement can be granted automatically checking nullink roles

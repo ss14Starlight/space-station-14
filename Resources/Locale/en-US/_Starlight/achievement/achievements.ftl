@@ -151,6 +151,9 @@ achievement-blood-herald-description = Complete at least 10 Difficulty as a Bloo
 achievement-theory-of-objectivity-name = Theory of Objectivity
 achievement-theory-of-objectivity-description = Obtain Elite Contractor, Phantom Thief, First Kindred, Enemy Unknown, and Herald of Blood.
 
+achievement-dark-vacation-name = Dark Vacation
+achievement-dark-vacation-description = Step into The Dark without being a Brighteye.
+
 achievement-window-title = Track your milestones, hidden trophies, and long-term progress
 achievement-window-categories = Categories
 achievement-window-category-all = All Achievements
@@ -184,3 +187,4 @@ achievement-category-changeling = Changeling
 achievement-category-bloodbound = Blood Bound
 achievement-category-revolutionary = Revolutionary
 achievement-category-nukeops = Nuclear Operative
+achievement-category-brighteye = Brighteye
