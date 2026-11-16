@@ -91,7 +91,6 @@
     - type: TextFilePaperContent
       fileName: object-examination-report.txt
 
-
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentExperimentReport
@@ -504,7 +503,6 @@
   id: PrintedDocumentExecutionDNROrder
   name: Execution & DNR Order
   categories: [ HideSpawnMenu ]
-  components:
   components:
     - type: TextFilePaperContent
       fileName: execution-dnr-order.txt
