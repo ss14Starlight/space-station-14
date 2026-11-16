@@ -116,7 +116,6 @@
         - id: AdvancedJetInjector
         - id: JetInjector
         - id: HandheldHealthAnalyzer
-        - id: BottleCaseParamedicFilled
         - id: CombatMedipen
         - id: AirlossAutoInjector
         - id: BruteAutoInjector
@@ -335,7 +334,6 @@
         - id: AdvancedJetInjector
         - id: JetInjector
         - id: HandheldHealthAnalyzer
-        - id: BottleCaseParamedicFilled
         - id: CombatMedipen
         - id: AirlossAutoInjector
         - id: BruteAutoInjector
