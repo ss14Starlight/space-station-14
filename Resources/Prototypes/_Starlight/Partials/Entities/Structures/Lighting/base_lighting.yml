@@ -45,7 +45,7 @@
   id: !type:CreateVariants #uses ExteriorLightTube
     values:
     - PoweredlightExterior
-    - AlwaysPoweredlightExterior
+    - AlwaysPoweredLightExterior
   components:
   - type: PointLight
     color: "#B4FCF0FF"
