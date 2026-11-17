@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Numerics;
-using System.Runtime.InteropServices;
 using Content.Server._Starlight.Toolshed;
 using Content.Shared._Starlight.Commands;
 using Content.Server.Administration;
@@ -43,8 +42,7 @@ public sealed partial class GameMapCommand : ToolshedCommand
     }
 
     [CommandImplementation("getplayers")]
-    public IEnumerable<EntityUid> GetPlayers([PipedArgument] EntityUid uid,
-        [Optional] [DefaultParameterValue(false)] bool excludeGhosts)
+    public IEnumerable<EntityUid> GetPlayers([PipedArgument] EntityUid uid, bool excludeGhosts = false)
     {
         var sessions = _plr.Sessions.Where(session =>
             session.AttachedEntity is not null && Transform(session.AttachedEntity.Value).MapUid == uid);
@@ -60,9 +58,7 @@ public sealed partial class GameMapCommand : ToolshedCommand
     }
 
     [CommandImplementation("getplayersid")]
-    public IEnumerable<EntityUid> GetPlayersById(int id,
-        [Optional] [DefaultParameterValue(false)]
-        bool excludeGhosts)
+    public IEnumerable<EntityUid> GetPlayersById(int id, bool excludeGhosts = false)
     {
         _map ??= GetSys<MapSystem>();
         return !_map.TryGetMap(new MapId(id), out var map)

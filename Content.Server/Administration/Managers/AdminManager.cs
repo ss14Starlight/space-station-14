@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -292,6 +292,18 @@ namespace Content.Server.Administration.Managers
 
             foreach (var spec in _toolshed.DefaultEnvironment.AllCommands())
             {
+                // Starlight begin
+                if (GetToolshedImplementationFlags(spec) is (true, var implFlags))
+                {
+                    if (implFlags.Length != 0)
+                        _toolshedCommandPermissions.AdminCommands.TryAdd(spec.FullName(), implFlags);
+                    else
+                        _toolshedCommandPermissions.AnyCommands.Add(spec.FullName());
+
+                    continue;
+                }
+                // Starlight end
+
                 var (isAvail, flagsReq) = GetRequiredFlag(spec.Cmd);
 
                 if (!isAvail)
@@ -358,6 +370,18 @@ namespace Content.Server.Administration.Managers
                     .Where(p => p.Value.Any(f => adminData.Data.HasFlag(f)))
                     .Select(p => p.Key));
             }
+
+            // Starlight begin
+            foreach (var spec in _toolshed.DefaultEnvironment.AllCommands())
+            {
+                var allowed = TryGetCommandFlags(spec, out var flagsReq)
+                    && (flagsReq == null
+                        || (adminData != null && flagsReq.Any(f => adminData.Data.HasFlag(f))));
+
+                if (allowed)
+                    commands.Add(spec.FullName());
+            }
+            // Starlight end
 
             msg.AvailableCommands = commands.ToArray();
 
@@ -544,10 +568,14 @@ namespace Content.Server.Administration.Managers
             return Equals(addr, System.Net.IPAddress.Loopback) || Equals(addr, System.Net.IPAddress.IPv6Loopback);
         }
 
-        public bool TryGetCommandFlags(CommandSpec command, out AdminFlags[]? flags)
-        {
-            var cmdName = command.Cmd.Name;
+        // Starlight begin - This makes more sense to do like this than move to partial :p
+        public bool TryGetCommandFlags(CommandSpec command, out AdminFlags[]? flags) =>
+            TryGetToolshedFlags(command.FullName(), out flags)
+            || TryGetToolshedFlags(command.Cmd.Name, out flags);
 
+        private bool TryGetToolshedFlags(string cmdName, out AdminFlags[]? flags)
+        {
+        // Starlight end
             if (_toolshedCommandPermissions.AnyCommands.Contains(cmdName))
             {
                 // Anybody can use this command.

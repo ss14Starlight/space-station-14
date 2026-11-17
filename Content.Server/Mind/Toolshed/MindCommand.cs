@@ -3,7 +3,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Errors;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Content.Server.Silicons.StationAi;
 using Content.Shared._Starlight.Commands;
 
@@ -34,7 +33,7 @@ public sealed class MindCommand : ToolshedCommand
     // Starlight end
 
     [CommandImplementation("control")]
-    public EntityUid Control(IInvocationContext ctx, [PipedArgument] EntityUid target, ICommonSession player, [Optional] [DefaultParameterValue(true)] bool tryAi) // Starlight edit
+    public EntityUid Control(IInvocationContext ctx, [PipedArgument] EntityUid target, ICommonSession player, bool tryAi = true) // Starlight edit
     {
         _mind ??= GetSys<SharedMindSystem>();
         _ai ??= GetSys<StationAiSystem>(); // Starlight
@@ -54,7 +53,7 @@ public sealed class MindCommand : ToolshedCommand
     private StationAiSystem? _ai;
 
     [CommandImplementation("takeover")]
-    public EntityUid Takeover(IInvocationContext ctx, [PipedArgument] EntityUid uid, [Optional] [DefaultParameterValue(true)] bool tryAi)
+    public EntityUid Takeover(IInvocationContext ctx, [PipedArgument] EntityUid uid, bool tryAi = true)
     {
         _mind ??= GetSys<SharedMindSystem>();
         _ai ??= GetSys<StationAiSystem>();
@@ -93,7 +92,7 @@ public sealed class MindCommand : ToolshedCommand
     }
 
     [CommandImplementation("takeoverwipe")]
-    public EntityUid TakeoverWipe(IInvocationContext ctx, [PipedArgument] EntityUid uid, [Optional] [DefaultParameterValue(true)] bool tryAi)
+    public EntityUid TakeoverWipe(IInvocationContext ctx, [PipedArgument] EntityUid uid, bool tryAi = true)
     {
         _mind ??= GetSys<SharedMindSystem>();
         _ai ??= GetSys<StationAiSystem>();
@@ -117,7 +116,8 @@ public sealed class MindCommand : ToolshedCommand
     }
 
     [CommandImplementation("controlwipe")]
-    public EntityUid ControlWipe(IInvocationContext ctx, [PipedArgument] EntityUid uid, ICommonSession player, [Optional] [DefaultParameterValue(true)] bool tryAi)
+    public EntityUid ControlWipe(IInvocationContext ctx, [PipedArgument] EntityUid uid, ICommonSession player,
+        bool tryAi = true)
     {
         _mind ??= GetSys<SharedMindSystem>();
         _ai ??= GetSys<StationAiSystem>();
