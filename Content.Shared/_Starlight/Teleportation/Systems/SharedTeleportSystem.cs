@@ -12,7 +12,7 @@ public sealed partial class SharedTeleportSystem : EntitySystem
     [Dependency] private PullingSystem _pulling = default!;
 
     /// <summary>
-    /// Teleports an entity, by default bringing whoever they're pulling along with them.
+    /// Teleports an entity, by default bringing whoever they're pulling and whoever is pulling them along with them.
     /// </summary>
     public void Teleport(Entity<TransformComponent?> ent, EntityCoordinates destination, TeleportOptions? options = null)
     {

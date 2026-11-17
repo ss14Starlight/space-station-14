@@ -13,7 +13,7 @@ public sealed class TeleportOptions
     /// <summary>
     /// Whether whoever is pulling the teleported entity comes along instead of being left behind.
     /// </summary>
-    public bool CarryIncomingPulls = false;
+    public bool CarryIncomingPulls = true;
 
     /// <summary>
     /// Heaviest entity that can come along, in kilograms. Heavier targets stay behind and the pull is broken.
