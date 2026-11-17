@@ -127,13 +127,4 @@ public sealed partial class CCVars
     public static readonly CVarDef<bool> DiscordNewsWebhookSendDuringRound =
         CVarDef.Create("discord.news_webhook_send_during_round", false, CVar.SERVERONLY);
 
-    /// <summary>
-    ///     Optional prefix that replaces <c>https://discord.com</c> for all webhook traffic,
-    ///     e.g. <c>https://my-proxy.example/secret</c>.
-    ///     Needed when discord.com is not reachable from the server (blocked region).
-    ///     Webhook cvars keep their normal discord.com URLs. Empty = connect directly.
-    /// </summary>
-    public static readonly CVarDef<string> DiscordProxyPrefix =
-        CVarDef.Create("discord.proxy_prefix", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
 }

@@ -1,49 +1,25 @@
-using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Content.Shared.CCVar;
-using Robust.Shared.Configuration;
 
 namespace Content.Server.Discord;
 
 public sealed partial class DiscordWebhook : IPostInjectInit
 {
-    private const string DiscordOrigin = "https://discord.com";
-
     private static readonly JsonSerializerOptions JsonOptions = new JsonSerializerOptions
         { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
 
     [Dependency] private ILogManager _log = default!;
-    [Dependency] private IConfigurationManager _cfg = default!;
 
+    private const string BaseUrl = "https://discord.com/api/v10/webhooks";
     private readonly HttpClient _http = new();
     private ISawmill _sawmill = default!;
 
-    /// <summary>
-    ///     Set via <c>discord.proxy_prefix</c>. When empty, traffic goes straight to discord.com.
-    /// </summary>
-    private string? ProxyPrefix
-    {
-        get
-        {
-            var prefix = _cfg.GetCVar(CCVars.DiscordProxyPrefix);
-            return string.IsNullOrWhiteSpace(prefix) ? null : prefix.TrimEnd('/');
-        }
-    }
-
-    private string Proxyfy(string url)
-    {
-        return ProxyPrefix is { } prefix && url.StartsWith(DiscordOrigin, StringComparison.OrdinalIgnoreCase)
-            ? prefix + url[DiscordOrigin.Length..]
-            : url;
-    }
-
     private string GetUrl(WebhookIdentifier identifier)
     {
-        return Proxyfy($"{DiscordOrigin}/api/v10/webhooks/{identifier.Id}/{identifier.Token}");
+        return $"{BaseUrl}/{identifier.Id}/{identifier.Token}";
     }
 
     /// <summary>
@@ -55,7 +31,7 @@ public sealed partial class DiscordWebhook : IPostInjectInit
     {
         try
         {
-            return await _http.GetFromJsonAsync<WebhookData>(Proxyfy(url));
+            return await _http.GetFromJsonAsync<WebhookData>(url);
         }
         catch (Exception e)
         {
