@@ -109,12 +109,12 @@ public abstract partial class SharedCardboardBoxSystem : EntitySystem
     /// Relay damage to the mover.
     /// </summary>
     [SubscribeLocalEvent]
-    private void OnDamage(Entity<CardboardBoxComponent> ent, ref DamageDealtEvent args)
+    private void OnDamage(Entity<CardboardBoxComponent> ent, ref DamageChangedEvent args) // Starlight
     {
-        if (ent.Comp.Mover is not { } mover)
+        if (args.DamageDelta == null || !args.DamageIncreased || ent.Comp.Mover is not { } mover) // Starlight
             return;
 
-        _damageable.ChangeDamage(mover, args.Damage, origin: args.Origin);
+        _damageable.ChangeDamage(mover, args.DamageDelta, origin: args.Origin); // Starlight
     }
 
     [SubscribeLocalEvent]

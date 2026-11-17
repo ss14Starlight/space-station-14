@@ -366,11 +366,11 @@ namespace Content.Shared.Movement.Systems
                 return;
             }
 
-            var moverEntity = new Entity<InputMoverComponent>(entity, moverComp);
+            var moverEntity = new Entity<InputMoverComponent>(entity.Owner, entity.Comp); // Starlight
 
             // Relay the fact we had any movement event.
             // TODO: Ideally we'd do these in a tick instead of out of sim.
-            var moveEvent = new MoveInputEvent(moverEntity, moverComp.HeldMoveButtons, dir, state);
+            var moveEvent = new MoveInputEvent(moverEntity, moverEntity.Comp.HeldMoveButtons, dir, state); // Starlight
             RaiseLocalEvent(entity, ref moveEvent);
 
             // For stuff like "Moving out of locker" or the likes

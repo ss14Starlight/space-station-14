@@ -56,7 +56,7 @@
     size: Ginormous
   - type: Damageable
     damageModifierSet: Metallic
-  - type: Injurable
+  #- type: Injurable # Starlight, still don't have this pr...
     damageContainer: Inorganic
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
@@ -108,7 +108,7 @@
     enabled: false
     radius: 3.5
     softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
   - type: GravityAffected
   - type: Destructible
