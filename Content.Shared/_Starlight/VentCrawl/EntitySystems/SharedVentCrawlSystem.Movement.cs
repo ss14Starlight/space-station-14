@@ -39,7 +39,7 @@ public sealed partial class SharedVentCrawlSystem
                 var worldAngle = dir.ToAngle() + mover.TargetRelativeRotation;
 
                 // including the world rotation of the reference entity
-                if (mover.RelativeEntity is { } relativeEntity)
+                if (mover.RelativeEntity is { } relativeEntity && Exists(relativeEntity))
                     worldAngle += _xformSystem.GetWorldRotation(relativeEntity);
 
                 // world-relative to grid-relative
