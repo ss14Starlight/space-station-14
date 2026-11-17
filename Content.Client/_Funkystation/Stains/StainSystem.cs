@@ -26,20 +26,18 @@ public sealed partial class StainSystem : SharedStainSystem
 
         var spriteEnt = new Entity<SpriteComponent?>(ent.Owner, args.Sprite);
 
-        var layers = new List<int>(ent.Comp.RevealedLayers);
-        layers.Sort((a, b) => b.CompareTo(a));
-
-        foreach (var layer in layers)
-        {
-            _sprite.RemoveLayer(spriteEnt, layer);
-        }
+        // Starlight begin - layering fixes
+        foreach (var key in ent.Comp.RevealedLayers) _sprite.RemoveLayer(spriteEnt, key, false);
 
         ent.Comp.RevealedLayers.Clear();
 
-        foreach (var (_, layerData) in BuildVisuals(ent, ent.Comp.IconVisuals, "icon"))
+        foreach (var (key, layerData) in BuildVisuals(ent, ent.Comp.IconVisuals, "icon"))
         {
-            ent.Comp.RevealedLayers.Add(_sprite.AddLayer(spriteEnt, layerData, null));
+            var index = _sprite.AddLayer(spriteEnt, layerData, null);
+            _sprite.LayerMapSet(spriteEnt, key, index);
+            ent.Comp.RevealedLayers.Add(key);
         }
+        // Starlight end
     }
 
     [SubscribeLocalEvent(after: [typeof(ClientClothingSystem)])]

@@ -42,7 +42,7 @@
     - state: icon-medtak-med
   - type: ItemBorgModule
     hands:
-    - item: BorgHypo
+    - item: MedTakHypo
     - hand:
         emptyLabel: borg-slot-topicals-empty
         emptyRepresentative: MedicatedSuture
@@ -65,7 +65,7 @@
     - item: MedkitCombatMedTakFilledBorg
     - item: BottleCaseMedTakFilled
   - type: BorgModuleIcon
-    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: medtak-aid-module }
+    icon: { sprite: _Starlight/Admeme/MedTak/Interface/actions_borg.rsi, state: medtak-aid-module }
 
 - type: entity
   id: BorgModuleMedTakRifle
@@ -82,4 +82,37 @@
     - item: WeaponMedTakRifleROW
     - item: HammerMedTakOneHanded
   - type: BorgModuleIcon
-    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: medtak-combat-module }
+    icon: { sprite: _Starlight/Admeme/MedTak/Interface/actions_borg.rsi, state: medtak-combat-module }
+
+- type: entity
+  id: BorgModuleMedTakDocuments
+  parent: [ BaseBorgModuleMedTak, BaseProviderBorgModule ]
+  name: MedTak documents cyborg module
+  description: A MedTak cyborg module for handling payments and documents.
+  components:
+  - type: Sprite
+    layers:
+    - state: medtak
+    - state: icon-paperwork
+  - type: ItemBorgModule
+    hands:
+    - item: Pen
+    - hand:
+        emptyLabel: borg-slot-documents-medtak-empty
+        emptyRepresentative: PaperMedTak
+        whitelist:
+          tags:
+          - Document
+    - hand:
+        emptyRepresentative: SpaceCash
+        emptyLabel: borg-slot-credits-empty
+        whitelist:
+          tags:
+          - PlayingCardDeckBox
+          components:
+          - Cash
+          - PlayingCard
+          - PlayingCardDeck
+          - PlayingCardHand
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Admeme/MedTak/Interface/actions_borg.rsi, state: medtak-documents-module }

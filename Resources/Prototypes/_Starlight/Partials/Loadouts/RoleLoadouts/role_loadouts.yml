@@ -1,4 +1,10 @@
 - type: !PartialOnly roleLoadout
+  id: JobHeadOfPersonnel
+  groups:
+  - !Remove Glasses
+  - !Index:7 CaptainEyewear
+
+- type: !PartialOnly roleLoadout
   id: JobBartender
   groups:
     - !Remove Glasses

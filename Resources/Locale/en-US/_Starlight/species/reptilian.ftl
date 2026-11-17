@@ -5,6 +5,7 @@ thick-scales-syringe-slow = You struggle to push the needle between {THE($target
 thick-scales-remote-blocked-self = It bounces off your thick scales.
 thick-scales-remote-blocked-attacker = It can't get through {THE($target)}'s thick scales!
 thick-scales-examine = {CAPITALIZE(SUBJECT($target))} {CONJUGATE-HAVE($target)} [color=#8fbc8f]thick scales[/color] that a quick needle won't get through.
+thick-scales-examine-port-installed = {CAPITALIZE(SUBJECT($target))} {CONJUGATE-HAVE($target)} [color=#8fbc8f]thick scales[/color], but {CONJUGATE-HAVE($target)} an [color=#9dc6cf]injection port[/color] installed.
 
 ## Fire breath
 
