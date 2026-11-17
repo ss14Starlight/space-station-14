@@ -1,53 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Nuclear Operatives  will no longer suddenly become USSP SKB Agents.
-    type: Fix
-  id: 410128
-  time: '2026-11-05T15:34:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7046
-- author: wonderfulnewworld
-  changes:
-  - message: People who get mindshields prior to antag rolling should no longer become USSP SKB Agents.
-    type: Fix
-  id: 410129
-  time: '2026-11-05T15:34:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7046
-- author: wonderfulnewworld
-  changes:
-  - message: Supplybot will no longer roll antags.
-    type: Fix
-  id: 410130
-  time: '2026-11-05T15:34:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7046
-- author: Floximo
-  changes:
-  - message: Shunting no longer kills the AI, re-shunting is possible again.
-    type: Fix
-  id: 410131
-  time: '2026-11-05T16:03:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7032
-- author: MaxAlpine
-  changes:
-  - message: (Prism) fixed Wrong door prototype on IAA office.
-    type: Fix
-  id: 410132
-  time: '2026-11-05T16:28:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7027
-- author: MaxAlpine
-  changes:
-  - message: (Prism) fixed Magistrate office stairway being too narrow.
-    type: Fix
-  id: 410133
-  time: '2026-11-05T16:28:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7027
-- author: MaxAlpine
-  changes:
-  - message: (Prism) fixed unlinked turrets across the map.
-    type: Fix
-  id: 410134
-  time: '2026-11-05T16:28:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7027
 - author: redmushie
   changes:
   - message: (Mapping) Added prefilled plasma and frezon subfloor- and tall gas tanks for mappers.
@@ -2799,4 +2750,53 @@ Entries:
   id: 410527
   time: '2026-11-16T19:20:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7284
+- author: Citrea
+  changes:
+  - message: Carpetium now feeds and hydrates moths.
+    type: Tweak
+  id: 410528
+  time: '2026-11-17T02:14:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7290
+- author: Citrea
+  changes:
+  - message: Moths can now eat carpets.
+    type: Tweak
+  id: 410529
+  time: '2026-11-17T02:14:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7290
+- author: Citrea
+  changes:
+  - message: Moths can now eat curtains.
+    type: Tweak
+  id: 410530
+  time: '2026-11-17T02:14:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7290
+- author: Citrea
+  changes:
+  - message: Moths can now eat posters.
+    type: Tweak
+  id: 410531
+  time: '2026-11-17T02:14:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7290
+- author: Citrea
+  changes:
+  - message: Moths can now eat wall flags.
+    type: Tweak
+  id: 410532
+  time: '2026-11-17T02:14:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7290
+- author: Citrea
+  changes:
+  - message: Moths can now eat web buildings and items.
+    type: Tweak
+  id: 410533
+  time: '2026-11-17T02:14:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7290
+- author: Citrea
+  changes:
+  - message: Moths can no longer eat insulated gloves and rubber boots.
+    type: Tweak
+  id: 410534
+  time: '2026-11-17T02:14:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7290
 Order: -1
