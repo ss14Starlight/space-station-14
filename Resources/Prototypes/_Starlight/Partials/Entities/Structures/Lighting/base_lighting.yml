@@ -56,6 +56,80 @@
     energy: 4
     softness: 0.5
 
+# Colored lights
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalCyan
+    values:
+    - PoweredlightCyan
+    - AlwaysPoweredlightCyan
+  components:
+  - type: PointLight
+    color: "#5ae8ed"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalBlue
+    values:
+    - PoweredlightBlue
+    - AlwaysPoweredlightBlue
+  components:
+  - type: PointLight
+    color: "#4ca1eb"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalYellow
+    values:
+    - PoweredlightYellow
+    - AlwaysPoweredlightYellow
+  components:
+  - type: PointLight
+    color: "#edd25a"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalPink
+    values:
+    - PoweredlightPink
+    - AlwaysPoweredlightPink
+  components:
+  - type: PointLight
+    color: "#f075c7"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalOrange
+    values:
+    - PoweredlightOrange
+    - AlwaysPoweredlightOrange
+  components:
+  - type: PointLight
+    color: "#ea863e"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalBlack
+    values:
+    - PoweredlightBlack
+    - AlwaysPoweredlightBlack
+  components:
+  - type: PointLight
+    color: "#4d4d4d"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalRed
+    values:
+    - PoweredlightRed
+    - AlwaysPoweredlightRed
+  components:
+  - type: PointLight
+    color: "#ec5555"
+
+- type: !PartialOnly entity
+  id: !type:CreateVariants #uses LightTubeCrystalRed
+    values:
+    - PoweredlightGreen
+    - AlwaysPoweredlightGreen
+  components:
+  - type: PointLight
+    color: "#7eeb4c"
+
+# Battery for lights
 - type: !PartialOnly entity
   id: !type:CreateVariants
     values: [ PoweredlightEmpty, PoweredSmallLightEmpty ]
