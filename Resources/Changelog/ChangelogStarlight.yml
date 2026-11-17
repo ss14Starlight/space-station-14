@@ -1,11 +1,4 @@
 Entries:
-- author: baltdev
-  changes:
-  - message: Added the poster "Never Too Dead!".
-    type: Add
-  id: 410138
-  time: '2026-11-05T16:51:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/7051
 - author: Ohelig
   changes:
   - message: (Cluster) Added the new radio machines to Radio Host.
@@ -2799,4 +2792,11 @@ Entries:
   id: 410537
   time: '2026-11-17T02:46:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/7291
+- author: neomoth
+  changes:
+  - message: Fix a bug with stains that caused error spam in console.
+    type: Fix
+  id: 410538
+  time: '2026-11-17T02:46:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/7292
 Order: -1
