@@ -38,6 +38,10 @@ public sealed partial class SharedVentCrawlSystem
                 // camera-relative input to world-relative
                 var worldAngle = dir.ToAngle() + mover.TargetRelativeRotation;
 
+                // including the world rotation of the reference entity
+                if (mover.RelativeEntity is { } relativeEntity)
+                    worldAngle += _xformSystem.GetWorldRotation(relativeEntity);
+
                 // world-relative to grid-relative
                 if (tubeXform.GridUid is { } gridUid)
                 {
