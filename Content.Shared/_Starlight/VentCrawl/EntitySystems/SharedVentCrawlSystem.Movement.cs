@@ -31,22 +31,26 @@ public sealed partial class SharedVentCrawlSystem
 
         if (dir != Direction.Invalid)
         {
-            // camera-relative input to world-space direction
-            if (TryComp<InputMoverComponent>(holder.ContainedEntity, out var mover))
-            {
-                dir = (dir.ToAngle() + mover.TargetRelativeRotation).GetCardinalDir();
-            }
-
-            // world-space direction to grid-local coordinates
             var tubeXform = Transform(holder.CurrentTube!.Value);
 
-            if (tubeXform.GridUid != null)
+            if (TryComp<InputMoverComponent>(holder.ContainedEntity, out var mover))
             {
-                var gridRotation = _xformSystem.GetWorldRotation(tubeXform.GridUid.Value);
+                // camera-relative input to world-relative
+                var worldAngle = dir.ToAngle() + mover.TargetRelativeRotation;
 
-                var localVector = (-gridRotation).RotateVec(dir.ToVec());
+                // world-relative to grid-relative
+                if (tubeXform.GridUid is { } gridUid)
+                {
+                    var gridRotation = _xformSystem.GetWorldRotation(gridUid);
 
-                dir = new Vector2i((int)MathF.Round(localVector.X), (int)MathF.Round(localVector.Y)).GetCardinalDir();
+                    var gridLocalAngle = worldAngle - gridRotation;
+
+                    dir = gridLocalAngle.GetCardinalDir();
+                }
+                else
+                {
+                    dir = worldAngle.GetCardinalDir();
+                }
             }
         }
 
